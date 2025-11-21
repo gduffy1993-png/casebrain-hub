@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## CaseBrain Hub
 
-## Getting Started
+CaseBrain Hub is a production-ready AI paralegal workspace for law firms. Upload disclosure packs, extract entities and timelines, generate letters from approved templates, and export an audit-ready case bundle in minutes.
 
-First, run the development server:
+### Tech stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Next.js 14 (App Router, TypeScript, Tailwind)
+- Supabase (Postgres + Storage)
+- Clerk multi-tenant auth (org roles: owner, solicitor, paralegal, viewer)
+- OpenAI (gpt-4o-mini, gpt-4-turbo)
+- pdf-parse, mammoth, pdfkit, docx
+- Playwright smoke tests
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Getting started
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Install dependencies
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   ```bash
+   npm install
+   ```
 
-## Learn More
+2. Copy environment template and configure secrets (see `config/env.example`)
 
-To learn more about Next.js, take a look at the following resources:
+3. Start Supabase locally
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   npx supabase start
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4. Run the development server
 
-## Deploy on Vercel
+   ```bash
+   npm run dev
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+5. Optionally seed demo data (requires service role key)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```bash
+   npm run seed
+   ```
+
+### Available scripts
+
+- `npm run dev` – start Next.js in development mode
+- `npm run build` – production build (type checks enforced)
+- `npm run start` – start the production server
+- `npm run lint` – lint with ESLint
+- `npm run seed` – insert demo cases, deadlines, and letters
+- `npm run test:e2e` – Playwright smoke flow (requires running dev server)
+
+### Workflows implemented
+
+- Secure uploads to Supabase Storage with automatic redaction and AI extraction
+- Timeline and deadline automation with CPR-style business day calculator
+- Letter drafting using firm templates, notes, and extracted facts
+- Multi-version letters with diff viewer
+- Case bundle PDF export (summary, timeline, letters, attachments)
+- Global search across cases, documents, letters
+- Audit log + Supabase row-level isolation per organisation
+
+### Deployment notes
+
+- Deploy Next.js on Vercel and Supabase on managed Postgres
+- Set runtime env vars (`OPENAI_*`, `CLERK_*`, `SUPABASE_*`, `REDACTION_SECRET`)
+- Ensure Supabase bucket `casebrain-documents` exists with private access
+- Configure Clerk webhooks to sync user roles into Supabase `users` table
+- Supabase policies must enforce `org_id` isolation on `cases`, `documents`, `letters`, `deadlines`, `audit_log`
