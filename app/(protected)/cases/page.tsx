@@ -8,23 +8,31 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Plus } from "lucide-react";
 import { PiQuickActions } from "@/components/pi/PiQuickActions";
+import { CaseArchiveButton } from "@/components/cases/CaseArchiveButton";
+import { CasesPageClient } from "@/components/cases/CasesPageClient";
+import { CurrentPersonaBadge } from "@/components/layout/CurrentPersonaBadge";
 
 type CasesPageProps = {
-  searchParams: { practiceArea?: string };
+  searchParams: { practiceArea?: string; role?: string };
 };
 
 const PRACTICE_AREA_FILTERS: Array<{ label: string; value: string }> = [
   { label: "All", value: "all" },
-  { label: "PI", value: "pi" },
+  { label: "PI", value: "personal_injury" },
   { label: "Clinical Neg", value: "clinical_negligence" },
   { label: "Housing Disrepair", value: "housing_disrepair" },
+  { label: "Family", value: "family" },
   { label: "General", value: "general" },
 ];
 
 export default async function CasesPage({ searchParams }: CasesPageProps) {
   const { orgId } = await requireAuthContext();
   const supabase = getSupabaseAdminClient();
+  
+  // Get practice area from URL params (set by role selection or global selector)
+  // Default to "all" if no practice area in URL
   const selectedPracticeArea = (searchParams.practiceArea ?? "all").toLowerCase();
+  const selectedRole = searchParams.role;
 
   let query = supabase
     .from("cases")
@@ -56,14 +64,19 @@ export default async function CasesPage({ searchParams }: CasesPageProps) {
 
   return (
     <div className="space-y-6">
+      <CasesPageClient />
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-semibold text-accent">Cases</h1>
           <p className="text-sm text-accent/60">
-            All matters scoped to your organisation. Filter by practice area to focus on PI &
-            Clinical Neg.
+            {selectedPracticeArea !== "all" && selectedRole
+              ? `Filtered to ${PRACTICE_AREA_FILTERS.find(f => f.value === selectedPracticeArea)?.label ?? selectedPracticeArea} cases (${selectedRole})`
+              : selectedPracticeArea !== "all"
+                ? `Filtered to ${PRACTICE_AREA_FILTERS.find(f => f.value === selectedPracticeArea)?.label ?? selectedPracticeArea} cases`
+                : "All matters scoped to your organisation. Filter by practice area to focus on specific areas."}
           </p>
         </div>
+        <CurrentPersonaBadge />
         <div className="flex flex-wrap items-center gap-2">
           <Link href="/upload">
             <Button variant="secondary" className="gap-2">

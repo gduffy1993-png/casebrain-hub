@@ -148,16 +148,43 @@ export async function ensureSupabaseUser() {
 }
 
 export async function getOrgMembers(orgId: string) {
-  const client = await clerkClient();
-  const memberships = await client.organizations.getOrganizationMembershipList({
-    organizationId: orgId,
-    limit: 100,
-  });
+  // If using solo/single-tenant mode (no real Clerk org), return current user
+  if (orgId.startsWith("solo-")) {
+    const user = await getCurrentUser();
+    if (user) {
+      return [{
+        id: user.id,
+        email: user.primaryEmailAddress?.emailAddress ?? "Unknown",
+        role: "owner",
+      }];
+    }
+    return [];
+  }
 
-  return memberships.data.map((membership) => ({
-    id: membership.publicUserData?.userId,
-    email: membership.publicUserData?.identifier,
-    role: membership.role,
-  }));
+  try {
+    const client = await clerkClient();
+    const memberships = await client.organizations.getOrganizationMembershipList({
+      organizationId: orgId,
+      limit: 100,
+    });
+
+    return memberships.data.map((membership) => ({
+      id: membership.publicUserData?.userId,
+      email: membership.publicUserData?.identifier,
+      role: membership.role,
+    }));
+  } catch (error) {
+    console.error("[auth] Failed to fetch org members:", error);
+    // Fallback to current user if org lookup fails
+    const user = await getCurrentUser();
+    if (user) {
+      return [{
+        id: user.id,
+        email: user.primaryEmailAddress?.emailAddress ?? "Unknown",
+        role: "owner",
+      }];
+    }
+    return [];
+  }
 }
 

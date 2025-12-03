@@ -190,7 +190,7 @@ export async function generateSupervisionPack(
   const awaabsStatus = calculateAwaabsLawStatus(housingCase, caseRecord.title);
 
   // Calculate priority score
-  const priorityScore = calculatePriorityScore(housingCase, caseRecord.title);
+  const priorityScore = await calculatePriorityScore(housingCase, caseRecord.title);
 
   // Build risk alerts from risk flags
   const riskAlerts =

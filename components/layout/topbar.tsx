@@ -4,6 +4,7 @@ import { UserButton, useOrganization, useUser } from "@clerk/nextjs";
 import { Command, Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { GlobalSolicitorRoleSelector } from "./GlobalSolicitorRoleSelector";
 
 type TopbarProps = {
   onQuickUpload?: () => void;
@@ -26,6 +27,7 @@ export function Topbar({ onQuickUpload }: TopbarProps) {
       </div>
 
       <div className="flex items-center gap-3">
+        <GlobalSolicitorRoleSelector />
         <Button
           variant="secondary"
           size="sm"

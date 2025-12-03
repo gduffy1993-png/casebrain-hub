@@ -27,47 +27,96 @@ export async function extractEvidence(
   documentId: string,
   orgId: string,
 ): Promise<ExtractionResult> {
-  const facts = await extractCaseFacts({
-    documentText,
-    documentName,
-    orgId,
-  });
+  try {
+    // Validate inputs
+    if (!documentText || typeof documentText !== "string") {
+      throw new Error("Invalid document text provided");
+    }
+    if (!documentId || !orgId) {
+      throw new Error("Missing required parameters");
+    }
 
-  // Determine overall confidence based on data completeness
-  let confidence: "high" | "medium" | "low" = "high";
-  const uncertainties: string[] = [];
+    const facts = await extractCaseFacts({
+      documentText,
+      documentName: documentName || "Unknown document",
+      orgId,
+    });
 
-  if (!facts.parties.length) {
-    confidence = "low";
-    uncertainties.push("No parties identified");
-  }
-  if (!facts.dates.length) {
-    confidence = confidence === "high" ? "medium" : "low";
-    uncertainties.push("No key dates identified");
-  }
-  if (!facts.summary || facts.summary.length < 50) {
-    confidence = confidence === "high" ? "medium" : "low";
-    uncertainties.push("Summary may be incomplete");
-  }
+    // Ensure facts has all required fields with safe defaults
+    const safeFacts: ExtractedCaseFacts = {
+      summary: facts?.summary || "",
+      parties: Array.isArray(facts?.parties) ? facts.parties : [],
+      dates: Array.isArray(facts?.dates) ? facts.dates : [],
+      amounts: Array.isArray(facts?.amounts) ? facts.amounts : [],
+      timeline: Array.isArray(facts?.timeline) ? facts.timeline : [],
+      keyIssues: Array.isArray(facts?.keyIssues) ? facts.keyIssues : [],
+      claimType: facts?.claimType || "unknown",
+      housingMeta: facts?.housingMeta,
+      piMeta: facts?.piMeta,
+    };
 
-  return {
-    facts,
-    confidence,
-    sources: [
-      {
-        documentId,
-        documentName,
-        extractedFields: [
-          ...(facts.parties.length ? ["parties"] : []),
-          ...(facts.dates.length ? ["dates"] : []),
-          ...(facts.amounts.length ? ["amounts"] : []),
-          ...(facts.timeline.length ? ["timeline"] : []),
-          ...(facts.keyIssues.length ? ["keyIssues"] : []),
-        ],
-        confidence,
+    // Determine overall confidence based on data completeness
+    let confidence: "high" | "medium" | "low" = "high";
+    const uncertainties: string[] = [];
+
+    if (!safeFacts.parties.length) {
+      confidence = "low";
+      uncertainties.push("No parties identified");
+    }
+    if (!safeFacts.dates.length) {
+      confidence = confidence === "high" ? "medium" : "low";
+      uncertainties.push("No key dates identified");
+    }
+    if (!safeFacts.summary || safeFacts.summary.length < 50) {
+      confidence = confidence === "high" ? "medium" : "low";
+      uncertainties.push("Summary may be incomplete");
+    }
+
+    return {
+      facts: safeFacts,
+      confidence,
+      sources: [
+        {
+          documentId,
+          documentName: documentName || "Unknown document",
+          extractedFields: [
+            ...(safeFacts.parties.length ? ["parties"] : []),
+            ...(safeFacts.dates.length ? ["dates"] : []),
+            ...(safeFacts.amounts.length ? ["amounts"] : []),
+            ...(safeFacts.timeline.length ? ["timeline"] : []),
+            ...(safeFacts.keyIssues.length ? ["keyIssues"] : []),
+          ],
+          confidence,
+        },
+      ],
+      uncertainties,
+    };
+  } catch (error) {
+    // Return safe fallback on any error
+    console.error(`[extraction] Failed to extract evidence from ${documentName}:`, error);
+    return {
+      facts: {
+        summary: `Extraction failed: ${error instanceof Error ? error.message : "Unknown error"}`,
+        parties: [],
+        dates: [],
+        amounts: [],
+        timeline: [],
+        keyIssues: [],
+        claimType: "unknown",
       },
-    ],
-    uncertainties,
-  };
+      confidence: "low",
+      sources: [
+        {
+          documentId,
+          documentName: documentName || "Unknown document",
+          extractedFields: [],
+          confidence: "low",
+        },
+      ],
+      uncertainties: [
+        `Extraction encountered an error: ${error instanceof Error ? error.message : "Unknown error"}`,
+      ],
+    };
+  }
 }
 

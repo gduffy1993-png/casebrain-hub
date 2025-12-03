@@ -27,6 +27,8 @@ export async function POST(request: Request) {
   const files = formData.getAll("files").filter(isFile);
   const caseTitle =
     (formData.get("caseTitle") as string | null)?.trim() ?? undefined;
+  const practiceArea =
+    (formData.get("practiceArea") as string | null)?.trim() ?? "other_litigation";
 
   if (!files.length) {
     return NextResponse.json(
@@ -44,37 +46,52 @@ export async function POST(request: Request) {
 
   const supabase = getSupabaseAdminClient();
 
-  const { data: existingCase } = await supabase
+  const { data: existingCase, error: caseLookupError } = await supabase
     .from("cases")
-    .select("id")
+    .select("id, title")
     .eq("org_id", orgId)
     .eq("title", caseTitle)
     .maybeSingle();
 
+  if (caseLookupError) {
+    console.error("[upload] Error looking up case:", caseLookupError);
+    return NextResponse.json(
+      { error: "Failed to lookup case", details: caseLookupError.message },
+      { status: 500 },
+    );
+  }
+
   let caseId = existingCase?.id;
 
   if (!caseId) {
+    console.log(`[upload] Creating new case: "${caseTitle}" for org ${orgId}`);
     const { data: newCase, error: caseError } = await supabase
       .from("cases")
       .insert({
         org_id: orgId,
         title: caseTitle,
         created_by: userId,
+        practice_area: practiceArea,
       })
       .select("id")
       .maybeSingle();
 
     if (caseError || !newCase) {
+      console.error("[upload] Failed to create case:", caseError);
       return NextResponse.json(
-        { error: "Failed to create case" },
+        { error: "Failed to create case", details: caseError?.message },
         { status: 500 },
       );
     }
 
     caseId = newCase.id;
+    console.log(`[upload] Created new case with ID: ${caseId}`);
+  } else {
+    console.log(`[upload] Using existing case ID: ${caseId} for "${caseTitle}"`);
   }
 
   const documentIds: string[] = [];
+  const skippedFiles: string[] = [];
 
   for (const file of files) {
     if (file.size > MAX_UPLOAD_BYTES) {
@@ -173,6 +190,22 @@ export async function POST(request: Request) {
       }
     }
 
+    // Check for duplicate file (same name in same case)
+    const { data: existingDoc } = await supabase
+      .from("documents")
+      .select("id, name")
+      .eq("case_id", caseId)
+      .eq("org_id", orgId)
+      .eq("name", file.name)
+      .maybeSingle();
+
+    if (existingDoc) {
+      console.log(`[upload] Duplicate file detected: ${file.name} - skipping upload`);
+      skippedFiles.push(file.name);
+      // Skip this file but continue with others
+      continue;
+    }
+
     const storagePath = `${orgId}/${caseId}/${Date.now()}-${file.name}`;
     const { error: storageError } = await supabase.storage
       .from(STORAGE_BUCKET)
@@ -182,8 +215,9 @@ export async function POST(request: Request) {
       });
 
     if (storageError) {
+      console.error(`[upload] Storage error for ${file.name}:`, storageError);
       return NextResponse.json(
-        { error: "Failed to store file" },
+        { error: `Failed to store file: ${file.name}` },
         { status: 500 },
       );
     }
@@ -200,17 +234,52 @@ export async function POST(request: Request) {
         uploaded_by: userId,
         redaction_map: redactionMap,
       })
-      .select("id")
+      .select("id, name, case_id, org_id")
       .maybeSingle();
 
-    if (docError || !document) {
+    if (docError) {
+      console.error(`[upload] Failed to insert document ${file.name}:`, docError);
       return NextResponse.json(
-        { error: "Failed to index document" },
+        { error: `Failed to index document: ${file.name}`, details: docError.message },
         { status: 500 },
       );
     }
 
+    if (!document) {
+      console.error(`[upload] Document insert returned no data for ${file.name}`);
+      return NextResponse.json(
+        { error: `Failed to index document: ${file.name} - no data returned` },
+        { status: 500 },
+      );
+    }
+
+    console.log(`[upload] Successfully inserted document: ${file.name} (ID: ${document.id}, Case: ${document.case_id}, Org: ${document.org_id})`);
     documentIds.push(document.id);
+
+    // Auto-run bundle analysis for PDFs (Phase A)
+    if (file.type === "application/pdf" || file.name.toLowerCase().endsWith(".pdf")) {
+      try {
+        const { summariseBundlePhaseA } = await import("@/lib/bundle-navigator");
+        // Extract page count from text (look for "Page X of Y" patterns)
+        const pageCountMatch = text.match(/(?:page|p\.?)\s*(\d+)\s*(?:of|\/)\s*(\d+)/i) ||
+          text.match(/page\s+(\d+)/gi);
+        const pageCount = pageCountMatch 
+          ? (pageCountMatch[0].match(/\d+/g)?.[1] ? parseInt(pageCountMatch[0].match(/\d+/g)![1]) : undefined)
+          : undefined;
+        
+        await summariseBundlePhaseA({
+          caseId,
+          orgId,
+          bundleId: document.id,
+          bundleName: file.name,
+          textContent: text.substring(0, 50000), // Limit to first 50k chars for Phase A
+          pageCount,
+        });
+      } catch (bundleError) {
+        console.error(`[upload] Failed to run bundle analysis for ${file.name}:`, bundleError);
+        // Don't fail the upload if bundle analysis fails
+      }
+    }
 
     // Fetch case record for practice area before risk detection
     const { data: caseRecord } = await supabase
@@ -272,7 +341,7 @@ export async function POST(request: Request) {
     // If this is a PI case and we have piMeta, upsert to pi_cases
     if (
       caseRecord &&
-      (caseRecord.practice_area === "pi" ||
+      (caseRecord.practice_area === "personal_injury" ||
         caseRecord.practice_area === "clinical_negligence") &&
       extracted.piMeta
     ) {
@@ -300,35 +369,105 @@ export async function POST(request: Request) {
       );
     }
 
-    // If this is a housing disrepair case and we have housingMeta, upsert to housing_cases (only if extraction succeeded)
+    // If this is a housing disrepair case, upsert to housing_cases
+    // Try to extract from housingMeta first, then fall back to inferring from extracted text
     if (
-      !extractionError &&
       caseRecord &&
-      caseRecord.practice_area === "housing_disrepair" &&
-      extracted.housingMeta
+      caseRecord.practice_area === "housing_disrepair"
     ) {
-      const housingMeta = extracted.housingMeta;
-      const firstReportDate = housingMeta.propertyDefects?.[0]?.firstReported
-        ? new Date(housingMeta.propertyDefects[0].firstReported)
-        : null;
+      let housingMeta = extracted.housingMeta;
+      let firstReportDate: Date | null = null;
+      let landlordType: string | null = null;
+      let tenantVulnerability: string[] = [];
+      let hhsrsCategory1Hazards: string[] = [];
+
+      // If we have housingMeta, use it
+      if (housingMeta) {
+        firstReportDate = housingMeta.propertyDefects?.[0]?.firstReported
+          ? new Date(housingMeta.propertyDefects[0].firstReported)
+          : null;
+        tenantVulnerability = housingMeta.tenantVulnerability ?? [];
+        hhsrsCategory1Hazards = housingMeta.hhsrsHazards ?? [];
+      }
+
+      // Infer from extracted text if housingMeta is missing
+      if (!housingMeta && !extractionError && extracted.summary) {
+        const textLower = (extracted.summary + " " + extracted.keyIssues.join(" ") + " " + extracted.timeline.map(t => t.description).join(" ")).toLowerCase();
+        
+        // Detect social landlord from text
+        if (textLower.includes("metropolitan") || 
+            textLower.includes("thames valley") ||
+            textLower.includes("housing association") ||
+            textLower.includes("council") ||
+            textLower.includes("social housing") ||
+            textLower.includes("social landlord")) {
+          landlordType = "social";
+        }
+
+        // Extract first report date from timeline
+        const firstReportEvent = extracted.timeline.find(t => 
+          t.label.toLowerCase().includes("initial report") ||
+          t.label.toLowerCase().includes("first report") ||
+          t.label.toLowerCase().includes("first complaint")
+        );
+        if (firstReportEvent) {
+          try {
+            firstReportDate = new Date(firstReportEvent.date);
+          } catch {
+            // Invalid date, ignore
+          }
+        }
+
+        // Detect tenant vulnerability from text
+        if (textLower.includes("child") || textLower.includes("2-year-old") || textLower.includes("daughter")) {
+          tenantVulnerability.push("Child under 5");
+        }
+        if (textLower.includes("asthma") || textLower.includes("respiratory") || textLower.includes("health")) {
+          tenantVulnerability.push("Health symptoms");
+        }
+
+        // Detect Category 1 hazard
+        if (textLower.includes("category 1") || textLower.includes("cat 1") || textLower.includes("severe")) {
+          hhsrsCategory1Hazards.push("damp");
+          hhsrsCategory1Hazards.push("mould");
+        }
+      }
+
+      // Also check landlord name from parties
+      const landlordParty = extracted.parties?.find(p => 
+        p.role === "defendant" || 
+        p.role === "opponent" ||
+        p.name.toLowerCase().includes("housing") ||
+        p.name.toLowerCase().includes("landlord")
+      );
+      if (landlordParty && !landlordType) {
+        const landlordNameLower = landlordParty.name.toLowerCase();
+        if (landlordNameLower.includes("metropolitan") ||
+            landlordNameLower.includes("thames valley") ||
+            landlordNameLower.includes("housing association") ||
+            landlordNameLower.includes("council")) {
+          landlordType = "social";
+        }
+      }
 
       await supabase.from("housing_cases").upsert(
         {
           id: caseId,
           org_id: orgId,
-          tenant_vulnerability: housingMeta.tenantVulnerability ?? [],
+          tenant_vulnerability: tenantVulnerability,
           first_report_date: firstReportDate?.toISOString().split("T")[0] ?? null,
-          repair_attempts_count: housingMeta.repairAttempts ?? 0,
-          no_access_days_total: housingMeta.noAccessDays ?? 0,
-          unfit_for_habitation: housingMeta.unfitForHabitation ?? false,
-          hhsrs_category_1_hazards: housingMeta.hhsrsHazards ?? [],
+          landlord_type: landlordType,
+          repair_attempts_count: housingMeta?.repairAttempts ?? 0,
+          no_access_days_total: housingMeta?.noAccessDays ?? 0,
+          unfit_for_habitation: housingMeta?.unfitForHabitation ?? false,
+          hhsrs_category_1_hazards: hhsrsCategory1Hazards,
           updated_at: new Date().toISOString(),
         },
         { onConflict: "id" },
       );
 
-      // Save defects
-      if (housingMeta.propertyDefects) {
+      // Save defects (only if we have housingMeta with defects)
+      if (housingMeta?.propertyDefects && housingMeta.propertyDefects.length > 0) {
         for (const defect of housingMeta.propertyDefects) {
           await supabase.from("housing_defects").insert({
             case_id: caseId,
@@ -339,15 +478,38 @@ export async function POST(request: Request) {
             first_reported_date: defect.firstReported
               ? new Date(defect.firstReported).toISOString().split("T")[0]
               : null,
-            hhsrs_category: housingMeta.hhsrsHazards?.includes(defect.type)
+            hhsrs_category: hhsrsCategory1Hazards.includes(defect.type)
               ? "category_1"
               : "none",
           });
         }
+      } else if (!extractionError && extracted.summary) {
+        // Infer defects from extracted text if housingMeta is missing
+        const textLower = extracted.summary.toLowerCase();
+        const defects: Array<{ type: string; location?: string; severity?: string }> = [];
+        
+        if (textLower.includes("damp") || textLower.includes("mould")) {
+          defects.push({ type: "mould", severity: "severe" });
+        }
+        if (textLower.includes("leak")) {
+          defects.push({ type: "leak", severity: "medium" });
+        }
+        
+        for (const defect of defects) {
+          await supabase.from("housing_defects").insert({
+            case_id: caseId,
+            org_id: orgId,
+            defect_type: defect.type,
+            location: defect.location ?? null,
+            severity: defect.severity ?? null,
+            first_reported_date: firstReportDate?.toISOString().split("T")[0] ?? null,
+            hhsrs_category: hhsrsCategory1Hazards.includes(defect.type) ? "category_1" : "none",
+          });
+        }
       }
 
-      // Save landlord responses
-      if (housingMeta.landlordResponses) {
+      // Save landlord responses (only if we have housingMeta)
+      if (housingMeta?.landlordResponses && housingMeta.landlordResponses.length > 0) {
         for (const response of housingMeta.landlordResponses) {
           await supabase.from("housing_landlord_responses").insert({
             case_id: caseId,
@@ -363,8 +525,8 @@ export async function POST(request: Request) {
     await appendAuditLog({
       caseId,
       userId,
-      action: "document_uploaded",
-      details: {
+      eventType: "UPLOAD_COMPLETED",
+      meta: {
         documentId: document.id,
         name: file.name,
         type: file.type,
@@ -374,7 +536,18 @@ export async function POST(request: Request) {
     });
   }
 
-  return NextResponse.json({ caseId, documentIds }, { status: 201 });
+  console.log(`[upload] Upload complete. Case: ${caseId}, Documents: ${documentIds.length}, Skipped: ${skippedFiles.length}`);
+  
+  return NextResponse.json({ 
+    caseId, 
+    documentIds,
+    skippedFiles: skippedFiles.length > 0 ? skippedFiles : undefined,
+    message: skippedFiles.length > 0 
+      ? `${skippedFiles.length} duplicate file(s) skipped: ${skippedFiles.join(", ")}`
+      : undefined,
+    success: true,
+    uploadedCount: documentIds.length
+  }, { status: 201 });
 }
 
 async function extractTextFromFile(file: File, buffer: Buffer): Promise<string> {

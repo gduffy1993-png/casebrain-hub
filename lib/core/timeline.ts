@@ -1,4 +1,4 @@
-"use server";
+import "server-only";
 
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import type { TimelineEvent } from "@/types";
@@ -41,26 +41,47 @@ export async function buildChronology(
   const events: ChronologyEvent[] = [];
 
   documents?.forEach((doc) => {
-    const extracted = doc.extracted_json as
-      | { timeline?: TimelineEvent[] }
-      | null
-      | undefined;
+    try {
+      const extracted = doc.extracted_json as
+        | { timeline?: TimelineEvent[] }
+        | null
+        | undefined;
 
-    if (extracted?.timeline) {
-      extracted.timeline.forEach((event) => {
-        events.push({
-          id: event.id,
-          date: new Date(event.date),
-          event: event.label,
-          source: {
-            type: event.source === "document" ? "document" : "system",
-            documentId: doc.id,
-            documentName: doc.name,
-          },
-          issueSignificance: event.description,
-          confidence: "high", // Can be enhanced with confidence scoring
+      if (extracted?.timeline && Array.isArray(extracted.timeline)) {
+        extracted.timeline.forEach((event) => {
+          try {
+            // Validate event has required fields
+            if (!event?.date || !event?.label) {
+              return; // Skip invalid events
+            }
+
+            const eventDate = new Date(event.date);
+            // Validate date is not invalid
+            if (isNaN(eventDate.getTime())) {
+              return; // Skip invalid dates
+            }
+
+            events.push({
+              id: event.id || `event-${Date.now()}-${Math.random()}`,
+              date: eventDate,
+              event: event.label || "Unknown event",
+              source: {
+                type: event.source === "document" ? "document" : "system",
+                documentId: doc.id,
+                documentName: doc.name || "Unknown document",
+              },
+              issueSignificance: event.description || undefined,
+              confidence: "high", // Can be enhanced with confidence scoring
+            });
+          } catch (eventError) {
+            // Log but don't crash - skip this event
+            console.error(`[timeline] Failed to process event from ${doc.name}:`, eventError);
+          }
         });
-      });
+      }
+    } catch (docError) {
+      // Log but don't crash - skip this document
+      console.error(`[timeline] Failed to process document ${doc.name}:`, docError);
     }
   });
 
@@ -74,21 +95,40 @@ export async function buildChronology(
  * Export chronology as structured table format
  */
 export function exportChronologyTable(events: ChronologyEvent[]): string {
-  const rows = events.map((event) => ({
-    Date: event.date.toLocaleDateString("en-GB"),
-    Event: event.event,
-    Source: event.source.documentName ?? event.source.type,
-    "Issue/Significance": event.issueSignificance ?? "",
-    "Next Action": event.nextAction ?? "",
-  }));
+  if (!events || events.length === 0) {
+    return "Date,Event,Source,Issue/Significance,Next Action\n";
+  }
 
-  // Simple CSV format (can be enhanced to PDF/Word)
-  const headers = Object.keys(rows[0] || {});
-  const csv = [
-    headers.join(","),
-    ...rows.map((row) => headers.map((h) => `"${row[h as keyof typeof row]}"`).join(",")),
-  ].join("\n");
+  try {
+    const rows = events.map((event) => ({
+      Date: event.date?.toLocaleDateString("en-GB") || "Unknown date",
+      Event: event.event || "Unknown event",
+      Source: event.source?.documentName ?? event.source?.type ?? "Unknown",
+      "Issue/Significance": event.issueSignificance ?? "",
+      "Next Action": event.nextAction ?? "",
+    }));
 
-  return csv;
+    // Simple CSV format (can be enhanced to PDF/Word)
+    const headers = Object.keys(rows[0] || {});
+    if (headers.length === 0) {
+      return "Date,Event,Source,Issue/Significance,Next Action\n";
+    }
+
+    const csv = [
+      headers.join(","),
+      ...rows.map((row) => 
+        headers.map((h) => {
+          const value = row[h as keyof typeof row] || "";
+          // Escape quotes and wrap in quotes
+          return `"${String(value).replace(/"/g, '""')}"`;
+        }).join(",")
+      ),
+    ].join("\n");
+
+    return csv;
+  } catch (error) {
+    console.error("[timeline] Failed to export chronology table:", error);
+    return "Date,Event,Source,Issue/Significance,Next Action\n";
+  }
 }
 

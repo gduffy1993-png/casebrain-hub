@@ -1,4 +1,4 @@
-"use server";
+import "server-only";
 
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import type { ExtractedCaseFacts } from "@/types";

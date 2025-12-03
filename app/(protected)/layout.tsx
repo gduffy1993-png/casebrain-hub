@@ -9,6 +9,8 @@ import {
   CreateOrganization,
 } from "@clerk/nextjs";
 import { AppShell } from "@/components/layout/app-shell";
+import { PracticeAreaProvider } from "@/components/providers/PracticeAreaProvider";
+import { SeniorityProvider } from "@/components/providers/SeniorityProvider";
 
 export default function ProtectedLayout({ children }: { children: ReactNode }) {
   return (
@@ -34,7 +36,13 @@ function OrganisationGate({ children }: { children: ReactNode }) {
     return <NoOrgSelected />;
   }
 
-  return <AppShell>{children}</AppShell>;
+  return (
+    <PracticeAreaProvider>
+      <SeniorityProvider>
+        <AppShell>{children}</AppShell>
+      </SeniorityProvider>
+    </PracticeAreaProvider>
+  );
 }
 
 function NoOrgSelected() {

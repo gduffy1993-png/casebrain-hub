@@ -40,7 +40,7 @@ export async function GET(
   }
 
   try {
-    const priority = calculatePriorityScore(housingCase, caseRecord.title);
+    const priority = await calculatePriorityScore(housingCase, caseRecord.title);
     return NextResponse.json(priority);
   } catch (error) {
     console.error("[priority-meter] Error calculating priority", { error, caseId, orgId });

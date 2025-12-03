@@ -15,7 +15,7 @@ export function CaseArchiveButton({ caseId, caseTitle }: CaseArchiveButtonProps)
   const [isArchiving, setIsArchiving] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const router = useRouter();
-  const { toast } = useToast();
+  const { push: showToast } = useToast();
 
   const handleArchive = async () => {
     setIsArchiving(true);
@@ -30,19 +30,12 @@ export function CaseArchiveButton({ caseId, caseTitle }: CaseArchiveButtonProps)
         throw new Error(data?.error ?? "Failed to archive case");
       }
 
-      toast({
-        title: "Case Archived",
-        description: `${caseTitle} has been archived and removed from active views.`,
-      });
+      showToast(`Case Archived: ${caseTitle} has been archived and removed from active views.`);
 
       // Refresh the page to update the list
       router.refresh();
     } catch (error) {
-      toast({
-        title: "Archive Failed",
-        description: error instanceof Error ? error.message : "Failed to archive case",
-        variant: "danger",
-      });
+      showToast(`Archive Failed: ${error instanceof Error ? error.message : "Failed to archive case"}`);
     } finally {
       setIsArchiving(false);
       setShowConfirm(false);

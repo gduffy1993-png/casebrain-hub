@@ -253,13 +253,28 @@ Leave piMeta and housingMeta fields null/empty if not clearly stated in the docu
 
 /**
  * 2) Generate a letter draft from a template + facts
+ * Now accepts pack, analysis, and outcome/complaint summaries for richer context
  */
 export async function generateLetterDraft({
   template,
   facts,
   notes,
   actingFor,
-}: LetterDraftInput): Promise<LetterDraftOutput> {
+  pack,
+  analysis,
+  outcomeSummary,
+  complaintRiskSummary,
+}: LetterDraftInput & {
+  pack?: { id: string; label: string; promptHints?: { clientUpdate?: string } };
+  analysis?: {
+    risks?: Array<{ severity: string; label: string; description: string }>;
+    missingEvidence?: Array<{ label: string; priority: string }>;
+    limitation?: { daysRemaining?: number; isExpired?: boolean };
+    keyIssues?: Array<{ label: string }>;
+  };
+  outcomeSummary?: { level: string; dimensions: Record<string, string>; notes: string[] };
+  complaintRiskSummary?: { level: string; drivers: string[]; notes: string[] };
+}): Promise<LetterDraftOutput> {
   const client = getOpenAIClient();
 
   const variables = {
@@ -309,7 +324,13 @@ export async function generateLetterDraft({
             type: "text",
             text: `You are CaseBrain, a UK litigation paralegal assistant drafting professional correspondence.
 Draft in plain English, referencing CPR where relevant. Adapt tone for acting on behalf of the ${actingFor}. 
-Use British spelling and include placeholders where data is missing.`,
+Use British spelling and include placeholders where data is missing.
+
+${pack?.promptHints?.clientUpdate ? `Practice-specific guidance: ${pack.promptHints.clientUpdate}` : ""}
+
+${complaintRiskSummary?.level === "high" 
+  ? "IMPORTANT: This case has HIGH complaint risk. Be more explicit about uncertainties, risks, and manage client expectations carefully. Use cautious but professional language." 
+  : ""}`,
           },
         ],
       },
@@ -326,7 +347,25 @@ Use British spelling and include placeholders where data is missing.`,
               facts,
               null,
               2,
-            )}\n\nNotes from fee earner:\n${notes ?? "None"}`,
+            )}\n\nNotes from fee earner:\n${notes ?? "None"}
+
+${analysis ? `\nCase Analysis Context:\n${JSON.stringify({
+  keyRisks: analysis.risks?.filter(r => r.severity === "CRITICAL" || r.severity === "HIGH").map(r => r.label).slice(0, 5) ?? [],
+  missingEvidence: analysis.missingEvidence?.filter(e => e.priority === "CRITICAL" || e.priority === "HIGH").map(e => e.label).slice(0, 5) ?? [],
+  limitationUrgent: analysis.limitation?.daysRemaining && analysis.limitation.daysRemaining <= 30 ? `Limitation: ${analysis.limitation.daysRemaining} days remaining` : undefined,
+  keyIssues: analysis.keyIssues?.map(i => i.label).slice(0, 5) ?? [],
+}, null, 2)}` : ""}
+
+${outcomeSummary ? `\nOutcome Assessment:\n${JSON.stringify({
+  overallLevel: outcomeSummary.level,
+  dimensions: outcomeSummary.dimensions,
+  notes: outcomeSummary.notes.slice(0, 3),
+}, null, 2)}` : ""}
+
+${complaintRiskSummary ? `\nComplaint Risk Factors:\n${JSON.stringify({
+  level: complaintRiskSummary.level,
+  drivers: complaintRiskSummary.drivers.slice(0, 3),
+}, null, 2)}` : ""}`,
           },
         ],
       },

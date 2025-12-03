@@ -2,16 +2,24 @@
  * Core Litigation Brain - Limitation Calculator
  * 
  * Calculates limitation periods and risk severity based on case facts.
+ * Now uses the pack system for practice-area-specific limitation rules.
+ * 
  * This is procedural guidance only and does not constitute legal advice.
  */
 
 import type { RiskSeverity } from "./types";
+import type { PracticeArea } from "../types/casebrain";
+import { 
+  getLimitationRules, 
+  getLimitationSummary, 
+  normalizePracticeArea 
+} from "../packs";
 
 export interface LimitationInput {
   incidentDate?: string; // ISO
   dateOfKnowledge?: string; // ISO
   claimantDateOfBirth?: string; // ISO, to spot minors
-  practiceArea: "housing" | "pi_rta" | "pi_general" | "clin_neg" | "other";
+  practiceArea: string; // Now accepts any practice area string, normalized internally
   today?: string; // default: new Date().toISOString()
 }
 
@@ -22,20 +30,48 @@ export interface LimitationResult {
   daysRemaining?: number; // days until limitation (negative if expired)
   isExpired: boolean;
   isMinor?: boolean; // true if claimant is/was a minor at incident
+  practiceAreaSummary?: string; // Pack-specific limitation summary
+  specialCases?: string[]; // Pack-specific special cases
+}
+
+/**
+ * Map legacy practice area strings to normalized format
+ */
+function normalizeLegacyPracticeArea(area: string): PracticeArea {
+  const lower = area.toLowerCase();
+  
+  // Legacy mappings
+  if (lower === "housing" || lower.includes("disrepair")) {
+    return "housing_disrepair";
+  }
+  if (lower === "pi_rta" || lower === "pi_general" || lower.includes("personal_injury") || lower === "pi") {
+    return "personal_injury";
+  }
+  if (lower === "clin_neg" || lower.includes("clinical")) {
+    return "clinical_negligence";
+  }
+  if (lower.includes("family")) {
+    return "family";
+  }
+  
+  return normalizePracticeArea(area);
 }
 
 /**
  * Calculate limitation period and risk severity
  * 
- * Rules (procedural guidance only):
- * - Housing disrepair: 6 years from incident date or date of knowledge (whichever is later)
- * - PI/Clinical Negligence: 3 years from incident date or date of knowledge
- * - Minors: Limitation period may be extended (not fully modeled here - flag for review)
+ * Uses pack-specific limitation rules where available.
+ * Falls back to reasonable defaults if pack has no specific rules.
  * 
  * This is NOT legal advice. Dates must be confirmed with a qualified legal advisor.
  */
 export function calculateLimitation(input: LimitationInput): LimitationResult {
   const today = input.today ? new Date(input.today) : new Date();
+  const normalizedArea = normalizeLegacyPracticeArea(input.practiceArea);
+  
+  // Get pack-specific limitation info
+  const limitationRules = getLimitationRules(normalizedArea);
+  const limitationSummary = getLimitationSummary(normalizedArea);
 
   // Determine base event date (date of knowledge takes precedence if available)
   const baseDateStr = input.dateOfKnowledge ?? input.incidentDate;
@@ -46,6 +82,8 @@ export function calculateLimitation(input: LimitationInput): LimitationResult {
       explanation:
         "Insufficient data to calculate limitation period. Incident date or date of knowledge required. This is procedural guidance only and does not constitute legal advice.",
       isExpired: false,
+      practiceAreaSummary: limitationSummary.summary,
+      specialCases: limitationSummary.specialCases,
     };
   }
 
@@ -56,6 +94,8 @@ export function calculateLimitation(input: LimitationInput): LimitationResult {
       explanation:
         "Invalid date format provided. This is procedural guidance only and does not constitute legal advice.",
       isExpired: false,
+      practiceAreaSummary: limitationSummary.summary,
+      specialCases: limitationSummary.specialCases,
     };
   }
 
@@ -69,19 +109,45 @@ export function calculateLimitation(input: LimitationInput): LimitationResult {
     }
   }
 
-  // Determine limitation period duration based on practice area
+  // Get the primary limitation rule from the pack
+  const primaryRule = limitationRules[0];
+  
+  // Determine limitation period duration based on pack rules or defaults
   let durationYears: number;
-  switch (input.practiceArea) {
-    case "housing":
-      durationYears = 6; // 6 years for breach of contract (housing disrepair)
-      break;
-    case "pi_rta":
-    case "pi_general":
-    case "clin_neg":
-      durationYears = 3; // 3 years for personal injury / clinical negligence
-      break;
-    default:
-      durationYears = 3; // Default to 3 years (most common)
+  let dateOfKnowledgeApplies = false;
+  
+  if (primaryRule) {
+    durationYears = primaryRule.defaultYears;
+    dateOfKnowledgeApplies = primaryRule.dateOfKnowledgeApplies;
+  } else {
+    // Fallback defaults based on normalized area
+    switch (normalizedArea) {
+      case "housing_disrepair":
+        durationYears = 6;
+        break;
+      case "personal_injury":
+      case "clinical_negligence":
+        durationYears = 3;
+        dateOfKnowledgeApplies = true;
+        break;
+      case "family":
+        durationYears = 0; // Family doesn't have traditional limitation
+        break;
+      default:
+        durationYears = 6; // Default contract limitation
+    }
+  }
+
+  // For family cases with no real limitation, return early with appropriate message
+  if (durationYears === 0) {
+    return {
+      severity: "low",
+      explanation: "Family proceedings do not have traditional limitation periods. Check specific deadlines for appeals, enforcement, or any associated civil claims. This is procedural guidance only.",
+      isExpired: false,
+      isMinor: isMinor || undefined,
+      practiceAreaSummary: limitationSummary.summary,
+      specialCases: limitationSummary.specialCases,
+    };
   }
 
   // Calculate limitation date
@@ -95,15 +161,22 @@ export function calculateLimitation(input: LimitationInput): LimitationResult {
 
   const isExpired = daysRemaining < 0;
 
+  // Use pack thresholds if available, otherwise defaults
+  const thresholds = primaryRule?.warningThresholds ?? {
+    critical: 30,
+    high: 90,
+    medium: 180,
+  };
+
   // Determine severity based on days remaining
   let severity: RiskSeverity;
   if (isExpired) {
     severity = "critical";
-  } else if (daysRemaining <= 90) {
+  } else if (daysRemaining <= thresholds.critical) {
     severity = "critical";
-  } else if (daysRemaining <= 180) {
+  } else if (daysRemaining <= thresholds.high) {
     severity = "high";
-  } else if (daysRemaining <= 365) {
+  } else if (daysRemaining <= thresholds.medium) {
     severity = "medium";
   } else {
     severity = "low";
@@ -124,13 +197,13 @@ export function calculateLimitation(input: LimitationInput): LimitationResult {
 
   if (isMinor) {
     explanationParts.push(
-      "Claimant appears to be/was a minor at the time of the incident. Limitation period may be extended - this requires qualified legal assessment.",
+      "Claimant appears to be/was a minor at the time of the incident. Limitation period may be extended – this requires qualified legal assessment.",
     );
   }
 
-  if (input.dateOfKnowledge && input.dateOfKnowledge !== input.incidentDate) {
+  if (dateOfKnowledgeApplies && input.dateOfKnowledge && input.dateOfKnowledge !== input.incidentDate) {
     explanationParts.push(
-      "Date of knowledge differs from incident date - limitation period calculated from date of knowledge.",
+      "Date of knowledge differs from incident date – limitation period calculated from date of knowledge.",
     );
   }
 
@@ -145,6 +218,8 @@ export function calculateLimitation(input: LimitationInput): LimitationResult {
     daysRemaining,
     isExpired,
     isMinor: isMinor || undefined,
+    practiceAreaSummary: limitationSummary.summary,
+    specialCases: limitationSummary.specialCases,
   };
 }
 

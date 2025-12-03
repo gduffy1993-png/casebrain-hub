@@ -229,8 +229,9 @@ export async function POST(request: Request) {
     await appendAuditLog({
       caseId,
       userId,
-      action: "bundle_generated",
-      details: {
+      eventType: "UPLOAD_COMPLETED",
+      meta: {
+        action: "bundle_generated",
         letters: letters?.length ?? 0,
         documents: documents?.length ?? 0,
       },

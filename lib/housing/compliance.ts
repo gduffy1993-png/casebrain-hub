@@ -1,5 +1,3 @@
-"use server";
-
 /**
  * HHSRS (Housing Health and Safety Rating System) compliance checks
  * and Awaab's Law compliance for housing disrepair cases

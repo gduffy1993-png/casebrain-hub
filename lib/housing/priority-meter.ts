@@ -47,10 +47,10 @@ export type PriorityScore = {
 /**
  * Calculate priority score for a housing case
  */
-export function calculatePriorityScore(
+export async function calculatePriorityScore(
   housingCase: HousingCaseRecord,
   caseTitle: string,
-): PriorityScore {
+): Promise<PriorityScore> {
   const vulnerabilities = housingCase.tenant_vulnerability ?? [];
   const hasCategory1Hazard = (housingCase.hhsrs_category_1_hazards?.length ?? 0) > 0;
   const hasCategory2Hazard = (housingCase.hhsrs_category_2_hazards?.length ?? 0) > 0;

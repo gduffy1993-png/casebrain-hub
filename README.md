@@ -19,7 +19,12 @@ CaseBrain Hub is a production-ready AI paralegal workspace for law firms. Upload
    npm install
    ```
 
-2. Copy environment template and configure secrets (see `config/env.example`)
+2. Copy environment template and configure secrets
+
+   ```bash
+   cp .env.example .env.local
+   # Then edit .env.local with your actual values
+   ```
 
 3. Start Supabase locally
 
@@ -58,10 +63,38 @@ CaseBrain Hub is a production-ready AI paralegal workspace for law firms. Upload
 - Global search across cases, documents, letters
 - Audit log + Supabase row-level isolation per organisation
 
-### Deployment notes
+### Deployment to Vercel (Production)
 
-- Deploy Next.js on Vercel and Supabase on managed Postgres
-- Set runtime env vars (`OPENAI_*`, `CLERK_*`, `SUPABASE_*`, `REDACTION_SECRET`)
-- Ensure Supabase bucket `casebrain-documents` exists with private access
-- Configure Clerk webhooks to sync user roles into Supabase `users` table
-- Supabase policies must enforce `org_id` isolation on `cases`, `documents`, `letters`, `deadlines`, `audit_log`
+1. **Environment Variables**
+   - Set all variables from `.env.example` in Vercel dashboard
+   - Required: `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `OPENAI_API_KEY`, `CLERK_SECRET_KEY`
+   - See `.env.example` for complete list
+
+2. **Supabase Setup**
+   - Run all migrations from `supabase/migrations/` in order
+   - Create storage bucket `casebrain-documents` with private access
+   - Enable Row Level Security (RLS) on all tables
+   - Ensure `org_id` isolation policies are in place
+
+3. **Clerk Setup**
+   - Configure Clerk organization webhooks (optional, for multi-tenant)
+   - Set `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` and `CLERK_SECRET_KEY`
+   - Users will be auto-created in Supabase on first login
+
+4. **Build & Deploy**
+   ```bash
+   npm run build  # Verify build succeeds locally first
+   # Then deploy via Vercel CLI or dashboard
+   ```
+
+5. **Post-Deployment**
+   - Verify login flow works
+   - Test upload → case creation → case view
+   - Check that data is isolated per organization
+
+### Multi-Tenant Architecture
+
+- Each organization has isolated data via `org_id` column
+- Clerk organizations map to `org_id` in Supabase
+- Single-tenant mode: uses `solo-{userId}` as `org_id` if no Clerk org
+- All queries must filter by `org_id` for security

@@ -61,8 +61,8 @@ export async function POST(
   await appendAuditLog({
     caseId,
     userId,
-    action: "case_archived",
-    details: {
+    eventType: "CASE_ARCHIVED",
+    meta: {
       caseTitle: caseRecord.title,
     },
   });

@@ -1,4 +1,4 @@
-"use server";
+import "server-only";
 
 /**
  * Awaab's Law Trigger Monitor

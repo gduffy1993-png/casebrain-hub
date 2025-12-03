@@ -5,6 +5,9 @@ import { getSupabaseAdminClient } from "@/lib/supabase";
 import { generateLetterDraft } from "@/lib/ai";
 import { appendAuditLog } from "@/lib/audit";
 import { detectRiskFlags, storeRiskFlags, notifyHighSeverityFlags } from "@/lib/risk";
+import { buildOutcomeSummary, buildComplaintRiskSummary } from "@/lib/core/outcomes";
+import { getPackForPracticeArea } from "@/lib/packs";
+import { findMissingEvidence } from "@/lib/missing-evidence";
 import type { ExtractedCaseFacts } from "@/types";
 
 export const runtime = "nodejs";
@@ -68,6 +71,105 @@ export async function POST(request: Request) {
 
   const mergedFacts = mergeExtractedFacts(documents ?? []);
 
+  // Fetch analysis data for outcome/complaint summaries
+  const { data: riskFlags } = await supabase
+    .from("risk_flags")
+    .select("id, flag_type, severity, description, category, resolved")
+    .eq("case_id", caseId)
+    .eq("resolved", false);
+
+  const { data: limitationData } = await supabase
+    .from("limitation_info")
+    .select("primary_limitation_date, days_remaining, is_expired, severity")
+    .eq("case_id", caseId)
+    .maybeSingle();
+
+  const { data: keyIssues } = await supabase
+    .from("key_issues")
+    .select("id, label")
+    .eq("case_id", caseId);
+
+  const { data: recentNotes } = await supabase
+    .from("case_notes")
+    .select("created_at")
+    .eq("case_id", caseId)
+    .order("created_at", { ascending: false })
+    .limit(1);
+
+  const daysSinceLastUpdate = recentNotes?.[0]?.created_at
+    ? Math.floor((Date.now() - new Date(recentNotes[0].created_at).getTime()) / (1000 * 60 * 60 * 24))
+    : 30;
+
+  const { data: supervisorData } = await supabase
+    .from("cases")
+    .select("supervisor_reviewed")
+    .eq("id", caseId)
+    .maybeSingle();
+
+  // Build outcome and complaint summaries
+  const pack = getPackForPracticeArea(caseRecord?.practice_area);
+  const docsForEvidence = (documents ?? []).map((d) => ({
+    name: (d.extracted_json as any)?.summary ?? "",
+    type: undefined,
+    extracted_json: d.extracted_json,
+  }));
+  const missingEvidence = findMissingEvidence(
+    caseId,
+    caseRecord?.practice_area ?? "general",
+    docsForEvidence,
+  );
+
+  const outcomeSummary = buildOutcomeSummary({
+    pack,
+    risks: (riskFlags ?? []).map(rf => ({ 
+      id: rf.id, 
+      severity: rf.severity.toUpperCase() as any, 
+      label: rf.description, 
+      category: rf.category 
+    })),
+    missingEvidence: missingEvidence.map(m => ({ 
+      id: m.id, 
+      priority: m.priority, 
+      label: m.label, 
+      category: m.category 
+    })),
+    limitation: limitationData ? {
+      daysRemaining: limitationData.days_remaining,
+      isExpired: limitationData.is_expired,
+      severity: limitationData.severity,
+    } : undefined,
+    documents: (documents ?? []).map(d => ({ 
+      id: (d.extracted_json as any)?.summary ?? "", 
+      name: (d.extracted_json as any)?.summary ?? "", 
+      type: undefined 
+    })),
+    supervisorReviewed: supervisorData?.supervisor_reviewed ?? false,
+    daysSinceLastUpdate,
+  });
+
+  const complaintRiskSummary = buildComplaintRiskSummary({
+    pack,
+    risks: (riskFlags ?? []).map(rf => ({ 
+      id: rf.id, 
+      severity: rf.severity.toUpperCase() as any, 
+      label: rf.description, 
+      category: rf.category 
+    })),
+    missingEvidence: missingEvidence.map(m => ({ 
+      id: m.id, 
+      priority: m.priority, 
+      label: m.label, 
+      category: m.category 
+    })),
+    limitation: limitationData ? {
+      daysRemaining: limitationData.days_remaining,
+      isExpired: limitationData.is_expired,
+      severity: limitationData.severity,
+    } : undefined,
+    supervisorReviewed: supervisorData?.supervisor_reviewed ?? false,
+    daysSinceLastUpdate,
+  });
+
   const draft = await generateLetterDraft({
     template: {
       id: template.id,
@@ -78,6 +180,39 @@ export async function POST(request: Request) {
     facts: mergedFacts,
     notes,
     actingFor,
+    pack: {
+      id: pack.id,
+      label: pack.label,
+      promptHints: pack.promptHints,
+    },
+    analysis: {
+      risks: (riskFlags ?? []).map(rf => ({
+        severity: rf.severity,
+        label: rf.description,
+        description: rf.description,
+      })),
+      missingEvidence: missingEvidence.map(m => ({
+        label: m.label,
+        priority: m.priority,
+      })),
+      limitation: limitationData ? {
+        daysRemaining: limitationData.days_remaining,
+        isExpired: limitationData.is_expired,
+      } : undefined,
+      keyIssues: (keyIssues ?? []).map(ki => ({
+        label: ki.label,
+      })),
+    },
+    outcomeSummary: {
+      level: outcomeSummary.level,
+      dimensions: outcomeSummary.dimensions,
+      notes: outcomeSummary.notes,
+    },
+    complaintRiskSummary: {
+      level: complaintRiskSummary.level,
+      drivers: complaintRiskSummary.drivers,
+      notes: complaintRiskSummary.notes,
+    },
   });
 
   const signOff = firmSettings?.default_sign_off ?? "";
@@ -117,8 +252,9 @@ export async function POST(request: Request) {
   await appendAuditLog({
     caseId,
     userId,
-    action: "letter_generated",
-    details: {
+    eventType: "UPLOAD_COMPLETED",
+    meta: {
+      action: "letter_generated",
       letterId: letter.id,
       templateId,
       version: letter.version,

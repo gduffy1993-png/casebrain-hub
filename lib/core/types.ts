@@ -15,7 +15,7 @@ export interface RiskRecommendedAction {
 
 export interface RiskAlert {
   id: string;
-  type: "limitation" | "awaabs_law" | "section_11" | "compliance" | "evidence_gap" | "other";
+  type: "limitation" | "awaabs_law" | "section_11" | "compliance" | "evidence_gap" | "deadline" | "other";
   title: string; // e.g. "Limitation period – critical"
   message: string; // main paragraph, no more than 3 sentences
   severity: RiskSeverity;
@@ -25,5 +25,6 @@ export interface RiskAlert {
   sourceEvidence?: string[]; // ids or short refs to timeline events/docs
   createdAt?: string;
   updatedAt?: string;
+  caseId?: string; // optional case ID for reference
 }
 

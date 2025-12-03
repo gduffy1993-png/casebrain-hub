@@ -1,18 +1,13 @@
 import type { Metadata } from "next";
 import { ClerkProvider, SignedIn, SignedOut, RedirectToSignIn } from "@clerk/nextjs";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { dark } from "@clerk/themes";
+import { Inter } from "next/font/google";
 import { ToastHost } from "@/components/Toast";
 import { CommandPalette } from "@/components/command/CommandPalette";
 import "./globals.css";
 
 const inter = Inter({
   variable: "--font-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-mono",
   subsets: ["latin"],
   display: "swap",
 });
@@ -29,10 +24,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider>
-      <html lang="en">
+    <ClerkProvider
+      appearance={{
+        baseTheme: dark,
+        variables: {
+          colorPrimary: "#06B6D4",
+          colorBackground: "#111827",
+          colorInputBackground: "#1F2937",
+          colorText: "#F8FAFC",
+        },
+      }}
+    >
+      <html lang="en" className="dark">
         <body
-          className={`${inter.variable} ${jetbrainsMono.variable} bg-background text-accent-soft min-h-screen`}
+          className={`${inter.variable} font-sans bg-background text-accent min-h-screen`}
         >
           <SignedIn>
             <>

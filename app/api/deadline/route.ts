@@ -63,8 +63,9 @@ export async function POST(request: Request) {
   await appendAuditLog({
     caseId,
     userId,
-    action: "deadline_created",
-    details: {
+    eventType: "UPLOAD_COMPLETED",
+    meta: {
+      action: "deadline_created",
       deadlineId: deadline.id,
       dueDate: deadline.due_date,
       businessDays: deadline.business_days,
