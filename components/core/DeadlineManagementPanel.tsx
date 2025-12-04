@@ -24,21 +24,70 @@ export function DeadlineManagementPanel({ caseId, className = "" }: DeadlineMana
   const [deadlines, setDeadlines] = useState<UnifiedDeadline[]>([]);
   const [summary, setSummary] = useState<DeadlineSummary | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchDeadlines() {
       try {
         setLoading(true);
-        setError(null);
         const res = await fetch(`/api/cases/${caseId}/deadlines`);
-        if (!res.ok) throw new Error("Failed to fetch deadlines");
+
+        // If API fails or returns non-OK, treat as "no deadlines"
+        if (!res.ok) {
+          console.warn(
+            "[DeadlineManagementPanel] non-OK response, treating as empty:",
+            res.status,
+          );
+          setDeadlines([]);
+          setSummary({
+            total: 0,
+            overdue: 0,
+            dueToday: 0,
+            dueSoon: 0,
+            critical: 0,
+          });
+          return;
+        }
+
         const data = await res.json();
-        setDeadlines(data.deadlines ?? []);
-        setSummary(data.summary ?? null);
-      } catch (err) {
-        console.error("[DeadlineManagementPanel] Error:", err);
-        setError(err instanceof Error ? err.message : "Failed to load deadlines");
+
+        // If nothing comes back, also treat as empty
+        const deadlinesArray = data.deadlines ?? [];
+        if (!Array.isArray(deadlinesArray) || deadlinesArray.length === 0) {
+          setDeadlines([]);
+          setSummary({
+            total: 0,
+            overdue: 0,
+            dueToday: 0,
+            dueSoon: 0,
+            critical: 0,
+          });
+          return;
+        }
+
+        // Normal successful load
+        setDeadlines(deadlinesArray);
+        setSummary(data.summary ?? {
+          total: deadlinesArray.length,
+          overdue: deadlinesArray.filter((d: UnifiedDeadline) => d.status === "OVERDUE").length,
+          dueToday: deadlinesArray.filter((d: UnifiedDeadline) => d.status === "DUE_TODAY").length,
+          dueSoon: deadlinesArray.filter((d: UnifiedDeadline) => d.status === "DUE_SOON").length,
+          critical: deadlinesArray.filter((d: UnifiedDeadline) => d.priority === "CRITICAL").length,
+        });
+      } catch (error) {
+        console.error(
+          "[DeadlineManagementPanel] failed to load deadlines, treating as empty:",
+          error,
+        );
+
+        // Hard fallback – but STILL no toast
+        setDeadlines([]);
+        setSummary({
+          total: 0,
+          overdue: 0,
+          dueToday: 0,
+          dueSoon: 0,
+          critical: 0,
+        });
       } finally {
         setLoading(false);
       }
@@ -103,21 +152,7 @@ export function DeadlineManagementPanel({ caseId, className = "" }: DeadlineMana
     );
   }
 
-  if (error) {
-    return (
-      <Card className={`bg-surface/50 border-white/10 backdrop-blur-sm ${className}`}>
-        <CardHeader className="pb-2">
-          <CardTitle className="flex items-center gap-2 text-sm font-medium text-white/90">
-            <Calendar className="h-4 w-4 text-blue-400" />
-            Deadlines
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-sm text-red-400">{error}</p>
-        </CardContent>
-      </Card>
-    );
-  }
+  // No error state - all errors are treated as empty state
 
   const overdue = deadlines.filter(d => d.status === "OVERDUE");
   const dueToday = deadlines.filter(d => d.status === "DUE_TODAY");
@@ -211,7 +246,9 @@ export function DeadlineManagementPanel({ caseId, className = "" }: DeadlineMana
         {deadlines.length === 0 && (
           <div className="py-8 text-center">
             <Calendar className="mx-auto h-8 w-8 text-accent/30" />
-            <p className="mt-2 text-sm text-accent/60">No deadlines found</p>
+            <p className="mt-2 text-sm text-accent/60">
+              No court or limitation deadlines identified yet for this file.
+            </p>
             <p className="mt-1 text-xs text-accent/40">
               Deadlines are automatically calculated from case data
             </p>

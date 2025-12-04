@@ -124,6 +124,7 @@ export async function GET(_request: Request, { params }: RouteParams) {
     const riskScore = calculateDeadlineRiskScore(unified);
     const nextSteps = getDeadlineNextSteps(unified);
 
+    // Always return 200, even if no deadlines (empty array is valid)
     return NextResponse.json({
       deadlines: unified,
       riskScore,
