@@ -7,6 +7,29 @@
   --gradient-primary: linear-gradient(135deg, #06B6D4 0%, #8B5CF6 100%);
   --gradient-surface: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
   --border-glow: rgba(6, 182, 212, 0.3);
+  
+  /* Premium dark theme tokens */
+  --background: #050814;
+  --foreground: #f9fafb;
+  
+  --card: #101526;
+  --card-foreground: #f9fafb;
+  
+  --muted: #181d30;
+  --muted-foreground: #c7c9d8;
+  
+  --popover: var(--card);
+  --popover-foreground: var(--card-foreground);
+  
+  --border: #1f2435;
+  --input: #1f2435;
+  
+  --ring: #f59e0b; /* amber accent for health bar / highlights */
+  
+  --critical: #b91c1c;
+  --high: #f97316;
+  --medium: #eab308;
+  --good: #22c55e;
 }
 
 html,

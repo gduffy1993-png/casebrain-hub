@@ -24,6 +24,7 @@ export default function SignUpPage() {
             path="/sign-up"
             signInUrl="/sign-in"
             forceRedirectUrl="/cases"
+            fallbackRedirectUrl="/cases"
             appearance={{
               baseTheme: undefined, // Use light theme
               variables: {

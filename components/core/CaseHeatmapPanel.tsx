@@ -64,20 +64,14 @@ export function CaseHeatmapPanel({ heatmap }: CaseHeatmapPanelProps) {
       }
     >
       {/* Overall Score Bar */}
-      <div className="mb-4">
-        <div className="flex items-center justify-between text-xs text-accent/60">
+      <div className="mb-6">
+        <div className="flex items-center justify-between text-xs text-muted-foreground mb-2">
           <span>Overall Case Health</span>
-          <span className="font-medium">{overallScore}%</span>
+          <span className="font-medium text-foreground">{overallScore}%</span>
         </div>
-        <div className="mt-1 h-3 overflow-hidden rounded-full bg-accent/10">
+        <div className="h-2 w-full rounded-full bg-muted overflow-hidden shadow-inner">
           <div
-            className={`h-full transition-all duration-500 ${
-              overallStatus === "GREEN"
-                ? "bg-green-500"
-                : overallStatus === "AMBER"
-                  ? "bg-warning"
-                  : "bg-danger"
-            }`}
+            className="h-full rounded-full bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 transition-all duration-500 shadow-sm"
             style={{ width: `${overallScore}%` }}
           />
         </div>
@@ -91,18 +85,18 @@ export function CaseHeatmapPanel({ heatmap }: CaseHeatmapPanelProps) {
       </div>
 
       {/* Legend */}
-      <div className="mt-4 flex items-center justify-center gap-4 text-[10px] text-accent/50">
-        <div className="flex items-center gap-1">
-          <span className="h-2 w-2 rounded-full bg-green-500" />
-          <span>Good (70-100)</span>
+      <div className="mt-6 flex items-center justify-center gap-4 text-[10px]">
+        <div className="flex items-center gap-1.5 rounded-full bg-muted/50 px-2.5 py-1 border border-border/50">
+          <span className="h-2 w-2 rounded-full bg-green-500 shadow-sm" />
+          <span className="text-muted-foreground font-medium">Good (70-100)</span>
         </div>
-        <div className="flex items-center gap-1">
-          <span className="h-2 w-2 rounded-full bg-warning" />
-          <span>Attention (40-69)</span>
+        <div className="flex items-center gap-1.5 rounded-full bg-muted/50 px-2.5 py-1 border border-border/50">
+          <span className="h-2 w-2 rounded-full bg-warning shadow-sm" />
+          <span className="text-muted-foreground font-medium">Attention (40-69)</span>
         </div>
-        <div className="flex items-center gap-1">
-          <span className="h-2 w-2 rounded-full bg-danger" />
-          <span>Action Needed (0-39)</span>
+        <div className="flex items-center gap-1.5 rounded-full bg-muted/50 px-2.5 py-1 border border-border/50">
+          <span className="h-2 w-2 rounded-full bg-danger shadow-sm" />
+          <span className="text-muted-foreground font-medium">Action Needed (0-39)</span>
         </div>
       </div>
     </Card>
@@ -112,12 +106,26 @@ export function CaseHeatmapPanel({ heatmap }: CaseHeatmapPanelProps) {
 function CellCard({ cell }: { cell: CaseHeatmapCell }) {
   const [isExpanded, setIsExpanded] = useState(false);
   
+  // Determine border and shadow colors based on status
+  const getCardStyles = () => {
+    switch (cell.status) {
+      case "GREEN":
+        return "border-green-400/50 shadow-green-900/30";
+      case "AMBER":
+        return "border-amber-400/50 shadow-amber-900/30";
+      case "RED":
+        return "border-red-500/60 shadow-red-900/40";
+      default:
+        return "border-border/70";
+    }
+  };
+  
   return (
     <div
-      className={`rounded-xl border p-3 transition-all hover:shadow-sm ${statusBgColors[cell.status]}`}
+      className={`rounded-2xl bg-muted border ${getCardStyles()} shadow-md shadow-black/30 p-4 flex flex-col gap-1 transition-all hover:shadow-lg`}
     >
-      <div className="flex items-center justify-between">
-        <span className="text-xs font-medium text-accent/70">
+      <div className="flex items-center justify-between mb-1">
+        <span className="text-sm font-medium text-muted-foreground">
           {issueLabels[cell.issue] ?? cell.issue}
         </span>
         <div className="flex items-center gap-1">
@@ -128,21 +136,22 @@ function CellCard({ cell }: { cell: CaseHeatmapCell }) {
           </div>
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="text-[10px] text-accent/40 hover:text-accent/70"
+            className="text-[10px] text-muted-foreground hover:text-foreground transition-colors"
             title={isExpanded ? "Hide breakdown" : "Show breakdown"}
           >
             {isExpanded ? "−" : "+"}
           </button>
         </div>
       </div>
-      <div className="mt-2">
-        <div className="text-lg font-bold">{cell.score}%</div>
-        <p className="mt-0.5 line-clamp-2 text-[10px] leading-tight text-accent/50">
-          {cell.reason}
-        </p>
+      <div className="text-2xl font-semibold text-white">
+        {cell.score}%
+      </div>
+      <p className="text-xs text-muted-foreground line-clamp-2">
+        {cell.reason}
+      </p>
         {isExpanded && cell.breakdown && (
-          <div className="mt-2 space-y-1 rounded-md bg-accent/5 p-2 text-[9px] text-accent/60">
-            <div className="font-semibold text-accent/70">Key Factors:</div>
+          <div className="mt-2 space-y-1 rounded-md bg-card/50 p-2 text-[9px] text-muted-foreground border border-border/50">
+            <div className="font-semibold text-foreground mb-1">Key Factors:</div>
             {cell.breakdown.map((item, idx) => {
               // Check if this is a special breakdown line (raw score, floor, cap, final)
               const isSpecialLine = item.factor.includes("Raw score:") || 
@@ -151,11 +160,11 @@ function CellCard({ cell }: { cell: CaseHeatmapCell }) {
                                    item.factor.includes("Final score:");
               
               return (
-                <div key={idx} className={`flex items-start gap-1 ${isSpecialLine ? "border-t border-accent/10 pt-1 mt-1" : ""}`}>
-                  <span className="text-accent/40">{isSpecialLine ? "→" : "•"}</span>
-                  <span className={`flex-1 ${isSpecialLine ? "font-medium text-accent/80" : ""}`}>{item.factor}</span>
+                <div key={idx} className={`flex items-start gap-1 ${isSpecialLine ? "border-t border-border/30 pt-1 mt-1" : ""}`}>
+                  <span className="text-muted-foreground">{isSpecialLine ? "→" : "•"}</span>
+                  <span className={`flex-1 ${isSpecialLine ? "font-medium text-foreground" : "text-muted-foreground"}`}>{item.factor}</span>
                   {!isSpecialLine && item.impact !== 0 && (
-                    <span className="font-medium text-accent/50">{item.impact > 0 ? "+" : ""}{item.impact}%</span>
+                    <span className="font-medium text-muted-foreground">{item.impact > 0 ? "+" : ""}{item.impact}%</span>
                   )}
                 </div>
               );

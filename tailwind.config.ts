@@ -73,6 +73,24 @@ const config: Config = {
           DEFAULT: "#EF4444",
           glow: "rgba(239, 68, 68, 0.3)",
         },
+        // Premium dark theme tokens (from CSS variables)
+        card: {
+          DEFAULT: "var(--card)",
+          foreground: "var(--card-foreground)",
+        },
+        muted: {
+          DEFAULT: "var(--muted)",
+          foreground: "var(--muted-foreground)",
+        },
+        border: {
+          DEFAULT: "var(--border)",
+        },
+        input: {
+          DEFAULT: "var(--input)",
+        },
+        ring: {
+          DEFAULT: "var(--ring)",
+        },
       },
       boxShadow: {
         card: "0 4px 24px rgba(0, 0, 0, 0.4)",

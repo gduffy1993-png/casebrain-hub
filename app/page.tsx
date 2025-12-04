@@ -56,6 +56,7 @@ function SignInPage() {
             path="/sign-in"
             signUpUrl="/sign-up"
             forceRedirectUrl="/cases"
+            fallbackRedirectUrl="/cases"
             appearance={{
               baseTheme: undefined, // Use light theme
               variables: {
