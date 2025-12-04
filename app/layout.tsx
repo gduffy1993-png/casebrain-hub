@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ClerkProvider, SignedIn, SignedOut, RedirectToSignIn } from "@clerk/nextjs";
+import { ClerkProvider, SignedIn, SignedOut } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import { Inter } from "next/font/google";
 import { ToastHost } from "@/components/Toast";
@@ -47,7 +47,7 @@ export default function RootLayout({
             </>
           </SignedIn>
           <SignedOut>
-            <RedirectToSignIn />
+            {children}
           </SignedOut>
         </body>
       </html>
