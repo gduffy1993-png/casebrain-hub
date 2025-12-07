@@ -3,6 +3,9 @@ import { requireAuthContext } from "@/lib/auth";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { getOrEnsureOrganisation } from "@/lib/paywall-bridge";
 
+// Mark route as dynamic (uses auth which requires headers)
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: Request) {
   try {
     const { userId } = await requireAuthContext();
