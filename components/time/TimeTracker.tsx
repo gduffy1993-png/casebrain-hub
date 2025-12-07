@@ -60,10 +60,7 @@ export function TimeTracker({ caseId, taskId, onTimeSaved }: TimeTrackerProps) {
     const durationMinutes = Math.floor(elapsedSeconds / 60);
     
     if (durationMinutes === 0) {
-      pushToast({
-        type: "warning",
-        message: "Timer was running for less than a minute. Entry not saved.",
-      });
+      pushToast("Timer was running for less than a minute. Entry not saved.", "warning");
       setStartTime(null);
       setElapsedSeconds(0);
       return;
@@ -86,27 +83,18 @@ export function TimeTracker({ caseId, taskId, onTimeSaved }: TimeTrackerProps) {
       });
       
       if (res.ok) {
-        pushToast({
-          type: "success",
-          message: `Saved ${durationMinutes} minutes`,
-        });
+        pushToast(`Saved ${durationMinutes} minutes`, "success");
         setStartTime(null);
         setElapsedSeconds(0);
         setDescription("");
         if (onTimeSaved) onTimeSaved();
         loadRecentEntries();
       } else {
-        pushToast({
-          type: "error",
-          message: "Failed to save time entry",
-        });
+        pushToast("Failed to save time entry", "error");
       }
     } catch (error) {
       console.error("Failed to save time:", error);
-      pushToast({
-        type: "error",
-        message: "Failed to save time entry",
-      });
+      pushToast("Failed to save time entry", "error");
     }
   };
   
