@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { requireAuthContext } from "@/lib/auth";
-import { getSupabaseAdminClient } from "@/lib/supabase/server";
+import { getSupabaseAdminClient } from "@/lib/supabase";
 
 export async function POST(
   request: Request,
