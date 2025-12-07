@@ -1,0 +1,22 @@
+# CaseBrain Hub - robots.txt
+# Allow all search engines to crawl public pages
+
+User-agent: *
+Allow: /
+Allow: /sign-in
+Allow: /sign-up
+Allow: /pricing
+Allow: /terms
+Allow: /privacy
+Allow: /security
+
+# Disallow private/protected routes
+Disallow: /dashboard
+Disallow: /cases
+Disallow: /upload
+Disallow: /admin
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://casebrainhub.com/sitemap.xml
+

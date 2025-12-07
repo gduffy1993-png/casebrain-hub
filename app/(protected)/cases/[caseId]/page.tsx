@@ -63,6 +63,10 @@ import { InstructionsToCounselPanel } from "@/components/cases/InstructionsToCou
 import { SupervisorReviewPanel } from "@/components/cases/SupervisorReviewPanel";
 import { InsightsPanel } from "@/components/cases/InsightsPanel";
 import { DeadlineManagementPanel } from "@/components/core/DeadlineManagementPanel";
+import { DeadlineCalendarWrapper } from "@/components/calendar/DeadlineCalendarWrapper";
+import { TimeTracker } from "@/components/time/TimeTracker";
+import { SettlementCalculator } from "@/components/calculators/SettlementCalculator";
+import { PreActionProtocolChecklist } from "@/components/protocol/PreActionProtocolChecklist";
 import { CollapsibleSection } from "@/components/ui/collapsible-section";
 import { Lightbulb, FileText, Mail, MessageSquare, History, AlertCircle, Search, Target, ListChecks, Users, TrendingUp, FolderOpen, Shield, Home, Calculator } from "lucide-react";
 import { PracticeAreaSelector } from "@/components/cases/PracticeAreaSelector";
@@ -1398,7 +1402,25 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
             </Card>
           }
         >
-          <DeadlineManagementPanel caseId={caseId} />
+          <div className="space-y-4">
+            <DeadlineManagementPanel caseId={caseId} />
+            <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Calendar unavailable</div>}>
+              <DeadlineCalendarWrapper caseId={caseId} />
+            </ErrorBoundary>
+          </div>
+        </ErrorBoundary>
+
+        {/* Time Tracker */}
+        <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Time tracker unavailable</div>}>
+          <TimeTracker caseId={caseId} />
+        </ErrorBoundary>
+
+        {/* Pre-Action Protocol Checklist */}
+        <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Protocol checklist unavailable</div>}>
+          <PreActionProtocolChecklist 
+            caseId={caseId} 
+            practiceArea={caseRecord.practice_area ?? "other_litigation"} 
+          />
         </ErrorBoundary>
 
         {/* Risk Alerts - Using the proper RiskAlertsPanel component (removed duplicate card) */}

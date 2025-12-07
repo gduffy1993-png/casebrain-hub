@@ -16,17 +16,35 @@ export const metadata: Metadata = {
   title: "CaseBrain Hub – AI Paralegal for Litigation Teams",
   description:
     "Upload your case files and let CaseBrain generate chronology, key issues, deadlines, risks and missing evidence automatically.",
+  keywords: ["AI paralegal", "legal tech", "litigation software", "case management", "housing disrepair", "personal injury", "clinical negligence", "UK solicitors"],
+  authors: [{ name: "CaseBrain Hub" }],
   openGraph: {
     title: "CaseBrain Hub – AI Paralegal for Litigation Teams",
     description:
       "Upload your case files and let CaseBrain generate chronology, key issues, deadlines, risks and missing evidence automatically.",
     type: "website",
+    siteName: "CaseBrain Hub",
+    // Add og:image when you create /public/og-image.png
+    // images: [{ url: "/og-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "CaseBrain Hub – AI Paralegal for Litigation Teams",
     description:
       "Upload your case files and let CaseBrain generate chronology, key issues, deadlines, risks and missing evidence automatically.",
+    // Add twitter:image when you create /public/twitter-image.png
+    // images: ["/twitter-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 

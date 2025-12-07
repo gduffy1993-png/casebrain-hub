@@ -137,7 +137,6 @@ const NAV_ITEMS: NavItem[] = [
     label: "Analytics",
     href: "/analytics",
     icon: <BarChart2 className="h-4 w-4" />,
-    labsOnly: true,
   },
   {
     label: "Builder",
