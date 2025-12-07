@@ -8,6 +8,8 @@ import { useToast } from "@/components/Toast";
 import type { PracticeArea } from "@/lib/types/casebrain";
 import { PRACTICE_AREA_OPTIONS } from "@/lib/types/casebrain";
 import { usePracticeArea } from "@/components/providers/PracticeAreaProvider";
+import { PaywallModal } from "@/components/paywall/PaywallModal";
+import type { UsageLimitError } from "@/lib/usage-limits";
 
 const ACCEPTED_TYPES = [
   "application/pdf",
@@ -22,6 +24,11 @@ export function UploadForm() {
   const [practiceArea, setPracticeArea] = useState<PracticeArea>(currentPracticeArea);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [paywallError, setPaywallError] = useState<{
+    error: UsageLimitError;
+    limit?: number;
+    plan?: string;
+  } | null>(null);
   const router = useRouter();
   const pushToast = useToast((state) => state.push);
 
@@ -58,6 +65,25 @@ export function UploadForm() {
 
       if (!response.ok) {
         const payload = await response.json().catch(() => null);
+        
+        // Check if this is a paywall error
+        const paywallErrors: UsageLimitError[] = [
+          "PDF_LIMIT_REACHED",
+          "CASE_LIMIT_REACHED",
+          "FREE_TRIAL_ALREADY_USED",
+          "PHONE_NOT_VERIFIED",
+          "ABUSE_DETECTED",
+        ];
+        
+        if (payload?.error && paywallErrors.includes(payload.error)) {
+          setPaywallError({
+            error: payload.error,
+            limit: payload.limit,
+            plan: payload.plan,
+          });
+          return;
+        }
+        
         throw new Error(payload?.error ?? "Upload failed");
       }
 
@@ -95,14 +121,28 @@ export function UploadForm() {
     }
   };
 
+  // Close paywall modal
+  const handleClosePaywall = () => {
+    setPaywallError(null);
+  };
+
   // Get selected option for preview
   const selectedOption = PRACTICE_AREA_OPTIONS.find(opt => opt.value === practiceArea);
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex flex-col gap-6 rounded-3xl border border-dashed border-primary/30 bg-surface-muted/70 p-10 text-center"
-    >
+    <>
+      {paywallError && (
+        <PaywallModal
+          errorCode={paywallError.error}
+          limit={paywallError.limit}
+          plan={paywallError.plan}
+          onClose={handleClosePaywall}
+        />
+      )}
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-6 rounded-3xl border border-dashed border-primary/30 bg-surface-muted/70 p-10 text-center"
+      >
       <CloudUpload className="mx-auto h-10 w-10 text-primary" />
       <p className="text-lg font-semibold text-accent">
         Drop documents or click to browse
@@ -200,6 +240,7 @@ export function UploadForm() {
         </Button>
       </div>
     </form>
+    </>
   );
 }
 

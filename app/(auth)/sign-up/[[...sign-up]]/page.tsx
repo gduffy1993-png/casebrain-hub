@@ -23,8 +23,8 @@ export default function SignUpPage() {
             routing="path"
             path="/sign-up"
             signInUrl="/sign-in"
-            forceRedirectUrl="/cases"
-            fallbackRedirectUrl="/cases"
+            forceRedirectUrl="/dashboard"
+            fallbackRedirectUrl="/dashboard"
             appearance={{
               baseTheme: undefined, // Use light theme
               variables: {

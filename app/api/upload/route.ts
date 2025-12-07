@@ -13,6 +13,7 @@ import {
   notifyHighSeverityFlags,
 } from "@/lib/risk";
 import { extractEntitiesFromText } from "@/lib/knowledge";
+import { canUploadPDF, canCreateCase, recordPDFUpload, recordCaseChange } from "@/lib/paywall-bridge";
 
 export const runtime = "nodejs";
 
@@ -22,6 +23,19 @@ const MAX_UPLOAD_BYTES = env.FILE_UPLOAD_MAX_MB * 1024 * 1024;
 export async function POST(request: Request) {
   const { userId, orgId } = await requireAuthContext();
   assertRateLimit(`upload:${userId}`, { limit: 10, windowMs: 60_000 });
+
+  // PAYWALL: Check if user can upload PDFs
+  const uploadCheck = await canUploadPDF();
+  if (!uploadCheck.allowed) {
+    return NextResponse.json(
+      {
+        error: uploadCheck.error,
+        limit: uploadCheck.limit,
+        plan: uploadCheck.plan,
+      },
+      { status: 403 },
+    );
+  }
 
   const formData = await request.formData();
   const files = formData.getAll("files").filter(isFile);
@@ -62,8 +76,22 @@ export async function POST(request: Request) {
   }
 
   let caseId = existingCase?.id;
+  let isNewCase = false;
 
   if (!caseId) {
+    // PAYWALL: Check if user can create a new case
+    const caseCheck = await canCreateCase();
+    if (!caseCheck.allowed) {
+      return NextResponse.json(
+        {
+          error: caseCheck.error,
+          limit: caseCheck.limit,
+          plan: caseCheck.plan,
+        },
+        { status: 403 },
+      );
+    }
+
     console.log(`[upload] Creating new case: "${caseTitle}" for org ${orgId}`);
     const { data: newCase, error: caseError } = await supabase
       .from("cases")
@@ -85,6 +113,7 @@ export async function POST(request: Request) {
     }
 
     caseId = newCase.id;
+    isNewCase = true;
     console.log(`[upload] Created new case with ID: ${caseId}`);
   } else {
     console.log(`[upload] Using existing case ID: ${caseId} for "${caseTitle}"`);
@@ -534,6 +563,17 @@ export async function POST(request: Request) {
         riskFlags: storedRiskFlags.length,
       },
     });
+  }
+
+  // PAYWALL: Record usage after successful upload
+  try {
+    await recordPDFUpload();
+    if (isNewCase) {
+      await recordCaseChange();
+    }
+  } catch (usageError) {
+    console.error("[upload] Failed to record usage:", usageError);
+    // Don't fail the upload if usage recording fails
   }
 
   console.log(`[upload] Upload complete. Case: ${caseId}, Documents: ${documentIds.length}, Skipped: ${skippedFiles.length}`);

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ClerkProvider, SignedIn, SignedOut } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import { ToastHost } from "@/components/Toast";
 import { CommandPalette } from "@/components/command/CommandPalette";
 import "./globals.css";
@@ -13,9 +14,21 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "CaseBrain Hub",
+  title: "CaseBrain Hub – AI Paralegal for Litigation Teams",
   description:
-    "AI paralegal platform that helps firms automate case document workflows safely.",
+    "Upload your case files and let CaseBrain generate chronology, key issues, deadlines, risks and missing evidence automatically.",
+  openGraph: {
+    title: "CaseBrain Hub – AI Paralegal for Litigation Teams",
+    description:
+      "Upload your case files and let CaseBrain generate chronology, key issues, deadlines, risks and missing evidence automatically.",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CaseBrain Hub – AI Paralegal for Litigation Teams",
+    description:
+      "Upload your case files and let CaseBrain generate chronology, key issues, deadlines, risks and missing evidence automatically.",
+  },
 };
 
 export default function RootLayout({
@@ -49,6 +62,7 @@ export default function RootLayout({
           <SignedOut>
             {children}
           </SignedOut>
+          {process.env.NODE_ENV === "production" && <Analytics />}
         </body>
       </html>
     </ClerkProvider>
