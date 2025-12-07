@@ -149,29 +149,28 @@ function CellCard({ cell }: { cell: CaseHeatmapCell }) {
       <p className="text-xs text-muted-foreground line-clamp-2">
         {cell.reason}
       </p>
-        {isExpanded && cell.breakdown && (
-          <div className="mt-2 space-y-1 rounded-md bg-card/50 p-2 text-[9px] text-muted-foreground border border-border/50">
-            <div className="font-semibold text-foreground mb-1">Key Factors:</div>
-            {cell.breakdown.map((item, idx) => {
-              // Check if this is a special breakdown line (raw score, floor, cap, final)
-              const isSpecialLine = item.factor.includes("Raw score:") || 
-                                   item.factor.includes("Score floor applied:") || 
-                                   item.factor.includes("Score cap applied:") || 
-                                   item.factor.includes("Final score:");
-              
-              return (
-                <div key={idx} className={`flex items-start gap-1 ${isSpecialLine ? "border-t border-border/30 pt-1 mt-1" : ""}`}>
-                  <span className="text-muted-foreground">{isSpecialLine ? "→" : "•"}</span>
-                  <span className={`flex-1 ${isSpecialLine ? "font-medium text-foreground" : "text-muted-foreground"}`}>{item.factor}</span>
-                  {!isSpecialLine && item.impact !== 0 && (
-                    <span className="font-medium text-muted-foreground">{item.impact > 0 ? "+" : ""}{item.impact}%</span>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        )}
-      </div>
+      {isExpanded && cell.breakdown && (
+        <div className="mt-2 space-y-1 rounded-md bg-card/50 p-2 text-[9px] text-muted-foreground border border-border/50">
+          <div className="font-semibold text-foreground mb-1">Key Factors:</div>
+          {cell.breakdown.map((item, idx) => {
+            // Check if this is a special breakdown line (raw score, floor, cap, final)
+            const isSpecialLine = item.factor.includes("Raw score:") || 
+                                 item.factor.includes("Score floor applied:") || 
+                                 item.factor.includes("Score cap applied:") || 
+                                 item.factor.includes("Final score:");
+            
+            return (
+              <div key={idx} className={`flex items-start gap-1 ${isSpecialLine ? "border-t border-border/30 pt-1 mt-1" : ""}`}>
+                <span className="text-muted-foreground">{isSpecialLine ? "→" : "•"}</span>
+                <span className={`flex-1 ${isSpecialLine ? "font-medium text-foreground" : "text-muted-foreground"}`}>{item.factor}</span>
+                {!isSpecialLine && item.impact !== 0 && (
+                  <span className="font-medium text-muted-foreground">{item.impact > 0 ? "+" : ""}{item.impact}%</span>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

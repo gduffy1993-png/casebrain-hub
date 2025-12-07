@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { ClerkProvider, SignedIn, SignedOut } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import { Inter } from "next/font/google";
-import { Analytics } from "@vercel/analytics/react";
 import { ToastHost } from "@/components/Toast";
 import { CommandPalette } from "@/components/command/CommandPalette";
 import "./globals.css";
@@ -62,7 +61,6 @@ export default function RootLayout({
           <SignedOut>
             {children}
           </SignedOut>
-          {process.env.NODE_ENV === "production" && <Analytics />}
         </body>
       </html>
     </ClerkProvider>
