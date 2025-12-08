@@ -75,6 +75,7 @@ export type CriminalMeta = {
   hearingType?: "Plea Hearing" | "Trial" | "Sentencing" | "First Hearing" | null;
   bailStatus?: "bailed" | "remanded" | "police_bail" | null;
   bailConditions?: string[] | null;
+  plea?: string | null;
   prosecutionEvidence?: Array<{
     type: "witness_statement" | "CCTV" | "forensic" | "police_statement" | "confession" | "other";
     witness?: string | null;
@@ -92,6 +93,7 @@ export type CriminalMeta = {
   }> | null;
   paceCompliance?: {
     cautionGiven?: boolean | null;
+    cautionGivenBeforeQuestioning?: boolean | null;
     interviewRecorded?: boolean | null;
     rightToSolicitor?: boolean | null;
     detentionTime?: number | null;
