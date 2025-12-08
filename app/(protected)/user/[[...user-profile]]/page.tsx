@@ -40,7 +40,7 @@ export default function UserProfilePage() {
           routing="path"
           path="/user"
           appearance={{
-            baseTheme: "dark",
+            baseTheme: "dark" as const,
             elements: {
               rootBox: "mx-auto",
               card: "bg-card border-border shadow-xl",
