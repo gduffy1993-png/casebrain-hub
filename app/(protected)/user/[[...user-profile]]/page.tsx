@@ -1,6 +1,7 @@
 "use client";
 
 import { UserProfile } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
 
@@ -40,7 +41,7 @@ export default function UserProfilePage() {
           routing="path"
           path="/user"
           appearance={{
-            baseTheme: "dark" as const,
+            baseTheme: dark,
             elements: {
               rootBox: "mx-auto",
               card: "bg-card border-border shadow-xl",
