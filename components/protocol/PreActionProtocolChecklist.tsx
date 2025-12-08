@@ -149,6 +149,43 @@ const PROTOCOL_ITEMS: Record<PracticeArea, ProtocolItem[]> = {
       completed: false,
     },
   ],
+  criminal: [
+    {
+      id: "pace-compliance-check",
+      label: "PACE Compliance Check",
+      description: "Review PACE compliance (caution, interview recording, solicitor access)",
+      required: true,
+      completed: false,
+    },
+    {
+      id: "disclosure-request",
+      label: "Early Disclosure Request",
+      description: "Request initial disclosure from prosecution",
+      required: true,
+      completed: false,
+    },
+    {
+      id: "defense-evidence",
+      label: "Defense Evidence Gathering",
+      description: "Gather defense evidence (witnesses, alibis, character evidence)",
+      required: true,
+      completed: false,
+    },
+    {
+      id: "bail-conditions",
+      label: "Bail Conditions Review",
+      description: "Review and ensure compliance with bail conditions",
+      required: true,
+      completed: false,
+    },
+    {
+      id: "defense-statement",
+      label: "Defense Statement",
+      description: "Prepare and serve defense statement if required",
+      required: false,
+      completed: false,
+    },
+  ],
   other_litigation: [
     {
       id: "letter-before-action",
