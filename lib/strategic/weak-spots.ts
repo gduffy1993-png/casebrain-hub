@@ -99,6 +99,29 @@ export async function detectOpponentWeakSpots(
   );
 
   for (const missing of criticalMissing.slice(0, 3)) {
+    // Enhanced analysis based on evidence type
+    let detailedImpact = "";
+    let tacticalAdvice = "";
+    let legalBasis = "";
+    
+    if (missing.label.toLowerCase().includes("medical") || missing.label.toLowerCase().includes("gp") || missing.label.toLowerCase().includes("hospital")) {
+      detailedImpact = "Medical records are essential for establishing causation and quantum. Without them, the opponent cannot prove: (1) the extent of injury, (2) the causal link between breach and injury, (3) the duration and severity of symptoms, or (4) the financial impact (loss of earnings, care costs). This creates a fundamental weakness in their case that can be exploited at trial.";
+      tacticalAdvice = "Request disclosure under CPR 31.10 within 14 days. If not provided, apply for an order under CPR 31.12 compelling disclosure. At trial, argue that the absence of medical evidence means the opponent cannot discharge their burden of proof on causation and quantum. Consider making a Part 36 offer based on the weakness of their evidence.";
+      legalBasis = "CPR 31.10 (standard disclosure), CPR 31.12 (specific disclosure), Burden of proof on causation (Bonnington Castings v Wardlaw [1956])";
+    } else if (missing.label.toLowerCase().includes("accident") || missing.label.toLowerCase().includes("circumstances")) {
+      detailedImpact = "The Accident Circumstances Statement is critical for establishing liability. Without it, the opponent cannot prove: (1) how the accident occurred, (2) what caused it, (3) who was at fault, or (4) whether they took reasonable steps to prevent it. This is particularly damaging in PI cases where the mechanism of injury must be established.";
+      tacticalAdvice = "Request disclosure under CPR 31.10. If not provided, apply for specific disclosure under CPR 31.12. At trial, challenge their ability to prove liability without this evidence. Consider arguing that the absence of a proper statement suggests they have no credible account of what happened.";
+      legalBasis = "CPR 31.10, CPR 31.12, Burden of proof on liability";
+    } else if (missing.label.toLowerCase().includes("expert") || missing.label.toLowerCase().includes("report")) {
+      detailedImpact = "Expert evidence is required to prove technical aspects of the case (liability, causation, quantum). Without it, the opponent cannot establish: (1) breach of duty, (2) causation, or (3) the extent of loss. This is a fundamental weakness that can be exploited.";
+      tacticalAdvice = "Request disclosure of expert reports under CPR 35.10. If not provided, apply for an order under CPR 35.8. At trial, argue that without expert evidence, the opponent cannot discharge their burden of proof. Consider challenging their case on the basis that they have no expert support for their position.";
+      legalBasis = "CPR 35.10 (expert disclosure), CPR 35.8 (expert evidence), Burden of proof";
+    } else {
+      detailedImpact = `Without ${missing.label}, the opponent cannot establish key elements of their case. This creates a significant weakness that can be exploited strategically.`;
+      tacticalAdvice = `Request disclosure under CPR 31.10. If not provided, apply for specific disclosure under CPR 31.12. Highlight the absence of this evidence in your response and consider using it to challenge their case at trial.`;
+      legalBasis = "CPR 31.10, CPR 31.12";
+    }
+    
     weakSpots.push({
       id: `weakspot-missing-evidence-${missing.id}`,
       caseId: input.caseId,
@@ -108,9 +131,10 @@ export async function detectOpponentWeakSpots(
       evidence: [
         missing.reason,
         `Category: ${missing.category}`,
+        `Legal basis: ${legalBasis}`,
       ],
-      impact: "If the opponent cannot provide this evidence, it weakens their position significantly. This can be used to challenge their case or support an application for further information.",
-      suggestedAction: `Request disclosure of ${missing.label} — this is essential evidence that should be available.`,
+      impact: detailedImpact,
+      suggestedAction: tacticalAdvice,
       createdAt: now,
     });
   }

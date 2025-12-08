@@ -15,11 +15,19 @@ type StrategyPath = {
   successProbability: "HIGH" | "MEDIUM" | "LOW";
 };
 
+type MomentumShift = {
+  factor: string;
+  impact: "POSITIVE" | "NEGATIVE" | "NEUTRAL";
+  description: string;
+  weight: number;
+};
+
 type StrategicOverview = {
   momentum: {
     state: MomentumState;
     score: number;
     explanation: string;
+    shifts?: MomentumShift[];
   };
   strategies: StrategyPath[];
 };
@@ -120,9 +128,24 @@ export function StrategicOverviewCard({ caseId }: StrategicOverviewCardProps) {
                 {momentum.state}
               </Badge>
             </div>
-            <p className="text-sm text-muted-foreground mt-1">
+            <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
               {momentum.explanation}
             </p>
+            {data.momentum.shifts && data.momentum.shifts.length > 0 && (
+              <div className="mt-3 space-y-1.5">
+                <p className="text-xs font-medium text-foreground">Key Factors:</p>
+                {data.momentum.shifts.slice(0, 4).map((shift, idx) => (
+                  <div key={idx} className="flex items-start gap-2 text-xs">
+                    <span className={`shrink-0 ${shift.impact === "POSITIVE" ? "text-green-400" : shift.impact === "NEGATIVE" ? "text-red-400" : "text-amber-400"}`}>
+                      {shift.impact === "POSITIVE" ? "↑" : shift.impact === "NEGATIVE" ? "↓" : "→"}
+                    </span>
+                    <span className="text-muted-foreground">
+                      {shift.factor}: {shift.description}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>

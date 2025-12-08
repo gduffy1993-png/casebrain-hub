@@ -115,12 +115,26 @@ export function StrategicRoutesPanel({ caseId }: StrategicRoutesPanelProps) {
               </Badge>
             </div>
 
-            <p className="text-xs text-muted-foreground">{strategy.description}</p>
+            <p className="text-xs text-muted-foreground leading-relaxed">{strategy.description}</p>
+
+            {/* Detailed Approach Steps */}
+            {strategy.approach && strategy.approach.includes("Step") && (
+              <div className="mt-3 p-3 rounded bg-cyan-950/30 border border-cyan-800/30">
+                <p className="text-xs font-medium text-cyan-300 mb-2">Tactical Approach:</p>
+                <div className="text-xs text-cyan-200/90 whitespace-pre-line leading-relaxed space-y-1">
+                  {strategy.approach.split(/(?=Step \d+:)/).filter(Boolean).map((step, idx) => (
+                    <div key={idx} className="mb-1.5">
+                      {step.trim()}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             <div className="space-y-2">
               <div>
                 <p className="text-xs font-medium text-foreground mb-1">When to use:</p>
-                <p className="text-xs text-muted-foreground">{strategy.recommendedFor}</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">{strategy.recommendedFor}</p>
               </div>
 
               {strategy.pros.length > 0 && (

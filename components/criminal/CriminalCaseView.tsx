@@ -12,6 +12,7 @@ import { ChargesPanel } from "./ChargesPanel";
 import { CourtHearingsPanel } from "./CourtHearingsPanel";
 import { BailTracker } from "./BailTracker";
 import { ClientAdvicePanel } from "./ClientAdvicePanel";
+import { AggressiveDefensePanel } from "./AggressiveDefensePanel";
 
 type CriminalCaseViewProps = {
   caseId: string;
@@ -20,6 +21,11 @@ type CriminalCaseViewProps = {
 export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   return (
     <div className="space-y-6">
+      {/* Aggressive Defense Analysis - FIND EVERY ANGLE TO WIN */}
+      <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Aggressive defense analysis unavailable</div>}>
+        <AggressiveDefensePanel caseId={caseId} />
+      </ErrorBoundary>
+
       {/* Get Off Probability Meter - Top Priority */}
       <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Probability meter unavailable</div>}>
         <GetOffProbabilityMeter caseId={caseId} />

@@ -13,6 +13,7 @@ type LeveragePoint = {
   suggestedEscalation: string;
   escalationText: string;
   leverage: string;
+  cprRule?: string;
 };
 
 type WeakSpot = {
@@ -134,8 +135,14 @@ export function LeverageAndWeakSpotsPanel({ caseId }: LeverageAndWeakSpotsPanelP
                     </Badge>
                     <span className="text-xs font-medium text-foreground">{point.description}</span>
                   </div>
-                  <p className="text-xs text-muted-foreground">{point.leverage}</p>
-                  <p className="text-xs text-cyan-400">{point.escalationText}</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{point.leverage}</p>
+                  <div className="mt-2 p-2 rounded bg-cyan-950/30 border border-cyan-800/30">
+                    <p className="text-xs font-medium text-cyan-300 mb-1">Tactical Steps:</p>
+                    <p className="text-xs text-cyan-200/90 whitespace-pre-line leading-relaxed">{point.escalationText}</p>
+                  </div>
+                  {point.cprRule && (
+                    <p className="text-xs text-muted-foreground/70 mt-1">Legal basis: {point.cprRule}</p>
+                  )}
                 </div>
               ))}
             </div>
@@ -181,8 +188,11 @@ export function LeverageAndWeakSpotsPanel({ caseId }: LeverageAndWeakSpotsPanelP
                     </Badge>
                     <span className="text-xs font-medium text-foreground">{spot.description}</span>
                   </div>
-                  <p className="text-xs text-muted-foreground">{spot.impact}</p>
-                  <p className="text-xs text-cyan-400">{spot.suggestedAction}</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{spot.impact}</p>
+                  <div className="mt-2 p-2 rounded bg-cyan-950/30 border border-cyan-800/30">
+                    <p className="text-xs font-medium text-cyan-300 mb-1">Recommended Action:</p>
+                    <p className="text-xs text-cyan-200/90 whitespace-pre-line leading-relaxed">{spot.suggestedAction}</p>
+                  </div>
                 </div>
               ))}
             </div>

@@ -168,28 +168,49 @@ export async function generateStrategyPaths(
   const hasContradictions = weakSpots.some(w => w.type === "CONTRADICTION");
 
   if (hasExpertWeakSpots || hasContradictions) {
+    const contradictionDetails = weakSpots.filter(w => w.type === "CONTRADICTION");
+    const expertDetails = weakSpots.filter(w => w.type === "POOR_EXPERT");
+    
+    let detailedApproach = "";
+    let specificQuestions = "";
+    
+    if (contradictionDetails.length > 0) {
+      detailedApproach = `Step 1: Document all contradictions in detail — identify where the opponent's evidence conflicts (e.g., statement vs statement, timeline vs evidence, medical vs factual). Step 2: Request clarification under CPR 18.1 within 14 days — ask specific questions about the contradictions. Step 3: If not clarified, apply for further information under CPR 18.1 with costs. Step 4: Prepare cross-examination questions targeting each contradiction — use the CPR 18.1 responses to pin down their position. Step 5: At trial, challenge their credibility by highlighting the contradictions — argue that inconsistent evidence undermines their case.`;
+      
+      specificQuestions = "Example questions: 'In your statement dated [X], you said [Y], but in your letter dated [Z], you said [W]. Which is correct?' 'Your timeline shows [A], but your medical records show [B]. How do you explain this discrepancy?' 'You claim [C], but your own documents state [D]. Which version should the court believe?'";
+    } else if (expertDetails.length > 0) {
+      detailedApproach = `Step 1: Identify expert weaknesses — look for: (a) lack of qualifications, (b) insufficient reasoning, (c) failure to consider alternative explanations, (d) reliance on incomplete information. Step 2: Request expert's full report under CPR 35.10 within 14 days. Step 3: If weaknesses are significant, consider challenging admissibility under CPR 35.4 or applying for permission to call your own expert. Step 4: Prepare cross-examination questions targeting the weaknesses — focus on methodology, assumptions, and alternative explanations. Step 5: At trial, challenge the expert's credibility and the reliability of their conclusions.`;
+      
+      specificQuestions = "Example questions: 'What qualifications do you have in [relevant field]?' 'Did you consider [alternative explanation]?' 'What methodology did you use to reach this conclusion?' 'How do you explain the discrepancy between your report and [other evidence]?'";
+    } else {
+      detailedApproach = "Step 1: Identify contradictions and expert weaknesses. Step 2: Request clarification or further information. Step 3: Prepare cross-examination questions. Step 4: Use contradictions to challenge opponent's case at hearing.";
+      specificQuestions = "Prepare questions targeting any inconsistencies in the opponent's evidence.";
+    }
+    
     paths.push({
       id: `strategy-route-c-${input.caseId}`,
       caseId: input.caseId,
       route: "C",
       title: "Route C: Push expert contradiction for cross-examination",
-      description: "Focus on contradictions and expert weaknesses to challenge opponent's evidence and credibility.",
-      approach: "1. Identify contradictions and expert weaknesses. 2. Request clarification or further information. 3. Prepare cross-examination questions. 4. Use contradictions to challenge opponent's case at hearing.",
+      description: "Focus on contradictions and expert weaknesses to challenge opponent's evidence and credibility. This route exploits inconsistencies in the opponent's case to weaken their position and create leverage for settlement or favorable judgment.",
+      approach: detailedApproach,
       pros: [
-        "Weakens opponent's evidence",
-        "Challenges credibility",
-        "Strong position for cross-examination",
-        "May lead to settlement",
+        "Weakens opponent's evidence — contradictions undermine credibility",
+        "Challenges credibility — inconsistent evidence suggests unreliability",
+        "Strong position for cross-examination — specific questions can expose weaknesses",
+        "May lead to settlement — opponent may settle rather than face cross-examination",
+        "Legal basis: CPR 18.1 (further information), CPR 35.10 (expert disclosure)",
       ],
       cons: [
-        "Requires careful preparation",
-        "May require expert evidence",
-        "Depends on quality of contradictions",
+        "Requires careful preparation — must identify and document contradictions precisely",
+        "May require expert evidence — to challenge opponent's expert effectively",
+        "Depends on quality of contradictions — weak contradictions may not be effective",
+        "Time and cost — cross-examination requires hearing preparation",
       ],
       estimatedTimeframe: "4-6 months",
-      estimatedCost: "Medium-High (expert evidence, hearing)",
-      successProbability: "MEDIUM",
-      recommendedFor: "Cases with clear contradictions or expert weaknesses",
+      estimatedCost: "Medium-High (expert evidence, hearing preparation, court time)",
+      successProbability: contradictionDetails.length >= 2 || expertDetails.length >= 1 ? "HIGH" : "MEDIUM",
+      recommendedFor: `Cases with clear contradictions (${contradictionDetails.length} found) or expert weaknesses (${expertDetails.length} found). Most effective when contradictions are significant and well-documented.`,
       createdAt: now,
     });
   }

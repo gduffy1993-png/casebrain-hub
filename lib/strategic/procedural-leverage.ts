@@ -134,6 +134,22 @@ export async function detectProceduralLeveragePoints(
 
   if (criticalMissing.length > 0) {
     const firstMissing = criticalMissing[0];
+    
+    // Enhanced leverage analysis
+    let detailedLeverage = "";
+    let tacticalSteps = "";
+    
+    if (firstMissing.label.toLowerCase().includes("medical")) {
+      detailedLeverage = "Medical evidence is fundamental to proving causation and quantum. Without it, the opponent cannot establish: (1) the causal link between breach and injury, (2) the extent of injury, or (3) the financial impact. This creates a procedural advantage — you can apply for an order compelling disclosure, and if they fail to comply, seek costs sanctions or even strike-out of their quantum claim.";
+      tacticalSteps = "Step 1: Send a formal request under CPR 31.10 for medical records within 14 days. Step 2: If not provided, apply for an order under CPR 31.12 with costs. Step 3: If still not provided, apply for unless order under CPR 3.4(2)(c) — failure to comply may result in strike-out. Step 4: Use the absence of medical evidence to challenge their case at trial — argue they cannot prove causation or quantum.";
+    } else if (firstMissing.label.toLowerCase().includes("accident") || firstMissing.label.toLowerCase().includes("circumstances")) {
+      detailedLeverage = "The Accident Circumstances Statement is essential for proving liability. Without it, the opponent cannot establish how the accident occurred or who was at fault. This creates a procedural advantage — you can challenge their ability to prove liability, and if they cannot provide it, seek an order compelling disclosure or argue they have no credible case.";
+      tacticalSteps = "Step 1: Request disclosure under CPR 31.10 within 14 days. Step 2: If not provided, apply for specific disclosure under CPR 31.12. Step 3: In your response, highlight that without this evidence, they cannot prove liability. Step 4: Consider making a Part 36 offer based on the weakness of their evidence, or apply for summary judgment if they have no credible case.";
+    } else {
+      detailedLeverage = `Without ${firstMissing.label}, the opponent cannot establish key elements of their case. This creates a procedural advantage — you can apply for an order compelling disclosure, and if they fail to comply, seek costs sanctions or use the absence of evidence to challenge their case.`;
+      tacticalSteps = "Step 1: Request disclosure under CPR 31.10 within 14 days. Step 2: If not provided, apply for specific disclosure under CPR 31.12 with costs. Step 3: If still not provided, consider an unless order under CPR 3.4(2)(c). Step 4: Use the absence of evidence to challenge their case at trial.";
+    }
+    
     leveragePoints.push({
       id: `leverage-missing-evidence-${input.caseId}`,
       caseId: input.caseId,
@@ -143,10 +159,11 @@ export async function detectProceduralLeveragePoints(
       evidence: [
         firstMissing.reason,
         `Priority: ${firstMissing.priority}`,
+        `Legal basis: CPR 31.10, CPR 31.12, CPR 3.4(2)(c)`,
       ],
       suggestedEscalation: "FURTHER_INFORMATION",
-      escalationText: "Request disclosure of missing evidence — this is essential for case progression.",
-      leverage: `If the opponent cannot provide this evidence, it weakens their position and may support an application for further information or disclosure.`,
+      escalationText: tacticalSteps,
+      leverage: detailedLeverage,
       createdAt: now,
     });
   }

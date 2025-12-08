@@ -237,7 +237,33 @@ export async function calculateCaseMomentum(
     confidence = shifts.length >= 3 ? "HIGH" : "MEDIUM";
   } else if (score <= -10) {
     state = "LOSING";
-    explanation = "Case momentum is slightly against you. Negative factors outweigh positives, requiring attention.";
+    // Enhanced explanation with specific factors and recommendations
+    const negativeFactors = shifts.filter(s => s.impact === "NEGATIVE");
+    const positiveFactors = shifts.filter(s => s.impact === "POSITIVE");
+    
+    let factorBreakdown = "";
+    if (negativeFactors.length > 0) {
+      factorBreakdown = `Negative factors: ${negativeFactors.map(f => `${f.factor} (${f.weight > 0 ? '+' : ''}${f.weight})`).join(', ')}. `;
+    }
+    if (positiveFactors.length > 0) {
+      factorBreakdown += `Positive factors: ${positiveFactors.map(f => `${f.factor} (${f.weight > 0 ? '+' : ''}${f.weight})`).join(', ')}. `;
+    }
+    
+    const recommendations = [];
+    if (negativeFactors.some(f => f.factor.includes("Missing evidence"))) {
+      recommendations.push("Prioritize gathering missing evidence — this is weakening your case.");
+    }
+    if (negativeFactors.some(f => f.factor.includes("Overdue deadlines"))) {
+      recommendations.push("Address overdue deadlines immediately — procedural compliance is critical.");
+    }
+    if (positiveFactors.some(f => f.factor.includes("Opponent delays"))) {
+      recommendations.push("Exploit opponent delays — apply for unless orders or costs sanctions.");
+    }
+    if (positiveFactors.some(f => f.factor.includes("Contradictions"))) {
+      recommendations.push("Use contradictions strategically — prepare cross-examination questions and challenge their credibility.");
+    }
+    
+    explanation = `Case momentum is slightly against you. ${factorBreakdown}${recommendations.length > 0 ? `Recommended actions: ${recommendations.join(' ')}` : 'Focus on addressing negative factors to improve momentum.'}`;
     confidence = "MEDIUM";
   } else {
     state = "BALANCED";
