@@ -31,6 +31,7 @@ import { housingPack } from "./housing";
 import { piPack } from "./pi";
 import { clinicalNegPack } from "./clinicalNeg";
 import { familyPack } from "./family";
+import { criminalPack } from "./criminal";
 
 // =============================================================================
 // Pack Registry
@@ -45,6 +46,7 @@ export const PACKS: PackRegistry = {
   personal_injury: piPack,
   clinical_negligence: clinicalNegPack,
   family: familyPack,
+  criminal: criminalPack,
 };
 
 // =============================================================================
@@ -533,6 +535,12 @@ function normalizePracticeAreaForPack(area: string): PackId {
     return "family";
   }
   
+  // Criminal
+  if (lower.includes("criminal") || lower.includes("defense") || lower.includes("prosecution") ||
+      lower.includes("charge") || lower.includes("offence") || lower.includes("bail")) {
+    return "criminal";
+  }
+  
   return "other_litigation";
 }
 
@@ -573,6 +581,7 @@ export { housingPack } from "./housing";
 export { piPack } from "./pi";
 export { clinicalNegPack } from "./clinicalNeg";
 export { familyPack } from "./family";
+export { criminalPack } from "./criminal";
 
 // =============================================================================
 // Type Exports (including firm override types)
