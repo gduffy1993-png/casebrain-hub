@@ -79,7 +79,7 @@ export const criminalPack: LitigationPack = {
     {
       id: "criminal-pace-breach",
       label: "PACE Breach Detected",
-      category: "PROCEDURE",
+      category: "procedural",
       severity: "HIGH",
       description: "Potential PACE breach (caution not given, interview not recorded, solicitor denied)",
       triggers: ["pace breach", "caution not given", "interview not recorded", "solicitor denied"],
@@ -87,7 +87,7 @@ export const criminalPack: LitigationPack = {
     {
       id: "criminal-disclosure-failure",
       label: "Disclosure Failure",
-      category: "PROCEDURE",
+      category: "procedural",
       severity: "HIGH",
       description: "Prosecution failure to disclose material evidence",
       triggers: ["disclosure", "unused material", "cps failure"],
@@ -95,7 +95,7 @@ export const criminalPack: LitigationPack = {
     {
       id: "criminal-bail-breach",
       label: "Bail Condition Breach",
-      category: "PROCEDURE",
+      category: "procedural",
       severity: "MEDIUM",
       description: "Client breach of bail conditions",
       triggers: ["bail breach", "bail condition", "remand"],
