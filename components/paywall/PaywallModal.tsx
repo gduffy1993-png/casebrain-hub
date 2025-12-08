@@ -45,7 +45,7 @@ export function PaywallModal({
       case "FREE_TRIAL_ALREADY_USED":
         return "Your firm has already used its free trial. Upgrade to continue using CaseBrain Hub.";
       case "PHONE_NOT_VERIFIED":
-        return "To keep CaseBrain secure, please verify your phone number before uploading files or creating cases.";
+        return "To keep CaseBrain secure, please verify your phone number before uploading files or creating cases. After verifying, refresh the page and try uploading again.";
       case "ABUSE_DETECTED":
         return "We've detected unusual signup activity from this network. Please contact support to set up additional accounts.";
       default:
@@ -94,7 +94,8 @@ export function PaywallModal({
             <Button
               onClick={() => {
                 // Navigate to Clerk account settings for phone verification
-                window.location.href = "/user";
+                // After verification, user can return and retry upload
+                window.location.href = "/user/profile";
               }}
               className="flex-1"
             >

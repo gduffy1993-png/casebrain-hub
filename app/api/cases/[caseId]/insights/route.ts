@@ -99,6 +99,15 @@ export async function GET(
     // Build insights - wrap in try-catch to ensure we always return something
     let insights: CaseInsights;
     try {
+      console.log("[insights] Building insights for case:", caseId, {
+        documentCount: documents?.length ?? 0,
+        riskFlagCount: riskFlags?.length ?? 0,
+        missingEvidenceCount: missingEvidence.length,
+        hasLimitationInfo: !!limitationInfo,
+        keyIssuesCount: keyIssues?.length ?? 0,
+        nextStepsCount: nextSteps?.length ?? 0,
+      });
+      
       insights = await buildCaseInsights({
         caseId,
         orgId,
@@ -138,15 +147,33 @@ export async function GET(
         supervisorReviewed: caseRecord.supervisor_reviewed ?? false,
         daysSinceLastUpdate,
       });
+      
+      console.log("[insights] Successfully built insights:", {
+        hasSummary: !!insights.summary,
+        hasRag: !!insights.rag,
+        hasBriefing: !!insights.briefing,
+        briefingOverview: insights.briefing?.overview?.substring(0, 100),
+      });
     } catch (buildError) {
       console.error("[insights] Error building insights:", buildError);
+      console.error("[insights] Error stack:", buildError instanceof Error ? buildError.stack : "No stack trace");
+      console.error("[insights] Error details:", {
+        caseId,
+        orgId,
+        documentCount: documents?.length ?? 0,
+        errorMessage: buildError instanceof Error ? buildError.message : String(buildError),
+        errorName: buildError instanceof Error ? buildError.name : typeof buildError,
+      });
       // Re-throw to be caught by outer catch which will return fallback
       throw buildError;
     }
 
     return NextResponse.json(insights);
   } catch (error) {
-    console.error("[insights] Error:", error);
+    console.error("[insights] Top-level error:", error);
+    console.error("[insights] Error type:", error instanceof Error ? error.constructor.name : typeof error);
+    console.error("[insights] Error message:", error instanceof Error ? error.message : String(error));
+    console.error("[insights] Error stack:", error instanceof Error ? error.stack : "No stack trace");
     
     // Return a safe fallback instead of throwing
     const fallbackInsights: CaseInsights = {

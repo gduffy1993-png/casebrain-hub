@@ -34,14 +34,26 @@ export function InsightsPanel({
       try {
         setIsLoading(true);
         setError(null);
+        console.log("[InsightsPanel] Fetching insights for case:", caseId);
+        
         const res = await fetch(`/api/cases/${caseId}/insights`);
+        
+        console.log("[InsightsPanel] Response status:", res.status, res.statusText);
         
         // Try to parse even if not ok - API always returns fallback insights
         let data: CaseInsights | { error?: string } | null = null;
         try {
           data = await res.json();
+          console.log("[InsightsPanel] Parsed response:", {
+            hasData: !!data,
+            hasSummary: !!(data && typeof data === "object" && "summary" in data),
+            hasRag: !!(data && typeof data === "object" && "rag" in data),
+            hasBriefing: !!(data && typeof data === "object" && "briefing" in data),
+            hasError: !!(data && typeof data === "object" && "error" in data),
+          });
         } catch (parseErr) {
           console.error("[InsightsPanel] Failed to parse response:", parseErr);
+          console.error("[InsightsPanel] Response text:", await res.text().catch(() => "Unable to read response"));
           // Create minimal fallback if parsing fails
           data = {
             summary: {
@@ -75,6 +87,7 @@ export function InsightsPanel({
         
         // If we got valid CaseInsights data, use it (even if status wasn't 200)
         if (data && typeof data === "object" && "summary" in data && "rag" in data) {
+          console.log("[InsightsPanel] Using valid insights data");
           setInsights(data as CaseInsights);
           setError(null); // Clear any previous error
           return;
@@ -82,9 +95,18 @@ export function InsightsPanel({
         
         // If we have partial data, use it
         if (data && typeof data === "object" && "summary" in data) {
+          console.log("[InsightsPanel] Using partial insights data (missing RAG)");
           setInsights(data as CaseInsights);
           setError(null);
           return;
+        }
+        
+        // Check for error in response
+        if (data && typeof data === "object" && "error" in data) {
+          console.error("[InsightsPanel] API returned error:", (data as { error?: string }).error);
+          setError((data as { error?: string }).error || "Failed to load insights");
+        } else {
+          console.warn("[InsightsPanel] Unexpected response format:", data);
         }
         
         // Last resort: create minimal fallback
@@ -103,7 +125,7 @@ export function InsightsPanel({
             scores: [],
           },
           briefing: {
-            overview: "AI insights generation is temporarily unavailable. Basic case data is shown below.",
+            overview: "Case insights are being generated from your case data. Please wait a moment.",
             keyStrengths: [],
             keyRisks: [],
             urgentActions: [],
@@ -118,12 +140,15 @@ export function InsightsPanel({
         });
         setError(null);
       } catch (err) {
-        console.error("[InsightsPanel] Error:", err);
+        console.error("[InsightsPanel] Fetch error:", err);
+        console.error("[InsightsPanel] Error type:", err instanceof Error ? err.constructor.name : typeof err);
+        console.error("[InsightsPanel] Error message:", err instanceof Error ? err.message : String(err));
+        console.error("[InsightsPanel] Error stack:", err instanceof Error ? err.stack : "No stack trace");
         // Even on error, show a minimal fallback instead of error state
         setInsights({
           summary: {
             headline: "Case insights",
-            oneLiner: "AI insights temporarily unavailable.",
+            oneLiner: "Loading case insights...",
             stageLabel: null,
             practiceArea: null,
             clientName: null,
@@ -135,7 +160,7 @@ export function InsightsPanel({
             scores: [],
           },
           briefing: {
-            overview: "AI insights generation is temporarily unavailable. Basic case data is shown below.",
+            overview: "Case insights are being generated from your case data. Please wait a moment.",
             keyStrengths: [],
             keyRisks: [],
             urgentActions: [],
@@ -185,7 +210,7 @@ export function InsightsPanel({
         <CardContent>
           <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 p-3">
             <p className="text-xs text-amber-400">
-              Insights temporarily unavailable. Basic case data is still shown below.
+              Unable to load insights. Please refresh the page or try again later.
             </p>
           </div>
         </CardContent>

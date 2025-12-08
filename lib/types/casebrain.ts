@@ -47,6 +47,7 @@ export type PracticeArea =
   | "personal_injury"
   | "clinical_negligence"
   | "family"
+  | "criminal"
   | "other_litigation";
 
 /**
@@ -57,6 +58,7 @@ export const PRACTICE_AREA_LABELS: Record<PracticeArea, string> = {
   personal_injury: "Personal Injury",
   clinical_negligence: "Clinical Negligence",
   family: "Family",
+  criminal: "Criminal Law",
   other_litigation: "Other Litigation",
 };
 
@@ -88,6 +90,11 @@ export const PRACTICE_AREA_OPTIONS: Array<{
     value: "clinical_negligence",
     label: "Clinical Neg Solicitor",
     description: "Breach/causation/quantum, experts, date of knowledge, complex costs.",
+  },
+  {
+    value: "criminal",
+    label: "Criminal Defense Solicitor",
+    description: "Defense work, PACE compliance, evidence analysis, loophole detection, get off strategies.",
   },
   {
     value: "other_litigation",

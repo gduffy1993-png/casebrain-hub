@@ -186,6 +186,107 @@ export async function extractCaseFacts({
                 repairAttempts: { type: "integer", nullable: true },
               },
             },
+            criminalMeta: {
+              type: "object",
+              nullable: true,
+              additionalProperties: false,
+              properties: {
+                charges: {
+                  type: "array",
+                  items: {
+                    type: "object",
+                    properties: {
+                      offence: { type: "string" },
+                      section: { type: "string", nullable: true },
+                      date: { type: "string", nullable: true },
+                      location: { type: "string", nullable: true },
+                      value: { type: "number", nullable: true },
+                      details: { type: "string", nullable: true },
+                    },
+                  },
+                  nullable: true,
+                },
+                court: {
+                  type: "string",
+                  enum: ["Crown Court", "Magistrates Court", null],
+                  nullable: true,
+                },
+                courtName: { type: "string", nullable: true },
+                nextHearing: { type: "string", nullable: true },
+                hearingType: {
+                  type: "string",
+                  enum: ["Plea Hearing", "Trial", "Sentencing", "First Hearing", null],
+                  nullable: true,
+                },
+                bailStatus: {
+                  type: "string",
+                  enum: ["bailed", "remanded", "police_bail", null],
+                  nullable: true,
+                },
+                bailConditions: {
+                  type: "array",
+                  items: { type: "string" },
+                  nullable: true,
+                },
+                prosecutionEvidence: {
+                  type: "array",
+                  items: {
+                    type: "object",
+                    properties: {
+                      type: {
+                        type: "string",
+                        enum: ["witness_statement", "CCTV", "forensic", "police_statement", "confession", "other"],
+                      },
+                      witness: { type: "string", nullable: true },
+                      date: { type: "string", nullable: true },
+                      credibility: {
+                        type: "string",
+                        enum: ["high", "medium", "low", null],
+                        nullable: true,
+                      },
+                      content: { type: "string", nullable: true },
+                      issues: {
+                        type: "array",
+                        items: { type: "string" },
+                        nullable: true,
+                      },
+                    },
+                  },
+                  nullable: true,
+                },
+                defenseEvidence: {
+                  type: "array",
+                  items: {
+                    type: "object",
+                    properties: {
+                      type: {
+                        type: "string",
+                        enum: ["alibi", "character", "expert", "other"],
+                      },
+                      witness: { type: "string", nullable: true },
+                      statement: { type: "string", nullable: true },
+                      date: { type: "string", nullable: true },
+                      credibility: {
+                        type: "string",
+                        enum: ["high", "medium", "low", null],
+                        nullable: true,
+                      },
+                    },
+                  },
+                  nullable: true,
+                },
+                paceCompliance: {
+                  type: "object",
+                  nullable: true,
+                  properties: {
+                    cautionGiven: { type: "boolean", nullable: true },
+                    interviewRecorded: { type: "boolean", nullable: true },
+                    rightToSolicitor: { type: "boolean", nullable: true },
+                    detentionTime: { type: "integer", nullable: true },
+                  },
+                },
+              },
+            },
           },
         },
       },
@@ -219,7 +320,19 @@ If this appears to be a Housing Disrepair / HRA case, also extract housing-speci
 - noAccessDays: Number of days landlord claimed no access
 - repairAttempts: Count of repair attempts mentioned
 
-Leave piMeta and housingMeta fields null/empty if not clearly stated in the document.`,
+If this appears to be a Criminal Law case, also extract criminal-specific metadata in the criminalMeta field:
+- charges: Array of charges with offence name, section (e.g. "s.1 Theft Act 1968"), date, location, value (if applicable), details
+- court: "Crown Court" or "Magistrates Court" if mentioned
+- courtName: Name of the court if mentioned
+- nextHearing: Date of next hearing if mentioned
+- hearingType: "Plea Hearing", "Trial", "Sentencing", or "First Hearing" if mentioned
+- bailStatus: "bailed", "remanded", or "police_bail" if mentioned
+- bailConditions: Array of bail conditions (e.g. ["curfew", "reporting", "no_contact"])
+- prosecutionEvidence: Array of evidence with type (witness_statement, CCTV, forensic, police_statement, confession), witness name, date, credibility (high/medium/low), content, issues
+- defenseEvidence: Array of defense evidence with type (alibi, character, expert), witness, statement, date, credibility
+- paceCompliance: Object with cautionGiven (boolean), interviewRecorded (boolean), rightToSolicitor (boolean), detentionTime (hours)
+
+Leave piMeta, housingMeta, and criminalMeta fields null/empty if not clearly stated in the document.`,
           },
         ],
       },

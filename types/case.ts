@@ -60,6 +60,44 @@ export type HousingMeta = {
   repairAttempts?: number | null;
 };
 
+export type CriminalMeta = {
+  charges?: Array<{
+    offence: string;
+    section?: string | null;
+    date?: string | null;
+    location?: string | null;
+    value?: number | null;
+    details?: string | null;
+  }> | null;
+  court?: "Crown Court" | "Magistrates Court" | null;
+  courtName?: string | null;
+  nextHearing?: string | null;
+  hearingType?: "Plea Hearing" | "Trial" | "Sentencing" | "First Hearing" | null;
+  bailStatus?: "bailed" | "remanded" | "police_bail" | null;
+  bailConditions?: string[] | null;
+  prosecutionEvidence?: Array<{
+    type: "witness_statement" | "CCTV" | "forensic" | "police_statement" | "confession" | "other";
+    witness?: string | null;
+    date?: string | null;
+    credibility?: "high" | "medium" | "low" | null;
+    content?: string | null;
+    issues?: string[] | null;
+  }> | null;
+  defenseEvidence?: Array<{
+    type: "alibi" | "character" | "expert" | "other";
+    witness?: string | null;
+    statement?: string | null;
+    date?: string | null;
+    credibility?: "high" | "medium" | "low" | null;
+  }> | null;
+  paceCompliance?: {
+    cautionGiven?: boolean | null;
+    interviewRecorded?: boolean | null;
+    rightToSolicitor?: boolean | null;
+    detentionTime?: number | null;
+  } | null;
+};
+
 export type ExtractedCaseFacts = {
   parties: CaseParty[];
   dates: CaseDate[];
@@ -70,6 +108,7 @@ export type ExtractedCaseFacts = {
   timeline: TimelineEvent[];
   piMeta?: PiMeta;
   housingMeta?: HousingMeta;
+  criminalMeta?: CriminalMeta;
 };
 
 export type LetterTemplateVariables =

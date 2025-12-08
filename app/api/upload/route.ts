@@ -551,6 +551,26 @@ export async function POST(request: Request) {
       }
     }
 
+    // If this is a criminal case and we have criminalMeta, process it
+    if (
+      caseRecord &&
+      caseRecord.practice_area === "criminal" &&
+      (enrichedExtraction as any).criminalMeta
+    ) {
+      try {
+        // Trigger criminal case processing (async, don't wait)
+        fetch(`${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"}/api/criminal/${caseId}/process`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+        }).catch((err) => {
+          console.error("[upload] Failed to trigger criminal processing:", err);
+        });
+      } catch (criminalError) {
+        console.error("[upload] Error triggering criminal processing:", criminalError);
+        // Don't fail upload if criminal processing fails
+      }
+    }
+
     await appendAuditLog({
       caseId,
       userId,

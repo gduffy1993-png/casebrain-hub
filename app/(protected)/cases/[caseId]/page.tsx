@@ -33,6 +33,7 @@ import { HousingHazardPanel } from "@/components/housing/HousingHazardPanel";
 import { HousingAnalysisSection } from "@/components/housing/HousingAnalysisSection";
 import { PICaseDetailsSection } from "@/components/pi/PICaseDetailsSection";
 import { SupervisionPackPanel } from "@/components/housing/SupervisionPackPanel";
+import { CriminalCaseView } from "@/components/criminal/CriminalCaseView";
 import { LitigationGuidancePanel } from "@/components/core/LitigationGuidancePanel";
 import { RiskAlertsPanel } from "@/components/core/RiskAlertsPanel";
 import { KeyIssuesPanel } from "@/components/core/KeyIssuesPanel";
@@ -74,6 +75,7 @@ import { CasePageClient } from "@/components/cases/CasePageClient";
 import { CaseSummaryPanel } from "@/components/cases/CaseSummaryPanel";
 import { ErrorBoundary } from "@/components/ui/error-boundary";
 import { CaseFilesList } from "@/components/cases/CaseFilesList";
+import { StrategicIntelligenceSection } from "@/components/strategic/StrategicIntelligenceSection";
 
 type CasePageParams = {
   params: { caseId: string };
@@ -162,6 +164,7 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
   const isPiCase =
     caseRecord.practice_area === "pi" || caseRecord.practice_area === "clinical_negligence";
   const isHousingCase = caseRecord.practice_area === "housing_disrepair";
+  const isCriminalCase = caseRecord.practice_area === "criminal";
 
   let piCase: PiCaseRecord | null = null;
   let piMedicalReports: PiMedicalReport[] = [];
@@ -1079,7 +1082,7 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
             fallback={
               <div className="p-4">
                 <p className="text-sm text-accent/60">
-                  Insights temporarily unavailable. Core case data is still shown above.
+                  Unable to load insights. Please refresh the page or try again later.
                 </p>
               </div>
             }
@@ -1327,6 +1330,32 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
             </ErrorBoundary>
           </>
         ) : null}
+
+        {/* Criminal Case View - Completely Different Layout */}
+        {isCriminalCase ? (
+          <ErrorBoundary
+            fallback={
+              <div className="p-4">
+                <p className="text-sm text-accent/60">Unable to load criminal case view right now.</p>
+              </div>
+            }
+          >
+            <CriminalCaseView caseId={caseId} />
+          </ErrorBoundary>
+        ) : null}
+
+        {/* Strategic Intelligence Section */}
+        {process.env.NEXT_PUBLIC_ENABLE_STRATEGIC_INTELLIGENCE !== "false" && (
+          <ErrorBoundary
+            fallback={
+              <div className="p-4">
+                <p className="text-sm text-accent/60">Strategic Intelligence temporarily unavailable.</p>
+              </div>
+            }
+          >
+            <StrategicIntelligenceSection caseId={caseId} />
+          </ErrorBoundary>
+        )}
 
         {/* Case Pack PDF Export Panel */}
         <CollapsibleSection
