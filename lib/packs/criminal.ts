@@ -82,7 +82,14 @@ export const criminalPack: LitigationPack = {
       category: "procedural",
       severity: "HIGH",
       description: "Potential PACE breach (caution not given, interview not recorded, solicitor denied)",
-      triggers: ["pace breach", "caution not given", "interview not recorded", "solicitor denied"],
+      triggers: [
+        { type: "keyword_detected", pattern: "pace breach|caution not given|interview not recorded|solicitor denied" },
+      ],
+      suggestedActions: [
+        "Review PACE compliance records",
+        "Consider challenging admissibility of evidence",
+        "Document all PACE breaches",
+      ],
     },
     {
       id: "criminal-disclosure-failure",
@@ -90,7 +97,14 @@ export const criminalPack: LitigationPack = {
       category: "procedural",
       severity: "HIGH",
       description: "Prosecution failure to disclose material evidence",
-      triggers: ["disclosure", "unused material", "cps failure"],
+      triggers: [
+        { type: "keyword_detected", pattern: "disclosure|unused material|cps failure|disclosure failure" },
+      ],
+      suggestedActions: [
+        "Request full disclosure from prosecution",
+        "Challenge non-disclosure at hearing",
+        "Consider abuse of process application",
+      ],
     },
     {
       id: "criminal-bail-breach",
@@ -98,7 +112,14 @@ export const criminalPack: LitigationPack = {
       category: "procedural",
       severity: "MEDIUM",
       description: "Client breach of bail conditions",
-      triggers: ["bail breach", "bail condition", "remand"],
+      triggers: [
+        { type: "keyword_detected", pattern: "bail breach|bail condition|remand|bail violation" },
+      ],
+      suggestedActions: [
+        "Review bail conditions with client",
+        "Advise on consequences of breach",
+        "Consider bail variation application if needed",
+      ],
     },
   ],
 
@@ -108,9 +129,12 @@ export const criminalPack: LitigationPack = {
   limitationRules: [],
 
   limitationSummary: {
-    primaryPeriod: "N/A",
-    description: "Criminal cases do not have limitation periods in the same way as civil cases.",
-    specialRules: [],
+    summary: "Criminal cases do not have limitation periods in the same way as civil cases. Charges must be brought within statutory time limits, but these vary by offence type and are typically handled by the prosecution.",
+    specialCases: [
+      "Summary offences: generally 6 months from commission",
+      "Indictable offences: no time limit for most serious crimes",
+      "Either-way offences: depends on mode of trial",
+    ],
   },
 
   // ===========================================================================
@@ -120,16 +144,18 @@ export const criminalPack: LitigationPack = {
     {
       id: "criminal-sra-defense",
       label: "SRA Defense Standards",
-      category: "SRA",
-      sraRequired: true,
       description: "Compliance with SRA standards for criminal defense work",
+      severity: "HIGH",
+      sraRequired: true,
+      detectPatterns: ["sra", "solicitors regulation authority", "defense standards", "professional standards"],
     },
     {
       id: "criminal-pace-compliance",
       label: "PACE Compliance",
-      category: "LEGAL",
-      sraRequired: true,
       description: "Ensure PACE compliance checks are completed",
+      severity: "CRITICAL",
+      sraRequired: true,
+      detectPatterns: ["pace", "police and criminal evidence", "caution", "interview", "solicitor access"],
     },
   ],
 
@@ -155,28 +181,64 @@ export const criminalPack: LitigationPack = {
   // OUTCOME PATTERNS
   // ===========================================================================
   outcomePatterns: {
-    positive: ["acquittal", "not guilty", "case dismissed", "charges dropped"],
-    negative: ["guilty", "conviction", "sentence"],
-    neutral: ["adjourned", "bail variation", "plea hearing"],
+    settlementLevers: [
+      "Strength of prosecution evidence",
+      "PACE compliance breaches",
+      "Disclosure failures",
+      "Defense evidence quality",
+      "Witness credibility",
+      "Procedural errors by prosecution",
+    ],
+    defencePatterns: [
+      "PACE breach challenges",
+      "Disclosure non-compliance",
+      "Evidence admissibility issues",
+      "Identification weaknesses",
+      "Chain of custody problems",
+      "Procedural irregularities",
+    ],
+    escalationTriggers: [
+      "Bail condition breaches",
+      "New charges added",
+      "Case transferred to Crown Court",
+      "Serious disclosure failures",
+      "PACE breaches discovered",
+      "Witness intimidation",
+    ],
   },
 
   // ===========================================================================
   // MISSING EVIDENCE HINTS
   // ===========================================================================
   missingEvidenceHints: {
-    liability: ["PACE compliance records", "Interview recordings", "Solicitor access records"],
-    quantum: [],
-    procedure: ["Disclosure requests", "Bail conditions", "Court orders"],
+    summary: "Criminal defense cases need: (1) PACE compliance records (caution, interview recording, solicitor access), (2) prosecution disclosure (initial and full), (3) defense evidence (witnesses, alibis, character evidence), (4) bail conditions documentation, (5) charge sheet/information, (6) court orders and directions.",
+    patterns: [
+      "pace compliance",
+      "caution given",
+      "interview recording",
+      "solicitor access",
+      "disclosure",
+      "unused material",
+      "defense evidence",
+      "witness statement",
+      "alibi",
+      "bail conditions",
+      "charge sheet",
+      "court order",
+    ],
   },
 
   // ===========================================================================
   // COMPLAINT RISK PATTERNS
   // ===========================================================================
-  complaintRiskPatterns: {
-    high: ["PACE breach not identified", "Disclosure failure not challenged", "Bail breach"],
-    medium: ["Delayed disclosure request", "Missing evidence gathering"],
-    low: [],
-  },
+  complaintRiskPatterns: [
+    "PACE breach not identified",
+    "Disclosure failure not challenged",
+    "Bail breach not addressed",
+    "Delayed disclosure request",
+    "Missing evidence gathering",
+    "Procedural error not spotted",
+  ],
 
   // ===========================================================================
   // NEXT STEP PATTERNS
@@ -242,15 +304,15 @@ export const criminalPack: LitigationPack = {
   glossary: [
     {
       term: "PACE",
-      definition: "Police and Criminal Evidence Act 1984 - governs police powers and procedures",
+      meaning: "Police and Criminal Evidence Act 1984 - governs police powers and procedures",
     },
     {
       term: "Disclosure",
-      definition: "Prosecution's duty to disclose all material evidence, including unused material",
+      meaning: "Prosecution's duty to disclose all material evidence, including unused material",
     },
     {
       term: "Bail",
-      definition: "Release from custody pending trial, subject to conditions",
+      meaning: "Release from custody pending trial, subject to conditions",
     },
   ],
 
@@ -258,10 +320,14 @@ export const criminalPack: LitigationPack = {
   // PROMPT HINTS
   // ===========================================================================
   promptHints: {
-    extraction: "Focus on PACE compliance, charges, disclosure, bail conditions, and defense evidence.",
-    risk: "Look for PACE breaches, disclosure failures, and procedural errors.",
-    limitation: "Criminal cases do not have limitation periods.",
-    timeline: "Focus on arrest date, charge date, court dates, and bail conditions.",
+    documentExtraction: "Focus on PACE compliance, charges, disclosure, bail conditions, and defense evidence.",
+    riskAnalysis: "Look for PACE breaches, disclosure failures, and procedural errors. Criminal cases do not have limitation periods.",
+    missingEvidence: "Criminal defense cases need: PACE compliance records, prosecution disclosure, defense evidence, bail conditions, charge sheet, and court orders.",
+    outcomeInsights: "Consider: strength of prosecution evidence, PACE compliance, disclosure failures, defense evidence quality, witness credibility, and procedural errors.",
+    hearingPrep: "Criminal hearings focus on: disclosure review, PACE compliance checks, defense statement, bail conditions, cross-examination themes, and evidence admissibility.",
+    instructionsToCounsel: "Include: charges, PACE compliance issues, disclosure status, defense evidence summary, bail conditions, court dates, prosecution case summary, and specific questions.",
+    keyIssues: "Focus on: PACE breaches, disclosure failures, evidence admissibility, identification issues, chain of custody, and procedural irregularities.",
+    nextSteps: "Priority: (1) request disclosure, (2) review PACE compliance, (3) gather defense evidence, (4) check bail conditions, (5) prepare defense statement if required.",
   },
 };
 

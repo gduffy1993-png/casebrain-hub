@@ -90,6 +90,7 @@ export function mapJudicialExpectations(
       expectations.push({
         id: `expectation-pre-action-${input.caseId}`,
         caseId: input.caseId,
+        stage: input.stage,
         expectation: "Pre-action protocol letter sent",
         standard: "REQUIRED",
         status: input.hasPreActionLetter ? "MET" : "NOT_MET",
