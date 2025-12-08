@@ -50,14 +50,17 @@ export async function canUploadPDF(): Promise<{
     return { allowed: false, error: "PHONE_NOT_VERIFIED" };
   }
 
-  // Check phone verification
-  try {
-    assertPhoneVerified(user);
-  } catch (error) {
-    if (error instanceof Error && error.message === "PHONE_NOT_VERIFIED") {
-      return { allowed: false, error: "PHONE_NOT_VERIFIED" };
+  // Check phone verification (skip in development if env var set)
+  const skipPhoneCheck = process.env.SKIP_PHONE_VERIFICATION === "true";
+  if (!skipPhoneCheck) {
+    try {
+      assertPhoneVerified(user);
+    } catch (error) {
+      if (error instanceof Error && error.message === "PHONE_NOT_VERIFIED") {
+        return { allowed: false, error: "PHONE_NOT_VERIFIED" };
+      }
+      throw error;
     }
-    throw error;
   }
 
   // Check phone trial usage
@@ -103,14 +106,17 @@ export async function canCreateCase(): Promise<{
     return { allowed: false, error: "PHONE_NOT_VERIFIED" };
   }
 
-  // Check phone verification
-  try {
-    assertPhoneVerified(user);
-  } catch (error) {
-    if (error instanceof Error && error.message === "PHONE_NOT_VERIFIED") {
-      return { allowed: false, error: "PHONE_NOT_VERIFIED" };
+  // Check phone verification (skip in development if env var set)
+  const skipPhoneCheck = process.env.SKIP_PHONE_VERIFICATION === "true";
+  if (!skipPhoneCheck) {
+    try {
+      assertPhoneVerified(user);
+    } catch (error) {
+      if (error instanceof Error && error.message === "PHONE_NOT_VERIFIED") {
+        return { allowed: false, error: "PHONE_NOT_VERIFIED" };
+      }
+      throw error;
     }
-    throw error;
   }
 
   // Get organisation and check limits
