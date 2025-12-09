@@ -13,7 +13,8 @@ import {
   notifyHighSeverityFlags,
 } from "@/lib/risk";
 import { extractEntitiesFromText } from "@/lib/knowledge";
-import { canUploadPDF, canCreateCase, recordPDFUpload, recordCaseChange } from "@/lib/paywall-bridge";
+import { paywallGuard } from "@/lib/paywall/guard";
+import { incrementUsage } from "@/lib/paywall/usage";
 
 export const runtime = "nodejs";
 
@@ -25,17 +26,11 @@ export async function POST(request: Request) {
   assertRateLimit(`upload:${userId}`, { limit: 10, windowMs: 60_000 });
 
   // PAYWALL: Check if user can upload PDFs
-  const uploadCheck = await canUploadPDF();
-  if (!uploadCheck.allowed) {
-    return NextResponse.json(
-      {
-        error: uploadCheck.error,
-        limit: uploadCheck.limit,
-        plan: uploadCheck.plan,
-      },
-      { status: 403 },
-    );
+  const guard = await paywallGuard("upload");
+  if (!guard.allowed) {
+    return guard.response!;
   }
+  const { orgId: paywallOrgId } = guard;
 
   const formData = await request.formData();
   const files = formData.getAll("files").filter(isFile);
@@ -79,18 +74,7 @@ export async function POST(request: Request) {
   let isNewCase = false;
 
   if (!caseId) {
-    // PAYWALL: Check if user can create a new case
-    const caseCheck = await canCreateCase();
-    if (!caseCheck.allowed) {
-      return NextResponse.json(
-        {
-          error: caseCheck.error,
-          limit: caseCheck.limit,
-          plan: caseCheck.plan,
-        },
-        { status: 403 },
-      );
-    }
+    // Note: Case creation is counted as upload, so no separate check needed
 
     console.log(`[upload] Creating new case: "${caseTitle}" for org ${orgId}`);
     const { data: newCase, error: caseError } = await supabase
@@ -585,11 +569,10 @@ export async function POST(request: Request) {
     });
   }
 
-  // PAYWALL: Record usage after successful upload
+  // PAYWALL: Increment usage after successful upload
   try {
-    await recordPDFUpload();
-    if (isNewCase) {
-      await recordCaseChange();
+    if (paywallOrgId) {
+      await incrementUsage({ orgId: paywallOrgId, feature: "upload" });
     }
   } catch (usageError) {
     console.error("[upload] Failed to record usage:", usageError);

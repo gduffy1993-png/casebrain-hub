@@ -3,15 +3,17 @@ import { requireAuthContext } from "@/lib/auth";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { findAllHousingDefenseAngles } from "@/lib/housing/aggressive-defense-engine";
 import type { HousingCaseRecord, HousingDefect } from "@/types/housing";
+import { withPaywall } from "@/lib/paywall/protect-route";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
 };
 
 export async function GET(request: Request, { params }: RouteParams) {
-  try {
-    const { caseId } = await params;
-    const { orgId } = await requireAuthContext();
+  return await withPaywall("analysis", async () => {
+    try {
+      const { caseId } = await params;
+      const { orgId } = await requireAuthContext();
     const supabase = getSupabaseAdminClient();
 
     // Fetch housing case
@@ -133,13 +135,14 @@ export async function GET(request: Request, { params }: RouteParams) {
     // Run aggressive defense analysis
     const analysis = await findAllHousingDefenseAngles(input);
 
-    return NextResponse.json(analysis);
-  } catch (error) {
-    console.error("[AggressiveDefense] Error:", error);
-    return NextResponse.json(
-      { error: "Failed to generate aggressive defense analysis" },
-      { status: 500 }
-    );
-  }
+      return NextResponse.json(analysis);
+    } catch (error) {
+      console.error("[AggressiveDefense] Error:", error);
+      return NextResponse.json(
+        { error: "Failed to generate aggressive defense analysis" },
+        { status: 500 }
+      );
+    }
+  });
 }
 

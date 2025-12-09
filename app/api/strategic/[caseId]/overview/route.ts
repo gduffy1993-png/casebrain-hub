@@ -9,6 +9,7 @@ import { requireAuthContext } from "@/lib/auth";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { calculateCaseMomentum } from "@/lib/strategic/momentum-engine";
 import { generateStrategyPaths } from "@/lib/strategic/strategy-paths";
+import { withPaywall } from "@/lib/paywall/protect-route";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -16,6 +17,13 @@ type RouteParams = {
 
 export async function GET(request: NextRequest, { params }: RouteParams) {
   try {
+    // PAYWALL: Check if user can run analysis
+    const guard = await paywallGuard("analysis");
+    if (!guard.allowed) {
+      return guard.response!;
+    }
+    const paywallOrgId = guard.orgId!;
+
     const { orgId } = await requireAuthContext();
     const { caseId } = await params;
 

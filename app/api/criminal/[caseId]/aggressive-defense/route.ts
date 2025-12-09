@@ -8,15 +8,17 @@ import { NextRequest, NextResponse } from "next/server";
 import { requireAuthContext } from "@/lib/auth";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { findAllDefenseAngles } from "@/lib/criminal/aggressive-defense-engine";
+import { withPaywall } from "@/lib/paywall/protect-route";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
 };
 
 export async function GET(request: NextRequest, { params }: RouteParams) {
-  try {
-    const { orgId } = await requireAuthContext();
-    const { caseId } = await params;
+  return await withPaywall("analysis", async () => {
+    try {
+      const { orgId } = await requireAuthContext();
+      const { caseId } = await params;
 
     // Verify case access
     const supabase = getSupabaseAdminClient();
@@ -63,13 +65,14 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     // Get aggressive defense analysis
     const analysis = await findAllDefenseAngles(criminalMeta, caseId);
 
-    return NextResponse.json(analysis);
-  } catch (error) {
-    console.error("Failed to generate aggressive defense analysis:", error);
-    return NextResponse.json(
-      { error: "Failed to generate aggressive defense analysis" },
-      { status: 500 },
-    );
-  }
+      return NextResponse.json(analysis);
+    } catch (error) {
+      console.error("Failed to generate aggressive defense analysis:", error);
+      return NextResponse.json(
+        { error: "Failed to generate aggressive defense analysis" },
+        { status: 500 },
+      );
+    }
+  });
 }
 

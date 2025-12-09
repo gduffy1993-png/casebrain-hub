@@ -3,15 +3,17 @@ import { requireAuthContext } from "@/lib/auth";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { findAllPiDefenseAngles } from "@/lib/pi/aggressive-defense-engine";
 import type { PiCaseRecord, PiMedicalReport, PiOffer } from "@/types/pi";
+import { withPaywall } from "@/lib/paywall/protect-route";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
 };
 
 export async function GET(request: Request, { params }: RouteParams) {
-  try {
-    const { caseId } = await params;
-    const { orgId } = await requireAuthContext();
+  return await withPaywall("analysis", async () => {
+    try {
+      const { caseId } = await params;
+      const { orgId } = await requireAuthContext();
     const supabase = getSupabaseAdminClient();
 
     // Fetch PI case
@@ -136,13 +138,14 @@ export async function GET(request: Request, { params }: RouteParams) {
     // Run aggressive defense analysis
     const analysis = await findAllPiDefenseAngles(input);
 
-    return NextResponse.json(analysis);
-  } catch (error) {
-    console.error("[AggressiveDefense] Error:", error);
-    return NextResponse.json(
-      { error: "Failed to generate aggressive defense analysis" },
-      { status: 500 }
-    );
-  }
+      return NextResponse.json(analysis);
+    } catch (error) {
+      console.error("[AggressiveDefense] Error:", error);
+      return NextResponse.json(
+        { error: "Failed to generate aggressive defense analysis" },
+        { status: 500 }
+      );
+    }
+  });
 }
 
