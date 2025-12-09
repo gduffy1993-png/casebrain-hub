@@ -204,7 +204,7 @@ export async function executeCustomReport(
   }
 
   return {
-    columns: report.fields.map((f) => ({ name: f.name, type: f.type })),
+    columns: report.fields.map((f: ReportField) => ({ name: f.name, type: f.type })),
     rows,
     summary: {
       totalRows: rows.length,
