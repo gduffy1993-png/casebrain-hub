@@ -194,7 +194,10 @@ export async function executeCustomReport(
   for (const field of report.fields) {
     if (field.type === "number" || field.type === "currency") {
       const values = rows.map((r: Record<string, any>) => Number(r[field.name]) || 0);
-      aggregations[`${field.name}_sum`] = values.reduce((a, b) => a + b, 0);
+      aggregations[`${field.name}_sum`] = values.reduce(
+        (a: number, b: number) => a + b,
+        0
+      );
       aggregations[`${field.name}_avg`] =
         values.length > 0 ? aggregations[`${field.name}_sum`] / values.length : 0;
     }
