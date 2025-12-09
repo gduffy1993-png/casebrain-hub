@@ -8,7 +8,8 @@ import { NextResponse } from "next/server";
 import { requireAuthContext } from "@/lib/auth";
 import { getOrCreateOrganisationForUser } from "@/lib/organisations";
 import { getCurrentUser } from "@/lib/auth";
-import { ensureCanUseFeature, incrementUsage, type FeatureKind } from "./usage";
+import { ensureCanUseFeature, incrementUsage } from "./usage";
+import type { FeatureKind } from "./config";
 
 /**
  * Paywall guard result

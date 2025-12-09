@@ -6,7 +6,8 @@
 
 import { NextResponse } from "next/server";
 import { paywallGuard } from "./guard";
-import { incrementUsage, type FeatureKind } from "./usage";
+import { incrementUsage } from "./usage";
+import type { FeatureKind } from "./config";
 
 /**
  * Protect an API route handler with paywall
