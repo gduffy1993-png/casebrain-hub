@@ -63,11 +63,21 @@ import { InstructionsToCounselPanel } from "@/components/cases/InstructionsToCou
 import { SupervisorReviewPanel } from "@/components/cases/SupervisorReviewPanel";
 import { DeadlineManagementPanel } from "@/components/core/DeadlineManagementPanel";
 import { DeadlineCalendarWrapper } from "@/components/calendar/DeadlineCalendarWrapper";
-import { TimeTracker } from "@/components/time/TimeTracker";
+import { TimeTracker } from "@/components/billing/TimeTracker";
+import { InvoiceList } from "@/components/billing/InvoiceList";
+import { CaseEmailsPanel } from "@/components/email/CaseEmailsPanel";
+import { EmailComposer } from "@/components/email/EmailComposer";
+import { CommunicationHistoryPanel } from "@/components/communication/CommunicationHistoryPanel";
+import { ESignaturePanel } from "@/components/esignature/ESignaturePanel";
+import { CalendarEventsPanel } from "@/components/calendar/CalendarEventsPanel";
+import { SMSPanel } from "@/components/sms/SMSPanel";
+import { DocumentVersionsPanel } from "@/components/documents/DocumentVersionsPanel";
+import { CustomReportsPanel } from "@/components/reporting/CustomReportsPanel";
+import { ClientMoneyPanel } from "@/components/trust/ClientMoneyPanel";
 import { SettlementCalculator } from "@/components/calculators/SettlementCalculator";
 import { PreActionProtocolChecklist } from "@/components/protocol/PreActionProtocolChecklist";
 import { CollapsibleSection } from "@/components/ui/collapsible-section";
-import { FileText, Mail, AlertCircle, Search, Target, ListChecks, TrendingUp, FolderOpen, Shield, Home, Calculator } from "lucide-react";
+import { FileText, Mail, AlertCircle, Search, Target, ListChecks, TrendingUp, FolderOpen, Shield, Home, Calculator, DollarSign, MessageSquare, Phone, Calendar, History, FileCheck, BarChart3, CreditCard, Clock } from "lucide-react";
 import { PracticeAreaSelector } from "@/components/cases/PracticeAreaSelector";
 import { CasePageClient } from "@/components/cases/CasePageClient";
 import { CaseSummaryPanel } from "@/components/cases/CaseSummaryPanel";
@@ -1420,6 +1430,53 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
         {/* Time Tracker */}
         <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Time tracker unavailable</div>}>
           <TimeTracker caseId={caseId} />
+        </ErrorBoundary>
+
+        {/* Billing & Invoices */}
+        <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Billing unavailable</div>}>
+          <InvoiceList caseId={caseId} />
+        </ErrorBoundary>
+
+        {/* Email Integration */}
+        <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Email unavailable</div>}>
+          <CaseEmailsPanel caseId={caseId} />
+        </ErrorBoundary>
+
+        {/* Communication History */}
+        <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Communication history unavailable</div>}>
+          <CommunicationHistoryPanel caseId={caseId} />
+        </ErrorBoundary>
+
+        {/* SMS/WhatsApp */}
+        <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">SMS/WhatsApp unavailable</div>}>
+          <SMSPanel caseId={caseId} />
+        </ErrorBoundary>
+
+        {/* E-Signature */}
+        <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">E-signature unavailable</div>}>
+          <ESignaturePanel caseId={caseId} />
+        </ErrorBoundary>
+
+        {/* Calendar Events */}
+        <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Calendar unavailable</div>}>
+          <CalendarEventsPanel caseId={caseId} />
+        </ErrorBoundary>
+
+        {/* Document Version Control */}
+        {documents && documents.length > 0 && (
+          <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Document versions unavailable</div>}>
+            <DocumentVersionsPanel documentId={documents[0].id} />
+          </ErrorBoundary>
+        )}
+
+        {/* Custom Reports */}
+        <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Reports unavailable</div>}>
+          <CustomReportsPanel caseId={caseId} />
+        </ErrorBoundary>
+
+        {/* Trust Accounting (UK-specific) */}
+        <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Trust accounting unavailable</div>}>
+          <ClientMoneyPanel caseId={caseId} />
         </ErrorBoundary>
 
         {/* Pre-Action Protocol Checklist */}
