@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { requireAuthContext } from "@/lib/auth";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { findAllFamilyDefenseAngles } from "@/lib/family/aggressive-defense-engine";
+import { withPaywall } from "@/lib/paywall/protect-route";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
