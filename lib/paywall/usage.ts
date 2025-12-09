@@ -166,7 +166,7 @@ export async function incrementUsage(params: {
     const columnName = `${feature}_count` as "upload_count" | "analysis_count" | "export_count";
     const { data: org } = await supabase
       .from("organisations")
-      .select(columnName)
+      .select("upload_count, analysis_count, export_count")
       .eq("id", orgId)
       .single();
 
