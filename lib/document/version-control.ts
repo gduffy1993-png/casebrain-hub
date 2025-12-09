@@ -154,10 +154,10 @@ export async function restoreDocumentVersion(
   // Create new version
   return await createDocumentVersion(version.documentId, orgId, userId, {
     fileName: document.name,
-    fileSize: version.fileSize,
+    fileSize: version.fileSize ?? undefined,
     storagePath: version.storagePath,
-    storageUrl: version.storageUrl,
-    contentHash: version.contentHash,
+    storageUrl: version.storageUrl ?? undefined,
+    contentHash: version.contentHash ?? undefined,
     versionName: `Restored from v${version.versionNumber}`,
     changeSummary: `Restored from version ${version.versionNumber}`,
   });
