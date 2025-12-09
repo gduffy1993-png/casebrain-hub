@@ -31,7 +31,10 @@ import { ScheduleOfDisrepairPanel } from "@/components/housing/ScheduleOfDisrepa
 import { BundleCheckerPanel } from "@/components/housing/BundleCheckerPanel";
 import { HousingHazardPanel } from "@/components/housing/HousingHazardPanel";
 import { HousingAnalysisSection } from "@/components/housing/HousingAnalysisSection";
+import { AggressiveDefensePanel } from "@/components/housing/AggressiveDefensePanel";
 import { PICaseDetailsSection } from "@/components/pi/PICaseDetailsSection";
+import { AggressiveDefensePanel as PiAggressiveDefensePanel } from "@/components/pi/AggressiveDefensePanel";
+import { AggressiveDefensePanel as FamilyAggressiveDefensePanel } from "@/components/family/AggressiveDefensePanel";
 import { SupervisionPackPanel } from "@/components/housing/SupervisionPackPanel";
 import { CriminalCaseView } from "@/components/criminal/CriminalCaseView";
 import { LitigationGuidancePanel } from "@/components/core/LitigationGuidancePanel";
@@ -43,9 +46,6 @@ import { MissingEvidencePanel } from "@/components/core/MissingEvidencePanel";
 import { CaseHeatmapPanel } from "@/components/core/CaseHeatmapPanel";
 import { CaseNotesPanel } from "@/components/core/CaseNotesPanel";
 import { NextStepPanel } from "@/components/core/NextStepPanel";
-import { AudioCallsPanel } from "@/components/cases/AudioCallsPanel";
-import { ClientUpdatePanel } from "@/components/cases/ClientUpdatePanel";
-import { OpponentRadarPanel } from "@/components/cases/OpponentRadarPanel";
 import { BundlePhaseAPanel } from "@/components/cases/BundlePhaseAPanel";
 import { BundleNavigatorFullPanel } from "@/components/cases/BundleNavigatorFullPanel";
 import { findMissingEvidence } from "@/lib/missing-evidence";
@@ -59,17 +59,15 @@ import { CasePackExportButton, CasePackExportPanel } from "@/components/cases/Ca
 import { CaseOverviewExportButton } from "@/components/cases/CaseOverviewExportButton";
 import { DocumentMapPanel } from "@/components/cases/DocumentMapPanel";
 import { CaseKeyFactsPanel } from "@/components/cases/KeyFactsPanel";
-import { CorrespondenceTimelinePanel } from "@/components/cases/CorrespondenceTimelinePanel";
 import { InstructionsToCounselPanel } from "@/components/cases/InstructionsToCounselPanel";
 import { SupervisorReviewPanel } from "@/components/cases/SupervisorReviewPanel";
-import { InsightsPanel } from "@/components/cases/InsightsPanel";
 import { DeadlineManagementPanel } from "@/components/core/DeadlineManagementPanel";
 import { DeadlineCalendarWrapper } from "@/components/calendar/DeadlineCalendarWrapper";
 import { TimeTracker } from "@/components/time/TimeTracker";
 import { SettlementCalculator } from "@/components/calculators/SettlementCalculator";
 import { PreActionProtocolChecklist } from "@/components/protocol/PreActionProtocolChecklist";
 import { CollapsibleSection } from "@/components/ui/collapsible-section";
-import { Lightbulb, FileText, Mail, MessageSquare, History, AlertCircle, Search, Target, ListChecks, Users, TrendingUp, FolderOpen, Shield, Home, Calculator } from "lucide-react";
+import { FileText, Mail, AlertCircle, Search, Target, ListChecks, TrendingUp, FolderOpen, Shield, Home, Calculator } from "lucide-react";
 import { PracticeAreaSelector } from "@/components/cases/PracticeAreaSelector";
 import { CasePageClient } from "@/components/cases/CasePageClient";
 import { CaseSummaryPanel } from "@/components/cases/CaseSummaryPanel";
@@ -89,14 +87,12 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
   /**
    * ROOT CAUSE OF PAGE CRASHES:
    * 1. Database errors were being thrown (line 89 threw caseError)
-   * 2. InsightsPanel accessed nested properties without null checks (summary.headline when summary could be null)
-   * 3. No error boundaries around heavy panels - one panel failure crashed the entire page
+   * 2. No error boundaries around heavy panels - one panel failure crashed the entire page
    * 
    * FIXES APPLIED:
    * - Return friendly error page instead of throwing on DB errors
-   * - Added ErrorBoundary wrappers around all heavy panels (Insights, Health, MissingEvidence, etc.)
-   * - Made InsightsPanel defensive with optional chaining and safe defaults
-   * - CaseSummaryPanel always renders even if insights fetch fails
+   * - Added ErrorBoundary wrappers around all heavy panels (Health, MissingEvidence, etc.)
+   * - CaseSummaryPanel always renders even if data fetch fails
    */
   
   // SAFETY: Always fetch case record safely - never throw on error
@@ -165,6 +161,7 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
     caseRecord.practice_area === "pi" || caseRecord.practice_area === "clinical_negligence";
   const isHousingCase = caseRecord.practice_area === "housing_disrepair";
   const isCriminalCase = caseRecord.practice_area === "criminal";
+  const isFamilyCase = caseRecord.practice_area === "family";
 
   let piCase: PiCaseRecord | null = null;
   let piMedicalReports: PiMedicalReport[] = [];
@@ -975,53 +972,6 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
           </ErrorBoundary>
         </CollapsibleSection>
 
-        {/* Client Update Generator - Collapsible */}
-        <CollapsibleSection
-          title="Client Update Generator"
-          description="Generate professional email updates for your client"
-          defaultOpen={false}
-          icon={<Mail className="h-4 w-4 text-green-400" />}
-        >
-          <ErrorBoundary
-            fallback={
-              <div className="text-sm text-accent/60 p-4">Unable to load client update panel right now.</div>
-            }
-          >
-            <ClientUpdatePanel caseId={caseId} />
-          </ErrorBoundary>
-        </CollapsibleSection>
-
-        {/* Opponent Activity Radar */}
-        <CollapsibleSection
-          title="Opponent Activity"
-          description="Track opponent communications and actions"
-          defaultOpen={false}
-          icon={<Users className="h-4 w-4 text-orange-400" />}
-        >
-          <ErrorBoundary
-            fallback={
-              <div className="text-sm text-accent/60 p-4">Unable to load opponent activity panel right now.</div>
-            }
-          >
-            <OpponentRadarPanel caseId={caseId} />
-          </ErrorBoundary>
-        </CollapsibleSection>
-
-        {/* Correspondence Timeline */}
-        <CollapsibleSection
-          title="Correspondence Timeline"
-          description="Chronological record of all case correspondence"
-          defaultOpen={false}
-          icon={<History className="h-4 w-4 text-purple-400" />}
-        >
-          <ErrorBoundary
-            fallback={
-              <div className="text-sm text-accent/60 p-4">Unable to load correspondence timeline right now.</div>
-            }
-          >
-            <CorrespondenceTimelinePanel caseId={caseId} />
-          </ErrorBoundary>
-        </CollapsibleSection>
 
         {/* Instructions to Counsel - Collapsible */}
         <CollapsibleSection
@@ -1068,26 +1018,6 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
                 .find(p => (p.role ?? "").toLowerCase().includes("defendant") || (p.role ?? "").toLowerCase().includes("landlord") || (p.role ?? "").toLowerCase().includes("opponent"))?.name,
             }}
           />
-          </ErrorBoundary>
-        </CollapsibleSection>
-
-        {/* Insights - Collapsible */}
-        <CollapsibleSection
-          title="Insights"
-          description="AI-generated case insights and analysis"
-          defaultOpen={false}
-          icon={<Lightbulb className="h-4 w-4 text-amber-400" />}
-        >
-          <ErrorBoundary
-            fallback={
-              <div className="p-4">
-                <p className="text-sm text-accent/60">
-                  Unable to load insights. Please refresh the page or try again later.
-                </p>
-              </div>
-            }
-          >
-            <InsightsPanel caseId={caseId} />
           </ErrorBoundary>
         </CollapsibleSection>
 
@@ -1150,7 +1080,7 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
         {/* Documents Section - Consolidated */}
         <CollapsibleSection
           title="Documents & Bundle"
-          description="Document map, bundle navigator, and audio calls"
+          description="Document map and bundle navigator"
           defaultOpen={false}
           icon={<FileText className="h-4 w-4 text-purple-400" />}
         >
@@ -1178,14 +1108,6 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
             >
               <BundlePhaseAPanel caseId={caseId} />
             </ErrorBoundary>
-
-            <ErrorBoundary
-              fallback={
-                <div className="text-sm text-accent/60 p-4">Unable to load audio calls panel right now.</div>
-              }
-            >
-              <AudioCallsPanel caseId={caseId} />
-            </ErrorBoundary>
           </div>
         </CollapsibleSection>
 
@@ -1211,6 +1133,24 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
                 />
               </ErrorBoundary>
             </CollapsibleSection>
+            {/* Aggressive Defense Panel - Top Priority */}
+            <CollapsibleSection
+              title="Aggressive Defense Analysis"
+              description="Find every possible angle to win this case - tactical defense strategies"
+              defaultOpen={true}
+              icon={<Target className="h-4 w-4 text-red-400" />}
+            >
+              <ErrorBoundary
+                fallback={
+                  <div className="p-4">
+                    <p className="text-sm text-accent/60">Aggressive defense analysis unavailable right now.</p>
+                  </div>
+                }
+              >
+                <AggressiveDefensePanel caseId={caseId} />
+              </ErrorBoundary>
+            </CollapsibleSection>
+
             {/* Consolidated Housing Analysis Section */}
             <ErrorBoundary
               fallback={
@@ -1280,6 +1220,24 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
 
         {isPiCase && piCase ? (
           <>
+            {/* Aggressive Defense Panel - Top Priority */}
+            <CollapsibleSection
+              title="Aggressive Defense Analysis"
+              description="Find every possible angle to win this case - tactical defense strategies"
+              defaultOpen={true}
+              icon={<Target className="h-4 w-4 text-red-400" />}
+            >
+              <ErrorBoundary
+                fallback={
+                  <div className="p-4">
+                    <p className="text-sm text-accent/60">Aggressive defense analysis unavailable right now.</p>
+                  </div>
+                }
+              >
+                <PiAggressiveDefensePanel caseId={caseId} />
+              </ErrorBoundary>
+            </CollapsibleSection>
+
             {labsEnabled && (
               <>
                 <CollapsibleSection
@@ -1342,6 +1300,26 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
           >
             <CriminalCaseView caseId={caseId} />
           </ErrorBoundary>
+        ) : null}
+
+        {/* Family Law Aggressive Defense */}
+        {isFamilyCase ? (
+          <CollapsibleSection
+            title="Aggressive Defense Analysis"
+            description="Find every possible angle to win this case - tactical defense strategies"
+            defaultOpen={true}
+            icon={<Target className="h-4 w-4 text-red-400" />}
+          >
+            <ErrorBoundary
+              fallback={
+                <div className="p-4">
+                  <p className="text-sm text-accent/60">Aggressive defense analysis unavailable right now.</p>
+                </div>
+              }
+            >
+              <FamilyAggressiveDefensePanel caseId={caseId} />
+            </ErrorBoundary>
+          </CollapsibleSection>
         ) : null}
 
         {/* Strategic Intelligence Section */}

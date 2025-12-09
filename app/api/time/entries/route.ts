@@ -1,97 +1,104 @@
 import { NextResponse } from "next/server";
 import { requireAuthContext } from "@/lib/auth";
-import { getSupabaseAdminClient } from "@/lib/supabase";
-
-export async function POST(request: Request) {
-  const { userId, orgId } = await requireAuthContext();
-  
-  const body = await request.json();
-  const { caseId, taskId, description, activityType, billable, startTime, endTime } = body;
-  
-  if (!caseId || !description || !startTime) {
-    return NextResponse.json(
-      { error: "caseId, description, and startTime are required" },
-      { status: 400 }
-    );
-  }
-  
-  const supabase = getSupabaseAdminClient();
-  
-  // Verify case belongs to org
-  const { data: caseRecord } = await supabase
-    .from("cases")
-    .select("id, org_id")
-    .eq("id", caseId)
-    .eq("org_id", orgId)
-    .maybeSingle();
-  
-  if (!caseRecord) {
-    return NextResponse.json(
-      { error: "Case not found" },
-      { status: 404 }
-    );
-  }
-  
-  const { data, error } = await supabase
-    .from("time_entries")
-    .insert({
-      org_id: orgId,
-      case_id: caseId,
-      task_id: taskId || null,
-      user_id: userId,
-      description: description.trim(),
-      activity_type: activityType || "general",
-      billable: billable !== false,
-      start_time: new Date(startTime).toISOString(),
-      end_time: endTime ? new Date(endTime).toISOString() : null,
-    })
-    .select("id, duration_minutes")
-    .maybeSingle();
-  
-  if (error || !data) {
-    return NextResponse.json(
-      { error: error?.message ?? "Failed to create time entry" },
-      { status: 500 }
-    );
-  }
-  
-  return NextResponse.json({ success: true, entry: data });
-}
+import { getTimeEntries, createManualTimeEntry } from "@/lib/billing/time-tracking";
 
 export async function GET(request: Request) {
-  const { userId, orgId } = await requireAuthContext();
-  const { searchParams } = new URL(request.url);
-  const caseId = searchParams.get("caseId");
-  const taskId = searchParams.get("taskId");
-  const limit = parseInt(searchParams.get("limit") || "50");
-  
-  const supabase = getSupabaseAdminClient();
-  
-  let query = supabase
-    .from("time_entries")
-    .select("*")
-    .eq("org_id", orgId)
-    .eq("user_id", userId)
-    .order("start_time", { ascending: false })
-    .limit(limit);
-  
-  if (caseId) {
-    query = query.eq("case_id", caseId);
-  }
-  
-  if (taskId) {
-    query = query.eq("task_id", taskId);
-  }
-  
-  const { data, error } = await query;
-  
-  if (error) {
+  try {
+    const { orgId } = await requireAuthContext();
+    const { searchParams } = new URL(request.url);
+
+    const caseId = searchParams.get("caseId") ?? undefined;
+    const userId = searchParams.get("userId") ?? undefined;
+    const startDate = searchParams.get("startDate")
+      ? new Date(searchParams.get("startDate")!)
+      : undefined;
+    const endDate = searchParams.get("endDate")
+      ? new Date(searchParams.get("endDate")!)
+      : undefined;
+    const status = searchParams.get("status") as
+      | "draft"
+      | "submitted"
+      | "approved"
+      | "billed"
+      | "written_off"
+      | undefined;
+    const isBillable =
+      searchParams.get("isBillable") === "true"
+        ? true
+        : searchParams.get("isBillable") === "false"
+          ? false
+          : undefined;
+    const isBilled =
+      searchParams.get("isBilled") === "true"
+        ? true
+        : searchParams.get("isBilled") === "false"
+          ? false
+          : undefined;
+
+    const entries = await getTimeEntries(orgId, {
+      caseId,
+      userId,
+      startDate,
+      endDate,
+      status,
+      isBillable,
+      isBilled,
+    });
+
+    return NextResponse.json(entries);
+  } catch (error) {
+    console.error("[TimeTracking] Error fetching time entries:", error);
     return NextResponse.json(
-      { error: error.message },
+      { error: "Failed to fetch time entries" },
       { status: 500 }
     );
   }
-  
-  return NextResponse.json({ entries: data || [] });
 }
 
+export async function POST(request: Request) {
+  try {
+    const { userId, orgId } = await requireAuthContext();
+    const body = await request.json();
+
+    const {
+      caseId,
+      taskId,
+      description,
+      startTime,
+      endTime,
+      durationMinutes,
+      isBillable,
+      activityType,
+      hourlyRate,
+      notes,
+    } = body;
+
+    if (!description || !startTime) {
+      return NextResponse.json(
+        { error: "Description and startTime are required" },
+        { status: 400 }
+      );
+    }
+
+    const timeEntry = await createManualTimeEntry(userId, orgId, {
+      caseId,
+      taskId,
+      description,
+      startTime: new Date(startTime),
+      endTime: endTime ? new Date(endTime) : undefined,
+      durationMinutes,
+      isBillable,
+      activityType,
+      hourlyRate,
+      notes,
+    });
+
+    return NextResponse.json(timeEntry);
+  } catch (error) {
+    console.error("[TimeTracking] Error creating time entry:", error);
+    return NextResponse.json(
+      { error: "Failed to create time entry" },
+      { status: 500 }
+    );
+  }
+}
