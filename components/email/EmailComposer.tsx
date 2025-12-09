@@ -63,15 +63,24 @@ export function EmailComposer({
       });
 
       if (!response.ok) {
-        throw new Error("Failed to send email");
+        const errorData = await response.json();
+        if (errorData.migrationRequired) {
+          alert("Email feature requires database setup. Please run SQL migrations first. See SQL_MIGRATIONS_TO_RUN.md");
+        } else {
+          alert(errorData.error || "Failed to send email. Please try again.");
+        }
+        return;
       }
+
+      const result = await response.json();
+      alert(result.message || "Email sent successfully!");
 
       if (onSent) {
         onSent();
       }
     } catch (error) {
       console.error("Failed to send email:", error);
-      alert("Failed to send email. Please try again.");
+      alert("Failed to send email. Please check your connection and try again.");
     } finally {
       setSending(false);
     }

@@ -72,8 +72,20 @@ export async function POST(request: Request) {
 
     if (emailError || !email) {
       console.error("Failed to create email record:", emailError);
+      
+      // Check if it's a table doesn't exist error
+      if (emailError?.code === "42P01" || emailError?.message?.includes("does not exist")) {
+        return NextResponse.json(
+          { 
+            error: "Email tables not found. Please run SQL migrations first. See SQL_MIGRATIONS_TO_RUN.md",
+            migrationRequired: true 
+          },
+          { status: 500 }
+        );
+      }
+      
       return NextResponse.json(
-        { error: "Failed to create email record" },
+        { error: emailError?.message || "Failed to create email record" },
         { status: 500 }
       );
     }

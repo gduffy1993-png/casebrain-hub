@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Loader2, Mail, MailOpen, Star, Archive, Link2 } from "lucide-react";
 import { format } from "date-fns";
+import { EmailComposer } from "./EmailComposer";
 
 type Email = {
   id: string;
@@ -29,6 +30,7 @@ type CaseEmailsPanelProps = {
 export function CaseEmailsPanel({ caseId }: CaseEmailsPanelProps) {
   const [emails, setEmails] = useState<Email[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showComposer, setShowComposer] = useState(false);
 
   useEffect(() => {
     async function fetchEmails() {
@@ -78,11 +80,28 @@ export function CaseEmailsPanel({ caseId }: CaseEmailsPanelProps) {
     );
   }
 
+  if (showComposer) {
+    return (
+      <EmailComposer
+        caseId={caseId}
+        onSent={() => {
+          setShowComposer(false);
+          // Refresh emails
+          fetch(`/api/email/cases/${caseId}`)
+            .then((res) => res.json())
+            .then((data) => setEmails(data))
+            .catch(console.error);
+        }}
+        onCancel={() => setShowComposer(false)}
+      />
+    );
+  }
+
   return (
     <Card className="p-6 space-y-4">
       <div className="flex items-center justify-between">
         <h3 className="text-lg font-semibold">Case Emails</h3>
-        <Button size="sm">
+        <Button size="sm" onClick={() => setShowComposer(true)}>
           <Mail className="h-4 w-4 mr-2" />
           Send Email
         </Button>

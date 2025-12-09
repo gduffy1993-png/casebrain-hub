@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Loader2, Calendar, Plus, RefreshCw, CheckCircle, XCircle } from "lucide-react";
+import { Loader2, Calendar, Plus, RefreshCw, CheckCircle, XCircle, AlertCircle } from "lucide-react";
 import { format } from "date-fns";
 
 type CalendarEvent = {
@@ -19,31 +19,49 @@ type CalendarEvent = {
   syncedAt: string | null;
 };
 
+type Deadline = {
+  id: string;
+  title: string;
+  dueDate: string;
+  type: string;
+  status: string;
+};
+
 type CalendarEventsPanelProps = {
   caseId: string;
 };
 
 export function CalendarEventsPanel({ caseId }: CalendarEventsPanelProps) {
   const [events, setEvents] = useState<CalendarEvent[]>([]);
+  const [deadlines, setDeadlines] = useState<Deadline[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchEvents() {
+    async function fetchData() {
       try {
         setLoading(true);
-        const response = await fetch(`/api/calendar/cases/${caseId}`);
-        if (response.ok) {
-          const data = await response.json();
-          setEvents(data);
+        
+        // Fetch calendar events
+        const eventsResponse = await fetch(`/api/calendar/cases/${caseId}`);
+        if (eventsResponse.ok) {
+          const eventsData = await eventsResponse.json();
+          setEvents(eventsData);
+        }
+
+        // Fetch deadlines that can be synced
+        const deadlinesResponse = await fetch(`/api/cases/${caseId}/deadlines`);
+        if (deadlinesResponse.ok) {
+          const deadlinesData = await deadlinesResponse.json();
+          setDeadlines(deadlinesData.deadlines || []);
         }
       } catch (error) {
-        console.error("Failed to fetch calendar events:", error);
+        console.error("Failed to fetch calendar data:", error);
       } finally {
         setLoading(false);
       }
     }
 
-    fetchEvents();
+    fetchData();
   }, [caseId]);
 
   const handleAutoCreate = async () => {
@@ -95,17 +113,37 @@ export function CalendarEventsPanel({ caseId }: CalendarEventsPanelProps) {
         </div>
       </div>
 
-      {events.length === 0 ? (
+      {/* Show deadlines that can be synced */}
+      {deadlines.length > 0 && events.length === 0 && (
+        <div className="p-4 rounded-lg bg-amber-950/20 border border-amber-800/30 mb-4">
+          <div className="flex items-start gap-2">
+            <AlertCircle className="h-4 w-4 text-amber-400 mt-0.5" />
+            <div className="flex-1">
+              <p className="text-sm font-medium text-amber-200 mb-1">
+                {deadlines.length} deadline{deadlines.length !== 1 ? "s" : ""} available to sync
+              </p>
+              <p className="text-xs text-amber-200/70 mb-3">
+                Sync deadlines to Google Calendar or Outlook to never miss important dates.
+              </p>
+              <Button size="sm" variant="outline" onClick={handleAutoCreate}>
+                <RefreshCw className="h-4 w-4 mr-2" />
+                Sync {deadlines.length} Deadline{deadlines.length !== 1 ? "s" : ""}
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {events.length === 0 && deadlines.length === 0 ? (
         <div className="text-center py-8">
           <p className="text-sm text-muted-foreground mb-4">
             No calendar events yet
           </p>
-          <Button size="sm" variant="outline" onClick={handleAutoCreate}>
-            <RefreshCw className="h-4 w-4 mr-2" />
-            Create from Deadlines
-          </Button>
+          <p className="text-xs text-muted-foreground mb-4">
+            Create events manually or sync from deadlines when they're available.
+          </p>
         </div>
-      ) : (
+      ) : events.length > 0 && (
         <div className="space-y-3">
           {events.map((event) => (
             <div
