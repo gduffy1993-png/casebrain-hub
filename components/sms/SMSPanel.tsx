@@ -58,7 +58,7 @@ export function SMSPanel({ caseId, defaultTo = "" }: SMSPanelProps) {
         <div className="flex items-center gap-2">
           <Button
             size="sm"
-            variant={messageType === "sms" ? "default" : "outline"}
+            variant={messageType === "sms" ? "primary" : "outline"}
             onClick={() => setMessageType("sms")}
           >
             <Phone className="h-4 w-4 mr-2" />
@@ -66,7 +66,7 @@ export function SMSPanel({ caseId, defaultTo = "" }: SMSPanelProps) {
           </Button>
           <Button
             size="sm"
-            variant={messageType === "whatsapp" ? "default" : "outline"}
+            variant={messageType === "whatsapp" ? "primary" : "outline"}
             onClick={() => setMessageType("whatsapp")}
           >
             <MessageSquare className="h-4 w-4 mr-2" />
