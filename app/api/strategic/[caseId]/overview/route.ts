@@ -16,16 +16,10 @@ type RouteParams = {
 };
 
 export async function GET(request: NextRequest, { params }: RouteParams) {
-  try {
-    // PAYWALL: Check if user can run analysis
-    const guard = await paywallGuard("analysis");
-    if (!guard.allowed) {
-      return guard.response!;
-    }
-    const paywallOrgId = guard.orgId!;
-
-    const { orgId } = await requireAuthContext();
-    const { caseId } = await params;
+  return await withPaywall("analysis", async () => {
+    try {
+      const { orgId } = await requireAuthContext();
+      const { caseId } = await params;
 
     // Verify case access
     const supabase = getSupabaseAdminClient();
@@ -119,13 +113,14 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       nextHearingDate: nextHearing?.due_date,
     });
 
-    return NextResponse.json({ momentum, strategies });
-  } catch (error) {
-    console.error("Failed to generate strategic overview:", error);
-    return NextResponse.json(
-      { error: "Failed to generate strategic overview" },
-      { status: 500 },
-    );
-  }
+      return NextResponse.json({ momentum, strategies });
+    } catch (error) {
+      console.error("Failed to generate strategic overview:", error);
+      return NextResponse.json(
+        { error: "Failed to generate strategic overview" },
+        { status: 500 },
+      );
+    }
+  });
 }
 
