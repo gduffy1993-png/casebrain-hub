@@ -150,12 +150,15 @@ export function DocumentVersionsPanel({ documentId }: DocumentVersionsPanelProps
                 </div>
                 <div className="flex items-center gap-2">
                   {version.storageUrl && (
-                    <Button size="sm" variant="outline" asChild>
-                      <a href={version.storageUrl} target="_blank" rel="noopener noreferrer">
-                        <Eye className="h-4 w-4 mr-2" />
-                        View
-                      </a>
-                    </Button>
+                    <a
+                      href={version.storageUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 px-3"
+                    >
+                      <Eye className="h-4 w-4 mr-2" />
+                      View
+                    </a>
                   )}
                   {idx > 0 && (
                     <Button
