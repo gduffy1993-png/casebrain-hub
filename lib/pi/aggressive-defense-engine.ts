@@ -551,7 +551,7 @@ function findQuantumAttackAngles(input: PiDefenseInput): PiDefenseAngle[] {
       id: `angle-part36-${input.caseId}`,
       angleType: "PART_36_PRESSURE",
       title: "Part 36 Pressure - Enhanced Costs and Interest",
-      severity: "MEDIUM-HIGH",
+      severity: "HIGH",
       winProbability: 70,
       
       whyThisMatters: "If defendant rejects Part 36 offer and claimant beats it at trial, can get enhanced costs and interest. This creates significant pressure to settle and maximizes recovery.",
