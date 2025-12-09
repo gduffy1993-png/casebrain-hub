@@ -30,7 +30,7 @@ export async function POST(request: Request) {
     const supabase = getSupabaseAdminClient();
     const { data: emailAccount } = await supabase
       .from("email_accounts")
-      .select("email_address, display_name")
+      .select("id, email_address, display_name")
       .eq("org_id", orgId)
       .eq("user_id", userId)
       .eq("is_active", true)
