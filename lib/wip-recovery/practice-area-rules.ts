@@ -75,7 +75,7 @@ export async function checkPiWipRecovery(
 
   const { data: unbilledDisbursements } = await supabase
     .from("pi_disbursements")
-    .select("id, amount, incurred_date, paid")
+    .select("id, amount, incurred_date, paid, category")
     .eq("case_id", caseId)
     .eq("paid", true)
     .eq("is_billed", false);
