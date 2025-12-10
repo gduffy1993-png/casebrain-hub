@@ -10,6 +10,8 @@
 import { findMissingEvidence } from "../missing-evidence";
 import { findContradictions } from "../bundle-navigator";
 import type { PracticeArea } from "../types/casebrain";
+import type { StrategicInsightMeta } from "./types";
+import { generateWeakSpotMeta } from "./meta-generator";
 
 export type WeakSpotType =
   | "CONTRADICTION"
@@ -33,6 +35,7 @@ export type OpponentWeakSpot = {
   impact: string; // "If you highlight this inconsistency, the opponent's argument weakens dramatically."
   suggestedAction: string;
   createdAt: string;
+  meta?: StrategicInsightMeta; // Explanatory metadata
 };
 
 type WeakSpotInput = {
@@ -64,20 +67,47 @@ export async function detectOpponentWeakSpots(
         );
 
         for (const contradiction of criticalContradictions.slice(0, 5)) {
-          weakSpots.push({
+          const evidence = [
+            contradiction.description,
+            `Confidence: ${contradiction.confidence}`,
+          ];
+          
+          const weakSpot: OpponentWeakSpot = {
             id: `weakspot-contradiction-${contradiction.id}`,
             caseId: input.caseId,
             type: "CONTRADICTION",
             severity: contradiction.confidence === "high" ? "CRITICAL" : "HIGH",
             description: `Contradictory statements detected: ${contradiction.description}`,
-            evidence: [
-              contradiction.description,
-              `Confidence: ${contradiction.confidence}`,
-            ],
+            evidence,
             impact: "If you highlight this contradiction, the opponent's argument weakens dramatically. This can be used in cross-examination or to challenge their credibility.",
             suggestedAction: "Prepare cross-examination questions or challenge this contradiction in your response.",
             createdAt: now,
-          });
+          };
+          
+          // Generate meta
+          weakSpot.meta = generateWeakSpotMeta(
+            "CONTRADICTION",
+            weakSpot.description,
+            evidence,
+            {
+              practiceArea: input.practiceArea,
+              documents: input.documents,
+              timeline: input.timeline,
+              letters: [],
+              deadlines: [],
+              hasChronology: false,
+              hasMedicalEvidence: false,
+              hasExpertReports: false,
+              hasDisclosure: false,
+              hasPreActionLetter: false,
+              contradictions: criticalContradictions.map(c => ({
+                description: c.description,
+                confidence: c.confidence,
+              })),
+            }
+          );
+          
+          weakSpots.push(weakSpot);
         }
       }
     } catch (error) {
@@ -122,21 +152,48 @@ export async function detectOpponentWeakSpots(
       legalBasis = "CPR 31.10, CPR 31.12";
     }
     
-    weakSpots.push({
+    const evidence = [
+      missing.reason,
+      `Category: ${missing.category}`,
+      `Legal basis: ${legalBasis}`,
+    ];
+    
+    const weakSpot: OpponentWeakSpot = {
       id: `weakspot-missing-evidence-${missing.id}`,
       caseId: input.caseId,
       type: "MISSING_EVIDENCE",
       severity: "HIGH",
       description: `Critical evidence missing: ${missing.label}`,
-      evidence: [
-        missing.reason,
-        `Category: ${missing.category}`,
-        `Legal basis: ${legalBasis}`,
-      ],
+      evidence,
       impact: detailedImpact,
       suggestedAction: tacticalAdvice,
       createdAt: now,
-    });
+    };
+    
+    // Generate meta
+    weakSpot.meta = generateWeakSpotMeta(
+      "MISSING_EVIDENCE",
+      weakSpot.description,
+      evidence,
+      {
+        practiceArea: input.practiceArea,
+        documents: input.documents,
+        timeline: input.timeline,
+        letters: [],
+        deadlines: [],
+        hasChronology: false,
+        hasMedicalEvidence: false,
+        hasExpertReports: false,
+        hasDisclosure: false,
+        hasPreActionLetter: false,
+        missingEvidence: criticalMissing.map(m => ({
+          type: m.label,
+          priority: m.priority,
+        })),
+      }
+    );
+    
+    weakSpots.push(weakSpot);
   }
 
   // 3. Check for timeline gaps

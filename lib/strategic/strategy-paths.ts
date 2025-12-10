@@ -11,6 +11,8 @@ import { detectOpponentVulnerabilities } from "./opponent-vulnerabilities";
 import { analyzeTimePressure } from "./time-pressure";
 import { detectOpponentWeakSpots } from "./weak-spots";
 import type { PracticeArea } from "../types/casebrain";
+import type { StrategicInsightMeta } from "./types";
+import { generateStrategyPathMeta } from "./meta-generator";
 
 export type StrategyPath = {
   id: string;
@@ -26,6 +28,7 @@ export type StrategyPath = {
   successProbability: "HIGH" | "MEDIUM" | "LOW";
   recommendedFor: string; // When this route is best
   createdAt: string;
+  meta?: StrategicInsightMeta; // Explanatory metadata
 };
 
 type StrategyPathInput = {
@@ -92,7 +95,7 @@ export async function generateStrategyPaths(
   );
 
   if (hasProceduralVulnerabilities) {
-    paths.push({
+    const path: StrategyPath = {
       id: `strategy-route-a-${input.caseId}`,
       caseId: input.caseId,
       route: "A",
@@ -115,7 +118,35 @@ export async function generateStrategyPaths(
       successProbability: "HIGH",
       recommendedFor: "Cases with clear opponent delays and non-compliance",
       createdAt: now,
-    });
+    };
+    
+    // Generate meta
+    path.meta = generateStrategyPathMeta(
+      "A",
+      path.title,
+      path.description,
+      {
+        practiceArea: input.practiceArea,
+        documents: input.documents,
+        timeline: input.timeline,
+        letters: input.letters,
+        deadlines: input.deadlines,
+        hasChronology: input.hasChronology,
+        hasMedicalEvidence: false,
+        hasExpertReports: false,
+        hasDisclosure: false,
+        hasPreActionLetter: input.letters.some(l => 
+          l.template_id?.toLowerCase().includes("pre_action") ||
+          l.template_id?.toLowerCase().includes("protocol")
+        ),
+        vulnerabilities: vulnerabilities.map(v => ({
+          type: v.type,
+          description: v.description,
+        })),
+      }
+    );
+    
+    paths.push(path);
   }
 
   // Route B: Awaab's Law / Hazard breach leverage (housing only)
@@ -132,7 +163,7 @@ export async function generateStrategyPaths(
     );
 
     if (hasAwaabVulnerabilities || hasHazards) {
-      paths.push({
+      const path: StrategyPath = {
         id: `strategy-route-b-${input.caseId}`,
         caseId: input.caseId,
         route: "B",
@@ -145,7 +176,7 @@ export async function generateStrategyPaths(
           "Clear compliance failures",
           "High public interest angle",
         ],
-      cons: [
+        cons: [
           "Only applies to social landlords",
           "Requires Category 1 hazards",
           "May require expert evidence",
@@ -155,7 +186,38 @@ export async function generateStrategyPaths(
         successProbability: "HIGH",
         recommendedFor: "Housing cases with social landlords, under-5s, and Category 1 hazards",
         createdAt: now,
-      });
+      };
+      
+      // Generate meta
+      path.meta = generateStrategyPathMeta(
+        "B",
+        path.title,
+        path.description,
+        {
+          practiceArea: input.practiceArea,
+          documents: input.documents,
+          timeline: input.timeline,
+          letters: input.letters,
+          deadlines: input.deadlines,
+          hasChronology: input.hasChronology,
+          hasMedicalEvidence: false,
+          hasExpertReports: false,
+          hasDisclosure: false,
+          hasPreActionLetter: input.letters.some(l => 
+            l.template_id?.toLowerCase().includes("pre_action") ||
+            l.template_id?.toLowerCase().includes("protocol")
+          ),
+          vulnerabilities: vulnerabilities.filter(v => 
+            v.type === "MISSING_RECORDS" ||
+            v.description.toLowerCase().includes("awaab")
+          ).map(v => ({
+            type: v.type,
+            description: v.description,
+          })),
+        }
+      );
+      
+      paths.push(path);
     }
   }
 
@@ -187,7 +249,7 @@ export async function generateStrategyPaths(
       specificQuestions = "Prepare questions targeting any inconsistencies in the opponent's evidence.";
     }
     
-    paths.push({
+    const path: StrategyPath = {
       id: `strategy-route-c-${input.caseId}`,
       caseId: input.caseId,
       route: "C",
@@ -212,7 +274,35 @@ export async function generateStrategyPaths(
       successProbability: contradictionDetails.length >= 2 || expertDetails.length >= 1 ? "HIGH" : "MEDIUM",
       recommendedFor: `Cases with clear contradictions (${contradictionDetails.length} found) or expert weaknesses (${expertDetails.length} found). Most effective when contradictions are significant and well-documented.`,
       createdAt: now,
-    });
+    };
+    
+    // Generate meta
+    path.meta = generateStrategyPathMeta(
+      "C",
+      path.title,
+      path.description,
+      {
+        practiceArea: input.practiceArea,
+        documents: input.documents,
+        timeline: input.timeline,
+        letters: input.letters,
+        deadlines: input.deadlines,
+        hasChronology: input.hasChronology,
+        hasMedicalEvidence: false,
+        hasExpertReports: false,
+        hasDisclosure: false,
+        hasPreActionLetter: input.letters.some(l => 
+          l.template_id?.toLowerCase().includes("pre_action") ||
+          l.template_id?.toLowerCase().includes("protocol")
+        ),
+        contradictions: contradictionDetails.map(c => ({
+          description: c.description,
+          confidence: c.severity === "CRITICAL" ? "high" : "medium",
+        })),
+      }
+    );
+    
+    paths.push(path);
   }
 
   // Route D: Settlement pressure route
@@ -221,7 +311,7 @@ export async function generateStrategyPaths(
   );
 
   if (hasSignificantDelays && input.nextHearingDate) {
-    paths.push({
+    const path: StrategyPath = {
       id: `strategy-route-d-${input.caseId}`,
       caseId: input.caseId,
       route: "D",
@@ -244,12 +334,36 @@ export async function generateStrategyPaths(
       successProbability: "MEDIUM",
       recommendedFor: "Cases with significant opponent delays and approaching hearing",
       createdAt: now,
-    });
+    };
+    
+    // Generate meta
+    path.meta = generateStrategyPathMeta(
+      "D",
+      path.title,
+      path.description,
+      {
+        practiceArea: input.practiceArea,
+        documents: input.documents,
+        timeline: input.timeline,
+        letters: input.letters,
+        deadlines: input.deadlines,
+        hasChronology: input.hasChronology,
+        hasMedicalEvidence: false,
+        hasExpertReports: false,
+        hasDisclosure: false,
+        hasPreActionLetter: input.letters.some(l => 
+          l.template_id?.toLowerCase().includes("pre_action") ||
+          l.template_id?.toLowerCase().includes("protocol")
+        ),
+      }
+    );
+    
+    paths.push(path);
   }
 
   // Route E: Hybrid approach (combine multiple routes)
   if (paths.length >= 2) {
-    paths.push({
+    const path: StrategyPath = {
       id: `strategy-route-e-${input.caseId}`,
       caseId: input.caseId,
       route: "E",
@@ -272,12 +386,36 @@ export async function generateStrategyPaths(
       successProbability: "HIGH",
       recommendedFor: "Complex cases with multiple leverage points",
       createdAt: now,
-    });
+    };
+    
+    // Generate meta
+    path.meta = generateStrategyPathMeta(
+      "E",
+      path.title,
+      path.description,
+      {
+        practiceArea: input.practiceArea,
+        documents: input.documents,
+        timeline: input.timeline,
+        letters: input.letters,
+        deadlines: input.deadlines,
+        hasChronology: input.hasChronology,
+        hasMedicalEvidence: false,
+        hasExpertReports: false,
+        hasDisclosure: false,
+        hasPreActionLetter: input.letters.some(l => 
+          l.template_id?.toLowerCase().includes("pre_action") ||
+          l.template_id?.toLowerCase().includes("protocol")
+        ),
+      }
+    );
+    
+    paths.push(path);
   }
 
   // If no specific routes identified, provide default route
   if (paths.length === 0) {
-    paths.push({
+    const path: StrategyPath = {
       id: `strategy-route-default-${input.caseId}`,
       caseId: input.caseId,
       route: "A",
@@ -299,7 +437,31 @@ export async function generateStrategyPaths(
       successProbability: "MEDIUM",
       recommendedFor: "Cases without clear leverage points",
       createdAt: now,
-    });
+    };
+    
+    // Generate meta
+    path.meta = generateStrategyPathMeta(
+      "A",
+      path.title,
+      path.description,
+      {
+        practiceArea: input.practiceArea,
+        documents: input.documents,
+        timeline: input.timeline,
+        letters: input.letters,
+        deadlines: input.deadlines,
+        hasChronology: input.hasChronology,
+        hasMedicalEvidence: false,
+        hasExpertReports: false,
+        hasDisclosure: false,
+        hasPreActionLetter: input.letters.some(l => 
+          l.template_id?.toLowerCase().includes("pre_action") ||
+          l.template_id?.toLowerCase().includes("protocol")
+        ),
+      }
+    );
+    
+    paths.push(path);
   }
 
   return paths;

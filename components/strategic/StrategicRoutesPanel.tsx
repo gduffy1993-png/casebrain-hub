@@ -4,6 +4,20 @@ import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Loader2, Target } from "lucide-react";
+import { StrategicInsightMetaDisplay } from "./StrategicInsightMeta";
+
+type StrategicInsightMeta = {
+  whyRecommended: string;
+  triggeredBy: string[];
+  alternatives: Array<{
+    label: string;
+    description: string;
+    unlockedBy?: string[];
+  }>;
+  riskIfIgnored: string;
+  bestStageToUse: string;
+  howThisHelpsYouWin: string;
+};
 
 type StrategyPath = {
   id: string;
@@ -17,6 +31,7 @@ type StrategyPath = {
   estimatedCost: string;
   successProbability: "HIGH" | "MEDIUM" | "LOW";
   recommendedFor: string;
+  meta?: StrategicInsightMeta;
 };
 
 type StrategicRoutesPanelProps = {
@@ -175,6 +190,11 @@ export function StrategicRoutesPanel({ caseId }: StrategicRoutesPanelProps) {
                 <span>Cost: {strategy.estimatedCost}</span>
               </div>
             </div>
+
+            {/* Meta Information */}
+            {strategy.meta && (
+              <StrategicInsightMetaDisplay meta={strategy.meta} />
+            )}
           </div>
         ))}
       </div>

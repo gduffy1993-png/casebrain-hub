@@ -4,6 +4,20 @@ import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Loader2, AlertTriangle, Search } from "lucide-react";
+import { StrategicInsightMetaDisplay } from "./StrategicInsightMeta";
+
+type StrategicInsightMeta = {
+  whyRecommended: string;
+  triggeredBy: string[];
+  alternatives: Array<{
+    label: string;
+    description: string;
+    unlockedBy?: string[];
+  }>;
+  riskIfIgnored: string;
+  bestStageToUse: string;
+  howThisHelpsYouWin: string;
+};
 
 type LeveragePoint = {
   id: string;
@@ -14,6 +28,7 @@ type LeveragePoint = {
   escalationText: string;
   leverage: string;
   cprRule?: string;
+  meta?: StrategicInsightMeta;
 };
 
 type WeakSpot = {
@@ -23,6 +38,7 @@ type WeakSpot = {
   description: string;
   impact: string;
   suggestedAction: string;
+  meta?: StrategicInsightMeta;
 };
 
 type LeverageAndWeakSpotsPanelProps = {
@@ -153,6 +169,11 @@ export function LeverageAndWeakSpotsPanel({ caseId }: LeverageAndWeakSpotsPanelP
                       <span className="text-cyan-300/80">{point.cprRule}</span>
                     </div>
                   )}
+
+                  {/* Meta Information */}
+                  {point.meta && (
+                    <StrategicInsightMetaDisplay meta={point.meta} />
+                  )}
                 </div>
               ))}
             </div>
@@ -191,6 +212,11 @@ export function LeverageAndWeakSpotsPanel({ caseId }: LeverageAndWeakSpotsPanelP
                       <p className="text-xs font-medium text-cyan-300 mb-1">Recommended Action:</p>
                       <p className="text-xs text-cyan-200/90 leading-relaxed">{spot.suggestedAction}</p>
                     </div>
+                  )}
+
+                  {/* Meta Information */}
+                  {spot.meta && (
+                    <StrategicInsightMetaDisplay meta={spot.meta} />
                   )}
                 </div>
               ))}
@@ -237,6 +263,11 @@ export function LeverageAndWeakSpotsPanel({ caseId }: LeverageAndWeakSpotsPanelP
                       </ul>
                     </div>
                   </div>
+
+                  {/* Meta Information */}
+                  {spot.meta && (
+                    <StrategicInsightMetaDisplay meta={spot.meta} />
+                  )}
                 </div>
               ))}
             </div>

@@ -9,6 +9,8 @@
 
 import { buildOpponentActivitySnapshot } from "../opponent-radar";
 import type { PracticeArea } from "../types/casebrain";
+import type { StrategicInsightMeta } from "./types";
+import { generateTimePressureMeta } from "./meta-generator";
 
 export type TimePressurePoint = {
   id: string;
@@ -21,6 +23,7 @@ export type TimePressurePoint = {
   deadline?: string; // When to act
   severity: "CRITICAL" | "HIGH" | "MEDIUM";
   createdAt: string;
+  meta?: StrategicInsightMeta; // Explanatory metadata
 };
 
 type TimePressureInput = {
@@ -49,10 +52,12 @@ export async function analyzeTimePressure(
   if (opponentSnapshot.currentSilenceDays > 14) {
     const idealWindow = opponentSnapshot.currentSilenceDays >= 21 && opponentSnapshot.currentSilenceDays <= 28;
     
-    pressurePoints.push({
+    const issue = `Opponent breach: ${opponentSnapshot.currentSilenceDays} days without response`;
+    
+    const pressurePoint: TimePressurePoint = {
       id: `pressure-opponent-delay-${input.caseId}`,
       caseId: input.caseId,
-      issue: `Opponent breach: ${opponentSnapshot.currentSilenceDays} days without response`,
+      issue,
       leverage: idealWindow 
         ? "This breach gives you leverage at hearing. The opponent's delay is now significant enough to justify an application."
         : "This delay means you can apply for enforcement or costs. The longer they delay, the stronger your position.",
@@ -69,7 +74,29 @@ export async function analyzeTimePressure(
         : "Puts them at risk of costs order and procedural sanctions",
       severity: opponentSnapshot.currentSilenceDays > 28 ? "CRITICAL" : "HIGH",
       createdAt: now,
-    });
+    };
+    
+    // Generate meta
+    pressurePoint.meta = generateTimePressureMeta(
+      issue,
+      {
+        practiceArea: input.practiceArea,
+        documents: [],
+        timeline: input.timeline,
+        letters: input.letters,
+        deadlines: input.deadlines,
+        hasChronology: false,
+        hasMedicalEvidence: false,
+        hasExpertReports: false,
+        hasDisclosure: false,
+        hasPreActionLetter: input.letters.some(l => 
+          l.template_id?.toLowerCase().includes("pre_action") ||
+          l.template_id?.toLowerCase().includes("protocol")
+        ),
+      }
+    );
+    
+    pressurePoints.push(pressurePoint);
   }
 
   // 2. Check for missing documents (puts them at risk)
@@ -91,17 +118,41 @@ export async function analyzeTimePressure(
 
       // If disclosure should have been provided but hasn't
       if (daysSinceIssue > 28 && daysSinceIssue < 56) {
-        pressurePoints.push({
+        const issue = "Missing disclosure list — should have been provided by now";
+        
+        const pressurePoint: TimePressurePoint = {
           id: `pressure-missing-disclosure-${input.caseId}`,
           caseId: input.caseId,
-          issue: "Missing disclosure list — should have been provided by now",
+          issue,
           leverage: "This missing document puts them at risk of adjournment costs and disclosure orders. The court will expect disclosure to be provided promptly.",
           timing: "Now is the ideal moment to request disclosure — enough time has passed to show delay.",
           action: "Request disclosure list — this is required under CPR 31.10",
           riskToOpponent: "Puts them at risk of disclosure order, costs, and potential adjournment if hearing is approaching",
           severity: "HIGH",
           createdAt: now,
-        });
+        };
+        
+        // Generate meta
+        pressurePoint.meta = generateTimePressureMeta(
+          issue,
+          {
+            practiceArea: input.practiceArea,
+            documents: [],
+            timeline: input.timeline,
+            letters: input.letters,
+            deadlines: input.deadlines,
+            hasChronology: false,
+            hasMedicalEvidence: false,
+            hasExpertReports: false,
+            hasDisclosure: false,
+            hasPreActionLetter: input.letters.some(l => 
+              l.template_id?.toLowerCase().includes("pre_action") ||
+              l.template_id?.toLowerCase().includes("protocol")
+            ),
+          }
+        );
+        
+        pressurePoints.push(pressurePoint);
       }
     }
   }

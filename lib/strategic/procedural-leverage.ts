@@ -11,6 +11,8 @@ import { getSupabaseAdminClient } from "../supabase";
 import { findMissingEvidence } from "../missing-evidence";
 import { buildOpponentActivitySnapshot } from "../opponent-radar";
 import type { PracticeArea } from "../types/casebrain";
+import type { StrategicInsightMeta } from "./types";
+import { generateLeverageMeta } from "./meta-generator";
 
 export type ProceduralLeverageType =
   | "MISSING_DEADLINE"
@@ -42,6 +44,7 @@ export type ProceduralLeveragePoint = {
   cprRule?: string;
   leverage: string; // "If you challenge this point, the court is likely to order X"
   createdAt: string;
+  meta?: StrategicInsightMeta; // Explanatory metadata
 };
 
 type ProceduralLeverageInput = {
@@ -67,16 +70,18 @@ export async function detectProceduralLeveragePoints(
   const opponentSnapshot = await buildOpponentActivitySnapshot(input.caseId, input.orgId);
   
   if (opponentSnapshot.currentSilenceDays > 21) {
-    leveragePoints.push({
+    const evidence = [
+      `Last letter sent: ${opponentSnapshot.lastLetterSentAt || "Unknown"}`,
+      `Days since last contact: ${opponentSnapshot.currentSilenceDays}`,
+    ];
+    
+    const leveragePoint: ProceduralLeveragePoint = {
       id: `leverage-late-response-${input.caseId}`,
       caseId: input.caseId,
       type: "LATE_RESPONSE",
       severity: opponentSnapshot.currentSilenceDays > 42 ? "CRITICAL" : "HIGH",
       description: `Opponent has not responded for ${opponentSnapshot.currentSilenceDays} days`,
-      evidence: [
-        `Last letter sent: ${opponentSnapshot.lastLetterSentAt || "Unknown"}`,
-        `Days since last contact: ${opponentSnapshot.currentSilenceDays}`,
-      ],
+      evidence,
       suggestedEscalation: opponentSnapshot.currentSilenceDays > 42 ? "UNLESS_ORDER" : "CLARIFICATION",
       escalationText: opponentSnapshot.currentSilenceDays > 42
         ? "Apply for an unless order — this could compel them to respond or risk strike-out."
@@ -84,7 +89,31 @@ export async function detectProceduralLeveragePoints(
       cprRule: "CPR 3.4(2)(c)",
       leverage: `If you challenge this delay, the court is likely to order compliance or impose sanctions, which puts significant pressure on the opponent.`,
       createdAt: now,
-    });
+    };
+    
+    // Generate meta
+    leveragePoint.meta = generateLeverageMeta(
+      "LATE_RESPONSE",
+      leveragePoint.description,
+      evidence,
+      {
+        practiceArea: input.practiceArea,
+        documents: input.documents,
+        timeline: input.timeline,
+        letters: input.letters,
+        deadlines: input.deadlines,
+        hasChronology: false,
+        hasMedicalEvidence: false,
+        hasExpertReports: false,
+        hasDisclosure: false,
+        hasPreActionLetter: input.letters.some(l => 
+          l.template_id?.toLowerCase().includes("pre_action") ||
+          l.template_id?.toLowerCase().includes("protocol")
+        ),
+      }
+    );
+    
+    leveragePoints.push(leveragePoint);
   }
 
   // 2. Check for missing pre-action steps
@@ -101,21 +130,44 @@ export async function detectProceduralLeveragePoints(
       );
       
       if (daysSinceComplaint > 30) {
-        leveragePoints.push({
+        const evidence = [
+          `First complaint: ${firstComplaintDate.toISOString()}`,
+          `Days since complaint: ${daysSinceComplaint}`,
+        ];
+        
+        const leveragePoint: ProceduralLeveragePoint = {
           id: `leverage-missing-pre-action-${input.caseId}`,
           caseId: input.caseId,
           type: "MISSING_PRE_ACTION",
           severity: "HIGH",
           description: "No pre-action protocol letter detected despite case being active for over 30 days",
-          evidence: [
-            `First complaint: ${firstComplaintDate.toISOString()}`,
-            `Days since complaint: ${daysSinceComplaint}`,
-          ],
+          evidence,
           suggestedEscalation: "CLARIFICATION",
           escalationText: "Send pre-action protocol letter — this is required before issuing proceedings.",
           leverage: "Missing pre-action steps can delay proceedings and may result in costs sanctions if proceedings are issued prematurely.",
           createdAt: now,
-        });
+        };
+        
+        // Generate meta
+        leveragePoint.meta = generateLeverageMeta(
+          "MISSING_PRE_ACTION",
+          leveragePoint.description,
+          evidence,
+          {
+            practiceArea: input.practiceArea,
+            documents: input.documents,
+            timeline: input.timeline,
+            letters: input.letters,
+            deadlines: input.deadlines,
+            hasChronology: false,
+            hasMedicalEvidence: false,
+            hasExpertReports: false,
+            hasDisclosure: false,
+            hasPreActionLetter: false,
+          }
+        );
+        
+        leveragePoints.push(leveragePoint);
       }
     }
   }

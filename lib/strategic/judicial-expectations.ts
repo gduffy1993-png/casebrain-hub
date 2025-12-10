@@ -8,6 +8,8 @@
  */
 
 import type { PracticeArea } from "../types/casebrain";
+import type { StrategicInsightMeta } from "./types";
+import { generateJudicialExpectationMeta } from "./meta-generator";
 
 export type JudicialExpectation = {
   id: string;
@@ -19,6 +21,7 @@ export type JudicialExpectation = {
   description: string;
   warning?: string; // Warning if not met
   createdAt: string;
+  meta?: StrategicInsightMeta; // Explanatory metadata
 };
 
 export type StageExpectations = {
@@ -54,50 +57,113 @@ export function mapJudicialExpectations(
   // Stage: INTAKE
   if (input.stage === "intake" || input.stage === "pre_action") {
     // Expectation 1: Proper client instructions
-    expectations.push({
+    const instructionsStatus = input.documents.some(d => 
+      d.name.toLowerCase().includes("instruction") ||
+      d.name.toLowerCase().includes("client authority")
+    ) ? "MET" : "NOT_MET";
+    
+    const instructionsExpectation: JudicialExpectation = {
       id: `expectation-instructions-${input.caseId}`,
       caseId: input.caseId,
       stage: input.stage,
       expectation: "Clear client instructions documented",
       standard: "REQUIRED",
-      status: input.documents.some(d => 
-        d.name.toLowerCase().includes("instruction") ||
-        d.name.toLowerCase().includes("client authority")
-      ) ? "MET" : "NOT_MET",
+      status: instructionsStatus,
       description: "Judges expect clear client instructions to be documented from the outset.",
-      warning: input.documents.some(d => 
-        d.name.toLowerCase().includes("instruction") ||
-        d.name.toLowerCase().includes("client authority")
-      ) ? undefined : "Missing client instructions may raise compliance concerns.",
+      warning: instructionsStatus === "NOT_MET" ? "Missing client instructions may raise compliance concerns." : undefined,
       createdAt: now,
-    });
+    };
+    
+    // Generate meta
+    instructionsExpectation.meta = generateJudicialExpectationMeta(
+      instructionsExpectation.expectation,
+      instructionsStatus,
+      {
+        practiceArea: input.practiceArea,
+        documents: input.documents,
+        timeline: input.timeline,
+        letters: input.letters,
+        deadlines: [],
+        hasChronology: input.hasChronology,
+        hasMedicalEvidence: input.hasMedicalEvidence,
+        hasExpertReports: input.hasExpertReports,
+        hasDisclosure: input.hasDisclosure,
+        hasPreActionLetter: input.hasPreActionLetter,
+      }
+    );
+    
+    expectations.push(instructionsExpectation);
 
     // Expectation 2: Chronology
-    expectations.push({
+    const chronologyStatus = input.hasChronology ? "MET" : "PARTIAL";
+    
+    const chronologyExpectation: JudicialExpectation = {
       id: `expectation-chronology-${input.caseId}`,
       caseId: input.caseId,
       stage: input.stage,
       expectation: "Structured chronology available",
       standard: "EXPECTED",
-      status: input.hasChronology ? "MET" : "PARTIAL",
+      status: chronologyStatus,
       description: "Judges expect a clear, structured chronology to understand the case timeline.",
       warning: !input.hasChronology ? "No clear chronology — judges expect structured timeline." : undefined,
       createdAt: now,
-    });
+    };
+    
+    // Generate meta
+    chronologyExpectation.meta = generateJudicialExpectationMeta(
+      chronologyExpectation.expectation,
+      chronologyStatus,
+      {
+        practiceArea: input.practiceArea,
+        documents: input.documents,
+        timeline: input.timeline,
+        letters: input.letters,
+        deadlines: [],
+        hasChronology: input.hasChronology,
+        hasMedicalEvidence: input.hasMedicalEvidence,
+        hasExpertReports: input.hasExpertReports,
+        hasDisclosure: input.hasDisclosure,
+        hasPreActionLetter: input.hasPreActionLetter,
+      }
+    );
+    
+    expectations.push(chronologyExpectation);
 
     // Expectation 3: Pre-action protocol (if applicable)
     if (input.stage === "pre_action") {
-      expectations.push({
+      const preActionStatus = input.hasPreActionLetter ? "MET" : "NOT_MET";
+      
+      const preActionExpectation: JudicialExpectation = {
         id: `expectation-pre-action-${input.caseId}`,
         caseId: input.caseId,
         stage: input.stage,
         expectation: "Pre-action protocol letter sent",
         standard: "REQUIRED",
-        status: input.hasPreActionLetter ? "MET" : "NOT_MET",
+        status: preActionStatus,
         description: "Judges expect pre-action protocol compliance before issuing proceedings.",
         warning: !input.hasPreActionLetter ? "Missing pre-action letter — may result in costs sanctions." : undefined,
         createdAt: now,
-      });
+      };
+      
+      // Generate meta
+      preActionExpectation.meta = generateJudicialExpectationMeta(
+        preActionExpectation.expectation,
+        preActionStatus,
+        {
+          practiceArea: input.practiceArea,
+          documents: input.documents,
+          timeline: input.timeline,
+          letters: input.letters,
+          deadlines: [],
+          hasChronology: input.hasChronology,
+          hasMedicalEvidence: input.hasMedicalEvidence,
+          hasExpertReports: input.hasExpertReports,
+          hasDisclosure: input.hasDisclosure,
+          hasPreActionLetter: input.hasPreActionLetter,
+        }
+      );
+      
+      expectations.push(preActionExpectation);
     }
   }
 

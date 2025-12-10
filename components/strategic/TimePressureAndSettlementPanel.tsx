@@ -4,6 +4,20 @@ import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Loader2, Clock, TrendingUp } from "lucide-react";
+import { StrategicInsightMetaDisplay } from "./StrategicInsightMeta";
+
+type StrategicInsightMeta = {
+  whyRecommended: string;
+  triggeredBy: string[];
+  alternatives: Array<{
+    label: string;
+    description: string;
+    unlockedBy?: string[];
+  }>;
+  riskIfIgnored: string;
+  bestStageToUse: string;
+  howThisHelpsYouWin: string;
+};
 
 type TimePressurePoint = {
   id: string;
@@ -13,6 +27,7 @@ type TimePressurePoint = {
   action: string;
   riskToOpponent: string;
   severity: "CRITICAL" | "HIGH" | "MEDIUM";
+  meta?: StrategicInsightMeta;
 };
 
 type Scenario = {
@@ -175,6 +190,11 @@ export function TimePressureAndSettlementPanel({ caseId }: TimePressureAndSettle
                   <p className="text-xs text-muted-foreground">
                     <span className="font-medium">Action:</span> {point.action}
                   </p>
+
+                  {/* Meta Information */}
+                  {point.meta && (
+                    <StrategicInsightMetaDisplay meta={point.meta} />
+                  )}
                 </div>
               ))}
             </div>
