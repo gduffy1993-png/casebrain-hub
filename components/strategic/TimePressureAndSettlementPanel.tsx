@@ -80,13 +80,35 @@ export function TimePressureAndSettlementPanel({ caseId }: TimePressureAndSettle
   if (error || (pressurePoints.length === 0 && scenarios.length === 0)) {
     return (
       <Card className="p-6">
-        <div className="flex items-center gap-2 mb-2">
-          <Clock className="h-4 w-4 text-muted-foreground" />
+        <div className="flex items-center gap-2 mb-3">
+          <Clock className="h-4 w-4 text-foreground" />
           <h3 className="text-sm font-semibold text-foreground">Time Pressure & Settlement</h3>
         </div>
-        <p className="text-sm text-muted-foreground">
-          {error || "No time pressure analysis available yet. Run analysis again after more documents are uploaded."}
-        </p>
+        <div className="space-y-3">
+          <p className="text-sm text-foreground leading-relaxed">
+            <span className="font-medium">No settlement pressure timers flagged yet</span> – your leverage right now is mainly from missing evidence and procedural breaches above.
+          </p>
+          <div className="p-3 rounded-lg bg-cyan-950/20 border border-cyan-800/30">
+            <p className="text-xs font-medium text-cyan-300 mb-2">Add offers / deadlines / ADR correspondence to unlock settlement pressure analysis:</p>
+            <ul className="text-xs text-cyan-200/90 space-y-1.5">
+              <li className="flex items-start gap-1.5">
+                <span className="text-cyan-400 mt-0.5">•</span>
+                <span>Court orders / listing notices</span>
+              </li>
+              <li className="flex items-start gap-1.5">
+                <span className="text-cyan-400 mt-0.5">•</span>
+                <span>Part 36 offers / Calderbank letters</span>
+              </li>
+              <li className="flex items-start gap-1.5">
+                <span className="text-cyan-400 mt-0.5">•</span>
+                <span>Limitation / CNF / PAP letters</span>
+              </li>
+            </ul>
+            <p className="text-xs text-cyan-300/80 mt-2">
+              Re-run Strategic Intelligence after uploading to see settlement pressure analysis.
+            </p>
+          </div>
+        </div>
       </Card>
     );
   }

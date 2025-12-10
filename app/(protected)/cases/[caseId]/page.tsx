@@ -74,6 +74,10 @@ import { SMSPanel } from "@/components/sms/SMSPanel";
 import { DocumentVersionsPanel } from "@/components/documents/DocumentVersionsPanel";
 import { CustomReportsPanel } from "@/components/reporting/CustomReportsPanel";
 import { ClientMoneyPanel } from "@/components/trust/ClientMoneyPanel";
+import { ProfitabilityCard } from "@/components/case-profitability/ProfitabilityCard";
+import { SettlementCalculatorPanel } from "@/components/settlement/SettlementCalculatorPanel";
+import { ClientTimelinePanel } from "@/components/client-expectations/ClientTimelinePanel";
+import { OpponentProfileCard } from "@/components/opponent-behavior/OpponentProfileCard";
 import { SettlementCalculator } from "@/components/calculators/SettlementCalculator";
 import { PreActionProtocolChecklist } from "@/components/protocol/PreActionProtocolChecklist";
 import { CollapsibleSection } from "@/components/ui/collapsible-section";
@@ -1477,6 +1481,21 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
         {/* Trust Accounting (UK-specific) */}
         <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Trust accounting unavailable</div>}>
           <ClientMoneyPanel caseId={caseId} />
+        </ErrorBoundary>
+
+        {/* Case Profitability */}
+        <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Profitability unavailable</div>}>
+          <ProfitabilityCard caseId={caseId} />
+        </ErrorBoundary>
+
+        {/* Settlement Calculator */}
+        <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Settlement calculator unavailable</div>}>
+          <SettlementCalculatorPanel caseId={caseId} />
+        </ErrorBoundary>
+
+        {/* Client Timeline */}
+        <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Client timeline unavailable</div>}>
+          <ClientTimelinePanel caseId={caseId} currentStage={piCase?.stage || housingCase?.stage} />
         </ErrorBoundary>
 
         {/* Pre-Action Protocol Checklist */}

@@ -136,6 +136,25 @@ export function StrategicRoutesPanel({ caseId }: StrategicRoutesPanelProps) {
                 <p className="text-xs font-medium text-foreground mb-1">When to use:</p>
                 <p className="text-xs text-muted-foreground leading-relaxed">{strategy.recommendedFor}</p>
               </div>
+              
+              {/* Use this at - Hearing-specific guidance */}
+              <div className="mt-3 p-2 rounded bg-amber-950/20 border border-amber-800/30">
+                <p className="text-xs font-medium text-amber-300 mb-1.5">Use this at:</p>
+                <ul className="text-xs text-amber-200/90 space-y-1">
+                  <li className="flex items-start gap-1.5">
+                    <span className="text-amber-400 mt-0.5">•</span>
+                    <span><span className="font-medium">CCMC</span> – set the agenda and directions</span>
+                  </li>
+                  <li className="flex items-start gap-1.5">
+                    <span className="text-amber-400 mt-0.5">•</span>
+                    <span><span className="font-medium">Pre-trial review</span> – argue they can't prove liability</span>
+                  </li>
+                  <li className="flex items-start gap-1.5">
+                    <span className="text-amber-400 mt-0.5">•</span>
+                    <span><span className="font-medium">Trial</span> – cross-exam and submissions</span>
+                  </li>
+                </ul>
+              </div>
 
               {strategy.pros.length > 0 && (
                 <div>

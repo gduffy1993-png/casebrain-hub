@@ -127,7 +127,7 @@ export function LeverageAndWeakSpotsPanel({ caseId }: LeverageAndWeakSpotsPanelP
               {leveragePoints.slice(0, 3).map((point) => (
                 <div
                   key={point.id}
-                  className="p-3 rounded-lg bg-muted/30 border border-border/50 space-y-1.5"
+                  className="p-3 rounded-lg bg-muted/30 border border-border/50 space-y-2"
                 >
                   <div className="flex items-center gap-2">
                     <Badge className={getSeverityColor(point.severity)}>
@@ -135,13 +135,23 @@ export function LeverageAndWeakSpotsPanel({ caseId }: LeverageAndWeakSpotsPanelP
                     </Badge>
                     <span className="text-xs font-medium text-foreground">{point.description}</span>
                   </div>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{point.leverage}</p>
+                  
+                  {/* How this helps you win */}
+                  <div className="p-2 rounded bg-green-950/20 border border-green-800/30">
+                    <p className="text-xs font-medium text-green-300 mb-1">How this helps you win:</p>
+                    <p className="text-xs text-green-200/90 leading-relaxed">{point.leverage}</p>
+                  </div>
+                  
                   <div className="mt-2 p-2 rounded bg-cyan-950/30 border border-cyan-800/30">
                     <p className="text-xs font-medium text-cyan-300 mb-1">Tactical Steps:</p>
                     <p className="text-xs text-cyan-200/90 whitespace-pre-line leading-relaxed">{point.escalationText}</p>
                   </div>
+                  
                   {point.cprRule && (
-                    <p className="text-xs text-muted-foreground/70 mt-1">Legal basis: {point.cprRule}</p>
+                    <div className="flex items-start gap-1.5 text-xs">
+                      <span className="text-muted-foreground/70 font-medium">Legal basis:</span>
+                      <span className="text-cyan-300/80">{point.cprRule}</span>
+                    </div>
                   )}
                 </div>
               ))}
@@ -157,7 +167,7 @@ export function LeverageAndWeakSpotsPanel({ caseId }: LeverageAndWeakSpotsPanelP
               {contradictions.slice(0, 2).map((spot) => (
                 <div
                   key={spot.id}
-                  className="p-3 rounded-lg bg-muted/30 border border-border/50 space-y-1.5"
+                  className="p-3 rounded-lg bg-muted/30 border border-border/50 space-y-2"
                 >
                   <div className="flex items-center gap-2">
                     <Badge className={getSeverityColor(spot.severity)}>
@@ -165,7 +175,23 @@ export function LeverageAndWeakSpotsPanel({ caseId }: LeverageAndWeakSpotsPanelP
                     </Badge>
                     <span className="text-xs font-medium text-foreground">{spot.description}</span>
                   </div>
-                  <p className="text-xs text-muted-foreground">{spot.impact}</p>
+                  
+                  {/* How this helps you win */}
+                  <div className="p-2 rounded bg-red-950/20 border border-red-800/30">
+                    <p className="text-xs font-medium text-red-300 mb-1">How this helps you win:</p>
+                    <p className="text-xs text-red-200/90 leading-relaxed">
+                      {spot.impact.includes("contradiction") || spot.impact.includes("credibility")
+                        ? spot.impact
+                        : `This contradiction undermines their credibility and creates doubt about their version of events – use this in cross-examination to attack their reliability.`}
+                    </p>
+                  </div>
+                  
+                  {spot.suggestedAction && (
+                    <div className="mt-2 p-2 rounded bg-cyan-950/30 border border-cyan-800/30">
+                      <p className="text-xs font-medium text-cyan-300 mb-1">Recommended Action:</p>
+                      <p className="text-xs text-cyan-200/90 leading-relaxed">{spot.suggestedAction}</p>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -180,7 +206,7 @@ export function LeverageAndWeakSpotsPanel({ caseId }: LeverageAndWeakSpotsPanelP
               {missingEvidence.slice(0, 2).map((spot) => (
                 <div
                   key={spot.id}
-                  className="p-3 rounded-lg bg-muted/30 border border-border/50 space-y-1.5"
+                  className="p-3 rounded-lg bg-muted/30 border border-border/50 space-y-2"
                 >
                   <div className="flex items-center gap-2">
                     <Badge className={getSeverityColor(spot.severity)}>
@@ -188,10 +214,28 @@ export function LeverageAndWeakSpotsPanel({ caseId }: LeverageAndWeakSpotsPanelP
                     </Badge>
                     <span className="text-xs font-medium text-foreground">{spot.description}</span>
                   </div>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{spot.impact}</p>
+                  
+                  {/* How this helps you win */}
+                  <div className="p-2 rounded bg-red-950/20 border border-red-800/30">
+                    <p className="text-xs font-medium text-red-300 mb-1">How this helps you win:</p>
+                    <p className="text-xs text-red-200/90 leading-relaxed">
+                      {spot.impact.includes("cannot discharge") || spot.impact.includes("burden") 
+                        ? spot.impact 
+                        : `Without this document, they cannot discharge their burden on ${spot.description.toLowerCase()} – you can attack their case as having no credible foundation.`}
+                    </p>
+                  </div>
+                  
                   <div className="mt-2 p-2 rounded bg-cyan-950/30 border border-cyan-800/30">
                     <p className="text-xs font-medium text-cyan-300 mb-1">Recommended Action:</p>
-                    <p className="text-xs text-cyan-200/90 whitespace-pre-line leading-relaxed">{spot.suggestedAction}</p>
+                    <p className="text-xs text-cyan-200/90 whitespace-pre-line leading-relaxed mb-2">{spot.suggestedAction}</p>
+                    <div className="mt-2 pt-2 border-t border-cyan-800/30">
+                      <p className="text-xs font-medium text-cyan-300 mb-1">Use this to:</p>
+                      <ul className="text-xs text-cyan-200/90 space-y-0.5">
+                        <li>• Challenge liability at trial</li>
+                        <li>• Justify a low Part 36 offer</li>
+                        <li>• Resist summary judgment / application to strike out your defence</li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               ))}
