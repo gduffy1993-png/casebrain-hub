@@ -97,10 +97,11 @@ export async function calculateSettlementValue(
       .single();
 
     // Would get from Strategic Intelligence API
-    // For now, use default
-    caseStrength = "MODERATE";
+    // For now, use default - keep type as union
+    caseStrength = "MODERATE" as "STRONG" | "MODERATE" | "WEAK";
   } catch {
-    // Default to moderate
+    // Default to moderate - keep type as union
+    caseStrength = "MODERATE" as "STRONG" | "MODERATE" | "WEAK";
   }
 
   // Get opponent strategy if opponent name provided
