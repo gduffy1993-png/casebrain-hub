@@ -185,12 +185,13 @@ export async function getProfitabilitySummary(orgId: string) {
     .eq("org_id", orgId)
     .eq("status", "active");
 
-  const profitable = (profitability || []).filter(p => p.status === "profitable").length;
-  const atRisk = (profitability || []).filter(p => p.status === "at_risk").length;
-  const unprofitable = (profitability || []).filter(p => p.status === "unprofitable").length;
+  const profitabilityArray = profitability || [];
+  const profitable = profitabilityArray.filter(p => p.status === "profitable").length;
+  const atRisk = profitabilityArray.filter(p => p.status === "at_risk").length;
+  const unprofitable = profitabilityArray.filter(p => p.status === "unprofitable").length;
 
-  const averageProfitability = (profitability || []).length > 0
-    ? (profitability || []).reduce((sum, p) => sum + (p.profitability_score || 0), 0) / profitability.length
+  const averageProfitability = profitabilityArray.length > 0
+    ? profitabilityArray.reduce((sum, p) => sum + (p.profitability_score || 0), 0) / profitabilityArray.length
     : 0;
 
   return {
