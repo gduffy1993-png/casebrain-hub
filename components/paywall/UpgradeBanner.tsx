@@ -1,66 +1,74 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { AlertCircle, Zap, ArrowRight } from "lucide-react";
+import { Zap, ArrowRight } from "lucide-react";
 import { usePaywallStatus } from "@/hooks/usePaywallStatus";
 import Link from "next/link";
 
+/**
+ * Subtle, ChatGPT-style upgrade banner
+ * Only shows when user has used 80%+ of quota
+ * Non-blocking, informational only
+ */
 export function UpgradeBanner() {
-  const { plan, uploadsRemaining, analysesRemaining, exportsRemaining, loading } = usePaywallStatus();
+  const { 
+    plan, 
+    uploadCount, 
+    uploadLimit, 
+    analysisCount, 
+    analysisLimit, 
+    exportCount, 
+    exportLimit,
+    loading 
+  } = usePaywallStatus();
 
-  if (loading) {
+  if (loading || plan === "pro") {
     return null;
   }
 
-  if (plan === "pro") {
-    return null; // Don't show banner for pro users
-  }
-
-  const hasLowQuota = uploadsRemaining <= 1 || analysesRemaining <= 1 || exportsRemaining <= 0;
+  // Only show when user has actually used 80%+ of their quota
+  const uploadThreshold = Math.ceil(uploadLimit * 0.8);
+  const analysisThreshold = Math.ceil(analysisLimit * 0.8);
+  const exportThreshold = Math.ceil(exportLimit * 0.8);
+  
+  const hasLowQuota = 
+    (uploadCount >= uploadThreshold && uploadLimit < Infinity) ||
+    (analysisCount >= analysisThreshold && analysisLimit < Infinity) ||
+    (exportCount >= exportThreshold && exportLimit < Infinity);
 
   if (!hasLowQuota) {
-    return null; // Only show when quotas are low
+    return null;
   }
 
+  const uploadsRemaining = Math.max(0, uploadLimit - uploadCount);
+  const analysesRemaining = Math.max(0, analysisLimit - analysisCount);
+  const exportsRemaining = Math.max(0, exportLimit - exportCount);
+
+  // Subtle, non-blocking banner (ChatGPT-style)
   return (
-    <Card className="p-4 bg-gradient-to-r from-amber-950/30 to-orange-950/30 border-amber-800/50">
-      <div className="flex items-start justify-between gap-4">
-        <div className="flex items-start gap-3 flex-1">
-          <AlertCircle className="h-5 w-5 text-amber-400 mt-0.5 flex-shrink-0" />
-          <div className="flex-1">
-            <div className="flex items-center gap-2 mb-1">
-              <h4 className="font-semibold text-amber-200">You're on the free plan</h4>
-              <Badge className="bg-amber-500/20 text-amber-400 border-amber-500/30">
-                Free
-              </Badge>
-            </div>
-            <p className="text-sm text-amber-200/80 mb-2">
-              {uploadsRemaining <= 1 && (
-                <span className="block">• {uploadsRemaining} upload{uploadsRemaining !== 1 ? "s" : ""} remaining</span>
-              )}
-              {analysesRemaining <= 1 && (
-                <span className="block">• {analysesRemaining} analysis{analysesRemaining !== 1 ? "es" : ""} remaining</span>
-              )}
-              {exportsRemaining === 0 && (
-                <span className="block">• No exports remaining</span>
-              )}
-            </p>
-            <p className="text-xs text-amber-200/60">
-              Upgrade to Pro for unlimited usage and advanced AI features.
-            </p>
-          </div>
+    <div className="mb-4 p-3 rounded-lg bg-muted/30 border border-border/50">
+      <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+          <Zap className="h-4 w-4 text-primary" />
+          <span>
+            {uploadsRemaining <= 1 && uploadLimit < Infinity && (
+              <span>{uploadsRemaining} upload{uploadsRemaining !== 1 ? "s" : ""} remaining this month</span>
+            )}
+            {analysesRemaining <= 1 && analysisLimit < Infinity && (
+              <span>{analysesRemaining} analysis{analysesRemaining !== 1 ? "es" : ""} remaining this month</span>
+            )}
+            {exportsRemaining === 0 && exportLimit < Infinity && (
+              <span>Export limit reached</span>
+            )}
+          </span>
         </div>
         <Link href="/upgrade">
-          <Button size="sm" className="bg-amber-500 hover:bg-amber-600 text-white">
-            <Zap className="h-4 w-4 mr-2" />
+          <Button size="sm" variant="ghost" className="text-primary hover:text-primary/80">
             Upgrade
-            <ArrowRight className="h-4 w-4 ml-2" />
+            <ArrowRight className="h-3.5 w-3.5 ml-1.5" />
           </Button>
         </Link>
       </div>
-    </Card>
+    </div>
   );
 }
-

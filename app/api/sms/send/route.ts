@@ -24,13 +24,31 @@ export async function POST(request: Request) {
       );
     }
 
-    // TODO: Actually send SMS/WhatsApp via Twilio API
-    // For now, just create communication event and SMS record
-
+    // Actually send SMS/WhatsApp via Twilio API
+    const { sendSMS, sendWhatsApp } = await import("@/lib/sms/twilio");
+    
     const supabase = getSupabaseAdminClient();
 
-    // Get Twilio phone number from settings (placeholder)
-    const fromNumber = "+1234567890"; // Should come from org settings
+    // Get Twilio phone number from org settings or env
+    const { data: orgSettings } = await supabase
+      .from("organisations")
+      .select("twilio_phone_number, twilio_whatsapp_number")
+      .eq("id", orgId)
+      .maybeSingle();
+
+    const fromNumber = messageType === "whatsapp" 
+      ? (orgSettings?.twilio_whatsapp_number || process.env.TWILIO_WHATSAPP_NUMBER)
+      : (orgSettings?.twilio_phone_number || process.env.TWILIO_PHONE_NUMBER);
+
+    // Send the message
+    const sendResult = messageType === "whatsapp"
+      ? await sendWhatsApp(to, messageBody, fromNumber)
+      : await sendSMS(to, messageBody, fromNumber);
+
+    if (!sendResult.success) {
+      console.error("[SMS] Failed to send message:", sendResult.error);
+      // Still create the record but mark as failed
+    }
 
     // Create SMS record
     const { data: sms, error: smsError } = await supabase
@@ -39,11 +57,12 @@ export async function POST(request: Request) {
         org_id: orgId,
         case_id: caseId,
         to_number: to,
-        from_number: fromNumber,
+        from_number: fromNumber || process.env.TWILIO_PHONE_NUMBER || "unknown",
         body: messageBody,
         message_type: messageType,
-        status: "sent", // Will be updated by webhook
-        sent_at: new Date().toISOString(),
+        status: sendResult.success ? "sent" : "failed",
+        provider_message_id: sendResult.providerMessageId,
+        sent_at: sendResult.success ? new Date().toISOString() : null,
         created_by: userId,
       })
       .select("*")
@@ -73,9 +92,19 @@ export async function POST(request: Request) {
       // Don't fail the request if communication event creation fails
     }
 
+    if (!sendResult.success) {
+      return NextResponse.json({
+        success: false,
+        messageId: sms.id,
+        error: sendResult.error,
+        message: "SMS record created but sending failed. Check Twilio configuration.",
+      }, { status: 500 });
+    }
+
     return NextResponse.json({
       success: true,
       messageId: sms.id,
+      providerMessageId: sendResult.providerMessageId,
       message: `${messageType.toUpperCase()} sent successfully`,
     });
   } catch (error) {

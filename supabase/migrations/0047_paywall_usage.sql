@@ -32,9 +32,9 @@ END $$;
 ALTER TABLE public.organisations
 DROP CONSTRAINT IF EXISTS valid_plan;
 
--- Add new constraint
+-- Add new constraint (supports free, starter, pro)
 ALTER TABLE public.organisations
-ADD CONSTRAINT valid_plan CHECK (plan IN ('free', 'pro'));
+ADD CONSTRAINT valid_plan CHECK (plan IN ('free', 'starter', 'pro'));
 
 -- Update default plan
 ALTER TABLE public.organisations

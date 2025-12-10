@@ -75,13 +75,17 @@ export function UploadForm() {
           "ABUSE_DETECTED",
         ];
         
-        if (payload?.error && paywallErrors.includes(payload.error)) {
-          setPaywallError({
-            error: payload.error,
-            limit: payload.limit,
-            plan: payload.plan,
-          });
-          return;
+        // Handle paywall errors
+        if (payload?.error) {
+          // Check if it's a paywall error (including the old "UPGRADE_REQUIRED" code)
+          if (paywallErrors.includes(payload.error) || payload.error === "UPGRADE_REQUIRED") {
+            setPaywallError({
+              error: payload.error === "UPGRADE_REQUIRED" ? "PDF_LIMIT_REACHED" : payload.error,
+              limit: payload.limit,
+              plan: payload.plan,
+            });
+            return;
+          }
         }
         
         throw new Error(payload?.error ?? "Upload failed");
@@ -212,7 +216,12 @@ export function UploadForm() {
               multiple
               accept={ACCEPTED_TYPES.join(",")}
               className="hidden"
-              onChange={(event) => setFiles(event.target.files)}
+              onChange={(event) => {
+                setFiles(event.target.files);
+                // Clear any previous errors when new files are selected
+                setError(null);
+                setPaywallError(null);
+              }}
             />
             Choose files
           </label>
@@ -225,7 +234,11 @@ export function UploadForm() {
         </p>
       ) : null}
 
-      {error && <p className="text-sm text-danger">{error}</p>}
+      {error && (
+        <div className="rounded-lg border border-danger/20 bg-danger/5 p-3">
+          <p className="text-sm text-danger">{error}</p>
+        </div>
+      )}
 
       <div className="flex items-center justify-center gap-3">
         <Button type="submit" disabled={isSubmitting}>

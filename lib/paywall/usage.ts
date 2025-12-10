@@ -58,7 +58,16 @@ export async function getUserUsage(
     };
   }
 
-  const plan = (org.plan === "pro" ? "pro" : "free") as PlanName;
+  // Handle plan migration: old "FREE" -> "free", old "PAID_*" -> "pro", support "starter"
+  let plan: PlanName = "free";
+  if (org.plan === "pro" || org.plan === "starter") {
+    plan = org.plan as PlanName;
+  } else if (org.plan === "FREE" || org.plan === "free") {
+    plan = "free";
+  } else if (org.plan === "PAID_MONTHLY" || org.plan === "PAID_YEARLY") {
+    plan = "pro";
+  }
+  
   const uploadCount = org.upload_count ?? 0;
   const analysisCount = org.analysis_count ?? 0;
   const exportCount = org.export_count ?? 0;
@@ -87,9 +96,37 @@ export async function getUserUsage(
 export async function ensureCanUseFeature(params: {
   orgId: string;
   feature: FeatureKind;
+  userId?: string; // Optional: for owner exemption check
 }): Promise<UsageCheckResult> {
-  const { orgId, feature } = params;
+  const { orgId, feature, userId } = params;
   const supabase = getSupabaseAdminClient();
+
+  // BYPASS PAYWALL FOR APP OWNER
+  // Check if user is the app owner (via environment variable)
+  if (userId) {
+    const ownerEmails = process.env.APP_OWNER_EMAILS?.split(",").map(e => e.trim().toLowerCase()) || [];
+    const ownerUserIds = process.env.APP_OWNER_USER_IDS?.split(",").map(id => id.trim()) || [];
+    
+    // Get user email to check
+    try {
+      const { data: user } = await supabase.auth.admin.getUserById(userId);
+      const userEmail = user?.user?.email?.toLowerCase();
+      
+      // Check if user is owner by email or user ID
+      if (userEmail && ownerEmails.includes(userEmail)) {
+        console.log("[paywall] Bypassing paywall for app owner (email)");
+        return { allowed: true };
+      }
+      
+      if (ownerUserIds.includes(userId)) {
+        console.log("[paywall] Bypassing paywall for app owner (user ID)");
+        return { allowed: true };
+      }
+    } catch (error) {
+      // If we can't check, continue with normal paywall check
+      console.warn("[paywall] Could not check owner status:", error);
+    }
+  }
 
   // Load plan + counts
   const { data: org, error } = await supabase
@@ -105,11 +142,24 @@ export async function ensureCanUseFeature(params: {
     };
   }
 
-  const plan = (org.plan === "pro" ? "pro" : "free") as PlanName;
+  // Handle plan migration: old "FREE" -> "free", old "PAID_*" -> "pro", support "starter"
+  let plan: PlanName = "free";
+  if (org.plan === "pro" || org.plan === "starter") {
+    plan = org.plan as PlanName;
+  } else if (org.plan === "FREE" || org.plan === "free") {
+    plan = "free";
+  } else if (org.plan === "PAID_MONTHLY" || org.plan === "PAID_YEARLY") {
+    plan = "pro";
+  }
 
   // Pro plan has unlimited access
   if (plan === "pro") {
     return { allowed: true };
+  }
+  
+  // Starter plan has higher limits but still needs checking
+  if (plan === "starter") {
+    // Check limits for starter (will be checked below)
   }
 
   // Free plan: check limits
@@ -128,6 +178,14 @@ export async function ensureCanUseFeature(params: {
       break;
   }
 
+  // Check if limit is reached
+  // If limit is 15, user can upload 15 times:
+  // - After 0 uploads: count = 0 (< 15, allowed)
+  // - After 14 uploads: count = 14 (< 15, allowed) 
+  // - After 15 uploads: count = 15 (= 15, blocked - they've used all 15)
+  // So we block when currentCount >= limit
+  // BUT: We check BEFORE incrementing, so if currentCount is 14 and limit is 15, they can still upload
+  // The check is correct: block if currentCount >= limit
   if (currentCount >= limit) {
     return {
       allowed: false,

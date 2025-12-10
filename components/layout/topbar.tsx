@@ -1,7 +1,7 @@
 "use client";
 
 import { UserButton, useOrganization, useUser } from "@clerk/nextjs";
-import { Command, Plus } from "lucide-react";
+import { Command, Plus, Zap } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { GlobalSolicitorRoleSelector } from "./GlobalSolicitorRoleSelector";
@@ -45,7 +45,26 @@ export function Topbar({ onQuickUpload }: TopbarProps) {
         >
           <Plus className="h-4 w-4" /> New Upload
         </Button>
-        <UserButton afterSignOutUrl="/" />
+        <div className="flex items-center gap-2">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => router.push("/upgrade")}
+            className="text-muted-foreground hover:text-foreground"
+          >
+            <Zap className="h-4 w-4 mr-1.5" />
+            Upgrade
+          </Button>
+          <UserButton 
+            afterSignOutUrl="/"
+            appearance={{
+              elements: {
+                userButtonPopoverCard: "bg-surface border-border",
+                userButtonPopoverActionButton: "text-foreground hover:bg-muted",
+              },
+            }}
+          />
+        </div>
       </div>
     </header>
   );

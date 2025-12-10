@@ -6,9 +6,14 @@
 
 export const PAYWALL_LIMITS = {
   free: {
-    maxUploads: 3,
-    maxAnalysis: 5,
-    maxExports: 1,
+    maxUploads: 15, // Enough to test 3-5 real cases properly
+    maxAnalysis: 20, // Enough to see Strategic Intelligence in action
+    maxExports: 3, // Enough to test export features
+  },
+  starter: {
+    maxUploads: 50, // For solo/small firms
+    maxAnalysis: 100,
+    maxExports: 20,
   },
   pro: {
     maxUploads: Infinity,
@@ -18,6 +23,102 @@ export const PAYWALL_LIMITS = {
 } as const;
 
 export type PlanName = keyof typeof PAYWALL_LIMITS;
+
+/**
+ * Feature access by plan
+ */
+export const PLAN_FEATURES = {
+  free: {
+    // Core features (always available)
+    caseManagement: true,
+    documentUpload: true,
+    timeline: true,
+    basicExtraction: true,
+    riskAlerts: true,
+    deadlines: true,
+    
+    // Limited AI features
+    strategicIntelligence: false,
+    aggressiveDefense: false,
+    bundleNavigator: false,
+    
+    // Practice management
+    timeTracking: false,
+    invoicing: false,
+    emailIntegration: false,
+    smsWhatsApp: false,
+    calendarSync: false,
+    eSignatures: false,
+    trustAccounting: false,
+    customReports: false,
+    
+    // Advanced features
+    wipRecovery: false,
+    opponentProfiling: false,
+    profitabilityTracking: false,
+    settlementCalculator: false,
+    clientExpectations: false,
+    caseSimilarity: false,
+  },
+  starter: {
+    // Core features
+    caseManagement: true,
+    documentUpload: true,
+    timeline: true,
+    basicExtraction: true,
+    riskAlerts: true,
+    deadlines: true,
+    
+    // AI features (limited)
+    strategicIntelligence: true,
+    aggressiveDefense: true,
+    bundleNavigator: true,
+    
+    // Practice management (basic)
+    timeTracking: true,
+    invoicing: true,
+    emailIntegration: true,
+    smsWhatsApp: false,
+    calendarSync: false,
+    eSignatures: false,
+    trustAccounting: false,
+    customReports: false,
+    
+    // Advanced features
+    wipRecovery: false,
+    opponentProfiling: false,
+    profitabilityTracking: false,
+    settlementCalculator: false,
+    clientExpectations: false,
+    caseSimilarity: false,
+  },
+  pro: {
+    // Everything unlimited
+    caseManagement: true,
+    documentUpload: true,
+    timeline: true,
+    basicExtraction: true,
+    riskAlerts: true,
+    deadlines: true,
+    strategicIntelligence: true,
+    aggressiveDefense: true,
+    bundleNavigator: true,
+    timeTracking: true,
+    invoicing: true,
+    emailIntegration: true,
+    smsWhatsApp: true,
+    calendarSync: true,
+    eSignatures: true,
+    trustAccounting: true,
+    customReports: true,
+    wipRecovery: true,
+    opponentProfiling: true,
+    profitabilityTracking: true,
+    settlementCalculator: true,
+    clientExpectations: true,
+    caseSimilarity: true,
+  },
+} as const;
 
 export type FeatureKind = "upload" | "analysis" | "export";
 

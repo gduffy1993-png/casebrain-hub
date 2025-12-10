@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { requireAuthContext } from "@/lib/auth";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { createCommunicationEvent } from "@/lib/communication/history";
+import { sendEmail } from "@/lib/email/smtp";
 
 export async function POST(request: Request) {
   try {
@@ -38,11 +39,30 @@ export async function POST(request: Request) {
       .limit(1)
       .maybeSingle();
 
-    const fromEmail = emailAccount?.email_address || "noreply@casebrain.com";
-    const fromName = emailAccount?.display_name || "CaseBrain";
+    const fromEmail = emailAccount?.email_address || process.env.DEFAULT_FROM_EMAIL || "noreply@casebrain.com";
+    const fromName = emailAccount?.display_name || process.env.DEFAULT_FROM_NAME || "CaseBrain";
 
-    // TODO: Actually send email via SMTP/API
-    // For now, just create communication event and email record
+    // Actually send email via SMTP/API
+    const emailResult = await sendEmail({
+      to,
+      cc: cc.length > 0 ? cc : undefined,
+      bcc: bcc.length > 0 ? bcc : undefined,
+      from: fromEmail,
+      fromName,
+      subject: subject || "(No subject)",
+      text: bodyText,
+      html: bodyHtml,
+      attachments: attachments.length > 0 ? attachments.map((att: { filename?: string; content?: string; contentType?: string }) => ({
+        filename: att.filename || "attachment",
+        content: att.content || "",
+        contentType: att.contentType,
+      })) : undefined,
+    });
+
+    if (!emailResult.success) {
+      console.error("[Email] Failed to send email:", emailResult.error);
+      // Still create the record but mark as failed
+    }
 
     // Create email record
     const { data: email, error: emailError } = await supabase
@@ -50,7 +70,7 @@ export async function POST(request: Request) {
       .insert({
         org_id: orgId,
         account_id: emailAccount?.id ?? null,
-        message_id: `casebrain-${Date.now()}@casebrain.com`,
+        message_id: emailResult.messageId || `casebrain-${Date.now()}@casebrain.com`,
         from_email: fromEmail,
         from_name: fromName,
         to_emails: to,
@@ -59,12 +79,12 @@ export async function POST(request: Request) {
         subject: subject || "(No subject)",
         body_text: bodyText,
         body_html: bodyHtml,
-        is_sent: true,
+        is_sent: emailResult.success,
         is_draft: false,
         case_id: caseId,
         auto_linked: false,
         received_at: new Date().toISOString(),
-        sent_at: new Date().toISOString(),
+        sent_at: emailResult.success ? new Date().toISOString() : null,
         attachments_count: attachments.length,
       })
       .select("*")
@@ -112,9 +132,19 @@ export async function POST(request: Request) {
       // Don't fail the request if communication event creation fails
     }
 
+    if (!emailResult.success) {
+      return NextResponse.json({
+        success: false,
+        emailId: email.id,
+        error: emailResult.error,
+        message: "Email record created but sending failed. Check email provider configuration.",
+      }, { status: 500 });
+    }
+
     return NextResponse.json({
       success: true,
       emailId: email.id,
+      messageId: emailResult.messageId,
       message: "Email sent successfully",
     });
   } catch (error) {

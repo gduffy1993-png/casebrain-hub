@@ -59,18 +59,20 @@ export async function paywallGuard(
     const org = await getOrCreateOrganisationForUser(user);
     const orgId = org.id;
 
-    // Check if user can use this feature
-    const check = await ensureCanUseFeature({ orgId, feature });
+    // Check if user can use this feature (pass userId for owner exemption)
+    const check = await ensureCanUseFeature({ orgId, feature, userId });
 
     if (!check.allowed) {
+      // Return a more user-friendly error code that the frontend can handle
       return {
         allowed: false,
         response: NextResponse.json(
           {
-            error: "UPGRADE_REQUIRED",
-            message: "Your free usage limit has been reached. Please upgrade to continue using CaseBrain.",
+            error: "PDF_LIMIT_REACHED", // Use the error code the frontend expects
+            message: `You've reached your ${check.limit} upload limit. Upgrade to continue.`,
             currentCount: check.currentCount,
             limit: check.limit,
+            plan: org.plan,
           },
           { status: 402 } // Payment Required
         ),
