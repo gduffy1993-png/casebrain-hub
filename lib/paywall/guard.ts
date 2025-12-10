@@ -44,7 +44,10 @@ export async function paywallGuard(
     const { userId } = await requireAuthContext();
     const user = await getCurrentUser();
     
+    console.log("[paywall-guard] 🔍 Starting paywall check:", { userId, feature });
+    
     if (!user) {
+      console.log("[paywall-guard] ❌ No user found");
       return {
         allowed: false,
         response: NextResponse.json(
@@ -59,8 +62,17 @@ export async function paywallGuard(
     const org = await getOrCreateOrganisationForUser(user);
     const orgId = org.id;
 
+    console.log("[paywall-guard] 🔍 Org loaded:", { orgId, plan: org.plan });
+
     // Check if user can use this feature (pass userId for owner exemption)
     const check = await ensureCanUseFeature({ orgId, feature, userId });
+    
+    console.log("[paywall-guard] 🔍 Feature check result:", { 
+      allowed: check.allowed, 
+      reason: check.reason,
+      currentCount: check.currentCount,
+      limit: check.limit 
+    });
 
     if (!check.allowed) {
       // Return a more user-friendly error code that the frontend can handle
