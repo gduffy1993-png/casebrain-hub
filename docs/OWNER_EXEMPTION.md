@@ -2,7 +2,18 @@
 
 As the app owner, you shouldn't be blocked by paywall limits. This document explains how to set up the exemption.
 
-## Setup
+## Quick Fix (Development)
+
+**Easiest option for dev mode:**
+
+```env
+# Bypass paywall for everyone in development
+BYPASS_PAYWALL_IN_DEV=true
+```
+
+This will bypass the paywall for ALL users when `NODE_ENV=development`. Perfect for testing.
+
+## Setup (Production)
 
 Add your email or user ID to environment variables:
 

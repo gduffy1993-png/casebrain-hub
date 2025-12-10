@@ -101,25 +101,41 @@ export async function ensureCanUseFeature(params: {
   const { orgId, feature, userId } = params;
   const supabase = getSupabaseAdminClient();
 
-  // BYPASS PAYWALL FOR APP OWNER
-  // Check if user is the app owner (via environment variable)
+  // BYPASS PAYWALL FOR APP OWNER / DEV MODE
+  const isDev = process.env.NODE_ENV === "development";
+  
   if (userId) {
     const ownerEmails = process.env.APP_OWNER_EMAILS?.split(",").map(e => e.trim().toLowerCase()) || [];
     const ownerUserIds = process.env.APP_OWNER_USER_IDS?.split(",").map(id => id.trim()) || [];
+    
+    // DEV MODE: Bypass for everyone (for testing)
+    if (isDev && process.env.BYPASS_PAYWALL_IN_DEV === "true") {
+      console.log("[paywall] DEV MODE: Bypassing paywall for all users");
+      return { allowed: true };
+    }
     
     // Get user email to check
     try {
       const { data: user } = await supabase.auth.admin.getUserById(userId);
       const userEmail = user?.user?.email?.toLowerCase();
       
+      console.log("[paywall] Checking owner status:", { 
+        userId, 
+        userEmail, 
+        ownerEmails, 
+        ownerUserIds,
+        matchesEmail: userEmail && ownerEmails.includes(userEmail),
+        matchesUserId: ownerUserIds.includes(userId)
+      });
+      
       // Check if user is owner by email or user ID
       if (userEmail && ownerEmails.includes(userEmail)) {
-        console.log("[paywall] Bypassing paywall for app owner (email)");
+        console.log("[paywall] ✅ Bypassing paywall for app owner (email match)");
         return { allowed: true };
       }
       
       if (ownerUserIds.includes(userId)) {
-        console.log("[paywall] Bypassing paywall for app owner (user ID)");
+        console.log("[paywall] ✅ Bypassing paywall for app owner (user ID match)");
         return { allowed: true };
       }
     } catch (error) {
@@ -154,6 +170,13 @@ export async function ensureCanUseFeature(params: {
 
   // Pro plan has unlimited access
   if (plan === "pro") {
+    console.log("[paywall] ✅ Pro plan - unlimited access");
+    return { allowed: true };
+  }
+  
+  // DEV MODE: If org plan is not set or is free, and we're in dev, allow it
+  if (isDev && (!org.plan || org.plan === "free" || org.plan === "FREE")) {
+    console.log("[paywall] DEV MODE: Allowing free plan access");
     return { allowed: true };
   }
   
