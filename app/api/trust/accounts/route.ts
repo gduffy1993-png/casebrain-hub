@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { requireAuthContext } from "@/lib/auth";
 import { getTrustAccounts } from "@/lib/trust-accounting/client-money";
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   try {
     const { orgId } = await requireAuthContext();

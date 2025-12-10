@@ -4,6 +4,8 @@ import { getCurrentUser } from "@/lib/auth";
 import { getOrCreateOrganisationForUser } from "@/lib/organisations";
 import { getUserUsage } from "@/lib/paywall/usage";
 
+export const dynamic = 'force-dynamic';
+
 /**
  * GET /api/paywall/status
  * Get current paywall status for the user's organisation

@@ -3,6 +3,8 @@ import { requireAuthContext } from "@/lib/auth";
 import { getWipRecoverySummary } from "@/lib/wip-recovery/core";
 import type { PracticeArea } from "@/lib/types/casebrain";
 
+export const dynamic = 'force-dynamic';
+
 /**
  * GET /api/wip-recovery/summary
  * Get WIP recovery summary for the organisation
