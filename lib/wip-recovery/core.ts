@@ -43,26 +43,36 @@ export async function getWipRecoverySummary(
   const supabase = getSupabaseAdminClient();
 
   // Get unbilled time entries
-  const { data: unbilledTime, error: timeError } = await supabase
+  let timeQuery = supabase
     .from("time_entries")
     .select("id, case_id, duration_minutes, total_amount, practice_area, created_at, is_billable")
     .eq("org_id", orgId)
     .eq("is_billed", false)
-    .eq("is_billable", true)
-    .eq(practiceArea ? "practice_area" : "practice_area", practiceArea || "practice_area", { negate: !practiceArea });
+    .eq("is_billable", true);
+  
+  if (practiceArea) {
+    timeQuery = timeQuery.eq("practice_area", practiceArea);
+  }
+  
+  const { data: unbilledTime, error: timeError } = await timeQuery;
 
   if (timeError) {
     console.error("[wip-recovery] Error fetching unbilled time:", timeError);
   }
 
   // Get unbilled disbursements
-  const { data: unbilledDisbursements, error: disbursementError } = await supabase
+  let disbursementQuery = supabase
     .from("disbursements")
     .select("id, case_id, amount, practice_area, incurred_date, is_billable")
     .eq("org_id", orgId)
     .eq("is_billed", false)
-    .eq("is_billable", true)
-    .eq(practiceArea ? "practice_area" : "practice_area", practiceArea || "practice_area", { negate: !practiceArea });
+    .eq("is_billable", true);
+  
+  if (practiceArea) {
+    disbursementQuery = disbursementQuery.eq("practice_area", practiceArea);
+  }
+  
+  const { data: unbilledDisbursements, error: disbursementError } = await disbursementQuery;
 
   if (disbursementError) {
     console.error("[wip-recovery] Error fetching unbilled disbursements:", disbursementError);
