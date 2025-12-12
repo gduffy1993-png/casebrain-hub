@@ -53,6 +53,13 @@ export function UploadForm() {
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
+    
+    // NUCLEAR: Clear any existing paywall error if owner
+    if ((isOwner || bypassActive) && paywallError) {
+      console.log("[upload-form] ✅ Clearing paywall error for owner");
+      setPaywallError(null);
+    }
+    
     if (!files?.length) {
       setError("Select at least one document to upload.");
       return;
@@ -162,25 +169,29 @@ export function UploadForm() {
   const handleClosePaywall = () => {
     setPaywallError(null);
   };
+  
+  // NUCLEAR: Clear paywall error if owner status changes
+  useEffect(() => {
+    if ((isOwner || bypassActive) && paywallError) {
+      console.log("[upload-form] ✅ Owner status detected - clearing paywall error");
+      setPaywallError(null);
+    }
+  }, [isOwner, bypassActive, paywallError]);
 
   // Get selected option for preview
   const selectedOption = PRACTICE_AREA_OPTIONS.find(opt => opt.value === practiceArea);
 
   return (
     <>
-      {/* NEVER show paywall modal for owners or if bypass is active */}
-      {/* NUCLEAR OPTION: If owner, completely disable modal */}
-      {paywallError && !isOwner && !bypassActive ? (
+      {/* NUCLEAR OPTION: NEVER show modal for owners - check owner status FIRST */}
+      {paywallError && !isOwner && !bypassActive && (
         <PaywallModal
           errorCode={paywallError.error}
           limit={paywallError.limit}
           plan={paywallError.plan}
           onClose={handleClosePaywall}
         />
-      ) : isOwner || bypassActive ? (
-        // Owner or bypass active - silently ignore paywall errors
-        null
-      ) : null}
+      )}
       <form
         onSubmit={handleSubmit}
         className="flex flex-col gap-6 rounded-3xl border border-dashed border-primary/30 bg-surface-muted/70 p-10 text-center"

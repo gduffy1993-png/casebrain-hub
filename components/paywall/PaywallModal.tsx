@@ -2,6 +2,8 @@
 
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useUser } from "@clerk/nextjs";
+import { usePaywallStatus } from "@/hooks/usePaywallStatus";
 import type { UsageLimitError } from "@/lib/usage-limits";
 
 type PaywallModalProps = {
@@ -19,6 +21,16 @@ export function PaywallModal({
   onClose,
   onUpgrade,
 }: PaywallModalProps) {
+  // NUCLEAR: Check if user is owner - if so, don't render at all
+  const { user } = useUser();
+  const { isOwner, bypassActive } = usePaywallStatus();
+  const OWNER_USER_ID = "user_35JeizOJrQ0Nj";
+  
+  // If owner, don't render modal at all
+  if (user?.id === OWNER_USER_ID || isOwner || bypassActive) {
+    console.log("[PaywallModal] ✅ Owner detected - NOT rendering modal");
+    return null;
+  }
   const getTitle = () => {
     switch (errorCode) {
       case "PDF_LIMIT_REACHED":
