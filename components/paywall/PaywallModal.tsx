@@ -6,6 +6,9 @@ import { useUser } from "@clerk/nextjs";
 import { usePaywallStatus } from "@/hooks/usePaywallStatus";
 import type { UsageLimitError } from "@/lib/usage-limits";
 
+// HARDCODED OWNER USER ID - NEVER SHOW MODAL FOR THIS USER
+const OWNER_USER_ID = "user_35JeizOJrQ0Nj";
+
 type PaywallModalProps = {
   errorCode: UsageLimitError;
   limit?: number;
