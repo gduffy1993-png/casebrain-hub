@@ -181,7 +181,7 @@ export function PaywallModal({
   }
 
   // NUCLEAR: Double-check owner status before rendering ANYTHING
-  if (user?.id === OWNER_USER_ID) {
+  if (isOwnerHardcoded) {
     console.log("[PaywallModal] ✅✅✅ FINAL CHECK - Owner detected, returning null");
     if (onClose) {
       setTimeout(() => onClose(), 0);
