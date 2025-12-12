@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useUser } from "@clerk/nextjs";
 import { CloudUpload, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/Toast";
@@ -21,18 +22,12 @@ const ACCEPTED_TYPES = [
 export function UploadForm() {
   const { currentPracticeArea, setPracticeArea: setGlobalPracticeArea } = usePracticeArea();
   const { isOwner, bypassActive, status } = usePaywallStatus();
+  const { user, isLoaded: userLoaded } = useUser();
+  const OWNER_USER_ID = "user_35JeizOJrQ0Nj";
   
-  // Log owner status for debugging
-  useEffect(() => {
-    if (status) {
-      console.log("[upload-form] Paywall status:", {
-        isOwner,
-        bypassActive,
-        plan: status.plan,
-        canUpload: status.canUpload,
-      });
-    }
-  }, [status, isOwner, bypassActive]);
+  // SIMPLE HARDCODED CHECK - NO COMPLEXITY
+  const isOwnerHardcoded = user?.id === OWNER_USER_ID;
+  
   const [files, setFiles] = useState<FileList | null>(null);
   const [caseTitle, setCaseTitle] = useState("");
   const [practiceArea, setPracticeArea] = useState<PracticeArea>(currentPracticeArea);
@@ -45,6 +40,74 @@ export function UploadForm() {
   } | null>(null);
   const router = useRouter();
   const pushToast = useToast((state) => state.push);
+  
+  // NUCLEAR: If owner, NEVER allow paywallError to exist - clear it immediately
+  useEffect(() => {
+    if (isOwnerHardcoded && paywallError) {
+      console.log("[upload-form] ✅✅✅ OWNER DETECTED - clearing paywall error immediately");
+      setPaywallError(null);
+    }
+  }, [isOwnerHardcoded, paywallError]);
+  
+  // NUCLEAR: Clear paywall error on mount if owner
+  useEffect(() => {
+    if (userLoaded && isOwnerHardcoded) {
+      console.log("[upload-form] ✅✅✅ MOUNT: Owner detected, clearing any paywall error");
+      setPaywallError(null);
+    }
+  }, [userLoaded, isOwnerHardcoded]);
+  
+  // NUCLEAR NUCLEAR: DOM monitor - if modal appears, remove it immediately
+  useEffect(() => {
+    if (!isOwnerHardcoded) return;
+    
+    const checkAndRemoveModal = () => {
+      // Find modal by data attribute
+      const modal = document.querySelector('[data-paywall-modal="true"]');
+      if (modal) {
+        console.log("[upload-form] ✅✅✅ DOM MONITOR: Found modal, removing it immediately");
+        (modal as HTMLElement).style.display = 'none';
+        (modal as HTMLElement).remove();
+        // Clear state via setter
+        if (typeof setPaywallError === 'function') {
+          setPaywallError(null);
+        }
+      }
+      
+      // Also check for modal by class/role
+      const modalByRole = document.querySelector('[role="dialog"]');
+      if (modalByRole && modalByRole.textContent?.includes('PDF Upload Limit')) {
+        console.log("[upload-form] ✅✅✅ DOM MONITOR: Found modal by content, removing it");
+        (modalByRole as HTMLElement).style.display = 'none';
+        (modalByRole as HTMLElement).remove();
+        if (typeof setPaywallError === 'function') {
+          setPaywallError(null);
+        }
+      }
+    };
+    
+    // Check immediately
+    checkAndRemoveModal();
+    
+    // Check every 50ms (aggressive)
+    const interval = setInterval(checkAndRemoveModal, 50);
+    
+    return () => clearInterval(interval);
+  }, [isOwnerHardcoded]); // Don't include paywallError in deps
+  
+  // Log owner status for debugging
+  useEffect(() => {
+    if (status) {
+      console.log("[upload-form] Paywall status:", {
+        userId: user?.id,
+        isOwnerHardcoded,
+        isOwner,
+        bypassActive,
+        plan: status.plan,
+        canUpload: status.canUpload,
+      });
+    }
+  }, [status, isOwner, bypassActive, user?.id, isOwnerHardcoded]);
 
   // Sync local state when global practice area changes
   useEffect(() => {
@@ -107,9 +170,9 @@ export function UploadForm() {
           willShowModal: payload?.error && paywallErrors.includes(payload.error) && !isOwner && !bypassActive,
         });
         
-        // NUCLEAR OPTION: If owner or bypass active, completely ignore paywall errors
-        if (isOwner || bypassActive) {
-          console.log("[upload-form] ✅✅✅ OWNER/BYPASS ACTIVE - IGNORING paywall error completely");
+        // NUCLEAR NUCLEAR: HARDCODED OWNER CHECK - NEVER SET PAYWALL ERROR FOR OWNER
+        if (isOwnerHardcoded || isOwner || bypassActive) {
+          console.log("[upload-form] ✅✅✅ HARDCODED OWNER CHECK - userId matches, IGNORING paywall error completely");
           // Don't set paywallError state at all for owners - just throw a generic error
           throw new Error(payload?.error ?? "Upload failed");
         }
@@ -170,21 +233,21 @@ export function UploadForm() {
     setPaywallError(null);
   };
   
-  // NUCLEAR: Clear paywall error if owner status changes
+  // NUCLEAR NUCLEAR: Clear paywall error if owner (hardcoded check)
   useEffect(() => {
-    if ((isOwner || bypassActive) && paywallError) {
-      console.log("[upload-form] ✅ Owner status detected - clearing paywall error");
+    if ((isOwnerHardcoded || isOwner || bypassActive) && paywallError) {
+      console.log("[upload-form] ✅✅✅ HARDCODED OWNER CHECK - clearing paywall error immediately");
       setPaywallError(null);
     }
-  }, [isOwner, bypassActive, paywallError]);
+  }, [isOwnerHardcoded, isOwner, bypassActive, paywallError]);
 
   // Get selected option for preview
   const selectedOption = PRACTICE_AREA_OPTIONS.find(opt => opt.value === practiceArea);
 
   return (
     <>
-      {/* NUCLEAR OPTION: NEVER show modal for owners - check owner status FIRST */}
-      {paywallError && !isOwner && !bypassActive && (
+      {/* NUCLEAR NUCLEAR NUCLEAR: HARDCODED OWNER CHECK - NEVER show modal for owner */}
+      {paywallError && !isOwnerHardcoded && !isOwner && !bypassActive && (
         <PaywallModal
           errorCode={paywallError.error}
           limit={paywallError.limit}

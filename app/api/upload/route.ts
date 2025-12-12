@@ -27,40 +27,28 @@ export async function POST(request: Request) {
   const { userId, orgId } = await requireAuthContext();
   
   // ============================================
-  // DIRECT OWNER CHECK - BEFORE ANYTHING ELSE
+  // SIMPLE HARDCODED OWNER CHECK - NO IMPORTS, NO COMPLEXITY
   // ============================================
-  const { isOwnerUser, getOwnerUserIds } = await import("@/lib/paywall/owner");
-  const ownerIds = getOwnerUserIds();
-  const isOwner = isOwnerUser(userId);
+  const OWNER_USER_ID = "user_35JeizOJrQ0Nj";
+  const isOwner = userId === OWNER_USER_ID;
   
-  console.log("[upload] 🔍 OWNER CHECK:", {
-    userId,
-    ownerIds,
-    isOwner,
-    matches: ownerIds.includes(userId),
-  });
+  console.log("[upload] 🔍 SIMPLE OWNER CHECK:", { userId, isOwner });
   
   let paywallOrgId: string;
   
   if (isOwner) {
-    console.log(`[upload] ✅✅✅ OWNER BYPASS - userId ${userId} is owner, skipping ALL paywall checks`);
+    console.log(`[upload] ✅✅✅ OWNER BYPASS - userId ${userId} matches, SKIPPING ALL PAYWALL`);
     // Skip paywall guard entirely for owners
     const user = await getCurrentUser();
     if (!user) {
-      return NextResponse.json(
-        { error: "Unauthenticated" },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: "Unauthenticated" }, { status: 401 });
     }
     const org = await getOrCreateOrganisationForUser(user);
-    paywallOrgId = org.id; // For later use, but we won't increment usage
+    paywallOrgId = org.id;
   } else {
     assertRateLimit(`upload:${userId}`, { limit: 10, windowMs: 60_000 });
-
-    // PAYWALL: Check if user can upload PDFs (only for non-owners)
     const guard = await paywallGuard("upload");
     if (!guard.allowed) {
-      console.log(`[upload] ❌ Paywall blocked for userId: ${userId}`);
       return guard.response!;
     }
     paywallOrgId = guard.orgId!;

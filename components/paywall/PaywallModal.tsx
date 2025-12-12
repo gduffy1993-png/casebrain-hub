@@ -21,14 +21,31 @@ export function PaywallModal({
   onClose,
   onUpgrade,
 }: PaywallModalProps) {
-  // NUCLEAR: Check if user is owner - if so, don't render at all
-  const { user } = useUser();
-  const { isOwner, bypassActive } = usePaywallStatus();
-  const OWNER_USER_ID = "user_35JeizOJrQ0Nj";
+  // NUCLEAR NUCLEAR NUCLEAR: HARDCODED OWNER CHECK - NEVER RENDER FOR OWNER
+  const { user, isLoaded } = useUser();
   
-  // If owner, don't render modal at all
-  if (user?.id === OWNER_USER_ID || isOwner || bypassActive) {
-    console.log("[PaywallModal] ✅ Owner detected - NOT rendering modal");
+  // If user data not loaded yet, don't render (prevents flash)
+  if (!isLoaded) {
+    return null;
+  }
+  
+  // HARDCODED: If this is the owner user ID, NEVER render modal - PERIOD
+  if (user?.id === OWNER_USER_ID) {
+    console.log("[PaywallModal] ✅✅✅ HARDCODED OWNER CHECK - userId matches, NOT rendering modal");
+    // Call onClose immediately to clear any state
+    if (onClose) {
+      setTimeout(() => onClose(), 0);
+    }
+    return null;
+  }
+  
+  // Also check paywall status as backup
+  const { isOwner, bypassActive } = usePaywallStatus();
+  if (isOwner || bypassActive) {
+    console.log("[PaywallModal] ✅ Owner detected via status - NOT rendering modal");
+    if (onClose) {
+      setTimeout(() => onClose(), 0);
+    }
     return null;
   }
   const getTitle = () => {
@@ -155,8 +172,24 @@ export function PaywallModal({
     );
   }
 
+  // NUCLEAR: Double-check owner status before rendering ANYTHING
+  if (user?.id === OWNER_USER_ID) {
+    console.log("[PaywallModal] ✅✅✅ FINAL CHECK - Owner detected, returning null");
+    if (onClose) {
+      setTimeout(() => onClose(), 0);
+    }
+    return null;
+  }
+  
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+      data-paywall-modal="true"
+      style={{ 
+        display: user?.id === OWNER_USER_ID ? 'none !important' : undefined,
+        visibility: user?.id === OWNER_USER_ID ? 'hidden !important' : undefined,
+      }}
+    >
       <div className="relative w-full max-w-md rounded-2xl bg-card border border-border shadow-xl p-6 space-y-6">
         <button
           onClick={onClose}
