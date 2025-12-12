@@ -17,13 +17,33 @@ export async function GET() {
     const { userId } = await requireAuthContext();
     
     // ============================================
-    // OWNER CHECK - MUST HAPPEN FIRST (BEFORE ANY DB CALLS)
+    // HARDCODED OWNER CHECK - FIRST THING, NO IMPORTS
     // ============================================
+    const OWNER_USER_ID = "user_35JeizOJrQ0Nj";
+    if (userId === OWNER_USER_ID) {
+      console.log(`[paywall-status] ✅✅✅ HARDCODED OWNER CHECK - userId ${userId} matches, returning owner status`);
+      return NextResponse.json({
+        plan: "pro" as const, // Use "pro" for frontend compatibility
+        isOwner: true,
+        bypassActive: true,
+        uploadCount: 0,
+        analysisCount: 0,
+        exportCount: 0,
+        canUpload: true,
+        canAnalyse: true,
+        canExport: true,
+        uploadLimit: Number.POSITIVE_INFINITY,
+        analysisLimit: Number.POSITIVE_INFINITY,
+        exportLimit: Number.POSITIVE_INFINITY,
+        remainingUploads: Number.POSITIVE_INFINITY,
+      });
+    }
+    
+    // Also check via helper function
     if (isOwnerUser(userId)) {
       console.log(`[paywall-status] ✅ Owner bypass active for userId: ${userId}`);
-      // Return owner status with explicit flags
       return NextResponse.json({
-        plan: "OWNER" as const,
+        plan: "pro" as const, // Use "pro" for frontend compatibility
         isOwner: true,
         bypassActive: true,
         uploadCount: 0,

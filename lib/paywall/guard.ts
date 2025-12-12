@@ -46,12 +46,32 @@ export async function paywallGuard(
     const { userId } = await requireAuthContext();
     
     // ============================================
-    // OWNER CHECK - MUST HAPPEN FIRST (BEFORE ANY DB CALLS)
+    // SIMPLE HARDCODED OWNER CHECK - FIRST THING
     // ============================================
+    const OWNER_USER_ID = "user_35JeizOJrQ0Nj";
+    if (userId === OWNER_USER_ID) {
+      console.log(`[paywall-guard] ✅✅✅ HARDCODED OWNER CHECK - userId ${userId} matches, ALLOWING`);
+      const user = await getCurrentUser();
+      if (!user) {
+        return {
+          allowed: false,
+          response: NextResponse.json(
+            { error: "Unauthenticated" },
+            { status: 401 }
+          ),
+        };
+      }
+      const { getOrCreateOrganisationForUser } = await import("@/lib/organisations");
+      const org = await getOrCreateOrganisationForUser(user);
+      return {
+        allowed: true,
+        orgId: org.id,
+      };
+    }
+    
+    // Also check via helper function
     if (isOwnerUser(userId)) {
       console.log(`[paywall-guard] ✅ Owner bypass in upload route for userId: ${userId}`);
-      // Still need to get orgId for incrementUsage later, but we'll allow the action
-      // NOTE: For owners, we DO NOT increment usage counters
       const user = await getCurrentUser();
       if (!user) {
         return {

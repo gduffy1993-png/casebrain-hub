@@ -7,11 +7,13 @@ import {
   RedirectToSignIn,
   useOrganization,
   CreateOrganization,
+  useUser,
 } from "@clerk/nextjs";
 import { AppShell } from "@/components/layout/app-shell";
 import { PracticeAreaProvider } from "@/components/providers/PracticeAreaProvider";
 import { SeniorityProvider } from "@/components/providers/SeniorityProvider";
 import { OwnerStatusChip } from "@/components/debug/OwnerStatusChip";
+import { PaywallKiller } from "@/components/debug/PaywallKiller";
 
 export default function ProtectedLayout({ children }: { children: ReactNode }) {
   return (
@@ -28,6 +30,9 @@ export default function ProtectedLayout({ children }: { children: ReactNode }) {
 
 function OrganisationGate({ children }: { children: ReactNode }) {
   const { isLoaded, organization } = useOrganization();
+  const { user } = useUser();
+  const OWNER_USER_ID = "user_35JeizOJrQ0Nj";
+  const isOwner = user?.id === OWNER_USER_ID;
 
   if (!isLoaded) {
     return null;
@@ -42,6 +47,7 @@ function OrganisationGate({ children }: { children: ReactNode }) {
       <SeniorityProvider>
         <AppShell>{children}</AppShell>
         <OwnerStatusChip />
+        <PaywallKiller />
       </SeniorityProvider>
     </PracticeAreaProvider>
   );
