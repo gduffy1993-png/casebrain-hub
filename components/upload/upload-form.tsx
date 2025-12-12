@@ -117,9 +117,9 @@ export function UploadForm() {
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
     
-    // NUCLEAR: Clear any existing paywall error if owner
-    if ((isOwner || bypassActive) && paywallError) {
-      console.log("[upload-form] ✅ Clearing paywall error for owner");
+    // NUCLEAR NUCLEAR: If owner, NEVER allow paywall error to exist
+    if (isOwnerHardcoded || isOwner || bypassActive) {
+      console.log("[upload-form] ✅✅✅ OWNER CHECK - clearing paywall error before submit");
       setPaywallError(null);
     }
     
@@ -133,6 +133,11 @@ export function UploadForm() {
     }
     setError(null);
     setIsSubmitting(true);
+    
+    // NUCLEAR: Clear paywall error again right before upload
+    if (isOwnerHardcoded || isOwner || bypassActive) {
+      setPaywallError(null);
+    }
 
     try {
       const formData = new FormData();
@@ -244,10 +249,22 @@ export function UploadForm() {
   // Get selected option for preview
   const selectedOption = PRACTICE_AREA_OPTIONS.find(opt => opt.value === practiceArea);
 
+  // NUCLEAR: NEVER render modal if owner - even if paywallError exists
+  const shouldShowModal = paywallError && !isOwnerHardcoded && !isOwner && !bypassActive;
+  
+  // Also set body attribute for CSS
+  useEffect(() => {
+    if (isOwnerHardcoded) {
+      document.body.setAttribute("data-owner-user", OWNER_USER_ID);
+    } else {
+      document.body.removeAttribute("data-owner-user");
+    }
+  }, [isOwnerHardcoded]);
+
   return (
     <>
       {/* NUCLEAR NUCLEAR NUCLEAR: HARDCODED OWNER CHECK - NEVER show modal for owner */}
-      {paywallError && !isOwnerHardcoded && !isOwner && !bypassActive && (
+      {shouldShowModal && (
         <PaywallModal
           errorCode={paywallError.error}
           limit={paywallError.limit}

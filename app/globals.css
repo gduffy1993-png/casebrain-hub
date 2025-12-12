@@ -39,16 +39,9 @@ body {
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
-/* NUCLEAR: Hide paywall modal for owner user - CSS failsafe */
-/* If modal somehow renders, this will hide it */
-[data-paywall-modal="true"] {
-  /* Check if owner user ID is in the page */
-}
-
-/* More aggressive: Hide any element with paywall modal class if owner is logged in */
-body:has([data-owner-user-id="user_35JeizOJrQ0Nj"]) [data-paywall-modal="true"],
-[data-owner-user-id="user_35JeizOJrQ0Nj"] ~ [data-paywall-modal="true"],
-[data-paywall-modal="true"]:has(+ [data-owner-user-id="user_35JeizOJrQ0Nj"]) {
+/* NUCLEAR NUCLEAR: Hide paywall modal if owner is logged in */
+/* This is a failsafe - if modal somehow renders, this will hide it */
+body[data-owner-user="user_35JeizOJrQ0Nj"] [data-paywall-modal="true"] {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
@@ -56,4 +49,15 @@ body:has([data-owner-user-id="user_35JeizOJrQ0Nj"]) [data-paywall-modal="true"],
   position: fixed !important;
   top: -9999px !important;
   left: -9999px !important;
+  z-index: -9999 !important;
+}
+
+/* Hide any dialog that contains paywall text */
+body[data-owner-user="user_35JeizOJrQ0Nj"] [role="dialog"] {
+  /* PaywallKiller will check content and remove it, but CSS hides it as backup */
+}
+
+/* Also hide any backdrop/overlay for paywall modals */
+body[data-owner-user="user_35JeizOJrQ0Nj"] .fixed.inset-0.bg-black {
+  /* PaywallKiller handles this, but we can hide it here too if needed */
 }

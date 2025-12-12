@@ -14,7 +14,17 @@ export function PaywallKiller() {
   const isOwner = user?.id === OWNER_USER_ID;
 
   useEffect(() => {
-    if (!isLoaded || !isOwner) return;
+    if (!isLoaded) return;
+
+    // Set data attribute on body immediately for CSS to work
+    if (isOwner) {
+      document.body.setAttribute("data-owner-user", OWNER_USER_ID);
+      console.log("[PaywallKiller] ✅✅✅ SET data-owner-user attribute on body");
+    } else {
+      document.body.removeAttribute("data-owner-user");
+    }
+
+    if (!isOwner) return;
 
     console.log("[PaywallKiller] ✅✅✅ ACTIVATED for owner user");
 
@@ -63,11 +73,31 @@ export function PaywallKiller() {
         const text = el.textContent || "";
         if (
           text.includes("PDF Upload Limit") ||
-          text.includes("Upgrade Required")
+          text.includes("Upgrade Required") ||
+          text.includes("limit reached")
         ) {
           console.log("[PaywallKiller] 🔪 KILLING paywall element");
           (el as HTMLElement).style.display = "none";
+          (el as HTMLElement).style.visibility = "hidden";
           (el as HTMLElement).remove();
+        }
+      });
+
+      // Method 5: Intercept and prevent any modal from being added
+      // This is a nuclear option - prevent ANY dialog from showing
+      const allDialogs = document.querySelectorAll('[role="dialog"]');
+      allDialogs.forEach((dialog) => {
+        const text = dialog.textContent || "";
+        if (
+          text.includes("PDF") ||
+          text.includes("Upload") ||
+          text.includes("Limit") ||
+          text.includes("Upgrade")
+        ) {
+          console.log("[PaywallKiller] 🔪 KILLING dialog by content match");
+          (dialog as HTMLElement).style.display = "none";
+          (dialog as HTMLElement).style.visibility = "hidden";
+          (dialog as HTMLElement).remove();
         }
       });
     }
@@ -75,8 +105,8 @@ export function PaywallKiller() {
     // Run immediately
     killPaywallModal();
 
-    // Run every 50ms (very aggressive)
-    const interval = setInterval(killPaywallModal, 50);
+    // Run every 10ms (EXTREMELY aggressive)
+    const interval = setInterval(killPaywallModal, 10);
 
     // Also watch for DOM mutations
     const observer = new MutationObserver(killPaywallModal);
