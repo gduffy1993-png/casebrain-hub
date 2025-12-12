@@ -132,6 +132,9 @@ export async function getOrCreateOrganisationForUser(
         name: orgName,
         email_domain: null,
         plan: "FREE",
+        upload_count: 0,
+        analysis_count: 0,
+        export_count: 0,
       })
       .select("*")
       .single();
@@ -162,6 +165,9 @@ export async function getOrCreateOrganisationForUser(
       name: orgName,
       email_domain: domain,
       plan: "FREE",
+      upload_count: 0,
+      analysis_count: 0,
+      export_count: 0,
     })
     .select("*")
     .single();

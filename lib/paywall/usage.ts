@@ -48,17 +48,22 @@ export async function getUserUsage(
 
   if (error || !org) {
     // Default to free plan if org not found
+    // New users should be able to upload (they have 0 uploads, which is less than the limit)
+    const freeUploadLimit = PAYWALL_LIMITS.free.maxUploads;
+    const freeAnalysisLimit = PAYWALL_LIMITS.free.maxAnalysis;
+    const freeExportLimit = PAYWALL_LIMITS.free.maxExports;
+    
     return {
       plan: "free",
       uploadCount: 0,
       analysisCount: 0,
       exportCount: 0,
-      canUpload: false,
-      canAnalyse: false,
-      canExport: false,
-      uploadLimit: PAYWALL_LIMITS.free.maxUploads,
-      analysisLimit: PAYWALL_LIMITS.free.maxAnalysis,
-      exportLimit: PAYWALL_LIMITS.free.maxExports,
+      canUpload: true, // 0 < limit, so they can upload
+      canAnalyse: true, // 0 < limit, so they can analyse
+      canExport: true, // 0 < limit, so they can export
+      uploadLimit: freeUploadLimit,
+      analysisLimit: freeAnalysisLimit,
+      exportLimit: freeExportLimit,
     };
   }
 
@@ -125,9 +130,13 @@ export async function ensureCanUseFeature(params: {
     .single();
 
   if (error || !org) {
+    // If org doesn't exist, default to free plan with 0 usage (should allow uploads)
+    console.log("[paywall] ⚠️ Org not found, defaulting to free plan with 0 usage");
+    const freeUploadLimit = PAYWALL_LIMITS.free.maxUploads;
     return {
-      allowed: false,
-      reason: "UNKNOWN_PLAN",
+      allowed: true, // New users should be able to upload
+      currentCount: 0,
+      limit: freeUploadLimit,
     };
   }
 
@@ -168,6 +177,11 @@ export async function ensureCanUseFeature(params: {
       break;
   }
 
+  // Ensure currentCount is a valid number (handle NULL/undefined)
+  currentCount = Number(currentCount) || 0;
+  
+  console.log(`[paywall] Feature check: ${feature}, currentCount: ${currentCount}, limit: ${limit}, plan: ${plan}`);
+
   // Check if limit is reached
   // If limit is 15, user can upload 15 times:
   // - After 0 uploads: count = 0 (< 15, allowed)
@@ -177,6 +191,7 @@ export async function ensureCanUseFeature(params: {
   // BUT: We check BEFORE incrementing, so if currentCount is 14 and limit is 15, they can still upload
   // The check is correct: block if currentCount >= limit
   if (currentCount >= limit) {
+    console.log(`[paywall] ❌ Blocked: currentCount (${currentCount}) >= limit (${limit})`);
     return {
       allowed: false,
       reason: "UPGRADE_REQUIRED",
@@ -184,6 +199,8 @@ export async function ensureCanUseFeature(params: {
       limit,
     };
   }
+  
+  console.log(`[paywall] ✅ Allowed: currentCount (${currentCount}) < limit (${limit})`);
 
   return {
     allowed: true,
