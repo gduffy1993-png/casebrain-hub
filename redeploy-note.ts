@@ -1,6 +1,0 @@
-//
-force
-redeploy
-//
-force
-redeploy
