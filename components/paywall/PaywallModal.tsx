@@ -188,10 +188,6 @@ export function PaywallModal({
     <div 
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
       data-paywall-modal="true"
-      style={{ 
-        display: user?.id === OWNER_USER_ID ? 'none !important' : undefined,
-        visibility: user?.id === OWNER_USER_ID ? 'hidden !important' : undefined,
-      }}
     >
       <div className="relative w-full max-w-md rounded-2xl bg-card border border-border shadow-xl p-6 space-y-6">
         <button
