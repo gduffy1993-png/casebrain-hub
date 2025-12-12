@@ -258,11 +258,12 @@ export function UploadForm() {
   // Also set body attribute for CSS
   useEffect(() => {
     if (isOwnerHardcoded) {
-      document.body.setAttribute("data-owner-user", OWNER_USER_ID);
+      const ownerId = user?.id || "owner";
+      document.body.setAttribute("data-owner-user", ownerId);
     } else {
       document.body.removeAttribute("data-owner-user");
     }
-  }, [isOwnerHardcoded]);
+  }, [isOwnerHardcoded, user?.id]);
 
   return (
     <>
