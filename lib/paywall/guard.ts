@@ -45,43 +45,31 @@ export async function paywallGuard(
   try {
     const { userId } = await requireAuthContext();
     
-    // ============================================
-    // SIMPLE HARDCODED OWNER CHECK - FIRST THING
-    // ============================================
-    const OWNER_USER_ID = "user_35JeizOJrQ0Nj";
-    if (userId === OWNER_USER_ID) {
-      console.log(`[paywall-guard] ✅✅✅ HARDCODED OWNER CHECK - userId ${userId} matches, ALLOWING`);
-      const user = await getCurrentUser();
-      if (!user) {
-        return {
-          allowed: false,
-          response: NextResponse.json(
-            { error: "Unauthenticated" },
-            { status: 401 }
-          ),
-        };
-      }
-      const { getOrCreateOrganisationForUser } = await import("@/lib/organisations");
-      const org = await getOrCreateOrganisationForUser(user);
+    // Get user object to check email
+    const user = await getCurrentUser();
+    if (!user) {
       return {
-        allowed: true,
-        orgId: org.id,
+        allowed: false,
+        response: NextResponse.json(
+          { error: "Unauthenticated" },
+          { status: 401 }
+        ),
       };
     }
+
+    // Extract email from user object
+    const email = 
+      user.primaryEmailAddress?.emailAddress ??
+      user.emailAddresses?.[0]?.emailAddress ??
+      null;
+
+    // ============================================
+    // BULLETPROOF OWNER CHECK - FIRST THING
+    // ============================================
+    const owner = isOwnerUser({ userId, email });
     
-    // Also check via helper function
-    if (isOwnerUser(userId)) {
-      console.log(`[paywall-guard] ✅ Owner bypass in upload route for userId: ${userId}`);
-      const user = await getCurrentUser();
-      if (!user) {
-        return {
-          allowed: false,
-          response: NextResponse.json(
-            { error: "Unauthenticated" },
-            { status: 401 }
-          ),
-        };
-      }
+    if (owner) {
+      console.log(`[paywall-guard] ✅✅✅ OWNER DETECTED - userId: ${userId}, email: ${email} - ALLOWING ${feature}`);
       const { getOrCreateOrganisationForUser } = await import("@/lib/organisations");
       const org = await getOrCreateOrganisationForUser(user);
       return {
@@ -93,20 +81,10 @@ export async function paywallGuard(
     // ============================================
     // GENERAL BYPASS CHECK (dev mode, etc.)
     // ============================================
-    const bypassed = await shouldBypassPaywall(userId);
+    const bypassed = await shouldBypassPaywall(userId, email);
     if (bypassed) {
       console.log(`[paywall-guard] ✅ Bypass active for userId: ${userId} - allowing ${feature}`);
       // Still need to get orgId for incrementUsage later, but we'll allow the action
-      const user = await getCurrentUser();
-      if (!user) {
-        return {
-          allowed: false,
-          response: NextResponse.json(
-            { error: "Unauthenticated" },
-            { status: 401 }
-          ),
-        };
-      }
       const { getOrCreateOrganisationForUser } = await import("@/lib/organisations");
       const org = await getOrCreateOrganisationForUser(user);
       return {
@@ -114,8 +92,6 @@ export async function paywallGuard(
         orgId: org.id,
       };
     }
-    
-    const user = await getCurrentUser();
     
     console.log("[paywall-guard] 🔍 Starting paywall check:", { userId, feature });
     

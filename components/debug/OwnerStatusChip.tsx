@@ -14,9 +14,9 @@ export function OwnerStatusChip() {
   const { isOwner, bypassActive, plan, status } = usePaywallStatus();
 
   // Only show for the owner user
-  const OWNER_USER_ID = "user_35JeizOJrQ0Nj";
+  const OWNER_USER_IDS = ["user_36MvlAIQ5MUheoRwWsj61gkOO5H", "user_35JeizOJrQ0Nj"]; // Support both IDs
   
-  if (!user || user.id !== OWNER_USER_ID) {
+  if (!user || !OWNER_USER_IDS.includes(user.id)) {
     return null;
   }
 

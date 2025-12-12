@@ -101,14 +101,15 @@ export async function ensureCanUseFeature(params: {
   orgId: string;
   feature: FeatureKind;
   userId?: string; // Optional: for owner exemption check
+  email?: string | null; // Optional: for owner exemption check
 }): Promise<UsageCheckResult> {
-  const { orgId, feature, userId } = params;
+  const { orgId, feature, userId, email } = params;
   const supabase = getSupabaseAdminClient();
 
   // ============================================
   // BYPASS CHECK - MUST HAPPEN FIRST (BEFORE ANY DB CALLS)
   // ============================================
-  const bypassed = await shouldBypassPaywall(userId);
+  const bypassed = await shouldBypassPaywall(userId, email);
   if (bypassed) {
     console.log("[paywall] ✅ Bypass active - skipping usage check");
     return { allowed: true };

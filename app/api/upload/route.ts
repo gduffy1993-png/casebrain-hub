@@ -26,23 +26,31 @@ const MAX_UPLOAD_BYTES = env.FILE_UPLOAD_MAX_MB * 1024 * 1024;
 export async function POST(request: Request) {
   const { userId, orgId } = await requireAuthContext();
   
+  // Get user object to check email
+  const user = await getCurrentUser();
+  if (!user) {
+    return NextResponse.json({ error: "Unauthenticated" }, { status: 401 });
+  }
+
+  // Extract email from user object
+  const email = 
+    user.primaryEmailAddress?.emailAddress ??
+    user.emailAddresses?.[0]?.emailAddress ??
+    null;
+
   // ============================================
-  // SIMPLE HARDCODED OWNER CHECK - NO IMPORTS, NO COMPLEXITY
+  // BULLETPROOF OWNER CHECK - FIRST THING
   // ============================================
-  const OWNER_USER_ID = "user_35JeizOJrQ0Nj";
-  const isOwner = userId === OWNER_USER_ID;
+  const { isOwnerUser } = await import("@/lib/paywall/owner");
+  const isOwner = isOwnerUser({ userId, email });
   
-  console.log("[upload] 🔍 SIMPLE OWNER CHECK:", { userId, isOwner });
+  console.log("[upload] 🔍 OWNER CHECK:", { userId, email, isOwner });
   
   let paywallOrgId: string;
   
   if (isOwner) {
-    console.log(`[upload] ✅✅✅ OWNER BYPASS - userId ${userId} matches, SKIPPING ALL PAYWALL`);
+    console.log(`[upload] ✅✅✅ OWNER BYPASS - userId: ${userId}, email: ${email} - SKIPPING ALL PAYWALL`);
     // Skip paywall guard entirely for owners
-    const user = await getCurrentUser();
-    if (!user) {
-      return NextResponse.json({ error: "Unauthenticated" }, { status: 401 });
-    }
     const org = await getOrCreateOrganisationForUser(user);
     paywallOrgId = org.id;
   } else {
@@ -594,14 +602,11 @@ export async function POST(request: Request) {
   // PAYWALL: Increment usage after successful upload
   // NOTE: DO NOT increment usage for owners (they bypass limits)
   try {
-    const { userId: currentUserId } = await requireAuthContext();
-    const { isOwnerUser } = await import("@/lib/paywall/owner");
-    
     // Only increment usage if user is NOT an owner
-    if (paywallOrgId && !isOwnerUser(currentUserId)) {
+    if (paywallOrgId && !isOwner) {
       await incrementUsage({ orgId: paywallOrgId, feature: "upload" });
-    } else if (isOwnerUser(currentUserId)) {
-      console.log(`[upload] ✅ Owner bypass - skipping usage increment for userId: ${currentUserId}`);
+    } else if (isOwner) {
+      console.log(`[upload] ✅ Owner bypass - skipping usage increment for userId: ${userId}, email: ${email}`);
     }
   } catch (usageError) {
     console.error("[upload] Failed to record usage:", usageError);
@@ -614,6 +619,8 @@ export async function POST(request: Request) {
     caseId, 
     documentIds,
     skippedFiles: skippedFiles.length > 0 ? skippedFiles : undefined,
+    isOwner, // Include owner flag in response
+    bypassActive: isOwner,
     message: skippedFiles.length > 0 
       ? `${skippedFiles.length} duplicate file(s) skipped: ${skippedFiles.join(", ")}`
       : undefined,

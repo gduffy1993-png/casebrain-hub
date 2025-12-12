@@ -3,7 +3,8 @@
 import { useEffect } from "react";
 import { useUser } from "@clerk/nextjs";
 
-const OWNER_USER_ID = "user_35JeizOJrQ0Nj";
+const OWNER_USER_IDS = ["user_36MvlAIQ5MUheoRwWsj61gkOO5H", "user_35JeizOJrQ0Nj"];
+const OWNER_EMAILS = ["gduffy1993@gmail.com"];
 
 /**
  * NUCLEAR OPTION: Aggressively removes paywall modal from DOM if it appears
@@ -11,14 +12,17 @@ const OWNER_USER_ID = "user_35JeizOJrQ0Nj";
  */
 export function PaywallKiller() {
   const { user, isLoaded } = useUser();
-  const isOwner = user?.id === OWNER_USER_ID;
+  const isOwner = 
+    (user?.id && OWNER_USER_IDS.includes(user.id)) ||
+    (user?.primaryEmailAddress?.emailAddress && OWNER_EMAILS.includes(user.primaryEmailAddress.emailAddress.toLowerCase()));
 
   useEffect(() => {
     if (!isLoaded) return;
 
     // Set data attribute on body immediately for CSS to work
     if (isOwner) {
-      document.body.setAttribute("data-owner-user", OWNER_USER_ID);
+      const ownerId = user?.id || "owner";
+      document.body.setAttribute("data-owner-user", ownerId);
       console.log("[PaywallKiller] ✅✅✅ SET data-owner-user attribute on body");
     } else {
       document.body.removeAttribute("data-owner-user");

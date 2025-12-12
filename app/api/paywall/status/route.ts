@@ -16,69 +16,7 @@ export async function GET() {
   try {
     const { userId } = await requireAuthContext();
     
-    // ============================================
-    // HARDCODED OWNER CHECK - FIRST THING, NO IMPORTS
-    // ============================================
-    const OWNER_USER_ID = "user_35JeizOJrQ0Nj";
-    if (userId === OWNER_USER_ID) {
-      console.log(`[paywall-status] ✅✅✅ HARDCODED OWNER CHECK - userId ${userId} matches, returning owner status`);
-      return NextResponse.json({
-        plan: "pro" as const, // Use "pro" for frontend compatibility
-        isOwner: true,
-        bypassActive: true,
-        uploadCount: 0,
-        analysisCount: 0,
-        exportCount: 0,
-        canUpload: true,
-        canAnalyse: true,
-        canExport: true,
-        uploadLimit: Number.POSITIVE_INFINITY,
-        analysisLimit: Number.POSITIVE_INFINITY,
-        exportLimit: Number.POSITIVE_INFINITY,
-        remainingUploads: Number.POSITIVE_INFINITY,
-      });
-    }
-    
-    // Also check via helper function
-    if (isOwnerUser(userId)) {
-      console.log(`[paywall-status] ✅ Owner bypass active for userId: ${userId}`);
-      return NextResponse.json({
-        plan: "pro" as const, // Use "pro" for frontend compatibility
-        isOwner: true,
-        bypassActive: true,
-        uploadCount: 0,
-        analysisCount: 0,
-        exportCount: 0,
-        canUpload: true,
-        canAnalyse: true,
-        canExport: true,
-        uploadLimit: Number.POSITIVE_INFINITY,
-        analysisLimit: Number.POSITIVE_INFINITY,
-        exportLimit: Number.POSITIVE_INFINITY,
-        remainingUploads: Number.POSITIVE_INFINITY,
-      });
-    }
-    
-    // Check general bypass (dev mode, etc.)
-    const bypassed = await shouldBypassPaywall(userId);
-    if (bypassed) {
-      console.log(`[paywall-status] ✅ Bypass active for userId: ${userId}`);
-      // Return unlimited status for other bypass cases
-      return NextResponse.json({
-        plan: "pro" as const,
-        bypassActive: true,
-        uploadCount: 0,
-        analysisCount: 0,
-        exportCount: 0,
-        canUpload: true,
-        canAnalyse: true,
-        canExport: true,
-        uploadLimit: Infinity,
-        analysisLimit: Infinity,
-        exportLimit: Infinity,
-      });
-    }
-    
+    // Get user object to check email
     const user = await getCurrentUser();
     
     if (!user) {
@@ -86,6 +24,36 @@ export async function GET() {
         { error: "Unauthenticated" },
         { status: 401 }
       );
+    }
+
+    // Extract email from user object
+    const email = 
+      user.primaryEmailAddress?.emailAddress ??
+      user.emailAddresses?.[0]?.emailAddress ??
+      null;
+
+    // ============================================
+    // BULLETPROOF OWNER CHECK - FIRST THING
+    // ============================================
+    const owner = isOwnerUser({ userId, email });
+    
+    if (owner) {
+      console.log(`[paywall-status] ✅✅✅ OWNER DETECTED - userId: ${userId}, email: ${email}`);
+      return NextResponse.json({
+        plan: "pro" as const,
+        isOwner: true,
+        bypassActive: true,
+        uploadCount: 0,
+        analysisCount: 0,
+        exportCount: 0,
+        canUpload: true,
+        canAnalyse: true,
+        canExport: true,
+        uploadLimit: Number.POSITIVE_INFINITY,
+        analysisLimit: Number.POSITIVE_INFINITY,
+        exportLimit: Number.POSITIVE_INFINITY,
+        remainingUploads: Number.POSITIVE_INFINITY,
+      });
     }
 
     // Get or create organisation

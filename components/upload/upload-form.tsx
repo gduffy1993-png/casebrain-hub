@@ -23,10 +23,13 @@ export function UploadForm() {
   const { currentPracticeArea, setPracticeArea: setGlobalPracticeArea } = usePracticeArea();
   const { isOwner, bypassActive, status } = usePaywallStatus();
   const { user, isLoaded: userLoaded } = useUser();
-  const OWNER_USER_ID = "user_35JeizOJrQ0Nj";
+  const OWNER_USER_IDS = ["user_36MvlAIQ5MUheoRwWsj61gkOO5H", "user_35JeizOJrQ0Nj"]; // Support both IDs
+  const OWNER_EMAILS = ["gduffy1993@gmail.com"];
   
   // SIMPLE HARDCODED CHECK - NO COMPLEXITY
-  const isOwnerHardcoded = user?.id === OWNER_USER_ID;
+  const isOwnerHardcoded = 
+    (user?.id && OWNER_USER_IDS.includes(user.id)) ||
+    (user?.primaryEmailAddress?.emailAddress && OWNER_EMAILS.includes(user.primaryEmailAddress.emailAddress.toLowerCase()));
   
   const [files, setFiles] = useState<FileList | null>(null);
   const [caseTitle, setCaseTitle] = useState("");

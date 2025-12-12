@@ -6,8 +6,9 @@ import { useUser } from "@clerk/nextjs";
 import { usePaywallStatus } from "@/hooks/usePaywallStatus";
 import type { UsageLimitError } from "@/lib/usage-limits";
 
-// HARDCODED OWNER USER ID - NEVER SHOW MODAL FOR THIS USER
-const OWNER_USER_ID = "user_35JeizOJrQ0Nj";
+// HARDCODED OWNER USER IDS - NEVER SHOW MODAL FOR THESE USERS
+const OWNER_USER_IDS = ["user_36MvlAIQ5MUheoRwWsj61gkOO5H", "user_35JeizOJrQ0Nj"];
+const OWNER_EMAILS = ["gduffy1993@gmail.com"];
 
 type PaywallModalProps = {
   errorCode: UsageLimitError;
@@ -32,9 +33,13 @@ export function PaywallModal({
     return null;
   }
   
-  // HARDCODED: If this is the owner user ID, NEVER render modal - PERIOD
-  if (user?.id === OWNER_USER_ID) {
-    console.log("[PaywallModal] ✅✅✅ HARDCODED OWNER CHECK - userId matches, NOT rendering modal");
+  // HARDCODED: If this is the owner user ID or email, NEVER render modal - PERIOD
+  const isOwnerHardcoded = 
+    (user?.id && OWNER_USER_IDS.includes(user.id)) ||
+    (user?.primaryEmailAddress?.emailAddress && OWNER_EMAILS.includes(user.primaryEmailAddress.emailAddress.toLowerCase()));
+  
+  if (isOwnerHardcoded) {
+    console.log("[PaywallModal] ✅✅✅ HARDCODED OWNER CHECK - userId or email matches, NOT rendering modal");
     // Call onClose immediately to clear any state
     if (onClose) {
       setTimeout(() => onClose(), 0);

@@ -33,9 +33,10 @@ export function isDevBypassActive(): boolean {
  * Check if a user is an owner (by user ID only - no DB calls)
  * This is the FASTEST check and should be done first
  * Uses the centralized owner.ts helper with hardcoded fallback
+ * @deprecated Use isOwnerUser({ userId, email }) directly instead
  */
 export function isOwnerByUserId(userId: string): boolean {
-  return isOwnerUser(userId);
+  return isOwnerUser({ userId });
 }
 
 /**
@@ -78,29 +79,24 @@ export async function isOwnerByEmail(userId: string): Promise<boolean> {
  * Returns true if user is owner OR dev bypass is active
  * 
  * This function checks in order:
- * 1. Owner by userId (fastest, no DB calls, hardcoded fallback)
+ * 1. Owner by userId/email (fastest, no DB calls, hardcoded fallback)
  * 2. Dev bypass (no DB calls)
- * 3. Owner by email (slower, requires DB call)
+ * 3. Owner by email via DB (slower, requires DB call)
  * 
  * Use this function FIRST before any other paywall checks.
+ * 
+ * @param userId - User ID to check
+ * @param email - Optional email to check (if available, avoids DB call)
  */
-export async function shouldBypassPaywall(userId?: string): Promise<boolean> {
-  // DEBUG LOGGING
-  console.log("[paywall] DEBUG", {
-    userId: userId || "NO_USER_ID",
-    envOwnerIds: getOwnerUserIds(),
-    isOwner: userId ? isOwnerUser(userId) : false,
-    nodeEnv: process.env.NODE_ENV,
-  });
-  
+export async function shouldBypassPaywall(userId?: string, email?: string | null): Promise<boolean> {
   // If no userId, can't check owner status
   if (!userId) {
     return false;
   }
   
-  // Check owner by userId FIRST (fastest, no DB calls, has hardcoded fallback)
-  if (isOwnerByUserId(userId)) {
-    console.log(`[paywall] ✅ Owner bypass active for userId: ${userId}`);
+  // Check owner by userId/email FIRST (fastest, no DB calls, has hardcoded fallback)
+  if (isOwnerUser({ userId, email })) {
+    console.log(`[paywall] ✅ Owner bypass active for userId: ${userId}, email: ${email || "N/A"}`);
     return true;
   }
   
@@ -110,8 +106,8 @@ export async function shouldBypassPaywall(userId?: string): Promise<boolean> {
     return true;
   }
   
-  // Check owner by email (slower, requires DB call)
-  if (await isOwnerByEmail(userId)) {
+  // Check owner by email via DB (slower, requires DB call) - only if email wasn't provided
+  if (!email && (await isOwnerByEmail(userId))) {
     return true;
   }
   
