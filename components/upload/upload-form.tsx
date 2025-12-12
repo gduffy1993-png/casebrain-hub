@@ -20,7 +20,19 @@ const ACCEPTED_TYPES = [
 
 export function UploadForm() {
   const { currentPracticeArea, setPracticeArea: setGlobalPracticeArea } = usePracticeArea();
-  const { isOwner, bypassActive } = usePaywallStatus();
+  const { isOwner, bypassActive, status } = usePaywallStatus();
+  
+  // Log owner status for debugging
+  useEffect(() => {
+    if (status) {
+      console.log("[upload-form] Paywall status:", {
+        isOwner,
+        bypassActive,
+        plan: status.plan,
+        canUpload: status.canUpload,
+      });
+    }
+  }, [status, isOwner, bypassActive]);
   const [files, setFiles] = useState<FileList | null>(null);
   const [caseTitle, setCaseTitle] = useState("");
   const [practiceArea, setPracticeArea] = useState<PracticeArea>(currentPracticeArea);
@@ -79,9 +91,27 @@ export function UploadForm() {
         
         // Handle paywall errors
         // NEVER show paywall modal for owners or if bypass is active
-        if (payload?.error && !isOwner && !bypassActive) {
+        console.log("[upload-form] Upload failed:", {
+          status: response.status,
+          error: payload?.error,
+          isOwner,
+          bypassActive,
+          plan: status?.plan,
+          willShowModal: payload?.error && paywallErrors.includes(payload.error) && !isOwner && !bypassActive,
+        });
+        
+        // NUCLEAR OPTION: If owner or bypass active, completely ignore paywall errors
+        if (isOwner || bypassActive) {
+          console.log("[upload-form] ✅✅✅ OWNER/BYPASS ACTIVE - IGNORING paywall error completely");
+          // Don't set paywallError state at all for owners - just throw a generic error
+          throw new Error(payload?.error ?? "Upload failed");
+        }
+        
+        // Only handle paywall errors for non-owners
+        if (payload?.error) {
           // Check if it's a paywall error (including the old "UPGRADE_REQUIRED" code)
           if (paywallErrors.includes(payload.error) || payload.error === "UPGRADE_REQUIRED") {
+            console.log("[upload-form] ❌ Showing paywall modal (user is NOT owner)");
             setPaywallError({
               error: payload.error === "UPGRADE_REQUIRED" ? "PDF_LIMIT_REACHED" : payload.error,
               limit: payload.limit,
@@ -139,14 +169,18 @@ export function UploadForm() {
   return (
     <>
       {/* NEVER show paywall modal for owners or if bypass is active */}
-      {paywallError && !isOwner && !bypassActive && (
+      {/* NUCLEAR OPTION: If owner, completely disable modal */}
+      {paywallError && !isOwner && !bypassActive ? (
         <PaywallModal
           errorCode={paywallError.error}
           limit={paywallError.limit}
           plan={paywallError.plan}
           onClose={handleClosePaywall}
         />
-      )}
+      ) : isOwner || bypassActive ? (
+        // Owner or bypass active - silently ignore paywall errors
+        null
+      ) : null}
       <form
         onSubmit={handleSubmit}
         className="flex flex-col gap-6 rounded-3xl border border-dashed border-primary/30 bg-surface-muted/70 p-10 text-center"

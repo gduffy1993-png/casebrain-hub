@@ -11,6 +11,7 @@ import {
 import { AppShell } from "@/components/layout/app-shell";
 import { PracticeAreaProvider } from "@/components/providers/PracticeAreaProvider";
 import { SeniorityProvider } from "@/components/providers/SeniorityProvider";
+import { OwnerStatusChip } from "@/components/debug/OwnerStatusChip";
 
 export default function ProtectedLayout({ children }: { children: ReactNode }) {
   return (
@@ -40,6 +41,7 @@ function OrganisationGate({ children }: { children: ReactNode }) {
     <PracticeAreaProvider>
       <SeniorityProvider>
         <AppShell>{children}</AppShell>
+        <OwnerStatusChip />
       </SeniorityProvider>
     </PracticeAreaProvider>
   );

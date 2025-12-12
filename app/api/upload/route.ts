@@ -15,6 +15,8 @@ import {
 import { extractEntitiesFromText } from "@/lib/knowledge";
 import { paywallGuard } from "@/lib/paywall/guard";
 import { incrementUsage } from "@/lib/paywall/usage";
+import { getCurrentUser } from "@/lib/auth";
+import { getOrCreateOrganisationForUser } from "@/lib/organisations";
 
 export const runtime = "nodejs";
 
@@ -23,14 +25,46 @@ const MAX_UPLOAD_BYTES = env.FILE_UPLOAD_MAX_MB * 1024 * 1024;
 
 export async function POST(request: Request) {
   const { userId, orgId } = await requireAuthContext();
-  assertRateLimit(`upload:${userId}`, { limit: 10, windowMs: 60_000 });
+  
+  // ============================================
+  // DIRECT OWNER CHECK - BEFORE ANYTHING ELSE
+  // ============================================
+  const { isOwnerUser, getOwnerUserIds } = await import("@/lib/paywall/owner");
+  const ownerIds = getOwnerUserIds();
+  const isOwner = isOwnerUser(userId);
+  
+  console.log("[upload] 🔍 OWNER CHECK:", {
+    userId,
+    ownerIds,
+    isOwner,
+    matches: ownerIds.includes(userId),
+  });
+  
+  let paywallOrgId: string;
+  
+  if (isOwner) {
+    console.log(`[upload] ✅✅✅ OWNER BYPASS - userId ${userId} is owner, skipping ALL paywall checks`);
+    // Skip paywall guard entirely for owners
+    const user = await getCurrentUser();
+    if (!user) {
+      return NextResponse.json(
+        { error: "Unauthenticated" },
+        { status: 401 }
+      );
+    }
+    const org = await getOrCreateOrganisationForUser(user);
+    paywallOrgId = org.id; // For later use, but we won't increment usage
+  } else {
+    assertRateLimit(`upload:${userId}`, { limit: 10, windowMs: 60_000 });
 
-  // PAYWALL: Check if user can upload PDFs
-  const guard = await paywallGuard("upload");
-  if (!guard.allowed) {
-    return guard.response!;
+    // PAYWALL: Check if user can upload PDFs (only for non-owners)
+    const guard = await paywallGuard("upload");
+    if (!guard.allowed) {
+      console.log(`[upload] ❌ Paywall blocked for userId: ${userId}`);
+      return guard.response!;
+    }
+    paywallOrgId = guard.orgId!;
   }
-  const { orgId: paywallOrgId } = guard;
 
   const formData = await request.formData();
   const files = formData.getAll("files").filter(isFile);
