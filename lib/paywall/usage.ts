@@ -7,9 +7,10 @@
 import "server-only";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { PAYWALL_LIMITS, type PlanName, type FeatureKind, getFeatureLimit, isUnlimited } from "./config";
+import { shouldBypassPaywall } from "./bypass";
 
 export interface UsageStatus {
-  plan: PlanName;
+  plan: PlanName | "OWNER";
   uploadCount: number;
   analysisCount: number;
   exportCount: number;
@@ -19,6 +20,9 @@ export interface UsageStatus {
   uploadLimit: number;
   analysisLimit: number;
   exportLimit: number;
+  isOwner?: boolean;
+  bypassActive?: boolean;
+  remainingUploads?: number;
 }
 
 export interface UsageCheckResult {
@@ -101,90 +105,16 @@ export async function ensureCanUseFeature(params: {
   const { orgId, feature, userId } = params;
   const supabase = getSupabaseAdminClient();
 
-  // BYPASS PAYWALL FOR APP OWNER / DEV MODE - CHECK FIRST BEFORE ANY DB CALLS
-  const isDev = process.env.NODE_ENV === "development";
-  const bypassInDev = process.env.BYPASS_PAYWALL_IN_DEV;
-  
-  // TEMPORARY: Force bypass in dev mode (remove this after testing)
-  // Set to false to disable, or set to true to always bypass
-  const FORCE_BYPASS_IN_DEV = true; 
-  
-  console.log("[paywall] 🔍 BYPASS CHECK:", {
-    isDev,
-    bypassInDev,
-    FORCE_BYPASS_IN_DEV,
-    NODE_ENV: process.env.NODE_ENV,
-    userId: userId || "NO_USER_ID",
-    allEnvVars: {
-      BYPASS_PAYWALL_IN_DEV: process.env.BYPASS_PAYWALL_IN_DEV,
-      APP_OWNER_EMAILS: process.env.APP_OWNER_EMAILS ? "SET" : "NOT SET",
-      APP_OWNER_USER_IDS: process.env.APP_OWNER_USER_IDS ? "SET" : "NOT SET",
-    }
-  });
-  
-  // TEMPORARY: Force bypass in dev (for testing) - THIS WILL BYPASS EVERYTHING
-  if (isDev && FORCE_BYPASS_IN_DEV) {
-    console.log("[paywall] ✅✅✅✅✅ FORCE BYPASS ACTIVE (HARDCODED) - SKIPPING ALL PAYWALL CHECKS");
+  // ============================================
+  // BYPASS CHECK - MUST HAPPEN FIRST (BEFORE ANY DB CALLS)
+  // ============================================
+  const bypassed = await shouldBypassPaywall(userId);
+  if (bypassed) {
+    console.log("[paywall] ✅ Bypass active - skipping usage check");
     return { allowed: true };
   }
   
-  // DEV MODE: Bypass paywall completely in dev (if enabled) - CHECK THIS FIRST
-  if (isDev && bypassInDev === "true") {
-    console.log("[paywall] ✅✅✅ DEV MODE BYPASS ACTIVE - Skipping all paywall checks");
-    return { allowed: true };
-  }
-  
-  // Also check if bypass is set to "1" or "yes" (common variations)
-  if (isDev && (bypassInDev === "1" || bypassInDev?.toLowerCase() === "yes")) {
-    console.log("[paywall] ✅✅✅ DEV MODE BYPASS ACTIVE (variant) - Skipping all paywall checks");
-    return { allowed: true };
-  }
-  
-  if (userId) {
-    const ownerEmailsRaw = process.env.APP_OWNER_EMAILS || "";
-    const ownerUserIdsRaw = process.env.APP_OWNER_USER_IDS || "";
-    const ownerEmails = ownerEmailsRaw.split(",").map(e => e.trim().toLowerCase()).filter(Boolean);
-    const ownerUserIds = ownerUserIdsRaw.split(",").map(id => id.trim()).filter(Boolean);
-    
-    console.log("[paywall] 🔍 OWNER CHECK:", {
-      userId,
-      ownerEmails,
-      ownerUserIds,
-      hasOwnerEmails: ownerEmails.length > 0,
-      hasOwnerUserIds: ownerUserIds.length > 0,
-    });
-    
-    // Get user email to check
-    try {
-      const { data: user } = await supabase.auth.admin.getUserById(userId);
-      const userEmail = user?.user?.email?.toLowerCase();
-      
-      console.log("[paywall] 🔍 USER LOOKUP:", { 
-        userId, 
-        userEmail,
-        ownerEmails, 
-        ownerUserIds,
-        matchesEmail: userEmail && ownerEmails.includes(userEmail),
-        matchesUserId: ownerUserIds.includes(userId)
-      });
-      
-      // Check if user is owner by email or user ID
-      if (userEmail && ownerEmails.includes(userEmail)) {
-        console.log("[paywall] ✅✅✅ BYPASSING PAYWALL - Owner email match:", userEmail);
-        return { allowed: true };
-      }
-      
-      if (ownerUserIds.includes(userId)) {
-        console.log("[paywall] ✅✅✅ BYPASSING PAYWALL - Owner user ID match:", userId);
-        return { allowed: true };
-      }
-    } catch (error) {
-      // If we can't check, continue with normal paywall check
-      console.warn("[paywall] ⚠️ Could not check owner status:", error);
-    }
-  } else {
-    console.log("[paywall] ⚠️ No userId provided, cannot check owner exemption");
-  }
+  console.log("[paywall] Regular usage check proceeding");
 
   // Load plan + counts
   const { data: org, error } = await supabase

@@ -570,9 +570,16 @@ export async function POST(request: Request) {
   }
 
   // PAYWALL: Increment usage after successful upload
+  // NOTE: DO NOT increment usage for owners (they bypass limits)
   try {
-    if (paywallOrgId) {
+    const { userId: currentUserId } = await requireAuthContext();
+    const { isOwnerUser } = await import("@/lib/paywall/owner");
+    
+    // Only increment usage if user is NOT an owner
+    if (paywallOrgId && !isOwnerUser(currentUserId)) {
       await incrementUsage({ orgId: paywallOrgId, feature: "upload" });
+    } else if (isOwnerUser(currentUserId)) {
+      console.log(`[upload] ✅ Owner bypass - skipping usage increment for userId: ${currentUserId}`);
     }
   } catch (usageError) {
     console.error("[upload] Failed to record usage:", usageError);

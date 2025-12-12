@@ -4,10 +4,18 @@ import { useEffect, useState } from "react";
 import type { UsageStatus } from "@/lib/paywall/usage";
 
 /**
+ * Extended paywall status that includes owner flags
+ */
+type ExtendedPaywallStatus = UsageStatus & {
+  isOwner?: boolean;
+  bypassActive?: boolean;
+};
+
+/**
  * Hook to fetch and manage paywall status
  */
 export function usePaywallStatus() {
-  const [status, setStatus] = useState<UsageStatus | null>(null);
+  const [status, setStatus] = useState<ExtendedPaywallStatus | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -64,6 +72,8 @@ export function usePaywallStatus() {
     refetch,
     // Convenience getters
     plan: status?.plan ?? "free",
+    isOwner: status?.isOwner ?? false,
+    bypassActive: status?.bypassActive ?? false,
     canUpload: status?.canUpload ?? false,
     canAnalyse: status?.canAnalyse ?? false,
     canExport: status?.canExport ?? false,

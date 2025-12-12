@@ -9,6 +9,7 @@ import type { PracticeArea } from "@/lib/types/casebrain";
 import { PRACTICE_AREA_OPTIONS } from "@/lib/types/casebrain";
 import { usePracticeArea } from "@/components/providers/PracticeAreaProvider";
 import { PaywallModal } from "@/components/paywall/PaywallModal";
+import { usePaywallStatus } from "@/hooks/usePaywallStatus";
 import type { UsageLimitError } from "@/lib/usage-limits";
 
 const ACCEPTED_TYPES = [
@@ -19,6 +20,7 @@ const ACCEPTED_TYPES = [
 
 export function UploadForm() {
   const { currentPracticeArea, setPracticeArea: setGlobalPracticeArea } = usePracticeArea();
+  const { isOwner, bypassActive } = usePaywallStatus();
   const [files, setFiles] = useState<FileList | null>(null);
   const [caseTitle, setCaseTitle] = useState("");
   const [practiceArea, setPracticeArea] = useState<PracticeArea>(currentPracticeArea);
@@ -76,7 +78,8 @@ export function UploadForm() {
         ];
         
         // Handle paywall errors
-        if (payload?.error) {
+        // NEVER show paywall modal for owners or if bypass is active
+        if (payload?.error && !isOwner && !bypassActive) {
           // Check if it's a paywall error (including the old "UPGRADE_REQUIRED" code)
           if (paywallErrors.includes(payload.error) || payload.error === "UPGRADE_REQUIRED") {
             setPaywallError({
@@ -135,7 +138,8 @@ export function UploadForm() {
 
   return (
     <>
-      {paywallError && (
+      {/* NEVER show paywall modal for owners or if bypass is active */}
+      {paywallError && !isOwner && !bypassActive && (
         <PaywallModal
           errorCode={paywallError.error}
           limit={paywallError.limit}

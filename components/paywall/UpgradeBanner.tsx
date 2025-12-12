@@ -13,6 +13,8 @@ import Link from "next/link";
 export function UpgradeBanner() {
   const { 
     plan, 
+    isOwner,
+    bypassActive,
     uploadCount, 
     uploadLimit, 
     analysisCount, 
@@ -22,7 +24,8 @@ export function UpgradeBanner() {
     loading 
   } = usePaywallStatus();
 
-  if (loading || plan === "pro") {
+  // Never show banner for owners or if bypass is active
+  if (loading || plan === "pro" || plan === "OWNER" || isOwner || bypassActive) {
     return null;
   }
 
