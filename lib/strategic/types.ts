@@ -34,5 +34,8 @@ export type StrategicInsightMeta = {
   
   /** "Use this to:" bullet points (role-specific) */
   useThisTo?: string[];
+  
+  /** "Use this at:" stage-specific guidance (role-specific) */
+  useAt?: string[];
 };
 

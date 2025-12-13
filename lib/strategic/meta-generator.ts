@@ -47,6 +47,7 @@ export function generateLeverageMeta(
   let bestStageToUse = "";
   let howThisHelpsYouWin = "";
   let useThisTo: string[] | undefined;
+  let useAt: string[] | undefined;
 
   // Determine triggeredBy from evidence and documents
   triggeredBy = [...evidence];
@@ -153,6 +154,7 @@ export function generateLeverageMeta(
     bestStageToUse,
     howThisHelpsYouWin,
     useThisTo,
+    useAt,
   };
 }
 
@@ -176,6 +178,7 @@ export function generateWeakSpotMeta(
   let bestStageToUse = "";
   let howThisHelpsYouWin = "";
   let useThisTo: string[] | undefined;
+  let useAt: string[] | undefined;
 
   if (weakSpotType === "CONTRADICTION") {
     const contradictions = input.contradictions || [];
@@ -324,6 +327,7 @@ export function generateWeakSpotMeta(
     bestStageToUse,
     howThisHelpsYouWin,
     useThisTo,
+    useAt,
   };
 }
 
@@ -348,6 +352,7 @@ export function generateStrategyPathMeta(
   let bestStageToUse = "";
   let howThisHelpsYouWin = "";
   let useThisTo: string[] | undefined;
+  let useAt: string[] | undefined;
 
   if (route === "A") {
     // Route A - role-specific logic
@@ -386,6 +391,13 @@ export function generateStrategyPathMeta(
         "Apply PAP pressure for early resolution using substantive merits",
         "Proceed to liability determination if admission resisted",
         "Strengthen settlement leverage with clear breach/causation narrative",
+      ];
+      
+      // Claimant-specific "Use this at" stages for Route A
+      useAt = [
+        "Pre-Action Protocol (PAP) – press for admissions / narrow issues",
+        "Letter of Claim / Response stage – leverage guideline breaches and expert opinion",
+        "If resisted – issue and pursue liability determination",
       ];
     } else {
       // Defendant Route A: Procedural attack route
@@ -542,6 +554,7 @@ export function generateJudicialExpectationMeta(
   let bestStageToUse = "";
   let howThisHelpsYouWin = "";
   let useThisTo: string[] | undefined;
+  let useAt: string[] | undefined;
 
   if (expectation.toLowerCase().includes("pre-action")) {
     triggeredBy.push("Pre-action protocol requirements");
@@ -657,6 +670,7 @@ export function generateTimePressureMeta(
   let bestStageToUse = "";
   let howThisHelpsYouWin = "";
   let useThisTo: string[] | undefined;
+  let useAt: string[] | undefined;
 
   if (issue.toLowerCase().includes("opponent") || issue.toLowerCase().includes("delay")) {
     triggeredBy.push("Opponent delays detected");

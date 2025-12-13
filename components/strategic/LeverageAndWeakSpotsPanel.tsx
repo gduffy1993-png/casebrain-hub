@@ -17,6 +17,8 @@ type StrategicInsightMeta = {
   riskIfIgnored: string;
   bestStageToUse: string;
   howThisHelpsYouWin: string;
+  useThisTo?: string[];
+  useAt?: string[];
 };
 
 type LeveragePoint = {
@@ -254,14 +256,16 @@ export function LeverageAndWeakSpotsPanel({ caseId }: LeverageAndWeakSpotsPanelP
                   <div className="mt-2 p-2 rounded bg-cyan-950/30 border border-cyan-800/30">
                     <p className="text-xs font-medium text-cyan-300 mb-1">Recommended Action:</p>
                     <p className="text-xs text-cyan-200/90 whitespace-pre-line leading-relaxed mb-2">{spot.suggestedAction}</p>
-                    <div className="mt-2 pt-2 border-t border-cyan-800/30">
-                      <p className="text-xs font-medium text-cyan-300 mb-1">Use this to:</p>
-                      <ul className="text-xs text-cyan-200/90 space-y-0.5">
-                        <li>• Challenge liability at trial</li>
-                        <li>• Justify a low Part 36 offer</li>
-                        <li>• Resist summary judgment / application to strike out your defence</li>
-                      </ul>
-                    </div>
+                    {spot.meta?.useThisTo && spot.meta.useThisTo.length > 0 && (
+                      <div className="mt-2 pt-2 border-t border-cyan-800/30">
+                        <p className="text-xs font-medium text-cyan-300 mb-1">Use this to:</p>
+                        <ul className="text-xs text-cyan-200/90 space-y-0.5">
+                          {spot.meta.useThisTo.map((item, idx) => (
+                            <li key={idx}>• {item}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                   </div>
 
                   {/* Meta Information */}

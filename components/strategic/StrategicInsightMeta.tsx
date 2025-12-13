@@ -15,6 +15,8 @@ type StrategicInsightMeta = {
   riskIfIgnored: string;
   bestStageToUse: string;
   howThisHelpsYouWin: string;
+  useThisTo?: string[];
+  useAt?: string[];
 };
 
 type StrategicInsightMetaProps = {
@@ -108,6 +110,43 @@ export function StrategicInsightMetaDisplay({ meta }: StrategicInsightMetaProps)
             <p className="text-xs font-medium text-green-300 mb-1.5">How this helps you win</p>
             <p className="text-xs text-green-200/90 leading-relaxed">{meta.howThisHelpsYouWin}</p>
           </div>
+
+          {/* Use This To (if present) */}
+          {meta.useThisTo && meta.useThisTo.length > 0 && (
+            <div className="p-3 rounded-lg bg-cyan-950/30 border border-cyan-800/30">
+              <p className="text-xs font-medium text-cyan-300 mb-1.5">Use this to:</p>
+              <ul className="text-xs text-cyan-200/90 space-y-1">
+                {meta.useThisTo.map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-1.5">
+                    <span className="text-cyan-400 mt-0.5">•</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Use At (if present, as alternative to bestStageToUse) */}
+          {meta.useAt && meta.useAt.length > 0 && (
+            <div className="p-3 rounded-lg bg-amber-950/30 border border-amber-800/30">
+              <p className="text-xs font-medium text-amber-300 mb-1.5">Use this at:</p>
+              <ul className="text-xs text-amber-200/90 space-y-1">
+                {meta.useAt.map((stage, idx) => {
+                  const [label, description] = stage.split(" – ");
+                  return (
+                    <li key={idx} className="flex items-start gap-1.5">
+                      <span className="text-amber-400 mt-0.5">•</span>
+                      <span>
+                        {label && <span className="font-medium">{label}</span>}
+                        {description && ` – ${description}`}
+                        {!label && <span>{stage}</span>}
+                      </span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          )}
         </div>
       )}
     </div>
