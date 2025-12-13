@@ -364,8 +364,39 @@ export async function calculateCaseMomentum(
   );
   
   if (isClaimant && isClinicalNeg) {
-    // For claimant clinical negligence, threshold for STRONG is higher (needs substantive merits)
-    if (score >= 50 && substantiveFactors.length > 0) {
+    // For claimant clinical negligence, check substantive merits score first
+    // If substantive merits are strong, admin gaps should not drag down momentum
+    let substantiveMeritsScore = 0;
+    try {
+      const merits = await detectSubstantiveMerits({
+        caseId: input.caseId,
+        orgId: input.orgId,
+        documents: input.documents,
+        timeline: input.timeline,
+      });
+      substantiveMeritsScore = merits.totalScore;
+    } catch (error) {
+      console.warn("[momentum] Failed to get substantive merits score:", error);
+    }
+    
+    // If substantive merits are strong (>=50), momentum must be STRONG unless there's a true substantive risk
+    const hasStrongSubstantiveMerits = substantiveMeritsScore >= 50;
+    const hasTrueSubstantiveRisk = negativeFactors.some(f => 
+      !f.factor.toLowerCase().includes("admin") &&
+      !f.factor.toLowerCase().includes("client id") &&
+      !f.factor.toLowerCase().includes("retainer") &&
+      !f.factor.toLowerCase().includes("cfa") &&
+      !f.factor.toLowerCase().includes("identification") &&
+      !f.factor.toLowerCase().includes("overdue deadlines") // Procedural, not substantive
+    );
+    
+    if (hasStrongSubstantiveMerits && !hasTrueSubstantiveRisk) {
+      // Strong substantive merits override admin gaps
+      state = "STRONG";
+      const meritDetails = substantiveFactors.map(f => f.factor).join(", ");
+      explanation = `This is a high-merit liability case with strong substantive foundations. ${meritDetails} ${substantiveFactors.length > 1 ? "establish" : "establishes"} a compelling position on breach and/or causation. The case is suitable for early admission pressure or liability trial if resisted. Administrative/procedural gaps do not affect the substantive strength of the case.`;
+      confidence = substantiveFactors.length >= 2 ? "HIGH" : "MEDIUM";
+    } else if (score >= 50 && substantiveFactors.length > 0) {
       state = "STRONG";
       const meritDetails = substantiveFactors.map(f => f.factor).join(", ");
       explanation = `This is a high-merit liability case with strong substantive foundations. ${meritDetails} ${substantiveFactors.length > 1 ? "establish" : "establishes"} a compelling position on breach and/or causation. The case is suitable for early admission pressure or liability trial if resisted.`;

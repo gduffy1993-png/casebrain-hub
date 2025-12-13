@@ -138,7 +138,7 @@ export async function generateStrategyPaths(
         route: "A",
         title: "Route A: Early liability admission pressure using guideline breaches and expert evidence",
         description: "High-merit liability case with strong breach/causation evidence (guideline breaches, expert confirmation, delay-caused harm). Use this leverage to seek early liability admission and move to quantum resolution.",
-        approach: "1. Serve Letter of Claim highlighting guideline breaches and expert confirmation of avoidability. 2. Request admission of liability within 21 days under PAP. 3. If admission received, proceed to quantum negotiation. 4. If liability denied, proceed to trial on liability with strong evidential position. 5. Use guideline breaches and expert evidence as primary leverage in negotiations and at trial.",
+        approach: "1. Serve Letter of Claim highlighting guideline breaches and expert confirmation of avoidability. 2. Request admission of liability within 21 days under PAP, pressing for early admission and narrowing issues. 3. If admission received, proceed to quantum negotiation. 4. If liability denied or resisted, proceed to liability trial with strong evidential position. 5. Use guideline breaches and expert evidence as primary leverage in PAP pressure, early resolution, and at trial if resisted. 6. Frame opponent's exposure clearly in Letter of Claim and Particulars of Claim.",
         pros: [
           "Strong evidential position on breach and causation",
           "Guideline breaches create strong liability foundation",
@@ -176,6 +176,7 @@ export async function generateStrategyPaths(
             l.template_id?.toLowerCase().includes("pre_action") ||
             l.template_id?.toLowerCase().includes("protocol")
           ),
+          caseRole: input.caseRole || caseRole,
         }
       );
       
@@ -228,6 +229,7 @@ export async function generateStrategyPaths(
           hasExpertReports: true,
           hasDisclosure: false,
           hasPreActionLetter: false,
+          caseRole: input.caseRole || caseRole,
         }
       );
       
@@ -279,6 +281,7 @@ export async function generateStrategyPaths(
             l.template_id?.toLowerCase().includes("pre_action") ||
             l.template_id?.toLowerCase().includes("protocol")
           ),
+          caseRole: input.caseRole || caseRole,
         }
       );
       
@@ -329,6 +332,7 @@ export async function generateStrategyPaths(
             l.template_id?.toLowerCase().includes("pre_action") ||
             l.template_id?.toLowerCase().includes("protocol")
           ),
+          caseRole: input.caseRole || caseRole,
         }
       );
       
@@ -396,6 +400,7 @@ export async function generateStrategyPaths(
           type: v.type,
           description: v.description,
         })),
+        caseRole: input.caseRole || caseRole,
       }
     );
     
@@ -468,6 +473,7 @@ export async function generateStrategyPaths(
             type: v.type,
             description: v.description,
           })),
+          caseRole: input.caseRole || caseRole,
         }
       );
       
@@ -553,6 +559,7 @@ export async function generateStrategyPaths(
           description: c.description,
           confidence: c.severity === "CRITICAL" ? "high" : "medium",
         })),
+        caseRole: input.caseRole || caseRole,
       }
     );
     

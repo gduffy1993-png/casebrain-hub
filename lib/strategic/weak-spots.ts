@@ -12,6 +12,7 @@ import { findContradictions } from "../bundle-navigator";
 import type { PracticeArea } from "../types/casebrain";
 import type { StrategicInsightMeta } from "./types";
 import { generateWeakSpotMeta } from "./meta-generator";
+import { detectCaseRole, type CaseRole } from "./role-detection";
 
 export type WeakSpotType =
   | "CONTRADICTION"
@@ -45,16 +46,39 @@ type WeakSpotInput = {
   documents: Array<{ id: string; name: string; created_at: string }>;
   timeline: Array<{ event_date: string; description: string }>;
   bundleId?: string;
+  caseRole?: CaseRole; // Optional: if not provided, will be detected
 };
 
 /**
  * Detect all opponent weak spots for a case
+ * 
+ * For claimant cases, admin gaps (client ID, retainer, CFA) are labelled
+ * as "Administrative/Procedural" and cannot be HIGH severity.
  */
 export async function detectOpponentWeakSpots(
   input: WeakSpotInput,
 ): Promise<OpponentWeakSpot[]> {
   const weakSpots: OpponentWeakSpot[] = [];
   const now = new Date().toISOString();
+  
+  // Detect case role if not provided
+  let caseRole = input.caseRole;
+  if (!caseRole) {
+    try {
+      caseRole = await detectCaseRole({
+        caseId: input.caseId,
+        orgId: input.orgId,
+        practiceArea: input.practiceArea,
+        documents: input.documents,
+        timeline: input.timeline,
+      });
+    } catch (error) {
+      console.warn("[weak-spots] Failed to detect case role, defaulting to claimant:", error);
+      caseRole = "claimant"; // Default to claimant
+    }
+  }
+  
+  const isClaimant = caseRole === "claimant";
 
   // 1. Check for contradictions (if bundle exists)
   if (input.bundleId) {
@@ -104,6 +128,7 @@ export async function detectOpponentWeakSpots(
                 description: c.description,
                 confidence: c.confidence,
               })),
+              caseRole: input.caseRole || caseRole,
             }
           );
           
@@ -129,41 +154,84 @@ export async function detectOpponentWeakSpots(
   );
 
   for (const missing of criticalMissing.slice(0, 3)) {
+    // Check if this is an admin gap (for claimant cases)
+    const isAdminGap = isClaimant && (
+      missing.label.toLowerCase().includes("client id") ||
+      missing.label.toLowerCase().includes("retainer") ||
+      missing.label.toLowerCase().includes("cfa") ||
+      missing.label.toLowerCase().includes("identification") ||
+      missing.label.toLowerCase().includes("client identification")
+    );
+    
     // Enhanced analysis based on evidence type
     let detailedImpact = "";
     let tacticalAdvice = "";
     let legalBasis = "";
     
-    if (missing.label.toLowerCase().includes("medical") || missing.label.toLowerCase().includes("gp") || missing.label.toLowerCase().includes("hospital")) {
-      detailedImpact = "Medical records are essential for establishing causation and quantum. Without them, the opponent cannot prove: (1) the extent of injury, (2) the causal link between breach and injury, (3) the duration and severity of symptoms, or (4) the financial impact (loss of earnings, care costs). This creates a fundamental weakness in their case that can be exploited at trial.";
-      tacticalAdvice = "Request disclosure under CPR 31.10 within 14 days. If not provided, apply for an order under CPR 31.12 compelling disclosure. At trial, argue that the absence of medical evidence means the opponent cannot discharge their burden of proof on causation and quantum. Consider making a Part 36 offer based on the weakness of their evidence.";
-      legalBasis = "CPR 31.10 (standard disclosure), CPR 31.12 (specific disclosure), Burden of proof on causation (Bonnington Castings v Wardlaw [1956])";
+    if (isAdminGap) {
+      // For claimant cases, admin gaps are procedural compliance only
+      detailedImpact = `${missing.label} is missing. This is an administrative/procedural compliance issue and does not affect the substantive strength of your case on liability or quantum.`;
+      tacticalAdvice = "Request or prepare the missing administrative documentation. This is for procedural compliance only and does not impact substantive case strength.";
+      legalBasis = "Procedural compliance";
+    } else if (missing.label.toLowerCase().includes("medical") || missing.label.toLowerCase().includes("gp") || missing.label.toLowerCase().includes("hospital")) {
+      if (isClaimant) {
+        detailedImpact = "Medical records are essential for establishing causation and quantum. Ensure you have comprehensive medical evidence to support your claim. Without complete medical records, it may be difficult to fully establish: (1) the extent of injury, (2) the causal link between breach and injury, (3) the duration and severity of symptoms, or (4) the financial impact (loss of earnings, care costs).";
+        tacticalAdvice = "Request medical records under CPR 31.10 within 14 days. If not provided, apply for an order under CPR 31.12 compelling disclosure. Use complete medical evidence to strengthen your quantum claim and causation position.";
+        legalBasis = "CPR 31.10 (standard disclosure), CPR 31.12 (specific disclosure)";
+      } else {
+        detailedImpact = "Medical records are essential for establishing causation and quantum. Without them, the opponent cannot prove: (1) the extent of injury, (2) the causal link between breach and injury, (3) the duration and severity of symptoms, or (4) the financial impact (loss of earnings, care costs). This creates a fundamental weakness in their case that can be exploited at trial.";
+        tacticalAdvice = "Request disclosure under CPR 31.10 within 14 days. If not provided, apply for an order under CPR 31.12 compelling disclosure. At trial, argue that the absence of medical evidence means the opponent cannot discharge their burden of proof on causation and quantum. Consider making a Part 36 offer based on the weakness of their evidence.";
+        legalBasis = "CPR 31.10 (standard disclosure), CPR 31.12 (specific disclosure), Burden of proof on causation (Bonnington Castings v Wardlaw [1956])";
+      }
     } else if (missing.label.toLowerCase().includes("accident") || missing.label.toLowerCase().includes("circumstances")) {
-      detailedImpact = "The Accident Circumstances Statement is critical for establishing liability. Without it, the opponent cannot prove: (1) how the accident occurred, (2) what caused it, (3) who was at fault, or (4) whether they took reasonable steps to prevent it. This is particularly damaging in PI cases where the mechanism of injury must be established.";
-      tacticalAdvice = "Request disclosure under CPR 31.10. If not provided, apply for specific disclosure under CPR 31.12. At trial, challenge their ability to prove liability without this evidence. Consider arguing that the absence of a proper statement suggests they have no credible account of what happened.";
-      legalBasis = "CPR 31.10, CPR 31.12, Burden of proof on liability";
+      if (isClaimant) {
+        detailedImpact = "The Accident Circumstances Statement helps establish liability. Ensure you have comprehensive documentation of how the incident occurred to support your liability position.";
+        tacticalAdvice = "Prepare and serve a detailed Accident Circumstances Statement. This will strengthen your liability position and support your claim.";
+        legalBasis = "Statement preparation";
+      } else {
+        detailedImpact = "The Accident Circumstances Statement is critical for establishing liability. Without it, the opponent cannot prove: (1) how the accident occurred, (2) what caused it, (3) who was at fault, or (4) whether they took reasonable steps to prevent it. This is particularly damaging in PI cases where the mechanism of injury must be established.";
+        tacticalAdvice = "Request disclosure under CPR 31.10. If not provided, apply for specific disclosure under CPR 31.12. At trial, challenge their ability to prove liability without this evidence. Consider arguing that the absence of a proper statement suggests they have no credible account of what happened.";
+        legalBasis = "CPR 31.10, CPR 31.12, Burden of proof on liability";
+      }
     } else if (missing.label.toLowerCase().includes("expert") || missing.label.toLowerCase().includes("report")) {
-      detailedImpact = "Expert evidence is required to prove technical aspects of the case (liability, causation, quantum). Without it, the opponent cannot establish: (1) breach of duty, (2) causation, or (3) the extent of loss. This is a fundamental weakness that can be exploited.";
-      tacticalAdvice = "Request disclosure of expert reports under CPR 35.10. If not provided, apply for an order under CPR 35.8. At trial, argue that without expert evidence, the opponent cannot discharge their burden of proof. Consider challenging their case on the basis that they have no expert support for their position.";
-      legalBasis = "CPR 35.10 (expert disclosure), CPR 35.8 (expert evidence), Burden of proof";
+      if (isClaimant) {
+        detailedImpact = "Expert evidence strengthens your position on breach, causation, and quantum. Ensure you have expert reports supporting your case.";
+        tacticalAdvice = "Obtain expert reports under CPR 35 to support breach, causation, and quantum. Expert evidence strengthens your liability and quantum positions.";
+        legalBasis = "CPR 35 (expert evidence)";
+      } else {
+        detailedImpact = "Expert evidence is required to prove technical aspects of the case (liability, causation, quantum). Without it, the opponent cannot establish: (1) breach of duty, (2) causation, or (3) the extent of loss. This is a fundamental weakness that can be exploited.";
+        tacticalAdvice = "Request disclosure of expert reports under CPR 35.10. If not provided, apply for an order under CPR 35.8. At trial, argue that without expert evidence, the opponent cannot discharge their burden of proof. Consider challenging their case on the basis that they have no expert support for their position.";
+        legalBasis = "CPR 35.10 (expert disclosure), CPR 35.8 (expert evidence), Burden of proof";
+      }
     } else {
-      detailedImpact = `Without ${missing.label}, the opponent cannot establish key elements of their case. This creates a significant weakness that can be exploited strategically.`;
-      tacticalAdvice = `Request disclosure under CPR 31.10. If not provided, apply for specific disclosure under CPR 31.12. Highlight the absence of this evidence in your response and consider using it to challenge their case at trial.`;
-      legalBasis = "CPR 31.10, CPR 31.12";
+      if (isClaimant) {
+        detailedImpact = `Without ${missing.label}, it may be more difficult to establish certain elements of your case. Ensure you have comprehensive evidence to support your claim.`;
+        tacticalAdvice = `Request or prepare ${missing.label} to strengthen your case. This will help establish your position on liability and/or quantum.`;
+        legalBasis = "Evidence gathering";
+      } else {
+        detailedImpact = `Without ${missing.label}, the opponent cannot establish key elements of their case. This creates a significant weakness that can be exploited strategically.`;
+        tacticalAdvice = `Request disclosure under CPR 31.10. If not provided, apply for specific disclosure under CPR 31.12. Highlight the absence of this evidence in your response and consider using it to challenge their case at trial.`;
+        legalBasis = "CPR 31.10, CPR 31.12";
+      }
     }
     
     const evidence = [
       missing.reason,
-      `Category: ${missing.category}`,
+      isAdminGap ? `Category: Administrative/Procedural` : `Category: ${missing.category}`,
       `Legal basis: ${legalBasis}`,
     ];
+    
+    // For claimant cases, admin gaps must not be HIGH severity
+    const severity = isAdminGap ? "MEDIUM" : "HIGH";
     
     const weakSpot: OpponentWeakSpot = {
       id: `weakspot-missing-evidence-${missing.id}`,
       caseId: input.caseId,
       type: "MISSING_EVIDENCE",
-      severity: "HIGH",
-      description: `Critical evidence missing: ${missing.label}`,
+      severity,
+      description: isAdminGap 
+        ? `Administrative/Procedural: ${missing.label}`
+        : `Critical evidence missing: ${missing.label}`,
       evidence,
       impact: detailedImpact,
       suggestedAction: tacticalAdvice,
@@ -190,6 +258,7 @@ export async function detectOpponentWeakSpots(
           type: m.label,
           priority: m.priority,
         })),
+        caseRole: input.caseRole || caseRole,
       }
     );
     

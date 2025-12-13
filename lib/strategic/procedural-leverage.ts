@@ -218,6 +218,7 @@ export async function detectProceduralLeveragePoints(
           l.template_id?.toLowerCase().includes("pre_action") ||
           l.template_id?.toLowerCase().includes("protocol")
         ),
+        caseRole: input.caseRole || caseRole,
       }
     );
     
@@ -272,6 +273,7 @@ export async function detectProceduralLeveragePoints(
             hasExpertReports: false,
             hasDisclosure: false,
             hasPreActionLetter: false,
+            caseRole: input.caseRole || caseRole,
           }
         );
         

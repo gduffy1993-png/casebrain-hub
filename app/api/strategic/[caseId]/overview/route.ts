@@ -9,6 +9,9 @@ import { requireAuthContext } from "@/lib/auth";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { calculateCaseMomentum } from "@/lib/strategic/momentum-engine";
 import { generateStrategyPaths } from "@/lib/strategic/strategy-paths";
+import { detectOpponentWeakSpots } from "@/lib/strategic/weak-spots";
+import { detectProceduralLeveragePoints } from "@/lib/strategic/procedural-leverage";
+import { sanitizeStrategyPath, sanitizeWeakSpot, sanitizeLeveragePoint } from "@/lib/strategic/language-sanitizer";
 import { withPaywall } from "@/lib/paywall/protect-route";
 
 type RouteParams = {
@@ -116,7 +119,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     });
 
     // Generate strategy paths (with case role)
-    const strategies = await generateStrategyPaths({
+    let strategies = await generateStrategyPaths({
       caseId,
       orgId,
       practiceArea: caseRecord.practice_area as any,
@@ -131,7 +134,50 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       caseRole, // Pass detected role
     });
 
-      return NextResponse.json({ momentum, strategies });
+    // Get weak spots and leverage points for sanitization
+    const weakSpots = await detectOpponentWeakSpots({
+      caseId,
+      orgId,
+      practiceArea: caseRecord.practice_area as any,
+      documents: documents ?? [],
+      timeline: timeline ?? [],
+      bundleId: bundle?.id,
+      caseRole,
+    });
+
+    const leveragePoints = await detectProceduralLeveragePoints({
+      caseId,
+      orgId,
+      practiceArea: caseRecord.practice_area as any,
+      documents: documents ?? [],
+      letters: letters ?? [],
+      deadlines: deadlines ?? [],
+      timeline: timeline ?? [],
+      caseRole,
+    });
+
+    // ============================================
+    // SANITIZE ALL OUTPUT FOR CLAIMANT CASES
+    // ============================================
+    if (caseRole === "claimant") {
+      // Sanitize strategy paths
+      strategies = strategies.map(path => sanitizeStrategyPath(path, caseRole));
+      
+      // Note: weakSpots and leveragePoints are already role-aware from their generators
+      // but we sanitize them here as a final safety layer
+      const sanitizedWeakSpots = weakSpots.map(spot => sanitizeWeakSpot(spot, caseRole));
+      const sanitizedLeveragePoints = leveragePoints.map(point => sanitizeLeveragePoint(point, caseRole));
+      
+      // Return sanitized output
+      return NextResponse.json({ 
+        momentum, 
+        strategies,
+        weakSpots: sanitizedWeakSpots,
+        leveragePoints: sanitizedLeveragePoints,
+      });
+    }
+
+    return NextResponse.json({ momentum, strategies });
     } catch (error) {
       console.error("Failed to generate strategic overview:", error);
       return NextResponse.json(

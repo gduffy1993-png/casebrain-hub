@@ -6,8 +6,10 @@
 
 import type { PracticeArea } from "../types/casebrain";
 import type { StrategicInsightMeta } from "./types";
+import type { CaseRole } from "./role-detection";
 
 type MetaGeneratorInput = {
+  caseRole?: CaseRole; // Optional: if not provided, defaults to defendant logic
   practiceArea: PracticeArea;
   documents: Array<{ id: string; name: string; created_at: string }>;
   timeline: Array<{ event_date: string; description: string }>;
@@ -195,30 +197,54 @@ export function generateWeakSpotMeta(
     
     bestStageToUse = "At trial / cross-examination";
     
-    howThisHelpsYouWin = isPI
-      ? "Gives you powerful cross-examination material. Contradictions in medical evidence or witness statements can undermine causation or quantum arguments. This can lead to reduced damages or liability findings."
-      : "Gives you powerful cross-examination material. Contradictions undermine the opponent's credibility and can weaken their entire case. This can lead to favorable judgments or settlement on better terms.";
+    if (input.caseRole === "claimant") {
+      howThisHelpsYouWin = "Gives you powerful cross-examination material. Contradictions in the opponent's evidence undermine their credibility and strengthen your position. This can be used to press for early admission or favorable judgment at trial.";
+    } else {
+      howThisHelpsYouWin = isPI
+        ? "Gives you powerful cross-examination material. Contradictions in medical evidence or witness statements can undermine causation or quantum arguments. This can lead to reduced damages or liability findings."
+        : "Gives you powerful cross-examination material. Contradictions undermine the opponent's credibility and can weaken their entire case. This can lead to favorable judgments or settlement on better terms.";
+    }
   } else if (weakSpotType === "MISSING_EVIDENCE") {
     const missing = input.missingEvidence || [];
     triggeredBy.push(...missing.map(m => `Missing: ${m.type}`));
     
-    whyRecommended = `The opponent's case is missing critical evidence. Without this evidence, they cannot properly discharge their burden of proof, giving you a strong position to challenge liability or quantum.`;
-    
-    alternatives = [
-      {
-        label: "Complete evidence route",
-        description: "If the opponent provides all missing evidence, the case shifts to analyzing the substantive strength of their complete case.",
-        unlockedBy: missing.map(m => `Upload ${m.type}`)
-      }
-    ];
-    
-    riskIfIgnored = "You lose the opportunity to challenge their case on the basis of missing evidence. The court may not be aware of these gaps, and you miss a chance to argue they cannot prove their case.";
-    
-    bestStageToUse = isPI ? "Pre-trial review" : "CCMC / case management";
-    
-    howThisHelpsYouWin = isPI
-      ? "Gives you grounds to challenge liability or quantum. Without medical records, accident statements, or expert reports, they cannot prove causation or damages. This can lead to reduced awards or liability findings."
-      : "Gives you grounds to challenge their case as having no credible foundation. Without key evidence, they cannot discharge their burden of proof. This can lead to strike-out applications or favorable judgments.";
+    if (input.caseRole === "claimant") {
+      whyRecommended = `Missing evidence items have been identified. Some may be administrative/procedural (client ID, retainer, CFA) which do not affect substantive case strength. Others may be substantive evidence that should be obtained to strengthen your case.`;
+      
+      alternatives = [
+        {
+          label: "Complete evidence route",
+          description: "If all substantive evidence is obtained, your case will have maximum strength for settlement or trial.",
+          unlockedBy: missing.map(m => `Obtain ${m.type}`)
+        }
+      ];
+      
+      riskIfIgnored = "You may miss opportunities to strengthen your case with additional evidence. However, administrative gaps do not impact substantive case strength.";
+      
+      bestStageToUse = isPI ? "Pre-action / Pre-trial review" : "CCMC / case management";
+      
+      howThisHelpsYouWin = isPI
+        ? "Ensuring you have comprehensive medical records, expert reports, and witness statements strengthens your position on breach, causation, and quantum. This supports early admission pressure or favorable judgment at trial."
+        : "Having comprehensive evidence strengthens your case position. Use strong evidence to press for early admission or favorable judgment.";
+    } else {
+      whyRecommended = `The opponent's case is missing critical evidence. Without this evidence, they cannot properly discharge their burden of proof, giving you a strong position to challenge liability or quantum.`;
+      
+      alternatives = [
+        {
+          label: "Complete evidence route",
+          description: "If the opponent provides all missing evidence, the case shifts to analyzing the substantive strength of their complete case.",
+          unlockedBy: missing.map(m => `Upload ${m.type}`)
+        }
+      ];
+      
+      riskIfIgnored = "You lose the opportunity to challenge their case on the basis of missing evidence. The court may not be aware of these gaps, and you miss a chance to argue they cannot prove their case.";
+      
+      bestStageToUse = isPI ? "Pre-trial review" : "CCMC / case management";
+      
+      howThisHelpsYouWin = isPI
+        ? "Gives you grounds to challenge liability or quantum. Without medical records, accident statements, or expert reports, they cannot prove causation or damages. This can lead to reduced awards or liability findings."
+        : "Gives you grounds to challenge their case as having no credible foundation. Without key evidence, they cannot discharge their burden of proof. This can lead to strike-out applications or favorable judgments.";
+    }
   } else if (weakSpotType === "POOR_EXPERT") {
     triggeredBy.push("Expert report analysis");
     triggeredBy.push("Expert qualifications review");
@@ -291,35 +317,66 @@ export function generateStrategyPathMeta(
   let howThisHelpsYouWin = "";
 
   if (route === "A") {
-    // Procedural attack route
-    triggeredBy.push("Opponent delays detected");
-    triggeredBy.push("Non-compliance identified");
-    if (input.vulnerabilities) {
-      triggeredBy.push(...input.vulnerabilities.map(v => v.description));
-    }
-    
-    whyRecommended = `This route is recommended because your case shows clear procedural failures by the opponent (delays, missing disclosure, non-compliance). These failures give you strong grounds for procedural applications and create significant leverage.`;
-    
-    alternatives = [
-      {
-        label: "Settlement-focused route",
-        description: "If the opponent becomes responsive and compliant, focus shifts to substantive settlement negotiations.",
-        unlockedBy: ["Opponent compliance", "Responsive communication"]
-      },
-      {
-        label: "Substantive challenge route",
-        description: "If procedural issues are resolved, the case may focus on challenging substantive legal or factual arguments.",
-        unlockedBy: ["Procedural compliance", "Complete disclosure"]
+    // Route A - role-specific logic
+    if (input.caseRole === "claimant") {
+      // Claimant Route A: Early liability admission using guideline breaches
+      triggeredBy.push("Substantive merits detected");
+      triggeredBy.push("Guideline breaches identified");
+      if (input.vulnerabilities) {
+        triggeredBy.push(...input.vulnerabilities.map(v => v.description));
       }
-    ];
-    
-    riskIfIgnored = "You lose the opportunity to exploit procedural failures. The opponent may continue their non-compliance, and you miss chances to seek costs, unless orders, or strike-out applications.";
-    
-    bestStageToUse = isCriminal ? "At next hearing" : "CCMC / case management";
-    
-    howThisHelpsYouWin = isCriminal
-      ? "Gives you grounds to request costs and demonstrate non-compliance. This can affect the court's view of the opponent and create pressure for favorable outcomes."
-      : "Gives you grounds to apply for costs, unless orders, or strike-out. This procedural advantage can force settlement or result in favorable court orders that significantly strengthen your position.";
+      
+      whyRecommended = `This route is recommended because your case shows strong substantive merits (guideline breaches, expert causation evidence, delay-caused harm). These substantive strengths give you a compelling position to press for early liability admission and move to quantum resolution.`;
+      
+      alternatives = [
+        {
+          label: "Settlement-focused route",
+          description: "If liability admission is received, focus shifts to quantum negotiations.",
+          unlockedBy: ["Liability admission", "Quantum negotiations"]
+        },
+        {
+          label: "Liability trial route",
+          description: "If admission is resisted, proceed to liability trial with strong evidential foundation.",
+          unlockedBy: ["Liability denied", "Trial confirmed"]
+        }
+      ];
+      
+      riskIfIgnored = "You may miss the opportunity to leverage strong substantive merits for early admission. Proceeding to trial without pressing for admission first may increase costs and delay.";
+      
+      bestStageToUse = "Pre-action protocol / Early litigation";
+      
+      howThisHelpsYouWin = "Gives you strong grounds to press for early liability admission using guideline breaches and expert evidence. If admission resisted, you have a compelling case for liability trial. This can lead to faster resolution and lower costs if admission received, or strong position at trial if resisted.";
+    } else {
+      // Defendant Route A: Procedural attack route
+      triggeredBy.push("Opponent delays detected");
+      triggeredBy.push("Non-compliance identified");
+      if (input.vulnerabilities) {
+        triggeredBy.push(...input.vulnerabilities.map(v => v.description));
+      }
+      
+      whyRecommended = `This route is recommended because your case shows clear procedural failures by the opponent (delays, missing disclosure, non-compliance). These failures give you strong grounds for procedural applications and create significant leverage.`;
+      
+      alternatives = [
+        {
+          label: "Settlement-focused route",
+          description: "If the opponent becomes responsive and compliant, focus shifts to substantive settlement negotiations.",
+          unlockedBy: ["Opponent compliance", "Responsive communication"]
+        },
+        {
+          label: "Substantive challenge route",
+          description: "If procedural issues are resolved, the case may focus on challenging substantive legal or factual arguments.",
+          unlockedBy: ["Procedural compliance", "Complete disclosure"]
+        }
+      ];
+      
+      riskIfIgnored = "You lose the opportunity to exploit procedural failures. The opponent may continue their non-compliance, and you miss chances to seek costs, unless orders, or strike-out applications.";
+      
+      bestStageToUse = isCriminal ? "At next hearing" : "CCMC / case management";
+      
+      howThisHelpsYouWin = isCriminal
+        ? "Gives you grounds to request costs and demonstrate non-compliance. This can affect the court's view of the opponent and create pressure for favorable outcomes."
+        : "Gives you grounds to apply for costs, unless orders, or strike-out. This procedural advantage can force settlement or result in favorable court orders that significantly strengthen your position.";
+    }
   } else if (route === "B" && isHousing) {
     // Awaab's Law route
     triggeredBy.push("Awaab's Law compliance check");
