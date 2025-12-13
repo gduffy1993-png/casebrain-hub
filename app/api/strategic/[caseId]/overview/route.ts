@@ -11,12 +11,17 @@ import { calculateCaseMomentum } from "@/lib/strategic/momentum-engine";
 import { generateStrategyPaths } from "@/lib/strategic/strategy-paths";
 import { detectOpponentWeakSpots } from "@/lib/strategic/weak-spots";
 import { detectProceduralLeveragePoints } from "@/lib/strategic/procedural-leverage";
-import { sanitizeStrategyPath, sanitizeWeakSpot, sanitizeLeveragePoint } from "@/lib/strategic/language-sanitizer";
+import { sanitizeStrategicResponse } from "@/lib/strategic/language-sanitizer";
 import { withPaywall } from "@/lib/paywall/protect-route";
+import { detectSubstantiveMerits } from "@/lib/strategic/substantive-merits";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
 };
+
+// Force dynamic rendering and disable caching
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export async function GET(request: NextRequest, { params }: RouteParams) {
   return await withPaywall("analysis", async () => {
@@ -134,7 +139,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       caseRole, // Pass detected role
     });
 
-    // Get weak spots and leverage points for sanitization
+    // Get weak spots and leverage points
     const weakSpots = await detectOpponentWeakSpots({
       caseId,
       orgId,
@@ -156,28 +161,52 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       caseRole,
     });
 
-    // ============================================
-    // SANITIZE ALL OUTPUT FOR CLAIMANT CASES
-    // ============================================
-    if (caseRole === "claimant") {
-      // Sanitize strategy paths
-      strategies = strategies.map(path => sanitizeStrategyPath(path, caseRole));
-      
-      // Note: weakSpots and leveragePoints are already role-aware from their generators
-      // but we sanitize them here as a final safety layer
-      const sanitizedWeakSpots = weakSpots.map(spot => sanitizeWeakSpot(spot, caseRole));
-      const sanitizedLeveragePoints = leveragePoints.map(point => sanitizeLeveragePoint(point, caseRole));
-      
-      // Return sanitized output
-      return NextResponse.json({ 
-        momentum, 
-        strategies,
-        weakSpots: sanitizedWeakSpots,
-        leveragePoints: sanitizedLeveragePoints,
-      });
+    // Get substantive merits score for debug
+    let substantiveMeritsScore = 0;
+    try {
+      if (caseRole === "claimant" && (caseRecord.practice_area === "clinical_negligence" || caseRecord.practice_area === "personal_injury")) {
+        const merits = await detectSubstantiveMerits({
+          caseId,
+          orgId,
+          documents: documents ?? [],
+          timeline: timeline ?? [],
+        });
+        substantiveMeritsScore = merits.totalScore;
+      }
+    } catch (error) {
+      console.warn("[strategic-overview] Failed to get substantive merits score:", error);
     }
 
-    return NextResponse.json({ momentum, strategies });
+    // Build response object
+    const response: any = {
+      momentum,
+      strategies,
+      weakSpots,
+      leveragePoints,
+    };
+
+    // Add debug info (server-side only, or in non-production)
+    if (process.env.NODE_ENV !== "production" || process.env.ENABLE_STRATEGIC_DEBUG === "true") {
+      response.debug = {
+        caseRole,
+        substantiveMeritsScore,
+        practiceArea: caseRecord.practice_area,
+      };
+    }
+
+    // ============================================
+    // RECURSIVELY SANITIZE ENTIRE RESPONSE FOR CLAIMANT CASES
+    // ============================================
+    const sanitizedResponse = sanitizeStrategicResponse(response, caseRole);
+
+    // Return with cache control headers to prevent caching
+    return NextResponse.json(sanitizedResponse, {
+      headers: {
+        "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+        "Pragma": "no-cache",
+        "Expires": "0",
+      },
+    });
     } catch (error) {
       console.error("Failed to generate strategic overview:", error);
       return NextResponse.json(
