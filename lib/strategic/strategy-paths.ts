@@ -10,6 +10,8 @@
 import { detectOpponentVulnerabilities } from "./opponent-vulnerabilities";
 import { analyzeTimePressure } from "./time-pressure";
 import { detectOpponentWeakSpots } from "./weak-spots";
+import { detectCaseRole, type CaseRole } from "./role-detection";
+import { detectSubstantiveMerits } from "./substantive-merits";
 import type { PracticeArea } from "../types/casebrain";
 import type { StrategicInsightMeta } from "./types";
 import { generateStrategyPathMeta } from "./meta-generator";
@@ -43,16 +45,41 @@ type StrategyPathInput = {
   hasChronology: boolean;
   hasHazardAssessment: boolean;
   nextHearingDate?: string;
+  caseRole?: CaseRole; // Optional: if not provided, will be detected
 };
 
 /**
  * Generate multiple strategy paths for a case
+ * 
+ * Routes are role-aware:
+ * - Claimant cases: Focus on liability admission, quantum resolution, PAP pressure
+ * - Defendant cases: Focus on procedural leverage, strike-out, Part 36 offers
  */
 export async function generateStrategyPaths(
   input: StrategyPathInput,
 ): Promise<StrategyPath[]> {
   const paths: StrategyPath[] = [];
   const now = new Date().toISOString();
+  
+  // Detect case role if not provided
+  let caseRole = input.caseRole;
+  if (!caseRole) {
+    try {
+      caseRole = await detectCaseRole({
+        caseId: input.caseId,
+        orgId: input.orgId,
+        practiceArea: input.practiceArea,
+        documents: input.documents,
+        timeline: input.timeline,
+      });
+    } catch (error) {
+      console.warn("[strategy-paths] Failed to detect case role, defaulting to claimant:", error);
+      caseRole = "claimant"; // Default to claimant
+    }
+  }
+  
+  const isClaimant = caseRole === "claimant";
+  const isClinicalNeg = input.practiceArea === "clinical_negligence";
 
   // Get strategic intelligence
   const vulnerabilities = await detectOpponentVulnerabilities({
@@ -87,14 +114,240 @@ export async function generateStrategyPaths(
     bundleId: input.bundleId,
   });
 
-  // Route A: Procedural attack via opponent delays/non-compliance
-  const hasProceduralVulnerabilities = vulnerabilities.some(v => 
-    v.type === "LATE_RESPONSE" || 
-    v.type === "INCOMPLETE_DISCLOSURE" ||
-    v.type === "MISSING_PRE_ACTION"
-  );
+  // ============================================
+  // CLAIMANT-SPECIFIC ROUTES (Clinical Negligence)
+  // ============================================
+  if (isClaimant && isClinicalNeg) {
+    // Route A: Early liability admission → quantum resolution
+    let merits: Awaited<ReturnType<typeof detectSubstantiveMerits>> | null = null;
+    try {
+      merits = await detectSubstantiveMerits({
+        caseId: input.caseId,
+        orgId: input.orgId,
+        documents: input.documents,
+        timeline: input.timeline,
+      });
+    } catch (error) {
+      console.warn("[strategy-paths] Failed to detect substantive merits:", error);
+    }
+    
+    if (merits && (merits.guidelineBreaches.detected || merits.expertConfirmation.detected || merits.delayCausation.detected)) {
+      const path: StrategyPath = {
+        id: `strategy-route-a-${input.caseId}`,
+        caseId: input.caseId,
+        route: "A",
+        title: "Route A: Early liability admission pressure using guideline breaches and expert evidence",
+        description: "High-merit liability case with strong breach/causation evidence (guideline breaches, expert confirmation, delay-caused harm). Use this leverage to seek early liability admission and move to quantum resolution.",
+        approach: "1. Serve Letter of Claim highlighting guideline breaches and expert confirmation of avoidability. 2. Request admission of liability within 21 days under PAP. 3. If admission received, proceed to quantum negotiation. 4. If liability denied, proceed to trial on liability with strong evidential position. 5. Use guideline breaches and expert evidence as primary leverage in negotiations and at trial.",
+        pros: [
+          "Strong evidential position on breach and causation",
+          "Guideline breaches create strong liability foundation",
+          "Expert confirmation strengthens case",
+          "Early admission reduces costs and time",
+          "High success probability given substantive merits",
+        ],
+        cons: [
+          "Defendant may resist despite strong evidence",
+          "Requires expert evidence (costs)",
+          "May require full liability trial if admission not received",
+        ],
+        estimatedTimeframe: "3-6 months (if admission) or 12-18 months (if trial)",
+        estimatedCost: "Medium-High (expert reports, potentially trial)",
+        successProbability: merits.totalScore >= 80 ? "HIGH" : "MEDIUM",
+        recommendedFor: "Cases with confirmed guideline breaches, expert causation evidence, or delay-caused harm. Most effective when multiple substantive merits are present.",
+        createdAt: now,
+      };
+      
+      path.meta = generateStrategyPathMeta(
+        "A",
+        path.title,
+        path.description,
+        {
+          practiceArea: input.practiceArea,
+          documents: input.documents,
+          timeline: input.timeline,
+          letters: input.letters,
+          deadlines: input.deadlines,
+          hasChronology: input.hasChronology,
+          hasMedicalEvidence: true,
+          hasExpertReports: true,
+          hasDisclosure: false,
+          hasPreActionLetter: input.letters.some(l => 
+            l.template_id?.toLowerCase().includes("pre_action") ||
+            l.template_id?.toLowerCase().includes("protocol")
+          ),
+        }
+      );
+      
+      paths.push(path);
+    }
+    
+    // Route B: PAP pressure strategy (claimant-specific)
+    const hasPAPLetter = input.letters.some(l => 
+      l.template_id?.toLowerCase().includes("pre_action") ||
+      l.template_id?.toLowerCase().includes("protocol")
+    );
+    
+    if (!hasPAPLetter && merits && merits.totalScore > 0) {
+      const path: StrategyPath = {
+        id: `strategy-route-b-${input.caseId}`,
+        caseId: input.caseId,
+        route: "B",
+        title: "Route B: Pre-Action Protocol pressure strategy",
+        description: "Use PAP to apply maximum pressure on defendant before proceedings. Serve strong Letter of Claim highlighting substantive merits and request admission within 21 days.",
+        approach: "1. Serve detailed Letter of Claim under PAP highlighting guideline breaches, expert evidence, and delay-caused harm. 2. Request full admission of liability within 21 days. 3. Threaten proceedings if admission not received. 4. Use PAP breach as leverage for costs if proceedings issued. 5. Negotiate quantum if admission received.",
+        pros: [
+          "PAP creates time pressure on defendant",
+          "Strong substantive merits in Letter of Claim create pressure",
+          "May achieve admission without proceedings",
+          "Lower costs if resolved at PAP stage",
+        ],
+        cons: [
+          "Defendant may deny and force proceedings",
+          "Requires strong Letter of Claim preparation",
+        ],
+        estimatedTimeframe: "1-2 months (if admission) or proceed to proceedings",
+        estimatedCost: "Low-Medium (Letter of Claim only if admission received)",
+        successProbability: merits.totalScore >= 60 ? "HIGH" : "MEDIUM",
+        recommendedFor: "Cases with strong substantive merits that have not yet served PAP Letter of Claim. Effective when guideline breaches or expert evidence is clear.",
+        createdAt: now,
+      };
+      
+      path.meta = generateStrategyPathMeta(
+        "B",
+        path.title,
+        path.description,
+        {
+          practiceArea: input.practiceArea,
+          documents: input.documents,
+          timeline: input.timeline,
+          letters: input.letters,
+          deadlines: input.deadlines,
+          hasChronology: input.hasChronology,
+          hasMedicalEvidence: true,
+          hasExpertReports: true,
+          hasDisclosure: false,
+          hasPreActionLetter: false,
+        }
+      );
+      
+      paths.push(path);
+    }
+    
+    // Route C: Litigation to liability judgment (claimant-specific)
+    if (merits && merits.totalScore >= 50) {
+      const path: StrategyPath = {
+        id: `strategy-route-c-${input.caseId}`,
+        caseId: input.caseId,
+        route: "C",
+        title: "Route C: Litigation to liability judgment using substantive merits",
+        description: "High-merit case suitable for liability trial if admission resisted. Use guideline breaches, expert evidence, and delay-caused harm as primary trial arguments.",
+        approach: "1. Issue proceedings if admission not received. 2. Focus Particulars of Claim on guideline breaches and expert confirmation. 3. Use delay-caused harm to strengthen causation. 4. Prepare for liability trial with strong evidential foundation. 5. Seek costs if liability judgment obtained. 6. Proceed to quantum if liability established.",
+        pros: [
+          "Strong substantive merits support liability trial",
+          "Guideline breaches provide clear liability foundation",
+          "Expert evidence strengthens position",
+          "High probability of liability judgment",
+        ],
+        cons: [
+          "Full trial costs",
+          "Longer timeframe (12-18 months)",
+          "Requires comprehensive trial preparation",
+        ],
+        estimatedTimeframe: "12-18 months to liability judgment",
+        estimatedCost: "High (trial costs, expert evidence)",
+        successProbability: merits.totalScore >= 70 ? "HIGH" : "MEDIUM",
+        recommendedFor: "Cases with strong substantive merits where defendant resists admission. Most effective when guideline breaches and expert causation are clearly established.",
+        createdAt: now,
+      };
+      
+      path.meta = generateStrategyPathMeta(
+        "C",
+        path.title,
+        path.description,
+        {
+          practiceArea: input.practiceArea,
+          documents: input.documents,
+          timeline: input.timeline,
+          letters: input.letters,
+          deadlines: input.deadlines,
+          hasChronology: input.hasChronology,
+          hasMedicalEvidence: true,
+          hasExpertReports: true,
+          hasDisclosure: false,
+          hasPreActionLetter: input.letters.some(l => 
+            l.template_id?.toLowerCase().includes("pre_action") ||
+            l.template_id?.toLowerCase().includes("protocol")
+          ),
+        }
+      );
+      
+      paths.push(path);
+    }
+    
+    // Route D: Settlement leverage using guideline breaches (claimant-specific)
+    if (merits && merits.guidelineBreaches.detected && input.nextHearingDate) {
+      const path: StrategyPath = {
+        id: `strategy-route-d-${input.caseId}`,
+        caseId: input.caseId,
+        route: "D",
+        title: "Route D: Settlement leverage using guideline breaches and approaching hearing",
+        description: "Use guideline breaches and approaching hearing to create settlement pressure. Make Part 36 offer or settlement proposal highlighting substantive merits.",
+        approach: "1. Serve Part 36 offer or settlement proposal highlighting guideline breaches and expert evidence. 2. Emphasize approaching hearing and time pressure. 3. Negotiate from position of strength using substantive merits. 4. Use guideline breaches as primary settlement leverage. 5. Achieve favorable settlement before trial.",
+        pros: [
+          "Guideline breaches create strong settlement leverage",
+          "Faster resolution than trial",
+          "Lower costs",
+          "Defendant under pressure from approaching hearing",
+        ],
+        cons: [
+          "May require compromise on quantum",
+          "Depends on defendant's willingness to settle",
+        ],
+        estimatedTimeframe: "1-3 months to settlement",
+        estimatedCost: "Low-Medium (negotiation only)",
+        successProbability: merits.guidelineBreaches.score >= 30 ? "HIGH" : "MEDIUM",
+        recommendedFor: "Cases with clear guideline breaches and approaching hearing. Effective when substantive merits are strong but defendant may be open to settlement.",
+        createdAt: now,
+      };
+      
+      path.meta = generateStrategyPathMeta(
+        "D",
+        path.title,
+        path.description,
+        {
+          practiceArea: input.practiceArea,
+          documents: input.documents,
+          timeline: input.timeline,
+          letters: input.letters,
+          deadlines: input.deadlines,
+          hasChronology: input.hasChronology,
+          hasMedicalEvidence: true,
+          hasExpertReports: true,
+          hasDisclosure: false,
+          hasPreActionLetter: input.letters.some(l => 
+            l.template_id?.toLowerCase().includes("pre_action") ||
+            l.template_id?.toLowerCase().includes("protocol")
+          ),
+        }
+      );
+      
+      paths.push(path);
+    }
+  }
+  
+  // ============================================
+  // DEFENDANT-SPECIFIC ROUTES
+  // ============================================
+  if (!isClaimant) {
+    // Route A: Procedural attack via opponent delays/non-compliance (defendant-specific)
+    const hasProceduralVulnerabilities = vulnerabilities.some(v => 
+      v.type === "LATE_RESPONSE" || 
+      v.type === "INCOMPLETE_DISCLOSURE" ||
+      v.type === "MISSING_PRE_ACTION"
+    );
 
-  if (hasProceduralVulnerabilities) {
+    if (hasProceduralVulnerabilities) {
     const path: StrategyPath = {
       id: `strategy-route-a-${input.caseId}`,
       caseId: input.caseId,
@@ -148,8 +401,9 @@ export async function generateStrategyPaths(
     
     paths.push(path);
   }
+  } // Close if (!isClaimant) block
 
-  // Route B: Awaab's Law / Hazard breach leverage (housing only)
+  // Route B: Awaab's Law / Hazard breach leverage (housing only - applies to both claimant and defendant)
   if (input.practiceArea === "housing_disrepair") {
     const hasAwaabVulnerabilities = vulnerabilities.some(v => 
       v.type === "MISSING_RECORDS" ||
@@ -221,7 +475,7 @@ export async function generateStrategyPaths(
     }
   }
 
-  // Route C: Expert contradiction / cross-examination
+  // Route C: Expert contradiction / cross-examination (applies to both claimant and defendant)
   const hasExpertWeakSpots = weakSpots.some(w => 
     w.type === "POOR_EXPERT" ||
     w.description.toLowerCase().includes("expert")

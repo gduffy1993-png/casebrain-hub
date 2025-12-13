@@ -113,8 +113,8 @@ export async function paywallGuard(
 
     console.log("[paywall-guard] 🔍 Org loaded:", { orgId, plan: org.plan });
 
-    // Check if user can use this feature (pass userId for owner exemption)
-    const check = await ensureCanUseFeature({ orgId, feature, userId });
+    // Check if user can use this feature (pass userId and email for owner exemption)
+    const check = await ensureCanUseFeature({ orgId, feature, userId, email });
     
     console.log("[paywall-guard] 🔍 Feature check result:", { 
       allowed: check.allowed, 
@@ -146,10 +146,18 @@ export async function paywallGuard(
     };
   } catch (error) {
     console.error("[paywall] Guard error:", error);
+    console.error("[paywall] Guard error stack:", error instanceof Error ? error.stack : "No stack trace");
+    console.error("[paywall] Guard error details:", {
+      message: error instanceof Error ? error.message : String(error),
+      name: error instanceof Error ? error.name : typeof error,
+    });
     return {
       allowed: false,
       response: NextResponse.json(
-        { error: "Failed to check paywall limits" },
+        { 
+          error: "Failed to check paywall limits",
+          details: error instanceof Error ? error.message : String(error),
+        },
         { status: 500 }
       ),
     };

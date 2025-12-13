@@ -112,11 +112,11 @@ export async function ensureCanUseFeature(params: {
   const supabase = getSupabaseAdminClient();
 
   // ============================================
-  // BYPASS CHECK - MUST HAPPEN FIRST (BEFORE ANY DB CALLS)
+  // STEP 1: OWNER CHECK - ALWAYS ALLOW
   // ============================================
   const bypassed = await shouldBypassPaywall(userId, email);
   if (bypassed) {
-    console.log("[paywall] ✅ Bypass active - skipping usage check");
+    console.log("[paywall] ✅ Owner detected - always allow");
     return { allowed: true };
   }
   
@@ -155,41 +155,29 @@ export async function ensureCanUseFeature(params: {
     console.log("[paywall] ✅ Pro plan - unlimited access");
     return { allowed: true };
   }
-  
-  // Starter plan has higher limits but still needs checking
-  if (plan === "starter") {
-    // Check limits for starter (will be checked below)
-  }
 
-  // Free plan: check limits
+  // ============================================
+  // STEP 2: CHECK LIMIT (before incrementing)
+  // ============================================
   const limit = getFeatureLimit(plan, feature);
   let currentCount = 0;
 
   switch (feature) {
     case "upload":
-      currentCount = org.upload_count ?? 0;
+      currentCount = Number(org.upload_count) || 0;
       break;
     case "analysis":
-      currentCount = org.analysis_count ?? 0;
+      currentCount = Number(org.analysis_count) || 0;
       break;
     case "export":
-      currentCount = org.export_count ?? 0;
+      currentCount = Number(org.export_count) || 0;
       break;
   }
-
-  // Ensure currentCount is a valid number (handle NULL/undefined)
-  currentCount = Number(currentCount) || 0;
   
   console.log(`[paywall] Feature check: ${feature}, currentCount: ${currentCount}, limit: ${limit}, plan: ${plan}`);
 
-  // Check if limit is reached
-  // If limit is 15, user can upload 15 times:
-  // - After 0 uploads: count = 0 (< 15, allowed)
-  // - After 14 uploads: count = 14 (< 15, allowed) 
-  // - After 15 uploads: count = 15 (= 15, blocked - they've used all 15)
-  // So we block when currentCount >= limit
-  // BUT: We check BEFORE incrementing, so if currentCount is 14 and limit is 15, they can still upload
-  // The check is correct: block if currentCount >= limit
+  // Simple check: if currentCount >= limit, block
+  // Example: limit = 15, if count = 15, they've used all 15, block
   if (currentCount >= limit) {
     console.log(`[paywall] ❌ Blocked: currentCount (${currentCount}) >= limit (${limit})`);
     return {
@@ -200,6 +188,9 @@ export async function ensureCanUseFeature(params: {
     };
   }
   
+  // ============================================
+  // STEP 3: ALLOW (increment happens after this check passes)
+  // ============================================
   console.log(`[paywall] ✅ Allowed: currentCount (${currentCount}) < limit (${limit})`);
 
   return {

@@ -126,7 +126,8 @@ export async function getOrCreateOrganisationForUser(
     }
 
     // Create new personal org
-    const { data: newOrg, error: createError } = await supabase
+    // Try with count fields first, fallback if they don't exist
+    let result = await supabase
       .from("organisations")
       .insert({
         name: orgName,
@@ -138,10 +139,26 @@ export async function getOrCreateOrganisationForUser(
       })
       .select("*")
       .single();
-
-    if (createError || !newOrg) {
-      throw new Error(`Failed to create personal organisation: ${createError?.message}`);
+    
+    // If insert fails with count fields, try without (columns might not exist)
+    if (result.error && result.error.message?.includes("column") && result.error.message?.includes("does not exist")) {
+      console.warn("[organisations] Count columns don't exist, creating without them");
+      result = await supabase
+        .from("organisations")
+        .insert({
+          name: orgName,
+          email_domain: null,
+          plan: "FREE",
+        })
+        .select("*")
+        .single();
     }
+
+    if (result.error || !result.data) {
+      throw new Error(`Failed to create personal organisation: ${result.error?.message}`);
+    }
+
+    const newOrg = result.data;
 
     return newOrg as Organisation;
   }
@@ -159,7 +176,8 @@ export async function getOrCreateOrganisationForUser(
 
   // Create new business org
   const orgName = formatDomainAsOrgName(domain);
-  const { data: newOrg, error: createError } = await supabase
+  // Try with count fields first, fallback if they don't exist
+  let result = await supabase
     .from("organisations")
     .insert({
       name: orgName,
@@ -171,10 +189,26 @@ export async function getOrCreateOrganisationForUser(
     })
     .select("*")
     .single();
-
-  if (createError || !newOrg) {
-    throw new Error(`Failed to create organisation: ${createError?.message}`);
+  
+  // If insert fails with count fields, try without (columns might not exist)
+  if (result.error && result.error.message?.includes("column") && result.error.message?.includes("does not exist")) {
+    console.warn("[organisations] Count columns don't exist, creating without them");
+    result = await supabase
+      .from("organisations")
+      .insert({
+        name: orgName,
+        email_domain: domain,
+        plan: "FREE",
+      })
+      .select("*")
+      .single();
   }
+
+  if (result.error || !result.data) {
+    throw new Error(`Failed to create organisation: ${result.error?.message}`);
+  }
+
+  const newOrg = result.data;
 
   return newOrg as Organisation;
 }

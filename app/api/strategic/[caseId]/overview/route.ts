@@ -86,7 +86,23 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       d.name.toLowerCase().includes("assessment")
     ));
 
-    // Calculate momentum
+    // Detect case role once and reuse
+    const { detectCaseRole } = await import("@/lib/strategic/role-detection");
+    let caseRole: Awaited<ReturnType<typeof detectCaseRole>>;
+    try {
+      caseRole = await detectCaseRole({
+        caseId,
+        orgId,
+        practiceArea: caseRecord.practice_area as any,
+        documents: documents ?? [],
+        timeline: timeline ?? [],
+      });
+    } catch (error) {
+      console.warn("[strategic-overview] Failed to detect case role, defaulting to claimant:", error);
+      caseRole = "claimant"; // Default to claimant
+    }
+
+    // Calculate momentum (with case role)
     const momentum = await calculateCaseMomentum({
       caseId,
       orgId,
@@ -96,9 +112,10 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       bundleId: bundle?.id,
       letters: letters ?? [],
       deadlines: deadlines ?? [],
+      caseRole, // Pass detected role
     });
 
-    // Generate strategy paths
+    // Generate strategy paths (with case role)
     const strategies = await generateStrategyPaths({
       caseId,
       orgId,
@@ -111,6 +128,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       hasChronology,
       hasHazardAssessment,
       nextHearingDate: nextHearing?.due_date,
+      caseRole, // Pass detected role
     });
 
       return NextResponse.json({ momentum, strategies });
