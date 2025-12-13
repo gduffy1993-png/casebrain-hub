@@ -152,22 +152,45 @@ export async function detectSubstantiveMerits(
     console.warn("[substantive-merits] Failed to load key issues:", error);
   }
   
-  // 4. Get bundle analysis summaries if available
+  // 4. Get bundle analysis summaries if available (PRIORITY: these contain rich extracted content)
   try {
     const { data: bundles } = await supabase
       .from("bundles")
-      .select("phase_a_summary, full_summary")
+      .select("id, phase_a_summary, full_summary")
       .eq("case_id", input.caseId)
       .eq("org_id", input.orgId)
       .limit(5);
     
     if (bundles) {
       for (const bundle of bundles) {
+        // Bundle summaries contain extracted analysis
         if (bundle.phase_a_summary) {
           allText += " " + String(bundle.phase_a_summary).toLowerCase();
         }
         if (bundle.full_summary) {
           allText += " " + String(bundle.full_summary).toLowerCase();
+        }
+        
+        // Get bundle chunks which contain raw_text (OCR content)
+        try {
+          const { data: chunks } = await supabase
+            .from("bundle_chunks")
+            .select("raw_text, ai_summary")
+            .eq("bundle_id", bundle.id)
+            .limit(50); // Get all chunks for this bundle
+          
+          if (chunks) {
+            for (const chunk of chunks) {
+              if (chunk.raw_text && chunk.raw_text.length > 50) {
+                allText += " " + chunk.raw_text.toLowerCase();
+              }
+              if (chunk.ai_summary) {
+                allText += " " + String(chunk.ai_summary).toLowerCase();
+              }
+            }
+          }
+        } catch (chunkError) {
+          console.warn("[substantive-merits] Failed to load bundle chunks:", chunkError);
         }
       }
     }
@@ -175,11 +198,49 @@ export async function detectSubstantiveMerits(
     console.warn("[substantive-merits] Failed to load bundle summaries:", error);
   }
   
-  // 5. Add timeline descriptions from input (fallback)
+  // 5. Fallback: Get any document text stored in DB (pre-LLM extracted text)
+  // This is the raw OCR text that might not be in extracted_json yet
+  if (allText.length < 500) {
+    // If we don't have much text yet, try to get more from documents table
+    try {
+      const { data: docsWithText } = await supabase
+        .from("documents")
+        .select("raw_text, extracted_json")
+        .eq("case_id", input.caseId)
+        .eq("org_id", input.orgId)
+        .not("raw_text", "is", null)
+        .limit(30);
+      
+      if (docsWithText) {
+        for (const doc of docsWithText) {
+          if (doc.raw_text && doc.raw_text.length > 100) {
+            allText += " " + doc.raw_text.toLowerCase();
+          }
+          // Also try extracting any text from extracted_json if it's a string
+          if (doc.extracted_json && typeof doc.extracted_json === "string") {
+            try {
+              const parsed = JSON.parse(doc.extracted_json);
+              if (parsed && typeof parsed === "object") {
+                // Extract all string values from the object
+                allText += " " + JSON.stringify(parsed).toLowerCase();
+              }
+            } catch {
+              // If it's not JSON, treat as plain text
+              allText += " " + String(doc.extracted_json).toLowerCase();
+            }
+          }
+        }
+      }
+    } catch (error) {
+      console.warn("[substantive-merits] Failed to load additional document text:", error);
+    }
+  }
+  
+  // 6. Add timeline descriptions from input (fallback)
   const timelineDescriptions = input.timeline.map(t => t.description.toLowerCase()).join(" ");
   allText += " " + timelineDescriptions;
   
-  // 6. Add document names (lower priority but still useful)
+  // 7. Add document names (lower priority but still useful)
   const documentNames = input.documents.map(d => d.name.toLowerCase()).join(" ");
   allText += " " + documentNames;
   
@@ -441,7 +502,57 @@ export async function detectSubstantiveMerits(
     }
   }
   
-  const totalScore = guidelineBreachScore + delayScore + expertScore + seriousHarmScore + psychScore;
+  let totalScore = guidelineBreachScore + delayScore + expertScore + seriousHarmScore + psychScore;
+  
+  // ============================================
+  // EXPLICIT "CLIN-NEG MERITS PRESENT" HEURISTIC
+  // ============================================
+  // If 2+ of the following groups are present, set substantiveMeritsScore = max(current, 60)
+  
+  let groupsDetected = 0;
+  
+  // Group 1: Guideline breach group
+  const guidelineGroupDetected = 
+    textLower.includes("nice") ||
+    textLower.includes("ng51") ||
+    textLower.includes("guideline") ||
+    textLower.includes("breach of duty");
+  
+  // Group 2: Missed basics group
+  const missedBasicsGroupDetected = 
+    textLower.includes("no observations") ||
+    textLower.includes("observations not taken") ||
+    textLower.includes("no blood tests") ||
+    textLower.includes("no imaging");
+  
+  // Group 3: Serious harm group
+  const seriousHarmGroupDetected = 
+    textLower.includes("sepsis") ||
+    textLower.includes("icu") ||
+    textLower.includes("perforated") ||
+    textLower.includes("ruptured") ||
+    textLower.includes("peritonitis") ||
+    textLower.includes("emergency surgery");
+  
+  // Group 4: Expert causation group
+  const expertCausationGroupDetected = 
+    textLower.includes("expert") &&
+    (
+      textLower.includes("avoidable") ||
+      textLower.includes("missed opportunity") ||
+      textLower.includes("would have prevented")
+    );
+  
+  if (guidelineGroupDetected) groupsDetected++;
+  if (missedBasicsGroupDetected) groupsDetected++;
+  if (seriousHarmGroupDetected) groupsDetected++;
+  if (expertCausationGroupDetected) groupsDetected++;
+  
+  // If 2+ groups detected, boost score to at least 60
+  if (groupsDetected >= 2) {
+    totalScore = Math.max(totalScore, 60);
+    console.log(`[substantive-merits] Boosted score to ${totalScore} (${groupsDetected} merit groups detected)`);
+  }
   
   return {
     guidelineBreaches: {

@@ -262,15 +262,11 @@ export function generateWeakSpotMeta(
       
       bestStageToUse = isPI ? "Pre-trial review" : "CCMC / case management";
       
-      howThisHelpsYouWin = isPI
-        ? "Gives you grounds to challenge liability or quantum. Without medical records, accident statements, or expert reports, they cannot prove causation or damages. This can lead to reduced awards or liability findings."
-        : "Gives you grounds to challenge their case as having no credible foundation. Without key evidence, they cannot discharge their burden of proof. This can lead to strike-out applications or favorable judgments.";
-      
-      // Defendant-specific "Use this to" bullets
+      // Defendant-side tactics (we're in the else branch, so caseRole is not "claimant")
       useThisTo = isPI
         ? [
             "Challenge liability at trial by highlighting missing causation evidence",
-            "Justify a low settlement offer based on incomplete quantum evidence",
+            "Use incomplete quantum evidence to negotiate favorable settlement terms",
             "Resist summary judgment by arguing insufficient evidence",
           ]
         : [
@@ -278,6 +274,10 @@ export function generateWeakSpotMeta(
             "Apply for strike-out of their claim",
             "Resist summary judgment",
           ];
+      
+      howThisHelpsYouWin = isPI
+        ? "Gives you grounds to challenge liability or quantum. Without medical records, accident statements, or expert reports, they cannot prove causation or damages. This can lead to reduced awards or liability findings."
+        : "Gives you grounds to challenge their case as having no credible foundation. Without key evidence, they cannot discharge their burden of proof. This can lead to strike-out applications or favorable judgments.";
     }
   } else if (weakSpotType === "POOR_EXPERT") {
     triggeredBy.push("Expert report analysis");

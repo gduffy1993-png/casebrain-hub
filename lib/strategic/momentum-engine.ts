@@ -157,6 +157,24 @@ export async function calculateCaseMomentum(
           weight: merits.psychologicalInjury.score,
         });
       }
+      
+      // ============================================
+      // FORCE STRONG MOMENTUM IF SUBSTANTIVE MERITS >= 60
+      // ============================================
+      // For claimant clinical negligence cases with strong substantive merits,
+      // momentum must be STRONG unless there is a true substantive risk flag
+      if (merits.totalScore >= 60) {
+        // Boost score significantly to ensure STRONG momentum
+        const boostAmount = Math.max(40, 100 - score); // Ensure we reach STRONG threshold
+        score += boostAmount;
+        shifts.push({
+          factor: "Strong substantive merits",
+          impact: "POSITIVE",
+          description: `High substantive merits score (${merits.totalScore}) — guideline breaches, expert causation, serious harm, and/or delay-caused injury present. Case has strong liability foundation.`,
+          weight: boostAmount,
+        });
+        console.log(`[momentum] Boosted score by ${boostAmount} due to high substantive merits (${merits.totalScore})`);
+      }
     } catch (error) {
       console.warn("[momentum] Failed to detect substantive merits:", error);
     }
@@ -379,17 +397,17 @@ export async function calculateCaseMomentum(
       console.warn("[momentum] Failed to get substantive merits score:", error);
     }
     
-    // If substantive merits are strong (>=50), momentum must be STRONG unless there's a true substantive risk
-    const hasStrongSubstantiveMerits = substantiveMeritsScore >= 50;
+    // If substantive merits are strong (>=60), momentum MUST be STRONG unless there's a true substantive risk
+    // True substantive risks: denial of breach, alternative causation, no expert evidence at all
+    const hasStrongSubstantiveMerits = substantiveMeritsScore >= 60;
     const hasTrueSubstantiveRisk = negativeFactors.some(f => 
-      !f.factor.toLowerCase().includes("admin") &&
-      !f.factor.toLowerCase().includes("client id") &&
-      !f.factor.toLowerCase().includes("retainer") &&
-      !f.factor.toLowerCase().includes("cfa") &&
-      !f.factor.toLowerCase().includes("identification") &&
-      !f.factor.toLowerCase().includes("overdue deadlines") // Procedural, not substantive
+      f.factor.toLowerCase().includes("denial") ||
+      f.factor.toLowerCase().includes("alternative causation") ||
+      f.factor.toLowerCase().includes("no expert") ||
+      f.factor.toLowerCase().includes("expert denied")
     );
     
+    // Force STRONG momentum if substantive merits >= 60 and no true substantive risks
     if (hasStrongSubstantiveMerits && !hasTrueSubstantiveRisk) {
       // Strong substantive merits override admin gaps
       state = "STRONG";
