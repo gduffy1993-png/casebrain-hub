@@ -47,6 +47,9 @@ export type CaseMomentum = {
   explanation: string;
   confidence: "HIGH" | "MEDIUM" | "LOW";
   createdAt: string;
+  debug?: {
+    substantiveMeritsScore?: number;
+  };
 };
 
 type MomentumInput = {
@@ -98,14 +101,21 @@ export async function calculateCaseMomentum(
   // SUBSTANTIVE MERITS (Claimant Clinical Negligence Cases)
   // ============================================
   // For claimant clinical negligence cases, substantive merits are the PRIMARY driver
+  // CALL ONCE and reuse the result to avoid inconsistencies
+  let merits: Awaited<ReturnType<typeof detectSubstantiveMerits>> | null = null;
+  let debugMeritsScore: number | undefined;
+  
   if (isClaimant && isClinicalNeg) {
     try {
-      const merits = await detectSubstantiveMerits({
+      merits = await detectSubstantiveMerits({
         caseId: input.caseId,
         orgId: input.orgId,
         documents: input.documents,
         timeline: input.timeline,
       });
+      
+      // Store score for debug output
+      debugMeritsScore = merits.totalScore;
       
       // Add substantive merits to score (these are heavily weighted)
       if (merits.guidelineBreaches.detected) {
@@ -280,6 +290,21 @@ export async function calculateCaseMomentum(
   const criticalMissing = missingEvidence.filter(e => 
     e.priority === "CRITICAL" && e.status === "MISSING"
   );
+  
+  // Track if medical records or expert reports are missing (for "next actions" hint)
+  let hasMissingMedicalOrExpert = false;
+  if (isClaimant && isClinicalNeg) {
+    hasMissingMedicalOrExpert = criticalMissing.some(e => {
+      const labelLower = e.label.toLowerCase();
+      return (
+        labelLower.includes("medical record") ||
+        labelLower.includes("expert report") ||
+        labelLower.includes("expert evidence") ||
+        labelLower.includes("imaging") ||
+        labelLower.includes("radiology")
+      );
+    });
+  }
 
   if (criticalMissing.length > 0) {
     // Filter out admin-only gaps for claimant cases (these shouldn't be HIGH leverage)
@@ -373,51 +398,66 @@ export async function calculateCaseMomentum(
   
   const positiveFactors = shifts.filter(s => s.impact === "POSITIVE");
   const negativeFactors = shifts.filter(s => s.impact === "NEGATIVE");
-  const substantiveFactors = positiveFactors.filter(f =>
-    f.factor.includes("guideline") ||
-    f.factor.includes("delay") ||
-    f.factor.includes("Expert") ||
-    f.factor.includes("harm") ||
-    f.factor.includes("psychological")
-  );
+  
+  // FIX: Case-insensitive substantive factor detection
+  const substantiveFactors = positiveFactors.filter(f => {
+    const factorLower = f.factor.toLowerCase();
+    return (
+      factorLower.includes("guideline") ||
+      factorLower.includes("delay") ||
+      factorLower.includes("expert") ||
+      factorLower.includes("harm") ||
+      factorLower.includes("psychological") ||
+      factorLower.includes("missed") ||
+      factorLower.includes("diagnosis") ||
+      factorLower.includes("fracture")
+    );
+  });
   
   if (isClaimant && isClinicalNeg) {
-    // For claimant clinical negligence, check substantive merits score first
-    // If substantive merits are strong, admin gaps should not drag down momentum
-    let substantiveMeritsScore = 0;
-    try {
-      const merits = await detectSubstantiveMerits({
-        caseId: input.caseId,
-        orgId: input.orgId,
-        documents: input.documents,
-        timeline: input.timeline,
-      });
-      substantiveMeritsScore = merits.totalScore;
-    } catch (error) {
-      console.warn("[momentum] Failed to get substantive merits score:", error);
-    }
+    // REUSE merits from earlier call (don't call detectSubstantiveMerits again)
+    const substantiveMeritsScore = merits?.totalScore ?? 0;
     
     // If substantive merits are strong (>=60), momentum MUST be STRONG unless there's a true substantive risk
-    // True substantive risks: denial of breach, alternative causation, no expert evidence at all
+    // True substantive risks ONLY: denial of breach, alternative causation, expert explicitly rejects breach/causation
     const hasStrongSubstantiveMerits = substantiveMeritsScore >= 60;
-    const hasTrueSubstantiveRisk = negativeFactors.some(f => 
-      f.factor.toLowerCase().includes("denial") ||
-      f.factor.toLowerCase().includes("alternative causation") ||
-      f.factor.toLowerCase().includes("no expert") ||
-      f.factor.toLowerCase().includes("expert denied")
-    );
+    const hasTrueSubstantiveRisk = negativeFactors.some(f => {
+      const factorLower = f.factor.toLowerCase();
+      return (
+        factorLower.includes("denial") ||
+        factorLower.includes("alternative causation") ||
+        factorLower.includes("no expert") ||
+        factorLower.includes("expert denied") ||
+        factorLower.includes("expert rejects")
+      );
+    });
     
-    // Force STRONG momentum if substantive merits >= 60 and no true substantive risks
+    // FORCE STRONG momentum if substantive merits >= 60 and no true substantive risks
+    // Admin gaps MUST NOT downgrade this
     if (hasStrongSubstantiveMerits && !hasTrueSubstantiveRisk) {
       // Strong substantive merits override admin gaps
       state = "STRONG";
       const meritDetails = substantiveFactors.map(f => f.factor).join(", ");
-      explanation = `This is a high-merit liability case with strong substantive foundations. ${meritDetails} ${substantiveFactors.length > 1 ? "establish" : "establishes"} a compelling position on breach and/or causation. The case is suitable for early admission pressure or liability trial if resisted. Administrative/procedural gaps do not affect the substantive strength of the case.`;
+      let baseExplanation = `This is a high-merit liability case with strong substantive foundations. ${meritDetails} ${substantiveFactors.length > 1 ? "establish" : "establishes"} a compelling position on breach and/or causation. The case is suitable for early admission pressure or liability trial if resisted. Administrative/procedural gaps do not affect the substantive strength of the case.`;
+      
+      // Add "next actions" hint if medical records/expert reports are missing
+      if (hasMissingMedicalOrExpert) {
+        baseExplanation += " Next: obtain full medical records (including imaging) and consider early expert screening once the chronology is complete.";
+      }
+      
+      explanation = baseExplanation;
       confidence = substantiveFactors.length >= 2 ? "HIGH" : "MEDIUM";
     } else if (score >= 50 && substantiveFactors.length > 0) {
       state = "STRONG";
       const meritDetails = substantiveFactors.map(f => f.factor).join(", ");
-      explanation = `This is a high-merit liability case with strong substantive foundations. ${meritDetails} ${substantiveFactors.length > 1 ? "establish" : "establishes"} a compelling position on breach and/or causation. The case is suitable for early admission pressure or liability trial if resisted.`;
+      let baseExplanation = `This is a high-merit liability case with strong substantive foundations. ${meritDetails} ${substantiveFactors.length > 1 ? "establish" : "establishes"} a compelling position on breach and/or causation. The case is suitable for early admission pressure or liability trial if resisted.`;
+      
+      // Add "next actions" hint if medical records/expert reports are missing
+      if (hasMissingMedicalOrExpert) {
+        baseExplanation += " Next: obtain full medical records (including imaging) and consider early expert screening once the chronology is complete.";
+      }
+      
+      explanation = baseExplanation;
       confidence = substantiveFactors.length >= 2 ? "HIGH" : "MEDIUM";
     } else if (score >= 30) {
       state = "STRONG";
@@ -465,7 +505,7 @@ export async function calculateCaseMomentum(
     }
   }
 
-  return {
+  const result: CaseMomentum = {
     caseId: input.caseId,
     state,
     score: Math.max(-100, Math.min(100, score)), // Clamp to -100 to +100
@@ -474,5 +514,14 @@ export async function calculateCaseMomentum(
     confidence,
     createdAt: now,
   };
+  
+  // Add debug field only in non-production or when debug enabled
+  if (debugMeritsScore !== undefined && (process.env.NODE_ENV !== "production" || process.env.ENABLE_STRATEGIC_DEBUG === "true")) {
+    result.debug = {
+      substantiveMeritsScore: debugMeritsScore,
+    };
+  }
+  
+  return result;
 }
 

@@ -505,27 +505,74 @@ export async function detectSubstantiveMerits(
   let totalScore = guidelineBreachScore + delayScore + expertScore + seriousHarmScore + psychScore;
   
   // ============================================
-  // EXPLICIT "CLIN-NEG MERITS PRESENT" HEURISTIC
+  // GENERAL PATTERN-BASED MERITS GROUP SYSTEM
   // ============================================
-  // If 2+ of the following groups are present, set substantiveMeritsScore = max(current, 60)
+  // Pattern-based detection (not injury-specific) to catch missed fractures, delayed diagnosis, etc.
+  // If ANY 2 groups detected, boost score to at least 60
   
   let groupsDetected = 0;
+  const detectedGroups: string[] = [];
   
-  // Group 1: Guideline breach group
+  // GROUP A — Missed or Delayed Diagnosis
+  const groupA_Detected = 
+    textLower.includes("missed diagnosis") ||
+    textLower.includes("delay in diagnosis") ||
+    textLower.includes("delayed diagnosis") ||
+    textLower.includes("missed fracture") ||
+    textLower.includes("fracture not identified") ||
+    textLower.includes("not reported") ||
+    textLower.includes("not acted upon") ||
+    textLower.includes("radiology report") ||
+    textLower.includes("x-ray") ||
+    textLower.includes("ct scan") ||
+    textLower.includes("imaging");
+  
+  // GROUP B — Failure to Act
+  const groupB_Detected = 
+    textLower.includes("should have been escalated") ||
+    textLower.includes("no follow-up") ||
+    textLower.includes("discharged without") ||
+    textLower.includes("sent home") ||
+    textLower.includes("failure to refer") ||
+    textLower.includes("no referral") ||
+    textLower.includes("no review");
+  
+  // GROUP C — Worsening Outcome
+  const groupC_Detected = 
+    textLower.includes("worsened") ||
+    textLower.includes("deteriorated") ||
+    textLower.includes("progressed") ||
+    textLower.includes("required surgery") ||
+    textLower.includes("later required") ||
+    textLower.includes("emergency") ||
+    textLower.includes("avoidable");
+  
+  // GROUP D — Expert / Retrospective Confirmation
+  const groupD_Detected = 
+    (textLower.includes("expert") &&
+     (
+       textLower.includes("on review") ||
+       textLower.includes("retrospective") ||
+       textLower.includes("should have been identified") ||
+       textLower.includes("would have been detected") ||
+       textLower.includes("earlier diagnosis would have")
+     )) ||
+    textLower.includes("on review") ||
+    textLower.includes("retrospective");
+  
+  // LEGACY GROUPS (keep for backwards compatibility with sepsis/NICE cases)
   const guidelineGroupDetected = 
     textLower.includes("nice") ||
     textLower.includes("ng51") ||
     textLower.includes("guideline") ||
     textLower.includes("breach of duty");
   
-  // Group 2: Missed basics group
   const missedBasicsGroupDetected = 
     textLower.includes("no observations") ||
     textLower.includes("observations not taken") ||
     textLower.includes("no blood tests") ||
     textLower.includes("no imaging");
   
-  // Group 3: Serious harm group
   const seriousHarmGroupDetected = 
     textLower.includes("sepsis") ||
     textLower.includes("icu") ||
@@ -534,7 +581,6 @@ export async function detectSubstantiveMerits(
     textLower.includes("peritonitis") ||
     textLower.includes("emergency surgery");
   
-  // Group 4: Expert causation group
   const expertCausationGroupDetected = 
     textLower.includes("expert") &&
     (
@@ -543,15 +589,23 @@ export async function detectSubstantiveMerits(
       textLower.includes("would have prevented")
     );
   
-  if (guidelineGroupDetected) groupsDetected++;
-  if (missedBasicsGroupDetected) groupsDetected++;
-  if (seriousHarmGroupDetected) groupsDetected++;
-  if (expertCausationGroupDetected) groupsDetected++;
+  // Count all groups
+  if (groupA_Detected) { groupsDetected++; detectedGroups.push("A (Missed/Delayed Diagnosis)"); }
+  if (groupB_Detected) { groupsDetected++; detectedGroups.push("B (Failure to Act)"); }
+  if (groupC_Detected) { groupsDetected++; detectedGroups.push("C (Worsening Outcome)"); }
+  if (groupD_Detected) { groupsDetected++; detectedGroups.push("D (Expert/Retrospective Confirmation)"); }
+  if (guidelineGroupDetected) { groupsDetected++; detectedGroups.push("Guideline Breach"); }
+  if (missedBasicsGroupDetected) { groupsDetected++; detectedGroups.push("Missed Basics"); }
+  if (seriousHarmGroupDetected) { groupsDetected++; detectedGroups.push("Serious Harm"); }
+  if (expertCausationGroupDetected) { groupsDetected++; detectedGroups.push("Expert Causation"); }
   
   // If 2+ groups detected, boost score to at least 60
   if (groupsDetected >= 2) {
+    const previousScore = totalScore;
     totalScore = Math.max(totalScore, 60);
-    console.log(`[substantive-merits] Boosted score to ${totalScore} (${groupsDetected} merit groups detected)`);
+    if (process.env.NODE_ENV !== "production" || process.env.ENABLE_STRATEGIC_DEBUG === "true") {
+      console.log(`[substantive-merits] Generic negligence pattern detected (groups: ${detectedGroups.join(", ")}) — boosted score from ${previousScore} to ${totalScore}`);
+    }
   }
   
   return {
