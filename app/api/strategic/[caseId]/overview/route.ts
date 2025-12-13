@@ -198,7 +198,23 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         caseRole = "claimant"; // Default to claimant
       }
 
-      // Calculate momentum (with case role)
+      // Detect medical evidence signals (for claimant clinical negligence cases)
+      let medicalEvidenceSignals: Awaited<ReturnType<typeof import("@/lib/evidence/medical-evidence-detector").detectMedicalEvidenceSignals>> | null = null;
+      if (caseRole === "claimant" && (caseRecord.practice_area === "clinical_negligence" || caseRecord.practice_area === "personal_injury")) {
+        try {
+          const { detectMedicalEvidenceSignals } = await import("@/lib/evidence/medical-evidence-detector");
+          medicalEvidenceSignals = await detectMedicalEvidenceSignals({ caseId, orgId });
+          
+          // Dev logging
+          if (process.env.NODE_ENV !== "production" || process.env.ENABLE_STRATEGIC_DEBUG === "true") {
+            console.log(`[medical-evidence] hasMedicalRecords=${medicalEvidenceSignals.hasMedicalRecords}, hasAandE=${medicalEvidenceSignals.hasAandE}, hasRadiology=${medicalEvidenceSignals.hasRadiology}, hasGP=${medicalEvidenceSignals.hasGP}, confidence=${medicalEvidenceSignals.confidence}, matched=[${medicalEvidenceSignals.matched.join(", ")}]`);
+          }
+        } catch (error) {
+          console.warn("[strategic-overview] Failed to detect medical evidence signals:", error);
+        }
+      }
+
+      // Calculate momentum (with case role and medical evidence signals)
       const momentum = await calculateCaseMomentum({
         caseId,
         orgId,
@@ -209,6 +225,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         letters: letters ?? [],
         deadlines: deadlines ?? [],
         caseRole, // Pass detected role
+        medicalEvidenceSignals: medicalEvidenceSignals || undefined, // Pass medical evidence signals if available
       });
 
       // Generate strategy paths (with case role)
@@ -263,6 +280,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
           caseRole,
           substantiveMeritsScore: momentum.debug.substantiveMeritsScore,
           practiceArea: caseRecord.practice_area,
+          medicalEvidence: medicalEvidenceSignals,
         };
       }
 

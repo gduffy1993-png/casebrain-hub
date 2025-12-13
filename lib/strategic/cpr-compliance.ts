@@ -33,6 +33,13 @@ type CPRComplianceInput = {
   letters: Array<{ id: string; created_at: string; template_id?: string }>;
   hasChronology: boolean;
   hasHazardAssessment: boolean;
+  caseRole?: "claimant" | "defendant"; // Optional: for role-specific logic
+  medicalEvidenceSignals?: {
+    hasMedicalRecords: boolean;
+    hasAandE: boolean;
+    hasRadiology: boolean;
+    hasGP: boolean;
+  }; // Optional: to override missing medical evidence flags
 };
 
 /**
@@ -168,7 +175,74 @@ export function checkCPRCompliance(input: CPRComplianceInput): CPRComplianceIssu
   }
 
   // 5. Check for missing medical evidence (PI/Clinical Neg)
-  if (input.practiceArea === "personal_injury" || input.practiceArea === "clinical_negligence") {
+  // For claimant cases, only flag if medical evidence is actually missing (content-based check)
+  if ((input.practiceArea === "personal_injury" || input.practiceArea === "clinical_negligence") &&
+      input.caseRole === "claimant") {
+    
+    // If medical evidence signals indicate medical records are present, skip this check
+    if (input.medicalEvidenceSignals?.hasMedicalRecords) {
+      // Medical records are present - check for expert report instead
+      const missingEvidence = findMissingEvidence(
+        input.caseId,
+        "pi",
+        input.documents,
+      );
+
+      const missingExpert = missingEvidence.find(e => 
+        (e.label.toLowerCase().includes("expert") ||
+         e.label.toLowerCase().includes("breach") ||
+         e.label.toLowerCase().includes("causation")) &&
+        e.status === "MISSING" &&
+        e.priority === "CRITICAL"
+      );
+
+      if (missingExpert) {
+        issues.push({
+          id: `cpr-missing-expert-${input.caseId}`,
+          caseId: input.caseId,
+          rule: "Pre-Action Protocol (PI/Clinical Neg)",
+          breach: "Expert evidence not yet uploaded",
+          severity: "CRITICAL",
+          description: "Expert evidence not yet uploaded — required to finalise breach/causation opinion (PAP stage)",
+          suggestedApplication: "FURTHER_INFORMATION",
+          applicationText: "Obtain expert evidence — this is essential for establishing breach and causation in clinical negligence cases.",
+          evidence: [missingExpert.reason],
+          createdAt: now,
+        });
+      }
+    } else {
+      // No medical records detected - flag as missing
+      const missingEvidence = findMissingEvidence(
+        input.caseId,
+        "pi",
+        input.documents,
+      );
+
+      const missingMedical = missingEvidence.find(e => 
+        (e.label.toLowerCase().includes("medical") ||
+         e.label.toLowerCase().includes("gp") ||
+         e.label.toLowerCase().includes("hospital")) &&
+        e.status === "MISSING" &&
+        e.priority === "CRITICAL"
+      );
+
+      if (missingMedical) {
+        issues.push({
+          id: `cpr-missing-medical-${input.caseId}`,
+          caseId: input.caseId,
+          rule: "Pre-Action Protocol (PI/Clinical Neg)",
+          breach: "Missing medical evidence",
+          severity: "CRITICAL",
+          description: "Critical medical evidence not provided — required for causation",
+          suggestedApplication: "FURTHER_INFORMATION",
+          applicationText: "Request medical records — this is essential for establishing causation and quantum.",
+          evidence: [missingMedical.reason],
+          createdAt: now,
+        });
+      }
+    }
+  } else if (input.practiceArea === "personal_injury" || input.practiceArea === "clinical_negligence") {
+    // For defendant cases or when caseRole is not provided, use original logic
     const missingEvidence = findMissingEvidence(
       input.caseId,
       "pi",

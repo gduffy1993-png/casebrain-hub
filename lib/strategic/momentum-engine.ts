@@ -62,6 +62,12 @@ type MomentumInput = {
   letters: Array<{ id: string; created_at: string; template_id?: string }>;
   deadlines: Array<{ id: string; title: string; due_date: string; status: string }>;
   caseRole?: CaseRole; // Optional: if not provided, will be detected
+  medicalEvidenceSignals?: {
+    hasMedicalRecords: boolean;
+    hasAandE: boolean;
+    hasRadiology: boolean;
+    hasGP: boolean;
+  }; // Optional: to adjust missing evidence weighting
 };
 
 /**
@@ -308,13 +314,32 @@ export async function calculateCaseMomentum(
 
   if (criticalMissing.length > 0) {
     // Filter out admin-only gaps for claimant cases (these shouldn't be HIGH leverage)
+    // Also filter out "medical records missing" if medical evidence signals indicate records are present
     const substantiveMissing = isClaimant
-      ? criticalMissing.filter(e => 
-          !e.label.toLowerCase().includes("client id") &&
-          !e.label.toLowerCase().includes("retainer") &&
-          !e.label.toLowerCase().includes("cfa") &&
-          !e.label.toLowerCase().includes("identification")
-        )
+      ? criticalMissing.filter(e => {
+          const labelLower = e.label.toLowerCase();
+          
+          // Filter out admin gaps
+          if (labelLower.includes("client id") ||
+              labelLower.includes("retainer") ||
+              labelLower.includes("cfa") ||
+              labelLower.includes("identification")) {
+            return false;
+          }
+          
+          // For claimant clinical negligence, filter out "medical records missing" if medical evidence is present
+          if (isClinicalNeg && input.medicalEvidenceSignals?.hasMedicalRecords) {
+            if (labelLower.includes("medical record") ||
+                labelLower.includes("medical evidence") ||
+                labelLower.includes("gp") ||
+                labelLower.includes("hospital") ||
+                (labelLower.includes("medical") && (labelLower.includes("missing") || labelLower.includes("not provided")))) {
+              return false; // Medical records are present, so don't count this as missing
+            }
+          }
+          
+          return true;
+        })
       : criticalMissing;
     
     // Weight substantive missing evidence more heavily
