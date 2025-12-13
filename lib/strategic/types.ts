@@ -31,5 +31,8 @@ export type StrategicInsightMeta = {
   
   /** How this helps you win (concrete outcomes) */
   howThisHelpsYouWin: string;
+  
+  /** "Use this to:" bullet points (role-specific) */
+  useThisTo?: string[];
 };
 

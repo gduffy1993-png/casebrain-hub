@@ -46,6 +46,7 @@ export function generateLeverageMeta(
   let riskIfIgnored = "";
   let bestStageToUse = "";
   let howThisHelpsYouWin = "";
+  let useThisTo: string[] | undefined;
 
   // Determine triggeredBy from evidence and documents
   triggeredBy = [...evidence];
@@ -151,6 +152,7 @@ export function generateLeverageMeta(
     riskIfIgnored,
     bestStageToUse,
     howThisHelpsYouWin,
+    useThisTo,
   };
 }
 
@@ -173,6 +175,7 @@ export function generateWeakSpotMeta(
   let riskIfIgnored = "";
   let bestStageToUse = "";
   let howThisHelpsYouWin = "";
+  let useThisTo: string[] | undefined;
 
   if (weakSpotType === "CONTRADICTION") {
     const contradictions = input.contradictions || [];
@@ -226,6 +229,21 @@ export function generateWeakSpotMeta(
       howThisHelpsYouWin = isPI
         ? "Ensuring you have comprehensive medical records, expert reports, and witness statements strengthens your position on breach, causation, and quantum. This supports early admission pressure or favorable judgment at trial."
         : "Having comprehensive evidence strengthens your case position. Use strong evidence to press for early admission or favorable judgment.";
+      
+      // Claimant-specific "Use this to" bullets
+      useThisTo = isPI
+        ? [
+            "Increase settlement pressure by narrowing issues and seeking early admissions",
+            "Improve evidential completeness for PAP compliance and expert instruction",
+            "Support quantum presentation (losses, care needs, recovery impact)",
+            "Strengthen negotiation stance with clear breach/causation narrative",
+          ]
+        : [
+            "Increase settlement pressure by strengthening evidential foundation",
+            "Improve case preparation for pre-action protocol compliance",
+            "Support quantum negotiations with complete evidence base",
+            "Strengthen negotiation position with comprehensive documentation",
+          ];
     } else {
       whyRecommended = `The opponent's case is missing critical evidence. Without this evidence, they cannot properly discharge their burden of proof, giving you a strong position to challenge liability or quantum.`;
       
@@ -244,6 +262,19 @@ export function generateWeakSpotMeta(
       howThisHelpsYouWin = isPI
         ? "Gives you grounds to challenge liability or quantum. Without medical records, accident statements, or expert reports, they cannot prove causation or damages. This can lead to reduced awards or liability findings."
         : "Gives you grounds to challenge their case as having no credible foundation. Without key evidence, they cannot discharge their burden of proof. This can lead to strike-out applications or favorable judgments.";
+      
+      // Defendant-specific "Use this to" bullets
+      useThisTo = isPI
+        ? [
+            "Challenge liability at trial by highlighting missing causation evidence",
+            "Justify a low settlement offer based on incomplete quantum evidence",
+            "Resist summary judgment by arguing insufficient evidence",
+          ]
+        : [
+            "Challenge their case at trial",
+            "Apply for strike-out of their claim",
+            "Resist summary judgment",
+          ];
     }
   } else if (weakSpotType === "POOR_EXPERT") {
     triggeredBy.push("Expert report analysis");
@@ -285,13 +316,14 @@ export function generateWeakSpotMeta(
     howThisHelpsYouWin = "Gives you grounds to challenge the opponent's case and strengthen your position. This can lead to favorable outcomes or settlement on better terms.";
   }
 
-  return {
+    return {
     whyRecommended,
     triggeredBy,
     alternatives,
     riskIfIgnored,
     bestStageToUse,
     howThisHelpsYouWin,
+    useThisTo,
   };
 }
 
@@ -315,6 +347,7 @@ export function generateStrategyPathMeta(
   let riskIfIgnored = "";
   let bestStageToUse = "";
   let howThisHelpsYouWin = "";
+  let useThisTo: string[] | undefined;
 
   if (route === "A") {
     // Route A - role-specific logic
@@ -346,6 +379,14 @@ export function generateStrategyPathMeta(
       bestStageToUse = "Pre-action protocol / Early litigation";
       
       howThisHelpsYouWin = "Gives you strong grounds to press for early liability admission using guideline breaches and expert evidence. If admission resisted, you have a compelling case for liability trial. This can lead to faster resolution and lower costs if admission received, or strong position at trial if resisted.";
+      
+      // Claimant-specific "Use this to" bullets for Route A
+      useThisTo = [
+        "Press for admissions and narrow issues in pre-action protocol",
+        "Apply PAP pressure for early resolution using substantive merits",
+        "Proceed to liability determination if admission resisted",
+        "Strengthen settlement leverage with clear breach/causation narrative",
+      ];
     } else {
       // Defendant Route A: Procedural attack route
       triggeredBy.push("Opponent delays detected");
@@ -500,6 +541,7 @@ export function generateJudicialExpectationMeta(
   let riskIfIgnored = "";
   let bestStageToUse = "";
   let howThisHelpsYouWin = "";
+  let useThisTo: string[] | undefined;
 
   if (expectation.toLowerCase().includes("pre-action")) {
     triggeredBy.push("Pre-action protocol requirements");
@@ -614,6 +656,7 @@ export function generateTimePressureMeta(
   let riskIfIgnored = "";
   let bestStageToUse = "";
   let howThisHelpsYouWin = "";
+  let useThisTo: string[] | undefined;
 
   if (issue.toLowerCase().includes("opponent") || issue.toLowerCase().includes("delay")) {
     triggeredBy.push("Opponent delays detected");

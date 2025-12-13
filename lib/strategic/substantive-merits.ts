@@ -57,31 +57,62 @@ export async function detectSubstantiveMerits(
 ): Promise<SubstantiveMerits> {
   const supabase = getSupabaseAdminClient();
   
-  // Collect all text for analysis
-  const documentNames = input.documents.map(d => d.name.toLowerCase());
-  const timelineDescriptions = input.timeline.map(t => t.description.toLowerCase());
-  let allText = [...documentNames, ...timelineDescriptions].join(" ");
+  // Collect all text for analysis - prioritize extracted content
+  let allText = "";
   
-  // Try to get extracted facts from documents
+  // 1. Get documents with extracted content (raw_text, extracted_json)
   try {
     const { data: documentsWithFacts } = await supabase
       .from("documents")
       .select("id, extracted_json, raw_text, name")
       .eq("case_id", input.caseId)
       .eq("org_id", input.orgId)
-      .limit(10);
+      .limit(20); // Increased limit to get more documents
     
     if (documentsWithFacts) {
       for (const doc of documentsWithFacts) {
         const extracted = doc.extracted_json as any;
         const rawText = (doc.raw_text || "").toLowerCase();
         
-        // Add extracted content to analysis
-        if (extracted) {
-          allText += " " + JSON.stringify(extracted).toLowerCase();
-        }
-        if (rawText) {
+        // Add OCR/extracted text (most important - contains actual medical content)
+        if (rawText && rawText.length > 50) {
           allText += " " + rawText;
+        }
+        
+        // Add extracted JSON content (chronology, key issues, summaries, expert findings)
+        if (extracted) {
+          // Extract summary if present
+          if (extracted.summary) {
+            allText += " " + String(extracted.summary).toLowerCase();
+          }
+          
+          // Extract key issues if present
+          if (extracted.keyIssues && Array.isArray(extracted.keyIssues)) {
+            allText += " " + extracted.keyIssues.map((issue: any) => 
+              typeof issue === "string" ? issue : (issue.label || issue.description || "")
+            ).join(" ").toLowerCase();
+          }
+          
+          // Extract timeline/chronology events if present
+          if (extracted.timeline && Array.isArray(extracted.timeline)) {
+            allText += " " + extracted.timeline.map((event: any) =>
+              typeof event === "string" ? event : (event.description || event.label || "")
+            ).join(" ").toLowerCase();
+          }
+          
+          // Extract expert findings if present
+          if (extracted.expert && extracted.expert.findings) {
+            allText += " " + String(extracted.expert.findings).toLowerCase();
+          }
+          if (extracted.expert && extracted.expert.opinion) {
+            allText += " " + String(extracted.expert.opinion).toLowerCase();
+          }
+          if (extracted.expertReport) {
+            allText += " " + String(extracted.expertReport).toLowerCase();
+          }
+          
+          // Extract full JSON as fallback
+          allText += " " + JSON.stringify(extracted).toLowerCase();
         }
       }
     }
@@ -89,12 +120,77 @@ export async function detectSubstantiveMerits(
     console.warn("[substantive-merits] Failed to load document content:", error);
   }
   
+  // 2. Get case chronology from timeline_events table
+  try {
+    const { data: timelineEvents } = await supabase
+      .from("timeline_events")
+      .select("description")
+      .eq("case_id", input.caseId)
+      .limit(100);
+    
+    if (timelineEvents) {
+      allText += " " + timelineEvents.map(e => e.description || "").join(" ").toLowerCase();
+    }
+  } catch (error) {
+    console.warn("[substantive-merits] Failed to load timeline events:", error);
+  }
+  
+  // 3. Get key issues from key_issues table
+  try {
+    const { data: keyIssues } = await supabase
+      .from("key_issues")
+      .select("label, description")
+      .eq("case_id", input.caseId)
+      .limit(50);
+    
+    if (keyIssues) {
+      allText += " " + keyIssues.map(issue => 
+        (issue.label || "") + " " + (issue.description || "")
+      ).join(" ").toLowerCase();
+    }
+  } catch (error) {
+    console.warn("[substantive-merits] Failed to load key issues:", error);
+  }
+  
+  // 4. Get bundle analysis summaries if available
+  try {
+    const { data: bundles } = await supabase
+      .from("bundles")
+      .select("phase_a_summary, full_summary")
+      .eq("case_id", input.caseId)
+      .eq("org_id", input.orgId)
+      .limit(5);
+    
+    if (bundles) {
+      for (const bundle of bundles) {
+        if (bundle.phase_a_summary) {
+          allText += " " + String(bundle.phase_a_summary).toLowerCase();
+        }
+        if (bundle.full_summary) {
+          allText += " " + String(bundle.full_summary).toLowerCase();
+        }
+      }
+    }
+  } catch (error) {
+    console.warn("[substantive-merits] Failed to load bundle summaries:", error);
+  }
+  
+  // 5. Add timeline descriptions from input (fallback)
+  const timelineDescriptions = input.timeline.map(t => t.description.toLowerCase()).join(" ");
+  allText += " " + timelineDescriptions;
+  
+  // 6. Add document names (lower priority but still useful)
+  const documentNames = input.documents.map(d => d.name.toLowerCase()).join(" ");
+  allText += " " + documentNames;
+  
   const textLower = allText.toLowerCase();
   
   // 1. NICE GUIDELINE BREACHES (+30 per confirmed breach)
   const guidelineKeywords = [
     "nice guideline",
     "nice guidelines",
+    "ng51", // NICE Guideline 51 (sepsis)
+    "ng50", // NICE Guideline 50 (acute kidney injury)
     "national institute",
     "clinical excellence",
     "ncg", // National Clinical Guideline
@@ -114,6 +210,11 @@ export async function detectSubstantiveMerits(
     "mews score",
     "observe protocol",
     "monitoring protocol",
+    "observations not taken",
+    "no obs",
+    "no blood tests",
+    "no imaging",
+    "no monitoring",
   ];
   
   const guidelineBreaches: string[] = [];
@@ -215,6 +316,7 @@ export async function detectSubstantiveMerits(
     "expert report",
     "expert opinion",
     "expert confirms",
+    "expert concluded",
     "expert concludes",
     "expert states",
     "expert opines",
@@ -223,6 +325,11 @@ export async function detectSubstantiveMerits(
     "liability report",
     "expert evidence",
     "expert witness",
+    "breach of duty",
+    "avoidable",
+    "avoidable outcome",
+    "missed opportunities",
+    "expert finding",
   ];
   
   const expertConfirmations: string[] = [];
@@ -279,8 +386,12 @@ export async function detectSubstantiveMerits(
     { term: "septic shock", score: 25 },
     { term: "surgery", score: 15 },
     { term: "surgical", score: 15 },
+    { term: "emergency surgery", score: 20 },
     { term: "abscess", score: 15 },
     { term: "infection", score: 10 },
+    { term: "perforated", score: 20 },
+    { term: "ruptured", score: 20 },
+    { term: "peritonitis", score: 20 },
     { term: "amputation", score: 30 },
     { term: "permanent disability", score: 25 },
     { term: "life threatening", score: 25 },

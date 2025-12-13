@@ -674,29 +674,50 @@ export async function generateStrategyPaths(
     paths.push(path);
   }
 
-  // If no specific routes identified, provide default route
+  // If no specific routes identified, provide default route (role-aware)
   if (paths.length === 0) {
+    const isClaimant = caseRole === "claimant";
+    
     const path: StrategyPath = {
       id: `strategy-route-default-${input.caseId}`,
       caseId: input.caseId,
       route: "A",
-      title: "Route A: Standard litigation pathway",
-      description: "Follow standard litigation process: gather evidence, comply with protocols, prepare for hearing.",
-      approach: "1. Complete pre-action protocol. 2. Gather all evidence. 3. Issue proceedings if necessary. 4. Prepare for hearing.",
-      pros: [
-        "Standard approach",
-        "Lower risk",
-        "Predictable timeline",
-      ],
-      cons: [
-        "May be slower",
-        "Less leverage",
-        "Standard costs",
-      ],
+      title: isClaimant
+        ? "Route A: Standard litigation pathway"
+        : "Route A: Standard litigation pathway",
+      description: isClaimant
+        ? "Follow standard litigation process: gather evidence, comply with pre-action protocols, press for early admission where appropriate, prepare for hearing if admission resisted."
+        : "Follow standard litigation process: gather evidence, comply with protocols, prepare for hearing.",
+      approach: isClaimant
+        ? "1. Complete pre-action protocol with strong Letter of Claim. 2. Gather all evidence including expert reports. 3. Press for early liability admission using substantive merits. 4. If admission resisted, proceed to liability determination. 5. Prepare for hearing with strong evidential foundation."
+        : "1. Complete pre-action protocol. 2. Gather all evidence. 3. Issue proceedings if necessary. 4. Prepare for hearing.",
+      pros: isClaimant
+        ? [
+            "Systematic approach to case progression",
+            "Strong foundation for settlement or trial",
+            "Clear pathway from pre-action to resolution",
+          ]
+        : [
+            "Standard approach",
+            "Lower risk",
+            "Predictable timeline",
+          ],
+      cons: isClaimant
+        ? [
+            "May require full trial preparation if admission resisted",
+            "Requires comprehensive evidence gathering",
+          ]
+        : [
+            "May be slower",
+            "Less leverage",
+            "Standard costs",
+          ],
       estimatedTimeframe: "6-12 months",
       estimatedCost: "Medium",
       successProbability: "MEDIUM",
-      recommendedFor: "Cases without clear leverage points",
+      recommendedFor: isClaimant
+        ? "Cases without clear leverage points but with standard case progression pathway"
+        : "Cases without clear leverage points",
       createdAt: now,
     };
     
@@ -719,6 +740,7 @@ export async function generateStrategyPaths(
           l.template_id?.toLowerCase().includes("pre_action") ||
           l.template_id?.toLowerCase().includes("protocol")
         ),
+        caseRole: input.caseRole || caseRole,
       }
     );
     
