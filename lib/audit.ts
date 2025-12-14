@@ -27,7 +27,19 @@ export type CaseEventType =
   | "CASE_DELETED"
   | "PRACTICE_AREA_UPDATED"
   | "AI_ERROR"
-  | "SYSTEM_ERROR";
+  | "SYSTEM_ERROR"
+  // Evidence Memory events
+  | "EVIDENCE_CREATED"
+  | "EVIDENCE_STATUS_CHANGED"
+  | "REQUEST_DRAFTED"
+  | "CHASE_DRAFTED"
+  | "CHASE_MARKED_SENT"
+  // Incremental Update events
+  | "DOCS_ADDED"
+  | "ANALYSIS_VERSION_CREATED"
+  | "RISK_CHANGED"
+  // Win Story events
+  | "WIN_STORY_SNAPSHOT";
 
 export type CaseAuditEvent = {
   id: string;
@@ -196,6 +208,18 @@ export function getEventTypeLabel(eventType: CaseEventType): string {
     PRACTICE_AREA_UPDATED: "Practice area updated",
     AI_ERROR: "AI error",
     SYSTEM_ERROR: "System error",
+    // Evidence Memory
+    EVIDENCE_CREATED: "Evidence item created",
+    EVIDENCE_STATUS_CHANGED: "Evidence status changed",
+    REQUEST_DRAFTED: "Evidence request drafted",
+    CHASE_DRAFTED: "Chase draft generated",
+    CHASE_MARKED_SENT: "Chase marked as sent",
+    // Incremental Updates
+    DOCS_ADDED: "Documents added to case",
+    ANALYSIS_VERSION_CREATED: "Analysis version created",
+    RISK_CHANGED: "Risk rating changed",
+    // Win Stories
+    WIN_STORY_SNAPSHOT: "Win story captured",
   };
   return labels[eventType] ?? eventType;
 }

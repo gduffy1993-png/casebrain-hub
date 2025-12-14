@@ -198,21 +198,22 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         caseRole = "claimant"; // Default to claimant
       }
 
+      // TODO: Re-implement when medical-evidence-detector is restored
       // Detect medical evidence signals (for claimant clinical negligence cases)
-      let medicalEvidenceSignals: Awaited<ReturnType<typeof import("@/lib/evidence/medical-evidence-detector").detectMedicalEvidenceSignals>> | null = null;
-      if (caseRole === "claimant" && (caseRecord.practice_area === "clinical_negligence" || caseRecord.practice_area === "personal_injury")) {
-        try {
-          const { detectMedicalEvidenceSignals } = await import("@/lib/evidence/medical-evidence-detector");
-          medicalEvidenceSignals = await detectMedicalEvidenceSignals({ caseId, orgId });
-          
-          // Dev logging
-          if (process.env.NODE_ENV !== "production" || process.env.ENABLE_STRATEGIC_DEBUG === "true") {
-            console.log(`[medical-evidence] hasMedicalRecords=${medicalEvidenceSignals.hasMedicalRecords}, hasAandE=${medicalEvidenceSignals.hasAandE}, hasRadiology=${medicalEvidenceSignals.hasRadiology}, hasGP=${medicalEvidenceSignals.hasGP}, confidence=${medicalEvidenceSignals.confidence}, matched=[${medicalEvidenceSignals.matched.join(", ")}]`);
-          }
-        } catch (error) {
-          console.warn("[strategic-overview] Failed to detect medical evidence signals:", error);
-        }
-      }
+      let medicalEvidenceSignals: { hasMedicalRecords: boolean; hasAandE: boolean; hasRadiology: boolean; hasGP: boolean; confidence: string; matched: string[] } | null = null;
+      // if (caseRole === "claimant" && (caseRecord.practice_area === "clinical_negligence" || caseRecord.practice_area === "personal_injury")) {
+      //   try {
+      //     const { detectMedicalEvidenceSignals } = await import("@/lib/evidence/medical-evidence-detector");
+      //     medicalEvidenceSignals = await detectMedicalEvidenceSignals({ caseId, orgId });
+      //     
+      //     // Dev logging
+      //     if (process.env.NODE_ENV !== "production" || process.env.ENABLE_STRATEGIC_DEBUG === "true") {
+      //       console.log(`[medical-evidence] hasMedicalRecords=${medicalEvidenceSignals.hasMedicalRecords}, hasAandE=${medicalEvidenceSignals.hasAandE}, hasRadiology=${medicalEvidenceSignals.hasRadiology}, hasGP=${medicalEvidenceSignals.hasGP}, confidence=${medicalEvidenceSignals.confidence}, matched=[${medicalEvidenceSignals.matched.join(", ")}]`);
+      //     }
+      //   } catch (error) {
+      //     console.warn("[strategic-overview] Failed to detect medical evidence signals:", error);
+      //   }
+      // }
 
       // Calculate momentum (with case role and medical evidence signals)
       const momentum = await calculateCaseMomentum({
@@ -228,7 +229,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         medicalEvidenceSignals: medicalEvidenceSignals || undefined, // Pass medical evidence signals if available
       });
 
-      // Generate strategy paths (with case role)
+      // Generate strategy paths (with case role and momentum state)
       let strategies = await generateStrategyPaths({
         caseId,
         orgId,
@@ -242,6 +243,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         hasHazardAssessment,
         nextHearingDate: nextHearing?.due_date,
         caseRole, // Pass detected role
+        momentumState: momentum.state, // Pass momentum state for enhanced strategy
       });
 
       // Get weak spots and leverage points

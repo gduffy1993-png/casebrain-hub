@@ -43,6 +43,9 @@ import { KeyIssuesPanel } from "@/components/core/KeyIssuesPanel";
 import { buildKeyIssues } from "@/lib/key-issues";
 import { InCaseSearchBox } from "@/components/core/InCaseSearchBox";
 import { MissingEvidencePanel } from "@/components/core/MissingEvidencePanel";
+// TODO: Re-implement when components are restored
+// import { EvidenceTrackerPanel } from "@/components/evidence/EvidenceTrackerPanel";
+// import { AuditTrailPanel } from "@/components/audit/AuditTrailPanel";
 import { CaseHeatmapPanel } from "@/components/core/CaseHeatmapPanel";
 import { CaseNotesPanel } from "@/components/core/CaseNotesPanel";
 import { NextStepPanel } from "@/components/core/NextStepPanel";
@@ -81,13 +84,15 @@ import { OpponentProfileCard } from "@/components/opponent-behavior/OpponentProf
 import { SettlementCalculator } from "@/components/calculators/SettlementCalculator";
 import { PreActionProtocolChecklist } from "@/components/protocol/PreActionProtocolChecklist";
 import { CollapsibleSection } from "@/components/ui/collapsible-section";
-import { FileText, Mail, AlertCircle, Search, Target, ListChecks, TrendingUp, FolderOpen, Shield, Home, Calculator, DollarSign, MessageSquare, Phone, Calendar, History, FileCheck, BarChart3, CreditCard, Clock } from "lucide-react";
+import { FileText, Mail, AlertCircle, Search, Target, ListChecks, TrendingUp, FolderOpen, Shield, Home, Calculator, DollarSign, MessageSquare, Phone, Calendar, History, FileCheck, BarChart3, CreditCard, Clock, FileQuestion } from "lucide-react";
 import { PracticeAreaSelector } from "@/components/cases/PracticeAreaSelector";
 import { CasePageClient } from "@/components/cases/CasePageClient";
 import { CaseSummaryPanel } from "@/components/cases/CaseSummaryPanel";
 import { ErrorBoundary } from "@/components/ui/error-boundary";
 import { CaseFilesList } from "@/components/cases/CaseFilesList";
 import { StrategicIntelligenceSection } from "@/components/strategic/StrategicIntelligenceSection";
+import { CasePageClientWithActions } from "@/components/cases/CasePageClientWithActions";
+import { AnalysisDeltaPanelWrapper } from "@/components/cases/AnalysisDeltaPanelWrapper";
 
 type CasePageParams = {
   params: { caseId: string };
@@ -112,7 +117,7 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
   // SAFETY: Always fetch case record safely - never throw on error
   const { data: caseRecord, error: caseError } = await supabase
     .from("cases")
-    .select("id, title, summary, extracted_summary, timeline, org_id, practice_area")
+    .select("id, title, summary, extracted_summary, timeline, org_id, practice_area, latest_analysis_version, analysis_stale")
     .eq("id", caseId)
     .eq("org_id", orgId)
     .maybeSingle();
@@ -317,8 +322,8 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
 
   // Extract key issues from documents
   const rawKeyIssues = documents
-    ?.flatMap((doc) => {
-      const extracted = doc.extracted_json as ExtractedCaseFacts | null;
+      ?.flatMap((doc) => {
+        const extracted = doc.extracted_json as ExtractedCaseFacts | null;
       return extracted?.keyIssues ?? [];
     })
     .filter((issue, index, arr) => arr.indexOf(issue) === index) ?? [];
@@ -381,6 +386,50 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
     caseRecord.practice_area ?? "general",
     docsForEvidence,
   );
+
+  // Seed evidence items from missing evidence (idempotent)
+  // TODO: Re-implement when seedFromMissingEvidence is restored
+  // This runs on every page load but won't create duplicates due to unique constraint
+  // try {
+  //   const { seedEvidenceItemsFromMissingEvidence } = await import("@/lib/evidence/seedFromMissingEvidence");
+  //   if (missingEvidence.length > 0) {
+  //     await seedEvidenceItemsFromMissingEvidence(caseId, orgId, missingEvidence);
+  //   }
+  // } catch (error) {
+  //   console.warn("[case-page] Failed to seed evidence items:", error);
+  //   // Don't fail the page if seeding fails
+  // }
+
+  // TODO: Re-implement when EvidenceTrackerPanel is restored
+  // Fetch evidence items for the tracker panel
+  // const { data: evidenceItemsData } = await supabase
+  //   .from("evidence_items")
+  //   .select("*")
+  //   .eq("case_id", caseId)
+  //   .eq("org_id", orgId)
+  //   .order("created_at", { ascending: false });
+
+  // Transform to EvidenceItem type
+  const evidenceItems: any[] = []; // Temporarily empty array
+  // const evidenceItems = (evidenceItemsData ?? []).map((row) => ({
+  //   id: row.id,
+  //   caseId: row.case_id,
+  //   orgId: row.org_id,
+  //   practiceArea: row.practice_area,
+  //   title: row.title,
+  //   category: row.category,
+  //   source: row.source,
+  //   whyNeeded: row.why_needed,
+  //   status: row.status as "outstanding" | "requested" | "received" | "escalated" | "no_longer_needed",
+  //   requestedAt: row.requested_at,
+  //   lastChasedAt: row.last_chased_at,
+  //   escalatedAt: row.escalated_at,
+  //   receivedAt: row.received_at,
+  //   dueAt: row.due_at,
+  //   meta: (row.meta as Record<string, unknown>) || {},
+  //   createdAt: row.created_at,
+  //   updatedAt: row.updated_at,
+  // }));
 
   // Fetch deadlines ONCE for all uses (risk score, alerts, next steps) - BEFORE risk alerts
   // Call directly instead of HTTP to avoid auth issues
@@ -923,9 +972,15 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
                 <span>Actions</span>
               </div>
               <div className="flex items-center gap-2">
+                <CasePageClientWithActions
+                  caseId={caseId}
+                  caseTitle={caseRecord.title ?? "Untitled Case"}
+                  analysisStale={caseRecord.analysis_stale ?? false}
+                  latestDelta={null} // Will be fetched client-side if needed
+                />
                 <CaseOverviewExportButton caseId={caseId} caseTitle={caseRecord.title ?? undefined} />
                 <CasePackExportButton caseId={caseId} />
-                <CaseArchiveButton caseId={caseId} caseTitle={caseRecord.title} />
+              <CaseArchiveButton caseId={caseId} caseTitle={caseRecord.title} />
               </div>
             </div>
           }
@@ -937,16 +992,16 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
                 currentPracticeArea={(caseRecord.practice_area ?? "other_litigation") as PracticeArea}
               />
             </div>
-            {labsEnabled && (
-              <>
+          {labsEnabled && (
+            <>
                 <div>
-                  <ConditionalPortalShare caseId={caseId} />
-                </div>
+                <ConditionalPortalShare caseId={caseId} />
+              </div>
                 <div>
-                  <CaseTypeSelector caseId={caseId} initialValue={caseRecord.practice_area ?? "general"} />
-                </div>
-              </>
-            )}
+                <CaseTypeSelector caseId={caseId} initialValue={caseRecord.practice_area ?? "general"} />
+              </div>
+            </>
+          )}
           </div>
         </Card>
 
@@ -1091,6 +1146,51 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
           </ErrorBoundary>
         </CollapsibleSection>
 
+        {/* Evidence Tracker Section */}
+        <CollapsibleSection
+          title="Evidence Tracker"
+          description="Track evidence items, status, and chase dates"
+          defaultOpen={true}
+          icon={<ListChecks className="h-4 w-4 text-cyan-400" />}
+        >
+          <ErrorBoundary
+            fallback={
+              <div className="p-4">
+                <p className="text-sm text-accent/60">Unable to load evidence tracker right now.</p>
+              </div>
+            }
+          >
+            {/* TODO: Re-implement when EvidenceTrackerPanel is restored */}
+            <div className="p-4 text-sm text-accent/60">Evidence tracker temporarily unavailable.</div>
+          </ErrorBoundary>
+        </CollapsibleSection>
+
+        {/* Analysis Delta Panel - Show if new version created */}
+        {caseRecord.latest_analysis_version && caseRecord.latest_analysis_version > 1 && (
+          <ErrorBoundary fallback={null}>
+            <AnalysisDeltaPanelWrapper caseId={caseId} />
+          </ErrorBoundary>
+        )}
+
+        {/* Audit Trail Section */}
+        <CollapsibleSection
+          title="Audit Trail"
+          description="Complete history of case events and changes"
+          defaultOpen={false}
+          icon={<History className="h-4 w-4 text-purple-400" />}
+        >
+          <ErrorBoundary
+            fallback={
+              <div className="p-4">
+                <p className="text-sm text-accent/60">Unable to load audit trail right now.</p>
+              </div>
+            }
+          >
+            {/* TODO: Re-implement when AuditTrailPanel is restored */}
+            <div className="p-4 text-sm text-accent/60">Audit trail temporarily unavailable.</div>
+          </ErrorBoundary>
+        </CollapsibleSection>
+
         {/* Documents Section - Consolidated */}
         <CollapsibleSection
           title="Documents & Bundle"
@@ -1140,11 +1240,11 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
                   </div>
                 }
               >
-                <HousingCaseOverview
-                  caseId={caseId}
-                  housingCase={housingCase}
-                  defects={housingDefects}
-                />
+            <HousingCaseOverview
+              caseId={caseId}
+              housingCase={housingCase}
+              defects={housingDefects}
+            />
               </ErrorBoundary>
             </CollapsibleSection>
             {/* Aggressive Defense Panel - Top Priority */}
@@ -1187,7 +1287,7 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
                   <div className="text-sm text-accent/60 p-4">Unable to load bundle checker right now.</div>
                 }
               >
-                <BundleCheckerPanel caseId={caseId} />
+            <BundleCheckerPanel caseId={caseId} />
               </ErrorBoundary>
             </CollapsibleSection>
             <CollapsibleSection
@@ -1219,14 +1319,14 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
               icon={<FileText className="h-4 w-4 text-blue-400" />}
             >
               <div className="space-y-4">
-                <SupervisionPackPanel caseId={caseId} />
-                <HousingCompliancePanel
-                  housingCase={housingCase}
-                  complianceChecks={complianceChecks}
-                />
-                <HousingDeadlineTracker caseId={caseId} />
-                <HousingTimelineBuilder caseId={caseId} />
-                <ScheduleOfDisrepairPanel caseId={caseId} />
+            <SupervisionPackPanel caseId={caseId} />
+            <HousingCompliancePanel
+              housingCase={housingCase}
+              complianceChecks={complianceChecks}
+            />
+            <HousingDeadlineTracker caseId={caseId} />
+            <HousingTimelineBuilder caseId={caseId} />
+            <ScheduleOfDisrepairPanel caseId={caseId} />
               </div>
             </CollapsibleSection>
           </>
@@ -1386,8 +1486,8 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
             <Card className="bg-surface/50 border-white/10 backdrop-blur-sm">
               <div className="p-4">
                 <p className="text-sm text-accent/60">Unable to load case health heatmap right now.</p>
-              </div>
-            </Card>
+                    </div>
+        </Card>
           }
         >
           <CaseHeatmapPanel heatmap={caseHeatmap} />
@@ -1409,7 +1509,7 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
           fallback={
             <Card title="Supervisor Review">
               <p className="text-sm text-accent/60">Unable to load supervisor review right now.</p>
-            </Card>
+        </Card>
           }
         >
           <SupervisorReviewPanel caseId={caseId} caseName={caseRecord.title ?? undefined} />
@@ -1511,7 +1611,7 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
           fallback={
             <Card title="Risk Alerts">
               <p className="text-sm text-accent/60">Unable to load risk alerts right now.</p>
-            </Card>
+        </Card>
           }
         >
           {(() => {

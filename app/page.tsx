@@ -68,10 +68,10 @@ function MarketingHomepage() {
             {/* Left: Logo */}
             <div className="flex items-center gap-3">
               <div className="h-8 w-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm">
-                CB
-              </div>
+            CB
+          </div>
               <span className="text-lg font-semibold text-foreground">CaseBrain Hub</span>
-            </div>
+        </div>
 
             {/* Center: Links (Desktop) */}
             <div className="hidden md:flex items-center gap-8">
@@ -83,10 +83,10 @@ function MarketingHomepage() {
               </Link>
               <Link href="/pricing" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 Pricing
-              </Link>
+          </Link>
               <Link href="#security" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                Security
-              </Link>
+            Security
+          </Link>
             </div>
 
             {/* Right: CTAs (Desktop) */}
@@ -100,7 +100,7 @@ function MarketingHomepage() {
                 <Button variant="primary" size="sm">
                   Start free pilot
                 </Button>
-              </Link>
+          </Link>
             </div>
 
             {/* Mobile Menu Button */}
@@ -137,7 +137,7 @@ function MarketingHomepage() {
                   <Button variant="primary" size="sm" className="w-full">
                     Start free pilot
                   </Button>
-                </Link>
+            </Link>
               </div>
             </div>
           )}
@@ -165,7 +165,7 @@ function MarketingHomepage() {
             <div className="space-y-8">
               <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight">
                 AI paralegal for modern litigation teams.
-              </h1>
+          </h1>
               <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed">
                 Upload your case bundle and let CaseBrain extract facts, build chronologies, flag risks, and identify missing evidence automatically.
               </p>
@@ -181,7 +181,7 @@ function MarketingHomepage() {
                     <Play className="mr-2 h-5 w-5" />
                     Watch 90-second demo
                   </Button>
-                </Link>
+              </Link>
               </div>
               <p className="text-xs text-muted-foreground">
                 No credit card needed. Designed for UK litigation teams.
@@ -391,7 +391,7 @@ function MarketingHomepage() {
                   className="object-cover"
                 />
                 */}
-              </div>
+            </div>
               <h3 className="text-lg font-semibold text-foreground mb-2">
                 Clinical Negligence Paralegal
               </h3>

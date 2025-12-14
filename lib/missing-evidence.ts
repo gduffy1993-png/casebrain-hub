@@ -1,5 +1,6 @@
 import type { MissingEvidenceItem, EvidenceRequirement, Severity, PracticeArea } from "./types/casebrain";
 import { getEvidenceChecklist, type PackEvidenceRequirement } from "./packs";
+import { frameMissingEvidenceExplanation } from "./confidenceFraming";
 
 /**
  * Legacy evidence requirements - kept for backwards compatibility
@@ -213,7 +214,7 @@ export function findMissingEvidence(
         caseId,
         category: req.category,
         label: req.label,
-        reason: req.description,
+        reason: frameMissingEvidenceExplanation(req.description),
         priority: req.priority as Severity,
         status: "MISSING",
         suggestedAction: getSuggestedAction(req),

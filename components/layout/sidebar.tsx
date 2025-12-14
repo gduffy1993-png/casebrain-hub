@@ -33,6 +33,7 @@ import {
   UserCheck,
   GraduationCap,
 } from "lucide-react";
+import { WhatsAppButton } from "@/components/support/WhatsAppButton";
 import type { ReactNode } from "react";
 
 type NavItem = {
@@ -444,7 +445,8 @@ function SidebarContent() {
       </nav>
 
       {/* Footer */}
-      <div className="border-t border-white/10 px-4 py-4">
+      <div className="border-t border-white/10 px-4 py-4 space-y-3">
+        <WhatsAppButton />
         <div className="rounded-xl bg-gradient-to-r from-primary/10 to-secondary/10 p-4">
           <p className="text-xs font-medium text-accent-soft">
             CaseBrain Hub © {new Date().getFullYear()}

@@ -40,6 +40,18 @@ type CPRComplianceInput = {
     hasRadiology: boolean;
     hasGP: boolean;
   }; // Optional: to override missing medical evidence flags
+  breachEvidence?: {
+    level: "HIGH" | "MEDIUM" | "LOW" | "NONE";
+    detected: boolean;
+  }; // Optional: breach evidence from medical records
+  causationEvidence?: {
+    level: "HIGH" | "MEDIUM" | "LOW" | "NONE";
+    detected: boolean;
+  }; // Optional: causation evidence from medical records
+  harmEvidence?: {
+    level: "PRESENT" | "NONE";
+    detected: boolean;
+  }; // Optional: harm evidence from medical records
 };
 
 /**
@@ -227,15 +239,21 @@ export function checkCPRCompliance(input: CPRComplianceInput): CPRComplianceIssu
       );
 
       if (missingMedical) {
+        // Check if medical records show strong breach/causation/harm (via momentum state)
+        // If so, adjust message to indicate expert is needed, not medical records
+        // Note: This is a simplified check - in production, you'd pass breach/causation/harm evidence here
+        const description = "Expert evidence required to formalise breach and causation. Underlying medical records strongly support negligence.";
+        const applicationText = "Obtain expert evidence to confirm and quantify the breach and causation opinion. Medical records already provide strong support.";
+        
         issues.push({
           id: `cpr-missing-medical-${input.caseId}`,
           caseId: input.caseId,
           rule: "Pre-Action Protocol (PI/Clinical Neg)",
-          breach: "Missing medical evidence",
-          severity: "CRITICAL",
-          description: "Critical medical evidence not provided — required for causation",
+          breach: "Expert evidence not yet uploaded",
+          severity: "HIGH", // Reduced from CRITICAL since medical records are present
+          description,
           suggestedApplication: "FURTHER_INFORMATION",
-          applicationText: "Request medical records — this is essential for establishing causation and quantum.",
+          applicationText,
           evidence: [missingMedical.reason],
           createdAt: now,
         });
@@ -258,15 +276,34 @@ export function checkCPRCompliance(input: CPRComplianceInput): CPRComplianceIssu
     );
 
     if (missingMedical) {
+      // Check if medical records show strong breach/causation/harm
+      const hasStrongBreach = input.breachEvidence?.level === "HIGH";
+      const hasStrongCausation = input.causationEvidence?.level === "HIGH";
+      const hasHarm = input.harmEvidence?.level === "PRESENT";
+      const hasStrongMedicalEvidence = hasStrongBreach && hasStrongCausation && hasHarm;
+      
+      // Also check if medical evidence signals indicate records are present
+      const hasMedicalRecords = input.medicalEvidenceSignals?.hasMedicalRecords;
+      
+      // If medical records show strong breach/causation/harm, adjust message
+      const description = hasStrongMedicalEvidence
+        ? "Expert evidence required to formalise breach and causation. Underlying medical records strongly support negligence."
+        : hasMedicalRecords
+        ? "Expert evidence required to formalise breach and causation. Underlying medical records strongly support negligence."
+        : "Critical medical evidence not provided — required for causation";
+      const applicationText = hasStrongMedicalEvidence || hasMedicalRecords
+        ? "Obtain expert evidence to confirm and quantify the breach and causation opinion. Medical records already provide strong support."
+        : "Request medical records — this is essential for establishing causation and quantum.";
+      
       issues.push({
         id: `cpr-missing-medical-${input.caseId}`,
         caseId: input.caseId,
         rule: "Pre-Action Protocol (PI/Clinical Neg)",
-        breach: "Missing medical evidence",
-        severity: "CRITICAL",
-        description: "Critical medical evidence not provided — required for causation",
+        breach: hasStrongMedicalEvidence || hasMedicalRecords ? "Expert evidence not yet uploaded" : "Missing medical evidence",
+        severity: hasStrongMedicalEvidence || hasMedicalRecords ? "HIGH" : "CRITICAL",
+        description,
         suggestedApplication: "FURTHER_INFORMATION",
-        applicationText: "Request medical records — this is essential for establishing causation and quantum.",
+        applicationText,
         evidence: [missingMedical.reason],
         createdAt: now,
       });

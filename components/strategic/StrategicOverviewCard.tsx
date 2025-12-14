@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { TrendingUp, TrendingDown, Minus, Loader2 } from "lucide-react";
 
-type MomentumState = "WINNING" | "BALANCED" | "LOSING";
+type MomentumState = "STRONG" | "STRONG (Expert Pending)" | "BALANCED" | "WEAK";
 
 type StrategyPath = {
   id: string;
@@ -90,9 +90,11 @@ export function StrategicOverviewCard({ caseId }: StrategicOverviewCardProps) {
 
   const getMomentumIcon = () => {
     switch (momentum.state) {
-      case "WINNING":
+      case "STRONG":
         return <TrendingUp className="h-5 w-5 text-green-400" />;
-      case "LOSING":
+      case "STRONG (Expert Pending)":
+        return <TrendingUp className="h-5 w-5 text-blue-400" />;
+      case "WEAK":
         return <TrendingDown className="h-5 w-5 text-red-400" />;
       default:
         return <Minus className="h-5 w-5 text-amber-400" />;
@@ -101,9 +103,11 @@ export function StrategicOverviewCard({ caseId }: StrategicOverviewCardProps) {
 
   const getMomentumColor = () => {
     switch (momentum.state) {
-      case "WINNING":
+      case "STRONG":
         return "bg-green-500/20 text-green-400 border-green-500/30";
-      case "LOSING":
+      case "STRONG (Expert Pending)":
+        return "bg-blue-500/20 text-blue-400 border-blue-500/30";
+      case "WEAK":
         return "bg-red-500/20 text-red-400 border-red-500/30";
       default:
         return "bg-amber-500/20 text-amber-400 border-amber-500/30";

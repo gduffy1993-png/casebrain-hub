@@ -29,8 +29,20 @@ import { findMissingEvidence } from "../missing-evidence";
 import { detectSubstantiveMerits } from "./substantive-merits";
 import { detectCaseRole, type CaseRole } from "./role-detection";
 import type { PracticeArea } from "../types/casebrain";
+import { detectBreachEvidence } from "../analysis/breach";
+import { detectCausationEvidence } from "../analysis/causation";
+import { detectHarmEvidence } from "../analysis/harm";
+import { hasExpertReport } from "../analysis/expert-detection";
 
-export type MomentumState = "STRONG" | "BALANCED" | "WEAK";
+export type MomentumState = "STRONG" | "STRONG (Expert Pending)" | "BALANCED" | "WEAK";
+
+// Momentum enum constant
+export const MOMENTUM = {
+  WEAK: "WEAK",
+  BALANCED: "BALANCED",
+  STRONG_PENDING: "STRONG (Expert Pending)",
+  STRONG: "STRONG",
+} as const;
 
 export type MomentumShift = {
   factor: string;
@@ -121,75 +133,77 @@ export async function calculateCaseMomentum(
       });
       
       // Store score for debug output
-      debugMeritsScore = merits.totalScore;
+      debugMeritsScore = merits?.totalScore;
       
       // Add substantive merits to score (these are heavily weighted)
-      if (merits.guidelineBreaches.detected) {
-        score += merits.guidelineBreaches.score;
-        shifts.push({
-          factor: "NICE guideline breaches",
-          impact: "POSITIVE",
-          description: `${merits.guidelineBreaches.count} guideline breach(es) detected — strong liability position`,
-          weight: merits.guidelineBreaches.score,
-        });
-      }
-      
-      if (merits.delayCausation.detected) {
-        score += merits.delayCausation.score;
-        shifts.push({
-          factor: "Delay-caused injury",
-          impact: "POSITIVE",
-          description: `${merits.delayCausation.count} delay indicator(s) linked to avoidable harm — causation strengthened`,
-          weight: merits.delayCausation.score,
-        });
-      }
-      
-      if (merits.expertConfirmation.detected) {
-        score += merits.expertConfirmation.score;
-        shifts.push({
-          factor: "Expert confirmation of avoidability",
-          impact: "POSITIVE",
-          description: `Expert evidence confirms breach and/or causation — strong evidential position`,
-          weight: merits.expertConfirmation.score,
-        });
-      }
-      
-      if (merits.seriousHarm.detected) {
-        score += merits.seriousHarm.score;
-        shifts.push({
-          factor: "Serious harm indicators",
-          impact: "POSITIVE",
-          description: `Serious harm detected (${merits.seriousHarm.indicators.join(", ")}) — quantum escalators present`,
-          weight: merits.seriousHarm.score,
-        });
-      }
-      
-      if (merits.psychologicalInjury.detected) {
-        score += merits.psychologicalInjury.score;
-        shifts.push({
-          factor: "Psychological injury",
-          impact: "POSITIVE",
-          description: "Psychological/psychiatric injury identified — additional head of loss",
-          weight: merits.psychologicalInjury.score,
-        });
-      }
-      
-      // ============================================
-      // FORCE STRONG MOMENTUM IF SUBSTANTIVE MERITS >= 60
-      // ============================================
-      // For claimant clinical negligence cases with strong substantive merits,
-      // momentum must be STRONG unless there is a true substantive risk flag
-      if (merits.totalScore >= 60) {
-        // Boost score significantly to ensure STRONG momentum
-        const boostAmount = Math.max(40, 100 - score); // Ensure we reach STRONG threshold
-        score += boostAmount;
-        shifts.push({
-          factor: "Strong substantive merits",
-          impact: "POSITIVE",
-          description: `High substantive merits score (${merits.totalScore}) — guideline breaches, expert causation, serious harm, and/or delay-caused injury present. Case has strong liability foundation.`,
-          weight: boostAmount,
-        });
-        console.log(`[momentum] Boosted score by ${boostAmount} due to high substantive merits (${merits.totalScore})`);
+      if (merits) {
+        if (merits.guidelineBreaches.detected) {
+          score += merits.guidelineBreaches.score;
+          shifts.push({
+            factor: "NICE guideline breaches",
+            impact: "POSITIVE",
+            description: `${merits.guidelineBreaches.count} guideline breach(es) detected — strong liability position`,
+            weight: merits.guidelineBreaches.score,
+          });
+        }
+        
+        if (merits.delayCausation.detected) {
+          score += merits.delayCausation.score;
+          shifts.push({
+            factor: "Delay-caused injury",
+            impact: "POSITIVE",
+            description: `${merits.delayCausation.count} delay indicator(s) linked to avoidable harm — causation strengthened`,
+            weight: merits.delayCausation.score,
+          });
+        }
+        
+        if (merits.expertConfirmation.detected) {
+          score += merits.expertConfirmation.score;
+          shifts.push({
+            factor: "Expert confirmation of avoidability",
+            impact: "POSITIVE",
+            description: `Expert evidence confirms breach and/or causation — strong evidential position`,
+            weight: merits.expertConfirmation.score,
+          });
+        }
+        
+        if (merits.seriousHarm.detected) {
+          score += merits.seriousHarm.score;
+          shifts.push({
+            factor: "Serious harm indicators",
+            impact: "POSITIVE",
+            description: `Serious harm detected (${merits.seriousHarm.indicators.join(", ")}) — quantum escalators present`,
+            weight: merits.seriousHarm.score,
+          });
+        }
+        
+        if (merits.psychologicalInjury.detected) {
+          score += merits.psychologicalInjury.score;
+          shifts.push({
+            factor: "Psychological injury",
+            impact: "POSITIVE",
+            description: "Psychological/psychiatric injury identified — additional head of loss",
+            weight: merits.psychologicalInjury.score,
+          });
+        }
+        
+        // ============================================
+        // FORCE STRONG MOMENTUM IF SUBSTANTIVE MERITS >= 60
+        // ============================================
+        // For claimant clinical negligence cases with strong substantive merits,
+        // momentum must be STRONG unless there is a true substantive risk flag
+        if (merits.totalScore >= 60) {
+          // Boost score significantly to ensure STRONG momentum
+          const boostAmount = Math.max(40, 100 - score); // Ensure we reach STRONG threshold
+          score += boostAmount;
+          shifts.push({
+            factor: "Strong substantive merits",
+            impact: "POSITIVE",
+            description: `High substantive merits score (${merits.totalScore}) — guideline breaches, expert causation, serious harm, and/or delay-caused injury present. Case has strong liability foundation.`,
+            weight: boostAmount,
+          });
+          console.log(`[momentum] Boosted score by ${boostAmount} due to high substantive merits (${merits.totalScore})`);
+        }
       }
     } catch (error) {
       console.warn("[momentum] Failed to detect substantive merits:", error);
@@ -414,9 +428,62 @@ export async function calculateCaseMomentum(
   }
 
   // ============================================
+  // BREACH/CAUSATION/HARM DETECTION (NEW - for STRONG (Expert Pending))
+  // ============================================
+  // For claimant clinical negligence, check if medical records alone show complete negligence story
+  type BreachEvidence = { level: "HIGH" | "MEDIUM" | "LOW" | "NONE"; detected: boolean; indicators: string[] };
+  type CausationEvidence = { level: "HIGH" | "MEDIUM" | "LOW" | "NONE"; detected: boolean; indicators: string[] };
+  type HarmEvidence = { level: "PRESENT" | "NONE"; detected: boolean; indicators: string[] };
+  
+  let breachEvidence: BreachEvidence | null = null;
+  let causationEvidence: CausationEvidence | null = null;
+  let harmEvidence: HarmEvidence | null = null;
+  let hasExpert = false;
+  
+  if (isClaimant && isClinicalNeg) {
+    try {
+      // Check for breach, causation, and harm from medical records
+      breachEvidence = await detectBreachEvidence({
+        caseId: input.caseId,
+        orgId: input.orgId,
+        documents: input.documents,
+        timeline: input.timeline,
+      });
+      
+      causationEvidence = await detectCausationEvidence({
+        caseId: input.caseId,
+        orgId: input.orgId,
+        documents: input.documents,
+        timeline: input.timeline,
+      });
+      
+      harmEvidence = await detectHarmEvidence({
+        caseId: input.caseId,
+        orgId: input.orgId,
+        documents: input.documents,
+        timeline: input.timeline,
+      });
+      
+      // Check if expert report is uploaded
+      hasExpert = await hasExpertReport({
+        caseId: input.caseId,
+        orgId: input.orgId,
+        documents: input.documents,
+      });
+    } catch (error) {
+      console.warn("[momentum] Failed to detect breach/causation/harm:", error);
+    }
+  }
+
+  // ============================================
   // DETERMINE STATE AND EXPLANATION
   // ============================================
   // Use professional solicitor-level language
+  // Evaluation order:
+  // 1. If no meaningful medical records → WEAK
+  // 2. If medical records incomplete → BALANCED
+  // 3. If breach/cause/harm all strong AND no expert → STRONG (Expert Pending)
+  // 4. If breach/cause/harm all strong AND expert uploaded → STRONG
   let state: MomentumState;
   let explanation: string;
   let confidence: "HIGH" | "MEDIUM" | "LOW";
@@ -440,10 +507,50 @@ export async function calculateCaseMomentum(
   });
   
   if (isClaimant && isClinicalNeg) {
-    // REUSE merits from earlier call (don't call detectSubstantiveMerits again)
-    const substantiveMeritsScore = merits?.totalScore ?? 0;
+    // Check for STRONG (Expert Pending) condition
+    const hasStrongBreach = breachEvidence !== null && breachEvidence.level === "HIGH";
+    const hasStrongCausation = causationEvidence !== null && causationEvidence.level === "HIGH";
+    const hasHarm = harmEvidence !== null && harmEvidence.level === "PRESENT";
     
-    // If substantive merits are strong (>=60), momentum MUST be STRONG unless there's a true substantive risk
+    // Check if medical records are meaningful (at least some breach/causation/harm detected)
+    const hasMeaningfulRecords = (breachEvidence?.detected) || (causationEvidence?.detected) || (harmEvidence?.detected);
+    
+    // STRONG (Expert Pending) condition: breach HIGH + causation HIGH + harm PRESENT + no expert
+    if (hasStrongBreach && hasStrongCausation && hasHarm && !hasExpert) {
+      state = "STRONG (Expert Pending)";
+      const breachIndicators = breachEvidence?.indicators.join(", ") || "breach indicators";
+      const causationIndicators = causationEvidence?.indicators.join(", ") || "causation indicators";
+      const harmIndicators = harmEvidence?.indicators.join(", ") || "harm indicators";
+      explanation = `The medical records alone strongly support breach and causation. ${breachIndicators} establish breach of duty. ${causationIndicators} establish causation. ${harmIndicators} demonstrate harm. Expert evidence is now required only to confirm and quantify the opinion. The underlying medical records provide a compelling negligence narrative.`;
+      confidence = "HIGH";
+    } else if (hasStrongBreach && hasStrongCausation && hasHarm && hasExpert) {
+      // All strong + expert uploaded = STRONG
+      state = "STRONG";
+      const breachIndicators = breachEvidence?.indicators.join(", ") || "breach indicators";
+      const causationIndicators = causationEvidence?.indicators.join(", ") || "causation indicators";
+      const harmIndicators = harmEvidence?.indicators.join(", ") || "harm indicators";
+      explanation = `This is a high-merit liability case with strong substantive foundations. ${breachIndicators} establish breach of duty. ${causationIndicators} establish causation. ${harmIndicators} demonstrate harm. Expert evidence confirms the position. The case is suitable for early admission pressure or liability trial if resisted.`;
+      confidence = "HIGH";
+    } else if (!hasMeaningfulRecords) {
+      // No meaningful medical records → WEAK
+      state = "WEAK";
+      explanation = `Case momentum is weak. Medical records do not show clear breach, causation, or harm indicators. Additional evidence is required to establish a negligence claim.`;
+      confidence = "MEDIUM";
+    } else if (!hasStrongBreach || !hasStrongCausation || !hasHarm) {
+      // Medical records incomplete → BALANCED
+      state = "BALANCED";
+      const missingParts: string[] = [];
+      if (!hasStrongBreach) missingParts.push("breach");
+      if (!hasStrongCausation) missingParts.push("causation");
+      if (!hasHarm) missingParts.push("harm");
+      explanation = `Case momentum is balanced. Medical records show some negligence indicators, but ${missingParts.join(" and/or ")} evidence is incomplete. Further evidence or expert opinion may be required to strengthen the case.`;
+      confidence = "MEDIUM";
+    } else {
+      // Fall back to existing substantive merits logic
+      // REUSE merits from earlier call (don't call detectSubstantiveMerits again)
+      const substantiveMeritsScore = merits?.totalScore ?? 0;
+      
+      // If substantive merits are strong (>=60), momentum MUST be STRONG unless there's a true substantive risk
     // True substantive risks ONLY: denial of breach, alternative causation, expert explicitly rejects breach/causation
     const hasStrongSubstantiveMerits = substantiveMeritsScore >= 60;
     const hasTrueSubstantiveRisk = negativeFactors.some(f => {
@@ -505,6 +612,7 @@ export async function calculateCaseMomentum(
       explanation = `Case momentum is balanced. Positive and negative factors are roughly equal. ${positiveFactors.length > 0 ? `Strengths: ${positiveFactors.map(f => f.factor).join(", ")}. ` : ""}${negativeFactors.length > 0 ? `Concerns: ${negativeFactors.map(f => f.factor).join(", ")}. ` : ""}Focus on building on strengths while addressing weaknesses.`;
       confidence = shifts.length >= 2 ? "MEDIUM" : "LOW";
     }
+    } // Close the else block from line 542
   } else {
     // For defendant cases or non-clinical negligence, use standard thresholds
     if (score >= 30) {

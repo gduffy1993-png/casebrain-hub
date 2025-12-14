@@ -46,6 +46,7 @@ type StrategyPathInput = {
   hasHazardAssessment: boolean;
   nextHearingDate?: string;
   caseRole?: CaseRole; // Optional: if not provided, will be detected
+  momentumState?: "STRONG" | "STRONG (Expert Pending)" | "BALANCED" | "WEAK"; // Optional: momentum state for enhanced strategy
 };
 
 /**
@@ -118,6 +119,9 @@ export async function generateStrategyPaths(
   // CLAIMANT-SPECIFIC ROUTES (Clinical Negligence)
   // ============================================
   if (isClaimant && isClinicalNeg) {
+    // Check if momentum is STRONG (Expert Pending) - this unlocks enhanced strategy
+    const isStrongExpertPending = input.momentumState === "STRONG (Expert Pending)";
+    
     // Route A: Early liability admission → quantum resolution
     let merits: Awaited<ReturnType<typeof detectSubstantiveMerits>> | null = null;
     try {
@@ -131,13 +135,17 @@ export async function generateStrategyPaths(
       console.warn("[strategy-paths] Failed to detect substantive merits:", error);
     }
     
-    if (merits && (merits.guidelineBreaches.detected || merits.expertConfirmation.detected || merits.delayCausation.detected)) {
+    // For STRONG (Expert Pending), show enhanced strategy even if merits detection fails
+    // Medical records alone show breach/causation/harm
+    if (isStrongExpertPending || (merits && (merits.guidelineBreaches.detected || merits.expertConfirmation.detected || merits.delayCausation.detected))) {
       const path: StrategyPath = {
         id: `strategy-route-a-${input.caseId}`,
         caseId: input.caseId,
         route: "A",
         title: "Route A: Early liability admission pressure using guideline breaches and expert evidence",
-        description: "High-merit liability case with strong breach/causation evidence (guideline breaches, expert confirmation, delay-caused harm). Use this leverage to seek early liability admission and move to quantum resolution.",
+        description: isStrongExpertPending
+          ? "The medical records alone strongly support breach and causation. Expert evidence is now required only to confirm and quantify the opinion. High-merit liability case with strong breach/causation evidence from medical records. Use this leverage to seek early liability admission and move to quantum resolution."
+          : "High-merit liability case with strong breach/causation evidence (guideline breaches, expert confirmation, delay-caused harm). Use this leverage to seek early liability admission and move to quantum resolution.",
         approach: "1. Serve Letter of Claim highlighting guideline breaches and expert confirmation of avoidability. 2. Request admission of liability within 21 days under PAP, pressing for early admission and narrowing issues. 3. If admission received, proceed to quantum negotiation. 4. If liability denied or resisted, proceed to liability trial with strong evidential position. 5. Use guideline breaches and expert evidence as primary leverage in PAP pressure, early resolution, and at trial if resisted. 6. Frame opponent's exposure clearly in Letter of Claim and Particulars of Claim.",
         pros: [
           "Strong evidential position on breach and causation",
@@ -153,7 +161,7 @@ export async function generateStrategyPaths(
         ],
         estimatedTimeframe: "3-6 months (if admission) or 12-18 months (if trial)",
         estimatedCost: "Medium-High (expert reports, potentially trial)",
-        successProbability: merits.totalScore >= 80 ? "HIGH" : "MEDIUM",
+        successProbability: merits && merits.totalScore >= 80 ? "HIGH" : "MEDIUM",
         recommendedFor: "Cases with confirmed guideline breaches, expert causation evidence, or delay-caused harm. Most effective when multiple substantive merits are present.",
         createdAt: now,
       };
@@ -184,12 +192,13 @@ export async function generateStrategyPaths(
     }
     
     // Route B: PAP pressure strategy (claimant-specific)
+    // For STRONG (Expert Pending), always show this route
     const hasPAPLetter = input.letters.some(l => 
       l.template_id?.toLowerCase().includes("pre_action") ||
       l.template_id?.toLowerCase().includes("protocol")
     );
     
-    if (!hasPAPLetter && merits && merits.totalScore > 0) {
+    if (!hasPAPLetter && (isStrongExpertPending || (merits && merits.totalScore > 0))) {
       const path: StrategyPath = {
         id: `strategy-route-b-${input.caseId}`,
         caseId: input.caseId,
@@ -209,7 +218,7 @@ export async function generateStrategyPaths(
         ],
         estimatedTimeframe: "1-2 months (if admission) or proceed to proceedings",
         estimatedCost: "Low-Medium (Letter of Claim only if admission received)",
-        successProbability: merits.totalScore >= 60 ? "HIGH" : "MEDIUM",
+        successProbability: merits && merits.totalScore >= 60 ? "HIGH" : "MEDIUM",
         recommendedFor: "Cases with strong substantive merits that have not yet served PAP Letter of Claim. Effective when guideline breaches or expert evidence is clear.",
         createdAt: now,
       };
@@ -237,7 +246,8 @@ export async function generateStrategyPaths(
     }
     
     // Route C: Litigation to liability judgment (claimant-specific)
-    if (merits && merits.totalScore >= 50) {
+    // For STRONG (Expert Pending), always show this route
+    if (isStrongExpertPending || (merits && merits.totalScore >= 50)) {
       const path: StrategyPath = {
         id: `strategy-route-c-${input.caseId}`,
         caseId: input.caseId,
@@ -258,7 +268,7 @@ export async function generateStrategyPaths(
         ],
         estimatedTimeframe: "12-18 months to liability judgment",
         estimatedCost: "High (trial costs, expert evidence)",
-        successProbability: merits.totalScore >= 70 ? "HIGH" : "MEDIUM",
+        successProbability: merits && merits.totalScore >= 70 ? "HIGH" : "MEDIUM",
         recommendedFor: "Cases with strong substantive merits where defendant resists admission. Most effective when guideline breaches and expert causation are clearly established.",
         createdAt: now,
       };
@@ -289,7 +299,8 @@ export async function generateStrategyPaths(
     }
     
     // Route D: Settlement leverage using guideline breaches (claimant-specific)
-    if (merits && merits.guidelineBreaches.detected && input.nextHearingDate) {
+    // For STRONG (Expert Pending), show this route even without hearing date (medical records provide leverage)
+    if (isStrongExpertPending || (merits && merits.guidelineBreaches.detected && input.nextHearingDate)) {
       const path: StrategyPath = {
         id: `strategy-route-d-${input.caseId}`,
         caseId: input.caseId,
@@ -309,7 +320,7 @@ export async function generateStrategyPaths(
         ],
         estimatedTimeframe: "1-3 months to settlement",
         estimatedCost: "Low-Medium (negotiation only)",
-        successProbability: merits.guidelineBreaches.score >= 30 ? "HIGH" : "MEDIUM",
+        successProbability: merits && merits.guidelineBreaches.score >= 30 ? "HIGH" : "MEDIUM",
         recommendedFor: "Cases with clear guideline breaches and approaching hearing. Effective when substantive merits are strong but defendant may be open to settlement.",
         createdAt: now,
       };

@@ -4,6 +4,7 @@
  */
 
 import type { KeyIssue, Severity } from "./types/casebrain";
+import { frameKeyIssue } from "./confidenceFraming";
 
 /**
  * Deduplicate and merge similar issues
