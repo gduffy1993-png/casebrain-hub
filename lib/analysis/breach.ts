@@ -211,22 +211,22 @@ export async function detectBreachEvidence(
   let allText = "";
 
   try {
-    // Get documents with raw text and extracted JSON
+    // Get documents with extracted JSON (raw_text may not exist in documents table)
     const { data: documentsWithContent } = await supabase
       .from("documents")
-      .select("id, raw_text, extracted_json, name")
+      .select("id, extracted_json, name, ai_summary")
       .eq("case_id", input.caseId)
       .eq("org_id", input.orgId)
       .limit(20);
 
     if (documentsWithContent) {
       for (const doc of documentsWithContent) {
-        // Add raw text
-        if (doc.raw_text && doc.raw_text.length > 50) {
-          allText += " " + doc.raw_text;
+        // Add AI summary if available
+        if (doc.ai_summary && doc.ai_summary.length > 50) {
+          allText += " " + doc.ai_summary;
         }
 
-        // Add extracted JSON content
+        // Add extracted JSON content (this is the primary source)
         if (doc.extracted_json) {
           const extracted = doc.extracted_json as any;
           if (extracted.summary) {
@@ -248,6 +248,33 @@ export async function detectBreachEvidence(
       }
     }
 
+    // Also check bundle_chunks for raw text (if bundles exist)
+    const { data: bundles } = await supabase
+      .from("case_bundles")
+      .select("id")
+      .eq("case_id", input.caseId)
+      .eq("org_id", input.orgId)
+      .limit(1);
+
+    if (bundles && bundles.length > 0) {
+      const { data: bundleChunks } = await supabase
+        .from("bundle_chunks")
+        .select("raw_text, ai_summary")
+        .eq("bundle_id", bundles[0].id)
+        .limit(50);
+
+      if (bundleChunks) {
+        for (const chunk of bundleChunks) {
+          if (chunk.raw_text && chunk.raw_text.length > 50) {
+            allText += " " + chunk.raw_text;
+          }
+          if (chunk.ai_summary && chunk.ai_summary.length > 50) {
+            allText += " " + chunk.ai_summary;
+          }
+        }
+      }
+    }
+
     // Add timeline descriptions
     const timelineDescriptions = input.timeline.map(t => t.description).join(" ");
     allText += " " + timelineDescriptions;
@@ -264,6 +291,15 @@ export async function detectBreachEvidence(
     }
   } catch (error) {
     console.warn("[breach-detection] Failed to load document content:", error);
+  }
+
+  // Only analyse if we have meaningful text
+  if (allText.trim().length < 100) {
+    return {
+      level: "NONE",
+      detected: false,
+      indicators: [],
+    };
   }
 
   // Analyse breach
