@@ -15,6 +15,8 @@ import { detectOpponentWeakSpots } from "@/lib/strategic/weak-spots";
 import { detectProceduralLeveragePoints } from "@/lib/strategic/procedural-leverage";
 import { sanitizeStrategicResponse } from "@/lib/strategic/language-sanitizer";
 import { withPaywall } from "@/lib/paywall/protect-route";
+import { findMissingEvidence } from "@/lib/missing-evidence";
+import { computeAnalysisDelta } from "@/lib/strategic/compute-analysis-delta";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -77,7 +79,7 @@ function setCache(key: string, data: any): void {
 export async function GET(request: NextRequest, { params }: RouteParams) {
   return await withPaywall("analysis", async () => {
     try {
-      const { orgId } = await requireAuthContext();
+      const { orgId, userId } = await requireAuthContext();
       const { caseId } = await params;
 
       const supabase = getSupabaseAdminClient();
@@ -291,6 +293,25 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       // ============================================
       const sanitizedResponse = sanitizeStrategicResponse(response, caseRole);
 
+      // ============================================
+      // CREATE ANALYSIS VERSION RECORD
+      // ============================================
+      try {
+        await createAnalysisVersion({
+          supabase,
+          caseId,
+          orgId,
+          userId: userId || null,
+          momentum,
+          documents,
+          timeline,
+          caseRecord,
+        });
+      } catch (versionError) {
+        // Log but don't break the API response
+        console.error("[strategic-overview] Failed to create analysis version:", versionError);
+      }
+
       // Cache the sanitized response (only if no error)
       if (!sanitizedResponse.error) {
         setCache(cacheKey, sanitizedResponse);
@@ -312,4 +333,213 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       );
     }
   });
+}
+
+/**
+ * Create a new analysis version record
+ */
+async function createAnalysisVersion(params: {
+  supabase: ReturnType<typeof getSupabaseAdminClient>;
+  caseId: string;
+  orgId: string;
+  userId: string | null;
+  momentum: Awaited<ReturnType<typeof calculateCaseMomentum>>;
+  documents: Array<{ id: string; name: string; created_at: string }>;
+  timeline: Array<{ event_date: string; description: string }>;
+  caseRecord: { id: string; practice_area: string | null };
+}): Promise<void> {
+  const { supabase, caseId, orgId, userId, momentum, documents, timeline, caseRecord } = params;
+
+  // Get previous version to compute delta
+  const { data: prevVersion } = await supabase
+    .from("case_analysis_versions")
+    .select("risk_rating, summary, key_issues, timeline, missing_evidence")
+    .eq("case_id", caseId)
+    .eq("org_id", orgId)
+    .order("version_number", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  // Get next version number
+  const { data: latestVersion } = await supabase
+    .from("case_analysis_versions")
+    .select("version_number")
+    .eq("case_id", caseId)
+    .eq("org_id", orgId)
+    .order("version_number", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  const nextVersionNumber = latestVersion ? (latestVersion as any).version_number + 1 : 1;
+
+  // Build missing evidence list
+  const docsForEvidence = documents.map((d) => ({
+    name: d.name,
+    type: undefined,
+    extracted_json: undefined,
+  }));
+  const missingEvidence = findMissingEvidence(
+    caseId,
+    caseRecord.practice_area || "other_litigation",
+    docsForEvidence,
+  );
+
+  // Convert missing evidence to version format
+  const missingEvidenceFormatted = missingEvidence.map((item) => ({
+    area: mapCategoryToArea(item.category),
+    label: item.label,
+    priority: item.priority,
+    notes: item.reason,
+  }));
+
+  // Build key issues from momentum shifts and other sources
+  const keyIssues: Array<{
+    type: string;
+    label: string;
+    severity: string;
+    notes?: string;
+  }> = [];
+
+  // Add issues from momentum shifts
+  if (momentum.shifts) {
+    for (const shift of momentum.shifts) {
+      if (shift.impact === "NEGATIVE") {
+        // Infer issue type from factor text
+        let issueType = "procedural";
+        const factorLower = shift.factor.toLowerCase();
+        if (factorLower.includes("breach") || factorLower.includes("negligence")) {
+          issueType = "breach";
+        } else if (factorLower.includes("causation") || factorLower.includes("caused")) {
+          issueType = "causation";
+        } else if (factorLower.includes("harm") || factorLower.includes("injury")) {
+          issueType = "harm";
+        }
+
+        keyIssues.push({
+          type: issueType,
+          label: shift.factor,
+          severity: shift.impact === "NEGATIVE" ? "HIGH" : "MEDIUM",
+          notes: shift.description,
+        });
+      }
+    }
+  }
+
+  // Build timeline from timeline events
+  const timelineFormatted = timeline.map((event) => ({
+    date: event.event_date,
+    description: event.description,
+  }));
+
+  // Map momentum state to risk rating
+  const riskRating = mapMomentumToRiskRating(momentum.state);
+
+  // Build summary (3-5 lines)
+  const summary = buildVersionSummary(momentum, missingEvidence);
+
+  // Create current snapshot
+  const currentSnapshot = {
+    risk_rating: riskRating,
+    summary,
+    key_issues: keyIssues,
+    timeline: timelineFormatted,
+    missing_evidence: missingEvidenceFormatted,
+  };
+
+  // Compute delta
+  const delta = computeAnalysisDelta(prevVersion, currentSnapshot);
+
+  // Get document IDs
+  const documentIds = documents.map((d) => d.id);
+
+  // Insert new version (wrapped in transaction-like error handling)
+  const { error: insertError } = await supabase
+    .from("case_analysis_versions")
+    .insert({
+      case_id: caseId,
+      org_id: orgId,
+      version_number: nextVersionNumber,
+      document_ids: documentIds,
+      risk_rating: riskRating,
+      summary,
+      key_issues: keyIssues,
+      timeline: timelineFormatted,
+      missing_evidence: missingEvidenceFormatted,
+      analysis_delta: delta,
+      created_by: userId,
+    });
+
+  if (insertError) {
+    throw new Error(`Failed to insert analysis version: ${insertError.message}`);
+  }
+
+  // Update case with latest version number
+  await supabase
+    .from("cases")
+    .update({ latest_analysis_version: nextVersionNumber })
+    .eq("id", caseId);
+
+  // Log version creation
+  console.log(`[analysis-version] Created version ${nextVersionNumber} for case ${caseId}, momentum: ${momentum.state}, documents: ${documentIds.length}`);
+}
+
+/**
+ * Map momentum state to risk rating string
+ */
+function mapMomentumToRiskRating(state: string): string {
+  const mapping: Record<string, string> = {
+    WEAK: "WEAK",
+    BALANCED: "BALANCED",
+    "STRONG (Expert Pending)": "STRONG_PENDING",
+    STRONG: "STRONG",
+  };
+  return mapping[state] || "BALANCED";
+}
+
+/**
+ * Map evidence category to area
+ */
+function mapCategoryToArea(category: string): string {
+  const mapping: Record<string, string> = {
+    LIABILITY: "medical_records",
+    CAUSATION: "expert",
+    QUANTUM: "witness",
+    PROCEDURE: "admin",
+    HOUSING: "other",
+  };
+  return mapping[category] || "other";
+}
+
+/**
+ * Build version summary (3-5 lines)
+ */
+function buildVersionSummary(
+  momentum: Awaited<ReturnType<typeof calculateCaseMomentum>>,
+  missingEvidence: Array<{ label: string; priority: string }>,
+): string {
+  const lines: string[] = [];
+  
+  // Line 1: Momentum state
+  lines.push(momentum.explanation || `Case momentum is ${momentum.state.toLowerCase()}.`);
+
+  // Line 2-3: Key factors
+  if (momentum.shifts && momentum.shifts.length > 0) {
+    const positiveShifts = momentum.shifts.filter((s) => s.impact === "POSITIVE").slice(0, 2);
+    const negativeShifts = momentum.shifts.filter((s) => s.impact === "NEGATIVE").slice(0, 2);
+    
+    if (positiveShifts.length > 0) {
+      lines.push(`Key strengths: ${positiveShifts.map((s) => s.factor).join(", ")}.`);
+    }
+    if (negativeShifts.length > 0) {
+      lines.push(`Areas of concern: ${negativeShifts.map((s) => s.factor).join(", ")}.`);
+    }
+  }
+
+  // Line 4-5: Missing evidence summary
+  const criticalMissing = missingEvidence.filter((m) => m.priority === "CRITICAL" || m.priority === "HIGH");
+  if (criticalMissing.length > 0) {
+    lines.push(`Missing evidence: ${criticalMissing.slice(0, 3).map((m) => m.label).join(", ")}.`);
+  }
+
+  return lines.join(" ");
 }

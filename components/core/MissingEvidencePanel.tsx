@@ -1,14 +1,23 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState, useTransition, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { AlertTriangle, CheckCircle, FileQuestion, Loader2, Plus } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import type { MissingEvidenceItem, Severity, EvidenceCategory } from "@/lib/types/casebrain";
 
 type MissingEvidencePanelProps = {
   caseId: string;
-  items: MissingEvidenceItem[];
+  items?: MissingEvidenceItem[]; // Optional - will fetch from case_analysis_versions if not provided
+};
+
+type VersionMissingEvidence = {
+  area: string;
+  label: string;
+  priority?: string;
+  notes?: string;
 };
 
 const priorityColors: Record<Severity, string> = {
@@ -39,9 +48,56 @@ const statusIcons = {
   RECEIVED: CheckCircle,
 };
 
-export function MissingEvidencePanel({ caseId, items }: MissingEvidencePanelProps) {
-  const [localItems, setLocalItems] = useState(items);
+export function MissingEvidencePanel({ caseId, items: propItems }: MissingEvidencePanelProps) {
+  const [versionItems, setVersionItems] = useState<VersionMissingEvidence[]>([]);
+  const [loading, setLoading] = useState(!propItems);
   const [isPending, startTransition] = useTransition();
+
+  // Fetch from case_analysis_versions if items not provided
+  useEffect(() => {
+    if (propItems) {
+      // Use provided items (backward compatibility)
+      return;
+    }
+
+    async function fetchMissingEvidence() {
+      try {
+        const response = await fetch(`/api/cases/${caseId}/analysis/version/latest`);
+        if (response.ok) {
+          const data = await response.json();
+          setVersionItems((data?.missing_evidence || []) as VersionMissingEvidence[]);
+        }
+      } catch (err) {
+        console.error("Failed to load missing evidence from version:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchMissingEvidence();
+  }, [caseId, propItems]);
+
+  // Convert version items to MissingEvidenceItem format
+  const convertVersionItems = (versionItems: VersionMissingEvidence[]): MissingEvidenceItem[] => {
+    return versionItems.map((item, idx) => ({
+      id: `version-${caseId}-${idx}`,
+      caseId,
+      category: mapAreaToCategory(item.area),
+      label: item.label,
+      reason: item.notes || "",
+      priority: (item.priority?.toUpperCase() || "MEDIUM") as Severity,
+      status: "MISSING" as const,
+      suggestedAction: `Request ${item.label}`,
+    }));
+  };
+
+  const items = propItems || convertVersionItems(versionItems);
+  const [localItems, setLocalItems] = useState(items);
+
+  // Update local items when items change
+  useEffect(() => {
+    setLocalItems(items);
+  }, [items]);
 
   const missingCount = localItems.filter((i) => i.status === "MISSING").length;
   const requestedCount = localItems.filter((i) => i.status === "REQUESTED").length;
@@ -72,7 +128,7 @@ export function MissingEvidencePanel({ caseId, items }: MissingEvidencePanelProp
     });
   };
 
-  // Group by category
+  // Group by category or area
   const groupedItems = localItems.reduce(
     (acc, item) => {
       if (!acc[item.category]) acc[item.category] = [];
@@ -81,6 +137,20 @@ export function MissingEvidencePanel({ caseId, items }: MissingEvidencePanelProp
     },
     {} as Record<EvidenceCategory, MissingEvidenceItem[]>,
   );
+
+  if (loading) {
+    return (
+      <Card
+        title="Evidence Checklist"
+        description="Required evidence for this case."
+      >
+        <div className="flex items-center gap-3 p-4">
+          <Loader2 className="h-5 w-5 animate-spin text-primary" />
+          <p className="text-sm text-accent/60">Loading missing evidence...</p>
+        </div>
+      </Card>
+    );
+  }
 
   if (!localItems.length) {
     return (
@@ -213,7 +283,24 @@ export function MissingEvidencePanel({ caseId, items }: MissingEvidencePanelProp
 }
 
 /**
+ * Map area from version to category
+ */
+function mapAreaToCategory(area: string): EvidenceCategory {
+  const mapping: Record<string, EvidenceCategory> = {
+    medical_records: "LIABILITY",
+    expert: "CAUSATION",
+    witness: "QUANTUM",
+    funding: "PROCEDURE",
+    admin: "PROCEDURE",
+    other: "PROCEDURE",
+  };
+  return mapping[area] || "PROCEDURE";
+}
+
+/**
  * Server-side wrapper to fetch missing evidence
+ * TODO: legacy missing evidence – replaced by case_analysis_versions
+ * Kept for backward compatibility only
  */
 export async function getMissingEvidence(
   caseId: string,

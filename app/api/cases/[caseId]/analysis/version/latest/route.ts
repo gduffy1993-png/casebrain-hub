@@ -1,7 +1,7 @@
 /**
- * GET /api/cases/[caseId]/documents
+ * GET /api/cases/[caseId]/analysis/version/latest
  * 
- * Returns all documents for a case
+ * Returns the latest analysis version for a case
  */
 
 import { NextRequest, NextResponse } from "next/server";
@@ -39,30 +39,44 @@ export async function GET(
       );
     }
 
-    // Get documents
-    const { data: documents, error: docsError } = await supabase
-      .from("documents")
-      .select("id, name, type, created_at")
+    // Get latest version
+    const { data: version, error: versionError } = await supabase
+      .from("case_analysis_versions")
+      .select("version_number, summary, risk_rating, created_at, analysis_delta, missing_evidence, document_ids")
       .eq("case_id", caseId)
       .eq("org_id", orgId)
-      .order("created_at", { ascending: false });
+      .order("version_number", { ascending: false })
+      .limit(1)
+      .maybeSingle();
 
-    if (docsError) {
-      console.error("[documents] Error fetching documents:", docsError);
+    if (versionError) {
+      console.error("[latest-version] Error:", versionError);
       return NextResponse.json(
-        { error: "Failed to load documents" },
+        { error: "Failed to load version" },
         { status: 500 },
       );
     }
 
-    return NextResponse.json({
-      documents: documents ?? [],
-    });
+    // Return safe empty response when no version exists
+    if (!version) {
+      return NextResponse.json({
+        version_number: null,
+        summary: null,
+        risk_rating: null,
+        created_at: null,
+        analysis_delta: null,
+        missing_evidence: [],
+        document_ids: [],
+      });
+    }
+
+    return NextResponse.json(version);
   } catch (error) {
-    console.error("[documents] Error:", error);
+    console.error("[latest-version] Error:", error);
     return NextResponse.json(
-      { error: "Failed to load documents" },
+      { error: "Failed to load version" },
       { status: 500 },
     );
   }
 }
+

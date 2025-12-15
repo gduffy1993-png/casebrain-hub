@@ -93,6 +93,8 @@ import { CaseFilesList } from "@/components/cases/CaseFilesList";
 import { StrategicIntelligenceSection } from "@/components/strategic/StrategicIntelligenceSection";
 import { CasePageClientWithActions } from "@/components/cases/CasePageClientWithActions";
 import { AnalysisDeltaPanelWrapper } from "@/components/cases/AnalysisDeltaPanelWrapper";
+import { EvidenceStrategyHeader } from "@/components/cases/EvidenceStrategyHeader";
+import { WhatChangedPanel } from "@/components/cases/WhatChangedPanel";
 
 type CasePageParams = {
   params: { caseId: string };
@@ -375,7 +377,9 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
     hasMinor: limitationResult.isMinor,
   } : undefined;
 
-  // Find missing evidence
+  // TODO: legacy missing evidence – replaced by case_analysis_versions
+  // Missing evidence is now sourced from case_analysis_versions.missing_evidence
+  // This is kept for backward compatibility but MissingEvidencePanel will fetch from versions
   const docsForEvidence = (documents ?? []).map((d) => ({
     name: d.name,
     type: d.type ?? undefined,
@@ -1142,12 +1146,14 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
               </div>
             }
           >
-            <MissingEvidencePanel caseId={caseId} items={missingEvidence} />
+            {/* Missing evidence now sourced from case_analysis_versions - items prop is optional */}
+            <MissingEvidencePanel caseId={caseId} />
           </ErrorBoundary>
         </CollapsibleSection>
 
-        {/* Evidence Tracker Section */}
-        <CollapsibleSection
+        {/* TODO: re-enable after wiring to versions / new APIs */}
+        {/* Evidence Tracker Section - Commented out as it's not wired to case_analysis_versions yet */}
+        {/* <CollapsibleSection
           title="Evidence Tracker"
           description="Track evidence items, status, and chase dates"
           defaultOpen={true}
@@ -1160,10 +1166,9 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
               </div>
             }
           >
-            {/* TODO: Re-implement when EvidenceTrackerPanel is restored */}
             <div className="p-4 text-sm text-accent/60">Evidence tracker temporarily unavailable.</div>
           </ErrorBoundary>
-        </CollapsibleSection>
+        </CollapsibleSection> */}
 
         {/* Analysis Delta Panel - Show if new version created */}
         {caseRecord.latest_analysis_version && caseRecord.latest_analysis_version > 1 && (
@@ -1172,8 +1177,9 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
           </ErrorBoundary>
         )}
 
-        {/* Audit Trail Section */}
-        <CollapsibleSection
+        {/* TODO: re-enable after wiring to versions / new APIs */}
+        {/* Audit Trail Section - Commented out as it's not wired yet */}
+        {/* <CollapsibleSection
           title="Audit Trail"
           description="Complete history of case events and changes"
           defaultOpen={false}
@@ -1186,10 +1192,9 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
               </div>
             }
           >
-            {/* TODO: Re-implement when AuditTrailPanel is restored */}
             <div className="p-4 text-sm text-accent/60">Audit trail temporarily unavailable.</div>
           </ErrorBoundary>
-        </CollapsibleSection>
+        </CollapsibleSection> */}
 
         {/* Documents Section - Consolidated */}
         <CollapsibleSection
@@ -1436,6 +1441,19 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
           </CollapsibleSection>
         ) : null}
 
+        {/* Evidence & Strategy Section - CN only */}
+        {caseRecord.practice_area === "clinical_negligence" && (
+          <ErrorBoundary
+            fallback={
+              <div className="p-4">
+                <p className="text-sm text-accent/60">Evidence & Strategy temporarily unavailable.</p>
+              </div>
+            }
+          >
+            <EvidenceStrategyHeader caseId={caseId} />
+          </ErrorBoundary>
+        )}
+
         {/* Strategic Intelligence Section */}
         {process.env.NEXT_PUBLIC_ENABLE_STRATEGIC_INTELLIGENCE !== "false" && (
           <ErrorBoundary
@@ -1446,6 +1464,19 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
             }
           >
             <StrategicIntelligenceSection caseId={caseId} />
+          </ErrorBoundary>
+        )}
+
+        {/* What Changed Panel - CN only */}
+        {caseRecord.practice_area === "clinical_negligence" && (
+          <ErrorBoundary
+            fallback={
+              <div className="p-4">
+                <p className="text-sm text-accent/60">What Changed panel temporarily unavailable.</p>
+              </div>
+            }
+          >
+            <WhatChangedPanel caseId={caseId} />
           </ErrorBoundary>
         )}
 
