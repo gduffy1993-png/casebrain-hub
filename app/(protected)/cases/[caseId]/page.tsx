@@ -95,6 +95,8 @@ import { CasePageClientWithActions } from "@/components/cases/CasePageClientWith
 import { AnalysisDeltaPanelWrapper } from "@/components/cases/AnalysisDeltaPanelWrapper";
 import { EvidenceStrategyHeader } from "@/components/cases/EvidenceStrategyHeader";
 import { WhatChangedPanel } from "@/components/cases/WhatChangedPanel";
+import { NewEvidenceBanner } from "@/components/cases/NewEvidenceBanner";
+import { Plus } from "lucide-react";
 
 type CasePageParams = {
   params: { caseId: string };
@@ -1046,8 +1048,9 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
         </CollapsibleSection>
 
 
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
         {/* Instructions to Counsel - Collapsible */}
-        <CollapsibleSection
+        {/* <CollapsibleSection
           title="Instructions to Counsel"
           description="Generate comprehensive instructions to counsel document"
           defaultOpen={false}
@@ -1092,7 +1095,7 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
             }}
           />
           </ErrorBoundary>
-        </CollapsibleSection>
+        </CollapsibleSection> */}
 
         {/* Key Issues Panel */}
         {keyIssues.length > 0 && (
@@ -1114,8 +1117,9 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
           </CollapsibleSection>
         )}
 
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
         {/* In-Case Search */}
-        <CollapsibleSection
+        {/* <CollapsibleSection
           title="Search Case"
           description="Search across all case documents and data"
           defaultOpen={false}
@@ -1130,7 +1134,7 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
           >
             <InCaseSearchBox caseId={caseId} />
           </ErrorBoundary>
-        </CollapsibleSection>
+        </CollapsibleSection> */}
 
         {/* Missing Evidence Panel */}
         <CollapsibleSection
@@ -1202,6 +1206,14 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
           description="Document map and bundle navigator"
           defaultOpen={false}
           icon={<FileText className="h-4 w-4 text-purple-400" />}
+          action={
+            <Link href={`/upload?caseId=${caseId}`}>
+              <Button size="sm" variant="outline" className="gap-2">
+                <Plus className="h-4 w-4" />
+                Add Evidence
+              </Button>
+            </Link>
+          }
         >
           <div className="space-y-4">
             <ErrorBoundary
@@ -1441,6 +1453,18 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
           </CollapsibleSection>
         ) : null}
 
+        {/* New Evidence Banner - Shows when new documents added */}
+        <NewEvidenceBanner 
+          caseId={caseId} 
+          onReanalyse={() => {
+            // Scroll to EvidenceStrategyHeader
+            const header = document.querySelector('[data-evidence-strategy-header]');
+            if (header) {
+              header.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }}
+        />
+
         {/* Evidence & Strategy Section - CN only */}
         {caseRecord.practice_area === "clinical_negligence" && (
           <ErrorBoundary
@@ -1450,7 +1474,9 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
               </div>
             }
           >
-            <EvidenceStrategyHeader caseId={caseId} />
+            <div data-evidence-strategy-header>
+              <EvidenceStrategyHeader caseId={caseId} />
+            </div>
           </ErrorBoundary>
         )}
 
@@ -1511,8 +1537,9 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
           <PiValuationHelper piCase={piCase} disbursements={piDisbursements} />
         ) : null}
 
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
         {/* Case Health Heatmap */}
-        <ErrorBoundary
+        {/* <ErrorBoundary
           fallback={
             <Card className="bg-surface/50 border-white/10 backdrop-blur-sm">
               <div className="p-4">
@@ -1522,10 +1549,11 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
           }
         >
           <CaseHeatmapPanel heatmap={caseHeatmap} />
-        </ErrorBoundary>
+        </ErrorBoundary> */}
 
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
         {/* Case Notes */}
-        <ErrorBoundary
+        {/* <ErrorBoundary
           fallback={
             <Card title="Case Notes">
               <p className="text-sm text-accent/60">Unable to load case notes right now.</p>
@@ -1533,10 +1561,11 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
           }
         >
           <CaseNotesPanel caseId={caseId} />
-        </ErrorBoundary>
+        </ErrorBoundary> */}
 
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
         {/* Supervisor Review */}
-        <ErrorBoundary
+        {/* <ErrorBoundary
           fallback={
             <Card title="Supervisor Review">
               <p className="text-sm text-accent/60">Unable to load supervisor review right now.</p>
@@ -1544,10 +1573,11 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
           }
         >
           <SupervisorReviewPanel caseId={caseId} caseName={caseRecord.title ?? undefined} />
-        </ErrorBoundary>
+        </ErrorBoundary> */}
 
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
         {/* Deadline Management */}
-        <ErrorBoundary
+        {/* <ErrorBoundary
           fallback={
             <Card title="Deadlines">
               <p className="text-sm text-accent/60">Failed to load deadlines</p>
@@ -1560,85 +1590,100 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
               <DeadlineCalendarWrapper caseId={caseId} />
             </ErrorBoundary>
           </div>
-        </ErrorBoundary>
+        </ErrorBoundary> */}
 
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
         {/* Time Tracker */}
-        <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Time tracker unavailable</div>}>
+        {/* <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Time tracker unavailable</div>}>
           <TimeTracker caseId={caseId} />
-        </ErrorBoundary>
+        </ErrorBoundary> */}
 
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
         {/* Billing & Invoices */}
-        <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Billing unavailable</div>}>
+        {/* <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Billing unavailable</div>}>
           <InvoiceList caseId={caseId} />
-        </ErrorBoundary>
+        </ErrorBoundary> */}
 
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
         {/* Email Integration */}
-        <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Email unavailable</div>}>
+        {/* <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Email unavailable</div>}>
           <CaseEmailsPanel caseId={caseId} />
-        </ErrorBoundary>
+        </ErrorBoundary> */}
 
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
         {/* Communication History */}
-        <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Communication history unavailable</div>}>
+        {/* <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Communication history unavailable</div>}>
           <CommunicationHistoryPanel caseId={caseId} />
-        </ErrorBoundary>
+        </ErrorBoundary> */}
 
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
         {/* SMS/WhatsApp */}
-        <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">SMS/WhatsApp unavailable</div>}>
+        {/* <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">SMS/WhatsApp unavailable</div>}>
           <SMSPanel caseId={caseId} />
-        </ErrorBoundary>
+        </ErrorBoundary> */}
 
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
         {/* E-Signature */}
-        <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">E-signature unavailable</div>}>
+        {/* <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">E-signature unavailable</div>}>
           <ESignaturePanel caseId={caseId} />
-        </ErrorBoundary>
+        </ErrorBoundary> */}
 
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
         {/* Calendar Events */}
-        <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Calendar unavailable</div>}>
+        {/* <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Calendar unavailable</div>}>
           <CalendarEventsPanel caseId={caseId} />
-        </ErrorBoundary>
+        </ErrorBoundary> */}
 
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
         {/* Document Version Control */}
-        {documents && documents.length > 0 && (
+        {/* {documents && documents.length > 0 && (
           <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Document versions unavailable</div>}>
             <DocumentVersionsPanel documentId={documents[0].id} />
           </ErrorBoundary>
-        )}
+        )} */}
 
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
         {/* Custom Reports */}
-        <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Reports unavailable</div>}>
+        {/* <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Reports unavailable</div>}>
           <CustomReportsPanel caseId={caseId} />
-        </ErrorBoundary>
+        </ErrorBoundary> */}
 
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
         {/* Trust Accounting (UK-specific) */}
-        <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Trust accounting unavailable</div>}>
+        {/* <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Trust accounting unavailable</div>}>
           <ClientMoneyPanel caseId={caseId} />
-        </ErrorBoundary>
+        </ErrorBoundary> */}
 
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
         {/* Case Profitability */}
-        <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Profitability unavailable</div>}>
+        {/* <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Profitability unavailable</div>}>
           <ProfitabilityCard caseId={caseId} />
-        </ErrorBoundary>
+        </ErrorBoundary> */}
 
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
         {/* Settlement Calculator */}
-        <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Settlement calculator unavailable</div>}>
+        {/* <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Settlement calculator unavailable</div>}>
           <SettlementCalculatorPanel caseId={caseId} />
-        </ErrorBoundary>
+        </ErrorBoundary> */}
 
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
         {/* Client Timeline */}
-        <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Client timeline unavailable</div>}>
+        {/* <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Client timeline unavailable</div>}>
           <ClientTimelinePanel caseId={caseId} currentStage={piCase?.stage || housingCase?.stage} />
-        </ErrorBoundary>
+        </ErrorBoundary> */}
 
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
         {/* Pre-Action Protocol Checklist */}
-        <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Protocol checklist unavailable</div>}>
+        {/* <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Protocol checklist unavailable</div>}>
           <PreActionProtocolChecklist 
             caseId={caseId} 
             practiceArea={caseRecord.practice_area ?? "other_litigation"} 
           />
-        </ErrorBoundary>
+        </ErrorBoundary> */}
 
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
         {/* Risk Alerts - Using the proper RiskAlertsPanel component (removed duplicate card) */}
-        <ErrorBoundary
+        {/* <ErrorBoundary
           fallback={
             <Card title="Risk Alerts">
               <p className="text-sm text-accent/60">Unable to load risk alerts right now.</p>
@@ -1659,7 +1704,7 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
             });
             return <RiskAlertsPanel caseId={caseId} riskAlerts={riskAlertsForPanel} />;
           })()}
-        </ErrorBoundary>
+        </ErrorBoundary> */}
       </aside>
     </div>
   );

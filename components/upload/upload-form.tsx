@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useUser } from "@clerk/nextjs";
 import { CloudUpload, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -19,7 +19,15 @@ const ACCEPTED_TYPES = [
   "text/plain",
 ];
 
-export function UploadForm() {
+type UploadFormProps = {
+  caseId?: string;
+};
+
+export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
+  const searchParams = useSearchParams();
+  const urlCaseId = searchParams.get("caseId");
+  const caseId = propCaseId || urlCaseId || null;
+  
   const { currentPracticeArea, setPracticeArea: setGlobalPracticeArea } = usePracticeArea();
   const { isOwner, bypassActive, status } = usePaywallStatus();
   const { user, isLoaded: userLoaded } = useUser();
@@ -43,6 +51,29 @@ export function UploadForm() {
   } | null>(null);
   const router = useRouter();
   const pushToast = useToast((state) => state.push);
+
+  // Fetch case details if caseId is provided
+  useEffect(() => {
+    if (caseId) {
+      async function fetchCaseDetails() {
+        try {
+          const response = await fetch(`/api/cases/${caseId}`);
+          if (response.ok) {
+            const data = await response.json();
+            if (data.case) {
+              setCaseTitle(data.case.title || "");
+              if (data.case.practice_area) {
+                setPracticeArea(data.case.practice_area as PracticeArea);
+              }
+            }
+          }
+        } catch (err) {
+          console.error("Failed to fetch case details:", err);
+        }
+      }
+      fetchCaseDetails();
+    }
+  }, [caseId]);
   
   // NUCLEAR: If owner, NEVER allow paywallError to exist - clear it immediately
   useEffect(() => {
@@ -219,6 +250,9 @@ export function UploadForm() {
       // Navigate to the case page to see the uploaded files
       if (uploadedCaseId) {
         router.push(`/cases/${uploadedCaseId}`);
+      } else if (caseId) {
+        // If we came from a case page, redirect back to it
+        router.push(`/cases/${caseId}`);
       } else {
         router.refresh();
       }

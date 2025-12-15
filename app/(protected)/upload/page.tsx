@@ -2,8 +2,14 @@ import { requireUser } from "@/lib/auth";
 import { UploadForm } from "@/components/upload/upload-form";
 import { CurrentPersonaBadge } from "@/components/layout/CurrentPersonaBadge";
 
-export default async function UploadPage() {
+type UploadPageProps = {
+  searchParams: Promise<{ caseId?: string }>;
+};
+
+export default async function UploadPage({ searchParams }: UploadPageProps) {
   await requireUser();
+  const params = await searchParams;
+  const caseId = params.caseId;
 
   return (
     <div className="space-y-8">
@@ -18,7 +24,7 @@ export default async function UploadPage() {
         </div>
         <CurrentPersonaBadge />
       </header>
-      <UploadForm />
+      <UploadForm caseId={caseId} />
     </div>
   );
 }
