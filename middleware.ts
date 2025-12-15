@@ -22,9 +22,15 @@ export default clerkMiddleware((auth, req: NextRequest) => {
 
 export const config = {
   matcher: [
-    "/((?!.*\\..*|_next).*)",
-    "/",
-    "/(api|trpc)(.*)",
+    /*
+     * Match all request paths except for the ones starting with:
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     * - public folder files (images, etc.)
+     * - files with extensions (js, css, etc.)
+     */
+    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|css|js|woff|woff2|ttf|eot)).*)",
   ],
 };
 
