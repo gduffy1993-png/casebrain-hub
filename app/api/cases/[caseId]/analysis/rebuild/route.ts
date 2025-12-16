@@ -40,6 +40,28 @@ export async function POST(
 
     const supabase = getSupabaseAdminClient();
 
+    // Check trial limits (trial expiry only - don't block for doc/case limits)
+    const { getTrialStatus } = await import("@/lib/paywall/trialLimits");
+    const user = await import("@/lib/auth").then(m => m.getCurrentUser());
+    const email = user?.primaryEmailAddress?.emailAddress ?? user?.emailAddresses?.[0]?.emailAddress ?? null;
+    const trialStatus = await getTrialStatus({
+      supabase,
+      orgId,
+      userId,
+      email,
+    });
+
+    if (trialStatus.isBlocked && trialStatus.reason === "TRIAL_EXPIRED") {
+      return NextResponse.json(
+        {
+          error: "Free trial expired. Upgrade to continue running analysis.",
+          code: "TRIAL_EXPIRED",
+          upgrade: { price: "£39/user/month" },
+        },
+        { status: 402 },
+      );
+    }
+
     // Verify case access
     const { data: caseRecord, error: caseError } = await supabase
       .from("cases")

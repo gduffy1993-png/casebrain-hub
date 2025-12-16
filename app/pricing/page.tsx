@@ -1,168 +1,101 @@
 "use client";
 
 import Link from "next/link";
-import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Check } from "lucide-react";
 
 export default function PricingPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 py-12 px-4">
-      <div className="mx-auto max-w-6xl">
-        {/* Header */}
+    <div className="min-h-screen bg-gradient-to-b from-background to-background/50">
+      <div className="container mx-auto px-4 py-16 max-w-4xl">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-foreground mb-4">
-            Choose Your Plan
-          </h1>
-          <p className="text-lg text-muted-foreground">
-            Start free, upgrade when you're ready for unlimited power
+          <h1 className="text-4xl font-bold text-accent mb-4">Pricing</h1>
+          <p className="text-lg text-accent/70">
+            Simple, transparent pricing for legal teams
           </p>
         </div>
 
-        {/* Plans */}
-        <div className="grid md:grid-cols-3 gap-6 mb-8">
-          {/* FREE Plan */}
-          <Card className="p-6">
-            <div className="mb-6">
-              <h2 className="text-2xl font-semibold text-foreground mb-2">Free</h2>
-              <div className="text-3xl font-bold text-foreground mb-1">£0</div>
-              <p className="text-sm text-muted-foreground">Perfect for trying CaseBrain</p>
-            </div>
-
-            <ul className="space-y-3 mb-6">
-              <li className="flex items-start gap-2">
-                <Check className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                <span className="text-sm text-muted-foreground">30 PDFs per month</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Check className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                <span className="text-sm text-muted-foreground">10 active cases</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Check className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                <span className="text-sm text-muted-foreground">All core features</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Check className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                <span className="text-sm text-muted-foreground">Email support</span>
-              </li>
-            </ul>
-
-            <Button variant="outline" className="w-full" disabled>
-              Current Plan
-            </Button>
-          </Card>
-
-          {/* SOLO_MONTHLY Plan */}
-          <Card className="p-6 border-primary/30">
-            <div className="mb-6">
-              <div className="inline-block rounded-full bg-primary/20 px-3 py-1 text-xs font-semibold text-primary mb-2">
-                MOST POPULAR
+        <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-1 max-w-2xl mx-auto">
+          <Card className="p-8 border-2 border-primary/20">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl font-semibold text-accent mb-2">Professional</h2>
+              <div className="flex items-baseline justify-center gap-2 mb-4">
+                <span className="text-4xl font-bold text-accent">£39</span>
+                <span className="text-accent/60">per user / month</span>
               </div>
-              <h2 className="text-2xl font-semibold text-foreground mb-2">Solo Monthly</h2>
-              <div className="text-3xl font-bold text-foreground mb-1">£39</div>
-              <p className="text-sm text-muted-foreground">per month</p>
+              <p className="text-sm text-accent/60">
+                Everything you need to manage cases efficiently
+              </p>
             </div>
 
-            <ul className="space-y-3 mb-6">
-              <li className="flex items-start gap-2">
-                <Check className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                <span className="text-sm text-muted-foreground">Unlimited PDFs</span>
+            <ul className="space-y-4 mb-8">
+              <li className="flex items-start gap-3">
+                <Check className="h-5 w-5 text-success mt-0.5 flex-shrink-0" />
+                <span className="text-accent">Unlimited cases</span>
               </li>
-              <li className="flex items-start gap-2">
-                <Check className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                <span className="text-sm text-muted-foreground">Unlimited active cases</span>
+              <li className="flex items-start gap-3">
+                <Check className="h-5 w-5 text-success mt-0.5 flex-shrink-0" />
+                <span className="text-accent">Unlimited document uploads</span>
               </li>
-              <li className="flex items-start gap-2">
-                <Check className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                <span className="text-sm text-muted-foreground">All core features</span>
+              <li className="flex items-start gap-3">
+                <Check className="h-5 w-5 text-success mt-0.5 flex-shrink-0" />
+                <span className="text-accent">Unlimited analysis versions</span>
               </li>
-              <li className="flex items-start gap-2">
-                <Check className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                <span className="text-sm text-muted-foreground">Priority support</span>
+              <li className="flex items-start gap-3">
+                <Check className="h-5 w-5 text-success mt-0.5 flex-shrink-0" />
+                <span className="text-accent">Case pack exports</span>
               </li>
-              <li className="flex items-start gap-2">
-                <Check className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                <span className="text-sm text-muted-foreground">Advanced analytics</span>
+              <li className="flex items-start gap-3">
+                <Check className="h-5 w-5 text-success mt-0.5 flex-shrink-0" />
+                <span className="text-accent">Strategic intelligence</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <Check className="h-5 w-5 text-success mt-0.5 flex-shrink-0" />
+                <span className="text-accent">Priority support</span>
               </li>
             </ul>
 
-            <Button
-              className="w-full"
-              onClick={() => {
-                window.location.href = "/api/upgrade/placeholder?plan=PAID_MONTHLY";
-              }}
-            >
-              Upgrade Monthly
-            </Button>
-          </Card>
-
-          {/* SOLO_YEARLY Plan */}
-          <Card className="p-6">
-            <div className="mb-6">
-              <div className="inline-block rounded-full bg-green-500/20 px-3 py-1 text-xs font-semibold text-green-400 mb-2">
-                BEST VALUE
-              </div>
-              <h2 className="text-2xl font-semibold text-foreground mb-2">Solo Yearly</h2>
-              <div className="text-3xl font-bold text-foreground mb-1">£390</div>
-              <p className="text-sm text-muted-foreground">per year (2 months free)</p>
+            <div className="space-y-3">
+              <Button
+                className="w-full"
+                size="lg"
+                onClick={() => {
+                  window.location.href = "mailto:support@casebrainhub.com?subject=Upgrade Request";
+                }}
+              >
+                Contact to Upgrade
+              </Button>
+              <p className="text-xs text-center text-accent/60">
+                Or start with a 28-day free trial
+              </p>
             </div>
-
-            <ul className="space-y-3 mb-6">
-              <li className="flex items-start gap-2">
-                <Check className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                <span className="text-sm text-muted-foreground">Unlimited PDFs</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Check className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                <span className="text-sm text-muted-foreground">Unlimited active cases</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Check className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                <span className="text-sm text-muted-foreground">All core features</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Check className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                <span className="text-sm text-muted-foreground">Priority support</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Check className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                <span className="text-sm text-muted-foreground">Advanced analytics</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Check className="h-5 w-5 text-green-400 mt-0.5 shrink-0" />
-                <span className="text-sm text-green-400 font-semibold">Save £78 per year</span>
-              </li>
-            </ul>
-
-            <Button
-              variant="outline"
-              className="w-full"
-              onClick={() => {
-                window.location.href = "/api/upgrade/placeholder?plan=PAID_YEARLY";
-              }}
-            >
-              Upgrade Yearly
-            </Button>
           </Card>
         </div>
 
-        {/* Contact Sales */}
-        <div className="text-center">
-          <p className="text-sm text-muted-foreground mb-4">
-            Need a custom plan for your firm?
-          </p>
-          <Button
-            variant="outline"
-            onClick={() => {
-              window.location.href = "mailto:support@casebrainhub.com?subject=Custom Plan Inquiry";
-            }}
-          >
-            Contact Sales
-          </Button>
+        <div className="mt-12 text-center">
+          <Card className="p-6 bg-primary/5 border-primary/20">
+            <h3 className="text-lg font-semibold text-accent mb-3">
+              28-Day Free Trial
+            </h3>
+            <p className="text-sm text-accent/70 mb-4">
+              Try CaseBrain Hub free for 28 days. No credit card required.
+            </p>
+            <ul className="text-sm text-accent/60 space-y-2 text-left max-w-md mx-auto">
+              <li>• 1 case</li>
+              <li>• 10 documents total</li>
+              <li>• Unlimited re-analysis within your case</li>
+              <li>• Full export capabilities</li>
+            </ul>
+          </Card>
+        </div>
+
+        <div className="mt-12 text-center">
+          <Link href="/" className="text-primary hover:underline">
+            ← Back to home
+          </Link>
         </div>
       </div>
     </div>
   );
 }
-

@@ -104,7 +104,25 @@ export async function POST(request: Request) {
   let isNewCase = false;
 
   if (!caseId) {
-    // Note: Case creation is counted as upload, so no separate check needed
+    // Check trial limits before creating new case
+    const { getTrialStatus } = await import("@/lib/paywall/trialLimits");
+    const trialStatus = await getTrialStatus({
+      supabase,
+      orgId,
+      userId,
+      email,
+    });
+
+    if (trialStatus.isBlocked && trialStatus.reason === "CASE_LIMIT") {
+      return NextResponse.json(
+        {
+          error: "Trial limit reached: 1 case allowed on free trial.",
+          code: "CASE_LIMIT",
+          upgrade: { price: "£39/user/month" },
+        },
+        { status: 402 },
+      );
+    }
 
     console.log(`[upload] Creating new case: "${caseTitle}" for org ${orgId}`);
     const { data: newCase, error: caseError } = await supabase
@@ -131,6 +149,26 @@ export async function POST(request: Request) {
     console.log(`[upload] Created new case with ID: ${caseId}`);
   } else {
     console.log(`[upload] Using existing case ID: ${caseId} for "${caseTitle}"`);
+  }
+
+  // Check trial limits before uploading documents (always check, regardless of new/existing case)
+  const { getTrialStatus: getTrialStatusDoc } = await import("@/lib/paywall/trialLimits");
+  const trialStatusDoc = await getTrialStatusDoc({
+    supabase,
+    orgId,
+    userId,
+    email,
+  });
+
+  if (trialStatusDoc.isBlocked && trialStatusDoc.reason === "DOC_LIMIT") {
+    return NextResponse.json(
+      {
+        error: "Trial limit reached: 10 documents allowed on free trial.",
+        code: "DOC_LIMIT",
+        upgrade: { price: "£39/user/month" },
+      },
+      { status: 402 },
+    );
   }
 
   const documentIds: string[] = [];

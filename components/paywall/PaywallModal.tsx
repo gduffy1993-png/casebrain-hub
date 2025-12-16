@@ -11,11 +11,13 @@ const OWNER_USER_IDS = ["user_36MvlAIQ5MUheoRwWsj61gkOO5H", "user_35JeizOJrQ0Nj"
 const OWNER_EMAILS = ["gduffy1993@gmail.com"];
 
 type PaywallModalProps = {
-  errorCode: UsageLimitError;
+  errorCode: UsageLimitError | "TRIAL_EXPIRED" | "DOC_LIMIT" | "CASE_LIMIT";
   limit?: number;
   plan?: string;
   onClose: () => void;
   onUpgrade?: () => void;
+  errorMessage?: string;
+  upgradePrice?: string;
 };
 
 export function PaywallModal({
@@ -24,6 +26,8 @@ export function PaywallModal({
   plan,
   onClose,
   onUpgrade,
+  errorMessage,
+  upgradePrice = "£39/user/month",
 }: PaywallModalProps) {
   // NUCLEAR NUCLEAR NUCLEAR: HARDCODED OWNER CHECK - NEVER RENDER FOR OWNER
   const { user, isLoaded } = useUser();
@@ -62,6 +66,12 @@ export function PaywallModal({
         return "PDF Upload Limit Reached";
       case "CASE_LIMIT_REACHED":
         return "Active Case Limit Reached";
+      case "CASE_LIMIT":
+        return "Upgrade to Continue";
+      case "DOC_LIMIT":
+        return "Upgrade to Continue";
+      case "TRIAL_EXPIRED":
+        return "Upgrade to Continue";
       case "FREE_TRIAL_ALREADY_USED":
         return "Free Trial Already Used";
       case "PHONE_NOT_VERIFIED":
@@ -69,16 +79,25 @@ export function PaywallModal({
       case "ABUSE_DETECTED":
         return "Account Creation Restricted";
       default:
-        return "Upgrade Required";
+        return "Upgrade to Continue";
     }
   };
 
   const getMessage = () => {
+    if (errorMessage) {
+      return errorMessage;
+    }
     switch (errorCode) {
       case "PDF_LIMIT_REACHED":
         return `Your firm has reached the free tier limit of ${limit ?? 30} PDFs per month. Upgrade to unlock unlimited case analysis.`;
       case "CASE_LIMIT_REACHED":
         return `Your firm has reached the free tier limit of ${limit ?? 10} active cases. Archive or complete existing cases, or upgrade for unlimited cases.`;
+      case "CASE_LIMIT":
+        return "Trial limit reached: 1 case allowed on free trial.";
+      case "DOC_LIMIT":
+        return "Trial limit reached: 10 documents allowed on free trial.";
+      case "TRIAL_EXPIRED":
+        return "Free trial expired. Upgrade to continue running analysis.";
       case "FREE_TRIAL_ALREADY_USED":
         return "Your firm has already used its free trial. Upgrade to continue using CaseBrain Hub.";
       case "PHONE_NOT_VERIFIED":
@@ -230,7 +249,7 @@ export function PaywallModal({
               onClick={handleUpgrade}
               className="flex-1"
             >
-              Upgrade Monthly (£39)
+              Contact / Upgrade ({upgradePrice})
             </Button>
           </div>
 

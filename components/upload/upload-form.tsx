@@ -45,9 +45,11 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [paywallError, setPaywallError] = useState<{
-    error: UsageLimitError;
+    error: UsageLimitError | "TRIAL_EXPIRED" | "DOC_LIMIT" | "CASE_LIMIT";
     limit?: number;
     plan?: string;
+    message?: string;
+    price?: string;
   } | null>(null);
   const router = useRouter();
   const pushToast = useToast((state) => state.push);
@@ -189,6 +191,27 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
       if (!response.ok) {
         const payload = await response.json().catch(() => null);
         
+        // Handle 402 Payment Required (trial limits)
+        if (response.status === 402 && payload) {
+          // NUCLEAR: Owner bypass
+          if (isOwnerHardcoded || isOwner || bypassActive) {
+            console.log("[upload-form] ✅✅✅ OWNER - ignoring 402 error");
+            throw new Error(payload.error ?? "Upload failed");
+          }
+          
+          const trialErrorCodes = ["TRIAL_EXPIRED", "DOC_LIMIT", "CASE_LIMIT"];
+          if (payload.code && trialErrorCodes.includes(payload.code)) {
+            setPaywallError({
+              error: payload.code as "TRIAL_EXPIRED" | "DOC_LIMIT" | "CASE_LIMIT",
+              limit: payload.limit,
+              plan: payload.plan,
+              message: payload.error,
+              price: payload.upgrade?.price || "£39/user/month",
+            });
+            return;
+          }
+        }
+        
         // Check if this is a paywall error
         const paywallErrors: UsageLimitError[] = [
           "PDF_LIMIT_REACHED",
@@ -288,6 +311,13 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
 
   // NUCLEAR: NEVER render modal if owner - even if paywallError exists
   const shouldShowModal = paywallError && !isOwnerHardcoded && !isOwner && !bypassActive;
+
+  // Clean up window data on mount/unmount
+  useEffect(() => {
+    return () => {
+      delete (window as any).__paywallErrorData;
+    };
+  }, []);
   
   // Also set body attribute for CSS
   useEffect(() => {
@@ -308,6 +338,8 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
           limit={paywallError.limit}
           plan={paywallError.plan}
           onClose={handleClosePaywall}
+          errorMessage={paywallError.message}
+          upgradePrice={paywallError.price}
         />
       )}
       <form

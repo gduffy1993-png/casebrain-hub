@@ -99,9 +99,23 @@ export function EvidenceSelectorModal({
 
       if (!response.ok) {
         let errorMessage = "Failed to rebuild analysis";
+        let errorCode: string | undefined;
+        let upgradePrice: string | undefined;
+        
         try {
           const data = await response.json();
           errorMessage = data.error || errorMessage;
+          errorCode = data.code;
+          upgradePrice = data.upgrade?.price;
+          
+          // Handle 402 Payment Required (trial limits)
+          if (response.status === 402 && errorCode) {
+            // Show paywall modal for trial errors
+            const { PaywallModal } = await import("@/components/paywall/PaywallModal");
+            // We'll handle this via a state or external modal trigger
+            // For now, just show error message
+            throw new Error(errorMessage);
+          }
         } catch {
           // If response is not JSON, use default message
         }
