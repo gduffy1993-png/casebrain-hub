@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { 
   Target, 
   AlertCircle, 
@@ -12,6 +13,7 @@ import {
   Loader2,
   TrendingUp,
   TrendingDown,
+  Shield,
 } from "lucide-react";
 import type { MoveSequence, Observation, InvestigationAngle, Move } from "@/lib/strategic/move-sequencing/types";
 
@@ -92,6 +94,153 @@ export function MoveSequencePanel({ caseId }: MoveSequencePanelProps) {
 
   return (
     <div className="space-y-6">
+      {/* Criminal Beast Mode (Violent Offences) */}
+      {data.criminalBeastMode && (
+        <Card className="p-6 border-primary/30 bg-primary/5">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <h3 className="text-lg font-semibold text-accent mb-3 flex items-center gap-2">
+                <Shield className="h-5 w-5 text-primary" />
+                Violent Offences Beast Mode
+              </h3>
+              <p className="text-sm text-accent/80">{data.criminalBeastMode.confidenceAndCompletenessLine}</p>
+            </div>
+            <a href={`/api/cases/${caseId}/analysis/partner-brief`} target="_blank" rel="noreferrer">
+              <Button variant="outline" size="sm">Export Partner Brief</Button>
+            </a>
+          </div>
+        </Card>
+      )}
+
+      {data.criminalBeastMode && (
+        <Card className="p-6">
+          <h3 className="text-lg font-semibold text-accent mb-4">Charge Stability Index</h3>
+          <div className="space-y-2">
+            <p className="text-sm text-accent/80">
+              <span className="font-semibold">Most likely charge to survive:</span>{" "}
+              {data.criminalBeastMode.chargeStabilityIndex.mostLikelyChargeToSurvive}
+            </p>
+            <p className="text-xs text-accent/60">
+              <span className="font-semibold">Stability band:</span> {data.criminalBeastMode.chargeStabilityIndex.stabilityBand}
+            </p>
+            <ul className="mt-2 space-y-1">
+              {data.criminalBeastMode.chargeStabilityIndex.why.map((w: string, idx: number) => (
+                <li key={idx} className="text-xs text-accent/70">• {w}</li>
+              ))}
+            </ul>
+            <p className="text-xs text-accent/50 mt-2">{data.criminalBeastMode.chargeStabilityIndex.guardrail}</p>
+          </div>
+        </Card>
+      )}
+
+      {data.criminalBeastMode && (
+        <Card className="p-6">
+          <h3 className="text-lg font-semibold text-accent mb-4">Judge Irritation Meter</h3>
+          <p className="text-sm text-accent/80">
+            <span className="font-semibold">Irritation risk:</span> {data.criminalBeastMode.judgeIrritationMeter.irritationRisk}
+          </p>
+          <div className="mt-3">
+            <p className="text-xs font-semibold text-accent/60 mb-1">What triggers the bench</p>
+            <ul className="space-y-1">
+              {data.criminalBeastMode.judgeIrritationMeter.triggers.map((t: string, idx: number) => (
+                <li key={idx} className="text-xs text-accent/70">• {t}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="mt-3">
+            <p className="text-xs font-semibold text-accent/60 mb-1">What a solicitor should do</p>
+            <ul className="space-y-1">
+              {data.criminalBeastMode.judgeIrritationMeter.solicitorActions.map((a: string, idx: number) => (
+                <li key={idx} className="text-xs text-accent/70">• {a}</li>
+              ))}
+            </ul>
+          </div>
+        </Card>
+      )}
+
+      {data.criminalBeastMode && (
+        <Card className="p-6">
+          <h3 className="text-lg font-semibold text-accent mb-4">Procedural Integrity (PACE / CPIA)</h3>
+          <p className="text-sm text-accent/80">
+            <span className="font-semibold">Compliance risk:</span> {data.criminalBeastMode.proceduralIntegrity.complianceRisk}
+          </p>
+          <div className="mt-3 space-y-2">
+            {data.criminalBeastMode.proceduralIntegrity.checklist.map((c: any, idx: number) => (
+              <div key={idx} className="p-3 rounded-xl border border-primary/10 bg-surface-muted/40">
+                <p className="text-xs font-semibold text-accent">{c.item}</p>
+                <p className="text-xs text-accent/60">Status: {c.status}</p>
+                <p className="text-xs text-accent/70 mt-1">{c.whyItMatters}</p>
+              </div>
+            ))}
+            <p className="text-xs text-accent/60 mt-2">{data.criminalBeastMode.proceduralIntegrity.courtroomMeaning}</p>
+          </div>
+        </Card>
+      )}
+
+      {data.criminalBeastMode && (
+        <Card className="p-6">
+          <h3 className="text-lg font-semibold text-accent mb-4">Trial Optics Analyzer</h3>
+          <p className="text-sm text-accent/80">{data.criminalBeastMode.trialOptics.howItLooksToJury}</p>
+          <div className="mt-3">
+            <p className="text-xs font-semibold text-accent/60 mb-1">Credibility pinch points</p>
+            <ul className="space-y-1">
+              {data.criminalBeastMode.trialOptics.credibilityPinchPoints.map((p: string, idx: number) => (
+                <li key={idx} className="text-xs text-accent/70">• {p}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="mt-3">
+            <p className="text-xs font-semibold text-accent/60 mb-1">Optics risks</p>
+            <ul className="space-y-1">
+              {data.criminalBeastMode.trialOptics.opticsRisks.map((r: string, idx: number) => (
+                <li key={idx} className="text-xs text-accent/70">• {r}</li>
+              ))}
+            </ul>
+          </div>
+        </Card>
+      )}
+
+      {data.criminalBeastMode && (
+        <Card className="p-6">
+          <h3 className="text-lg font-semibold text-accent mb-4">When to Speak / When to Hold</h3>
+          <p className="text-sm text-accent/80">
+            <span className="font-semibold">{data.criminalBeastMode.positionDiscipline.flag}:</span>{" "}
+            {data.criminalBeastMode.positionDiscipline.rationale}
+          </p>
+        </Card>
+      )}
+
+      {data.criminalBeastMode && (
+        <Card className="p-6">
+          <h3 className="text-lg font-semibold text-accent mb-4">Outcome Ranges (Conditional)</h3>
+          <div className="space-y-2 text-sm text-accent/80">
+            <p><span className="font-semibold">Charge downgrade likelihood:</span> {data.criminalBeastMode.outcomeRanges.chargeDowngradeLikelihood}</p>
+            <p><span className="font-semibold">Disclosure-driven adjournment risk:</span> {data.criminalBeastMode.outcomeRanges.disclosureAdjournmentRisk}</p>
+            <p><span className="font-semibold">Trial readiness gate:</span> {data.criminalBeastMode.outcomeRanges.trialReadinessGate}</p>
+            <p className="text-xs text-accent/50">{data.criminalBeastMode.outcomeRanges.disclaimer}</p>
+          </div>
+        </Card>
+      )}
+
+      {data.criminalBeastMode?.advanced && (
+        <Card className="p-6">
+          <h3 className="text-lg font-semibold text-accent mb-4">Expert Prematurity Gate</h3>
+          <p className="text-sm text-accent/80">
+            <span className="font-semibold">
+              {data.criminalBeastMode.advanced.expertPrematurityGate.allowExpert ? "OK to consider expert spend:" : "Hold expert spend for now:"}
+            </span>{" "}
+            {data.criminalBeastMode.advanced.expertPrematurityGate.reason}
+          </p>
+        </Card>
+      )}
+
+      {data.criminalBeastMode?.advanced && (
+        <Card className="p-6">
+          <h3 className="text-lg font-semibold text-accent mb-4">If I Were the Judge</h3>
+          <p className="text-sm text-accent/80">{data.criminalBeastMode.advanced.ifIWereTheJudgeSummary}</p>
+        </Card>
+      )}
+
       {/* Partner Verdict */}
       {data.partnerVerdict && (
         <Card className="p-6 border-primary/30 bg-primary/5">
@@ -329,6 +478,26 @@ export function MoveSequencePanel({ caseId }: MoveSequencePanelProps) {
                   <p className="text-accent/80">{move.expectedOpponentResponse}</p>
                 </div>
               </div>
+
+              {move.counterMove && (
+                <div className="p-3 rounded-lg bg-accent/5 border border-accent/10 mb-2">
+                  <p className="text-xs font-medium text-accent mb-2">Counter-move anticipation (CPS):</p>
+                  <div className="space-y-2 text-xs">
+                    <div>
+                      <p className="text-accent/60 mb-1">Likely CPS response:</p>
+                      <p className="text-accent/80">{move.counterMove.likelyCpsResponse}</p>
+                    </div>
+                    <div>
+                      <p className="text-accent/60 mb-1">Typical failure pattern:</p>
+                      <p className="text-accent/80">{move.counterMove.typicalFailurePattern}</p>
+                    </div>
+                    <div>
+                      <p className="text-accent/60 mb-1">Lawful next reply:</p>
+                      <p className="text-accent/80">{move.counterMove.lawfulNextReply}</p>
+                    </div>
+                  </div>
+                </div>
+              )}
               
               <div className="p-3 rounded-lg bg-primary/5 border border-primary/10 mb-2">
                 <p className="text-xs text-primary font-medium mb-1">Why now:</p>

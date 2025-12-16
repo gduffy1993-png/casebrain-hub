@@ -5,7 +5,7 @@
  * should exist, when it should exist, and what gaps mean.
  */
 
-import type { PracticeArea } from "@/lib/types/casebrain";
+import type { PracticeArea, Severity } from "@/lib/types/casebrain";
 
 /**
  * Expected evidence pattern for a practice area
@@ -17,6 +17,14 @@ export type ExpectedEvidence = {
   ifMissingMeans: string;  // What the absence suggests
   probeQuestion: string;  // Specific request to test if it exists
   detectPatterns: string[];  // Patterns to detect this in documents
+  /** Optional priority to drive leverage/severity in downstream reasoning */
+  priority?: Severity;
+  /** Optional: who normally holds the material (helpful for disclosure wording) */
+  whoUsuallyHoldsIt?: "Police" | "CPS" | "ThirdParty" | "Opponent" | "Unknown";
+  /** Optional: plain-language disclosure hook */
+  disclosureHook?: string;
+  /** Optional: typical failure modes (lost/late/partial/etc.) */
+  typicalFailureModes?: string[];
 };
 
 /**

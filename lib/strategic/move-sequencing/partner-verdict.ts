@@ -24,18 +24,26 @@ function determineCaseStage(
   }
 
   if (hasTimelineGaps && !hasKeyEvidence) {
-    return "Evidence build – pre-breach lock-in";
+    return input.practiceArea === "criminal"
+      ? "Disclosure chase – stabilising served bundle"
+      : "Evidence build – pre-breach lock-in";
   }
 
   if (hasKeyEvidence && docCount > 5) {
-    return "Pre-action – testing liability position";
+    return input.practiceArea === "criminal"
+      ? "Disclosure / case management – testing prosecution case"
+      : "Pre-action – testing liability position";
   }
 
   if (docCount > 10) {
-    return "Post-disclosure – refining case theory";
+    return input.practiceArea === "criminal"
+      ? "PTR / trial prep – refining defence theory"
+      : "Post-disclosure – refining case theory";
   }
 
-  return "Evidence gathering – establishing chronology";
+  return input.practiceArea === "criminal"
+    ? "Early disclosure – establishing first-account trail"
+    : "Evidence gathering – establishing chronology";
 }
 
 /**
@@ -51,14 +59,21 @@ function generateCurrentReality(
   const inconsistencies = observations.filter(o => o.type === "INCONSISTENCY");
 
   if (criticalGaps.length === 0 && timelineIssues.length === 0) {
-    return "Bundle appears complete. No obvious evidence gaps detected. Proceed to expert instruction if causation/breach questions remain.";
+    return input.practiceArea === "criminal"
+      ? "Bundle appears materially complete. No obvious disclosure/continuity gaps detected. Focus on coherent case theory, trial optics, and any counsel-led expert decisions."
+      : "Bundle appears complete. No obvious evidence gaps detected. Proceed to expert instruction if causation/breach questions remain.";
   }
 
   const gapDescriptions = criticalGaps.slice(0, 2).map(g => g.description).join("; ");
   const timelineDesc = timelineIssues.length > 0 ? ` Timeline gaps suggest delayed documentation or response.` : "";
   const inconsistencyDesc = inconsistencies.length > 0 ? ` Narrative inconsistencies require clarification.` : "";
 
-  return `Missing ${criticalGaps.length} critical evidence item${criticalGaps.length !== 1 ? "s" : ""}: ${gapDescriptions}.${timelineDesc}${inconsistencyDesc} Cannot justify expert spend until these gaps are tested.`;
+  const spendLine =
+    input.practiceArea === "criminal"
+      ? "Do not escalate spend/commitment until disclosure position is stabilised and primary material integrity is pinned down."
+      : "Cannot justify expert spend until these gaps are tested.";
+
+  return `Missing ${criticalGaps.length} critical evidence item${criticalGaps.length !== 1 ? "s" : ""}: ${gapDescriptions}.${timelineDesc}${inconsistencyDesc} ${spendLine}`;
 }
 
 /**
@@ -72,7 +87,7 @@ function identifyFastestUpgradePath(
   const highLeverage = observations.filter(o => o.leveragePotential === "HIGH" || o.leveragePotential === "CRITICAL");
   
   if (highLeverage.length === 0) {
-    return "No obvious quick wins. Proceed with standard disclosure requests.";
+    return "No obvious quick wins. Proceed with targeted disclosure requests.";
   }
 
   const topGap = highLeverage[0];
@@ -81,7 +96,7 @@ function identifyFastestUpgradePath(
   );
 
   if (matchingEvidence) {
-    return `Request ${matchingEvidence.label.toLowerCase()}. If absent, confirms failure. If produced now, test authenticity.`;
+    return `Request ${matchingEvidence.label.toLowerCase()}. If absent, require a clear existence/retention explanation. If produced, check integrity/continuity/time window.`;
   }
 
   return `Request ${topGap.description.replace("Missing expected evidence: ", "")}. This is the cheapest test of core theory.`;

@@ -17,6 +17,8 @@ import { generateWinConditions, generateKillConditions } from "./win-kill-condit
 import { generatePressureTriggers } from "./pressure-triggers";
 import { generateLetterTemplate } from "./letter-templates";
 import { detectAwaabsLawTriggers } from "./awaabs-law-detector";
+import { buildCriminalViolentBeastMode } from "@/lib/packs/criminal/violentBeastMode";
+import { attachCriminalCounterMoves } from "./criminal-counter-moves";
 
 /**
  * Generate complete move sequence for a case
@@ -25,7 +27,22 @@ export async function generateMoveSequence(
   input: MoveSequenceInput
 ): Promise<MoveSequence> {
   // Get evidence map for practice area
-  const evidenceMap = getEvidenceMap(input.practiceArea);
+  let evidenceMap = getEvidenceMap(input.practiceArea);
+
+  // Criminal: violent offences Beast Mode (deterministic, offence-aware)
+  let criminalContext: any = undefined;
+  let criminalBeastMode: any = undefined;
+  if (input.practiceArea === "criminal") {
+    const built = buildCriminalViolentBeastMode({ input, evidenceMap });
+    evidenceMap = built.selectedEvidenceMap;
+    criminalBeastMode = built.beastMode;
+    criminalContext = {
+      detectedChargeCandidates: built.detection.candidates,
+      detectedContextTags: built.detection.contextTags,
+      proceduralSignals: built.detection.proceduralSignals,
+      offenceEvidenceProfiles: built.beastMode.offenceEvidenceProfiles,
+    };
+  }
   
   // Step 1: Extract case anchors (for CN case-specific output)
   const anchors = extractCaseAnchors(input);
@@ -41,7 +58,12 @@ export async function generateMoveSequence(
   }));
   
   // Step 3: Generate investigation angles
-  const investigationAngles = generateInvestigationAngles(observationsWithAnchors, evidenceMap, input.practiceArea === "clinical_negligence" ? anchors : undefined);
+  const investigationAngles = generateInvestigationAngles(
+    observationsWithAnchors,
+    evidenceMap,
+    input.practiceArea === "clinical_negligence" ? anchors : undefined,
+    input.practiceArea
+  );
   
   // Step 4: Generate moves
   let moves = generateMoves(investigationAngles, input.practiceArea === "clinical_negligence" ? anchors : undefined, input.practiceArea, input, evidenceMap);
@@ -84,7 +106,7 @@ export async function generateMoveSequence(
   }
 
   // Step 13: Add letter templates to moves
-  const movesWithTemplates = moves.map((move, index) => {
+  let movesWithTemplates = moves.map((move, index) => {
     const correspondingAngle = investigationAngles[index];
     if (correspondingAngle) {
       const template = generateLetterTemplate(move, correspondingAngle, input, evidenceMap);
@@ -92,6 +114,11 @@ export async function generateMoveSequence(
     }
     return move;
   });
+
+  // Step 14: Criminal-only counter-move anticipation (CPS response model)
+  if (input.practiceArea === "criminal") {
+    movesWithTemplates = attachCriminalCounterMoves({ moves: movesWithTemplates, evidenceMap });
+  }
   
   return {
     partnerVerdict: partnerVerdict || undefined,
@@ -99,6 +126,8 @@ export async function generateMoveSequence(
     killConditions,
     pressureTriggers,
     awaabsLawStatus,
+    criminalContext,
+    criminalBeastMode,
     observations: observationsWithAnchors,
     investigationAngles,
     moveSequence: movesWithTemplates,

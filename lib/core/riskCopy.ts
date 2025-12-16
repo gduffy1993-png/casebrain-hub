@@ -92,7 +92,7 @@ export function buildLimitationMessage(ctx: LimitationContext): string {
 
   // Limitation date section
   if (ctx.limitationDate) {
-    const dateStr = new Date(ctx.limitationDate).toLocaleDateString("en-GB");
+    const dateIso = new Date(ctx.limitationDate).toISOString().slice(0, 10);
     const severity = ctx.limitationDate
       ? (() => {
           const daysRemaining = Math.floor(
@@ -107,7 +107,7 @@ export function buildLimitationMessage(ctx: LimitationContext): string {
       : "procedural risk";
     
     parts.push(
-      `If the limitation date is ${dateStr}, this case may be at **${severity}** depending on confirmed dates.`,
+      `If the limitation date is ${dateIso}, this case may be at **${severity}** depending on confirmed dates.`,
     );
   }
 

@@ -197,19 +197,31 @@ function detectEvidenceGaps(
   evidenceMap.expectedEvidence.forEach((expected: any) => {
     // Check if we have documents matching this pattern
     const hasEvidence = input.documents.some(doc => {
-      const nameLower = doc.name.toLowerCase();
-      const patterns = expected.detectPatterns || [];
-      return patterns.some((pattern: string) => nameLower.includes(pattern.toLowerCase()));
+      const nameLower = (doc.name || "").toLowerCase();
+      const contentLower = JSON.stringify(doc.extracted_json || {}).toLowerCase();
+      const patterns: string[] = expected.detectPatterns || [];
+      return patterns.some((pattern: string) => {
+        const p = (pattern || "").toLowerCase();
+        if (!p) return false;
+        return nameLower.includes(p) || contentLower.includes(p);
+      });
     });
     
     if (!hasEvidence) {
+        const priority = (expected.priority || "HIGH") as any;
+        const leveragePotential =
+          priority === "CRITICAL" ? "CRITICAL" :
+          priority === "HIGH" ? "HIGH" :
+          priority === "MEDIUM" ? "MEDIUM" :
+          "LOW";
+
         observations.push({
           id: `evidence-gap-${expected.id}`,
           type: "EVIDENCE_GAP",
           description: `Missing expected evidence: ${expected.label}`,
           whyUnusual: expected.ifMissingMeans,
           whatShouldExist: `${expected.label} (${expected.whenExpected})`,
-          leveragePotential: "HIGH", // Missing evidence is high leverage
+          leveragePotential, // Use expected priority when provided
           whyThisIsOdd: `Expected evidence ${expected.label} is missing. If proper procedure was followed, this documentation should exist.`,
           whyOpponentCannotIgnoreThis: `Absence of ${expected.label} creates inference that procedure was not followed or documentation was not created. Opponent must explain absence or produce documentation.`,
         });

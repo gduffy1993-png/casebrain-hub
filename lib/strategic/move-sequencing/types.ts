@@ -85,6 +85,15 @@ export type Move = {
     ifDeny: number;     // Next move order if opponent denies
     ifSilence: number;  // Next move order if opponent is silent
   };
+  /**
+   * Counter-move anticipation (criminal-focused): likely CPS response, common failure pattern, lawful next reply.
+   * Optional for other practice areas.
+   */
+  counterMove?: {
+    likelyCpsResponse: string;
+    typicalFailurePattern: string;
+    lawfulNextReply: string;
+  };
   letterTemplate?: LetterTemplate;  // Copy-paste ready letter
 };
 
@@ -119,6 +128,108 @@ export type AwaabsLawStatus = {
 };
 
 /**
+ * Criminal violent-offences context (Beast Mode)
+ * Deterministic signals used to tailor expected evidence + scoring panels.
+ */
+export type CriminalChargeCandidate = {
+  offenceId: string;
+  label: string;
+  category: string;
+  confidence: number; // 0–1
+  why: string[];
+};
+
+export type CriminalContextTag = {
+  tag: string;
+  label: string;
+  confidence: number; // 0–1
+  why: string[];
+};
+
+export type CriminalProceduralSignal = {
+  id: string;
+  confidence: number; // 0–1
+  why: string[];
+};
+
+export type CriminalOffenceEvidenceProfile = {
+  key: string;
+  label: string;
+  whySelected: string[];
+};
+
+export type CriminalContext = {
+  detectedChargeCandidates: CriminalChargeCandidate[];
+  detectedContextTags: CriminalContextTag[];
+  proceduralSignals: CriminalProceduralSignal[];
+  offenceEvidenceProfiles: CriminalOffenceEvidenceProfile[];
+};
+
+/**
+ * Criminal Beast Mode panels (violent offences)
+ * Stored in move_sequence so UI reads from latest version (single source of truth).
+ */
+export type CriminalBeastMode = {
+  confidenceAndCompletenessLine: string;
+  detectedCharges: Array<{ chargeId: string; confidence: number; why: string[] }>;
+  offenceEvidenceProfiles: Array<{ key: string; label: string; whySelected: string[] }>;
+  bundleCompleteness: {
+    completenessPercent: number;
+    band: "LOW" | "MEDIUM" | "HIGH" | "CRITICAL";
+    expectedCount: number;
+    missingCount: number;
+    missingCritical: string[];
+    summaryLine: string;
+  };
+  chargeStabilityIndex: {
+    mostLikelyChargeToSurvive: string;
+    stabilityBand: "LOW" | "MEDIUM" | "HIGH" | "CRITICAL";
+    why: string[];
+    guardrail: string;
+  };
+  judgeIrritationMeter: {
+    irritationRisk: "LOW" | "MEDIUM" | "HIGH";
+    triggers: string[];
+    solicitorActions: string[];
+  };
+  proceduralIntegrity: {
+    complianceRisk: "LOW" | "MEDIUM" | "HIGH" | "CRITICAL";
+    checklist: Array<{ item: string; status: "PRESENT" | "MISSING" | "UNCLEAR"; whyItMatters: string }>;
+    courtroomMeaning: string;
+  };
+  trialOptics: {
+    howItLooksToJury: string;
+    credibilityPinchPoints: string[];
+    opticsRisks: string[];
+  };
+  positionDiscipline: {
+    flag: "DISCLOSURE_FIRST" | "SAFE_TO_COMMIT_PARTIALLY" | "HOLD_POSITION";
+    rationale: string;
+  };
+  outcomeRanges: {
+    chargeDowngradeLikelihood: "LOW" | "MEDIUM" | "HIGH";
+    disclosureAdjournmentRisk: "LOW" | "MEDIUM" | "HIGH";
+    trialReadinessGate: string;
+    disclaimer: string;
+  };
+  /**
+   * Advanced methods (deterministic heuristics). If insufficient evidence, outputs must say so safely.
+   */
+  advanced?: {
+    retrospectiveDocumentationRisk: { band: "LOW" | "MEDIUM" | "HIGH"; why: string[] };
+    firstAccountConsistency: { band: "LOW" | "MEDIUM" | "HIGH"; why: string[] };
+    disclosureBurdenShiftIndicator: { band: "LOW" | "MEDIUM" | "HIGH"; why: string[] };
+    alternativeNarrativeViability: { score: number; band: "LOW" | "MEDIUM" | "HIGH"; why: string[] };
+    witnessStressContext: { band: "LOW" | "MEDIUM" | "HIGH"; why: string[] };
+    expertPrematurityGate: { allowExpert: boolean; reason: string };
+    judicialRemedyRadar: { likelyRemedies: string[]; why: string[]; disclaimer: string };
+    silenceValueMetric: { band: "LOW" | "MEDIUM" | "HIGH"; rationale: string };
+    caseDegradationOverTime: { band: "LOW" | "MEDIUM" | "HIGH"; rationale: string };
+    ifIWereTheJudgeSummary: string;
+  };
+};
+
+/**
  * Complete move sequence output
  */
 export type MoveSequence = {
@@ -127,6 +238,8 @@ export type MoveSequence = {
   killConditions?: string[];  // What proves case not viable
   pressureTriggers?: PressureTrigger[];  // Conditional aggression logic
   awaabsLawStatus?: AwaabsLawStatus;  // Awaab's Law status (housing only)
+  criminalContext?: CriminalContext; // Criminal (violent offences) context
+  criminalBeastMode?: CriminalBeastMode; // Criminal Beast Mode panels
   observations: Observation[];
   investigationAngles: InvestigationAngle[];
   moveSequence: Move[];

@@ -44,28 +44,53 @@ export function generateMoves(
                                     index < 4 ? "MEDIUM" :
                                     "LOW";
     
+    const requested = practiceArea === "clinical_negligence" && anchors
+      ? injectAnchors(angle.targetedRequest, anchors)
+      : angle.targetedRequest;
+
+    const action =
+      practiceArea === "criminal"
+        ? phase === "INFORMATION_EXTRACTION"
+          ? `Send CPIA disclosure request to CPS / disclosure officer: ${requested}`
+          : phase === "COMMITMENT_FORCING"
+            ? `Case management request / application (disclosure & directions): ${requested}`
+            : `Trial prep / PTR escalation point: raise missing material and seek directions`
+        : phase === "INFORMATION_EXTRACTION"
+          ? `Send letter requesting: ${requested}`
+          : phase === "COMMITMENT_FORCING"
+            ? `Make targeted disclosure application for: ${requested}`
+            : `Consider expert instruction or formal escalation`;
+
     moves.push({
       order: index + 1,
       phase,
-      action: phase === "INFORMATION_EXTRACTION" 
-        ? `Send letter requesting: ${practiceArea === "clinical_negligence" && anchors ? injectAnchors(angle.targetedRequest, anchors) : angle.targetedRequest}`
-        : phase === "COMMITMENT_FORCING"
-        ? `Make targeted disclosure application for: ${practiceArea === "clinical_negligence" && anchors ? injectAnchors(angle.targetedRequest, anchors) : angle.targetedRequest}`
-        : `Consider expert instruction or formal escalation`,
-      evidenceRequested: practiceArea === "clinical_negligence" && anchors ? injectAnchors(angle.targetedRequest, anchors) : angle.targetedRequest,
+      action,
+      evidenceRequested: requested,
       questionItForces: angle.hypothesis,
       expectedOpponentResponse: angle.expectedResponse,
       whyNow: index === 0 
-        ? "Cheapest way to test core theory. If they can't produce, you've won without expert spend."
+        ? (practiceArea === "criminal"
+            ? "Earliest, lowest-cost lever is disclosure: pin down what exists, in what format, and when it will be served."
+            : "Cheapest way to test core theory. If they can't produce, you've won without expert spend.")
         : index === 1
-        ? "Only do this if Move 1 fails or produces suspicious results. Tests whether failure was systematic."
+        ? (practiceArea === "criminal"
+            ? "Do this only if the first disclosure response is late/partial/unclear. Forces clarity before PTR/trial prep."
+            : "Only do this if Move 1 fails or produces suspicious results. Tests whether failure was systematic.")
         : index === 2
-        ? "Tests governance and compliance. Low cost, high leverage if gaps confirmed."
-        : "Forces formal position and creates paper trail. Only after cheap moves have extracted what they can.",
+        ? (practiceArea === "criminal"
+            ? "Targets procedural integrity (PACE/CPIA/continuity). These issues often decide whether the case is trial-ready."
+            : "Tests governance and compliance. Low cost, high leverage if gaps confirmed.")
+        : (practiceArea === "criminal"
+            ? "Escalate at case management/PTR only after you’ve documented chases and pinned down what is missing."
+            : "Forces formal position and creates paper trail. Only after cheap moves have extracted what they can."),
       whatYouLoseIfOutOfOrder: index === 0
-        ? "If you skip this and go straight to expert, you spend £2000+ without knowing if key evidence exists."
+        ? (practiceArea === "criminal"
+            ? "If you skip disclosure-first, you risk committing to a case theory without the CPS bundle and get ambushed by late material."
+            : "If you skip this and go straight to expert, you spend £2000+ without knowing if key evidence exists.")
         : index === 1
-        ? "If you do this before Move 1, you give opponent time to sanitize records. Also reveals your theory early."
+        ? (practiceArea === "criminal"
+            ? "If you escalate before a clean chase trail, you risk looking premature and losing credibility with the bench."
+            : "If you do this before Move 1, you give opponent time to sanitize records. Also reveals your theory early.")
         : "If you escalate before information extraction, you lose chance to get information cheaply and give opponent time to prepare.",
       cost,
       commitmentLevel,

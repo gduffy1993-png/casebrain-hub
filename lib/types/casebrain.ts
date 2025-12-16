@@ -124,6 +124,11 @@ export function normalizePracticeArea(area?: string | null): PracticeArea {
   // Family
   if (lower.includes("family") || lower.includes("child") || lower.includes("divorce") ||
       lower.includes("matrimonial") || lower.includes("financial_remedy")) return "family";
+
+  // Criminal
+  if (lower.includes("criminal") || lower.includes("defence") || lower.includes("defense") ||
+      lower.includes("cps") || lower.includes("pace") || lower.includes("custody") ||
+      lower.includes("interview") || lower.includes("disclosure")) return "criminal";
   
   return "other_litigation";
 }

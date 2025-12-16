@@ -254,8 +254,8 @@ export function checkSection11Lta(
               : "low",
       passed,
       details: passed
-        ? `Repair completed ${daysToRepair} days after report (within reasonable time)`
-        : `Repair completed ${daysToRepair} days after report (exceeds reasonable time of ${reasonableTime} days)`,
+        ? `Repair completed ${daysToRepair} days after report (within reasonable time)${isTenantVulnerable ? " (vulnerable tenant)" : ""}`
+        : `Repair completed ${daysToRepair} days after report (exceeds reasonable time of ${reasonableTime} days)${isTenantVulnerable ? " (vulnerable tenant)" : ""}`,
     });
   } else {
     // No repair completed - check if reasonable time has passed
@@ -274,8 +274,8 @@ export function checkSection11Lta(
               : "low",
       passed,
       details: passed
-        ? `Repair not yet completed. ${daysSinceReport} days since report (within reasonable time)`
-        : `Repair not yet completed. ${daysSinceReport} days since report (exceeds reasonable time of ${reasonableTime} days)`,
+        ? `Repair not yet completed. ${daysSinceReport} days since report (within reasonable time)${isTenantVulnerable ? " (vulnerable tenant)" : ""}`
+        : `Repair not yet completed. ${daysSinceReport} days since report (exceeds reasonable time of ${reasonableTime} days)${isTenantVulnerable ? " (vulnerable tenant)" : ""}`,
     });
   }
 
@@ -437,7 +437,7 @@ export function checkNoAccessFlags(
     checks.push({
       rule: "No Access - Frequent Claims",
       description: "Frequent no-access claims may indicate pattern of obstruction",
-      severity: noAccessCount > 5 ? "high" : "medium",
+      severity: noAccessCount >= 5 ? "high" : "medium",
       passed: false,
       details: `${noAccessCount} separate no-access claims recorded`,
     });
@@ -456,7 +456,7 @@ export function checkNoAccessFlags(
         description: "More than 50% of time claimed as no access suggests systematic obstruction",
         severity: "critical",
         passed: false,
-        details: `${noAccessPercentage.toFixed(1)}% of time since first report (${noAccessDays} of ${daysSinceReport} days) claimed as no access`,
+        details: `${noAccessPercentage.toFixed(1)}% of time since first report (${noAccessDays} of ${daysSinceReport} days) claimed as no access (threshold 50%)`,
       });
     }
   }

@@ -449,9 +449,10 @@ export const piPack: LitigationPack = {
       dateOfKnowledgeApplies: true,
       minorExtensionApplies: true,
       warningThresholds: {
-        critical: 30,
-        high: 90,
-        medium: 180,
+        // Tests & UX expectation: treat <=90 days as CRITICAL
+        critical: 90,
+        high: 180,
+        medium: 365,
       },
     },
     {
@@ -462,9 +463,10 @@ export const piPack: LitigationPack = {
       dateOfKnowledgeApplies: true,
       minorExtensionApplies: true,
       warningThresholds: {
-        critical: 30,
-        high: 90,
-        medium: 180,
+        // Tests & UX expectation: treat <=90 days as CRITICAL
+        critical: 90,
+        high: 180,
+        medium: 365,
       },
     },
   ],
