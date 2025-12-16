@@ -148,37 +148,68 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
     notFound();
   }
 
-  const [
-    { data: documents },
-    { data: letters },
-    { data: riskFlags },
-    { data: deadlines },
-  ] = await Promise.all([
-    supabase
-      .from("documents")
-      .select("id, name, type, uploaded_by, created_at, extracted_json")
-      .eq("case_id", caseId)
-      .eq("org_id", orgId)
-      .order("created_at", { ascending: false }),
-    supabase
-      .from("letters")
-      .select("id, template_id, version, body, updated_at, created_by")
-      .eq("case_id", caseId)
-      .eq("org_id", orgId) // Multi-tenant isolation: ensure letters belong to this org
-      .order("version", { ascending: false }),
-    supabase
-      .from("risk_flags")
-      .select("id, flag_type, severity, description, detected_at, resolved, resolved_at")
-      .eq("case_id", caseId)
-      .eq("org_id", orgId) // Multi-tenant isolation: ensure risk flags belong to this org
-      .order("detected_at", { ascending: false }),
-    supabase
-      .from("deadlines")
-      .select("id, title, due_date")
-      .eq("case_id", caseId)
-      .eq("org_id", orgId) // Multi-tenant isolation: ensure deadlines belong to this org
-      .order("due_date", { ascending: true }),
-  ]);
+  // SAFETY: Wrap all database queries in try-catch to prevent crashes
+  let documents: any[] = [];
+  let letters: any[] = [];
+  let riskFlags: any[] = [];
+  let deadlines: any[] = [];
+
+  try {
+    const [
+      documentsResult,
+      lettersResult,
+      riskFlagsResult,
+      deadlinesResult,
+    ] = await Promise.all([
+      supabase
+        .from("documents")
+        .select("id, name, type, uploaded_by, created_at, extracted_json")
+        .eq("case_id", caseId)
+        .eq("org_id", orgId)
+        .order("created_at", { ascending: false }),
+      supabase
+        .from("letters")
+        .select("id, template_id, version, body, updated_at, created_by")
+        .eq("case_id", caseId)
+        .eq("org_id", orgId) // Multi-tenant isolation: ensure letters belong to this org
+        .order("version", { ascending: false }),
+      supabase
+        .from("risk_flags")
+        .select("id, flag_type, severity, description, detected_at, resolved, resolved_at")
+        .eq("case_id", caseId)
+        .eq("org_id", orgId) // Multi-tenant isolation: ensure risk flags belong to this org
+        .order("detected_at", { ascending: false }),
+      supabase
+        .from("deadlines")
+        .select("id, title, due_date")
+        .eq("case_id", caseId)
+        .eq("org_id", orgId) // Multi-tenant isolation: ensure deadlines belong to this org
+        .order("due_date", { ascending: true }),
+    ]);
+
+    documents = documentsResult.data ?? [];
+    letters = lettersResult.data ?? [];
+    riskFlags = riskFlagsResult.data ?? [];
+    deadlines = deadlinesResult.data ?? [];
+
+    // Log errors but don't crash
+    if (documentsResult.error) {
+      console.error("[CaseDetailPage] Error fetching documents:", documentsResult.error);
+    }
+    if (lettersResult.error) {
+      console.error("[CaseDetailPage] Error fetching letters:", lettersResult.error);
+    }
+    if (riskFlagsResult.error) {
+      console.error("[CaseDetailPage] Error fetching risk flags:", riskFlagsResult.error);
+    }
+    if (deadlinesResult.error) {
+      console.error("[CaseDetailPage] Error fetching deadlines:", deadlinesResult.error);
+    }
+  } catch (error) {
+    // SAFETY: If Promise.all fails, log but continue with empty arrays
+    console.error("[CaseDetailPage] Error fetching case data:", error);
+    // Continue with empty arrays - page will render with missing data rather than crash
+  }
 
   const isPiCase =
     caseRecord.practice_area === "pi" || caseRecord.practice_area === "clinical_negligence";
@@ -203,35 +234,58 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
   }> = [];
 
   if (isPiCase) {
-    const [
-      { data: piCaseRecord },
-      { data: medicalReports },
-      { data: offers },
-      { data: hearings },
-      { data: disbursements },
-    ] = await Promise.all([
-      supabase.from("pi_cases").select("*").eq("id", caseId).eq("org_id", orgId).maybeSingle(), // Multi-tenant isolation
-      supabase.from("pi_medical_reports").select("*").eq("case_id", caseId).eq("org_id", orgId),
-      supabase.from("pi_offers").select("*").eq("case_id", caseId).eq("org_id", orgId),
-      supabase.from("pi_hearings").select("*").eq("case_id", caseId).eq("org_id", orgId),
-      supabase.from("pi_disbursements").select("*").eq("case_id", caseId).eq("org_id", orgId),
-    ]);
+    try {
+      const [
+        piCaseResult,
+        medicalReportsResult,
+        offersResult,
+        hearingsResult,
+        disbursementsResult,
+      ] = await Promise.all([
+        supabase.from("pi_cases").select("*").eq("id", caseId).eq("org_id", orgId).maybeSingle(), // Multi-tenant isolation
+        supabase.from("pi_medical_reports").select("*").eq("case_id", caseId).eq("org_id", orgId),
+        supabase.from("pi_offers").select("*").eq("case_id", caseId).eq("org_id", orgId),
+        supabase.from("pi_hearings").select("*").eq("case_id", caseId).eq("org_id", orgId),
+        supabase.from("pi_disbursements").select("*").eq("case_id", caseId).eq("org_id", orgId),
+      ]);
 
-    piCase = piCaseRecord ?? null;
-    piMedicalReports = medicalReports ?? [];
-    piOffers = offers ?? [];
-    piHearings = hearings ?? [];
-    piDisbursements = disbursements ?? [];
+      piCase = piCaseResult.data ?? null;
+      piMedicalReports = medicalReportsResult.data ?? [];
+      piOffers = offersResult.data ?? [];
+      piHearings = hearingsResult.data ?? [];
+      piDisbursements = disbursementsResult.data ?? [];
+
+      // Log errors but don't crash
+      if (piCaseResult.error) {
+        console.error("[CaseDetailPage] Error fetching PI case:", piCaseResult.error);
+      }
+      if (medicalReportsResult.error) {
+        console.error("[CaseDetailPage] Error fetching medical reports:", medicalReportsResult.error);
+      }
+      if (offersResult.error) {
+        console.error("[CaseDetailPage] Error fetching offers:", offersResult.error);
+      }
+      if (hearingsResult.error) {
+        console.error("[CaseDetailPage] Error fetching hearings:", hearingsResult.error);
+      }
+      if (disbursementsResult.error) {
+        console.error("[CaseDetailPage] Error fetching disbursements:", disbursementsResult.error);
+      }
+    } catch (error) {
+      console.error("[CaseDetailPage] Error fetching PI case data:", error);
+      // Continue with null/empty values - page will render with missing data
+    }
   }
 
   if (isHousingCase) {
-    const [
-      { data: housingCaseRecord },
-      { data: defects },
-      complianceData,
-    ] = await Promise.all([
-      supabase.from("housing_cases").select("*").eq("id", caseId).eq("org_id", orgId).maybeSingle(),
-      supabase.from("housing_defects").select("*").eq("case_id", caseId).eq("org_id", orgId),
+    try {
+      const [
+        housingCaseResult,
+        defectsResult,
+        complianceData,
+      ] = await Promise.all([
+        supabase.from("housing_cases").select("*").eq("id", caseId).eq("org_id", orgId).maybeSingle(),
+        supabase.from("housing_defects").select("*").eq("case_id", caseId).eq("org_id", orgId),
       // Call compliance checks directly instead of HTTP to avoid auth issues
       (async () => {
         try {
@@ -306,9 +360,21 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
       })(),
     ]);
 
-    housingCase = housingCaseRecord ?? null;
-    housingDefects = defects ?? [];
-    complianceChecks = complianceData?.checks ?? [];
+      housingCase = housingCaseResult.data ?? null;
+      housingDefects = defectsResult.data ?? [];
+      complianceChecks = complianceData?.checks ?? [];
+
+      // Log errors but don't crash
+      if (housingCaseResult.error) {
+        console.error("[CaseDetailPage] Error fetching housing case:", housingCaseResult.error);
+      }
+      if (defectsResult.error) {
+        console.error("[CaseDetailPage] Error fetching housing defects:", defectsResult.error);
+      }
+    } catch (error) {
+      console.error("[CaseDetailPage] Error fetching housing case data:", error);
+      // Continue with null/empty values - page will render with missing data
+    }
   }
 
   // Extract all facts from documents for Awaab detection
@@ -1456,13 +1522,6 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
         {/* New Evidence Banner - Shows when new documents added */}
         <NewEvidenceBanner 
           caseId={caseId} 
-          onReanalyse={() => {
-            // Scroll to EvidenceStrategyHeader
-            const header = document.querySelector('[data-evidence-strategy-header]');
-            if (header) {
-              header.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-          }}
         />
 
         {/* Evidence & Strategy Section - CN only */}

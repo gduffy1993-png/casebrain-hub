@@ -7,10 +7,9 @@ import { AlertCircle, RefreshCw } from "lucide-react";
 
 type NewEvidenceBannerProps = {
   caseId: string;
-  onReanalyse: () => void;
 };
 
-export function NewEvidenceBanner({ caseId, onReanalyse }: NewEvidenceBannerProps) {
+export function NewEvidenceBanner({ caseId }: NewEvidenceBannerProps) {
   const [newDocCount, setNewDocCount] = useState<number | null>(null);
   const [nextVersion, setNextVersion] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
@@ -65,15 +64,17 @@ export function NewEvidenceBanner({ caseId, onReanalyse }: NewEvidenceBannerProp
         </div>
         <Button 
           onClick={() => {
-            onReanalyse();
-            // Also trigger the EvidenceStrategyHeader button click
-            setTimeout(() => {
-              const header = document.querySelector('[data-evidence-strategy-header]');
-              const button = header?.querySelector('button');
-              if (button) {
-                (button as HTMLButtonElement).click();
+            // Trigger the EvidenceStrategyHeader button click to open the modal
+            const header = document.querySelector('[data-evidence-strategy-header]');
+            const button = header?.querySelector('button');
+            if (button) {
+              (button as HTMLButtonElement).click();
+            } else {
+              // Fallback: scroll to header if button not found
+              if (header) {
+                header.scrollIntoView({ behavior: 'smooth', block: 'start' });
               }
-            }, 100);
+            }
           }} 
           size="sm" 
           className="gap-2"
