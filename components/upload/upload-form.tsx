@@ -179,6 +179,9 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
       const formData = new FormData();
       formData.set("caseTitle", caseTitle);
       formData.set("practiceArea", practiceArea);
+      if (caseId) {
+        formData.set("caseId", caseId);
+      }
       Array.from(files).forEach((file) => {
         formData.append("files", file);
       });

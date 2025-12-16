@@ -69,6 +69,7 @@ export async function POST(request: Request) {
     (formData.get("caseTitle") as string | null)?.trim() ?? undefined;
   const practiceArea =
     (formData.get("practiceArea") as string | null)?.trim() ?? "other_litigation";
+  const providedCaseId = (formData.get("caseId") as string | null)?.trim() ?? undefined;
 
   if (!files.length) {
     return NextResponse.json(
@@ -77,32 +78,64 @@ export async function POST(request: Request) {
     );
   }
 
-  if (!caseTitle) {
+  if (!caseTitle && !providedCaseId) {
     return NextResponse.json(
-      { error: "Case title is required" },
+      { error: "Case title or case ID is required" },
       { status: 400 },
     );
   }
 
   const supabase = getSupabaseAdminClient();
 
-  const { data: existingCase, error: caseLookupError } = await supabase
-    .from("cases")
-    .select("id, title")
-    .eq("org_id", orgId)
-    .eq("title", caseTitle)
-    .maybeSingle();
-
-  if (caseLookupError) {
-    console.error("[upload] Error looking up case:", caseLookupError);
-    return NextResponse.json(
-      { error: "Failed to lookup case", details: caseLookupError.message },
-      { status: 500 },
-    );
-  }
-
-  let caseId = existingCase?.id;
+  let caseId: string | undefined;
   let isNewCase = false;
+
+  // If caseId is provided (uploading to existing case), use it directly
+  if (providedCaseId) {
+    // Verify the case exists and belongs to this org
+    const { data: existingCase, error: caseLookupError } = await supabase
+      .from("cases")
+      .select("id, title")
+      .eq("id", providedCaseId)
+      .eq("org_id", orgId)
+      .maybeSingle();
+
+    if (caseLookupError) {
+      console.error("[upload] Error looking up provided case:", caseLookupError);
+      return NextResponse.json(
+        { error: "Failed to lookup case", details: caseLookupError.message },
+        { status: 500 },
+      );
+    }
+
+    if (!existingCase) {
+      return NextResponse.json(
+        { error: "Case not found or access denied" },
+        { status: 404 },
+      );
+    }
+
+    caseId = existingCase.id;
+    console.log(`[upload] Using provided case ID: ${caseId} for "${existingCase.title}"`);
+  } else {
+    // No caseId provided - lookup by title (legacy behavior for new case creation)
+    const { data: existingCase, error: caseLookupError } = await supabase
+      .from("cases")
+      .select("id, title")
+      .eq("org_id", orgId)
+      .eq("title", caseTitle)
+      .maybeSingle();
+
+    if (caseLookupError) {
+      console.error("[upload] Error looking up case:", caseLookupError);
+      return NextResponse.json(
+        { error: "Failed to lookup case", details: caseLookupError.message },
+        { status: 500 },
+      );
+    }
+
+    caseId = existingCase?.id;
+  }
 
   if (!caseId) {
     // Check trial limits before creating new case
@@ -155,8 +188,16 @@ export async function POST(request: Request) {
     caseId = newCase.id;
     isNewCase = true;
     console.log(`[upload] Created new case with ID: ${caseId}`);
-  } else {
+  } else if (caseId) {
     console.log(`[upload] Using existing case ID: ${caseId} for "${caseTitle}"`);
+  }
+
+  // Ensure we have a caseId before proceeding
+  if (!caseId) {
+    return NextResponse.json(
+      { error: "Failed to resolve case ID" },
+      { status: 500 },
+    );
   }
 
   // Check trial limits before uploading documents (always check, regardless of new/existing case)

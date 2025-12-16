@@ -15,6 +15,8 @@ import { findMissingEvidence } from "@/lib/missing-evidence";
 import { computeAnalysisDelta } from "@/lib/strategic/compute-analysis-delta";
 import { detectCaseRole } from "@/lib/strategic/role-detection";
 import { getTrialStatus } from "@/lib/paywall/trialLimits";
+import { generateMoveSequence } from "@/lib/strategic/move-sequencing/engine";
+import type { MoveSequenceInput } from "@/lib/strategic/move-sequencing/types";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -95,7 +97,7 @@ export async function POST(
     // Get selected documents (use document_ids from request)
     const { data: documents, error: docsError } = await supabase
       .from("documents")
-      .select("id, name, created_at")
+      .select("id, name, created_at, extracted_json")
       .eq("case_id", caseId)
       .eq("org_id", orgId)
       .in("id", document_ids);
@@ -245,6 +247,32 @@ export async function POST(
 
     const delta = computeAnalysisDelta(prevVersion, currentSnapshot);
 
+    // Generate move sequence
+    let moveSequence = null;
+    try {
+      const moveSequenceInput: MoveSequenceInput = {
+        caseId,
+        practiceArea: ((caseRecord.practice_area as any) || "other_litigation") as any,
+        documents: documents.map((d) => ({
+          id: d.id,
+          name: d.name,
+          type: undefined,
+          extracted_json: d.extracted_json ?? undefined,
+          created_at: d.created_at,
+        })),
+        timeline: timelineFormatted,
+        keyIssues: keyIssues.map((ki) => ({
+          label: ki.label,
+          category: ki.type,
+          severity: ki.severity as any,
+        })),
+      };
+      moveSequence = await generateMoveSequence(moveSequenceInput);
+    } catch (error) {
+      console.error("[rebuild-analysis] Failed to generate move sequence:", error);
+      // Continue without move sequence - don't break version creation
+    }
+
     // Insert new version
     const { data: newVersion, error: insertError } = await supabase
       .from("case_analysis_versions")
@@ -259,6 +287,7 @@ export async function POST(
         timeline: timelineFormatted,
         missing_evidence: missingEvidenceFormatted,
         analysis_delta: delta,
+        move_sequence: moveSequence,
         created_by: userId,
       })
       .select("version_number, summary, risk_rating, missing_evidence, analysis_delta, document_ids")

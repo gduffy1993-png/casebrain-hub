@@ -17,6 +17,8 @@ import { sanitizeStrategicResponse } from "@/lib/strategic/language-sanitizer";
 import { withPaywall } from "@/lib/paywall/protect-route";
 import { findMissingEvidence } from "@/lib/missing-evidence";
 import { computeAnalysisDelta } from "@/lib/strategic/compute-analysis-delta";
+import { generateMoveSequence } from "@/lib/strategic/move-sequencing/engine";
+import type { MoveSequenceInput } from "@/lib/strategic/move-sequencing/types";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -452,6 +454,32 @@ async function createAnalysisVersion(params: {
   // Get document IDs
   const documentIds = documents.map((d) => d.id);
 
+  // Generate move sequence
+  let moveSequence = null;
+  try {
+    const moveSequenceInput: MoveSequenceInput = {
+      caseId,
+      practiceArea: ((caseRecord.practice_area as any) || "other_litigation") as any,
+      documents: documents.map((d: any) => ({
+        id: d.id,
+        name: d.name,
+        type: undefined,
+        extracted_json: d.extracted_json ?? undefined,
+        created_at: d.created_at,
+      })),
+      timeline: timelineFormatted,
+      keyIssues: keyIssues.map((ki) => ({
+        label: ki.label,
+        category: ki.type,
+        severity: ki.severity as any,
+      })),
+    };
+    moveSequence = await generateMoveSequence(moveSequenceInput);
+  } catch (error) {
+    console.error("[analysis-version] Failed to generate move sequence:", error);
+    // Continue without move sequence - don't break version creation
+  }
+
   // Insert new version (wrapped in transaction-like error handling)
   const { error: insertError } = await supabase
     .from("case_analysis_versions")
@@ -466,6 +494,7 @@ async function createAnalysisVersion(params: {
       timeline: timelineFormatted,
       missing_evidence: missingEvidenceFormatted,
       analysis_delta: delta,
+      move_sequence: moveSequence,
       created_by: userId,
     });
 

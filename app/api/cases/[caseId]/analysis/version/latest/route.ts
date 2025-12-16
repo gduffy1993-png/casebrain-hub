@@ -42,7 +42,7 @@ export async function GET(
     // Get latest version
     const { data: version, error: versionError } = await supabase
       .from("case_analysis_versions")
-      .select("version_number, summary, risk_rating, created_at, analysis_delta, missing_evidence, document_ids")
+      .select("version_number, summary, risk_rating, created_at, analysis_delta, missing_evidence, document_ids, move_sequence")
       .eq("case_id", caseId)
       .eq("org_id", orgId)
       .order("version_number", { ascending: false })
@@ -67,6 +67,7 @@ export async function GET(
         analysis_delta: null,
         missing_evidence: [],
         document_ids: [],
+        move_sequence: null,
       });
     }
 

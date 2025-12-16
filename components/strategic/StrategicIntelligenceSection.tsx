@@ -6,6 +6,7 @@ import { StrategicRoutesPanel } from "./StrategicRoutesPanel";
 import { LeverageAndWeakSpotsPanel } from "./LeverageAndWeakSpotsPanel";
 import { TimePressureAndSettlementPanel } from "./TimePressureAndSettlementPanel";
 import { JudicialExpectationsPanel } from "./JudicialExpectationsPanel";
+import { MoveSequencePanel } from "./MoveSequencePanel";
 import { ErrorBoundary } from "@/components/ui/error-boundary";
 import { Badge } from "@/components/ui/badge";
 import { Target } from "lucide-react";
@@ -89,6 +90,11 @@ export function StrategicIntelligenceSection({ caseId }: StrategicIntelligenceSe
         {/* Overview Card */}
         <ErrorBoundary>
           <StrategicOverviewCard caseId={caseId} />
+        </ErrorBoundary>
+
+        {/* Move Sequence Panel - Full Width */}
+        <ErrorBoundary>
+          <MoveSequencePanel caseId={caseId} />
         </ErrorBoundary>
 
         {/* Detailed Panels Grid */}
