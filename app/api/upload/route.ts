@@ -17,6 +17,7 @@ import { paywallGuard } from "@/lib/paywall/guard";
 import { incrementUsage } from "@/lib/paywall/usage";
 import { getCurrentUser } from "@/lib/auth";
 import { getOrCreateOrganisationForUser } from "@/lib/organisations";
+import { getTrialStatus } from "@/lib/paywall/trialLimits";
 
 export const runtime = "nodejs";
 
@@ -105,23 +106,30 @@ export async function POST(request: Request) {
 
   if (!caseId) {
     // Check trial limits before creating new case
-    const { getTrialStatus } = await import("@/lib/paywall/trialLimits");
-    const trialStatus = await getTrialStatus({
-      supabase,
-      orgId,
-      userId,
-      email,
-    });
+    // SAFETY: Wrap in try-catch to prevent crashes
+    try {
+      const trialStatus = await getTrialStatus({
+        supabase,
+        orgId,
+        userId,
+        email,
+      });
 
-    if (trialStatus.isBlocked && trialStatus.reason === "CASE_LIMIT") {
-      return NextResponse.json(
-        {
-          error: "Trial limit reached: 1 case allowed on free trial.",
-          code: "CASE_LIMIT",
-          upgrade: { price: "£39/user/month" },
-        },
-        { status: 402 },
-      );
+      if (trialStatus.isBlocked && trialStatus.reason === "CASE_LIMIT") {
+        return NextResponse.json(
+          {
+            error: "Trial limit reached: 1 case allowed on free trial.",
+            code: "CASE_LIMIT",
+            upgrade: { price: "£39/user/month" },
+          },
+          { status: 402 },
+        );
+      }
+    } catch (trialError) {
+      // SAFETY: If trial check fails, log but allow the request
+      // This prevents crashes if there's a database issue
+      console.error("[upload] Trial status check failed, allowing case creation:", trialError);
+      // Continue with case creation - better to allow than crash
     }
 
     console.log(`[upload] Creating new case: "${caseTitle}" for org ${orgId}`);
@@ -152,23 +160,30 @@ export async function POST(request: Request) {
   }
 
   // Check trial limits before uploading documents (always check, regardless of new/existing case)
-  const { getTrialStatus: getTrialStatusDoc } = await import("@/lib/paywall/trialLimits");
-  const trialStatusDoc = await getTrialStatusDoc({
-    supabase,
-    orgId,
-    userId,
-    email,
-  });
+  // SAFETY: Wrap in try-catch to prevent crashes
+  try {
+    const trialStatusDoc = await getTrialStatus({
+      supabase,
+      orgId,
+      userId,
+      email,
+    });
 
-  if (trialStatusDoc.isBlocked && trialStatusDoc.reason === "DOC_LIMIT") {
-    return NextResponse.json(
-      {
-        error: "Trial limit reached: 10 documents allowed on free trial.",
-        code: "DOC_LIMIT",
-        upgrade: { price: "£39/user/month" },
-      },
-      { status: 402 },
-    );
+    if (trialStatusDoc.isBlocked && trialStatusDoc.reason === "DOC_LIMIT") {
+      return NextResponse.json(
+        {
+          error: "Trial limit reached: 10 documents allowed on free trial.",
+          code: "DOC_LIMIT",
+          upgrade: { price: "£39/user/month" },
+        },
+        { status: 402 },
+      );
+    }
+  } catch (trialError) {
+    // SAFETY: If trial check fails, log but allow the request
+    // This prevents crashes if there's a database issue
+    console.error("[upload] Trial status check failed, allowing document upload:", trialError);
+    // Continue with upload - better to allow than crash
   }
 
   const documentIds: string[] = [];

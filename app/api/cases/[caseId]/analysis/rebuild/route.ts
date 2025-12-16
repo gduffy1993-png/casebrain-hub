@@ -5,7 +5,7 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
-import { requireAuthContext } from "@/lib/auth";
+import { requireAuthContext, getCurrentUser } from "@/lib/auth";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { calculateCaseMomentum } from "@/lib/strategic/momentum-engine";
 import { generateStrategyPaths } from "@/lib/strategic/strategy-paths";
@@ -14,6 +14,7 @@ import { detectProceduralLeveragePoints } from "@/lib/strategic/procedural-lever
 import { findMissingEvidence } from "@/lib/missing-evidence";
 import { computeAnalysisDelta } from "@/lib/strategic/compute-analysis-delta";
 import { detectCaseRole } from "@/lib/strategic/role-detection";
+import { getTrialStatus } from "@/lib/paywall/trialLimits";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -41,25 +42,39 @@ export async function POST(
     const supabase = getSupabaseAdminClient();
 
     // Check trial limits (trial expiry only - don't block for doc/case limits)
-    const { getTrialStatus } = await import("@/lib/paywall/trialLimits");
-    const user = await import("@/lib/auth").then(m => m.getCurrentUser());
-    const email = user?.primaryEmailAddress?.emailAddress ?? user?.emailAddresses?.[0]?.emailAddress ?? null;
-    const trialStatus = await getTrialStatus({
-      supabase,
-      orgId,
-      userId,
-      email,
-    });
+    // SAFETY: Wrap in try-catch to prevent crashes if getCurrentUser fails
+    let email: string | null = null;
+    try {
+      try {
+        const user = await getCurrentUser();
+        email = user?.primaryEmailAddress?.emailAddress ?? user?.emailAddresses?.[0]?.emailAddress ?? null;
+      } catch (userError) {
+        console.error("[rebuild-analysis] Failed to get user email:", userError);
+        // Continue with null email - getTrialStatus will handle it safely
+      }
+      
+      const trialStatus = await getTrialStatus({
+        supabase,
+        orgId,
+        userId,
+        email,
+      });
 
-    if (trialStatus.isBlocked && trialStatus.reason === "TRIAL_EXPIRED") {
-      return NextResponse.json(
-        {
-          error: "Free trial expired. Upgrade to continue running analysis.",
-          code: "TRIAL_EXPIRED",
-          upgrade: { price: "£39/user/month" },
-        },
-        { status: 402 },
-      );
+      if (trialStatus.isBlocked && trialStatus.reason === "TRIAL_EXPIRED") {
+        return NextResponse.json(
+          {
+            error: "Free trial expired. Upgrade to continue running analysis.",
+            code: "TRIAL_EXPIRED",
+            upgrade: { price: "£39/user/month" },
+          },
+          { status: 402 },
+        );
+      }
+    } catch (trialError) {
+      // SAFETY: If trial check fails, log but don't block the request
+      // This prevents crashes if there's a database issue or other error
+      console.error("[rebuild-analysis] Trial status check failed, allowing request:", trialError);
+      // Continue with the rebuild - better to allow than crash
     }
 
     // Verify case access
