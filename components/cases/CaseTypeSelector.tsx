@@ -9,6 +9,9 @@ const OPTIONS: Array<{ value: string; label: string }> = [
   { value: "general", label: "General" },
   { value: "pi", label: "Personal Injury (PI)" },
   { value: "clinical_negligence", label: "Clinical Negligence" },
+  { value: "criminal", label: "Criminal Defense" },
+  { value: "housing_disrepair", label: "Housing Disrepair" },
+  { value: "family", label: "Family" },
 ];
 
 type Props = {
