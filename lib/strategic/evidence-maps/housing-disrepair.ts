@@ -70,6 +70,22 @@ export const housingDisrepairMap: EvidenceMap = {
       probeQuestion: "Request EPC reports and any energy performance assessments",
       detectPatterns: ["epc", "energy performance", "energy rating"],
     },
+    {
+      id: "awaabs-inspection-notice",
+      label: "Awaab's Law Inspection Notice",
+      whenExpected: "Within 14 days of first report (social landlords only)",
+      ifMissingMeans: "May indicate breach of Awaab's Law - social landlord failed to investigate within statutory deadline",
+      probeQuestion: "Request inspection notice, investigation records, and evidence of inspection within 14 days of first report",
+      detectPatterns: ["inspection notice", "awaab", "investigation", "14 days"],
+    },
+    {
+      id: "awaabs-works-order",
+      label: "Awaab's Law Works Order",
+      whenExpected: "Within 7 days of investigation completion (social landlords only)",
+      ifMissingMeans: "May indicate breach of Awaab's Law - social landlord failed to start work within statutory deadline",
+      probeQuestion: "Request works order, contractor appointment, and evidence of work starting within 7 days of investigation",
+      detectPatterns: ["works order", "work order", "contractor appointment", "awaab"],
+    },
   ],
   
   normalPatterns: [
@@ -103,6 +119,14 @@ export const housingDisrepairMap: EvidenceMap = {
     {
       rule: "Complaints should be acknowledged and addressed",
       ifViolated: "May indicate failure to respond to tenant concerns",
+    },
+    {
+      rule: "Awaab's Law: Social landlords must investigate within 14 days of report",
+      ifViolated: "Statutory breach of Awaab's Law (Social Housing (Regulation) Act 2023). Strengthens quantum and supports injunctive relief.",
+    },
+    {
+      rule: "Awaab's Law: Social landlords must start work within 7 days of investigation",
+      ifViolated: "Statutory breach of Awaab's Law. Continued breach strengthens case and supports urgent action.",
     },
   ],
 };

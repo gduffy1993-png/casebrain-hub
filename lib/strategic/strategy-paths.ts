@@ -15,6 +15,7 @@ import { detectSubstantiveMerits } from "./substantive-merits";
 import type { PracticeArea } from "../types/casebrain";
 import type { StrategicInsightMeta } from "./types";
 import { generateStrategyPathMeta } from "./meta-generator";
+import { detectAwaabsLawTriggers } from "./move-sequencing/awaabs-law-detector";
 
 export type StrategyPath = {
   id: string;
@@ -421,6 +422,30 @@ export async function generateStrategyPaths(
 
   // Route B: Awaab's Law / Hazard breach leverage (housing only - applies to both claimant and defendant)
   if (input.practiceArea === "housing_disrepair") {
+    // Use Awaab's Law detector for accurate detection
+    let awaabsTrigger: any = null;
+    try {
+      const moveSequenceInput = {
+        caseId: input.caseId,
+        practiceArea: input.practiceArea,
+        documents: input.documents.map(d => ({
+          id: d.id,
+          name: d.name,
+          type: undefined,
+          extracted_json: undefined,
+          created_at: d.created_at,
+        })),
+        timeline: input.timeline.map(t => ({
+          date: t.event_date,
+          description: t.description,
+        })),
+      };
+      awaabsTrigger = detectAwaabsLawTriggers(moveSequenceInput);
+    } catch (error) {
+      // Fallback to basic detection
+      console.warn("[strategy-paths] Awaab's Law detector not available, using fallback:", error);
+    }
+
     const hasAwaabVulnerabilities = vulnerabilities.some(v => 
       v.type === "MISSING_RECORDS" ||
       v.description.toLowerCase().includes("awaab")
@@ -432,29 +457,46 @@ export async function generateStrategyPaths(
       e.description.toLowerCase().includes("damp")
     );
 
-    if (hasAwaabVulnerabilities || hasHazards) {
+    const awaabsApplies = awaabsTrigger?.applies || hasAwaabVulnerabilities || hasHazards;
+    const awaabsBreached = awaabsTrigger?.investigationBreached || awaabsTrigger?.workStartBreached;
+
+    if (awaabsApplies) {
+      const routeTitle = awaabsBreached 
+        ? "Route B: Awaab's Law breach – statutory violation leverage"
+        : "Route B: Awaab's Law compliance monitoring – deadline leverage";
+      
+      const routeDescription = awaabsBreached
+        ? "Awaab's Law breach detected. Statutory deadline exceeded. This is a critical leverage point for settlement pressure, quantum enhancement, and urgent injunctive relief."
+        : "Awaab's Law applies. Monitor statutory deadlines. If breached, this becomes the strongest leverage point in the case.";
+
+      const routeApproach = awaabsBreached
+        ? "1. Immediate LBA citing Awaab's Law breach (statutory violation). 2. Highlight breach strengthens quantum significantly. 3. Consider urgent injunction if health impact severe. 4. Use breach as primary settlement leverage. 5. Report to Housing Ombudsman if social landlord."
+        : "1. Monitor Awaab's Law deadlines (14 days investigation, 7 days work start). 2. If deadline approaches without action, prepare LBA. 3. If breached, escalate immediately to LBA/injunction. 4. Use statutory breach as primary leverage point.";
+
       const path: StrategyPath = {
-        id: `strategy-route-b-${input.caseId}`,
+        id: `strategy-route-b-awaab-${input.caseId}`,
         caseId: input.caseId,
         route: "B",
-        title: "Route B: Leverage Awaab's Law hazard breach",
-        description: "Focus on Awaab's Law compliance failures and Category 1 hazards to create urgency and leverage.",
-        approach: "1. Establish Awaab's Law breach (social landlord, under-5s, Category 1 hazards). 2. Highlight urgency and safety concerns. 3. Use breach to support quantum and liability. 4. Leverage safety urgency to pressure opponent.",
+        title: routeTitle,
+        description: routeDescription,
+        approach: routeApproach,
         pros: [
-          "Strong statutory position (Awaab's Law)",
-          "Safety urgency creates leverage",
-          "Clear compliance failures",
-          "High public interest angle",
+          "Statutory violation (Awaab's Law) - strongest leverage point",
+          awaabsBreached ? "Breach already confirmed - immediate leverage" : "Deadline monitoring creates pressure",
+          "Strengthens quantum significantly",
+          "Supports urgent injunctive relief if health impact",
+          "Cannot be explained away by landlord",
         ],
         cons: [
           "Only applies to social landlords",
-          "Requires Category 1 hazards",
-          "May require expert evidence",
+          "Requires qualifying hazards (mould, damp, excess cold, water ingress)",
         ],
-        estimatedTimeframe: "3-6 months",
-        estimatedCost: "Medium-High (expert reports)",
-        successProbability: "HIGH",
-        recommendedFor: "Housing cases with social landlords, under-5s, and Category 1 hazards",
+        estimatedTimeframe: awaabsBreached ? "Immediate action required" : "Monitor deadlines, escalate if breached",
+        estimatedCost: awaabsBreached ? "Low-Medium (LBA + potential injunction)" : "Low (monitoring only)",
+        successProbability: awaabsBreached ? "HIGH" : "MEDIUM",
+        recommendedFor: awaabsBreached
+          ? "Housing cases with confirmed Awaab's Law breach. This is the strongest leverage point - use immediately."
+          : "Housing cases with social landlords and qualifying hazards. Monitor deadlines closely.",
         createdAt: now,
       };
       
@@ -480,6 +522,80 @@ export async function generateStrategyPaths(
           vulnerabilities: vulnerabilities.filter(v => 
             v.type === "MISSING_RECORDS" ||
             v.description.toLowerCase().includes("awaab")
+          ).map(v => ({
+            type: v.type,
+            description: v.description,
+          })),
+          caseRole: input.caseRole || caseRole,
+        }
+      );
+      
+      paths.push(path);
+    }
+  }
+
+  // Route B (Criminal): Disclosure breach / PACE compliance leverage (criminal only)
+  if (input.practiceArea === "criminal") {
+    const hasDisclosureGaps = vulnerabilities.some(v => 
+      v.type === "MISSING_RECORDS" ||
+      v.description.toLowerCase().includes("disclosure") ||
+      v.description.toLowerCase().includes("unused material")
+    );
+
+    const hasPaceIssues = vulnerabilities.some(v =>
+      v.description.toLowerCase().includes("pace") ||
+      v.description.toLowerCase().includes("custody") ||
+      v.description.toLowerCase().includes("interview")
+    );
+
+    if (hasDisclosureGaps || hasPaceIssues) {
+      const path: StrategyPath = {
+        id: `strategy-route-b-criminal-${input.caseId}`,
+        caseId: input.caseId,
+        route: "B",
+        title: "Route B: Disclosure breach / PACE compliance leverage",
+        description: "Focus on disclosure failures and PACE non-compliance to create procedural leverage. Non-disclosure can lead to stay of proceedings. PACE breaches can render evidence inadmissible.",
+        approach: "1. Identify disclosure gaps (missing schedules, unused material not disclosed). 2. Request full disclosure under CPIA 1996. 3. If disclosure incomplete, apply for stay of proceedings or exclusion of evidence. 4. Identify PACE breaches (custody record gaps, interview recording issues). 5. Challenge admissibility of evidence obtained in breach of PACE. 6. Use procedural breaches as leverage for case dismissal or favorable outcome.",
+        pros: [
+          "Strong procedural position - disclosure breaches can lead to stay",
+          "PACE breaches can render evidence inadmissible",
+          "Procedural leverage is powerful in criminal cases",
+          "May achieve case dismissal without substantive trial",
+          "Legal basis: CPIA 1996, PACE 1984",
+        ],
+        cons: [
+          "Requires careful documentation of breaches",
+          "Court may order disclosure rather than stay",
+          "PACE challenges require specific evidence of breach",
+        ],
+        estimatedTimeframe: "2-4 months (disclosure applications) or immediate (if stay granted)",
+        estimatedCost: "Low-Medium (disclosure applications, PACE challenges)",
+        successProbability: hasDisclosureGaps && hasPaceIssues ? "HIGH" : "MEDIUM",
+        recommendedFor: "Criminal cases with disclosure gaps or PACE compliance issues. Most effective when breaches are clear and well-documented.",
+        createdAt: now,
+      };
+      
+      // Generate meta
+      path.meta = generateStrategyPathMeta(
+        "B",
+        path.title,
+        path.description,
+        {
+          practiceArea: input.practiceArea,
+          documents: input.documents,
+          timeline: input.timeline,
+          letters: input.letters,
+          deadlines: input.deadlines,
+          hasChronology: input.hasChronology,
+          hasMedicalEvidence: false,
+          hasExpertReports: false,
+          hasDisclosure: hasDisclosureGaps,
+          hasPreActionLetter: false,
+          vulnerabilities: vulnerabilities.filter(v => 
+            v.type === "MISSING_RECORDS" ||
+            v.description.toLowerCase().includes("disclosure") ||
+            v.description.toLowerCase().includes("pace") ||
+            v.description.toLowerCase().includes("custody")
           ).map(v => ({
             type: v.type,
             description: v.description,

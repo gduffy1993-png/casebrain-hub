@@ -16,6 +16,7 @@ import { generatePartnerVerdict } from "./partner-verdict";
 import { generateWinConditions, generateKillConditions } from "./win-kill-conditions";
 import { generatePressureTriggers } from "./pressure-triggers";
 import { generateLetterTemplate } from "./letter-templates";
+import { detectAwaabsLawTriggers } from "./awaabs-law-detector";
 
 /**
  * Generate complete move sequence for a case
@@ -67,7 +68,22 @@ export async function generateMoveSequence(
   // Step 11: Generate pressure triggers
   const pressureTriggers = generatePressureTriggers(input, observationsWithAnchors, evidenceMap);
 
-  // Step 12: Add letter templates to moves
+  // Step 12: Generate Awaab's Law status (housing only)
+  let awaabsLawStatus: any = undefined;
+  if (input.practiceArea === "housing_disrepair") {
+    const awaabsTrigger = detectAwaabsLawTriggers(input);
+    if (awaabsTrigger.applies) {
+      awaabsLawStatus = {
+        applies: true,
+        breachDetected: awaabsTrigger.investigationBreached || awaabsTrigger.workStartBreached,
+        countdownStatus: awaabsTrigger.countdownStatus,
+        recommendedMove: awaabsTrigger.recommendedMove,
+        triggers: awaabsTrigger.triggers,
+      };
+    }
+  }
+
+  // Step 13: Add letter templates to moves
   const movesWithTemplates = moves.map((move, index) => {
     const correspondingAngle = investigationAngles[index];
     if (correspondingAngle) {
@@ -82,6 +98,7 @@ export async function generateMoveSequence(
     winConditions,
     killConditions,
     pressureTriggers,
+    awaabsLawStatus,
     observations: observationsWithAnchors,
     investigationAngles,
     moveSequence: movesWithTemplates,

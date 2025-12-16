@@ -74,6 +74,20 @@ export function generatePressureTriggers(
 
   // Housing Disrepair specific triggers
   if (input.practiceArea === "housing_disrepair") {
+    // Awaab's Law breach → STRIKE
+    const awaabsBreach = observations.find(o =>
+      o.id === "awaabs-law-trigger" &&
+      (o.leveragePotential === "CRITICAL" || o.leveragePotential === "HIGH")
+    );
+
+    if (awaabsBreach) {
+      triggers.push({
+        trigger: "Awaab's Law breach detected: Statutory deadline exceeded",
+        whyItMatters: "Awaab's Law breach is a statutory violation. Cannot be explained away. Strengthens quantum significantly and supports urgent injunctive relief. This is the strongest leverage point in housing disrepair cases.",
+        recommendedTone: "STRIKE",
+      });
+    }
+
     // Multiple complaints + no repair logs → PRESSURE
     const hasComplaints = observations.some(o =>
       o.description.toLowerCase().includes("complaint")
@@ -83,7 +97,7 @@ export function generatePressureTriggers(
       o.type === "EVIDENCE_GAP"
     );
 
-    if (hasComplaints && missingRepairLogs) {
+    if (hasComplaints && missingRepairLogs && !awaabsBreach) {
       triggers.push({
         trigger: "Multiple complaints documented but no repair logs or work orders",
         whyItMatters: "Suggests complaints not acted upon. Creates paper trail of inaction. Landlord cannot claim repairs were attempted if no logs exist.",

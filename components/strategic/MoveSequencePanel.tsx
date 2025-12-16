@@ -158,6 +158,42 @@ export function MoveSequencePanel({ caseId }: MoveSequencePanelProps) {
         </Card>
       )}
 
+      {/* Awaab's Law Status (Housing Only) */}
+      {data.awaabsLawStatus && data.awaabsLawStatus.applies && (
+        <Card className={`p-6 ${data.awaabsLawStatus.breachDetected ? "border-danger/30 bg-danger/5" : "border-primary/30 bg-primary/5"}`}>
+          <h3 className="text-lg font-semibold text-accent mb-4 flex items-center gap-2">
+            <AlertCircle className={`h-5 w-5 ${data.awaabsLawStatus.breachDetected ? "text-danger" : "text-primary"}`} />
+            Awaab's Law Status
+          </h3>
+          <div className="space-y-3">
+            {data.awaabsLawStatus.breachDetected && (
+              <div className="p-3 rounded-lg border border-danger/30 bg-danger/10">
+                <p className="text-sm font-medium text-danger mb-1">⚠️ Breach Detected</p>
+                <p className="text-xs text-accent/80">{data.awaabsLawStatus.countdownStatus}</p>
+              </div>
+            )}
+            {!data.awaabsLawStatus.breachDetected && (
+              <div className="p-3 rounded-lg border border-primary/20 bg-primary/5">
+                <p className="text-sm font-medium text-primary mb-1">Monitoring</p>
+                <p className="text-xs text-accent/80">{data.awaabsLawStatus.countdownStatus}</p>
+              </div>
+            )}
+            <div>
+              <p className="text-xs text-accent/60 mb-1">Triggers:</p>
+              <ul className="text-xs text-accent/80 space-y-1">
+                {data.awaabsLawStatus.triggers.map((trigger, idx) => (
+                  <li key={idx}>• {trigger}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <p className="text-xs text-accent/60 mb-1">Recommended Move:</p>
+              <p className="text-sm text-primary font-medium">{data.awaabsLawStatus.recommendedMove}</p>
+            </div>
+          </div>
+        </Card>
+      )}
+
       {/* Pressure Triggers */}
       {data.pressureTriggers && data.pressureTriggers.length > 0 && (
         <Card className="p-6">

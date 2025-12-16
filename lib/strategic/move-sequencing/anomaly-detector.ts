@@ -17,6 +17,7 @@ import {
   detectAddendumTiming, 
   detectLateCreatedNotes 
 } from "./enhanced-anomaly-detector";
+import { detectAwaabsLawTriggers, generateAwaabsLawObservation } from "./awaabs-law-detector";
 
 /**
  * Detect timeline anomalies
@@ -272,6 +273,15 @@ export function detectAnomalies(
   observations.push(...detectSymptomsVsImaging(input));
   observations.push(...detectAddendumTiming(input));
   observations.push(...detectLateCreatedNotes(input));
+
+  // Awaab's Law detection (housing only)
+  if (input.practiceArea === "housing_disrepair") {
+    const awaabsTrigger = detectAwaabsLawTriggers(input);
+    const awaabsObservation = generateAwaabsLawObservation(awaabsTrigger);
+    if (awaabsObservation) {
+      observations.push(awaabsObservation);
+    }
+  }
   
   // Limit to top 6 by leverage potential
   const sorted = observations.sort((a, b) => {

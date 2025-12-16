@@ -99,6 +99,8 @@ function generateLetterBody(
     body += `Pursuant to our client's claim for disrepair, we require the following documentation:\n\n`;
   } else if (practiceArea === "personal_injury") {
     body += `In accordance with the Pre-Action Protocol for Personal Injury Claims, we require the following documentation:\n\n`;
+  } else if (practiceArea === "criminal") {
+    body += `Pursuant to the prosecution's disclosure obligations under the Criminal Procedure and Investigations Act 1996, we require the following documentation:\n\n`;
   } else {
     body += `We require the following documentation to progress this matter:\n\n`;
   }
@@ -116,7 +118,11 @@ function generateLetterBody(
   body += `3. Confirmation of the date each document was created.\n\n`;
 
   // Closing
-  body += `We look forward to receiving this documentation within 14 days. If you are unable to provide any of the above, please explain the reason for its absence.\n\n`;
+  if (practiceArea === "criminal") {
+    body += `We look forward to receiving this documentation within 7 days in accordance with your disclosure obligations. If you are unable to provide any of the above, please explain the reason for its absence and confirm whether the material exists but is not being disclosed.\n\n`;
+  } else {
+    body += `We look forward to receiving this documentation within 14 days. If you are unable to provide any of the above, please explain the reason for its absence.\n\n`;
+  }
   body += `Yours faithfully,\n\n[SOLICITOR NAME]`;
 
   return body;

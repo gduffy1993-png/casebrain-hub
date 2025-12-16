@@ -108,6 +108,17 @@ export type PressureTrigger = {
 };
 
 /**
+ * Awaab's Law status (for housing cases)
+ */
+export type AwaabsLawStatus = {
+  applies: boolean;
+  breachDetected: boolean;
+  countdownStatus: string;
+  recommendedMove: string;
+  triggers: string[];
+};
+
+/**
  * Complete move sequence output
  */
 export type MoveSequence = {
@@ -115,6 +126,7 @@ export type MoveSequence = {
   winConditions?: string[];  // What must exist to justify issue
   killConditions?: string[];  // What proves case not viable
   pressureTriggers?: PressureTrigger[];  // Conditional aggression logic
+  awaabsLawStatus?: AwaabsLawStatus;  // Awaab's Law status (housing only)
   observations: Observation[];
   investigationAngles: InvestigationAngle[];
   moveSequence: Move[];

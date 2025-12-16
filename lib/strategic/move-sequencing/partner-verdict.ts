@@ -6,6 +6,7 @@
 
 import type { PartnerVerdict, MoveSequenceInput, Observation } from "./types";
 import type { EvidenceMap } from "../evidence-maps/types";
+import { detectAwaabsLawTriggers } from "./awaabs-law-detector";
 
 /**
  * Determine case stage based on evidence and timeline
@@ -124,11 +125,47 @@ export function generatePartnerVerdict(
     return null;
   }
 
+  // Check for Awaab's Law (housing only)
+  let awaabsInfo = "";
+  if (input.practiceArea === "housing_disrepair") {
+    const awaabsTrigger = detectAwaabsLawTriggers(input);
+    if (awaabsTrigger.applies) {
+      if (awaabsTrigger.investigationBreached || awaabsTrigger.workStartBreached) {
+        awaabsInfo = ` Awaab's Law breach detected: ${awaabsTrigger.countdownStatus}. This is a statutory violation and critical leverage point.`;
+      } else if (awaabsTrigger.daysUntilInvestigationDeadline !== null && awaabsTrigger.daysUntilInvestigationDeadline <= 7) {
+        awaabsInfo = ` Awaab's Law deadline approaching: ${awaabsTrigger.countdownStatus}. Monitor closely - breach creates strong leverage.`;
+      }
+    }
+  }
+
+  const baseReality = generateCurrentReality(input, observations, evidenceMap);
+  const currentReality = baseReality + awaabsInfo;
+
+  const baseUpgradePath = identifyFastestUpgradePath(observations, evidenceMap);
+  let fastestUpgradePath = baseUpgradePath;
+  if (input.practiceArea === "housing_disrepair") {
+    const awaabsTrigger = detectAwaabsLawTriggers(input);
+    if (awaabsTrigger.applies && awaabsTrigger.investigationBreached) {
+      fastestUpgradePath = `Immediate LBA citing Awaab's Law breach${awaabsTrigger.isEmergency ? " + consider urgent injunction" : ""}. This is the strongest leverage point.`;
+    } else if (awaabsTrigger.applies && awaabsTrigger.daysUntilInvestigationDeadline !== null && awaabsTrigger.daysUntilInvestigationDeadline <= 3) {
+      fastestUpgradePath = `Prepare LBA for Awaab's Law breach. If deadline passes without investigation, cite immediately.`;
+    }
+  }
+
+  const baseWhatFlips = identifyWhatFlipsCase(observations, evidenceMap);
+  let whatFlipsThisCase = baseWhatFlips;
+  if (input.practiceArea === "housing_disrepair") {
+    const awaabsTrigger = detectAwaabsLawTriggers(input);
+    if (awaabsTrigger.applies) {
+      whatFlipsThisCase = `Awaab's Law breach confirmation: If investigation/work start deadlines are breached, this becomes a statutory violation case with strong quantum and injunctive relief potential. ${baseWhatFlips}`;
+    }
+  }
+
   return {
     caseStage: determineCaseStage(input, observations),
-    currentReality: generateCurrentReality(input, observations, evidenceMap),
-    fastestUpgradePath: identifyFastestUpgradePath(observations, evidenceMap),
-    whatFlipsThisCase: identifyWhatFlipsCase(observations, evidenceMap),
+    currentReality,
+    fastestUpgradePath,
+    whatFlipsThisCase,
   };
 }
 
