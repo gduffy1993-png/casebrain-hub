@@ -12,7 +12,13 @@ import { injectAnchors } from "./case-anchors";
 /**
  * Generate moves from investigation angles
  */
-export function generateMoves(angles: InvestigationAngle[], anchors?: CaseAnchors, practiceArea?: string): Move[] {
+export function generateMoves(
+  angles: InvestigationAngle[], 
+  anchors?: CaseAnchors, 
+  practiceArea?: string,
+  _input?: any,
+  _evidenceMap?: any
+): Move[] {
   const moves: Move[] = [];
   
   angles.forEach((angle, index) => {
@@ -174,25 +180,43 @@ export function generateWarnings(moves: Move[]): string[] {
 }
 
 /**
- * Calculate cost analysis
+ * Calculate cost analysis (upgraded logic)
  */
 export function calculateCostAnalysis(moves: Move[]): {
-  followingSequence: number;
-  jumpingToExpert: number;
-  savingsPotential: number;
+  costBeforeExpert: number;
+  expertTriggeredOnlyIf: string;
+  unnecessarySpendAvoidedIfGapConfirmed: number;
 } {
-  const followingSequence = moves.reduce((sum, m) => sum + m.cost, 0);
+  // Cost of all moves before expert instruction
+  const infoExtractionMoves = moves.filter(m => m.phase === "INFORMATION_EXTRACTION");
+  const commitmentMoves = moves.filter(m => m.phase === "COMMITMENT_FORCING");
+  const escalationMoves = moves.filter(m => m.phase === "ESCALATION");
   
-  // Cost if jumping straight to expert (highest cost move)
-  const expertMove = moves.find(m => m.cost > 1000) || moves[moves.length - 1];
-  const jumpingToExpert = expertMove ? expertMove.cost + 500 : 2000; // Add some overhead
-  
-  const savingsPotential = Math.max(0, jumpingToExpert - followingSequence);
-  
+  const costBeforeExpert = [
+    ...infoExtractionMoves,
+    ...commitmentMoves,
+    ...escalationMoves,
+  ].reduce((sum, m) => sum + m.cost, 0);
+
+  // Expert should only be triggered if gaps are confirmed
+  const hasHighLeverageGaps = moves.some(m => 
+    m.informationGain === "HIGH" || m.informationGain === "CRITICAL"
+  );
+
+  const expertTriggeredOnlyIf = hasHighLeverageGaps
+    ? "Key evidence gaps are confirmed (evidence cannot be produced or is late-created)"
+    : "All information extraction moves fail to resolve case theory";
+
+  // Calculate savings: if gaps confirmed early, avoid expert spend
+  const expertCost = 2000; // Standard expert instruction cost
+  const unnecessarySpendAvoidedIfGapConfirmed = hasHighLeverageGaps
+    ? Math.max(0, expertCost - costBeforeExpert)
+    : 0; // If no high-leverage gaps, expert may still be needed
+
   return {
-    followingSequence,
-    jumpingToExpert,
-    savingsPotential,
+    costBeforeExpert,
+    expertTriggeredOnlyIf,
+    unnecessarySpendAvoidedIfGapConfirmed,
   };
 }
 

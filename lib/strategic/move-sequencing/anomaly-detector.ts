@@ -11,6 +11,12 @@
 
 import type { Observation, ObservationType } from "./types";
 import type { MoveSequenceInput } from "./types";
+import { 
+  detectTreatmentDelays, 
+  detectSymptomsVsImaging, 
+  detectAddendumTiming, 
+  detectLateCreatedNotes 
+} from "./enhanced-anomaly-detector";
 
 /**
  * Detect timeline anomalies
@@ -67,15 +73,17 @@ function detectTimelineAnomalies(
     const daysGap = gap / (1000 * 60 * 60 * 24);
     
     if (daysGap > 30) {
-      observations.push({
-        id: `timeline-gap-${i}`,
-        type: "TIMELINE_ANOMALY",
-        description: `Gap of ${Math.round(daysGap)} days between events`,
-        whyUnusual: `Significant time gap between "${dates[i - 1].description}" and "${dates[i].description}"`,
-        whatShouldExist: `Expected activity or documentation during this ${Math.round(daysGap)}-day period`,
-        leveragePotential: daysGap > 90 ? "HIGH" : daysGap > 60 ? "MEDIUM" : "LOW",
-        relatedDates: [dates[i - 1].date.toISOString(), dates[i].date.toISOString()],
-      });
+        observations.push({
+          id: `timeline-gap-${i}`,
+          type: "TIMELINE_ANOMALY",
+          description: `Gap of ${Math.round(daysGap)} days between events`,
+          whyUnusual: `Significant time gap between "${dates[i - 1].description}" and "${dates[i].description}"`,
+          whatShouldExist: `Expected activity or documentation during this ${Math.round(daysGap)}-day period`,
+          leveragePotential: daysGap > 90 ? "HIGH" : daysGap > 60 ? "MEDIUM" : "LOW",
+          relatedDates: [dates[i - 1].date.toISOString(), dates[i].date.toISOString()],
+          whyThisIsOdd: `No records exist for ${Math.round(daysGap)} days between critical events. If proper procedure was followed, contemporaneous documentation should exist.`,
+          whyOpponentCannotIgnoreThis: `Silence during this period creates inference that procedure was not followed or documentation was not created at the time.`,
+        });
     }
   }
   
@@ -165,6 +173,8 @@ function detectNarrativeInconsistencies(
           whatShouldExist: "Consistent narrative across all documents",
           leveragePotential: "MEDIUM",
           sourceDocumentIds: group.map(g => g.source),
+          whyThisIsOdd: "Same event described differently in contemporaneous documents. If facts are clear, descriptions should align.",
+          whyOpponentCannotIgnoreThis: "Contradictions undermine credibility. Opponent must explain discrepancy or risk inference that later version is sanitized.",
         });
       }
     }
@@ -192,14 +202,16 @@ function detectEvidenceGaps(
     });
     
     if (!hasEvidence) {
-      observations.push({
-        id: `evidence-gap-${expected.id}`,
-        type: "EVIDENCE_GAP",
-        description: `Missing expected evidence: ${expected.label}`,
-        whyUnusual: expected.ifMissingMeans,
-        whatShouldExist: `${expected.label} (${expected.whenExpected})`,
-        leveragePotential: "HIGH", // Missing evidence is high leverage
-      });
+        observations.push({
+          id: `evidence-gap-${expected.id}`,
+          type: "EVIDENCE_GAP",
+          description: `Missing expected evidence: ${expected.label}`,
+          whyUnusual: expected.ifMissingMeans,
+          whatShouldExist: `${expected.label} (${expected.whenExpected})`,
+          leveragePotential: "HIGH", // Missing evidence is high leverage
+          whyThisIsOdd: `Expected evidence ${expected.label} is missing. If proper procedure was followed, this documentation should exist.`,
+          whyOpponentCannotIgnoreThis: `Absence of ${expected.label} creates inference that procedure was not followed or documentation was not created. Opponent must explain absence or produce documentation.`,
+        });
     }
   });
   
@@ -254,6 +266,12 @@ export function detectAnomalies(
   observations.push(...detectNarrativeInconsistencies(input.documents));
   observations.push(...detectEvidenceGaps(input, evidenceMap));
   observations.push(...detectGovernanceGaps(input, evidenceMap));
+  
+  // Enhanced detection
+  observations.push(...detectTreatmentDelays(input));
+  observations.push(...detectSymptomsVsImaging(input));
+  observations.push(...detectAddendumTiming(input));
+  observations.push(...detectLateCreatedNotes(input));
   
   // Limit to top 6 by leverage potential
   const sorted = observations.sort((a, b) => {

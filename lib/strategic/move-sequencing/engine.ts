@@ -12,6 +12,10 @@ import { generateMoves, sequenceMoves, addForkPoints, generateWarnings, calculat
 import { getEvidenceMap } from "../evidence-maps";
 import { extractCaseAnchors, injectAnchors } from "./case-anchors";
 import type { CaseAnchors } from "./case-anchors";
+import { generatePartnerVerdict } from "./partner-verdict";
+import { generateWinConditions, generateKillConditions } from "./win-kill-conditions";
+import { generatePressureTriggers } from "./pressure-triggers";
+import { generateLetterTemplate } from "./letter-templates";
 
 /**
  * Generate complete move sequence for a case
@@ -39,7 +43,7 @@ export async function generateMoveSequence(
   const investigationAngles = generateInvestigationAngles(observationsWithAnchors, evidenceMap, input.practiceArea === "clinical_negligence" ? anchors : undefined);
   
   // Step 4: Generate moves
-  let moves = generateMoves(investigationAngles, input.practiceArea === "clinical_negligence" ? anchors : undefined, input.practiceArea);
+  let moves = generateMoves(investigationAngles, input.practiceArea === "clinical_negligence" ? anchors : undefined, input.practiceArea, input, evidenceMap);
   
   // Step 5: Sequence moves by priority
   moves = sequenceMoves(moves);
@@ -50,13 +54,37 @@ export async function generateMoveSequence(
   // Step 7: Generate warnings
   const warnings = generateWarnings(moves);
   
-  // Step 8: Calculate cost analysis
+  // Step 8: Calculate cost analysis (upgraded)
   const costAnalysis = calculateCostAnalysis(moves);
+
+  // Step 9: Generate partner verdict
+  const partnerVerdict = generatePartnerVerdict(input, observationsWithAnchors, evidenceMap);
+
+  // Step 10: Generate win/kill conditions
+  const winConditions = generateWinConditions(input, observationsWithAnchors, evidenceMap);
+  const killConditions = generateKillConditions(input, observationsWithAnchors, evidenceMap);
+
+  // Step 11: Generate pressure triggers
+  const pressureTriggers = generatePressureTriggers(input, observationsWithAnchors, evidenceMap);
+
+  // Step 12: Add letter templates to moves
+  const movesWithTemplates = moves.map((move, index) => {
+    const correspondingAngle = investigationAngles[index];
+    if (correspondingAngle) {
+      const template = generateLetterTemplate(move, correspondingAngle, input, evidenceMap);
+      return { ...move, letterTemplate: template || undefined };
+    }
+    return move;
+  });
   
   return {
-    observations,
+    partnerVerdict: partnerVerdict || undefined,
+    winConditions,
+    killConditions,
+    pressureTriggers,
+    observations: observationsWithAnchors,
     investigationAngles,
-    moveSequence: moves,
+    moveSequence: movesWithTemplates,
     warnings,
     costAnalysis,
   };

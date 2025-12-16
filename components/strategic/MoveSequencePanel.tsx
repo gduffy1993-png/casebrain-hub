@@ -92,6 +92,103 @@ export function MoveSequencePanel({ caseId }: MoveSequencePanelProps) {
 
   return (
     <div className="space-y-6">
+      {/* Partner Verdict */}
+      {data.partnerVerdict && (
+        <Card className="p-6 border-primary/30 bg-primary/5">
+          <h3 className="text-lg font-semibold text-accent mb-4 flex items-center gap-2">
+            <Target className="h-5 w-5 text-primary" />
+            Partner Verdict
+          </h3>
+          <div className="space-y-3">
+            <div>
+              <p className="text-xs text-accent/60 mb-1">Case Stage</p>
+              <p className="text-sm font-medium text-accent">{data.partnerVerdict.caseStage}</p>
+            </div>
+            <div>
+              <p className="text-xs text-accent/60 mb-1">Current Reality</p>
+              <p className="text-sm text-accent/80">{data.partnerVerdict.currentReality}</p>
+            </div>
+            <div>
+              <p className="text-xs text-accent/60 mb-1">Fastest Upgrade Path</p>
+              <p className="text-sm text-primary">{data.partnerVerdict.fastestUpgradePath}</p>
+            </div>
+            <div>
+              <p className="text-xs text-accent/60 mb-1">What Flips This Case</p>
+              <p className="text-sm text-accent/80">{data.partnerVerdict.whatFlipsThisCase}</p>
+            </div>
+          </div>
+        </Card>
+      )}
+
+      {/* Win / Kill Conditions */}
+      {(data.winConditions?.length || data.killConditions?.length) && (
+        <Card className="p-6">
+          <h3 className="text-lg font-semibold text-accent mb-4 flex items-center gap-2">
+            <CheckCircle2 className="h-5 w-5 text-success" />
+            Win / Kill Conditions
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {data.winConditions && data.winConditions.length > 0 && (
+              <div>
+                <p className="text-sm font-medium text-success mb-2">Win Conditions</p>
+                <ul className="space-y-1">
+                  {data.winConditions.map((condition, idx) => (
+                    <li key={idx} className="text-xs text-accent/80 flex items-start gap-2">
+                      <CheckCircle2 className="h-3 w-3 text-success mt-0.5 flex-shrink-0" />
+                      <span>{condition}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {data.killConditions && data.killConditions.length > 0 && (
+              <div>
+                <p className="text-sm font-medium text-danger mb-2">Kill Conditions</p>
+                <ul className="space-y-1">
+                  {data.killConditions.map((condition, idx) => (
+                    <li key={idx} className="text-xs text-accent/80 flex items-start gap-2">
+                      <XCircle className="h-3 w-3 text-danger mt-0.5 flex-shrink-0" />
+                      <span>{condition}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        </Card>
+      )}
+
+      {/* Pressure Triggers */}
+      {data.pressureTriggers && data.pressureTriggers.length > 0 && (
+        <Card className="p-6">
+          <h3 className="text-lg font-semibold text-accent mb-4 flex items-center gap-2">
+            <AlertCircle className="h-5 w-5 text-warning" />
+            Pressure Triggers
+          </h3>
+          <div className="space-y-3">
+            {data.pressureTriggers.map((trigger, idx) => (
+              <div key={idx} className={`p-3 rounded-lg border ${
+                trigger.recommendedTone === "STRIKE" ? "border-danger/30 bg-danger/5" :
+                trigger.recommendedTone === "PRESSURE" ? "border-warning/30 bg-warning/5" :
+                "border-primary/20 bg-primary/5"
+              }`}>
+                <div className="flex items-center justify-between mb-2">
+                  <Badge variant="outline" className={
+                    trigger.recommendedTone === "STRIKE" ? "bg-danger/10 text-danger border-danger/20" :
+                    trigger.recommendedTone === "PRESSURE" ? "bg-warning/10 text-warning border-warning/20" :
+                    "bg-primary/10 text-primary border-primary/20"
+                  }>
+                    {trigger.recommendedTone}
+                  </Badge>
+                </div>
+                <p className="text-sm font-medium text-accent mb-1">{trigger.trigger}</p>
+                <p className="text-xs text-accent/70">{trigger.whyItMatters}</p>
+              </div>
+            ))}
+          </div>
+        </Card>
+      )}
+
       {/* What Stood Out */}
       <Card className="p-6">
         <h3 className="text-lg font-semibold text-accent mb-4 flex items-center gap-2">
@@ -116,6 +213,16 @@ export function MoveSequencePanel({ caseId }: MoveSequencePanelProps) {
               <p className="text-xs text-accent/60 mt-2">
                 <span className="font-medium">What should exist:</span> {obs.whatShouldExist}
               </p>
+              {obs.whyThisIsOdd && (
+                <p className="text-xs text-primary mt-2">
+                  <span className="font-medium">Why this is odd:</span> {obs.whyThisIsOdd}
+                </p>
+              )}
+              {obs.whyOpponentCannotIgnoreThis && (
+                <p className="text-xs text-warning mt-2">
+                  <span className="font-medium">Why opponent cannot ignore this:</span> {obs.whyOpponentCannotIgnoreThis}
+                </p>
+              )}
             </div>
           ))}
         </div>
@@ -197,23 +304,38 @@ export function MoveSequencePanel({ caseId }: MoveSequencePanelProps) {
                 <p className="text-xs text-accent/80">{move.whatYouLoseIfOutOfOrder}</p>
               </div>
               
-              {move.forkPoint && (
-                <div className="mt-3 p-3 rounded-lg bg-accent/5 border border-accent/10">
-                  <p className="text-xs font-medium text-accent mb-2">Fork point:</p>
-                  <div className="flex items-center gap-2 text-xs">
-                    <span className="text-accent/60">If admit →</span>
-                    <span className="text-primary">Move {move.forkPoint.ifAdmit}</span>
-                    <span className="text-accent/60 mx-2">|</span>
-                    <span className="text-accent/60">If deny →</span>
-                    <span className="text-primary">Move {move.forkPoint.ifDeny}</span>
-                    <span className="text-accent/60 mx-2">|</span>
-                    <span className="text-accent/60">If silent →</span>
-                    <span className="text-primary">Move {move.forkPoint.ifSilence}</span>
-                  </div>
+                  {move.forkPoint && (
+                    <div className="mt-3 p-3 rounded-lg bg-accent/5 border border-accent/10">
+                      <p className="text-xs font-medium text-accent mb-2">Fork point:</p>
+                      <div className="flex items-center gap-2 text-xs">
+                        <span className="text-accent/60">If admit →</span>
+                        <span className="text-primary">Move {move.forkPoint.ifAdmit}</span>
+                        <span className="text-accent/60 mx-2">|</span>
+                        <span className="text-accent/60">If deny →</span>
+                        <span className="text-primary">Move {move.forkPoint.ifDeny}</span>
+                        <span className="text-accent/60 mx-2">|</span>
+                        <span className="text-accent/60">If silent →</span>
+                        <span className="text-primary">Move {move.forkPoint.ifSilence}</span>
+                      </div>
+                    </div>
+                  )}
+
+                  {move.letterTemplate && (
+                    <div className="mt-3 p-3 rounded-lg bg-primary/5 border border-primary/10">
+                      <p className="text-xs font-medium text-primary mb-2">Letter Template:</p>
+                      <div className="text-xs space-y-1">
+                        <p className="text-accent/60">To: {move.letterTemplate.recipient}</p>
+                        <p className="text-accent/60">Subject: {move.letterTemplate.subjectLine}</p>
+                        <div className="mt-2 p-2 rounded bg-surface-muted/50 border border-primary/10">
+                          <pre className="text-xs text-accent/80 whitespace-pre-wrap font-mono">
+                            {move.letterTemplate.body}
+                          </pre>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
-          ))}
+              ))}
         </div>
       </Card>
 
@@ -238,19 +360,21 @@ export function MoveSequencePanel({ caseId }: MoveSequencePanelProps) {
           <TrendingDown className="h-5 w-5 text-success" />
           Cost Analysis
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="space-y-3">
           <div className="p-4 rounded-xl border border-primary/20 bg-primary/5">
-            <p className="text-xs text-accent/60 mb-1">Following sequence</p>
-            <p className="text-lg font-semibold text-primary">£{data.costAnalysis.followingSequence}</p>
+            <p className="text-xs text-accent/60 mb-1">Cost Before Expert</p>
+            <p className="text-lg font-semibold text-primary">£{data.costAnalysis.costBeforeExpert}</p>
           </div>
           <div className="p-4 rounded-xl border border-warning/20 bg-warning/5">
-            <p className="text-xs text-accent/60 mb-1">Jumping to expert first</p>
-            <p className="text-lg font-semibold text-warning">£{data.costAnalysis.jumpingToExpert}</p>
+            <p className="text-xs text-accent/60 mb-1">Expert Triggered Only If</p>
+            <p className="text-sm text-accent/80">{data.costAnalysis.expertTriggeredOnlyIf}</p>
           </div>
-          <div className="p-4 rounded-xl border border-success/20 bg-success/5">
-            <p className="text-xs text-accent/60 mb-1">Savings potential</p>
-            <p className="text-lg font-semibold text-success">£{data.costAnalysis.savingsPotential}</p>
-          </div>
+          {data.costAnalysis.unnecessarySpendAvoidedIfGapConfirmed > 0 && (
+            <div className="p-4 rounded-xl border border-success/20 bg-success/5">
+              <p className="text-xs text-accent/60 mb-1">Unnecessary Spend Avoided If Gap Confirmed</p>
+              <p className="text-lg font-semibold text-success">£{data.costAnalysis.unnecessarySpendAvoidedIfGapConfirmed}</p>
+            </div>
+          )}
         </div>
       </Card>
     </div>

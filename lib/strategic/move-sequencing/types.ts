@@ -29,6 +29,8 @@ export type Observation = {
   leveragePotential: Severity;
   sourceDocumentIds?: string[];
   relatedDates?: string[];
+  whyThisIsOdd?: string;  // Enhanced explanation
+  whyOpponentCannotIgnoreThis?: string;  // Leverage explanation
 };
 
 /**
@@ -54,6 +56,15 @@ export type MovePhase =
   | "EXPERT_SPEND";           // High cost, high commitment
 
 /**
+ * Letter template for a move
+ */
+export type LetterTemplate = {
+  recipient: string;
+  subjectLine: string;
+  body: string;
+};
+
+/**
  * A strategic move in the sequence
  */
 export type Move = {
@@ -74,20 +85,44 @@ export type Move = {
     ifDeny: number;     // Next move order if opponent denies
     ifSilence: number;  // Next move order if opponent is silent
   };
+  letterTemplate?: LetterTemplate;  // Copy-paste ready letter
+};
+
+/**
+ * Partner verdict - senior solicitor assessment
+ */
+export type PartnerVerdict = {
+  caseStage: string;
+  currentReality: string;
+  fastestUpgradePath: string;
+  whatFlipsThisCase: string;
+};
+
+/**
+ * Pressure trigger for conditional aggression
+ */
+export type PressureTrigger = {
+  trigger: string;
+  whyItMatters: string;
+  recommendedTone: "PROBE" | "PRESSURE" | "STRIKE";
 };
 
 /**
  * Complete move sequence output
  */
 export type MoveSequence = {
+  partnerVerdict?: PartnerVerdict;  // Senior partner assessment
+  winConditions?: string[];  // What must exist to justify issue
+  killConditions?: string[];  // What proves case not viable
+  pressureTriggers?: PressureTrigger[];  // Conditional aggression logic
   observations: Observation[];
   investigationAngles: InvestigationAngle[];
   moveSequence: Move[];
   warnings: string[];
   costAnalysis: {
-    followingSequence: number;
-    jumpingToExpert: number;
-    savingsPotential: number;
+    costBeforeExpert: number;
+    expertTriggeredOnlyIf: string;
+    unnecessarySpendAvoidedIfGapConfirmed: number;
   };
 };
 
