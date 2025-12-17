@@ -10,12 +10,16 @@ import { MoveSequencePanel } from "./MoveSequencePanel";
 import { ErrorBoundary } from "@/components/ui/error-boundary";
 import { Badge } from "@/components/ui/badge";
 import { Target } from "lucide-react";
+import { normalizePracticeArea } from "@/lib/types/casebrain";
 
 type StrategicIntelligenceSectionProps = {
   caseId: string;
+  practiceArea?: string | null;
 };
 
-export function StrategicIntelligenceSection({ caseId }: StrategicIntelligenceSectionProps) {
+export function StrategicIntelligenceSection({ caseId, practiceArea }: StrategicIntelligenceSectionProps) {
+  const normalizedPracticeArea = normalizePracticeArea(practiceArea ?? undefined);
+  const isCriminal = normalizedPracticeArea === "criminal";
   const [summary, setSummary] = useState<{
     routes: number;
     leverage: number;
@@ -99,21 +103,27 @@ export function StrategicIntelligenceSection({ caseId }: StrategicIntelligenceSe
 
         {/* Detailed Panels Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <ErrorBoundary>
-            <StrategicRoutesPanel caseId={caseId} />
-          </ErrorBoundary>
+          {!isCriminal && (
+            <ErrorBoundary>
+              <StrategicRoutesPanel caseId={caseId} />
+            </ErrorBoundary>
+          )}
 
           <ErrorBoundary>
             <LeverageAndWeakSpotsPanel caseId={caseId} />
           </ErrorBoundary>
 
-          <ErrorBoundary>
-            <TimePressureAndSettlementPanel caseId={caseId} />
-          </ErrorBoundary>
+          {!isCriminal && (
+            <ErrorBoundary>
+              <TimePressureAndSettlementPanel caseId={caseId} />
+            </ErrorBoundary>
+          )}
 
-          <ErrorBoundary>
-            <JudicialExpectationsPanel caseId={caseId} />
-          </ErrorBoundary>
+          {!isCriminal && (
+            <ErrorBoundary>
+              <JudicialExpectationsPanel caseId={caseId} />
+            </ErrorBoundary>
+          )}
         </div>
       </div>
     </ErrorBoundary>

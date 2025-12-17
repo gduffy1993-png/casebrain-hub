@@ -16,12 +16,44 @@ export async function GET(_request: Request, { params }: RouteParams) {
     const { orgId } = await requireAuthContext();
     const supabase = getSupabaseAdminClient();
 
-    const { data: charges, error } = await supabase
+    // Verify case access first (do not rely on criminal_* org_id types)
+    const { data: caseRecord, error: caseError } = await supabase
+      .from("cases")
+      .select("id")
+      .eq("id", caseId)
+      .eq("org_id", orgId)
+      .maybeSingle();
+
+    if (caseError) {
+      console.error("[criminal/charges] Case lookup error:", caseError);
+      return NextResponse.json({ error: "Failed to fetch charges" }, { status: 500 });
+    }
+    if (!caseRecord) {
+      return NextResponse.json({ error: "Case not found" }, { status: 404 });
+    }
+
+    // Fetch charges (prefer org_id filter if it works; fall back to case_id only)
+    let charges: any[] | null = null;
+    let error: any = null;
+
+    const withOrg = await supabase
       .from("criminal_charges")
       .select("*")
       .eq("case_id", caseId)
       .eq("org_id", orgId)
       .order("charge_date", { ascending: false });
+
+    if (!withOrg.error) {
+      charges = withOrg.data ?? [];
+    } else {
+      const withoutOrg = await supabase
+        .from("criminal_charges")
+        .select("*")
+        .eq("case_id", caseId)
+        .order("charge_date", { ascending: false });
+      charges = withoutOrg.data ?? [];
+      error = withoutOrg.error ?? withOrg.error;
+    }
 
     if (error) {
       console.error("[criminal/charges] Error:", error);

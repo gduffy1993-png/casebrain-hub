@@ -56,6 +56,7 @@ import { computeCaseHeatmap } from "@/lib/heatmap";
 import { calculateLimitation } from "@/lib/core/limitation";
 import { calculateNextStep, calculateAllNextSteps, calculateChaserAlerts } from "@/lib/next-step";
 import type { RiskFlag, LimitationInfo, PracticeArea, RiskStatus } from "@/lib/types/casebrain";
+import { normalizePracticeArea } from "@/lib/types/casebrain";
 import { Badge } from "@/components/ui/badge";
 import { CaseArchiveButton } from "@/components/cases/CaseArchiveButton";
 import { CasePackExportButton, CasePackExportPanel } from "@/components/cases/CasePackExportButton";
@@ -211,11 +212,12 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
     // Continue with empty arrays - page will render with missing data rather than crash
   }
 
+  const normalizedPracticeAreaValue = normalizePracticeArea(caseRecord.practice_area);
   const isPiCase =
-    caseRecord.practice_area === "pi" || caseRecord.practice_area === "clinical_negligence";
-  const isHousingCase = caseRecord.practice_area === "housing_disrepair";
-  const isCriminalCase = caseRecord.practice_area === "criminal";
-  const isFamilyCase = caseRecord.practice_area === "family";
+    caseRecord.practice_area === "pi" || normalizedPracticeAreaValue === "personal_injury" || normalizedPracticeAreaValue === "clinical_negligence";
+  const isHousingCase = normalizedPracticeAreaValue === "housing_disrepair";
+  const isCriminalCase = normalizedPracticeAreaValue === "criminal";
+  const isFamilyCase = normalizedPracticeAreaValue === "family";
 
   let piCase: PiCaseRecord | null = null;
   let piMedicalReports: PiMedicalReport[] = [];
@@ -1548,7 +1550,7 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
               </div>
             }
           >
-            <StrategicIntelligenceSection caseId={caseId} />
+            <StrategicIntelligenceSection caseId={caseId} practiceArea={caseRecord.practice_area} />
           </ErrorBoundary>
         )}
 

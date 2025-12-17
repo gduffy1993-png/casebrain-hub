@@ -113,6 +113,7 @@ function buildHeadline(
     practiceArea === "personal_injury" ? "Personal Injury" :
     practiceArea === "clinical_negligence" ? "Clinical Negligence" :
     practiceArea === "family" ? "Family" :
+    practiceArea === "criminal" ? "Criminal Defence" :
     "General Litigation";
 
   const stage = keyFacts.stage.replace(/_/g, " ").toUpperCase();
@@ -125,6 +126,29 @@ function buildSummaryText(
   practiceArea: PracticeArea,
   extractedFacts: ExtractedCaseFacts[],
 ): string {
+  if (practiceArea === "criminal") {
+    let summary = `This is a criminal defence matter. `;
+    if (keyFacts.clientName) {
+      summary += `Defendant: ${keyFacts.clientName}. `;
+    }
+    summary += `Current posture: disclosure-first and procedural integrity (PACE/CPIA) before committing to a fixed narrative. `;
+
+    if (keyFacts.headlineSummary) {
+      summary += keyFacts.headlineSummary;
+    } else if (caseRecord.summary) {
+      summary += caseRecord.summary;
+    } else if (extractedFacts.length > 0 && extractedFacts[0].summary) {
+      summary += extractedFacts[0].summary;
+    } else {
+      summary += "Case details are being compiled from uploaded documents.";
+    }
+
+    if (keyFacts.primaryIssues.length > 0) {
+      summary += ` Key focus areas: ${keyFacts.primaryIssues.slice(0, 3).join(", ")}.`;
+    }
+    return summary;
+  }
+
   let summary = `This is a ${practiceArea.replace(/_/g, " ")} case currently at ${keyFacts.stage.replace(/_/g, " ")} stage. `;
 
   if (keyFacts.clientName && keyFacts.opponentName) {

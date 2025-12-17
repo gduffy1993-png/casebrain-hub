@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAuthContext } from "@/lib/auth";
 import { buildKeyFactsSummary } from "@/lib/key-facts";
+import type { KeyFactsSummary } from "@/lib/types/casebrain";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -51,13 +52,39 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     }
   }
 
-  // All retries exhausted
+  // All retries exhausted.
+  // SAFETY: return a minimal keyFacts payload so the case page never hard-breaks.
+  const { caseId } = await params;
+  const fallback: KeyFactsSummary = {
+    caseId,
+    practiceArea: undefined,
+    stage: "other",
+    fundingType: "unknown",
+    keyDates: [],
+    mainRisks: [],
+    primaryIssues: [
+      "Key Facts currently unavailable (data is missing or a service error occurred).",
+    ],
+    headlineSummary: undefined,
+    opponentName: undefined,
+    clientName: undefined,
+    courtName: undefined,
+    claimType: undefined,
+    causeOfAction: undefined,
+    approxValue: undefined,
+    whatClientWants: undefined,
+    nextStepsBrief: undefined,
+    bundleSummarySections: [],
+    layeredSummary: null,
+  };
+
   return NextResponse.json(
-    { 
-      error: "Failed to retrieve key facts",
+    {
+      keyFacts: fallback,
+      warning: "Failed to retrieve key facts (fallback returned).",
       message: lastError?.message ?? "Unknown error",
     },
-    { status: 500 },
+    { status: 200 },
   );
 }
 

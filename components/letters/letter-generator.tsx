@@ -5,6 +5,7 @@ import { Loader2, ShieldAlert } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { LetterTemplate } from "@/types";
 import { useToast } from "@/components/Toast";
+import { normalizePracticeArea } from "@/lib/types/casebrain";
 
 type LetterGeneratorProps = {
   caseId: string;
@@ -12,11 +13,12 @@ type LetterGeneratorProps = {
   practiceArea?: string;
 };
 
-export function LetterGenerator({ caseId, templates }: LetterGeneratorProps) {
+export function LetterGenerator({ caseId, templates, practiceArea }: LetterGeneratorProps) {
+  const normalizedPracticeArea = normalizePracticeArea(practiceArea);
+  const isCriminal = normalizedPracticeArea === "criminal";
   const [templateId, setTemplateId] = useState(templates[0]?.id ?? "");
-  const [actingFor, setActingFor] = useState<"claimant" | "defendant">(
-    "claimant",
-  );
+  const [actingFor, setActingFor] = useState<"claimant" | "defendant">("claimant");
+  const [criminalKind, setCriminalKind] = useState<"client_update" | "disclosure_chase">("disclosure_chase");
   const [notes, setNotes] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
   const [result, setResult] = useState<{
@@ -29,7 +31,7 @@ export function LetterGenerator({ caseId, templates }: LetterGeneratorProps) {
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
-    if (!templateId) {
+    if (!isCriminal && !templateId) {
       setError("Select a template to generate a letter.");
       return;
     }
@@ -38,11 +40,17 @@ export function LetterGenerator({ caseId, templates }: LetterGeneratorProps) {
     setError(null);
 
     try {
-      const response = await fetch("/api/letter", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ caseId, templateId, notes, actingFor }),
-      });
+      const response = isCriminal
+        ? await fetch(`/api/criminal/${caseId}/letters/draft`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ kind: criminalKind, notes }),
+          })
+        : await fetch("/api/letter", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ caseId, templateId, notes, actingFor }),
+          });
 
       if (!response.ok) {
         const payload = await response.json().catch(() => null);
@@ -51,8 +59,15 @@ export function LetterGenerator({ caseId, templates }: LetterGeneratorProps) {
       const payload = await response.json();
       setResult({
         body: payload.body,
-        reasoning: payload.reasoning,
-        risks: payload.risks,
+        reasoning: payload.deterministic
+          ? "Deterministic draft generated from extracted facts only (no AI / no invention)."
+          : payload.reasoning,
+        risks: payload.deterministic
+          ? [
+              "Review before sending.",
+              "If any facts are missing/incorrect, update the bundle (charge sheet/MG forms/custody/interview) and re-generate.",
+            ]
+          : payload.risks,
       });
       pushToast("Letter draft generated. Review before sending.");
     } catch (generationError) {
@@ -74,37 +89,55 @@ export function LetterGenerator({ caseId, templates }: LetterGeneratorProps) {
   return (
     <form className="space-y-6" onSubmit={handleSubmit}>
       <div className="grid gap-4 sm:grid-cols-2">
-        <div>
-          <label className="text-xs font-semibold uppercase tracking-wide text-accent/50">
-            Template
-          </label>
-          <select
-            value={templateId}
-            onChange={(event) => setTemplateId(event.target.value)}
-            className="mt-2 w-full rounded-2xl border border-primary/20 bg-white px-4 py-3 text-sm text-accent shadow-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/30"
-          >
-            {templates.map((template) => (
-              <option key={template.id} value={template.id}>
-                {template.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label className="text-xs font-semibold uppercase tracking-wide text-accent/50">
-            Acting for
-          </label>
-          <select
-            value={actingFor}
-            onChange={(event) =>
-              setActingFor(event.target.value as "claimant" | "defendant")
-            }
-            className="mt-2 w-full rounded-2xl border border-primary/20 bg-white px-4 py-3 text-sm text-accent shadow-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/30"
-          >
-            <option value="claimant">Claimant</option>
-            <option value="defendant">Defendant</option>
-          </select>
-        </div>
+        {isCriminal ? (
+          <div>
+            <label className="text-xs font-semibold uppercase tracking-wide text-accent/50">
+              Criminal draft type (deterministic)
+            </label>
+            <select
+              value={criminalKind}
+              onChange={(event) => setCriminalKind(event.target.value as "client_update" | "disclosure_chase")}
+              className="mt-2 w-full rounded-2xl border border-primary/20 bg-white px-4 py-3 text-sm text-accent shadow-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/30"
+            >
+              <option value="disclosure_chase">Disclosure chase (CPIA)</option>
+              <option value="client_update">Client update</option>
+            </select>
+          </div>
+        ) : (
+          <>
+            <div>
+              <label className="text-xs font-semibold uppercase tracking-wide text-accent/50">
+                Template
+              </label>
+              <select
+                value={templateId}
+                onChange={(event) => setTemplateId(event.target.value)}
+                className="mt-2 w-full rounded-2xl border border-primary/20 bg-white px-4 py-3 text-sm text-accent shadow-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/30"
+              >
+                {templates.map((template) => (
+                  <option key={template.id} value={template.id}>
+                    {template.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="text-xs font-semibold uppercase tracking-wide text-accent/50">
+                Acting for
+              </label>
+              <select
+                value={actingFor}
+                onChange={(event) =>
+                  setActingFor(event.target.value as "claimant" | "defendant")
+                }
+                className="mt-2 w-full rounded-2xl border border-primary/20 bg-white px-4 py-3 text-sm text-accent shadow-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/30"
+              >
+                <option value="claimant">Claimant</option>
+                <option value="defendant">Defendant</option>
+              </select>
+            </div>
+          </>
+        )}
       </div>
 
       <div>
@@ -114,7 +147,11 @@ export function LetterGenerator({ caseId, templates }: LetterGeneratorProps) {
         <textarea
           value={notes}
           onChange={(event) => setNotes(event.target.value)}
-          placeholder="Include facts, tone, or CPR references required."
+          placeholder={
+            isCriminal
+              ? "Optional: add specifics (URN/ref, officer email, what you want confirmed, deadline)."
+              : "Include facts, tone, or CPR references required."
+          }
           rows={5}
           className="mt-2 w-full rounded-2xl border border-primary/20 bg-white px-4 py-3 text-sm text-accent shadow-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/30"
         />

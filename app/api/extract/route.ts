@@ -7,6 +7,7 @@ import { extractCaseFacts, summariseDocument } from "@/lib/ai";
 import { redact } from "@/lib/redact";
 import { env } from "@/lib/env";
 import { extractCriminalCaseMeta, persistCriminalCaseMeta } from "@/lib/criminal/structured-extractor";
+import { normalizePracticeArea } from "@/lib/types/casebrain";
 
 export const runtime = "nodejs";
 
@@ -136,7 +137,7 @@ export async function POST(request: Request) {
   // Criminal structured extraction (deterministic): run after text extraction and document update
   try {
     const practiceArea = (document as any)?.cases?.practice_area ?? null;
-    if (practiceArea === "criminal") {
+    if (normalizePracticeArea(practiceArea) === "criminal") {
       const meta = extractCriminalCaseMeta({
         text: redactedText,
         documentName: document.name,

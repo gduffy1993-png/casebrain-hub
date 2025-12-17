@@ -217,6 +217,47 @@ function extractChargesFromText(input: ExtractInput): { charges: CriminalChargeE
     });
   }
 
+  // "Count X" / "Statement of offence" patterns common on charge sheets
+  const countLine = /(?:^|\n)\s*(?:count\s*\d+|statement of offence)\s*[:\-]?\s*([^\n]{3,200})/gi;
+  for (const m of t.matchAll(countLine)) {
+    const raw = (m[1] ?? "").trim();
+    if (!raw) continue;
+    // Avoid swallowing generic headings
+    if (/^(date|time|place|defendant|court)\b/i.test(raw)) continue;
+
+    const section = raw.match(/\b(?:s\.?|section)\s*\d{1,3}[A-Za-z]*\b/i)?.[0] ?? null;
+    const act =
+      raw.match(/\b(?:OAPA|Offences Against the Person Act|Theft Act|Public Order Act|Criminal Justice Act)\b[^\n]{0,20}\b\d{4}\b/i)?.[0] ??
+      raw.match(/\bOAPA\s*1861\b/i)?.[0] ??
+      raw.match(/\bTheft Act\s*1968\b/i)?.[0] ??
+      null;
+    const statuteNorm = act ? act.replace(/\s+/g, " ").trim() : section ? section.replace(/\s+/g, " ").trim() : null;
+
+    charges.push({
+      count: 1,
+      offence: raw.replace(/\s+/g, " ").trim(),
+      statute: statuteNorm,
+      plea,
+      dateOfOffence: null,
+      chargeDate: null,
+      confidence: 0.6,
+      source: documentName,
+    });
+  }
+
+  // Charge date line (used as a weak hint only)
+  const chargeDateStr =
+    pickFirstLineValue(t, /\bdate of charge\b\s*[:\-]?\s*(\d{1,2}[\/\-.]\d{1,2}[\/\-.]\d{2,4})/i) ??
+    pickFirstLineValue(t, /\bcharged on\b\s*[:\-]?\s*(\d{1,2}[\/\-.]\d{1,2}[\/\-.]\d{2,4})/i) ??
+    null;
+  const parsedChargeDate =
+    chargeDateStr ? parseDMY(chargeDateStr.split(/[\/\-.]/)[0], chargeDateStr.split(/[\/\-.]/)[1], chargeDateStr.split(/[\/\-.]/)[2]) : null;
+  if (parsedChargeDate) {
+    for (const c of charges) {
+      if (!c.chargeDate) c.chargeDate = toIsoDateOnly(parsedChargeDate);
+    }
+  }
+
   // Section-only candidates (s18/s20/s47 etc)
   const sectionOnly = /\b(?:section|s\.?)\s*(18|20|47)\b[^\n]{0,60}\b(?:OAPA|Offences Against the Person Act|1861)\b/gi;
   for (const m of t.matchAll(sectionOnly)) {

@@ -66,9 +66,16 @@ export function CaseKeyFactsPanel({ caseId }: KeyFactsPanelProps) {
       try {
         const res = await fetch(`/api/cases/${caseId}/key-facts`);
         if (res.ok) {
-          const data = await res.json();
-          setKeyFacts(data.keyFacts);
+          const data = await res.json().catch(() => null);
+          const maybeKeyFacts = data?.keyFacts ?? null;
+          if (maybeKeyFacts) {
+            setKeyFacts(maybeKeyFacts);
+          } else {
+            throw new Error(data?.message ?? "Key facts payload missing");
+          }
         } else {
+          const payload = await res.json().catch(() => null);
+          const serverMsg = payload?.message ?? payload?.error ?? null;
           // Fallback: try to extract from documents
           try {
             const docsRes = await fetch(`/api/cases/${caseId}/documents`);
@@ -121,18 +128,19 @@ export function CaseKeyFactsPanel({ caseId }: KeyFactsPanelProps) {
               if (parties.length > 0 || dates.length > 0 || amounts.length > 0) {
                 setFallbackData({ parties, dates, amounts });
               } else {
-                setError("Failed to load key facts");
+                setError(serverMsg ?? "Failed to load key facts");
               }
             } else {
-              setError("Failed to load key facts");
+              setError(serverMsg ?? "Failed to load key facts");
             }
           } catch (fallbackErr) {
             console.error("Fallback extraction failed:", fallbackErr);
-            setError("Failed to load key facts");
+            setError(serverMsg ?? "Failed to load key facts");
           }
         }
       } catch (err) {
         console.error("Failed to fetch key facts:", err);
+        const clientMsg = err instanceof Error ? err.message : "Failed to load key facts";
         // Try fallback extraction
         try {
           const docsRes = await fetch(`/api/cases/${caseId}/documents`);
@@ -178,13 +186,13 @@ export function CaseKeyFactsPanel({ caseId }: KeyFactsPanelProps) {
             if (parties.length > 0 || dates.length > 0 || amounts.length > 0) {
               setFallbackData({ parties, dates, amounts });
             } else {
-              setError("Failed to load key facts");
+              setError(clientMsg);
             }
           } else {
-            setError("Failed to load key facts");
+            setError(clientMsg);
           }
         } catch (fallbackErr) {
-          setError("Failed to load key facts");
+          setError(clientMsg);
         }
       } finally {
         setIsLoading(false);
@@ -292,8 +300,10 @@ export function CaseKeyFactsPanel({ caseId }: KeyFactsPanelProps) {
     );
   }
 
-  const stageLabel = keyFacts.stage.replace(/_/g, " ");
-  const fundingLabel = keyFacts.fundingType.replace(/_/g, " ");
+  const stage = keyFacts.stage ?? "other";
+  const fundingType = keyFacts.fundingType ?? "unknown";
+  const stageLabel = String(stage).replace(/_/g, " ");
+  const fundingLabel = String(fundingType).replace(/_/g, " ");
   const layered = keyFacts.layeredSummary;
 
   return (
@@ -301,11 +311,11 @@ export function CaseKeyFactsPanel({ caseId }: KeyFactsPanelProps) {
       title={
         <div className="flex items-center gap-3">
           <span>Key Facts</span>
-          <Badge className={stageBadgeColors[keyFacts.stage] ?? stageBadgeColors.other}>
+          <Badge className={stageBadgeColors[stage] ?? stageBadgeColors.other}>
             {stageLabel}
           </Badge>
-          {keyFacts.fundingType !== "unknown" && (
-            <Badge className={fundingBadgeColors[keyFacts.fundingType] ?? fundingBadgeColors.other}>
+          {fundingType !== "unknown" && (
+            <Badge className={fundingBadgeColors[fundingType] ?? fundingBadgeColors.other}>
               {fundingLabel}
             </Badge>
           )}

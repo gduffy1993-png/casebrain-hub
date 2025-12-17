@@ -19,6 +19,7 @@ import { getCurrentUser } from "@/lib/auth";
 import { getOrCreateOrganisationForUser } from "@/lib/organisations";
 import { getTrialStatus } from "@/lib/paywall/trialLimits";
 import { extractCriminalCaseMeta, persistCriminalCaseMeta } from "@/lib/criminal/structured-extractor";
+import { normalizePracticeArea } from "@/lib/types/casebrain";
 
 export const runtime = "nodejs";
 
@@ -208,7 +209,8 @@ export async function POST(request: Request) {
     .eq("id", caseId)
     .eq("org_id", orgId)
     .maybeSingle();
-  const resolvedPracticeArea = (resolvedCaseForArea?.practice_area ?? practiceArea) as string;
+  const resolvedPracticeAreaRaw = (resolvedCaseForArea?.practice_area ?? practiceArea) as string;
+  const resolvedPracticeArea = normalizePracticeArea(resolvedPracticeAreaRaw);
 
   // Check trial limits before uploading documents (always check, regardless of new/existing case)
   // SAFETY: Wrap in try-catch to prevent crashes
