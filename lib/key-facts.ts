@@ -37,6 +37,120 @@ export async function buildKeyFactsSummary(
     throw new Error("Case not found");
   }
 
+  // =============================================================================
+  // Criminal: build key facts from persisted criminal tables (deterministic, never-throw)
+  // =============================================================================
+  if (caseData.practice_area === "criminal") {
+    try {
+      const { data: criminalCase } = await supabase
+        .from("criminal_cases")
+        .select("defendant_name, court_name, next_hearing_date, next_hearing_type, next_bail_review, bail_status")
+        .eq("id", caseId)
+        .eq("org_id", orgId)
+        .maybeSingle();
+
+      const { data: charges } = await supabase
+        .from("criminal_charges")
+        .select("offence, section, charge_date, status")
+        .eq("case_id", caseId)
+        .eq("org_id", orgId)
+        .order("charge_date", { ascending: false })
+        .limit(5);
+
+      const { data: hearings } = await supabase
+        .from("criminal_hearings")
+        .select("hearing_date, hearing_type, court_name, outcome")
+        .eq("case_id", caseId)
+        .eq("org_id", orgId)
+        .order("hearing_date", { ascending: true })
+        .limit(20);
+
+      const now = new Date();
+      const nextHearing =
+        (criminalCase?.next_hearing_date as string | null) ??
+        (hearings ?? []).find((h: any) => new Date(h.hearing_date).getTime() >= now.getTime())?.hearing_date ??
+        null;
+
+      const keyDates: KeyFactsKeyDate[] = [];
+      keyDates.push({
+        label: "Instructions",
+        date: caseData.created_at,
+        isPast: new Date(caseData.created_at) < now,
+      });
+      if (nextHearing) {
+        keyDates.push({
+          label: "Next Hearing",
+          date: nextHearing,
+          isPast: false,
+          isUrgent: new Date(nextHearing).getTime() - now.getTime() <= 14 * 24 * 60 * 60 * 1000,
+        });
+      }
+      if (criminalCase?.next_bail_review) {
+        keyDates.push({
+          label: "Bail Review",
+          date: criminalCase.next_bail_review,
+          isPast: new Date(criminalCase.next_bail_review) < now,
+          isUrgent: new Date(criminalCase.next_bail_review).getTime() - now.getTime() <= 7 * 24 * 60 * 60 * 1000,
+        });
+      }
+
+      const primaryIssues: string[] = [];
+      const topCharge = (charges ?? [])[0];
+      if (topCharge?.offence) {
+        primaryIssues.push(`Charge: ${topCharge.offence}${topCharge.section ? ` (${topCharge.section})` : ""}`);
+      }
+      if (criminalCase?.bail_status) {
+        primaryIssues.push(`Bail status: ${String(criminalCase.bail_status).replace(/_/g, " ")}`);
+      }
+      if ((charges ?? []).length === 0) {
+        primaryIssues.push("Charges not yet captured (upload MG forms / charge sheet)");
+      }
+
+      const claimType = "Criminal Defence";
+      const opponentName = "CPS / Prosecution";
+
+      return {
+        caseId,
+        clientName: criminalCase?.defendant_name ?? undefined,
+        opponentName,
+        courtName: criminalCase?.court_name ?? undefined,
+        claimType,
+        causeOfAction: topCharge?.offence ?? undefined,
+        stage: "other",
+        fundingType: "unknown",
+        approxValue: undefined,
+        headlineSummary: caseData.summary ?? undefined,
+        whatClientWants: "Defend allegations and manage risk (disclosure-first).",
+        keyDates,
+        mainRisks: [],
+        primaryIssues: primaryIssues.slice(0, 5),
+        nextStepsBrief: nextHearing ? `Prepare for next hearing (${new Date(nextHearing).toISOString().slice(0, 10)}). Stabilise disclosure/continuity before committing positions.` : "Stabilise disclosure/continuity (MG6, custody, interview recording, CCTV/BWV/999).",
+      };
+    } catch (err) {
+      // Absolute safety: never throw for key facts
+      console.error("[buildKeyFactsSummary][criminal] fallback:", err);
+      return {
+        caseId,
+        clientName: undefined,
+        opponentName: "CPS / Prosecution",
+        courtName: undefined,
+        claimType: "Criminal Defence",
+        causeOfAction: undefined,
+        stage: "other",
+        fundingType: "unknown",
+        approxValue: undefined,
+        headlineSummary: caseData.summary ?? undefined,
+        whatClientWants: undefined,
+        keyDates: [
+          { label: "Instructions", date: caseData.created_at, isPast: true },
+        ],
+        mainRisks: [],
+        primaryIssues: ["Key facts not yet available (run extraction / upload charge sheet, MG forms, court listing)."],
+        nextStepsBrief: "Upload core criminal bundle docs (charge sheet, MG5/MG6, custody record, interview, listing).",
+      };
+    }
+  }
+
   // 2. Fetch PI case data if applicable
   const { data: piCase } = await supabase
     .from("pi_cases")
@@ -446,6 +560,7 @@ function getClaimType(
   if (practiceArea === "pi") return "Personal Injury";
   if (practiceArea === "clinical_negligence") return "Clinical Negligence";
   if (practiceArea === "housing_disrepair") return "Housing Disrepair";
+  if (practiceArea === "criminal") return "Criminal Defence";
   
   return undefined;
 }

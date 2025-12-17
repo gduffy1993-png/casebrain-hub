@@ -18,6 +18,7 @@ import { incrementUsage } from "@/lib/paywall/usage";
 import { getCurrentUser } from "@/lib/auth";
 import { getOrCreateOrganisationForUser } from "@/lib/organisations";
 import { getTrialStatus } from "@/lib/paywall/trialLimits";
+import { extractCriminalCaseMeta, persistCriminalCaseMeta } from "@/lib/criminal/structured-extractor";
 
 export const runtime = "nodejs";
 
@@ -199,6 +200,15 @@ export async function POST(request: Request) {
       { status: 500 },
     );
   }
+
+  // Resolve practice area from DB for existing cases (do not trust client-provided practiceArea)
+  const { data: resolvedCaseForArea } = await supabase
+    .from("cases")
+    .select("id, practice_area")
+    .eq("id", caseId)
+    .eq("org_id", orgId)
+    .maybeSingle();
+  const resolvedPracticeArea = (resolvedCaseForArea?.practice_area ?? practiceArea) as string;
 
   // Check trial limits before uploading documents (always check, regardless of new/existing case)
   // SAFETY: Wrap in try-catch to prevent crashes
@@ -415,6 +425,26 @@ export async function POST(request: Request) {
       } catch (bundleError) {
         console.error(`[upload] Failed to run bundle analysis for ${file.name}:`, bundleError);
         // Don't fail the upload if bundle analysis fails
+      }
+    }
+
+    // Criminal structured extraction (deterministic): run after text extraction and document insert
+    if (resolvedPracticeArea === "criminal") {
+      try {
+        const meta = extractCriminalCaseMeta({
+          text: redactedText,
+          documentName: file.name,
+        });
+        await persistCriminalCaseMeta({
+          supabase,
+          caseId,
+          orgId,
+          meta,
+          sourceDocumentId: document.id,
+          sourceDocumentName: file.name,
+        });
+      } catch (criminalExtractError) {
+        console.error("[upload] Criminal structured extractor failed (non-fatal):", criminalExtractError);
       }
     }
 

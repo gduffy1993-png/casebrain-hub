@@ -121,10 +121,18 @@ export function getEvidenceChecklist(practiceArea?: PracticeArea | string | null
         combined.set(req.id, req);
       }
       
-      return Array.from(combined.values());
+      const merged = Array.from(combined.values());
+      // Criminal defence: do not surface civil-style funding/retainer items as missing evidence
+      if (pack.id === "criminal") {
+        return merged.filter((e) => !["base-retainer"].includes(e.id));
+      }
+      return merged;
     }
   }
   
+  if (pack.id === "criminal") {
+    return pack.evidenceChecklist.filter((e) => !["base-retainer"].includes(e.id));
+  }
   return pack.evidenceChecklist;
 }
 
@@ -159,10 +167,18 @@ export function getRiskRules(practiceArea?: PracticeArea | string | null): PackR
         combined.set(rule.id, rule);
       }
       
-      return Array.from(combined.values());
+      const merged = Array.from(combined.values());
+      // Criminal defence: avoid civil-style "missing retainer" risk rules
+      if (pack.id === "criminal") {
+        return merged.filter((r) => !["base-risk-no-retainer"].includes(r.id));
+      }
+      return merged;
     }
   }
   
+  if (pack.id === "criminal") {
+    return pack.riskRules.filter((r) => !["base-risk-no-retainer"].includes(r.id));
+  }
   return pack.riskRules;
 }
 
@@ -236,10 +252,18 @@ export function getComplianceItems(practiceArea?: PracticeArea | string | null):
         combined.set(item.id, item);
       }
       
-      return Array.from(combined.values());
+      const merged = Array.from(combined.values());
+      // Criminal defence: avoid civil-style compliance items that confuse demo (retainer/CFA)
+      if (pack.id === "criminal") {
+        return merged.filter((c) => !["base-compliance-retainer"].includes(c.id));
+      }
+      return merged;
     }
   }
   
+  if (pack.id === "criminal") {
+    return pack.complianceItems.filter((c) => !["base-compliance-retainer"].includes(c.id));
+  }
   return pack.complianceItems;
 }
 

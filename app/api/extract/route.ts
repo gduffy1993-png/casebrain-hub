@@ -6,6 +6,7 @@ import { getSupabaseAdminClient } from "@/lib/supabase";
 import { extractCaseFacts, summariseDocument } from "@/lib/ai";
 import { redact } from "@/lib/redact";
 import { env } from "@/lib/env";
+import { extractCriminalCaseMeta, persistCriminalCaseMeta } from "@/lib/criminal/structured-extractor";
 
 export const runtime = "nodejs";
 
@@ -29,7 +30,7 @@ export async function POST(request: Request) {
   const { data: document, error: docError } = await supabase
     .from("documents")
     .select(
-      "id, case_id, name, storage_url, type, cases!inner(id, org_id)",
+      "id, case_id, name, storage_url, type, cases!inner(id, org_id, practice_area)",
     )
     .eq("id", documentId)
     .eq("cases.org_id", orgId)
@@ -130,6 +131,27 @@ export async function POST(request: Request) {
       { error: "Failed to update document extraction" },
       { status: 500 },
     );
+  }
+
+  // Criminal structured extraction (deterministic): run after text extraction and document update
+  try {
+    const practiceArea = (document as any)?.cases?.practice_area ?? null;
+    if (practiceArea === "criminal") {
+      const meta = extractCriminalCaseMeta({
+        text: redactedText,
+        documentName: document.name,
+      });
+      await persistCriminalCaseMeta({
+        supabase,
+        caseId: document.case_id,
+        orgId,
+        meta,
+        sourceDocumentId: document.id,
+        sourceDocumentName: document.name,
+      });
+    }
+  } catch (criminalExtractError) {
+    console.error("[extract] Criminal structured extractor failed (non-fatal):", criminalExtractError);
   }
 
   return NextResponse.json({ success: true, extracted, summary });
