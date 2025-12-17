@@ -156,8 +156,18 @@ export function GetOffProbabilityMeter({ caseId }: GetOffProbabilityMeterProps) 
         <div className="p-4 rounded-lg bg-muted/30 border border-border">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-foreground">Top Strategy</span>
-            <Badge variant={data.topStrategyProbability >= 70 ? "success" : data.topStrategyProbability >= 40 ? "warning" : "secondary"}>
-              {data.topStrategyProbability}% success
+            <Badge
+              variant={
+                data.topStrategyProbability === null
+                  ? "secondary"
+                  : data.topStrategyProbability >= 70
+                    ? "success"
+                    : data.topStrategyProbability >= 40
+                      ? "warning"
+                      : "secondary"
+              }
+            >
+              {data.topStrategyProbability === null ? "N/A" : `${data.topStrategyProbability}% success`}
             </Badge>
           </div>
           <p className="text-sm text-muted-foreground">{data.topStrategy}</p>
