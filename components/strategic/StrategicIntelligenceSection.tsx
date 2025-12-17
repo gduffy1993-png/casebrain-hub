@@ -93,7 +93,7 @@ export function StrategicIntelligenceSection({ caseId, practiceArea }: Strategic
 
         {/* Overview Card */}
         <ErrorBoundary>
-          <StrategicOverviewCard caseId={caseId} />
+          <StrategicOverviewCard caseId={caseId} practiceArea={normalizedPracticeArea} />
         </ErrorBoundary>
 
         {/* Move Sequence Panel - Full Width */}

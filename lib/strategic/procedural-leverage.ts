@@ -73,6 +73,7 @@ export async function detectProceduralLeveragePoints(
 ): Promise<ProceduralLeveragePoint[]> {
   const leveragePoints: ProceduralLeveragePoint[] = [];
   const now = new Date().toISOString();
+  const includeMeta = input.practiceArea !== "criminal";
   
   // Detect case role if not provided
   let caseRole = input.caseRole;
@@ -183,6 +184,7 @@ export async function detectProceduralLeveragePoints(
       `Days since last contact: ${opponentSnapshot.currentSilenceDays}`,
     ];
     
+    const isCriminal = input.practiceArea === "criminal";
     const leveragePoint: ProceduralLeveragePoint = {
       id: `leverage-late-response-${input.caseId}`,
       caseId: input.caseId,
@@ -191,36 +193,42 @@ export async function detectProceduralLeveragePoints(
       description: `Opponent has not responded for ${opponentSnapshot.currentSilenceDays} days`,
       evidence,
       suggestedEscalation: opponentSnapshot.currentSilenceDays > 42 ? "UNLESS_ORDER" : "CLARIFICATION",
-      escalationText: opponentSnapshot.currentSilenceDays > 42
-        ? "Apply for an unless order — this could compel them to respond or risk strike-out."
-        : "Request clarification or further information — this puts pressure on them to respond.",
-      cprRule: "CPR 3.4(2)(c)",
-      leverage: `If you challenge this delay, the court is likely to order compliance or impose sanctions, which puts significant pressure on the opponent.`,
+      escalationText: isCriminal
+        ? "Raise at the next hearing and seek clear case management directions (service dates and disclosure timetable). Record all late service."
+        : opponentSnapshot.currentSilenceDays > 42
+          ? "Apply for an unless order — this could compel them to respond or risk strike-out."
+          : "Request clarification or further information — this puts pressure on them to respond.",
+      cprRule: isCriminal ? undefined : "CPR 3.4(2)(c)",
+      leverage: isCriminal
+        ? "If you challenge persistent silence/late service, the court can give directions and, where prejudice is shown, the prosecution's position can be weakened."
+        : `If you challenge this delay, the court is likely to order compliance or impose sanctions, which puts significant pressure on the opponent.`,
       createdAt: now,
     };
     
     // Generate meta
-    leveragePoint.meta = generateLeverageMeta(
-      "LATE_RESPONSE",
-      leveragePoint.description,
-      evidence,
-      {
-        practiceArea: input.practiceArea,
-        documents: input.documents,
-        timeline: input.timeline,
-        letters: input.letters,
-        deadlines: input.deadlines,
-        hasChronology: false,
-        hasMedicalEvidence: false,
-        hasExpertReports: false,
-        hasDisclosure: false,
-        hasPreActionLetter: input.letters.some(l => 
-          l.template_id?.toLowerCase().includes("pre_action") ||
-          l.template_id?.toLowerCase().includes("protocol")
-        ),
-        caseRole: input.caseRole || caseRole,
-      }
-    );
+    if (includeMeta) {
+      leveragePoint.meta = generateLeverageMeta(
+        "LATE_RESPONSE",
+        leveragePoint.description,
+        evidence,
+        {
+          practiceArea: input.practiceArea,
+          documents: input.documents,
+          timeline: input.timeline,
+          letters: input.letters,
+          deadlines: input.deadlines,
+          hasChronology: false,
+          hasMedicalEvidence: false,
+          hasExpertReports: false,
+          hasDisclosure: false,
+          hasPreActionLetter: input.letters.some(l => 
+            l.template_id?.toLowerCase().includes("pre_action") ||
+            l.template_id?.toLowerCase().includes("protocol")
+          ),
+          caseRole: input.caseRole || caseRole,
+        }
+      );
+    }
     
     leveragePoints.push(leveragePoint);
   }
@@ -287,12 +295,7 @@ export async function detectProceduralLeveragePoints(
   // ============================================
   // For claimant cases, admin gaps (client ID, retainer, CFA) should NOT be HIGH leverage
   // Only substantive missing evidence should be HIGH leverage for claimant cases
-  const missingEvidence = findMissingEvidence(
-    input.caseId,
-    input.practiceArea === "housing_disrepair" ? "housing" : 
-    input.practiceArea === "personal_injury" ? "pi" : "other",
-    input.documents,
-  );
+  const missingEvidence = findMissingEvidence(input.caseId, input.practiceArea, input.documents);
 
   const criticalMissing = missingEvidence.filter(e => 
     e.priority === "CRITICAL" && e.status === "MISSING"
@@ -321,8 +324,34 @@ export async function detectProceduralLeveragePoints(
       // Enhanced leverage analysis
       let detailedLeverage = "";
       let tacticalSteps = "";
+      let legalBasis = "Evidence gathering";
       
-      if (firstMissing.label.toLowerCase().includes("medical")) {
+      // Criminal-only: remove CPR/Part 36 and use PACE/CPIA framing
+      if (input.practiceArea === "criminal") {
+        const label = firstMissing.label.toLowerCase();
+        legalBasis = "CPIA / PACE / CrimPR case management";
+        if (label.includes("disclosure") || label.includes("mg6") || label.includes("unused")) {
+          detailedLeverage =
+            "Without proper disclosure (including schedules and unused material), the defence cannot properly assess the evidence. This creates immediate procedural leverage: you can press for disclosure, seek case management directions, and resist any attempt to force early admissions without the bundle.";
+          tacticalSteps =
+            "Step 1: Write to CPS/disclosure officer requesting MG6A/MG6C and confirmation of unused material review. Step 2: Ask for a clear disclosure timetable. Step 3: If outstanding, raise at the next hearing and seek directions / disclosure order. Step 4: Record all delays and late service for later submissions if prejudice arises.";
+        } else if (label.includes("custody") || label.includes("pace") || label.includes("interview") || label.includes("recording")) {
+          detailedLeverage =
+            "PACE / procedural integrity gaps can materially affect admissibility and fairness. If core custody/interview materials are missing, the prosecution may struggle to rely on disputed admissions or procedural steps.";
+          tacticalSteps =
+            "Step 1: Request the full custody record, legal advice log, and interview recording/transcript. Step 2: If missing, require written confirmation of what exists and why anything is unavailable. Step 3: Raise as a case management issue and seek directions for service (or, if appropriate, exclusion/adverse approach where fairness is impacted).";
+        } else if (label.includes("cctv") || label.includes("bw") || label.includes("body") || label.includes("video")) {
+          detailedLeverage =
+            "Visual evidence (CCTV/BWV) is often decisive and the defence is entitled to clarity on what exists, in what format, and continuity. Missing continuity or late production is a recurring vulnerability.";
+          tacticalSteps =
+            "Step 1: Request native/original footage and continuity statements/logs. Step 2: Ask for creation/export metadata and chain-of-custody confirmation. Step 3: If not served, set a timetable via directions and document prejudice caused by delay.";
+        } else {
+          detailedLeverage =
+            `Without ${firstMissing.label}, the defence cannot properly test the prosecution case. Treat this as a disclosure/records gap and use case management to force clarity on what exists and when it will be served.`;
+          tacticalSteps =
+            "Step 1: Request the missing item with a clear deadline. Step 2: Ask for confirmation if it does not exist. Step 3: Raise at hearing for directions if still outstanding.";
+        }
+      } else if (firstMissing.label.toLowerCase().includes("medical")) {
         detailedLeverage = "Medical evidence is fundamental to proving causation and quantum. Without it, the opponent cannot establish: (1) the causal link between breach and injury, (2) the extent of injury, or (3) the financial impact. This creates a procedural advantage — you can apply for an order compelling disclosure, and if they fail to comply, seek costs sanctions or even strike-out of their quantum claim.";
         tacticalSteps = "Step 1: Send a formal request under CPR 31.10 for medical records within 14 days. Step 2: If not provided, apply for an order under CPR 31.12 with costs. Step 3: If still not provided, apply for unless order under CPR 3.4(2)(c) — failure to comply may result in strike-out. Step 4: Use the absence of medical evidence to challenge their case at trial — argue they cannot prove causation or quantum.";
       } else if (firstMissing.label.toLowerCase().includes("accident") || firstMissing.label.toLowerCase().includes("circumstances")) {
@@ -342,7 +371,7 @@ export async function detectProceduralLeveragePoints(
         evidence: [
           firstMissing.reason,
           `Priority: ${firstMissing.priority}`,
-          `Legal basis: CPR 31.10, CPR 31.12, CPR 3.4(2)(c)`,
+          `Legal basis: ${legalBasis}`,
         ],
         suggestedEscalation: "FURTHER_INFORMATION",
         escalationText: tacticalSteps,
@@ -398,6 +427,7 @@ export async function detectProceduralLeveragePoints(
       (nowDate.getTime() - new Date(mostOverdue.due_date).getTime()) / (1000 * 60 * 60 * 24)
     );
 
+    const isCriminal = input.practiceArea === "criminal";
     leveragePoints.push({
       id: `leverage-missing-deadline-${mostOverdue.id}`,
       caseId: input.caseId,
@@ -410,11 +440,15 @@ export async function detectProceduralLeveragePoints(
         `Days overdue: ${daysOverdue}`,
       ],
       suggestedEscalation: daysOverdue > 14 ? "UNLESS_ORDER" : "CLARIFICATION",
-      escalationText: daysOverdue > 14
-        ? "Apply for an unless order — this could compel compliance or risk strike-out."
-        : "Request clarification on deadline status — this puts pressure on them to comply.",
-      cprRule: "CPR 3.4(2)(c)",
-      leverage: `If you challenge this missed deadline, the court is likely to order compliance or impose sanctions, which puts significant pressure on the opponent.`,
+      escalationText: isCriminal
+        ? "Raise at the next hearing and seek directions to regularise the timetable. Record late service and any prejudice."
+        : daysOverdue > 14
+          ? "Apply for an unless order — this could compel compliance or risk strike-out."
+          : "Request clarification on deadline status — this puts pressure on them to comply.",
+      cprRule: isCriminal ? undefined : "CPR 3.4(2)(c)",
+      leverage: isCriminal
+        ? "Missed case management deadlines create leverage when they cause prejudice (late evidence/disclosure). Use directions to control the timetable and document late service."
+        : `If you challenge this missed deadline, the court is likely to order compliance or impose sanctions, which puts significant pressure on the opponent.`,
       createdAt: now,
     });
   }

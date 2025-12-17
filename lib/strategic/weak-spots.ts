@@ -60,6 +60,7 @@ export async function detectOpponentWeakSpots(
 ): Promise<OpponentWeakSpot[]> {
   const weakSpots: OpponentWeakSpot[] = [];
   const now = new Date().toISOString();
+  const includeMeta = input.practiceArea !== "criminal";
   
   // Detect case role if not provided
   let caseRole = input.caseRole;
@@ -108,29 +109,31 @@ export async function detectOpponentWeakSpots(
             createdAt: now,
           };
           
-          // Generate meta
-          weakSpot.meta = generateWeakSpotMeta(
-            "CONTRADICTION",
-            weakSpot.description,
-            evidence,
-            {
-              practiceArea: input.practiceArea,
-              documents: input.documents,
-              timeline: input.timeline,
-              letters: [],
-              deadlines: [],
-              hasChronology: false,
-              hasMedicalEvidence: false,
-              hasExpertReports: false,
-              hasDisclosure: false,
-              hasPreActionLetter: false,
-              contradictions: criticalContradictions.map(c => ({
-                description: c.description,
-                confidence: c.confidence,
-              })),
-              caseRole: input.caseRole || caseRole,
-            }
-          );
+          // Generate meta (civil-focused; hide for criminal to prevent copy leakage)
+          if (includeMeta) {
+            weakSpot.meta = generateWeakSpotMeta(
+              "CONTRADICTION",
+              weakSpot.description,
+              evidence,
+              {
+                practiceArea: input.practiceArea,
+                documents: input.documents,
+                timeline: input.timeline,
+                letters: [],
+                deadlines: [],
+                hasChronology: false,
+                hasMedicalEvidence: false,
+                hasExpertReports: false,
+                hasDisclosure: false,
+                hasPreActionLetter: false,
+                contradictions: criticalContradictions.map(c => ({
+                  description: c.description,
+                  confidence: c.confidence,
+                })),
+                caseRole: input.caseRole || caseRole,
+              }
+            );
+          }
           
           weakSpots.push(weakSpot);
         }
@@ -142,12 +145,7 @@ export async function detectOpponentWeakSpots(
   }
 
   // 2. Check for missing evidence
-  const missingEvidence = findMissingEvidence(
-    input.caseId,
-    input.practiceArea === "housing_disrepair" ? "housing" : 
-    input.practiceArea === "personal_injury" ? "pi" : "other",
-    input.documents,
-  );
+  const missingEvidence = findMissingEvidence(input.caseId, input.practiceArea, input.documents);
 
   const criticalMissing = missingEvidence.filter(e => 
     e.priority === "CRITICAL" && e.status === "MISSING"
@@ -173,6 +171,28 @@ export async function detectOpponentWeakSpots(
       detailedImpact = `${missing.label} is missing. This is an administrative/procedural compliance issue and does not affect the substantive strength of your case on liability or quantum.`;
       tacticalAdvice = "Request or prepare the missing administrative documentation. This is for procedural compliance only and does not impact substantive case strength.";
       legalBasis = "Procedural compliance";
+    } else if (input.practiceArea === "criminal") {
+      // Criminal: remove CPR/Part 36 and use PACE/CPIA framing
+      const label = missing.label.toLowerCase();
+      if (label.includes("disclosure") || label.includes("mg6") || label.includes("unused")) {
+        detailedImpact =
+          "Disclosure is a gating item. Without schedules/unused material review and core evidence served, it is unsafe to commit to a fixed narrative and the defence cannot properly test the case.";
+        tacticalAdvice =
+          "Chase CPS/disclosure officer for MG6A/MG6C, unused material confirmation, and a clear disclosure timetable. If still outstanding, raise for directions at the next hearing.";
+        legalBasis = "CPIA / CrimPR case management";
+      } else if (label.includes("custody") || label.includes("pace") || label.includes("interview") || label.includes("recording")) {
+        detailedImpact =
+          "PACE/procedural integrity gaps can affect admissibility and fairness. Missing custody/interview materials often become a focal weakness at hearings.";
+        tacticalAdvice =
+          "Request custody record, legal advice log, and interview recording/transcript. Ask for written confirmation if any item does not exist. Raise for directions if not served promptly.";
+        legalBasis = "PACE / CrimPR";
+      } else {
+        detailedImpact =
+          `Without ${missing.label}, the defence cannot properly test the prosecution case. Treat this as a missing-records problem and force clarity on what exists and when it will be served.`;
+        tacticalAdvice =
+          "Request the item with a deadline, ask for confirmation if it does not exist, and raise at hearing for directions if still outstanding.";
+        legalBasis = "Case management / disclosure";
+      }
     } else if (missing.label.toLowerCase().includes("medical") || missing.label.toLowerCase().includes("gp") || missing.label.toLowerCase().includes("hospital")) {
       if (isClaimant) {
         detailedImpact = "Medical records are essential for establishing causation and quantum. Ensure you have comprehensive medical evidence to support your claim. Without complete medical records, it may be difficult to fully establish: (1) the extent of injury, (2) the causal link between breach and injury, (3) the duration and severity of symptoms, or (4) the financial impact (loss of earnings, care costs).";
@@ -238,29 +258,31 @@ export async function detectOpponentWeakSpots(
       createdAt: now,
     };
     
-    // Generate meta
-    weakSpot.meta = generateWeakSpotMeta(
-      "MISSING_EVIDENCE",
-      weakSpot.description,
-      evidence,
-      {
-        practiceArea: input.practiceArea,
-        documents: input.documents,
-        timeline: input.timeline,
-        letters: [],
-        deadlines: [],
-        hasChronology: false,
-        hasMedicalEvidence: false,
-        hasExpertReports: false,
-        hasDisclosure: false,
-        hasPreActionLetter: false,
-        missingEvidence: criticalMissing.map(m => ({
-          type: m.label,
-          priority: m.priority,
-        })),
-        caseRole: input.caseRole || caseRole,
-      }
-    );
+    // Generate meta (civil-focused; hide for criminal to prevent copy leakage)
+    if (includeMeta) {
+      weakSpot.meta = generateWeakSpotMeta(
+        "MISSING_EVIDENCE",
+        weakSpot.description,
+        evidence,
+        {
+          practiceArea: input.practiceArea,
+          documents: input.documents,
+          timeline: input.timeline,
+          letters: [],
+          deadlines: [],
+          hasChronology: false,
+          hasMedicalEvidence: false,
+          hasExpertReports: false,
+          hasDisclosure: false,
+          hasPreActionLetter: false,
+          missingEvidence: criticalMissing.map(m => ({
+            type: m.label,
+            priority: m.priority,
+          })),
+          caseRole: input.caseRole || caseRole,
+        }
+      );
+    }
     
     weakSpots.push(weakSpot);
   }

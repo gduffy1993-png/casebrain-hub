@@ -300,12 +300,7 @@ export async function calculateCaseMomentum(
 
   // 4. Check for missing evidence (NEGATIVE for us)
   // For claimant cases, missing admin docs are less critical than missing substantive evidence
-  const missingEvidence = findMissingEvidence(
-    input.caseId,
-    input.practiceArea === "housing_disrepair" ? "housing" : 
-    input.practiceArea === "personal_injury" ? "pi" : "other",
-    input.documents,
-  );
+  const missingEvidence = findMissingEvidence(input.caseId, input.practiceArea, input.documents);
 
   const criticalMissing = missingEvidence.filter(e => 
     e.priority === "CRITICAL" && e.status === "MISSING"

@@ -19,6 +19,7 @@ import { findMissingEvidence } from "@/lib/missing-evidence";
 import { computeAnalysisDelta } from "@/lib/strategic/compute-analysis-delta";
 import { generateMoveSequence } from "@/lib/strategic/move-sequencing/engine";
 import type { MoveSequenceInput } from "@/lib/strategic/move-sequencing/types";
+import { normalizePracticeArea } from "@/lib/types/casebrain";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -249,6 +250,11 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         caseRole, // Pass detected role
         momentumState: momentum.state, // Pass momentum state for enhanced strategy
       });
+
+      // Criminal: prevent civil-route leakage in the overview response.
+      if (normalizePracticeArea(caseRecord.practice_area) === "criminal") {
+        strategies = [];
+      }
 
       // Get weak spots and leverage points
       const weakSpots = await detectOpponentWeakSpots({

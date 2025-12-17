@@ -34,12 +34,14 @@ type StrategicOverview = {
 
 type StrategicOverviewCardProps = {
   caseId: string;
+  practiceArea?: string | null;
 };
 
-export function StrategicOverviewCard({ caseId }: StrategicOverviewCardProps) {
+export function StrategicOverviewCard({ caseId, practiceArea }: StrategicOverviewCardProps) {
   const [data, setData] = useState<StrategicOverview | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const isCriminal = practiceArea === "criminal";
 
   useEffect(() => {
     async function fetchOverview() {
@@ -155,7 +157,7 @@ export function StrategicOverviewCard({ caseId }: StrategicOverviewCardProps) {
       </div>
 
       {/* Strategic Routes */}
-      {strategies.length > 0 && (
+      {!isCriminal && strategies.length > 0 && (
         <div className="space-y-2">
           <h4 className="text-sm font-medium text-foreground">Available Strategic Routes:</h4>
           <div className="space-y-2">

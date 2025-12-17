@@ -30,16 +30,24 @@ export async function buildKeyFactsSummary(
   const supabase = getSupabaseAdminClient();
 
   // 1. Fetch base case record
-  const { data: caseData } = await supabase
+  const { data: caseData, error: caseError } = await supabase
     .from("cases")
     .select("id, title, summary, practice_area, status, created_at")
     .eq("id", caseId)
     .eq("org_id", orgId)
-    .single();
+    .maybeSingle();
 
-  if (!caseData) {
-    throw new Error("Case not found");
+  if (caseError) {
+    console.error("[key-facts] Case lookup failed:", {
+      caseId,
+      orgId,
+      message: caseError.message,
+      code: (caseError as any).code,
+    });
+    throw new Error("Case lookup failed");
   }
+
+  if (!caseData) throw new Error("Case not found");
 
   const normalizedPracticeArea = normalizePracticeArea(caseData.practice_area);
 

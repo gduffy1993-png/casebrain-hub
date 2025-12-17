@@ -294,7 +294,8 @@ export function CaseKeyFactsPanel({ caseId }: KeyFactsPanelProps) {
     return (
       <Card title="Key Facts">
         <p className="text-sm text-accent/60">
-          {error ?? "No key facts available for this case."}
+          {(error ?? "No key facts available for this case.")}{" "}
+          <span className="text-xs text-accent/40">(caseId: {caseId})</span>
         </p>
       </Card>
     );

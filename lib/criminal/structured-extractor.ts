@@ -21,6 +21,8 @@ export type CriminalChargeExtract = {
   plea: "not_guilty" | "guilty" | "no_plea" | null;
   dateOfOffence: string | null; // YYYY-MM-DD
   chargeDate: string | null; // YYYY-MM-DD
+  location?: string | null;
+  status?: string | null;
   confidence: number; // 0-1 deterministic heuristic
   source: string;
 };
@@ -212,6 +214,8 @@ function extractChargesFromText(input: ExtractInput): { charges: CriminalChargeE
       plea,
       dateOfOffence: null,
       chargeDate: null,
+      location: null,
+      status: null,
       confidence: 0.65,
       source: documentName,
     });
@@ -240,6 +244,8 @@ function extractChargesFromText(input: ExtractInput): { charges: CriminalChargeE
       plea,
       dateOfOffence: null,
       chargeDate: null,
+      location: null,
+      status: null,
       confidence: 0.6,
       source: documentName,
     });
@@ -249,12 +255,47 @@ function extractChargesFromText(input: ExtractInput): { charges: CriminalChargeE
   const chargeDateStr =
     pickFirstLineValue(t, /\bdate of charge\b\s*[:\-]?\s*(\d{1,2}[\/\-.]\d{1,2}[\/\-.]\d{2,4})/i) ??
     pickFirstLineValue(t, /\bcharged on\b\s*[:\-]?\s*(\d{1,2}[\/\-.]\d{1,2}[\/\-.]\d{2,4})/i) ??
+    pickFirstLineValue(t, /\bcharge\s*date\b\s*[:\-]?\s*(\d{1,2}\s+[A-Za-z]{3,9}\s+\d{4})/i) ??
     null;
-  const parsedChargeDate =
-    chargeDateStr ? parseDMY(chargeDateStr.split(/[\/\-.]/)[0], chargeDateStr.split(/[\/\-.]/)[1], chargeDateStr.split(/[\/\-.]/)[2]) : null;
+  const parsedChargeDate = (() => {
+    if (!chargeDateStr) return null;
+    if (/\d{1,2}[\/\-.]\d{1,2}[\/\-.]\d{2,4}/.test(chargeDateStr)) {
+      const parts = chargeDateStr.split(/[\/\-.]/);
+      return parts.length >= 3 ? parseDMY(parts[0], parts[1], parts[2]) : null;
+    }
+    const m = chargeDateStr.match(/(\d{1,2})\s+([A-Za-z]{3,9})\s+(\d{4})/);
+    return m ? parseDMonY(m[1], m[2], m[3]) : null;
+  })();
   if (parsedChargeDate) {
     for (const c of charges) {
       if (!c.chargeDate) c.chargeDate = toIsoDateOnly(parsedChargeDate);
+    }
+  }
+
+  // Section line (common: "Section: s.18 OAPA 1861" separate from offence line)
+  const sectionLineVal =
+    pickFirstLineValue(
+      t,
+      /\bsection\b\s*[:\-]?\s*((?:s\.?\s*\d{1,3}[A-Za-z]*\b[^\n]{0,40}(?:OAPA|Offences Against the Person Act|Theft Act|Public Order Act)[^\n]{0,20}\d{4})|(?:s\.?\s*\d{1,3}[A-Za-z]*\b))/i,
+    ) ?? null;
+  if (sectionLineVal) {
+    const cleaned = sectionLineVal.split(";")[0]?.replace(/\s+/g, " ").trim();
+    for (const c of charges) {
+      if (!c.statute) c.statute = cleaned;
+    }
+  }
+
+  // Location / status lines (sometimes semi-colon separated)
+  const locationVal =
+    pickFirstLineValue(t, /\blocation\b\s*[:\-]?\s*([^;\n]{3,120})/i) ??
+    (t.match(/\blocation\b\s*[:\-]?\s*([^;\n]{3,120})/i)?.[1]?.trim() ?? null);
+  const statusVal =
+    pickFirstLineValue(t, /\bstatus\b\s*[:\-]?\s*([^;\n]{3,40})/i) ??
+    (t.match(/\bstatus\b\s*[:\-]?\s*([^;\n]{3,40})/i)?.[1]?.trim() ?? null);
+  if (locationVal || statusVal) {
+    for (const c of charges) {
+      if (locationVal && !c.location) c.location = locationVal.trim();
+      if (statusVal && !c.status) c.status = statusVal.trim();
     }
   }
 
@@ -278,6 +319,8 @@ function extractChargesFromText(input: ExtractInput): { charges: CriminalChargeE
       plea,
       dateOfOffence: null,
       chargeDate: null,
+      location: locationVal ?? null,
+      status: statusVal ?? null,
       confidence: 0.55,
       source: documentName,
     });
@@ -553,27 +596,67 @@ export async function persistCriminalCaseMeta(params: {
   // 2) Insert new charges (no schema unique constraint, so de-dupe manually)
   const { data: existingCharges } = await supabase
     .from("criminal_charges")
-    .select("id, offence, section, charge_date")
+    .select("id, offence, section, charge_date, location, status")
     .eq("case_id", caseId)
     .eq("org_id", orgId);
 
-  const existingChargeKey = new Set(
-    (existingCharges ?? []).map((c: any) => `${safeLower(c.offence)}|${safeLower(c.section ?? "")}|${String(c.charge_date ?? "")}`),
-  );
+  const existing = existingCharges ?? [];
+  const findMatch = (ch: CriminalChargeExtract): any | null => {
+    const offence = safeLower(ch.offence);
+    const section = safeLower(ch.statute ?? "");
+    const date = String(ch.chargeDate ?? "");
+    // Prefer strict match including date; fall back to offence+section if date missing
+    return (
+      existing.find(
+        (c: any) =>
+          safeLower(c.offence) === offence &&
+          safeLower(c.section ?? "") === section &&
+          String(c.charge_date ?? "") === date,
+      ) ??
+      (date ? null : existing.find((c: any) => safeLower(c.offence) === offence && safeLower(c.section ?? "") === section)) ??
+      null
+    );
+  };
 
   for (const ch of meta.charges) {
-    const key = `${safeLower(ch.offence)}|${safeLower(ch.statute ?? "")}|${String(ch.chargeDate ?? "")}`;
-    if (existingChargeKey.has(key)) continue;
+    const match = findMatch(ch);
 
-    await supabase.from("criminal_charges").insert({
+    const nextStatus = (ch.status ?? null) ? String(ch.status).toLowerCase().replace(/\s+/g, "_") : null;
+    const nextLocation = ch.location ? String(ch.location).trim() : null;
+
+    if (match?.id) {
+      const { error: updateErr } = await supabase
+        .from("criminal_charges")
+        .update({
+          offence: ch.offence,
+          section: ch.statute,
+          charge_date: ch.chargeDate,
+          location: nextLocation ?? match.location ?? null,
+          status: nextStatus ?? match.status ?? null,
+          details: `[AUTO_EXTRACTED] source=${ch.source}; confidence=${ch.confidence}`,
+        })
+        .eq("id", match.id)
+        .eq("case_id", caseId);
+
+      if (updateErr) {
+        console.error("[criminal] Failed to update charge (non-fatal):", updateErr);
+      }
+      continue;
+    }
+
+    const { error: insertErr } = await supabase.from("criminal_charges").insert({
       case_id: caseId,
       org_id: orgId,
       offence: ch.offence,
       section: ch.statute,
       charge_date: ch.chargeDate,
+      location: nextLocation,
       details: `[AUTO_EXTRACTED] source=${ch.source}; confidence=${ch.confidence}`,
-      status: "pending",
+      status: nextStatus ?? "proceeding",
     });
+    if (insertErr) {
+      console.error("[criminal] Failed to insert charge (non-fatal):", insertErr);
+    }
   }
 
   // 3) Insert new hearings

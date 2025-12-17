@@ -408,44 +408,45 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
       return extracted?.dates ?? [];
     })
     .find((d) => d.label.toLowerCase().includes("incident") || d.label.toLowerCase().includes("accident"));
-  
-  // Map to standardized practice area for limitation calculation
-  const normalizedPracticeArea = caseRecord.practice_area === "housing_disrepair" 
-    ? "housing_disrepair" 
-    : caseRecord.practice_area === "personal_injury" || caseRecord.practice_area === "pi"
-      ? "personal_injury" 
-      : caseRecord.practice_area === "clinical_negligence" 
-        ? "clinical_negligence"
-        : caseRecord.practice_area === "family"
-          ? "family"
-          : "other_litigation";
-  
-  // Legacy mapping for limitation calculation (which still uses old types internally)
-  const limitationPracticeAreaLegacy = normalizedPracticeArea === "housing_disrepair"
-    ? "housing"
-    : normalizedPracticeArea === "personal_injury"
-      ? "pi_rta"
-      : normalizedPracticeArea === "clinical_negligence"
-        ? "clin_neg"
-        : "other";
-  
-  const limitationResult = firstDate 
-    ? calculateLimitation({ 
-        incidentDate: firstDate.isoDate, 
-        practiceArea: limitationPracticeAreaLegacy as "housing" | "pi_rta" | "pi_general" | "clin_neg" | "other"
-      }) 
-    : null;
 
-  const limitationInfo: LimitationInfo | undefined = limitationResult ? {
-    caseId,
-    causeOfAction: normalizedPracticeArea === "housing_disrepair" ? "Breach of contract (housing disrepair)" : "Personal injury",
-    primaryLimitationDate: limitationResult.limitationDate ?? "",
-    daysRemaining: limitationResult.daysRemaining ?? 0,
-    isExpired: limitationResult.isExpired,
-    severity: limitationResult.severity.toUpperCase() as "LOW" | "MEDIUM" | "HIGH" | "CRITICAL",
-    practiceArea: normalizedPracticeArea as import("@/lib/types/casebrain").PracticeArea,
-    hasMinor: limitationResult.isMinor,
-  } : undefined;
+  // Criminal: do NOT run civil limitation logic (prevents "issue proceedings/standstill" leakage)
+  const limitationInfo: LimitationInfo | undefined = (() => {
+    if (isCriminalCase) return undefined;
+    if (!firstDate) return undefined;
+
+    // Legacy mapping for limitation calculation (which still uses old types internally)
+    const limitationPracticeAreaLegacy =
+      normalizedPracticeAreaValue === "housing_disrepair"
+        ? "housing"
+        : normalizedPracticeAreaValue === "personal_injury"
+          ? "pi_rta"
+          : normalizedPracticeAreaValue === "clinical_negligence"
+            ? "clin_neg"
+            : "other";
+
+    const limitationResult = calculateLimitation({
+      incidentDate: firstDate.isoDate,
+      practiceArea: limitationPracticeAreaLegacy as "housing" | "pi_rta" | "pi_general" | "clin_neg" | "other",
+    });
+
+    if (!limitationResult) return undefined;
+
+    return {
+      caseId,
+      causeOfAction:
+        normalizedPracticeAreaValue === "housing_disrepair"
+          ? "Breach of contract (housing disrepair)"
+          : normalizedPracticeAreaValue === "clinical_negligence"
+            ? "Clinical negligence"
+            : "Personal injury",
+      primaryLimitationDate: limitationResult.limitationDate ?? "",
+      daysRemaining: limitationResult.daysRemaining ?? 0,
+      isExpired: limitationResult.isExpired,
+      severity: limitationResult.severity.toUpperCase() as "LOW" | "MEDIUM" | "HIGH" | "CRITICAL",
+      practiceArea: normalizedPracticeAreaValue as import("@/lib/types/casebrain").PracticeArea,
+      hasMinor: limitationResult.isMinor,
+    };
+  })();
 
   // TODO: legacy missing evidence – replaced by case_analysis_versions
   // Missing evidence is now sourced from case_analysis_versions.missing_evidence

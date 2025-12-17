@@ -7,6 +7,13 @@ type RouteParams = {
   params: Promise<{ caseId: string }>;
 };
 
+function looksLikeUuid(value: string): boolean {
+  // Accept any UUID variant (Supabase ids are UUID strings; don't over-constrain version bits)
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(
+    value,
+  );
+}
+
 /**
  * GET /api/cases/[caseId]/key-facts
  * 
@@ -28,6 +35,14 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       const { orgId } = await requireAuthContext();
       const { caseId } = await params;
 
+      if (!looksLikeUuid(caseId)) {
+        console.warn("[key-facts] Invalid caseId format:", { caseId });
+        return NextResponse.json(
+          { error: "Invalid caseId (expected UUID)", caseIdUsed: caseId },
+          { status: 400 },
+        );
+      }
+
       const keyFacts = await buildKeyFactsSummary(caseId, orgId);
 
       return NextResponse.json({ keyFacts });
@@ -38,8 +53,10 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 
       // Don't retry on "Case not found" errors
       if (lastError.message === "Case not found") {
+        const { caseId } = await params;
+        console.warn("[key-facts] Case not found (404):", { caseId });
         return NextResponse.json(
-          { error: "Case not found" },
+          { error: "Case not found", caseIdUsed: caseId },
           { status: 404 },
         );
       }
@@ -55,6 +72,10 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
   // All retries exhausted.
   // SAFETY: return a minimal keyFacts payload so the case page never hard-breaks.
   const { caseId } = await params;
+  console.error("[key-facts] Returning fallback payload after retries exhausted:", {
+    caseId,
+    message: lastError?.message ?? "Unknown error",
+  });
   const fallback: KeyFactsSummary = {
     caseId,
     practiceArea: undefined,

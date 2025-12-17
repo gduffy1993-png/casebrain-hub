@@ -82,8 +82,9 @@ export function calculateAllNextSteps(input: NextStepInput): NextStep[] {
     }
   }
 
-  // 1. CRITICAL: Limitation approaching
-  if (input.limitationInfo) {
+  // 1. CRITICAL: Limitation approaching (civil only)
+  // Criminal defence: do not surface civil limitation/proceedings language.
+  if (input.limitationInfo && input.practiceArea !== "criminal") {
     const { daysRemaining, isExpired } = input.limitationInfo;
 
     if (isExpired) {
