@@ -928,8 +928,14 @@ export type KeyFactsKeyDate = {
   isUrgent?: boolean;
 };
 
+export type KeyFactsBundleSummarySection = {
+  title: string;
+  body: string;
+};
+
 export type KeyFactsSummary = {
   caseId: string;
+  practiceArea?: PracticeArea;
   clientName?: string;
   opponentName?: string;
   courtName?: string;
@@ -944,6 +950,8 @@ export type KeyFactsSummary = {
   mainRisks: string[];
   primaryIssues: string[];
   nextStepsBrief?: string;
+  bundleSummarySections?: KeyFactsBundleSummarySection[];
+  layeredSummary?: import("@/lib/layered-summary/types").LayeredSummary | null;
 };
 
 // =============================================================================

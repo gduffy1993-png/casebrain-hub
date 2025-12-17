@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import {
   User,
   Users,
@@ -19,6 +20,8 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import type { KeyFactsSummary, KeyFactsKeyDate } from "@/lib/types/casebrain";
 import type { ExtractedCaseFacts } from "@/types";
+import { selectDefaultRole } from "@/lib/layered-summary/default-role";
+import type { CaseSolicitorRole, DomainKey } from "@/lib/layered-summary/types";
 
 type KeyFactsPanelProps = {
   caseId: string;
@@ -48,11 +51,15 @@ export function CaseKeyFactsPanel({ caseId }: KeyFactsPanelProps) {
   const [keyFacts, setKeyFacts] = useState<KeyFactsSummary | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [supervisorView, setSupervisorView] = useState(false);
+  const [openDomains, setOpenDomains] = useState<Set<string>>(new Set());
+  const [expandedRole, setExpandedRole] = useState<CaseSolicitorRole | null>(null);
   const [fallbackData, setFallbackData] = useState<{
     parties: Array<{ name: string; role: string }>;
     dates: Array<{ label: string; date: string }>;
     amounts: Array<{ label: string; value: number; currency: string }>;
   } | null>(null);
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     const fetchKeyFacts = async () => {
@@ -187,6 +194,22 @@ export function CaseKeyFactsPanel({ caseId }: KeyFactsPanelProps) {
     fetchKeyFacts();
   }, [caseId]);
 
+  // Initialise default expanded domains and role lens (calm UI)
+  useEffect(() => {
+    if (!keyFacts?.layeredSummary) return;
+
+    const roleParam = searchParams?.get("role");
+    const defaultRole = selectDefaultRole({
+      roleParam,
+      practiceArea: keyFacts.practiceArea,
+    });
+    setExpandedRole(defaultRole);
+
+    const domains = keyFacts.layeredSummary.domainSummaries.slice().sort((a, b) => b.relevanceScore - a.relevanceScore);
+    const topToOpen = domains.slice(0, 2).map((d) => d.domain);
+    setOpenDomains(new Set(topToOpen));
+  }, [keyFacts?.layeredSummary, keyFacts?.practiceArea, searchParams]);
+
   if (isLoading) {
     return (
       <Card title="Key Facts">
@@ -271,6 +294,7 @@ export function CaseKeyFactsPanel({ caseId }: KeyFactsPanelProps) {
 
   const stageLabel = keyFacts.stage.replace(/_/g, " ");
   const fundingLabel = keyFacts.fundingType.replace(/_/g, " ");
+  const layered = keyFacts.layeredSummary;
 
   return (
     <Card
@@ -362,6 +386,135 @@ export function CaseKeyFactsPanel({ caseId }: KeyFactsPanelProps) {
           </div>
         )}
 
+        {/* Layered Summary System (Domain Summaries) */}
+        {layered && (
+          <div className="space-y-4">
+            <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-primary/10 bg-surface-muted/30 p-4">
+              <div>
+                <p className="text-xs uppercase tracking-wide text-accent/50">Domain Summaries</p>
+                {layered.isLargeBundleMode && (
+                  <div className="mt-1 flex flex-wrap items-center gap-2">
+                    <Badge variant="outline" size="sm">Large Bundle Mode</Badge>
+                    {typeof layered.source.totalPages === "number" && (
+                      <span className="text-xs text-accent/60">{layered.source.totalPages} pages</span>
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Domains (collapsed by default; top 1–2 open) */}
+            <div className="space-y-2">
+              {layered.domainSummaries.map((d) => {
+                const isOpen = openDomains.has(d.domain);
+                return (
+                  <details
+                    key={d.domain}
+                    open={isOpen}
+                    className="rounded-xl border border-primary/10 bg-background/40 px-4 py-3"
+                    onToggle={(e) => {
+                      const next = new Set(openDomains);
+                      const el = e.currentTarget;
+                      if (el.open) next.add(d.domain);
+                      else next.delete(d.domain);
+                      setOpenDomains(next);
+                    }}
+                  >
+                    <summary className="cursor-pointer text-sm font-medium text-accent">
+                      {d.title}
+                      <span className="ml-2 text-xs text-accent/50">({d.sourceDocIds.length} docs)</span>
+                    </summary>
+
+                    <div className="mt-3 space-y-3">
+                      {d.keyFacts.length > 0 && (
+                        <div>
+                          <p className="text-xs uppercase tracking-wide text-accent/50">Key facts</p>
+                          <ul className="mt-1 space-y-1">
+                            {d.keyFacts.slice(0, layered.isLargeBundleMode ? 8 : 5).map((x, i) => (
+                              <li key={i} className="text-sm text-accent/80">- {x}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+
+                      {d.timelineHighlights.length > 0 && (
+                        <div>
+                          <p className="text-xs uppercase tracking-wide text-accent/50">Timeline highlights</p>
+                          <ul className="mt-1 space-y-1">
+                            {d.timelineHighlights.slice(0, 6).map((t, i) => (
+                              <li key={i} className="text-sm text-accent/80">
+                                - <span className="text-accent/60">{new Date(t.dateISO).toISOString().slice(0, 10)}</span> — {t.label}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+
+                      {d.contradictionsOrUncertainties.length > 0 && (
+                        <div>
+                          <p className="text-xs uppercase tracking-wide text-accent/50">Contradictions / uncertainties</p>
+                          <ul className="mt-1 space-y-1">
+                            {d.contradictionsOrUncertainties.slice(0, 4).map((x, i) => (
+                              <li key={i} className="text-sm text-accent/80">- {x}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+
+                      {d.missingEvidence.length > 0 && (
+                        <div>
+                          <p className="text-xs uppercase tracking-wide text-accent/50">Missing evidence (domain-specific)</p>
+                          <ul className="mt-1 space-y-1">
+                            {d.missingEvidence.slice(0, 6).map((m, i) => (
+                              <li key={i} className="text-sm text-accent/80">
+                                - {m.label}
+                                {m.priority && <span className="ml-2 text-xs text-accent/60">[{m.priority}]</span>}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+
+                      {d.helpsHurts.length > 0 && (
+                        <div>
+                          <p className="text-xs uppercase tracking-wide text-accent/50">Why it helps / hurts</p>
+                          <ul className="mt-1 space-y-1">
+                            {d.helpsHurts.slice(0, 3).map((x, i) => (
+                              <li key={i} className="text-sm text-accent/80">- {x}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  </details>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* Bundle Summary (longer, sectioned) */}
+        {keyFacts.bundleSummarySections && keyFacts.bundleSummarySections.length > 0 && (
+          <div className="rounded-xl border border-primary/10 bg-surface-muted/30 p-4">
+            <div className="flex items-center gap-2">
+              <FileText className="h-4 w-4 text-primary/70" />
+              <p className="text-xs uppercase tracking-wide text-accent/50">Bundle Summary</p>
+            </div>
+            <div className="mt-3 space-y-2">
+              {keyFacts.bundleSummarySections.map((section, idx) => (
+                <details key={`${section.title}-${idx}`} className="rounded-lg border border-primary/10 bg-background/40 px-3 py-2">
+                  <summary className="cursor-pointer text-sm font-medium text-accent">
+                    {section.title}
+                  </summary>
+                  <p className="mt-2 whitespace-pre-wrap text-sm text-accent/80">
+                    {section.body}
+                  </p>
+                </details>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Client Objectives */}
         {keyFacts.whatClientWants && (
           <div className="rounded-xl border border-secondary/20 bg-secondary/5 p-4">
@@ -431,6 +584,113 @@ export function CaseKeyFactsPanel({ caseId }: KeyFactsPanelProps) {
               <p className="text-xs uppercase tracking-wide text-accent/50">Next Step</p>
             </div>
             <p className="mt-1 text-sm font-medium text-accent">{keyFacts.nextStepsBrief}</p>
+          </div>
+        )}
+
+        {/* Role lenses (must be last) */}
+        {layered && (
+          <div className="space-y-3">
+            <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-primary/10 bg-surface-muted/30 p-4">
+              <div>
+                <p className="text-xs uppercase tracking-wide text-accent/50">Role lenses</p>
+                <p className="mt-1 text-xs text-accent/60">
+                  Decision-support only. Uses the same domain summaries (no re-extraction per role).
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setSupervisorView((v) => !v)}
+                className="rounded-lg border border-primary/20 bg-primary/5 px-3 py-1.5 text-xs text-primary hover:bg-primary/10"
+              >
+                {supervisorView ? "Supervisor view: ON" : "Supervisor view"}
+              </button>
+            </div>
+
+            <div className="space-y-2">
+              {(Object.keys(layered.roleLenses) as CaseSolicitorRole[]).map((role) => {
+                const lens = layered.roleLenses[role];
+                const open = expandedRole === role;
+                return (
+                  <details
+                    key={role}
+                    open={open}
+                    className="rounded-xl border border-primary/10 bg-background/40 px-4 py-3"
+                    onToggle={(e) => {
+                      const el = e.currentTarget;
+                      if (el.open) setExpandedRole(role);
+                      else if (expandedRole === role) setExpandedRole(null);
+                    }}
+                  >
+                    <summary className="cursor-pointer text-sm font-medium text-accent">
+                      {lens.title}
+                      {open && <span className="ml-2 text-xs text-accent/50">(expanded)</span>}
+                    </summary>
+                    <div className="mt-3 space-y-3">
+                      <div>
+                        <p className="text-xs uppercase tracking-wide text-accent/50">What matters most</p>
+                        <ul className="mt-1 space-y-1">
+                          {lens.whatMattersMost.map((x, i) => (
+                            <li key={i} className="text-sm text-accent/80">- {x}</li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div>
+                        <p className="text-xs uppercase tracking-wide text-accent/50">Primary risk</p>
+                        <p className="mt-1 text-sm text-accent/80">{lens.primaryRisk}</p>
+                      </div>
+                      <div>
+                        <p className="text-xs uppercase tracking-wide text-accent/50">Recommended next move</p>
+                        <p className="mt-1 text-sm font-medium text-accent">{lens.recommendedNextMove}</p>
+                      </div>
+
+                      {supervisorView && (
+                        <div className="rounded-xl border border-primary/10 bg-primary/5 p-3">
+                          <p className="text-xs uppercase tracking-wide text-accent/50">Supervisor addendum</p>
+                          {lens.supervisorAddendum.topRisks.length > 0 && (
+                            <div className="mt-2">
+                              <p className="text-xs text-accent/60">Top risks</p>
+                              <ul className="mt-1 space-y-1">
+                                {lens.supervisorAddendum.topRisks.map((x, i) => (
+                                  <li key={i} className="text-sm text-accent/80">- {x}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                          {lens.supervisorAddendum.upcomingDeadlines.length > 0 && (
+                            <div className="mt-2">
+                              <p className="text-xs text-accent/60">Upcoming deadlines</p>
+                              <ul className="mt-1 space-y-1">
+                                {lens.supervisorAddendum.upcomingDeadlines.map((x, i) => (
+                                  <li key={i} className="text-sm text-accent/80">- {x}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                          <div className="mt-2">
+                            <p className="text-xs text-accent/60">Spend guardrails</p>
+                            <ul className="mt-1 space-y-1">
+                              {lens.supervisorAddendum.spendGuardrails.map((x, i) => (
+                                <li key={i} className="text-sm text-accent/80">- {x}</li>
+                              ))}
+                            </ul>
+                          </div>
+                          {lens.supervisorAddendum.escalationTriggers.length > 0 && (
+                            <div className="mt-2">
+                              <p className="text-xs text-accent/60">Escalation triggers</p>
+                              <ul className="mt-1 space-y-1">
+                                {lens.supervisorAddendum.escalationTriggers.map((x, i) => (
+                                  <li key={i} className="text-sm text-accent/80">- {x}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </details>
+                );
+              })}
+            </div>
           </div>
         )}
       </div>
