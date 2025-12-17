@@ -18,6 +18,90 @@ export type OrgContext = UserContext & {
   orgId: string;
 };
 
+function isUuid(value: string): boolean {
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(
+    value,
+  );
+}
+
+async function getOrCreateOrganisationIdByExternalRef(params: {
+  externalRef: string;
+  name: string;
+}): Promise<string> {
+  const supabase = getSupabaseAdminClient();
+
+  const { data, error } = await supabase
+    .from("organisations")
+    .upsert(
+      {
+        external_ref: params.externalRef,
+        name: params.name,
+        email_domain: null,
+      } as any,
+      { onConflict: "external_ref" },
+    )
+    .select("id")
+    .single();
+
+  if (error) {
+    // If external_ref column doesn't exist yet, this is a migration issue.
+    console.error("[auth] Failed to resolve organisation by external_ref:", {
+      externalRef: params.externalRef,
+      message: error.message,
+      code: (error as any).code,
+    });
+    throw new Error("Organisation resolution failed (missing external_ref column?)");
+  }
+
+  const orgId = (data as any)?.id as string | undefined;
+  if (!orgId || !isUuid(orgId)) {
+    console.error("[auth] Organisation resolver returned non-UUID id:", {
+      externalRef: params.externalRef,
+      orgId,
+    });
+    throw new Error("Invalid orgId (expected UUID)");
+  }
+
+  return orgId;
+}
+
+const legacyOrgMigrationDone = new Set<string>();
+
+async function migrateLegacyOrgIdsToUuid(params: {
+  newOrgId: string;
+  legacyOrgIds: string[];
+}): Promise<void> {
+  const { newOrgId, legacyOrgIds } = params;
+  const key = `${newOrgId}:${legacyOrgIds.join(",")}`;
+  if (legacyOrgMigrationDone.has(key)) return;
+  legacyOrgMigrationDone.add(key);
+
+  // Use `any` to avoid deep Supabase type instantiation in dynamic table updates.
+  const supabase: any = getSupabaseAdminClient();
+
+  const tables = [
+    "cases",
+    "documents",
+    "letters",
+    "risk_flags",
+    "deadlines",
+    "timeline_events",
+    "case_notes",
+    "key_issues",
+    "limitation_info",
+    "time_entries",
+  ];
+
+  for (const table of tables) {
+    try {
+      // Best effort: if table/column types don't match, ignore.
+      await supabase.from(table).update({ org_id: newOrgId }).in("org_id", legacyOrgIds);
+    } catch {
+      // ignore
+    }
+  }
+}
+
 function resolveRole(sessionClaims: unknown): CasebrainRole {
   const metadata = (sessionClaims as { metadata?: { role?: string } } | undefined)?.metadata;
   const roleClaim = metadata?.role?.toLowerCase();
@@ -69,13 +153,28 @@ export const requireOrg = cache(async (): Promise<OrgContext> => {
     (sessionClaims as { org_id?: string } | undefined)?.org_id ??
     null;
 
-  // If no Clerk org, derive a stable orgId from userId for single-tenant mode
-  const orgId = activeOrgId ?? `solo-${userId}`;
+  // SOLO-TENANT ORG RESOLUTION (always return UUID orgId)
+  // - If no Clerk org: external_ref = "solo-user_<userId>"
+  // - If Clerk org present: external_ref = "clerk-org_<clerkOrgId>"
+  const externalRef = activeOrgId ? `clerk-org_${activeOrgId}` : `solo-user_${userId}`;
+  const orgId = await getOrCreateOrganisationIdByExternalRef({
+    externalRef,
+    name: activeOrgId ? "Clerk Organisation Workspace" : "Solo Workspace",
+  });
+
+  // Best-effort: migrate legacy org_id strings to UUID so existing data stays accessible.
+  // Previous versions stored org_id as Clerk org string or "solo-<userId>".
+  const legacyOrgIds = [
+    ...(activeOrgId ? [activeOrgId] : []),
+    `solo-${userId}`,
+    `solo-user_${userId}`,
+  ];
+  await migrateLegacyOrgIdsToUuid({ newOrgId: orgId, legacyOrgIds });
 
   if (!activeOrgId) {
     console.warn(
       "[auth] Active organization missing. Using single-tenant org derived from userId.",
-      { userId, orgId },
+      { userId, orgId, externalRef },
     );
   }
 
@@ -148,23 +247,67 @@ export async function ensureSupabaseUser() {
 }
 
 export async function getOrgMembers(orgId: string) {
-  // If using solo/single-tenant mode (no real Clerk org), return current user
-  if (orgId.startsWith("solo-")) {
+  // Hard guard: do not query Clerk/DB using non-UUID orgId
+  if (!isUuid(orgId)) {
+    console.error("[auth] Invalid orgId supplied to getOrgMembers (expected UUID):", {
+      orgId,
+    });
+    return [];
+  }
+
+  const supabase = getSupabaseAdminClient();
+  const { data: orgRow, error } = await supabase
+    .from("organisations")
+    .select("external_ref")
+    .eq("id", orgId)
+    .maybeSingle();
+
+  if (error) {
+    console.error("[auth] Failed to load organisation external_ref for members lookup:", error);
+    return [];
+  }
+
+  const externalRef = (orgRow as any)?.external_ref as string | null | undefined;
+
+  // If using solo/single-tenant mode, return current user
+  if (externalRef && externalRef.startsWith("solo-user_")) {
     const user = await getCurrentUser();
     if (user) {
-      return [{
-        id: user.id,
-        email: user.primaryEmailAddress?.emailAddress ?? "Unknown",
-        role: "owner",
-      }];
+      return [
+        {
+          id: user.id,
+          email: user.primaryEmailAddress?.emailAddress ?? "Unknown",
+          role: "owner",
+        },
+      ];
     }
     return [];
   }
 
   try {
+    const clerkOrgId =
+      externalRef && externalRef.startsWith("clerk-org_")
+        ? externalRef.replace(/^clerk-org_/, "")
+        : null;
+
+    if (!clerkOrgId) {
+      // No Clerk mapping: return current user as a safe fallback
+      const user = await getCurrentUser();
+      if (user) {
+        return [
+          {
+            id: user.id,
+            email: user.primaryEmailAddress?.emailAddress ?? "Unknown",
+            role: "owner",
+          },
+        ];
+      }
+      return [];
+    }
+
     const client = await clerkClient();
     const memberships = await client.organizations.getOrganizationMembershipList({
-      organizationId: orgId,
+      organizationId: clerkOrgId,
       limit: 100,
     });
 

@@ -5,7 +5,7 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
-import { requireAuthContext } from "@/lib/auth";
+import { requireAuthContextApi } from "@/lib/auth-api";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { findAllDefenseAngles } from "@/lib/criminal/aggressive-defense-engine";
 import { withPaywall } from "@/lib/paywall/protect-route";
@@ -17,7 +17,9 @@ type RouteParams = {
 export async function GET(request: NextRequest, { params }: RouteParams) {
   return await withPaywall("analysis", async () => {
     try {
-      const { orgId } = await requireAuthContext();
+      const authRes = await requireAuthContextApi();
+      if (!authRes.ok) return authRes.response;
+      const { orgId } = authRes.context;
       const { caseId } = await params;
 
     // Verify case access

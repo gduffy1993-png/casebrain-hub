@@ -95,6 +95,23 @@ export async function getOrCreateOrganisationForUser(
     throw new Error("Invalid email address format");
   }
 
+  // Solo workspace external ref (stable mapping for single-tenant mode)
+  const soloExternalRef = `solo-user_${user.id}`;
+
+  // If we've already created a dedicated solo org for this user, prefer it.
+  try {
+    const { data: byExternalRef } = await supabase
+      .from("organisations")
+      .select("*")
+      .eq("external_ref", soloExternalRef)
+      .maybeSingle();
+    if (byExternalRef) {
+      return byExternalRef as Organisation;
+    }
+  } catch {
+    // Non-fatal: external_ref column may not exist yet in some environments
+  }
+
   // Check if domain is generic (personal email)
   const isGenericDomain = GENERIC_EMAIL_DOMAINS.has(domain);
 
@@ -121,6 +138,17 @@ export async function getOrCreateOrganisationForUser(
         .maybeSingle();
 
       if (member) {
+        // Backfill external_ref for stability in solo mode (best-effort)
+        if (!(existingPersonal as any).external_ref) {
+          try {
+            await supabase
+              .from("organisations")
+              .update({ external_ref: soloExternalRef } as any)
+              .eq("id", existingPersonal.id);
+          } catch {
+            // ignore
+          }
+        }
         return existingPersonal as Organisation;
       }
     }
@@ -133,6 +161,7 @@ export async function getOrCreateOrganisationForUser(
         name: orgName,
         email_domain: null,
         plan: "FREE",
+        external_ref: soloExternalRef,
         upload_count: 0,
         analysis_count: 0,
         export_count: 0,
@@ -149,6 +178,7 @@ export async function getOrCreateOrganisationForUser(
           name: orgName,
           email_domain: null,
           plan: "FREE",
+          external_ref: soloExternalRef,
         })
         .select("*")
         .single();

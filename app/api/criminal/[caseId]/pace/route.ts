@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { requireAuthContext } from "@/lib/auth";
+import { requireAuthContextApi } from "@/lib/auth-api";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 
 type RouteParams = {
@@ -13,7 +13,9 @@ type RouteParams = {
 export async function GET(_request: Request, { params }: RouteParams) {
   try {
     const { caseId } = await params;
-    const { orgId } = await requireAuthContext();
+    const authRes = await requireAuthContextApi();
+    if (!authRes.ok) return authRes.response;
+    const { orgId } = authRes.context;
     const supabase = getSupabaseAdminClient();
 
     const { data: pace, error } = await supabase

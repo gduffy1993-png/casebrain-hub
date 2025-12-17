@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { requireAuthContext } from "@/lib/auth";
+import { requireAuthContextApi } from "@/lib/auth-api";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { detectAllLoopholes } from "@/lib/criminal/loophole-detector";
 import { generateDefenseStrategies, calculateGetOffProbability } from "@/lib/criminal/strategy-generator";
@@ -17,7 +17,9 @@ type RouteParams = {
 export async function POST(_request: Request, { params }: RouteParams) {
   try {
     const { caseId } = await params;
-    const { orgId, userId } = await requireAuthContext();
+    const authRes = await requireAuthContextApi();
+    if (!authRes.ok) return authRes.response;
+    const { orgId, userId } = authRes.context;
     const supabase = getSupabaseAdminClient();
 
     // Fetch case
@@ -90,24 +92,60 @@ export async function POST(_request: Request, { params }: RouteParams) {
         .insert(criminalCaseData);
     }
 
-    // Create/update charges
+    // Create/update charges (idempotent, no unique constraint required)
     if (criminalMeta.charges && criminalMeta.charges.length > 0) {
+      const { data: existing } = await supabase
+        .from("criminal_charges")
+        .select("id, offence, section, charge_date")
+        .eq("case_id", caseId)
+        .eq("org_id", orgId);
+
+      const existingRows = existing ?? [];
       for (const charge of criminalMeta.charges) {
-        await supabase
-          .from("criminal_charges")
-          .upsert(
-            {
-              case_id: caseId,
-              org_id: orgId,
-              offence: charge.offence,
-              section: charge.section || null,
-              charge_date: charge.date ? new Date(charge.date).toISOString().split("T")[0] : null,
+        const offence = String(charge.offence ?? "").trim();
+        const section = (charge.section ? String(charge.section).trim() : "");
+        const chargeDate = charge.date ? new Date(charge.date).toISOString().slice(0, 10) : null;
+
+        const match =
+          existingRows.find(
+            (c: any) =>
+              String(c.offence ?? "").toLowerCase() === offence.toLowerCase() &&
+              String(c.section ?? "").toLowerCase() === section.toLowerCase() &&
+              String(c.charge_date ?? "") === String(chargeDate ?? ""),
+          ) ??
+          (!chargeDate
+            ? existingRows.find(
+                (c: any) =>
+                  String(c.offence ?? "").toLowerCase() === offence.toLowerCase() &&
+                  String(c.section ?? "").toLowerCase() === section.toLowerCase(),
+              )
+            : null);
+
+        if (match?.id) {
+          await supabase
+            .from("criminal_charges")
+            .update({
+              offence,
+              section: section || null,
+              charge_date: chargeDate,
               location: charge.location || null,
               value: charge.value || null,
               details: charge.details || null,
-            },
-            { onConflict: "case_id,offence" },
-          );
+            })
+            .eq("id", match.id)
+            .eq("case_id", caseId);
+        } else {
+          await supabase.from("criminal_charges").insert({
+            case_id: caseId,
+            org_id: orgId,
+            offence,
+            section: section || null,
+            charge_date: chargeDate,
+            location: charge.location || null,
+            value: charge.value || null,
+            details: charge.details || null,
+          });
+        }
       }
     }
 
