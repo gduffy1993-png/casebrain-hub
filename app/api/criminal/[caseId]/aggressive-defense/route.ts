@@ -9,6 +9,8 @@ import { requireAuthContextApi } from "@/lib/auth-api";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { findAllDefenseAngles } from "@/lib/criminal/aggressive-defense-engine";
 import { withPaywall } from "@/lib/paywall/protect-route";
+import { getCriminalBundleCompleteness } from "@/lib/criminal/bundle-completeness";
+import { shouldShowProbabilities } from "@/lib/criminal/probability-gate";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -21,6 +23,13 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       if (!authRes.ok) return authRes.response;
       const { orgId } = authRes.context;
       const { caseId } = await params;
+
+      const bundle = await getCriminalBundleCompleteness({ caseId, orgId });
+      const gate = shouldShowProbabilities({
+        practiceArea: "criminal",
+        completeness: bundle.completeness,
+        criticalMissingCount: bundle.criticalMissingCount,
+      });
 
     // Verify case access
     const supabase = getSupabaseAdminClient();
@@ -67,7 +76,28 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     // Get aggressive defense analysis
     const analysis = await findAllDefenseAngles(criminalMeta, caseId);
 
-      return NextResponse.json(analysis);
+    if (!gate.show) {
+      return NextResponse.json({
+        ...analysis,
+        probabilitiesSuppressed: true,
+        suppressionReason: gate.reason,
+        bundleCompleteness: bundle.completeness,
+        criticalMissingCount: bundle.criticalMissingCount,
+        overallWinProbability: null,
+        recommendedStrategy: analysis?.recommendedStrategy
+          ? { ...analysis.recommendedStrategy, combinedProbability: null }
+          : analysis?.recommendedStrategy,
+        criticalAngles: (analysis?.criticalAngles ?? []).map((a: any) => ({ ...a, winProbability: null })),
+        allAngles: (analysis?.allAngles ?? []).map((a: any) => ({ ...a, winProbability: null })),
+      });
+    }
+
+      return NextResponse.json({
+        ...analysis,
+        probabilitiesSuppressed: false,
+        bundleCompleteness: bundle.completeness,
+        criticalMissingCount: bundle.criticalMissingCount,
+      });
     } catch (error) {
       console.error("Failed to generate aggressive defense analysis:", error);
       return NextResponse.json(

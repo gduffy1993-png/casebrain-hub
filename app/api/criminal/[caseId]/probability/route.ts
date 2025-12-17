@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { requireAuthContextApi } from "@/lib/auth-api";
 import { getSupabaseAdminClient } from "@/lib/supabase";
+import { getCriminalBundleCompleteness } from "@/lib/criminal/bundle-completeness";
+import { shouldShowProbabilities } from "@/lib/criminal/probability-gate";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -18,6 +20,26 @@ export async function GET(_request: Request, { params }: RouteParams) {
     const { orgId } = authRes.context;
     const supabase = getSupabaseAdminClient();
 
+    const bundle = await getCriminalBundleCompleteness({ caseId, orgId });
+    const gate = shouldShowProbabilities({
+      practiceArea: "criminal",
+      completeness: bundle.completeness,
+      criticalMissingCount: bundle.criticalMissingCount,
+    });
+
+    if (!gate.show) {
+      return NextResponse.json({
+        overall: null,
+        topStrategy: "Disclosure-first actions only",
+        topStrategyProbability: null,
+        riskLevel: "MEDIUM",
+        probabilitiesSuppressed: true,
+        suppressionReason: gate.reason,
+        bundleCompleteness: bundle.completeness,
+        criticalMissingCount: bundle.criticalMissingCount,
+      });
+    }
+
     // Fetch criminal case
     const { data: criminalCase } = await supabase
       .from("criminal_cases")
@@ -33,6 +55,9 @@ export async function GET(_request: Request, { params }: RouteParams) {
         topStrategy: criminalCase.recommended_strategy ?? "Evidence Challenge",
         topStrategyProbability: 70,
         riskLevel: criminalCase.risk_level ?? "MEDIUM",
+        probabilitiesSuppressed: false,
+        bundleCompleteness: bundle.completeness,
+        criticalMissingCount: bundle.criticalMissingCount,
       });
     }
 
@@ -81,6 +106,9 @@ export async function GET(_request: Request, { params }: RouteParams) {
       topStrategy: topStrategy?.strategy_name ?? "Evidence Challenge",
       topStrategyProbability: topStrategy?.success_probability ?? 50,
       riskLevel,
+      probabilitiesSuppressed: false,
+      bundleCompleteness: bundle.completeness,
+      criticalMissingCount: bundle.criticalMissingCount,
     });
   } catch (error) {
     console.error("[criminal/probability] Error:", error);

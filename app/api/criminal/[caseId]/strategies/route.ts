@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { requireAuthContextApi } from "@/lib/auth-api";
 import { getSupabaseAdminClient } from "@/lib/supabase";
+import { getCriminalBundleCompleteness } from "@/lib/criminal/bundle-completeness";
+import { shouldShowProbabilities } from "@/lib/criminal/probability-gate";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -18,6 +20,13 @@ export async function GET(_request: Request, { params }: RouteParams) {
     const { orgId } = authRes.context;
     const supabase = getSupabaseAdminClient();
 
+    const bundle = await getCriminalBundleCompleteness({ caseId, orgId });
+    const gate = shouldShowProbabilities({
+      practiceArea: "criminal",
+      completeness: bundle.completeness,
+      criticalMissingCount: bundle.criticalMissingCount,
+    });
+
     const { data: strategies, error } = await supabase
       .from("defense_strategies")
       .select("*")
@@ -34,12 +43,16 @@ export async function GET(_request: Request, { params }: RouteParams) {
     }
 
     return NextResponse.json({
+      probabilitiesSuppressed: !gate.show,
+      suppressionReason: gate.show ? null : gate.reason,
+      bundleCompleteness: bundle.completeness,
+      criticalMissingCount: bundle.criticalMissingCount,
       strategies: (strategies || []).map((s) => ({
         id: s.id,
         strategyName: s.strategy_name,
         strategyType: s.strategy_type,
         description: s.description,
-        successProbability: s.success_probability,
+        successProbability: gate.show ? s.success_probability : null,
         impact: s.impact,
         legalArgument: s.legal_argument,
         actionsRequired: s.actions_required || [],

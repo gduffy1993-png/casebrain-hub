@@ -13,7 +13,7 @@ type Loophole = {
   description: string;
   severity: "LOW" | "MEDIUM" | "HIGH" | "CRITICAL";
   exploitability: "low" | "medium" | "high";
-  successProbability: number;
+  successProbability: number | null;
   suggestedAction: string | null;
   legalArgument: string | null;
 };
@@ -25,6 +25,7 @@ type LoopholesPanelProps = {
 export function LoopholesPanel({ caseId }: LoopholesPanelProps) {
   const [loopholes, setLoopholes] = useState<Loophole[]>([]);
   const [loading, setLoading] = useState(true);
+  const [suppression, setSuppression] = useState<{ reason?: string | null } | null>(null);
 
   useEffect(() => {
     async function fetchLoopholes() {
@@ -33,6 +34,11 @@ export function LoopholesPanel({ caseId }: LoopholesPanelProps) {
         if (res.ok) {
           const result = await res.json();
           setLoopholes(result.loopholes || []);
+          if (result.probabilitiesSuppressed) {
+            setSuppression({ reason: result.suppressionReason });
+          } else {
+            setSuppression(null);
+          }
         }
       } catch (error) {
         console.error("Failed to fetch loopholes:", error);
@@ -90,6 +96,11 @@ export function LoopholesPanel({ caseId }: LoopholesPanelProps) {
       }
       description="Identified loopholes, weaknesses, and opportunities to challenge the prosecution case"
     >
+      {suppression?.reason && (
+        <div className="mb-3 text-xs text-muted-foreground">
+          {suppression.reason}
+        </div>
+      )}
       {loopholes.length === 0 ? (
         <div className="text-center py-8 text-muted-foreground">
           <AlertTriangle className="h-8 w-8 mx-auto mb-2 opacity-50" />
@@ -120,7 +131,7 @@ export function LoopholesPanel({ caseId }: LoopholesPanelProps) {
                       {loophole.severity}
                     </Badge>
                     <Badge variant="secondary" className="text-xs">
-                      {loophole.successProbability}% success
+                      {loophole.successProbability === null ? "N/A" : `${loophole.successProbability}% success`}
                     </Badge>
                   </div>
                   <p className="text-xs opacity-80 mb-2">{loophole.description}</p>

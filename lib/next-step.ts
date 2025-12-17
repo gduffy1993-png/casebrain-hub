@@ -43,6 +43,7 @@ type NextStepInput = {
 export function calculateAllNextSteps(input: NextStepInput): NextStep[] {
   const steps: NextStep[] = [];
   const now = new Date().toISOString();
+  const isCriminal = input.practiceArea === "criminal";
 
   // 0. CRITICAL: Urgent deadlines (highest priority)
   if (input.deadlineSteps && input.deadlineSteps.length > 0) {
@@ -156,7 +157,7 @@ export function calculateAllNextSteps(input: NextStepInput): NextStep[] {
       caseId: input.caseId,
       title: `Address critical risk: ${firstRisk.title}`,
       description: firstRisk.message,
-      reason: `${criticalRisks.length} critical risk(s) outstanding. Why this matters: Critical risks can significantly impact case outcome, quantum, or compliance. Immediate attention required.`,
+      reason: `${criticalRisks.length} critical risk(s) outstanding. Why this matters: Critical risks can materially affect outcomes or procedural position. Immediate attention required.`,
       source: "RISK",
       priority: "HIGH",
       isUrgent: true,
@@ -170,12 +171,15 @@ export function calculateAllNextSteps(input: NextStepInput): NextStep[] {
   );
   if (criticalMissing.length > 0) {
     const firstMissing = criticalMissing[0];
+    const why = isCriminal
+      ? "Critical bundle gaps block reliable strategy scoring. Focus on disclosure-first actions (CPIA/PACE): custody record, interview recording/transcript, MG6 schedules, CCTV/BWV/999, continuity."
+      : "Critical evidence is essential for establishing liability, causation, or quantum. Case may be weakened without it.";
     steps.push({
       id: `next-evidence-${input.caseId}`,
       caseId: input.caseId,
       title: `Obtain: ${firstMissing.label}`,
       description: firstMissing.reason,
-      reason: `${criticalMissing.length} critical evidence item(s) missing. Why this matters: Critical evidence is essential for establishing liability, causation, or quantum. Case may be weakened without it.`,
+      reason: `${criticalMissing.length} critical evidence item(s) missing. Why this matters: ${why}`,
       source: "EVIDENCE",
       priority: "MEDIUM",
       suggestedAction: firstMissing.suggestedAction,

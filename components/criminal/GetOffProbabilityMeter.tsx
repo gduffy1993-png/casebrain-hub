@@ -10,10 +10,14 @@ type GetOffProbabilityMeterProps = {
 };
 
 type ProbabilityData = {
-  overall: number; // 0-100
+  overall: number | null; // 0-100
   topStrategy: string;
-  topStrategyProbability: number;
+  topStrategyProbability: number | null;
   riskLevel: "LOW" | "MEDIUM" | "HIGH" | "CRITICAL";
+  probabilitiesSuppressed?: boolean;
+  suppressionReason?: string | null;
+  bundleCompleteness?: number;
+  criticalMissingCount?: number;
 };
 
 export function GetOffProbabilityMeter({ caseId }: GetOffProbabilityMeterProps) {
@@ -58,6 +62,29 @@ export function GetOffProbabilityMeter({ caseId }: GetOffProbabilityMeterProps) 
         <div className="text-center py-8 text-muted-foreground">
           <AlertTriangle className="h-8 w-8 mx-auto mb-2 opacity-50" />
           <p className="text-sm">No data available</p>
+        </div>
+      </Card>
+    );
+  }
+  
+  if (data.probabilitiesSuppressed || data.overall === null) {
+    return (
+      <Card
+        title={
+          <div className="flex items-center gap-2">
+            <TrendingUp className="h-4 w-4 text-primary" />
+            <span>Get Off Probability</span>
+          </div>
+        }
+        description={data.suppressionReason || "Insufficient bundle for probabilistic output. Disclosure-first actions only."}
+      >
+        <div className="text-sm text-muted-foreground">
+          <div className="font-medium text-foreground">N/A</div>
+          {typeof data.bundleCompleteness === "number" && (
+            <div className="text-xs mt-1">
+              Bundle completeness: {data.bundleCompleteness}%{typeof data.criticalMissingCount === "number" ? ` • Critical missing: ${data.criticalMissingCount}` : ""}
+            </div>
+          )}
         </div>
       </Card>
     );

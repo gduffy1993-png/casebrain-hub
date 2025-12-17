@@ -10,7 +10,7 @@ type DefenseAngle = {
   angleType: string;
   title: string;
   severity: "CRITICAL" | "HIGH" | "MEDIUM" | "LOW";
-  winProbability: number;
+  winProbability: number | null;
   whyThisMatters: string;
   legalBasis: string;
   caseLaw: string[];
@@ -27,13 +27,13 @@ type DefenseAngle = {
 };
 
 type AggressiveDefenseAnalysis = {
-  overallWinProbability: number;
+  overallWinProbability: number | null;
   criticalAngles: DefenseAngle[];
   allAngles: DefenseAngle[];
   recommendedStrategy: {
     primaryAngle: DefenseAngle;
     supportingAngles: DefenseAngle[];
-    combinedProbability: number;
+    combinedProbability: number | null;
     tacticalPlan: string[];
   };
   prosecutionVulnerabilities: {
@@ -52,6 +52,7 @@ export function AggressiveDefensePanel({ caseId }: AggressiveDefensePanelProps) 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [expandedAngle, setExpandedAngle] = useState<string | null>(null);
+  const [suppression, setSuppression] = useState<{ reason?: string | null } | null>(null);
 
   useEffect(() => {
     async function fetchAnalysis() {
@@ -66,6 +67,11 @@ export function AggressiveDefensePanel({ caseId }: AggressiveDefensePanelProps) 
 
         const data = await response.json();
         setAnalysis(data);
+        if (data?.probabilitiesSuppressed) {
+          setSuppression({ reason: data?.suppressionReason });
+        } else {
+          setSuppression(null);
+        }
       } catch (err) {
         console.error("Failed to fetch aggressive defense analysis:", err);
         setError("Aggressive defense analysis not available yet.");
@@ -111,7 +117,8 @@ export function AggressiveDefensePanel({ caseId }: AggressiveDefensePanelProps) 
     }
   };
 
-  const getWinProbabilityColor = (probability: number) => {
+  const getWinProbabilityColor = (probability: number | null) => {
+    if (probability === null) return "text-muted-foreground";
     if (probability >= 80) return "text-green-400";
     if (probability >= 60) return "text-amber-400";
     return "text-red-400";
@@ -124,16 +131,22 @@ export function AggressiveDefensePanel({ caseId }: AggressiveDefensePanelProps) 
           <Target className="h-5 w-5 text-foreground" />
           <h3 className="text-lg font-semibold text-foreground">Aggressive Defense Analysis</h3>
         </div>
-        <Badge className={`${getWinProbabilityColor(analysis.overallWinProbability)} bg-${getWinProbabilityColor(analysis.overallWinProbability).replace('text-', '')}/20 border-${getWinProbabilityColor(analysis.overallWinProbability).replace('text-', '')}/30`}>
-          {analysis.overallWinProbability}% Win Probability
+        <Badge className="border-border bg-muted/30 text-foreground">
+          {analysis.overallWinProbability === null ? "Win Probability: N/A" : `${analysis.overallWinProbability}% Win Probability`}
         </Badge>
       </div>
+
+      {suppression?.reason && (
+        <div className="text-xs text-muted-foreground">
+          {suppression.reason}
+        </div>
+      )}
 
       {/* Overall Win Probability */}
       <div className="p-4 rounded-lg bg-muted/30 border border-border/50">
         <div className="flex items-center gap-3 mb-2">
           <div className={`text-2xl font-bold ${getWinProbabilityColor(analysis.overallWinProbability)}`}>
-            {analysis.overallWinProbability}%
+            {analysis.overallWinProbability === null ? "N/A" : `${analysis.overallWinProbability}%`}
           </div>
           <div>
             <p className="text-sm font-medium text-foreground">Overall Win Probability</p>
@@ -157,7 +170,7 @@ export function AggressiveDefensePanel({ caseId }: AggressiveDefensePanelProps) 
                 Primary Angle: {analysis.recommendedStrategy.primaryAngle.title}
               </p>
               <p className="text-xs text-cyan-200/90">
-                Win Probability: {analysis.recommendedStrategy.primaryAngle.winProbability}%
+                Win Probability: {analysis.recommendedStrategy.primaryAngle.winProbability === null ? "N/A" : `${analysis.recommendedStrategy.primaryAngle.winProbability}%`}
               </p>
             </div>
             <div className="space-y-2">
@@ -195,7 +208,7 @@ export function AggressiveDefensePanel({ caseId }: AggressiveDefensePanelProps) 
                     </div>
                     <div className="flex items-center gap-2">
                       <span className={`text-xs font-semibold ${getWinProbabilityColor(angle.winProbability)}`}>
-                        {angle.winProbability}% Win Chance
+                        {angle.winProbability === null ? "N/A" : `${angle.winProbability}% Win Chance`}
                       </span>
                     </div>
                   </div>

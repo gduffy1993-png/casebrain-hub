@@ -32,6 +32,7 @@ import { piPack } from "./pi";
 import { clinicalNegPack } from "./clinicalNeg";
 import { familyPack } from "./family";
 import { criminalPack } from "./criminal";
+import { filterEvidenceForPracticeArea } from "@/lib/strategic/practice-area-filters";
 
 // =============================================================================
 // Pack Registry
@@ -122,16 +123,15 @@ export function getEvidenceChecklist(practiceArea?: PracticeArea | string | null
       }
       
       const merged = Array.from(combined.values());
-      // Criminal defence: do not surface civil-style funding/retainer items as missing evidence
       if (pack.id === "criminal") {
-        return merged.filter((e) => !["base-retainer"].includes(e.id));
+        return filterEvidenceForPracticeArea(merged, "criminal", { context: "packs/getEvidenceChecklist(merged)" });
       }
       return merged;
     }
   }
   
   if (pack.id === "criminal") {
-    return pack.evidenceChecklist.filter((e) => !["base-retainer"].includes(e.id));
+    return filterEvidenceForPracticeArea(pack.evidenceChecklist, "criminal", { context: "packs/getEvidenceChecklist(pack)" });
   }
   return pack.evidenceChecklist;
 }
@@ -168,16 +168,24 @@ export function getRiskRules(practiceArea?: PracticeArea | string | null): PackR
       }
       
       const merged = Array.from(combined.values());
-      // Criminal defence: avoid civil-style "missing retainer" risk rules
       if (pack.id === "criminal") {
-        return merged.filter((r) => !["base-risk-no-retainer"].includes(r.id));
+        // Also strip civil-only risk rules (limitation/Part 36/PAP/etc)
+        return filterEvidenceForPracticeArea(
+          merged.filter((r) => r.category !== "limitation"),
+          "criminal",
+          { context: "packs/getRiskRules(merged)" },
+        );
       }
       return merged;
     }
   }
   
   if (pack.id === "criminal") {
-    return pack.riskRules.filter((r) => !["base-risk-no-retainer"].includes(r.id));
+    return filterEvidenceForPracticeArea(
+      pack.riskRules.filter((r) => r.category !== "limitation"),
+      "criminal",
+      { context: "packs/getRiskRules(pack)" },
+    );
   }
   return pack.riskRules;
 }
@@ -253,16 +261,15 @@ export function getComplianceItems(practiceArea?: PracticeArea | string | null):
       }
       
       const merged = Array.from(combined.values());
-      // Criminal defence: avoid civil-style compliance items that confuse demo (retainer/CFA)
       if (pack.id === "criminal") {
-        return merged.filter((c) => !["base-compliance-retainer"].includes(c.id));
+        return filterEvidenceForPracticeArea(merged, "criminal", { context: "packs/getComplianceItems(merged)" });
       }
       return merged;
     }
   }
   
   if (pack.id === "criminal") {
-    return pack.complianceItems.filter((c) => !["base-compliance-retainer"].includes(c.id));
+    return filterEvidenceForPracticeArea(pack.complianceItems, "criminal", { context: "packs/getComplianceItems(pack)" });
   }
   return pack.complianceItems;
 }

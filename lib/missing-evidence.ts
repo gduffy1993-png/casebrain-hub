@@ -1,6 +1,7 @@
 import type { MissingEvidenceItem, EvidenceRequirement, Severity, PracticeArea } from "./types/casebrain";
 import { getEvidenceChecklist, type PackEvidenceRequirement } from "./packs";
 import { frameMissingEvidenceExplanation } from "./confidenceFraming";
+import { filterEvidenceForPracticeArea } from "./strategic/practice-area-filters";
 
 /**
  * Legacy evidence requirements - kept for backwards compatibility
@@ -193,7 +194,11 @@ export function findMissingEvidence(
 ): MissingEvidenceItem[] {
   // Get requirements from the pack system (preferred) with fallback to legacy
   const normalizedType = mapCaseType(caseType);
-  const packRequirements = getRequirementsFromPack(normalizedType);
+  const packRequirements = filterEvidenceForPracticeArea(
+    getRequirementsFromPack(normalizedType),
+    normalizedType,
+    { context: "missing-evidence/requirements" },
+  );
   
   // Use pack requirements if available, otherwise fall back to legacy
   const requirements = packRequirements.length > 0 
@@ -222,9 +227,12 @@ export function findMissingEvidence(
     }
   }
 
+  // Hard strip + log if any civil-only leakage into criminal
+  const cleaned = filterEvidenceForPracticeArea(missingItems, normalizedType, { context: "missing-evidence/missingItems" });
+
   // Group by category and sort by priority within each category
   const priorityOrder: Severity[] = ["CRITICAL", "HIGH", "MEDIUM", "LOW"];
-  missingItems.sort((a, b) => {
+  cleaned.sort((a, b) => {
     // First sort by priority
     const priorityDiff = priorityOrder.indexOf(a.priority) - priorityOrder.indexOf(b.priority);
     if (priorityDiff !== 0) return priorityDiff;
@@ -233,7 +241,7 @@ export function findMissingEvidence(
     return categoryOrder.indexOf(a.category) - categoryOrder.indexOf(b.category);
   });
 
-  return missingItems;
+  return cleaned;
 }
 
 /**
@@ -345,6 +353,20 @@ function mapCaseType(practiceArea: string): string {
   if (lower.includes("family") || lower.includes("child") || lower.includes("divorce") ||
       lower.includes("matrimonial")) {
     return "family";
+  }
+
+  // Criminal
+  if (
+    lower.includes("criminal") ||
+    lower.includes("defence") ||
+    lower.includes("defense") ||
+    lower.includes("cps") ||
+    lower.includes("pace") ||
+    lower.includes("custody") ||
+    lower.includes("interview") ||
+    lower.includes("disclosure")
+  ) {
+    return "criminal";
   }
   
   return "other_litigation";

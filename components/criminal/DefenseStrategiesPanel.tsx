@@ -11,7 +11,7 @@ type DefenseStrategy = {
   strategyName: string;
   strategyType: string;
   description: string;
-  successProbability: number;
+  successProbability: number | null;
   impact: "LOW" | "MEDIUM" | "HIGH" | "CRITICAL";
   legalArgument: string | null;
   actionsRequired: string[];
@@ -25,6 +25,7 @@ type DefenseStrategiesPanelProps = {
 export function DefenseStrategiesPanel({ caseId }: DefenseStrategiesPanelProps) {
   const [strategies, setStrategies] = useState<DefenseStrategy[]>([]);
   const [loading, setLoading] = useState(true);
+  const [suppression, setSuppression] = useState<{ reason?: string | null } | null>(null);
 
   useEffect(() => {
     async function fetchStrategies() {
@@ -33,6 +34,11 @@ export function DefenseStrategiesPanel({ caseId }: DefenseStrategiesPanelProps) 
         if (res.ok) {
           const result = await res.json();
           setStrategies(result.strategies || []);
+          if (result.probabilitiesSuppressed) {
+            setSuppression({ reason: result.suppressionReason });
+          } else {
+            setSuppression(null);
+          }
         }
       } catch (error) {
         console.error("Failed to fetch strategies:", error);
@@ -51,7 +57,9 @@ export function DefenseStrategiesPanel({ caseId }: DefenseStrategiesPanelProps) 
     );
   }
 
-  const sortedStrategies = [...strategies].sort((a, b) => b.successProbability - a.successProbability);
+  const sortedStrategies = [...strategies].sort(
+    (a, b) => (b.successProbability ?? 0) - (a.successProbability ?? 0),
+  );
 
   return (
     <Card
@@ -63,6 +71,11 @@ export function DefenseStrategiesPanel({ caseId }: DefenseStrategiesPanelProps) 
       }
       description="Recommended defense strategies with success probabilities"
     >
+      {suppression?.reason && (
+        <div className="mb-3 text-xs text-muted-foreground">
+          {suppression.reason}
+        </div>
+      )}
       {strategies.length === 0 ? (
         <div className="text-center py-8 text-muted-foreground">
           <Target className="h-8 w-8 mx-auto mb-2 opacity-50" />
@@ -86,15 +99,15 @@ export function DefenseStrategiesPanel({ caseId }: DefenseStrategiesPanelProps) 
                     <h4 className="font-semibold text-sm">{strategy.strategyName}</h4>
                     <Badge
                       variant={
-                        strategy.successProbability >= 70
+                        (strategy.successProbability ?? 0) >= 70
                           ? "success"
-                          : strategy.successProbability >= 40
+                          : (strategy.successProbability ?? 0) >= 40
                             ? "warning"
                             : "secondary"
                       }
                       className="text-xs"
                     >
-                      {strategy.successProbability}% success
+                      {strategy.successProbability === null ? "N/A" : `${strategy.successProbability}% success`}
                     </Badge>
                     <Badge
                       variant={
