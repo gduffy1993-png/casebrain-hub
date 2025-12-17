@@ -183,6 +183,20 @@ export async function getOrCreateOrganisationForUser(
         .select("*")
         .single();
     }
+    
+    // If external_ref column doesn't exist yet, retry without it (backwards compatible)
+    if (result.error && result.error.message?.toLowerCase().includes("external_ref") && result.error.message?.toLowerCase().includes("does not exist")) {
+      console.warn("[organisations] external_ref column missing, creating org without external_ref");
+      result = await supabase
+        .from("organisations")
+        .insert({
+          name: orgName,
+          email_domain: null,
+          plan: "FREE",
+        })
+        .select("*")
+        .single();
+    }
 
     if (result.error || !result.data) {
       throw new Error(`Failed to create personal organisation: ${result.error?.message}`);

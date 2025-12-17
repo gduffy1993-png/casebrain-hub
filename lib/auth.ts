@@ -30,30 +30,70 @@ async function getOrCreateOrganisationIdByExternalRef(params: {
 }): Promise<string> {
   const supabase = getSupabaseAdminClient();
 
-  const { data, error } = await supabase
+  // 1) Try to find existing org by external_ref (if column exists)
+  const byExternalRef = await supabase
     .from("organisations")
-    .upsert(
+    .select("id")
+    .eq("external_ref", params.externalRef)
+    .maybeSingle();
+
+  if (byExternalRef.error) {
+    const msg = byExternalRef.error.message ?? "";
+    // Backwards-compat: production DB may not have external_ref yet.
+    if (msg.toLowerCase().includes("external_ref") && msg.toLowerCase().includes("does not exist")) {
+      return await resolveOrganisationIdFallbackNoExternalRef(params.name);
+    }
+    console.error("[auth] Failed to lookup organisation by external_ref:", {
+      externalRef: params.externalRef,
+      message: byExternalRef.error.message,
+      code: (byExternalRef.error as any).code,
+    });
+    throw new Error("Organisation resolution failed");
+  }
+
+  if (byExternalRef.data?.id) {
+    const orgId = (byExternalRef.data as any).id as string;
+    if (!isUuid(orgId)) throw new Error("Invalid orgId (expected UUID)");
+    return orgId;
+  }
+
+  // 2) Insert new org (with external_ref if possible; fallback if not)
+  let insertRes = await supabase
+    .from("organisations")
+    .insert(
       {
-        external_ref: params.externalRef,
         name: params.name,
         email_domain: null,
+        external_ref: params.externalRef,
       } as any,
-      { onConflict: "external_ref" },
     )
     .select("id")
     .single();
 
-  if (error) {
-    // If external_ref column doesn't exist yet, this is a migration issue.
-    console.error("[auth] Failed to resolve organisation by external_ref:", {
+  if (insertRes.error) {
+    const msg = insertRes.error.message ?? "";
+    if (msg.toLowerCase().includes("external_ref") && msg.toLowerCase().includes("does not exist")) {
+      return await resolveOrganisationIdFallbackNoExternalRef(params.name);
+    }
+    // If unique constraint exists and we raced, re-select
+    if ((insertRes.error as any).code === "23505") {
+      const retry = await supabase
+        .from("organisations")
+        .select("id")
+        .eq("external_ref", params.externalRef)
+        .maybeSingle();
+      const orgId = (retry.data as any)?.id as string | undefined;
+      if (orgId && isUuid(orgId)) return orgId;
+    }
+    console.error("[auth] Failed to create organisation by external_ref:", {
       externalRef: params.externalRef,
-      message: error.message,
-      code: (error as any).code,
+      message: insertRes.error.message,
+      code: (insertRes.error as any).code,
     });
-    throw new Error("Organisation resolution failed (missing external_ref column?)");
+    throw new Error("Organisation resolution failed");
   }
 
-  const orgId = (data as any)?.id as string | undefined;
+  const orgId = (insertRes.data as any)?.id as string | undefined;
   if (!orgId || !isUuid(orgId)) {
     console.error("[auth] Organisation resolver returned non-UUID id:", {
       externalRef: params.externalRef,
@@ -63,6 +103,56 @@ async function getOrCreateOrganisationIdByExternalRef(params: {
   }
 
   return orgId;
+}
+
+async function resolveOrganisationIdFallbackNoExternalRef(name: string): Promise<string> {
+  // Backwards-compatible UUID orgId resolution when DB is missing organisations.external_ref.
+  // Prefer an existing membership org for this user; otherwise create a new org UUID + membership.
+  const { userId } = auth();
+  if (!userId) throw new Error("Unauthenticated: user session is required.");
+
+  const supabase = getSupabaseAdminClient();
+
+  try {
+    const { data: membership } = await supabase
+      .from("organisation_members")
+      .select("organisation_id")
+      .eq("user_id", userId)
+      .order("created_at", { ascending: true })
+      .limit(1)
+      .maybeSingle();
+
+    const existingOrgId = (membership as any)?.organisation_id as string | undefined;
+    if (existingOrgId && isUuid(existingOrgId)) return existingOrgId;
+  } catch {
+    // ignore and continue
+  }
+
+  const { data: orgRow, error: orgErr } = await supabase
+    .from("organisations")
+    .insert({ name, email_domain: null } as any)
+    .select("id")
+    .single();
+
+  if (orgErr) {
+    console.error("[auth] Fallback org creation failed:", orgErr);
+    throw new Error("Organisation resolution failed");
+  }
+
+  const newOrgId = (orgRow as any)?.id as string | undefined;
+  if (!newOrgId || !isUuid(newOrgId)) throw new Error("Invalid orgId (expected UUID)");
+
+  try {
+    await supabase.from("organisation_members").insert({
+      organisation_id: newOrgId,
+      user_id: userId,
+      role: "OWNER",
+    } as any);
+  } catch {
+    // ignore (may already exist)
+  }
+
+  return newOrgId;
 }
 
 const legacyOrgMigrationDone = new Set<string>();
