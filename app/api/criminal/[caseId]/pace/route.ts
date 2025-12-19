@@ -58,6 +58,15 @@ export async function GET(_request: Request, { params }: RouteParams) {
       const criticalPaceMissing = !hasCustodyRecord || !hasInterviewRecording || !hasLegalAdviceLog || !hasCautionSolicitorFlags;
       paceStatus = criticalPaceMissing ? "UNKNOWN" : "CHECKED_NO_BREACHES";
       
+      const missingItems: string[] = [];
+      if (!hasCustodyRecord) missingItems.push("custody record");
+      if (!hasInterviewRecording) missingItems.push("interview recording/transcript");
+      if (!hasLegalAdviceLog || !hasCautionSolicitorFlags) missingItems.push("legal advice/solicitor attendance");
+      
+      const statusMessage = criticalPaceMissing
+        ? `PACE status: UNKNOWN — key ${missingItems.join(", ")} material missing in provided bundle`
+        : "No PACE breaches detected (in provided material)";
+      
       return NextResponse.json({
         cautionGiven: null,
         cautionGivenBeforeQuestioning: null,
@@ -69,6 +78,7 @@ export async function GET(_request: Request, { params }: RouteParams) {
         breachesDetected: [],
         breachSeverity: null,
         paceStatus,
+        statusMessage,
       });
     }
 
@@ -90,6 +100,25 @@ export async function GET(_request: Request, { params }: RouteParams) {
       paceStatus = "CHECKED_NO_BREACHES";
     }
 
+    // Build status message
+    let statusMessage: string;
+    if (paceStatus === "UNKNOWN") {
+      const missingItems: string[] = [];
+      if (pace.caution_given === null) missingItems.push("caution");
+      if (pace.interview_recorded === null) missingItems.push("interview recording/transcript");
+      if (pace.right_to_solicitor === null || pace.solicitor_present === null) missingItems.push("legal advice/solicitor attendance");
+      
+      if (missingItems.length > 0) {
+        statusMessage = `PACE status: UNKNOWN — key ${missingItems.join(", ")} material missing in provided bundle`;
+      } else {
+        statusMessage = "PACE status: UNKNOWN — key custody/interview/legal advice material missing in provided bundle";
+      }
+    } else if (paceStatus === "BREACH_FLAGGED") {
+      statusMessage = "PACE breaches detected";
+    } else {
+      statusMessage = "No PACE breaches detected (in provided material)";
+    }
+
     return NextResponse.json({
       cautionGiven: pace.caution_given,
       cautionGivenBeforeQuestioning: pace.caution_given_before_questioning,
@@ -101,6 +130,7 @@ export async function GET(_request: Request, { params }: RouteParams) {
       breachesDetected: pace.breaches_detected || [],
       breachSeverity: pace.breach_severity,
       paceStatus,
+      statusMessage,
     });
   } catch (error) {
     console.error("[criminal/pace] Error:", error);

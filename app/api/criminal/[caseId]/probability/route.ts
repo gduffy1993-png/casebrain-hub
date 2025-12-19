@@ -62,7 +62,7 @@ export async function GET(_request: Request, { params }: RouteParams) {
     }
 
     // Calculate from loopholes and evidence if no stored data
-    const { data: loopholes } = await supabase
+    const { data: loopholes, error: loopholesError } = await supabase
       .from("criminal_loopholes")
       .select("severity, success_probability")
       .eq("case_id", caseId)
@@ -70,13 +70,21 @@ export async function GET(_request: Request, { params }: RouteParams) {
       .order("success_probability", { ascending: false })
       .limit(1);
 
-    const { data: strategies } = await supabase
+    const { data: strategies, error: strategiesError } = await supabase
       .from("defense_strategies")
       .select("strategy_name, success_probability")
       .eq("case_id", caseId)
       .eq("org_id", orgId)
       .order("success_probability", { ascending: false })
       .limit(1);
+
+    // Handle missing tables gracefully
+    if (loopholesError && (loopholesError as any).code === "PGRST205") {
+      console.warn("[criminal/probability] Table 'criminal_loopholes' not found, using empty array");
+    }
+    if (strategiesError && (strategiesError as any).code === "PGRST205") {
+      console.warn("[criminal/probability] Table 'defense_strategies' not found, using empty array");
+    }
 
     const topLoophole = loopholes?.[0];
     const topStrategy = strategies?.[0];

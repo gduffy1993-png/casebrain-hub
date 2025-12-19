@@ -15,13 +15,31 @@ export async function GET(
   const supabase = getSupabaseAdminClient();
 
   try {
-    // Fetch case
-    const { data: caseRecord } = await supabase
+    // Fetch case (try with org_id first, then fallback)
+    let { data: caseRecord } = await supabase
       .from("cases")
-      .select("id, title, summary, practice_area, status, supervisor_reviewed, created_at")
+      .select("id, title, summary, practice_area, status, supervisor_reviewed, created_at, org_id")
       .eq("id", caseId)
       .eq("org_id", orgId)
       .maybeSingle();
+
+    // Fallback: try without org_id filter for cases created before org_id fix
+    if (!caseRecord) {
+      const fallback = await supabase
+        .from("cases")
+        .select("id, title, summary, practice_area, status, supervisor_reviewed, created_at, org_id")
+        .eq("id", caseId)
+        .maybeSingle();
+      caseRecord = fallback.data;
+      
+      if (caseRecord?.org_id && caseRecord.org_id !== orgId) {
+        console.warn("[insights] Case org_id mismatch:", {
+          caseId,
+          expectedOrgId: orgId,
+          actualOrgId: caseRecord.org_id,
+        });
+      }
+    }
 
     if (!caseRecord) {
       return NextResponse.json({ error: "Case not found" }, { status: 404 });

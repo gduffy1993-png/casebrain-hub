@@ -23,6 +23,53 @@ import { normalizePracticeArea } from "@/lib/types/casebrain";
 import { assessPracticeAreaViability, shouldShowEvidenceItem } from "@/lib/strategic/practice-area-viability";
 import type { SolicitorRole } from "@/lib/strategic/practice-area-viability";
 
+/**
+ * Normalize role key from various UI/DB variants to canonical SolicitorRole
+ */
+function normalizeRoleKey(roleOrPracticeArea: string): SolicitorRole {
+  const normalized = (roleOrPracticeArea || "").toLowerCase().trim();
+  
+  // Handle practice area strings
+  if (normalized === "criminal" || normalized.includes("criminal")) {
+    return "criminal_solicitor";
+  }
+  if (normalized === "clinical_negligence" || normalized.includes("clinical") || normalized.includes("negligence")) {
+    return "clinical_neg_solicitor";
+  }
+  if (normalized === "housing_disrepair" || normalized.includes("housing")) {
+    return "housing_solicitor";
+  }
+  if (normalized === "personal_injury" || normalized.includes("personal") || normalized.includes("injury") || normalized === "pi") {
+    return "pi_solicitor";
+  }
+  if (normalized === "family") {
+    return "family_solicitor";
+  }
+  
+  // Handle role strings directly
+  if (normalized === "criminal_solicitor" || normalized === "criminal_defence" || normalized === "criminal defense solicitor" || normalized === "criminal defence solicitor") {
+    return "criminal_solicitor";
+  }
+  if (normalized === "clinical_neg_solicitor" || normalized === "clinical_negligence_solicitor") {
+    return "clinical_neg_solicitor";
+  }
+  if (normalized === "housing_solicitor") {
+    return "housing_solicitor";
+  }
+  if (normalized === "pi_solicitor" || normalized === "personal_injury_solicitor") {
+    return "pi_solicitor";
+  }
+  if (normalized === "family_solicitor") {
+    return "family_solicitor";
+  }
+  if (normalized === "general_litigation_solicitor" || normalized === "general_litigation" || normalized === "other_litigation") {
+    return "general_litigation_solicitor";
+  }
+  
+  // Default fallback
+  return "general_litigation_solicitor";
+}
+
 type RouteParams = {
   params: Promise<{ caseId: string }>;
 };
@@ -101,10 +148,10 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
           .eq("org_id", orgId)
           .single(),
         
-        // Required: Documents
+        // Required: Documents (include extracted_json and raw_text for bundleText)
         supabase
           .from("documents")
-          .select("id, name, created_at")
+          .select("id, name, created_at, extracted_json, raw_text")
           .eq("case_id", caseId)
           .eq("org_id", orgId)
           .order("created_at", { ascending: false }),
@@ -158,23 +205,40 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       // ============================================
       // VIABILITY GATE: Check if documents match selected role
       // ============================================
-      // Build bundle text from documents and timeline
-      const bundleText = [
-        ...documents.map((d: any) => d.name || ""),
-        ...timeline.map((t: any) => t.description || ""),
-      ].join(" ");
+      // Build bundle text from documents (names + extracted content + raw text) and timeline
+      const bundleTextParts: string[] = [];
+      
+      for (const doc of documents) {
+        bundleTextParts.push(doc.name || "");
+        
+        // Include extracted_json content (stringify if object)
+        if (doc.extracted_json) {
+          if (typeof doc.extracted_json === "object") {
+            bundleTextParts.push(JSON.stringify(doc.extracted_json));
+          } else {
+            bundleTextParts.push(String(doc.extracted_json));
+          }
+        }
+        
+        // Include raw_text if available
+        if (doc.raw_text) {
+          bundleTextParts.push(String(doc.raw_text));
+        }
+      }
+      
+      // Add timeline descriptions
+      bundleTextParts.push(...timeline.map((t: any) => t.description || ""));
+      
+      const bundleText = bundleTextParts.join(" ");
+      
+      // Dev-only logging for bundleText
+      if (process.env.NODE_ENV !== "production") {
+        console.log(`[strategic-overview] bundleText length: ${bundleText.length}, first 200 chars: ${bundleText.substring(0, 200)}`);
+      }
 
-      // Map practice area to solicitor role
+      // Normalize role using dedicated function
       const practiceArea = normalizePracticeArea(caseRecord.practice_area);
-      const roleMap: Record<string, SolicitorRole> = {
-        criminal: "criminal_solicitor",
-        clinical_negligence: "clinical_neg_solicitor",
-        housing_disrepair: "housing_solicitor",
-        personal_injury: "pi_solicitor",
-        family: "family_solicitor",
-        other_litigation: "general_litigation_solicitor",
-      };
-      const selectedRole = roleMap[practiceArea] || "general_litigation_solicitor";
+      const selectedRole = normalizeRoleKey(practiceArea);
 
       // Assess viability
       const viability = assessPracticeAreaViability(bundleText, selectedRole);

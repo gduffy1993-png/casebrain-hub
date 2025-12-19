@@ -35,7 +35,19 @@ export async function GET(_request: Request, { params }: RouteParams) {
       .order("severity", { ascending: false })
       .order("success_probability", { ascending: false });
 
+    // Handle missing table gracefully (table may not exist yet)
     if (error) {
+      const errorCode = (error as any).code;
+      if (errorCode === "PGRST205" || error?.message?.includes("Could not find the table")) {
+        console.warn("[criminal/loopholes] Table 'criminal_loopholes' not found, returning empty array");
+        return NextResponse.json({
+          probabilitiesSuppressed: !gate.show,
+          suppressionReason: gate.show ? null : gate.reason,
+          bundleCompleteness: bundle.completeness,
+          criticalMissingCount: bundle.criticalMissingCount,
+          loopholes: [],
+        });
+      }
       console.error("[criminal/loopholes] Error:", error);
       return NextResponse.json(
         { error: "Failed to fetch loopholes" },

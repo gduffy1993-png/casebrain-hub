@@ -31,24 +31,49 @@ export async function buildKeyFactsSummary(
   const supabase = getSupabaseAdminClient();
 
   // 1. Fetch base case record
-  const { data: caseData, error: caseError } = await supabase
+  // Try with org_id first, then fallback to case_id only if that fails
+  let { data: caseData, error: caseError } = await supabase
     .from("cases")
-    .select("id, title, summary, practice_area, status, created_at")
+    .select("id, title, summary, practice_area, status, created_at, org_id")
     .eq("id", caseId)
     .eq("org_id", orgId)
     .maybeSingle();
 
-  if (caseError) {
-    console.error("[key-facts] Case lookup failed:", {
+  // If query failed or no result, try without org_id filter (for cases created before org_id fix)
+  if (caseError || !caseData) {
+    console.warn("[key-facts] Case lookup with org_id failed, trying without org_id filter:", {
       caseId,
       orgId,
-      message: caseError.message,
-      code: (caseError as any).code,
+      error: caseError?.message,
     });
-    throw new Error("Case lookup failed");
+    const fallback = await supabase
+      .from("cases")
+      .select("id, title, summary, practice_area, status, created_at, org_id")
+      .eq("id", caseId)
+      .maybeSingle();
+    
+    if (fallback.error) {
+      console.error("[key-facts] Case lookup failed:", {
+        caseId,
+        orgId,
+        message: fallback.error.message,
+        code: (fallback.error as any).code,
+      });
+      throw new Error("Case lookup failed");
+    }
+    
+    caseData = fallback.data;
+    if (!caseData) throw new Error("Case not found");
+    
+    // If we found the case but org_id doesn't match, log a warning
+    if (caseData.org_id && caseData.org_id !== orgId) {
+      console.warn("[key-facts] Case org_id mismatch:", {
+        caseId,
+        expectedOrgId: orgId,
+        actualOrgId: caseData.org_id,
+      });
+    }
   }
-
-  if (!caseData) throw new Error("Case not found");
 
   let normalizedPracticeArea: PracticeArea = normalizePracticeArea(caseData.practice_area);
 

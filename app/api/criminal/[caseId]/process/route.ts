@@ -228,49 +228,73 @@ export async function POST(_request: Request, { params }: RouteParams) {
     // Detect loopholes
     const loopholes = detectAllLoopholes(criminalMeta);
 
-    // Save loopholes
-    for (const loophole of loopholes) {
-      await supabase
-        .from("criminal_loopholes")
-        .upsert(
-          {
-            case_id: caseId,
-            org_id: orgId,
-            loophole_type: loophole.loopholeType,
-            title: loophole.title,
-            description: loophole.description,
-            severity: loophole.severity,
-            exploitability: loophole.exploitability,
-            success_probability: loophole.successProbability,
-            suggested_action: loophole.suggestedAction,
-            legal_argument: loophole.legalArgument,
-          },
-          { onConflict: "case_id,loophole_type,title" },
-        );
+    // Save loopholes (handle missing table gracefully)
+    try {
+      for (const loophole of loopholes) {
+        const { error } = await supabase
+          .from("criminal_loopholes")
+          .upsert(
+            {
+              case_id: caseId,
+              org_id: orgId,
+              loophole_type: loophole.loopholeType,
+              title: loophole.title,
+              description: loophole.description,
+              severity: loophole.severity,
+              exploitability: loophole.exploitability,
+              success_probability: loophole.successProbability,
+              suggested_action: loophole.suggestedAction,
+              legal_argument: loophole.legalArgument,
+            },
+            { onConflict: "case_id,loophole_type,title" },
+          );
+        if (error && (error as any).code === "PGRST205") {
+          console.warn("[criminal/process] Table 'criminal_loopholes' not found, skipping save");
+          break;
+        }
+      }
+    } catch (error: any) {
+      if (error?.code === "PGRST205") {
+        console.warn("[criminal/process] Table 'criminal_loopholes' not found, skipping save");
+      } else {
+        console.error("[criminal/process] Error saving loopholes:", error);
+      }
     }
 
     // Generate strategies
     const strategies = generateDefenseStrategies(loopholes);
 
-    // Save strategies
-    for (const strategy of strategies) {
-      await supabase
-        .from("defense_strategies")
-        .upsert(
-          {
-            case_id: caseId,
-            org_id: orgId,
-            strategy_name: strategy.strategyName,
-            strategy_type: strategy.strategyType,
-            description: strategy.description,
-            success_probability: strategy.successProbability,
-            impact: strategy.impact,
-            legal_argument: strategy.legalArgument,
-            actions_required: strategy.actionsRequired,
-            selected: false,
-          },
-          { onConflict: "case_id,strategy_name" },
-        );
+    // Save strategies (handle missing table gracefully)
+    try {
+      for (const strategy of strategies) {
+        const { error } = await supabase
+          .from("defense_strategies")
+          .upsert(
+            {
+              case_id: caseId,
+              org_id: orgId,
+              strategy_name: strategy.strategyName,
+              strategy_type: strategy.strategyType,
+              description: strategy.description,
+              success_probability: strategy.successProbability,
+              impact: strategy.impact,
+              legal_argument: strategy.legalArgument,
+              actions_required: strategy.actionsRequired,
+              selected: false,
+            },
+            { onConflict: "case_id,strategy_name" },
+          );
+        if (error && (error as any).code === "PGRST205") {
+          console.warn("[criminal/process] Table 'defense_strategies' not found, skipping save");
+          break;
+        }
+      }
+    } catch (error: any) {
+      if (error?.code === "PGRST205") {
+        console.warn("[criminal/process] Table 'defense_strategies' not found, skipping save");
+      } else {
+        console.error("[criminal/process] Error saving strategies:", error);
+      }
     }
 
     // Calculate overall probability

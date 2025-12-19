@@ -26,13 +26,18 @@ export async function GET(_request: Request, { params }: RouteParams) {
       .eq("org_id", orgId)
       .maybeSingle();
 
-    const { data: loopholes } = await supabase
+    const { data: loopholes, error: loopholesError } = await supabase
       .from("criminal_loopholes")
       .select("severity")
       .eq("case_id", caseId)
       .eq("org_id", orgId)
       .eq("severity", "CRITICAL")
       .limit(1);
+
+    // Handle missing table gracefully
+    if (loopholesError && (loopholesError as any).code === "PGRST205") {
+      console.warn("[criminal/client-advice] Table 'criminal_loopholes' not found, using empty array");
+    }
 
     const probability = criminalCase?.get_off_probability ?? 50;
     const hasCriticalLoopholes = (loopholes?.length ?? 0) > 0;
