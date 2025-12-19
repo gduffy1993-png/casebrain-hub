@@ -132,15 +132,24 @@ export async function findCaseByIdScoped(
 
 /**
  * Find documents by case_id with org scope fallback
- * Same scoped fallback logic as findCaseByIdScoped
+ * 
+ * Tries in strict order:
+ * 1. documents where case_id=caseId AND org_id = scope.orgId (if orgId present)
+ * 2. documents where case_id=caseId AND org_id = scope.externalRef (legacy)
+ * 3. documents where case_id=caseId AND org_id = caseOrgId (if case found and org_id matches case)
+ * 4. documents where case_id=caseId AND org_id IS NULL (edge case)
+ * 
+ * The caseOrgId fallback handles data mismatches where documents.org_id doesn't match
+ * scope but does match the case's org_id (safe because we already verified the case belongs to user).
  */
 export async function findDocumentsByCaseIdScoped(
   caseId: string,
   scope: OrgScope,
+  caseOrgId: string | null | undefined = undefined,
 ): Promise<Array<{ id: string; name: string; created_at: string; extracted_json?: unknown; raw_text?: string; [key: string]: unknown }>> {
   const supabase = getSupabaseAdminClient();
   
-  // Try 1: UUID org_id
+  // Try 1: UUID org_id from scope
   if (scope.orgId) {
     const { data, error } = await supabase
       .from("documents")
@@ -156,7 +165,7 @@ export async function findDocumentsByCaseIdScoped(
     }
   }
   
-  // Try 2: externalRef org_id (legacy)
+  // Try 2: externalRef org_id from scope (legacy)
   if (scope.externalRef) {
     const { data, error } = await supabase
       .from("documents")
@@ -172,7 +181,27 @@ export async function findDocumentsByCaseIdScoped(
     }
   }
   
-  // Try 3: NULL org_id (edge case)
+  // Try 3: case's org_id (handles data mismatches where documents have same org_id as case)
+  if (caseOrgId) {
+    const { data, error } = await supabase
+      .from("documents")
+      .select("id, name, created_at, extracted_json, raw_text")
+      .eq("case_id", caseId)
+      .eq("org_id", caseOrgId)
+      .order("created_at", { ascending: false });
+    
+    if (error) {
+      console.error("[case-lookup] Error querying documents by case org_id:", error);
+    } else if (data && data.length > 0) {
+      // Dev-only log when case org_id match succeeds (indicates data mismatch was resolved)
+      if (process.env.NODE_ENV !== "production") {
+        console.log(`[case-lookup] Matched documents via case org_id (mismatch resolved) for caseId=${caseId}, caseOrgId=${caseOrgId}`);
+      }
+      return data as Array<{ id: string; name: string; created_at: string; extracted_json?: unknown; raw_text?: string }>;
+    }
+  }
+  
+  // Try 4: NULL org_id (edge case)
   const { data, error } = await supabase
     .from("documents")
     .select("id, name, created_at, extracted_json, raw_text")
