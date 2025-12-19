@@ -33,25 +33,46 @@ export async function buildKeyFactsSummary(
   // 1. Fetch base case record
   // Note: Route-level scoped lookup should have already found the case,
   // but we still query with orgId for safety (orgId is either UUID or externalRef from scope)
-  const { data: caseData, error: caseError } = await supabase
+  // If that fails, try without org_id filter since case exists (found via scoped lookup)
+  let { data: caseData, error: caseError } = await supabase
     .from("cases")
     .select("id, title, summary, practice_area, status, created_at, org_id")
     .eq("id", caseId)
     .eq("org_id", orgId)
     .maybeSingle();
 
-  if (caseError) {
-    console.error("[key-facts] Case lookup failed:", {
-      caseId,
-      orgId,
-      message: caseError.message,
-      code: (caseError as any).code,
-    });
-    throw new Error("Case lookup failed");
-  }
+  // If query with org_id filter fails or returns no data, try without org_id filter
+  // (case was found via scoped lookup, so it exists but org_id might not match exactly)
+  if (caseError || !caseData) {
+    if (caseError) {
+      console.warn("[key-facts] Case lookup with org_id filter failed, retrying without filter:", {
+        caseId,
+        orgId,
+        message: caseError.message,
+      });
+    }
+    
+    const { data: retryData, error: retryError } = await supabase
+      .from("cases")
+      .select("id, title, summary, practice_area, status, created_at, org_id")
+      .eq("id", caseId)
+      .maybeSingle();
 
-  if (!caseData) {
-    throw new Error("Case not found");
+    if (retryError) {
+      console.error("[key-facts] Case lookup failed:", {
+        caseId,
+        orgId,
+        message: retryError.message,
+        code: (retryError as any).code,
+      });
+      throw new Error("Case lookup failed");
+    }
+
+    if (!retryData) {
+      throw new Error("Case not found");
+    }
+
+    caseData = retryData;
   }
 
   let normalizedPracticeArea: PracticeArea = normalizePracticeArea(caseData.practice_area);

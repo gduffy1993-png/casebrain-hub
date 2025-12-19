@@ -36,8 +36,8 @@ export type CaseContext = {
     reasonCodes: string[]; // CASE_NOT_FOUND, DOCS_NONE, TEXT_THIN, SCANNED_SUSPECTED, OK
   };
   banner?: {
-    type: "warning" | "error" | "info";
-    title: string;
+    severity: "warning" | "error" | "info";
+    title?: string;
     message: string;
   };
 };
@@ -90,7 +90,7 @@ export async function buildCaseContext(
         reasonCodes: ["CASE_NOT_FOUND"],
       },
       banner: {
-        type: "error",
+        severity: "error",
         title: "Case not found",
         message: "Case not found for your org scope. This may be due to an org_id mismatch. Re-upload or contact support.",
       },
@@ -160,7 +160,7 @@ export async function buildCaseContext(
     reasonCodes.push("DOCS_NONE");
   }
 
-  // Build banner based on reason codes (using severity to match UI expectations)
+  // Build banner based on reason codes
   let banner: CaseContext["banner"] | undefined;
   if (reasonCodes.includes("CASE_NOT_FOUND")) {
     banner = {

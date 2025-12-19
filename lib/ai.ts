@@ -535,7 +535,7 @@ export async function summariseDocument(
         content: [
           {
             type: "text",
-            text: `Provide a concise summary (max 130 words) with key bullet points for litigation case handlers.`,
+            text: `Provide a detailed summary (up to 1000 words if needed) with key bullet points for litigation case handlers. Be thorough and comprehensive, covering all important details from the document.`,
           },
         ],
       },
