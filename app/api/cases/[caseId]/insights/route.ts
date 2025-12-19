@@ -1,63 +1,111 @@
 import { NextResponse } from "next/server";
-import { requireAuthContext } from "@/lib/auth";
+import { auth } from "@clerk/nextjs/server";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { buildCaseInsights } from "@/lib/core/insights";
 import { findMissingEvidence } from "@/lib/missing-evidence";
 import type { CaseInsights } from "@/lib/core/enterprise-types";
 import type { LimitationInfo } from "@/lib/types/casebrain";
+import { getOrgScopeOrFallback, findCaseByIdScoped, findDocumentsByCaseIdScoped } from "@/lib/db/case-lookup";
 
 export async function GET(
   _request: Request,
   { params }: { params: Promise<{ caseId: string }> }
 ) {
   const { caseId } = await params;
-  const { orgId } = await requireAuthContext();
-  const supabase = getSupabaseAdminClient();
-
+  
   try {
-    // Fetch case (try with org_id first, then fallback)
-    let { data: caseRecord } = await supabase
-      .from("cases")
-      .select("id, title, summary, practice_area, status, supervisor_reviewed, created_at, org_id")
-      .eq("id", caseId)
-      .eq("org_id", orgId)
-      .maybeSingle();
+    const { userId } = await auth();
+    if (!userId) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
 
-    // Fallback: try without org_id filter for cases created before org_id fix
-    if (!caseRecord) {
-      const fallback = await supabase
-        .from("cases")
-        .select("id, title, summary, practice_area, status, supervisor_reviewed, created_at, org_id")
-        .eq("id", caseId)
-        .maybeSingle();
-      caseRecord = fallback.data;
-      
-      if (caseRecord?.org_id && caseRecord.org_id !== orgId) {
-        console.warn("[insights] Case org_id mismatch:", {
+    // Derive org scope (UUID + externalRef)
+    const scope = await getOrgScopeOrFallback(userId);
+    const supabase = getSupabaseAdminClient();
+
+    // Find case with org scope fallback
+    const caseRow = await findCaseByIdScoped(supabase, caseId, scope);
+
+    if (!caseRow) {
+      // Case not found - return 200 with empty insights and banner (not 404)
+      const fallbackInsights: CaseInsights = {
+        summary: {
+          headline: "Case not found",
+          oneLiner: "Case not found for your org scope (legacy org_id mismatch).",
+          stageLabel: null,
+          practiceArea: null,
+          clientName: null,
+          opponentName: null,
+        },
+        rag: {
+          overallLevel: "amber",
+          overallScore: 50,
+          scores: [],
+        },
+        briefing: {
+          overview: "Case not found for your org scope (legacy org_id mismatch). Re-upload or contact support.",
+          keyStrengths: [],
+          keyRisks: [],
+          urgentActions: [],
+        },
+        meta: {
           caseId,
-          expectedOrgId: orgId,
-          actualOrgId: caseRecord.org_id,
-        });
-      }
+          updatedAt: new Date().toISOString(),
+          hasCoreEvidence: false,
+          missingCriticalCount: 0,
+          missingHighCount: 0,
+        },
+      };
+
+      return NextResponse.json({
+        insights: fallbackInsights,
+        banner: {
+          severity: "warning",
+          message: "Case not found for your org scope (legacy org_id mismatch). Re-upload or contact support.",
+        },
+      }, { status: 200 });
     }
 
-    if (!caseRecord) {
-      return NextResponse.json({ error: "Case not found" }, { status: 404 });
+    const caseRecord = {
+      id: caseRow.id,
+      title: (caseRow as any).title ?? null,
+      summary: (caseRow as any).summary ?? null,
+      practice_area: (caseRow as any).practice_area ?? null,
+      status: (caseRow as any).status ?? null,
+      supervisor_reviewed: (caseRow as any).supervisor_reviewed ?? null,
+      created_at: (caseRow as any).created_at ?? new Date().toISOString(),
+    };
+
+    // Fetch documents with org scope fallback
+    const documentsData = await findDocumentsByCaseIdScoped(supabase, caseId, scope);
+    const documents = documentsData.map(d => ({
+      id: d.id,
+      name: d.name,
+      type: undefined as string | undefined,
+      created_at: d.created_at,
+      extracted_json: d.extracted_json,
+    }));
+
+    // Fetch risks (with org scope fallback)
+    let riskFlags: any[] = [];
+    if (scope.orgIdUuid) {
+      const { data } = await supabase
+        .from("risk_flags")
+        .select("id, flag_type, severity, description, category, resolved, detected_at")
+        .eq("case_id", caseId)
+        .eq("org_id", scope.orgIdUuid)
+        .eq("resolved", false);
+      riskFlags = data ?? [];
     }
-
-    // Fetch documents with extracted_json for Awaab Law analysis
-    const { data: documents } = await supabase
-      .from("documents")
-      .select("id, name, type, created_at, extracted_json")
-      .eq("case_id", caseId)
-      .order("created_at", { ascending: false });
-
-    // Fetch risks
-    const { data: riskFlags } = await supabase
-      .from("risk_flags")
-      .select("id, flag_type, severity, description, category, resolved, detected_at")
-      .eq("case_id", caseId)
-      .eq("resolved", false);
+    if (riskFlags.length === 0 && scope.externalRef) {
+      const { data } = await supabase
+        .from("risk_flags")
+        .select("id, flag_type, severity, description, category, resolved, detected_at")
+        .eq("case_id", caseId)
+        .eq("org_id", scope.externalRef)
+        .eq("resolved", false);
+      riskFlags = data ?? [];
+    }
 
     // Fetch missing evidence
     const docsForEvidence = (documents ?? []).map((d) => ({
@@ -71,12 +119,26 @@ export async function GET(
       docsForEvidence,
     );
 
-    // Fetch limitation
-    const { data: limitationData } = await supabase
-      .from("limitation_info")
-      .select("primary_limitation_date, days_remaining, is_expired, severity")
-      .eq("case_id", caseId)
-      .maybeSingle();
+    // Fetch limitation (with org scope fallback)
+    let limitationData: any = null;
+    if (scope.orgIdUuid) {
+      const { data } = await supabase
+        .from("limitation_info")
+        .select("primary_limitation_date, days_remaining, is_expired, severity")
+        .eq("case_id", caseId)
+        .eq("org_id", scope.orgIdUuid)
+        .maybeSingle();
+      limitationData = data;
+    }
+    if (!limitationData && scope.externalRef) {
+      const { data } = await supabase
+        .from("limitation_info")
+        .select("primary_limitation_date, days_remaining, is_expired, severity")
+        .eq("case_id", caseId)
+        .eq("org_id", scope.externalRef)
+        .maybeSingle();
+      limitationData = data;
+    }
 
     // Convert limitation
     const limitationInfo: LimitationInfo | undefined = limitationData ? {
@@ -89,26 +151,68 @@ export async function GET(
       practiceArea: (caseRecord.practice_area ?? "other_litigation") as any,
     } : undefined;
 
-    // Fetch key issues
-    const { data: keyIssues } = await supabase
-      .from("key_issues")
-      .select("id, label, description, category")
-      .eq("case_id", caseId);
+    // Fetch key issues (with org scope fallback)
+    let keyIssues: any[] = [];
+    if (scope.orgIdUuid) {
+      const { data } = await supabase
+        .from("key_issues")
+        .select("id, label, description, category")
+        .eq("case_id", caseId)
+        .eq("org_id", scope.orgIdUuid);
+      keyIssues = data ?? [];
+    }
+    if (keyIssues.length === 0 && scope.externalRef) {
+      const { data } = await supabase
+        .from("key_issues")
+        .select("id, label, description, category")
+        .eq("case_id", caseId)
+        .eq("org_id", scope.externalRef);
+      keyIssues = data ?? [];
+    }
 
-    // Fetch next steps
-    const { data: nextSteps } = await supabase
-      .from("next_steps")
-      .select("id, action, priority, due_date")
-      .eq("case_id", caseId)
-      .eq("completed", false);
+    // Fetch next steps (with org scope fallback)
+    let nextSteps: any[] = [];
+    if (scope.orgIdUuid) {
+      const { data } = await supabase
+        .from("next_steps")
+        .select("id, action, priority, due_date")
+        .eq("case_id", caseId)
+        .eq("org_id", scope.orgIdUuid)
+        .eq("completed", false);
+      nextSteps = data ?? [];
+    }
+    if (nextSteps.length === 0 && scope.externalRef) {
+      const { data } = await supabase
+        .from("next_steps")
+        .select("id, action, priority, due_date")
+        .eq("case_id", caseId)
+        .eq("org_id", scope.externalRef)
+        .eq("completed", false);
+      nextSteps = data ?? [];
+    }
 
-    // Fetch recent notes for days since update
-    const { data: recentNotes } = await supabase
-      .from("case_notes")
-      .select("created_at")
-      .eq("case_id", caseId)
-      .order("created_at", { ascending: false })
-      .limit(1);
+    // Fetch recent notes for days since update (with org scope fallback)
+    let recentNotes: any[] = [];
+    if (scope.orgIdUuid) {
+      const { data } = await supabase
+        .from("case_notes")
+        .select("created_at")
+        .eq("case_id", caseId)
+        .eq("org_id", scope.orgIdUuid)
+        .order("created_at", { ascending: false })
+        .limit(1);
+      recentNotes = data ?? [];
+    }
+    if (recentNotes.length === 0 && scope.externalRef) {
+      const { data } = await supabase
+        .from("case_notes")
+        .select("created_at")
+        .eq("case_id", caseId)
+        .eq("org_id", scope.externalRef)
+        .order("created_at", { ascending: false })
+        .limit(1);
+      recentNotes = data ?? [];
+    }
 
     const daysSinceLastUpdate = recentNotes?.[0]?.created_at
       ? Math.floor((Date.now() - new Date(recentNotes[0].created_at).getTime()) / (1000 * 60 * 60 * 24))
@@ -128,7 +232,7 @@ export async function GET(
       
       insights = await buildCaseInsights({
         caseId,
-        orgId,
+        orgId: scope.orgIdUuid || scope.externalRef || "",
         caseRecord: {
           id: caseRecord.id,
           title: caseRecord.title ?? "",

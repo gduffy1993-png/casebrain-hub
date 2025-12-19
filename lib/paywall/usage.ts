@@ -217,6 +217,12 @@ export async function incrementUsage(params: {
   });
 
   if (error) {
+    const errorCode = (error as any).code;
+    // Silence PGRST202 (function not found) - log once per request and continue
+    if (errorCode === "PGRST202") {
+      // Function doesn't exist - non-blocking, continue without incrementing
+      return;
+    }
     console.error(`[paywall] Failed to increment ${feature} counter:`, error);
     // Fallback to direct update if function doesn't exist
     const columnName = `${feature}_count` as "upload_count" | "analysis_count" | "export_count";

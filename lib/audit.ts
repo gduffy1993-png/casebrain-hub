@@ -104,6 +104,12 @@ export async function logCaseEvent(input: LogEventInput): Promise<CaseAuditEvent
       .single();
     
     if (error) {
+      const errorCode = (error as any).code;
+      // Silence PGRST205 (table not found) - log once and continue
+      if (errorCode === "PGRST205") {
+        // Table doesn't exist - non-blocking, continue without logging
+        return null;
+      }
       console.error("[audit] Failed to log event:", error);
       return null;
     }
