@@ -13,6 +13,7 @@ import type { PracticeArea } from "../types/casebrain";
 import type { StrategicInsightMeta } from "./types";
 import { generateWeakSpotMeta } from "./meta-generator";
 import { detectCaseRole, type CaseRole } from "./role-detection";
+import { sanitizeTextForPracticeArea } from "./practice-area-filters";
 
 export type WeakSpotType =
   | "CONTRADICTION"
@@ -80,6 +81,7 @@ export async function detectOpponentWeakSpots(
   }
   
   const isClaimant = caseRole === "claimant";
+  const isCriminal = input.practiceArea === "criminal";
 
   // 1. Check for contradictions (if bundle exists)
   if (input.bundleId) {
@@ -152,8 +154,16 @@ export async function detectOpponentWeakSpots(
   );
 
   for (const missing of criticalMissing.slice(0, 3)) {
+    // Criminal: do not treat "client ID / admin file hygiene" as a strategic weak spot/leverage.
+    if (isCriminal) {
+      const label = missing.label.toLowerCase();
+      if (label.includes("client id") || label.includes("identification")) {
+        continue;
+      }
+    }
+
     // Check if this is an admin gap (for claimant cases)
-    const isAdminGap = isClaimant && (
+    const isAdminGap = !isCriminal && isClaimant && (
       missing.label.toLowerCase().includes("client id") ||
       missing.label.toLowerCase().includes("retainer") ||
       missing.label.toLowerCase().includes("cfa") ||
@@ -237,7 +247,7 @@ export async function detectOpponentWeakSpots(
     
     const evidence = [
       missing.reason,
-      isAdminGap ? `Category: Administrative/Procedural` : `Category: ${missing.category}`,
+      `Category: ${missing.category}`,
       `Legal basis: ${legalBasis}`,
     ];
     
@@ -257,6 +267,25 @@ export async function detectOpponentWeakSpots(
       suggestedAction: tacticalAdvice,
       createdAt: now,
     };
+
+    // Final criminal sanitization: if any civil/claimant text leaks, strip the entry.
+    if (isCriminal) {
+      const description = sanitizeTextForPracticeArea(weakSpot.description, "criminal", { context: "weak-spots/description" });
+      const impact = sanitizeTextForPracticeArea(weakSpot.impact, "criminal", { context: "weak-spots/impact" });
+      const suggestedAction = sanitizeTextForPracticeArea(weakSpot.suggestedAction, "criminal", { context: "weak-spots/suggestedAction" });
+      const evidenceClean = weakSpot.evidence
+        .map((e) => sanitizeTextForPracticeArea(e, "criminal", { context: "weak-spots/evidence", log: false }))
+        .filter((e): e is string => Boolean(e));
+
+      if (!description || !impact || !suggestedAction) {
+        continue;
+      }
+
+      weakSpot.description = description;
+      weakSpot.impact = impact;
+      weakSpot.suggestedAction = suggestedAction;
+      weakSpot.evidence = evidenceClean;
+    }
     
     // Generate meta (civil-focused; hide for criminal to prevent copy leakage)
     if (includeMeta) {

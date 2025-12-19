@@ -194,6 +194,7 @@ export type CriminalBeastMode = {
   };
   proceduralIntegrity: {
     complianceRisk: "LOW" | "MEDIUM" | "HIGH" | "CRITICAL";
+    paceStatus?: "UNKNOWN" | "CHECKED_NO_BREACHES" | "BREACH_FLAGGED";
     checklist: Array<{ item: string; status: "PRESENT" | "MISSING" | "UNCLEAR"; whyItMatters: string }>;
     courtroomMeaning: string;
   };

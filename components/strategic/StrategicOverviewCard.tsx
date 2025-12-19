@@ -55,6 +55,14 @@ export function StrategicOverviewCard({ caseId, practiceArea }: StrategicOvervie
         }
 
         const result = await response.json();
+        
+        // If analysisBanner exists with warning, don't show strategy
+        if (result.analysisBanner?.severity === "warning") {
+          setData(null);
+          setError("Practice area mismatch detected. Please switch to the correct role.");
+          return;
+        }
+        
         setData(result);
       } catch (err) {
         console.error("Failed to fetch strategic overview:", err);

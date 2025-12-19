@@ -136,8 +136,37 @@ export async function POST(request: Request) {
 
   // Criminal structured extraction (deterministic): run after text extraction and document update
   try {
-    const practiceArea = (document as any)?.cases?.practice_area ?? null;
-    if (normalizePracticeArea(practiceArea) === "criminal") {
+    const storedPracticeAreaRaw = (document as any)?.cases?.practice_area ?? null;
+    let normalizedPracticeArea = normalizePracticeArea(storedPracticeAreaRaw);
+
+    // If practice area is missing/other but the content looks criminal, safely repair + run extractor.
+    const looksCriminal =
+      /(?:\bPACE\b|\bCPIA\b|\bMG6\b|\bMG\s*6\b|\bMG5\b|\bCPS\b|\bcustody\b|\binterview\b|\bcharge\b|\bindictment\b|\bCrown Court\b|\bMagistrates'? Court\b)/i.test(
+        `${document.name}\n${redactedText}`,
+      );
+
+    if (
+      looksCriminal &&
+      normalizedPracticeArea !== "criminal" &&
+      (!storedPracticeAreaRaw || normalizedPracticeArea === "other_litigation")
+    ) {
+      console.error("[extract] Criminal signals detected but case practice_area is not criminal. Repairing.", {
+        caseId: document.case_id,
+        storedPracticeAreaRaw,
+      });
+      try {
+        await supabase
+          .from("cases")
+          .update({ practice_area: "criminal" } as any)
+          .eq("id", document.case_id)
+          .eq("org_id", orgId);
+        normalizedPracticeArea = "criminal";
+      } catch {
+        // ignore
+      }
+    }
+
+    if (normalizedPracticeArea === "criminal") {
       const meta = extractCriminalCaseMeta({
         text: redactedText,
         documentName: document.name,

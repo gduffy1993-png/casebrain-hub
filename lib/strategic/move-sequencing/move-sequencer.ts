@@ -8,6 +8,7 @@ import type { Move, InvestigationAngle, MovePhase } from "./types";
 import type { Severity } from "@/lib/types/casebrain";
 import type { CaseAnchors } from "./case-anchors";
 import { injectAnchors } from "./case-anchors";
+import { dedupeByKey } from "../deduplication";
 
 /**
  * Generate moves from investigation angles
@@ -132,7 +133,14 @@ export function sequenceMoves(moves: Move[]): Move[] {
     }).filter(d => d < index + 1), // Only include dependencies that come before
   }));
   
-  return sequenced;
+  // Deduplicate moves by evidenceRequested (stable key)
+  const deduplicated = dedupeByKey(sequenced, (move) => move.evidenceRequested);
+  
+  // Re-assign order numbers after deduplication
+  return deduplicated.map((move, index) => ({
+    ...move,
+    order: index + 1,
+  }));
 }
 
 /**

@@ -8,6 +8,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { requireAuthContext } from "@/lib/auth";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { detectProceduralLeveragePoints } from "@/lib/strategic/procedural-leverage";
+import { resolvePracticeAreaFromSignals } from "@/lib/strategic/practice-area-filters";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -57,11 +58,36 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       .eq("case_id", caseId)
       .order("event_date", { ascending: false });
 
+    // Resolve practice area robustly (avoid criminal→other leakage)
+    let hasCriminalSignals = false;
+    try {
+      const { data: criminalCaseRow } = await supabase
+        .from("criminal_cases")
+        .select("id")
+        .eq("id", caseId)
+        .eq("org_id", orgId)
+        .maybeSingle();
+      const looksCriminal = (documents ?? []).some((d: any) =>
+        /(?:\bPACE\b|\bCPIA\b|\bMG6\b|\bMG\s*6\b|\bMG5\b|\bCPS\b|\bcustody\b|\binterview\b|\bcharge\b|\bindictment\b|\bCrown Court\b|\bMagistrates'? Court\b)/i.test(
+          String(d?.name ?? ""),
+        ),
+      );
+      hasCriminalSignals = Boolean(criminalCaseRow?.id || looksCriminal);
+    } catch {
+      // ignore
+    }
+
+    const resolvedPracticeArea = resolvePracticeAreaFromSignals({
+      storedPracticeArea: caseRecord.practice_area,
+      hasCriminalSignals,
+      context: "strategic/leverage",
+    });
+
     // Detect leverage points
     const leveragePoints = await detectProceduralLeveragePoints({
       caseId,
       orgId,
-      practiceArea: caseRecord.practice_area as any,
+      practiceArea: resolvedPracticeArea as any,
       documents: documents ?? [],
       letters: letters ?? [],
       deadlines: deadlines ?? [],

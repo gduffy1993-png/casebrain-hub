@@ -68,18 +68,27 @@ export function GetOffProbabilityMeter({ caseId }: GetOffProbabilityMeterProps) 
   }
   
   if (data.probabilitiesSuppressed || data.overall === null) {
+    const isVeryIncomplete = typeof data.bundleCompleteness === "number" && data.bundleCompleteness < 10;
+    const titleText = isVeryIncomplete 
+      ? "Decision Support Only"
+      : "Provisional Assessment";
+    
     return (
       <Card
         title={
           <div className="flex items-center gap-2">
             <TrendingUp className="h-4 w-4 text-primary" />
-            <span>Get Off Probability</span>
+            <span>{titleText}</span>
           </div>
         }
         description={data.suppressionReason || "Insufficient bundle for probabilistic output. Disclosure-first actions only."}
       >
         <div className="text-sm text-muted-foreground">
-          <div className="font-medium text-foreground">N/A</div>
+          <div className="font-medium text-foreground">
+            {isVeryIncomplete 
+              ? "Upload served prosecution case papers (MG forms, custody/interview records, primary media logs)"
+              : "Bundle incomplete — early estimate not available"}
+          </div>
           {typeof data.bundleCompleteness === "number" && (
             <div className="text-xs mt-1">
               Bundle completeness: {data.bundleCompleteness}%{typeof data.criticalMissingCount === "number" ? ` • Critical missing: ${data.criticalMissingCount}` : ""}

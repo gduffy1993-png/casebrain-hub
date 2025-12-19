@@ -71,6 +71,7 @@ export async function POST(request: Request) {
     (formData.get("caseTitle") as string | null)?.trim() ?? undefined;
   const practiceArea =
     (formData.get("practiceArea") as string | null)?.trim() ?? "other_litigation";
+  const normalizedProvidedPracticeArea = normalizePracticeArea(practiceArea);
   const providedCaseId = (formData.get("caseId") as string | null)?.trim() ?? undefined;
 
   if (!files.length) {
@@ -174,7 +175,7 @@ export async function POST(request: Request) {
         org_id: orgId,
         title: caseTitle,
         created_by: userId,
-        practice_area: practiceArea,
+        practice_area: normalizedProvidedPracticeArea,
       })
       .select("id")
       .maybeSingle();
@@ -209,8 +210,33 @@ export async function POST(request: Request) {
     .eq("id", caseId)
     .eq("org_id", orgId)
     .maybeSingle();
-  const resolvedPracticeAreaRaw = (resolvedCaseForArea?.practice_area ?? practiceArea) as string;
-  const resolvedPracticeArea = normalizePracticeArea(resolvedPracticeAreaRaw);
+  const storedPracticeAreaRaw = (resolvedCaseForArea?.practice_area ?? null) as string | null;
+  let resolvedPracticeArea = normalizePracticeArea(storedPracticeAreaRaw ?? practiceArea);
+
+  // If user selected criminal but the case is stored as other/null, safely repair it.
+  if (
+    normalizedProvidedPracticeArea === "criminal" &&
+    resolvedPracticeArea !== "criminal" &&
+    (!storedPracticeAreaRaw || normalizePracticeArea(storedPracticeAreaRaw) === "other_litigation")
+  ) {
+    console.error("[upload] practice_area mismatch: selected criminal but stored is not criminal. Repairing.", {
+      caseId,
+      storedPracticeAreaRaw,
+      selected: practiceArea,
+    });
+    try {
+      await supabase
+        .from("cases")
+        .update({ practice_area: "criminal" } as any)
+        .eq("id", caseId)
+        .eq("org_id", orgId);
+      resolvedPracticeArea = "criminal";
+    } catch (e) {
+      // Non-fatal: continue with resolvedPracticeArea
+    }
+  }
+
+  // `resolvedPracticeArea` is now the source of truth for downstream logic.
 
   // Check trial limits before uploading documents (always check, regardless of new/existing case)
   // SAFETY: Wrap in try-catch to prevent crashes

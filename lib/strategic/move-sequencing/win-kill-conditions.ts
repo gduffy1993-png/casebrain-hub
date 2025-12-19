@@ -6,6 +6,7 @@
 
 import type { MoveSequenceInput, Observation } from "./types";
 import type { EvidenceMap } from "../evidence-maps/types";
+import { dedupeStrings } from "../deduplication";
 
 /**
  * Generate win conditions - what must exist to justify issue
@@ -46,7 +47,7 @@ export function generateWinConditions(
     conditions.push("No material contradictions in documentation");
   }
 
-  return conditions.slice(0, 5); // Limit to top 5
+  return dedupeStrings(conditions).slice(0, 5); // Limit to top 5, deduplicated
 }
 
 /**
@@ -88,6 +89,6 @@ export function generateKillConditions(
     conditions.push("All gaps explained with contemporaneous documentation");
   }
 
-  return conditions.slice(0, 5); // Limit to top 5
+  return dedupeStrings(conditions).slice(0, 5); // Limit to top 5, deduplicated
 }
 

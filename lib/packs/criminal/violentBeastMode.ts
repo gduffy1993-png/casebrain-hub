@@ -17,6 +17,7 @@ import type { MoveSequenceInput, CriminalBeastMode } from "@/lib/strategic/move-
 import { detectViolentChargeCandidates } from "./detectChargeCandidates";
 import { selectViolentEvidenceProfiles } from "./evidenceMapsViolent";
 import { getViolentChargeById } from "./violentCharges";
+import { dedupeStrings, dedupeByKey } from "@/lib/strategic/deduplication";
 
 function normalizeText(s: string): string {
   return s.toLowerCase().replace(/\s+/g, " ").trim();
@@ -135,15 +136,23 @@ function computeChargeStability(params: {
 }
 
 function computeProceduralIntegrity(corpus: string) {
+  const custodyRecordPresent = hasPatterns(corpus, ["custody record", "custody review", "legal advice"]);
+  const interviewRecordingPresent = hasPatterns(corpus, ["interview recording", "audio interview", "video interview", "transcript"]);
+  const legalAdviceLogPresent = hasPatterns(corpus, ["legal advice", "solicitor", "legal representative"]);
+  const cautionSolicitorFlagsPresent = hasPatterns(corpus, ["caution", "right to solicitor", "legal advice"]);
+
+  // Critical PACE evidence check: if ANY is missing, status is UNKNOWN
+  const criticalPaceMissing = !custodyRecordPresent || !interviewRecordingPresent || !legalAdviceLogPresent || !cautionSolicitorFlagsPresent;
+
   const checklist = [
     {
       item: "Custody record (PACE) incl. reviews + legal advice log",
-      status: hasPatterns(corpus, ["custody record", "custody review", "legal advice"]) ? "PRESENT" : "MISSING",
+      status: custodyRecordPresent ? "PRESENT" : "MISSING",
       whyItMatters: "PACE compliance and contemporaneous custody documentation can affect fairness and admissibility arguments.",
     },
     {
       item: "Interview recording(s) + transcript / log (PACE)",
-      status: hasPatterns(corpus, ["interview recording", "audio interview", "video interview", "transcript"]) ? "PRESENT" : "MISSING",
+      status: interviewRecordingPresent ? "PRESENT" : "MISSING",
       whyItMatters: "Recording integrity and access to transcript/log is essential for accuracy and admissibility analysis.",
     },
     {
@@ -162,11 +171,28 @@ function computeProceduralIntegrity(corpus: string) {
   const complianceRisk: "LOW" | "MEDIUM" | "HIGH" | "CRITICAL" =
     missing >= 3 ? "CRITICAL" : missing === 2 ? "HIGH" : missing === 1 ? "MEDIUM" : "LOW";
 
+  // Determine PACE status: UNKNOWN if critical evidence missing, CHECKED_NO_BREACHES if all present and no breaches detected, BREACH_FLAGGED if breaches exist
+  let paceStatus: "UNKNOWN" | "CHECKED_NO_BREACHES" | "BREACH_FLAGGED" = "UNKNOWN";
+  if (criticalPaceMissing) {
+    paceStatus = "UNKNOWN";
+  } else {
+    // If all critical evidence is present, check if breaches are detected
+    // For now, assume no breaches if all evidence present (actual breach detection would come from pace_compliance table)
+    // This will be updated by the API route that reads from pace_compliance
+    paceStatus = "CHECKED_NO_BREACHES";
+  }
+
+  const deduplicatedChecklist = dedupeByKey(
+    checklist.map((c) => ({ ...c, status: c.status as "PRESENT" | "MISSING" | "UNCLEAR" })),
+    (item) => item.item
+  );
+
   return {
     complianceRisk,
-    checklist: checklist.map((c) => ({ ...c, status: c.status as "PRESENT" | "MISSING" | "UNCLEAR" })),
+    paceStatus,
+    checklist: deduplicatedChecklist,
     courtroomMeaning:
-      "Procedural integrity issues typically drive disclosure directions, adjournments, and (in appropriate cases) admissibility/fairness arguments. Use professional judgment and counsel’s advice.",
+      "Procedural integrity issues typically drive disclosure directions, adjournments, and (in appropriate cases) admissibility/fairness arguments. Use professional judgment and counsel's advice.",
   };
 }
 
@@ -466,7 +492,7 @@ export function buildCriminalViolentBeastMode(params: {
   // Bundle completeness (offence-expected evidence only)
   const expectedCount = selectedProfiles.expectedEvidence.length;
   const missing = selectedProfiles.expectedEvidence.filter((e) => !hasPatterns(corpus, e.detectPatterns));
-  const missingCritical = missing.filter((m) => m.priority === "CRITICAL").map((m) => m.label);
+  const missingCritical = dedupeStrings(missing.filter((m) => m.priority === "CRITICAL").map((m) => m.label));
   const missingCount = missing.length;
   const completenessPercent = expectedCount === 0 ? 0 : Math.round(((expectedCount - missingCount) / expectedCount) * 100);
   const completenessBand = bandFromCompleteness(completenessPercent, missingCritical.length);

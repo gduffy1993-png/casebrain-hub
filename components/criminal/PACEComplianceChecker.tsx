@@ -19,6 +19,7 @@ type PACECompliance = {
   detentionTimeExceeded: boolean | null;
   breachesDetected: string[];
   breachSeverity: "LOW" | "MEDIUM" | "HIGH" | "CRITICAL" | null;
+  paceStatus?: "UNKNOWN" | "CHECKED_NO_BREACHES" | "BREACH_FLAGGED";
 };
 
 export function PACEComplianceChecker({ caseId }: PACEComplianceProps) {
@@ -104,8 +105,26 @@ export function PACEComplianceChecker({ caseId }: PACEComplianceProps) {
           )}
         </div>
 
-        {/* Breaches */}
-        {hasBreaches && (
+        {/* PACE Status Display */}
+        {compliance.paceStatus === "UNKNOWN" && (
+          <div className="mt-4 p-3 rounded-lg border border-yellow-500/50 bg-yellow-500/10">
+            <div className="flex items-center gap-2">
+              <AlertTriangle className="h-4 w-4 text-yellow-400" />
+              <span className="text-sm text-yellow-400">
+                PACE status: UNKNOWN — missing custody/interview/solicitor records in bundle
+              </span>
+            </div>
+          </div>
+        )}
+        {compliance.paceStatus === "CHECKED_NO_BREACHES" && !hasBreaches && (
+          <div className="mt-4 p-3 rounded-lg border border-green-500/50 bg-green-500/10">
+            <div className="flex items-center gap-2">
+              <CheckCircle className="h-4 w-4 text-green-400" />
+              <span className="text-sm text-green-400">No PACE breaches detected (in provided material)</span>
+            </div>
+          </div>
+        )}
+        {compliance.paceStatus === "BREACH_FLAGGED" && hasBreaches && (
           <div className="mt-4 p-3 rounded-lg border border-red-500/50 bg-red-500/10">
             <div className="flex items-center gap-2 mb-2">
               <AlertTriangle className="h-4 w-4 text-red-400" />
@@ -123,15 +142,6 @@ export function PACEComplianceChecker({ caseId }: PACEComplianceProps) {
                 <li key={i}>• {breach}</li>
               ))}
             </ul>
-          </div>
-        )}
-
-        {!hasBreaches && (
-          <div className="mt-4 p-3 rounded-lg border border-green-500/50 bg-green-500/10">
-            <div className="flex items-center gap-2">
-              <CheckCircle className="h-4 w-4 text-green-400" />
-              <span className="text-sm text-green-400">No PACE breaches detected</span>
-            </div>
           </div>
         )}
       </div>

@@ -15,6 +15,7 @@ import { detectSubstantiveMerits } from "./substantive-merits";
 import type { PracticeArea } from "../types/casebrain";
 import type { StrategicInsightMeta } from "./types";
 import { generateLeverageMeta } from "./meta-generator";
+import { sanitizeTextForPracticeArea } from "./practice-area-filters";
 
 export type ProceduralLeverageType =
   | "MISSING_DEADLINE"
@@ -74,6 +75,7 @@ export async function detectProceduralLeveragePoints(
   const leveragePoints: ProceduralLeveragePoint[] = [];
   const now = new Date().toISOString();
   const includeMeta = input.practiceArea !== "criminal";
+  const isCriminal = input.practiceArea === "criminal";
   
   // Detect case role if not provided
   let caseRole = input.caseRole;
@@ -92,7 +94,7 @@ export async function detectProceduralLeveragePoints(
     }
   }
   
-  const isClaimant = caseRole === "claimant";
+  const isClaimant = !isCriminal && caseRole === "claimant";
   const isClinicalNeg = input.practiceArea === "clinical_negligence";
   
   // ============================================
@@ -381,7 +383,7 @@ export async function detectProceduralLeveragePoints(
     }
     
     // For claimant cases, add admin gaps as MEDIUM severity (not HIGH leverage)
-    if (isClaimant && criticalMissing.length > substantiveMissing.length) {
+    if (!isCriminal && isClaimant && criticalMissing.length > substantiveMissing.length) {
       const adminMissing = criticalMissing.filter(e => {
         const label = e.label.toLowerCase();
         return label.includes("client id") ||
@@ -495,6 +497,33 @@ export async function detectProceduralLeveragePoints(
         });
       }
     }
+  }
+
+  // Criminal final sanitization: remove any entry that still contains civil-only text.
+  if (isCriminal) {
+    const cleaned = leveragePoints
+      .map((p) => {
+        // Never treat client ID / admin hygiene as leverage in criminal.
+        const descLower = String(p.description || "").toLowerCase();
+        if (descLower.includes("client id") || descLower.includes("identification")) {
+          return null;
+        }
+
+        const description = sanitizeTextForPracticeArea(p.description, "criminal", { context: "procedural-leverage/description" });
+        const escalationText = sanitizeTextForPracticeArea(p.escalationText, "criminal", { context: "procedural-leverage/escalationText" });
+        const leverage = sanitizeTextForPracticeArea(p.leverage, "criminal", { context: "procedural-leverage/leverage" });
+        const evidence = (p.evidence ?? [])
+          .map((e) => sanitizeTextForPracticeArea(e, "criminal", { context: "procedural-leverage/evidence", log: false }))
+          .filter((e): e is string => Boolean(e));
+
+        if (!description || !escalationText || !leverage) return null;
+        // Omit cprRule for criminal cases (it's optional, so we don't need to set it)
+        const { cprRule, ...rest } = p;
+        return { ...rest, description, escalationText, leverage, evidence } as ProceduralLeveragePoint;
+      })
+      .filter((p): p is ProceduralLeveragePoint => p !== null);
+
+    return cleaned;
   }
 
   return leveragePoints;

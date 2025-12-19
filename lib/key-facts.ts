@@ -16,9 +16,10 @@ import type {
   RiskFlag,
   LimitationInfo,
 } from "./types/casebrain";
-import { normalizePracticeArea } from "./types/casebrain";
+import { normalizePracticeArea, type PracticeArea } from "./types/casebrain";
 import { getOrBuildLayeredSummary } from "@/lib/layered-summary/engine";
 import { createDbLayeredSummaryCache } from "@/lib/layered-summary/cache-db";
+import { resolvePracticeAreaFromSignals } from "@/lib/strategic/practice-area-filters";
 
 /**
  * Build a key facts summary for a case
@@ -49,7 +50,69 @@ export async function buildKeyFactsSummary(
 
   if (!caseData) throw new Error("Case not found");
 
-  const normalizedPracticeArea = normalizePracticeArea(caseData.practice_area);
+  let normalizedPracticeArea: PracticeArea = normalizePracticeArea(caseData.practice_area);
+
+  // Runtime assert/repair: if criminal signals exist but stored practice_area is other/null,
+  // force criminal for downstream logic (and safely persist for stability if it's unset/other).
+  if (normalizedPracticeArea !== "criminal") {
+    let hasCriminalSignals = false;
+    try {
+      const [{ data: criminalCaseRow }, { data: chargeRow }, { data: docs }] = await Promise.all([
+        supabase
+          .from("criminal_cases")
+          .select("id")
+          .eq("id", caseId)
+          .eq("org_id", orgId)
+          .maybeSingle(),
+        supabase
+          .from("criminal_charges")
+          .select("id")
+          .eq("case_id", caseId)
+          .eq("org_id", orgId)
+          .limit(1)
+          .maybeSingle(),
+        supabase
+          .from("documents")
+          .select("name")
+          .eq("case_id", caseId)
+          .eq("org_id", orgId)
+          .order("created_at", { ascending: false })
+          .limit(10),
+      ]);
+      const looksCriminal = (docs ?? []).some((d: any) =>
+        /(?:\bPACE\b|\bCPIA\b|\bMG6\b|\bMG\s*6\b|\bMG5\b|\bCPS\b|\bcustody\b|\binterview\b|\bcharge\b|\bindictment\b|\bCrown Court\b|\bMagistrates'? Court\b)/i.test(
+          String(d?.name ?? ""),
+        ),
+      );
+      hasCriminalSignals = Boolean(criminalCaseRow?.id || (chargeRow as any)?.id || looksCriminal);
+    } catch {
+      // ignore
+    }
+
+    const resolved = resolvePracticeAreaFromSignals({
+      storedPracticeArea: caseData.practice_area,
+      hasCriminalSignals,
+      context: "key-facts/buildKeyFactsSummary",
+    });
+
+    if (resolved === "criminal") {
+      normalizedPracticeArea = "criminal" as PracticeArea;
+
+      // Safe persistence: only overwrite when unset/other.
+      try {
+        const storedNormalized = caseData.practice_area ? normalizePracticeArea(caseData.practice_area) : null;
+        if (!storedNormalized || storedNormalized === "other_litigation") {
+          await supabase
+            .from("cases")
+            .update({ practice_area: "criminal" } as any)
+            .eq("id", caseId)
+            .eq("org_id", orgId);
+        }
+      } catch {
+        // ignore
+      }
+    }
+  }
 
   // =============================================================================
   // Criminal: build key facts from persisted criminal tables (deterministic, never-throw)

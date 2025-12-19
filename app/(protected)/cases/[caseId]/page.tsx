@@ -57,6 +57,7 @@ import { calculateLimitation } from "@/lib/core/limitation";
 import { calculateNextStep, calculateAllNextSteps, calculateChaserAlerts } from "@/lib/next-step";
 import type { RiskFlag, LimitationInfo, PracticeArea, RiskStatus } from "@/lib/types/casebrain";
 import { normalizePracticeArea } from "@/lib/types/casebrain";
+import { resolvePracticeAreaFromSignals } from "@/lib/strategic/practice-area-filters";
 import { Badge } from "@/components/ui/badge";
 import { CaseArchiveButton } from "@/components/cases/CaseArchiveButton";
 import { CasePackExportButton, CasePackExportPanel } from "@/components/cases/CasePackExportButton";
@@ -212,7 +213,36 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
     // Continue with empty arrays - page will render with missing data rather than crash
   }
 
-  const normalizedPracticeAreaValue = normalizePracticeArea(caseRecord.practice_area);
+  let normalizedPracticeAreaValue = normalizePracticeArea(caseRecord.practice_area);
+
+  // Runtime assert: if criminal tables exist but cases.practice_area is other/null, treat as criminal for UI.
+  if (normalizedPracticeAreaValue !== "criminal") {
+    try {
+      const { data: criminalCaseRow } = await supabase
+        .from("criminal_cases")
+        .select("id")
+        .eq("id", caseId)
+        .eq("org_id", orgId)
+        .maybeSingle();
+      const looksCriminal =
+        (documents ?? []).some((d: any) =>
+          /(?:\bPACE\b|\bCPIA\b|\bMG6\b|\bMG\s*6\b|\bMG5\b|\bCPS\b|\bcustody\b|\binterview\b|\bcharge\b|\bindictment\b|\bCrown Court\b|\bMagistrates'? Court\b)/i.test(
+            `${String(d?.name ?? "")} ${String(d?.type ?? "")}`,
+          ),
+        ) || false;
+      const hasCriminalSignals = Boolean(criminalCaseRow?.id || looksCriminal);
+      const resolved = resolvePracticeAreaFromSignals({
+        storedPracticeArea: caseRecord.practice_area,
+        hasCriminalSignals,
+        context: "case-page/render",
+      });
+      if (resolved === "criminal") {
+        normalizedPracticeAreaValue = "criminal";
+      }
+    } catch {
+      // ignore
+    }
+  }
   const isPiCase =
     caseRecord.practice_area === "pi" || normalizedPracticeAreaValue === "personal_injury" || normalizedPracticeAreaValue === "clinical_negligence";
   const isHousingCase = normalizedPracticeAreaValue === "housing_disrepair";

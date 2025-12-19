@@ -258,7 +258,7 @@ function findPACEExclusionAngles(
       
       specificArguments: [
         `Your Honour, my client's fundamental right to consult with a solicitor was denied. This is a breach of PACE Code C and Article 6 ECHR. I submit that ALL evidence obtained after this breach should be excluded.`,
-        `Your Honour, this breach is so fundamental that it renders the proceedings unfair. I submit that the case should be stayed as an abuse of process.`,
+        `Your Honour, this breach is so fundamental that it renders the proceedings unfair. Consider stay/abuse of process only if disclosure failures persist after a clear chase trail and directions/timetable.`,
       ],
       
       crossExaminationPoints: [
@@ -270,7 +270,7 @@ function findPACEExclusionAngles(
       
       submissions: [
         "I submit that the denial of solicitor access is a fundamental breach that renders all subsequent evidence inadmissible.",
-        "I submit that this breach is so serious that the case should be stayed as an abuse of process.",
+        "Consider stay/abuse of process only if disclosure failures persist after a clear chase trail and directions/timetable.",
       ],
       
       ifSuccessful: "All evidence after solicitor denial excluded. Case stayed or dismissed. Complete win.",
@@ -372,7 +372,7 @@ function findDisclosureFailureAngles(
   angles.push({
     id: `angle-disclosure-${caseId}`,
     angleType: "DISCLOSURE_FAILURE_STAY",
-    title: "Disclosure Failure - Case Should Be Stayed",
+    title: "Disclosure Failure - Consider Stay/Abuse of Process Application",
     severity: "HIGH",
     winProbability: 70,
     
@@ -388,11 +388,11 @@ function findDisclosureFailureAngles(
     
     prosecutionWeakness: "The prosecution has failed in their fundamental duty. This suggests they may be hiding evidence that could prove innocence. This undermines the entire prosecution case.",
     
-    howToExploit: `Step 1: Document all missing disclosure. Step 2: Request full disclosure immediately. Step 3: If refused or incomplete, apply to stay proceedings as abuse of process. Step 4: Argue that without disclosure, fair trial is impossible. Step 5: Request case stayed or dismissed.`,
+    howToExploit: `Step 1: Document all missing disclosure. Step 2: Request full disclosure immediately. Step 3: If refused or incomplete after clear chase trail, consider application to stay proceedings as abuse of process. Step 4: Argue that without disclosure, fair trial is impossible. Step 5: Request case stayed or dismissed only after directions/timetable have been exhausted.`,
     
     specificArguments: [
-      `Your Honour, the prosecution has failed to provide full disclosure as required by CPIA 1996. This breach is so fundamental that it prevents my client from having a fair trial. I submit that the case should be stayed as an abuse of process.`,
-      `Your Honour, without full disclosure, I cannot properly prepare my client's defense. This breaches Article 6 ECHR. I submit that the case should be stayed.`,
+      `Your Honour, the prosecution has failed to provide full disclosure as required by CPIA 1996. This breach is so fundamental that it prevents my client from having a fair trial. Consider stay/abuse of process only if disclosure failures persist after a clear chase trail and directions/timetable.`,
+      `Your Honour, without full disclosure, I cannot properly prepare my client's defense. This breaches Article 6 ECHR. Consider stay/abuse of process only if disclosure failures persist after a clear chase trail and directions/timetable.`,
     ],
     
     crossExaminationPoints: [
@@ -403,7 +403,7 @@ function findDisclosureFailureAngles(
     
     submissions: [
       "I submit that the failure to disclose is a fundamental breach that prevents a fair trial.",
-      "I submit that the case should be stayed as an abuse of process.",
+      "Consider stay/abuse of process only if disclosure failures persist after a clear chase trail and directions/timetable.",
     ],
     
     ifSuccessful: "Case stayed. Proceedings halted. Client wins without trial.",
@@ -557,7 +557,7 @@ function findAbuseOfProcessAngles(
         howToExploit: `Step 1: Document all breaches. Step 2: Apply to stay proceedings as abuse of process. Step 3: Argue that multiple breaches demonstrate misconduct. Step 4: Request case stayed.`,
         
         specificArguments: [
-          `Your Honour, there have been multiple fundamental breaches of PACE. This demonstrates a pattern of misconduct that amounts to an abuse of process. I submit that the case should be stayed.`,
+          `Your Honour, there have been multiple fundamental breaches of PACE. This demonstrates a pattern of misconduct that amounts to an abuse of process. Consider stay/abuse of process only if disclosure failures persist after a clear chase trail and directions/timetable.`,
         ],
         
         crossExaminationPoints: [
@@ -566,7 +566,7 @@ function findAbuseOfProcessAngles(
         ],
         
         submissions: [
-          "I submit that the multiple breaches amount to an abuse of process and the case should be stayed.",
+          "Consider stay/abuse of process only if disclosure failures persist after a clear chase trail and directions/timetable.",
         ],
         
         ifSuccessful: "Case stayed. Proceedings halted. Complete win.",
@@ -624,13 +624,13 @@ function findHumanRightsAngles(
       howToExploit: `Step 1: Argue breach of Article 6 ECHR. Step 2: Request evidence excluded or case stayed. Step 3: Argue that breach is so fundamental that fair trial is impossible.`,
       
       specificArguments: [
-        `Your Honour, my client's right to a fair trial under Article 6 ECHR has been breached. This is a fundamental breach that renders the proceedings unfair. I submit that the case should be stayed.`,
+        `Your Honour, my client's right to a fair trial under Article 6 ECHR has been breached. This is a fundamental breach that renders the proceedings unfair. Consider stay/abuse of process only if disclosure failures persist after a clear chase trail and directions/timetable.`,
       ],
       
       crossExaminationPoints: [],
       
       submissions: [
-        "I submit that the breach of Article 6 is so fundamental that the case should be stayed.",
+        "Consider stay/abuse of process only if disclosure failures persist after a clear chase trail and directions/timetable.",
       ],
       
       ifSuccessful: "Case stayed or evidence excluded. Strong position.",

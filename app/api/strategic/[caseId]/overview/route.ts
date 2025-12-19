@@ -20,6 +20,8 @@ import { computeAnalysisDelta } from "@/lib/strategic/compute-analysis-delta";
 import { generateMoveSequence } from "@/lib/strategic/move-sequencing/engine";
 import type { MoveSequenceInput } from "@/lib/strategic/move-sequencing/types";
 import { normalizePracticeArea } from "@/lib/types/casebrain";
+import { assessPracticeAreaViability, shouldShowEvidenceItem } from "@/lib/strategic/practice-area-viability";
+import type { SolicitorRole } from "@/lib/strategic/practice-area-viability";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -152,6 +154,56 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       
       // Bundle: take first result if available, or undefined
       const bundle = bundleResult.status === "fulfilled" && bundleResult.value.data ? bundleResult.value.data : undefined;
+
+      // ============================================
+      // VIABILITY GATE: Check if documents match selected role
+      // ============================================
+      // Build bundle text from documents and timeline
+      const bundleText = [
+        ...documents.map((d: any) => d.name || ""),
+        ...timeline.map((t: any) => t.description || ""),
+      ].join(" ");
+
+      // Map practice area to solicitor role
+      const practiceArea = normalizePracticeArea(caseRecord.practice_area);
+      const roleMap: Record<string, SolicitorRole> = {
+        criminal: "criminal_solicitor",
+        clinical_negligence: "clinical_neg_solicitor",
+        housing_disrepair: "housing_solicitor",
+        personal_injury: "pi_solicitor",
+        family: "family_solicitor",
+        other_litigation: "general_litigation_solicitor",
+      };
+      const selectedRole = roleMap[practiceArea] || "general_litigation_solicitor";
+
+      // Assess viability
+      const viability = assessPracticeAreaViability(bundleText, selectedRole);
+
+      // If not viable, return only banner (no strategy generation)
+      if (!viability.viable) {
+        const response = {
+          analysisBanner: {
+            severity: "warning" as const,
+            title: "Practice area mismatch",
+            message: "This document does not contain sufficient indicators for the selected solicitor role.",
+            reasons: viability.reasons,
+            suggestedRole: viability.suggestedRole,
+          },
+          momentum: null,
+          strategies: [],
+          weakSpots: [],
+          leveragePoints: [],
+          moveSequence: null,
+        };
+
+        return NextResponse.json(response, {
+          headers: {
+            "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+            "Pragma": "no-cache",
+            "Expires": "0",
+          },
+        });
+      }
 
       // ============================================
       // WAVE 2: Compute derived data (no DB calls)

@@ -1,6 +1,7 @@
 import type { PracticeArea } from "@/lib/types/casebrain";
 
-const CIVIL_ONLY_TERMS_FOR_CRIMINAL: RegExp[] = [
+// Used for sanitizing rendered strategic text (panels/insight copy)
+const CRIMINAL_FORBIDDEN_TEXT_TOKENS: RegExp[] = [
   /\bcfa\b/i,
   /conditional\s+fee/i,
   /\bretainer\b/i,
@@ -13,10 +14,31 @@ const CIVIL_ONLY_TERMS_FOR_CRIMINAL: RegExp[] = [
   /\blba\b/i,
   /schedule\s+of\s+loss/i,
   /\bquantum\b/i,
-  /\bliability\b/i,
+  /\bsettlement\b/i,
   /\bclaimant\b/i,
-  /\bdefendant\b/i,
+  /\bdefendant\s+admits\s+liability\b/i,
   /\bparticulars\s+of\s+claim\b/i,
+  /client\s+identification\s*[^evidence]/i, // Client Identification (civil meaning), but allow "client identification evidence" for criminal
+  /client\s+id\s*[^evidence]/i,
+];
+
+// Used for filtering evidence/risk/compliance "items" (ids/labels/descriptions),
+// intentionally *not* banning words like "LIABILITY" because those appear as category labels.
+const CRIMINAL_FORBIDDEN_ITEM_TOKENS: RegExp[] = [
+  /\bcfa\b/i,
+  /conditional\s+fee/i,
+  /\bretainer\b/i,
+  /engagement\s+letter/i,
+  /\bpart\s*36\b/i,
+  /\bcalderbank\b/i,
+  /\bpap\b/i,
+  /pre-?action/i,
+  /letter\s+before\s+action/i,
+  /\blba\b/i,
+  /schedule\s+of\s+loss/i,
+  /\bquantum\b/i,
+  /client\s+identification\s*[^evidence]/i, // Client Identification (civil meaning), but allow "client identification evidence" for criminal
+  /client\s+id\s*[^evidence]/i,
 ];
 
 function normalizePracticeAreaString(practiceArea: string): PracticeArea | "unknown" {
@@ -33,7 +55,50 @@ function normalizePracticeAreaString(practiceArea: string): PracticeArea | "unkn
 export function isCivilOnlyTextForCriminal(text: string): boolean {
   const t = (text || "").trim();
   if (!t) return false;
-  return CIVIL_ONLY_TERMS_FOR_CRIMINAL.some((re) => re.test(t));
+  return CRIMINAL_FORBIDDEN_TEXT_TOKENS.some((re) => re.test(t));
+}
+
+export function sanitizeTextForPracticeArea(
+  text: string | null | undefined,
+  practiceArea: PracticeArea | string,
+  opts?: { context?: string; log?: boolean },
+): string | null {
+  const pa = normalizePracticeAreaString(String(practiceArea));
+  const raw = (text ?? "").trim();
+  if (!raw) return null;
+  if (pa !== "criminal") return raw;
+
+  if (isCivilOnlyTextForCriminal(raw)) {
+    if (opts?.log ?? true) {
+      console.error("[criminal/purity] Stripped forbidden strategic text:", {
+        context: opts?.context,
+        preview: raw.slice(0, 140),
+      });
+    }
+    return null;
+  }
+
+  return raw;
+}
+
+export function resolvePracticeAreaFromSignals(params: {
+  storedPracticeArea?: string | null;
+  hasCriminalSignals: boolean;
+  context?: string;
+}): PracticeArea {
+  const normalizedMaybe = normalizePracticeAreaString(String(params.storedPracticeArea ?? ""));
+  const normalized: PracticeArea =
+    normalizedMaybe === "unknown" ? "other_litigation" : (normalizedMaybe as PracticeArea);
+
+  if (params.hasCriminalSignals && normalized !== "criminal") {
+    console.error("[practice-area] Criminal signals present but stored practice_area is not criminal:", {
+      context: params.context,
+      storedPracticeArea: params.storedPracticeArea,
+    });
+    return "criminal";
+  }
+
+  return normalized;
 }
 
 export function filterEvidenceForPracticeArea<
@@ -60,13 +125,12 @@ export function filterEvidenceForPracticeArea<
       item.label,
       item.title,
       item.description,
-      item.category,
     ]
       .filter(Boolean)
       .join(" | ");
 
     // Never show civil-only items on criminal cases.
-    if (isCivilOnlyTextForCriminal(combined)) {
+    if (CRIMINAL_FORBIDDEN_ITEM_TOKENS.some((re) => re.test(combined))) {
       stripped.push({ id: item.id, label: item.label ?? item.title });
       return false;
     }

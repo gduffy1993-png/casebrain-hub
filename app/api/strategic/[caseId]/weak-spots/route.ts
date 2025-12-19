@@ -8,6 +8,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { requireAuthContext } from "@/lib/auth";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { detectOpponentWeakSpots } from "@/lib/strategic/weak-spots";
+import { resolvePracticeAreaFromSignals } from "@/lib/strategic/practice-area-filters";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -31,13 +32,38 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       return NextResponse.json({ error: "Case not found" }, { status: 404 });
     }
 
-    // Get case data
+    // Get case data (fetch early for criminal signal detection)
     const { data: documents } = await supabase
       .from("documents")
       .select("id, name, created_at")
       .eq("case_id", caseId)
       .eq("org_id", orgId)
       .order("created_at", { ascending: false });
+
+    // Resolve practice area robustly (avoid criminal→other leakage)
+    let hasCriminalSignals = false;
+    try {
+      const { data: criminalCaseRow } = await supabase
+        .from("criminal_cases")
+        .select("id")
+        .eq("id", caseId)
+        .eq("org_id", orgId)
+        .maybeSingle();
+      const looksCriminal = (documents ?? []).some((d: any) =>
+        /(?:\bPACE\b|\bCPIA\b|\bMG6\b|\bMG\s*6\b|\bMG5\b|\bCPS\b|\bcustody\b|\binterview\b|\bcharge\b|\bindictment\b|\bCrown Court\b|\bMagistrates'? Court\b)/i.test(
+          String(d?.name ?? ""),
+        ),
+      );
+      hasCriminalSignals = Boolean(criminalCaseRow?.id || looksCriminal);
+    } catch {
+      // ignore
+    }
+
+    const resolvedPracticeArea = resolvePracticeAreaFromSignals({
+      storedPracticeArea: caseRecord.practice_area,
+      hasCriminalSignals,
+      context: "strategic/weak-spots",
+    });
 
     const { data: timeline } = await supabase
       .from("timeline_events")
@@ -56,7 +82,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     const weakSpots = await detectOpponentWeakSpots({
       caseId,
       orgId,
-      practiceArea: caseRecord.practice_area as any,
+      practiceArea: resolvedPracticeArea as any,
       documents: documents ?? [],
       timeline: timeline ?? [],
       bundleId: bundle?.id,
