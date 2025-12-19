@@ -28,6 +28,18 @@ export function InsightsPanel({
   const [insights, setInsights] = useState<CaseInsights | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [banner, setBanner] = useState<{
+    severity: "warning" | "info" | "error";
+    title?: string;
+    message: string;
+  } | null>(null);
+  const [diagnostics, setDiagnostics] = useState<{
+    docCount: number;
+    rawCharsTotal: number;
+    jsonCharsTotal: number;
+    avgRawCharsPerDoc: number;
+    suspectedScanned: boolean;
+  } | null>(null);
 
   useEffect(() => {
     async function fetchInsights() {
@@ -83,6 +95,22 @@ export function InsightsPanel({
               missingHighCount: 0,
             },
           } as CaseInsights;
+        }
+        
+        // Extract banner and diagnostics if present
+        if (data && typeof data === "object") {
+          if ("banner" in data && data.banner) {
+            setBanner(data.banner as { severity: "warning" | "info" | "error"; title?: string; message: string });
+          }
+          if ("diagnostics" in data && data.diagnostics) {
+            setDiagnostics(data.diagnostics as {
+              docCount: number;
+              rawCharsTotal: number;
+              jsonCharsTotal: number;
+              avgRawCharsPerDoc: number;
+              suspectedScanned: boolean;
+            });
+          }
         }
         
         // If we got valid CaseInsights data, use it (even if status wasn't 200)
@@ -261,6 +289,52 @@ export function InsightsPanel({
         </p>
       </CardHeader>
       <CardContent className="space-y-4">
+        {/* Banner for scanned PDFs or other warnings */}
+        {banner && (
+          <div
+            className={`rounded-xl border p-4 ${
+              banner.severity === "warning"
+                ? "border-amber-500/30 bg-amber-500/10"
+                : banner.severity === "error"
+                  ? "border-red-500/30 bg-red-500/10"
+                  : "border-blue-500/30 bg-blue-500/10"
+            }`}
+          >
+            <div className="flex items-start gap-2">
+              <AlertTriangle
+                className={`h-5 w-5 ${
+                  banner.severity === "warning"
+                    ? "text-amber-400"
+                    : banner.severity === "error"
+                      ? "text-red-400"
+                      : "text-blue-400"
+                }`}
+              />
+              <div className="flex-1">
+                {banner.title && (
+                  <p
+                    className={`font-medium text-sm ${
+                      banner.severity === "warning"
+                        ? "text-amber-300"
+                        : banner.severity === "error"
+                          ? "text-red-300"
+                          : "text-blue-300"
+                    }`}
+                  >
+                    {banner.title}
+                  </p>
+                )}
+                <p className="mt-1 text-xs text-white/80">{banner.message}</p>
+                {diagnostics && (
+                  <p className="mt-2 text-[10px] text-white/60">
+                    Docs: {diagnostics.docCount} • Extracted text: {diagnostics.rawCharsTotal.toLocaleString()} chars • Extracted data: {diagnostics.jsonCharsTotal.toLocaleString()} chars
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+        
         {/* Row 1: Snapshot + Overall RAG */}
         <div className="grid gap-4 md:grid-cols-2">
           {/* Snapshot */}

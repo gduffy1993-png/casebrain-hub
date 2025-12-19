@@ -59,6 +59,18 @@ export function CaseKeyFactsPanel({ caseId }: KeyFactsPanelProps) {
     dates: Array<{ label: string; date: string }>;
     amounts: Array<{ label: string; value: number; currency: string }>;
   } | null>(null);
+  const [banner, setBanner] = useState<{
+    severity: "warning" | "info" | "error";
+    title?: string;
+    message: string;
+  } | null>(null);
+  const [diagnostics, setDiagnostics] = useState<{
+    docCount: number;
+    rawCharsTotal: number;
+    jsonCharsTotal: number;
+    avgRawCharsPerDoc: number;
+    suspectedScanned: boolean;
+  } | null>(null);
   const searchParams = useSearchParams();
 
   useEffect(() => {
@@ -70,6 +82,13 @@ export function CaseKeyFactsPanel({ caseId }: KeyFactsPanelProps) {
           const maybeKeyFacts = data?.keyFacts ?? null;
           if (maybeKeyFacts) {
             setKeyFacts(maybeKeyFacts);
+            // Set banner and diagnostics if present
+            if (data?.banner) {
+              setBanner(data.banner);
+            }
+            if (data?.diagnostics) {
+              setDiagnostics(data.diagnostics);
+            }
           } else {
             throw new Error(data?.message ?? "Key facts payload missing");
           }
@@ -324,6 +343,51 @@ export function CaseKeyFactsPanel({ caseId }: KeyFactsPanelProps) {
       }
     >
       <div className="space-y-5">
+        {/* Banner for scanned PDFs or other warnings */}
+        {banner && (
+          <div
+            className={`rounded-xl border p-4 ${
+              banner.severity === "warning"
+                ? "border-amber-500/30 bg-amber-500/10"
+                : banner.severity === "error"
+                  ? "border-danger/30 bg-danger/10"
+                  : "border-primary/30 bg-primary/10"
+            }`}
+          >
+            <div className="flex items-start gap-2">
+              <AlertTriangle
+                className={`h-5 w-5 ${
+                  banner.severity === "warning"
+                    ? "text-amber-400"
+                    : banner.severity === "error"
+                      ? "text-danger"
+                      : "text-primary"
+                }`}
+              />
+              <div className="flex-1">
+                {banner.title && (
+                  <p
+                    className={`font-medium ${
+                      banner.severity === "warning"
+                        ? "text-amber-300"
+                        : banner.severity === "error"
+                          ? "text-danger"
+                          : "text-primary"
+                    }`}
+                  >
+                    {banner.title}
+                  </p>
+                )}
+                <p className="mt-1 text-sm text-accent/80">{banner.message}</p>
+                {diagnostics && (
+                  <p className="mt-2 text-xs text-accent/60">
+                    Docs: {diagnostics.docCount} • Extracted text: {diagnostics.rawCharsTotal.toLocaleString()} chars • Extracted data: {diagnostics.jsonCharsTotal.toLocaleString()} chars
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
         {/* Parties Section */}
         <div className="grid gap-4 sm:grid-cols-2">
           {/* Client */}

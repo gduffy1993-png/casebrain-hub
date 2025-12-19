@@ -78,7 +78,8 @@ export async function GET(
     };
 
     // Fetch documents with org scope fallback
-    const documentsData = await findDocumentsByCaseIdScoped(caseId, orgScope);
+    // Pass caseRow.org_id as fallback to handle data mismatches
+    const documentsData = await findDocumentsByCaseIdScoped(caseId, orgScope, caseRow.org_id);
     const documents = documentsData.map(d => ({
       id: d.id,
       name: d.name,
@@ -86,6 +87,40 @@ export async function GET(
       created_at: d.created_at,
       extracted_json: d.extracted_json,
     }));
+
+    // Compute document text diagnostics
+    const docCount = documentsData.length;
+    let rawCharsTotal = 0;
+    let jsonCharsTotal = 0;
+    
+    for (const doc of documentsData) {
+      const rawText = doc.raw_text ?? "";
+      rawCharsTotal += typeof rawText === "string" ? rawText.length : 0;
+      
+      const extractedJson = doc.extracted_json;
+      if (extractedJson) {
+        try {
+          const jsonStr = typeof extractedJson === "string" ? extractedJson : JSON.stringify(extractedJson);
+          jsonCharsTotal += jsonStr.length;
+        } catch {
+          // Ignore JSON stringify errors
+        }
+      }
+    }
+    
+    const avgRawCharsPerDoc = docCount > 0 ? Math.floor(rawCharsTotal / docCount) : 0;
+    const suspectedScanned = docCount > 0 && rawCharsTotal < 800 && jsonCharsTotal < 400;
+
+    // Log suspected scanned PDFs (server-side only)
+    if (suspectedScanned) {
+      console.warn("[insights] Suspected scanned/image-only PDF detected:", {
+        caseId,
+        docCount,
+        rawCharsTotal,
+        jsonCharsTotal,
+        avgRawCharsPerDoc,
+      });
+    }
 
     // Fetch risks (with org scope fallback)
     let riskFlags: any[] = [];
@@ -290,6 +325,25 @@ export async function GET(
       });
       // Re-throw to be caught by outer catch which will return fallback
       throw buildError;
+    }
+
+    // If documents exist but no extractable text, return banner with insights
+    if (suspectedScanned) {
+      return NextResponse.json({
+        insights,
+        banner: {
+          severity: "warning",
+          title: "No text extracted from document",
+          message: "This PDF appears scanned/image-only. Upload a text-based PDF or run OCR, then re-analyse.",
+        },
+        diagnostics: {
+          docCount,
+          rawCharsTotal,
+          jsonCharsTotal,
+          avgRawCharsPerDoc,
+          suspectedScanned: true,
+        },
+      });
     }
 
     return NextResponse.json(insights);
