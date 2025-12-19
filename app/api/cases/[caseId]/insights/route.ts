@@ -79,7 +79,8 @@ export async function GET(
 
     // Fetch documents with org scope fallback
     // Pass caseRow.org_id as fallback to handle data mismatches
-    const documentsData = await findDocumentsByCaseIdScoped(caseId, orgScope, caseRow.org_id);
+    const caseOrgId: string | null = caseRow.org_id ?? null;
+    const documentsData = await findDocumentsByCaseIdScoped(caseId, orgScope, caseOrgId);
     const documents = documentsData.map(d => ({
       id: d.id,
       name: d.name,

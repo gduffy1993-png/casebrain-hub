@@ -88,7 +88,8 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 
     // Case found - fetch documents with same org scope fallback
     // Pass caseRow.org_id as fallback to handle data mismatches
-    const documents = await findDocumentsByCaseIdScoped(caseId, orgScope, caseRow.org_id);
+    const caseOrgId: string | null = caseRow.org_id ?? null;
+    const documents = await findDocumentsByCaseIdScoped(caseId, orgScope, caseOrgId);
 
     if (!documents || documents.length === 0) {
       // Case exists but no documents - return valid payload with warning
