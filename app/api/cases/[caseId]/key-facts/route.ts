@@ -3,8 +3,7 @@ import { requireAuthContext } from "@/lib/auth";
 import { auth } from "@clerk/nextjs/server";
 import { buildKeyFactsSummary } from "@/lib/key-facts";
 import type { KeyFactsSummary } from "@/lib/types/casebrain";
-import { getOrgScopeOrFallback, findCaseByIdScoped, findDocumentsByCaseIdScoped } from "@/lib/db/case-lookup";
-import { getSupabaseAdminClient } from "@/lib/supabase";
+import { buildCaseContext } from "@/lib/case-context";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -46,14 +45,13 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       );
     }
 
-    // Derive org scope (UUID + externalRef)
-    const orgScope = await getOrgScopeOrFallback(userId);
+    // Build canonical case context (single source of truth)
+    const context = await buildCaseContext(caseId, { userId });
+    const reasonCodes = context.diagnostics.reasonCodes;
 
-    // Find case with org scope fallback
-    const caseRow = await findCaseByIdScoped(caseId, orgScope);
-
-    if (!caseRow) {
-      // Case not found in any org scope - return stable fallback payload
+    // Gate 1: Case not found
+    if (!context.case || reasonCodes.includes("CASE_NOT_FOUND")) {
+      console.log(`[key-facts] Gate triggered: CASE_NOT_FOUND for caseId=${caseId}`);
       const fallback: KeyFactsSummary = {
         caseId,
         practiceArea: undefined,
@@ -62,7 +60,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         keyDates: [],
         mainRisks: [],
         primaryIssues: [
-          "Case not found for your org scope (legacy org_id mismatch). Re-upload or contact support.",
+          "Case not found for your org scope. Re-upload or contact support.",
         ],
         headlineSummary: undefined,
         opponentName: undefined,
@@ -79,88 +77,80 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 
       return NextResponse.json({
         keyFacts: fallback,
-        banner: {
-          severity: "warning",
-          message: "Case not found for your org scope (legacy org_id mismatch). Re-upload or contact support.",
+        banner: context.banner || {
+          severity: "error",
+          title: "Case not found",
+          message: "Case not found for your org scope. Re-upload or contact support.",
         },
+        diagnostics: context.diagnostics,
       }, { status: 200 });
     }
 
-    // Case found - fetch documents with same org scope fallback
-    // Pass caseRow.org_id as fallback to handle data mismatches
-    const caseOrgId: string | null = caseRow.org_id ?? null;
-    const documents = await findDocumentsByCaseIdScoped(caseId, orgScope, caseOrgId);
-
-    if (!documents || documents.length === 0) {
-      // Case exists but no documents - return valid payload with warning
-      const keyFacts = await buildKeyFactsSummary(caseId, orgScope.orgId || orgScope.externalRef || "");
+    // Gate 2: No documents
+    if (reasonCodes.includes("DOCS_NONE")) {
+      console.log(`[key-facts] Gate triggered: DOCS_NONE for caseId=${caseId}`);
+      // Still generate Key Facts from case data, but with banner
+      const keyFacts = await buildKeyFactsSummary(caseId, context.orgScope.orgIdResolved);
       
       return NextResponse.json({
         keyFacts,
-        banner: {
-          severity: "info",
-          message: "Case found but no documents available. Upload documents to generate full key facts.",
+        banner: context.banner || {
+          type: "info",
+          title: "No documents found",
+          message: "No documents found for this case. Upload documents to generate full key facts.",
         },
+        diagnostics: context.diagnostics,
       });
     }
 
-    // Compute document text diagnostics
-    const docCount = documents.length;
-    let rawCharsTotal = 0;
-    let jsonCharsTotal = 0;
-    
-    for (const doc of documents) {
-      const rawText = doc.raw_text ?? "";
-      rawCharsTotal += typeof rawText === "string" ? rawText.length : 0;
+    // Gate 3: Facts-first gating - if suspected scanned or text is too thin, DO NOT generate Key Facts
+    // This prevents "jumble mumble" outputs when extraction is empty
+    if (reasonCodes.includes("SCANNED_SUSPECTED") || reasonCodes.includes("TEXT_THIN")) {
+      console.log(`[key-facts] Gate triggered: ${reasonCodes.includes("SCANNED_SUSPECTED") ? "SCANNED_SUSPECTED" : "TEXT_THIN"} for caseId=${caseId}, rawChars=${context.diagnostics.rawCharsTotal}, jsonChars=${context.diagnostics.jsonCharsTotal}`);
       
-      const extractedJson = doc.extracted_json;
-      if (extractedJson) {
-        try {
-          const jsonStr = typeof extractedJson === "string" ? extractedJson : JSON.stringify(extractedJson);
-          jsonCharsTotal += jsonStr.length;
-        } catch {
-          // Ignore JSON stringify errors
-        }
-      }
-    }
-    
-    const avgRawCharsPerDoc = docCount > 0 ? Math.floor(rawCharsTotal / docCount) : 0;
-    const suspectedScanned = docCount > 0 && rawCharsTotal < 800 && jsonCharsTotal < 400;
-
-    // Log suspected scanned PDFs (server-side only)
-    if (suspectedScanned) {
-      console.warn("[key-facts] Suspected scanned/image-only PDF detected:", {
+      // Return minimal fallback - DO NOT generate Key Facts when text is too thin
+      const fallback: KeyFactsSummary = {
         caseId,
-        docCount,
-        rawCharsTotal,
-        jsonCharsTotal,
-        avgRawCharsPerDoc,
-      });
-    }
-
-    // If documents exist but no extractable text, return banner
-    if (suspectedScanned) {
-      const keyFacts = await buildKeyFactsSummary(caseId, orgScope.orgId || orgScope.externalRef || "");
+        practiceArea: (context.case as any).practice_area ?? undefined,
+        stage: "other",
+        fundingType: "unknown",
+        keyDates: [],
+        mainRisks: [],
+        primaryIssues: [
+          "Not enough extractable text to generate reliable key facts. Upload text-based PDFs or run OCR.",
+        ],
+        headlineSummary: undefined,
+        opponentName: undefined,
+        clientName: undefined,
+        courtName: undefined,
+        claimType: undefined,
+        causeOfAction: undefined,
+        approxValue: undefined,
+        whatClientWants: undefined,
+        nextStepsBrief: undefined,
+        bundleSummarySections: [],
+        layeredSummary: null,
+      };
       
       return NextResponse.json({
-        keyFacts,
-        banner: {
+        keyFacts: fallback,
+        banner: context.banner || {
           severity: "warning",
-          title: "No text extracted from document",
-          message: "This PDF appears scanned/image-only. Upload a text-based PDF or run OCR, then re-analyse.",
+          title: "Insufficient text extracted",
+          message: "Not enough extractable text to generate reliable key facts. Upload text-based PDFs or run OCR, then re-analyse.",
         },
-        diagnostics: {
-          docCount,
-          rawCharsTotal,
-          jsonCharsTotal,
-          avgRawCharsPerDoc,
-          suspectedScanned: true,
-        },
+        diagnostics: context.diagnostics,
       });
     }
 
-    // Normal path: case and documents found with extractable text
-    const keyFacts = await buildKeyFactsSummary(caseId, orgScope.orgId || orgScope.externalRef || "");
+    // Gate 4: OK - case and documents found with extractable text
+    // Only proceed to generate Key Facts if context is OK
+    if (!reasonCodes.includes("OK")) {
+      console.warn(`[key-facts] Unexpected reasonCodes for caseId=${caseId}: [${reasonCodes.join(", ")}]`);
+    }
+    
+    console.log(`[key-facts] Generating Key Facts for caseId=${caseId}, docCount=${context.diagnostics.docCount}, rawChars=${context.diagnostics.rawCharsTotal}`);
+    const keyFacts = await buildKeyFactsSummary(caseId, context.orgScope.orgIdResolved);
 
     return NextResponse.json({ keyFacts });
   } catch (error) {

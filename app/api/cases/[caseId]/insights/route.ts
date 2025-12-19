@@ -5,7 +5,7 @@ import { buildCaseInsights } from "@/lib/core/insights";
 import { findMissingEvidence } from "@/lib/missing-evidence";
 import type { CaseInsights } from "@/lib/core/enterprise-types";
 import type { LimitationInfo } from "@/lib/types/casebrain";
-import { getOrgScopeOrFallback, findCaseByIdScoped, findDocumentsByCaseIdScoped } from "@/lib/db/case-lookup";
+import { buildCaseContext } from "@/lib/case-context";
 
 export async function GET(
   _request: Request,
@@ -19,15 +19,14 @@ export async function GET(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    // Derive org scope (UUID + externalRef)
-    const orgScope = await getOrgScopeOrFallback(userId);
+    // Build canonical case context (single source of truth)
+    const context = await buildCaseContext(caseId, { userId });
     const supabase = getSupabaseAdminClient();
+    const reasonCodes = context.diagnostics.reasonCodes;
 
-    // Find case with org scope fallback
-    const caseRow = await findCaseByIdScoped(caseId, orgScope);
-
-    if (!caseRow) {
-      // Case not found - return 200 with empty insights and banner (not 404)
+    // Gate 1: Case not found
+    if (!context.case || reasonCodes.includes("CASE_NOT_FOUND")) {
+      console.log(`[insights] Gate triggered: CASE_NOT_FOUND for caseId=${caseId}`);
       const fallbackInsights: CaseInsights = {
         summary: {
           headline: "Case not found",
@@ -59,29 +58,151 @@ export async function GET(
 
       return NextResponse.json({
         insights: fallbackInsights,
-        banner: {
-          severity: "warning",
+        banner: context.banner || {
+          severity: "error",
           title: "Case not found",
-          message: "Case not found for your org scope (legacy org_id mismatch). Re-upload or contact support.",
+          message: "Case not found for your org scope. Re-upload or contact support.",
         },
+        diagnostics: context.diagnostics,
       }, { status: 200 });
     }
 
+    // Define caseRecord once (used in multiple gates and final path)
     const caseRecord = {
-      id: caseRow.id,
-      title: (caseRow as any).title ?? null,
-      summary: (caseRow as any).summary ?? null,
-      practice_area: (caseRow as any).practice_area ?? null,
-      status: (caseRow as any).status ?? null,
-      supervisor_reviewed: (caseRow as any).supervisor_reviewed ?? null,
-      created_at: (caseRow as any).created_at ?? new Date().toISOString(),
+      id: context.case.id,
+      title: (context.case as any).title ?? null,
+      summary: (context.case as any).summary ?? null,
+      practice_area: (context.case as any).practice_area ?? null,
+      status: (context.case as any).status ?? null,
+      supervisor_reviewed: (context.case as any).supervisor_reviewed ?? null,
+      created_at: (context.case as any).created_at ?? new Date().toISOString(),
     };
 
-    // Fetch documents with org scope fallback
-    // Pass caseRow.org_id as fallback to handle data mismatches
-    const caseOrgId: string | null = caseRow.org_id ?? null;
-    const documentsData = await findDocumentsByCaseIdScoped(caseId, orgScope, caseOrgId);
-    const documents = documentsData.map(d => ({
+    // Gate 2: No documents
+    if (reasonCodes.includes("DOCS_NONE")) {
+      console.log(`[insights] Gate triggered: DOCS_NONE for caseId=${caseId}`);
+      // Still generate minimal insights from case data, but with banner
+      const orgId = context.orgScope.orgIdResolved;
+      let insights: CaseInsights;
+      try {
+        insights = await buildCaseInsights({
+          caseId,
+          orgId,
+          caseRecord: {
+            id: context.case.id,
+            title: (context.case as any).title ?? "",
+            summary: (context.case as any).summary ?? null,
+            practice_area: (context.case as any).practice_area ?? null,
+            status: (context.case as any).status ?? null,
+            created_at: (context.case as any).created_at ?? new Date().toISOString(),
+          },
+          documents: [],
+          riskFlags: [],
+          missingEvidence: [],
+          limitationInfo: undefined,
+          keyIssues: [],
+          nextSteps: [],
+          supervisorReviewed: (context.case as any).supervisor_reviewed ?? false,
+          daysSinceLastUpdate: 30,
+        });
+      } catch {
+        insights = {
+          summary: {
+            headline: "No documents found",
+            oneLiner: "Upload documents to generate insights.",
+            stageLabel: null,
+            practiceArea: null,
+            clientName: null,
+            opponentName: null,
+          },
+          rag: {
+            overallLevel: "amber",
+            overallScore: 50,
+            scores: [],
+          },
+          briefing: {
+            overview: "No documents found for this case. Upload documents to generate full insights.",
+            keyStrengths: [],
+            keyRisks: [],
+            urgentActions: [],
+          },
+          meta: {
+            caseId,
+            updatedAt: new Date().toISOString(),
+            hasCoreEvidence: false,
+            missingCriticalCount: 0,
+            missingHighCount: 0,
+          },
+        };
+      }
+
+      return NextResponse.json({
+        insights,
+        banner: context.banner || {
+          severity: "info",
+          title: "No documents found",
+          message: "No documents found for this case. Upload documents to generate full insights.",
+        },
+        diagnostics: context.diagnostics,
+      });
+    }
+
+    // Gate 3: Facts-first gating - if suspected scanned or text is too thin, DO NOT generate strategy
+    // This prevents "jumble mumble" outputs when extraction is empty
+    if (reasonCodes.includes("SCANNED_SUSPECTED") || reasonCodes.includes("TEXT_THIN")) {
+      console.log(`[insights] Gate triggered: ${reasonCodes.includes("SCANNED_SUSPECTED") ? "SCANNED_SUSPECTED" : "TEXT_THIN"} for caseId=${caseId}, rawChars=${context.diagnostics.rawCharsTotal}, jsonChars=${context.diagnostics.jsonCharsTotal}`);
+      
+      // Return minimal insights - DO NOT generate strategy when text is too thin
+      const fallbackInsights: CaseInsights = {
+        summary: {
+          headline: "Insufficient text extracted",
+          oneLiner: "Not enough extractable text to generate reliable insights.",
+          stageLabel: null,
+          practiceArea: (context.case as any).practice_area ?? null,
+          clientName: null,
+          opponentName: null,
+        },
+        rag: {
+          overallLevel: "amber",
+          overallScore: 50,
+          scores: [],
+        },
+        briefing: {
+          overview: "Not enough extractable text to generate reliable insights. Upload text-based PDFs or run OCR, then re-analyse.",
+          keyStrengths: [],
+          keyRisks: ["Insufficient text extracted from documents."],
+          urgentActions: ["Upload text-based PDFs or run OCR to enable analysis."],
+        },
+        meta: {
+          caseId,
+          updatedAt: new Date().toISOString(),
+          hasCoreEvidence: false,
+          missingCriticalCount: 0,
+          missingHighCount: 0,
+        },
+      };
+
+      return NextResponse.json({
+        insights: fallbackInsights,
+        banner: context.banner || {
+          severity: "warning",
+          title: "Insufficient text extracted",
+          message: "Not enough extractable text to generate reliable insights. Upload text-based PDFs or run OCR, then re-analyse.",
+        },
+        diagnostics: context.diagnostics,
+      });
+    }
+
+    // Gate 4: OK - case and documents found with extractable text
+    // Only proceed to generate Insights if context is OK
+    if (!reasonCodes.includes("OK")) {
+      console.warn(`[insights] Unexpected reasonCodes for caseId=${caseId}: [${reasonCodes.join(", ")}]`);
+    }
+
+    console.log(`[insights] Generating Insights for caseId=${caseId}, docCount=${context.diagnostics.docCount}, rawChars=${context.diagnostics.rawCharsTotal}`);
+
+    // Use documents from context
+    const documents = context.documents.map(d => ({
       id: d.id,
       name: d.name,
       type: undefined as string | undefined,
@@ -89,60 +210,14 @@ export async function GET(
       extracted_json: d.extracted_json,
     }));
 
-    // Compute document text diagnostics
-    const docCount = documentsData.length;
-    let rawCharsTotal = 0;
-    let jsonCharsTotal = 0;
-    
-    for (const doc of documentsData) {
-      const rawText = doc.raw_text ?? "";
-      rawCharsTotal += typeof rawText === "string" ? rawText.length : 0;
-      
-      const extractedJson = doc.extracted_json;
-      if (extractedJson) {
-        try {
-          const jsonStr = typeof extractedJson === "string" ? extractedJson : JSON.stringify(extractedJson);
-          jsonCharsTotal += jsonStr.length;
-        } catch {
-          // Ignore JSON stringify errors
-        }
-      }
-    }
-    
-    const avgRawCharsPerDoc = docCount > 0 ? Math.floor(rawCharsTotal / docCount) : 0;
-    const suspectedScanned = docCount > 0 && rawCharsTotal < 800 && jsonCharsTotal < 400;
-
-    // Log suspected scanned PDFs (server-side only)
-    if (suspectedScanned) {
-      console.warn("[insights] Suspected scanned/image-only PDF detected:", {
-        caseId,
-        docCount,
-        rawCharsTotal,
-        jsonCharsTotal,
-        avgRawCharsPerDoc,
-      });
-    }
-
-    // Fetch risks (with org scope fallback)
-    let riskFlags: any[] = [];
-    if (orgScope.orgId) {
-      const { data } = await supabase
-        .from("risk_flags")
-        .select("id, flag_type, severity, description, category, resolved, detected_at")
-        .eq("case_id", caseId)
-        .eq("org_id", orgScope.orgId)
-        .eq("resolved", false);
-      riskFlags = data ?? [];
-    }
-    if (riskFlags.length === 0 && orgScope.externalRef) {
-      const { data } = await supabase
-        .from("risk_flags")
-        .select("id, flag_type, severity, description, category, resolved, detected_at")
-        .eq("case_id", caseId)
-        .eq("org_id", orgScope.externalRef)
-        .eq("resolved", false);
-      riskFlags = data ?? [];
-    }
+    // Fetch risks using resolved orgId from context
+    const { data: riskFlagsData } = await supabase
+      .from("risk_flags")
+      .select("id, flag_type, severity, description, category, resolved, detected_at")
+      .eq("case_id", caseId)
+      .eq("org_id", context.orgScope.orgIdResolved)
+      .eq("resolved", false);
+    const riskFlags = riskFlagsData ?? [];
 
     // Fetch missing evidence
     const docsForEvidence = (documents ?? []).map((d) => ({
@@ -155,27 +230,20 @@ export async function GET(
       caseRecord.practice_area ?? "other_litigation",
       docsForEvidence,
     );
+      summary: (context.case as any).summary ?? null,
+      practice_area: (context.case as any).practice_area ?? null,
+      status: (context.case as any).status ?? null,
+      supervisor_reviewed: (context.case as any).supervisor_reviewed ?? null,
+      created_at: (context.case as any).created_at ?? new Date().toISOString(),
+    };
 
-    // Fetch limitation (with org scope fallback)
-    let limitationData: any = null;
-    if (orgScope.orgId) {
-      const { data } = await supabase
-        .from("limitation_info")
-        .select("primary_limitation_date, days_remaining, is_expired, severity")
-        .eq("case_id", caseId)
-        .eq("org_id", orgScope.orgId)
-        .maybeSingle();
-      limitationData = data;
-    }
-    if (!limitationData && orgScope.externalRef) {
-      const { data } = await supabase
-        .from("limitation_info")
-        .select("primary_limitation_date, days_remaining, is_expired, severity")
-        .eq("case_id", caseId)
-        .eq("org_id", orgScope.externalRef)
-        .maybeSingle();
-      limitationData = data;
-    }
+    // Fetch limitation using resolved orgId from context
+    const { data: limitationData } = await supabase
+      .from("limitation_info")
+      .select("primary_limitation_date, days_remaining, is_expired, severity")
+      .eq("case_id", caseId)
+      .eq("org_id", context.orgScope.orgIdResolved)
+      .maybeSingle();
 
     // Convert limitation
     const limitationInfo: LimitationInfo | undefined = limitationData ? {
@@ -188,75 +256,39 @@ export async function GET(
       practiceArea: (caseRecord.practice_area ?? "other_litigation") as any,
     } : undefined;
 
-    // Fetch key issues (with org scope fallback)
-    let keyIssues: any[] = [];
-    if (orgScope.orgId) {
-      const { data } = await supabase
-        .from("key_issues")
-        .select("id, label, description, category")
-        .eq("case_id", caseId)
-        .eq("org_id", orgScope.orgId);
-      keyIssues = data ?? [];
-    }
-    if (keyIssues.length === 0 && orgScope.externalRef) {
-      const { data } = await supabase
-        .from("key_issues")
-        .select("id, label, description, category")
-        .eq("case_id", caseId)
-        .eq("org_id", orgScope.externalRef);
-      keyIssues = data ?? [];
-    }
+    // Fetch key issues using resolved orgId from context
+    const { data: keyIssuesData } = await supabase
+      .from("key_issues")
+      .select("id, label, description, category")
+      .eq("case_id", caseId)
+      .eq("org_id", context.orgScope.orgIdResolved);
+    const keyIssues = keyIssuesData ?? [];
 
-    // Fetch next steps (with org scope fallback)
-    let nextSteps: any[] = [];
-    if (orgScope.orgId) {
-      const { data } = await supabase
-        .from("next_steps")
-        .select("id, action, priority, due_date")
-        .eq("case_id", caseId)
-        .eq("org_id", orgScope.orgId)
-        .eq("completed", false);
-      nextSteps = data ?? [];
-    }
-    if (nextSteps.length === 0 && orgScope.externalRef) {
-      const { data } = await supabase
-        .from("next_steps")
-        .select("id, action, priority, due_date")
-        .eq("case_id", caseId)
-        .eq("org_id", orgScope.externalRef)
-        .eq("completed", false);
-      nextSteps = data ?? [];
-    }
+    // Fetch next steps using resolved orgId from context
+    const { data: nextStepsData } = await supabase
+      .from("next_steps")
+      .select("id, action, priority, due_date")
+      .eq("case_id", caseId)
+      .eq("org_id", context.orgScope.orgIdResolved)
+      .eq("completed", false);
+    const nextSteps = nextStepsData ?? [];
 
-    // Fetch recent notes for days since update (with org scope fallback)
-    let recentNotes: any[] = [];
-    if (orgScope.orgId) {
-      const { data } = await supabase
-        .from("case_notes")
-        .select("created_at")
-        .eq("case_id", caseId)
-        .eq("org_id", orgScope.orgId)
-        .order("created_at", { ascending: false })
-        .limit(1);
-      recentNotes = data ?? [];
-    }
-    if (recentNotes.length === 0 && orgScope.externalRef) {
-      const { data } = await supabase
-        .from("case_notes")
-        .select("created_at")
-        .eq("case_id", caseId)
-        .eq("org_id", orgScope.externalRef)
-        .order("created_at", { ascending: false })
-        .limit(1);
-      recentNotes = data ?? [];
-    }
+    // Fetch recent notes using resolved orgId from context
+    const { data: recentNotesData } = await supabase
+      .from("case_notes")
+      .select("created_at")
+      .eq("case_id", caseId)
+      .eq("org_id", context.orgScope.orgIdResolved)
+      .order("created_at", { ascending: false })
+      .limit(1);
+    const recentNotes = recentNotesData ?? [];
 
     const daysSinceLastUpdate = recentNotes?.[0]?.created_at
       ? Math.floor((Date.now() - new Date(recentNotes[0].created_at).getTime()) / (1000 * 60 * 60 * 24))
       : 30;
 
     // Build insights - wrap in try-catch to ensure we always return something
-    const orgId = orgScope.orgId || orgScope.externalRef || "";
+    const orgId = context.orgScope.orgIdResolved;
     let insights: CaseInsights;
     try {
       console.log("[insights] Building insights for case:", caseId, {
@@ -319,32 +351,14 @@ export async function GET(
       console.error("[insights] Error stack:", buildError instanceof Error ? buildError.stack : "No stack trace");
       console.error("[insights] Error details:", {
         caseId,
-        orgId: orgScope?.orgId ?? null,
+        orgId: context.orgScope.orgIdResolved,
+        method: context.orgScope.method,
         documentCount: documents?.length ?? 0,
         errorMessage: buildError instanceof Error ? buildError.message : String(buildError),
         errorName: buildError instanceof Error ? buildError.name : typeof buildError,
       });
       // Re-throw to be caught by outer catch which will return fallback
       throw buildError;
-    }
-
-    // If documents exist but no extractable text, return banner with insights
-    if (suspectedScanned) {
-      return NextResponse.json({
-        insights,
-        banner: {
-          severity: "warning",
-          title: "No text extracted from document",
-          message: "This PDF appears scanned/image-only. Upload a text-based PDF or run OCR, then re-analyse.",
-        },
-        diagnostics: {
-          docCount,
-          rawCharsTotal,
-          jsonCharsTotal,
-          avgRawCharsPerDoc,
-          suspectedScanned: true,
-        },
-      });
     }
 
     return NextResponse.json(insights);
