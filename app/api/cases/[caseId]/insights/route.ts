@@ -20,11 +20,11 @@ export async function GET(
     }
 
     // Derive org scope (UUID + externalRef)
-    const scope = await getOrgScopeOrFallback(userId);
+    const orgScope = await getOrgScopeOrFallback(userId);
     const supabase = getSupabaseAdminClient();
 
     // Find case with org scope fallback
-    const caseRow = await findCaseByIdScoped(supabase, caseId, scope);
+    const caseRow = await findCaseByIdScoped(caseId, orgScope);
 
     if (!caseRow) {
       // Case not found - return 200 with empty insights and banner (not 404)
@@ -61,6 +61,7 @@ export async function GET(
         insights: fallbackInsights,
         banner: {
           severity: "warning",
+          title: "Case not found",
           message: "Case not found for your org scope (legacy org_id mismatch). Re-upload or contact support.",
         },
       }, { status: 200 });
@@ -77,7 +78,7 @@ export async function GET(
     };
 
     // Fetch documents with org scope fallback
-    const documentsData = await findDocumentsByCaseIdScoped(supabase, caseId, scope);
+    const documentsData = await findDocumentsByCaseIdScoped(caseId, orgScope);
     const documents = documentsData.map(d => ({
       id: d.id,
       name: d.name,
@@ -88,21 +89,21 @@ export async function GET(
 
     // Fetch risks (with org scope fallback)
     let riskFlags: any[] = [];
-    if (scope.orgIdUuid) {
+    if (orgScope.orgId) {
       const { data } = await supabase
         .from("risk_flags")
         .select("id, flag_type, severity, description, category, resolved, detected_at")
         .eq("case_id", caseId)
-        .eq("org_id", scope.orgIdUuid)
+        .eq("org_id", orgScope.orgId)
         .eq("resolved", false);
       riskFlags = data ?? [];
     }
-    if (riskFlags.length === 0 && scope.externalRef) {
+    if (riskFlags.length === 0 && orgScope.externalRef) {
       const { data } = await supabase
         .from("risk_flags")
         .select("id, flag_type, severity, description, category, resolved, detected_at")
         .eq("case_id", caseId)
-        .eq("org_id", scope.externalRef)
+        .eq("org_id", orgScope.externalRef)
         .eq("resolved", false);
       riskFlags = data ?? [];
     }
@@ -121,21 +122,21 @@ export async function GET(
 
     // Fetch limitation (with org scope fallback)
     let limitationData: any = null;
-    if (scope.orgIdUuid) {
+    if (orgScope.orgId) {
       const { data } = await supabase
         .from("limitation_info")
         .select("primary_limitation_date, days_remaining, is_expired, severity")
         .eq("case_id", caseId)
-        .eq("org_id", scope.orgIdUuid)
+        .eq("org_id", orgScope.orgId)
         .maybeSingle();
       limitationData = data;
     }
-    if (!limitationData && scope.externalRef) {
+    if (!limitationData && orgScope.externalRef) {
       const { data } = await supabase
         .from("limitation_info")
         .select("primary_limitation_date, days_remaining, is_expired, severity")
         .eq("case_id", caseId)
-        .eq("org_id", scope.externalRef)
+        .eq("org_id", orgScope.externalRef)
         .maybeSingle();
       limitationData = data;
     }
@@ -153,62 +154,62 @@ export async function GET(
 
     // Fetch key issues (with org scope fallback)
     let keyIssues: any[] = [];
-    if (scope.orgIdUuid) {
+    if (orgScope.orgId) {
       const { data } = await supabase
         .from("key_issues")
         .select("id, label, description, category")
         .eq("case_id", caseId)
-        .eq("org_id", scope.orgIdUuid);
+        .eq("org_id", orgScope.orgId);
       keyIssues = data ?? [];
     }
-    if (keyIssues.length === 0 && scope.externalRef) {
+    if (keyIssues.length === 0 && orgScope.externalRef) {
       const { data } = await supabase
         .from("key_issues")
         .select("id, label, description, category")
         .eq("case_id", caseId)
-        .eq("org_id", scope.externalRef);
+        .eq("org_id", orgScope.externalRef);
       keyIssues = data ?? [];
     }
 
     // Fetch next steps (with org scope fallback)
     let nextSteps: any[] = [];
-    if (scope.orgIdUuid) {
+    if (orgScope.orgId) {
       const { data } = await supabase
         .from("next_steps")
         .select("id, action, priority, due_date")
         .eq("case_id", caseId)
-        .eq("org_id", scope.orgIdUuid)
+        .eq("org_id", orgScope.orgId)
         .eq("completed", false);
       nextSteps = data ?? [];
     }
-    if (nextSteps.length === 0 && scope.externalRef) {
+    if (nextSteps.length === 0 && orgScope.externalRef) {
       const { data } = await supabase
         .from("next_steps")
         .select("id, action, priority, due_date")
         .eq("case_id", caseId)
-        .eq("org_id", scope.externalRef)
+        .eq("org_id", orgScope.externalRef)
         .eq("completed", false);
       nextSteps = data ?? [];
     }
 
     // Fetch recent notes for days since update (with org scope fallback)
     let recentNotes: any[] = [];
-    if (scope.orgIdUuid) {
+    if (orgScope.orgId) {
       const { data } = await supabase
         .from("case_notes")
         .select("created_at")
         .eq("case_id", caseId)
-        .eq("org_id", scope.orgIdUuid)
+        .eq("org_id", orgScope.orgId)
         .order("created_at", { ascending: false })
         .limit(1);
       recentNotes = data ?? [];
     }
-    if (recentNotes.length === 0 && scope.externalRef) {
+    if (recentNotes.length === 0 && orgScope.externalRef) {
       const { data } = await supabase
         .from("case_notes")
         .select("created_at")
         .eq("case_id", caseId)
-        .eq("org_id", scope.externalRef)
+        .eq("org_id", orgScope.externalRef)
         .order("created_at", { ascending: false })
         .limit(1);
       recentNotes = data ?? [];
@@ -219,6 +220,7 @@ export async function GET(
       : 30;
 
     // Build insights - wrap in try-catch to ensure we always return something
+    const orgId = orgScope.orgId || orgScope.externalRef || "";
     let insights: CaseInsights;
     try {
       console.log("[insights] Building insights for case:", caseId, {
@@ -232,7 +234,7 @@ export async function GET(
       
       insights = await buildCaseInsights({
         caseId,
-        orgId: scope.orgIdUuid || scope.externalRef || "",
+        orgId,
         caseRecord: {
           id: caseRecord.id,
           title: caseRecord.title ?? "",
@@ -281,7 +283,7 @@ export async function GET(
       console.error("[insights] Error stack:", buildError instanceof Error ? buildError.stack : "No stack trace");
       console.error("[insights] Error details:", {
         caseId,
-        orgId,
+        orgId: orgScope?.orgId ?? null,
         documentCount: documents?.length ?? 0,
         errorMessage: buildError instanceof Error ? buildError.message : String(buildError),
         errorName: buildError instanceof Error ? buildError.name : typeof buildError,

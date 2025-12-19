@@ -8,64 +8,11 @@
  */
 
 import "server-only";
-import { auth } from "@clerk/nextjs/server";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 
-function isUuid(value: string): boolean {
-  return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(value);
-}
-
-/**
- * Get or create organisation ID by external_ref (duplicated minimal logic to avoid circular deps)
- */
-async function getOrCreateOrgIdByExternalRef(externalRef: string): Promise<string> {
-  const supabase = getSupabaseAdminClient();
-  
-  // Try to find existing org by external_ref
-  const byExternalRef = await supabase
-    .from("organisations")
-    .select("id")
-    .eq("external_ref", externalRef)
-    .maybeSingle();
-  
-  if (byExternalRef.data?.id) {
-    const orgId = (byExternalRef.data as any).id as string;
-    if (isUuid(orgId)) return orgId;
-  }
-  
-  // If not found, create it
-  const insertRes = await supabase
-    .from("organisations")
-    .insert({
-      name: externalRef.startsWith("solo-user_") ? "Solo Workspace" : "Clerk Organisation Workspace",
-      email_domain: null,
-      external_ref: externalRef,
-    } as any)
-    .select("id")
-    .single();
-  
-  if (insertRes.error) {
-    // If unique constraint exists and we raced, re-select
-    if ((insertRes.error as any).code === "23505") {
-      const retry = await supabase
-        .from("organisations")
-        .select("id")
-        .eq("external_ref", externalRef)
-        .maybeSingle();
-      const orgId = (retry.data as any)?.id as string | undefined;
-      if (orgId && isUuid(orgId)) return orgId;
-    }
-    throw new Error(`Failed to create/get org: ${insertRes.error.message}`);
-  }
-  
-  const orgId = (insertRes.data as any)?.id as string | undefined;
-  if (!orgId || !isUuid(orgId)) throw new Error("Invalid orgId (expected UUID)");
-  return orgId;
-}
-
 export type OrgScope = {
-  orgIdUuid?: string;
-  externalRef?: string;
+  orgId: string | null;
+  externalRef: string | null;
 };
 
 export type CaseRow = {
@@ -76,21 +23,38 @@ export type CaseRow = {
 
 /**
  * Get org scope (UUID + externalRef) for the current user
- * Uses the same single-tenant derivation logic as requireAuthContext
+ * Simplified to avoid circular imports - orgId may be null if not available
  */
 export async function getOrgScopeOrFallback(clerkUserId: string): Promise<OrgScope> {
-  const { activeOrganizationId } = await auth();
+  // Always derive externalRef (this is the key for legacy lookups)
+  const externalRef = `solo-user_${clerkUserId}`;
   
-  // Derive externalRef (same logic as requireAuthContext)
-  const externalRef = activeOrganizationId 
-    ? `clerk-org_${activeOrganizationId}` 
-    : `solo-user_${clerkUserId}`;
-  
-  // Get or create UUID orgId
-  const orgIdUuid = await getOrCreateOrgIdByExternalRef(externalRef);
+  // Try to get orgId from organisations table by external_ref
+  // If this fails or causes circular imports, orgId will be null
+  // and we'll rely on externalRef for lookups
+  let orgId: string | null = null;
+  try {
+    const supabase = getSupabaseAdminClient();
+    const { data } = await supabase
+      .from("organisations")
+      .select("id")
+      .eq("external_ref", externalRef)
+      .maybeSingle();
+    
+    if (data?.id) {
+      const id = (data as any).id as string;
+      // Validate it's a UUID
+      if (/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id)) {
+        orgId = id;
+      }
+    }
+  } catch {
+    // If lookup fails (e.g., table doesn't exist, circular import), orgId stays null
+    // We'll still use externalRef for lookups
+  }
   
   return {
-    orgIdUuid,
+    orgId,
     externalRef,
   };
 }
@@ -99,25 +63,26 @@ export async function getOrgScopeOrFallback(clerkUserId: string): Promise<OrgSco
  * Find case by ID with org scope fallback
  * 
  * Tries in strict order:
- * 1. cases where id=caseId AND org_id = scope.orgIdUuid
- * 2. cases where id=caseId AND org_id = scope.externalRef
- * 3. cases where id=caseId AND org_id is NULL (if you ever had null)
+ * 1. cases where id=caseId AND org_id = scope.orgId (if orgId present)
+ * 2. cases where id=caseId AND org_id = scope.externalRef (legacy)
+ * 3. cases where id=caseId AND org_id IS NULL (edge case)
  * 
  * IMPORTANT: Only allows fallback org_id variants that belong to this same user.
  * Never does an unscoped "id only" lookup that could leak cross-tenant data.
  */
 export async function findCaseByIdScoped(
-  supabase: ReturnType<typeof getSupabaseAdminClient>,
   caseId: string,
   scope: OrgScope,
 ): Promise<CaseRow | null> {
+  const supabase = getSupabaseAdminClient();
+  
   // Try 1: UUID org_id
-  if (scope.orgIdUuid) {
+  if (scope.orgId) {
     const { data, error } = await supabase
       .from("cases")
       .select("*")
       .eq("id", caseId)
-      .eq("org_id", scope.orgIdUuid)
+      .eq("org_id", scope.orgId)
       .maybeSingle();
     
     if (error) {
@@ -147,7 +112,7 @@ export async function findCaseByIdScoped(
     }
   }
   
-  // Try 3: NULL org_id (if you ever had null - rare edge case)
+  // Try 3: NULL org_id (edge case)
   const { data, error } = await supabase
     .from("cases")
     .select("*")
@@ -170,19 +135,18 @@ export async function findCaseByIdScoped(
  * Same scoped fallback logic as findCaseByIdScoped
  */
 export async function findDocumentsByCaseIdScoped(
-  supabase: ReturnType<typeof getSupabaseAdminClient>,
   caseId: string,
   scope: OrgScope,
 ): Promise<Array<{ id: string; name: string; created_at: string; extracted_json?: unknown; raw_text?: string; [key: string]: unknown }>> {
-  const results: Array<{ id: string; name: string; created_at: string; extracted_json?: unknown; raw_text?: string; [key: string]: unknown }> = [];
+  const supabase = getSupabaseAdminClient();
   
   // Try 1: UUID org_id
-  if (scope.orgIdUuid) {
+  if (scope.orgId) {
     const { data, error } = await supabase
       .from("documents")
       .select("id, name, created_at, extracted_json, raw_text")
       .eq("case_id", caseId)
-      .eq("org_id", scope.orgIdUuid)
+      .eq("org_id", scope.orgId)
       .order("created_at", { ascending: false });
     
     if (error) {
@@ -208,7 +172,7 @@ export async function findDocumentsByCaseIdScoped(
     }
   }
   
-  // Try 3: NULL org_id (rare edge case)
+  // Try 3: NULL org_id (edge case)
   const { data, error } = await supabase
     .from("documents")
     .select("id, name, created_at, extracted_json, raw_text")
@@ -222,6 +186,6 @@ export async function findDocumentsByCaseIdScoped(
     return data as Array<{ id: string; name: string; created_at: string; extracted_json?: unknown; raw_text?: string }>;
   }
   
-  return results;
+  return [];
 }
 

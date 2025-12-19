@@ -47,11 +47,10 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     }
 
     // Derive org scope (UUID + externalRef)
-    const scope = await getOrgScopeOrFallback(userId);
-    const supabase = getSupabaseAdminClient();
+    const orgScope = await getOrgScopeOrFallback(userId);
 
     // Find case with org scope fallback
-    const caseRow = await findCaseByIdScoped(supabase, caseId, scope);
+    const caseRow = await findCaseByIdScoped(caseId, orgScope);
 
     if (!caseRow) {
       // Case not found in any org scope - return stable fallback payload
@@ -88,11 +87,11 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     }
 
     // Case found - fetch documents with same org scope fallback
-    const documents = await findDocumentsByCaseIdScoped(supabase, caseId, scope);
+    const documents = await findDocumentsByCaseIdScoped(caseId, orgScope);
 
     if (!documents || documents.length === 0) {
       // Case exists but no documents - return valid payload with warning
-      const keyFacts = await buildKeyFactsSummary(caseId, scope.orgIdUuid || scope.externalRef || "");
+      const keyFacts = await buildKeyFactsSummary(caseId, orgScope.orgId || orgScope.externalRef || "");
       
       return NextResponse.json({
         keyFacts,
@@ -104,7 +103,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     }
 
     // Normal path: case and documents found
-    const keyFacts = await buildKeyFactsSummary(caseId, scope.orgIdUuid || scope.externalRef || "");
+    const keyFacts = await buildKeyFactsSummary(caseId, orgScope.orgId || orgScope.externalRef || "");
 
     return NextResponse.json({ keyFacts });
   } catch (error) {
