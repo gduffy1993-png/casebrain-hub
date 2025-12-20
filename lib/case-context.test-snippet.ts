@@ -36,6 +36,7 @@ const exampleContext: CaseContext = {
     avgRawCharsPerDoc: 5000,
     reasonCodes: ["OK"], // Empty if everything is OK
   },
+  canGenerateAnalysis: true, // Can generate because text is sufficient
 };
 
 // Example with scanned PDF:
@@ -67,6 +68,7 @@ const scannedContext: CaseContext = {
     avgRawCharsPerDoc: 50,
     reasonCodes: ["SCANNED_SUSPECTED"], // Reason code set
   },
+  canGenerateAnalysis: false, // Cannot generate because suspected scanned
   banner: {
     severity: "warning",
     title: "No extractable text detected",
@@ -90,6 +92,7 @@ const notFoundContext: CaseContext = {
     avgRawCharsPerDoc: 0,
     reasonCodes: ["CASE_NOT_FOUND"], // Reason code set
   },
+  canGenerateAnalysis: false, // Cannot generate because case not found
   banner: {
     severity: "error",
     title: "Case not found",
