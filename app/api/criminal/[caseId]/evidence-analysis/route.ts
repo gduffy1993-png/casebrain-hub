@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { requireAuthContextApi } from "@/lib/auth-api";
 import { getSupabaseAdminClient } from "@/lib/supabase";
+import { buildCaseContext, guardAnalysis, AnalysisGateError } from "@/lib/case-context";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -9,13 +10,35 @@ type RouteParams = {
 /**
  * GET /api/criminal/[caseId]/evidence-analysis
  * Analyze prosecution vs defense evidence strength
+ * GATED: Returns banner + null data if canGenerateAnalysis is false
  */
 export async function GET(_request: Request, { params }: RouteParams) {
   try {
     const { caseId } = await params;
     const authRes = await requireAuthContextApi();
     if (!authRes.ok) return authRes.response;
-    const { orgId } = authRes.context;
+    const { userId, orgId } = authRes.context;
+
+    // Build case context and gate analysis
+    const context = await buildCaseContext(caseId, { userId });
+    
+    try {
+      guardAnalysis(context);
+    } catch (error) {
+      if (error instanceof AnalysisGateError) {
+        return NextResponse.json({
+          ok: false,
+          prosecutionStrength: null,
+          defenseStrength: null,
+          prosecutionEvidence: [],
+          defenseEvidence: [],
+          banner: error.banner,
+          diagnostics: error.diagnostics,
+        });
+      }
+      throw error;
+    }
+
     const supabase = getSupabaseAdminClient();
 
     // Fetch prosecution evidence

@@ -22,6 +22,7 @@ import type { MoveSequenceInput } from "@/lib/strategic/move-sequencing/types";
 import { normalizePracticeArea } from "@/lib/types/casebrain";
 import { assessPracticeAreaViability, shouldShowEvidenceItem } from "@/lib/strategic/practice-area-viability";
 import type { SolicitorRole } from "@/lib/strategic/practice-area-viability";
+import { buildCaseContext, guardAnalysis, AnalysisGateError } from "@/lib/case-context";
 
 /**
  * Normalize role key from various UI/DB variants to canonical SolicitorRole
@@ -133,6 +134,23 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     try {
       const { orgId, userId } = await requireAuthContext();
       const { caseId } = await params;
+
+      // Build case context and gate analysis
+      const context = await buildCaseContext(caseId, { userId });
+      
+      try {
+        guardAnalysis(context);
+      } catch (error) {
+        if (error instanceof AnalysisGateError) {
+          return NextResponse.json({
+            ok: false,
+            data: null,
+            banner: error.banner,
+            diagnostics: error.diagnostics,
+          });
+        }
+        throw error;
+      }
 
       const supabase = getSupabaseAdminClient();
 

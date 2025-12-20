@@ -49,7 +49,8 @@ export async function GET(
 
     // Gate 3: Facts-first gating - if suspected scanned or text is too thin, return banner
     // DO NOT generate full summary when extraction is empty
-    if (reasonCodes.includes("SCANNED_SUSPECTED") || reasonCodes.includes("TEXT_THIN")) {
+    // Explicit check: NEVER generate summary when rawCharsTotal is 0
+    if (context.diagnostics.rawCharsTotal === 0 || reasonCodes.includes("SCANNED_SUSPECTED") || reasonCodes.includes("TEXT_THIN")) {
       console.log(`[case-summary] Gate triggered: ${reasonCodes.includes("SCANNED_SUSPECTED") ? "SCANNED_SUSPECTED" : "TEXT_THIN"} for caseId=${caseId}, rawChars=${context.diagnostics.rawCharsTotal}`);
       // Still generate minimal summary from case data, but with banner
       const summary = await generateCaseSummary({ caseId, orgId: context.orgScope.orgIdResolved });

@@ -8,15 +8,38 @@ import { NextRequest, NextResponse } from "next/server";
 import { requireAuthContext } from "@/lib/auth";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { outlineScenarios } from "@/lib/strategic/scenario-outliner";
+import { buildCaseContext, guardAnalysis, AnalysisGateError } from "@/lib/case-context";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
 };
 
+/**
+ * GET /api/strategic/[caseId]/scenarios
+ * Returns scenario outlines for a case
+ * GATED: Returns banner + null data if canGenerateAnalysis is false
+ */
 export async function GET(request: NextRequest, { params }: RouteParams) {
   try {
-    const { orgId } = await requireAuthContext();
+    const { orgId, userId } = await requireAuthContext();
     const { caseId } = await params;
+
+    // Build case context and gate analysis
+    const context = await buildCaseContext(caseId, { userId });
+    
+    try {
+      guardAnalysis(context);
+    } catch (error) {
+      if (error instanceof AnalysisGateError) {
+        return NextResponse.json({
+          ok: false,
+          scenarios: [],
+          banner: error.banner,
+          diagnostics: error.diagnostics,
+        });
+      }
+      throw error;
+    }
 
     // Verify case access
     const supabase = getSupabaseAdminClient();

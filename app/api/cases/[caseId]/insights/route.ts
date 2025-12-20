@@ -149,7 +149,8 @@ export async function GET(
 
     // Gate 3: Facts-first gating - if suspected scanned or text is too thin, DO NOT generate strategy
     // This prevents "jumble mumble" outputs when extraction is empty
-    if (reasonCodes.includes("SCANNED_SUSPECTED") || reasonCodes.includes("TEXT_THIN")) {
+    // Explicit check: NEVER generate strategy when rawCharsTotal is 0
+    if (context.diagnostics.rawCharsTotal === 0 || reasonCodes.includes("SCANNED_SUSPECTED") || reasonCodes.includes("TEXT_THIN")) {
       console.log(`[insights] Gate triggered: ${reasonCodes.includes("SCANNED_SUSPECTED") ? "SCANNED_SUSPECTED" : "TEXT_THIN"} for caseId=${caseId}, rawChars=${context.diagnostics.rawCharsTotal}, jsonChars=${context.diagnostics.jsonCharsTotal}`);
       
       // Return minimal insights - DO NOT generate strategy when text is too thin

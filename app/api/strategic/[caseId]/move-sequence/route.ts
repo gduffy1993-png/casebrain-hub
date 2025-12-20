@@ -10,6 +10,7 @@ import { requireAuthContext } from "@/lib/auth";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { generateMoveSequence } from "@/lib/strategic/move-sequencing/engine";
 import type { MoveSequenceInput } from "@/lib/strategic/move-sequencing/types";
+import { buildCaseContext, guardAnalysis, AnalysisGateError } from "@/lib/case-context";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -17,13 +18,35 @@ type RouteParams = {
 
 export const dynamic = "force-dynamic";
 
+/**
+ * GET /api/strategic/[caseId]/move-sequence
+ * Returns strategic move sequence for a case
+ * GATED: Returns banner + null data if canGenerateAnalysis is false
+ */
 export async function GET(
   _request: NextRequest,
   { params }: RouteParams,
 ) {
   try {
-    const { orgId } = await requireAuthContext();
+    const { orgId, userId } = await requireAuthContext();
     const { caseId } = await params;
+
+    // Build case context and gate analysis
+    const context = await buildCaseContext(caseId, { userId });
+    
+    try {
+      guardAnalysis(context);
+    } catch (error) {
+      if (error instanceof AnalysisGateError) {
+        return NextResponse.json({
+          ok: false,
+          moves: [],
+          banner: error.banner,
+          diagnostics: error.diagnostics,
+        });
+      }
+      throw error;
+    }
 
     const supabase = getSupabaseAdminClient();
 

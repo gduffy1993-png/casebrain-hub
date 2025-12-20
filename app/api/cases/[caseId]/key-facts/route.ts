@@ -105,7 +105,8 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 
     // Gate 3: Facts-first gating - if suspected scanned or text is too thin, DO NOT generate Key Facts
     // This prevents "jumble mumble" outputs when extraction is empty
-    if (reasonCodes.includes("SCANNED_SUSPECTED") || reasonCodes.includes("TEXT_THIN")) {
+    // Explicit check: NEVER generate Key Facts when rawCharsTotal is 0
+    if (context.diagnostics.rawCharsTotal === 0 || reasonCodes.includes("SCANNED_SUSPECTED") || reasonCodes.includes("TEXT_THIN")) {
       console.log(`[key-facts] Gate triggered: ${reasonCodes.includes("SCANNED_SUSPECTED") ? "SCANNED_SUSPECTED" : "TEXT_THIN"} for caseId=${caseId}, rawChars=${context.diagnostics.rawCharsTotal}, jsonChars=${context.diagnostics.jsonCharsTotal}`);
       
       // Return minimal fallback - DO NOT generate Key Facts when text is too thin

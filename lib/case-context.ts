@@ -35,6 +35,7 @@ export type CaseContext = {
     suspectedScanned: boolean; // true if docs exist but rawCharsTotal < 800 and jsonCharsTotal < 400
     reasonCodes: string[]; // CASE_NOT_FOUND, DOCS_NONE, TEXT_THIN, SCANNED_SUSPECTED, OK
   };
+  canGenerateAnalysis: boolean; // false if rawCharsTotal === 0 OR suspectedScanned OR textThin
   banner?: {
     severity: "warning" | "error" | "info";
     title?: string;
@@ -89,6 +90,7 @@ export async function buildCaseContext(
         suspectedScanned: false,
         reasonCodes: ["CASE_NOT_FOUND"],
       },
+      canGenerateAnalysis: false,
       banner: {
         severity: "error",
         title: "Case not found",
@@ -126,7 +128,8 @@ export async function buildCaseContext(
 
   for (const doc of documents) {
     const rawText = doc.raw_text ?? "";
-    rawCharsTotal += typeof rawText === "string" ? rawText.length : 0;
+    const textLength = typeof rawText === "string" ? rawText.length : 0;
+    rawCharsTotal += textLength;
 
     const extractedJson = doc.extracted_json;
     if (extractedJson) {
@@ -136,6 +139,15 @@ export async function buildCaseContext(
       } catch {
         // Ignore JSON stringify errors
       }
+    }
+
+    // Debug logging: print extraction char counts and preview (capped in production)
+    const previewLength = process.env.NODE_ENV === "production" ? 200 : 500;
+    const preview = typeof rawText === "string" && rawText.length > 0 
+      ? rawText.substring(0, previewLength).replace(/\n/g, " ") 
+      : "[EMPTY]";
+    if (process.env.NODE_ENV !== "production" || textLength > 0) {
+      console.log(`[case-context] docId=${doc.id}, name=${doc.name}, rawChars=${textLength}, jsonChars=${extractedJson ? (typeof extractedJson === "string" ? extractedJson.length : JSON.stringify(extractedJson).length) : 0}, preview="${preview}"`);
     }
   }
 
@@ -159,6 +171,14 @@ export async function buildCaseContext(
     // This shouldn't happen (DOCS_NONE should be set above), but safety check
     reasonCodes.push("DOCS_NONE");
   }
+
+  // Determine if analysis can be generated
+  // NEVER generate analysis if: no text, suspected scanned, or text too thin
+  const canGenerateAnalysis = 
+    rawCharsTotal > 0 && 
+    !suspectedScanned && 
+    !textThin && 
+    reasonCodes.includes("OK");
 
   // Build banner based on reason codes
   let banner: CaseContext["banner"] | undefined;
@@ -188,8 +208,8 @@ export async function buildCaseContext(
     };
   }
 
-  // Log reason codes for debugging
-  console.log(`[case-context] caseId=${caseId}, method=${method}, reasonCodes=[${reasonCodes.join(", ")}], docCount=${docCount}, rawChars=${rawCharsTotal}, jsonChars=${jsonCharsTotal}`);
+  // Log reason codes and summary diagnostics for debugging
+  console.log(`[case-context] caseId=${caseId}, method=${method}, reasonCodes=[${reasonCodes.join(", ")}], docCount=${docCount}, rawCharsTotal=${rawCharsTotal}, jsonCharsTotal=${jsonCharsTotal}, avgRawCharsPerDoc=${avgRawCharsPerDoc}, suspectedScanned=${suspectedScanned}`);
 
   return {
     case: caseRow,
@@ -206,7 +226,38 @@ export async function buildCaseContext(
       suspectedScanned,
       reasonCodes,
     },
+    canGenerateAnalysis,
     banner,
   };
+}
+
+/**
+ * Guard function to check if analysis can be generated from context
+ * Throws an error with banner info if analysis cannot be generated
+ * Use this in routes to ensure consistent gating
+ */
+export function guardAnalysis(context: CaseContext): void {
+  if (!context.canGenerateAnalysis) {
+    const banner = context.banner || {
+      severity: "warning" as const,
+      title: "Insufficient text extracted",
+      message: "Not enough extractable text to generate reliable analysis. Upload text-based PDFs or run OCR, then re-analyse.",
+    };
+    throw new AnalysisGateError(banner, context.diagnostics);
+  }
+}
+
+/**
+ * Error class for analysis gating
+ * Contains banner and diagnostics for consistent error responses
+ */
+export class AnalysisGateError extends Error {
+  constructor(
+    public banner: CaseContext["banner"],
+    public diagnostics: CaseContext["diagnostics"],
+  ) {
+    super(banner?.message || "Analysis cannot be generated");
+    this.name = "AnalysisGateError";
+  }
 }
 

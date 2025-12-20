@@ -11,6 +11,7 @@ import { findAllDefenseAngles } from "@/lib/criminal/aggressive-defense-engine";
 import { withPaywall } from "@/lib/paywall/protect-route";
 import { getCriminalBundleCompleteness } from "@/lib/criminal/bundle-completeness";
 import { shouldShowProbabilities } from "@/lib/criminal/probability-gate";
+import { buildCaseContext, guardAnalysis, AnalysisGateError } from "@/lib/case-context";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -21,8 +22,25 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     try {
       const authRes = await requireAuthContextApi();
       if (!authRes.ok) return authRes.response;
-      const { orgId } = authRes.context;
+      const { userId, orgId } = authRes.context;
       const { caseId } = await params;
+
+      // Build case context and gate analysis
+      const context = await buildCaseContext(caseId, { userId });
+      
+      try {
+        guardAnalysis(context);
+      } catch (error) {
+        if (error instanceof AnalysisGateError) {
+          return NextResponse.json({
+            ok: false,
+            data: null,
+            banner: error.banner,
+            diagnostics: error.diagnostics,
+          });
+        }
+        throw error;
+      }
 
       const bundle = await getCriminalBundleCompleteness({ caseId, orgId });
       const gate = shouldShowProbabilities({

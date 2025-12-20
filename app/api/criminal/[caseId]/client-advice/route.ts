@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { requireAuthContextApi } from "@/lib/auth-api";
 import { getSupabaseAdminClient } from "@/lib/supabase";
+import { buildCaseContext, guardAnalysis, AnalysisGateError } from "@/lib/case-context";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -9,13 +10,32 @@ type RouteParams = {
 /**
  * GET /api/criminal/[caseId]/client-advice
  * Generate client advice based on case analysis
+ * GATED: Returns banner + null data if canGenerateAnalysis is false
  */
 export async function GET(_request: Request, { params }: RouteParams) {
   try {
     const { caseId } = await params;
     const authRes = await requireAuthContextApi();
     if (!authRes.ok) return authRes.response;
-    const { orgId } = authRes.context;
+    const { userId, orgId } = authRes.context;
+
+    // Build case context and gate analysis
+    const context = await buildCaseContext(caseId, { userId });
+    
+    try {
+      guardAnalysis(context);
+    } catch (error) {
+      if (error instanceof AnalysisGateError) {
+        return NextResponse.json({
+          ok: false,
+          advice: null,
+          banner: error.banner,
+          diagnostics: error.diagnostics,
+        });
+      }
+      throw error;
+    }
+
     const supabase = getSupabaseAdminClient();
 
     // Fetch case data to generate advice
