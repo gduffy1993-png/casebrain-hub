@@ -5,6 +5,8 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Loader2, Target } from "lucide-react";
 import { StrategicInsightMetaDisplay } from "./StrategicInsightMeta";
+import { AnalysisGateBanner, type AnalysisGateBannerProps } from "@/components/AnalysisGateBanner";
+import { normalizeApiResponse, isGated } from "@/lib/api-response-normalizer";
 
 type StrategicInsightMeta = {
   whyRecommended: string;
@@ -44,12 +46,17 @@ export function StrategicRoutesPanel({ caseId }: StrategicRoutesPanelProps) {
   const [strategies, setStrategies] = useState<StrategyPath[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [gatedResponse, setGatedResponse] = useState<{
+    banner: AnalysisGateBannerProps["banner"];
+    diagnostics?: AnalysisGateBannerProps["diagnostics"];
+  } | null>(null);
 
   useEffect(() => {
     async function fetchStrategies() {
       try {
         setLoading(true);
         setError(null);
+        setGatedResponse(null);
         const response = await fetch(`/api/strategic/${caseId}/strategies`);
         
         if (!response.ok) {
@@ -57,7 +64,23 @@ export function StrategicRoutesPanel({ caseId }: StrategicRoutesPanelProps) {
         }
 
         const result = await response.json();
-        setStrategies(result.strategies || []);
+        const normalized = normalizeApiResponse<{ strategies: StrategyPath[] }>(result);
+        
+        // Check if gated
+        if (isGated(normalized)) {
+          setGatedResponse({
+            banner: normalized.banner || {
+              severity: "warning",
+              title: "Insufficient text extracted",
+              message: "Not enough extractable text to generate reliable analysis. Upload text-based PDFs or run OCR, then re-analyse.",
+            },
+            diagnostics: normalized.diagnostics,
+          });
+          setStrategies([]);
+          return;
+        }
+
+        setStrategies(normalized.data?.strategies || result.strategies || []);
       } catch (err) {
         console.error("Failed to fetch strategies:", err);
         setError("No strategic routes available yet.");
@@ -68,6 +91,17 @@ export function StrategicRoutesPanel({ caseId }: StrategicRoutesPanelProps) {
 
     fetchStrategies();
   }, [caseId]);
+
+  // Show gate banner if analysis is blocked
+  if (gatedResponse) {
+    return (
+      <AnalysisGateBanner
+        banner={gatedResponse.banner}
+        diagnostics={gatedResponse.diagnostics}
+        showHowToFix={true}
+      />
+    );
+  }
 
   if (loading) {
     return (

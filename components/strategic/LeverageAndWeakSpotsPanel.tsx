@@ -5,6 +5,8 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Loader2, AlertTriangle, Search } from "lucide-react";
 import { StrategicInsightMetaDisplay } from "./StrategicInsightMeta";
+import { AnalysisGateBanner, type AnalysisGateBannerProps } from "@/components/AnalysisGateBanner";
+import { normalizeApiResponse, isGated } from "@/lib/api-response-normalizer";
 
 type StrategicInsightMeta = {
   whyRecommended: string;
@@ -52,12 +54,17 @@ export function LeverageAndWeakSpotsPanel({ caseId }: LeverageAndWeakSpotsPanelP
   const [weakSpots, setWeakSpots] = useState<WeakSpot[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [gatedResponse, setGatedResponse] = useState<{
+    banner: AnalysisGateBannerProps["banner"];
+    diagnostics?: AnalysisGateBannerProps["diagnostics"];
+  } | null>(null);
 
   useEffect(() => {
     async function fetchData() {
       try {
         setLoading(true);
         setError(null);
+        setGatedResponse(null);
 
         const [leverageRes, weakSpotsRes] = await Promise.all([
           fetch(`/api/strategic/${caseId}/leverage`),
@@ -68,13 +75,32 @@ export function LeverageAndWeakSpotsPanel({ caseId }: LeverageAndWeakSpotsPanelP
           throw new Error("Failed to fetch leverage or weak spots");
         }
 
-        const [leverageData, weakSpotsData] = await Promise.all([
+        const [leverageResult, weakSpotsResult] = await Promise.all([
           leverageRes.json(),
           weakSpotsRes.json(),
         ]);
 
-        setLeveragePoints(leverageData.leveragePoints || []);
-        setWeakSpots(weakSpotsData.weakSpots || []);
+        const leverageNormalized = normalizeApiResponse<{ leveragePoints: LeveragePoint[] }>(leverageResult);
+        const weakSpotsNormalized = normalizeApiResponse<{ weakSpots: WeakSpot[] }>(weakSpotsResult);
+
+        // Check if either is gated
+        if (isGated(leverageNormalized) || isGated(weakSpotsNormalized)) {
+          const gated = isGated(leverageNormalized) ? leverageNormalized : weakSpotsNormalized;
+          setGatedResponse({
+            banner: gated.banner || {
+              severity: "warning",
+              title: "Insufficient text extracted",
+              message: "Not enough extractable text to generate reliable analysis. Upload text-based PDFs or run OCR, then re-analyse.",
+            },
+            diagnostics: gated.diagnostics,
+          });
+          setLeveragePoints([]);
+          setWeakSpots([]);
+          return;
+        }
+
+        setLeveragePoints(leverageNormalized.data?.leveragePoints || leverageResult.leveragePoints || []);
+        setWeakSpots(weakSpotsNormalized.data?.weakSpots || weakSpotsResult.weakSpots || []);
       } catch (err) {
         console.error("Failed to fetch leverage/weak spots:", err);
         setError("No leverage points or weak spots available yet.");
@@ -85,6 +111,17 @@ export function LeverageAndWeakSpotsPanel({ caseId }: LeverageAndWeakSpotsPanelP
 
     fetchData();
   }, [caseId]);
+
+  // Show gate banner if analysis is blocked
+  if (gatedResponse) {
+    return (
+      <AnalysisGateBanner
+        banner={gatedResponse.banner}
+        diagnostics={gatedResponse.diagnostics}
+        showHowToFix={true}
+      />
+    );
+  }
 
   if (loading) {
     return (

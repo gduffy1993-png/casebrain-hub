@@ -5,6 +5,8 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Target, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { AnalysisGateBanner, type AnalysisGateBannerProps } from "@/components/AnalysisGateBanner";
+import { normalizeApiResponse, isGated } from "@/lib/api-response-normalizer";
 
 type DefenseStrategy = {
   id: string;
@@ -26,6 +28,10 @@ export function DefenseStrategiesPanel({ caseId }: DefenseStrategiesPanelProps) 
   const [strategies, setStrategies] = useState<DefenseStrategy[]>([]);
   const [loading, setLoading] = useState(true);
   const [suppression, setSuppression] = useState<{ reason?: string | null } | null>(null);
+  const [gatedResponse, setGatedResponse] = useState<{
+    banner: AnalysisGateBannerProps["banner"];
+    diagnostics?: AnalysisGateBannerProps["diagnostics"];
+  } | null>(null);
 
   useEffect(() => {
     async function fetchStrategies() {
@@ -33,9 +39,26 @@ export function DefenseStrategiesPanel({ caseId }: DefenseStrategiesPanelProps) 
         const res = await fetch(`/api/criminal/${caseId}/strategies`);
         if (res.ok) {
           const result = await res.json();
-          setStrategies(result.strategies || []);
-          if (result.probabilitiesSuppressed) {
-            setSuppression({ reason: result.suppressionReason });
+          const normalized = normalizeApiResponse<{ strategies: DefenseStrategy[] }>(result);
+          
+          // Check if gated (ok: false or banner exists)
+          if (isGated(normalized)) {
+            setGatedResponse({
+              banner: normalized.banner || {
+                severity: "warning",
+                title: "Insufficient text extracted",
+                message: "Not enough extractable text to generate reliable analysis. Upload text-based PDFs or run OCR, then re-analyse.",
+              },
+              diagnostics: normalized.diagnostics,
+            });
+            setStrategies([]);
+            return;
+          }
+
+          const data = normalized.data || result; // Fallback to old shape
+          setStrategies(data.strategies || []);
+          if (data?.probabilitiesSuppressed) {
+            setSuppression({ reason: data?.suppressionReason });
           } else {
             setSuppression(null);
           }
@@ -54,6 +77,17 @@ export function DefenseStrategiesPanel({ caseId }: DefenseStrategiesPanelProps) 
       <Card title="Defense Strategies" description="Generating defense strategies..." className="animate-pulse">
         <div className="h-32 bg-muted/30 rounded-lg" />
       </Card>
+    );
+  }
+
+  // Show gate banner if analysis is blocked
+  if (gatedResponse) {
+    return (
+      <AnalysisGateBanner
+        banner={gatedResponse.banner}
+        diagnostics={gatedResponse.diagnostics}
+        showHowToFix={true}
+      />
     );
   }
 

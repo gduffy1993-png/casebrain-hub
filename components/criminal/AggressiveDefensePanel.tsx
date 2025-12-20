@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Loader2, Target, AlertTriangle, BookOpen, MessageSquare, FileText } from "lucide-react";
+import { AnalysisGateBanner, type AnalysisGateBannerProps } from "@/components/AnalysisGateBanner";
+import { normalizeApiResponse, isGated } from "@/lib/api-response-normalizer";
 
 type DefenseAngle = {
   id: string;
@@ -53,19 +55,41 @@ export function AggressiveDefensePanel({ caseId }: AggressiveDefensePanelProps) 
   const [error, setError] = useState<string | null>(null);
   const [expandedAngle, setExpandedAngle] = useState<string | null>(null);
   const [suppression, setSuppression] = useState<{ reason?: string | null } | null>(null);
+  const [gatedResponse, setGatedResponse] = useState<{
+    banner: AnalysisGateBannerProps["banner"];
+    diagnostics?: AnalysisGateBannerProps["diagnostics"];
+  } | null>(null);
 
   useEffect(() => {
     async function fetchAnalysis() {
       try {
         setLoading(true);
         setError(null);
+        setGatedResponse(null);
         const response = await fetch(`/api/criminal/${caseId}/aggressive-defense`);
         
         if (!response.ok) {
           throw new Error("Failed to fetch aggressive defense analysis");
         }
 
-        const data = await response.json();
+        const result = await response.json();
+        const normalized = normalizeApiResponse<AggressiveDefenseAnalysis>(result);
+        
+        // Check if gated (ok: false or banner exists)
+        if (isGated(normalized)) {
+          setGatedResponse({
+            banner: normalized.banner || {
+              severity: "warning",
+              title: "Insufficient text extracted",
+              message: "Not enough extractable text to generate reliable analysis. Upload text-based PDFs or run OCR, then re-analyse.",
+            },
+            diagnostics: normalized.diagnostics,
+          });
+          setAnalysis(null);
+          return;
+        }
+
+        const data = normalized.data || result; // Fallback to old shape
         setAnalysis(data);
         if (data?.probabilitiesSuppressed) {
           setSuppression({ reason: data?.suppressionReason });
@@ -91,6 +115,17 @@ export function AggressiveDefensePanel({ caseId }: AggressiveDefensePanelProps) 
           <span>Analyzing every possible defense angle…</span>
         </div>
       </Card>
+    );
+  }
+
+  // Show gate banner if analysis is blocked
+  if (gatedResponse) {
+    return (
+      <AnalysisGateBanner
+        banner={gatedResponse.banner}
+        diagnostics={gatedResponse.diagnostics}
+        showHowToFix={true}
+      />
     );
   }
 

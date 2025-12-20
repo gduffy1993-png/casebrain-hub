@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { TrendingUp, TrendingDown, Minus, Loader2 } from "lucide-react";
+import { AnalysisGateBanner, type AnalysisGateBannerProps } from "@/components/AnalysisGateBanner";
+import { normalizeApiResponse, isGated } from "@/lib/api-response-normalizer";
 
 type MomentumState = "STRONG" | "STRONG (Expert Pending)" | "BALANCED" | "WEAK";
 
@@ -43,11 +45,17 @@ export function StrategicOverviewCard({ caseId, practiceArea }: StrategicOvervie
   const [error, setError] = useState<string | null>(null);
   const isCriminal = practiceArea === "criminal";
 
+  const [gatedResponse, setGatedResponse] = useState<{
+    banner: AnalysisGateBannerProps["banner"];
+    diagnostics?: AnalysisGateBannerProps["diagnostics"];
+  } | null>(null);
+
   useEffect(() => {
     async function fetchOverview() {
       try {
         setLoading(true);
         setError(null);
+        setGatedResponse(null);
         const response = await fetch(`/api/strategic/${caseId}/overview`);
         
         if (!response.ok) {
@@ -55,15 +63,30 @@ export function StrategicOverviewCard({ caseId, practiceArea }: StrategicOvervie
         }
 
         const result = await response.json();
+        const normalized = normalizeApiResponse<StrategicOverview>(result);
         
-        // If analysisBanner exists with warning, don't show strategy
+        // Check if gated (ok: false or banner exists)
+        if (isGated(normalized)) {
+          setGatedResponse({
+            banner: normalized.banner || {
+              severity: "warning",
+              title: "Insufficient text extracted",
+              message: "Not enough extractable text to generate reliable analysis. Upload text-based PDFs or run OCR, then re-analyse.",
+            },
+            diagnostics: normalized.diagnostics,
+          });
+          setData(null);
+          return;
+        }
+        
+        // If analysisBanner exists with warning (old format), don't show strategy
         if (result.analysisBanner?.severity === "warning") {
           setData(null);
           setError("Practice area mismatch detected. Please switch to the correct role.");
           return;
         }
         
-        setData(result);
+        setData(normalized.data);
       } catch (err) {
         console.error("Failed to fetch strategic overview:", err);
         setError("Strategic analysis not available yet for this case.");

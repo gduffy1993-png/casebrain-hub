@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Loader2, Clock, TrendingUp } from "lucide-react";
+import { AnalysisGateBanner, type AnalysisGateBannerProps } from "@/components/AnalysisGateBanner";
+import { normalizeApiResponse, isGated } from "@/lib/api-response-normalizer";
 import { StrategicInsightMetaDisplay } from "./StrategicInsightMeta";
 
 type StrategicInsightMeta = {
@@ -80,6 +82,17 @@ export function TimePressureAndSettlementPanel({ caseId }: TimePressureAndSettle
 
     fetchData();
   }, [caseId]);
+
+  // Show gate banner if analysis is blocked
+  if (gatedResponse) {
+    return (
+      <AnalysisGateBanner
+        banner={gatedResponse.banner}
+        diagnostics={gatedResponse.diagnostics}
+        showHowToFix={true}
+      />
+    );
+  }
 
   if (loading) {
     return (

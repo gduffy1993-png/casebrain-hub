@@ -9,11 +9,13 @@ import { TimePressureAndSettlementPanel } from "./TimePressureAndSettlementPanel
 import { JudicialExpectationsPanel } from "./JudicialExpectationsPanel";
 import { MoveSequencePanel } from "./MoveSequencePanel";
 import { AnalysisBanner } from "./AnalysisBanner";
+import { AnalysisGateBanner, type AnalysisGateBannerProps } from "@/components/AnalysisGateBanner";
 import { ErrorBoundary } from "@/components/ui/error-boundary";
 import { Badge } from "@/components/ui/badge";
 import { Target } from "lucide-react";
 import { normalizePracticeArea } from "@/lib/types/casebrain";
 import type { SolicitorRole } from "@/lib/strategic/practice-area-viability";
+import { normalizeApiResponse, isGated } from "@/lib/api-response-normalizer";
 
 type StrategicIntelligenceSectionProps = {
   caseId: string;
@@ -39,6 +41,10 @@ export function StrategicIntelligenceSection({ caseId, practiceArea }: Strategic
     expectations: number;
   } | null>(null);
   const [analysisBanner, setAnalysisBanner] = useState<AnalysisBannerData | null>(null);
+  const [gateBanner, setGateBanner] = useState<{
+    banner: AnalysisGateBannerProps["banner"];
+    diagnostics?: AnalysisGateBannerProps["diagnostics"];
+  } | null>(null);
 
   useEffect(() => {
     async function fetchSummary() {
@@ -47,14 +53,32 @@ export function StrategicIntelligenceSection({ caseId, practiceArea }: Strategic
         
         if (overviewRes?.ok) {
           const overviewData = await overviewRes.json();
+          const normalized = normalizeApiResponse(overviewData);
           
-          // Check for analysis banner
+          // Check if gated (ok: false or banner exists)
+          if (isGated(normalized)) {
+            setGateBanner({
+              banner: normalized.banner || {
+                severity: "warning",
+                title: "Insufficient text extracted",
+                message: "Not enough extractable text to generate reliable analysis. Upload text-based PDFs or run OCR, then re-analyse.",
+              },
+              diagnostics: normalized.diagnostics,
+            });
+            setAnalysisBanner(null);
+            setSummary({ routes: 0, leverage: 0, weakSpots: 0, expectations: 0 });
+            return; // Don't fetch other endpoints if gated
+          }
+          
+          // Check for analysis banner (old format - practice area mismatch)
           if (overviewData.analysisBanner?.severity === "warning") {
             setAnalysisBanner(overviewData.analysisBanner);
+            setGateBanner(null);
             setSummary({ routes: 0, leverage: 0, weakSpots: 0, expectations: 0 });
             return; // Don't fetch other endpoints if banner exists
           } else {
             setAnalysisBanner(null);
+            setGateBanner(null);
           }
 
           const [leverageRes, weakSpotsRes, expectationsRes] = await Promise.all([
@@ -63,7 +87,7 @@ export function StrategicIntelligenceSection({ caseId, practiceArea }: Strategic
             fetch(`/api/strategic/${caseId}/cpr-compliance`).catch(() => null),
           ]);
 
-          const routes = overviewData?.strategies?.length || 0;
+          const routes = normalized.data?.strategies?.length || 0;
           const leverage = leverageRes?.ok ? (await leverageRes.json())?.leveragePoints?.length || 0 : 0;
           const weakSpots = weakSpotsRes?.ok ? (await weakSpotsRes.json())?.weakSpots?.length || 0 : 0;
           const expectations = expectationsRes?.ok ? (await expectationsRes.json())?.expectations?.length || 0 : 0;

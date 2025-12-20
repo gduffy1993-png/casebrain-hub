@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Loader2, Scale } from "lucide-react";
+import { AnalysisGateBanner, type AnalysisGateBannerProps } from "@/components/AnalysisGateBanner";
+import { normalizeApiResponse, isGated } from "@/lib/api-response-normalizer";
 
 type CPRComplianceIssue = {
   id: string;
@@ -23,12 +25,17 @@ export function JudicialExpectationsPanel({ caseId }: JudicialExpectationsPanelP
   const [cprIssues, setCprIssues] = useState<CPRComplianceIssue[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [gatedResponse, setGatedResponse] = useState<{
+    banner: AnalysisGateBannerProps["banner"];
+    diagnostics?: AnalysisGateBannerProps["diagnostics"];
+  } | null>(null);
 
   useEffect(() => {
     async function fetchData() {
       try {
         setLoading(true);
         setError(null);
+        setGatedResponse(null);
         const response = await fetch(`/api/strategic/${caseId}/cpr-compliance`);
         
         if (!response.ok) {
@@ -36,7 +43,23 @@ export function JudicialExpectationsPanel({ caseId }: JudicialExpectationsPanelP
         }
 
         const result = await response.json();
-        setCprIssues(result.cprIssues || []);
+        const normalized = normalizeApiResponse<{ cprIssues: CPRComplianceIssue[] }>(result);
+        
+        // Check if gated
+        if (isGated(normalized)) {
+          setGatedResponse({
+            banner: normalized.banner || {
+              severity: "warning",
+              title: "Insufficient text extracted",
+              message: "Not enough extractable text to generate reliable analysis. Upload text-based PDFs or run OCR, then re-analyse.",
+            },
+            diagnostics: normalized.diagnostics,
+          });
+          setCprIssues([]);
+          return;
+        }
+
+        setCprIssues(normalized.data?.cprIssues || result.cprIssues || []);
       } catch (err) {
         console.error("Failed to fetch CPR compliance:", err);
         setError("No judicial expectations data available yet.");
@@ -47,6 +70,17 @@ export function JudicialExpectationsPanel({ caseId }: JudicialExpectationsPanelP
 
     fetchData();
   }, [caseId]);
+
+  // Show gate banner if analysis is blocked
+  if (gatedResponse) {
+    return (
+      <AnalysisGateBanner
+        banner={gatedResponse.banner}
+        diagnostics={gatedResponse.diagnostics}
+        showHowToFix={true}
+      />
+    );
+  }
 
   if (loading) {
     return (
