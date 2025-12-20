@@ -49,12 +49,17 @@ export function TimePressureAndSettlementPanel({ caseId }: TimePressureAndSettle
   const [scenarios, setScenarios] = useState<Scenario[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [gatedResponse, setGatedResponse] = useState<{
+    banner: AnalysisGateBannerProps["banner"];
+    diagnostics?: AnalysisGateBannerProps["diagnostics"];
+  } | null>(null);
 
   useEffect(() => {
     async function fetchData() {
       try {
         setLoading(true);
         setError(null);
+        setGatedResponse(null);
 
         const [pressureRes, scenariosRes] = await Promise.all([
           fetch(`/api/strategic/${caseId}/time-pressure`),
@@ -65,13 +70,32 @@ export function TimePressureAndSettlementPanel({ caseId }: TimePressureAndSettle
           throw new Error("Failed to fetch time pressure or scenarios");
         }
 
-        const [pressureData, scenariosData] = await Promise.all([
+        const [pressureResult, scenariosResult] = await Promise.all([
           pressureRes.json(),
           scenariosRes.json(),
         ]);
 
-        setPressurePoints(pressureData.pressurePoints || []);
-        setScenarios(scenariosData.scenarios || []);
+        const pressureNormalized = normalizeApiResponse<{ pressurePoints: TimePressurePoint[] }>(pressureResult);
+        const scenariosNormalized = normalizeApiResponse<{ scenarios: Scenario[] }>(scenariosResult);
+
+        // Check if either is gated
+        if (isGated(pressureNormalized) || isGated(scenariosNormalized)) {
+          const gated = isGated(pressureNormalized) ? pressureNormalized : scenariosNormalized;
+          setGatedResponse({
+            banner: gated.banner || {
+              severity: "warning",
+              title: "Insufficient text extracted",
+              message: "Not enough extractable text to generate reliable analysis. Upload text-based PDFs or run OCR, then re-analyse.",
+            },
+            diagnostics: gated.diagnostics,
+          });
+          setPressurePoints([]);
+          setScenarios([]);
+          return;
+        }
+
+        setPressurePoints(pressureNormalized.data?.pressurePoints || pressureResult.pressurePoints || []);
+        setScenarios(scenariosNormalized.data?.scenarios || scenariosResult.scenarios || []);
       } catch (err) {
         console.error("Failed to fetch time pressure/scenarios:", err);
         setError("No time pressure analysis available yet.");
