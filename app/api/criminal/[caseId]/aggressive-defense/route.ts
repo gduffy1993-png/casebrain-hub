@@ -171,10 +171,10 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       }
     }
 
-    // Add evidence strength warnings to analysis (extend type)
-    (analysis as any).evidenceStrengthWarnings = evidenceStrength.warnings;
-    (analysis as any).evidenceStrength = evidenceStrength.overallStrength;
-    (analysis as any).realisticOutcome = evidenceStrength.calibration.realisticOutcome;
+    // Add evidence strength warnings to analysis
+    analysis.evidenceStrengthWarnings = evidenceStrength.warnings;
+    analysis.evidenceStrength = evidenceStrength.overallStrength;
+    analysis.realisticOutcome = evidenceStrength.calibration.realisticOutcome;
 
     if (!gate.show) {
       return NextResponse.json({

@@ -75,6 +75,10 @@ export type AggressiveDefenseAnalysis = {
     proceduralErrors: string[];
   };
   createdAt: string;
+  // Evidence strength calibration fields (added for reality calibration)
+  evidenceStrengthWarnings?: string[];
+  evidenceStrength?: number;
+  realisticOutcome?: string;
 };
 
 /**

@@ -4,6 +4,7 @@ import { getSupabaseAdminClient } from "@/lib/supabase";
 import { getCriminalBundleCompleteness } from "@/lib/criminal/bundle-completeness";
 import { shouldShowProbabilities } from "@/lib/criminal/probability-gate";
 import { buildCaseContext, guardAnalysis, AnalysisGateError } from "@/lib/case-context";
+import { analyzeEvidenceStrength } from "@/lib/evidence-strength-analyzer";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -121,26 +122,77 @@ export async function GET(_request: Request, { params }: RouteParams) {
       overall = topStrategy.success_probability;
     }
 
-    // Determine risk level
+    // Get documents for evidence strength analysis
+    const { data: documents } = await supabase
+      .from("documents")
+      .select("extracted_facts, raw_text")
+      .eq("case_id", caseId);
+
+    // Get key facts
+    const { data: keyFacts } = await supabase
+      .from("case_analysis")
+      .select("analysis_json")
+      .eq("case_id", caseId)
+      .eq("analysis_type", "key_facts")
+      .order("created_at", { ascending: false })
+      .limit(1)
+      .maybeSingle();
+
+    // Get aggressive defense for evidence strength
+    const { data: aggressiveDefense } = await supabase
+      .from("case_analysis")
+      .select("analysis_json")
+      .eq("case_id", caseId)
+      .eq("analysis_type", "aggressive_defense")
+      .order("created_at", { ascending: false })
+      .limit(1)
+      .maybeSingle();
+
+    // Analyze evidence strength for reality calibration
+    const evidenceStrength = analyzeEvidenceStrength({
+      documents: (documents || []) as any[],
+      keyFacts: keyFacts?.analysis_json,
+      aggressiveDefense: aggressiveDefense?.analysis_json,
+      strategicOverview: null,
+    });
+
+    // Apply reality calibration to probabilities
+    let calibratedOverall = overall;
+    let calibratedTopStrategyProbability = topStrategy?.success_probability ?? 50;
+
+    if (evidenceStrength.overallStrength >= 70) {
+      // Strong prosecution case - downgrade probabilities
+      calibratedOverall = Math.max(20, Math.round(overall * 0.4));
+      calibratedTopStrategyProbability = Math.max(20, Math.round(calibratedTopStrategyProbability * 0.4));
+    } else if (evidenceStrength.overallStrength >= 60) {
+      // Moderate-strong case - moderate downgrade
+      calibratedOverall = Math.max(30, Math.round(overall * 0.6));
+      calibratedTopStrategyProbability = Math.max(30, Math.round(calibratedTopStrategyProbability * 0.6));
+    }
+
+    // Determine risk level based on calibrated probability
     let riskLevel: "LOW" | "MEDIUM" | "HIGH" | "CRITICAL" = "MEDIUM";
-    if (overall >= 70) {
+    if (calibratedOverall >= 70) {
       riskLevel = "LOW";
-    } else if (overall >= 40) {
+    } else if (calibratedOverall >= 40) {
       riskLevel = "MEDIUM";
-    } else if (overall >= 20) {
+    } else if (calibratedOverall >= 20) {
       riskLevel = "HIGH";
     } else {
       riskLevel = "CRITICAL";
     }
 
     return NextResponse.json({
-      overall,
+      overall: calibratedOverall,
       topStrategy: topStrategy?.strategy_name ?? "Evidence Challenge",
-      topStrategyProbability: topStrategy?.success_probability ?? 50,
+      topStrategyProbability: calibratedTopStrategyProbability,
       riskLevel,
       probabilitiesSuppressed: false,
       bundleCompleteness: bundle.completeness,
       criticalMissingCount: bundle.criticalMissingCount,
+      evidenceStrengthWarnings: evidenceStrength.warnings.length > 0 ? evidenceStrength.warnings : undefined,
+      evidenceStrength: evidenceStrength.overallStrength,
+      realisticOutcome: evidenceStrength.calibration.realisticOutcome,
     });
   } catch (error) {
     console.error("[criminal/probability] Error:", error);

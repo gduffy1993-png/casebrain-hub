@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Loader2, Target, Copy, CheckCircle } from "lucide-react";
+import { Loader2, Target, Copy, CheckCircle, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { normalizeApiResponse, isGated } from "@/lib/api-response-normalizer";
 
@@ -16,6 +16,9 @@ type MultiAngleDevastation = {
   combinedAttack: string;
   winProbability: number;
   readyToUseCombinedSubmission: string;
+  evidenceStrengthWarnings?: string[];
+  evidenceStrength?: number;
+  realisticOutcome?: string;
 };
 
 type MultiAngleDevastationPanelProps = {
@@ -95,9 +98,35 @@ export function MultiAngleDevastationPanel({ caseId }: MultiAngleDevastationPane
   };
 
   return (
-    <Card className="p-6 border-2 border-primary/20">
-      <div className="flex items-center gap-2 mb-4">
-        <Target className="h-5 w-5 text-primary" />
+    <>
+      {/* Evidence Strength Warnings */}
+      {devastation?.evidenceStrengthWarnings && devastation.evidenceStrengthWarnings.length > 0 && (
+        <div className="mb-4 p-4 bg-amber-500/10 border border-amber-500/30 rounded-lg">
+          <div className="flex items-center gap-2 mb-2">
+            <AlertTriangle className="h-4 w-4 text-amber-400" />
+            <span className="font-semibold">Professional Judgment Warnings</span>
+          </div>
+          <ul className="space-y-1">
+            {devastation.evidenceStrengthWarnings.map((warning, idx) => (
+              <li key={idx} className="text-sm flex items-start gap-2">
+                <span className="text-amber-400">•</span>
+                <span>{warning}</span>
+              </li>
+            ))}
+          </ul>
+          {devastation.realisticOutcome && (
+            <div className="mt-2 pt-2 border-t border-amber-500/20">
+              <p className="text-sm text-muted-foreground">
+                <strong>Realistic Outcome:</strong> {devastation.realisticOutcome}
+              </p>
+            </div>
+          )}
+        </div>
+      )}
+
+      <Card className="p-6 border-2 border-primary/20">
+        <div className="flex items-center gap-2 mb-4">
+          <Target className="h-5 w-5 text-primary" />
         <h2 className="text-xl font-bold">Multi-Angle Devastation</h2>
         <Badge className={getProbabilityColor(devastation.winProbability)}>
           {devastation.winProbability}% Combined Win
@@ -157,5 +186,6 @@ export function MultiAngleDevastationPanel({ caseId }: MultiAngleDevastationPane
         </Button>
       </div>
     </Card>
+    </>
   );
 }

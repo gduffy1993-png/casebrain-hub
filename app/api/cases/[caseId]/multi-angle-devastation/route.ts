@@ -4,6 +4,7 @@ import { requireAuthContext } from "@/lib/auth";
 import { buildCaseContext, guardAnalysis } from "@/lib/case-context";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { normalizePracticeArea } from "@/lib/types/casebrain";
+import { analyzeEvidenceStrength } from "@/lib/evidence-strength-analyzer";
 
 export const runtime = "nodejs";
 
@@ -16,6 +17,9 @@ type MultiAngleDevastation = {
   combinedAttack: string;
   winProbability: number;
   readyToUseCombinedSubmission: string;
+  evidenceStrengthWarnings?: string[];
+  evidenceStrength?: number;
+  realisticOutcome?: string;
 };
 
 export async function GET(
@@ -107,9 +111,42 @@ export async function GET(
 
     // Calculate combined probability (not simple addition - use geometric mean)
     const probabilities = angles.map((a) => a.probability / 100);
-    const combinedProbability = Math.round(
+    let combinedProbability = Math.round(
       (1 - probabilities.reduce((prod, p) => prod * (1 - p), 1)) * 100
     );
+
+    // Get documents for evidence strength analysis
+    const { data: documents } = await supabase
+      .from("documents")
+      .select("extracted_facts, raw_text")
+      .eq("case_id", caseId);
+
+    // Get key facts
+    const { data: keyFacts } = await supabase
+      .from("case_analysis")
+      .select("analysis_json")
+      .eq("case_id", caseId)
+      .eq("analysis_type", "key_facts")
+      .order("created_at", { ascending: false })
+      .limit(1)
+      .maybeSingle();
+
+    // Analyze evidence strength for reality calibration
+    const evidenceStrength = analyzeEvidenceStrength({
+      documents: (documents || []) as any[],
+      keyFacts: keyFacts?.analysis_json,
+      aggressiveDefense: strategyData,
+      strategicOverview: strategyData,
+    });
+
+    // Apply reality calibration to combined probability
+    if (evidenceStrength.overallStrength >= 70) {
+      // Strong prosecution case - downgrade significantly
+      combinedProbability = Math.max(30, Math.round(combinedProbability * 0.4));
+    } else if (evidenceStrength.overallStrength >= 60) {
+      // Moderate-strong case - moderate downgrade
+      combinedProbability = Math.max(40, Math.round(combinedProbability * 0.6));
+    }
 
     // Generate ready-to-use combined submission
     const readyToUseCombinedSubmission = practiceArea === "criminal"
@@ -141,6 +178,9 @@ Taken together, these weaknesses mean the case is fundamentally flawed and shoul
       combinedAttack,
       winProbability: combinedProbability,
       readyToUseCombinedSubmission,
+      evidenceStrengthWarnings: evidenceStrength.warnings.length > 0 ? evidenceStrength.warnings : undefined,
+      evidenceStrength: evidenceStrength.overallStrength,
+      realisticOutcome: evidenceStrength.calibration.realisticOutcome,
     };
 
     return NextResponse.json({ ok: true, data: result });
