@@ -168,16 +168,42 @@ export function AggressiveDefensePanel({ caseId }: AggressiveDefensePanelProps) 
   };
 
   return (
-    <Card className="p-6 space-y-6">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Target className="h-5 w-5 text-foreground" />
-          <h3 className="text-lg font-semibold text-foreground">Aggressive Defense Analysis</h3>
+    <>
+      {/* Evidence Strength Warnings */}
+      {analysis?.evidenceStrengthWarnings && analysis.evidenceStrengthWarnings.length > 0 && (
+        <div className="mb-4 p-4 bg-amber-500/10 border border-amber-500/30 rounded-lg">
+          <div className="flex items-center gap-2 mb-2">
+            <AlertTriangle className="h-4 w-4 text-amber-400" />
+            <span className="font-semibold">Professional Judgment Warnings</span>
+          </div>
+          <ul className="space-y-1">
+            {analysis.evidenceStrengthWarnings.map((warning, idx) => (
+              <li key={idx} className="text-sm flex items-start gap-2">
+                <span className="text-amber-400">•</span>
+                <span>{warning}</span>
+              </li>
+            ))}
+          </ul>
+          {analysis.realisticOutcome && (
+            <div className="mt-2 pt-2 border-t border-amber-500/20">
+              <p className="text-sm text-muted-foreground">
+                <strong>Realistic Outcome:</strong> {analysis.realisticOutcome}
+              </p>
+            </div>
+          )}
         </div>
-        <Badge className="border-border bg-muted/30 text-foreground">
-          {analysis.overallWinProbability === null ? "Win Probability: N/A" : `${analysis.overallWinProbability}% Win Probability`}
-        </Badge>
-      </div>
+      )}
+      
+      <Card className="p-6 space-y-6">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Target className="h-5 w-5 text-foreground" />
+            <h3 className="text-lg font-semibold text-foreground">Aggressive Defense Analysis</h3>
+          </div>
+          <Badge className="border-border bg-muted/30 text-foreground">
+            {analysis.overallWinProbability === null ? "Win Probability: N/A" : `${analysis.overallWinProbability}% Win Probability`}
+          </Badge>
+        </div>
 
       {suppression?.reason && (
         <div className="text-xs text-muted-foreground">
@@ -399,6 +425,7 @@ export function AggressiveDefensePanel({ caseId }: AggressiveDefensePanelProps) 
         </div>
       )}
     </Card>
+    </>
   );
 }
 
