@@ -43,6 +43,9 @@ type AggressiveDefenseAnalysis = {
     evidenceGaps: string[];
     proceduralErrors: string[];
   };
+  evidenceStrengthWarnings?: string[];
+  evidenceStrength?: number;
+  realisticOutcome?: string;
 };
 
 type AggressiveDefensePanelProps = {
@@ -95,6 +98,11 @@ export function AggressiveDefensePanel({ caseId }: AggressiveDefensePanelProps) 
           setSuppression({ reason: data?.suppressionReason });
         } else {
           setSuppression(null);
+        }
+        
+        // Log evidence strength warnings for debugging
+        if (data?.evidenceStrengthWarnings?.length) {
+          console.log("[AggressiveDefense] Evidence strength warnings:", data.evidenceStrengthWarnings);
         }
       } catch (err) {
         console.error("Failed to fetch aggressive defense analysis:", err);
