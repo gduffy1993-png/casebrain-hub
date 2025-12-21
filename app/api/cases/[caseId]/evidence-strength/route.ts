@@ -40,11 +40,12 @@ export async function GET(
 
     const supabase = getSupabaseAdminClient();
 
-    // Get documents
-    const { data: documents } = await supabase
-      .from("documents")
-      .select("extracted_facts, raw_text")
-      .eq("case_id", caseId);
+    // Use buildCaseContext documents (same source as everything else - "One Brain")
+    const documentsForAnalysis = context.documents.map((doc) => ({
+      raw_text: doc.raw_text,
+      extracted_facts: doc.extracted_json, // Use extracted_json as extracted_facts
+      extracted_json: doc.extracted_json,
+    }));
 
     // Get key facts
     const { data: keyFacts } = await supabase
@@ -78,7 +79,7 @@ export async function GET(
 
     // Analyze evidence strength
     const evidenceStrength = analyzeEvidenceStrength({
-      documents: (documents || []) as any[],
+      documents: documentsForAnalysis,
       keyFacts: keyFacts?.analysis_json,
       aggressiveDefense: aggressiveDefense?.analysis_json,
       strategicOverview: strategicOverview?.analysis_json,

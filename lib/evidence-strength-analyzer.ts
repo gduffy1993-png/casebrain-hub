@@ -57,7 +57,104 @@ export type EvidenceStrength = {
     languageTone: "AGGRESSIVE" | "MODERATE" | "CONSERVATIVE";
   };
   warnings: string[];
+  // Debug and validation info
+  debug?: {
+    totalTextLength: number;
+    rawTextLength: number;
+    documentCount: number;
+    documentsWithRawText: number;
+    sampleText: string; // First 500 chars
+    keyTermsFound: string[]; // Terms that were detected
+    validationPassed: boolean;
+    validationReason?: string;
+  };
+  insufficientData?: boolean; // True if text is too short or missing
 };
+
+/**
+ * Collect all text from documents for analysis
+ */
+function collectAllText(data: {
+  documents?: any[];
+  keyFacts?: any;
+  aggressiveDefense?: any;
+  strategicOverview?: any;
+}): { text: string; debug: { totalTextLength: number; rawTextLength: number; documentCount: number; documentsWithRawText: number; sampleText: string } } {
+  let text = "";
+  let rawTextLength = 0;
+  let documentCount = 0;
+  let documentsWithRawText = 0;
+
+  if (data.documents) {
+    documentCount = data.documents.length;
+    data.documents.forEach((doc: any) => {
+      if (doc.raw_text && typeof doc.raw_text === "string" && doc.raw_text.length > 0) {
+        text += " " + doc.raw_text;
+        rawTextLength += doc.raw_text.length;
+        documentsWithRawText++;
+      }
+      if (doc.extracted_facts) {
+        text += " " + JSON.stringify(doc.extracted_facts);
+      }
+      if (doc.extracted_json) {
+        text += " " + JSON.stringify(doc.extracted_json);
+      }
+    });
+  }
+  if (data.keyFacts) text += " " + JSON.stringify(data.keyFacts);
+  if (data.aggressiveDefense) text += " " + JSON.stringify(data.aggressiveDefense);
+  if (data.strategicOverview) text += " " + JSON.stringify(data.strategicOverview);
+
+  const totalTextLength = text.length;
+  const sampleText = text.substring(0, 500);
+
+  return {
+    text,
+    debug: {
+      totalTextLength,
+      rawTextLength,
+      documentCount,
+      documentsWithRawText,
+      sampleText,
+    },
+  };
+}
+
+/**
+ * Validate that we have sufficient text to analyze
+ */
+function validateText(text: string): { passed: boolean; reason?: string; keyTermsFound: string[] } {
+  const keyTerms = [
+    "cctv", "witness", "fingerprint", "weapon", "complainant", "pace", "disclosure",
+    "identification", "forensic", "evidence", "interview", "solicitor", "medical",
+    "injury", "victim", "defendant", "prosecution"
+  ];
+
+  const textLower = text.toLowerCase();
+  const foundTerms = keyTerms.filter(term => textLower.includes(term));
+
+  // Need at least 2000 chars of text AND at least 3 key terms found
+  if (text.length < 2000) {
+    return {
+      passed: false,
+      reason: `Insufficient text length: ${text.length} chars (minimum 2000 required)`,
+      keyTermsFound: foundTerms,
+    };
+  }
+
+  if (foundTerms.length < 3) {
+    return {
+      passed: false,
+      reason: `Insufficient key terms found: ${foundTerms.length} (minimum 3 required). Found: ${foundTerms.join(", ")}`,
+      keyTermsFound: foundTerms,
+    };
+  }
+
+  return {
+    passed: true,
+    keyTermsFound: foundTerms,
+  };
+}
 
 /**
  * Analyze evidence strength from case documents and analysis
@@ -68,13 +165,57 @@ export function analyzeEvidenceStrength(data: {
   aggressiveDefense?: any;
   strategicOverview?: any;
 }): EvidenceStrength {
+  // Collect all text and validate FIRST (before any analysis)
+  const { text: allText, debug: textDebug } = collectAllText(data);
+  const validation = validateText(allText);
+
+  // If validation fails, return error state
+  if (!validation.passed) {
+    return {
+      overallStrength: 0,
+      level: "VERY_WEAK",
+      factors: {
+        identification: { strength: 0, hasCCTV: false, hasWitnesses: false, hasFacialRecognition: false, hasFormalProcedure: false },
+        forensics: { strength: 0, hasWeapon: false, hasFingerprints: false, hasDNA: false, hasChainOfCustody: false },
+        witnesses: { strength: 0, count: 0, hasComplainant: false, hasIndependent: false, consistency: "UNKNOWN" },
+        pace: { strength: 0, isCompliant: false, hasSolicitor: false, isRecorded: false, hasRightsGiven: false },
+        medical: { strength: 0, hasEvidence: false, isConsistent: false },
+        disclosure: { strength: 0, hasGaps: false, gapSeverity: "NONE", isFoundational: false },
+      },
+      calibration: {
+        shouldDowngradeDisclosureStay: false,
+        shouldDowngradePACE: false,
+        shouldFocusOnPleaMitigation: false,
+        realisticOutcome: "Insufficient evidence text extracted. Evidence strength cannot be reliably assessed.",
+        languageTone: "CONSERVATIVE",
+      },
+      warnings: [
+        `⚠️ INSUFFICIENT DATA: ${validation.reason}`,
+        "Evidence strength cannot be reliably assessed. Please ensure PDFs are text-based and properly extracted.",
+      ],
+      insufficientData: true,
+      debug: {
+        ...textDebug,
+        keyTermsFound: validation.keyTermsFound,
+        validationPassed: false,
+        validationReason: validation.reason,
+      },
+    };
+  }
+
+  // Create data object with combined text for analysis functions
+  const analysisData = {
+    ...data,
+    _combinedText: allText, // Pass combined text to analysis functions
+  };
+
   const factors = {
-    identification: analyzeIdentification(data),
-    forensics: analyzeForensics(data),
-    witnesses: analyzeWitnesses(data),
-    pace: analyzePACE(data),
-    medical: analyzeMedical(data),
-    disclosure: analyzeDisclosure(data),
+    identification: analyzeIdentification(analysisData),
+    forensics: analyzeForensics(analysisData),
+    witnesses: analyzeWitnesses(analysisData),
+    pace: analyzePACE(analysisData),
+    medical: analyzeMedical(analysisData),
+    disclosure: analyzeDisclosure(analysisData),
   };
 
   // Calculate overall strength (weighted average)
@@ -126,21 +267,29 @@ export function analyzeEvidenceStrength(data: {
     factors,
     calibration,
     warnings,
+    insufficientData: false,
+    debug: {
+      ...textDebug,
+      keyTermsFound: validation.keyTermsFound,
+      validationPassed: true,
+    },
   };
 }
 
 function analyzeIdentification(data: any): EvidenceStrength["factors"]["identification"] {
-  // Combine all text sources
-  let text = "";
-  if (data.documents) {
-    data.documents.forEach((doc: any) => {
-      if (doc.raw_text) text += " " + doc.raw_text;
-      if (doc.extracted_facts) text += " " + JSON.stringify(doc.extracted_facts);
-    });
+  // Use combined text if available (from validation), otherwise combine on the fly
+  let text = data._combinedText || "";
+  if (!text) {
+    if (data.documents) {
+      data.documents.forEach((doc: any) => {
+        if (doc.raw_text) text += " " + doc.raw_text;
+        if (doc.extracted_facts) text += " " + JSON.stringify(doc.extracted_facts);
+      });
+    }
+    if (data.keyFacts) text += " " + JSON.stringify(data.keyFacts);
+    if (data.aggressiveDefense) text += " " + JSON.stringify(data.aggressiveDefense);
+    if (data.strategicOverview) text += " " + JSON.stringify(data.strategicOverview);
   }
-  if (data.keyFacts) text += " " + JSON.stringify(data.keyFacts);
-  if (data.aggressiveDefense) text += " " + JSON.stringify(data.aggressiveDefense);
-  if (data.strategicOverview) text += " " + JSON.stringify(data.strategicOverview);
   text = text.toLowerCase();
   
   const hasCCTV = /cctv|video|footage|recording|ms-cctv|bl-cctv/i.test(text);
@@ -199,7 +348,8 @@ function analyzeForensics(data: any): EvidenceStrength["factors"]["forensics"] {
 }
 
 function analyzeWitnesses(data: any): EvidenceStrength["factors"]["witnesses"] {
-  const text = JSON.stringify(data).toLowerCase();
+  // Use combined text if available, otherwise stringify
+  const text = (data._combinedText || JSON.stringify(data)).toLowerCase();
   
   const hasComplainant = /complainant|victim/i.test(text);
   const hasIndependent = /independent witness|civilian witness/i.test(text);
@@ -228,14 +378,17 @@ function analyzeWitnesses(data: any): EvidenceStrength["factors"]["witnesses"] {
 }
 
 function analyzePACE(data: any): EvidenceStrength["factors"]["pace"] {
-  let text = "";
-  if (data.documents) {
-    data.documents.forEach((doc: any) => {
-      if (doc.raw_text) text += " " + doc.raw_text;
-      if (doc.extracted_facts) text += " " + JSON.stringify(doc.extracted_facts);
-    });
+  // Use combined text if available
+  let text = data._combinedText || "";
+  if (!text) {
+    if (data.documents) {
+      data.documents.forEach((doc: any) => {
+        if (doc.raw_text) text += " " + doc.raw_text;
+        if (doc.extracted_facts) text += " " + JSON.stringify(doc.extracted_facts);
+      });
+    }
+    if (data.keyFacts) text += " " + JSON.stringify(data.keyFacts);
   }
-  if (data.keyFacts) text += " " + JSON.stringify(data.keyFacts);
   text = text.toLowerCase();
   
   const hasSolicitor = /solicitor present|legal representative|duty solicitor|jennifer walsh|legal advice.*present/i.test(text);
@@ -293,7 +446,8 @@ function analyzeMedical(data: any): EvidenceStrength["factors"]["medical"] {
 }
 
 function analyzeDisclosure(data: any): EvidenceStrength["factors"]["disclosure"] {
-  const text = JSON.stringify(data).toLowerCase();
+  // Use combined text if available, otherwise stringify
+  const text = (data._combinedText || JSON.stringify(data)).toLowerCase();
   
   const hasGaps = /disclosure gap|missing|not provided|requested/i.test(text);
   const isCritical = /critical|foundational|core evidence|essential/i.test(text);

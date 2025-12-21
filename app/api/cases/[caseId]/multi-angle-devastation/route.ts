@@ -115,11 +115,12 @@ export async function GET(
       (1 - probabilities.reduce((prod, p) => prod * (1 - p), 1)) * 100
     );
 
-    // Get documents for evidence strength analysis
-    const { data: documents } = await supabase
-      .from("documents")
-      .select("extracted_facts, raw_text")
-      .eq("case_id", caseId);
+    // Use buildCaseContext documents (same source as everything else - "One Brain")
+    const documentsForAnalysis = context.documents.map((doc) => ({
+      raw_text: doc.raw_text,
+      extracted_facts: doc.extracted_json,
+      extracted_json: doc.extracted_json,
+    }));
 
     // Get key facts
     const { data: keyFacts } = await supabase
@@ -133,7 +134,7 @@ export async function GET(
 
     // Analyze evidence strength for reality calibration
     const evidenceStrength = analyzeEvidenceStrength({
-      documents: (documents || []) as any[],
+      documents: documentsForAnalysis,
       keyFacts: keyFacts?.analysis_json,
       aggressiveDefense: strategyData,
       strategicOverview: strategyData,

@@ -92,13 +92,10 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       criminalMeta = facts.criminalMeta || null;
     }
 
-    // Get documents for evidence strength analysis
-    const { data: allDocuments } = await supabase
-      .from("documents")
-      .select("extracted_facts, raw_text")
-      .eq("case_id", caseId);
+    // Get aggressive defense analysis
+    const analysis = await findAllDefenseAngles(criminalMeta, caseId);
 
-    // Get key facts
+    // Get key facts for evidence strength analysis
     const { data: keyFacts } = await supabase
       .from("case_analysis")
       .select("analysis_json")
@@ -108,12 +105,17 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       .limit(1)
       .maybeSingle();
 
-    // Get aggressive defense analysis
-    const analysis = await findAllDefenseAngles(criminalMeta, caseId);
+    // Use buildCaseContext documents (same source as everything else - "One Brain")
+    // This ensures we're analyzing the same documents that other endpoints use
+    const documentsForAnalysis = context.documents.map((doc) => ({
+      raw_text: doc.raw_text,
+      extracted_facts: doc.extracted_json, // Use extracted_json as extracted_facts
+      extracted_json: doc.extracted_json,
+    }));
 
     // Analyze evidence strength for reality calibration
     const evidenceStrength = analyzeEvidenceStrength({
-      documents: (allDocuments || []) as any[],
+      documents: documentsForAnalysis,
       keyFacts: keyFacts?.analysis_json,
       aggressiveDefense: analysis,
       strategicOverview: null,
