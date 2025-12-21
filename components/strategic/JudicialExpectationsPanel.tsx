@@ -71,14 +71,14 @@ export function JudicialExpectationsPanel({ caseId }: JudicialExpectationsPanelP
     fetchData();
   }, [caseId]);
 
-  // Show gate banner if analysis is blocked
+  // Show minimal placeholder if analysis is blocked (parent may show full banner)
   if (gatedResponse) {
     return (
-      <AnalysisGateBanner
-        banner={gatedResponse.banner}
-        diagnostics={gatedResponse.diagnostics}
-        showHowToFix={true}
-      />
+      <Card className="p-4">
+        <p className="text-sm text-muted-foreground">
+          Analysis unavailable. {gatedResponse.banner?.message || "Not enough extractable text to generate reliable analysis."}
+        </p>
+      </Card>
     );
   }
 

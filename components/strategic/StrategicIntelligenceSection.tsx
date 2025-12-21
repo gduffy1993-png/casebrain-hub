@@ -154,8 +154,17 @@ export function StrategicIntelligenceSection({ caseId, practiceArea }: Strategic
           <Badge variant="outline" className="text-xs">BETA</Badge>
         </div>
 
+        {/* Gate Banner - Show when analysis is blocked (rawCharsTotal=0, scanned, textThin) */}
+        {gateBanner && (
+          <AnalysisGateBanner
+            banner={gateBanner.banner}
+            diagnostics={gateBanner.diagnostics}
+            showHowToFix={true}
+          />
+        )}
+
         {/* Analysis Banner - Show when mismatch detected */}
-        {analysisBanner && analysisBanner.severity === "warning" && (
+        {analysisBanner && analysisBanner.severity === "warning" && !gateBanner && (
           <AnalysisBanner
             severity={analysisBanner.severity}
             title={analysisBanner.title}
@@ -167,7 +176,7 @@ export function StrategicIntelligenceSection({ caseId, practiceArea }: Strategic
         )}
 
         {/* Suppress all strategy panels when banner exists */}
-        {analysisBanner && analysisBanner.severity === "warning" ? (
+        {(gateBanner || (analysisBanner && analysisBanner.severity === "warning")) ? (
           // Show only minimal UI when banner is present
           <div className="text-sm text-muted-foreground p-4 bg-muted/30 border border-border/50 rounded-lg">
             <p>Upload documents that match the selected solicitor role to see strategic analysis.</p>

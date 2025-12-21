@@ -122,6 +122,7 @@ export async function POST(request: Request) {
   const { error: updateError } = await supabase
     .from("documents")
     .update({
+      raw_text: redactedText, // Store extracted raw text for case-context diagnostics
       extracted_json: enrichedExtraction,
       redaction_map: redactionMap,
     })

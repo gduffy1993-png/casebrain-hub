@@ -86,13 +86,24 @@ import { OpponentProfileCard } from "@/components/opponent-behavior/OpponentProf
 import { SettlementCalculator } from "@/components/calculators/SettlementCalculator";
 import { PreActionProtocolChecklist } from "@/components/protocol/PreActionProtocolChecklist";
 import { CollapsibleSection } from "@/components/ui/collapsible-section";
-import { FileText, Mail, AlertCircle, Search, Target, ListChecks, TrendingUp, FolderOpen, Shield, Home, Calculator, DollarSign, MessageSquare, Phone, Calendar, History, FileCheck, BarChart3, CreditCard, Clock, FileQuestion } from "lucide-react";
+import { FileText, Mail, AlertCircle, Search, Target, ListChecks, TrendingUp, FolderOpen, Shield, Home, Calculator, DollarSign, MessageSquare, Phone, Calendar, History, FileCheck, BarChart3, CreditCard, Clock, FileQuestion, BookOpen, Bomb, Skull, Zap, MousePointerClick, Play } from "lucide-react";
 import { PracticeAreaSelector } from "@/components/cases/PracticeAreaSelector";
 import { CasePageClient } from "@/components/cases/CasePageClient";
 import { CaseSummaryPanel } from "@/components/cases/CaseSummaryPanel";
 import { ErrorBoundary } from "@/components/ui/error-boundary";
 import { CaseFilesList } from "@/components/cases/CaseFilesList";
 import { StrategicIntelligenceSection } from "@/components/strategic/StrategicIntelligenceSection";
+import { WitnessAnalysisPanel } from "@/components/cases/WitnessAnalysisPanel";
+import { TimelineExploiterPanel } from "@/components/cases/TimelineExploiterPanel";
+import { PrecedentsPanel } from "@/components/cases/PrecedentsPanel";
+import { NuclearOptionsPanel } from "@/components/cases/NuclearOptionsPanel";
+import { CaseDestroyerPanel } from "@/components/cases/CaseDestroyerPanel";
+import { ChainReactionPanel } from "@/components/cases/ChainReactionPanel";
+import { TechnicalitiesPanel } from "@/components/cases/TechnicalitiesPanel";
+import { ProsecutionTrapsPanel } from "@/components/cases/ProsecutionTrapsPanel";
+import { MultiAngleDevastationPanel } from "@/components/cases/MultiAngleDevastationPanel";
+import { TacticalCommandCenter } from "@/components/cases/TacticalCommandCenter";
+import { NextMovePanel } from "@/components/cases/NextMovePanel";
 import { CasePageClientWithActions } from "@/components/cases/CasePageClientWithActions";
 import { AnalysisDeltaPanelWrapper } from "@/components/cases/AnalysisDeltaPanelWrapper";
 import { EvidenceStrategyHeader } from "@/components/cases/EvidenceStrategyHeader";
@@ -1519,6 +1530,42 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
           </>
         ) : null}
 
+        {/* Phase 3.1: Tactical Command Center (All Practice Areas) */}
+        <CollapsibleSection
+          title="Tactical Command Center"
+          description="THE ANGLE. THE MOVE. THE BACKUP. - One-page tactical dashboard"
+          defaultOpen={true}
+          icon={<Target className="h-4 w-4 text-primary" />}
+        >
+          <ErrorBoundary
+            fallback={
+              <div className="p-4">
+                <p className="text-sm text-accent/60">Tactical command center temporarily unavailable.</p>
+              </div>
+            }
+          >
+            <TacticalCommandCenter caseId={caseId} />
+          </ErrorBoundary>
+        </CollapsibleSection>
+
+        {/* Phase 3.1: Next Move Generator (All Practice Areas) */}
+        <CollapsibleSection
+          title="Next Move Generator"
+          description="What do we do NEXT? - Immediate action focus"
+          defaultOpen={false}
+          icon={<Play className="h-4 w-4 text-green-400" />}
+        >
+          <ErrorBoundary
+            fallback={
+              <div className="p-4">
+                <p className="text-sm text-accent/60">Next move generator temporarily unavailable.</p>
+              </div>
+            }
+          >
+            <NextMovePanel caseId={caseId} />
+          </ErrorBoundary>
+        </CollapsibleSection>
+
         {/* Criminal Case View - Completely Different Layout */}
         {isCriminalCase ? (
           <ErrorBoundary
@@ -1584,6 +1631,161 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
             <StrategicIntelligenceSection caseId={caseId} practiceArea={caseRecord.practice_area} />
           </ErrorBoundary>
         )}
+
+        {/* Phase 2: Tactical Advantage Panels (All Practice Areas) */}
+        <CollapsibleSection
+          title="Witness Analysis"
+          description="Credibility attacks and cross-examination questions for each witness"
+          defaultOpen={false}
+          icon={<Target className="h-4 w-4 text-red-400" />}
+        >
+          <ErrorBoundary
+            fallback={
+              <div className="p-4">
+                <p className="text-sm text-accent/60">Witness analysis temporarily unavailable.</p>
+              </div>
+            }
+          >
+            <WitnessAnalysisPanel caseId={caseId} />
+          </ErrorBoundary>
+        </CollapsibleSection>
+
+        <CollapsibleSection
+          title="Timeline Exploiter"
+          description="Find gaps, inconsistencies, and suspicious timing in the case timeline"
+          defaultOpen={false}
+          icon={<Clock className="h-4 w-4 text-orange-400" />}
+        >
+          <ErrorBoundary
+            fallback={
+              <div className="p-4">
+                <p className="text-sm text-accent/60">Timeline exploiter temporarily unavailable.</p>
+              </div>
+            }
+          >
+            <TimelineExploiterPanel caseId={caseId} />
+          </ErrorBoundary>
+        </CollapsibleSection>
+
+        <CollapsibleSection
+          title="Precedent Matcher"
+          description="Find relevant case law that matches your case facts"
+          defaultOpen={false}
+          icon={<BookOpen className="h-4 w-4 text-blue-400" />}
+        >
+          <ErrorBoundary
+            fallback={
+              <div className="p-4">
+                <p className="text-sm text-accent/60">Precedent matcher temporarily unavailable.</p>
+              </div>
+            }
+          >
+            <PrecedentsPanel caseId={caseId} />
+          </ErrorBoundary>
+        </CollapsibleSection>
+
+        {/* Phase 2.5: Nuclear Options (All Practice Areas) */}
+        <CollapsibleSection
+          title="Nuclear Options"
+          description="Extreme tactics for desperate cases - use with caution"
+          defaultOpen={false}
+          icon={<Bomb className="h-4 w-4 text-red-400" />}
+        >
+          <ErrorBoundary
+            fallback={
+              <div className="p-4">
+                <p className="text-sm text-accent/60">Nuclear options temporarily unavailable.</p>
+              </div>
+            }
+          >
+            <NuclearOptionsPanel caseId={caseId} />
+          </ErrorBoundary>
+        </CollapsibleSection>
+
+        <CollapsibleSection
+          title="Case Destroyer"
+          description="Systematically destroy every element of the opponent's case"
+          defaultOpen={false}
+          icon={<Skull className="h-4 w-4 text-red-400" />}
+        >
+          <ErrorBoundary
+            fallback={
+              <div className="p-4">
+                <p className="text-sm text-accent/60">Case destroyer temporarily unavailable.</p>
+              </div>
+            }
+          >
+            <CaseDestroyerPanel caseId={caseId} />
+          </ErrorBoundary>
+        </CollapsibleSection>
+
+        <CollapsibleSection
+          title="Chain Reaction Exploiter"
+          description="Find how one weakness triggers multiple failures"
+          defaultOpen={false}
+          icon={<Zap className="h-4 w-4 text-yellow-400" />}
+        >
+          <ErrorBoundary
+            fallback={
+              <div className="p-4">
+                <p className="text-sm text-accent/60">Chain reaction exploiter temporarily unavailable.</p>
+              </div>
+            }
+          >
+            <ChainReactionPanel caseId={caseId} />
+          </ErrorBoundary>
+        </CollapsibleSection>
+
+        <CollapsibleSection
+          title="Technicality Hunter"
+          description="Find every legal technicality that could win"
+          defaultOpen={false}
+          icon={<Search className="h-4 w-4 text-orange-400" />}
+        >
+          <ErrorBoundary
+            fallback={
+              <div className="p-4">
+                <p className="text-sm text-accent/60">Technicality hunter temporarily unavailable.</p>
+              </div>
+            }
+          >
+            <TechnicalitiesPanel caseId={caseId} />
+          </ErrorBoundary>
+        </CollapsibleSection>
+
+        <CollapsibleSection
+          title="Prosecution Trap Setter"
+          description="Questions and arguments that trap opponents into admissions"
+          defaultOpen={false}
+          icon={<MousePointerClick className="h-4 w-4 text-purple-400" />}
+        >
+          <ErrorBoundary
+            fallback={
+              <div className="p-4">
+                <p className="text-sm text-accent/60">Prosecution traps temporarily unavailable.</p>
+              </div>
+            }
+          >
+            <ProsecutionTrapsPanel caseId={caseId} />
+          </ErrorBoundary>
+        </CollapsibleSection>
+
+        <CollapsibleSection
+          title="Multi-Angle Devastation"
+          description="Combine multiple weak points into one devastating attack"
+          defaultOpen={false}
+          icon={<Target className="h-4 w-4 text-red-400" />}
+        >
+          <ErrorBoundary
+            fallback={
+              <div className="p-4">
+                <p className="text-sm text-accent/60">Multi-angle devastation temporarily unavailable.</p>
+              </div>
+            }
+          >
+            <MultiAngleDevastationPanel caseId={caseId} />
+          </ErrorBoundary>
+        </CollapsibleSection>
 
         {/* What Changed Panel - CN only */}
         {caseRecord.practice_area === "clinical_negligence" && (
