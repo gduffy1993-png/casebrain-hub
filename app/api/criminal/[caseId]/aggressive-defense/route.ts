@@ -124,53 +124,111 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     // Apply reality calibration to win probabilities
     if (evidenceStrength.overallStrength >= 70) {
       // Strong prosecution case - downgrade all win probabilities
+      const downgradeFactor = 0.4;
+      const minProbability = 20;
+
       if (analysis.recommendedStrategy) {
-        analysis.recommendedStrategy.combinedProbability = Math.max(20, 
-          Math.round((analysis.recommendedStrategy.combinedProbability || 70) * 0.4)
+        analysis.recommendedStrategy.combinedProbability = Math.max(minProbability, 
+          Math.round((analysis.recommendedStrategy.combinedProbability || 70) * downgradeFactor)
         );
+        // Also downgrade primary angle probability
+        if (analysis.recommendedStrategy.primaryAngle) {
+          analysis.recommendedStrategy.primaryAngle.winProbability = Math.max(minProbability,
+            Math.round((analysis.recommendedStrategy.primaryAngle.winProbability || 70) * downgradeFactor)
+          );
+        }
+        // Downgrade supporting angles too
+        if (analysis.recommendedStrategy.supportingAngles) {
+          analysis.recommendedStrategy.supportingAngles = analysis.recommendedStrategy.supportingAngles.map((angle: any) => ({
+            ...angle,
+            winProbability: Math.max(minProbability,
+              Math.round((angle.winProbability || 70) * downgradeFactor)
+            ),
+          }));
+        }
       }
       if (analysis.overallWinProbability) {
-        analysis.overallWinProbability = Math.max(20, 
-          Math.round(analysis.overallWinProbability * 0.4)
+        analysis.overallWinProbability = Math.max(minProbability, 
+          Math.round(analysis.overallWinProbability * downgradeFactor)
         );
       }
-      // Downgrade disclosure stay angles specifically
+      // Downgrade ALL critical angles (not just specific types)
       analysis.criticalAngles = (analysis.criticalAngles || []).map((angle: any) => {
+        let angleDowngradeFactor = downgradeFactor;
+        let angleMinProbability = minProbability;
+
+        // Specific downgrades for certain angle types
         if (angle.angleType === "DISCLOSURE_FAILURE_STAY" && evidenceStrength.calibration.shouldDowngradeDisclosureStay) {
-          return {
-            ...angle,
-            winProbability: Math.max(30, Math.round((angle.winProbability || 70) * 0.5)),
-            specificArguments: angle.specificArguments?.map((arg: string) => 
-              arg.includes("Consider stay/abuse of process only if disclosure failures persist after a clear chase trail")
-                ? arg
-                : arg.replace(/stay|abuse of process/gi, (match) => {
-                    return match.toLowerCase() === "stay" ? "disclosure directions" : "procedural leverage";
-                  })
-            ) || angle.specificArguments,
-          };
+          angleDowngradeFactor = 0.5;
+          angleMinProbability = 30;
+        } else if ((angle.angleType === "PACE_BREACH_EXCLUSION" || angle.angleType?.includes("PACE")) && 
+                   evidenceStrength.calibration.shouldDowngradePACE) {
+          angleDowngradeFactor = 0.3;
+          angleMinProbability = 20;
         }
-        // Downgrade PACE breach angles if PACE is compliant
-        if ((angle.angleType === "PACE_BREACH_EXCLUSION" || angle.angleType?.includes("PACE")) && 
-            evidenceStrength.calibration.shouldDowngradePACE) {
-          return {
-            ...angle,
-            winProbability: Math.max(20, Math.round((angle.winProbability || 60) * 0.3)),
-          };
-        }
-        return angle;
+
+        return {
+          ...angle,
+          winProbability: Math.max(angleMinProbability,
+            Math.round((angle.winProbability || 70) * angleDowngradeFactor)
+          ),
+          specificArguments: angle.specificArguments?.map((arg: string) => 
+            arg.includes("Consider stay/abuse of process only if disclosure failures persist after a clear chase trail")
+              ? arg
+              : arg.replace(/stay|abuse of process/gi, (match) => {
+                  return match.toLowerCase() === "stay" ? "disclosure directions" : "procedural leverage";
+                })
+          ) || angle.specificArguments,
+        };
       });
+      // Also downgrade allAngles
+      analysis.allAngles = (analysis.allAngles || []).map((angle: any) => ({
+        ...angle,
+        winProbability: Math.max(minProbability,
+          Math.round((angle.winProbability || 70) * downgradeFactor)
+        ),
+      }));
     } else if (evidenceStrength.overallStrength >= 60) {
       // Moderate-strong case - moderate downgrade
+      const downgradeFactor = 0.6;
+      const minProbability = 30;
+
       if (analysis.recommendedStrategy) {
-        analysis.recommendedStrategy.combinedProbability = Math.max(30, 
-          Math.round((analysis.recommendedStrategy.combinedProbability || 70) * 0.6)
+        analysis.recommendedStrategy.combinedProbability = Math.max(minProbability, 
+          Math.round((analysis.recommendedStrategy.combinedProbability || 70) * downgradeFactor)
         );
+        if (analysis.recommendedStrategy.primaryAngle) {
+          analysis.recommendedStrategy.primaryAngle.winProbability = Math.max(minProbability,
+            Math.round((analysis.recommendedStrategy.primaryAngle.winProbability || 70) * downgradeFactor)
+          );
+        }
+        if (analysis.recommendedStrategy.supportingAngles) {
+          analysis.recommendedStrategy.supportingAngles = analysis.recommendedStrategy.supportingAngles.map((angle: any) => ({
+            ...angle,
+            winProbability: Math.max(minProbability,
+              Math.round((angle.winProbability || 70) * downgradeFactor)
+            ),
+          }));
+        }
       }
       if (analysis.overallWinProbability) {
-        analysis.overallWinProbability = Math.max(30, 
-          Math.round(analysis.overallWinProbability * 0.6)
+        analysis.overallWinProbability = Math.max(minProbability, 
+          Math.round(analysis.overallWinProbability * downgradeFactor)
         );
       }
+      // Downgrade all angles
+      analysis.criticalAngles = (analysis.criticalAngles || []).map((angle: any) => ({
+        ...angle,
+        winProbability: Math.max(minProbability,
+          Math.round((angle.winProbability || 70) * downgradeFactor)
+        ),
+      }));
+      analysis.allAngles = (analysis.allAngles || []).map((angle: any) => ({
+        ...angle,
+        winProbability: Math.max(minProbability,
+          Math.round((angle.winProbability || 70) * downgradeFactor)
+        ),
+      }));
     }
 
     // Add evidence strength warnings to analysis

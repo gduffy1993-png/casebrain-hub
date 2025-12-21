@@ -146,7 +146,7 @@ export async function buildKeyFactsSummary(
     try {
       const { data: documents } = await supabase
         .from("documents")
-        .select("id, name, created_at, extracted_json")
+        .select("id, name, created_at, extracted_json, raw_text")
         .eq("case_id", caseId)
         .eq("org_id", orgId)
         .order("created_at", { ascending: false })
@@ -204,15 +204,54 @@ export async function buildKeyFactsSummary(
         });
       }
 
+      // If charges table is empty, try extracting from raw_text (same approach as Evidence Strength Analyzer)
+      let extractedCharges = charges;
+      if ((!charges || charges.length === 0) && documents && documents.length > 0) {
+        // Combine all raw_text from documents
+        let combinedText = "";
+        for (const doc of documents) {
+          const rawText = (doc as any).raw_text;
+          if (rawText && typeof rawText === "string" && rawText.length > 0) {
+            combinedText += " " + rawText;
+          }
+        }
+
+        if (combinedText.length > 500) {
+          try {
+            const { extractCriminalCaseMeta } = await import("@/lib/criminal/structured-extractor");
+            const meta = extractCriminalCaseMeta({
+              text: combinedText,
+              documentName: "Combined Bundle",
+              now: new Date(),
+            });
+
+            if (meta.charges && meta.charges.length > 0) {
+              extractedCharges = meta.charges.map((c) => ({
+                id: `extracted-${c.count}`,
+                offence: c.offence,
+                section: c.statute,
+                charge_date: c.chargeDate,
+                location: c.location,
+                value: null,
+                details: null,
+                status: c.status,
+              }));
+            }
+          } catch (extractError) {
+            console.warn("[key-facts][criminal] Failed to extract charges from raw_text:", extractError);
+          }
+        }
+      }
+
       const primaryIssues: string[] = [];
-      const topCharge = (charges ?? [])[0];
+      const topCharge = (extractedCharges ?? [])[0];
       if (topCharge?.offence) {
         primaryIssues.push(`Charge: ${topCharge.offence}${topCharge.section ? ` (${topCharge.section})` : ""}`);
       }
       if (criminalCase?.bail_status) {
         primaryIssues.push(`Bail status: ${String(criminalCase.bail_status).replace(/_/g, " ")}`);
       }
-      if ((charges ?? []).length === 0) {
+      if ((extractedCharges ?? []).length === 0) {
         primaryIssues.push("Charges not yet captured (upload MG forms / charge sheet)");
       }
 
@@ -271,10 +310,39 @@ export async function buildKeyFactsSummary(
         layeredSummary = null;
       }
 
+      // If defendant_name is missing, try extracting from raw_text
+      let defendantName = criminalCase?.defendant_name;
+      if (!defendantName && documents && documents.length > 0) {
+        let combinedText = "";
+        for (const doc of documents) {
+          const rawText = (doc as any).raw_text;
+          if (rawText && typeof rawText === "string" && rawText.length > 0) {
+            combinedText += " " + rawText;
+          }
+        }
+
+        if (combinedText.length > 500) {
+          try {
+            const { extractCriminalCaseMeta } = await import("@/lib/criminal/structured-extractor");
+            const meta = extractCriminalCaseMeta({
+              text: combinedText,
+              documentName: "Combined Bundle",
+              now: new Date(),
+            });
+
+            if (meta.defendantName) {
+              defendantName = meta.defendantName;
+            }
+          } catch (extractError) {
+            console.warn("[key-facts][criminal] Failed to extract defendant name from raw_text:", extractError);
+          }
+        }
+      }
+
       return {
         caseId,
         practiceArea: normalizedPracticeArea,
-        clientName: criminalCase?.defendant_name ?? undefined,
+        clientName: defendantName ?? undefined,
         opponentName,
         courtName: criminalCase?.court_name ?? undefined,
         claimType,
