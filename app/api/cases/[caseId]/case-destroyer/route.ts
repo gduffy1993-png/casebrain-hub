@@ -4,6 +4,7 @@ import { requireAuthContext } from "@/lib/auth";
 import { buildCaseContext, guardAnalysis } from "@/lib/case-context";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { normalizePracticeArea } from "@/lib/types/casebrain";
+import { analyzeEvidenceStrength } from "@/lib/evidence-strength-analyzer";
 
 export const runtime = "nodejs";
 
@@ -56,6 +57,22 @@ export async function GET(
     const practiceArea = normalizePracticeArea(context.case.practice_area as string | null);
     const supabase = getSupabaseAdminClient();
 
+    // Get documents for evidence strength analysis
+    const { data: documents } = await supabase
+      .from("documents")
+      .select("extracted_facts, raw_text")
+      .eq("case_id", caseId);
+
+    // Get key facts
+    const { data: keyFacts } = await supabase
+      .from("case_analysis")
+      .select("analysis_json")
+      .eq("case_id", caseId)
+      .eq("analysis_type", "key_facts")
+      .order("created_at", { ascending: false })
+      .limit(1)
+      .maybeSingle();
+
     // Get strategy analysis
     const { data: strategyAnalysis } = await supabase
       .from("case_analysis")
@@ -67,6 +84,14 @@ export async function GET(
       .maybeSingle();
 
     const strategyData = strategyAnalysis?.analysis_json as any;
+
+    // Analyze evidence strength for reality calibration
+    const evidenceStrength = analyzeEvidenceStrength({
+      documents: (documents || []) as any[],
+      keyFacts: keyFacts?.analysis_json,
+      aggressiveDefense: strategyData,
+      strategicOverview: strategyData,
+    });
 
     const elements: CaseElement[] = [];
 
@@ -98,10 +123,10 @@ export async function GET(
       const evidenceAngles = angles.filter((a: any) =>
         a.angleType === "PACE_BREACH_EXCLUSION" || a.angleType === "EVIDENCE_WEAKNESS_CHALLENGE"
       );
-      const evidenceStrength = evidenceAngles.length > 0 ? 20 : 40;
+      const evidenceElementStrength = evidenceAngles.length > 0 ? 20 : 40;
       elements.push({
         element: "Evidence",
-        currentStrength: evidenceStrength,
+        currentStrength: evidenceElementStrength,
         attackPlan: evidenceAngles.length > 0
           ? [
               "Exclude under s.78 PACE (breaches)",
@@ -110,7 +135,7 @@ export async function GET(
               "Undermine reliability",
             ]
           : ["Review evidence for PACE breaches"],
-        result: evidenceStrength < 30 ? "Evidence excluded/undermined" : "Evidence weakened",
+        result: evidenceElementStrength < 30 ? "Evidence excluded/undermined" : "Evidence weakened",
         readyToUseAttacks: evidenceAngles[0]?.specificArguments?.slice(0, 3) || [
           "Evidence obtained in breach of PACE should be excluded",
         ],
@@ -179,8 +204,20 @@ export async function GET(
       });
     }
 
-    // Calculate overall strength
-    const avgStrength = elements.reduce((sum, e) => sum + e.currentStrength, 0) / elements.length;
+    // Calculate overall strength - use evidence strength if available, otherwise use element average
+    // If prosecution evidence is strong, adjust element strengths upward
+    let avgStrength = elements.reduce((sum, e) => sum + e.currentStrength, 0) / elements.length;
+    
+    // Apply reality calibration: if prosecution is strong, elements are stronger (harder to attack)
+    if (evidenceStrength.overallStrength >= 70) {
+      // Strong prosecution case - elements are harder to attack
+      avgStrength = Math.min(100, avgStrength + 30);
+    } else if (evidenceStrength.overallStrength >= 60) {
+      avgStrength = Math.min(100, avgStrength + 20);
+    } else if (evidenceStrength.overallStrength >= 50) {
+      avgStrength = Math.min(100, avgStrength + 10);
+    }
+    
     const overallStrength = Math.round(avgStrength);
 
     // Destruction sequence (attack weakest first)
@@ -198,7 +235,9 @@ ${elements.map((e, idx) => `${idx + 1}. ${e.element} (${e.currentStrength}% stre
    Ready-to-Use: ${e.readyToUseAttacks[0] || "Attack this element"}`).join("\n\n")}
 
 OVERALL PROSECUTION CASE STRENGTH: ${overallStrength}%
-→ VERDICT: ${overallStrength < 30 ? "No case to answer / Not guilty" : overallStrength < 50 ? "Very weak case" : "Weak case"}
+→ VERDICT: ${overallStrength < 30 ? "No case to answer / Not guilty" : overallStrength < 50 ? "Very weak case" : overallStrength >= 70 ? "Strong prosecution case - focus on procedural leverage, not factual collapse" : "Weak case"}
+${evidenceStrength.warnings.length > 0 ? `\n\n⚠️ PROFESSIONAL JUDGMENT WARNINGS:\n${evidenceStrength.warnings.map((w: string) => `- ${w}`).join("\n")}` : ""}
+${evidenceStrength.calibration.realisticOutcome ? `\n\n📊 REALISTIC OUTCOME: ${evidenceStrength.calibration.realisticOutcome}` : ""}
 
 DESTRUCTION SEQUENCE:
 ${destructionSequence.join("\n")}

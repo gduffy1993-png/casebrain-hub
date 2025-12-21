@@ -4,6 +4,7 @@ import { requireAuthContext } from "@/lib/auth";
 import { buildCaseContext, guardAnalysis } from "@/lib/case-context";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { normalizePracticeArea, type PracticeArea } from "@/lib/types/casebrain";
+import { analyzeEvidenceStrength } from "@/lib/evidence-strength-analyzer";
 
 export const runtime = "nodejs";
 
@@ -261,6 +262,22 @@ export async function GET(
     const practiceArea = normalizePracticeArea(context.case.practice_area as string | null);
     const supabase = getSupabaseAdminClient();
 
+    // Get documents for evidence strength analysis
+    const { data: documents } = await supabase
+      .from("documents")
+      .select("extracted_facts, raw_text")
+      .eq("case_id", caseId);
+
+    // Get key facts
+    const { data: keyFacts } = await supabase
+      .from("case_analysis")
+      .select("analysis_json")
+      .eq("case_id", caseId)
+      .eq("analysis_type", "key_facts")
+      .order("created_at", { ascending: false })
+      .limit(1)
+      .maybeSingle();
+
     // Get strategy analysis to determine which nuclear options are viable
     const { data: strategyAnalysis } = await supabase
       .from("case_analysis")
@@ -272,6 +289,14 @@ export async function GET(
       .maybeSingle();
 
     const strategyData = strategyAnalysis?.analysis_json as any;
+
+    // Analyze evidence strength for reality calibration
+    const evidenceStrength = analyzeEvidenceStrength({
+      documents: (documents || []) as any[],
+      keyFacts: keyFacts?.analysis_json,
+      aggressiveDefense: strategyData,
+      strategicOverview: strategyData,
+    });
 
     // Get practice-area specific nuclear options
     const allOptions = getNuclearOptionsForPracticeArea(practiceArea);
@@ -329,6 +354,17 @@ export async function GET(
       "May damage relationship with court/prosecution if unsuccessful",
       "Use only when case is desperate or prosecution is pushing hard",
     ];
+
+    // Add evidence strength warnings
+    if (evidenceStrength.overallStrength >= 70) {
+      warnings.push(`⚠️ STRONG PROSECUTION CASE (${evidenceStrength.overallStrength}%) - Nuclear options have lower success rate. Focus on procedural leverage, not factual collapse.`);
+    }
+    if (evidenceStrength.calibration.shouldDowngradeDisclosureStay) {
+      warnings.push("⚠️ Disclosure gaps are supplementary, not foundational - stay unlikely unless failures persist after judicial orders");
+    }
+    if (evidenceStrength.calibration.shouldDowngradePACE) {
+      warnings.push("⚠️ PACE appears compliant - downgrade PACE breach nuclear options");
+    }
 
     const result: NuclearOptions = {
       options: viableOptions,
