@@ -22,6 +22,8 @@ type TacticalCommand = {
     winProbability: number;
     keyEvidence: string[];
     authority: string[];
+    evidenceStrengthWarning?: string;
+    realisticOutcome?: string;
   };
   theMove: {
     immediateAction: Move;
@@ -141,6 +143,21 @@ export function TacticalCommandCenter({ caseId }: TacticalCommandCenterProps) {
           </div>
           <p className="text-lg font-semibold mb-2">{command.theAngle.strategy}</p>
           <p className="text-sm text-muted-foreground mb-3">{command.theAngle.whyThisWins}</p>
+          {command.theAngle.evidenceStrengthWarning && (
+            <div className="mb-2 p-2 bg-amber-500/10 border border-amber-500/30 rounded">
+              <div className="flex items-center gap-2 mb-1">
+                <AlertTriangle className="h-3 w-3 text-amber-400" />
+                <span className="text-xs font-medium">Professional Judgment Warning</span>
+              </div>
+              <p className="text-xs">{command.theAngle.evidenceStrengthWarning}</p>
+            </div>
+          )}
+          {command.theAngle.realisticOutcome && (
+            <div className="mb-2 p-2 bg-blue-500/10 border border-blue-500/30 rounded">
+              <span className="text-xs font-medium">Realistic Outcome: </span>
+              <span className="text-xs">{command.theAngle.realisticOutcome}</span>
+            </div>
+          )}
           {command.theAngle.keyEvidence.length > 0 && (
             <div className="mb-2">
               <span className="text-xs font-medium">Key Evidence: </span>

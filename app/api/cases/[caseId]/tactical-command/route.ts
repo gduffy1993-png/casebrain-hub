@@ -4,6 +4,7 @@ import { requireAuthContext } from "@/lib/auth";
 import { buildCaseContext, guardAnalysis } from "@/lib/case-context";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { normalizePracticeArea } from "@/lib/types/casebrain";
+import { analyzeEvidenceStrength } from "@/lib/evidence-strength-analyzer";
 
 export const runtime = "nodejs";
 
@@ -22,6 +23,8 @@ type TacticalCommand = {
     winProbability: number;
     keyEvidence: string[];
     authority: string[];
+    evidenceStrengthWarning?: string;
+    realisticOutcome?: string;
   };
   theMove: {
     immediateAction: Move;

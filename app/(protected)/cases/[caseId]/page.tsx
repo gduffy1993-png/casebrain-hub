@@ -86,7 +86,7 @@ import { OpponentProfileCard } from "@/components/opponent-behavior/OpponentProf
 import { SettlementCalculator } from "@/components/calculators/SettlementCalculator";
 import { PreActionProtocolChecklist } from "@/components/protocol/PreActionProtocolChecklist";
 import { CollapsibleSection } from "@/components/ui/collapsible-section";
-import { FileText, Mail, AlertCircle, Search, Target, ListChecks, TrendingUp, FolderOpen, Shield, Home, Calculator, DollarSign, MessageSquare, Phone, Calendar, History, FileCheck, BarChart3, CreditCard, Clock, FileQuestion, BookOpen, Bomb, Skull, Zap, MousePointerClick, Play } from "lucide-react";
+import { FileText, Mail, AlertCircle, Search, Target, ListChecks, TrendingUp, FolderOpen, Shield, Home, Calculator, DollarSign, MessageSquare, Phone, Calendar, History, FileCheck, BarChart3, CreditCard, Clock, FileQuestion, BookOpen, Bomb, Skull, Zap, MousePointerClick, Play, CheckCircle, Scale } from "lucide-react";
 import { PracticeAreaSelector } from "@/components/cases/PracticeAreaSelector";
 import { CasePageClient } from "@/components/cases/CasePageClient";
 import { CaseSummaryPanel } from "@/components/cases/CaseSummaryPanel";
@@ -104,6 +104,9 @@ import { ProsecutionTrapsPanel } from "@/components/cases/ProsecutionTrapsPanel"
 import { MultiAngleDevastationPanel } from "@/components/cases/MultiAngleDevastationPanel";
 import { TacticalCommandCenter } from "@/components/cases/TacticalCommandCenter";
 import { NextMovePanel } from "@/components/cases/NextMovePanel";
+import { CourtReadinessPanel } from "@/components/cases/CourtReadinessPanel";
+import { ClientCommunicationPanel } from "@/components/cases/ClientCommunicationPanel";
+import { EvidenceStrengthPanel } from "@/components/cases/EvidenceStrengthPanel";
 import { CasePageClientWithActions } from "@/components/cases/CasePageClientWithActions";
 import { AnalysisDeltaPanelWrapper } from "@/components/cases/AnalysisDeltaPanelWrapper";
 import { EvidenceStrategyHeader } from "@/components/cases/EvidenceStrategyHeader";
@@ -1530,6 +1533,24 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
           </>
         ) : null}
 
+        {/* Phase 3.3: Evidence Strength Analyzer (All Practice Areas) */}
+        <CollapsibleSection
+          title="Evidence Strength Analyzer"
+          description="Reality calibration - How strong is the prosecution case?"
+          defaultOpen={false}
+          icon={<Scale className="h-4 w-4 text-orange-400" />}
+        >
+          <ErrorBoundary
+            fallback={
+              <div className="p-4">
+                <p className="text-sm text-accent/60">Evidence strength analyzer temporarily unavailable.</p>
+              </div>
+            }
+          >
+            <EvidenceStrengthPanel caseId={caseId} />
+          </ErrorBoundary>
+        </CollapsibleSection>
+
         {/* Phase 3.1: Tactical Command Center (All Practice Areas) */}
         <CollapsibleSection
           title="Tactical Command Center"
@@ -1563,6 +1584,42 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
             }
           >
             <NextMovePanel caseId={caseId} />
+          </ErrorBoundary>
+        </CollapsibleSection>
+
+        {/* Phase 3.2: Court Readiness Checker (All Practice Areas) */}
+        <CollapsibleSection
+          title="Court Readiness Checker"
+          description="Am I actually ready for court? - Complete checklist"
+          defaultOpen={false}
+          icon={<CheckCircle className="h-4 w-4 text-blue-400" />}
+        >
+          <ErrorBoundary
+            fallback={
+              <div className="p-4">
+                <p className="text-sm text-accent/60">Court readiness checker temporarily unavailable.</p>
+              </div>
+            }
+          >
+            <CourtReadinessPanel caseId={caseId} />
+          </ErrorBoundary>
+        </CollapsibleSection>
+
+        {/* Phase 3.2: Client Communication Generator (All Practice Areas) */}
+        <CollapsibleSection
+          title="Client Communication Generator"
+          description="What do I tell the client? - Plain English updates"
+          defaultOpen={false}
+          icon={<MessageSquare className="h-4 w-4 text-purple-400" />}
+        >
+          <ErrorBoundary
+            fallback={
+              <div className="p-4">
+                <p className="text-sm text-accent/60">Client communication generator temporarily unavailable.</p>
+              </div>
+            }
+          >
+            <ClientCommunicationPanel caseId={caseId} />
           </ErrorBoundary>
         </CollapsibleSection>
 
