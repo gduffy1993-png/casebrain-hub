@@ -19,6 +19,7 @@ type DefenseAngle = {
   prosecutionWeakness: string;
   howToExploit: string;
   specificArguments: string[];
+  submissions?: string[]; // Optional - may not always be present
   disclosureRequests: string[];
 };
 
@@ -185,7 +186,7 @@ export function CaseFightPlan({ caseId }: CaseFightPlanProps) {
   // Extract disclosure requests and ready-to-use arguments from primary angle
   const disclosureRequests = primaryAngle?.disclosureRequests || [];
   const readyToUseArguments = primaryAngle?.specificArguments || [];
-  const readyToUseSubmissions = primaryAngle?.submissions || [];
+  const readyToUseSubmissions = (primaryAngle as any)?.submissions || []; // submissions may not be in type but exists in API response
 
   // Determine Strategy Mode from primary angle type
   const getStrategyMode = (angleType: string | undefined): string => {
