@@ -1,9 +1,11 @@
 import "server-only";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import { requireAuthContext } from "@/lib/auth";
-import { buildCaseContext, guardAnalysis } from "@/lib/case-context";
+import { buildCaseContext } from "@/lib/case-context";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { analyzeEvidenceStrength, type EvidenceStrength } from "@/lib/evidence-strength-analyzer";
+import { makeOk, makeGateFail, makeNotFound, makeError, type ApiResponse } from "@/lib/api/response";
+import { checkAnalysisGate } from "@/lib/analysis/text-gate";
 
 export const runtime = "nodejs";
 
@@ -18,24 +20,21 @@ export async function GET(
     const context = await buildCaseContext(caseId, { userId });
 
     if (!context.case) {
-      return NextResponse.json(
-        { ok: false, data: null, banner: context.banner, diagnostics: context.diagnostics },
-        { status: 404 }
-      );
+      return makeNotFound<EvidenceStrength>(context, caseId);
     }
 
-    try {
-      guardAnalysis(context);
-    } catch (error: any) {
-      if (error.name === "AnalysisGateError") {
-        return NextResponse.json({
-          ok: false,
-          data: null,
-          banner: error.banner,
-          diagnostics: error.diagnostics,
-        });
-      }
-      throw error;
+    // Check analysis gate (hard gating)
+    const gateResult = checkAnalysisGate(context);
+    if (!gateResult.ok) {
+      return makeGateFail<EvidenceStrength>(
+        {
+          severity: gateResult.banner?.severity || "warning",
+          title: gateResult.banner?.title || "Insufficient text extracted",
+          detail: gateResult.banner?.detail,
+        },
+        context,
+        caseId,
+      );
     }
 
     const supabase = getSupabaseAdminClient();
@@ -85,15 +84,44 @@ export async function GET(
       strategicOverview: strategicOverview?.analysis_json,
     });
 
-    return NextResponse.json({ ok: true, data: evidenceStrength });
+    // Extract key terms from debug info if available
+    const keyTermsFound = evidenceStrength.debug?.keyTermsFound;
+
+    return makeOk(evidenceStrength, context, caseId, keyTermsFound);
   } catch (error: any) {
     console.error("[evidence-strength] Error:", error);
-    return NextResponse.json(
-      {
-        ok: false,
-        error: error.message || "Failed to analyze evidence strength",
-      },
-      { status: 500 }
-    );
+    const errorMessage = error.message || "Failed to analyze evidence strength";
+    try {
+      const { userId } = await requireAuthContext();
+      const { caseId } = await params;
+      const context = await buildCaseContext(caseId, { userId });
+      return makeError<EvidenceStrength>(
+        "EVIDENCE_STRENGTH_ERROR",
+        errorMessage,
+        context,
+        caseId,
+      );
+    } catch {
+      const { caseId } = await params;
+      return makeError<EvidenceStrength>(
+        "EVIDENCE_STRENGTH_ERROR",
+        errorMessage,
+        {
+          case: null,
+          orgScope: { orgIdResolved: "", method: "solo_fallback" },
+          documents: [],
+          diagnostics: {
+            docCount: 0,
+            rawCharsTotal: 0,
+            jsonCharsTotal: 0,
+            avgRawCharsPerDoc: 0,
+            suspectedScanned: false,
+            reasonCodes: [],
+          },
+          canGenerateAnalysis: false,
+        },
+        caseId || "",
+      );
+    }
   }
 }

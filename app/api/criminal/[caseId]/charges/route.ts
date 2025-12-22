@@ -1,8 +1,9 @@
-import { NextResponse } from "next/server";
 import { requireAuthContextApi } from "@/lib/auth-api";
 import { getSupabaseAdminClient } from "@/lib/supabase";
-import { buildCaseContext, guardAnalysis, AnalysisGateError } from "@/lib/case-context";
+import { buildCaseContext } from "@/lib/case-context";
 import { extractCriminalCaseMeta } from "@/lib/criminal/structured-extractor";
+import { makeOk, makeGateFail, makeNotFound, makeError, type ApiResponse } from "@/lib/api/response";
+import { checkAnalysisGate } from "@/lib/analysis/text-gate";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -14,8 +15,8 @@ type RouteParams = {
  * If DB table is empty, extracts from raw_text using buildCaseContext (same as Evidence Strength Analyzer)
  */
 export async function GET(_request: Request, { params }: RouteParams) {
+  const { caseId } = await params;
   try {
-    const { caseId } = await params;
     const authRes = await requireAuthContextApi();
     if (!authRes.ok) return authRes.response;
     const { userId, orgId } = authRes.context;
@@ -23,19 +24,23 @@ export async function GET(_request: Request, { params }: RouteParams) {
 
     // Build case context (same source as Evidence Strength Analyzer)
     const context = await buildCaseContext(caseId, { userId });
-    
-    try {
-      guardAnalysis(context);
-    } catch (error) {
-      if (error instanceof AnalysisGateError) {
-        return NextResponse.json({
-          ok: false,
-          charges: [],
-          banner: error.banner,
-          diagnostics: error.diagnostics,
-        });
-      }
-      throw error;
+
+    if (!context.case) {
+      return makeNotFound<{ charges: any[] }>(context, caseId);
+    }
+
+    // Check analysis gate (hard gating)
+    const gateResult = checkAnalysisGate(context);
+    if (!gateResult.ok) {
+      return makeGateFail<{ charges: any[] }>(
+        {
+          severity: gateResult.banner?.severity || "warning",
+          title: gateResult.banner?.title || "Insufficient text extracted",
+          detail: gateResult.banner?.detail,
+        },
+        context,
+        caseId,
+      );
     }
 
     // Verify case access
@@ -48,10 +53,15 @@ export async function GET(_request: Request, { params }: RouteParams) {
 
     if (caseError) {
       console.error("[criminal/charges] Case lookup error:", caseError);
-      return NextResponse.json({ error: "Failed to fetch charges" }, { status: 500 });
+      return makeError<{ charges: any[] }>(
+        "CHARGES_ERROR",
+        "Failed to fetch charges",
+        context,
+        caseId,
+      );
     }
     if (!caseRecord) {
-      return NextResponse.json({ error: "Case not found" }, { status: 404 });
+      return makeNotFound<{ charges: any[] }>(context, caseId);
     }
 
     // Fetch charges from DB (prefer org_id filter if it works; fall back to case_id only)
@@ -112,30 +122,62 @@ export async function GET(_request: Request, { params }: RouteParams) {
 
     if (error && (!charges || charges.length === 0)) {
       console.error("[criminal/charges] Error:", error);
-      return NextResponse.json(
-        { error: "Failed to fetch charges" },
-        { status: 500 },
+      return makeError<{ charges: any[] }>(
+        "CHARGES_ERROR",
+        "Failed to fetch charges",
+        context,
+        caseId,
       );
     }
 
-    return NextResponse.json({
-      charges: (charges || []).map((c) => ({
-        id: c.id,
-        offence: c.offence,
-        section: c.section,
-        chargeDate: c.chargeDate || c.charge_date,
-        location: c.location,
-        value: c.value,
-        details: c.details,
-        status: c.status,
-        extracted: c.extracted || false,
-      })),
-    });
+    return makeOk(
+      {
+        charges: (charges || []).map((c) => ({
+          id: c.id,
+          offence: c.offence,
+          section: c.section,
+          chargeDate: c.chargeDate || c.charge_date,
+          location: c.location,
+          value: c.value,
+          details: c.details,
+          status: c.status,
+          extracted: c.extracted || false,
+        })),
+      },
+      context,
+      caseId,
+    );
   } catch (error) {
     console.error("[criminal/charges] Error:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch charges" },
-      { status: 500 },
+    const errorMessage = error instanceof Error ? error.message : "Failed to fetch charges";
+    try {
+      const authRes = await requireAuthContextApi();
+      if (authRes.ok) {
+        const { userId } = authRes.context;
+        const context = await buildCaseContext(caseId, { userId });
+        return makeError<{ charges: any[] }>("CHARGES_ERROR", errorMessage, context, caseId);
+      }
+    } catch {
+      // Fallback
+    }
+    return makeError<{ charges: any[] }>(
+      "CHARGES_ERROR",
+      errorMessage,
+      {
+        case: null,
+        orgScope: { orgIdResolved: "", method: "solo_fallback" },
+        documents: [],
+        diagnostics: {
+          docCount: 0,
+          rawCharsTotal: 0,
+          jsonCharsTotal: 0,
+          avgRawCharsPerDoc: 0,
+          suspectedScanned: false,
+          reasonCodes: [],
+        },
+        canGenerateAnalysis: false,
+      },
+      caseId,
     );
   }
 }

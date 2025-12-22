@@ -1,7 +1,8 @@
-import { NextResponse } from "next/server";
 import { requireAuthContextApi } from "@/lib/auth-api";
 import { getSupabaseAdminClient } from "@/lib/supabase";
-import { buildCaseContext, guardAnalysis, AnalysisGateError } from "@/lib/case-context";
+import { buildCaseContext } from "@/lib/case-context";
+import { makeOk, makeGateFail, makeNotFound, makeError, type ApiResponse } from "@/lib/api/response";
+import { checkAnalysisGate } from "@/lib/analysis/text-gate";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -13,28 +14,77 @@ type RouteParams = {
  * GATED: Returns banner + minimal data if canGenerateAnalysis is false
  */
 export async function GET(_request: Request, { params }: RouteParams) {
+  let caseId: string;
   try {
-    const { caseId } = await params;
+    const resolved = await params;
+    caseId = resolved.caseId;
+  } catch {
+    return makeError<{
+      paceStatus: string;
+      breaches: string[];
+      cautionGiven: boolean | null;
+      interviewRecorded: boolean | null;
+      rightToSolicitor: boolean | null;
+      solicitorPresent: boolean | null;
+    }>(
+      "PACE_ERROR",
+      "Invalid case ID",
+      {
+        case: null,
+        orgScope: { orgIdResolved: "", method: "solo_fallback" },
+        documents: [],
+        diagnostics: {
+          docCount: 0,
+          rawCharsTotal: 0,
+          jsonCharsTotal: 0,
+          avgRawCharsPerDoc: 0,
+          suspectedScanned: false,
+          reasonCodes: [],
+        },
+        canGenerateAnalysis: false,
+      },
+      "",
+    );
+  }
+
+  try {
     const authRes = await requireAuthContextApi();
     if (!authRes.ok) return authRes.response;
     const { userId, orgId } = authRes.context;
 
     // Build case context and gate analysis
     const context = await buildCaseContext(caseId, { userId });
-    
-    try {
-      guardAnalysis(context);
-    } catch (error) {
-      if (error instanceof AnalysisGateError) {
-        return NextResponse.json({
-          ok: false,
-          paceStatus: "UNKNOWN",
-          breaches: [],
-          banner: error.banner,
-          diagnostics: error.diagnostics,
-        });
-      }
-      throw error;
+
+    if (!context.case) {
+      return makeNotFound<{
+        paceStatus: string;
+        breaches: string[];
+        cautionGiven: boolean | null;
+        interviewRecorded: boolean | null;
+        rightToSolicitor: boolean | null;
+        solicitorPresent: boolean | null;
+      }>(context, caseId);
+    }
+
+    // Check analysis gate (hard gating)
+    const gateResult = checkAnalysisGate(context);
+    if (!gateResult.ok) {
+      return makeGateFail<{
+        paceStatus: string;
+        breaches: string[];
+        cautionGiven: boolean | null;
+        interviewRecorded: boolean | null;
+        rightToSolicitor: boolean | null;
+        solicitorPresent: boolean | null;
+      }>(
+        {
+          severity: gateResult.banner?.severity || "warning",
+          title: gateResult.banner?.title || "Insufficient text extracted",
+          detail: gateResult.banner?.detail,
+        },
+        context,
+        caseId,
+      );
     }
 
     const supabase = getSupabaseAdminClient();
@@ -48,9 +98,18 @@ export async function GET(_request: Request, { params }: RouteParams) {
 
     if (error) {
       console.error("[criminal/pace] Error:", error);
-      return NextResponse.json(
-        { error: "Failed to fetch PACE compliance" },
-        { status: 500 },
+      return makeError<{
+        paceStatus: string;
+        breaches: string[];
+        cautionGiven: boolean | null;
+        interviewRecorded: boolean | null;
+        rightToSolicitor: boolean | null;
+        solicitorPresent: boolean | null;
+      }>(
+        "PACE_ERROR",
+        "Failed to fetch PACE compliance",
+        context,
+        caseId,
       );
     }
 
@@ -88,22 +147,26 @@ export async function GET(_request: Request, { params }: RouteParams) {
         const hasBreaches = extractedPACE.breachesDetected && extractedPACE.breachesDetected.length > 0;
         paceStatus = hasBreaches ? "BREACH_FLAGGED" : "CHECKED_NO_BREACHES";
 
-        return NextResponse.json({
-          cautionGiven: extractedPACE.custodyRecord === "present" ? true : null,
-          cautionGivenBeforeQuestioning: null,
-          interviewRecorded: extractedPACE.interviewRecording === "present" ? true : null,
-          rightToSolicitor: extractedPACE.legalAdviceLog === "present" ? true : null,
-          solicitorPresent: extractedPACE.legalAdviceLog === "present" ? true : null,
-          detentionTimeHours: null,
-          detentionTimeExceeded: null,
-          breachesDetected: extractedPACE.breachesDetected || [],
-          breachSeverity: extractedPACE.breachSeverity,
-          paceStatus,
-          statusMessage: hasBreaches
-            ? "PACE breaches detected"
-            : "No PACE breaches detected (in provided material)",
-          extracted: true, // Flag to indicate this was extracted, not from DB
-        });
+        return makeOk(
+          {
+            cautionGiven: extractedPACE.custodyRecord === "present" ? true : null,
+            cautionGivenBeforeQuestioning: null,
+            interviewRecorded: extractedPACE.interviewRecording === "present" ? true : null,
+            rightToSolicitor: extractedPACE.legalAdviceLog === "present" ? true : null,
+            solicitorPresent: extractedPACE.legalAdviceLog === "present" ? true : null,
+            detentionTimeHours: null,
+            detentionTimeExceeded: null,
+            breachesDetected: extractedPACE.breachesDetected || [],
+            breachSeverity: extractedPACE.breachSeverity,
+            paceStatus,
+            statusMessage: hasBreaches
+              ? "PACE breaches detected"
+              : "No PACE breaches detected (in provided material)",
+            extracted: true, // Flag to indicate this was extracted, not from DB
+          },
+          context,
+          caseId,
+        );
       }
 
       // Fallback: check if critical evidence exists in documents (old logic)
@@ -134,20 +197,24 @@ export async function GET(_request: Request, { params }: RouteParams) {
         ? `PACE status: UNKNOWN — key ${missingItems.join(", ")} material missing in provided bundle`
         : "No PACE breaches detected (in provided material)";
       
-      return NextResponse.json({
-        cautionGiven: hasCautionSolicitorFlags ? true : null,
-        cautionGivenBeforeQuestioning: null,
-        interviewRecorded: hasInterviewRecording ? true : null,
-        rightToSolicitor: hasLegalAdviceLog ? true : null,
-        solicitorPresent: hasLegalAdviceLog ? true : null,
-        detentionTimeHours: null,
-        detentionTimeExceeded: null,
-        breachesDetected: [],
-        breachSeverity: null,
-        paceStatus,
-        statusMessage,
-        extracted: false,
-      });
+      return makeOk(
+        {
+          cautionGiven: hasCautionSolicitorFlags ? true : null,
+          cautionGivenBeforeQuestioning: null,
+          interviewRecorded: hasInterviewRecording ? true : null,
+          rightToSolicitor: hasLegalAdviceLog ? true : null,
+          solicitorPresent: hasLegalAdviceLog ? true : null,
+          detentionTimeHours: null,
+          detentionTimeExceeded: null,
+          breachesDetected: [],
+          breachSeverity: null,
+          paceStatus,
+          statusMessage,
+          extracted: false,
+        },
+        context,
+        caseId,
+      );
     }
 
     // Check if critical PACE evidence fields are all null (missing)
@@ -187,24 +254,68 @@ export async function GET(_request: Request, { params }: RouteParams) {
       statusMessage = "No PACE breaches detected (in provided material)";
     }
 
-    return NextResponse.json({
-      cautionGiven: pace.caution_given,
-      cautionGivenBeforeQuestioning: pace.caution_given_before_questioning,
-      interviewRecorded: pace.interview_recorded,
-      rightToSolicitor: pace.right_to_solicitor,
-      solicitorPresent: pace.solicitor_present,
-      detentionTimeHours: pace.detention_time_hours,
-      detentionTimeExceeded: pace.detention_time_exceeded,
-      breachesDetected: pace.breaches_detected || [],
-      breachSeverity: pace.breach_severity,
-      paceStatus,
-      statusMessage,
-    });
+    return makeOk(
+      {
+        cautionGiven: pace.caution_given,
+        cautionGivenBeforeQuestioning: pace.caution_given_before_questioning,
+        interviewRecorded: pace.interview_recorded,
+        rightToSolicitor: pace.right_to_solicitor,
+        solicitorPresent: pace.solicitor_present,
+        detentionTimeHours: pace.detention_time_hours,
+        detentionTimeExceeded: pace.detention_time_exceeded,
+        breachesDetected: pace.breaches_detected || [],
+        breachSeverity: pace.breach_severity,
+        paceStatus,
+        statusMessage,
+      },
+      context,
+      caseId,
+    );
   } catch (error) {
     console.error("[criminal/pace] Error:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch PACE compliance" },
-      { status: 500 },
+    const errorMessage = error instanceof Error ? error.message : "Failed to fetch PACE compliance";
+    try {
+      const authRes = await requireAuthContextApi();
+      if (authRes.ok) {
+        const { userId } = authRes.context;
+        const context = await buildCaseContext(caseId, { userId });
+        return makeError<{
+          paceStatus: string;
+          breaches: string[];
+          cautionGiven: boolean | null;
+          interviewRecorded: boolean | null;
+          rightToSolicitor: boolean | null;
+          solicitorPresent: boolean | null;
+        }>("PACE_ERROR", errorMessage, context, caseId);
+      }
+    } catch {
+      // Fallback
+    }
+    return makeError<{
+      paceStatus: string;
+      breaches: string[];
+      cautionGiven: boolean | null;
+      interviewRecorded: boolean | null;
+      rightToSolicitor: boolean | null;
+      solicitorPresent: boolean | null;
+    }>(
+      "PACE_ERROR",
+      errorMessage,
+      {
+        case: null,
+        orgScope: { orgIdResolved: "", method: "solo_fallback" },
+        documents: [],
+        diagnostics: {
+          docCount: 0,
+          rawCharsTotal: 0,
+          jsonCharsTotal: 0,
+          avgRawCharsPerDoc: 0,
+          suspectedScanned: false,
+          reasonCodes: [],
+        },
+        canGenerateAnalysis: false,
+      },
+      caseId,
     );
   }
 }

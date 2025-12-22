@@ -7,12 +7,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAuthContextApi } from "@/lib/auth-api";
 import { getSupabaseAdminClient } from "@/lib/supabase";
-import { findAllDefenseAngles } from "@/lib/criminal/aggressive-defense-engine";
+import { findAllDefenseAngles, type DefenseAngle } from "@/lib/criminal/aggressive-defense-engine";
 import { withPaywall } from "@/lib/paywall/protect-route";
 import { getCriminalBundleCompleteness } from "@/lib/criminal/bundle-completeness";
 import { shouldShowProbabilities } from "@/lib/criminal/probability-gate";
-import { buildCaseContext, guardAnalysis, AnalysisGateError } from "@/lib/case-context";
+import { buildCaseContext } from "@/lib/case-context";
 import { analyzeEvidenceStrength } from "@/lib/evidence-strength-analyzer";
+import { makeOk, makeGateFail, makeNotFound, makeError, type ApiResponse } from "@/lib/api/response";
+import { checkAnalysisGate } from "@/lib/analysis/text-gate";
+import { calibrateAngles, computeOverallFromAngles, calibrateProbability } from "@/lib/analysis/calibration";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -20,27 +23,31 @@ type RouteParams = {
 
 export async function GET(request: NextRequest, { params }: RouteParams) {
   return await withPaywall("analysis", async () => {
+    const { caseId } = await params;
     try {
       const authRes = await requireAuthContextApi();
       if (!authRes.ok) return authRes.response;
       const { userId, orgId } = authRes.context;
-      const { caseId } = await params;
 
       // Build case context and gate analysis
       const context = await buildCaseContext(caseId, { userId });
-      
-      try {
-        guardAnalysis(context);
-      } catch (error) {
-        if (error instanceof AnalysisGateError) {
-          return NextResponse.json({
-            ok: false,
-            data: null,
-            banner: error.banner,
-            diagnostics: error.diagnostics,
-          });
-        }
-        throw error;
+
+      if (!context.case) {
+        return makeNotFound<any>(context, caseId);
+      }
+
+      // Check analysis gate (hard gating)
+      const gateResult = checkAnalysisGate(context);
+      if (!gateResult.ok) {
+        return makeGateFail<any>(
+          {
+            severity: gateResult.banner?.severity || "warning",
+            title: gateResult.banner?.title || "Insufficient text extracted",
+            detail: gateResult.banner?.detail,
+          },
+          context,
+          caseId,
+        );
       }
 
       const bundle = await getCriminalBundleCompleteness({ caseId, orgId });
@@ -121,114 +128,56 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       strategicOverview: null,
     });
 
-    // Apply reality calibration to win probabilities
-    if (evidenceStrength.overallStrength >= 70) {
-      // Strong prosecution case - downgrade all win probabilities
-      const downgradeFactor = 0.4;
-      const minProbability = 20;
+    // Apply reality calibration to win probabilities (using shared calibration function)
+    // Calibrate all angles (preserves DefenseAngle type)
+    analysis.criticalAngles = calibrateAngles<DefenseAngle>(analysis.criticalAngles || [], evidenceStrength);
+    analysis.allAngles = calibrateAngles<DefenseAngle>(analysis.allAngles || [], evidenceStrength);
 
-      if (analysis.recommendedStrategy) {
-        analysis.recommendedStrategy.combinedProbability = Math.max(minProbability, 
-          Math.round((analysis.recommendedStrategy.combinedProbability || 70) * downgradeFactor)
+    // Calibrate recommended strategy angles
+    if (analysis.recommendedStrategy) {
+      if (analysis.recommendedStrategy.primaryAngle) {
+        analysis.recommendedStrategy.primaryAngle.winProbability = calibrateProbability(
+          analysis.recommendedStrategy.primaryAngle.winProbability || 70,
+          evidenceStrength,
         );
-        // Also downgrade primary angle probability
-        if (analysis.recommendedStrategy.primaryAngle) {
-          analysis.recommendedStrategy.primaryAngle.winProbability = Math.max(minProbability,
-            Math.round((analysis.recommendedStrategy.primaryAngle.winProbability || 70) * downgradeFactor)
-          );
-        }
-        // Downgrade supporting angles too
-        if (analysis.recommendedStrategy.supportingAngles) {
-          analysis.recommendedStrategy.supportingAngles = analysis.recommendedStrategy.supportingAngles.map((angle: any) => ({
+      }
+      if (analysis.recommendedStrategy.supportingAngles) {
+        analysis.recommendedStrategy.supportingAngles = calibrateAngles<DefenseAngle>(
+          analysis.recommendedStrategy.supportingAngles,
+          evidenceStrength,
+        );
+      }
+      // Calibrate combined probability
+      analysis.recommendedStrategy.combinedProbability = calibrateProbability(
+        analysis.recommendedStrategy.combinedProbability || 70,
+        evidenceStrength,
+      );
+    }
+
+    // Compute overall from calibrated angles (ensures consistency)
+    if (analysis.criticalAngles.length > 0) {
+      analysis.overallWinProbability = computeOverallFromAngles(analysis.criticalAngles, "weighted");
+    } else if (analysis.overallWinProbability) {
+      analysis.overallWinProbability = calibrateProbability(analysis.overallWinProbability, evidenceStrength);
+    }
+
+    // Update specific arguments for disclosure stay angles (language adjustment)
+    if (evidenceStrength.calibration.shouldDowngradeDisclosureStay) {
+      analysis.criticalAngles = analysis.criticalAngles.map((angle: any) => {
+        if (angle.angleType === "DISCLOSURE_FAILURE_STAY") {
+          return {
             ...angle,
-            winProbability: Math.max(minProbability,
-              Math.round((angle.winProbability || 70) * downgradeFactor)
-            ),
-          }));
+            specificArguments: angle.specificArguments?.map((arg: string) =>
+              arg.includes("Consider stay/abuse of process only if disclosure failures persist after a clear chase trail")
+                ? arg
+                : arg.replace(/stay|abuse of process/gi, (match) => {
+                    return match.toLowerCase() === "stay" ? "disclosure directions" : "procedural leverage";
+                  })
+            ) || angle.specificArguments,
+          };
         }
-      }
-      if (analysis.overallWinProbability) {
-        analysis.overallWinProbability = Math.max(minProbability, 
-          Math.round(analysis.overallWinProbability * downgradeFactor)
-        );
-      }
-      // Downgrade ALL critical angles (not just specific types)
-      analysis.criticalAngles = (analysis.criticalAngles || []).map((angle: any) => {
-        let angleDowngradeFactor = downgradeFactor;
-        let angleMinProbability = minProbability;
-
-        // Specific downgrades for certain angle types
-        if (angle.angleType === "DISCLOSURE_FAILURE_STAY" && evidenceStrength.calibration.shouldDowngradeDisclosureStay) {
-          angleDowngradeFactor = 0.5;
-          angleMinProbability = 30;
-        } else if ((angle.angleType === "PACE_BREACH_EXCLUSION" || angle.angleType?.includes("PACE")) && 
-                   evidenceStrength.calibration.shouldDowngradePACE) {
-          angleDowngradeFactor = 0.3;
-          angleMinProbability = 20;
-        }
-
-        return {
-          ...angle,
-          winProbability: Math.max(angleMinProbability,
-            Math.round((angle.winProbability || 70) * angleDowngradeFactor)
-          ),
-          specificArguments: angle.specificArguments?.map((arg: string) => 
-            arg.includes("Consider stay/abuse of process only if disclosure failures persist after a clear chase trail")
-              ? arg
-              : arg.replace(/stay|abuse of process/gi, (match) => {
-                  return match.toLowerCase() === "stay" ? "disclosure directions" : "procedural leverage";
-                })
-          ) || angle.specificArguments,
-        };
+        return angle;
       });
-      // Also downgrade allAngles
-      analysis.allAngles = (analysis.allAngles || []).map((angle: any) => ({
-        ...angle,
-        winProbability: Math.max(minProbability,
-          Math.round((angle.winProbability || 70) * downgradeFactor)
-        ),
-      }));
-    } else if (evidenceStrength.overallStrength >= 60) {
-      // Moderate-strong case - moderate downgrade
-      const downgradeFactor = 0.6;
-      const minProbability = 30;
-
-      if (analysis.recommendedStrategy) {
-        analysis.recommendedStrategy.combinedProbability = Math.max(minProbability, 
-          Math.round((analysis.recommendedStrategy.combinedProbability || 70) * downgradeFactor)
-        );
-        if (analysis.recommendedStrategy.primaryAngle) {
-          analysis.recommendedStrategy.primaryAngle.winProbability = Math.max(minProbability,
-            Math.round((analysis.recommendedStrategy.primaryAngle.winProbability || 70) * downgradeFactor)
-          );
-        }
-        if (analysis.recommendedStrategy.supportingAngles) {
-          analysis.recommendedStrategy.supportingAngles = analysis.recommendedStrategy.supportingAngles.map((angle: any) => ({
-            ...angle,
-            winProbability: Math.max(minProbability,
-              Math.round((angle.winProbability || 70) * downgradeFactor)
-            ),
-          }));
-        }
-      }
-      if (analysis.overallWinProbability) {
-        analysis.overallWinProbability = Math.max(minProbability, 
-          Math.round(analysis.overallWinProbability * downgradeFactor)
-        );
-      }
-      // Downgrade all angles
-      analysis.criticalAngles = (analysis.criticalAngles || []).map((angle: any) => ({
-        ...angle,
-        winProbability: Math.max(minProbability,
-          Math.round((angle.winProbability || 70) * downgradeFactor)
-        ),
-      }));
-      analysis.allAngles = (analysis.allAngles || []).map((angle: any) => ({
-        ...angle,
-        winProbability: Math.max(minProbability,
-          Math.round((angle.winProbability || 70) * downgradeFactor)
-        ),
-      }));
     }
 
     // Add evidence strength warnings to analysis
@@ -260,9 +209,35 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       });
     } catch (error) {
       console.error("Failed to generate aggressive defense analysis:", error);
-      return NextResponse.json(
-        { error: "Failed to generate aggressive defense analysis" },
-        { status: 500 },
+      const errorMessage = error instanceof Error ? error.message : "Failed to generate aggressive defense analysis";
+      try {
+        const authRes = await requireAuthContextApi();
+        if (authRes.ok) {
+          const { userId } = authRes.context;
+          const context = await buildCaseContext(caseId, { userId });
+          return makeError<any>("AGGRESSIVE_DEFENSE_ERROR", errorMessage, context, caseId);
+        }
+      } catch {
+        // Fallback
+      }
+      return makeError<any>(
+        "AGGRESSIVE_DEFENSE_ERROR",
+        errorMessage,
+        {
+          case: null,
+          orgScope: { orgIdResolved: "", method: "solo_fallback" },
+          documents: [],
+          diagnostics: {
+            docCount: 0,
+            rawCharsTotal: 0,
+            jsonCharsTotal: 0,
+            avgRawCharsPerDoc: 0,
+            suspectedScanned: false,
+            reasonCodes: [],
+          },
+          canGenerateAnalysis: false,
+        },
+        caseId,
       );
     }
   });

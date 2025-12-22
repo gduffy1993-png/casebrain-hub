@@ -4,6 +4,8 @@ import { auth } from "@clerk/nextjs/server";
 import { buildKeyFactsSummary } from "@/lib/key-facts";
 import type { KeyFactsSummary } from "@/lib/types/casebrain";
 import { buildCaseContext } from "@/lib/case-context";
+import { makeOk, makeGateFail, makeNotFound, makeError, type ApiResponse } from "@/lib/api/response";
+import { checkAnalysisGate } from "@/lib/analysis/text-gate";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -159,37 +161,40 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     const lastError = error instanceof Error ? error : new Error(String(error));
     console.error("[key-facts] Error:", lastError);
 
-    // Return stable fallback payload (never throw)
-    const fallback: KeyFactsSummary = {
-      caseId,
-      practiceArea: undefined,
-      stage: "other",
-      fundingType: "unknown",
-      keyDates: [],
-      mainRisks: [],
-      primaryIssues: [
-        "Key Facts currently unavailable (data is missing or a service error occurred).",
-      ],
-      headlineSummary: undefined,
-      opponentName: undefined,
-      clientName: undefined,
-      courtName: undefined,
-      claimType: undefined,
-      causeOfAction: undefined,
-      approxValue: undefined,
-      whatClientWants: undefined,
-      nextStepsBrief: undefined,
-      bundleSummarySections: [],
-      layeredSummary: null,
-    };
+    // Build minimal context for error response
+    try {
+      const { userId } = await auth();
+      if (userId) {
+        const context = await buildCaseContext(caseId, { userId });
+        return makeError<{ keyFacts: KeyFactsSummary }>(
+          "KEY_FACTS_ERROR",
+          lastError.message,
+          context,
+          caseId,
+        );
+      }
+    } catch {
+      // Fallback if we can't build context
+    }
 
-    return NextResponse.json(
+    return makeError<{ keyFacts: KeyFactsSummary }>(
+      "KEY_FACTS_ERROR",
+      lastError.message,
       {
-        keyFacts: fallback,
-        warning: "Failed to retrieve key facts (fallback returned).",
-        message: lastError.message,
+        case: null,
+        orgScope: { orgIdResolved: "", method: "solo_fallback" },
+        documents: [],
+        diagnostics: {
+          docCount: 0,
+          rawCharsTotal: 0,
+          jsonCharsTotal: 0,
+          avgRawCharsPerDoc: 0,
+          suspectedScanned: false,
+          reasonCodes: [],
+        },
+        canGenerateAnalysis: false,
       },
-      { status: 200 },
+      caseId,
     );
   }
 }

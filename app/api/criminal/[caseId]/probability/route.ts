@@ -1,10 +1,12 @@
-import { NextResponse } from "next/server";
 import { requireAuthContextApi } from "@/lib/auth-api";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { getCriminalBundleCompleteness } from "@/lib/criminal/bundle-completeness";
 import { shouldShowProbabilities } from "@/lib/criminal/probability-gate";
-import { buildCaseContext, guardAnalysis, AnalysisGateError } from "@/lib/case-context";
+import { buildCaseContext } from "@/lib/case-context";
 import { analyzeEvidenceStrength } from "@/lib/evidence-strength-analyzer";
+import { makeOk, makeGateFail, makeNotFound, makeError, type ApiResponse } from "@/lib/api/response";
+import { checkAnalysisGate } from "@/lib/analysis/text-gate";
+import { calibrateProbability } from "@/lib/analysis/calibration";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -16,31 +18,43 @@ type RouteParams = {
  * GATED: Returns banner + null data if canGenerateAnalysis is false
  */
 export async function GET(_request: Request, { params }: RouteParams) {
+  const { caseId } = await params;
   try {
-    const { caseId } = await params;
     const authRes = await requireAuthContextApi();
     if (!authRes.ok) return authRes.response;
     const { userId, orgId } = authRes.context;
 
     // Build case context and gate analysis
     const context = await buildCaseContext(caseId, { userId });
-    
-    try {
-      guardAnalysis(context);
-    } catch (error) {
-      if (error instanceof AnalysisGateError) {
-        return NextResponse.json({
-          ok: false,
-          overall: null,
-          topStrategy: null,
-          topStrategyProbability: null,
-          riskLevel: null,
-          probabilitiesSuppressed: true,
-          banner: error.banner,
-          diagnostics: error.diagnostics,
-        });
-      }
-      throw error;
+
+    if (!context.case) {
+      return makeNotFound<{
+        overall: number | null;
+        topStrategy: string | null;
+        topStrategyProbability: number | null;
+        riskLevel: string | null;
+        probabilitiesSuppressed: boolean;
+      }>(context, caseId);
+    }
+
+    // Check analysis gate (hard gating)
+    const gateResult = checkAnalysisGate(context);
+    if (!gateResult.ok) {
+      return makeGateFail<{
+        overall: number | null;
+        topStrategy: string | null;
+        topStrategyProbability: number | null;
+        riskLevel: string | null;
+        probabilitiesSuppressed: boolean;
+      }>(
+        {
+          severity: gateResult.banner?.severity || "warning",
+          title: gateResult.banner?.title || "Insufficient text extracted",
+          detail: gateResult.banner?.detail,
+        },
+        context,
+        caseId,
+      );
     }
 
     const supabase = getSupabaseAdminClient();
@@ -53,16 +67,20 @@ export async function GET(_request: Request, { params }: RouteParams) {
     });
 
     if (!gate.show) {
-      return NextResponse.json({
-        overall: null,
-        topStrategy: "Disclosure-first actions only",
-        topStrategyProbability: null,
-        riskLevel: "MEDIUM",
-        probabilitiesSuppressed: true,
-        suppressionReason: gate.reason,
-        bundleCompleteness: bundle.completeness,
-        criticalMissingCount: bundle.criticalMissingCount,
-      });
+      return makeOk(
+        {
+          overall: null,
+          topStrategy: "Disclosure-first actions only",
+          topStrategyProbability: null,
+          riskLevel: "MEDIUM",
+          probabilitiesSuppressed: true,
+          suppressionReason: gate.reason,
+          bundleCompleteness: bundle.completeness,
+          criticalMissingCount: bundle.criticalMissingCount,
+        },
+        context,
+        caseId,
+      );
     }
 
     // Fetch criminal case
@@ -74,16 +92,37 @@ export async function GET(_request: Request, { params }: RouteParams) {
       .maybeSingle();
 
     if (criminalCase) {
-      // Use stored probability if available
-      return NextResponse.json({
-        overall: criminalCase.get_off_probability ?? 50,
-        topStrategy: criminalCase.recommended_strategy ?? "Evidence Challenge",
-        topStrategyProbability: 70,
-        riskLevel: criminalCase.risk_level ?? "MEDIUM",
-        probabilitiesSuppressed: false,
-        bundleCompleteness: bundle.completeness,
-        criticalMissingCount: bundle.criticalMissingCount,
+      // Use stored probability if available (calibrate it)
+      const storedOverall = criminalCase.get_off_probability ?? 50;
+      const evidenceStrength = analyzeEvidenceStrength({
+        documents: context.documents.map((doc) => ({
+          raw_text: doc.raw_text,
+          extracted_facts: doc.extracted_json,
+          extracted_json: doc.extracted_json,
+        })),
+        keyFacts: null,
+        aggressiveDefense: null,
+        strategicOverview: null,
       });
+      const calibratedOverall = calibrateProbability(storedOverall, evidenceStrength);
+      const calibratedTopStrategy = calibrateProbability(70, evidenceStrength);
+
+      return makeOk(
+        {
+          overall: calibratedOverall,
+          topStrategy: criminalCase.recommended_strategy ?? "Evidence Challenge",
+          topStrategyProbability: calibratedTopStrategy,
+          riskLevel: criminalCase.risk_level ?? "MEDIUM",
+          probabilitiesSuppressed: false,
+          bundleCompleteness: bundle.completeness,
+          criticalMissingCount: bundle.criticalMissingCount,
+          evidenceStrengthWarnings: evidenceStrength.warnings.length > 0 ? evidenceStrength.warnings : undefined,
+          evidenceStrength: evidenceStrength.overallStrength,
+          realisticOutcome: evidenceStrength.calibration.realisticOutcome,
+        },
+        context,
+        caseId,
+      );
     }
 
     // Calculate from loopholes and evidence if no stored data
@@ -158,19 +197,12 @@ export async function GET(_request: Request, { params }: RouteParams) {
       strategicOverview: null,
     });
 
-    // Apply reality calibration to probabilities
-    let calibratedOverall = overall;
-    let calibratedTopStrategyProbability = topStrategy?.success_probability ?? 50;
-
-    if (evidenceStrength.overallStrength >= 70) {
-      // Strong prosecution case - downgrade probabilities
-      calibratedOverall = Math.max(20, Math.round(overall * 0.4));
-      calibratedTopStrategyProbability = Math.max(20, Math.round(calibratedTopStrategyProbability * 0.4));
-    } else if (evidenceStrength.overallStrength >= 60) {
-      // Moderate-strong case - moderate downgrade
-      calibratedOverall = Math.max(30, Math.round(overall * 0.6));
-      calibratedTopStrategyProbability = Math.max(30, Math.round(calibratedTopStrategyProbability * 0.6));
-    }
+    // Apply reality calibration to probabilities (using single calibration function)
+    const calibratedOverall = calibrateProbability(overall, evidenceStrength);
+    const calibratedTopStrategyProbability = calibrateProbability(
+      topStrategy?.success_probability ?? 50,
+      evidenceStrength,
+    );
 
     // Determine risk level based on calibrated probability
     let riskLevel: "LOW" | "MEDIUM" | "HIGH" | "CRITICAL" = "MEDIUM";
@@ -184,23 +216,65 @@ export async function GET(_request: Request, { params }: RouteParams) {
       riskLevel = "CRITICAL";
     }
 
-    return NextResponse.json({
-      overall: calibratedOverall,
-      topStrategy: topStrategy?.strategy_name ?? "Evidence Challenge",
-      topStrategyProbability: calibratedTopStrategyProbability,
-      riskLevel,
-      probabilitiesSuppressed: false,
-      bundleCompleteness: bundle.completeness,
-      criticalMissingCount: bundle.criticalMissingCount,
-      evidenceStrengthWarnings: evidenceStrength.warnings.length > 0 ? evidenceStrength.warnings : undefined,
-      evidenceStrength: evidenceStrength.overallStrength,
-      realisticOutcome: evidenceStrength.calibration.realisticOutcome,
-    });
+    return makeOk(
+      {
+        overall: calibratedOverall,
+        topStrategy: topStrategy?.strategy_name ?? "Evidence Challenge",
+        topStrategyProbability: calibratedTopStrategyProbability,
+        riskLevel,
+        probabilitiesSuppressed: false,
+        bundleCompleteness: bundle.completeness,
+        criticalMissingCount: bundle.criticalMissingCount,
+        evidenceStrengthWarnings: evidenceStrength.warnings.length > 0 ? evidenceStrength.warnings : undefined,
+        evidenceStrength: evidenceStrength.overallStrength,
+        realisticOutcome: evidenceStrength.calibration.realisticOutcome,
+      },
+      context,
+      caseId,
+    );
   } catch (error) {
     console.error("[criminal/probability] Error:", error);
-    return NextResponse.json(
-      { error: "Failed to calculate probability" },
-      { status: 500 },
+    const errorMessage = error instanceof Error ? error.message : "Failed to calculate probability";
+    try {
+      const authRes = await requireAuthContextApi();
+      if (authRes.ok) {
+        const { userId } = authRes.context;
+        const context = await buildCaseContext(caseId, { userId });
+        return makeError<{
+          overall: number | null;
+          topStrategy: string | null;
+          topStrategyProbability: number | null;
+          riskLevel: string | null;
+          probabilitiesSuppressed: boolean;
+        }>("PROBABILITY_ERROR", errorMessage, context, caseId);
+      }
+    } catch {
+      // Fallback
+    }
+    return makeError<{
+      overall: number | null;
+      topStrategy: string | null;
+      topStrategyProbability: number | null;
+      riskLevel: string | null;
+      probabilitiesSuppressed: boolean;
+    }>(
+      "PROBABILITY_ERROR",
+      errorMessage,
+      {
+        case: null,
+        orgScope: { orgIdResolved: "", method: "solo_fallback" },
+        documents: [],
+        diagnostics: {
+          docCount: 0,
+          rawCharsTotal: 0,
+          jsonCharsTotal: 0,
+          avgRawCharsPerDoc: 0,
+          suspectedScanned: false,
+          reasonCodes: [],
+        },
+        canGenerateAnalysis: false,
+      },
+      caseId,
     );
   }
 }
