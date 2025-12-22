@@ -3,21 +3,18 @@
 import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { ErrorBoundary } from "@/components/ui/error-boundary";
-import { GetOffProbabilityMeter } from "./GetOffProbabilityMeter";
 import { LoopholesPanel } from "./LoopholesPanel";
 import { PACEComplianceChecker } from "./PACEComplianceChecker";
 import { DisclosureTracker } from "./DisclosureTracker";
-import { DefenseStrategiesPanel } from "./DefenseStrategiesPanel";
 import { EvidenceAnalysisPanel } from "./EvidenceAnalysisPanel";
 import { ChargesPanel } from "./ChargesPanel";
 import { CourtHearingsPanel } from "./CourtHearingsPanel";
 import { BailTracker } from "./BailTracker";
 import { ClientAdvicePanel } from "./ClientAdvicePanel";
-import { AggressiveDefensePanel } from "./AggressiveDefensePanel";
 import { ExecutiveBriefPanel } from "./ExecutiveBriefPanel";
-import { KillShotPanel } from "./KillShotPanel";
 import { BailApplicationPanel } from "./BailApplicationPanel";
 import { SentencingMitigationPanel } from "./SentencingMitigationPanel";
+import { CaseFightPlan } from "./CaseFightPlan";
 import { AnalysisGateBanner, type AnalysisGateBannerProps } from "@/components/AnalysisGateBanner";
 import { normalizeApiResponse, isGated } from "@/lib/api-response-normalizer";
 
@@ -70,34 +67,19 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         />
       )}
 
+      {/* Primary Defence Strategy - Case Fight Plan */}
+      <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Defence plan unavailable</div>}>
+        <CaseFightPlan caseId={caseId} />
+      </ErrorBoundary>
+
       {/* Executive Brief - One-Page Case Summary (30-Minute Court Prep) */}
       <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Executive brief unavailable</div>}>
         <ExecutiveBriefPanel caseId={caseId} />
       </ErrorBoundary>
 
-      {/* Kill Shot Strategy - The ONE Angle That Wins */}
-      <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Kill shot strategy unavailable</div>}>
-        <KillShotPanel caseId={caseId} />
-      </ErrorBoundary>
-
-      {/* Aggressive Defense Analysis - FIND EVERY ANGLE TO WIN */}
-      <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Aggressive defense analysis unavailable</div>}>
-        <AggressiveDefensePanel caseId={caseId} />
-      </ErrorBoundary>
-
-      {/* Get Off Probability Meter - Top Priority */}
-      <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Probability meter unavailable</div>}>
-        <GetOffProbabilityMeter caseId={caseId} />
-      </ErrorBoundary>
-
       {/* Loopholes & Weaknesses - Critical */}
       <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Loopholes panel unavailable</div>}>
         <LoopholesPanel caseId={caseId} />
-      </ErrorBoundary>
-
-      {/* Defense Strategies */}
-      <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Defense strategies unavailable</div>}>
-        <DefenseStrategiesPanel caseId={caseId} />
       </ErrorBoundary>
 
       {/* Evidence Analysis */}

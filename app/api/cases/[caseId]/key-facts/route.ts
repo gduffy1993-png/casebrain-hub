@@ -98,7 +98,19 @@ export async function GET(_request: NextRequest, { params }: RouteParams) {
       // Even if gated, try to generate minimal key facts from case data + extraction
       // This allows charges/defendant name to be extracted from raw_text even if text is thin
       try {
-        const keyFacts = await buildKeyFactsSummary(caseId, context.orgScope.orgIdResolved);
+        const keyFacts = await buildKeyFactsSummary(
+          caseId,
+          context.orgScope.orgIdResolved,
+          context.case ? {
+            id: context.case.id,
+            title: (context.case as any).title ?? null,
+            summary: (context.case as any).summary ?? null,
+            practice_area: (context.case as any).practice_area ?? null,
+            status: (context.case as any).status ?? null,
+            created_at: (context.case as any).created_at ?? new Date().toISOString(),
+            org_id: (context.case as any).org_id ?? null,
+          } : undefined,
+        );
         return makeGateFail<{ keyFacts: KeyFactsSummary }>(
           {
             severity: gateResult.banner?.severity || "warning",
@@ -146,7 +158,21 @@ export async function GET(_request: NextRequest, { params }: RouteParams) {
 
     // Gate 3: OK - case and documents found with extractable text
     console.log(`[key-facts] Generating Key Facts for caseId=${caseId}, docCount=${context.diagnostics.docCount}, rawChars=${context.diagnostics.rawCharsTotal}`);
-    const keyFacts = await buildKeyFactsSummary(caseId, context.orgScope.orgIdResolved);
+    
+    // Pass case data from context to avoid re-querying and org_id mismatch issues
+    const keyFacts = await buildKeyFactsSummary(
+      caseId,
+      context.orgScope.orgIdResolved,
+      context.case ? {
+        id: context.case.id,
+        title: (context.case as any).title ?? null,
+        summary: (context.case as any).summary ?? null,
+        practice_area: (context.case as any).practice_area ?? null,
+        status: (context.case as any).status ?? null,
+        created_at: (context.case as any).created_at ?? new Date().toISOString(),
+        org_id: (context.case as any).org_id ?? null,
+      } : undefined,
+    );
 
     return makeOk({ keyFacts }, context, caseId);
   } catch (error) {

@@ -23,58 +23,51 @@ import { resolvePracticeAreaFromSignals } from "@/lib/strategic/practice-area-fi
 
 /**
  * Build a key facts summary for a case
+ * 
+ * @param caseId - Case ID
+ * @param orgId - Org ID (from context.orgScope.orgIdResolved)
+ * @param caseDataOverride - Optional case data from buildCaseContext (avoids re-querying)
  */
 export async function buildKeyFactsSummary(
   caseId: string,
   orgId: string,
+  caseDataOverride?: { id: string; title?: string | null; summary?: string | null; practice_area?: string | null; status?: string | null; created_at?: string; org_id?: string | null },
 ): Promise<KeyFactsSummary> {
   const supabase = getSupabaseAdminClient();
 
-  // 1. Fetch base case record
-  // Note: Route-level scoped lookup should have already found the case,
-  // but we still query with orgId for safety (orgId is either UUID or externalRef from scope)
-  // If that fails, try without org_id filter since case exists (found via scoped lookup)
-  let { data: caseData, error: caseError } = await supabase
-    .from("cases")
-    .select("id, title, summary, practice_area, status, created_at, org_id")
-    .eq("id", caseId)
-    .eq("org_id", orgId)
-    .maybeSingle();
-
-  // If query with org_id filter fails or returns no data, try without org_id filter
-  // (case was found via scoped lookup, so it exists but org_id might not match exactly)
-  if (caseError || !caseData) {
-    if (caseError) {
-      console.warn("[key-facts] Case lookup with org_id filter failed, retrying without filter:", {
-        caseId,
-        orgId,
-        message: caseError.message,
-      });
-    }
-    
-    const { data: retryData, error: retryError } = await supabase
+  // 1. Use case data from context if provided (avoids org_id mismatch issues)
+  let caseData = caseDataOverride;
+  
+  if (!caseData) {
+    // Fallback: Fetch base case record (only if not provided)
+    // Use the case's actual org_id if available, otherwise try orgId parameter
+    let { data: fetchedCase, error: caseError } = await supabase
       .from("cases")
       .select("id, title, summary, practice_area, status, created_at, org_id")
       .eq("id", caseId)
       .maybeSingle();
 
-    if (retryError) {
+    if (caseError) {
       console.error("[key-facts] Case lookup failed:", {
         caseId,
         orgId,
-        message: retryError.message,
-        code: (retryError as any).code,
+        message: caseError.message,
+        code: (caseError as any).code,
       });
       throw new Error("Case lookup failed");
     }
 
-    if (!retryData) {
+    if (!fetchedCase) {
       throw new Error("Case not found");
     }
 
-    caseData = retryData;
+    caseData = fetchedCase;
   }
 
+  // Use the case's actual org_id for queries (more reliable than orgId parameter)
+  // This avoids org_id mismatch issues when orgIdResolved is externalRef but case.org_id is UUID (or vice versa)
+  const effectiveOrgId = caseData.org_id || orgId;
+  
   let normalizedPracticeArea: PracticeArea = normalizePracticeArea(caseData.practice_area);
 
   // Runtime assert/repair: if criminal signals exist but stored practice_area is other/null,
@@ -87,20 +80,20 @@ export async function buildKeyFactsSummary(
           .from("criminal_cases")
           .select("id")
           .eq("id", caseId)
-          .eq("org_id", orgId)
+          .eq("org_id", effectiveOrgId)
           .maybeSingle(),
         supabase
           .from("criminal_charges")
           .select("id")
           .eq("case_id", caseId)
-          .eq("org_id", orgId)
+          .eq("org_id", effectiveOrgId)
           .limit(1)
           .maybeSingle(),
         supabase
           .from("documents")
           .select("name")
           .eq("case_id", caseId)
-          .eq("org_id", orgId)
+          .eq("org_id", effectiveOrgId)
           .order("created_at", { ascending: false })
           .limit(10),
       ]);
@@ -131,7 +124,7 @@ export async function buildKeyFactsSummary(
             .from("cases")
             .update({ practice_area: "criminal" } as any)
             .eq("id", caseId)
-            .eq("org_id", orgId);
+            .eq("org_id", effectiveOrgId);
         }
       } catch {
         // ignore
@@ -144,11 +137,13 @@ export async function buildKeyFactsSummary(
   // =============================================================================
   if (normalizedPracticeArea === "criminal") {
     try {
+      // Use case's actual org_id for queries (avoids mismatch when orgIdResolved != case.org_id)
+      // Tenant isolation: always filter by case.org_id (effectiveOrgId), never by orgIdResolved
       const { data: documents } = await supabase
         .from("documents")
         .select("id, name, created_at, extracted_json, raw_text")
         .eq("case_id", caseId)
-        .eq("org_id", orgId)
+        .eq("org_id", effectiveOrgId)
         .order("created_at", { ascending: false })
         .limit(50);
 
@@ -156,14 +151,14 @@ export async function buildKeyFactsSummary(
         .from("criminal_cases")
         .select("defendant_name, court_name, next_hearing_date, next_hearing_type, next_bail_review, bail_status")
         .eq("id", caseId)
-        .eq("org_id", orgId)
+        .eq("org_id", effectiveOrgId)
         .maybeSingle();
 
       const { data: charges } = await supabase
         .from("criminal_charges")
         .select("offence, section, charge_date, status")
         .eq("case_id", caseId)
-        .eq("org_id", orgId)
+        .eq("org_id", effectiveOrgId)
         .order("charge_date", { ascending: false })
         .limit(5);
 
@@ -171,7 +166,7 @@ export async function buildKeyFactsSummary(
         .from("criminal_hearings")
         .select("hearing_date, hearing_type, court_name, outcome")
         .eq("case_id", caseId)
-        .eq("org_id", orgId)
+        .eq("org_id", effectiveOrgId)
         .order("hearing_date", { ascending: true })
         .limit(20);
 
@@ -271,7 +266,7 @@ export async function buildKeyFactsSummary(
           .from("case_analysis_versions")
           .select("version_number, missing_evidence")
           .eq("case_id", caseId)
-          .eq("org_id", orgId)
+          .eq("org_id", effectiveOrgId)
           .order("version_number", { ascending: false })
           .limit(1);
 
@@ -283,7 +278,7 @@ export async function buildKeyFactsSummary(
           .from("case_bundles")
           .select("total_pages")
           .eq("case_id", caseId)
-          .eq("org_id", orgId)
+          .eq("org_id", effectiveOrgId)
           .order("created_at", { ascending: false })
           .limit(1);
         const totalPages = typeof latestBundleRows?.[0]?.total_pages === "number" ? latestBundleRows?.[0]?.total_pages : undefined;
@@ -399,8 +394,8 @@ export async function buildKeyFactsSummary(
     .from("housing_cases")
     .select("*")
     .eq("id", caseId)
-    .eq("org_id", orgId)
     .maybeSingle();
+    // Don't filter by org_id - case already found via scoped lookup
 
   // 4. Fetch risk flags
   const { data: riskFlags } = await supabase
@@ -470,7 +465,7 @@ export async function buildKeyFactsSummary(
       .from("case_analysis_versions")
       .select("version_number, missing_evidence")
       .eq("case_id", caseId)
-      .eq("org_id", orgId)
+      .eq("org_id", effectiveOrgId)
       .order("version_number", { ascending: false })
       .limit(1);
 
@@ -482,7 +477,7 @@ export async function buildKeyFactsSummary(
       .from("case_bundles")
       .select("total_pages")
       .eq("case_id", caseId)
-      .eq("org_id", orgId)
+      .eq("org_id", effectiveOrgId)
       .order("created_at", { ascending: false })
       .limit(1);
     const totalPages = typeof latestBundleRows?.[0]?.total_pages === "number" ? latestBundleRows?.[0]?.total_pages : undefined;

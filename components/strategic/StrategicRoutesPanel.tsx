@@ -161,9 +161,6 @@ export function StrategicRoutesPanel({ caseId }: StrategicRoutesPanelProps) {
                   {strategy.title.replace(`Route ${strategy.route}: `, "")}
                 </h4>
               </div>
-              <Badge className={getProbabilityColor(strategy.successProbability)}>
-                {strategy.successProbability}
-              </Badge>
             </div>
 
             <p className="text-xs text-muted-foreground leading-relaxed">{strategy.description}</p>
@@ -226,8 +223,7 @@ export function StrategicRoutesPanel({ caseId }: StrategicRoutesPanelProps) {
               )}
 
               <div className="flex items-center gap-4 text-xs text-muted-foreground">
-                <span>Time: {strategy.estimatedTimeframe}</span>
-                <span>Cost: {strategy.estimatedCost}</span>
+                <span>Timeframe: {strategy.estimatedTimeframe}</span>
               </div>
             </div>
 
