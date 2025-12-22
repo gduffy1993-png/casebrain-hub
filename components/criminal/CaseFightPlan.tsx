@@ -263,10 +263,10 @@ export function CaseFightPlan({ caseId }: CaseFightPlanProps) {
             {tacticalPlan.length > 0 ? (
               <ol className="space-y-3 text-sm text-foreground">
                 {tacticalPlan
-                  .filter(step => !step.includes("Win Probability") && !step.includes("%")) // Remove percentage lines
-                  .filter(step => step.trim().length > 0) // Remove empty lines
+                  .filter((step: string) => !step.includes("Win Probability") && !step.includes("%")) // Remove percentage lines
+                  .filter((step: string) => step.trim().length > 0) // Remove empty lines
                   .slice(0, 5) // Max 5 steps
-                  .map((step, idx) => {
+                  .map((step: string, idx: number) => {
                     // Clean up step text (remove "Step 1:", "Argument:", "Question:" prefixes if redundant)
                     const cleanStep = step
                       .replace(/^(Step \d+:|Argument:|Question:)\s*/i, "")
@@ -369,7 +369,7 @@ export function CaseFightPlan({ caseId }: CaseFightPlanProps) {
               Secondary angles to prepare (do not lead with)
             </summary>
             <ul className="text-sm text-foreground space-y-2 mt-2 ml-4">
-              {supportingAngles.slice(0, 3).map((angle, idx) => (
+              {supportingAngles.slice(0, 3).map((angle: DefenseAngle, idx: number) => (
                 <li key={idx} className="flex items-start gap-2">
                   <span className="text-muted-foreground mt-1">•</span>
                   <div>
@@ -405,7 +405,7 @@ export function CaseFightPlan({ caseId }: CaseFightPlanProps) {
             {readyToUseSubmissions.length > 0 && (
               <div className="space-y-2 mt-3">
                 <p className="text-xs font-medium text-muted-foreground">Ready-to-use submissions:</p>
-                {readyToUseSubmissions.slice(0, 2).map((submission, idx) => (
+                {readyToUseSubmissions.slice(0, 2).map((submission: string, idx: number) => (
                   <div key={idx} className="p-3 rounded bg-muted/20 border border-border/30">
                     <p className="text-xs text-foreground leading-relaxed">
                       {submission}
@@ -416,7 +416,7 @@ export function CaseFightPlan({ caseId }: CaseFightPlanProps) {
             )}
             {readyToUseArguments.length > 0 && disclosureRequests.length === 0 && readyToUseSubmissions.length === 0 && (
               <div className="space-y-2">
-                {readyToUseArguments.slice(0, 2).map((arg, idx) => (
+                {readyToUseArguments.slice(0, 2).map((arg: string, idx: number) => (
                   <div key={idx} className="p-3 rounded bg-muted/20 border border-border/30">
                     <p className="text-xs text-foreground leading-relaxed">
                       {arg}
@@ -444,7 +444,7 @@ export function CaseFightPlan({ caseId }: CaseFightPlanProps) {
           <div className="p-3 rounded bg-amber-950/20 border border-amber-800/30">
             <p className="text-xs font-medium text-amber-300 mb-1.5">Professional Judgment</p>
             <ul className="text-xs text-amber-200/90 space-y-1">
-              {data.evidenceStrengthWarnings.map((warning, idx) => (
+              {data.evidenceStrengthWarnings.map((warning: string, idx: number) => (
                 <li key={idx} className="flex items-start gap-1.5">
                   <span className="text-amber-400 mt-0.5">•</span>
                   <span>{warning}</span>
