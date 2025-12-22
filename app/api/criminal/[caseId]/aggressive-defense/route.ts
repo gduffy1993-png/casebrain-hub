@@ -4,7 +4,7 @@
  * Returns aggressive defense analysis - finds EVERY possible angle to win
  */
 
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import { requireAuthContextApi } from "@/lib/auth-api";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { findAllDefenseAngles, type DefenseAngle } from "@/lib/criminal/aggressive-defense-engine";
@@ -57,156 +57,139 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         criticalMissingCount: bundle.criticalMissingCount,
       });
 
-    // Verify case access
-    const supabase = getSupabaseAdminClient();
-    const { data: caseRecord } = await supabase
-      .from("cases")
-      .select("id, practice_area")
-      .eq("id", caseId)
-      .eq("org_id", orgId)
-      .single();
+      const supabase = getSupabaseAdminClient();
 
-    if (!caseRecord || caseRecord.practice_area !== "criminal") {
-      return NextResponse.json({ error: "Case not found or not a criminal case" }, { status: 404 });
-    }
-
-    // Get criminal case data
-    const { data: criminalCase } = await supabase
-      .from("criminal_cases")
-      .select("*")
-      .eq("id", caseId)
-      .eq("org_id", orgId)
-      .single();
-
-    if (!criminalCase) {
-      return NextResponse.json({ error: "Criminal case data not found" }, { status: 404 });
-    }
-
-    // Get extracted facts (contains criminalMeta)
-    const { data: documents } = await supabase
-      .from("documents")
-      .select("extracted_facts")
-      .eq("case_id", caseId)
-      .eq("org_id", orgId)
-      .limit(1)
-      .single();
-
-    let criminalMeta = null;
-    if (documents?.extracted_facts) {
-      const facts = typeof documents.extracted_facts === "string" 
-        ? JSON.parse(documents.extracted_facts) 
-        : documents.extracted_facts;
-      criminalMeta = facts.criminalMeta || null;
-    }
-
-    // Get aggressive defense analysis
-    const analysis = await findAllDefenseAngles(criminalMeta, caseId);
-
-    // Get key facts for evidence strength analysis
-    const { data: keyFacts } = await supabase
-      .from("case_analysis")
-      .select("analysis_json")
-      .eq("case_id", caseId)
-      .eq("analysis_type", "key_facts")
-      .order("created_at", { ascending: false })
-      .limit(1)
-      .maybeSingle();
-
-    // Use buildCaseContext documents (same source as everything else - "One Brain")
-    // This ensures we're analyzing the same documents that other endpoints use
-    const documentsForAnalysis = context.documents.map((doc) => ({
-      raw_text: doc.raw_text,
-      extracted_facts: doc.extracted_json, // Use extracted_json as extracted_facts
-      extracted_json: doc.extracted_json,
-    }));
-
-    // Analyze evidence strength for reality calibration
-    const evidenceStrength = analyzeEvidenceStrength({
-      documents: documentsForAnalysis,
-      keyFacts: keyFacts?.analysis_json,
-      aggressiveDefense: analysis,
-      strategicOverview: null,
-    });
-
-    // Apply reality calibration to win probabilities (using shared calibration function)
-    // Calibrate all angles (preserves DefenseAngle type)
-    analysis.criticalAngles = calibrateAngles<DefenseAngle>(analysis.criticalAngles || [], evidenceStrength);
-    analysis.allAngles = calibrateAngles<DefenseAngle>(analysis.allAngles || [], evidenceStrength);
-
-    // Calibrate recommended strategy angles
-    if (analysis.recommendedStrategy) {
-      if (analysis.recommendedStrategy.primaryAngle) {
-        analysis.recommendedStrategy.primaryAngle.winProbability = calibrateProbability(
-          analysis.recommendedStrategy.primaryAngle.winProbability || 70,
-          evidenceStrength,
-        );
+      // Verify case is criminal (already checked via context.case, but double-check practice_area)
+      if (context.case.practice_area !== "criminal") {
+        return makeNotFound<any>(context, caseId);
       }
-      if (analysis.recommendedStrategy.supportingAngles) {
-        analysis.recommendedStrategy.supportingAngles = calibrateAngles<DefenseAngle>(
-          analysis.recommendedStrategy.supportingAngles,
-          evidenceStrength,
-        );
-      }
-      // Calibrate combined probability
-      analysis.recommendedStrategy.combinedProbability = calibrateProbability(
-        analysis.recommendedStrategy.combinedProbability || 70,
-        evidenceStrength,
-      );
-    }
 
-    // Compute overall from calibrated angles (ensures consistency)
-    if (analysis.criticalAngles.length > 0) {
-      analysis.overallWinProbability = computeOverallFromAngles(analysis.criticalAngles, "weighted");
-    } else if (analysis.overallWinProbability) {
-      analysis.overallWinProbability = calibrateProbability(analysis.overallWinProbability, evidenceStrength);
-    }
-
-    // Update specific arguments for disclosure stay angles (language adjustment)
-    if (evidenceStrength.calibration.shouldDowngradeDisclosureStay) {
-      analysis.criticalAngles = analysis.criticalAngles.map((angle: any) => {
-        if (angle.angleType === "DISCLOSURE_FAILURE_STAY") {
-          return {
-            ...angle,
-            specificArguments: angle.specificArguments?.map((arg: string) =>
-              arg.includes("Consider stay/abuse of process only if disclosure failures persist after a clear chase trail")
-                ? arg
-                : arg.replace(/stay|abuse of process/gi, (match) => {
-                    return match.toLowerCase() === "stay" ? "disclosure directions" : "procedural leverage";
-                  })
-            ) || angle.specificArguments,
-          };
+      // Get extracted facts from context.documents (same source as everything else)
+      // Use the first document's extracted_json as criminalMeta source
+      let criminalMeta = null;
+      if (context.documents.length > 0 && context.documents[0].extracted_json) {
+        const extractedJson = context.documents[0].extracted_json;
+        if (typeof extractedJson === "object" && extractedJson !== null) {
+          criminalMeta = (extractedJson as any).criminalMeta || null;
         }
-        return angle;
-      });
-    }
+      }
 
-    // Add evidence strength warnings to analysis
-    analysis.evidenceStrengthWarnings = evidenceStrength.warnings;
-    analysis.evidenceStrength = evidenceStrength.overallStrength;
-    analysis.realisticOutcome = evidenceStrength.calibration.realisticOutcome;
+      // Get aggressive defense analysis
+      const analysis = await findAllDefenseAngles(criminalMeta, caseId);
 
-    if (!gate.show) {
-      return NextResponse.json({
-        ...analysis,
-        probabilitiesSuppressed: true,
-        suppressionReason: gate.reason,
-        bundleCompleteness: bundle.completeness,
-        criticalMissingCount: bundle.criticalMissingCount,
-        overallWinProbability: null,
-        recommendedStrategy: analysis?.recommendedStrategy
-          ? { ...analysis.recommendedStrategy, combinedProbability: null }
-          : analysis?.recommendedStrategy,
-        criticalAngles: (analysis?.criticalAngles ?? []).map((a: any) => ({ ...a, winProbability: null })),
-        allAngles: (analysis?.allAngles ?? []).map((a: any) => ({ ...a, winProbability: null })),
-      });
-    }
+      // Get key facts for evidence strength analysis
+      const { data: keyFacts } = await supabase
+        .from("case_analysis")
+        .select("analysis_json")
+        .eq("case_id", caseId)
+        .eq("analysis_type", "key_facts")
+        .order("created_at", { ascending: false })
+        .limit(1)
+        .maybeSingle();
 
-      return NextResponse.json({
-        ...analysis,
-        probabilitiesSuppressed: false,
-        bundleCompleteness: bundle.completeness,
-        criticalMissingCount: bundle.criticalMissingCount,
+      // Use buildCaseContext documents (same source as everything else - "One Brain")
+      // This ensures we're analyzing the same documents that other endpoints use
+      const documentsForAnalysis = context.documents.map((doc) => ({
+        raw_text: doc.raw_text,
+        extracted_facts: doc.extracted_json, // Use extracted_json as extracted_facts
+        extracted_json: doc.extracted_json,
+      }));
+
+      // Analyze evidence strength for reality calibration
+      const evidenceStrength = analyzeEvidenceStrength({
+        documents: documentsForAnalysis,
+        keyFacts: keyFacts?.analysis_json,
+        aggressiveDefense: analysis,
+        strategicOverview: null,
       });
+
+      // Apply reality calibration to win probabilities (using shared calibration function)
+      // Calibrate all angles (preserves DefenseAngle type)
+      analysis.criticalAngles = calibrateAngles<DefenseAngle>(analysis.criticalAngles || [], evidenceStrength);
+      analysis.allAngles = calibrateAngles<DefenseAngle>(analysis.allAngles || [], evidenceStrength);
+
+      // Calibrate recommended strategy angles
+      if (analysis.recommendedStrategy) {
+        if (analysis.recommendedStrategy.primaryAngle) {
+          analysis.recommendedStrategy.primaryAngle.winProbability = calibrateProbability(
+            analysis.recommendedStrategy.primaryAngle.winProbability || 70,
+            evidenceStrength,
+          );
+        }
+        if (analysis.recommendedStrategy.supportingAngles) {
+          analysis.recommendedStrategy.supportingAngles = calibrateAngles<DefenseAngle>(
+            analysis.recommendedStrategy.supportingAngles,
+            evidenceStrength,
+          );
+        }
+        // Calibrate combined probability
+        analysis.recommendedStrategy.combinedProbability = calibrateProbability(
+          analysis.recommendedStrategy.combinedProbability || 70,
+          evidenceStrength,
+        );
+      }
+
+      // Compute overall from calibrated angles (ensures consistency)
+      if (analysis.criticalAngles.length > 0) {
+        analysis.overallWinProbability = computeOverallFromAngles(analysis.criticalAngles, "weighted");
+      } else if (analysis.overallWinProbability) {
+        analysis.overallWinProbability = calibrateProbability(analysis.overallWinProbability, evidenceStrength);
+      }
+
+      // Update specific arguments for disclosure stay angles (language adjustment)
+      if (evidenceStrength.calibration.shouldDowngradeDisclosureStay) {
+        analysis.criticalAngles = analysis.criticalAngles.map((angle: any) => {
+          if (angle.angleType === "DISCLOSURE_FAILURE_STAY") {
+            return {
+              ...angle,
+              specificArguments: angle.specificArguments?.map((arg: string) =>
+                arg.includes("Consider stay/abuse of process only if disclosure failures persist after a clear chase trail")
+                  ? arg
+                  : arg.replace(/stay|abuse of process/gi, (match) => {
+                      return match.toLowerCase() === "stay" ? "disclosure directions" : "procedural leverage";
+                    })
+              ) || angle.specificArguments,
+            };
+          }
+          return angle;
+        });
+      }
+
+      // Add evidence strength warnings to analysis
+      analysis.evidenceStrengthWarnings = evidenceStrength.warnings;
+      analysis.evidenceStrength = evidenceStrength.overallStrength;
+      analysis.realisticOutcome = evidenceStrength.calibration.realisticOutcome;
+
+      if (!gate.show) {
+        return makeOk(
+          {
+            ...analysis,
+            probabilitiesSuppressed: true,
+            suppressionReason: gate.reason,
+            bundleCompleteness: bundle.completeness,
+            criticalMissingCount: bundle.criticalMissingCount,
+            overallWinProbability: null,
+            recommendedStrategy: analysis?.recommendedStrategy
+              ? { ...analysis.recommendedStrategy, combinedProbability: null }
+              : analysis?.recommendedStrategy,
+            criticalAngles: (analysis?.criticalAngles ?? []).map((a: any) => ({ ...a, winProbability: null })),
+            allAngles: (analysis?.allAngles ?? []).map((a: any) => ({ ...a, winProbability: null })),
+          },
+          context,
+          caseId,
+        );
+      }
+
+      return makeOk(
+        {
+          ...analysis,
+          probabilitiesSuppressed: false,
+          bundleCompleteness: bundle.completeness,
+          criticalMissingCount: bundle.criticalMissingCount,
+        },
+        context,
+        caseId,
+      );
     } catch (error) {
       console.error("Failed to generate aggressive defense analysis:", error);
       const errorMessage = error instanceof Error ? error.message : "Failed to generate aggressive defense analysis";

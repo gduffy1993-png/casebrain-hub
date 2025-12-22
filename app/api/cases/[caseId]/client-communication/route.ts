@@ -1,9 +1,11 @@
 import "server-only";
-import { NextRequest, NextResponse } from "next/server";
-import { requireAuthContext } from "@/lib/auth";
-import { buildCaseContext, guardAnalysis } from "@/lib/case-context";
+import { NextRequest } from "next/server";
+import { requireAuthContextApi } from "@/lib/auth-api";
+import { buildCaseContext } from "@/lib/case-context";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { normalizePracticeArea } from "@/lib/types/casebrain";
+import { makeOk, makeGateFail, makeNotFound, makeError, type ApiResponse } from "@/lib/api/response";
+import { checkAnalysisGate } from "@/lib/analysis/text-gate";
 
 export const runtime = "nodejs";
 
@@ -24,34 +26,58 @@ type ClientCommunication = {
 };
 
 export async function GET(
-  request: NextRequest,
+  _request: NextRequest,
   { params }: { params: Promise<{ caseId: string }> }
 ) {
+  let caseId: string;
   try {
-    const { userId } = await requireAuthContext();
-    const { caseId } = await params;
+    const resolved = await params;
+    caseId = resolved.caseId;
+  } catch {
+    return makeError<ClientCommunication>(
+      "CLIENT_COMM_ERROR",
+      "Invalid case ID",
+      {
+        case: null,
+        orgScope: { orgIdResolved: "", method: "solo_fallback" },
+        documents: [],
+        diagnostics: {
+          docCount: 0,
+          rawCharsTotal: 0,
+          jsonCharsTotal: 0,
+          avgRawCharsPerDoc: 0,
+          suspectedScanned: false,
+          reasonCodes: [],
+        },
+        canGenerateAnalysis: false,
+      },
+      "",
+    );
+  }
+
+  try {
+    const authRes = await requireAuthContextApi();
+    if (!authRes.ok) return authRes.response;
+    const { userId } = authRes.context;
 
     const context = await buildCaseContext(caseId, { userId });
 
     if (!context.case) {
-      return NextResponse.json(
-        { ok: false, data: null, banner: context.banner, diagnostics: context.diagnostics },
-        { status: 404 }
-      );
+      return makeNotFound<ClientCommunication>(context, caseId);
     }
 
-    try {
-      guardAnalysis(context);
-    } catch (error: any) {
-      if (error.name === "AnalysisGateError") {
-        return NextResponse.json({
-          ok: false,
-          data: null,
-          banner: error.banner,
-          diagnostics: error.diagnostics,
-        });
-      }
-      throw error;
+    // Check analysis gate (hard gating)
+    const gateResult = checkAnalysisGate(context);
+    if (!gateResult.ok) {
+      return makeGateFail<ClientCommunication>(
+        {
+          severity: gateResult.banner?.severity || "warning",
+          title: gateResult.banner?.title || "Insufficient text extracted",
+          detail: gateResult.banner?.detail,
+        },
+        context,
+        caseId,
+      );
     }
 
     const practiceArea = normalizePracticeArea(context.case.practice_area as string | null);
@@ -178,15 +204,43 @@ Best regards,
       },
     };
 
-    return NextResponse.json({ ok: true, data: result });
+    return makeOk(result, context, caseId);
   } catch (error: any) {
     console.error("[client-communication] Error:", error);
-    return NextResponse.json(
+    const errorMessage = error instanceof Error ? error.message : "Failed to generate client communication";
+    try {
+      const authRes = await requireAuthContextApi();
+      if (authRes.ok) {
+        const { userId } = authRes.context;
+        const context = await buildCaseContext(caseId, { userId });
+        return makeError<ClientCommunication>(
+          "CLIENT_COMM_ERROR",
+          errorMessage,
+          context,
+          caseId,
+        );
+      }
+    } catch {
+      // Fallback
+    }
+    return makeError<ClientCommunication>(
+      "CLIENT_COMM_ERROR",
+      errorMessage,
       {
-        ok: false,
-        error: error.message || "Failed to generate client communication",
+        case: null,
+        orgScope: { orgIdResolved: "", method: "solo_fallback" },
+        documents: [],
+        diagnostics: {
+          docCount: 0,
+          rawCharsTotal: 0,
+          jsonCharsTotal: 0,
+          avgRawCharsPerDoc: 0,
+          suspectedScanned: false,
+          reasonCodes: [],
+        },
+        canGenerateAnalysis: false,
       },
-      { status: 500 }
+      caseId,
     );
   }
 }
