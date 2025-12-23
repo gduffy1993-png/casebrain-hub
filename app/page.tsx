@@ -176,54 +176,29 @@ function MarketingHomepage() {
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
-                <Link href="#demo">
+                <a href="#demo">
                   <Button variant="outline" size="lg" className="text-base w-full sm:w-auto">
                     <Play className="mr-2 h-5 w-5" />
-                    Watch 90-second demo
+                    Watch demo
                   </Button>
-              </Link>
+                </a>
               </div>
               <p className="text-xs text-muted-foreground">
                 No credit card needed. Designed for UK litigation teams.
               </p>
             </div>
 
-            {/* Right: Video/Screenshot Card */}
+            {/* Right: Placeholder for visual balance */}
             <div className="relative">
               <div className="rounded-2xl bg-card border border-border shadow-2xl shadow-black/60 overflow-hidden">
-                {/* Fake app header strip */}
-                <div className="h-12 bg-muted border-b border-border flex items-center gap-2 px-4">
-                  <div className="h-2 w-2 rounded-full bg-red-500/60"></div>
-                  <div className="h-2 w-2 rounded-full bg-amber-500/60"></div>
-                  <div className="h-2 w-2 rounded-full bg-green-500/60"></div>
-                  <div className="ml-auto h-6 w-32 rounded bg-border/50"></div>
-                </div>
-                
-                {/* Video or placeholder */}
-                <div className="aspect-video bg-muted/30 flex items-center justify-center relative">
-                  {/* Try to load video, fallback to placeholder */}
-                  <video
-                    className="w-full h-full object-cover"
-                    controls
-                    poster="/casebrain-demo-poster.jpg"
-                  >
-                    <source src="/casebrain-demo.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
-                  
-                  {/* Placeholder if video doesn't exist */}
-                  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-muted/50 to-muted/30">
-                    <div className="text-center space-y-4 p-8">
-                      <div className="mx-auto w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center">
-                        <Play className="h-10 w-10 text-primary" />
-                      </div>
-                      <p className="text-sm font-medium text-foreground">
-                        CaseBrain demo video goes here
-                      </p>
-                      <p className="text-xs text-muted-foreground">
-                        Add /public/casebrain-demo.mp4 to show video
-                      </p>
+                <div className="aspect-video bg-muted/30 flex items-center justify-center">
+                  <div className="text-center space-y-4 p-8">
+                    <div className="mx-auto w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center">
+                      <Play className="h-10 w-10 text-primary" />
                     </div>
+                    <p className="text-sm font-medium text-foreground">
+                      Watch the demo below
+                    </p>
                   </div>
                 </div>
               </div>
@@ -238,6 +213,31 @@ function MarketingHomepage() {
           <p className="text-sm text-muted-foreground">
             Built for: <span className="text-foreground font-medium">Housing disrepair</span> · <span className="text-foreground font-medium">Personal injury</span> · <span className="text-foreground font-medium">Clinical negligence</span> · <span className="text-foreground font-medium">General litigation</span>
           </p>
+        </div>
+      </section>
+
+      {/* Demo Video Section */}
+      <section id="demo" className="px-4 py-20">
+        <div className="mx-auto max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+              See CaseBrain in action
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Watch how CaseBrain processes case bundles and extracts key information
+            </p>
+          </div>
+          <div className="rounded-lg border border-border overflow-hidden bg-card shadow-xl">
+            <video
+              src="/casebrain-demo.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              controls={false}
+              className="w-full max-h-[520px] object-cover"
+            />
+          </div>
         </div>
       </section>
 
