@@ -6,12 +6,10 @@ import { ErrorBoundary } from "@/components/ui/error-boundary";
 import { LoopholesPanel } from "./LoopholesPanel";
 import { PACEComplianceChecker } from "./PACEComplianceChecker";
 import { DisclosureTracker } from "./DisclosureTracker";
-import { EvidenceAnalysisPanel } from "./EvidenceAnalysisPanel";
 import { ChargesPanel } from "./ChargesPanel";
 import { CourtHearingsPanel } from "./CourtHearingsPanel";
 import { BailTracker } from "./BailTracker";
 import { ClientAdvicePanel } from "./ClientAdvicePanel";
-import { ExecutiveBriefPanel } from "./ExecutiveBriefPanel";
 import { BailApplicationPanel } from "./BailApplicationPanel";
 import { SentencingMitigationPanel } from "./SentencingMitigationPanel";
 import { CaseFightPlan } from "./CaseFightPlan";
@@ -67,24 +65,14 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         />
       )}
 
-      {/* Primary Defence Strategy - Case Fight Plan */}
+      {/* Primary Defence Strategy - Case Fight Plan (ONLY strategy surface for criminal cases) */}
       <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Defence plan unavailable</div>}>
         <CaseFightPlan caseId={caseId} />
       </ErrorBoundary>
 
-      {/* Executive Brief - One-Page Case Summary (30-Minute Court Prep) */}
-      <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Executive brief unavailable</div>}>
-        <ExecutiveBriefPanel caseId={caseId} />
-      </ErrorBoundary>
-
-      {/* Loopholes & Weaknesses - Critical */}
+      {/* Loopholes & Weaknesses - Factual analysis only (not strategy generation) */}
       <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Loopholes panel unavailable</div>}>
         <LoopholesPanel caseId={caseId} />
-      </ErrorBoundary>
-
-      {/* Evidence Analysis */}
-      <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Evidence analysis unavailable</div>}>
-        <EvidenceAnalysisPanel caseId={caseId} />
       </ErrorBoundary>
 
       {/* Phase 2: Tactical Advantage Panels */}

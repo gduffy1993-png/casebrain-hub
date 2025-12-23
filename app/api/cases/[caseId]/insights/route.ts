@@ -73,7 +73,6 @@ export async function GET(
       title: (context.case as any).title ?? null,
       summary: (context.case as any).summary ?? null,
       practice_area: (context.case as any).practice_area ?? null,
-      status: (context.case as any).status ?? null,
       supervisor_reviewed: (context.case as any).supervisor_reviewed ?? null,
       created_at: (context.case as any).created_at ?? new Date().toISOString(),
     };
@@ -303,7 +302,6 @@ export async function GET(
           title: caseRecord.title ?? "",
           summary: caseRecord.summary ?? null,
           practice_area: caseRecord.practice_area ?? null,
-          status: caseRecord.status ?? null,
           created_at: caseRecord.created_at,
         },
         documents: (documents ?? []).map(d => ({
@@ -356,6 +354,7 @@ export async function GET(
       throw buildError;
     }
 
+    // Return insights in consistent format (not wrapped in ApiResponse for this endpoint)
     return NextResponse.json(insights);
   } catch (error) {
     console.error("[insights] Top-level error:", error);

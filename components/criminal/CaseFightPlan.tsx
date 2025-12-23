@@ -235,12 +235,12 @@ export function CaseFightPlan({ caseId }: CaseFightPlanProps) {
           )}
         </div>
 
-        {/* Where this case is vulnerable */}
+        {/* Where this case is vulnerable (procedural leverage points) */}
         {primaryAngle && (
           <div className="space-y-3">
             <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
               <AlertCircle className="h-4 w-4" />
-              Where this case is vulnerable
+              Procedural leverage points
             </h3>
             <p className="text-sm text-foreground leading-relaxed">
               {primaryAngle.whyThisMatters || primaryAngle.prosecutionWeakness}

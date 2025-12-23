@@ -77,142 +77,97 @@ export function CaseKeyFactsPanel({ caseId }: KeyFactsPanelProps) {
     const fetchKeyFacts = async () => {
       try {
         const res = await fetch(`/api/cases/${caseId}/key-facts`);
+        const data = await res.json().catch(() => null);
+        
+        // Handle ApiResponse shape: { ok, data: { keyFacts? }, banner?, diagnostics?, errors? }
+        if (data && typeof data === "object") {
+          // Set diagnostics if present (always available)
+          if (data.diagnostics) {
+            setDiagnostics({
+              docCount: data.diagnostics.documentCount ?? 0,
+              rawCharsTotal: data.diagnostics.rawCharsTotal ?? 0,
+              jsonCharsTotal: data.diagnostics.jsonCharsTotal ?? 0,
+              avgRawCharsPerDoc: data.diagnostics.rawCharsTotal && data.diagnostics.documentCount 
+                ? Math.round(data.diagnostics.rawCharsTotal / data.diagnostics.documentCount)
+                : 0,
+              suspectedScanned: data.diagnostics.suspectedScanned ?? false,
+            });
+          }
+
+          // Handle ok:true case - keyFacts should be in data.keyFacts
+          if (data.ok === true && data.data && data.data.keyFacts) {
+            setKeyFacts(data.data.keyFacts);
+            // Banner may still be present even if ok:true (informational)
+            if (data.banner) {
+              setBanner({
+                severity: data.banner.severity,
+                title: data.banner.title,
+                message: data.banner.detail ?? "",
+              });
+            }
+            return; // Success - exit early
+          }
+
+          // Handle ok:false case - show banner with diagnostics, but still show keyFacts if available
+          if (data.ok === false) {
+            // Set banner from response
+            if (data.banner) {
+              setBanner({
+                severity: data.banner.severity,
+                title: data.banner.title,
+                message: data.banner.detail ?? (data.errors?.[0]?.message ?? "Key facts unavailable"),
+              });
+            } else if (data.errors && data.errors.length > 0) {
+              // Fallback to errors array if no banner
+              setBanner({
+                severity: "error",
+                title: "Key Facts Error",
+                message: data.errors[0].message,
+              });
+            } else {
+              // Last resort banner
+              setBanner({
+                severity: "warning",
+                title: "Key Facts Unavailable",
+                message: "Unable to generate key facts. Check diagnostics for details.",
+              });
+            }
+            // Still set keyFacts if available (even when gated, minimal extraction may succeed)
+            if (data.data && data.data.keyFacts) {
+              setKeyFacts(data.data.keyFacts);
+            }
+            return; // Exit - banner will be displayed (and keyFacts if available)
+          }
+        }
+
+        // Fallback: if response shape is unexpected, try legacy format
         if (res.ok) {
-          const data = await res.json().catch(() => null);
-          const maybeKeyFacts = data?.keyFacts ?? null;
+          const maybeKeyFacts = data?.keyFacts ?? data?.data?.keyFacts ?? null;
           if (maybeKeyFacts) {
             setKeyFacts(maybeKeyFacts);
-            // Set banner and diagnostics if present
             if (data?.banner) {
               setBanner(data.banner);
             }
-            if (data?.diagnostics) {
-              setDiagnostics(data.diagnostics);
-            }
-          } else {
-            throw new Error(data?.message ?? "Key facts payload missing");
-          }
-        } else {
-          const payload = await res.json().catch(() => null);
-          const serverMsg = payload?.message ?? payload?.error ?? null;
-          // Fallback: try to extract from documents
-          try {
-            const docsRes = await fetch(`/api/cases/${caseId}/documents`);
-            if (docsRes.ok) {
-              const docsData = await docsRes.json();
-              const documents = docsData.documents ?? [];
-              
-              // Extract basic facts from documents
-              const parties: Array<{ name: string; role: string }> = [];
-              const dates: Array<{ label: string; date: string }> = [];
-              const amounts: Array<{ label: string; value: number; currency: string }> = [];
-              
-              for (const doc of documents) {
-                if (doc.extracted_json && typeof doc.extracted_json === "object") {
-                  const extracted = doc.extracted_json as any;
-                  
-                  // Extract parties
-                  if (Array.isArray(extracted.parties)) {
-                    for (const party of extracted.parties) {
-                      if (party.name && !parties.find(p => p.name === party.name)) {
-                        parties.push({ name: party.name, role: party.role || "other" });
-                      }
-                    }
-                  }
-                  
-                  // Extract dates
-                  if (Array.isArray(extracted.dates)) {
-                    for (const date of extracted.dates) {
-                      if (date.label && date.isoDate) {
-                        dates.push({ label: date.label, date: date.isoDate });
-                      }
-                    }
-                  }
-                  
-                  // Extract amounts
-                  if (Array.isArray(extracted.amounts)) {
-                    for (const amount of extracted.amounts) {
-                      if (amount.label && amount.value) {
-                        amounts.push({
-                          label: amount.label,
-                          value: amount.value,
-                          currency: amount.currency || "GBP",
-                        });
-                      }
-                    }
-                  }
-                }
-              }
-              
-              if (parties.length > 0 || dates.length > 0 || amounts.length > 0) {
-                setFallbackData({ parties, dates, amounts });
-              } else {
-                setError(serverMsg ?? "Failed to load key facts");
-              }
-            } else {
-              setError(serverMsg ?? "Failed to load key facts");
-            }
-          } catch (fallbackErr) {
-            console.error("Fallback extraction failed:", fallbackErr);
-            setError(serverMsg ?? "Failed to load key facts");
+            return;
           }
         }
+
+        // If we get here, response was not ok or shape was unexpected
+        const serverMsg = data?.message ?? data?.error ?? (res.ok ? "Key facts payload missing" : "Failed to load key facts");
+        setBanner({
+          severity: "error",
+          title: "Key Facts Error",
+          message: serverMsg,
+        });
+        return; // Exit - banner will be displayed
       } catch (err) {
         console.error("Failed to fetch key facts:", err);
         const clientMsg = err instanceof Error ? err.message : "Failed to load key facts";
-        // Try fallback extraction
-        try {
-          const docsRes = await fetch(`/api/cases/${caseId}/documents`);
-          if (docsRes.ok) {
-            const docsData = await docsRes.json();
-            const documents = docsData.documents ?? [];
-            
-            const parties: Array<{ name: string; role: string }> = [];
-            const dates: Array<{ label: string; date: string }> = [];
-            const amounts: Array<{ label: string; value: number; currency: string }> = [];
-            
-            for (const doc of documents) {
-              if (doc.extracted_json && typeof doc.extracted_json === "object") {
-                const extracted = doc.extracted_json as any;
-                if (Array.isArray(extracted.parties)) {
-                  for (const party of extracted.parties) {
-                    if (party.name && !parties.find(p => p.name === party.name)) {
-                      parties.push({ name: party.name, role: party.role || "other" });
-                    }
-                  }
-                }
-                if (Array.isArray(extracted.dates)) {
-                  for (const date of extracted.dates) {
-                    if (date.label && date.isoDate) {
-                      dates.push({ label: date.label, date: date.isoDate });
-                    }
-                  }
-                }
-                if (Array.isArray(extracted.amounts)) {
-                  for (const amount of extracted.amounts) {
-                    if (amount.label && amount.value) {
-                      amounts.push({
-                        label: amount.label,
-                        value: amount.value,
-                        currency: amount.currency || "GBP",
-                      });
-                    }
-                  }
-                }
-              }
-            }
-            
-            if (parties.length > 0 || dates.length > 0 || amounts.length > 0) {
-              setFallbackData({ parties, dates, amounts });
-            } else {
-              setError(clientMsg);
-            }
-          } else {
-            setError(clientMsg);
-          }
-        } catch (fallbackErr) {
-          setError(clientMsg);
-        }
+        setBanner({
+          severity: "error",
+          title: "Key Facts Error",
+          message: clientMsg,
+        });
       } finally {
         setIsLoading(false);
       }
@@ -220,6 +175,8 @@ export function CaseKeyFactsPanel({ caseId }: KeyFactsPanelProps) {
 
     fetchKeyFacts();
   }, [caseId]);
+
+  // Initialise default expanded domains and role lens (calm UI)
 
   // Initialise default expanded domains and role lens (calm UI)
   useEffect(() => {

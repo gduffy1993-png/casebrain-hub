@@ -38,7 +38,7 @@ export async function generateCaseSummary(input: CaseSummaryInput): Promise<Case
   // Fetch case data
   const { data: caseRecord } = await supabase
     .from("cases")
-    .select("id, title, summary, practice_area, status, created_at")
+    .select("id, title, summary, practice_area, created_at")
     .eq("id", caseId)
     .eq("org_id", orgId)
     .single();

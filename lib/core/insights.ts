@@ -35,7 +35,6 @@ export type CaseInsightsInput = {
     title: string;
     summary?: string | null;
     practice_area?: string | null;
-    status?: string | null;
     created_at: string;
   };
   documents: Array<{ id: string; name: string; type?: string | null }>;
@@ -74,12 +73,16 @@ export async function buildCaseInsights(input: CaseInsightsInput): Promise<CaseI
   const practiceArea = (caseRecord.practice_area ?? "other_litigation") as PracticeArea;
   const pack = getPackForPracticeArea(practiceArea);
 
-  // Fetch key facts for summary data
+  // Fetch key facts for summary data - handle errors gracefully to prevent UI flashing
   let keyFacts: Awaited<ReturnType<typeof buildKeyFactsSummary>> | undefined;
   try {
     keyFacts = await buildKeyFactsSummary(caseId, orgId);
   } catch (error) {
-    console.error("[buildCaseInsights] Error fetching key facts:", error);
+    // Silently fail - preserve last good render instead of causing UI flash
+    // Log for debugging but don't throw - insights can proceed without keyFacts
+    if (process.env.NODE_ENV !== "production") {
+      console.error("[buildCaseInsights] Error fetching key facts (non-fatal):", error);
+    }
     // Continue with fallback data - keyFacts will be undefined
     keyFacts = undefined;
   }
@@ -205,9 +208,8 @@ function buildSummary(
   let stageLabel: string | null = null;
   if (keyFacts?.stage) {
     stageLabel = formatStageLabel(keyFacts.stage);
-  } else if (caseRecord.status) {
-    stageLabel = formatStageLabel(caseRecord.status);
   }
+  // Note: caseRecord.status column removed - stage now derived from keyFacts only
 
   // Build headline
   let headline: string;
@@ -491,7 +493,7 @@ function buildBriefing(
 
   const clientName = keyFacts?.clientName || "client";
   const opponentName = keyFacts?.opponentName || "opponent";
-  const stage = keyFacts?.stage || caseRecord.status || "early stage";
+  const stage = keyFacts?.stage || "early stage"; // Stage now derived from keyFacts only (cases.status column removed)
 
   // Build overview
   let overview = "";

@@ -31,7 +31,10 @@ export function ChargesPanel({ caseId }: ChargesPanelProps) {
         const res = await fetch(`/api/criminal/${caseId}/charges`);
         if (res.ok) {
           const result = await res.json();
-          setCharges(result.charges || []);
+          // Handle ApiResponse format: { ok: true, data: { charges: [...] } }
+          // or legacy format: { charges: [...] }
+          const chargesData = result.data?.charges || result.charges || [];
+          setCharges(chargesData);
         }
       } catch (error) {
         console.error("Failed to fetch charges:", error);

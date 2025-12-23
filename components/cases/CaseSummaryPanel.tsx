@@ -33,6 +33,7 @@ export function CaseSummaryPanel({
   const [isLoadingInsights, setIsLoadingInsights] = useState(false);
 
   // Try to fetch insights summary for richer one-liner, but don't block on it
+  // Only fetch once - don't re-fetch on every render to prevent flashing
   useEffect(() => {
     let cancelled = false;
     setIsLoadingInsights(true);
@@ -43,13 +44,20 @@ export function CaseSummaryPanel({
         return res.json();
       })
       .then(data => {
-        if (!cancelled && data && typeof data === "object" && "summary" in data) {
-          setInsights(data as CaseInsights);
+        if (!cancelled && data && typeof data === "object") {
+          // Handle both ApiResponse format { insights: {...} } and direct format { summary: {...} }
+          const insightsData = (data as any).insights || data;
+          if ("summary" in insightsData && insightsData.summary?.oneLiner) {
+            // Only update if we have actual content - prevents replacing good data with empty/error state
+            setInsights(insightsData as CaseInsights);
+          }
         }
       })
       .catch(err => {
-        console.error("[CaseSummaryPanel] Failed to fetch insights:", err);
-        // Silently fail - we'll use fallback summary
+        // Silently fail - preserve existing summary instead of showing error state
+        if (process.env.NODE_ENV !== "production") {
+          console.error("[CaseSummaryPanel] Failed to fetch insights (non-fatal):", err);
+        }
       })
       .finally(() => {
         if (!cancelled) {
@@ -60,13 +68,14 @@ export function CaseSummaryPanel({
     return () => {
       cancelled = true;
     };
-  }, [caseId]);
+  }, [caseId]); // Only re-fetch if caseId changes
 
-  // Prefer insights summary, then provided insightsSummary, then case summary, then fallback
+  // Prefer insights summary, then provided insightsSummary, then case summary
+  // Only show fallback if we're not still loading and have no data
   const displaySummary = insights?.summary?.oneLiner 
     || insightsSummary?.oneLiner
     || summary
-    || "Summary will appear here once documents have been analysed.";
+    || (isLoadingInsights ? undefined : "Summary will appear here once documents have been analysed.");
 
   const practiceAreaLabel = insights?.summary?.practiceArea 
     || insightsSummary?.practiceArea
@@ -135,12 +144,14 @@ export function CaseSummaryPanel({
           </div>
         )}
 
-        {/* Summary text */}
-        <div className="rounded-lg border border-white/10 bg-white/5 p-4">
-          <p className="text-sm leading-relaxed text-white/80">
-            {displaySummary}
-          </p>
-        </div>
+        {/* Summary text - only render if we have content or finished loading */}
+        {displaySummary && (
+          <div className="rounded-lg border border-white/10 bg-white/5 p-4">
+            <p className="text-sm leading-relaxed text-white/80">
+              {displaySummary}
+            </p>
+          </div>
+        )}
 
         {/* Loading indicator for insights fetch (subtle) */}
         {isLoadingInsights && (

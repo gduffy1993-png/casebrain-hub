@@ -43,7 +43,7 @@ export async function buildKeyFactsSummary(
     // Use the case's actual org_id if available, otherwise try orgId parameter
     let { data: fetchedCase, error: caseError } = await supabase
       .from("cases")
-      .select("id, title, summary, practice_area, status, created_at, org_id")
+      .select("id, title, summary, practice_area, created_at, org_id")
       .eq("id", caseId)
       .maybeSingle();
 
@@ -307,9 +307,11 @@ export async function buildKeyFactsSummary(
         layeredSummary = null;
       }
 
-      // If defendant_name is missing, try extracting from raw_text
+      // Enhanced extraction: use structured extractor to get comprehensive criminal facts
       let defendantName = criminalCase?.defendant_name;
-      if (!defendantName && documents && documents.length > 0) {
+      let extractedMeta: Awaited<ReturnType<typeof import("@/lib/criminal/structured-extractor").extractCriminalCaseMeta>> | null = null;
+      
+      if (documents && documents.length > 0) {
         let combinedText = "";
         for (const doc of documents) {
           const rawText = (doc as any).raw_text;
@@ -321,27 +323,147 @@ export async function buildKeyFactsSummary(
         if (combinedText.length > 500) {
           try {
             const { extractCriminalCaseMeta } = await import("@/lib/criminal/structured-extractor");
-            const meta = extractCriminalCaseMeta({
+            extractedMeta = extractCriminalCaseMeta({
               text: combinedText,
               documentName: "Combined Bundle",
               now: new Date(),
             });
 
-            if (meta.defendantName) {
-              defendantName = meta.defendantName;
+            if (extractedMeta.defendantName && !defendantName) {
+              defendantName = extractedMeta.defendantName;
             }
           } catch (extractError) {
-            console.warn("[key-facts][criminal] Failed to extract defendant name from raw_text:", extractError);
+            console.warn("[key-facts][criminal] Failed to extract meta from raw_text:", extractError);
           }
         }
       }
+
+      // Build structured primaryIssues from extracted facts (facts-first, never invent)
+      const structuredIssues: string[] = [];
+      
+      // Charge information
+      if (topCharge?.offence) {
+        structuredIssues.push(`Charge: ${topCharge.offence}${topCharge.section ? ` (${topCharge.section})` : ""}`);
+      }
+      
+      // Offence details from extractor
+      if (extractedMeta?.charges && extractedMeta.charges.length > 0) {
+        const firstCharge = extractedMeta.charges[0];
+        if (firstCharge.dateOfOffence) {
+          structuredIssues.push(`Offence date: ${firstCharge.dateOfOffence}`);
+        }
+        if (firstCharge.location) {
+          structuredIssues.push(`Location: ${firstCharge.location}`);
+        }
+      }
+      
+      // Court and complainant
+      const courtName = criminalCase?.court_name ?? extractedMeta?.hearings?.[0]?.court ?? undefined;
+      if (courtName) {
+        structuredIssues.push(`Court: ${courtName}`);
+      }
+      
+      // Key evidence bullets (only if present in text)
+      const evidenceBullets: string[] = [];
+      if (documents && documents.length > 0) {
+        const combinedTextLower = (documents as any[])
+          .map((d: any) => (d.raw_text || "").toLowerCase())
+          .join(" ");
+        
+        // CCTV + facial recognition
+        if (combinedTextLower.includes("cctv") || combinedTextLower.includes("facial recognition")) {
+          const frMatch = combinedTextLower.match(/facial recognition[^\n]{0,100}(\d{1,3})%/i);
+          const confidence = frMatch ? frMatch[1] : null;
+          evidenceBullets.push(confidence 
+            ? `CCTV + facial recognition: ${confidence}% confidence`
+            : "CCTV + facial recognition evidence present");
+        }
+        
+        // Witness IDs
+        if (combinedTextLower.includes("witness") && (combinedTextLower.includes("identification") || combinedTextLower.includes("id"))) {
+          evidenceBullets.push("Witness identification evidence present");
+        }
+        
+        // Medical evidence
+        if (combinedTextLower.includes("medical") || combinedTextLower.includes("injury") || combinedTextLower.includes("fracture")) {
+          evidenceBullets.push("Medical evidence present");
+        }
+        
+        // Forensic evidence (pipe, fingerprints)
+        if (combinedTextLower.includes("fingerprint") || combinedTextLower.includes("forensic")) {
+          evidenceBullets.push("Forensic evidence present");
+        }
+        if (combinedTextLower.includes("pipe") || combinedTextLower.includes("weapon")) {
+          evidenceBullets.push("Weapon recovered");
+        }
+        
+        // Interview stance
+        if (combinedTextLower.includes("no comment") || combinedTextLower.includes("no-comment")) {
+          evidenceBullets.push("Interview stance: No comment");
+        }
+        
+        // PACE compliance
+        if (extractedMeta?.pace) {
+          const pace = extractedMeta.pace;
+          if (pace.status === "ok") {
+            evidenceBullets.push("PACE compliance: OK");
+          } else if (pace.breachesDetected && pace.breachesDetected.length > 0) {
+            evidenceBullets.push(`PACE issues: ${pace.breachesDetected.join(", ")}`);
+          }
+        }
+        
+        // Custody/remand status
+        if (criminalCase?.bail_status) {
+          const bailStatus = String(criminalCase.bail_status).replace(/_/g, " ");
+          evidenceBullets.push(`Bail status: ${bailStatus}`);
+        }
+        if (extractedMeta?.bail?.status === "remanded") {
+          evidenceBullets.push("Status: Remanded in custody");
+        }
+      }
+      
+      // Disclosure gaps (only if extractor found them)
+      const disclosureGaps: string[] = [];
+      if (extractedMeta?.disclosure) {
+        const disc = extractedMeta.disclosure;
+        if (disc.missingItems && disc.missingItems.length > 0) {
+          disclosureGaps.push(...disc.missingItems.slice(0, 8));
+        }
+      } else if (documents && documents.length > 0) {
+        // Fallback: check for common disclosure gap mentions in text
+        const combinedTextLower = (documents as any[])
+          .map((d: any) => (d.raw_text || "").toLowerCase())
+          .join(" ");
+        
+        const commonGaps = [
+          { pattern: /full.*cctv|unedited.*cctv|complete.*cctv/i, label: "Full unedited CCTV footage" },
+          { pattern: /phone.*data|mobile.*data|call.*data/i, label: "Phone data" },
+          { pattern: /forensic.*methodology|full.*forensic/i, label: "Full forensic methodology" },
+          { pattern: /pnb|pocket.*note.*book/i, label: "PNB entries" },
+          { pattern: /search.*inventory|inventory.*search/i, label: "Search inventory" },
+          { pattern: /medical.*records|full.*medical/i, label: "Full medical records" },
+        ];
+        
+        for (const gap of commonGaps) {
+          if (gap.pattern.test(combinedTextLower) && !disclosureGaps.includes(gap.label)) {
+            disclosureGaps.push(gap.label);
+          }
+        }
+      }
+      
+      // Combine structured issues (max 8-16 bullets total)
+      const allIssues = [
+        ...structuredIssues,
+        ...evidenceBullets.slice(0, 6),
+        ...(disclosureGaps.length > 0 ? [`Disclosure gaps: ${disclosureGaps.slice(0, 5).join(", ")}`] : []),
+      ].slice(0, 16);
 
       return {
         caseId,
         practiceArea: normalizedPracticeArea,
         clientName: defendantName ?? undefined,
         opponentName,
-        courtName: criminalCase?.court_name ?? undefined,
+        courtName: courtName,
         claimType,
         causeOfAction: topCharge?.offence ?? undefined,
         stage: "other",
@@ -351,7 +473,7 @@ export async function buildKeyFactsSummary(
         whatClientWants: "Defend allegations and manage risk (disclosure-first).",
         keyDates,
         mainRisks: [],
-        primaryIssues: primaryIssues.slice(0, 5),
+        primaryIssues: allIssues.length > 0 ? allIssues : primaryIssues.slice(0, 5),
         nextStepsBrief: nextHearing ? `Prepare for next hearing (${new Date(nextHearing).toISOString().slice(0, 10)}). Stabilise disclosure/continuity before committing positions.` : "Stabilise disclosure/continuity (MG6, custody, interview recording, CCTV/BWV/999).",
         bundleSummarySections,
         layeredSummary,

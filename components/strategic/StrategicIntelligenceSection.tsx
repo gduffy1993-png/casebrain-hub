@@ -34,6 +34,13 @@ export function StrategicIntelligenceSection({ caseId, practiceArea }: Strategic
   const router = useRouter();
   const normalizedPracticeArea = normalizePracticeArea(practiceArea ?? undefined);
   const isCriminal = normalizedPracticeArea === "criminal";
+  
+  // Hard gate: Do not render any legacy strategy components for criminal cases
+  // CaseFightPlan is the only strategy surface for criminal cases
+  if (isCriminal) {
+    return null;
+  }
+  
   const [summary, setSummary] = useState<{
     routes: number;
     leverage: number;

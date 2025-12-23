@@ -92,7 +92,62 @@ export async function GET(_request: NextRequest, { params }: RouteParams) {
       return makeNotFound<{ keyFacts: KeyFactsSummary }>(context, caseId);
     }
 
-    // Gate 2: Check analysis gate (hard gating)
+    // Gate 2: Check for docs with empty raw text (TEXT_EMPTY)
+    if (context.diagnostics.docCount > 0 && context.diagnostics.rawCharsTotal === 0) {
+      console.log(`[key-facts] TEXT_EMPTY detected for caseId=${caseId}, docCount=${context.diagnostics.docCount}, docIds=${context.documents.map(d => d.id).join(",")}`);
+      // Try to build minimal keyFacts from case data only (no text extraction)
+      try {
+        const keyFacts = await buildKeyFactsSummary(
+          caseId,
+          context.orgScope.orgIdResolved,
+          context.case ? {
+            id: context.case.id,
+            title: (context.case as any).title ?? null,
+            summary: (context.case as any).summary ?? null,
+            practice_area: (context.case as any).practice_area ?? null,
+            created_at: (context.case as any).created_at ?? new Date().toISOString(),
+            org_id: (context.case as any).org_id ?? null,
+          } : undefined,
+        );
+        // Return gated response with minimal keyFacts
+        const traceId = `trace-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
+        const documentsWithRawText = context.documents.filter(
+          (d) => d.raw_text && typeof d.raw_text === "string" && d.raw_text.length > 0
+        ).length;
+        return NextResponse.json({
+          ok: false,
+          data: { keyFacts },
+          banner: {
+            severity: "warning",
+            title: "No extractable text found",
+            detail: `Documents exist (${context.diagnostics.docCount}) but no raw text extracted. This may indicate scanned PDFs or extraction failure. Check document extraction status.`,
+          },
+          diagnostics: {
+            caseId,
+            orgId: context.orgScope.orgIdResolved,
+            documentCount: context.diagnostics.docCount,
+            documentsWithRawText,
+            rawCharsTotal: context.diagnostics.rawCharsTotal,
+            jsonCharsTotal: context.diagnostics.jsonCharsTotal,
+            suspectedScanned: context.diagnostics.suspectedScanned,
+            textThin: context.diagnostics.reasonCodes.includes("TEXT_THIN"),
+            traceId,
+            updatedAt: new Date().toISOString(),
+          },
+        });
+      } catch (buildError) {
+        const errorMessage = buildError instanceof Error ? buildError.message : "Failed to build key facts";
+        console.error(`[key-facts] buildKeyFactsSummary failed (TEXT_EMPTY) for caseId=${caseId}:`, errorMessage);
+        return makeError<{ keyFacts: KeyFactsSummary }>(
+          "KEYFACTS_BUILD_FAILED",
+          errorMessage,
+          context,
+          caseId,
+        );
+      }
+    }
+
+    // Gate 3: Check analysis gate (hard gating)
     const gateResult = checkAnalysisGate(context);
     if (!gateResult.ok) {
       // Even if gated, try to generate minimal key facts from case data + extraction
@@ -106,74 +161,99 @@ export async function GET(_request: NextRequest, { params }: RouteParams) {
             title: (context.case as any).title ?? null,
             summary: (context.case as any).summary ?? null,
             practice_area: (context.case as any).practice_area ?? null,
-            status: (context.case as any).status ?? null,
+            // status column removed from cases table
             created_at: (context.case as any).created_at ?? new Date().toISOString(),
             org_id: (context.case as any).org_id ?? null,
           } : undefined,
         );
-        return makeGateFail<{ keyFacts: KeyFactsSummary }>(
-          {
+        // Return gated response with keyFacts in data (even if minimal)
+        // This ensures client always receives keyFacts object, never "payload missing"
+        // Import diagnosticsFromContext helper
+        const traceId = `trace-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
+        const documentsWithRawText = context.documents.filter(
+          (d) => d.raw_text && typeof d.raw_text === "string" && d.raw_text.length > 0
+        ).length;
+        
+        return NextResponse.json({
+          ok: false,
+          data: { keyFacts }, // Include keyFacts even when gated (minimal extraction)
+          banner: {
             severity: gateResult.banner?.severity || "warning",
             title: gateResult.banner?.title || "Insufficient text extracted",
             detail: gateResult.banner?.detail,
           },
-          context,
-          caseId,
-        );
+          diagnostics: {
+            caseId,
+            orgId: context.orgScope.orgIdResolved,
+            documentCount: context.diagnostics.docCount,
+            documentsWithRawText,
+            rawCharsTotal: context.diagnostics.rawCharsTotal,
+            jsonCharsTotal: context.diagnostics.jsonCharsTotal,
+            suspectedScanned: context.diagnostics.suspectedScanned,
+            textThin: context.diagnostics.reasonCodes.includes("TEXT_THIN"),
+            traceId,
+            updatedAt: new Date().toISOString(),
+          },
+        });
       } catch (buildError) {
-        // If buildKeyFactsSummary fails, return gated response with minimal fallback
-        const fallback: KeyFactsSummary = {
-          caseId,
-          practiceArea: (context.case as any).practice_area ?? undefined,
-          stage: "other",
-          fundingType: "unknown",
-          keyDates: [],
-          mainRisks: [],
-          primaryIssues: [
-            "Not enough extractable text to generate reliable key facts. Upload text-based PDFs or run OCR.",
-          ],
-          headlineSummary: undefined,
-          opponentName: undefined,
-          clientName: undefined,
-          courtName: undefined,
-          claimType: undefined,
-          causeOfAction: undefined,
-          approxValue: undefined,
-          whatClientWants: undefined,
-          nextStepsBrief: undefined,
-          bundleSummarySections: [],
-          layeredSummary: null,
-        };
-        return makeGateFail<{ keyFacts: KeyFactsSummary }>(
-          {
-            severity: gateResult.banner?.severity || "warning",
-            title: gateResult.banner?.title || "Insufficient text extracted",
-            detail: gateResult.banner?.detail,
-          },
+        // If buildKeyFactsSummary fails even for gated case, return error with diagnostics
+        const errorMessage = buildError instanceof Error ? buildError.message : "Failed to build key facts";
+        console.error(`[key-facts] buildKeyFactsSummary failed (gated) for caseId=${caseId}:`, errorMessage);
+        return makeError<{ keyFacts: KeyFactsSummary }>(
+          "KEYFACTS_BUILD_FAILED",
+          errorMessage,
           context,
           caseId,
         );
       }
     }
 
+    // Gate 4: OK - case and documents found with extractable text
+
     // Gate 3: OK - case and documents found with extractable text
-    console.log(`[key-facts] Generating Key Facts for caseId=${caseId}, docCount=${context.diagnostics.docCount}, rawChars=${context.diagnostics.rawCharsTotal}`);
+    // Debug logging (no PII beyond IDs)
+    console.log(`[key-facts] Generating Key Facts for caseId=${caseId}, orgId=${context.orgScope.orgIdResolved}, docCount=${context.diagnostics.docCount}, rawCharsTotal=${context.diagnostics.rawCharsTotal}, suspectedScanned=${context.diagnostics.suspectedScanned}, textThin=${context.diagnostics.reasonCodes.includes("TEXT_THIN")}, canGenerateAnalysis=${context.canGenerateAnalysis}`);
     
     // Pass case data from context to avoid re-querying and org_id mismatch issues
-    const keyFacts = await buildKeyFactsSummary(
-      caseId,
-      context.orgScope.orgIdResolved,
-      context.case ? {
-        id: context.case.id,
-        title: (context.case as any).title ?? null,
-        summary: (context.case as any).summary ?? null,
-        practice_area: (context.case as any).practice_area ?? null,
-        status: (context.case as any).status ?? null,
-        created_at: (context.case as any).created_at ?? new Date().toISOString(),
-        org_id: (context.case as any).org_id ?? null,
-      } : undefined,
-    );
+    let keyFacts: KeyFactsSummary;
+    try {
+      keyFacts = await buildKeyFactsSummary(
+        caseId,
+        context.orgScope.orgIdResolved,
+        context.case ? {
+          id: context.case.id,
+          title: (context.case as any).title ?? null,
+          summary: (context.case as any).summary ?? null,
+          practice_area: (context.case as any).practice_area ?? null,
+          // status column removed from cases table
+          created_at: (context.case as any).created_at ?? new Date().toISOString(),
+          org_id: (context.case as any).org_id ?? null,
+        } : undefined,
+      );
+    } catch (buildError) {
+      // If buildKeyFactsSummary throws, return error response with diagnostics
+      const errorMessage = buildError instanceof Error ? buildError.message : "Failed to build key facts";
+      console.error(`[key-facts] buildKeyFactsSummary failed for caseId=${caseId}:`, errorMessage);
+      return makeError<{ keyFacts: KeyFactsSummary }>(
+        "KEYFACTS_BUILD_FAILED",
+        errorMessage,
+        context,
+        caseId,
+      );
+    }
 
+    // Strict validation: if we reach here, keyFacts must exist
+    if (!keyFacts) {
+      console.error(`[key-facts] buildKeyFactsSummary returned null/undefined for caseId=${caseId}`);
+      return makeError<{ keyFacts: KeyFactsSummary }>(
+        "KEYFACTS_BUILD_FAILED",
+        "Key facts builder returned empty result",
+        context,
+        caseId,
+      );
+    }
+
+    // Return success with keyFacts in data.keyFacts
     return makeOk({ keyFacts }, context, caseId);
   } catch (error) {
     console.error("[key-facts] Error:", error);

@@ -113,6 +113,11 @@ export function makeError<T>(
     {
       ok: false,
       data: null,
+      banner: {
+        severity: "error",
+        title: "Error",
+        detail: message,
+      },
       errors: [{ code, message }],
       diagnostics: diagnosticsFromContext(caseId, context, keyTermsFound),
     },
