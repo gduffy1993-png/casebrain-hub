@@ -177,11 +177,13 @@ export async function buildKeyFactsSummary(
         null;
 
       const keyDates: KeyFactsKeyDate[] = [];
-      keyDates.push({
-        label: "Instructions",
-        date: caseData.created_at,
-        isPast: new Date(caseData.created_at) < now,
-      });
+      if (caseData.created_at) {
+        keyDates.push({
+          label: "Instructions",
+          date: caseData.created_at,
+          isPast: new Date(caseData.created_at) < now,
+        });
+      }
       if (nextHearing) {
         keyDates.push({
           label: "Next Hearing",
