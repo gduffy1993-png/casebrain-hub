@@ -372,9 +372,9 @@ export async function buildKeyFactsSummary(
         approxValue: undefined,
         headlineSummary: caseData.summary ?? undefined,
         whatClientWants: undefined,
-        keyDates: [
-          { label: "Instructions", date: caseData.created_at, isPast: true },
-        ],
+        keyDates: caseData.created_at
+          ? [{ label: "Instructions", date: caseData.created_at, isPast: true }]
+          : [],
         mainRisks: [],
         primaryIssues: ["Key facts not yet available (run extraction / upload charge sheet, MG forms, court listing)."],
         nextStepsBrief: "Upload core criminal bundle docs (charge sheet, MG5/MG6, custody record, interview, listing).",
@@ -747,7 +747,7 @@ function determineFundingType(
 }
 
 function buildKeyDates(
-  caseData: { created_at: string },
+  caseData: { created_at?: string },
   piCase: { 
     incident_date?: string; 
     instructions_date?: string;
@@ -765,11 +765,13 @@ function buildKeyDates(
 
   // Instructions/first contact date
   const instructionsDate = piCase?.instructions_date ?? caseData.created_at;
-  dates.push({
-    label: "Instructions",
-    date: instructionsDate,
-    isPast: new Date(instructionsDate) < now,
-  });
+  if (instructionsDate) {
+    dates.push({
+      label: "Instructions",
+      date: instructionsDate,
+      isPast: new Date(instructionsDate) < now,
+    });
+  }
 
   // Incident date
   if (piCase?.incident_date) {
