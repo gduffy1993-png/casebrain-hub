@@ -38,4 +38,52 @@ MG6 schedule referenced. MG6A not served. MG6C not served. Disclosure not served
   });
 });
 
+describe("validateCourtName", () => {
+  it("rejects markdown headings starting with #", () => {
+    expect(validateCourtName("# CROWN COURT PROSECUTION BUNDLE")).toBeNull();
+    expect(validateCourtName("# Crown Court at Manchester")).toBeNull();
+  });
+
+  it("rejects values containing BUNDLE", () => {
+    expect(validateCourtName("CROWN COURT PROSECUTION BUNDLE")).toBeNull();
+    expect(validateCourtName("Crown Court Bundle")).toBeNull();
+  });
+
+  it("rejects ALL CAPS headings without court keyword", () => {
+    expect(validateCourtName("PROSECUTION BUNDLE")).toBeNull();
+    expect(validateCourtName("CASE DETAILS")).toBeNull();
+  });
+
+  it("rejects values containing PROSECUTION BUNDLE", () => {
+    expect(validateCourtName("Crown Court PROSECUTION BUNDLE")).toBeNull();
+  });
+
+  it("accepts valid court names with court keywords", () => {
+    expect(validateCourtName("Crown Court at Manchester")).toBe("Crown Court at Manchester");
+    expect(validateCourtName("Birmingham Magistrates' Court")).toBe("Birmingham Magistrates' Court");
+    expect(validateCourtName("Manchester Crown Court")).toBe("Manchester Crown Court");
+    expect(validateCourtName("CCMC")).toBe("CCMC");
+    expect(validateCourtName("County Court at Birmingham")).toBe("County Court at Birmingham");
+  });
+
+  it("rejects null, undefined, and empty strings", () => {
+    expect(validateCourtName(null)).toBeNull();
+    expect(validateCourtName(undefined)).toBeNull();
+    expect(validateCourtName("")).toBeNull();
+    expect(validateCourtName("   ")).toBeNull();
+  });
+
+  it("rejects values without court keywords", () => {
+    expect(validateCourtName("Manchester")).toBeNull();
+    expect(validateCourtName("Birmingham")).toBeNull();
+    expect(validateCourtName("Court Building")).toBeNull(); // "Court" alone is not enough
+  });
+
+  it("handles edge cases", () => {
+    expect(validateCourtName("# Crown Court")).toBeNull(); // Starts with #
+    expect(validateCourtName("CROWN COURT BUNDLE")).toBeNull(); // Contains BUNDLE
+    expect(validateCourtName("Crown Court at Manchester")).toBe("Crown Court at Manchester"); // Valid
+  });
+});
+
 

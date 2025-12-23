@@ -182,6 +182,47 @@ function normaliseHearingType(raw: string): CriminalHearingExtract["type"] {
   return "Case Management";
 }
 
+export function validateCourtName(value: string | null | undefined): string | null {
+  if (!value || typeof value !== "string") return null;
+
+  const trimmed = value.trim();
+  if (trimmed.length === 0) return null;
+
+  // Reject if starts with '#' (markdown heading)
+  if (trimmed.startsWith("#")) return null;
+
+  // Reject if contains "BUNDLE" or "PROSECUTION BUNDLE"
+  const upperTrimmed = trimmed.toUpperCase();
+  if (upperTrimmed.includes("BUNDLE") || upperTrimmed.includes("PROSECUTION BUNDLE")) return null;
+
+  // Reject if ALL CAPS (likely a heading) - but allow if it's a valid court name with mixed case
+  const letters = trimmed.replace(/[^A-Za-z]/g, "");
+  if (letters.length > 0) {
+    const upperLetters = letters.replace(/[^A-Z]/g, "");
+    const upperRatio = upperLetters.length / letters.length;
+    if (upperRatio > 0.8 && trimmed.length > 10) {
+      const hasCourtKeyword = /(?:CROWN COURT|MAGISTRATES'? COURT|MAGISTRATES COURT|CCMC|COUNTY COURT)/i.test(trimmed);
+      if (!hasCourtKeyword) return null;
+    }
+  }
+
+  // Must contain a known court keyword
+  const courtKeywords = [
+    /Crown Court/i, /Magistrates'? Court/i, /Magistrates Court/i, /CCMC/i, /County Court/i,
+    /High Court/i, /Court of Appeal/i, /Supreme Court/i,
+  ];
+  const hasCourtKeyword = courtKeywords.some(pattern => pattern.test(trimmed));
+  if (!hasCourtKeyword) return null;
+
+  // Reject if it looks like a section title (contains only court keyword + generic words)
+  const genericWords = /\b(PROSECUTION|CASE|DETAILS|REFERENCE|REF)\b/i;
+  if (genericWords.test(trimmed) && trimmed.length < 50) {
+    return null;
+  }
+
+  return trimmed;
+}
+
 function extractChargesFromText(input: ExtractInput): { charges: CriminalChargeExtract[]; plea: CriminalChargeExtract["plea"] } {
   const { text, documentName } = input;
   const t = text ?? "";
@@ -369,8 +410,9 @@ function extractHearingsFromText(input: ExtractInput): CriminalHearingExtract[] 
     if (!dt) continue;
 
     const type = normaliseHearingType(line);
-    const court =
+    const rawCourt =
       (line.match(/([A-Za-z][A-Za-z\s&\-']{2,80}(?:Crown Court|Magistrates'? Court|Magistrates Court))/i)?.[1] ?? courtHint)?.trim() ?? null;
+    const court = validateCourtName(rawCourt);
 
     const outcome =
       line.match(/\boutcome\b\s*[:\-]\s*(.+)$/i)?.[1]?.trim() ??
@@ -618,10 +660,19 @@ export async function persistCriminalCaseMeta(params: {
     );
   };
 
+  // Valid status values for criminal_charges table
+  const validStatuses = ['pending', 'proceeding', 'dismissed', 'convicted', 'acquitted'] as const;
+  const normalizeStatus = (status: string | null | undefined): string => {
+    if (!status) return 'pending'; // Default to pending
+    const normalized = String(status).toLowerCase().replace(/\s+/g, "_");
+    // Only return if it's a valid status, otherwise default to pending
+    return validStatuses.includes(normalized as any) ? normalized : 'pending';
+  };
+
   for (const ch of meta.charges) {
     const match = findMatch(ch);
 
-    const nextStatus = (ch.status ?? null) ? String(ch.status).toLowerCase().replace(/\s+/g, "_") : null;
+    const nextStatus = normalizeStatus(ch.status);
     const nextLocation = ch.location ? String(ch.location).trim() : null;
 
     if (match?.id) {
@@ -632,7 +683,7 @@ export async function persistCriminalCaseMeta(params: {
           section: ch.statute,
           charge_date: ch.chargeDate,
           location: nextLocation ?? match.location ?? null,
-          status: nextStatus ?? match.status ?? null,
+          status: nextStatus ?? normalizeStatus(match.status) ?? 'pending',
           details: `[AUTO_EXTRACTED] source=${ch.source}; confidence=${ch.confidence}`,
         })
         .eq("id", match.id)
@@ -652,7 +703,7 @@ export async function persistCriminalCaseMeta(params: {
       charge_date: ch.chargeDate,
       location: nextLocation,
       details: `[AUTO_EXTRACTED] source=${ch.source}; confidence=${ch.confidence}`,
-      status: nextStatus ?? "proceeding",
+      status: nextStatus, // Already normalized to valid value
     });
     if (insertErr) {
       console.error("[criminal] Failed to insert charge (non-fatal):", insertErr);

@@ -24,6 +24,7 @@ type ChargesPanelProps = {
 export function ChargesPanel({ caseId }: ChargesPanelProps) {
   const [charges, setCharges] = useState<Charge[]>([]);
   const [loading, setLoading] = useState(true);
+  const [detectedCharges, setDetectedCharges] = useState<string[]>([]);
 
   useEffect(() => {
     async function fetchCharges() {
@@ -33,8 +34,27 @@ export function ChargesPanel({ caseId }: ChargesPanelProps) {
           const result = await res.json();
           // Handle ApiResponse format: { ok: true, data: { charges: [...] } }
           // or legacy format: { charges: [...] }
-          const chargesData = result.data?.charges || result.charges || [];
-          setCharges(chargesData);
+          const chargesData: Charge[] = result.data?.charges || result.charges || [];
+
+          // Dedupe by offence + section, prefer first (assume highest confidence order)
+          const dedupedMap = new Map<string, Charge>();
+          chargesData.forEach((c) => {
+            const key = `${c.offence || ""}:${c.section || ""}`.toLowerCase().trim();
+            if (!dedupedMap.has(key)) {
+              dedupedMap.set(key, c);
+            }
+          });
+
+          // Clean location junk text
+          const cleaned = Array.from(dedupedMap.values()).map((c) => {
+            const loc = c.location || "";
+            const cleanedLocation = loc.includes("precision") && loc.toLowerCase().includes("not disclosed")
+              ? "Not disclosed"
+              : loc.replace(/precision\)\.?\s*Not disclosed/i, "Not disclosed");
+            return { ...c, location: cleanedLocation };
+          });
+
+          setCharges(cleaned);
         }
       } catch (error) {
         console.error("Failed to fetch charges:", error);
@@ -42,7 +62,38 @@ export function ChargesPanel({ caseId }: ChargesPanelProps) {
         setLoading(false);
       }
     }
+    
+    async function checkDetectedCharges() {
+      // Check key facts for detected charges in primaryIssues or causeOfAction
+      try {
+        const res = await fetch(`/api/cases/${caseId}/key-facts`);
+        if (res.ok) {
+          const result = await res.json();
+          const keyFacts = result.data?.keyFacts || result.keyFacts;
+          if (keyFacts) {
+            const detected: string[] = [];
+            // Check primaryIssues for charge mentions
+            if (keyFacts.primaryIssues) {
+              keyFacts.primaryIssues.forEach((issue: string) => {
+                if (issue.includes("Charge:") || issue.includes("Offence:")) {
+                  detected.push(issue);
+                }
+              });
+            }
+            // Check causeOfAction
+            if (keyFacts.causeOfAction) {
+              detected.push(keyFacts.causeOfAction);
+            }
+            setDetectedCharges(detected);
+          }
+        }
+      } catch {
+        // Silently fail - detection check is optional
+      }
+    }
+    
     fetchCharges();
+    checkDetectedCharges();
   }, [caseId]);
 
   if (loading) {
@@ -71,10 +122,38 @@ export function ChargesPanel({ caseId }: ChargesPanelProps) {
       }
     >
       {charges.length === 0 ? (
-        <div className="text-center py-8 text-muted-foreground">
-          <FileText className="h-8 w-8 mx-auto mb-2 opacity-50" />
-          <p className="text-sm">No charges recorded</p>
-        </div>
+        detectedCharges.length > 0 ? (
+          <div className="space-y-3">
+            <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 p-3">
+              <p className="text-xs font-semibold text-amber-400 mb-2">Detected charges (unconfirmed)</p>
+              <div className="space-y-2">
+                {detectedCharges.map((charge, idx) => (
+                  <div key={idx} className="text-sm text-muted-foreground">
+                    {charge}
+                  </div>
+                ))}
+              </div>
+              <p className="text-xs text-muted-foreground mt-2">
+                Charges detected in case documents but not yet confirmed in structured data.
+              </p>
+              <div className="mt-3">
+                <Button variant="outline" size="sm" onClick={() => {
+                  // This would open the Add Charge UI - for now just a placeholder
+                  // The actual implementation would depend on your Add Charge modal/dialog
+                  console.log("Add charge clicked");
+                }}>
+                  <Plus className="h-3 w-3 mr-1" />
+                  Add Charge
+                </Button>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="text-center py-8 text-muted-foreground">
+            <FileText className="h-8 w-8 mx-auto mb-2 opacity-50" />
+            <p className="text-sm">No charges recorded</p>
+          </div>
+        )
       ) : (
         <div className="space-y-3">
           {charges.map((charge) => (

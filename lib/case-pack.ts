@@ -142,7 +142,6 @@ export async function buildCasePack(
     caseId,
     caseTitle: caseData.title,
     practiceArea: caseData.practice_area ?? "General",
-    status: caseData.status ?? "Active",
     generatedAt: new Date().toISOString(),
     generatedByUserId: userId,
     sections: sections.filter(s => !s.isEmpty),

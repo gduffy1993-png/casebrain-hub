@@ -640,6 +640,15 @@ export function CaseKeyFactsPanel({ caseId }: KeyFactsPanelProps) {
 
             <div className="space-y-2">
               {(Object.keys(layered.roleLenses) as CaseSolicitorRole[]).map((role) => {
+                // For criminal cases, only show Supervisor view and Criminal Defence Lens
+                const isCriminalCase = keyFacts?.practiceArea === "criminal";
+                if (isCriminalCase) {
+                  // Only show criminal_solicitor lens (Criminal Defence Lens) and supervisor view
+                  if (role !== "criminal_solicitor") {
+                    return null;
+                  }
+                }
+                
                 const lens = layered.roleLenses[role];
                 const open = expandedRole === role;
                 return (

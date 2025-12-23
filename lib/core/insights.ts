@@ -310,7 +310,7 @@ function buildRagScores(
     hasTimeline: documents.length > 0,
     documentCount: documents.length,
     extractedFactsCount: documents.length, // Approximation
-    stage: caseRecord.status ?? undefined,
+    stage: undefined, // status column removed from cases table
   });
 
   // Convert heatmap cells to insight scores

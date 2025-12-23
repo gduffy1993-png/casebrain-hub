@@ -100,7 +100,6 @@ function drawCoverPage(doc: PDFKit.PDFDocument, pack: CasePackMeta): void {
 
   const details = [
     { label: "Practice Area", value: pack.practiceArea.replace(/_/g, " ") },
-    { label: "Status", value: pack.status },
     { label: "Generated", value: new Date(pack.generatedAt).toLocaleString("en-GB") },
     { label: "Sections", value: `${pack.sections.length} sections` },
   ];

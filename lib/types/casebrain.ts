@@ -837,7 +837,6 @@ export type CasePackMeta = {
   clientName?: string;
   opponentName?: string;
   practiceArea: string;
-  status: string;
   generatedAt: string;
   generatedByUserId: string;
   sections: CasePackSection[];

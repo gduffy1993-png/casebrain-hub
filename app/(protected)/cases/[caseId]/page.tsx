@@ -434,7 +434,8 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
   const timeline =
     extractedFacts
       .flatMap((f) => f.timeline ?? [])
-      .sort((a, b) => a.date.localeCompare(b.date)) ?? [];
+      .filter((item) => item.date != null) // Filter out null dates
+      .sort((a, b) => (a.date || "").localeCompare(b.date || "")) ?? [];
 
   // Extract key issues from documents
   const rawKeyIssues = documents

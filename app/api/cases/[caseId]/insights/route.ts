@@ -92,7 +92,6 @@ export async function GET(
             title: (context.case as any).title ?? "",
             summary: (context.case as any).summary ?? null,
             practice_area: (context.case as any).practice_area ?? null,
-            status: (context.case as any).status ?? null,
             created_at: (context.case as any).created_at ?? new Date().toISOString(),
           },
           documents: [],

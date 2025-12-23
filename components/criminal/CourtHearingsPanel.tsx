@@ -98,6 +98,7 @@ export function CourtHearingsPanel({ caseId }: CourtHearingsPanelProps) {
           <div className="text-center py-8 text-muted-foreground">
             <Calendar className="h-8 w-8 mx-auto mb-2 opacity-50" />
             <p className="text-sm">No hearings recorded</p>
+            {/* Note: Detected hearings from key facts would be shown here if available, but this is display-only */}
           </div>
         )}
       </div>

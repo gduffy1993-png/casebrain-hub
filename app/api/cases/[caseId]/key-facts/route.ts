@@ -1,4 +1,4 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { requireAuthContextApi } from "@/lib/auth-api";
 import { buildKeyFactsSummary } from "@/lib/key-facts";
 import type { KeyFactsSummary } from "@/lib/types/casebrain";
@@ -114,7 +114,8 @@ export async function GET(_request: NextRequest, { params }: RouteParams) {
         const documentsWithRawText = context.documents.filter(
           (d) => d.raw_text && typeof d.raw_text === "string" && d.raw_text.length > 0
         ).length;
-        return NextResponse.json({
+        const { NextResponse: NextResponseImport } = await import("next/server");
+        return NextResponseImport.json({
           ok: false,
           data: { keyFacts },
           banner: {
@@ -168,12 +169,22 @@ export async function GET(_request: NextRequest, { params }: RouteParams) {
         );
         // Return gated response with keyFacts in data (even if minimal)
         // This ensures client always receives keyFacts object, never "payload missing"
-        // Import diagnosticsFromContext helper
         const traceId = `trace-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
         const documentsWithRawText = context.documents.filter(
           (d) => d.raw_text && typeof d.raw_text === "string" && d.raw_text.length > 0
         ).length;
-        
+        const diagnostics = {
+          caseId,
+          orgId: context.orgScope.orgIdResolved,
+          documentCount: context.diagnostics.docCount,
+          documentsWithRawText,
+          rawCharsTotal: context.diagnostics.rawCharsTotal,
+          jsonCharsTotal: context.diagnostics.jsonCharsTotal,
+          suspectedScanned: context.diagnostics.suspectedScanned,
+          textThin: context.diagnostics.reasonCodes.includes("TEXT_THIN"),
+          traceId,
+          updatedAt: new Date().toISOString(),
+        };
         return NextResponse.json({
           ok: false,
           data: { keyFacts }, // Include keyFacts even when gated (minimal extraction)
@@ -182,18 +193,7 @@ export async function GET(_request: NextRequest, { params }: RouteParams) {
             title: gateResult.banner?.title || "Insufficient text extracted",
             detail: gateResult.banner?.detail,
           },
-          diagnostics: {
-            caseId,
-            orgId: context.orgScope.orgIdResolved,
-            documentCount: context.diagnostics.docCount,
-            documentsWithRawText,
-            rawCharsTotal: context.diagnostics.rawCharsTotal,
-            jsonCharsTotal: context.diagnostics.jsonCharsTotal,
-            suspectedScanned: context.diagnostics.suspectedScanned,
-            textThin: context.diagnostics.reasonCodes.includes("TEXT_THIN"),
-            traceId,
-            updatedAt: new Date().toISOString(),
-          },
+          diagnostics,
         });
       } catch (buildError) {
         // If buildKeyFactsSummary fails even for gated case, return error with diagnostics

@@ -52,6 +52,7 @@ export function MissingEvidencePanel({ caseId, items: propItems }: MissingEviden
   const [versionItems, setVersionItems] = useState<VersionMissingEvidence[]>([]);
   const [loading, setLoading] = useState(!propItems);
   const [isPending, startTransition] = useTransition();
+  const [banner, setBanner] = useState<{ title: string; message: string; severity?: "error" | "warning" | "info" } | null>(null);
 
   // Fetch from case_analysis_versions if items not provided
   useEffect(() => {
@@ -65,10 +66,39 @@ export function MissingEvidencePanel({ caseId, items: propItems }: MissingEviden
         const response = await fetch(`/api/cases/${caseId}/analysis/version/latest`);
         if (response.ok) {
           const data = await response.json();
-          setVersionItems((data?.missing_evidence || []) as VersionMissingEvidence[]);
+          // ApiResponse shape support
+          const missing = data?.data?.missing_evidence ?? data?.missing_evidence ?? [];
+          setVersionItems(missing as VersionMissingEvidence[]);
+          setBanner(null);
+        } else if (response.status === 401) {
+          setBanner({
+            title: "Authentication required",
+            message: "You must be signed in to load Missing Evidence.",
+            severity: "warning",
+          });
+        } else {
+          const data = await response.json().catch(() => null);
+          if (data?.banner?.message || data?.banner?.detail) {
+            setBanner({
+              title: data.banner.title ?? "Missing evidence unavailable",
+              message: data.banner.message ?? data.banner.detail ?? "Unable to load missing evidence right now.",
+              severity: data.banner.severity,
+            });
+          } else {
+            setBanner({
+              title: "Missing evidence unavailable",
+              message: "Unable to load missing evidence right now.",
+              severity: "warning",
+            });
+          }
         }
       } catch (err) {
         console.error("Failed to load missing evidence from version:", err);
+        setBanner({
+          title: "Missing evidence unavailable",
+          message: "Unable to load missing evidence right now.",
+          severity: "warning",
+        });
       } finally {
         setLoading(false);
       }
@@ -152,7 +182,48 @@ export function MissingEvidencePanel({ caseId, items: propItems }: MissingEviden
     );
   }
 
-  if (!localItems.length) {
+  if (banner) {
+    return (
+      <Card
+        title="Evidence Checklist"
+        description="Required evidence for this case."
+      >
+        <div className="flex items-start gap-3 rounded-xl bg-amber-500/10 p-4">
+          <AlertTriangle className="h-5 w-5 text-amber-600 mt-0.5" />
+          <div>
+            <p className="text-sm font-semibold text-foreground">{banner.title}</p>
+            <p className="text-sm text-muted-foreground">{banner.message}</p>
+          </div>
+        </div>
+      </Card>
+    );
+  }
+
+  // Check for disclosure gaps in criminal cases before showing success message
+  const [hasDisclosureGaps, setHasDisclosureGaps] = useState<boolean>(false);
+  
+  useEffect(() => {
+    // For criminal cases, check disclosure tracker for gaps
+    async function checkDisclosureGaps() {
+      try {
+        const res = await fetch(`/api/criminal/${caseId}/disclosure`);
+        if (res.ok) {
+          const disclosureData = await res.json();
+          const hasGaps = disclosureData?.missingItems?.length > 0 || 
+                         disclosureData?.incompleteDisclosure || 
+                         disclosureData?.lateDisclosure;
+          setHasDisclosureGaps(hasGaps);
+        }
+      } catch {
+        // Silently fail - disclosure check is optional
+      }
+    }
+    
+    // Only check for criminal cases (practice area check would require prop, so check endpoint exists)
+    checkDisclosureGaps();
+  }, [caseId]);
+
+  if (!localItems.length && !hasDisclosureGaps) {
     return (
       <Card
         title="Evidence Checklist"
@@ -162,6 +233,23 @@ export function MissingEvidencePanel({ caseId, items: propItems }: MissingEviden
           <CheckCircle className="h-5 w-5 text-green-600" />
           <p className="text-sm text-green-700">
             All required evidence appears to be present. Review documents to confirm.
+          </p>
+        </div>
+      </Card>
+    );
+  }
+  
+  // If no local items but disclosure gaps exist, show outstanding items message
+  if (!localItems.length && hasDisclosureGaps) {
+    return (
+      <Card
+        title="Evidence Checklist"
+        description="Required evidence for this case."
+      >
+        <div className="flex items-center gap-3 rounded-xl bg-amber-500/10 p-4">
+          <AlertTriangle className="h-5 w-5 text-amber-600" />
+          <p className="text-sm text-amber-700">
+            Outstanding disclosure items detected. Review disclosure tracker for details.
           </p>
         </div>
       </Card>
