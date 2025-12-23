@@ -164,9 +164,6 @@ export function LoopholesPanel({ caseId }: LoopholesPanelProps) {
                     >
                       {loophole.severity}
                     </Badge>
-                    <Badge variant="secondary" className="text-xs">
-                      {loophole.successProbability === null ? "N/A" : `${loophole.successProbability}% success`}
-                    </Badge>
                   </div>
                   <p className="text-xs opacity-80 mb-2">{loophole.description}</p>
                   {loophole.suggestedAction && (

@@ -88,7 +88,11 @@ export function EvidenceAnalysisPanel({ caseId }: EvidenceAnalysisPanelProps) {
                       : "success"
                 }
               >
-                {analysis.prosecutionStrength}%
+                {analysis.prosecutionStrength >= 70
+                  ? "STRONG"
+                  : analysis.prosecutionStrength >= 40
+                    ? "MODERATE"
+                    : "WEAK"}
               </Badge>
             </div>
             <div className="w-full bg-muted rounded-full h-3">
@@ -105,10 +109,10 @@ export function EvidenceAnalysisPanel({ caseId }: EvidenceAnalysisPanelProps) {
             </div>
             <p className="text-xs text-muted-foreground">
               {analysis.prosecutionStrength >= 70
-                ? "STRONG ⚠️"
+                ? "Strong prosecution case ⚠️"
                 : analysis.prosecutionStrength >= 40
-                  ? "MODERATE"
-                  : "WEAK ✅"}
+                  ? "Mixed case"
+                  : "Weak prosecution case ✅"}
             </p>
           </div>
 
@@ -124,7 +128,11 @@ export function EvidenceAnalysisPanel({ caseId }: EvidenceAnalysisPanelProps) {
                       : "danger"
                 }
               >
-                {analysis.defenseStrength}%
+                {analysis.defenseStrength >= 70
+                  ? "STRONG"
+                  : analysis.defenseStrength >= 40
+                    ? "MODERATE"
+                    : "WEAK"}
               </Badge>
             </div>
             <div className="w-full bg-muted rounded-full h-3">
@@ -141,10 +149,10 @@ export function EvidenceAnalysisPanel({ caseId }: EvidenceAnalysisPanelProps) {
             </div>
             <p className="text-xs text-muted-foreground">
               {analysis.defenseStrength >= 70
-                ? "STRONG ✅"
+                ? "Strong defense position ✅"
                 : analysis.defenseStrength >= 40
-                  ? "MODERATE"
-                  : "WEAK ⚠️"}
+                  ? "Mixed case"
+                  : "Weak defense position ⚠️"}
             </p>
           </div>
         </div>
@@ -155,11 +163,8 @@ export function EvidenceAnalysisPanel({ caseId }: EvidenceAnalysisPanelProps) {
             <h4 className="text-sm font-semibold mb-2">Prosecution Evidence</h4>
             <div className="space-y-2">
               {analysis.prosecutionEvidence.map((evidence, i) => (
-                <div key={i} className="flex items-center justify-between text-xs">
+                <div key={i} className="text-xs">
                   <span className="text-muted-foreground">{evidence.title}</span>
-                  <Badge variant="secondary" className="text-xs">
-                    {evidence.strength}%
-                  </Badge>
                 </div>
               ))}
             </div>
@@ -169,11 +174,8 @@ export function EvidenceAnalysisPanel({ caseId }: EvidenceAnalysisPanelProps) {
             <h4 className="text-sm font-semibold mb-2">Defense Evidence</h4>
             <div className="space-y-2">
               {analysis.defenseEvidence.map((evidence, i) => (
-                <div key={i} className="flex items-center justify-between text-xs">
+                <div key={i} className="text-xs">
                   <span className="text-muted-foreground">{evidence.title}</span>
-                  <Badge variant="secondary" className="text-xs">
-                    {evidence.strength}%
-                  </Badge>
                 </div>
               ))}
             </div>

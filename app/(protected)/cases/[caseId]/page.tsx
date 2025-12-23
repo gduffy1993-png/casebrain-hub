@@ -1533,41 +1533,45 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
           </>
         ) : null}
 
-        {/* Phase 3.3: Evidence Strength Analyzer (All Practice Areas) */}
-        <CollapsibleSection
-          title="Evidence Strength Analyzer"
-          description="Reality calibration - How strong is the prosecution case?"
-          defaultOpen={false}
-          icon={<Scale className="h-4 w-4 text-orange-400" />}
-        >
-          <ErrorBoundary
-            fallback={
-              <div className="p-4">
-                <p className="text-sm text-accent/60">Evidence strength analyzer temporarily unavailable.</p>
-              </div>
-            }
+        {/* Phase 3.3: Evidence Strength Analyzer (All Practice Areas) - Hidden for Criminal (CaseFightPlan replaces it) */}
+        {!isCriminalCase && (
+          <CollapsibleSection
+            title="Evidence Strength Analyzer"
+            description="Reality calibration - How strong is the prosecution case?"
+            defaultOpen={false}
+            icon={<Scale className="h-4 w-4 text-orange-400" />}
           >
-            <EvidenceStrengthPanel caseId={caseId} />
-          </ErrorBoundary>
-        </CollapsibleSection>
+            <ErrorBoundary
+              fallback={
+                <div className="p-4">
+                  <p className="text-sm text-accent/60">Evidence strength analyzer temporarily unavailable.</p>
+                </div>
+              }
+            >
+              <EvidenceStrengthPanel caseId={caseId} />
+            </ErrorBoundary>
+          </CollapsibleSection>
+        )}
 
-        {/* Phase 3.1: Tactical Command Center (All Practice Areas) */}
-        <CollapsibleSection
-          title="Tactical Command Center"
-          description="THE ANGLE. THE MOVE. THE BACKUP. - One-page tactical dashboard"
-          defaultOpen={true}
-          icon={<Target className="h-4 w-4 text-primary" />}
-        >
-          <ErrorBoundary
-            fallback={
-              <div className="p-4">
-                <p className="text-sm text-accent/60">Tactical command center temporarily unavailable.</p>
-              </div>
-            }
+        {/* Phase 3.1: Tactical Command Center (All Practice Areas) - Hidden for Criminal (CaseFightPlan replaces it) */}
+        {!isCriminalCase && (
+          <CollapsibleSection
+            title="Tactical Command Center"
+            description="THE ANGLE. THE MOVE. THE BACKUP. - One-page tactical dashboard"
+            defaultOpen={true}
+            icon={<Target className="h-4 w-4 text-primary" />}
           >
-            <TacticalCommandCenter caseId={caseId} />
-          </ErrorBoundary>
-        </CollapsibleSection>
+            <ErrorBoundary
+              fallback={
+                <div className="p-4">
+                  <p className="text-sm text-accent/60">Tactical command center temporarily unavailable.</p>
+                </div>
+              }
+            >
+              <TacticalCommandCenter caseId={caseId} />
+            </ErrorBoundary>
+          </CollapsibleSection>
+        )}
 
         {/* Phase 3.1: Next Move Generator (All Practice Areas) */}
         <CollapsibleSection
@@ -1677,7 +1681,8 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
         )}
 
         {/* Strategic Intelligence Section */}
-        {process.env.NEXT_PUBLIC_ENABLE_STRATEGIC_INTELLIGENCE !== "false" && (
+        {/* Strategic Intelligence - Hidden for Criminal (CaseFightPlan replaces it, and contains Win/Kill Conditions) */}
+        {!isCriminalCase && process.env.NEXT_PUBLIC_ENABLE_STRATEGIC_INTELLIGENCE !== "false" && (
           <ErrorBoundary
             fallback={
               <div className="p-4">
