@@ -698,7 +698,7 @@ function truncateToChars(text: string, maxChars: number): string {
 }
 
 function determineStage(
-  caseData: { status?: string; practice_area?: string },
+  caseData: { status?: string | null; practice_area?: string | null },
   piCase: { stage?: string } | null,
   housingCase: { stage?: string } | null,
 ): KeyFactsStage {
