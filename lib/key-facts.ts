@@ -962,7 +962,7 @@ async function getNextStepBrief(
 }
 
 function getClientObjectives(
-  caseData: { summary?: string; title: string },
+  caseData: { summary?: string | null; title?: string | null },
   caseNotes: Array<{ body: string; is_attendance: boolean }>,
   piCase: { client_objectives?: string } | null,
 ): string | undefined {
