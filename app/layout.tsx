@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import { ClerkProvider, SignedIn, SignedOut } from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import { Inter } from "next/font/google";
-import { ToastHost } from "@/components/Toast";
-import { CommandPalette } from "@/components/command/CommandPalette";
 import "./globals.css";
 
 const inter = Inter({
@@ -69,16 +67,7 @@ export default function RootLayout({
         <body
           className={`${inter.variable} font-sans bg-background text-accent min-h-screen`}
         >
-          <SignedIn>
-            <>
-              {children}
-              <ToastHost />
-              <CommandPalette />
-            </>
-          </SignedIn>
-          <SignedOut>
-            {children}
-          </SignedOut>
+          {children}
         </body>
       </html>
     </ClerkProvider>
