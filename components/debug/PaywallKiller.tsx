@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect } from "react";
-import { useUser } from "@clerk/nextjs";
+import { useEffect, useState } from "react";
+import { createClient } from "@/lib/supabase/browser";
 
-const OWNER_USER_IDS = ["user_36MvlAIQ5MUheoRwWsj61gkOO5H", "user_35JeizOJrQ0Nj"];
+const OWNER_USER_IDS = process.env.NEXT_PUBLIC_ADMIN_USER_ID ? [process.env.NEXT_PUBLIC_ADMIN_USER_ID] : [];
 const OWNER_EMAILS = ["gduffy1993@gmail.com"];
 
 /**
@@ -11,10 +11,31 @@ const OWNER_EMAILS = ["gduffy1993@gmail.com"];
  * This runs globally for the owner user and removes the modal every 50ms
  */
 export function PaywallKiller() {
-  const { user, isLoaded } = useUser();
+  const [user, setUser] = useState<{ id: string; email?: string } | null>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const loadUser = async () => {
+      const supabase = createClient();
+      const {
+        data: { user: currentUser },
+      } = await supabase.auth.getUser();
+      
+      if (currentUser) {
+        setUser({
+          id: currentUser.id,
+          email: currentUser.email || undefined,
+        });
+      }
+      setIsLoaded(true);
+    };
+    
+    loadUser();
+  }, []);
+
   const isOwner = 
     (user?.id && OWNER_USER_IDS.includes(user.id)) ||
-    (user?.primaryEmailAddress?.emailAddress && OWNER_EMAILS.includes(user.primaryEmailAddress.emailAddress.toLowerCase()));
+    (user?.email && OWNER_EMAILS.includes(user.email.toLowerCase()));
 
   useEffect(() => {
     if (!isLoaded) return;

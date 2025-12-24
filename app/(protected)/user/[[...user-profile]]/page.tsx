@@ -1,16 +1,44 @@
 "use client";
 
-import { UserProfile } from "@clerk/nextjs";
-import { dark } from "@clerk/themes";
 import { useParams, useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Zap } from "lucide-react";
+import { createClient } from "@/lib/supabase/browser";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 export default function UserProfilePage() {
   const params = useParams();
   const router = useRouter();
+  const [user, setUser] = useState<{ email?: string; name?: string } | null>(null);
+  const [loading, setLoading] = useState(true);
   const userProfilePath = params?.["user-profile"] as string[] | undefined;
+
+  useEffect(() => {
+    const loadUser = async () => {
+      const supabase = createClient();
+      const {
+        data: { user: currentUser },
+      } = await supabase.auth.getUser();
+      
+      if (currentUser) {
+        setUser({
+          email: currentUser.email || undefined,
+          name: currentUser.user_metadata?.name || currentUser.email || undefined,
+        });
+      }
+      setLoading(false);
+    };
+    
+    loadUser();
+  }, []);
+
+  const handleSignOut = async () => {
+    const supabase = createClient();
+    await supabase.auth.signOut();
+    router.push("/");
+  };
 
   // If accessing /user (base path), redirect to /user/profile
   useEffect(() => {
@@ -20,7 +48,7 @@ export default function UserProfilePage() {
   }, [userProfilePath, router]);
 
   // Show loading while redirecting
-  if (!userProfilePath || userProfilePath.length === 0) {
+  if (!userProfilePath || userProfilePath.length === 0 || loading) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
         <div className="text-center">
@@ -36,7 +64,7 @@ export default function UserProfilePage() {
         <div className="mb-6 text-center">
           <h1 className="text-2xl font-semibold text-cyan-300">Account Settings</h1>
           <p className="mt-2 text-sm text-slate-400">
-            Manage your account, verify your phone number, and update your preferences.
+            Manage your account and update your preferences.
           </p>
           <div className="mt-4">
             <Link 
@@ -48,17 +76,31 @@ export default function UserProfilePage() {
             </Link>
           </div>
         </div>
-        <UserProfile
-          routing="path"
-          path="/user"
-          appearance={{
-            baseTheme: dark,
-            elements: {
-              rootBox: "mx-auto",
-              card: "bg-card border-border shadow-xl",
-            },
-          }}
-        />
+        <Card className="p-6">
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-foreground mb-2">
+                Email
+              </label>
+              <p className="text-sm text-muted-foreground">{user?.email || "Not available"}</p>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-foreground mb-2">
+                Name
+              </label>
+              <p className="text-sm text-muted-foreground">{user?.name || "Not set"}</p>
+            </div>
+            <div className="pt-4 border-t border-border">
+              <Button
+                variant="outline"
+                onClick={handleSignOut}
+                className="w-full"
+              >
+                Sign Out
+              </Button>
+            </div>
+          </div>
+        </Card>
       </div>
     </div>
   );

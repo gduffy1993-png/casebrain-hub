@@ -1,46 +1,24 @@
-"use client";
-
 import { type ReactNode } from "react";
-import {
-  SignedIn,
-  SignedOut,
-  RedirectToSignIn,
-  useOrganization,
-  CreateOrganization,
-  useUser,
-} from "@clerk/nextjs";
+import { redirect } from "next/navigation";
+import { createClient } from "@/lib/supabase/server";
 import { AppShell } from "@/components/layout/app-shell";
 import { PracticeAreaProvider } from "@/components/providers/PracticeAreaProvider";
 import { SeniorityProvider } from "@/components/providers/SeniorityProvider";
 import { OwnerStatusChip } from "@/components/debug/OwnerStatusChip";
 import { PaywallKiller } from "@/components/debug/PaywallKiller";
 
-export default function ProtectedLayout({ children }: { children: ReactNode }) {
-  return (
-    <>
-      <SignedOut>
-        <RedirectToSignIn />
-      </SignedOut>
-      <SignedIn>
-        <OrganisationGate>{children}</OrganisationGate>
-      </SignedIn>
-    </>
-  );
-}
+export default async function ProtectedLayout({ children }: { children: ReactNode }) {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-function OrganisationGate({ children }: { children: ReactNode }) {
-  const { isLoaded, organization } = useOrganization();
-  const { user } = useUser();
-  const OWNER_USER_ID = "user_35JeizOJrQ0Nj";
-  const isOwner = user?.id === OWNER_USER_ID;
-
-  if (!isLoaded) {
-    return null;
+  if (!user) {
+    redirect("/sign-in");
   }
 
-  if (!organization) {
-    return <NoOrgSelected />;
-  }
+  // TODO: Add organization check when organization system is implemented
+  // For now, we'll skip the organization gate and render directly
 
   return (
     <PracticeAreaProvider>
@@ -50,26 +28,6 @@ function OrganisationGate({ children }: { children: ReactNode }) {
         <PaywallKiller />
       </SeniorityProvider>
     </PracticeAreaProvider>
-  );
-}
-
-function NoOrgSelected() {
-  return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-surface-muted text-center">
-      <div className="glass-card max-w-lg space-y-4 p-12">
-        <h1 className="text-2xl font-semibold text-accent">
-          Join an organisation to continue
-        </h1>
-        <p className="text-sm text-accent/70">
-          Your Clerk account is not associated with a CaseBrain organisation.
-          Ask an owner to invite you, or create a new organisation via the
-          profile menu.
-        </p>
-        <div className="mt-6 flex justify-center">
-          <CreateOrganization afterCreateOrganizationUrl="/dashboard" />
-        </div>
-      </div>
-    </div>
   );
 }
 

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { auth } from "@clerk/nextjs/server";
+import { requireUser } from "@/lib/auth";
 import { generateCaseSummary } from "@/lib/case-summary";
 import { buildCaseContext } from "@/lib/case-context";
 
@@ -9,11 +9,7 @@ export async function GET(
 ) {
   try {
     const { caseId } = await params;
-    const { userId } = await auth();
-    
-    if (!userId) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const { userId } = await requireUser();
 
     // Build canonical case context (single source of truth)
     const context = await buildCaseContext(caseId, { userId });

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useUser } from "@clerk/nextjs";
+import { createClient } from "@/lib/supabase/browser";
 import { CloudUpload, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/Toast";
@@ -30,14 +30,34 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
   
   const { currentPracticeArea, setPracticeArea: setGlobalPracticeArea } = usePracticeArea();
   const { isOwner, bypassActive, status } = usePaywallStatus();
-  const { user, isLoaded: userLoaded } = useUser();
-  const OWNER_USER_IDS = ["user_36MvlAIQ5MUheoRwWsj61gkOO5H", "user_35JeizOJrQ0Nj"]; // Support both IDs
+  const [user, setUser] = useState<{ id: string; email?: string } | null>(null);
+  const [userLoaded, setUserLoaded] = useState(false);
+  const OWNER_USER_IDS = process.env.NEXT_PUBLIC_ADMIN_USER_ID ? [process.env.NEXT_PUBLIC_ADMIN_USER_ID] : [];
   const OWNER_EMAILS = ["gduffy1993@gmail.com"];
+  
+  useEffect(() => {
+    const loadUser = async () => {
+      const supabase = createClient();
+      const {
+        data: { user: currentUser },
+      } = await supabase.auth.getUser();
+      
+      if (currentUser) {
+        setUser({
+          id: currentUser.id,
+          email: currentUser.email || undefined,
+        });
+      }
+      setUserLoaded(true);
+    };
+    
+    loadUser();
+  }, []);
   
   // SIMPLE HARDCODED CHECK - NO COMPLEXITY
   const isOwnerHardcoded = 
     (user?.id && OWNER_USER_IDS.includes(user.id)) ||
-    (user?.primaryEmailAddress?.emailAddress && OWNER_EMAILS.includes(user.primaryEmailAddress.emailAddress.toLowerCase()));
+    (user?.email && OWNER_EMAILS.includes(user.email.toLowerCase()));
   
   const [files, setFiles] = useState<FileList | null>(null);
   const [caseTitle, setCaseTitle] = useState("");

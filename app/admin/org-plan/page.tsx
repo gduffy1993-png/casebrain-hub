@@ -1,18 +1,19 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useUser } from "@clerk/nextjs";
+import { createClient } from "@/lib/supabase/browser";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useToast } from "@/components/Toast";
 
-// TODO: Set this to your Clerk user ID in production
+// TODO: Set this to your Supabase user ID in production
 const ADMIN_USER_ID = process.env.NEXT_PUBLIC_ADMIN_USER_ID || "";
 
 type OrganisationPlan = "FREE" | "LOCKED" | "PAID_MONTHLY" | "PAID_YEARLY";
 
 export default function AdminOrgPlanPage() {
-  const { user, isLoaded } = useUser();
+  const [user, setUser] = useState<{ id: string } | null>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [orgs, setOrgs] = useState<Array<{
     id: string;
     name: string;
@@ -22,6 +23,22 @@ export default function AdminOrgPlanPage() {
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState<string | null>(null);
   const pushToast = useToast((state) => state.push);
+
+  useEffect(() => {
+    const checkUser = async () => {
+      const supabase = createClient();
+      const {
+        data: { user: currentUser },
+      } = await supabase.auth.getUser();
+      
+      if (currentUser) {
+        setUser({ id: currentUser.id });
+      }
+      setIsLoaded(true);
+    };
+    
+    checkUser();
+  }, []);
 
   useEffect(() => {
     if (!isLoaded) return;

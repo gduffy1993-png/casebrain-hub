@@ -1,12 +1,12 @@
 "use client";
 
-import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { createClient } from "@/lib/supabase/browser";
 import {
   Upload,
   FileText,
@@ -30,30 +30,40 @@ import {
 } from "lucide-react";
 
 export default function HomePage() {
-  return (
-    <>
-      <SignedIn>
-        <RedirectToDashboard />
-      </SignedIn>
-      <SignedOut>
-        <MarketingHomepage />
-      </SignedOut>
-    </>
-  );
-}
-
-function RedirectToDashboard() {
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
   const router = useRouter();
 
   useEffect(() => {
-    router.replace("/dashboard");
+    const checkAuth = async () => {
+      const supabase = createClient();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      setIsAuthenticated(!!user);
+      if (user) {
+        router.replace("/dashboard");
+      }
+    };
+    checkAuth();
   }, [router]);
 
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-950">
-      <p className="text-sm text-slate-400">Redirecting to dashboard...</p>
-    </div>
-  );
+  if (isAuthenticated === null) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-slate-950">
+        <p className="text-sm text-slate-400">Loading...</p>
+      </div>
+    );
+  }
+
+  if (isAuthenticated) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-slate-950">
+        <p className="text-sm text-slate-400">Redirecting to dashboard...</p>
+      </div>
+    );
+  }
+
+  return <MarketingHomepage />;
 }
 
 function MarketingHomepage() {
@@ -192,13 +202,13 @@ function MarketingHomepage() {
             <div className="relative">
               <div className="rounded-2xl bg-card border border-border shadow-2xl shadow-black/60 overflow-hidden">
                 <div className="aspect-video bg-muted/30 flex items-center justify-center">
-                  <div className="text-center space-y-4 p-8">
-                    <div className="mx-auto w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center">
-                      <Play className="h-10 w-10 text-primary" />
-                    </div>
-                    <p className="text-sm font-medium text-foreground">
+                    <div className="text-center space-y-4 p-8">
+                      <div className="mx-auto w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center">
+                        <Play className="h-10 w-10 text-primary" />
+                      </div>
+                      <p className="text-sm font-medium text-foreground">
                       Watch the demo below
-                    </p>
+                      </p>
                   </div>
                 </div>
               </div>

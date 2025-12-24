@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useOrganization } from "@clerk/nextjs";
+import { createClient } from "@/lib/supabase/browser";
 import { CheckCircle, Loader2 } from "lucide-react";
 import { clsx } from "clsx";
 import { Button } from "@/components/ui/button";
@@ -45,9 +45,26 @@ type Step = 0 | 1 | 2;
 export function PiIntakeWizard() {
   const router = useRouter();
   const pushToast = useToast((state) => state.push);
-  const { organization } = useOrganization();
-  const orgId = organization?.id || `solo-${organization?.id || "unknown"}`;
+  const [orgId, setOrgId] = useState<string>("unknown");
   const [formState, setFormState] = useState<FormState>(INITIAL_STATE);
+  
+  useEffect(() => {
+    const loadOrg = async () => {
+      try {
+        const res = await fetch("/api/user/me");
+        if (res.ok) {
+          const data = await res.json();
+          if (data.orgId) {
+            setOrgId(data.orgId);
+          }
+        }
+      } catch {
+        // Ignore
+      }
+    };
+    
+    loadOrg();
+  }, []);
   const [step, setStep] = useState<Step>(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [hasConflictBlock, setHasConflictBlock] = useState(false);

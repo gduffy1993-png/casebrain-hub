@@ -2,12 +2,13 @@
 
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useUser } from "@clerk/nextjs";
+import { createClient } from "@/lib/supabase/browser";
+import { useEffect, useState } from "react";
 import { usePaywallStatus } from "@/hooks/usePaywallStatus";
 import type { UsageLimitError } from "@/lib/usage-limits";
 
 // HARDCODED OWNER USER IDS - NEVER SHOW MODAL FOR THESE USERS
-const OWNER_USER_IDS = ["user_36MvlAIQ5MUheoRwWsj61gkOO5H", "user_35JeizOJrQ0Nj"];
+const OWNER_USER_IDS = process.env.NEXT_PUBLIC_ADMIN_USER_ID ? [process.env.NEXT_PUBLIC_ADMIN_USER_ID] : [];
 const OWNER_EMAILS = ["gduffy1993@gmail.com"];
 
 type PaywallModalProps = {
@@ -30,7 +31,27 @@ export function PaywallModal({
   upgradePrice = "£39/user/month",
 }: PaywallModalProps) {
   // NUCLEAR NUCLEAR NUCLEAR: HARDCODED OWNER CHECK - NEVER RENDER FOR OWNER
-  const { user, isLoaded } = useUser();
+  const [user, setUser] = useState<{ id: string; email?: string } | null>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  
+  useEffect(() => {
+    const loadUser = async () => {
+      const supabase = createClient();
+      const {
+        data: { user: currentUser },
+      } = await supabase.auth.getUser();
+      
+      if (currentUser) {
+        setUser({
+          id: currentUser.id,
+          email: currentUser.email || undefined,
+        });
+      }
+      setIsLoaded(true);
+    };
+    
+    loadUser();
+  }, []);
   
   // If user data not loaded yet, don't render (prevents flash)
   if (!isLoaded) {
@@ -40,7 +61,7 @@ export function PaywallModal({
   // HARDCODED: If this is the owner user ID or email, NEVER render modal - PERIOD
   const isOwnerHardcoded = 
     (user?.id && OWNER_USER_IDS.includes(user.id)) ||
-    (user?.primaryEmailAddress?.emailAddress && OWNER_EMAILS.includes(user.primaryEmailAddress.emailAddress.toLowerCase()));
+    (user?.email && OWNER_EMAILS.includes(user.email.toLowerCase()));
   
   if (isOwnerHardcoded) {
     console.log("[PaywallModal] ✅✅✅ HARDCODED OWNER CHECK - userId or email matches, NOT rendering modal");

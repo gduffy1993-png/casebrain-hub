@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { clsx } from "clsx";
 import { AlertTriangle } from "lucide-react";
-import { useOrganization, useUser } from "@clerk/nextjs";
+import { createClient } from "@/lib/supabase/browser";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
@@ -70,8 +70,9 @@ const STAGE_LABELS: Record<string, string> = {
 };
 
 export default function DashboardPage() {
-  const { isLoaded, user } = useUser();
-  const { organization, isLoaded: orgLoaded } = useOrganization();
+  const [user, setUser] = useState<{ id: string } | null>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [orgId, setOrgId] = useState<string | null>(null);
   const { currentPracticeArea } = usePracticeArea();
   const [data, setData] = useState<DashboardData>(INITIAL_DATA);
   const [loading, setLoading] = useState(true);
@@ -80,7 +81,28 @@ export default function DashboardPage() {
   const config = getDashboardConfig(currentPracticeArea);
 
   useEffect(() => {
-    if (!organization?.id) {
+    const checkUser = async () => {
+      const supabase = createClient();
+      const {
+        data: { user: currentUser },
+      } = await supabase.auth.getUser();
+      
+      if (currentUser) {
+        setUser({ id: currentUser.id });
+        // Get org from user metadata or API
+        const { data: userData } = await fetch("/api/user/me").then((r) => r.json());
+        if (userData?.orgId) {
+          setOrgId(userData.orgId);
+        }
+      }
+      setIsLoaded(true);
+    };
+    
+    checkUser();
+  }, []);
+
+  useEffect(() => {
+    if (!orgId) {
       setData(INITIAL_DATA);
       setLoading(false);
       return;
@@ -125,7 +147,7 @@ export default function DashboardPage() {
       isMounted = false;
       abortController.abort();
     };
-  }, [organization?.id]);
+  }, [orgId]);
 
   const metrics = useMemo(
     () => ({
@@ -136,11 +158,11 @@ export default function DashboardPage() {
     [data],
   );
 
-  if (!isLoaded || !orgLoaded) {
+  if (!isLoaded) {
     return null;
   }
 
-  if (!user || !organization) {
+  if (!user || !orgId) {
     return null;
   }
 

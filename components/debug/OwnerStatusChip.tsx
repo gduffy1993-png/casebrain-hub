@@ -1,22 +1,42 @@
 "use client";
 
-import { useUser } from "@clerk/nextjs";
+import { useEffect, useState } from "react";
+import { createClient } from "@/lib/supabase/browser";
 import { usePaywallStatus } from "@/hooks/usePaywallStatus";
 
 /**
  * Owner Debug Chip
  * 
  * Shows owner status and paywall flags for debugging.
- * Only visible to the owner user (user_35JeizOJrQ0Nj).
+ * Only visible to the owner user.
  */
 export function OwnerStatusChip() {
-  const { user } = useUser();
+  const [user, setUser] = useState<{ id: string; email?: string } | null>(null);
   const { isOwner, bypassActive, plan, status } = usePaywallStatus();
 
+  useEffect(() => {
+    const loadUser = async () => {
+      const supabase = createClient();
+      const {
+        data: { user: currentUser },
+      } = await supabase.auth.getUser();
+      
+      if (currentUser) {
+        setUser({
+          id: currentUser.id,
+          email: currentUser.email || undefined,
+        });
+      }
+    };
+    
+    loadUser();
+  }, []);
+
   // Only show for the owner user
-  const OWNER_USER_IDS = ["user_36MvlAIQ5MUheoRwWsj61gkOO5H", "user_35JeizOJrQ0Nj"]; // Support both IDs
+  const OWNER_USER_IDS = process.env.NEXT_PUBLIC_ADMIN_USER_ID ? [process.env.NEXT_PUBLIC_ADMIN_USER_ID] : [];
+  const OWNER_EMAILS = ["gduffy1993@gmail.com"];
   
-  if (!user || !OWNER_USER_IDS.includes(user.id)) {
+  if (!user || (!OWNER_USER_IDS.includes(user.id) && !(user.email && OWNER_EMAILS.includes(user.email.toLowerCase())))) {
     return null;
   }
 
@@ -27,7 +47,7 @@ export function OwnerStatusChip() {
         <span>·</span>
         <span>userId={user.id}</span>
         <span>·</span>
-        <span>email={user.primaryEmailAddress?.emailAddress || "N/A"}</span>
+        <span>email={user.email || "N/A"}</span>
         <span>·</span>
         <span className={isOwner ? "text-green-800 font-bold" : "text-red-800 font-bold"}>
           isOwner={String(isOwner)}

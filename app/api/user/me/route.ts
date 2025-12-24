@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
-import { requireAuthContext, getCurrentUser } from "@/lib/auth";
+import { requireAuthContext, getCurrentUser } from "@/lib/auth-supabase";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 
 export async function GET() {
   try {
     const { userId, orgId, role } = await requireAuthContext();
-    const clerkUser = await getCurrentUser();
+    const user = await getCurrentUser();
     const supabase = getSupabaseAdminClient();
 
     // Get user from database
@@ -19,13 +19,13 @@ export async function GET() {
       userId,
       orgId,
       role,
-      clerk: {
-        id: clerkUser?.id,
-        fullName: clerkUser?.fullName,
-        firstName: clerkUser?.firstName,
-        lastName: clerkUser?.lastName,
-        email: clerkUser?.primaryEmailAddress?.emailAddress,
-        emailAddresses: clerkUser?.emailAddresses?.map(e => e.emailAddress),
+      user: {
+        id: user?.id,
+        fullName: user?.fullName,
+        firstName: user?.firstName,
+        lastName: user?.lastName,
+        email: user?.email,
+        emailAddresses: user?.email ? [user.email] : [],
       },
       database: dbUser || null,
     });

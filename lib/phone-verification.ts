@@ -1,10 +1,19 @@
 import "server-only";
-import type { User } from "@clerk/nextjs/server";
+
+// Simplified user interface for phone verification
+export interface UserWithPhone {
+  primaryPhoneNumber?: {
+    phoneNumber?: string;
+    verification?: {
+      status?: string;
+    } | null;
+  } | null;
+}
 
 /**
  * Assert that user has verified phone number
  */
-export function assertPhoneVerified(user: User): void {
+export function assertPhoneVerified(user: UserWithPhone): void {
   const phone = user.primaryPhoneNumber;
 
   if (!phone) {
@@ -19,9 +28,13 @@ export function assertPhoneVerified(user: User): void {
 /**
  * Get normalized phone number from user
  */
-export function getNormalizedPhoneNumber(user: User): string | null {
+export function getNormalizedPhoneNumber(user: UserWithPhone): string | null {
   const phone = user.primaryPhoneNumber;
   if (!phone || phone.verification?.status !== "verified") {
+    return null;
+  }
+
+  if (!phone.phoneNumber) {
     return null;
   }
 

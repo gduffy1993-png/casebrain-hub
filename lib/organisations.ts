@@ -1,6 +1,14 @@
 import "server-only";
 import { getSupabaseAdminClient } from "./supabase";
-import type { User } from "@clerk/nextjs/server";
+
+// Simplified user interface for Supabase auth
+export interface SimpleUser {
+  id: string;
+  primaryEmailAddress?: {
+    emailAddress?: string | null;
+  } | null;
+  firstName?: string | null;
+}
 
 // Generic email providers that should create personal workspaces
 const GENERIC_EMAIL_DOMAINS = new Set([
@@ -81,7 +89,7 @@ function formatDomainAsOrgName(domain: string): string {
  * - If org exists and plan = LOCKED → user joins but gets no free trial
  */
 export async function getOrCreateOrganisationForUser(
-  user: User,
+  user: SimpleUser,
 ): Promise<Organisation> {
   const supabase = getSupabaseAdminClient();
   const email = user.primaryEmailAddress?.emailAddress;

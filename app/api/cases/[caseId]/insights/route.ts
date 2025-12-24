@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { auth } from "@clerk/nextjs/server";
+import { requireUser } from "@/lib/auth-supabase";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { buildCaseInsights } from "@/lib/core/insights";
 import { findMissingEvidence } from "@/lib/missing-evidence";
@@ -14,10 +14,7 @@ export async function GET(
   const { caseId } = await params;
   
   try {
-    const { userId } = await auth();
-    if (!userId) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const { userId } = await requireUser();
 
     // Build canonical case context (single source of truth)
     const context = await buildCaseContext(caseId, { userId });

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { auth } from "@clerk/nextjs/server";
+import { requireAuthContext } from "@/lib/auth";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { generateCaseOverviewPdf, type CaseOverviewData } from "@/lib/pdf/case-overview-pdf";
 import { logCaseEvent, getRecentCaseEvents } from "@/lib/audit";
@@ -12,11 +12,7 @@ export async function GET(
   { params }: { params: Promise<{ caseId: string }> }
 ) {
   const { caseId } = await params;
-  const { userId, orgId } = await auth();
-
-  if (!userId || !orgId) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  const { userId, orgId } = await requireAuthContext();
 
   try {
     const supabase = getSupabaseAdminClient();

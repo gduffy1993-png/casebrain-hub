@@ -37,7 +37,7 @@ export default async function SettingsPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-primary/10">
-                {members.map((member) => (
+                {members.map((member: { id: string; email: string; role: string }) => (
                   <tr key={member.id}>
                     <td className="py-3 text-accent">
                       {member.id ?? "Unknown user"}
