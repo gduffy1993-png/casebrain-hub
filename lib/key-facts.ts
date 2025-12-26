@@ -375,7 +375,7 @@ export async function buildKeyFactsSummary(
           const frMatch = combinedTextLower.match(/facial recognition[^\n]{0,100}(\d{1,3})%/i);
           const confidence = frMatch ? frMatch[1] : null;
           evidenceBullets.push(confidence 
-            ? `CCTV + facial recognition: ${confidence}% confidence`
+            ? `CCTV + facial recognition: Automated extraction confidence (low): 0.${confidence.padStart(2, '0')} — requires verification from documents.`
             : "CCTV + facial recognition evidence present");
         }
         

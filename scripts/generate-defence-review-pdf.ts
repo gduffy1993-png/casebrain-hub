@@ -17,7 +17,8 @@ const CASE_REF = "T2024/12345";
 const DEFENDANT_NAME = "JAMES MICHAEL THOMPSON";
 const DEFENDANT_DOB = "15/03/1992";
 const DEFENDANT_ADDRESS = "42 Elm Road, Manchester, M15 6PQ";
-const COURT = "Manchester Crown Court";
+const ORIGINATING_COURT = "Manchester Magistrates' Court";
+const SEISED_COURT = "Manchester Crown Court";
 const CHARGE = "Wounding with intent, contrary to section 18 of the Offences Against the Person Act 1861";
 const COMPLAINANT = "AHMED HASSAN";
 const INCIDENT_DATE = "14/11/2024";
@@ -147,7 +148,8 @@ addHeading("1. CASE METADATA", 14, true);
 const caseMetadata = [
   ["Field", "Details"],
   ["Case Reference", CASE_REF],
-  ["Court", COURT],
+  ["Originating Court", ORIGINATING_COURT],
+  ["Seised Court", SEISED_COURT],
   ["Defendant", DEFENDANT_NAME],
   ["Date of Birth", DEFENDANT_DOB],
   ["Address", DEFENDANT_ADDRESS],
@@ -158,12 +160,14 @@ const caseMetadata = [
 ];
 addTable(caseMetadata);
 
+addParagraph(`Proceedings originated in ${ORIGINATING_COURT} and are now before ${SEISED_COURT}.`, 10);
+
 addHeading("Hearing History", 12, true);
 const hearingHistory = [
   ["Date", "Court", "Hearing Type", "Outcome"],
-  ["15/11/2024", "Manchester Magistrates' Court", "First Appearance", "Remanded in custody. Case sent to Crown Court."],
-  ["18/11/2024", COURT, "Plea and Trial Preparation Hearing", "Not guilty plea entered. Trial listed for 15/01/2025."],
-  ["08/01/2025", COURT, "Pre-Trial Review", "Trial confirmed. All parties ready."],
+  ["15/11/2024", ORIGINATING_COURT, "First Appearance", "Remanded in custody. Case sent to Crown Court."],
+  ["18/11/2024", SEISED_COURT, "Plea and Trial Preparation Hearing", "Not guilty plea entered. Trial listed for 15/01/2025."],
+  ["08/01/2025", SEISED_COURT, "Pre-Trial Review", "Trial confirmed. All parties ready."],
 ];
 addTable(hearingHistory);
 

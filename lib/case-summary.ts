@@ -127,26 +127,8 @@ function buildSummaryText(
   extractedFacts: ExtractedCaseFacts[],
 ): string {
   if (practiceArea === "criminal") {
-    let summary = `This is a criminal defence matter. `;
-    if (keyFacts.clientName) {
-      summary += `Defendant: ${keyFacts.clientName}. `;
-    }
-    summary += `Current posture: disclosure-first and procedural integrity (PACE/CPIA) before committing to a fixed narrative. `;
-
-    if (keyFacts.headlineSummary) {
-      summary += keyFacts.headlineSummary;
-    } else if (caseRecord.summary) {
-      summary += caseRecord.summary;
-    } else if (extractedFacts.length > 0 && extractedFacts[0].summary) {
-      summary += extractedFacts[0].summary;
-    } else {
-      summary += "Case details are being compiled from uploaded documents.";
-    }
-
-    if (keyFacts.primaryIssues.length > 0) {
-      summary += ` Key focus areas: ${keyFacts.primaryIssues.slice(0, 3).join(", ")}.`;
-    }
-    return summary;
+    // Use new Disclosure-First Executive Brief structure for criminal cases
+    return buildCriminalDisclosureFirstBrief(caseRecord, keyFacts, extractedFacts);
   }
 
   let summary = `This is a ${practiceArea.replace(/_/g, " ")} case currently at ${keyFacts.stage.replace(/_/g, " ")} stage. `;
@@ -252,6 +234,134 @@ function determineComplianceStatus(
   }
 
   return "compliant";
+}
+
+/**
+ * Build Disclosure-First Executive Brief for criminal cases
+ * Replaces narrative paragraph style with structured solicitor-style brief
+ */
+function buildCriminalDisclosureFirstBrief(
+  caseRecord: { title: string; summary?: string | null },
+  keyFacts: Awaited<ReturnType<typeof buildKeyFactsSummary>>,
+  extractedFacts: ExtractedCaseFacts[],
+): string {
+  const sections: string[] = [];
+  
+  // A) What we have (from supplied documents)
+  sections.push("A) WHAT WE HAVE (from supplied documents):");
+  const docTypes: string[] = [];
+  extractedFacts.forEach(fact => {
+    if (fact.summary) {
+      // Extract document types from summary if available
+      const docMentions = fact.summary.match(/(?:MG\d+|charge sheet|indictment|witness statement|CCTV|BWV|999|custody record|interview)/gi);
+      if (docMentions) {
+        docTypes.push(...docMentions.map(d => d.toLowerCase()));
+      }
+    }
+  });
+  if (docTypes.length > 0) {
+    const uniqueDocs = Array.from(new Set(docTypes)).slice(0, 5);
+    sections.push(`- Documents referenced: ${uniqueDocs.join(", ")}`);
+  } else {
+    sections.push("- Documents: Being compiled from uploaded bundle");
+  }
+  
+  // B) Allegation/Charge (UNCONFIRMED until charge sheet/indictment present)
+  sections.push("\nB) ALLEGATION/CHARGE (UNCONFIRMED until charge sheet/indictment present):");
+  const criminalMeta = extractedFacts.find(f => f.criminalMeta)?.criminalMeta;
+  if (criminalMeta?.charges && criminalMeta.charges.length > 0) {
+    criminalMeta.charges.slice(0, 3).forEach(charge => {
+      sections.push(`- Reported: ${charge.offence}${charge.section ? ` (${charge.section})` : ""}`);
+    });
+    sections.push("- Charge requires confirmation from charge sheet/indictment.");
+  } else if (keyFacts.causeOfAction) {
+    sections.push(`- Reported: ${keyFacts.causeOfAction}`);
+    sections.push("- Charge requires confirmation from charge sheet/indictment.");
+  } else {
+    sections.push("- No charges confirmed from charge sheet/indictment.");
+    sections.push("- Charge requires confirmation from charge sheet/indictment.");
+  }
+  
+  // C) Evidence references (NOT VERIFIED unless present in supplied docs)
+  sections.push("\nC) EVIDENCE REFERENCES (NOT VERIFIED unless present in supplied docs):");
+  const evidenceStatus: string[] = [];
+  
+  // Check for CCTV
+  const hasCCTV = extractedFacts.some(f => 
+    f.criminalMeta?.prosecutionEvidence?.some(e => e.type === "CCTV") ||
+    f.summary?.toLowerCase().includes("cctv")
+  );
+  evidenceStatus.push(`- CCTV: Referenced: ${hasCCTV ? "yes" : "no"} | Continuity: unknown`);
+  
+  // Check for witness ID
+  const hasWitnessID = extractedFacts.some(f => 
+    f.criminalMeta?.prosecutionEvidence?.some(e => e.type === "witness_statement") ||
+    f.summary?.toLowerCase().includes("witness")
+  );
+  evidenceStatus.push(`- Witness ID: Referenced: ${hasWitnessID ? "yes" : "no"}`);
+  
+  // Check for medical
+  const hasMedical = extractedFacts.some(f => 
+    f.summary?.toLowerCase().includes("medical") || 
+    f.summary?.toLowerCase().includes("injury")
+  );
+  evidenceStatus.push(`- Medical: Present: ${hasMedical ? "yes" : "no"}`);
+  
+  // Check for forensics
+  const hasForensics = extractedFacts.some(f => 
+    f.criminalMeta?.prosecutionEvidence?.some(e => e.type === "forensic") ||
+    f.summary?.toLowerCase().includes("forensic")
+  );
+  evidenceStatus.push(`- Forensics: Referenced: ${hasForensics ? "yes" : "no"}`);
+  
+  // Check for weapon
+  const hasWeapon = extractedFacts.some(f => 
+    f.summary?.toLowerCase().includes("weapon") || 
+    f.summary?.toLowerCase().includes("pipe")
+  );
+  evidenceStatus.push(`- Weapon: Referenced: ${hasWeapon ? "yes" : "no"}`);
+  
+  // Check for interview
+  const hasInterview = extractedFacts.some(f => 
+    f.criminalMeta?.paceCompliance ||
+    f.summary?.toLowerCase().includes("interview") ||
+    f.summary?.toLowerCase().includes("no comment")
+  );
+  evidenceStatus.push(`- Interview: Referenced: ${hasInterview ? "yes" : "no"} (no-comment etc)`);
+  
+  sections.push(...evidenceStatus);
+  
+  // D) Key risks / uncertainties (because bundle thin)
+  sections.push("\nD) KEY RISKS / UNCERTAINTIES (because bundle thin):");
+  sections.push("- Bundle coverage thin: treat gaps as likely until confirmed");
+  if (keyFacts.mainRisks.length > 0) {
+    keyFacts.mainRisks.slice(0, 3).forEach(risk => {
+      sections.push(`- ${risk}`);
+    });
+  } else {
+    sections.push("- Outstanding disclosure items may materially affect case assessment");
+  }
+  
+  // E) Immediate next actions (Disclosure-first)
+  sections.push("\nE) IMMEDIATE NEXT ACTIONS (Disclosure-first):");
+  const requestList = [
+    "MG6C/MG6D",
+    "Disclosure schedules",
+    "Custody record",
+    "Legal advice log",
+    "Interview recording",
+    "CCTV/BWV/999",
+    "Exhibit list",
+    "Continuity statements",
+    "Forensics submission/results"
+  ];
+  sections.push("- Request list: " + requestList.join(", "));
+  
+  // F) Guardrail line
+  sections.push("\nF) GUARDRAIL:");
+  sections.push("- Do not form a fixed merits view until disclosure is stabilised.");
+  
+  return sections.join("\n");
 }
 
 function buildKeyFactsList(

@@ -116,6 +116,7 @@ export async function GET(_request: Request, { params }: RouteParams) {
           details: null,
           status: c.status,
           extracted: true, // Flag to indicate this was extracted, not from DB
+          confidence: c.confidence, // Include confidence score (0-1)
         }));
       }
     }
@@ -142,6 +143,7 @@ export async function GET(_request: Request, { params }: RouteParams) {
           details: c.details,
           status: c.status,
           extracted: c.extracted || false,
+          confidence: c.confidence ?? null, // Include confidence if available
         })),
       },
       context,

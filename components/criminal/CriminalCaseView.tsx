@@ -187,7 +187,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         <div className="space-y-6">
           {showCourtHearings && (
             <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Court hearings unavailable</div>}>
-              <CourtHearingsPanel caseId={caseId} />
+              <CourtHearingsPanel caseId={caseId} currentPhase={currentPhase} />
             </ErrorBoundary>
           )}
 

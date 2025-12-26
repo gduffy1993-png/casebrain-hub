@@ -16,9 +16,10 @@ type Hearing = {
 
 type CourtHearingsPanelProps = {
   caseId: string;
+  currentPhase?: 1 | 2 | 3; // Phase gating: outcomes only visible in Phase 3
 };
 
-export function CourtHearingsPanel({ caseId }: CourtHearingsPanelProps) {
+export function CourtHearingsPanel({ caseId, currentPhase = 1 }: CourtHearingsPanelProps) {
   const [hearings, setHearings] = useState<Hearing[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -77,7 +78,7 @@ export function CourtHearingsPanel({ caseId }: CourtHearingsPanelProps) {
             <h4 className="text-sm font-semibold mb-2">Upcoming</h4>
             <div className="space-y-2">
               {upcomingHearings.map((hearing) => (
-                <HearingCard key={hearing.id} hearing={hearing} isUpcoming />
+                <HearingCard key={hearing.id} hearing={hearing} isUpcoming currentPhase={currentPhase} />
               ))}
             </div>
           </div>
@@ -88,7 +89,7 @@ export function CourtHearingsPanel({ caseId }: CourtHearingsPanelProps) {
             <h4 className="text-sm font-semibold mb-2">Past</h4>
             <div className="space-y-2">
               {pastHearings.map((hearing) => (
-                <HearingCard key={hearing.id} hearing={hearing} isUpcoming={false} />
+                <HearingCard key={hearing.id} hearing={hearing} isUpcoming={false} currentPhase={currentPhase} />
               ))}
             </div>
           </div>
@@ -106,7 +107,7 @@ export function CourtHearingsPanel({ caseId }: CourtHearingsPanelProps) {
   );
 }
 
-function HearingCard({ hearing, isUpcoming }: { hearing: Hearing; isUpcoming: boolean }) {
+function HearingCard({ hearing, isUpcoming, currentPhase = 1 }: { hearing: Hearing; isUpcoming: boolean; currentPhase?: 1 | 2 | 3 }) {
   return (
     <div className={`p-3 rounded-lg border ${isUpcoming ? "border-primary/50 bg-primary/5" : "border-border bg-muted/30"}`}>
       <div className="flex items-start justify-between gap-2">
@@ -123,8 +124,14 @@ function HearingCard({ hearing, isUpcoming }: { hearing: Hearing; isUpcoming: bo
           {hearing.courtName && (
             <p className="text-xs text-muted-foreground mt-1">{hearing.courtName}</p>
           )}
-          {hearing.outcome && (
+          {/* Phase gating: outcomes only visible in Phase 3 (Sentencing & Outcome) */}
+          {hearing.outcome && currentPhase >= 3 && (
             <p className="text-xs text-muted-foreground mt-1">Outcome: {hearing.outcome}</p>
+          )}
+          {hearing.outcome && currentPhase < 3 && (
+            <p className="text-xs text-amber-400/70 mt-1 italic">
+              Outcome available in Phase 3 (Sentencing & Outcome)
+            </p>
           )}
         </div>
         {isUpcoming && <Badge variant="primary" className="text-xs">UPCOMING</Badge>}

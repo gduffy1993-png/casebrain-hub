@@ -15,6 +15,8 @@ type Charge = {
   value: number | null;
   details: string | null;
   status: string;
+  extracted?: boolean;
+  confidence?: number | null;
 };
 
 type ChargesPanelProps = {
@@ -25,6 +27,7 @@ export function ChargesPanel({ caseId }: ChargesPanelProps) {
   const [charges, setCharges] = useState<Charge[]>([]);
   const [loading, setLoading] = useState(true);
   const [detectedCharges, setDetectedCharges] = useState<string[]>([]);
+  const [hasChargeSheet, setHasChargeSheet] = useState<boolean>(false);
 
   useEffect(() => {
     async function fetchCharges() {
@@ -65,10 +68,15 @@ export function ChargesPanel({ caseId }: ChargesPanelProps) {
     
     async function checkDetectedCharges() {
       // Check key facts for detected charges in primaryIssues or causeOfAction
+      // Also check if charge sheet/indictment exists in documents
       try {
-        const res = await fetch(`/api/cases/${caseId}/key-facts`);
-        if (res.ok) {
-          const result = await res.json();
+        const [keyFactsRes, documentsRes] = await Promise.all([
+          fetch(`/api/cases/${caseId}/key-facts`),
+          fetch(`/api/cases/${caseId}/documents`).catch(() => null),
+        ]);
+        
+        if (keyFactsRes.ok) {
+          const result = await keyFactsRes.json();
           const keyFacts = result.data?.keyFacts || result.keyFacts;
           if (keyFacts) {
             const detected: string[] = [];
@@ -87,6 +95,19 @@ export function ChargesPanel({ caseId }: ChargesPanelProps) {
             setDetectedCharges(detected);
           }
         }
+        
+        // Check for charge sheet/indictment in documents
+        if (documentsRes?.ok) {
+          const docsData = await documentsRes.json();
+          const documents = docsData.data?.documents || docsData.documents || [];
+          const hasChargeSheetDoc = documents.some((doc: any) => {
+            const name = (doc.name || "").toLowerCase();
+            return name.includes("charge sheet") || 
+                   name.includes("indictment") ||
+                   name.includes("charges") && (name.includes("sheet") || name.includes("list"));
+          });
+          setHasChargeSheet(hasChargeSheetDoc);
+        }
       } catch {
         // Silently fail - detection check is optional
       }
@@ -104,13 +125,34 @@ export function ChargesPanel({ caseId }: ChargesPanelProps) {
     );
   }
 
+  // Separate confirmed vs unconfirmed charges
+  const confirmedCharges = charges.filter(c => {
+    // A charge is confirmed if:
+    // 1. It has confidence >= 0.75 AND hasChargeSheet is true
+    // 2. OR it's not extracted (from DB, assumed confirmed)
+    const isConfirmed = !c.extracted || (c.confidence != null && c.confidence >= 0.75 && hasChargeSheet);
+    return isConfirmed;
+  });
+  
+  const unconfirmedCharges = charges.filter(c => {
+    const isUnconfirmed = c.extracted && (c.confidence == null || c.confidence < 0.75 || !hasChargeSheet);
+    return isUnconfirmed;
+  });
+
   return (
     <Card
       title={
         <div className="flex items-center gap-2">
           <FileText className="h-4 w-4 text-primary" />
           <span>Charges & Offences</span>
-          {charges.length > 0 && <Badge variant="secondary">{charges.length}</Badge>}
+          {confirmedCharges.length > 0 && (
+            <Badge variant="secondary">{confirmedCharges.length} confirmed</Badge>
+          )}
+          {unconfirmedCharges.length > 0 && (
+            <Badge variant="outline" className="border-amber-500/30 text-amber-400">
+              {unconfirmedCharges.length} unconfirmed
+            </Badge>
+          )}
         </div>
       }
       description="Criminal charges and offences"
@@ -155,32 +197,87 @@ export function ChargesPanel({ caseId }: ChargesPanelProps) {
           </div>
         )
       ) : (
-        <div className="space-y-3">
-          {charges.map((charge) => (
-            <div key={charge.id} className="p-3 rounded-lg border border-border bg-muted/30">
-              <div className="flex items-start justify-between gap-2 mb-1">
-                <div className="flex-1">
-                  <h4 className="font-semibold text-sm">{charge.offence}</h4>
-                  {charge.section && (
-                    <p className="text-xs text-muted-foreground mt-1">{charge.section}</p>
-                  )}
-                  {charge.details && (
-                    <p className="text-xs text-muted-foreground mt-1">{charge.details}</p>
-                  )}
-                </div>
-                <Badge variant="secondary" className="text-xs">
-                  {charge.status}
-                </Badge>
-              </div>
-              <div className="flex items-center gap-4 mt-2 text-xs text-muted-foreground">
-                {charge.chargeDate && (
-                  <span>Date: {new Date(charge.chargeDate).toLocaleDateString()}</span>
-                )}
-                {charge.location && <span>Location: {charge.location}</span>}
-                {charge.value && <span>Value: £{charge.value.toLocaleString()}</span>}
+        <div className="space-y-4">
+          {/* Confirmed Charges */}
+          {confirmedCharges.length > 0 && (
+            <div>
+              <p className="text-xs uppercase tracking-wide text-accent/50 mb-2">Confirmed Charges</p>
+              <div className="space-y-3">
+                {confirmedCharges.map((charge) => (
+                  <div key={charge.id} className="p-3 rounded-lg border border-border bg-muted/30">
+                    <div className="flex items-start justify-between gap-2 mb-1">
+                      <div className="flex-1">
+                        <h4 className="font-semibold text-sm">{charge.offence}</h4>
+                        {charge.section && (
+                          <p className="text-xs text-muted-foreground mt-1">{charge.section}</p>
+                        )}
+                        {charge.details && (
+                          <p className="text-xs text-muted-foreground mt-1">{charge.details}</p>
+                        )}
+                      </div>
+                      <Badge variant="secondary" className="text-xs">
+                        {charge.status}
+                      </Badge>
+                    </div>
+                    <div className="flex items-center gap-4 mt-2 text-xs text-muted-foreground">
+                      {charge.chargeDate && (
+                        <span>Date: {new Date(charge.chargeDate).toLocaleDateString()}</span>
+                      )}
+                      {charge.location && <span>Location: {charge.location}</span>}
+                      {charge.value && <span>Value: £{charge.value.toLocaleString()}</span>}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-          ))}
+          )}
+          
+          {/* Unconfirmed (Extracted) Charges */}
+          {unconfirmedCharges.length > 0 && (
+            <div>
+              <p className="text-xs uppercase tracking-wide text-amber-400/70 mb-2">Unconfirmed (Extracted) Charges</p>
+              <div className="space-y-3">
+                {unconfirmedCharges.map((charge) => (
+                  <div key={charge.id} className="p-3 rounded-lg border border-amber-500/20 bg-amber-500/5">
+                    <div className="flex items-start justify-between gap-2 mb-1">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2">
+                          <h4 className="font-semibold text-sm">{charge.offence}</h4>
+                          <Badge variant="outline" className="text-xs border-amber-500/30 text-amber-400">
+                            UNCONFIRMED
+                          </Badge>
+                        </div>
+                        {charge.section && (
+                          <p className="text-xs text-muted-foreground mt-1">{charge.section}</p>
+                        )}
+                        {charge.details && (
+                          <p className="text-xs text-muted-foreground mt-1">{charge.details}</p>
+                        )}
+                        <p className="text-xs text-amber-400/80 mt-2">
+                          Needs charge sheet/indictment
+                          {charge.confidence != null && charge.confidence < 0.75 && (
+                            <span className="ml-1">
+                              (Extraction confidence: {(charge.confidence * 100).toFixed(0)}%)
+                            </span>
+                          )}
+                        </p>
+                      </div>
+                      <Badge variant="secondary" className="text-xs">
+                        {charge.status}
+                      </Badge>
+                    </div>
+                    <div className="flex items-center gap-4 mt-2 text-xs text-muted-foreground">
+                      {charge.chargeDate && (
+                        <span>Date: {new Date(charge.chargeDate).toLocaleDateString()}</span>
+                      )}
+                      {charge.location && <span>Location: {charge.location}</span>}
+                      {charge.value && <span>Value: £{charge.value.toLocaleString()}</span>}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
     </Card>
