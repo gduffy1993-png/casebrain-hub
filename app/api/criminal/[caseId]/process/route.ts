@@ -225,8 +225,8 @@ export async function POST(_request: Request, { params }: RouteParams) {
       }
     }
 
-    // Detect loopholes
-    const loopholes = detectAllLoopholes(criminalMeta);
+    // Detect loopholes (now async with LLM fallback support)
+    const loopholes = await detectAllLoopholes(criminalMeta);
 
     // Save loopholes (handle missing table gracefully)
     try {

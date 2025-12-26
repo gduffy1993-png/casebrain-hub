@@ -52,6 +52,7 @@ type DefenseAngle = {
 type CaseFightPlanData = {
   overallWinProbability: number | null;
   criticalAngles: DefenseAngle[];
+  allAngles?: DefenseAngle[]; // Optional - may not always be present
   recommendedStrategy: {
     primaryAngle: DefenseAngle;
     supportingAngles: DefenseAngle[];
@@ -67,11 +68,13 @@ type CaseFightPlanData = {
   realisticOutcome?: string;
 };
 
+type PrimaryStrategy = "fight_charge" | "charge_reduction" | "outcome_management";
+
 type CaseFightPlanProps = {
   caseId: string;
   committedStrategy?: {
-    primary: "fight_charge" | "charge_reduction" | "outcome_management";
-    secondary: Array<"fight_charge" | "charge_reduction" | "outcome_management">;
+    primary: PrimaryStrategy;
+    secondary: Array<PrimaryStrategy>;
   } | null;
 };
 
@@ -232,6 +235,67 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
   // FIX: Check if we can render - must have either data OR committedStrategy
   // Previous bug: !data check blocked rendering even when committedStrategy exists
   const canRender = data || committedStrategy;
+
+  // FIX: Filter angles by committed strategy (Strategy-Specific Angle Filtering)
+  const filteredData = data ? {
+    ...data,
+    criticalAngles: filterAnglesByStrategy(data.criticalAngles || [], committedStrategy),
+    allAngles: filterAnglesByStrategy(data.allAngles || [], committedStrategy),
+    recommendedStrategy: data.recommendedStrategy ? {
+      ...data.recommendedStrategy,
+      primaryAngle: filterAnglesByStrategy([data.recommendedStrategy.primaryAngle], committedStrategy)[0] || data.recommendedStrategy.primaryAngle,
+      supportingAngles: filterAnglesByStrategy(data.recommendedStrategy.supportingAngles || [], committedStrategy),
+    } : undefined,
+  } : null;
+
+  // Alias for consistency (displayData = filteredData)
+  const displayData = filteredData;
+
+  // Helper function to filter angles by strategy
+  function filterAnglesByStrategy(
+    angles: DefenseAngle[],
+    strategy: typeof committedStrategy,
+  ): DefenseAngle[] {
+    if (!strategy || !strategy.primary) {
+      return angles; // No filtering if no strategy committed
+    }
+
+    const { primary } = strategy;
+
+    // Map strategy to relevant angle types
+    const relevantAngleTypes: Record<PrimaryStrategy, string[]> = {
+      fight_charge: [
+        "PACE_BREACH_EXCLUSION",
+        "DISCLOSURE_FAILURE_STAY",
+        "EVIDENCE_WEAKNESS_CHALLENGE",
+        "IDENTIFICATION_CHALLENGE",
+        "ABUSE_OF_PROCESS",
+        "HUMAN_RIGHTS_BREACH",
+        "NO_CASE_TO_ANSWER",
+        "CONTRADICTION_EXPLOITATION",
+        "CHAIN_OF_CUSTODY_BREAK",
+      ],
+      charge_reduction: [
+        "EVIDENCE_WEAKNESS_CHALLENGE",
+        "DISCLOSURE_FAILURE_STAY",
+        "CONTRADICTION_EXPLOITATION",
+        "TECHNICAL_DEFENSE",
+      ],
+      outcome_management: [
+        "SENTENCING_MITIGATION",
+        "TECHNICAL_DEFENSE",
+      ],
+    };
+
+    const relevantTypes = relevantAngleTypes[primary] || [];
+    
+    // Filter: show relevant angles first, then others (but still show all)
+    // Actually, let's be more aggressive - only show relevant angles
+    return angles.filter(angle => 
+      relevantTypes.includes(angle.angleType) ||
+      angle.severity === "CRITICAL" // Always show CRITICAL angles
+    );
+  }
   
   // FIX: Only show concrete error if we have no data AND no committed strategy AND no charges
   // Check for charges to determine if case is valid
@@ -345,9 +409,10 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
 
   // FIX: Handle null data gracefully - use committedStrategy to build minimal plan if needed
   // Previous bug: Assumed data always exists, causing crashes when data was null
-  const primaryAngle = data?.recommendedStrategy?.primaryAngle;
-  const supportingAngles = data?.recommendedStrategy?.supportingAngles || [];
-  const tacticalPlan = data?.recommendedStrategy?.tacticalPlan || [];
+  // Use displayData (filtered by strategy) instead of raw data
+  const primaryAngle = displayData?.recommendedStrategy?.primaryAngle;
+  const supportingAngles = displayData?.recommendedStrategy?.supportingAngles || [];
+  const tacticalPlan = displayData?.recommendedStrategy?.tacticalPlan || [];
 
   // Extract disclosure requests and ready-to-use arguments from primary angle
   const disclosureRequests = primaryAngle?.disclosureRequests || [];
@@ -388,14 +453,14 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
   // FIX: getWinConditions and getLossConditions are already defined above (lines 161-219), removed duplicate code
 
   const getEvidenceThatMatters = (): string[] => {
-    if (!committedStrategy || !data) return [];
+    if (!committedStrategy || !displayData) return [];
     
     const { primary } = committedStrategy;
     const evidence: string[] = [];
     
-    // Extract from existing data
-    if (data.prosecutionVulnerabilities?.evidenceGaps) {
-      evidence.push(...data.prosecutionVulnerabilities.evidenceGaps.slice(0, 3));
+    // Extract from existing data (use displayData)
+    if (displayData?.prosecutionVulnerabilities?.evidenceGaps) {
+      evidence.push(...displayData.prosecutionVulnerabilities.evidenceGaps.slice(0, 3));
     }
     
     if (primary === "fight_charge") {
@@ -430,7 +495,7 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
   };
 
   const getProceduralActions = (): string[] => {
-    if (!committedStrategy || !data) return [];
+    if (!committedStrategy || !displayData) return [];
     const actions: string[] = [];
 
     if (primaryAngle?.angleType === "DISCLOSURE_FAILURE_STAY") {
@@ -456,7 +521,7 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
   };
 
   const getRealisticOutcomeRange = (): { best: string; middle: string; worst: string; factors: string[] } | null => {
-    if (!committedStrategy || !data) return null;
+    if (!committedStrategy || !displayData) return null;
     
     const { primary } = committedStrategy;
     const factors: string[] = [];
@@ -543,9 +608,9 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
             <p className="text-sm text-foreground font-medium leading-relaxed">
               {getDirectiveStrategyText()}
             </p>
-          ) : data?.realisticOutcome ? (
+          ) : displayData?.realisticOutcome ? (
             <p className="text-sm text-muted-foreground italic">
-              {data.realisticOutcome}
+              {displayData.realisticOutcome}
             </p>
           ) : null}
         </div>
@@ -656,7 +721,7 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
                   What Would Flip The Outcome
                 </h3>
                 <p className="text-xs text-foreground mb-2">
-                  {data.evidenceStrengthWarnings && data.evidenceStrengthWarnings.length > 0
+                  {displayData?.evidenceStrengthWarnings && displayData.evidenceStrengthWarnings.length > 0
                     ? "Evidence is borderline. The following would decisively change the outcome:"
                     : "If evidence remains borderline, the following would decisively change the outcome:"
                   }
@@ -968,11 +1033,11 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
         </div>
 
         {/* Professional judgment warnings */}
-        {data?.evidenceStrengthWarnings && data.evidenceStrengthWarnings.length > 0 && (
+        {displayData?.evidenceStrengthWarnings && displayData.evidenceStrengthWarnings.length > 0 && (
           <div className="p-3 rounded bg-amber-950/20 border border-amber-800/30">
             <p className="text-xs font-medium text-amber-300 mb-1.5">Professional Judgment</p>
             <ul className="text-xs text-amber-200/90 space-y-1">
-              {data.evidenceStrengthWarnings.map((warning: string, idx: number) => (
+              {displayData.evidenceStrengthWarnings.map((warning: string, idx: number) => (
                 <li key={idx} className="flex items-start gap-1.5">
                   <span className="text-amber-400 mt-0.5">•</span>
                   <span>{warning}</span>

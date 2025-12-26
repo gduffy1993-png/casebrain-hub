@@ -10,6 +10,7 @@
 import "server-only";
 import type { CriminalMeta } from "@/types/case";
 import { detectAllLoopholes, type Loophole } from "./loophole-detector";
+import { getOpenAIClient } from "@/lib/openai";
 
 export type DefenseAngle = {
   id: string;
@@ -83,13 +84,31 @@ export type AggressiveDefenseAnalysis = {
 
 /**
  * Main function: Find EVERY possible defense angle
+ * 
+ * FIX (Dec 2024): Added documents parameter and LLM fallback
+ * When criminalMeta is null (e.g. defence review PDFs), fall back to analyzing raw_text
  */
 export async function findAllDefenseAngles(
   criminalMeta: CriminalMeta | null | undefined,
   caseId: string,
+  documents?: Array<{ raw_text?: string; extracted_json?: unknown; name?: string }>,
 ): Promise<AggressiveDefenseAnalysis> {
   const allAngles: DefenseAngle[] = [];
   const now = new Date().toISOString();
+
+  // FIX: If criminalMeta is null/empty, try LLM fallback on raw text
+  if (!criminalMeta && documents && documents.length > 0) {
+    const rawText = documents
+      .map((doc) => doc.raw_text || "")
+      .filter((text) => text.length > 100) // Only use documents with substantial text
+      .join("\n\n");
+
+    if (rawText.length > 500) {
+      // Use LLM to extract defence angles from raw text
+      const llmAngles = await extractDefenseAnglesFromText(rawText, caseId);
+      allAngles.push(...llmAngles);
+    }
+  }
 
   // 1. PACE BREACHES - Most powerful defense angle
   const paceAngles = findPACEExclusionAngles(criminalMeta, caseId);
@@ -153,6 +172,106 @@ export async function findAllDefenseAngles(
     prosecutionVulnerabilities,
     createdAt: now,
   };
+}
+
+/**
+ * LLM FALLBACK: Extract defence angles from raw text when criminalMeta is missing
+ * This allows the system to work with defence review PDFs and any document type
+ */
+async function extractDefenseAnglesFromText(
+  rawText: string,
+  caseId: string,
+): Promise<DefenseAngle[]> {
+  const angles: DefenseAngle[] = [];
+  
+  try {
+    const client = getOpenAIClient();
+    
+    // Truncate text if too long (keep first and last parts for context)
+    const maxLength = 12000;
+    const textToAnalyze = rawText.length > maxLength
+      ? rawText.slice(0, maxLength / 2) + "\n\n...[middle section truncated]...\n\n" + rawText.slice(-maxLength / 2)
+      : rawText;
+
+    const completion = await client.chat.completions.create({
+      model: "gpt-4o-mini",
+      temperature: 0.2,
+      response_format: { type: "json_object" },
+      messages: [
+        {
+          role: "system",
+          content: `You are a criminal defence solicitor analyzing case documents to identify defence angles and loopholes.
+
+Extract defence angles from the document text. Look for:
+1. PACE breaches (caution not given, interview not recorded, rights not given)
+2. Disclosure failures (missing CCTV, missing MG6C, late disclosure)
+3. Evidence weaknesses (weak identification, unreliable witnesses, forensic issues)
+4. Identification challenges (Turnbull issues, distance, lighting, time)
+5. Procedural errors (abuse of process, human rights breaches)
+6. Contradictions in evidence
+7. Chain of custody issues
+
+For each angle found, return JSON with:
+- angleType: one of PACE_BREACH_EXCLUSION, DISCLOSURE_FAILURE_STAY, EVIDENCE_WEAKNESS_CHALLENGE, IDENTIFICATION_CHALLENGE, ABUSE_OF_PROCESS, HUMAN_RIGHTS_BREACH, CONTRADICTION_EXPLOITATION, CHAIN_OF_CUSTODY_BREAK
+- title: Short descriptive title
+- severity: CRITICAL, HIGH, MEDIUM, or LOW
+- winProbability: 0-100 (realistic estimate)
+- whyThisMatters: Why this angle is important
+- legalBasis: Legal basis (statute/case law)
+- prosecutionWeakness: What this exposes about prosecution case
+- howToExploit: Step-by-step how to use this angle
+- specificArguments: Array of ready-to-use legal arguments
+- disclosureRequests: Array of disclosure items to request
+
+Return JSON: { "angles": [...] }
+
+Be aggressive but realistic. Only extract angles that are genuinely present in the text.`,
+        },
+        {
+          role: "user",
+          content: `Analyze this criminal case document for defence angles:\n\n${textToAnalyze}`,
+        },
+      ],
+    });
+
+    const content = completion.choices[0]?.message?.content;
+    if (!content) return angles;
+
+    const result = JSON.parse(content);
+    const extractedAngles = result.angles || [];
+
+    // Convert LLM output to DefenseAngle format
+    for (const angle of extractedAngles) {
+      if (!angle.angleType || !angle.title) continue;
+
+      angles.push({
+        id: `angle-llm-${angle.angleType.toLowerCase()}-${caseId}-${Date.now()}`,
+        angleType: angle.angleType as DefenseAngle["angleType"],
+        title: angle.title,
+        severity: (angle.severity || "MEDIUM") as DefenseAngle["severity"],
+        winProbability: Math.min(100, Math.max(0, angle.winProbability || 50)),
+        whyThisMatters: angle.whyThisMatters || angle.title,
+        legalBasis: angle.legalBasis || "Extracted from case documents",
+        caseLaw: angle.caseLaw || [],
+        prosecutionWeakness: angle.prosecutionWeakness || "Extracted from case analysis",
+        howToExploit: angle.howToExploit || "Review case documents and implement strategy",
+        specificArguments: angle.specificArguments || [],
+        crossExaminationPoints: angle.crossExaminationPoints || [],
+        submissions: angle.submissions || [],
+        ifSuccessful: angle.ifSuccessful || "Positive outcome for defence",
+        ifUnsuccessful: angle.ifUnsuccessful || "Continue with alternative strategy",
+        combinedWith: angle.combinedWith || [],
+        evidenceNeeded: angle.evidenceNeeded || [],
+        disclosureRequests: angle.disclosureRequests || [],
+        createdAt: new Date().toISOString(),
+      });
+    }
+  } catch (error) {
+    console.error("[aggressive-defense-engine] LLM fallback error:", error);
+    // Don't throw - return empty array so system can continue
+  }
+
+  return angles;
 }
 
 /**

@@ -16,6 +16,9 @@ import { analyzeEvidenceStrength } from "@/lib/evidence-strength-analyzer";
 import { makeOk, makeGateFail, makeNotFound, makeError, type ApiResponse } from "@/lib/api/response";
 import { checkAnalysisGate } from "@/lib/analysis/text-gate";
 import { calibrateAngles, computeOverallFromAngles, calibrateProbability } from "@/lib/analysis/calibration";
+import { getCachedLLMResult, setCachedLLMResult, generateDocSetHash } from "@/lib/llm/cache";
+import { mergeCriminalDocs } from "@/lib/case-evidence/merge-criminal-docs";
+import type { AggressiveDefenseAnalysis } from "@/lib/criminal/aggressive-defense-engine";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -74,8 +77,42 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         }
       }
 
-      // Get aggressive defense analysis
-      const analysis = await findAllDefenseAngles(criminalMeta, caseId);
+      // FIX: Build evidence graph and check cache
+      const evidenceGraph = mergeCriminalDocs(context);
+      
+      // Generate cache key
+      const docSetHash = generateDocSetHash(context.documents);
+      const cacheKey = {
+        analysisName: "aggressive-defense",
+        caseId,
+        docSetHash,
+        practiceArea: "criminal",
+      };
+
+      // Check cache first
+      const cached = await getCachedLLMResult<AggressiveDefenseAnalysis>(orgId, cacheKey);
+      let analysis: AggressiveDefenseAnalysis;
+      let wasCached = false;
+
+      if (cached.cached) {
+        analysis = cached.data;
+        wasCached = true;
+      } else {
+        // Get aggressive defense analysis
+        // FIX: Pass documents array for LLM fallback when criminalMeta is null
+        analysis = await findAllDefenseAngles(
+          criminalMeta,
+          caseId,
+          context.documents.map((doc) => ({
+            raw_text: doc.raw_text,
+            extracted_json: doc.extracted_json,
+            name: doc.name,
+          })),
+        );
+
+        // Cache the result
+        await setCachedLLMResult(orgId, caseId, cacheKey, analysis);
+      }
 
       // Get key facts for evidence strength analysis
       const { data: keyFacts } = await supabase
@@ -174,6 +211,8 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
               : analysis?.recommendedStrategy,
             criticalAngles: (analysis?.criticalAngles ?? []).map((a: any) => ({ ...a, winProbability: null })),
             allAngles: (analysis?.allAngles ?? []).map((a: any) => ({ ...a, winProbability: null })),
+            cached: wasCached,
+            evidenceGraph: evidenceGraph, // Include evidence graph
           },
           context,
           caseId,
@@ -186,6 +225,8 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
           probabilitiesSuppressed: false,
           bundleCompleteness: bundle.completeness,
           criticalMissingCount: bundle.criticalMissingCount,
+          cached: wasCached,
+          evidenceGraph: evidenceGraph, // Include evidence graph
         },
         context,
         caseId,

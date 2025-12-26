@@ -7,6 +7,7 @@
 
 import "server-only";
 import type { CriminalMeta } from "@/types/case";
+import { getOpenAIClient } from "@/lib/openai";
 
 export type LoopholeType =
   | "PACE_breach"
@@ -195,9 +196,29 @@ export function detectDisclosureFailures(criminalMeta: CriminalMeta | null | und
 
 /**
  * Main function to detect all loopholes
+ * 
+ * FIX (Dec 2024): Added documents parameter and LLM fallback
+ * When criminalMeta is null (e.g. defence review PDFs), fall back to analyzing raw_text
  */
-export function detectAllLoopholes(criminalMeta: CriminalMeta | null | undefined): Loophole[] {
+export async function detectAllLoopholes(
+  criminalMeta: CriminalMeta | null | undefined,
+  documents?: Array<{ raw_text?: string; extracted_json?: unknown; name?: string }>,
+): Promise<Loophole[]> {
   const allLoopholes: Loophole[] = [];
+
+  // FIX: If criminalMeta is null/empty, try LLM fallback on raw text
+  if (!criminalMeta && documents && documents.length > 0) {
+    const rawText = documents
+      .map((doc) => doc.raw_text || "")
+      .filter((text) => text.length > 100) // Only use documents with substantial text
+      .join("\n\n");
+
+    if (rawText.length > 500) {
+      // Use LLM to extract loopholes from raw text
+      const llmLoopholes = await extractLoopholesFromText(rawText);
+      allLoopholes.push(...llmLoopholes);
+    }
+  }
 
   // Detect PACE breaches
   allLoopholes.push(...detectPACEBreaches(criminalMeta));
@@ -209,5 +230,90 @@ export function detectAllLoopholes(criminalMeta: CriminalMeta | null | undefined
   allLoopholes.push(...detectDisclosureFailures(criminalMeta));
 
   return allLoopholes;
+}
+
+/**
+ * LLM FALLBACK: Extract loopholes from raw text when criminalMeta is missing
+ * This allows the system to work with defence review PDFs and any document type
+ */
+async function extractLoopholesFromText(rawText: string): Promise<Loophole[]> {
+  const loopholes: Loophole[] = [];
+  
+  try {
+    const client = getOpenAIClient();
+    
+    // Truncate text if too long (keep first and last parts for context)
+    const maxLength = 12000;
+    const textToAnalyze = rawText.length > maxLength
+      ? rawText.slice(0, maxLength / 2) + "\n\n...[middle section truncated]...\n\n" + rawText.slice(-maxLength / 2)
+      : rawText;
+
+    const completion = await client.chat.completions.create({
+      model: "gpt-4o-mini",
+      temperature: 0.2,
+      response_format: { type: "json_object" },
+      messages: [
+        {
+          role: "system",
+          content: `You are a criminal defence solicitor analyzing case documents to identify loopholes, weaknesses, and procedural errors.
+
+Extract loopholes from the document text. Look for:
+1. PACE breaches (caution not given, interview not recorded, rights not given, detention time exceeded)
+2. Disclosure failures (missing CCTV, missing MG6C, late disclosure, outstanding material)
+3. Evidence weaknesses (weak identification, unreliable witnesses, forensic issues, missing evidence)
+4. Identification issues (Turnbull issues, distance, lighting, time, brief observation)
+5. Procedural errors (abuse of process, human rights breaches, chain of custody issues)
+6. Contradictions in evidence
+7. Missing evidence that could prove innocence
+
+For each loophole found, return JSON with:
+- loopholeType: one of PACE_breach, procedural_error, evidence_weakness, disclosure_failure, identification_issue, contradiction, missing_evidence, chain_of_custody
+- title: Short descriptive title
+- description: Detailed description of the loophole
+- severity: CRITICAL, HIGH, MEDIUM, or LOW
+- exploitability: low, medium, or high
+- successProbability: 0-100 (realistic estimate)
+- suggestedAction: What action to take to exploit this loophole
+- legalArgument: Ready-to-use legal argument to use
+
+Return JSON: { "loopholes": [...] }
+
+Be aggressive but realistic. Only extract loopholes that are genuinely present in the text.`,
+        },
+        {
+          role: "user",
+          content: `Analyze this criminal case document for loopholes and weaknesses:\n\n${textToAnalyze}`,
+        },
+      ],
+    });
+
+    const content = completion.choices[0]?.message?.content;
+    if (!content) return loopholes;
+
+    const result = JSON.parse(content);
+    const extractedLoopholes = result.loopholes || [];
+
+    // Convert LLM output to Loophole format
+    for (const loophole of extractedLoopholes) {
+      if (!loophole.loopholeType || !loophole.title) continue;
+
+      loopholes.push({
+        id: `loophole-llm-${loophole.loopholeType.toLowerCase()}-${Date.now()}`,
+        loopholeType: loophole.loopholeType as LoopholeType,
+        title: loophole.title,
+        description: loophole.description || loophole.title,
+        severity: (loophole.severity || "MEDIUM") as Loophole["severity"],
+        exploitability: (loophole.exploitability || "medium") as Loophole["exploitability"],
+        successProbability: Math.min(100, Math.max(0, loophole.successProbability || 50)),
+        suggestedAction: loophole.suggestedAction || "Review case documents and identify exploitation strategy",
+        legalArgument: loophole.legalArgument || null,
+      });
+    }
+  } catch (error) {
+    console.error("[loophole-detector] LLM fallback error:", error);
+    // Don't throw - return empty array so system can continue
+  }
+
+  return loopholes;
 }
 

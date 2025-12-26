@@ -768,6 +768,17 @@ export async function POST(request: Request) {
 
   console.log(`[upload] Upload complete. Case: ${caseId}, Documents: ${documentIds.length}, Skipped: ${skippedFiles.length}`);
   
+  // FIX: Invalidate cache when new documents are uploaded
+  if (documentIds.length > 0 && caseId) {
+    try {
+      const { invalidateCaseCache } = await import("@/lib/llm/cache");
+      await invalidateCaseCache(orgId, caseId);
+    } catch (error) {
+      console.warn("[upload] Failed to invalidate cache:", error);
+      // Don't fail upload if cache invalidation fails
+    }
+  }
+  
   return NextResponse.json({ 
     caseId, 
     documentIds,
