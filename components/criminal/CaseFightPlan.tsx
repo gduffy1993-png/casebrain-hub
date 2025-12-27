@@ -259,11 +259,19 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
 
   // FIX: Check if we can render - must have either data OR committedStrategy
   // Previous bug: !data check blocked rendering even when committedStrategy exists
-  const canRender = data || committedStrategy;
+  // FIX: Force render if ANY strategy data exists (primaryAngle, criticalAngles, allAngles, strategies)
+  const planDataAny = data as any; // Allow checking for alternative field names
+  const hasStrategyData =
+    !!data?.recommendedStrategy?.primaryAngle ||
+    !!data?.criticalAngles?.length ||
+    !!data?.allAngles?.length ||
+    !!planDataAny?.strategies?.length ||
+    !!committedStrategy;
+  
+  const canRender = hasStrategyData;
 
   // FIX: Filter angles by committed strategy (Strategy-Specific Angle Filtering)
   // Use fallback list so we don't filter empty arrays and accidentally make it empty
-  const planDataAny = data as any; // Allow checking for alternative field names
   const baseAngles =
     (data?.criticalAngles?.length ? data.criticalAngles : null) ||
     (data?.allAngles?.length ? data.allAngles : null) ||
@@ -354,14 +362,20 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
     checkCharges();
   }, [caseId]);
 
-  // FIX: Only block rendering if we have NO data, NO committed strategy, AND NO charges
-  // Previous bug: Blocked rendering when data was null even if committedStrategy existed
-  if (!canRender && !committedStrategy && hasCharges === false) {
+  // FIX: Never block rendering - always show something if we have ANY data or committedStrategy
+  // Removed "Defence plan unavailable" blocker - strategy should always render when data exists
+  // If no data and no committedStrategy, show minimal fallback but still render
+  if (!hasStrategyData) {
+    // Only show minimal fallback if we truly have nothing
     return (
       <Card className="p-6">
-        <p className="text-sm text-muted-foreground">
-          {error || "Defence plan not available. No charges or strategy data found."}
-        </p>
+        <div className="text-center text-muted-foreground">
+          <FileText className="h-8 w-8 mx-auto mb-2 opacity-50" />
+          <p className="text-sm font-medium">Strategy analysis pending</p>
+          <p className="text-xs mt-1">
+            {error || "Upload documents and re-analyse to generate defence plan."}
+          </p>
+        </div>
       </Card>
     );
   }

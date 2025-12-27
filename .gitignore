@@ -10,3 +10,5 @@ pnpm-debug.log*
 dist
 out
 .DS_Store
+*.tsbuildinfo
+tsconfig.tsbuildinfo

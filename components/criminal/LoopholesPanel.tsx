@@ -27,6 +27,7 @@ type LoopholesPanelProps = {
 export function LoopholesPanel({ caseId }: LoopholesPanelProps) {
   const [loopholes, setLoopholes] = useState<Loophole[]>([]);
   const [loading, setLoading] = useState(true);
+  const [documentCount, setDocumentCount] = useState<number>(0);
   const [suppression, setSuppression] = useState<{ reason?: string | null } | null>(null);
   const [gatedResponse, setGatedResponse] = useState<{
     banner: AnalysisGateBannerProps["banner"];
@@ -57,6 +58,7 @@ export function LoopholesPanel({ caseId }: LoopholesPanelProps) {
 
           const data = normalized.data || result; // Fallback to old shape
           setLoopholes(data.loopholes || []);
+          setDocumentCount(data.documentCount || 0);
           if (data?.probabilitiesSuppressed) {
             setSuppression({ reason: data?.suppressionReason });
           } else {
@@ -84,13 +86,16 @@ export function LoopholesPanel({ caseId }: LoopholesPanelProps) {
     );
   }
 
-  // Show minimal placeholder if analysis is blocked (parent may show full banner)
-  if (gatedResponse) {
+  // FIX: Show banner but don't block - loopholes are optional, not prerequisites
+  // If gated and no documents, show banner. Otherwise show loopholes (even if empty)
+  if (gatedResponse && documentCount === 0) {
     return (
       <Card className="p-4">
-        <p className="text-sm text-muted-foreground">
-          Analysis unavailable. {gatedResponse.banner?.message || "Not enough extractable text to generate reliable analysis."}
-        </p>
+        <AnalysisGateBanner
+          banner={gatedResponse.banner}
+          diagnostics={gatedResponse.diagnostics}
+          showHowToFix={true}
+        />
       </Card>
     );
   }
@@ -138,8 +143,18 @@ export function LoopholesPanel({ caseId }: LoopholesPanelProps) {
       {loopholes.length === 0 ? (
         <div className="text-center py-8 text-muted-foreground">
           <AlertTriangle className="h-8 w-8 mx-auto mb-2 opacity-50" />
-          <p className="text-sm">No loopholes identified yet</p>
-          <p className="text-xs mt-1">Upload case documents to begin analysis</p>
+          {documentCount === 0 ? (
+            <>
+              <p className="text-sm">Upload case documents to begin analysis</p>
+            </>
+          ) : (
+            <>
+              <p className="text-sm">No procedural loopholes detected from current bundle</p>
+              <p className="text-xs mt-1">
+                This does not block strategy. Add more disclosure (MG6/unused, CCTV continuity, VIPER pack, interview recording) to unlock stronger attacks.
+              </p>
+            </>
+          )}
         </div>
       ) : (
         <div className="space-y-3">
