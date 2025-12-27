@@ -82,6 +82,7 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
   const [data, setData] = useState<CaseFightPlanData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [documentCount, setDocumentCount] = useState<number>(0);
   const [gatedResponse, setGatedResponse] = useState<{
     banner: AnalysisGateBannerProps["banner"];
     diagnostics?: AnalysisGateBannerProps["diagnostics"];
@@ -102,53 +103,81 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
         const result = await response.json();
         const normalized = normalizeApiResponse<CaseFightPlanData>(result);
         
-        // FIX: Always extract data even if gated - gating should show banner, not block rendering
-        // Previous bug: setData(null) and return prevented rendering even when committedStrategy exists
+        // FIX: Check gating first - if gated due to 0-text/thin bundle, show banner and stop
+        // But if we have strategy data, still allow rendering with banner
         if (isGated(normalized)) {
+          const gateBanner = normalized.banner || {
+            severity: "warning" as const,
+            title: "Insufficient text extracted",
+            message: "Not enough extractable text to generate reliable analysis. Upload text-based PDFs or run OCR, then re-analyse.",
+          };
           setGatedResponse({
-            banner: normalized.banner || {
-              severity: "warning",
-              title: "Insufficient text extracted",
-              message: "Not enough extractable text to generate reliable analysis. Upload text-based PDFs or run OCR, then re-analyse.",
-            },
+            banner: gateBanner,
             diagnostics: normalized.diagnostics,
           });
-          // Don't return early - continue to render with banner
+          
+          // Extract payload to check if strategy exists despite gating
+          const payload = normalized.data ?? (result as any)?.data ?? result;
+          const hasStrategy = (d: any): boolean => {
+            if (!d) return false;
+            return !!(
+              d?.recommendedStrategy?.primaryAngle ||
+              d?.recommendedStrategy?.primary ||
+              d?.primaryAngle ||
+              d?.primary ||
+              (Array.isArray(d?.criticalAngles) && d.criticalAngles.length > 0) ||
+              (Array.isArray(d?.allAngles) && d.allAngles.length > 0) ||
+              (Array.isArray(d?.angles) && d.angles.length > 0) ||
+              (Array.isArray(d?.defenseAngles) && d.defenseAngles.length > 0) ||
+              (Array.isArray(d?.strategies) && d.strategies.length > 0) ||
+              (Array.isArray(d?.provisionalStrategies) && d.provisionalStrategies.length > 0) ||
+              committedStrategy
+            );
+          };
+          
+          // If gated AND no strategy, don't fabricate - show banner only
+          if (!hasStrategy(payload)) {
+            setData(null);
+            setLoading(false);
+            return;
+          }
+          // If gated BUT strategy exists, continue to set data (will show banner + strategy)
         }
         
-        const planData = normalized.data || result;
+        // FIX: Extract payload safely - handle normalized.data OR result.data OR result
+        const payload = normalized.data ?? (result as any)?.data ?? result;
 
-        // Accept multiple shapes so we NEVER fail to setData just because the API shape evolved.
-        const hasPrimary =
-          !!planData?.recommendedStrategy?.primaryAngle ||
-          !!planData?.recommendedStrategy?.primary ||
-          !!planData?.primaryAngle ||
-          !!planData?.primary;
+        // Helper to detect if strategy exists in any shape
+        const hasStrategy = (d: any): boolean => {
+          if (!d) return false;
+          return !!(
+            d?.recommendedStrategy?.primaryAngle ||
+            d?.recommendedStrategy?.primary ||
+            d?.primaryAngle ||
+            d?.primary ||
+            (Array.isArray(d?.criticalAngles) && d.criticalAngles.length > 0) ||
+            (Array.isArray(d?.allAngles) && d.allAngles.length > 0) ||
+            (Array.isArray(d?.angles) && d.angles.length > 0) ||
+            (Array.isArray(d?.defenseAngles) && d.defenseAngles.length > 0) ||
+            (Array.isArray(d?.strategies) && d.strategies.length > 0) ||
+            (Array.isArray(d?.provisionalStrategies) && d.provisionalStrategies.length > 0) ||
+            committedStrategy
+          );
+        };
 
-        // Accept angles list in any known field
-        const hasAngles =
-          (Array.isArray(planData?.criticalAngles) && planData.criticalAngles.length > 0) ||
-          (Array.isArray(planData?.allAngles) && planData.allAngles.length > 0) ||
-          (Array.isArray(planData?.angles) && planData.angles.length > 0) ||
-          (Array.isArray(planData?.defenseAngles) && planData.defenseAngles.length > 0);
-
-        // Accept strategy engine output too
-        const hasStrategies =
-          (Array.isArray(planData?.strategies) && planData.strategies.length > 0) ||
-          (Array.isArray(planData?.provisionalStrategies) && planData.provisionalStrategies.length > 0);
-
-        if (planData && (hasPrimary || hasAngles || hasStrategies)) {
-          setData(planData);
+        // If strategy exists, set it. Otherwise set null so UI can show "pending" message
+        if (hasStrategy(payload)) {
+          setData(payload);
         } else {
-          // Still set something minimal so UI can show fallback (and not "unavailable")
-          setData({
-            overallWinProbability: null,
-            criticalAngles: [],
-            allAngles: [],
-            recommendedStrategy: null as any,
-            strategies: [],
-          } as any);
+          // No strategy data - set null so UI shows "Strategy analysis pending" (not "unavailable")
+          setData(null);
         }
+        
+        // Track document count from diagnostics if available (use docCount from diagnostics)
+        const docCount = normalized.diagnostics?.docCount ?? 
+                        (result as any)?.diagnostics?.docCount ?? 
+                        (result as any)?.data?.documentCount ?? 0;
+        setDocumentCount(docCount);
       } catch (err) {
         console.error("Failed to fetch defence plan:", err);
         // FIX: Don't set error if committedStrategy exists - we can still render
@@ -257,21 +286,34 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
     );
   }
 
+  // FIX: Helper to detect if strategy exists (reused from fetch logic)
+  const hasStrategy = (d: any): boolean => {
+    if (!d) return false;
+    return !!(
+      d?.recommendedStrategy?.primaryAngle ||
+      d?.recommendedStrategy?.primary ||
+      d?.primaryAngle ||
+      d?.primary ||
+      (Array.isArray(d?.criticalAngles) && d.criticalAngles.length > 0) ||
+      (Array.isArray(d?.allAngles) && d.allAngles.length > 0) ||
+      (Array.isArray(d?.angles) && d.angles.length > 0) ||
+      (Array.isArray(d?.defenseAngles) && d.defenseAngles.length > 0) ||
+      (Array.isArray(d?.strategies) && d.strategies.length > 0) ||
+      (Array.isArray(d?.provisionalStrategies) && d.provisionalStrategies.length > 0) ||
+      committedStrategy
+    );
+  };
+
   // FIX: Check if we can render - must have either data OR committedStrategy
-  // Previous bug: !data check blocked rendering even when committedStrategy exists
-  // FIX: Force render if ANY strategy data exists (primaryAngle, criticalAngles, allAngles, strategies)
-  const planDataAny = data as any; // Allow checking for alternative field names
-  const hasStrategyData =
-    !!data?.recommendedStrategy?.primaryAngle ||
-    !!data?.criticalAngles?.length ||
-    !!data?.allAngles?.length ||
-    !!planDataAny?.strategies?.length ||
-    !!committedStrategy;
-  
+  const hasStrategyData = hasStrategy(data);
   const canRender = hasStrategyData;
+  
+  // Extract banner early to avoid type narrowing issues
+  const gateBanner = gatedResponse?.banner;
 
   // FIX: Filter angles by committed strategy (Strategy-Specific Angle Filtering)
   // Use fallback list so we don't filter empty arrays and accidentally make it empty
+  const planDataAny = data as any; // Allow checking for alternative field names
   const baseAngles =
     (data?.criticalAngles?.length ? data.criticalAngles : null) ||
     (data?.allAngles?.length ? data.allAngles : null) ||
@@ -362,18 +404,43 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
     checkCharges();
   }, [caseId]);
 
-  // FIX: Never block rendering - always show something if we have ANY data or committedStrategy
-  // Removed "Defence plan unavailable" blocker - strategy should always render when data exists
-  // If no data and no committedStrategy, show minimal fallback but still render
+  // FIX: If gated AND no strategy data, show banner and stop (don't fabricate strategy)
+  // But if gated AND strategy exists, show banner + strategy (banner is warning, not blocker)
+  if (gatedResponse && !hasStrategyData) {
+    return (
+      <Card className="p-6">
+        <AnalysisGateBanner
+          banner={gatedResponse.banner}
+          diagnostics={gatedResponse.diagnostics}
+          showHowToFix={true}
+        />
+      </Card>
+    );
+  }
+  
+  // If gated BUT strategy exists, continue to render (banner will be shown inline)
+
+  // FIX: If no strategy data exists, show appropriate message based on document count
   if (!hasStrategyData) {
-    // Only show minimal fallback if we truly have nothing
+    if (documentCount === 0) {
+      return (
+        <Card className="p-6">
+          <div className="text-center text-muted-foreground">
+            <FileText className="h-8 w-8 mx-auto mb-2 opacity-50" />
+            <p className="text-sm font-medium">Upload case documents to begin analysis</p>
+          </div>
+        </Card>
+      );
+    }
+    
+    // Documents exist but no strategy generated yet
     return (
       <Card className="p-6">
         <div className="text-center text-muted-foreground">
           <FileText className="h-8 w-8 mx-auto mb-2 opacity-50" />
           <p className="text-sm font-medium">Strategy analysis pending</p>
           <p className="text-xs mt-1">
-            {error || "Upload documents and re-analyse to generate defence plan."}
+            {error || "Re-analyse case documents to generate defence plan."}
           </p>
         </div>
       </Card>
@@ -388,7 +455,7 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
       <Card className="p-6">
         <div className="space-y-6">
           {/* Draft Strategy Banner - shown when bundle incomplete */}
-          {gatedResponse && (
+          {gateBanner && (
             <div className="flex items-start gap-2 rounded-lg border border-amber-500/20 bg-amber-500/5 p-3">
               <AlertCircle className="h-4 w-4 text-amber-400 mt-0.5 flex-shrink-0" />
               <div className="flex-1">
@@ -396,7 +463,7 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
                   Draft strategy – subject to disclosure completion
                 </p>
                 <p className="text-xs text-amber-300/80">
-                  {gatedResponse.banner?.message || "Bundle incomplete or extraction failed. Strategy is based on committed selection only."}
+                  {gateBanner.message || "Bundle incomplete or extraction failed. Strategy is based on committed selection only."}
                 </p>
               </div>
             </div>
@@ -625,7 +692,7 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
       <div className="space-y-6">
         {/* Draft Strategy Banner - shown when bundle incomplete or disclosure gaps exist */}
         {/* FIX: Show banner but don't block rendering - previous bug prevented rendering when gated */}
-        {gatedResponse && (
+        {gateBanner && (
           <div className="flex items-start gap-2 rounded-lg border border-amber-500/20 bg-amber-500/5 p-3">
             <AlertCircle className="h-4 w-4 text-amber-400 mt-0.5 flex-shrink-0" />
             <div className="flex-1">
@@ -633,7 +700,7 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
                 Draft strategy – subject to disclosure completion
               </p>
               <p className="text-xs text-amber-300/80">
-                {gatedResponse.banner?.message || "Bundle incomplete or disclosure gaps exist. Strategy is based on current material and may change as disclosure stabilises."}
+                {gateBanner.message || "Bundle incomplete or disclosure gaps exist. Strategy is based on current material and may change as disclosure stabilises."}
               </p>
             </div>
           </div>
