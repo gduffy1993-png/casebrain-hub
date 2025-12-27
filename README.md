@@ -24,6 +24,9 @@ CaseBrain Hub is a production-ready AI paralegal workspace for law firms. Upload
    ```bash
    cp .env.example .env.local
    # Then edit .env.local with your actual values
+   # 
+   # For debug endpoints (optional):
+   # DEBUG_TOKEN=your-secret-token-here  # Set this locally and on Vercel for /api/debug/* routes
    ```
 
 3. Start Supabase locally

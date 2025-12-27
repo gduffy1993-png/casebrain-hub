@@ -41,7 +41,7 @@ function generateTraceId(): string {
 /**
  * Convert CaseContext diagnostics to ApiResponse diagnostics
  */
-function diagnosticsFromContext(
+export function diagnosticsFromContext(
   caseId: string,
   context: CaseContext,
   keyTermsFound?: string[],

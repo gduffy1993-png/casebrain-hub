@@ -726,11 +726,17 @@ export async function POST(request: Request) {
     ) {
       try {
         // Trigger criminal case processing (async, don't wait)
-        fetch(`${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"}/api/criminal/${caseId}/process`, {
+        // Use Vercel URL if available, otherwise construct from request
+        const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 
+                       process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 
+                       "http://localhost:3000";
+        
+        fetch(`${baseUrl}/api/criminal/${caseId}/process`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
         }).catch((err) => {
           console.error("[upload] Failed to trigger criminal processing:", err);
+          // Don't fail upload if criminal processing fails - it's async/fire-and-forget
         });
       } catch (criminalError) {
         console.error("[upload] Error triggering criminal processing:", criminalError);

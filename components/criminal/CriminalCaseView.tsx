@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { ErrorBoundary } from "@/components/ui/error-boundary";
 import { CollapsibleSection } from "@/components/ui/collapsible-section";
-import { LoopholesPanel } from "./LoopholesPanel";
 import { PACEComplianceChecker } from "./PACEComplianceChecker";
 import { DisclosureTracker } from "./DisclosureTracker";
 import { ChargesPanel } from "./ChargesPanel";
@@ -124,6 +123,12 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
 
   return (
     <div className="space-y-6">
+      {/* Primary Defence Strategy - Case Fight Plan (ONLY strategy surface for criminal cases) */}
+      {/* FIX: Always visible regardless of phase - phase gating only affects bail/sentencing tools */}
+      <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Strategy analysis pending</div>}>
+        <CaseFightPlan caseId={caseId} committedStrategy={committedStrategy} />
+      </ErrorBoundary>
+
       {/* Phase Selector */}
       <CasePhaseSelector
         caseId={caseId}
@@ -153,17 +158,6 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
           />
         </ErrorBoundary>
       )}
-
-      {/* Primary Defence Strategy - Case Fight Plan (ONLY strategy surface for criminal cases) */}
-      {/* FIX: Always visible regardless of phase - phase gating only affects bail/sentencing tools */}
-      <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Strategy analysis pending</div>}>
-        <CaseFightPlan caseId={caseId} committedStrategy={committedStrategy} />
-      </ErrorBoundary>
-
-      {/* Loopholes & Weaknesses - Factual analysis only (not strategy generation) */}
-      <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Loopholes panel unavailable</div>}>
-        <LoopholesPanel caseId={caseId} />
-      </ErrorBoundary>
 
       {/* Two Column Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

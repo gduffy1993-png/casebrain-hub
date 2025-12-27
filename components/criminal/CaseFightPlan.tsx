@@ -29,7 +29,8 @@
 import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Loader2, FileText, AlertCircle, CheckCircle2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Loader2, FileText, AlertCircle, CheckCircle2, Copy } from "lucide-react";
 import { AnalysisGateBanner, type AnalysisGateBannerProps } from "@/components/AnalysisGateBanner";
 import { normalizeApiResponse, isGated } from "@/lib/api-response-normalizer";
 
@@ -83,6 +84,8 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [documentCount, setDocumentCount] = useState<number>(0);
+  const [rawCharsTotal, setRawCharsTotal] = useState<number>(0);
+  const [payload, setPayload] = useState<any>(null);
   const [gatedResponse, setGatedResponse] = useState<{
     banner: AnalysisGateBannerProps["banner"];
     diagnostics?: AnalysisGateBannerProps["diagnostics"];
@@ -115,7 +118,7 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
         }
 
         // Helper: detect strategy in ANY expected shape
-        const hasStrategy = (d: any): boolean => {
+        function hasStrategy(d: any): boolean {
           if (!d) return false;
           return Boolean(
             d?.recommendedStrategy?.primaryAngle ||
@@ -123,13 +126,10 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
             d?.primaryAngle ||
             (Array.isArray(d?.criticalAngles) && d.criticalAngles.length > 0) ||
             (Array.isArray(d?.allAngles) && d.allAngles.length > 0) ||
-            (Array.isArray(d?.angles) && d.angles.length > 0) ||
-            (Array.isArray(d?.defenseAngles) && d.defenseAngles.length > 0) ||
             (Array.isArray(d?.strategies) && d.strategies.length > 0) ||
-            (Array.isArray(d?.provisionalStrategies) && d.provisionalStrategies.length > 0) ||
             committedStrategy
           );
-        };
+        }
 
         // FIX: Check gating first - if gated due to 0-text/thin bundle, show banner and stop
         // But if we have strategy data, still allow rendering with banner
@@ -155,6 +155,7 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
 
         // Set data if strategy exists
         setData(hasStrategy(payload) ? payload : null);
+        setPayload(payload); // Store for debug
 
         // Document count (diagnostics naming varies — cover all)
         const docCount =
@@ -167,6 +168,15 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
           0;
 
         setDocumentCount(docCount);
+
+        // Raw chars total (for debug)
+        const rawChars =
+          (normalized as any)?.diagnostics?.rawCharsTotal ??
+          (result as any)?.diagnostics?.rawCharsTotal ??
+          (payload as any)?.rawCharsTotal ??
+          0;
+
+        setRawCharsTotal(rawChars);
       } catch (err) {
         console.error("Failed to fetch defence plan:", err);
         // FIX: Don't set error if committedStrategy exists - we can still render
@@ -676,11 +686,22 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
     return null;
   };
 
+  // Helper to copy plan to clipboard
+  const handleCopyPlan = () => {
+    const planText = Array.isArray(tacticalPlan) && tacticalPlan.length > 0
+      ? tacticalPlan.join("\n")
+      : primaryAngle?.howToExploit || "No plan available";
+    
+    navigator.clipboard.writeText(planText).catch(() => {
+      // Fallback if clipboard API fails
+      console.error("Failed to copy plan");
+    });
+  };
+
   return (
     <Card className="p-6">
       <div className="space-y-6">
         {/* Draft Strategy Banner - shown when bundle incomplete or disclosure gaps exist */}
-        {/* FIX: Show banner but don't block rendering - previous bug prevented rendering when gated */}
         {gateBanner && (
           <div className="flex items-start gap-2 rounded-lg border border-amber-500/20 bg-amber-500/5 p-3">
             <AlertCircle className="h-4 w-4 text-amber-400 mt-0.5 flex-shrink-0" />
@@ -695,463 +716,87 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
           </div>
         )}
 
-        {/* Header with Strategy Mode */}
-        <div>
-          <div className="flex items-center gap-2 mb-2">
-            <Badge variant="outline">
-              MODE: {strategyMode}
-            </Badge>
-            {committedStrategy && (
-              <Badge variant="primary">
-                COMMITTED: {committedStrategy.primary === "fight_charge" ? "Fight Charge" : 
-                           committedStrategy.primary === "charge_reduction" ? "Charge Reduction" : 
-                           "Outcome Management"}
-              </Badge>
-            )}
-          </div>
-          <h2 className="text-lg font-semibold text-foreground mb-2">Primary Defence Strategy</h2>
-          {committedStrategy && getDirectiveStrategyText() ? (
-            <p className="text-sm text-foreground font-medium leading-relaxed">
-              {getDirectiveStrategyText()}
-            </p>
-          ) : displayData?.realisticOutcome ? (
-            <p className="text-sm text-muted-foreground italic">
-              {displayData.realisticOutcome}
-            </p>
-          ) : null}
+        {/* Header with Copy Plan button */}
+        <div className="flex items-center justify-between">
+          <h2 className="text-lg font-semibold text-foreground">Defence Plan</h2>
+          {hasStrategyData && (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleCopyPlan}
+              className="gap-2"
+            >
+              <Copy className="h-3 w-3" />
+              Copy Plan
+            </Button>
+          )}
         </div>
 
-        {/* Win Conditions / Loss Conditions / Evidence & Actions (only when committed) */}
-        {committedStrategy && (
+        {/* DEV-ONLY Debug Block */}
+        {process.env.NODE_ENV !== "production" && (
+          <div className="p-3 rounded-lg border border-blue-500/30 bg-blue-500/5 text-xs font-mono space-y-1">
+            <div className="font-semibold text-blue-400 mb-2">DEBUG INFO</div>
+            <div>endpoint: /api/criminal/{caseId}/aggressive-defense</div>
+            <div>hasStrategyData: {String(hasStrategyData)}</div>
+            <div>documentCount: {documentCount}</div>
+            <div>rawCharsTotal: {rawCharsTotal}</div>
+            <div>payload keys: {payload ? Object.keys(payload).slice(0, 15).join(", ") : "null"}</div>
+            <div>payload.recommendedStrategy exists: {payload?.recommendedStrategy ? "true" : "false"}</div>
+            <div>payload.criticalAngles length: {Array.isArray(payload?.criticalAngles) ? payload.criticalAngles.length : "N/A"}</div>
+            <div>payload.allAngles length: {Array.isArray(payload?.allAngles) ? payload.allAngles.length : "N/A"}</div>
+          </div>
+        )}
+
+        {/* Priority 1: If tacticalPlan is array -> render as bullet list */}
+        {Array.isArray(tacticalPlan) && tacticalPlan.length > 0 ? (
+          <div className="space-y-3">
+            <h3 className="text-sm font-semibold text-foreground">Tactical Plan</h3>
+            <ul className="space-y-2 text-sm text-foreground">
+              {tacticalPlan
+                .filter((step: string) => step.trim().length > 0)
+                .map((step: string, idx: number) => (
+                  <li key={idx} className="flex items-start gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    <span>{step}</span>
+                  </li>
+                ))}
+            </ul>
+          </div>
+        ) : primaryAngle ? (
           <>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {/* Win Conditions */}
-              <div className="p-4 rounded-lg border border-green-500/20 bg-green-500/5">
-                <h3 className="text-xs font-semibold text-green-400 mb-2 uppercase tracking-wide">
-                  Win Conditions
-                </h3>
-                <ul className="space-y-1.5">
-                  {getWinConditions().map((condition, idx) => (
-                    <li key={idx} className="text-xs text-foreground flex items-start gap-2">
-                      <CheckCircle2 className="h-3 w-3 text-green-400 mt-0.5 flex-shrink-0" />
-                      <span>{condition}</span>
-                    </li>
-                  ))}
-                </ul>
+            {/* Priority 2: Primary Angle card */}
+            <div className="p-4 rounded-lg border border-primary/20 bg-primary/5 space-y-3">
+              <div className="flex items-center justify-between">
+                <h3 className="text-sm font-semibold text-foreground">{primaryAngle.title}</h3>
+                <Badge variant={primaryAngle.severity === "CRITICAL" ? "danger" : primaryAngle.severity === "HIGH" ? "primary" : "outline"}>
+                  {primaryAngle.severity}
+                </Badge>
               </div>
-
-              {/* Loss Conditions */}
-              <div className="p-4 rounded-lg border border-red-500/20 bg-red-500/5">
-                <h3 className="text-xs font-semibold text-red-400 mb-2 uppercase tracking-wide">
-                  Loss Conditions
-                </h3>
-                <ul className="space-y-1.5">
-                  {getLossConditions().map((condition, idx) => (
-                    <li key={idx} className="text-xs text-foreground flex items-start gap-2">
-                      <AlertCircle className="h-3 w-3 text-red-400 mt-0.5 flex-shrink-0" />
-                      <span>{condition}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Evidence That Matters Most Now */}
-              <div className="p-4 rounded-lg border border-primary/20 bg-primary/5">
-                <h3 className="text-xs font-semibold text-primary mb-2 uppercase tracking-wide">
-                  Priority Evidence
-                </h3>
-                <ul className="space-y-1.5">
-                  {getEvidenceThatMatters().map((item, idx) => (
-                    <li key={idx} className="text-xs text-foreground flex items-start gap-2">
-                      <FileText className="h-3 w-3 text-primary mt-0.5 flex-shrink-0" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {/* Procedural Actions (kept distinct from evidence) */}
-            <div className="p-4 rounded-lg border border-primary/20 bg-primary/5">
-              <h3 className="text-xs font-semibold text-primary mb-2 uppercase tracking-wide">
-                Procedural Actions
-              </h3>
-              <ul className="space-y-1.5">
-                {getProceduralActions().map((item, idx) => (
-                  <li key={idx} className="text-xs text-foreground flex items-start gap-2">
-                    <FileText className="h-3 w-3 text-primary mt-0.5 flex-shrink-0" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Realistic Outcome Range (Based on Current Evidence) */}
-            {getRealisticOutcomeRange() && (
-              <div className="p-4 rounded-lg border border-blue-500/20 bg-blue-500/5">
-                <h3 className="text-xs font-semibold text-blue-400 mb-3 uppercase tracking-wide">
-                  Realistic Outcome Range (Based on Current Evidence)
-                </h3>
-                <div className="space-y-3">
-                  <div>
-                    <p className="text-xs font-medium text-green-400 mb-1">Best Case:</p>
-                    <p className="text-xs text-foreground">{getRealisticOutcomeRange()?.best}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs font-medium text-amber-400 mb-1">Middle Case:</p>
-                    <p className="text-xs text-foreground">{getRealisticOutcomeRange()?.middle}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs font-medium text-red-400 mb-1">Worst Case:</p>
-                    <p className="text-xs text-foreground">{getRealisticOutcomeRange()?.worst}</p>
-                  </div>
-                  <div className="pt-2 border-t border-border/30">
-                    <p className="text-xs font-medium text-foreground mb-2">Factors That Shift Outcome:</p>
-                    <ul className="space-y-1">
-                      {getRealisticOutcomeRange()?.factors.map((factor, idx) => (
-                        <li key={idx} className="text-xs text-muted-foreground flex items-start gap-2">
-                          <span className="text-blue-400 mt-0.5">•</span>
-                          <span>{factor}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* What Would Flip The Outcome (if evidence is borderline) */}
-            {data && committedStrategy && (
-              <div className="p-4 rounded-lg border border-amber-500/20 bg-amber-500/5">
-                <h3 className="text-xs font-semibold text-amber-400 mb-2 uppercase tracking-wide">
-                  What Would Flip The Outcome
-                </h3>
-                <p className="text-xs text-foreground mb-2">
-                  {displayData?.evidenceStrengthWarnings && displayData.evidenceStrengthWarnings.length > 0
-                    ? "Evidence is borderline. The following would decisively change the outcome:"
-                    : "If evidence remains borderline, the following would decisively change the outcome:"
-                  }
-                </p>
-                <ul className="space-y-1.5">
-                  {committedStrategy.primary === "fight_charge" && (
-                    <>
-                      <li className="text-xs text-foreground flex items-start gap-2">
-                        <span className="text-amber-400 mt-0.5">•</span>
-                        <span>Full unedited CCTV showing sequence of events and intent indicators</span>
-                      </li>
-                      <li className="text-xs text-foreground flex items-start gap-2">
-                        <span className="text-amber-400 mt-0.5">•</span>
-                        <span>Forensic evidence that clearly links or excludes the defendant from the weapon or scene</span>
-                      </li>
-                      <li className="text-xs text-foreground flex items-start gap-2">
-                        <span className="text-amber-400 mt-0.5">•</span>
-                        <span>Multiple independent witnesses with consistent accounts of intent</span>
-                      </li>
-                    </>
-                  )}
-                  {committedStrategy.primary === "charge_reduction" && (
-                    <>
-                      <li className="text-xs text-foreground flex items-start gap-2">
-                        <span className="text-amber-400 mt-0.5">•</span>
-                        <span>Medical evidence showing sustained or targeted attack pattern (multiple blows, prolonged incident)</span>
-                      </li>
-                      <li className="text-xs text-foreground flex items-start gap-2">
-                        <span className="text-amber-400 mt-0.5">•</span>
-                        <span>CCTV/sequence evidence showing prolonged or deliberate attack</span>
-                      </li>
-                      <li className="text-xs text-foreground flex items-start gap-2">
-                        <span className="text-amber-400 mt-0.5">•</span>
-                        <span>Weapon use demonstrating targeting/duration supporting specific intent</span>
-                      </li>
-                    </>
-                  )}
-                  {committedStrategy.primary === "outcome_management" && (
-                    <>
-                      <li className="text-xs text-foreground flex items-start gap-2">
-                        <span className="text-amber-400 mt-0.5">•</span>
-                        <span>Strong character references and evidence of rehabilitation</span>
-                      </li>
-                      <li className="text-xs text-foreground flex items-start gap-2">
-                        <span className="text-amber-400 mt-0.5">•</span>
-                        <span>Early guilty plea and cooperation with prosecution</span>
-                      </li>
-                      <li className="text-xs text-foreground flex items-start gap-2">
-                        <span className="text-amber-400 mt-0.5">•</span>
-                        <span>Personal circumstances supporting non-custodial sentence</span>
-                      </li>
-                    </>
-                  )}
-                </ul>
-              </div>
-            )}
-          </>
-        )}
-
-        {/* Where this case is vulnerable (procedural leverage points) */}
-        {primaryAngle && (
-          <div className="space-y-3">
-            <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
-              <AlertCircle className="h-4 w-4" />
-              {committedStrategy ? "Where this case is vulnerable" : "Procedural leverage points"}
-            </h3>
-            <p className={`text-sm leading-relaxed ${
-              committedStrategy ? "text-foreground font-medium" : "text-foreground"
-            }`}>
-              {committedStrategy 
-                ? `The prosecution case is vulnerable at: ${primaryAngle.prosecutionWeakness || primaryAngle.whyThisMatters}`
-                : primaryAngle.whyThisMatters || primaryAngle.prosecutionWeakness
-              }
-            </p>
-            {primaryAngle.legalBasis && (
-              <p className="text-xs text-muted-foreground">
-                <span className="font-medium">Legal basis:</span> {primaryAngle.legalBasis}
-              </p>
-            )}
-          </div>
-        )}
-
-        {/* How to apply pressure */}
-        {(tacticalPlan.length > 0 || primaryAngle?.howToExploit) && (
-          <div className="space-y-3">
-            <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
-              <CheckCircle2 className="h-4 w-4" />
-              How to apply pressure (in order)
-            </h3>
-            {tacticalPlan.length > 0 ? (
-              <ol className="space-y-3 text-sm text-foreground">
-                {tacticalPlan
-                  .filter((step: string) => !step.includes("Win Probability") && !step.includes("%")) // Remove percentage lines
-                  .filter((step: string) => step.trim().length > 0) // Remove empty lines
-                  .slice(0, 5) // Max 5 steps
-                  .map((step: string, idx: number) => {
-                    // Clean up step text and make directive if committed
-                    let cleanStep = step
-                      .replace(/^(Step \d+:|Argument:|Question:)\s*/i, "")
-                      .replace(/^Primary Strategy:\s*/i, "")
-                      .replace(/^Supporting Strategies?:/i, "")
-                      .trim();
-                    
-                    // Make language solicitor-safe and directive if strategy is committed
-                    if (committedStrategy) {
-                      // Apply replacements in order to avoid duplicates
-                      cleanStep = cleanStep
-                        .replace(/\bmust\b/gi, "should")
-                        .replace(/\bwill\b/gi, "aims to")
-                        .replace(/\bexecute\b/gi, "pursue")
-                        .replace(/\boptions include\b/gi, "pursue")
-                        .replace(/\bfocus on\b/gi, "should focus on")
-                        .replace(/\bconsider\b/gi, "should consider")
-                        // Avoid creating "should be considered be considered" - only replace standalone "should" if not already part of a phrase
-                        .replace(/\bshould\s+(?!be\s+considered|focus|consider|aims)/gi, "should consider");
-                      // Clean up any accidental duplicates
-                      cleanStep = cleanStep.replace(/\bshould be considered be considered\b/gi, "should be considered");
-                      cleanStep = cleanStep.replace(/\bshould consider be considered\b/gi, "should consider");
-                    }
-                    
-                    return (
-                      <li key={idx} className="flex gap-3">
-                        <span className={`min-w-[2rem] ${committedStrategy ? "font-semibold text-primary" : "font-medium text-muted-foreground"}`}>
-                          {idx + 1}.
-                        </span>
-                        <span className={`leading-relaxed ${committedStrategy ? "font-medium" : ""}`}>
-                          {cleanStep}
-                        </span>
-                      </li>
-                    );
-                  })}
-              </ol>
-            ) : primaryAngle?.howToExploit ? (
-              <div className={`text-sm leading-relaxed whitespace-pre-line ${
-                committedStrategy ? "text-foreground font-medium" : "text-foreground"
-              }`}>
-                {committedStrategy 
-                  ? (() => {
-                      let text = primaryAngle.howToExploit;
-                      // Apply solicitor-safe replacements
-                      text = text
-                        .replace(/\bmust\b/gi, "should")
-                        .replace(/\bwill\b/gi, "aims to")
-                        .replace(/\bexecute\b/gi, "pursue")
-                        .replace(/\bfocus on\b/gi, "should focus on")
-                        .replace(/\bconsider\b/gi, "should consider");
-                      // Clean up duplicates
-                      text = text.replace(/\bshould be considered be considered\b/gi, "should be considered");
-                      text = text.replace(/\bshould consider be considered\b/gi, "should consider");
-                      return text;
-                    })()
-                  : primaryAngle.howToExploit
-                }
-              </div>
-            ) : null}
-          </div>
-        )}
-
-        {/* What this forces the prosecution to do */}
-        {primaryAngle && (
-          <div className="p-4 rounded-lg bg-muted/30 border border-border/50 space-y-2">
-            <h3 className="text-sm font-semibold text-foreground">
-              {committedStrategy ? "What the prosecution should now do" : "What this asks the prosecution to do"}
-            </h3>
-            <ul className="text-sm text-foreground space-y-1.5">
-              {primaryAngle.angleType === "DISCLOSURE_FAILURE_STAY" ? (
-                <>
-                  <li className="flex items-start gap-2">
-                    <span className="text-muted-foreground mt-1">•</span>
-                    <span>Confirm existence of material or explain absence; raises concern that relevant material has not yet been disclosed</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-muted-foreground mt-1">•</span>
-                    <span>Provide service timetable to stabilise disclosure position</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-muted-foreground mt-1">•</span>
-                    <span>Explain retention/continuity gaps to restore confidence in trial readiness</span>
-                  </li>
-                </>
-              ) : primaryAngle.angleType === "PACE_BREACH_EXCLUSION" ? (
-                <>
-                  <li className="flex items-start gap-2">
-                    <span className="text-muted-foreground mt-1">•</span>
-                    <span>Produce custody record and interview recording/log or explain absence</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-muted-foreground mt-1">•</span>
-                    <span>Confirm compliance with PACE Codes to maintain admissibility</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-muted-foreground mt-1">•</span>
-                    <span>Narrow time windows and confirm integrity to address admissibility concerns</span>
-                  </li>
-                </>
-              ) : primaryAngle.angleType === "IDENTIFICATION_CHALLENGE" ? (
-                <>
-                  <li className="flex items-start gap-2">
-                    <span className="text-muted-foreground mt-1">•</span>
-                    <span>Produce full CCTV footage and identification evidence</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-muted-foreground mt-1">•</span>
-                    <span>Confirm continuity and time windows to address Turnbull fairness</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-muted-foreground mt-1">•</span>
-                    <span>Explain first-account consistency to support identification reliability</span>
-                  </li>
-                </>
-              ) : (
-                <>
-                  <li className="flex items-start gap-2">
-                    <span className="text-muted-foreground mt-1">•</span>
-                    <span>Confirm existence of material or explain absence</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-muted-foreground mt-1">•</span>
-                    <span>Provide service timetable or face case management directions</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-muted-foreground mt-1">•</span>
-                    <span>Explain retention/continuity gaps or risk credibility damage</span>
-                  </li>
-                </>
+              {primaryAngle.whyThisMatters && (
+                <p className="text-sm text-foreground">{primaryAngle.whyThisMatters}</p>
               )}
-            </ul>
-            <p className="text-xs text-muted-foreground mt-2 italic">
-              Either way, this forces clarity and stabilises trial readiness.
-            </p>
-          </div>
-        )}
+              {primaryAngle.howToExploit && (
+                <div className="pt-2 border-t border-border/30">
+                  <p className="text-xs font-medium text-muted-foreground mb-1">How to exploit:</p>
+                  <p className="text-sm text-foreground whitespace-pre-line">{primaryAngle.howToExploit}</p>
+                </div>
+              )}
+            </div>
 
-        {/* Secondary angles (collapsed by default) */}
-        {supportingAngles.length > 0 && (
-          <details className="space-y-2">
-            <summary className="text-sm font-medium text-muted-foreground cursor-pointer hover:text-foreground">
-              Secondary angles to prepare (do not lead with)
-            </summary>
-            <ul className="text-sm text-foreground space-y-2 mt-2 ml-4">
-              {supportingAngles.slice(0, 3).map((angle: DefenseAngle, idx: number) => (
-                <li key={idx} className="flex items-start gap-2">
-                  <span className="text-muted-foreground mt-1">•</span>
-                  <div>
-                    <span className="font-medium">{angle.title}</span>
-                    {angle.whyThisMatters && (
-                      <span className="text-muted-foreground"> — {angle.whyThisMatters}</span>
-                    )}
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </details>
-        )}
-
-        {/* Words to send today - MANDATORY (use submissions/arguments if disclosureRequests empty) */}
-        {(disclosureRequests.length > 0 || readyToUseSubmissions.length > 0 || readyToUseArguments.length > 0) && (
-          <div className="space-y-3 pt-4 border-t border-border/50">
-            <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
-              <FileText className="h-4 w-4" />
-              Words to send today
-            </h3>
-            {disclosureRequests.length > 0 && (
-              <div className="space-y-2">
-                {disclosureRequests.slice(0, 3).map((request, idx) => (
-                  <div key={idx} className="p-3 rounded bg-muted/20 border border-border/30">
-                    <p className="text-xs text-foreground leading-relaxed whitespace-pre-wrap">
-                      {request}
-                    </p>
-                  </div>
-                ))}
+            {/* Supporting angles (up to 2) */}
+            {supportingAngles.slice(0, 2).map((angle: DefenseAngle, idx: number) => (
+              <div key={idx} className="p-4 rounded-lg border border-border/50 bg-muted/20 space-y-2">
+                <div className="flex items-center justify-between">
+                  <h4 className="text-sm font-medium text-foreground">{angle.title}</h4>
+                  <Badge variant="outline" size="sm">{angle.severity}</Badge>
+                </div>
+                {angle.whyThisMatters && (
+                  <p className="text-xs text-muted-foreground">{angle.whyThisMatters}</p>
+                )}
               </div>
-            )}
-            {readyToUseSubmissions.length > 0 && (
-              <div className="space-y-2 mt-3">
-                <p className="text-xs font-medium text-muted-foreground">Ready-to-use submissions:</p>
-                {readyToUseSubmissions.slice(0, 2).map((submission: string, idx: number) => (
-                  <div key={idx} className="p-3 rounded bg-muted/20 border border-border/30">
-                    <p className="text-xs text-foreground leading-relaxed">
-                      {submission}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            )}
-            {readyToUseArguments.length > 0 && disclosureRequests.length === 0 && readyToUseSubmissions.length === 0 && (
-              <div className="space-y-2">
-                {readyToUseArguments.slice(0, 2).map((arg: string, idx: number) => (
-                  <div key={idx} className="p-3 rounded bg-muted/20 border border-border/30">
-                    <p className="text-xs text-foreground leading-relaxed">
-                      {arg}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            )}
-            <p className="text-xs text-muted-foreground italic mt-2">
-              Ready to adapt and use. For full letter templates, use the letter draft feature.
-            </p>
-          </div>
-        )}
-
-        {/* Readiness Gate - MANDATORY */}
-        <div className="p-3 rounded bg-amber-950/20 border border-amber-800/30">
-          <p className="text-xs font-medium text-amber-300 mb-1">Readiness Gate</p>
-          <p className="text-xs text-amber-200/90">
-            {getReadinessGate(primaryAngle)}
-          </p>
-        </div>
-
-        {/* Professional judgment warnings */}
-        {displayData?.evidenceStrengthWarnings && displayData.evidenceStrengthWarnings.length > 0 && (
-          <div className="p-3 rounded bg-amber-950/20 border border-amber-800/30">
-            <p className="text-xs font-medium text-amber-300 mb-1.5">Professional Judgment</p>
-            <ul className="text-xs text-amber-200/90 space-y-1">
-              {displayData.evidenceStrengthWarnings.map((warning: string, idx: number) => (
-                <li key={idx} className="flex items-start gap-1.5">
-                  <span className="text-amber-400 mt-0.5">•</span>
-                  <span>{warning}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+            ))}
+          </>
+        ) : null}
       </div>
     </Card>
   );
