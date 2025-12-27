@@ -109,15 +109,41 @@ export async function GET(_request: Request, { params }: RouteParams) {
       );
 
       // Derive loopholes from criticalAngles, allAngles, and recommendedStrategy
-      const allAngles = [
-        ...(analysis?.criticalAngles || []),
-        ...(analysis?.allAngles || []),
-        ...(analysis?.recommendedStrategy?.primaryAngle ? [analysis.recommendedStrategy.primaryAngle] : []),
-        ...(analysis?.recommendedStrategy?.supportingAngles || []),
-      ];
+      // FIX: Dedupe by id to avoid showing same angle multiple times
+      const angleMap = new Map<string, any>();
+      
+      // Add all angles, using id as key to dedupe
+      [...(analysis?.criticalAngles || [])].forEach(angle => {
+        const id = angle.id || `angle-${angle.angleType}`;
+        if (!angleMap.has(id)) {
+          angleMap.set(id, angle);
+        }
+      });
+      
+      [...(analysis?.allAngles || [])].forEach(angle => {
+        const id = angle.id || `angle-${angle.angleType}`;
+        if (!angleMap.has(id)) {
+          angleMap.set(id, angle);
+        }
+      });
+      
+      if (analysis?.recommendedStrategy?.primaryAngle) {
+        const angle = analysis.recommendedStrategy.primaryAngle;
+        const id = angle.id || `angle-${angle.angleType}`;
+        if (!angleMap.has(id)) {
+          angleMap.set(id, angle);
+        }
+      }
+      
+      [...(analysis?.recommendedStrategy?.supportingAngles || [])].forEach(angle => {
+        const id = angle.id || `angle-${angle.angleType}`;
+        if (!angleMap.has(id)) {
+          angleMap.set(id, angle);
+        }
+      });
 
-      // Convert defense angles to loopholes format
-      derivedLoopholes = allAngles.map((angle: any, idx: number) => ({
+      // Convert deduplicated defense angles to loopholes format
+      derivedLoopholes = Array.from(angleMap.values()).map((angle: any, idx: number) => ({
         id: angle.id || `loophole-${angle.angleType}-${idx}`,
         loopholeType: mapAngleTypeToLoopholeType(angle.angleType),
         title: angle.title || angle.angleType,

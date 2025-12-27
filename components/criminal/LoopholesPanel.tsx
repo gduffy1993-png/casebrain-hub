@@ -115,7 +115,12 @@ export function LoopholesPanel({ caseId }: LoopholesPanelProps) {
     }
   };
 
-  const sortedLoopholes = [...loopholes].sort((a, b) => {
+  // FIX: Dedupe loopholes by id defensively (in case API didn't dedupe)
+  const uniqueLoopholes = Array.from(
+    new Map(loopholes.map(l => [l.id, l])).values()
+  );
+  
+  const sortedLoopholes = [...uniqueLoopholes].sort((a, b) => {
     const severityOrder = { CRITICAL: 4, HIGH: 3, MEDIUM: 2, LOW: 1 };
     return (severityOrder[b.severity] || 0) - (severityOrder[a.severity] || 0);
   });
