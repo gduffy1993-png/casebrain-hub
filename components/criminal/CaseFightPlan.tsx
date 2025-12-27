@@ -113,16 +113,41 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
             },
             diagnostics: normalized.diagnostics,
           });
-          // FIX: Still set data if available - gating is a warning, not a blocker
-          // This allows rendering with banner when committedStrategy exists
-          const planData = normalized.data || result;
-          if (planData && (planData.recommendedStrategy?.primaryAngle || planData.criticalAngles?.length > 0)) {
-            setData(planData);
-          }
           // Don't return early - continue to render with banner
-        } else {
-          const planData = normalized.data || result;
+        }
+        
+        const planData = normalized.data || result;
+
+        // Accept multiple shapes so we NEVER fail to setData just because the API shape evolved.
+        const hasPrimary =
+          !!planData?.recommendedStrategy?.primaryAngle ||
+          !!planData?.recommendedStrategy?.primary ||
+          !!planData?.primaryAngle ||
+          !!planData?.primary;
+
+        // Accept angles list in any known field
+        const hasAngles =
+          (Array.isArray(planData?.criticalAngles) && planData.criticalAngles.length > 0) ||
+          (Array.isArray(planData?.allAngles) && planData.allAngles.length > 0) ||
+          (Array.isArray(planData?.angles) && planData.angles.length > 0) ||
+          (Array.isArray(planData?.defenseAngles) && planData.defenseAngles.length > 0);
+
+        // Accept strategy engine output too
+        const hasStrategies =
+          (Array.isArray(planData?.strategies) && planData.strategies.length > 0) ||
+          (Array.isArray(planData?.provisionalStrategies) && planData.provisionalStrategies.length > 0);
+
+        if (planData && (hasPrimary || hasAngles || hasStrategies)) {
           setData(planData);
+        } else {
+          // Still set something minimal so UI can show fallback (and not "unavailable")
+          setData({
+            overallWinProbability: null,
+            criticalAngles: [],
+            allAngles: [],
+            recommendedStrategy: null as any,
+            strategies: [],
+          } as any);
         }
       } catch (err) {
         console.error("Failed to fetch defence plan:", err);
@@ -237,16 +262,27 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
   const canRender = data || committedStrategy;
 
   // FIX: Filter angles by committed strategy (Strategy-Specific Angle Filtering)
-  const filteredData = data ? {
-    ...data,
-    criticalAngles: filterAnglesByStrategy(data.criticalAngles || [], committedStrategy),
-    allAngles: filterAnglesByStrategy(data.allAngles || [], committedStrategy),
-    recommendedStrategy: data.recommendedStrategy ? {
-      ...data.recommendedStrategy,
-      primaryAngle: filterAnglesByStrategy([data.recommendedStrategy.primaryAngle], committedStrategy)[0] || data.recommendedStrategy.primaryAngle,
-      supportingAngles: filterAnglesByStrategy(data.recommendedStrategy.supportingAngles || [], committedStrategy),
-    } : undefined,
-  } : null;
+  // Use fallback list so we don't filter empty arrays and accidentally make it empty
+  const planDataAny = data as any; // Allow checking for alternative field names
+  const baseAngles =
+    (data?.criticalAngles?.length ? data.criticalAngles : null) ||
+    (data?.allAngles?.length ? data.allAngles : null) ||
+    (planDataAny?.angles?.length ? planDataAny.angles : null) ||
+    (planDataAny?.defenseAngles?.length ? planDataAny.defenseAngles : null) ||
+    [];
+
+  const filteredData = data
+    ? {
+        ...data,
+        criticalAngles: filterAnglesByStrategy(baseAngles, committedStrategy),
+        allAngles: filterAnglesByStrategy((data.allAngles || baseAngles) as any, committedStrategy),
+        recommendedStrategy: data.recommendedStrategy ? {
+          ...data.recommendedStrategy,
+          primaryAngle: filterAnglesByStrategy([data.recommendedStrategy.primaryAngle], committedStrategy)[0] || data.recommendedStrategy.primaryAngle,
+          supportingAngles: filterAnglesByStrategy(data.recommendedStrategy.supportingAngles || [], committedStrategy),
+        } : undefined,
+      }
+    : null;
 
   // Alias for consistency (displayData = filteredData)
   const displayData = filteredData;
