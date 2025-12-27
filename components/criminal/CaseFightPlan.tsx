@@ -101,8 +101,36 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
         }
 
         const result = await response.json();
-        const normalized = normalizeApiResponse<CaseFightPlanData>(result);
-        
+        const normalized = normalizeApiResponse<any>(result);
+
+        // Always prefer normalized.data; but also handle "double wrapped" shapes safely
+        let payload: any =
+          normalized?.data ??
+          (result as any)?.data ??
+          result;
+
+        // If payload is still wrapped (has ok/data), unwrap again
+        if (payload && typeof payload === "object" && "ok" in payload && "data" in payload) {
+          payload = (payload as any).data;
+        }
+
+        // Helper: detect strategy in ANY expected shape
+        const hasStrategy = (d: any): boolean => {
+          if (!d) return false;
+          return Boolean(
+            d?.recommendedStrategy?.primaryAngle ||
+            d?.recommendedStrategy?.primary ||
+            d?.primaryAngle ||
+            (Array.isArray(d?.criticalAngles) && d.criticalAngles.length > 0) ||
+            (Array.isArray(d?.allAngles) && d.allAngles.length > 0) ||
+            (Array.isArray(d?.angles) && d.angles.length > 0) ||
+            (Array.isArray(d?.defenseAngles) && d.defenseAngles.length > 0) ||
+            (Array.isArray(d?.strategies) && d.strategies.length > 0) ||
+            (Array.isArray(d?.provisionalStrategies) && d.provisionalStrategies.length > 0) ||
+            committedStrategy
+          );
+        };
+
         // FIX: Check gating first - if gated due to 0-text/thin bundle, show banner and stop
         // But if we have strategy data, still allow rendering with banner
         if (isGated(normalized)) {
@@ -116,25 +144,6 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
             diagnostics: normalized.diagnostics,
           });
           
-          // Extract payload to check if strategy exists despite gating
-          const payload = normalized.data ?? (result as any)?.data ?? result;
-          const hasStrategy = (d: any): boolean => {
-            if (!d) return false;
-            return !!(
-              d?.recommendedStrategy?.primaryAngle ||
-              d?.recommendedStrategy?.primary ||
-              d?.primaryAngle ||
-              d?.primary ||
-              (Array.isArray(d?.criticalAngles) && d.criticalAngles.length > 0) ||
-              (Array.isArray(d?.allAngles) && d.allAngles.length > 0) ||
-              (Array.isArray(d?.angles) && d.angles.length > 0) ||
-              (Array.isArray(d?.defenseAngles) && d.defenseAngles.length > 0) ||
-              (Array.isArray(d?.strategies) && d.strategies.length > 0) ||
-              (Array.isArray(d?.provisionalStrategies) && d.provisionalStrategies.length > 0) ||
-              committedStrategy
-            );
-          };
-          
           // If gated AND no strategy, don't fabricate - show banner only
           if (!hasStrategy(payload)) {
             setData(null);
@@ -143,40 +152,20 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
           }
           // If gated BUT strategy exists, continue to set data (will show banner + strategy)
         }
-        
-        // FIX: Extract payload safely - handle normalized.data OR result.data OR result
-        const payload = normalized.data ?? (result as any)?.data ?? result;
 
-        // Helper to detect if strategy exists in any shape
-        const hasStrategy = (d: any): boolean => {
-          if (!d) return false;
-          return !!(
-            d?.recommendedStrategy?.primaryAngle ||
-            d?.recommendedStrategy?.primary ||
-            d?.primaryAngle ||
-            d?.primary ||
-            (Array.isArray(d?.criticalAngles) && d.criticalAngles.length > 0) ||
-            (Array.isArray(d?.allAngles) && d.allAngles.length > 0) ||
-            (Array.isArray(d?.angles) && d.angles.length > 0) ||
-            (Array.isArray(d?.defenseAngles) && d.defenseAngles.length > 0) ||
-            (Array.isArray(d?.strategies) && d.strategies.length > 0) ||
-            (Array.isArray(d?.provisionalStrategies) && d.provisionalStrategies.length > 0) ||
-            committedStrategy
-          );
-        };
+        // Set data if strategy exists
+        setData(hasStrategy(payload) ? payload : null);
 
-        // If strategy exists, set it. Otherwise set null so UI can show "pending" message
-        if (hasStrategy(payload)) {
-          setData(payload);
-        } else {
-          // No strategy data - set null so UI shows "Strategy analysis pending" (not "unavailable")
-          setData(null);
-        }
-        
-        // Track document count from diagnostics if available (use docCount from diagnostics)
-        const docCount = normalized.diagnostics?.docCount ?? 
-                        (result as any)?.diagnostics?.docCount ?? 
-                        (result as any)?.data?.documentCount ?? 0;
+        // Document count (diagnostics naming varies — cover all)
+        const docCount =
+          (normalized as any)?.diagnostics?.documentCount ??
+          (normalized as any)?.diagnostics?.documentsCount ??
+          (normalized as any)?.diagnostics?.docCount ??
+          (result as any)?.diagnostics?.documentCount ??
+          (result as any)?.diagnostics?.docCount ??
+          (payload as any)?.documentCount ??
+          0;
+
         setDocumentCount(docCount);
       } catch (err) {
         console.error("Failed to fetch defence plan:", err);
