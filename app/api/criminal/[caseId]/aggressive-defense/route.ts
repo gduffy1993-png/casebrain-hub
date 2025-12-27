@@ -19,6 +19,8 @@ import { calibrateAngles, computeOverallFromAngles, calibrateProbability } from 
 import { getCachedLLMResult, setCachedLLMResult, generateDocSetHash } from "@/lib/llm/cache";
 import { mergeCriminalDocs } from "@/lib/case-evidence/merge-criminal-docs";
 import type { AggressiveDefenseAnalysis } from "@/lib/criminal/aggressive-defense-engine";
+import { generateCriminalStrategies } from "@/lib/criminal/strategy-engine";
+import { normalizeCriminalStrategies, checkForCivilLeakage } from "@/lib/criminal/strategy-normalizer";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -80,6 +82,46 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       // FIX: Build evidence graph and check cache
       const evidenceGraph = mergeCriminalDocs(context);
       
+      // Get charge information for strategy generation
+      const { data: chargesData } = await supabase
+        .from("criminal_charges")
+        .select("*")
+        .eq("case_id", caseId)
+        .eq("org_id", orgId)
+        .order("created_at", { ascending: false })
+        .limit(1)
+        .maybeSingle();
+      
+      // Extract charge for strategy engine
+      const charge = chargesData ? {
+        offence: chargesData.offence || "",
+        section: chargesData.section || undefined,
+        description: chargesData.description || undefined,
+      } : null;
+
+      // Generate strategies ALWAYS (even with thin bundles)
+      const disclosureStatus = {
+        isComplete: evidenceGraph.disclosureGaps.length === 0,
+        gaps: evidenceGraph.disclosureGaps.map(g => ({ category: g.category, item: g.item })),
+        mg6cDisclosed: evidenceGraph.evidenceItems.some(e => e.type === "PACE" && e.disclosureStatus === "disclosed"),
+        cctvDisclosed: evidenceGraph.evidenceItems.some(e => e.type === "CCTV" && e.disclosureStatus === "disclosed"),
+      };
+
+      // Get interview stance from evidence graph or criminalMeta
+      let interviewStance: "no_comment" | "answered" | "silent" | null = null;
+      if (criminalMeta?.interview?.stance) {
+        interviewStance = criminalMeta.interview.stance === "no_comment" ? "no_comment" :
+                     criminalMeta.interview.stance === "answered" ? "answered" : "silent";
+      }
+
+      // Generate strategies (ALWAYS returns at least 2, even for thin bundles)
+      const strategiesResult = generateCriminalStrategies({
+        charge,
+        evidenceGraph,
+        disclosureStatus,
+        interviewStance,
+      });
+      
       // Generate cache key
       const docSetHash = generateDocSetHash(context.documents);
       const cacheKey = {
@@ -112,6 +154,66 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 
         // Cache the result
         await setCachedLLMResult(orgId, caseId, cacheKey, analysis);
+      }
+
+      // FIX: If analysis has no angles or weak angles, enhance with strategy engine
+      // This ensures we ALWAYS have strategies even when loopholes/angles are thin
+      if (!analysis.criticalAngles || analysis.criticalAngles.length === 0) {
+        // Convert strategies to defense angles format
+        const strategyAngles: DefenseAngle[] = strategiesResult.strategies.map((strategy, idx) => {
+          // Map strategy ID to proper DefenseAngle angleType
+          let angleType: DefenseAngle["angleType"];
+          if (strategy.id.includes("intent")) {
+            angleType = "EVIDENCE_WEAKNESS_CHALLENGE";
+          } else if (strategy.id.includes("disclosure")) {
+            angleType = "DISCLOSURE_FAILURE_STAY";
+          } else if (strategy.id.includes("identification")) {
+            angleType = "IDENTIFICATION_CHALLENGE";
+          } else if (strategy.id.includes("pace")) {
+            angleType = "PACE_BREACH_EXCLUSION";
+          } else if (strategy.id.includes("plea")) {
+            angleType = "SENTENCING_MITIGATION";
+          } else {
+            angleType = "NO_CASE_TO_ANSWER";
+          }
+
+          return {
+            id: strategy.id,
+            angleType,
+            title: strategy.title,
+            severity: (strategy.provisional ? "MEDIUM" : "HIGH") as "CRITICAL" | "HIGH" | "MEDIUM" | "LOW",
+            winProbability: strategy.provisional ? 40 : 60,
+            whyThisMatters: strategy.theory,
+            legalBasis: strategy.theory,
+            caseLaw: [],
+            prosecutionWeakness: strategy.whenToUse,
+            howToExploit: strategy.immediateActions.join("; "),
+            specificArguments: strategy.immediateActions,
+            crossExaminationPoints: [],
+            submissions: [],
+            ifSuccessful: strategy.downgradeTarget ? `Downgrade to ${strategy.downgradeTarget}` : "Case dismissed or reduced",
+            ifUnsuccessful: "Fallback to alternative strategy",
+            combinedWith: [],
+            evidenceNeeded: [],
+            disclosureRequests: strategy.disclosureDependency ? strategy.immediateActions.filter(a => a.toLowerCase().includes("request") || a.toLowerCase().includes("disclosure")) : [],
+            createdAt: new Date().toISOString(),
+          };
+        });
+
+        // Use strategy angles as critical angles
+        analysis.criticalAngles = strategyAngles.slice(0, 3);
+        analysis.allAngles = strategyAngles;
+        
+        // Set recommended strategy from first strategy
+        if (strategiesResult.strategies.length > 0) {
+          const primaryStrategy = strategiesResult.strategies[0];
+          analysis.recommendedStrategy = {
+            primaryAngle: strategyAngles[0],
+            supportingAngles: strategyAngles.slice(1),
+            combinedProbability: primaryStrategy.provisional ? 40 : 60,
+            tacticalPlan: primaryStrategy.immediateActions,
+          };
+        }
       }
 
       // Get key facts for evidence strength analysis
@@ -198,6 +300,14 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       analysis.realisticOutcome = evidenceStrength.calibration.realisticOutcome;
 
       if (!gate.show) {
+        // Normalize strategies even when gated
+        const normalizedStrategies = normalizeCriminalStrategies(strategiesResult.strategies);
+
+        // Check for civil leakage
+        const civilLeakageCheck = checkForCivilLeakage(
+          analysis.criticalAngles?.map(a => a.title + " " + a.whyThisMatters).join(" ") || ""
+        );
+
         return makeOk(
           {
             ...analysis,
@@ -213,6 +323,8 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
             allAngles: (analysis?.allAngles ?? []).map((a: any) => ({ ...a, winProbability: null })),
             cached: wasCached,
             evidenceGraph: evidenceGraph, // Include evidence graph
+            strategies: normalizedStrategies, // Include normalized strategies even when gated
+            civilLeakageBanner: civilLeakageCheck.hasLeakage ? civilLeakageCheck.banner : undefined,
           },
           context,
           caseId,

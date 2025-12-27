@@ -385,9 +385,70 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         momentumState: momentum.state, // Pass momentum state for enhanced strategy
       });
 
-      // Criminal: prevent civil-route leakage in the overview response.
+      // Criminal: use criminal strategy engine instead of civil routes
       if (normalizePracticeArea(caseRecord.practice_area) === "criminal") {
-        strategies = [];
+        try {
+          const { generateCriminalStrategies } = await import("@/lib/criminal/strategy-engine");
+          const { mergeCriminalDocs } = await import("@/lib/case-evidence/merge-criminal-docs");
+          const { normalizeCriminalStrategies } = await import("@/lib/criminal/strategy-normalizer");
+          
+          // Build evidence graph
+          const evidenceGraph = mergeCriminalDocs(context);
+          
+          // Get charge
+          const { data: chargesData } = await supabase
+            .from("criminal_charges")
+            .select("*")
+            .eq("case_id", caseId)
+            .eq("org_id", orgId)
+            .order("created_at", { ascending: false })
+            .limit(1)
+            .maybeSingle();
+          
+          const charge = chargesData ? {
+            offence: chargesData.offence || "",
+            section: chargesData.section || undefined,
+            description: chargesData.description || undefined,
+          } : null;
+
+          // Generate disclosure status
+          const disclosureStatus = {
+            isComplete: evidenceGraph.disclosureGaps.length === 0,
+            gaps: evidenceGraph.disclosureGaps.map(g => ({ category: g.category, item: g.item })),
+            mg6cDisclosed: evidenceGraph.evidenceItems.some(e => e.type === "PACE" && e.disclosureStatus === "disclosed"),
+            cctvDisclosed: evidenceGraph.evidenceItems.some(e => e.type === "CCTV" && e.disclosureStatus === "disclosed"),
+          };
+
+          // Generate strategies
+          const strategiesResult = generateCriminalStrategies({
+            charge,
+            evidenceGraph,
+            disclosureStatus,
+            interviewStance: null, // Can be enhanced later
+          });
+
+          // Normalize and convert to StrategyPath format
+          const normalized = normalizeCriminalStrategies(strategiesResult.strategies);
+          const now = new Date().toISOString();
+          strategies = normalized.map((s, idx) => ({
+            id: s.id,
+            caseId,
+            route: ["A", "B", "C", "D", "E"][idx] as "A" | "B" | "C" | "D" | "E",
+            title: s.title,
+            description: s.why,
+            approach: s.immediateActions.join("; "),
+            pros: s.risks.length > 0 ? [`Low risk: ${s.risks[0]}`] : ["Strong legal basis"],
+            cons: s.risks,
+            successProbability: s.provisional ? "MEDIUM" : "HIGH" as "HIGH" | "MEDIUM" | "LOW",
+            estimatedTimeframe: s.provisional ? "2-4 weeks (provisional)" : "4-8 weeks",
+            estimatedCost: "Standard criminal defence costs",
+            recommendedFor: s.dependencies.length > 0 ? s.dependencies.join(", ") : "When disclosure is complete",
+            createdAt: now,
+          }));
+        } catch (error) {
+          console.error("[strategic-overview] Failed to generate criminal strategies:", error);
+          strategies = []; // Fallback to empty if error
+        }
       }
 
       // Get weak spots and leverage points
