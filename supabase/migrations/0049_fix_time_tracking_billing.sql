@@ -4,7 +4,7 @@
 -- Some DBs may not have generate_invoice_number() yet (0038 may not have run).
 -- Create the function + trigger if missing.
 
-DO $$
+DO $do$
 BEGIN
   -- Create function if missing
   IF NOT EXISTS (
@@ -16,7 +16,7 @@ BEGIN
   ) THEN
     EXECUTE $fn$
       CREATE OR REPLACE FUNCTION public.generate_invoice_number()
-      RETURNS TRIGGER AS $$
+      RETURNS TRIGGER AS $func$
       DECLARE
         year_part TEXT;
         seq_num INTEGER;
@@ -34,16 +34,21 @@ BEGIN
 
         RETURN NEW;
       END;
-      $$ LANGUAGE plpgsql;
+      $func$ LANGUAGE plpgsql;
     $fn$;
 
-    RAISE NOTICE 'Created generate_invoice_number()';
+    RAISE NOTICE 'Created public.generate_invoice_number()';
   END IF;
 
   -- Create trigger if missing
   IF NOT EXISTS (
-    SELECT 1 FROM pg_trigger
-    WHERE tgname = 'trg_generate_invoice_number'
+    SELECT 1
+    FROM pg_trigger t
+    JOIN pg_class c ON c.oid = t.tgrelid
+    JOIN pg_namespace n ON n.oid = c.relnamespace
+    WHERE t.tgname = 'trg_generate_invoice_number'
+      AND n.nspname = 'public'
+      AND c.relname = 'invoices'
   ) THEN
     EXECUTE $trg$
       CREATE TRIGGER trg_generate_invoice_number
@@ -55,4 +60,5 @@ BEGIN
 
     RAISE NOTICE 'Created trg_generate_invoice_number';
   END IF;
-END $$;
+END;
+$do$;
