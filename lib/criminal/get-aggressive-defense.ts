@@ -46,8 +46,105 @@ export async function getAggressiveDefense({
   userId,
 }: GetAggressiveDefenseOptions): Promise<GetAggressiveDefenseResult> {
   try {
-    // Build case context and gate analysis
-    const context = await buildCaseContext(caseId, { userId });
+    // For debug routes: if orgId is provided, construct org scope that matches it
+    // This allows bypassing userId-derived org scope when we know the case's actual org_id
+    let context: CaseContext;
+    if (orgId && userId === "debug-user") {
+      // Debug mode: use provided orgId to construct matching org scope
+      const { getSupabaseAdminClient } = await import("@/lib/supabase");
+      const supabase = getSupabaseAdminClient();
+      
+      // Query case directly with admin client (bypasses org scope restrictions)
+      const { data: caseRow } = await supabase
+        .from("cases")
+        .select("*")
+        .eq("id", caseId)
+        .eq("org_id", orgId)
+        .maybeSingle();
+      
+      if (!caseRow) {
+        return {
+          ok: false,
+          data: null,
+          banner: {
+            severity: "error",
+            title: "Case not found",
+            detail: "Case not found for the provided org_id.",
+          },
+          diagnostics: {
+            caseId,
+            orgId,
+            documentCount: 0,
+            documentsWithRawText: 0,
+            rawCharsTotal: 0,
+            jsonCharsTotal: 0,
+            suspectedScanned: false,
+            textThin: false,
+            traceId: `trace-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
+            updatedAt: new Date().toISOString(),
+          },
+          status: 404,
+        };
+      }
+      
+      // Query documents with admin client using case's org_id
+      const { data: documents } = await supabase
+        .from("documents")
+        .select("id, name, created_at, raw_text, extracted_json")
+        .eq("case_id", caseId)
+        .eq("org_id", orgId);
+      
+      // Build minimal context for debug mode
+      const docs = (documents || []).map(doc => ({
+        id: doc.id,
+        name: doc.name || "",
+        created_at: doc.created_at || new Date().toISOString(),
+        raw_text: doc.raw_text,
+        extracted_json: doc.extracted_json,
+      }));
+      
+      let rawCharsTotal = 0;
+      let jsonCharsTotal = 0;
+      for (const doc of docs) {
+        const rawText = doc.raw_text ?? "";
+        const textLength = typeof rawText === "string" ? rawText.length : 0;
+        rawCharsTotal += textLength;
+        
+        if (doc.extracted_json) {
+          try {
+            const jsonStr = typeof doc.extracted_json === "string" ? doc.extracted_json : JSON.stringify(doc.extracted_json);
+            jsonCharsTotal += jsonStr.length;
+          } catch {
+            // Ignore
+          }
+        }
+      }
+      
+      const avgRawCharsPerDoc = docs.length > 0 ? rawCharsTotal / docs.length : 0;
+      const suspectedScanned = docs.length > 0 && rawCharsTotal < 800 && jsonCharsTotal < 400;
+      const textThin = rawCharsTotal < 500;
+      
+      context = {
+        case: caseRow as any,
+        orgScope: {
+          orgIdResolved: orgId,
+          method: "owner_override" as const,
+        },
+        documents: docs,
+        diagnostics: {
+          docCount: docs.length,
+          rawCharsTotal,
+          jsonCharsTotal,
+          avgRawCharsPerDoc,
+          suspectedScanned,
+          reasonCodes: docs.length === 0 ? ["DOCS_NONE"] : [],
+        },
+        canGenerateAnalysis: rawCharsTotal > 0 && !suspectedScanned && !textThin,
+      };
+    } else {
+      // Normal mode: build case context using userId-derived org scope
+      context = await buildCaseContext(caseId, { userId });
+    }
 
     if (!context.case) {
       return {

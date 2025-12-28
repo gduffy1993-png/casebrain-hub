@@ -8,11 +8,16 @@
  *   GET /api/debug/criminal/[caseId]/aggressive-defense?token=YOUR_DEBUG_TOKEN
  * 
  * Returns the same JSON payload shape as /api/criminal/[caseId]/aggressive-defense
+ * 
+ * IMPORTANT: This route bypasses all auth/paywall checks.
+ * It is protected ONLY by DEBUG_TOKEN environment variable.
  */
 
 import { NextRequest, NextResponse } from "next/server";
 import { getAggressiveDefense } from "@/lib/criminal/get-aggressive-defense";
 import { getSupabaseAdminClient } from "@/lib/supabase";
+
+export const runtime = "nodejs"; // Explicitly set runtime to ensure it's included in build
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -29,46 +34,71 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     if (!expectedToken) {
       return NextResponse.json(
         { ok: false, error: "Debug endpoint not configured" },
-        { status: 500 }
+        { 
+          status: 500,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
       );
     }
     
     if (!token || token !== expectedToken) {
       return NextResponse.json(
         { ok: false, error: "unauthorized" },
-        { status: 401 }
+        { 
+          status: 401,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
       );
     }
     
-    // Get orgId from case (we need it for the function)
+    // Get case's org_id directly from database using Supabase admin (do NOT derive from userId)
     const supabase = getSupabaseAdminClient();
-    const { data: caseData } = await supabase
+    const { data: caseRow, error: caseError } = await supabase
       .from("cases")
-      .select("org_id")
+      .select("id, org_id")
       .eq("id", caseId)
-      .maybeSingle();
+      .single();
     
-    if (!caseData) {
+    if (caseError || !caseRow) {
       return NextResponse.json(
         {
           ok: false,
-          data: null,
-          banner: {
-            severity: "error",
-            title: "Case not found",
-            detail: "Case not found",
-          },
+          error: "Case not found",
         },
-        { status: 404 }
+        { 
+          status: 404,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
       );
     }
     
-    // Call the shared function
-    // Use a placeholder userId for debug (buildCaseContext requires it but we use orgId for scoping)
+    // Ensure case has an org_id (do NOT fallback to userId-derived org)
+    if (!caseRow.org_id) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error: "Case has no org_id",
+        },
+        { 
+          status: 400,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    }
+    
+    // Call the shared function with the case's actual org_id (never derived from userId)
     const result = await getAggressiveDefense({
       caseId,
-      orgId: caseData.org_id,
-      userId: "debug-user", // Placeholder - buildCaseContext requires userId but we use orgId for actual scoping
+      orgId: caseRow.org_id,
+      userId: "debug-user",
     });
     
     // Return the result in the same format as the real endpoint
@@ -80,7 +110,12 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         diagnostics: result.diagnostics,
         errors: result.errors,
       },
-      { status: result.status || (result.ok ? 200 : 500) }
+      { 
+        status: result.status || (result.ok ? 200 : 500),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
     );
   } catch (error) {
     console.error("Debug endpoint error:", error);
@@ -96,7 +131,12 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         },
         errors: [{ code: "DEBUG_ENDPOINT_ERROR", message: errorMessage }],
       },
-      { status: 500 }
+      { 
+        status: 500,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
     );
   }
 }
