@@ -1,3 +1,8 @@
+-- ============================================================
+-- 0006_create_tasks.sql
+-- Idempotent + safe for re-runs
+-- ============================================================
+
 create table if not exists public.tasks (
   id uuid primary key default gen_random_uuid(),
   org_id uuid not null,
@@ -12,8 +17,10 @@ create table if not exists public.tasks (
   updated_at timestamptz default now()
 );
 
+-- Enable RLS safely
 alter table public.tasks enable row level security;
 
+-- Policies (safe re-run)
 drop policy if exists deny_anon_all_tasks on public.tasks;
 
 create policy deny_anon_all_tasks
@@ -22,6 +29,7 @@ create policy deny_anon_all_tasks
   using (false)
   with check (false);
 
+-- Updated-at trigger function (safe replace)
 create or replace function public.tasks_updated_at()
 returns trigger as $$
 begin
@@ -30,7 +38,12 @@ begin
 end;
 $$ language plpgsql;
 
+-- 🔑 THIS IS THE CRITICAL FIX
+-- Drop trigger if it already exists BEFORE recreating
+drop trigger if exists tasks_set_updated_at on public.tasks;
+
 create trigger tasks_set_updated_at
 before update on public.tasks
-for each row execute procedure public.tasks_updated_at();
+for each row
+execute procedure public.tasks_updated_at();
 
