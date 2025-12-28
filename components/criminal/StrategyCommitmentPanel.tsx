@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Target, CheckCircle2, AlertCircle, X } from "lucide-react";
+import { Target, CheckCircle2, AlertCircle, X, Lock } from "lucide-react";
+import { useToast } from "@/components/Toast";
 
 export type PrimaryStrategy = 
   | "fight_charge" 
@@ -51,28 +52,56 @@ export function StrategyCommitmentPanel({
 }: StrategyCommitmentPanelProps) {
   const [primary, setPrimary] = useState<PrimaryStrategy | null>(null);
   const [secondary, setSecondary] = useState<SecondaryStrategy[]>([]);
+  const [isCommitted, setIsCommitted] = useState(false);
+  const [isCommitting, setIsCommitting] = useState(false);
+  const [committedAt, setCommittedAt] = useState<string | null>(null);
+  const { push: showToast } = useToast();
   const storageKey = `casebrain:strategyCommitment:${caseId}`;
 
-  // Hydrate from localStorage on mount
+  // Load commitment from API on mount
   useEffect(() => {
-    try {
-      const saved = typeof window !== "undefined" ? window.localStorage.getItem(storageKey) : null;
-      if (saved) {
-        const parsed = JSON.parse(saved) as StrategyCommitment;
-        if (parsed?.primary) {
-          setPrimary(parsed.primary);
-          setSecondary(parsed.secondary?.slice(0, 2) || []);
-          onCommitmentChange({
-            primary: parsed.primary,
-            secondary: parsed.secondary?.slice(0, 2) || [],
-          });
+    async function loadCommitment() {
+      try {
+        const response = await fetch(`/api/criminal/${caseId}/strategy-commitment`);
+        if (response.ok) {
+          const result = await response.json();
+          if (result.ok && result.data) {
+            setPrimary(result.data.primary);
+            setSecondary(result.data.secondary || []);
+            setIsCommitted(true);
+            setCommittedAt(result.data.committedAt);
+            onCommitmentChange({
+              primary: result.data.primary,
+              secondary: result.data.secondary || [],
+            });
+            return;
+          }
         }
+      } catch (error) {
+        console.error("Failed to load strategy commitment:", error);
       }
-    } catch {
-      // fail silently; treat as no saved commitment
+
+      // Fallback to localStorage if no API commitment
+      try {
+        const saved = typeof window !== "undefined" ? window.localStorage.getItem(storageKey) : null;
+        if (saved) {
+          const parsed = JSON.parse(saved) as StrategyCommitment;
+          if (parsed?.primary) {
+            setPrimary(parsed.primary);
+            setSecondary(parsed.secondary?.slice(0, 2) || []);
+            onCommitmentChange({
+              primary: parsed.primary,
+              secondary: parsed.secondary?.slice(0, 2) || [],
+            });
+          }
+        }
+      } catch {
+        // fail silently; treat as no saved commitment
+      }
     }
+    loadCommitment();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [storageKey]);
+  }, [caseId]);
 
   const handlePrimarySelect = (strategy: PrimaryStrategy) => {
     setPrimary(strategy);
@@ -117,9 +146,60 @@ export function StrategyCommitmentPanel({
     });
   };
 
+  const handleCommit = async () => {
+    if (!primary) {
+      showToast("No strategy selected. Please select a primary strategy before committing.", "error");
+      return;
+    }
+
+    setIsCommitting(true);
+    try {
+      const response = await fetch(`/api/criminal/${caseId}/strategy-commitment`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          primary,
+          secondary: secondary.slice(0, 2), // Max 2 fallback strategies
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!result.ok) {
+        throw new Error(result.error || "Failed to commit strategy");
+      }
+
+      setIsCommitted(true);
+      setCommittedAt(result.data.committedAt);
+      showToast("Strategy committed. Phase 2 directive planning is now enabled.", "success");
+
+      // Also save to localStorage as backup
+      try {
+        window.localStorage.setItem(storageKey, JSON.stringify({
+          primary,
+          secondary: secondary.slice(0, 2),
+        }));
+      } catch {
+        // ignore storage errors
+      }
+    } catch (error) {
+      console.error("Failed to commit strategy:", error);
+      showToast(
+        `Failed to commit strategy: ${error instanceof Error ? error.message : "An error occurred while committing the strategy."}`,
+        "error"
+      );
+    } finally {
+      setIsCommitting(false);
+    }
+  };
+
   const handleClear = () => {
     setPrimary(null);
     setSecondary([]);
+    setIsCommitted(false);
+    setCommittedAt(null);
     onCommitmentChange(null);
     try {
       window.localStorage.removeItem(storageKey);
@@ -138,20 +218,41 @@ export function StrategyCommitmentPanel({
               <h2 className="text-lg font-semibold text-foreground">Strategy Commitment</h2>
             </div>
             <p className="text-sm text-muted-foreground">
-              Lock in your primary defence strategy. This will make the case plan directive and action-focused.
+              {isCommitted 
+                ? "Strategy is committed. Phase 2 directive planning is enabled."
+                : "Lock in your primary defence strategy. This will make the case plan directive and action-focused."}
             </p>
           </div>
-          {primary && (
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleClear}
-              className="flex items-center gap-2"
-            >
-              <X className="h-3.5 w-3.5" />
-              Clear
-            </Button>
-          )}
+          <div className="flex items-center gap-2">
+            {isCommitted && (
+              <Badge variant="outline" className="flex items-center gap-1">
+                <Lock className="h-3 w-3" />
+                Committed
+              </Badge>
+            )}
+            {primary && !isCommitted && (
+              <Button
+                onClick={handleCommit}
+                disabled={isCommitting || !primary}
+                className="flex items-center gap-2"
+              >
+                <Lock className="h-3.5 w-3.5" />
+                {isCommitting ? "Committing..." : "Commit Strategy"}
+              </Button>
+            )}
+            {primary && (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleClear}
+                className="flex items-center gap-2"
+                disabled={isCommitted}
+              >
+                <X className="h-3.5 w-3.5" />
+                Clear
+              </Button>
+            )}
+          </div>
         </div>
 
         {!primary ? (
@@ -185,13 +286,26 @@ export function StrategyCommitmentPanel({
             <div className="p-4 rounded-lg border-2 border-primary/30 bg-primary/5">
               <div className="flex items-start justify-between mb-2">
                 <div>
-                  <Badge variant="primary" className="mb-2">PRIMARY STRATEGY</Badge>
+                  <div className="flex items-center gap-2 mb-2">
+                    <Badge variant="primary">PRIMARY STRATEGY</Badge>
+                    {isCommitted && (
+                      <Badge variant="outline" className="flex items-center gap-1">
+                        <Lock className="h-3 w-3" />
+                        Locked
+                      </Badge>
+                    )}
+                  </div>
                   <h3 className="text-sm font-semibold text-foreground">
                     {STRATEGY_OPTIONS.find(o => o.id === primary)?.label}
                   </h3>
                   <p className="text-xs text-muted-foreground mt-1">
                     {STRATEGY_OPTIONS.find(o => o.id === primary)?.description}
                   </p>
+                  {isCommitted && committedAt && (
+                    <p className="text-xs text-muted-foreground mt-2 italic">
+                      Committed {new Date(committedAt).toLocaleDateString()}
+                    </p>
+                  )}
                 </div>
                 <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
               </div>

@@ -24,7 +24,10 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       if (!authRes.ok) return authRes.response;
       const { userId } = authRes.context;
 
-      // Get case's org_id directly from database (do NOT derive from userId, no fallback to solo-user_*)
+      // IMPORTANT: org_id must come from cases table, never from user/org context
+      // This prevents "Case not found for your org scope" errors and 22P02 UUID format errors.
+      // Production and debug routes must always use the case's real org_id from Supabase admin lookup.
+      // Do NOT derive orgId from userId or use org scope fallback (solo-user_* strings).
       const supabase = getSupabaseAdminClient();
       const { data: caseRow, error: caseError } = await supabase
         .from("cases")
@@ -133,14 +136,26 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         }
       }
 
+      // Check if strategy is committed
+      const { data: commitment } = await supabase
+        .from("case_strategy_commitments")
+        .select("id")
+        .eq("case_id", caseId)
+        .eq("org_id", caseRow.org_id)
+        .maybeSingle();
+
       // Success response - ensure diagnostics.orgId matches case's actual org_id (UUID)
       const diagnostics = diagnosticsFromContext(caseId, context);
       if (diagnostics) {
         diagnostics.orgId = caseRow.org_id; // Override with case's actual org_id (never derived from userId)
+        (diagnostics as any).strategy_committed = !!commitment; // Add strategy_committed flag
       }
       return NextResponse.json({
         ok: true,
-        data: result.data,
+        data: {
+          ...result.data,
+          strategy_committed: !!commitment, // Also add to data for easy access
+        },
         diagnostics: diagnostics || {
           caseId,
           orgId: caseRow.org_id,
@@ -152,6 +167,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
           textThin: context.diagnostics.reasonCodes.includes("TEXT_THIN"),
           traceId: `trace-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
           updatedAt: new Date().toISOString(),
+          strategy_committed: !!commitment,
         },
       });
     } catch (error) {

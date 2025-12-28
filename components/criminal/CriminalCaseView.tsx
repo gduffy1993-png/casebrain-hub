@@ -15,6 +15,7 @@ import { SentencingMitigationPanel } from "./SentencingMitigationPanel";
 import { CaseFightPlan } from "./CaseFightPlan";
 import { CasePhaseSelector, type CasePhase } from "./CasePhaseSelector";
 import { StrategyCommitmentPanel, type StrategyCommitment } from "./StrategyCommitmentPanel";
+import { Phase2StrategyPlanPanel } from "./Phase2StrategyPlanPanel";
 import { AnalysisGateBanner, type AnalysisGateBannerProps } from "@/components/AnalysisGateBanner";
 import { normalizeApiResponse, isGated } from "@/lib/api-response-normalizer";
 import { Scale, Shield } from "lucide-react";
@@ -31,6 +32,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   const [isDisclosureFirstMode, setIsDisclosureFirstMode] = useState<boolean>(false);
   const [currentPhase, setCurrentPhase] = useState<CasePhase>(1);
   const [committedStrategy, setCommittedStrategy] = useState<StrategyCommitment | null>(null);
+  const [isStrategyCommitted, setIsStrategyCommitted] = useState(false);
   const [panelData, setPanelData] = useState<{
     bail: { hasData: boolean };
     sentencing: { hasData: boolean };
@@ -42,6 +44,30 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
     hearings: { hasData: false },
     pace: { hasData: false },
   });
+
+  // Check if strategy is committed on mount
+  useEffect(() => {
+    async function checkStrategyCommitment() {
+      try {
+        const response = await fetch(`/api/criminal/${caseId}/strategy-commitment`);
+        if (response.ok) {
+          const result = await response.json();
+          if (result.ok && result.data) {
+            setIsStrategyCommitted(true);
+            setCommittedStrategy({
+              primary: result.data.primary,
+              secondary: result.data.secondary || [],
+            });
+          } else {
+            setIsStrategyCommitted(false);
+          }
+        }
+      } catch {
+        setIsStrategyCommitted(false);
+      }
+    }
+    checkStrategyCommitment();
+  }, [caseId]);
 
   // Check if analysis is gated and determine mode
   useEffect(() => {
@@ -154,8 +180,18 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Strategy commitment unavailable</div>}>
           <StrategyCommitmentPanel 
             caseId={caseId}
-            onCommitmentChange={setCommittedStrategy}
+            onCommitmentChange={(commitment) => {
+              setCommittedStrategy(commitment);
+              setIsStrategyCommitted(!!commitment);
+            }}
           />
+        </ErrorBoundary>
+      )}
+
+      {/* Primary Strategy Plan - Phase 2+ only, shows after commitment */}
+      {currentPhase >= 2 && isStrategyCommitted && (
+        <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Strategy plan unavailable</div>}>
+          <Phase2StrategyPlanPanel caseId={caseId} />
         </ErrorBoundary>
       )}
 
