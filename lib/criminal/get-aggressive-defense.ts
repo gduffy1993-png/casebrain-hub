@@ -46,15 +46,20 @@ export async function getAggressiveDefense({
   userId,
 }: GetAggressiveDefenseOptions): Promise<GetAggressiveDefenseResult> {
   try {
-    // For debug routes: if orgId is provided, construct org scope that matches it
-    // This allows bypassing userId-derived org scope when we know the case's actual org_id
+    // If orgId is provided and is a valid UUID, use it directly (bypasses userId-derived org scope)
+    // This ensures we use the case's actual org_id, not a fallback to solo-user_* strings
     let context: CaseContext;
-    if (orgId && userId === "debug-user") {
+    const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    const isDebugUser = userId === "debug-user";
+    const hasValidUuidOrgId = orgId && uuidPattern.test(orgId);
+    
+    if (hasValidUuidOrgId) {
+      // Use provided UUID orgId (from case's actual org_id) - works for both debug and authenticated routes
       // Debug mode: use provided orgId to construct matching org scope
       const { getSupabaseAdminClient } = await import("@/lib/supabase");
       const supabase = getSupabaseAdminClient();
       
-      // Query case directly with admin client (bypasses org scope restrictions)
+      // Query case directly with admin client using provided UUID orgId (bypasses org scope restrictions)
       const { data: caseRow } = await supabase
         .from("cases")
         .select("*")
@@ -142,7 +147,8 @@ export async function getAggressiveDefense({
         canGenerateAnalysis: rawCharsTotal > 0 && !suspectedScanned && !textThin,
       };
     } else {
-      // Normal mode: build case context using userId-derived org scope
+      // Fallback: build case context using userId-derived org scope (only if no valid UUID orgId provided)
+      // This should rarely happen if routes properly pass case's org_id
       context = await buildCaseContext(caseId, { userId });
     }
 
