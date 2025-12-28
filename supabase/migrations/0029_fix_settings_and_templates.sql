@@ -1,6 +1,7 @@
 -- Migration: Fix settings and templates tables
 -- 1. Add missing columns to organisation_settings
--- 2. Create the letterTemplates table
+-- 2. Create / harden letterTemplates table
+-- 3. Seed default templates safely
 
 -- ============================================================================
 -- 1. Add missing columns to organisation_settings
@@ -12,7 +13,7 @@ ADD COLUMN IF NOT EXISTS firm_address text,
 ADD COLUMN IF NOT EXISTS default_sign_off text;
 
 -- ============================================================================
--- 2. Create letterTemplates table (general templates)
+-- 2. Create / harden letterTemplates table
 -- ============================================================================
 
 CREATE TABLE IF NOT EXISTS public."letterTemplates" (
@@ -26,20 +27,29 @@ CREATE TABLE IF NOT EXISTS public."letterTemplates" (
   updated_at timestamptz DEFAULT now()
 );
 
+-- Ensure placeholders column exists (older DBs)
+ALTER TABLE public."letterTemplates"
+  ADD COLUMN IF NOT EXISTS placeholders jsonb DEFAULT '[]'::jsonb;
+
 -- Indexes
-CREATE INDEX IF NOT EXISTS letter_templates_org_idx ON public."letterTemplates" (org_id);
-CREATE INDEX IF NOT EXISTS letter_templates_practice_area_idx ON public."letterTemplates" (practice_area);
+CREATE INDEX IF NOT EXISTS letter_templates_org_idx
+  ON public."letterTemplates" (org_id);
+
+CREATE INDEX IF NOT EXISTS letter_templates_practice_area_idx
+  ON public."letterTemplates" (practice_area);
 
 -- Updated at trigger
 CREATE OR REPLACE FUNCTION public.letter_templates_set_updated_at()
 RETURNS TRIGGER AS $$
 BEGIN
-  NEW.updated_at = now();
+  NEW.updated_at := now();
   RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
-DROP TRIGGER IF EXISTS trg_letter_templates_updated_at ON public."letterTemplates";
+DROP TRIGGER IF EXISTS trg_letter_templates_updated_at
+  ON public."letterTemplates";
+
 CREATE TRIGGER trg_letter_templates_updated_at
   BEFORE UPDATE ON public."letterTemplates"
   FOR EACH ROW
@@ -48,18 +58,20 @@ CREATE TRIGGER trg_letter_templates_updated_at
 -- Enable RLS
 ALTER TABLE public."letterTemplates" ENABLE ROW LEVEL SECURITY;
 
--- RLS policy (deny anonymous access - use admin client)
-DROP POLICY IF EXISTS deny_anon_letter_templates ON public."letterTemplates";
-CREATE POLICY deny_anon_letter_templates ON public."letterTemplates"
+-- Deny anon access (admin client only)
+DROP POLICY IF EXISTS deny_anon_letter_templates
+  ON public."letterTemplates";
+
+CREATE POLICY deny_anon_letter_templates
+  ON public."letterTemplates"
   FOR ALL
   USING (false)
   WITH CHECK (false);
 
 -- ============================================================================
--- 3. Seed some default templates
+-- 3. Seed default templates (only if table is empty)
 -- ============================================================================
 
--- Only insert if table is empty (to avoid duplicates on re-run)
 INSERT INTO public."letterTemplates" (name, body_template, practice_area, placeholders)
 SELECT name, body_template, practice_area, placeholders
 FROM (VALUES
@@ -100,5 +112,6 @@ FROM (VALUES
     '["client_name", "accident_date", "accident_location", "accident_description", "injuries_description", "negligence_allegations", "fee_earner_name"]'::jsonb
   )
 ) AS t(name, body_template, practice_area, placeholders)
-WHERE NOT EXISTS (SELECT 1 FROM public."letterTemplates" LIMIT 1);
-
+WHERE NOT EXISTS (
+  SELECT 1 FROM public."letterTemplates" LIMIT 1
+);
