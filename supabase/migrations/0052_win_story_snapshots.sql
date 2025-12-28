@@ -14,8 +14,8 @@ CREATE TABLE IF NOT EXISTS public.win_story_snapshots (
   after_risk TEXT,
   snapshot JSONB NOT NULL DEFAULT '{}'::jsonb,
   created_by TEXT,
-  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+
   -- snapshot JSONB structure:
   -- {
   --   "risk": "STRONG",
@@ -31,18 +31,23 @@ CREATE TABLE IF NOT EXISTS public.win_story_snapshots (
 );
 
 -- Indexes
-CREATE INDEX IF NOT EXISTS idx_win_story_snapshots_case_created 
-  ON public.win_story_snapshots(case_id, created_at DESC);
-CREATE INDEX IF NOT EXISTS idx_win_story_snapshots_org_created 
-  ON public.win_story_snapshots(org_id, created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_win_story_snapshots_case_id
+  ON public.win_story_snapshots(case_id);
+
+CREATE INDEX IF NOT EXISTS idx_win_story_snapshots_org_id
+  ON public.win_story_snapshots(org_id);
+
+CREATE INDEX IF NOT EXISTS idx_win_story_snapshots_created_at
+  ON public.win_story_snapshots(created_at DESC);
 
 -- RLS
 ALTER TABLE public.win_story_snapshots ENABLE ROW LEVEL SECURITY;
 
-DROP POLICY IF EXISTS win_story_snapshots_org_access ON public.win_story_snapshots;
+-- Deny anon (service role bypasses RLS anyway)
+DROP POLICY IF EXISTS deny_anon_all_win_story_snapshots ON public.win_story_snapshots;
 
-CREATE POLICY win_story_snapshots_org_access
+CREATE POLICY deny_anon_all_win_story_snapshots
   ON public.win_story_snapshots
   FOR ALL
-  USING (org_id = current_setting('app.current_org_id', TRUE))
-  WITH CHECK (org_id = current_setting('app.current_org_id', TRUE));
+  USING (false)
+  WITH CHECK (false);
