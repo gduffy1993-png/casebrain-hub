@@ -12,3 +12,7 @@ out
 .DS_Store
 *.tsbuildinfo
 tsconfig.tsbuildinfo
+
+# Supabase CLI temp
+supabase/.temp/
+
