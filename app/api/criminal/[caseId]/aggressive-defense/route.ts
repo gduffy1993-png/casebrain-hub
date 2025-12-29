@@ -139,9 +139,24 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       // Check if strategy is committed
       const { data: commitment } = await supabase
         .from("case_strategy_commitments")
-        .select("id")
+        .select(`
+          id,
+          case_id,
+          title,
+          primary_strategy,
+          fallback_strategies,
+          strategy_type,
+          locked,
+          status,
+          priority,
+          committed_at,
+          committed_by,
+          created_at
+        `)
         .eq("case_id", caseId)
         .eq("org_id", caseRow.org_id)
+        .order("created_at", { ascending: false })
+        .limit(1)
         .maybeSingle();
 
       // Success response - ensure diagnostics.orgId matches case's actual org_id (UUID)

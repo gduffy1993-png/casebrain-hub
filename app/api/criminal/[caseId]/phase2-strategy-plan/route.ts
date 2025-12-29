@@ -43,9 +43,24 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       // Get strategy commitment
       const { data: commitment, error: commitmentError } = await supabase
         .from("case_strategy_commitments")
-        .select("*")
+        .select(`
+          id,
+          case_id,
+          title,
+          primary_strategy,
+          fallback_strategies,
+          strategy_type,
+          locked,
+          status,
+          priority,
+          committed_at,
+          committed_by,
+          created_at
+        `)
         .eq("case_id", caseId)
         .eq("org_id", caseRow.org_id)
+        .order("created_at", { ascending: false })
+        .limit(1)
         .maybeSingle();
 
       if (commitmentError || !commitment) {

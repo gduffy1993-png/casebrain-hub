@@ -65,14 +65,16 @@ export function StrategyCommitmentPanel({
         const response = await fetch(`/api/criminal/${caseId}/strategy-commitment`);
         if (response.ok) {
           const result = await response.json();
-          if (result.ok && result.data) {
-            setPrimary(result.data.primary);
-            setSecondary(result.data.secondary || []);
-            setIsCommitted(true);
-            setCommittedAt(result.data.committedAt);
+          // Check for primary_strategy (database field) instead of details or legacy fields
+          if (result.ok && result.data && result.data.primary_strategy) {
+            const strategy = result.data;
+            setPrimary(strategy.primary_strategy);
+            setSecondary(strategy.fallback_strategies || []);
+            setIsCommitted(!!strategy.locked || !!strategy.primary_strategy);
+            setCommittedAt(strategy.created_at || strategy.committedAt);
             onCommitmentChange({
-              primary: result.data.primary,
-              secondary: result.data.secondary || [],
+              primary: strategy.primary_strategy,
+              secondary: strategy.fallback_strategies || [],
             });
             return;
           }
@@ -259,6 +261,7 @@ export function StrategyCommitmentPanel({
           <div className="space-y-4">
             <div>
               <h3 className="text-sm font-semibold text-foreground mb-3">Select Primary Strategy</h3>
+              <p className="text-xs text-muted-foreground mb-3">No strategy committed yet. Select a primary strategy to begin.</p>
               <div className="space-y-3">
                 {STRATEGY_OPTIONS.map((option) => (
                   <button
@@ -285,7 +288,7 @@ export function StrategyCommitmentPanel({
             {/* Primary Strategy Display */}
             <div className="p-4 rounded-lg border-2 border-primary/30 bg-primary/5">
               <div className="flex items-start justify-between mb-2">
-                <div>
+                <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
                     <Badge variant="primary">PRIMARY STRATEGY</Badge>
                     {isCommitted && (
@@ -295,10 +298,10 @@ export function StrategyCommitmentPanel({
                       </Badge>
                     )}
                   </div>
-                  <h3 className="text-sm font-semibold text-foreground">
-                    {STRATEGY_OPTIONS.find(o => o.id === primary)?.label}
+                  <h3 className="text-sm font-semibold text-foreground mb-1">
+                    {STRATEGY_OPTIONS.find(o => o.id === primary)?.label || primary}
                   </h3>
-                  <p className="text-xs text-muted-foreground mt-1">
+                  <p className="text-xs text-muted-foreground">
                     {STRATEGY_OPTIONS.find(o => o.id === primary)?.description}
                   </p>
                   {isCommitted && committedAt && (
@@ -311,53 +314,85 @@ export function StrategyCommitmentPanel({
               </div>
             </div>
 
-            {/* Secondary Strategies */}
-            <div>
-              <h3 className="text-sm font-semibold text-foreground mb-3">
-                Fallback Strategies (Optional, max 2)
-              </h3>
-              <div className="space-y-2">
-                {STRATEGY_OPTIONS.filter(o => o.id !== primary).map((option) => {
-                  const isSelected = secondary.includes(option.id);
-                  return (
-                    <button
-                      key={option.id}
-                      onClick={() => handleSecondaryToggle(option.id)}
-                      disabled={!isSelected && secondary.length >= 2}
-                      className={`w-full text-left p-3 rounded-lg border transition-colors ${
-                        isSelected
-                          ? "border-primary/50 bg-primary/5"
-                          : secondary.length >= 2
-                            ? "border-border/50 bg-muted/20 opacity-50 cursor-not-allowed"
-                            : "border-border hover:border-primary/30 hover:bg-primary/5"
-                      }`}
-                    >
-                      <div className="flex items-start justify-between gap-3">
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-1">
-                            <h4 className="text-sm font-medium text-foreground">{option.label}</h4>
-                            {isSelected && (
-                              <Badge variant="outline" className="text-xs">Selected</Badge>
-                            )}
+            {/* Fallback Strategies */}
+            {secondary.length > 0 && (
+              <div>
+                <h3 className="text-sm font-semibold text-foreground mb-3">
+                  Fallback Strategies
+                </h3>
+                <div className="space-y-2">
+                  {secondary.map((strategyId) => {
+                    const option = STRATEGY_OPTIONS.find(o => o.id === strategyId);
+                    if (!option) return null;
+                    return (
+                      <div
+                        key={strategyId}
+                        className="p-3 rounded-lg border border-primary/30 bg-primary/5"
+                      >
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="flex-1">
+                            <div className="flex items-center gap-2 mb-1">
+                              <h4 className="text-sm font-medium text-foreground">{option.label}</h4>
+                              <Badge variant="outline" className="text-xs">Fallback</Badge>
+                            </div>
+                            <p className="text-xs text-muted-foreground">{option.description}</p>
                           </div>
-                          <p className="text-xs text-muted-foreground">{option.description}</p>
-                        </div>
-                        {isSelected ? (
                           <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0" />
-                        ) : (
-                          <div className="h-4 w-4 rounded-full border-2 border-muted-foreground/30 flex-shrink-0" />
-                        )}
+                        </div>
                       </div>
-                    </button>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
-              {secondary.length === 0 && (
-                <p className="text-xs text-muted-foreground mt-2 italic">
-                  Optional: Select fallback strategies if the primary strategy fails.
-                </p>
-              )}
-            </div>
+            )}
+            {!isCommitted && (
+              <div>
+                <h3 className="text-sm font-semibold text-foreground mb-3">
+                  Fallback Strategies (Optional, max 2)
+                </h3>
+                <div className="space-y-2">
+                  {STRATEGY_OPTIONS.filter(o => o.id !== primary).map((option) => {
+                    const isSelected = secondary.includes(option.id);
+                    return (
+                      <button
+                        key={option.id}
+                        onClick={() => handleSecondaryToggle(option.id)}
+                        disabled={!isSelected && secondary.length >= 2}
+                        className={`w-full text-left p-3 rounded-lg border transition-colors ${
+                          isSelected
+                            ? "border-primary/50 bg-primary/5"
+                            : secondary.length >= 2
+                              ? "border-border/50 bg-muted/20 opacity-50 cursor-not-allowed"
+                              : "border-border hover:border-primary/30 hover:bg-primary/5"
+                        }`}
+                      >
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="flex-1">
+                            <div className="flex items-center gap-2 mb-1">
+                              <h4 className="text-sm font-medium text-foreground">{option.label}</h4>
+                              {isSelected && (
+                                <Badge variant="outline" className="text-xs">Selected</Badge>
+                              )}
+                            </div>
+                            <p className="text-xs text-muted-foreground">{option.description}</p>
+                          </div>
+                          {isSelected ? (
+                            <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0" />
+                          ) : (
+                            <div className="h-4 w-4 rounded-full border-2 border-muted-foreground/30 flex-shrink-0" />
+                          )}
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+                {secondary.length === 0 && (
+                  <p className="text-xs text-muted-foreground mt-2 italic">
+                    Optional: Select fallback strategies if the primary strategy fails.
+                  </p>
+                )}
+              </div>
+            )}
           </div>
         )}
       </div>

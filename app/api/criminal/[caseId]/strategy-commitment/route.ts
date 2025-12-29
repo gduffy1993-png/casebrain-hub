@@ -103,7 +103,20 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
             onConflict: "case_id",
           }
         )
-        .select()
+        .select(`
+          id,
+          case_id,
+          title,
+          primary_strategy,
+          fallback_strategies,
+          strategy_type,
+          locked,
+          status,
+          priority,
+          committed_at,
+          committed_by,
+          created_at
+        `)
         .single();
 
       if (commitmentError) {
@@ -119,6 +132,16 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
         data: {
           id: commitment.id,
           caseId: commitment.case_id,
+          // Return database fields directly
+          primary_strategy: commitment.primary_strategy,
+          fallback_strategies: commitment.fallback_strategies || [],
+          strategy_type: commitment.strategy_type,
+          locked: commitment.locked,
+          status: commitment.status,
+          priority: commitment.priority,
+          title: commitment.title,
+          created_at: commitment.created_at,
+          // Also include mapped fields for backward compatibility
           primary: commitment.primary_strategy,
           secondary: commitment.fallback_strategies || [],
           committedAt: commitment.committed_at,
@@ -167,9 +190,24 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       // Get commitment
       const { data: commitment, error: commitmentError } = await supabase
         .from("case_strategy_commitments")
-        .select("*")
+        .select(`
+          id,
+          case_id,
+          title,
+          primary_strategy,
+          fallback_strategies,
+          strategy_type,
+          locked,
+          status,
+          priority,
+          committed_at,
+          committed_by,
+          created_at
+        `)
         .eq("case_id", caseId)
         .eq("org_id", caseRow.org_id)
+        .order("created_at", { ascending: false })
+        .limit(1)
         .maybeSingle();
 
       if (commitmentError) {
@@ -192,6 +230,16 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         data: {
           id: commitment.id,
           caseId: commitment.case_id,
+          // Return database fields directly
+          primary_strategy: commitment.primary_strategy,
+          fallback_strategies: commitment.fallback_strategies || [],
+          strategy_type: commitment.strategy_type,
+          locked: commitment.locked,
+          status: commitment.status,
+          priority: commitment.priority,
+          title: commitment.title,
+          created_at: commitment.created_at,
+          // Also include mapped fields for backward compatibility
           primary: commitment.primary_strategy,
           secondary: commitment.fallback_strategies || [],
           committedAt: commitment.committed_at,
