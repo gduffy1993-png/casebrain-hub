@@ -397,6 +397,14 @@ export async function POST(request: Request) {
       );
     }
 
+    // TEMPORARY DEBUG: Log text extraction before insert
+    const textLength = typeof redactedText === "string" ? redactedText.length : 0;
+    console.log(`[upload] DEBUG: About to insert document: ${file.name}`);
+    console.log(`[upload] DEBUG:   - caseId=${caseId}, orgId=${orgId}`);
+    console.log(`[upload] DEBUG:   - redactedText length=${textLength}`);
+    console.log(`[upload] DEBUG:   - redactedText type=${typeof redactedText}`);
+    console.log(`[upload] DEBUG:   - redactedText preview (first 200 chars): ${typeof redactedText === "string" ? redactedText.substring(0, 200).replace(/\n/g, " ") : "[NOT STRING]"}`);
+
     const { data: document, error: docError } = await supabase
       .from("documents")
       .insert({
@@ -410,8 +418,20 @@ export async function POST(request: Request) {
         uploaded_by: userId,
         redaction_map: redactionMap,
       })
-      .select("id, name, case_id, org_id")
+      .select("id, name, case_id, org_id, raw_text")
       .maybeSingle();
+    
+    // TEMPORARY DEBUG: Verify what was actually stored
+    if (document) {
+      const storedRawText = (document as any).raw_text;
+      const storedTextLength = typeof storedRawText === "string" ? storedRawText.length : (storedRawText ? String(storedRawText).length : 0);
+      console.log(`[upload] DEBUG: Document inserted successfully: docId=${document.id}`);
+      console.log(`[upload] DEBUG:   - stored raw_text length=${storedTextLength}`);
+      console.log(`[upload] DEBUG:   - stored raw_text type=${typeof storedRawText}`);
+      if (storedTextLength !== textLength) {
+        console.warn(`[upload] DEBUG: WARNING - Text length mismatch! Inserted ${textLength} chars but stored ${storedTextLength} chars`);
+      }
+    }
 
     if (docError) {
       console.error(`[upload] Failed to insert document ${file.name}:`, docError);

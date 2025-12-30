@@ -161,6 +161,13 @@ export async function findDocumentsByCaseIdScoped(
     if (error) {
       console.error("[case-lookup] Error querying documents by UUID org_id:", error);
     } else if (data && data.length > 0) {
+      // TEMPORARY DEBUG: Log what we got from the database
+      console.log(`[case-lookup] DEBUG: Found ${data.length} documents via UUID org_id for caseId=${caseId}, orgId=${scope.orgId}`);
+      for (const doc of data) {
+        const rawText = doc.raw_text;
+        const rawTextLength = typeof rawText === "string" ? rawText.length : (rawText ? String(rawText).length : 0);
+        console.log(`[case-lookup] DEBUG:   - docId=${doc.id}, name=${doc.name}, raw_text length=${rawTextLength}, raw_text type=${typeof rawText}`);
+      }
       return data as Array<{ id: string; name: string; created_at: string; extracted_json?: unknown; raw_text?: string }>;
     }
   }
@@ -177,6 +184,13 @@ export async function findDocumentsByCaseIdScoped(
     if (error) {
       console.error("[case-lookup] Error querying documents by externalRef org_id:", error);
     } else if (data && data.length > 0) {
+      // TEMPORARY DEBUG: Log what we got from the database
+      console.log(`[case-lookup] DEBUG: Found ${data.length} documents via externalRef org_id for caseId=${caseId}, externalRef=${scope.externalRef}`);
+      for (const doc of data) {
+        const rawText = doc.raw_text;
+        const rawTextLength = typeof rawText === "string" ? rawText.length : (rawText ? String(rawText).length : 0);
+        console.log(`[case-lookup] DEBUG:   - docId=${doc.id}, name=${doc.name}, raw_text length=${rawTextLength}, raw_text type=${typeof rawText}`);
+      }
       return data as Array<{ id: string; name: string; created_at: string; extracted_json?: unknown; raw_text?: string }>;
     }
   }
@@ -193,6 +207,13 @@ export async function findDocumentsByCaseIdScoped(
     if (error) {
       console.error("[case-lookup] Error querying documents by case org_id:", error);
     } else if (data && data.length > 0) {
+      // TEMPORARY DEBUG: Log what we got from the database
+      console.log(`[case-lookup] DEBUG: Found ${data.length} documents via case org_id for caseId=${caseId}, caseOrgId=${caseOrgId}`);
+      for (const doc of data) {
+        const rawText = doc.raw_text;
+        const rawTextLength = typeof rawText === "string" ? rawText.length : (rawText ? String(rawText).length : 0);
+        console.log(`[case-lookup] DEBUG:   - docId=${doc.id}, name=${doc.name}, raw_text length=${rawTextLength}, raw_text type=${typeof rawText}`);
+      }
       // Dev-only log when case org_id match succeeds (indicates data mismatch was resolved)
       if (process.env.NODE_ENV !== "production") {
         console.log(`[case-lookup] Matched documents via case org_id (mismatch resolved) for caseId=${caseId}, caseOrgId=${caseOrgId}`);

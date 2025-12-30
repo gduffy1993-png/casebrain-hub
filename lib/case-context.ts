@@ -126,10 +126,32 @@ export async function buildCaseContext(
   let rawCharsTotal = 0;
   let jsonCharsTotal = 0;
 
+  // TEMPORARY DEBUG: Log all document fields to diagnose extraction issue
+  console.log(`[case-context] DEBUG: Processing ${documents.length} documents for caseId=${caseId}`);
+  console.log(`[case-context] DEBUG: orgIdResolved=${orgIdResolved}, method=${method}`);
+  console.log(`[case-context] DEBUG: Gate thresholds - suspectedScanned: rawCharsTotal < 800 AND jsonCharsTotal < 400, textThin: rawCharsTotal < 800`);
+
   for (const doc of documents) {
     const rawText = doc.raw_text ?? "";
     const textLength = typeof rawText === "string" ? rawText.length : 0;
     rawCharsTotal += textLength;
+
+    // TEMPORARY DEBUG: Log document structure
+    console.log(`[case-context] DEBUG: docId=${doc.id}, name=${doc.name}`);
+    console.log(`[case-context] DEBUG:   - raw_text type: ${typeof doc.raw_text}, length: ${textLength}`);
+    console.log(`[case-context] DEBUG:   - raw_text exists: ${doc.raw_text !== null && doc.raw_text !== undefined}`);
+    console.log(`[case-context] DEBUG:   - extracted_json exists: ${doc.extracted_json !== null && doc.extracted_json !== undefined}`);
+    
+    // Check if raw_text is actually in the document object
+    const hasRawTextKey = "raw_text" in doc;
+    const hasExtractedTextKey = "extracted_text" in doc;
+    console.log(`[case-context] DEBUG:   - has "raw_text" key: ${hasRawTextKey}`);
+    console.log(`[case-context] DEBUG:   - has "extracted_text" key: ${hasExtractedTextKey}`);
+    if (hasExtractedTextKey) {
+      const extractedText = (doc as any).extracted_text;
+      const extractedTextLength = typeof extractedText === "string" ? extractedText.length : 0;
+      console.log(`[case-context] DEBUG:   - extracted_text length: ${extractedTextLength}`);
+    }
 
     const extractedJson = doc.extracted_json;
     if (extractedJson) {
@@ -150,6 +172,9 @@ export async function buildCaseContext(
       console.log(`[case-context] docId=${doc.id}, name=${doc.name}, rawChars=${textLength}, jsonChars=${extractedJson ? (typeof extractedJson === "string" ? extractedJson.length : JSON.stringify(extractedJson).length) : 0}, preview="${preview}"`);
     }
   }
+
+  // TEMPORARY DEBUG: Log final totals
+  console.log(`[case-context] DEBUG: FINAL TOTALS - rawCharsTotal=${rawCharsTotal}, jsonCharsTotal=${jsonCharsTotal}, docCount=${documents.length}`);
 
   const docCount = documents.length;
   const avgRawCharsPerDoc = docCount > 0 ? Math.floor(rawCharsTotal / docCount) : 0;
@@ -209,7 +234,15 @@ export async function buildCaseContext(
   }
 
   // Log reason codes and summary diagnostics for debugging
-  console.log(`[case-context] caseId=${caseId}, method=${method}, reasonCodes=[${reasonCodes.join(", ")}], docCount=${docCount}, rawCharsTotal=${rawCharsTotal}, jsonCharsTotal=${jsonCharsTotal}, avgRawCharsPerDoc=${avgRawCharsPerDoc}, suspectedScanned=${suspectedScanned}`);
+  console.log(`[case-context] caseId=${caseId}, method=${method}, reasonCodes=[${reasonCodes.join(", ")}], docCount=${docCount}, rawCharsTotal=${rawCharsTotal}, jsonCharsTotal=${jsonCharsTotal}, avgRawCharsPerDoc=${avgRawCharsPerDoc}, suspectedScanned=${suspectedScanned}, textThin=${textThin}, canGenerateAnalysis=${canGenerateAnalysis}`);
+  
+  // TEMPORARY DEBUG: Log gate decision details
+  console.log(`[case-context] DEBUG: GATE DECISION`);
+  console.log(`[case-context] DEBUG:   - rawCharsTotal > 0: ${rawCharsTotal > 0}`);
+  console.log(`[case-context] DEBUG:   - !suspectedScanned: ${!suspectedScanned} (suspectedScanned=${suspectedScanned})`);
+  console.log(`[case-context] DEBUG:   - !textThin: ${!textThin} (textThin=${textThin})`);
+  console.log(`[case-context] DEBUG:   - reasonCodes.includes("OK"): ${reasonCodes.includes("OK")}`);
+  console.log(`[case-context] DEBUG:   - canGenerateAnalysis: ${canGenerateAnalysis}`);
 
   return {
     case: caseRow,
