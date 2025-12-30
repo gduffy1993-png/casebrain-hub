@@ -97,7 +97,16 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
         setLoading(true);
         setError(null);
         setGatedResponse(null);
-        const response = await fetch(`/api/criminal/${caseId}/aggressive-defense`);
+        // Try strategy-analysis endpoint first (multi-route output)
+        let response = await fetch(`/api/criminal/${caseId}/strategy-analysis`).catch(() => null);
+        let useStrategyAnalysis = false;
+        
+        // Fallback to aggressive-defense if strategy-analysis doesn't exist or fails
+        if (!response || !response.ok) {
+          response = await fetch(`/api/criminal/${caseId}/aggressive-defense`);
+        } else {
+          useStrategyAnalysis = true;
+        }
         
         if (!response.ok) {
           throw new Error("Failed to fetch defence plan");
@@ -118,8 +127,11 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
         }
 
         // Helper: detect strategy in ANY expected shape - CRITICAL: Check strategies array FIRST
+        // Also check for strategy-analysis routes array
         function hasStrategy(d: any): boolean {
           if (!d) return false;
+          // Check for strategy-analysis routes (multi-route output)
+          if (Array.isArray(d?.routes) && d.routes.length > 0) return true;
           // CRITICAL: Check strategies array first - this is the primary source
           if (Array.isArray(d?.strategies) && d.strategies.length > 0) return true;
           return Boolean(
@@ -130,6 +142,11 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
             (Array.isArray(d?.allAngles) && d.allAngles.length > 0) ||
             committedStrategy
           );
+        }
+        
+        // Store whether we're using strategy-analysis endpoint for rendering
+        if (useStrategyAnalysis && payload?.routes) {
+          (payload as any).__useStrategyAnalysis = true;
         }
 
         // FIX: Check gating first - if gated due to 0-text/thin bundle, show banner and stop
@@ -180,11 +197,11 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
         setRawCharsTotal(rawChars);
       } catch (err) {
         console.error("Failed to fetch defence plan:", err);
-        // FIX: Don't set error if committedStrategy exists - we can still render
-        // Only set error if we have no data AND no committed strategy
-        if (!committedStrategy) {
-          setError("Defence plan not available yet.");
-        }
+        const errorMessage = err instanceof Error ? err.message : "Failed to fetch defence plan";
+        // Always set error so UI can surface it
+        setError(errorMessage);
+        // FIX: Don't block rendering if committedStrategy exists - we can still render minimal plan
+        // But still set error so user knows fetch failed
       } finally {
         setLoading(false);
       }
@@ -350,6 +367,11 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
   
   // Extract banner early to avoid type narrowing issues
   const gateBanner = gatedResponse?.banner;
+
+  // Check if we're using strategy-analysis routes
+  const useStrategyAnalysis = (data as any)?.__useStrategyAnalysis === true;
+  const strategyRoutes = useStrategyAnalysis && Array.isArray((data as any)?.routes) ? (data as any).routes : null;
+  const selectedRoute = useStrategyAnalysis ? (data as any)?.selectedRoute : null;
 
   // FIX: Filter angles by committed strategy (Strategy-Specific Angle Filtering)
   // Use fallback list so we don't filter empty arrays and accidentally make it empty
@@ -816,8 +838,69 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
           </div>
         )}
 
-        {/* Priority 1: If tacticalPlan is array -> render as bullet list */}
-        {Array.isArray(tacticalPlan) && tacticalPlan.length > 0 ? (
+        {/* Priority 1: If strategy-analysis routes exist -> render multi-route strategy */}
+        {strategyRoutes && strategyRoutes.length > 0 ? (
+          <div className="space-y-4">
+            <h3 className="text-sm font-semibold text-foreground">Strategy Routes</h3>
+            <div className="space-y-4">
+              {strategyRoutes.map((route: any) => (
+                <div
+                  key={route.id}
+                  className={`p-4 rounded-lg border ${
+                    selectedRoute === route.type
+                      ? "border-primary/50 bg-primary/10"
+                      : "border-border/50 bg-muted/20"
+                  }`}
+                >
+                  <div className="flex items-start justify-between mb-2">
+                    <h4 className="text-sm font-semibold text-foreground">{route.title}</h4>
+                    {selectedRoute === route.type && (
+                      <Badge variant="primary" className="text-xs">Selected</Badge>
+                    )}
+                  </div>
+                  <p className="text-xs text-muted-foreground mb-3">{route.rationale}</p>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+                    <div>
+                      <h5 className="text-xs font-semibold text-green-400 mb-1">Win Conditions</h5>
+                      <ul className="space-y-1">
+                        {route.winConditions?.slice(0, 3).map((condition: string, idx: number) => (
+                          <li key={idx} className="text-xs text-foreground flex items-start gap-1">
+                            <CheckCircle2 className="h-3 w-3 text-green-400 mt-0.5 flex-shrink-0" />
+                            <span>{condition}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 className="text-xs font-semibold text-red-400 mb-1">Risks</h5>
+                      <ul className="space-y-1">
+                        {route.risks?.slice(0, 3).map((risk: string, idx: number) => (
+                          <li key={idx} className="text-xs text-foreground flex items-start gap-1">
+                            <AlertCircle className="h-3 w-3 text-red-400 mt-0.5 flex-shrink-0" />
+                            <span>{risk}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <h5 className="text-xs font-semibold text-primary mb-1">Next Actions</h5>
+                    <ul className="space-y-1">
+                      {route.nextActions?.map((action: string, idx: number) => (
+                        <li key={idx} className="text-xs text-foreground flex items-start gap-2">
+                          <span className="text-primary mt-0.5">{idx + 1}.</span>
+                          <span>{action}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : Array.isArray(tacticalPlan) && tacticalPlan.length > 0 ? (
           <div className="space-y-3">
             <h3 className="text-sm font-semibold text-foreground">Tactical Plan</h3>
             <ul className="space-y-2 text-sm text-foreground">
