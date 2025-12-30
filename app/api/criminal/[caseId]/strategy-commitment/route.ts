@@ -35,44 +35,43 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       if (!authRes.ok) return authRes.response;
       const { userId, orgId } = authRes.context;
 
-      // Parse request body and log/inspect once (server-side)
+      // Parse request body
       const body: StrategyCommitmentRequest = await request.json();
-      console.log("[strategy-commitment] Request body keys:", Object.keys(body));
-      console.log("[strategy-commitment] Request body:", JSON.stringify(body, null, 2));
       
-      // Extract values with fallback to multiple key formats
+      // Parse body and compute values with fallback to multiple key formats
       const primary_strategy = body.primary_strategy ?? body.primaryStrategy ?? body.primary ?? null;
       const fallback_strategies_input = body.fallback_strategies ?? body.fallbackStrategies ?? body.fallback ?? body.secondary ?? [];
       const strategy_type = body.strategy_type ?? body.strategyType ?? body.type ?? null;
 
-      // Validate: primary_strategy and strategy_type must not be null
+      // Validate: primary_strategy must not be null
       if (!primary_strategy) {
         return NextResponse.json(
-          { ok: false, error: "Missing primary_strategy. Must be one of: fight_charge, charge_reduction, outcome_management" },
+          { ok: false, error: "Missing primary_strategy" },
           { status: 400 }
         );
       }
 
+      // Validate: strategy_type must not be null
       if (!strategy_type) {
         return NextResponse.json(
-          { ok: false, error: "Missing strategy_type. Must be one of: fight_charge, charge_reduction, outcome_management" },
+          { ok: false, error: "Missing strategy_type" },
           { status: 400 }
         );
       }
 
-      // Validate strategy_type is one of the valid values
+      // Validate: allow only fight_charge | charge_reduction | outcome_management
       const validStrategyTypes = ["fight_charge", "charge_reduction", "outcome_management"];
-      if (!validStrategyTypes.includes(strategy_type)) {
-        return NextResponse.json(
-          { ok: false, error: `Invalid strategy_type: ${strategy_type}. Must be one of: ${validStrategyTypes.join(", ")}` },
-          { status: 400 }
-        );
-      }
-
-      // Validate primary_strategy is one of the valid values
+      
       if (!validStrategyTypes.includes(primary_strategy)) {
         return NextResponse.json(
           { ok: false, error: `Invalid primary_strategy: ${primary_strategy}. Must be one of: ${validStrategyTypes.join(", ")}` },
+          { status: 400 }
+        );
+      }
+
+      if (!validStrategyTypes.includes(strategy_type)) {
+        return NextResponse.json(
+          { ok: false, error: "Invalid strategy_type", got: strategy_type },
           { status: 400 }
         );
       }
@@ -134,26 +133,24 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       };
       const title = strategyTitles[primary_strategy] || `Primary Strategy: ${primary_strategy}`;
 
-      // Insert strategy commitment (NEVER use upsert/onConflict)
-      // CRITICAL: fallback_strategies must be JSONB array (PostgreSQL JSONB type)
-      // CRITICAL: strategy_type must be one of: fight_charge, charge_reduction, outcome_management
-      const commitmentData = {
+      // IMPORTANT: Insert payload to ONLY include required fields
+      // Remove status/priority/locked/created_by or any other fields from insert
+      const insertPayload = {
         case_id: caseId,
         org_id: caseRow.org_id,
         title: title,
         primary_strategy: primary_strategy,
         fallback_strategies: fallback_strategies_input,
-        strategy_type: strategy_type, // Use the validated strategy_type from request body
-        status: "in_progress",
-        priority: "high",
-        locked: true,
+        strategy_type: strategy_type,
         committed_at: new Date().toISOString(),
-        created_by: userId,
       };
+
+      // Add a single console.log just before insert
+      console.log("[strategy-commitment] inserting", insertPayload);
 
       const { data: commitment, error: commitmentError } = await supabase
         .from("case_strategy_commitments")
-        .insert(commitmentData)
+        .insert(insertPayload)
         .select(`
           id,
           case_id,
