@@ -73,7 +73,7 @@ export function generateCriminalStrategies(input: StrategyInput): {
     strategies.push({
       id: "strategy-intent-downgrade",
       title: "Intent Downgrade (s18 → s20)",
-      theory: `Medical severity does not prove specific intent under s18. The prosecution must prove the defendant intended to cause grievous bodily harm, not merely that GBH resulted. One blow, short incident, or chaotic circumstances support inference of recklessness (s20) rather than specific intent (s18). ${interviewStance === "no_comment" ? "No comment interview preserves ambiguity and prevents prosecution from inferring intent from admissions." : ""}`,
+      theory: `Under s18 OAPA 1861, the prosecution must prove specific intent to cause grievous bodily harm. Medical severity alone does not establish mens rea. The distinction between s18 (specific intent) and s20 (recklessness) turns on the defendant's state of mind at the time of the act. Where the incident is brief, chaotic, or involves a single blow, the inference of recklessness (s20) is more appropriate than specific intent (s18). ${isThin ? "Note: This analysis is provisional pending full disclosure and evidence review." : "Case law supports this distinction where intent cannot be clearly established from the circumstances."} ${interviewStance === "no_comment" ? "A no comment interview preserves the defendant's position and prevents the prosecution from inferring intent from admissions or explanations." : interviewStance === "answered" ? "Any admissions made in interview must be carefully assessed for whether they support specific intent or merely recklessness." : ""}`,
       whenToUse: "When prosecution relies on inference of intent, incident is chaotic/short, no admissions, and no expert evidence on intent exists.",
       risks: [
         "Prosecution may argue planning/premeditation if evidence emerges",
@@ -98,7 +98,7 @@ export function generateCriminalStrategies(input: StrategyInput): {
     strategies.push({
       id: "strategy-disclosure-pressure",
       title: "Disclosure Pressure / Trial Readiness Attack",
-      theory: "CPIA 1996 and CrimPR require prosecution to serve all unused material and ensure trial readiness. Failure to disclose CCTV, MG6 schedules, or forensic methodology breaches disclosure obligations and may render trial unfair. Prosecution not trial-ready = adjournment pressure or narrowing of case.",
+      theory: `The Criminal Procedure and Investigations Act 1996 (CPIA) and Criminal Procedure Rules impose strict disclosure obligations on the prosecution. Under s3 CPIA, the prosecution must disclose all material that might reasonably be considered capable of undermining the prosecution case or assisting the defence. Failure to disclose CCTV footage, MG6 schedules, unused material, or forensic methodology constitutes a breach of disclosure obligations and may render the trial unfair under Article 6 ECHR. ${isThin ? "This strategy is provisional pending full disclosure review." : "Disclosure failures can lead to abuse of process applications and stays of proceedings where material is significant."} Where disclosure is incomplete, the prosecution is not trial-ready, creating adjournment pressure and potential narrowing of the prosecution case.`,
       whenToUse: "When CCTV not fully disclosed, MG6/unused material unclear, forensic methodology missing, or disclosure gaps exist.",
       risks: [
         "Court may grant adjournment rather than stay",
@@ -130,7 +130,7 @@ export function generateCriminalStrategies(input: StrategyInput): {
     strategies.push({
       id: "strategy-identification-attack",
       title: "Identification Reliability Attack",
-      theory: "Code D PACE and Turnbull guidelines require identification evidence to be reliable. VIPER procedures, facial recognition technology, and CCTV identification all require proper safeguards. Facial recognition is investigative only and not admissible as positive identification. Contamination, confidence inflation, and procedural breaches undermine identification reliability.",
+      theory: `Code D PACE 1984 and the Turnbull guidelines require identification evidence to be reliable and properly obtained. VIPER procedures must comply with Code D Annex E. Facial recognition technology is investigative only and not admissible as positive identification evidence. ${isThin ? "This analysis is provisional pending full disclosure of identification procedures and evidence." : "Identification evidence obtained in breach of Code D may be excluded under s78 PACE. Contamination, confidence inflation, and procedural breaches undermine identification reliability and may render evidence inadmissible or require a Turnbull direction to the jury."}`,
       whenToUse: "When VIPER used, CCTV/facial recognition involved, or identification evidence lacks expert validation.",
       risks: [
         "Identification may be strong despite procedural issues",
@@ -183,7 +183,7 @@ export function generateCriminalStrategies(input: StrategyInput): {
     strategies.push({
       id: "strategy-pace-breach",
       title: "PACE Breach / Interview Exclusion",
-      theory: "PACE Code C requires caution before questioning, right to solicitor, and proper recording. Breaches of PACE may render interview inadmissible under s76/s78 PACE. No comment interview preserves position and prevents prosecution from using silence against defendant.",
+      theory: `PACE Code C requires a caution before questioning, the right to consult a solicitor, and proper recording of interviews. Breaches of PACE may render interview evidence inadmissible under s76(2) PACE (oppression) or s78 PACE (unfairness). ${isThin ? "This analysis is provisional pending full disclosure of custody records and interview recordings." : "Oppression includes any conduct that makes it likely that a confession is unreliable. A no comment interview preserves the defendant's position and prevents the prosecution from using silence against the defendant under s34 Criminal Justice and Public Order Act 1994, provided the defendant was properly advised."}`,
       whenToUse: "When interview exists, PACE compliance is questionable, or caution/solicitor rights were breached.",
       risks: [
         "Court may admit interview with warning rather than exclude",
@@ -208,7 +208,7 @@ export function generateCriminalStrategies(input: StrategyInput): {
     strategies.push({
       id: "strategy-evidence-weakness",
       title: "Evidence Weakness / No Case to Answer",
-      theory: "Prosecution must prove all elements of the offence beyond reasonable doubt. Weak evidence, contradictions, or missing elements may support a submission of no case to answer or acquittal. Even strong-looking cases may have weaknesses that emerge on closer examination.",
+      theory: `The prosecution must prove all elements of the offence beyond reasonable doubt. Weak evidence, contradictions, or missing elements may support a submission of no case to answer or acquittal. ${isThin ? "This analysis is provisional pending full disclosure and evidence review." : "The test for no case to answer is where there is no evidence that the crime has been committed, or the evidence is so weak that no reasonable jury could convict. Even strong-looking cases may have weaknesses that emerge on closer examination of the evidence."}`,
       whenToUse: "When evidence is weak, contradictions exist, or elements of offence are not clearly proven.",
       risks: [
         "Evidence may strengthen with disclosure",

@@ -70,8 +70,9 @@ export function StrategyCommitmentPanel({
             const strategy = result.data;
             setPrimary(strategy.primary_strategy);
             setSecondary(strategy.fallback_strategies || []);
-            setIsCommitted(!!strategy.locked || !!strategy.primary_strategy);
-            setCommittedAt(strategy.created_at || strategy.committedAt);
+            // If primary_strategy exists, strategy is committed
+            setIsCommitted(true);
+            setCommittedAt(strategy.committed_at || strategy.created_at);
             onCommitmentChange({
               primary: strategy.primary_strategy,
               secondary: strategy.fallback_strategies || [],
@@ -170,11 +171,32 @@ export function StrategyCommitmentPanel({
       const result = await response.json();
 
       if (!result.ok) {
-        throw new Error(result.error || "Failed to commit strategy");
+        const errorMsg = result.error || "Failed to commit strategy";
+        const detailsMsg = result.details ? ` (${result.details})` : "";
+        throw new Error(`${errorMsg}${detailsMsg}`);
       }
 
-      setIsCommitted(true);
-      setCommittedAt(result.data.committedAt);
+      if (!result.data || !result.data.primary_strategy) {
+        throw new Error("Commit succeeded but no strategy data returned");
+      }
+
+      // Re-fetch to get latest commitment state
+      const getResponse = await fetch(`/api/criminal/${caseId}/strategy-commitment`);
+      if (getResponse.ok) {
+        const getResult = await getResponse.json();
+        if (getResult.ok && getResult.data && getResult.data.primary_strategy) {
+          const strategy = getResult.data;
+          setPrimary(strategy.primary_strategy);
+          setSecondary(strategy.fallback_strategies || []);
+          setIsCommitted(true);
+          setCommittedAt(strategy.committed_at || strategy.created_at);
+          onCommitmentChange({
+            primary: strategy.primary_strategy,
+            secondary: strategy.fallback_strategies || [],
+          });
+        }
+      }
+
       showToast("Strategy committed. Phase 2 directive planning is now enabled.", "success");
 
       // Also save to localStorage as backup
@@ -188,10 +210,8 @@ export function StrategyCommitmentPanel({
       }
     } catch (error) {
       console.error("Failed to commit strategy:", error);
-      showToast(
-        `Failed to commit strategy: ${error instanceof Error ? error.message : "An error occurred while committing the strategy."}`,
-        "error"
-      );
+      const errorMessage = error instanceof Error ? error.message : "An error occurred while committing the strategy.";
+      showToast(`Failed to commit strategy: ${errorMessage}`, "error");
     } finally {
       setIsCommitting(false);
     }

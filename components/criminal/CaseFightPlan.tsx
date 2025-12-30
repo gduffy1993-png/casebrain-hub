@@ -117,16 +117,17 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
           payload = (payload as any).data;
         }
 
-        // Helper: detect strategy in ANY expected shape
+        // Helper: detect strategy in ANY expected shape - CRITICAL: Check strategies array FIRST
         function hasStrategy(d: any): boolean {
           if (!d) return false;
+          // CRITICAL: Check strategies array first - this is the primary source
+          if (Array.isArray(d?.strategies) && d.strategies.length > 0) return true;
           return Boolean(
             d?.recommendedStrategy?.primaryAngle ||
             d?.recommendedStrategy?.primary ||
             d?.primaryAngle ||
             (Array.isArray(d?.criticalAngles) && d.criticalAngles.length > 0) ||
             (Array.isArray(d?.allAngles) && d.allAngles.length > 0) ||
-            (Array.isArray(d?.strategies) && d.strategies.length > 0) ||
             committedStrategy
           );
         }

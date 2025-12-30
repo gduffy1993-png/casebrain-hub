@@ -166,20 +166,11 @@ export async function getAggressiveDefense({
       };
     }
 
-    // Check analysis gate (hard gating)
+    // Check analysis gate (for banner display - keep gate for safety)
     const gateResult = checkAnalysisGate(context);
-    if (!gateResult.ok) {
-      return {
-        ok: false,
-        data: null,
-        banner: {
-          severity: (gateResult.banner?.severity || "warning") as "info" | "warning" | "error",
-          title: gateResult.banner?.title || "Insufficient text extracted",
-          detail: gateResult.banner?.detail,
-        },
-        diagnostics: diagnosticsFromContext(caseId, context),
-      };
-    }
+    const isGated = !gateResult.ok;
+    // CRITICAL: Keep gate for safety, but allow PROVISIONAL strategies with warnings
+    // Gate prevents confident outputs from thin bundles - this is intentional
 
     const bundle = await getCriminalBundleCompleteness({ caseId, orgId });
     const gate = shouldShowProbabilities({
@@ -292,11 +283,10 @@ export async function getAggressiveDefense({
       await setCachedLLMResult(orgId, caseId, cacheKey, analysis);
     }
 
-    // FIX: If analysis has no angles or weak angles, enhance with strategy engine
+    // CRITICAL: ALWAYS convert strategies to defense angles - strategies are PRIMARY source
     // This ensures we ALWAYS have strategies even when loopholes/angles are thin
-    if (!analysis.criticalAngles || analysis.criticalAngles.length === 0) {
-      // Convert strategies to defense angles format
-      const strategyAngles: DefenseAngle[] = strategiesResult.strategies.map((strategy, idx) => {
+    // Convert strategies to defense angles format
+    const strategyAngles: DefenseAngle[] = strategiesResult.strategies.map((strategy, idx) => {
         // Map strategy ID to proper DefenseAngle angleType
         let angleType: DefenseAngle["angleType"];
         if (strategy.id.includes("intent")) {
@@ -336,20 +326,27 @@ export async function getAggressiveDefense({
         };
       });
 
-      // Use strategy angles as critical angles
+    // CRITICAL: Always use strategy angles - they are the PRIMARY source
+    // Merge with existing angles if they exist, but prioritize strategy angles
+    if (analysis.criticalAngles && analysis.criticalAngles.length > 0) {
+      // Merge: strategy angles first (primary), then existing angles
+      analysis.criticalAngles = [...strategyAngles.slice(0, 3), ...analysis.criticalAngles.slice(0, 2)];
+      analysis.allAngles = [...strategyAngles, ...(analysis.allAngles || [])];
+    } else {
+      // No existing angles - use strategy angles only
       analysis.criticalAngles = strategyAngles.slice(0, 3);
       analysis.allAngles = strategyAngles;
-      
-      // Set recommended strategy from first strategy
-      if (strategiesResult.strategies.length > 0) {
-        const primaryStrategy = strategiesResult.strategies[0];
-        analysis.recommendedStrategy = {
-          primaryAngle: strategyAngles[0],
-          supportingAngles: strategyAngles.slice(1),
-          combinedProbability: primaryStrategy.provisional ? 40 : 60,
-          tacticalPlan: primaryStrategy.immediateActions,
-        };
-      }
+    }
+    
+    // ALWAYS set recommended strategy from first strategy (strategies are PRIMARY)
+    if (strategiesResult.strategies.length > 0) {
+      const primaryStrategy = strategiesResult.strategies[0];
+      analysis.recommendedStrategy = {
+        primaryAngle: strategyAngles[0],
+        supportingAngles: strategyAngles.slice(1, 3),
+        combinedProbability: primaryStrategy.provisional ? 40 : 60,
+        tacticalPlan: primaryStrategy.immediateActions,
+      };
     }
 
     // Get key facts for evidence strength analysis
@@ -435,21 +432,22 @@ export async function getAggressiveDefense({
     analysis.evidenceStrength = evidenceStrength.overallStrength;
     analysis.realisticOutcome = evidenceStrength.calibration.realisticOutcome;
 
-    if (!gate.show) {
-      // Normalize strategies even when gated
-      const normalizedStrategies = normalizeCriminalStrategies(strategiesResult.strategies);
+    // CRITICAL: Normalize strategies ALWAYS (even when gated) - strategies are PRIMARY
+    const normalizedStrategies = normalizeCriminalStrategies(strategiesResult.strategies);
 
-      // Check for civil leakage
-      const civilLeakageCheck = checkForCivilLeakage(
-        analysis.criticalAngles?.map(a => a.title + " " + a.whyThisMatters).join(" ") || ""
-      );
+    // Check for civil leakage
+    const civilLeakageCheck = checkForCivilLeakage(
+      analysis.criticalAngles?.map(a => a.title + " " + a.whyThisMatters).join(" ") || ""
+    );
+
+    if (!gate.show || isGated) {
 
       return {
         ok: true,
         data: {
           ...analysis,
           probabilitiesSuppressed: true,
-          suppressionReason: gate.reason,
+          suppressionReason: gate.reason || (isGated ? gateResult.banner?.title : undefined),
           bundleCompleteness: bundle.completeness,
           criticalMissingCount: bundle.criticalMissingCount,
           overallWinProbability: null,
@@ -460,9 +458,14 @@ export async function getAggressiveDefense({
           allAngles: (analysis?.allAngles ?? []).map((a: any) => ({ ...a, winProbability: null })),
           cached: wasCached,
           evidenceGraph: evidenceGraph,
-          strategies: normalizedStrategies,
+          strategies: normalizedStrategies, // ALWAYS include strategies
           civilLeakageBanner: civilLeakageCheck.hasLeakage ? civilLeakageCheck.banner : undefined,
         },
+        banner: isGated ? {
+          severity: (gateResult.banner?.severity || "warning") as "info" | "warning" | "error",
+          title: gateResult.banner?.title || "Insufficient text extracted",
+          detail: gateResult.banner?.detail || "Strategy generated but based on limited material. Upload more documents for enhanced analysis.",
+        } : undefined,
         diagnostics: diagnosticsFromContext(caseId, context),
       };
     }
@@ -476,6 +479,8 @@ export async function getAggressiveDefense({
         criticalMissingCount: bundle.criticalMissingCount,
         cached: wasCached,
         evidenceGraph: evidenceGraph,
+        strategies: normalizedStrategies, // ALWAYS include strategies
+        civilLeakageBanner: civilLeakageCheck.hasLeakage ? civilLeakageCheck.banner : undefined,
       },
       diagnostics: diagnosticsFromContext(caseId, context),
     };
