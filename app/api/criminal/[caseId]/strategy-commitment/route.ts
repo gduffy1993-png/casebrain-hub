@@ -133,8 +133,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       };
       const title = strategyTitles[primary_strategy] || `Primary Strategy: ${primary_strategy}`;
 
-      // IMPORTANT: Insert payload to ONLY include required fields
-      // Remove status/priority/locked/created_by or any other fields from insert
+      // Insert payload - only include required fields
       const insertPayload = {
         case_id: caseId,
         org_id: caseRow.org_id,
@@ -146,7 +145,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       };
 
       // Add a single console.log just before insert
-      console.log("[strategy-commitment] inserting", insertPayload);
+      console.log("[strategy-commitment] inserting", JSON.stringify(insertPayload, null, 2));
 
       const { data: commitment, error: commitmentError } = await supabase
         .from("case_strategy_commitments")
