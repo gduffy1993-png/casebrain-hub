@@ -51,28 +51,41 @@ export function Phase2StrategyPlanPanel({ caseId }: Phase2StrategyPlanPanelProps
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // CRITICAL: All hooks must be declared unconditionally at top level
   useEffect(() => {
     async function loadPlan() {
       try {
         setLoading(true);
+        setError(null); // Clear previous errors
         const response = await fetch(`/api/criminal/${caseId}/phase2-strategy-plan`);
         const result = await response.json();
 
         if (!result.ok) {
-          if (result.error?.includes("No strategy commitment")) {
-            // Not an error - just no commitment yet
+          // Handle gated case - show banner message
+          if (result.banner) {
+            setError(result.banner.message || result.error || "Analysis gated - insufficient text extracted");
+            setPlan(null);
+            return;
+          }
+          // Handle no commitment - not an error
+          if (result.error?.includes("No strategy commitment") || result.error?.includes("Commit a strategy")) {
             setPlan(null);
             setError(null);
             return;
           }
-          throw new Error(result.error || "Failed to load strategy plan");
+          // Other errors
+          setError(result.error || result.details || "Failed to load strategy plan");
+          setPlan(null);
+          return;
         }
 
         setPlan(result.data);
         setError(null);
       } catch (err) {
         console.error("Failed to load Phase 2 strategy plan:", err);
+        // Never throw - always set error state
         setError(err instanceof Error ? err.message : "Failed to load strategy plan");
+        setPlan(null);
       } finally {
         setLoading(false);
       }

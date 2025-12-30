@@ -65,19 +65,24 @@ export function StrategyCommitmentPanel({
         const response = await fetch(`/api/criminal/${caseId}/strategy-commitment`);
         if (response.ok) {
           const result = await response.json();
-          // Check for primary_strategy (database field) instead of details or legacy fields
+          // Determine committed state via !!data.primary_strategy
           if (result.ok && result.data && result.data.primary_strategy) {
             const strategy = result.data;
             setPrimary(strategy.primary_strategy);
             setSecondary(strategy.fallback_strategies || []);
             // If primary_strategy exists, strategy is committed
             setIsCommitted(true);
-            setCommittedAt(strategy.committed_at || strategy.created_at);
+            // Show committed_at date if present
+            setCommittedAt(strategy.committed_at || strategy.created_at || null);
             onCommitmentChange({
               primary: strategy.primary_strategy,
               secondary: strategy.fallback_strategies || [],
             });
             return;
+          } else {
+            // No commitment found
+            setIsCommitted(false);
+            setCommittedAt(null);
           }
         }
       } catch (error) {
@@ -156,6 +161,7 @@ export function StrategyCommitmentPanel({
     }
 
     setIsCommitting(true);
+    // CRITICAL: Never throw - always handle errors gracefully to prevent React crashes
     try {
       const response = await fetch(`/api/criminal/${caseId}/strategy-commitment`, {
         method: "POST",
@@ -168,28 +174,42 @@ export function StrategyCommitmentPanel({
         }),
       });
 
-      const result = await response.json();
+      // Handle network errors
+      if (!response.ok && response.status >= 500) {
+        const errorText = await response.text().catch(() => "Server error");
+        showToast(`Failed to commit strategy: Server error (${response.status})`, "error");
+        setIsCommitting(false);
+        return;
+      }
+
+      const result = await response.json().catch(() => ({ ok: false, error: "Invalid JSON response" }));
 
       if (!result.ok) {
         const errorMsg = result.error || "Failed to commit strategy";
         const detailsMsg = result.details ? ` (${result.details})` : "";
-        throw new Error(`${errorMsg}${detailsMsg}`);
+        showToast(`${errorMsg}${detailsMsg}`, "error");
+        setIsCommitting(false);
+        return;
       }
 
       if (!result.data || !result.data.primary_strategy) {
-        throw new Error("Commit succeeded but no strategy data returned");
+        showToast("Commit succeeded but no strategy data returned", "error");
+        setIsCommitting(false);
+        return;
       }
 
-      // Re-fetch to get latest commitment state
+      // Immediately re-fetch GET and update UI state so committed strategy displays
       const getResponse = await fetch(`/api/criminal/${caseId}/strategy-commitment`);
       if (getResponse.ok) {
-        const getResult = await getResponse.json();
+        const getResult = await getResponse.json().catch(() => ({ ok: false, data: null }));
         if (getResult.ok && getResult.data && getResult.data.primary_strategy) {
           const strategy = getResult.data;
           setPrimary(strategy.primary_strategy);
           setSecondary(strategy.fallback_strategies || []);
+          // Determine committed state via !!data.primary_strategy
           setIsCommitted(true);
-          setCommittedAt(strategy.committed_at || strategy.created_at);
+          // Show committed_at date if present
+          setCommittedAt(strategy.committed_at || null);
           onCommitmentChange({
             primary: strategy.primary_strategy,
             secondary: strategy.fallback_strategies || [],
@@ -209,6 +229,7 @@ export function StrategyCommitmentPanel({
         // ignore storage errors
       }
     } catch (error) {
+      // CRITICAL: Catch all errors - never let them propagate to React
       console.error("Failed to commit strategy:", error);
       const errorMessage = error instanceof Error ? error.message : "An error occurred while committing the strategy.";
       showToast(`Failed to commit strategy: ${errorMessage}`, "error");

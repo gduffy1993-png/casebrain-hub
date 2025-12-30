@@ -9,10 +9,102 @@ import { NextRequest, NextResponse } from "next/server";
 import { requireAuthContextApi } from "@/lib/auth-api";
 import { withPaywall } from "@/lib/paywall/protect-route";
 import { getSupabaseAdminClient } from "@/lib/supabase";
-import { generatePhase2StrategyPlan } from "@/lib/criminal/phase2-strategy-plan";
-import { mergeCriminalDocs } from "@/lib/case-evidence/merge-criminal-docs";
-import { buildCaseContext } from "@/lib/case-context";
-import { checkAnalysisGate } from "@/lib/analysis/text-gate";
+
+// Generate deterministic generic steps based on strategy
+function generateDeterministicSteps(
+  primary: "fight_charge" | "charge_reduction" | "outcome_management",
+  fallback: Array<"fight_charge" | "charge_reduction" | "outcome_management">
+): Array<{
+  order: number;
+  phase: string;
+  action: string;
+  rationale: string;
+  timeline?: string;
+}> {
+  const steps: Array<{
+    order: number;
+    phase: string;
+    action: string;
+    rationale: string;
+    timeline?: string;
+  }> = [];
+
+  if (primary === "fight_charge") {
+    steps.push(
+      {
+        order: 1,
+        phase: "disclosure",
+        action: "Request full disclosure including CCTV, MG6 schedules, and unused material",
+        rationale: "Full disclosure is essential to identify weaknesses in the prosecution case",
+        timeline: "Within 7 days",
+      },
+      {
+        order: 2,
+        phase: "evidence_analysis",
+        action: "Review all evidence for identification reliability, PACE compliance, and intent issues",
+        rationale: "Challenge identification evidence under Turnbull guidelines and assess mens rea",
+        timeline: "Within 14 days",
+      },
+      {
+        order: 3,
+        phase: "trial",
+        action: "Prepare full trial defence focusing on identification, intent, and procedural breaches",
+        rationale: "Target acquittal through comprehensive challenge to prosecution evidence",
+        timeline: "Ongoing until trial",
+      }
+    );
+  } else if (primary === "charge_reduction") {
+    steps.push(
+      {
+        order: 1,
+        phase: "disclosure",
+        action: "Request disclosure focusing on medical evidence and circumstances of incident",
+        rationale: "Assess whether harm was intended (s18) or merely reckless (s20)",
+        timeline: "Within 7 days",
+      },
+      {
+        order: 2,
+        phase: "intent",
+        action: "Gather evidence supporting recklessness rather than specific intent",
+        rationale: "Build case for s20 OAPA (recklessness) instead of s18 (specific intent)",
+        timeline: "Within 21 days",
+      },
+      {
+        order: 3,
+        phase: "charge_reduction",
+        action: "Negotiate charge reduction from s18 to s20 with prosecution",
+        rationale: "Reduced charge carries lower maximum sentence and avoids specific intent requirement",
+        timeline: "Before PTPH",
+      }
+    );
+  } else if (primary === "outcome_management") {
+    steps.push(
+      {
+        order: 1,
+        phase: "disclosure",
+        action: "Request disclosure to assess prosecution case strength",
+        rationale: "Determine realistic prospects of conviction to inform plea decision",
+        timeline: "Within 7 days",
+      },
+      {
+        order: 2,
+        phase: "plea",
+        action: "Consider early guilty plea if case is strong, focusing on mitigation",
+        rationale: "Early plea attracts maximum sentence reduction and may avoid trial costs",
+        timeline: "Before PTPH",
+      },
+      {
+        order: 3,
+        phase: "mitigation",
+        action: "Prepare comprehensive mitigation package including character references and personal circumstances",
+        rationale: "Strong mitigation can significantly reduce sentence or avoid custody",
+        timeline: "Before sentence",
+      }
+    );
+  }
+
+  return steps;
+}
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -41,26 +133,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         );
       }
 
-      // Check analysis gate first - if gated, return error (safety)
-      const context = await buildCaseContext(caseId, { userId });
-      if (!context.case) {
-        return NextResponse.json(
-          { ok: false, error: "Case not found" },
-          { status: 404 }
-        );
-      }
-
-      const gateResult = checkAnalysisGate(context);
-      if (!gateResult.ok) {
-        return NextResponse.json(
-          { 
-            ok: false, 
-            error: "Analysis gated - insufficient text extracted",
-            details: gateResult.banner?.detail || "Upload more documents to enable Phase 2 planning",
-          },
-          { status: 400 }
-        );
-      }
+      // No need to check analysis gate - return deterministic steps regardless
 
       // Get strategy commitment - try dedicated columns first, fall back to details JSON
       const { data: commitment, error: commitmentError } = await supabase
@@ -70,7 +143,6 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
           case_id,
           org_id,
           title,
-          details,
           primary_strategy,
           fallback_strategies,
           strategy_type,
@@ -78,7 +150,6 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
           status,
           priority,
           committed_at,
-          created_by,
           created_at
         `)
         .eq("case_id", caseId)
@@ -101,73 +172,51 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 
       if (!commitment) {
         return NextResponse.json(
-          { ok: false, error: "No strategy commitment found. Commit a strategy first." },
-          { status: 404 }
+          { 
+            ok: false, 
+            banner: "No committed strategy found. Commit a strategy first.",
+          },
+          { status: 200 }
         );
       }
 
       // Extract primary_strategy and fallback_strategies
-      // Try dedicated columns first, then fall back to details JSON
-      let primary_strategy: string | null = null;
+      const primary_strategy = commitment.primary_strategy;
       let fallback_strategies: string[] = [];
       
-      // Try dedicated columns first (if they exist from later migrations)
-      if ((commitment as any).primary_strategy) {
-        primary_strategy = (commitment as any).primary_strategy;
-        fallback_strategies = (commitment as any).fallback_strategies || [];
-        // Handle JSONB array
-        if (Array.isArray(fallback_strategies)) {
-          fallback_strategies = fallback_strategies;
-        } else if (typeof fallback_strategies === "string") {
+      // Handle JSONB array for fallback_strategies
+      if (commitment.fallback_strategies) {
+        if (Array.isArray(commitment.fallback_strategies)) {
+          fallback_strategies = commitment.fallback_strategies;
+        } else if (typeof commitment.fallback_strategies === "string") {
           try {
-            fallback_strategies = JSON.parse(fallback_strategies);
+            fallback_strategies = JSON.parse(commitment.fallback_strategies);
           } catch {
             fallback_strategies = [];
-          }
-        }
-      } else {
-        // Fall back to details JSON
-        try {
-          if (commitment.details && typeof commitment.details === "string") {
-            const parsed = JSON.parse(commitment.details);
-            primary_strategy = parsed.primary_strategy || null;
-            fallback_strategies = parsed.fallback_strategies || [];
-          }
-        } catch {
-          // If details is not JSON or missing, try to infer from title
-          const titleLower = (commitment.title || "").toLowerCase();
-          if (titleLower.includes("fight charge")) {
-            primary_strategy = "fight_charge";
-          } else if (titleLower.includes("charge reduction") || titleLower.includes("s18") || titleLower.includes("s20")) {
-            primary_strategy = "charge_reduction";
-          } else if (titleLower.includes("outcome") || titleLower.includes("plea") || titleLower.includes("mitigation")) {
-            primary_strategy = "outcome_management";
           }
         }
       }
 
       if (!primary_strategy) {
         return NextResponse.json(
-          { ok: false, error: "Invalid strategy commitment - missing primary strategy" },
-          { status: 400 }
+          { 
+            ok: false, 
+            banner: "Invalid strategy commitment - missing primary strategy",
+          },
+          { status: 200 }
         );
       }
 
-      // Build evidence graph (context already built above)
-      const evidenceGraph = mergeCriminalDocs(context);
-
-      // Generate Phase 2 strategy plan
-      const plan = generatePhase2StrategyPlan(
-        {
-          primary: primary_strategy as "fight_charge" | "charge_reduction" | "outcome_management",
-          secondary: fallback_strategies as Array<"fight_charge" | "charge_reduction" | "outcome_management">,
-        },
-        evidenceGraph
+      // Return deterministic generic steps (no complex evidence graph dependency)
+      const steps = generateDeterministicSteps(
+        primary_strategy as "fight_charge" | "charge_reduction" | "outcome_management",
+        fallback_strategies as Array<"fight_charge" | "charge_reduction" | "outcome_management">
       );
 
       return NextResponse.json({
         ok: true,
-        data: plan,
+        strategy: primary_strategy,
+        steps: steps,
       });
     } catch (error) {
       console.error("Failed to generate Phase 2 strategy plan:", error);

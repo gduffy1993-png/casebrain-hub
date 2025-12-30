@@ -95,43 +95,37 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       };
       const title = strategyTitles[body.primary] || `Primary Strategy: ${body.primary}`;
 
-      // Upsert strategy commitment (update if exists, insert if not)
-      // Use dedicated columns if they exist (from migrations), otherwise use details JSON
-      const commitmentData: any = {
+      // Insert strategy commitment (NEVER use upsert/onConflict)
+      // CRITICAL: fallback_strategies must be JSONB array (PostgreSQL JSONB type)
+      const commitmentData = {
         case_id: caseId,
         org_id: caseRow.org_id,
         title: title,
-        status: "in_progress",
-        priority: "high",
-        created_by: userId,
-        committed_at: new Date().toISOString(),
-        // Try dedicated columns first (if migrations added them)
         primary_strategy: body.primary,
         fallback_strategies: body.secondary || [],
-        locked: true,
         strategy_type: "criminal_defense",
-        // Also set details JSON as backup (works even if columns exist)
-        details: JSON.stringify({
-          primary_strategy: body.primary,
-          fallback_strategies: body.secondary || [],
-        }),
+        status: "in_progress",
+        priority: "high",
+        locked: true,
+        committed_at: new Date().toISOString(),
+        created_by: userId,
       };
 
       const { data: commitment, error: commitmentError } = await supabase
         .from("case_strategy_commitments")
-        .upsert(commitmentData, {
-          onConflict: "case_id",
-        })
+        .insert(commitmentData)
         .select(`
           id,
           case_id,
           org_id,
           title,
-          details,
+          primary_strategy,
+          fallback_strategies,
+          strategy_type,
+          locked,
           status,
           priority,
           committed_at,
-          created_by,
           created_at
         `)
         .single();
@@ -159,37 +153,17 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
         );
       }
 
-      // Extract primary_strategy and fallback_strategies
-      // Try dedicated columns first, then fall back to details JSON
-      let primary_strategy: string | null = null;
+      // Handle JSONB array for fallback_strategies
       let fallback_strategies: string[] = [];
-      
-      // Try dedicated columns first (if they exist from later migrations)
-      if ((commitment as any).primary_strategy) {
-        primary_strategy = (commitment as any).primary_strategy;
-        fallback_strategies = (commitment as any).fallback_strategies || [];
-        // Handle JSONB array
-        if (Array.isArray(fallback_strategies)) {
-          fallback_strategies = fallback_strategies;
-        } else if (typeof fallback_strategies === "string") {
+      if (commitment.fallback_strategies) {
+        if (Array.isArray(commitment.fallback_strategies)) {
+          fallback_strategies = commitment.fallback_strategies;
+        } else if (typeof commitment.fallback_strategies === "string") {
           try {
-            fallback_strategies = JSON.parse(fallback_strategies);
+            fallback_strategies = JSON.parse(commitment.fallback_strategies);
           } catch {
             fallback_strategies = [];
           }
-        }
-      } else {
-        // Fall back to details JSON
-        try {
-          if (commitment.details && typeof commitment.details === "string") {
-            const parsed = JSON.parse(commitment.details);
-            primary_strategy = parsed.primary_strategy || null;
-            fallback_strategies = parsed.fallback_strategies || [];
-          }
-        } catch {
-          // If details is not JSON, use body values
-          primary_strategy = body.primary;
-          fallback_strategies = body.secondary || [];
         }
       }
 
@@ -198,26 +172,32 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
         data: {
           id: commitment.id,
           caseId: commitment.case_id,
-          // Return database fields directly
-          primary_strategy: primary_strategy,
+          primary_strategy: commitment.primary_strategy,
           fallback_strategies: fallback_strategies,
+          strategy_type: commitment.strategy_type,
+          locked: commitment.locked,
           status: commitment.status,
           priority: commitment.priority,
           title: commitment.title,
-          committed_at: commitment.committed_at || commitment.created_at,
+          committed_at: commitment.committed_at,
           created_at: commitment.created_at,
           // Also include mapped fields for backward compatibility
-          primary: primary_strategy,
+          primary: commitment.primary_strategy,
           secondary: fallback_strategies,
-          committedAt: commitment.committed_at || commitment.created_at,
-          committedBy: commitment.created_by,
+          committedAt: commitment.committed_at,
         },
       });
     } catch (error) {
       console.error("Failed to commit strategy:", error);
+      // CRITICAL: Never throw - always return structured error JSON to prevent React crashes
       const errorMessage = error instanceof Error ? error.message : "Failed to commit strategy";
+      const errorDetails = error instanceof Error ? (error.stack || error.message) : String(error);
       return NextResponse.json(
-        { ok: false, error: errorMessage },
+        { 
+          ok: false, 
+          error: errorMessage,
+          details: errorDetails,
+        },
         { status: 500 }
       );
     }
@@ -260,7 +240,6 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
           case_id,
           org_id,
           title,
-          details,
           primary_strategy,
           fallback_strategies,
           strategy_type,
@@ -268,7 +247,6 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
           status,
           priority,
           committed_at,
-          created_by,
           created_at
         `)
         .eq("case_id", caseId)
@@ -290,56 +268,22 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       if (!commitment) {
         return NextResponse.json({
           ok: true,
-          data: null, // No commitment found - this is valid
+          data: null, // No commitment found - this is valid (200 status)
         });
       }
 
-      // Extract primary_strategy and fallback_strategies
-      // Try dedicated columns first, then fall back to details JSON
-      let primary_strategy: string | null = null;
+      // Handle JSONB array for fallback_strategies
       let fallback_strategies: string[] = [];
-      
-      // Try dedicated columns first (if they exist from later migrations)
-      if ((commitment as any).primary_strategy) {
-        primary_strategy = (commitment as any).primary_strategy;
-        fallback_strategies = (commitment as any).fallback_strategies || [];
-        // Handle JSONB array
-        if (Array.isArray(fallback_strategies)) {
-          fallback_strategies = fallback_strategies;
-        } else if (typeof fallback_strategies === "string") {
+      if (commitment.fallback_strategies) {
+        if (Array.isArray(commitment.fallback_strategies)) {
+          fallback_strategies = commitment.fallback_strategies;
+        } else if (typeof commitment.fallback_strategies === "string") {
           try {
-            fallback_strategies = JSON.parse(fallback_strategies);
+            fallback_strategies = JSON.parse(commitment.fallback_strategies);
           } catch {
             fallback_strategies = [];
           }
         }
-      } else {
-        // Fall back to details JSON
-        try {
-          if (commitment.details && typeof commitment.details === "string") {
-            const parsed = JSON.parse(commitment.details);
-            primary_strategy = parsed.primary_strategy || null;
-            fallback_strategies = parsed.fallback_strategies || [];
-          }
-        } catch {
-          // If details is not JSON or missing, try to infer from title
-          const titleLower = (commitment.title || "").toLowerCase();
-          if (titleLower.includes("fight charge")) {
-            primary_strategy = "fight_charge";
-          } else if (titleLower.includes("charge reduction") || titleLower.includes("s18") || titleLower.includes("s20")) {
-            primary_strategy = "charge_reduction";
-          } else if (titleLower.includes("outcome") || titleLower.includes("plea") || titleLower.includes("mitigation")) {
-            primary_strategy = "outcome_management";
-          }
-        }
-      }
-
-      // If still no primary_strategy found, return null (invalid commitment)
-      if (!primary_strategy) {
-        return NextResponse.json({
-          ok: true,
-          data: null,
-        });
       }
 
       return NextResponse.json({
@@ -347,19 +291,19 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         data: {
           id: commitment.id,
           caseId: commitment.case_id,
-          // Return database fields directly
-          primary_strategy: primary_strategy,
+          primary_strategy: commitment.primary_strategy,
           fallback_strategies: fallback_strategies,
+          strategy_type: commitment.strategy_type,
+          locked: commitment.locked,
           status: commitment.status,
           priority: commitment.priority,
           title: commitment.title,
-          committed_at: commitment.committed_at || commitment.created_at,
+          committed_at: commitment.committed_at,
           created_at: commitment.created_at,
           // Also include mapped fields for backward compatibility
-          primary: primary_strategy,
+          primary: commitment.primary_strategy,
           secondary: fallback_strategies,
-          committedAt: commitment.committed_at || commitment.created_at,
-          committedBy: commitment.created_by,
+          committedAt: commitment.committed_at,
         },
       });
     } catch (error) {
