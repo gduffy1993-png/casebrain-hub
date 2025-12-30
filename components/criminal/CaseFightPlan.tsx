@@ -30,7 +30,7 @@ import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Loader2, FileText, AlertCircle, CheckCircle2, Copy } from "lucide-react";
+import { Loader2, FileText, AlertCircle, CheckCircle2, Copy, ArrowRight } from "lucide-react";
 import { AnalysisGateBanner, type AnalysisGateBannerProps } from "@/components/AnalysisGateBanner";
 import { normalizeApiResponse, isGated } from "@/lib/api-response-normalizer";
 
@@ -211,6 +211,46 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
       return "Primary objective is to manage sentencing outcome through mitigation and character evidence. Focus is on reduced sentence or non-custodial outcome. Target: sentencing position rather than acquittal.";
     }
     return null;
+  }
+
+  // Deterministic next steps based on committed strategy_type (non-AI)
+  // These appear even when Analysis Gate blocks AI strategy generation
+  function getDeterministicNextSteps(): string[] {
+    if (!committedStrategy) return [];
+    
+    const { primary } = committedStrategy;
+    
+    switch (primary) {
+      case "fight_charge":
+        return [
+          "Request full disclosure including CCTV, MG6 schedules, and unused material",
+          "Review all evidence for identification reliability under Turnbull guidelines",
+          "Assess PACE compliance and potential exclusion of interview/custody evidence",
+          "Prepare disclosure requests for missing material (MG6C, CCTV continuity, VIPER pack)",
+          "Draft abuse of process application if disclosure failures persist after chase",
+          "Prepare trial defence focusing on intent, identification, and procedural breaches",
+        ];
+      case "charge_reduction":
+        return [
+          "Request disclosure focusing on medical evidence and circumstances of incident",
+          "Review medical reports to assess whether injuries support s18 (specific intent) or s20 (recklessness)",
+          "Analyse CCTV/sequence evidence for duration and targeting (key to intent distinction)",
+          "Gather evidence supporting recklessness rather than specific intent",
+          "Prepare case for charge reduction negotiation (s18 → s20) before PTPH",
+          "Draft written submissions on intent distinction for case management hearing",
+        ];
+      case "outcome_management":
+        return [
+          "Request disclosure to assess prosecution case strength and realistic prospects",
+          "Consider early guilty plea if case is strong (maximum sentence reduction)",
+          "Prepare comprehensive mitigation package including character references",
+          "Gather personal circumstances evidence (employment, family, health, remorse)",
+          "Review sentencing guidelines and identify factors supporting non-custodial outcome",
+          "Prepare sentencing submissions focusing on rehabilitation and reduced culpability",
+        ];
+      default:
+        return [];
+    }
   }
 
   // Build win/loss conditions based on committed strategy and evidence
@@ -420,9 +460,13 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
   
   // If gated BUT strategy exists, continue to render (banner will be shown inline)
 
-  // FIX: If no strategy data exists, show appropriate message based on document count
+  // FIX: If no strategy data exists, show appropriate message based on document count and commitment
   if (!hasStrategyData) {
-    if (documentCount === 0) {
+    // If commitment exists, don't show "pending" - show committed message instead
+    if (committedStrategy) {
+      // This case is handled below (line 452) - render minimal plan based on committed strategy
+      // Fall through to that logic
+    } else if (documentCount === 0) {
       return (
         <Card className="p-6">
           <div className="text-center text-muted-foreground">
@@ -431,20 +475,20 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
           </div>
         </Card>
       );
+    } else {
+      // Documents exist but no strategy generated yet AND no commitment exists
+      return (
+        <Card className="p-6">
+          <div className="text-center text-muted-foreground">
+            <FileText className="h-8 w-8 mx-auto mb-2 opacity-50" />
+            <p className="text-sm font-medium">Strategy analysis pending</p>
+            <p className="text-xs mt-1">
+              {error || "Re-analyse case documents to generate defence plan."}
+            </p>
+          </div>
+        </Card>
+      );
     }
-    
-    // Documents exist but no strategy generated yet
-    return (
-      <Card className="p-6">
-        <div className="text-center text-muted-foreground">
-          <FileText className="h-8 w-8 mx-auto mb-2 opacity-50" />
-          <p className="text-sm font-medium">Strategy analysis pending</p>
-          <p className="text-xs mt-1">
-            {error || "Re-analyse case documents to generate defence plan."}
-          </p>
-        </div>
-      </Card>
-    );
   }
 
   // FIX: If we have committedStrategy but no data, still render with minimal plan
@@ -513,6 +557,30 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
                 <p className="text-xs text-amber-200/90">
                   Not trial-ready until disclosure position stabilised and primary evidence integrity confirmed.
                 </p>
+              </div>
+
+              {/* Deterministic Next Steps - always shown when strategy is committed, even if Analysis Gate blocks AI */}
+              <div className="mt-6 pt-6 border-t border-border">
+                <div className="flex items-center gap-2 mb-3">
+                  <ArrowRight className="h-4 w-4 text-primary" />
+                  <h3 className="text-sm font-semibold text-foreground">Procedural next steps (non-AI)</h3>
+                </div>
+                <p className="text-xs text-muted-foreground mb-3">
+                  Deterministic action items based on committed strategy. These steps are procedural and do not require AI analysis.
+                </p>
+                <div className="space-y-2">
+                  {getDeterministicNextSteps().map((step, idx) => (
+                    <div
+                      key={idx}
+                      className="flex items-start gap-2 p-3 rounded-lg border border-border/50 bg-muted/20"
+                    >
+                      <div className="flex-shrink-0 w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
+                        <span className="text-xs font-semibold text-primary">{idx + 1}</span>
+                      </div>
+                      <p className="text-xs text-foreground flex-1">{step}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </>
           )}

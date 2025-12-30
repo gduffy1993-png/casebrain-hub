@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Target, CheckCircle2, AlertCircle, X, Lock } from "lucide-react";
+import { Target, CheckCircle2, AlertCircle, X, Lock, ArrowRight } from "lucide-react";
 import { useToast } from "@/components/Toast";
 
 export type PrimaryStrategy = 
@@ -46,6 +46,43 @@ const STRATEGY_OPTIONS: Array<{
   },
 ];
 
+// Deterministic next steps based on committed strategy_type (non-AI)
+function getDeterministicNextSteps(strategyType: PrimaryStrategy | null): string[] {
+  if (!strategyType) return [];
+  
+  switch (strategyType) {
+    case "fight_charge":
+      return [
+        "Request full disclosure including CCTV, MG6 schedules, and unused material",
+        "Review all evidence for identification reliability under Turnbull guidelines",
+        "Assess PACE compliance and potential exclusion of interview/custody evidence",
+        "Prepare disclosure requests for missing material (MG6C, CCTV continuity, VIPER pack)",
+        "Draft abuse of process application if disclosure failures persist after chase",
+        "Prepare trial defence focusing on intent, identification, and procedural breaches",
+      ];
+    case "charge_reduction":
+      return [
+        "Request disclosure focusing on medical evidence and circumstances of incident",
+        "Review medical reports to assess whether injuries support s18 (specific intent) or s20 (recklessness)",
+        "Analyse CCTV/sequence evidence for duration and targeting (key to intent distinction)",
+        "Gather evidence supporting recklessness rather than specific intent",
+        "Prepare case for charge reduction negotiation (s18 → s20) before PTPH",
+        "Draft written submissions on intent distinction for case management hearing",
+      ];
+    case "outcome_management":
+      return [
+        "Request disclosure to assess prosecution case strength and realistic prospects",
+        "Consider early guilty plea if case is strong (maximum sentence reduction)",
+        "Prepare comprehensive mitigation package including character references",
+        "Gather personal circumstances evidence (employment, family, health, remorse)",
+        "Review sentencing guidelines and identify factors supporting non-custodial outcome",
+        "Prepare sentencing submissions focusing on rehabilitation and reduced culpability",
+      ];
+    default:
+      return [];
+  }
+}
+
 export function StrategyCommitmentPanel({ 
   caseId, 
   onCommitmentChange 
@@ -66,6 +103,7 @@ export function StrategyCommitmentPanel({
         if (response.ok) {
           const result = await response.json();
           // Determine committed state via !!data.primary_strategy
+          // If commitment exists (data.primary_strategy truthy), do NOT show "Strategy analysis pending"
           if (result.ok && result.data && result.data.primary_strategy) {
             const strategy = result.data;
             setPrimary(strategy.primary_strategy);
@@ -80,13 +118,18 @@ export function StrategyCommitmentPanel({
             });
             return;
           } else {
-            // No commitment found
+            // No commitment found - show "Strategy analysis pending" or "Select a strategy to proceed"
             setIsCommitted(false);
             setCommittedAt(null);
+            setPrimary(null);
+            setSecondary([]);
           }
         }
       } catch (error) {
         console.error("Failed to load strategy commitment:", error);
+        // On error, assume no commitment
+        setIsCommitted(false);
+        setCommittedAt(null);
       }
 
       // Fallback to localStorage if no API commitment
@@ -265,7 +308,9 @@ export function StrategyCommitmentPanel({
             <p className="text-sm text-muted-foreground">
               {isCommitted 
                 ? "Strategy is committed. Phase 2 directive planning is enabled."
-                : "Lock in your primary defence strategy. This will make the case plan directive and action-focused."}
+                : primary
+                  ? "Select a strategy to proceed. Lock in your primary defence strategy to make the case plan directive and action-focused."
+                  : "Lock in your primary defence strategy. This will make the case plan directive and action-focused."}
             </p>
           </div>
           <div className="flex items-center gap-2">
@@ -385,6 +430,32 @@ export function StrategyCommitmentPanel({
                       </div>
                     );
                   })}
+                </div>
+              </div>
+            )}
+
+            {/* Deterministic Next Steps - shown when strategy is committed */}
+            {isCommitted && primary && (
+              <div className="mt-6 pt-6 border-t border-border">
+                <div className="flex items-center gap-2 mb-3">
+                  <ArrowRight className="h-4 w-4 text-primary" />
+                  <h3 className="text-sm font-semibold text-foreground">Procedural next steps (non-AI)</h3>
+                </div>
+                <p className="text-xs text-muted-foreground mb-3">
+                  Deterministic action items based on committed strategy. These steps are procedural and do not require AI analysis.
+                </p>
+                <div className="space-y-2">
+                  {getDeterministicNextSteps(primary).map((step, idx) => (
+                    <div
+                      key={idx}
+                      className="flex items-start gap-2 p-3 rounded-lg border border-border/50 bg-muted/20"
+                    >
+                      <div className="flex-shrink-0 w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
+                        <span className="text-xs font-semibold text-primary">{idx + 1}</span>
+                      </div>
+                      <p className="text-xs text-foreground flex-1">{step}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
             )}
