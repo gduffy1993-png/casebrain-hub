@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Target, CheckCircle2, AlertCircle, X, Lock, ArrowRight } from "lucide-react";
+import { Target, CheckCircle2, AlertCircle, X, Lock, ArrowRight, TrendingUp, AlertTriangle } from "lucide-react";
 import { useToast } from "@/components/Toast";
 
 export type PrimaryStrategy = 
@@ -13,6 +13,21 @@ export type PrimaryStrategy =
   | "outcome_management";
 
 export type SecondaryStrategy = PrimaryStrategy;
+
+type StrategyRoute = {
+  id: string;
+  type: "fight_charge" | "charge_reduction" | "outcome_management";
+  title: string;
+  rationale: string;
+  winConditions: string[];
+  risks: string[];
+  nextActions: string[];
+};
+
+type StrategyAnalysisResponse = {
+  routes: StrategyRoute[];
+  selectedRoute?: string;
+};
 
 type StrategyCommitmentPanelProps = {
   caseId: string;
@@ -92,8 +107,33 @@ export function StrategyCommitmentPanel({
   const [isCommitted, setIsCommitted] = useState(false);
   const [isCommitting, setIsCommitting] = useState(false);
   const [committedAt, setCommittedAt] = useState<string | null>(null);
+  const [strategyRoutes, setStrategyRoutes] = useState<StrategyRoute[]>([]);
+  const [selectedRouteId, setSelectedRouteId] = useState<string | undefined>(undefined);
+  const [isLoadingRoutes, setIsLoadingRoutes] = useState(true);
   const { push: showToast } = useToast();
   const storageKey = `casebrain:strategyCommitment:${caseId}`;
+
+  // Load strategy routes from strategy-analysis endpoint
+  useEffect(() => {
+    async function loadStrategyRoutes() {
+      setIsLoadingRoutes(true);
+      try {
+        const response = await fetch(`/api/criminal/${caseId}/strategy-analysis`);
+        if (response.ok) {
+          const result = await response.json();
+          if (result.ok && result.routes && Array.isArray(result.routes)) {
+            setStrategyRoutes(result.routes);
+            setSelectedRouteId(result.selectedRoute);
+          }
+        }
+      } catch (error) {
+        console.error("Failed to load strategy routes:", error);
+      } finally {
+        setIsLoadingRoutes(false);
+      }
+    }
+    loadStrategyRoutes();
+  }, [caseId]);
 
   // Load commitment from API on mount
   useEffect(() => {
@@ -427,6 +467,118 @@ export function StrategyCommitmentPanel({
                           </div>
                           <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0" />
                         </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* Strategy Routes from strategy-analysis endpoint */}
+            {strategyRoutes.length > 0 && (
+              <div className="mt-6 pt-6 border-t border-border">
+                <div className="flex items-center gap-2 mb-3">
+                  <TrendingUp className="h-4 w-4 text-primary" />
+                  <h3 className="text-sm font-semibold text-foreground">Strategy Routes</h3>
+                </div>
+                <p className="text-xs text-muted-foreground mb-4">
+                  Available defence strategies based on case analysis. Select a route to commit as your primary strategy.
+                </p>
+                <div className="space-y-4">
+                  {strategyRoutes.map((route) => {
+                    const isSelected = selectedRouteId === route.id || primary === route.type;
+                    const isCommittedRoute = isCommitted && isSelected;
+                    return (
+                      <div
+                        key={route.id}
+                        className={`p-4 rounded-lg border-2 transition-colors ${
+                          isCommittedRoute
+                            ? "border-primary bg-primary/10"
+                            : isSelected
+                              ? "border-primary/50 bg-primary/5"
+                              : "border-border hover:border-primary/30 hover:bg-primary/5"
+                        }`}
+                      >
+                        <div className="flex items-start justify-between gap-3 mb-3">
+                          <div className="flex-1">
+                            <div className="flex items-center gap-2 mb-2">
+                              <h4 className="text-sm font-semibold text-foreground">{route.title}</h4>
+                              {isCommittedRoute && (
+                                <Badge variant="primary" className="text-xs">
+                                  COMMITTED
+                                </Badge>
+                              )}
+                              {isSelected && !isCommittedRoute && (
+                                <Badge variant="outline" className="text-xs">
+                                  SELECTED
+                                </Badge>
+                              )}
+                            </div>
+                            <p className="text-xs text-muted-foreground mb-3">{route.rationale}</p>
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+                          <div>
+                            <div className="flex items-center gap-1 mb-2">
+                              <CheckCircle2 className="h-3.5 w-3.5 text-green-600" />
+                              <h5 className="text-xs font-semibold text-foreground">Win Conditions</h5>
+                            </div>
+                            <ul className="space-y-1">
+                              {route.winConditions.map((condition, idx) => (
+                                <li key={idx} className="text-xs text-muted-foreground flex items-start gap-1.5">
+                                  <span className="text-green-600 mt-0.5">•</span>
+                                  <span>{condition}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+
+                          <div>
+                            <div className="flex items-center gap-1 mb-2">
+                              <AlertTriangle className="h-3.5 w-3.5 text-amber-600" />
+                              <h5 className="text-xs font-semibold text-foreground">Risks</h5>
+                            </div>
+                            <ul className="space-y-1">
+                              {route.risks.map((risk, idx) => (
+                                <li key={idx} className="text-xs text-muted-foreground flex items-start gap-1.5">
+                                  <span className="text-amber-600 mt-0.5">•</span>
+                                  <span>{risk}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+
+                        <div className="mt-3 pt-3 border-t border-border/50">
+                          <div className="flex items-center gap-1 mb-2">
+                            <ArrowRight className="h-3.5 w-3.5 text-primary" />
+                            <h5 className="text-xs font-semibold text-foreground">Next Actions</h5>
+                          </div>
+                          <ul className="space-y-1.5">
+                            {route.nextActions.map((action, idx) => (
+                              <li key={idx} className="text-xs text-foreground flex items-start gap-2">
+                                <span className="flex-shrink-0 w-4 h-4 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
+                                  <span className="text-[10px] font-semibold text-primary">{idx + 1}</span>
+                                </span>
+                                <span>{action}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        {!isCommitted && (
+                          <div className="mt-3 pt-3 border-t border-border/50">
+                            <Button
+                              variant={isSelected ? "primary" : "outline"}
+                              size="sm"
+                              onClick={() => handlePrimarySelect(route.type)}
+                              className="w-full"
+                            >
+                              {isSelected ? "Selected" : "Select as Primary Strategy"}
+                            </Button>
+                          </div>
+                        )}
                       </div>
                     );
                   })}
