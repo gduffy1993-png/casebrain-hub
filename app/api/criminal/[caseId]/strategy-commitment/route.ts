@@ -15,8 +15,16 @@ type RouteParams = {
 };
 
 type StrategyCommitmentRequest = {
-  primary: "fight_charge" | "charge_reduction" | "outcome_management";
+  primary?: "fight_charge" | "charge_reduction" | "outcome_management";
+  primary_strategy?: "fight_charge" | "charge_reduction" | "outcome_management";
+  primaryStrategy?: "fight_charge" | "charge_reduction" | "outcome_management";
   secondary?: Array<"fight_charge" | "charge_reduction" | "outcome_management">;
+  fallback_strategies?: Array<"fight_charge" | "charge_reduction" | "outcome_management">;
+  fallbackStrategies?: Array<"fight_charge" | "charge_reduction" | "outcome_management">;
+  fallback?: Array<"fight_charge" | "charge_reduction" | "outcome_management">;
+  strategy_type?: "fight_charge" | "charge_reduction" | "outcome_management";
+  strategyType?: "fight_charge" | "charge_reduction" | "outcome_management";
+  type?: "fight_charge" | "charge_reduction" | "outcome_management";
 };
 
 export async function POST(request: NextRequest, { params }: RouteParams) {
@@ -27,29 +35,60 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       if (!authRes.ok) return authRes.response;
       const { userId, orgId } = authRes.context;
 
-      // Parse request body
+      // Parse request body and log/inspect once (server-side)
       const body: StrategyCommitmentRequest = await request.json();
+      console.log("[strategy-commitment] Request body keys:", Object.keys(body));
+      console.log("[strategy-commitment] Request body:", JSON.stringify(body, null, 2));
       
-      if (!body.primary || !["fight_charge", "charge_reduction", "outcome_management"].includes(body.primary)) {
+      // Extract values with fallback to multiple key formats
+      const primary_strategy = body.primary_strategy ?? body.primaryStrategy ?? body.primary ?? null;
+      const fallback_strategies_input = body.fallback_strategies ?? body.fallbackStrategies ?? body.fallback ?? body.secondary ?? [];
+      const strategy_type = body.strategy_type ?? body.strategyType ?? body.type ?? null;
+
+      // Validate: primary_strategy and strategy_type must not be null
+      if (!primary_strategy) {
         return NextResponse.json(
-          { ok: false, error: "Invalid primary strategy" },
+          { ok: false, error: "Missing primary_strategy. Must be one of: fight_charge, charge_reduction, outcome_management" },
           { status: 400 }
         );
       }
 
-      // Validate secondary strategies
-      const validStrategies = ["fight_charge", "charge_reduction", "outcome_management"];
-      if (body.secondary) {
-        for (const strategy of body.secondary) {
-          if (!validStrategies.includes(strategy)) {
+      if (!strategy_type) {
+        return NextResponse.json(
+          { ok: false, error: "Missing strategy_type. Must be one of: fight_charge, charge_reduction, outcome_management" },
+          { status: 400 }
+        );
+      }
+
+      // Validate strategy_type is one of the valid values
+      const validStrategyTypes = ["fight_charge", "charge_reduction", "outcome_management"];
+      if (!validStrategyTypes.includes(strategy_type)) {
+        return NextResponse.json(
+          { ok: false, error: `Invalid strategy_type: ${strategy_type}. Must be one of: ${validStrategyTypes.join(", ")}` },
+          { status: 400 }
+        );
+      }
+
+      // Validate primary_strategy is one of the valid values
+      if (!validStrategyTypes.includes(primary_strategy)) {
+        return NextResponse.json(
+          { ok: false, error: `Invalid primary_strategy: ${primary_strategy}. Must be one of: ${validStrategyTypes.join(", ")}` },
+          { status: 400 }
+        );
+      }
+
+      // Validate fallback_strategies_input
+      if (Array.isArray(fallback_strategies_input)) {
+        for (const strategy of fallback_strategies_input) {
+          if (!validStrategyTypes.includes(strategy)) {
             return NextResponse.json(
-              { ok: false, error: `Invalid secondary strategy: ${strategy}` },
+              { ok: false, error: `Invalid fallback strategy: ${strategy}. Must be one of: ${validStrategyTypes.join(", ")}` },
               { status: 400 }
             );
           }
-          if (strategy === body.primary) {
+          if (strategy === primary_strategy) {
             return NextResponse.json(
-              { ok: false, error: "Secondary strategy cannot be the same as primary" },
+              { ok: false, error: "Fallback strategy cannot be the same as primary strategy" },
               { status: 400 }
             );
           }
@@ -93,17 +132,18 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
         charge_reduction: "Charge Reduction (s18 → s20)",
         outcome_management: "Outcome Management (Plea/Mitigation)",
       };
-      const title = strategyTitles[body.primary] || `Primary Strategy: ${body.primary}`;
+      const title = strategyTitles[primary_strategy] || `Primary Strategy: ${primary_strategy}`;
 
       // Insert strategy commitment (NEVER use upsert/onConflict)
       // CRITICAL: fallback_strategies must be JSONB array (PostgreSQL JSONB type)
+      // CRITICAL: strategy_type must be one of: fight_charge, charge_reduction, outcome_management
       const commitmentData = {
         case_id: caseId,
         org_id: caseRow.org_id,
         title: title,
-        primary_strategy: body.primary,
-        fallback_strategies: body.secondary || [],
-        strategy_type: "criminal_defense",
+        primary_strategy: primary_strategy,
+        fallback_strategies: fallback_strategies_input,
+        strategy_type: strategy_type, // Use the validated strategy_type from request body
         status: "in_progress",
         priority: "high",
         locked: true,

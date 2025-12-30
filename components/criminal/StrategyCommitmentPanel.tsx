@@ -169,8 +169,10 @@ export function StrategyCommitmentPanel({
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          primary,
-          secondary: secondary.slice(0, 2), // Max 2 fallback strategies
+          // EXACT keys: primary_strategy, fallback_strategies, strategy_type
+          primary_strategy: primary, // Internal id: fight_charge / charge_reduction / outcome_management
+          fallback_strategies: secondary.slice(0, 2), // Max 2 fallback strategies
+          strategy_type: primary, // strategy_type must be the internal id (same as primary_strategy)
         }),
       });
 
