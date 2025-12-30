@@ -124,9 +124,12 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     try {
       const authRes = await requireAuthContextApi();
       if (!authRes.ok) return authRes.response;
-      const { userId } = authRes.context;
+      const { userId, orgId } = authRes.context;
 
-      // IMPORTANT: org_id must come from cases table, never from user/org context
+      // Get case's org_id directly from database (same pattern as strategy-commitment route)
+      // SAFETY: cases.id is the PRIMARY KEY (confirmed by FK references in migrations)
+      // Using .single() is safe because caseId from URL is the UUID PK - exactly one row expected
+      // This matches the pattern used in: strategy-commitment, phase2-strategy-plan, aggressive-defense
       const supabase = getSupabaseAdminClient();
       const { data: caseRow, error: caseError } = await supabase
         .from("cases")
@@ -136,38 +139,129 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 
       // Case not found - return 404
       if (caseError || !caseRow) {
-        const fallbackContext = await buildCaseContext(caseId, { userId });
-        return makeGateFail<StrategyAnalysisResponse>(
+        return NextResponse.json(
           {
-            severity: "error",
-            title: "Case not found",
-            detail: "Case not found in database.",
+            ok: false,
+            error: "Case not found",
+            details: caseError ? caseError.message : "Case not found in database",
           },
-          fallbackContext,
-          caseId,
+          { status: 404 }
         );
       }
 
       // Validate case has org_id
       if (!caseRow.org_id || caseRow.org_id.trim() === "") {
-        const fallbackContext = await buildCaseContext(caseId, { userId });
         return NextResponse.json(
           {
             ok: false,
-            data: null,
-            banner: {
-              severity: "error",
-              title: "Case has no org_id",
-              detail: "Case exists but has no org_id. This is a data integrity issue.",
-            },
-            diagnostics: diagnosticsFromContext(caseId, fallbackContext),
+            error: "Case has no org_id",
           },
           { status: 500 }
         );
       }
 
-      // Build case context
+      // Fetch documents directly using case's org_id (same pattern as other criminal routes)
+      const { data: documents, error: documentsError } = await supabase
+        .from("documents")
+        .select("id, name, created_at, raw_text, extracted_json")
+        .eq("case_id", caseId)
+        .eq("org_id", caseRow.org_id)
+        .order("created_at", { ascending: false });
+
+      if (documentsError) {
+        console.error("[strategy-analysis] Error fetching documents:", documentsError);
+        return NextResponse.json(
+          {
+            ok: false,
+            error: "Failed to fetch documents",
+            details: documentsError.message,
+          },
+          { status: 500 }
+        );
+      }
+
+      // Compute diagnostics from documents (same as buildCaseContext does)
+      let rawCharsTotal = 0;
+      let jsonCharsTotal = 0;
+      for (const doc of documents || []) {
+        const rawText = doc.raw_text ?? "";
+        const textLength = typeof rawText === "string" ? rawText.length : 0;
+        rawCharsTotal += textLength;
+
+        const extractedJson = doc.extracted_json;
+        if (extractedJson) {
+          try {
+            const jsonStr = typeof extractedJson === "string" ? extractedJson : JSON.stringify(extractedJson);
+            jsonCharsTotal += jsonStr.length;
+          } catch {
+            // Ignore JSON stringify errors
+          }
+        }
+      }
+
+      const docCount = (documents || []).length;
+      const avgRawCharsPerDoc = docCount > 0 ? Math.floor(rawCharsTotal / docCount) : 0;
+      const suspectedScanned = docCount > 0 && rawCharsTotal < 800 && jsonCharsTotal < 400;
+      const textThin = docCount > 0 && rawCharsTotal < 800;
+
+      const reasonCodes: string[] = [];
+      if (suspectedScanned) {
+        reasonCodes.push("SCANNED_SUSPECTED");
+      } else if (textThin) {
+        reasonCodes.push("TEXT_THIN");
+      }
+      if (reasonCodes.length === 0 && docCount > 0) {
+        reasonCodes.push("OK");
+      } else if (reasonCodes.length === 0 && docCount === 0) {
+        reasonCodes.push("DOCS_NONE");
+      }
+
+      const canGenerateAnalysis = rawCharsTotal > 0 && !suspectedScanned && !textThin && reasonCodes.includes("OK");
+
+      // Build case context for Analysis Gate check
+      // We'll override diagnostics with our computed values to ensure accuracy
       const context = await buildCaseContext(caseId, { userId });
+      
+      // Ensure context.case is set (should match caseRow we found)
+      if (!context.case) {
+        // If buildCaseContext didn't find the case, create a minimal case object
+        context.case = {
+          id: caseRow.id,
+          org_id: caseRow.org_id,
+        } as any;
+      }
+      
+      // Override context with our directly-fetched data (ensures accuracy)
+      context.documents = (documents || []).map(doc => ({
+        id: doc.id,
+        name: doc.name || "",
+        created_at: doc.created_at || new Date().toISOString(),
+        raw_text: doc.raw_text,
+        extracted_json: doc.extracted_json,
+      }));
+      context.diagnostics = {
+        docCount,
+        rawCharsTotal,
+        jsonCharsTotal,
+        avgRawCharsPerDoc,
+        suspectedScanned,
+        reasonCodes,
+      };
+      context.canGenerateAnalysis = canGenerateAnalysis;
+      
+      // Update orgScope to use the case's actual org_id
+      context.orgScope = {
+        orgIdResolved: caseRow.org_id,
+        method: "org_uuid" as const,
+      };
+
+      // Log case resolution (as requested)
+      console.log("[strategy-analysis] case resolved", {
+        caseIdParam: caseId,
+        orgId: caseRow.org_id,
+        foundCaseId: caseRow.id,
+        documentCount: docCount,
+      });
 
       // Enforce Analysis Gate - only run if canGenerateAnalysis is true
       const gateResult = checkAnalysisGate(context);
