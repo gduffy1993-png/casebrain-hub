@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -102,6 +103,9 @@ export function StrategyCommitmentPanel({
   caseId, 
   onCommitmentChange 
 }: StrategyCommitmentPanelProps) {
+  const params = useParams();
+  const resolvedCaseId = (caseId ?? params.caseId) as string | undefined;
+  
   const [primary, setPrimary] = useState<PrimaryStrategy | null>(null);
   const [secondary, setSecondary] = useState<SecondaryStrategy[]>([]);
   const [isCommitted, setIsCommitted] = useState(false);
@@ -111,35 +115,36 @@ export function StrategyCommitmentPanel({
   const [selectedRouteId, setSelectedRouteId] = useState<string | undefined>(undefined);
   const [isLoadingRoutes, setIsLoadingRoutes] = useState(true);
   const { push: showToast } = useToast();
-  const storageKey = `casebrain:strategyCommitment:${caseId}`;
+  const storageKey = `casebrain:strategyCommitment:${resolvedCaseId}`;
 
   // Load strategy routes from strategy-analysis endpoint
   useEffect(() => {
-    async function loadStrategyRoutes() {
-      setIsLoadingRoutes(true);
-      try {
-        const response = await fetch(`/api/criminal/${caseId}/strategy-analysis`);
-        if (response.ok) {
-          const result = await response.json();
-          if (result.ok && result.routes && Array.isArray(result.routes)) {
-            setStrategyRoutes(result.routes);
-            setSelectedRouteId(result.selectedRoute);
-          }
+    if (!resolvedCaseId) return;
+
+    setIsLoadingRoutes(true);
+    console.log("[StrategyCommitmentPanel] resolvedCaseId", resolvedCaseId);
+    
+    fetch(`/api/criminal/${resolvedCaseId}/strategy-analysis`)
+      .then(res => res.json())
+      .then(data => {
+        if (data?.ok && data?.data?.routes) {
+          setStrategyRoutes(data.data.routes);
+          setSelectedRouteId(data.data.selectedRoute);
         }
-      } catch (error) {
-        console.error("Failed to load strategy routes:", error);
-      } finally {
+      })
+      .catch(console.error)
+      .finally(() => {
         setIsLoadingRoutes(false);
-      }
-    }
-    loadStrategyRoutes();
-  }, [caseId]);
+      });
+  }, [resolvedCaseId]);
 
   // Load commitment from API on mount
   useEffect(() => {
+    if (!resolvedCaseId) return;
+    
     async function loadCommitment() {
       try {
-        const response = await fetch(`/api/criminal/${caseId}/strategy-commitment`);
+        const response = await fetch(`/api/criminal/${resolvedCaseId}/strategy-commitment`);
         if (response.ok) {
           const result = await response.json();
           // Determine committed state via !!data.primary_strategy
@@ -192,7 +197,7 @@ export function StrategyCommitmentPanel({
     }
     loadCommitment();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [caseId]);
+  }, [resolvedCaseId]);
 
   const handlePrimarySelect = (strategy: PrimaryStrategy) => {
     setPrimary(strategy);
@@ -244,9 +249,14 @@ export function StrategyCommitmentPanel({
     }
 
     setIsCommitting(true);
-    // CRITICAL: Never throw - always handle errors gracefully to prevent React crashes
+      // CRITICAL: Never throw - always handle errors gracefully to prevent React crashes
     try {
-      const response = await fetch(`/api/criminal/${caseId}/strategy-commitment`, {
+      if (!resolvedCaseId) {
+        showToast("Case ID not available", "error");
+        return;
+      }
+      
+      const response = await fetch(`/api/criminal/${resolvedCaseId}/strategy-commitment`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -284,7 +294,7 @@ export function StrategyCommitmentPanel({
       }
 
       // Immediately re-fetch GET and update UI state so committed strategy displays
-      const getResponse = await fetch(`/api/criminal/${caseId}/strategy-commitment`);
+      const getResponse = await fetch(`/api/criminal/${resolvedCaseId}/strategy-commitment`);
       if (getResponse.ok) {
         const getResult = await getResponse.json().catch(() => ({ ok: false, data: null }));
         if (getResult.ok && getResult.data && getResult.data.primary_strategy) {
