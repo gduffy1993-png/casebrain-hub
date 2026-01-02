@@ -84,11 +84,23 @@ export interface StrategyRoute {
   judicialOptics: JudicialOpticsCallout[];
 }
 
+import type { StrategyRecommendation } from "./strategy-recommendation-engine";
+import type { EvidenceImpact as EvidenceImpactMap } from "./evidence-impact-mapper";
+import type { TimePressureState } from "./time-pressure-engine";
+import type { ConfidenceState } from "./confidence-drift-engine";
+import type { DecisionCheckpoint } from "./decision-checkpoints";
+
 export interface StrategyAnalysisData {
   routes: StrategyRoute[];
   selectedRoute?: string;
   artifacts?: StrategyArtifact[];
   evidenceImpact?: EvidenceImpact[];
   canGenerateAnalysis: boolean;
+  recommendation?: StrategyRecommendation;
+  // New strategic intelligence layers
+  evidenceImpactMap?: EvidenceImpactMap[];
+  timePressure?: TimePressureState;
+  confidenceStates?: Record<RouteType, ConfidenceState>;
+  decisionCheckpoints?: DecisionCheckpoint[];
 }
 

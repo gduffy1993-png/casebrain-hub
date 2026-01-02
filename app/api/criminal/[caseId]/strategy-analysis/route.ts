@@ -13,7 +13,13 @@ import { buildCaseContext } from "@/lib/case-context";
 import { checkAnalysisGate } from "@/lib/analysis/text-gate";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { generateStrategyRoute, generateArtifacts, generateEvidenceImpact } from "@/lib/criminal/strategy-fight-generators";
-import type { StrategyAnalysisData } from "@/lib/criminal/strategy-fight-types";
+import type { StrategyAnalysisData, RouteType } from "@/lib/criminal/strategy-fight-types";
+import { extractEvidenceSignals, generateStrategyRecommendation } from "@/lib/criminal/strategy-recommendation-engine";
+import type { StrategyRecommendation } from "@/lib/criminal/strategy-recommendation-engine";
+import { mapEvidenceImpact, getCommonMissingEvidence } from "@/lib/criminal/evidence-impact-mapper";
+import { buildTimePressureState } from "@/lib/criminal/time-pressure-engine";
+import { calculateConfidenceDrift } from "@/lib/criminal/confidence-drift-engine";
+import { generateDecisionCheckpoints } from "@/lib/criminal/decision-checkpoints";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -221,19 +227,116 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         )
       );
 
-      // Generate artifacts for committed route (if any)
+      // Generate evidence impact for all routes
+      const evidenceImpact = routeTypes.flatMap((routeType) => generateEvidenceImpact(routeType));
+
+      // Extract evidence signals and generate recommendation
+      const { data: charges } = await supabase
+        .from("criminal_charges")
+        .select("section, offence")
+        .eq("case_id", caseId)
+        .eq("org_id", caseRow.org_id);
+
+      const evidenceSignals = extractEvidenceSignals(
+        {
+          docCount: context.diagnostics.docCount,
+          rawCharsTotal: context.diagnostics.rawCharsTotal,
+          suspectedScanned: context.diagnostics.suspectedScanned,
+          textThin: context.diagnostics.reasonCodes.includes("TEXT_THIN"),
+          canGenerateAnalysis,
+        },
+        documents,
+        charges || []
+      );
+
+      const recommendation = generateStrategyRecommendation(
+        evidenceSignals,
+        {
+          docCount: context.diagnostics.docCount,
+          rawCharsTotal: context.diagnostics.rawCharsTotal,
+          suspectedScanned: context.diagnostics.suspectedScanned,
+          textThin: context.diagnostics.reasonCodes.includes("TEXT_THIN"),
+          canGenerateAnalysis,
+        },
+        routeTypes
+      );
+
+      // Build evidence impact map
+      const missingEvidence = getCommonMissingEvidence(
+        evidenceSignals.cctvSequence !== "missing",
+        false, // BWV - would need to check
+        evidenceSignals.disclosureCompleteness === "complete",
+        evidenceSignals.interviewEvidence,
+        evidenceSignals.custodyEvidence,
+        evidenceSignals.medicalEvidence !== "unknown",
+        false // VIPER - would need to check
+      );
+
+      const evidenceImpactMap = mapEvidenceImpact(
+        missingEvidence,
+        routes.flatMap(r => r.attackPaths),
+        routeTypes
+      );
+
+      // Build time pressure state
+      const { data: hearings } = await supabase
+        .from("criminal_hearings")
+        .select("hearing_date, hearing_type")
+        .eq("case_id", caseId)
+        .eq("org_id", caseRow.org_id)
+        .order("hearing_date", { ascending: true })
+        .limit(1);
+
+      const ptphDate = hearings && hearings.length > 0 && hearings[0].hearing_type?.toLowerCase().includes("ptph")
+        ? new Date(hearings[0].hearing_date)
+        : null;
+
+      const timePressure = buildTimePressureState(ptphDate, null); // Disclosure deadline would come from case data
+
+      // Calculate confidence states for each route
+      const confidenceStates: Record<RouteType, any> = {} as any;
+      for (const routeType of routeTypes) {
+        confidenceStates[routeType] = calculateConfidenceDrift(
+          routeType,
+          evidenceSignals
+        );
+      }
+
+      // Generate decision checkpoints
+      const decisionCheckpoints = recommendation
+        ? generateDecisionCheckpoints(
+            recommendation.recommended,
+            evidenceSignals.disclosureCompleteness === "gaps",
+            evidenceSignals.paceCompliance === "breaches",
+            ptphDate ? (ptphDate.getTime() - Date.now()) / (1000 * 60 * 60 * 24) <= 14 : false
+          )
+        : [];
+
+      // Generate artifacts for committed route (if any) - AFTER recommendation is generated
       const artifacts = commitment?.primary_strategy
         ? generateArtifacts(
             commitment.primary_strategy as "fight_charge" | "charge_reduction" | "outcome_management",
             canGenerateAnalysis,
             {
               caseTitle: caseData?.title || undefined,
+            },
+            {
+              recommendation: recommendation ? {
+                confidence: recommendation.confidence,
+                rationale: recommendation.rationale,
+                flipConditions: recommendation.flipConditions,
+              } : undefined,
+              timePressure: timePressure ? {
+                currentLeverage: timePressure.currentLeverage,
+                leverageExplanation: timePressure.leverageExplanation,
+              } : undefined,
+              evidenceImpact: evidenceImpactMap.map(eim => ({
+                evidenceItem: eim.evidenceItem,
+                impactOnDefence: eim.impactOnDefence,
+              })),
             }
           )
         : undefined;
-
-      // Generate evidence impact for all routes
-      const evidenceImpact = routeTypes.flatMap((routeType) => generateEvidenceImpact(routeType));
 
       // Build response
       const diagnostics = diagnosticsFromContext(caseId, context);
@@ -247,6 +350,11 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         artifacts,
         evidenceImpact,
         canGenerateAnalysis,
+        recommendation,
+        evidenceImpactMap,
+        timePressure,
+        confidenceStates,
+        decisionCheckpoints,
       };
 
       return NextResponse.json({

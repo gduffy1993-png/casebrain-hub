@@ -920,20 +920,43 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
                     <h3 className="text-sm font-semibold text-foreground">Tactical Plan (Next 7 days)</h3>
                   </div>
                   <p className="text-xs text-muted-foreground mb-3">
-                    Action items assembled from attack paths for the committed strategy.
+                    Action items assembled from attack paths for the committed strategy. Includes evidence impact awareness and time pressure considerations.
                   </p>
                   <div className="space-y-2">
-                    {tacticalActions.map((action: string, idx: number) => (
-                      <div
-                        key={idx}
-                        className="flex items-start gap-2 p-3 rounded-lg border border-border/50 bg-muted/20"
-                      >
-                        <div className="flex-shrink-0 w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
-                          <span className="text-xs font-semibold text-primary">{idx + 1}</span>
+                    {tacticalActions.map((action: string, idx: number) => {
+                      // Determine judicial optics for action
+                      const lowerAction = action.toLowerCase();
+                      let optics: "attractive" | "neutral" | "risky" = "neutral";
+                      if (lowerAction.includes("disclosure request") || lowerAction.includes("continuity") || lowerAction.includes("written submission")) {
+                        optics = "attractive";
+                      } else if (lowerAction.includes("abuse") && !lowerAction.includes("chase")) {
+                        optics = "risky";
+                      }
+
+                      return (
+                        <div
+                          key={idx}
+                          className="flex items-start gap-2 p-3 rounded-lg border border-border/50 bg-muted/20"
+                        >
+                          <div className="flex-shrink-0 w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
+                            <span className="text-xs font-semibold text-primary">{idx + 1}</span>
+                          </div>
+                          <div className="flex-1 flex items-center gap-2">
+                            <p className="text-xs text-foreground flex-1">{action}</p>
+                            {optics === "attractive" && (
+                              <Badge className="bg-green-500/20 text-green-600 border-green-500/30 text-[10px] border">
+                                🟢 Attractive
+                              </Badge>
+                            )}
+                            {optics === "risky" && (
+                              <Badge className="bg-red-500/20 text-red-600 border-red-500/30 text-[10px] border">
+                                🔴 Risky
+                              </Badge>
+                            )}
+                          </div>
                         </div>
-                        <p className="text-xs text-foreground flex-1">{action}</p>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
               );

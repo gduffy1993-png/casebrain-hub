@@ -77,6 +77,91 @@ type StrategyRoute = {
   pivotPlan?: PivotPlan;
 };
 
+type StrategyRecommendation = {
+  recommended: "fight_charge" | "charge_reduction" | "outcome_management";
+  confidence: "HIGH" | "MEDIUM" | "LOW";
+  rationale: string;
+  ranking: ("fight_charge" | "charge_reduction" | "outcome_management")[];
+  flipConditions: Array<{
+    evidenceEvent: string;
+    flipsTo: "fight_charge" | "charge_reduction" | "outcome_management";
+    why: string;
+    timing: "before_PTPH" | "after_disclosure" | "anytime";
+  }>;
+  solicitorNarrative: string;
+};
+
+type EvidenceImpactMap = {
+  evidenceItem: {
+    id: string;
+    name: string;
+    category: string;
+    urgency: string;
+  };
+  affectedAttackPaths: string[];
+  impactOnDefence: string;
+  ifArrivesClean: string;
+  ifArrivesLate: string;
+  ifArrivesAdverse: string;
+  viabilityChange: Array<{
+    route: string;
+    change: string;
+    explanation: string;
+  }>;
+  pivotTrigger?: {
+    from: string;
+    to: string;
+    condition: string;
+    timing: string;
+  };
+  killSwitch?: {
+    route: string;
+    condition: string;
+    explanation: string;
+  };
+};
+
+type TimePressureState = {
+  windows: Array<{
+    id: string;
+    type: string;
+    label: string;
+    date: string | null;
+    isPlaceholder: boolean;
+    daysUntil: number | null;
+    leverageImpact: string;
+    actions: string[];
+    warning?: string;
+  }>;
+  currentLeverage: string;
+  leverageExplanation: string;
+  timeCriticalActions: string[];
+  losingLeverageActions: string[];
+  noLongerAttractiveActions: string[];
+};
+
+type DecisionCheckpoint = {
+  id: string;
+  title: string;
+  description: string;
+  timing: string;
+  options: Array<{
+    id: string;
+    label: string;
+    risks: string[];
+    consequences: string[];
+    leverage: string;
+    timing: string;
+  }>;
+  currentLeverage: string;
+  leverageImpact: Array<{
+    option: string;
+    impact: string;
+    explanation: string;
+  }>;
+  solicitorGuidance: string;
+};
+
 type StrategyAnalysisResponse = {
   routes: StrategyRoute[];
   selectedRoute?: string;
@@ -87,6 +172,20 @@ type StrategyAnalysisResponse = {
     routeViability: Array<{ routeId: string; impact: string }>;
     urgency: string;
   }>;
+  recommendation?: StrategyRecommendation;
+  evidenceImpactMap?: EvidenceImpactMap[];
+  timePressure?: TimePressureState;
+  confidenceStates?: Record<string, {
+    current: string;
+    explanation: string;
+    changes: Array<{
+      from: string;
+      to: string;
+      trigger: string;
+      explanation: string;
+    }>;
+  }>;
+  decisionCheckpoints?: DecisionCheckpoint[];
   diagnostics?: {
     canGenerateAnalysis: boolean;
     isGated: boolean;
@@ -180,6 +279,11 @@ export function StrategyCommitmentPanel({
   const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set());
   const [artifacts, setArtifacts] = useState<StrategyArtifact[]>([]);
   const [isGated, setIsGated] = useState(false);
+  const [recommendation, setRecommendation] = useState<StrategyRecommendation | null>(null);
+  const [evidenceImpactMap, setEvidenceImpactMap] = useState<EvidenceImpactMap[]>([]);
+  const [timePressure, setTimePressure] = useState<TimePressureState | null>(null);
+  const [confidenceStates, setConfidenceStates] = useState<Record<string, any>>({});
+  const [decisionCheckpoints, setDecisionCheckpoints] = useState<DecisionCheckpoint[]>([]);
   const { push: showToast } = useToast();
   const storageKey = `casebrain:strategyCommitment:${resolvedCaseId}`;
 
@@ -210,6 +314,21 @@ export function StrategyCommitmentPanel({
           setSelectedRouteId(data.data.selectedRoute);
           if (data.data.artifacts) {
             setArtifacts(data.data.artifacts);
+          }
+          if (data.data.recommendation) {
+            setRecommendation(data.data.recommendation);
+          }
+          if (data.data.evidenceImpactMap) {
+            setEvidenceImpactMap(data.data.evidenceImpactMap);
+          }
+          if (data.data.timePressure) {
+            setTimePressure(data.data.timePressure);
+          }
+          if (data.data.confidenceStates) {
+            setConfidenceStates(data.data.confidenceStates);
+          }
+          if (data.data.decisionCheckpoints) {
+            setDecisionCheckpoints(data.data.decisionCheckpoints);
           }
           if (data.data.diagnostics) {
             setIsGated(data.data.diagnostics.isGated || !data.data.diagnostics.canGenerateAnalysis);
@@ -600,6 +719,80 @@ export function StrategyCommitmentPanel({
               </div>
             )}
 
+            {/* Strategic Recommendation Panel */}
+            {recommendation && (
+              <div className="mb-6 p-4 rounded-lg border-2 border-primary/30 bg-primary/5">
+                <div className="flex items-start justify-between gap-3 mb-3">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Target className="h-5 w-5 text-primary" />
+                      <h3 className="text-sm font-semibold text-foreground">Recommended Strategy</h3>
+                      <Badge variant="primary" className="text-xs">PRIMARY</Badge>
+                      <Badge className={`text-xs ${
+                        recommendation.confidence === "HIGH" 
+                          ? "bg-green-500/20 text-green-600 border-green-500/30" 
+                          : recommendation.confidence === "MEDIUM"
+                            ? "bg-amber-500/20 text-amber-600 border-amber-500/30"
+                            : "bg-blue-500/20 text-blue-600 border-blue-500/30"
+                      } border`}>
+                        {recommendation.confidence} Confidence
+                      </Badge>
+                    </div>
+                    <div className="mb-2">
+                      <h4 className="text-sm font-semibold text-foreground">
+                        {STRATEGY_OPTIONS.find(o => o.id === recommendation.recommended)?.label || recommendation.recommended}
+                      </h4>
+                    </div>
+                    <p className="text-xs text-muted-foreground mb-3">{recommendation.rationale}</p>
+                    <div className="p-3 rounded-lg border border-border/50 bg-muted/20 mb-3">
+                      <p className="text-xs font-semibold text-foreground mb-1">Solicitor Narrative:</p>
+                      <p className="text-xs text-foreground whitespace-pre-wrap">{recommendation.solicitorNarrative}</p>
+                    </div>
+                    
+                    {/* Ranking */}
+                    <div className="mb-3">
+                      <p className="text-xs font-semibold text-foreground mb-1">Strategy Ranking:</p>
+                      <div className="flex flex-wrap gap-2">
+                        {recommendation.ranking.map((route, idx) => (
+                          <Badge
+                            key={route}
+                            className={`text-xs ${
+                              idx === 0
+                                ? "bg-primary/20 text-primary border-primary/30"
+                                : idx === 1
+                                  ? "bg-amber-500/20 text-amber-600 border-amber-500/30"
+                                  : "bg-muted text-muted-foreground border-border"
+                            } border`}
+                          >
+                            {idx + 1}. {STRATEGY_OPTIONS.find(o => o.id === route)?.label || route}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Flip Conditions */}
+                    {recommendation.flipConditions.length > 0 && (
+                      <div>
+                        <p className="text-xs font-semibold text-foreground mb-2">Flip Conditions:</p>
+                        <div className="space-y-2">
+                          {recommendation.flipConditions.map((flip, idx) => (
+                            <div key={idx} className="p-2 rounded-lg border border-amber-500/20 bg-amber-500/5">
+                              <div className="text-xs">
+                                <div className="font-semibold text-foreground mb-1">If: {flip.evidenceEvent}</div>
+                                <div className="text-muted-foreground mb-1">→ Pivot to: {STRATEGY_OPTIONS.find(o => o.id === flip.flipsTo)?.label || flip.flipsTo}</div>
+                                <div className="text-muted-foreground mb-1">Why: {flip.why}</div>
+                                <div className="text-muted-foreground">Timing: {flip.timing.replace("_", " ")}</div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* Gated Banner */}
             {isGated && (
               <div className="mb-4 p-3 rounded-lg border border-amber-500/30 bg-amber-500/10">
@@ -772,21 +965,48 @@ export function StrategyCommitmentPanel({
                                 </button>
                                 {expandedSections.has(`${route.id}_attack_paths`) && (
                                   <div className="p-3 border-t border-border/50 space-y-3">
-                                    {route.attackPaths.map((path) => (
-                                      <div key={path.id} className="p-3 rounded-lg border border-border/30 bg-muted/10">
-                                        <div className="flex items-start justify-between mb-2">
-                                          <div className="flex-1">
-                                            <div className="flex items-center gap-2 mb-1">
-                                              <h6 className="text-xs font-semibold text-foreground">{path.target}</h6>
-                                              {path.isHypothesis && (
-                                                <Badge variant="outline" className="text-[10px]">
-                                                  Hypothesis (pending evidence)
-                                                </Badge>
-                                              )}
+                                    {route.attackPaths.map((path) => {
+                                      // Score judicial optics for this attack path
+                                      const methodLower = path.method.toLowerCase();
+                                      let optics: "attractive" | "neutral" | "risky" = "neutral";
+                                      if (methodLower.includes("turnbull") && methodLower.includes("early")) {
+                                        optics = "attractive";
+                                      } else if (methodLower.includes("abuse") && !methodLower.includes("chase")) {
+                                        optics = "risky";
+                                      } else if (methodLower.includes("pace") && methodLower.includes("exclusion")) {
+                                        optics = "neutral";
+                                      }
+
+                                      return (
+                                        <div key={path.id} className="p-3 rounded-lg border border-border/30 bg-muted/10">
+                                          <div className="flex items-start justify-between mb-2">
+                                            <div className="flex-1">
+                                              <div className="flex items-center gap-2 mb-1">
+                                                <h6 className="text-xs font-semibold text-foreground">{path.target}</h6>
+                                                {path.isHypothesis && (
+                                                  <Badge variant="outline" className="text-[10px]">
+                                                    Hypothesis (pending evidence)
+                                                  </Badge>
+                                                )}
+                                                {optics === "attractive" && (
+                                                  <Badge className="bg-green-500/20 text-green-600 border-green-500/30 text-[10px] border">
+                                                    🟢 Judicially attractive
+                                                  </Badge>
+                                                )}
+                                                {optics === "risky" && (
+                                                  <Badge className="bg-red-500/20 text-red-600 border-red-500/30 text-[10px] border">
+                                                    🔴 Judicially risky
+                                                  </Badge>
+                                                )}
+                                                {optics === "neutral" && (
+                                                  <Badge className="bg-amber-500/20 text-amber-600 border-amber-500/30 text-[10px] border">
+                                                    🟠 Neutral
+                                                  </Badge>
+                                                )}
+                                              </div>
+                                              <p className="text-xs text-muted-foreground mb-2">{path.method}</p>
                                             </div>
-                                            <p className="text-xs text-muted-foreground mb-2">{path.method}</p>
                                           </div>
-                                        </div>
                                         <div className="grid grid-cols-1 gap-2 text-xs">
                                           <div>
                                             <span className="font-semibold text-foreground">Evidence Inputs: </span>
@@ -818,7 +1038,8 @@ export function StrategyCommitmentPanel({
                                           </div>
                                         </div>
                                       </div>
-                                    ))}
+                                    );
+                                    })}
                                   </div>
                                 )}
                               </div>
@@ -969,6 +1190,226 @@ export function StrategyCommitmentPanel({
                       </div>
                     );
                   })}
+                </div>
+              </div>
+            )}
+
+            {/* Evidence Impact Map */}
+            {evidenceImpactMap.length > 0 && (
+              <div className="mt-6 pt-6 border-t border-border">
+                <div className="flex items-center gap-2 mb-3">
+                  <MapPin className="h-4 w-4 text-primary" />
+                  <h3 className="text-sm font-semibold text-foreground">Evidence Impact Map</h3>
+                </div>
+                <p className="text-xs text-muted-foreground mb-3">
+                  How missing evidence affects attack paths and strategy viability.
+                </p>
+                <div className="space-y-3">
+                  {evidenceImpactMap.map((impact, idx) => (
+                    <div key={idx} className="p-3 rounded-lg border border-border/50 bg-muted/10">
+                      <div className="flex items-center gap-2 mb-2">
+                        <h4 className="text-xs font-semibold text-foreground">{impact.evidenceItem.name}</h4>
+                        <Badge variant="outline" className="text-[10px]">
+                          {impact.evidenceItem.category}
+                        </Badge>
+                        <Badge className={`text-[10px] ${
+                          impact.impactOnDefence === "helps" 
+                            ? "bg-green-500/20 text-green-600 border-green-500/30"
+                            : impact.impactOnDefence === "hurts"
+                              ? "bg-red-500/20 text-red-600 border-red-500/30"
+                              : "bg-amber-500/20 text-amber-600 border-amber-500/30"
+                        } border`}>
+                          {impact.impactOnDefence === "helps" ? "Helps Defence" : impact.impactOnDefence === "hurts" ? "Hurts Defence" : "Depends"}
+                        </Badge>
+                      </div>
+                      <div className="text-xs space-y-2">
+                        <div>
+                          <span className="font-semibold text-foreground">If arrives clean: </span>
+                          <span className="text-muted-foreground">{impact.ifArrivesClean}</span>
+                        </div>
+                        <div>
+                          <span className="font-semibold text-foreground">If arrives late: </span>
+                          <span className="text-muted-foreground">{impact.ifArrivesLate}</span>
+                        </div>
+                        <div>
+                          <span className="font-semibold text-foreground">If arrives adverse: </span>
+                          <span className="text-muted-foreground">{impact.ifArrivesAdverse}</span>
+                        </div>
+                        {impact.pivotTrigger && (
+                          <div className="mt-2 p-2 rounded border border-amber-500/20 bg-amber-500/5">
+                            <div className="font-semibold text-foreground">Pivot Trigger:</div>
+                            <div className="text-muted-foreground">
+                              If {impact.pivotTrigger.condition} → Pivot from {impact.pivotTrigger.from} to {impact.pivotTrigger.to} ({impact.pivotTrigger.timing.replace("_", " ")})
+                            </div>
+                          </div>
+                        )}
+                        {impact.killSwitch && (
+                          <div className="mt-2 p-2 rounded border border-red-500/20 bg-red-500/5">
+                            <div className="font-semibold text-foreground">Kill Switch:</div>
+                            <div className="text-muted-foreground">
+                              If {impact.killSwitch.condition} → {impact.killSwitch.explanation}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Time Pressure */}
+            {timePressure && (
+              <div className="mt-6 pt-6 border-t border-border">
+                <div className="flex items-center gap-2 mb-3">
+                  <Calendar className="h-4 w-4 text-primary" />
+                  <h3 className="text-sm font-semibold text-foreground">Time & Pressure</h3>
+                  <Badge className={`text-xs ${
+                    timePressure.currentLeverage === "high"
+                      ? "bg-red-500/20 text-red-600 border-red-500/30"
+                      : timePressure.currentLeverage === "medium"
+                        ? "bg-amber-500/20 text-amber-600 border-amber-500/30"
+                        : "bg-blue-500/20 text-blue-600 border-blue-500/30"
+                  } border`}>
+                    {timePressure.currentLeverage.toUpperCase()} Leverage
+                  </Badge>
+                </div>
+                <p className="text-xs text-muted-foreground mb-3">{timePressure.leverageExplanation}</p>
+                <div className="space-y-2 mb-3">
+                  {timePressure.windows.map((window) => (
+                    <div key={window.id} className="p-2 rounded-lg border border-border/50 bg-muted/10">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-xs font-semibold text-foreground">{window.label}</span>
+                        {window.isPlaceholder && (
+                          <Badge variant="outline" className="text-[10px]">Placeholder</Badge>
+                        )}
+                        {window.daysUntil !== null && (
+                          <span className="text-xs text-muted-foreground">
+                            {window.daysUntil <= 0 ? "Past" : `${window.daysUntil} days`}
+                          </span>
+                        )}
+                      </div>
+                      {window.warning && (
+                        <div className="text-xs text-amber-600 mb-1">{window.warning}</div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+                {timePressure.timeCriticalActions.length > 0 && (
+                  <div className="mb-3">
+                    <div className="text-xs font-semibold text-foreground mb-1">Time-Critical Actions:</div>
+                    <ul className="space-y-1">
+                      {timePressure.timeCriticalActions.map((action, idx) => (
+                        <li key={idx} className="text-xs text-muted-foreground">• {action}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {timePressure.losingLeverageActions.length > 0 && (
+                  <div className="mb-3">
+                    <div className="text-xs font-semibold text-red-600 mb-1">Losing Leverage:</div>
+                    <ul className="space-y-1">
+                      {timePressure.losingLeverageActions.map((action, idx) => (
+                        <li key={idx} className="text-xs text-muted-foreground">• {action}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Confidence States */}
+            {Object.keys(confidenceStates).length > 0 && (
+              <div className="mt-6 pt-6 border-t border-border">
+                <div className="flex items-center gap-2 mb-3">
+                  <TrendingUp className="h-4 w-4 text-primary" />
+                  <h3 className="text-sm font-semibold text-foreground">Strategy Confidence</h3>
+                </div>
+                <p className="text-xs text-muted-foreground mb-3">
+                  Confidence levels for each route based on current evidence signals.
+                </p>
+                <div className="space-y-2">
+                  {Object.entries(confidenceStates).map(([routeType, state]: [string, any]) => (
+                    <div key={routeType} className="p-3 rounded-lg border border-border/50 bg-muted/10">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-xs font-semibold text-foreground">
+                          {STRATEGY_OPTIONS.find(o => o.id === routeType)?.label || routeType}
+                        </span>
+                        <Badge className={`text-xs ${
+                          state.current === "HIGH"
+                            ? "bg-green-500/20 text-green-600 border-green-500/30"
+                            : state.current === "MEDIUM"
+                              ? "bg-amber-500/20 text-amber-600 border-amber-500/30"
+                              : "bg-blue-500/20 text-blue-600 border-blue-500/30"
+                        } border`}>
+                          {state.current} Confidence
+                        </Badge>
+                      </div>
+                      <p className="text-xs text-muted-foreground">{state.explanation}</p>
+                      {state.changes && state.changes.length > 0 && (
+                        <div className="mt-2 space-y-1">
+                          {state.changes.map((change: any, idx: number) => (
+                            <div key={idx} className="text-xs text-muted-foreground">
+                              • {change.explanation}
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Decision Checkpoints */}
+            {decisionCheckpoints.length > 0 && (
+              <div className="mt-6 pt-6 border-t border-border">
+                <div className="flex items-center gap-2 mb-3">
+                  <AlertCircle className="h-4 w-4 text-primary" />
+                  <h3 className="text-sm font-semibold text-foreground">Solicitor Decision Required</h3>
+                </div>
+                <p className="text-xs text-muted-foreground mb-3">
+                  Critical decision points requiring solicitor judgment. System guides but does not decide.
+                </p>
+                <div className="space-y-4">
+                  {decisionCheckpoints.map((checkpoint) => (
+                    <div key={checkpoint.id} className="p-4 rounded-lg border-2 border-primary/30 bg-primary/5">
+                      <h4 className="text-sm font-semibold text-foreground mb-2">{checkpoint.title}</h4>
+                      <p className="text-xs text-muted-foreground mb-3">{checkpoint.description}</p>
+                      <div className="space-y-3">
+                        {checkpoint.options.map((option) => (
+                          <div key={option.id} className="p-3 rounded-lg border border-border/50 bg-muted/10">
+                            <div className="flex items-center gap-2 mb-2">
+                              <h5 className="text-xs font-semibold text-foreground">{option.label}</h5>
+                              <Badge className={`text-[10px] ${
+                                option.leverage === "gains" 
+                                  ? "bg-green-500/20 text-green-600 border-green-500/30"
+                                  : option.leverage === "loses"
+                                    ? "bg-red-500/20 text-red-600 border-red-500/30"
+                                    : "bg-amber-500/20 text-amber-600 border-amber-500/30"
+                              } border`}>
+                                {option.leverage === "gains" ? "Gains Leverage" : option.leverage === "loses" ? "Loses Leverage" : "Maintains"}
+                              </Badge>
+                            </div>
+                            <div className="text-xs space-y-1">
+                              <div>
+                                <span className="font-semibold text-foreground">Risks: </span>
+                                <span className="text-muted-foreground">{option.risks.join("; ")}</span>
+                              </div>
+                              <div>
+                                <span className="font-semibold text-foreground">Consequences: </span>
+                                <span className="text-muted-foreground">{option.consequences.join("; ")}</span>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="mt-3 p-3 rounded-lg border border-primary/20 bg-primary/5">
+                        <div className="text-xs font-semibold text-foreground mb-1">Solicitor Guidance:</div>
+                        <p className="text-xs text-muted-foreground">{checkpoint.solicitorGuidance}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             )}

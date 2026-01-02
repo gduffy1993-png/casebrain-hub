@@ -464,6 +464,18 @@ export function generateArtifacts(
     caseTitle?: string;
     charges?: string[];
     clientName?: string;
+  },
+  strategicIntelligence?: {
+    recommendation?: {
+      confidence: string;
+      rationale: string;
+      flipConditions: Array<{ evidenceEvent: string; flipsTo: RouteType; why: string }>;
+    };
+    timePressure?: {
+      currentLeverage: string;
+      leverageExplanation: string;
+    };
+    evidenceImpact?: Array<{ evidenceItem: { name: string }; impactOnDefence: string }>;
   }
 ): StrategyArtifact[] {
   const artifacts: StrategyArtifact[] = [];
@@ -477,10 +489,10 @@ Date: ${new Date().toLocaleDateString("en-GB")}
 
 PRIMARY STRATEGY: ${routeType === "fight_charge" ? "Fight Charge (Full Trial)" : routeType === "charge_reduction" ? "Charge Reduction (s18 → s20)" : "Outcome Management (Plea/Mitigation)"}
 
-KEY POSITIONS:
+${strategicIntelligence?.recommendation ? `CONFIDENCE: ${strategicIntelligence.recommendation.confidence}\nRATIONALE: ${strategicIntelligence.recommendation.rationale}\n\n` : ""}KEY POSITIONS:
 ${routeType === "fight_charge" ? "- Challenge identification evidence under Turnbull guidelines\n- Pursue disclosure failures with chase trail\n- Assess PACE compliance for exclusion" : routeType === "charge_reduction" ? "- Challenge intent threshold (s18 vs s20)\n- Focus on medical evidence and sequence\n- Negotiate charge reduction before PTPH" : "- Maximize early plea credit\n- Prepare comprehensive mitigation\n- Focus on sentencing position"}
 
-${canGenerateAnalysis ? "[Facts from extracted documents would be inserted here]" : "[Analysis gated – using procedural templates. Complete disclosure required for full position.]"}`,
+${strategicIntelligence?.timePressure ? `TIME PRESSURE: ${strategicIntelligence.timePressure.currentLeverage.toUpperCase()} leverage\n${strategicIntelligence.timePressure.leverageExplanation}\n\n` : ""}${strategicIntelligence?.recommendation && strategicIntelligence.recommendation.flipConditions.length > 0 ? `FLIP CONDITIONS:\n${strategicIntelligence.recommendation.flipConditions.map(fc => `- If ${fc.evidenceEvent} → ${fc.why}`).join("\n")}\n\n` : ""}${canGenerateAnalysis ? "[Facts from extracted documents would be inserted here]" : "[Analysis gated – using procedural templates. Complete disclosure required for full position.]"}`,
   });
 
   artifacts.push({
