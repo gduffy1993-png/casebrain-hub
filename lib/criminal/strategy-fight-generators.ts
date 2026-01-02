@@ -15,6 +15,7 @@ import type {
   StrategyArtifact,
   StrategyRoute,
 } from "./strategy-fight-types";
+import type { ResidualAttackScan } from "./residual-attack-scanner";
 
 export function generateRouteViability(
   routeType: RouteType,

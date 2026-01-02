@@ -62,6 +62,34 @@ type StrategyArtifact = {
   content: string;
 };
 
+type ResidualAngle = {
+  id: string;
+  title: string;
+  description: string;
+  category: "credibility" | "sequence" | "medical" | "identification" | "procedure" | "context";
+  evidenceBasis: "EVIDENCE_BACKED" | "HYPOTHESIS";
+  requiredEvidence?: string[];
+  judicialOptics: "ATTRACTIVE" | "NEUTRAL" | "RISKY";
+  whyOptics: string;
+  howToUse: string[];
+  stopIf: string;
+};
+
+type ResidualAttackScan = {
+  status: "ATTACKS_REMAIN" | "EXHAUSTED";
+  summary: string;
+  angles: ResidualAngle[];
+  lastResortLeverage: {
+    triggers: string[];
+    plan: Array<{
+      title: string;
+      actions: string[];
+      timing: "before_PTPH" | "after_disclosure" | "anytime";
+      judicialOptics: "ATTRACTIVE" | "NEUTRAL" | "RISKY";
+    }>;
+  };
+};
+
 type StrategyRoute = {
   id: string;
   type: "fight_charge" | "charge_reduction" | "outcome_management";
@@ -75,6 +103,7 @@ type StrategyRoute = {
   cpsResponses?: CPSResponse[];
   killSwitches?: KillSwitch[];
   pivotPlan?: PivotPlan;
+  residual?: ResidualAttackScan;
 };
 
 type StrategyRecommendation = {
@@ -186,6 +215,10 @@ type StrategyAnalysisResponse = {
     }>;
   }>;
   decisionCheckpoints?: DecisionCheckpoint[];
+  residualSummary?: {
+    exhaustedRoutes: string[];
+    notes: string;
+  };
   diagnostics?: {
     canGenerateAnalysis: boolean;
     isGated: boolean;
@@ -738,6 +771,29 @@ export function StrategyCommitmentPanel({
                         {recommendation.confidence} Confidence
                       </Badge>
                     </div>
+                    {/* Residual Attacks Banner */}
+                    {strategyRoutes.length > 0 && (() => {
+                      const allResidualAngles = strategyRoutes.flatMap(r => r.residual?.angles || []);
+                      const evidenceBackedCount = allResidualAngles.filter(a => a.evidenceBasis === "EVIDENCE_BACKED").length;
+                      const hypothesisCount = allResidualAngles.filter(a => a.evidenceBasis === "HYPOTHESIS").length;
+                      const exhaustedCount = strategyRoutes.filter(r => r.residual?.status === "EXHAUSTED").length;
+                      
+                      if (allResidualAngles.length > 0 || exhaustedCount > 0) {
+                        return (
+                          <div className="mb-3 p-2 rounded-lg border border-border/50 bg-muted/20">
+                            <p className="text-xs text-foreground">
+                              <span className="font-semibold">Residual attacks remaining:</span>{" "}
+                              {allResidualAngles.length} total
+                              {evidenceBackedCount > 0 && ` (${evidenceBackedCount} evidence-backed`}
+                              {hypothesisCount > 0 && `, ${hypothesisCount} hypothesis`}
+                              {evidenceBackedCount > 0 || hypothesisCount > 0 ? ")" : ""}
+                              {exhaustedCount > 0 && ` • ${exhaustedCount} route(s) exhausted`}
+                            </p>
+                          </div>
+                        );
+                      }
+                      return null;
+                    })()}
                     <div className="mb-2">
                       <h4 className="text-sm font-semibold text-foreground">
                         {STRATEGY_OPTIONS.find(o => o.id === recommendation.recommended)?.label || recommendation.recommended}
@@ -1168,6 +1224,194 @@ export function StrategyCommitmentPanel({
                                         </div>
                                       </div>
                                     </div>
+                                  </div>
+                                )}
+                              </div>
+                            )}
+
+                            {/* Residual Attack Scanner (Exhaustion Layer) */}
+                            {route.residual && (
+                              <div className="rounded-lg border border-border/50 overflow-hidden">
+                                <button
+                                  onClick={() => toggleSection(`${route.id}_residual`)}
+                                  className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/20 transition-colors"
+                                >
+                                  <div className="flex items-center gap-2">
+                                    <Shield className="h-4 w-4 text-primary" />
+                                    <span className="text-xs font-semibold text-foreground">
+                                      Residual Attack Scanner
+                                    </span>
+                                    <Badge
+                                      variant={route.residual.status === "EXHAUSTED" ? "danger" : "default"}
+                                      className="text-xs"
+                                    >
+                                      {route.residual.status === "EXHAUSTED" ? "EXHAUSTED" : "ATTACKS REMAIN"}
+                                    </Badge>
+                                  </div>
+                                  {expandedSections.has(`${route.id}_residual`) ? (
+                                    <ChevronUp className="h-4 w-4 text-muted-foreground" />
+                                  ) : (
+                                    <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                                  )}
+                                </button>
+                                {expandedSections.has(`${route.id}_residual`) && (
+                                  <div className="p-4 border-t border-border/50 space-y-4">
+                                    {/* Summary */}
+                                    <div>
+                                      <p className="text-xs text-muted-foreground">{route.residual.summary}</p>
+                                    </div>
+
+                                    {/* Residual Angles */}
+                                    {route.residual.angles.length > 0 && (
+                                      <div>
+                                        <p className="text-xs font-semibold text-foreground mb-2">
+                                          Residual Attack Angles ({route.residual.angles.length})
+                                        </p>
+                                        <div className="space-y-3">
+                                          {route.residual.angles.map((angle) => (
+                                            <div
+                                              key={angle.id}
+                                              className="p-3 rounded border border-border/30 bg-muted/20 space-y-2"
+                                            >
+                                              <div className="flex items-start justify-between gap-2">
+                                                <div className="flex-1">
+                                                  <p className="text-xs font-semibold text-foreground">
+                                                    {angle.title}
+                                                  </p>
+                                                  <p className="text-xs text-muted-foreground mt-1">
+                                                    {angle.description}
+                                                  </p>
+                                                </div>
+                                                <div className="flex items-center gap-1 flex-shrink-0">
+                                                  <Badge
+                                                    variant={
+                                                      angle.evidenceBasis === "EVIDENCE_BACKED"
+                                                        ? "default"
+                                                        : "secondary"
+                                                    }
+                                                    className="text-xs"
+                                                  >
+                                                    {angle.evidenceBasis === "EVIDENCE_BACKED"
+                                                      ? "Evidence-backed"
+                                                      : "Hypothesis"}
+                                                  </Badge>
+                                                  <Badge
+                                                    variant={
+                                                      angle.judicialOptics === "ATTRACTIVE"
+                                                        ? "default"
+                                                        : angle.judicialOptics === "RISKY"
+                                                          ? "danger"
+                                                          : "secondary"
+                                                    }
+                                                    className="text-xs"
+                                                  >
+                                                    {angle.judicialOptics === "ATTRACTIVE"
+                                                      ? "🟢 Attractive"
+                                                      : angle.judicialOptics === "RISKY"
+                                                        ? "🔴 Risky"
+                                                        : "🟠 Neutral"}
+                                                  </Badge>
+                                                </div>
+                                              </div>
+                                              <div>
+                                                <p className="text-xs font-semibold text-foreground mb-1">
+                                                  Category: {angle.category}
+                                                </p>
+                                                {angle.requiredEvidence && angle.requiredEvidence.length > 0 && (
+                                                  <div className="mb-2">
+                                                    <p className="text-xs text-muted-foreground mb-1">
+                                                      Required Evidence:
+                                                    </p>
+                                                    <ul className="text-xs text-muted-foreground space-y-1 list-disc list-inside">
+                                                      {angle.requiredEvidence.map((ev, idx) => (
+                                                        <li key={idx}>{ev}</li>
+                                                      ))}
+                                                    </ul>
+                                                  </div>
+                                                )}
+                                                <p className="text-xs text-muted-foreground mb-1">
+                                                  <span className="font-semibold">Judicial Optics:</span>{" "}
+                                                  {angle.whyOptics}
+                                                </p>
+                                                <div className="mt-2">
+                                                  <p className="text-xs font-semibold text-foreground mb-1">
+                                                    How to Use:
+                                                  </p>
+                                                  <ul className="text-xs text-muted-foreground space-y-1 list-disc list-inside">
+                                                    {angle.howToUse.map((action, idx) => (
+                                                      <li key={idx}>{action}</li>
+                                                    ))}
+                                                  </ul>
+                                                </div>
+                                                <div className="mt-2">
+                                                  <p className="text-xs font-semibold text-foreground mb-1">
+                                                    Stop If:
+                                                  </p>
+                                                  <p className="text-xs text-muted-foreground">{angle.stopIf}</p>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          ))}
+                                        </div>
+                                      </div>
+                                    )}
+
+                                    {/* Last Resort Leverage */}
+                                    {route.residual.lastResortLeverage.plan.length > 0 && (
+                                      <div>
+                                        <p className="text-xs font-semibold text-foreground mb-2">
+                                          Last-Resort Leverage Map
+                                        </p>
+                                        {route.residual.lastResortLeverage.triggers.length > 0 && (
+                                          <div className="mb-3">
+                                            <p className="text-xs font-semibold text-foreground mb-1">Triggers:</p>
+                                            <ul className="text-xs text-muted-foreground space-y-1 list-disc list-inside">
+                                              {route.residual.lastResortLeverage.triggers.map((trigger, idx) => (
+                                                <li key={idx}>{trigger}</li>
+                                              ))}
+                                            </ul>
+                                          </div>
+                                        )}
+                                        <div className="space-y-2">
+                                          {route.residual.lastResortLeverage.plan.map((plan, idx) => (
+                                            <div
+                                              key={idx}
+                                              className="p-3 rounded border border-border/30 bg-muted/20 space-y-2"
+                                            >
+                                              <div className="flex items-center justify-between">
+                                                <p className="text-xs font-semibold text-foreground">
+                                                  {plan.title}
+                                                </p>
+                                                <Badge
+                                                  variant={
+                                                    plan.judicialOptics === "ATTRACTIVE"
+                                                      ? "default"
+                                                      : plan.judicialOptics === "RISKY"
+                                                        ? "danger"
+                                                        : "secondary"
+                                                  }
+                                                  className="text-xs"
+                                                >
+                                                  {plan.judicialOptics === "ATTRACTIVE"
+                                                    ? "🟢 Attractive"
+                                                    : plan.judicialOptics === "RISKY"
+                                                      ? "🔴 Risky"
+                                                      : "🟠 Neutral"}
+                                                </Badge>
+                                              </div>
+                                              <p className="text-xs text-muted-foreground">
+                                                Timing: {plan.timing.replace("_", " ").toUpperCase()}
+                                              </p>
+                                              <ul className="text-xs text-muted-foreground space-y-1 list-disc list-inside">
+                                                {plan.actions.map((action, actionIdx) => (
+                                                  <li key={actionIdx}>{action}</li>
+                                                ))}
+                                              </ul>
+                                            </div>
+                                          ))}
+                                        </div>
+                                      </div>
+                                    )}
                                   </div>
                                 )}
                               </div>

@@ -2,6 +2,13 @@
  * Criminal Strategy Fight Engine - Type Definitions
  */
 
+import type { StrategyRecommendation } from "./strategy-recommendation-engine";
+import type { EvidenceImpact as EvidenceImpactMap } from "./evidence-impact-mapper";
+import type { TimePressureState } from "./time-pressure-engine";
+import type { ConfidenceState } from "./confidence-drift-engine";
+import type { DecisionCheckpoint } from "./decision-checkpoints";
+import type { ResidualAttackScan } from "./residual-attack-scanner";
+
 export type RouteType = "fight_charge" | "charge_reduction" | "outcome_management";
 
 export type ViabilityStatus = "VIABLE" | "WEAKENING" | "UNSAFE";
@@ -82,13 +89,8 @@ export interface StrategyRoute {
   killSwitches: KillSwitch[];
   pivotPlan: PivotPlan;
   judicialOptics: JudicialOpticsCallout[];
+  residual?: ResidualAttackScan;
 }
-
-import type { StrategyRecommendation } from "./strategy-recommendation-engine";
-import type { EvidenceImpact as EvidenceImpactMap } from "./evidence-impact-mapper";
-import type { TimePressureState } from "./time-pressure-engine";
-import type { ConfidenceState } from "./confidence-drift-engine";
-import type { DecisionCheckpoint } from "./decision-checkpoints";
 
 export interface StrategyAnalysisData {
   routes: StrategyRoute[];
@@ -102,5 +104,9 @@ export interface StrategyAnalysisData {
   timePressure?: TimePressureState;
   confidenceStates?: Record<RouteType, ConfidenceState>;
   decisionCheckpoints?: DecisionCheckpoint[];
+  residualSummary?: {
+    exhaustedRoutes: RouteType[];
+    notes: string;
+  };
 }
 

@@ -20,6 +20,7 @@ import { mapEvidenceImpact, getCommonMissingEvidence } from "@/lib/criminal/evid
 import { buildTimePressureState } from "@/lib/criminal/time-pressure-engine";
 import { calculateConfidenceDrift } from "@/lib/criminal/confidence-drift-engine";
 import { generateDecisionCheckpoints } from "@/lib/criminal/decision-checkpoints";
+import { scanResidualAttacks } from "@/lib/criminal/residual-attack-scanner";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -211,6 +212,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         "outcome_management",
       ];
 
+      // Generate routes (residual scanning will be added after recommendation is generated)
       const routes = routeTypes.map((routeType) =>
         generateStrategyRoute(
           routeType,
@@ -312,6 +314,37 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
           )
         : [];
 
+      // Scan residual attacks for each route (after recommendation is available)
+      const routesWithResidual = routes.map((route, idx) => {
+        const routeType = routeTypes[idx];
+        const routeConfidence = confidenceStates[routeType]?.current || "MEDIUM";
+        
+        const residual = scanResidualAttacks({
+          evidenceSignals,
+          routeType,
+          existingAttackPaths: route.attackPaths,
+          routeConfidence,
+          canGenerateAnalysis,
+        });
+
+        return {
+          ...route,
+          residual,
+        };
+      });
+
+      // Generate residual summary
+      const exhaustedRoutes = routesWithResidual
+        .filter(r => r.residual?.status === "EXHAUSTED")
+        .map(r => r.type);
+      
+      const residualSummary = {
+        exhaustedRoutes,
+        notes: exhaustedRoutes.length > 0
+          ? `${exhaustedRoutes.length} route(s) exhausted - no further viable attacks without new disclosure`
+          : "All routes have residual attack angles available",
+      };
+
       // Generate artifacts for committed route (if any) - AFTER recommendation is generated
       const artifacts = commitment?.primary_strategy
         ? generateArtifacts(
@@ -345,7 +378,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       }
 
       const response: StrategyAnalysisResponse = {
-        routes,
+        routes: routesWithResidual,
         selectedRoute: commitment?.primary_strategy || undefined,
         artifacts,
         evidenceImpact,
@@ -355,6 +388,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         timePressure,
         confidenceStates,
         decisionCheckpoints,
+        residualSummary,
       };
 
       return NextResponse.json({
