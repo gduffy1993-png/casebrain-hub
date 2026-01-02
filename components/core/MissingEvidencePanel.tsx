@@ -180,6 +180,7 @@ export function MissingEvidencePanel({ caseId, items: propItems }: MissingEviden
   const safeLocalItems = Array.isArray(localItems) ? localItems : [];
   const missingCount = safeLocalItems.filter((i) => i?.status === "MISSING").length;
   const requestedCount = safeLocalItems.filter((i) => i?.status === "REQUESTED").length;
+  const unassessedCount = safeLocalItems.filter((i) => i?.status === "UNASSESSED" || i?.status === "UNKNOWN").length;
 
   const handleCreateTask = (item: MissingEvidenceItem) => {
     startTransition(async () => {
@@ -287,29 +288,7 @@ export function MissingEvidencePanel({ caseId, items: propItems }: MissingEviden
 
   // Empty state: distinguish between analysis exists vs not
   if (!safeLocalItems.length && !hasDisclosureGaps) {
-    if (hasAnalysisVersion && analysisMode !== "none") {
-      // Analysis exists and missing_evidence is empty
-      return (
-        <Card
-          title="Evidence Checklist"
-          description="Required evidence for this case."
-        >
-          <div className="flex items-center gap-3 rounded-xl bg-muted/20 p-4">
-            <FileQuestion className="h-5 w-5 text-muted-foreground" />
-            <div>
-              <p className="text-sm font-medium text-foreground">
-                No missing evidence flagged in the current analysis.
-              </p>
-              <p className="text-xs text-muted-foreground mt-1">
-                {analysisMode === "preview"
-                  ? "Run Full Analysis to enable evidence gap detection."
-                  : "Add more documents or re-run analysis to deepen evidence mapping."}
-              </p>
-            </div>
-          </div>
-        </Card>
-      );
-    } else {
+    if (analysisMode === "none") {
       // No analysis version or analysis not run
       return (
         <Card
@@ -320,10 +299,58 @@ export function MissingEvidencePanel({ caseId, items: propItems }: MissingEviden
             <AlertTriangle className="h-5 w-5 text-amber-600" />
             <div>
               <p className="text-sm font-medium text-foreground">
-                Missing evidence cannot be assessed yet.
+                Missing evidence cannot be assessed yet — run Full Analysis.
               </p>
-              <p className="text-xs text-muted-foreground mt-1">
-                Analysis not run or extraction is limited. Run Full Analysis to enable evidence gap detection.
+            </div>
+          </div>
+        </Card>
+      );
+    } else if (analysisMode === "preview") {
+      // Preview mode - gated/thin extraction
+      return (
+        <Card
+          title="Evidence Checklist"
+          description="Required evidence for this case."
+        >
+          <div className="flex items-center gap-3 rounded-xl bg-amber-500/10 p-4">
+            <AlertTriangle className="h-5 w-5 text-amber-600" />
+            <div>
+              <p className="text-sm font-medium text-foreground">
+                Preview mode — run Full Analysis to enable evidence gap detection.
+              </p>
+            </div>
+          </div>
+        </Card>
+      );
+    } else if (hasAnalysisVersion && analysisMode === "complete") {
+      // Analysis exists and missing_evidence is empty
+      return (
+        <Card
+          title="Evidence Checklist"
+          description="Required evidence for this case."
+        >
+          <div className="flex items-center gap-3 rounded-xl bg-muted/20 p-4">
+            <FileQuestion className="h-5 w-5 text-muted-foreground" />
+            <div>
+              <p className="text-sm font-medium text-foreground">
+                No missing evidence flagged in this analysis (may change with new documents).
+              </p>
+            </div>
+          </div>
+        </Card>
+      );
+    } else {
+      // Fallback
+      return (
+        <Card
+          title="Evidence Checklist"
+          description="Required evidence for this case."
+        >
+          <div className="flex items-center gap-3 rounded-xl bg-amber-500/10 p-4">
+            <AlertTriangle className="h-5 w-5 text-amber-600" />
+            <div>
+              <p className="text-sm font-medium text-foreground">
+                Missing evidence cannot be assessed yet — run Full Analysis.
               </p>
             </div>
           </div>
@@ -361,6 +388,11 @@ export function MissingEvidencePanel({ caseId, items: propItems }: MissingEviden
           {requestedCount > 0 && (
             <span className="rounded-full bg-warning/10 px-2 py-1 text-warning">
               {requestedCount} requested
+            </span>
+          )}
+          {unassessedCount > 0 && (
+            <span className="rounded-full bg-muted/20 px-2 py-1 text-muted-foreground">
+              Unassessed: {unassessedCount}
             </span>
           )}
         </div>

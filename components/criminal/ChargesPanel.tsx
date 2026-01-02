@@ -52,19 +52,60 @@ export function ChargesPanel({ caseId }: ChargesPanelProps) {
               return s.replace(/^section\s+/i, "").replace(/^s\.?\s*/i, "s").toLowerCase().trim();
             };
             
+            // Normalize offence name - strip "Alt:" variants and clean up
+            const normalizeOffence = (off: string | null): string => {
+              if (!off) return "";
+              // Remove "Alt:" prefix and clean
+              return off.replace(/^alt:\s*/i, "").replace(/\(alt:.*?\)/gi, "").trim();
+            };
+            
+            // Extract alternate section from offence if present (e.g., "s18 (Alt: s.20)")
+            const extractAltSection = (off: string | null): string | null => {
+              if (!off) return null;
+              const altMatch = off.match(/\(alt:\s*(s\.?\d+|section\s+\d+)\)/i);
+              if (altMatch) {
+                return normalizeSection(altMatch[1]);
+              }
+              return null;
+            };
+            
+            const normalizedOffence = normalizeOffence(c.offence);
             const normalizedSection = normalizeSection(c.section);
-            const key = `${c.offence || ""}:${normalizedSection}`.toLowerCase().trim();
+            const altSection = extractAltSection(c.offence);
+            
+            // Use normalized offence + section as key (e.g., "OAPA1861:s18")
+            // Normalize statute name too if present
+            const statute = (c.offence || "").toLowerCase().includes("offences against the person") 
+              ? "OAPA1861" 
+              : (c.offence || "").toLowerCase().includes("theft") 
+                ? "TheftAct1968"
+                : "";
+            const key = `${statute || normalizedOffence}:${normalizedSection}`.toLowerCase().trim();
             
             if (!dedupedMap.has(key)) {
+              // First occurrence - store it
               dedupedMap.set(key, c);
+              // If there's an alt section in the offence name, add it as an alias
+              if (altSection && altSection !== normalizedSection) {
+                aliasesMap.set(key, [`Alt: s${altSection.replace(/^s/, "")}`]);
+              }
             } else {
               // This is a duplicate - add to aliases
               const existing = dedupedMap.get(key)!;
               const existingAliases = aliasesMap.get(key) || [];
-              // Add current offence as alias if different
-              if (c.offence && c.offence !== existing.offence) {
-                if (!existingAliases.includes(c.offence)) {
-                  aliasesMap.set(key, [...existingAliases, c.offence]);
+              
+              // Add alternate section as alias if different
+              if (altSection && altSection !== normalizedSection) {
+                const altAlias = `Alt: s${altSection.replace(/^s/, "")}`;
+                if (!existingAliases.includes(altAlias)) {
+                  aliasesMap.set(key, [...existingAliases, altAlias]);
+                }
+              }
+              
+              // Add current offence as alias if different (after normalization)
+              if (normalizedOffence && normalizedOffence !== normalizeOffence(existing.offence)) {
+                if (!existingAliases.includes(normalizedOffence)) {
+                  aliasesMap.set(key, [...existingAliases, normalizedOffence]);
                 }
               }
             }

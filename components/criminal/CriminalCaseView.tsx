@@ -151,7 +151,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
     <div className="space-y-6">
       {/* Primary Defence Strategy - Case Fight Plan (ONLY strategy surface for criminal cases) */}
       {/* FIX: Always visible regardless of phase - phase gating only affects bail/sentencing tools */}
-      <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Strategy analysis unavailable</div>}>
+      <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Strategy analysis error</div>}>
         <CaseFightPlan caseId={caseId} committedStrategy={committedStrategy} />
       </ErrorBoundary>
 

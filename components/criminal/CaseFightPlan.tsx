@@ -90,6 +90,10 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
     banner: AnalysisGateBannerProps["banner"];
     diagnostics?: AnalysisGateBannerProps["diagnostics"];
   } | null>(null);
+  const [analysisVersionInfo, setAnalysisVersionInfo] = useState<{
+    has_analysis_version: boolean;
+    analysis_mode: "complete" | "preview" | "none";
+  } | null>(null);
 
   useEffect(() => {
     async function fetchPlan() {
@@ -97,6 +101,23 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
         setLoading(true);
         setError(null);
         setGatedResponse(null);
+        
+        // Fetch analysis version info to determine status
+        try {
+          const versionRes = await fetch(`/api/cases/${caseId}/analysis/version/latest`);
+          if (versionRes.ok) {
+            const versionData = await versionRes.json();
+            const versionInfo = versionData?.data || versionData;
+            setAnalysisVersionInfo({
+              has_analysis_version: versionInfo?.has_analysis_version === true || versionInfo?.version_number !== null,
+              analysis_mode: versionInfo?.analysis_mode || (versionInfo?.version_number ? "complete" : "none"),
+            });
+          }
+        } catch {
+          // Fail silently - version info is optional
+          setAnalysisVersionInfo({ has_analysis_version: false, analysis_mode: "none" });
+        }
+        
         // Try strategy-analysis endpoint first (multi-route output)
         let response = await fetch(`/api/criminal/${caseId}/strategy-analysis`).catch(() => null);
         let useStrategyAnalysis = false;
@@ -846,20 +867,51 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
         )}
 
         {/* Analysis Status Banner */}
-        {hasStrategyAnalysisData && (
-          <div className="mb-4 p-2 rounded-lg border border-border/50 bg-muted/20">
-            <p className="text-xs text-foreground">
-              <span className="font-semibold">
-                {gatedResponse ? "Analysis: Preview mode" : "Analysis: Complete"}
-              </span>
-              {gatedResponse && (
-                <span className="text-muted-foreground ml-2">
-                  (Using procedural templates - evidence-backed analysis pending disclosure)
-                </span>
-              )}
-            </p>
-          </div>
-        )}
+        {(() => {
+          // Determine status based on analysis version info
+          if (!analysisVersionInfo) {
+            // Still loading or fetch failed - don't show banner yet
+            return null;
+          }
+          
+          const { has_analysis_version, analysis_mode } = analysisVersionInfo;
+          
+          if (!has_analysis_version) {
+            return (
+              <div className="mb-4 p-2 rounded-lg border border-border/50 bg-muted/20">
+                <p className="text-xs text-foreground">
+                  <span className="font-semibold">Strategy analysis: Not run yet</span>
+                </p>
+              </div>
+            );
+          }
+          
+          if (analysis_mode === "preview") {
+            return (
+              <div className="mb-4 p-2 rounded-lg border border-amber-500/20 bg-amber-500/5">
+                <p className="text-xs text-foreground">
+                  <span className="font-semibold">Strategy analysis: Preview (gated / thin extraction)</span>
+                  <span className="text-muted-foreground ml-2">
+                    (Using procedural templates - evidence-backed analysis pending disclosure)
+                  </span>
+                </p>
+              </div>
+            );
+          }
+          
+          if (analysis_mode === "complete") {
+            return (
+              <div className="mb-4 p-2 rounded-lg border border-border/50 bg-muted/20">
+                <p className="text-xs text-foreground">
+                  <span className="font-semibold">Strategy analysis: Complete</span>
+                </p>
+              </div>
+            );
+          }
+          
+          // Fallback (shouldn't happen)
+          return null;
+        })()}
 
         {/* Priority 1: If strategy-analysis routes exist -> render multi-route strategy */}
         {strategyRoutes && strategyRoutes.length > 0 ? (

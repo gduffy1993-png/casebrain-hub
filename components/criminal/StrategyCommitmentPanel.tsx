@@ -317,6 +317,10 @@ export function StrategyCommitmentPanel({
   const [timePressure, setTimePressure] = useState<TimePressureState | null>(null);
   const [confidenceStates, setConfidenceStates] = useState<Record<string, any>>({});
   const [decisionCheckpoints, setDecisionCheckpoints] = useState<DecisionCheckpoint[]>([]);
+  const [analysisVersionInfo, setAnalysisVersionInfo] = useState<{
+    has_analysis_version: boolean;
+    analysis_mode: "complete" | "preview" | "none";
+  } | null>(null);
   const { push: showToast } = useToast();
   const storageKey = `casebrain:strategyCommitment:${resolvedCaseId}`;
 
@@ -331,6 +335,30 @@ export function StrategyCommitmentPanel({
       return next;
     });
   };
+
+  // Load analysis version info
+  useEffect(() => {
+    if (!resolvedCaseId) return;
+    
+    async function fetchAnalysisVersion() {
+      try {
+        const versionRes = await fetch(`/api/cases/${resolvedCaseId}/analysis/version/latest`);
+        if (versionRes.ok) {
+          const versionData = await versionRes.json();
+          const versionInfo = versionData?.data || versionData;
+          setAnalysisVersionInfo({
+            has_analysis_version: versionInfo?.has_analysis_version === true || versionInfo?.version_number !== null,
+            analysis_mode: versionInfo?.analysis_mode || (versionInfo?.version_number ? "complete" : "none"),
+          });
+        }
+      } catch {
+        // Fail silently
+        setAnalysisVersionInfo({ has_analysis_version: false, analysis_mode: "none" });
+      }
+    }
+    
+    fetchAnalysisVersion();
+  }, [resolvedCaseId]);
 
   // Load strategy routes from strategy-analysis endpoint
   useEffect(() => {
@@ -753,7 +781,14 @@ export function StrategyCommitmentPanel({
             )}
 
             {/* Strategic Recommendation Panel */}
-            {recommendation && (
+            {recommendation && (() => {
+              // Cap confidence to LOW if analysis is gated/preview
+              const shouldCapConfidence = isGated || 
+                (analysisVersionInfo?.analysis_mode === "preview") ||
+                (analysisVersionInfo?.analysis_mode === "none");
+              const displayConfidence = shouldCapConfidence ? "LOW" : recommendation.confidence;
+              
+              return (
               <div className="mb-6 p-4 rounded-lg border-2 border-primary/30 bg-primary/5">
                 <div className="flex items-start justify-between gap-3 mb-3">
                   <div className="flex-1">
@@ -762,17 +797,17 @@ export function StrategyCommitmentPanel({
                       <h3 className="text-sm font-semibold text-foreground">Recommended Strategy</h3>
                       <Badge variant="primary" className="text-xs">PRIMARY</Badge>
                       <Badge className={`text-xs ${
-                        recommendation.confidence === "HIGH" 
+                        displayConfidence === "HIGH" 
                           ? "bg-green-500/20 text-green-600 border-green-500/30" 
-                          : recommendation.confidence === "MEDIUM"
+                          : displayConfidence === "MEDIUM"
                             ? "bg-amber-500/20 text-amber-600 border-amber-500/30"
                             : "bg-blue-500/20 text-blue-600 border-blue-500/30"
                       } border`}>
-                        {recommendation.confidence} Confidence
+                        {displayConfidence} Confidence
                       </Badge>
-                      {isGated && recommendation.confidence === "LOW" && (
+                      {shouldCapConfidence && (
                         <Badge variant="outline" className="text-xs text-muted-foreground">
-                          Confidence capped (analysis gated / thin evidence)
+                          Confidence capped (preview/gated)
                         </Badge>
                       )}
                     </div>
@@ -787,17 +822,15 @@ export function StrategyCommitmentPanel({
                       if (allResidualAngles.length > 0 || exhaustedCount > 0) {
                         const parts: string[] = [];
                         if (allResidualAngles.length > 0) {
-                          parts.push(`Residual angles: ${allResidualAngles.length}`);
-                          if (evidenceBackedCount > 0 || hypothesisCount > 0) {
-                            const basisParts: string[] = [];
-                            if (evidenceBackedCount > 0) {
-                              basisParts.push(`${evidenceBackedCount} evidence-backed`);
-                            }
-                            if (hypothesisCount > 0) {
-                              basisParts.push(`${hypothesisCount} ${hypothesisCount === 1 ? "hypothesis" : "hypotheses"}`);
-                            }
-                            parts.push(`(${basisParts.join(", ")})`);
+                          const basisParts: string[] = [];
+                          if (evidenceBackedCount > 0) {
+                            basisParts.push(`${evidenceBackedCount} evidence-backed`);
                           }
+                          if (hypothesisCount > 0) {
+                            basisParts.push(`${hypothesisCount} ${hypothesisCount === 1 ? "hypothesis" : "hypotheses"}`);
+                          }
+                          const basisText = basisParts.length > 0 ? ` (${basisParts.join(", ")})` : "";
+                          parts.push(`Residual angles: ${allResidualAngles.length}${basisText}`);
                         }
                         if (exhaustedCount > 0) {
                           parts.push(`Routes exhausted: ${exhaustedCount}/${totalRoutes}`);
@@ -866,7 +899,8 @@ export function StrategyCommitmentPanel({
                   </div>
                 </div>
               </div>
-            )}
+              );
+            })()}
 
             {/* Gated Banner */}
             {isGated && (
