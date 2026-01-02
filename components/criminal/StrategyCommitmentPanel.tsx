@@ -31,7 +31,7 @@ type AttackPath = {
   counterResponse: string;
   killSwitch: string;
   next48HoursActions: string[];
-  isHypothesis: boolean;
+  evidenceBacked: boolean;
 };
 
 type CPSResponse = {
@@ -777,17 +777,31 @@ export function StrategyCommitmentPanel({
                       const evidenceBackedCount = allResidualAngles.filter(a => a.evidenceBasis === "EVIDENCE_BACKED").length;
                       const hypothesisCount = allResidualAngles.filter(a => a.evidenceBasis === "HYPOTHESIS").length;
                       const exhaustedCount = strategyRoutes.filter(r => r.residual?.status === "EXHAUSTED").length;
+                      const totalRoutes = strategyRoutes.length;
                       
                       if (allResidualAngles.length > 0 || exhaustedCount > 0) {
+                        const parts: string[] = [];
+                        if (allResidualAngles.length > 0) {
+                          parts.push(`Residual angles: ${allResidualAngles.length}`);
+                          if (evidenceBackedCount > 0 || hypothesisCount > 0) {
+                            const basisParts: string[] = [];
+                            if (evidenceBackedCount > 0) {
+                              basisParts.push(`${evidenceBackedCount} evidence-backed`);
+                            }
+                            if (hypothesisCount > 0) {
+                              basisParts.push(`${hypothesisCount} hypothesis`);
+                            }
+                            parts.push(`(${basisParts.join(", ")})`);
+                          }
+                        }
+                        if (exhaustedCount > 0) {
+                          parts.push(`Exhausted routes: ${exhaustedCount}/${totalRoutes}`);
+                        }
+                        
                         return (
                           <div className="mb-3 p-2 rounded-lg border border-border/50 bg-muted/20">
                             <p className="text-xs text-foreground">
-                              <span className="font-semibold">Residual attacks remaining:</span>{" "}
-                              {allResidualAngles.length} total
-                              {evidenceBackedCount > 0 && ` (${evidenceBackedCount} evidence-backed`}
-                              {hypothesisCount > 0 && `, ${hypothesisCount} hypothesis`}
-                              {evidenceBackedCount > 0 || hypothesisCount > 0 ? ")" : ""}
-                              {exhaustedCount > 0 && ` • ${exhaustedCount} route(s) exhausted`}
+                              {parts.join(" • ")}
                             </p>
                           </div>
                         );
@@ -1000,10 +1014,9 @@ export function StrategyCommitmentPanel({
                         )}
 
                         {/* Enhanced Route Details - Tabs/Sections */}
-                        {(route.attackPaths || route.cpsResponses || route.killSwitches || route.pivotPlan) && (
-                          <div className="mt-4 pt-4 border-t border-border space-y-2">
+                        <div className="mt-4 pt-4 border-t border-border space-y-2">
                             {/* Attack Paths */}
-                            {route.attackPaths && route.attackPaths.length > 0 && (
+                            {route.attackPaths && route.attackPaths.length > 0 ? (
                               <div className="rounded-lg border border-border/50 overflow-hidden">
                                 <button
                                   onClick={() => toggleSection(`${route.id}_attack_paths`)}
@@ -1039,9 +1052,14 @@ export function StrategyCommitmentPanel({
                                             <div className="flex-1">
                                               <div className="flex items-center gap-2 mb-1">
                                                 <h6 className="text-xs font-semibold text-foreground">{path.target}</h6>
-                                                {path.isHypothesis && (
+                                                {!path.evidenceBacked && (
                                                   <Badge variant="outline" className="text-[10px]">
                                                     Hypothesis (pending evidence)
+                                                  </Badge>
+                                                )}
+                                                {path.evidenceBacked && (
+                                                  <Badge variant="default" className="text-[10px]">
+                                                    Evidence-backed
                                                   </Badge>
                                                 )}
                                                 {optics === "attractive" && (
@@ -1099,10 +1117,16 @@ export function StrategyCommitmentPanel({
                                   </div>
                                 )}
                               </div>
+                            ) : (
+                              <div className="rounded-lg border border-border/50 p-3">
+                                <p className="text-xs text-muted-foreground">
+                                  No attack paths generated (insufficient evidence). Request disclosure to assess viable attack angles.
+                                </p>
+                              </div>
                             )}
 
                             {/* CPS Responses */}
-                            {route.cpsResponses && route.cpsResponses.length > 0 && (
+                            {route.cpsResponses && route.cpsResponses.length > 0 ? (
                               <div className="rounded-lg border border-border/50 overflow-hidden">
                                 <button
                                   onClick={() => toggleSection(`${route.id}_cps_responses`)}
@@ -1141,10 +1165,16 @@ export function StrategyCommitmentPanel({
                                   </div>
                                 )}
                               </div>
+                            ) : (
+                              <div className="rounded-lg border border-border/50 p-3">
+                                <p className="text-xs text-muted-foreground">
+                                  No CPS responses generated (insufficient evidence). Request disclosure to assess prosecution response scenarios.
+                                </p>
+                              </div>
                             )}
 
                             {/* Kill Switches */}
-                            {route.killSwitches && route.killSwitches.length > 0 && (
+                            {route.killSwitches && route.killSwitches.length > 0 ? (
                               <div className="rounded-lg border border-border/50 overflow-hidden">
                                 <button
                                   onClick={() => toggleSection(`${route.id}_kill_switches`)}
@@ -1175,10 +1205,16 @@ export function StrategyCommitmentPanel({
                                   </div>
                                 )}
                               </div>
+                            ) : (
+                              <div className="rounded-lg border border-border/50 p-3">
+                                <p className="text-xs text-muted-foreground">
+                                  No kill switches generated (insufficient evidence). Request disclosure to assess route abandonment triggers.
+                                </p>
+                              </div>
                             )}
 
                             {/* Pivot Plan */}
-                            {route.pivotPlan && (
+                            {route.pivotPlan ? (
                               <div className="rounded-lg border border-border/50 overflow-hidden">
                                 <button
                                   onClick={() => toggleSection(`${route.id}_pivot_plan`)}
@@ -1227,11 +1263,17 @@ export function StrategyCommitmentPanel({
                                   </div>
                                 )}
                               </div>
+                            ) : (
+                              <div className="rounded-lg border border-border/50 p-3">
+                                <p className="text-xs text-muted-foreground">
+                                  No pivot plan generated (insufficient evidence). Request disclosure to assess pivot triggers and timing.
+                                </p>
+                              </div>
                             )}
 
-                            {/* Residual Attack Scanner (Exhaustion Layer) */}
+                            {/* Residual Attack Scanner (Exhaustion Layer) - Only show once per route */}
                             {route.residual && (
-                              <div className="rounded-lg border border-border/50 overflow-hidden">
+                              <div className="rounded-lg border border-border/50 overflow-hidden mt-2">
                                 <button
                                   onClick={() => toggleSection(`${route.id}_residual`)}
                                   className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/20 transition-colors"
@@ -1417,7 +1459,6 @@ export function StrategyCommitmentPanel({
                               </div>
                             )}
                           </div>
-                        )}
 
                         {!isCommitted && (
                           <div className="mt-3 pt-3 border-t border-border/50">

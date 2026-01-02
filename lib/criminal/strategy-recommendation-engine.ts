@@ -331,6 +331,21 @@ export function generateStrategyRecommendation(
     confidence = "LOW";
   }
 
+  // Conservative confidence rules: cap at LOW if evidence is thin/gated
+  if (!diagnostics.canGenerateAnalysis) {
+    confidence = "LOW";
+    ranked[0].reasons.push("Confidence capped at LOW: Analysis gated – insufficient text extracted");
+  } else if (diagnostics.docCount < 2) {
+    confidence = "LOW";
+    ranked[0].reasons.push("Confidence capped at LOW: Insufficient documents (< 2)");
+  } else if (diagnostics.rawCharsTotal < 1000) {
+    confidence = "LOW";
+    ranked[0].reasons.push("Confidence capped at LOW: Insufficient text extracted (< 1000 chars)");
+  } else if (diagnostics.textThin) {
+    confidence = "LOW";
+    ranked[0].reasons.push("Confidence capped at LOW: Text is thin (likely scanned images)");
+  }
+
   // If confidence is LOW, check why
   if (confidence === "LOW") {
     const unknownCount = [
