@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Target, CheckCircle2, AlertCircle, X, Lock, ArrowRight, TrendingUp, AlertTriangle } from "lucide-react";
+import { Target, CheckCircle2, AlertCircle, X, Lock, ArrowRight, TrendingUp, AlertTriangle, ChevronDown, ChevronUp, Copy, FileText, Shield, Zap, AlertCircle as AlertCircleIcon, Calendar, MapPin } from "lucide-react";
 import { useToast } from "@/components/Toast";
 
 export type PrimaryStrategy = 
@@ -15,6 +15,53 @@ export type PrimaryStrategy =
 
 export type SecondaryStrategy = PrimaryStrategy;
 
+type RouteViability = {
+  status: "VIABLE" | "WEAKENING" | "UNSAFE";
+  reasons: string[];
+  evidenceBacked: boolean;
+};
+
+type AttackPath = {
+  id: string;
+  target: string;
+  method: string;
+  evidenceInputs: string[];
+  expectedEffect: string;
+  cpsLikelyResponse: string;
+  counterResponse: string;
+  killSwitch: string;
+  next48HoursActions: string[];
+  isHypothesis: boolean;
+};
+
+type CPSResponse = {
+  id: string;
+  cpsMove: string;
+  defenceCounter: string;
+  resultingPressure: string;
+};
+
+type KillSwitch = {
+  id: string;
+  evidenceEvent: string;
+  pivotRecommendation: string;
+};
+
+type PivotPlan = {
+  triggers: string[];
+  timing: string;
+  behaviourChange: {
+    stop: string[];
+    start: string[];
+  };
+};
+
+type StrategyArtifact = {
+  type: "defence_position" | "disclosure_request" | "case_management_note" | "cps_negotiation_brief";
+  title: string;
+  content: string;
+};
+
 type StrategyRoute = {
   id: string;
   type: "fight_charge" | "charge_reduction" | "outcome_management";
@@ -23,11 +70,27 @@ type StrategyRoute = {
   winConditions: string[];
   risks: string[];
   nextActions: string[];
+  viability?: RouteViability;
+  attackPaths?: AttackPath[];
+  cpsResponses?: CPSResponse[];
+  killSwitches?: KillSwitch[];
+  pivotPlan?: PivotPlan;
 };
 
 type StrategyAnalysisResponse = {
   routes: StrategyRoute[];
   selectedRoute?: string;
+  artifacts?: StrategyArtifact[];
+  evidenceImpact?: Array<{
+    item: string;
+    attackPaths: string[];
+    routeViability: Array<{ routeId: string; impact: string }>;
+    urgency: string;
+  }>;
+  diagnostics?: {
+    canGenerateAnalysis: boolean;
+    isGated: boolean;
+  };
 };
 
 type StrategyCommitmentPanelProps = {
@@ -114,8 +177,23 @@ export function StrategyCommitmentPanel({
   const [strategyRoutes, setStrategyRoutes] = useState<StrategyRoute[]>([]);
   const [selectedRouteId, setSelectedRouteId] = useState<string | undefined>(undefined);
   const [isLoadingRoutes, setIsLoadingRoutes] = useState(true);
+  const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set());
+  const [artifacts, setArtifacts] = useState<StrategyArtifact[]>([]);
+  const [isGated, setIsGated] = useState(false);
   const { push: showToast } = useToast();
   const storageKey = `casebrain:strategyCommitment:${resolvedCaseId}`;
+
+  const toggleSection = (sectionId: string) => {
+    setExpandedSections(prev => {
+      const next = new Set(prev);
+      if (next.has(sectionId)) {
+        next.delete(sectionId);
+      } else {
+        next.add(sectionId);
+      }
+      return next;
+    });
+  };
 
   // Load strategy routes from strategy-analysis endpoint
   useEffect(() => {
@@ -130,6 +208,15 @@ export function StrategyCommitmentPanel({
         if (data?.ok && data?.data?.routes) {
           setStrategyRoutes(data.data.routes);
           setSelectedRouteId(data.data.selectedRoute);
+          if (data.data.artifacts) {
+            setArtifacts(data.data.artifacts);
+          }
+          if (data.data.diagnostics) {
+            setIsGated(data.data.diagnostics.isGated || !data.data.diagnostics.canGenerateAnalysis);
+          }
+          if (data.banner) {
+            setIsGated(true);
+          }
         }
       })
       .catch(console.error)
@@ -346,6 +433,35 @@ export function StrategyCommitmentPanel({
     }
   };
 
+  const handleCopyArtifact = async (content: string) => {
+    try {
+      await navigator.clipboard.writeText(content);
+      showToast("Copied to clipboard", "success");
+    } catch {
+      showToast("Failed to copy", "error");
+    }
+  };
+
+  const getViabilityBadge = (viability?: RouteViability) => {
+    if (!viability) return null;
+    const status = viability.status;
+    const colors = {
+      VIABLE: "bg-green-500/20 text-green-600 border-green-500/30",
+      WEAKENING: "bg-amber-500/20 text-amber-600 border-amber-500/30",
+      UNSAFE: "bg-red-500/20 text-red-600 border-red-500/30",
+    };
+    const emoji = {
+      VIABLE: "🟢",
+      WEAKENING: "🟠",
+      UNSAFE: "🔴",
+    };
+    return (
+      <Badge className={`${colors[status]} border text-xs`}>
+        {emoji[status]} {status}
+      </Badge>
+    );
+  };
+
   return (
     <Card className="p-6">
       <div className="space-y-6">
@@ -484,6 +600,21 @@ export function StrategyCommitmentPanel({
               </div>
             )}
 
+            {/* Gated Banner */}
+            {isGated && (
+              <div className="mb-4 p-3 rounded-lg border border-amber-500/30 bg-amber-500/10">
+                <div className="flex items-start gap-2">
+                  <AlertCircle className="h-4 w-4 text-amber-600 mt-0.5" />
+                  <div className="flex-1">
+                    <p className="text-xs font-semibold text-foreground mb-1">Analysis gated – using procedural templates</p>
+                    <p className="text-xs text-muted-foreground">
+                      Not enough extractable text to generate evidence-backed analysis. Routes shown use procedural templates pending full disclosure.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* Strategy Routes from strategy-analysis endpoint */}
             {strategyRoutes.length > 0 && (
               <div className="mt-6 pt-6 border-t border-border">
@@ -566,16 +697,262 @@ export function StrategyCommitmentPanel({
                             <h5 className="text-xs font-semibold text-foreground">Next Actions</h5>
                           </div>
                           <ul className="space-y-1.5">
-                            {route.nextActions.map((action, idx) => (
-                              <li key={idx} className="text-xs text-foreground flex items-start gap-2">
-                                <span className="flex-shrink-0 w-4 h-4 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
-                                  <span className="text-[10px] font-semibold text-primary">{idx + 1}</span>
-                                </span>
-                                <span>{action}</span>
-                              </li>
-                            ))}
+                            {route.nextActions.map((action, idx) => {
+                              // Determine judicial optics
+                              const lowerAction = action.toLowerCase();
+                              let optics: "attractive" | "neutral" | "risky" = "neutral";
+                              if (lowerAction.includes("disclosure request") || lowerAction.includes("continuity request") || lowerAction.includes("written submission") || lowerAction.includes("case management")) {
+                                optics = "attractive";
+                              } else if (lowerAction.includes("abuse of process without chase") || lowerAction.includes("unsubstantiated challenge") || lowerAction.includes("frivolous application")) {
+                                optics = "risky";
+                              }
+
+                              return (
+                                <li key={idx} className="text-xs text-foreground flex items-start gap-2">
+                                  <span className="flex-shrink-0 w-4 h-4 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
+                                    <span className="text-[10px] font-semibold text-primary">{idx + 1}</span>
+                                  </span>
+                                  <div className="flex-1 flex items-center gap-2">
+                                    <span>{action}</span>
+                                    {optics === "attractive" && (
+                                      <Badge className="bg-green-500/20 text-green-600 border-green-500/30 text-[10px] px-1">
+                                        Judicially attractive
+                                      </Badge>
+                                    )}
+                                    {optics === "risky" && (
+                                      <Badge className="bg-red-500/20 text-red-600 border-red-500/30 text-[10px] px-1">
+                                        Judicially risky
+                                      </Badge>
+                                    )}
+                                  </div>
+                                </li>
+                              );
+                            })}
                           </ul>
                         </div>
+
+                        {/* Viability Badge */}
+                        {route.viability && (
+                          <div className="mt-3 pt-3 border-t border-border/50">
+                            <div className="flex items-center gap-2 mb-2">
+                              {getViabilityBadge(route.viability)}
+                              {!route.viability.evidenceBacked && (
+                                <Badge variant="outline" className="text-xs">
+                                  Template (pending disclosure)
+                                </Badge>
+                              )}
+                            </div>
+                            <ul className="space-y-1">
+                              {route.viability.reasons.map((reason, idx) => (
+                                <li key={idx} className="text-xs text-muted-foreground">• {reason}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+
+                        {/* Enhanced Route Details - Tabs/Sections */}
+                        {(route.attackPaths || route.cpsResponses || route.killSwitches || route.pivotPlan) && (
+                          <div className="mt-4 pt-4 border-t border-border space-y-2">
+                            {/* Attack Paths */}
+                            {route.attackPaths && route.attackPaths.length > 0 && (
+                              <div className="rounded-lg border border-border/50 overflow-hidden">
+                                <button
+                                  onClick={() => toggleSection(`${route.id}_attack_paths`)}
+                                  className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/20 transition-colors"
+                                >
+                                  <div className="flex items-center gap-2">
+                                    <Zap className="h-4 w-4 text-primary" />
+                                    <span className="text-xs font-semibold text-foreground">Attack Paths ({route.attackPaths.length})</span>
+                                  </div>
+                                  {expandedSections.has(`${route.id}_attack_paths`) ? (
+                                    <ChevronUp className="h-4 w-4 text-muted-foreground" />
+                                  ) : (
+                                    <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                                  )}
+                                </button>
+                                {expandedSections.has(`${route.id}_attack_paths`) && (
+                                  <div className="p-3 border-t border-border/50 space-y-3">
+                                    {route.attackPaths.map((path) => (
+                                      <div key={path.id} className="p-3 rounded-lg border border-border/30 bg-muted/10">
+                                        <div className="flex items-start justify-between mb-2">
+                                          <div className="flex-1">
+                                            <div className="flex items-center gap-2 mb-1">
+                                              <h6 className="text-xs font-semibold text-foreground">{path.target}</h6>
+                                              {path.isHypothesis && (
+                                                <Badge variant="outline" className="text-[10px]">
+                                                  Hypothesis (pending evidence)
+                                                </Badge>
+                                              )}
+                                            </div>
+                                            <p className="text-xs text-muted-foreground mb-2">{path.method}</p>
+                                          </div>
+                                        </div>
+                                        <div className="grid grid-cols-1 gap-2 text-xs">
+                                          <div>
+                                            <span className="font-semibold text-foreground">Evidence Inputs: </span>
+                                            <span className="text-muted-foreground">{path.evidenceInputs.join(", ")}</span>
+                                          </div>
+                                          <div>
+                                            <span className="font-semibold text-foreground">Expected Effect: </span>
+                                            <span className="text-muted-foreground">{path.expectedEffect}</span>
+                                          </div>
+                                          <div>
+                                            <span className="font-semibold text-foreground">CPS Likely Response: </span>
+                                            <span className="text-muted-foreground">{path.cpsLikelyResponse}</span>
+                                          </div>
+                                          <div>
+                                            <span className="font-semibold text-foreground">Counter-Response: </span>
+                                            <span className="text-muted-foreground">{path.counterResponse}</span>
+                                          </div>
+                                          <div>
+                                            <span className="font-semibold text-foreground">Kill Switch: </span>
+                                            <span className="text-muted-foreground">{path.killSwitch}</span>
+                                          </div>
+                                          <div className="mt-2 pt-2 border-t border-border/30">
+                                            <span className="font-semibold text-foreground">Next 48 Hours: </span>
+                                            <ul className="mt-1 space-y-1">
+                                              {path.next48HoursActions.map((action, idx) => (
+                                                <li key={idx} className="text-muted-foreground">• {action}</li>
+                                              ))}
+                                            </ul>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    ))}
+                                  </div>
+                                )}
+                              </div>
+                            )}
+
+                            {/* CPS Responses */}
+                            {route.cpsResponses && route.cpsResponses.length > 0 && (
+                              <div className="rounded-lg border border-border/50 overflow-hidden">
+                                <button
+                                  onClick={() => toggleSection(`${route.id}_cps_responses`)}
+                                  className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/20 transition-colors"
+                                >
+                                  <div className="flex items-center gap-2">
+                                    <Shield className="h-4 w-4 text-primary" />
+                                    <span className="text-xs font-semibold text-foreground">CPS Responses ({route.cpsResponses.length})</span>
+                                  </div>
+                                  {expandedSections.has(`${route.id}_cps_responses`) ? (
+                                    <ChevronUp className="h-4 w-4 text-muted-foreground" />
+                                  ) : (
+                                    <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                                  )}
+                                </button>
+                                {expandedSections.has(`${route.id}_cps_responses`) && (
+                                  <div className="p-3 border-t border-border/50 space-y-3">
+                                    {route.cpsResponses.map((response) => (
+                                      <div key={response.id} className="p-3 rounded-lg border border-border/30 bg-muted/10">
+                                        <div className="space-y-2 text-xs">
+                                          <div>
+                                            <span className="font-semibold text-foreground">CPS Move: </span>
+                                            <span className="text-muted-foreground">{response.cpsMove}</span>
+                                          </div>
+                                          <div>
+                                            <span className="font-semibold text-foreground">Defence Counter: </span>
+                                            <span className="text-muted-foreground">{response.defenceCounter}</span>
+                                          </div>
+                                          <div>
+                                            <span className="font-semibold text-foreground">Resulting Pressure: </span>
+                                            <span className="text-muted-foreground">{response.resultingPressure}</span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    ))}
+                                  </div>
+                                )}
+                              </div>
+                            )}
+
+                            {/* Kill Switches */}
+                            {route.killSwitches && route.killSwitches.length > 0 && (
+                              <div className="rounded-lg border border-border/50 overflow-hidden">
+                                <button
+                                  onClick={() => toggleSection(`${route.id}_kill_switches`)}
+                                  className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/20 transition-colors"
+                                >
+                                  <div className="flex items-center gap-2">
+                                    <AlertCircleIcon className="h-4 w-4 text-red-500" />
+                                    <span className="text-xs font-semibold text-foreground">Kill Switches ({route.killSwitches.length})</span>
+                                  </div>
+                                  {expandedSections.has(`${route.id}_kill_switches`) ? (
+                                    <ChevronUp className="h-4 w-4 text-muted-foreground" />
+                                  ) : (
+                                    <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                                  )}
+                                </button>
+                                {expandedSections.has(`${route.id}_kill_switches`) && (
+                                  <div className="p-3 border-t border-border/50 space-y-2">
+                                    {route.killSwitches.map((ks) => (
+                                      <div key={ks.id} className="p-3 rounded-lg border border-red-500/20 bg-red-500/5">
+                                        <div className="text-xs">
+                                          <div className="font-semibold text-foreground mb-1">Evidence Event:</div>
+                                          <div className="text-muted-foreground mb-2">{ks.evidenceEvent}</div>
+                                          <div className="font-semibold text-foreground mb-1">Pivot Recommendation:</div>
+                                          <div className="text-muted-foreground">{ks.pivotRecommendation}</div>
+                                        </div>
+                                      </div>
+                                    ))}
+                                  </div>
+                                )}
+                              </div>
+                            )}
+
+                            {/* Pivot Plan */}
+                            {route.pivotPlan && (
+                              <div className="rounded-lg border border-border/50 overflow-hidden">
+                                <button
+                                  onClick={() => toggleSection(`${route.id}_pivot_plan`)}
+                                  className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/20 transition-colors"
+                                >
+                                  <div className="flex items-center gap-2">
+                                    <ArrowRight className="h-4 w-4 text-primary" />
+                                    <span className="text-xs font-semibold text-foreground">Pivot Plan</span>
+                                  </div>
+                                  {expandedSections.has(`${route.id}_pivot_plan`) ? (
+                                    <ChevronUp className="h-4 w-4 text-muted-foreground" />
+                                  ) : (
+                                    <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                                  )}
+                                </button>
+                                {expandedSections.has(`${route.id}_pivot_plan`) && (
+                                  <div className="p-3 border-t border-border/50 space-y-3">
+                                    <div className="text-xs">
+                                      <div className="font-semibold text-foreground mb-1">Pivot Triggers:</div>
+                                      <ul className="list-disc list-inside text-muted-foreground space-y-1 mb-3">
+                                        {route.pivotPlan.triggers.map((trigger, idx) => (
+                                          <li key={idx}>{trigger}</li>
+                                        ))}
+                                      </ul>
+                                      <div className="font-semibold text-foreground mb-1">Timing:</div>
+                                      <div className="text-muted-foreground mb-3">{route.pivotPlan.timing}</div>
+                                      <div className="grid grid-cols-2 gap-3">
+                                        <div>
+                                          <div className="font-semibold text-foreground mb-1">Stop:</div>
+                                          <ul className="list-disc list-inside text-muted-foreground space-y-1">
+                                            {route.pivotPlan.behaviourChange.stop.map((item, idx) => (
+                                              <li key={idx}>{item}</li>
+                                            ))}
+                                          </ul>
+                                        </div>
+                                        <div>
+                                          <div className="font-semibold text-foreground mb-1">Start:</div>
+                                          <ul className="list-disc list-inside text-muted-foreground space-y-1">
+                                            {route.pivotPlan.behaviourChange.start.map((item, idx) => (
+                                              <li key={idx}>{item}</li>
+                                            ))}
+                                          </ul>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        )}
 
                         {!isCommitted && (
                           <div className="mt-3 pt-3 border-t border-border/50">
@@ -592,6 +969,39 @@ export function StrategyCommitmentPanel({
                       </div>
                     );
                   })}
+                </div>
+              </div>
+            )}
+
+            {/* Output Artifacts - shown when strategy is committed AND analysis is available */}
+            {isCommitted && primary && artifacts.length > 0 && (
+              <div className="mt-6 pt-6 border-t border-border">
+                <div className="flex items-center gap-2 mb-3">
+                  <FileText className="h-4 w-4 text-primary" />
+                  <h3 className="text-sm font-semibold text-foreground">Output Artifacts</h3>
+                </div>
+                <p className="text-xs text-muted-foreground mb-3">
+                  Structured outputs for your committed strategy. Copy to clipboard for use in case management.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {artifacts.map((artifact, idx) => (
+                    <div key={idx} className="p-3 rounded-lg border border-border/50 bg-muted/10">
+                      <div className="flex items-start justify-between mb-2">
+                        <h4 className="text-xs font-semibold text-foreground">{artifact.title}</h4>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleCopyArtifact(artifact.content)}
+                          className="h-6 px-2"
+                        >
+                          <Copy className="h-3 w-3" />
+                        </Button>
+                      </div>
+                      <pre className="text-[10px] text-muted-foreground whitespace-pre-wrap max-h-32 overflow-y-auto">
+                        {artifact.content.substring(0, 200)}...
+                      </pre>
+                    </div>
+                  ))}
                 </div>
               </div>
             )}

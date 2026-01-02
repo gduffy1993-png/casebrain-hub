@@ -899,6 +899,45 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
                 </div>
               ))}
             </div>
+
+            {/* Tactical Plan (Next 7 days) - assembled from attack paths */}
+            {committedStrategy && strategyRoutes.length > 0 && (() => {
+              const selectedRoute = strategyRoutes.find((r: any) => r.type === committedStrategy.primary);
+              if (!selectedRoute?.attackPaths || selectedRoute.attackPaths.length === 0) return null;
+
+              // Assemble next 48 hours actions from all attack paths
+              const tacticalActions = selectedRoute.attackPaths
+                .flatMap((path: any) => path.next48HoursActions || [])
+                .filter((action: string, index: number, self: string[]) => self.indexOf(action) === index) // Remove duplicates
+                .slice(0, 10); // Limit to 10 actions
+
+              if (tacticalActions.length === 0) return null;
+
+              return (
+                <div className="mt-6 pt-6 border-t border-border">
+                  <div className="flex items-center gap-2 mb-3">
+                    <ArrowRight className="h-4 w-4 text-primary" />
+                    <h3 className="text-sm font-semibold text-foreground">Tactical Plan (Next 7 days)</h3>
+                  </div>
+                  <p className="text-xs text-muted-foreground mb-3">
+                    Action items assembled from attack paths for the committed strategy.
+                  </p>
+                  <div className="space-y-2">
+                    {tacticalActions.map((action: string, idx: number) => (
+                      <div
+                        key={idx}
+                        className="flex items-start gap-2 p-3 rounded-lg border border-border/50 bg-muted/20"
+                      >
+                        <div className="flex-shrink-0 w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
+                          <span className="text-xs font-semibold text-primary">{idx + 1}</span>
+                        </div>
+                        <p className="text-xs text-foreground flex-1">{action}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })()}
           </div>
         ) : Array.isArray(tacticalPlan) && tacticalPlan.length > 0 ? (
           <div className="space-y-3">

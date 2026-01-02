@@ -12,111 +12,15 @@ import { makeOk, makeGateFail, makeNotFound, makeError, diagnosticsFromContext, 
 import { buildCaseContext } from "@/lib/case-context";
 import { checkAnalysisGate } from "@/lib/analysis/text-gate";
 import { getSupabaseAdminClient } from "@/lib/supabase";
+import { generateStrategyRoute, generateArtifacts, generateEvidenceImpact } from "@/lib/criminal/strategy-fight-generators";
+import type { StrategyAnalysisData } from "@/lib/criminal/strategy-fight-types";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
 };
 
-type StrategyRoute = {
-  id: string;
-  type: "fight_charge" | "charge_reduction" | "outcome_management";
-  title: string;
-  rationale: string;
-  winConditions: string[];
-  risks: string[];
-  nextActions: string[];
-};
+type StrategyAnalysisResponse = StrategyAnalysisData;
 
-type StrategyAnalysisResponse = {
-  routes: StrategyRoute[];
-  selectedRoute?: string; // If strategy is committed, this is the primary_strategy
-};
-
-/**
- * Generate deterministic multi-route strategy analysis
- * Returns 3 routes: fight_charge, charge_reduction, outcome_management
- */
-function generateStrategyRoutes(): StrategyRoute[] {
-  return [
-    {
-      id: "fight_charge",
-      type: "fight_charge",
-      title: "Fight Charge (Full Trial Strategy)",
-      rationale: "Challenge the prosecution case at trial. Target acquittal or dismissal by attacking evidence, intent, and identification. This strategy requires strong disclosure position and evidence gaps to succeed.",
-      winConditions: [
-        "Prosecution fails to prove intent beyond reasonable doubt",
-        "Identification evidence is successfully challenged or excluded under Turnbull guidelines",
-        "Disclosure failures result in stay or material exclusion (only if failures persist after clear chase trail)",
-        "PACE breaches result in exclusion of interview or custody evidence",
-        "Evidence gaps prevent prosecution from establishing case to answer",
-      ],
-      risks: [
-        "If disclosure gaps are filled, prosecution case may strengthen",
-        "Identification evidence may be strong and withstand challenge",
-        "Full trial preparation required (time and cost)",
-        "Risk of conviction if prosecution case is strong",
-      ],
-      nextActions: [
-        "Request full disclosure including CCTV, MG6 schedules, and unused material",
-        "Review all evidence for identification reliability under Turnbull guidelines",
-        "Assess PACE compliance and potential exclusion of interview/custody evidence",
-        "Prepare disclosure requests for missing material (MG6C, CCTV continuity, VIPER pack)",
-        "Draft abuse of process application if disclosure failures persist after chase",
-      ],
-    },
-    {
-      id: "charge_reduction",
-      type: "charge_reduction",
-      title: "Charge Reduction (s18 → s20)",
-      rationale: "Accept harm occurred but challenge intent threshold. Target reduction from s18 (specific intent) to s20 (recklessness) or lesser offence. This strategy focuses on medical evidence, sequence/duration, and intent distinction.",
-      winConditions: [
-        "Prosecution cannot articulate s18 intent beyond reasonable doubt",
-        "Medical evidence shows injuries consistent with single/brief blow (not sustained/targeted)",
-        "CCTV/sequence evidence shows no prolonged or targeted conduct",
-        "Weapon use lacks duration/targeting to prove specific intent",
-        "Court accepts proportional downgrade to s20 under case management",
-      ],
-      risks: [
-        "Medical evidence may support sustained/targeted conduct",
-        "CCTV/sequence may show prolonged attack supporting intent",
-        "Prosecution may maintain s18 charge if intent is strong",
-        "Court may decline downgrade if evidence supports specific intent",
-      ],
-      nextActions: [
-        "Request disclosure focusing on medical evidence and circumstances of incident",
-        "Review medical reports to assess whether injuries support s18 (specific intent) or s20 (recklessness)",
-        "Analyse CCTV/sequence evidence for duration and targeting (key to intent distinction)",
-        "Gather evidence supporting recklessness rather than specific intent",
-        "Prepare case for charge reduction negotiation (s18 → s20) before PTPH",
-      ],
-    },
-    {
-      id: "outcome_management",
-      type: "outcome_management",
-      title: "Outcome Management (Plea / Mitigation)",
-      rationale: "Focus on sentencing position and mitigation. Target reduced sentence or non-custodial outcome. This strategy accepts conviction risk but minimizes sentence through early plea, mitigation, and character evidence.",
-      winConditions: [
-        "Mitigation evidence reduces sentence length",
-        "Character references and personal circumstances support non-custodial outcome",
-        "Early plea credit and cooperation reduce sentence",
-        "Sentencing guidelines applied favourably",
-      ],
-      risks: [
-        "Mitigation may fail to reduce sentence significantly",
-        "Sentencing guidelines may require custodial sentence",
-        "Character evidence may be insufficient or contradicted",
-        "Court may impose maximum or near-maximum sentence",
-      ],
-      nextActions: [
-        "Request disclosure to assess prosecution case strength and realistic prospects",
-        "Consider early guilty plea if case is strong (maximum sentence reduction)",
-        "Prepare comprehensive mitigation package including character references",
-        "Gather personal circumstances evidence (employment, family, health, remorse)",
-        "Review sentencing guidelines and identify factors supporting non-custodial outcome",
-      ],
-    },
-  ];
-}
 
 export async function GET(request: NextRequest, { params }: RouteParams) {
   return await withPaywall("analysis", async () => {
@@ -287,8 +191,49 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         .limit(1)
         .maybeSingle();
 
-      // Generate deterministic routes
-      const routes = generateStrategyRoutes();
+      // Get case facts for artifacts
+      const { data: caseData } = await supabase
+        .from("cases")
+        .select("title")
+        .eq("id", caseId)
+        .single();
+
+      // Generate routes with all layers using new generators
+      const routeTypes: Array<"fight_charge" | "charge_reduction" | "outcome_management"> = [
+        "fight_charge",
+        "charge_reduction",
+        "outcome_management",
+      ];
+
+      const routes = routeTypes.map((routeType) =>
+        generateStrategyRoute(
+          routeType,
+          canGenerateAnalysis,
+          {
+            docCount: context.diagnostics.docCount,
+            rawCharsTotal: context.diagnostics.rawCharsTotal,
+            suspectedScanned: context.diagnostics.suspectedScanned,
+            textThin: context.diagnostics.reasonCodes.includes("TEXT_THIN"),
+          },
+          {
+            caseTitle: caseData?.title || undefined,
+          }
+        )
+      );
+
+      // Generate artifacts for committed route (if any)
+      const artifacts = commitment?.primary_strategy
+        ? generateArtifacts(
+            commitment.primary_strategy as "fight_charge" | "charge_reduction" | "outcome_management",
+            canGenerateAnalysis,
+            {
+              caseTitle: caseData?.title || undefined,
+            }
+          )
+        : undefined;
+
+      // Generate evidence impact for all routes
+      const evidenceImpact = routeTypes.flatMap((routeType) => generateEvidenceImpact(routeType));
 
       // Build response
       const diagnostics = diagnosticsFromContext(caseId, context);
@@ -299,6 +244,9 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       const response: StrategyAnalysisResponse = {
         routes,
         selectedRoute: commitment?.primary_strategy || undefined,
+        artifacts,
+        evidenceImpact,
+        canGenerateAnalysis,
       };
 
       return NextResponse.json({
