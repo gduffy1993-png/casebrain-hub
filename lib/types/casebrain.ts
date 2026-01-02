@@ -246,7 +246,7 @@ export type EvidenceCategory =
   | "HOUSING"
   | "PROCEDURE";
 
-export type EvidenceStatus = "MISSING" | "REQUESTED" | "RECEIVED";
+export type EvidenceStatus = "MISSING" | "REQUESTED" | "RECEIVED" | "UNKNOWN" | "UNASSESSED";
 
 export type MissingEvidenceItem = {
   id: string;

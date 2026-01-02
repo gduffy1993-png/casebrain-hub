@@ -13,6 +13,8 @@ type BailApplication = {
   conditionsProposed: string[];
   authorities: string[];
   readyToUseApplication: string;
+  evidenceBasis?: string[];
+  solicitorInputRequired?: string[];
 };
 
 type BailApplicationPanelProps = {
@@ -159,6 +161,36 @@ export function BailApplicationPanel({ caseId }: BailApplicationPanelProps) {
           ))}
         </div>
       </div>
+
+      {/* Evidence Basis */}
+      {application.evidenceBasis && application.evidenceBasis.length > 0 && (
+        <div className="mb-4 p-3 rounded-lg border border-green-500/20 bg-green-500/5">
+          <h3 className="text-sm font-semibold mb-2 text-green-400">Evidence Basis</h3>
+          <ul className="space-y-1">
+            {application.evidenceBasis.map((item, idx) => (
+              <li key={idx} className="text-xs text-muted-foreground flex items-start gap-2">
+                <span className="text-green-400">✓</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {/* Solicitor Input Required */}
+      {application.solicitorInputRequired && application.solicitorInputRequired.length > 0 && (
+        <div className="mb-4 p-3 rounded-lg border border-amber-500/20 bg-amber-500/5">
+          <h3 className="text-sm font-semibold mb-2 text-amber-400">Solicitor Input Required</h3>
+          <ul className="space-y-1">
+            {application.solicitorInputRequired.map((item, idx) => (
+              <li key={idx} className="text-xs text-muted-foreground flex items-start gap-2">
+                <span className="text-amber-400">⚠</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       {/* Ready-to-Use Application */}
       <div className="p-4 bg-primary/10 border border-primary/30 rounded">

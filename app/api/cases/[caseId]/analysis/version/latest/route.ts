@@ -68,10 +68,45 @@ export async function GET(
         missing_evidence: [],
         document_ids: [],
         move_sequence: null,
+        has_analysis_version: false,
+        analysis_mode: "none" as const,
       });
     }
 
-    return NextResponse.json(version);
+    // Determine analysis mode based on document quality and extraction completeness
+    // Get document count and diagnostics to determine analysis mode
+    const { data: documents } = await supabase
+      .from("documents")
+      .select("id, raw_text, extracted_json")
+      .eq("case_id", caseId)
+      .eq("org_id", orgId);
+
+    const docCount = documents?.length || 0;
+    const rawCharsTotal = documents?.reduce((sum, d) => {
+      const text = d.raw_text || "";
+      const json = d.extracted_json ? JSON.stringify(d.extracted_json) : "";
+      return sum + text.length + json.length;
+    }, 0) || 0;
+
+    // Check for text thin indicators (matches case-context.ts logic)
+    // If gating signals indicate thin extraction, mark as "preview"
+    const textThin = docCount > 0 && rawCharsTotal < 1000;
+    const analysisMode: "complete" | "preview" | "none" = 
+      textThin || rawCharsTotal < 1000 || docCount < 2
+        ? "preview"
+        : "complete";
+
+    // Ensure missing_evidence is always an array (fail-safe)
+    const safeVersion = {
+      ...version,
+      missing_evidence: Array.isArray(version.missing_evidence) 
+        ? version.missing_evidence 
+        : [],
+      has_analysis_version: true,
+      analysis_mode: analysisMode,
+    };
+
+    return NextResponse.json(safeVersion);
   } catch (error) {
     console.error("[latest-version] Error:", error);
     return NextResponse.json(

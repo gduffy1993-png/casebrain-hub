@@ -396,7 +396,7 @@ function buildKeyFactsList(
 
 function buildRisksList(
   riskFlags: Array<{ severity: string; description: string; resolved: boolean }>,
-  missingEvidence: Array<{ id: string; caseId: string; category: "LIABILITY" | "CAUSATION" | "QUANTUM" | "PROCEDURE" | "HOUSING"; priority: "LOW" | "MEDIUM" | "HIGH" | "CRITICAL"; label: string; reason: string; status: "MISSING" | "REQUESTED" | "RECEIVED" }>,
+  missingEvidence: Array<{ id: string; caseId: string; category: "LIABILITY" | "CAUSATION" | "QUANTUM" | "PROCEDURE" | "HOUSING"; priority: "LOW" | "MEDIUM" | "HIGH" | "CRITICAL"; label: string; reason: string; status: "MISSING" | "REQUESTED" | "RECEIVED" | "UNKNOWN" | "UNASSESSED" }>,
 ): string[] {
   const risks: string[] = [];
 
@@ -419,7 +419,7 @@ async function buildNextActions(
   caseId: string,
   caseRecord: { practice_area?: string | null; created_at?: string },
   riskFlags: Array<{ severity: string; flag_type: string; description: string; resolved: boolean }>,
-  missingEvidence: Array<{ id: string; caseId: string; category: "LIABILITY" | "CAUSATION" | "QUANTUM" | "PROCEDURE" | "HOUSING"; priority: "LOW" | "MEDIUM" | "HIGH" | "CRITICAL"; label: string; reason: string; status: "MISSING" | "REQUESTED" | "RECEIVED"; suggestedAction?: string }>,
+  missingEvidence: Array<{ id: string; caseId: string; category: "LIABILITY" | "CAUSATION" | "QUANTUM" | "PROCEDURE" | "HOUSING"; priority: "LOW" | "MEDIUM" | "HIGH" | "CRITICAL"; label: string; reason: string; status: "MISSING" | "REQUESTED" | "RECEIVED" | "UNKNOWN" | "UNASSESSED"; suggestedAction?: string }>,
 ): Promise<string[]> {
   const { calculateAllNextSteps } = await import("./next-step");
   const { calculateLimitation } = await import("./core/limitation");

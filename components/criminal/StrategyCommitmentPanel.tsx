@@ -770,6 +770,11 @@ export function StrategyCommitmentPanel({
                       } border`}>
                         {recommendation.confidence} Confidence
                       </Badge>
+                      {isGated && recommendation.confidence === "LOW" && (
+                        <Badge variant="outline" className="text-xs text-muted-foreground">
+                          Confidence capped (analysis gated / thin evidence)
+                        </Badge>
+                      )}
                     </div>
                     {/* Residual Attacks Banner */}
                     {strategyRoutes.length > 0 && (() => {
@@ -789,19 +794,19 @@ export function StrategyCommitmentPanel({
                               basisParts.push(`${evidenceBackedCount} evidence-backed`);
                             }
                             if (hypothesisCount > 0) {
-                              basisParts.push(`${hypothesisCount} hypothesis`);
+                              basisParts.push(`${hypothesisCount} ${hypothesisCount === 1 ? "hypothesis" : "hypotheses"}`);
                             }
                             parts.push(`(${basisParts.join(", ")})`);
                           }
                         }
                         if (exhaustedCount > 0) {
-                          parts.push(`Exhausted routes: ${exhaustedCount}/${totalRoutes}`);
+                          parts.push(`Routes exhausted: ${exhaustedCount}/${totalRoutes}`);
                         }
                         
                         return (
                           <div className="mb-3 p-2 rounded-lg border border-border/50 bg-muted/20">
                             <p className="text-xs text-foreground">
-                              {parts.join(" • ")}
+                              {parts.join(" · ")}
                             </p>
                           </div>
                         );
@@ -1392,63 +1397,6 @@ export function StrategyCommitmentPanel({
                                                   <p className="text-xs text-muted-foreground">{angle.stopIf}</p>
                                                 </div>
                                               </div>
-                                            </div>
-                                          ))}
-                                        </div>
-                                      </div>
-                                    )}
-
-                                    {/* Last Resort Leverage */}
-                                    {route.residual.lastResortLeverage.plan.length > 0 && (
-                                      <div>
-                                        <p className="text-xs font-semibold text-foreground mb-2">
-                                          Last-Resort Leverage Map
-                                        </p>
-                                        {route.residual.lastResortLeverage.triggers.length > 0 && (
-                                          <div className="mb-3">
-                                            <p className="text-xs font-semibold text-foreground mb-1">Triggers:</p>
-                                            <ul className="text-xs text-muted-foreground space-y-1 list-disc list-inside">
-                                              {route.residual.lastResortLeverage.triggers.map((trigger, idx) => (
-                                                <li key={idx}>{trigger}</li>
-                                              ))}
-                                            </ul>
-                                          </div>
-                                        )}
-                                        <div className="space-y-2">
-                                          {route.residual.lastResortLeverage.plan.map((plan, idx) => (
-                                            <div
-                                              key={idx}
-                                              className="p-3 rounded border border-border/30 bg-muted/20 space-y-2"
-                                            >
-                                              <div className="flex items-center justify-between">
-                                                <p className="text-xs font-semibold text-foreground">
-                                                  {plan.title}
-                                                </p>
-                                                <Badge
-                                                  variant={
-                                                    plan.judicialOptics === "ATTRACTIVE"
-                                                      ? "default"
-                                                      : plan.judicialOptics === "RISKY"
-                                                        ? "danger"
-                                                        : "secondary"
-                                                  }
-                                                  className="text-xs"
-                                                >
-                                                  {plan.judicialOptics === "ATTRACTIVE"
-                                                    ? "🟢 Attractive"
-                                                    : plan.judicialOptics === "RISKY"
-                                                      ? "🔴 Risky"
-                                                      : "🟠 Neutral"}
-                                                </Badge>
-                                              </div>
-                                              <p className="text-xs text-muted-foreground">
-                                                Timing: {plan.timing.replace("_", " ").toUpperCase()}
-                                              </p>
-                                              <ul className="text-xs text-muted-foreground space-y-1 list-disc list-inside">
-                                                {plan.actions.map((action, actionIdx) => (
-                                                  <li key={actionIdx}>{action}</li>
-                                                ))}
-                                              </ul>
                                             </div>
                                           ))}
                                         </div>

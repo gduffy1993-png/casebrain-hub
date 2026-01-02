@@ -17,6 +17,7 @@ type Charge = {
   status: string;
   extracted?: boolean;
   confidence?: number | null;
+  aliases?: string[]; // Alternative offence names for same charge
 };
 
 type ChargesPanelProps = {
@@ -40,21 +41,47 @@ export function ChargesPanel({ caseId }: ChargesPanelProps) {
           const chargesData: Charge[] = result.data?.charges || result.charges || [];
 
           // Dedupe by offence + section, prefer first (assume highest confidence order)
+          // Also build aliases map for alternative offence names (e.g., s18 vs s20)
           const dedupedMap = new Map<string, Charge>();
+          const aliasesMap = new Map<string, string[]>();
+          
           chargesData.forEach((c) => {
-            const key = `${c.offence || ""}:${c.section || ""}`.toLowerCase().trim();
+            // Normalize section format (s18, s.18, section 18 -> s18)
+            const normalizeSection = (s: string | null): string => {
+              if (!s) return "";
+              return s.replace(/^section\s+/i, "").replace(/^s\.?\s*/i, "s").toLowerCase().trim();
+            };
+            
+            const normalizedSection = normalizeSection(c.section);
+            const key = `${c.offence || ""}:${normalizedSection}`.toLowerCase().trim();
+            
             if (!dedupedMap.has(key)) {
               dedupedMap.set(key, c);
+            } else {
+              // This is a duplicate - add to aliases
+              const existing = dedupedMap.get(key)!;
+              const existingAliases = aliasesMap.get(key) || [];
+              // Add current offence as alias if different
+              if (c.offence && c.offence !== existing.offence) {
+                if (!existingAliases.includes(c.offence)) {
+                  aliasesMap.set(key, [...existingAliases, c.offence]);
+                }
+              }
             }
           });
 
-          // Clean location junk text
-          const cleaned = Array.from(dedupedMap.values()).map((c) => {
+          // Clean location junk text and add aliases
+          const cleaned = Array.from(dedupedMap.entries()).map(([key, c]) => {
             const loc = c.location || "";
             const cleanedLocation = loc.includes("precision") && loc.toLowerCase().includes("not disclosed")
               ? "Not disclosed"
               : loc.replace(/precision\)\.?\s*Not disclosed/i, "Not disclosed");
-            return { ...c, location: cleanedLocation };
+            const aliases = aliasesMap.get(key) || [];
+            return { 
+              ...c, 
+              location: cleanedLocation,
+              aliases: aliases.filter(a => a !== c.offence), // Exclude primary offence from aliases
+            };
           });
 
           setCharges(cleaned);
@@ -207,7 +234,14 @@ export function ChargesPanel({ caseId }: ChargesPanelProps) {
                   <div key={charge.id} className="p-3 rounded-lg border border-border bg-muted/30">
                     <div className="flex items-start justify-between gap-2 mb-1">
                       <div className="flex-1">
-                        <h4 className="font-semibold text-sm">{charge.offence}</h4>
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <h4 className="font-semibold text-sm">{charge.offence}</h4>
+                          {charge.aliases && charge.aliases.length > 0 && (
+                            <Badge variant="outline" className="text-xs">
+                              Also: {charge.aliases.join(", ")}
+                            </Badge>
+                          )}
+                        </div>
                         {charge.section && (
                           <p className="text-xs text-muted-foreground mt-1">{charge.section}</p>
                         )}

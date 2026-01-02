@@ -372,6 +372,13 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
   const useStrategyAnalysis = (data as any)?.__useStrategyAnalysis === true;
   const strategyRoutes = useStrategyAnalysis && Array.isArray((data as any)?.routes) ? (data as any).routes : null;
   const selectedRoute = useStrategyAnalysis ? (data as any)?.selectedRoute : null;
+  
+  // FIX: Check if strategy-analysis data exists (routes or recommendation)
+  // This determines if we show "pending" vs "Preview mode" vs "Complete"
+  const hasStrategyAnalysisData = 
+    (useStrategyAnalysis && strategyRoutes && strategyRoutes.length > 0) ||
+    (payload && (payload.routes?.length > 0 || payload.recommendation)) ||
+    (data && ((data as any).routes?.length > 0 || (data as any).recommendation));
 
   // FIX: Filter angles by committed strategy (Strategy-Specific Angle Filtering)
   // Use fallback list so we don't filter empty arrays and accidentally make it empty
@@ -483,10 +490,10 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
   // If gated BUT strategy exists, continue to render (banner will be shown inline)
 
   // FIX: If no strategy data exists, show appropriate message based on document count and commitment
-  if (!hasStrategyData) {
+  if (!hasStrategyData && !hasStrategyAnalysisData) {
     // If commitment exists, don't show "pending" - show committed message instead
     if (committedStrategy) {
-      // This case is handled below (line 452) - render minimal plan based on committed strategy
+      // This case is handled below (line 518) - render minimal plan based on committed strategy
       // Fall through to that logic
     } else if (documentCount === 0) {
       return (
@@ -498,7 +505,7 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
         </Card>
       );
     } else {
-      // Documents exist but no strategy generated yet AND no commitment exists
+      // No strategy data at all
       return (
         <Card className="p-6">
           <div className="text-center text-muted-foreground">
@@ -835,6 +842,22 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
             <div>payload.recommendedStrategy exists: {payload?.recommendedStrategy ? "true" : "false"}</div>
             <div>payload.criticalAngles length: {Array.isArray(payload?.criticalAngles) ? payload.criticalAngles.length : "N/A"}</div>
             <div>payload.allAngles length: {Array.isArray(payload?.allAngles) ? payload.allAngles.length : "N/A"}</div>
+          </div>
+        )}
+
+        {/* Analysis Status Banner */}
+        {hasStrategyAnalysisData && (
+          <div className="mb-4 p-2 rounded-lg border border-border/50 bg-muted/20">
+            <p className="text-xs text-foreground">
+              <span className="font-semibold">
+                {gatedResponse ? "Analysis: Preview mode" : "Analysis: Complete"}
+              </span>
+              {gatedResponse && (
+                <span className="text-muted-foreground ml-2">
+                  (Using procedural templates - evidence-backed analysis pending disclosure)
+                </span>
+              )}
+            </p>
           </div>
         )}
 
