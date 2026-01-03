@@ -405,10 +405,13 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
   
   // FIX: Check if strategy-analysis data exists (routes or recommendation)
   // This determines if we show "pending" vs "Preview mode" vs "Complete"
+  // Must check ALL possible sources of strategy data in state
   const hasStrategyAnalysisData = 
     (useStrategyAnalysis && strategyRoutes && strategyRoutes.length > 0) ||
     (payload && (payload.routes?.length > 0 || payload.recommendation)) ||
-    (data && ((data as any).routes?.length > 0 || (data as any).recommendation));
+    (data && ((data as any).routes?.length > 0 || (data as any).recommendation)) ||
+    hasStrategy(data) || // Check if data has any strategy indicators
+    hasStrategy(payload); // Check if payload has any strategy indicators
 
   // FIX: Filter angles by committed strategy (Strategy-Specific Angle Filtering)
   // Use fallback list so we don't filter empty arrays and accidentally make it empty
@@ -877,10 +880,16 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
 
         {/* Analysis Status Banner */}
         {(() => {
-          // RULE: Check for presence of strategyAnalysisData FIRST
-          // If ANY strategy routes or recommendations are present, NEVER show error/unavailable/not run
-          if (hasStrategyAnalysisData) {
-            // We have strategy data - show status based on analysis version info
+          // RULE: Banner state must be derived from visible data first, not fetch status
+          // If ANY strategy data is present in state, NEVER show "error", "unavailable", or "not run"
+          // Only show error when no strategy data exists at all and the fetch fails
+          
+          // Check for ANY strategy data in state (comprehensive check)
+          const hasAnyStrategyData = hasStrategyAnalysisData || hasStrategyData || committedStrategy;
+          
+          if (hasAnyStrategyData) {
+            // We have strategy data visible - derive banner from analysis version info
+            // Never show error/unavailable/not run when data is visible
             if (!analysisVersionInfo) {
               // Version fetch failed but data exists - show Preview as conservative default
               return (
@@ -927,9 +936,24 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
             );
           }
           
-          // No strategy data - show status based on analysis version info
+          // No strategy data in state - check if fetch failed
+          if (error && !loading) {
+            // Fetch failed AND no strategy data exists - show error
+            return (
+              <div className="mb-4 p-2 rounded-lg border border-red-500/20 bg-red-500/5">
+                <p className="text-xs text-foreground">
+                  <span className="font-semibold">Strategy analysis temporarily unavailable</span>
+                  <span className="text-muted-foreground ml-2">
+                    ({error})
+                  </span>
+                </p>
+              </div>
+            );
+          }
+          
+          // No strategy data and no error yet - show status based on analysis version info
           if (!analysisVersionInfo) {
-            // Still loading or fetch failed - don't show banner yet
+            // Still loading - don't show banner yet
             return null;
           }
           
