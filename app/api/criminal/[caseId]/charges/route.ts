@@ -121,20 +121,20 @@ export async function GET(_request: Request, { params }: RouteParams) {
           }));
         } else {
           // Conservative fallback: parse ONLY explicit statute/section strings from document text
-          // Simple regex patterns for common criminal charges
-          const chargePatterns: Array<{ pattern: RegExp; offence: string; section: string | null }> = [
-            // OAPA 1861 patterns
+          // RULE: A valid extracted charge MUST include explicit section number (e.g. s18, s.20, section 18)
+          // Statute-only mentions (e.g. "Offences Against the Person Act 1861") MUST NOT create a charge row
+          const chargePatterns: Array<{ pattern: RegExp; offence: string; section: string }> = [
+            // OAPA 1861 patterns - ONLY patterns with explicit section numbers
             { pattern: /\bs\.?\s*18\b/i, offence: "Wounding with intent (OAPA 1861)", section: "s18" },
             { pattern: /\bsection\s+18\b/i, offence: "Wounding with intent (OAPA 1861)", section: "s18" },
             { pattern: /\bs\.?\s*20\b/i, offence: "Unlawful wounding (OAPA 1861)", section: "s20" },
             { pattern: /\bsection\s+20\b/i, offence: "Unlawful wounding (OAPA 1861)", section: "s20" },
-            { pattern: /\bOAPA\s*1861\b/i, offence: "Offences Against the Person Act 1861", section: null },
-            // Theft Act patterns
+            // Theft Act patterns - ONLY patterns with explicit section numbers
             { pattern: /\bs\.?\s*1\b.*\btheft\b/i, offence: "Theft (Theft Act 1968)", section: "s1" },
-            { pattern: /\btheft\s+act\s+1968\b/i, offence: "Theft (Theft Act 1968)", section: null },
+            { pattern: /\bsection\s+1\b.*\btheft\b/i, offence: "Theft (Theft Act 1968)", section: "s1" },
           ];
 
-          const foundCharges: Array<{ offence: string; section: string | null; altSection?: string }> = [];
+          const foundCharges: Array<{ offence: string; section: string; altSection?: string }> = [];
           
           for (const { pattern, offence, section } of chargePatterns) {
             if (pattern.test(combinedText)) {
@@ -152,6 +152,8 @@ export async function GET(_request: Request, { params }: RouteParams) {
             }
           }
 
+          // RULE: Only create charges if explicit section numbers found
+          // All fallback charges must remain: source: AUTO_EXTRACTED, confidence: LOW, status: pending
           if (foundCharges.length > 0) {
             charges = foundCharges.map((c, idx) => ({
               id: `fallback-${idx}`,
@@ -163,7 +165,7 @@ export async function GET(_request: Request, { params }: RouteParams) {
               details: null,
               status: "pending",
               extracted: true,
-              confidence: 0.3, // Low confidence for fallback extraction
+              confidence: 0.3, // LOW confidence for fallback extraction
               source: "AUTO_EXTRACTED", // Flag for fallback
             }));
           }

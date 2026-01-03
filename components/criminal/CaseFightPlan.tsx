@@ -877,7 +877,57 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
 
         {/* Analysis Status Banner */}
         {(() => {
-          // Determine status based on analysis version info
+          // RULE: Check for presence of strategyAnalysisData FIRST
+          // If ANY strategy routes or recommendations are present, NEVER show error/unavailable/not run
+          if (hasStrategyAnalysisData) {
+            // We have strategy data - show status based on analysis version info
+            if (!analysisVersionInfo) {
+              // Version fetch failed but data exists - show Preview as conservative default
+              return (
+                <div className="mb-4 p-2 rounded-lg border border-amber-500/20 bg-amber-500/5">
+                  <p className="text-xs text-foreground">
+                    <span className="font-semibold">Strategy analysis: Preview (gated)</span>
+                  </p>
+                </div>
+              );
+            }
+            
+            const { has_analysis_version, analysis_mode } = analysisVersionInfo;
+            
+            if (analysis_mode === "preview") {
+              return (
+                <div className="mb-4 p-2 rounded-lg border border-amber-500/20 bg-amber-500/5">
+                  <p className="text-xs text-foreground">
+                    <span className="font-semibold">Strategy analysis: Preview (gated)</span>
+                    <span className="text-muted-foreground ml-2">
+                      (Using procedural templates - evidence-backed analysis pending disclosure)
+                    </span>
+                  </p>
+                </div>
+              );
+            }
+            
+            if (analysis_mode === "complete") {
+              return (
+                <div className="mb-4 p-2 rounded-lg border border-border/50 bg-muted/20">
+                  <p className="text-xs text-foreground">
+                    <span className="font-semibold">Strategy analysis: Complete</span>
+                  </p>
+                </div>
+              );
+            }
+            
+            // Fallback: has version but unknown mode - show Preview
+            return (
+              <div className="mb-4 p-2 rounded-lg border border-amber-500/20 bg-amber-500/5">
+                <p className="text-xs text-foreground">
+                  <span className="font-semibold">Strategy analysis: Preview (gated)</span>
+                </p>
+              </div>
+            );
+          }
+          
+          // No strategy data - show status based on analysis version info
           if (!analysisVersionInfo) {
             // Still loading or fetch failed - don't show banner yet
             return null;
@@ -899,10 +949,7 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
             return (
               <div className="mb-4 p-2 rounded-lg border border-amber-500/20 bg-amber-500/5">
                 <p className="text-xs text-foreground">
-                  <span className="font-semibold">Strategy analysis: Preview (gated / thin extraction)</span>
-                  <span className="text-muted-foreground ml-2">
-                    (Using procedural templates - evidence-backed analysis pending disclosure)
-                  </span>
+                  <span className="font-semibold">Strategy analysis: Preview (gated)</span>
                 </p>
               </div>
             );

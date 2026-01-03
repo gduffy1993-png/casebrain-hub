@@ -263,43 +263,47 @@ export function MissingEvidencePanel({ caseId, items: propItems }: MissingEviden
   }, [caseId]);
 
   // Empty state: distinguish between analysis exists vs not
+  // RULE: If analysis_mode !== "complete", do NOT attempt to render missing_evidence items
+  // Always render an explanatory empty state
   if (!safeLocalItems.length && !hasDisclosureGaps) {
-    if (analysisMode === "none") {
-      // No analysis version or analysis not run
-      return (
-        <Card
-          title="Evidence Checklist"
-          description="Required evidence for this case."
-        >
-          <div className="flex items-center gap-3 rounded-xl bg-amber-500/10 p-4">
-            <AlertTriangle className="h-5 w-5 text-amber-600" />
-            <div>
-              <p className="text-sm font-medium text-foreground">
-                Missing evidence cannot be assessed yet — run Full Analysis.
-              </p>
+    if (analysisMode !== "complete") {
+      // Not complete - show explanatory empty state based on mode
+      if (analysisMode === "preview") {
+        return (
+          <Card
+            title="Evidence Checklist"
+            description="Required evidence for this case."
+          >
+            <div className="flex items-center gap-3 rounded-xl bg-amber-500/10 p-4">
+              <AlertTriangle className="h-5 w-5 text-amber-600" />
+              <div>
+                <p className="text-sm font-medium text-foreground">
+                  Preview mode — run Full Analysis to enable evidence gap detection.
+                </p>
+              </div>
             </div>
-          </div>
-        </Card>
-      );
-    } else if (analysisMode === "preview") {
-      // Preview mode - gated/thin extraction
-      return (
-        <Card
-          title="Evidence Checklist"
-          description="Required evidence for this case."
-        >
-          <div className="flex items-center gap-3 rounded-xl bg-amber-500/10 p-4">
-            <AlertTriangle className="h-5 w-5 text-amber-600" />
-            <div>
-              <p className="text-sm font-medium text-foreground">
-                Preview mode — run Full Analysis to enable evidence gap detection.
-              </p>
+          </Card>
+        );
+      } else {
+        // analysisMode === "none"
+        return (
+          <Card
+            title="Evidence Checklist"
+            description="Required evidence for this case."
+          >
+            <div className="flex items-center gap-3 rounded-xl bg-amber-500/10 p-4">
+              <AlertTriangle className="h-5 w-5 text-amber-600" />
+              <div>
+                <p className="text-sm font-medium text-foreground">
+                  Analysis not run yet.
+                </p>
+              </div>
             </div>
-          </div>
-        </Card>
-      );
-    } else if (hasAnalysisVersion && analysisMode === "complete") {
-      // Analysis exists and missing_evidence is empty
+          </Card>
+        );
+      }
+    } else {
+      // analysisMode === "complete" - analysis exists and missing_evidence is empty
       return (
         <Card
           title="Evidence Checklist"
@@ -310,23 +314,6 @@ export function MissingEvidencePanel({ caseId, items: propItems }: MissingEviden
             <div>
               <p className="text-sm font-medium text-foreground">
                 No missing evidence flagged in this analysis (may change with new documents).
-              </p>
-            </div>
-          </div>
-        </Card>
-      );
-    } else {
-      // Fallback
-      return (
-        <Card
-          title="Evidence Checklist"
-          description="Required evidence for this case."
-        >
-          <div className="flex items-center gap-3 rounded-xl bg-amber-500/10 p-4">
-            <AlertTriangle className="h-5 w-5 text-amber-600" />
-            <div>
-              <p className="text-sm font-medium text-foreground">
-                Missing evidence cannot be assessed yet — run Full Analysis.
               </p>
             </div>
           </div>
