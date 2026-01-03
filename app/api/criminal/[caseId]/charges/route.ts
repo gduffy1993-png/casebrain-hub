@@ -97,27 +97,77 @@ export async function GET(_request: Request, { params }: RouteParams) {
         }
       }
 
-      if (combinedText.length > 500) {
-        // Extract charges from raw text
+      if (combinedText.length > 100) {
+        // Try structured extraction first
         const meta = extractCriminalCaseMeta({
           text: combinedText,
           documentName: "Combined Bundle",
           now: new Date(),
         });
 
-        // Convert extracted charges to response format
-        charges = meta.charges.map((c, idx) => ({
-          id: `extracted-${idx}`,
-          offence: c.offence,
-          section: c.statute,
-          chargeDate: c.chargeDate,
-          location: c.location,
-          value: null,
-          details: null,
-          status: c.status,
-          extracted: true, // Flag to indicate this was extracted, not from DB
-          confidence: c.confidence, // Include confidence score (0-1)
-        }));
+        if (meta.charges.length > 0) {
+          // Convert extracted charges to response format
+          charges = meta.charges.map((c, idx) => ({
+            id: `extracted-${idx}`,
+            offence: c.offence,
+            section: c.statute,
+            chargeDate: c.chargeDate,
+            location: c.location,
+            value: null,
+            details: null,
+            status: c.status || "pending",
+            extracted: true,
+            confidence: c.confidence,
+          }));
+        } else {
+          // Conservative fallback: parse ONLY explicit statute/section strings from document text
+          // Simple regex patterns for common criminal charges
+          const chargePatterns: Array<{ pattern: RegExp; offence: string; section: string | null }> = [
+            // OAPA 1861 patterns
+            { pattern: /\bs\.?\s*18\b/i, offence: "Wounding with intent (OAPA 1861)", section: "s18" },
+            { pattern: /\bsection\s+18\b/i, offence: "Wounding with intent (OAPA 1861)", section: "s18" },
+            { pattern: /\bs\.?\s*20\b/i, offence: "Unlawful wounding (OAPA 1861)", section: "s20" },
+            { pattern: /\bsection\s+20\b/i, offence: "Unlawful wounding (OAPA 1861)", section: "s20" },
+            { pattern: /\bOAPA\s*1861\b/i, offence: "Offences Against the Person Act 1861", section: null },
+            // Theft Act patterns
+            { pattern: /\bs\.?\s*1\b.*\btheft\b/i, offence: "Theft (Theft Act 1968)", section: "s1" },
+            { pattern: /\btheft\s+act\s+1968\b/i, offence: "Theft (Theft Act 1968)", section: null },
+          ];
+
+          const foundCharges: Array<{ offence: string; section: string | null; altSection?: string }> = [];
+          
+          for (const { pattern, offence, section } of chargePatterns) {
+            if (pattern.test(combinedText)) {
+              // Check for "Alt:" variants (e.g., "s18 (Alt: s.20)")
+              const altMatch = combinedText.match(/\b(?:alt|alternative):\s*(?:s\.?|section)\s*(\d+)\b/i);
+              const altSection = altMatch ? `s${altMatch[1]}` : undefined;
+              
+              // Avoid duplicates
+              const existing = foundCharges.find(c => 
+                c.offence === offence && c.section === section
+              );
+              if (!existing) {
+                foundCharges.push({ offence, section, altSection });
+              }
+            }
+          }
+
+          if (foundCharges.length > 0) {
+            charges = foundCharges.map((c, idx) => ({
+              id: `fallback-${idx}`,
+              offence: c.altSection ? `${c.offence} (Alt: ${c.altSection})` : c.offence,
+              section: c.section,
+              chargeDate: null,
+              location: null,
+              value: null,
+              details: null,
+              status: "pending",
+              extracted: true,
+              confidence: 0.3, // Low confidence for fallback extraction
+              source: "AUTO_EXTRACTED", // Flag for fallback
+            }));
+          }
+        }
       }
     }
 

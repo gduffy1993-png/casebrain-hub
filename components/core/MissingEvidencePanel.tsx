@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import type { MissingEvidenceItem, Severity, EvidenceCategory } from "@/lib/types/casebrain";
+import { safeFetch } from "@/lib/utils/safe-fetch";
 
 type MissingEvidencePanelProps = {
   caseId: string;
@@ -67,77 +68,52 @@ export function MissingEvidencePanel({ caseId, items: propItems }: MissingEviden
 
     async function fetchMissingEvidence() {
       const endpoint = `/api/cases/${caseId}/analysis/version/latest`;
-      try {
-        const response = await fetch(endpoint);
-        if (response.ok) {
-          const data = await response.json();
-          // ApiResponse shape support - handle both wrapped and direct responses
-          // The API returns the version object directly, not wrapped in { data: ... }
-          const responseData = data?.data || data;
-          
-          const missing = Array.isArray(responseData?.missing_evidence) 
-            ? responseData.missing_evidence 
-            : [];
-          
-          // Track analysis version status
-          const hasVersion = responseData?.has_analysis_version === true || 
-                             responseData?.version_number !== null ||
-                             responseData?.version_number !== undefined;
-          const mode = responseData?.analysis_mode || (hasVersion ? "complete" : "none");
-          
-          setHasAnalysisVersion(hasVersion);
-          setAnalysisMode(mode);
-          
-          // Ensure all items have required fields
-          const safeMissing = missing.map((item: any) => ({
-            area: item?.area || "other",
-            label: item?.label || "Unknown evidence item",
-            priority: item?.priority || "MEDIUM",
-            notes: item?.notes || "",
-            status: item?.status || "UNASSESSED", // Default to UNASSESSED, not MISSING
-          }));
-          
-          setVersionItems(safeMissing);
-          setBanner(null);
-        } else if (response.status === 401) {
-          setBanner({
-            title: "Authentication required",
-            message: "You must be signed in to load Missing Evidence.",
-            severity: "warning",
-          });
-        } else {
-          const data = await response.json().catch(() => null);
-          if (data?.banner?.message || data?.banner?.detail) {
-            setBanner({
-              title: data.banner.title ?? "Missing evidence unavailable",
-              message: data.banner.message ?? data.banner.detail ?? "Unable to load missing evidence right now.",
-              severity: data.banner.severity,
-            });
-          } else {
-            // No version exists or insufficient extraction - show empty state instead of error
-            setVersionItems([]);
-            setHasAnalysisVersion(false);
-            setAnalysisMode("none");
-            setBanner(null);
-          }
-        }
-      } catch (err) {
-        // Dev-only error logging
-        if (process.env.NODE_ENV !== "production") {
-          console.error("[MissingEvidencePanel] Failed to load missing evidence:", {
-            endpoint,
-            error: err,
-            caseId,
-          });
-        }
-        // Fail-safe: show empty state instead of error
+      setLoading(true);
+      
+      // Use safeFetch for consistent error handling
+      const result = await safeFetch(endpoint);
+      
+      if (!result.ok) {
+        // On any fetch/shape failure: render neutral fallback (not scary "error")
         setVersionItems([]);
         setHasAnalysisVersion(false);
         setAnalysisMode("none");
-        setBanner(null);
-      } finally {
+        setBanner(null); // No error banner - just show empty state
         setLoading(false);
+        return;
       }
+      
+      // Normalize response to canonical shape (support both wrapped and direct)
+      const responseData = result.data?.data || result.data || {};
+      
+      // Canonical shape: missing_evidence is always an array
+      const missing = Array.isArray(responseData?.missing_evidence) 
+        ? responseData.missing_evidence 
+        : [];
+      
+      // Canonical shape: has_analysis_version and analysis_mode
+      const hasVersion = responseData?.has_analysis_version === true || 
+                         responseData?.version_number !== null ||
+                         responseData?.version_number !== undefined;
+      const mode = responseData?.analysis_mode || (hasVersion ? "complete" : "none");
+      
+      setHasAnalysisVersion(hasVersion);
+      setAnalysisMode(mode);
+      
+      // Strong guards: default values for item fields, skip invalid items
+      const safeMissing = missing
+        .filter((item: any) => item && typeof item === "object") // Skip invalid items
+        .map((item: any) => ({
+          area: item?.area || "other",
+          label: item?.label || "Unknown evidence item",
+          priority: item?.priority || "MEDIUM",
+          notes: item?.notes || "",
+          status: item?.status || "UNASSESSED", // Default to UNASSESSED, not MISSING
+        }));
+      
+      setVersionItems(safeMissing);
+      setBanner(null);
+      setLoading(false);
     }
 
     fetchMissingEvidence();

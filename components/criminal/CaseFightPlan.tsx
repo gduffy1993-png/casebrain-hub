@@ -104,14 +104,17 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
         
         // Fetch analysis version info to determine status
         try {
-          const versionRes = await fetch(`/api/cases/${caseId}/analysis/version/latest`);
-          if (versionRes.ok) {
-            const versionData = await versionRes.json();
-            const versionInfo = versionData?.data || versionData;
+          const { safeFetch } = await import("@/lib/utils/safe-fetch");
+          const versionResult = await safeFetch(`/api/cases/${caseId}/analysis/version/latest`);
+          if (versionResult.ok && versionResult.data) {
+            const versionInfo = versionResult.data?.data || versionResult.data;
             setAnalysisVersionInfo({
               has_analysis_version: versionInfo?.has_analysis_version === true || versionInfo?.version_number !== null,
               analysis_mode: versionInfo?.analysis_mode || (versionInfo?.version_number ? "complete" : "none"),
             });
+          } else {
+            // Fetch failed - default to no version
+            setAnalysisVersionInfo({ has_analysis_version: false, analysis_mode: "none" });
           }
         } catch {
           // Fail silently - version info is optional
@@ -119,21 +122,27 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
         }
         
         // Try strategy-analysis endpoint first (multi-route output)
-        let response = await fetch(`/api/criminal/${caseId}/strategy-analysis`).catch(() => null);
+        const { safeFetch } = await import("@/lib/utils/safe-fetch");
+        let strategyResult = await safeFetch(`/api/criminal/${caseId}/strategy-analysis`);
         let useStrategyAnalysis = false;
+        let result: any = null;
         
         // Fallback to aggressive-defense if strategy-analysis doesn't exist or fails
-        if (!response || !response.ok) {
-          response = await fetch(`/api/criminal/${caseId}/aggressive-defense`);
+        if (!strategyResult.ok || !strategyResult.data) {
+          const aggressiveResult = await safeFetch(`/api/criminal/${caseId}/aggressive-defense`);
+          if (aggressiveResult.ok && aggressiveResult.data) {
+            result = aggressiveResult.data;
+          } else {
+            // Both endpoints failed - set error but don't throw
+            setError(aggressiveResult.error || "Failed to fetch defence plan");
+            setLoading(false);
+            return;
+          }
         } else {
+          result = strategyResult.data;
           useStrategyAnalysis = true;
         }
         
-        if (!response.ok) {
-          throw new Error("Failed to fetch defence plan");
-        }
-
-        const result = await response.json();
         const normalized = normalizeApiResponse<any>(result);
 
         // Always prefer normalized.data; but also handle "double wrapped" shapes safely
