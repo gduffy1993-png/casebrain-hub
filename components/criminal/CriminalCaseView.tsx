@@ -167,7 +167,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
       ) : snapshotError ? (
         <Card className="p-4">
           <div className="text-sm text-muted-foreground">
-            Case status temporarily unavailable. {snapshotError}
+            Case status not yet available — run analysis to populate this section.
           </div>
         </Card>
       ) : snapshot ? (
@@ -176,7 +176,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
 
       {/* Primary Defence Strategy - Case Fight Plan (ONLY strategy surface for criminal cases) */}
       {/* FIX: Always visible regardless of phase - phase gating only affects bail/sentencing tools */}
-      <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Strategy analysis temporarily unavailable</div>}>
+      <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Strategy analysis not yet available — run analysis to populate this section.</div>}>
         <CaseFightPlan caseId={caseId} committedStrategy={committedStrategy} />
       </ErrorBoundary>
 
@@ -209,15 +209,15 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
       ) : snapshotError ? (
         <Card className="p-6">
           <div className="text-sm text-muted-foreground">
-            Unable to load case data. Please refresh the page or contact support if the issue persists.
+            Case data not yet available — run analysis to populate this section.
           </div>
         </Card>
       ) : snapshot ? (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Evidence column unavailable. Please refresh the page.</div></Card>}>
+          <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Evidence analysis not yet available — add documents or run analysis.</div></Card>}>
             <CaseEvidenceColumn caseId={caseId} snapshot={snapshot} />
           </ErrorBoundary>
-          <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Strategy column unavailable. Please refresh the page.</div></Card>}>
+          <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Strategy analysis not yet available — run analysis to populate this section.</div></Card>}>
             <CaseStrategyColumn 
               caseId={caseId} 
               snapshot={snapshot}
@@ -245,14 +245,14 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
       ) : (
         <Card className="p-6">
           <div className="text-sm text-muted-foreground">
-            Unable to load case data. Please try refreshing the page.
+            Case data not yet available — run analysis to populate this section.
           </div>
         </Card>
       )}
 
       {/* Strategy Commitment Panel - Phase 2+ only (for recording position) */}
       {currentPhase >= 2 && (
-        <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Strategy commitment unavailable</div>}>
+        <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Strategy commitment not yet available — run analysis to populate this section.</div>}>
           <StrategyCommitmentPanel 
             caseId={caseId}
             onCommitmentChange={(commitment) => {
@@ -267,7 +267,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
 
       {/* Primary Strategy Plan - Phase 2+ only, shows after commitment */}
       {currentPhase >= 2 && isStrategyCommitted && (
-        <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Strategy plan unavailable</div>}>
+        <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Strategy plan not yet available — run analysis to populate this section.</div>}>
           <Phase2StrategyPlanPanel caseId={caseId} />
         </ErrorBoundary>
       )}
@@ -282,16 +282,16 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {showPACE && (
-            <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">PACE compliance temporarily unavailable</div>}>
+            <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">PACE compliance not yet available — run analysis to populate this section.</div>}>
               <PACEComplianceChecker caseId={caseId} />
             </ErrorBoundary>
           )}
           {showCourtHearings && (
-            <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Court hearings temporarily unavailable</div>}>
+            <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Court hearings not yet available — run analysis to populate this section.</div>}>
               <CourtHearingsPanel caseId={caseId} currentPhase={currentPhase} />
             </ErrorBoundary>
           )}
-          <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Client advice temporarily unavailable</div>}>
+          <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Client advice not yet available — run analysis to populate this section.</div>}>
             <ClientAdvicePanel caseId={caseId} />
           </ErrorBoundary>
         </div>
@@ -301,11 +301,11 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
       {currentPhase >= 2 ? (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {showBailTools && (
-            <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Bail application unavailable</div>}>
+            <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Bail application not yet available — run analysis to populate this section.</div>}>
               <BailApplicationPanel caseId={caseId} />
             </ErrorBoundary>
           )}
-          <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Bail tracker unavailable</div>}>
+          <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Bail tracker not yet available — run analysis to populate this section.</div>}>
             <BailTracker caseId={caseId} />
           </ErrorBoundary>
         </div>
@@ -318,11 +318,11 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         >
           <div className="space-y-6">
             {showBailTools && (
-              <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Bail application unavailable</div>}>
+              <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Bail application not yet available — run analysis to populate this section.</div>}>
                 <BailApplicationPanel caseId={caseId} />
               </ErrorBoundary>
             )}
-            <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Bail tracker unavailable</div>}>
+            <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Bail tracker not yet available — run analysis to populate this section.</div>}>
               <BailTracker caseId={caseId} />
             </ErrorBoundary>
           </div>
@@ -339,7 +339,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         >
           <div className="space-y-6">
             {showSentencingTools && (
-              <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Sentencing mitigation unavailable</div>}>
+              <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Sentencing mitigation not yet available — run analysis to populate this section.</div>}>
                 <SentencingMitigationPanel caseId={caseId} />
               </ErrorBoundary>
             )}

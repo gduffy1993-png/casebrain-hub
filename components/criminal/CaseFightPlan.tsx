@@ -963,7 +963,7 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
             return (
               <div className="mb-4 p-2 rounded-lg border border-red-500/20 bg-red-500/5">
                 <p className="text-xs text-foreground">
-                  <span className="font-semibold">Strategy analysis temporarily unavailable</span>
+                  <span className="font-semibold">Strategy analysis not yet available — run analysis to populate this section.</span>
                   <span className="text-muted-foreground ml-2">
                     ({error})
                   </span>
