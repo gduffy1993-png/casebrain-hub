@@ -1058,13 +1058,14 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
       <main className="space-y-4">
         <CasePageClient casePracticeArea={caseRecord.practice_area as PracticeArea | null | undefined} />
         
-        {/* Case Summary Panel */}
-        <CollapsibleSection
-          title="Case Summary"
-          description="AI-generated solicitor-style case summary"
-          defaultOpen={true}
-          icon={<FileText className="h-4 w-4 text-blue-400" />}
-        >
+        {/* Case Summary Panel - Hidden for criminal cases (Phase 2 layout replaces this) */}
+        {!isCriminalCase && (
+          <CollapsibleSection
+            title="Case Summary"
+            description="AI-generated solicitor-style case summary"
+            defaultOpen={true}
+            icon={<FileText className="h-4 w-4 text-blue-400" />}
+          >
           <ErrorBoundary
             fallback={
               <div className="p-4">
@@ -1083,6 +1084,7 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
             />
           </ErrorBoundary>
         </CollapsibleSection>
+        )}
 
         {/* Action Bar Card - Export, Archive, etc. */}
         <Card
@@ -1125,13 +1127,14 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
           </div>
         </Card>
 
-        {/* Key Facts Panel - Case Overview */}
-        <CollapsibleSection
-          title="Key Facts"
-          description="Parties, dates, amounts, and case overview"
-          defaultOpen={true}
-          icon={<Target className="h-4 w-4 text-blue-400" />}
-        >
+        {/* Key Facts Panel - Case Overview - Hidden for criminal cases (Phase 2 layout replaces this) */}
+        {!isCriminalCase && (
+          <CollapsibleSection
+            title="Key Facts"
+            description="Parties, dates, amounts, and case overview"
+            defaultOpen={true}
+            icon={<Target className="h-4 w-4 text-blue-400" />}
+          >
           <ErrorBoundary
             fallback={
               <div className="p-4">
@@ -1142,14 +1145,16 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
             <CaseKeyFactsPanel caseId={caseId} />
           </ErrorBoundary>
         </CollapsibleSection>
+        )}
 
-        {/* Next Step Panel - Priority Action */}
-        <CollapsibleSection
-          title="Next Steps"
-          description="Priority actions and recommended next steps"
-          defaultOpen={true}
-          icon={<TrendingUp className="h-4 w-4 text-green-400" />}
-        >
+        {/* Next Step Panel - Priority Action - Hidden for criminal cases (Phase 2 layout replaces this) */}
+        {!isCriminalCase && (
+          <CollapsibleSection
+            title="Next Steps"
+            description="Priority actions and recommended next steps"
+            defaultOpen={true}
+            icon={<TrendingUp className="h-4 w-4 text-green-400" />}
+          >
           <ErrorBoundary
             fallback={
               <div className="p-4">
@@ -1160,6 +1165,7 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
             <NextStepPanel caseId={caseId} nextStep={nextStep} allSteps={allNextSteps} />
           </ErrorBoundary>
         </CollapsibleSection>
+        )}
 
 
         {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
@@ -1211,8 +1217,8 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
           </ErrorBoundary>
         </CollapsibleSection> */}
 
-        {/* Key Issues Panel */}
-        {keyIssues.length > 0 && (
+        {/* Key Issues Panel - Hidden for criminal cases (Phase 2 layout replaces this) */}
+        {keyIssues.length > 0 && !isCriminalCase && (
           <CollapsibleSection
             title="Key Issues"
             description="Main legal and factual issues in dispute"
@@ -1250,13 +1256,14 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
           </ErrorBoundary>
         </CollapsibleSection> */}
 
-        {/* Missing Evidence Panel */}
-        <CollapsibleSection
-          title="Missing Evidence"
-          description="Evidence gaps and items to request"
-          defaultOpen={false}
-          icon={<ListChecks className="h-4 w-4 text-amber-400" />}
-        >
+        {/* Missing Evidence Panel - Hidden for criminal cases (Phase 2 layout replaces this) */}
+        {!isCriminalCase && (
+          <CollapsibleSection
+            title="Missing Evidence"
+            description="Evidence gaps and items to request"
+            defaultOpen={false}
+            icon={<ListChecks className="h-4 w-4 text-amber-400" />}
+          >
           <ErrorBoundary
             fallback={
               <div className="p-4">
@@ -1268,6 +1275,7 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
             <MissingEvidencePanel caseId={caseId} />
           </ErrorBoundary>
         </CollapsibleSection>
+        )}
 
         {/* TODO: re-enable after wiring to versions / new APIs */}
         {/* Evidence Tracker Section - Commented out as it's not wired to case_analysis_versions yet */}
@@ -1288,8 +1296,8 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
           </ErrorBoundary>
         </CollapsibleSection> */}
 
-        {/* Analysis Delta Panel - Show if new version created */}
-        {caseRecord.latest_analysis_version && caseRecord.latest_analysis_version > 1 && (
+        {/* Analysis Delta Panel - Show if new version created - Hidden for criminal cases (Phase 2 layout replaces this) */}
+        {!isCriminalCase && caseRecord.latest_analysis_version && caseRecord.latest_analysis_version > 1 && (
           <ErrorBoundary fallback={null}>
             <AnalysisDeltaPanelWrapper caseId={caseId} />
           </ErrorBoundary>

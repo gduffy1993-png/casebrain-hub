@@ -209,15 +209,15 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
       ) : snapshotError ? (
         <Card className="p-6">
           <div className="text-sm text-muted-foreground">
-            Case data temporarily unavailable. Please try refreshing the page.
+            Unable to load case data. Please refresh the page or contact support if the issue persists.
           </div>
         </Card>
       ) : snapshot ? (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Evidence column temporarily unavailable</div>}>
+          <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Evidence column unavailable. Please refresh the page.</div></Card>}>
             <CaseEvidenceColumn caseId={caseId} snapshot={snapshot} />
           </ErrorBoundary>
-          <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Strategy column temporarily unavailable</div>}>
+          <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Strategy column unavailable. Please refresh the page.</div></Card>}>
             <CaseStrategyColumn 
               caseId={caseId} 
               snapshot={snapshot}
