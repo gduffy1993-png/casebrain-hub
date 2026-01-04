@@ -162,3 +162,41 @@ This document tracks expected UI outcomes for canonical test packs to ensure fir
 - `app/api/criminal/[caseId]/charges/route.ts` - Fallback charge parsing
 - `QA_CHECKLIST.md` - This file
 
+---
+
+## Phase 2 UI/UX Re-Layout Verification
+
+### Case Status Strip
+- [ ] Status strip renders at top of page
+- [ ] Disclosure status shows: Thin / Partial / Good (derived conservatively)
+- [ ] Analysis status shows: Not run / Preview / Complete
+- [ ] Last updated timestamp displays correctly
+- [ ] Next hearing shows date or "Not set"
+- [ ] Current position shows: "Not recorded" or "Fight / Reduce / Mitigate"
+- [ ] Never shows "error" language - uses "Temporarily unavailable" if needed
+
+### Two-Column Layout
+- [ ] Left column: Documents, Missing Evidence, Disclosure Tracker
+- [ ] Right column: Record Current Position, Strategy Overview, Decision Checkpoints, Next Steps
+- [ ] Layout is responsive (stacks on mobile)
+- [ ] All panels are fail-safe (no crashes on API failure)
+
+### Disclosure Tracker Table
+- [ ] Table shows items from missing_evidence or analysis output
+- [ ] Status badges: Received/Partial/Outstanding/Unknown
+- [ ] Icons match status (green check, amber warning, red X, question mark)
+- [ ] Never invents dates or actions
+- [ ] Empty state shows "No disclosure items tracked yet"
+
+### Strategy Commitment Re-Tone
+- [ ] Panel title: "Record Current Position" (not "Commit Strategy")
+- [ ] Shows decision log entry format: Position, Basis/rationale, Timestamp
+- [ ] Uses existing `/api/criminal/[caseId]/strategy-commitment` endpoint
+- [ ] Strategy routes collapsed by default
+- [ ] Never shows "error/not run" banners when strategy data exists
+
+### Snapshot Adapter
+- [ ] `buildCaseSnapshot()` normalizes all API responses
+- [ ] DEV-only console warnings for unexpected shapes
+- [ ] No backend changes - pure mapping layer
+

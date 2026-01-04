@@ -406,12 +406,16 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
   // FIX: Check if strategy-analysis data exists (routes or recommendation)
   // This determines if we show "pending" vs "Preview mode" vs "Complete"
   // Must check ALL possible sources of strategy data in state
+  // This is the SINGLE SOURCE OF TRUTH for whether strategy data is visible
   const hasStrategyAnalysisData = 
     (useStrategyAnalysis && strategyRoutes && strategyRoutes.length > 0) ||
     (payload && (payload.routes?.length > 0 || payload.recommendation)) ||
     (data && ((data as any).routes?.length > 0 || (data as any).recommendation)) ||
     hasStrategy(data) || // Check if data has any strategy indicators
     hasStrategy(payload); // Check if payload has any strategy indicators
+  
+  // Comprehensive check: ANY strategy data visible in state
+  const hasAnyStrategyData = hasStrategyAnalysisData || hasStrategyData || committedStrategy;
 
   // FIX: Filter angles by committed strategy (Strategy-Specific Angle Filtering)
   // Use fallback list so we don't filter empty arrays and accidentally make it empty
@@ -523,10 +527,12 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
   // If gated BUT strategy exists, continue to render (banner will be shown inline)
 
   // FIX: If no strategy data exists, show appropriate message based on document count and commitment
-  if (!hasStrategyData && !hasStrategyAnalysisData) {
+  // RULE: Only show error/pending if we're CERTAIN no strategy data exists
+  // Use comprehensive check to avoid false negatives
+  if (!hasAnyStrategyData) {
     // If commitment exists, don't show "pending" - show committed message instead
     if (committedStrategy) {
-      // This case is handled below (line 518) - render minimal plan based on committed strategy
+      // This case is handled below - render minimal plan based on committed strategy
       // Fall through to that logic
     } else if (documentCount === 0) {
       return (
@@ -538,15 +544,23 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
         </Card>
       );
     } else {
-      // No strategy data at all
+      // No strategy data at all - only show error if fetch actually failed
+      // Don't show error message if we're still loading or if error is stale
       return (
         <Card className="p-6">
           <div className="text-center text-muted-foreground">
             <FileText className="h-8 w-8 mx-auto mb-2 opacity-50" />
             <p className="text-sm font-medium">Strategy analysis pending</p>
-            <p className="text-xs mt-1">
-              {error || "Re-analyse case documents to generate defence plan."}
-            </p>
+            {error && !loading && (
+              <p className="text-xs mt-1 text-amber-600">
+                {error}
+              </p>
+            )}
+            {!error && (
+              <p className="text-xs mt-1">
+                Re-analyse case documents to generate defence plan.
+              </p>
+            )}
           </div>
         </Card>
       );
@@ -879,17 +893,24 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
         )}
 
         {/* Analysis Status Banner */}
+        {/* SINGLE SOURCE OF TRUTH: Banner state derived from visible strategy data first, fetch status second */}
         {(() => {
-          // RULE: Banner state must be derived from visible data first, not fetch status
-          // If ANY strategy data is present in state, NEVER show "error", "unavailable", or "not run"
-          // Only show error when no strategy data exists at all and the fetch fails
+          // RULE: If ANY strategy data is present in state, NEVER show "error", "unavailable", or "not run"
+          // Banner must always resolve to "Preview (gated)" or "Complete" when data exists
+          // Check for visible data FIRST - this is the authoritative check
           
-          // Check for ANY strategy data in state (comprehensive check)
-          const hasAnyStrategyData = hasStrategyAnalysisData || hasStrategyData || committedStrategy;
+          // Re-check for strategy data at render time (defensive - data might have loaded)
+          const hasVisibleStrategyData = 
+            hasAnyStrategyData ||
+            (strategyRoutes && strategyRoutes.length > 0) ||
+            (data && hasStrategy(data)) ||
+            (payload && hasStrategy(payload)) ||
+            committedStrategy;
           
-          if (hasAnyStrategyData) {
+          if (hasVisibleStrategyData) {
             // We have strategy data visible - derive banner from analysis version info
-            // Never show error/unavailable/not run when data is visible
+            // NEVER show error/unavailable/not run when data is visible
+            
             if (!analysisVersionInfo) {
               // Version fetch failed but data exists - show Preview as conservative default
               return (

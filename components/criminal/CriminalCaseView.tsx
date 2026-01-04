@@ -4,9 +4,8 @@ import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { ErrorBoundary } from "@/components/ui/error-boundary";
 import { CollapsibleSection } from "@/components/ui/collapsible-section";
+// Legacy panels - only used in collapsed "Additional Tools" section
 import { PACEComplianceChecker } from "./PACEComplianceChecker";
-import { DisclosureTracker } from "./DisclosureTracker";
-import { ChargesPanel } from "./ChargesPanel";
 import { CourtHearingsPanel } from "./CourtHearingsPanel";
 import { BailTracker } from "./BailTracker";
 import { ClientAdvicePanel } from "./ClientAdvicePanel";
@@ -17,14 +16,23 @@ import { CasePhaseSelector, type CasePhase } from "./CasePhaseSelector";
 import { StrategyCommitmentPanel, type StrategyCommitment } from "./StrategyCommitmentPanel";
 import { Phase2StrategyPlanPanel } from "./Phase2StrategyPlanPanel";
 import { AnalysisGateBanner, type AnalysisGateBannerProps } from "@/components/AnalysisGateBanner";
-import { normalizeApiResponse, isGated } from "@/lib/api-response-normalizer";
-import { Scale, Shield } from "lucide-react";
+import { Scale, Shield, Loader2 } from "lucide-react";
+// Phase 2 components
+import { buildCaseSnapshot, type CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
+import { CaseStatusStrip } from "./CaseStatusStrip";
+import { CaseEvidenceColumn } from "./CaseEvidenceColumn";
+import { CaseStrategyColumn } from "./CaseStrategyColumn";
 
 type CriminalCaseViewProps = {
   caseId: string;
 };
 
 export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
+  // Phase 2: Snapshot state
+  const [snapshot, setSnapshot] = useState<CaseSnapshot | null>(null);
+  const [snapshotLoading, setSnapshotLoading] = useState(true);
+  const [snapshotError, setSnapshotError] = useState<string | null>(null);
+
   const [gateBanner, setGateBanner] = useState<{
     banner: AnalysisGateBannerProps["banner"];
     diagnostics?: AnalysisGateBannerProps["diagnostics"];
@@ -45,71 +53,71 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
     pace: { hasData: false },
   });
 
-  // Check if strategy is committed on mount
+  // Phase 2: Build snapshot on mount
   useEffect(() => {
-    async function checkStrategyCommitment() {
+    async function loadSnapshot() {
+      setSnapshotLoading(true);
+      setSnapshotError(null);
       try {
-        const response = await fetch(`/api/criminal/${caseId}/strategy-commitment`);
-        if (response.ok) {
-          const result = await response.json();
-          if (result.ok && result.data) {
-            setIsStrategyCommitted(true);
-            setCommittedStrategy({
-              primary: result.data.primary,
-              secondary: result.data.secondary || [],
-            });
-          } else {
-            setIsStrategyCommitted(false);
-          }
+        const snap = await buildCaseSnapshot(caseId);
+        setSnapshot(snap);
+        // Update committed strategy from snapshot
+        if (snap.decisionLog.currentPosition) {
+          setIsStrategyCommitted(true);
+          setCommittedStrategy({
+            primary: snap.decisionLog.currentPosition.position as any,
+            secondary: snap.decisionLog.history
+              .filter(h => h.position !== snap.decisionLog.currentPosition?.position)
+              .map(h => h.position as any),
+          });
+        } else {
+          setIsStrategyCommitted(false);
         }
-      } catch {
-        setIsStrategyCommitted(false);
+      } catch (error) {
+        console.error("[CriminalCaseView] Failed to load snapshot:", error);
+        setSnapshotError(error instanceof Error ? error.message : "Failed to load case data");
+        // Fail-safe: still allow page to render
+        setSnapshot(null);
+      } finally {
+        setSnapshotLoading(false);
       }
     }
-    checkStrategyCommitment();
+    loadSnapshot();
   }, [caseId]);
 
-  // Check if analysis is gated and determine mode
+  // Check if analysis is gated and determine mode (using snapshot data when available)
   useEffect(() => {
-    async function checkGate() {
-      try {
-        const response = await fetch(`/api/criminal/${caseId}/aggressive-defense`).catch(() => null);
-        if (response?.ok) {
-          const data = await response.json();
-          const normalized = normalizeApiResponse(data);
-          if (isGated(normalized)) {
-            setGateBanner({
-              banner: normalized.banner || {
-                severity: "warning",
-                title: "Insufficient text extracted",
-                message: "Not enough extractable text to generate reliable analysis. Upload text-based PDFs or run OCR, then re-analyse.",
-              },
-              diagnostics: normalized.diagnostics,
-            });
-            setIsDisclosureFirstMode(true);
-            // Keep phase at 1 if we are gated; do not override a deliberate user choice beyond 1
-            setCurrentPhase((prev) => (prev === 1 ? 1 : prev));
-          } else {
-            setGateBanner(null);
-            // Check if mode is DISCLOSURE-FIRST from the data
-            const planData = normalized.data || data;
-            const primaryAngle = planData?.recommendedStrategy?.primaryAngle;
-            const mode = primaryAngle?.angleType === "DISCLOSURE_FAILURE_STAY" || 
-                        !primaryAngle?.angleType ? "DISCLOSURE-FIRST" : "OTHER";
-            setIsDisclosureFirstMode(mode === "DISCLOSURE-FIRST");
-            if (mode !== "DISCLOSURE-FIRST") {
-              // Move to Phase 2 by default when disclosure is stable, but respect manual selections
-              setCurrentPhase((prev) => (prev === 1 ? 2 : prev));
-            }
-          }
-        }
-      } catch {
-        // Silently fail - gate check is optional
+    if (!snapshot) return; // Wait for snapshot
+    
+    // Derive gate status from snapshot analysis mode
+    if (snapshot.analysis.mode === "preview" || snapshot.analysis.mode === "none") {
+      setGateBanner({
+        banner: {
+          severity: "warning",
+          title: "Insufficient text extracted",
+          message: "Not enough extractable text to generate reliable analysis. Upload text-based PDFs or run OCR, then re-analyse.",
+        },
+      });
+      setIsDisclosureFirstMode(true);
+      setCurrentPhase((prev) => (prev === 1 ? 1 : prev));
+    } else {
+      setGateBanner(null);
+      // Check if mode is DISCLOSURE-FIRST from strategy data
+      const primary = snapshot.strategy.primary;
+      const mode = primary === "fight_charge" && snapshot.strategy.hasRenderableData 
+        ? "OTHER" 
+        : "DISCLOSURE-FIRST";
+      setIsDisclosureFirstMode(mode === "DISCLOSURE-FIRST");
+      if (mode !== "DISCLOSURE-FIRST") {
+        setCurrentPhase((prev) => (prev === 1 ? 2 : prev));
       }
     }
-    
+  }, [snapshot]);
+  
+  // Check panel data (for phase gating only - not for rendering)
+  useEffect(() => {
     async function checkPanelData() {
-      // Check if panels have structured data
+      // Minimal check for phase gating - panels themselves will fetch their own data
       try {
         const [bailRes, sentencingRes, hearingsRes, paceRes] = await Promise.all([
           fetch(`/api/criminal/${caseId}/bail-application`).catch(() => null),
@@ -134,7 +142,6 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
       }
     }
     
-    checkGate();
     checkPanelData();
   }, [caseId]);
 
@@ -149,9 +156,27 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
 
   return (
     <div className="space-y-6">
+      {/* Phase 2: Case Status Strip */}
+      {snapshotLoading ? (
+        <Card className="p-4">
+          <div className="flex items-center gap-2 text-muted-foreground">
+            <Loader2 className="h-4 w-4 animate-spin" />
+            <span className="text-sm">Loading case status...</span>
+          </div>
+        </Card>
+      ) : snapshotError ? (
+        <Card className="p-4">
+          <div className="text-sm text-muted-foreground">
+            Case status temporarily unavailable. {snapshotError}
+          </div>
+        </Card>
+      ) : snapshot ? (
+        <CaseStatusStrip snapshot={snapshot} />
+      ) : null}
+
       {/* Primary Defence Strategy - Case Fight Plan (ONLY strategy surface for criminal cases) */}
       {/* FIX: Always visible regardless of phase - phase gating only affects bail/sentencing tools */}
-      <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Strategy analysis error</div>}>
+      <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Strategy analysis temporarily unavailable</div>}>
         <CaseFightPlan caseId={caseId} committedStrategy={committedStrategy} />
       </ErrorBoundary>
 
@@ -173,9 +198,59 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         />
       )}
 
-      {/* Phase 1: Core Disclosure & Readiness Tools */}
-      
-      {/* Strategy Commitment Panel - Phase 2+ only */}
+      {/* Phase 2: Two-Column Layout (Evidence Left, Strategy Right) - SINGLE SOURCE OF TRUTH */}
+      {snapshotLoading ? (
+        <Card className="p-6">
+          <div className="flex items-center gap-2 text-muted-foreground">
+            <Loader2 className="h-4 w-4 animate-spin" />
+            <span className="text-sm">Loading case data...</span>
+          </div>
+        </Card>
+      ) : snapshotError ? (
+        <Card className="p-6">
+          <div className="text-sm text-muted-foreground">
+            Case data temporarily unavailable. Please try refreshing the page.
+          </div>
+        </Card>
+      ) : snapshot ? (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Evidence column temporarily unavailable</div>}>
+            <CaseEvidenceColumn caseId={caseId} snapshot={snapshot} />
+          </ErrorBoundary>
+          <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Strategy column temporarily unavailable</div>}>
+            <CaseStrategyColumn 
+              caseId={caseId} 
+              snapshot={snapshot}
+              onRecordPosition={() => {
+                // Scroll to strategy commitment panel
+                const panel = document.querySelector('[data-strategy-commitment]');
+                if (panel) {
+                  panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+              }}
+              onCommitmentChange={(commitment) => {
+                if (commitment) {
+                  setCommittedStrategy(commitment);
+                  setIsStrategyCommitted(true);
+                  // Reload snapshot to reflect new commitment
+                  buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error);
+                } else {
+                  setCommittedStrategy(null);
+                  setIsStrategyCommitted(false);
+                }
+              }}
+            />
+          </ErrorBoundary>
+        </div>
+      ) : (
+        <Card className="p-6">
+          <div className="text-sm text-muted-foreground">
+            Unable to load case data. Please try refreshing the page.
+          </div>
+        </Card>
+      )}
+
+      {/* Strategy Commitment Panel - Phase 2+ only (for recording position) */}
       {currentPhase >= 2 && (
         <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Strategy commitment unavailable</div>}>
           <StrategyCommitmentPanel 
@@ -183,6 +258,8 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
             onCommitmentChange={(commitment) => {
               setCommittedStrategy(commitment);
               setIsStrategyCommitted(!!commitment);
+              // Reload snapshot to reflect new commitment
+              buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error);
             }}
           />
         </ErrorBoundary>
@@ -195,38 +272,30 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         </ErrorBoundary>
       )}
 
-      {/* Two Column Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Left Column */}
-        <div className="space-y-6">
-          <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Charges unavailable</div>}>
-            <ChargesPanel caseId={caseId} />
-          </ErrorBoundary>
-
+      {/* Additional Tools - Collapsed (PACE, Court Hearings, Client Advice) */}
+      {/* These are not part of Phase 2 core layout but remain available for advanced use */}
+      <CollapsibleSection
+        title="Additional Tools"
+        description="PACE compliance, court hearings, client advice"
+        defaultOpen={false}
+        icon={<Shield className="h-4 w-4 text-muted-foreground" />}
+      >
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {showPACE && (
-            <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">PACE compliance unavailable</div>}>
+            <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">PACE compliance temporarily unavailable</div>}>
               <PACEComplianceChecker caseId={caseId} />
             </ErrorBoundary>
           )}
-
-          <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Disclosure tracker unavailable</div>}>
-            <DisclosureTracker caseId={caseId} />
-          </ErrorBoundary>
-        </div>
-
-        {/* Right Column */}
-        <div className="space-y-6">
           {showCourtHearings && (
-            <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Court hearings unavailable</div>}>
+            <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Court hearings temporarily unavailable</div>}>
               <CourtHearingsPanel caseId={caseId} currentPhase={currentPhase} />
             </ErrorBoundary>
           )}
-
-          <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Client advice unavailable</div>}>
+          <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Client advice temporarily unavailable</div>}>
             <ClientAdvicePanel caseId={caseId} />
           </ErrorBoundary>
         </div>
-      </div>
+      </CollapsibleSection>
 
       {/* Phase 2: Bail Tools (Accordion in Phase 1, visible in Phase 2+) */}
       {currentPhase >= 2 ? (

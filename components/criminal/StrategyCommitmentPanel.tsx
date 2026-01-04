@@ -643,7 +643,7 @@ export function StrategyCommitmentPanel({
   };
 
   return (
-    <Card className="p-6">
+    <Card className="p-6" data-strategy-commitment>
       <div className="space-y-6">
         <div className="flex items-start justify-between">
           <div>
