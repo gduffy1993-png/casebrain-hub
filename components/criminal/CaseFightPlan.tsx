@@ -596,7 +596,7 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
             </div>
             <h2 className="text-lg font-semibold text-foreground mb-2">Primary Defence Strategy</h2>
             <p className="text-sm text-foreground font-medium leading-relaxed">
-              {getDirectiveStrategyText() || "Strategy committed but analysis data not yet available. Upload documents and re-analyse to generate full plan."}
+              {getDirectiveStrategyText() || "Strategy committed. Full plan will appear once analysis is run."}
             </p>
           </div>
 
@@ -963,7 +963,7 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
             return (
               <div className="mb-4 p-2 rounded-lg border border-red-500/20 bg-red-500/5">
                 <p className="text-xs text-foreground">
-                  <span className="font-semibold">Strategy analysis not yet available — run analysis to populate this section.</span>
+                  <span className="font-semibold">Strategy analysis will appear once analysis is run.</span>
                   <span className="text-muted-foreground ml-2">
                     ({error})
                   </span>

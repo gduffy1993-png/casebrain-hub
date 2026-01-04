@@ -278,7 +278,7 @@ export function MissingEvidencePanel({ caseId, items: propItems }: MissingEviden
               <AlertTriangle className="h-5 w-5 text-amber-600" />
               <div>
                 <p className="text-sm font-medium text-foreground">
-                  Preview mode — run Full Analysis to enable evidence gap detection.
+                  Preview mode — full outputs appear once analysis is complete.
                 </p>
               </div>
             </div>
@@ -295,7 +295,7 @@ export function MissingEvidencePanel({ caseId, items: propItems }: MissingEviden
               <AlertTriangle className="h-5 w-5 text-amber-600" />
               <div>
                 <p className="text-sm font-medium text-foreground">
-                  Analysis not run yet.
+                  This section will populate once analysis is run.
                 </p>
               </div>
             </div>
@@ -487,17 +487,17 @@ export function MissingEvidencePanel({ caseId, items: propItems }: MissingEviden
                   </p>
                   <p className="text-xs text-muted-foreground mt-1">
                     {analysisMode === "preview"
-                      ? "Run Full Analysis to enable evidence gap detection."
+                      ? "Full outputs appear once analysis is complete."
                       : "Add more documents or re-run analysis to deepen evidence mapping."}
                   </p>
                 </>
               ) : (
                 <>
                   <p className="text-sm font-medium text-foreground">
-                    Missing evidence cannot be assessed yet.
+                    This section will populate once analysis is run.
                   </p>
                   <p className="text-xs text-muted-foreground mt-1">
-                    Analysis not run or extraction is limited. Run Full Analysis to enable evidence gap detection.
+                    Awaiting further documents or analysis.
                   </p>
                 </>
               )}

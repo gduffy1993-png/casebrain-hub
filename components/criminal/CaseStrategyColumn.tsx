@@ -113,7 +113,7 @@ export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommi
       {/* Decision Checkpoints */}
       <Card title="Decision Checkpoints" description="Key decision moments">
         <div className="text-center py-4 text-muted-foreground text-sm">
-          Run analysis to populate decision checkpoints
+          Decision checkpoints will appear once analysis is run.
         </div>
       </Card>
 
@@ -144,7 +144,7 @@ export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommi
           </div>
         ) : (
           <div className="text-center py-4 text-muted-foreground text-sm">
-            Run analysis to populate next steps
+            Next steps will appear once analysis is run.
           </div>
         )}
       </Card>
