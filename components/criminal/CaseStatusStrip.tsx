@@ -27,11 +27,14 @@ export function CaseStatusStrip({ snapshot }: CaseStatusStripProps) {
   }
 
   // Analysis status
-  const analysisStatus = snapshot.analysis.mode === "complete" 
-    ? "Complete" 
-    : snapshot.analysis.mode === "preview" 
-    ? "Preview" 
-    : "Not run";
+  // RULE: If strategy outputs are shown, status must NOT say "Not run"
+  const analysisStatus = snapshot.analysis.canShowStrategyOutputs
+    ? (snapshot.analysis.mode === "complete" ? "Complete" : "Preview")
+    : (snapshot.analysis.mode === "complete" 
+      ? "Complete" 
+      : snapshot.analysis.mode === "preview" 
+      ? "Preview" 
+      : "Not run");
   const analysisColor = snapshot.analysis.mode === "complete"
     ? "bg-green-500/10 text-green-600 border-green-500/30"
     : snapshot.analysis.mode === "preview"

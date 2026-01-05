@@ -22,6 +22,7 @@ export type CaseSnapshot = {
     mode: "none" | "preview" | "complete";
     docCount?: number;
     domainCoverage?: number;
+    canShowStrategyOutputs: boolean; // Single source of truth: true only when analysis_mode is preview/complete AND extraction threshold met
   };
   charges: ChargeItem[];
   evidence: {
@@ -138,11 +139,34 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
 
   // Normalize analysis data
   const analysisData = analysisResult.data?.data || analysisResult.data || {};
+  const analysisMode = analysisData.analysis_mode || (analysisData.version_number ? "complete" : "none") as "none" | "preview" | "complete";
+  const hasVersion = analysisData.has_analysis_version === true || analysisData.version_number !== null;
+  const docCount = analysisData.docCount || analysisData.doc_count || undefined;
+  const rawCharsTotal = analysisData.rawCharsTotal || analysisData.raw_chars_total || 0;
+  
+  // Extraction threshold: docCount >= 2 AND rawCharsTotal >= 1000 (matches analysis gate logic)
+  const extractionOk = (docCount !== undefined && docCount >= 2) && rawCharsTotal >= 1000;
+  
+  // Single source of truth: canShowStrategyOutputs
+  // true only when analysis_mode is preview/complete AND extraction threshold met
+  // OR when strategy data already exists (from previous analysis)
+  const strategyDataExists = strategyResult.ok && (
+    (strategyResult.data?.data?.routes?.length > 0) ||
+    (strategyResult.data?.data?.recommendation) ||
+    (strategyResult.data?.routes?.length > 0) ||
+    (strategyResult.data?.recommendation)
+  );
+  
+  const canShowStrategyOutputs = 
+    (analysisMode === "preview" || analysisMode === "complete") && 
+    (extractionOk || strategyDataExists);
+  
   const analysis = {
-    hasVersion: analysisData.has_analysis_version === true || analysisData.version_number !== null,
-    mode: analysisData.analysis_mode || (analysisData.version_number ? "complete" : "none") as "none" | "preview" | "complete",
-    docCount: analysisData.docCount || undefined,
+    hasVersion,
+    mode: analysisMode,
+    docCount,
     domainCoverage: undefined, // Not available from current API
+    canShowStrategyOutputs,
   };
 
   // Normalize charges
@@ -227,8 +251,17 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
     nextSteps: [] as NextStepItem[],
   };
 
-  // DEV-only warnings for unexpected shapes
+  // DEV-only structured logging for endpoint status
   if (process.env.NODE_ENV !== "production") {
+    const endpointStatus = {
+      analysis_mode: analysis.mode,
+      has_analysis_version: analysis.hasVersion,
+      doc_count: analysis.docCount,
+      extraction_ok: extractionOk,
+      canShowStrategyOutputs: analysis.canShowStrategyOutputs,
+    };
+    console.log("[CaseSnapshot] Strategy gating:", JSON.stringify(endpointStatus, null, 2));
+    
     if (!analysisResult.ok && analysisResult.error) {
       console.warn(`[CaseSnapshot] Analysis fetch failed: ${analysisResult.error}`);
     }

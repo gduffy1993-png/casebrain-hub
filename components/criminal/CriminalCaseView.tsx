@@ -89,8 +89,14 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   useEffect(() => {
     if (!snapshot) return; // Wait for snapshot
     
-    // Derive gate status from snapshot analysis mode
-    if (snapshot.analysis.mode === "preview" || snapshot.analysis.mode === "none") {
+    // RULE: Only show "Insufficient text extracted" banner if:
+    // 1. Analysis mode is preview/none AND
+    // 2. Strategy outputs CANNOT be shown (avoid contradictory states)
+    const shouldShowGateBanner = 
+      (snapshot.analysis.mode === "preview" || snapshot.analysis.mode === "none") &&
+      !snapshot.analysis.canShowStrategyOutputs;
+    
+    if (shouldShowGateBanner) {
       setGateBanner({
         banner: {
           severity: "warning",
@@ -177,7 +183,11 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
       {/* Primary Defence Strategy - Case Fight Plan (ONLY strategy surface for criminal cases) */}
       {/* FIX: Always visible regardless of phase - phase gating only affects bail/sentencing tools */}
       <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Strategy analysis will appear once analysis is run.</div>}>
-        <CaseFightPlan caseId={caseId} committedStrategy={committedStrategy} />
+        <CaseFightPlan 
+          caseId={caseId} 
+          committedStrategy={committedStrategy}
+          canShowStrategyOutputs={snapshot?.analysis.canShowStrategyOutputs ?? false}
+        />
       </ErrorBoundary>
 
       {/* Phase Selector */}

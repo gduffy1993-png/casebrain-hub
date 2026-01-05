@@ -104,6 +104,8 @@ export async function GET(
         : [],
       has_analysis_version: true,
       analysis_mode: analysisMode,
+      docCount: docCount,
+      rawCharsTotal: rawCharsTotal,
     };
 
     return NextResponse.json(safeVersion);

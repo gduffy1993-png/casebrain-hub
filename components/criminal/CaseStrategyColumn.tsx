@@ -74,7 +74,8 @@ export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommi
       </Card>
 
       {/* Strategy Overview (Collapsed) */}
-      {snapshot.strategy.hasRenderableData && (
+      {/* GATE: Only render if canShowStrategyOutputs is true */}
+      {snapshot.analysis.canShowStrategyOutputs && snapshot.strategy.hasRenderableData ? (
         <CollapsibleSection
           title="Strategy Overview"
           description="Current strategy analysis"
@@ -108,6 +109,12 @@ export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommi
             )}
           </div>
         </CollapsibleSection>
+      ) : (
+        <Card title="Strategy Overview" description="Current strategy analysis">
+          <div className="text-center py-4 text-muted-foreground text-sm">
+            Run analysis to populate strategy overview.
+          </div>
+        </Card>
       )}
 
       {/* Decision Checkpoints */}

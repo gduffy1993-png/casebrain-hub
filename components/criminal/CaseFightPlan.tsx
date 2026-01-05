@@ -77,9 +77,10 @@ type CaseFightPlanProps = {
     primary: PrimaryStrategy;
     secondary: Array<PrimaryStrategy>;
   } | null;
+  canShowStrategyOutputs?: boolean; // Gate strategy rendering - true only when analysis_mode is preview/complete AND extraction threshold met
 };
 
-export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps) {
+export function CaseFightPlan({ caseId, committedStrategy, canShowStrategyOutputs = true }: CaseFightPlanProps) {
   const [data, setData] = useState<CaseFightPlanData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -1015,7 +1016,8 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
         })()}
 
         {/* Priority 1: If strategy-analysis routes exist -> render multi-route strategy */}
-        {strategyRoutes && strategyRoutes.length > 0 ? (
+        {/* GATE: Only render if canShowStrategyOutputs is true */}
+        {canShowStrategyOutputs && strategyRoutes && strategyRoutes.length > 0 ? (
           <div className="space-y-4">
             <h3 className="text-sm font-semibold text-foreground">Strategy Routes</h3>
             <div className="space-y-4">
@@ -1187,6 +1189,14 @@ export function CaseFightPlan({ caseId, committedStrategy }: CaseFightPlanProps)
             ))}
           </>
         ) : null}
+
+        {/* Placeholder when strategy outputs cannot be shown */}
+        {!canShowStrategyOutputs && (
+          <div className="text-center py-8 text-muted-foreground">
+            <p className="text-sm font-medium mb-2">Run analysis to populate strategy routes</p>
+            <p className="text-xs">Analysis must be run and extraction threshold met to show strategy recommendations.</p>
+          </div>
+        )}
       </div>
     </Card>
   );
