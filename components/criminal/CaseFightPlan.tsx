@@ -30,7 +30,7 @@ import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Loader2, FileText, AlertCircle, CheckCircle2, Copy, ArrowRight } from "lucide-react";
+import { Loader2, FileText, AlertCircle, CheckCircle2, Copy, ArrowRight, AlertTriangle } from "lucide-react";
 import { AnalysisGateBanner, type AnalysisGateBannerProps } from "@/components/AnalysisGateBanner";
 import { normalizeApiResponse, isGated } from "@/lib/api-response-normalizer";
 
@@ -77,10 +77,21 @@ type CaseFightPlanProps = {
     primary: PrimaryStrategy;
     secondary: Array<PrimaryStrategy>;
   } | null;
-  canShowStrategyOutputs?: boolean; // Gate strategy rendering - true only when analysis_mode is preview/complete AND extraction threshold met
+  canShowStrategyOutputs?: boolean; // Legacy: maps to canShowStrategyFull
+  canShowStrategyPreview?: boolean; // Minimal preview when strategy exists OR analysis version exists
+  canShowStrategyFull?: boolean; // Deep strategy UI only when extraction threshold met
 };
 
-export function CaseFightPlan({ caseId, committedStrategy, canShowStrategyOutputs = true }: CaseFightPlanProps) {
+export function CaseFightPlan({ 
+  caseId, 
+  committedStrategy, 
+  canShowStrategyOutputs = true, // Legacy compatibility
+  canShowStrategyPreview = false,
+  canShowStrategyFull = true,
+}: CaseFightPlanProps) {
+  // Use new flags if provided, otherwise fall back to legacy canShowStrategyOutputs
+  const showFull = canShowStrategyFull !== undefined ? canShowStrategyFull : canShowStrategyOutputs;
+  const showPreview = canShowStrategyPreview;
   const [data, setData] = useState<CaseFightPlanData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -1016,8 +1027,8 @@ export function CaseFightPlan({ caseId, committedStrategy, canShowStrategyOutput
         })()}
 
         {/* Priority 1: If strategy-analysis routes exist -> render multi-route strategy */}
-        {/* GATE: Only render if canShowStrategyOutputs is true */}
-        {canShowStrategyOutputs && strategyRoutes && strategyRoutes.length > 0 ? (
+        {/* GATE: Only render if canShowStrategyFull is true */}
+        {showFull && strategyRoutes && strategyRoutes.length > 0 ? (
           <div className="space-y-4">
             <h3 className="text-sm font-semibold text-foreground">Strategy Routes</h3>
             <div className="space-y-4">
@@ -1190,8 +1201,117 @@ export function CaseFightPlan({ caseId, committedStrategy, canShowStrategyOutput
           </>
         ) : null}
 
-        {/* Placeholder when strategy outputs cannot be shown - hide all deep strategy UI */}
-        {!canShowStrategyOutputs && (
+        {/* Minimal preview card for thin packs */}
+        {!showFull && showPreview && (() => {
+          // Extract recommendation if available
+          const recommendation = (payload as any)?.recommendation || (data as any)?.recommendation;
+          const strategyRoutes = (payload as any)?.routes || (data as any)?.routes;
+          
+          // Extract top disclosure requests if available
+          const disclosureRequests: string[] = [];
+          if (primaryAngle?.disclosureRequests) {
+            disclosureRequests.push(...primaryAngle.disclosureRequests.slice(0, 3));
+          }
+          if (recommendation?.flipConditions) {
+            // Extract evidence triggers from flip conditions
+            recommendation.flipConditions.forEach((fc: any) => {
+              if (fc.evidence && !disclosureRequests.includes(fc.evidence)) {
+                disclosureRequests.push(fc.evidence);
+              }
+            });
+          }
+          
+          return (
+            <div className="p-4 rounded-lg border border-amber-500/20 bg-amber-500/5 space-y-4">
+              <div className="flex items-start gap-2">
+                <AlertTriangle className="h-4 w-4 text-amber-400 mt-0.5 flex-shrink-0" />
+                <div className="flex-1">
+                  <h3 className="text-sm font-semibold text-foreground mb-1">
+                    Provisional Strategy (Thin Pack)
+                  </h3>
+                  <p className="text-xs text-muted-foreground mb-3">
+                    Strategy preview based on limited extraction. May change with new documents.
+                  </p>
+                  
+                  {recommendation && (
+                    <div className="space-y-2 mb-3">
+                      <div>
+                        <span className="text-xs text-muted-foreground">Recommended: </span>
+                        <Badge variant="outline" className="text-xs">
+                          {recommendation.recommended === "fight_charge" ? "Fight Charge" : 
+                           recommendation.recommended === "charge_reduction" ? "Charge Reduction" : 
+                           "Outcome Management"}
+                        </Badge>
+                        {recommendation.confidence && (
+                          <>
+                            <span className="text-xs text-muted-foreground ml-2">Confidence: </span>
+                            <Badge 
+                              className={`text-xs ${
+                                recommendation.confidence === "HIGH"
+                                  ? "bg-green-500/10 text-green-600"
+                                  : recommendation.confidence === "MEDIUM"
+                                  ? "bg-amber-500/10 text-amber-600"
+                                  : "bg-blue-500/10 text-blue-600"
+                              }`}
+                            >
+                              {recommendation.confidence}
+                            </Badge>
+                            {recommendation.confidence === "LOW" && (
+                              <span className="text-xs text-muted-foreground ml-2">(capped - thin pack)</span>
+                            )}
+                          </>
+                        )}
+                      </div>
+                      {recommendation.rationale && (
+                        <p className="text-xs text-foreground">{recommendation.rationale}</p>
+                      )}
+                    </div>
+                  )}
+                  
+                  {disclosureRequests.length > 0 && (
+                    <div className="mb-3">
+                      <h4 className="text-xs font-semibold text-foreground mb-2">Top disclosure requests:</h4>
+                      <ul className="space-y-1">
+                        {disclosureRequests.slice(0, 3).map((req: string, idx: number) => (
+                          <li key={idx} className="text-xs text-foreground flex items-start gap-1">
+                            <span className="text-amber-400">•</span>
+                            <span>{req}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  
+                  <div className="flex gap-2 pt-2 border-t border-amber-500/20">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        window.location.href = `/cases/${caseId}?action=reanalyse`;
+                      }}
+                      className="text-xs"
+                    >
+                      Run analysis
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        window.location.href = `/cases/${caseId}?action=add-documents`;
+                      }}
+                      className="text-xs"
+                    >
+                      Add documents
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })()}
+        
+        {/* Placeholder when no strategy preview available */}
+        {!showFull && !showPreview && (
           <div className="text-center py-8 text-muted-foreground">
             <p className="text-sm font-medium mb-2">Run analysis to populate strategy routes</p>
             <p className="text-xs">Analysis must be run and extraction threshold met to show strategy recommendations.</p>

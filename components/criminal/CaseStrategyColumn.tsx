@@ -74,8 +74,8 @@ export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommi
       </Card>
 
       {/* Strategy Overview (Collapsed) */}
-      {/* GATE: Only render if canShowStrategyOutputs is true */}
-      {snapshot.analysis.canShowStrategyOutputs && snapshot.strategy.hasRenderableData ? (
+      {/* GATE: Show preview if canShowStrategyPreview, full if canShowStrategyFull */}
+      {snapshot.analysis.canShowStrategyFull && snapshot.strategy.hasRenderableData ? (
         <CollapsibleSection
           title="Strategy Overview"
           description="Current strategy analysis"
@@ -109,6 +109,44 @@ export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommi
             )}
           </div>
         </CollapsibleSection>
+      ) : snapshot.analysis.canShowStrategyPreview ? (
+        <Card title="Strategy Overview" description="Current strategy analysis">
+          <div className="p-4 rounded-lg border border-amber-500/20 bg-amber-500/5">
+            <p className="text-xs text-foreground mb-2">
+              <span className="font-semibold">Provisional Strategy (Thin Pack)</span>
+            </p>
+            <p className="text-xs text-muted-foreground mb-3">
+              Strategy preview available. Full analysis requires additional documents.
+            </p>
+            {snapshot.strategy.primary && (
+              <div className="mb-2">
+                <span className="text-xs text-muted-foreground">Primary: </span>
+                <Badge variant="outline" className="text-xs">
+                  {snapshot.strategy.primary}
+                </Badge>
+              </div>
+            )}
+            {snapshot.strategy.confidence && (
+              <div>
+                <span className="text-xs text-muted-foreground">Confidence: </span>
+                <Badge
+                  className={`text-xs ${
+                    snapshot.strategy.confidence === "HIGH"
+                      ? "bg-green-500/10 text-green-600"
+                      : snapshot.strategy.confidence === "MEDIUM"
+                      ? "bg-amber-500/10 text-amber-600"
+                      : "bg-blue-500/10 text-blue-600"
+                  }`}
+                >
+                  {snapshot.strategy.confidence}
+                </Badge>
+                {snapshot.strategy.confidence === "LOW" && (
+                  <span className="text-xs text-muted-foreground ml-2">(capped - thin pack)</span>
+                )}
+              </div>
+            )}
+          </div>
+        </Card>
       ) : (
         <Card title="Strategy Overview" description="Current strategy analysis">
           <div className="text-center py-4 text-muted-foreground text-sm">

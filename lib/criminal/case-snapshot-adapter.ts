@@ -22,7 +22,9 @@ export type CaseSnapshot = {
     mode: "none" | "preview" | "complete";
     docCount?: number;
     domainCoverage?: number;
-    canShowStrategyOutputs: boolean; // Single source of truth: true only when analysis_mode is preview/complete AND extraction threshold met
+    canShowStrategyOutputs: boolean; // Legacy: maps to canShowStrategyFull
+    canShowStrategyPreview: boolean; // Minimal preview when strategy exists OR analysis version exists
+    canShowStrategyFull: boolean; // Deep strategy UI only when extraction threshold met
     extractionOk?: boolean; // Exposed for status strip logic
   };
   charges: ChargeItem[];
@@ -148,9 +150,7 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
   // Extraction threshold: docCount >= 2 AND rawCharsTotal >= 1000 (matches analysis gate logic)
   const extractionOk = (docCount !== undefined && docCount >= 2) && rawCharsTotal >= 1000;
   
-  // Single source of truth: canShowStrategyOutputs
-  // true only when analysis_mode is preview/complete AND extraction threshold met
-  // OR when strategy data already exists (from previous analysis)
+  // Strategy data exists check
   const strategyDataExists = strategyResult.ok && (
     (strategyResult.data?.data?.routes?.length > 0) ||
     (strategyResult.data?.data?.recommendation) ||
@@ -158,16 +158,28 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
     (strategyResult.data?.recommendation)
   );
   
-  const canShowStrategyOutputs = 
+  // Two-level gating for strategy display:
+  // A) canShowStrategyPreview: minimal preview when strategy exists OR analysis version exists
+  const canShowStrategyPreview = 
+    strategyDataExists || 
+    (hasVersion && (analysisMode === "preview" || analysisMode === "complete"));
+  
+  // B) canShowStrategyFull: deep strategy UI only when extraction threshold met
+  const canShowStrategyFull = 
     (analysisMode === "preview" || analysisMode === "complete") && 
-    (extractionOk || strategyDataExists);
+    extractionOk;
+  
+  // Legacy: canShowStrategyOutputs (for backward compatibility, maps to canShowStrategyFull)
+  const canShowStrategyOutputs = canShowStrategyFull;
   
   const analysis = {
     hasVersion,
     mode: analysisMode,
     docCount,
     domainCoverage: undefined, // Not available from current API
-    canShowStrategyOutputs,
+    canShowStrategyOutputs: canShowStrategyFull, // Legacy compatibility
+    canShowStrategyPreview,
+    canShowStrategyFull,
     extractionOk, // Expose for status strip logic
   };
 
@@ -259,8 +271,12 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
       analysis_mode: analysis.mode,
       has_analysis_version: analysis.hasVersion,
       doc_count: analysis.docCount,
+      raw_chars_total: rawCharsTotal,
       extraction_ok: extractionOk,
-      canShowStrategyOutputs: analysis.canShowStrategyOutputs,
+      strategy_data_exists: strategyDataExists,
+      canShowStrategyPreview: analysis.canShowStrategyPreview,
+      canShowStrategyFull: analysis.canShowStrategyFull,
+      has_extracted_text: rawCharsTotal > 0 || (analysisData.summary && analysisData.summary.length > 0),
     };
     console.log("[CaseSnapshot] Strategy gating:", JSON.stringify(endpointStatus, null, 2));
     

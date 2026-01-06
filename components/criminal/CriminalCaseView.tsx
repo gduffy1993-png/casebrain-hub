@@ -240,6 +240,8 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
           caseId={caseId} 
           committedStrategy={committedStrategy}
           canShowStrategyOutputs={snapshot?.analysis.canShowStrategyOutputs ?? false}
+          canShowStrategyPreview={snapshot?.analysis.canShowStrategyPreview ?? false}
+          canShowStrategyFull={snapshot?.analysis.canShowStrategyFull ?? false}
         />
       </ErrorBoundary>
 
