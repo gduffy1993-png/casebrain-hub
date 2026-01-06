@@ -27,19 +27,26 @@ export function CaseStatusStrip({ snapshot }: CaseStatusStripProps) {
   }
 
   // Analysis status
-  // RULE: If strategy outputs are shown, status must NOT say "Not run"
-  const analysisStatus = snapshot.analysis.canShowStrategyOutputs
-    ? (snapshot.analysis.mode === "complete" ? "Complete" : "Preview")
-    : (snapshot.analysis.mode === "complete" 
-      ? "Complete" 
-      : snapshot.analysis.mode === "preview" 
-      ? "Preview" 
-      : "Not run");
-  const analysisColor = snapshot.analysis.mode === "complete"
-    ? "bg-green-500/10 text-green-600 border-green-500/30"
-    : snapshot.analysis.mode === "preview"
-    ? "bg-amber-500/10 text-amber-600 border-amber-500/30"
-    : "bg-muted/20 text-muted-foreground border-border/50";
+  // RULE: Show "Gated (thin pack)" when canShowStrategyOutputs is false AND extraction is thin
+  // Only show "Not run" when truly no analysis version exists AND no strategy data
+  let analysisStatus: string;
+  let analysisColor: string;
+  
+  if (snapshot.analysis.canShowStrategyOutputs) {
+    // Strategy outputs can be shown - use mode
+    analysisStatus = snapshot.analysis.mode === "complete" ? "Complete" : "Preview";
+    analysisColor = snapshot.analysis.mode === "complete"
+      ? "bg-green-500/10 text-green-600 border-green-500/30"
+      : "bg-amber-500/10 text-amber-600 border-amber-500/30";
+  } else if (!snapshot.analysis.hasVersion && !snapshot.strategy.hasRenderableData) {
+    // Truly not run - no version and no strategy data
+    analysisStatus = "Not run";
+    analysisColor = "bg-muted/20 text-muted-foreground border-border/50";
+  } else {
+    // Gated (thin pack) - has version or strategy data but extraction is thin
+    analysisStatus = "Gated (thin pack)";
+    analysisColor = "bg-amber-500/10 text-amber-600 border-amber-500/30";
+  }
 
   // Current position
   const positionLabel = snapshot.decisionLog.currentPosition

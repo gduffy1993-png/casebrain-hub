@@ -1190,7 +1190,7 @@ export function CaseFightPlan({ caseId, committedStrategy, canShowStrategyOutput
           </>
         ) : null}
 
-        {/* Placeholder when strategy outputs cannot be shown */}
+        {/* Placeholder when strategy outputs cannot be shown - hide all deep strategy UI */}
         {!canShowStrategyOutputs && (
           <div className="text-center py-8 text-muted-foreground">
             <p className="text-sm font-medium mb-2">Run analysis to populate strategy routes</p>

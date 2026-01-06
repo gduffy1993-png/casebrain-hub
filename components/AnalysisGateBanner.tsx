@@ -22,6 +22,8 @@ export type AnalysisGateBannerProps = {
   };
   diagnostics?: Diagnostics;
   showHowToFix?: boolean;
+  onRunAnalysis?: () => void;
+  onAddDocuments?: () => void;
 };
 
 /**
@@ -32,6 +34,8 @@ export function AnalysisGateBanner({
   banner,
   diagnostics,
   showHowToFix = true,
+  onRunAnalysis,
+  onAddDocuments,
 }: AnalysisGateBannerProps) {
   const getIcon = () => {
     switch (banner.severity) {
@@ -96,6 +100,28 @@ export function AnalysisGateBanner({
                   <span className="text-amber-400">Insufficient text</span>
                 )}
               </div>
+            </div>
+          )}
+
+          {/* CTA Buttons */}
+          {(onRunAnalysis || onAddDocuments) && (
+            <div className="mt-3 pt-3 border-t border-border/50 flex gap-2">
+              {onRunAnalysis && (
+                <button
+                  onClick={onRunAnalysis}
+                  className="px-3 py-1.5 text-xs font-medium bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
+                >
+                  Run analysis
+                </button>
+              )}
+              {onAddDocuments && (
+                <button
+                  onClick={onAddDocuments}
+                  className="px-3 py-1.5 text-xs font-medium bg-muted text-foreground rounded-md hover:bg-muted/80 transition-colors border border-border/50"
+                >
+                  Add documents
+                </button>
+              )}
             </div>
           )}
 

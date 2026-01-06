@@ -11,9 +11,10 @@ import type { CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
 type CaseEvidenceColumnProps = {
   caseId: string;
   snapshot: CaseSnapshot;
+  onAddDocument?: () => void;
 };
 
-export function CaseEvidenceColumn({ caseId, snapshot }: CaseEvidenceColumnProps) {
+export function CaseEvidenceColumn({ caseId, snapshot, onAddDocument }: CaseEvidenceColumnProps) {
   return (
     <div className="space-y-6">
       {/* Documents */}
@@ -44,7 +45,12 @@ export function CaseEvidenceColumn({ caseId, snapshot }: CaseEvidenceColumnProps
               No documents uploaded yet
             </div>
           )}
-          <Button variant="outline" size="sm" className="w-full mt-2">
+          <Button 
+            variant="outline" 
+            size="sm" 
+            className="w-full mt-2"
+            onClick={onAddDocument}
+          >
             <Plus className="h-4 w-4 mr-2" />
             Add Document
           </Button>

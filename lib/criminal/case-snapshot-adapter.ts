@@ -23,6 +23,7 @@ export type CaseSnapshot = {
     docCount?: number;
     domainCoverage?: number;
     canShowStrategyOutputs: boolean; // Single source of truth: true only when analysis_mode is preview/complete AND extraction threshold met
+    extractionOk?: boolean; // Exposed for status strip logic
   };
   charges: ChargeItem[];
   evidence: {
@@ -167,6 +168,7 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
     docCount,
     domainCoverage: undefined, // Not available from current API
     canShowStrategyOutputs,
+    extractionOk, // Expose for status strip logic
   };
 
   // Normalize charges

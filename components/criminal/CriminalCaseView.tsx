@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { ErrorBoundary } from "@/components/ui/error-boundary";
 import { CollapsibleSection } from "@/components/ui/collapsible-section";
@@ -22,16 +23,21 @@ import { buildCaseSnapshot, type CaseSnapshot } from "@/lib/criminal/case-snapsh
 import { CaseStatusStrip } from "./CaseStatusStrip";
 import { CaseEvidenceColumn } from "./CaseEvidenceColumn";
 import { CaseStrategyColumn } from "./CaseStrategyColumn";
+import { EvidenceSelectorModal } from "@/components/cases/EvidenceSelectorModal";
 
 type CriminalCaseViewProps = {
   caseId: string;
 };
 
 export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  
   // Phase 2: Snapshot state
   const [snapshot, setSnapshot] = useState<CaseSnapshot | null>(null);
   const [snapshotLoading, setSnapshotLoading] = useState(true);
   const [snapshotError, setSnapshotError] = useState<string | null>(null);
+  const [showAddDocuments, setShowAddDocuments] = useState(false);
 
   const [gateBanner, setGateBanner] = useState<{
     banner: AnalysisGateBannerProps["banner"];
@@ -119,6 +125,53 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
       }
     }
   }, [snapshot]);
+
+  // Handle query param actions (idempotent - only runs once per param)
+  useEffect(() => {
+    const action = searchParams.get("action");
+    if (!action) return;
+
+    // Handle reanalyse action
+    if (action === "reanalyse") {
+      // Clear param immediately to prevent re-trigger on refresh
+      const newSearchParams = new URLSearchParams(searchParams.toString());
+      newSearchParams.delete("action");
+      router.replace(`/cases/${caseId}${newSearchParams.toString() ? `?${newSearchParams.toString()}` : ""}`, { scroll: false });
+
+      // Trigger reanalyse
+      async function triggerReanalyse() {
+        try {
+          const res = await fetch(`/api/cases/${caseId}/analysis/rerun`, {
+            method: "POST",
+          });
+
+          if (!res.ok) {
+            throw new Error("Failed to re-run analysis");
+          }
+
+          // Refresh page to show new version
+          router.refresh();
+        } catch (error) {
+          console.error("Failed to re-run analysis:", error);
+          // Don't show alert - let the user see the error state naturally
+        }
+      }
+      triggerReanalyse();
+      return;
+    }
+
+    // Handle add-documents action
+    if (action === "add-documents") {
+      // Clear param immediately to prevent re-trigger on refresh
+      const newSearchParams = new URLSearchParams(searchParams.toString());
+      newSearchParams.delete("action");
+      router.replace(`/cases/${caseId}${newSearchParams.toString() ? `?${newSearchParams.toString()}` : ""}`, { scroll: false });
+
+      // Open add documents UI
+      setShowAddDocuments(true);
+      return;
+    }
+  }, [searchParams, caseId, router]);
   
   // Check panel data (for phase gating only - not for rendering)
   useEffect(() => {
@@ -205,6 +258,14 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
           banner={gateBanner.banner}
           diagnostics={gateBanner.diagnostics}
           showHowToFix={true}
+          onRunAnalysis={() => {
+            // Navigate to case page with reanalyse action
+            window.location.href = `/cases/${caseId}?action=reanalyse`;
+          }}
+          onAddDocuments={() => {
+            // Navigate to case page with add documents action
+            window.location.href = `/cases/${caseId}?action=add-documents`;
+          }}
         />
       )}
 
@@ -225,7 +286,11 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
       ) : snapshot ? (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Evidence analysis awaiting further documents or analysis.</div></Card>}>
-            <CaseEvidenceColumn caseId={caseId} snapshot={snapshot} />
+            <CaseEvidenceColumn 
+              caseId={caseId} 
+              snapshot={snapshot}
+              onAddDocument={() => setShowAddDocuments(true)}
+            />
           </ErrorBoundary>
           <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Strategy analysis will appear once analysis is run.</div></Card>}>
             <CaseStrategyColumn 
@@ -355,6 +420,20 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
             )}
           </div>
         </CollapsibleSection>
+      )}
+
+      {/* Add Documents Modal */}
+      {showAddDocuments && (
+        <EvidenceSelectorModal
+          caseId={caseId}
+          onClose={() => setShowAddDocuments(false)}
+          onSuccess={() => {
+            setShowAddDocuments(false);
+            // Reload snapshot to reflect new documents
+            buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error);
+            router.refresh();
+          }}
+        />
       )}
     </div>
   );
