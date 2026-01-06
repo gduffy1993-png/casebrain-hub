@@ -36,6 +36,7 @@ export type CaseSnapshot = {
   strategy: {
     statusLabel: string;
     hasRenderableData: boolean;
+    strategyDataExists: boolean; // Explicit flag: true only when real strategy output exists
     primary?: string;
     fallbacks?: string[];
     confidence?: "HIGH" | "MEDIUM" | "LOW";
@@ -150,19 +151,36 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
   // Extraction threshold: docCount >= 2 AND rawCharsTotal >= 1000 (matches analysis gate logic)
   const extractionOk = (docCount !== undefined && docCount >= 2) && rawCharsTotal >= 1000;
   
-  // Strategy data exists check
-  const strategyDataExists = strategyResult.ok && (
-    (strategyResult.data?.data?.routes?.length > 0) ||
-    (strategyResult.data?.data?.recommendation) ||
-    (strategyResult.data?.routes?.length > 0) ||
-    (strategyResult.data?.recommendation)
-  );
+  // Strategy data exists check - check all possible response shapes
+  // Normalize to ONE canonical internal shape
+  const strategyDataRaw = strategyResult.data?.data || strategyResult.data || {};
+  const hasRoutes = Array.isArray(strategyDataRaw.routes) && strategyDataRaw.routes.length > 0;
+  const hasRecommendation = !!strategyDataRaw.recommendation;
+  const hasNarrative = !!strategyDataRaw.solicitor_narrative || !!strategyDataRaw.narrative;
+  
+  const strategyDataExists = strategyResult.ok && (hasRoutes || hasRecommendation || hasNarrative);
+  
+  // DEV-only: Log strategy endpoint response
+  if (process.env.NODE_ENV !== "production") {
+    console.log("[CaseSnapshot] Strategy endpoint response:", {
+      ok: strategyResult.ok,
+      status: 'status' in strategyResult ? strategyResult.status : null,
+      error: strategyResult.error,
+      responseKeys: strategyResult.ok ? Object.keys(strategyDataRaw) : [],
+      hasRoutes,
+      hasRecommendation,
+      hasNarrative,
+      strategyDataExists,
+    });
+  }
   
   // Two-level gating for strategy display:
   // A) canShowStrategyPreview: minimal preview when strategy exists OR analysis version exists
+  // Updated logic per user requirement:
+  // Show preview if (analysis_mode is preview/complete OR hasVersion) AND (strategyDataExists OR hasVersion)
   const canShowStrategyPreview = 
-    strategyDataExists || 
-    (hasVersion && (analysisMode === "preview" || analysisMode === "complete"));
+    ((analysisMode === "preview" || analysisMode === "complete" || hasVersion) &&
+     (strategyDataExists || hasVersion));
   
   // B) canShowStrategyFull: deep strategy UI only when extraction threshold met
   const canShowStrategyFull = 
@@ -228,19 +246,23 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
     notes: item.notes,
   }));
 
-  // Normalize strategy data
-  const strategyData = strategyResult.data?.data || strategyResult.data || {};
-  const strategyRoutes = strategyData.routes || [];
-  const recommendation = strategyData.recommendation;
+  // Normalize strategy data - use the same raw data we checked above
+  const strategyRoutes = Array.isArray(strategyDataRaw.routes) ? strategyDataRaw.routes : [];
+  const recommendation = strategyDataRaw.recommendation;
+  
+  // hasRenderableData: true if we have routes, recommendation, or narrative (use same check as strategyDataExists)
+  const hasRenderableData = hasRoutes || hasRecommendation || hasNarrative;
   
   const strategy = {
     statusLabel: analysis.mode === "complete" ? "Complete" : analysis.mode === "preview" ? "Preview (gated)" : "Not run",
-    hasRenderableData: strategyRoutes.length > 0 || !!recommendation || !!strategyData.recommendedStrategy,
-    primary: recommendation?.recommended || strategyData.recommendedStrategy?.primaryAngle?.angleType || undefined,
-    fallbacks: recommendation?.ranking?.slice(1).map((r: any) => r.route) || undefined,
-    confidence: recommendation?.confidence || undefined,
+    hasRenderableData,
+    strategyDataExists, // Explicit flag: true only when real strategy output exists (routes/recommendation/narrative)
+    // Only set primary/confidence/etc if strategyDataExists is true (no fabricated values)
+    primary: strategyDataExists ? (recommendation?.recommended || strategyDataRaw.recommendedStrategy?.primaryAngle?.angleType || undefined) : undefined,
+    fallbacks: strategyDataExists ? (recommendation?.ranking?.slice(1).map((r: any) => r.route) || undefined) : undefined,
+    confidence: strategyDataExists ? (recommendation?.confidence || undefined) : undefined,
     exhaustion: undefined, // Not available from current API
-    pivotTriggers: recommendation?.flipConditions?.map((fc: any) => fc.trigger) || undefined,
+    pivotTriggers: strategyDataExists ? (recommendation?.flipConditions?.map((fc: any) => fc.trigger) || undefined) : undefined,
   };
 
   // Normalize commitment/decision log
@@ -265,20 +287,19 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
     nextSteps: [] as NextStepItem[],
   };
 
-  // DEV-only structured logging for endpoint status
+  // DEV-only structured logging for endpoint status (single source of truth)
   if (process.env.NODE_ENV !== "production") {
     const endpointStatus = {
+      hasVersion: analysis.hasVersion,
       analysis_mode: analysis.mode,
-      has_analysis_version: analysis.hasVersion,
+      strategyDataExists,
+      canShowStrategyPreview: analysis.canShowStrategyPreview,
+      canShowStrategyFull: analysis.canShowStrategyFull,
       doc_count: analysis.docCount,
       raw_chars_total: rawCharsTotal,
       extraction_ok: extractionOk,
-      strategy_data_exists: strategyDataExists,
-      canShowStrategyPreview: analysis.canShowStrategyPreview,
-      canShowStrategyFull: analysis.canShowStrategyFull,
-      has_extracted_text: rawCharsTotal > 0 || (analysisData.summary && analysisData.summary.length > 0),
     };
-    console.log("[CaseSnapshot] Strategy gating:", JSON.stringify(endpointStatus, null, 2));
+    console.log("[CaseSnapshot] Strategy gating (single source of truth):", JSON.stringify(endpointStatus, null, 2));
     
     if (!analysisResult.ok && analysisResult.error) {
       console.warn(`[CaseSnapshot] Analysis fetch failed: ${analysisResult.error}`);

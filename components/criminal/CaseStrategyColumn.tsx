@@ -111,41 +111,67 @@ export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommi
         </CollapsibleSection>
       ) : snapshot.analysis.canShowStrategyPreview ? (
         <Card title="Strategy Overview" description="Current strategy analysis">
-          <div className="p-4 rounded-lg border border-amber-500/20 bg-amber-500/5">
-            <p className="text-xs text-foreground mb-2">
-              <span className="font-semibold">Provisional Strategy (Thin Pack)</span>
-            </p>
-            <p className="text-xs text-muted-foreground mb-3">
-              Strategy preview available. Full analysis requires additional documents.
-            </p>
-            {snapshot.strategy.primary && (
-              <div className="mb-2">
-                <span className="text-xs text-muted-foreground">Primary: </span>
-                <Badge variant="outline" className="text-xs">
-                  {snapshot.strategy.primary}
-                </Badge>
-              </div>
-            )}
-            {snapshot.strategy.confidence && (
-              <div>
-                <span className="text-xs text-muted-foreground">Confidence: </span>
-                <Badge
-                  className={`text-xs ${
-                    snapshot.strategy.confidence === "HIGH"
-                      ? "bg-green-500/10 text-green-600"
-                      : snapshot.strategy.confidence === "MEDIUM"
-                      ? "bg-amber-500/10 text-amber-600"
-                      : "bg-blue-500/10 text-blue-600"
-                  }`}
-                >
-                  {snapshot.strategy.confidence}
-                </Badge>
-                {snapshot.strategy.confidence === "LOW" && (
-                  <span className="text-xs text-muted-foreground ml-2">(capped - thin pack)</span>
+          {(() => {
+            // DEV-only: Log preview rendering decision
+            if (process.env.NODE_ENV !== "production") {
+              console.log("[CaseStrategyColumn] Preview card rendering:", {
+                canShowStrategyPreview: snapshot.analysis.canShowStrategyPreview,
+                canShowStrategyFull: snapshot.analysis.canShowStrategyFull,
+                strategyDataExists: snapshot.strategy.strategyDataExists,
+                willShowPlaceholder: !snapshot.strategy.strategyDataExists,
+                willShowRealData: snapshot.strategy.strategyDataExists,
+              });
+            }
+            
+            return snapshot.strategy.strategyDataExists ? (
+              // Real strategy data exists - show preview with actual data
+              <div className="p-4 rounded-lg border border-amber-500/20 bg-amber-500/5">
+                <p className="text-xs text-foreground mb-2">
+                  <span className="font-semibold">Provisional Strategy (Thin Pack)</span>
+                </p>
+                <p className="text-xs text-muted-foreground mb-3">
+                  Strategy preview available. Full analysis requires additional documents.
+                </p>
+                {snapshot.strategy.primary && (
+                  <div className="mb-2">
+                    <span className="text-xs text-muted-foreground">Primary: </span>
+                    <Badge variant="outline" className="text-xs">
+                      {snapshot.strategy.primary}
+                    </Badge>
+                  </div>
+                )}
+                {snapshot.strategy.confidence && (
+                  <div>
+                    <span className="text-xs text-muted-foreground">Confidence: </span>
+                    <Badge
+                      className={`text-xs ${
+                        snapshot.strategy.confidence === "HIGH"
+                          ? "bg-green-500/10 text-green-600"
+                          : snapshot.strategy.confidence === "MEDIUM"
+                          ? "bg-amber-500/10 text-amber-600"
+                          : "bg-blue-500/10 text-blue-600"
+                      }`}
+                    >
+                      {snapshot.strategy.confidence}
+                    </Badge>
+                    {snapshot.strategy.confidence === "LOW" && (
+                      <span className="text-xs text-muted-foreground ml-2">(capped - thin pack)</span>
+                    )}
+                  </div>
                 )}
               </div>
-            )}
-          </div>
+            ) : (
+              // Placeholder when preview mode is available but no strategy output exists
+              <div className="p-4 rounded-lg border border-amber-500/20 bg-amber-500/5">
+                <p className="text-xs text-foreground mb-2">
+                  <span className="font-semibold">Preview mode — no strategy outputs generated yet.</span>
+                </p>
+                <p className="text-xs text-muted-foreground mb-3">
+                  Analysis version exists but strategy outputs are not available. Run analysis or add documents to generate strategy recommendations.
+                </p>
+              </div>
+            );
+          })()}
         </Card>
       ) : (
         <Card title="Strategy Overview" description="Current strategy analysis">
@@ -158,7 +184,11 @@ export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommi
       {/* Decision Checkpoints */}
       <Card title="Decision Checkpoints" description="Key decision moments">
         <div className="text-center py-4 text-muted-foreground text-sm">
-          Decision checkpoints will appear once analysis is run.
+          {snapshot.analysis.canShowStrategyPreview && !snapshot.analysis.canShowStrategyFull ? (
+            <>Unavailable in thin-pack preview. Add documents then re-analyse to generate these.</>
+          ) : (
+            <>Run analysis to generate decision checkpoints.</>
+          )}
         </div>
       </Card>
 
@@ -189,7 +219,11 @@ export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommi
           </div>
         ) : (
           <div className="text-center py-4 text-muted-foreground text-sm">
-            Next steps will appear once analysis is run.
+            {snapshot.analysis.canShowStrategyPreview && !snapshot.analysis.canShowStrategyFull ? (
+              <>Unavailable in thin-pack preview. Add documents then re-analyse to generate these.</>
+            ) : (
+              <>Run analysis to generate next steps.</>
+            )}
           </div>
         )}
       </Card>

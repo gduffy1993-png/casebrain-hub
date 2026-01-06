@@ -80,6 +80,7 @@ type CaseFightPlanProps = {
   canShowStrategyOutputs?: boolean; // Legacy: maps to canShowStrategyFull
   canShowStrategyPreview?: boolean; // Minimal preview when strategy exists OR analysis version exists
   canShowStrategyFull?: boolean; // Deep strategy UI only when extraction threshold met
+  strategyDataExists?: boolean; // Explicit flag: true only when real strategy output exists
 };
 
 export function CaseFightPlan({ 
@@ -88,10 +89,22 @@ export function CaseFightPlan({
   canShowStrategyOutputs = true, // Legacy compatibility
   canShowStrategyPreview = false,
   canShowStrategyFull = true,
+  strategyDataExists = false,
 }: CaseFightPlanProps) {
   // Use new flags if provided, otherwise fall back to legacy canShowStrategyOutputs
   const showFull = canShowStrategyFull !== undefined ? canShowStrategyFull : canShowStrategyOutputs;
   const showPreview = canShowStrategyPreview;
+  
+  // DEV-only: Log preview rendering decision
+  if (process.env.NODE_ENV !== "production" && showPreview && !showFull) {
+    console.log("[CaseFightPlan] Preview card rendering:", {
+      showPreview,
+      showFull,
+      strategyDataExists,
+      willShowPlaceholder: !strategyDataExists,
+      willShowRealData: strategyDataExists,
+    });
+  }
   const [data, setData] = useState<CaseFightPlanData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -972,10 +985,20 @@ export function CaseFightPlan({
           // No strategy data in state - check if fetch failed
           if (error && !loading) {
             // Fetch failed AND no strategy data exists - show error
+            // But check if we have preview mode available
+            if (showPreview) {
+              return (
+                <div className="mb-4 p-2 rounded-lg border border-amber-500/20 bg-amber-500/5">
+                  <p className="text-xs text-foreground">
+                    <span className="font-semibold">Strategy preview available (thin pack). Add documents for full routes.</span>
+                  </p>
+                </div>
+              );
+            }
             return (
               <div className="mb-4 p-2 rounded-lg border border-red-500/20 bg-red-500/5">
                 <p className="text-xs text-foreground">
-                  <span className="font-semibold">Strategy analysis will appear once analysis is run.</span>
+                  <span className="font-semibold">Run analysis to populate this section.</span>
                   <span className="text-muted-foreground ml-2">
                     ({error})
                   </span>
@@ -1203,7 +1226,50 @@ export function CaseFightPlan({
 
         {/* Minimal preview card for thin packs */}
         {!showFull && showPreview && (() => {
-          // Extract recommendation if available
+          // Only show strategy data if strategyDataExists is true
+          if (!strategyDataExists) {
+            // Placeholder when preview mode is available but no strategy output exists
+            return (
+              <div className="p-4 rounded-lg border border-amber-500/20 bg-amber-500/5 space-y-4">
+                <div className="flex items-start gap-2">
+                  <AlertTriangle className="h-4 w-4 text-amber-400 mt-0.5 flex-shrink-0" />
+                  <div className="flex-1">
+                    <h3 className="text-sm font-semibold text-foreground mb-1">
+                      Preview mode — no strategy outputs generated yet.
+                    </h3>
+                    <p className="text-xs text-muted-foreground mb-3">
+                      Analysis version exists but strategy outputs are not available. Run analysis or add documents to generate strategy recommendations.
+                    </p>
+                    
+                    <div className="flex gap-2 pt-2 border-t border-amber-500/20">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => {
+                          window.location.href = `/cases/${caseId}?action=reanalyse`;
+                        }}
+                        className="text-xs"
+                      >
+                        Run analysis
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => {
+                          window.location.href = `/cases/${caseId}?action=add-documents`;
+                        }}
+                        className="text-xs"
+                      >
+                        Add documents
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          }
+          
+          // Real strategy data exists - show preview with actual data
           const recommendation = (payload as any)?.recommendation || (data as any)?.recommendation;
           const strategyRoutes = (payload as any)?.routes || (data as any)?.routes;
           

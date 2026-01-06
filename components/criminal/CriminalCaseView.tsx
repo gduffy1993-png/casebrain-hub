@@ -103,11 +103,16 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
       !snapshot.analysis.canShowStrategyOutputs;
     
     if (shouldShowGateBanner) {
+      // Use thin pack message if preview is available
+      const message = snapshot.analysis.canShowStrategyPreview && !snapshot.analysis.canShowStrategyFull
+        ? "Thin pack: limited outputs. Add documents for full strategy routes."
+        : "Not enough extractable text to generate reliable analysis. Upload text-based PDFs or run OCR, then re-analyse.";
+      
       setGateBanner({
         banner: {
           severity: "warning",
           title: "Insufficient text extracted",
-          message: "Not enough extractable text to generate reliable analysis. Upload text-based PDFs or run OCR, then re-analyse.",
+          message,
         },
       });
       setIsDisclosureFirstMode(true);
@@ -235,13 +240,20 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
 
       {/* Primary Defence Strategy - Case Fight Plan (ONLY strategy surface for criminal cases) */}
       {/* FIX: Always visible regardless of phase - phase gating only affects bail/sentencing tools */}
-      <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Strategy analysis will appear once analysis is run.</div>}>
+      <ErrorBoundary fallback={
+        <div className="text-sm text-muted-foreground p-4">
+          {snapshot?.analysis.canShowStrategyPreview && !snapshot?.analysis.canShowStrategyFull
+            ? "Strategy preview available (thin pack). Add documents for full routes."
+            : "Run analysis to populate this section."}
+        </div>
+      }>
         <CaseFightPlan 
           caseId={caseId} 
           committedStrategy={committedStrategy}
           canShowStrategyOutputs={snapshot?.analysis.canShowStrategyOutputs ?? false}
           canShowStrategyPreview={snapshot?.analysis.canShowStrategyPreview ?? false}
           canShowStrategyFull={snapshot?.analysis.canShowStrategyFull ?? false}
+          strategyDataExists={snapshot?.strategy.strategyDataExists ?? false}
         />
       </ErrorBoundary>
 
@@ -268,6 +280,8 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
             // Navigate to case page with add documents action
             window.location.href = `/cases/${caseId}?action=add-documents`;
           }}
+          // Prioritize "Add documents" when in thin pack preview mode
+          primaryAction={snapshot?.analysis.canShowStrategyPreview && !snapshot?.analysis.canShowStrategyFull ? "addDocuments" : "runAnalysis"}
         />
       )}
 
@@ -294,7 +308,15 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
               onAddDocument={() => setShowAddDocuments(true)}
             />
           </ErrorBoundary>
-          <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Strategy analysis will appear once analysis is run.</div></Card>}>
+          <ErrorBoundary fallback={
+            <Card className="p-4">
+              <div className="text-sm text-muted-foreground">
+                {snapshot?.analysis.canShowStrategyPreview && !snapshot?.analysis.canShowStrategyFull
+                  ? "Strategy preview available (thin pack). Add documents for full routes."
+                  : "Run analysis to populate this section."}
+              </div>
+            </Card>
+          }>
             <CaseStrategyColumn 
               caseId={caseId} 
               snapshot={snapshot}

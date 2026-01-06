@@ -24,6 +24,7 @@ export type AnalysisGateBannerProps = {
   showHowToFix?: boolean;
   onRunAnalysis?: () => void;
   onAddDocuments?: () => void;
+  primaryAction?: "runAnalysis" | "addDocuments"; // Which CTA should be primary (default: runAnalysis)
 };
 
 /**
@@ -36,6 +37,7 @@ export function AnalysisGateBanner({
   showHowToFix = true,
   onRunAnalysis,
   onAddDocuments,
+  primaryAction = "runAnalysis",
 }: AnalysisGateBannerProps) {
   const getIcon = () => {
     switch (banner.severity) {
@@ -106,21 +108,44 @@ export function AnalysisGateBanner({
           {/* CTA Buttons */}
           {(onRunAnalysis || onAddDocuments) && (
             <div className="mt-3 pt-3 border-t border-border/50 flex gap-2">
-              {onRunAnalysis && (
-                <button
-                  onClick={onRunAnalysis}
-                  className="px-3 py-1.5 text-xs font-medium bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
-                >
-                  Run analysis
-                </button>
-              )}
-              {onAddDocuments && (
-                <button
-                  onClick={onAddDocuments}
-                  className="px-3 py-1.5 text-xs font-medium bg-muted text-foreground rounded-md hover:bg-muted/80 transition-colors border border-border/50"
-                >
-                  Add documents
-                </button>
+              {primaryAction === "addDocuments" ? (
+                <>
+                  {onAddDocuments && (
+                    <button
+                      onClick={onAddDocuments}
+                      className="px-3 py-1.5 text-xs font-medium bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
+                    >
+                      Add documents
+                    </button>
+                  )}
+                  {onRunAnalysis && (
+                    <button
+                      onClick={onRunAnalysis}
+                      className="px-3 py-1.5 text-xs font-medium bg-muted text-foreground rounded-md hover:bg-muted/80 transition-colors border border-border/50"
+                    >
+                      Run analysis
+                    </button>
+                  )}
+                </>
+              ) : (
+                <>
+                  {onRunAnalysis && (
+                    <button
+                      onClick={onRunAnalysis}
+                      className="px-3 py-1.5 text-xs font-medium bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
+                    >
+                      Run analysis
+                    </button>
+                  )}
+                  {onAddDocuments && (
+                    <button
+                      onClick={onAddDocuments}
+                      className="px-3 py-1.5 text-xs font-medium bg-muted text-foreground rounded-md hover:bg-muted/80 transition-colors border border-border/50"
+                    >
+                      Add documents
+                    </button>
+                  )}
+                </>
               )}
             </div>
           )}
