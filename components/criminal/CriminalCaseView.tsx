@@ -17,13 +17,16 @@ import { CasePhaseSelector, type CasePhase } from "./CasePhaseSelector";
 import { StrategyCommitmentPanel, type StrategyCommitment } from "./StrategyCommitmentPanel";
 import { Phase2StrategyPlanPanel } from "./Phase2StrategyPlanPanel";
 import { AnalysisGateBanner, type AnalysisGateBannerProps } from "@/components/AnalysisGateBanner";
-import { Scale, Shield, Loader2 } from "lucide-react";
+import { Scale, Shield, Loader2, FileText, Target } from "lucide-react";
 // Phase 2 components
 import { buildCaseSnapshot, type CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
 import { CaseStatusStrip } from "./CaseStatusStrip";
 import { CaseEvidenceColumn } from "./CaseEvidenceColumn";
 import { CaseStrategyColumn } from "./CaseStrategyColumn";
 import { EvidenceSelectorModal } from "@/components/cases/EvidenceSelectorModal";
+import { CaseSummaryPanel } from "@/components/cases/CaseSummaryPanel";
+import { CaseKeyFactsPanel } from "@/components/cases/KeyFactsPanel";
+import { ChargesPanel } from "./ChargesPanel";
 
 type CriminalCaseViewProps = {
   caseId: string;
@@ -218,8 +221,73 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   const showCourtHearings = currentPhase >= 1 && (panelData.hearings.hasData || currentPhase >= 2);
   const showPACE = currentPhase >= 1 && (panelData.pace.hasData || currentPhase >= 2);
 
+  // Determine if we have extracted data (independent of analysis mode)
+  // These checks are extraction-based only, NOT analysis-based
+  const hasExtractedSummary = snapshot?.caseMeta?.title && snapshot.caseMeta.title !== "Untitled Case";
+  const hasExtractedFacts = (snapshot?.evidence?.documents?.length ?? 0) > 0;
+  const hasCharges = (snapshot?.charges?.length ?? 0) > 0;
+  const hasReadLayerData = hasExtractedSummary || hasExtractedFacts || hasCharges;
+
   return (
     <div className="space-y-6">
+      {/* Pre-Analysis Read Layer - Show when extracted data exists, independent of analysis mode */}
+      {hasReadLayerData && (
+        <>
+          {/* Case Summary - Show if we have case title or documents */}
+          {hasExtractedSummary && (
+            <CollapsibleSection
+              title="Case Summary"
+              description="Case overview and summary"
+              defaultOpen={true}
+              icon={<FileText className="h-4 w-4 text-blue-400" />}
+            >
+              <ErrorBoundary fallback={
+                <Card className="p-4">
+                  <h2 className="text-xl font-bold text-foreground mb-2">{snapshot?.caseMeta?.title ?? "Untitled Case"}</h2>
+                  <p className="text-sm text-muted-foreground">Summary will appear once documents are processed.</p>
+                </Card>
+              }>
+                <CaseSummaryPanel
+                  caseId={caseId}
+                  caseTitle={snapshot?.caseMeta?.title ?? "Untitled Case"}
+                  practiceArea={null}
+                  summary={null}
+                />
+              </ErrorBoundary>
+            </CollapsibleSection>
+          )}
+
+          {/* Key Facts - Show if we have documents */}
+          {hasExtractedFacts && (
+            <CollapsibleSection
+              title="Key Facts"
+              description="Parties, dates, amounts, and case overview"
+              defaultOpen={true}
+              icon={<Target className="h-4 w-4 text-blue-400" />}
+            >
+              <ErrorBoundary fallback={
+                <Card className="p-4">
+                  <p className="text-sm text-muted-foreground">Key facts will appear once documents are processed.</p>
+                </Card>
+              }>
+                <CaseKeyFactsPanel caseId={caseId} />
+              </ErrorBoundary>
+            </CollapsibleSection>
+          )}
+
+          {/* Charges - Show if charges exist (from snapshot, extraction-based) */}
+          {hasCharges && (
+            <ErrorBoundary fallback={
+              <Card className="p-4">
+                <p className="text-sm text-muted-foreground">Charges will appear once documents are processed.</p>
+              </Card>
+            }>
+              <ChargesPanel caseId={caseId} />
+            </ErrorBoundary>
+          )}
+        </>
+      )}
+
       {/* Phase 2: Case Status Strip */}
       {snapshotLoading ? (
         <Card className="p-4">
