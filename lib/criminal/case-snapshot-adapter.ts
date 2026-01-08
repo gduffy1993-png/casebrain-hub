@@ -8,6 +8,11 @@
  */
 
 import { safeFetch } from "@/lib/utils/safe-fetch";
+import {
+  computeBundleCompleteness,
+  type BundleCompletenessFlags,
+  type CapabilityTier,
+} from "@/lib/criminal/bundle-completeness-score";
 
 export type CaseSnapshot = {
   caseMeta: {
@@ -26,6 +31,10 @@ export type CaseSnapshot = {
     canShowStrategyPreview: boolean; // Minimal preview when strategy exists OR analysis version exists
     canShowStrategyFull: boolean; // Deep strategy UI only when extraction threshold met
     extractionOk?: boolean; // Exposed for status strip logic
+    // Phase A: Bundle completeness (doc-metadata based)
+    completenessScore: number; // 0–100
+    completenessFlags: BundleCompletenessFlags;
+    capabilityTier: CapabilityTier; // thin | partial | full
   };
   charges: ChargeItem[];
   evidence: {
@@ -237,6 +246,19 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
       }))
     : [];
 
+  // Phase A: Bundle completeness (deterministic, doc metadata only)
+  const bundle = computeBundleCompleteness(
+    Array.isArray(documentsData)
+      ? documentsData.map((d: any) => ({ name: d?.name ?? null, type: d?.type ?? null }))
+      : []
+  );
+  const analysisWithBundle = {
+    ...analysis,
+    completenessScore: bundle.score,
+    completenessFlags: bundle.flags,
+    capabilityTier: bundle.capabilityTier,
+  };
+
   // Disclosure items - derive from missing evidence
   const disclosureItems: DisclosureItem[] = missingEvidence.map((item) => ({
     item: item.label,
@@ -290,12 +312,17 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
   // DEV-only structured logging for endpoint status (single source of truth)
   if (process.env.NODE_ENV !== "production") {
     const endpointStatus = {
-      hasVersion: analysis.hasVersion,
-      analysis_mode: analysis.mode,
+      hasVersion: analysisWithBundle.hasVersion,
+      analysis_mode: analysisWithBundle.mode,
+      bundle: {
+        score: analysisWithBundle.completenessScore,
+        tier: analysisWithBundle.capabilityTier,
+        flags: analysisWithBundle.completenessFlags,
+      },
       strategyDataExists,
-      canShowStrategyPreview: analysis.canShowStrategyPreview,
-      canShowStrategyFull: analysis.canShowStrategyFull,
-      doc_count: analysis.docCount,
+      canShowStrategyPreview: analysisWithBundle.canShowStrategyPreview,
+      canShowStrategyFull: analysisWithBundle.canShowStrategyFull,
+      doc_count: analysisWithBundle.docCount,
       raw_chars_total: rawCharsTotal,
       extraction_ok: extractionOk,
     };
@@ -314,7 +341,7 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
 
   return {
     caseMeta,
-    analysis,
+    analysis: analysisWithBundle,
     charges,
     evidence: {
       documents,

@@ -14,6 +14,8 @@ export function CaseStatusStrip({ snapshot }: CaseStatusStripProps) {
     (item) => item.status === "MISSING" || item.status === "UNASSESSED"
   ).length;
   const docCount = snapshot.analysis.docCount || 0;
+  const bundleScore = snapshot.analysis.completenessScore;
+  const bundleTier = snapshot.analysis.capabilityTier;
   
   let disclosureStatus: "Thin" | "Partial" | "Good" = "Thin";
   let disclosureColor = "bg-amber-500/10 text-amber-600 border-amber-500/30";
@@ -25,6 +27,15 @@ export function CaseStatusStrip({ snapshot }: CaseStatusStripProps) {
     disclosureStatus = "Partial";
     disclosureColor = "bg-blue-500/10 text-blue-600 border-blue-500/30";
   }
+
+  // Bundle tier display (Phase A)
+  const bundleLabel = bundleTier === "full" ? "Full" : bundleTier === "partial" ? "Partial" : "Thin";
+  const bundleColor =
+    bundleTier === "full"
+      ? "bg-green-500/10 text-green-600 border-green-500/30"
+      : bundleTier === "partial"
+        ? "bg-amber-500/10 text-amber-600 border-amber-500/30"
+        : "bg-blue-500/10 text-blue-600 border-blue-500/30";
 
   // Analysis status
   // RULE: Show "Gated (thin pack)" when canShowStrategyOutputs is false AND extraction is thin
@@ -73,6 +84,15 @@ export function CaseStatusStrip({ snapshot }: CaseStatusStripProps) {
 
   return (
     <div className="flex flex-wrap items-center gap-4 p-4 rounded-lg border border-border/50 bg-muted/10">
+      {/* Bundle Completeness (Phase A) */}
+      <div className="flex items-center gap-2">
+        <FileText className="h-4 w-4 text-muted-foreground" />
+        <span className="text-xs text-muted-foreground">Bundle:</span>
+        <Badge className={`text-xs border ${bundleColor}`}>
+          {bundleLabel} ({bundleScore})
+        </Badge>
+      </div>
+
       {/* Disclosure Status */}
       <div className="flex items-center gap-2">
         <FileText className="h-4 w-4 text-muted-foreground" />
