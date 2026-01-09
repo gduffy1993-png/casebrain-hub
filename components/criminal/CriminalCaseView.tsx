@@ -154,14 +154,28 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
           });
 
           if (!res.ok) {
-            throw new Error("Failed to re-run analysis");
+            const errorData = await res.json().catch(() => ({ error: "Failed to re-run analysis" }));
+            throw new Error(errorData.error || "Failed to re-run analysis");
           }
 
-          // Refresh page to show new version
-          router.refresh();
+          const data = await res.json();
+          
+          // Wait a moment for the version to be fully written, then refresh
+          setTimeout(() => {
+            router.refresh();
+            // Also trigger client-side refetch of dependent endpoints
+            if (typeof window !== "undefined") {
+              window.dispatchEvent(new CustomEvent("analysis-rerun-complete", { detail: { versionNumber: data.version_number } }));
+            }
+          }, 1000);
         } catch (error) {
           console.error("Failed to re-run analysis:", error);
-          // Don't show alert - let the user see the error state naturally
+          // Show user-friendly error
+          if (typeof window !== "undefined") {
+            window.dispatchEvent(new CustomEvent("analysis-rerun-error", { 
+              detail: { error: error instanceof Error ? error.message : "Failed to re-run analysis" } 
+            }));
+          }
         }
       }
       triggerReanalyse();
@@ -340,9 +354,29 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
           banner={gateBanner.banner}
           diagnostics={gateBanner.diagnostics}
           showHowToFix={true}
-          onRunAnalysis={() => {
-            // Navigate to case page with reanalyse action
-            window.location.href = `/cases/${caseId}?action=reanalyse`;
+          onRunAnalysis={async () => {
+            try {
+              // Call rerun endpoint directly for better UX and error handling
+              const res = await fetch(`/api/cases/${caseId}/analysis/rerun`, {
+                method: "POST",
+              });
+
+              if (!res.ok) {
+                const errorData = await res.json().catch(() => ({ error: "Failed to re-run analysis" }));
+                throw new Error(errorData.error || `Failed to re-run analysis (${res.status})`);
+              }
+
+              const data = await res.json();
+              
+              // Wait a moment for the version to be fully written, then refresh
+              setTimeout(() => {
+                window.location.reload(); // Full reload to ensure all data refreshes
+              }, 1000);
+            } catch (error) {
+              console.error("Failed to re-run analysis:", error);
+              const errorMessage = error instanceof Error ? error.message : "Failed to re-run analysis. Please try again.";
+              alert(errorMessage);
+            }
           }}
           onAddDocuments={() => {
             // Navigate to case page with add documents action

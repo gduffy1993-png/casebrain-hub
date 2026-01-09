@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { requireAuthContextApi } from "@/lib/auth-api";
+import { requireAuthContext } from "@/lib/auth";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { detectAllLoopholes } from "@/lib/criminal/loophole-detector";
 import { generateDefenseStrategies, calculateGetOffProbability } from "@/lib/criminal/strategy-generator";
@@ -9,6 +9,8 @@ type RouteParams = {
   params: Promise<{ caseId: string }>;
 };
 
+export const dynamic = "force-dynamic";
+
 /**
  * POST /api/criminal/[caseId]/process
  * Process criminal case from uploaded documents and extract criminalMeta
@@ -17,9 +19,7 @@ type RouteParams = {
 export async function POST(_request: Request, { params }: RouteParams) {
   try {
     const { caseId } = await params;
-    const authRes = await requireAuthContextApi();
-    if (!authRes.ok) return authRes.response;
-    const { orgId, userId } = authRes.context;
+    const { orgId, userId } = await requireAuthContext();
     const supabase = getSupabaseAdminClient();
 
     // Fetch case

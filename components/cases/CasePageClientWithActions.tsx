@@ -51,16 +51,29 @@ export function CasePageClientWithActions({
         });
 
         if (!res.ok) {
-          throw new Error("Failed to re-run analysis");
+          const errorData = await res.json().catch(() => ({ error: "Failed to re-run analysis" }));
+          throw new Error(errorData.error || `Failed to re-run analysis (${res.status})`);
         }
 
         const data = await res.json();
         
-        // Refresh page to show new version and delta
-        router.refresh();
+        // Wait a moment for the version to be fully written, then refresh
+        setTimeout(() => {
+          router.refresh();
+          // Also trigger client-side refetch of dependent endpoints
+          if (typeof window !== "undefined") {
+            window.dispatchEvent(new CustomEvent("analysis-rerun-complete", { 
+              detail: { 
+                versionNumber: data.version_number,
+                caseId,
+              } 
+            }));
+          }
+        }, 1000);
       } catch (error) {
         console.error("Failed to re-run analysis:", error);
-        alert("Failed to re-run analysis. Please try again.");
+        const errorMessage = error instanceof Error ? error.message : "Failed to re-run analysis. Please try again.";
+        alert(errorMessage);
       }
     });
   };
