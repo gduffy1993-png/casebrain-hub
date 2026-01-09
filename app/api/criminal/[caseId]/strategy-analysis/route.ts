@@ -127,9 +127,15 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         reasonCodes.push("DOCS_NONE");
       }
 
+      // PHASE 2 FIX: Lower threshold for strategy generation
+      // Strategy generation runs when totalExtractedChars >= 800 (less strict than full canGenerateAnalysis)
+      // Bundle score ONLY affects confidence labels and warnings, not whether strategy runs
+      const allowStrategyGeneration = rawCharsTotal >= 800 && !suspectedScanned;
+      
+      // Full canGenerateAnalysis (for confidence caps and warnings)
       const canGenerateAnalysis = rawCharsTotal > 0 && !suspectedScanned && !textThin && reasonCodes.includes("OK");
 
-      // Build case context for Analysis Gate check
+      // Build case context for diagnostics
       // We'll override diagnostics with our computed values to ensure accuracy
       const context = await buildCaseContext(caseId, { userId });
       
@@ -172,13 +178,16 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         orgId: caseRow.org_id,
         foundCaseId: caseRow.id,
         documentCount: docCount,
+        rawCharsTotal,
+        allowStrategyGeneration,
+        canGenerateAnalysis,
       });
 
-      // Enforce Analysis Gate - only run if canGenerateAnalysis is true
-      const gateResult = checkAnalysisGate(context);
-      if (!gateResult.ok) {
+      // PHASE 2 FIX: Only block if truly insufficient (rawCharsTotal < 800 or scanned)
+      // Use allowStrategyGeneration instead of strict canGenerateAnalysis gate
+      if (!allowStrategyGeneration) {
         return makeGateFail<StrategyAnalysisResponse>(
-          gateResult.banner || {
+          {
             severity: "warning",
             title: "Insufficient text extracted",
             detail: "Not enough extractable text to generate reliable strategy analysis. Upload text-based PDFs or run OCR, then re-analyse.",
@@ -212,11 +221,13 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         "outcome_management",
       ];
 
-      // Generate routes (residual scanning will be added after recommendation is generated)
+      // PHASE 3 FIX: Generate routes with allowStrategyGeneration (not strict canGenerateAnalysis)
+      // This ensures routes are generated when evidence allows, even if confidence is capped
+      // canGenerateAnalysis is only used for confidence labels/warnings
       const routes = routeTypes.map((routeType) =>
         generateStrategyRoute(
           routeType,
-          canGenerateAnalysis,
+          allowStrategyGeneration, // Use allowStrategyGeneration instead of canGenerateAnalysis
           {
             docCount: context.diagnostics.docCount,
             rawCharsTotal: context.diagnostics.rawCharsTotal,
@@ -314,7 +325,8 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
           )
         : [];
 
-      // Scan residual attacks for each route (after recommendation is available)
+      // PHASE 3 FIX: Scan residual attacks for each route (after recommendation is available)
+      // Use allowStrategyGeneration instead of canGenerateAnalysis to ensure residual scanning runs
       const routesWithResidual = routes.map((route, idx) => {
         const routeType = routeTypes[idx];
         const routeConfidence = confidenceStates[routeType]?.current || "MEDIUM";
@@ -324,7 +336,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
           routeType,
           existingAttackPaths: route.attackPaths,
           routeConfidence,
-          canGenerateAnalysis,
+          canGenerateAnalysis: allowStrategyGeneration, // Use allowStrategyGeneration
         });
 
         return {
@@ -345,11 +357,12 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
           : "All routes have residual attack angles available",
       };
 
-      // Generate artifacts for committed route (if any) - AFTER recommendation is generated
+      // PHASE 3 FIX: Generate artifacts for committed route (if any) - AFTER recommendation is generated
+      // Use allowStrategyGeneration to ensure artifacts are generated when evidence allows
       const artifacts = commitment?.primary_strategy
         ? generateArtifacts(
             commitment.primary_strategy as "fight_charge" | "charge_reduction" | "outcome_management",
-            canGenerateAnalysis,
+            allowStrategyGeneration, // Use allowStrategyGeneration instead of canGenerateAnalysis
             {
               caseTitle: caseData?.title || undefined,
             },
@@ -377,12 +390,14 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         diagnostics.orgId = caseRow.org_id;
       }
 
+      // PHASE 3 FIX: Ensure all attack plan outputs are included in response
+      // Routes already include: attackPaths, cpsResponses, killSwitches, pivotPlan (from generateStrategyRoute)
       const response: StrategyAnalysisResponse = {
-        routes: routesWithResidual,
+        routes: routesWithResidual, // Contains attackPaths, cpsResponses, killSwitches, pivotPlan, residual
         selectedRoute: commitment?.primary_strategy || undefined,
         artifacts,
         evidenceImpact,
-        canGenerateAnalysis,
+        canGenerateAnalysis, // This is for confidence caps/warnings (not visibility)
         recommendation,
         evidenceImpactMap,
         timePressure,

@@ -162,12 +162,36 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
   
   // Strategy data exists check - check all possible response shapes
   // Normalize to ONE canonical internal shape
+  // PHASE 1 FIX: Check for ALL strategy fields (attack_paths, cps_responses, kill_switches, pivot_plan)
   const strategyDataRaw = strategyResult.data?.data || strategyResult.data || {};
   const hasRoutes = Array.isArray(strategyDataRaw.routes) && strategyDataRaw.routes.length > 0;
   const hasRecommendation = !!strategyDataRaw.recommendation;
   const hasNarrative = !!strategyDataRaw.solicitor_narrative || !!strategyDataRaw.narrative;
   
-  const strategyDataExists = strategyResult.ok && (hasRoutes || hasRecommendation || hasNarrative);
+  // Check for attack paths in routes
+  const hasAttackPaths = hasRoutes && strategyDataRaw.routes.some((r: any) => 
+    Array.isArray(r.attackPaths) && r.attackPaths.length > 0
+  );
+  
+  // Check for CPS responses in routes
+  const hasCPSResponses = hasRoutes && strategyDataRaw.routes.some((r: any) => 
+    Array.isArray(r.cpsResponses) && r.cpsResponses.length > 0
+  );
+  
+  // Check for kill switches in routes
+  const hasKillSwitches = hasRoutes && strategyDataRaw.routes.some((r: any) => 
+    Array.isArray(r.killSwitches) && r.killSwitches.length > 0
+  );
+  
+  // Strategy data exists if ANY of these fields are present
+  const strategyDataExists = strategyResult.ok && (
+    hasRoutes || 
+    hasRecommendation || 
+    hasNarrative ||
+    hasAttackPaths ||
+    hasCPSResponses ||
+    hasKillSwitches
+  );
   
   // DEV-only: Log strategy endpoint response
   if (process.env.NODE_ENV !== "production") {
@@ -191,10 +215,12 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
     ((analysisMode === "preview" || analysisMode === "complete" || hasVersion) &&
      (strategyDataExists || hasVersion));
   
-  // B) canShowStrategyFull: deep strategy UI only when extraction threshold met
+  // B) canShowStrategyFull: PHASE 1 FIX - Display existing strategy data regardless of extractionOk
+  // extractionOk only affects CONFIDENCE CAPS, not visibility
+  // Show full strategy if strategy data exists AND analysis mode is preview/complete
   const canShowStrategyFull = 
-    (analysisMode === "preview" || analysisMode === "complete") && 
-    extractionOk;
+    strategyDataExists &&
+    (analysisMode === "preview" || analysisMode === "complete");
   
   // Legacy: canShowStrategyOutputs (for backward compatibility, maps to canShowStrategyFull)
   const canShowStrategyOutputs = canShowStrategyFull;
