@@ -48,6 +48,7 @@ export function CasePageClientWithActions({
       try {
         const res = await fetch(`/api/cases/${caseId}/analysis/rerun`, {
           method: "POST",
+          credentials: "include",
         });
 
         if (!res.ok) {
@@ -69,7 +70,7 @@ export function CasePageClientWithActions({
               } 
             }));
           }
-        }, 1000);
+        }, 750);
       } catch (error) {
         console.error("Failed to re-run analysis:", error);
         const errorMessage = error instanceof Error ? error.message : "Failed to re-run analysis. Please try again.";

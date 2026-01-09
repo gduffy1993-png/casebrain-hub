@@ -91,6 +91,7 @@ export function EvidenceSelectorModal({
     try {
       const response = await fetch(`/api/cases/${caseId}/analysis/rebuild`, {
         method: "POST",
+        credentials: "include",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           document_ids: Array.from(selectedIds),

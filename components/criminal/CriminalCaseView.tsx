@@ -151,6 +151,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         try {
           const res = await fetch(`/api/cases/${caseId}/analysis/rerun`, {
             method: "POST",
+            credentials: "include",
           });
 
           if (!res.ok) {
@@ -167,7 +168,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
             if (typeof window !== "undefined") {
               window.dispatchEvent(new CustomEvent("analysis-rerun-complete", { detail: { versionNumber: data.version_number } }));
             }
-          }, 1000);
+          }, 750);
         } catch (error) {
           console.error("Failed to re-run analysis:", error);
           // Show user-friendly error
@@ -359,6 +360,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
               // Call rerun endpoint directly for better UX and error handling
               const res = await fetch(`/api/cases/${caseId}/analysis/rerun`, {
                 method: "POST",
+                credentials: "include",
               });
 
               if (!res.ok) {
@@ -370,8 +372,14 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
               
               // Wait a moment for the version to be fully written, then refresh
               setTimeout(() => {
-                window.location.reload(); // Full reload to ensure all data refreshes
-              }, 1000);
+                router.refresh();
+                // Also trigger client-side refetch of dependent endpoints
+                if (typeof window !== "undefined") {
+                  window.dispatchEvent(new CustomEvent("analysis-rerun-complete", { 
+                    detail: { versionNumber: data.version_number, caseId } 
+                  }));
+                }
+              }, 750);
             } catch (error) {
               console.error("Failed to re-run analysis:", error);
               const errorMessage = error instanceof Error ? error.message : "Failed to re-run analysis. Please try again.";

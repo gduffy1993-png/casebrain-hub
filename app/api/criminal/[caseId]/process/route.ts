@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { requireAuthContext } from "@/lib/auth";
+import { requireAuthContextApi } from "@/lib/auth-api";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { detectAllLoopholes } from "@/lib/criminal/loophole-detector";
 import { generateDefenseStrategies, calculateGetOffProbability } from "@/lib/criminal/strategy-generator";
@@ -19,7 +19,12 @@ export const dynamic = "force-dynamic";
 export async function POST(_request: Request, { params }: RouteParams) {
   try {
     const { caseId } = await params;
-    const { orgId, userId } = await requireAuthContext();
+    
+    // Use API-safe auth that returns result object instead of throwing
+    const authRes = await requireAuthContextApi();
+    if (!authRes.ok) return authRes.response;
+    const { orgId, userId } = authRes.context;
+    
     const supabase = getSupabaseAdminClient();
 
     // Fetch case

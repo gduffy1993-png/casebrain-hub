@@ -6,7 +6,8 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
-import { requireAuthContext, getCurrentUser } from "@/lib/auth";
+import { requireAuthContextApi } from "@/lib/auth-api";
+import { getCurrentUser } from "@/lib/auth";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { calculateCaseMomentum } from "@/lib/strategic/momentum-engine";
 import { generateStrategyPaths } from "@/lib/strategic/strategy-paths";
@@ -30,8 +31,13 @@ export async function POST(
   { params }: RouteParams,
 ) {
   try {
-    const { orgId, userId } = await requireAuthContext();
     const { caseId } = await params;
+    
+    // Use API-safe auth that returns result object instead of throwing
+    const authRes = await requireAuthContextApi();
+    if (!authRes.ok) return authRes.response;
+    const { orgId, userId } = authRes.context;
+    
     const supabase = getSupabaseAdminClient();
 
     // Check trial limits (trial expiry only - don't block for doc/case limits)
