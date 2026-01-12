@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition, useEffect } from "react";
+import { useState, useTransition, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { AlertTriangle, CheckCircle, FileQuestion, Loader2, Plus } from "lucide-react";
 import { Card } from "@/components/ui/card";
@@ -53,11 +53,13 @@ const statusIcons = {
 
 export function MissingEvidencePanel({ caseId, items: propItems }: MissingEvidencePanelProps) {
   const [versionItems, setVersionItems] = useState<VersionMissingEvidence[]>([]);
-  const [loading, setLoading] = useState(!propItems);
+  const [loading, setLoading] = useState(false); // Start false - only set true during initial load
+  const [refreshing, setRefreshing] = useState(false); // Track refresh state
   const [isPending, startTransition] = useTransition();
   const [banner, setBanner] = useState<{ title: string; message: string; severity?: "error" | "warning" | "info" } | null>(null);
   const [hasAnalysisVersion, setHasAnalysisVersion] = useState<boolean>(false);
   const [analysisMode, setAnalysisMode] = useState<"complete" | "preview" | "none">("none");
+  const isFirstLoadRef = useRef(true);
 
   // Fetch from case_analysis_versions if items not provided
   useEffect(() => {
@@ -68,7 +70,14 @@ export function MissingEvidencePanel({ caseId, items: propItems }: MissingEviden
 
     async function fetchMissingEvidence() {
       const endpoint = `/api/cases/${caseId}/analysis/version/latest`;
-      setLoading(true);
+      // Only set loading=true if this is the first load
+      const isInitialLoad = isFirstLoadRef.current;
+      if (isInitialLoad) {
+        setLoading(true);
+        isFirstLoadRef.current = false;
+      } else {
+        setRefreshing(true);
+      }
       
       // Use safeFetch for consistent error handling
       const result = await safeFetch(endpoint);
@@ -114,10 +123,12 @@ export function MissingEvidencePanel({ caseId, items: propItems }: MissingEviden
       setVersionItems(safeMissing);
       setBanner(null);
       setLoading(false);
+      setRefreshing(false);
     }
 
     fetchMissingEvidence();
-  }, [caseId, propItems]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [caseId, propItems]); // Note: versionItems/hasAnalysisVersion intentionally not in deps
 
   // Convert version items to MissingEvidenceItem format (fail-safe)
   const convertVersionItems = (versionItems: VersionMissingEvidence[]): MissingEvidenceItem[] => {
@@ -196,7 +207,8 @@ export function MissingEvidencePanel({ caseId, items: propItems }: MissingEviden
     {} as Record<EvidenceCategory, MissingEvidenceItem[]>,
   );
 
-  if (loading) {
+  // Only show full loading state if we have no data
+  if (loading && versionItems.length === 0 && !propItems) {
     return (
       <Card
         title="Evidence Checklist"
@@ -213,7 +225,14 @@ export function MissingEvidencePanel({ caseId, items: propItems }: MissingEviden
   if (banner) {
     return (
       <Card
-        title="Evidence Checklist"
+        title={
+          <div className="flex items-center gap-2">
+            <span>Evidence Checklist</span>
+            {refreshing && (
+              <span className="text-xs text-muted-foreground">(Refreshing...)</span>
+            )}
+          </div>
+        }
         description="Required evidence for this case."
       >
         <div className="flex items-start gap-3 rounded-xl bg-amber-500/10 p-4">
@@ -341,7 +360,14 @@ export function MissingEvidencePanel({ caseId, items: propItems }: MissingEviden
 
   return (
     <Card
-      title="Missing Evidence"
+      title={
+        <div className="flex items-center gap-2">
+          <span>Missing Evidence</span>
+          {refreshing && (
+            <span className="text-xs text-muted-foreground">(Refreshing...)</span>
+          )}
+        </div>
+      }
       description="Evidence gaps detected. Create tasks to obtain missing items."
       action={
         <div className="flex gap-2 text-xs">

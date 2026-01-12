@@ -49,7 +49,8 @@ const fundingBadgeColors: Record<string, string> = {
 
 export function CaseKeyFactsPanel({ caseId }: KeyFactsPanelProps) {
   const [keyFacts, setKeyFacts] = useState<KeyFactsSummary | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false); // Start false - only set true during initial load
+  const [refreshing, setRefreshing] = useState(false); // Track refresh state
   const [error, setError] = useState<string | null>(null);
   const [supervisorView, setSupervisorView] = useState(false);
   const [openDomains, setOpenDomains] = useState<Set<string>>(new Set());
@@ -75,6 +76,14 @@ export function CaseKeyFactsPanel({ caseId }: KeyFactsPanelProps) {
 
   useEffect(() => {
     const fetchKeyFacts = async () => {
+      // Only set loading=true if we have no data (initial load)
+      const isInitialLoad = keyFacts === null;
+      if (isInitialLoad) {
+        setIsLoading(true);
+      } else {
+        setRefreshing(true);
+      }
+      
       try {
         const res = await fetch(`/api/cases/${caseId}/key-facts`);
         const data = await res.json().catch(() => null);
@@ -170,11 +179,13 @@ export function CaseKeyFactsPanel({ caseId }: KeyFactsPanelProps) {
         });
       } finally {
         setIsLoading(false);
+        setRefreshing(false);
       }
     };
 
     fetchKeyFacts();
-  }, [caseId]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [caseId]); // Note: keyFacts intentionally not in deps to avoid infinite loop
 
   // Initialise default expanded domains and role lens (calm UI)
 
@@ -194,7 +205,8 @@ export function CaseKeyFactsPanel({ caseId }: KeyFactsPanelProps) {
     setOpenDomains(new Set(topToOpen));
   }, [keyFacts?.layeredSummary, keyFacts?.practiceArea, searchParams]);
 
-  if (isLoading) {
+  // Only show full loading state if we have no data
+  if (isLoading && !keyFacts) {
     return (
       <Card title="Key Facts">
         <div className="flex items-center justify-center py-12">
@@ -288,6 +300,9 @@ export function CaseKeyFactsPanel({ caseId }: KeyFactsPanelProps) {
       title={
         <div className="flex items-center gap-3">
           <span>Key Facts</span>
+          {refreshing && (
+            <span className="text-xs text-muted-foreground">(Refreshing...)</span>
+          )}
           <Badge className={stageBadgeColors[stage] ?? stageBadgeColors.other}>
             {stageLabel}
           </Badge>

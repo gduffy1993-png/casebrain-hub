@@ -23,10 +23,19 @@ type MoveSequencePanelProps = {
 
 export function MoveSequencePanel({ caseId }: MoveSequencePanelProps) {
   const [data, setData] = useState<MoveSequence | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false); // Start false - only set true during initial load
+  const [refreshing, setRefreshing] = useState(false); // Track refresh state
 
   useEffect(() => {
     async function fetchMoveSequence() {
+      // Only set loading=true if we have no data (initial load)
+      const isInitialLoad = data === null;
+      if (isInitialLoad) {
+        setLoading(true);
+      } else {
+        setRefreshing(true);
+      }
+      
       try {
         const response = await fetch(`/api/cases/${caseId}/analysis/version/latest`);
         if (response.ok) {
@@ -34,21 +43,26 @@ export function MoveSequencePanel({ caseId }: MoveSequencePanelProps) {
           if (version?.move_sequence) {
             setData(version.move_sequence);
           } else {
-            // No move sequence yet - show empty state
-            setData(null);
+            // No move sequence yet - only set null if we don't already have data
+            if (isInitialLoad) {
+              setData(null);
+            }
           }
         }
       } catch (err) {
         console.error("Failed to load move sequence:", err);
       } finally {
         setLoading(false);
+        setRefreshing(false);
       }
     }
 
     fetchMoveSequence();
-  }, [caseId]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [caseId]); // Note: data intentionally not in deps to avoid infinite loop
 
-  if (loading) {
+  // Only show full loading state if we have no data
+  if (loading && !data) {
     return (
       <Card className="p-6">
         <div className="flex items-center gap-3">

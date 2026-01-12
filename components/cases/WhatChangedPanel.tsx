@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Card } from "@/components/ui/card";
 import { ArrowRight, CheckCircle2, XCircle, AlertCircle } from "lucide-react";
 
@@ -19,13 +19,25 @@ type AnalysisDelta = {
 
 export function WhatChangedPanel({ caseId }: WhatChangedPanelProps) {
   const [delta, setDelta] = useState<AnalysisDelta | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false); // Start false - only set true during initial load
+  const [refreshing, setRefreshing] = useState(false); // Track refresh state
+  const isFirstLoadRef = useRef(true);
 
   useEffect(() => {
     fetchDelta();
-  }, [caseId]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [caseId]); // Note: delta intentionally not in deps to avoid infinite loop
 
   const fetchDelta = async () => {
+    // Only set loading=true if this is the first load
+    const isInitialLoad = isFirstLoadRef.current;
+    if (isInitialLoad) {
+      setLoading(true);
+      isFirstLoadRef.current = false;
+    } else {
+      setRefreshing(true);
+    }
+    
     try {
       const response = await fetch(`/api/cases/${caseId}/analysis/version/latest`);
       if (response.ok) {
@@ -36,6 +48,7 @@ export function WhatChangedPanel({ caseId }: WhatChangedPanelProps) {
       console.error("Failed to load delta:", err);
     } finally {
       setLoading(false);
+      setRefreshing(false);
     }
   };
 
@@ -71,7 +84,12 @@ export function WhatChangedPanel({ caseId }: WhatChangedPanelProps) {
 
   return (
     <Card className="p-4">
-      <h3 className="text-sm font-semibold text-accent mb-4">What Changed This Version</h3>
+      <h3 className="text-sm font-semibold text-accent mb-4">
+        What Changed This Version
+        {refreshing && (
+          <span className="ml-2 text-xs text-muted-foreground">(Refreshing...)</span>
+        )}
+      </h3>
       <div className="space-y-3">
         {/* Momentum change */}
         {delta.momentumChanged && (

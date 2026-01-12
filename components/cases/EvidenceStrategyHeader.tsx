@@ -23,7 +23,8 @@ type AnalysisVersion = {
 export function EvidenceStrategyHeader({ caseId }: EvidenceStrategyHeaderProps) {
   const router = useRouter();
   const [version, setVersion] = useState<AnalysisVersion | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false); // Start false - only set true during refetch
+  const [refreshing, setRefreshing] = useState(false); // Track refresh state
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
@@ -31,6 +32,14 @@ export function EvidenceStrategyHeader({ caseId }: EvidenceStrategyHeaderProps) 
   }, [caseId]);
 
   const fetchLatestVersion = async () => {
+    // Only set loading=true if we have no data (initial load)
+    const isInitialLoad = version === null;
+    if (isInitialLoad) {
+      setLoading(true);
+    } else {
+      setRefreshing(true);
+    }
+    
     try {
       const response = await fetch(`/api/cases/${caseId}/analysis/version/latest`);
       if (response.ok) {
@@ -41,6 +50,7 @@ export function EvidenceStrategyHeader({ caseId }: EvidenceStrategyHeaderProps) 
       console.error("Failed to load analysis version:", err);
     } finally {
       setLoading(false);
+      setRefreshing(false);
     }
   };
 
@@ -103,6 +113,9 @@ export function EvidenceStrategyHeader({ caseId }: EvidenceStrategyHeaderProps) 
               <div className="text-right text-xs text-accent/60 space-y-1">
                 <div className="flex items-center gap-1.5">
                   <span>Analysis version: v{version.version_number}</span>
+                  {refreshing && (
+                    <span className="text-xs text-muted-foreground">(Refreshing...)</span>
+                  )}
                 </div>
                 {version.created_at && (
                   <div className="flex items-center gap-1.5">
@@ -118,8 +131,9 @@ export function EvidenceStrategyHeader({ caseId }: EvidenceStrategyHeaderProps) 
               onClick={handleReanalyze}
               className="gap-2"
               variant="outline"
+              disabled={refreshing}
             >
-              <RefreshCw className="h-4 w-4" />
+              <RefreshCw className={`h-4 w-4 ${refreshing ? "animate-spin" : ""}`} />
               {version?.version_number ? "Re-analyse with new evidence" : "Run analysis (v1)"}
             </Button>
           </div>
