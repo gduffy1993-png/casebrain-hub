@@ -149,6 +149,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
       // Trigger reanalyse
       async function triggerReanalyse() {
         try {
+          console.log(`[CriminalCaseView] Starting re-run analysis for case ${caseId} (query param)`);
           const res = await fetch(`/api/cases/${caseId}/analysis/rerun`, {
             method: "POST",
             credentials: "include",
@@ -156,10 +157,13 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
 
           if (!res.ok) {
             const errorData = await res.json().catch(() => ({ error: "Failed to re-run analysis" }));
-            throw new Error(errorData.error || "Failed to re-run analysis");
+            const errorMessage = errorData.error || `Failed to re-run analysis (${res.status})`;
+            console.error(`[CriminalCaseView] Re-run failed: ${res.status}`, errorData);
+            throw new Error(errorMessage);
           }
 
           const data = await res.json();
+          console.log(`[CriminalCaseView] Re-run successful: version ${data.version_number}`, data);
           
           // Wait a moment for the version to be fully written, then refresh
           setTimeout(() => {
@@ -170,7 +174,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
             }
           }, 750);
         } catch (error) {
-          console.error("Failed to re-run analysis:", error);
+          console.error(`[CriminalCaseView] Failed to re-run analysis for case ${caseId}:`, error);
           // Show user-friendly error
           if (typeof window !== "undefined") {
             window.dispatchEvent(new CustomEvent("analysis-rerun-error", { 
@@ -357,6 +361,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
           showHowToFix={true}
           onRunAnalysis={async () => {
             try {
+              console.log(`[CriminalCaseView] Starting re-run analysis for case ${caseId} (gate banner)`);
               // Call rerun endpoint directly for better UX and error handling
               const res = await fetch(`/api/cases/${caseId}/analysis/rerun`, {
                 method: "POST",
@@ -365,10 +370,13 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
 
               if (!res.ok) {
                 const errorData = await res.json().catch(() => ({ error: "Failed to re-run analysis" }));
-                throw new Error(errorData.error || `Failed to re-run analysis (${res.status})`);
+                const errorMessage = errorData.error || `Failed to re-run analysis (${res.status})`;
+                console.error(`[CriminalCaseView] Re-run failed: ${res.status}`, errorData);
+                throw new Error(errorMessage);
               }
 
               const data = await res.json();
+              console.log(`[CriminalCaseView] Re-run successful: version ${data.version_number}`, data);
               
               // Wait a moment for the version to be fully written, then refresh
               setTimeout(() => {
@@ -381,7 +389,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
                 }
               }, 750);
             } catch (error) {
-              console.error("Failed to re-run analysis:", error);
+              console.error(`[CriminalCaseView] Failed to re-run analysis for case ${caseId}:`, error);
               const errorMessage = error instanceof Error ? error.message : "Failed to re-run analysis. Please try again.";
               alert(errorMessage);
             }

@@ -46,6 +46,7 @@ export function CasePageClientWithActions({
   const handleRerunAnalysis = () => {
     startTransition(async () => {
       try {
+        console.log(`[CasePageClientWithActions] Starting re-run analysis for case ${caseId}`);
         const res = await fetch(`/api/cases/${caseId}/analysis/rerun`, {
           method: "POST",
           credentials: "include",
@@ -53,10 +54,13 @@ export function CasePageClientWithActions({
 
         if (!res.ok) {
           const errorData = await res.json().catch(() => ({ error: "Failed to re-run analysis" }));
-          throw new Error(errorData.error || `Failed to re-run analysis (${res.status})`);
+          const errorMessage = errorData.error || `Failed to re-run analysis (${res.status})`;
+          console.error(`[CasePageClientWithActions] Re-run failed: ${res.status}`, errorData);
+          throw new Error(errorMessage);
         }
 
         const data = await res.json();
+        console.log(`[CasePageClientWithActions] Re-run successful: version ${data.version_number}`, data);
         
         // Wait a moment for the version to be fully written, then refresh
         setTimeout(() => {
@@ -72,7 +76,7 @@ export function CasePageClientWithActions({
           }
         }, 750);
       } catch (error) {
-        console.error("Failed to re-run analysis:", error);
+        console.error(`[CasePageClientWithActions] Failed to re-run analysis for case ${caseId}:`, error);
         const errorMessage = error instanceof Error ? error.message : "Failed to re-run analysis. Please try again.";
         alert(errorMessage);
       }

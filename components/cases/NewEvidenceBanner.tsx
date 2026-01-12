@@ -1,18 +1,21 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { AlertCircle, RefreshCw } from "lucide-react";
+import { AlertCircle, RefreshCw, Loader2 } from "lucide-react";
 
 type NewEvidenceBannerProps = {
   caseId: string;
 };
 
 export function NewEvidenceBanner({ caseId }: NewEvidenceBannerProps) {
+  const router = useRouter();
   const [newDocCount, setNewDocCount] = useState<number | null>(null);
   const [nextVersion, setNextVersion] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
+  const [rerunning, setRerunning] = useState(false);
 
   useEffect(() => {
     async function checkNewEvidence() {
@@ -97,24 +100,60 @@ export function NewEvidenceBanner({ caseId }: NewEvidenceBannerProps) {
           </div>
         </div>
         <Button 
-          onClick={() => {
-            // Trigger the EvidenceStrategyHeader button click to open the modal
-            const header = document.querySelector('[data-evidence-strategy-header]');
-            const button = header?.querySelector('button');
-            if (button) {
-              (button as HTMLButtonElement).click();
-            } else {
-              // Fallback: scroll to header if button not found
-              if (header) {
-                header.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          onClick={async () => {
+            if (rerunning) return;
+            setRerunning(true);
+            try {
+              console.log(`[NewEvidenceBanner] Starting re-run analysis for case ${caseId}`);
+              const res = await fetch(`/api/cases/${caseId}/analysis/rerun`, {
+                method: "POST",
+                credentials: "include",
+              });
+
+              if (!res.ok) {
+                const errorData = await res.json().catch(() => ({ error: "Failed to re-run analysis" }));
+                const errorMessage = errorData.error || `Failed to re-run analysis (${res.status})`;
+                console.error(`[NewEvidenceBanner] Re-run failed: ${res.status}`, errorData);
+                alert(errorMessage);
+                return;
               }
+
+              const data = await res.json();
+              console.log(`[NewEvidenceBanner] Re-run successful: version ${data.version_number}`, data);
+              
+              // Wait a moment for the version to be fully written, then refresh
+              setTimeout(() => {
+                router.refresh();
+                // Also trigger client-side refetch of dependent endpoints
+                if (typeof window !== "undefined") {
+                  window.dispatchEvent(new CustomEvent("analysis-rerun-complete", { 
+                    detail: { versionNumber: data.version_number, caseId } 
+                  }));
+                }
+              }, 750);
+            } catch (error) {
+              console.error(`[NewEvidenceBanner] Failed to re-run analysis for case ${caseId}:`, error);
+              const errorMessage = error instanceof Error ? error.message : "Failed to re-run analysis. Please try again.";
+              alert(errorMessage);
+            } finally {
+              setRerunning(false);
             }
           }} 
           size="sm" 
           className="gap-2"
+          disabled={rerunning}
         >
-          <RefreshCw className="h-4 w-4" />
-          Re-analyse now
+          {rerunning ? (
+            <>
+              <Loader2 className="h-4 w-4 animate-spin" />
+              Re-analysing...
+            </>
+          ) : (
+            <>
+              <RefreshCw className="h-4 w-4" />
+              Re-analyse now
+            </>
+          )}
         </Button>
       </div>
     </Card>
