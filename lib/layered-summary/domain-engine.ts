@@ -142,6 +142,49 @@ const DOMAIN_KEYWORDS: Record<DomainKey, string[]> = {
   ],
 };
 
+/**
+ * Detect witness statement from content (for domain assignment).
+ * Uses same heuristics as bundle completeness: explicit markers or first-person narrative.
+ */
+function isWitnessStatement(doc: DocInput): boolean {
+  const name = typeof doc.name === "string" ? doc.name.toLowerCase() : "";
+  const type = typeof doc.type === "string" ? doc.type.toLowerCase() : "";
+  
+  // Filename-based detection
+  if (/\b(witness\s*statement|statement\s+of\s+witness|mg\s*11|mg11)\b/i.test(`${name} ${type}`)) {
+    return true;
+  }
+  
+  // Content-based detection
+  const extracted = doc.extracted_json && typeof doc.extracted_json === "object" ? (doc.extracted_json as any) : null;
+  if (!extracted) return false;
+  
+  const summary = typeof extracted.summary === "string" ? extracted.summary : "";
+  const text = typeof extracted.text === "string" ? extracted.text : "";
+  const rawText = typeof extracted.raw_text === "string" ? extracted.raw_text : "";
+  const corpus = normalizeText([summary, text, rawText].filter(Boolean).join(" ")).toLowerCase();
+  
+  if (!corpus) return false;
+  
+  // Explicit markers
+  if (corpus.includes("witness details") || corpus.includes("statement of truth")) {
+    return true;
+  }
+  
+  // First-person narrative patterns (at least 2 matches for reliability)
+  const firstPersonPatterns = [
+    /\bI\s+(was|saw|witnessed|observed|noticed|heard|became|noted|recalled|remember|remembered)\b/i,
+    /\bI\s+(am|was)\s+involved\b/i,
+    /\bI\s+(told|said|stated|informed|reported)\b/i,
+  ];
+  const matches = firstPersonPatterns.filter(pattern => pattern.test(corpus)).length;
+  if (matches >= 2) {
+    return true;
+  }
+  
+  return false;
+}
+
 function inferDomainsForDoc(doc: DocInput): DomainKey[] {
   const extracted = doc.extracted_json && typeof doc.extracted_json === "object" ? (doc.extracted_json as any) : null;
   const summary = typeof extracted?.summary === "string" ? extracted.summary : "";
@@ -150,6 +193,14 @@ function inferDomainsForDoc(doc: DocInput): DomainKey[] {
   const corpus = normalizeText([name, type, summary].filter(Boolean).join(" "));
 
   const matched: DomainKey[] = [];
+  
+  // Special handling: Witness statements should be assigned to incident_accident and police_procedural domains
+  if (isWitnessStatement(doc)) {
+    matched.push("incident_accident");
+    matched.push("police_procedural");
+  }
+  
+  // Standard keyword-based domain inference
   for (const domain of DOMAIN_ORDER) {
     const kws = DOMAIN_KEYWORDS[domain];
     if (kws.some((kw) => corpus.includes(kw))) matched.push(domain);

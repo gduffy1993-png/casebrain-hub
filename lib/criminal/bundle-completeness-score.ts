@@ -32,7 +32,11 @@ export type BundleCompleteness = {
   capabilityTier: CapabilityTier;
 };
 
-type DocLike = { name?: string | null; type?: string | null };
+type DocLike = { 
+  name?: string | null; 
+  type?: string | null;
+  extracted_json?: unknown; // Optional extracted content for content-based detection
+};
 
 const rx = {
   chargeSheetOrIndictment: /\b(charge\s*sheet|indictment|charges?\b|count\s*\d+)\b/i,
@@ -51,8 +55,64 @@ const rx = {
 };
 
 /**
- * Compute bundle completeness deterministically from doc name/type.
- * Weights sum to 100. We do not infer “presence” unless a pattern matches.
+ * Detect witness statement from content-based signals (not just filename).
+ * 
+ * Heuristic: Check for:
+ * - "Witness Details" OR
+ * - "Statement of Truth" OR
+ * - First-person narrative patterns ("I was", "I saw", "I became involved")
+ * 
+ * This ensures MG11 witness statements are correctly classified even with non-canonical filenames
+ * (e.g., "MG11.pdf (1).pdf" or similar variants).
+ */
+function detectWitnessStatementFromContent(extracted_json: unknown): boolean {
+  if (!extracted_json || typeof extracted_json !== "object") return false;
+  
+  const extracted = extracted_json as any;
+  
+  // Get text content from common extraction fields
+  const summary = typeof extracted.summary === "string" ? extracted.summary : "";
+  const text = typeof extracted.text === "string" ? extracted.text : "";
+  const rawText = typeof extracted.raw_text === "string" ? extracted.raw_text : "";
+  
+  // Combine all available text
+  const corpus = [summary, text, rawText].filter(Boolean).join(" ").toLowerCase();
+  
+  if (!corpus) return false;
+  
+  // Check for explicit witness statement markers
+  const explicitMarkers = [
+    "witness details",
+    "statement of truth",
+    "statement of witness",
+  ];
+  
+  if (explicitMarkers.some(marker => corpus.includes(marker))) {
+    return true;
+  }
+  
+  // Check for first-person narrative patterns (common in witness statements)
+  // Look for patterns like "I was", "I saw", "I became involved", "I witnessed"
+  const firstPersonPatterns = [
+    /\bI\s+(was|saw|witnessed|observed|noticed|heard|became|noted|recalled|remember|remembered)\b/i,
+    /\bI\s+(am|was)\s+involved\b/i,
+    /\bI\s+(told|said|stated|informed|reported)\b/i,
+  ];
+  
+  // Require at least 2 first-person narrative patterns for reliability
+  const firstPersonMatches = firstPersonPatterns.filter(pattern => pattern.test(corpus)).length;
+  if (firstPersonMatches >= 2) {
+    return true;
+  }
+  
+  return false;
+}
+
+/**
+ * Compute bundle completeness deterministically from doc name/type and content.
+ * Weights sum to 100. We do not infer "presence" unless a pattern matches.
+ * 
+ * Content-based detection is used for witness statements to handle non-canonical filenames.
  */
 export function computeBundleCompleteness(docs: DocLike[]): BundleCompleteness {
   const flags: BundleCompletenessFlags = {
@@ -71,11 +131,15 @@ export function computeBundleCompleteness(docs: DocLike[]): BundleCompleteness {
 
   for (const d of docs) {
     const hay = `${d?.name ?? ""} ${d?.type ?? ""}`.trim();
-    if (!hay) continue;
+    if (!hay && !d?.extracted_json) continue;
 
     if (rx.chargeSheetOrIndictment.test(hay)) flags.hasChargeSheetOrIndictment = true;
     if (rx.mg5CaseSummary.test(hay)) flags.hasMG5CaseSummary = true;
-    if (rx.witnessStatement.test(hay)) flags.hasWitnessStatements = true;
+    
+    // Witness statement detection: filename OR content-based
+    if (rx.witnessStatement.test(hay) || detectWitnessStatementFromContent(d?.extracted_json)) {
+      flags.hasWitnessStatements = true;
+    }
 
     if (rx.cctv.test(hay)) flags.hasCCTV = true;
     if (rx.cctvContinuityOrNative.test(hay)) flags.hasCCTVContinuityOrNativeExport = true;

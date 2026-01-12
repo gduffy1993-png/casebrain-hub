@@ -272,10 +272,15 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
       }))
     : [];
 
-  // Phase A: Bundle completeness (deterministic, doc metadata only)
+  // Phase A: Bundle completeness (deterministic, doc metadata + content-based detection)
+  // Pass extracted_json for content-based witness statement detection
   const bundle = computeBundleCompleteness(
     Array.isArray(documentsData)
-      ? documentsData.map((d: any) => ({ name: d?.name ?? null, type: d?.type ?? null }))
+      ? documentsData.map((d: any) => ({ 
+          name: d?.name ?? null, 
+          type: d?.type ?? null,
+          extracted_json: d?.extracted_json ?? undefined, // Include extracted content for content-based detection
+        }))
       : []
   );
   const analysisWithBundle = {
