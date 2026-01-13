@@ -651,6 +651,9 @@ export function StrategyCommitmentPanel({
               <Target className="h-5 w-5 text-primary" />
               <h2 className="text-lg font-semibold text-foreground">Strategy Commitment</h2>
             </div>
+            <p className="text-xs text-muted-foreground mb-2">
+              Choose how the case will be run, based on the recorded defence position.
+            </p>
             <p className="text-sm text-muted-foreground">
               {isCommitted 
                 ? "Strategy is committed. Phase 2 directive planning is enabled."

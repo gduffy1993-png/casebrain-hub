@@ -76,7 +76,7 @@ export function RecordPositionModal({
         throw new Error(errorData.error || `Failed to save position (${response.status})`);
       }
 
-      showToast("Position saved", "success");
+      showToast("Defence position saved. Phase 2 is now unlocked — you can now choose how to run the case.", "success");
       onSuccess();
       onClose();
       setPositionText("");
@@ -116,7 +116,7 @@ export function RecordPositionModal({
           {/* Template Buttons */}
           <div>
             <label className="block text-sm font-medium text-foreground mb-2">
-              Quick Templates
+              Common defence positions
             </label>
             <div className="grid grid-cols-2 gap-2">
               {POSITION_TEMPLATES.map((template, idx) => (
@@ -135,6 +135,9 @@ export function RecordPositionModal({
           </div>
 
           <div>
+            <p className="text-xs text-muted-foreground mb-3">
+              This records the legal defence position as it stands today. You will choose case strategy (trial/reduction/plea) next.
+            </p>
             <label className="block text-sm font-medium text-foreground mb-2">
               Position Text <span className="text-danger">*</span>
             </label>
@@ -157,7 +160,7 @@ export function RecordPositionModal({
           {showPhase2CTA && (
             <div className="flex items-center gap-2 rounded-lg border border-blue-500/20 bg-blue-500/5 p-3">
               <p className="text-xs text-blue-300/80 flex-1">
-                Phase 2 is now unlocked. Go to Phase 2 to access bail tools, charge reduction, and plea options.
+                Defence position saved. Phase 2 is now unlocked — you can now choose how to run the case.
               </p>
               {onPhase2Request && (
                 <Button

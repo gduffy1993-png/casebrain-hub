@@ -500,7 +500,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
               <p className="text-sm text-foreground whitespace-pre-wrap">{savedPosition.position_text}</p>
             </div>
             <p className="text-xs text-muted-foreground italic">
-              To amend the defence position, use "Record Current Position" in the Strategy column.
+              This is the currently recorded defence position. To amend it, use "Record Current Position" in the Strategy column.
             </p>
           </div>
         </Card>

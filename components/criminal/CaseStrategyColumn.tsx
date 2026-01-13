@@ -97,7 +97,7 @@ export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommi
   return (
     <div className="space-y-6">
       {/* Record Current Position */}
-      <Card title="Record Current Position" description="Document the current defence position" data-record-position>
+      <Card title="Record Current Position" description="Set the formal defence stance for this case (before choosing a strategy)." data-record-position>
         {isLoadingPosition ? (
           <div className="text-center py-4">
             <p className="text-sm text-muted-foreground">Loading position...</p>
