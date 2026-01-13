@@ -36,6 +36,9 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   const searchParams = useSearchParams();
   const router = useRouter();
   
+  // Hydration guard: prevent ErrorBoundary fallback from showing during initial mount
+  const [mounted, setMounted] = useState(false);
+  
   // Phase 2: Snapshot state
   const [snapshot, setSnapshot] = useState<CaseSnapshot | null>(null);
   const [snapshotLoading, setSnapshotLoading] = useState(true);
@@ -61,6 +64,11 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
     hearings: { hasData: false },
     pace: { hasData: false },
   });
+
+  // Mark as mounted after hydration
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Phase 2: Build snapshot on mount
   useEffect(() => {
@@ -419,7 +427,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         </Card>
       ) : snapshot ? (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Evidence analysis awaiting further documents or analysis.</div></Card>}>
+          <ErrorBoundary fallback={mounted ? <Card className="p-4"><div className="text-sm text-muted-foreground">Evidence analysis awaiting further documents or analysis.</div></Card> : null}>
             <CaseEvidenceColumn 
               caseId={caseId} 
               snapshot={snapshot}
