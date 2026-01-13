@@ -484,6 +484,28 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         </Card>
       )}
 
+      {/* Current Defence Position - Read-Only Display (Phase 2+ only) */}
+      {currentPhase >= 2 && savedPosition && (
+        <Card className="p-6">
+          <div className="space-y-4">
+            <div className="flex items-start justify-between">
+              <div>
+                <h3 className="text-sm font-semibold text-foreground mb-1">Current Defence Position</h3>
+                <p className="text-xs text-muted-foreground">
+                  Recorded on {new Date(savedPosition.created_at).toLocaleDateString()} (Phase {savedPosition.phase})
+                </p>
+              </div>
+            </div>
+            <div className="p-4 rounded-lg border border-border/50 bg-muted/10">
+              <p className="text-sm text-foreground whitespace-pre-wrap">{savedPosition.position_text}</p>
+            </div>
+            <p className="text-xs text-muted-foreground italic">
+              To amend the defence position, use "Record Current Position" in the Strategy column.
+            </p>
+          </div>
+        </Card>
+      )}
+
       {/* Strategy Commitment Panel - Phase 2+ only (for committing/viewing strategy, NOT position recording) */}
       {currentPhase >= 2 && (
         <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Strategy commitment will appear once analysis is run.</div>}>
