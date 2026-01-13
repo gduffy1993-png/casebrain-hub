@@ -1,81 +1,138 @@
 "use client";
 
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Target, AlertCircle, CheckCircle2, Clock } from "lucide-react";
 import { CollapsibleSection } from "@/components/ui/collapsible-section";
 import type { CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
+import { RecordPositionModal } from "./RecordPositionModal";
 
 import type { StrategyCommitment } from "./StrategyCommitmentPanel";
+
+type SavedPosition = {
+  id: string;
+  position_text: string;
+  phase: number;
+  created_at: string;
+};
 
 type CaseStrategyColumnProps = {
   caseId: string;
   snapshot: CaseSnapshot;
   onRecordPosition?: () => void;
   onCommitmentChange?: (commitment: StrategyCommitment | null) => void;
+  currentPhase?: number;
+  onPositionChange?: (hasPosition: boolean) => void;
 };
 
-export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommitmentChange }: CaseStrategyColumnProps) {
-  const position = snapshot.decisionLog.currentPosition;
+export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommitmentChange, currentPhase = 1, onPositionChange }: CaseStrategyColumnProps) {
+  const router = useRouter();
+  const [savedPosition, setSavedPosition] = useState<SavedPosition | null>(null);
+  const [isLoadingPosition, setIsLoadingPosition] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Guard against undefined snapshot or decisionLog
+  const position = snapshot?.decisionLog?.currentPosition ?? null;
+
+  // Fetch saved position on mount
+  useEffect(() => {
+    fetchPosition();
+  }, [caseId]);
+
+  const fetchPosition = async () => {
+    setIsLoadingPosition(true);
+    try {
+      const response = await fetch(`/api/criminal/${caseId}/position`, {
+        credentials: "include",
+      });
+      if (response.ok) {
+        const data = await response.json();
+        if (data.ok && data.position) {
+          setSavedPosition(data.position);
+          onPositionChange?.(true);
+        } else {
+          setSavedPosition(null);
+          onPositionChange?.(false);
+        }
+      } else {
+        setSavedPosition(null);
+        onPositionChange?.(false);
+      }
+    } catch (error) {
+      console.error("[CaseStrategyColumn] Failed to fetch position:", error);
+      setSavedPosition(null);
+    } finally {
+      setIsLoadingPosition(false);
+    }
+  };
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+    // Also call the legacy onRecordPosition if provided (for backward compatibility)
+    onRecordPosition?.();
+  };
+
+  const handlePositionSaved = () => {
+    // Refetch position and refresh router
+    fetchPosition();
+    router.refresh();
+    // onPositionChange will be called by fetchPosition
+  };
 
   return (
     <div className="space-y-6">
       {/* Record Current Position */}
-      <Card title="Record Current Position" description="Document the current defence position">
-        {position ? (
+      <Card title="Record Current Position" description="Document the current defence position" data-record-position>
+        {isLoadingPosition ? (
+          <div className="text-center py-4">
+            <p className="text-sm text-muted-foreground">Loading position...</p>
+          </div>
+        ) : savedPosition ? (
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <Badge variant="outline" className="text-sm">
-                {position.position === "fight_charge" ? "Fight" : position.position === "charge_reduction" ? "Reduce" : "Mitigate"}
+                Phase {savedPosition.phase}
               </Badge>
               <span className="text-xs text-muted-foreground">
-                {new Date(position.timestamp).toLocaleDateString()}
+                {new Date(savedPosition.created_at).toLocaleDateString()}
               </span>
             </div>
-            {position.rationale && (
-              <p className="text-sm text-foreground">{position.rationale}</p>
-            )}
-            {(onRecordPosition || onCommitmentChange) && (
-              <button
-                onClick={() => {
-                  onRecordPosition?.();
-                  // Scroll to strategy commitment panel if it exists
-                  const panel = document.querySelector('[data-strategy-commitment]');
-                  if (panel) {
-                    panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                  }
-                }}
-                className="text-xs text-primary hover:underline"
-              >
-                Update position
-              </button>
-            )}
+            <p className="text-sm text-foreground whitespace-pre-wrap">{savedPosition.position_text}</p>
+            <button
+              onClick={handleOpenModal}
+              className="text-xs text-primary hover:underline"
+            >
+              Update position
+            </button>
           </div>
         ) : (
           <div className="text-center py-4">
             <p className="text-sm text-muted-foreground mb-3">No position recorded</p>
-            {(onRecordPosition || onCommitmentChange) && (
-              <button
-                onClick={() => {
-                  onRecordPosition?.();
-                  // Scroll to strategy commitment panel if it exists
-                  const panel = document.querySelector('[data-strategy-commitment]');
-                  if (panel) {
-                    panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                  }
-                }}
-                className="text-sm text-primary hover:underline"
-              >
-                Record position
-              </button>
-            )}
+            <button
+              onClick={handleOpenModal}
+              className="text-sm text-primary hover:underline"
+            >
+              Record position
+            </button>
           </div>
         )}
       </Card>
 
+      {/* Record Position Modal */}
+      <RecordPositionModal
+        caseId={caseId}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSuccess={handlePositionSaved}
+        initialText={savedPosition?.position_text || ""}
+        currentPhase={currentPhase}
+      />
+
       {/* Strategy Overview (Collapsed) */}
       {/* GATE: Show preview if canShowStrategyPreview, full if canShowStrategyFull */}
-      {snapshot.analysis.canShowStrategyFull && snapshot.strategy.hasRenderableData ? (
+      {snapshot?.analysis?.canShowStrategyFull && snapshot?.strategy?.hasRenderableData ? (
         <CollapsibleSection
           title="Strategy Overview"
           description="Current strategy analysis"
@@ -83,7 +140,7 @@ export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommi
           icon={<Target className="h-4 w-4 text-primary" />}
         >
           <div className="space-y-3">
-            {snapshot.strategy.primary && (
+            {snapshot?.strategy?.primary && (
               <div>
                 <span className="text-xs text-muted-foreground">Primary: </span>
                 <Badge variant="outline" className="text-xs">
@@ -91,7 +148,7 @@ export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommi
                 </Badge>
               </div>
             )}
-            {snapshot.strategy.confidence && (
+            {snapshot?.strategy?.confidence && (
               <div>
                 <span className="text-xs text-muted-foreground">Confidence: </span>
                 <Badge
@@ -109,21 +166,21 @@ export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommi
             )}
           </div>
         </CollapsibleSection>
-      ) : snapshot.analysis.canShowStrategyPreview ? (
+      ) : snapshot?.analysis?.canShowStrategyPreview ? (
         <Card title="Strategy Overview" description="Current strategy analysis">
           {(() => {
             // DEV-only: Log preview rendering decision
             if (process.env.NODE_ENV !== "production") {
               console.log("[CaseStrategyColumn] Preview card rendering:", {
-                canShowStrategyPreview: snapshot.analysis.canShowStrategyPreview,
-                canShowStrategyFull: snapshot.analysis.canShowStrategyFull,
-                strategyDataExists: snapshot.strategy.strategyDataExists,
-                willShowPlaceholder: !snapshot.strategy.strategyDataExists,
-                willShowRealData: snapshot.strategy.strategyDataExists,
+                canShowStrategyPreview: snapshot?.analysis?.canShowStrategyPreview,
+                canShowStrategyFull: snapshot?.analysis?.canShowStrategyFull,
+                strategyDataExists: snapshot?.strategy?.strategyDataExists,
+                willShowPlaceholder: !snapshot?.strategy?.strategyDataExists,
+                willShowRealData: snapshot?.strategy?.strategyDataExists,
               });
             }
             
-            return snapshot.strategy.strategyDataExists ? (
+            return snapshot?.strategy?.strategyDataExists ? (
               // Real strategy data exists - show preview with actual data
               <div className="p-4 rounded-lg border border-amber-500/20 bg-amber-500/5">
                 <p className="text-xs text-foreground mb-2">
@@ -132,7 +189,7 @@ export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommi
                 <p className="text-xs text-muted-foreground mb-3">
                   Strategy preview available. Full analysis requires additional documents.
                 </p>
-                {snapshot.strategy.primary && (
+                {snapshot?.strategy?.primary && (
                   <div className="mb-2">
                     <span className="text-xs text-muted-foreground">Primary: </span>
                     <Badge variant="outline" className="text-xs">
@@ -140,7 +197,7 @@ export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommi
                     </Badge>
                   </div>
                 )}
-                {snapshot.strategy.confidence && (
+                {snapshot?.strategy?.confidence && (
                   <div>
                     <span className="text-xs text-muted-foreground">Confidence: </span>
                     <Badge
@@ -184,7 +241,7 @@ export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommi
       {/* Decision Checkpoints */}
       <Card title="Decision Checkpoints" description="Key decision moments">
         <div className="text-center py-4 text-muted-foreground text-sm">
-          {snapshot.analysis.canShowStrategyPreview && !snapshot.analysis.canShowStrategyFull ? (
+          {snapshot?.analysis?.canShowStrategyPreview && !snapshot?.analysis?.canShowStrategyFull ? (
             <>Unavailable in thin-pack preview. Add documents then re-analyse to generate these.</>
           ) : (
             <>Run analysis to generate decision checkpoints.</>
@@ -194,7 +251,7 @@ export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommi
 
       {/* Next Steps */}
       <Card title="Next Steps" description="Immediate actions">
-        {snapshot.actions.nextSteps.length > 0 ? (
+        {snapshot?.actions?.nextSteps && snapshot.actions.nextSteps.length > 0 ? (
           <div className="space-y-2">
             {snapshot.actions.nextSteps.map((step) => (
               <div
@@ -219,7 +276,7 @@ export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommi
           </div>
         ) : (
           <div className="text-center py-4 text-muted-foreground text-sm">
-            {snapshot.analysis.canShowStrategyPreview && !snapshot.analysis.canShowStrategyFull ? (
+            {snapshot?.analysis?.canShowStrategyPreview && !snapshot?.analysis?.canShowStrategyFull ? (
               <>Unavailable in thin-pack preview. Add documents then re-analyse to generate these.</>
             ) : (
               <>Run analysis to generate next steps.</>

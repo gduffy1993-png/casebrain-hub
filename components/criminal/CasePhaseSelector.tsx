@@ -14,6 +14,8 @@ type CasePhaseSelectorProps = {
   onPhaseChange: (phase: CasePhase) => void;
   defaultPhase?: CasePhase;
   currentPhase?: CasePhase;
+  hasSavedPosition?: boolean;
+  onRecordPosition?: () => void;
 };
 
 export function CasePhaseSelector({
@@ -22,6 +24,8 @@ export function CasePhaseSelector({
   onPhaseChange,
   defaultPhase,
   currentPhase,
+  hasSavedPosition = false,
+  onRecordPosition,
 }: CasePhaseSelectorProps) {
   const [localPhase, setLocalPhase] = useState<CasePhase>(defaultPhase || (isDisclosureFirstMode ? 1 : 2));
 
@@ -51,6 +55,12 @@ export function CasePhaseSelector({
   }, [isDisclosureFirstMode, currentPhase, localPhase, onPhaseChange]);
 
   const handlePhaseChange = (phase: CasePhase) => {
+    // Phase 2 gating: require saved position
+    if (phase === 2 && !hasSavedPosition) {
+      // Show lock message and prompt to record position
+      return; // Don't change phase
+    }
+    
     // Prevent moving to Phase 3 without explicit user action
     if (phase === 3 && localPhase !== 3) {
       // Could add a confirmation dialog here if needed
@@ -85,7 +95,9 @@ export function CasePhaseSelector({
             variant={localPhase === 2 ? "primary" : "outline"}
             size="sm"
             onClick={() => handlePhaseChange(2)}
+            disabled={!hasSavedPosition}
             className="flex items-center gap-2"
+            title={!hasSavedPosition ? "Record a position to unlock Phase 2" : undefined}
           >
             <CheckCircle className="h-3.5 w-3.5" />
             Phase 2: Positioning & Options
@@ -111,6 +123,30 @@ export function CasePhaseSelector({
               <p className="text-xs text-amber-300/80">
                 Tools are limited until disclosure is stabilised. Bail and sentencing tools are hidden to avoid premature outcome discussions.
               </p>
+            </div>
+          </div>
+        )}
+
+        {!hasSavedPosition && localPhase === 1 && (
+          <div className="flex items-start gap-2 rounded-lg border border-blue-500/20 bg-blue-500/5 p-3">
+            <AlertTriangle className="h-4 w-4 text-blue-400 mt-0.5 flex-shrink-0" />
+            <div className="flex-1">
+              <p className="text-xs font-semibold text-blue-400 mb-1">
+                PHASE 2 LOCKED
+              </p>
+              <p className="text-xs text-blue-300/80 mb-2">
+                Record a defence position to unlock Phase 2 tools (bail, charge reduction, plea options).
+              </p>
+              {onRecordPosition && (
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={onRecordPosition}
+                  className="mt-2 text-xs"
+                >
+                  Record Position
+                </Button>
+              )}
             </div>
           </div>
         )}

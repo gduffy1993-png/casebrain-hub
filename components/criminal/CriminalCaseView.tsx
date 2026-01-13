@@ -53,6 +53,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   const [currentPhase, setCurrentPhase] = useState<CasePhase>(1);
   const [committedStrategy, setCommittedStrategy] = useState<StrategyCommitment | null>(null);
   const [isStrategyCommitted, setIsStrategyCommitted] = useState(false);
+  const [hasSavedPosition, setHasSavedPosition] = useState(false);
   const [panelData, setPanelData] = useState<{
     bail: { hasData: boolean };
     sentencing: { hasData: boolean };
@@ -359,6 +360,14 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         onPhaseChange={setCurrentPhase}
         defaultPhase={isDisclosureFirstMode ? 1 : 2}
         currentPhase={currentPhase}
+        hasSavedPosition={hasSavedPosition}
+        onRecordPosition={() => {
+          // Scroll to position recording area
+          const positionCard = document.querySelector('[data-record-position]');
+          if (positionCard) {
+            positionCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }}
       />
 
       {/* Gate Banner - Show once at top if analysis is blocked */}
@@ -446,11 +455,33 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
             <CaseStrategyColumn 
               caseId={caseId} 
               snapshot={snapshot}
+              currentPhase={currentPhase}
+              onPositionChange={setHasSavedPosition}
               onRecordPosition={() => {
-                // Scroll to strategy commitment panel
-                const panel = document.querySelector('[data-strategy-commitment]');
-                if (panel) {
-                  panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                try {
+                  // Scroll to strategy commitment panel if it exists
+                  // Use setTimeout to ensure DOM is ready after phase change
+                  setTimeout(() => {
+                    const panel = document.querySelector('[data-strategy-commitment]');
+                    if (panel) {
+                      panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    } else {
+                      // If panel doesn't exist (phase < 2), ensure phase is set to 2
+                      // This ensures the panel will be rendered
+                      if (currentPhase < 2) {
+                        setCurrentPhase(2);
+                        // Try again after a short delay
+                        setTimeout(() => {
+                          const retryPanel = document.querySelector('[data-strategy-commitment]');
+                          if (retryPanel) {
+                            retryPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                          }
+                        }, 200);
+                      }
+                    }
+                  }, 100);
+                } catch (error) {
+                  console.error("[CriminalCaseView] Error in onRecordPosition:", error);
                 }
               }}
               onCommitmentChange={(commitment) => {
