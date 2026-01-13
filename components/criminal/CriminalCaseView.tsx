@@ -14,7 +14,7 @@ import { BailApplicationPanel } from "./BailApplicationPanel";
 import { SentencingMitigationPanel } from "./SentencingMitigationPanel";
 import { CaseFightPlan } from "./CaseFightPlan";
 import { CasePhaseSelector, type CasePhase } from "./CasePhaseSelector";
-import type { StrategyCommitment } from "./StrategyCommitmentPanel";
+import { StrategyCommitmentPanel, type StrategyCommitment } from "./StrategyCommitmentPanel";
 import { Phase2StrategyPlanPanel } from "./Phase2StrategyPlanPanel";
 import { AnalysisGateBanner, type AnalysisGateBannerProps } from "@/components/AnalysisGateBanner";
 import { Scale, Shield, Loader2, FileText, Target } from "lucide-react";
@@ -484,7 +484,20 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         </Card>
       )}
 
-      {/* Strategy Commitment Panel - REMOVED: Legacy panel, position recording now handled in CaseStrategyColumn */}
+      {/* Strategy Commitment Panel - Phase 2+ only (for committing/viewing strategy, NOT position recording) */}
+      {currentPhase >= 2 && (
+        <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Strategy commitment will appear once analysis is run.</div>}>
+          <StrategyCommitmentPanel 
+            caseId={caseId}
+            onCommitmentChange={(commitment) => {
+              setCommittedStrategy(commitment);
+              setIsStrategyCommitted(!!commitment);
+              // Reload snapshot to reflect new commitment
+              buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error);
+            }}
+          />
+        </ErrorBoundary>
+      )}
 
       {/* Primary Strategy Plan - Phase 2+ only, shows after commitment */}
       {currentPhase >= 2 && isStrategyCommitted && (
