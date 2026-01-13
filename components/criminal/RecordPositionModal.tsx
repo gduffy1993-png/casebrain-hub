@@ -12,7 +12,28 @@ type RecordPositionModalProps = {
   onSuccess: () => void;
   initialText?: string;
   currentPhase?: number;
+  onPhase2Request?: () => void;
+  showPhase2CTA?: boolean;
 };
+
+const POSITION_TEMPLATES = [
+  {
+    label: "Reserved pending disclosure",
+    text: "Position reserved pending full disclosure. Awaiting CCTV, witness statements, and forensic evidence before committing to a defence strategy.",
+  },
+  {
+    label: "Deny intent (s18) / alternative s20",
+    text: "Defence position: Deny intent to cause GBH (s18). Alternative position: Accept act but dispute intent - alternative charge s20 (unlawful wounding) may be appropriate. Awaiting full disclosure to confirm.",
+  },
+  {
+    label: "Accept act, dispute intent (s18→s20)",
+    text: "Defence position: Accept the act occurred but dispute intent to cause GBH. Seeking charge reduction from s18 to s20 (unlawful wounding). Basis: [to be completed after disclosure].",
+  },
+  {
+    label: "Self-defence / lawful excuse",
+    text: "Defence position: Self-defence / lawful excuse. [Details to be completed after full disclosure and client instructions].",
+  },
+];
 
 export function RecordPositionModal({
   caseId,
@@ -21,6 +42,8 @@ export function RecordPositionModal({
   onSuccess,
   initialText = "",
   currentPhase = 1,
+  onPhase2Request,
+  showPhase2CTA = false,
 }: RecordPositionModalProps) {
   const [positionText, setPositionText] = useState(initialText);
   const [isSaving, setIsSaving] = useState(false);
@@ -53,7 +76,7 @@ export function RecordPositionModal({
         throw new Error(errorData.error || `Failed to save position (${response.status})`);
       }
 
-      showToast("Position recorded successfully", "success");
+      showToast("Position saved", "success");
       onSuccess();
       onClose();
       setPositionText("");
@@ -90,6 +113,27 @@ export function RecordPositionModal({
 
         {/* Content */}
         <div className="flex-1 overflow-y-auto p-6 space-y-4">
+          {/* Template Buttons */}
+          <div>
+            <label className="block text-sm font-medium text-foreground mb-2">
+              Quick Templates
+            </label>
+            <div className="grid grid-cols-2 gap-2">
+              {POSITION_TEMPLATES.map((template, idx) => (
+                <Button
+                  key={idx}
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setPositionText(template.text)}
+                  disabled={isSaving}
+                  className="text-left justify-start h-auto py-2 px-3 text-xs"
+                >
+                  {template.label}
+                </Button>
+              ))}
+            </div>
+          </div>
+
           <div>
             <label className="block text-sm font-medium text-foreground mb-2">
               Position Text <span className="text-danger">*</span>
@@ -109,21 +153,43 @@ export function RecordPositionModal({
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-end gap-3 p-6 border-t border-border">
-          <Button
-            variant="outline"
-            onClick={handleCancel}
-            disabled={isSaving}
-          >
-            Cancel
-          </Button>
-          <Button
-            onClick={handleSave}
-            disabled={isSaving || !positionText.trim()}
-            className="min-w-[100px]"
-          >
-            {isSaving ? "Saving..." : "Save"}
-          </Button>
+        <div className="flex flex-col gap-3 p-6 border-t border-border">
+          {showPhase2CTA && (
+            <div className="flex items-center gap-2 rounded-lg border border-blue-500/20 bg-blue-500/5 p-3">
+              <p className="text-xs text-blue-300/80 flex-1">
+                Phase 2 is now unlocked. Go to Phase 2 to access bail tools, charge reduction, and plea options.
+              </p>
+              {onPhase2Request && (
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => {
+                    onPhase2Request();
+                    onClose();
+                  }}
+                  className="text-xs"
+                >
+                  Go to Phase 2
+                </Button>
+              )}
+            </div>
+          )}
+          <div className="flex items-center justify-end gap-3">
+            <Button
+              variant="outline"
+              onClick={handleCancel}
+              disabled={isSaving}
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={handleSave}
+              disabled={isSaving || !positionText.trim()}
+              className="min-w-[100px]"
+            >
+              {isSaving ? "Saving..." : "Save"}
+            </Button>
+          </div>
         </div>
       </div>
     </div>

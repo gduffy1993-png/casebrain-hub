@@ -27,6 +27,7 @@ import { EvidenceSelectorModal } from "@/components/cases/EvidenceSelectorModal"
 import { CaseSummaryPanel } from "@/components/cases/CaseSummaryPanel";
 import { CaseKeyFactsPanel } from "@/components/cases/KeyFactsPanel";
 import { ChargesPanel } from "./ChargesPanel";
+import { RecordPositionModal } from "./RecordPositionModal";
 
 type CriminalCaseViewProps = {
   caseId: string;
@@ -54,6 +55,8 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   const [committedStrategy, setCommittedStrategy] = useState<StrategyCommitment | null>(null);
   const [isStrategyCommitted, setIsStrategyCommitted] = useState(false);
   const [hasSavedPosition, setHasSavedPosition] = useState(false);
+  const [isPositionModalOpen, setIsPositionModalOpen] = useState(false);
+  const [savedPosition, setSavedPosition] = useState<{ id: string; position_text: string; created_at: string; phase: number } | null>(null);
   const [panelData, setPanelData] = useState<{
     bail: { hasData: boolean };
     sentencing: { hasData: boolean };
@@ -362,11 +365,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         currentPhase={currentPhase}
         hasSavedPosition={hasSavedPosition}
         onRecordPosition={() => {
-          // Scroll to position recording area
-          const positionCard = document.querySelector('[data-record-position]');
-          if (positionCard) {
-            positionCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
+          setIsPositionModalOpen(true);
         }}
       />
 
@@ -456,33 +455,12 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
               caseId={caseId} 
               snapshot={snapshot}
               currentPhase={currentPhase}
-              onPositionChange={setHasSavedPosition}
+              onPositionChange={(hasPosition) => {
+                setHasSavedPosition(hasPosition);
+              }}
+              savedPosition={savedPosition}
               onRecordPosition={() => {
-                try {
-                  // Scroll to strategy commitment panel if it exists
-                  // Use setTimeout to ensure DOM is ready after phase change
-                  setTimeout(() => {
-                    const panel = document.querySelector('[data-strategy-commitment]');
-                    if (panel) {
-                      panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    } else {
-                      // If panel doesn't exist (phase < 2), ensure phase is set to 2
-                      // This ensures the panel will be rendered
-                      if (currentPhase < 2) {
-                        setCurrentPhase(2);
-                        // Try again after a short delay
-                        setTimeout(() => {
-                          const retryPanel = document.querySelector('[data-strategy-commitment]');
-                          if (retryPanel) {
-                            retryPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                          }
-                        }, 200);
-                      }
-                    }
-                  }, 100);
-                } catch (error) {
-                  console.error("[CriminalCaseView] Error in onRecordPosition:", error);
-                }
+                setIsPositionModalOpen(true);
               }}
               onCommitmentChange={(commitment) => {
                 if (commitment) {
@@ -616,6 +594,40 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
           }}
         />
       )}
+
+      {/* Record Position Modal - Unified for all "Record position" buttons */}
+      <RecordPositionModal
+        caseId={caseId}
+        isOpen={isPositionModalOpen}
+        onClose={() => setIsPositionModalOpen(false)}
+        onSuccess={async () => {
+          // Refetch position after save
+          try {
+            const response = await fetch(`/api/criminal/${caseId}/position`, {
+              credentials: "include",
+            });
+            if (response.ok) {
+              const data = await response.json();
+              if (data.ok && data.position) {
+                setSavedPosition(data.position);
+                setHasSavedPosition(true);
+              } else {
+                setSavedPosition(null);
+                setHasSavedPosition(false);
+              }
+            }
+          } catch (error) {
+            console.error("[CriminalCaseView] Failed to refetch position:", error);
+          }
+          router.refresh();
+        }}
+        initialText={savedPosition?.position_text || ""}
+        currentPhase={currentPhase}
+        onPhase2Request={() => {
+          setCurrentPhase(2);
+        }}
+        showPhase2CTA={!hasSavedPosition && currentPhase === 1}
+      />
     </div>
   );
 }

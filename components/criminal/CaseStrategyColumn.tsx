@@ -25,21 +25,36 @@ type CaseStrategyColumnProps = {
   onCommitmentChange?: (commitment: StrategyCommitment | null) => void;
   currentPhase?: number;
   onPositionChange?: (hasPosition: boolean) => void;
+  savedPosition?: SavedPosition | null;
 };
 
-export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommitmentChange, currentPhase = 1, onPositionChange }: CaseStrategyColumnProps) {
+export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommitmentChange, currentPhase = 1, onPositionChange, savedPosition: propSavedPosition }: CaseStrategyColumnProps) {
   const router = useRouter();
-  const [savedPosition, setSavedPosition] = useState<SavedPosition | null>(null);
+  const [savedPosition, setSavedPosition] = useState<SavedPosition | null>(propSavedPosition || null);
   const [isLoadingPosition, setIsLoadingPosition] = useState(true);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Guard against undefined snapshot or decisionLog
   const position = snapshot?.decisionLog?.currentPosition ?? null;
 
-  // Fetch saved position on mount
+  // Fetch saved position on mount, or use prop if provided
   useEffect(() => {
-    fetchPosition();
+    if (propSavedPosition !== undefined) {
+      setSavedPosition(propSavedPosition);
+      setIsLoadingPosition(false);
+      onPositionChange?.(!!propSavedPosition);
+    } else {
+      fetchPosition();
+    }
   }, [caseId]);
+
+  // Sync with prop if it changes
+  useEffect(() => {
+    if (propSavedPosition !== undefined) {
+      setSavedPosition(propSavedPosition);
+      setIsLoadingPosition(false);
+      onPositionChange?.(!!propSavedPosition);
+    }
+  }, [propSavedPosition, onPositionChange]);
 
   const fetchPosition = async () => {
     setIsLoadingPosition(true);
@@ -69,8 +84,6 @@ export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommi
   };
 
   const handleOpenModal = () => {
-    setIsModalOpen(true);
-    // Also call the legacy onRecordPosition if provided (for backward compatibility)
     onRecordPosition?.();
   };
 
@@ -120,15 +133,7 @@ export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommi
         )}
       </Card>
 
-      {/* Record Position Modal */}
-      <RecordPositionModal
-        caseId={caseId}
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onSuccess={handlePositionSaved}
-        initialText={savedPosition?.position_text || ""}
-        currentPhase={currentPhase}
-      />
+      {/* Record Position Modal - managed by parent */}
 
       {/* Strategy Overview (Collapsed) */}
       {/* GATE: Show preview if canShowStrategyPreview, full if canShowStrategyFull */}
