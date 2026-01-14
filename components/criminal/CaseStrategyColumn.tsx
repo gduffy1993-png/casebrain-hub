@@ -122,7 +122,7 @@ export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommi
           </div>
         ) : (
           <div className="text-center py-4">
-            <p className="text-sm text-muted-foreground mb-3">No position recorded</p>
+            <p className="text-sm text-muted-foreground mb-3">No defence position has been formally recorded yet.</p>
             <button
               onClick={handleOpenModal}
               className="text-sm text-primary hover:underline"

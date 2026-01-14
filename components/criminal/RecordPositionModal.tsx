@@ -76,7 +76,7 @@ export function RecordPositionModal({
         throw new Error(errorData.error || `Failed to save position (${response.status})`);
       }
 
-      showToast("Defence position saved. Phase 2 is now unlocked — you can now choose how to run the case.", "success");
+      showToast("Defence position saved. Phase 2 is now unlocked.", "success");
       onSuccess();
       onClose();
       setPositionText("");
@@ -136,7 +136,7 @@ export function RecordPositionModal({
 
           <div>
             <p className="text-xs text-muted-foreground mb-3">
-              This records the legal defence position as it stands today. You will choose case strategy (trial/reduction/plea) next.
+              This records the legal defence position as it stands today. You will choose how to run the case next.
             </p>
             <label className="block text-sm font-medium text-foreground mb-2">
               Position Text <span className="text-danger">*</span>
