@@ -77,30 +77,74 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       );
     }
 
-    // Insert position
-    const { data: position, error: insertError } = await supabase
-      .from("case_positions")
-      .insert({
-        org_id: orgId,
-        case_id: caseId,
-        user_id: userId,
-        phase: phase,
-        position_text: trimmedText,
-      })
-      .select()
-      .single();
+    // Insert position - only include allowed fields
+    const insertPayload = {
+      case_id: caseId,
+      org_id: orgId,
+      user_id: userId,
+      phase: phase,
+      position_text: trimmedText,
+    };
 
-    if (insertError) {
-      console.error("[position] Failed to insert position:", insertError);
+    let position: any = null;
+    try {
+      const { data, error: insertError } = await supabase
+        .from("case_positions")
+        .insert(insertPayload)
+        .select()
+        .single();
+
+      if (insertError) {
+        // Log full error with clear prefix
+        console.error(`[case_positions][insert] caseId=${caseId}`, {
+          error: insertError,
+          code: insertError.code,
+          message: insertError.message,
+          details: insertError.details,
+          hint: insertError.hint,
+          payload: insertPayload,
+        });
+
+        // Determine status code: 400 for client errors (constraints, validation), 500 for unexpected
+        const isClientError = 
+          insertError.code === "23505" || // unique_violation
+          insertError.code === "23503" || // foreign_key_violation
+          insertError.code === "23502" || // not_null_violation
+          insertError.code === "23514" || // check_violation
+          insertError.code === "PGRST116"; // PostgREST not found / constraint error
+
+        return NextResponse.json(
+          {
+            ok: false,
+            error: insertError.message || "Failed to save position",
+            code: insertError.code,
+            details: insertError.details,
+            hint: insertError.hint,
+          },
+          { status: isClientError ? 400 : 500 }
+        );
+      }
+
+      position = data;
+    } catch (insertException) {
+      // Catch any unexpected errors during insert
+      console.error(`[case_positions][insert] caseId=${caseId} unexpected exception`, {
+        error: insertException,
+        payload: insertPayload,
+      });
       return NextResponse.json(
-        { ok: false, error: "Failed to save position", details: insertError.message },
+        {
+          ok: false,
+          error: insertException instanceof Error ? insertException.message : "Unexpected error during insert",
+        },
         { status: 500 }
       );
     }
 
     return NextResponse.json({
       ok: true,
-      position: position,
+      data: position,
+      position: position, // Backward compatibility
     });
   } catch (error) {
     console.error("[position] Error:", error);
@@ -161,7 +205,8 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 
     return NextResponse.json({
       ok: true,
-      position: position || null,
+      data: position || null,
+      position: position || null, // Backward compatibility
     });
   } catch (error) {
     console.error("[position] Error:", error);
