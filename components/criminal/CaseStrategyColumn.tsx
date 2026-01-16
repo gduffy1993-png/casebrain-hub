@@ -64,8 +64,8 @@ export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommi
       });
       if (response.ok) {
         const data = await response.json();
-        if (data.ok && data.position) {
-          setSavedPosition(data.position);
+        if (data.ok && (data.data || data.position)) {
+          setSavedPosition(data.data || data.position);
           onPositionChange?.(true);
         } else {
           setSavedPosition(null);

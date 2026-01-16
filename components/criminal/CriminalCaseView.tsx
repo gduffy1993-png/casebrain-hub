@@ -606,8 +606,8 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
             });
             if (response.ok) {
               const data = await response.json();
-              if (data.ok && data.position) {
-                setSavedPosition(data.position);
+              if (data.ok && (data.data || data.position)) {
+                setSavedPosition(data.data || data.position);
                 setHasSavedPosition(true);
               } else {
                 setSavedPosition(null);
