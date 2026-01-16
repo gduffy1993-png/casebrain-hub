@@ -244,7 +244,12 @@ export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommi
       )}
 
       {/* Decision Checkpoints */}
-      <Card title="Decision Checkpoints" description="Key decision moments">
+      <CollapsibleSection
+        title="Decision Checkpoints"
+        description="Key decision moments"
+        defaultOpen={false}
+        icon={<Clock className="h-4 w-4 text-muted-foreground" />}
+      >
         <div className="text-center py-4 text-muted-foreground text-sm">
           {snapshot?.analysis?.canShowStrategyPreview && !snapshot?.analysis?.canShowStrategyFull ? (
             <>Unavailable in thin-pack preview. Add documents then re-analyse to generate these.</>
@@ -252,10 +257,15 @@ export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommi
             <>Run analysis to generate decision checkpoints.</>
           )}
         </div>
-      </Card>
+      </CollapsibleSection>
 
       {/* Next Steps */}
-      <Card title="Next Steps" description="Immediate actions">
+      <CollapsibleSection
+        title="Next Steps"
+        description="Immediate actions"
+        defaultOpen={false}
+        icon={<AlertCircle className="h-4 w-4 text-muted-foreground" />}
+      >
         {snapshot?.actions?.nextSteps && snapshot.actions.nextSteps.length > 0 ? (
           <div className="space-y-2">
             {snapshot.actions.nextSteps.map((step) => (
@@ -288,7 +298,7 @@ export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommi
             )}
           </div>
         )}
-      </Card>
+      </CollapsibleSection>
     </div>
   );
 }

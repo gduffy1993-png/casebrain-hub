@@ -435,11 +435,23 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         </Card>
       ) : snapshot ? (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <ErrorBoundary fallback={mounted ? <Card className="p-4"><div className="text-sm text-muted-foreground">Evidence analysis awaiting further documents or analysis.</div></Card> : null}>
+          <ErrorBoundary fallback={mounted ? <Card className="p-4"><div className="text-sm text-muted-foreground">Analysis will deepen as further disclosure is received.</div></Card> : null}>
             <CaseEvidenceColumn 
               caseId={caseId} 
               snapshot={snapshot}
               onAddDocument={() => setShowAddDocuments(true)}
+              currentPhase={currentPhase}
+              savedPosition={currentPhase >= 2 ? savedPosition : null}
+              onCommitmentChange={(commitment) => {
+                if (commitment) {
+                  setCommittedStrategy(commitment);
+                  setIsStrategyCommitted(true);
+                  buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error);
+                } else {
+                  setCommittedStrategy(null);
+                  setIsStrategyCommitted(false);
+                }
+              }}
             />
           </ErrorBoundary>
           <ErrorBoundary fallback={
@@ -484,42 +496,6 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         </Card>
       )}
 
-      {/* Current Defence Position - Read-Only Display (Phase 2+ only) */}
-      {currentPhase >= 2 && savedPosition && (
-        <Card className="p-6">
-          <div className="space-y-4">
-            <div className="flex items-start justify-between">
-              <div>
-                <h3 className="text-sm font-semibold text-foreground mb-1">Current Defence Position</h3>
-                <p className="text-xs text-muted-foreground">
-                  Recorded on {new Date(savedPosition.created_at).toLocaleDateString()} (Phase {savedPosition.phase})
-                </p>
-              </div>
-            </div>
-            <div className="p-4 rounded-lg border border-border/50 bg-muted/10">
-              <p className="text-sm text-foreground whitespace-pre-wrap">{savedPosition.position_text}</p>
-            </div>
-            <p className="text-xs text-muted-foreground italic">
-              This is the currently recorded defence position. To amend it, use "Record Current Position" in the Strategy column.
-            </p>
-          </div>
-        </Card>
-      )}
-
-      {/* Strategy Commitment Panel - Phase 2+ only (for committing/viewing strategy, NOT position recording) */}
-      {currentPhase >= 2 && (
-        <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Strategy commitment will appear once analysis is run.</div>}>
-          <StrategyCommitmentPanel 
-            caseId={caseId}
-            onCommitmentChange={(commitment) => {
-              setCommittedStrategy(commitment);
-              setIsStrategyCommitted(!!commitment);
-              // Reload snapshot to reflect new commitment
-              buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error);
-            }}
-          />
-        </ErrorBoundary>
-      )}
 
       {/* Primary Strategy Plan - Phase 2+ only, shows after commitment */}
       {currentPhase >= 2 && isStrategyCommitted && (

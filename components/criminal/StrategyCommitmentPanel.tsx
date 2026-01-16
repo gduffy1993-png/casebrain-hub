@@ -654,6 +654,9 @@ export function StrategyCommitmentPanel({
             <p className="text-xs text-muted-foreground mb-2">
               Choose how the case will be run, based on the recorded defence position.
             </p>
+            <p className="text-sm text-foreground mb-3 font-medium">
+              Based on the recorded defence position and current disclosure, the recommended way to run the case is:
+            </p>
             <p className="text-sm text-muted-foreground">
               {isCommitted 
                 ? "Strategy is committed. Phase 2 directive planning is enabled."
@@ -917,6 +920,51 @@ export function StrategyCommitmentPanel({
                     </p>
                   </div>
                 </div>
+              </div>
+            )}
+
+            {/* Worst-case if wrong panel (Phase 2+ only, after commitment) */}
+            {primary && (
+              <div className="mb-6 p-4 rounded-lg border border-amber-500/20 bg-amber-500/5">
+                <h3 className="text-sm font-semibold text-foreground mb-2">If This Goes Wrong, Why?</h3>
+                {(() => {
+                  // Generate worst-case framing from available data
+                  const selectedRoute = strategyRoutes.find(r => r.type === primary);
+                  if (selectedRoute && selectedRoute.risks && selectedRoute.risks.length > 0) {
+                    // Use risks from selected route
+                    const topRisks = selectedRoute.risks.slice(0, 2);
+                    const riskText = topRisks.join("; ").toLowerCase();
+                    return (
+                      <p className="text-xs text-muted-foreground">
+                        If this strategy fails, the primary risks are: {riskText}. These risks should be monitored as disclosure evolves, particularly around {selectedRoute.killSwitches && selectedRoute.killSwitches.length > 0 ? selectedRoute.killSwitches[0].evidenceEvent.toLowerCase() : "key evidence developments"}.
+                      </p>
+                    );
+                  } else if (primary === "fight_charge") {
+                    return (
+                      <p className="text-xs text-muted-foreground">
+                        If this strategy fails, the primary risks are that prosecution evidence proves stronger than anticipated, identification becomes unassailable, or procedural challenges do not succeed. Monitor disclosure for any evidence that strengthens the prosecution case on intent or identification, as these could undermine the defence position.
+                      </p>
+                    );
+                  } else if (primary === "charge_reduction") {
+                    return (
+                      <p className="text-xs text-muted-foreground">
+                        If this strategy fails, the primary risks are that the prosecution maintains s18 intent is proven, medical evidence supports specific intent, or the court rejects the recklessness argument. Monitor disclosure for evidence that clearly demonstrates deliberate targeting or sustained violence, as these factors support specific intent.
+                      </p>
+                    );
+                  } else if (primary === "outcome_management") {
+                    return (
+                      <p className="text-xs text-muted-foreground">
+                        If this strategy fails, the primary risks are that sentencing guidelines point to custody despite mitigation, character evidence is insufficient, or the court views the offence as too serious for a non-custodial outcome. Monitor for any aggravating factors in disclosure that could outweigh mitigation efforts.
+                      </p>
+                    );
+                  } else {
+                    return (
+                      <p className="text-xs text-muted-foreground">
+                        Add a one-paragraph failure mode once disclosure and strategy are stabilised.
+                      </p>
+                    );
+                  }
+                })()}
               </div>
             )}
 
