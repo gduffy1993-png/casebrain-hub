@@ -119,6 +119,7 @@ export function CaseFightPlan({
     has_analysis_version: boolean;
     analysis_mode: "complete" | "preview" | "none";
   } | null>(null);
+  const [hasCharges, setHasCharges] = useState<boolean | null>(null);
 
   useEffect(() => {
     async function fetchPlan() {
@@ -264,6 +265,24 @@ export function CaseFightPlan({
 
     fetchPlan();
   }, [caseId, committedStrategy]);
+
+  useEffect(() => {
+    async function checkCharges() {
+      try {
+        const res = await fetch(`/api/criminal/${caseId}/charges`);
+        if (res.ok) {
+          const result = await res.json();
+          const charges = result.data?.charges || result.charges || [];
+          setHasCharges(charges.length > 0);
+        } else {
+          setHasCharges(null); // Unknown
+        }
+      } catch {
+        setHasCharges(null); // Unknown
+      }
+    }
+    checkCharges();
+  }, [caseId]);
 
   // FIX: Define helper functions BEFORE any early returns to avoid "used before declaration" errors
   // Using function declarations (not const arrow functions) so they're hoisted and available everywhere
@@ -515,25 +534,7 @@ export function CaseFightPlan({
   }
   
   // FIX: Only show concrete error if we have no data AND no committed strategy AND no charges
-  // Check for charges to determine if case is valid
-  const [hasCharges, setHasCharges] = useState<boolean | null>(null);
-  useEffect(() => {
-    async function checkCharges() {
-      try {
-        const res = await fetch(`/api/criminal/${caseId}/charges`);
-        if (res.ok) {
-          const result = await res.json();
-          const charges = result.data?.charges || result.charges || [];
-          setHasCharges(charges.length > 0);
-        } else {
-          setHasCharges(null); // Unknown
-        }
-      } catch {
-        setHasCharges(null); // Unknown
-      }
-    }
-    checkCharges();
-  }, [caseId]);
+  // Check for charges to determine if case is valid (hooks moved to top level above)
 
   // FIX: If gated AND no strategy data, show banner and stop (don't fabricate strategy)
   // But if gated AND strategy exists, show banner + strategy (banner is warning, not blocker)
