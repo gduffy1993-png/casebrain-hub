@@ -21,6 +21,7 @@ const nextConfig = {
     tsconfigPath: "./tsconfig.json",
   },
   reactStrictMode: true,
+  productionBrowserSourceMaps: true,
 };
 
 export default nextConfig;
