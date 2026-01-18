@@ -419,6 +419,32 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         />
       )}
 
+      {/* DEBUG: Strategy visibility (temporary) */}
+      {currentPhase >= 2 && (
+        <Card className="p-4 bg-amber-500/5 border-amber-500/20">
+          <h3 className="text-sm font-semibold text-foreground mb-2">DEBUG: Strategy visibility</h3>
+          <pre className="text-xs text-muted-foreground whitespace-pre-wrap font-mono">
+            {JSON.stringify({
+              currentPhase,
+              hasSavedPosition,
+              savedPositionExists: !!savedPosition,
+              snapshotExists: !!snapshot,
+              analysisMode: snapshot?.analysis?.mode,
+              strategyExists: !!snapshot?.strategy,
+              strategyPrimaryExists: !!snapshot?.strategy?.primary,
+              strategyDataExists: snapshot?.strategy?.strategyDataExists,
+              committedStrategyExists: !!committedStrategy,
+              hasAnyStrategyData: !!(
+                snapshot?.strategy?.primary ||
+                (snapshot?.strategy?.fallbacks && snapshot.strategy.fallbacks.length > 0) ||
+                committedStrategy ||
+                snapshot?.strategy?.hasRenderableData
+              ),
+            }, null, 2)}
+          </pre>
+        </Card>
+      )}
+
       {/* Phase 2: Two-Column Layout (Evidence Left, Strategy Right) - SINGLE SOURCE OF TRUTH */}
       {snapshotLoading ? (
         <Card className="p-6">

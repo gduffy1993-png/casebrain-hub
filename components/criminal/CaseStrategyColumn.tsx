@@ -18,6 +18,30 @@ type SavedPosition = {
   created_at: string;
 };
 
+/**
+ * Helper: Check if ANY strategy data exists in snapshot
+ * Strategy UI should render if ANY strategy-related data is present,
+ * regardless of analysis mode or commitment status
+ */
+function hasAnyStrategyData(snapshot: CaseSnapshot | null | undefined): boolean {
+  if (!snapshot) return false;
+  
+  // Check for strategy data flags
+  if (snapshot.strategy?.strategyDataExists) return true;
+  if (snapshot.strategy?.hasRenderableData) return true;
+  
+  // Check for specific strategy fields
+  if (snapshot.strategy?.primary) return true;
+  if (snapshot.strategy?.fallbacks && snapshot.strategy.fallbacks.length > 0) return true;
+  if (snapshot.strategy?.confidence) return true;
+  
+  // Check for analysis mode that indicates strategy generation has run
+  if (snapshot.analysis?.mode === "preview" || snapshot.analysis?.mode === "complete") return true;
+  if (snapshot.analysis?.hasVersion) return true;
+  
+  return false;
+}
+
 type CaseStrategyColumnProps = {
   caseId: string;
   snapshot: CaseSnapshot;
@@ -136,8 +160,8 @@ export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommi
       {/* Record Position Modal - managed by parent */}
 
       {/* Strategy Overview (Collapsed) */}
-      {/* GATE: Show preview if canShowStrategyPreview, full if canShowStrategyFull */}
-      {snapshot?.analysis?.canShowStrategyFull && snapshot?.strategy?.hasRenderableData ? (
+      {/* GATE: Show if ANY strategy data exists, regardless of commitment or full extraction */}
+      {hasAnyStrategyData(snapshot) ? (
         <CollapsibleSection
           title="Strategy Overview"
           description="Current strategy analysis"
@@ -171,7 +195,7 @@ export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommi
             )}
           </div>
         </CollapsibleSection>
-      ) : snapshot?.analysis?.canShowStrategyPreview ? (
+      ) : hasAnyStrategyData(snapshot) ? (
         <Card title="Strategy Overview" description="Current strategy analysis">
           {(() => {
             // DEV-only: Log preview rendering decision
