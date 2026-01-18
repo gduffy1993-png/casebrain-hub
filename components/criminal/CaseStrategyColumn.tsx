@@ -60,26 +60,7 @@ export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommi
   // Guard against undefined snapshot or decisionLog
   const position = snapshot?.decisionLog?.currentPosition ?? null;
 
-  // Fetch saved position on mount, or use prop if provided
-  useEffect(() => {
-    if (propSavedPosition !== undefined) {
-      setSavedPosition(propSavedPosition);
-      setIsLoadingPosition(false);
-      onPositionChange?.(!!propSavedPosition);
-    } else {
-      fetchPosition();
-    }
-  }, [caseId]);
-
-  // Sync with prop if it changes
-  useEffect(() => {
-    if (propSavedPosition !== undefined) {
-      setSavedPosition(propSavedPosition);
-      setIsLoadingPosition(false);
-      onPositionChange?.(!!propSavedPosition);
-    }
-  }, [propSavedPosition, onPositionChange]);
-
+  // Define fetchPosition BEFORE it's used in useEffect to avoid closure issues
   const fetchPosition = async () => {
     setIsLoadingPosition(true);
     try {
@@ -106,6 +87,18 @@ export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommi
       setIsLoadingPosition(false);
     }
   };
+
+  // Fetch saved position on mount, or sync with prop if provided
+  useEffect(() => {
+    if (propSavedPosition !== undefined) {
+      setSavedPosition(propSavedPosition);
+      setIsLoadingPosition(false);
+      onPositionChange?.(!!propSavedPosition);
+    } else {
+      fetchPosition();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [caseId, propSavedPosition]);
 
   const handleOpenModal = () => {
     onRecordPosition?.();
@@ -195,70 +188,6 @@ export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommi
             )}
           </div>
         </CollapsibleSection>
-      ) : hasAnyStrategyData(snapshot) ? (
-        <Card title="Strategy Overview" description="Current strategy analysis">
-          {(() => {
-            // DEV-only: Log preview rendering decision
-            if (process.env.NODE_ENV !== "production") {
-              console.log("[CaseStrategyColumn] Preview card rendering:", {
-                canShowStrategyPreview: snapshot?.analysis?.canShowStrategyPreview,
-                canShowStrategyFull: snapshot?.analysis?.canShowStrategyFull,
-                strategyDataExists: snapshot?.strategy?.strategyDataExists,
-                willShowPlaceholder: !snapshot?.strategy?.strategyDataExists,
-                willShowRealData: snapshot?.strategy?.strategyDataExists,
-              });
-            }
-            
-            return snapshot?.strategy?.strategyDataExists ? (
-              // Real strategy data exists - show preview with actual data
-              <div className="p-4 rounded-lg border border-amber-500/20 bg-amber-500/5">
-                <p className="text-xs text-foreground mb-2">
-                  <span className="font-semibold">Provisional Strategy (Thin Pack)</span>
-                </p>
-                <p className="text-xs text-muted-foreground mb-3">
-                  Strategy preview available. Full analysis requires additional documents.
-                </p>
-                {snapshot?.strategy?.primary && (
-                  <div className="mb-2">
-                    <span className="text-xs text-muted-foreground">Primary: </span>
-                    <Badge variant="outline" className="text-xs">
-                      {snapshot.strategy.primary}
-                    </Badge>
-                  </div>
-                )}
-                {snapshot?.strategy?.confidence && (
-                  <div>
-                    <span className="text-xs text-muted-foreground">Confidence: </span>
-                    <Badge
-                      className={`text-xs ${
-                        snapshot.strategy.confidence === "HIGH"
-                          ? "bg-green-500/10 text-green-600"
-                          : snapshot.strategy.confidence === "MEDIUM"
-                          ? "bg-amber-500/10 text-amber-600"
-                          : "bg-blue-500/10 text-blue-600"
-                      }`}
-                    >
-                      {snapshot.strategy.confidence}
-                    </Badge>
-                    {snapshot.strategy.confidence === "LOW" && (
-                      <span className="text-xs text-muted-foreground ml-2">(capped - thin pack)</span>
-                    )}
-                  </div>
-                )}
-              </div>
-            ) : (
-              // Placeholder when preview mode is available but no strategy output exists
-              <div className="p-4 rounded-lg border border-amber-500/20 bg-amber-500/5">
-                <p className="text-xs text-foreground mb-2">
-                  <span className="font-semibold">Preview mode — no strategy outputs generated yet.</span>
-                </p>
-                <p className="text-xs text-muted-foreground mb-3">
-                  Analysis version exists but strategy outputs are not available. Run analysis or add documents to generate strategy recommendations.
-                </p>
-              </div>
-            );
-          })()}
-        </Card>
       ) : (
         <Card title="Strategy Overview" description="Current strategy analysis">
           <div className="text-center py-4 text-muted-foreground text-sm">
