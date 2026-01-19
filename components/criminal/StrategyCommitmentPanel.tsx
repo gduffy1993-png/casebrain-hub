@@ -950,6 +950,14 @@ export function StrategyCommitmentPanel({
                         Locked
                       </Badge>
                     )}
+                    {isCommitted && primary && (() => {
+                      const activeRoutesCount = SUB_OPTIONS_BY_STRATEGY[primary]?.length ?? 0;
+                      return activeRoutesCount > 0 ? (
+                        <Badge variant="outline" className="text-xs">
+                          {activeRoutesCount} active route{activeRoutesCount !== 1 ? 's' : ''}
+                        </Badge>
+                      ) : null;
+                    })()}
                   </div>
                   <h3 className="text-sm font-semibold text-foreground mb-1">
                     {STRATEGY_OPTIONS.find(o => o.id === primary)?.label || primary}
@@ -979,12 +987,12 @@ export function StrategyCommitmentPanel({
               </div>
             </div>
 
-            {/* Parallel Attack Paths (Sub-Options) - Only show when committed */}
+            {/* Active Attack Routes (Sub-Options) - Only show when committed */}
             {isCommitted && primary && SUB_OPTIONS_BY_STRATEGY[primary] && (
               <div className="mt-4">
                 <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
                   <Zap className="h-4 w-4 text-primary" />
-                  Parallel Attack Paths
+                  Active Attack Routes (run in parallel)
                 </h3>
                 <div className="space-y-3">
                   {SUB_OPTIONS_BY_STRATEGY[primary].map((subOption) => (
