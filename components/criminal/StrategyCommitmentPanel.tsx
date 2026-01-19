@@ -1490,6 +1490,14 @@ export function StrategyCommitmentPanel({
                 </p>
                 <div className="space-y-4">
                   {strategyRoutes.map((route) => {
+                    const strategyKey = route.type;
+                    const isRouteCommitted = isCommitted && primary === strategyKey;
+                    const isActive = primary === strategyKey;
+                    
+                    let badgeText: string | null = null;
+                    if (isRouteCommitted) badgeText = "COMMITTED";
+                    else if (isActive) badgeText = "ACTIVE (not committed)";
+                    
                     const isSelected = selectedRouteId === route.id || primary === route.type;
                     const isCommittedRoute = isCommitted && isSelected;
                     return (
@@ -1507,14 +1515,12 @@ export function StrategyCommitmentPanel({
                           <div className="flex-1">
                             <div className="flex items-center gap-2 mb-2">
                               <h4 className="text-sm font-semibold text-foreground">{route.title}</h4>
-                              {isCommittedRoute && (
-                                <Badge variant="primary" className="text-xs">
-                                  COMMITTED
-                                </Badge>
-                              )}
-                              {isSelected && !isCommittedRoute && (
-                                <Badge variant="outline" className="text-xs">
-                                  SELECTED
+                              {badgeText && (
+                                <Badge 
+                                  variant={badgeText === "COMMITTED" ? "primary" : "outline"} 
+                                  className="text-xs"
+                                >
+                                  {badgeText}
                                 </Badge>
                               )}
                             </div>
