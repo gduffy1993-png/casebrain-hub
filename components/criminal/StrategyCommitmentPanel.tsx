@@ -257,6 +257,144 @@ const STRATEGY_OPTIONS: Array<{
   },
 ];
 
+// Sub-options (parallel attack paths) for each strategy (deterministic, non-AI)
+type SubOption = {
+  id: string;
+  title: string;
+  target: string;
+  evidenceNeeded: string[];
+  killSwitch: string;
+};
+
+const SUB_OPTIONS_BY_STRATEGY: Record<PrimaryStrategy, SubOption[]> = {
+  fight_charge: [
+    {
+      id: "identification",
+      title: "Identification / Recognition Attack",
+      target: "Challenge witness identification reliability, Turnbull compliance, and recognition evidence quality.",
+      evidenceNeeded: [
+        "VIPER pack / identification procedures",
+        "Turnbull guidelines compliance check",
+        "Recognition evidence timing and context",
+        "Witness reliability assessments"
+      ],
+      killSwitch: "Strong, uncontested identification with multiple independent witnesses and clear Turnbull compliance."
+    },
+    {
+      id: "intent_downgrade",
+      title: "Intent Downgrade (s18→s20) / Lack of Intent Attack",
+      target: "Challenge specific intent (s18) to downgrade to recklessness (s20) or lack of intent altogether.",
+      evidenceNeeded: [
+        "Sequence evidence (CCTV, timings)",
+        "Circumstances of incident (context, duration)",
+        "Medical evidence (injury mechanism)",
+        "Defendant's account / interview responses"
+      ],
+      killSwitch: "Clear evidence of premeditation, targeting, or specific intent to cause serious harm with no ambiguity."
+    },
+    {
+      id: "medical_causation",
+      title: "Medical Causation / Injury Mechanism Attack",
+      target: "Challenge whether injuries match prosecution narrative, causation chain, or medical expert evidence.",
+      evidenceNeeded: [
+        "Medical reports (GP, hospital, forensic)",
+        "Injury mechanism analysis",
+        "Timeline alignment (injury to incident)",
+        "Alternative causation possibilities"
+      ],
+      killSwitch: "Uncontested medical causation linking injuries directly to defendant's actions with expert consensus."
+    },
+    {
+      id: "disclosure_cctv",
+      title: "Disclosure / CCTV Continuity / Quality Attack",
+      target: "Exploit disclosure failures, CCTV gaps, continuity breaches, and evidence quality issues.",
+      evidenceNeeded: [
+        "MG6 schedules (disclosure requests)",
+        "CCTV continuity chain (seizure, storage, exhibit logs)",
+        "Unused material requests (MG6C)",
+        "PACE compliance records"
+      ],
+      killSwitch: "Complete disclosure with no gaps, strong CCTV continuity chain, and full compliance with disclosure obligations."
+    }
+  ],
+  charge_reduction: [
+    {
+      id: "lesser_offence",
+      title: "Lesser Alternative Offence Framing",
+      target: "Frame case as lesser offence (e.g. ABH, common assault) or argue absence of specific intent for s18.",
+      evidenceNeeded: [
+        "Medical evidence supporting lesser harm",
+        "Circumstances evidence (context, provocation)",
+        "Intent vs recklessness distinction evidence",
+        "Sentencing guidelines for alternative offences"
+      ],
+      killSwitch: "Medical evidence clearly supports GBH-level harm and circumstances show specific intent beyond reasonable doubt."
+    },
+    {
+      id: "negotiation_leverage",
+      title: "Negotiation Leverage Checklist",
+      target: "Identify what to request from CPS (charge reduction) and what can be conceded in negotiation.",
+      evidenceNeeded: [
+        "Prosecution case strength assessment",
+        "Defendant's account / instructions",
+        "Medical evidence clarity",
+        "Witness reliability assessments"
+      ],
+      killSwitch: "CPS case is overwhelming with no negotiation room due to strong evidence on all elements."
+    },
+    {
+      id: "basis_plea",
+      title: "Basis of Plea / Newton Hearing Risk Control",
+      target: "Control basis of plea to minimise sentence impact and manage Newton hearing risks.",
+      evidenceNeeded: [
+        "Sentencing guidelines (harm and culpability)",
+        "Defendant's account / instructions",
+        "Prosecution evidence on disputed facts",
+        "Case law on basis of plea disputes"
+      ],
+      killSwitch: "Prosecution evidence on disputed facts is overwhelming, making basis of plea unsustainable."
+    }
+  ],
+  outcome_management: [
+    {
+      id: "mitigation_pack",
+      title: "Mitigation Pack Checklist",
+      target: "Assemble comprehensive mitigation package to support non-custodial or reduced sentence outcome.",
+      evidenceNeeded: [
+        "Character references (employment, community, family)",
+        "Pre-sentence report (PSR) requests",
+        "Medical / mental health reports",
+        "Personal circumstances evidence (family, employment, health)"
+      ],
+      killSwitch: "Serious aggravating factors (previous convictions, victim vulnerability) outweigh mitigation."
+    },
+    {
+      id: "sentencing_guidelines",
+      title: "Sentencing Guideline Anchor Points",
+      target: "Identify guideline factors supporting reduced sentence: harm level, culpability, personal mitigation.",
+      evidenceNeeded: [
+        "Sentencing Council guidelines (relevant offence)",
+        "Harm and culpability assessment",
+        "Aggravating and mitigating factors checklist",
+        "Case law on similar cases"
+      ],
+      killSwitch: "Guideline starting point is high with limited mitigation and significant aggravating factors."
+    },
+    {
+      id: "early_plea",
+      title: "Early Guilty Plea Credit / Timing Reminders",
+      target: "Maximise credit for early guilty plea and manage timing of plea to preserve maximum credit.",
+      evidenceNeeded: [
+        "Stage of proceedings (first hearing, PTPH, pre-trial)",
+        "Plea credit calculation (up to 1/3 reduction)",
+        "Timeline of disclosure / case progression",
+        "Client instructions on plea"
+      ],
+      killSwitch: "Client maintains not guilty plea or plea entered too late to qualify for maximum credit."
+    }
+  ]
+};
+
 // Deterministic evidence needed based on strategy (non-AI, court-safe)
 function getEvidenceNeeded(strategyType: PrimaryStrategy | null): string {
   if (!strategyType) return "Evidence requirements listed in Phase 2 steps.";
@@ -658,6 +796,49 @@ export function StrategyCommitmentPanel({
     }
   };
 
+  // Simple collapsible sub-option card component
+  const SubOptionCard = ({ subOption }: { subOption: SubOption }) => {
+    const [isOpen, setIsOpen] = useState(false);
+    return (
+      <div className="p-3 rounded-lg border border-border/50 bg-muted/20">
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="w-full text-left flex items-center justify-between gap-2 hover:opacity-80 transition-opacity"
+        >
+          <div className="flex items-center gap-2">
+            <Target className="h-3.5 w-3.5 text-primary" />
+            <h4 className="text-xs font-semibold text-foreground">{subOption.title}</h4>
+          </div>
+          {isOpen ? (
+            <ChevronUp className="h-3.5 w-3.5 text-muted-foreground flex-shrink-0" />
+          ) : (
+            <ChevronDown className="h-3.5 w-3.5 text-muted-foreground flex-shrink-0" />
+          )}
+        </button>
+        {isOpen && (
+          <div className="mt-3 pt-3 border-t border-border/30 space-y-2.5">
+            <div>
+              <p className="text-xs font-semibold text-foreground mb-1">Target:</p>
+              <p className="text-xs text-muted-foreground">{subOption.target}</p>
+            </div>
+            <div>
+              <p className="text-xs font-semibold text-foreground mb-1">Evidence needed:</p>
+              <ul className="text-xs text-muted-foreground space-y-0.5 list-disc list-inside">
+                {subOption.evidenceNeeded.map((item, idx) => (
+                  <li key={idx}>{item}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <p className="text-xs font-semibold text-foreground mb-1">Kill switch:</p>
+              <p className="text-xs text-muted-foreground">{subOption.killSwitch}</p>
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  };
+
   const getViabilityBadge = (viability?: RouteViability) => {
     if (!viability) return null;
     const status = viability.status;
@@ -798,6 +979,21 @@ export function StrategyCommitmentPanel({
               </div>
             </div>
 
+            {/* Parallel Attack Paths (Sub-Options) - Only show when committed */}
+            {isCommitted && primary && SUB_OPTIONS_BY_STRATEGY[primary] && (
+              <div className="mt-4">
+                <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+                  <Zap className="h-4 w-4 text-primary" />
+                  Parallel Attack Paths
+                </h3>
+                <div className="space-y-3">
+                  {SUB_OPTIONS_BY_STRATEGY[primary].map((subOption) => (
+                    <SubOptionCard key={subOption.id} subOption={subOption} />
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* Fallback Strategies */}
             {secondary.length > 0 && (
               <div>
@@ -830,6 +1026,20 @@ export function StrategyCommitmentPanel({
                                   <p className="text-xs font-semibold text-foreground mb-0.5">Pivot trigger:</p>
                                   <p className="text-xs text-muted-foreground">{getPivotTrigger(strategyId)}</p>
                                 </div>
+                                {/* Light sub-options for fallbacks */}
+                                {SUB_OPTIONS_BY_STRATEGY[strategyId] && SUB_OPTIONS_BY_STRATEGY[strategyId].length > 0 && (
+                                  <div className="mt-3 pt-3 border-t border-border/20">
+                                    <p className="text-xs font-semibold text-foreground mb-2">If pivoting here, consider:</p>
+                                    <div className="space-y-2">
+                                      {SUB_OPTIONS_BY_STRATEGY[strategyId].slice(0, 2).map((subOption) => (
+                                        <div key={subOption.id} className="p-2 rounded border border-border/30 bg-muted/10">
+                                          <p className="text-xs font-medium text-foreground mb-1">{subOption.title}</p>
+                                          <p className="text-xs text-muted-foreground">{subOption.target}</p>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )}
                               </div>
                             )}
                           </div>
