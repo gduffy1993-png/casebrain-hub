@@ -225,9 +225,17 @@ type StrategyAnalysisResponse = {
   };
 };
 
+type SavedPosition = {
+  id: string;
+  position_text: string;
+  phase: number;
+  created_at: string;
+};
+
 type StrategyCommitmentPanelProps = {
   caseId: string;
   onCommitmentChange: (commitment: StrategyCommitment | null) => void;
+  savedPosition?: SavedPosition | null;
 };
 
 export type StrategyCommitment = {
@@ -482,6 +490,38 @@ function getCaseBreakTriggers(strategyType: PrimaryStrategy | null): string[] {
   }
 }
 
+// Conditional Trial Attack Plan (deterministic, court-safe, solicitor-facing)
+type ConditionalAttackPlan = {
+  cpsTheory: string;
+  primaryAttacks: {
+    intent: string;
+    identification: string;
+    weapon: string;
+    sequence: string;
+  };
+  medicalTension: string;
+  disclosureLeverage: string;
+  collapsePath: string;
+};
+
+function getConditionalAttackPlan(strategyType: PrimaryStrategy | null): ConditionalAttackPlan | null {
+  // Only generate for fight_charge strategy
+  if (strategyType !== "fight_charge") return null;
+  
+  return {
+    cpsTheory: "CPS will argue the defendant intended to cause really serious harm (s18 threshold). They will rely on: (1) nature and severity of injuries as evidence of intent, (2) witness identification placing defendant at scene, (3) sequence evidence showing sustained/targeted violence, (4) weapon inference (if applicable) suggesting premeditation. CPS case theory: deliberate, targeted attack with specific intent to cause GBH.",
+    primaryAttacks: {
+      intent: "If CPS relies on injury severity alone, the defence will argue that s18 requires proof of specific intent to cause really serious harm, not just recklessness. Absence of premeditation, targeting, or sustained violence undermines specific intent. Alternative: if harm occurred, it was reckless (s20) not intentional (s18).",
+      identification: "If CPS relies on witness identification, the defence will challenge Turnbull compliance: (1) quality of identification (VIPER pack, recognition vs identification), (2) lighting/visibility conditions, (3) witness reliability (stress, time delay, contamination risk), (4) absence of supporting identification evidence. Defence position: identification is weak or unsafe.",
+      weapon: "If CPS infers weapon use from injuries, the defence will argue: (1) injuries do not require weapon (can be caused by hands/feet), (2) no weapon recovered or linked to defendant, (3) alternative causation (fall, accident, self-inflicted), (4) medical evidence does not support weapon inference. Defence position: no weapon used or weapon inference is speculative.",
+      sequence: "If CPS relies on sequence evidence (duration, escalation, targeting), the defence will challenge: (1) CCTV gaps or quality issues, (2) timing/sequence is disputed, (3) incident was spontaneous not premeditated, (4) sequence does not support sustained/targeted attack. Defence position: incident was brief, reactive, or lacks evidence of targeting."
+    },
+    medicalTension: "Medical evidence creates tension: if injuries are severe but mechanism is unclear, CPS will argue severity = intent. Defence will argue: (1) injury mechanism does not support weapon use, (2) alternative causation (fall, accident), (3) medical evidence is consistent with recklessness not specific intent, (4) timing of injuries is disputed (pre-existing, unrelated incident). Defence position: medical evidence does not prove specific intent to cause really serious harm.",
+    disclosureLeverage: "If disclosure is incomplete (MG6C missing, CCTV continuity broken, unused material not disclosed), the defence will: (1) request full disclosure with specific requests, (2) if disclosure failures persist, draft abuse of process application, (3) argue exclusion of evidence where continuity is broken, (4) use disclosure failures to undermine prosecution case strength. Disclosure gaps create leverage: CPS must either provide material or face exclusion/abuse of process risk.",
+    collapsePath: "The case collapses if CPS overreaches: (1) if CPS cannot prove identification beyond reasonable doubt (Turnbull failure), case fails, (2) if CPS cannot prove specific intent (only recklessness proven), charge reduces to s20, (3) if disclosure failures are material and persistent, abuse of process application may succeed, (4) if medical evidence does not support weapon inference or causation is disputed, CPS case weakens significantly. Defence position: force CPS to prove every element beyond reasonable doubt; exploit evidential weaknesses."
+  };
+}
+
 // Deterministic next steps based on committed strategy_type (non-AI)
 function getDeterministicNextSteps(strategyType: PrimaryStrategy | null): string[] {
   if (!strategyType) return [];
@@ -521,12 +561,14 @@ function getDeterministicNextSteps(strategyType: PrimaryStrategy | null): string
 
 export function StrategyCommitmentPanel({ 
   caseId, 
-  onCommitmentChange 
+  onCommitmentChange,
+  savedPosition: propSavedPosition
 }: StrategyCommitmentPanelProps) {
   const params = useParams();
   const router = useRouter();
   const resolvedCaseId = (caseId ?? params.caseId) as string | undefined;
   
+  const [savedPosition, setSavedPosition] = useState<SavedPosition | null>(propSavedPosition || null);
   const [primary, setPrimary] = useState<PrimaryStrategy | null>(null);
   const [secondary, setSecondary] = useState<SecondaryStrategy[]>([]);
   const [isCommitted, setIsCommitted] = useState(false);
@@ -630,6 +672,34 @@ export function StrategyCommitmentPanel({
         setIsLoadingRoutes(false);
       });
   }, [resolvedCaseId]);
+
+  // Load saved position if not provided as prop
+  useEffect(() => {
+    if (propSavedPosition !== undefined) {
+      setSavedPosition(propSavedPosition);
+      return;
+    }
+    if (!resolvedCaseId) return;
+    
+    async function fetchPosition() {
+      try {
+        const res = await fetch(`/api/criminal/${resolvedCaseId}/position`);
+        if (res.ok) {
+          const result = await res.json();
+          if (result.ok && result.data) {
+            setSavedPosition(result.data);
+          } else {
+            setSavedPosition(null);
+          }
+        } else {
+          setSavedPosition(null);
+        }
+      } catch {
+        setSavedPosition(null);
+      }
+    }
+    fetchPosition();
+  }, [resolvedCaseId, propSavedPosition]);
 
   // Load commitment from API on mount
   useEffect(() => {
@@ -1092,6 +1162,81 @@ export function StrategyCommitmentPanel({
                 })()}
               </div>
             )}
+
+            {/* Conditional Trial Attack Plan - Only when position recorded and strategy is fight_charge */}
+            {savedPosition && primary === "fight_charge" && (() => {
+              const attackPlan = getConditionalAttackPlan(primary);
+              if (!attackPlan) return null;
+              
+              return (
+                <div className="mt-6 pt-6 border-t border-border">
+                  <div className="mb-3">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Shield className="h-4 w-4 text-primary" />
+                      <h3 className="text-sm font-semibold text-foreground">Conditional Trial Attack Plan</h3>
+                      <Badge variant="outline" className="text-xs border-amber-500/30 text-amber-600 bg-amber-500/10">
+                        CONDITIONAL
+                      </Badge>
+                      <Badge variant="outline" className="text-xs border-blue-500/30 text-blue-600 bg-blue-500/10">
+                        SUBJECT TO DISCLOSURE
+                      </Badge>
+                    </div>
+                    <p className="text-xs text-muted-foreground italic">
+                      This attack plan is conditional on the recorded defence position and current disclosure. It updates if disclosure or position changes. It does not commit the case to trial.
+                    </p>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    {/* Likely CPS Case Theory */}
+                    <div className="p-3 rounded-lg border border-border/50 bg-muted/20">
+                      <h4 className="text-xs font-semibold text-foreground mb-2">Likely CPS Case Theory</h4>
+                      <p className="text-xs text-muted-foreground">{attackPlan.cpsTheory}</p>
+                    </div>
+                    
+                    {/* Primary Defence Attacks */}
+                    <div className="p-3 rounded-lg border border-border/50 bg-muted/20">
+                      <h4 className="text-xs font-semibold text-foreground mb-3">Primary Defence Attacks</h4>
+                      <div className="space-y-3">
+                        <div>
+                          <h5 className="text-xs font-medium text-foreground mb-1">Intent (s18 threshold)</h5>
+                          <p className="text-xs text-muted-foreground">{attackPlan.primaryAttacks.intent}</p>
+                        </div>
+                        <div>
+                          <h5 className="text-xs font-medium text-foreground mb-1">Identification / lighting / reliability</h5>
+                          <p className="text-xs text-muted-foreground">{attackPlan.primaryAttacks.identification}</p>
+                        </div>
+                        <div>
+                          <h5 className="text-xs font-medium text-foreground mb-1">Weapon inference and injury causation</h5>
+                          <p className="text-xs text-muted-foreground">{attackPlan.primaryAttacks.weapon}</p>
+                        </div>
+                        <div>
+                          <h5 className="text-xs font-medium text-foreground mb-1">Sequence, duration, escalation</h5>
+                          <p className="text-xs text-muted-foreground">{attackPlan.primaryAttacks.sequence}</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Medical Evidence Tension */}
+                    <div className="p-3 rounded-lg border border-border/50 bg-muted/20">
+                      <h4 className="text-xs font-semibold text-foreground mb-2">Medical Evidence Tension</h4>
+                      <p className="text-xs text-muted-foreground">{attackPlan.medicalTension}</p>
+                    </div>
+                    
+                    {/* Disclosure Failure Leverage Path */}
+                    <div className="p-3 rounded-lg border border-border/50 bg-muted/20">
+                      <h4 className="text-xs font-semibold text-foreground mb-2">Disclosure Failure Leverage Path</h4>
+                      <p className="text-xs text-muted-foreground">{attackPlan.disclosureLeverage}</p>
+                    </div>
+                    
+                    {/* How the Case Collapses if CPS Overreaches */}
+                    <div className="p-3 rounded-lg border border-amber-500/20 bg-amber-500/5">
+                      <h4 className="text-xs font-semibold text-foreground mb-2">How the Case Collapses if CPS Overreaches</h4>
+                      <p className="text-xs text-muted-foreground">{attackPlan.collapsePath}</p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
 
             {/* Fallback Strategies */}
             {secondary.length > 0 && (

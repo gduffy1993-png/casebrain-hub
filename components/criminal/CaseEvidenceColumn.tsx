@@ -57,6 +57,7 @@ export function CaseEvidenceColumn({ caseId, snapshot, onAddDocument, currentPha
           <StrategyCommitmentPanel 
             caseId={caseId}
             onCommitmentChange={onCommitmentChange}
+            savedPosition={savedPosition}
           />
         </ErrorBoundary>
       )}
