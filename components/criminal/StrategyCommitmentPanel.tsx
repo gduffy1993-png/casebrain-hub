@@ -5,7 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Target, CheckCircle2, AlertCircle, X, Lock, ArrowRight, TrendingUp, AlertTriangle, ChevronDown, ChevronUp, Copy, FileText, Shield, Zap, AlertCircle as AlertCircleIcon, Calendar, MapPin, Loader2 } from "lucide-react";
+import { Target, CheckCircle2, AlertCircle, X, Lock, ArrowRight, TrendingUp, AlertTriangle, ChevronDown, ChevronUp, Copy, FileText, Shield, Zap, AlertCircle as AlertCircleIcon, Calendar, MapPin, Loader2, Clock } from "lucide-react";
 import { useToast } from "@/components/Toast";
 
 export type PrimaryStrategy = 
@@ -520,6 +520,85 @@ function getConditionalAttackPlan(strategyType: PrimaryStrategy | null): Conditi
     disclosureLeverage: "If disclosure is incomplete (MG6C missing, CCTV continuity broken, unused material not disclosed), the defence will: (1) request full disclosure with specific requests, (2) if disclosure failures persist, draft abuse of process application, (3) argue exclusion of evidence where continuity is broken, (4) use disclosure failures to undermine prosecution case strength. Disclosure gaps create leverage: CPS must either provide material or face exclusion/abuse of process risk.",
     collapsePath: "The case collapses if CPS overreaches: (1) if CPS cannot prove identification beyond reasonable doubt (Turnbull failure), case fails, (2) if CPS cannot prove specific intent (only recklessness proven), charge reduces to s20, (3) if disclosure failures are material and persistent, abuse of process application may succeed, (4) if medical evidence does not support weapon inference or causation is disputed, CPS case weakens significantly. Defence position: force CPS to prove every element beyond reasonable doubt; exploit evidential weaknesses."
   };
+}
+
+// Beast Strategy Pack - Deterministic templates for all 10 sections
+type BeastStrategyPack = {
+  prosecutionTheory: string;
+  elementsChecklist: Array<{ element: string; cpsEvidence: string; defenceChallenge: string; status: "WEAK" | "STRONG" | "UNKNOWN" }>;
+  disclosureLeverage: string;
+  worstCaseFailureMode: string;
+  next72Hours: string[];
+};
+
+function getBeastStrategyPack(strategyType: PrimaryStrategy | null): BeastStrategyPack | null {
+  if (!strategyType) return null;
+  
+  switch (strategyType) {
+    case "fight_charge":
+      return {
+        prosecutionTheory: "CPS will argue: (1) Defendant intended to cause really serious harm (s18 threshold), (2) Identification evidence places defendant at scene, (3) Sequence evidence shows sustained/targeted violence, (4) Medical evidence supports GBH-level harm. CPS case theory: deliberate, targeted attack with specific intent to cause GBH. Defence will challenge: identification reliability (Turnbull), intent threshold (s18 vs s20), sequence interpretation (spontaneous vs premeditated), medical causation (mechanism unclear).",
+        elementsChecklist: [
+          { element: "Actus Reus (harm caused)", cpsEvidence: "Medical reports showing GBH-level injuries", defenceChallenge: "Challenge causation chain, alternative causation, pre-existing conditions", status: "UNKNOWN" },
+          { element: "Mens Rea (specific intent s18)", cpsEvidence: "Injury severity, sequence evidence, weapon inference", defenceChallenge: "Argue recklessness (s20) not specific intent, absence of premeditation/targeting", status: "UNKNOWN" },
+          { element: "Identification", cpsEvidence: "Witness statements, CCTV, recognition evidence", defenceChallenge: "Turnbull compliance, lighting/visibility, witness reliability, contamination risk", status: "UNKNOWN" },
+          { element: "Causation", cpsEvidence: "Medical evidence linking injuries to incident", defenceChallenge: "Dispute mechanism, timing, alternative causes", status: "UNKNOWN" },
+        ],
+        disclosureLeverage: "Disclosure gaps create leverage: (1) MG6C missing → request full unused material schedule, (2) CCTV continuity broken → challenge admissibility, (3) Missing witness statements → request all witness accounts, (4) No VIPER pack → challenge identification procedures. If disclosure failures persist after chase, draft abuse of process application. Disclosure gaps undermine prosecution case strength and create exclusion/abuse of process risk.",
+        worstCaseFailureMode: "If this strategy fails: (1) Strong, uncontested identification with multiple witnesses and clear Turnbull compliance, (2) Complete disclosure with no gaps and strong CCTV continuity, (3) Medical evidence clearly links injuries to defendant's actions with expert consensus, (4) Sequence evidence shows sustained/targeted violence supporting specific intent. Pivot to charge_reduction if intent threshold cannot be challenged, or outcome_management if case is overwhelming.",
+        next72Hours: [
+          "Request full disclosure (MG6C, CCTV continuity, VIPER pack, all witness statements)",
+          "Review identification evidence for Turnbull compliance issues",
+          "Assess PACE compliance (interview, custody, evidence handling)",
+          "Draft initial disclosure requests with specific material identified",
+          "Prepare case management note highlighting disclosure gaps",
+          "Review medical evidence for causation challenges",
+          "Assess sequence evidence (CCTV, timings, duration) for intent distinction",
+        ],
+      };
+    case "charge_reduction":
+      return {
+        prosecutionTheory: "CPS will argue: (1) Defendant intended to cause really serious harm (s18), (2) Medical evidence supports GBH-level harm, (3) Sequence evidence shows targeting/premeditation, (4) Circumstances support specific intent. Defence will argue: (1) Harm occurred but intent was reckless (s20), (2) Medical evidence supports s20 not s18 (injury mechanism suggests recklessness), (3) Circumstances show lack of targeting (spontaneous incident), (4) No clear evidence of 'really serious harm' intent. Defence position: accept harm, challenge intent threshold.",
+        elementsChecklist: [
+          { element: "Harm (GBH-level)", cpsEvidence: "Medical reports showing serious injuries", defenceChallenge: "Accept harm occurred but dispute mechanism or severity assessment", status: "UNKNOWN" },
+          { element: "Intent (s18 specific intent)", cpsEvidence: "Sequence evidence, targeting, premeditation", defenceChallenge: "Argue recklessness (s20) not specific intent, spontaneous not premeditated", status: "UNKNOWN" },
+          { element: "Causation", cpsEvidence: "Medical evidence linking injuries to incident", defenceChallenge: "Accept causation but dispute intent threshold", status: "UNKNOWN" },
+        ],
+        disclosureLeverage: "Disclosure leverage for charge reduction: (1) Medical evidence gaps → request full medical records and expert reports, (2) Sequence evidence incomplete → request all CCTV and witness accounts of incident sequence, (3) Circumstances evidence missing → request all context evidence (provocation, self-defence claims). Use disclosure gaps to argue intent distinction cannot be properly assessed without full material. Request charge reduction before PTPH if medical/sequence evidence supports s20.",
+        worstCaseFailureMode: "If this strategy fails: (1) Medical evidence clearly supports s18 (specific intent mechanism), (2) Sequence evidence shows clear targeting/premeditation, (3) CPS case is overwhelming on intent element, (4) Court rejects recklessness argument. Pivot to outcome_management if charge reduction fails, or fight_charge if prosecution case weakens significantly.",
+        next72Hours: [
+          "Request medical evidence (full records, expert reports, injury mechanism analysis)",
+          "Review sequence evidence (CCTV, timings, duration) for intent distinction",
+          "Request circumstances evidence (context, provocation, self-defence)",
+          "Prepare charge reduction negotiation brief (s18 → s20)",
+          "Draft written submissions on intent distinction for case management",
+          "Review sentencing guidelines for s20 vs s18 implications",
+          "Prepare basis of plea if charge reduction succeeds",
+        ],
+      };
+    case "outcome_management":
+      return {
+        prosecutionTheory: "CPS will argue: (1) Offence is serious and warrants custodial sentence, (2) Aggravating factors outweigh mitigation, (3) Sentencing guidelines point to custody, (4) Public interest requires custodial sentence. Defence will argue: (1) Strong mitigation package (character, employment, family circumstances), (2) Early guilty plea credit (up to 1/3 reduction), (3) Guideline factors support lower starting point (reduced harm/culpability), (4) Non-custodial alternatives are appropriate. Defence position: focus on sentencing position and mitigation.",
+        elementsChecklist: [
+          { element: "Harm level", cpsEvidence: "Medical evidence, circumstances", defenceChallenge: "Argue lower harm category, reduced culpability factors", status: "UNKNOWN" },
+          { element: "Culpability", cpsEvidence: "Sequence evidence, intent, targeting", defenceChallenge: "Argue reduced culpability (provocation, lack of premeditation)", status: "UNKNOWN" },
+          { element: "Personal mitigation", cpsEvidence: "Previous convictions, aggravating factors", defenceChallenge: "Present strong mitigation (character, employment, family, remorse)", status: "UNKNOWN" },
+        ],
+        disclosureLeverage: "Disclosure leverage for mitigation: (1) Character references → request evidence of good character, employment, community involvement, (2) Medical/mental health → request reports supporting mitigation, (3) Family circumstances → request evidence of dependents, hardship, (4) Remorse/rehabilitation → request evidence of early guilty plea, cooperation, rehabilitation efforts. Use disclosure to build comprehensive mitigation package.",
+        worstCaseFailureMode: "If this strategy fails: (1) Sentencing guidelines clearly point to custody despite mitigation, (2) Aggravating factors are overwhelming (previous convictions, victim vulnerability), (3) Court views offence as too serious for non-custodial outcome, (4) Mitigation is insufficient. Pivot to fight_charge if prosecution case weakens, or accept custodial outcome with focus on sentence length reduction.",
+        next72Hours: [
+          "Prepare comprehensive mitigation package (character references, employment, family circumstances)",
+          "Request pre-sentence report (PSR) if appropriate",
+          "Gather medical/mental health reports supporting mitigation",
+          "Review sentencing guidelines for harm/culpability factors",
+          "Prepare sentencing submissions focusing on rehabilitation",
+          "Consider early guilty plea timing for maximum credit",
+          "Prepare basis of plea if guilty plea entered",
+        ],
+      };
+    default:
+      return null;
+  }
 }
 
 // Deterministic next steps based on committed strategy_type (non-AI)
@@ -1677,9 +1756,173 @@ export function StrategyCommitmentPanel({
                           </div>
                         )}
 
+                        {/* Beast Strategy Pack - Full structured pack when route is selected */}
+                        {isSelected && (() => {
+                          const beastPack = getBeastStrategyPack(strategyKey);
+                          if (!beastPack) return null;
+                          
+                          return (
+                            <div className="mt-4 pt-4 border-t-2 border-primary/30 space-y-3">
+                              <div className="flex items-center gap-2 mb-3">
+                                <Shield className="h-4 w-4 text-primary" />
+                                <h4 className="text-sm font-semibold text-foreground">Beast Strategy Pack</h4>
+                                <Badge variant="outline" className="text-xs border-amber-500/30 text-amber-600 bg-amber-500/10">
+                                  CONDITIONAL
+                                </Badge>
+                              </div>
+                              
+                              {/* Prosecution Theory */}
+                              <div className="rounded-lg border border-border/50 overflow-hidden">
+                                <button
+                                  onClick={() => toggleSection(`${route.id}_prosecution_theory`)}
+                                  className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/20 transition-colors"
+                                >
+                                  <div className="flex items-center gap-2">
+                                    <FileText className="h-4 w-4 text-primary" />
+                                    <span className="text-xs font-semibold text-foreground">Prosecution Theory</span>
+                                  </div>
+                                  {expandedSections.has(`${route.id}_prosecution_theory`) ? (
+                                    <ChevronUp className="h-4 w-4 text-muted-foreground" />
+                                  ) : (
+                                    <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                                  )}
+                                </button>
+                                {expandedSections.has(`${route.id}_prosecution_theory`) && (
+                                  <div className="p-3 border-t border-border/50">
+                                    <p className="text-xs text-muted-foreground">{beastPack.prosecutionTheory}</p>
+                                  </div>
+                                )}
+                              </div>
+                              
+                              {/* Elements Checklist */}
+                              <div className="rounded-lg border border-border/50 overflow-hidden">
+                                <button
+                                  onClick={() => toggleSection(`${route.id}_elements_checklist`)}
+                                  className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/20 transition-colors"
+                                >
+                                  <div className="flex items-center gap-2">
+                                    <CheckCircle2 className="h-4 w-4 text-primary" />
+                                    <span className="text-xs font-semibold text-foreground">Elements Checklist</span>
+                                  </div>
+                                  {expandedSections.has(`${route.id}_elements_checklist`) ? (
+                                    <ChevronUp className="h-4 w-4 text-muted-foreground" />
+                                  ) : (
+                                    <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                                  )}
+                                </button>
+                                {expandedSections.has(`${route.id}_elements_checklist`) && (
+                                  <div className="p-3 border-t border-border/50 space-y-3">
+                                    {beastPack.elementsChecklist.map((item, idx) => (
+                                      <div key={idx} className="p-3 rounded-lg border border-border/30 bg-muted/10">
+                                        <div className="flex items-center gap-2 mb-2">
+                                          <h6 className="text-xs font-semibold text-foreground">{item.element}</h6>
+                                          <Badge 
+                                            variant={item.status === "STRONG" ? "danger" : item.status === "WEAK" ? "success" : "secondary"}
+                                            className="text-[10px]"
+                                          >
+                                            {item.status}
+                                          </Badge>
+                                        </div>
+                                        <div className="text-xs space-y-1.5">
+                                          <div>
+                                            <span className="font-semibold text-foreground">CPS Evidence: </span>
+                                            <span className="text-muted-foreground">{item.cpsEvidence}</span>
+                                          </div>
+                                          <div>
+                                            <span className="font-semibold text-foreground">Defence Challenge: </span>
+                                            <span className="text-muted-foreground">{item.defenceChallenge}</span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    ))}
+                                  </div>
+                                )}
+                              </div>
+                              
+                              {/* Disclosure Leverage */}
+                              <div className="rounded-lg border border-border/50 overflow-hidden">
+                                <button
+                                  onClick={() => toggleSection(`${route.id}_disclosure_leverage`)}
+                                  className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/20 transition-colors"
+                                >
+                                  <div className="flex items-center gap-2">
+                                    <Shield className="h-4 w-4 text-primary" />
+                                    <span className="text-xs font-semibold text-foreground">Disclosure Leverage</span>
+                                  </div>
+                                  {expandedSections.has(`${route.id}_disclosure_leverage`) ? (
+                                    <ChevronUp className="h-4 w-4 text-muted-foreground" />
+                                  ) : (
+                                    <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                                  )}
+                                </button>
+                                {expandedSections.has(`${route.id}_disclosure_leverage`) && (
+                                  <div className="p-3 border-t border-border/50">
+                                    <p className="text-xs text-muted-foreground">{beastPack.disclosureLeverage}</p>
+                                  </div>
+                                )}
+                              </div>
+                              
+                              {/* Worst-Case Failure Mode */}
+                              <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 overflow-hidden">
+                                <button
+                                  onClick={() => toggleSection(`${route.id}_worst_case`)}
+                                  className="w-full flex items-center justify-between p-3 text-left hover:bg-amber-500/10 transition-colors"
+                                >
+                                  <div className="flex items-center gap-2">
+                                    <AlertTriangle className="h-4 w-4 text-amber-600" />
+                                    <span className="text-xs font-semibold text-foreground">Worst-Case Failure Mode</span>
+                                  </div>
+                                  {expandedSections.has(`${route.id}_worst_case`) ? (
+                                    <ChevronUp className="h-4 w-4 text-muted-foreground" />
+                                  ) : (
+                                    <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                                  )}
+                                </button>
+                                {expandedSections.has(`${route.id}_worst_case`) && (
+                                  <div className="p-3 border-t border-amber-500/20">
+                                    <p className="text-xs text-muted-foreground">{beastPack.worstCaseFailureMode}</p>
+                                  </div>
+                                )}
+                              </div>
+                              
+                              {/* Next 72 Hours */}
+                              <div className="rounded-lg border border-border/50 overflow-hidden">
+                                <button
+                                  onClick={() => toggleSection(`${route.id}_next_72_hours`)}
+                                  className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/20 transition-colors"
+                                >
+                                  <div className="flex items-center gap-2">
+                                    <Clock className="h-4 w-4 text-primary" />
+                                    <span className="text-xs font-semibold text-foreground">Next 72 Hours</span>
+                                  </div>
+                                  {expandedSections.has(`${route.id}_next_72_hours`) ? (
+                                    <ChevronUp className="h-4 w-4 text-muted-foreground" />
+                                  ) : (
+                                    <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                                  )}
+                                </button>
+                                {expandedSections.has(`${route.id}_next_72_hours`) && (
+                                  <div className="p-3 border-t border-border/50">
+                                    <ul className="space-y-1.5">
+                                      {beastPack.next72Hours.map((action, idx) => (
+                                        <li key={idx} className="text-xs text-foreground flex items-start gap-2">
+                                          <span className="flex-shrink-0 w-4 h-4 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
+                                            <span className="text-[10px] font-semibold text-primary">{idx + 1}</span>
+                                          </span>
+                                          <span>{action}</span>
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          );
+                        })()}
+
                         {/* Enhanced Route Details - Tabs/Sections */}
                         <div className="mt-4 pt-4 border-t border-border space-y-2">
-                            {/* Attack Paths */}
+                            {/* Attack Routes (Attack Paths) */}
                             {route.attackPaths && route.attackPaths.length > 0 ? (
                               <div className="rounded-lg border border-border/50 overflow-hidden">
                                 <button

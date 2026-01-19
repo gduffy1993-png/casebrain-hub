@@ -446,6 +446,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
       )}
 
       {/* Phase 2: Two-Column Layout (Evidence Left, Strategy Right) - SINGLE SOURCE OF TRUTH */}
+      <div data-phase-2-section>
       {snapshotLoading ? (
         <Card className="p-6">
           <div className="flex items-center gap-2 text-muted-foreground">
@@ -521,7 +522,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
           </div>
         </Card>
       )}
-
+      </div>
 
       {/* Primary Strategy Plan - Phase 2+ only, shows after commitment */}
       {currentPhase >= 2 && isStrategyCommitted && (
@@ -648,6 +649,9 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         initialText={savedPosition?.position_text || ""}
         currentPhase={currentPhase}
         onPhase2Request={() => {
+          setCurrentPhase(2);
+        }}
+        onAutoAdvanceToPhase2={() => {
           setCurrentPhase(2);
         }}
         showPhase2CTA={!hasSavedPosition && currentPhase === 1}

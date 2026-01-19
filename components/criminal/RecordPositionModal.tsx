@@ -14,6 +14,7 @@ type RecordPositionModalProps = {
   currentPhase?: number;
   onPhase2Request?: () => void;
   showPhase2CTA?: boolean;
+  onAutoAdvanceToPhase2?: () => void;
 };
 
 const POSITION_TEMPLATES = [
@@ -44,10 +45,63 @@ export function RecordPositionModal({
   currentPhase = 1,
   onPhase2Request,
   showPhase2CTA = false,
+  onAutoAdvanceToPhase2,
 }: RecordPositionModalProps) {
   const [positionText, setPositionText] = useState(initialText);
   const [isSaving, setIsSaving] = useState(false);
   const { push: showToast } = useToast();
+
+  // Auto-save and advance to Phase 2 when preset is clicked
+  const handlePresetClick = async (template: { label: string; text: string }) => {
+    setPositionText(template.text);
+    
+    // Immediately POST the position
+    setIsSaving(true);
+    try {
+      const response = await fetch(`/api/criminal/${caseId}/position`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          position_text: template.text.trim(),
+          phase: 2, // Always set to Phase 2 when using preset
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ error: "Failed to save position" }));
+        throw new Error(errorData.error || `Failed to save position (${response.status})`);
+      }
+
+      showToast("Defence position saved. Advancing to Phase 2.", "success");
+      onSuccess();
+      onClose();
+      setPositionText("");
+      
+      // Auto-advance to Phase 2
+      if (onAutoAdvanceToPhase2) {
+        onAutoAdvanceToPhase2();
+        // Scroll to Phase 2 section after a brief delay
+        setTimeout(() => {
+          const phase2Section = document.querySelector('[data-phase-2-section]') as HTMLElement;
+          if (phase2Section) {
+            phase2Section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            phase2Section.focus();
+          }
+        }, 100);
+      }
+    } catch (error) {
+      console.error("[RecordPositionModal] Failed to auto-save preset:", error);
+      showToast(
+        error instanceof Error ? error.message : "Failed to save position. Please try again.",
+        "error"
+      );
+    } finally {
+      setIsSaving(false);
+    }
+  };
 
   if (!isOpen) return null;
 
@@ -124,7 +178,7 @@ export function RecordPositionModal({
                   key={idx}
                   variant="outline"
                   size="sm"
-                  onClick={() => setPositionText(template.text)}
+                  onClick={() => handlePresetClick(template)}
                   disabled={isSaving}
                   className="text-left justify-start h-auto py-2 px-3 text-xs"
                 >
