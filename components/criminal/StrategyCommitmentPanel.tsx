@@ -5,7 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Target, CheckCircle2, AlertCircle, X, Lock, ArrowRight, TrendingUp, AlertTriangle, ChevronDown, ChevronUp, Copy, FileText, Shield, Zap, AlertCircle as AlertCircleIcon, Calendar, MapPin } from "lucide-react";
+import { Target, CheckCircle2, AlertCircle, X, Lock, ArrowRight, TrendingUp, AlertTriangle, ChevronDown, ChevronUp, Copy, FileText, Shield, Zap, AlertCircle as AlertCircleIcon, Calendar, MapPin, Loader2 } from "lucide-react";
 import { useToast } from "@/components/Toast";
 
 export type PrimaryStrategy = 
@@ -1478,8 +1478,8 @@ export function StrategyCommitmentPanel({
               </div>
             )}
 
-            {/* Strategy Routes from strategy-analysis endpoint */}
-            {strategyRoutes.length > 0 && (
+            {/* Strategy Routes from strategy-analysis endpoint - Always show if strategy selected or routes exist */}
+            {((primary || strategyRoutes.length > 0) && !isLoadingRoutes) && (
               <div className="mt-6 pt-6 border-t border-border">
                 <div className="flex items-center gap-2 mb-3">
                   <TrendingUp className="h-4 w-4 text-primary" />
@@ -1489,17 +1489,75 @@ export function StrategyCommitmentPanel({
                   Available defence strategies based on case analysis. Select a route to commit as your primary strategy.
                 </p>
                 <div className="space-y-4">
-                  {strategyRoutes.map((route) => {
-                    const strategyKey = route.type;
-                    const isRouteCommitted = isCommitted && primary === strategyKey;
-                    const isActive = primary === strategyKey;
-                    
-                    let badgeText: string | null = null;
-                    if (isRouteCommitted) badgeText = "COMMITTED";
-                    else if (isActive) badgeText = "ACTIVE (not committed)";
-                    
-                    const isSelected = selectedRouteId === route.id || primary === route.type;
-                    const isCommittedRoute = isCommitted && isSelected;
+                  {(() => {
+                    // If no routes from API, show fallback routes for all 3 main strategies
+                    if (strategyRoutes.length === 0) {
+                      const fallbackRoutes: StrategyRoute[] = [
+                        {
+                          id: "fallback_fight_charge",
+                          type: "fight_charge",
+                          title: "Fight Charge (Full Trial)",
+                          rationale: "Challenge prosecution case at trial. Target acquittal or dismissal by attacking evidence, intent, and identification.",
+                          winConditions: ["Identification fails Turnbull", "Disclosure gaps create abuse of process risk", "PACE breaches lead to exclusion"],
+                          risks: ["Strong identification evidence", "Complete disclosure", "No procedural breaches"],
+                          nextActions: ["Request full disclosure", "Review identification evidence", "Assess PACE compliance"],
+                          attackPaths: [],
+                          cpsResponses: [],
+                          killSwitches: [],
+                        },
+                        {
+                          id: "fallback_charge_reduction",
+                          type: "charge_reduction",
+                          title: "Charge Reduction (s18 → s20)",
+                          rationale: "Accept harm occurred but challenge intent threshold. Target reduction from s18 to s20 or lesser offence.",
+                          winConditions: ["Medical evidence supports s20 not s18", "Circumstances show lack of targeting", "CPS case weak on intent"],
+                          risks: ["Medical evidence supports s18", "Clear evidence of specific intent", "Court rejects recklessness argument"],
+                          nextActions: ["Request medical evidence", "Review sequence evidence", "Prepare charge reduction negotiation"],
+                          attackPaths: [],
+                          cpsResponses: [],
+                          killSwitches: [],
+                        },
+                        {
+                          id: "fallback_outcome_management",
+                          type: "outcome_management",
+                          title: "Outcome Management (Plea/Mitigation)",
+                          rationale: "Focus on sentencing position and mitigation. Target reduced sentence or non-custodial outcome.",
+                          winConditions: ["Strong mitigation package", "Early guilty plea credit", "Guideline factors favour lower starting point"],
+                          risks: ["Sentencing guidelines point to custody", "Insufficient character evidence", "Court views offence as too serious"],
+                          nextActions: ["Prepare mitigation package", "Consider early guilty plea", "Review sentencing guidelines"],
+                          attackPaths: [],
+                          cpsResponses: [],
+                          killSwitches: [],
+                        },
+                      ];
+                      return fallbackRoutes.map((route) => {
+                        const strategyKey = route.type;
+                        const isRouteCommitted = isCommitted && primary === strategyKey;
+                        const isActive = primary === strategyKey;
+                        
+                        let badgeText: string | null = null;
+                        if (isRouteCommitted) badgeText = "COMMITTED";
+                        else if (isActive) badgeText = "ACTIVE (not committed)";
+                        
+                        const isSelected = primary === route.type;
+                        const isCommittedRoute = isCommitted && isSelected;
+                        return { route, strategyKey, isRouteCommitted, isActive, badgeText, isSelected, isCommittedRoute };
+                      });
+                    }
+                    return strategyRoutes.map((route) => {
+                      const strategyKey = route.type;
+                      const isRouteCommitted = isCommitted && primary === strategyKey;
+                      const isActive = primary === strategyKey;
+                      
+                      let badgeText: string | null = null;
+                      if (isRouteCommitted) badgeText = "COMMITTED";
+                      else if (isActive) badgeText = "ACTIVE (not committed)";
+                      
+                      const isSelected = selectedRouteId === route.id || primary === route.type;
+                      const isCommittedRoute = isCommitted && isSelected;
+                      return { route, strategyKey, isRouteCommitted, isActive, badgeText, isSelected, isCommittedRoute };
+                    });
+                  })().map(({ route, strategyKey, isRouteCommitted, isActive, badgeText, isSelected, isCommittedRoute }) => {
                     return (
                       <div
                         key={route.id}
