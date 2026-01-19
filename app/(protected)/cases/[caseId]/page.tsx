@@ -17,6 +17,7 @@ import type {
 } from "@/types";
 import { ConditionalPortalShare } from "@/components/cases/ConditionalPortalShare";
 import { CaseTypeSelector } from "@/components/cases/CaseTypeSelector";
+import { LettersPanel } from "@/components/cases/LettersPanel";
 import { PiCaseOverview } from "@/components/pi/PiCaseOverview";
 import { PiValuationHelper } from "@/components/pi/PiValuationHelper";
 import { PiLetterPreview } from "@/components/pi/PiLetterPreview";
@@ -1010,49 +1011,11 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
           />
         </Card>
 
-        <Card
-          title="Letters"
-          action={
-            <Link href={`/cases/${caseId}/letters/new`}>
-              <Button size="sm" variant="primary" className="gap-2">
-                <ClipboardEdit className="h-4 w-4" />
-                Draft Letter
-              </Button>
-            </Link>
-          }
-        >
-          <ul className="space-y-3">
-            {(letters ?? []).map((letter) => (
-              <li
-                key={letter.id}
-                className="rounded-2xl border bg-surface-muted/70 p-3 text-sm"
-              >
-                <div className="flex items-center justify-between">
-                  <p className="font-medium text-accent">
-                    Template {letter.template_id}
-                  </p>
-                  <span className="text-xs text-accent/50">
-                    v{letter.version}
-                  </span>
-                </div>
-                <p className="mt-2 line-clamp-2 text-accent/60">
-                  {letter.body.slice(0, 120)}…
-                </p>
-                <Link
-                  href={`/cases/${caseId}/letters/${letter.id}`}
-                  className="mt-3 inline-flex text-xs font-semibold text-primary hover:underline"
-                >
-                  View version & diff
-                </Link>
-              </li>
-            ))}
-            {!letters?.length && (
-              <p className="text-sm text-accent/60">
-                No letters drafted yet. Generate a letter using extracted facts.
-              </p>
-            )}
-          </ul>
-        </Card>
+        <LettersPanel 
+          caseId={caseId} 
+          letters={letters ?? []} 
+          practiceArea={caseRecord.practice_area ?? undefined}
+        />
       </aside>
 
       <main className="space-y-4">
