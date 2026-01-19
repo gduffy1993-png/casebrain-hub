@@ -257,6 +257,38 @@ const STRATEGY_OPTIONS: Array<{
   },
 ];
 
+// Deterministic evidence needed based on strategy (non-AI, court-safe)
+function getEvidenceNeeded(strategyType: PrimaryStrategy | null): string {
+  if (!strategyType) return "Evidence requirements listed in Phase 2 steps.";
+  
+  switch (strategyType) {
+    case "fight_charge":
+      return "Full disclosure (CCTV, MG6 schedules, unused material). Identification evidence (VIPER pack, Turnbull compliance). PACE compliance records (interview, custody).";
+    case "charge_reduction":
+      return "Medical evidence (injury reports, GP records). Sequence evidence (CCTV, timings, targeting). Circumstances evidence (context of incident).";
+    case "outcome_management":
+      return "Prosecution case strength assessment. Personal circumstances evidence (employment, family, health). Character references. Mitigation materials.";
+    default:
+      return "Evidence requirements listed in Phase 2 steps.";
+  }
+}
+
+// Deterministic pivot trigger template (non-AI, court-safe)
+function getPivotTrigger(strategyType: PrimaryStrategy | null): string {
+  if (!strategyType) return "Pivot guidance available in Phase 2 steps.";
+  
+  switch (strategyType) {
+    case "fight_charge":
+      return "Consider pivot if disclosure shows strong prosecution evidence on identification or intent, or if client accepts harm occurred but disputes specific intent.";
+    case "charge_reduction":
+      return "Consider pivot if medical evidence supports s18 rather than s20, or if prosecution evidence on intent is overwhelming.";
+    case "outcome_management":
+      return "Consider pivot if prosecution case weakens significantly (identification failures, disclosure gaps), creating viable trial defence.";
+    default:
+      return "Pivot guidance available in Phase 2 steps.";
+  }
+}
+
 // Deterministic next steps based on committed strategy_type (non-AI)
 function getDeterministicNextSteps(strategyType: PrimaryStrategy | null): string[] {
   if (!strategyType) return [];
@@ -452,10 +484,10 @@ export function StrategyCommitmentPanel({
           const parsed = JSON.parse(saved) as StrategyCommitment;
           if (parsed?.primary) {
             setPrimary(parsed.primary);
-            setSecondary(parsed.secondary?.slice(0, 2) || []);
+            setSecondary(parsed.secondary?.slice(0, 3) || []);
             onCommitmentChange({
               primary: parsed.primary,
-              secondary: parsed.secondary?.slice(0, 2) || [],
+              secondary: parsed.secondary?.slice(0, 3) || [],
             });
           }
         }
@@ -491,9 +523,9 @@ export function StrategyCommitmentPanel({
     setSecondary(prev => {
       const newSecondary = prev.includes(strategy)
         ? prev.filter(s => s !== strategy)
-        : prev.length < 2
+        : prev.length < 3
           ? [...prev, strategy]
-          : prev; // Max 2 secondary
+          : prev; // Max 3 secondary
       
       // Notify parent if primary is set
       if (primary) {
@@ -532,7 +564,7 @@ export function StrategyCommitmentPanel({
         body: JSON.stringify({
           // EXACT keys: primary_strategy, fallback_strategies, strategy_type
           primary_strategy: primary, // Internal id: fight_charge / charge_reduction / outcome_management
-          fallback_strategies: secondary.slice(0, 2), // Max 2 fallback strategies
+          fallback_strategies: secondary.slice(0, 3), // Max 3 fallback strategies
           strategy_type: primary, // strategy_type must be the internal id (same as primary_strategy)
         }),
       });
@@ -589,7 +621,7 @@ export function StrategyCommitmentPanel({
       try {
         window.localStorage.setItem(storageKey, JSON.stringify({
           primary,
-          secondary: secondary.slice(0, 2),
+          secondary: secondary.slice(0, 3),
         }));
       } catch {
         // ignore storage errors
@@ -741,9 +773,21 @@ export function StrategyCommitmentPanel({
                   <h3 className="text-sm font-semibold text-foreground mb-1">
                     {STRATEGY_OPTIONS.find(o => o.id === primary)?.label || primary}
                   </h3>
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-xs text-muted-foreground mb-2">
                     {STRATEGY_OPTIONS.find(o => o.id === primary)?.description}
                   </p>
+                  {isCommitted && (
+                    <div className="space-y-2 mt-3 pt-3 border-t border-border/50">
+                      <div>
+                        <p className="text-xs font-semibold text-foreground mb-1">Evidence needed:</p>
+                        <p className="text-xs text-muted-foreground">{getEvidenceNeeded(primary)}</p>
+                      </div>
+                      <div>
+                        <p className="text-xs font-semibold text-foreground mb-1">Pivot trigger:</p>
+                        <p className="text-xs text-muted-foreground">{getPivotTrigger(primary)}</p>
+                      </div>
+                    </div>
+                  )}
                   {isCommitted && committedAt && (
                     <p className="text-xs text-muted-foreground mt-2 italic">
                       Committed {new Date(committedAt).toLocaleDateString()}
@@ -775,7 +819,19 @@ export function StrategyCommitmentPanel({
                               <h4 className="text-sm font-medium text-foreground">{option.label}</h4>
                               <Badge variant="outline" className="text-xs">Fallback</Badge>
                             </div>
-                            <p className="text-xs text-muted-foreground">{option.description}</p>
+                            <p className="text-xs text-muted-foreground mb-2">{option.description}</p>
+                            {isCommitted && (
+                              <div className="space-y-1.5 mt-2 pt-2 border-t border-border/30">
+                                <div>
+                                  <p className="text-xs font-semibold text-foreground mb-0.5">Evidence needed:</p>
+                                  <p className="text-xs text-muted-foreground">{getEvidenceNeeded(strategyId)}</p>
+                                </div>
+                                <div>
+                                  <p className="text-xs font-semibold text-foreground mb-0.5">Pivot trigger:</p>
+                                  <p className="text-xs text-muted-foreground">{getPivotTrigger(strategyId)}</p>
+                                </div>
+                              </div>
+                            )}
                           </div>
                           <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0" />
                         </div>
@@ -1793,7 +1849,7 @@ export function StrategyCommitmentPanel({
             {!isCommitted && (
               <div>
                 <h3 className="text-sm font-semibold text-foreground mb-3">
-                  Fallback Strategies (Optional, max 2)
+                  Fallback Strategies (Optional, max 3)
                 </h3>
                 <div className="space-y-2">
                   {STRATEGY_OPTIONS.filter(o => o.id !== primary).map((option) => {
@@ -1804,7 +1860,7 @@ export function StrategyCommitmentPanel({
                         className={`flex items-start gap-3 p-3 rounded-lg border transition-colors cursor-pointer ${
                           isSelected
                             ? "border-primary/50 bg-primary/5"
-                            : secondary.length >= 2
+                            : secondary.length >= 3
                               ? "border-border/50 bg-muted/20 opacity-50 cursor-not-allowed"
                               : "border-border hover:border-primary/30 hover:bg-primary/5"
                         }`}
@@ -1813,7 +1869,7 @@ export function StrategyCommitmentPanel({
                           type="checkbox"
                           checked={isSelected}
                           onChange={() => handleSecondaryToggle(option.id)}
-                          disabled={!isSelected && secondary.length >= 2}
+                          disabled={!isSelected && secondary.length >= 3}
                           className="mt-0.5 h-4 w-4 rounded border-border text-primary focus:ring-primary"
                         />
                         <div className="flex-1">
