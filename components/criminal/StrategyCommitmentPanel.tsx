@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -299,6 +299,7 @@ export function StrategyCommitmentPanel({
   onCommitmentChange 
 }: StrategyCommitmentPanelProps) {
   const params = useParams();
+  const router = useRouter();
   const resolvedCaseId = (caseId ?? params.caseId) as string | undefined;
   
   const [primary, setPrimary] = useState<PrimaryStrategy | null>(null);
@@ -579,6 +580,9 @@ export function StrategyCommitmentPanel({
         }
       }
 
+      // Refresh router to refetch phase2 plan and other data
+      router.refresh();
+
       showToast("Strategy committed. Phase 2 directive planning is now enabled.", "success");
 
       // Also save to localStorage as backup
@@ -702,25 +706,21 @@ export function StrategyCommitmentPanel({
             <div>
               <h3 className="text-sm font-semibold text-foreground mb-3">Select Primary Strategy</h3>
               <p className="text-xs text-muted-foreground mb-3">No strategy committed yet. Select a primary strategy to begin.</p>
-              <div className="space-y-3">
+              <select
+                value=""
+                onChange={(e) => {
+                  const value = e.target.value as PrimaryStrategy;
+                  if (value) handlePrimarySelect(value);
+                }}
+                className="w-full p-3 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+              >
+                <option value="">-- Select Primary Strategy --</option>
                 {STRATEGY_OPTIONS.map((option) => (
-                  <button
-                    key={option.id}
-                    onClick={() => handlePrimarySelect(option.id)}
-                    className="w-full text-left p-4 rounded-lg border border-border hover:border-primary/50 hover:bg-primary/5 transition-colors"
-                  >
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-1">
-                          <h4 className="text-sm font-semibold text-foreground">{option.label}</h4>
-                        </div>
-                        <p className="text-xs text-muted-foreground">{option.description}</p>
-                      </div>
-                      <CheckCircle2 className="h-5 w-5 text-muted-foreground flex-shrink-0" />
-                    </div>
-                  </button>
+                  <option key={option.id} value={option.id}>
+                    {option.label}
+                  </option>
                 ))}
-              </div>
+              </select>
             </div>
           </div>
         ) : (
@@ -1799,11 +1799,9 @@ export function StrategyCommitmentPanel({
                   {STRATEGY_OPTIONS.filter(o => o.id !== primary).map((option) => {
                     const isSelected = secondary.includes(option.id);
                     return (
-                      <button
+                      <label
                         key={option.id}
-                        onClick={() => handleSecondaryToggle(option.id)}
-                        disabled={!isSelected && secondary.length >= 2}
-                        className={`w-full text-left p-3 rounded-lg border transition-colors ${
+                        className={`flex items-start gap-3 p-3 rounded-lg border transition-colors cursor-pointer ${
                           isSelected
                             ? "border-primary/50 bg-primary/5"
                             : secondary.length >= 2
@@ -1811,23 +1809,23 @@ export function StrategyCommitmentPanel({
                               : "border-border hover:border-primary/30 hover:bg-primary/5"
                         }`}
                       >
-                        <div className="flex items-start justify-between gap-3">
-                          <div className="flex-1">
-                            <div className="flex items-center gap-2 mb-1">
-                              <h4 className="text-sm font-medium text-foreground">{option.label}</h4>
-                              {isSelected && (
-                                <Badge variant="outline" className="text-xs">Selected</Badge>
-                              )}
-                            </div>
-                            <p className="text-xs text-muted-foreground">{option.description}</p>
+                        <input
+                          type="checkbox"
+                          checked={isSelected}
+                          onChange={() => handleSecondaryToggle(option.id)}
+                          disabled={!isSelected && secondary.length >= 2}
+                          className="mt-0.5 h-4 w-4 rounded border-border text-primary focus:ring-primary"
+                        />
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-1">
+                            <h4 className="text-sm font-medium text-foreground">{option.label}</h4>
+                            {isSelected && (
+                              <Badge variant="outline" className="text-xs">Selected</Badge>
+                            )}
                           </div>
-                          {isSelected ? (
-                            <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0" />
-                          ) : (
-                            <div className="h-4 w-4 rounded-full border-2 border-muted-foreground/30 flex-shrink-0" />
-                          )}
+                          <p className="text-xs text-muted-foreground">{option.description}</p>
                         </div>
-                      </button>
+                      </label>
                     );
                   })}
                 </div>
