@@ -264,6 +264,7 @@ type SubOption = {
   target: string;
   evidenceNeeded: string[];
   killSwitch: string;
+  priority: "primary pressure" | "secondary pressure" | "leverage / pivot";
 };
 
 const SUB_OPTIONS_BY_STRATEGY: Record<PrimaryStrategy, SubOption[]> = {
@@ -278,7 +279,8 @@ const SUB_OPTIONS_BY_STRATEGY: Record<PrimaryStrategy, SubOption[]> = {
         "Recognition evidence timing and context",
         "Witness reliability assessments"
       ],
-      killSwitch: "Strong, uncontested identification with multiple independent witnesses and clear Turnbull compliance."
+      killSwitch: "Strong, uncontested identification with multiple independent witnesses and clear Turnbull compliance.",
+      priority: "primary pressure"
     },
     {
       id: "intent_downgrade",
@@ -290,7 +292,8 @@ const SUB_OPTIONS_BY_STRATEGY: Record<PrimaryStrategy, SubOption[]> = {
         "Medical evidence (injury mechanism)",
         "Defendant's account / interview responses"
       ],
-      killSwitch: "Clear evidence of premeditation, targeting, or specific intent to cause serious harm with no ambiguity."
+      killSwitch: "Clear evidence of premeditation, targeting, or specific intent to cause serious harm with no ambiguity.",
+      priority: "primary pressure"
     },
     {
       id: "medical_causation",
@@ -302,7 +305,8 @@ const SUB_OPTIONS_BY_STRATEGY: Record<PrimaryStrategy, SubOption[]> = {
         "Timeline alignment (injury to incident)",
         "Alternative causation possibilities"
       ],
-      killSwitch: "Uncontested medical causation linking injuries directly to defendant's actions with expert consensus."
+      killSwitch: "Uncontested medical causation linking injuries directly to defendant's actions with expert consensus.",
+      priority: "secondary pressure"
     },
     {
       id: "disclosure_cctv",
@@ -314,7 +318,8 @@ const SUB_OPTIONS_BY_STRATEGY: Record<PrimaryStrategy, SubOption[]> = {
         "Unused material requests (MG6C)",
         "PACE compliance records"
       ],
-      killSwitch: "Complete disclosure with no gaps, strong CCTV continuity chain, and full compliance with disclosure obligations."
+      killSwitch: "Complete disclosure with no gaps, strong CCTV continuity chain, and full compliance with disclosure obligations.",
+      priority: "leverage / pivot"
     }
   ],
   charge_reduction: [
@@ -328,7 +333,8 @@ const SUB_OPTIONS_BY_STRATEGY: Record<PrimaryStrategy, SubOption[]> = {
         "Intent vs recklessness distinction evidence",
         "Sentencing guidelines for alternative offences"
       ],
-      killSwitch: "Medical evidence clearly supports GBH-level harm and circumstances show specific intent beyond reasonable doubt."
+      killSwitch: "Medical evidence clearly supports GBH-level harm and circumstances show specific intent beyond reasonable doubt.",
+      priority: "primary pressure"
     },
     {
       id: "negotiation_leverage",
@@ -340,7 +346,8 @@ const SUB_OPTIONS_BY_STRATEGY: Record<PrimaryStrategy, SubOption[]> = {
         "Medical evidence clarity",
         "Witness reliability assessments"
       ],
-      killSwitch: "CPS case is overwhelming with no negotiation room due to strong evidence on all elements."
+      killSwitch: "CPS case is overwhelming with no negotiation room due to strong evidence on all elements.",
+      priority: "secondary pressure"
     },
     {
       id: "basis_plea",
@@ -352,7 +359,8 @@ const SUB_OPTIONS_BY_STRATEGY: Record<PrimaryStrategy, SubOption[]> = {
         "Prosecution evidence on disputed facts",
         "Case law on basis of plea disputes"
       ],
-      killSwitch: "Prosecution evidence on disputed facts is overwhelming, making basis of plea unsustainable."
+      killSwitch: "Prosecution evidence on disputed facts is overwhelming, making basis of plea unsustainable.",
+      priority: "leverage / pivot"
     }
   ],
   outcome_management: [
@@ -366,7 +374,8 @@ const SUB_OPTIONS_BY_STRATEGY: Record<PrimaryStrategy, SubOption[]> = {
         "Medical / mental health reports",
         "Personal circumstances evidence (family, employment, health)"
       ],
-      killSwitch: "Serious aggravating factors (previous convictions, victim vulnerability) outweigh mitigation."
+      killSwitch: "Serious aggravating factors (previous convictions, victim vulnerability) outweigh mitigation.",
+      priority: "primary pressure"
     },
     {
       id: "sentencing_guidelines",
@@ -378,7 +387,8 @@ const SUB_OPTIONS_BY_STRATEGY: Record<PrimaryStrategy, SubOption[]> = {
         "Aggravating and mitigating factors checklist",
         "Case law on similar cases"
       ],
-      killSwitch: "Guideline starting point is high with limited mitigation and significant aggravating factors."
+      killSwitch: "Guideline starting point is high with limited mitigation and significant aggravating factors.",
+      priority: "secondary pressure"
     },
     {
       id: "early_plea",
@@ -390,7 +400,8 @@ const SUB_OPTIONS_BY_STRATEGY: Record<PrimaryStrategy, SubOption[]> = {
         "Timeline of disclosure / case progression",
         "Client instructions on plea"
       ],
-      killSwitch: "Client maintains not guilty plea or plea entered too late to qualify for maximum credit."
+      killSwitch: "Client maintains not guilty plea or plea entered too late to qualify for maximum credit.",
+      priority: "leverage / pivot"
     }
   ]
 };
@@ -424,6 +435,50 @@ function getPivotTrigger(strategyType: PrimaryStrategy | null): string {
       return "Consider pivot if prosecution case weakens significantly (identification failures, disclosure gaps), creating viable trial defence.";
     default:
       return "Pivot guidance available in Phase 2 steps.";
+  }
+}
+
+// Deterministic strategic intent per strategy (solicitor thinking, not checklist)
+function getStrategicIntent(strategyType: PrimaryStrategy | null): string {
+  if (!strategyType) return "";
+  
+  switch (strategyType) {
+    case "fight_charge":
+      return "Force CPS to prove identification and intent beyond evidential weaknesses; maintain downgrade leverage if thresholds fail.";
+    case "charge_reduction":
+      return "Establish recklessness narrative early; use medical/circumstantial evidence to create negotiation space before PTPH.";
+    case "outcome_management":
+      return "Build mitigation foundation while preserving plea credit; anchor sentencing position to guideline factors that reduce harm/culpability.";
+    default:
+      return "";
+  }
+}
+
+// Deterministic case-break triggers per strategy (what breaks the case)
+function getCaseBreakTriggers(strategyType: PrimaryStrategy | null): string[] {
+  if (!strategyType) return [];
+  
+  switch (strategyType) {
+    case "fight_charge":
+      return [
+        "Identification fails Turnbull (no VIPER, recognition only, multiple witnesses disagree)",
+        "Disclosure gaps create abuse of process risk (MG6C missing, CCTV continuity broken)",
+        "Medical causation disputed (injury mechanism unclear, alternative cause plausible)"
+      ];
+    case "charge_reduction":
+      return [
+        "Medical evidence supports s20 not s18 (injury mechanism suggests recklessness, not specific intent)",
+        "Circumstances show lack of targeting/premeditation (spontaneous incident, provocation present)",
+        "CPS case weak on intent element (no clear evidence of 'really serious harm' intent)"
+      ];
+    case "outcome_management":
+      return [
+        "Strong mitigation package (character references, PSR positive, personal circumstances compelling)",
+        "Early guilty plea preserves maximum credit (first hearing or pre-trial, full 1/3 reduction)",
+        "Guideline factors favour lower starting point (lower harm category, reduced culpability factors)"
+      ];
+    default:
+      return [];
   }
 }
 
@@ -799,6 +854,11 @@ export function StrategyCommitmentPanel({
   // Simple collapsible sub-option card component
   const SubOptionCard = ({ subOption }: { subOption: SubOption }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const priorityColors = {
+      "primary pressure": "bg-primary/20 text-primary border-primary/30",
+      "secondary pressure": "bg-amber-500/20 text-amber-600 border-amber-500/30",
+      "leverage / pivot": "bg-blue-500/20 text-blue-600 border-blue-500/30",
+    };
     return (
       <div className="p-3 rounded-lg border border-border/50 bg-muted/20">
         <button
@@ -808,6 +868,9 @@ export function StrategyCommitmentPanel({
           <div className="flex items-center gap-2">
             <Target className="h-3.5 w-3.5 text-primary" />
             <h4 className="text-xs font-semibold text-foreground">{subOption.title}</h4>
+            <Badge className={`text-xs border ${priorityColors[subOption.priority]}`}>
+              {subOption.priority}
+            </Badge>
           </div>
           {isOpen ? (
             <ChevronUp className="h-3.5 w-3.5 text-muted-foreground flex-shrink-0" />
@@ -938,6 +1001,13 @@ export function StrategyCommitmentPanel({
           </div>
         ) : (
           <div className="space-y-4">
+            {/* Strategic Intent (only when committed) */}
+            {isCommitted && primary && (
+              <p className="text-xs text-muted-foreground italic">
+                {getStrategicIntent(primary)}
+              </p>
+            )}
+            
             {/* Primary Strategy Display */}
             <div className="p-4 rounded-lg border-2 border-primary/30 bg-primary/5">
               <div className="flex items-start justify-between mb-2">
@@ -999,6 +1069,27 @@ export function StrategyCommitmentPanel({
                     <SubOptionCard key={subOption.id} subOption={subOption} />
                   ))}
                 </div>
+                
+                {/* Case-break triggers panel */}
+                {(() => {
+                  const triggers = getCaseBreakTriggers(primary);
+                  if (triggers.length === 0) return null;
+                  return (
+                    <div className="mt-4 p-3 rounded-lg border border-primary/20 bg-primary/5">
+                      <h4 className="text-xs font-semibold text-foreground mb-2">
+                        What breaks the case (any one)
+                      </h4>
+                      <ul className="space-y-1.5">
+                        {triggers.map((trigger, idx) => (
+                          <li key={idx} className="text-xs text-muted-foreground flex items-start gap-2">
+                            <span className="text-primary mt-0.5">•</span>
+                            <span>{trigger}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  );
+                })()}
               </div>
             )}
 
