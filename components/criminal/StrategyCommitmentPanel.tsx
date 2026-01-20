@@ -2342,11 +2342,14 @@ export function StrategyCommitmentPanel({
                   const selectedRoute = strategyRoutes.find(r => r.type === primary);
                   if (selectedRoute && selectedRoute.risks && selectedRoute.risks.length > 0) {
                     // Use risks from selected route
-                    const topRisks = selectedRoute.risks.slice(0, 2);
-                    const riskText = topRisks.join("; ").toLowerCase();
+                    const topRisks = selectedRoute.risks.slice(0, 2).filter((r): r is string => typeof r === "string" && r.length > 0);
+                    const riskText = (topRisks.join("; ") || "").toLowerCase();
+                    const evidenceEvent = selectedRoute.killSwitches && selectedRoute.killSwitches.length > 0 && selectedRoute.killSwitches[0]?.evidenceEvent
+                      ? (selectedRoute.killSwitches[0].evidenceEvent || "").toLowerCase()
+                      : "key evidence developments";
                     return (
                       <p className="text-xs text-muted-foreground">
-                        If this strategy fails, the primary risks are: {riskText}. These risks should be monitored as disclosure evolves, particularly around {selectedRoute.killSwitches && selectedRoute.killSwitches.length > 0 ? selectedRoute.killSwitches[0].evidenceEvent.toLowerCase() : "key evidence developments"}.
+                        If this strategy fails, the primary risks are: {riskText}. These risks should be monitored as disclosure evolves, particularly around {evidenceEvent}.
                       </p>
                     );
                   } else if (primary === "fight_charge") {
@@ -2526,7 +2529,7 @@ export function StrategyCommitmentPanel({
                           <ul className="space-y-1.5">
                             {route.nextActions.map((action, idx) => {
                               // Determine judicial optics
-                              const lowerAction = action.toLowerCase();
+                              const lowerAction = (action || "").toLowerCase();
                               let optics: "attractive" | "neutral" | "risky" = "neutral";
                               if (lowerAction.includes("disclosure request") || lowerAction.includes("continuity request") || lowerAction.includes("written submission") || lowerAction.includes("case management")) {
                                 optics = "attractive";
@@ -2600,7 +2603,7 @@ export function StrategyCommitmentPanel({
                                   <div className="p-3 border-t border-border/50 space-y-3">
                                     {route.attackPaths.map((path) => {
                                       // Score judicial optics for this attack path
-                                      const methodLower = path.method.toLowerCase();
+                                      const methodLower = (path.method || "").toLowerCase();
                                       let optics: "attractive" | "neutral" | "risky" = "neutral";
                                       if (methodLower.includes("turnbull") && methodLower.includes("early")) {
                                         optics = "attractive";
