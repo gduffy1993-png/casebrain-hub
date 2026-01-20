@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -1010,9 +1010,12 @@ export function StrategyCommitmentPanel({
 }: StrategyCommitmentPanelProps) {
   const params = useParams();
   const router = useRouter();
-  const searchParams = useSearchParams();
   const resolvedCaseId = (caseId ?? params.caseId) as string | undefined;
-  const isDebug = searchParams?.get('debug') === '1';
+  
+  // Client-only debug detection (safe, no Next/navigation hooks)
+  const isDebug =
+    typeof window !== "undefined" &&
+    new URLSearchParams(window.location.search).has("debug");
   
   const [savedPosition, setSavedPosition] = useState<SavedPosition | null>(propSavedPosition || null);
   const [primary, setPrimary] = useState<PrimaryStrategy | null>(null);
