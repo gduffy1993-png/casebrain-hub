@@ -2560,28 +2560,40 @@ export function StrategyCommitmentPanel({
                 "fight_charge";
               const beastPack = getBeastStrategyPack(activeType);
               
-              // Debug block (only when ?debug=1)
-              if (isDebug) {
-                console.log('[Beast Strategy Pack Debug]', {
-                  hasStrategyData,
-                  primary,
-                  activeType,
-                  isCommitted,
-                  strategyRoutesLength: strategyRoutes.length,
-                  isLoadingRoutes,
-                  beastPackExists: !!beastPack,
-                });
-              }
-              
-              if (!beastPack) return null;
-              
+              // ON-SCREEN TRUTH PROBES (always visible, not behind debug)
               return (
                 <div className="mt-6 pt-6 border-t-2 border-primary/30 space-y-4">
-                  {/* Loading indicator (separate, does not block rendering) */}
-                  {isLoadingRoutes && (
-                    <div className="mb-4 p-2 rounded-lg border border-primary/20 bg-primary/5 flex items-center gap-2">
-                      <Loader2 className="h-4 w-4 text-primary animate-spin" />
-                      <span className="text-xs text-muted-foreground">Generating routes...</span>
+                  {/* Truth Probe 1: Render confirmation */}
+                  <div className="p-3 rounded-lg border-2 border-green-500/50 bg-green-500/10">
+                    <p className="text-sm font-bold text-green-700">BEAST_PACK_RENDERED: YES</p>
+                  </div>
+                  
+                  {/* Truth Probe 2: State values */}
+                  <div className="p-3 rounded-lg border border-border/50 bg-muted/20">
+                    <p className="text-xs font-semibold text-foreground mb-2">State Values:</p>
+                    <div className="text-xs font-mono text-muted-foreground space-y-1">
+                      <div>hasStrategyData: {String(hasStrategyData)}</div>
+                      <div>isLoadingRoutes: {String(isLoadingRoutes)}</div>
+                      <div>strategyRoutes.length: {strategyRoutes.length}</div>
+                      <div>recommendation: {recommendation ? "yes" : "no"}</div>
+                      <div>artifacts.length: {artifacts.length}</div>
+                      <div>evidenceImpactMap.length: {evidenceImpactMap.length}</div>
+                      <div>timePressure: {timePressure ? "yes" : "no"}</div>
+                      <div>decisionCheckpoints.length: {decisionCheckpoints.length}</div>
+                      <div>activeType: {String(activeType)}</div>
+                    </div>
+                  </div>
+                  
+                  {/* Truth Probe 3: Pack existence */}
+                  <div className="p-3 rounded-lg border border-border/50 bg-muted/20">
+                    <p className="text-xs font-semibold text-foreground mb-1">Pack Existence:</p>
+                    <p className="text-xs font-mono text-muted-foreground">packExists: {beastPack ? "yes" : "no"}</p>
+                  </div>
+                  
+                  {/* Truth Probe 4: Null pack error */}
+                  {!beastPack && (
+                    <div className="p-4 rounded-lg border-2 border-red-500/50 bg-red-500/10">
+                      <p className="text-sm font-bold text-red-700">BEAST PACK NULL — activeType = {String(activeType)}</p>
                     </div>
                   )}
                   
@@ -2603,13 +2615,24 @@ export function StrategyCommitmentPanel({
                     </div>
                   )}
                   
-                  <div className="flex items-center gap-2 mb-4">
-                    <Shield className="h-5 w-5 text-primary" />
-                    <h4 className="text-base font-semibold text-foreground">Beast Strategy Pack</h4>
-                    <Badge variant="outline" className="text-xs border-amber-500/30 text-amber-600 bg-amber-500/10">
-                      CONDITIONAL
-                    </Badge>
-                  </div>
+                  {/* Loading indicator (separate, does not block rendering) */}
+                  {isLoadingRoutes && (
+                    <div className="mb-4 p-2 rounded-lg border border-primary/20 bg-primary/5 flex items-center gap-2">
+                      <Loader2 className="h-4 w-4 text-primary animate-spin" />
+                      <span className="text-xs text-muted-foreground">Generating routes...</span>
+                    </div>
+                  )}
+                  
+                  {/* Main Beast Strategy Pack content - only render if pack exists */}
+                  {beastPack && (
+                    <>
+                      <div className="flex items-center gap-2 mb-4">
+                        <Shield className="h-5 w-5 text-primary" />
+                        <h4 className="text-base font-semibold text-foreground">Beast Strategy Pack</h4>
+                        <Badge variant="outline" className="text-xs border-amber-500/30 text-amber-600 bg-amber-500/10">
+                          CONDITIONAL
+                        </Badge>
+                      </div>
                   
                   {/* 1. ROUTE DASHBOARD - Always visible, not collapsed */}
                   <div className="rounded-lg border-2 border-primary/30 bg-primary/5 p-4 space-y-3">
@@ -3011,6 +3034,8 @@ export function StrategyCommitmentPanel({
                       </div>
                     )}
                   </div>
+                    </>
+                  )}
                 </div>
               );
             })()}
