@@ -1003,6 +1003,433 @@ function getDeterministicNextSteps(strategyType: PrimaryStrategy | null): string
   }
 }
 
+// Beast Strategy Pack View Component - Safe rendering
+function BeastStrategyPackView({
+  pack,
+  activeType,
+  expandedSections,
+  toggleSection,
+}: {
+  pack: BeastStrategyPack;
+  activeType: PrimaryStrategy;
+  expandedSections: Set<string>;
+  toggleSection: (sectionId: string) => void;
+}) {
+  return (
+    <div className="mt-6 pt-6 border-t-2 border-primary/30 space-y-4">
+      {/* Loading indicator (separate, does not block rendering) */}
+      <div className="flex items-center gap-2 mb-4">
+        <Shield className="h-5 w-5 text-primary" />
+        <h4 className="text-base font-semibold text-foreground">Beast Strategy Pack</h4>
+        <Badge variant="outline" className="text-xs border-amber-500/30 text-amber-600 bg-amber-500/10">
+          CONDITIONAL
+        </Badge>
+      </div>
+
+      {/* 1. ROUTE DASHBOARD - Always visible, not collapsed */}
+      <div className="rounded-lg border-2 border-primary/30 bg-primary/5 p-4 space-y-3">
+        <div className="flex items-center gap-2 mb-2">
+          <Target className="h-4 w-4 text-primary" />
+          <h5 className="text-sm font-semibold text-foreground">Route Dashboard</h5>
+        </div>
+        <div>
+          <p className="text-xs font-semibold text-foreground mb-1">Objective:</p>
+          <p className="text-xs text-muted-foreground">{pack.dashboard.objective}</p>
+        </div>
+        <div>
+          <p className="text-xs font-semibold text-foreground mb-2">CPS must prove:</p>
+          <div className="space-y-2">
+            {pack.dashboard.cpsMustProve.map((item, idx) => (
+              <div key={idx} className="p-2 rounded border border-border/30 bg-muted/10">
+                <p className="text-xs font-semibold text-foreground">{item.element}</p>
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  <span className="font-semibold">CPS Evidence: </span>{item.cpsEvidence}
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  <span className="font-semibold">Defence Challenge: </span>{item.defenceChallenge}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+          <p className="text-xs font-semibold text-foreground mb-2">Top 3 highest-leverage defence attacks:</p>
+          <ul className="space-y-1.5">
+            {pack.dashboard.top3Attacks.map((attack, idx) => (
+              <li key={idx} className="text-xs text-foreground flex items-start gap-2">
+                <span className="flex-shrink-0 w-4 h-4 rounded-full bg-primary/20 flex items-center justify-center mt-0.5">
+                  <span className="text-[10px] font-semibold text-primary">{idx + 1}</span>
+                </span>
+                <div className="flex-1">
+                  <p className="font-semibold">{attack.target}</p>
+                  <p className="text-muted-foreground">{attack.leverage}</p>
+                  <p className="text-muted-foreground italic text-[10px] mt-0.5">{attack.evidenceRequired}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="pt-2 border-t border-primary/20">
+          <p className="text-xs font-semibold text-foreground mb-1">Primary kill switch (what forces a pivot):</p>
+          <p className="text-xs text-muted-foreground">
+            <span className="font-semibold">If: </span>{pack.dashboard.primaryKillSwitch.condition}
+          </p>
+          <p className="text-xs text-muted-foreground">
+            <span className="font-semibold">Pivot to: </span>{pack.dashboard.primaryKillSwitch.pivotTo}
+          </p>
+        </div>
+      </div>
+
+      {/* 2. CPS CASE THEORY */}
+      <div className="rounded-lg border border-border/50 overflow-hidden">
+        <button
+          onClick={() => toggleSection(`${activeType}_cps_case_theory`)}
+          className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/20 transition-colors"
+        >
+          <div className="flex items-center gap-2">
+            <FileText className="h-4 w-4 text-primary" />
+            <span className="text-xs font-semibold text-foreground">CPS Case Theory</span>
+          </div>
+          {expandedSections.has(`${activeType}_cps_case_theory`) ? (
+            <ChevronUp className="h-4 w-4 text-muted-foreground" />
+          ) : (
+            <ChevronDown className="h-4 w-4 text-muted-foreground" />
+          )}
+        </button>
+        {expandedSections.has(`${activeType}_cps_case_theory`) && (
+          <div className="p-3 border-t border-border/50 space-y-3 text-xs">
+            <div>
+              <p className="font-semibold text-foreground mb-1">What the prosecution will likely argue happened:</p>
+              <p className="text-muted-foreground">{pack.cpsTheory.whatHappened}</p>
+            </div>
+            <div>
+              <p className="font-semibold text-foreground mb-1">How they will argue intent:</p>
+              <p className="text-muted-foreground">{pack.cpsTheory.intentArgument}</p>
+            </div>
+            <div>
+              <p className="font-semibold text-foreground mb-1">How they will argue identification:</p>
+              <p className="text-muted-foreground">{pack.cpsTheory.identificationArgument}</p>
+            </div>
+            <div>
+              <p className="font-semibold text-foreground mb-1">How they will argue weapon / injury causation:</p>
+              <p className="text-muted-foreground">{pack.cpsTheory.weaponCausationArgument}</p>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* 3. DEFENCE COUNTER-THEORY */}
+      <div className="rounded-lg border border-border/50 overflow-hidden">
+        <button
+          onClick={() => toggleSection(`${activeType}_defence_counter_theory`)}
+          className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/20 transition-colors"
+        >
+          <div className="flex items-center gap-2">
+            <Shield className="h-4 w-4 text-primary" />
+            <span className="text-xs font-semibold text-foreground">Defence Counter-Theory</span>
+          </div>
+          {expandedSections.has(`${activeType}_defence_counter_theory`) ? (
+            <ChevronUp className="h-4 w-4 text-muted-foreground" />
+          ) : (
+            <ChevronDown className="h-4 w-4 text-muted-foreground" />
+          )}
+        </button>
+        {expandedSections.has(`${activeType}_defence_counter_theory`) && (
+          <div className="p-3 border-t border-border/50 space-y-3 text-xs">
+            <div>
+              <p className="font-semibold text-foreground mb-1">Defence narrative consistent with current evidence:</p>
+              <p className="text-muted-foreground">{pack.defenceTheory.narrative}</p>
+            </div>
+            {pack.defenceTheory.conditionalFlags.length > 0 && (
+              <div>
+                <p className="font-semibold text-foreground mb-2">Explicit CONDITIONAL flags where disclosure is missing:</p>
+                <div className="space-y-2">
+                  {pack.defenceTheory.conditionalFlags.map((flag, idx) => (
+                    <div key={idx} className="p-2 rounded border border-amber-500/20 bg-amber-500/5">
+                      <p className="font-semibold text-foreground">{flag.area}:</p>
+                      <p className="text-muted-foreground">{flag.missingEvidence}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            {pack.defenceTheory.evidenceSupport.length > 0 && (
+              <div>
+                <p className="font-semibold text-foreground mb-1">Evidence support (no factual assertions without evidence):</p>
+                <ul className="space-y-1 list-disc list-inside text-muted-foreground">
+                  {pack.defenceTheory.evidenceSupport.map((support, idx) => (
+                    <li key={idx}>{support}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+
+      {/* 4. ATTACK ROUTES (RANKED) */}
+      <div className="rounded-lg border border-border/50 overflow-hidden">
+        <button
+          onClick={() => toggleSection(`${activeType}_attack_routes_ranked`)}
+          className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/20 transition-colors"
+        >
+          <div className="flex items-center gap-2">
+            <Zap className="h-4 w-4 text-primary" />
+            <span className="text-xs font-semibold text-foreground">Attack Routes (Ranked) ({pack.attackRoutes.length})</span>
+          </div>
+          {expandedSections.has(`${activeType}_attack_routes_ranked`) ? (
+            <ChevronUp className="h-4 w-4 text-muted-foreground" />
+          ) : (
+            <ChevronDown className="h-4 w-4 text-muted-foreground" />
+          )}
+        </button>
+        {expandedSections.has(`${activeType}_attack_routes_ranked`) && (
+          <div className="p-3 border-t border-border/50 space-y-3">
+            {pack.attackRoutes.map((attack, idx) => (
+              <div key={idx} className="p-3 rounded-lg border border-border/30 bg-muted/10">
+                <div className="flex items-center gap-2 mb-2">
+                  <Badge variant="outline" className="text-[10px]">#{idx + 1}</Badge>
+                  <p className="text-xs font-semibold text-foreground">{attack.target}</p>
+                </div>
+                <div className="text-xs space-y-1.5">
+                  <div>
+                    <span className="font-semibold text-foreground">Evidence supporting the attack: </span>
+                    <span className="text-muted-foreground">{attack.evidenceSupporting}</span>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-foreground">Disclosure required to strengthen attack: </span>
+                    <span className="text-muted-foreground">{attack.disclosureRequired}</span>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-foreground">CPS likely response: </span>
+                    <span className="text-muted-foreground">{attack.cpsResponse}</span>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-foreground">Defence reply (court-safe wording): </span>
+                    <span className="text-muted-foreground">{attack.defenceReply}</span>
+                  </div>
+                  <div className="pt-1 border-t border-border/30">
+                    <span className="font-semibold text-foreground">Risk if attack fails: </span>
+                    <span className="text-muted-foreground">{attack.riskIfFails}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* 5. DISCLOSURE LEVERAGE CHAIN */}
+      <div className="rounded-lg border border-border/50 overflow-hidden">
+        <button
+          onClick={() => toggleSection(`${activeType}_disclosure_leverage_chain`)}
+          className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/20 transition-colors"
+        >
+          <div className="flex items-center gap-2">
+            <Shield className="h-4 w-4 text-primary" />
+            <span className="text-xs font-semibold text-foreground">Disclosure Leverage Chain ({pack.disclosureLeverage.length})</span>
+          </div>
+          {expandedSections.has(`${activeType}_disclosure_leverage_chain`) ? (
+            <ChevronUp className="h-4 w-4 text-muted-foreground" />
+          ) : (
+            <ChevronDown className="h-4 w-4 text-muted-foreground" />
+          )}
+        </button>
+        {expandedSections.has(`${activeType}_disclosure_leverage_chain`) && (
+          <div className="p-3 border-t border-border/50 space-y-3">
+            {pack.disclosureLeverage.map((item, idx) => (
+              <div key={idx} className="p-3 rounded-lg border border-border/30 bg-muted/10">
+                <div className="text-xs space-y-1.5">
+                  <div>
+                    <span className="font-semibold text-foreground">Missing item: </span>
+                    <span className="text-muted-foreground">{item.missingItem}</span>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-foreground">Why it matters: </span>
+                    <span className="text-muted-foreground">{item.whyItMatters}</span>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-foreground">Chase wording: </span>
+                    <span className="text-muted-foreground">{item.chaseWording}</span>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-foreground">Time escalation: </span>
+                    <span className="text-muted-foreground">{item.timeEscalation}</span>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-foreground">Application path: </span>
+                    <span className="text-muted-foreground">{item.applicationPath}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* 6. COURTROOM PRESSURE TEST */}
+      <div className="rounded-lg border border-border/50 overflow-hidden">
+        <button
+          onClick={() => toggleSection(`${activeType}_courtroom_pressure`)}
+          className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/20 transition-colors"
+        >
+          <div className="flex items-center gap-2">
+            <AlertCircle className="h-4 w-4 text-primary" />
+            <span className="text-xs font-semibold text-foreground">Courtroom Pressure Test ({pack.courtroomPressure.length})</span>
+          </div>
+          {expandedSections.has(`${activeType}_courtroom_pressure`) ? (
+            <ChevronUp className="h-4 w-4 text-muted-foreground" />
+          ) : (
+            <ChevronDown className="h-4 w-4 text-muted-foreground" />
+          )}
+        </button>
+        {expandedSections.has(`${activeType}_courtroom_pressure`) && (
+          <div className="p-3 border-t border-border/50 space-y-3">
+            {pack.courtroomPressure.map((pressure, idx) => (
+              <div key={idx} className="p-3 rounded-lg border border-border/30 bg-muted/10">
+                <div className="text-xs space-y-2">
+                  <div>
+                    <span className="font-semibold text-foreground">Judge likely question: </span>
+                    <span className="text-muted-foreground italic">{pressure.judgeQuestion}</span>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-foreground">CPS likely answer: </span>
+                    <span className="text-muted-foreground">{pressure.cpsAnswer}</span>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-foreground">Defence reply (safe, measured, conditional if needed): </span>
+                    <span className="text-muted-foreground">{pressure.defenceReply}</span>
+                  </div>
+                  <div className="pt-1 border-t border-border/30">
+                    <span className="font-semibold text-foreground">Evidence check required before relying on reply: </span>
+                    <span className="text-muted-foreground">{pressure.evidenceCheck}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* 7. KILL SWITCHES + PIVOT PLAN */}
+      <div className="rounded-lg border border-red-500/20 bg-red-500/5 overflow-hidden">
+        <button
+          onClick={() => toggleSection(`${activeType}_kill_switches_pivot`)}
+          className="w-full flex items-center justify-between p-3 text-left hover:bg-red-500/10 transition-colors"
+        >
+          <div className="flex items-center gap-2">
+            <AlertTriangle className="h-4 w-4 text-red-600" />
+            <span className="text-xs font-semibold text-foreground">Kill Switches + Pivot Plan ({pack.killSwitches.length})</span>
+          </div>
+          {expandedSections.has(`${activeType}_kill_switches_pivot`) ? (
+            <ChevronUp className="h-4 w-4 text-muted-foreground" />
+          ) : (
+            <ChevronDown className="h-4 w-4 text-muted-foreground" />
+          )}
+        </button>
+        {expandedSections.has(`${activeType}_kill_switches_pivot`) && (
+          <div className="p-3 border-t border-red-500/20 space-y-3">
+            {pack.killSwitches.map((kill, idx) => (
+              <div key={idx} className="p-3 rounded-lg border border-red-500/20 bg-red-500/5">
+                <div className="text-xs space-y-1.5">
+                  <div>
+                    <span className="font-semibold text-foreground">What evidence arrival forces a strategy change: </span>
+                    <span className="text-muted-foreground">{kill.evidenceArrival}</span>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-foreground">What the new route becomes: </span>
+                    <span className="text-muted-foreground">{kill.newRoute}</span>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-foreground">What is preserved: </span>
+                    <span className="text-muted-foreground">{kill.preserved}</span>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-foreground">What is abandoned: </span>
+                    <span className="text-muted-foreground">{kill.abandoned}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* 8. RESIDUAL ATTACK SCANNER */}
+      <div className="rounded-lg border border-border/50 overflow-hidden">
+        <button
+          onClick={() => toggleSection(`${activeType}_residual_attack_scanner`)}
+          className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/20 transition-colors"
+        >
+          <div className="flex items-center gap-2">
+            <Target className="h-4 w-4 text-primary" />
+            <span className="text-xs font-semibold text-foreground">Residual Attack Scanner ({pack.residualAttacks.length})</span>
+          </div>
+          {expandedSections.has(`${activeType}_residual_attack_scanner`) ? (
+            <ChevronUp className="h-4 w-4 text-muted-foreground" />
+          ) : (
+            <ChevronDown className="h-4 w-4 text-muted-foreground" />
+          )}
+        </button>
+        {expandedSections.has(`${activeType}_residual_attack_scanner`) && (
+          <div className="p-3 border-t border-border/50 space-y-2">
+            <p className="text-xs text-muted-foreground mb-2">Checklist of untested areas:</p>
+            {pack.residualAttacks.map((attack, idx) => (
+              <div key={idx} className={`p-2 rounded border ${attack.tested ? 'border-green-500/20 bg-green-500/5' : 'border-border/30 bg-muted/10'}`}>
+                <div className="flex items-center gap-2 mb-1">
+                  <p className="text-xs font-semibold text-foreground">{attack.area}</p>
+                  <Badge variant={attack.tested ? "success" : "secondary"} className="text-[10px]">
+                    {attack.tested ? "TESTED" : "UNTESTED"}
+                  </Badge>
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  <span className="font-semibold">Leverage: </span>{attack.leverage}
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  <span className="font-semibold">Evidence needed: </span>{attack.evidenceNeeded}
+                </p>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* 9. NEXT 72 HOURS */}
+      <div className="rounded-lg border border-border/50 overflow-hidden">
+        <button
+          onClick={() => toggleSection(`${activeType}_next_72_hours`)}
+          className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/20 transition-colors"
+        >
+          <div className="flex items-center gap-2">
+            <Clock className="h-4 w-4 text-primary" />
+            <span className="text-xs font-semibold text-foreground">Next 72 Hours ({pack.next72Hours.length})</span>
+          </div>
+          {expandedSections.has(`${activeType}_next_72_hours`) ? (
+            <ChevronUp className="h-4 w-4 text-muted-foreground" />
+          ) : (
+            <ChevronDown className="h-4 w-4 text-muted-foreground" />
+          )}
+        </button>
+        {expandedSections.has(`${activeType}_next_72_hours`) && (
+          <div className="p-3 border-t border-border/50">
+            <p className="text-xs text-muted-foreground mb-2">Concrete task list (chases, reviews, applications, instructions). No predictions, only actions:</p>
+            <ul className="space-y-1.5">
+              {pack.next72Hours.map((action, idx) => (
+                <li key={idx} className="text-xs text-foreground flex items-start gap-2">
+                  <span className="flex-shrink-0 w-4 h-4 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
+                    <span className="text-[10px] font-semibold text-primary">{idx + 1}</span>
+                  </span>
+                  <span>{action}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export function StrategyCommitmentPanel({ 
   caseId, 
   onCommitmentChange,
@@ -1050,6 +1477,13 @@ export function StrategyCommitmentPanel({
     timePressure !== null ||
     decisionCheckpoints.length > 0
   );
+
+  // Compute beastPack safely at component level
+  const safeActiveType: PrimaryStrategy =
+    primary ??
+    (strategyRoutes?.[0]?.type as PrimaryStrategy) ??
+    "fight_charge";
+  const beastPack = getBeastStrategyPack(safeActiveType);
 
   const toggleSection = (sectionId: string) => {
     setExpandedSections(prev => {
@@ -2552,493 +2986,10 @@ export function StrategyCommitmentPanel({
               </div>
             )}
 
-            {/* Beast Strategy Pack - Comprehensive court-safe attack brief (9 sections) - UNCONDITIONAL RENDERING when strategy data exists */}
-            {hasStrategyData && (() => {
-              // Use primary if available, otherwise use first available strategy type from routes, or default to fight_charge
-              const activeType: PrimaryStrategy = primary || 
-                (strategyRoutes.length > 0 && strategyRoutes[0].type as PrimaryStrategy) || 
-                "fight_charge";
-              const beastPack = getBeastStrategyPack(activeType);
-              
-              // ON-SCREEN TRUTH PROBES (always visible, not behind debug)
-              return (
-                <div className="mt-6 pt-6 border-t-2 border-primary/30 space-y-4">
-                  {/* Truth Probe 1: Render confirmation */}
-                  <div className="p-3 rounded-lg border-2 border-green-500/50 bg-green-500/10">
-                    <p className="text-sm font-bold text-green-700">BEAST_PACK_RENDERED: YES</p>
-                  </div>
-                  
-                  {/* Truth Probe 2: State values */}
-                  <div className="p-3 rounded-lg border border-border/50 bg-muted/20">
-                    <p className="text-xs font-semibold text-foreground mb-2">State Values:</p>
-                    <div className="text-xs font-mono text-muted-foreground space-y-1">
-                      <div>hasStrategyData: {String(hasStrategyData)}</div>
-                      <div>isLoadingRoutes: {String(isLoadingRoutes)}</div>
-                      <div>strategyRoutes.length: {strategyRoutes.length}</div>
-                      <div>recommendation: {recommendation ? "yes" : "no"}</div>
-                      <div>artifacts.length: {artifacts.length}</div>
-                      <div>evidenceImpactMap.length: {evidenceImpactMap.length}</div>
-                      <div>timePressure: {timePressure ? "yes" : "no"}</div>
-                      <div>decisionCheckpoints.length: {decisionCheckpoints.length}</div>
-                      <div>activeType: {String(activeType)}</div>
-                    </div>
-                  </div>
-                  
-                  {/* Truth Probe 3: Pack existence */}
-                  <div className="p-3 rounded-lg border border-border/50 bg-muted/20">
-                    <p className="text-xs font-semibold text-foreground mb-1">Pack Existence:</p>
-                    <p className="text-xs font-mono text-muted-foreground">packExists: {beastPack ? "yes" : "no"}</p>
-                  </div>
-                  
-                  {/* Truth Probe 4: Null pack error */}
-                  {!beastPack && (
-                    <div className="p-4 rounded-lg border-2 border-red-500/50 bg-red-500/10">
-                      <p className="text-sm font-bold text-red-700">BEAST PACK NULL — activeType = {String(activeType)}</p>
-                    </div>
-                  )}
-                  
-                  {/* Debug block (only when ?debug=1) */}
-                  {isDebug && (
-                    <div className="mb-4 p-3 rounded-lg border border-amber-500/30 bg-amber-500/10">
-                      <p className="text-xs font-semibold text-foreground mb-2">DEBUG: Beast Strategy Pack Render State</p>
-                      <pre className="text-xs text-muted-foreground whitespace-pre-wrap font-mono">
-                        {JSON.stringify({
-                          hasStrategyData,
-                          primary,
-                          activeType,
-                          isCommitted,
-                          strategyRoutesLength: strategyRoutes.length,
-                          isLoadingRoutes,
-                          beastPackExists: !!beastPack,
-                        }, null, 2)}
-                      </pre>
-                    </div>
-                  )}
-                  
-                  {/* Loading indicator (separate, does not block rendering) */}
-                  {isLoadingRoutes && (
-                    <div className="mb-4 p-2 rounded-lg border border-primary/20 bg-primary/5 flex items-center gap-2">
-                      <Loader2 className="h-4 w-4 text-primary animate-spin" />
-                      <span className="text-xs text-muted-foreground">Generating routes...</span>
-                    </div>
-                  )}
-                  
-                  {/* Main Beast Strategy Pack content - only render if pack exists */}
-                  {beastPack && (
-                    <>
-                      <div className="flex items-center gap-2 mb-4">
-                        <Shield className="h-5 w-5 text-primary" />
-                        <h4 className="text-base font-semibold text-foreground">Beast Strategy Pack</h4>
-                        <Badge variant="outline" className="text-xs border-amber-500/30 text-amber-600 bg-amber-500/10">
-                          CONDITIONAL
-                        </Badge>
-                      </div>
-                  
-                  {/* 1. ROUTE DASHBOARD - Always visible, not collapsed */}
-                  <div className="rounded-lg border-2 border-primary/30 bg-primary/5 p-4 space-y-3">
-                    <div className="flex items-center gap-2 mb-2">
-                      <Target className="h-4 w-4 text-primary" />
-                      <h5 className="text-sm font-semibold text-foreground">Route Dashboard</h5>
-                    </div>
-                    <div>
-                      <p className="text-xs font-semibold text-foreground mb-1">Objective:</p>
-                      <p className="text-xs text-muted-foreground">{beastPack.dashboard.objective}</p>
-                    </div>
-                    <div>
-                      <p className="text-xs font-semibold text-foreground mb-2">CPS must prove:</p>
-                      <div className="space-y-2">
-                        {beastPack.dashboard.cpsMustProve.map((item, idx) => (
-                          <div key={idx} className="p-2 rounded border border-border/30 bg-muted/10">
-                            <p className="text-xs font-semibold text-foreground">{item.element}</p>
-                            <p className="text-xs text-muted-foreground mt-0.5">
-                              <span className="font-semibold">CPS Evidence: </span>{item.cpsEvidence}
-                            </p>
-                            <p className="text-xs text-muted-foreground">
-                              <span className="font-semibold">Defence Challenge: </span>{item.defenceChallenge}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                    <div>
-                      <p className="text-xs font-semibold text-foreground mb-2">Top 3 highest-leverage defence attacks:</p>
-                      <ul className="space-y-1.5">
-                        {beastPack.dashboard.top3Attacks.map((attack, idx) => (
-                          <li key={idx} className="text-xs text-foreground flex items-start gap-2">
-                            <span className="flex-shrink-0 w-4 h-4 rounded-full bg-primary/20 flex items-center justify-center mt-0.5">
-                              <span className="text-[10px] font-semibold text-primary">{idx + 1}</span>
-                            </span>
-                            <div className="flex-1">
-                              <p className="font-semibold">{attack.target}</p>
-                              <p className="text-muted-foreground">{attack.leverage}</p>
-                              <p className="text-muted-foreground italic text-[10px] mt-0.5">{attack.evidenceRequired}</p>
-                            </div>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="pt-2 border-t border-primary/20">
-                      <p className="text-xs font-semibold text-foreground mb-1">Primary kill switch (what forces a pivot):</p>
-                      <p className="text-xs text-muted-foreground">
-                        <span className="font-semibold">If: </span>{beastPack.dashboard.primaryKillSwitch.condition}
-                      </p>
-                      <p className="text-xs text-muted-foreground">
-                        <span className="font-semibold">Pivot to: </span>{beastPack.dashboard.primaryKillSwitch.pivotTo}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* 2. CPS CASE THEORY */}
-                  <div className="rounded-lg border border-border/50 overflow-hidden">
-                    <button
-                      onClick={() => toggleSection(`${activeType}_cps_case_theory`)}
-                      className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/20 transition-colors"
-                    >
-                      <div className="flex items-center gap-2">
-                        <FileText className="h-4 w-4 text-primary" />
-                        <span className="text-xs font-semibold text-foreground">CPS Case Theory</span>
-                      </div>
-                      {expandedSections.has(`${activeType}_cps_case_theory`) ? (
-                        <ChevronUp className="h-4 w-4 text-muted-foreground" />
-                      ) : (
-                        <ChevronDown className="h-4 w-4 text-muted-foreground" />
-                      )}
-                    </button>
-                    {expandedSections.has(`${activeType}_cps_case_theory`) && (
-                      <div className="p-3 border-t border-border/50 space-y-3 text-xs">
-                        <div>
-                          <p className="font-semibold text-foreground mb-1">What the prosecution will likely argue happened:</p>
-                          <p className="text-muted-foreground">{beastPack.cpsTheory.whatHappened}</p>
-                        </div>
-                        <div>
-                          <p className="font-semibold text-foreground mb-1">How they will argue intent:</p>
-                          <p className="text-muted-foreground">{beastPack.cpsTheory.intentArgument}</p>
-                        </div>
-                        <div>
-                          <p className="font-semibold text-foreground mb-1">How they will argue identification:</p>
-                          <p className="text-muted-foreground">{beastPack.cpsTheory.identificationArgument}</p>
-                        </div>
-                        <div>
-                          <p className="font-semibold text-foreground mb-1">How they will argue weapon / injury causation:</p>
-                          <p className="text-muted-foreground">{beastPack.cpsTheory.weaponCausationArgument}</p>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* 3. DEFENCE COUNTER-THEORY */}
-                  <div className="rounded-lg border border-border/50 overflow-hidden">
-                    <button
-                      onClick={() => toggleSection(`${activeType}_defence_counter_theory`)}
-                      className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/20 transition-colors"
-                    >
-                      <div className="flex items-center gap-2">
-                        <Shield className="h-4 w-4 text-primary" />
-                        <span className="text-xs font-semibold text-foreground">Defence Counter-Theory</span>
-                      </div>
-                      {expandedSections.has(`${activeType}_defence_counter_theory`) ? (
-                        <ChevronUp className="h-4 w-4 text-muted-foreground" />
-                      ) : (
-                        <ChevronDown className="h-4 w-4 text-muted-foreground" />
-                      )}
-                    </button>
-                    {expandedSections.has(`${activeType}_defence_counter_theory`) && (
-                      <div className="p-3 border-t border-border/50 space-y-3 text-xs">
-                        <div>
-                          <p className="font-semibold text-foreground mb-1">Defence narrative consistent with current evidence:</p>
-                          <p className="text-muted-foreground">{beastPack.defenceTheory.narrative}</p>
-                        </div>
-                        {beastPack.defenceTheory.conditionalFlags.length > 0 && (
-                          <div>
-                            <p className="font-semibold text-foreground mb-2">Explicit CONDITIONAL flags where disclosure is missing:</p>
-                            <div className="space-y-2">
-                              {beastPack.defenceTheory.conditionalFlags.map((flag, idx) => (
-                                <div key={idx} className="p-2 rounded border border-amber-500/20 bg-amber-500/5">
-                                  <p className="font-semibold text-foreground">{flag.area}:</p>
-                                  <p className="text-muted-foreground">{flag.missingEvidence}</p>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                        {beastPack.defenceTheory.evidenceSupport.length > 0 && (
-                          <div>
-                            <p className="font-semibold text-foreground mb-1">Evidence support (no factual assertions without evidence):</p>
-                            <ul className="space-y-1 list-disc list-inside text-muted-foreground">
-                              {beastPack.defenceTheory.evidenceSupport.map((support, idx) => (
-                                <li key={idx}>{support}</li>
-                              ))}
-                            </ul>
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* 4. ATTACK ROUTES (RANKED) */}
-                  <div className="rounded-lg border border-border/50 overflow-hidden">
-                    <button
-                      onClick={() => toggleSection(`${activeType}_attack_routes_ranked`)}
-                      className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/20 transition-colors"
-                    >
-                      <div className="flex items-center gap-2">
-                        <Zap className="h-4 w-4 text-primary" />
-                        <span className="text-xs font-semibold text-foreground">Attack Routes (Ranked) ({beastPack.attackRoutes.length})</span>
-                      </div>
-                      {expandedSections.has(`${activeType}_attack_routes_ranked`) ? (
-                        <ChevronUp className="h-4 w-4 text-muted-foreground" />
-                      ) : (
-                        <ChevronDown className="h-4 w-4 text-muted-foreground" />
-                      )}
-                    </button>
-                    {expandedSections.has(`${activeType}_attack_routes_ranked`) && (
-                      <div className="p-3 border-t border-border/50 space-y-3">
-                        {beastPack.attackRoutes.map((attack, idx) => (
-                          <div key={idx} className="p-3 rounded-lg border border-border/30 bg-muted/10">
-                            <div className="flex items-center gap-2 mb-2">
-                              <Badge variant="outline" className="text-[10px]">#{idx + 1}</Badge>
-                              <p className="text-xs font-semibold text-foreground">{attack.target}</p>
-                            </div>
-                            <div className="text-xs space-y-1.5">
-                              <div>
-                                <span className="font-semibold text-foreground">Evidence supporting the attack: </span>
-                                <span className="text-muted-foreground">{attack.evidenceSupporting}</span>
-                              </div>
-                              <div>
-                                <span className="font-semibold text-foreground">Disclosure required to strengthen attack: </span>
-                                <span className="text-muted-foreground">{attack.disclosureRequired}</span>
-                              </div>
-                              <div>
-                                <span className="font-semibold text-foreground">CPS likely response: </span>
-                                <span className="text-muted-foreground">{attack.cpsResponse}</span>
-                              </div>
-                              <div>
-                                <span className="font-semibold text-foreground">Defence reply (court-safe wording): </span>
-                                <span className="text-muted-foreground">{attack.defenceReply}</span>
-                              </div>
-                              <div className="pt-1 border-t border-border/30">
-                                <span className="font-semibold text-foreground">Risk if attack fails: </span>
-                                <span className="text-muted-foreground">{attack.riskIfFails}</span>
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* 5. DISCLOSURE LEVERAGE CHAIN */}
-                  <div className="rounded-lg border border-border/50 overflow-hidden">
-                    <button
-                      onClick={() => toggleSection(`${activeType}_disclosure_leverage_chain`)}
-                      className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/20 transition-colors"
-                    >
-                      <div className="flex items-center gap-2">
-                        <Shield className="h-4 w-4 text-primary" />
-                        <span className="text-xs font-semibold text-foreground">Disclosure Leverage Chain ({beastPack.disclosureLeverage.length})</span>
-                      </div>
-                      {expandedSections.has(`${activeType}_disclosure_leverage_chain`) ? (
-                        <ChevronUp className="h-4 w-4 text-muted-foreground" />
-                      ) : (
-                        <ChevronDown className="h-4 w-4 text-muted-foreground" />
-                      )}
-                    </button>
-                    {expandedSections.has(`${activeType}_disclosure_leverage_chain`) && (
-                      <div className="p-3 border-t border-border/50 space-y-3">
-                        {beastPack.disclosureLeverage.map((item, idx) => (
-                          <div key={idx} className="p-3 rounded-lg border border-border/30 bg-muted/10">
-                            <div className="text-xs space-y-1.5">
-                              <div>
-                                <span className="font-semibold text-foreground">Missing item: </span>
-                                <span className="text-muted-foreground">{item.missingItem}</span>
-                              </div>
-                              <div>
-                                <span className="font-semibold text-foreground">Why it matters: </span>
-                                <span className="text-muted-foreground">{item.whyItMatters}</span>
-                              </div>
-                              <div>
-                                <span className="font-semibold text-foreground">Chase wording: </span>
-                                <span className="text-muted-foreground">{item.chaseWording}</span>
-                              </div>
-                              <div>
-                                <span className="font-semibold text-foreground">Time escalation: </span>
-                                <span className="text-muted-foreground">{item.timeEscalation}</span>
-                              </div>
-                              <div>
-                                <span className="font-semibold text-foreground">Application path: </span>
-                                <span className="text-muted-foreground">{item.applicationPath}</span>
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* 6. COURTROOM PRESSURE TEST */}
-                  <div className="rounded-lg border border-border/50 overflow-hidden">
-                    <button
-                      onClick={() => toggleSection(`${activeType}_courtroom_pressure`)}
-                      className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/20 transition-colors"
-                    >
-                      <div className="flex items-center gap-2">
-                        <AlertCircle className="h-4 w-4 text-primary" />
-                        <span className="text-xs font-semibold text-foreground">Courtroom Pressure Test ({beastPack.courtroomPressure.length})</span>
-                      </div>
-                      {expandedSections.has(`${activeType}_courtroom_pressure`) ? (
-                        <ChevronUp className="h-4 w-4 text-muted-foreground" />
-                      ) : (
-                        <ChevronDown className="h-4 w-4 text-muted-foreground" />
-                      )}
-                    </button>
-                    {expandedSections.has(`${activeType}_courtroom_pressure`) && (
-                      <div className="p-3 border-t border-border/50 space-y-3">
-                        {beastPack.courtroomPressure.map((pressure, idx) => (
-                          <div key={idx} className="p-3 rounded-lg border border-border/30 bg-muted/10">
-                            <div className="text-xs space-y-2">
-                              <div>
-                                <span className="font-semibold text-foreground">Judge likely question: </span>
-                                <span className="text-muted-foreground italic">{pressure.judgeQuestion}</span>
-                              </div>
-                              <div>
-                                <span className="font-semibold text-foreground">CPS likely answer: </span>
-                                <span className="text-muted-foreground">{pressure.cpsAnswer}</span>
-                              </div>
-                              <div>
-                                <span className="font-semibold text-foreground">Defence reply (safe, measured, conditional if needed): </span>
-                                <span className="text-muted-foreground">{pressure.defenceReply}</span>
-                              </div>
-                              <div className="pt-1 border-t border-border/30">
-                                <span className="font-semibold text-foreground">Evidence check required before relying on reply: </span>
-                                <span className="text-muted-foreground">{pressure.evidenceCheck}</span>
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* 7. KILL SWITCHES + PIVOT PLAN */}
-                  <div className="rounded-lg border border-red-500/20 bg-red-500/5 overflow-hidden">
-                    <button
-                      onClick={() => toggleSection(`${activeType}_kill_switches_pivot`)}
-                      className="w-full flex items-center justify-between p-3 text-left hover:bg-red-500/10 transition-colors"
-                    >
-                      <div className="flex items-center gap-2">
-                        <AlertTriangle className="h-4 w-4 text-red-600" />
-                        <span className="text-xs font-semibold text-foreground">Kill Switches + Pivot Plan ({beastPack.killSwitches.length})</span>
-                      </div>
-                      {expandedSections.has(`${activeType}_kill_switches_pivot`) ? (
-                        <ChevronUp className="h-4 w-4 text-muted-foreground" />
-                      ) : (
-                        <ChevronDown className="h-4 w-4 text-muted-foreground" />
-                      )}
-                    </button>
-                    {expandedSections.has(`${activeType}_kill_switches_pivot`) && (
-                      <div className="p-3 border-t border-red-500/20 space-y-3">
-                        {beastPack.killSwitches.map((kill, idx) => (
-                          <div key={idx} className="p-3 rounded-lg border border-red-500/20 bg-red-500/5">
-                            <div className="text-xs space-y-1.5">
-                              <div>
-                                <span className="font-semibold text-foreground">What evidence arrival forces a strategy change: </span>
-                                <span className="text-muted-foreground">{kill.evidenceArrival}</span>
-                              </div>
-                              <div>
-                                <span className="font-semibold text-foreground">What the new route becomes: </span>
-                                <span className="text-muted-foreground">{kill.newRoute}</span>
-                              </div>
-                              <div>
-                                <span className="font-semibold text-foreground">What is preserved: </span>
-                                <span className="text-muted-foreground">{kill.preserved}</span>
-                              </div>
-                              <div>
-                                <span className="font-semibold text-foreground">What is abandoned: </span>
-                                <span className="text-muted-foreground">{kill.abandoned}</span>
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* 8. RESIDUAL ATTACK SCANNER */}
-                  <div className="rounded-lg border border-border/50 overflow-hidden">
-                    <button
-                      onClick={() => toggleSection(`${activeType}_residual_attack_scanner`)}
-                      className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/20 transition-colors"
-                    >
-                      <div className="flex items-center gap-2">
-                        <Target className="h-4 w-4 text-primary" />
-                        <span className="text-xs font-semibold text-foreground">Residual Attack Scanner ({beastPack.residualAttacks.length})</span>
-                      </div>
-                      {expandedSections.has(`${activeType}_residual_attack_scanner`) ? (
-                        <ChevronUp className="h-4 w-4 text-muted-foreground" />
-                      ) : (
-                        <ChevronDown className="h-4 w-4 text-muted-foreground" />
-                      )}
-                    </button>
-                    {expandedSections.has(`${activeType}_residual_attack_scanner`) && (
-                      <div className="p-3 border-t border-border/50 space-y-2">
-                        <p className="text-xs text-muted-foreground mb-2">Checklist of untested areas:</p>
-                        {beastPack.residualAttacks.map((attack, idx) => (
-                          <div key={idx} className={`p-2 rounded border ${attack.tested ? 'border-green-500/20 bg-green-500/5' : 'border-border/30 bg-muted/10'}`}>
-                            <div className="flex items-center gap-2 mb-1">
-                              <p className="text-xs font-semibold text-foreground">{attack.area}</p>
-                              <Badge variant={attack.tested ? "success" : "secondary"} className="text-[10px]">
-                                {attack.tested ? "TESTED" : "UNTESTED"}
-                              </Badge>
-                            </div>
-                            <p className="text-xs text-muted-foreground">
-                              <span className="font-semibold">Leverage: </span>{attack.leverage}
-                            </p>
-                            <p className="text-xs text-muted-foreground">
-                              <span className="font-semibold">Evidence needed: </span>{attack.evidenceNeeded}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* 9. NEXT 72 HOURS */}
-                  <div className="rounded-lg border border-border/50 overflow-hidden">
-                    <button
-                      onClick={() => toggleSection(`${activeType}_next_72_hours`)}
-                      className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/20 transition-colors"
-                    >
-                      <div className="flex items-center gap-2">
-                        <Clock className="h-4 w-4 text-primary" />
-                        <span className="text-xs font-semibold text-foreground">Next 72 Hours ({beastPack.next72Hours.length})</span>
-                      </div>
-                      {expandedSections.has(`${activeType}_next_72_hours`) ? (
-                        <ChevronUp className="h-4 w-4 text-muted-foreground" />
-                      ) : (
-                        <ChevronDown className="h-4 w-4 text-muted-foreground" />
-                      )}
-                    </button>
-                    {expandedSections.has(`${activeType}_next_72_hours`) && (
-                      <div className="p-3 border-t border-border/50">
-                        <p className="text-xs text-muted-foreground mb-2">Concrete task list (chases, reviews, applications, instructions). No predictions, only actions:</p>
-                        <ul className="space-y-1.5">
-                          {beastPack.next72Hours.map((action, idx) => (
-                            <li key={idx} className="text-xs text-foreground flex items-start gap-2">
-                              <span className="flex-shrink-0 w-4 h-4 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
-                                <span className="text-[10px] font-semibold text-primary">{idx + 1}</span>
-                              </span>
-                              <span>{action}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                  </div>
-                    </>
-                  )}
-                </div>
-              );
-            })()}
+            {/* Beast Strategy Pack - Safe conditional render */}
+            {beastPack && hasStrategyData && (
+              <BeastStrategyPackView pack={beastPack} activeType={safeActiveType} expandedSections={expandedSections} toggleSection={toggleSection} />
+            )}
 
             {/* Evidence Impact Map */}
             {evidenceImpactMap.length > 0 && (
