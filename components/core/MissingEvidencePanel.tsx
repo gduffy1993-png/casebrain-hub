@@ -59,6 +59,7 @@ export function MissingEvidencePanel({ caseId, items: propItems }: MissingEviden
   const [banner, setBanner] = useState<{ title: string; message: string; severity?: "error" | "warning" | "info" } | null>(null);
   const [hasAnalysisVersion, setHasAnalysisVersion] = useState<boolean>(false);
   const [analysisMode, setAnalysisMode] = useState<"complete" | "preview" | "none">("none");
+  const [hasDisclosureGaps, setHasDisclosureGaps] = useState<boolean>(false);
   const isFirstLoadRef = useRef(true);
 
   // Fetch from case_analysis_versions if items not provided
@@ -247,8 +248,6 @@ export function MissingEvidencePanel({ caseId, items: propItems }: MissingEviden
   }
 
   // Check for disclosure gaps in criminal cases before showing success message
-  const [hasDisclosureGaps, setHasDisclosureGaps] = useState<boolean>(false);
-  
   useEffect(() => {
     // For criminal cases, check disclosure tracker for gaps
     async function checkDisclosureGaps() {

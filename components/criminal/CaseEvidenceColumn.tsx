@@ -103,7 +103,9 @@ export function CaseEvidenceColumn({ caseId, snapshot, onAddDocument, currentPha
       </Card>
 
       {/* Missing Evidence */}
-      <MissingEvidencePanel caseId={caseId} />
+      <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Missing evidence panel temporarily unavailable.</div>}>
+        <MissingEvidencePanel caseId={caseId} />
+      </ErrorBoundary>
 
       {/* Disclosure Tracker Table */}
       <DisclosureTrackerTable items={snapshot.evidence.disclosureItems} />

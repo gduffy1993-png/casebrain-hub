@@ -2992,7 +2992,7 @@ export function StrategyCommitmentPanel({
             )}
 
             {/* Evidence Impact Map */}
-            {evidenceImpactMap.length > 0 && (
+            {Array.isArray(evidenceImpactMap) && evidenceImpactMap.length > 0 && (
               <div className="mt-6 pt-6 border-t border-border">
                 <div className="flex items-center gap-2 mb-3">
                   <MapPin className="h-4 w-4 text-primary" />
@@ -3002,55 +3002,67 @@ export function StrategyCommitmentPanel({
                   How missing evidence affects attack paths and strategy viability.
                 </p>
                 <div className="space-y-3">
-                  {evidenceImpactMap.map((impact, idx) => (
-                    <div key={idx} className="p-3 rounded-lg border border-border/50 bg-muted/10">
-                      <div className="flex items-center gap-2 mb-2">
-                        <h4 className="text-xs font-semibold text-foreground">{impact.evidenceItem.name}</h4>
-                        <Badge variant="outline" className="text-[10px]">
-                          {impact.evidenceItem.category}
-                        </Badge>
-                        <Badge className={`text-[10px] ${
-                          impact.impactOnDefence === "helps" 
-                            ? "bg-green-500/20 text-green-600 border-green-500/30"
-                            : impact.impactOnDefence === "hurts"
-                              ? "bg-red-500/20 text-red-600 border-red-500/30"
-                              : "bg-amber-500/20 text-amber-600 border-amber-500/30"
-                        } border`}>
-                          {impact.impactOnDefence === "helps" ? "Helps Defence" : impact.impactOnDefence === "hurts" ? "Hurts Defence" : "Depends"}
-                        </Badge>
-                      </div>
-                      <div className="text-xs space-y-2">
-                        <div>
-                          <span className="font-semibold text-foreground">If arrives clean: </span>
-                          <span className="text-muted-foreground">{impact.ifArrivesClean}</span>
-                        </div>
-                        <div>
-                          <span className="font-semibold text-foreground">If arrives late: </span>
-                          <span className="text-muted-foreground">{impact.ifArrivesLate}</span>
-                        </div>
-                        <div>
-                          <span className="font-semibold text-foreground">If arrives adverse: </span>
-                          <span className="text-muted-foreground">{impact.ifArrivesAdverse}</span>
-                        </div>
-                        {impact.pivotTrigger && (
-                          <div className="mt-2 p-2 rounded border border-amber-500/20 bg-amber-500/5">
-                            <div className="font-semibold text-foreground">Pivot Trigger:</div>
-                            <div className="text-muted-foreground">
-                              If {impact.pivotTrigger.condition} → Pivot from {impact.pivotTrigger.from} to {impact.pivotTrigger.to} ({impact.pivotTrigger.timing.replace("_", " ")})
-                            </div>
+                  {evidenceImpactMap
+                    .filter((impact) => impact && impact.evidenceItem && typeof impact.evidenceItem === "object")
+                    .map((impact, idx) => {
+                      const evidenceItem = impact.evidenceItem || {};
+                      const itemName = evidenceItem.name || "Unknown evidence item";
+                      const itemCategory = evidenceItem.category || "Unknown";
+                      const impactType = impact.impactOnDefence || "depends";
+                      const ifArrivesClean = impact.ifArrivesClean || "Not specified";
+                      const ifArrivesLate = impact.ifArrivesLate || "Not specified";
+                      const ifArrivesAdverse = impact.ifArrivesAdverse || "Not specified";
+                      
+                      return (
+                        <div key={impact.evidenceItem?.id || idx} className="p-3 rounded-lg border border-border/50 bg-muted/10">
+                          <div className="flex items-center gap-2 mb-2">
+                            <h4 className="text-xs font-semibold text-foreground">{itemName}</h4>
+                            <Badge variant="outline" className="text-[10px]">
+                              {itemCategory}
+                            </Badge>
+                            <Badge className={`text-[10px] ${
+                              impactType === "helps" 
+                                ? "bg-green-500/20 text-green-600 border-green-500/30"
+                                : impactType === "hurts"
+                                  ? "bg-red-500/20 text-red-600 border-red-500/30"
+                                  : "bg-amber-500/20 text-amber-600 border-amber-500/30"
+                            } border`}>
+                              {impactType === "helps" ? "Helps Defence" : impactType === "hurts" ? "Hurts Defence" : "Depends"}
+                            </Badge>
                           </div>
-                        )}
-                        {impact.killSwitch && (
-                          <div className="mt-2 p-2 rounded border border-red-500/20 bg-red-500/5">
-                            <div className="font-semibold text-foreground">Kill Switch:</div>
-                            <div className="text-muted-foreground">
-                              If {impact.killSwitch.condition} → {impact.killSwitch.explanation}
+                          <div className="text-xs space-y-2">
+                            <div>
+                              <span className="font-semibold text-foreground">If arrives clean: </span>
+                              <span className="text-muted-foreground">{ifArrivesClean}</span>
                             </div>
+                            <div>
+                              <span className="font-semibold text-foreground">If arrives late: </span>
+                              <span className="text-muted-foreground">{ifArrivesLate}</span>
+                            </div>
+                            <div>
+                              <span className="font-semibold text-foreground">If arrives adverse: </span>
+                              <span className="text-muted-foreground">{ifArrivesAdverse}</span>
+                            </div>
+                            {impact.pivotTrigger && typeof impact.pivotTrigger === "object" && (
+                              <div className="mt-2 p-2 rounded border border-amber-500/20 bg-amber-500/5">
+                                <div className="font-semibold text-foreground">Pivot Trigger:</div>
+                                <div className="text-muted-foreground">
+                                  If {impact.pivotTrigger.condition || "condition not specified"} → Pivot from {impact.pivotTrigger.from || "unknown"} to {impact.pivotTrigger.to || "unknown"} ({impact.pivotTrigger.timing ? impact.pivotTrigger.timing.replace("_", " ") : "timing not specified"})
+                                </div>
+                              </div>
+                            )}
+                            {impact.killSwitch && typeof impact.killSwitch === "object" && (
+                              <div className="mt-2 p-2 rounded border border-red-500/20 bg-red-500/5">
+                                <div className="font-semibold text-foreground">Kill Switch:</div>
+                                <div className="text-muted-foreground">
+                                  If {impact.killSwitch.condition || "condition not specified"} → {impact.killSwitch.explanation || "explanation not specified"}
+                                </div>
+                              </div>
+                            )}
                           </div>
-                        )}
-                      </div>
-                    </div>
-                  ))}
+                        </div>
+                      );
+                    })}
                 </div>
               </div>
             )}
