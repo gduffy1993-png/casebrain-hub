@@ -1041,6 +1041,16 @@ export function StrategyCommitmentPanel({
   const { push: showToast } = useToast();
   const storageKey = `casebrain:strategyCommitment:${resolvedCaseId}`;
 
+  // Earliest reliable indicator that strategy data exists (UNCONDITIONAL - no phase/commit/route/loading gates)
+  const hasStrategyData = (
+    strategyRoutes.length > 0 ||
+    recommendation !== null ||
+    artifacts.length > 0 ||
+    evidenceImpactMap.length > 0 ||
+    timePressure !== null ||
+    decisionCheckpoints.length > 0
+  );
+
   const toggleSection = (sectionId: string) => {
     setExpandedSections(prev => {
       const next = new Set(prev);
@@ -2535,15 +2545,20 @@ export function StrategyCommitmentPanel({
               </div>
             )}
 
-            {/* Beast Strategy Pack - Comprehensive court-safe attack brief (9 sections) - Rendered once based on primary strategy */}
-            {primary && (() => {
-              const activeType = primary;
+            {/* Beast Strategy Pack - Comprehensive court-safe attack brief (9 sections) - UNCONDITIONAL RENDERING when strategy data exists */}
+            {hasStrategyData && (() => {
+              // Use primary if available, otherwise use first available strategy type from routes, or default to fight_charge
+              const activeType: PrimaryStrategy = primary || 
+                (strategyRoutes.length > 0 && strategyRoutes[0].type as PrimaryStrategy) || 
+                "fight_charge";
               const beastPack = getBeastStrategyPack(activeType);
               
               // Debug block (only when ?debug=1)
               if (isDebug) {
                 console.log('[Beast Strategy Pack Debug]', {
+                  hasStrategyData,
                   primary,
+                  activeType,
                   isCommitted,
                   strategyRoutesLength: strategyRoutes.length,
                   isLoadingRoutes,
@@ -2555,13 +2570,23 @@ export function StrategyCommitmentPanel({
               
               return (
                 <div className="mt-6 pt-6 border-t-2 border-primary/30 space-y-4">
+                  {/* Loading indicator (separate, does not block rendering) */}
+                  {isLoadingRoutes && (
+                    <div className="mb-4 p-2 rounded-lg border border-primary/20 bg-primary/5 flex items-center gap-2">
+                      <Loader2 className="h-4 w-4 text-primary animate-spin" />
+                      <span className="text-xs text-muted-foreground">Generating routes...</span>
+                    </div>
+                  )}
+                  
                   {/* Debug block (only when ?debug=1) */}
                   {isDebug && (
                     <div className="mb-4 p-3 rounded-lg border border-amber-500/30 bg-amber-500/10">
                       <p className="text-xs font-semibold text-foreground mb-2">DEBUG: Beast Strategy Pack Render State</p>
                       <pre className="text-xs text-muted-foreground whitespace-pre-wrap font-mono">
                         {JSON.stringify({
+                          hasStrategyData,
                           primary,
+                          activeType,
                           isCommitted,
                           strategyRoutesLength: strategyRoutes.length,
                           isLoadingRoutes,
