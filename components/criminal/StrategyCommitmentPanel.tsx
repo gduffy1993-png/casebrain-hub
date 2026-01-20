@@ -522,12 +522,67 @@ function getConditionalAttackPlan(strategyType: PrimaryStrategy | null): Conditi
   };
 }
 
-// Beast Strategy Pack - Deterministic templates for all 10 sections
+// Beast Strategy Pack - Comprehensive court-safe attack brief
 type BeastStrategyPack = {
-  prosecutionTheory: string;
-  elementsChecklist: Array<{ element: string; cpsEvidence: string; defenceChallenge: string; status: "WEAK" | "STRONG" | "UNKNOWN" }>;
-  disclosureLeverage: string;
-  worstCaseFailureMode: string;
+  // 1. Route Dashboard
+  dashboard: {
+    objective: string;
+    cpsMustProve: Array<{ element: string; cpsEvidence: string; defenceChallenge: string }>;
+    top3Attacks: Array<{ target: string; leverage: string; evidenceRequired: string }>;
+    primaryKillSwitch: { condition: string; pivotTo: string };
+  };
+  // 2. CPS Case Theory
+  cpsTheory: {
+    whatHappened: string;
+    intentArgument: string;
+    identificationArgument: string;
+    weaponCausationArgument: string;
+  };
+  // 3. Defence Counter-Theory
+  defenceTheory: {
+    narrative: string;
+    conditionalFlags: Array<{ area: string; missingEvidence: string }>;
+    evidenceSupport: string[];
+  };
+  // 4. Attack Routes (Ranked)
+  attackRoutes: Array<{
+    target: string;
+    evidenceSupporting: string;
+    disclosureRequired: string;
+    cpsResponse: string;
+    defenceReply: string;
+    riskIfFails: string;
+  }>;
+  // 5. Disclosure Leverage Chain
+  disclosureLeverage: Array<{
+    missingItem: string;
+    whyItMatters: string;
+    chaseWording: string;
+    timeEscalation: string;
+    applicationPath: string;
+  }>;
+  // 6. Courtroom Pressure Test
+  courtroomPressure: Array<{
+    judgeQuestion: string;
+    cpsAnswer: string;
+    defenceReply: string;
+    evidenceCheck: string;
+  }>;
+  // 7. Kill Switches + Pivot Plan
+  killSwitches: Array<{
+    evidenceArrival: string;
+    newRoute: string;
+    preserved: string;
+    abandoned: string;
+  }>;
+  // 8. Residual Attack Scanner
+  residualAttacks: Array<{
+    area: string;
+    tested: boolean;
+    leverage: string;
+    evidenceNeeded: string;
+  }>;
+  // 9. Next 72 Hours
   next72Hours: string[];
 };
 
@@ -537,39 +592,256 @@ function getBeastStrategyPack(strategyType: PrimaryStrategy | null): BeastStrate
   switch (strategyType) {
     case "fight_charge":
       return {
-        prosecutionTheory: "CPS will argue: (1) Defendant intended to cause really serious harm (s18 threshold), (2) Identification evidence places defendant at scene, (3) Sequence evidence shows sustained/targeted violence, (4) Medical evidence supports GBH-level harm. CPS case theory: deliberate, targeted attack with specific intent to cause GBH. Defence will challenge: identification reliability (Turnbull), intent threshold (s18 vs s20), sequence interpretation (spontaneous vs premeditated), medical causation (mechanism unclear).",
-        elementsChecklist: [
-          { element: "Actus Reus (harm caused)", cpsEvidence: "Medical reports showing GBH-level injuries", defenceChallenge: "Challenge causation chain, alternative causation, pre-existing conditions", status: "UNKNOWN" },
-          { element: "Mens Rea (specific intent s18)", cpsEvidence: "Injury severity, sequence evidence, weapon inference", defenceChallenge: "Argue recklessness (s20) not specific intent, absence of premeditation/targeting", status: "UNKNOWN" },
-          { element: "Identification", cpsEvidence: "Witness statements, CCTV, recognition evidence", defenceChallenge: "Turnbull compliance, lighting/visibility, witness reliability, contamination risk", status: "UNKNOWN" },
-          { element: "Causation", cpsEvidence: "Medical evidence linking injuries to incident", defenceChallenge: "Dispute mechanism, timing, alternative causes", status: "UNKNOWN" },
+        dashboard: {
+          objective: "Knock out s18 intent. Force CPS to prove identification and specific intent beyond reasonable doubt. Exploit disclosure gaps and procedural weaknesses. Target acquittal or charge reduction to s20.",
+          cpsMustProve: [
+            { element: "Actus Reus (harm caused)", cpsEvidence: "Medical reports showing GBH-level injuries", defenceChallenge: "Challenge causation chain, alternative causation, pre-existing conditions" },
+            { element: "Mens Rea (specific intent s18)", cpsEvidence: "Injury severity, sequence evidence, weapon inference", defenceChallenge: "Argue recklessness (s20) not specific intent, absence of premeditation/targeting" },
+            { element: "Identification", cpsEvidence: "Witness statements, CCTV, recognition evidence", defenceChallenge: "Turnbull compliance, lighting/visibility, witness reliability, contamination risk" },
+            { element: "Causation", cpsEvidence: "Medical evidence linking injuries to incident", defenceChallenge: "Dispute mechanism, timing, alternative causes" },
+          ],
+          top3Attacks: [
+            { target: "Identification reliability", leverage: "If Turnbull guidelines not met, identification is unsafe", evidenceRequired: "VIPER pack, initial descriptions, lighting/visibility conditions [CONDITIONAL]" },
+            { target: "Intent threshold (s18 vs s20)", leverage: "If sequence evidence shows spontaneity not targeting, s18 fails", evidenceRequired: "Full CCTV coverage, timings, duration [CONDITIONAL]" },
+            { target: "Disclosure failures", leverage: "Persistent gaps create abuse of process risk", evidenceRequired: "MG6C, continuity logs, unused material [CONDITIONAL]" },
+          ],
+          primaryKillSwitch: { condition: "Strong uncontested identification + complete disclosure + medical evidence clearly links injuries", pivotTo: "charge_reduction or outcome_management" },
+        },
+        cpsTheory: {
+          whatHappened: "CPS will likely argue: Defendant deliberately targeted the victim in a sustained attack. The sequence of events shows premeditation or at least clear targeting. The nature and severity of injuries demonstrate intent to cause really serious harm. [CONDITIONAL - pending full disclosure]",
+          intentArgument: "CPS will argue intent from: (1) Injury severity suggests deliberate targeting, (2) Sequence evidence (duration, escalation, targeting) shows sustained violence, (3) Weapon use (if alleged) supports specific intent, (4) Circumstances show lack of provocation/self-defence. Defence will challenge: Severity alone does not prove intent; recklessness (s20) is alternative; sequence is disputed; weapon inference is speculative. [CONDITIONAL - requires full disclosure]",
+          identificationArgument: "CPS will likely rely on: (1) Witness identification (VIPER pack, recognition evidence), (2) CCTV placing defendant at scene, (3) Supporting identification evidence. Defence will challenge under Turnbull: lighting/visibility, distance/duration, stress/contamination, reliability of initial description, absence of supporting identification. [CONDITIONAL - requires VIPER pack and full CCTV]",
+          weaponCausationArgument: "CPS may infer weapon use from injury pattern. Defence will argue: (1) Injuries do not require weapon (hands/feet sufficient), (2) No weapon recovered or linked to defendant, (3) Alternative causation (fall, accident), (4) Medical evidence is ambiguous on mechanism. [CONDITIONAL - requires medical expert evidence]",
+        },
+        defenceTheory: {
+          narrative: "Defence position: If the incident occurred, it was a brief, spontaneous altercation without specific intent to cause really serious harm. The defendant's actions (if any) were reckless not intentional. Identification is contested. [CONDITIONAL - reserved pending full disclosure including CCTV, witness statements, and medical evidence]",
+          conditionalFlags: [
+            { area: "Identification", missingEvidence: "VIPER pack, full CCTV coverage, initial descriptions [CONDITIONAL]" },
+            { area: "Intent threshold", missingEvidence: "Complete sequence evidence, timings, duration [CONDITIONAL]" },
+            { area: "Medical causation", missingEvidence: "Expert medical reports on injury mechanism [CONDITIONAL]" },
+            { area: "Weapon inference", missingEvidence: "Forensic evidence linking weapon to defendant [CONDITIONAL]" },
+          ],
+          evidenceSupport: [
+            "If CCTV shows brief incident → supports spontaneity not targeting [CONDITIONAL]",
+            "If identification is single witness with poor lighting → supports Turnbull challenge [CONDITIONAL]",
+            "If medical evidence is ambiguous on mechanism → supports alternative causation [CONDITIONAL]",
+            "If disclosure gaps persist → supports procedural challenge [EVIDENCE-BACKED if gaps confirmed]",
+          ],
+        },
+        attackRoutes: [
+          {
+            target: "Identification reliability (Turnbull)",
+            evidenceSupporting: "Single witness, poor lighting conditions, time delay between incident and identification, potential contamination [CONDITIONAL - requires VIPER pack]",
+            disclosureRequired: "VIPER pack, all CCTV from scene, initial witness descriptions, identification procedures, any failures to follow Turnbull",
+            cpsResponse: "CPS will argue identification is strong, properly conducted, and supported by CCTV or other evidence",
+            defenceReply: "If Turnbull guidelines not met, identification is unsafe. Defence will argue identification procedure was flawed or supporting evidence is weak. [CONDITIONAL - requires full disclosure]",
+            riskIfFails: "If identification is strong and Turnbull compliant, this attack fails. Pivot to intent threshold or causation challenge.",
+          },
+          {
+            target: "Intent threshold (s18 vs s20)",
+            evidenceSupporting: "Brief incident duration, spontaneous altercation, lack of targeting or premeditation [CONDITIONAL - requires full CCTV]",
+            disclosureRequired: "Complete CCTV coverage, sequence evidence, timings, duration, any evidence of provocation or self-defence",
+            cpsResponse: "CPS will argue sequence shows sustained/targeted violence, duration supports specific intent, circumstances show premeditation",
+            defenceReply: "Defence will argue sequence shows brief reactive incident, absence of targeting undermines specific intent, recklessness (s20) is established not s18. [CONDITIONAL - requires sequence evidence]",
+            riskIfFails: "If sequence evidence clearly shows sustained targeting, s18 intent may be established. Pivot to charge_reduction if harm threshold met, or fight causation if medical evidence is weak.",
+          },
+          {
+            target: "Disclosure failures (abuse of process)",
+            evidenceSupporting: "MG6C missing, CCTV continuity broken, late material, unused material not disclosed [EVIDENCE-BACKED if gaps confirmed]",
+            disclosureRequired: "Full MG6C, CCTV continuity logs, all unused material, all witness statements, prompt disclosure of any late material",
+            cpsResponse: "CPS will argue disclosure is complete or gaps are not material to the case",
+            defenceReply: "Defence will argue disclosure failures are material and persistent, creating unfair trial risk. If disclosure gaps persist after reasonable chase, draft abuse of process application. [EVIDENCE-BACKED if failures confirmed]",
+            riskIfFails: "If disclosure is complete and timely, this attack fails. Focus on evidential weaknesses instead.",
+          },
         ],
-        disclosureLeverage: "Disclosure gaps create leverage: (1) MG6C missing → request full unused material schedule, (2) CCTV continuity broken → challenge admissibility, (3) Missing witness statements → request all witness accounts, (4) No VIPER pack → challenge identification procedures. If disclosure failures persist after chase, draft abuse of process application. Disclosure gaps undermine prosecution case strength and create exclusion/abuse of process risk.",
-        worstCaseFailureMode: "If this strategy fails: (1) Strong, uncontested identification with multiple witnesses and clear Turnbull compliance, (2) Complete disclosure with no gaps and strong CCTV continuity, (3) Medical evidence clearly links injuries to defendant's actions with expert consensus, (4) Sequence evidence shows sustained/targeted violence supporting specific intent. Pivot to charge_reduction if intent threshold cannot be challenged, or outcome_management if case is overwhelming.",
+        disclosureLeverage: [
+          {
+            missingItem: "MG6C (unused material schedule)",
+            whyItMatters: "Cannot assess whether prosecution has failed to disclose material that undermines case or assists defence",
+            chaseWording: "Request full MG6C schedule pursuant to CPIA. Defence cannot properly assess case without full disclosure of unused material.",
+            timeEscalation: "If not provided within 14 days, escalate to case management hearing. If still not provided, draft abuse of process application.",
+            applicationPath: "Abuse of process application under s.78 PACE if persistent failures. Alternatively, exclusion of evidence if continuity is broken.",
+          },
+          {
+            missingItem: "CCTV continuity logs",
+            whyItMatters: "If continuity is broken, CCTV may be inadmissible. Continuity failures undermine prosecution case strength.",
+            chaseWording: "Request CCTV continuity logs. Defence requires proof of unbroken chain of custody to assess admissibility.",
+            timeEscalation: "If not provided within 7 days, request case management hearing to address admissibility. If continuity broken, challenge admissibility.",
+            applicationPath: "Exclusion under s.78 PACE if continuity is broken or material gaps exist. Abuse of process if persistent failures.",
+          },
+          {
+            missingItem: "VIPER pack / identification procedures",
+            whyItMatters: "Cannot assess Turnbull compliance without identification procedure records. Turnbull failures make identification unsafe.",
+            chaseWording: "Request VIPER pack and all identification procedure records. Defence requires these to assess Turnbull compliance and identification reliability.",
+            timeEscalation: "If not provided within 14 days, request case management hearing. If Turnbull failures identified, challenge identification.",
+            applicationPath: "Challenge identification under Turnbull guidelines. Exclusion of identification evidence if procedures were flawed.",
+          },
+        ],
+        courtroomPressure: [
+          {
+            judgeQuestion: "Why is identification being challenged? The witness is clear.",
+            cpsAnswer: "CPS will argue identification is strong, properly conducted, and supported by CCTV. Witness is reliable and procedures were correct.",
+            defenceReply: "Defence position: Identification is challenged under Turnbull guidelines. [CONDITIONAL - pending VIPER pack review] Defence will argue: lighting/visibility issues, potential contamination, absence of supporting evidence. Cannot properly respond without full identification procedure records. [CONDITIONAL]",
+            evidenceCheck: "Review VIPER pack, initial descriptions, lighting conditions, supporting identification evidence before relying on this reply.",
+          },
+          {
+            judgeQuestion: "How can you challenge intent when the injuries are so serious?",
+            cpsAnswer: "CPS will argue injury severity alone demonstrates intent, or injury severity combined with sequence evidence proves specific intent for s18.",
+            defenceReply: "Defence position: Injury severity does not prove specific intent. s18 requires proof of specific intent to cause really serious harm, not just recklessness. Medical evidence [CONDITIONAL - requires expert reports] may show mechanism consistent with recklessness not specific intent. Sequence evidence [CONDITIONAL - requires full CCTV] may show spontaneity not targeting. [CONDITIONAL]",
+            evidenceCheck: "Review medical expert reports on injury mechanism and full sequence evidence before relying on this reply.",
+          },
+          {
+            judgeQuestion: "Why should disclosure failures lead to exclusion or stay?",
+            cpsAnswer: "CPS will argue disclosure is complete, gaps are not material, or any failures are not persistent enough to warrant exclusion/stay.",
+            defenceReply: "Defence position: [EVIDENCE-BACKED if gaps confirmed] Disclosure failures are material to assessment of case. Defence cannot properly prepare without full disclosure. If failures persist after reasonable chase, unfair trial risk arises. Defence will argue exclusion/stay is appropriate if failures are persistent and material. [EVIDENCE-BACKED if failures confirmed]",
+            evidenceCheck: "Confirm disclosure gaps are material and persistent before relying on this reply. Review chase correspondence and time delays.",
+          },
+        ],
+        killSwitches: [
+          {
+            evidenceArrival: "Strong uncontested identification with multiple witnesses and clear Turnbull compliance",
+            newRoute: "Pivot to charge_reduction (s18 → s20) if identification is strong but intent threshold can be challenged. Alternatively, pivot to outcome_management if case is overwhelming.",
+            preserved: "Intent threshold challenge (if medical/sequence evidence supports s20), disclosure leverage (if gaps persist), causation challenges",
+            abandoned: "Identification challenge, abuse of process on identification grounds",
+          },
+          {
+            evidenceArrival: "Complete disclosure with no gaps and strong CCTV continuity",
+            newRoute: "Pivot to charge_reduction or outcome_management. Focus on evidential weaknesses (intent, causation) rather than procedural challenges.",
+            preserved: "Intent threshold challenge, medical causation challenges, sequence evidence arguments",
+            abandoned: "Abuse of process on disclosure grounds, CCTV continuity challenges",
+          },
+          {
+            evidenceArrival: "Medical evidence clearly links injuries to defendant's actions with expert consensus",
+            newRoute: "Pivot to intent threshold challenge (s18 vs s20) or outcome_management if causation is clear. Abandon causation challenges.",
+            preserved: "Intent threshold challenge, identification challenges, disclosure leverage (if gaps persist)",
+            abandoned: "Causation challenges, alternative causation arguments",
+          },
+        ],
+        residualAttacks: [
+          { area: "Identification", tested: false, leverage: "Turnbull compliance, lighting/visibility, witness reliability", evidenceNeeded: "VIPER pack, full CCTV, initial descriptions [CONDITIONAL]" },
+          { area: "Intent", tested: false, leverage: "s18 vs s20 distinction, sequence evidence, premeditation", evidenceNeeded: "Full sequence evidence, timings, duration [CONDITIONAL]" },
+          { area: "Causation", tested: false, leverage: "Medical mechanism, alternative causes, timing", evidenceNeeded: "Expert medical reports, full medical records [CONDITIONAL]" },
+          { area: "Admissibility", tested: false, leverage: "PACE compliance, exclusion under s.78", evidenceNeeded: "PACE records, custody records, interview records [CONDITIONAL]" },
+          { area: "Continuity", tested: false, leverage: "Chain of custody breaks, exclusion of evidence", evidenceNeeded: "Continuity logs, custody records [CONDITIONAL]" },
+          { area: "PACE / Interview", tested: false, leverage: "PACE breaches, exclusion of interview evidence", evidenceNeeded: "Interview records, custody records, PACE records [CONDITIONAL]" },
+          { area: "Medical mechanics", tested: false, leverage: "Injury mechanism does not support weapon inference or specific intent", evidenceNeeded: "Expert medical reports, injury mechanism analysis [CONDITIONAL]" },
+        ],
         next72Hours: [
-          "Request full disclosure (MG6C, CCTV continuity, VIPER pack, all witness statements)",
-          "Review identification evidence for Turnbull compliance issues",
-          "Assess PACE compliance (interview, custody, evidence handling)",
+          "Request full disclosure (MG6C, CCTV continuity logs, VIPER pack, all witness statements)",
+          "Review identification evidence for Turnbull compliance [CONDITIONAL - requires VIPER pack]",
+          "Assess PACE compliance (interview, custody, evidence handling) [CONDITIONAL - requires PACE records]",
           "Draft initial disclosure requests with specific material identified",
-          "Prepare case management note highlighting disclosure gaps",
-          "Review medical evidence for causation challenges",
-          "Assess sequence evidence (CCTV, timings, duration) for intent distinction",
+          "Prepare case management note highlighting disclosure gaps [EVIDENCE-BACKED if gaps confirmed]",
+          "Review medical evidence for causation challenges [CONDITIONAL - requires expert reports]",
+          "Assess sequence evidence (CCTV, timings, duration) for intent distinction [CONDITIONAL - requires full CCTV]",
         ],
       };
     case "charge_reduction":
       return {
-        prosecutionTheory: "CPS will argue: (1) Defendant intended to cause really serious harm (s18), (2) Medical evidence supports GBH-level harm, (3) Sequence evidence shows targeting/premeditation, (4) Circumstances support specific intent. Defence will argue: (1) Harm occurred but intent was reckless (s20), (2) Medical evidence supports s20 not s18 (injury mechanism suggests recklessness), (3) Circumstances show lack of targeting (spontaneous incident), (4) No clear evidence of 'really serious harm' intent. Defence position: accept harm, challenge intent threshold.",
-        elementsChecklist: [
-          { element: "Harm (GBH-level)", cpsEvidence: "Medical reports showing serious injuries", defenceChallenge: "Accept harm occurred but dispute mechanism or severity assessment", status: "UNKNOWN" },
-          { element: "Intent (s18 specific intent)", cpsEvidence: "Sequence evidence, targeting, premeditation", defenceChallenge: "Argue recklessness (s20) not specific intent, spontaneous not premeditated", status: "UNKNOWN" },
-          { element: "Causation", cpsEvidence: "Medical evidence linking injuries to incident", defenceChallenge: "Accept causation but dispute intent threshold", status: "UNKNOWN" },
+        dashboard: {
+          objective: "Knock out s18 intent threshold. Accept harm occurred but challenge specific intent. Force charge reduction from s18 to s20 (reckless GBH). Target negotiated reduction before PTPH if medical/sequence evidence supports s20.",
+          cpsMustProve: [
+            { element: "Harm (GBH-level)", cpsEvidence: "Medical reports showing serious injuries", defenceChallenge: "Accept harm occurred but dispute mechanism or severity assessment" },
+            { element: "Intent (s18 specific intent)", cpsEvidence: "Sequence evidence, targeting, premeditation", defenceChallenge: "Argue recklessness (s20) not specific intent, spontaneous not premeditated" },
+            { element: "Causation", cpsEvidence: "Medical evidence linking injuries to incident", defenceChallenge: "Accept causation but dispute intent threshold" },
+          ],
+          top3Attacks: [
+            { target: "Intent threshold (s18 vs s20)", leverage: "If sequence evidence shows spontaneity not targeting, s18 fails", evidenceRequired: "Full sequence evidence, timings, duration [CONDITIONAL]" },
+            { target: "Medical evidence (intent mechanism)", leverage: "If medical evidence supports recklessness not specific intent, s18 fails", evidenceRequired: "Expert medical reports, injury mechanism analysis [CONDITIONAL]" },
+            { target: "Circumstances (lack of premeditation)", leverage: "If circumstances show spontaneous incident, s18 intent threshold not met", evidenceRequired: "Full circumstances evidence, context, provocation [CONDITIONAL]" },
+          ],
+          primaryKillSwitch: { condition: "Medical evidence clearly supports s18 (specific intent mechanism) + sequence evidence shows clear targeting/premeditation", pivotTo: "outcome_management if charge reduction fails" },
+        },
+        cpsTheory: {
+          whatHappened: "CPS will likely argue: Defendant deliberately targeted the victim with intent to cause really serious harm. The sequence shows targeting or premeditation. The circumstances support specific intent. [CONDITIONAL - pending full disclosure]",
+          intentArgument: "CPS will argue specific intent from: (1) Medical evidence supports s18 (injury mechanism suggests deliberate targeting), (2) Sequence evidence shows targeting/premeditation (duration, escalation, sustained violence), (3) Circumstances show lack of provocation/self-defence. Defence will challenge: Medical evidence may support s20 (recklessness), sequence may show spontaneity, circumstances may show lack of targeting. [CONDITIONAL - requires full disclosure]",
+          identificationArgument: "CPS will likely rely on identification evidence. Defence accepts identification [if clear] but challenges intent threshold. [CONDITIONAL - requires identification evidence review]",
+          weaponCausationArgument: "CPS may infer weapon use or specific intent from injury pattern. Defence will argue: (1) Injuries do not require weapon, (2) Injury mechanism supports recklessness not specific intent, (3) Medical evidence is ambiguous on intent. [CONDITIONAL - requires medical expert evidence]",
+        },
+        defenceTheory: {
+          narrative: "Defence position: Harm occurred, but the defendant's actions were reckless not intentional. The incident was spontaneous, not premeditated. The defendant lacked specific intent to cause really serious harm. s20 (reckless GBH) is appropriate, not s18. [CONDITIONAL - reserved pending full disclosure including medical evidence, sequence evidence, and circumstances]",
+          conditionalFlags: [
+            { area: "Intent mechanism", missingEvidence: "Expert medical reports on injury mechanism [CONDITIONAL]" },
+            { area: "Sequence evidence", missingEvidence: "Full sequence evidence, timings, duration [CONDITIONAL]" },
+            { area: "Circumstances", missingEvidence: "Full circumstances evidence, context, provocation [CONDITIONAL]" },
+          ],
+          evidenceSupport: [
+            "If medical evidence shows recklessness mechanism → supports s20 not s18 [CONDITIONAL]",
+            "If sequence shows spontaneity → supports lack of specific intent [CONDITIONAL]",
+            "If circumstances show lack of targeting → supports recklessness argument [CONDITIONAL]",
+          ],
+        },
+        attackRoutes: [
+          {
+            target: "Intent threshold (s18 vs s20) - Medical evidence",
+            evidenceSupporting: "Medical evidence shows injury mechanism consistent with recklessness not specific intent [CONDITIONAL - requires expert reports]",
+            disclosureRequired: "Expert medical reports, full medical records, injury mechanism analysis, any expert opinions on intent",
+            cpsResponse: "CPS will argue medical evidence supports s18 (specific intent mechanism) or injury severity demonstrates intent",
+            defenceReply: "Defence will argue medical evidence supports s20 (recklessness mechanism) not s18. Injury mechanism analysis [CONDITIONAL - requires expert reports] may show recklessness not specific intent. [CONDITIONAL]",
+            riskIfFails: "If medical evidence clearly supports s18, this attack fails. Pivot to sequence evidence challenge or outcome_management.",
+          },
+          {
+            target: "Intent threshold (s18 vs s20) - Sequence evidence",
+            evidenceSupporting: "Sequence evidence shows brief spontaneous incident, lack of targeting or premeditation [CONDITIONAL - requires full CCTV]",
+            disclosureRequired: "Complete sequence evidence, timings, duration, any evidence of targeting or premeditation",
+            cpsResponse: "CPS will argue sequence shows sustained/targeted violence, duration supports specific intent, circumstances show premeditation",
+            defenceReply: "Defence will argue sequence shows spontaneity not targeting, absence of premeditation undermines specific intent, recklessness (s20) is established not s18. [CONDITIONAL - requires sequence evidence]",
+            riskIfFails: "If sequence clearly shows targeting/premeditation, this attack fails. Pivot to medical evidence challenge or outcome_management.",
+          },
         ],
-        disclosureLeverage: "Disclosure leverage for charge reduction: (1) Medical evidence gaps → request full medical records and expert reports, (2) Sequence evidence incomplete → request all CCTV and witness accounts of incident sequence, (3) Circumstances evidence missing → request all context evidence (provocation, self-defence claims). Use disclosure gaps to argue intent distinction cannot be properly assessed without full material. Request charge reduction before PTPH if medical/sequence evidence supports s20.",
-        worstCaseFailureMode: "If this strategy fails: (1) Medical evidence clearly supports s18 (specific intent mechanism), (2) Sequence evidence shows clear targeting/premeditation, (3) CPS case is overwhelming on intent element, (4) Court rejects recklessness argument. Pivot to outcome_management if charge reduction fails, or fight_charge if prosecution case weakens significantly.",
+        disclosureLeverage: [
+          {
+            missingItem: "Expert medical reports / injury mechanism analysis",
+            whyItMatters: "Cannot assess whether injury mechanism supports s18 (specific intent) or s20 (recklessness) without expert analysis",
+            chaseWording: "Request expert medical reports and injury mechanism analysis. Defence requires these to assess intent distinction (s18 vs s20).",
+            timeEscalation: "If not provided within 14 days, request case management hearing. Charge reduction negotiation may proceed if medical evidence supports s20.",
+            applicationPath: "Request charge reduction before PTPH if medical/sequence evidence supports s20. Alternatively, prepare trial defence on intent distinction.",
+          },
+          {
+            missingItem: "Full sequence evidence (CCTV, timings, duration)",
+            whyItMatters: "Cannot assess intent distinction without full sequence evidence. Sequence evidence is key to s18 vs s20 distinction.",
+            chaseWording: "Request full sequence evidence including complete CCTV coverage, timings, and duration. Defence requires this to assess intent distinction.",
+            timeEscalation: "If not provided within 14 days, request case management hearing. Charge reduction negotiation may proceed if sequence supports spontaneity.",
+            applicationPath: "Request charge reduction before PTPH if sequence evidence supports spontaneity not targeting. Alternatively, prepare trial defence on intent distinction.",
+          },
+        ],
+        courtroomPressure: [
+          {
+            judgeQuestion: "How can you argue s20 when the injuries are so serious?",
+            cpsAnswer: "CPS will argue injury severity demonstrates intent, or medical evidence supports s18 (specific intent mechanism).",
+            defenceReply: "Defence position: Injury severity does not prove specific intent. s18 requires proof of specific intent to cause really serious harm. Medical evidence [CONDITIONAL - requires expert reports] may show mechanism consistent with recklessness (s20) not specific intent (s18). [CONDITIONAL]",
+            evidenceCheck: "Review expert medical reports on injury mechanism before relying on this reply.",
+          },
+          {
+            judgeQuestion: "How can sequence evidence show recklessness when the attack was sustained?",
+            cpsAnswer: "CPS will argue sequence shows sustained/targeted violence, duration supports specific intent, circumstances show premeditation.",
+            defenceReply: "Defence position: Sequence evidence [CONDITIONAL - requires full CCTV] may show brief reactive incident, absence of targeting undermines specific intent, spontaneity supports recklessness not specific intent. [CONDITIONAL]",
+            evidenceCheck: "Review full sequence evidence (CCTV, timings, duration) before relying on this reply.",
+          },
+        ],
+        killSwitches: [
+          {
+            evidenceArrival: "Medical evidence clearly supports s18 (specific intent mechanism)",
+            newRoute: "Pivot to outcome_management if charge reduction fails. Focus on mitigation and sentencing position.",
+            preserved: "Sequence evidence challenge (if spontaneity can be argued), circumstances arguments",
+            abandoned: "Medical evidence challenge, injury mechanism arguments",
+          },
+          {
+            evidenceArrival: "Sequence evidence shows clear targeting/premeditation",
+            newRoute: "Pivot to outcome_management if charge reduction fails. Focus on mitigation and sentencing position.",
+            preserved: "Medical evidence challenge (if mechanism supports s20), circumstances arguments",
+            abandoned: "Sequence evidence challenge, spontaneity arguments",
+          },
+        ],
+        residualAttacks: [
+          { area: "Intent threshold", tested: false, leverage: "s18 vs s20 distinction, medical mechanism, sequence evidence", evidenceNeeded: "Expert medical reports, full sequence evidence [CONDITIONAL]" },
+          { area: "Circumstances", tested: false, leverage: "Lack of premeditation, spontaneity, provocation", evidenceNeeded: "Full circumstances evidence, context [CONDITIONAL]" },
+          { area: "Medical mechanism", tested: false, leverage: "Injury mechanism supports recklessness not specific intent", evidenceNeeded: "Expert medical reports, injury mechanism analysis [CONDITIONAL]" },
+        ],
         next72Hours: [
-          "Request medical evidence (full records, expert reports, injury mechanism analysis)",
-          "Review sequence evidence (CCTV, timings, duration) for intent distinction",
-          "Request circumstances evidence (context, provocation, self-defence)",
+          "Request medical evidence (full records, expert reports, injury mechanism analysis) [CONDITIONAL]",
+          "Review sequence evidence (CCTV, timings, duration) for intent distinction [CONDITIONAL]",
+          "Request circumstances evidence (context, provocation, self-defence) [CONDITIONAL]",
           "Prepare charge reduction negotiation brief (s18 → s20)",
           "Draft written submissions on intent distinction for case management",
           "Review sentencing guidelines for s20 vs s18 implications",
@@ -578,21 +850,114 @@ function getBeastStrategyPack(strategyType: PrimaryStrategy | null): BeastStrate
       };
     case "outcome_management":
       return {
-        prosecutionTheory: "CPS will argue: (1) Offence is serious and warrants custodial sentence, (2) Aggravating factors outweigh mitigation, (3) Sentencing guidelines point to custody, (4) Public interest requires custodial sentence. Defence will argue: (1) Strong mitigation package (character, employment, family circumstances), (2) Early guilty plea credit (up to 1/3 reduction), (3) Guideline factors support lower starting point (reduced harm/culpability), (4) Non-custodial alternatives are appropriate. Defence position: focus on sentencing position and mitigation.",
-        elementsChecklist: [
-          { element: "Harm level", cpsEvidence: "Medical evidence, circumstances", defenceChallenge: "Argue lower harm category, reduced culpability factors", status: "UNKNOWN" },
-          { element: "Culpability", cpsEvidence: "Sequence evidence, intent, targeting", defenceChallenge: "Argue reduced culpability (provocation, lack of premeditation)", status: "UNKNOWN" },
-          { element: "Personal mitigation", cpsEvidence: "Previous convictions, aggravating factors", defenceChallenge: "Present strong mitigation (character, employment, family, remorse)", status: "UNKNOWN" },
+        dashboard: {
+          objective: "Minimise sentence through strong mitigation and early guilty plea. Target non-custodial outcome or reduced custodial sentence. Focus on rehabilitation and reduced culpability.",
+          cpsMustProve: [
+            { element: "Harm level", cpsEvidence: "Medical evidence, circumstances", defenceChallenge: "Argue lower harm category, reduced culpability factors" },
+            { element: "Culpability", cpsEvidence: "Sequence evidence, intent, targeting", defenceChallenge: "Argue reduced culpability (provocation, lack of premeditation)" },
+            { element: "Personal mitigation", cpsEvidence: "Previous convictions, aggravating factors", defenceChallenge: "Present strong mitigation (character, employment, family, remorse)" },
+          ],
+          top3Attacks: [
+            { target: "Mitigation package", leverage: "Strong character, employment, family circumstances support non-custodial outcome", evidenceRequired: "Character references, employment records, family circumstances [CONDITIONAL]" },
+            { target: "Early guilty plea credit", leverage: "Up to 1/3 sentence reduction for early guilty plea", evidenceRequired: "Timing of plea, cooperation with authorities [EVIDENCE-BACKED if early plea entered]" },
+            { target: "Reduced culpability", leverage: "Provocation, lack of premeditation, reduced harm category support lower starting point", evidenceRequired: "Circumstances evidence, harm assessment [CONDITIONAL]" },
+          ],
+          primaryKillSwitch: { condition: "Sentencing guidelines clearly point to custody despite mitigation + aggravating factors overwhelming", pivotTo: "Focus on sentence length reduction rather than non-custodial outcome" },
+        },
+        cpsTheory: {
+          whatHappened: "CPS will likely argue: Offence is serious and warrants custodial sentence. Aggravating factors outweigh mitigation. Sentencing guidelines point to custody. [CONDITIONAL - pending sentencing assessment]",
+          intentArgument: "CPS will argue: Intent is established (s18 or s20), harm is serious, aggravating factors exist. Defence will focus on mitigation rather than challenging intent.",
+          identificationArgument: "CPS will likely rely on identification evidence. Defence accepts identification [if clear] and focuses on mitigation. [CONDITIONAL - requires identification evidence review]",
+          weaponCausationArgument: "CPS may rely on weapon use or causation evidence. Defence focuses on mitigation rather than challenging causation.",
+        },
+        defenceTheory: {
+          narrative: "Defence position: Defendant accepts responsibility (if guilty plea entered) or focuses on mitigation. Strong mitigation package supports non-custodial outcome or reduced custodial sentence. [CONDITIONAL - reserved pending full mitigation evidence]",
+          conditionalFlags: [
+            { area: "Personal mitigation", missingEvidence: "Character references, employment records, family circumstances [CONDITIONAL]" },
+            { area: "Medical/mental health", missingEvidence: "Medical/mental health reports supporting mitigation [CONDITIONAL]" },
+            { area: "Rehabilitation", missingEvidence: "Evidence of rehabilitation efforts, cooperation, remorse [CONDITIONAL]" },
+          ],
+          evidenceSupport: [
+            "If character references are strong → supports mitigation [CONDITIONAL]",
+            "If employment records show stability → supports mitigation [CONDITIONAL]",
+            "If family circumstances show hardship → supports mitigation [CONDITIONAL]",
+          ],
+        },
+        attackRoutes: [
+          {
+            target: "Mitigation package",
+            evidenceSupporting: "Strong character references, employment stability, family circumstances, rehabilitation efforts [CONDITIONAL - requires mitigation evidence]",
+            disclosureRequired: "Character references, employment records, family circumstances, medical/mental health reports, rehabilitation evidence",
+            cpsResponse: "CPS will argue aggravating factors outweigh mitigation, offence is too serious for non-custodial outcome",
+            defenceReply: "Defence will argue mitigation is strong, supports non-custodial outcome or reduced custodial sentence. Present comprehensive mitigation package. [CONDITIONAL - requires mitigation evidence]",
+            riskIfFails: "If mitigation is insufficient or aggravating factors are overwhelming, non-custodial outcome may not be achievable. Focus on sentence length reduction.",
+          },
+          {
+            target: "Early guilty plea credit",
+            evidenceSupporting: "Early guilty plea entered, cooperation with authorities [EVIDENCE-BACKED if early plea entered]",
+            disclosureRequired: "Timing of plea, cooperation evidence, any evidence of remorse",
+            cpsResponse: "CPS will accept early guilty plea credit but argue sentence still warrants custody",
+            defenceReply: "Defence will argue early guilty plea warrants up to 1/3 sentence reduction. Combined with strong mitigation, supports non-custodial outcome or reduced custodial sentence. [EVIDENCE-BACKED if early plea entered]",
+            riskIfFails: "If plea is not early or mitigation is insufficient, sentence reduction may be limited.",
+          },
         ],
-        disclosureLeverage: "Disclosure leverage for mitigation: (1) Character references → request evidence of good character, employment, community involvement, (2) Medical/mental health → request reports supporting mitigation, (3) Family circumstances → request evidence of dependents, hardship, (4) Remorse/rehabilitation → request evidence of early guilty plea, cooperation, rehabilitation efforts. Use disclosure to build comprehensive mitigation package.",
-        worstCaseFailureMode: "If this strategy fails: (1) Sentencing guidelines clearly point to custody despite mitigation, (2) Aggravating factors are overwhelming (previous convictions, victim vulnerability), (3) Court views offence as too serious for non-custodial outcome, (4) Mitigation is insufficient. Pivot to fight_charge if prosecution case weakens, or accept custodial outcome with focus on sentence length reduction.",
+        disclosureLeverage: [
+          {
+            missingItem: "Character references / employment records",
+            whyItMatters: "Cannot present strong mitigation package without character and employment evidence",
+            chaseWording: "Request character references and employment records. Defence requires these to present mitigation package.",
+            timeEscalation: "If not provided, mitigation package may be incomplete. Request promptly for sentencing hearing preparation.",
+            applicationPath: "Present mitigation at sentencing hearing. Request pre-sentence report (PSR) if appropriate.",
+          },
+          {
+            missingItem: "Medical/mental health reports",
+            whyItMatters: "Medical/mental health reports may support mitigation and reduced culpability",
+            chaseWording: "Request medical/mental health reports supporting mitigation. Defence requires these for sentencing submissions.",
+            timeEscalation: "If not provided, mitigation package may be incomplete. Request promptly for sentencing hearing preparation.",
+            applicationPath: "Present medical/mental health mitigation at sentencing hearing.",
+          },
+        ],
+        courtroomPressure: [
+          {
+            judgeQuestion: "Why should this not be a custodial sentence given the seriousness?",
+            cpsAnswer: "CPS will argue offence is serious, aggravating factors exist, sentencing guidelines point to custody.",
+            defenceReply: "Defence position: Strong mitigation package [CONDITIONAL - requires mitigation evidence] combined with early guilty plea credit supports non-custodial outcome or reduced custodial sentence. Rehabilitation prospects are good. [CONDITIONAL]",
+            evidenceCheck: "Review mitigation evidence (character, employment, family, rehabilitation) before relying on this reply.",
+          },
+          {
+            judgeQuestion: "What mitigation can be presented?",
+            cpsAnswer: "CPS will accept mitigation but argue it does not outweigh seriousness or aggravating factors.",
+            defenceReply: "Defence will present: Character references [CONDITIONAL], employment stability [CONDITIONAL], family circumstances [CONDITIONAL], rehabilitation efforts [CONDITIONAL], early guilty plea credit [EVIDENCE-BACKED if early plea], medical/mental health mitigation [CONDITIONAL]. [CONDITIONAL]",
+            evidenceCheck: "Review all mitigation evidence before relying on this reply.",
+          },
+        ],
+        killSwitches: [
+          {
+            evidenceArrival: "Sentencing guidelines clearly point to custody despite mitigation",
+            newRoute: "Focus on sentence length reduction rather than non-custodial outcome. Emphasise rehabilitation and early release prospects.",
+            preserved: "Mitigation package, early guilty plea credit, rehabilitation arguments",
+            abandoned: "Non-custodial outcome arguments",
+          },
+          {
+            evidenceArrival: "Aggravating factors are overwhelming (previous convictions, victim vulnerability)",
+            newRoute: "Focus on sentence length reduction and rehabilitation. Accept custodial outcome is likely.",
+            preserved: "Early guilty plea credit, rehabilitation arguments, reduced culpability arguments",
+            abandoned: "Non-custodial outcome arguments",
+          },
+        ],
+        residualAttacks: [
+          { area: "Personal mitigation", tested: false, leverage: "Character, employment, family, rehabilitation", evidenceNeeded: "Character references, employment records, family circumstances [CONDITIONAL]" },
+          { area: "Medical/mental health", tested: false, leverage: "Medical/mental health mitigation, reduced culpability", evidenceNeeded: "Medical/mental health reports [CONDITIONAL]" },
+          { area: "Early guilty plea", tested: false, leverage: "Up to 1/3 sentence reduction", evidenceNeeded: "Timing of plea, cooperation evidence [EVIDENCE-BACKED if early plea]" },
+          { area: "Rehabilitation", tested: false, leverage: "Rehabilitation prospects, cooperation, remorse", evidenceNeeded: "Rehabilitation evidence, cooperation evidence [CONDITIONAL]" },
+        ],
         next72Hours: [
-          "Prepare comprehensive mitigation package (character references, employment, family circumstances)",
+          "Prepare comprehensive mitigation package (character references, employment, family circumstances) [CONDITIONAL]",
           "Request pre-sentence report (PSR) if appropriate",
-          "Gather medical/mental health reports supporting mitigation",
+          "Gather medical/mental health reports supporting mitigation [CONDITIONAL]",
           "Review sentencing guidelines for harm/culpability factors",
           "Prepare sentencing submissions focusing on rehabilitation",
-          "Consider early guilty plea timing for maximum credit",
+          "Consider early guilty plea timing for maximum credit [if not already entered]",
           "Prepare basis of plea if guilty plea entered",
         ],
       };
@@ -1756,81 +2121,206 @@ export function StrategyCommitmentPanel({
                           </div>
                         )}
 
-                        {/* Beast Strategy Pack - Full structured pack when route is selected */}
+                        {/* Beast Strategy Pack - Comprehensive court-safe attack brief (9 sections) */}
                         {isSelected && (() => {
                           const beastPack = getBeastStrategyPack(strategyKey);
                           if (!beastPack) return null;
                           
                           return (
-                            <div className="mt-4 pt-4 border-t-2 border-primary/30 space-y-3">
-                              <div className="flex items-center gap-2 mb-3">
-                                <Shield className="h-4 w-4 text-primary" />
-                                <h4 className="text-sm font-semibold text-foreground">Beast Strategy Pack</h4>
+                            <div className="mt-4 pt-4 border-t-2 border-primary/30 space-y-4">
+                              <div className="flex items-center gap-2 mb-4">
+                                <Shield className="h-5 w-5 text-primary" />
+                                <h4 className="text-base font-semibold text-foreground">Beast Strategy Pack</h4>
                                 <Badge variant="outline" className="text-xs border-amber-500/30 text-amber-600 bg-amber-500/10">
                                   CONDITIONAL
                                 </Badge>
                               </div>
                               
-                              {/* Prosecution Theory */}
+                              {/* 1. ROUTE DASHBOARD - Always visible, not collapsed */}
+                              <div className="rounded-lg border-2 border-primary/30 bg-primary/5 p-4 space-y-3">
+                                <div className="flex items-center gap-2 mb-2">
+                                  <Target className="h-4 w-4 text-primary" />
+                                  <h5 className="text-sm font-semibold text-foreground">Route Dashboard</h5>
+                                </div>
+                                <div>
+                                  <p className="text-xs font-semibold text-foreground mb-1">Objective:</p>
+                                  <p className="text-xs text-muted-foreground">{beastPack.dashboard.objective}</p>
+                                </div>
+                                <div>
+                                  <p className="text-xs font-semibold text-foreground mb-2">CPS must prove:</p>
+                                  <div className="space-y-2">
+                                    {beastPack.dashboard.cpsMustProve.map((item, idx) => (
+                                      <div key={idx} className="p-2 rounded border border-border/30 bg-muted/10">
+                                        <p className="text-xs font-semibold text-foreground">{item.element}</p>
+                                        <p className="text-xs text-muted-foreground mt-0.5">
+                                          <span className="font-semibold">CPS Evidence: </span>{item.cpsEvidence}
+                                        </p>
+                                        <p className="text-xs text-muted-foreground">
+                                          <span className="font-semibold">Defence Challenge: </span>{item.defenceChallenge}
+                                        </p>
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                                <div>
+                                  <p className="text-xs font-semibold text-foreground mb-2">Top 3 highest-leverage defence attacks:</p>
+                                  <ul className="space-y-1.5">
+                                    {beastPack.dashboard.top3Attacks.map((attack, idx) => (
+                                      <li key={idx} className="text-xs text-foreground flex items-start gap-2">
+                                        <span className="flex-shrink-0 w-4 h-4 rounded-full bg-primary/20 flex items-center justify-center mt-0.5">
+                                          <span className="text-[10px] font-semibold text-primary">{idx + 1}</span>
+                                        </span>
+                                        <div className="flex-1">
+                                          <p className="font-semibold">{attack.target}</p>
+                                          <p className="text-muted-foreground">{attack.leverage}</p>
+                                          <p className="text-muted-foreground italic text-[10px] mt-0.5">{attack.evidenceRequired}</p>
+                                        </div>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                                <div className="pt-2 border-t border-primary/20">
+                                  <p className="text-xs font-semibold text-foreground mb-1">Primary kill switch (what forces a pivot):</p>
+                                  <p className="text-xs text-muted-foreground">
+                                    <span className="font-semibold">If: </span>{beastPack.dashboard.primaryKillSwitch.condition}
+                                  </p>
+                                  <p className="text-xs text-muted-foreground">
+                                    <span className="font-semibold">Pivot to: </span>{beastPack.dashboard.primaryKillSwitch.pivotTo}
+                                  </p>
+                                </div>
+                              </div>
+
+                              {/* 2. CPS CASE THEORY */}
                               <div className="rounded-lg border border-border/50 overflow-hidden">
                                 <button
-                                  onClick={() => toggleSection(`${route.id}_prosecution_theory`)}
+                                  onClick={() => toggleSection(`${route.id}_cps_case_theory`)}
                                   className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/20 transition-colors"
                                 >
                                   <div className="flex items-center gap-2">
                                     <FileText className="h-4 w-4 text-primary" />
-                                    <span className="text-xs font-semibold text-foreground">Prosecution Theory</span>
+                                    <span className="text-xs font-semibold text-foreground">CPS Case Theory</span>
                                   </div>
-                                  {expandedSections.has(`${route.id}_prosecution_theory`) ? (
+                                  {expandedSections.has(`${route.id}_cps_case_theory`) ? (
                                     <ChevronUp className="h-4 w-4 text-muted-foreground" />
                                   ) : (
                                     <ChevronDown className="h-4 w-4 text-muted-foreground" />
                                   )}
                                 </button>
-                                {expandedSections.has(`${route.id}_prosecution_theory`) && (
-                                  <div className="p-3 border-t border-border/50">
-                                    <p className="text-xs text-muted-foreground">{beastPack.prosecutionTheory}</p>
+                                {expandedSections.has(`${route.id}_cps_case_theory`) && (
+                                  <div className="p-3 border-t border-border/50 space-y-3 text-xs">
+                                    <div>
+                                      <p className="font-semibold text-foreground mb-1">What the prosecution will likely argue happened:</p>
+                                      <p className="text-muted-foreground">{beastPack.cpsTheory.whatHappened}</p>
+                                    </div>
+                                    <div>
+                                      <p className="font-semibold text-foreground mb-1">How they will argue intent:</p>
+                                      <p className="text-muted-foreground">{beastPack.cpsTheory.intentArgument}</p>
+                                    </div>
+                                    <div>
+                                      <p className="font-semibold text-foreground mb-1">How they will argue identification:</p>
+                                      <p className="text-muted-foreground">{beastPack.cpsTheory.identificationArgument}</p>
+                                    </div>
+                                    <div>
+                                      <p className="font-semibold text-foreground mb-1">How they will argue weapon / injury causation:</p>
+                                      <p className="text-muted-foreground">{beastPack.cpsTheory.weaponCausationArgument}</p>
+                                    </div>
                                   </div>
                                 )}
                               </div>
-                              
-                              {/* Elements Checklist */}
+
+                              {/* 3. DEFENCE COUNTER-THEORY */}
                               <div className="rounded-lg border border-border/50 overflow-hidden">
                                 <button
-                                  onClick={() => toggleSection(`${route.id}_elements_checklist`)}
+                                  onClick={() => toggleSection(`${route.id}_defence_counter_theory`)}
                                   className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/20 transition-colors"
                                 >
                                   <div className="flex items-center gap-2">
-                                    <CheckCircle2 className="h-4 w-4 text-primary" />
-                                    <span className="text-xs font-semibold text-foreground">Elements Checklist</span>
+                                    <Shield className="h-4 w-4 text-primary" />
+                                    <span className="text-xs font-semibold text-foreground">Defence Counter-Theory</span>
                                   </div>
-                                  {expandedSections.has(`${route.id}_elements_checklist`) ? (
+                                  {expandedSections.has(`${route.id}_defence_counter_theory`) ? (
                                     <ChevronUp className="h-4 w-4 text-muted-foreground" />
                                   ) : (
                                     <ChevronDown className="h-4 w-4 text-muted-foreground" />
                                   )}
                                 </button>
-                                {expandedSections.has(`${route.id}_elements_checklist`) && (
+                                {expandedSections.has(`${route.id}_defence_counter_theory`) && (
+                                  <div className="p-3 border-t border-border/50 space-y-3 text-xs">
+                                    <div>
+                                      <p className="font-semibold text-foreground mb-1">Defence narrative consistent with current evidence:</p>
+                                      <p className="text-muted-foreground">{beastPack.defenceTheory.narrative}</p>
+                                    </div>
+                                    {beastPack.defenceTheory.conditionalFlags.length > 0 && (
+                                      <div>
+                                        <p className="font-semibold text-foreground mb-2">Explicit CONDITIONAL flags where disclosure is missing:</p>
+                                        <div className="space-y-2">
+                                          {beastPack.defenceTheory.conditionalFlags.map((flag, idx) => (
+                                            <div key={idx} className="p-2 rounded border border-amber-500/20 bg-amber-500/5">
+                                              <p className="font-semibold text-foreground">{flag.area}:</p>
+                                              <p className="text-muted-foreground">{flag.missingEvidence}</p>
+                                            </div>
+                                          ))}
+                                        </div>
+                                      </div>
+                                    )}
+                                    {beastPack.defenceTheory.evidenceSupport.length > 0 && (
+                                      <div>
+                                        <p className="font-semibold text-foreground mb-1">Evidence support (no factual assertions without evidence):</p>
+                                        <ul className="space-y-1 list-disc list-inside text-muted-foreground">
+                                          {beastPack.defenceTheory.evidenceSupport.map((support, idx) => (
+                                            <li key={idx}>{support}</li>
+                                          ))}
+                                        </ul>
+                                      </div>
+                                    )}
+                                  </div>
+                                )}
+                              </div>
+
+                              {/* 4. ATTACK ROUTES (RANKED) */}
+                              <div className="rounded-lg border border-border/50 overflow-hidden">
+                                <button
+                                  onClick={() => toggleSection(`${route.id}_attack_routes_ranked`)}
+                                  className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/20 transition-colors"
+                                >
+                                  <div className="flex items-center gap-2">
+                                    <Zap className="h-4 w-4 text-primary" />
+                                    <span className="text-xs font-semibold text-foreground">Attack Routes (Ranked) ({beastPack.attackRoutes.length})</span>
+                                  </div>
+                                  {expandedSections.has(`${route.id}_attack_routes_ranked`) ? (
+                                    <ChevronUp className="h-4 w-4 text-muted-foreground" />
+                                  ) : (
+                                    <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                                  )}
+                                </button>
+                                {expandedSections.has(`${route.id}_attack_routes_ranked`) && (
                                   <div className="p-3 border-t border-border/50 space-y-3">
-                                    {beastPack.elementsChecklist.map((item, idx) => (
+                                    {beastPack.attackRoutes.map((attack, idx) => (
                                       <div key={idx} className="p-3 rounded-lg border border-border/30 bg-muted/10">
                                         <div className="flex items-center gap-2 mb-2">
-                                          <h6 className="text-xs font-semibold text-foreground">{item.element}</h6>
-                                          <Badge 
-                                            variant={item.status === "STRONG" ? "danger" : item.status === "WEAK" ? "success" : "secondary"}
-                                            className="text-[10px]"
-                                          >
-                                            {item.status}
-                                          </Badge>
+                                          <Badge variant="outline" className="text-[10px]">#{idx + 1}</Badge>
+                                          <p className="text-xs font-semibold text-foreground">{attack.target}</p>
                                         </div>
                                         <div className="text-xs space-y-1.5">
                                           <div>
-                                            <span className="font-semibold text-foreground">CPS Evidence: </span>
-                                            <span className="text-muted-foreground">{item.cpsEvidence}</span>
+                                            <span className="font-semibold text-foreground">Evidence supporting the attack: </span>
+                                            <span className="text-muted-foreground">{attack.evidenceSupporting}</span>
                                           </div>
                                           <div>
-                                            <span className="font-semibold text-foreground">Defence Challenge: </span>
-                                            <span className="text-muted-foreground">{item.defenceChallenge}</span>
+                                            <span className="font-semibold text-foreground">Disclosure required to strengthen attack: </span>
+                                            <span className="text-muted-foreground">{attack.disclosureRequired}</span>
+                                          </div>
+                                          <div>
+                                            <span className="font-semibold text-foreground">CPS likely response: </span>
+                                            <span className="text-muted-foreground">{attack.cpsResponse}</span>
+                                          </div>
+                                          <div>
+                                            <span className="font-semibold text-foreground">Defence reply (court-safe wording): </span>
+                                            <span className="text-muted-foreground">{attack.defenceReply}</span>
+                                          </div>
+                                          <div className="pt-1 border-t border-border/30">
+                                            <span className="font-semibold text-foreground">Risk if attack fails: </span>
+                                            <span className="text-muted-foreground">{attack.riskIfFails}</span>
                                           </div>
                                         </div>
                                       </div>
@@ -1838,54 +2328,183 @@ export function StrategyCommitmentPanel({
                                   </div>
                                 )}
                               </div>
-                              
-                              {/* Disclosure Leverage */}
+
+                              {/* 5. DISCLOSURE LEVERAGE CHAIN */}
                               <div className="rounded-lg border border-border/50 overflow-hidden">
                                 <button
-                                  onClick={() => toggleSection(`${route.id}_disclosure_leverage`)}
+                                  onClick={() => toggleSection(`${route.id}_disclosure_leverage_chain`)}
                                   className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/20 transition-colors"
                                 >
                                   <div className="flex items-center gap-2">
                                     <Shield className="h-4 w-4 text-primary" />
-                                    <span className="text-xs font-semibold text-foreground">Disclosure Leverage</span>
+                                    <span className="text-xs font-semibold text-foreground">Disclosure Leverage Chain ({beastPack.disclosureLeverage.length})</span>
                                   </div>
-                                  {expandedSections.has(`${route.id}_disclosure_leverage`) ? (
+                                  {expandedSections.has(`${route.id}_disclosure_leverage_chain`) ? (
                                     <ChevronUp className="h-4 w-4 text-muted-foreground" />
                                   ) : (
                                     <ChevronDown className="h-4 w-4 text-muted-foreground" />
                                   )}
                                 </button>
-                                {expandedSections.has(`${route.id}_disclosure_leverage`) && (
-                                  <div className="p-3 border-t border-border/50">
-                                    <p className="text-xs text-muted-foreground">{beastPack.disclosureLeverage}</p>
+                                {expandedSections.has(`${route.id}_disclosure_leverage_chain`) && (
+                                  <div className="p-3 border-t border-border/50 space-y-3">
+                                    {beastPack.disclosureLeverage.map((item, idx) => (
+                                      <div key={idx} className="p-3 rounded-lg border border-border/30 bg-muted/10">
+                                        <div className="text-xs space-y-1.5">
+                                          <div>
+                                            <span className="font-semibold text-foreground">Missing item: </span>
+                                            <span className="text-muted-foreground">{item.missingItem}</span>
+                                          </div>
+                                          <div>
+                                            <span className="font-semibold text-foreground">Why it matters: </span>
+                                            <span className="text-muted-foreground">{item.whyItMatters}</span>
+                                          </div>
+                                          <div>
+                                            <span className="font-semibold text-foreground">Chase wording: </span>
+                                            <span className="text-muted-foreground">{item.chaseWording}</span>
+                                          </div>
+                                          <div>
+                                            <span className="font-semibold text-foreground">Time escalation: </span>
+                                            <span className="text-muted-foreground">{item.timeEscalation}</span>
+                                          </div>
+                                          <div>
+                                            <span className="font-semibold text-foreground">Application path: </span>
+                                            <span className="text-muted-foreground">{item.applicationPath}</span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    ))}
                                   </div>
                                 )}
                               </div>
-                              
-                              {/* Worst-Case Failure Mode */}
-                              <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 overflow-hidden">
+
+                              {/* 6. COURTROOM PRESSURE TEST */}
+                              <div className="rounded-lg border border-border/50 overflow-hidden">
                                 <button
-                                  onClick={() => toggleSection(`${route.id}_worst_case`)}
-                                  className="w-full flex items-center justify-between p-3 text-left hover:bg-amber-500/10 transition-colors"
+                                  onClick={() => toggleSection(`${route.id}_courtroom_pressure`)}
+                                  className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/20 transition-colors"
                                 >
                                   <div className="flex items-center gap-2">
-                                    <AlertTriangle className="h-4 w-4 text-amber-600" />
-                                    <span className="text-xs font-semibold text-foreground">Worst-Case Failure Mode</span>
+                                    <AlertCircle className="h-4 w-4 text-primary" />
+                                    <span className="text-xs font-semibold text-foreground">Courtroom Pressure Test ({beastPack.courtroomPressure.length})</span>
                                   </div>
-                                  {expandedSections.has(`${route.id}_worst_case`) ? (
+                                  {expandedSections.has(`${route.id}_courtroom_pressure`) ? (
                                     <ChevronUp className="h-4 w-4 text-muted-foreground" />
                                   ) : (
                                     <ChevronDown className="h-4 w-4 text-muted-foreground" />
                                   )}
                                 </button>
-                                {expandedSections.has(`${route.id}_worst_case`) && (
-                                  <div className="p-3 border-t border-amber-500/20">
-                                    <p className="text-xs text-muted-foreground">{beastPack.worstCaseFailureMode}</p>
+                                {expandedSections.has(`${route.id}_courtroom_pressure`) && (
+                                  <div className="p-3 border-t border-border/50 space-y-3">
+                                    {beastPack.courtroomPressure.map((pressure, idx) => (
+                                      <div key={idx} className="p-3 rounded-lg border border-border/30 bg-muted/10">
+                                        <div className="text-xs space-y-2">
+                                          <div>
+                                            <span className="font-semibold text-foreground">Judge likely question: </span>
+                                            <span className="text-muted-foreground italic">{pressure.judgeQuestion}</span>
+                                          </div>
+                                          <div>
+                                            <span className="font-semibold text-foreground">CPS likely answer: </span>
+                                            <span className="text-muted-foreground">{pressure.cpsAnswer}</span>
+                                          </div>
+                                          <div>
+                                            <span className="font-semibold text-foreground">Defence reply (safe, measured, conditional if needed): </span>
+                                            <span className="text-muted-foreground">{pressure.defenceReply}</span>
+                                          </div>
+                                          <div className="pt-1 border-t border-border/30">
+                                            <span className="font-semibold text-foreground">Evidence check required before relying on reply: </span>
+                                            <span className="text-muted-foreground">{pressure.evidenceCheck}</span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    ))}
                                   </div>
                                 )}
                               </div>
-                              
-                              {/* Next 72 Hours */}
+
+                              {/* 7. KILL SWITCHES + PIVOT PLAN */}
+                              <div className="rounded-lg border border-red-500/20 bg-red-500/5 overflow-hidden">
+                                <button
+                                  onClick={() => toggleSection(`${route.id}_kill_switches_pivot`)}
+                                  className="w-full flex items-center justify-between p-3 text-left hover:bg-red-500/10 transition-colors"
+                                >
+                                  <div className="flex items-center gap-2">
+                                    <AlertTriangle className="h-4 w-4 text-red-600" />
+                                    <span className="text-xs font-semibold text-foreground">Kill Switches + Pivot Plan ({beastPack.killSwitches.length})</span>
+                                  </div>
+                                  {expandedSections.has(`${route.id}_kill_switches_pivot`) ? (
+                                    <ChevronUp className="h-4 w-4 text-muted-foreground" />
+                                  ) : (
+                                    <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                                  )}
+                                </button>
+                                {expandedSections.has(`${route.id}_kill_switches_pivot`) && (
+                                  <div className="p-3 border-t border-red-500/20 space-y-3">
+                                    {beastPack.killSwitches.map((kill, idx) => (
+                                      <div key={idx} className="p-3 rounded-lg border border-red-500/20 bg-red-500/5">
+                                        <div className="text-xs space-y-1.5">
+                                          <div>
+                                            <span className="font-semibold text-foreground">What evidence arrival forces a strategy change: </span>
+                                            <span className="text-muted-foreground">{kill.evidenceArrival}</span>
+                                          </div>
+                                          <div>
+                                            <span className="font-semibold text-foreground">What the new route becomes: </span>
+                                            <span className="text-muted-foreground">{kill.newRoute}</span>
+                                          </div>
+                                          <div>
+                                            <span className="font-semibold text-foreground">What is preserved: </span>
+                                            <span className="text-muted-foreground">{kill.preserved}</span>
+                                          </div>
+                                          <div>
+                                            <span className="font-semibold text-foreground">What is abandoned: </span>
+                                            <span className="text-muted-foreground">{kill.abandoned}</span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    ))}
+                                  </div>
+                                )}
+                              </div>
+
+                              {/* 8. RESIDUAL ATTACK SCANNER */}
+                              <div className="rounded-lg border border-border/50 overflow-hidden">
+                                <button
+                                  onClick={() => toggleSection(`${route.id}_residual_attack_scanner`)}
+                                  className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/20 transition-colors"
+                                >
+                                  <div className="flex items-center gap-2">
+                                    <Target className="h-4 w-4 text-primary" />
+                                    <span className="text-xs font-semibold text-foreground">Residual Attack Scanner ({beastPack.residualAttacks.length})</span>
+                                  </div>
+                                  {expandedSections.has(`${route.id}_residual_attack_scanner`) ? (
+                                    <ChevronUp className="h-4 w-4 text-muted-foreground" />
+                                  ) : (
+                                    <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                                  )}
+                                </button>
+                                {expandedSections.has(`${route.id}_residual_attack_scanner`) && (
+                                  <div className="p-3 border-t border-border/50 space-y-2">
+                                    <p className="text-xs text-muted-foreground mb-2">Checklist of untested areas:</p>
+                                    {beastPack.residualAttacks.map((attack, idx) => (
+                                      <div key={idx} className={`p-2 rounded border ${attack.tested ? 'border-green-500/20 bg-green-500/5' : 'border-border/30 bg-muted/10'}`}>
+                                        <div className="flex items-center gap-2 mb-1">
+                                          <p className="text-xs font-semibold text-foreground">{attack.area}</p>
+                                          <Badge variant={attack.tested ? "success" : "secondary"} className="text-[10px]">
+                                            {attack.tested ? "TESTED" : "UNTESTED"}
+                                          </Badge>
+                                        </div>
+                                        <p className="text-xs text-muted-foreground">
+                                          <span className="font-semibold">Leverage: </span>{attack.leverage}
+                                        </p>
+                                        <p className="text-xs text-muted-foreground">
+                                          <span className="font-semibold">Evidence needed: </span>{attack.evidenceNeeded}
+                                        </p>
+                                      </div>
+                                    ))}
+                                  </div>
+                                )}
+                              </div>
+
+                              {/* 9. NEXT 72 HOURS */}
                               <div className="rounded-lg border border-border/50 overflow-hidden">
                                 <button
                                   onClick={() => toggleSection(`${route.id}_next_72_hours`)}
@@ -1893,7 +2512,7 @@ export function StrategyCommitmentPanel({
                                 >
                                   <div className="flex items-center gap-2">
                                     <Clock className="h-4 w-4 text-primary" />
-                                    <span className="text-xs font-semibold text-foreground">Next 72 Hours</span>
+                                    <span className="text-xs font-semibold text-foreground">Next 72 Hours ({beastPack.next72Hours.length})</span>
                                   </div>
                                   {expandedSections.has(`${route.id}_next_72_hours`) ? (
                                     <ChevronUp className="h-4 w-4 text-muted-foreground" />
@@ -1903,6 +2522,7 @@ export function StrategyCommitmentPanel({
                                 </button>
                                 {expandedSections.has(`${route.id}_next_72_hours`) && (
                                   <div className="p-3 border-t border-border/50">
+                                    <p className="text-xs text-muted-foreground mb-2">Concrete task list (chases, reviews, applications, instructions). No predictions, only actions:</p>
                                     <ul className="space-y-1.5">
                                       {beastPack.next72Hours.map((action, idx) => (
                                         <li key={idx} className="text-xs text-foreground flex items-start gap-2">
