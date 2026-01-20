@@ -1454,6 +1454,13 @@ export function StrategyCommitmentPanel({
   return (
     <Card className="p-6" data-strategy-commitment>
       <div className="space-y-6">
+        {/* Temporary debug marker - BEAST_PACK_MARKER__2026_01_20 */}
+        {isDebug && (
+          <div className="mb-2 p-2 rounded border border-amber-500/30 bg-amber-500/10">
+            <p className="text-xs font-mono text-amber-600">BEAST_PACK_MARKER__2026_01_20</p>
+          </div>
+        )}
+        
         <div className="flex items-start justify-between">
           <div>
             <div className="flex items-center gap-2 mb-2">
