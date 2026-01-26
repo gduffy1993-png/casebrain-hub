@@ -264,6 +264,25 @@ export const criminalLens: CaseLens = {
       }
     }
     
+    // SAFE only if all required dependencies are present
+    // For pillars with evidenceDependencies, verify all are present
+    if (pillar.evidenceDependencies.length > 0) {
+      const requiresForStrategy = 
+        (pillar.id === "identification" && primaryStrategy === "fight_charge") ||
+        (pillar.id === "act_causation" && primaryStrategy === "fight_charge") ||
+        (pillar.id === "injury_classification" && (primaryStrategy === "charge_reduction" || primaryStrategy === "fight_charge")) ||
+        (pillar.id === "intent" && (primaryStrategy === "charge_reduction" || primaryStrategy === "fight_charge"));
+      
+      if (requiresForStrategy) {
+        const allPresent = pillar.evidenceDependencies.every(key => 
+          hasEvidence(evidenceImpactMap, [key])
+        );
+        if (!allPresent) {
+          return "PREMATURE";
+        }
+      }
+    }
+    
     return "SAFE";
   },
   

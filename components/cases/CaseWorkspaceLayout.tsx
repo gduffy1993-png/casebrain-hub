@@ -244,17 +244,31 @@ export function CaseWorkspaceLayout({
 
   // For non-criminal cases without strategy data, show fallback
   if (practiceArea !== "criminal" && !hasStrategyData) {
+    const roleCoverageText = practiceArea === "housing_disrepair"
+      ? "Statutory triggers & supervision active — strategy modules rolling out"
+      : "Workspace & safety layer active — strategy modules rolling out";
+    
     return (
       <div className="space-y-6">
         <Card className="p-6 border-2 border-muted">
-          <div className="text-center py-8">
-            <Target className="h-12 w-12 mx-auto mb-4 text-muted-foreground/50" />
-            <h3 className="text-lg font-semibold text-foreground mb-2">
-              Strategy analysis not available
-            </h3>
-            <p className="text-sm text-muted-foreground max-w-md mx-auto">
-              Strategy analysis is not yet available for {lens.practiceArea.replace("_", " ")} cases, or insufficient data has been provided.
-            </p>
+          <div className="space-y-4">
+            <div className="rounded-lg border border-primary/20 bg-primary/5 p-3">
+              <p className="text-xs text-muted-foreground text-center">{roleCoverageText}</p>
+            </div>
+            <div className="text-center py-6">
+              <Target className="h-12 w-12 mx-auto mb-4 text-muted-foreground/50" />
+              <h3 className="text-lg font-semibold text-foreground mb-2">
+                Strategy Analysis Not Available
+              </h3>
+              <div className="text-sm text-muted-foreground max-w-md mx-auto space-y-2">
+                <p>
+                  <strong>Active:</strong> Pillars structure, supervision layer, safety checks
+                </p>
+                <p>
+                  <strong>Requires:</strong> Further evidence or strategy modules for {lens.practiceArea.replace("_", " ")} cases
+                </p>
+              </div>
+            </div>
           </div>
         </Card>
       </div>

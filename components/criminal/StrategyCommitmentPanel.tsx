@@ -5,7 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Target, CheckCircle2, AlertCircle, X, Lock, ArrowRight, TrendingUp, AlertTriangle, ChevronDown, ChevronUp, Copy, FileText, Shield, Zap, AlertCircle as AlertCircleIcon, Calendar, MapPin, Loader2, Clock, Scale } from "lucide-react";
+import { Target, CheckCircle2, AlertCircle, X, Lock, ArrowRight, TrendingUp, AlertTriangle, ChevronDown, ChevronUp, Copy, FileText, Shield, Zap, AlertCircle as AlertCircleIcon, Calendar, MapPin, Loader2, Clock, Scale, CheckCircle } from "lucide-react";
 import { useToast } from "@/components/Toast";
 import { getLens, type PracticeArea } from "@/lib/lenses";
 
@@ -637,7 +637,7 @@ function getBeastStrategyPack(strategyType: PrimaryStrategy | null): BeastStrate
             disclosureRequired: "VIPER pack, all CCTV from scene, initial witness descriptions, identification procedures, any failures to follow Turnbull",
             cpsResponse: "CPS will argue identification is strong, properly conducted, and supported by CCTV or other evidence",
             defenceReply: "If Turnbull guidelines not met, identification is unsafe. Defence will argue identification procedure was flawed or supporting evidence is weak. [CONDITIONAL - requires full disclosure]",
-            riskIfFails: "If identification is strong and Turnbull compliant, this attack fails. Pivot to intent threshold or causation challenge.",
+            riskIfFails: "If identification is strong and Turnbull compliant, this attack fails. Pivot condition triggered: intent threshold or causation challenge.",
           },
           {
             target: "Intent threshold (s18 vs s20)",
@@ -645,7 +645,7 @@ function getBeastStrategyPack(strategyType: PrimaryStrategy | null): BeastStrate
             disclosureRequired: "Complete CCTV coverage, sequence evidence, timings, duration, any evidence of provocation or self-defence",
             cpsResponse: "CPS will argue sequence shows sustained/targeted violence, duration supports specific intent, circumstances show premeditation",
             defenceReply: "Defence will argue sequence shows brief reactive incident, absence of targeting undermines specific intent, recklessness (s20) is established not s18. [CONDITIONAL - requires sequence evidence]",
-            riskIfFails: "If sequence evidence clearly shows sustained targeting, s18 intent may be established. Pivot to charge_reduction if harm threshold met, or fight causation if medical evidence is weak.",
+            riskIfFails: "If sequence evidence clearly shows sustained targeting, s18 intent may be established. Pivot condition triggered: charge_reduction if harm threshold met, or fight causation if medical evidence is weak.",
           },
           {
             target: "Disclosure failures (abuse of process)",
@@ -702,19 +702,19 @@ function getBeastStrategyPack(strategyType: PrimaryStrategy | null): BeastStrate
         killSwitches: [
           {
             evidenceArrival: "Strong uncontested identification with multiple witnesses and clear Turnbull compliance",
-            newRoute: "Pivot to charge_reduction (s18 → s20) if identification is strong but intent threshold can be challenged. Alternatively, pivot to outcome_management if case is overwhelming.",
+            newRoute: "Pivot condition triggered: charge_reduction (s18 → s20) if identification is strong but intent threshold can be challenged. Alternatively, pivot condition triggered: outcome_management if case is overwhelming.",
             preserved: "Intent threshold challenge (if medical/sequence evidence supports s20), disclosure leverage (if gaps persist), causation challenges",
             abandoned: "Identification challenge, abuse of process on identification grounds",
           },
           {
             evidenceArrival: "Complete disclosure with no gaps and strong CCTV continuity",
-            newRoute: "Pivot to charge_reduction or outcome_management. Focus on evidential weaknesses (intent, causation) rather than procedural challenges.",
+            newRoute: "Pivot condition triggered: charge_reduction or outcome_management. Focus on evidential weaknesses (intent, causation) rather than procedural challenges.",
             preserved: "Intent threshold challenge, medical causation challenges, sequence evidence arguments",
             abandoned: "Abuse of process on disclosure grounds, CCTV continuity challenges",
           },
           {
             evidenceArrival: "Medical evidence clearly links injuries to defendant's actions with expert consensus",
-            newRoute: "Pivot to intent threshold challenge (s18 vs s20) or outcome_management if causation is clear. Abandon causation challenges.",
+            newRoute: "Pivot condition triggered: intent threshold challenge (s18 vs s20) or outcome_management if causation is clear. Abandon causation challenges.",
             preserved: "Intent threshold challenge, identification challenges, disclosure leverage (if gaps persist)",
             abandoned: "Causation challenges, alternative causation arguments",
           },
@@ -780,7 +780,7 @@ function getBeastStrategyPack(strategyType: PrimaryStrategy | null): BeastStrate
             disclosureRequired: "Expert medical reports, full medical records, injury mechanism analysis, any expert opinions on intent",
             cpsResponse: "CPS will argue medical evidence supports s18 (specific intent mechanism) or injury severity demonstrates intent",
             defenceReply: "Defence will argue medical evidence supports s20 (recklessness mechanism) not s18. Injury mechanism analysis [CONDITIONAL - requires expert reports] may show recklessness not specific intent. [CONDITIONAL]",
-            riskIfFails: "If medical evidence clearly supports s18, this attack fails. Pivot to sequence evidence challenge or outcome_management.",
+            riskIfFails: "If medical evidence clearly supports s18, this attack fails. Pivot condition triggered: sequence evidence challenge or outcome_management.",
           },
           {
             target: "Intent threshold (s18 vs s20) - Sequence evidence",
@@ -788,7 +788,7 @@ function getBeastStrategyPack(strategyType: PrimaryStrategy | null): BeastStrate
             disclosureRequired: "Complete sequence evidence, timings, duration, any evidence of targeting or premeditation",
             cpsResponse: "CPS will argue sequence shows sustained/targeted violence, duration supports specific intent, circumstances show premeditation",
             defenceReply: "Defence will argue sequence shows spontaneity not targeting, absence of premeditation undermines specific intent, recklessness (s20) is established not s18. [CONDITIONAL - requires sequence evidence]",
-            riskIfFails: "If sequence clearly shows targeting/premeditation, this attack fails. Pivot to medical evidence challenge or outcome_management.",
+            riskIfFails: "If sequence clearly shows targeting/premeditation, this attack fails. Pivot condition triggered: medical evidence challenge or outcome_management.",
           },
         ],
         disclosureLeverage: [
@@ -824,13 +824,13 @@ function getBeastStrategyPack(strategyType: PrimaryStrategy | null): BeastStrate
         killSwitches: [
           {
             evidenceArrival: "Medical evidence clearly supports s18 (specific intent mechanism)",
-            newRoute: "Pivot to outcome_management if charge reduction fails. Focus on mitigation and sentencing position.",
+            newRoute: "Pivot condition triggered: outcome_management if charge reduction fails. Focus on mitigation and sentencing position.",
             preserved: "Sequence evidence challenge (if spontaneity can be argued), circumstances arguments",
             abandoned: "Medical evidence challenge, injury mechanism arguments",
           },
           {
             evidenceArrival: "Sequence evidence shows clear targeting/premeditation",
-            newRoute: "Pivot to outcome_management if charge reduction fails. Focus on mitigation and sentencing position.",
+            newRoute: "Pivot condition triggered: outcome_management if charge reduction fails. Focus on mitigation and sentencing position.",
             preserved: "Medical evidence challenge (if mechanism supports s20), circumstances arguments",
             abandoned: "Sequence evidence challenge, spontaneity arguments",
           },
@@ -1331,6 +1331,7 @@ function SupervisorSnapshot({
   nextIrreversibleDecision,
   evidenceImpactMap,
   strategyRoutes,
+  toast,
 }: {
   savedPosition: { position_text: string } | null;
   primary: PrimaryStrategy | null;
@@ -1338,6 +1339,7 @@ function SupervisorSnapshot({
   nextIrreversibleDecision: string | null;
   evidenceImpactMap: EvidenceImpactMap[];
   strategyRoutes: StrategyRoute[];
+  toast: { success: (msg: string) => void; error: (msg: string) => void };
 }) {
   if (!primary) return null;
 
@@ -1364,12 +1366,51 @@ function SupervisorSnapshot({
   const selectedRoute = strategyRoutes.find(r => r.type === primary);
   const nextActions = selectedRoute?.nextActions?.slice(0, 5) || [];
 
+  const handleCopySnapshot = async () => {
+    const timestamp = new Date().toISOString();
+    const snapshotText = `SUPERVISOR SNAPSHOT
+Generated: ${timestamp} UTC
+
+Recorded Position: ${positionLines}
+
+Primary Strategy: ${strategyLabel}
+
+Dependencies:
+${dependencies.length > 0 ? dependencies.map(dep => `- ${dep}`).join("\n") : "- Pending disclosure"}
+
+Top Disclosure Gaps:
+${disclosureGaps.length > 0 ? disclosureGaps.map(gap => `- ${gap}`).join("\n") : "- None identified"}
+
+Kill Switch: ${killSwitch}
+
+${nextIrreversibleDecision ? `Next Irreversible Decision: ${nextIrreversibleDecision}\n` : ""}${nextActions.length > 0 ? `Next Actions:\n${nextActions.map(action => `- ${action}`).join("\n")}` : ""}`;
+
+    try {
+      await navigator.clipboard.writeText(snapshotText);
+      toast.success("Snapshot copied to clipboard");
+    } catch (err) {
+      console.error("Failed to copy snapshot:", err);
+      toast.error("Failed to copy snapshot");
+    }
+  };
+
   return (
     <div className="rounded-lg border-2 border-primary/30 bg-primary/5 p-4 space-y-3">
-      <div className="flex items-center gap-2 mb-3">
-        <FileText className="h-4 w-4 text-primary" />
-        <h3 className="text-sm font-semibold text-foreground">Supervisor Snapshot</h3>
-        <Badge variant="outline" className="text-xs">READ-ONLY</Badge>
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2">
+          <FileText className="h-4 w-4 text-primary" />
+          <h3 className="text-sm font-semibold text-foreground">Supervisor Snapshot</h3>
+          <Badge variant="outline" className="text-xs">READ-ONLY</Badge>
+        </div>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={handleCopySnapshot}
+          className="flex items-center gap-1 text-xs h-7"
+        >
+          <Copy className="h-3 w-3" />
+          Copy
+        </Button>
       </div>
 
       <div className="grid grid-cols-1 gap-3 text-xs">
@@ -1846,7 +1887,7 @@ function BeastStrategyPackView({
             <span className="font-semibold">If: </span>{pack.dashboard.primaryKillSwitch.condition}
           </p>
           <p className="text-xs text-muted-foreground">
-            <span className="font-semibold">Pivot to: </span>{pack.dashboard.primaryKillSwitch.pivotTo}
+            <span className="font-semibold">Pivot condition triggered: </span>{pack.dashboard.primaryKillSwitch.pivotTo}
           </p>
         </div>
       </div>
@@ -2227,9 +2268,11 @@ export function StrategyCommitmentPanel({
   const [selectedRouteId, setSelectedRouteId] = useState<string | undefined>(undefined);
   const [isLoadingRoutes, setIsLoadingRoutes] = useState(true);
   const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set());
+  const [expandedRoutes, setExpandedRoutes] = useState<Set<string>>(new Set());
   const [artifacts, setArtifacts] = useState<StrategyArtifact[]>([]);
   const [isGated, setIsGated] = useState(false);
   const [recommendation, setRecommendation] = useState<StrategyRecommendation | null>(null);
+  const [showGuardrail, setShowGuardrail] = useState(false);
   const [evidenceImpactMap, setEvidenceImpactMap] = useState<EvidenceImpactMap[]>([]);
   const [timePressure, setTimePressure] = useState<TimePressureState | null>(null);
   const [confidenceStates, setConfidenceStates] = useState<Record<string, any>>({});
@@ -2362,6 +2405,11 @@ export function StrategyCommitmentPanel({
           }
           if (data.data.recommendation) {
             setRecommendation(data.data.recommendation);
+          }
+          // Set default expanded route: committed primary, or first route if none committed
+          const defaultExpanded = primary || data.data.routes[0]?.type;
+          if (defaultExpanded) {
+            setExpandedRoutes(new Set([defaultExpanded]));
           }
           if (data.data.evidenceImpactMap) {
             setEvidenceImpactMap(data.data.evidenceImpactMap);
@@ -2521,7 +2569,29 @@ export function StrategyCommitmentPanel({
     });
   };
 
-  const handleCommit = async () => {
+  // Check for one-time guardrail acknowledgement
+  useEffect(() => {
+    if (typeof window === "undefined" || !resolvedCaseId) return;
+    const guardrailKey = `casebrain_guardrail_ack_${resolvedCaseId}`;
+    const acknowledged = localStorage.getItem(guardrailKey);
+    if (!acknowledged && primary && !isCommitted) {
+      setShowGuardrail(true);
+    }
+  }, [primary, isCommitted, resolvedCaseId]);
+
+  const handleGuardrailAcknowledge = async () => {
+    if (typeof window !== "undefined" && resolvedCaseId) {
+      const guardrailKey = `casebrain_guardrail_ack_${resolvedCaseId}`;
+      localStorage.setItem(guardrailKey, "true");
+    }
+    setShowGuardrail(false);
+    // Proceed with commit after acknowledgement
+    if (primary) {
+      await handleCommitInternal();
+    }
+  };
+
+  const handleCommitInternal = async () => {
     if (!primary) {
       showToast("No strategy selected. Please select a primary strategy before committing.", "error");
       return;
@@ -2719,9 +2789,45 @@ export function StrategyCommitmentPanel({
     proceduralState.hasDisclosureApps,
   );
 
+  // Role coverage banner text from lens
+  const roleCoverageText = practiceArea === "criminal" 
+    ? "Full strategy discipline active"
+    : practiceArea === "housing_disrepair"
+    ? "Statutory triggers & supervision active — strategy modules rolling out"
+    : "Workspace & safety layer active — strategy modules rolling out";
+
   return (
     <Card className="p-6" data-strategy-commitment>
       <div className="space-y-6">
+        {/* Role Coverage Banner */}
+        <div className="rounded-lg border border-primary/20 bg-primary/5 p-3">
+          <p className="text-xs text-muted-foreground text-center">{roleCoverageText}</p>
+        </div>
+
+        {/* One-time Guardrail Modal */}
+        {showGuardrail && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+            <Card className="p-6 max-w-md mx-4 border-2 border-primary/30">
+              <div className="space-y-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <Shield className="h-5 w-5 text-primary" />
+                  <h3 className="text-lg font-semibold text-foreground">System Guardrail</h3>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  This system supports decision discipline. It does not provide legal advice or predict outcomes.
+                </p>
+                <Button
+                  onClick={handleGuardrailAcknowledge}
+                  className="w-full"
+                >
+                  <CheckCircle className="h-4 w-4 mr-2" />
+                  Continue
+                </Button>
+              </div>
+            </Card>
+          </div>
+        )}
+
         {/* Temporary debug marker - BEAST_PACK_MARKER__2026_01_20 */}
         {isDebug && (
           <div className="mb-2 p-2 rounded border border-amber-500/30 bg-amber-500/10">
@@ -2767,6 +2873,7 @@ export function StrategyCommitmentPanel({
               nextIrreversibleDecision={nextIrreversibleDecision}
               evidenceImpactMap={evidenceImpactMap}
               strategyRoutes={strategyRoutes}
+              toast={{ success: (msg) => showToast(msg, "success"), error: (msg) => showToast(msg, "error") }}
             />
 
             {/* Consistency & Safety Panel */}
@@ -2780,6 +2887,12 @@ export function StrategyCommitmentPanel({
               lens={lens}
             />
 
+            {/* System Refusals Panel - Always visible, calm */}
+            <SystemRefusalsPanel
+              expandedSections={expandedSections}
+              toggleSection={toggleSection}
+            />
+
             {/* Pillars Structure - Legal pillars with SAFE/UNSAFE/PREMATURE labels */}
             <PillarsPanel
               primary={primary}
@@ -2788,12 +2901,6 @@ export function StrategyCommitmentPanel({
               strategyRoutes={strategyRoutes}
               hasDisclosureGaps={proceduralState.hasDisclosureApps}
               lens={lens}
-            />
-
-            {/* System Refusals Panel - Always visible, calm */}
-            <SystemRefusalsPanel
-              expandedSections={expandedSections}
-              toggleSection={toggleSection}
             />
           </>
         )}
@@ -2808,7 +2915,7 @@ export function StrategyCommitmentPanel({
               Choose how the case will be run, based on the recorded defence position.
             </p>
             <p className="text-sm text-foreground mb-3 font-medium">
-              Based on the recorded defence position and current disclosure, the recommended way to run the case is:
+              Based on the recorded defence position and current disclosure, the system position is:
             </p>
             <p className="text-sm text-muted-foreground">
               {isCommitted 
@@ -2827,8 +2934,14 @@ export function StrategyCommitmentPanel({
             )}
             {primary && !isCommitted && (
               <Button
-                onClick={handleCommit}
-                disabled={isCommitting || !primary}
+                onClick={() => {
+                  if (showGuardrail) {
+                    // Guardrail will handle commit after acknowledgement
+                    return;
+                  }
+                  handleCommitInternal();
+                }}
+                disabled={isCommitting || !primary || showGuardrail}
                 className="flex items-center gap-2"
               >
                 <Lock className="h-3.5 w-3.5" />
@@ -3039,7 +3152,7 @@ export function StrategyCommitmentPanel({
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
                       <Target className="h-5 w-5 text-primary" />
-                      <h3 className="text-sm font-semibold text-foreground">Recommended Strategy</h3>
+                      <h3 className="text-sm font-semibold text-foreground">System Position</h3>
                       <Badge variant="primary" className="text-xs">PRIMARY</Badge>
                       <Badge className={`text-xs ${
                         displayConfidence === "HIGH" 
@@ -3048,7 +3161,7 @@ export function StrategyCommitmentPanel({
                             ? "bg-amber-500/20 text-amber-600 border-amber-500/30"
                             : "bg-blue-500/20 text-blue-600 border-blue-500/30"
                       } border`}>
-                        {displayConfidence} Confidence
+                        {displayConfidence} Evidence Support Level
                       </Badge>
                       {shouldCapConfidence && (
                         <Badge variant="outline" className="text-xs text-muted-foreground">
@@ -3132,7 +3245,7 @@ export function StrategyCommitmentPanel({
                             <div key={idx} className="p-2 rounded-lg border border-amber-500/20 bg-amber-500/5">
                               <div className="text-xs">
                                 <div className="font-semibold text-foreground mb-1">If: {flip.evidenceEvent}</div>
-                                <div className="text-muted-foreground mb-1">→ Pivot to: {STRATEGY_OPTIONS.find(o => o.id === flip.flipsTo)?.label || flip.flipsTo}</div>
+                                <div className="text-muted-foreground mb-1">→ Pivot condition triggered: {STRATEGY_OPTIONS.find(o => o.id === flip.flipsTo)?.label || flip.flipsTo}</div>
                                 <div className="text-muted-foreground mb-1">Why: {flip.why}</div>
                                 <div className="text-muted-foreground">Timing: {flip.timing.replace("_", " ")}</div>
                               </div>
@@ -3290,6 +3403,23 @@ export function StrategyCommitmentPanel({
                       return { route, strategyKey, isRouteCommitted, isActive, badgeText, isSelected, isCommittedRoute };
                     });
                   })().map(({ route, strategyKey, isRouteCommitted, isActive, badgeText, isSelected, isCommittedRoute }) => {
+                    const isExpanded = expandedRoutes.has(route.type);
+                    const toggleRoute = () => {
+                      setExpandedRoutes(prev => {
+                        const next = new Set(prev);
+                        if (next.has(route.type)) {
+                          next.delete(route.type);
+                        } else {
+                          next.add(route.type);
+                        }
+                        return next;
+                      });
+                    };
+
+                    // Get confidence/evidence support level
+                    const confidenceState = confidenceStates[route.type];
+                    const evidenceSupportLevel = confidenceState?.current || "LOW";
+
                     return (
                       <div
                         key={route.id}
@@ -3313,11 +3443,45 @@ export function StrategyCommitmentPanel({
                                   {badgeText}
                                 </Badge>
                               )}
+                              {confidenceState && (
+                                <Badge className={`text-xs ${
+                                  evidenceSupportLevel === "HIGH"
+                                    ? "bg-green-500/20 text-green-600 border-green-500/30"
+                                    : evidenceSupportLevel === "MEDIUM"
+                                      ? "bg-amber-500/20 text-amber-600 border-amber-500/30"
+                                      : "bg-blue-500/20 text-blue-600 border-blue-500/30"
+                                } border`}>
+                                  {evidenceSupportLevel} Evidence Support
+                                </Badge>
+                              )}
                             </div>
-                            <p className="text-xs text-muted-foreground mb-3">{route.rationale}</p>
+                            {isExpanded ? (
+                              <p className="text-xs text-muted-foreground mb-3">{route.rationale}</p>
+                            ) : (
+                              <div className="space-y-2">
+                                <p className="text-xs text-muted-foreground">{route.rationale.split(/[.!?]/)[0] + (route.rationale.includes('.') ? '.' : '')}</p>
+                                {route.risks.length > 0 && (
+                                  <div className="text-xs text-muted-foreground">
+                                    <span className="font-semibold">Top risks: </span>
+                                    {route.risks.slice(0, 2).join(", ")}
+                                  </div>
+                                )}
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  onClick={toggleRoute}
+                                  className="text-xs h-6 mt-1 p-0"
+                                >
+                                  {isExpanded ? "Collapse" : "Expand"}
+                                  {isExpanded ? <ChevronUp className="h-3 w-3 ml-1" /> : <ChevronDown className="h-3 w-3 ml-1" />}
+                                </Button>
+                              </div>
+                            )}
                           </div>
                         </div>
 
+                        {!isExpanded ? null : (
+                          <>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
                 <div>
                             <div className="flex items-center gap-1 mb-2">
@@ -3422,6 +3586,8 @@ export function StrategyCommitmentPanel({
                               {isSelected ? "Selected" : "Select as Primary Strategy"}
                             </Button>
                           </div>
+                        )}
+                          </>
                         )}
                       </div>
                     );
@@ -3576,10 +3742,10 @@ export function StrategyCommitmentPanel({
               <div className="mt-6 pt-6 border-t border-border">
                 <div className="flex items-center gap-2 mb-3">
                   <TrendingUp className="h-4 w-4 text-primary" />
-                  <h3 className="text-sm font-semibold text-foreground">Strategy Confidence</h3>
+                  <h3 className="text-sm font-semibold text-foreground">Evidence Support Levels</h3>
                 </div>
                 <p className="text-xs text-muted-foreground mb-3">
-                  Confidence levels for each route based on current evidence signals.
+                  Evidence support levels for each route based on current evidence signals.
                 </p>
                 <div className="space-y-2">
                   {Object.entries(confidenceStates).map(([routeType, state]: [string, any]) => (
@@ -3595,7 +3761,7 @@ export function StrategyCommitmentPanel({
                               ? "bg-amber-500/20 text-amber-600 border-amber-500/30"
                               : "bg-blue-500/20 text-blue-600 border-blue-500/30"
                         } border`}>
-                          {state.current} Confidence
+                          {state.current} Evidence Support
                         </Badge>
                       </div>
                       <p className="text-xs text-muted-foreground">{state.explanation}</p>

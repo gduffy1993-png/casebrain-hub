@@ -26,7 +26,7 @@
  *   - Multiple strategies (uses primary)
  */
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -1122,9 +1122,98 @@ export function CaseFightPlan({
               const tacticalActions = selectedRoute.attackPaths
                 .flatMap((path: any) => path.next48HoursActions || [])
                 .filter((action: string, index: number, self: string[]) => self.indexOf(action) === index) // Remove duplicates
-                .slice(0, 10); // Limit to 10 actions
+                .slice(0, 15); // Increase limit to allow grouping
 
               if (tacticalActions.length === 0) return null;
+
+              // Group actions into Critical, Important, Opportunistic
+              const criticalActions: string[] = [];
+              const importantActions: string[] = [];
+              const opportunisticActions: string[] = [];
+
+              tacticalActions.forEach((action: string) => {
+                const lowerAction = action.toLowerCase();
+                // Critical: missing key disclosure dependencies or "before PTPH" time pressure
+                const isCritical = 
+                  (lowerAction.includes("cctv") || lowerAction.includes("continuity") || 
+                   lowerAction.includes("bwv") || lowerAction.includes("999") || 
+                   lowerAction.includes("medical") || lowerAction.includes("injury")) &&
+                  (lowerAction.includes("request") || lowerAction.includes("disclosure") || lowerAction.includes("outstanding")) ||
+                  lowerAction.includes("before ptph") || lowerAction.includes("before plea") ||
+                  lowerAction.includes("blocks progress") || lowerAction.includes("blocker");
+                
+                // Opportunistic: residual angles or optional
+                const isOpportunistic = 
+                  lowerAction.includes("residual") || lowerAction.includes("optional") ||
+                  lowerAction.includes("consider") || lowerAction.includes("if time permits");
+
+                if (isCritical) {
+                  criticalActions.push(action);
+                } else if (isOpportunistic) {
+                  opportunisticActions.push(action);
+                } else {
+                  importantActions.push(action);
+                }
+              });
+
+              // Component for action group with show more/less
+              const ActionGroup = ({ title, actions, color, maxVisible = 5 }: { title: string; actions: string[]; color: string; maxVisible?: number }) => {
+                const [visible, setVisible] = useState(false);
+                if (actions.length === 0) return null;
+                const visibleActions = visible ? actions : actions.slice(0, maxVisible);
+                const hasMore = actions.length > maxVisible;
+
+                return (
+                  <div className="space-y-2">
+                    <h4 className={`text-xs font-semibold ${color}`}>{title}</h4>
+                    <div className="space-y-2">
+                      {visibleActions.map((action: string, idx: number) => {
+                        const lowerAction = action.toLowerCase();
+                        let optics: "attractive" | "neutral" | "risky" = "neutral";
+                        if (lowerAction.includes("disclosure request") || lowerAction.includes("continuity") || lowerAction.includes("written submission")) {
+                          optics = "attractive";
+                        } else if (lowerAction.includes("abuse") && !lowerAction.includes("chase")) {
+                          optics = "risky";
+                        }
+
+                        return (
+                          <div
+                            key={idx}
+                            className="flex items-start gap-2 p-3 rounded-lg border border-border/50 bg-muted/20"
+                          >
+                            <div className="flex-shrink-0 w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
+                              <span className="text-xs font-semibold text-primary">{idx + 1}</span>
+                            </div>
+                            <div className="flex-1 flex items-center gap-2">
+                              <p className="text-xs text-foreground flex-1">{action}</p>
+                              {optics === "attractive" && (
+                                <Badge className="bg-green-500/20 text-green-600 border-green-500/30 text-[10px] border">
+                                  🟢 Attractive
+                                </Badge>
+                              )}
+                              {optics === "risky" && (
+                                <Badge className="bg-red-500/20 text-red-600 border-red-500/30 text-[10px] border">
+                                  🔴 Risky
+                                </Badge>
+                              )}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                    {hasMore && (
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setVisible(!visible)}
+                        className="text-xs h-6"
+                      >
+                        {visible ? "Show less" : `Show ${actions.length - maxVisible} more`}
+                      </Button>
+                    )}
+                  </div>
+                );
+              };
 
               return (
                 <div className="mt-6 pt-6 border-t border-border">
@@ -1135,41 +1224,10 @@ export function CaseFightPlan({
                   <p className="text-xs text-muted-foreground mb-3">
                     Action items assembled from attack paths for the committed strategy. Includes evidence impact awareness and time pressure considerations.
                   </p>
-                  <div className="space-y-2">
-                    {tacticalActions.map((action: string, idx: number) => {
-                      // Determine judicial optics for action
-                      const lowerAction = action.toLowerCase();
-                      let optics: "attractive" | "neutral" | "risky" = "neutral";
-                      if (lowerAction.includes("disclosure request") || lowerAction.includes("continuity") || lowerAction.includes("written submission")) {
-                        optics = "attractive";
-                      } else if (lowerAction.includes("abuse") && !lowerAction.includes("chase")) {
-                        optics = "risky";
-                      }
-
-                      return (
-                        <div
-                          key={idx}
-                          className="flex items-start gap-2 p-3 rounded-lg border border-border/50 bg-muted/20"
-                        >
-                          <div className="flex-shrink-0 w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
-                            <span className="text-xs font-semibold text-primary">{idx + 1}</span>
-                          </div>
-                          <div className="flex-1 flex items-center gap-2">
-                            <p className="text-xs text-foreground flex-1">{action}</p>
-                            {optics === "attractive" && (
-                              <Badge className="bg-green-500/20 text-green-600 border-green-500/30 text-[10px] border">
-                                🟢 Attractive
-                              </Badge>
-                            )}
-                            {optics === "risky" && (
-                              <Badge className="bg-red-500/20 text-red-600 border-red-500/30 text-[10px] border">
-                                🔴 Risky
-                              </Badge>
-                            )}
-                          </div>
-                        </div>
-                      );
-                    })}
+                  <div className="space-y-4">
+                    <ActionGroup title="Critical" actions={criticalActions} color="text-red-600" maxVisible={5} />
+                    <ActionGroup title="Important" actions={importantActions} color="text-amber-600" maxVisible={5} />
+                    <ActionGroup title="Opportunistic" actions={opportunisticActions} color="text-blue-600" maxVisible={5} />
                   </div>
                 </div>
               );

@@ -49,6 +49,9 @@ export function DisclosureTrackerTable({ items }: DisclosureTrackerTableProps) {
 
   return (
     <Card title="Disclosure Tracker" description="Track prosecution disclosure items">
+      <p className="text-xs text-muted-foreground mb-3">
+        Outstanding disclosure items affecting the current strategy are tracked below.
+      </p>
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
