@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Target, CheckCircle2, AlertCircle, X, Lock, ArrowRight, TrendingUp, AlertTriangle, ChevronDown, ChevronUp, Copy, FileText, Shield, Zap, AlertCircle as AlertCircleIcon, Calendar, MapPin, Loader2, Clock, Scale } from "lucide-react";
 import { useToast } from "@/components/Toast";
+import { getLens, type PracticeArea } from "@/lib/lenses";
 
 export type PrimaryStrategy = 
   | "fight_charge" 
@@ -236,6 +237,7 @@ type StrategyCommitmentPanelProps = {
   caseId: string;
   onCommitmentChange: (commitment: StrategyCommitment | null) => void;
   savedPosition?: SavedPosition | null;
+  practiceArea?: PracticeArea; // Defaults to "criminal" for backward compatibility
 };
 
 export type StrategyCommitment = {
@@ -1438,6 +1440,7 @@ function ConsistencySafetyPanel({
   evidenceImpactMap,
   nextIrreversibleDecision,
   strategyRoutes,
+  lens,
 }: {
   primary: PrimaryStrategy | null;
   savedPosition: { position_text: string } | null;
@@ -1445,87 +1448,26 @@ function ConsistencySafetyPanel({
   evidenceImpactMap: EvidenceImpactMap[];
   nextIrreversibleDecision: string | null;
   strategyRoutes: StrategyRoute[];
+  lens: ReturnType<typeof getLens>;
 }) {
   if (!primary) return null;
 
-  const checks: Array<{ severity: "high" | "medium" | "low"; message: string }> = [];
+  const safetyContext = {
+    primaryStrategy: primary,
+    savedPosition,
+    hasDisclosureGaps,
+    evidenceImpactMap,
+    nextIrreversibleDecision: nextIrreversibleDecision || undefined,
+    strategyRoutes,
+  };
 
-  // Check 1: Position/mitigation tension
-  if (savedPosition) {
-    const positionText = savedPosition.position_text.toLowerCase();
-    const hasDenial = positionText.includes("deny") || positionText.includes("not") || positionText.includes("dispute");
-    
-    if (primary === "outcome_management" && hasDenial) {
-      checks.push({
-        severity: "high",
-        message: "Potential inconsistency: Position contains denial but outcome management strategy active. Requires solicitor confirmation.",
-      });
-    }
-    
-    if (primary === "fight_charge" && (positionText.includes("accept") || positionText.includes("admit"))) {
-      checks.push({
-        severity: "medium",
-        message: "Potential inconsistency: Position suggests acceptance but trial strategy active. Requires solicitor confirmation.",
-      });
-    }
-  }
-
-  // Check 2: Disclosure dependency unmet
-  if (primary === "fight_charge" && hasDisclosureGaps) {
-    const criticalGaps = evidenceImpactMap.filter(item => 
-      item.evidenceItem.name.toLowerCase().includes("cctv") ||
-      item.evidenceItem.name.toLowerCase().includes("continuity") ||
-      item.evidenceItem.name.toLowerCase().includes("bwv") ||
-      item.evidenceItem.name.toLowerCase().includes("999")
-    );
-    
-    if (criticalGaps.length > 0) {
-      checks.push({
-        severity: "high",
-        message: "Disclosure dependency unmet: Key disclosure items (CCTV/continuity/BWV/999) outstanding. Unsafe to rely on trial strategy until evidence arrives.",
-      });
-    }
-  }
-
-  // Check 3: Irreversible decision risk
-  if (nextIrreversibleDecision?.includes("plea") && savedPosition) {
-    const positionText = savedPosition.position_text.toLowerCase();
-    const hasDenial = positionText.includes("deny") || positionText.includes("not") || positionText.includes("dispute");
-    
-    if (hasDenial && primary === "outcome_management") {
-      checks.push({
-        severity: "high",
-        message: "Irreversible decision risk: Plea direction while position still denial without explicit pivot recorded. Requires solicitor confirmation.",
-      });
-    }
-  }
-
-  // Check 4: Unsafe assertions without evidence
-  const selectedRoute = strategyRoutes.find(r => r.type === primary);
-  if (selectedRoute) {
-    const hasUnsafePaths = selectedRoute.attackPaths?.some(path => !path.evidenceBacked) || false;
-    if (hasUnsafePaths && hasDisclosureGaps) {
-      checks.push({
-        severity: "medium",
-        message: "Unsafe to rely on until evidence arrives: Strategy includes attack paths marked as hypothesis pending disclosure.",
-      });
-    }
-  }
-
-  // Check 5: Charge reduction without medical evidence
-  if (primary === "charge_reduction" && hasDisclosureGaps) {
-    const hasMedicalGap = evidenceImpactMap.some(item => 
-      item.evidenceItem.name.toLowerCase().includes("medical") ||
-      item.evidenceItem.name.toLowerCase().includes("injury")
-    );
-    
-    if (hasMedicalGap) {
-      checks.push({
-        severity: "high",
-        message: "Unsafe to rely on until evidence arrives: Charge reduction strategy requires medical evidence currently outstanding.",
-      });
-    }
-  }
+  // Run all safety checks from lens
+  const checks = lens.safetyChecks
+    .filter(check => check.condition(safetyContext))
+    .map(check => ({
+      severity: check.severity,
+      message: check.message(safetyContext),
+    }));
 
   // Sort by severity (high > medium > low)
   const severityOrder = { high: 0, medium: 1, low: 2 };
@@ -1588,12 +1530,14 @@ function PillarsPanel({
   beastPack,
   strategyRoutes,
   hasDisclosureGaps,
+  lens,
 }: {
   primary: PrimaryStrategy | null;
   evidenceImpactMap: EvidenceImpactMap[];
   beastPack: BeastStrategyPack | null;
   strategyRoutes: StrategyRoute[];
   hasDisclosureGaps: boolean;
+  lens: ReturnType<typeof getLens>;
 }) {
   if (!primary) return null;
 
@@ -1603,21 +1547,22 @@ function PillarsPanel({
     beastPack?.cpsTheory?.intentArgument?.toLowerCase().includes("s18") ||
     beastPack?.cpsTheory?.intentArgument?.toLowerCase().includes("s20");
 
-  // Define pillars based on case type
+  // Get pillars from lens - filter to s18/s20 or generic based on case type
+  const allPillars = lens.pillars;
   const pillarDefinitions = isS18S20Case
-    ? [
-        { id: "identification", label: "Identification" },
-        { id: "act_causation", label: "Act & Causation" },
-        { id: "injury_classification", label: "Injury / Classification" },
-        { id: "intent", label: "Intent (s18 vs s20)" },
-      ]
-    : [
-        { id: "identification", label: "Identification" },
-        { id: "elements_act", label: "Elements / Act" },
-        { id: "mental_element", label: "Mental Element" },
-        { id: "procedure_disclosure", label: "Procedure / Disclosure" },
-        { id: "sentencing_outcome", label: "Sentencing / Outcome" },
-      ];
+    ? allPillars.filter(p => 
+        p.id === "identification" || 
+        p.id === "act_causation" || 
+        p.id === "injury_classification" || 
+        p.id === "intent"
+      )
+    : allPillars.filter(p => 
+        p.id === "identification" || 
+        p.id === "elements_act" || 
+        p.id === "mental_element" || 
+        p.id === "procedure_disclosure" || 
+        p.id === "sentencing_outcome"
+      );
 
   // Check for key evidence items
   const hasCCTV = !evidenceImpactMap.some(item => 
@@ -1650,197 +1595,53 @@ function PillarsPanel({
   const selectedRoute = strategyRoutes.find(r => r.type === primary);
   const nextActions = selectedRoute?.nextActions || [];
 
-  // Generate pillar assessments
+  // Generate pillar assessments using lens
   const pillars: Pillar[] = pillarDefinitions.map((def) => {
-    let status: "SAFE" | "PREMATURE" | "UNSAFE" = "SAFE";
-    let reason = "";
+    // Use lens to get status and reason
+    const status = lens.getPillarStatus(def, {
+      evidenceImpactMap,
+      hasDisclosureGaps,
+      primaryStrategy: primary,
+    });
+    const reason = lens.getPillarReason(def, status, {
+      evidenceImpactMap,
+      hasDisclosureGaps,
+    });
+
+    // Build dependsOn from evidence dependencies
     const dependsOn: string[] = [];
+    def.evidenceDependencies.forEach(key => {
+      const hasEvidence = !evidenceImpactMap.some(item => {
+        const name = (item.evidenceItem.name || "").toLowerCase();
+        const urgency = item.evidenceItem.urgency;
+        return name.includes(key.toLowerCase()) && urgency === "CRITICAL";
+      });
+      if (!hasEvidence) {
+        // Format key for display
+        const label = key.charAt(0).toUpperCase() + key.slice(1).replace(/_/g, " ");
+        dependsOn.push(label);
+      }
+    });
+
+    // Stop if from beastPack (if relevant to this pillar)
     let stopIf: string | undefined;
-    let nextAction: string | undefined;
-
-    if (def.id === "identification") {
-      const requiresCCTV = primary === "fight_charge";
-      const requiresIDProcedure = primary === "fight_charge";
-      
-      if (requiresCCTV && !hasCCTV) {
-        status = "PREMATURE";
-        reason = "CCTV evidence outstanding";
-        dependsOn.push("CCTV footage");
-      }
-      if (requiresIDProcedure && !hasIDProcedure) {
-        status = status === "SAFE" ? "PREMATURE" : status;
-        reason = reason || "Identification procedure pack outstanding";
-        dependsOn.push("ID procedure pack");
-      }
-      if (requiresCCTV && !hasBWV) {
-        status = status === "SAFE" ? "PREMATURE" : status;
-        dependsOn.push("BWV footage");
-      }
-      
-      if (status === "SAFE" && hasCCTV && hasIDProcedure) {
-        reason = "Identification evidence present";
-      } else if (status === "PREMATURE") {
-        reason = reason || "Key identification evidence outstanding";
-      }
-
-      // Stop if from beastPack
-      if (beastPack?.dashboard?.primaryKillSwitch?.condition) {
-        const killSwitchText = beastPack.dashboard.primaryKillSwitch.condition.toLowerCase();
-        if (killSwitchText.includes("identification") || killSwitchText.includes("cctv")) {
-          stopIf = beastPack.dashboard.primaryKillSwitch.condition;
-        }
-      }
-
-      // Next action
-      nextAction = nextActions.find(a => 
-        a.toLowerCase().includes("identification") ||
-        a.toLowerCase().includes("turnbull") ||
-        a.toLowerCase().includes("cctv")
-      );
-    }
-
-    if (def.id === "act_causation") {
-      const requiresContinuity = primary === "fight_charge";
-      
-      if (requiresContinuity && !hasContinuity) {
-        status = "PREMATURE";
-        reason = "Continuity evidence outstanding";
-        dependsOn.push("Continuity chain");
-      }
-      if (requiresContinuity && !has999) {
-        status = status === "SAFE" ? "PREMATURE" : status;
-        dependsOn.push("999 call records");
-      }
-      
-      if (status === "SAFE") {
-        reason = "Act and causation evidence present";
-      } else if (status === "PREMATURE") {
-        reason = reason || "Key continuity evidence outstanding";
-      }
-
-      // Stop if from beastPack
-      if (beastPack?.dashboard?.primaryKillSwitch?.condition) {
-        const killSwitchText = beastPack.dashboard.primaryKillSwitch.condition.toLowerCase();
-        if (killSwitchText.includes("continuity") || killSwitchText.includes("chain")) {
-          stopIf = beastPack.dashboard.primaryKillSwitch.condition;
-        }
-      }
-
-      nextAction = nextActions.find(a => 
-        a.toLowerCase().includes("continuity") ||
-        a.toLowerCase().includes("chain")
-      );
-    }
-
-    if (def.id === "injury_classification") {
-      const requiresMedical = primary === "charge_reduction" || primary === "fight_charge";
-      
-      if (requiresMedical && !hasMedical) {
-        status = "PREMATURE";
-        reason = "Medical evidence outstanding";
-        dependsOn.push("Medical reports");
-      }
-      
-      if (status === "SAFE") {
-        reason = "Medical evidence present";
-      } else if (status === "PREMATURE") {
-        reason = reason || "Medical evidence required for injury classification";
-      }
-
-      // Stop if from beastPack
-      if (beastPack?.dashboard?.primaryKillSwitch?.condition) {
-        const killSwitchText = beastPack.dashboard.primaryKillSwitch.condition.toLowerCase();
-        if (killSwitchText.includes("medical") || killSwitchText.includes("injury")) {
-          stopIf = beastPack.dashboard.primaryKillSwitch.condition;
-        }
-      }
-
-      nextAction = nextActions.find(a => 
-        a.toLowerCase().includes("medical") ||
-        a.toLowerCase().includes("injury")
-      );
-    }
-
-    if (def.id === "intent") {
-      const requiresMedical = primary === "charge_reduction";
-      const requiresSequence = primary === "fight_charge";
-      
-      if (requiresMedical && !hasMedical) {
-        status = "PREMATURE";
-        reason = "Medical evidence required to assess intent threshold";
-        dependsOn.push("Medical evidence");
-      }
-      if (requiresSequence && !hasCCTV) {
-        status = status === "SAFE" ? "PREMATURE" : status;
-        reason = reason || "Sequence evidence (CCTV) required";
-        dependsOn.push("CCTV sequence evidence");
-      }
-      
-      if (status === "SAFE") {
-        reason = "Evidence present to assess intent";
-      } else if (status === "PREMATURE") {
-        reason = reason || "Evidence required to assess s18 vs s20 intent";
-      }
-
-      // Stop if from beastPack
-      if (beastPack?.dashboard?.primaryKillSwitch?.condition) {
-        const killSwitchText = beastPack.dashboard.primaryKillSwitch.condition.toLowerCase();
-        if (killSwitchText.includes("intent") || killSwitchText.includes("medical")) {
-          stopIf = beastPack.dashboard.primaryKillSwitch.condition;
-        }
-      }
-
-      nextAction = nextActions.find(a => 
-        a.toLowerCase().includes("intent") ||
-        a.toLowerCase().includes("medical") ||
-        a.toLowerCase().includes("charge reduction")
-      );
-    }
-
-    // Generic pillars (for non-s18/s20 cases)
-    if (def.id === "elements_act") {
-      if (hasDisclosureGaps) {
-        status = "PREMATURE";
-        reason = "Disclosure gaps may affect actus reus assessment";
-        dependsOn.push("Complete disclosure");
-      } else {
-        status = "SAFE";
-        reason = "Actus reus elements supported by evidence";
+    if (beastPack?.dashboard?.primaryKillSwitch?.condition) {
+      const killSwitchText = beastPack.dashboard.primaryKillSwitch.condition.toLowerCase();
+      const pillarKeywords = def.evidenceDependencies.map(k => k.toLowerCase());
+      if (pillarKeywords.some(kw => killSwitchText.includes(kw)) || 
+          killSwitchText.includes(def.id.toLowerCase())) {
+        stopIf = beastPack.dashboard.primaryKillSwitch.condition;
       }
     }
 
-    if (def.id === "mental_element") {
-      if (hasDisclosureGaps) {
-        status = "PREMATURE";
-        reason = "Disclosure gaps may affect mens rea assessment";
-        dependsOn.push("Complete disclosure");
-      } else {
-        status = "SAFE";
-        reason = "Mens rea elements supported by evidence";
-      }
-    }
-
-    if (def.id === "procedure_disclosure") {
-      if (hasDisclosureGaps) {
-        status = "UNSAFE";
-        reason = "Disclosure gaps create procedural risk";
-        dependsOn.push("MG6 schedules", "Disclosure requests");
-      } else {
-        status = "SAFE";
-        reason = "Disclosure position stabilised";
-      }
-      nextAction = nextActions.find(a => a.toLowerCase().includes("disclosure"));
-    }
-
-    if (def.id === "sentencing_outcome") {
-      if (primary === "outcome_management") {
-        status = "SAFE";
-        reason = "Strategy focused on sentencing position";
-      } else {
-        status = "PREMATURE";
-        reason = "Sentencing assessment pending case outcome";
-      }
-    }
+    // Next action from route (if relevant)
+    const selectedRoute = strategyRoutes.find(r => r.type === primary);
+    const nextActions = selectedRoute?.nextActions || [];
+    const nextAction = nextActions.find(a => {
+      const actionLower = a.toLowerCase();
+      return def.evidenceDependencies.some(key => actionLower.includes(key.toLowerCase())) ||
+             actionLower.includes(def.id.toLowerCase());
+    });
 
     // Limit dependsOn to max 3
     const limitedDependsOn = dependsOn.slice(0, 3);
@@ -2403,8 +2204,10 @@ function BeastStrategyPackView({
 export function StrategyCommitmentPanel({ 
   caseId, 
   onCommitmentChange,
-  savedPosition: propSavedPosition
+  savedPosition: propSavedPosition,
+  practiceArea = "criminal"
 }: StrategyCommitmentPanelProps) {
+  const lens = getLens(practiceArea);
   const params = useParams();
   const router = useRouter();
   const resolvedCaseId = (caseId ?? params.caseId) as string | undefined;
@@ -2974,6 +2777,7 @@ export function StrategyCommitmentPanel({
               evidenceImpactMap={evidenceImpactMap}
               nextIrreversibleDecision={nextIrreversibleDecision}
               strategyRoutes={strategyRoutes}
+              lens={lens}
             />
 
             {/* Pillars Structure - Legal pillars with SAFE/UNSAFE/PREMATURE labels */}
@@ -2983,6 +2787,7 @@ export function StrategyCommitmentPanel({
               beastPack={beastPack}
               strategyRoutes={strategyRoutes}
               hasDisclosureGaps={proceduralState.hasDisclosureApps}
+              lens={lens}
             />
 
             {/* System Refusals Panel - Always visible, calm */}

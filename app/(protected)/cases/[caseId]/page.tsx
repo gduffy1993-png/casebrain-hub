@@ -38,6 +38,8 @@ import { AggressiveDefensePanel as PiAggressiveDefensePanel } from "@/components
 import { AggressiveDefensePanel as FamilyAggressiveDefensePanel } from "@/components/family/AggressiveDefensePanel";
 import { SupervisionPackPanel } from "@/components/housing/SupervisionPackPanel";
 import { CriminalCaseView } from "@/components/criminal/CriminalCaseView";
+import { CaseWorkspaceLayout } from "@/components/cases/CaseWorkspaceLayout";
+import { normalizePracticeArea } from "@/lib/types/casebrain";
 import { LitigationGuidancePanel } from "@/components/core/LitigationGuidancePanel";
 import { RiskAlertsPanel } from "@/components/core/RiskAlertsPanel";
 import { KeyIssuesPanel } from "@/components/core/KeyIssuesPanel";
@@ -57,7 +59,6 @@ import { computeCaseHeatmap } from "@/lib/heatmap";
 import { calculateLimitation } from "@/lib/core/limitation";
 import { calculateNextStep, calculateAllNextSteps, calculateChaserAlerts } from "@/lib/next-step";
 import type { RiskFlag, LimitationInfo, PracticeArea, RiskStatus } from "@/lib/types/casebrain";
-import { normalizePracticeArea } from "@/lib/types/casebrain";
 import { resolvePracticeAreaFromSignals } from "@/lib/strategic/practice-area-filters";
 import { Badge } from "@/components/ui/badge";
 import { CaseArchiveButton } from "@/components/cases/CaseArchiveButton";
@@ -1616,7 +1617,21 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
           >
             <CriminalCaseView caseId={caseId} />
           </ErrorBoundary>
-        ) : null}
+        ) : (
+          <ErrorBoundary
+            fallback={
+              <div className="p-4">
+                <p className="text-sm text-accent/60">Unable to load case workspace right now.</p>
+              </div>
+            }
+          >
+            <CaseWorkspaceLayout
+              caseId={caseId}
+              practiceArea={normalizedPracticeAreaValue}
+              hasStrategyData={false}
+            />
+          </ErrorBoundary>
+        )}
 
         {/* Family Law Aggressive Defense */}
         {isFamilyCase ? (
