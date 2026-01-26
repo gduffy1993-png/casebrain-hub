@@ -5,7 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Target, CheckCircle2, AlertCircle, X, Lock, ArrowRight, TrendingUp, AlertTriangle, ChevronDown, ChevronUp, Copy, FileText, Shield, Zap, AlertCircle as AlertCircleIcon, Calendar, MapPin, Loader2, Clock } from "lucide-react";
+import { Target, CheckCircle2, AlertCircle, X, Lock, ArrowRight, TrendingUp, AlertTriangle, ChevronDown, ChevronUp, Copy, FileText, Shield, Zap, AlertCircle as AlertCircleIcon, Calendar, MapPin, Loader2, Clock, Scale } from "lucide-react";
 import { useToast } from "@/components/Toast";
 
 export type PrimaryStrategy = 
@@ -1003,6 +1003,976 @@ function getDeterministicNextSteps(strategyType: PrimaryStrategy | null): string
   }
 }
 
+// Strategy Compression View (Senior Skim) - One-screen summary
+function StrategyCompressionView({
+  savedPosition,
+  primary,
+  beastPack,
+  nextIrreversibleDecision,
+}: {
+  savedPosition: { position_text: string } | null;
+  primary: PrimaryStrategy | null;
+  beastPack: BeastStrategyPack | null;
+  nextIrreversibleDecision: string | null;
+}) {
+  if (!savedPosition && !primary) return null;
+
+  // Extract dependencies from beastPack (top 3)
+  const dependencies = beastPack?.dashboard?.cpsMustProve?.slice(0, 3).map(item => item.element) || [];
+  
+  // Extract kill switch
+  const killSwitch = beastPack?.dashboard?.primaryKillSwitch?.condition || "Not determined";
+
+  // Get primary strategy label
+  const strategyLabel = primary ? STRATEGY_OPTIONS.find(o => o.id === primary)?.label || primary : "Not selected";
+
+  // Extract position summary (first sentence)
+  const positionSummary = savedPosition?.position_text 
+    ? savedPosition.position_text.split(/[.!?]/)[0].trim() + (savedPosition.position_text.includes('.') ? '.' : '')
+    : "No position recorded";
+
+  return (
+    <Card className="p-4 border-2 border-primary/20 bg-primary/5">
+      <div className="space-y-3">
+        <div className="flex items-center gap-2 mb-2">
+          <Target className="h-4 w-4 text-primary" />
+          <h3 className="text-sm font-semibold text-foreground">Primary Defence Strategy (Senior Skim)</h3>
+        </div>
+        
+        <div className="grid grid-cols-1 gap-3 text-xs">
+          <div>
+            <span className="font-semibold text-foreground">Recorded Position: </span>
+            <span className="text-muted-foreground">{positionSummary}</span>
+          </div>
+          
+          <div>
+            <span className="font-semibold text-foreground">Primary Strategy: </span>
+            <span className="text-muted-foreground">{strategyLabel}</span>
+          </div>
+          
+          <div>
+            <span className="font-semibold text-foreground">Dependencies: </span>
+            <ul className="list-disc list-inside text-muted-foreground mt-1">
+              {dependencies.length > 0 ? dependencies.map((dep, idx) => (
+                <li key={idx}>{dep}</li>
+              )) : (
+                <li>Pending disclosure</li>
+              )}
+            </ul>
+          </div>
+          
+          <div>
+            <span className="font-semibold text-foreground">Kill Switch: </span>
+            <span className="text-muted-foreground">{killSwitch}</span>
+          </div>
+          
+          {nextIrreversibleDecision && (
+            <div className="pt-2 border-t border-border/50">
+              <span className="font-semibold text-foreground">Next Irreversible Decision: </span>
+              <span className="text-muted-foreground">{nextIrreversibleDecision}</span>
+            </div>
+          )}
+        </div>
+      </div>
+    </Card>
+  );
+}
+
+// Next Irreversible Decision - Deterministic mapping based on phase + procedural state
+function getNextIrreversibleDecision(
+  currentPhase: number,
+  primary: PrimaryStrategy | null,
+  hasPTPH: boolean,
+  hasPlea: boolean,
+  hasTrialTheory: boolean,
+  hasDisclosureApps: boolean,
+): string | null {
+  // Phase 1: Pre-commitment
+  if (currentPhase < 2 || !primary) {
+    return "Record defence position and commit to primary strategy";
+  }
+
+  // Phase 2+: Post-commitment, procedural gravity
+  if (hasPTPH && !hasPlea) {
+    return "PTPH plea decision (before plea credit drops)";
+  }
+
+  if (hasDisclosureApps && !hasPlea) {
+    return "Disclosure application timing (before PTPH to preserve leverage)";
+  }
+
+  if (hasTrialTheory && !hasPlea) {
+    return "Trial theory finalisation (before case management directions)";
+  }
+
+  if (primary === "fight_charge" && !hasPlea) {
+    return "Trial posture confirmation (before PTPH)";
+  }
+
+  if (primary === "charge_reduction" && !hasPlea) {
+    return "Charge reduction negotiation (before PTPH)";
+  }
+
+  if (primary === "outcome_management") {
+    return "Plea timing decision (maximise credit)";
+  }
+
+  // Default
+  return "Next procedural milestone decision";
+}
+
+// Judicial Lens Panel - Pattern-based constraints, not predictions
+function JudicialLensPanel({
+  primary,
+  savedPosition,
+  hasDisclosureGaps,
+  hasPTPH,
+  expandedSections,
+  toggleSection,
+}: {
+  primary: PrimaryStrategy | null;
+  savedPosition: { position_text: string } | null;
+  hasDisclosureGaps: boolean;
+  hasPTPH: boolean;
+  expandedSections: Set<string>;
+  toggleSection: (sectionId: string) => void;
+}) {
+  if (!primary) return null;
+
+  const sectionId = "judicial_lens";
+  const isExpanded = expandedSections.has(sectionId) || true; // Open by default
+
+  const concerns: string[] = [];
+
+  // Strategy-specific judicial patterns
+  if (primary === "fight_charge") {
+    concerns.push("Courts are generally slow to accept identification challenges without early Turnbull compliance requests.");
+    concerns.push("Judges often expect disclosure requests to precede trial theory finalisation.");
+    if (hasDisclosureGaps) {
+      concerns.push("Late disclosure applications may attract scepticism if not preceded by documented chase sequences.");
+    }
+    if (!hasPTPH) {
+      concerns.push("Trial posture established before PTPH may limit later flexibility if disclosure changes the case.");
+    }
+  }
+
+  if (primary === "charge_reduction") {
+    concerns.push("Charge reduction arguments are typically only tolerated where medical evidence clearly supports recklessness over intent.");
+    concerns.push("Judges often expect early indication of intent challenge, not late-stage negotiation.");
+    if (hasDisclosureGaps) {
+      concerns.push("Medical evidence gaps may undermine charge reduction if not addressed before PTPH.");
+    }
+  }
+
+  if (primary === "outcome_management") {
+    concerns.push("Plea timing decisions are generally irreversible once PTPH passes.");
+    concerns.push("Courts typically expect consistent mitigation language across position statements and sentencing submissions.");
+    if (savedPosition && savedPosition.position_text.toLowerCase().includes("deny")) {
+      concerns.push("Inconsistent positions between recorded defence stance and plea may attract judicial scrutiny.");
+    }
+  }
+
+  // Position consistency patterns
+  if (savedPosition) {
+    const positionText = savedPosition.position_text.toLowerCase();
+    if (primary === "fight_charge" && (positionText.includes("accept") || positionText.includes("admit"))) {
+      concerns.push("Trial strategy may appear inconsistent with recorded position if position suggests acceptance of core facts.");
+    }
+    if (primary === "outcome_management" && positionText.includes("deny")) {
+      concerns.push("Plea strategy may appear inconsistent with recorded denial position.");
+    }
+  }
+
+  // Default pattern if no specific concerns
+  if (concerns.length === 0) {
+    concerns.push("Judicial expectations vary by procedural stage and evidential sufficiency.");
+    concerns.push("Late strategy changes may require explanation if inconsistent with earlier positions.");
+  }
+
+  return (
+    <div className="rounded-lg border border-border/50 overflow-hidden">
+      <button
+        onClick={() => toggleSection(sectionId)}
+        className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/20 transition-colors bg-muted/10"
+      >
+        <div className="flex items-center gap-2">
+          <Scale className="h-4 w-4 text-muted-foreground" />
+          <h4 className="text-xs font-semibold text-foreground">Judicial Lens</h4>
+        </div>
+        {isExpanded ? (
+          <ChevronUp className="h-4 w-4 text-muted-foreground" />
+        ) : (
+          <ChevronDown className="h-4 w-4 text-muted-foreground" />
+        )}
+      </button>
+      {isExpanded && (
+        <div className="p-3 border-t border-border/50 space-y-2">
+          <p className="text-xs text-muted-foreground mb-2 italic">
+            Pattern-based constraints based on current strategy and procedural state.
+          </p>
+          {concerns.map((concern, idx) => (
+            <div key={idx} className="text-xs text-muted-foreground flex items-start gap-2">
+              <span className="text-muted-foreground/50 mt-0.5">•</span>
+              <span>{concern}</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// Failure Mode Panel - Professional consequences, not predictions
+function FailureModePanel({
+  primary,
+  nextIrreversibleDecision,
+  hasDisclosureGaps,
+  hasPTPH,
+  expandedSections,
+  toggleSection,
+}: {
+  primary: PrimaryStrategy | null;
+  nextIrreversibleDecision: string | null;
+  hasDisclosureGaps: boolean;
+  hasPTPH: boolean;
+  expandedSections: Set<string>;
+  toggleSection: (sectionId: string) => void;
+}) {
+  if (!primary) return null;
+
+  const sectionId = "failure_mode";
+  const isExpanded = expandedSections.has(sectionId) || true; // Open by default
+
+  const failureModes: string[] = [];
+
+  // Strategy-specific failure modes
+  if (primary === "fight_charge") {
+    if (hasDisclosureGaps) {
+      failureModes.push("Proceeding to trial before disclosure stabilises may force late retreat if adverse evidence emerges.");
+    }
+    if (!hasPTPH) {
+      failureModes.push("Trial posture confirmed before PTPH may limit later flexibility if disclosure changes the case.");
+    }
+    failureModes.push("Identification challenges raised late may be viewed as tactical rather than evidential.");
+  }
+
+  if (primary === "charge_reduction") {
+    failureModes.push("Charge reduction negotiations delayed beyond PTPH may result in loss of leverage.");
+    if (hasDisclosureGaps) {
+      failureModes.push("Medical evidence gaps unresolved before negotiation may undermine charge reduction position.");
+    }
+    failureModes.push("Inconsistent positions between recorded stance and charge reduction may risk credibility.");
+  }
+
+  if (primary === "outcome_management") {
+    if (nextIrreversibleDecision?.includes("plea")) {
+      failureModes.push("Plea timing delayed beyond optimal window may result in loss of credit.");
+    }
+    failureModes.push("Inconsistent mitigation language between position statements and sentencing submissions may undermine credibility.");
+    failureModes.push("Late pivot from trial to plea may attract judicial scepticism if not explained by new evidence.");
+  }
+
+  // Irreversible decision failure modes
+  if (nextIrreversibleDecision) {
+    if (nextIrreversibleDecision.includes("PTPH")) {
+      failureModes.push("PTPH decisions are generally irreversible; delay may close options.");
+    }
+    if (nextIrreversibleDecision.includes("disclosure")) {
+      failureModes.push("Disclosure application timing affects leverage; late applications may be less effective.");
+    }
+  }
+
+  // Default failure mode
+  if (failureModes.length === 0) {
+    failureModes.push("Proceeding without addressing procedural dependencies may limit later options.");
+    failureModes.push("Inconsistent positions across documents may undermine credibility.");
+  }
+
+  return (
+    <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 overflow-hidden">
+      <button
+        onClick={() => toggleSection(sectionId)}
+        className="w-full flex items-center justify-between p-3 text-left hover:bg-amber-500/10 transition-colors bg-amber-500/10"
+      >
+        <div className="flex items-center gap-2">
+          <AlertTriangle className="h-4 w-4 text-amber-600" />
+          <h4 className="text-xs font-semibold text-foreground">If This Is Ignored</h4>
+        </div>
+        {isExpanded ? (
+          <ChevronUp className="h-4 w-4 text-muted-foreground" />
+        ) : (
+          <ChevronDown className="h-4 w-4 text-muted-foreground" />
+        )}
+      </button>
+      {isExpanded && (
+        <div className="p-3 border-t border-amber-500/20 space-y-2">
+          <p className="text-xs text-muted-foreground mb-2 italic">
+            Professional failure modes based on current strategy and procedural state.
+          </p>
+          {failureModes.map((mode, idx) => (
+            <div key={idx} className="text-xs text-muted-foreground flex items-start gap-2">
+              <span className="text-amber-600/70 mt-0.5">•</span>
+              <span>{mode}</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// Supervisor Snapshot - Read-only one-screen summary
+function SupervisorSnapshot({
+  savedPosition,
+  primary,
+  beastPack,
+  nextIrreversibleDecision,
+  evidenceImpactMap,
+  strategyRoutes,
+}: {
+  savedPosition: { position_text: string } | null;
+  primary: PrimaryStrategy | null;
+  beastPack: BeastStrategyPack | null;
+  nextIrreversibleDecision: string | null;
+  evidenceImpactMap: EvidenceImpactMap[];
+  strategyRoutes: StrategyRoute[];
+}) {
+  if (!primary) return null;
+
+  // Extract position (1-2 lines)
+  const positionText = savedPosition?.position_text || "No position recorded";
+  const positionLines = positionText.split(/\n/).slice(0, 2).join(" ").substring(0, 200);
+
+  // Get strategy label
+  const strategyLabel = STRATEGY_OPTIONS.find(o => o.id === primary)?.label || primary;
+
+  // Dependencies (top 3 from beastPack)
+  const dependencies = beastPack?.dashboard?.cpsMustProve?.slice(0, 3).map(item => item.element) || [];
+
+  // Top disclosure gaps (top 3 from evidenceImpactMap)
+  const disclosureGaps = evidenceImpactMap
+    .slice(0, 3)
+    .map(item => item.evidenceItem.name)
+    .filter(Boolean);
+
+  // Kill switch
+  const killSwitch = beastPack?.dashboard?.primaryKillSwitch?.condition || "Not determined";
+
+  // Next actions (max 5, from selected route's nextActions)
+  const selectedRoute = strategyRoutes.find(r => r.type === primary);
+  const nextActions = selectedRoute?.nextActions?.slice(0, 5) || [];
+
+  return (
+    <div className="rounded-lg border-2 border-primary/30 bg-primary/5 p-4 space-y-3">
+      <div className="flex items-center gap-2 mb-3">
+        <FileText className="h-4 w-4 text-primary" />
+        <h3 className="text-sm font-semibold text-foreground">Supervisor Snapshot</h3>
+        <Badge variant="outline" className="text-xs">READ-ONLY</Badge>
+      </div>
+
+      <div className="grid grid-cols-1 gap-3 text-xs">
+        <div>
+          <span className="font-semibold text-foreground">Recorded Position: </span>
+          <span className="text-muted-foreground">{positionLines}</span>
+        </div>
+
+        <div>
+          <span className="font-semibold text-foreground">Primary Strategy: </span>
+          <span className="text-muted-foreground">{strategyLabel}</span>
+        </div>
+
+        <div>
+          <span className="font-semibold text-foreground">Dependencies: </span>
+          <ul className="list-disc list-inside text-muted-foreground mt-1">
+            {dependencies.length > 0 ? dependencies.map((dep, idx) => (
+              <li key={idx}>{dep}</li>
+            )) : (
+              <li>Pending disclosure</li>
+            )}
+          </ul>
+        </div>
+
+        <div>
+          <span className="font-semibold text-foreground">Top Disclosure Gaps: </span>
+          <ul className="list-disc list-inside text-muted-foreground mt-1">
+            {disclosureGaps.length > 0 ? disclosureGaps.map((gap, idx) => (
+              <li key={idx}>{gap}</li>
+            )) : (
+              <li>None identified</li>
+            )}
+          </ul>
+        </div>
+
+        <div>
+          <span className="font-semibold text-foreground">Kill Switch: </span>
+          <span className="text-muted-foreground">{killSwitch}</span>
+        </div>
+
+        {nextIrreversibleDecision && (
+          <div>
+            <span className="font-semibold text-foreground">Next Irreversible Decision: </span>
+            <span className="text-muted-foreground">{nextIrreversibleDecision}</span>
+          </div>
+        )}
+
+        {nextActions.length > 0 && (
+          <div>
+            <span className="font-semibold text-foreground">Next Actions: </span>
+            <ul className="list-disc list-inside text-muted-foreground mt-1">
+              {nextActions.map((action, idx) => (
+                <li key={idx}>{action}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// Consistency & Safety Panel - Deterministic checks, no predictions
+function ConsistencySafetyPanel({
+  primary,
+  savedPosition,
+  hasDisclosureGaps,
+  evidenceImpactMap,
+  nextIrreversibleDecision,
+  strategyRoutes,
+}: {
+  primary: PrimaryStrategy | null;
+  savedPosition: { position_text: string } | null;
+  hasDisclosureGaps: boolean;
+  evidenceImpactMap: EvidenceImpactMap[];
+  nextIrreversibleDecision: string | null;
+  strategyRoutes: StrategyRoute[];
+}) {
+  if (!primary) return null;
+
+  const checks: Array<{ severity: "high" | "medium" | "low"; message: string }> = [];
+
+  // Check 1: Position/mitigation tension
+  if (savedPosition) {
+    const positionText = savedPosition.position_text.toLowerCase();
+    const hasDenial = positionText.includes("deny") || positionText.includes("not") || positionText.includes("dispute");
+    
+    if (primary === "outcome_management" && hasDenial) {
+      checks.push({
+        severity: "high",
+        message: "Potential inconsistency: Position contains denial but outcome management strategy active. Requires solicitor confirmation.",
+      });
+    }
+    
+    if (primary === "fight_charge" && (positionText.includes("accept") || positionText.includes("admit"))) {
+      checks.push({
+        severity: "medium",
+        message: "Potential inconsistency: Position suggests acceptance but trial strategy active. Requires solicitor confirmation.",
+      });
+    }
+  }
+
+  // Check 2: Disclosure dependency unmet
+  if (primary === "fight_charge" && hasDisclosureGaps) {
+    const criticalGaps = evidenceImpactMap.filter(item => 
+      item.evidenceItem.name.toLowerCase().includes("cctv") ||
+      item.evidenceItem.name.toLowerCase().includes("continuity") ||
+      item.evidenceItem.name.toLowerCase().includes("bwv") ||
+      item.evidenceItem.name.toLowerCase().includes("999")
+    );
+    
+    if (criticalGaps.length > 0) {
+      checks.push({
+        severity: "high",
+        message: "Disclosure dependency unmet: Key disclosure items (CCTV/continuity/BWV/999) outstanding. Unsafe to rely on trial strategy until evidence arrives.",
+      });
+    }
+  }
+
+  // Check 3: Irreversible decision risk
+  if (nextIrreversibleDecision?.includes("plea") && savedPosition) {
+    const positionText = savedPosition.position_text.toLowerCase();
+    const hasDenial = positionText.includes("deny") || positionText.includes("not") || positionText.includes("dispute");
+    
+    if (hasDenial && primary === "outcome_management") {
+      checks.push({
+        severity: "high",
+        message: "Irreversible decision risk: Plea direction while position still denial without explicit pivot recorded. Requires solicitor confirmation.",
+      });
+    }
+  }
+
+  // Check 4: Unsafe assertions without evidence
+  const selectedRoute = strategyRoutes.find(r => r.type === primary);
+  if (selectedRoute) {
+    const hasUnsafePaths = selectedRoute.attackPaths?.some(path => !path.evidenceBacked) || false;
+    if (hasUnsafePaths && hasDisclosureGaps) {
+      checks.push({
+        severity: "medium",
+        message: "Unsafe to rely on until evidence arrives: Strategy includes attack paths marked as hypothesis pending disclosure.",
+      });
+    }
+  }
+
+  // Check 5: Charge reduction without medical evidence
+  if (primary === "charge_reduction" && hasDisclosureGaps) {
+    const hasMedicalGap = evidenceImpactMap.some(item => 
+      item.evidenceItem.name.toLowerCase().includes("medical") ||
+      item.evidenceItem.name.toLowerCase().includes("injury")
+    );
+    
+    if (hasMedicalGap) {
+      checks.push({
+        severity: "high",
+        message: "Unsafe to rely on until evidence arrives: Charge reduction strategy requires medical evidence currently outstanding.",
+      });
+    }
+  }
+
+  // Sort by severity (high > medium > low)
+  const severityOrder = { high: 0, medium: 1, low: 2 };
+  checks.sort((a, b) => severityOrder[a.severity] - severityOrder[b.severity]);
+
+  // Limit to max 5
+  const displayChecks = checks.slice(0, 5);
+
+  if (displayChecks.length === 0) return null;
+
+  return (
+    <div className="rounded-lg border border-border/50 overflow-hidden">
+      <div className="p-3 border-b border-border/50 bg-muted/10">
+        <div className="flex items-center gap-2">
+          <Shield className="h-4 w-4 text-muted-foreground" />
+          <h4 className="text-xs font-semibold text-foreground">Consistency & Safety</h4>
+        </div>
+      </div>
+      <div className="p-3 space-y-2">
+        {displayChecks.map((check, idx) => (
+          <div
+            key={idx}
+            className={`text-xs flex items-start gap-2 p-2 rounded border ${
+              check.severity === "high"
+                ? "border-red-500/20 bg-red-500/5"
+                : check.severity === "medium"
+                ? "border-amber-500/20 bg-amber-500/5"
+                : "border-border/30 bg-muted/10"
+            }`}
+          >
+            <span className={`mt-0.5 ${
+              check.severity === "high"
+                ? "text-red-600"
+                : check.severity === "medium"
+                ? "text-amber-600"
+                : "text-muted-foreground"
+            }`}>•</span>
+            <span className="text-muted-foreground">{check.message}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// Pillars Structure - Legal pillars with SAFE/UNSAFE/PREMATURE labels
+type Pillar = {
+  id: string;
+  label: string;
+  status: "SAFE" | "PREMATURE" | "UNSAFE";
+  reason: string;
+  dependsOn: string[];
+  stopIf?: string;
+  nextAction?: string;
+};
+
+function PillarsPanel({
+  primary,
+  evidenceImpactMap,
+  beastPack,
+  strategyRoutes,
+  hasDisclosureGaps,
+}: {
+  primary: PrimaryStrategy | null;
+  evidenceImpactMap: EvidenceImpactMap[];
+  beastPack: BeastStrategyPack | null;
+  strategyRoutes: StrategyRoute[];
+  hasDisclosureGaps: boolean;
+}) {
+  if (!primary) return null;
+
+  // Detect if s18/s20 case (check if strategy mentions s18/s20 or charge reduction)
+  const isS18S20Case = primary === "charge_reduction" || 
+    primary === "fight_charge" ||
+    beastPack?.cpsTheory?.intentArgument?.toLowerCase().includes("s18") ||
+    beastPack?.cpsTheory?.intentArgument?.toLowerCase().includes("s20");
+
+  // Define pillars based on case type
+  const pillarDefinitions = isS18S20Case
+    ? [
+        { id: "identification", label: "Identification" },
+        { id: "act_causation", label: "Act & Causation" },
+        { id: "injury_classification", label: "Injury / Classification" },
+        { id: "intent", label: "Intent (s18 vs s20)" },
+      ]
+    : [
+        { id: "identification", label: "Identification" },
+        { id: "elements_act", label: "Elements / Act" },
+        { id: "mental_element", label: "Mental Element" },
+        { id: "procedure_disclosure", label: "Procedure / Disclosure" },
+        { id: "sentencing_outcome", label: "Sentencing / Outcome" },
+      ];
+
+  // Check for key evidence items
+  const hasCCTV = !evidenceImpactMap.some(item => 
+    item.evidenceItem.name.toLowerCase().includes("cctv") && 
+    item.evidenceItem.urgency === "CRITICAL"
+  );
+  const hasContinuity = !evidenceImpactMap.some(item => 
+    item.evidenceItem.name.toLowerCase().includes("continuity") && 
+    item.evidenceItem.urgency === "CRITICAL"
+  );
+  const hasBWV = !evidenceImpactMap.some(item => 
+    item.evidenceItem.name.toLowerCase().includes("bwv") && 
+    item.evidenceItem.urgency === "CRITICAL"
+  );
+  const has999 = !evidenceImpactMap.some(item => 
+    item.evidenceItem.name.toLowerCase().includes("999") && 
+    item.evidenceItem.urgency === "CRITICAL"
+  );
+  const hasMedical = !evidenceImpactMap.some(item => 
+    (item.evidenceItem.name.toLowerCase().includes("medical") || 
+     item.evidenceItem.name.toLowerCase().includes("injury")) && 
+    item.evidenceItem.urgency === "CRITICAL"
+  );
+  const hasIDProcedure = !evidenceImpactMap.some(item => 
+    item.evidenceItem.name.toLowerCase().includes("identification") && 
+    item.evidenceItem.urgency === "CRITICAL"
+  );
+
+  // Get selected route for next actions
+  const selectedRoute = strategyRoutes.find(r => r.type === primary);
+  const nextActions = selectedRoute?.nextActions || [];
+
+  // Generate pillar assessments
+  const pillars: Pillar[] = pillarDefinitions.map((def) => {
+    let status: "SAFE" | "PREMATURE" | "UNSAFE" = "SAFE";
+    let reason = "";
+    const dependsOn: string[] = [];
+    let stopIf: string | undefined;
+    let nextAction: string | undefined;
+
+    if (def.id === "identification") {
+      const requiresCCTV = primary === "fight_charge";
+      const requiresIDProcedure = primary === "fight_charge";
+      
+      if (requiresCCTV && !hasCCTV) {
+        status = "PREMATURE";
+        reason = "CCTV evidence outstanding";
+        dependsOn.push("CCTV footage");
+      }
+      if (requiresIDProcedure && !hasIDProcedure) {
+        status = status === "SAFE" ? "PREMATURE" : status;
+        reason = reason || "Identification procedure pack outstanding";
+        dependsOn.push("ID procedure pack");
+      }
+      if (requiresCCTV && !hasBWV) {
+        status = status === "SAFE" ? "PREMATURE" : status;
+        dependsOn.push("BWV footage");
+      }
+      
+      if (status === "SAFE" && hasCCTV && hasIDProcedure) {
+        reason = "Identification evidence present";
+      } else if (status === "PREMATURE") {
+        reason = reason || "Key identification evidence outstanding";
+      }
+
+      // Stop if from beastPack
+      if (beastPack?.dashboard?.primaryKillSwitch?.condition) {
+        const killSwitchText = beastPack.dashboard.primaryKillSwitch.condition.toLowerCase();
+        if (killSwitchText.includes("identification") || killSwitchText.includes("cctv")) {
+          stopIf = beastPack.dashboard.primaryKillSwitch.condition;
+        }
+      }
+
+      // Next action
+      nextAction = nextActions.find(a => 
+        a.toLowerCase().includes("identification") ||
+        a.toLowerCase().includes("turnbull") ||
+        a.toLowerCase().includes("cctv")
+      );
+    }
+
+    if (def.id === "act_causation") {
+      const requiresContinuity = primary === "fight_charge";
+      
+      if (requiresContinuity && !hasContinuity) {
+        status = "PREMATURE";
+        reason = "Continuity evidence outstanding";
+        dependsOn.push("Continuity chain");
+      }
+      if (requiresContinuity && !has999) {
+        status = status === "SAFE" ? "PREMATURE" : status;
+        dependsOn.push("999 call records");
+      }
+      
+      if (status === "SAFE") {
+        reason = "Act and causation evidence present";
+      } else if (status === "PREMATURE") {
+        reason = reason || "Key continuity evidence outstanding";
+      }
+
+      // Stop if from beastPack
+      if (beastPack?.dashboard?.primaryKillSwitch?.condition) {
+        const killSwitchText = beastPack.dashboard.primaryKillSwitch.condition.toLowerCase();
+        if (killSwitchText.includes("continuity") || killSwitchText.includes("chain")) {
+          stopIf = beastPack.dashboard.primaryKillSwitch.condition;
+        }
+      }
+
+      nextAction = nextActions.find(a => 
+        a.toLowerCase().includes("continuity") ||
+        a.toLowerCase().includes("chain")
+      );
+    }
+
+    if (def.id === "injury_classification") {
+      const requiresMedical = primary === "charge_reduction" || primary === "fight_charge";
+      
+      if (requiresMedical && !hasMedical) {
+        status = "PREMATURE";
+        reason = "Medical evidence outstanding";
+        dependsOn.push("Medical reports");
+      }
+      
+      if (status === "SAFE") {
+        reason = "Medical evidence present";
+      } else if (status === "PREMATURE") {
+        reason = reason || "Medical evidence required for injury classification";
+      }
+
+      // Stop if from beastPack
+      if (beastPack?.dashboard?.primaryKillSwitch?.condition) {
+        const killSwitchText = beastPack.dashboard.primaryKillSwitch.condition.toLowerCase();
+        if (killSwitchText.includes("medical") || killSwitchText.includes("injury")) {
+          stopIf = beastPack.dashboard.primaryKillSwitch.condition;
+        }
+      }
+
+      nextAction = nextActions.find(a => 
+        a.toLowerCase().includes("medical") ||
+        a.toLowerCase().includes("injury")
+      );
+    }
+
+    if (def.id === "intent") {
+      const requiresMedical = primary === "charge_reduction";
+      const requiresSequence = primary === "fight_charge";
+      
+      if (requiresMedical && !hasMedical) {
+        status = "PREMATURE";
+        reason = "Medical evidence required to assess intent threshold";
+        dependsOn.push("Medical evidence");
+      }
+      if (requiresSequence && !hasCCTV) {
+        status = status === "SAFE" ? "PREMATURE" : status;
+        reason = reason || "Sequence evidence (CCTV) required";
+        dependsOn.push("CCTV sequence evidence");
+      }
+      
+      if (status === "SAFE") {
+        reason = "Evidence present to assess intent";
+      } else if (status === "PREMATURE") {
+        reason = reason || "Evidence required to assess s18 vs s20 intent";
+      }
+
+      // Stop if from beastPack
+      if (beastPack?.dashboard?.primaryKillSwitch?.condition) {
+        const killSwitchText = beastPack.dashboard.primaryKillSwitch.condition.toLowerCase();
+        if (killSwitchText.includes("intent") || killSwitchText.includes("medical")) {
+          stopIf = beastPack.dashboard.primaryKillSwitch.condition;
+        }
+      }
+
+      nextAction = nextActions.find(a => 
+        a.toLowerCase().includes("intent") ||
+        a.toLowerCase().includes("medical") ||
+        a.toLowerCase().includes("charge reduction")
+      );
+    }
+
+    // Generic pillars (for non-s18/s20 cases)
+    if (def.id === "elements_act") {
+      if (hasDisclosureGaps) {
+        status = "PREMATURE";
+        reason = "Disclosure gaps may affect actus reus assessment";
+        dependsOn.push("Complete disclosure");
+      } else {
+        status = "SAFE";
+        reason = "Actus reus elements supported by evidence";
+      }
+    }
+
+    if (def.id === "mental_element") {
+      if (hasDisclosureGaps) {
+        status = "PREMATURE";
+        reason = "Disclosure gaps may affect mens rea assessment";
+        dependsOn.push("Complete disclosure");
+      } else {
+        status = "SAFE";
+        reason = "Mens rea elements supported by evidence";
+      }
+    }
+
+    if (def.id === "procedure_disclosure") {
+      if (hasDisclosureGaps) {
+        status = "UNSAFE";
+        reason = "Disclosure gaps create procedural risk";
+        dependsOn.push("MG6 schedules", "Disclosure requests");
+      } else {
+        status = "SAFE";
+        reason = "Disclosure position stabilised";
+      }
+      nextAction = nextActions.find(a => a.toLowerCase().includes("disclosure"));
+    }
+
+    if (def.id === "sentencing_outcome") {
+      if (primary === "outcome_management") {
+        status = "SAFE";
+        reason = "Strategy focused on sentencing position";
+      } else {
+        status = "PREMATURE";
+        reason = "Sentencing assessment pending case outcome";
+      }
+    }
+
+    // Limit dependsOn to max 3
+    const limitedDependsOn = dependsOn.slice(0, 3);
+
+    return {
+      id: def.id,
+      label: def.label,
+      status,
+      reason,
+      dependsOn: limitedDependsOn,
+      stopIf,
+      nextAction,
+    };
+  });
+
+  return (
+    <div className="space-y-3">
+      <div className="flex items-center gap-2 mb-2">
+        <Target className="h-4 w-4 text-primary" />
+        <h3 className="text-sm font-semibold text-foreground">Legal Pillars</h3>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        {pillars.map((pillar) => {
+          const statusColors = {
+            SAFE: "border-green-500/30 bg-green-500/5",
+            PREMATURE: "border-amber-500/30 bg-amber-500/5",
+            UNSAFE: "border-red-500/30 bg-red-500/5",
+          };
+          const statusTextColors = {
+            SAFE: "text-green-600",
+            PREMATURE: "text-amber-600",
+            UNSAFE: "text-red-600",
+          };
+
+          return (
+            <div
+              key={pillar.id}
+              className={`rounded-lg border p-3 space-y-2 ${statusColors[pillar.status]}`}
+            >
+              <div className="flex items-center justify-between">
+                <h4 className="text-xs font-semibold text-foreground">{pillar.label}</h4>
+                <Badge
+                  className={`text-[10px] border ${
+                    pillar.status === "SAFE"
+                      ? "bg-green-500/20 text-green-600 border-green-500/30"
+                      : pillar.status === "PREMATURE"
+                      ? "bg-amber-500/20 text-amber-600 border-amber-500/30"
+                      : "bg-red-500/20 text-red-600 border-red-500/30"
+                  }`}
+                >
+                  {pillar.status}
+                </Badge>
+              </div>
+              
+              <p className="text-xs text-muted-foreground">{pillar.reason}</p>
+              
+              {pillar.dependsOn.length > 0 && (
+                <div>
+                  <span className="text-xs font-semibold text-foreground">Depends on: </span>
+                  <ul className="text-xs text-muted-foreground list-disc list-inside mt-1">
+                    {pillar.dependsOn.map((item, idx) => (
+                      <li key={idx}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              
+              {pillar.stopIf && (
+                <div>
+                  <span className="text-xs font-semibold text-foreground">Stop if: </span>
+                  <span className="text-xs text-muted-foreground">{pillar.stopIf}</span>
+                </div>
+              )}
+              
+              {pillar.nextAction && (
+                <div>
+                  <span className="text-xs font-semibold text-foreground">Next action: </span>
+                  <span className="text-xs text-muted-foreground">{pillar.nextAction}</span>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+// System Refusals Panel - Calm, always visible, non-blocking
+function SystemRefusalsPanel({
+  expandedSections,
+  toggleSection,
+}: {
+  expandedSections: Set<string>;
+  toggleSection: (sectionId: string) => void;
+}) {
+  const sectionId = "system_refusals";
+  const isExpanded = expandedSections.has(sectionId) || true; // Open by default
+
+  return (
+    <div className="rounded-lg border border-border/30 bg-muted/5 overflow-hidden">
+      <button
+        onClick={() => toggleSection(sectionId)}
+        className="w-full flex items-center justify-between p-2 text-left hover:bg-muted/10 transition-colors"
+      >
+        <div className="flex items-center gap-2">
+          <Shield className="h-3.5 w-3.5 text-muted-foreground/60" />
+          <h4 className="text-xs font-medium text-muted-foreground">System Limits</h4>
+        </div>
+        {isExpanded ? (
+          <ChevronUp className="h-3 w-3 text-muted-foreground/60" />
+        ) : (
+          <ChevronDown className="h-3 w-3 text-muted-foreground/60" />
+        )}
+      </button>
+      {isExpanded && (
+        <div className="p-2 border-t border-border/30 space-y-1">
+          <p className="text-[11px] text-muted-foreground/80 italic">
+            This system will not:
+          </p>
+          <ul className="text-[11px] text-muted-foreground/70 space-y-0.5 list-disc list-inside ml-2">
+            <li>invent facts</li>
+            <li>predict outcomes</li>
+            <li>replace legal judgement</li>
+            <li>advance positions unsupported by evidence</li>
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // Beast Strategy Pack View Component - Safe rendering
 function BeastStrategyPackView({
   pack,
@@ -1465,6 +2435,17 @@ export function StrategyCommitmentPanel({
     has_analysis_version: boolean;
     analysis_mode: "complete" | "preview" | "none";
   } | null>(null);
+  const [proceduralState, setProceduralState] = useState<{
+    hasPTPH: boolean;
+    hasPlea: boolean;
+    hasTrialTheory: boolean;
+    hasDisclosureApps: boolean;
+  }>({
+    hasPTPH: false,
+    hasPlea: false,
+    hasTrialTheory: false,
+    hasDisclosureApps: false,
+  });
   const { push: showToast } = useToast();
   const storageKey = `casebrain:strategyCommitment:${resolvedCaseId}`;
 
@@ -1520,6 +2501,45 @@ export function StrategyCommitmentPanel({
     
     fetchAnalysisVersion();
   }, [resolvedCaseId]);
+
+  // Load procedural state (PTPH, plea, trial theory, disclosure apps)
+  useEffect(() => {
+    if (!resolvedCaseId) return;
+    
+    async function fetchProceduralState() {
+      try {
+        // Check for hearings (PTPH)
+        const hearingsRes = await fetch(`/api/criminal/${resolvedCaseId}/hearings`);
+        const hearingsData = hearingsRes.ok ? await hearingsRes.json() : null;
+        const hearings = hearingsData?.data?.hearings || hearingsData?.hearings || [];
+        const hasPTPH = hearings.some((h: any) => 
+          h.type?.toLowerCase().includes("ptph") || 
+          h.type?.toLowerCase().includes("plea") ||
+          h.type?.toLowerCase().includes("trial preparation")
+        );
+
+        // Check for plea (simplified - would need actual plea data)
+        const hasPlea = false; // TODO: Check actual plea status from case data
+
+        // Check for trial theory (if strategy is fight_charge and committed)
+        const hasTrialTheory = isCommitted && primary === "fight_charge";
+
+        // Check for disclosure apps (simplified - would need actual disclosure request data)
+        const hasDisclosureApps = evidenceImpactMap.length > 0 || strategyRoutes.some(r => (r.attackPaths?.length ?? 0) > 0);
+
+        setProceduralState({
+          hasPTPH,
+          hasPlea,
+          hasTrialTheory,
+          hasDisclosureApps,
+        });
+      } catch {
+        // Fail silently, use defaults
+      }
+    }
+    
+    fetchProceduralState();
+  }, [resolvedCaseId, isCommitted, primary, evidenceImpactMap.length, strategyRoutes]);
 
   // Load strategy routes from strategy-analysis endpoint
   useEffect(() => {
@@ -1634,22 +2654,22 @@ export function StrategyCommitmentPanel({
       }
 
       // Fallback to localStorage if no API commitment
-      try {
-        const saved = typeof window !== "undefined" ? window.localStorage.getItem(storageKey) : null;
-        if (saved) {
-          const parsed = JSON.parse(saved) as StrategyCommitment;
-          if (parsed?.primary) {
-            setPrimary(parsed.primary);
+    try {
+      const saved = typeof window !== "undefined" ? window.localStorage.getItem(storageKey) : null;
+      if (saved) {
+        const parsed = JSON.parse(saved) as StrategyCommitment;
+        if (parsed?.primary) {
+          setPrimary(parsed.primary);
             setSecondary(parsed.secondary?.slice(0, 3) || []);
-            onCommitmentChange({
-              primary: parsed.primary,
+          onCommitmentChange({
+            primary: parsed.primary,
               secondary: parsed.secondary?.slice(0, 3) || [],
-            });
-          }
+          });
         }
-      } catch {
-        // fail silently; treat as no saved commitment
       }
+    } catch {
+      // fail silently; treat as no saved commitment
+    }
     }
     loadCommitment();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -1822,7 +2842,7 @@ export function StrategyCommitmentPanel({
       "secondary pressure": "bg-amber-500/20 text-amber-600 border-amber-500/30",
       "leverage / pivot": "bg-blue-500/20 text-blue-600 border-blue-500/30",
     };
-    return (
+  return (
       <div className="p-3 rounded-lg border border-border/50 bg-muted/20">
         <button
           onClick={() => setIsOpen(!isOpen)}
@@ -1885,6 +2905,17 @@ export function StrategyCommitmentPanel({
     );
   };
 
+  // Calculate next irreversible decision
+  const currentPhase = 2; // Phase 2 is when strategy commitment is shown
+  const nextIrreversibleDecision = getNextIrreversibleDecision(
+    currentPhase,
+    primary,
+    proceduralState.hasPTPH,
+    proceduralState.hasPlea,
+    proceduralState.hasTrialTheory,
+    proceduralState.hasDisclosureApps,
+  );
+
   return (
     <Card className="p-6" data-strategy-commitment>
       <div className="space-y-6">
@@ -1893,6 +2924,73 @@ export function StrategyCommitmentPanel({
           <div className="mb-2 p-2 rounded border border-amber-500/30 bg-amber-500/10">
             <p className="text-xs font-mono text-amber-600">BEAST_PACK_MARKER__2026_01_20</p>
           </div>
+        )}
+
+        {/* Strategy Compression View (Senior Skim) - Always visible in Phase 2 when committed */}
+        {isCommitted && (
+          <>
+            <StrategyCompressionView
+              savedPosition={savedPosition}
+              primary={primary}
+              beastPack={beastPack}
+              nextIrreversibleDecision={nextIrreversibleDecision}
+            />
+
+            {/* Authority Panels - Judicial Lens and Failure Mode */}
+            <div className="space-y-4">
+              <JudicialLensPanel
+                primary={primary}
+                savedPosition={savedPosition}
+                hasDisclosureGaps={proceduralState.hasDisclosureApps}
+                hasPTPH={proceduralState.hasPTPH}
+                expandedSections={expandedSections}
+                toggleSection={toggleSection}
+              />
+              <FailureModePanel
+                primary={primary}
+                nextIrreversibleDecision={nextIrreversibleDecision}
+                hasDisclosureGaps={proceduralState.hasDisclosureApps}
+                hasPTPH={proceduralState.hasPTPH}
+                expandedSections={expandedSections}
+                toggleSection={toggleSection}
+              />
+            </div>
+
+            {/* Supervisor Snapshot - Read-only summary */}
+            <SupervisorSnapshot
+              savedPosition={savedPosition}
+              primary={primary}
+              beastPack={beastPack}
+              nextIrreversibleDecision={nextIrreversibleDecision}
+              evidenceImpactMap={evidenceImpactMap}
+              strategyRoutes={strategyRoutes}
+            />
+
+            {/* Consistency & Safety Panel */}
+            <ConsistencySafetyPanel
+              primary={primary}
+              savedPosition={savedPosition}
+              hasDisclosureGaps={proceduralState.hasDisclosureApps}
+              evidenceImpactMap={evidenceImpactMap}
+              nextIrreversibleDecision={nextIrreversibleDecision}
+              strategyRoutes={strategyRoutes}
+            />
+
+            {/* Pillars Structure - Legal pillars with SAFE/UNSAFE/PREMATURE labels */}
+            <PillarsPanel
+              primary={primary}
+              evidenceImpactMap={evidenceImpactMap}
+              beastPack={beastPack}
+              strategyRoutes={strategyRoutes}
+              hasDisclosureGaps={proceduralState.hasDisclosureApps}
+            />
+
+            {/* System Refusals Panel - Always visible, calm */}
+            <SystemRefusalsPanel
+              expandedSections={expandedSections}
+              toggleSection={toggleSection}
+            />
+          </>
         )}
         
         <div className="flex items-start justify-between">
@@ -1932,18 +3030,18 @@ export function StrategyCommitmentPanel({
                 {isCommitting ? "Committing..." : "Commit Strategy"}
               </Button>
             )}
-            {primary && (
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={handleClear}
-                className="flex items-center gap-2"
+          {primary && (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleClear}
+              className="flex items-center gap-2"
                 disabled={isCommitted}
-              >
-                <X className="h-3.5 w-3.5" />
-                Clear
-              </Button>
-            )}
+            >
+              <X className="h-3.5 w-3.5" />
+              Clear
+            </Button>
+          )}
           </div>
         </div>
 
@@ -2078,24 +3176,24 @@ export function StrategyCommitmentPanel({
                       <div
                         key={strategyId}
                         className="p-3 rounded-lg border border-primary/30 bg-primary/5"
-                      >
-                        <div className="flex items-start justify-between gap-3">
-                          <div className="flex-1">
-                            <div className="flex items-center gap-2 mb-1">
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-1">
                               <h4 className="text-sm font-medium text-foreground">{option.label}</h4>
                               <Badge variant="outline" className="text-xs">Fallback</Badge>
-                            </div>
+                        </div>
                             <p className="text-xs text-muted-foreground mb-2">{option.description}</p>
                             {isCommitted && (
                               <div className="space-y-1.5 mt-2 pt-2 border-t border-border/30">
                                 <div>
                                   <p className="text-xs font-semibold text-foreground mb-0.5">Evidence needed:</p>
                                   <p className="text-xs text-muted-foreground">{getEvidenceNeeded(strategyId)}</p>
-                                </div>
+                      </div>
                                 <div>
                                   <p className="text-xs font-semibold text-foreground mb-0.5">Pivot trigger:</p>
                                   <p className="text-xs text-muted-foreground">{getPivotTrigger(strategyId)}</p>
-                                </div>
+                    </div>
                                 {/* Light sub-options for fallbacks */}
                                 {SUB_OPTIONS_BY_STRATEGY[strategyId] && SUB_OPTIONS_BY_STRATEGY[strategyId].length > 0 && (
                                   <div className="mt-3 pt-3 border-t border-border/20">
@@ -2106,11 +3204,11 @@ export function StrategyCommitmentPanel({
                                           <p className="text-xs font-medium text-foreground mb-1">{subOption.title}</p>
                                           <p className="text-xs text-muted-foreground">{subOption.target}</p>
                                         </div>
-                                      ))}
-                                    </div>
-                                  </div>
+                ))}
+              </div>
+            </div>
                                 )}
-                              </div>
+          </div>
                             )}
                           </div>
                           <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0" />
@@ -2317,7 +3415,7 @@ export function StrategyCommitmentPanel({
                 <p className="text-xs text-muted-foreground mb-4">
                   Available defence strategies based on case analysis. Select a route to commit as your primary strategy.
                 </p>
-                <div className="space-y-4">
+          <div className="space-y-4">
                   {(() => {
                     // If no routes from API, show fallback routes for all 3 main strategies
                     if (strategyRoutes.length === 0) {
@@ -2416,7 +3514,7 @@ export function StrategyCommitmentPanel({
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
-                          <div>
+                <div>
                             <div className="flex items-center gap-1 mb-2">
                               <CheckCircle2 className="h-3.5 w-3.5 text-green-600" />
                               <h5 className="text-xs font-semibold text-foreground">Win Conditions</h5>
@@ -2570,16 +3668,16 @@ export function StrategyCommitmentPanel({
                             } border`}>
                               {impactType === "helps" ? "Helps Defence" : impactType === "hurts" ? "Hurts Defence" : "Depends"}
                             </Badge>
-                          </div>
+                </div>
                           <div className="text-xs space-y-2">
                             <div>
                               <span className="font-semibold text-foreground">If arrives clean: </span>
                               <span className="text-muted-foreground">{ifArrivesClean}</span>
-                            </div>
+              </div>
                             <div>
                               <span className="font-semibold text-foreground">If arrives late: </span>
                               <span className="text-muted-foreground">{ifArrivesLate}</span>
-                            </div>
+            </div>
                             <div>
                               <span className="font-semibold text-foreground">If arrives adverse: </span>
                               <span className="text-muted-foreground">{ifArrivesAdverse}</span>
@@ -2823,24 +3921,24 @@ export function StrategyCommitmentPanel({
               </div>
             )}
             {!isCommitted && (
-              <div>
-                <h3 className="text-sm font-semibold text-foreground mb-3">
+            <div>
+              <h3 className="text-sm font-semibold text-foreground mb-3">
                   Fallback Strategies (Optional, max 3)
-                </h3>
-                <div className="space-y-2">
-                  {STRATEGY_OPTIONS.filter(o => o.id !== primary).map((option) => {
-                    const isSelected = secondary.includes(option.id);
-                    return (
+              </h3>
+              <div className="space-y-2">
+                {STRATEGY_OPTIONS.filter(o => o.id !== primary).map((option) => {
+                  const isSelected = secondary.includes(option.id);
+                  return (
                       <label
-                        key={option.id}
+                      key={option.id}
                         className={`flex items-start gap-3 p-3 rounded-lg border transition-colors cursor-pointer ${
-                          isSelected
-                            ? "border-primary/50 bg-primary/5"
+                        isSelected
+                          ? "border-primary/50 bg-primary/5"
                             : secondary.length >= 3
-                              ? "border-border/50 bg-muted/20 opacity-50 cursor-not-allowed"
-                              : "border-border hover:border-primary/30 hover:bg-primary/5"
-                        }`}
-                      >
+                            ? "border-border/50 bg-muted/20 opacity-50 cursor-not-allowed"
+                            : "border-border hover:border-primary/30 hover:bg-primary/5"
+                      }`}
+                    >
                         <input
                           type="checkbox"
                           checked={isSelected}
@@ -2858,15 +3956,15 @@ export function StrategyCommitmentPanel({
                           <p className="text-xs text-muted-foreground">{option.description}</p>
                         </div>
                       </label>
-                    );
-                  })}
-                </div>
-                {secondary.length === 0 && (
-                  <p className="text-xs text-muted-foreground mt-2 italic">
-                    Optional: Select fallback strategies if the primary strategy fails.
-                  </p>
-                )}
+                  );
+                })}
               </div>
+              {secondary.length === 0 && (
+                <p className="text-xs text-muted-foreground mt-2 italic">
+                  Optional: Select fallback strategies if the primary strategy fails.
+                </p>
+              )}
+            </div>
             )}
           </div>
         )}
