@@ -5,9 +5,13 @@ import { useParams, useRouter } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Target, CheckCircle2, AlertCircle, X, Lock, ArrowRight, TrendingUp, AlertTriangle, ChevronDown, ChevronUp, Copy, FileText, Shield, Zap, AlertCircle as AlertCircleIcon, Calendar, MapPin, Loader2, Clock, Scale, CheckCircle } from "lucide-react";
+import { Target, CheckCircle2, AlertCircle, X, Lock, ArrowRight, TrendingUp, AlertTriangle, ChevronDown, ChevronUp, Copy, FileText, Shield, Zap, AlertCircle as AlertCircleIcon, Calendar, MapPin, Loader2, Clock, Scale, CheckCircle, ListChecks } from "lucide-react";
 import { useToast } from "@/components/Toast";
 import { getLens, type PracticeArea } from "@/lib/lenses";
+import { computeProceduralSafety, type ProceduralSafety } from "@/lib/criminal/procedural-safety";
+import { extractWeaponTracker, type WeaponTracker } from "@/lib/criminal/weapon-tracker";
+import { classifyIncidentShape, type IncidentShapeAnalysis } from "@/lib/criminal/incident-shape";
+import { generateWorstCaseCap, type WorstCaseCap } from "@/lib/criminal/worst-case-cap";
 
 export type PrimaryStrategy = 
   | "fight_charge" 
@@ -1323,8 +1327,9 @@ function FailureModePanel({
   );
 }
 
-// Supervisor Snapshot - Read-only one-screen summary
+// Enhanced Supervisor Snapshot - Read-only consolidated view
 function SupervisorSnapshot({
+  caseId,
   savedPosition,
   primary,
   beastPack,
@@ -1333,7 +1338,8 @@ function SupervisorSnapshot({
   strategyRoutes,
   toast,
 }: {
-  savedPosition: { position_text: string } | null;
+  caseId: string | undefined;
+  savedPosition: { position_text: string; created_at?: string; user_id?: string } | null;
   primary: PrimaryStrategy | null;
   beastPack: BeastStrategyPack | null;
   nextIrreversibleDecision: string | null;
@@ -1341,49 +1347,137 @@ function SupervisorSnapshot({
   strategyRoutes: StrategyRoute[];
   toast: { success: (msg: string) => void; error: (msg: string) => void };
 }) {
-  if (!primary) return null;
+  const [proceduralSafety, setProceduralSafety] = useState<ProceduralSafety | null>(null);
+  const [declaredDeps, setDeclaredDeps] = useState<Array<{ id: string; label: string; status: string; note?: string }>>([]);
+  const [disclosureTimeline, setDisclosureTimeline] = useState<Array<{ item: string; action: string; date: string; note?: string }>>([]);
+  const [irreversibleDecisions, setIrreversibleDecisions] = useState<Array<{ id: string; label: string; status: string; updated_at?: string }>>([]);
+  const [worstCaseCap, setWorstCaseCap] = useState<WorstCaseCap | null>(null);
+  const [caseRef, setCaseRef] = useState<string>("");
+  const [loading, setLoading] = useState(true);
 
-  // Extract position (1-2 lines)
+  useEffect(() => {
+    if (!caseId) {
+      setLoading(false);
+      return;
+    }
+
+    async function loadSnapshotData() {
+      try {
+        // Compute procedural safety
+        const safety = computeProceduralSafety(evidenceImpactMap);
+        setProceduralSafety(safety);
+
+        // Fetch case reference
+        const caseRes = await fetch(`/api/cases/${caseId}`);
+        if (caseRes.ok) {
+          const caseData = await caseRes.json();
+          setCaseRef(caseData.data?.title || caseData.title || caseId);
+        }
+
+        // Fetch declared dependencies
+        const depsRes = await fetch(`/api/criminal/${caseId}/dependencies`);
+        if (depsRes.ok) {
+          const depsData = await depsRes.json();
+          if (depsData.ok && depsData.data?.dependencies) {
+            setDeclaredDeps(depsData.data.dependencies);
+          }
+        }
+
+        // Fetch disclosure timeline
+        const timelineRes = await fetch(`/api/criminal/${caseId}/disclosure-timeline`);
+        if (timelineRes.ok) {
+          const timelineData = await timelineRes.json();
+          if (timelineData.ok && timelineData.data?.entries) {
+            setDisclosureTimeline(timelineData.data.entries);
+          }
+        }
+
+        // Fetch irreversible decisions
+        const decisionsRes = await fetch(`/api/criminal/${caseId}/irreversible-decisions`);
+        if (decisionsRes.ok) {
+          const decisionsData = await decisionsRes.json();
+          if (decisionsData.ok && decisionsData.data?.decisions) {
+            setIrreversibleDecisions(decisionsData.data.decisions);
+          }
+        }
+
+        // Fetch worst-case cap (would need to compute from charges/incident shape)
+        // For now, we'll leave it null or compute if needed
+      } catch (error) {
+        console.error("Failed to load snapshot data:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadSnapshotData();
+  }, [caseId, evidenceImpactMap]);
+
+  if (loading) {
+    return (
+      <div className="rounded-lg border-2 border-primary/30 bg-primary/5 p-4">
+        <div className="flex items-center gap-2 mb-2">
+          <FileText className="h-4 w-4 text-primary" />
+          <h3 className="text-sm font-semibold text-foreground">Supervisor Snapshot – Criminal Case</h3>
+          <Badge variant="outline" className="text-xs">READ-ONLY</Badge>
+        </div>
+        <p className="text-xs text-muted-foreground">Loading...</p>
+      </div>
+    );
+  }
+
+  // Extract position info
   const positionText = savedPosition?.position_text || "No position recorded";
   const positionLines = positionText.split(/\n/).slice(0, 2).join(" ").substring(0, 200);
+  const recordedAt = savedPosition?.created_at ? new Date(savedPosition.created_at).toLocaleString("en-GB") : "Not recorded";
 
   // Get strategy label
-  const strategyLabel = STRATEGY_OPTIONS.find(o => o.id === primary)?.label || primary;
+  const strategyLabel = primary ? STRATEGY_OPTIONS.find(o => o.id === primary)?.label || primary : "Not committed";
 
-  // Dependencies (top 3 from beastPack)
-  const dependencies = beastPack?.dashboard?.cpsMustProve?.slice(0, 3).map(item => item.element) || [];
+  // Required dependencies outstanding
+  const requiredOutstanding = declaredDeps.filter(dep => {
+    if (dep.status !== "required") return false;
+    // Check if outstanding in disclosure timeline
+    const latestEntry = disclosureTimeline
+      .filter(e => e.item === dep.label || e.item.includes(dep.label.split(" ")[0]))
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())[0];
+    return !latestEntry || (latestEntry.action !== "served" && latestEntry.action !== "reviewed");
+  });
 
-  // Top disclosure gaps (top 3 from evidenceImpactMap)
-  const disclosureGaps = evidenceImpactMap
-    .slice(0, 3)
-    .map(item => item.evidenceItem.name)
-    .filter(Boolean);
+  // Disclosure status summary
+  const disclosureItems = Array.from(new Set(disclosureTimeline.map(e => e.item))).map(item => {
+    const entries = disclosureTimeline.filter(e => e.item === item).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    return { item, latestEntry: entries[0] };
+  }).filter(d => d.latestEntry && (d.latestEntry.action === "outstanding" || d.latestEntry.action === "overdue" || d.latestEntry.action === "requested" || d.latestEntry.action === "chased"));
 
-  // Kill switch
-  const killSwitch = beastPack?.dashboard?.primaryKillSwitch?.condition || "Not determined";
-
-  // Next actions (max 5, from selected route's nextActions)
-  const selectedRoute = strategyRoutes.find(r => r.type === primary);
-  const nextActions = selectedRoute?.nextActions?.slice(0, 5) || [];
+  // Irreversible decisions planned/completed
+  const plannedOrCompleted = irreversibleDecisions.filter(d => d.status === "planned" || d.status === "completed");
 
   const handleCopySnapshot = async () => {
     const timestamp = new Date().toISOString();
-    const snapshotText = `SUPERVISOR SNAPSHOT
+    const snapshotText = `SUPERVISOR SNAPSHOT – CRIMINAL CASE
 Generated: ${timestamp} UTC
+Case Reference: ${caseRef}
 
-Recorded Position: ${positionLines}
+PROCEDURAL SAFETY STATUS: ${proceduralSafety?.status.replace(/_/g, " ") || "Not assessed"}
+${proceduralSafety?.explanation || ""}
 
-Primary Strategy: ${strategyLabel}
+RECORDED DEFENCE POSITION:
+${positionLines}
+Recorded: ${recordedAt}
 
-Dependencies:
-${dependencies.length > 0 ? dependencies.map(dep => `- ${dep}`).join("\n") : "- Pending disclosure"}
+PRIMARY STRATEGY: ${strategyLabel}
 
-Top Disclosure Gaps:
-${disclosureGaps.length > 0 ? disclosureGaps.map(gap => `- ${gap}`).join("\n") : "- None identified"}
+DECLARED DEPENDENCIES (Required & Outstanding):
+${requiredOutstanding.length > 0 ? requiredOutstanding.map(dep => `- ${dep.label}`).join("\n") : "- None"}
 
-Kill Switch: ${killSwitch}
+DISCLOSURE STATUS SUMMARY:
+${disclosureItems.length > 0 ? disclosureItems.map(d => `- ${d.item}: ${d.latestEntry.action} (${new Date(d.latestEntry.date).toLocaleDateString("en-GB")})`).join("\n") : "- All items served or not tracked"}
 
-${nextIrreversibleDecision ? `Next Irreversible Decision: ${nextIrreversibleDecision}\n` : ""}${nextActions.length > 0 ? `Next Actions:\n${nextActions.map(action => `- ${action}`).join("\n")}` : ""}`;
+IRREVERSIBLE DECISIONS:
+${plannedOrCompleted.length > 0 ? plannedOrCompleted.map(d => `- ${d.label}: ${d.status}${d.updated_at ? ` (${new Date(d.updated_at).toLocaleDateString("en-GB")})` : ""}`).join("\n") : "- None"}
+
+${worstCaseCap ? `WORST-CASE EXPOSURE CAP:\n${worstCaseCap.explanation}\n` : ""}`;
 
     try {
       await navigator.clipboard.writeText(snapshotText);
@@ -1394,12 +1488,18 @@ ${nextIrreversibleDecision ? `Next Irreversible Decision: ${nextIrreversibleDeci
     }
   };
 
+  const statusColors = {
+    SAFE: "border-green-500/30 bg-green-500/5",
+    CONDITIONALLY_UNSAFE: "border-amber-500/30 bg-amber-500/5",
+    UNSAFE_TO_PROCEED: "border-red-500/30 bg-red-500/5",
+  };
+
   return (
-    <div className="rounded-lg border-2 border-primary/30 bg-primary/5 p-4 space-y-3">
+    <div className="rounded-lg border-2 border-primary/30 bg-primary/5 p-4 space-y-4">
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
           <FileText className="h-4 w-4 text-primary" />
-          <h3 className="text-sm font-semibold text-foreground">Supervisor Snapshot</h3>
+          <h3 className="text-sm font-semibold text-foreground">Supervisor Snapshot – Criminal Case</h3>
           <Badge variant="outline" className="text-xs">READ-ONLY</Badge>
         </div>
         <Button
@@ -1414,61 +1514,275 @@ ${nextIrreversibleDecision ? `Next Irreversible Decision: ${nextIrreversibleDeci
       </div>
 
       <div className="grid grid-cols-1 gap-3 text-xs">
-        <div>
-          <span className="font-semibold text-foreground">Recorded Position: </span>
-          <span className="text-muted-foreground">{positionLines}</span>
-        </div>
-
-        <div>
-          <span className="font-semibold text-foreground">Primary Strategy: </span>
-          <span className="text-muted-foreground">{strategyLabel}</span>
-        </div>
-
-        <div>
-          <span className="font-semibold text-foreground">Dependencies: </span>
-          <ul className="list-disc list-inside text-muted-foreground mt-1">
-            {dependencies.length > 0 ? dependencies.map((dep, idx) => (
-              <li key={idx}>{dep}</li>
-            )) : (
-              <li>Pending disclosure</li>
-            )}
-          </ul>
-        </div>
-
-        <div>
-          <span className="font-semibold text-foreground">Top Disclosure Gaps: </span>
-          <ul className="list-disc list-inside text-muted-foreground mt-1">
-            {disclosureGaps.length > 0 ? disclosureGaps.map((gap, idx) => (
-              <li key={idx}>{gap}</li>
-            )) : (
-              <li>None identified</li>
-            )}
-          </ul>
-        </div>
-
-        <div>
-          <span className="font-semibold text-foreground">Kill Switch: </span>
-          <span className="text-muted-foreground">{killSwitch}</span>
-        </div>
-
-        {nextIrreversibleDecision && (
-          <div>
-            <span className="font-semibold text-foreground">Next Irreversible Decision: </span>
-            <span className="text-muted-foreground">{nextIrreversibleDecision}</span>
+        {/* Procedural Safety Status */}
+        {proceduralSafety && (
+          <div className={`rounded-lg border p-3 ${statusColors[proceduralSafety.status]}`}>
+            <div className="flex items-center justify-between mb-1">
+              <span className="font-semibold text-foreground">Procedural Safety Status:</span>
+              <Badge className={`text-[10px] ${
+                proceduralSafety.status === "SAFE" ? "bg-green-500/20 text-green-600" :
+                proceduralSafety.status === "CONDITIONALLY_UNSAFE" ? "bg-amber-500/20 text-amber-600" :
+                "bg-red-500/20 text-red-600"
+              }`}>
+                {proceduralSafety.status.replace(/_/g, " ")}
+              </Badge>
+            </div>
+            <p className="text-muted-foreground">{proceduralSafety.explanation}</p>
           </div>
         )}
 
-        {nextActions.length > 0 && (
+        {/* Recorded Defence Position */}
+        <div>
+          <span className="font-semibold text-foreground">Recorded Defence Position: </span>
+          <p className="text-muted-foreground mt-1">{positionLines}</p>
+          <p className="text-muted-foreground text-[10px] mt-1">Recorded: {recordedAt}</p>
+        </div>
+
+        {/* Declared Dependencies */}
+        <div>
+          <span className="font-semibold text-foreground">Declared Dependencies (Required & Outstanding): </span>
+          <ul className="list-disc list-inside text-muted-foreground mt-1">
+            {requiredOutstanding.length > 0 ? requiredOutstanding.map((dep, idx) => (
+              <li key={idx}>{dep.label}</li>
+            )) : (
+              <li>None</li>
+            )}
+          </ul>
+        </div>
+
+        {/* Disclosure Status Summary */}
+        <div>
+          <span className="font-semibold text-foreground">Disclosure Status Summary: </span>
+          <ul className="list-disc list-inside text-muted-foreground mt-1">
+            {disclosureItems.length > 0 ? disclosureItems.map((d, idx) => (
+              <li key={idx}>
+                {d.item}: {d.latestEntry.action} ({new Date(d.latestEntry.date).toLocaleDateString("en-GB")})
+              </li>
+            )) : (
+              <li>All items served or not tracked</li>
+            )}
+          </ul>
+        </div>
+
+        {/* Irreversible Decisions */}
+        <div>
+          <span className="font-semibold text-foreground">Irreversible Decisions: </span>
+          <ul className="list-disc list-inside text-muted-foreground mt-1">
+            {plannedOrCompleted.length > 0 ? plannedOrCompleted.map((d, idx) => (
+              <li key={idx}>
+                {d.label}: {d.status}
+                {d.updated_at && ` (${new Date(d.updated_at).toLocaleDateString("en-GB")})`}
+              </li>
+            )) : (
+              <li>None</li>
+            )}
+          </ul>
+        </div>
+
+        {/* Worst-Case Exposure Cap */}
+        {worstCaseCap && (
           <div>
-            <span className="font-semibold text-foreground">Next Actions: </span>
-            <ul className="list-disc list-inside text-muted-foreground mt-1">
-              {nextActions.map((action, idx) => (
-                <li key={idx}>{action}</li>
-              ))}
-            </ul>
+            <span className="font-semibold text-foreground">Worst-Case Exposure Cap: </span>
+            <p className="text-muted-foreground mt-1">{worstCaseCap.explanation}</p>
           </div>
         )}
       </div>
+    </div>
+  );
+}
+
+// File Note Export - Court-safe internal file note
+function FileNoteExport({
+  caseId,
+  savedPosition,
+  evidenceImpactMap,
+}: {
+  caseId: string | undefined;
+  savedPosition: { position_text: string; created_at?: string; user_id?: string } | null;
+  evidenceImpactMap: EvidenceImpactMap[];
+}) {
+  const [generating, setGenerating] = useState(false);
+  const [caseRef, setCaseRef] = useState<string>("");
+  const { push: showToast } = useToast();
+
+  useEffect(() => {
+    if (!caseId) return;
+    async function fetchCaseRef() {
+      try {
+        const res = await fetch(`/api/cases/${caseId}`);
+        if (res.ok) {
+          const data = await res.json();
+          setCaseRef(data.data?.title || data.title || caseId);
+        }
+      } catch (error) {
+        console.error("Failed to fetch case reference:", error);
+      }
+    }
+    fetchCaseRef();
+  }, [caseId]);
+
+  const handleGenerateFileNote = async () => {
+    if (!caseId) return;
+    setGenerating(true);
+    try {
+      // Fetch all required data
+      const [safety, deps, timeline, decisions] = await Promise.all([
+        Promise.resolve(computeProceduralSafety(evidenceImpactMap)),
+        fetch(`/api/criminal/${caseId}/dependencies`).then(r => r.json()).catch(() => ({ ok: false })),
+        fetch(`/api/criminal/${caseId}/disclosure-timeline`).then(r => r.json()).catch(() => ({ ok: false })),
+        fetch(`/api/criminal/${caseId}/irreversible-decisions`).then(r => r.json()).catch(() => ({ ok: false })),
+      ]);
+
+      const dependencies = deps.ok && deps.data?.dependencies ? deps.data.dependencies : [];
+      const timelineEntries = timeline.ok && timeline.data?.entries ? timeline.data.entries : [];
+      const irreversibleDecs = decisions.ok && decisions.data?.decisions ? decisions.data.decisions : [];
+
+      // Required dependencies only
+      const requiredDeps = dependencies.filter((d: any) => d.status === "required");
+
+      // Outstanding disclosure items
+      const itemSet = new Set<string>();
+      for (const entry of timelineEntries) {
+        if (entry && typeof entry === "object" && "item" in entry) {
+          itemSet.add(String(entry.item));
+        }
+      }
+      const outstandingItems = Array.from(itemSet).map((item: string) => {
+        const entries = timelineEntries.filter((e: any) => e && e.item === item).sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
+        return { item, latestEntry: entries[0] };
+      }).filter((d: any) => d.latestEntry && (d.latestEntry.action === "outstanding" || d.latestEntry.action === "overdue" || d.latestEntry.action === "requested" || d.latestEntry.action === "chased"));
+
+      // Planned/completed irreversible decisions
+      const plannedOrCompleted = irreversibleDecs.filter((d: any) => d.status === "planned" || d.status === "completed");
+
+      const timestamp = new Date().toISOString();
+      const recordedAt = savedPosition?.created_at ? new Date(savedPosition.created_at).toLocaleString("en-GB") : "Not recorded";
+      const positionText = savedPosition?.position_text || "No position recorded";
+      const positionSummary = positionText.split(/[.!?]/)[0].trim() + (positionText.includes('.') ? '.' : '');
+
+      const fileNote = `INTERNAL FILE NOTE
+Generated: ${new Date().toLocaleString("en-GB")} (${timestamp} UTC)
+Case Reference: ${caseRef}
+
+PROCEDURAL SAFETY STATUS
+Status: ${safety.status.replace(/_/g, " ")}
+${safety.explanation}
+${safety.outstandingItems.length > 0 ? `Outstanding items: ${safety.outstandingItems.join(", ")}` : ""}
+
+RECORDED POSITION SUMMARY
+${positionSummary}
+Recorded: ${recordedAt}
+
+DISCLOSURE STATUS
+${outstandingItems.length > 0 ? outstandingItems.map((d: any) => `- ${d.item}: ${d.latestEntry.action} (last action: ${new Date(d.latestEntry.date).toLocaleDateString("en-GB")})`).join("\n") : "All requested disclosure items have been served and reviewed."}
+
+DECLARED DEPENDENCIES (Required Only)
+${requiredDeps.length > 0 ? requiredDeps.map((d: any) => `- ${d.label}${d.note ? ` (${d.note})` : ""}`).join("\n") : "No required dependencies declared."}
+
+IRREVERSIBLE DECISIONS
+${plannedOrCompleted.length > 0 ? plannedOrCompleted.map((d: any) => `- ${d.label}: ${d.status}${d.updated_at ? ` (${new Date(d.updated_at).toLocaleDateString("en-GB")})` : ""}${d.note ? ` - ${d.note}` : ""}`).join("\n") : "No irreversible decisions taken or planned."}
+
+IMPORTANT STATEMENT
+No speculation has been made regarding unserved disclosure. All assessments are based solely on material currently available and recorded solicitor decisions.
+
+---
+This is an internal audit/file note only. Not for external use.`;
+
+      // Copy to clipboard
+      try {
+        await navigator.clipboard.writeText(fileNote);
+        showToast("File note copied to clipboard", "success");
+      } catch (err) {
+        // Fallback: download as file
+        const blob = new Blob([fileNote], { type: "text/plain" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `file-note-${caseRef}-${new Date().toISOString().split("T")[0]}.txt`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast("File note downloaded", "success");
+      }
+    } catch (error) {
+      console.error("Failed to generate file note:", error);
+      showToast("Failed to generate file note", "error");
+    } finally {
+      setGenerating(false);
+    }
+  };
+
+  return (
+    <div className="rounded-lg border border-border/50 p-4">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <FileText className="h-4 w-4 text-primary" />
+          <h3 className="text-sm font-semibold text-foreground">File Note Export</h3>
+        </div>
+        <Button
+          size="sm"
+          onClick={handleGenerateFileNote}
+          disabled={generating || !caseId}
+          className="text-xs h-7"
+        >
+          {generating ? "Generating..." : "Generate Internal File Note"}
+        </Button>
+      </div>
+      <p className="text-xs text-muted-foreground mt-2">
+        Generate a court-safe internal file note with current procedural status, disclosure position, and declared dependencies.
+      </p>
+    </div>
+  );
+}
+
+// System Guarantees Panel
+function SystemGuaranteesPanel() {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <div className="rounded-lg border border-border/50 overflow-hidden">
+      <button
+        onClick={() => setExpanded(!expanded)}
+        className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/20 transition-colors"
+      >
+        <div className="flex items-center gap-2">
+          <Shield className="h-4 w-4 text-primary" />
+          <h3 className="text-sm font-semibold text-foreground">What CaseBrain Does and Does Not Do</h3>
+        </div>
+        {expanded ? (
+          <ChevronUp className="h-4 w-4 text-muted-foreground" />
+        ) : (
+          <ChevronDown className="h-4 w-4 text-muted-foreground" />
+        )}
+      </button>
+      {expanded && (
+        <div className="p-3 border-t border-border/50 space-y-2 text-xs">
+          <div>
+            <p className="font-semibold text-foreground mb-1">CaseBrain does:</p>
+            <ul className="list-disc list-inside text-muted-foreground space-y-1">
+              <li>Support decision discipline and auditability</li>
+              <li>Track disclosure requests and status</li>
+              <li>Record solicitor-controlled declarations and decisions</li>
+              <li>Provide deterministic assessments based on available evidence</li>
+              <li>Generate file notes and audit trails</li>
+            </ul>
+          </div>
+          <div>
+            <p className="font-semibold text-foreground mb-1">CaseBrain does not:</p>
+            <ul className="list-disc list-inside text-muted-foreground space-y-1">
+              <li>Speculate on unserved disclosure</li>
+              <li>Predict outcomes or probabilities</li>
+              <li>Replace professional judgment</li>
+              <li>Provide autonomous advice or decision-making</li>
+              <li>Make assumptions about unavailable material</li>
+            </ul>
+          </div>
+          <p className="text-muted-foreground italic mt-2">
+            All outputs are deterministic, reproducible, and justifiable from stored data. All actions are solicitor-controlled.
+          </p>
+        </div>
+      )}
     </div>
   );
 }
@@ -1549,6 +1863,1065 @@ function ConsistencySafetyPanel({
             <span className="text-muted-foreground">{check.message}</span>
           </div>
         ))}
+      </div>
+    </div>
+  );
+}
+
+// Procedural Safety Status Panel
+function ProceduralSafetyPanel({
+  evidenceImpactMap,
+}: {
+  evidenceImpactMap: EvidenceImpactMap[];
+}) {
+  const safety = computeProceduralSafety(evidenceImpactMap);
+  
+  const statusColors = {
+    SAFE: "border-green-500/30 bg-green-500/5",
+    CONDITIONALLY_UNSAFE: "border-amber-500/30 bg-amber-500/5",
+    UNSAFE_TO_PROCEED: "border-red-500/30 bg-red-500/5",
+  };
+  
+  const statusBadgeColors = {
+    SAFE: "bg-green-500/20 text-green-600 border-green-500/30",
+    CONDITIONALLY_UNSAFE: "bg-amber-500/20 text-amber-600 border-amber-500/30",
+    UNSAFE_TO_PROCEED: "bg-red-500/20 text-red-600 border-red-500/30",
+  };
+
+  return (
+    <div className={`rounded-lg border p-4 space-y-3 ${statusColors[safety.status]}`}>
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <Shield className="h-4 w-4 text-primary" />
+          <h3 className="text-sm font-semibold text-foreground">Procedural Safety</h3>
+        </div>
+        <Badge className={`text-xs border ${statusBadgeColors[safety.status]}`}>
+          {safety.status.replace(/_/g, " ")}
+        </Badge>
+      </div>
+      <p className="text-xs text-muted-foreground">{safety.explanation}</p>
+      {safety.outstandingItems.length > 0 && (
+        <div>
+          <p className="text-xs font-semibold text-foreground mb-1">Outstanding Items:</p>
+          <ul className="text-xs text-muted-foreground list-disc list-inside">
+            {safety.outstandingItems.map((item, idx) => (
+              <li key={idx}>{item}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// Weapon Proof Tracker Panel
+function WeaponTrackerPanel({
+  caseId,
+  evidenceImpactMap,
+}: {
+  caseId: string | undefined;
+  evidenceImpactMap: EvidenceImpactMap[];
+}) {
+  const [weaponTracker, setWeaponTracker] = useState<WeaponTracker | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!caseId) {
+      setLoading(false);
+      return;
+    }
+
+    async function fetchWeaponData() {
+      try {
+        // Fetch documents to extract weapon info
+        const res = await fetch(`/api/cases/${caseId}/documents`);
+        if (res.ok) {
+          const result = await res.json();
+          const documents = result.data?.documents || result.documents || [];
+          const tracker = extractWeaponTracker(documents, evidenceImpactMap);
+          setWeaponTracker(tracker);
+        }
+      } catch (error) {
+        console.error("Failed to fetch weapon data:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchWeaponData();
+  }, [caseId, evidenceImpactMap]);
+
+  if (loading) {
+    return (
+      <div className="rounded-lg border border-border/50 p-4">
+        <div className="flex items-center gap-2 mb-2">
+          <Target className="h-4 w-4 text-primary" />
+          <h3 className="text-sm font-semibold text-foreground">Weapon Proof Tracker</h3>
+        </div>
+        <p className="text-xs text-muted-foreground">Loading...</p>
+      </div>
+    );
+  }
+
+  if (!weaponTracker) {
+    return null; // No weapon mentioned in case
+  }
+
+  return (
+    <div className="rounded-lg border border-border/50 p-4 space-y-3">
+      <div className="flex items-center gap-2">
+        <Target className="h-4 w-4 text-primary" />
+        <h3 className="text-sm font-semibold text-foreground">Weapon Proof Tracker</h3>
+        <Badge variant="outline" className="text-xs">READ-ONLY</Badge>
+      </div>
+      <div className="grid grid-cols-2 gap-3 text-xs">
+        <div>
+          <span className="font-semibold text-foreground">Alleged Weapon: </span>
+          <span className="text-muted-foreground">{weaponTracker.allegedWeapon}</span>
+        </div>
+        <div>
+          <span className="font-semibold text-foreground">Visually Observed: </span>
+          <span className="text-muted-foreground capitalize">{weaponTracker.visuallyObserved}</span>
+        </div>
+        <div>
+          <span className="font-semibold text-foreground">Weapon Recovered: </span>
+          <span className="text-muted-foreground capitalize">{weaponTracker.weaponRecovered}</span>
+        </div>
+        <div>
+          <span className="font-semibold text-foreground">Forensic Confirmation: </span>
+          <span className="text-muted-foreground capitalize">{weaponTracker.forensicConfirmation}</span>
+        </div>
+        <div className="col-span-2">
+          <span className="font-semibold text-foreground">Disclosure-Dependent: </span>
+          <Badge variant={weaponTracker.disclosureDependent ? "warning" : "outline"} className="text-xs">
+            {weaponTracker.disclosureDependent ? "Yes" : "No"}
+          </Badge>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Incident Shape Classifier Panel
+function IncidentShapePanel({
+  caseId,
+  evidenceImpactMap,
+}: {
+  caseId: string | undefined;
+  evidenceImpactMap: EvidenceImpactMap[];
+}) {
+  const [incidentShape, setIncidentShape] = useState<IncidentShapeAnalysis | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!caseId) {
+      setLoading(false);
+      return;
+    }
+
+    async function fetchIncidentData() {
+      try {
+        // Fetch documents and timeline
+        const [docsRes, timelineRes] = await Promise.all([
+          fetch(`/api/cases/${caseId}/documents`),
+          fetch(`/api/cases/${caseId}/timeline`).catch(() => null),
+        ]);
+
+        const docsData = docsRes.ok ? await docsRes.json() : null;
+        const documents = docsData?.data?.documents || docsData?.documents || [];
+
+        const timelineData = timelineRes?.ok ? await timelineRes.json() : null;
+        const timeline = timelineData?.data?.timeline || timelineData?.timeline || [];
+
+        const shape = classifyIncidentShape(documents, timeline, evidenceImpactMap);
+        setIncidentShape(shape);
+      } catch (error) {
+        console.error("Failed to fetch incident shape data:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchIncidentData();
+  }, [caseId, evidenceImpactMap]);
+
+  if (loading) {
+    return (
+      <div className="rounded-lg border border-border/50 p-4">
+        <div className="flex items-center gap-2 mb-2">
+          <Clock className="h-4 w-4 text-primary" />
+          <h3 className="text-sm font-semibold text-foreground">Incident Shape</h3>
+        </div>
+        <p className="text-xs text-muted-foreground">Loading...</p>
+      </div>
+    );
+  }
+
+  if (!incidentShape) {
+    return null;
+  }
+
+  const shapeLabels: Record<IncidentShapeAnalysis["shape"], string> = {
+    single_impulsive_blow: "Single Impulsive Blow",
+    brief_chaotic_scuffle: "Brief Chaotic Scuffle",
+    sustained_targeted_attack: "Sustained Targeted Attack",
+    unclear_disclosure_dependent: "Unclear / Disclosure-Dependent",
+  };
+
+  return (
+    <div className="rounded-lg border border-border/50 p-4 space-y-3">
+      <div className="flex items-center gap-2">
+        <Clock className="h-4 w-4 text-primary" />
+        <h3 className="text-sm font-semibold text-foreground">Incident Shape</h3>
+        <Badge variant="outline" className="text-xs">READ-ONLY</Badge>
+      </div>
+      <div>
+        <span className="text-xs font-semibold text-foreground">Classification: </span>
+        <Badge variant="outline" className="text-xs">
+          {shapeLabels[incidentShape.shape]}
+        </Badge>
+      </div>
+      <p className="text-xs text-muted-foreground">{incidentShape.explanation}</p>
+      {incidentShape.evidenceBasis.length > 0 && (
+        <div>
+          <p className="text-xs font-semibold text-foreground mb-1">Evidence Basis:</p>
+          <ul className="text-xs text-muted-foreground list-disc list-inside">
+            {incidentShape.evidenceBasis.map((basis, idx) => (
+              <li key={idx}>{basis}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// Worst-Case Cap Panel
+function WorstCaseCapPanel({
+  caseId,
+  incidentShape: propIncidentShape,
+  weaponTracker: propWeaponTracker,
+  evidenceImpactMap,
+}: {
+  caseId: string | undefined;
+  incidentShape: IncidentShapeAnalysis | null;
+  weaponTracker: WeaponTracker | null;
+  evidenceImpactMap: EvidenceImpactMap[];
+}) {
+  const [worstCaseCap, setWorstCaseCap] = useState<WorstCaseCap | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [incidentShape, setIncidentShape] = useState<IncidentShapeAnalysis | null>(propIncidentShape);
+  const [weaponTracker, setWeaponTracker] = useState<WeaponTracker | null>(propWeaponTracker);
+
+  useEffect(() => {
+    if (!caseId) {
+      setLoading(false);
+      return;
+    }
+
+    async function fetchWorstCaseData() {
+      try {
+        // Fetch charges, documents, timeline
+        const [chargesRes, docsRes, timelineRes] = await Promise.all([
+          fetch(`/api/criminal/${caseId}/charges`).catch(() => null),
+          fetch(`/api/cases/${caseId}/documents`).catch(() => null),
+          fetch(`/api/cases/${caseId}/timeline`).catch(() => null),
+        ]);
+
+        const chargesData = chargesRes?.ok ? await chargesRes.json() : null;
+        const charges = chargesData?.data?.charges || chargesData?.charges || [];
+
+        const docsData = docsRes?.ok ? await docsRes.json() : null;
+        const documents = docsData?.data?.documents || docsData?.documents || [];
+
+        const timelineData = timelineRes?.ok ? await timelineRes.json() : null;
+        const timeline = timelineData?.data?.timeline || timelineData?.timeline || [];
+
+        // Compute incident shape and weapon tracker if not provided
+        if (!incidentShape) {
+          const shape = classifyIncidentShape(documents, timeline, evidenceImpactMap);
+          setIncidentShape(shape);
+        }
+        if (!weaponTracker) {
+          const tracker = extractWeaponTracker(documents, evidenceImpactMap);
+          setWeaponTracker(tracker);
+        }
+
+        // Generate worst-case cap
+        const cap = generateWorstCaseCap(
+          charges.map((c: any) => ({ offence: c.offence || "", section: c.section || "" })),
+          incidentShape?.shape || "unclear_disclosure_dependent",
+          weaponTracker,
+          evidenceImpactMap
+        );
+        setWorstCaseCap(cap);
+      } catch (error) {
+        console.error("Failed to fetch worst-case cap data:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchWorstCaseData();
+  }, [caseId, evidenceImpactMap, propIncidentShape, propWeaponTracker]);
+
+  if (loading) {
+    return (
+      <div className="rounded-lg border border-border/50 p-4">
+        <div className="flex items-center gap-2 mb-2">
+          <AlertCircle className="h-4 w-4 text-primary" />
+          <h3 className="text-sm font-semibold text-foreground">Worst-Case Exposure</h3>
+        </div>
+        <p className="text-xs text-muted-foreground">Loading...</p>
+      </div>
+    );
+  }
+
+  if (!worstCaseCap) {
+    return null;
+  }
+
+  return (
+    <div className="rounded-lg border-2 border-primary/30 bg-primary/5 p-4 space-y-3">
+      <div className="flex items-center gap-2">
+        <AlertCircle className="h-4 w-4 text-primary" />
+        <h3 className="text-sm font-semibold text-foreground">Worst-Case Exposure (Non-Speculative)</h3>
+        <Badge variant="outline" className="text-xs">SUPERVISOR-GRADE</Badge>
+      </div>
+      <p className="text-xs text-muted-foreground">{worstCaseCap.explanation}</p>
+      {worstCaseCap.absentEvidence.length > 0 && (
+        <div>
+          <p className="text-xs font-semibold text-foreground mb-1">Absent Evidence:</p>
+          <ul className="text-xs text-muted-foreground list-disc list-inside">
+            {worstCaseCap.absentEvidence.map((item, idx) => (
+              <li key={idx}>{item}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {worstCaseCap.unprovenElements.length > 0 && (
+        <div>
+          <p className="text-xs font-semibold text-foreground mb-1">Unproven Elements:</p>
+          <ul className="text-xs text-muted-foreground list-disc list-inside">
+            {worstCaseCap.unprovenElements.map((item, idx) => (
+              <li key={idx}>{item}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// Declared Dependencies Panel
+function DeclaredDependenciesPanel({
+  caseId,
+  evidenceImpactMap,
+}: {
+  caseId: string | undefined;
+  evidenceImpactMap: EvidenceImpactMap[];
+}) {
+  const [dependencies, setDependencies] = useState<Array<{
+    id: string;
+    label: string;
+    status: "required" | "helpful" | "not_needed";
+    note?: string;
+    updated_at?: string;
+  }>>([]);
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [lastSaved, setLastSaved] = useState<string | null>(null);
+  const { push: showToast } = useToast();
+
+  // Default dependency options
+  const defaultDependencies = [
+    { id: "cctv_aroma_kebab", label: "CCTV (Aroma Kebab 23:10–23:30)" },
+    { id: "cctv_continuity", label: "CCTV continuity statement / log" },
+    { id: "bwv_arresting", label: "BWV arresting officers" },
+    { id: "999_audio", label: "999 call audio" },
+    { id: "cad_log", label: "CAD log" },
+    { id: "interview_recording", label: "Interview audio/video recording or transcript" },
+    { id: "custody_cctv", label: "Custody CCTV" },
+    { id: "medical_photos", label: "Medical photographs" },
+    { id: "scene_photos", label: "Scene photographs" },
+    { id: "forensics", label: "Forensics (if any)" },
+  ];
+
+  useEffect(() => {
+    if (!caseId) {
+      setLoading(false);
+      return;
+    }
+
+    async function fetchDependencies() {
+      try {
+        const res = await fetch(`/api/criminal/${caseId}/dependencies`);
+        if (res.ok) {
+          const result = await res.json();
+          if (result.ok && result.data?.dependencies) {
+            // Merge with defaults to ensure all items are present
+            const savedDeps = result.data.dependencies as Array<{ id: string; label: string; status: "required" | "helpful" | "not_needed"; note?: string; updated_at?: string }>;
+            const savedMap = new Map(savedDeps.map(d => [d.id, d]));
+            const merged: Array<{ id: string; label: string; status: "required" | "helpful" | "not_needed"; note?: string; updated_at?: string }> = defaultDependencies.map(def => {
+              const saved = savedMap.get(def.id);
+              if (saved) {
+                return { ...saved, status: saved.status || "not_needed" };
+              }
+              return { ...def, status: "not_needed" as const };
+            });
+            setDependencies(merged);
+            // Find most recent updated_at
+            const mostRecent = savedDeps
+              .filter(d => d.updated_at)
+              .sort((a, b) => (b.updated_at || "").localeCompare(a.updated_at || ""))[0];
+            if (mostRecent?.updated_at) {
+              setLastSaved(mostRecent.updated_at);
+            }
+          } else {
+            // Initialize with defaults
+            setDependencies(defaultDependencies.map(d => ({ ...d, status: "not_needed" as const })));
+          }
+        }
+      } catch (error) {
+        console.error("Failed to fetch dependencies:", error);
+        setDependencies(defaultDependencies.map(d => ({ ...d, status: "not_needed" as const })));
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchDependencies();
+  }, [caseId]);
+
+  const handleStatusChange = (id: string, status: "required" | "helpful" | "not_needed") => {
+    setDependencies(prev => prev.map(dep => dep.id === id ? { ...dep, status } : dep));
+  };
+
+  const handleNoteChange = (id: string, note: string) => {
+    setDependencies(prev => prev.map(dep => dep.id === id ? { ...dep, note } : dep));
+  };
+
+  const handleSave = async () => {
+    if (!caseId) return;
+    setSaving(true);
+    try {
+      const res = await fetch(`/api/criminal/${caseId}/dependencies`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ dependencies }),
+      });
+
+      if (res.ok) {
+        const result = await res.json();
+        if (result.ok) {
+          setLastSaved(new Date().toISOString());
+          showToast("Dependencies saved", "success");
+        } else {
+          showToast(result.error || "Failed to save dependencies", "error");
+        }
+      } else {
+        showToast("Failed to save dependencies", "error");
+      }
+    } catch (error) {
+      console.error("Failed to save dependencies:", error);
+      showToast("Failed to save dependencies", "error");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  // Check for outstanding required dependencies
+  const requiredOutstanding = dependencies.filter(dep => {
+    if (dep.status !== "required") return false;
+    // Check if item is outstanding in evidenceImpactMap
+    return evidenceImpactMap.some(impact => {
+      const itemName = impact.evidenceItem.name.toLowerCase();
+      const urgency = impact.evidenceItem.urgency?.toLowerCase() || "";
+      return (itemName.includes(dep.id.toLowerCase()) || itemName.includes(dep.label.toLowerCase().split(" ")[0].toLowerCase())) &&
+             (urgency.includes("missing") || urgency.includes("outstanding") || urgency.includes("not received"));
+    });
+  });
+
+  if (loading) {
+    return (
+      <div className="rounded-lg border border-border/50 p-4">
+        <div className="flex items-center gap-2 mb-2">
+          <ListChecks className="h-4 w-4 text-primary" />
+          <h3 className="text-sm font-semibold text-foreground">Declared Dependencies</h3>
+        </div>
+        <p className="text-xs text-muted-foreground">Loading...</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="rounded-lg border border-border/50 p-4 space-y-3">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <ListChecks className="h-4 w-4 text-primary" />
+          <h3 className="text-sm font-semibold text-foreground">Declared Dependencies</h3>
+        </div>
+        <Button
+          size="sm"
+          onClick={handleSave}
+          disabled={saving}
+          className="text-xs h-7"
+        >
+          {saving ? "Saving..." : "Save"}
+        </Button>
+      </div>
+
+      {lastSaved && (
+        <p className="text-xs text-muted-foreground">
+          Last saved: {new Date(lastSaved).toLocaleString()}
+        </p>
+      )}
+
+      {requiredOutstanding.length > 0 && (
+        <div className="rounded-lg border-2 border-amber-500/30 bg-amber-500/5 p-3">
+          <div className="flex items-center gap-2 mb-1">
+            <AlertTriangle className="h-4 w-4 text-amber-600" />
+            <p className="text-xs font-semibold text-foreground">Dependency outstanding – maintain holding position</p>
+          </div>
+          <ul className="text-xs text-muted-foreground list-disc list-inside">
+            {requiredOutstanding.map(dep => (
+              <li key={dep.id}>{dep.label}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <div className="space-y-3">
+        {dependencies.map(dep => (
+          <div key={dep.id} className="space-y-2 p-3 rounded-lg border border-border/30 bg-muted/10">
+            <div className="flex items-start justify-between">
+              <label className="text-xs font-semibold text-foreground flex-1">{dep.label}</label>
+              <div className="flex items-center gap-2">
+                <label className="text-xs text-muted-foreground flex items-center gap-1">
+                  <input
+                    type="radio"
+                    name={`status-${dep.id}`}
+                    checked={dep.status === "required"}
+                    onChange={() => handleStatusChange(dep.id, "required")}
+                    className="w-3 h-3"
+                  />
+                  Required
+                </label>
+                <label className="text-xs text-muted-foreground flex items-center gap-1">
+                  <input
+                    type="radio"
+                    name={`status-${dep.id}`}
+                    checked={dep.status === "helpful"}
+                    onChange={() => handleStatusChange(dep.id, "helpful")}
+                    className="w-3 h-3"
+                  />
+                  Helpful
+                </label>
+                <label className="text-xs text-muted-foreground flex items-center gap-1">
+                  <input
+                    type="radio"
+                    name={`status-${dep.id}`}
+                    checked={dep.status === "not_needed"}
+                    onChange={() => handleStatusChange(dep.id, "not_needed")}
+                    className="w-3 h-3"
+                  />
+                  Not needed
+                </label>
+              </div>
+            </div>
+            <input
+              type="text"
+              placeholder="Optional note..."
+              value={dep.note || ""}
+              onChange={(e) => handleNoteChange(dep.id, e.target.value)}
+              className="w-full px-2 py-1 text-xs rounded border border-border/50 bg-background text-foreground"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// Irreversible Decisions Panel
+function IrreversibleDecisionsPanel({
+  caseId,
+}: {
+  caseId: string | undefined;
+}) {
+  const [decisions, setDecisions] = useState<Array<{
+    id: string;
+    label: string;
+    status: "not_yet" | "planned" | "completed";
+    note?: string;
+    updated_at?: string;
+  }>>([]);
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const { push: showToast } = useToast();
+
+  // Default irreversible decision options
+  const defaultDecisions = [
+    { id: "enter_plea_ptph", label: "Enter plea at PTPH" },
+    { id: "agree_basis_plea", label: "Agree basis of plea" },
+    { id: "accept_newton", label: "Accept Newton hearing basis (if relevant)" },
+    { id: "abandon_key_issue", label: "Abandon key issue (ID/intent/self-defence)" },
+    { id: "decline_disclosure_chase", label: "Decline to pursue outstanding disclosure before next hearing" },
+    { id: "trial_strategy_commitment", label: "Choose trial strategy commitment" },
+  ];
+
+  // Get declared dependencies to check for outstanding required items
+  const [declaredDeps, setDeclaredDeps] = useState<Array<{ id: string; status: string }>>([]);
+
+  useEffect(() => {
+    if (!caseId) {
+      setLoading(false);
+      return;
+    }
+
+    async function fetchDecisions() {
+      try {
+        const res = await fetch(`/api/criminal/${caseId}/irreversible-decisions`);
+        if (res.ok) {
+          const result = await res.json();
+          if (result.ok && result.data?.decisions) {
+            const savedDecisions = result.data.decisions as Array<{ id: string; label: string; status: "not_yet" | "planned" | "completed"; note?: string }>;
+            const savedMap = new Map(savedDecisions.map(d => [d.id, d]));
+            const merged: Array<{ id: string; label: string; status: "not_yet" | "planned" | "completed"; note?: string; updated_at?: string }> = defaultDecisions.map(def => {
+              const saved = savedMap.get(def.id);
+              if (saved) {
+                return { ...saved, status: saved.status || "not_yet" };
+              }
+              return { ...def, status: "not_yet" as const };
+            });
+            setDecisions(merged);
+          } else {
+            setDecisions(defaultDecisions.map(d => ({ ...d, status: "not_yet" as const })));
+          }
+        }
+      } catch (error) {
+        console.error("Failed to fetch irreversible decisions:", error);
+        setDecisions(defaultDecisions.map(d => ({ ...d, status: "not_yet" as const })));
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    async function fetchDeps() {
+      try {
+        const res = await fetch(`/api/criminal/${caseId}/dependencies`);
+        if (res.ok) {
+          const result = await res.json();
+          if (result.ok && result.data?.dependencies) {
+            setDeclaredDeps(result.data.dependencies);
+          }
+        }
+      } catch (error) {
+        console.error("Failed to fetch dependencies:", error);
+      }
+    }
+
+    fetchDecisions();
+    fetchDeps();
+  }, [caseId]);
+
+  const handleStatusChange = (id: string, status: "not_yet" | "planned" | "completed") => {
+    setDecisions(prev => prev.map(dec => dec.id === id ? { ...dec, status } : dec));
+  };
+
+  const handleNoteChange = (id: string, note: string) => {
+    setDecisions(prev => prev.map(dec => dec.id === id ? { ...dec, note } : dec));
+  };
+
+  const handleSave = async () => {
+    if (!caseId) return;
+    setSaving(true);
+    try {
+      const res = await fetch(`/api/criminal/${caseId}/irreversible-decisions`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ decisions }),
+      });
+
+      if (res.ok) {
+        const result = await res.json();
+        if (result.ok) {
+          showToast("Irreversible decisions saved", "success");
+        } else {
+          showToast(result.error || "Failed to save decisions", "error");
+        }
+      } else {
+        showToast("Failed to save decisions", "error");
+      }
+    } catch (error) {
+      console.error("Failed to save irreversible decisions:", error);
+      showToast("Failed to save decisions", "error");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  // Check for required dependencies outstanding
+  const requiredDepsOutstanding = declaredDeps.some(dep => dep.status === "required");
+
+  // Check for planned/completed decisions that need warnings
+  const needsWarning = decisions.filter(dec => dec.status === "planned" || dec.status === "completed");
+
+  if (loading) {
+    return (
+      <div className="rounded-lg border border-border/50 p-4">
+        <div className="flex items-center gap-2 mb-2">
+          <AlertCircle className="h-4 w-4 text-primary" />
+          <h3 className="text-sm font-semibold text-foreground">Irreversible Decisions</h3>
+        </div>
+        <p className="text-xs text-muted-foreground">Loading...</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="rounded-lg border border-border/50 p-4 space-y-3">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <AlertCircle className="h-4 w-4 text-primary" />
+          <h3 className="text-sm font-semibold text-foreground">Irreversible Decisions</h3>
+        </div>
+        <Button
+          size="sm"
+          onClick={handleSave}
+          disabled={saving}
+          className="text-xs h-7"
+        >
+          {saving ? "Saving..." : "Save"}
+        </Button>
+      </div>
+
+      {needsWarning.length > 0 && (
+        <div className="rounded-lg border border-amber-500/30 bg-amber-500/5 p-3">
+          <p className="text-xs text-muted-foreground mb-2">
+            This action may limit later options. Record rationale and confirm dependencies/disclosure status.
+          </p>
+          {requiredDepsOutstanding && (
+            <p className="text-xs text-amber-600 font-semibold">
+              Key required dependencies remain outstanding. Ensure rationale recorded.
+            </p>
+          )}
+        </div>
+      )}
+
+      <div className="space-y-3">
+        {decisions.map(dec => (
+          <div key={dec.id} className="space-y-2 p-3 rounded-lg border border-border/30 bg-muted/10">
+            <div className="flex items-start justify-between">
+              <label className="text-xs font-semibold text-foreground flex-1">{dec.label}</label>
+              <div className="flex items-center gap-2">
+                <label className="text-xs text-muted-foreground flex items-center gap-1">
+                  <input
+                    type="radio"
+                    name={`decision-${dec.id}`}
+                    checked={dec.status === "not_yet"}
+                    onChange={() => handleStatusChange(dec.id, "not_yet")}
+                    className="w-3 h-3"
+                  />
+                  Not yet
+                </label>
+                <label className="text-xs text-muted-foreground flex items-center gap-1">
+                  <input
+                    type="radio"
+                    name={`decision-${dec.id}`}
+                    checked={dec.status === "planned"}
+                    onChange={() => handleStatusChange(dec.id, "planned")}
+                    className="w-3 h-3"
+                  />
+                  Planned
+                </label>
+                <label className="text-xs text-muted-foreground flex items-center gap-1">
+                  <input
+                    type="radio"
+                    name={`decision-${dec.id}`}
+                    checked={dec.status === "completed"}
+                    onChange={() => handleStatusChange(dec.id, "completed")}
+                    className="w-3 h-3"
+                  />
+                  Completed
+                </label>
+              </div>
+            </div>
+            <input
+              type="text"
+              placeholder="Optional note..."
+              value={dec.note || ""}
+              onChange={(e) => handleNoteChange(dec.id, e.target.value)}
+              className="w-full px-2 py-1 text-xs rounded border border-border/50 bg-background text-foreground"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// Disclosure Chase Timeline Panel
+function DisclosureTimelinePanel({
+  caseId,
+}: {
+  caseId: string | undefined;
+}) {
+  const [entries, setEntries] = useState<Array<{
+    id?: string;
+    item: string;
+    action: "requested" | "chased" | "served" | "reviewed" | "outstanding" | "overdue";
+    date: string;
+    note?: string;
+    created_at?: string;
+  }>>([]);
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [showAddForm, setShowAddForm] = useState(false);
+  const [newEntry, setNewEntry] = useState({
+    item: "",
+    action: "requested" as const,
+    date: new Date().toISOString().split("T")[0],
+    note: "",
+  });
+  const { push: showToast } = useToast();
+
+  // Default items (aligned with dependencies)
+  const defaultItems = [
+    "CCTV (Aroma Kebab 23:10–23:30)",
+    "CCTV continuity statement / log",
+    "BWV arresting officers",
+    "999 call audio",
+    "CAD log",
+    "Interview audio/video recording or transcript",
+    "Custody CCTV",
+    "Medical photographs",
+    "Scene photographs",
+    "Forensics (if any)",
+  ];
+
+  useEffect(() => {
+    if (!caseId) {
+      setLoading(false);
+      return;
+    }
+
+    async function fetchTimeline() {
+      try {
+        const res = await fetch(`/api/criminal/${caseId}/disclosure-timeline`);
+        if (res.ok) {
+          const result = await res.json();
+          if (result.ok && result.data?.entries) {
+            setEntries(result.data.entries);
+          }
+        }
+      } catch (error) {
+        console.error("Failed to fetch disclosure timeline:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchTimeline();
+  }, [caseId]);
+
+  const handleAddEntry = async () => {
+    if (!caseId || !newEntry.item || !newEntry.date) {
+      showToast("Item and date are required", "error");
+      return;
+    }
+
+    setSaving(true);
+    try {
+      const res = await fetch(`/api/criminal/${caseId}/disclosure-timeline`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          entries: [{ ...newEntry }],
+        }),
+      });
+
+      if (res.ok) {
+        const result = await res.json();
+        if (result.ok) {
+          setEntries(result.data.entries);
+          setNewEntry({ item: "", action: "requested", date: new Date().toISOString().split("T")[0], note: "" });
+          setShowAddForm(false);
+          showToast("Timeline entry added", "success");
+        } else {
+          showToast(result.error || "Failed to add entry", "error");
+        }
+      } else {
+        showToast("Failed to add entry", "error");
+      }
+    } catch (error) {
+      console.error("Failed to add timeline entry:", error);
+      showToast("Failed to add entry", "error");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleGenerateNote = () => {
+    // Generate court-safe disclosure note
+    const outstandingItems = entries
+      .filter(entry => entry.action === "outstanding" || entry.action === "overdue" || entry.action === "requested" || entry.action === "chased")
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+    if (outstandingItems.length === 0) {
+      showToast("All requested disclosure items have been served and reviewed.", "success");
+      return;
+    }
+
+    const lines: string[] = [];
+    lines.push("Outstanding disclosure items:");
+    
+    for (const item of outstandingItems) {
+      const lastAction = item.action === "overdue" ? "overdue" : item.action;
+      const lastDate = new Date(item.date).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+      lines.push(`- ${item.item}: ${lastAction} (last action: ${lastDate})`);
+    }
+
+    const note = lines.join("\n");
+    
+    // Copy to clipboard
+    navigator.clipboard.writeText(note).then(() => {
+      showToast("Disclosure note copied to clipboard", "success");
+    }).catch(() => {
+      showToast("Failed to copy to clipboard", "error");
+    });
+  };
+
+  // Group entries by item
+  const itemsMap = new Map<string, typeof entries>();
+  for (const entry of entries) {
+    if (!itemsMap.has(entry.item)) {
+      itemsMap.set(entry.item, []);
+    }
+    itemsMap.get(entry.item)!.push(entry);
+  }
+
+  if (loading) {
+    return (
+      <div className="rounded-lg border border-border/50 p-4">
+        <div className="flex items-center gap-2 mb-2">
+          <Clock className="h-4 w-4 text-primary" />
+          <h3 className="text-sm font-semibold text-foreground">Disclosure Chase Timeline</h3>
+        </div>
+        <p className="text-xs text-muted-foreground">Loading...</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="rounded-lg border border-border/50 p-4 space-y-3">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <Clock className="h-4 w-4 text-primary" />
+          <h3 className="text-sm font-semibold text-foreground">Disclosure Chase Timeline</h3>
+        </div>
+        <div className="flex items-center gap-2">
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={handleGenerateNote}
+            className="text-xs h-7"
+          >
+            Generate Note
+          </Button>
+          <Button
+            size="sm"
+            onClick={() => setShowAddForm(!showAddForm)}
+            className="text-xs h-7"
+          >
+            {showAddForm ? "Cancel" : "Add Entry"}
+          </Button>
+        </div>
+      </div>
+
+      {showAddForm && (
+        <div className="p-3 rounded-lg border border-border/30 bg-muted/10 space-y-2">
+          <select
+            value={newEntry.item}
+            onChange={(e) => setNewEntry(prev => ({ ...prev, item: e.target.value }))}
+            className="w-full px-2 py-1 text-xs rounded border border-border/50 bg-background text-foreground"
+          >
+            <option value="">Select item...</option>
+            {defaultItems.map(item => (
+              <option key={item} value={item}>{item}</option>
+            ))}
+          </select>
+          <select
+            value={newEntry.action}
+            onChange={(e) => setNewEntry(prev => ({ ...prev, action: e.target.value as typeof newEntry.action }))}
+            className="w-full px-2 py-1 text-xs rounded border border-border/50 bg-background text-foreground"
+          >
+            <option value="requested">Requested</option>
+            <option value="chased">Chased</option>
+            <option value="served">Served</option>
+            <option value="reviewed">Reviewed</option>
+            <option value="outstanding">Outstanding</option>
+          </select>
+          <input
+            type="date"
+            value={newEntry.date}
+            onChange={(e) => setNewEntry(prev => ({ ...prev, date: e.target.value }))}
+            className="w-full px-2 py-1 text-xs rounded border border-border/50 bg-background text-foreground"
+          />
+          <input
+            type="text"
+            placeholder="Optional note..."
+            value={newEntry.note}
+            onChange={(e) => setNewEntry(prev => ({ ...prev, note: e.target.value }))}
+            className="w-full px-2 py-1 text-xs rounded border border-border/50 bg-background text-foreground"
+          />
+          <Button
+            size="sm"
+            onClick={handleAddEntry}
+            disabled={saving || !newEntry.item || !newEntry.date}
+            className="text-xs h-7 w-full"
+          >
+            {saving ? "Adding..." : "Add Entry"}
+          </Button>
+        </div>
+      )}
+
+      <div className="space-y-3">
+        {Array.from(itemsMap.entries()).map(([item, itemEntries]) => {
+          const latestEntry = itemEntries.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())[0];
+          const statusColors = {
+            requested: "bg-blue-500/20 text-blue-600 border-blue-500/30",
+            chased: "bg-amber-500/20 text-amber-600 border-amber-500/30",
+            served: "bg-green-500/20 text-green-600 border-green-500/30",
+            reviewed: "bg-green-500/20 text-green-600 border-green-500/30",
+            outstanding: "bg-red-500/20 text-red-600 border-red-500/30",
+            overdue: "bg-red-500/20 text-red-600 border-red-500/30",
+          };
+
+          return (
+            <div key={item} className="p-3 rounded-lg border border-border/30 bg-muted/10">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs font-semibold text-foreground">{item}</span>
+                <Badge className={`text-[10px] border ${statusColors[latestEntry.action]}`}>
+                  {latestEntry.action}
+                </Badge>
+              </div>
+              <p className="text-xs text-muted-foreground">
+                Last action: {new Date(latestEntry.date).toLocaleDateString("en-GB")}
+                {latestEntry.note && ` - ${latestEntry.note}`}
+              </p>
+            </div>
+          );
+        })}
+
+        {entries.length === 0 && (
+          <p className="text-xs text-muted-foreground text-center py-4">
+            No timeline entries yet. Add an entry to track disclosure requests and chases.
+          </p>
+        )}
       </div>
     </div>
   );
@@ -2867,6 +4240,7 @@ export function StrategyCommitmentPanel({
 
             {/* Supervisor Snapshot - Read-only summary */}
             <SupervisorSnapshot
+              caseId={resolvedCaseId}
               savedPosition={savedPosition}
               primary={primary}
               beastPack={beastPack}
@@ -2875,6 +4249,16 @@ export function StrategyCommitmentPanel({
               strategyRoutes={strategyRoutes}
               toast={{ success: (msg) => showToast(msg, "success"), error: (msg) => showToast(msg, "error") }}
             />
+
+            {/* File Note Export */}
+            <FileNoteExport
+              caseId={resolvedCaseId}
+              savedPosition={savedPosition}
+              evidenceImpactMap={evidenceImpactMap}
+            />
+
+            {/* System Guarantees Panel */}
+            <SystemGuaranteesPanel />
 
             {/* Consistency & Safety Panel */}
             <ConsistencySafetyPanel
@@ -2891,6 +4275,47 @@ export function StrategyCommitmentPanel({
             <SystemRefusalsPanel
               expandedSections={expandedSections}
               toggleSection={toggleSection}
+            />
+
+            {/* Procedural Safety Status - CRITICAL */}
+            <ProceduralSafetyPanel
+              evidenceImpactMap={evidenceImpactMap}
+            />
+
+            {/* Weapon Proof Tracker */}
+            <WeaponTrackerPanel
+              caseId={resolvedCaseId}
+              evidenceImpactMap={evidenceImpactMap}
+            />
+
+            {/* Incident Shape Classifier */}
+            <IncidentShapePanel
+              caseId={resolvedCaseId}
+              evidenceImpactMap={evidenceImpactMap}
+            />
+
+            {/* Worst-Case Cap Panel */}
+            <WorstCaseCapPanel
+              caseId={resolvedCaseId}
+              incidentShape={null}
+              weaponTracker={null}
+              evidenceImpactMap={evidenceImpactMap}
+            />
+
+            {/* Declared Dependencies */}
+            <DeclaredDependenciesPanel
+              caseId={resolvedCaseId}
+              evidenceImpactMap={evidenceImpactMap}
+            />
+
+            {/* Irreversible Decisions */}
+            <IrreversibleDecisionsPanel
+              caseId={resolvedCaseId}
+            />
+
+            {/* Disclosure Chase Timeline */}
+            <DisclosureTimelinePanel
+              caseId={resolvedCaseId}
             />
 
             {/* Pillars Structure - Legal pillars with SAFE/UNSAFE/PREMATURE labels */}
