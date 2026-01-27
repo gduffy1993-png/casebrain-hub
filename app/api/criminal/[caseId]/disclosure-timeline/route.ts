@@ -251,8 +251,9 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
 
 /**
  * Generate court-safe disclosure note from timeline entries
+ * (Internal helper function, not exported)
  */
-export async function generateDisclosureNote(entries: DisclosureTimelineEntry[]): Promise<string> {
+async function generateDisclosureNote(entries: DisclosureTimelineEntry[]): Promise<string> {
   // Group by item and get latest status
   const itemsMap = new Map<string, DisclosureTimelineEntry>();
   for (const entry of entries) {
