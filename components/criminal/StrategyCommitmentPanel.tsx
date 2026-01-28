@@ -12,6 +12,8 @@ import { computeProceduralSafety, type ProceduralSafety } from "@/lib/criminal/p
 import { extractWeaponTracker, type WeaponTracker } from "@/lib/criminal/weapon-tracker";
 import { classifyIncidentShape, type IncidentShapeAnalysis } from "@/lib/criminal/incident-shape";
 import { generateWorstCaseCap, type WorstCaseCap } from "@/lib/criminal/worst-case-cap";
+import { buildStrategyCoordinator, type StrategyCoordinatorResult } from "@/lib/criminal/strategy-coordinator";
+import { buildSolicitorView, type SolicitorView } from "@/lib/criminal/solicitor-view";
 
 export type PrimaryStrategy = 
   | "fight_charge" 
@@ -3654,6 +3656,9 @@ export function StrategyCommitmentPanel({
     has_analysis_version: boolean;
     analysis_mode: "complete" | "preview" | "none";
   } | null>(null);
+  const [mounted, setMounted] = useState(false);
+  const [coordinatorResult, setCoordinatorResult] = useState<StrategyCoordinatorResult | null>(null);
+  const [solicitorView, setSolicitorView] = useState<SolicitorView | null>(null);
   const [proceduralState, setProceduralState] = useState<{
     hasPTPH: boolean;
     hasPlea: boolean;
@@ -3941,6 +3946,84 @@ export function StrategyCommitmentPanel({
       return newSecondary;
     });
   };
+
+  // Mounted guard for client-only features
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Compute coordinator result and solicitor view (debug-only)
+  useEffect(() => {
+    if (!mounted || !isDebug || !resolvedCaseId) {
+      setCoordinatorResult(null);
+      setSolicitorView(null);
+      return;
+    }
+
+    async function computeCoordinatorData() {
+      try {
+        // Fetch required data
+        const [chargesRes, depsRes, timelineRes, decisionsRes] = await Promise.all([
+          fetch(`/api/criminal/${resolvedCaseId}/charges`).catch(() => null),
+          fetch(`/api/criminal/${resolvedCaseId}/dependencies`).catch(() => null),
+          fetch(`/api/criminal/${resolvedCaseId}/disclosure-timeline`).catch(() => null),
+          fetch(`/api/criminal/${resolvedCaseId}/irreversible-decisions`).catch(() => null),
+        ]);
+
+        const chargesData = chargesRes?.ok ? await chargesRes.json() : null;
+        const charges = chargesData?.data?.charges || chargesData?.charges || [];
+
+        const depsData = depsRes?.ok ? await depsRes.json() : null;
+        const declaredDependencies = depsData?.ok && depsData?.data?.dependencies
+          ? depsData.data.dependencies
+          : [];
+
+        const timelineData = timelineRes?.ok ? await timelineRes.json() : null;
+        const disclosureTimeline = timelineData?.ok && timelineData?.data?.entries
+          ? timelineData.data.entries
+          : [];
+
+        const decisionsData = decisionsRes?.ok ? await decisionsRes.json() : null;
+        const irreversibleDecisions = decisionsData?.ok && decisionsData?.data?.decisions
+          ? decisionsData.data.decisions
+          : [];
+
+        // Build coordinator input (caseId is guaranteed to be string here due to early return)
+        if (!resolvedCaseId) return;
+        
+        const coordinatorInput = {
+          caseId: resolvedCaseId,
+          extracted: null, // Not available, coordinator will handle gracefully
+          charges: charges,
+          disclosureTimeline: disclosureTimeline,
+          declaredDependencies: declaredDependencies,
+          irreversibleDecisions: irreversibleDecisions,
+          recordedPosition: savedPosition
+            ? {
+                position_type: "recorded",
+                position_text: savedPosition.position_text,
+                primary: primary || undefined,
+              }
+            : undefined,
+          evidenceImpactMap: evidenceImpactMap,
+        };
+
+        // Build coordinator result
+        const reasoning = buildStrategyCoordinator(coordinatorInput);
+        setCoordinatorResult(reasoning);
+
+        // Build solicitor view
+        const solicitor = buildSolicitorView(reasoning);
+        setSolicitorView(solicitor);
+      } catch (error) {
+        console.error("Failed to compute coordinator data:", error);
+        setCoordinatorResult(null);
+        setSolicitorView(null);
+      }
+    }
+
+    computeCoordinatorData();
+  }, [mounted, isDebug, resolvedCaseId, savedPosition, primary, evidenceImpactMap]);
 
   // Check for one-time guardrail acknowledgement
   useEffect(() => {
@@ -4259,6 +4342,156 @@ export function StrategyCommitmentPanel({
 
             {/* System Guarantees Panel */}
             <SystemGuaranteesPanel />
+
+            {/* Debug-only panels: Coordinator Battleboard and Solicitor View */}
+            {mounted && isDebug && (
+              <>
+                {/* Coordinator Battleboard (Deterministic) */}
+                {coordinatorResult && (
+                  <Card className="p-4 border-2 border-amber-500/30 bg-amber-500/5">
+                    <div className="flex items-center gap-2 mb-3">
+                      <Target className="h-4 w-4 text-amber-600" />
+                      <h3 className="text-sm font-semibold text-foreground">Coordinator Battleboard (Deterministic)</h3>
+                      <Badge variant="outline" className="text-xs">DEBUG</Badge>
+                    </div>
+                    <div className="space-y-3 text-xs">
+                      <div>
+                        <span className="font-semibold text-muted-foreground">Offence: </span>
+                        <span className="text-foreground">{coordinatorResult.offence.label}</span>
+                      </div>
+                      {coordinatorResult.plugin_constraints.procedural_safety?.status && (
+                        <div>
+                          <span className="font-semibold text-muted-foreground">Procedural Safety: </span>
+                          <span className="text-foreground">
+                            {coordinatorResult.plugin_constraints.procedural_safety.status.replace(/_/g, " ")}
+                          </span>
+                        </div>
+                      )}
+                      <div>
+                        <span className="font-semibold text-muted-foreground mb-2 block">Routes:</span>
+                        <div className="space-y-2 pl-2">
+                          {coordinatorResult.routes.map((route, idx) => (
+                            <div key={idx} className="border-l-2 border-amber-500/30 pl-2">
+                              <div className="flex items-center gap-2 mb-1">
+                                <span className="font-medium text-foreground">
+                                  {route.id.replace(/_/g, " ")}
+                                </span>
+                                <Badge
+                                  variant={
+                                    route.status === "viable"
+                                      ? "success"
+                                      : route.status === "risky"
+                                        ? "warning"
+                                        : "outline"
+                                  }
+                                  className="text-xs"
+                                >
+                                  {route.status}
+                                </Badge>
+                              </div>
+                              {route.reasons.length > 0 && (
+                                <p className="text-muted-foreground text-[11px]">
+                                  {route.reasons[0]}
+                                </p>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      {coordinatorResult.judge_analysis && (
+                        <div>
+                          <span className="font-semibold text-muted-foreground mb-2 block">Judge Reasoning (Doctrine):</span>
+                          <div className="space-y-1.5 pl-2">
+                            {coordinatorResult.judge_analysis.legal_tests.slice(0, 3).map((test, idx) => (
+                              <div key={idx} className="text-[11px] text-foreground">
+                                • {test}
+                              </div>
+                            ))}
+                            {coordinatorResult.judge_analysis.constraints.slice(0, 2).map((constraint, idx) => (
+                              <div key={`constraint-${idx}`} className="text-[11px] text-muted-foreground italic">
+                                → {constraint}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </Card>
+                )}
+
+                {/* Solicitor View (1 page) */}
+                {solicitorView && (
+                  <Card className="p-4 border-2 border-amber-500/30 bg-amber-500/5">
+                    <div className="flex items-center gap-2 mb-3">
+                      <FileText className="h-4 w-4 text-amber-600" />
+                      <h3 className="text-sm font-semibold text-foreground">Solicitor View (1 page)</h3>
+                      <Badge variant="outline" className="text-xs">DEBUG</Badge>
+                    </div>
+                    <div className="space-y-4 text-xs">
+                      <div>
+                        <span className="font-semibold text-muted-foreground mb-1 block">Headline:</span>
+                        <p className="text-foreground">{solicitorView.headline}</p>
+                      </div>
+                      {solicitorView.dispute_points.length > 0 && (
+                        <div>
+                          <span className="font-semibold text-muted-foreground mb-1 block">Dispute Points:</span>
+                          <ul className="list-disc list-inside space-y-1 text-foreground">
+                            {solicitorView.dispute_points.map((point, idx) => (
+                              <li key={idx}>{point}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      {solicitorView.decisive_missing_items.length > 0 && (
+                        <div>
+                          <span className="font-semibold text-muted-foreground mb-1 block">Decisive Missing Items:</span>
+                          <ul className="list-disc list-inside space-y-1 text-foreground">
+                            {solicitorView.decisive_missing_items.map((item, idx) => (
+                              <li key={idx}>{item}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      {solicitorView.top_routes.length > 0 && (
+                        <div>
+                          <span className="font-semibold text-muted-foreground mb-1 block">Top Routes:</span>
+                          <div className="space-y-2">
+                            {solicitorView.top_routes.map((route, idx) => (
+                              <div key={idx} className="border-l-2 border-amber-500/30 pl-2">
+                                <div className="font-medium text-foreground mb-1">{route.label}</div>
+                                {route.why.length > 0 && (
+                                  <ul className="list-disc list-inside space-y-0.5 text-muted-foreground text-[11px]">
+                                    {route.why.map((reason, rIdx) => (
+                                      <li key={rIdx}>{reason}</li>
+                                    ))}
+                                  </ul>
+                                )}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                      {solicitorView.worst_case_cap && (
+                        <div>
+                          <span className="font-semibold text-muted-foreground mb-1 block">Worst-Case Cap:</span>
+                          <p className="text-foreground">{solicitorView.worst_case_cap}</p>
+                        </div>
+                      )}
+                      {solicitorView.next_actions.length > 0 && (
+                        <div>
+                          <span className="font-semibold text-muted-foreground mb-1 block">Next Actions:</span>
+                          <ul className="list-disc list-inside space-y-1 text-foreground">
+                            {solicitorView.next_actions.map((action, idx) => (
+                              <li key={idx}>{action}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  </Card>
+                )}
+              </>
+            )}
 
             {/* Consistency & Safety Panel */}
             <ConsistencySafetyPanel
