@@ -52,6 +52,7 @@ const statusIcons = {
 };
 
 export function MissingEvidencePanel({ caseId, items: propItems }: MissingEvidencePanelProps) {
+  const [mounted, setMounted] = useState(false);
   const [versionItems, setVersionItems] = useState<VersionMissingEvidence[]>([]);
   const [loading, setLoading] = useState(false); // Start false - only set true during initial load
   const [refreshing, setRefreshing] = useState(false); // Track refresh state
@@ -61,6 +62,11 @@ export function MissingEvidencePanel({ caseId, items: propItems }: MissingEviden
   const [analysisMode, setAnalysisMode] = useState<"complete" | "preview" | "none">("none");
   const [hasDisclosureGaps, setHasDisclosureGaps] = useState<boolean>(false);
   const isFirstLoadRef = useRef(true);
+
+  // Hydration guard: prevent hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Fetch from case_analysis_versions if items not provided
   useEffect(() => {
@@ -158,12 +164,14 @@ export function MissingEvidencePanel({ caseId, items: propItems }: MissingEviden
   };
 
   const items = propItems || convertVersionItems(versionItems || []);
-  const [localItems, setLocalItems] = useState<MissingEvidenceItem[]>(items || []);
+  const [localItems, setLocalItems] = useState<MissingEvidenceItem[]>([]);
 
-  // Update local items when items change
+  // Update local items when items change (only after mount to prevent hydration mismatch)
   useEffect(() => {
-    setLocalItems(Array.isArray(items) ? items : []);
-  }, [items]);
+    if (mounted) {
+      setLocalItems(Array.isArray(items) ? items : []);
+    }
+  }, [items, mounted]);
 
   const safeLocalItems = Array.isArray(localItems) ? localItems : [];
   const missingCount = safeLocalItems.filter((i) => i?.status === "MISSING").length;
@@ -207,6 +215,21 @@ export function MissingEvidencePanel({ caseId, items: propItems }: MissingEviden
     },
     {} as Record<EvidenceCategory, MissingEvidenceItem[]>,
   );
+
+  // Hydration guard: show loading state until mounted
+  if (!mounted) {
+    return (
+      <Card
+        title="Evidence Checklist"
+        description="Required evidence for this case."
+      >
+        <div className="flex items-center gap-3 p-4">
+          <Loader2 className="h-5 w-5 animate-spin text-primary" />
+          <p className="text-sm text-accent/60">Loading...</p>
+        </div>
+      </Card>
+    );
+  }
 
   // Only show full loading state if we have no data
   if (loading && versionItems.length === 0 && !propItems) {
