@@ -5517,8 +5517,8 @@ export function StrategyCommitmentPanel({
               <BeastStrategyPackView pack={beastPack} activeType={safeActiveType} expandedSections={expandedSections} toggleSection={toggleSection} />
             )}
 
-            {/* Evidence Impact Map */}
-            {Array.isArray(evidenceImpactMap) && evidenceImpactMap.length > 0 && (
+            {/* Evidence Impact Map - DEBUG ONLY (contains "If arrives clean/late/adverse" speculative content) */}
+            {isDebug && Array.isArray(evidenceImpactMap) && evidenceImpactMap.length > 0 && (
               <div className="mt-6 pt-6 border-t border-border">
                 <div className="flex items-center gap-2 mb-3">
                   <MapPin className="h-4 w-4 text-primary" />
@@ -5593,8 +5593,8 @@ export function StrategyCommitmentPanel({
               </div>
             )}
 
-            {/* Time Pressure */}
-            {timePressure && (
+            {/* Time Pressure - DEBUG ONLY (contains leverage analysis and speculative timing) */}
+            {isDebug && timePressure && (
               <div className="mt-6 pt-6 border-t border-border">
                 <div className="flex items-center gap-2 mb-3">
                   <Calendar className="h-4 w-4 text-primary" />
@@ -5653,8 +5653,8 @@ export function StrategyCommitmentPanel({
               </div>
             )}
 
-            {/* Confidence States */}
-            {Object.keys(confidenceStates).length > 0 && (
+            {/* Confidence States - DEBUG ONLY (contains evidence support level analysis) */}
+            {isDebug && Object.keys(confidenceStates).length > 0 && (
               <div className="mt-6 pt-6 border-t border-border">
                 <div className="flex items-center gap-2 mb-3">
                   <TrendingUp className="h-4 w-4 text-primary" />
@@ -5696,8 +5696,8 @@ export function StrategyCommitmentPanel({
               </div>
             )}
 
-            {/* Decision Checkpoints */}
-            {decisionCheckpoints.length > 0 && (
+            {/* Decision Checkpoints - DEBUG ONLY (contains leverage analysis) */}
+            {isDebug && decisionCheckpoints.length > 0 && (
               <div className="mt-6 pt-6 border-t border-border">
                 <div className="flex items-center gap-2 mb-3">
                   <AlertCircle className="h-4 w-4 text-primary" />
@@ -5749,8 +5749,8 @@ export function StrategyCommitmentPanel({
               </div>
             )}
 
-            {/* Output Artifacts - shown when strategy is committed AND analysis is available */}
-            {isCommitted && primary && artifacts.length > 0 && (
+            {/* Output Artifacts - DEBUG ONLY (contains CPS Negotiation Brief, Case Management Note, etc.) */}
+            {isDebug && isCommitted && primary && artifacts.length > 0 && (
               <div className="mt-6 pt-6 border-t border-border">
                 <div className="flex items-center gap-2 mb-3">
                   <FileText className="h-4 w-4 text-primary" />
