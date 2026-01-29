@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -3656,17 +3656,12 @@ export function StrategyCommitmentPanel({
   const lens = getLens(practiceArea);
   const params = useParams();
   const router = useRouter();
+  const searchParams = useSearchParams();
   const resolvedCaseId = (caseId ?? params.caseId) as string | undefined;
   
-  // Client-only debug detection (safe, no Next/navigation hooks)
-  const isDebug =
-    typeof window !== "undefined" &&
-    new URLSearchParams(window.location.search).has("debug");
-  
-  // Client-only demo detection (safe, no Next/navigation hooks)
-  const isDemo =
-    typeof window !== "undefined" &&
-    new URLSearchParams(window.location.search).has("demo");
+  // Read query params using Next.js useSearchParams
+  const isDebug = searchParams.get("debug") === "1";
+  const isDemo = searchParams.get("demo") === "1";
   
   const [savedPosition, setSavedPosition] = useState<SavedPosition | null>(propSavedPosition || null);
   const [primary, setPrimary] = useState<PrimaryStrategy | null>(null);
@@ -4461,7 +4456,258 @@ export function StrategyCommitmentPanel({
     );
   }
 
-  // NORMAL MODE / DEBUG MODE: Full rendering
+  // NORMAL MODE: Hard return - ONLY slim deterministic panels (no legacy stack)
+  if (!isDebug && !isDemo && mounted) {
+    return (
+      <Card className="p-6" data-strategy-commitment>
+        <div className="space-y-6">
+          {/* Role Coverage Banner */}
+          <div className="rounded-lg border border-primary/20 bg-primary/5 p-3">
+            <p className="text-xs text-muted-foreground text-center">{roleCoverageText}</p>
+          </div>
+
+          {/* Onboarding Guidance (Collapsible) */}
+          <OnboardingGuidancePanel />
+
+        {/* One-time Guardrail Modal */}
+        {showGuardrail && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+            <Card className="p-6 max-w-md mx-4 border-2 border-primary/30">
+              <div className="space-y-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <Shield className="h-5 w-5 text-primary" />
+                  <h3 className="text-lg font-semibold text-foreground">System Guardrail</h3>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  This system supports decision discipline. It does not provide legal advice or predict outcomes.
+                </p>
+                <Button
+                  onClick={handleGuardrailAcknowledge}
+                  className="w-full"
+                >
+                  <CheckCircle className="h-4 w-4 mr-2" />
+                  Continue
+                </Button>
+              </div>
+            </Card>
+          </div>
+        )}
+
+        {/* Debug Mode Banner */}
+        {isDebug && (
+          <div className="mb-4 p-3 rounded-lg border border-amber-500/30 bg-amber-500/10">
+            <div className="flex items-center gap-2">
+              <AlertTriangle className="h-4 w-4 text-amber-600 flex-shrink-0" />
+              <p className="text-xs text-amber-700 dark:text-amber-400">
+                <span className="font-semibold">DEBUG MODE</span> — internal diagnostics and extended analysis. Not for client or court documents.
+              </p>
+            </div>
+          </div>
+        )}
+
+          {/* Strategy Overview - Coordinator outputs (NORMAL MODE: always visible when coordinator data exists) */}
+          {mounted && coordinatorResult && solicitorView && (
+            <>
+              {/* Solicitor View (1 page) - Primary strategy overview */}
+              <Card className="p-4 border-2 border-primary/30 bg-primary/5">
+                <div className="flex items-center gap-2 mb-3">
+                  <FileText className="h-4 w-4 text-primary" />
+                  <h3 className="text-sm font-semibold text-foreground">Strategy Overview</h3>
+                </div>
+                <div className="space-y-4 text-xs">
+                  <div>
+                    <span className="font-semibold text-muted-foreground mb-1 block">Headline:</span>
+                    <p className="text-foreground">{solicitorView.headline}</p>
+                  </div>
+                  {solicitorView.dispute_points.length > 0 && (
+                    <div>
+                      <span className="font-semibold text-muted-foreground mb-1 block">Dispute Points:</span>
+                      <ul className="list-disc list-inside space-y-1 text-foreground">
+                        {solicitorView.dispute_points.map((point, idx) => (
+                          <li key={idx}>{point}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  {solicitorView.decisive_missing_items.length > 0 && (
+                    <div>
+                      <span className="font-semibold text-muted-foreground mb-1 block">Decisive Missing Items:</span>
+                      <ul className="list-disc list-inside space-y-1 text-foreground">
+                        {solicitorView.decisive_missing_items.map((item, idx) => (
+                          <li key={idx}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  {solicitorView.top_routes.length > 0 && (
+                    <div>
+                      <span className="font-semibold text-muted-foreground mb-1 block">Top Routes:</span>
+                      <div className="space-y-2">
+                        {solicitorView.top_routes.map((route, idx) => (
+                          <div key={idx} className="border-l-2 border-primary/30 pl-2">
+                            <div className="font-medium text-foreground mb-1">{route.label}</div>
+                            {route.why.length > 0 && (
+                              <ul className="list-disc list-inside space-y-0.5 text-muted-foreground text-[11px]">
+                                {route.why.map((reason, rIdx) => (
+                                  <li key={rIdx}>{reason}</li>
+                                ))}
+                              </ul>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  {solicitorView.worst_case_cap && (
+                    <div>
+                      <span className="font-semibold text-muted-foreground mb-1 block">Worst-Case Cap:</span>
+                      <p className="text-foreground">{solicitorView.worst_case_cap}</p>
+                    </div>
+                  )}
+                  {solicitorView.next_actions.length > 0 && (
+                    <div>
+                      <span className="font-semibold text-muted-foreground mb-1 block">Next Actions:</span>
+                      <ul className="list-disc list-inside space-y-1 text-foreground">
+                        {solicitorView.next_actions.map((action, idx) => (
+                          <li key={idx}>{action}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </Card>
+
+              {/* Coordinator Battleboard (Compact) */}
+              <Card className="p-4 border border-border/50">
+                <div className="flex items-center gap-2 mb-3">
+                  <Target className="h-4 w-4 text-primary" />
+                  <h3 className="text-sm font-semibold text-foreground">Route Assessment</h3>
+                </div>
+                <div className="space-y-3 text-xs">
+                  <div>
+                    <span className="font-semibold text-muted-foreground">Offence: </span>
+                    <span className="text-foreground">{coordinatorResult.offence.label}</span>
+                  </div>
+                  {coordinatorResult.plugin_constraints.procedural_safety?.status && (
+                    <div>
+                      <span className="font-semibold text-muted-foreground">Procedural Safety: </span>
+                      <span className="text-foreground">
+                        {coordinatorResult.plugin_constraints.procedural_safety.status.replace(/_/g, " ")}
+                      </span>
+                    </div>
+                  )}
+                  <div>
+                    <span className="font-semibold text-muted-foreground mb-2 block">Routes:</span>
+                    <div className="space-y-2 pl-2">
+                      {coordinatorResult.routes.slice(0, 4).map((route, idx) => (
+                        <div key={idx} className="border-l-2 border-primary/30 pl-2">
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="font-medium text-foreground">
+                              {route.id.replace(/_/g, " ")}
+                            </span>
+                            <Badge
+                              variant={
+                                route.status === "viable"
+                                  ? "success"
+                                  : route.status === "risky"
+                                    ? "warning"
+                                    : "outline"
+                              }
+                              className="text-xs"
+                            >
+                              {route.status}
+                            </Badge>
+                          </div>
+                          {route.reasons.length > 0 && (
+                            <p className="text-muted-foreground text-[11px]">
+                              {route.reasons[0]}
+                            </p>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  {coordinatorResult.judge_analysis && (
+                    <div>
+                      <span className="font-semibold text-muted-foreground mb-2 block">Judge Reasoning (Doctrine):</span>
+                      <div className="space-y-1.5 pl-2">
+                        {coordinatorResult.judge_analysis.legal_tests.slice(0, 3).map((test, idx) => (
+                          <div key={idx} className="text-[11px] text-foreground">
+                            • {test}
+                          </div>
+                        ))}
+                        {coordinatorResult.judge_analysis.constraints.slice(0, 2).map((constraint, idx) => (
+                          <div key={`constraint-${idx}`} className="text-[11px] text-muted-foreground italic">
+                            → {constraint}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </Card>
+            </>
+          )}
+
+          {/* Procedural Panels - Always visible in normal mode (NORMAL MODE) */}
+          {/* Supervisor Snapshot - Read-only summary */}
+          {isCommitted && (
+            <SupervisorSnapshot
+              caseId={resolvedCaseId}
+              savedPosition={savedPosition}
+              primary={primary}
+              beastPack={null}
+              nextIrreversibleDecision={nextIrreversibleDecision}
+              evidenceImpactMap={evidenceImpactMap}
+              strategyRoutes={strategyRoutes}
+              toast={{ success: (msg) => showToast(msg, "success"), error: (msg) => showToast(msg, "error") }}
+            />
+          )}
+
+          {/* Declared Dependencies */}
+          {isCommitted && (
+            <DeclaredDependenciesPanel
+              caseId={resolvedCaseId}
+              evidenceImpactMap={evidenceImpactMap}
+            />
+          )}
+
+          {/* Disclosure Chase Timeline */}
+          {isCommitted && (
+            <DisclosureTimelinePanel
+              caseId={resolvedCaseId}
+            />
+          )}
+
+          {/* Irreversible Decisions */}
+          {isCommitted && (
+            <IrreversibleDecisionsPanel
+              caseId={resolvedCaseId}
+            />
+          )}
+
+          {/* Procedural Safety Status - CRITICAL */}
+          {isCommitted && (
+            <ProceduralSafetyPanel
+              evidenceImpactMap={evidenceImpactMap}
+            />
+          )}
+
+          {/* Worst-Case Cap Panel */}
+          {isCommitted && (
+            <WorstCaseCapPanel
+              caseId={resolvedCaseId}
+              incidentShape={null}
+              weaponTracker={null}
+              evidenceImpactMap={evidenceImpactMap}
+            />
+          )}
+      </div>
+    </Card>
+  );
+  }
+
+  // DEBUG MODE: Render coordinator panels + full legacy stack
   return (
     <Card className="p-6" data-strategy-commitment>
       <div className="space-y-6">
@@ -4509,7 +4755,7 @@ export function StrategyCommitmentPanel({
           </div>
         )}
 
-        {/* Strategy Overview - Coordinator outputs (NORMAL MODE: always visible when coordinator data exists) */}
+        {/* Strategy Overview - Coordinator outputs (always visible in debug mode) */}
         {mounted && coordinatorResult && solicitorView && (
           <>
             {/* Solicitor View (1 page) - Primary strategy overview */}
@@ -4668,7 +4914,7 @@ export function StrategyCommitmentPanel({
           </Card>
         )}
 
-        {/* Procedural Panels - Always visible in normal mode (NORMAL MODE) */}
+        {/* Procedural Panels - Always visible in debug mode */}
         {/* Supervisor Snapshot - Read-only summary */}
         {isCommitted && (
           <SupervisorSnapshot
@@ -4722,9 +4968,20 @@ export function StrategyCommitmentPanel({
           />
         )}
 
-        {/* Debug / Legacy Narrative Sections (DEBUG MODE ONLY) */}
-        {isDebug && (
-          <>
+        {/* Legacy / Debug-only Section Label */}
+        <div className="mt-6 pt-6 border-t-2 border-amber-500/30">
+          <div className="mb-4 p-3 rounded-lg border border-amber-500/30 bg-amber-500/5">
+            <div className="flex items-center gap-2">
+              <AlertTriangle className="h-4 w-4 text-amber-600" />
+              <h3 className="text-sm font-semibold text-foreground">Legacy / Debug-only</h3>
+            </div>
+            <p className="text-xs text-muted-foreground mt-1">
+              The sections below contain legacy narrative content. Normal mode shows only deterministic coordinator outputs above.
+            </p>
+          </div>
+
+          {/* Debug / Legacy Narrative Sections */}
+          <div>
 
             {/* Strategy Compression View (Senior Skim) - Debug only */}
             {isCommitted && (
@@ -4818,8 +5075,8 @@ export function StrategyCommitmentPanel({
                 lens={lens}
               />
             )}
-          </>
-        )}
+          </div>
+        </div>
         
         <div className="flex items-start justify-between">
           <div>
