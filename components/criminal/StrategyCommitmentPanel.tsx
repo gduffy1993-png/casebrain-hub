@@ -5,7 +5,7 @@ import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Target, CheckCircle2, AlertCircle, X, Lock, ArrowRight, TrendingUp, AlertTriangle, ChevronDown, ChevronUp, Copy, FileText, Shield, Zap, AlertCircle as AlertCircleIcon, Calendar, MapPin, Loader2, Clock, Scale, CheckCircle, ListChecks, Info } from "lucide-react";
+import { Target, CheckCircle2, AlertCircle, X, Lock, ArrowRight, TrendingUp, AlertTriangle, ChevronDown, ChevronUp, Copy, FileText, Shield, Zap, AlertCircle as AlertCircleIcon, Calendar, MapPin, Loader2, Clock, Scale, CheckCircle, ListChecks, Info, Gavel } from "lucide-react";
 import { useToast } from "@/components/Toast";
 import { getLens, type PracticeArea } from "@/lib/lenses";
 import { computeProceduralSafety, computeProceduralSafetyFromDependencies, type ProceduralSafety, type DeclaredDependency, type DisclosureTimelineEntry } from "@/lib/criminal/procedural-safety";
@@ -1910,6 +1910,595 @@ function ConsistencySafetyPanel({
   );
 }
 
+// Courtroom Mode Panel (Debug-only, toggle-enabled)
+function CourtroomModePanel({
+  coordinatorResult,
+  solicitorView,
+  savedPosition,
+}: {
+  coordinatorResult: StrategyCoordinatorResult | null;
+  solicitorView: SolicitorView | null;
+  savedPosition: SavedPosition | null;
+}) {
+  const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set());
+  const { push: showToast } = useToast();
+  
+  const toggleSection = (sectionId: string) => {
+    setExpandedSections(prev => {
+      const next = new Set(prev);
+      if (next.has(sectionId)) {
+        next.delete(sectionId);
+      } else {
+        next.add(sectionId);
+      }
+      return next;
+    });
+  };
+
+  const courtroomMode = coordinatorResult?.courtroom_mode;
+  
+  if (!courtroomMode) {
+    return null;
+  }
+
+  const handleCopy = (text: string) => {
+    navigator.clipboard.writeText(text);
+    showToast("Copied to clipboard", "success");
+  };
+
+  const generateCourtReadyPack = (): string => {
+    const lines: string[] = [];
+    
+    // Header
+    lines.push("COURT READY PACK - SCENARIO TEMPLATES");
+    lines.push("Generated: " + new Date().toLocaleString("en-GB"));
+    lines.push("");
+    lines.push("⚠️ SCENARIO TEMPLATES FOR SOLICITOR USE. NOT PREDICTIONS. VERIFY AGAINST EVIDENCE.");
+    lines.push("");
+    lines.push("=".repeat(60));
+    lines.push("");
+
+    // Posture
+    if (savedPosition?.position_text) {
+      lines.push("DEFENCE POSTURE:");
+      lines.push(savedPosition.position_text);
+      lines.push("");
+    } else if (solicitorView?.headline) {
+      lines.push("DEFENCE POSTURE:");
+      lines.push(solicitorView.headline);
+      lines.push("");
+    }
+
+    // Key Issues
+    if (solicitorView?.dispute_points && solicitorView.dispute_points.length > 0) {
+      lines.push("KEY ISSUES:");
+      solicitorView.dispute_points.forEach(point => {
+        lines.push(`- ${point}`);
+      });
+      lines.push("");
+    }
+
+    // Prosecution Lines (Templates)
+    if (courtroomMode.prosecution_lines.length > 0) {
+      lines.push("PROSECUTION LINES (TEMPLATES):");
+      courtroomMode.prosecution_lines.forEach((line, idx) => {
+        lines.push(`${idx + 1}. ${line.line}`);
+        if (line.evidence_needed.length > 0) {
+          lines.push(`   Evidence needed: ${line.evidence_needed.join(", ")}`);
+        }
+        lines.push(`   If true, risk: ${line.if_true_risk}`);
+        lines.push("");
+      });
+    }
+
+    // Judicial Focus
+    if (courtroomMode.judicial_focus.length > 0) {
+      lines.push("JUDICIAL FOCUS:");
+      courtroomMode.judicial_focus.forEach((focus, idx) => {
+        lines.push(`${idx + 1}. ${focus.focus}`);
+        lines.push(`   Legal anchor: ${focus.legal_anchor}`);
+        if (focus.evidence_needed.length > 0) {
+          lines.push(`   Evidence needed: ${focus.evidence_needed.join(", ")}`);
+        }
+        lines.push("");
+      });
+    }
+
+    // Defence Counters
+    if (courtroomMode.defence_counters.length > 0) {
+      lines.push("DEFENCE COUNTERS:");
+      courtroomMode.defence_counters.forEach((counter, idx) => {
+        lines.push(`${idx + 1}. ${counter.counter}`);
+        lines.push(`   Safe wording: ${counter.safe_wording}`);
+        if (counter.dependencies.length > 0) {
+          lines.push(`   Dependencies: ${counter.dependencies.join(", ")}`);
+        }
+        lines.push("");
+      });
+    }
+
+    // Immediate Questions (Rapid Client Questions)
+    if (courtroomMode.rapid_client_questions.length > 0) {
+      lines.push("IMMEDIATE QUESTIONS:");
+      courtroomMode.rapid_client_questions.forEach((question, idx) => {
+        lines.push(`${idx + 1}. ${question}`);
+      });
+      lines.push("");
+    }
+
+    // Hearing Script Bullets
+    lines.push("HEARING SCRIPTS:");
+    if (courtroomMode.hearing_script.cmh_ptph.length > 0) {
+      lines.push("CMH/PTPH:");
+      courtroomMode.hearing_script.cmh_ptph.forEach(line => {
+        lines.push(`- ${line}`);
+      });
+      lines.push("");
+    }
+    if (courtroomMode.hearing_script.disclosure_app.length > 0) {
+      lines.push("DISCLOSURE APPLICATION:");
+      courtroomMode.hearing_script.disclosure_app.forEach(line => {
+        lines.push(`- ${line}`);
+      });
+      lines.push("");
+    }
+    if (courtroomMode.hearing_script.bail.length > 0) {
+      lines.push("BAIL:");
+      courtroomMode.hearing_script.bail.forEach(line => {
+        lines.push(`- ${line}`);
+      });
+      lines.push("");
+    }
+
+    // Disclosure Asks
+    if (coordinatorResult?.dependencies) {
+      const outstandingDeps = coordinatorResult.dependencies.filter(d => d.status === "outstanding");
+      if (outstandingDeps.length > 0) {
+        lines.push("DISCLOSURE ASKS:");
+        outstandingDeps.forEach(dep => {
+          lines.push(`- ${dep.label}: ${dep.why_it_matters}`);
+          if (dep.last_action_date) {
+            lines.push(`  Last action: ${new Date(dep.last_action_date).toLocaleDateString("en-GB")}`);
+          }
+        });
+        lines.push("");
+      }
+    }
+
+    // Footer
+    lines.push("=".repeat(60));
+    lines.push("");
+    lines.push("END OF COURT READY PACK");
+    lines.push("Remember: These are scenario templates. Verify all content against actual evidence.");
+
+    return lines.join("\n");
+  };
+
+  return (
+    <Card className="p-4 border-2 border-primary/30">
+      {/* Warning Banner with Copy Button */}
+      <div className="mb-4 space-y-3">
+        <div className="p-3 rounded-lg border border-amber-500/30 bg-amber-500/5">
+          <div className="flex items-start gap-2">
+            <AlertTriangle className="h-4 w-4 text-amber-600 mt-0.5 flex-shrink-0" />
+            <div className="flex-1">
+              <p className="text-xs font-semibold text-foreground">Scenario templates for solicitor use</p>
+              <p className="text-xs text-muted-foreground mt-1">Not predictions. Verify against evidence.</p>
+            </div>
+          </div>
+        </div>
+        <Button
+          variant="primary"
+          size="sm"
+          onClick={() => handleCopy(generateCourtReadyPack())}
+          className="w-full"
+        >
+          <Copy className="h-4 w-4 mr-2" />
+          Copy Court Ready Pack
+        </Button>
+      </div>
+
+      <div className="space-y-4">
+        {/* Prosecution Lines */}
+        {courtroomMode.prosecution_lines.length > 0 && (
+          <div>
+            <button
+              onClick={() => toggleSection("prosecution_lines")}
+              className="flex items-center justify-between w-full text-left"
+            >
+              <div className="flex items-center gap-2">
+                <Gavel className="h-4 w-4 text-primary" />
+                <h4 className="text-sm font-semibold text-foreground">Prosecution Lines</h4>
+              </div>
+              {expandedSections.has("prosecution_lines") ? (
+                <ChevronUp className="h-4 w-4 text-muted-foreground" />
+              ) : (
+                <ChevronDown className="h-4 w-4 text-muted-foreground" />
+              )}
+            </button>
+            {expandedSections.has("prosecution_lines") && (
+              <div className="mt-2 space-y-3 pl-6">
+                {courtroomMode.prosecution_lines.map((line, idx) => (
+                  <div key={idx} className="p-3 rounded-lg border border-border/50 bg-muted/10">
+                    <p className="text-xs text-foreground mb-2">{line.line}</p>
+                    <div className="text-xs text-muted-foreground">
+                      <span className="font-semibold">Evidence needed: </span>
+                      {line.evidence_needed.join(", ")}
+                    </div>
+                    <div className="text-xs text-amber-600 mt-1">
+                      <span className="font-semibold">If true, risk: </span>
+                      {line.if_true_risk}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Judicial Focus */}
+        {courtroomMode.judicial_focus.length > 0 && (
+          <div>
+            <button
+              onClick={() => toggleSection("judicial_focus")}
+              className="flex items-center justify-between w-full text-left"
+            >
+              <div className="flex items-center gap-2">
+                <Scale className="h-4 w-4 text-primary" />
+                <h4 className="text-sm font-semibold text-foreground">Judicial Focus</h4>
+              </div>
+              {expandedSections.has("judicial_focus") ? (
+                <ChevronUp className="h-4 w-4 text-muted-foreground" />
+              ) : (
+                <ChevronDown className="h-4 w-4 text-muted-foreground" />
+              )}
+            </button>
+            {expandedSections.has("judicial_focus") && (
+              <div className="mt-2 space-y-3 pl-6">
+                {courtroomMode.judicial_focus.map((focus, idx) => (
+                  <div key={idx} className="p-3 rounded-lg border border-border/50 bg-muted/10">
+                    <p className="text-xs font-semibold text-foreground mb-1">{focus.focus}</p>
+                    <p className="text-xs text-muted-foreground mb-2">Legal anchor: {focus.legal_anchor}</p>
+                    <div className="text-xs text-muted-foreground">
+                      <span className="font-semibold">Evidence needed: </span>
+                      {focus.evidence_needed.join(", ")}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Defence Counters */}
+        {courtroomMode.defence_counters.length > 0 && (
+          <div>
+            <button
+              onClick={() => toggleSection("defence_counters")}
+              className="flex items-center justify-between w-full text-left"
+            >
+              <div className="flex items-center gap-2">
+                <Shield className="h-4 w-4 text-primary" />
+                <h4 className="text-sm font-semibold text-foreground">Defence Counters</h4>
+              </div>
+              {expandedSections.has("defence_counters") ? (
+                <ChevronUp className="h-4 w-4 text-muted-foreground" />
+              ) : (
+                <ChevronDown className="h-4 w-4 text-muted-foreground" />
+              )}
+            </button>
+            {expandedSections.has("defence_counters") && (
+              <div className="mt-2 space-y-3 pl-6">
+                {courtroomMode.defence_counters.map((counter, idx) => (
+                  <div key={idx} className="p-3 rounded-lg border border-border/50 bg-muted/10">
+                    <p className="text-xs font-semibold text-foreground mb-2">{counter.counter}</p>
+                    <p className="text-xs text-foreground mb-2">{counter.safe_wording}</p>
+                    <div className="text-xs text-muted-foreground">
+                      <span className="font-semibold">Dependencies: </span>
+                      {counter.dependencies.join(", ")}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Cross-Examination Angles */}
+        {courtroomMode.cross_exam_angles.length > 0 && (
+          <div>
+            <button
+              onClick={() => toggleSection("cross_exam")}
+              className="flex items-center justify-between w-full text-left"
+            >
+              <div className="flex items-center gap-2">
+                <Target className="h-4 w-4 text-primary" />
+                <h4 className="text-sm font-semibold text-foreground">Cross-Examination Angles</h4>
+              </div>
+              {expandedSections.has("cross_exam") ? (
+                <ChevronUp className="h-4 w-4 text-muted-foreground" />
+              ) : (
+                <ChevronDown className="h-4 w-4 text-muted-foreground" />
+              )}
+            </button>
+            {expandedSections.has("cross_exam") && (
+              <div className="mt-2 space-y-3 pl-6">
+                {courtroomMode.cross_exam_angles.map((angle, idx) => (
+                  <div key={idx} className="p-3 rounded-lg border border-border/50 bg-muted/10">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Badge variant="outline" className="text-xs">
+                        {angle.target}
+                      </Badge>
+                    </div>
+                    <p className="text-xs font-semibold text-foreground mb-1">{angle.angle}</p>
+                    <p className="text-xs text-muted-foreground mb-2">Purpose: {angle.purpose}</p>
+                    <div className="text-xs text-muted-foreground">
+                      <span className="font-semibold">Evidence needed: </span>
+                      {angle.evidence_needed.join(", ")}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Negotiation Script */}
+        {courtroomMode.negotiation_script.length > 0 && (
+          <div>
+            <button
+              onClick={() => toggleSection("negotiation")}
+              className="flex items-center justify-between w-full text-left"
+            >
+              <div className="flex items-center gap-2">
+                <FileText className="h-4 w-4 text-primary" />
+                <h4 className="text-sm font-semibold text-foreground">Negotiation Script</h4>
+              </div>
+              {expandedSections.has("negotiation") ? (
+                <ChevronUp className="h-4 w-4 text-muted-foreground" />
+              ) : (
+                <ChevronDown className="h-4 w-4 text-muted-foreground" />
+              )}
+            </button>
+            {expandedSections.has("negotiation") && (
+              <div className="mt-2 space-y-4 pl-6">
+                {courtroomMode.negotiation_script.map((script, idx) => (
+                  <div key={idx} className="p-3 rounded-lg border border-border/50 bg-muted/10 space-y-2">
+                    <div>
+                      <p className="text-xs font-semibold text-foreground mb-1">CPS may ask:</p>
+                      <ul className="text-xs text-muted-foreground list-disc list-inside space-y-1">
+                        {script.cps_ask.map((ask, aIdx) => (
+                          <li key={aIdx}>{ask}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <p className="text-xs font-semibold text-foreground mb-1">Defence may offer:</p>
+                      <ul className="text-xs text-muted-foreground list-disc list-inside space-y-1">
+                        {script.defence_offer.map((offer, oIdx) => (
+                          <li key={oIdx}>{offer}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <p className="text-xs font-semibold text-amber-600 mb-1">Red lines:</p>
+                      <ul className="text-xs text-amber-600 list-disc list-inside space-y-1">
+                        {script.red_lines.map((line, lIdx) => (
+                          <li key={lIdx}>{line}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Hearing Scripts */}
+        {(courtroomMode.hearing_script.cmh_ptph.length > 0 || 
+          courtroomMode.hearing_script.disclosure_app.length > 0 || 
+          courtroomMode.hearing_script.bail.length > 0) && (
+          <div>
+            <button
+              onClick={() => toggleSection("hearing_scripts")}
+              className="flex items-center justify-between w-full text-left"
+            >
+              <div className="flex items-center gap-2">
+                <Gavel className="h-4 w-4 text-primary" />
+                <h4 className="text-sm font-semibold text-foreground">Hearing Scripts</h4>
+              </div>
+              {expandedSections.has("hearing_scripts") ? (
+                <ChevronUp className="h-4 w-4 text-muted-foreground" />
+              ) : (
+                <ChevronDown className="h-4 w-4 text-muted-foreground" />
+              )}
+            </button>
+            {expandedSections.has("hearing_scripts") && (
+              <div className="mt-2 space-y-3 pl-6">
+                {courtroomMode.hearing_script.cmh_ptph.length > 0 && (
+                  <div className="p-3 rounded-lg border border-border/50 bg-muted/10">
+                    <p className="text-xs font-semibold text-foreground mb-2">CMH/PTPH:</p>
+                    <ul className="text-xs text-muted-foreground list-disc list-inside space-y-1">
+                      {courtroomMode.hearing_script.cmh_ptph.map((line, idx) => (
+                        <li key={idx}>{line}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {courtroomMode.hearing_script.disclosure_app.length > 0 && (
+                  <div className="p-3 rounded-lg border border-border/50 bg-muted/10">
+                    <p className="text-xs font-semibold text-foreground mb-2">Disclosure Application:</p>
+                    <ul className="text-xs text-muted-foreground list-disc list-inside space-y-1">
+                      {courtroomMode.hearing_script.disclosure_app.map((line, idx) => (
+                        <li key={idx}>{line}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {courtroomMode.hearing_script.bail.length > 0 && (
+                  <div className="p-3 rounded-lg border border-border/50 bg-muted/10">
+                    <p className="text-xs font-semibold text-foreground mb-2">Bail:</p>
+                    <ul className="text-xs text-muted-foreground list-disc list-inside space-y-1">
+                      {courtroomMode.hearing_script.bail.map((line, idx) => (
+                        <li key={idx}>{line}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Rapid Client Questions */}
+        {courtroomMode.rapid_client_questions.length > 0 && (
+          <div>
+            <button
+              onClick={() => toggleSection("client_questions")}
+              className="flex items-center justify-between w-full text-left"
+            >
+              <div className="flex items-center gap-2">
+                <AlertCircle className="h-4 w-4 text-primary" />
+                <h4 className="text-sm font-semibold text-foreground">Rapid Client Questions</h4>
+              </div>
+              {expandedSections.has("client_questions") ? (
+                <ChevronUp className="h-4 w-4 text-muted-foreground" />
+              ) : (
+                <ChevronDown className="h-4 w-4 text-muted-foreground" />
+              )}
+            </button>
+            {expandedSections.has("client_questions") && (
+              <div className="mt-2 pl-6">
+                <ul className="text-xs text-muted-foreground list-disc list-inside space-y-1">
+                  {courtroomMode.rapid_client_questions.map((question, idx) => (
+                    <li key={idx}>{question}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Flip Triggers */}
+        {courtroomMode.flip_triggers.length > 0 && (
+          <div>
+            <button
+              onClick={() => toggleSection("flip_triggers")}
+              className="flex items-center justify-between w-full text-left"
+            >
+              <div className="flex items-center gap-2">
+                <AlertTriangle className="h-4 w-4 text-primary" />
+                <h4 className="text-sm font-semibold text-foreground">Flip Triggers</h4>
+              </div>
+              {expandedSections.has("flip_triggers") ? (
+                <ChevronUp className="h-4 w-4 text-muted-foreground" />
+              ) : (
+                <ChevronDown className="h-4 w-4 text-muted-foreground" />
+              )}
+            </button>
+            {expandedSections.has("flip_triggers") && (
+              <div className="mt-2 space-y-3 pl-6">
+                {courtroomMode.flip_triggers.map((trigger, idx) => (
+                  <div key={idx} className="p-3 rounded-lg border border-border/50 bg-muted/10">
+                    <p className="text-xs text-foreground mb-1">
+                      <span className="font-semibold">If evidence arrives: </span>
+                      {trigger.if_evidence_arrives}
+                    </p>
+                    <p className="text-xs text-amber-600">
+                      <span className="font-semibold">Then impact: </span>
+                      {trigger.then_impact}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Counsel Instruction Pack */}
+        {(courtroomMode.counsel_instruction_pack.issues.length > 0 ||
+          courtroomMode.counsel_instruction_pack.documents_to_request.length > 0 ||
+          courtroomMode.counsel_instruction_pack.questions_for_counsel.length > 0) && (
+          <div>
+            <button
+              onClick={() => toggleSection("counsel_pack")}
+              className="flex items-center justify-between w-full text-left"
+            >
+              <div className="flex items-center gap-2">
+                <FileText className="h-4 w-4 text-primary" />
+                <h4 className="text-sm font-semibold text-foreground">Counsel Instruction Pack</h4>
+              </div>
+              <div className="flex items-center gap-2">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    const packText = [
+                      "ISSUES:",
+                      ...courtroomMode.counsel_instruction_pack.issues.map(i => `- ${i}`),
+                      "",
+                      "DOCUMENTS TO REQUEST:",
+                      ...courtroomMode.counsel_instruction_pack.documents_to_request.map(d => `- ${d}`),
+                      "",
+                      "QUESTIONS FOR COUNSEL:",
+                      ...courtroomMode.counsel_instruction_pack.questions_for_counsel.map(q => `- ${q}`),
+                    ].join("\n");
+                    handleCopy(packText);
+                  }}
+                  className="h-6 px-2"
+                >
+                  <Copy className="h-3 w-3" />
+                </Button>
+                {expandedSections.has("counsel_pack") ? (
+                  <ChevronUp className="h-4 w-4 text-muted-foreground" />
+                ) : (
+                  <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                )}
+              </div>
+            </button>
+            {expandedSections.has("counsel_pack") && (
+              <div className="mt-2 space-y-3 pl-6">
+                {courtroomMode.counsel_instruction_pack.issues.length > 0 && (
+                  <div className="p-3 rounded-lg border border-border/50 bg-muted/10">
+                    <p className="text-xs font-semibold text-foreground mb-2">Issues:</p>
+                    <ul className="text-xs text-muted-foreground list-disc list-inside space-y-1">
+                      {courtroomMode.counsel_instruction_pack.issues.map((issue, idx) => (
+                        <li key={idx}>{issue}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {courtroomMode.counsel_instruction_pack.documents_to_request.length > 0 && (
+                  <div className="p-3 rounded-lg border border-border/50 bg-muted/10">
+                    <p className="text-xs font-semibold text-foreground mb-2">Documents to Request:</p>
+                    <ul className="text-xs text-muted-foreground list-disc list-inside space-y-1">
+                      {courtroomMode.counsel_instruction_pack.documents_to_request.map((doc, idx) => (
+                        <li key={idx}>{doc}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {courtroomMode.counsel_instruction_pack.questions_for_counsel.length > 0 && (
+                  <div className="p-3 rounded-lg border border-border/50 bg-muted/10">
+                    <p className="text-xs font-semibold text-foreground mb-2">Questions for Counsel:</p>
+                    <ul className="text-xs text-muted-foreground list-disc list-inside space-y-1">
+                      {courtroomMode.counsel_instruction_pack.questions_for_counsel.map((question, idx) => (
+                        <li key={idx}>{question}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </Card>
+  );
+}
+
 // Procedural Safety Status Panel
 function ProceduralSafetyPanel({
   evidenceImpactMap,
@@ -3714,6 +4303,9 @@ export function StrategyCommitmentPanel({
   const [solicitorView, setSolicitorView] = useState<SolicitorView | null>(null);
   const [declaredDependencies, setDeclaredDependencies] = useState<DeclaredDependency[]>([]);
   const [disclosureTimelineEntries, setDisclosureTimelineEntries] = useState<DisclosureTimelineEntry[]>([]);
+  const [enableCourtroomMode, setEnableCourtroomMode] = useState(false);
+  const [showCourtroomModeConfirmation, setShowCourtroomModeConfirmation] = useState(false);
+  const [courtroomModeConfirmed, setCourtroomModeConfirmed] = useState(false);
   const [proceduralState, setProceduralState] = useState<{
     hasPTPH: boolean;
     hasPlea: boolean;
@@ -4999,6 +5591,99 @@ export function StrategyCommitmentPanel({
             weaponTracker={null}
             evidenceImpactMap={evidenceImpactMap}
           />
+        )}
+
+        {/* Courtroom Mode (Normal mode accessible, opt-in with confirmation) */}
+        {coordinatorResult?.courtroom_mode && (
+          <div className="mt-6 pt-6 border-t border-border">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2">
+                <Gavel className="h-4 w-4 text-primary" />
+                <h3 className="text-sm font-semibold text-foreground">Courtroom Mode (Scenario Templates)</h3>
+              </div>
+              {!enableCourtroomMode ? (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setShowCourtroomModeConfirmation(true)}
+                  className="h-8"
+                >
+                  Enable Courtroom Mode
+                </Button>
+              ) : (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setEnableCourtroomMode(false)}
+                  className="h-8"
+                >
+                  Disable
+                </Button>
+              )}
+            </div>
+            {enableCourtroomMode && (
+              <CourtroomModePanel 
+                coordinatorResult={coordinatorResult}
+                solicitorView={solicitorView}
+                savedPosition={savedPosition}
+              />
+            )}
+          </div>
+        )}
+
+        {/* Courtroom Mode Confirmation Modal */}
+        {showCourtroomModeConfirmation && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+            <Card className="p-6 max-w-md mx-4 border-2 border-primary/30">
+              <div className="space-y-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <Gavel className="h-5 w-5 text-primary" />
+                  <h3 className="text-lg font-semibold text-foreground">Enable Courtroom Mode</h3>
+                </div>
+                <div className="p-3 rounded-lg border border-amber-500/30 bg-amber-500/5 mb-4">
+                  <p className="text-sm text-muted-foreground">
+                    Courtroom Mode provides scenario templates for solicitor use. All content must be verified against actual evidence.
+                  </p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <input
+                    type="checkbox"
+                    id="courtroom-mode-confirm"
+                    checked={courtroomModeConfirmed}
+                    onChange={(e) => setCourtroomModeConfirmed(e.target.checked)}
+                    className="mt-1 h-4 w-4 rounded border-border"
+                  />
+                  <label htmlFor="courtroom-mode-confirm" className="text-sm text-foreground cursor-pointer">
+                    I understand this is scenario template material and must be verified against evidence.
+                  </label>
+                </div>
+                <div className="flex gap-2 justify-end">
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      setShowCourtroomModeConfirmation(false);
+                      setCourtroomModeConfirmed(false);
+                    }}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    variant="primary"
+                    onClick={() => {
+                      if (courtroomModeConfirmed) {
+                        setEnableCourtroomMode(true);
+                        setShowCourtroomModeConfirmation(false);
+                        setCourtroomModeConfirmed(false);
+                      }
+                    }}
+                    disabled={!courtroomModeConfirmed}
+                  >
+                    Enable
+                  </Button>
+                </div>
+              </div>
+            </Card>
+          </div>
         )}
 
         {/* Legacy / Debug-only Section Label */}

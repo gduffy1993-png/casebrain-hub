@@ -16,6 +16,7 @@ import type { RouteType } from "./strategy-fight-types";
 import { detectOffence, type OffenceDef } from "./offence-elements";
 import { evaluateRoutes, CANONICAL_ROUTES, type RouteAssessment as CanonicalRouteAssessment } from "./strategy-routes";
 import { buildJudgeAnalysis, type JudgeAnalysis } from "./judge-reasoning";
+import { buildCourtroomModePack, type CourtroomModePack } from "./courtroom-mode";
 
 // ============================================================================
 // CANONICAL TYPES
@@ -64,6 +65,7 @@ export type StrategyCoordinatorResult = {
   next_actions: string[];
   audit_trace: string[];
   judge_analysis?: JudgeAnalysis;
+  courtroom_mode?: CourtroomModePack;
 };
 
 // ============================================================================
@@ -214,6 +216,25 @@ export function buildStrategyCoordinator(
       // Judge analysis is optional, fail gracefully
       const errorMsg = error instanceof Error ? error.message : "Unknown error";
       audit_trace.push(`[COORDINATOR] Judge analysis failed (non-fatal): ${errorMsg}`);
+    }
+
+    // Step 8: Build courtroom mode pack (scenario templates, not predictions)
+    audit_trace.push("[COORDINATOR] Step 8: Building courtroom mode pack");
+    try {
+      result.courtroom_mode = buildCourtroomModePack({
+        offenceCode: result.offence.code,
+        offenceLabel: result.offence.label,
+        elements: result.elements,
+        dependencies: result.dependencies,
+        routes: result.routes,
+        judge_analysis: result.judge_analysis,
+        recordedPosition: input.recordedPosition,
+      });
+      audit_trace.push(`[COORDINATOR] Courtroom mode pack built: ${result.courtroom_mode.prosecution_lines.length} prosecution lines, ${result.courtroom_mode.cross_exam_angles.length} cross-exam angles`);
+    } catch (error) {
+      // Courtroom mode is optional, fail gracefully
+      const errorMsg = error instanceof Error ? error.message : "Unknown error";
+      audit_trace.push(`[COORDINATOR] Courtroom mode pack failed (non-fatal): ${errorMsg}`);
     }
 
     // Set audit trace
