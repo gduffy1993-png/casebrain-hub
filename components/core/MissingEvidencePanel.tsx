@@ -68,6 +68,35 @@ export function MissingEvidencePanel({ caseId, items: propItems }: MissingEviden
     setMounted(true);
   }, []);
 
+  // Convert version items to MissingEvidenceItem format (fail-safe)
+  const convertVersionItems = (versionItems: VersionMissingEvidence[]): MissingEvidenceItem[] => {
+    if (!Array.isArray(versionItems)) {
+      return [];
+    }
+    return versionItems.map((item, idx) => {
+      const safeItem = item || {};
+      // Version items from API don't have status - default to "UNASSESSED" for court safety
+      // Only items explicitly marked as "MISSING" in the analysis should be "MISSING"
+      // For now, we treat all version items as "UNASSESSED" unless the analysis explicitly flags them
+      // In future, the API could include a status field in version items
+      const itemStatus: "MISSING" | "REQUESTED" | "RECEIVED" | "UNKNOWN" | "UNASSESSED" = "UNASSESSED";
+      
+      return {
+        id: `version-${caseId}-${idx}`,
+        caseId,
+        category: mapAreaToCategory(safeItem.area || "other"),
+        label: safeItem.label || "Unknown evidence item",
+        reason: safeItem.notes || "",
+        priority: (safeItem.priority?.toUpperCase() || "MEDIUM") as Severity,
+        status: itemStatus,
+        suggestedAction: undefined, // No suggested action for UNKNOWN items
+      };
+    });
+  };
+
+  const items = propItems || convertVersionItems(versionItems || []);
+  const [localItems, setLocalItems] = useState<MissingEvidenceItem[]>([]);
+
   // Fetch from case_analysis_versions if items not provided
   useEffect(() => {
     if (propItems) {
@@ -137,41 +166,45 @@ export function MissingEvidencePanel({ caseId, items: propItems }: MissingEviden
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [caseId, propItems]); // Note: versionItems/hasAnalysisVersion intentionally not in deps
 
-  // Convert version items to MissingEvidenceItem format (fail-safe)
-  const convertVersionItems = (versionItems: VersionMissingEvidence[]): MissingEvidenceItem[] => {
-    if (!Array.isArray(versionItems)) {
-      return [];
-    }
-    return versionItems.map((item, idx) => {
-      const safeItem = item || {};
-      // Version items from API don't have status - default to "UNASSESSED" for court safety
-      // Only items explicitly marked as "MISSING" in the analysis should be "MISSING"
-      // For now, we treat all version items as "UNASSESSED" unless the analysis explicitly flags them
-      // In future, the API could include a status field in version items
-      const itemStatus: "MISSING" | "REQUESTED" | "RECEIVED" | "UNKNOWN" | "UNASSESSED" = "UNASSESSED";
-      
-      return {
-        id: `version-${caseId}-${idx}`,
-        caseId,
-        category: mapAreaToCategory(safeItem.area || "other"),
-        label: safeItem.label || "Unknown evidence item",
-        reason: safeItem.notes || "",
-        priority: (safeItem.priority?.toUpperCase() || "MEDIUM") as Severity,
-        status: itemStatus,
-        suggestedAction: undefined, // No suggested action for UNKNOWN items
-      };
-    });
-  };
-
-  const items = propItems || convertVersionItems(versionItems || []);
-  const [localItems, setLocalItems] = useState<MissingEvidenceItem[]>([]);
-
   // Update local items when items change (only after mount to prevent hydration mismatch)
   useEffect(() => {
     if (mounted) {
       setLocalItems(Array.isArray(items) ? items : []);
     }
   }, [items, mounted]);
+
+  // Check for disclosure gaps in criminal cases before showing success message
+  useEffect(() => {
+    // For criminal cases, check disclosure tracker for gaps
+    async function checkDisclosureGaps() {
+      const endpoint = `/api/criminal/${caseId}/disclosure`;
+      try {
+        const res = await fetch(endpoint);
+        if (res.ok) {
+          const disclosureData = await res.json();
+          // Handle both wrapped and direct responses
+          const data = disclosureData?.data || disclosureData;
+          const hasGaps = Array.isArray(data?.missingItems) && data.missingItems.length > 0 || 
+                         data?.incompleteDisclosure === true || 
+                         data?.lateDisclosure === true;
+          setHasDisclosureGaps(hasGaps);
+        }
+      } catch (err) {
+        // Silently fail - disclosure check is optional
+        // Dev-only error logging
+        if (process.env.NODE_ENV !== "production") {
+          console.error("[MissingEvidencePanel] Disclosure check failed:", {
+            endpoint,
+            error: err,
+            caseId,
+          });
+        }
+      }
+    }
+    
+    // Only check for criminal cases (practice area check would require prop, so check endpoint exists)
+    checkDisclosureGaps();
+  }, [caseId]);
 
   const safeLocalItems = Array.isArray(localItems) ? localItems : [];
   const missingCount = safeLocalItems.filter((i) => i?.status === "MISSING").length;
