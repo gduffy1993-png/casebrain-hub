@@ -195,8 +195,7 @@ export function CaseFightPlan({
             d?.recommendedStrategy?.primary ||
             d?.primaryAngle ||
             (Array.isArray(d?.criticalAngles) && d.criticalAngles.length > 0) ||
-            (Array.isArray(d?.allAngles) && d.allAngles.length > 0) ||
-            committedStrategy
+            (Array.isArray(d?.allAngles) && d.allAngles.length > 0)
           );
         }
         
@@ -264,7 +263,7 @@ export function CaseFightPlan({
     }
 
     fetchPlan();
-  }, [caseId, committedStrategy]);
+  }, [caseId]);
 
   useEffect(() => {
     async function checkCharges() {
@@ -418,6 +417,8 @@ export function CaseFightPlan({
   }
 
   // FIX: Helper to detect if strategy exists (reused from fetch logic)
+  // Helper: detect strategy in payload/data only (NOT committedStrategy - that's separate)
+  // This is used to check if fetched data contains strategy content
   const hasStrategy = (d: any): boolean => {
     if (!d) return false;
     return !!(
@@ -431,7 +432,7 @@ export function CaseFightPlan({
       (Array.isArray(d?.defenseAngles) && d.defenseAngles.length > 0) ||
       (Array.isArray(d?.strategies) && d.strategies.length > 0) ||
       (Array.isArray(d?.provisionalStrategies) && d.provisionalStrategies.length > 0) ||
-      committedStrategy
+      (Array.isArray(d?.routes) && d.routes.length > 0)
     );
   };
 
@@ -459,7 +460,10 @@ export function CaseFightPlan({
     hasStrategy(payload); // Check if payload has any strategy indicators
   
   // Comprehensive check: ANY strategy data visible in state
-  const hasAnyStrategyData = hasStrategyAnalysisData || hasStrategyData || committedStrategy;
+  // NOTE: committedStrategy is not "strategy data"; it's a user commitment.
+  // Keep these separate so minimal-plan rendering can trigger when data is null.
+  const hasAnyStrategyData = hasStrategyAnalysisData || hasStrategyData;
+  const hasAnyOutput = hasAnyStrategyData || Boolean(committedStrategy);
 
   // FIX: Filter angles by committed strategy (Strategy-Specific Angle Filtering)
   // Use fallback list so we don't filter empty arrays and accidentally make it empty
@@ -552,49 +556,9 @@ export function CaseFightPlan({
   
   // If gated BUT strategy exists, continue to render (banner will be shown inline)
 
-  // FIX: If no strategy data exists, show appropriate message based on document count and commitment
-  // RULE: Only show error/pending if we're CERTAIN no strategy data exists
-  // Use comprehensive check to avoid false negatives
-  if (!hasAnyStrategyData) {
-    // If commitment exists, don't show "pending" - show committed message instead
-    if (committedStrategy) {
-      // This case is handled below - render minimal plan based on committed strategy
-      // Fall through to that logic
-    } else if (documentCount === 0) {
-      return (
-        <Card className="p-6">
-          <div className="text-center text-muted-foreground">
-            <FileText className="h-8 w-8 mx-auto mb-2 opacity-50" />
-            <p className="text-sm font-medium">Upload case documents to begin analysis</p>
-          </div>
-        </Card>
-      );
-    } else {
-      // No strategy data at all - only show error if fetch actually failed
-      // Don't show error message if we're still loading or if error is stale
-      return (
-        <Card className="p-6">
-          <div className="text-center text-muted-foreground">
-            <FileText className="h-8 w-8 mx-auto mb-2 opacity-50" />
-            <p className="text-sm font-medium">Strategy analysis pending</p>
-            {error && !loading && (
-              <p className="text-xs mt-1 text-amber-600">
-                {error}
-              </p>
-            )}
-            {!error && (
-              <p className="text-xs mt-1">
-                Re-analyse case documents to generate defence plan.
-              </p>
-            )}
-          </div>
-        </Card>
-      );
-    }
-  }
-
-  // FIX: If we have committedStrategy but no data, still render with minimal plan
-  // This ensures strategy commitment always produces output
+  // FIX: Bug 2 - Check for minimal plan FIRST (before "no output" check)
+  // This ensures the condition is reachable: if we have committedStrategy but no data,
+  // we render minimal plan. This check must come before the "no output" check.
   if (!data && committedStrategy) {
     // Render minimal plan based on committed strategy only
     return (
@@ -689,6 +653,43 @@ export function CaseFightPlan({
         </div>
       </Card>
     );
+  }
+
+  // FIX: If no strategy data exists AND no committedStrategy, show appropriate message
+  // This check comes AFTER the minimal plan check above, so it's only reached when
+  // we have neither data nor committedStrategy
+  if (!hasAnyStrategyData && !committedStrategy) {
+    if (documentCount === 0) {
+      return (
+        <Card className="p-6">
+          <div className="text-center text-muted-foreground">
+            <FileText className="h-8 w-8 mx-auto mb-2 opacity-50" />
+            <p className="text-sm font-medium">Upload case documents to begin analysis</p>
+          </div>
+        </Card>
+      );
+    } else {
+      // No strategy data at all - only show error if fetch actually failed
+      // Don't show error message if we're still loading or if error is stale
+      return (
+        <Card className="p-6">
+          <div className="text-center text-muted-foreground">
+            <FileText className="h-8 w-8 mx-auto mb-2 opacity-50" />
+            <p className="text-sm font-medium">Strategy analysis pending</p>
+            {error && !loading && (
+              <p className="text-xs mt-1 text-amber-600">
+                {error}
+              </p>
+            )}
+            {!error && (
+              <p className="text-xs mt-1">
+                Re-analyse case documents to generate defence plan.
+              </p>
+            )}
+          </div>
+        </Card>
+      );
+    }
   }
 
   // FIX: If gated but we have data, show banner but continue rendering
