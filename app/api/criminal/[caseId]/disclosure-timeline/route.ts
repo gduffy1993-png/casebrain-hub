@@ -14,14 +14,25 @@ type RouteParams = {
   params: Promise<{ caseId: string }>;
 };
 
+// DB schema type (matches actual table columns)
+type DisclosureTimelineEntryDB = {
+  id: string;
+  case_id: string;
+  item: string;
+  action: "requested" | "chased" | "served" | "reviewed" | "outstanding" | "overdue";
+  action_date: string; // ISO date string (DB column name)
+  note: string | null;
+  created_at: string | null;
+};
+
+// API response type (mapped for UI compatibility)
 type DisclosureTimelineEntry = {
   id?: string;
   item: string;
   action: "requested" | "chased" | "served" | "reviewed" | "outstanding" | "overdue";
-  date: string; // ISO date string
+  date: string; // Mapped from action_date for UI compatibility
   note?: string;
   created_at?: string;
-  created_by?: string;
 };
 
 type DisclosureTimelineRequest = {
@@ -34,16 +45,30 @@ const OVERDUE_THRESHOLD_DAYS = 14;
 /**
  * Calculate if an entry should be marked as overdue
  */
-function calculateOverdue(entry: DisclosureTimelineEntry): boolean {
-  if (entry.action === "served" || entry.action === "reviewed") {
+function calculateOverdue(actionDate: string, action: string): boolean {
+  if (action === "served" || action === "reviewed") {
     return false; // Already served/reviewed, not overdue
   }
 
-  const entryDate = new Date(entry.date);
+  const entryDate = new Date(actionDate);
   const now = new Date();
   const daysDiff = Math.floor((now.getTime() - entryDate.getTime()) / (1000 * 60 * 60 * 24));
   
   return daysDiff >= OVERDUE_THRESHOLD_DAYS;
+}
+
+/**
+ * Map DB entry to API response format
+ */
+function mapDBEntryToAPI(entry: DisclosureTimelineEntryDB): DisclosureTimelineEntry {
+  return {
+    id: entry.id,
+    item: entry.item,
+    action: entry.action,
+    date: entry.action_date, // Map action_date -> date for UI
+    note: entry.note || undefined,
+    created_at: entry.created_at || undefined,
+  };
 }
 
 export async function GET(request: NextRequest, { params }: RouteParams) {
@@ -70,13 +95,13 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         }, { status: 404 });
       }
 
-      // Get all timeline entries for this case
+      // Get all timeline entries for this case - select only existing columns
       const { data: entries, error: entriesError } = await supabase
         .from("criminal_disclosure_timeline")
-        .select("*")
+        .select("id, case_id, item, action, action_date, note, created_at")
         .eq("case_id", caseId)
         .eq("org_id", caseRow.org_id)
-        .order("date", { ascending: false })
+        .order("action_date", { ascending: false })
         .order("created_at", { ascending: false });
 
       if (entriesError) {
@@ -88,24 +113,27 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         }, { status: 500 });
       }
 
-      // Process entries: mark overdue, group by item
-      const processedEntries = (entries || []).map(entry => {
-        const entryWithOverdue: DisclosureTimelineEntry = {
-          id: entry.id,
-          item: entry.item,
-          action: entry.action,
-          date: entry.date,
-          note: entry.note,
-          created_at: entry.created_at,
-          created_by: entry.created_by,
-        };
+      // Return empty array if no entries (not an error)
+      if (!entries || entries.length === 0) {
+        return NextResponse.json({
+          ok: true,
+          data: {
+            entries: [],
+            itemsStatus: [],
+          },
+        });
+      }
+
+      // Process entries: map DB format to API format, mark overdue
+      const processedEntries = entries.map(entry => {
+        const apiEntry = mapDBEntryToAPI(entry);
 
         // Auto-calculate overdue if requested/chased and > 14 days old
-        if ((entry.action === "requested" || entry.action === "chased") && calculateOverdue(entryWithOverdue)) {
-          entryWithOverdue.action = "overdue";
+        if ((entry.action === "requested" || entry.action === "chased") && calculateOverdue(entry.action_date, entry.action)) {
+          apiEntry.action = "overdue";
         }
 
-        return entryWithOverdue;
+        return apiEntry;
       });
 
       // Group by item to get latest status per item
@@ -194,25 +222,25 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
         }, { status: 404 });
       }
 
-      // Insert new entries (upsert based on unique constraint)
+      // Insert new entries - use DB column names
       const insertPayloads = body.entries.map(entry => ({
         case_id: caseId,
         org_id: caseRow.org_id,
         item: entry.item,
         action: entry.action,
-        date: entry.date,
+        action_date: entry.date, // Map date -> action_date for DB
         note: entry.note || null,
-        created_by: userId,
       }));
 
       // Use upsert to handle duplicates (based on unique constraint)
+      // Note: unique constraint is on case_id, item, action_date, action
       const { data: inserted, error: insertError } = await supabase
         .from("criminal_disclosure_timeline")
         .upsert(insertPayloads, {
-          onConflict: "case_id,item,date,action",
+          onConflict: "case_id,item,action_date,action",
           ignoreDuplicates: false,
         })
-        .select();
+        .select("id, case_id, item, action, action_date, note, created_at");
 
       if (insertError) {
         console.error("Failed to save disclosure timeline:", insertError);
@@ -223,19 +251,31 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
         }, { status: 500 });
       }
 
-      // Fetch updated timeline
-      const { data: entries } = await supabase
+      // Fetch updated timeline - select only existing columns
+      const { data: entries, error: fetchError } = await supabase
         .from("criminal_disclosure_timeline")
-        .select("*")
+        .select("id, case_id, item, action, action_date, note, created_at")
         .eq("case_id", caseId)
         .eq("org_id", caseRow.org_id)
-        .order("date", { ascending: false })
+        .order("action_date", { ascending: false })
         .order("created_at", { ascending: false });
+
+      if (fetchError) {
+        console.error("Failed to fetch updated timeline:", fetchError);
+        return NextResponse.json({
+          ok: false,
+          error: "Failed to fetch updated timeline",
+          details: fetchError.message,
+        }, { status: 500 });
+      }
+
+      // Map DB entries to API format
+      const mappedEntries = (entries || []).map(mapDBEntryToAPI);
 
       return NextResponse.json({
         ok: true,
         data: {
-          entries: entries || [],
+          entries: mappedEntries,
         },
       });
     } catch (error) {
