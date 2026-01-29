@@ -168,6 +168,7 @@ export function buildStrategyCoordinator(
       input.recordedPosition,
       input.disclosureTimeline || [],
       input.evidenceImpactMap || [],
+      input.declaredDependencies || [],
       audit_trace
     );
     audit_trace.push(`[COORDINATOR] Plugin constraints built: ${Object.keys(result.plugin_constraints).length} constraints`);
@@ -575,20 +576,33 @@ function buildPluginConstraintsWithModules(
   recordedPosition: any,
   disclosureTimeline: Array<{ item: string; action: string; date: string; note?: string }>,
   evidenceImpactMap: Array<{ evidenceItem: { name: string; urgency?: string } }>,
+  declaredDependencies: Array<{ id: string; label: string; status: string; note?: string }>,
   audit_trace: string[]
 ): Record<string, any> {
   const constraints: Record<string, any> = {};
 
   // Try to import procedural-safety module
   try {
-    const { computeProceduralSafety } = require("./procedural-safety");
-    const proceduralSafety = computeProceduralSafety(evidenceImpactMap);
+    const { computeProceduralSafety, computeProceduralSafetyFromDependencies } = require("./procedural-safety");
+    
+    // Compute base procedural safety from evidence map
+    const baseProceduralSafety = computeProceduralSafety(evidenceImpactMap);
+    
+    // Enhance with required dependencies + timeline truthfulness
+    const requiredDeps = declaredDependencies.filter((d: any) => d.status === "required");
+    const proceduralSafety = computeProceduralSafetyFromDependencies({
+      requiredDeps,
+      timelineEntries: disclosureTimeline || [],
+      existingStatus: baseProceduralSafety,
+    });
+    
     constraints.procedural_safety = {
       status: proceduralSafety.status,
       explanation: proceduralSafety.explanation,
       outstandingItems: proceduralSafety.outstandingItems,
+      reasons: proceduralSafety.reasons || [],
     };
-    audit_trace.push("[COORDINATOR] Procedural safety module loaded");
+    audit_trace.push("[COORDINATOR] Procedural safety module loaded (enhanced with dependencies)");
   } catch (error) {
     audit_trace.push("[COORDINATOR] Procedural safety module not available (skipped)");
   }

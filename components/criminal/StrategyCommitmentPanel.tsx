@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Target, CheckCircle2, AlertCircle, X, Lock, ArrowRight, TrendingUp, AlertTriangle, ChevronDown, ChevronUp, Copy, FileText, Shield, Zap, AlertCircle as AlertCircleIcon, Calendar, MapPin, Loader2, Clock, Scale, CheckCircle, ListChecks, Info } from "lucide-react";
 import { useToast } from "@/components/Toast";
 import { getLens, type PracticeArea } from "@/lib/lenses";
-import { computeProceduralSafety, type ProceduralSafety } from "@/lib/criminal/procedural-safety";
+import { computeProceduralSafety, computeProceduralSafetyFromDependencies, type ProceduralSafety, type DeclaredDependency, type DisclosureTimelineEntry } from "@/lib/criminal/procedural-safety";
 import { extractWeaponTracker, type WeaponTracker } from "@/lib/criminal/weapon-tracker";
 import { classifyIncidentShape, type IncidentShapeAnalysis } from "@/lib/criminal/incident-shape";
 import { generateWorstCaseCap, type WorstCaseCap } from "@/lib/criminal/worst-case-cap";
@@ -1365,10 +1365,6 @@ function SupervisorSnapshot({
 
     async function loadSnapshotData() {
       try {
-        // Compute procedural safety
-        const safety = computeProceduralSafety(evidenceImpactMap);
-        setProceduralSafety(safety);
-
         // Fetch case reference
         const caseRes = await fetch(`/api/cases/${caseId}`);
         if (caseRes.ok) {
@@ -1378,21 +1374,35 @@ function SupervisorSnapshot({
 
         // Fetch declared dependencies
         const depsRes = await fetch(`/api/criminal/${caseId}/dependencies`);
+        let declaredDepsData: DeclaredDependency[] = [];
         if (depsRes.ok) {
           const depsData = await depsRes.json();
           if (depsData.ok && depsData.data?.dependencies) {
-            setDeclaredDeps(depsData.data.dependencies);
+            declaredDepsData = depsData.data.dependencies;
+            setDeclaredDeps(declaredDepsData);
           }
         }
 
         // Fetch disclosure timeline
         const timelineRes = await fetch(`/api/criminal/${caseId}/disclosure-timeline`);
+        let timelineData: DisclosureTimelineEntry[] = [];
         if (timelineRes.ok) {
-          const timelineData = await timelineRes.json();
-          if (timelineData.ok && timelineData.data?.entries) {
-            setDisclosureTimeline(timelineData.data.entries);
+          const timelineResData = await timelineRes.json();
+          if (timelineResData.ok && timelineResData.data?.entries) {
+            timelineData = timelineResData.data.entries;
+            setDisclosureTimeline(timelineData);
           }
         }
+
+        // Compute procedural safety: first from evidence map, then enhance with dependencies
+        const baseSafety = computeProceduralSafety(evidenceImpactMap);
+        const requiredDeps = declaredDepsData.filter(d => d.status === "required");
+        const enhancedSafety = computeProceduralSafetyFromDependencies({
+          requiredDeps,
+          timelineEntries: timelineData,
+          existingStatus: baseSafety,
+        });
+        setProceduralSafety(enhancedSafety);
 
         // Fetch irreversible decisions
         const decisionsRes = await fetch(`/api/criminal/${caseId}/irreversible-decisions`);
@@ -1903,10 +1913,23 @@ function ConsistencySafetyPanel({
 // Procedural Safety Status Panel
 function ProceduralSafetyPanel({
   evidenceImpactMap,
+  declaredDependencies,
+  disclosureTimelineEntries,
 }: {
   evidenceImpactMap: EvidenceImpactMap[];
+  declaredDependencies?: DeclaredDependency[];
+  disclosureTimelineEntries?: DisclosureTimelineEntry[];
 }) {
-  const safety = computeProceduralSafety(evidenceImpactMap);
+  // Compute base safety from evidence map
+  const baseSafety = computeProceduralSafety(evidenceImpactMap);
+  
+  // Enhance with required dependencies + timeline truthfulness check
+  const requiredDeps = (declaredDependencies || []).filter(d => d.status === "required");
+  const safety = computeProceduralSafetyFromDependencies({
+    requiredDeps,
+    timelineEntries: disclosureTimelineEntries || [],
+    existingStatus: baseSafety,
+  });
   
   const statusColors = {
     SAFE: "border-green-500/30 bg-green-500/5",
@@ -3689,6 +3712,8 @@ export function StrategyCommitmentPanel({
   const [mounted, setMounted] = useState(false);
   const [coordinatorResult, setCoordinatorResult] = useState<StrategyCoordinatorResult | null>(null);
   const [solicitorView, setSolicitorView] = useState<SolicitorView | null>(null);
+  const [declaredDependencies, setDeclaredDependencies] = useState<DeclaredDependency[]>([]);
+  const [disclosureTimelineEntries, setDisclosureTimelineEntries] = useState<DisclosureTimelineEntry[]>([]);
   const [proceduralState, setProceduralState] = useState<{
     hasPTPH: boolean;
     hasPlea: boolean;
@@ -4012,6 +4037,10 @@ export function StrategyCommitmentPanel({
         const disclosureTimeline = timelineData?.ok && timelineData?.data?.entries
           ? timelineData.data.entries
           : [];
+        
+        // Store for use in ProceduralSafetyPanel
+        setDeclaredDependencies(declaredDependencies);
+        setDisclosureTimelineEntries(disclosureTimeline);
 
         const decisionsData = decisionsRes?.ok ? await decisionsRes.json() : null;
         const irreversibleDecisions = decisionsData?.ok && decisionsData?.data?.decisions
@@ -4690,6 +4719,8 @@ export function StrategyCommitmentPanel({
           {isCommitted && (
             <ProceduralSafetyPanel
               evidenceImpactMap={evidenceImpactMap}
+              declaredDependencies={declaredDependencies}
+              disclosureTimelineEntries={disclosureTimelineEntries}
             />
           )}
 
@@ -4955,6 +4986,8 @@ export function StrategyCommitmentPanel({
         {isCommitted && (
           <ProceduralSafetyPanel
             evidenceImpactMap={evidenceImpactMap}
+            declaredDependencies={declaredDependencies}
+            disclosureTimelineEntries={disclosureTimelineEntries}
           />
         )}
 

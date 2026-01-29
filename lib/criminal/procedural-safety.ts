@@ -19,6 +19,29 @@ export type ProceduralSafety = {
   status: ProceduralSafetyStatus;
   explanation: string;
   outstandingItems: string[];
+  reasons?: string[]; // Optional: detailed reasons for the status
+};
+
+/**
+ * Declared dependency type (from API)
+ */
+export type DeclaredDependency = {
+  id: string;
+  label: string;
+  status: "required" | "helpful" | "not_needed";
+  note?: string;
+  updated_at?: string;
+  updated_by?: string;
+};
+
+/**
+ * Disclosure timeline entry type (from API)
+ */
+export type DisclosureTimelineEntry = {
+  item: string;
+  action: string;
+  date: string;
+  note?: string;
 };
 
 /**
@@ -73,6 +96,89 @@ function isDisclosureItemOutstanding(
     
     return matchesLabel && isMissing;
   });
+}
+
+/**
+ * Match a dependency to a timeline entry by comparing id/label with item
+ */
+function matchesTimelineEntry(
+  dependency: DeclaredDependency,
+  timelineEntry: DisclosureTimelineEntry
+): boolean {
+  const depId = dependency.id.toLowerCase();
+  const depLabel = dependency.label.toLowerCase();
+  const timelineItem = timelineEntry.item.toLowerCase();
+  
+  // Exact match on id or label
+  if (timelineItem === depId || timelineItem === depLabel) {
+    return true;
+  }
+  
+  // Partial match: timeline item contains dependency id/label or vice versa
+  if (timelineItem.includes(depId) || depId.includes(timelineItem)) {
+    return true;
+  }
+  if (timelineItem.includes(depLabel) || depLabel.includes(timelineItem)) {
+    return true;
+  }
+  
+  return false;
+}
+
+/**
+ * Compute procedural safety from required dependencies and timeline entries
+ * This ensures truthfulness: if required deps exist but no timeline entries, status is CONDITIONALLY_UNSAFE
+ */
+export function computeProceduralSafetyFromDependencies(params: {
+  requiredDeps: DeclaredDependency[];
+  timelineEntries: DisclosureTimelineEntry[];
+  existingStatus?: ProceduralSafety;
+}): ProceduralSafety {
+  const { requiredDeps, timelineEntries, existingStatus } = params;
+  
+  // If no required dependencies, use existing status
+  if (!requiredDeps || requiredDeps.length === 0) {
+    return existingStatus || {
+      status: "SAFE",
+      explanation: "No required dependencies declared.",
+      outstandingItems: [],
+    };
+  }
+  
+  // Check which required dependencies have timeline entries
+  const depsWithoutTimeline: DeclaredDependency[] = [];
+  const reasons: string[] = [];
+  
+  for (const dep of requiredDeps) {
+    const hasTimelineEntry = timelineEntries.some(entry => 
+      matchesTimelineEntry(dep, entry)
+    );
+    
+    if (!hasTimelineEntry) {
+      depsWithoutTimeline.push(dep);
+    }
+  }
+  
+  // If any required dependency lacks a timeline entry, status is CONDITIONALLY_UNSAFE
+  if (depsWithoutTimeline.length > 0) {
+    const outstandingLabels = depsWithoutTimeline.map(d => d.label);
+    return {
+      status: "CONDITIONALLY_UNSAFE",
+      explanation: "Required disclosure items not yet recorded in timeline. This case may be conditionally unsafe to proceed until disclosure tracking is established.",
+      outstandingItems: outstandingLabels,
+      reasons: [
+        "Required disclosure items not yet recorded in timeline",
+        `${depsWithoutTimeline.length} required ${depsWithoutTimeline.length === 1 ? "dependency" : "dependencies"} without timeline entries`,
+      ],
+    };
+  }
+  
+  // All required dependencies have timeline entries - use existing status or default to SAFE
+  return existingStatus || {
+    status: "SAFE",
+    explanation: "All required dependencies have timeline entries. Procedural safety assessment based on disclosure status.",
+    outstandingItems: [],
+  };
 }
 
 /**
