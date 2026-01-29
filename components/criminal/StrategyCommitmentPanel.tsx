@@ -5054,8 +5054,8 @@ export function StrategyCommitmentPanel({
               </div>
             )}
 
-            {/* Strategic Recommendation Panel */}
-            {recommendation && (() => {
+            {/* Strategic Recommendation Panel - DEBUG ONLY (contains ranking, flip conditions, narrative) */}
+            {isDebug && recommendation && (() => {
               // Cap confidence to LOW if analysis is gated/preview
               const shouldCapConfidence = isGated || 
                 (analysisVersionInfo?.analysis_mode === "preview") ||
@@ -5191,8 +5191,8 @@ export function StrategyCommitmentPanel({
               </div>
             )}
 
-            {/* Worst-case if wrong panel (Phase 2+ only, after commitment) */}
-            {primary && (
+            {/* Worst-case if wrong panel - DEBUG ONLY (speculative risk narratives) */}
+            {isDebug && primary && (
               <div className="mb-6 p-4 rounded-lg border border-amber-500/20 bg-amber-500/5">
                 <h3 className="text-sm font-semibold text-foreground mb-2">If This Goes Wrong, Why?</h3>
                 {(() => {
@@ -5239,8 +5239,8 @@ export function StrategyCommitmentPanel({
               </div>
             )}
 
-            {/* Strategy Routes from strategy-analysis endpoint - Always show if strategy selected or routes exist */}
-            {((primary || strategyRoutes.length > 0) && !isLoadingRoutes) && (
+            {/* Strategy Routes from strategy-analysis endpoint - DEBUG ONLY (contains win conditions, risks, next actions) */}
+            {isDebug && ((primary || strategyRoutes.length > 0) && !isLoadingRoutes) && (
               <div className="mt-6 pt-6 border-t border-border">
                 <div className="flex items-center gap-2 mb-3">
                   <TrendingUp className="h-4 w-4 text-primary" />
