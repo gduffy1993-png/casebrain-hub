@@ -23,3 +23,12 @@ export {
 export {
   buildEvidenceSnapshot,
 } from "./evidence-snapshot";
+
+// Defence Strategy Builder
+export type {
+  DefenceStrategyPlan,
+} from "./defence-strategy";
+
+export {
+  buildDefenceStrategyPlan,
+} from "./defence-strategy";
