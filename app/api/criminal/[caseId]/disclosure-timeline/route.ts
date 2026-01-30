@@ -20,7 +20,7 @@ type DisclosureTimelineEntryDB = {
   case_id: string;
   item: string;
   action: "requested" | "chased" | "served" | "reviewed" | "outstanding" | "overdue";
-  action_date: string; // ISO date string (DB column name)
+  action_date: string; // ISO date string (DB column name is 'action_date')
   note: string | null;
   created_at: string | null;
 };
@@ -30,7 +30,7 @@ type DisclosureTimelineEntry = {
   id?: string;
   item: string;
   action: "requested" | "chased" | "served" | "reviewed" | "outstanding" | "overdue";
-  date: string; // Mapped from action_date for UI compatibility
+  date: string; // Mapped from DB action_date for UI compatibility
   note?: string;
   created_at?: string;
 };
@@ -45,12 +45,12 @@ const OVERDUE_THRESHOLD_DAYS = 14;
 /**
  * Calculate if an entry should be marked as overdue
  */
-function calculateOverdue(actionDate: string, action: string): boolean {
+function calculateOverdue(date: string, action: string): boolean {
   if (action === "served" || action === "reviewed") {
     return false; // Already served/reviewed, not overdue
   }
 
-  const entryDate = new Date(actionDate);
+  const entryDate = new Date(date);
   const now = new Date();
   const daysDiff = Math.floor((now.getTime() - entryDate.getTime()) / (1000 * 60 * 60 * 24));
   
@@ -65,7 +65,7 @@ function mapDBEntryToAPI(entry: DisclosureTimelineEntryDB): DisclosureTimelineEn
     id: entry.id,
     item: entry.item,
     action: entry.action,
-    date: entry.action_date, // Map action_date -> date for UI
+    date: entry.action_date, // Map action_date -> date for UI compatibility
     note: entry.note || undefined,
     created_at: entry.created_at || undefined,
   };
@@ -73,22 +73,53 @@ function mapDBEntryToAPI(entry: DisclosureTimelineEntryDB): DisclosureTimelineEn
 
 export async function GET(request: NextRequest, { params }: RouteParams) {
   return await withPaywall("analysis", async () => {
-    const { caseId } = await params;
     try {
+      const { caseId } = await params;
+      
+      // Validate caseId
+      if (!caseId || typeof caseId !== "string") {
+        return NextResponse.json({
+          ok: false,
+          error: "Invalid case ID",
+        }, { status: 400 });
+      }
+
       const authRes = await requireAuthContextApi();
       if (!authRes.ok) return authRes.response;
       const { userId, orgId } = authRes.context;
 
       const supabase = getSupabaseAdminClient();
       
-      // Get case's org_id
+      // Get case's org_id - use maybeSingle() to avoid throwing on no rows
       const { data: caseRow, error: caseError } = await supabase
         .from("cases")
         .select("id, org_id")
         .eq("id", caseId)
-        .single();
+        .maybeSingle();
 
-      if (caseError || !caseRow || !caseRow.org_id) {
+      if (caseError) {
+        console.error("[disclosure-timeline GET] Supabase error fetching case:", {
+          message: caseError.message,
+          code: caseError.code,
+          details: caseError.details,
+          hint: caseError.hint,
+          caseId,
+        });
+        return NextResponse.json({
+          ok: false,
+          error: "Failed to fetch case",
+        }, { status: 500 });
+      }
+
+      if (!caseRow || !caseRow.org_id) {
+        return NextResponse.json({
+          ok: false,
+          error: "Case not found",
+        }, { status: 404 });
+      }
+
+      // Verify org access
+      if (caseRow.org_id !== orgId) {
         return NextResponse.json({
           ok: false,
           error: "Case not found",
@@ -96,6 +127,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       }
 
       // Get all timeline entries for this case - select only existing columns
+      // DB schema: id, case_id, org_id, item, action, action_date, note, created_at, created_by
       const { data: entries, error: entriesError } = await supabase
         .from("criminal_disclosure_timeline")
         .select("id, case_id, item, action, action_date, note, created_at")
@@ -105,15 +137,20 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         .order("created_at", { ascending: false });
 
       if (entriesError) {
-        console.error("Failed to fetch disclosure timeline:", entriesError);
+        console.error("[disclosure-timeline GET] Supabase error fetching entries:", {
+          message: entriesError.message,
+          code: entriesError.code,
+          details: entriesError.details,
+          hint: entriesError.hint,
+          caseId,
+        });
         return NextResponse.json({
           ok: false,
           error: "Failed to fetch disclosure timeline",
-          details: entriesError.message,
         }, { status: 500 });
       }
 
-      // Return empty array if no entries (not an error)
+      // Return empty array if no entries (not an error) - always return 200
       if (!entries || entries.length === 0) {
         return NextResponse.json({
           ok: true,
@@ -121,7 +158,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
             entries: [],
             itemsStatus: [],
           },
-        });
+        }, { status: 200 });
       }
 
       // Process entries: map DB format to API format, mark overdue
@@ -151,13 +188,15 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
           entries: processedEntries,
           itemsStatus: Array.from(itemsMap.values()),
         },
-      });
+      }, { status: 200 });
     } catch (error) {
-      console.error("Failed to fetch disclosure timeline:", error);
+      console.error("[disclosure-timeline GET] Unexpected error:", {
+        error: error instanceof Error ? error.message : "Unknown error",
+        stack: error instanceof Error ? error.stack : undefined,
+      });
       return NextResponse.json({
         ok: false,
         error: "Internal server error",
-        message: error instanceof Error ? error.message : "Unknown error",
       }, { status: 500 });
     }
   });
@@ -165,13 +204,30 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 
 export async function POST(request: NextRequest, { params }: RouteParams) {
   return await withPaywall("analysis", async () => {
-    const { caseId } = await params;
     try {
+      const { caseId } = await params;
+      
+      // Validate caseId
+      if (!caseId || typeof caseId !== "string") {
+        return NextResponse.json({
+          ok: false,
+          error: "Invalid case ID",
+        }, { status: 400 });
+      }
+
       const authRes = await requireAuthContextApi();
       if (!authRes.ok) return authRes.response;
       const { userId, orgId } = authRes.context;
 
-      const body: DisclosureTimelineRequest = await request.json();
+      let body: DisclosureTimelineRequest;
+      try {
+        body = await request.json();
+      } catch (parseError) {
+        return NextResponse.json({
+          ok: false,
+          error: "Invalid JSON body",
+        }, { status: 400 });
+      }
 
       // Validate entries array
       if (!Array.isArray(body.entries)) {
@@ -208,21 +264,43 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
 
       const supabase = getSupabaseAdminClient();
       
-      // Get case's org_id
+      // Get case's org_id - use maybeSingle() to avoid throwing on no rows
       const { data: caseRow, error: caseError } = await supabase
         .from("cases")
         .select("id, org_id")
         .eq("id", caseId)
-        .single();
+        .maybeSingle();
 
-      if (caseError || !caseRow || !caseRow.org_id) {
+      if (caseError) {
+        console.error("[disclosure-timeline POST] Supabase error fetching case:", {
+          message: caseError.message,
+          code: caseError.code,
+          details: caseError.details,
+          hint: caseError.hint,
+          caseId,
+        });
+        return NextResponse.json({
+          ok: false,
+          error: "Failed to fetch case",
+        }, { status: 500 });
+      }
+
+      if (!caseRow || !caseRow.org_id) {
         return NextResponse.json({
           ok: false,
           error: "Case not found",
         }, { status: 404 });
       }
 
-      // Insert new entries - use DB column names
+      // Verify org access
+      if (caseRow.org_id !== orgId) {
+        return NextResponse.json({
+          ok: false,
+          error: "Case not found",
+        }, { status: 404 });
+      }
+
+      // Insert new entries - use DB column names (DB uses 'action_date')
       const insertPayloads = body.entries.map(entry => ({
         case_id: caseId,
         org_id: caseRow.org_id,
@@ -237,21 +315,26 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       const { data: inserted, error: insertError } = await supabase
         .from("criminal_disclosure_timeline")
         .upsert(insertPayloads, {
-          onConflict: "case_id,item,action_date,action",
+          onConflict: "case_id,item,action_date,action", // Match actual constraint
           ignoreDuplicates: false,
         })
         .select("id, case_id, item, action, action_date, note, created_at");
 
       if (insertError) {
-        console.error("Failed to save disclosure timeline:", insertError);
+        console.error("[disclosure-timeline POST] Supabase error inserting entries:", {
+          message: insertError.message,
+          code: insertError.code,
+          details: insertError.details,
+          hint: insertError.hint,
+          caseId,
+        });
         return NextResponse.json({
           ok: false,
           error: "Failed to save disclosure timeline",
-          details: insertError.message,
         }, { status: 500 });
       }
 
-      // Fetch updated timeline - select only existing columns
+      // Fetch updated timeline - select only existing columns (DB uses 'action_date')
       const { data: entries, error: fetchError } = await supabase
         .from("criminal_disclosure_timeline")
         .select("id, case_id, item, action, action_date, note, created_at")
@@ -261,11 +344,16 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
         .order("created_at", { ascending: false });
 
       if (fetchError) {
-        console.error("Failed to fetch updated timeline:", fetchError);
+        console.error("[disclosure-timeline POST] Supabase error fetching updated timeline:", {
+          message: fetchError.message,
+          code: fetchError.code,
+          details: fetchError.details,
+          hint: fetchError.hint,
+          caseId,
+        });
         return NextResponse.json({
           ok: false,
           error: "Failed to fetch updated timeline",
-          details: fetchError.message,
         }, { status: 500 });
       }
 
@@ -277,13 +365,15 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
         data: {
           entries: mappedEntries,
         },
-      });
+      }, { status: 200 });
     } catch (error) {
-      console.error("Failed to save disclosure timeline:", error);
+      console.error("[disclosure-timeline POST] Unexpected error:", {
+        error: error instanceof Error ? error.message : "Unknown error",
+        stack: error instanceof Error ? error.stack : undefined,
+      });
       return NextResponse.json({
         ok: false,
         error: "Internal server error",
-        message: error instanceof Error ? error.message : "Unknown error",
       }, { status: 500 });
     }
   });
