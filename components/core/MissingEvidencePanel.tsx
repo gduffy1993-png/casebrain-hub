@@ -303,39 +303,6 @@ export function MissingEvidencePanel({ caseId, items: propItems }: MissingEviden
     );
   }
 
-  // Check for disclosure gaps in criminal cases before showing success message
-  useEffect(() => {
-    // For criminal cases, check disclosure tracker for gaps
-    async function checkDisclosureGaps() {
-      const endpoint = `/api/criminal/${caseId}/disclosure`;
-      try {
-        const res = await fetch(endpoint);
-        if (res.ok) {
-          const disclosureData = await res.json();
-          // Handle both wrapped and direct responses
-          const data = disclosureData?.data || disclosureData;
-          const hasGaps = Array.isArray(data?.missingItems) && data.missingItems.length > 0 || 
-                         data?.incompleteDisclosure === true || 
-                         data?.lateDisclosure === true;
-          setHasDisclosureGaps(hasGaps);
-        }
-      } catch (err) {
-        // Silently fail - disclosure check is optional
-        // Dev-only error logging
-        if (process.env.NODE_ENV !== "production") {
-          console.error("[MissingEvidencePanel] Disclosure check failed:", {
-            endpoint,
-            error: err,
-            caseId,
-          });
-        }
-      }
-    }
-    
-    // Only check for criminal cases (practice area check would require prop, so check endpoint exists)
-    checkDisclosureGaps();
-  }, [caseId]);
-
   // Empty state: distinguish between analysis exists vs not
   // RULE: If analysis_mode !== "complete", do NOT attempt to render missing_evidence items
   // Always render an explanatory empty state
