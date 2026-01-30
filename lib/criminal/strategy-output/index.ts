@@ -32,3 +32,12 @@ export type {
 export {
   buildDefenceStrategyPlan,
 } from "./defence-strategy";
+
+// CPS Pressure Lens Builder
+export type {
+  CPSPressureLens,
+} from "./cps-pressure";
+
+export {
+  buildCPSPressureLens,
+} from "./cps-pressure";
