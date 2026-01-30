@@ -14,6 +14,7 @@ import { classifyIncidentShape, type IncidentShapeAnalysis } from "@/lib/crimina
 import { generateWorstCaseCap, type WorstCaseCap } from "@/lib/criminal/worst-case-cap";
 import { buildStrategyCoordinator, type StrategyCoordinatorResult } from "@/lib/criminal/strategy-coordinator";
 import { buildSolicitorView, type SolicitorView } from "@/lib/criminal/solicitor-view";
+import { buildDefenceStrategyPlan, buildEvidenceSnapshot, buildCPSPressureLens, type DefenceStrategyPlan, type CPSPressureLens } from "@/lib/criminal/strategy-output";
 
 export type PrimaryStrategy = 
   | "fight_charge" 
@@ -4301,6 +4302,8 @@ export function StrategyCommitmentPanel({
   const [mounted, setMounted] = useState(false);
   const [coordinatorResult, setCoordinatorResult] = useState<StrategyCoordinatorResult | null>(null);
   const [solicitorView, setSolicitorView] = useState<SolicitorView | null>(null);
+  const [defenceStrategyPlan, setDefenceStrategyPlan] = useState<DefenceStrategyPlan | null>(null);
+  const [cpsPressureLens, setCpsPressureLens] = useState<CPSPressureLens | null>(null);
   const [declaredDependencies, setDeclaredDependencies] = useState<DeclaredDependency[]>([]);
   const [disclosureTimelineEntries, setDisclosureTimelineEntries] = useState<DisclosureTimelineEntry[]>([]);
   const [enableCourtroomMode, setEnableCourtroomMode] = useState(false);
@@ -4666,15 +4669,52 @@ export function StrategyCommitmentPanel({
         // Build solicitor view
         const solicitor = buildSolicitorView(reasoning);
         setSolicitorView(solicitor);
+
+        // Hard Phase-2 guard: defence strategy outputs only exist when strategy is committed
+        if (!isCommitted) {
+          setDefenceStrategyPlan(null);
+          setCpsPressureLens(null);
+          return;
+        }
+
+        // Build evidence snapshot
+        const snapshot = buildEvidenceSnapshot({
+          offenceCode: reasoning.offence.code,
+          offenceLabel: reasoning.offence.label,
+          phase: isCommitted ? 2 : 1,
+          recordedPosition: savedPosition?.position_text,
+          declaredDependencies: declaredDependencies,
+          disclosureTimelineEntries: disclosureTimeline,
+        });
+
+        // Build defence strategy plan
+        const defencePlan = buildDefenceStrategyPlan({
+          snapshot,
+          offenceElements: reasoning.elements,
+          routes: reasoning.routes,
+          recordedPosition: savedPosition?.position_text,
+        });
+        setDefenceStrategyPlan(defencePlan);
+
+        // Build CPS pressure lens
+        const cpsPressure = buildCPSPressureLens({
+          snapshot,
+          offenceElements: reasoning.elements,
+          routes: reasoning.routes,
+          recordedPosition: savedPosition?.position_text,
+        });
+        setCpsPressureLens(cpsPressure);
       } catch (error) {
         console.error("Failed to compute coordinator data:", error);
         setCoordinatorResult(null);
         setSolicitorView(null);
+        setDefenceStrategyPlan(null);
+        setCpsPressureLens(null);
       }
     }
 
     computeCoordinatorData();
-  }, [mounted, resolvedCaseId, savedPosition, primary, evidenceImpactMap]);
+  }, [mounted, resolvedCaseId, savedPosition, primary, evidenceImpactMap, isCommitted]);
 
   // Check for one-time guardrail acknowledgement
   useEffect(() => {
@@ -5061,6 +5101,111 @@ export function StrategyCommitmentPanel({
                       {coordinatorResult.judge_analysis.constraints.slice(0, 2).map((constraint, idx) => (
                         <div key={`constraint-${idx}`} className="text-[11px] text-muted-foreground italic">
                           → {constraint}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </Card>
+          )}
+
+          {/* How This Case Is Fought - Defence Strategy Plan */}
+          {defenceStrategyPlan && isCommitted && (
+            <Card className="p-4 border border-border/50">
+              <div className="flex items-center gap-2 mb-4">
+                <Shield className="h-4 w-4 text-primary" />
+                <h3 className="text-sm font-semibold text-foreground">How This Case Is Fought</h3>
+              </div>
+              <div className="space-y-4 text-xs">
+                {/* Posture */}
+                {defenceStrategyPlan.posture && (
+                  <div>
+                    <span className="font-semibold text-muted-foreground mb-1 block">Posture:</span>
+                    <p className="text-foreground">{defenceStrategyPlan.posture}</p>
+                  </div>
+                )}
+
+                {/* Primary Route */}
+                {defenceStrategyPlan.primary_route && (
+                  <div>
+                    <span className="font-semibold text-muted-foreground mb-1 block">Primary Route:</span>
+                    <div className="border-l-2 border-primary/30 pl-2">
+                      <div className="font-medium text-foreground mb-1">{defenceStrategyPlan.primary_route.label}</div>
+                      {defenceStrategyPlan.primary_route.rationale.length > 0 && (
+                        <ul className="list-disc list-inside space-y-0.5 text-muted-foreground">
+                          {defenceStrategyPlan.primary_route.rationale.map((reason, idx) => (
+                            <li key={idx}>{reason}</li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {/* CPS Pressure Points */}
+                {cpsPressureLens && cpsPressureLens.pressure_points.length > 0 && (
+                  <div>
+                    <span className="font-semibold text-muted-foreground mb-1 block">CPS Pressure Points:</span>
+                    <ul className="list-disc list-inside space-y-1 text-foreground">
+                      {cpsPressureLens.pressure_points.slice(0, 4).map((point, idx) => (
+                        <li key={idx}>
+                          <span className="font-medium">{point.point}</span>
+                          {point.why_it_bites && (
+                            <span className="text-muted-foreground text-[11px] block ml-4">→ {point.why_it_bites}</span>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Defence Counters */}
+                {defenceStrategyPlan.defence_counters.length > 0 && (
+                  <div>
+                    <span className="font-semibold text-muted-foreground mb-1 block">Defence Counters:</span>
+                    <div className="space-y-2">
+                      {defenceStrategyPlan.defence_counters.slice(0, 4).map((counter, idx) => (
+                        <div key={idx} className="border-l-2 border-green-500/30 pl-2">
+                          <div className="font-medium text-foreground mb-0.5">{counter.point}</div>
+                          <p className="text-muted-foreground text-[11px]">{counter.safe_wording}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Kill Switches */}
+                {defenceStrategyPlan.kill_switches.length > 0 && (
+                  <div>
+                    <span className="font-semibold text-muted-foreground mb-1 block">Kill Switches:</span>
+                    <div className="space-y-2">
+                      {defenceStrategyPlan.kill_switches.slice(0, 4).map((killSwitch, idx) => (
+                        <div key={idx} className="border-l-2 border-red-500/30 pl-2">
+                          <div className="font-medium text-foreground mb-0.5">If: {killSwitch.if}</div>
+                          <p className="text-muted-foreground text-[11px]">Then: {killSwitch.then}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Pivot Plan */}
+                {defenceStrategyPlan.pivot_plan.length > 0 && (
+                  <div>
+                    <span className="font-semibold text-muted-foreground mb-1 block">Pivot Plan:</span>
+                    <div className="space-y-2">
+                      {defenceStrategyPlan.pivot_plan.slice(0, 3).map((pivot, idx) => (
+                        <div key={idx} className="border-l-2 border-amber-500/30 pl-2">
+                          <div className="font-medium text-foreground mb-0.5">If: {pivot.if_triggered}</div>
+                          <p className="text-muted-foreground text-[11px] mb-1">Pivot to: {pivot.new_route}</p>
+                          {pivot.immediate_actions.length > 0 && (
+                            <ul className="list-disc list-inside space-y-0.5 text-muted-foreground text-[11px] ml-2">
+                              {pivot.immediate_actions.map((action, aIdx) => (
+                                <li key={aIdx}>{action}</li>
+                              ))}
+                            </ul>
+                          )}
                         </div>
                       ))}
                     </div>
