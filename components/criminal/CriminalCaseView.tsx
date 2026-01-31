@@ -24,6 +24,7 @@ import { CaseStatusStrip } from "./CaseStatusStrip";
 import { CaseEvidenceColumn } from "./CaseEvidenceColumn";
 import { CaseStrategyColumn } from "./CaseStrategyColumn";
 import { EvidenceSelectorModal } from "@/components/cases/EvidenceSelectorModal";
+import { AddEvidenceModal } from "./AddEvidenceModal";
 import { CaseSummaryPanel } from "@/components/cases/CaseSummaryPanel";
 import { CaseKeyFactsPanel } from "@/components/cases/KeyFactsPanel";
 import { ChargesPanel } from "./ChargesPanel";
@@ -606,15 +607,22 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         </CollapsibleSection>
       )}
 
-      {/* Add Documents Modal */}
+      {/* Add Evidence Modal (Upload) */}
       {showAddDocuments && (
-        <EvidenceSelectorModal
+        <AddEvidenceModal
           caseId={caseId}
+          caseTitle={snapshot?.caseMeta?.title || undefined}
+          isOpen={showAddDocuments}
           onClose={() => setShowAddDocuments(false)}
-          onSuccess={() => {
+          onSuccess={async () => {
             setShowAddDocuments(false);
             // Reload snapshot to reflect new documents
-            buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error);
+            try {
+              const newSnapshot = await buildCaseSnapshot(caseId);
+              setSnapshot(newSnapshot);
+            } catch (error) {
+              console.error("Failed to reload snapshot:", error);
+            }
             router.refresh();
           }}
         />
