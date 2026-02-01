@@ -4745,13 +4745,13 @@ export function StrategyCommitmentPanel({
           : [];
 
         // Defensive: missing or failed disclosure timeline must never crash Phase 2
-        let timelineData: { ok?: boolean; data?: { entries?: unknown[] } } | null = null;
+        let timelineData: { ok?: boolean; data?: { entries?: DisclosureTimelineEntry[] } } | null = null;
         try {
           timelineData = timelineRes?.ok ? await timelineRes.json() : null;
         } catch {
           timelineData = null;
         }
-        const disclosureTimeline = Array.isArray(timelineData?.data?.entries)
+        const disclosureTimeline: DisclosureTimelineEntry[] = Array.isArray(timelineData?.data?.entries)
           ? timelineData.data.entries
           : [];
         
