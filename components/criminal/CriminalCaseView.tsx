@@ -125,23 +125,23 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         ? "Thin pack: limited outputs. Add documents for full strategy routes."
         : "Not enough extractable text to generate reliable analysis. Upload text-based PDFs or run OCR, then re-analyse.";
       
-      setGateBanner({
+            setGateBanner({
         banner: {
-          severity: "warning",
-          title: "Insufficient text extracted",
+                severity: "warning",
+                title: "Insufficient text extracted",
           message,
-        },
-      });
-      setIsDisclosureFirstMode(true);
+              },
+            });
+            setIsDisclosureFirstMode(true);
       setCurrentPhase((prev) => (prev === 1 ? 1 : prev));
-    } else {
-      setGateBanner(null);
+          } else {
+            setGateBanner(null);
       // Check if mode is DISCLOSURE-FIRST from strategy data
       const primary = snapshot.strategy.primary;
       const mode = primary === "fight_charge" && snapshot.strategy.hasRenderableData 
         ? "OTHER" 
         : "DISCLOSURE-FIRST";
-      setIsDisclosureFirstMode(mode === "DISCLOSURE-FIRST");
+            setIsDisclosureFirstMode(mode === "DISCLOSURE-FIRST");
       if (mode !== "DISCLOSURE-FIRST") {
         setCurrentPhase((prev) => (prev === 1 ? 2 : prev));
       }
@@ -531,7 +531,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
       {currentPhase >= 2 && isStrategyCommitted && (
         <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Strategy plan will appear once analysis is run.</div>}>
           <Phase2StrategyPlanPanel caseId={caseId} />
-        </ErrorBoundary>
+      </ErrorBoundary>
       )}
 
       {/* Additional Tools - Collapsed (PACE, Court Hearings, Client Advice) */}
@@ -555,7 +555,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
           )}
           <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Client advice will appear once analysis is run.</div>}>
             <ClientAdvicePanel caseId={caseId} />
-          </ErrorBoundary>
+      </ErrorBoundary>
         </div>
       </CollapsibleSection>
 
@@ -581,8 +581,8 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
           <div className="space-y-6">
             {showBailTools && (
               <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Bail application will appear once analysis is run.</div>}>
-                <BailApplicationPanel caseId={caseId} />
-              </ErrorBoundary>
+              <BailApplicationPanel caseId={caseId} />
+            </ErrorBoundary>
             )}
             <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Bail tracker will appear once analysis is run.</div>}>
               <BailTracker caseId={caseId} />
@@ -602,10 +602,10 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
           <div className="space-y-6">
             {showSentencingTools && (
               <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Sentencing mitigation will appear once analysis is run.</div>}>
-                <SentencingMitigationPanel caseId={caseId} />
-              </ErrorBoundary>
-            )}
-          </div>
+              <SentencingMitigationPanel caseId={caseId} />
+            </ErrorBoundary>
+          )}
+        </div>
         </CollapsibleSection>
       )}
 

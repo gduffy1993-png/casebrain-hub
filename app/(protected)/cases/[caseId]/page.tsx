@@ -1207,15 +1207,15 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
             <CriminalCaseView caseId={caseId} />
           </ErrorBoundary>
         ) : (
-          <ErrorBoundary
-            fallback={
-              <div className="p-4">
+            <ErrorBoundary
+              fallback={
+                <div className="p-4">
                 <p className="text-sm text-accent/60">Unable to load case workspace right now.</p>
-              </div>
-            }
-          >
+                </div>
+              }
+            >
             <CaseWorkspaceLayout
-              caseId={caseId}
+          caseId={caseId} 
               practiceArea={normalizedPracticeAreaValue}
               hasStrategyData={false}
             />

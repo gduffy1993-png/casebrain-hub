@@ -4744,8 +4744,14 @@ export function StrategyCommitmentPanel({
           ? depsData.data.dependencies
           : [];
 
-        const timelineData = timelineRes?.ok ? await timelineRes.json() : null;
-        const disclosureTimeline = timelineData?.ok && timelineData?.data?.entries
+        // Defensive: missing or failed disclosure timeline must never crash Phase 2
+        let timelineData: { ok?: boolean; data?: { entries?: unknown[] } } | null = null;
+        try {
+          timelineData = timelineRes?.ok ? await timelineRes.json() : null;
+        } catch {
+          timelineData = null;
+        }
+        const disclosureTimeline = Array.isArray(timelineData?.data?.entries)
           ? timelineData.data.entries
           : [];
         
