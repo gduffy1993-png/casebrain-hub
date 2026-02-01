@@ -5763,6 +5763,85 @@ export function StrategyCommitmentPanel({
           </div>
         )}
 
+          {/* Strategy Commitment - primary selection and Commit (always visible in Phase 2 so user can commit) */}
+          <Card className="p-4 border-2 border-primary/30 bg-primary/5">
+            <div className="flex items-center gap-2 mb-2">
+              <Target className="h-4 w-4 text-primary" />
+              <h3 className="text-sm font-semibold text-foreground">Strategy Commitment</h3>
+            </div>
+            <p className="text-xs text-muted-foreground mb-3">
+              Choose how the case will be run, then lock in your primary strategy to unlock the Defence Fight Plan.
+            </p>
+            <div className="flex flex-wrap items-center gap-2 mb-3">
+              {isCommitted && (
+                <Badge variant="outline" className="flex items-center gap-1">
+                  <Lock className="h-3 w-3" />
+                  Committed
+                </Badge>
+              )}
+              {primary && !isCommitted && (
+                <Button
+                  onClick={() => {
+                    if (showGuardrail) return;
+                    handleCommitInternal();
+                  }}
+                  disabled={isCommitting || !primary || !!showGuardrail}
+                  size="sm"
+                  className="flex items-center gap-2"
+                >
+                  <Lock className="h-3.5 w-3.5" />
+                  {isCommitting ? "Committing..." : "Commit Strategy"}
+                </Button>
+              )}
+              {primary && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleClear}
+                  disabled={!!isCommitted}
+                  className="flex items-center gap-2"
+                >
+                  <X className="h-3.5 w-3.5" />
+                  Clear
+                </Button>
+              )}
+            </div>
+            {!primary ? (
+              <div>
+                <label className="text-xs font-medium text-foreground block mb-2">Select Primary Strategy</label>
+                <select
+                  value=""
+                  onChange={(e) => {
+                    const value = e.target.value as PrimaryStrategy;
+                    if (value) handlePrimarySelect(value);
+                  }}
+                  className="w-full max-w-md p-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                >
+                  <option value="">-- Select Primary Strategy --</option>
+                  {STRATEGY_OPTIONS.map((option) => (
+                    <option key={option.id} value={option.id}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            ) : (
+              <div className="p-3 rounded-lg border border-primary/20 bg-primary/5">
+                <div className="flex items-center gap-2">
+                  <Badge variant="default" className="text-xs">PRIMARY</Badge>
+                  <span className="text-sm font-medium text-foreground">
+                    {STRATEGY_OPTIONS.find(o => o.id === primary)?.label ?? primary}
+                  </span>
+                </div>
+                {!isCommitted && (
+                  <p className="text-xs text-muted-foreground mt-2">
+                    Click &quot;Commit Strategy&quot; above to lock in and unlock the Defence Fight Plan.
+                  </p>
+                )}
+              </div>
+            )}
+          </Card>
+
           {/* When NOT committed: show legacy overview first + hint to unlock Fight Plan */}
           {!isCommitted && mounted && coordinatorResult && solicitorView && (
             <>
