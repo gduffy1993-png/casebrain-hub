@@ -5906,6 +5906,343 @@ export function StrategyCommitmentPanel({
             </>
           )}
 
+          {/* How This Case Is Fought - Phase 2 Fight Harder outputs (committed only) */}
+          {isCommitted && defenceStrategyPlan && (
+            <Card className="p-4 border border-border/50">
+              <div className="flex items-center gap-2 mb-4">
+                <Shield className="h-4 w-4 text-primary" />
+                <h3 className="text-sm font-semibold text-foreground">How This Case Is Fought</h3>
+              </div>
+              <div className="space-y-4 text-xs">
+                {/* Posture + Primary Route */}
+                {defenceStrategyPlan.posture && (
+                  <div>
+                    <span className="font-semibold text-muted-foreground mb-1 block">Posture:</span>
+                    <p className="text-foreground">{defenceStrategyPlan.posture}</p>
+                  </div>
+                )}
+                {defenceStrategyPlan.primary_route && (
+                  <div>
+                    <span className="font-semibold text-muted-foreground mb-1 block">Primary Route:</span>
+                    <div className="border-l-2 border-primary/30 pl-2">
+                      <div className="font-medium text-foreground mb-1">{defenceStrategyPlan.primary_route.label}</div>
+                      {defenceStrategyPlan.primary_route.rationale?.length > 0 && (
+                        <ul className="list-disc list-inside space-y-0.5 text-muted-foreground">
+                          {defenceStrategyPlan.primary_route.rationale.slice(0, 4).map((reason, idx) => (
+                            <li key={idx}>{reason}</li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {/* CPS Pressure Points - top 4, show depends_on + how_to_blunt */}
+                {cpsPressureLens && cpsPressureLens.pressure_points.length > 0 && (
+                  <div>
+                    <span className="font-semibold text-muted-foreground mb-1 block">CPS Pressure Points:</span>
+                    <div className="space-y-3">
+                      {cpsPressureLens.pressure_points.slice(0, 4).map((point, idx) => (
+                        <div key={idx} className="border-l-2 border-red-500/30 pl-3">
+                          <div className="font-medium text-foreground mb-1">{point.point}</div>
+                          <div className="text-[10px] text-muted-foreground/70 mb-1">
+                            Targets: {point.targets_element}
+                            {point.depends_on?.length > 0 && (
+                              <span className="ml-2">• Depends on: {point.depends_on.slice(0, 3).join(", ")}</span>
+                            )}
+                          </div>
+                          {point.why_it_bites && (
+                            <p className="text-muted-foreground text-[11px] mb-1">→ {point.why_it_bites}</p>
+                          )}
+                          {point.how_to_blunt?.length > 0 && (
+                            <div className="mt-1">
+                              <span className="text-[10px] font-medium text-muted-foreground">How to blunt:</span>
+                              <ul className="list-disc list-inside space-y-0.5 text-muted-foreground text-[11px] ml-2">
+                                {point.how_to_blunt.slice(0, 3).map((counter, cIdx) => (
+                                  <li key={cIdx}>{counter}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Defence Counters, Kill Switches, Pivot Plan (compact) */}
+                {defenceStrategyPlan.defence_counters?.length > 0 && (
+                  <div>
+                    <span className="font-semibold text-muted-foreground mb-1 block">Defence Counters:</span>
+                    <div className="space-y-2">
+                      {defenceStrategyPlan.defence_counters.slice(0, 4).map((counter, idx) => (
+                        <div key={idx} className="border-l-2 border-green-500/30 pl-2">
+                          <div className="font-medium text-foreground mb-0.5">{counter.point}</div>
+                          <p className="text-muted-foreground text-[11px]">{counter.safe_wording}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {defenceStrategyPlan.kill_switches?.length > 0 && (
+                  <div>
+                    <span className="font-semibold text-muted-foreground mb-1 block">Kill Switches:</span>
+                    <div className="space-y-2">
+                      {defenceStrategyPlan.kill_switches.slice(0, 4).map((killSwitch, idx) => (
+                        <div key={idx} className="border-l-2 border-red-500/30 pl-2">
+                          <div className="font-medium text-foreground mb-0.5">If: {killSwitch.if}</div>
+                          <p className="text-muted-foreground text-[11px]">Then: {killSwitch.then}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {defenceStrategyPlan.pivot_plan?.length > 0 && (
+                  <div>
+                    <span className="font-semibold text-muted-foreground mb-1 block">Pivot Plan:</span>
+                    <div className="space-y-2">
+                      {defenceStrategyPlan.pivot_plan.slice(0, 3).map((pivot, idx) => (
+                        <div key={idx} className="border-l-2 border-amber-500/30 pl-2">
+                          <div className="font-medium text-foreground mb-0.5">If: {pivot.if_triggered}</div>
+                          <p className="text-muted-foreground text-[11px] mb-1">Pivot to: {pivot.new_route}</p>
+                          {pivot.immediate_actions?.length > 0 && (
+                            <ul className="list-disc list-inside space-y-0.5 text-muted-foreground text-[11px] ml-2">
+                              {pivot.immediate_actions.slice(0, 3).map((action, aIdx) => (
+                                <li key={aIdx}>{action}</li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </Card>
+          )}
+
+          {/* Judge Constraints (Doctrine) - Phase 2 */}
+          {isCommitted && judgeConstraintLens && (
+            <Card className="p-4 border border-border/50">
+              <div className="flex items-center gap-2 mb-4">
+                <Scale className="h-4 w-4 text-primary" />
+                <h3 className="text-sm font-semibold text-foreground">Judge Constraints (Doctrine)</h3>
+                <Badge variant="outline" className="text-xs">READ-ONLY</Badge>
+              </div>
+              <div className="space-y-4 text-xs">
+                {judgeConstraintLens.constraints?.length > 0 && (
+                  <div>
+                    <span className="font-semibold text-muted-foreground mb-2 block">Doctrine Constraints:</span>
+                    <div className="space-y-3">
+                      {judgeConstraintLens.constraints.slice(0, 6).map((constraint, idx) => (
+                        <div key={idx} className="border-l-2 border-primary/30 pl-3">
+                          <div className="font-medium text-foreground mb-1">{constraint.title}</div>
+                          <p className="text-muted-foreground text-[11px] leading-relaxed mb-1">{constraint.detail}</p>
+                          {constraint.applies_to?.length > 0 && (
+                            <div className="text-[10px] text-muted-foreground/70 italic">
+                              Applies to: {constraint.applies_to.join(", ")}
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {judgeConstraintLens.required_findings?.length > 0 && (
+                  <div>
+                    <span className="font-semibold text-muted-foreground mb-2 block">Required Findings:</span>
+                    <ul className="list-disc list-inside space-y-0.5 text-foreground">
+                      {judgeConstraintLens.required_findings.slice(0, 6).map((finding, idx) => (
+                        <li key={idx} className="text-[11px]">{finding}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {judgeConstraintLens.intolerances?.length > 0 && (
+                  <div>
+                    <span className="font-semibold text-muted-foreground mb-2 block">Court Intolerances:</span>
+                    <ul className="list-disc list-inside space-y-0.5 text-foreground">
+                      {judgeConstraintLens.intolerances.slice(0, 4).map((intolerance, idx) => (
+                        <li key={idx} className="text-[11px] italic">{intolerance}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {judgeConstraintLens.red_flags?.length > 0 && (
+                  <div>
+                    <span className="font-semibold text-muted-foreground mb-2 block">Red Flags:</span>
+                    <ul className="list-disc list-inside space-y-0.5 text-foreground">
+                      {judgeConstraintLens.red_flags.slice(0, 4).map((flag, idx) => (
+                        <li key={idx} className="text-[11px] text-amber-600 dark:text-amber-400">{flag}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            </Card>
+          )}
+
+          {/* Route Playbooks - Phase 2 */}
+          {isCommitted && routePlaybooks && routePlaybooks.playbooks?.length > 0 && (
+            <Card className="p-4 border border-border/50">
+              <div className="flex items-center gap-2 mb-4">
+                <FileText className="h-4 w-4 text-primary" />
+                <h3 className="text-sm font-semibold text-foreground">Route Playbooks</h3>
+                <Badge variant="outline" className="text-xs">READ-ONLY</Badge>
+              </div>
+              <div className="space-y-4">
+                {routePlaybooks.playbooks.map((playbook, idx) => {
+                  const isExpanded = expandedPlaybooks.has(playbook.route_id);
+                  const isPrimary = idx === 0;
+                  return (
+                    <div key={playbook.route_id} className="border border-border/30 rounded-lg">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const newExpanded = new Set(expandedPlaybooks);
+                          if (isExpanded) newExpanded.delete(playbook.route_id);
+                          else newExpanded.add(playbook.route_id);
+                          setExpandedPlaybooks(newExpanded);
+                        }}
+                        className="w-full flex items-center justify-between p-3 hover:bg-muted/30 transition-colors"
+                      >
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs font-semibold text-foreground">{playbook.label}</span>
+                          {isPrimary && <Badge variant="outline" className="text-[10px]">PRIMARY</Badge>}
+                        </div>
+                        {isExpanded ? <ChevronUp className="h-4 w-4 text-muted-foreground" /> : <ChevronDown className="h-4 w-4 text-muted-foreground" />}
+                      </button>
+                      {isExpanded && (
+                        <div className="p-4 pt-0 space-y-4 text-xs border-t border-border/30">
+                          <div>
+                            <span className="font-semibold text-muted-foreground mb-1 block">Posture:</span>
+                            <p className="text-foreground">{playbook.posture}</p>
+                          </div>
+                          <div>
+                            <span className="font-semibold text-muted-foreground mb-1 block">Objective:</span>
+                            <p className="text-foreground">{playbook.objective}</p>
+                          </div>
+                          {playbook.prosecution_burden?.length > 0 && (
+                            <div>
+                              <span className="font-semibold text-muted-foreground mb-1 block">Prosecution Burden:</span>
+                              <ul className="list-disc list-inside space-y-0.5 text-foreground">
+                                {playbook.prosecution_burden.map((burden, bIdx) => (
+                                  <li key={bIdx} className="text-[11px]">{burden}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                          {playbook.defence_counters?.length > 0 && (
+                            <div>
+                              <span className="font-semibold text-muted-foreground mb-1 block">Defence Counters:</span>
+                              <ul className="list-disc list-inside space-y-0.5 text-foreground">
+                                {playbook.defence_counters.map((c, cIdx) => (
+                                  <li key={cIdx} className="text-[11px]">{typeof c === "string" ? c : c.point}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                          {playbook.kill_switches?.length > 0 && (
+                            <div>
+                              <span className="font-semibold text-muted-foreground mb-1 block">Kill Switches:</span>
+                              <ul className="list-disc list-inside space-y-0.5 text-foreground">
+                                {playbook.kill_switches.map((ks, ksIdx) => (
+                                  <li key={ksIdx} className="text-[11px]">If: {ks.if} → Then: {ks.then}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                          {playbook.pivots?.length > 0 && (
+                            <div>
+                              <span className="font-semibold text-muted-foreground mb-1 block">Pivot to:</span>
+                              <ul className="list-disc list-inside space-y-0.5 text-muted-foreground">
+                                {playbook.pivots.map((p, pIdx) => (
+                                  <li key={pIdx} className="text-[11px]">If: {p.if_triggered} → {p.new_route}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                          {playbook.next_actions?.length > 0 && (
+                            <div>
+                              <span className="font-semibold text-muted-foreground mb-1 block">Next actions:</span>
+                              <ul className="list-disc list-inside space-y-0.5 text-muted-foreground">
+                                {playbook.next_actions.slice(0, 4).map((a, aIdx) => (
+                                  <li key={aIdx} className="text-[11px]">{a}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </Card>
+          )}
+
+          {/* Hearing Checklists - Phase 2 */}
+          {isCommitted && hearingScripts && hearingScripts.scripts?.length > 0 && (
+            <Card className="p-4 border border-border/50">
+              <button
+                type="button"
+                onClick={() => setShowHearingScripts(!showHearingScripts)}
+                className="w-full flex items-center justify-between mb-4"
+              >
+                <div className="flex items-center gap-2">
+                  <Gavel className="h-4 w-4 text-primary" />
+                  <h3 className="text-sm font-semibold text-foreground">Hearing Checklists</h3>
+                  <Badge variant="outline" className="text-xs">READ-ONLY</Badge>
+                </div>
+                {showHearingScripts ? <ChevronUp className="h-4 w-4 text-muted-foreground" /> : <ChevronDown className="h-4 w-4 text-muted-foreground" />}
+              </button>
+              {showHearingScripts && (
+                <div className="space-y-4 text-xs">
+                  {hearingScripts.scripts.map((script, idx) => (
+                    <div key={idx} className="border border-border/30 rounded-lg p-3">
+                      <div className="flex items-center gap-2 mb-3">
+                        <Calendar className="h-3 w-3 text-primary" />
+                        <h4 className="text-xs font-semibold text-foreground">
+                          {script.hearing_type === "PTPH" ? "PTPH" : script.hearing_type === "disclosure_directions" ? "Disclosure Directions" : script.hearing_type === "case_management" ? "Case Management" : "Special Measures"}
+                        </h4>
+                      </div>
+                      {script.checklist?.length > 0 && (
+                        <div className="mb-3">
+                          <span className="font-semibold text-muted-foreground mb-1 block text-[11px]">Checklist:</span>
+                          <ul className="list-disc list-inside space-y-0.5 text-foreground">
+                            {script.checklist.map((item, cIdx) => (
+                              <li key={cIdx} className="text-[11px]">{item}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      {script.asks_of_court?.length > 0 && (
+                        <div className="mb-3">
+                          <span className="font-semibold text-muted-foreground mb-1 block text-[11px]">Asks of Court:</span>
+                          <ul className="list-disc list-inside space-y-0.5 text-foreground">
+                            {script.asks_of_court.map((ask, aIdx) => (
+                              <li key={aIdx} className="text-[11px]">{ask}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      {script.do_not_concede?.length > 0 && (
+                        <div>
+                          <span className="font-semibold text-muted-foreground mb-1 block text-[11px]">Do Not Concede:</span>
+                          <ul className="list-disc list-inside space-y-0.5 text-amber-600 dark:text-amber-400">
+                            {script.do_not_concede.map((item, dIdx) => (
+                              <li key={dIdx} className="text-[11px]">{item}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </Card>
+          )}
+
           {/* Procedural Panels - Always visible in normal mode (NORMAL MODE) */}
           {/* Supervisor Snapshot - Read-only summary */}
           {isCommitted && (
