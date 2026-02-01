@@ -103,6 +103,10 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
         .single();
 
       if (caseError || !caseRow) {
+        console.error("[strategy-commitment POST] Case lookup failed:", {
+          caseId,
+          error: caseError ? { message: caseError.message, code: caseError.code, details: caseError.details } : null,
+        });
         return NextResponse.json(
           { ok: false, error: "Case not found" },
           { status: 404 }
@@ -224,8 +228,10 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
         },
       });
     } catch (error) {
-      console.error("Failed to commit strategy:", error);
-      // CRITICAL: Never throw - always return structured error JSON to prevent React crashes
+      console.error("[strategy-commitment POST] Unexpected error:", {
+        error: error instanceof Error ? error.message : String(error),
+        stack: error instanceof Error ? error.stack : undefined,
+      });
       const errorMessage = error instanceof Error ? error.message : "Failed to commit strategy";
       const errorDetails = error instanceof Error ? (error.stack || error.message) : String(error);
       return NextResponse.json(
@@ -343,11 +349,14 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         },
       });
     } catch (error) {
-      console.error("Failed to fetch strategy commitment:", error);
+      console.error("[strategy-commitment GET] Unexpected error:", {
+        error: error instanceof Error ? error.message : String(error),
+        stack: error instanceof Error ? error.stack : undefined,
+      });
       return NextResponse.json({
         ok: true,
         data: null,
-      });
+      }, { status: 200 });
     }
   });
 }

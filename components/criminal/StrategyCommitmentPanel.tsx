@@ -4618,23 +4618,20 @@ export function StrategyCommitmentPanel({
         const response = await fetch(`/api/criminal/${resolvedCaseId}/strategy-commitment`);
         if (response.ok) {
           const result = await response.json();
-          // Determine committed state via !!data.primary_strategy
-          // If commitment exists (data.primary_strategy truthy), do NOT show "Strategy analysis pending"
-          if (result.ok && result.data && result.data.primary_strategy) {
+          // Committed strategy exists when committed_at or primary_strategy is present (newest row from GET)
+          const hasCommitment = result.ok && result.data && (result.data.committed_at || result.data.primary_strategy);
+          if (hasCommitment) {
             const strategy = result.data;
-            setPrimary(strategy.primary_strategy);
-            setSecondary(strategy.fallback_strategies || []);
-            // If primary_strategy exists, strategy is committed
+            setPrimary(strategy.primary_strategy || strategy.primary);
+            setSecondary(strategy.fallback_strategies || strategy.secondary || []);
             setIsCommitted(true);
-            // Show committed_at date if present
-            setCommittedAt(strategy.committed_at || strategy.created_at || null);
+            setCommittedAt(strategy.committed_at || strategy.committedAt || strategy.created_at || null);
             onCommitmentChange({
-              primary: strategy.primary_strategy,
-              secondary: strategy.fallback_strategies || [],
+              primary: strategy.primary_strategy || strategy.primary,
+              secondary: strategy.fallback_strategies || strategy.secondary || [],
             });
             return;
           } else {
-            // No commitment found - show "Strategy analysis pending" or "Select a strategy to proceed"
             setIsCommitted(false);
             setCommittedAt(null);
             setPrimary(null);
@@ -4973,26 +4970,34 @@ export function StrategyCommitmentPanel({
         return;
       }
 
-      // Immediately re-fetch GET and update UI state so committed strategy displays
+      // Update local state and parent immediately from POST response so committedStrategyExists becomes true
+      const strategy = result.data;
+      setPrimary(strategy.primary_strategy);
+      setSecondary(strategy.fallback_strategies || strategy.fallback_strategies || []);
+      setIsCommitted(true);
+      setCommittedAt(strategy.committed_at || strategy.committedAt || null);
+      onCommitmentChange({
+        primary: strategy.primary_strategy || strategy.primary,
+        secondary: strategy.fallback_strategies || strategy.fallbackStrategies || strategy.secondary || [],
+      });
+
+      // Refetch GET to confirm and sync (idempotent)
       const getResponse = await fetch(`/api/criminal/${resolvedCaseId}/strategy-commitment`);
       if (getResponse.ok) {
         const getResult = await getResponse.json().catch(() => ({ ok: false, data: null }));
-        if (getResult.ok && getResult.data && getResult.data.primary_strategy) {
-          const strategy = getResult.data;
-          setPrimary(strategy.primary_strategy);
-          setSecondary(strategy.fallback_strategies || []);
-          // Determine committed state via !!data.primary_strategy
+        if (getResult.ok && getResult.data && (getResult.data.committed_at || getResult.data.primary_strategy)) {
+          const latest = getResult.data;
+          setPrimary(latest.primary_strategy || latest.primary);
+          setSecondary(latest.fallback_strategies || latest.fallbackStrategies || latest.secondary || []);
           setIsCommitted(true);
-          // Show committed_at date if present
-          setCommittedAt(strategy.committed_at || null);
+          setCommittedAt(latest.committed_at || latest.committedAt || null);
           onCommitmentChange({
-            primary: strategy.primary_strategy,
-            secondary: strategy.fallback_strategies || [],
+            primary: latest.primary_strategy || latest.primary,
+            secondary: latest.fallback_strategies || latest.secondary || [],
           });
         }
       }
 
-      // Refresh router to refetch phase2 plan and other data
       router.refresh();
 
       showToast("Strategy committed. Phase 2 directive planning is now enabled.", "success");
