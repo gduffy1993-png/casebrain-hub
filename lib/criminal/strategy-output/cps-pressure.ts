@@ -23,7 +23,10 @@ export type CPSPressureLens = {
   }>;
   pressure_points: Array<{
     point: string;
-    why_it_bites: string;
+    targets_element: string; // e.g. "specific intent", "identification", "causation"
+    depends_on: string[]; // evidence/disclosure items needed
+    why_it_bites: string; // short
+    how_to_blunt: string[]; // defence counters (at least 1 item)
     anchors?: EvidenceAnchor;
     evidence_needed?: string[];
   }>; // 4-8
@@ -238,7 +241,7 @@ function buildTheoryComponents(
 }
 
 /**
- * Build pressure points (4-8, tied to snapshot.flags)
+ * Build pressure points (4-8, tied to snapshot.flags and offence elements)
  */
 function buildPressurePoints(
   snapshot: EvidenceSnapshot,
@@ -248,81 +251,143 @@ function buildPressurePoints(
   const points: CPSPressureLens["pressure_points"] = [];
   const offenceCode = snapshot.offence.code || "";
 
-  // Pressure point: sequence missing
+  // Pressure point: sequence missing (targets causation/intent)
   if (snapshot.flags.sequence_missing) {
+    const causationElement = offenceElements.find(e => e.id === "causation" || e.id === "act_causation");
+    const intentElement = offenceCode.includes("s18") || offenceCode.includes("18")
+      ? offenceElements.find(e => e.id === "specific_intent" || e.id === "intent")
+      : null;
+    const targetElement = intentElement ? intentElement.label : (causationElement?.label || "causation");
+    
     points.push({
       point: "Sequence inference from injury pattern and medical evidence",
+      targets_element: targetElement.toLowerCase(),
+      depends_on: ["CCTV showing sequence", "Witness statements on duration", "Medical evidence of multiple injuries"],
       why_it_bites: "If sequence evidence arrives showing sustained/targeted conduct, intent denial route becomes harder",
+      how_to_blunt: [
+        "Require prosecution to prove sequence through direct evidence, not inference",
+        "Challenge sequence inference; require clear evidence of sustained/targeted conduct",
+        "Argue that injury pattern alone does not establish sequence or targeting"
+      ],
       evidence_needed: ["CCTV showing sequence", "Witness statements on duration", "Medical evidence of multiple injuries"],
       anchors: buildGapAnchor(["CCTV", "Witness statements on sequence"]),
     });
   }
 
-  // Pressure point: weapon uncertainty
+  // Pressure point: weapon uncertainty (targets causation)
   if (snapshot.flags.weapon_uncertainty) {
+    const causationElement = offenceElements.find(e => e.id === "causation" || e.id === "act_causation");
+    const targetElement = causationElement?.label || "causation";
+    
     points.push({
       point: "Weapon inference from medical mechanism and injury pattern",
+      targets_element: targetElement.toLowerCase(),
+      depends_on: ["Weapon recovery", "Forensic analysis", "Medical mechanism report"],
       why_it_bites: "If weapon recovery or forensic confirmation arrives, weapon uncertainty leverage reduces",
+      how_to_blunt: [
+        "Challenge weapon inference; require clear evidence of weapon use and causation",
+        "Require prosecution to prove weapon presence, recovery, or clear forensic confirmation",
+        "Argue that medical mechanism alone does not establish weapon use"
+      ],
       evidence_needed: ["Weapon recovery", "Forensic analysis", "Medical mechanism report"],
       anchors: buildGapAnchor(["Weapon recovery", "Forensic confirmation"]),
     });
   }
 
-  // Pressure point: ID uncertainty
+  // Pressure point: ID uncertainty (targets identification)
   if (snapshot.flags.id_uncertainty) {
     const idRoute = routes.find(r => r.id === "identification_challenge");
     if (idRoute && (idRoute.status === "viable" || idRoute.status === "risky")) {
+      const idElement = offenceElements.find(e => e.id === "identification");
+      const targetElement = idElement?.label || "identification";
+      
       points.push({
         point: "Identification reliability despite conditions (Turnbull factors)",
+        targets_element: targetElement.toLowerCase(),
+        depends_on: ["Clear CCTV/BWV footage", "Corroborating witness statements", "Identification procedure evidence"],
         why_it_bites: "If clear identification evidence arrives, identification challenge route becomes significantly harder",
+        how_to_blunt: [
+          "Apply Turnbull principles; require prosecution to establish identification reliability",
+          "Challenge identification evidence given conditions of observation and lack of corroboration",
+          "Require clear reliability factors (lighting, duration, distance, recognition context)"
+        ],
         evidence_needed: ["Clear CCTV/BWV footage", "Corroborating witness statements", "Identification procedure evidence"],
         anchors: buildGapAnchor(["CCTV", "BWV", "Witness statements"]),
       });
     }
   }
 
-  // Pressure point: date conflicts
+  // Pressure point: date conflicts (targets continuity/credibility)
   if (snapshot.flags.date_conflicts) {
     points.push({
       point: "Continuity and credibility despite date/time inconsistencies",
+      targets_element: "continuity",
+      depends_on: ["CCTV continuity logs", "Witness statements on timing", "CAD logs"],
       why_it_bites: "If continuity evidence resolves conflicts, procedural leverage may reduce",
+      how_to_blunt: [
+        "Challenge continuity and integrity; require clear evidence of chain of custody",
+        "Argue that date inconsistencies affect weight and reliability",
+        "Require prosecution to resolve conflicts before evidence can be relied upon"
+      ],
       evidence_needed: ["CCTV continuity logs", "Witness statements on timing", "CAD logs"],
       anchors: buildGapAnchor(["CCTV continuity", "Timing evidence"]),
     });
   }
 
-  // Pressure point: intent element (s18)
+  // Pressure point: intent element (s18) (targets specific intent)
   if (offenceCode.includes("s18") || offenceCode.includes("18")) {
     const intentElement = offenceElements.find(e => e.id === "specific_intent" || e.id === "intent");
     if (intentElement && (intentElement.support === "weak" || intentElement.support === "none")) {
       points.push({
         point: "Intent inference from injury severity, sequence, and targeting",
+        targets_element: intentElement.label.toLowerCase(),
+        depends_on: ["CCTV showing targeting", "Witness statements on premeditation", "Defendant statements"],
         why_it_bites: "If evidence arrives showing targeting or premeditation, intent denial route becomes harder",
+        how_to_blunt: [
+          "Require prosecution to prove specific intent beyond injury alone; targeting, premeditation, or sustained conduct required",
+          "Challenge intent inference; require clear evidence of targeting or deliberation",
+          "Argue that injury severity alone does not establish specific intent"
+        ],
         evidence_needed: ["CCTV showing targeting", "Witness statements on premeditation", "Defendant statements"],
         anchors: intentElement.gaps.length > 0 ? buildGapAnchor(intentElement.gaps) : undefined,
       });
     }
   }
 
-  // Pressure point: outstanding disclosure
+  // Pressure point: outstanding disclosure (targets disclosure/fair trial)
   if (snapshot.disclosure.required_without_timeline.length > 0) {
+    const dependsOn = snapshot.disclosure.required_without_timeline.slice(0, 3);
     points.push({
       point: "Outstanding disclosure may strengthen prosecution case",
+      targets_element: "disclosure",
+      depends_on: dependsOn,
       why_it_bites: "If key required disclosure is served, disclosure leverage route may become blocked",
-      evidence_needed: snapshot.disclosure.required_without_timeline.slice(0, 3),
+      how_to_blunt: [
+        "Pressure CPS on disclosure obligations and materiality; seek adverse inference if not served",
+        "Require disclosure of material items before case can safely proceed",
+        "Argue that missing disclosure affects fair trial and case management"
+      ],
+      evidence_needed: dependsOn,
       anchors: buildTimelineAnchor(
         snapshot.disclosure.required_without_timeline.map(item => ({ item, action: "outstanding" }))
       ),
     });
   }
 
-  // Pressure point: strong element
+  // Pressure point: strong element (targets that element)
   const strongElements = offenceElements.filter(e => e.support === "strong");
   if (strongElements.length > 0) {
     const strongElement = strongElements[0];
     points.push({
       point: `${strongElement.label} element has strong support`,
+      targets_element: strongElement.label.toLowerCase(),
+      depends_on: strongElement.gaps.length > 0 ? strongElement.gaps.slice(0, 2) : ["Existing evidence"],
       why_it_bites: `Strong ${strongElement.label.toLowerCase()} evidence limits defence options on this element`,
+      how_to_blunt: [
+        `Focus defence on other elements where support is weaker`,
+        `Challenge ${strongElement.label.toLowerCase()} element only if evidence gaps emerge`,
+        `Require prosecution to maintain strong evidence throughout trial`
+      ],
       evidence_needed: strongElement.gaps.length > 0 ? strongElement.gaps.slice(0, 2) : undefined,
     });
   }

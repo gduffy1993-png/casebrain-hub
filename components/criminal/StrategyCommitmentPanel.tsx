@@ -9,12 +9,16 @@ import { Target, CheckCircle2, AlertCircle, X, Lock, ArrowRight, TrendingUp, Ale
 import { useToast } from "@/components/Toast";
 import { getLens, type PracticeArea } from "@/lib/lenses";
 import { computeProceduralSafety, computeProceduralSafetyFromDependencies, type ProceduralSafety, type DeclaredDependency, type DisclosureTimelineEntry } from "@/lib/criminal/procedural-safety";
+import { computeDisclosureState, type DisclosureState } from "@/lib/criminal/disclosure-state";
 import { extractWeaponTracker, type WeaponTracker } from "@/lib/criminal/weapon-tracker";
 import { classifyIncidentShape, type IncidentShapeAnalysis } from "@/lib/criminal/incident-shape";
 import { generateWorstCaseCap, type WorstCaseCap } from "@/lib/criminal/worst-case-cap";
 import { buildStrategyCoordinator, type StrategyCoordinatorResult } from "@/lib/criminal/strategy-coordinator";
 import { buildSolicitorView, type SolicitorView } from "@/lib/criminal/solicitor-view";
 import { buildDefenceStrategyPlan, buildEvidenceSnapshot, buildCPSPressureLens, type DefenceStrategyPlan, type CPSPressureLens } from "@/lib/criminal/strategy-output";
+import { buildJudgeConstraintLens, type JudgeConstraintLens } from "@/lib/criminal/judge-constraint-lens";
+import { buildRoutePlaybooks, type RoutePlaybooks } from "@/lib/criminal/strategy-output/route-playbooks";
+import { buildHearingScripts, type HearingScripts } from "@/lib/criminal/strategy-output/hearing-scripts";
 
 export type PrimaryStrategy = 
   | "fight_charge" 
@@ -1351,6 +1355,7 @@ function SupervisorSnapshot({
   toast: { success: (msg: string) => void; error: (msg: string) => void };
 }) {
   const [proceduralSafety, setProceduralSafety] = useState<ProceduralSafety | null>(null);
+  const [disclosureState, setDisclosureState] = useState<DisclosureState | null>(null);
   const [declaredDeps, setDeclaredDeps] = useState<Array<{ id: string; label: string; status: string; note?: string }>>([]);
   const [disclosureTimeline, setDisclosureTimeline] = useState<Array<{ item: string; action: string; date: string; note?: string }>>([]);
   const [irreversibleDecisions, setIrreversibleDecisions] = useState<Array<{ id: string; label: string; status: string; updated_at?: string }>>([]);
@@ -1395,15 +1400,33 @@ function SupervisorSnapshot({
           }
         }
 
-        // Compute procedural safety: first from evidence map, then enhance with dependencies
-        const baseSafety = computeProceduralSafety(evidenceImpactMap);
-        const requiredDeps = declaredDepsData.filter(d => d.status === "required");
-        const enhancedSafety = computeProceduralSafetyFromDependencies({
-          requiredDeps,
-          timelineEntries: timelineData,
-          existingStatus: baseSafety,
+        // Fetch documents for disclosure state computation
+        const docsRes = await fetch(`/api/cases/${caseId}/documents`).catch(() => null);
+        const docsData = docsRes?.ok ? await docsRes.json() : null;
+        const documents = docsData?.data?.documents || docsData?.documents || [];
+
+        // Compute disclosure state using single source of truth
+        const state = computeDisclosureState({
+          documents: documents.map((d: any) => ({ name: d.name, title: d.name, id: d.id })),
+          declaredDependencies: declaredDepsData,
+          disclosureTimeline: timelineData,
+          evidenceImpactMap: evidenceImpactMap,
         });
-        setProceduralSafety(enhancedSafety);
+        setDisclosureState(state);
+
+        // Map disclosure state to procedural safety format for backward compatibility
+        const statusMap: Record<DisclosureState["status"], ProceduralSafety["status"]> = {
+          safe: "SAFE",
+          conditionally_unsafe: "CONDITIONALLY_UNSAFE",
+          unsafe: "UNSAFE_TO_PROCEED",
+        };
+        const mappedStatus = statusMap[state.status];
+        setProceduralSafety({
+          status: mappedStatus,
+          explanation: state.rationale.join(" "),
+          outstandingItems: state.missing_items.map((item) => item.label),
+          reasons: state.rationale,
+        });
 
         // Fetch irreversible decisions
         const decisionsRes = await fetch(`/api/criminal/${caseId}/irreversible-decisions`);
@@ -1457,11 +1480,8 @@ function SupervisorSnapshot({
     return !latestEntry || (latestEntry.action !== "served" && latestEntry.action !== "reviewed");
   });
 
-  // Disclosure status summary
-  const disclosureItems = Array.from(new Set(disclosureTimeline.map(e => e.item))).map(item => {
-    const entries = disclosureTimeline.filter(e => e.item === item).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-    return { item, latestEntry: entries[0] };
-  }).filter(d => d.latestEntry && (d.latestEntry.action === "outstanding" || d.latestEntry.action === "overdue" || d.latestEntry.action === "requested" || d.latestEntry.action === "chased"));
+  // Disclosure status summary - use computeDisclosureState missing_items
+  const disclosureGaps = disclosureState?.missing_items || [];
 
   // Irreversible decisions planned/completed
   const plannedOrCompleted = irreversibleDecisions.filter(d => d.status === "planned" || d.status === "completed");
@@ -1474,6 +1494,7 @@ Case Reference: ${caseRef}
 
 PROCEDURAL SAFETY STATUS: ${proceduralSafety?.status.replace(/_/g, " ") || "Not assessed"}
 ${proceduralSafety?.explanation || ""}
+${disclosureState?.is_simulated ? "\nNOTE: SIMULATED documents detected - this is a demo/test case." : ""}
 
 RECORDED DEFENCE POSITION:
 ${positionLines}
@@ -1485,7 +1506,8 @@ DECLARED DEPENDENCIES (Required & Outstanding):
 ${requiredOutstanding.length > 0 ? requiredOutstanding.map(dep => `- ${dep.label}`).join("\n") : "- None"}
 
 DISCLOSURE STATUS SUMMARY:
-${disclosureItems.length > 0 ? disclosureItems.map(d => `- ${d.item}: ${d.latestEntry.action} (${new Date(d.latestEntry.date).toLocaleDateString("en-GB")})`).join("\n") : "- All items served or not tracked"}
+${disclosureGaps.length > 0 ? disclosureGaps.map(item => `- ${item.label} (${item.severity})`).join("\n") : "- All critical and high-priority items satisfied"}
+${disclosureState?.satisfied_items && disclosureState.satisfied_items.length > 0 ? `\nSatisfied: ${disclosureState.satisfied_items.map(i => i.label).join(", ")}` : ""}
 
 IRREVERSIBLE DECISIONS:
 ${plannedOrCompleted.length > 0 ? plannedOrCompleted.map(d => `- ${d.label}: ${d.status}${d.updated_at ? ` (${new Date(d.updated_at).toLocaleDateString("en-GB")})` : ""}`).join("\n") : "- None"}
@@ -1566,15 +1588,25 @@ ${worstCaseCap ? `WORST-CASE EXPOSURE CAP:\n${worstCaseCap.explanation}\n` : ""}
         {/* Disclosure Status Summary */}
         <div>
           <span className="font-semibold text-foreground">Disclosure Status Summary: </span>
+          {disclosureState?.is_simulated && (
+            <Badge variant="outline" className="text-[10px] ml-2 bg-blue-500/10 text-blue-600 border-blue-500/30">
+              SIMULATED
+            </Badge>
+          )}
           <ul className="list-disc list-inside text-muted-foreground mt-1">
-            {disclosureItems.length > 0 ? disclosureItems.map((d, idx) => (
+            {disclosureGaps.length > 0 ? disclosureGaps.map((item, idx) => (
               <li key={idx}>
-                {d.item}: {d.latestEntry.action} ({new Date(d.latestEntry.date).toLocaleDateString("en-GB")})
+                {item.label} <span className="text-[10px] opacity-70">({item.severity})</span>
               </li>
             )) : (
-              <li>All items served or not tracked</li>
+              <li>All critical and high-priority items satisfied</li>
             )}
           </ul>
+          {disclosureState?.satisfied_items && disclosureState.satisfied_items.length > 0 && (
+            <p className="text-[10px] text-muted-foreground mt-1 italic">
+              Satisfied: {disclosureState.satisfied_items.map(i => i.label).join(", ")}
+            </p>
+          )}
         </div>
 
         {/* Irreversible Decisions */}
@@ -2502,24 +2534,75 @@ function CourtroomModePanel({
 
 // Procedural Safety Status Panel
 function ProceduralSafetyPanel({
+  caseId,
   evidenceImpactMap,
   declaredDependencies,
   disclosureTimelineEntries,
 }: {
+  caseId?: string;
   evidenceImpactMap: EvidenceImpactMap[];
   declaredDependencies?: DeclaredDependency[];
   disclosureTimelineEntries?: DisclosureTimelineEntry[];
 }) {
-  // Compute base safety from evidence map
-  const baseSafety = computeProceduralSafety(evidenceImpactMap);
-  
-  // Enhance with required dependencies + timeline truthfulness check
-  const requiredDeps = (declaredDependencies || []).filter(d => d.status === "required");
-  const safety = computeProceduralSafetyFromDependencies({
-    requiredDeps,
-    timelineEntries: disclosureTimelineEntries || [],
-    existingStatus: baseSafety,
-  });
+  const [disclosureState, setDisclosureState] = useState<DisclosureState | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!caseId) {
+      setLoading(false);
+      return;
+    }
+
+    async function computeState() {
+      try {
+        // Fetch documents to check for SIMULATED and match disclosure items
+        const docsRes = await fetch(`/api/cases/${caseId}/documents`).catch(() => null);
+        const docsData = docsRes?.ok ? await docsRes.json() : null;
+        const documents = docsData?.data?.documents || docsData?.documents || [];
+
+        // Compute disclosure state using single source of truth
+        const state = computeDisclosureState({
+          documents: documents.map((d: any) => ({ name: d.name, title: d.name, id: d.id })),
+          declaredDependencies: declaredDependencies || [],
+          disclosureTimeline: disclosureTimelineEntries || [],
+          evidenceImpactMap: evidenceImpactMap,
+        });
+
+        setDisclosureState(state);
+      } catch (error) {
+        console.error("Failed to compute disclosure state:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    computeState();
+  }, [caseId, evidenceImpactMap, declaredDependencies, disclosureTimelineEntries]);
+
+  if (loading) {
+    return (
+      <div className="rounded-lg border border-border/50 p-4">
+        <div className="flex items-center gap-2 mb-2">
+          <Shield className="h-4 w-4 text-primary" />
+          <h3 className="text-sm font-semibold text-foreground">Procedural Safety</h3>
+        </div>
+        <p className="text-xs text-muted-foreground">Loading...</p>
+      </div>
+    );
+  }
+
+  if (!disclosureState) {
+    return null;
+  }
+
+  // Map disclosure state status to procedural safety status format
+  const statusMap: Record<DisclosureState["status"], ProceduralSafety["status"]> = {
+    safe: "SAFE",
+    conditionally_unsafe: "CONDITIONALLY_UNSAFE",
+    unsafe: "UNSAFE_TO_PROCEED",
+  };
+
+  const safetyStatus = statusMap[disclosureState.status];
   
   const statusColors = {
     SAFE: "border-green-500/30 bg-green-500/5",
@@ -2534,23 +2617,51 @@ function ProceduralSafetyPanel({
   };
 
   return (
-    <div className={`rounded-lg border p-4 space-y-3 ${statusColors[safety.status]}`}>
+    <div className={`rounded-lg border p-4 space-y-3 ${statusColors[safetyStatus]}`}>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Shield className="h-4 w-4 text-primary" />
           <h3 className="text-sm font-semibold text-foreground">Procedural Safety</h3>
         </div>
-        <Badge className={`text-xs border ${statusBadgeColors[safety.status]}`}>
-          {safety.status.replace(/_/g, " ")}
-        </Badge>
+        <div className="flex items-center gap-2">
+          {disclosureState.is_simulated && (
+            <Badge variant="outline" className="text-xs bg-blue-500/10 text-blue-600 border-blue-500/30">
+              SIMULATED
+            </Badge>
+          )}
+          <Badge className={`text-xs border ${statusBadgeColors[safetyStatus]}`}>
+            {safetyStatus.replace(/_/g, " ")}
+          </Badge>
+        </div>
       </div>
-      <p className="text-xs text-muted-foreground">{safety.explanation}</p>
-      {safety.outstandingItems.length > 0 && (
+      {disclosureState.is_simulated && (
+        <div className="rounded-lg border border-blue-500/30 bg-blue-500/5 p-2">
+          <p className="text-xs text-blue-600 font-medium">Demo / Simulated evidence present</p>
+        </div>
+      )}
+      <div className="space-y-2">
+        {disclosureState.rationale.map((reason, idx) => (
+          <p key={idx} className="text-xs text-muted-foreground">{reason}</p>
+        ))}
+      </div>
+      {disclosureState.missing_items.length > 0 && (
         <div>
-          <p className="text-xs font-semibold text-foreground mb-1">Outstanding Items:</p>
-          <ul className="text-xs text-muted-foreground list-disc list-inside">
-            {safety.outstandingItems.map((item, idx) => (
-              <li key={idx}>{item}</li>
+          <p className="text-xs font-semibold text-foreground mb-1">Missing Items:</p>
+          <ul className="text-xs text-muted-foreground list-disc list-inside space-y-0.5">
+            {disclosureState.missing_items.map((item, idx) => (
+              <li key={idx}>
+                {item.label} <span className="text-[10px] opacity-70">({item.severity})</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {disclosureState.satisfied_items.length > 0 && (
+        <div>
+          <p className="text-xs font-semibold text-foreground mb-1">Satisfied Items:</p>
+          <ul className="text-xs text-muted-foreground list-disc list-inside space-y-0.5">
+            {disclosureState.satisfied_items.map((item, idx) => (
+              <li key={idx}>{item.label}</li>
             ))}
           </ul>
         </div>
@@ -4304,6 +4415,11 @@ export function StrategyCommitmentPanel({
   const [solicitorView, setSolicitorView] = useState<SolicitorView | null>(null);
   const [defenceStrategyPlan, setDefenceStrategyPlan] = useState<DefenceStrategyPlan | null>(null);
   const [cpsPressureLens, setCpsPressureLens] = useState<CPSPressureLens | null>(null);
+  const [judgeConstraintLens, setJudgeConstraintLens] = useState<JudgeConstraintLens | null>(null);
+  const [routePlaybooks, setRoutePlaybooks] = useState<RoutePlaybooks | null>(null);
+  const [expandedPlaybooks, setExpandedPlaybooks] = useState<Set<string>>(new Set());
+  const [hearingScripts, setHearingScripts] = useState<HearingScripts | null>(null);
+  const [showHearingScripts, setShowHearingScripts] = useState(false);
   const [declaredDependencies, setDeclaredDependencies] = useState<DeclaredDependency[]>([]);
   const [disclosureTimelineEntries, setDisclosureTimelineEntries] = useState<DisclosureTimelineEntry[]>([]);
   const [enableCourtroomMode, setEnableCourtroomMode] = useState(false);
@@ -4674,6 +4790,9 @@ export function StrategyCommitmentPanel({
         if (!isCommitted) {
           setDefenceStrategyPlan(null);
           setCpsPressureLens(null);
+          setJudgeConstraintLens(null);
+          setRoutePlaybooks(null);
+          setHearingScripts(null);
           return;
         }
 
@@ -4704,12 +4823,71 @@ export function StrategyCommitmentPanel({
           recordedPosition: savedPosition?.position_text,
         });
         setCpsPressureLens(cpsPressure);
+
+        // Build judge constraint lens
+        const judgeLens = buildJudgeConstraintLens({
+          snapshot,
+          offenceElements: reasoning.elements,
+          routes: reasoning.routes,
+          dependencies: reasoning.dependencies,
+          recordedPosition: savedPosition
+            ? {
+                primary: primary || undefined,
+                position_text: savedPosition.position_text,
+              }
+            : null,
+        });
+        setJudgeConstraintLens(judgeLens);
+
+        // Build route playbooks
+        const playbooks = buildRoutePlaybooks({
+          snapshot,
+          offenceElements: reasoning.elements,
+          routes: reasoning.routes,
+          cpsPressureLens: cpsPressure,
+          judgeConstraintLens: judgeLens,
+          recordedPosition: savedPosition
+            ? {
+                primary: primary || undefined,
+                position_text: savedPosition.position_text,
+              }
+            : null,
+        });
+        setRoutePlaybooks(playbooks);
+        
+        // Auto-expand primary route playbook
+        if (playbooks.playbooks.length > 0) {
+          setExpandedPlaybooks(new Set([playbooks.playbooks[0].route_id]));
+        }
+
+        // Compute disclosure state for hearing scripts
+        const docsRes = await fetch(`/api/cases/${resolvedCaseId}/documents`).catch(() => null);
+        const docsData = docsRes?.ok ? await docsRes.json() : null;
+        const documents = docsData?.data?.documents || docsData?.documents || [];
+        
+        const disclosureState = computeDisclosureState({
+          documents: documents.map((d: any) => ({ name: d.name, title: d.name, id: d.id })),
+          declaredDependencies: declaredDependencies,
+          disclosureTimeline: disclosureTimeline,
+          evidenceImpactMap: evidenceImpactMap,
+        });
+
+        // Build hearing scripts
+        const scripts = buildHearingScripts({
+          snapshot,
+          disclosureState,
+          playbooks,
+        });
+        setHearingScripts(scripts);
       } catch (error) {
         console.error("Failed to compute coordinator data:", error);
         setCoordinatorResult(null);
         setSolicitorView(null);
         setDefenceStrategyPlan(null);
         setCpsPressureLens(null);
+        setJudgeConstraintLens(null);
+        setRoutePlaybooks(null);
+        setHearingScripts(null);
       }
     }
 
@@ -5147,16 +5325,32 @@ export function StrategyCommitmentPanel({
                 {cpsPressureLens && cpsPressureLens.pressure_points.length > 0 && (
                   <div>
                     <span className="font-semibold text-muted-foreground mb-1 block">CPS Pressure Points:</span>
-                    <ul className="list-disc list-inside space-y-1 text-foreground">
+                    <div className="space-y-3">
                       {cpsPressureLens.pressure_points.slice(0, 4).map((point, idx) => (
-                        <li key={idx}>
-                          <span className="font-medium">{point.point}</span>
+                        <div key={idx} className="border-l-2 border-red-500/30 pl-3">
+                          <div className="font-medium text-foreground mb-1">{point.point}</div>
+                          <div className="text-[10px] text-muted-foreground/70 mb-1">
+                            Targets: {point.targets_element}
+                            {point.depends_on && point.depends_on.length > 0 && (
+                              <span className="ml-2">• Depends on: {point.depends_on.slice(0, 2).join(", ")}</span>
+                            )}
+                          </div>
                           {point.why_it_bites && (
-                            <span className="text-muted-foreground text-[11px] block ml-4">→ {point.why_it_bites}</span>
+                            <p className="text-muted-foreground text-[11px] mb-1">→ {point.why_it_bites}</p>
                           )}
-                        </li>
+                          {point.how_to_blunt && point.how_to_blunt.length > 0 && (
+                            <div className="mt-1">
+                              <span className="text-[10px] font-medium text-muted-foreground">Counters:</span>
+                              <ul className="list-disc list-inside space-y-0.5 text-muted-foreground text-[11px] ml-2">
+                                {point.how_to_blunt.slice(0, 2).map((counter, cIdx) => (
+                                  <li key={cIdx}>{counter}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                        </div>
                       ))}
-                    </ul>
+                    </div>
                   </div>
                 )}
 
@@ -5209,6 +5403,292 @@ export function StrategyCommitmentPanel({
                         </div>
                       ))}
                     </div>
+                  </div>
+                )}
+              </div>
+            </Card>
+          )}
+
+          {/* Route Playbooks - Phase 2 */}
+          {routePlaybooks && routePlaybooks.playbooks.length > 0 && isCommitted && (
+            <Card className="p-4 border border-border/50">
+              <div className="flex items-center gap-2 mb-4">
+                <FileText className="h-4 w-4 text-primary" />
+                <h3 className="text-sm font-semibold text-foreground">Route Playbooks</h3>
+                <Badge variant="outline" className="text-xs">READ-ONLY</Badge>
+              </div>
+              <div className="space-y-4">
+                {routePlaybooks.playbooks.map((playbook, idx) => {
+                  const isExpanded = expandedPlaybooks.has(playbook.route_id);
+                  const isPrimary = idx === 0;
+                  
+                  return (
+                    <div key={playbook.route_id} className="border border-border/30 rounded-lg">
+                      <button
+                        onClick={() => {
+                          const newExpanded = new Set(expandedPlaybooks);
+                          if (isExpanded) {
+                            newExpanded.delete(playbook.route_id);
+                          } else {
+                            newExpanded.add(playbook.route_id);
+                          }
+                          setExpandedPlaybooks(newExpanded);
+                        }}
+                        className="w-full flex items-center justify-between p-3 hover:bg-muted/30 transition-colors"
+                      >
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs font-semibold text-foreground">{playbook.label}</span>
+                          {isPrimary && (
+                            <Badge variant="outline" className="text-[10px]">PRIMARY</Badge>
+                          )}
+                        </div>
+                        {isExpanded ? (
+                          <ChevronUp className="h-4 w-4 text-muted-foreground" />
+                        ) : (
+                          <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                        )}
+                      </button>
+                      
+                      {isExpanded && (
+                        <div className="p-4 pt-0 space-y-4 text-xs border-t border-border/30">
+                          {/* Posture */}
+                          <div>
+                            <span className="font-semibold text-muted-foreground mb-1 block">Posture:</span>
+                            <p className="text-foreground">{playbook.posture}</p>
+                          </div>
+
+                          {/* Objective */}
+                          <div>
+                            <span className="font-semibold text-muted-foreground mb-1 block">Objective:</span>
+                            <p className="text-foreground">{playbook.objective}</p>
+                          </div>
+
+                          {/* Prosecution Burden */}
+                          {playbook.prosecution_burden.length > 0 && (
+                            <div>
+                              <span className="font-semibold text-muted-foreground mb-1 block">Prosecution Burden:</span>
+                              <ul className="list-disc list-inside space-y-0.5 text-foreground">
+                                {playbook.prosecution_burden.map((burden, bIdx) => (
+                                  <li key={bIdx} className="text-[11px]">{burden}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+
+                          {/* Defence Counters */}
+                          {playbook.defence_counters.length > 0 && (
+                            <div>
+                              <span className="font-semibold text-muted-foreground mb-1 block">Defence Counters:</span>
+                              <div className="space-y-2">
+                                {playbook.defence_counters.map((counter, cIdx) => (
+                                  <div key={cIdx} className="border-l-2 border-green-500/30 pl-2">
+                                    <div className="font-medium text-foreground mb-0.5 text-[11px]">{counter.point}</div>
+                                    <p className="text-muted-foreground text-[11px]">{counter.safe_wording}</p>
+                                    {counter.evidence_needed && counter.evidence_needed.length > 0 && (
+                                      <p className="text-[10px] text-muted-foreground/70 mt-0.5">
+                                        Evidence needed: {counter.evidence_needed.slice(0, 2).join(", ")}
+                                      </p>
+                                    )}
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+
+                          {/* Kill Switches */}
+                          {playbook.kill_switches.length > 0 && (
+                            <div>
+                              <span className="font-semibold text-muted-foreground mb-1 block">Kill Switches:</span>
+                              <div className="space-y-2">
+                                {playbook.kill_switches.map((killSwitch, kIdx) => (
+                                  <div key={kIdx} className="border-l-2 border-red-500/30 pl-2">
+                                    <div className="font-medium text-foreground mb-0.5 text-[11px]">If: {killSwitch.if}</div>
+                                    <p className="text-muted-foreground text-[11px]">Then: {killSwitch.then}</p>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+
+                          {/* Pivots */}
+                          {playbook.pivots.length > 0 && (
+                            <div>
+                              <span className="font-semibold text-muted-foreground mb-1 block">Pivots:</span>
+                              <div className="space-y-2">
+                                {playbook.pivots.map((pivot, pIdx) => (
+                                  <div key={pIdx} className="border-l-2 border-amber-500/30 pl-2">
+                                    <div className="font-medium text-foreground mb-0.5 text-[11px]">If: {pivot.if_triggered}</div>
+                                    <p className="text-muted-foreground text-[11px] mb-1">Pivot to: {pivot.new_route}</p>
+                                    {pivot.immediate_actions.length > 0 && (
+                                      <ul className="list-disc list-inside space-y-0.5 text-muted-foreground text-[11px] ml-2">
+                                        {pivot.immediate_actions.map((action, aIdx) => (
+                                          <li key={aIdx}>{action}</li>
+                                        ))}
+                                      </ul>
+                                    )}
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+
+                          {/* Next Actions */}
+                          {playbook.next_actions.length > 0 && (
+                            <div>
+                              <span className="font-semibold text-muted-foreground mb-1 block">Next Actions:</span>
+                              <ul className="list-disc list-inside space-y-0.5 text-foreground">
+                                {playbook.next_actions.map((action, aIdx) => (
+                                  <li key={aIdx} className="text-[11px]">{action}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </Card>
+          )}
+
+          {/* Hearing Checklists - Phase 2 */}
+          {hearingScripts && hearingScripts.scripts.length > 0 && isCommitted && (
+            <Card className="p-4 border border-border/50">
+              <button
+                onClick={() => setShowHearingScripts(!showHearingScripts)}
+                className="w-full flex items-center justify-between mb-4"
+              >
+                <div className="flex items-center gap-2">
+                  <Gavel className="h-4 w-4 text-primary" />
+                  <h3 className="text-sm font-semibold text-foreground">Hearing Checklists</h3>
+                  <Badge variant="outline" className="text-xs">READ-ONLY</Badge>
+                </div>
+                {showHearingScripts ? (
+                  <ChevronUp className="h-4 w-4 text-muted-foreground" />
+                ) : (
+                  <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                )}
+              </button>
+              
+              {showHearingScripts && (
+                <div className="space-y-4 text-xs">
+                  {hearingScripts.scripts.map((script, idx) => (
+                    <div key={idx} className="border border-border/30 rounded-lg p-3">
+                      <div className="flex items-center gap-2 mb-3">
+                        <Calendar className="h-3 w-3 text-primary" />
+                        <h4 className="text-xs font-semibold text-foreground">
+                          {script.hearing_type === "PTPH" ? "PTPH" :
+                           script.hearing_type === "disclosure_directions" ? "Disclosure Directions" :
+                           script.hearing_type === "case_management" ? "Case Management" :
+                           "Special Measures"}
+                        </h4>
+                      </div>
+                      
+                      {/* Checklist */}
+                      {script.checklist.length > 0 && (
+                        <div className="mb-3">
+                          <span className="font-semibold text-muted-foreground mb-1 block text-[11px]">Checklist:</span>
+                          <ul className="list-disc list-inside space-y-0.5 text-foreground">
+                            {script.checklist.map((item, cIdx) => (
+                              <li key={cIdx} className="text-[11px]">{item}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+
+                      {/* Asks of Court */}
+                      {script.asks_of_court.length > 0 && (
+                        <div className="mb-3">
+                          <span className="font-semibold text-muted-foreground mb-1 block text-[11px]">Asks of Court:</span>
+                          <ul className="list-disc list-inside space-y-0.5 text-foreground">
+                            {script.asks_of_court.map((ask, aIdx) => (
+                              <li key={aIdx} className="text-[11px]">{ask}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+
+                      {/* Do Not Concede */}
+                      {script.do_not_concede.length > 0 && (
+                        <div>
+                          <span className="font-semibold text-muted-foreground mb-1 block text-[11px]">Do Not Concede:</span>
+                          <ul className="list-disc list-inside space-y-0.5 text-amber-600 dark:text-amber-400">
+                            {script.do_not_concede.map((item, dIdx) => (
+                              <li key={dIdx} className="text-[11px]">{item}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </Card>
+          )}
+
+          {/* Judge Constraints (Doctrine) - Phase 2 */}
+          {judgeConstraintLens && isCommitted && (
+            <Card className="p-4 border border-border/50">
+              <div className="flex items-center gap-2 mb-4">
+                <Scale className="h-4 w-4 text-primary" />
+                <h3 className="text-sm font-semibold text-foreground">Judge Constraints (Doctrine)</h3>
+                <Badge variant="outline" className="text-xs">READ-ONLY</Badge>
+              </div>
+              <div className="space-y-4 text-xs">
+                {/* Constraints */}
+                {judgeConstraintLens.constraints.length > 0 && (
+                  <div>
+                    <span className="font-semibold text-muted-foreground mb-2 block">Doctrine Constraints:</span>
+                    <div className="space-y-3">
+                      {judgeConstraintLens.constraints.slice(0, 6).map((constraint, idx) => (
+                        <div key={idx} className="border-l-2 border-primary/30 pl-3">
+                          <div className="font-medium text-foreground mb-1">{constraint.title}</div>
+                          <p className="text-muted-foreground text-[11px] leading-relaxed mb-1">{constraint.detail}</p>
+                          {constraint.applies_to.length > 0 && (
+                            <div className="text-[10px] text-muted-foreground/70 italic">
+                              Applies to: {constraint.applies_to.join(", ")}
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Required Findings */}
+                {judgeConstraintLens.required_findings.length > 0 && (
+                  <div>
+                    <span className="font-semibold text-muted-foreground mb-2 block">Required Findings:</span>
+                    <ul className="list-disc list-inside space-y-1 text-foreground">
+                      {judgeConstraintLens.required_findings.slice(0, 6).map((finding, idx) => (
+                        <li key={idx} className="text-[11px]">{finding}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Intolerances */}
+                {judgeConstraintLens.intolerances.length > 0 && (
+                  <div>
+                    <span className="font-semibold text-muted-foreground mb-2 block">Court Intolerances:</span>
+                    <ul className="list-disc list-inside space-y-1 text-foreground">
+                      {judgeConstraintLens.intolerances.slice(0, 4).map((intolerance, idx) => (
+                        <li key={idx} className="text-[11px] italic">{intolerance}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Red Flags */}
+                {judgeConstraintLens.red_flags.length > 0 && (
+                  <div>
+                    <span className="font-semibold text-muted-foreground mb-2 block">Red Flags:</span>
+                    <ul className="list-disc list-inside space-y-1 text-foreground">
+                      {judgeConstraintLens.red_flags.slice(0, 4).map((flag, idx) => (
+                        <li key={idx} className="text-[11px] text-amber-600 dark:text-amber-400">{flag}</li>
+                      ))}
+                    </ul>
                   </div>
                 )}
               </div>
@@ -5455,6 +5935,7 @@ export function StrategyCommitmentPanel({
           {/* Procedural Safety Status - CRITICAL */}
           {isCommitted && (
             <ProceduralSafetyPanel
+              caseId={resolvedCaseId}
               evidenceImpactMap={evidenceImpactMap}
               declaredDependencies={declaredDependencies}
               disclosureTimelineEntries={disclosureTimelineEntries}
