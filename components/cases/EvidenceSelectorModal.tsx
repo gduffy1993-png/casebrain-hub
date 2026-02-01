@@ -19,12 +19,14 @@ type EvidenceSelectorModalProps = {
   caseId: string;
   onClose: () => void;
   onSuccess?: () => void;
+  onUploadMoreEvidence?: () => void;
 };
 
 export function EvidenceSelectorModal({
   caseId,
   onClose,
   onSuccess,
+  onUploadMoreEvidence,
 }: EvidenceSelectorModalProps) {
   const router = useRouter();
   const [documents, setDocuments] = useState<Document[]>([]);
@@ -188,26 +190,20 @@ export function EvidenceSelectorModal({
                 <p className="text-sm text-accent/60">
                   Select documents to include in the strategic analysis bundle. Check the box next to each document you want to analyze.
                 </p>
-                <p className="text-xs text-accent/50">
-                  Need to upload more evidence?{" "}
-                  <button
-                    onClick={() => {
-                      onClose();
-                      // Scroll to documents section and trigger upload
-                      setTimeout(() => {
-                        const documentsSection = document.querySelector('[data-phase-2-section]');
-                        if (documentsSection) {
-                          documentsSection.scrollIntoView({ behavior: "smooth", block: "start" });
-                          // Trigger the upload modal by dispatching a custom event or using URL param
-                          window.location.href = `${window.location.pathname}?action=add-documents`;
-                        }
-                      }, 100);
-                    }}
-                    className="text-primary hover:underline font-medium"
-                  >
-                    Upload more evidence
-                  </button>
-                </p>
+                {onUploadMoreEvidence && (
+                  <p className="text-xs text-accent/50">
+                    Need to upload more evidence?{" "}
+                    <button
+                      onClick={() => {
+                        onClose();
+                        onUploadMoreEvidence();
+                      }}
+                      className="text-primary hover:underline font-medium"
+                    >
+                      Upload more evidence
+                    </button>
+                  </p>
+                )}
               </div>
               {documents.map((doc) => {
                 const isSelected = selectedIds.has(doc.id);

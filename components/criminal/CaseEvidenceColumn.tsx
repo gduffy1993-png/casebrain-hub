@@ -20,13 +20,14 @@ type SavedPosition = {
 type CaseEvidenceColumnProps = {
   caseId: string;
   snapshot: CaseSnapshot;
-  onAddDocument?: () => void;
+  onAddDocument?: () => void; // For analysis document selection
+  onAddEvidenceUpload?: () => void; // For uploading new evidence
   currentPhase?: number;
   savedPosition?: SavedPosition | null;
   onCommitmentChange?: (commitment: StrategyCommitment | null) => void;
 };
 
-export function CaseEvidenceColumn({ caseId, snapshot, onAddDocument, currentPhase = 1, savedPosition, onCommitmentChange }: CaseEvidenceColumnProps) {
+export function CaseEvidenceColumn({ caseId, snapshot, onAddDocument, onAddEvidenceUpload, currentPhase = 1, savedPosition, onCommitmentChange }: CaseEvidenceColumnProps) {
   return (
     <div className="space-y-6">
       {/* Current Defence Position - Read-Only Display (Phase 2+ only) */}
@@ -94,7 +95,7 @@ export function CaseEvidenceColumn({ caseId, snapshot, onAddDocument, currentPha
             variant="outline" 
             size="sm" 
             className="w-full mt-2"
-            onClick={onAddDocument}
+            onClick={onAddEvidenceUpload || onAddDocument}
           >
             <Plus className="h-4 w-4 mr-2" />
             Add Evidence

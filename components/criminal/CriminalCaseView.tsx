@@ -45,7 +45,8 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   const [snapshot, setSnapshot] = useState<CaseSnapshot | null>(null);
   const [snapshotLoading, setSnapshotLoading] = useState(true);
   const [snapshotError, setSnapshotError] = useState<string | null>(null);
-  const [showAddDocuments, setShowAddDocuments] = useState(false);
+  const [showAddDocuments, setShowAddDocuments] = useState(false); // For analysis document selection
+  const [showAddEvidenceUpload, setShowAddEvidenceUpload] = useState(false); // For uploading new evidence
 
   const [gateBanner, setGateBanner] = useState<{
     banner: AnalysisGateBannerProps["banner"];
@@ -468,6 +469,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
               caseId={caseId} 
               snapshot={snapshot}
               onAddDocument={() => setShowAddDocuments(true)}
+              onAddEvidenceUpload={() => setShowAddEvidenceUpload(true)}
               currentPhase={currentPhase}
               savedPosition={currentPhase >= 2 ? savedPosition : null}
               onCommitmentChange={(commitment) => {
@@ -607,15 +609,33 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         </CollapsibleSection>
       )}
 
-      {/* Add Evidence Modal (Upload) */}
+      {/* Evidence Selector Modal (for analysis document selection) */}
       {showAddDocuments && (
+        <EvidenceSelectorModal
+          caseId={caseId}
+          onClose={() => setShowAddDocuments(false)}
+          onSuccess={() => {
+            setShowAddDocuments(false);
+            // Reload snapshot to reflect new documents
+            buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error);
+            router.refresh();
+          }}
+          onUploadMoreEvidence={() => {
+            setShowAddDocuments(false);
+            setShowAddEvidenceUpload(true);
+          }}
+        />
+      )}
+
+      {/* Add Evidence Modal (Upload) */}
+      {showAddEvidenceUpload && (
         <AddEvidenceModal
           caseId={caseId}
           caseTitle={snapshot?.caseMeta?.title || undefined}
-          isOpen={showAddDocuments}
-          onClose={() => setShowAddDocuments(false)}
+          isOpen={showAddEvidenceUpload}
+          onClose={() => setShowAddEvidenceUpload(false)}
           onSuccess={async () => {
-            setShowAddDocuments(false);
+            setShowAddEvidenceUpload(false);
             // Reload snapshot to reflect new documents
             try {
               const newSnapshot = await buildCaseSnapshot(caseId);
