@@ -279,6 +279,28 @@ const STRATEGY_OPTIONS: Array<{
   },
 ];
 
+// UI-only helpers: wording cleanup and de-duplication (no core logic change)
+function dedupeStrings(arr: string[]): string[] {
+  return [...new Set(arr)];
+}
+function dedupeBy<T>(arr: T[], key: (t: T) => string): T[] {
+  const seen = new Set<string>();
+  return arr.filter((t) => {
+    const k = key(t);
+    if (seen.has(k)) return false;
+    seen.add(k);
+    return true;
+  });
+}
+function normIfLabel(s: string): string {
+  if (!s || typeof s !== "string") return s;
+  return s.replace(/^\s*If:\s*If\s+/i, "").replace(/^\s*If\s+/i, "").trim();
+}
+function softenCourtMust(s: string): string {
+  if (!s || typeof s !== "string") return s;
+  return s.replace(/\bThe court must\b/gi, "The court will consider whether");
+}
+
 // Sub-options (parallel attack paths) for each strategy (deterministic, non-AI)
 type SubOption = {
   id: string;
@@ -753,7 +775,7 @@ function getBeastStrategyPack(strategyType: PrimaryStrategy | null): BeastStrate
     case "charge_reduction":
       return {
         dashboard: {
-          objective: "Knock out s18 intent threshold. Accept harm occurred but challenge specific intent. Force charge reduction from s18 to s20 (reckless GBH). Target negotiated reduction before PTPH if medical/sequence evidence supports s20.",
+          objective: "Knock out s18 intent threshold. Accept harm occurred but challenge specific intent. Seek charge reduction from s18 to s20 (reckless GBH). Target negotiated reduction before PTPH if medical/sequence evidence supports s20.",
           cpsMustProve: [
             { element: "Harm (GBH-level)", cpsEvidence: "Medical reports showing serious injuries", defenceChallenge: "Accept harm occurred but dispute mechanism or severity assessment" },
             { element: "Intent (s18 specific intent)", cpsEvidence: "Sequence evidence, targeting, premeditation", defenceChallenge: "Argue recklessness (s20) not specific intent, spontaneous not premeditated" },
@@ -1994,11 +2016,11 @@ function CourtroomModePanel({
 
     // Posture
     if (savedPosition?.position_text) {
-      lines.push("DEFENCE POSTURE:");
+      lines.push("DEFENCE POSITION:");
       lines.push(savedPosition.position_text);
       lines.push("");
     } else if (solicitorView?.headline) {
-      lines.push("DEFENCE POSTURE:");
+      lines.push("DEFENCE POSITION:");
       lines.push(solicitorView.headline);
       lines.push("");
     }
@@ -2641,7 +2663,7 @@ function ProceduralSafetyPanel({
         </div>
       )}
       <div className="space-y-2">
-        {disclosureState.rationale.map((reason, idx) => (
+        {dedupeStrings(disclosureState.rationale).map((reason, idx) => (
           <p key={idx} className="text-xs text-muted-foreground">{reason}</p>
         ))}
       </div>
@@ -4014,7 +4036,7 @@ function BeastStrategyPackView({
         <div className="pt-2 border-t border-primary/20">
           <p className="text-xs font-semibold text-foreground mb-1">Primary kill switch (what forces a pivot):</p>
           <p className="text-xs text-muted-foreground">
-            <span className="font-semibold">If: </span>{pack.dashboard.primaryKillSwitch.condition}
+            <span className="font-semibold">If: </span>{normIfLabel(pack.dashboard.primaryKillSwitch.condition)}
           </p>
           <p className="text-xs text-muted-foreground">
             <span className="font-semibold">Pivot condition triggered: </span>{pack.dashboard.primaryKillSwitch.pivotTo}
@@ -5324,7 +5346,7 @@ export function StrategyCommitmentPanel({
                       <div className="font-medium text-foreground mb-1">{defenceStrategyPlan.primary_route.label}</div>
                       {defenceStrategyPlan.primary_route.rationale.length > 0 && (
                         <ul className="list-disc list-inside space-y-0.5 text-muted-foreground">
-                          {defenceStrategyPlan.primary_route.rationale.map((reason, idx) => (
+                          {dedupeStrings(defenceStrategyPlan.primary_route.rationale).map((reason, idx) => (
                             <li key={idx}>{reason}</li>
                           ))}
                         </ul>
@@ -5388,7 +5410,7 @@ export function StrategyCommitmentPanel({
                     <div className="space-y-2">
                       {defenceStrategyPlan.kill_switches.slice(0, 4).map((killSwitch, idx) => (
                         <div key={idx} className="border-l-2 border-red-500/30 pl-2">
-                          <div className="font-medium text-foreground mb-0.5">If: {killSwitch.if}</div>
+                          <div className="font-medium text-foreground mb-0.5">If: {normIfLabel(killSwitch.if)}</div>
                           <p className="text-muted-foreground text-[11px]">Then: {killSwitch.then}</p>
                         </div>
                       ))}
@@ -5403,7 +5425,7 @@ export function StrategyCommitmentPanel({
                     <div className="space-y-2">
                       {defenceStrategyPlan.pivot_plan.slice(0, 3).map((pivot, idx) => (
                         <div key={idx} className="border-l-2 border-amber-500/30 pl-2">
-                          <div className="font-medium text-foreground mb-0.5">If: {pivot.if_triggered}</div>
+                          <div className="font-medium text-foreground mb-0.5">If: {normIfLabel(pivot.if_triggered)}</div>
                           <p className="text-muted-foreground text-[11px] mb-1">Alternative: {pivot.new_route}</p>
                           {pivot.immediate_actions.length > 0 && (
                             <ul className="list-disc list-inside space-y-0.5 text-muted-foreground text-[11px] ml-2">
@@ -5514,7 +5536,7 @@ export function StrategyCommitmentPanel({
                               <div className="space-y-2">
                                 {playbook.kill_switches.map((killSwitch, kIdx) => (
                                   <div key={kIdx} className="border-l-2 border-red-500/30 pl-2">
-                                    <div className="font-medium text-foreground mb-0.5 text-[11px]">If: {killSwitch.if}</div>
+                                    <div className="font-medium text-foreground mb-0.5 text-[11px]">If: {normIfLabel(killSwitch.if)}</div>
                                     <p className="text-muted-foreground text-[11px]">Then: {killSwitch.then}</p>
                                   </div>
                                 ))}
@@ -5529,8 +5551,8 @@ export function StrategyCommitmentPanel({
                               <div className="space-y-2">
                                 {playbook.pivots.map((pivot, pIdx) => (
                                   <div key={pIdx} className="border-l-2 border-amber-500/30 pl-2">
-                                    <div className="font-medium text-foreground mb-0.5 text-[11px]">If: {pivot.if_triggered}</div>
-                                    <p className="text-muted-foreground text-[11px] mb-1">Alternative: {pivot.new_route}</p>
+<div className="font-medium text-foreground mb-0.5 text-[11px]">If: {normIfLabel(pivot.if_triggered)}</div>
+                          <p className="text-muted-foreground text-[11px] mb-1">Alternative: {pivot.new_route}</p>
                                     {pivot.immediate_actions.length > 0 && (
                                       <ul className="list-disc list-inside space-y-0.5 text-muted-foreground text-[11px] ml-2">
                                         {pivot.immediate_actions.map((action, aIdx) => (
@@ -5639,12 +5661,12 @@ export function StrategyCommitmentPanel({
             </Card>
           )}
 
-          {/* Legal tests the court must apply - Phase 2 */}
+          {/* Legal tests the court will consider - Phase 2 */}
           {judgeConstraintLens && isCommitted && (
             <Card className="p-4 border border-border/50">
               <div className="flex items-center gap-2 mb-4">
                 <Scale className="h-4 w-4 text-primary" />
-                <h3 className="text-sm font-semibold text-foreground">Legal tests the court must apply</h3>
+                <h3 className="text-sm font-semibold text-foreground">Legal tests the court will consider</h3>
                 <Badge variant="outline" className="text-xs">Reference</Badge>
               </div>
               <div className="space-y-4 text-xs">
@@ -5653,10 +5675,10 @@ export function StrategyCommitmentPanel({
                   <div>
                     <span className="font-semibold text-muted-foreground mb-2 block">Doctrine Constraints:</span>
                     <div className="space-y-3">
-                      {judgeConstraintLens.constraints.slice(0, 6).map((constraint, idx) => (
+                      {dedupeBy(judgeConstraintLens.constraints.slice(0, 6), (c) => c.title + "\n" + (c.detail ?? "")).map((constraint, idx) => (
                         <div key={idx} className="border-l-2 border-primary/30 pl-3">
                           <div className="font-medium text-foreground mb-1">{constraint.title}</div>
-                          <p className="text-muted-foreground text-[11px] leading-relaxed mb-1">{constraint.detail}</p>
+                          <p className="text-muted-foreground text-[11px] leading-relaxed mb-1">{softenCourtMust(constraint.detail ?? "")}</p>
                           {constraint.applies_to.length > 0 && (
                             <div className="text-[10px] text-muted-foreground/70 italic">
                               Applies to: {constraint.applies_to.join(", ")}
@@ -5673,8 +5695,8 @@ export function StrategyCommitmentPanel({
                   <div>
                     <span className="font-semibold text-muted-foreground mb-2 block">Required Findings:</span>
                     <ul className="list-disc list-inside space-y-1 text-foreground">
-                      {judgeConstraintLens.required_findings.slice(0, 6).map((finding, idx) => (
-                        <li key={idx} className="text-[11px]">{finding}</li>
+                      {dedupeStrings(judgeConstraintLens.required_findings.slice(0, 6)).map((finding, idx) => (
+                        <li key={idx} className="text-[11px]">{softenCourtMust(finding)}</li>
                       ))}
                     </ul>
                   </div>
@@ -5685,8 +5707,8 @@ export function StrategyCommitmentPanel({
                   <div>
                     <span className="font-semibold text-muted-foreground mb-2 block">Court Intolerances:</span>
                     <ul className="list-disc list-inside space-y-1 text-foreground">
-                      {judgeConstraintLens.intolerances.slice(0, 4).map((intolerance, idx) => (
-                        <li key={idx} className="text-[11px] italic">{intolerance}</li>
+                      {dedupeStrings(judgeConstraintLens.intolerances.slice(0, 4)).map((intolerance, idx) => (
+                        <li key={idx} className="text-[11px] italic">{softenCourtMust(intolerance)}</li>
                       ))}
                     </ul>
                   </div>
@@ -5697,8 +5719,8 @@ export function StrategyCommitmentPanel({
                   <div>
                     <span className="font-semibold text-muted-foreground mb-2 block">Red Flags:</span>
                     <ul className="list-disc list-inside space-y-1 text-foreground">
-                      {judgeConstraintLens.red_flags.slice(0, 4).map((flag, idx) => (
-                        <li key={idx} className="text-[11px] text-amber-600 dark:text-amber-400">{flag}</li>
+                      {dedupeStrings(judgeConstraintLens.red_flags.slice(0, 4)).map((flag, idx) => (
+                        <li key={idx} className="text-[11px] text-amber-600 dark:text-amber-400">{softenCourtMust(flag)}</li>
                       ))}
                     </ul>
                   </div>
@@ -6021,7 +6043,7 @@ export function StrategyCommitmentPanel({
                       <div className="font-medium text-foreground mb-1">{defenceStrategyPlan.primary_route.label}</div>
                       {defenceStrategyPlan.primary_route.rationale?.length > 0 && (
                         <ul className="list-disc list-inside space-y-0.5 text-muted-foreground">
-                          {defenceStrategyPlan.primary_route.rationale.slice(0, 4).map((reason, idx) => (
+                          {dedupeStrings(defenceStrategyPlan.primary_route.rationale.slice(0, 4)).map((reason, idx) => (
                             <li key={idx}>{reason}</li>
                           ))}
                         </ul>
@@ -6083,7 +6105,7 @@ export function StrategyCommitmentPanel({
                     <div className="space-y-2">
                       {defenceStrategyPlan.kill_switches.slice(0, 4).map((killSwitch, idx) => (
                         <div key={idx} className="border-l-2 border-red-500/30 pl-2">
-                          <div className="font-medium text-foreground mb-0.5">If: {killSwitch.if}</div>
+                          <div className="font-medium text-foreground mb-0.5">If: {normIfLabel(killSwitch.if)}</div>
                           <p className="text-muted-foreground text-[11px]">Then: {killSwitch.then}</p>
                         </div>
                       ))}
@@ -6096,7 +6118,7 @@ export function StrategyCommitmentPanel({
                     <div className="space-y-2">
                       {defenceStrategyPlan.pivot_plan.slice(0, 3).map((pivot, idx) => (
                         <div key={idx} className="border-l-2 border-amber-500/30 pl-2">
-                          <div className="font-medium text-foreground mb-0.5">If: {pivot.if_triggered}</div>
+                          <div className="font-medium text-foreground mb-0.5">If: {normIfLabel(pivot.if_triggered)}</div>
                           <p className="text-muted-foreground text-[11px] mb-1">Alternative: {pivot.new_route}</p>
                           {pivot.immediate_actions?.length > 0 && (
                             <ul className="list-disc list-inside space-y-0.5 text-muted-foreground text-[11px] ml-2">
@@ -6114,12 +6136,12 @@ export function StrategyCommitmentPanel({
             </Card>
           )}
 
-          {/* Legal tests the court must apply - Phase 2 */}
+          {/* Legal tests the court will consider - Phase 2 */}
           {isCommitted && judgeConstraintLens && (
             <Card className="p-4 border border-border/50">
               <div className="flex items-center gap-2 mb-4">
                 <Scale className="h-4 w-4 text-primary" />
-                <h3 className="text-sm font-semibold text-foreground">Legal tests the court must apply</h3>
+                <h3 className="text-sm font-semibold text-foreground">Legal tests the court will consider</h3>
                 <Badge variant="outline" className="text-xs">Reference</Badge>
               </div>
               <div className="space-y-4 text-xs">
@@ -6127,10 +6149,10 @@ export function StrategyCommitmentPanel({
                   <div>
                     <span className="font-semibold text-muted-foreground mb-2 block">Doctrine Constraints:</span>
                     <div className="space-y-3">
-                      {judgeConstraintLens.constraints.slice(0, 6).map((constraint, idx) => (
+                      {dedupeBy(judgeConstraintLens.constraints.slice(0, 6), (c) => c.title + "\n" + (c.detail ?? "")).map((constraint, idx) => (
                         <div key={idx} className="border-l-2 border-primary/30 pl-3">
                           <div className="font-medium text-foreground mb-1">{constraint.title}</div>
-                          <p className="text-muted-foreground text-[11px] leading-relaxed mb-1">{constraint.detail}</p>
+                          <p className="text-muted-foreground text-[11px] leading-relaxed mb-1">{softenCourtMust(constraint.detail ?? "")}</p>
                           {constraint.applies_to?.length > 0 && (
                             <div className="text-[10px] text-muted-foreground/70 italic">
                               Applies to: {constraint.applies_to.join(", ")}
@@ -6145,8 +6167,8 @@ export function StrategyCommitmentPanel({
                   <div>
                     <span className="font-semibold text-muted-foreground mb-2 block">Required Findings:</span>
                     <ul className="list-disc list-inside space-y-0.5 text-foreground">
-                      {judgeConstraintLens.required_findings.slice(0, 6).map((finding, idx) => (
-                        <li key={idx} className="text-[11px]">{finding}</li>
+                      {dedupeStrings(judgeConstraintLens.required_findings.slice(0, 6)).map((finding, idx) => (
+                        <li key={idx} className="text-[11px]">{softenCourtMust(finding)}</li>
                       ))}
                     </ul>
                   </div>
@@ -6155,8 +6177,8 @@ export function StrategyCommitmentPanel({
                   <div>
                     <span className="font-semibold text-muted-foreground mb-2 block">Court Intolerances:</span>
                     <ul className="list-disc list-inside space-y-0.5 text-foreground">
-                      {judgeConstraintLens.intolerances.slice(0, 4).map((intolerance, idx) => (
-                        <li key={idx} className="text-[11px] italic">{intolerance}</li>
+                      {dedupeStrings(judgeConstraintLens.intolerances.slice(0, 4)).map((intolerance, idx) => (
+                        <li key={idx} className="text-[11px] italic">{softenCourtMust(intolerance)}</li>
                       ))}
                     </ul>
                   </div>
@@ -6165,8 +6187,8 @@ export function StrategyCommitmentPanel({
                   <div>
                     <span className="font-semibold text-muted-foreground mb-2 block">Red Flags:</span>
                     <ul className="list-disc list-inside space-y-0.5 text-foreground">
-                      {judgeConstraintLens.red_flags.slice(0, 4).map((flag, idx) => (
-                        <li key={idx} className="text-[11px] text-amber-600 dark:text-amber-400">{flag}</li>
+                      {dedupeStrings(judgeConstraintLens.red_flags.slice(0, 4)).map((flag, idx) => (
+                        <li key={idx} className="text-[11px] text-amber-600 dark:text-amber-400">{softenCourtMust(flag)}</li>
                       ))}
                     </ul>
                   </div>
@@ -6240,7 +6262,7 @@ export function StrategyCommitmentPanel({
                               <span className="font-semibold text-muted-foreground mb-1 block">Reassessment triggers:</span>
                               <ul className="list-disc list-inside space-y-0.5 text-foreground">
                                 {playbook.kill_switches.map((ks, ksIdx) => (
-                                  <li key={ksIdx} className="text-[11px]">If: {ks.if} → Then: {ks.then}</li>
+                                  <li key={ksIdx} className="text-[11px]">If: {normIfLabel(ks.if)} → Then: {ks.then}</li>
                                 ))}
                               </ul>
                             </div>
@@ -7350,7 +7372,7 @@ export function StrategyCommitmentPanel({
                           {recommendation.flipConditions.map((flip, idx) => (
                             <div key={idx} className="p-2 rounded-lg border border-amber-500/20 bg-amber-500/5">
                               <div className="text-xs">
-                                <div className="font-semibold text-foreground mb-1">If: {flip.evidenceEvent}</div>
+                                <div className="font-semibold text-foreground mb-1">If: {normIfLabel(flip.evidenceEvent)}</div>
                                 <div className="text-muted-foreground mb-1">→ Pivot condition triggered: {STRATEGY_OPTIONS.find(o => o.id === flip.flipsTo)?.label || flip.flipsTo}</div>
                                 <div className="text-muted-foreground mb-1">Why: {flip.why}</div>
                                 <div className="text-muted-foreground">Timing: {flip.timing.replace("_", " ")}</div>
