@@ -1456,7 +1456,7 @@ function SupervisorSnapshot({
         <div className="flex items-center gap-2 mb-2">
           <FileText className="h-4 w-4 text-primary" />
           <h3 className="text-sm font-semibold text-foreground">Supervisor Snapshot – Criminal Case</h3>
-          <Badge variant="outline" className="text-xs">READ-ONLY</Badge>
+          <Badge variant="outline" className="text-xs">Reference</Badge>
         </div>
         <p className="text-xs text-muted-foreground">Loading...</p>
       </div>
@@ -1536,7 +1536,7 @@ ${worstCaseCap ? `WORST-CASE EXPOSURE CAP:\n${worstCaseCap.explanation}\n` : ""}
         <div className="flex items-center gap-2">
           <FileText className="h-4 w-4 text-primary" />
           <h3 className="text-sm font-semibold text-foreground">Supervisor Snapshot – Criminal Case</h3>
-          <Badge variant="outline" className="text-xs">READ-ONLY</Badge>
+          <Badge variant="outline" className="text-xs">Reference</Badge>
         </div>
         <Button
           variant="outline"
@@ -2729,7 +2729,7 @@ function WeaponTrackerPanel({
       <div className="flex items-center gap-2">
         <Target className="h-4 w-4 text-primary" />
         <h3 className="text-sm font-semibold text-foreground">Weapon Proof Tracker</h3>
-        <Badge variant="outline" className="text-xs">READ-ONLY</Badge>
+        <Badge variant="outline" className="text-xs">Reference</Badge>
       </div>
       <div className="grid grid-cols-2 gap-3 text-xs">
         <div>
@@ -2830,7 +2830,7 @@ function IncidentShapePanel({
       <div className="flex items-center gap-2">
         <Clock className="h-4 w-4 text-primary" />
         <h3 className="text-sm font-semibold text-foreground">Incident Shape</h3>
-        <Badge variant="outline" className="text-xs">READ-ONLY</Badge>
+        <Badge variant="outline" className="text-xs">Reference</Badge>
       </div>
       <div>
         <span className="text-xs font-semibold text-foreground">Classification: </span>
@@ -4966,7 +4966,7 @@ export function StrategyCommitmentPanel({
       }
 
       if (!result.data || !result.data.primary_strategy) {
-        showToast("Commit succeeded but no strategy data returned", "error");
+        showToast("Strategy confirmed but no data returned.", "error");
         setIsCommitting(false);
         return;
       }
@@ -5404,7 +5404,7 @@ export function StrategyCommitmentPanel({
                       {defenceStrategyPlan.pivot_plan.slice(0, 3).map((pivot, idx) => (
                         <div key={idx} className="border-l-2 border-amber-500/30 pl-2">
                           <div className="font-medium text-foreground mb-0.5">If: {pivot.if_triggered}</div>
-                          <p className="text-muted-foreground text-[11px] mb-1">Pivot to: {pivot.new_route}</p>
+                          <p className="text-muted-foreground text-[11px] mb-1">Alternative: {pivot.new_route}</p>
                           {pivot.immediate_actions.length > 0 && (
                             <ul className="list-disc list-inside space-y-0.5 text-muted-foreground text-[11px] ml-2">
                               {pivot.immediate_actions.map((action, aIdx) => (
@@ -5427,7 +5427,7 @@ export function StrategyCommitmentPanel({
               <div className="flex items-center gap-2 mb-4">
                 <FileText className="h-4 w-4 text-primary" />
                 <h3 className="text-sm font-semibold text-foreground">Strategic options</h3>
-                <Badge variant="outline" className="text-xs">READ-ONLY</Badge>
+                <Badge variant="outline" className="text-xs">Reference</Badge>
               </div>
               <div className="space-y-4">
                 {routePlaybooks.playbooks.map((playbook, idx) => {
@@ -5530,7 +5530,7 @@ export function StrategyCommitmentPanel({
                                 {playbook.pivots.map((pivot, pIdx) => (
                                   <div key={pIdx} className="border-l-2 border-amber-500/30 pl-2">
                                     <div className="font-medium text-foreground mb-0.5 text-[11px]">If: {pivot.if_triggered}</div>
-                                    <p className="text-muted-foreground text-[11px] mb-1">Pivot to: {pivot.new_route}</p>
+                                    <p className="text-muted-foreground text-[11px] mb-1">Alternative: {pivot.new_route}</p>
                                     {pivot.immediate_actions.length > 0 && (
                                       <ul className="list-disc list-inside space-y-0.5 text-muted-foreground text-[11px] ml-2">
                                         {pivot.immediate_actions.map((action, aIdx) => (
@@ -5574,7 +5574,7 @@ export function StrategyCommitmentPanel({
                 <div className="flex items-center gap-2">
                   <Gavel className="h-4 w-4 text-primary" />
                   <h3 className="text-sm font-semibold text-foreground">Hearing preparation checklist</h3>
-                  <Badge variant="outline" className="text-xs">READ-ONLY</Badge>
+                  <Badge variant="outline" className="text-xs">Reference</Badge>
                 </div>
                 {showHearingScripts ? (
                   <ChevronUp className="h-4 w-4 text-muted-foreground" />
@@ -5624,7 +5624,7 @@ export function StrategyCommitmentPanel({
                       {/* Do Not Concede */}
                       {script.do_not_concede.length > 0 && (
                         <div>
-                          <span className="font-semibold text-muted-foreground mb-1 block text-[11px]">Do Not Concede:</span>
+                          <span className="font-semibold text-muted-foreground mb-1 block text-[11px]">Avoid conceding:</span>
                           <ul className="list-disc list-inside space-y-0.5 text-amber-600 dark:text-amber-400">
                             {script.do_not_concede.map((item, dIdx) => (
                               <li key={dIdx} className="text-[11px]">{item}</li>
@@ -5645,7 +5645,7 @@ export function StrategyCommitmentPanel({
               <div className="flex items-center gap-2 mb-4">
                 <Scale className="h-4 w-4 text-primary" />
                 <h3 className="text-sm font-semibold text-foreground">Legal tests the court must apply</h3>
-                <Badge variant="outline" className="text-xs">READ-ONLY</Badge>
+                <Badge variant="outline" className="text-xs">Reference</Badge>
               </div>
               <div className="space-y-4 text-xs">
                 {/* Constraints */}
@@ -5770,7 +5770,7 @@ export function StrategyCommitmentPanel({
               <h3 className="text-sm font-semibold text-foreground">Strategy Commitment</h3>
             </div>
             <p className="text-xs text-muted-foreground mb-3">
-              Choose how the case will be run, then lock in your primary strategy to unlock the Defence Strategy Plan.
+              Select how the case will be run and confirm your primary strategy to access the Defence Strategy Plan.
             </p>
             <div className="flex flex-wrap items-center gap-2 mb-3">
               {isCommitted && (
@@ -5790,7 +5790,7 @@ export function StrategyCommitmentPanel({
                   className="flex items-center gap-2"
                 >
                   <Lock className="h-3.5 w-3.5" />
-                  {isCommitting ? "Committing..." : "Commit Strategy"}
+                  {isCommitting ? "Confirming..." : "Confirm strategy"}
                 </Button>
               )}
               {primary && (
@@ -5835,7 +5835,7 @@ export function StrategyCommitmentPanel({
                 </div>
                 {!isCommitted && (
                   <p className="text-xs text-muted-foreground mt-2">
-                    Click &quot;Commit Strategy&quot; above to lock in and unlock the Defence Strategy Plan.
+                    Confirm your strategy above to access the Defence Strategy Plan.
                   </p>
                 )}
               </div>
@@ -5847,7 +5847,7 @@ export function StrategyCommitmentPanel({
             <>
               <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 p-3">
                 <p className="text-xs text-muted-foreground text-center">
-                  Commit a strategy to unlock the Defence Strategy Plan.
+                  Confirm a strategy to access the Defence Strategy Plan.
                 </p>
               </div>
               {/* Legacy Strategy Overview + Route Assessment (pre-commit preview) */}
@@ -6097,7 +6097,7 @@ export function StrategyCommitmentPanel({
                       {defenceStrategyPlan.pivot_plan.slice(0, 3).map((pivot, idx) => (
                         <div key={idx} className="border-l-2 border-amber-500/30 pl-2">
                           <div className="font-medium text-foreground mb-0.5">If: {pivot.if_triggered}</div>
-                          <p className="text-muted-foreground text-[11px] mb-1">Pivot to: {pivot.new_route}</p>
+                          <p className="text-muted-foreground text-[11px] mb-1">Alternative: {pivot.new_route}</p>
                           {pivot.immediate_actions?.length > 0 && (
                             <ul className="list-disc list-inside space-y-0.5 text-muted-foreground text-[11px] ml-2">
                               {pivot.immediate_actions.slice(0, 3).map((action, aIdx) => (
@@ -6120,7 +6120,7 @@ export function StrategyCommitmentPanel({
               <div className="flex items-center gap-2 mb-4">
                 <Scale className="h-4 w-4 text-primary" />
                 <h3 className="text-sm font-semibold text-foreground">Legal tests the court must apply</h3>
-                <Badge variant="outline" className="text-xs">READ-ONLY</Badge>
+                <Badge variant="outline" className="text-xs">Reference</Badge>
               </div>
               <div className="space-y-4 text-xs">
                 {judgeConstraintLens.constraints?.length > 0 && (
@@ -6181,7 +6181,7 @@ export function StrategyCommitmentPanel({
               <div className="flex items-center gap-2 mb-4">
                 <FileText className="h-4 w-4 text-primary" />
                 <h3 className="text-sm font-semibold text-foreground">Strategic options</h3>
-                <Badge variant="outline" className="text-xs">READ-ONLY</Badge>
+                <Badge variant="outline" className="text-xs">Reference</Badge>
               </div>
               <div className="space-y-4">
                 {routePlaybooks.playbooks.map((playbook, idx) => {
@@ -6247,7 +6247,7 @@ export function StrategyCommitmentPanel({
                           )}
                           {playbook.pivots?.length > 0 && (
                             <div>
-                              <span className="font-semibold text-muted-foreground mb-1 block">Pivot to:</span>
+                              <span className="font-semibold text-muted-foreground mb-1 block">Alternative:</span>
                               <ul className="list-disc list-inside space-y-0.5 text-muted-foreground">
                                 {playbook.pivots.map((p, pIdx) => (
                                   <li key={pIdx} className="text-[11px]">If: {p.if_triggered} → {p.new_route}</li>
@@ -6285,7 +6285,7 @@ export function StrategyCommitmentPanel({
                 <div className="flex items-center gap-2">
                   <Gavel className="h-4 w-4 text-primary" />
                   <h3 className="text-sm font-semibold text-foreground">Hearing preparation checklist</h3>
-                  <Badge variant="outline" className="text-xs">READ-ONLY</Badge>
+                  <Badge variant="outline" className="text-xs">Reference</Badge>
                 </div>
                 {showHearingScripts ? <ChevronUp className="h-4 w-4 text-muted-foreground" /> : <ChevronDown className="h-4 w-4 text-muted-foreground" />}
               </button>
@@ -6321,7 +6321,7 @@ export function StrategyCommitmentPanel({
                       )}
                       {script.do_not_concede?.length > 0 && (
                         <div>
-                          <span className="font-semibold text-muted-foreground mb-1 block text-[11px]">Do Not Concede:</span>
+                          <span className="font-semibold text-muted-foreground mb-1 block text-[11px]">Avoid conceding:</span>
                           <ul className="list-disc list-inside space-y-0.5 text-amber-600 dark:text-amber-400">
                             {script.do_not_concede.map((item, dIdx) => (
                               <li key={dIdx} className="text-[11px]">{item}</li>
@@ -7051,7 +7051,7 @@ export function StrategyCommitmentPanel({
                 className="flex items-center gap-2"
               >
                 <Lock className="h-3.5 w-3.5" />
-                {isCommitting ? "Committing..." : "Commit Strategy"}
+                {isCommitting ? "Confirming..." : "Confirm strategy"}
               </Button>
             )}
           {primary && (

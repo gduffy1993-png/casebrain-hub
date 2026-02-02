@@ -84,7 +84,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
       try {
         const snap = await buildCaseSnapshot(caseId);
         setSnapshot(snap);
-        // Update committed strategy from snapshot
+        // Update committed strategy from snapshot (strategy commitment, not position)
         if (snap.decisionLog.currentPosition) {
           setIsStrategyCommitted(true);
           setCommittedStrategy({
@@ -106,6 +106,44 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
       }
     }
     loadSnapshot();
+  }, [caseId]);
+
+  // Canonical phase rule: Phase 2 when a recorded defence position exists (not strategy commitment).
+  // On mount/refresh, fetch position and set phase so Phase 2 persists after refresh.
+  useEffect(() => {
+    if (!caseId) return;
+    let cancelled = false;
+    async function loadPosition() {
+      try {
+        const response = await fetch(`/api/criminal/${caseId}/position`, { credentials: "include" });
+        if (cancelled) return;
+        if (response.ok) {
+          const data = await response.json();
+          if (data.ok && (data.data || data.position)) {
+            setSavedPosition(data.data || data.position);
+            setHasSavedPosition(true);
+            setCurrentPhase(2);
+          } else {
+            setSavedPosition(null);
+            setHasSavedPosition(false);
+            setCurrentPhase(1);
+          }
+        } else {
+          setSavedPosition(null);
+          setHasSavedPosition(false);
+          setCurrentPhase(1);
+        }
+      } catch (error) {
+        if (!cancelled) {
+          console.error("[CriminalCaseView] Failed to load position:", error);
+          setSavedPosition(null);
+          setHasSavedPosition(false);
+          setCurrentPhase(1);
+        }
+      }
+    }
+    loadPosition();
+    return () => { cancelled = true; };
   }, [caseId]);
 
   // Check if analysis is gated and determine mode (using snapshot data when available)
@@ -133,18 +171,15 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
               },
             });
             setIsDisclosureFirstMode(true);
-      setCurrentPhase((prev) => (prev === 1 ? 1 : prev));
           } else {
             setGateBanner(null);
-      // Check if mode is DISCLOSURE-FIRST from strategy data
+      // Check if mode is DISCLOSURE-FIRST from strategy data (for UI hints only; phase is from position)
       const primary = snapshot.strategy.primary;
       const mode = primary === "fight_charge" && snapshot.strategy.hasRenderableData 
         ? "OTHER" 
         : "DISCLOSURE-FIRST";
             setIsDisclosureFirstMode(mode === "DISCLOSURE-FIRST");
-      if (mode !== "DISCLOSURE-FIRST") {
-        setCurrentPhase((prev) => (prev === 1 ? 2 : prev));
-      }
+      // Phase is NOT set from snapshot; it is set from GET /position on mount and onPositionChange.
     }
   }, [snapshot]);
 
@@ -363,7 +398,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         caseId={caseId}
         isDisclosureFirstMode={isDisclosureFirstMode}
         onPhaseChange={setCurrentPhase}
-        defaultPhase={isDisclosureFirstMode ? 1 : 2}
+        defaultPhase={1}
         currentPhase={currentPhase}
         hasSavedPosition={hasSavedPosition}
         onRecordPosition={() => {
@@ -499,6 +534,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
               currentPhase={currentPhase}
               onPositionChange={(hasPosition) => {
                 setHasSavedPosition(hasPosition);
+                setCurrentPhase(hasPosition ? 2 : 1);
               }}
               savedPosition={savedPosition}
               onRecordPosition={() => {
@@ -654,7 +690,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         isOpen={isPositionModalOpen}
         onClose={() => setIsPositionModalOpen(false)}
         onSuccess={async () => {
-          // Refetch position after save
+          // Refetch position after save; phase 2 persists from position existence
           try {
             const response = await fetch(`/api/criminal/${caseId}/position`, {
               credentials: "include",
@@ -664,9 +700,11 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
               if (data.ok && (data.data || data.position)) {
                 setSavedPosition(data.data || data.position);
                 setHasSavedPosition(true);
+                setCurrentPhase(2);
               } else {
                 setSavedPosition(null);
                 setHasSavedPosition(false);
+                setCurrentPhase(1);
               }
             }
           } catch (error) {
