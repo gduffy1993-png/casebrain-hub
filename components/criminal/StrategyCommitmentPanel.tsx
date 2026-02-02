@@ -5300,12 +5300,12 @@ export function StrategyCommitmentPanel({
             </Card>
           )}
 
-          {/* How This Case Is Fought - Defence Strategy Plan */}
+          {/* How the Defence Case Will Be Run - Defence Strategy Plan */}
           {defenceStrategyPlan && isCommitted && (
             <Card className="p-4 border border-border/50">
               <div className="flex items-center gap-2 mb-4">
                 <Shield className="h-4 w-4 text-primary" />
-                <h3 className="text-sm font-semibold text-foreground">How This Case Is Fought</h3>
+                <h3 className="text-sm font-semibold text-foreground">How the Defence Case Will Be Run</h3>
               </div>
               <div className="space-y-4 text-xs">
                 {/* Posture */}
@@ -5336,7 +5336,7 @@ export function StrategyCommitmentPanel({
                 {/* CPS Pressure Points */}
                 {cpsPressureLens && cpsPressureLens.pressure_points.length > 0 && (
                   <div>
-                    <span className="font-semibold text-muted-foreground mb-1 block">CPS Pressure Points:</span>
+                    <span className="font-semibold text-muted-foreground mb-1 block">Prosecution Arguments:</span>
                     <div className="space-y-3">
                       {cpsPressureLens.pressure_points.slice(0, 4).map((point, idx) => (
                         <div key={idx} className="border-l-2 border-red-500/30 pl-3">
@@ -5384,7 +5384,7 @@ export function StrategyCommitmentPanel({
                 {/* Kill Switches */}
                 {defenceStrategyPlan.kill_switches.length > 0 && (
                   <div>
-                    <span className="font-semibold text-muted-foreground mb-1 block">Kill Switches:</span>
+                    <span className="font-semibold text-muted-foreground mb-1 block">Reassessment triggers:</span>
                     <div className="space-y-2">
                       {defenceStrategyPlan.kill_switches.slice(0, 4).map((killSwitch, idx) => (
                         <div key={idx} className="border-l-2 border-red-500/30 pl-2">
@@ -5399,7 +5399,7 @@ export function StrategyCommitmentPanel({
                 {/* Pivot Plan */}
                 {defenceStrategyPlan.pivot_plan.length > 0 && (
                   <div>
-                    <span className="font-semibold text-muted-foreground mb-1 block">Pivot Plan:</span>
+                    <span className="font-semibold text-muted-foreground mb-1 block">Alternative routes (if triggered):</span>
                     <div className="space-y-2">
                       {defenceStrategyPlan.pivot_plan.slice(0, 3).map((pivot, idx) => (
                         <div key={idx} className="border-l-2 border-amber-500/30 pl-2">
@@ -5421,12 +5421,12 @@ export function StrategyCommitmentPanel({
             </Card>
           )}
 
-          {/* Route Playbooks - Phase 2 */}
+          {/* Strategic options - Phase 2 */}
           {routePlaybooks && routePlaybooks.playbooks.length > 0 && isCommitted && (
             <Card className="p-4 border border-border/50">
               <div className="flex items-center gap-2 mb-4">
                 <FileText className="h-4 w-4 text-primary" />
-                <h3 className="text-sm font-semibold text-foreground">Route Playbooks</h3>
+                <h3 className="text-sm font-semibold text-foreground">Strategic options</h3>
                 <Badge variant="outline" className="text-xs">READ-ONLY</Badge>
               </div>
               <div className="space-y-4">
@@ -5510,7 +5510,7 @@ export function StrategyCommitmentPanel({
                           {/* Kill Switches */}
                           {playbook.kill_switches.length > 0 && (
                             <div>
-                              <span className="font-semibold text-muted-foreground mb-1 block">Kill Switches:</span>
+                              <span className="font-semibold text-muted-foreground mb-1 block">Reassessment triggers:</span>
                               <div className="space-y-2">
                                 {playbook.kill_switches.map((killSwitch, kIdx) => (
                                   <div key={kIdx} className="border-l-2 border-red-500/30 pl-2">
@@ -5564,7 +5564,7 @@ export function StrategyCommitmentPanel({
             </Card>
           )}
 
-          {/* Hearing Checklists - Phase 2 */}
+          {/* Hearing preparation checklist - Phase 2 */}
           {hearingScripts && hearingScripts.scripts.length > 0 && isCommitted && (
             <Card className="p-4 border border-border/50">
               <button
@@ -5573,7 +5573,7 @@ export function StrategyCommitmentPanel({
               >
                 <div className="flex items-center gap-2">
                   <Gavel className="h-4 w-4 text-primary" />
-                  <h3 className="text-sm font-semibold text-foreground">Hearing Checklists</h3>
+                  <h3 className="text-sm font-semibold text-foreground">Hearing preparation checklist</h3>
                   <Badge variant="outline" className="text-xs">READ-ONLY</Badge>
                 </div>
                 {showHearingScripts ? (
@@ -5639,12 +5639,12 @@ export function StrategyCommitmentPanel({
             </Card>
           )}
 
-          {/* Judge Constraints (Doctrine) - Phase 2 */}
+          {/* Legal tests the court must apply - Phase 2 */}
           {judgeConstraintLens && isCommitted && (
             <Card className="p-4 border border-border/50">
               <div className="flex items-center gap-2 mb-4">
                 <Scale className="h-4 w-4 text-primary" />
-                <h3 className="text-sm font-semibold text-foreground">Judge Constraints (Doctrine)</h3>
+                <h3 className="text-sm font-semibold text-foreground">Legal tests the court must apply</h3>
                 <Badge variant="outline" className="text-xs">READ-ONLY</Badge>
               </div>
               <div className="space-y-4 text-xs">
@@ -5770,7 +5770,7 @@ export function StrategyCommitmentPanel({
               <h3 className="text-sm font-semibold text-foreground">Strategy Commitment</h3>
             </div>
             <p className="text-xs text-muted-foreground mb-3">
-              Choose how the case will be run, then lock in your primary strategy to unlock the Defence Fight Plan.
+              Choose how the case will be run, then lock in your primary strategy to unlock the Defence Strategy Plan.
             </p>
             <div className="flex flex-wrap items-center gap-2 mb-3">
               {isCommitted && (
@@ -5835,7 +5835,7 @@ export function StrategyCommitmentPanel({
                 </div>
                 {!isCommitted && (
                   <p className="text-xs text-muted-foreground mt-2">
-                    Click &quot;Commit Strategy&quot; above to lock in and unlock the Defence Fight Plan.
+                    Click &quot;Commit Strategy&quot; above to lock in and unlock the Defence Strategy Plan.
                   </p>
                 )}
               </div>
@@ -5847,7 +5847,7 @@ export function StrategyCommitmentPanel({
             <>
               <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 p-3">
                 <p className="text-xs text-muted-foreground text-center">
-                  Commit a strategy to unlock the Defence Fight Plan.
+                  Commit a strategy to unlock the Defence Strategy Plan.
                 </p>
               </div>
               {/* Legacy Strategy Overview + Route Assessment (pre-commit preview) */}
@@ -5993,18 +5993,18 @@ export function StrategyCommitmentPanel({
           {isCommitted && (
             <>
               <div className="rounded-lg border-2 border-primary/30 bg-primary/5 p-4">
-                <h2 className="text-sm font-semibold text-foreground mb-1">Defence Fight Plan (CPS / Court / Defence)</h2>
-                <p className="text-xs text-muted-foreground">Posture, pressure points, judge constraints, route playbooks, and hearing checklists.</p>
+                <h2 className="text-sm font-semibold text-foreground mb-1">Defence Strategy Plan (Prosecution / Court / Defence)</h2>
+                <p className="text-xs text-muted-foreground">Posture, prosecution arguments, legal tests, strategic options, and hearing preparation.</p>
               </div>
             </>
           )}
 
-          {/* How This Case Is Fought - Phase 2 Fight Harder outputs (committed only) */}
+          {/* How the Defence Case Will Be Run - Phase 2 Fight Harder outputs (committed only) */}
           {isCommitted && defenceStrategyPlan && (
             <Card className="p-4 border border-border/50">
               <div className="flex items-center gap-2 mb-4">
                 <Shield className="h-4 w-4 text-primary" />
-                <h3 className="text-sm font-semibold text-foreground">How This Case Is Fought</h3>
+                <h3 className="text-sm font-semibold text-foreground">How the Defence Case Will Be Run</h3>
               </div>
               <div className="space-y-4 text-xs">
                 {/* Posture + Primary Route */}
@@ -6033,7 +6033,7 @@ export function StrategyCommitmentPanel({
                 {/* CPS Pressure Points - top 4, show depends_on + how_to_blunt */}
                 {cpsPressureLens && cpsPressureLens.pressure_points.length > 0 && (
                   <div>
-                    <span className="font-semibold text-muted-foreground mb-1 block">CPS Pressure Points:</span>
+                    <span className="font-semibold text-muted-foreground mb-1 block">Prosecution Arguments:</span>
                     <div className="space-y-3">
                       {cpsPressureLens.pressure_points.slice(0, 4).map((point, idx) => (
                         <div key={idx} className="border-l-2 border-red-500/30 pl-3">
@@ -6049,7 +6049,7 @@ export function StrategyCommitmentPanel({
                           )}
                           {point.how_to_blunt?.length > 0 && (
                             <div className="mt-1">
-                              <span className="text-[10px] font-medium text-muted-foreground">How to blunt:</span>
+                              <span className="text-[10px] font-medium text-muted-foreground">Defence response:</span>
                               <ul className="list-disc list-inside space-y-0.5 text-muted-foreground text-[11px] ml-2">
                                 {point.how_to_blunt.slice(0, 3).map((counter, cIdx) => (
                                   <li key={cIdx}>{counter}</li>
@@ -6079,7 +6079,7 @@ export function StrategyCommitmentPanel({
                 )}
                 {defenceStrategyPlan.kill_switches?.length > 0 && (
                   <div>
-                    <span className="font-semibold text-muted-foreground mb-1 block">Kill Switches:</span>
+                    <span className="font-semibold text-muted-foreground mb-1 block">Reassessment triggers:</span>
                     <div className="space-y-2">
                       {defenceStrategyPlan.kill_switches.slice(0, 4).map((killSwitch, idx) => (
                         <div key={idx} className="border-l-2 border-red-500/30 pl-2">
@@ -6092,7 +6092,7 @@ export function StrategyCommitmentPanel({
                 )}
                 {defenceStrategyPlan.pivot_plan?.length > 0 && (
                   <div>
-                    <span className="font-semibold text-muted-foreground mb-1 block">Pivot Plan:</span>
+                    <span className="font-semibold text-muted-foreground mb-1 block">Alternative routes (if triggered):</span>
                     <div className="space-y-2">
                       {defenceStrategyPlan.pivot_plan.slice(0, 3).map((pivot, idx) => (
                         <div key={idx} className="border-l-2 border-amber-500/30 pl-2">
@@ -6114,12 +6114,12 @@ export function StrategyCommitmentPanel({
             </Card>
           )}
 
-          {/* Judge Constraints (Doctrine) - Phase 2 */}
+          {/* Legal tests the court must apply - Phase 2 */}
           {isCommitted && judgeConstraintLens && (
             <Card className="p-4 border border-border/50">
               <div className="flex items-center gap-2 mb-4">
                 <Scale className="h-4 w-4 text-primary" />
-                <h3 className="text-sm font-semibold text-foreground">Judge Constraints (Doctrine)</h3>
+                <h3 className="text-sm font-semibold text-foreground">Legal tests the court must apply</h3>
                 <Badge variant="outline" className="text-xs">READ-ONLY</Badge>
               </div>
               <div className="space-y-4 text-xs">
@@ -6175,12 +6175,12 @@ export function StrategyCommitmentPanel({
             </Card>
           )}
 
-          {/* Route Playbooks - Phase 2 */}
+          {/* Strategic options - Phase 2 */}
           {isCommitted && routePlaybooks && routePlaybooks.playbooks?.length > 0 && (
             <Card className="p-4 border border-border/50">
               <div className="flex items-center gap-2 mb-4">
                 <FileText className="h-4 w-4 text-primary" />
-                <h3 className="text-sm font-semibold text-foreground">Route Playbooks</h3>
+                <h3 className="text-sm font-semibold text-foreground">Strategic options</h3>
                 <Badge variant="outline" className="text-xs">READ-ONLY</Badge>
               </div>
               <div className="space-y-4">
@@ -6237,7 +6237,7 @@ export function StrategyCommitmentPanel({
                           )}
                           {playbook.kill_switches?.length > 0 && (
                             <div>
-                              <span className="font-semibold text-muted-foreground mb-1 block">Kill Switches:</span>
+                              <span className="font-semibold text-muted-foreground mb-1 block">Reassessment triggers:</span>
                               <ul className="list-disc list-inside space-y-0.5 text-foreground">
                                 {playbook.kill_switches.map((ks, ksIdx) => (
                                   <li key={ksIdx} className="text-[11px]">If: {ks.if} → Then: {ks.then}</li>
@@ -6274,7 +6274,7 @@ export function StrategyCommitmentPanel({
             </Card>
           )}
 
-          {/* Hearing Checklists - Phase 2 */}
+          {/* Hearing preparation checklist - Phase 2 */}
           {isCommitted && hearingScripts && hearingScripts.scripts?.length > 0 && (
             <Card className="p-4 border border-border/50">
               <button
@@ -6284,7 +6284,7 @@ export function StrategyCommitmentPanel({
               >
                 <div className="flex items-center gap-2">
                   <Gavel className="h-4 w-4 text-primary" />
-                  <h3 className="text-sm font-semibold text-foreground">Hearing Checklists</h3>
+                  <h3 className="text-sm font-semibold text-foreground">Hearing preparation checklist</h3>
                   <Badge variant="outline" className="text-xs">READ-ONLY</Badge>
                 </div>
                 {showHearingScripts ? <ChevronUp className="h-4 w-4 text-muted-foreground" /> : <ChevronDown className="h-4 w-4 text-muted-foreground" />}
@@ -6336,10 +6336,10 @@ export function StrategyCommitmentPanel({
             </Card>
           )}
 
-          {/* Legacy Summary (reference) - collapsed when committed, contains Strategy Overview + Route Assessment */}
+          {/* Summary (reference) - collapsed when committed, contains Strategy Overview + Route Assessment */}
           {isCommitted && mounted && coordinatorResult && solicitorView && (
             <CollapsibleSection
-              title="Legacy Summary (reference)"
+              title="Summary (reference)"
               description="Strategy Overview and Route Assessment — descriptive summary for reference."
               defaultOpen={false}
               icon={<FileText className="h-4 w-4 text-muted-foreground" />}
