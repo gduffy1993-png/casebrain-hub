@@ -298,7 +298,36 @@ function normIfLabel(s: string): string {
 }
 function softenCourtMust(s: string): string {
   if (!s || typeof s !== "string") return s;
-  return s.replace(/\bThe court must\b/gi, "The court will consider whether");
+  const prefix = "The court must ";
+  if (!s.trimStart().toLowerCase().startsWith(prefix.toLowerCase())) return s;
+  const rest = s.trimStart().slice(prefix.length).trim();
+  // "The court must distinguish A from B." -> "The issue for the court is whether A is proved as distinct from B."
+  const distinguishMatch = rest.match(/^distinguish\s+(.+?)\s+from\s+(.+?)(\.?)$/i);
+  if (distinguishMatch) {
+    const [, a, b, period] = distinguishMatch;
+    return `The issue for the court is whether ${a.trim()} is proved as distinct from ${b.trim()}.${period || ""}`.trim();
+  }
+  // "The court must establish X." / "The court must determine X." -> "The issue for the court is whether X is established."
+  const establishOrDetermineMatch = rest.match(/^(establish|determine)\s+(.+)$/i);
+  if (establishOrDetermineMatch) {
+    const [, , objectPart] = establishOrDetermineMatch;
+    const trimmed = objectPart.trim();
+    const period = trimmed.endsWith(".") ? "" : ".";
+    return `The issue for the court is whether ${trimmed.replace(/\.$/, "")} is established${period}`.trim();
+  }
+  // "The court must resolve X." -> "The issue for the court is whether X can be resolved on the evidence."
+  const resolveMatch = rest.match(/^resolve\s+(.+)$/i);
+  if (resolveMatch) {
+    const [, objectPart] = resolveMatch;
+    const trimmed = objectPart.trim().replace(/\.$/, "");
+    return `The issue for the court is whether ${trimmed} can be resolved on the evidence.`.trim();
+  }
+  // Fallback: only if rest looks like a noun phrase (starts with capital or "it") to avoid "whether verb..."
+  if (/^[A-Z]|^it\s/i.test(rest)) {
+    const trimmed = rest.replace(/\.$/, "");
+    return `The issue for the court is whether ${trimmed}.`.trim();
+  }
+  return s;
 }
 
 // Sub-options (parallel attack paths) for each strategy (deterministic, non-AI)
@@ -5333,7 +5362,7 @@ export function StrategyCommitmentPanel({
                 {/* Posture */}
                 {defenceStrategyPlan.posture && (
                   <div>
-                    <span className="font-semibold text-muted-foreground mb-1 block">Posture:</span>
+                    <span className="font-semibold text-muted-foreground mb-1 block">Defence position:</span>
                     <p className="text-foreground">{defenceStrategyPlan.posture}</p>
                   </div>
                 )}
@@ -5487,7 +5516,7 @@ export function StrategyCommitmentPanel({
                         <div className="p-4 pt-0 space-y-4 text-xs border-t border-border/30">
                           {/* Posture */}
                           <div>
-                            <span className="font-semibold text-muted-foreground mb-1 block">Posture:</span>
+                            <span className="font-semibold text-muted-foreground mb-1 block">Defence position:</span>
                             <p className="text-foreground">{playbook.posture}</p>
                           </div>
 
@@ -6016,7 +6045,7 @@ export function StrategyCommitmentPanel({
             <>
               <div className="rounded-lg border-2 border-primary/30 bg-primary/5 p-4">
                 <h2 className="text-sm font-semibold text-foreground mb-1">Defence Strategy Plan (Prosecution / Court / Defence)</h2>
-                <p className="text-xs text-muted-foreground">Posture, prosecution arguments, legal tests, strategic options, and hearing preparation.</p>
+                <p className="text-xs text-muted-foreground">Defence position, prosecution arguments, legal tests, strategic options, and hearing preparation.</p>
               </div>
             </>
           )}
@@ -6032,7 +6061,7 @@ export function StrategyCommitmentPanel({
                 {/* Posture + Primary Route */}
                 {defenceStrategyPlan.posture && (
                   <div>
-                    <span className="font-semibold text-muted-foreground mb-1 block">Posture:</span>
+                    <span className="font-semibold text-muted-foreground mb-1 block">Defence position:</span>
                     <p className="text-foreground">{defenceStrategyPlan.posture}</p>
                   </div>
                 )}
@@ -6230,7 +6259,7 @@ export function StrategyCommitmentPanel({
                       {isExpanded && (
                         <div className="p-4 pt-0 space-y-4 text-xs border-t border-border/30">
                           <div>
-                            <span className="font-semibold text-muted-foreground mb-1 block">Posture:</span>
+                            <span className="font-semibold text-muted-foreground mb-1 block">Defence position:</span>
                             <p className="text-foreground">{playbook.posture}</p>
                           </div>
                           <div>
@@ -6272,7 +6301,7 @@ export function StrategyCommitmentPanel({
                               <span className="font-semibold text-muted-foreground mb-1 block">Alternative:</span>
                               <ul className="list-disc list-inside space-y-0.5 text-muted-foreground">
                                 {playbook.pivots.map((p, pIdx) => (
-                                  <li key={pIdx} className="text-[11px]">If: {p.if_triggered} → {p.new_route}</li>
+                                  <li key={pIdx} className="text-[11px]">If: {normIfLabel(p.if_triggered)} → {p.new_route}</li>
                                 ))}
                               </ul>
                             </div>
