@@ -325,7 +325,7 @@ function stripLeadingWhether(clause: string): string {
   return clause.replace(/^\s*whether\s+/i, "").trim();
 }
 
-/** Rewrite "The court must ..." / "Court must ..." to grammatical "The issue for the court is whether ..." (display only). Only safe patterns are rewritten; otherwise original is returned. Never outputs "whether whether" or broken "is established" fragments. */
+/** Rewrite "The court must ..." / "Court must ..." to complete solicitor-grade sentences (display only). Only these exact patterns are rewritten; otherwise original is returned. Never outputs "whether whether" or fragments. */
 function softenCourtMust(sentence: string): string {
   if (!sentence || typeof sentence !== "string") return sentence;
   const s = sentence.trim();
@@ -335,7 +335,7 @@ function softenCourtMust(sentence: string): string {
   const trimPeriod = (x: string) => x.replace(/\.+$/, "").trim();
   const onePeriod = (x: string) => (x.endsWith(".") ? x.replace(/\.+$/, ".") : x + ".");
 
-  // 1. "The court must distinguish X from Y" → "The issue for the court is whether X is proved as distinct from Y."
+  // 1. "distinguish A from B" → "The issue for the court is whether A is proved as distinct from B."
   const distinguishMatch = rest.match(/^distinguish\s+([\s\S]+?)\s+from\s+([\s\S]+)$/i);
   if (distinguishMatch) {
     const [, a, b] = distinguishMatch;
@@ -343,21 +343,26 @@ function softenCourtMust(sentence: string): string {
     const b2 = stripLeadingWhether(trimPeriod(b));
     return onePeriod(`The issue for the court is whether ${a2} is proved as distinct from ${b2}`);
   }
-  // 2. "The court must establish X" / "The court must determine X" → "The issue for the court is whether X is established." (omit "is established" if clause already reads complete)
+  // 2. "determine whether X" → "The issue for the court is whether X."
+  const determineWhetherMatch = rest.match(/^determine\s+whether\s+([\s\S]+)$/i);
+  if (determineWhetherMatch) {
+    const inner = stripLeadingWhether(trimPeriod(determineWhetherMatch[1]));
+    return onePeriod(`The issue for the court is whether ${inner}`);
+  }
+  // 3. "determine X" / "establish X" → "The issue for the court is whether X is established." (only if X does not already contain a verb — avoid fragments)
   const establishOrDetermineMatch = rest.match(/^(establish|determine)\s+([\s\S]+)$/i);
   if (establishOrDetermineMatch) {
     const inner = stripLeadingWhether(trimPeriod(establishOrDetermineMatch[2]));
-    const alreadyComplete = /^(cannot|must not|may not)\s/i.test(inner) || /\b(infer|classify)\b/i.test(inner);
-    if (alreadyComplete) return onePeriod(`The issue for the court is whether ${inner}`);
+    const xContainsVerb = /^(cannot|must not|may not)\s/i.test(inner) || /\b(infer|classify)\b/i.test(inner);
+    if (xContainsVerb) return onePeriod(`The issue for the court is whether ${inner}`);
     return onePeriod(`The issue for the court is whether ${inner} is established`);
   }
-  // 3. "The court must resolve X" → "The issue for the court is whether X can be resolved on the evidence."
+  // 4. "resolve X" → "The issue for the court is whether X can be resolved on the evidence."
   const resolveMatch = rest.match(/^resolve\s+([\s\S]+)$/i);
   if (resolveMatch) {
     const inner = stripLeadingWhether(trimPeriod(resolveMatch[1]));
     return onePeriod(`The issue for the court is whether ${inner} can be resolved on the evidence`);
   }
-  // No other patterns: leave sentence unchanged to avoid broken grammar.
   return sentence;
 }
 
