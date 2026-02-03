@@ -319,7 +319,13 @@ function softenObjective(s: string): string {
   return t;
 }
 
-/** Rewrite "The court must ..." / "Court must ..." to grammatical "The issue for the court is whether ..." (display only). Only safe patterns are rewritten; otherwise original is returned. */
+/** Strip leading "whether " (case-insensitive) to avoid "whether whether" in output. */
+function stripLeadingWhether(clause: string): string {
+  if (!clause || typeof clause !== "string") return clause;
+  return clause.replace(/^\s*whether\s+/i, "").trim();
+}
+
+/** Rewrite "The court must ..." / "Court must ..." to grammatical "The issue for the court is whether ..." (display only). Only safe patterns are rewritten; otherwise original is returned. Never outputs "whether whether" or broken "is established" fragments. */
 function softenCourtMust(sentence: string): string {
   if (!sentence || typeof sentence !== "string") return sentence;
   const s = sentence.trim();
@@ -333,18 +339,22 @@ function softenCourtMust(sentence: string): string {
   const distinguishMatch = rest.match(/^distinguish\s+([\s\S]+?)\s+from\s+([\s\S]+)$/i);
   if (distinguishMatch) {
     const [, a, b] = distinguishMatch;
-    return onePeriod(`The issue for the court is whether ${trimPeriod(a)} is proved as distinct from ${trimPeriod(b)}`);
+    const a2 = stripLeadingWhether(trimPeriod(a));
+    const b2 = stripLeadingWhether(trimPeriod(b));
+    return onePeriod(`The issue for the court is whether ${a2} is proved as distinct from ${b2}`);
   }
-  // 2. "The court must establish X" / "The court must determine X" → "The issue for the court is whether X is established."
+  // 2. "The court must establish X" / "The court must determine X" → "The issue for the court is whether X is established." (omit "is established" if clause already reads complete)
   const establishOrDetermineMatch = rest.match(/^(establish|determine)\s+([\s\S]+)$/i);
   if (establishOrDetermineMatch) {
-    const inner = trimPeriod(establishOrDetermineMatch[2]);
+    const inner = stripLeadingWhether(trimPeriod(establishOrDetermineMatch[2]));
+    const alreadyComplete = /^(cannot|must not|may not)\s/i.test(inner) || /\b(infer|classify)\b/i.test(inner);
+    if (alreadyComplete) return onePeriod(`The issue for the court is whether ${inner}`);
     return onePeriod(`The issue for the court is whether ${inner} is established`);
   }
   // 3. "The court must resolve X" → "The issue for the court is whether X can be resolved on the evidence."
   const resolveMatch = rest.match(/^resolve\s+([\s\S]+)$/i);
   if (resolveMatch) {
-    const inner = trimPeriod(resolveMatch[1]);
+    const inner = stripLeadingWhether(trimPeriod(resolveMatch[1]));
     return onePeriod(`The issue for the court is whether ${inner} can be resolved on the evidence`);
   }
   // No other patterns: leave sentence unchanged to avoid broken grammar.
@@ -2295,7 +2305,7 @@ function CourtroomModePanel({
             </button>
             {expandedSections.has("defence_counters") && (
               <div className="mt-2 space-y-3 pl-6">
-                {courtroomMode.defence_counters.map((counter, idx) => (
+                {dedupeBy(courtroomMode.defence_counters, (c) => (c.counter ?? "") + "\n" + (c.safe_wording ?? "")).map((counter, idx) => (
                   <div key={idx} className="p-3 rounded-lg border border-border/50 bg-muted/10">
                     <p className="text-xs font-semibold text-foreground mb-2">{counter.counter}</p>
                     <p className="text-xs text-foreground mb-2">{counter.safe_wording}</p>
@@ -5443,7 +5453,7 @@ export function StrategyCommitmentPanel({
                   <div>
                     <span className="font-semibold text-muted-foreground mb-1 block">Defence Counters:</span>
                     <div className="space-y-2">
-                      {defenceStrategyPlan.defence_counters.slice(0, 4).map((counter, idx) => (
+                      {dedupeBy(defenceStrategyPlan.defence_counters.slice(0, 4), (c) => (c.point ?? "") + "\n" + (c.safe_wording ?? "")).map((counter, idx) => (
                         <div key={idx} className="border-l-2 border-green-500/30 pl-2">
                           <div className="font-medium text-foreground mb-0.5">{counter.point}</div>
                           <p className="text-muted-foreground text-[11px]">{counter.safe_wording}</p>
@@ -5553,7 +5563,7 @@ export function StrategyCommitmentPanel({
                               <span className="font-semibold text-muted-foreground mb-1 block">Prosecution Burden:</span>
                               <ul className="list-disc list-inside space-y-0.5 text-foreground">
                                 {playbook.prosecution_burden.map((burden, bIdx) => (
-                                  <li key={bIdx} className="text-[11px]">{burden}</li>
+                                  <li key={bIdx} className="text-[11px]">{softenCourtMust(burden)}</li>
                                 ))}
                               </ul>
                             </div>
@@ -5564,7 +5574,7 @@ export function StrategyCommitmentPanel({
                             <div>
                               <span className="font-semibold text-muted-foreground mb-1 block">Defence Counters:</span>
                               <div className="space-y-2">
-                                {playbook.defence_counters.map((counter, cIdx) => (
+                                {dedupeBy(playbook.defence_counters, (c) => (c.point ?? "") + "\n" + (c.safe_wording ?? "")).map((counter, cIdx) => (
                                   <div key={cIdx} className="border-l-2 border-green-500/30 pl-2">
                                     <div className="font-medium text-foreground mb-0.5 text-[11px]">{counter.point}</div>
                                     <p className="text-muted-foreground text-[11px]">{counter.safe_wording}</p>
@@ -6140,7 +6150,7 @@ export function StrategyCommitmentPanel({
                   <div>
                     <span className="font-semibold text-muted-foreground mb-1 block">Defence Counters:</span>
                     <div className="space-y-2">
-                      {defenceStrategyPlan.defence_counters.slice(0, 4).map((counter, idx) => (
+                      {dedupeBy(defenceStrategyPlan.defence_counters.slice(0, 4), (c) => (c.point ?? "") + "\n" + (c.safe_wording ?? "")).map((counter, idx) => (
                         <div key={idx} className="border-l-2 border-green-500/30 pl-2">
                           <div className="font-medium text-foreground mb-0.5">{counter.point}</div>
                           <p className="text-muted-foreground text-[11px]">{counter.safe_wording}</p>
@@ -6292,7 +6302,7 @@ export function StrategyCommitmentPanel({
                               <span className="font-semibold text-muted-foreground mb-1 block">Prosecution Burden:</span>
                               <ul className="list-disc list-inside space-y-0.5 text-foreground">
                                 {playbook.prosecution_burden.map((burden, bIdx) => (
-                                  <li key={bIdx} className="text-[11px]">{burden}</li>
+                                  <li key={bIdx} className="text-[11px]">{softenCourtMust(burden)}</li>
                                 ))}
                               </ul>
                             </div>
@@ -6301,7 +6311,7 @@ export function StrategyCommitmentPanel({
                             <div>
                               <span className="font-semibold text-muted-foreground mb-1 block">Defence Counters:</span>
                               <ul className="list-disc list-inside space-y-0.5 text-foreground">
-                                {playbook.defence_counters.map((c, cIdx) => (
+                                {dedupeBy(playbook.defence_counters, (c) => typeof c === "string" ? c : (c.point ?? "")).map((c, cIdx) => (
                                   <li key={cIdx} className="text-[11px]">{typeof c === "string" ? c : c.point}</li>
                                 ))}
                               </ul>
