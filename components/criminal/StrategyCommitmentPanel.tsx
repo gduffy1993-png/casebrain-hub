@@ -308,7 +308,7 @@ function normalizeDefencePositionText(s: string): string {
   return t;
 }
 
-/** Soften objective wording at display time only: Force -> Seek for disclosure/charge reduction. */
+/** Soften objective wording at display time only: Force -> Seek for disclosure/charge reduction; avoid repeated "seek". */
 function softenObjective(s: string): string {
   if (!s || typeof s !== "string") return s;
   let t = s.trim();
@@ -316,6 +316,7 @@ function softenObjective(s: string): string {
   else if (/^Force\s+charge\s+reduction\s/i.test(t)) t = t.replace(/^Force\s+charge\s+reduction\s/i, "Seek charge reduction ");
   if (/^Force\s+disclosure\s+of\s/i.test(t)) t = t.replace(/^Force\s+disclosure\s+of\s/i, "Seek disclosure of ");
   else if (/^Force\s+disclosure\s/i.test(t)) t = t.replace(/^Force\s+disclosure\s/i, "Seek disclosure ");
+  if (/^Seek disclosure/i.test(t) && /\b or seek\b/i.test(t)) t = t.replace(/\b or seek\b/i, " or obtain ");
   return t;
 }
 
@@ -325,7 +326,20 @@ function stripLeadingWhether(clause: string): string {
   return clause.replace(/^\s*whether\s+/i, "").trim();
 }
 
-/** Rewrite "The court must ..." / "Court must ..." to complete solicitor-grade sentences (display only). Only these exact patterns are rewritten; otherwise original is returned. Never outputs "whether whether" or fragments. */
+/** True if clause reads as a complete proposition (has a modal/verb); otherwise treat as noun phrase needing "is/are established". */
+function clauseHasVerb(clause: string): boolean {
+  if (!clause || typeof clause !== "string") return false;
+  const c = clause.trim();
+  return /^(cannot|must not|may not)\s/i.test(c) || /\b(infer|classify)\b/i.test(c);
+}
+
+/** True if subject is plural (e.g. "disputed elements") for "are established" vs "is established". */
+function subjectIsPlural(clause: string): boolean {
+  if (!clause || typeof clause !== "string") return false;
+  return /^(disputed\s+)?elements\b/i.test(clause.trim()) || /\belements\s+(based|are|were)\b/i.test(clause);
+}
+
+/** Rewrite "The court must ..." / "Court must ..." to complete solicitor-grade sentences (display only). Never outputs "whether whether" or fragments; always ends with one period. */
 function softenCourtMust(sentence: string): string {
   if (!sentence || typeof sentence !== "string") return sentence;
   const s = sentence.trim();
@@ -343,25 +357,27 @@ function softenCourtMust(sentence: string): string {
     const b2 = stripLeadingWhether(trimPeriod(b));
     return onePeriod(`The issue for the court is whether ${a2} is proved as distinct from ${b2}`);
   }
-  // 2. "determine whether X" → "The issue for the court is whether X."
+  // 2. "determine whether X" → "The issue for the court is whether X." or "... whether X is/are established." if X is a noun phrase
   const determineWhetherMatch = rest.match(/^determine\s+whether\s+([\s\S]+)$/i);
   if (determineWhetherMatch) {
     const inner = stripLeadingWhether(trimPeriod(determineWhetherMatch[1]));
-    return onePeriod(`The issue for the court is whether ${inner}`);
+    if (clauseHasVerb(inner)) return onePeriod(`The issue for the court is whether ${inner}`);
+    const verb = subjectIsPlural(inner) ? "are established" : "is established";
+    return onePeriod(`The issue for the court is whether ${inner} ${verb}`);
   }
-  // 3. "determine X" / "establish X" → "The issue for the court is whether X is established." (only if X does not already contain a verb — avoid fragments)
-  const establishOrDetermineMatch = rest.match(/^(establish|determine)\s+([\s\S]+)$/i);
-  if (establishOrDetermineMatch) {
-    const inner = stripLeadingWhether(trimPeriod(establishOrDetermineMatch[2]));
-    const xContainsVerb = /^(cannot|must not|may not)\s/i.test(inner) || /\b(infer|classify)\b/i.test(inner);
-    if (xContainsVerb) return onePeriod(`The issue for the court is whether ${inner}`);
-    return onePeriod(`The issue for the court is whether ${inner} is established`);
-  }
-  // 4. "resolve X" → "The issue for the court is whether X can be resolved on the evidence."
+  // 3. "resolve X" → "The issue for the court is whether X can be resolved on the evidence."
   const resolveMatch = rest.match(/^resolve\s+([\s\S]+)$/i);
   if (resolveMatch) {
     const inner = stripLeadingWhether(trimPeriod(resolveMatch[1]));
     return onePeriod(`The issue for the court is whether ${inner} can be resolved on the evidence`);
+  }
+  // 4. "establish X" / "determine X" → "The issue for the court is whether X is/are established." (noun phrase); if X has verb, "... whether X."
+  const establishOrDetermineMatch = rest.match(/^(establish|determine)\s+([\s\S]+)$/i);
+  if (establishOrDetermineMatch) {
+    const inner = stripLeadingWhether(trimPeriod(establishOrDetermineMatch[2]));
+    if (clauseHasVerb(inner)) return onePeriod(`The issue for the court is whether ${inner}`);
+    const verb = subjectIsPlural(inner) ? "are established" : "is established";
+    return onePeriod(`The issue for the court is whether ${inner} ${verb}`);
   }
   return sentence;
 }
