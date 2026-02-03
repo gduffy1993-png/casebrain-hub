@@ -296,38 +296,75 @@ function normIfLabel(s: string): string {
   if (!s || typeof s !== "string") return s;
   return s.replace(/^\s*If:\s*If\s+/i, "").replace(/^\s*If\s+/i, "").trim();
 }
-function softenCourtMust(s: string): string {
+
+/** Normalize posture text so "Defence posture: ..." prefix is stripped for display under "Defence position:" label. */
+function normalizeDefencePositionText(s: string): string {
   if (!s || typeof s !== "string") return s;
-  const prefix = "The court must ";
-  if (!s.trimStart().toLowerCase().startsWith(prefix.toLowerCase())) return s;
-  const rest = s.trimStart().slice(prefix.length).trim();
-  // "The court must distinguish A from B." -> "The issue for the court is whether A is proved as distinct from B."
-  const distinguishMatch = rest.match(/^distinguish\s+(.+?)\s+from\s+(.+?)(\.?)$/i);
+  let t = s.trim();
+  const prefixColon = /^\s*Defence\s+posture\s*:\s*/i;
+  if (prefixColon.test(t)) t = t.replace(prefixColon, "").trim();
+  const prefixNoColon = /^\s*Defence\s+posture\s+/i;
+  if (prefixNoColon.test(t)) t = t.replace(prefixNoColon, "Defence position ").trim();
+  return t;
+}
+
+/** Soften objective wording at display time only: Force -> Seek for disclosure/charge reduction. */
+function softenObjective(s: string): string {
+  if (!s || typeof s !== "string") return s;
+  let t = s.trim();
+  if (/^Force\s+charge\s+reduction\s+to\s/i.test(t)) t = t.replace(/^Force\s+charge\s+reduction\s+to\s/i, "Seek charge reduction to ");
+  else if (/^Force\s+charge\s+reduction\s/i.test(t)) t = t.replace(/^Force\s+charge\s+reduction\s/i, "Seek charge reduction ");
+  if (/^Force\s+disclosure\s+of\s/i.test(t)) t = t.replace(/^Force\s+disclosure\s+of\s/i, "Seek disclosure of ");
+  else if (/^Force\s+disclosure\s/i.test(t)) t = t.replace(/^Force\s+disclosure\s/i, "Seek disclosure ");
+  return t;
+}
+
+/** Rewrite "The court must ..." / "Court must ..." to grammatical "The issue for the court is whether ..." (display only). */
+function softenCourtMust(sentence: string): string {
+  if (!sentence || typeof sentence !== "string") return sentence;
+  let s = sentence.trim();
+  const courtMust = /^(?:The\s+)?court\s+must\s+/i;
+  if (!courtMust.test(s)) return sentence;
+  const rest = s.replace(courtMust, "").trim();
+  const trimPeriod = (x: string) => x.replace(/\.+$/, "").trim();
+  const onePeriod = (x: string) => (x.endsWith(".") ? x : x + ".");
+
+  // 1. "The court must distinguish X from Y"
+  const distinguishMatch = rest.match(/^distinguish\s+([\s\S]+?)\s+from\s+([\s\S]+)$/i);
   if (distinguishMatch) {
-    const [, a, b, period] = distinguishMatch;
-    return `The issue for the court is whether ${a.trim()} is proved as distinct from ${b.trim()}.${period || ""}`.trim();
+    const [, a, b] = distinguishMatch;
+    return onePeriod(`The issue for the court is whether ${trimPeriod(a)} is proved as distinct from ${trimPeriod(b)}`);
   }
-  // "The court must establish X." / "The court must determine X." -> "The issue for the court is whether X is established."
-  const establishOrDetermineMatch = rest.match(/^(establish|determine)\s+(.+)$/i);
+  // 2. "The court must determine whether <rest>"
+  const determineWhetherMatch = rest.match(/^determine\s+whether\s+([\s\S]+)$/i);
+  if (determineWhetherMatch) {
+    let inner = trimPeriod(determineWhetherMatch[1]);
+    if (/^\s*whether\s+/i.test(inner)) inner = inner.replace(/^\s*whether\s+/i, "").trim();
+    return onePeriod(`The issue for the court is whether ${inner}`);
+  }
+  // 3. "The court must determine <rest>" or "The court must establish <rest>"
+  const establishOrDetermineMatch = rest.match(/^(establish|determine)\s+([\s\S]+)$/i);
   if (establishOrDetermineMatch) {
-    const [, , objectPart] = establishOrDetermineMatch;
-    const trimmed = objectPart.trim();
-    const period = trimmed.endsWith(".") ? "" : ".";
-    return `The issue for the court is whether ${trimmed.replace(/\.$/, "")} is established${period}`.trim();
+    const inner = trimPeriod(establishOrDetermineMatch[2]);
+    return onePeriod(`The issue for the court is whether ${inner} is established`);
   }
-  // "The court must resolve X." -> "The issue for the court is whether X can be resolved on the evidence."
-  const resolveMatch = rest.match(/^resolve\s+(.+)$/i);
+  // 4. "The court must resolve <rest>"
+  const resolveMatch = rest.match(/^resolve\s+([\s\S]+)$/i);
   if (resolveMatch) {
-    const [, objectPart] = resolveMatch;
-    const trimmed = objectPart.trim().replace(/\.$/, "");
-    return `The issue for the court is whether ${trimmed} can be resolved on the evidence.`.trim();
+    const inner = trimPeriod(resolveMatch[1]);
+    return onePeriod(`The issue for the court is whether ${inner} can be resolved on the evidence`);
   }
-  // Fallback: only if rest looks like a noun phrase (starts with capital or "it") to avoid "whether verb..."
-  if (/^[A-Z]|^it\s/i.test(rest)) {
-    const trimmed = rest.replace(/\.$/, "");
-    return `The issue for the court is whether ${trimmed}.`.trim();
+  // 5. "The court must consider <rest>"
+  const considerMatch = rest.match(/^consider\s+([\s\S]+)$/i);
+  if (considerMatch) {
+    let inner = trimPeriod(considerMatch[1]);
+    if (/^\s*whether\s+/i.test(inner)) inner = inner.replace(/^\s*whether\s+/i, "").trim();
+    return onePeriod(`The issue for the court is whether ${inner}`);
   }
-  return s;
+  // 6. Fallback: "The issue for the court is whether <rest>." (avoid "whether <verb>...")
+  let fallback = trimPeriod(rest);
+  if (/^\s*whether\s+/i.test(fallback)) fallback = fallback.replace(/^\s*whether\s+/i, "").trim();
+  return onePeriod(`The issue for the court is whether ${fallback}`);
 }
 
 // Sub-options (parallel attack paths) for each strategy (deterministic, non-AI)
@@ -4027,7 +4064,7 @@ function BeastStrategyPackView({
         </div>
         <div>
           <p className="text-xs font-semibold text-foreground mb-1">Objective:</p>
-          <p className="text-xs text-muted-foreground">{pack.dashboard.objective}</p>
+          <p className="text-xs text-muted-foreground">{softenObjective(pack.dashboard.objective)}</p>
         </div>
         <div>
           <p className="text-xs font-semibold text-foreground mb-2">CPS must prove:</p>
@@ -5363,7 +5400,7 @@ export function StrategyCommitmentPanel({
                 {defenceStrategyPlan.posture && (
                   <div>
                     <span className="font-semibold text-muted-foreground mb-1 block">Defence position:</span>
-                    <p className="text-foreground">{defenceStrategyPlan.posture}</p>
+                    <p className="text-foreground">{normalizeDefencePositionText(defenceStrategyPlan.posture)}</p>
                   </div>
                 )}
 
@@ -5517,13 +5554,13 @@ export function StrategyCommitmentPanel({
                           {/* Posture */}
                           <div>
                             <span className="font-semibold text-muted-foreground mb-1 block">Defence position:</span>
-                            <p className="text-foreground">{playbook.posture}</p>
+                            <p className="text-foreground">{normalizeDefencePositionText(playbook.posture)}</p>
                           </div>
 
                           {/* Objective */}
                           <div>
                             <span className="font-semibold text-muted-foreground mb-1 block">Objective:</span>
-                            <p className="text-foreground">{playbook.objective}</p>
+                            <p className="text-foreground">{softenObjective(playbook.objective)}</p>
                           </div>
 
                           {/* Prosecution Burden */}
@@ -5734,7 +5771,7 @@ export function StrategyCommitmentPanel({
                 {/* Intolerances */}
                 {judgeConstraintLens.intolerances.length > 0 && (
                   <div>
-                    <span className="font-semibold text-muted-foreground mb-2 block">Court Intolerances:</span>
+                    <span className="font-semibold text-muted-foreground mb-2 block">Evidential limitations:</span>
                     <ul className="list-disc list-inside space-y-1 text-foreground">
                       {dedupeStrings(judgeConstraintLens.intolerances.slice(0, 4)).map((intolerance, idx) => (
                         <li key={idx} className="text-[11px] italic">{softenCourtMust(intolerance)}</li>
@@ -6062,7 +6099,7 @@ export function StrategyCommitmentPanel({
                 {defenceStrategyPlan.posture && (
                   <div>
                     <span className="font-semibold text-muted-foreground mb-1 block">Defence position:</span>
-                    <p className="text-foreground">{defenceStrategyPlan.posture}</p>
+                    <p className="text-foreground">{normalizeDefencePositionText(defenceStrategyPlan.posture)}</p>
                   </div>
                 )}
                 {defenceStrategyPlan.primary_route && (
@@ -6204,7 +6241,7 @@ export function StrategyCommitmentPanel({
                 )}
                 {judgeConstraintLens.intolerances?.length > 0 && (
                   <div>
-                    <span className="font-semibold text-muted-foreground mb-2 block">Court Intolerances:</span>
+                    <span className="font-semibold text-muted-foreground mb-2 block">Evidential limitations:</span>
                     <ul className="list-disc list-inside space-y-0.5 text-foreground">
                       {dedupeStrings(judgeConstraintLens.intolerances.slice(0, 4)).map((intolerance, idx) => (
                         <li key={idx} className="text-[11px] italic">{softenCourtMust(intolerance)}</li>
@@ -6260,11 +6297,11 @@ export function StrategyCommitmentPanel({
                         <div className="p-4 pt-0 space-y-4 text-xs border-t border-border/30">
                           <div>
                             <span className="font-semibold text-muted-foreground mb-1 block">Defence position:</span>
-                            <p className="text-foreground">{playbook.posture}</p>
+                            <p className="text-foreground">{normalizeDefencePositionText(playbook.posture)}</p>
                           </div>
                           <div>
                             <span className="font-semibold text-muted-foreground mb-1 block">Objective:</span>
-                            <p className="text-foreground">{playbook.objective}</p>
+                            <p className="text-foreground">{softenObjective(playbook.objective)}</p>
                           </div>
                           {playbook.prosecution_burden?.length > 0 && (
                             <div>
