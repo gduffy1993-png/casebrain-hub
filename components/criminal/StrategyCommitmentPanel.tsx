@@ -319,52 +319,36 @@ function softenObjective(s: string): string {
   return t;
 }
 
-/** Rewrite "The court must ..." / "Court must ..." to grammatical "The issue for the court is whether ..." (display only). */
+/** Rewrite "The court must ..." / "Court must ..." to grammatical "The issue for the court is whether ..." (display only). Only safe patterns are rewritten; otherwise original is returned. */
 function softenCourtMust(sentence: string): string {
   if (!sentence || typeof sentence !== "string") return sentence;
-  let s = sentence.trim();
+  const s = sentence.trim();
   const courtMust = /^(?:The\s+)?court\s+must\s+/i;
   if (!courtMust.test(s)) return sentence;
   const rest = s.replace(courtMust, "").trim();
   const trimPeriod = (x: string) => x.replace(/\.+$/, "").trim();
-  const onePeriod = (x: string) => (x.endsWith(".") ? x : x + ".");
+  const onePeriod = (x: string) => (x.endsWith(".") ? x.replace(/\.+$/, ".") : x + ".");
 
-  // 1. "The court must distinguish X from Y"
+  // 1. "The court must distinguish X from Y" → "The issue for the court is whether X is proved as distinct from Y."
   const distinguishMatch = rest.match(/^distinguish\s+([\s\S]+?)\s+from\s+([\s\S]+)$/i);
   if (distinguishMatch) {
     const [, a, b] = distinguishMatch;
     return onePeriod(`The issue for the court is whether ${trimPeriod(a)} is proved as distinct from ${trimPeriod(b)}`);
   }
-  // 2. "The court must determine whether <rest>"
-  const determineWhetherMatch = rest.match(/^determine\s+whether\s+([\s\S]+)$/i);
-  if (determineWhetherMatch) {
-    let inner = trimPeriod(determineWhetherMatch[1]);
-    if (/^\s*whether\s+/i.test(inner)) inner = inner.replace(/^\s*whether\s+/i, "").trim();
-    return onePeriod(`The issue for the court is whether ${inner}`);
-  }
-  // 3. "The court must determine <rest>" or "The court must establish <rest>"
+  // 2. "The court must establish X" / "The court must determine X" → "The issue for the court is whether X is established."
   const establishOrDetermineMatch = rest.match(/^(establish|determine)\s+([\s\S]+)$/i);
   if (establishOrDetermineMatch) {
     const inner = trimPeriod(establishOrDetermineMatch[2]);
     return onePeriod(`The issue for the court is whether ${inner} is established`);
   }
-  // 4. "The court must resolve <rest>"
+  // 3. "The court must resolve X" → "The issue for the court is whether X can be resolved on the evidence."
   const resolveMatch = rest.match(/^resolve\s+([\s\S]+)$/i);
   if (resolveMatch) {
     const inner = trimPeriod(resolveMatch[1]);
     return onePeriod(`The issue for the court is whether ${inner} can be resolved on the evidence`);
   }
-  // 5. "The court must consider <rest>"
-  const considerMatch = rest.match(/^consider\s+([\s\S]+)$/i);
-  if (considerMatch) {
-    let inner = trimPeriod(considerMatch[1]);
-    if (/^\s*whether\s+/i.test(inner)) inner = inner.replace(/^\s*whether\s+/i, "").trim();
-    return onePeriod(`The issue for the court is whether ${inner}`);
-  }
-  // 6. Fallback: "The issue for the court is whether <rest>." (avoid "whether <verb>...")
-  let fallback = trimPeriod(rest);
-  if (/^\s*whether\s+/i.test(fallback)) fallback = fallback.replace(/^\s*whether\s+/i, "").trim();
-  return onePeriod(`The issue for the court is whether ${fallback}`);
+  // No other patterns: leave sentence unchanged to avoid broken grammar.
+  return sentence;
 }
 
 // Sub-options (parallel attack paths) for each strategy (deterministic, non-AI)
@@ -5373,12 +5357,12 @@ export function StrategyCommitmentPanel({
                     <div className="space-y-1.5 pl-2">
                       {coordinatorResult.judge_analysis.legal_tests.slice(0, 3).map((test, idx) => (
                         <div key={idx} className="text-[11px] text-foreground">
-                          • {test}
+                          • {softenCourtMust(test)}
                         </div>
                       ))}
                       {coordinatorResult.judge_analysis.constraints.slice(0, 2).map((constraint, idx) => (
                         <div key={`constraint-${idx}`} className="text-[11px] text-muted-foreground italic">
-                          → {constraint}
+                          → {softenCourtMust(constraint)}
                         </div>
                       ))}
                     </div>
@@ -6061,12 +6045,12 @@ export function StrategyCommitmentPanel({
                       <div className="space-y-1.5 pl-2">
                         {coordinatorResult.judge_analysis.legal_tests.slice(0, 3).map((test, idx) => (
                           <div key={idx} className="text-[11px] text-foreground">
-                            • {test}
+                            • {softenCourtMust(test)}
                           </div>
                         ))}
                         {coordinatorResult.judge_analysis.constraints.slice(0, 2).map((constraint, idx) => (
                           <div key={`constraint-${idx}`} className="text-[11px] text-muted-foreground italic">
-                            → {constraint}
+                            → {softenCourtMust(constraint)}
                           </div>
                         ))}
                       </div>
@@ -6555,12 +6539,12 @@ export function StrategyCommitmentPanel({
                         <div className="space-y-1.5 pl-2">
                           {coordinatorResult.judge_analysis.legal_tests.slice(0, 3).map((test, idx) => (
                             <div key={idx} className="text-[11px] text-foreground">
-                              • {test}
+                              • {softenCourtMust(test)}
                             </div>
                           ))}
                           {coordinatorResult.judge_analysis.constraints.slice(0, 2).map((constraint, idx) => (
                             <div key={`constraint-legacy-${idx}`} className="text-[11px] text-muted-foreground italic">
-                              → {constraint}
+                              → {softenCourtMust(constraint)}
                             </div>
                           ))}
                         </div>
@@ -6809,12 +6793,12 @@ export function StrategyCommitmentPanel({
                     <div className="space-y-1.5 pl-2">
                       {coordinatorResult.judge_analysis.legal_tests.slice(0, 3).map((test, idx) => (
                         <div key={idx} className="text-[11px] text-foreground">
-                          • {test}
+                          • {softenCourtMust(test)}
                         </div>
                       ))}
                       {coordinatorResult.judge_analysis.constraints.slice(0, 2).map((constraint, idx) => (
                         <div key={`constraint-${idx}`} className="text-[11px] text-muted-foreground italic">
-                          → {constraint}
+                          → {softenCourtMust(constraint)}
                         </div>
                       ))}
                     </div>
