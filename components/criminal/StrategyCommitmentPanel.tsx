@@ -292,6 +292,32 @@ function dedupeBy<T>(arr: T[], key: (t: T) => string): T[] {
     return true;
   });
 }
+
+/** Normalize issue text for cross-section dedupe (one bullet per distinct legal issue). */
+function normIssue(s: string): string {
+  return (s ?? "").trim().toLowerCase().replace(/\s+/g, " ");
+}
+
+/** Return required_findings, intolerances, red_flags so each distinct issue appears only once (first section wins). */
+function dedupeIssuesAcrossSections(
+  requiredFindings: string[],
+  intolerances: string[],
+  redFlags: string[]
+): { findings: string[]; intolerances: string[]; redFlags: string[] } {
+  const seen = new Set<string>();
+  const add = (list: string[]) =>
+    list.filter((s) => {
+      const n = normIssue(s);
+      if (seen.has(n)) return false;
+      seen.add(n);
+      return true;
+    });
+  return {
+    findings: add(requiredFindings),
+    intolerances: add(intolerances),
+    redFlags: add(redFlags),
+  };
+}
 function normIfLabel(s: string): string {
   if (!s || typeof s !== "string") return s;
   return s.replace(/^\s*If:\s*If\s+/i, "").replace(/^\s*If\s+/i, "").trim();
@@ -1466,6 +1492,7 @@ function SupervisorSnapshot({
   const [worstCaseCap, setWorstCaseCap] = useState<WorstCaseCap | null>(null);
   const [caseRef, setCaseRef] = useState<string>("");
   const [loading, setLoading] = useState(true);
+  const [showFullSnapshot, setShowFullSnapshot] = useState(false);
 
   useEffect(() => {
     if (!caseId) {
@@ -1633,6 +1660,18 @@ ${worstCaseCap ? `WORST-CASE EXPOSURE CAP:\n${worstCaseCap.explanation}\n` : ""}
     UNSAFE_TO_PROCEED: "border-red-500/30 bg-red-500/5",
   };
 
+  // Short summary (4–6 lines) so snapshot is a summary, not a full repeat of content below
+  const summaryLines = [
+    proceduralSafety
+      ? `Procedural safety: ${proceduralSafety.status.replace(/_/g, " ")}. ${(proceduralSafety.explanation || "").slice(0, 120)}${(proceduralSafety.explanation?.length ?? 0) > 120 ? "…" : ""}`
+      : "Procedural safety: Not assessed.",
+    `Defence position: ${positionLines.slice(0, 80)}${positionLines.length > 80 ? "…" : ""} (${recordedAt})`,
+    `Strategy: ${strategyLabel}.`,
+    `Dependencies: ${requiredOutstanding.length} required outstanding. Disclosure: ${disclosureGaps.length > 0 ? `${disclosureGaps.length} gap(s)` : "satisfied"}.`,
+    `Irreversible decisions: ${plannedOrCompleted.length} planned or completed.`,
+  ];
+  if (worstCaseCap) summaryLines.push(`Worst-case: ${worstCaseCap.explanation.slice(0, 60)}…`);
+
   return (
     <div className="rounded-lg border-2 border-primary/30 bg-primary/5 p-4 space-y-4">
       <div className="flex items-center justify-between mb-3">
@@ -1652,90 +1691,203 @@ ${worstCaseCap ? `WORST-CASE EXPOSURE CAP:\n${worstCaseCap.explanation}\n` : ""}
         </Button>
       </div>
 
-      <div className="grid grid-cols-1 gap-3 text-xs">
-        {/* Procedural Safety Status */}
-        {proceduralSafety && (
-          <div className={`rounded-lg border p-3 ${statusColors[proceduralSafety.status]}`}>
-            <div className="flex items-center justify-between mb-1">
-              <span className="font-semibold text-foreground">Procedural Safety Status:</span>
-              <Badge className={`text-[10px] ${
-                proceduralSafety.status === "SAFE" ? "bg-green-500/20 text-green-600" :
-                proceduralSafety.status === "CONDITIONALLY_UNSAFE" ? "bg-amber-500/20 text-amber-600" :
-                "bg-red-500/20 text-red-600"
-              }`}>
-                {proceduralSafety.status.replace(/_/g, " ")}
-              </Badge>
+      {!showFullSnapshot ? (
+        <>
+          <div className="grid grid-cols-1 gap-1.5 text-xs text-muted-foreground">
+            {summaryLines.slice(0, 6).map((line, idx) => (
+              <p key={idx}>{line}</p>
+            ))}
+          </div>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="text-xs h-7 text-primary gap-1"
+            onClick={() => setShowFullSnapshot(true)}
+          >
+            <ChevronDown className="h-3 w-3" />
+            Show full details
+          </Button>
+        </>
+      ) : (
+        <>
+          <div className="grid grid-cols-1 gap-3 text-xs">
+            {proceduralSafety && (
+              <div className={`rounded-lg border p-3 ${statusColors[proceduralSafety.status]}`}>
+                <div className="flex items-center justify-between mb-1">
+                  <span className="font-semibold text-foreground">Procedural Safety Status:</span>
+                  <Badge className={`text-[10px] ${
+                    proceduralSafety.status === "SAFE" ? "bg-green-500/20 text-green-600" :
+                    proceduralSafety.status === "CONDITIONALLY_UNSAFE" ? "bg-amber-500/20 text-amber-600" :
+                    "bg-red-500/20 text-red-600"
+                  }`}>
+                    {proceduralSafety.status.replace(/_/g, " ")}
+                  </Badge>
+                </div>
+                <p className="text-muted-foreground">{proceduralSafety.explanation}</p>
+              </div>
+            )}
+
+            <div>
+              <span className="font-semibold text-foreground">Recorded Defence Position: </span>
+              <p className="text-muted-foreground mt-1">{positionLines}</p>
+              <p className="text-muted-foreground text-[10px] mt-1">Recorded: {recordedAt}</p>
             </div>
-            <p className="text-muted-foreground">{proceduralSafety.explanation}</p>
+
+            <div>
+              <span className="font-semibold text-foreground">Declared Dependencies (Required & Outstanding): </span>
+              <ul className="list-disc list-inside text-muted-foreground mt-1">
+                {requiredOutstanding.length > 0 ? requiredOutstanding.map((dep, idx) => (
+                  <li key={idx}>{dep.label}</li>
+                )) : (
+                  <li>None</li>
+                )}
+              </ul>
+            </div>
+
+            <div>
+              <span className="font-semibold text-foreground">Disclosure Status Summary: </span>
+              {disclosureState?.is_simulated && (
+                <Badge variant="outline" className="text-[10px] ml-2 bg-blue-500/10 text-blue-600 border-blue-500/30">
+                  SIMULATED
+                </Badge>
+              )}
+              <ul className="list-disc list-inside text-muted-foreground mt-1">
+                {disclosureGaps.length > 0 ? disclosureGaps.map((item, idx) => (
+                  <li key={idx}>
+                    {item.label} <span className="text-[10px] opacity-70">({item.severity})</span>
+                  </li>
+                )) : (
+                  <li>All critical and high-priority items satisfied</li>
+                )}
+              </ul>
+              {disclosureState?.satisfied_items && disclosureState.satisfied_items.length > 0 && (
+                <p className="text-[10px] text-muted-foreground mt-1 italic">
+                  Satisfied: {disclosureState.satisfied_items.map(i => i.label).join(", ")}
+                </p>
+              )}
+            </div>
+
+            <div>
+              <span className="font-semibold text-foreground">Irreversible Decisions: </span>
+              <ul className="list-disc list-inside text-muted-foreground mt-1">
+                {plannedOrCompleted.length > 0 ? plannedOrCompleted.map((d, idx) => (
+                  <li key={idx}>
+                    {d.label}: {d.status}
+                    {d.updated_at && ` (${new Date(d.updated_at).toLocaleDateString("en-GB")})`}
+                  </li>
+                )) : (
+                  <li>None</li>
+                )}
+              </ul>
+            </div>
+
+            {worstCaseCap && (
+              <div>
+                <span className="font-semibold text-foreground">Worst-Case Exposure Cap: </span>
+                <p className="text-muted-foreground mt-1">{worstCaseCap.explanation}</p>
+              </div>
+            )}
           </div>
-        )}
+          <Button
+            variant="ghost"
+            size="sm"
+            className="text-xs h-7 text-primary gap-1"
+            onClick={() => setShowFullSnapshot(false)}
+          >
+            <ChevronUp className="h-3 w-3" />
+            Hide full details
+          </Button>
+        </>
+      )}
+    </div>
+  );
+}
 
-        {/* Recorded Defence Position */}
-        <div>
-          <span className="font-semibold text-foreground">Recorded Defence Position: </span>
-          <p className="text-muted-foreground mt-1">{positionLines}</p>
-          <p className="text-muted-foreground text-[10px] mt-1">Recorded: {recordedAt}</p>
+// Stage 7: What we're waiting on — single list of outstanding disclosure, key docs, client instructions
+function WhatWeAreWaitingOn({
+  caseId,
+  evidenceImpactMap,
+  declaredDependencies,
+  disclosureTimelineEntries,
+  decisiveMissingItems,
+}: {
+  caseId: string | undefined;
+  evidenceImpactMap: EvidenceImpactMap[];
+  declaredDependencies: DeclaredDependency[];
+  disclosureTimelineEntries: DisclosureTimelineEntry[];
+  decisiveMissingItems?: string[];
+}) {
+  const [disclosureState, setDisclosureState] = useState<DisclosureState | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!caseId) {
+      setLoading(false);
+      return;
+    }
+    async function load() {
+      try {
+        const docsRes = await fetch(`/api/cases/${caseId}/documents`).catch(() => null);
+        const docsData = docsRes?.ok ? await docsRes.json() : null;
+        const documents = docsData?.data?.documents || docsData?.documents || [];
+        const state = computeDisclosureState({
+          documents: documents.map((d: { name?: string; title?: string; id?: string }) => ({ name: d.name ?? "", title: d.name ?? "", id: d.id })),
+          declaredDependencies,
+          disclosureTimeline: disclosureTimelineEntries,
+          evidenceImpactMap,
+        });
+        setDisclosureState(state);
+      } catch {
+        setDisclosureState(null);
+      } finally {
+        setLoading(false);
+      }
+    }
+    load();
+  }, [caseId, evidenceImpactMap, declaredDependencies, disclosureTimelineEntries]);
+
+  if (loading) {
+    return (
+      <div className="rounded-lg border border-border/50 p-3">
+        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+          <Clock className="h-3.5 w-3.5" />
+          <span>What we&apos;re waiting on</span>
         </div>
-
-        {/* Declared Dependencies */}
-        <div>
-          <span className="font-semibold text-foreground">Declared Dependencies (Required & Outstanding): </span>
-          <ul className="list-disc list-inside text-muted-foreground mt-1">
-            {requiredOutstanding.length > 0 ? requiredOutstanding.map((dep, idx) => (
-              <li key={idx}>{dep.label}</li>
-            )) : (
-              <li>None</li>
-            )}
-          </ul>
-        </div>
-
-        {/* Disclosure Status Summary */}
-        <div>
-          <span className="font-semibold text-foreground">Disclosure Status Summary: </span>
-          {disclosureState?.is_simulated && (
-            <Badge variant="outline" className="text-[10px] ml-2 bg-blue-500/10 text-blue-600 border-blue-500/30">
-              SIMULATED
-            </Badge>
-          )}
-          <ul className="list-disc list-inside text-muted-foreground mt-1">
-            {disclosureGaps.length > 0 ? disclosureGaps.map((item, idx) => (
-              <li key={idx}>
-                {item.label} <span className="text-[10px] opacity-70">({item.severity})</span>
-              </li>
-            )) : (
-              <li>All critical and high-priority items satisfied</li>
-            )}
-          </ul>
-          {disclosureState?.satisfied_items && disclosureState.satisfied_items.length > 0 && (
-            <p className="text-[10px] text-muted-foreground mt-1 italic">
-              Satisfied: {disclosureState.satisfied_items.map(i => i.label).join(", ")}
-            </p>
-          )}
-        </div>
-
-        {/* Irreversible Decisions */}
-        <div>
-          <span className="font-semibold text-foreground">Irreversible Decisions: </span>
-          <ul className="list-disc list-inside text-muted-foreground mt-1">
-            {plannedOrCompleted.length > 0 ? plannedOrCompleted.map((d, idx) => (
-              <li key={idx}>
-                {d.label}: {d.status}
-                {d.updated_at && ` (${new Date(d.updated_at).toLocaleDateString("en-GB")})`}
-              </li>
-            )) : (
-              <li>None</li>
-            )}
-          </ul>
-        </div>
-
-        {/* Worst-Case Exposure Cap */}
-        {worstCaseCap && (
-          <div>
-            <span className="font-semibold text-foreground">Worst-Case Exposure Cap: </span>
-            <p className="text-muted-foreground mt-1">{worstCaseCap.explanation}</p>
-          </div>
-        )}
+        <p className="text-[11px] text-muted-foreground mt-1">Loading…</p>
       </div>
+    );
+  }
+
+  const missingLabels = new Set((disclosureState?.missing_items ?? []).map((i) => i.label));
+  const outstandingDisclosure = (disclosureState?.missing_items ?? []).map((i) => ({ label: i.label, severity: i.severity }));
+  const keyDocs = (decisiveMissingItems ?? []).filter((d) => !missingLabels.has(d));
+
+  const items: { label: string; severity?: string }[] = [
+    ...outstandingDisclosure.map((i) => ({ label: i.label, severity: i.severity })),
+    ...keyDocs.map((label) => ({ label })),
+  ];
+  if (items.length > 0) {
+    items.push({ label: "Client instructions: None awaited" });
+  }
+
+  if (items.length === 0) {
+    return null;
+  }
+
+  return (
+    <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 p-3">
+      <div className="flex items-center gap-2 mb-2">
+        <Clock className="h-3.5 w-3.5 text-amber-600 dark:text-amber-400" />
+        <h3 className="text-xs font-semibold text-foreground">What we&apos;re waiting on</h3>
+      </div>
+      <ul className="text-[11px] text-muted-foreground space-y-0.5 list-disc list-inside">
+        {items.map((item, idx) => (
+          <li key={idx}>
+            {item.label}
+            {item.severity && <span className="text-[10px] opacity-70"> ({item.severity})</span>}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
@@ -2326,7 +2478,7 @@ function CourtroomModePanel({
             </button>
             {expandedSections.has("defence_counters") && (
               <div className="mt-2 space-y-3 pl-6">
-                {dedupeBy(courtroomMode.defence_counters, (c) => (c.counter ?? "") + "\n" + (c.safe_wording ?? "")).map((counter, idx) => (
+                {dedupeBy(courtroomMode.defence_counters, (c) => (c.counter ?? "") + "\n" + (c.safe_wording ?? "") + "\n" + (c.dependencies?.join("\n") ?? "")).map((counter, idx) => (
                   <div key={idx} className="p-3 rounded-lg border border-border/50 bg-muted/10">
                     <p className="text-xs font-semibold text-foreground mb-2">{counter.counter}</p>
                     <p className="text-xs text-foreground mb-2">{counter.safe_wording}</p>
@@ -2885,7 +3037,7 @@ function IncidentShapePanel({
         const docsRes = await fetch(`/api/cases/${caseId}/documents`);
         const docsData = docsRes.ok ? await docsRes.json() : null;
         const documents = docsData?.data?.documents || docsData?.documents || [];
-        const timeline: unknown[] = [];
+        const timeline: { label: string; description?: string }[] = [];
 
         const shape = classifyIncidentShape(documents, timeline, evidenceImpactMap);
         setIncidentShape(shape);
@@ -2986,7 +3138,7 @@ function WorstCaseCapPanel({
 
         const docsData = docsRes?.ok ? await docsRes.json() : null;
         const documents = docsData?.data?.documents || docsData?.documents || [];
-        const timeline: unknown[] = [];
+        const timeline: { label: string; description?: string }[] = [];
 
         // Compute incident shape and weapon tracker if not provided
         if (!incidentShape) {
@@ -4563,6 +4715,109 @@ export function StrategyCommitmentPanel({
     });
   };
 
+  // Stage 4: Build counsel-ready export text — same structure and wording as the view (projection of the view)
+  const handleExportDefenceStrategyPlan = () => {
+    const disclosureDate = new Date().toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+    const strategyLine =
+      defenceStrategyPlan?.strategy_line ??
+      defenceStrategyPlan?.primary_route?.label ??
+      (primary ? STRATEGY_OPTIONS.find((o) => o.id === primary)?.label ?? "Strategy committed" : "-");
+    const lines: string[] = [
+      "DEFENCE STRATEGY PLAN",
+      "",
+      `${strategyLine}  |  Next hearing: TBC  |  Based on disclosure as at ${disclosureDate}`,
+      "",
+      "— What the court has to decide —",
+      "",
+    ];
+    if (judgeConstraintLens) {
+      const findings = dedupeStrings(judgeConstraintLens.required_findings?.slice(0, 6) ?? []);
+      const intolerances = dedupeStrings(judgeConstraintLens.intolerances?.slice(0, 4) ?? []);
+      const redFlags = dedupeStrings(judgeConstraintLens.red_flags?.slice(0, 4) ?? []);
+      const { findings: dFindings, intolerances: dIntolerances, redFlags: dRedFlags } = dedupeIssuesAcrossSections(findings, intolerances, redFlags);
+      lines.push("Legal tests the court will consider", "");
+      if ((judgeConstraintLens.constraints?.length ?? 0) > 0) {
+        lines.push("Doctrine constraints:");
+        dedupeBy((judgeConstraintLens.constraints ?? []).slice(0, 6), (c) => c.title + "\n" + (c.detail ?? "")).forEach((c) => {
+          lines.push(`• ${c.title}: ${softenCourtMust(c.detail ?? "")}`);
+        });
+        lines.push("");
+      }
+      if (dFindings.length > 0) {
+        lines.push("Required findings:");
+        dFindings.forEach((f) => lines.push(`• ${softenCourtMust(f)}`));
+        lines.push("");
+      }
+      if (dIntolerances.length > 0) {
+        lines.push("Evidential limitations:");
+        dIntolerances.forEach((i) => lines.push(`• ${softenCourtMust(i)}`));
+        lines.push("");
+      }
+      if (dRedFlags.length > 0) {
+        lines.push("Red flags:");
+        dRedFlags.forEach((r) => lines.push(`• ${softenCourtMust(r)}`));
+        lines.push("");
+      }
+    }
+    lines.push("— What we say and do —", "");
+    if (defenceStrategyPlan) {
+      if (defenceStrategyPlan.attack_sequence) {
+        lines.push("Attack order:", defenceStrategyPlan.attack_sequence, "");
+      }
+      if (defenceStrategyPlan.posture) {
+        lines.push("Defence position:", normalizeDefencePositionText(defenceStrategyPlan.posture), "");
+      }
+      if (defenceStrategyPlan.primary_route) {
+        lines.push("Primary route:", defenceStrategyPlan.primary_route.label);
+        (defenceStrategyPlan.primary_route.rationale ?? []).slice(0, 6).forEach((r) => lines.push(`• ${r}`));
+        lines.push("");
+      }
+      if (cpsPressureLens && cpsPressureLens.pressure_points.length > 0) {
+        lines.push("Prosecution arguments:");
+        cpsPressureLens.pressure_points.slice(0, 4).forEach((p) => lines.push(`• ${p.point}`));
+        lines.push("");
+      }
+      if ((defenceStrategyPlan.defence_counters?.length ?? 0) > 0) {
+        lines.push("Defence counters:");
+        dedupeBy((defenceStrategyPlan.defence_counters ?? []).slice(0, 4), (c) => (c.point ?? "") + "\n" + (c.safe_wording ?? "") + "\n" + ((c as { evidence_needed?: string[] }).evidence_needed?.join("\n") ?? "")).forEach((c) => lines.push(`• ${c.point}: ${c.safe_wording}`));
+        lines.push("");
+      }
+      if ((defenceStrategyPlan.kill_switches?.length ?? 0) > 0) {
+        lines.push("Reassessment triggers:");
+        (defenceStrategyPlan.kill_switches ?? []).slice(0, 4).forEach((k) => lines.push(`• If: ${normIfLabel(k.if)}  Then: ${k.then}`));
+        lines.push("");
+      }
+      if ((defenceStrategyPlan.pivot_plan?.length ?? 0) > 0) {
+        lines.push("Alternative routes (if triggered):");
+        (defenceStrategyPlan.pivot_plan ?? []).slice(0, 3).forEach((p) => lines.push(`• If: ${normIfLabel(p.if_triggered)}  Alternative: ${p.new_route}`));
+        lines.push("");
+      }
+      if ((defenceStrategyPlan.next_72_hours?.length ?? 0) > 0) {
+        lines.push("Next actions:");
+        (defenceStrategyPlan.next_72_hours ?? []).slice(0, 6).forEach((a) => lines.push(`• ${a}`));
+        lines.push("");
+      }
+      if ((defenceStrategyPlan.risks_fallbacks?.length ?? 0) > 0) {
+        lines.push("Risks & fallbacks:");
+        (defenceStrategyPlan.risks_fallbacks ?? []).slice(0, 5).forEach((b) => lines.push(`• ${b}`));
+        lines.push("");
+      }
+    }
+    if (hearingScripts?.scripts?.length) {
+      lines.push("Hearing preparation:");
+      hearingScripts.scripts.forEach((s) => {
+        const typeLabel = s.hearing_type === "PTPH" ? "PTPH" : s.hearing_type === "disclosure_directions" ? "Disclosure directions" : s.hearing_type === "case_management" ? "Case management" : "Special measures";
+        lines.push(`  ${typeLabel}:`);
+        (s.checklist ?? []).slice(0, 5).forEach((c) => lines.push(`  • ${c}`));
+      });
+    }
+    const text = lines.join("\n");
+    navigator.clipboard.writeText(text).then(
+      () => showToast("Defence Strategy Plan copied. Paste into Word or use Print to save as PDF.", "success"),
+      () => showToast("Failed to copy. Try printing this page and saving as PDF.", "error")
+    );
+  };
+
   // Load analysis version info
   useEffect(() => {
     if (!resolvedCaseId) return;
@@ -5465,7 +5720,7 @@ export function StrategyCommitmentPanel({
                   <div>
                     <span className="font-semibold text-muted-foreground mb-1 block">Defence Counters:</span>
                     <div className="space-y-2">
-                      {dedupeBy(defenceStrategyPlan.defence_counters.slice(0, 4), (c) => (c.point ?? "") + "\n" + (c.safe_wording ?? "")).map((counter, idx) => (
+                      {dedupeBy(defenceStrategyPlan.defence_counters.slice(0, 4), (c) => (c.point ?? "") + "\n" + (c.safe_wording ?? "") + "\n" + ((c as { evidence_needed?: string[] }).evidence_needed?.join("\n") ?? "")).map((counter, idx) => (
                         <div key={idx} className="border-l-2 border-green-500/30 pl-2">
                           <div className="font-medium text-foreground mb-0.5">{counter.point}</div>
                           <p className="text-muted-foreground text-[11px]">{counter.safe_wording}</p>
@@ -5586,7 +5841,7 @@ export function StrategyCommitmentPanel({
                             <div>
                               <span className="font-semibold text-muted-foreground mb-1 block">Defence Counters:</span>
                               <div className="space-y-2">
-                                {dedupeBy(playbook.defence_counters, (c) => (c.point ?? "") + "\n" + (c.safe_wording ?? "")).map((counter, cIdx) => (
+                                {dedupeBy(playbook.defence_counters, (c) => (c.point ?? "") + "\n" + (c.safe_wording ?? "") + "\n" + (c.evidence_needed?.join("\n") ?? "")).map((counter, cIdx) => (
                                   <div key={cIdx} className="border-l-2 border-green-500/30 pl-2">
                                     <div className="font-medium text-foreground mb-0.5 text-[11px]">{counter.point}</div>
                                     <p className="text-muted-foreground text-[11px]">{counter.safe_wording}</p>
@@ -5763,40 +6018,47 @@ export function StrategyCommitmentPanel({
                 )}
 
                 {/* Required Findings */}
-                {judgeConstraintLens.required_findings.length > 0 && (
-                  <div>
-                    <span className="font-semibold text-muted-foreground mb-2 block">Required Findings:</span>
-                    <ul className="list-disc list-inside space-y-1 text-foreground">
-                      {dedupeStrings(judgeConstraintLens.required_findings.slice(0, 6)).map((finding, idx) => (
-                        <li key={idx} className="text-[11px]">{softenCourtMust(finding)}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {/* Intolerances */}
-                {judgeConstraintLens.intolerances.length > 0 && (
-                  <div>
-                    <span className="font-semibold text-muted-foreground mb-2 block">Evidential limitations:</span>
-                    <ul className="list-disc list-inside space-y-1 text-foreground">
-                      {dedupeStrings(judgeConstraintLens.intolerances.slice(0, 4)).map((intolerance, idx) => (
-                        <li key={idx} className="text-[11px] italic">{softenCourtMust(intolerance)}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {/* Red Flags */}
-                {judgeConstraintLens.red_flags.length > 0 && (
-                  <div>
-                    <span className="font-semibold text-muted-foreground mb-2 block">Red Flags:</span>
-                    <ul className="list-disc list-inside space-y-1 text-foreground">
-                      {dedupeStrings(judgeConstraintLens.red_flags.slice(0, 4)).map((flag, idx) => (
-                        <li key={idx} className="text-[11px] text-amber-600 dark:text-amber-400">{softenCourtMust(flag)}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+                {(() => {
+                  const { findings, intolerances, redFlags } = dedupeIssuesAcrossSections(
+                    dedupeStrings(judgeConstraintLens.required_findings.slice(0, 6)),
+                    dedupeStrings(judgeConstraintLens.intolerances.slice(0, 4)),
+                    dedupeStrings(judgeConstraintLens.red_flags.slice(0, 4))
+                  );
+                  return (
+                    <>
+                      {findings.length > 0 && (
+                        <div>
+                          <span className="font-semibold text-muted-foreground mb-2 block">Required Findings:</span>
+                          <ul className="list-disc list-inside space-y-1 text-foreground">
+                            {findings.map((finding, idx) => (
+                              <li key={idx} className="text-[11px]">{softenCourtMust(finding)}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      {intolerances.length > 0 && (
+                        <div>
+                          <span className="font-semibold text-muted-foreground mb-2 block">Evidential limitations:</span>
+                          <ul className="list-disc list-inside space-y-1 text-foreground">
+                            {intolerances.map((intolerance, idx) => (
+                              <li key={idx} className="text-[11px] italic">{softenCourtMust(intolerance)}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      {redFlags.length > 0 && (
+                        <div>
+                          <span className="font-semibold text-muted-foreground mb-2 block">Red Flags:</span>
+                          <ul className="list-disc list-inside space-y-1 text-foreground">
+                            {redFlags.map((flag, idx) => (
+                              <li key={idx} className="text-[11px] text-amber-600 dark:text-amber-400">{softenCourtMust(flag)}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </>
+                  );
+                })()}
               </div>
             </Card>
           )}
@@ -6087,20 +6349,175 @@ export function StrategyCommitmentPanel({
           {isCommitted && (
             <>
               <div className="rounded-lg border-2 border-primary/30 bg-primary/5 p-4">
-                <h2 className="text-sm font-semibold text-foreground mb-1">Defence Strategy Plan (Prosecution / Court / Defence)</h2>
-                <p className="text-xs text-muted-foreground">Defence position, prosecution arguments, legal tests, strategic options, and hearing preparation.</p>
+                <div className="flex items-start justify-between gap-3 mb-1">
+                  <h2 className="text-sm font-semibold text-foreground">Defence Strategy Plan (Prosecution / Court / Defence)</h2>
+                  {(defenceStrategyPlan || judgeConstraintLens) && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={handleExportDefenceStrategyPlan}
+                      className="flex items-center gap-1 text-xs h-7 shrink-0"
+                    >
+                      <Copy className="h-3 w-3" />
+                      Export plan
+                    </Button>
+                  )}
+                </div>
+                <p className="text-xs text-muted-foreground mb-3">Defence position, prosecution arguments, legal tests, strategic options, and hearing preparation.</p>
+                {/* Stage 3: At-a-glance strip — strategy line, key date, disclosure provenance */}
+                {defenceStrategyPlan && (
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs border-t border-primary/20 pt-3 mt-2">
+                    <span className="font-semibold text-foreground">
+                      {defenceStrategyPlan.strategy_line ?? defenceStrategyPlan.primary_route?.label ?? primary ? STRATEGY_OPTIONS.find(o => o.id === primary)?.label ?? "Strategy committed" : "-"}
+                    </span>
+                    <span className="text-muted-foreground">Next hearing: TBC</span>
+                    <span className="text-muted-foreground italic">Based on disclosure as at {new Date().toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</span>
+                  </div>
+                )}
+                {/* Stage 8: Strategy health – still valid vs reassess */}
+                {isCommitted && (() => {
+                  const committedTime = committedAt ? new Date(committedAt).getTime() : 0;
+                  const hasNewDisclosureSinceCommit = committedTime > 0 && (disclosureTimelineEntries ?? []).some(
+                    (e) => e?.date && new Date(e.date).getTime() > committedTime
+                  );
+                  const needsReassess = !committedAt
+                    ? "Reassess – confirm strategy"
+                    : hasNewDisclosureSinceCommit
+                    ? "Reassess – new disclosure or key date"
+                    : null;
+                  const valid = !needsReassess;
+                  return (
+                    <div className="flex flex-wrap items-center gap-2 border-t border-primary/20 pt-2 mt-2 text-xs">
+                      {valid ? (
+                        <Badge className="bg-green-500/20 text-green-700 dark:text-green-400 border-green-500/30">
+                          <CheckCircle className="h-3 w-3 mr-1 inline" />
+                          Strategy still valid
+                        </Badge>
+                      ) : (
+                        <>
+                          <Badge variant="outline" className="bg-amber-500/10 text-amber-700 dark:text-amber-400 border-amber-500/30">
+                            <AlertTriangle className="h-3 w-3 mr-1 inline" />
+                            {needsReassess}
+                          </Badge>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-6 text-xs text-primary px-2"
+                            onClick={() => document.getElementById("strategy-waiting-on")?.scrollIntoView({ behavior: "smooth" })}
+                          >
+                            Look here
+                          </Button>
+                        </>
+                      )}
+                    </div>
+                  );
+                })()}
               </div>
             </>
           )}
 
-          {/* How the Defence Case Will Be Run - Phase 2 Fight Harder outputs (committed only) */}
-          {isCommitted && defenceStrategyPlan && (
+          {/* Stage 7: What we're waiting on — outstanding disclosure, key docs, client instructions */}
+          {isCommitted && resolvedCaseId && (
+            <div id="strategy-waiting-on">
+            <WhatWeAreWaitingOn
+              caseId={resolvedCaseId}
+              evidenceImpactMap={evidenceImpactMap}
+              declaredDependencies={declaredDependencies}
+              disclosureTimelineEntries={disclosureTimelineEntries}
+              decisiveMissingItems={solicitorView?.decisive_missing_items}
+            />
+            </div>
+          )}
+
+          {/* Stage 3: Two columns — What the court has to decide (left) | What we say and do (right) */}
+          {isCommitted && (defenceStrategyPlan || judgeConstraintLens) && (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              {/* Left: What the court has to decide */}
+              <div className="space-y-4">
+                {judgeConstraintLens && (
+                  <Card className="p-4 border border-border/50">
+                    <div className="flex items-center gap-2 mb-4">
+                      <Scale className="h-4 w-4 text-primary" />
+                      <h3 className="text-sm font-semibold text-foreground">Legal tests the court will consider</h3>
+                      <Badge variant="outline" className="text-xs">Reference</Badge>
+                    </div>
+                    <div className="space-y-4 text-xs">
+                      {judgeConstraintLens.constraints?.length > 0 && (
+                        <div>
+                          <span className="font-semibold text-muted-foreground mb-2 block">Doctrine Constraints:</span>
+                          <div className="space-y-3">
+                            {dedupeBy(judgeConstraintLens.constraints.slice(0, 6), (c) => c.title + "\n" + (c.detail ?? "")).map((constraint, idx) => (
+                              <div key={idx} className="border-l-2 border-primary/30 pl-3">
+                                <div className="font-medium text-foreground mb-1">{constraint.title}</div>
+                                <p className="text-muted-foreground text-[11px] leading-relaxed mb-1">{softenCourtMust(constraint.detail ?? "")}</p>
+                                {constraint.applies_to?.length > 0 && (
+                                  <div className="text-[10px] text-muted-foreground/70 italic">Applies to: {constraint.applies_to.join(", ")}</div>
+                                )}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                      {(() => {
+                        const findings = dedupeStrings(judgeConstraintLens.required_findings?.slice(0, 6) ?? []);
+                        const intolerances = dedupeStrings(judgeConstraintLens.intolerances?.slice(0, 4) ?? []);
+                        const redFlags = dedupeStrings(judgeConstraintLens.red_flags?.slice(0, 4) ?? []);
+                        const { findings: dFindings, intolerances: dIntolerances, redFlags: dRedFlags } = dedupeIssuesAcrossSections(findings, intolerances, redFlags);
+                        return (
+                          <>
+                            {dFindings.length > 0 && (
+                              <div>
+                                <span className="font-semibold text-muted-foreground mb-2 block">Required Findings:</span>
+                                <ul className="list-disc list-inside space-y-0.5 text-foreground">
+                                  {dFindings.map((finding, idx) => (
+                                    <li key={idx} className="text-[11px]">{softenCourtMust(finding)}</li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+                            {dIntolerances.length > 0 && (
+                              <div>
+                                <span className="font-semibold text-muted-foreground mb-2 block">Evidential limitations:</span>
+                                <ul className="list-disc list-inside space-y-0.5 text-foreground">
+                                  {dIntolerances.map((intolerance, idx) => (
+                                    <li key={idx} className="text-[11px] italic">{softenCourtMust(intolerance)}</li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+                            {dRedFlags.length > 0 && (
+                              <div>
+                                <span className="font-semibold text-muted-foreground mb-2 block">Red Flags:</span>
+                                <ul className="list-disc list-inside space-y-0.5 text-foreground">
+                                  {dRedFlags.map((flag, idx) => (
+                                    <li key={idx} className="text-[11px] text-amber-600 dark:text-amber-400">{softenCourtMust(flag)}</li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+                          </>
+                        );
+                      })()}
+                    </div>
+                  </Card>
+                )}
+              </div>
+              {/* Right: What we say and do */}
+              <div className="space-y-4">
+                {defenceStrategyPlan && (
             <Card className="p-4 border border-border/50">
               <div className="flex items-center gap-2 mb-4">
                 <Shield className="h-4 w-4 text-primary" />
                 <h3 className="text-sm font-semibold text-foreground">How the Defence Case Will Be Run</h3>
               </div>
               <div className="space-y-4 text-xs">
+                {/* Stage 6: Attack sequence */}
+                {defenceStrategyPlan?.attack_sequence && (
+                  <div className="rounded border border-primary/20 bg-primary/5 p-2">
+                    <span className="font-semibold text-muted-foreground mb-1 block">Attack order</span>
+                    <p className="text-foreground text-[11px] leading-snug">{defenceStrategyPlan.attack_sequence}</p>
+                  </div>
+                )}
                 {/* Posture + Primary Route */}
                 {defenceStrategyPlan.posture && (
                   <div>
@@ -6162,7 +6579,7 @@ export function StrategyCommitmentPanel({
                   <div>
                     <span className="font-semibold text-muted-foreground mb-1 block">Defence Counters:</span>
                     <div className="space-y-2">
-                      {dedupeBy(defenceStrategyPlan.defence_counters.slice(0, 4), (c) => (c.point ?? "") + "\n" + (c.safe_wording ?? "")).map((counter, idx) => (
+                      {dedupeBy(defenceStrategyPlan.defence_counters.slice(0, 4), (c) => (c.point ?? "") + "\n" + (c.safe_wording ?? "") + "\n" + ((c as { evidence_needed?: string[] }).evidence_needed?.join("\n") ?? "")).map((counter, idx) => (
                         <div key={idx} className="border-l-2 border-green-500/30 pl-2">
                           <div className="font-medium text-foreground mb-0.5">{counter.point}</div>
                           <p className="text-muted-foreground text-[11px]">{counter.safe_wording}</p>
@@ -6206,67 +6623,95 @@ export function StrategyCommitmentPanel({
                 )}
               </div>
             </Card>
-          )}
-
-          {/* Legal tests the court will consider - Phase 2 */}
-          {isCommitted && judgeConstraintLens && (
-            <Card className="p-4 border border-border/50">
-              <div className="flex items-center gap-2 mb-4">
-                <Scale className="h-4 w-4 text-primary" />
-                <h3 className="text-sm font-semibold text-foreground">Legal tests the court will consider</h3>
-                <Badge variant="outline" className="text-xs">Reference</Badge>
-              </div>
-              <div className="space-y-4 text-xs">
-                {judgeConstraintLens.constraints?.length > 0 && (
-                  <div>
-                    <span className="font-semibold text-muted-foreground mb-2 block">Doctrine Constraints:</span>
-                    <div className="space-y-3">
-                      {dedupeBy(judgeConstraintLens.constraints.slice(0, 6), (c) => c.title + "\n" + (c.detail ?? "")).map((constraint, idx) => (
-                        <div key={idx} className="border-l-2 border-primary/30 pl-3">
-                          <div className="font-medium text-foreground mb-1">{constraint.title}</div>
-                          <p className="text-muted-foreground text-[11px] leading-relaxed mb-1">{softenCourtMust(constraint.detail ?? "")}</p>
-                          {constraint.applies_to?.length > 0 && (
-                            <div className="text-[10px] text-muted-foreground/70 italic">
-                              Applies to: {constraint.applies_to.join(", ")}
-                            </div>
-                          )}
-                        </div>
-                      ))}
+                )}
+                {(defenceStrategyPlan?.next_72_hours?.length ?? 0) > 0 && (
+                  <Card className="p-4 border border-border/50">
+                    <div className="flex items-center gap-2 mb-2">
+                      <ListChecks className="h-4 w-4 text-primary" />
+                      <h3 className="text-sm font-semibold text-foreground">Next actions</h3>
                     </div>
-                  </div>
-                )}
-                {judgeConstraintLens.required_findings?.length > 0 && (
-                  <div>
-                    <span className="font-semibold text-muted-foreground mb-2 block">Required Findings:</span>
-                    <ul className="list-disc list-inside space-y-0.5 text-foreground">
-                      {dedupeStrings(judgeConstraintLens.required_findings.slice(0, 6)).map((finding, idx) => (
-                        <li key={idx} className="text-[11px]">{softenCourtMust(finding)}</li>
+                    <ul className="list-disc list-inside space-y-0.5 text-xs text-foreground">
+                      {(defenceStrategyPlan?.next_72_hours ?? []).slice(0, 6).map((action, idx) => (
+                        <li key={idx}>{action}</li>
                       ))}
                     </ul>
-                  </div>
+                  </Card>
                 )}
-                {judgeConstraintLens.intolerances?.length > 0 && (
-                  <div>
-                    <span className="font-semibold text-muted-foreground mb-2 block">Evidential limitations:</span>
-                    <ul className="list-disc list-inside space-y-0.5 text-foreground">
-                      {dedupeStrings(judgeConstraintLens.intolerances.slice(0, 4)).map((intolerance, idx) => (
-                        <li key={idx} className="text-[11px] italic">{softenCourtMust(intolerance)}</li>
+                {(defenceStrategyPlan?.risks_fallbacks?.length ?? 0) > 0 && (
+                  <Card className="p-4 border border-border/50">
+                    <div className="flex items-center gap-2 mb-2">
+                      <AlertTriangle className="h-4 w-4 text-amber-500" />
+                      <h3 className="text-sm font-semibold text-foreground">Risks & fallbacks</h3>
+                    </div>
+                    <ul className="list-disc list-inside space-y-1 text-xs text-foreground">
+                      {(defenceStrategyPlan?.risks_fallbacks ?? []).slice(0, 5).map((bullet, idx) => (
+                        <li key={idx}>{bullet}</li>
                       ))}
                     </ul>
-                  </div>
+                  </Card>
                 )}
-                {judgeConstraintLens.red_flags?.length > 0 && (
-                  <div>
-                    <span className="font-semibold text-muted-foreground mb-2 block">Red Flags:</span>
-                    <ul className="list-disc list-inside space-y-0.5 text-foreground">
-                      {dedupeStrings(judgeConstraintLens.red_flags.slice(0, 4)).map((flag, idx) => (
-                        <li key={idx} className="text-[11px] text-amber-600 dark:text-amber-400">{softenCourtMust(flag)}</li>
-                      ))}
-                    </ul>
-                  </div>
+                {hearingScripts && hearingScripts.scripts?.length > 0 && (
+                  <Card className="p-4 border border-border/50">
+                    <button
+                      type="button"
+                      onClick={() => setShowHearingScripts(!showHearingScripts)}
+                      className="w-full flex items-center justify-between mb-4"
+                    >
+                      <div className="flex items-center gap-2">
+                        <Gavel className="h-4 w-4 text-primary" />
+                        <h3 className="text-sm font-semibold text-foreground">Hearing preparation checklist</h3>
+                        <Badge variant="outline" className="text-xs">Reference</Badge>
+                      </div>
+                      {showHearingScripts ? <ChevronUp className="h-4 w-4 text-muted-foreground" /> : <ChevronDown className="h-4 w-4 text-muted-foreground" />}
+                    </button>
+                    {showHearingScripts && (
+                      <div className="space-y-4 text-xs">
+                        {hearingScripts.scripts.map((script, idx) => (
+                          <div key={idx} className="border border-border/30 rounded-lg p-3">
+                            <div className="flex items-center gap-2 mb-3">
+                              <Calendar className="h-3 w-3 text-primary" />
+                              <h4 className="text-xs font-semibold text-foreground">
+                                {script.hearing_type === "PTPH" ? "PTPH" : script.hearing_type === "disclosure_directions" ? "Disclosure Directions" : script.hearing_type === "case_management" ? "Case Management" : "Special Measures"}
+                              </h4>
+                            </div>
+                            {script.checklist?.length > 0 && (
+                              <div className="mb-3">
+                                <span className="font-semibold text-muted-foreground mb-1 block text-[11px]">Checklist:</span>
+                                <ul className="list-disc list-inside space-y-0.5 text-foreground">
+                                  {script.checklist.map((item, cIdx) => (
+                                    <li key={cIdx} className="text-[11px]">{item}</li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+                            {script.asks_of_court?.length > 0 && (
+                              <div className="mb-3">
+                                <span className="font-semibold text-muted-foreground mb-1 block text-[11px]">Asks of Court:</span>
+                                <ul className="list-disc list-inside space-y-0.5 text-foreground">
+                                  {script.asks_of_court.map((ask, aIdx) => (
+                                    <li key={aIdx} className="text-[11px]">{ask}</li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+                            {script.do_not_concede?.length > 0 && (
+                              <div>
+                                <span className="font-semibold text-muted-foreground mb-1 block text-[11px]">Avoid conceding:</span>
+                                <ul className="list-disc list-inside space-y-0.5 text-amber-600 dark:text-amber-400">
+                                  {script.do_not_concede.map((item, dIdx) => (
+                                    <li key={dIdx} className="text-[11px]">{item}</li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </Card>
                 )}
               </div>
-            </Card>
+            </div>
           )}
 
           {/* Strategic options - Phase 2 */}
@@ -6368,73 +6813,11 @@ export function StrategyCommitmentPanel({
             </Card>
           )}
 
-          {/* Hearing preparation checklist - Phase 2 */}
-          {isCommitted && hearingScripts && hearingScripts.scripts?.length > 0 && (
-            <Card className="p-4 border border-border/50">
-              <button
-                type="button"
-                onClick={() => setShowHearingScripts(!showHearingScripts)}
-                className="w-full flex items-center justify-between mb-4"
-              >
-                <div className="flex items-center gap-2">
-                  <Gavel className="h-4 w-4 text-primary" />
-                  <h3 className="text-sm font-semibold text-foreground">Hearing preparation checklist</h3>
-                  <Badge variant="outline" className="text-xs">Reference</Badge>
-                </div>
-                {showHearingScripts ? <ChevronUp className="h-4 w-4 text-muted-foreground" /> : <ChevronDown className="h-4 w-4 text-muted-foreground" />}
-              </button>
-              {showHearingScripts && (
-                <div className="space-y-4 text-xs">
-                  {hearingScripts.scripts.map((script, idx) => (
-                    <div key={idx} className="border border-border/30 rounded-lg p-3">
-                      <div className="flex items-center gap-2 mb-3">
-                        <Calendar className="h-3 w-3 text-primary" />
-                        <h4 className="text-xs font-semibold text-foreground">
-                          {script.hearing_type === "PTPH" ? "PTPH" : script.hearing_type === "disclosure_directions" ? "Disclosure Directions" : script.hearing_type === "case_management" ? "Case Management" : "Special Measures"}
-                        </h4>
-                      </div>
-                      {script.checklist?.length > 0 && (
-                        <div className="mb-3">
-                          <span className="font-semibold text-muted-foreground mb-1 block text-[11px]">Checklist:</span>
-                          <ul className="list-disc list-inside space-y-0.5 text-foreground">
-                            {script.checklist.map((item, cIdx) => (
-                              <li key={cIdx} className="text-[11px]">{item}</li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                      {script.asks_of_court?.length > 0 && (
-                        <div className="mb-3">
-                          <span className="font-semibold text-muted-foreground mb-1 block text-[11px]">Asks of Court:</span>
-                          <ul className="list-disc list-inside space-y-0.5 text-foreground">
-                            {script.asks_of_court.map((ask, aIdx) => (
-                              <li key={aIdx} className="text-[11px]">{ask}</li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                      {script.do_not_concede?.length > 0 && (
-                        <div>
-                          <span className="font-semibold text-muted-foreground mb-1 block text-[11px]">Avoid conceding:</span>
-                          <ul className="list-disc list-inside space-y-0.5 text-amber-600 dark:text-amber-400">
-                            {script.do_not_concede.map((item, dIdx) => (
-                              <li key={dIdx} className="text-[11px]">{item}</li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </Card>
-          )}
-
-          {/* Summary (reference) - collapsed when committed, contains Strategy Overview + Route Assessment */}
+          {/* Stage 3: View history — off main view, for reference and audits */}
           {isCommitted && mounted && coordinatorResult && solicitorView && (
             <CollapsibleSection
-              title="Summary (reference)"
-              description="Strategy Overview and Route Assessment — descriptive summary for reference."
+              title="View history"
+              description="Strategy overview and route assessment — for reference and audits."
               defaultOpen={false}
               icon={<FileText className="h-4 w-4 text-muted-foreground" />}
             >

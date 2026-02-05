@@ -14,6 +14,12 @@ import { buildGapAnchor, buildTimelineAnchor } from "./anchors";
  * Practical, evidence-linked defence tactics for fighting the case.
  */
 export type DefenceStrategyPlan = {
+  /** Stage 5: One-line synthesis from existing outputs (no new reasoning). */
+  strategy_line: string;
+  /** Stage 5: 3–5 bullets: "If X: Y. Pivot to Z if needed." Frames system as responsive. */
+  risks_fallbacks: string[];
+  /** Stage 6: Attack order: "Primary attack: X. If not open or fails: Y. Then Z." */
+  attack_sequence: string;
   posture: string; // 1 sentence
   primary_route: {
     id: string;
@@ -91,7 +97,17 @@ export function buildDefenceStrategyPlan(input: {
   // Build next 72 hours tasks
   const next_72_hours = buildNext72Hours(snapshot, routes);
 
+  // Stage 5: Strategy one-liner (synthesis only) and risks & fallbacks
+  const strategy_line = buildStrategyLine(posture, primary_route);
+  const risks_fallbacks = buildRisksFallbacks(kill_switches, pivot_plan);
+
+  // Stage 6: Attack sequence (primary / if fails / then)
+  const attack_sequence = buildAttackSequence(primary_route, secondary_routes, pivot_plan);
+
   return {
+    strategy_line,
+    risks_fallbacks,
+    attack_sequence,
     posture,
     primary_route,
     secondary_routes,
@@ -280,27 +296,40 @@ function buildProsecutionPressure(
 }
 
 /**
- * Build defence counters (4-6) with safe wording
+ * Build defence counters (4-6) with safe wording. Stage 6: case- and evidence-specific (e.g. s18 specific intent, CCTV gap).
  */
 function buildDefenceCounters(
   offenceElements: Array<{ id: string; label: string; support: string; gaps: string[] }>,
   snapshot: EvidenceSnapshot
 ): DefenceStrategyPlan["defence_counters"] {
   const counters: DefenceStrategyPlan["defence_counters"] = [];
+  const offenceCode = snapshot.offence?.code ?? "";
+  const keyGaps = snapshot.evidence?.key_gaps ?? [];
 
-  // Counter for each disputed element
+  // Counter for each disputed element — reference charge/evidence where possible
   const disputedElements = offenceElements.filter(
     e => e.support === "weak" || e.support === "none"
   );
 
   for (const element of disputedElements.slice(0, 4)) {
+    const elLower = element.label.toLowerCase();
+    const point =
+      offenceCode.includes("s18") && (element.id === "specific_intent" || element.id === "intent")
+        ? "Counter to s18 specific intent"
+        : offenceCode.includes("s20") && (element.id === "recklessness" || element.id === "mental_state")
+        ? "Counter to s20 recklessness element"
+        : `Counter to ${elLower} element`;
+    const safe_wording =
+      element.gaps.length > 0
+        ? `The defence position is that the evidence does not establish ${elLower} to the required standard; ${element.gaps[0]} is in issue.`
+        : `The defence position is that the evidence does not establish ${elLower} to the required standard.`;
+
     const counter: DefenceStrategyPlan["defence_counters"][0] = {
-      point: `Counter to ${element.label.toLowerCase()} element`,
-      safe_wording: `The defence position is that the evidence does not establish ${element.label.toLowerCase()} to the required standard.`,
+      point,
+      safe_wording,
       evidence_needed: element.gaps.length > 0 ? element.gaps.slice(0, 3) : undefined,
     };
 
-    // Add anchor if gaps exist
     if (element.gaps.length > 0) {
       counter.anchors = buildGapAnchor(element.gaps);
     }
@@ -308,25 +337,25 @@ function buildDefenceCounters(
     counters.push(counter);
   }
 
-  // Counter for identification uncertainty
+  // Counter for identification uncertainty — Turnbull / evidence gap
   if (snapshot.flags.id_uncertainty) {
+    const idGap = keyGaps.find(g => /cctv|bwv|identification|viper/i.test(g)) || "CCTV/BWV";
     counters.push({
-      point: "Counter to identification pressure",
-      safe_wording: "The defence position is that the identification evidence is insufficient given the conditions of observation and lack of corroboration.",
+      point: "Counter to identification pressure (Turnbull)",
+      safe_wording: `The defence position is that the identification evidence is insufficient given the conditions of observation and lack of corroboration. ${idGap} gap affects reliability.`,
       anchors: buildGapAnchor(["CCTV", "BWV", "Witness statements"]),
     });
   }
 
-  // Counter for weapon uncertainty
+  // Counter for weapon uncertainty — causation / evidence gap
   if (snapshot.flags.weapon_uncertainty) {
     counters.push({
-      point: "Counter to weapon inference",
+      point: "Counter to weapon / causation inference",
       safe_wording: "The defence position is that the evidence does not clearly establish weapon use or the precise mechanism of injury.",
       evidence_needed: ["Weapon recovery", "Forensic confirmation", "Witness statements on weapon"],
     });
   }
 
-  // Limit to 6
   return counters.slice(0, 6);
 }
 
@@ -340,10 +369,11 @@ function buildKillSwitches(
 ): ConditionalLogic[] {
   const killSwitches: ConditionalLogic[] = [];
 
-  // Kill switch: sequence evidence shows sustained targeting
+  // Kill switch: sequence evidence shows sustained targeting (evidence-driven wording)
+  const seqGap = snapshot.evidence?.key_gaps?.find(g => /cctv|sequence|timing/i.test(g)) ?? "CCTV/sequence evidence";
   if (snapshot.flags.sequence_missing) {
     killSwitches.push({
-      if: "Sequence evidence arrives showing sustained or targeted attack",
+      if: `If ${seqGap} or disclosure shows sustained or targeted attack`,
       then: "Intent denial route becomes harder; pivot to charge reduction or outcome control",
       evidence_needed: ["CCTV showing sequence", "Witness statements on duration", "Medical evidence of multiple injuries"],
       severity: "high",
@@ -388,12 +418,14 @@ function buildKillSwitches(
     }
   }
 
-  // Kill switch: key disclosure served
-  if (snapshot.disclosure.required_without_timeline.length > 0) {
+  // Kill switch: key disclosure served (evidence-driven: document name)
+  const requiredDocs = snapshot.disclosure?.required_without_timeline ?? [];
+  if (requiredDocs.length > 0) {
+    const docName = requiredDocs[0];
     killSwitches.push({
-      if: `Key required disclosure served: ${snapshot.disclosure.required_without_timeline[0]}`,
+      if: `If ${docName} is served and shows material that strengthens the prosecution case`,
       then: "Review route viability; disclosure leverage route may become blocked",
-      evidence_needed: snapshot.disclosure.required_without_timeline.slice(0, 3),
+      evidence_needed: requiredDocs.slice(0, 3),
       severity: "medium",
     });
   }
@@ -511,6 +543,74 @@ function buildNext72Hours(
 
   // Limit to 8
   return tasks.slice(0, 8);
+}
+
+/**
+ * Stage 6: Build attack sequence: "Primary attack: X. If not open or fails: Y. Then Z."
+ */
+function buildAttackSequence(
+  primary_route: DefenceStrategyPlan["primary_route"],
+  secondary_routes: DefenceStrategyPlan["secondary_routes"],
+  pivot_plan: DefenceStrategyPlan["pivot_plan"]
+): string {
+  const parts: string[] = [];
+  parts.push(`Primary attack: ${primary_route.label}.`);
+
+  const second = secondary_routes[0];
+  const third = secondary_routes[1] ?? pivot_plan[0];
+
+  if (second) {
+    parts.push(` If not open or fails: ${second.label}.`);
+  }
+  if (third) {
+    const thirdLabel = "new_route" in third ? third.new_route : third.label;
+    parts.push(` Then: ${thirdLabel}.`);
+  }
+
+  return parts.join("");
+}
+
+/**
+ * Stage 5: Build strategy one-liner from existing outputs (synthesis only, no new reasoning).
+ */
+function buildStrategyLine(
+  posture: string,
+  primary_route: DefenceStrategyPlan["primary_route"]
+): string {
+  const label = primary_route.label;
+  const firstRationale = primary_route.rationale?.[0]?.trim();
+  if (firstRationale && firstRationale.length > 0 && firstRationale.length < 120) {
+    return `${label}: ${firstRationale}`;
+  }
+  const shortPosture = posture.trim().slice(0, 100);
+  if (shortPosture.length > 0) {
+    return `${label}. ${shortPosture}${posture.length > 100 ? "…" : ""}`;
+  }
+  return label;
+}
+
+/**
+ * Stage 5: Build 3–5 risks & fallbacks bullets from kill_switches and pivot_plan.
+ * Frames the system as responsive, not prophetic.
+ */
+function buildRisksFallbacks(
+  kill_switches: ConditionalLogic[],
+  pivot_plan: DefenceStrategyPlan["pivot_plan"]
+): string[] {
+  const max = 5;
+  const bullets: string[] = [];
+
+  for (let i = 0; i < Math.min(max, kill_switches.length); i++) {
+    const ks = kill_switches[i];
+    const pivot = pivot_plan[i];
+    if (pivot) {
+      bullets.push(`If ${ks.if}: ${ks.then} Pivot to ${pivot.new_route} if needed.`);
+    } else {
+      bullets.push(`If ${ks.if}: ${ks.then}`);
+    }
+  }
+
+  return bullets;
 }
 
 /**
