@@ -2881,17 +2881,11 @@ function IncidentShapePanel({
 
     async function fetchIncidentData() {
       try {
-        // Fetch documents and timeline
-        const [docsRes, timelineRes] = await Promise.all([
-          fetch(`/api/cases/${caseId}/documents`),
-          fetch(`/api/cases/${caseId}/timeline`).catch(() => null),
-        ]);
-
+        // Fetch documents (timeline not used from this API; disclosure timeline is separate)
+        const docsRes = await fetch(`/api/cases/${caseId}/documents`);
         const docsData = docsRes.ok ? await docsRes.json() : null;
         const documents = docsData?.data?.documents || docsData?.documents || [];
-
-        const timelineData = timelineRes?.ok ? await timelineRes.json() : null;
-        const timeline = timelineData?.data?.timeline || timelineData?.timeline || [];
+        const timeline: unknown[] = [];
 
         const shape = classifyIncidentShape(documents, timeline, evidenceImpactMap);
         setIncidentShape(shape);
@@ -2981,11 +2975,10 @@ function WorstCaseCapPanel({
 
     async function fetchWorstCaseData() {
       try {
-        // Fetch charges, documents, timeline
-        const [chargesRes, docsRes, timelineRes] = await Promise.all([
+        // Fetch charges and documents (timeline not used from this API)
+        const [chargesRes, docsRes] = await Promise.all([
           fetch(`/api/criminal/${caseId}/charges`).catch(() => null),
           fetch(`/api/cases/${caseId}/documents`).catch(() => null),
-          fetch(`/api/cases/${caseId}/timeline`).catch(() => null),
         ]);
 
         const chargesData = chargesRes?.ok ? await chargesRes.json() : null;
@@ -2993,9 +2986,7 @@ function WorstCaseCapPanel({
 
         const docsData = docsRes?.ok ? await docsRes.json() : null;
         const documents = docsData?.data?.documents || docsData?.documents || [];
-
-        const timelineData = timelineRes?.ok ? await timelineRes.json() : null;
-        const timeline = timelineData?.data?.timeline || timelineData?.timeline || [];
+        const timeline: unknown[] = [];
 
         // Compute incident shape and weapon tracker if not provided
         if (!incidentShape) {
