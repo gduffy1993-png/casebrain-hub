@@ -20,6 +20,14 @@ type CaseOption = {
   title: string;
 };
 
+function formatUploadDate(createdAt: string): string {
+  try {
+    return new Date(createdAt).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+  } catch {
+    return "";
+  }
+}
+
 export default function IntakePage() {
   const [documents, setDocuments] = useState<UnprocessedDocument[]>([]);
   const [cases, setCases] = useState<CaseOption[]>([]);
@@ -111,18 +119,17 @@ export default function IntakePage() {
   };
 
   const getDocumentLabel = (doc: UnprocessedDocument): string => {
-    const extracted = doc.extracted_json as
-      | { claimType?: string; summary?: string }
-      | null
-      | undefined;
-    if (extracted?.claimType) {
-      return extracted.claimType;
-    }
-    if (doc.name.toLowerCase().includes("med")) {
-      return "Med report";
-    }
-    if (doc.name.toLowerCase().includes("letter")) {
-      return "Letter before action";
+    try {
+      const extracted = doc?.extracted_json as
+        | { claimType?: string; summary?: string }
+        | null
+        | undefined;
+      if (extracted?.claimType) return extracted.claimType;
+      const name = (doc?.name ?? "").toLowerCase();
+      if (name.includes("med")) return "Med report";
+      if (name.includes("letter")) return "Letter before action";
+    } catch {
+      // ignore
     }
     return "Document";
   };
@@ -167,6 +174,14 @@ export default function IntakePage() {
       <Card>
         {filteredDocuments.length > 0 ? (
           <div className="divide-y divide-primary/10">
+            <div className="grid gap-4 p-5 sm:grid-cols-[1fr_auto] text-xs font-medium text-accent/60 uppercase tracking-wide">
+              <div>Filename</div>
+              <div className="flex items-center gap-2">
+                <span className="hidden sm:inline">Uploaded</span>
+                <span className="hidden sm:inline">Type</span>
+                <span>Actions</span>
+              </div>
+            </div>
             {filteredDocuments.map((doc) => (
               <div
                 key={doc.id}
@@ -182,7 +197,7 @@ export default function IntakePage() {
                     </span>
                   </div>
                   <p className="mt-2 text-xs text-accent/50">
-                    Uploaded: {new Date(doc.created_at).toLocaleDateString("en-GB")}
+                    Uploaded: {formatUploadDate(doc.created_at)}
                   </p>
                 </div>
                 <div className="flex flex-wrap items-center gap-2">
@@ -223,8 +238,16 @@ export default function IntakePage() {
             <p className="text-sm text-accent/60">
               {searchTerm
                 ? "No documents match your search."
-                : "No unprocessed documents found. All documents are attached to cases."}
+                : "No unprocessed documents. All documents are attached to cases."}
             </p>
+            {!searchTerm && (
+              <p className="mt-2 text-sm text-accent/70">
+                <a href="/upload" className="font-medium text-primary hover:underline">
+                  Upload documents
+                </a>{" "}
+                to add new files to the intake inbox.
+              </p>
+            )}
           </div>
         )}
       </Card>

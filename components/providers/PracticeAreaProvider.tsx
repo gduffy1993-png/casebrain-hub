@@ -11,30 +11,25 @@ type PracticeAreaContextType = {
 const PracticeAreaContext = createContext<PracticeAreaContextType | undefined>(undefined);
 
 const STORAGE_KEY = "casebrain_current_practice_area";
-const DEFAULT_PRACTICE_AREA: PracticeArea = "other_litigation";
+const DEFAULT_PRACTICE_AREA: PracticeArea = "criminal";
+/** Criminal-only: only this role is allowed (per plan). */
+const ALLOWED_PRACTICE_AREAS: PracticeArea[] = ["criminal"];
 
 export function PracticeAreaProvider({ children }: { children: ReactNode }) {
   const [currentPracticeArea, setCurrentPracticeAreaState] = useState<PracticeArea>(DEFAULT_PRACTICE_AREA);
   const [isInitialized, setIsInitialized] = useState(false);
 
-  // Load from localStorage on mount
+  // Load from localStorage on mount – criminal only
   useEffect(() => {
     if (typeof window === "undefined") return;
 
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) {
-        // Validate it's a valid PracticeArea
-        const validAreas: PracticeArea[] = [
-          "family",
-          "housing_disrepair",
-          "personal_injury",
-          "clinical_negligence",
-          "other_litigation",
-        ];
-        if (validAreas.includes(stored as PracticeArea)) {
-          setCurrentPracticeAreaState(stored as PracticeArea);
-        }
+      if (stored && ALLOWED_PRACTICE_AREAS.includes(stored as PracticeArea)) {
+        setCurrentPracticeAreaState(stored as PracticeArea);
+      } else {
+        setCurrentPracticeAreaState(DEFAULT_PRACTICE_AREA);
+        if (typeof window !== "undefined") localStorage.setItem(STORAGE_KEY, DEFAULT_PRACTICE_AREA);
       }
     } catch (err) {
       console.error("[PracticeAreaProvider] Error loading from localStorage:", err);
@@ -43,12 +38,13 @@ export function PracticeAreaProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  // Save to localStorage when it changes
+  // Save to localStorage when it changes – only allow criminal
   const setPracticeArea = (area: PracticeArea) => {
-    setCurrentPracticeAreaState(area);
+    const allowed = ALLOWED_PRACTICE_AREAS.includes(area) ? area : DEFAULT_PRACTICE_AREA;
+    setCurrentPracticeAreaState(allowed);
     try {
       if (typeof window !== "undefined") {
-        localStorage.setItem(STORAGE_KEY, area);
+        localStorage.setItem(STORAGE_KEY, allowed);
       }
     } catch (err) {
       console.error("[PracticeAreaProvider] Error saving to localStorage:", err);

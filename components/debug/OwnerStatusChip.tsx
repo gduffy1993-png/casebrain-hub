@@ -1,18 +1,22 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/browser";
 import { usePaywallStatus } from "@/hooks/usePaywallStatus";
 
+const DEBUG_STORAGE_KEY = "casebrain_show_debug_bar";
+
 /**
  * Owner Debug Chip
- * 
- * Shows owner status and paywall flags for debugging.
- * Only visible to the owner user.
+ * Only visible when debug is on: ?debug=1 in URL or "Show debug bar" in Settings (localStorage).
+ * Only shown to the owner user.
  */
 export function OwnerStatusChip() {
   const [user, setUser] = useState<{ id: string; email?: string } | null>(null);
-  const { isOwner, bypassActive, plan, status } = usePaywallStatus();
+  const [debugEnabled, setDebugEnabled] = useState(false);
+  const searchParams = useSearchParams();
+  const { isOwner, bypassActive, plan } = usePaywallStatus();
 
   useEffect(() => {
     const loadUser = async () => {
@@ -20,7 +24,6 @@ export function OwnerStatusChip() {
       const {
         data: { user: currentUser },
       } = await supabase.auth.getUser();
-      
       if (currentUser) {
         setUser({
           id: currentUser.id,
@@ -28,15 +31,20 @@ export function OwnerStatusChip() {
         });
       }
     };
-    
     loadUser();
   }, []);
 
-  // Only show for the owner user
+  useEffect(() => {
+    const urlDebug = searchParams.get("debug") === "1";
+    const stored = typeof window !== "undefined" && localStorage.getItem(DEBUG_STORAGE_KEY) === "1";
+    setDebugEnabled(Boolean(urlDebug || stored));
+  }, [searchParams]);
+
   const OWNER_USER_IDS = process.env.NEXT_PUBLIC_ADMIN_USER_ID ? [process.env.NEXT_PUBLIC_ADMIN_USER_ID] : [];
   const OWNER_EMAILS = ["gduffy1993@gmail.com"];
-  
-  if (!user || (!OWNER_USER_IDS.includes(user.id) && !(user.email && OWNER_EMAILS.includes(user.email.toLowerCase())))) {
+  const isOwnerUser = user && (OWNER_USER_IDS.includes(user.id) || (user.email && OWNER_EMAILS.includes(user.email.toLowerCase())));
+
+  if (!user || !isOwnerUser || !debugEnabled) {
     return null;
   }
 

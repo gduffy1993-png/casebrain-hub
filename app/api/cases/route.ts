@@ -4,24 +4,36 @@ import { getSupabaseAdminClient } from "@/lib/supabase";
 
 export const runtime = "nodejs";
 
-export async function GET() {
-  const { orgId } = await requireAuthContext();
-  const supabase = getSupabaseAdminClient();
+export async function GET(request: Request) {
+  try {
+    const { orgId } = await requireAuthContext();
+    const supabase = getSupabaseAdminClient();
+    const { searchParams } = new URL(request.url);
+    const q = searchParams.get("q")?.trim() ?? "";
 
-  const { data: cases, error } = await supabase
-    .from("cases")
-    .select("id, title")
-    .eq("org_id", orgId)
-    .eq("is_archived", false) // Exclude archived cases
-    .order("title", { ascending: true });
+    let query = supabase
+      .from("cases")
+      .select("id, title, updated_at")
+      .eq("org_id", orgId)
+      .eq("is_archived", false);
 
-  if (error) {
-    return NextResponse.json(
-      { error: "Failed to load cases" },
-      { status: 500 },
+    if (q.length > 0) {
+      query = query.ilike("title", `%${q}%`);
+    }
+    const { data: cases, error } = await query.order(
+      q.length > 0 ? "title" : "updated_at",
+      { ascending: q.length > 0 }
     );
-  }
 
-  return NextResponse.json({ cases: cases ?? [] });
+    if (error) {
+      console.error("[api/cases] Supabase error:", error.message);
+      return NextResponse.json({ cases: [] });
+    }
+
+    return NextResponse.json({ cases: cases ?? [] });
+  } catch (err) {
+    console.error("[api/cases] Error:", err);
+    return NextResponse.json({ cases: [] });
+  }
 }
 

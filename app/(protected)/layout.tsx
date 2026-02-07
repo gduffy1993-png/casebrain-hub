@@ -1,4 +1,4 @@
-import { type ReactNode } from "react";
+import { type ReactNode, Suspense } from "react";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { AppShell } from "@/components/layout/app-shell";
@@ -24,7 +24,9 @@ export default async function ProtectedLayout({ children }: { children: ReactNod
     <PracticeAreaProvider>
       <SeniorityProvider>
         <AppShell>{children}</AppShell>
-        <OwnerStatusChip />
+        <Suspense fallback={null}>
+          <OwnerStatusChip />
+        </Suspense>
         <PaywallKiller />
       </SeniorityProvider>
     </PracticeAreaProvider>

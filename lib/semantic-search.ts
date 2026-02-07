@@ -67,122 +67,128 @@ export async function generateEmbedding(text: string): Promise<number[] | null> 
 }
 
 /**
- * Perform semantic search across the organization's data
+ * Perform semantic search across the organization's data.
+ * Returns [] on any error so callers (e.g. search page) never get a 500.
  */
 export async function semanticSearch(
   params: SemanticSearchParams
 ): Promise<SemanticSearchResult[]> {
-  const { query, orgId, category = "all", practiceArea, limit = 20, excludeCaseIds = [] } = params;
-  const supabase = getSupabaseAdminClient();
-  const results: SemanticSearchResult[] = [];
+  try {
+    const { query, orgId, category = "all", practiceArea, limit = 20, excludeCaseIds = [] } = params;
+    const supabase = getSupabaseAdminClient();
+    const results: SemanticSearchResult[] = [];
 
-  // For now, use keyword-based search as a fallback
-  // In production with embeddings, would use vector similarity
-  
-  const searchTerms = query.toLowerCase().split(/\s+/).filter(t => t.length > 2);
+    // For now, use keyword-based search as a fallback
+    // In production with embeddings, would use vector similarity
 
-  // Search cases
-  if (category === "cases" || category === "all") {
-    let casesQuery = supabase
-      .from("cases")
-      .select("id, title, summary, practice_area, created_at")
-      .eq("org_id", orgId)
-      .eq("is_archived", false);
+    const searchTerms = query.toLowerCase().split(/\s+/).filter(t => t.length > 2);
 
-    if (excludeCaseIds.length > 0) {
-      casesQuery = casesQuery.not("id", "in", `(${excludeCaseIds.join(",")})`);
-    }
+    // Search cases
+    if (category === "cases" || category === "all") {
+      let casesQuery = supabase
+        .from("cases")
+        .select("id, title, summary, practice_area, created_at")
+        .eq("org_id", orgId)
+        .eq("is_archived", false);
 
-    if (practiceArea) {
-      casesQuery = casesQuery.eq("practice_area", practiceArea);
-    }
+      if (excludeCaseIds.length > 0) {
+        casesQuery = casesQuery.not("id", "in", `(${excludeCaseIds.join(",")})`);
+      }
 
-    const { data: cases } = await casesQuery.limit(limit);
+      if (practiceArea) {
+        casesQuery = casesQuery.eq("practice_area", practiceArea);
+      }
 
-    for (const c of cases ?? []) {
-      const titleLower = (c.title ?? "").toLowerCase();
-      const summaryLower = (c.summary ?? "").toLowerCase();
-      const searchText = `${titleLower} ${summaryLower}`;
+      const { data: cases } = await casesQuery.limit(limit);
 
-      const matchCount = searchTerms.filter(term => searchText.includes(term)).length;
-      if (matchCount > 0) {
-        results.push({
-          id: c.id,
-          type: "case",
-          caseId: c.id,
-          title: c.title,
-          summary: c.summary ?? "",
-          practiceArea: c.practice_area,
-          similarity: matchCount / searchTerms.length,
-          createdAt: c.created_at,
-        });
+      for (const c of cases ?? []) {
+        const titleLower = (c.title ?? "").toLowerCase();
+        const summaryLower = (c.summary ?? "").toLowerCase();
+        const searchText = `${titleLower} ${summaryLower}`;
+
+        const matchCount = searchTerms.filter(term => searchText.includes(term)).length;
+        if (matchCount > 0) {
+          results.push({
+            id: c.id,
+            type: "case",
+            caseId: c.id,
+            title: c.title,
+            summary: c.summary ?? "",
+            practiceArea: c.practice_area,
+            similarity: matchCount / searchTerms.length,
+            createdAt: c.created_at,
+          });
+        }
       }
     }
-  }
 
-  // Search documents
-  if (category === "documents" || category === "all") {
-    const { data: documents } = await supabase
-      .from("documents")
-      .select("id, name, type, case_id, summary, created_at, cases!inner(org_id, is_archived)")
-      .eq("cases.org_id", orgId)
-      .eq("cases.is_archived", false)
-      .limit(limit * 2);
+    // Search documents
+    if (category === "documents" || category === "all") {
+      const { data: documents } = await supabase
+        .from("documents")
+        .select("id, name, type, case_id, summary, created_at, cases!inner(org_id, is_archived)")
+        .eq("cases.org_id", orgId)
+        .eq("cases.is_archived", false)
+        .limit(limit * 2);
 
-    for (const doc of documents ?? []) {
-      const nameLower = (doc.name ?? "").toLowerCase();
-      const summaryLower = (doc.summary ?? "").toLowerCase();
-      const searchText = `${nameLower} ${summaryLower}`;
+      for (const doc of documents ?? []) {
+        const nameLower = (doc.name ?? "").toLowerCase();
+        const summaryLower = (doc.summary ?? "").toLowerCase();
+        const searchText = `${nameLower} ${summaryLower}`;
 
-      const matchCount = searchTerms.filter(term => searchText.includes(term)).length;
-      if (matchCount > 0) {
-        results.push({
-          id: doc.id,
-          type: "document",
-          caseId: doc.case_id,
-          title: doc.name,
-          summary: doc.summary ?? doc.type ?? "Document",
-          similarity: matchCount / searchTerms.length,
-          createdAt: doc.created_at,
-        });
+        const matchCount = searchTerms.filter(term => searchText.includes(term)).length;
+        if (matchCount > 0) {
+          results.push({
+            id: doc.id,
+            type: "document",
+            caseId: doc.case_id,
+            title: doc.name,
+            summary: doc.summary ?? doc.type ?? "Document",
+            similarity: matchCount / searchTerms.length,
+            createdAt: doc.created_at,
+          });
+        }
       }
     }
-  }
 
-  // Search letters
-  if (category === "letters" || category === "all") {
-    const { data: letters } = await supabase
-      .from("letters")
-      .select("id, template_id, body, case_id, created_at, cases!inner(org_id, title, is_archived)")
-      .eq("cases.org_id", orgId)
-      .eq("cases.is_archived", false)
-      .limit(limit * 2);
+    // Search letters
+    if (category === "letters" || category === "all") {
+      const { data: letters } = await supabase
+        .from("letters")
+        .select("id, template_id, body, case_id, created_at, cases!inner(org_id, title, is_archived)")
+        .eq("cases.org_id", orgId)
+        .eq("cases.is_archived", false)
+        .limit(limit * 2);
 
-    for (const letter of letters ?? []) {
-      const bodyLower = (letter.body ?? "").toLowerCase();
-      const templateLower = (letter.template_id ?? "").toLowerCase();
-      const searchText = `${templateLower} ${bodyLower}`;
+      for (const letter of letters ?? []) {
+        const bodyLower = (letter.body ?? "").toLowerCase();
+        const templateLower = (letter.template_id ?? "").toLowerCase();
+        const searchText = `${templateLower} ${bodyLower}`;
 
-      const matchCount = searchTerms.filter(term => searchText.includes(term)).length;
-      if (matchCount > 0) {
-        results.push({
-          id: letter.id,
-          type: "letter",
-          caseId: letter.case_id,
-          title: `Letter: ${letter.template_id}`,
-          summary: letter.body?.slice(0, 200) ?? "",
-          similarity: matchCount / searchTerms.length,
-          matchedContent: letter.body?.slice(0, 300),
-          createdAt: letter.created_at,
-        });
+        const matchCount = searchTerms.filter(term => searchText.includes(term)).length;
+        if (matchCount > 0) {
+          results.push({
+            id: letter.id,
+            type: "letter",
+            caseId: letter.case_id,
+            title: `Letter: ${letter.template_id}`,
+            summary: letter.body?.slice(0, 200) ?? "",
+            similarity: matchCount / searchTerms.length,
+            matchedContent: letter.body?.slice(0, 300),
+            createdAt: letter.created_at,
+          });
+        }
       }
     }
-  }
 
-  // Sort by similarity and return top results
-  return results
-    .sort((a, b) => b.similarity - a.similarity)
-    .slice(0, limit);
+    // Sort by similarity and return top results
+    return results
+      .sort((a, b) => b.similarity - a.similarity)
+      .slice(0, limit);
+  } catch (err) {
+    console.error("[semanticSearch] Error:", err);
+    return [];
+  }
 }
 
 /**

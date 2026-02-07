@@ -45,6 +45,7 @@ type NavItem = {
   hasRoleFilter?: boolean;
   practiceArea?: string;
   usePracticeAreaRoles?: boolean; // If true, show practice-area-specific roles instead of general roles
+  hideFromNav?: boolean; // Criminal-first: hidden from sidebar for now (per plan)
 };
 
 type SolicitorRole = 
@@ -179,6 +180,7 @@ const NAV_ITEMS: NavItem[] = [
     label: "Templates",
     href: "/templates",
     icon: <FileText className="h-4 w-4" />,
+    hideFromNav: true,
   },
   {
     label: "Documents",
@@ -253,7 +255,7 @@ function SidebarContent() {
   };
 
   const visibleItems = NAV_ITEMS.filter(
-    (item) => !item.labsOnly || labsEnabled,
+    (item) => !item.hideFromNav && (!item.labsOnly || labsEnabled),
   );
 
   return (
