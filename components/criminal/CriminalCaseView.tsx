@@ -456,8 +456,8 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         />
       )}
 
-      {/* DEBUG: Strategy visibility (temporary) */}
-      {currentPhase >= 2 && (
+      {/* DEBUG: Strategy visibility – only when ?debug=1 in URL */}
+      {currentPhase >= 2 && searchParams.get("debug") === "1" && (
         <Card className="p-4 bg-amber-500/5 border-amber-500/20">
           <h3 className="text-sm font-semibold text-foreground mb-2">DEBUG: Strategy visibility</h3>
           <pre className="text-xs text-muted-foreground whitespace-pre-wrap font-mono">

@@ -46,10 +46,12 @@ export function ChargesPanel({ caseId }: ChargesPanelProps) {
           const aliasesMap = new Map<string, string[]>();
           
           chargesData.forEach((c) => {
-            // Normalize section format (s18, s.18, section 18 -> s18)
+            // Normalize section to a single s+number for dedupe (s18, s.18, section 18, s.18 OAPA 1861 -> s18)
             const normalizeSection = (s: string | null): string => {
               if (!s) return "";
-              return s.replace(/^section\s+/i, "").replace(/^s\.?\s*/i, "s").toLowerCase().trim();
+              const t = s.replace(/^section\s+/i, "").replace(/^s\.?\s*/i, "s").toLowerCase().trim();
+              const numMatch = t.match(/s(\d+)/);
+              return numMatch ? `s${numMatch[1]}` : t;
             };
             
             // Normalize offence name - strip "Alt:" variants and clean up
@@ -74,12 +76,16 @@ export function ChargesPanel({ caseId }: ChargesPanelProps) {
             const altSection = extractAltSection(c.offence);
             
             // Use normalized offence + section as key (e.g., "OAPA1861:s18")
-            // Normalize statute name too if present
-            const statute = (c.offence || "").toLowerCase().includes("offences against the person") 
-              ? "OAPA1861" 
-              : (c.offence || "").toLowerCase().includes("theft") 
+            // Normalize statute so s18/s20 from different docs merge into one row per section
+            const offenceLower = (c.offence || "").toLowerCase();
+            let statute = offenceLower.includes("offences against the person") || offenceLower.includes("oapa")
+              ? "OAPA1861"
+              : offenceLower.includes("theft")
                 ? "TheftAct1968"
                 : "";
+            if (!statute && /^s(18|20)$/.test(normalizedSection) && (offenceLower.includes("gbh") || offenceLower.includes("wounding"))) {
+              statute = "OAPA1861";
+            }
             const key = `${statute || normalizedOffence}:${normalizedSection}`.toLowerCase().trim();
             
             if (!dedupedMap.has(key)) {
