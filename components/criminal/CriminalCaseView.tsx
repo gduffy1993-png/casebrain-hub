@@ -299,7 +299,34 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
 
   return (
     <div className="space-y-6">
-      {/* Pre-Analysis Read Layer - Show when extracted data exists, independent of analysis mode */}
+      {/* TOP: Status strip + at-a-glance + Jump to – so Jump to is at the top for easy section access */}
+      {/* Phase 2: Case Status Strip */}
+      {snapshotLoading ? (
+        <Card className="p-4">
+          <div className="flex items-center gap-2 text-muted-foreground">
+            <Loader2 className="h-4 w-4 animate-spin" />
+            <span className="text-sm">Loading case status...</span>
+          </div>
+        </Card>
+      ) : snapshotError ? (
+        <Card className="p-4">
+          <div className="text-sm text-muted-foreground">
+            Case status will appear once analysis is run.
+          </div>
+        </Card>
+      ) : snapshot ? (
+        <CaseStatusStrip snapshot={snapshot} />
+      ) : null}
+
+      {/* Safety & disclosure at a glance + sticky Jump to nav – right under status strip */}
+      <CriminalCaseAtAGlanceBar
+        caseId={caseId}
+        snapshot={snapshot ?? null}
+        snapshotLoading={snapshotLoading}
+        primaryStrategyLabel={committedStrategy?.primary ?? snapshot?.decisionLog?.currentPosition?.position ?? null}
+      />
+
+      {/* Pre-Analysis Read Layer – below Jump to so nav is always at top */}
       {hasReadLayerData && (
         <>
           {/* Case Summary - Show if we have case title or documents */}
@@ -356,32 +383,6 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
           )}
         </>
       )}
-
-      {/* Phase 2: Case Status Strip */}
-      {snapshotLoading ? (
-        <Card className="p-4">
-          <div className="flex items-center gap-2 text-muted-foreground">
-            <Loader2 className="h-4 w-4 animate-spin" />
-            <span className="text-sm">Loading case status...</span>
-          </div>
-        </Card>
-      ) : snapshotError ? (
-        <Card className="p-4">
-          <div className="text-sm text-muted-foreground">
-            Case status will appear once analysis is run.
-          </div>
-        </Card>
-      ) : snapshot ? (
-        <CaseStatusStrip snapshot={snapshot} />
-      ) : null}
-
-      {/* Safety & disclosure at a glance + sticky Jump to nav */}
-      <CriminalCaseAtAGlanceBar
-        caseId={caseId}
-        snapshot={snapshot ?? null}
-        snapshotLoading={snapshotLoading}
-        primaryStrategyLabel={committedStrategy?.primary ?? snapshot?.decisionLog?.currentPosition?.position ?? null}
-      />
 
       {/* Primary Defence Strategy - Case Fight Plan (ONLY strategy surface for criminal cases) */}
       {/* FIX: Always visible regardless of phase - phase gating only affects bail/sentencing tools */}

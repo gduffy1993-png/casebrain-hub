@@ -9,6 +9,9 @@ type CaseRow = {
   id: string;
   title: string;
   updated_at?: string | null;
+  strategy_recorded?: boolean;
+  strategy_preview?: string | null;
+  disclosure_outstanding?: number | null;
 };
 
 function formatUpdated(updatedAt: string | null | undefined): string {
@@ -73,6 +76,18 @@ export default function DashboardPage() {
                   <div className="min-w-0 flex-1">
                     <p className="truncate font-semibold text-accent">{c.title}</p>
                     <p className="mt-0.5 text-xs text-accent/60">
+                      {c.strategy_recorded && c.strategy_preview
+                        ? `Strategy: ${c.strategy_preview}`
+                        : c.strategy_recorded
+                          ? "Strategy: Recorded"
+                          : "Strategy: —"}
+                      {c.disclosure_outstanding != null && c.disclosure_outstanding > 0
+                        ? ` · Disclosure: ${c.disclosure_outstanding} outstanding`
+                        : c.disclosure_outstanding === 0
+                          ? " · Disclosure: None outstanding"
+                          : ""}
+                    </p>
+                    <p className="mt-0.5 text-xs text-accent/50">
                       Last updated: {formatUpdated(c.updated_at)}
                     </p>
                   </div>
