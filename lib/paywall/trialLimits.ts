@@ -18,14 +18,23 @@ type GetTrialStatusParams = {
   email?: string | null;
 };
 
+/** Trial length in days from first use */
+const TRIAL_DAYS = 14;
+
+/** Max cases allowed during trial (abuse prevention) */
+const TRIAL_MAX_CASES = 2;
+
+/** Max documents allowed during trial (abuse prevention) */
+const TRIAL_MAX_DOCS = 10;
+
 /**
  * Get trial status for an organization
  * 
  * Business Rules:
- * - 28 days from first use (first case created OR first document uploaded)
- * - Max 1 case
- * - Max 10 documents total
- * - Unlimited re-analysis/versions within allowed case
+ * - 14 days (2 weeks) from first use (first case created OR first document uploaded)
+ * - Max 2 cases during trial (abuse prevention)
+ * - Max 10 documents total during trial
+ * - Unlimited re-analysis/versions within allowed cases
  * - Exports allowed during trial
  * 
  * USAGE:
@@ -164,15 +173,15 @@ export async function getTrialStatus({
         isBlocked: false,
         trialEndsAt: null,
         docsUsed,
-        docsLimit: 10,
+        docsLimit: TRIAL_MAX_DOCS,
         casesUsed,
-        casesLimit: 1,
+        casesLimit: TRIAL_MAX_CASES,
       };
     }
 
-    // Compute trial end (28 days from start)
+    // Compute trial end (2 weeks from start)
     const trialEndsAt = new Date(trialStart);
-    trialEndsAt.setDate(trialEndsAt.getDate() + 28);
+    trialEndsAt.setDate(trialEndsAt.getDate() + TRIAL_DAYS);
 
     // Get current counts (with error handling)
     try {
@@ -205,37 +214,34 @@ export async function getTrialStatus({
         reason: "TRIAL_EXPIRED",
         trialEndsAt: trialEndsAt.toISOString(),
         docsUsed,
-        docsLimit: 10,
+        docsLimit: TRIAL_MAX_DOCS,
         casesUsed,
-        casesLimit: 1,
+        casesLimit: TRIAL_MAX_CASES,
       };
     }
 
-    // Check limits: casesUsed >= 1 blocks NEW case creation (but allow viewing existing)
-    // Note: This is checked before case creation, so we check if casesUsed >= 1
-    // Similarly for docs: docsUsed >= 10 blocks NEW document uploads
-    // But we don't block if they're adding to existing case that's within limits
-    if (casesUsed >= 1) {
+    // Check limits: block NEW case creation when at limit (abuse prevention)
+    if (casesUsed >= TRIAL_MAX_CASES) {
       return {
         isBlocked: true,
         reason: "CASE_LIMIT",
         trialEndsAt: trialEndsAt.toISOString(),
         docsUsed,
-        docsLimit: 10,
+        docsLimit: TRIAL_MAX_DOCS,
         casesUsed,
-        casesLimit: 1,
+        casesLimit: TRIAL_MAX_CASES,
       };
     }
 
-    if (docsUsed >= 10) {
+    if (docsUsed >= TRIAL_MAX_DOCS) {
       return {
         isBlocked: true,
         reason: "DOC_LIMIT",
         trialEndsAt: trialEndsAt.toISOString(),
         docsUsed,
-        docsLimit: 10,
+        docsLimit: TRIAL_MAX_DOCS,
         casesUsed,
-        casesLimit: 1,
+        casesLimit: TRIAL_MAX_CASES,
       };
     }
 
@@ -244,9 +250,9 @@ export async function getTrialStatus({
       isBlocked: false,
       trialEndsAt: trialEndsAt.toISOString(),
       docsUsed,
-      docsLimit: 10,
+      docsLimit: TRIAL_MAX_DOCS,
       casesUsed,
-      casesLimit: 1,
+      casesLimit: TRIAL_MAX_CASES,
     };
   } catch (error) {
     // CRITICAL: Never throw - always return a safe status
@@ -255,9 +261,9 @@ export async function getTrialStatus({
     return {
       isBlocked: false,
       docsUsed: 0,
-      docsLimit: 10,
+      docsLimit: TRIAL_MAX_DOCS,
       casesUsed: 0,
-      casesLimit: 1,
+      casesLimit: TRIAL_MAX_CASES,
     };
   }
 }

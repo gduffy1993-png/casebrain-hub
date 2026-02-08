@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { requireAuthContext } from "@/lib/auth";
 import { getSupabaseAdminClient } from "@/lib/supabase";
+import { getTrialStatus } from "@/lib/paywall/trialLimits";
 
 export const runtime = "nodejs";
 
@@ -17,6 +18,31 @@ export async function POST(request: Request) {
   }
 
   const supabase = getSupabaseAdminClient();
+
+  // Enforce trial limits: block creating a new case if at case limit or trial expired
+  const trialStatus = await getTrialStatus({
+    supabase,
+    orgId,
+    userId,
+    email: null,
+  });
+  if (trialStatus.isBlocked) {
+    const reason = trialStatus.reason ?? "TRIAL_EXPIRED";
+    return NextResponse.json(
+      {
+        error:
+          reason === "TRIAL_EXPIRED"
+            ? "Trial has ended. Upgrade to create more cases."
+            : "Trial case limit reached. Upgrade to create more cases.",
+        code: reason,
+        casesUsed: trialStatus.casesUsed,
+        casesLimit: trialStatus.casesLimit,
+        trialEndsAt: trialStatus.trialEndsAt,
+        upgrade: { price: "£39/user/month" },
+      },
+      { status: 402 }
+    );
+  }
 
   const { data: document } = await supabase
     .from("documents")

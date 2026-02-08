@@ -154,8 +154,11 @@ export async function POST(request: Request) {
       if (trialStatus.isBlocked && trialStatus.reason === "CASE_LIMIT") {
         return NextResponse.json(
           {
-            error: "Trial limit reached: 1 case allowed on free trial.",
+            error: "Trial case limit reached. Upgrade to create more cases.",
             code: "CASE_LIMIT",
+            casesUsed: trialStatus.casesUsed,
+            casesLimit: trialStatus.casesLimit,
+            trialEndsAt: trialStatus.trialEndsAt,
             upgrade: { price: "£39/user/month" },
           },
           { status: 402 },
