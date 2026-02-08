@@ -7000,12 +7000,14 @@ export function StrategyCommitmentPanel({
 
           {/* Procedural Safety Status - CRITICAL */}
           {isCommitted && (
-            <ProceduralSafetyPanel
-              caseId={resolvedCaseId}
-              evidenceImpactMap={evidenceImpactMap}
-              declaredDependencies={declaredDependencies}
-              disclosureTimelineEntries={disclosureTimelineEntries}
-            />
+            <div id="section-safety" className="scroll-mt-24">
+              <ProceduralSafetyPanel
+                caseId={resolvedCaseId}
+                evidenceImpactMap={evidenceImpactMap}
+                declaredDependencies={declaredDependencies}
+                disclosureTimelineEntries={disclosureTimelineEntries}
+              />
+            </div>
           )}
 
           {/* Worst-Case Cap Panel */}
@@ -7268,11 +7270,13 @@ export function StrategyCommitmentPanel({
 
         {/* Procedural Safety Status - CRITICAL */}
         {isCommitted && (
-          <ProceduralSafetyPanel
-            evidenceImpactMap={evidenceImpactMap}
-            declaredDependencies={declaredDependencies}
-            disclosureTimelineEntries={disclosureTimelineEntries}
-          />
+          <div id="section-safety" className="scroll-mt-24">
+            <ProceduralSafetyPanel
+              evidenceImpactMap={evidenceImpactMap}
+              declaredDependencies={declaredDependencies}
+              disclosureTimelineEntries={disclosureTimelineEntries}
+            />
+          </div>
         )}
 
         {/* Worst-Case Cap Panel */}

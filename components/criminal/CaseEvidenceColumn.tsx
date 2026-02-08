@@ -109,7 +109,9 @@ export function CaseEvidenceColumn({ caseId, snapshot, onAddDocument, onAddEvide
       </ErrorBoundary>
 
       {/* Disclosure Tracker Table */}
-      <DisclosureTrackerTable items={snapshot.evidence.disclosureItems} />
+      <div id="section-disclosure" className="scroll-mt-24">
+        <DisclosureTrackerTable items={snapshot.evidence.disclosureItems} />
+      </div>
     </div>
   );
 }

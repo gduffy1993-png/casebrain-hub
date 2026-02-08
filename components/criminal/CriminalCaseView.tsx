@@ -21,6 +21,7 @@ import { Scale, Shield, Loader2, FileText, Target } from "lucide-react";
 // Phase 2 components
 import { buildCaseSnapshot, type CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
 import { CaseStatusStrip } from "./CaseStatusStrip";
+import { CriminalCaseAtAGlanceBar } from "./CriminalCaseAtAGlanceBar";
 import { CaseEvidenceColumn } from "./CaseEvidenceColumn";
 import { CaseStrategyColumn } from "./CaseStrategyColumn";
 import { EvidenceSelectorModal } from "@/components/cases/EvidenceSelectorModal";
@@ -267,9 +268,9 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         const paceData = paceRes?.ok ? await paceRes.json().catch(() => null) : null;
         
         setPanelData({
-          bail: { hasData: !!(bailData?.data || bailData?.grounds?.length > 0) },
-          sentencing: { hasData: !!(sentencingData?.data || sentencingData?.personalMitigation?.length > 0) },
-          hearings: { hasData: !!(hearingsData?.hearings?.length > 0) },
+          bail: { hasData: !!(bailData?.data || (bailData?.grounds?.length ?? 0) >= 1) },
+          sentencing: { hasData: !!(sentencingData?.data || (sentencingData?.personalMitigation?.length ?? 0) >= 1) },
+          hearings: { hasData: !!((hearingsData?.hearings?.length ?? 0) >= 1) },
           pace: { hasData: !!(paceData?.data || paceData?.paceStatus) },
         });
       } catch {
@@ -292,8 +293,8 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   // Determine if we have extracted data (independent of analysis mode)
   // These checks are extraction-based only, NOT analysis-based
   const hasExtractedSummary = snapshot?.caseMeta?.title && snapshot.caseMeta.title !== "Untitled Case";
-  const hasExtractedFacts = (snapshot?.evidence?.documents?.length ?? 0) > 0;
-  const hasCharges = (snapshot?.charges?.length ?? 0) > 0;
+  const hasExtractedFacts = (snapshot?.evidence?.documents?.length ?? 0) >= 1;
+  const hasCharges = (snapshot?.charges?.length ?? 0) >= 1;
   const hasReadLayerData = hasExtractedSummary || hasExtractedFacts || hasCharges;
 
   return (
@@ -374,24 +375,34 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         <CaseStatusStrip snapshot={snapshot} />
       ) : null}
 
+      {/* Safety & disclosure at a glance + sticky Jump to nav */}
+      <CriminalCaseAtAGlanceBar
+        caseId={caseId}
+        snapshot={snapshot ?? null}
+        snapshotLoading={snapshotLoading}
+        primaryStrategyLabel={committedStrategy?.primary ?? snapshot?.decisionLog?.currentPosition?.position ?? null}
+      />
+
       {/* Primary Defence Strategy - Case Fight Plan (ONLY strategy surface for criminal cases) */}
       {/* FIX: Always visible regardless of phase - phase gating only affects bail/sentencing tools */}
-      <ErrorBoundary fallback={
-        <div className="text-sm text-muted-foreground p-4">
-          {snapshot?.analysis.canShowStrategyPreview && !snapshot?.analysis.canShowStrategyFull
-            ? "Strategy preview available (thin pack). Add documents for full routes."
-            : "Run analysis to populate this section."}
-        </div>
-      }>
-        <CaseFightPlan 
-          caseId={caseId} 
-          committedStrategy={committedStrategy}
-          canShowStrategyOutputs={snapshot?.analysis.canShowStrategyOutputs ?? false}
-          canShowStrategyPreview={snapshot?.analysis.canShowStrategyPreview ?? false}
-          canShowStrategyFull={snapshot?.analysis.canShowStrategyFull ?? false}
-          strategyDataExists={snapshot?.strategy.strategyDataExists ?? false}
-        />
-      </ErrorBoundary>
+      <div id="section-strategy" className="scroll-mt-24">
+        <ErrorBoundary fallback={
+          <div className="text-sm text-muted-foreground p-4">
+            {snapshot?.analysis.canShowStrategyPreview && !snapshot?.analysis.canShowStrategyFull
+              ? "Strategy preview available (thin pack). Add documents for full routes."
+              : "Run analysis to populate this section."}
+          </div>
+        }>
+          <CaseFightPlan 
+            caseId={caseId} 
+            committedStrategy={committedStrategy}
+            canShowStrategyOutputs={snapshot?.analysis.canShowStrategyOutputs ?? false}
+            canShowStrategyPreview={snapshot?.analysis.canShowStrategyPreview ?? false}
+            canShowStrategyFull={snapshot?.analysis.canShowStrategyFull ?? false}
+            strategyDataExists={snapshot?.strategy.strategyDataExists ?? false}
+          />
+        </ErrorBoundary>
+      </div>
 
       {/* Phase Selector */}
       <CasePhaseSelector
@@ -565,9 +576,11 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
 
       {/* Primary Strategy Plan - Phase 2+ only, shows after commitment */}
       {currentPhase >= 2 && isStrategyCommitted && (
-        <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Strategy plan will appear once analysis is run.</div>}>
-          <Phase2StrategyPlanPanel caseId={caseId} />
-      </ErrorBoundary>
+        <div id="section-next-steps" className="scroll-mt-24">
+          <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Strategy plan will appear once analysis is run.</div>}>
+            <Phase2StrategyPlanPanel caseId={caseId} />
+          </ErrorBoundary>
+        </div>
       )}
 
       {/* Additional Tools - Collapsed (PACE, Court Hearings, Client Advice) */}
@@ -597,7 +610,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
 
       {/* Phase 2: Bail Tools (Accordion in Phase 1, visible in Phase 2+) */}
       {currentPhase >= 2 ? (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div id="section-bail" className="scroll-mt-24 grid grid-cols-1 lg:grid-cols-2 gap-6">
           {showBailTools && (
             <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Bail application will appear once analysis is run.</div>}>
               <BailApplicationPanel caseId={caseId} />

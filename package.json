@@ -2,6 +2,7 @@
   "name": "casebrain-hub",
   "version": "0.1.0",
   "private": true,
+  "main": "electron/main.js",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -18,7 +19,10 @@
     "worker:inbox": "ts-node scripts/worker-inbox.ts",
     "worker:tasks": "ts-node scripts/worker-tasks.ts",
     "worker:pi-risk": "ts-node scripts/worker-pi-risk.ts",
-    "generate-test-pdf": "node scripts/generate-test-pdf.js"
+    "generate-test-pdf": "node scripts/generate-test-pdf.js",
+    "electron": "electron .",
+    "desktop": "concurrently \"npm run dev\" \"wait-on http://localhost:3000 && electron .\"",
+    "desktop:standalone": "electron ."
   },
   "dependencies": {
     "@clerk/nextjs": "^5.7.4",
@@ -52,6 +56,8 @@
     "@types/react-dom": "^18",
     "@types/uuid": "^9.0.7",
     "autoprefixer": "^10.4.19",
+    "electron": "^33.0.0",
+    "wait-on": "^8.0.1",
     "concurrently": "^8.2.2",
     "eslint": "8.57.0",
     "eslint-config-next": "14.2.15",
