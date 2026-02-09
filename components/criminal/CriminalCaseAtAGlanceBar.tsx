@@ -122,7 +122,7 @@ export function CriminalCaseAtAGlanceBar({
                   <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
                 ) : safetyStatus === "SAFE" ? (
                   <span className="text-sm font-medium text-green-600 dark:text-green-400 inline-flex items-center gap-1">
-                    <CheckCircle2 className="h-4 w-4" /> Safe to proceed
+                    <CheckCircle2 className="h-4 w-4" /> SAFE TO PROCEED
                   </span>
                 ) : safetyStatus === "UNSAFE_TO_PROCEED" ? (
                   <span className="text-sm font-medium text-red-600 dark:text-red-400 inline-flex items-center gap-1">

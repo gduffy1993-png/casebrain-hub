@@ -280,6 +280,14 @@ const STRATEGY_OPTIONS: Array<{
 ];
 
 // UI-only helpers: wording cleanup and de-duplication (no core logic change)
+/** One consistent label for procedural safety everywhere (at-a-glance, snapshot, route assessment). */
+function formatProceduralSafetyDisplay(status: string): string {
+  if (status === "SAFE") return "SAFE TO PROCEED";
+  if (status === "UNSAFE_TO_PROCEED") return "UNSAFE TO PROCEED";
+  if (status === "CONDITIONALLY_UNSAFE") return "UNSAFE — critical disclosure missing";
+  return status.replace(/_/g, " ");
+}
+
 function dedupeStrings(arr: string[]): string[] {
   return [...new Set(arr)];
 }
@@ -1623,7 +1631,7 @@ function SupervisorSnapshot({
 Generated: ${timestamp} UTC
 Case Reference: ${caseRef}
 
-PROCEDURAL SAFETY STATUS: ${proceduralSafety?.status.replace(/_/g, " ") || "Not assessed"}
+PROCEDURAL SAFETY STATUS: ${proceduralSafety ? formatProceduralSafetyDisplay(proceduralSafety.status) : "Not assessed"}
 ${proceduralSafety?.explanation || ""}
 ${disclosureState?.is_simulated ? "\nNOTE: SIMULATED documents detected - this is a demo/test case." : ""}
 
@@ -1633,8 +1641,8 @@ Recorded: ${recordedAt}
 
 PRIMARY STRATEGY: ${strategyLabel}
 
-DECLARED DEPENDENCIES (Required & Outstanding):
-${requiredOutstanding.length > 0 ? requiredOutstanding.map(dep => `- ${dep.label}`).join("\n") : "- None"}
+DECLARED DEPENDENCIES (manual):
+${requiredOutstanding.length > 0 ? requiredOutstanding.map(dep => `- ${dep.label}`).join("\n") : "- none set (disclosure still outstanding)"}
 
 DISCLOSURE STATUS SUMMARY:
 ${disclosureGaps.length > 0 ? disclosureGaps.map(item => `- ${item.label} (${item.severity})`).join("\n") : "- All critical and high-priority items satisfied"}
@@ -1663,7 +1671,7 @@ ${worstCaseCap ? `WORST-CASE EXPOSURE CAP:\n${worstCaseCap.explanation}\n` : ""}
   // Short summary (4–6 lines) so snapshot is a summary, not a full repeat of content below
   const summaryLines = [
     proceduralSafety
-      ? `Procedural safety: ${proceduralSafety.status.replace(/_/g, " ")}. ${(proceduralSafety.explanation || "").slice(0, 120)}${(proceduralSafety.explanation?.length ?? 0) > 120 ? "…" : ""}`
+      ? `Procedural safety: ${formatProceduralSafetyDisplay(proceduralSafety.status)}. ${(proceduralSafety.explanation || "").slice(0, 120)}${(proceduralSafety.explanation?.length ?? 0) > 120 ? "…" : ""}`
       : "Procedural safety: Not assessed.",
     `Defence position: ${positionLines.slice(0, 80)}${positionLines.length > 80 ? "…" : ""} (${recordedAt})`,
     `Strategy: ${strategyLabel}.`,
@@ -1720,7 +1728,7 @@ ${worstCaseCap ? `WORST-CASE EXPOSURE CAP:\n${worstCaseCap.explanation}\n` : ""}
                     proceduralSafety.status === "CONDITIONALLY_UNSAFE" ? "bg-amber-500/20 text-amber-600" :
                     "bg-red-500/20 text-red-600"
                   }`}>
-                    {proceduralSafety.status.replace(/_/g, " ")}
+                    {formatProceduralSafetyDisplay(proceduralSafety.status)}
                   </Badge>
                 </div>
                 <p className="text-muted-foreground">{proceduralSafety.explanation}</p>
@@ -1734,12 +1742,12 @@ ${worstCaseCap ? `WORST-CASE EXPOSURE CAP:\n${worstCaseCap.explanation}\n` : ""}
             </div>
 
             <div>
-              <span className="font-semibold text-foreground">Declared Dependencies (Required & Outstanding): </span>
+              <span className="font-semibold text-foreground">Declared Dependencies (manual): </span>
               <ul className="list-disc list-inside text-muted-foreground mt-1">
                 {requiredOutstanding.length > 0 ? requiredOutstanding.map((dep, idx) => (
                   <li key={idx}>{dep.label}</li>
                 )) : (
-                  <li>None</li>
+                  <li>none set (disclosure still outstanding)</li>
                 )}
               </ul>
             </div>
@@ -5591,9 +5599,9 @@ export function StrategyCommitmentPanel({
                 </div>
                 {coordinatorResult.plugin_constraints.procedural_safety?.status && (
                   <div>
-                    <span className="font-semibold text-muted-foreground">Procedural Safety: </span>
+                    <span className="font-semibold text-muted-foreground">Case procedural safety: </span>
                     <span className="text-foreground">
-                      {coordinatorResult.plugin_constraints.procedural_safety.status.replace(/_/g, " ")}
+                      {formatProceduralSafetyDisplay(coordinatorResult.plugin_constraints.procedural_safety.status)}
                     </span>
                   </div>
                 )}
@@ -6286,9 +6294,9 @@ export function StrategyCommitmentPanel({
                   </div>
                   {coordinatorResult.plugin_constraints.procedural_safety?.status && (
                     <div>
-                      <span className="font-semibold text-muted-foreground">Procedural Safety: </span>
+                      <span className="font-semibold text-muted-foreground">Case procedural safety: </span>
                       <span className="text-foreground">
-                        {coordinatorResult.plugin_constraints.procedural_safety.status.replace(/_/g, " ")}
+                        {formatProceduralSafetyDisplay(coordinatorResult.plugin_constraints.procedural_safety.status)}
                       </span>
                     </div>
                   )}
@@ -6387,7 +6395,8 @@ export function StrategyCommitmentPanel({
                     : null;
                   const valid = !needsReassess;
                   const safetyStatus = coordinatorResult?.plugin_constraints?.procedural_safety?.status;
-                  const blockedByDisclosure = safetyStatus === "UNSAFE_TO_PROCEED" || safetyStatus === "CONDITIONALLY_UNSAFE";
+                  const hasCriticalMissing = (solicitorView?.decisive_missing_items?.length ?? 0) > 0;
+                  const blockedByDisclosure = safetyStatus === "UNSAFE_TO_PROCEED" || safetyStatus === "CONDITIONALLY_UNSAFE" || hasCriticalMissing;
                   const validLabel = blockedByDisclosure
                     ? "Strategy unchanged — blocked by disclosure"
                     : "Strategy still valid";
@@ -6906,9 +6915,9 @@ export function StrategyCommitmentPanel({
                     </div>
                     {coordinatorResult.plugin_constraints.procedural_safety?.status && (
                       <div>
-                        <span className="font-semibold text-muted-foreground">Procedural Safety: </span>
+                        <span className="font-semibold text-muted-foreground">Case procedural safety: </span>
                         <span className="text-foreground">
-                          {coordinatorResult.plugin_constraints.procedural_safety.status.replace(/_/g, " ")}
+                          {formatProceduralSafetyDisplay(coordinatorResult.plugin_constraints.procedural_safety.status)}
                         </span>
                       </div>
                     )}
@@ -7162,9 +7171,9 @@ export function StrategyCommitmentPanel({
                 </div>
                 {coordinatorResult.plugin_constraints.procedural_safety?.status && (
                   <div>
-                    <span className="font-semibold text-muted-foreground">Procedural Safety: </span>
+                    <span className="font-semibold text-muted-foreground">Case procedural safety: </span>
                     <span className="text-foreground">
-                      {coordinatorResult.plugin_constraints.procedural_safety.status.replace(/_/g, " ")}
+                      {formatProceduralSafetyDisplay(coordinatorResult.plugin_constraints.procedural_safety.status)}
                     </span>
                   </div>
                 )}
