@@ -17,7 +17,7 @@ import { CasePhaseSelector, type CasePhase } from "./CasePhaseSelector";
 import { StrategyCommitmentPanel, type StrategyCommitment } from "./StrategyCommitmentPanel";
 import { Phase2StrategyPlanPanel } from "./Phase2StrategyPlanPanel";
 import { AnalysisGateBanner, type AnalysisGateBannerProps } from "@/components/AnalysisGateBanner";
-import { Scale, Shield, Loader2, FileText, Target } from "lucide-react";
+import { Scale, Shield, Loader2, FileText, Target, AlertCircle } from "lucide-react";
 // Phase 2 components
 import { buildCaseSnapshot, type CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
 import { CaseStatusStrip } from "./CaseStatusStrip";
@@ -316,9 +316,14 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
           </div>
         </Card>
       ) : snapshot ? (
-        <Card className="p-0 overflow-hidden">
+        <CollapsibleSection
+          title="Case status"
+          description="Bundle, disclosure, analysis, next hearing"
+          defaultOpen={true}
+          icon={<FileText className="h-4 w-4 text-blue-400" />}
+        >
           <CaseStatusStrip snapshot={snapshot} />
-        </Card>
+        </CollapsibleSection>
       ) : null}
 
       {/* Safety & disclosure at a glance + sticky Jump to nav – right under status strip */}
@@ -376,13 +381,18 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
 
           {/* Charges - Show if charges exist (from snapshot, extraction-based) */}
           {hasCharges && (
-            <Card className="p-4 rounded-lg border border-border/80 bg-muted/20">
+            <CollapsibleSection
+              title="Charges"
+              description="Charges and offences"
+              defaultOpen={true}
+              icon={<FileText className="h-4 w-4 text-blue-400" />}
+            >
               <ErrorBoundary fallback={
                 <p className="text-sm text-muted-foreground">Charges will appear once documents are processed.</p>
               }>
                 <ChargesPanel caseId={caseId} />
               </ErrorBoundary>
-            </Card>
+            </CollapsibleSection>
           )}
         </>
       )}
@@ -416,24 +426,34 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
       </div>
 
       {/* Phase Selector */}
-      <Card className="p-4 rounded-lg border border-border/80 bg-muted/20">
+      <CollapsibleSection
+        title="Case phase"
+        description="Disclosure first, positioning, or sentencing"
+        defaultOpen={true}
+        icon={<Target className="h-4 w-4 text-blue-400" />}
+      >
         <CasePhaseSelector
-        caseId={caseId}
-        isDisclosureFirstMode={isDisclosureFirstMode}
-        onPhaseChange={setCurrentPhase}
-        defaultPhase={1}
-        currentPhase={currentPhase}
-        hasSavedPosition={hasSavedPosition}
-        onRecordPosition={() => {
-          setIsPositionModalOpen(true);
-        }}
-      />
-      </Card>
+          caseId={caseId}
+          isDisclosureFirstMode={isDisclosureFirstMode}
+          onPhaseChange={setCurrentPhase}
+          defaultPhase={1}
+          currentPhase={currentPhase}
+          hasSavedPosition={hasSavedPosition}
+          onRecordPosition={() => {
+            setIsPositionModalOpen(true);
+          }}
+        />
+      </CollapsibleSection>
 
-      {/* Gate Banner - Show once at top if analysis is blocked */}
+      {/* Gate Banner - Show once at top if analysis is blocked (always visible when present) */}
       {gateBanner && (
-        <Card className="p-0 overflow-hidden">
-        <AnalysisGateBanner
+        <CollapsibleSection
+          title="Analysis required"
+          description="Run analysis or add documents to continue"
+          defaultOpen={true}
+          icon={<AlertCircle className="h-4 w-4 text-amber-400" />}
+        >
+          <AnalysisGateBanner
           banner={gateBanner.banner}
           diagnostics={gateBanner.diagnostics}
           showHowToFix={true}
@@ -479,7 +499,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
           // Prioritize "Add documents" when in thin pack preview mode
           primaryAction={snapshot?.analysis.canShowStrategyPreview && !snapshot?.analysis.canShowStrategyFull ? "addDocuments" : "runAnalysis"}
         />
-        </Card>
+        </CollapsibleSection>
       )}
 
       {/* DEBUG: Strategy visibility – only when ?debug=1 in URL */}
@@ -524,69 +544,73 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
           </div>
         </Card>
       ) : snapshot ? (
-        <CollapsibleSection
-          title="Evidence & Strategy"
-          description="Disclosure, evidence and defence strategy"
-          defaultOpen={true}
-          icon={<FileText className="h-4 w-4 text-blue-400" />}
-        >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <ErrorBoundary fallback={mounted ? <Card className="p-4"><div className="text-sm text-muted-foreground">Analysis will deepen as further disclosure is received.</div></Card> : null}>
-            <CaseEvidenceColumn 
-              caseId={caseId} 
-              snapshot={snapshot}
-              onAddDocument={() => setShowAddDocuments(true)}
-              onAddEvidenceUpload={() => setShowAddEvidenceUpload(true)}
-              currentPhase={currentPhase}
-              savedPosition={currentPhase >= 2 ? savedPosition : null}
-              onCommitmentChange={(commitment) => {
-                if (commitment) {
-                  setCommittedStrategy(commitment);
-                  setIsStrategyCommitted(true);
-                  buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error);
-                } else {
-                  setCommittedStrategy(null);
-                  setIsStrategyCommitted(false);
-                }
-              }}
-            />
-          </ErrorBoundary>
-          <ErrorBoundary fallback={
-            <Card className="p-4">
+          <CollapsibleSection
+            title="Evidence"
+            description="Documents, missing evidence, disclosure"
+            defaultOpen={true}
+            icon={<FileText className="h-4 w-4 text-blue-400" />}
+          >
+            <ErrorBoundary fallback={mounted ? <div className="text-sm text-muted-foreground">Analysis will deepen as further disclosure is received.</div> : null}>
+              <CaseEvidenceColumn
+                caseId={caseId}
+                snapshot={snapshot}
+                onAddDocument={() => setShowAddDocuments(true)}
+                onAddEvidenceUpload={() => setShowAddEvidenceUpload(true)}
+                currentPhase={currentPhase}
+                savedPosition={currentPhase >= 2 ? savedPosition : null}
+                onCommitmentChange={(commitment) => {
+                  if (commitment) {
+                    setCommittedStrategy(commitment);
+                    setIsStrategyCommitted(true);
+                    buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error);
+                  } else {
+                    setCommittedStrategy(null);
+                    setIsStrategyCommitted(false);
+                  }
+                }}
+              />
+            </ErrorBoundary>
+          </CollapsibleSection>
+          <CollapsibleSection
+            title="Strategy"
+            description="Position, strategy overview, next steps"
+            defaultOpen={true}
+            icon={<Target className="h-4 w-4 text-blue-400" />}
+          >
+            <ErrorBoundary fallback={
               <div className="text-sm text-muted-foreground">
                 {snapshot?.analysis.canShowStrategyPreview && !snapshot?.analysis.canShowStrategyFull
                   ? "Strategy preview available (thin pack). Add documents for full routes."
                   : "Run analysis to populate this section."}
               </div>
-            </Card>
-          }>
-            <CaseStrategyColumn 
-              caseId={caseId} 
-              snapshot={snapshot}
-              currentPhase={currentPhase}
-              onPositionChange={(hasPosition) => {
-                setHasSavedPosition(hasPosition);
-                setCurrentPhase(hasPosition ? 2 : 1);
-              }}
-              savedPosition={savedPosition}
-              onRecordPosition={() => {
-                setIsPositionModalOpen(true);
-              }}
-              onCommitmentChange={(commitment) => {
-                if (commitment) {
-                  setCommittedStrategy(commitment);
-                  setIsStrategyCommitted(true);
-                  // Reload snapshot to reflect new commitment
-                  buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error);
-                } else {
-                  setCommittedStrategy(null);
-                  setIsStrategyCommitted(false);
-                }
-              }}
-            />
-          </ErrorBoundary>
+            }>
+              <CaseStrategyColumn
+                caseId={caseId}
+                snapshot={snapshot}
+                currentPhase={currentPhase}
+                onPositionChange={(hasPosition) => {
+                  setHasSavedPosition(hasPosition);
+                  setCurrentPhase(hasPosition ? 2 : 1);
+                }}
+                savedPosition={savedPosition}
+                onRecordPosition={() => {
+                  setIsPositionModalOpen(true);
+                }}
+                onCommitmentChange={(commitment) => {
+                  if (commitment) {
+                    setCommittedStrategy(commitment);
+                    setIsStrategyCommitted(true);
+                    buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error);
+                  } else {
+                    setCommittedStrategy(null);
+                    setIsStrategyCommitted(false);
+                  }
+                }}
+              />
+            </ErrorBoundary>
+          </CollapsibleSection>
         </div>
-        </CollapsibleSection>
       ) : (
         <Card className="p-6">
           <div className="text-sm text-muted-foreground">
@@ -599,11 +623,16 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
       {/* Primary Strategy Plan - Phase 2+ only, shows after commitment */}
       {currentPhase >= 2 && isStrategyCommitted && (
         <div id="section-next-steps" className="scroll-mt-24">
-          <Card className="p-4 rounded-lg border border-border/80 bg-muted/20">
+          <CollapsibleSection
+            title="Next steps"
+            description="Strategy plan and actions"
+            defaultOpen={true}
+            icon={<Target className="h-4 w-4 text-blue-400" />}
+          >
             <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Strategy plan will appear once analysis is run.</div>}>
               <Phase2StrategyPlanPanel caseId={caseId} />
             </ErrorBoundary>
-          </Card>
+          </CollapsibleSection>
         </div>
       )}
 
@@ -632,17 +661,26 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         </div>
       </CollapsibleSection>
 
-      {/* Phase 2: Bail Tools – each panel in its own box */}
+      {/* Phase 2: Bail Tools – click to expand */}
       {currentPhase >= 2 ? (
-        <div id="section-bail" className="scroll-mt-24 grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {showBailTools && (
-            <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Bail application will appear once analysis is run.</div></Card>}>
-              <BailApplicationPanel caseId={caseId} />
-            </ErrorBoundary>
-          )}
-          <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Bail tracker will appear once analysis is run.</div></Card>}>
-            <BailTracker caseId={caseId} />
-          </ErrorBoundary>
+        <div id="section-bail" className="scroll-mt-24">
+          <CollapsibleSection
+            title="Bail"
+            description="Bail application and custody tracker"
+            defaultOpen={true}
+            icon={<Shield className="h-4 w-4 text-blue-400" />}
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {showBailTools && (
+                <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Bail application will appear once analysis is run.</div></Card>}>
+                  <BailApplicationPanel caseId={caseId} />
+                </ErrorBoundary>
+              )}
+              <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Bail tracker will appear once analysis is run.</div></Card>}>
+                <BailTracker caseId={caseId} />
+              </ErrorBoundary>
+            </div>
+          </CollapsibleSection>
         </div>
       ) : (
         <CollapsibleSection
