@@ -2,6 +2,8 @@ import { requireRole, getOrgMembers } from "@/lib/auth";
 import { Card } from "@/components/ui/card";
 import { NotificationSettingsForm } from "@/components/settings/NotificationSettingsForm";
 import { FirmSettingsForm } from "@/components/settings/FirmSettingsForm";
+import { TrialStatusCard } from "@/components/settings/TrialStatusCard";
+import { BillingCard } from "@/components/settings/BillingCard";
 
 const labsEnabled = process.env.NEXT_PUBLIC_ENABLE_LABS === "true";
 
@@ -19,6 +21,8 @@ export default async function SettingsPage() {
           Manage access, notifications, and firm details for your organisation.
         </p>
       </header>
+      <TrialStatusCard />
+      <BillingCard />
       <Card
         title="Firm settings"
         description="Configure your firm name, address, and default sign-off for letters and bundles."

@@ -21,6 +21,8 @@ import { buildTimePressureState } from "@/lib/criminal/time-pressure-engine";
 import { calculateConfidenceDrift } from "@/lib/criminal/confidence-drift-engine";
 import { generateDecisionCheckpoints } from "@/lib/criminal/decision-checkpoints";
 import { scanResidualAttacks } from "@/lib/criminal/residual-attack-scanner";
+import { buildStrategyCoordinator } from "@/lib/criminal/strategy-coordinator";
+import { computeProceduralSafety } from "@/lib/criminal/procedural-safety";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -291,6 +293,57 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         routeTypes
       );
 
+      // Build procedural_safety from coordinator (same source as Safety panel) for at-a-glance bar
+      let procedural_safety: StrategyAnalysisResponse["procedural_safety"];
+      try {
+        const [caseResult, timelineResult, positionResult] = await Promise.all([
+          supabase.from("criminal_cases").select("declared_dependencies, irreversible_decisions").eq("id", caseId).eq("org_id", caseRow.org_id).maybeSingle(),
+          supabase.from("criminal_disclosure_timeline").select("item, action, action_date, note").eq("case_id", caseId).order("action_date", { ascending: false }),
+          supabase.from("case_positions").select("position_text").eq("case_id", caseId).eq("org_id", caseRow.org_id).order("created_at", { ascending: false }).limit(1).maybeSingle(),
+        ]);
+        const criminalCase = caseResult?.data as { declared_dependencies?: unknown[]; irreversible_decisions?: unknown[] } | null | undefined;
+        const declaredDependencies = Array.isArray(criminalCase?.declared_dependencies) ? criminalCase.declared_dependencies.filter(Boolean) : [];
+        const irreversibleDecisions = Array.isArray(criminalCase?.irreversible_decisions) ? criminalCase.irreversible_decisions.filter(Boolean) : [];
+        const timelineData = Array.isArray(timelineResult?.data) ? timelineResult.data : [];
+        const disclosureTimeline = timelineData.map((e: { item?: string; action?: string; action_date?: string; note?: string }) => ({
+          item: e?.item ?? "",
+          action: e?.action ?? "",
+          date: e?.action_date ?? "",
+          note: e?.note,
+        }));
+        const positionData = positionResult?.data as { position_text?: string } | null | undefined;
+        const recordedPosition = positionData?.position_text
+          ? { position_type: "recorded" as const, position_text: positionData.position_text, primary: undefined }
+          : undefined;
+        const coordinatorResult = buildStrategyCoordinator({
+          caseId,
+          extracted: null,
+          charges: (charges || []).map((c: any) => ({ offence: c?.offence, section: c?.section, count: c?.count })),
+          disclosureTimeline,
+          declaredDependencies: declaredDependencies.map((d: any) => {
+            const raw = (d?.status as string) || "required";
+            const status = raw === "helpful" || raw === "not_needed" ? raw : "required";
+            return { id: d?.id ?? "", label: d?.label ?? "", status, note: d?.note };
+          }),
+          irreversibleDecisions: irreversibleDecisions.map((d: any) => {
+            const raw = (d?.status as string) || "not_yet";
+            const status = raw === "completed" || raw === "planned" ? raw : "not_yet";
+            return { id: d?.id ?? "", label: d?.label ?? "", status, updated_at: d?.updated_at };
+          }),
+          recordedPosition,
+          evidenceImpactMap,
+        });
+        procedural_safety = coordinatorResult?.plugin_constraints?.procedural_safety ?? undefined;
+      } catch (coordErr) {
+        console.warn("[strategy-analysis] Coordinator for procedural_safety failed (non-fatal):", coordErr);
+        try {
+          const fallback = computeProceduralSafety(evidenceImpactMap);
+          procedural_safety = { status: fallback.status, explanation: fallback.explanation, outstandingItems: fallback.outstandingItems ?? [], reasons: fallback.reasons };
+        } catch {
+          procedural_safety = undefined;
+        }
+      }
+
       // Build time pressure state
       const { data: hearings } = await supabase
         .from("criminal_hearings")
@@ -404,6 +457,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         confidenceStates,
         decisionCheckpoints,
         residualSummary,
+        procedural_safety,
       };
 
       return NextResponse.json({

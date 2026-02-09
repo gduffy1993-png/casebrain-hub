@@ -108,5 +108,12 @@ export interface StrategyAnalysisData {
     exhaustedRoutes: RouteType[];
     notes: string;
   };
+  /** Procedural safety from coordinator (same source as Safety panel) */
+  procedural_safety?: {
+    status: string;
+    explanation?: string;
+    outstandingItems?: string[];
+    reasons?: string[];
+  };
 }
 

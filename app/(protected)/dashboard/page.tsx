@@ -12,6 +12,8 @@ type CaseRow = {
   strategy_recorded?: boolean;
   strategy_preview?: string | null;
   disclosure_outstanding?: number | null;
+  next_hearing_date?: string | null;
+  next_hearing_type?: string | null;
 };
 
 function formatUpdated(updatedAt: string | null | undefined): string {
@@ -26,6 +28,17 @@ function formatUpdated(updatedAt: string | null | undefined): string {
     return d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
   } catch {
     return "—";
+  }
+}
+
+function formatNextHearing(dateStr: string | null | undefined, typeStr: string | null | undefined): string {
+  if (!dateStr) return "";
+  try {
+    const d = new Date(dateStr);
+    const datePart = d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+    return typeStr ? `${typeStr} ${datePart}` : datePart;
+  } catch {
+    return "";
   }
 }
 
@@ -76,6 +89,10 @@ export default function DashboardPage() {
                   <div className="min-w-0 flex-1">
                     <p className="truncate font-semibold text-accent">{c.title}</p>
                     <p className="mt-0.5 text-xs text-accent/60">
+                      {c.next_hearing_date
+                        ? `Next: ${formatNextHearing(c.next_hearing_date, c.next_hearing_type)}`
+                        : ""}
+                      {c.next_hearing_date && (c.strategy_recorded || c.disclosure_outstanding != null) ? " · " : ""}
                       {c.strategy_recorded && c.strategy_preview
                         ? `Strategy: ${c.strategy_preview}`
                         : c.strategy_recorded

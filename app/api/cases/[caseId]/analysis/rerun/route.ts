@@ -17,6 +17,7 @@ import { findMissingEvidence } from "@/lib/missing-evidence";
 import { computeAnalysisDelta } from "@/lib/strategic/compute-analysis-delta";
 import { detectCaseRole } from "@/lib/strategic/role-detection";
 import { getTrialStatus } from "@/lib/paywall/trialLimits";
+import { trialLimit402Body } from "@/lib/paywall/trialLimit402";
 import { generateMoveSequence } from "@/lib/strategic/move-sequencing/engine";
 import type { MoveSequenceInput } from "@/lib/strategic/move-sequencing/types";
 
@@ -61,11 +62,7 @@ export async function POST(
 
       if (trialStatus.isBlocked && trialStatus.reason === "TRIAL_EXPIRED") {
         return NextResponse.json(
-          {
-            error: "Free trial expired. Upgrade to continue running analysis.",
-            code: "TRIAL_EXPIRED",
-            upgrade: { price: "£39/user/month" },
-          },
+          trialLimit402Body("TRIAL_EXPIRED", trialStatus),
           { status: 402 },
         );
       }

@@ -1,12 +1,31 @@
 "use client";
 
+import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Check, Zap, Infinity, Shield, Brain, FileText, Mail, Phone, Calendar, CreditCard, BarChart3, Clock, TrendingUp, Users, Star, X } from "lucide-react";
+import { Check, Zap, Infinity, Shield, Brain, FileText, Mail, Phone, Calendar, CreditCard, BarChart3, Clock, TrendingUp, Users, Star, X, Loader2 } from "lucide-react";
 import Link from "next/link";
 
 export default function UpgradePage() {
+  const [loading, setLoading] = useState<"pro" | "starter" | null>(null);
+
+  const handleSubscribePro = async () => {
+    setLoading("pro");
+    try {
+      const res = await fetch("/api/stripe/create-checkout-session", { method: "POST", credentials: "include" });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+        return;
+      }
+      if (!res.ok) throw new Error(data.error || "Failed to start checkout");
+    } catch (e) {
+      console.error(e);
+      setLoading(null);
+    }
+  };
+
   return (
     <div className="container mx-auto px-4 py-12 max-w-6xl">
       {/* Hero Section */}
@@ -322,9 +341,17 @@ export default function UpgradePage() {
           </div>
 
           <div className="space-y-3">
-            <Button className="w-full bg-gradient-to-r from-primary to-cyan-500 hover:from-primary/90 hover:to-cyan-500/90">
-              <Zap className="h-4 w-4 mr-2" />
-              Upgrade to Pro
+            <Button
+              className="w-full bg-gradient-to-r from-primary to-cyan-500 hover:from-primary/90 hover:to-cyan-500/90"
+              onClick={handleSubscribePro}
+              disabled={loading !== null}
+            >
+              {loading === "pro" ? (
+                <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+              ) : (
+                <Zap className="h-4 w-4 mr-2" />
+              )}
+              {loading === "pro" ? "Redirecting…" : "Upgrade to Pro"}
             </Button>
             <p className="text-xs text-center text-muted-foreground">
               <a href="mailto:sales@casebrain.com" className="text-primary hover:underline">Contact sales</a> for 5+ users or enterprise pricing
@@ -404,9 +431,14 @@ export default function UpgradePage() {
             <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary/10">
               Upgrade to Starter - £49/month
             </Button>
-            <Button size="lg" className="bg-gradient-to-r from-primary to-cyan-500 hover:from-primary/90 hover:to-cyan-500/90">
-              <Zap className="h-5 w-5 mr-2" />
-              Upgrade to Pro - £99/month
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-primary to-cyan-500 hover:from-primary/90 hover:to-cyan-500/90"
+              onClick={handleSubscribePro}
+              disabled={loading !== null}
+            >
+              {loading === "pro" ? <Loader2 className="h-5 w-5 mr-2 animate-spin" /> : <Zap className="h-5 w-5 mr-2" />}
+              {loading === "pro" ? "Redirecting…" : "Upgrade to Pro - £99/month"}
             </Button>
             <Button size="lg" variant="outline" onClick={() => window.location.href = "mailto:sales@casebrain.com?subject=Enterprise Inquiry"}>
               Contact Sales

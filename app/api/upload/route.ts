@@ -18,6 +18,7 @@ import { incrementUsage } from "@/lib/paywall/usage";
 import { getCurrentUser } from "@/lib/auth";
 import { getOrCreateOrganisationForUser } from "@/lib/organisations";
 import { getTrialStatus } from "@/lib/paywall/trialLimits";
+import { trialLimit402Body } from "@/lib/paywall/trialLimit402";
 import { extractCriminalCaseMeta, persistCriminalCaseMeta } from "@/lib/criminal/structured-extractor";
 import { normalizePracticeArea } from "@/lib/types/casebrain";
 
@@ -153,14 +154,7 @@ export async function POST(request: Request) {
 
       if (trialStatus.isBlocked && trialStatus.reason === "CASE_LIMIT") {
         return NextResponse.json(
-          {
-            error: "Trial case limit reached. Upgrade to create more cases.",
-            code: "CASE_LIMIT",
-            casesUsed: trialStatus.casesUsed,
-            casesLimit: trialStatus.casesLimit,
-            trialEndsAt: trialStatus.trialEndsAt,
-            upgrade: { price: "£39/user/month" },
-          },
+          trialLimit402Body("CASE_LIMIT", trialStatus),
           { status: 402 },
         );
       }
@@ -253,11 +247,7 @@ export async function POST(request: Request) {
 
     if (trialStatusDoc.isBlocked && trialStatusDoc.reason === "DOC_LIMIT") {
       return NextResponse.json(
-        {
-          error: "Trial limit reached: 10 documents allowed on free trial.",
-          code: "DOC_LIMIT",
-          upgrade: { price: "£39/user/month" },
-        },
+        trialLimit402Body("DOC_LIMIT", trialStatusDoc),
         { status: 402 },
       );
     }

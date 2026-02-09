@@ -196,21 +196,17 @@ export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommi
         </Card>
       )}
 
-      {/* Decision Checkpoints */}
-      <CollapsibleSection
-        title="Decision Checkpoints"
-        description="Key decision moments"
-        defaultOpen={false}
-        icon={<Clock className="h-4 w-4 text-muted-foreground" />}
-      >
-        <div className="text-center py-4 text-muted-foreground text-sm">
-          {snapshot?.analysis?.canShowStrategyPreview && !snapshot?.analysis?.canShowStrategyFull ? (
-            <>Unavailable in thin-pack preview. Add documents then re-analyse to generate these.</>
-          ) : (
-            <>Run analysis to generate decision checkpoints.</>
-          )}
-        </div>
-      </CollapsibleSection>
+      {/* Decision Checkpoints – coming soon (hidden to avoid dead UI) */}
+      {false && (
+        <CollapsibleSection
+          title="Decision Checkpoints"
+          description="Coming soon"
+          defaultOpen={false}
+          icon={<Clock className="h-4 w-4 text-muted-foreground" />}
+        >
+          <div className="text-center py-4 text-muted-foreground text-sm">Coming soon.</div>
+        </CollapsibleSection>
+      )}
 
       {/* Next Steps */}
       <CollapsibleSection

@@ -30,6 +30,7 @@ import { CaseSummaryPanel } from "@/components/cases/CaseSummaryPanel";
 import { CaseKeyFactsPanel } from "@/components/cases/KeyFactsPanel";
 import { ChargesPanel } from "./ChargesPanel";
 import { RecordPositionModal } from "./RecordPositionModal";
+import { BackToTop } from "@/components/ui/back-to-top";
 
 type CriminalCaseViewProps = {
   caseId: string;
@@ -315,7 +316,9 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
           </div>
         </Card>
       ) : snapshot ? (
-        <CaseStatusStrip snapshot={snapshot} />
+        <Card className="p-0 overflow-hidden">
+          <CaseStatusStrip snapshot={snapshot} />
+        </Card>
       ) : null}
 
       {/* Safety & disclosure at a glance + sticky Jump to nav – right under status strip */}
@@ -373,13 +376,13 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
 
           {/* Charges - Show if charges exist (from snapshot, extraction-based) */}
           {hasCharges && (
-            <ErrorBoundary fallback={
-              <Card className="p-4">
+            <Card className="p-4 rounded-lg border border-border/80 bg-muted/20">
+              <ErrorBoundary fallback={
                 <p className="text-sm text-muted-foreground">Charges will appear once documents are processed.</p>
-              </Card>
-            }>
-              <ChargesPanel caseId={caseId} />
-            </ErrorBoundary>
+              }>
+                <ChargesPanel caseId={caseId} />
+              </ErrorBoundary>
+            </Card>
           )}
         </>
       )}
@@ -387,26 +390,34 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
       {/* Primary Defence Strategy - Case Fight Plan (ONLY strategy surface for criminal cases) */}
       {/* FIX: Always visible regardless of phase - phase gating only affects bail/sentencing tools */}
       <div id="section-strategy" className="scroll-mt-24">
-        <ErrorBoundary fallback={
-          <div className="text-sm text-muted-foreground p-4">
-            {snapshot?.analysis.canShowStrategyPreview && !snapshot?.analysis.canShowStrategyFull
-              ? "Strategy preview available (thin pack). Add documents for full routes."
-              : "Run analysis to populate this section."}
-          </div>
-        }>
-          <CaseFightPlan 
-            caseId={caseId} 
-            committedStrategy={committedStrategy}
-            canShowStrategyOutputs={snapshot?.analysis.canShowStrategyOutputs ?? false}
-            canShowStrategyPreview={snapshot?.analysis.canShowStrategyPreview ?? false}
-            canShowStrategyFull={snapshot?.analysis.canShowStrategyFull ?? false}
-            strategyDataExists={snapshot?.strategy.strategyDataExists ?? false}
-          />
-        </ErrorBoundary>
+        <CollapsibleSection
+          title="Defence Strategy Plan"
+          description="Primary strategy and case fight plan"
+          defaultOpen={true}
+          icon={<Target className="h-4 w-4 text-blue-400" />}
+        >
+          <ErrorBoundary fallback={
+            <div className="text-sm text-muted-foreground p-4">
+              {snapshot?.analysis.canShowStrategyPreview && !snapshot?.analysis.canShowStrategyFull
+                ? "Strategy preview available (thin pack). Add documents for full routes."
+                : "Run analysis to populate this section."}
+            </div>
+          }>
+            <CaseFightPlan 
+              caseId={caseId} 
+              committedStrategy={committedStrategy}
+              canShowStrategyOutputs={snapshot?.analysis.canShowStrategyOutputs ?? false}
+              canShowStrategyPreview={snapshot?.analysis.canShowStrategyPreview ?? false}
+              canShowStrategyFull={snapshot?.analysis.canShowStrategyFull ?? false}
+              strategyDataExists={snapshot?.strategy.strategyDataExists ?? false}
+            />
+          </ErrorBoundary>
+        </CollapsibleSection>
       </div>
 
       {/* Phase Selector */}
-      <CasePhaseSelector
+      <Card className="p-4 rounded-lg border border-border/80 bg-muted/20">
+        <CasePhaseSelector
         caseId={caseId}
         isDisclosureFirstMode={isDisclosureFirstMode}
         onPhaseChange={setCurrentPhase}
@@ -417,9 +428,11 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
           setIsPositionModalOpen(true);
         }}
       />
+      </Card>
 
       {/* Gate Banner - Show once at top if analysis is blocked */}
       {gateBanner && (
+        <Card className="p-0 overflow-hidden">
         <AnalysisGateBanner
           banner={gateBanner.banner}
           diagnostics={gateBanner.diagnostics}
@@ -466,6 +479,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
           // Prioritize "Add documents" when in thin pack preview mode
           primaryAction={snapshot?.analysis.canShowStrategyPreview && !snapshot?.analysis.canShowStrategyFull ? "addDocuments" : "runAnalysis"}
         />
+        </Card>
       )}
 
       {/* DEBUG: Strategy visibility – only when ?debug=1 in URL */}
@@ -510,6 +524,12 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
           </div>
         </Card>
       ) : snapshot ? (
+        <CollapsibleSection
+          title="Evidence & Strategy"
+          description="Disclosure, evidence and defence strategy"
+          defaultOpen={true}
+          icon={<FileText className="h-4 w-4 text-blue-400" />}
+        >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <ErrorBoundary fallback={mounted ? <Card className="p-4"><div className="text-sm text-muted-foreground">Analysis will deepen as further disclosure is received.</div></Card> : null}>
             <CaseEvidenceColumn 
@@ -566,6 +586,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
             />
           </ErrorBoundary>
         </div>
+        </CollapsibleSection>
       ) : (
         <Card className="p-6">
           <div className="text-sm text-muted-foreground">
@@ -578,9 +599,11 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
       {/* Primary Strategy Plan - Phase 2+ only, shows after commitment */}
       {currentPhase >= 2 && isStrategyCommitted && (
         <div id="section-next-steps" className="scroll-mt-24">
-          <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Strategy plan will appear once analysis is run.</div>}>
-            <Phase2StrategyPlanPanel caseId={caseId} />
-          </ErrorBoundary>
+          <Card className="p-4 rounded-lg border border-border/80 bg-muted/20">
+            <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Strategy plan will appear once analysis is run.</div>}>
+              <Phase2StrategyPlanPanel caseId={caseId} />
+            </ErrorBoundary>
+          </Card>
         </div>
       )}
 
@@ -594,30 +617,30 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {showPACE && (
-            <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">PACE compliance will appear once analysis is run.</div>}>
+            <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">PACE compliance will appear once analysis is run.</div></Card>}>
               <PACEComplianceChecker caseId={caseId} />
             </ErrorBoundary>
           )}
           {showCourtHearings && (
-            <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Court hearings will appear once analysis is run.</div>}>
+            <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Court hearings will appear once analysis is run.</div></Card>}>
               <CourtHearingsPanel caseId={caseId} currentPhase={currentPhase} />
             </ErrorBoundary>
           )}
-          <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Client advice will appear once analysis is run.</div>}>
+          <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Client advice will appear once analysis is run.</div></Card>}>
             <ClientAdvicePanel caseId={caseId} />
-      </ErrorBoundary>
+          </ErrorBoundary>
         </div>
       </CollapsibleSection>
 
-      {/* Phase 2: Bail Tools (Accordion in Phase 1, visible in Phase 2+) */}
+      {/* Phase 2: Bail Tools – each panel in its own box */}
       {currentPhase >= 2 ? (
         <div id="section-bail" className="scroll-mt-24 grid grid-cols-1 lg:grid-cols-2 gap-6">
           {showBailTools && (
-            <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Bail application will appear once analysis is run.</div>}>
+            <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Bail application will appear once analysis is run.</div></Card>}>
               <BailApplicationPanel caseId={caseId} />
             </ErrorBoundary>
           )}
-          <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Bail tracker will appear once analysis is run.</div>}>
+          <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Bail tracker will appear once analysis is run.</div></Card>}>
             <BailTracker caseId={caseId} />
           </ErrorBoundary>
         </div>
@@ -630,11 +653,11 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         >
           <div className="space-y-6">
             {showBailTools && (
-              <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Bail application will appear once analysis is run.</div>}>
-              <BailApplicationPanel caseId={caseId} />
-            </ErrorBoundary>
+              <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Bail application will appear once analysis is run.</div></Card>}>
+                <BailApplicationPanel caseId={caseId} />
+              </ErrorBoundary>
             )}
-            <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Bail tracker will appear once analysis is run.</div>}>
+            <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Bail tracker will appear once analysis is run.</div></Card>}>
               <BailTracker caseId={caseId} />
             </ErrorBoundary>
           </div>
@@ -651,11 +674,11 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         >
           <div className="space-y-6">
             {showSentencingTools && (
-              <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Sentencing mitigation will appear once analysis is run.</div>}>
-              <SentencingMitigationPanel caseId={caseId} />
-            </ErrorBoundary>
-          )}
-        </div>
+              <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Sentencing mitigation will appear once analysis is run.</div></Card>}>
+                <SentencingMitigationPanel caseId={caseId} />
+              </ErrorBoundary>
+            )}
+          </div>
         </CollapsibleSection>
       )}
 
@@ -736,6 +759,8 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         }}
         showPhase2CTA={!hasSavedPosition && currentPhase === 1}
       />
+
+      <BackToTop />
     </div>
   );
 }

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
-import { Shield, FileSearch, Loader2, CheckCircle2, AlertTriangle, Minus } from "lucide-react";
+import { Shield, FileSearch, Loader2, CheckCircle2, AlertTriangle, Minus, Calendar } from "lucide-react";
 import { computeProceduralSafety } from "@/lib/criminal/procedural-safety";
 import type { CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
 
@@ -13,6 +13,16 @@ const JUMP_LINKS = [
   { id: "section-disclosure", label: "Disclosure" },
   { id: "section-bail", label: "Bail" },
 ] as const;
+
+function formatNextHearing(dateStr: string | null): string {
+  if (!dateStr) return "";
+  try {
+    const d = new Date(dateStr);
+    return d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+  } catch {
+    return "";
+  }
+}
 
 type CriminalCaseAtAGlanceBarProps = {
   caseId: string;
@@ -36,7 +46,7 @@ export function CriminalCaseAtAGlanceBar({
   const outstandingCount =
     snapshot?.evidence?.disclosureItems?.filter((d) => d.status === "Outstanding").length ?? 0;
 
-  // Fetch procedural safety when we have a snapshot (from strategy-analysis evidenceImpactMap)
+  // Fetch procedural safety from strategy-analysis (same source as Safety panel – coordinator)
   useEffect(() => {
     if (!caseId || !snapshot || snapshotLoading) {
       setSafetyStatus(null);
@@ -51,6 +61,11 @@ export function CriminalCaseAtAGlanceBar({
       })
       .then((data) => {
         if (cancelled) return;
+        const procedural_safety = data?.data?.procedural_safety;
+        if (procedural_safety?.status) {
+          setSafetyStatus(procedural_safety.status as "SAFE" | "CONDITIONALLY_UNSAFE" | "UNSAFE_TO_PROCEED");
+          return;
+        }
         const map = data?.data?.evidenceImpactMap;
         if (Array.isArray(map) && map.length > 0) {
           const result = computeProceduralSafety(map);
@@ -82,6 +97,14 @@ export function CriminalCaseAtAGlanceBar({
       {/* At-a-glance summary card - only when we have snapshot (or loading) */}
       {(snapshot !== undefined || snapshotLoading) && (
         <Card className="p-4 rounded-lg border border-border/80 bg-muted/30">
+          {/* Next hearing – prominent at top */}
+          {snapshot?.caseMeta?.hearingNextAt && (
+            <p className="text-sm font-semibold text-foreground mb-3 pb-2 border-b border-border/50 flex items-center gap-2">
+              <Calendar className="h-4 w-4 text-primary shrink-0" />
+              Next: {snapshot.caseMeta.hearingNextType ? `${snapshot.caseMeta.hearingNextType} ` : ""}
+              {formatNextHearing(snapshot.caseMeta.hearingNextAt)}
+            </p>
+          )}
           {/* One-line supervisor summary when strategy is committed */}
           {primaryStrategyLabel && (
             <p className="text-sm font-medium text-foreground mb-3 pb-2 border-b border-border/50">
@@ -144,9 +167,10 @@ export function CriminalCaseAtAGlanceBar({
         </Card>
       )}
 
-      {/* Sticky Jump to nav */}
+      {/* Sticky Jump to nav – scroll target for "Back to top" */}
       <div
-        className="sticky top-0 z-10 -mx-0 mt-2 flex flex-wrap items-center gap-2 rounded-lg border border-border/60 bg-background/95 py-2 px-3 backdrop-blur supports-[backdrop-filter]:bg-background/80"
+        id="case-jump-bar"
+        className="sticky top-0 z-10 -mx-0 mt-2 flex flex-wrap items-center gap-2 rounded-lg border border-border/60 bg-background/95 py-2 px-3 backdrop-blur supports-[backdrop-filter]:bg-background/80 scroll-mt-4"
         role="navigation"
         aria-label="Jump to section"
       >

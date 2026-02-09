@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { requireAuthContext } from "@/lib/auth";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { getTrialStatus } from "@/lib/paywall/trialLimits";
+import { trialLimit402Body } from "@/lib/paywall/trialLimit402";
 
 export const runtime = "nodejs";
 
@@ -29,18 +30,8 @@ export async function POST(request: Request) {
   if (trialStatus.isBlocked) {
     const reason = trialStatus.reason ?? "TRIAL_EXPIRED";
     return NextResponse.json(
-      {
-        error:
-          reason === "TRIAL_EXPIRED"
-            ? "Trial has ended. Upgrade to create more cases."
-            : "Trial case limit reached. Upgrade to create more cases.",
-        code: reason,
-        casesUsed: trialStatus.casesUsed,
-        casesLimit: trialStatus.casesLimit,
-        trialEndsAt: trialStatus.trialEndsAt,
-        upgrade: { price: "£39/user/month" },
-      },
-      { status: 402 }
+      trialLimit402Body(reason, trialStatus),
+      { status: 402 },
     );
   }
 

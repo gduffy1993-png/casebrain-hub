@@ -21,6 +21,7 @@ export type CaseSnapshot = {
     role: string | null;
     lastUpdatedAt: string | null;
     hearingNextAt: string | null;
+    hearingNextType: string | null;
   };
   analysis: {
     hasVersion: boolean;
@@ -148,6 +149,7 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
     role: caseData.practice_area || null,
     lastUpdatedAt: caseData.updated_at || caseData.updatedAt || null,
     hearingNextAt: nextHearing?.hearingDate || null,
+    hearingNextType: nextHearing?.hearingType || null,
   };
 
   // Normalize analysis data

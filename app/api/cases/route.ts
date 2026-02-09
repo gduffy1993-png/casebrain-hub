@@ -47,14 +47,42 @@ export async function GET(request: Request) {
     }
 
     const caseIds = list.map((c) => c.id);
-    const { data: positions } = await supabase
-      .from("case_positions")
-      .select("case_id, position_text")
-      .eq("org_id", orgId)
-      .in("case_id", caseIds)
-      .order("created_at", { ascending: false });
 
-    const positionByCase = latestPositionsByCase(positions ?? []);
+    // Enrich with position, disclosure count, next hearing – non-fatal so case list always returns
+    let positionsData: { case_id: string; position_text: string }[] = [];
+    let disclosureData: { case_id: string }[] = [];
+    let trackerData: { case_id: string; missing_items?: string[] | null }[] = [];
+    let criminalData: { id: string; next_hearing_date: string | null; next_hearing_type: string | null }[] = [];
+    try {
+      const [p, d, t, cr] = await Promise.all([
+        supabase.from("case_positions").select("case_id, position_text").eq("org_id", orgId).in("case_id", caseIds).order("created_at", { ascending: false }),
+        supabase.from("case_disclosure_chasers").select("case_id").eq("org_id", orgId).in("case_id", caseIds).neq("status", "received"),
+        supabase.from("disclosure_tracker").select("case_id, missing_items").eq("org_id", orgId).in("case_id", caseIds),
+        supabase.from("criminal_cases").select("id, next_hearing_date, next_hearing_type").eq("org_id", orgId).in("id", caseIds),
+      ]);
+      positionsData = p.data ?? [];
+      disclosureData = d.data ?? [];
+      trackerData = t.data ?? [];
+      criminalData = cr.data ?? [];
+    } catch (e) {
+      console.warn("[api/cases] Enrichment queries failed, returning cases without status:", e);
+    }
+
+    const positionByCase = latestPositionsByCase(positionsData);
+    const disclosureCountByCase = new Map<string, number>();
+    for (const row of disclosureData) {
+      disclosureCountByCase.set(row.case_id, (disclosureCountByCase.get(row.case_id) ?? 0) + 1);
+    }
+    const trackerByCase = new Map<string, number>();
+    for (const row of trackerData) {
+      const n = Array.isArray(row.missing_items) ? row.missing_items.length : 0;
+      if (n > 0) trackerByCase.set(row.case_id, n);
+    }
+    const nextHearingByCase = new Map<string, { date: string; type: string | null }>();
+    for (const row of criminalData) {
+      if (row.next_hearing_date)
+        nextHearingByCase.set(row.id, { date: row.next_hearing_date, type: row.next_hearing_type ?? null });
+    }
 
     const casesWithStatus = list.map((c) => {
       const positionText = positionByCase.get(c.id);
@@ -64,11 +92,17 @@ export async function GET(request: Request) {
             ? positionText.slice(0, 40).trim() + "…"
             : positionText.trim()
           : null;
+      const chaserCount = disclosureCountByCase.get(c.id) ?? 0;
+      const trackerCount = trackerByCase.get(c.id) ?? 0;
+      const disclosureOutstanding = chaserCount > 0 ? chaserCount : trackerCount;
+      const nextHearing = nextHearingByCase.get(c.id) ?? null;
       return {
         ...c,
         strategy_recorded: positionText != null && positionText.trim().length > 0,
         strategy_preview: strategy_preview || null,
-        disclosure_outstanding: null as number | null,
+        disclosure_outstanding: disclosureOutstanding as number,
+        next_hearing_date: nextHearing?.date ?? null,
+        next_hearing_type: nextHearing?.type ?? null,
       };
     });
 

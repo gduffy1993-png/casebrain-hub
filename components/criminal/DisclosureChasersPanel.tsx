@@ -34,15 +34,22 @@ export function DisclosureChasersPanel({ caseId }: DisclosureChasersPanelProps) 
   }, [caseId]);
 
   async function loadChasers() {
+    if (!caseId) {
+      setLoading(false);
+      return;
+    }
     try {
       setLoading(true);
       const response = await fetch(`/api/criminal/${caseId}/disclosure-chasers`);
-      const result = await response.json();
-      if (result.ok) {
-        setChasers(result.data || []);
+      const result = await response.json().catch(() => ({ ok: false }));
+      if (result?.ok && Array.isArray(result.data)) {
+        setChasers(result.data);
+      } else {
+        setChasers([]);
       }
     } catch (error) {
       console.error("Failed to load disclosure chasers:", error);
+      setChasers([]);
     } finally {
       setLoading(false);
     }

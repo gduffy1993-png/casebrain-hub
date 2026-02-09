@@ -392,18 +392,18 @@ export function MissingEvidencePanel({ caseId, items: propItems }: MissingEviden
       }
       description="Evidence gaps detected. Create tasks to obtain missing items."
       action={
-        <div className="flex gap-2 text-xs">
+        <div className="flex flex-wrap gap-2 text-xs">
           <span className="rounded-full bg-danger/10 px-2 py-1 text-danger">
-            {missingCount} missing
+            Missing: {missingCount}
           </span>
-          {requestedCount > 0 && (
-            <span className="rounded-full bg-warning/10 px-2 py-1 text-warning">
-              {requestedCount} requested
-            </span>
-          )}
           {unassessedCount > 0 && (
             <span className="rounded-full bg-muted/20 px-2 py-1 text-muted-foreground">
               Unassessed: {unassessedCount}
+            </span>
+          )}
+          {requestedCount > 0 && (
+            <span className="rounded-full bg-warning/10 px-2 py-1 text-warning">
+              {requestedCount} requested
             </span>
           )}
         </div>

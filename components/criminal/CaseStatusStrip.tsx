@@ -79,11 +79,27 @@ export function CaseStatusStrip({ snapshot }: CaseStatusStripProps) {
     }
   };
 
-  const lastUpdated = formatDate(snapshot.caseMeta.lastUpdatedAt);
-  const nextHearing = formatDate(snapshot.caseMeta.hearingNextAt);
+  const caseMeta = snapshot?.caseMeta;
+  const lastUpdated = formatDate(caseMeta?.lastUpdatedAt ?? null);
+  const nextHearingDate = formatDate(caseMeta?.hearingNextAt ?? null);
+  const nextHearingType = caseMeta?.hearingNextType?.trim() || null;
+  const nextHearing = nextHearingDate
+    ? nextHearingType
+      ? `${nextHearingType} ${nextHearingDate}`
+      : nextHearingDate
+    : null;
 
   return (
     <div className="flex flex-wrap items-center gap-4 p-4 rounded-lg border border-border/50 bg-muted/10">
+      {/* Next Hearing – first for solicitor workflow */}
+      <div className="flex items-center gap-2">
+        <Calendar className="h-4 w-4 text-muted-foreground" />
+        <span className="text-xs text-muted-foreground">Next:</span>
+        <span className="text-xs font-semibold text-foreground">
+          {nextHearing || "Not set"}
+        </span>
+      </div>
+
       {/* Bundle Completeness (Phase A) */}
       <div className="flex items-center gap-2">
         <FileText className="h-4 w-4 text-muted-foreground" />
@@ -119,15 +135,6 @@ export function CaseStatusStrip({ snapshot }: CaseStatusStripProps) {
           <span className="text-xs font-medium text-foreground">{lastUpdated}</span>
         </div>
       )}
-
-      {/* Next Hearing */}
-      <div className="flex items-center gap-2">
-        <Calendar className="h-4 w-4 text-muted-foreground" />
-        <span className="text-xs text-muted-foreground">Next hearing:</span>
-        <span className="text-xs font-medium text-foreground">
-          {nextHearing || "Not set"}
-        </span>
-      </div>
 
       {/* Current Position */}
       <div className="flex items-center gap-2">

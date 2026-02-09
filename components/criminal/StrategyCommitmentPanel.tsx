@@ -6386,12 +6386,17 @@ export function StrategyCommitmentPanel({
                     ? "Reassess – new disclosure or key date"
                     : null;
                   const valid = !needsReassess;
+                  const safetyStatus = coordinatorResult?.plugin_constraints?.procedural_safety?.status;
+                  const blockedByDisclosure = safetyStatus === "UNSAFE_TO_PROCEED" || safetyStatus === "CONDITIONALLY_UNSAFE";
+                  const validLabel = blockedByDisclosure
+                    ? "Strategy unchanged — blocked by disclosure"
+                    : "Strategy still valid";
                   return (
                     <div className="flex flex-wrap items-center gap-2 border-t border-primary/20 pt-2 mt-2 text-xs">
                       {valid ? (
-                        <Badge className="bg-green-500/20 text-green-700 dark:text-green-400 border-green-500/30">
+                        <Badge className={blockedByDisclosure ? "bg-amber-500/20 text-amber-700 dark:text-amber-400 border-amber-500/30" : "bg-green-500/20 text-green-700 dark:text-green-400 border-green-500/30"}>
                           <CheckCircle className="h-3 w-3 mr-1 inline" />
-                          Strategy still valid
+                          {validLabel}
                         </Badge>
                       ) : (
                         <>

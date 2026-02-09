@@ -6,6 +6,7 @@ import { FileText, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MissingEvidencePanel } from "@/components/core/MissingEvidencePanel";
 import { DisclosureTrackerTable } from "./DisclosureTrackerTable";
+import { DisclosureChasersPanel } from "./DisclosureChasersPanel";
 import { StrategyCommitmentPanel, type StrategyCommitment } from "./StrategyCommitmentPanel";
 import { ErrorBoundary } from "@/components/ui/error-boundary";
 import type { CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
@@ -103,14 +104,19 @@ export function CaseEvidenceColumn({ caseId, snapshot, onAddDocument, onAddEvide
         </div>
       </Card>
 
-      {/* Missing Evidence */}
-      <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Missing evidence panel temporarily unavailable.</div>}>
+      {/* Missing Evidence – in its own box */}
+      <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Missing evidence panel temporarily unavailable.</div></Card>}>
         <MissingEvidencePanel caseId={caseId} />
       </ErrorBoundary>
 
-      {/* Disclosure Tracker Table */}
-      <div id="section-disclosure" className="scroll-mt-24">
+      {/* Disclosure – tracker (snapshot) + chase list (requested/chased/received); scroll target for Jump to */}
+      <div id="section-disclosure" className="scroll-mt-24 space-y-6">
         <DisclosureTrackerTable items={snapshot.evidence.disclosureItems} />
+        {caseId && (
+          <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Disclosure chase list temporarily unavailable.</div></Card>}>
+            <DisclosureChasersPanel caseId={caseId} />
+          </ErrorBoundary>
+        )}
       </div>
     </div>
   );
