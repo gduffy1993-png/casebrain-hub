@@ -188,8 +188,7 @@ export function CaseKeyFactsPanel({ caseId }: KeyFactsPanelProps) {
   }, [caseId]); // Note: keyFacts intentionally not in deps to avoid infinite loop
 
   // Initialise default expanded domains and role lens (calm UI)
-
-  // Initialise default expanded domains and role lens (calm UI)
+  // Demo polish: all domain summaries (Incident, Medical, Police/Procedural, Disclosure) start closed
   useEffect(() => {
     if (!keyFacts?.layeredSummary) return;
 
@@ -200,9 +199,7 @@ export function CaseKeyFactsPanel({ caseId }: KeyFactsPanelProps) {
     });
     setExpandedRole(defaultRole);
 
-    const domains = keyFacts.layeredSummary.domainSummaries.slice().sort((a, b) => b.relevanceScore - a.relevanceScore);
-    const topToOpen = domains.slice(0, 2).map((d) => d.domain);
-    setOpenDomains(new Set(topToOpen));
+    setOpenDomains(new Set()); // Closed by default for demo polish
   }, [keyFacts?.layeredSummary, keyFacts?.practiceArea, searchParams]);
 
   // Only show full loading state if we have no data

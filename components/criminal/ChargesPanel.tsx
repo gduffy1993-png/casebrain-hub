@@ -1,10 +1,20 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { FileText, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
+/** In normal mode: show "Source: X" from [AUTO_EXTRACTED] details; hide confidence. With ?debug=1 show raw. */
+function formatChargeDetails(details: string | null, debug: boolean): string | null {
+  if (!details) return null;
+  if (debug) return details;
+  const autoMatch = details.match(/\[AUTO_EXTRACTED\]\s*source=([^;]+)/i);
+  if (autoMatch) return `Source: ${autoMatch[1].trim()}`;
+  return null; // hide other raw technical lines in normal mode
+}
 
 type Charge = {
   id: string;
@@ -25,6 +35,8 @@ type ChargesPanelProps = {
 };
 
 export function ChargesPanel({ caseId }: ChargesPanelProps) {
+  const searchParams = useSearchParams();
+  const debug = searchParams.get("debug") === "1";
   const [charges, setCharges] = useState<Charge[]>([]);
   const [loading, setLoading] = useState(true);
   const [detectedCharges, setDetectedCharges] = useState<string[]>([]);
@@ -292,9 +304,10 @@ export function ChargesPanel({ caseId }: ChargesPanelProps) {
                         {charge.section && (
                           <p className="text-xs text-muted-foreground mt-1">{charge.section}</p>
                         )}
-                        {charge.details && (
-                          <p className="text-xs text-muted-foreground mt-1">{charge.details}</p>
-                        )}
+                        {(() => {
+                          const detailLine = formatChargeDetails(charge.details, debug);
+                          return detailLine ? <p className="text-xs text-muted-foreground mt-1">{detailLine}</p> : null;
+                        })()}
                       </div>
                       <Badge variant="secondary" className="text-xs">
                         {charge.status}
@@ -331,12 +344,13 @@ export function ChargesPanel({ caseId }: ChargesPanelProps) {
                         {charge.section && (
                           <p className="text-xs text-muted-foreground mt-1">{charge.section}</p>
                         )}
-                        {charge.details && (
-                          <p className="text-xs text-muted-foreground mt-1">{charge.details}</p>
-                        )}
+                        {(() => {
+                          const detailLine = formatChargeDetails(charge.details, debug);
+                          return detailLine ? <p className="text-xs text-muted-foreground mt-1">{detailLine}</p> : null;
+                        })()}
                         <p className="text-xs text-amber-400/80 mt-2">
                           Needs charge sheet/indictment
-                          {charge.confidence != null && charge.confidence < 0.75 && (
+                          {debug && charge.confidence != null && charge.confidence < 0.75 && (
                             <span className="ml-1">
                               (Extraction confidence: {(charge.confidence * 100).toFixed(0)}%)
                             </span>

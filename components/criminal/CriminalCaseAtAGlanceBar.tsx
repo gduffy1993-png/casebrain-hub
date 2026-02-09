@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
-import { CollapsibleSection } from "@/components/ui/collapsible-section";
+import { FoldSection } from "@/components/ui/fold-section";
 import { Shield, FileSearch, Loader2, CheckCircle2, AlertTriangle, Minus, Calendar } from "lucide-react";
 import { computeProceduralSafety } from "@/lib/criminal/procedural-safety";
 import type { CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
@@ -97,12 +97,7 @@ export function CriminalCaseAtAGlanceBar({
     <div className="space-y-0">
       {/* At-a-glance – click to expand/collapse */}
       {(snapshot !== undefined || snapshotLoading) && (
-        <CollapsibleSection
-          title="At a glance"
-          description="Next hearing, strategy, safety, disclosure"
-          defaultOpen={true}
-          icon={<Calendar className="h-4 w-4 text-blue-400" />}
-        >
+        <FoldSection title="At a glance" defaultOpen={true}>
           <div className="p-2 space-y-3">
             {/* Next hearing – prominent at top */}
             {snapshot?.caseMeta?.hearingNextAt && (
@@ -129,9 +124,13 @@ export function CriminalCaseAtAGlanceBar({
                   <span className="text-sm font-medium text-green-600 dark:text-green-400 inline-flex items-center gap-1">
                     <CheckCircle2 className="h-4 w-4" /> Safe to proceed
                   </span>
-                ) : safetyStatus === "CONDITIONALLY_UNSAFE" || safetyStatus === "UNSAFE_TO_PROCEED" ? (
+                ) : safetyStatus === "UNSAFE_TO_PROCEED" ? (
+                  <span className="text-sm font-medium text-red-600 dark:text-red-400 inline-flex items-center gap-1">
+                    <AlertTriangle className="h-4 w-4" /> UNSAFE TO PROCEED
+                  </span>
+                ) : safetyStatus === "CONDITIONALLY_UNSAFE" ? (
                   <span className="text-sm font-medium text-amber-600 dark:text-amber-400 inline-flex items-center gap-1">
-                    <AlertTriangle className="h-4 w-4" /> Not safe to proceed
+                    <AlertTriangle className="h-4 w-4" /> UNSAFE — critical disclosure missing
                   </span>
                 ) : (
                   <span className="text-sm text-muted-foreground inline-flex items-center gap-1">
@@ -172,10 +171,10 @@ export function CriminalCaseAtAGlanceBar({
               </div>
             </div>
           </div>
-        </CollapsibleSection>
+        </FoldSection>
       )}
 
-      {/* Sticky Jump to nav – in its own box; scroll target for "Back to top" */}
+      {/* Sticky Jump to nav – NOT collapsible; always visible */}
       <div id="case-jump-bar" className="sticky top-0 z-10 mt-2 scroll-mt-4">
         <Card className="flex flex-wrap items-center gap-2 rounded-xl border border-border/80 bg-muted/20 py-2 px-3">
           <span className="text-xs font-medium text-muted-foreground mr-1">Jump to:</span>

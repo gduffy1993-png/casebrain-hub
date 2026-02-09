@@ -339,7 +339,7 @@ function buildContradictionsOrUncertainties(domain: DomainKey, domainDocIds: str
 
   // If missing evidence exists, make it explicit uncertainty signal
   if (domainMissing.length > 0) {
-    out.push("This domain contains missing evidence items; treat any conclusions here as provisional until those items are obtained.");
+    out.push("Some items are unassessed/missing — treat this summary as provisional until disclosure is complete.");
   }
 
   return uniq(out).slice(0, 5);
@@ -352,7 +352,7 @@ function buildHelpsHurts(domain: DomainKey, practiceArea: PracticeArea, missingE
   if (domainDocIds.length === 0) return [];
 
   if (domainMissingCount > 0) {
-    out.push("Hurts (for now): key supporting material appears to be missing in this domain, which limits how hard you can commit to a narrative.");
+    out.push("Current limitation: key supporting material appears missing in this domain, which limits how hard you can commit to a narrative.");
   } else {
     out.push("Helps: this domain is comparatively complete, which supports clearer sequencing and firmer requests.");
   }

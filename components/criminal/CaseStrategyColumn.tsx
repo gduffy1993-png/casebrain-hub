@@ -2,10 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Target, AlertCircle, CheckCircle2, Clock } from "lucide-react";
-import { CollapsibleSection } from "@/components/ui/collapsible-section";
+import { Target } from "lucide-react";
+import { FoldSection } from "@/components/ui/fold-section";
 import type { CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
 import { RecordPositionModal } from "./RecordPositionModal";
 
@@ -114,7 +113,7 @@ export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommi
   return (
     <div className="space-y-6">
       {/* Record Current Position */}
-      <Card title="Record Current Position" description="Set the formal defence stance for this case (before choosing a strategy)." data-record-position>
+      <FoldSection title="Record Current Position" defaultOpen={false}>
         {isLoadingPosition ? (
           <div className="text-center py-4">
             <p className="text-sm text-muted-foreground">Loading position...</p>
@@ -148,19 +147,11 @@ export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommi
             </button>
           </div>
         )}
-      </Card>
+      </FoldSection>
 
-      {/* Record Position Modal - managed by parent */}
-
-      {/* Strategy Overview (Collapsed) */}
-      {/* GATE: Show if ANY strategy data exists, regardless of commitment or full extraction */}
+      {/* Strategy Overview */}
       {hasAnyStrategyData(snapshot) ? (
-        <CollapsibleSection
-          title="Strategy Overview"
-          description="Current strategy analysis"
-          defaultOpen={false}
-          icon={<Target className="h-4 w-4 text-primary" />}
-        >
+        <FoldSection title="Strategy Overview" defaultOpen={false}>
           <div className="space-y-3">
             {snapshot?.strategy?.primary && (
               <div>
@@ -187,34 +178,17 @@ export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommi
               </div>
             )}
           </div>
-        </CollapsibleSection>
+        </FoldSection>
       ) : (
-        <Card title="Strategy Overview" description="Current strategy analysis">
+        <FoldSection title="Strategy Overview" defaultOpen={false}>
           <div className="text-center py-4 text-muted-foreground text-sm">
             Run analysis to populate strategy overview.
           </div>
-        </Card>
-      )}
-
-      {/* Decision Checkpoints – coming soon (hidden to avoid dead UI) */}
-      {false && (
-        <CollapsibleSection
-          title="Decision Checkpoints"
-          description="Coming soon"
-          defaultOpen={false}
-          icon={<Clock className="h-4 w-4 text-muted-foreground" />}
-        >
-          <div className="text-center py-4 text-muted-foreground text-sm">Coming soon.</div>
-        </CollapsibleSection>
+        </FoldSection>
       )}
 
       {/* Next Steps */}
-      <CollapsibleSection
-        title="Next Steps"
-        description="Immediate actions"
-        defaultOpen={false}
-        icon={<AlertCircle className="h-4 w-4 text-muted-foreground" />}
-      >
+      <FoldSection title="Next Steps" defaultOpen={false}>
         {snapshot?.actions?.nextSteps && snapshot.actions.nextSteps.length > 0 ? (
           <div className="space-y-2">
             {snapshot.actions.nextSteps.map((step) => (
@@ -247,7 +221,7 @@ export function CaseStrategyColumn({ caseId, snapshot, onRecordPosition, onCommi
             )}
           </div>
         )}
-      </CollapsibleSection>
+      </FoldSection>
     </div>
   );
 }
