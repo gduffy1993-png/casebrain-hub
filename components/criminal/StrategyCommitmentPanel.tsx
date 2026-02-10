@@ -5597,43 +5597,45 @@ export function StrategyCommitmentPanel({
                   <span className="font-semibold text-muted-foreground">Offence: </span>
                   <span className="text-foreground">{coordinatorResult.offence.label}</span>
                 </div>
-                {coordinatorResult.plugin_constraints.procedural_safety?.status && (
-                  <div>
-                    <span className="font-semibold text-muted-foreground">Case procedural safety: </span>
-                    <span className="text-foreground">
-                      {formatProceduralSafetyDisplay(coordinatorResult.plugin_constraints.procedural_safety.status)}
-                    </span>
-                  </div>
-                )}
+                <div>
+                  <p className="text-muted-foreground text-xs">Procedural status: see Safety panel.</p>
+                </div>
                 <div>
                   <span className="font-semibold text-muted-foreground mb-2 block">Routes:</span>
                   <div className="space-y-2 pl-2">
-                    {coordinatorResult.routes.slice(0, 4).map((route, idx) => (
-                      <div key={idx} className="border-l-2 border-primary/30 pl-2">
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="font-medium text-foreground">
-                            {route.id.replace(/_/g, " ")}
-                          </span>
-                          <Badge
-                            variant={
-                              route.status === "viable"
-                                ? "success"
-                                : route.status === "risky"
-                                  ? "warning"
-                                  : "outline"
-                            }
-                            className="text-xs"
-                          >
-                            {route.status}
-                          </Badge>
+                    {coordinatorResult.routes.slice(0, 4).map((route, idx) => {
+                      const ps = coordinatorResult.plugin_constraints.procedural_safety?.status;
+                      const isUnsafe = ps === "UNSAFE_TO_PROCEED" || ps === "CONDITIONALLY_UNSAFE";
+                      const statusLabel = (route.status === "viable" || route.status === "risky") && isUnsafe
+                        ? `${route.status} (theoretical)`
+                        : route.status;
+                      return (
+                        <div key={idx} className="border-l-2 border-primary/30 pl-2">
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="font-medium text-foreground">
+                              {route.id.replace(/_/g, " ")}
+                            </span>
+                            <Badge
+                              variant={
+                                route.status === "viable"
+                                  ? "success"
+                                  : route.status === "risky"
+                                    ? "warning"
+                                    : "outline"
+                              }
+                              className="text-xs"
+                            >
+                              {statusLabel}
+                            </Badge>
+                          </div>
+                          {route.reasons.length > 0 && (
+                            <p className="text-muted-foreground text-[11px]">
+                              {route.reasons[0]}
+                            </p>
+                          )}
                         </div>
-                        {route.reasons.length > 0 && (
-                          <p className="text-muted-foreground text-[11px]">
-                            {route.reasons[0]}
-                          </p>
-                        )}
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
                 {coordinatorResult.judge_analysis && (
@@ -6292,43 +6294,45 @@ export function StrategyCommitmentPanel({
                     <span className="font-semibold text-muted-foreground">Offence: </span>
                     <span className="text-foreground">{coordinatorResult.offence.label}</span>
                   </div>
-                  {coordinatorResult.plugin_constraints.procedural_safety?.status && (
-                    <div>
-                      <span className="font-semibold text-muted-foreground">Case procedural safety: </span>
-                      <span className="text-foreground">
-                        {formatProceduralSafetyDisplay(coordinatorResult.plugin_constraints.procedural_safety.status)}
-                      </span>
-                    </div>
-                  )}
+                  <div>
+                    <p className="text-muted-foreground text-xs">Procedural status: see Safety panel.</p>
+                  </div>
                   <div>
                     <span className="font-semibold text-muted-foreground mb-2 block">Routes:</span>
                     <div className="space-y-2 pl-2">
-                      {coordinatorResult.routes.slice(0, 4).map((route, idx) => (
-                        <div key={idx} className="border-l-2 border-primary/30 pl-2">
-                          <div className="flex items-center gap-2 mb-1">
-                            <span className="font-medium text-foreground">
-                              {route.id.replace(/_/g, " ")}
-                            </span>
-                            <Badge
-                              variant={
-                                route.status === "viable"
-                                  ? "success"
-                                  : route.status === "risky"
-                                    ? "warning"
-                                    : "outline"
-                              }
-                              className="text-xs"
-                            >
-                              {route.status}
-                            </Badge>
+                      {coordinatorResult.routes.slice(0, 4).map((route, idx) => {
+                        const ps = coordinatorResult.plugin_constraints.procedural_safety?.status;
+                        const isUnsafe = ps === "UNSAFE_TO_PROCEED" || ps === "CONDITIONALLY_UNSAFE";
+                        const statusLabel = (route.status === "viable" || route.status === "risky") && isUnsafe
+                          ? `${route.status} (theoretical)`
+                          : route.status;
+                        return (
+                          <div key={idx} className="border-l-2 border-primary/30 pl-2">
+                            <div className="flex items-center gap-2 mb-1">
+                              <span className="font-medium text-foreground">
+                                {route.id.replace(/_/g, " ")}
+                              </span>
+                              <Badge
+                                variant={
+                                  route.status === "viable"
+                                    ? "success"
+                                    : route.status === "risky"
+                                      ? "warning"
+                                      : "outline"
+                                }
+                                className="text-xs"
+                              >
+                                {statusLabel}
+                              </Badge>
+                            </div>
+                            {route.reasons.length > 0 && (
+                              <p className="text-muted-foreground text-[11px]">
+                                {route.reasons[0]}
+                              </p>
+                            )}
                           </div>
-                          {route.reasons.length > 0 && (
-                            <p className="text-muted-foreground text-[11px]">
-                              {route.reasons[0]}
-                            </p>
-                          )}
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   </div>
                   {coordinatorResult.judge_analysis && (
@@ -6913,43 +6917,45 @@ export function StrategyCommitmentPanel({
                       <span className="font-semibold text-muted-foreground">Offence: </span>
                       <span className="text-foreground">{coordinatorResult.offence.label}</span>
                     </div>
-                    {coordinatorResult.plugin_constraints.procedural_safety?.status && (
-                      <div>
-                        <span className="font-semibold text-muted-foreground">Case procedural safety: </span>
-                        <span className="text-foreground">
-                          {formatProceduralSafetyDisplay(coordinatorResult.plugin_constraints.procedural_safety.status)}
-                        </span>
-                      </div>
-                    )}
+                    <div>
+                      <p className="text-muted-foreground text-xs">Procedural status: see Safety panel.</p>
+                    </div>
                     <div>
                       <span className="font-semibold text-muted-foreground mb-2 block">Routes:</span>
                       <div className="space-y-2 pl-2">
-                        {coordinatorResult.routes.slice(0, 4).map((route, idx) => (
-                          <div key={idx} className="border-l-2 border-primary/30 pl-2">
-                            <div className="flex items-center gap-2 mb-1">
-                              <span className="font-medium text-foreground">
-                                {route.id.replace(/_/g, " ")}
-                              </span>
-                              <Badge
-                                variant={
-                                  route.status === "viable"
-                                    ? "success"
-                                    : route.status === "risky"
-                                      ? "warning"
-                                      : "outline"
-                                }
-                                className="text-xs"
-                              >
-                                {route.status}
-                              </Badge>
+                        {coordinatorResult.routes.slice(0, 4).map((route, idx) => {
+                          const ps = coordinatorResult.plugin_constraints.procedural_safety?.status;
+                          const isUnsafe = ps === "UNSAFE_TO_PROCEED" || ps === "CONDITIONALLY_UNSAFE";
+                          const statusLabel = (route.status === "viable" || route.status === "risky") && isUnsafe
+                            ? `${route.status} (theoretical)`
+                            : route.status;
+                          return (
+                            <div key={idx} className="border-l-2 border-primary/30 pl-2">
+                              <div className="flex items-center gap-2 mb-1">
+                                <span className="font-medium text-foreground">
+                                  {route.id.replace(/_/g, " ")}
+                                </span>
+                                <Badge
+                                  variant={
+                                    route.status === "viable"
+                                      ? "success"
+                                      : route.status === "risky"
+                                        ? "warning"
+                                        : "outline"
+                                  }
+                                  className="text-xs"
+                                >
+                                  {statusLabel}
+                                </Badge>
+                              </div>
+                              {route.reasons.length > 0 && (
+                                <p className="text-muted-foreground text-[11px]">
+                                  {route.reasons[0]}
+                                </p>
+                              )}
                             </div>
-                            {route.reasons.length > 0 && (
-                              <p className="text-muted-foreground text-[11px]">
-                                {route.reasons[0]}
-                              </p>
-                            )}
-                          </div>
-                        ))}
+                          );
+                        })}
                       </div>
                     </div>
                     {coordinatorResult.judge_analysis && (
@@ -7169,43 +7175,45 @@ export function StrategyCommitmentPanel({
                   <span className="font-semibold text-muted-foreground">Offence: </span>
                   <span className="text-foreground">{coordinatorResult.offence.label}</span>
                 </div>
-                {coordinatorResult.plugin_constraints.procedural_safety?.status && (
-                  <div>
-                    <span className="font-semibold text-muted-foreground">Case procedural safety: </span>
-                    <span className="text-foreground">
-                      {formatProceduralSafetyDisplay(coordinatorResult.plugin_constraints.procedural_safety.status)}
-                    </span>
-                  </div>
-                )}
+                <div>
+                  <p className="text-muted-foreground text-xs">Procedural status: see Safety panel.</p>
+                </div>
                 <div>
                   <span className="font-semibold text-muted-foreground mb-2 block">Routes:</span>
                   <div className="space-y-2 pl-2">
-                    {coordinatorResult.routes.slice(0, 4).map((route, idx) => (
-                      <div key={idx} className="border-l-2 border-primary/30 pl-2">
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="font-medium text-foreground">
-                            {route.id.replace(/_/g, " ")}
-                          </span>
-                          <Badge
-                            variant={
-                              route.status === "viable"
-                                ? "success"
-                                : route.status === "risky"
-                                  ? "warning"
-                                  : "outline"
-                            }
-                            className="text-xs"
-                          >
-                            {route.status}
-                          </Badge>
+                    {coordinatorResult.routes.slice(0, 4).map((route, idx) => {
+                      const ps = coordinatorResult.plugin_constraints.procedural_safety?.status;
+                      const isUnsafe = ps === "UNSAFE_TO_PROCEED" || ps === "CONDITIONALLY_UNSAFE";
+                      const statusLabel = (route.status === "viable" || route.status === "risky") && isUnsafe
+                        ? `${route.status} (theoretical)`
+                        : route.status;
+                      return (
+                        <div key={idx} className="border-l-2 border-primary/30 pl-2">
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="font-medium text-foreground">
+                              {route.id.replace(/_/g, " ")}
+                            </span>
+                            <Badge
+                              variant={
+                                route.status === "viable"
+                                  ? "success"
+                                  : route.status === "risky"
+                                    ? "warning"
+                                    : "outline"
+                              }
+                              className="text-xs"
+                            >
+                              {statusLabel}
+                            </Badge>
+                          </div>
+                          {route.reasons.length > 0 && (
+                            <p className="text-muted-foreground text-[11px]">
+                              {route.reasons[0]}
+                            </p>
+                          )}
                         </div>
-                        {route.reasons.length > 0 && (
-                          <p className="text-muted-foreground text-[11px]">
-                            {route.reasons[0]}
-                          </p>
-                        )}
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
                 {coordinatorResult.judge_analysis && (
