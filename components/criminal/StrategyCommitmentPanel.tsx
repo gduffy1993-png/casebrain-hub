@@ -4667,6 +4667,8 @@ export function StrategyCommitmentPanel({
   } | null>(null);
   const [mounted, setMounted] = useState(false);
   const [coordinatorResult, setCoordinatorResult] = useState<StrategyCoordinatorResult | null>(null);
+  /** Procedural safety from strategy-analysis API (same source as Safety panel). Badge must use this, not coordinatorResult. */
+  const [proceduralSafetyFromApi, setProceduralSafetyFromApi] = useState<{ status: string; explanation?: string } | null>(null);
   const [solicitorView, setSolicitorView] = useState<SolicitorView | null>(null);
   const [defenceStrategyPlan, setDefenceStrategyPlan] = useState<DefenceStrategyPlan | null>(null);
   const [cpsPressureLens, setCpsPressureLens] = useState<CPSPressureLens | null>(null);
@@ -4889,11 +4891,12 @@ export function StrategyCommitmentPanel({
     fetchProceduralState();
   }, [resolvedCaseId, isCommitted, primary, evidenceImpactMap.length, strategyRoutes]);
 
-  // Load strategy routes from strategy-analysis endpoint
+  // Load strategy routes from strategy-analysis endpoint (same response includes procedural_safety for badge)
   useEffect(() => {
     if (!resolvedCaseId) return;
 
     setIsLoadingRoutes(true);
+    setProceduralSafetyFromApi(null); // Clear until new response; avoids stale "Strategy still valid" on case change
     console.log("[StrategyCommitmentPanel] resolvedCaseId", resolvedCaseId);
     
     fetch(`/api/criminal/${resolvedCaseId}/strategy-analysis`)
@@ -4931,9 +4934,15 @@ export function StrategyCommitmentPanel({
           if (data.banner) {
             setIsGated(true);
           }
+          // Single source of truth for badge: same object as Safety panel / Supervisor Snapshot
+          setProceduralSafetyFromApi(data.data.procedural_safety ?? null);
+        } else {
+          setProceduralSafetyFromApi(null);
         }
       })
-      .catch(console.error)
+      .catch(() => {
+        setProceduralSafetyFromApi(null);
+      })
       .finally(() => {
         setIsLoadingRoutes(false);
       });
@@ -6398,19 +6407,27 @@ export function StrategyCommitmentPanel({
                     ? "Reassess – new disclosure or key date"
                     : null;
                   const valid = !needsReassess;
-                  const safetyStatus = coordinatorResult?.plugin_constraints?.procedural_safety?.status;
-                  const hasCriticalMissing = (solicitorView?.decisive_missing_items?.length ?? 0) > 0;
-                  const blockedByDisclosure = safetyStatus === "UNSAFE_TO_PROCEED" || safetyStatus === "CONDITIONALLY_UNSAFE" || hasCriticalMissing;
-                  const validLabel = blockedByDisclosure
-                    ? "Strategy unchanged — blocked by disclosure"
-                    : "Strategy still valid";
+                  // Must use same source as Safety panel: strategy-analysis API procedural_safety (not coordinatorResult)
+                  const safetyStatus = proceduralSafetyFromApi?.status;
+                  const isSafeToProceed = safetyStatus === "SAFE";
+                  const validLabel = isSafeToProceed
+                    ? "Strategy still valid"
+                    : "Strategy unchanged — awaiting disclosure";
+                  const showDebugSafety = searchParams?.get("debug") === "1";
                   return (
                     <div className="flex flex-wrap items-center gap-2 border-t border-primary/20 pt-2 mt-2 text-xs">
                       {valid ? (
-                        <Badge className={blockedByDisclosure ? "bg-amber-500/20 text-amber-700 dark:text-amber-400 border-amber-500/30" : "bg-green-500/20 text-green-700 dark:text-green-400 border-green-500/30"}>
-                          <CheckCircle className="h-3 w-3 mr-1 inline" />
-                          {validLabel}
-                        </Badge>
+                        <>
+                          <Badge className={isSafeToProceed ? "bg-green-500/20 text-green-700 dark:text-green-400 border-green-500/30" : "bg-amber-500/20 text-amber-700 dark:text-amber-400 border-amber-500/30"}>
+                            <CheckCircle className="h-3 w-3 mr-1 inline" />
+                            {validLabel}
+                          </Badge>
+                          {showDebugSafety && (
+                            <span className="text-muted-foreground font-mono text-[10px]" title="Raw procedural_safety from strategy-analysis API">
+                              [safety={safetyStatus ?? "null"}]
+                            </span>
+                          )}
+                        </>
                       ) : (
                         <>
                           <Badge variant="outline" className="bg-amber-500/10 text-amber-700 dark:text-amber-400 border-amber-500/30">
