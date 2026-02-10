@@ -4695,6 +4695,7 @@ export function StrategyCommitmentPanel({
   });
   const { push: showToast } = useToast();
   const storageKey = `casebrain:strategyCommitment:${resolvedCaseId}`;
+  const debugBuildId = process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA ?? process.env.NEXT_PUBLIC_BUILD_ID ?? null;
 
   // Earliest reliable indicator that strategy data exists (UNCONDITIONAL - no phase/commit/route/loading gates)
   const hasStrategyData = (
@@ -4900,8 +4901,18 @@ export function StrategyCommitmentPanel({
     console.log("[StrategyCommitmentPanel] resolvedCaseId", resolvedCaseId);
     
     fetch(`/api/criminal/${resolvedCaseId}/strategy-analysis`)
-      .then(res => res.json())
-      .then(data => {
+      .then(async (res) => {
+        const data = await res.json().catch(() => null);
+        // Badge single source of truth: set procedural_safety on ANY successful response (do not gate on routes)
+        if (res.ok && data != null) {
+          const safety = data?.data?.procedural_safety ?? data?.procedural_safety ?? null;
+          setProceduralSafetyFromApi(safety);
+        } else {
+          setProceduralSafetyFromApi(null);
+        }
+        return data;
+      })
+      .then((data) => {
         if (data?.ok && data?.data?.routes) {
           setStrategyRoutes(data.data.routes);
           setSelectedRouteId(data.data.selectedRoute);
@@ -4911,7 +4922,6 @@ export function StrategyCommitmentPanel({
           if (data.data.recommendation) {
             setRecommendation(data.data.recommendation);
           }
-          // Set default expanded route: committed primary, or first route if none committed
           const defaultExpanded = primary || data.data.routes[0]?.type;
           if (defaultExpanded) {
             setExpandedRoutes(new Set([defaultExpanded]));
@@ -4934,10 +4944,6 @@ export function StrategyCommitmentPanel({
           if (data.banner) {
             setIsGated(true);
           }
-          // Single source of truth for badge: same object as Safety panel / Supervisor Snapshot
-          setProceduralSafetyFromApi(data.data.procedural_safety ?? null);
-        } else {
-          setProceduralSafetyFromApi(null);
         }
       })
       .catch(() => {
@@ -6407,8 +6413,9 @@ export function StrategyCommitmentPanel({
                     ? "Reassess – new disclosure or key date"
                     : null;
                   const valid = !needsReassess;
-                  // Must use same source as Safety panel: strategy-analysis API procedural_safety (not coordinatorResult)
+                  // ONE source of truth: strategy-analysis API data.data.procedural_safety (same as Safety panel)
                   const safetyStatus = proceduralSafetyFromApi?.status;
+                  // Strict: ONLY "SAFE" shows "Strategy still valid". Never default to valid when missing or UNSAFE.
                   const isSafeToProceed = safetyStatus === "SAFE";
                   const validLabel = isSafeToProceed
                     ? "Strategy still valid"
@@ -6423,8 +6430,9 @@ export function StrategyCommitmentPanel({
                             {validLabel}
                           </Badge>
                           {showDebugSafety && (
-                            <span className="text-muted-foreground font-mono text-[10px]" title="Raw procedural_safety from strategy-analysis API">
-                              [safety={safetyStatus ?? "null"}]
+                            <span className="text-muted-foreground font-mono text-[10px]" title="From GET /api/criminal/[caseId]/strategy-analysis → data.data.procedural_safety">
+                              [apiSafety={safetyStatus ?? "null"}]
+                              {debugBuildId != null ? ` [build=${String(debugBuildId).slice(0, 7)}]` : null}
                             </span>
                           )}
                         </>
