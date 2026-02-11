@@ -60,6 +60,8 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   const [isStrategyCommitted, setIsStrategyCommitted] = useState(false);
   const [hasSavedPosition, setHasSavedPosition] = useState(false);
   const [isPositionModalOpen, setIsPositionModalOpen] = useState(false);
+  /** When user clicks "Edit" on AI suggestion – prefill Record Position modal with this text; cleared on modal close. */
+  const [pendingPositionText, setPendingPositionText] = useState<string | null>(null);
   const [savedPosition, setSavedPosition] = useState<{ id: string; position_text: string; created_at: string; phase: number } | null>(null);
   const [panelData, setPanelData] = useState<{
     bail: { hasData: boolean };
@@ -568,6 +570,35 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
                 }}
                 savedPosition={savedPosition}
                 onRecordPosition={() => {
+                  setPendingPositionText(null);
+                  setIsPositionModalOpen(true);
+                }}
+                onUsePositionSuggestion={async (text, opts) => {
+                  try {
+                    const res = await fetch(`/api/criminal/${caseId}/position`, {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      credentials: "include",
+                      body: JSON.stringify({
+                        position_text: text.trim(),
+                        phase: 2,
+                        ...(opts?.fromAiSuggestion && { source: "ai_suggested" }),
+                      }),
+                    });
+                    if (!res.ok) throw new Error("Failed to save position");
+                    const data = await res.json();
+                    if (data.ok && (data.data || data.position)) {
+                      setSavedPosition(data.data || data.position);
+                      setHasSavedPosition(true);
+                      setCurrentPhase(2);
+                      setPendingPositionText(null);
+                    }
+                  } catch (error) {
+                    console.error("[CriminalCaseView] Failed to save AI suggestion as position:", error);
+                  }
+                }}
+                onEditPositionSuggestion={(text) => {
+                  setPendingPositionText(text);
                   setIsPositionModalOpen(true);
                 }}
                 onCommitmentChange={(commitment) => {
@@ -707,7 +738,10 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         caseId={caseId}
         charges={snapshot?.charges?.map((c) => ({ offence: c.offence, section: c.section ?? null })) ?? []}
         isOpen={isPositionModalOpen}
-        onClose={() => setIsPositionModalOpen(false)}
+        onClose={() => {
+          setIsPositionModalOpen(false);
+          setPendingPositionText(null);
+        }}
         onSuccess={async () => {
           // Refetch position after save; phase 2 persists from position existence
           try {
@@ -731,7 +765,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
           }
           router.refresh();
         }}
-        initialText={savedPosition?.position_text || ""}
+        initialText={pendingPositionText ?? savedPosition?.position_text ?? ""}
         currentPhase={currentPhase}
         onPhase2Request={() => {
           setCurrentPhase(2);

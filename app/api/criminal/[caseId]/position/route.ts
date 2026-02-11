@@ -8,6 +8,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAuthContextApi } from "@/lib/auth-api";
 import { getSupabaseAdminClient } from "@/lib/supabase";
+import { logStrategySuggest } from "@/lib/criminal/strategy-suggest/logger";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -16,6 +17,8 @@ type RouteParams = {
 type PositionRequest = {
   position_text: string;
   phase?: number;
+  /** Option 3 Phase 4.3: when "ai_suggested", record that this position was AI-suggested and user-approved (audit only). */
+  source?: "manual" | "ai_suggested";
 };
 
 export async function POST(request: NextRequest, { params }: RouteParams) {
@@ -77,13 +80,19 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       );
     }
 
-    // Insert position - only include allowed fields
+    const isAiSuggested = body.source === "ai_suggested";
+
+    // Insert position - only include allowed fields (Phase 4.3: optional audit fields)
     const insertPayload = {
       case_id: caseId,
       org_id: orgId,
       user_id: userId,
       phase: phase,
       position_text: trimmedText,
+      ...(isAiSuggested && {
+        source: "ai_suggested" as const,
+        ai_approved_at: new Date().toISOString(),
+      }),
     };
 
     let position: any = null;
@@ -126,6 +135,9 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       }
 
       position = data;
+      if (isAiSuggested) {
+        logStrategySuggest({ event: "approved", caseId });
+      }
     } catch (insertException) {
       // Catch any unexpected errors during insert
       console.error(`[case_positions][insert] caseId=${caseId} unexpected exception`, {

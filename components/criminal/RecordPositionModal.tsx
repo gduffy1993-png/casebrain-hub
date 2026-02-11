@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/Toast";
+import { STRATEGY_ANGLE_LABELS } from "@/lib/criminal/strategy-suggest/constants";
 
 type ChargeSummary = { offence: string; section: string | null };
 
@@ -23,10 +24,10 @@ type RecordPositionModalProps = {
 
 type Preset = { label: string; text: string };
 
-// Always shown for every criminal case
+// Option 3 Phase 1.5: Generic fallback from strategy-suggest constants (single source of truth)
 const GENERIC_PRESETS: Preset[] = [
   {
-    label: "Reserved pending disclosure",
+    label: STRATEGY_ANGLE_LABELS.reserved_pending_disclosure ?? "Reserved pending disclosure",
     text: "Position reserved pending full disclosure. Awaiting CCTV, witness statements, and forensic evidence before committing to a defence strategy.",
   },
 ];
