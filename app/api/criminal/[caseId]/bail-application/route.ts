@@ -194,7 +194,9 @@ export async function GET(
     ];
 
     // Generate ready-to-use application with placeholders clearly marked
-    const readyToUseApplication = `BAIL APPLICATION
+    const readyToUseApplication = `TEMPLATE – SOLICITOR APPROVAL REQUIRED BEFORE USE. Do not rely without confirmation.
+
+BAIL APPLICATION
 
 GROUNDS:
 ${grounds.map((g, i) => `${i + 1}. ${g}`).join("\n")}
@@ -211,7 +213,7 @@ ${authorities.join("\n")}
 ${solicitorInputRequired.length > 0 ? `\nSOLICITOR INPUT REQUIRED:\n${solicitorInputRequired.map((item, i) => `${i + 1}. ${item}`).join("\n")}\n` : ""}
 ${evidenceBasis.length > 0 ? `\nEVIDENCE BASIS:\n${evidenceBasis.map((item, i) => `${i + 1}. ${item}`).join("\n")}\n` : ""}
 
-I submit that bail should be granted on the grounds set out above, with the conditions proposed.`;
+Subject to solicitor confirmation and verification of all facts, I submit that bail should be granted on the grounds set out above, with the conditions proposed.`;
 
     const result: BailApplication = {
       grounds,

@@ -332,8 +332,8 @@ export function CaseFightPlan({
       case "outcome_management":
         return [
           "Request disclosure to assess prosecution case strength and realistic prospects",
-          "Consider early guilty plea if case is strong (maximum sentence reduction)",
-          "Prepare comprehensive mitigation package including character references",
+          "Solicitor input required: evaluate whether early plea is appropriate (maximum sentence reduction).",
+          "Prepare comprehensive mitigation package including character references (drafting requires solicitor confirmation).",
           "Gather personal circumstances evidence (employment, family, health, remorse)",
           "Review sentencing guidelines and identify factors supporting non-custodial outcome",
           "Prepare sentencing submissions focusing on rehabilitation and reduced culpability",

@@ -252,6 +252,8 @@ type StrategyCommitmentPanelProps = {
   practiceArea?: PracticeArea; // Defaults to "criminal" for backward compatibility
   /** When provided, called with API procedural safety so parent can gate phase/actions. Single source: strategy-analysis API. */
   onProceduralSafetyChange?: (safety: { status: string; explanation?: string } | null) => void;
+  /** When true, Case Readiness Gate shows "Client instructions recorded" */
+  hasClientInstructions?: boolean;
 };
 
 export type StrategyCommitment = {
@@ -1110,7 +1112,7 @@ function getBeastStrategyPack(strategyType: PrimaryStrategy | null): BeastStrate
           "Gather medical/mental health reports supporting mitigation [CONDITIONAL]",
           "Review sentencing guidelines for harm/culpability factors",
           "Prepare sentencing submissions focusing on rehabilitation",
-          "Consider early guilty plea timing for maximum credit [if not already entered]",
+          "Solicitor input required: evaluate early guilty plea timing for maximum credit if not already entered.",
           "Prepare basis of plea if guilty plea entered",
         ],
       };
@@ -1145,8 +1147,8 @@ function getDeterministicNextSteps(strategyType: PrimaryStrategy | null): string
     case "outcome_management":
       return [
         "Request disclosure to assess prosecution case strength and realistic prospects",
-        "Consider early guilty plea if case is strong (maximum sentence reduction)",
-        "Prepare comprehensive mitigation package including character references",
+        "Solicitor input required: evaluate whether early plea is appropriate (maximum sentence reduction).",
+        "Prepare comprehensive mitigation package including character references (drafting requires solicitor confirmation).",
         "Gather personal circumstances evidence (employment, family, health, remorse)",
         "Review sentencing guidelines and identify factors supporting non-custodial outcome",
         "Prepare sentencing submissions focusing on rehabilitation and reduced culpability",
@@ -3179,6 +3181,7 @@ function WorstCaseCapPanel({
         <h3 className="text-sm font-semibold text-foreground">Worst-Case Exposure (Non-Speculative)</h3>
         <Badge variant="outline" className="text-xs">SUPERVISOR-GRADE</Badge>
       </div>
+      <p className="text-xs text-amber-600 dark:text-amber-400 font-medium">Evidence-based ceiling from disclosed material only. Not an outcome prediction.</p>
       <p className="text-xs text-muted-foreground">{worstCaseCap.explanation}</p>
       {worstCaseCap.absentEvidence.length > 0 && (
         <div>
@@ -3756,34 +3759,106 @@ function DisclosureTimelinePanel({
     }
   };
 
-  const handleGenerateNote = () => {
-    // Generate court-safe disclosure note
-    const outstandingItems = entries
-      .filter(entry => entry.action === "outstanding" || entry.action === "overdue" || entry.action === "requested" || entry.action === "chased")
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  const OVERDUE_DAYS = 14;
 
-    if (outstandingItems.length === 0) {
+  const outstandingItems = entries
+    .filter(entry => entry.action === "outstanding" || entry.action === "overdue" || entry.action === "requested" || entry.action === "chased")
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  const outstandingByItem = new Map<string, typeof entries[0]>();
+  for (const e of outstandingItems) {
+    if (!outstandingByItem.has(e.item)) outstandingByItem.set(e.item, e);
+  }
+  const outstandingUnique = Array.from(outstandingByItem.values());
+  const overdueCount = outstandingUnique.filter(e => {
+    const days = Math.floor((Date.now() - new Date(e.date).getTime()) / (1000 * 60 * 60 * 24));
+    return days >= OVERDUE_DAYS && e.action !== "served" && e.action !== "reviewed";
+  }).length;
+
+  const handleGenerateNote = () => {
+    if (outstandingUnique.length === 0) {
       showToast("All requested disclosure items have been served and reviewed.", "success");
       return;
     }
-
-    const lines: string[] = [];
-    lines.push("Outstanding disclosure items:");
-    
-    for (const item of outstandingItems) {
+    const lines: string[] = ["Outstanding disclosure items:"];
+    for (const item of outstandingUnique) {
       const lastAction = item.action === "overdue" ? "overdue" : item.action;
       const lastDate = new Date(item.date).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
       lines.push(`- ${item.item}: ${lastAction} (last action: ${lastDate})`);
     }
-
     const note = lines.join("\n");
-    
-    // Copy to clipboard
-    navigator.clipboard.writeText(note).then(() => {
-      showToast("Disclosure note copied to clipboard", "success");
-    }).catch(() => {
-      showToast("Failed to copy to clipboard", "error");
-    });
+    navigator.clipboard.writeText(note).then(() => showToast("Disclosure note copied to clipboard", "success")).catch(() => showToast("Failed to copy to clipboard", "error"));
+  };
+
+  const handleGenerateChaseLetter = () => {
+    if (outstandingUnique.length === 0) {
+      showToast("No outstanding items to chase.", "error");
+      return;
+    }
+    const deadline = new Date();
+    deadline.setDate(deadline.getDate() + 14);
+    const deadlineStr = deadline.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+    const itemList = outstandingUnique.map(e => e.item).join("\n  - ");
+    const letter = `DISCLOSURE CHASE LETTER (DRAFT – SOLICITOR TO APPROVE)
+
+We write to chase the following outstanding disclosure in this matter:
+
+  - ${itemList}
+
+Please provide the above material by ${deadlineStr}, or confirm in writing if any item is not held or not disclosable.
+
+We reserve the right to make a formal application if disclosure is not received.
+
+Yours faithfully,
+[SOLICITOR SIGNATURE]`;
+    navigator.clipboard.writeText(letter).then(() => showToast("Chase letter draft copied to clipboard. Approve and send from your firm.", "success")).catch(() => showToast("Failed to copy to clipboard", "error"));
+  };
+
+  const handleLogChaseToTimeline = async () => {
+    if (!caseId || outstandingUnique.length === 0) return;
+    setSaving(true);
+    try {
+      const today = new Date().toISOString().split("T")[0];
+      const res = await fetch(`/api/criminal/${caseId}/disclosure-timeline`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          entries: outstandingUnique.map(e => ({ item: e.item, action: "chased" as const, date: today, note: "Chase letter sent (draft generated from CaseBrain)." })),
+        }),
+      });
+      if (res.ok) {
+        const result = await res.json();
+        if (result?.ok && result.data?.entries) setEntries(result.data.entries);
+        showToast("Chase logged to timeline for " + outstandingUnique.length + " item(s).", "success");
+      } else {
+        showToast("Failed to log chase to timeline", "error");
+      }
+    } catch (err) {
+      showToast("Failed to log chase to timeline", "error");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleExportBundle = () => {
+    const lines: string[] = [
+      "DISCLOSURE BUNDLE",
+      "Generated: " + new Date().toLocaleString("en-GB"),
+      "",
+      "OUTSTANDING ITEMS:",
+      ...(outstandingUnique.length > 0 ? outstandingUnique.map(e => `- ${e.item} (last: ${e.action}, ${new Date(e.date).toLocaleDateString("en-GB")})`) : ["None – all served/reviewed or no entries."]),
+      "",
+      "CHASE HISTORY (by item):",
+    ];
+    for (const [item, itemEntries] of itemsMap.entries()) {
+      const sorted = [...itemEntries].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      lines.push(`\n${item}:`);
+      for (const ent of sorted) {
+        lines.push(`  ${ent.date} – ${ent.action}${ent.note ? ` – ${ent.note}` : ""}`);
+      }
+    }
+    const bundle = lines.join("\n");
+    navigator.clipboard.writeText(bundle).then(() => showToast("Disclosure bundle copied to clipboard", "success")).catch(() => showToast("Failed to copy to clipboard", "error"));
   };
 
   // Group entries by item
@@ -3809,25 +3884,33 @@ function DisclosureTimelinePanel({
 
   return (
     <div className="rounded-lg border border-border/50 p-4 space-y-3">
-      <div className="flex items-center justify-between">
+      {overdueCount > 0 && (
+        <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 flex items-center gap-2">
+          <AlertCircle className="h-4 w-4 text-amber-600 shrink-0" />
+          <p className="text-xs font-medium text-amber-800 dark:text-amber-200">
+            {overdueCount} chase(s) overdue ({OVERDUE_DAYS}+ days since last action). Consider sending a chase letter.
+          </p>
+        </div>
+      )}
+      <div className="flex items-center justify-between flex-wrap gap-2">
         <div className="flex items-center gap-2">
           <Clock className="h-4 w-4 text-primary" />
           <h3 className="text-sm font-semibold text-foreground">Disclosure Chase Timeline</h3>
         </div>
-        <div className="flex items-center gap-2">
-          <Button
-            size="sm"
-            variant="outline"
-            onClick={handleGenerateNote}
-            className="text-xs h-7"
-          >
+        <div className="flex items-center gap-2 flex-wrap">
+          <Button size="sm" variant="outline" onClick={handleGenerateNote} className="text-xs h-7">
             Generate Note
           </Button>
-          <Button
-            size="sm"
-            onClick={() => setShowAddForm(!showAddForm)}
-            className="text-xs h-7"
-          >
+          <Button size="sm" variant="outline" onClick={handleGenerateChaseLetter} className="text-xs h-7" disabled={outstandingUnique.length === 0} title={outstandingUnique.length === 0 ? "No outstanding items" : "Draft chase letter for outstanding items"}>
+            Chase letter
+          </Button>
+          <Button size="sm" variant="outline" onClick={handleLogChaseToTimeline} className="text-xs h-7" disabled={saving || outstandingUnique.length === 0} title="Log chase to timeline for all outstanding items">
+            {saving ? "Logging…" : "Log chase"}
+          </Button>
+          <Button size="sm" variant="outline" onClick={handleExportBundle} className="text-xs h-7">
+            Export bundle
+          </Button>
+          <Button size="sm" onClick={() => setShowAddForm(!showAddForm)} className="text-xs h-7">
             {showAddForm ? "Cancel" : "Add Entry"}
           </Button>
         </div>
@@ -4612,6 +4695,7 @@ export function StrategyCommitmentPanel({
   savedPosition: propSavedPosition,
   practiceArea = "criminal",
   onProceduralSafetyChange,
+  hasClientInstructions,
 }: StrategyCommitmentPanelProps) {
   const lens = getLens(practiceArea);
   const params = useParams();
@@ -4812,6 +4896,45 @@ export function StrategyCommitmentPanel({
     navigator.clipboard.writeText(text).then(
       () => showToast("Defence Strategy Plan copied. Paste into Word or use Print to save as PDF.", "success"),
       () => showToast("Failed to copy. Try printing this page and saving as PDF.", "error")
+    );
+  };
+
+  /** One-click export for counsel: issues, gaps, tests, strategy, disclosure, key dates */
+  const handleExportHearingPack = () => {
+    const date = new Date().toLocaleString("en-GB", { dateStyle: "medium", timeStyle: "short" });
+    const strategyLabel = primary ? STRATEGY_OPTIONS.find((o) => o.id === primary)?.label ?? primary : "Not committed";
+    const lines: string[] = [
+      "HEARING PREPARATION PACK",
+      "Generated: " + date,
+      "Solicitor-controlled. Evidence-linked. Not legal advice.",
+      "",
+      "OFFENCE:",
+      coordinatorResult?.offence?.label ?? "—",
+      "",
+      "SOLICITOR-SELECTED STRATEGY:",
+      strategyLabel,
+      "",
+    ];
+    if (defenceStrategyPlan?.posture) {
+      lines.push("DEFENCE POSITION:", normalizeDefencePositionText(defenceStrategyPlan.posture), "");
+    }
+    lines.push("ISSUES IN DISPUTE:", "");
+    if (judgeConstraintLens?.constraints?.length) {
+      judgeConstraintLens.constraints.slice(0, 6).forEach((c) => lines.push("• " + (c.title ?? "") + ": " + (c.detail ?? "").slice(0, 120)));
+      lines.push("");
+    }
+    lines.push("EVIDENCE GAPS / DISCLOSURE:", proceduralSafetyFromApi?.explanation ?? "See Safety panel for procedural status and missing items.", "");
+    lines.push("LEGAL TESTS (doctrine):", "");
+    if (judgeConstraintLens?.required_findings?.length) {
+      judgeConstraintLens.required_findings.slice(0, 4).forEach((f) => lines.push("• " + (f ?? "")));
+      lines.push("");
+    }
+    lines.push("KEY DATES:", "Next hearing: TBC", "");
+    lines.push("DISCLOSURE SUMMARY:", proceduralSafetyFromApi?.status === "SAFE" ? "Disclosure complete (per Safety panel)." : (proceduralSafetyFromApi?.explanation ?? "See Safety panel and Disclosure Chase Timeline."));
+    const text = lines.join("\n");
+    navigator.clipboard.writeText(text).then(
+      () => showToast("Hearing pack copied to clipboard. Hand to counsel as needed.", "success"),
+      () => showToast("Failed to copy.", "error")
     );
   };
 
@@ -5604,6 +5727,7 @@ export function StrategyCommitmentPanel({
                 </div>
                 <div>
                   <p className="text-muted-foreground text-xs">Procedural status: see Safety panel.</p>
+                  <p className="text-muted-foreground text-xs italic">Route status is evidence-based. Solicitor review required before reliance.</p>
                 </div>
                 <div>
                   <span className="font-semibold text-muted-foreground mb-2 block">Routes:</span>
@@ -6305,6 +6429,7 @@ export function StrategyCommitmentPanel({
                   </div>
                   <div>
                     <p className="text-muted-foreground text-xs">Procedural status: see Safety panel.</p>
+                    <p className="text-muted-foreground text-xs italic">Route status is evidence-based. Solicitor review required before reliance.</p>
                   </div>
                   <div>
                     <span className="font-semibold text-muted-foreground mb-2 block">Routes:</span>
@@ -6373,23 +6498,36 @@ export function StrategyCommitmentPanel({
                 <div className="flex items-start justify-between gap-3 mb-1">
                   <h2 className="text-sm font-semibold text-foreground">Defence Strategy Plan (Prosecution / Court / Defence)</h2>
                   {(defenceStrategyPlan || judgeConstraintLens) && (
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={handleExportDefenceStrategyPlan}
-                      className="flex items-center gap-1 text-xs h-7 shrink-0"
-                      disabled={isUnsafeToProceed}
-                      title={isUnsafeToProceed ? unsafeActionReason : undefined}
-                    >
-                      <Copy className="h-3 w-3" />
-                      Export plan
-                    </Button>
+                    <>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={handleExportHearingPack}
+                        className="flex items-center gap-1 text-xs h-7 shrink-0"
+                        title="Copy hearing pack for counsel (issues, gaps, tests, strategy, disclosure)"
+                      >
+                        <Copy className="h-3 w-3" />
+                        Export hearing pack
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={handleExportDefenceStrategyPlan}
+                        className="flex items-center gap-1 text-xs h-7 shrink-0"
+                        disabled={isUnsafeToProceed}
+                        title={isUnsafeToProceed ? unsafeActionReason : undefined}
+                      >
+                        <Copy className="h-3 w-3" />
+                        Export plan
+                      </Button>
+                    </>
                   )}
                 </div>
                 <p className="text-xs text-muted-foreground mb-3">Defence position, prosecution arguments, legal tests, strategic options, and hearing preparation.</p>
                 {/* Stage 3: At-a-glance strip — strategy line, key date, disclosure provenance */}
                 {defenceStrategyPlan && (
                   <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs border-t border-primary/20 pt-3 mt-2">
+                    <span className="font-semibold text-muted-foreground">Solicitor-selected strategy: </span>
                     <span className="font-semibold text-foreground">
                       {defenceStrategyPlan.strategy_line ?? defenceStrategyPlan.primary_route?.label ?? primary ? STRATEGY_OPTIONS.find(o => o.id === primary)?.label ?? "Strategy committed" : "-"}
                     </span>
@@ -6940,6 +7078,7 @@ export function StrategyCommitmentPanel({
                     </div>
                     <div>
                       <p className="text-muted-foreground text-xs">Procedural status: see Safety panel.</p>
+                      <p className="text-muted-foreground text-xs italic">Route status is evidence-based. Solicitor review required before reliance.</p>
                     </div>
                     <div>
                       <span className="font-semibold text-muted-foreground mb-2 block">Routes:</span>
@@ -7040,17 +7179,79 @@ export function StrategyCommitmentPanel({
             />
           )}
 
-          {/* Procedural Safety Status - CRITICAL */}
+          {/* Case Readiness Gate – single check before hearing */}
           {isCommitted && (
-            <div id="section-safety" className="scroll-mt-24">
-              <ProceduralSafetyPanel
-                caseId={resolvedCaseId}
-                evidenceImpactMap={evidenceImpactMap}
-                declaredDependencies={declaredDependencies}
-                disclosureTimelineEntries={disclosureTimelineEntries}
-              />
+            <div className="rounded-lg border-2 p-4 space-y-2">
+              <h3 className="text-sm font-semibold text-foreground">Case Readiness</h3>
+              {effectiveProceduralSafety?.status === "SAFE" ? (
+                <div className="flex items-center gap-2 text-green-700 dark:text-green-400">
+                  <CheckCircle className="h-5 w-5 shrink-0" />
+                  <div>
+                    <p className="font-medium">Case ready</p>
+                    <p className="text-xs text-muted-foreground">Disclosure complete (per Safety panel). Proceed to hearing preparation.</p>
+                    {hasClientInstructions && (
+                      <p className="text-xs text-muted-foreground mt-1">Client instructions recorded.</p>
+                    )}
+                  </div>
+                </div>
+              ) : (
+                <div className="flex items-start gap-2 text-amber-700 dark:text-amber-400">
+                  <AlertTriangle className="h-5 w-5 shrink-0 mt-0.5" />
+                  <div>
+                    <p className="font-medium">Not ready</p>
+                    <p className="text-xs text-muted-foreground mt-1">{effectiveProceduralSafety?.explanation || "Critical disclosure missing. See Safety panel."}</p>
+                    <p className="text-xs text-muted-foreground mt-1">Resolve before relying on strategy for hearing.</p>
+                    {hasClientInstructions && (
+                      <p className="text-xs text-muted-foreground mt-1">Client instructions recorded.</p>
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
           )}
+
+        {/* Case Readiness Gate – single check before hearing */}
+        {isCommitted && (
+          <div className="rounded-lg border-2 p-4 space-y-2">
+            <h3 className="text-sm font-semibold text-foreground">Case Readiness</h3>
+            {effectiveProceduralSafety?.status === "SAFE" ? (
+              <div className="flex items-center gap-2 text-green-700 dark:text-green-400">
+                <CheckCircle className="h-5 w-5 shrink-0" />
+                <div>
+                  <p className="font-medium">Case ready</p>
+                  <p className="text-xs text-muted-foreground">Disclosure complete (per Safety panel). Proceed to hearing preparation.</p>
+                  {hasClientInstructions && (
+                    <p className="text-xs text-muted-foreground mt-1">Client instructions recorded.</p>
+                  )}
+                </div>
+              </div>
+            ) : (
+              <div className="flex items-start gap-2 text-amber-700 dark:text-amber-400">
+                <AlertTriangle className="h-5 w-5 shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-medium">Not ready</p>
+                  <p className="text-xs text-muted-foreground mt-1">{effectiveProceduralSafety?.explanation || "Critical disclosure missing. See Safety panel."}</p>
+                  <p className="text-xs text-muted-foreground mt-1">Resolve before relying on strategy for hearing.</p>
+                  {hasClientInstructions && (
+                    <p className="text-xs text-muted-foreground mt-1">Client instructions recorded.</p>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Procedural Safety Status - CRITICAL */}
+        {isCommitted && (
+          <div id="section-safety" className="scroll-mt-24">
+            <ProceduralSafetyPanel
+              caseId={resolvedCaseId}
+              evidenceImpactMap={evidenceImpactMap}
+              declaredDependencies={declaredDependencies}
+              disclosureTimelineEntries={disclosureTimelineEntries}
+            />
+          </div>
+        )}
 
           {/* Worst-Case Cap Panel */}
           {isCommitted && (
@@ -7199,6 +7400,7 @@ export function StrategyCommitmentPanel({
                 </div>
                 <div>
                   <p className="text-muted-foreground text-xs">Procedural status: see Safety panel.</p>
+                  <p className="text-muted-foreground text-xs italic">Route status is evidence-based. Solicitor review required before reliance.</p>
                 </div>
                 <div>
                   <span className="font-semibold text-muted-foreground mb-2 block">Routes:</span>
@@ -7313,10 +7515,40 @@ export function StrategyCommitmentPanel({
           />
         )}
 
+        {/* Case Readiness Gate */}
+        {isCommitted && (
+          <div className="rounded-lg border-2 p-4 space-y-2">
+            <h3 className="text-sm font-semibold text-foreground">Case Readiness</h3>
+            {effectiveProceduralSafety?.status === "SAFE" ? (
+              <div className="flex items-center gap-2 text-green-700 dark:text-green-400">
+                <CheckCircle className="h-5 w-5 shrink-0" />
+                <div>
+                  <p className="font-medium">Case ready</p>
+                  {hasClientInstructions && (
+                    <p className="text-xs text-muted-foreground mt-1">Client instructions recorded.</p>
+                  )}
+                </div>
+              </div>
+            ) : (
+              <div className="flex items-start gap-2 text-amber-700 dark:text-amber-400">
+                <AlertTriangle className="h-5 w-5 shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-medium">Not ready</p>
+                  <p className="text-xs text-muted-foreground mt-1">{effectiveProceduralSafety?.explanation || "Critical disclosure missing. See Safety panel."}</p>
+                  {hasClientInstructions && (
+                    <p className="text-xs text-muted-foreground mt-1">Client instructions recorded.</p>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
         {/* Procedural Safety Status - CRITICAL */}
         {isCommitted && (
           <div id="section-safety" className="scroll-mt-24">
             <ProceduralSafetyPanel
+              caseId={resolvedCaseId}
               evidenceImpactMap={evidenceImpactMap}
               declaredDependencies={declaredDependencies}
               disclosureTimelineEntries={disclosureTimelineEntries}
@@ -8005,7 +8237,7 @@ export function StrategyCommitmentPanel({
                           rationale: "Focus on sentencing position and mitigation. Target reduced sentence or non-custodial outcome.",
                           winConditions: ["Strong mitigation package", "Early guilty plea credit", "Guideline factors favour lower starting point"],
                           risks: ["Sentencing guidelines point to custody", "Insufficient character evidence", "Court views offence as too serious"],
-                          nextActions: ["Prepare mitigation package", "Consider early guilty plea", "Review sentencing guidelines"],
+                          nextActions: ["Prepare mitigation package (solicitor confirmation required).", "Solicitor input required: evaluate early plea options.", "Review sentencing guidelines"],
                           attackPaths: [],
                           cpsResponses: [],
                           killSwitches: [],

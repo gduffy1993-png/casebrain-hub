@@ -74,11 +74,26 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   });
   /** From strategy-analysis API (StrategyCommitmentPanel reports when mounted). Used to gate phase selector. */
   const [effectiveProceduralSafety, setEffectiveProceduralSafety] = useState<{ status: string; explanation?: string } | null>(null);
+  /** For Case Readiness Gate: client instructions record present */
+  const [hasClientInstructions, setHasClientInstructions] = useState(false);
 
   // Mark as mounted after hydration
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Fetch client instructions for readiness gate
+  useEffect(() => {
+    if (!caseId) return;
+    let cancelled = false;
+    fetch(`/api/criminal/${caseId}/client-instructions`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (!cancelled && data?.ok) setHasClientInstructions(!!data.data);
+      })
+      .catch(() => { if (!cancelled) setHasClientInstructions(false); });
+    return () => { cancelled = true; };
+  }, [caseId]);
 
   // Phase 2: Build snapshot on mount
   useEffect(() => {
@@ -302,6 +317,13 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
 
   return (
     <div className="space-y-6">
+      {/* No-hallucination guarantee – visible trust line */}
+      <div className="rounded-lg border border-border/80 bg-muted/30 px-3 py-2 text-center">
+        <p className="text-xs text-muted-foreground">
+          All outputs are evidence-linked. No predictions. No legal advice. Solicitor-controlled.
+        </p>
+      </div>
+
       {/* TOP: Status strip + at-a-glance + Jump to – so Jump to is at the top for easy section access */}
       {/* Phase 2: Case Status Strip */}
       {snapshotLoading ? (
@@ -523,6 +545,8 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
                   }
                 }}
                 onProceduralSafetyChange={setEffectiveProceduralSafety}
+                hasClientInstructions={hasClientInstructions}
+                onClientInstructionsSaved={() => setHasClientInstructions(true)}
               />
             </ErrorBoundary>
           </FoldSection>

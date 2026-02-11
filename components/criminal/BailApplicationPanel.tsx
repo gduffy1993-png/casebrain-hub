@@ -88,6 +88,10 @@ export function BailApplicationPanel({ caseId }: BailApplicationPanelProps) {
 
   return (
     <Card className="p-6">
+      <div className="mb-4 p-3 rounded-lg border border-amber-500/30 bg-amber-500/10">
+        <p className="text-sm font-semibold text-amber-700 dark:text-amber-400">Template – solicitor approval required before use.</p>
+        <p className="text-xs text-muted-foreground mt-1">Do not rely without confirmation. No facts are asserted without solicitor verification.</p>
+      </div>
       <div className="flex items-center gap-2 mb-4">
         <Scale className="h-5 w-5 text-primary" />
         <h2 className="text-xl font-bold">Bail Application Generator</h2>
@@ -194,7 +198,7 @@ export function BailApplicationPanel({ caseId }: BailApplicationPanelProps) {
 
       {/* Ready-to-Use Application */}
       <div className="p-4 bg-primary/10 border border-primary/30 rounded">
-        <h3 className="text-sm font-semibold mb-2">Ready-to-Use Application</h3>
+        <h3 className="text-sm font-semibold mb-2">Ready-to-Use Application (template – solicitor approval required)</h3>
         <pre className="text-xs whitespace-pre-wrap bg-background/50 p-3 rounded border border-border max-h-96 overflow-y-auto">
           {application.readyToUseApplication}
         </pre>

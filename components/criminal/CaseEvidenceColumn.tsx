@@ -5,6 +5,8 @@ import { MissingEvidencePanel } from "@/components/core/MissingEvidencePanel";
 import { DisclosureTrackerTable } from "./DisclosureTrackerTable";
 import { DisclosureChasersPanel } from "./DisclosureChasersPanel";
 import { StrategyCommitmentPanel, type StrategyCommitment } from "./StrategyCommitmentPanel";
+import { CaseNotesPanel } from "@/components/core/CaseNotesPanel";
+import { ClientInstructionsRecorder } from "./ClientInstructionsRecorder";
 import { ErrorBoundary } from "@/components/ui/error-boundary";
 import type { CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
 
@@ -25,9 +27,13 @@ type CaseEvidenceColumnProps = {
   onCommitmentChange?: (commitment: StrategyCommitment | null) => void;
   /** Single source: strategy-analysis API. Used to gate phase selector when UNSAFE. */
   onProceduralSafetyChange?: (safety: { status: string; explanation?: string } | null) => void;
+  /** When true, Case Readiness Gate shows "Client instructions recorded" */
+  hasClientInstructions?: boolean;
+  /** Called when client instructions are saved (to refresh readiness gate) */
+  onClientInstructionsSaved?: () => void;
 };
 
-export function CaseEvidenceColumn({ caseId, snapshot, onAddDocument, onAddEvidenceUpload, currentPhase = 1, savedPosition, onCommitmentChange, onProceduralSafetyChange }: CaseEvidenceColumnProps) {
+export function CaseEvidenceColumn({ caseId, snapshot, onAddDocument, onAddEvidenceUpload, currentPhase = 1, savedPosition, onCommitmentChange, onProceduralSafetyChange, hasClientInstructions, onClientInstructionsSaved }: CaseEvidenceColumnProps) {
   return (
     <div className="space-y-6">
       {/* Current Defence Position - Read-Only Display (Phase 2+ only) */}
@@ -60,9 +66,22 @@ export function CaseEvidenceColumn({ caseId, snapshot, onAddDocument, onAddEvide
             onCommitmentChange={onCommitmentChange}
             savedPosition={savedPosition}
             onProceduralSafetyChange={onProceduralSafetyChange}
+            hasClientInstructions={hasClientInstructions}
           />
         </ErrorBoundary>
       )}
+
+      {/* Solicitor notes – case-level notes in Evidence column */}
+      <div id="section-solicitor-notes" className="scroll-mt-24">
+        <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Solicitor notes temporarily unavailable.</div></Card>}>
+          <CaseNotesPanel caseId={caseId} title="Solicitor notes" description="Case-level notes for this matter." />
+        </ErrorBoundary>
+      </div>
+
+      {/* Client instructions – structured record, timestamped, exportable */}
+      <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Client instructions recorder temporarily unavailable.</div></Card>}>
+        <ClientInstructionsRecorder caseId={caseId} onSaved={onClientInstructionsSaved} />
+      </ErrorBoundary>
 
       {/* Case files: single list lives in sidebar (Case Files card). No duplicate here. */}
 
