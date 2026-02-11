@@ -705,6 +705,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
       {/* Record Position Modal - Unified for all "Record position" buttons */}
       <RecordPositionModal
         caseId={caseId}
+        charges={snapshot?.charges?.map((c) => ({ offence: c.offence, section: c.section ?? null })) ?? []}
         isOpen={isPositionModalOpen}
         onClose={() => setIsPositionModalOpen(false)}
         onSuccess={async () => {
