@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { FoldSection } from "@/components/ui/fold-section";
-import { Shield, FileSearch, Loader2, CheckCircle2, AlertTriangle, Minus, Calendar } from "lucide-react";
+import { Shield, FileSearch, Calendar } from "lucide-react";
 import type { CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
 
 const JUMP_LINKS = [
@@ -108,29 +108,11 @@ export function CriminalCaseAtAGlanceBar({
               </p>
             )}
             <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-              {/* Safety status */}
+              {/* Single source: procedural status is in Safety panel only. No duplicate SAFE/UNSAFE here. */}
               <div className="flex items-center gap-2">
                 <Shield className="h-4 w-4 text-muted-foreground shrink-0" />
-                <span className="text-sm text-muted-foreground">Procedural safety:</span>
-                {safetyLoading ? (
-                  <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
-                ) : safetyStatus === "SAFE" ? (
-                  <span className="text-sm font-medium text-green-600 dark:text-green-400 inline-flex items-center gap-1">
-                    <CheckCircle2 className="h-4 w-4" /> SAFE TO PROCEED
-                  </span>
-                ) : safetyStatus === "UNSAFE_TO_PROCEED" ? (
-                  <span className="text-sm font-medium text-red-600 dark:text-red-400 inline-flex items-center gap-1">
-                    <AlertTriangle className="h-4 w-4" /> UNSAFE TO PROCEED
-                  </span>
-                ) : safetyStatus === "CONDITIONALLY_UNSAFE" ? (
-                  <span className="text-sm font-medium text-amber-600 dark:text-amber-400 inline-flex items-center gap-1">
-                    <AlertTriangle className="h-4 w-4" /> UNSAFE — critical disclosure missing
-                  </span>
-                ) : (
-                  <span className="text-sm text-muted-foreground inline-flex items-center gap-1">
-                    <Minus className="h-4 w-4" /> —
-                  </span>
-                )}
+                <span className="text-sm text-muted-foreground">Procedural status:</span>
+                <span className="text-sm text-muted-foreground">see Safety panel</span>
                 <a
                   href="#section-safety"
                   onClick={(e) => {

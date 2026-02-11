@@ -379,26 +379,6 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         </>
       )}
 
-      {/* Primary Defence Strategy - Case Fight Plan (ONLY strategy surface for criminal cases) */}
-      <FoldSection id="section-strategy" title="Defence Strategy Plan" defaultOpen={true}>
-        <ErrorBoundary fallback={
-          <div className="text-sm text-muted-foreground p-4">
-            {snapshot?.analysis.canShowStrategyPreview && !snapshot?.analysis.canShowStrategyFull
-              ? "Strategy preview available (thin pack). Add documents for full routes."
-              : "Run analysis to populate this section."}
-          </div>
-        }>
-          <CaseFightPlan 
-            caseId={caseId} 
-            committedStrategy={committedStrategy}
-            canShowStrategyOutputs={snapshot?.analysis.canShowStrategyOutputs ?? false}
-            canShowStrategyPreview={snapshot?.analysis.canShowStrategyPreview ?? false}
-            canShowStrategyFull={snapshot?.analysis.canShowStrategyFull ?? false}
-            strategyDataExists={snapshot?.strategy.strategyDataExists ?? false}
-          />
-        </ErrorBoundary>
-      </FoldSection>
-
       {/* Phase Selector */}
       <FoldSection title="Case phase" defaultOpen={true}>
         <CasePhaseSelector
@@ -511,8 +491,20 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         </Card>
       ) : snapshot ? (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <FoldSection title="Evidence" defaultOpen={false}>
+          <FoldSection title="Evidence" defaultOpen={true}>
             <ErrorBoundary fallback={mounted ? <div className="text-sm text-muted-foreground">Analysis will deepen as further disclosure is received.</div> : null}>
+              {snapshot && (
+                <div id="section-strategy" className="mb-6">
+                  <CaseFightPlan
+                    caseId={caseId}
+                    committedStrategy={committedStrategy}
+                    canShowStrategyOutputs={snapshot?.analysis?.canShowStrategyOutputs ?? false}
+                    canShowStrategyPreview={snapshot?.analysis?.canShowStrategyPreview ?? false}
+                    canShowStrategyFull={snapshot?.analysis?.canShowStrategyFull ?? false}
+                    strategyDataExists={snapshot?.strategy?.strategyDataExists ?? false}
+                  />
+                </div>
+              )}
               <CaseEvidenceColumn
                 caseId={caseId}
                 snapshot={snapshot}
