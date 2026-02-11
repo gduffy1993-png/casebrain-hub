@@ -270,7 +270,7 @@ export function computeDisclosureState(input: DisclosureStateInput): DisclosureS
 
   // Add simulated flag rationale if detected
   if (is_simulated) {
-    rationale.push("SIMULATED documents detected - this is a demo/test case.");
+    rationale.push("Simulated documents detected (demo case).");
   }
 
   // Add summary

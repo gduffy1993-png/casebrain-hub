@@ -1594,9 +1594,10 @@ function SupervisorSnapshot({
     );
   }
 
-  // Extract position info
+  // Extract position info (strip duplicate "Defence position:" prefix for display)
   const positionText = savedPosition?.position_text || "No position recorded";
-  const positionLines = positionText.split(/\n/).slice(0, 2).join(" ").substring(0, 200);
+  const rawLines = positionText.split(/\n/).slice(0, 2).join(" ").substring(0, 200);
+  const positionLines = rawLines.replace(/^\s*Defence position:\s*/i, "").trim() || rawLines;
   const recordedAt = savedPosition?.created_at ? new Date(savedPosition.created_at).toLocaleString("en-GB") : "Not recorded";
 
   // Get strategy label
@@ -1624,9 +1625,8 @@ function SupervisorSnapshot({
 Generated: ${timestamp} UTC
 Case Reference: ${caseRef}
 
-PROCEDURAL SAFETY STATUS: ${effectiveProceduralSafety ? formatProceduralSafetyDisplay(effectiveProceduralSafety.status) : "Not assessed"}
-${effectiveProceduralSafety?.explanation || ""}
-${disclosureState?.is_simulated ? "\nNOTE: SIMULATED documents detected - this is a demo/test case." : ""}
+DEPENDENCY READINESS: See Safety panel for procedural status.
+${disclosureState?.is_simulated ? "\nNOTE: Simulated documents detected (demo case)." : ""}
 
 RECORDED DEFENCE POSITION:
 ${positionLines}
@@ -1655,20 +1655,18 @@ ${worstCaseCap ? `WORST-CASE EXPOSURE CAP:\n${worstCaseCap.explanation}\n` : ""}
     }
   };
 
-  const statusColors = {
-    SAFE: "border-green-500/30 bg-green-500/5",
-    CONDITIONALLY_UNSAFE: "border-amber-500/30 bg-amber-500/5",
-    UNSAFE_TO_PROCEED: "border-red-500/30 bg-red-500/5",
-  };
-
-  // Short summary (4–6 lines) so snapshot is a summary, not a full repeat of content below
+  // Short summary (4–6 lines). Snapshot does not claim procedural SAFE/UNSAFE — see Safety panel.
+  const declaredDepsLine = requiredOutstanding.length === 0
+    ? "Declared dependencies: None marked as blocking"
+    : `Declared dependencies: ${requiredOutstanding.length} required outstanding`;
+  const disclosureGapsLine = disclosureGaps.length > 0
+    ? `Disclosure gaps: ${disclosureGaps.length} outstanding`
+    : "Disclosure gaps: None";
   const summaryLines = [
-    effectiveProceduralSafety
-      ? `Procedural safety: ${formatProceduralSafetyDisplay(effectiveProceduralSafety.status)}. ${(effectiveProceduralSafety.explanation || "").slice(0, 120)}${(effectiveProceduralSafety.explanation?.length ?? 0) > 120 ? "…" : ""}`
-      : "Procedural safety: Not assessed.",
+    "Dependency readiness: See Safety panel for procedural status.",
     `Defence position: ${positionLines.slice(0, 80)}${positionLines.length > 80 ? "…" : ""} (${recordedAt})`,
     `Strategy: ${strategyLabel}.`,
-    `Dependencies: ${requiredOutstanding.length} required outstanding. Disclosure: ${disclosureGaps.length > 0 ? `${disclosureGaps.length} gap(s)` : "satisfied"}.`,
+    `${declaredDepsLine}. ${disclosureGapsLine}.`,
     `Irreversible decisions: ${plannedOrCompleted.length} planned or completed.`,
   ];
   if (worstCaseCap) summaryLines.push(`Worst-case: ${worstCaseCap.explanation.slice(0, 60)}…`);
@@ -1712,21 +1710,10 @@ ${worstCaseCap ? `WORST-CASE EXPOSURE CAP:\n${worstCaseCap.explanation}\n` : ""}
       ) : (
         <>
           <div className="grid grid-cols-1 gap-3 text-xs">
-            {effectiveProceduralSafety && (
-              <div className={`rounded-lg border p-3 ${statusColors[effectiveProceduralSafety.status as keyof typeof statusColors]}`}>
-                <div className="flex items-center justify-between mb-1">
-                  <span className="font-semibold text-foreground">Procedural Safety Status:</span>
-                  <Badge className={`text-[10px] ${
-                    effectiveProceduralSafety.status === "SAFE" ? "bg-green-500/20 text-green-600" :
-                    effectiveProceduralSafety.status === "CONDITIONALLY_UNSAFE" ? "bg-amber-500/20 text-amber-600" :
-                    "bg-red-500/20 text-red-600"
-                  }`}>
-                    {formatProceduralSafetyDisplay(effectiveProceduralSafety.status)}
-                  </Badge>
-                </div>
-                <p className="text-muted-foreground">{effectiveProceduralSafety.explanation}</p>
-              </div>
-            )}
+            <div className="rounded-lg border border-border p-3 bg-muted/10">
+              <span className="font-semibold text-foreground">Dependency readiness: </span>
+              <span className="text-muted-foreground">See Safety panel for procedural status.</span>
+            </div>
 
             <div>
               <span className="font-semibold text-foreground">Recorded Defence Position: </span>
@@ -6424,11 +6411,11 @@ export function StrategyCommitmentPanel({
                   const valid = !needsReassess;
                   // Badge uses ONLY GET /api/criminal/[caseId]/strategy-analysis → data.data.procedural_safety (same as Safety panel)
                   const safetyStatus = proceduralSafetyFromApi?.status;
-                  // Strict: only status === "SAFE" => green "Strategy still valid"; else => amber "Strategy unchanged — awaiting disclosure"
+                  // Only status === "SAFE" => green "Strategy still valid"; else => neutral (do not imply approval)
                   const isSafeToProceed = safetyStatus === "SAFE";
                   const validLabel = isSafeToProceed
                     ? "Strategy still valid"
-                    : "Strategy unchanged — awaiting disclosure";
+                    : "Strategy defined — awaiting disclosure";
                   const showDebugSafety = searchParams?.get("debug") === "1";
                   return (
                     <div className="flex flex-wrap items-center gap-2 border-t border-primary/20 pt-2 mt-2 text-xs">
