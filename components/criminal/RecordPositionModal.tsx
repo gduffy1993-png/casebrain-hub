@@ -206,9 +206,8 @@ function buildPresetsForCharges(charges: ChargeSummary[]): Preset[] {
   if (cats.sexual) add(SEXUAL_PRESETS);
   if (cats.publicOrder) add(PUBLIC_ORDER_PRESETS);
 
-  // If no offence-specific category matched, add generic "other" options
-  const anyMatch = cats.assault || cats.robbery || cats.theft || cats.arson || cats.criminalDamage || cats.drugs || cats.fraud || cats.sexual || cats.publicOrder;
-  if (!anyMatch) add(OTHER_PRESETS);
+  // Every criminal case gets these two options (by label dedup they may already be in from a category above)
+  add(OTHER_PRESETS);
 
   return out;
 }
