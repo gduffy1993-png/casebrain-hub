@@ -23,15 +23,11 @@ type RecordPositionModalProps = {
 
 type Preset = { label: string; text: string };
 
-// Always shown
+// Always shown for every criminal case
 const GENERIC_PRESETS: Preset[] = [
   {
     label: "Reserved pending disclosure",
     text: "Position reserved pending full disclosure. Awaiting CCTV, witness statements, and forensic evidence before committing to a defence strategy.",
-  },
-  {
-    label: "Self-defence / lawful excuse",
-    text: "Defence position: Self-defence / lawful excuse. [Details to be completed after full disclosure and client instructions].",
   },
 ];
 
@@ -44,6 +40,10 @@ const ASSAULT_PRESETS: Preset[] = [
   {
     label: "Accept act, dispute intent (s18→s20)",
     text: "Defence position: Accept the act occurred but dispute intent to cause GBH. Seeking charge reduction from s18 to s20 (unlawful wounding). Basis: [to be completed after disclosure].",
+  },
+  {
+    label: "Self-defence / lawful excuse",
+    text: "Defence position: Self-defence / lawful excuse. [Details to be completed after full disclosure and client instructions].",
   },
 ];
 
@@ -140,6 +140,10 @@ const PUBLIC_ORDER_PRESETS: Preset[] = [
   {
     label: "Deny intent / self-defence",
     text: "Defence position: Deny intent to cause fear / violence, or self-defence / lawful excuse. [To be completed after disclosure].",
+  },
+  {
+    label: "Self-defence / lawful excuse",
+    text: "Defence position: Self-defence / lawful excuse. [Details to be completed after full disclosure and client instructions].",
   },
 ];
 
