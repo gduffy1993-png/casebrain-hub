@@ -250,6 +250,8 @@ type StrategyCommitmentPanelProps = {
   onCommitmentChange: (commitment: StrategyCommitment | null) => void;
   savedPosition?: SavedPosition | null;
   practiceArea?: PracticeArea; // Defaults to "criminal" for backward compatibility
+  /** When provided, called with API procedural safety so parent can gate phase/actions. Single source: strategy-analysis API. */
+  onProceduralSafetyChange?: (safety: { status: string; explanation?: string } | null) => void;
 };
 
 export type StrategyCommitment = {
@@ -1473,6 +1475,7 @@ function FailureModePanel({
 }
 
 // Enhanced Supervisor Snapshot - Read-only consolidated view
+// Procedural safety: DISPLAY API VALUE ONLY. Do not recompute from coordinator.
 function SupervisorSnapshot({
   caseId,
   savedPosition,
@@ -1482,6 +1485,7 @@ function SupervisorSnapshot({
   evidenceImpactMap,
   strategyRoutes,
   toast,
+  effectiveProceduralSafety,
 }: {
   caseId: string | undefined;
   savedPosition: { position_text: string; created_at?: string; user_id?: string } | null;
@@ -1491,8 +1495,9 @@ function SupervisorSnapshot({
   evidenceImpactMap: EvidenceImpactMap[];
   strategyRoutes: StrategyRoute[];
   toast: { success: (msg: string) => void; error: (msg: string) => void };
+  /** From GET /api/criminal/[caseId]/strategy-analysis → data.data.procedural_safety. Only authority for safety display. */
+  effectiveProceduralSafety: { status: string; explanation?: string } | null;
 }) {
-  const [proceduralSafety, setProceduralSafety] = useState<ProceduralSafety | null>(null);
   const [disclosureState, setDisclosureState] = useState<DisclosureState | null>(null);
   const [declaredDeps, setDeclaredDeps] = useState<Array<{ id: string; label: string; status: string; note?: string }>>([]);
   const [disclosureTimeline, setDisclosureTimeline] = useState<Array<{ item: string; action: string; date: string; note?: string }>>([]);
@@ -1553,19 +1558,7 @@ function SupervisorSnapshot({
         });
         setDisclosureState(state);
 
-        // Map disclosure state to procedural safety format for backward compatibility
-        const statusMap: Record<DisclosureState["status"], ProceduralSafety["status"]> = {
-          safe: "SAFE",
-          conditionally_unsafe: "CONDITIONALLY_UNSAFE",
-          unsafe: "UNSAFE_TO_PROCEED",
-        };
-        const mappedStatus = statusMap[state.status];
-        setProceduralSafety({
-          status: mappedStatus,
-          explanation: state.rationale.join(" "),
-          outstandingItems: state.missing_items.map((item) => item.label),
-          reasons: state.rationale,
-        });
+        // Procedural safety is NOT computed here – Snapshot displays effectiveProceduralSafety (API only).
 
         // Fetch irreversible decisions
         const decisionsRes = await fetch(`/api/criminal/${caseId}/irreversible-decisions`);
@@ -1631,8 +1624,8 @@ function SupervisorSnapshot({
 Generated: ${timestamp} UTC
 Case Reference: ${caseRef}
 
-PROCEDURAL SAFETY STATUS: ${proceduralSafety ? formatProceduralSafetyDisplay(proceduralSafety.status) : "Not assessed"}
-${proceduralSafety?.explanation || ""}
+PROCEDURAL SAFETY STATUS: ${effectiveProceduralSafety ? formatProceduralSafetyDisplay(effectiveProceduralSafety.status) : "Not assessed"}
+${effectiveProceduralSafety?.explanation || ""}
 ${disclosureState?.is_simulated ? "\nNOTE: SIMULATED documents detected - this is a demo/test case." : ""}
 
 RECORDED DEFENCE POSITION:
@@ -1670,8 +1663,8 @@ ${worstCaseCap ? `WORST-CASE EXPOSURE CAP:\n${worstCaseCap.explanation}\n` : ""}
 
   // Short summary (4–6 lines) so snapshot is a summary, not a full repeat of content below
   const summaryLines = [
-    proceduralSafety
-      ? `Procedural safety: ${formatProceduralSafetyDisplay(proceduralSafety.status)}. ${(proceduralSafety.explanation || "").slice(0, 120)}${(proceduralSafety.explanation?.length ?? 0) > 120 ? "…" : ""}`
+    effectiveProceduralSafety
+      ? `Procedural safety: ${formatProceduralSafetyDisplay(effectiveProceduralSafety.status)}. ${(effectiveProceduralSafety.explanation || "").slice(0, 120)}${(effectiveProceduralSafety.explanation?.length ?? 0) > 120 ? "…" : ""}`
       : "Procedural safety: Not assessed.",
     `Defence position: ${positionLines.slice(0, 80)}${positionLines.length > 80 ? "…" : ""} (${recordedAt})`,
     `Strategy: ${strategyLabel}.`,
@@ -1719,19 +1712,19 @@ ${worstCaseCap ? `WORST-CASE EXPOSURE CAP:\n${worstCaseCap.explanation}\n` : ""}
       ) : (
         <>
           <div className="grid grid-cols-1 gap-3 text-xs">
-            {proceduralSafety && (
-              <div className={`rounded-lg border p-3 ${statusColors[proceduralSafety.status]}`}>
+            {effectiveProceduralSafety && (
+              <div className={`rounded-lg border p-3 ${statusColors[effectiveProceduralSafety.status as keyof typeof statusColors]}`}>
                 <div className="flex items-center justify-between mb-1">
                   <span className="font-semibold text-foreground">Procedural Safety Status:</span>
                   <Badge className={`text-[10px] ${
-                    proceduralSafety.status === "SAFE" ? "bg-green-500/20 text-green-600" :
-                    proceduralSafety.status === "CONDITIONALLY_UNSAFE" ? "bg-amber-500/20 text-amber-600" :
+                    effectiveProceduralSafety.status === "SAFE" ? "bg-green-500/20 text-green-600" :
+                    effectiveProceduralSafety.status === "CONDITIONALLY_UNSAFE" ? "bg-amber-500/20 text-amber-600" :
                     "bg-red-500/20 text-red-600"
                   }`}>
-                    {formatProceduralSafetyDisplay(proceduralSafety.status)}
+                    {formatProceduralSafetyDisplay(effectiveProceduralSafety.status)}
                   </Badge>
                 </div>
-                <p className="text-muted-foreground">{proceduralSafety.explanation}</p>
+                <p className="text-muted-foreground">{effectiveProceduralSafety.explanation}</p>
               </div>
             )}
 
@@ -4630,7 +4623,8 @@ export function StrategyCommitmentPanel({
   caseId, 
   onCommitmentChange,
   savedPosition: propSavedPosition,
-  practiceArea = "criminal"
+  practiceArea = "criminal",
+  onProceduralSafetyChange,
 }: StrategyCommitmentPanelProps) {
   const lens = getLens(practiceArea);
   const params = useParams();
@@ -4696,6 +4690,11 @@ export function StrategyCommitmentPanel({
   const { push: showToast } = useToast();
   const storageKey = `casebrain:strategyCommitment:${resolvedCaseId}`;
   const debugBuildId = process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA ?? process.env.NEXT_PUBLIC_BUILD_ID ?? null;
+
+  // Single source of truth: GET /api/criminal/[caseId]/strategy-analysis → data.data.procedural_safety
+  const effectiveProceduralSafety = proceduralSafetyFromApi;
+  const isUnsafeToProceed = effectiveProceduralSafety?.status === "UNSAFE_TO_PROCEED" || effectiveProceduralSafety?.status === "CONDITIONALLY_UNSAFE";
+  const unsafeActionReason = effectiveProceduralSafety?.explanation || "Critical disclosure missing";
 
   // Earliest reliable indicator that strategy data exists (UNCONDITIONAL - no phase/commit/route/loading gates)
   const hasStrategyData = (
@@ -4907,8 +4906,10 @@ export function StrategyCommitmentPanel({
         if (res.ok && data != null) {
           const safety = data?.data?.procedural_safety ?? data?.procedural_safety ?? null;
           setProceduralSafetyFromApi(safety);
+          onProceduralSafetyChange?.(safety);
         } else {
           setProceduralSafetyFromApi(null);
+          onProceduralSafetyChange?.(null);
         }
         return data;
       })
@@ -4948,11 +4949,12 @@ export function StrategyCommitmentPanel({
       })
       .catch(() => {
         setProceduralSafetyFromApi(null);
+        onProceduralSafetyChange?.(null);
       })
       .finally(() => {
         setIsLoadingRoutes(false);
       });
-  }, [resolvedCaseId]);
+  }, [resolvedCaseId, onProceduralSafetyChange]);
 
   // Load saved position if not provided as prop
   useEffect(() => {
@@ -5526,6 +5528,7 @@ export function StrategyCommitmentPanel({
               evidenceImpactMap={evidenceImpactMap}
               strategyRoutes={strategyRoutes}
               toast={{ success: (msg) => showToast(msg, "success"), error: (msg) => showToast(msg, "error") }}
+              effectiveProceduralSafety={proceduralSafetyFromApi}
             />
           )}
 
@@ -6166,13 +6169,17 @@ export function StrategyCommitmentPanel({
                     if (showGuardrail) return;
                     handleCommitInternal();
                   }}
-                  disabled={isCommitting || !primary || !!showGuardrail}
+                  disabled={isCommitting || !primary || !!showGuardrail || isUnsafeToProceed}
+                  title={isUnsafeToProceed ? unsafeActionReason : undefined}
                   size="sm"
                   className="flex items-center gap-2"
                 >
                   <Lock className="h-3.5 w-3.5" />
                   {isCommitting ? "Confirming..." : "Confirm strategy"}
                 </Button>
+              )}
+              {isUnsafeToProceed && (
+                <p className="text-xs text-amber-600 dark:text-amber-400">UNSAFE TO PROCEED — {unsafeActionReason}</p>
               )}
               {primary && (
                 <Button
@@ -6384,6 +6391,8 @@ export function StrategyCommitmentPanel({
                       size="sm"
                       onClick={handleExportDefenceStrategyPlan}
                       className="flex items-center gap-1 text-xs h-7 shrink-0"
+                      disabled={isUnsafeToProceed}
+                      title={isUnsafeToProceed ? unsafeActionReason : undefined}
                     >
                       <Copy className="h-3 w-3" />
                       Export plan
@@ -6413,9 +6422,9 @@ export function StrategyCommitmentPanel({
                     ? "Reassess – new disclosure or key date"
                     : null;
                   const valid = !needsReassess;
-                  // ONE source of truth: strategy-analysis API data.data.procedural_safety (same as Safety panel)
+                  // Badge uses ONLY GET /api/criminal/[caseId]/strategy-analysis → data.data.procedural_safety (same as Safety panel)
                   const safetyStatus = proceduralSafetyFromApi?.status;
-                  // Strict: ONLY "SAFE" shows "Strategy still valid". Never default to valid when missing or UNSAFE.
+                  // Strict: only status === "SAFE" => green "Strategy still valid"; else => amber "Strategy unchanged — awaiting disclosure"
                   const isSafeToProceed = safetyStatus === "SAFE";
                   const validLabel = isSafeToProceed
                     ? "Strategy still valid"
@@ -7018,6 +7027,7 @@ export function StrategyCommitmentPanel({
               evidenceImpactMap={evidenceImpactMap}
               strategyRoutes={strategyRoutes}
               toast={{ success: (msg) => showToast(msg, "success"), error: (msg) => showToast(msg, "error") }}
+              effectiveProceduralSafety={proceduralSafetyFromApi}
             />
           )}
 
@@ -7290,6 +7300,7 @@ export function StrategyCommitmentPanel({
             evidenceImpactMap={evidenceImpactMap}
             strategyRoutes={strategyRoutes}
             toast={{ success: (msg) => showToast(msg, "success"), error: (msg) => showToast(msg, "error") }}
+            effectiveProceduralSafety={proceduralSafetyFromApi}
           />
         )}
 
@@ -7575,13 +7586,17 @@ export function StrategyCommitmentPanel({
                   }
                   handleCommitInternal();
                 }}
-                disabled={isCommitting || !primary || showGuardrail}
+                disabled={isCommitting || !primary || showGuardrail || isUnsafeToProceed}
+                title={isUnsafeToProceed ? unsafeActionReason : undefined}
                 className="flex items-center gap-2"
               >
                 <Lock className="h-3.5 w-3.5" />
                 {isCommitting ? "Confirming..." : "Confirm strategy"}
               </Button>
             )}
+          {isUnsafeToProceed && (
+            <p className="text-xs text-amber-600 dark:text-amber-400">UNSAFE TO PROCEED — {unsafeActionReason}</p>
+          )}
           {primary && (
             <Button
               variant="outline"

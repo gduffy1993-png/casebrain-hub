@@ -16,6 +16,10 @@ type CasePhaseSelectorProps = {
   currentPhase?: CasePhase;
   hasSavedPosition?: boolean;
   onRecordPosition?: () => void;
+  /** When true, phase advancement is disabled (single source: strategy-analysis API). */
+  disabledWhenUnsafe?: boolean;
+  /** Short reason shown when disabled (e.g. "Critical disclosure missing"). */
+  unsafeReason?: string;
 };
 
 export function CasePhaseSelector({
@@ -26,6 +30,8 @@ export function CasePhaseSelector({
   currentPhase,
   hasSavedPosition = false,
   onRecordPosition,
+  disabledWhenUnsafe = false,
+  unsafeReason,
 }: CasePhaseSelectorProps) {
   const [localPhase, setLocalPhase] = useState<CasePhase>(defaultPhase || (isDisclosureFirstMode ? 1 : 2));
 
@@ -55,16 +61,8 @@ export function CasePhaseSelector({
   }, [isDisclosureFirstMode, currentPhase, localPhase, onPhaseChange]);
 
   const handlePhaseChange = (phase: CasePhase) => {
-    // Phase 2 gating: require saved position
-    if (phase === 2 && !hasSavedPosition) {
-      // Show lock message and prompt to record position
-      return; // Don't change phase
-    }
-    
-    // Prevent moving to Phase 3 without explicit user action
-    if (phase === 3 && localPhase !== 3) {
-      // Could add a confirmation dialog here if needed
-    }
+    if (disabledWhenUnsafe) return;
+    if (phase === 2 && !hasSavedPosition) return;
     setLocalPhase(phase);
     onPhaseChange(phase);
   };
@@ -87,6 +85,8 @@ export function CasePhaseSelector({
             size="sm"
             onClick={() => handlePhaseChange(1)}
             className="flex items-center gap-2"
+            disabled={disabledWhenUnsafe}
+            title={disabledWhenUnsafe ? unsafeReason : undefined}
           >
             <CheckCircle className="h-3.5 w-3.5" />
             Phase 1: Disclosure & Readiness
@@ -95,9 +95,9 @@ export function CasePhaseSelector({
             variant={localPhase === 2 ? "primary" : "outline"}
             size="sm"
             onClick={() => handlePhaseChange(2)}
-            disabled={!hasSavedPosition}
+            disabled={!hasSavedPosition || disabledWhenUnsafe}
             className="flex items-center gap-2"
-            title={!hasSavedPosition ? "Record a position to unlock Phase 2" : undefined}
+            title={disabledWhenUnsafe ? unsafeReason : !hasSavedPosition ? "Record a position to unlock Phase 2" : undefined}
           >
             <CheckCircle className="h-3.5 w-3.5" />
             Phase 2: Positioning & Options
@@ -107,11 +107,23 @@ export function CasePhaseSelector({
             size="sm"
             onClick={() => handlePhaseChange(3)}
             className="flex items-center gap-2"
+            disabled={disabledWhenUnsafe}
+            title={disabledWhenUnsafe ? unsafeReason : undefined}
           >
             <Scale className="h-3.5 w-3.5" />
             Phase 3: Sentencing & Outcome
           </Button>
         </div>
+
+        {disabledWhenUnsafe && unsafeReason && (
+          <div className="flex items-start gap-2 rounded-lg border border-red-500/20 bg-red-500/5 p-3">
+            <AlertTriangle className="h-4 w-4 text-red-400 mt-0.5 flex-shrink-0" />
+            <div className="flex-1">
+              <p className="text-xs font-semibold text-red-400 mb-1">UNSAFE TO PROCEED</p>
+              <p className="text-xs text-red-300/80">{unsafeReason}</p>
+            </div>
+          </div>
+        )}
 
         {localPhase === 1 && (
           <div className="flex items-start gap-2 rounded-lg border border-amber-500/20 bg-amber-500/5 p-3">

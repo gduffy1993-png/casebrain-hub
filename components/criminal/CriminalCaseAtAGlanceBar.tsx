@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { FoldSection } from "@/components/ui/fold-section";
 import { Shield, FileSearch, Loader2, CheckCircle2, AlertTriangle, Minus, Calendar } from "lucide-react";
-import { computeProceduralSafety } from "@/lib/criminal/procedural-safety";
 import type { CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
 
 const JUMP_LINKS = [
@@ -62,15 +61,10 @@ export function CriminalCaseAtAGlanceBar({
       })
       .then((data) => {
         if (cancelled) return;
+        // Single source of truth: only use API procedural_safety. Do not compute locally.
         const procedural_safety = data?.data?.procedural_safety;
         if (procedural_safety?.status) {
           setSafetyStatus(procedural_safety.status as "SAFE" | "CONDITIONALLY_UNSAFE" | "UNSAFE_TO_PROCEED");
-          return;
-        }
-        const map = data?.data?.evidenceImpactMap;
-        if (Array.isArray(map) && map.length > 0) {
-          const result = computeProceduralSafety(map);
-          setSafetyStatus(result.status);
         } else {
           setSafetyStatus(null);
         }

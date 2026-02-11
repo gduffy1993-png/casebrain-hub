@@ -72,6 +72,8 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
     hearings: { hasData: false },
     pace: { hasData: false },
   });
+  /** From strategy-analysis API (StrategyCommitmentPanel reports when mounted). Used to gate phase selector. */
+  const [effectiveProceduralSafety, setEffectiveProceduralSafety] = useState<{ status: string; explanation?: string } | null>(null);
 
   // Mark as mounted after hydration
   useEffect(() => {
@@ -409,6 +411,8 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
           onRecordPosition={() => {
             setIsPositionModalOpen(true);
           }}
+          disabledWhenUnsafe={effectiveProceduralSafety?.status === "UNSAFE_TO_PROCEED" || effectiveProceduralSafety?.status === "CONDITIONALLY_UNSAFE"}
+          unsafeReason={effectiveProceduralSafety?.explanation || (effectiveProceduralSafety?.status ? "Critical disclosure missing" : undefined)}
         />
       </FoldSection>
 
@@ -526,6 +530,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
                     setIsStrategyCommitted(false);
                   }
                 }}
+                onProceduralSafetyChange={setEffectiveProceduralSafety}
               />
             </ErrorBoundary>
           </FoldSection>

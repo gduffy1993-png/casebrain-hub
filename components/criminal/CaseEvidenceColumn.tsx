@@ -26,9 +26,11 @@ type CaseEvidenceColumnProps = {
   currentPhase?: number;
   savedPosition?: SavedPosition | null;
   onCommitmentChange?: (commitment: StrategyCommitment | null) => void;
+  /** Single source: strategy-analysis API. Used to gate phase selector when UNSAFE. */
+  onProceduralSafetyChange?: (safety: { status: string; explanation?: string } | null) => void;
 };
 
-export function CaseEvidenceColumn({ caseId, snapshot, onAddDocument, onAddEvidenceUpload, currentPhase = 1, savedPosition, onCommitmentChange }: CaseEvidenceColumnProps) {
+export function CaseEvidenceColumn({ caseId, snapshot, onAddDocument, onAddEvidenceUpload, currentPhase = 1, savedPosition, onCommitmentChange, onProceduralSafetyChange }: CaseEvidenceColumnProps) {
   return (
     <div className="space-y-6">
       {/* Current Defence Position - Read-Only Display (Phase 2+ only) */}
@@ -60,6 +62,7 @@ export function CaseEvidenceColumn({ caseId, snapshot, onAddDocument, onAddEvide
             caseId={caseId}
             onCommitmentChange={onCommitmentChange}
             savedPosition={savedPosition}
+            onProceduralSafetyChange={onProceduralSafetyChange}
           />
         </ErrorBoundary>
       )}
