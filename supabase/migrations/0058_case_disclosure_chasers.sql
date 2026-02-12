@@ -78,7 +78,7 @@ CREATE POLICY "Users can view disclosure chasers for cases in their org"
       SELECT o.id FROM public.organisations o
       WHERE o.id = org_id
         AND (
-          o.id = (SELECT u.org_id FROM public.users u WHERE u.id = auth.uid()::text LIMIT 1)
+          o.id::text = (SELECT u.org_id FROM public.users u WHERE u.id = auth.uid()::text LIMIT 1)
           OR o.external_ref = 'solo-user_' || auth.uid()::text
         )
     )
@@ -93,7 +93,7 @@ CREATE POLICY "Users can insert disclosure chasers for cases in their org"
       SELECT o.id FROM public.organisations o
       WHERE o.id = org_id
         AND (
-          o.id = (SELECT u.org_id FROM public.users u WHERE u.id = auth.uid()::text LIMIT 1)
+          o.id::text = (SELECT u.org_id FROM public.users u WHERE u.id = auth.uid()::text LIMIT 1)
           OR o.external_ref = 'solo-user_' || auth.uid()::text
         )
     )
@@ -108,7 +108,7 @@ CREATE POLICY "Users can update disclosure chasers for cases in their org"
       SELECT o.id FROM public.organisations o
       WHERE o.id = org_id
         AND (
-          o.id = (SELECT u.org_id FROM public.users u WHERE u.id = auth.uid()::text LIMIT 1)
+          o.id::text = (SELECT u.org_id FROM public.users u WHERE u.id = auth.uid()::text LIMIT 1)
           OR o.external_ref = 'solo-user_' || auth.uid()::text
         )
     )
@@ -118,7 +118,7 @@ CREATE POLICY "Users can update disclosure chasers for cases in their org"
       SELECT o.id FROM public.organisations o
       WHERE o.id = org_id
         AND (
-          o.id = (SELECT u.org_id FROM public.users u WHERE u.id = auth.uid()::text LIMIT 1)
+          o.id::text = (SELECT u.org_id FROM public.users u WHERE u.id = auth.uid()::text LIMIT 1)
           OR o.external_ref = 'solo-user_' || auth.uid()::text
         )
     )
@@ -133,7 +133,7 @@ CREATE POLICY "Users can delete disclosure chasers for cases in their org"
       SELECT o.id FROM public.organisations o
       WHERE o.id = org_id
         AND (
-          o.id = (SELECT u.org_id FROM public.users u WHERE u.id = auth.uid()::text LIMIT 1)
+          o.id::text = (SELECT u.org_id FROM public.users u WHERE u.id = auth.uid()::text LIMIT 1)
           OR o.external_ref = 'solo-user_' || auth.uid()::text
         )
     )

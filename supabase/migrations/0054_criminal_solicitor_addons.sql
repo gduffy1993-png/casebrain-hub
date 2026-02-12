@@ -72,7 +72,17 @@ CREATE TABLE IF NOT EXISTS criminal_disclosure_timeline (
   CONSTRAINT criminal_disclosure_timeline_case_item_date_idx UNIQUE (case_id, item, date, action)
 );
 
--- Indexes
+-- If table already existed with a different schema (partial apply or other migration), add missing columns
+ALTER TABLE criminal_disclosure_timeline
+  ADD COLUMN IF NOT EXISTS org_id UUID REFERENCES organisations(id) ON DELETE CASCADE,
+  ADD COLUMN IF NOT EXISTS item TEXT DEFAULT '',
+  ADD COLUMN IF NOT EXISTS action TEXT DEFAULT 'requested',
+  ADD COLUMN IF NOT EXISTS date DATE DEFAULT CURRENT_DATE,
+  ADD COLUMN IF NOT EXISTS note TEXT,
+  ADD COLUMN IF NOT EXISTS created_at TIMESTAMPTZ DEFAULT NOW(),
+  ADD COLUMN IF NOT EXISTS created_by TEXT;
+
+-- Indexes (all columns now exist after ALTER above)
 CREATE INDEX IF NOT EXISTS idx_criminal_disclosure_timeline_case_id ON criminal_disclosure_timeline(case_id);
 CREATE INDEX IF NOT EXISTS idx_criminal_disclosure_timeline_org_id ON criminal_disclosure_timeline(org_id);
 CREATE INDEX IF NOT EXISTS idx_criminal_disclosure_timeline_date ON criminal_disclosure_timeline(date DESC);
