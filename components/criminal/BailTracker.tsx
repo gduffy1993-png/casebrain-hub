@@ -14,6 +14,8 @@ type BailData = {
   bailConditions: string[];
   nextBailReview: string | null;
   remandTimeHours: number | null;
+  bailReturnDate: string | null;
+  bailOutcome: string | null;
 };
 
 export function BailTracker({ caseId }: BailTrackerProps) {
@@ -119,6 +121,16 @@ export function BailTracker({ caseId }: BailTrackerProps) {
                 </div>
               ))}
             </div>
+            <button
+              type="button"
+              className="mt-2 text-xs text-primary hover:underline"
+              onClick={() => {
+                const text = "Bail conditions:\n\n" + bail.bailConditions.map((c, i) => `${i + 1}. ${c}`).join("\n");
+                void navigator.clipboard.writeText(text);
+              }}
+            >
+              Copy conditions for client
+            </button>
           </div>
         )}
 
@@ -132,6 +144,26 @@ export function BailTracker({ caseId }: BailTrackerProps) {
             <span className="text-sm font-medium">
               {new Date(bail.nextBailReview).toLocaleDateString()}
             </span>
+          </div>
+        )}
+
+        {/* Return date & outcome (station bail return) */}
+        {(bail.bailReturnDate != null || bail.bailOutcome != null) && (
+          <div className="space-y-2 p-3 rounded-lg bg-muted/30 border border-border">
+            <h4 className="text-sm font-semibold text-foreground">Return / outcome</h4>
+            {bail.bailReturnDate && (
+              <p className="text-xs text-muted-foreground">
+                Return date: {new Date(bail.bailReturnDate).toLocaleDateString()}
+              </p>
+            )}
+            {bail.bailOutcome && (
+              <p className="text-xs text-muted-foreground">
+                Outcome: {String(bail.bailOutcome).replace(/_/g, " ")}
+                {bail.bailOutcome === "charged" && (
+                  <span className="block mt-1 text-primary">Go to Strategy tab to run the case.</span>
+                )}
+              </p>
+            )}
           </div>
         )}
 

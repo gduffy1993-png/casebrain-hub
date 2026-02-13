@@ -2,11 +2,8 @@
 
 import { Card } from "@/components/ui/card";
 import { MissingEvidencePanel } from "@/components/core/MissingEvidencePanel";
-import { DisclosureTrackerTable } from "./DisclosureTrackerTable";
-import { DisclosureChasersPanel } from "./DisclosureChasersPanel";
 import { StrategyCommitmentPanel, type StrategyCommitment } from "./StrategyCommitmentPanel";
 import { CaseNotesPanel } from "@/components/core/CaseNotesPanel";
-import { ClientInstructionsRecorder } from "./ClientInstructionsRecorder";
 import { ErrorBoundary } from "@/components/ui/error-boundary";
 import type { CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
 
@@ -78,27 +75,12 @@ export function CaseEvidenceColumn({ caseId, snapshot, onAddDocument, onAddEvide
         </ErrorBoundary>
       </div>
 
-      {/* Client instructions – structured record, timestamped, exportable */}
-      <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Client instructions recorder temporarily unavailable.</div></Card>}>
-        <ClientInstructionsRecorder caseId={caseId} onSaved={onClientInstructionsSaved} />
-      </ErrorBoundary>
-
-      {/* Case files: single list lives in sidebar (Case Files card). No duplicate here. */}
+      {/* Client instructions & Disclosure live in their own tabs (Client & instructions, Disclosure). No duplicate here. */}
 
       {/* Missing Evidence – in its own box */}
       <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Missing evidence panel temporarily unavailable.</div></Card>}>
         <MissingEvidencePanel caseId={caseId} />
       </ErrorBoundary>
-
-      {/* Disclosure – tracker (snapshot) + chase list (requested/chased/received); scroll target for Jump to */}
-      <div id="section-disclosure" className="scroll-mt-24 space-y-6">
-        <DisclosureTrackerTable items={snapshot.evidence.disclosureItems} />
-        {caseId && (
-          <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Disclosure chase list temporarily unavailable.</div></Card>}>
-            <DisclosureChasersPanel caseId={caseId} />
-          </ErrorBoundary>
-        )}
-      </div>
     </div>
   );
 }
