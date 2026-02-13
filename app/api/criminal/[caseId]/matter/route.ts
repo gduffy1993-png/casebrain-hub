@@ -32,7 +32,7 @@ export async function GET(_request: Request, { params }: RouteParams) {
     const { data, error } = await supabase
       .from("criminal_cases")
       .select(
-        "matter_state, time_in_custody_at, next_pace_review_at, interview_stance, station_summary, grounds_for_arrest, bail_return_date, bail_outcome, matter_closed_at, matter_closed_reason, plea, plea_date"
+        "matter_state, time_in_custody_at, next_pace_review_at, interview_stance, station_summary, grounds_for_arrest, date_of_arrest, alleged_offence, bail_return_date, bail_outcome, matter_closed_at, matter_closed_reason, plea, plea_date"
       )
       .eq("id", caseId)
       .eq("org_id", orgId)
@@ -46,7 +46,7 @@ export async function GET(_request: Request, { params }: RouteParams) {
     if (!data) {
       return NextResponse.json({
         matterState: null,
-        station: { timeInCustodyAt: null, nextPaceReviewAt: null, interviewStance: null, stationSummary: null, groundsForArrest: null },
+        station: { timeInCustodyAt: null, nextPaceReviewAt: null, interviewStance: null, stationSummary: null, groundsForArrest: null, dateOfArrest: null, allegedOffence: null },
         bailReturnDate: null,
         bailOutcome: null,
         matterClosedAt: null,
@@ -65,6 +65,8 @@ export async function GET(_request: Request, { params }: RouteParams) {
         interviewStance: data.interview_stance ?? null,
         stationSummary: data.station_summary ?? null,
         groundsForArrest: (data as Record<string, unknown>).grounds_for_arrest ?? null,
+        dateOfArrest: (data as Record<string, unknown>).date_of_arrest ?? null,
+        allegedOffence: (data as Record<string, unknown>).alleged_offence ?? null,
       },
       bailReturnDate: data.bail_return_date ?? null,
       bailOutcome: data.bail_outcome ?? null,
@@ -103,6 +105,8 @@ export async function PATCH(request: Request, { params }: RouteParams) {
       if (body.station.interviewStance !== undefined) updates.interview_stance = body.station.interviewStance || null;
       if (body.station.stationSummary !== undefined) updates.station_summary = body.station.stationSummary || null;
       if (body.station.groundsForArrest !== undefined) updates.grounds_for_arrest = body.station.groundsForArrest || null;
+      if (body.station.dateOfArrest !== undefined) updates.date_of_arrest = body.station.dateOfArrest || null;
+      if (body.station.allegedOffence !== undefined) updates.alleged_offence = body.station.allegedOffence || null;
     }
     if (body.bailReturnDate !== undefined) updates.bail_return_date = body.bailReturnDate || null;
     if (body.bailOutcome !== undefined) updates.bail_outcome = body.bailOutcome || null;

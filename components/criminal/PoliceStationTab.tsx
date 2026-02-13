@@ -11,6 +11,8 @@ type MatterStation = {
   interviewStance: string | null;
   stationSummary: string | null;
   groundsForArrest: string | null;
+  dateOfArrest: string | null;
+  allegedOffence: string | null;
 };
 
 const MATTER_STATE_OPTIONS = [
@@ -66,6 +68,8 @@ export function PoliceStationTab({ caseId, onAddEvidenceUpload }: PoliceStationT
     interviewStance: null,
     stationSummary: null,
     groundsForArrest: null,
+    dateOfArrest: null,
+    allegedOffence: null,
   });
   const [bailReturnDate, setBailReturnDate] = useState<string | null>(null);
   const [bailOutcome, setBailOutcome] = useState<string | null>(null);
@@ -79,7 +83,7 @@ export function PoliceStationTab({ caseId, onAddEvidenceUpload }: PoliceStationT
       .then((res) => res.json())
       .then((data) => {
         if (!cancelled) {
-          if (data.station) setStation(data.station);
+          if (data.station) setStation((prev) => ({ ...prev, ...data.station }));
           if (data.matterState != null) setMatterState(data.matterState);
           if (data.bailReturnDate != null) setBailReturnDate(data.bailReturnDate);
           if (data.bailOutcome != null) setBailOutcome(data.bailOutcome);
@@ -139,10 +143,39 @@ export function PoliceStationTab({ caseId, onAddEvidenceUpload }: PoliceStationT
   return (
     <div className="space-y-6">
       <p className="text-sm text-muted-foreground">
-        Fill in a brief summary and grounds, upload the custody pack when you have it, then use the suggestions below and Strategy when charged.
+        Date of arrest, offence, summary and grounds. Everything you need for the station; Strategy tab when charged.
       </p>
 
-      {/* Brief summary – first box to fill in */}
+      {/* Date of arrest & offence alleged – first things to fill in */}
+      <Card className="p-4">
+        <h3 className="text-sm font-semibold text-foreground mb-2">Date of arrest & offence</h3>
+        <p className="text-xs text-muted-foreground mb-3">
+          When the client was arrested and what they are suspected of (e.g. armed robbery, assault).
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label className="text-xs text-muted-foreground block mb-1">Date of arrest</label>
+            <input
+              type="date"
+              className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
+              value={station.dateOfArrest ?? ""}
+              onChange={(e) => patchStation({ dateOfArrest: e.target.value || null })}
+            />
+          </div>
+          <div>
+            <label className="text-xs text-muted-foreground block mb-1">Offence alleged</label>
+            <input
+              type="text"
+              className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
+              placeholder="E.g. Armed robbery, assault, theft"
+              value={station.allegedOffence ?? ""}
+              onChange={(e) => patchStation({ allegedOffence: e.target.value || null })}
+            />
+          </div>
+        </div>
+      </Card>
+
+      {/* Brief summary */}
       <Card className="p-4">
         <h3 className="text-sm font-semibold text-foreground mb-2">Brief summary</h3>
         <p className="text-xs text-muted-foreground mb-3">

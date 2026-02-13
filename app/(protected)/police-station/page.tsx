@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
-import { ArrowRight, Upload, Inbox } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 type CaseRow = {
   id: string;
@@ -71,16 +71,7 @@ export default function PoliceStationPage() {
         <p className="text-sm text-accent/60">Matters at station, bailed or RUI – pending outcome</p>
       </header>
 
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <span className="text-sm font-medium text-accent/80">Police station matters</span>
-        <Link
-          href="/upload"
-          className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-white hover:opacity-90"
-        >
-          <Upload className="h-4 w-4" />
-          New upload
-        </Link>
-      </div>
+      <p className="text-sm font-medium text-accent/80">Police station matters – open a case to add or edit.</p>
 
       <Card>
         {loading ? (
@@ -122,28 +113,14 @@ export default function PoliceStationPage() {
         ) : (
           <div className="p-8 text-center">
             <p className="text-sm text-accent/70">
-              No police station matters yet. Upload documents or open a case, then set matter stage to At station, Bailed or RUI in the case’s Police station tab.
+              No police station matters yet. Open a case, set matter stage to At station, Bailed or RUI, and fill in the Police station tab (date of arrest, offence, summary, grounds).
             </p>
             <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
               <Link
-                href="/upload"
+                href="/cases"
                 className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-medium text-white hover:opacity-90"
               >
-                <Upload className="h-4 w-4" />
-                New upload
-              </Link>
-              <Link
-                href="/cases"
-                className="inline-flex items-center gap-2 rounded-xl border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-medium text-primary hover:bg-primary/20"
-              >
                 Go to Cases
-              </Link>
-              <Link
-                href="/intake"
-                className="inline-flex items-center gap-2 rounded-xl border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-medium text-primary hover:bg-primary/20"
-              >
-                <Inbox className="h-4 w-4" />
-                Intake
               </Link>
             </div>
           </div>
