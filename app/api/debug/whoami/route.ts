@@ -16,6 +16,7 @@ import { getOrgScopeOrFallback } from "@/lib/db/case-lookup";
 import { requireAuthContext } from "@/lib/auth";
 
 export const runtime = "nodejs"; // Explicitly set runtime
+export const dynamic = "force-dynamic";
 
 export async function GET(request: NextRequest) {
   try {

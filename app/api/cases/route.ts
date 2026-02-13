@@ -3,6 +3,7 @@ import { requireAuthContext } from "@/lib/auth";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 /** Latest position per case (case_id -> { position_text }) */
 function latestPositionsByCase(
