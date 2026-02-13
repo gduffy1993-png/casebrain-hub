@@ -10,6 +10,7 @@ import type { PracticeArea } from "@/lib/types/casebrain";
 import {
   AlertTriangle,
   BarChart2,
+  Building2,
   CalendarClock,
   CheckSquare,
   Code,
@@ -101,6 +102,7 @@ const labsEnabled = process.env.NEXT_PUBLIC_ENABLE_LABS === "true";
 
 const NAV_ITEMS: NavItem[] = [
   { label: "Dashboard", href: "/dashboard", icon: <Home className="h-4 w-4" /> },
+  { label: "Police station", href: "/police-station", icon: <Building2 className="h-4 w-4" /> },
   // Compliance and Team tabs hidden for v1 pilot - code preserved but not shown in nav
   // { 
   //   label: "Compliance", 
