@@ -10,6 +10,7 @@ type MatterStation = {
   nextPaceReviewAt: string | null;
   interviewStance: string | null;
   stationSummary: string | null;
+  groundsForArrest: string | null;
 };
 
 const MATTER_STATE_OPTIONS = [
@@ -64,6 +65,7 @@ export function PoliceStationTab({ caseId, onAddEvidenceUpload }: PoliceStationT
     nextPaceReviewAt: null,
     interviewStance: null,
     stationSummary: null,
+    groundsForArrest: null,
   });
   const [bailReturnDate, setBailReturnDate] = useState<string | null>(null);
   const [bailOutcome, setBailOutcome] = useState<string | null>(null);
@@ -132,11 +134,57 @@ export function PoliceStationTab({ caseId, onAddEvidenceUpload }: PoliceStationT
     );
   }
 
+  const hasSummary = (station.stationSummary ?? "").trim().length > 0 || (station.groundsForArrest ?? "").trim().length > 0;
+
   return (
     <div className="space-y-6">
       <p className="text-sm text-muted-foreground">
-        Police station materials and advice. Upload custody pack, record custody clock and interview stance, then run through the case in Summary and Strategy when charged.
+        Fill in a brief summary and grounds, upload the custody pack when you have it, then use the suggestions below and Strategy when charged.
       </p>
+
+      {/* Brief summary – first box to fill in */}
+      <Card className="p-4">
+        <h3 className="text-sm font-semibold text-foreground mb-2">Brief summary</h3>
+        <p className="text-xs text-muted-foreground mb-3">
+          What happened and why the client was arrested. E.g. offence alleged, where and when, key circumstances.
+        </p>
+        <textarea
+          className="w-full min-h-[100px] rounded border border-border bg-background px-3 py-2 text-sm resize-y"
+          placeholder="E.g. Client arrested for armed robbery. Caught 5 mins round corner from scene; similar description, build and clothes to suspect. No property found on him."
+          value={station.stationSummary ?? ""}
+          onChange={(e) => patchStation({ stationSummary: e.target.value || null })}
+        />
+      </Card>
+
+      {/* Grounds for arrest / suspicion – second box */}
+      <Card className="p-4">
+        <h3 className="text-sm font-semibold text-foreground mb-2">Grounds for arrest / key circumstances</h3>
+        <p className="text-xs text-muted-foreground mb-3">
+          Note what police are relying on (suspicion, ID, proximity, description, etc.) so you can track points for disclosure and defence.
+        </p>
+        <textarea
+          className="w-full min-h-[80px] rounded border border-border bg-background px-3 py-2 text-sm resize-y"
+          placeholder="E.g. Proximity only; similar clothes; no forensic link; witness description broad. Points to chase in disclosure."
+          value={station.groundsForArrest ?? ""}
+          onChange={(e) => patchStation({ groundsForArrest: e.target.value || null })}
+        />
+      </Card>
+
+      {/* Suggested next steps – based on having some summary */}
+      {hasSummary && (
+        <Card className="p-4 border-primary/20 bg-primary/5">
+          <h3 className="text-sm font-semibold text-foreground mb-2">Suggested next steps</h3>
+          <p className="text-xs text-muted-foreground mb-2">
+            Based on your summary – not legal advice. You decide what to do.
+          </p>
+          <ul className="text-sm text-muted-foreground list-disc list-inside space-y-1">
+            <li>Request custody record, MG4 and MG5 (upload below when you have them)</li>
+            <li>Note any ID or circumstantial points for later challenge</li>
+            <li>Record interview stance below once the client has decided</li>
+            <li>When charged, use the Strategy tab and upload any charge sheet</li>
+          </ul>
+        </Card>
+      )}
 
       {/* Matter stage – drives default tab when opening case */}
       <Card className="p-4">
@@ -233,20 +281,6 @@ export function PoliceStationTab({ caseId, onAddEvidenceUpload }: PoliceStationT
         <p className="text-xs italic text-muted-foreground">
           Record the interview stance above once the client has decided. You control the decision.
         </p>
-      </Card>
-
-      {/* Station summary */}
-      <Card className="p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-2">Station summary</h3>
-        <p className="text-xs text-muted-foreground mb-3">
-          Brief summary of station attendance, disclosure at station, and interview. Can be filled manually or from ingested docs later.
-        </p>
-        <textarea
-          className="w-full min-h-[120px] rounded border border-border bg-background px-3 py-2 text-sm resize-y"
-          placeholder="E.g. Client attended voluntarily. Limited disclosure (MG4). Interview: no comment. Bailed to return..."
-          value={station.stationSummary ?? ""}
-          onChange={(e) => patchStation({ stationSummary: e.target.value || null })}
-        />
       </Card>
 
       {/* Bail return date & outcome (after station) */}
