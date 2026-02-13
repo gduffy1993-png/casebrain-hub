@@ -33,11 +33,22 @@ If the charge or summary is unclear or you cannot safely classify, set confidenc
 
 export function buildStrategySuggestUserPrompt(chargeText: string, summaryText: string, docSnippets?: Array<{ sourceLabel: string; text: string }>): string {
   const parts: string[] = [];
-  if (chargeText.trim()) parts.push(`Charge wording:\n${chargeText.trim().slice(0, 2000)}`);
-  if (summaryText.trim()) parts.push(`Case summary:\n${summaryText.trim().slice(0, 4000)}`);
+  if (chargeText.trim()) {
+    parts.push(`Charges (what the client faces):\n${chargeText.trim().slice(0, 2000)}`);
+  }
+  const evidenceParts: string[] = [];
+  if (summaryText.trim()) {
+    evidenceParts.push(`Summary / brief:\n${summaryText.trim().slice(0, 4000)}`);
+  }
   if (docSnippets?.length) {
-    const snippets = docSnippets.slice(0, 5).map((s) => `[${s.sourceLabel}]\n${s.text.slice(0, 1500)}`).join("\n\n");
-    parts.push(`Document excerpts:\n${snippets}`);
+    const snippets = docSnippets
+      .slice(0, 5)
+      .map((s) => `[${s.sourceLabel}]\n${s.text.slice(0, 1500)}`)
+      .join("\n\n---\n\n");
+    evidenceParts.push(`Evidence on file (excerpts):\n${snippets}`);
+  }
+  if (evidenceParts.length) {
+    parts.push(`Evidence / material on file (use this to ground your angles):\n\n${evidenceParts.join("\n\n")}`);
   }
   return parts.join("\n\n") || "No charge or summary provided.";
 }

@@ -31,7 +31,9 @@ const AI_TIMEOUT_MS = 15_000;
 
 type RouteParams = { params: Promise<{ caseId: string }> };
 
-/** Build request input from case: charge text + summary (no PII). */
+const DOC_SNIPPET_CHARS = 1200;
+
+/** Build request input from case: charges + summary + document excerpts (evidence-led, no PII). */
 async function buildInputFromCase(caseId: string, orgId: string): Promise<StrategySuggestInput> {
   const supabase = getSupabaseAdminClient();
 
@@ -49,7 +51,7 @@ async function buildInputFromCase(caseId: string, orgId: string): Promise<Strate
       .eq("case_id", caseId)
       .eq("org_id", orgId)
       .order("created_at", { ascending: false })
-      .limit(3),
+      .limit(5),
   ]);
 
   const chargeText = (chargesRes.data ?? [])
@@ -59,11 +61,23 @@ async function buildInputFromCase(caseId: string, orgId: string): Promise<Strate
     .slice(0, STRATEGY_SUGGEST_INPUT_LIMITS.chargeText);
 
   let summaryText = "";
+  const docSnippets: Array<{ sourceLabel: string; text: string }> = [];
+
   for (const doc of docsRes.data ?? []) {
-    const ext = doc.extracted_json as { summary?: string } | null;
-    if (ext?.summary && typeof ext.summary === "string") {
-      summaryText = ext.summary.slice(0, STRATEGY_SUGGEST_INPUT_LIMITS.summaryText);
-      break;
+    const name = (doc as { name?: string }).name ?? "Document";
+    const raw = (doc as { raw_text?: string }).raw_text ?? "";
+    const ext = (doc as { extracted_json?: { summary?: string } }).extracted_json;
+    const summaryFromDoc = ext?.summary && typeof ext.summary === "string" ? ext.summary : "";
+
+    if (summaryFromDoc && !summaryText) {
+      summaryText = summaryFromDoc.slice(0, STRATEGY_SUGGEST_INPUT_LIMITS.summaryText);
+    }
+    const excerpt = summaryFromDoc || raw;
+    if (excerpt && docSnippets.length < STRATEGY_SUGGEST_INPUT_LIMITS.docSnippetsMaxItems) {
+      docSnippets.push({
+        sourceLabel: name.slice(0, 80),
+        text: excerpt.slice(0, DOC_SNIPPET_CHARS),
+      });
     }
   }
   if (!summaryText && docsRes.data?.length) {
@@ -71,7 +85,11 @@ async function buildInputFromCase(caseId: string, orgId: string): Promise<Strate
     summaryText = raw.slice(0, STRATEGY_SUGGEST_INPUT_LIMITS.summaryText);
   }
 
-  return { chargeText: chargeText || undefined, summaryText: summaryText || undefined };
+  return {
+    chargeText: chargeText || undefined,
+    summaryText: summaryText || undefined,
+    docSnippets: docSnippets.length ? docSnippets : undefined,
+  };
 }
 
 export async function POST(request: NextRequest, { params }: RouteParams) {
@@ -187,11 +205,6 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     const confidence = (parsed as { confidence?: string }).confidence;
     const conf: StrategySuggestConfidence =
       confidence === "high" || confidence === "medium" ? confidence : "low";
-
-    if (conf === "low") {
-      logStrategySuggest({ event: "fallback", caseId, reason: "low_confidence" });
-      return NextResponse.json(getStrategySuggestFallback("low_confidence"), { status: 200 });
-    }
 
     const rawNarrative = (parsed as { narrativeDraft?: unknown }).narrativeDraft;
     const narrativeDraft =
