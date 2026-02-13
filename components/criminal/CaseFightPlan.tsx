@@ -30,6 +30,7 @@ import { useEffect, useState, useMemo } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { FoldSection } from "@/components/ui/fold-section";
 import { Loader2, FileText, AlertCircle, CheckCircle2, Copy, ArrowRight, AlertTriangle } from "lucide-react";
 import { AnalysisGateBanner, type AnalysisGateBannerProps } from "@/components/AnalysisGateBanner";
 import { normalizeApiResponse, isGated } from "@/lib/api-response-normalizer";
@@ -1051,13 +1052,14 @@ export function CaseFightPlan({
           return null;
         })()}
 
-        {/* Priority 1: If strategy-analysis routes exist -> render multi-route strategy */}
+        {/* Priority 1: If strategy-analysis routes exist -> render multi-route strategy (reference only; proposal is in Strategy column) */}
         {/* GATE: Only render if canShowStrategyFull is true */}
         {showFull && strategyRoutes && strategyRoutes.length > 0 ? (
-          <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-foreground">Strategy Routes</h3>
-            <div className="space-y-4">
-              {strategyRoutes.map((route: any) => (
+          <FoldSection title="Compare other strategies (reference)" defaultOpen={false}>
+            <div className="space-y-4 pt-2">
+              <p className="text-xs text-muted-foreground">Your proposed strategy is in the Strategy column. Expand to compare routes and detail.</p>
+              <div className="space-y-4">
+                {strategyRoutes.map((route: any) => (
                 <div
                   key={route.id}
                   className={`p-4 rounded-lg border ${
@@ -1233,7 +1235,8 @@ export function CaseFightPlan({
                 </div>
               );
             })()}
-          </div>
+              </div>
+            </FoldSection>
         ) : Array.isArray(tacticalPlan) && tacticalPlan.length > 0 ? (
           <div className="space-y-3">
             <h3 className="text-sm font-semibold text-foreground">Tactical Plan</h3>
