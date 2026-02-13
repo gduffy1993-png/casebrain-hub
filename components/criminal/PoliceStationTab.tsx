@@ -141,17 +141,15 @@ export function PoliceStationTab({ caseId, onAddEvidenceUpload }: PoliceStationT
   const hasSummary = (station.stationSummary ?? "").trim().length > 0 || (station.groundsForArrest ?? "").trim().length > 0;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <p className="text-sm text-muted-foreground">
         Date of arrest, offence, summary and grounds. Everything you need for the station; Strategy tab when charged.
       </p>
 
-      {/* Date of arrest & offence alleged – first things to fill in */}
-      <Card className="p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-2">Date of arrest & offence</h3>
-        <p className="text-xs text-muted-foreground mb-3">
-          When the client was arrested and what they are suspected of (e.g. armed robbery, assault).
-        </p>
+      {/* Single card – same layout as Police station page */}
+      <Card className="p-6 space-y-6">
+        <h2 className="text-lg font-semibold text-foreground">Station details</h2>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="text-xs text-muted-foreground block mb-1">Date of arrest</label>
@@ -167,99 +165,70 @@ export function PoliceStationTab({ caseId, onAddEvidenceUpload }: PoliceStationT
             <input
               type="text"
               className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
-              placeholder="E.g. Armed robbery, assault, theft"
+              placeholder="E.g. Armed robbery, assault"
               value={station.allegedOffence ?? ""}
               onChange={(e) => patchStation({ allegedOffence: e.target.value || null })}
             />
           </div>
         </div>
-      </Card>
 
-      {/* Brief summary */}
-      <Card className="p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-2">Brief summary</h3>
-        <p className="text-xs text-muted-foreground mb-3">
-          What happened and why the client was arrested. E.g. offence alleged, where and when, key circumstances.
-        </p>
-        <textarea
-          className="w-full min-h-[100px] rounded border border-border bg-background px-3 py-2 text-sm resize-y"
-          placeholder="E.g. Client arrested for armed robbery. Caught 5 mins round corner from scene; similar description, build and clothes to suspect. No property found on him."
-          value={station.stationSummary ?? ""}
-          onChange={(e) => patchStation({ stationSummary: e.target.value || null })}
-        />
-      </Card>
+        <div>
+          <label className="text-xs text-muted-foreground block mb-1">Matter stage</label>
+          <select
+            className="w-full max-w-xs rounded border border-border bg-background px-3 py-2 text-sm"
+            value={matterState ?? ""}
+            onChange={(e) => setMatterStateAndSave(e.target.value || null)}
+          >
+            {MATTER_STATE_OPTIONS.map((opt) => (
+              <option key={opt.value || "none"} value={opt.value}>{opt.label}</option>
+            ))}
+          </select>
+        </div>
 
-      {/* Grounds for arrest / suspicion – second box */}
-      <Card className="p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-2">Grounds for arrest / key circumstances</h3>
-        <p className="text-xs text-muted-foreground mb-3">
-          Note what police are relying on (suspicion, ID, proximity, description, etc.) so you can track points for disclosure and defence.
-        </p>
-        <textarea
-          className="w-full min-h-[80px] rounded border border-border bg-background px-3 py-2 text-sm resize-y"
-          placeholder="E.g. Proximity only; similar clothes; no forensic link; witness description broad. Points to chase in disclosure."
-          value={station.groundsForArrest ?? ""}
-          onChange={(e) => patchStation({ groundsForArrest: e.target.value || null })}
-        />
-      </Card>
+        <div>
+          <label className="text-xs text-muted-foreground block mb-1">Brief summary</label>
+          <textarea
+            className="w-full min-h-[100px] rounded border border-border bg-background px-3 py-2 text-sm resize-y"
+            placeholder="What happened, why arrested, key circumstances..."
+            value={station.stationSummary ?? ""}
+            onChange={(e) => patchStation({ stationSummary: e.target.value || null })}
+          />
+        </div>
 
-      {/* Suggested next steps – based on having some summary */}
-      {hasSummary && (
-        <Card className="p-4 border-primary/20 bg-primary/5">
-          <h3 className="text-sm font-semibold text-foreground mb-2">Suggested next steps</h3>
-          <p className="text-xs text-muted-foreground mb-2">
-            Based on your summary – not legal advice. You decide what to do.
-          </p>
-          <ul className="text-sm text-muted-foreground list-disc list-inside space-y-1">
-            <li>Request custody record, MG4 and MG5 (upload below when you have them)</li>
-            <li>Note any ID or circumstantial points for later challenge</li>
-            <li>Record interview stance below once the client has decided</li>
-            <li>When charged, use the Strategy tab and upload any charge sheet</li>
-          </ul>
-        </Card>
-      )}
+        <div>
+          <label className="text-xs text-muted-foreground block mb-1">Grounds for arrest / key circumstances</label>
+          <textarea
+            className="w-full min-h-[80px] rounded border border-border bg-background px-3 py-2 text-sm resize-y"
+            placeholder="What police are relying on; points for disclosure..."
+            value={station.groundsForArrest ?? ""}
+            onChange={(e) => patchStation({ groundsForArrest: e.target.value || null })}
+          />
+        </div>
 
-      {/* Matter stage – drives default tab when opening case */}
-      <Card className="p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-2">Matter stage</h3>
-        <p className="text-xs text-muted-foreground mb-2">
-          Sets which tab opens by default when you open this case (e.g. At station → Police station tab).
-        </p>
-        <select
-          className="w-full max-w-xs rounded border border-border bg-background px-3 py-2 text-sm"
-          value={matterState ?? ""}
-          onChange={(e) => setMatterStateAndSave(e.target.value || null)}
-        >
-          {MATTER_STATE_OPTIONS.map((opt) => (
-            <option key={opt.value || "none"} value={opt.value}>{opt.label}</option>
-          ))}
-        </select>
-      </Card>
+        {hasSummary && (
+          <div className="rounded-lg border border-primary/20 bg-primary/5 p-4">
+            <h3 className="text-sm font-semibold text-foreground mb-2">Suggested next steps</h3>
+            <p className="text-xs text-muted-foreground mb-2">Not legal advice. You decide.</p>
+            <ul className="text-sm text-muted-foreground list-disc list-inside space-y-1">
+              <li>Request custody record, MG4 and MG5; upload below when you have them</li>
+              <li>Note any ID or circumstantial points for later challenge</li>
+              <li>Record interview stance below once the client has decided</li>
+              <li>When charged, use the Strategy tab and upload any charge sheet</li>
+            </ul>
+          </div>
+        )}
 
-      {/* Upload station pack */}
-      <Card className="p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-2">Station pack</h3>
-        <p className="text-xs text-muted-foreground mb-3">
-          Upload custody record, MG4, MG5, disclosure list, interview record. They will appear in case documents and can be used for summary and strategy.
-        </p>
-        <Button type="button" variant="outline" size="sm" onClick={onAddEvidenceUpload}>
-          <Upload className="h-4 w-4 mr-2" />
-          Upload station documents
-        </Button>
-      </Card>
+        <div>
+          <label className="text-xs text-muted-foreground block mb-1">Station pack</label>
+          <Button type="button" variant="outline" size="sm" onClick={onAddEvidenceUpload}>
+            <Upload className="h-4 w-4 mr-2" />
+            Upload station documents
+          </Button>
+        </div>
 
-      {/* Custody clock */}
-      <Card className="p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-2">
-          <Clock className="h-4 w-4" />
-          Custody clock
-        </h3>
-        <p className="text-xs text-muted-foreground mb-3">
-          Record time in custody and next PACE review so you know detention limits.
-        </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="text-xs text-muted-foreground block mb-1">Time in custody (date/time)</label>
+            <label className="text-xs text-muted-foreground block mb-1 flex items-center gap-1"><Clock className="h-3 w-3" /> Time in custody</label>
             <input
               type="datetime-local"
               className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
@@ -268,7 +237,7 @@ export function PoliceStationTab({ caseId, onAddEvidenceUpload }: PoliceStationT
             />
           </div>
           <div>
-            <label className="text-xs text-muted-foreground block mb-1">Next PACE review (date/time)</label>
+            <label className="text-xs text-muted-foreground block mb-1">Next PACE review</label>
             <input
               type="datetime-local"
               className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
@@ -277,54 +246,29 @@ export function PoliceStationTab({ caseId, onAddEvidenceUpload }: PoliceStationT
             />
           </div>
         </div>
-      </Card>
 
-      {/* Interview stance */}
-      <Card className="p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-2">
-          <MessageSquare className="h-4 w-4" />
-          Interview stance
-        </h3>
-        <p className="text-xs text-muted-foreground mb-3">
-          Record how the client dealt with interview. Shown in station summary and Key facts.
-        </p>
-        <select
-          className="w-full max-w-xs rounded border border-border bg-background px-3 py-2 text-sm"
-          value={station.interviewStance ?? ""}
-          onChange={(e) => patchStation({ interviewStance: e.target.value || null })}
-        >
-          {INTERVIEW_STANCES.map((opt) => (
-            <option key={opt.value || "none"} value={opt.value}>{opt.label}</option>
-          ))}
-        </select>
-      </Card>
+        <div>
+          <label className="text-xs text-muted-foreground block mb-1 flex items-center gap-1"><MessageSquare className="h-3 w-3" /> Interview stance</label>
+          <select
+            className="w-full max-w-xs rounded border border-border bg-background px-3 py-2 text-sm"
+            value={station.interviewStance ?? ""}
+            onChange={(e) => patchStation({ interviewStance: e.target.value || null })}
+          >
+            {INTERVIEW_STANCES.map((opt) => (
+              <option key={opt.value || "none"} value={opt.value}>{opt.label}</option>
+            ))}
+          </select>
+        </div>
 
-      {/* Speak or no comment – guardrailed, not legal advice */}
-      <Card className="p-4 border-amber-500/20 bg-amber-500/5">
-        <h3 className="text-sm font-semibold text-foreground mb-2">Speak or no comment?</h3>
-        <p className="text-xs text-muted-foreground mb-2">
-          This is a decision for you and the client. CaseBrain does not give legal advice. Consider:
-        </p>
-        <ul className="text-xs text-muted-foreground list-disc list-inside space-y-1 mb-2">
-          <li>Strength of prosecution case and disclosure at station</li>
-          <li>Client instructions and their ability to give a clear account</li>
-          <li>Risks of saying something that may undermine the defence later</li>
-          <li>Prepared statement as a middle option</li>
-        </ul>
-        <p className="text-xs italic text-muted-foreground">
-          Record the interview stance above once the client has decided. You control the decision.
-        </p>
-      </Card>
+        <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 p-3">
+          <p className="text-xs text-muted-foreground">
+            <strong className="text-foreground">Speak or no comment?</strong> Your decision with the client. Consider strength of case, disclosure, and risks. Record stance above once decided.
+          </p>
+        </div>
 
-      {/* Bail return date & outcome (after station) */}
-      <Card className="p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-2">Bail return / outcome</h3>
-        <p className="text-xs text-muted-foreground mb-3">
-          Return date and outcome at return (extended bail, RUI, NFA, charged). When charged, set matter stage to Charged and use Strategy tab.
-        </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="text-xs text-muted-foreground block mb-1">Return date</label>
+            <label className="text-xs text-muted-foreground block mb-1">Bail return date</label>
             <input
               type="date"
               className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
@@ -336,7 +280,7 @@ export function PoliceStationTab({ caseId, onAddEvidenceUpload }: PoliceStationT
             />
           </div>
           <div>
-            <label className="text-xs text-muted-foreground block mb-1">Outcome at return</label>
+            <label className="text-xs text-muted-foreground block mb-1">Bail outcome</label>
             <select
               className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
               value={bailOutcome ?? ""}
@@ -355,25 +299,18 @@ export function PoliceStationTab({ caseId, onAddEvidenceUpload }: PoliceStationT
             </select>
           </div>
         </div>
-      </Card>
 
-      {dirty && (
-        <div className="flex items-center gap-2">
-          <Button size="sm" onClick={save} disabled={saving}>
-            {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : "Save changes"}
-          </Button>
-        </div>
-      )}
+        {dirty && (
+          <div className="flex items-center gap-2">
+            <Button size="sm" onClick={save} disabled={saving}>
+              {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : "Save changes"}
+            </Button>
+          </div>
+        )}
 
-      {/* Matter closed (NFA / disposed) */}
-      <Card className="p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-2">Matter closed</h3>
-        <p className="text-xs text-muted-foreground mb-3">
-          When the matter is closed (NFA, disposed, acquitted), record the date and outcome so it doesn’t stay live. You can then archive the case.
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-border">
           <div>
-            <label className="text-xs text-muted-foreground block mb-1">Closed date</label>
+            <label className="text-xs text-muted-foreground block mb-1">Matter closed date</label>
             <input
               type="date"
               className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
@@ -385,7 +322,7 @@ export function PoliceStationTab({ caseId, onAddEvidenceUpload }: PoliceStationT
             />
           </div>
           <div>
-            <label className="text-xs text-muted-foreground block mb-1">Reason (e.g. NFA, acquitted, sentenced)</label>
+            <label className="text-xs text-muted-foreground block mb-1">Matter closed reason</label>
             <input
               type="text"
               className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
@@ -399,7 +336,7 @@ export function PoliceStationTab({ caseId, onAddEvidenceUpload }: PoliceStationT
           </div>
         </div>
         {(matterClosedAt || matterClosedReason) && (
-          <div className="mt-3">
+          <div>
             <Button
               variant="outline"
               size="sm"
@@ -417,19 +354,15 @@ export function PoliceStationTab({ caseId, onAddEvidenceUpload }: PoliceStationT
             </Button>
           </div>
         )}
-      </Card>
 
-      {/* Request paperwork */}
-      <Card className="p-4">
-        <h3 className="text-sm font-semibold text-foreground mb-2">Request paperwork (by email)</h3>
-        <p className="text-xs text-muted-foreground mb-3">
-          Use this list when requesting copies from the station or CPS.
-        </p>
-        <ul className="text-sm text-muted-foreground list-disc list-inside space-y-1">
-          {REQUEST_PAPERWORK_LIST.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
+        <div className="pt-2 border-t border-border">
+          <h3 className="text-sm font-semibold text-foreground mb-2">Request paperwork (by email)</h3>
+          <ul className="text-sm text-muted-foreground list-disc list-inside space-y-1">
+            {REQUEST_PAPERWORK_LIST.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
       </Card>
     </div>
   );
