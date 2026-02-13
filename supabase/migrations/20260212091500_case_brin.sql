@@ -30,6 +30,7 @@ begin
 end;
 $$ language plpgsql;
 
+drop trigger if exists tasks_set_updated_at on public.tasks;
 create trigger tasks_set_updated_at
 before update on public.tasks
 for each row execute procedure public.tasks_updated_at();

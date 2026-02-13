@@ -1,6 +1,6 @@
 import { normalizePracticeArea } from "@/lib/types/casebrain";
 
-export type CriminalLetterKind = "client_update" | "disclosure_chase";
+export type CriminalLetterKind = "client_update" | "disclosure_chase" | "initial_disclosure_request";
 
 export type CriminalLetterInputs = {
   caseTitle: string;
@@ -94,6 +94,36 @@ export function buildCriminalLetterDraft(kind: CriminalLetterKind, input: Crimin
       .filter((x) => x !== "")
       .join("\n");
 
+    return { subject, body };
+  }
+
+  if (kind === "initial_disclosure_request") {
+    const subject = `${caseRef} — request for initial disclosure (CPIA)`;
+    const body = [
+      caseRef,
+      "",
+      "Dear CPS / Disclosure Officer,",
+      "",
+      "We act for the Defendant in the above matter.",
+      "",
+      defendantLine,
+      hearingLine,
+      "",
+      "We write to request initial disclosure in accordance with the CPIA 1996 and the Disclosure Manual.",
+      "",
+      "Please provide:",
+      "- Initial disclosure (prosecution material that might undermine the prosecution case or assist the defence);",
+      "- A schedule of non-sensitive unused material (MG6C or equivalent);",
+      "- Any material that may be relevant to the defence (as identified in due course).",
+      "",
+      "Please confirm receipt and indicate when we can expect initial disclosure to be served.",
+      "",
+      "Yours faithfully,",
+      "",
+      input.notes && input.notes.trim().length > 0 ? `\nAdditional notes:\n${input.notes.trim()}` : "",
+    ]
+      .filter((x) => x !== "")
+      .join("\n");
     return { subject, body };
   }
 

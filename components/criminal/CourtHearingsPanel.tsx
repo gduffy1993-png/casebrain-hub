@@ -7,7 +7,21 @@ import { Calendar, Plus, Gavel, Loader2, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/Toast";
 
-const HEARING_TYPES = ["First Hearing", "Plea Hearing", "Case Management", "Trial", "Sentencing", "Appeal", "Bail Review"] as const;
+const HEARING_TYPES = ["First Hearing", "Plea Hearing", "PTPH", "PCMH", "Case Management", "Mention", "Trial", "Sentencing", "Appeal", "Bail Review"] as const;
+
+const OUTCOME_OPTIONS = [
+  "",
+  "Adjourned (general)",
+  "Adjourned for disclosure",
+  "Adjourned for legal aid",
+  "Plea entered",
+  "Trial date set",
+  "Sent to Crown Court",
+  "PCMH listed",
+  "Sentence adjourned",
+  "Case discontinued",
+  "Other",
+];
 
 type Hearing = {
   id: string;
@@ -16,6 +30,7 @@ type Hearing = {
   courtName: string | null;
   outcome: string | null;
   notes: string | null;
+  whatsNeededNext: string | null;
 };
 
 type CourtHearingsPanelProps = {
@@ -71,7 +86,7 @@ export function CourtHearingsPanel({ caseId, currentPhase = 1 }: CourtHearingsPa
         });
         const data = await res.json().catch(() => ({}));
         if (res.ok && data.hearing) {
-          setHearings((prev) => [...prev, { id: data.hearing.id, hearingType: data.hearing.hearingType, hearingDate: data.hearing.hearingDate, courtName: data.hearing.courtName, outcome: data.hearing.outcome, notes: data.hearing.notes }]);
+          setHearings((prev) => [...prev, { id: data.hearing.id, hearingType: data.hearing.hearingType, hearingDate: data.hearing.hearingDate, courtName: data.hearing.courtName, outcome: data.hearing.outcome, notes: data.hearing.notes, whatsNeededNext: data.hearing.whatsNeededNext ?? null }]);
           setShowAddHearing(false);
           setAddCourtName("");
           showToast?.("Hearing added", "success");
@@ -99,6 +114,7 @@ export function CourtHearingsPanel({ caseId, currentPhase = 1 }: CourtHearingsPa
     (h) => new Date(h.hearingDate) >= new Date()
   );
   const pastHearings = sortedHearings.filter((h) => new Date(h.hearingDate) < new Date());
+  const nextTrial = upcomingHearings.find((h) => h.hearingType === "Trial");
 
   return (
     <Card
@@ -117,6 +133,18 @@ export function CourtHearingsPanel({ caseId, currentPhase = 1 }: CourtHearingsPa
       }
     >
       <div className="space-y-4">
+        {nextTrial && (
+          <div className="rounded-lg border border-primary/30 bg-primary/10 p-3">
+            <h4 className="text-sm font-semibold text-foreground">Trial date – diarise reminders</h4>
+            <p className="text-sm text-muted-foreground mt-1">
+              {new Date(nextTrial.hearingDate).toLocaleDateString("en-GB", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}
+              {nextTrial.courtName ? ` at ${nextTrial.courtName}` : ""}
+            </p>
+            <p className="text-xs text-muted-foreground mt-2">
+              Remind: 4 weeks before, 2 weeks before, 1 week before, day before.
+            </p>
+          </div>
+        )}
         {showAddHearing && (
           <div className="rounded-lg border border-border bg-muted/20 p-4 space-y-3">
             <h4 className="text-sm font-semibold">New hearing</h4>
@@ -208,6 +236,7 @@ function HearingCard({
   const [editingOutcome, setEditingOutcome] = useState(false);
   const [outcome, setOutcome] = useState(hearing.outcome ?? "");
   const [notes, setNotes] = useState(hearing.notes ?? "");
+  const [whatsNeededNext, setWhatsNeededNext] = useState(hearing.whatsNeededNext ?? "");
   const [pending, startTransition] = useTransition();
   const { push: showToast } = useToast();
 
@@ -219,7 +248,11 @@ function HearingCard({
           {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ outcome: outcome.trim() || null, notes: notes.trim() || null }),
+            body: JSON.stringify({
+              outcome: outcome.trim() || null,
+              notes: notes.trim() || null,
+              whatsNeededNext: whatsNeededNext.trim() || null,
+            }),
           }
         );
         const data = await res.json().catch(() => ({}));
@@ -258,6 +291,9 @@ function HearingCard({
           {currentPhase >= 3 && hearing.notes && !editingOutcome && (
             <p className="text-xs text-muted-foreground mt-1 whitespace-pre-wrap">Notes: {hearing.notes}</p>
           )}
+          {hearing.whatsNeededNext && !editingOutcome && (
+            <p className="text-xs text-muted-foreground mt-1">What&apos;s needed next: {hearing.whatsNeededNext}</p>
+          )}
           {hearing.outcome && currentPhase < 3 && (
             <p className="text-xs text-amber-400/70 mt-1 italic">
               Outcome available in Phase 3 (Sentencing & Outcome)
@@ -272,20 +308,30 @@ function HearingCard({
         <div className="mt-3 pt-3 border-t border-border/50">
           {editingOutcome ? (
             <div className="space-y-2">
-              <label className="text-xs font-medium block">What happened / outcome summary</label>
-              <input
-                type="text"
+              <label className="text-xs font-medium block">Outcome</label>
+              <select
                 value={outcome}
                 onChange={(e) => setOutcome(e.target.value)}
-                placeholder="e.g. Adjourned for disclosure; next hearing 12 March"
                 className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
-              />
+              >
+                {OUTCOME_OPTIONS.map((o) => (
+                  <option key={o || "blank"} value={o}>{o || "— Select outcome —"}</option>
+                ))}
+              </select>
               <label className="text-xs font-medium block">Notes (orders, disclosure promised, next date)</label>
               <textarea
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
                 placeholder="What was ordered, disclosure promised, next hearing date..."
                 rows={2}
+                className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
+              />
+              <label className="text-xs font-medium block">What&apos;s needed for next hearing</label>
+              <input
+                type="text"
+                value={whatsNeededNext}
+                onChange={(e) => setWhatsNeededNext(e.target.value)}
+                placeholder="e.g. Disclosure, defence statement, trial bundle"
                 className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
               />
               <div className="flex gap-2">
@@ -305,6 +351,7 @@ function HearingCard({
               onClick={() => {
                 setOutcome(hearing.outcome ?? "");
                 setNotes(hearing.notes ?? "");
+                setWhatsNeededNext(hearing.whatsNeededNext ?? "");
                 setEditingOutcome(true);
               }}
               className="gap-1"

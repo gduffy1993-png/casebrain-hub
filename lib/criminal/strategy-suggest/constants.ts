@@ -141,6 +141,23 @@ export function normaliseStrategyAngles(angles: string[]): string[] {
   return angles.filter((a) => typeof a === "string" && STRATEGY_ANGLE_ID_SET.has(a.trim()));
 }
 
+/**
+ * Per-offence method hints for the AI (step 16: method encoding).
+ * Used in prompt to steer charge-specific reasoning; not legal advice.
+ */
+export const METHOD_HINTS_BY_OFFENCE: Record<OffenceType, string> = {
+  assault_oapa: "Consider: level of harm (GBH/ABH), intent (s.18 vs s.20), self-defence, identification, medical evidence.",
+  robbery: "Consider: theft (dishonesty, appropriation) plus force/threat; ID; intent to permanently deprive.",
+  theft: "Consider: dishonesty (Ghosh), appropriation, intention to permanently deprive; claim of right; honest belief.",
+  burglary: "Consider: entry as trespasser, intent at entry (theft/GBH/damage); dishonesty and intent as for theft.",
+  drugs: "Consider: possession (knowledge, control); intent to supply vs personal use; chain of custody.",
+  fraud: "Consider: false representation; dishonesty; intent to gain/cause loss; reliance.",
+  sexual: "Consider: consent; reasonable belief in consent; identification; delay/complainant credibility (procedural only).",
+  criminal_damage_arson: "Consider: intention/recklessness; lawful excuse (s.5); property belonging to another.",
+  public_order: "Consider: use or threat of violence; affray/violent disorder; identification.",
+  other: "Consider: actus reus and mens rea; disclosure and procedure; mitigation.",
+};
+
 /** Get strategy angles available for an offence type (generic + offence-specific). */
 export function getStrategyAnglesForOffence(offenceType: OffenceType): readonly string[] {
   const base = [...GENERIC_STRATEGY_ANGLES];

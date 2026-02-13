@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { ErrorBoundary } from "@/components/ui/error-boundary";
 import { FoldSection } from "@/components/ui/fold-section";
@@ -80,6 +80,7 @@ type CriminalCaseViewProps = {
 export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const pathname = usePathname();
   
   // Hydration guard: prevent ErrorBoundary fallback from showing during initial mount
   const [mounted, setMounted] = useState(false);
@@ -394,8 +395,13 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
 
   const setTab = (tabId: string) => {
     const params = new URLSearchParams(searchParams.toString());
-    params.set("tab", tabId);
-    router.replace(`?${params.toString()}`, { scroll: false });
+    if (tabId === activeTab) {
+      params.delete("tab");
+    } else {
+      params.set("tab", tabId);
+    }
+    const query = params.toString();
+    router.replace(query ? `${pathname}?${query}` : pathname, { scroll: false });
   };
 
   return (
