@@ -17,9 +17,20 @@ type CaseRow = {
 };
 
 type FormState = {
+  clientInitials: string;
+  clientYob: string;
+  custodyNumber: string;
+  policeStationName: string;
   dateOfArrest: string;
   allegedOffence: string;
   matterState: string;
+  representationType: string;
+  riskAppropriateAdult: boolean;
+  riskInterpreter: boolean;
+  riskMentalHealth: boolean;
+  riskMedicalIssues: boolean;
+  initialDisclosureReceived: string;
+  initialDisclosureNotes: string;
   stationSummary: string;
   groundsForArrest: string;
   timeInCustodyAt: string;
@@ -66,10 +77,29 @@ const BAIL_OUTCOME_OPTIONS = [
   { value: "charged", label: "Charged" },
 ];
 
+const REPRESENTATION_OPTIONS = [
+  { value: "", label: "Not set" },
+  { value: "duty", label: "Duty" },
+  { value: "own_client", label: "Own client" },
+  { value: "telephone_only", label: "Telephone only" },
+  { value: "attendance", label: "Attendance" },
+];
+
 const emptyForm: FormState = {
+  clientInitials: "",
+  clientYob: "",
+  custodyNumber: "",
+  policeStationName: "",
   dateOfArrest: "",
   allegedOffence: "",
   matterState: "at_station",
+  representationType: "",
+  riskAppropriateAdult: false,
+  riskInterpreter: false,
+  riskMentalHealth: false,
+  riskMedicalIssues: false,
+  initialDisclosureReceived: "",
+  initialDisclosureNotes: "",
   stationSummary: "",
   groundsForArrest: "",
   timeInCustodyAt: "",
@@ -132,7 +162,7 @@ export default function PoliceStationPage() {
   }, []);
 
   const hasSummary = (form.stationSummary.trim().length > 0) || (form.groundsForArrest.trim().length > 0);
-  const canCreate = form.allegedOffence.trim() || form.stationSummary.trim() || form.groundsForArrest.trim() || form.dateOfArrest;
+  const canCreate = form.allegedOffence.trim() || form.stationSummary.trim() || form.groundsForArrest.trim() || form.dateOfArrest || form.clientInitials.trim();
 
   const createMatter = async () => {
     if (!canCreate) {
@@ -159,8 +189,19 @@ export default function PoliceStationPage() {
         body: JSON.stringify({
           matterState: form.matterState || "at_station",
           station: {
+            clientInitials: form.clientInitials.trim() || null,
+            clientYob: form.clientYob.trim() ? parseInt(form.clientYob, 10) : null,
+            custodyNumber: form.custodyNumber.trim() || null,
+            policeStationName: form.policeStationName.trim() || null,
             dateOfArrest: form.dateOfArrest || null,
             allegedOffence: form.allegedOffence.trim() || null,
+            representationType: form.representationType || null,
+            riskAppropriateAdult: form.riskAppropriateAdult,
+            riskInterpreter: form.riskInterpreter,
+            riskMentalHealth: form.riskMentalHealth,
+            riskMedicalIssues: form.riskMedicalIssues,
+            initialDisclosureReceived: form.initialDisclosureReceived === "yes" ? true : form.initialDisclosureReceived === "no" ? false : null,
+            initialDisclosureNotes: form.initialDisclosureNotes.trim() || null,
             stationSummary: form.stationSummary.trim() || null,
             groundsForArrest: form.groundsForArrest.trim() || null,
             timeInCustodyAt,
@@ -203,6 +244,49 @@ export default function PoliceStationPage() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
+            <label className="text-xs text-muted-foreground block mb-1">Client initials (e.g. AB)</label>
+            <input
+              type="text"
+              className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
+              placeholder="Optional"
+              value={form.clientInitials}
+              onChange={(e) => update({ clientInitials: e.target.value })}
+            />
+          </div>
+          <div>
+            <label className="text-xs text-muted-foreground block mb-1">Year of birth (optional)</label>
+            <input
+              type="text"
+              className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
+              placeholder="e.g. 1990"
+              value={form.clientYob}
+              onChange={(e) => update({ clientYob: e.target.value.replace(/\D/g, "").slice(0, 4) })}
+            />
+          </div>
+          <div>
+            <label className="text-xs text-muted-foreground block mb-1">Custody number (optional)</label>
+            <input
+              type="text"
+              className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
+              placeholder="Link to custody records"
+              value={form.custodyNumber}
+              onChange={(e) => update({ custodyNumber: e.target.value })}
+            />
+          </div>
+          <div>
+            <label className="text-xs text-muted-foreground block mb-1">Police station name</label>
+            <input
+              type="text"
+              className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
+              placeholder="e.g. Bury, Middleton"
+              value={form.policeStationName}
+              onChange={(e) => update({ policeStationName: e.target.value })}
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
             <label className="text-xs text-muted-foreground block mb-1">Date of arrest</label>
             <input
               type="date"
@@ -234,6 +318,86 @@ export default function PoliceStationPage() {
               <option key={opt.value || "none"} value={opt.value}>{opt.label}</option>
             ))}
           </select>
+        </div>
+
+        <div>
+          <label className="text-xs text-muted-foreground block mb-1">Representation type</label>
+          <select
+            className="w-full max-w-xs rounded border border-border bg-background px-3 py-2 text-sm"
+            value={form.representationType}
+            onChange={(e) => update({ representationType: e.target.value })}
+          >
+            {REPRESENTATION_OPTIONS.map((opt) => (
+              <option key={opt.value || "none"} value={opt.value}>{opt.label}</option>
+            ))}
+          </select>
+        </div>
+
+        <div>
+          <label className="text-xs text-muted-foreground block mb-2">Risk / support needs</label>
+          <div className="flex flex-wrap gap-4">
+            <label className="flex items-center gap-2 text-sm cursor-pointer">
+              <input
+                type="checkbox"
+                checked={form.riskAppropriateAdult}
+                onChange={(e) => update({ riskAppropriateAdult: e.target.checked })}
+                className="rounded border-border"
+              />
+              Appropriate Adult
+            </label>
+            <label className="flex items-center gap-2 text-sm cursor-pointer">
+              <input
+                type="checkbox"
+                checked={form.riskInterpreter}
+                onChange={(e) => update({ riskInterpreter: e.target.checked })}
+                className="rounded border-border"
+              />
+              Interpreter
+            </label>
+            <label className="flex items-center gap-2 text-sm cursor-pointer">
+              <input
+                type="checkbox"
+                checked={form.riskMentalHealth}
+                onChange={(e) => update({ riskMentalHealth: e.target.checked })}
+                className="rounded border-border"
+              />
+              Mental health
+            </label>
+            <label className="flex items-center gap-2 text-sm cursor-pointer">
+              <input
+                type="checkbox"
+                checked={form.riskMedicalIssues}
+                onChange={(e) => update({ riskMedicalIssues: e.target.checked })}
+                className="rounded border-border"
+              />
+              Medical issues
+            </label>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label className="text-xs text-muted-foreground block mb-1">Initial disclosure received</label>
+            <select
+              className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
+              value={form.initialDisclosureReceived}
+              onChange={(e) => update({ initialDisclosureReceived: e.target.value })}
+            >
+              <option value="">Not set</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+          <div>
+            <label className="text-xs text-muted-foreground block mb-1">Initial disclosure notes</label>
+            <input
+              type="text"
+              className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
+              placeholder="MG5, CCTV, interview plan..."
+              value={form.initialDisclosureNotes}
+              onChange={(e) => update({ initialDisclosureNotes: e.target.value })}
+            />
+          </div>
         </div>
 
         <div>

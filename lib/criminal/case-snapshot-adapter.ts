@@ -97,6 +97,8 @@ export type MissingItem = {
 export type DisclosureItem = {
   item: string;
   status: "Outstanding" | "Partial" | "Received" | "Unknown";
+  /** Priority from missing evidence (for sort/group: critical → high → satisfied) */
+  priority?: "CRITICAL" | "HIGH" | "MEDIUM" | "LOW";
   lastAction?: string;
   date?: string;
   notes?: string;
@@ -292,10 +294,11 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
     capabilityTier: bundle.capabilityTier,
   };
 
-  // Disclosure items - derive from missing evidence
+  // Disclosure items - derive from missing evidence (include priority for sort/group)
   const disclosureItems: DisclosureItem[] = missingEvidence.map((item) => ({
     item: item.label,
     status: item.status === "RECEIVED" ? "Received" : item.status === "REQUESTED" ? "Partial" : item.status === "MISSING" ? "Outstanding" : "Unknown",
+    priority: item.priority,
     lastAction: undefined,
     date: undefined,
     notes: item.notes,

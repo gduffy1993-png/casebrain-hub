@@ -284,6 +284,12 @@ export function ChargesPanel({ caseId }: ChargesPanelProps) {
         )
       ) : (
         <div className="space-y-4">
+          {/* Source document / extraction note for trust */}
+          {(hasChargeSheet || charges.some((c) => c.extracted || c.details?.includes("AUTO_EXTRACTED"))) && (
+            <p className="text-xs text-muted-foreground">
+              {hasChargeSheet ? "Source: Charge sheet / case documents." : "Extracted from case documents. Source shown per charge where available."}
+            </p>
+          )}
           {/* Confirmed Charges */}
           {confirmedCharges.length > 0 && (
             <div>

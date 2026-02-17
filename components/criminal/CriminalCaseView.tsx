@@ -38,6 +38,10 @@ import { ClientInstructionsRecorder } from "./ClientInstructionsRecorder";
 import { PoliceStationTab } from "./PoliceStationTab";
 import { PleaRecordCard } from "./PleaRecordCard";
 import { FirstDisclosureRequestCard } from "./FirstDisclosureRequestCard";
+import { CaseOverviewHeader } from "./CaseOverviewHeader";
+import { CaseTimelinePanel } from "./CaseTimelinePanel";
+import { StrategyOverviewSubTab } from "./StrategyOverviewSubTab";
+import { StrategyDoctrineSubTab } from "./StrategyDoctrineSubTab";
 
 /** Tab ids for criminal case page. URL ?tab= must be one of these. Order: primary then secondary. */
 const CRIMINAL_CASE_TAB_IDS = [
@@ -47,6 +51,7 @@ const CRIMINAL_CASE_TAB_IDS = [
   "disclosure",
   "next-steps",
   "hearings",
+  "timeline",
   "client-instructions",
   "sentencing",
   "key-facts",
@@ -55,7 +60,7 @@ const CRIMINAL_CASE_TAB_IDS = [
   "police-station",
 ] as const;
 
-/** Tab order: primary (Summary, Charges, Strategy, Disclosure, Next steps, Hearings, Client) then secondary (Sentencing, Key facts, Safety, Additional tools, Police station). */
+/** Tab order: primary (Summary, Charges, Strategy, Disclosure, Next steps, Hearings, Timeline, Client) then secondary (Sentencing, Key facts, Safety, Additional tools, Police station). */
 const CRIMINAL_CASE_TABS: TabItem[] = [
   { id: "summary", label: "Summary" },
   { id: "charges", label: "Charges" },
@@ -63,6 +68,7 @@ const CRIMINAL_CASE_TABS: TabItem[] = [
   { id: "disclosure", label: "Disclosure" },
   { id: "next-steps", label: "Next steps" },
   { id: "hearings", label: "Hearings" },
+  { id: "timeline", label: "Timeline" },
   { id: "client-instructions", label: "Client & instructions" },
   { id: "sentencing", label: "Sentencing" },
   { id: "key-facts", label: "Key facts" },
@@ -124,6 +130,8 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   const [matterState, setMatterState] = useState<string | null>(null);
   /** Matter closed (post-disposal) – show banner when set */
   const [matterClosed, setMatterClosed] = useState<{ at: string; reason: string | null } | null>(null);
+  /** Strategy tab sub-view: overview | doctrine | full */
+  const [strategySubTab, setStrategySubTab] = useState<"overview" | "doctrine" | "full">("full");
 
   // Mark as mounted after hydration
   useEffect(() => {
@@ -424,6 +432,22 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         </div>
       )}
 
+      {/* Phase 2: Case Overview – Snapshot + Quick Actions (first thing solicitor sees) */}
+      <CaseOverviewHeader
+        caseId={caseId}
+        snapshot={snapshot ?? null}
+        snapshotLoading={snapshotLoading}
+        isStrategyCommitted={isStrategyCommitted}
+        onUploadEvidence={() => setShowAddEvidenceUpload(true)}
+        onAddClientInstructions={() => setTab("client-instructions")}
+        onAddHearing={() => setTab("hearings")}
+        onGenerateLetter={() => setTab("disclosure")}
+        onAddNote={() => {
+          setTab("strategy");
+          setTimeout(() => document.getElementById("section-solicitor-notes")?.scrollIntoView({ behavior: "smooth" }), 120);
+        }}
+      />
+
       {/* TOP: Status strip + at-a-glance + Jump to – so Jump to is at the top for easy section access */}
       {/* Phase 2: Case Status Strip */}
       {snapshotLoading ? (
@@ -524,6 +548,38 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
                 />
               </FoldSection>
             )}
+
+            {/* Strategy sub-tabs: Overview | Legal doctrine | Full output */}
+            <div className="flex flex-wrap gap-1 border-b border-border pb-2">
+              {(["overview", "doctrine", "full"] as const).map((tab) => (
+                <button
+                  key={tab}
+                  type="button"
+                  onClick={() => setStrategySubTab(tab)}
+                  className={`px-3 py-2 text-sm font-medium rounded-t transition-colors ${
+                    strategySubTab === tab
+                      ? "bg-muted text-foreground border-b-2 border-primary -mb-0.5"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                  }`}
+                >
+                  {tab === "overview" ? "Overview" : tab === "doctrine" ? "Legal doctrine" : "Full output"}
+                </button>
+              ))}
+            </div>
+
+            {strategySubTab === "overview" && (
+              <StrategyOverviewSubTab
+                caseId={caseId}
+                onOpenFullOutput={() => setStrategySubTab("full")}
+              />
+            )}
+
+            {strategySubTab === "doctrine" && (
+              <StrategyDoctrineSubTab onOpenFullOutput={() => setStrategySubTab("full")} />
+            )}
+
+            {strategySubTab === "full" && (
+              <>
             {currentPhase >= 2 && searchParams.get("debug") === "1" && (
               <Card className="p-4 bg-amber-500/5 border-amber-500/20">
                 <h3 className="text-sm font-semibold text-foreground mb-2">DEBUG: Strategy visibility</h3>
@@ -557,7 +613,10 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
             ) : (
               <Card className="p-6"><div className="text-sm text-muted-foreground">Case data will appear once analysis is run.</div></Card>
             )}
-            {currentPhase >= 2 && (
+              </>
+            )}
+
+            {strategySubTab === "full" && currentPhase >= 2 && (
               <FoldSection id="section-bail" title="Bail" defaultOpen={true}>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   {showBailTools && <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Bail application will appear once analysis is run.</div></Card>}><BailApplicationPanel caseId={caseId} /></ErrorBoundary>}
@@ -565,7 +624,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
                 </div>
               </FoldSection>
             )}
-            {currentPhase >= 3 && (
+            {strategySubTab === "full" && currentPhase >= 3 && (
               <FoldSection title="Sentencing Tools" defaultOpen={true}>
                 <div className="space-y-6">
                   {showSentencingTools && <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Sentencing mitigation will appear once analysis is run.</div></Card>}><SentencingMitigationPanel caseId={caseId} /></ErrorBoundary>}
@@ -621,6 +680,12 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
               </div>
             </FoldSection>
           </div>
+        )}
+
+        {activeTab === "timeline" && (
+          <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Timeline unavailable.</div></Card>}>
+            <CaseTimelinePanel caseId={caseId} snapshot={snapshot ?? null} />
+          </ErrorBoundary>
         )}
 
         {activeTab === "sentencing" && (

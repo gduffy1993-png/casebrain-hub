@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Loader2, Upload, Clock, MessageSquare } from "lucide-react";
+import { Loader2, Upload, Clock, MessageSquare, ArrowRight } from "lucide-react";
 
 type MatterStation = {
   timeInCustodyAt: string | null;
@@ -13,6 +14,17 @@ type MatterStation = {
   groundsForArrest: string | null;
   dateOfArrest: string | null;
   allegedOffence: string | null;
+  custodyNumber: string | null;
+  policeStationName: string | null;
+  clientInitials: string | null;
+  clientYob: number | null;
+  representationType: string | null;
+  riskAppropriateAdult: boolean;
+  riskInterpreter: boolean;
+  riskMentalHealth: boolean;
+  riskMedicalIssues: boolean;
+  initialDisclosureReceived: boolean | null;
+  initialDisclosureNotes: string | null;
 };
 
 const MATTER_STATE_OPTIONS = [
@@ -49,6 +61,14 @@ const BAIL_OUTCOME_OPTIONS = [
   { value: "charged", label: "Charged" },
 ];
 
+const REPRESENTATION_OPTIONS = [
+  { value: "", label: "Not set" },
+  { value: "duty", label: "Duty" },
+  { value: "own_client", label: "Own client" },
+  { value: "telephone_only", label: "Telephone only" },
+  { value: "attendance", label: "Attendance" },
+];
+
 const REQUEST_PAPERWORK_LIST = [
   "Custody record",
   "MG4 (Custody record summary)",
@@ -70,6 +90,17 @@ export function PoliceStationTab({ caseId, onAddEvidenceUpload }: PoliceStationT
     groundsForArrest: null,
     dateOfArrest: null,
     allegedOffence: null,
+    custodyNumber: null,
+    policeStationName: null,
+    clientInitials: null,
+    clientYob: null,
+    representationType: null,
+    riskAppropriateAdult: false,
+    riskInterpreter: false,
+    riskMentalHealth: false,
+    riskMedicalIssues: false,
+    initialDisclosureReceived: null,
+    initialDisclosureNotes: null,
   });
   const [bailReturnDate, setBailReturnDate] = useState<string | null>(null);
   const [bailOutcome, setBailOutcome] = useState<string | null>(null);
@@ -139,9 +170,23 @@ export function PoliceStationTab({ caseId, onAddEvidenceUpload }: PoliceStationT
   }
 
   const hasSummary = (station.stationSummary ?? "").trim().length > 0 || (station.groundsForArrest ?? "").trim().length > 0;
+  const isCharged = matterState === "charged";
 
   return (
     <div className="space-y-8">
+      {isCharged && (
+        <Card className="p-4 border-primary/20 bg-primary/5">
+          <Link
+            href={`/cases/${caseId}?tab=strategy`}
+            className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
+          >
+            Move to Case File
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+          <p className="mt-1 text-xs text-muted-foreground">Open the case and go to Strategy to continue.</p>
+        </Card>
+      )}
+
       <p className="text-sm text-muted-foreground">
         Date of arrest, offence, summary and grounds. Everything you need for the station; Strategy tab when charged.
       </p>
@@ -149,6 +194,49 @@ export function PoliceStationTab({ caseId, onAddEvidenceUpload }: PoliceStationT
       {/* Single card – same layout as Police station page */}
       <Card className="p-6 space-y-6">
         <h2 className="text-lg font-semibold text-foreground">Station details</h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label className="text-xs text-muted-foreground block mb-1">Client initials (e.g. AB)</label>
+            <input
+              type="text"
+              className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
+              placeholder="Optional"
+              value={station.clientInitials ?? ""}
+              onChange={(e) => patchStation({ clientInitials: e.target.value || null })}
+            />
+          </div>
+          <div>
+            <label className="text-xs text-muted-foreground block mb-1">Year of birth (optional)</label>
+            <input
+              type="text"
+              className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
+              placeholder="e.g. 1990"
+              value={station.clientYob != null ? String(station.clientYob) : ""}
+              onChange={(e) => patchStation({ clientYob: e.target.value ? parseInt(e.target.value.replace(/\D/g, ""), 10) || null : null })}
+            />
+          </div>
+          <div>
+            <label className="text-xs text-muted-foreground block mb-1">Custody number (optional)</label>
+            <input
+              type="text"
+              className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
+              placeholder="Link to custody records"
+              value={station.custodyNumber ?? ""}
+              onChange={(e) => patchStation({ custodyNumber: e.target.value || null })}
+            />
+          </div>
+          <div>
+            <label className="text-xs text-muted-foreground block mb-1">Police station name</label>
+            <input
+              type="text"
+              className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
+              placeholder="e.g. Bury, Middleton"
+              value={station.policeStationName ?? ""}
+              onChange={(e) => patchStation({ policeStationName: e.target.value || null })}
+            />
+          </div>
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
@@ -183,6 +271,86 @@ export function PoliceStationTab({ caseId, onAddEvidenceUpload }: PoliceStationT
               <option key={opt.value || "none"} value={opt.value}>{opt.label}</option>
             ))}
           </select>
+        </div>
+
+        <div>
+          <label className="text-xs text-muted-foreground block mb-1">Representation type</label>
+          <select
+            className="w-full max-w-xs rounded border border-border bg-background px-3 py-2 text-sm"
+            value={station.representationType ?? ""}
+            onChange={(e) => patchStation({ representationType: e.target.value || null })}
+          >
+            {REPRESENTATION_OPTIONS.map((opt) => (
+              <option key={opt.value || "none"} value={opt.value}>{opt.label}</option>
+            ))}
+          </select>
+        </div>
+
+        <div>
+          <label className="text-xs text-muted-foreground block mb-2">Risk / support needs</label>
+          <div className="flex flex-wrap gap-4">
+            <label className="flex items-center gap-2 text-sm cursor-pointer">
+              <input
+                type="checkbox"
+                checked={station.riskAppropriateAdult === true}
+                onChange={(e) => patchStation({ riskAppropriateAdult: e.target.checked })}
+                className="rounded border-border"
+              />
+              Appropriate Adult
+            </label>
+            <label className="flex items-center gap-2 text-sm cursor-pointer">
+              <input
+                type="checkbox"
+                checked={station.riskInterpreter === true}
+                onChange={(e) => patchStation({ riskInterpreter: e.target.checked })}
+                className="rounded border-border"
+              />
+              Interpreter
+            </label>
+            <label className="flex items-center gap-2 text-sm cursor-pointer">
+              <input
+                type="checkbox"
+                checked={station.riskMentalHealth === true}
+                onChange={(e) => patchStation({ riskMentalHealth: e.target.checked })}
+                className="rounded border-border"
+              />
+              Mental health
+            </label>
+            <label className="flex items-center gap-2 text-sm cursor-pointer">
+              <input
+                type="checkbox"
+                checked={station.riskMedicalIssues === true}
+                onChange={(e) => patchStation({ riskMedicalIssues: e.target.checked })}
+                className="rounded border-border"
+              />
+              Medical issues
+            </label>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label className="text-xs text-muted-foreground block mb-1">Initial disclosure received</label>
+            <select
+              className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
+              value={station.initialDisclosureReceived === true ? "yes" : station.initialDisclosureReceived === false ? "no" : ""}
+              onChange={(e) => patchStation({ initialDisclosureReceived: e.target.value === "yes" ? true : e.target.value === "no" ? false : null })}
+            >
+              <option value="">Not set</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+          <div>
+            <label className="text-xs text-muted-foreground block mb-1">Initial disclosure notes</label>
+            <input
+              type="text"
+              className="w-full rounded border border-border bg-background px-3 py-2 text-sm"
+              placeholder="MG5, CCTV, interview plan..."
+              value={station.initialDisclosureNotes ?? ""}
+              onChange={(e) => patchStation({ initialDisclosureNotes: e.target.value || null })}
+            />
+          </div>
         </div>
 
         <div>
