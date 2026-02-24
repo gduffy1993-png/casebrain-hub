@@ -200,6 +200,14 @@ export async function POST(request: Request) {
     );
   }
 
+  // Use the case's org_id for all document inserts so strategy/analysis sees the same docs as Case Files
+  const { data: caseRow } = await supabase
+    .from("cases")
+    .select("org_id")
+    .eq("id", caseId)
+    .maybeSingle();
+  const documentOrgId = (caseRow?.org_id as string) ?? orgId;
+
   // Resolve practice area from DB for existing cases (do not trust client-provided practiceArea)
   const { data: resolvedCaseForArea } = await supabase
     .from("cases")
@@ -363,7 +371,7 @@ export async function POST(request: Request) {
       .from("documents")
       .select("id, name")
       .eq("case_id", caseId)
-      .eq("org_id", orgId)
+      .eq("org_id", documentOrgId)
       .eq("name", file.name)
       .maybeSingle();
 
@@ -374,7 +382,7 @@ export async function POST(request: Request) {
       continue;
     }
 
-    const storagePath = `${orgId}/${caseId}/${Date.now()}-${file.name}`;
+    const storagePath = `${documentOrgId}/${caseId}/${Date.now()}-${file.name}`;
     const { error: storageError } = await supabase.storage
       .from(STORAGE_BUCKET)
       .upload(storagePath, buffer, {
@@ -393,7 +401,7 @@ export async function POST(request: Request) {
     // TEMPORARY DEBUG: Log text extraction before insert
     const textLength = typeof redactedText === "string" ? redactedText.length : 0;
     console.log(`[upload] DEBUG: About to insert document: ${file.name}`);
-    console.log(`[upload] DEBUG:   - caseId=${caseId}, orgId=${orgId}`);
+    console.log(`[upload] DEBUG:   - caseId=${caseId}, documentOrgId=${documentOrgId}`);
     console.log(`[upload] DEBUG:   - redactedText length=${textLength}`);
     console.log(`[upload] DEBUG:   - redactedText type=${typeof redactedText}`);
     console.log(`[upload] DEBUG:   - redactedText preview (first 200 chars): ${typeof redactedText === "string" ? redactedText.substring(0, 200).replace(/\n/g, " ") : "[NOT STRING]"}`);
@@ -402,7 +410,7 @@ export async function POST(request: Request) {
       .from("documents")
       .insert({
         case_id: caseId,
-        org_id: orgId,
+        org_id: documentOrgId,
         name: file.name,
         type: file.type,
         storage_url: `${STORAGE_BUCKET}/${storagePath}`,

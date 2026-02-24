@@ -37,153 +37,47 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     try {
       const authRes = await requireAuthContextApi();
       if (!authRes.ok) return authRes.response;
-      const { userId, orgId } = authRes.context;
+      const { userId, orgId: authOrgId } = authRes.context;
 
-      // Get case's org_id directly from database (same pattern as strategy-commitment route)
-      // SAFETY: cases.id is the PRIMARY KEY (confirmed by FK references in migrations)
-      // Using .single() is safe because caseId from URL is the UUID PK - exactly one row expected
-      // This matches the pattern used in: strategy-commitment, phase2-strategy-plan, aggressive-defense
-      const supabase = getSupabaseAdminClient();
-      const { data: caseRow, error: caseError } = await supabase
-        .from("cases")
-        .select("id, org_id")
-        .eq("id", caseId)
-        .single();
+      // Use buildCaseContext as the SINGLE source for case + documents (same as Case Files and rest of app).
+      // Pass authOrgId so document lookup uses same org as Case Files / upload (fixes 0 docs in strategy).
+      const context = await buildCaseContext(caseId, { userId, orgIdHint: authOrgId });
 
-      // Case not found - return 404
-      if (caseError || !caseRow) {
+      if (!context.case) {
         return NextResponse.json(
           {
             ok: false,
             error: "Case not found",
-            details: caseError ? caseError.message : "Case not found in database",
+            details: context.banner?.message ?? "Case not found for your organisation",
           },
           { status: 404 }
         );
       }
 
-      // Validate case has org_id
-      if (!caseRow.org_id || caseRow.org_id.trim() === "") {
-        return NextResponse.json(
-          {
-            ok: false,
-            error: "Case has no org_id",
-          },
-          { status: 500 }
-        );
-      }
-
-      // Fetch documents directly using case's org_id (same pattern as other criminal routes)
-      const { data: documents, error: documentsError } = await supabase
-        .from("documents")
-        .select("id, name, created_at, raw_text, extracted_json")
-        .eq("case_id", caseId)
-        .eq("org_id", caseRow.org_id)
-        .order("created_at", { ascending: false });
-
-      if (documentsError) {
-        console.error("[strategy-analysis] Error fetching documents:", documentsError);
-        return NextResponse.json(
-          {
-            ok: false,
-            error: "Failed to fetch documents",
-            details: documentsError.message,
-          },
-          { status: 500 }
-        );
-      }
-
-      // Compute diagnostics from documents (same as buildCaseContext does)
-      let rawCharsTotal = 0;
-      let jsonCharsTotal = 0;
-      for (const doc of documents || []) {
-        const rawText = doc.raw_text ?? "";
-        const textLength = typeof rawText === "string" ? rawText.length : 0;
-        rawCharsTotal += textLength;
-
-        const extractedJson = doc.extracted_json;
-        if (extractedJson) {
-          try {
-            const jsonStr = typeof extractedJson === "string" ? extractedJson : JSON.stringify(extractedJson);
-            jsonCharsTotal += jsonStr.length;
-          } catch {
-            // Ignore JSON stringify errors
-          }
-        }
-      }
-
-      const docCount = (documents || []).length;
-      const avgRawCharsPerDoc = docCount > 0 ? Math.floor(rawCharsTotal / docCount) : 0;
-      const suspectedScanned = docCount > 0 && rawCharsTotal < 800 && jsonCharsTotal < 400;
+      const documents = context.documents ?? [];
+      const docCount = context.diagnostics.docCount;
+      const rawCharsTotal = context.diagnostics.rawCharsTotal;
+      const suspectedScanned = context.diagnostics.suspectedScanned;
       const textThin = docCount > 0 && rawCharsTotal < 800;
-
-      const reasonCodes: string[] = [];
-      if (suspectedScanned) {
-        reasonCodes.push("SCANNED_SUSPECTED");
-      } else if (textThin) {
-        reasonCodes.push("TEXT_THIN");
-      }
-      if (reasonCodes.length === 0 && docCount > 0) {
-        reasonCodes.push("OK");
-      } else if (reasonCodes.length === 0 && docCount === 0) {
-        reasonCodes.push("DOCS_NONE");
-      }
+      const reasonCodes = context.diagnostics.reasonCodes ?? [];
 
       // PHASE 2 FIX: Lower threshold for strategy generation
-      // Strategy generation runs when totalExtractedChars >= 800 (less strict than full canGenerateAnalysis)
-      // Bundle score ONLY affects confidence labels and warnings, not whether strategy runs
       const allowStrategyGeneration = rawCharsTotal >= 800 && !suspectedScanned;
-      
-      // Full canGenerateAnalysis (for confidence caps and warnings)
-      const canGenerateAnalysis = rawCharsTotal > 0 && !suspectedScanned && !textThin && reasonCodes.includes("OK");
+      const canGenerateAnalysis = context.canGenerateAnalysis ?? false;
 
-      // Build case context for diagnostics
-      // We'll override diagnostics with our computed values to ensure accuracy
-      const context = await buildCaseContext(caseId, { userId });
-      
-      // Ensure context.case is set (should match caseRow we found)
-      if (!context.case) {
-        // If buildCaseContext didn't find the case, create a minimal case object
-        context.case = {
-          id: caseRow.id,
-          org_id: caseRow.org_id,
-        } as any;
-      }
-      
-      // Override context with our directly-fetched data (ensures accuracy)
-      context.documents = (documents || []).map(doc => ({
-        id: doc.id,
-        name: doc.name || "",
-        created_at: doc.created_at || new Date().toISOString(),
-        raw_text: doc.raw_text,
-        extracted_json: doc.extracted_json,
-      }));
-      context.diagnostics = {
-        docCount,
-        rawCharsTotal,
-        jsonCharsTotal,
-        avgRawCharsPerDoc,
-        suspectedScanned,
-        reasonCodes,
-      };
-      context.canGenerateAnalysis = canGenerateAnalysis;
-      
-      // Update orgScope to use the case's actual org_id
-      context.orgScope = {
-        orgIdResolved: caseRow.org_id,
-        method: "org_uuid" as const,
-      };
-
-      // Log case resolution (as requested)
+      // Log case resolution (same source as Case Files)
       console.log("[strategy-analysis] case resolved", {
         caseIdParam: caseId,
-        orgId: caseRow.org_id,
-        foundCaseId: caseRow.id,
+        orgId: context.orgScope?.orgIdResolved,
+        foundCaseId: context.case?.id,
         documentCount: docCount,
         rawCharsTotal,
         allowStrategyGeneration,
         canGenerateAnalysis,
       });
+
+      const supabase = getSupabaseAdminClient();
+      const orgIdForQueries = context.case?.org_id ?? context.orgScope?.orgIdResolved ?? "";
 
       // PHASE 2 FIX: Only block if truly insufficient (rawCharsTotal < 800 or scanned)
       // Use allowStrategyGeneration instead of strict canGenerateAnalysis gate
@@ -204,7 +98,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         .from("case_strategy_commitments")
         .select("primary_strategy")
         .eq("case_id", caseId)
-        .eq("org_id", caseRow.org_id)
+        .eq("org_id", orgIdForQueries)
         .order("created_at", { ascending: false })
         .limit(1)
         .maybeSingle();
@@ -250,7 +144,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         .from("criminal_charges")
         .select("section, offence")
         .eq("case_id", caseId)
-        .eq("org_id", caseRow.org_id);
+        .eq("org_id", orgIdForQueries);
 
       const evidenceSignals = extractEvidenceSignals(
         {
@@ -297,9 +191,9 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       let procedural_safety: StrategyAnalysisResponse["procedural_safety"];
       try {
         const [caseResult, timelineResult, positionResult] = await Promise.all([
-          supabase.from("criminal_cases").select("declared_dependencies, irreversible_decisions").eq("id", caseId).eq("org_id", caseRow.org_id).maybeSingle(),
+          supabase.from("criminal_cases").select("declared_dependencies, irreversible_decisions").eq("id", caseId).eq("org_id", orgIdForQueries).maybeSingle(),
           supabase.from("criminal_disclosure_timeline").select("item, action, action_date, note").eq("case_id", caseId).order("action_date", { ascending: false }),
-          supabase.from("case_positions").select("position_text").eq("case_id", caseId).eq("org_id", caseRow.org_id).order("created_at", { ascending: false }).limit(1).maybeSingle(),
+          supabase.from("case_positions").select("position_text").eq("case_id", caseId).eq("org_id", orgIdForQueries).order("created_at", { ascending: false }).limit(1).maybeSingle(),
         ]);
         const criminalCase = caseResult?.data as { declared_dependencies?: unknown[]; irreversible_decisions?: unknown[] } | null | undefined;
         const declaredDependencies = Array.isArray(criminalCase?.declared_dependencies) ? criminalCase.declared_dependencies.filter(Boolean) : [];
@@ -349,7 +243,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         .from("criminal_hearings")
         .select("hearing_date, hearing_type")
         .eq("case_id", caseId)
-        .eq("org_id", caseRow.org_id)
+        .eq("org_id", orgIdForQueries)
         .order("hearing_date", { ascending: true })
         .limit(1);
 
@@ -440,7 +334,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       // Build response
       const diagnostics = diagnosticsFromContext(caseId, context);
       if (diagnostics) {
-        diagnostics.orgId = caseRow.org_id;
+        diagnostics.orgId = orgIdForQueries;
       }
 
       // PHASE 3 FIX: Ensure all attack plan outputs are included in response
@@ -465,7 +359,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         data: response,
         diagnostics: diagnostics || {
           caseId,
-          orgId: caseRow.org_id,
+          orgId: orgIdForQueries,
           documentCount: context.diagnostics.docCount,
           documentsWithRawText: context.documents.filter(d => d.raw_text && typeof d.raw_text === "string" && d.raw_text.length > 0).length,
           rawCharsTotal: context.diagnostics.rawCharsTotal,

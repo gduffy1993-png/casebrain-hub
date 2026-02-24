@@ -45,6 +45,8 @@ export type CaseContext = {
 
 export type AuthContext = {
   userId: string;
+  /** Optional: use this org when resolving documents so strategy matches Case Files / upload (same auth org) */
+  orgIdHint?: string | null;
 };
 
 /**
@@ -59,8 +61,11 @@ export async function buildCaseContext(
 ): Promise<CaseContext> {
   const reasonCodes: string[] = [];
 
-  // 1. Resolve org scope
-  const orgScope = await getOrgScopeOrFallback(authContext.userId);
+  // 1. Resolve org scope (prefer auth orgIdHint so strategy sees same docs as Case Files)
+  const fallbackScope = await getOrgScopeOrFallback(authContext.userId);
+  const orgScope: OrgScope = authContext.orgIdHint
+    ? { orgId: authContext.orgIdHint, externalRef: fallbackScope.externalRef }
+    : fallbackScope;
   
   // Determine resolution method
   let method: "org_uuid" | "solo_fallback" | "owner_override" = "solo_fallback";
