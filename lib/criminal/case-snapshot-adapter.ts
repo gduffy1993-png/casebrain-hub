@@ -68,6 +68,12 @@ export type CaseSnapshot = {
       timestamp: string;
     }>;
   };
+  /** Resolved offence (override > charges + matter + bundle) for Overview and Strategy */
+  resolvedOffence: {
+    offenceType: string;
+    label: string;
+    source: "charges" | "matter" | "bundle" | "unknown" | "override";
+  };
 };
 
 export type ChargeItem = {
@@ -124,6 +130,7 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
     commitmentResult,
     hearingsResult,
     documentsResult,
+    offenceResult,
   ] = await Promise.all([
     safeFetch<any>(`/api/cases/${caseId}`).catch(() => ({ ok: false, data: null, error: null })),
     safeFetch<any>(`/api/cases/${caseId}/analysis/version/latest`).catch(() => ({ ok: false, data: null, error: null })),
@@ -131,8 +138,8 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
     safeFetch<any>(`/api/criminal/${caseId}/strategy-analysis`).catch(() => ({ ok: false, data: null, error: null })),
     safeFetch<any>(`/api/criminal/${caseId}/strategy-commitment`).catch(() => ({ ok: false, data: null, error: null })),
     safeFetch<any>(`/api/criminal/${caseId}/hearings`).catch(() => ({ ok: false, data: null, error: null })),
-    // Documents - using a generic endpoint or we'll need to create one
     safeFetch<any>(`/api/cases/${caseId}/documents`).catch(() => ({ ok: false, data: null, error: null })),
+    safeFetch<any>(`/api/criminal/${caseId}/offence`).catch(() => ({ ok: false, data: null, error: null })),
   ]);
 
   // Normalize case metadata
@@ -345,6 +352,21 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
     nextSteps: [] as NextStepItem[],
   };
 
+  const offenceData = offenceResult?.data ?? strategyDataRaw?.resolvedOffence ?? null;
+  const resolvedOffence = offenceData && typeof offenceData.offenceType === "string"
+    ? {
+        offenceType: offenceData.offenceType,
+        label: typeof offenceData.label === "string" ? offenceData.label : "Unknown – add charge sheet / evidence for offence-specific strategy",
+        source: (offenceData.source === "charges" || offenceData.source === "matter" || offenceData.source === "bundle" || offenceData.source === "unknown" || offenceData.source === "override")
+          ? offenceData.source
+          : "unknown" as const,
+      }
+    : {
+        offenceType: "other",
+        label: "Unknown – add charge sheet / evidence for offence-specific strategy",
+        source: "unknown" as const,
+      };
+
   // DEV-only structured logging for endpoint status (single source of truth)
   if (process.env.NODE_ENV !== "production") {
     const endpointStatus = {
@@ -387,6 +409,7 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
     strategy,
     actions,
     decisionLog,
+    resolvedOffence,
   };
 }
 

@@ -446,6 +446,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
           setTab("strategy");
           setTimeout(() => document.getElementById("section-solicitor-notes")?.scrollIntoView({ behavior: "smooth" }), 120);
         }}
+        onSnapshotRefresh={() => buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error)}
       />
 
       {/* TOP: Status strip + at-a-glance + Jump to – so Jump to is at the top for easy section access */}
@@ -592,6 +593,11 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
               <Card className="p-6"><div className="flex items-center gap-2 text-muted-foreground"><Loader2 className="h-4 w-4 animate-spin" /><span className="text-sm">Loading case data...</span></div></Card>
             ) : snapshotError ? (
               <Card className="p-6"><div className="text-sm text-muted-foreground">Case data will appear once analysis is run.</div></Card>
+            ) : snapshot?.resolvedOffence?.source === "unknown" ? (
+              <Card className="p-6 border-amber-500/30 bg-amber-500/5">
+                <p className="text-sm font-medium text-foreground">Add charge sheet / evidence for offence-specific strategy</p>
+                <p className="text-xs text-muted-foreground mt-2">Upload a charge sheet or add the alleged offence in Police station so we can tailor strategy to this case.</p>
+              </Card>
             ) : snapshot ? (
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <FoldSection title="Evidence" defaultOpen={true}>

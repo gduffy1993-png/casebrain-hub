@@ -40,6 +40,7 @@ export function StrategyOverviewSubTab({ caseId, onOpenFullOutput }: StrategyOve
     recommendation: Recommendation | null;
     routes: Route[];
     selectedRoute: string | null;
+    resolvedOffence: { offenceType: string; label: string; source: string } | null;
   } | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -62,6 +63,7 @@ export function StrategyOverviewSubTab({ caseId, onOpenFullOutput }: StrategyOve
           recommendation: d.recommendation ?? null,
           routes: Array.isArray(d.routes) ? d.routes : [],
           selectedRoute: d.selectedRoute ?? null,
+          resolvedOffence: d.resolvedOffence ?? null,
         });
       })
       .catch((err) => {
@@ -143,6 +145,13 @@ export function StrategyOverviewSubTab({ caseId, onOpenFullOutput }: StrategyOve
             <Target className="h-4 w-4 text-primary" />
             <h3 className="text-sm font-semibold text-foreground">Strategy overview</h3>
           </div>
+
+          {data.resolvedOffence?.label && (
+            <div>
+              <p className="text-xs text-muted-foreground mb-1">Offence</p>
+              <p className="text-sm font-medium text-foreground">{data.resolvedOffence.label}</p>
+            </div>
+          )}
 
           {primaryLabel && (
             <div>

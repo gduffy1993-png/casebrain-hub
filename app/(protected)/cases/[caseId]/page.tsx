@@ -168,7 +168,7 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
     ] = await Promise.all([
       supabase
         .from("documents")
-        .select("id, name, type, uploaded_by, created_at, extracted_json")
+        .select("id, name, type, uploaded_by, created_at, extracted_json, raw_text")
         .eq("case_id", caseId)
         .eq("org_id", orgId)
         .order("created_at", { ascending: false }),
@@ -991,11 +991,18 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
       <aside className="space-y-4">
         <Card title="Case Files">
           <CaseFilesList
-            documents={(documents ?? []).map((d) => ({
-              id: d.id,
-              name: d.name,
-              created_at: d.created_at,
-            }))}
+            documents={(documents ?? []).map((d: { id: string; name: string; created_at: string; raw_text?: string | null }) => {
+              const rawText = d.raw_text;
+              const hasText = typeof rawText === "string" && rawText.trim().length > 50;
+              return {
+                id: d.id,
+                name: d.name,
+                created_at: d.created_at,
+                type: (d as { type?: string | null }).type ?? null,
+                extractionStatus: hasText ? ("ok" as const) : ("no_text" as const),
+                extractionMessage: hasText ? undefined : "This file may be image-only; we couldn't extract text.",
+              };
+            })}
           />
         </Card>
 

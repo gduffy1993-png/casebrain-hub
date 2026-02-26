@@ -1,6 +1,7 @@
 /**
  * Criminal Strategy Fight Engine - Deterministic Generators
  * All generators work even when canGenerateAnalysis=false (using procedural templates)
+ * Strategy content varies by offence type (burglary, GBH, robbery, etc.) when offenceType is provided.
  */
 
 import type {
@@ -16,6 +17,7 @@ import type {
   StrategyRoute,
 } from "./strategy-fight-types";
 import type { ResidualAttackScan } from "./residual-attack-scanner";
+import type { OffenceType } from "@/lib/criminal/strategy-suggest/constants";
 
 export function generateRouteViability(
   routeType: RouteType,
@@ -556,6 +558,144 @@ ${canGenerateAnalysis ? "[Specific rationale based on case facts would be insert
   return artifacts;
 }
 
+/** Offence-specific overrides for route title, rationale, winConditions, risks, nextActions. */
+const OFFENCE_ROUTE_OVERRIDES: Partial<
+  Record<
+    OffenceType,
+    Partial<
+      Record<
+        RouteType,
+        {
+          title?: string;
+          rationale?: string;
+          winConditions?: string[];
+          risks?: string[];
+          nextActions?: string[];
+        }
+      >
+    >
+  >
+> = {
+  burglary: {
+    fight_charge: {
+      title: "Fight Charge (Burglary)",
+      rationale:
+        "Challenge the prosecution case on entry as trespasser and/or intent at time of entry. Target acquittal by attacking dishonesty, intent to commit theft/GBH/damage, and identification.",
+      winConditions: [
+        "Prosecution fails to prove entry as trespasser beyond reasonable doubt",
+        "Intent at time of entry not established (theft/GBH/criminal damage)",
+        "Identification evidence challenged or excluded under Turnbull",
+        "Disclosure failures or PACE breaches result in stay or exclusion",
+      ],
+      risks: [
+        "CCTV or forensics may place defendant at scene as trespasser",
+        "Intent may be inferred from conduct after entry",
+        "Full trial preparation required (time and cost)",
+      ],
+      nextActions: [
+        "Request disclosure: MG6, CCTV, forensic (entry point), witness statements",
+        "Review evidence on entry (trespass) and intent at entry (theft/GBH/damage)",
+        "Assess identification and PACE; prepare disclosure chase and abuse of process if appropriate",
+      ],
+    },
+    charge_reduction: {
+      title: "Charge Reduction (Burglary)",
+      rationale:
+        "Accept entry but challenge intent or seek lesser offence (e.g. trespass, theft only). Focus on intent at time of entry and whether theft/GBH/damage is made out.",
+      winConditions: [
+        "Intent at entry not proved (e.g. no intent to steal/commit GBH/damage)",
+        "Dishonesty or intention to permanently deprive not established",
+        "Negotiated reduction to non-dwelling or lesser count",
+      ],
+      nextActions: [
+        "Request disclosure on intent and sequence of events at entry",
+        "Review for dishonesty and intent to permanently deprive (theft elements)",
+        "Prepare negotiation for lesser charge or count",
+      ],
+    },
+  },
+  robbery: {
+    fight_charge: {
+      title: "Fight Charge (Robbery)",
+      rationale:
+        "Challenge theft (dishonesty, appropriation) and/or use or threat of force. Target acquittal by attacking identification, force/threat, and intent to permanently deprive.",
+      winConditions: [
+        "Theft not proved (no dishonesty or appropriation)",
+        "Force or threat of force not established",
+        "Identification challenged or excluded under Turnbull",
+        "Disclosure or PACE failures result in stay or exclusion",
+      ],
+      risks: [
+        "CCTV or BWV may show force or threat",
+        "Identification may be strong",
+        "Full trial preparation required",
+      ],
+      nextActions: [
+        "Request disclosure: MG6, CCTV, BWV, VIPER, witness statements",
+        "Review dishonesty (Ghosh), appropriation, and force/threat",
+        "Assess identification and PACE; prepare disclosure chase",
+      ],
+    },
+    charge_reduction: {
+      title: "Charge Reduction (Robbery)",
+      rationale:
+        "Accept theft but challenge force/threat, or accept force but challenge dishonesty. Target reduction to theft or lesser offence.",
+      winConditions: [
+        "Force/threat not made out (reduction to theft)",
+        "Dishonesty not established",
+        "Negotiated lesser charge",
+      ],
+      nextActions: [
+        "Request disclosure on force/threat and dishonesty",
+        "Review evidence for robbery vs theft only",
+        "Prepare negotiation for lesser charge",
+      ],
+    },
+  },
+  theft: {
+    fight_charge: {
+      title: "Fight Charge (Theft)",
+      rationale:
+        "Challenge dishonesty (Ghosh), appropriation, or intention to permanently deprive. Target acquittal by attacking prosecution evidence on each element.",
+      winConditions: [
+        "Dishonesty not proved (honest belief, claim of right)",
+        "No appropriation or no intention to permanently deprive",
+        "Identification or disclosure failures",
+      ],
+      nextActions: [
+        "Request full disclosure",
+        "Review for dishonesty, appropriation, intention to permanently deprive",
+        "Assess identification and disclosure",
+      ],
+    },
+  },
+  criminal_damage_arson: {
+    fight_charge: {
+      title: "Fight Charge (Criminal Damage / Arson)",
+      rationale:
+        "Challenge intention or recklessness as to damage/destruction, or lawful excuse (s.5 CDA). Target acquittal by attacking intent/recklessness and property belonging to another.",
+      winConditions: [
+        "No intention or recklessness as to damage/destruction",
+        "Lawful excuse (s.5 CDA) made out",
+        "Property not belonging to another / identification failure",
+      ],
+      nextActions: [
+        "Request disclosure on intent, recklessness, and property",
+        "Review for lawful excuse (s.5) and identification",
+        "Assess disclosure and PACE",
+      ],
+    },
+  },
+  assault_oapa: {
+    charge_reduction: {
+      title: "Charge Reduction (s18 → s20)",
+      rationale:
+        "Accept harm occurred but challenge intent threshold. Target reduction from s18 (specific intent) to s20 (recklessness) or lesser offence. This strategy focuses on medical evidence, sequence/duration, and intent distinction.",
+      // base content kept; no override needed for assault charge_reduction
+    },
+  },
+};
+
 export function generateStrategyRoute(
   routeType: RouteType,
   canGenerateAnalysis: boolean,
@@ -569,6 +709,7 @@ export function generateStrategyRoute(
     caseTitle?: string;
     charges?: string[];
     clientName?: string;
+    offenceType?: OffenceType | string;
   }
 ): StrategyRoute {
   const baseRoutes: Record<RouteType, Omit<StrategyRoute, "viability" | "attackPaths" | "cpsResponses" | "killSwitches" | "pivotPlan" | "judicialOptics">> = {
@@ -652,9 +793,24 @@ export function generateStrategyRoute(
   };
 
   const base = baseRoutes[routeType];
+  const offenceType = caseFacts?.offenceType as OffenceType | undefined;
+  const overrides =
+    offenceType && offenceType !== "other"
+      ? OFFENCE_ROUTE_OVERRIDES[offenceType]?.[routeType]
+      : undefined;
+  const merged = overrides
+    ? {
+        title: overrides.title ?? base.title,
+        rationale: overrides.rationale ?? base.rationale,
+        winConditions: overrides.winConditions ?? base.winConditions,
+        risks: overrides.risks ?? base.risks,
+        nextActions: overrides.nextActions ?? base.nextActions,
+      }
+    : base;
 
   return {
     ...base,
+    ...merged,
     viability: generateRouteViability(routeType, canGenerateAnalysis, diagnostics),
     attackPaths: generateAttackPaths(routeType, canGenerateAnalysis),
     cpsResponses: generateCPSResponses(routeType),

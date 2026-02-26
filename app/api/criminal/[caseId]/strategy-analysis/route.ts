@@ -23,6 +23,8 @@ import { generateDecisionCheckpoints } from "@/lib/criminal/decision-checkpoints
 import { scanResidualAttacks } from "@/lib/criminal/residual-attack-scanner";
 import { buildStrategyCoordinator } from "@/lib/criminal/strategy-coordinator";
 import { computeProceduralSafety } from "@/lib/criminal/procedural-safety";
+import { resolveOffence } from "@/lib/criminal/offence-resolution";
+import { OFFENCE_TYPE_LABELS, normaliseOffenceType } from "@/lib/criminal/strategy-suggest/constants";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -117,6 +119,37 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         "outcome_management",
       ];
 
+      // Resolve offence (charges + matter + bundle) before routes so strategy content can vary by offence type
+      const { data: charges } = await supabase
+        .from("criminal_charges")
+        .select("section, offence")
+        .eq("case_id", caseId)
+        .eq("org_id", orgIdForQueries);
+
+      const { data: matterRow } = await supabase
+        .from("criminal_cases")
+        .select("alleged_offence, offence_override")
+        .eq("id", caseId)
+        .eq("org_id", orgIdForQueries)
+        .maybeSingle();
+      const matter = matterRow as { alleged_offence?: string; offence_override?: string | null } | null;
+      const offenceOverride = matter?.offence_override?.trim() || null;
+
+      const resolvedOffence = offenceOverride
+        ? {
+            offenceType: normaliseOffenceType(offenceOverride),
+            label: OFFENCE_TYPE_LABELS[normaliseOffenceType(offenceOverride)],
+            source: "override" as const,
+          }
+        : resolveOffence({
+            charges: (charges ?? []).map((c: { offence?: string; section?: string | null }) => ({ offence: c?.offence ?? "", section: c?.section ?? null })),
+            allegedOffence: matter?.alleged_offence ?? null,
+            bundleSnippet: documents
+              .map((d) => (typeof d.raw_text === "string" ? d.raw_text : ""))
+              .join(" ")
+              .slice(0, 2000) || undefined,
+          });
+
       // PHASE 3 FIX: Generate routes with allowStrategyGeneration (not strict canGenerateAnalysis)
       // This ensures routes are generated when evidence allows, even if confidence is capped
       // canGenerateAnalysis is only used for confidence labels/warnings
@@ -132,6 +165,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
           },
           {
             caseTitle: caseData?.title || undefined,
+            offenceType: resolvedOffence.offenceType,
           }
         )
       );
@@ -140,12 +174,6 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       const evidenceImpact = routeTypes.flatMap((routeType) => generateEvidenceImpact(routeType));
 
       // Extract evidence signals and generate recommendation
-      const { data: charges } = await supabase
-        .from("criminal_charges")
-        .select("section, offence")
-        .eq("case_id", caseId)
-        .eq("org_id", orgIdForQueries);
-
       const evidenceSignals = extractEvidenceSignals(
         {
           docCount: context.diagnostics.docCount,
@@ -352,6 +380,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         decisionCheckpoints,
         residualSummary,
         procedural_safety,
+        resolvedOffence: { offenceType: resolvedOffence.offenceType, label: resolvedOffence.label, source: resolvedOffence.source },
       };
 
       return NextResponse.json({

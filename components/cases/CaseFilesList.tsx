@@ -9,6 +9,9 @@ type Document = {
   id: string;
   name: string;
   created_at: string;
+  type?: string | null;
+  extractionStatus?: "ok" | "no_text";
+  extractionMessage?: string;
 };
 
 interface CaseFilesListProps {
@@ -93,6 +96,11 @@ export function CaseFilesList({ documents }: CaseFilesListProps) {
                 Uploaded{" "}
                 {new Date(doc.created_at).toLocaleDateString("en-GB")}
               </p>
+              {doc.extractionStatus === "no_text" && doc.extractionMessage && (
+                <p className="text-xs text-amber-600 dark:text-amber-500 mt-1" title={doc.extractionMessage}>
+                  {doc.extractionMessage}
+                </p>
+              )}
             </div>
             <div className="flex items-center gap-2 ml-3">
               <Button

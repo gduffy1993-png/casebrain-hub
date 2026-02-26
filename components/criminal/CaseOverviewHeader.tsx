@@ -22,8 +22,11 @@ import {
   AlertTriangle,
   FolderOpen,
   FileCheck,
+  Pencil,
+  X,
 } from "lucide-react";
 import type { CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
+import { OFFENCE_TYPES, OFFENCE_TYPE_LABELS } from "@/lib/criminal/strategy-suggest/constants";
 
 type MatterStation = {
   clientInitials: string | null;
@@ -42,6 +45,8 @@ export type CaseOverviewHeaderProps = {
   onAddHearing?: () => void;
   onGenerateLetter?: () => void;
   onAddNote?: () => void;
+  /** After user corrects offence override, refetch snapshot so strategy/overview update */
+  onSnapshotRefresh?: () => void;
 };
 
 function formatDate(dateStr: string | null): string {
@@ -107,7 +112,11 @@ export function CaseOverviewHeader({
   onAddHearing,
   onGenerateLetter,
   onAddNote,
+  onSnapshotRefresh,
 }: CaseOverviewHeaderProps) {
+  const [offenceModalOpen, setOffenceModalOpen] = useState(false);
+  const [offenceOverrideSaving, setOffenceOverrideSaving] = useState(false);
+  const [offenceOverrideSelect, setOffenceOverrideSelect] = useState<string>("");
   const [matter, setMatter] = useState<{
     matterState: string | null;
     station: MatterStation | null;
@@ -142,9 +151,12 @@ export function CaseOverviewHeader({
   const matterState = matter?.matterState ?? null;
   const caseStatusLabel = deriveCaseStatus(matterState, isStrategyCommitted);
 
-  // Offence: charges first, else matter allegedOffence
-  const offenceFromCharges = snapshot?.charges?.[0]?.offence?.trim();
-  const offence = offenceFromCharges || station?.allegedOffence?.trim() || "—";
+  // Offence: resolved (charges + matter + bundle) first, else fallback to first charge or matter
+  const offence =
+    snapshot?.resolvedOffence?.label?.trim() ||
+    snapshot?.charges?.[0]?.offence?.trim() ||
+    station?.allegedOffence?.trim() ||
+    "—";
 
   const dateOfIncident = station?.dateOfArrest ?? null;
   const clientInitials = station?.clientInitials?.trim() || "—";
@@ -192,12 +204,26 @@ export function CaseOverviewHeader({
         ) : (
           <div className="p-3 sm:p-4">
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
-              <div className="flex items-center gap-1.5 shrink-0">
+              <div className="flex items-center gap-1.5 shrink-0 flex-wrap">
                 <Gavel className="h-3.5 w-3.5 text-muted-foreground" />
                 <span className="text-muted-foreground">Offence:</span>
                 <span className="font-medium text-foreground truncate max-w-[180px]" title={String(offence)}>
                   {offence}
                 </span>
+                {snapshot?.resolvedOffence && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-6 px-1.5 text-muted-foreground hover:text-foreground"
+                    onClick={() => {
+                      setOffenceOverrideSelect(snapshot.resolvedOffence.source === "override" ? snapshot.resolvedOffence.offenceType : "");
+                      setOffenceModalOpen(true);
+                    }}
+                    title="Correct offence type for strategy"
+                  >
+                    <Pencil className="h-3 w-3" />
+                  </Button>
+                )}
               </div>
               <div className="flex items-center gap-1.5 shrink-0">
                 <Calendar className="h-3.5 w-3.5 text-muted-foreground" />
@@ -434,6 +460,61 @@ export function CaseOverviewHeader({
           </div>
         )}
       </Card>
+
+      {/* Correct offence override modal */}
+      {offenceModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50" onClick={() => !offenceOverrideSaving && setOffenceModalOpen(false)}>
+          <div className="bg-background border border-border rounded-lg shadow-lg p-4 w-full max-w-sm mx-4" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-sm font-semibold text-foreground">Correct offence type</h3>
+              <Button variant="ghost" size="sm" className="h-7 w-7 p-0" onClick={() => !offenceOverrideSaving && setOffenceModalOpen(false)} aria-label="Close">
+                <X className="h-4 w-4" />
+              </Button>
+            </div>
+            <p className="text-xs text-muted-foreground mb-3">Strategy and overview will use this type until you clear it.</p>
+            <select
+              className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm mb-4"
+              value={offenceOverrideSelect}
+              onChange={(e) => setOffenceOverrideSelect(e.target.value)}
+              disabled={offenceOverrideSaving}
+            >
+              <option value="">Auto (clear override)</option>
+              {OFFENCE_TYPES.map((t) => (
+                <option key={t} value={t}>{OFFENCE_TYPE_LABELS[t]}</option>
+              ))}
+            </select>
+            <div className="flex gap-2 justify-end">
+              <Button variant="outline" size="sm" onClick={() => !offenceOverrideSaving && setOffenceModalOpen(false)} disabled={offenceOverrideSaving}>
+                Cancel
+              </Button>
+              <Button
+                size="sm"
+                disabled={offenceOverrideSaving}
+                onClick={async () => {
+                  setOffenceOverrideSaving(true);
+                  try {
+                    const res = await fetch(`/api/criminal/${caseId}/offence`, {
+                      method: "PATCH",
+                      headers: { "Content-Type": "application/json" },
+                      credentials: "include",
+                      body: JSON.stringify({ offenceType: offenceOverrideSelect || null }),
+                    });
+                    if (!res.ok) throw new Error("Failed to update offence");
+                    setOffenceModalOpen(false);
+                    onSnapshotRefresh?.();
+                  } catch {
+                    // Could add toast
+                  } finally {
+                    setOffenceOverrideSaving(false);
+                  }
+                }}
+              >
+                {offenceOverrideSaving ? <Loader2 className="h-4 w-4 animate-spin" /> : "Save"}
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

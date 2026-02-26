@@ -115,5 +115,11 @@ export interface StrategyAnalysisData {
     outstandingItems?: string[];
     reasons?: string[];
   };
+  /** Resolved offence (override > charges + matter + bundle) for offence-specific strategy */
+  resolvedOffence?: {
+    offenceType: string;
+    label: string;
+    source: "charges" | "matter" | "bundle" | "unknown" | "override";
+  };
 }
 
