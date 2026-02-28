@@ -30,7 +30,7 @@ export function NewEvidenceBanner({ caseId }: NewEvidenceBannerProps) {
         const nextVersionNumber = latestVersionNumber + 1;
 
         // Fetch all case documents
-        const docsResponse = await fetch(`/api/cases/${caseId}/documents`);
+        const docsResponse = await fetch(`/api/cases/${caseId}/documents`, { cache: "no-store", credentials: "include" });
         const docsData = docsResponse.ok ? await docsResponse.json() : null;
         const allDocs = docsData?.documents || [];
         const allDocIds = allDocs.map((d: { id: string }) => d.id);

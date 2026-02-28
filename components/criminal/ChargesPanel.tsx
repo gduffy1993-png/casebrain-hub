@@ -158,7 +158,7 @@ export function ChargesPanel({ caseId }: ChargesPanelProps) {
       try {
         const [keyFactsRes, documentsRes] = await Promise.all([
           fetch(`/api/cases/${caseId}/key-facts`),
-          fetch(`/api/cases/${caseId}/documents`).catch(() => null),
+          fetch(`/api/cases/${caseId}/documents`, { cache: "no-store", credentials: "include" }).catch(() => null),
         ]);
         
         if (keyFactsRes.ok) {

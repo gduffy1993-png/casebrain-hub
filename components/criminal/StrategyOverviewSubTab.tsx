@@ -50,7 +50,7 @@ export function StrategyOverviewSubTab({ caseId, onOpenFullOutput }: StrategyOve
     let cancelled = false;
     setLoading(true);
     setError(null);
-    fetch(`/api/criminal/${caseId}/strategy-analysis`, { credentials: "include" })
+    fetch(`/api/criminal/${caseId}/strategy-analysis`, { cache: "no-store", credentials: "include" })
       .then((res) => res.json())
       .then((body) => {
         if (cancelled) return;

@@ -1547,7 +1547,7 @@ function SupervisorSnapshot({
         }
 
         // Fetch documents for disclosure state computation
-        const docsRes = await fetch(`/api/cases/${caseId}/documents`).catch(() => null);
+        const docsRes = await fetch(`/api/cases/${caseId}/documents`, { cache: "no-store", credentials: "include" }).catch(() => null);
         const docsData = docsRes?.ok ? await docsRes.json() : null;
         const documents = docsData?.data?.documents || docsData?.documents || [];
 
@@ -1817,7 +1817,7 @@ function WhatWeAreWaitingOn({
     }
     async function load() {
       try {
-        const docsRes = await fetch(`/api/cases/${caseId}/documents`).catch(() => null);
+        const docsRes = await fetch(`/api/cases/${caseId}/documents`, { cache: "no-store", credentials: "include" }).catch(() => null);
         const docsData = docsRes?.ok ? await docsRes.json() : null;
         const documents = docsData?.data?.documents || docsData?.documents || [];
         const state = computeDisclosureState({
@@ -2802,7 +2802,7 @@ function ProceduralSafetyPanel({
     async function computeState() {
       try {
         // Fetch documents to check for SIMULATED and match disclosure items
-        const docsRes = await fetch(`/api/cases/${caseId}/documents`).catch(() => null);
+        const docsRes = await fetch(`/api/cases/${caseId}/documents`, { cache: "no-store", credentials: "include" }).catch(() => null);
         const docsData = docsRes?.ok ? await docsRes.json() : null;
         const documents = docsData?.data?.documents || docsData?.documents || [];
 
@@ -2936,7 +2936,7 @@ function WeaponTrackerPanel({
     async function fetchWeaponData() {
       try {
         // Fetch documents to extract weapon info
-        const res = await fetch(`/api/cases/${caseId}/documents`);
+        const res = await fetch(`/api/cases/${caseId}/documents`, { cache: "no-store", credentials: "include" });
         if (res.ok) {
           const result = await res.json();
           const documents = result.data?.documents || result.documents || [];
@@ -3024,7 +3024,7 @@ function IncidentShapePanel({
     async function fetchIncidentData() {
       try {
         // Fetch documents (timeline not used from this API; disclosure timeline is separate)
-        const docsRes = await fetch(`/api/cases/${caseId}/documents`);
+        const docsRes = await fetch(`/api/cases/${caseId}/documents`, { cache: "no-store", credentials: "include" });
         const docsData = docsRes.ok ? await docsRes.json() : null;
         const documents = docsData?.data?.documents || docsData?.documents || [];
         const timeline: { label: string; description?: string }[] = [];
@@ -3120,7 +3120,7 @@ function WorstCaseCapPanel({
         // Fetch charges and documents (timeline not used from this API)
         const [chargesRes, docsRes] = await Promise.all([
           fetch(`/api/criminal/${caseId}/charges`).catch(() => null),
-          fetch(`/api/cases/${caseId}/documents`).catch(() => null),
+          fetch(`/api/cases/${caseId}/documents`, { cache: "no-store", credentials: "include" }).catch(() => null),
         ]);
 
         const chargesData = chargesRes?.ok ? await chargesRes.json() : null;
@@ -5009,7 +5009,7 @@ export function StrategyCommitmentPanel({
     setProceduralSafetyFromApi(null); // Clear until new response; avoids stale "Strategy still valid" on case change
     console.log("[StrategyCommitmentPanel] resolvedCaseId", resolvedCaseId);
     
-    fetch(`/api/criminal/${resolvedCaseId}/strategy-analysis`)
+    fetch(`/api/criminal/${resolvedCaseId}/strategy-analysis`, { cache: "no-store", credentials: "include" })
       .then(async (res) => {
         const data = await res.json().catch(() => null);
         // Badge single source of truth: set procedural_safety on ANY successful response (do not gate on routes)
@@ -5349,7 +5349,7 @@ export function StrategyCommitmentPanel({
         }
 
         // Compute disclosure state for hearing scripts
-        const docsRes = await fetch(`/api/cases/${resolvedCaseId}/documents`).catch(() => null);
+        const docsRes = await fetch(`/api/cases/${resolvedCaseId}/documents`, { cache: "no-store", credentials: "include" }).catch(() => null);
         const docsData = docsRes?.ok ? await docsRes.json() : null;
         const documents = docsData?.data?.documents || docsData?.documents || [];
         

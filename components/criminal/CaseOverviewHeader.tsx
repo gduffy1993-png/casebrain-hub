@@ -496,6 +496,7 @@ export function CaseOverviewHeader({
                     const res = await fetch(`/api/criminal/${caseId}/offence`, {
                       method: "PATCH",
                       headers: { "Content-Type": "application/json" },
+                      cache: "no-store",
                       credentials: "include",
                       body: JSON.stringify({ offenceType: offenceOverrideSelect || null }),
                     });

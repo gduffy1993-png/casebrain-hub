@@ -1,8 +1,11 @@
 /**
  * GET /api/cases/[caseId]/documents
  * 
- * Returns all documents for a case
+ * Returns all documents for a case (single source = Case Files = strategy bundle).
  */
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 import { NextRequest, NextResponse } from "next/server";
 import { requireAuthContext } from "@/lib/auth";
@@ -11,8 +14,6 @@ import { getSupabaseAdminClient } from "@/lib/supabase";
 type RouteParams = {
   params: Promise<{ caseId: string }>;
 };
-
-export const dynamic = "force-dynamic";
 
 export async function GET(
   _request: NextRequest,

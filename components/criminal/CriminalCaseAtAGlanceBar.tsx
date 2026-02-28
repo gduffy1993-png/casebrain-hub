@@ -54,7 +54,7 @@ export function CriminalCaseAtAGlanceBar({
     }
     let cancelled = false;
     setSafetyLoading(true);
-    fetch(`/api/criminal/${caseId}/strategy-analysis`, { credentials: "include" })
+    fetch(`/api/criminal/${caseId}/strategy-analysis`, { cache: "no-store", credentials: "include" })
       .then((res) => {
         if (!res.ok || cancelled) return null;
         return res.json();

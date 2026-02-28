@@ -2,9 +2,17 @@
  * GET /api/criminal/[caseId]/strategy-analysis
  * 
  * Returns deterministic multi-route strategy analysis
- * Only runs if Analysis Gate is open (canGenerateAnalysis: true)
+ * Only runs if Analysis Gate is open (canGenerateAnalysis: true).
+ *
+ * Stabilisation: Truth Probe log on every run (success/gate_fail/error). Bundle integrity
+ * (docs_with_text_count, bundle_chars, doc_hash) in diagnostics. Strategy outputs elsewhere
+ * (case_strategy_commitments, case_analysis_versions) are insert-only; reads use newest-first.
  */
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+import { createHash } from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
 import { requireAuthContextApi } from "@/lib/auth-api";
 import { withPaywall } from "@/lib/paywall/protect-route";
@@ -33,8 +41,20 @@ type RouteParams = {
 type StrategyAnalysisResponse = StrategyAnalysisData;
 
 
+/** Threshold for "doc has text" (same as extraction feedback). */
+const DOC_TEXT_MIN_CHARS = 50;
+
+function computeDocHash(documents: Array<{ id: string; raw_text?: string }>): string {
+  const input = documents
+    .map((d) => `${d.id}:${typeof d.raw_text === "string" ? d.raw_text.length : 0}`)
+    .sort()
+    .join("|");
+  return createHash("sha256").update(input).digest("hex").slice(0, 16);
+}
+
 export async function GET(request: NextRequest, { params }: RouteParams) {
   return await withPaywall("analysis", async () => {
+    const runStartMs = Date.now();
     const { caseId } = await params;
     try {
       const authRes = await requireAuthContextApi();
@@ -46,6 +66,8 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       const context = await buildCaseContext(caseId, { userId, orgIdHint: authOrgId });
 
       if (!context.case) {
+        const truthProbe = { truthProbe: true, caseId, outcome: "case_not_found", elapsed_ms: Date.now() - runStartMs };
+        console.log("[strategy-analysis] " + JSON.stringify(truthProbe));
         return NextResponse.json(
           {
             ok: false,
@@ -63,6 +85,14 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       const textThin = docCount > 0 && rawCharsTotal < 800;
       const reasonCodes = context.diagnostics.reasonCodes ?? [];
 
+      const orgIdForQueries = context.case?.org_id ?? context.orgScope?.orgIdResolved ?? "";
+      const docsWithTextCount = documents.filter(
+        (d) => typeof d.raw_text === "string" && d.raw_text.trim().length > DOC_TEXT_MIN_CHARS
+      ).length;
+      const bundleChars = rawCharsTotal;
+      const docHash = computeDocHash(documents);
+      const completeness = reasonCodes.includes("OK") ? 100 : docCount > 0 ? 50 : 0;
+
       // PHASE 2 FIX: Lower threshold for strategy generation
       const allowStrategyGeneration = rawCharsTotal >= 800 && !suspectedScanned;
       const canGenerateAnalysis = context.canGenerateAnalysis ?? false;
@@ -79,11 +109,25 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       });
 
       const supabase = getSupabaseAdminClient();
-      const orgIdForQueries = context.case?.org_id ?? context.orgScope?.orgIdResolved ?? "";
 
       // PHASE 2 FIX: Only block if truly insufficient (rawCharsTotal < 800 or scanned)
       // Use allowStrategyGeneration instead of strict canGenerateAnalysis gate
       if (!allowStrategyGeneration) {
+        const truthProbe = {
+          truthProbe: true,
+          caseId,
+          orgId: orgIdForQueries,
+          doc_count: docCount,
+          docs_with_text_count: docsWithTextCount,
+          bundle_chars: bundleChars,
+          doc_hash: docHash,
+          completeness,
+          analysis_version: null,
+          strategy_write_id: null,
+          outcome: "gate_fail",
+          elapsed_ms: Date.now() - runStartMs,
+        };
+        console.log("[strategy-analysis] " + JSON.stringify(truthProbe));
         return makeGateFail<StrategyAnalysisResponse>(
           {
             severity: "warning",
@@ -383,6 +427,23 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         resolvedOffence: { offenceType: resolvedOffence.offenceType, label: resolvedOffence.label, source: resolvedOffence.source },
       };
 
+      const elapsedMs = Date.now() - runStartMs;
+      const truthProbe = {
+        truthProbe: true,
+        caseId,
+        orgId: orgIdForQueries,
+        doc_count: docCount,
+        docs_with_text_count: docsWithTextCount,
+        bundle_chars: bundleChars,
+        doc_hash: docHash,
+        completeness,
+        analysis_version: null,
+        strategy_write_id: null,
+        outcome: "success",
+        elapsed_ms: elapsedMs,
+      };
+      console.log("[strategy-analysis] " + JSON.stringify(truthProbe));
+
       return NextResponse.json({
         ok: true,
         data: response,
@@ -390,18 +451,23 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
           caseId,
           orgId: orgIdForQueries,
           documentCount: context.diagnostics.docCount,
-          documentsWithRawText: context.documents.filter(d => d.raw_text && typeof d.raw_text === "string" && d.raw_text.length > 0).length,
+          documentsWithRawText: docsWithTextCount,
           rawCharsTotal: context.diagnostics.rawCharsTotal,
           jsonCharsTotal: context.diagnostics.jsonCharsTotal,
           suspectedScanned: context.diagnostics.suspectedScanned,
           textThin: context.diagnostics.reasonCodes.includes("TEXT_THIN"),
           traceId: `trace-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
           updatedAt: new Date().toISOString(),
+          docs_with_text_count: docsWithTextCount,
+          bundle_chars: bundleChars,
+          doc_hash: docHash,
         },
       });
     } catch (error) {
-      console.error("Failed to generate strategy analysis:", error);
       const errorMessage = error instanceof Error ? error.message : "Failed to generate strategy analysis";
+      const truthProbeError = { truthProbe: true, caseId, outcome: "error", error: errorMessage, elapsed_ms: Date.now() - runStartMs };
+      console.log("[strategy-analysis] " + JSON.stringify(truthProbeError));
+      console.error("Failed to generate strategy analysis:", error);
       try {
         const authRes = await requireAuthContextApi();
         if (authRes.ok) {

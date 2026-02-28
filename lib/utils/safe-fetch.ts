@@ -1,11 +1,14 @@
 /**
  * Safe fetch helper for consistent error handling across panels
- * 
+ *
  * Handles:
  * - Non-200 responses
  * - JSON parse errors
  * - Network errors
- * 
+ *
+ * For internal /api/ calls, defaults to cache: "no-store" and credentials: "include"
+ * so strategy and documents endpoints are never cached client-side (callers can override).
+ *
  * Returns normalized shape: { ok, status, data, error }
  * DEV-only console logging when fallback is used
  */
@@ -17,12 +20,29 @@ type SafeFetchResult<T = any> = {
   error: string | null;
 };
 
+function isInternalApiUrl(url: string): boolean {
+  if (typeof url !== "string") return false;
+  const base = process.env.NEXT_PUBLIC_APP_URL ?? "";
+  return url.startsWith("/api/") || (base && url.startsWith(`${base}/api/`));
+}
+
 export async function safeFetch<T = any>(
   url: string,
   options?: RequestInit
 ): Promise<SafeFetchResult<T>> {
   try {
-    const response = await fetch(url, options);
+    const isInternalApi = isInternalApiUrl(url);
+    const merged: RequestInit = {
+      ...options,
+      ...(isInternalApi
+        ? {
+            cache: options?.cache ?? "no-store",
+            credentials: options?.credentials ?? "include",
+          }
+        : {}),
+    };
+
+    const response = await fetch(url, merged);
     const status = response.status;
     
     if (!response.ok) {

@@ -42,7 +42,7 @@ export function EvidenceSelectorModal({
 
   const fetchDocuments = async () => {
     try {
-      const response = await fetch(`/api/cases/${caseId}/documents`);
+      const response = await fetch(`/api/cases/${caseId}/documents`, { cache: "no-store", credentials: "include" });
       if (!response.ok) throw new Error("Failed to load documents");
       const data = await response.json();
       setDocuments(data.documents || []);
