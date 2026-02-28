@@ -23,7 +23,7 @@ type SafeFetchResult<T = any> = {
 function isInternalApiUrl(url: string): boolean {
   if (typeof url !== "string") return false;
   const base = process.env.NEXT_PUBLIC_APP_URL ?? "";
-  return url.startsWith("/api/") || (base && url.startsWith(`${base}/api/`));
+  return url.startsWith("/api/") || (base !== "" && url.startsWith(`${base}/api/`));
 }
 
 export async function safeFetch<T = any>(
