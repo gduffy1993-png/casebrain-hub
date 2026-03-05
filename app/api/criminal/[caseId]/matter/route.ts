@@ -29,10 +29,11 @@ export async function GET(_request: Request, { params }: RouteParams) {
     const { orgId } = authRes.context;
     const supabase = getSupabaseAdminClient();
 
+    // date_of_arrest: add to select after running migration 20260213000000_criminal_grounds_for_arrest.sql
     const { data, error } = await supabase
       .from("criminal_cases")
       .select(
-        "matter_state, time_in_custody_at, next_pace_review_at, interview_stance, station_summary, grounds_for_arrest, date_of_arrest, alleged_offence, custody_number, police_station_name, client_initials, client_yob, representation_type, risk_appropriate_adult, risk_interpreter, risk_mental_health, risk_medical_issues, initial_disclosure_received, initial_disclosure_notes, bail_return_date, bail_outcome, matter_closed_at, matter_closed_reason, plea, plea_date"
+        "matter_state, time_in_custody_at, next_pace_review_at, interview_stance, station_summary, grounds_for_arrest, alleged_offence, custody_number, police_station_name, client_initials, client_yob, representation_type, risk_appropriate_adult, risk_interpreter, risk_mental_health, risk_medical_issues, initial_disclosure_received, initial_disclosure_notes, bail_return_date, bail_outcome, matter_closed_at, matter_closed_reason, plea, plea_date"
       )
       .eq("id", caseId)
       .eq("org_id", orgId)
@@ -116,7 +117,8 @@ export async function PATCH(request: Request, { params }: RouteParams) {
       if (body.station.interviewStance !== undefined) updates.interview_stance = body.station.interviewStance || null;
       if (body.station.stationSummary !== undefined) updates.station_summary = body.station.stationSummary || null;
       if (body.station.groundsForArrest !== undefined) updates.grounds_for_arrest = body.station.groundsForArrest || null;
-      if (body.station.dateOfArrest !== undefined) updates.date_of_arrest = body.station.dateOfArrest || null;
+      // date_of_arrest: re-enable after running migration 20260213000000_criminal_grounds_for_arrest.sql
+      // if (body.station.dateOfArrest !== undefined) updates.date_of_arrest = body.station.dateOfArrest || null;
       if (body.station.allegedOffence !== undefined) updates.alleged_offence = body.station.allegedOffence || null;
       if (body.station.custodyNumber !== undefined) updates.custody_number = body.station.custodyNumber || null;
       if (body.station.policeStationName !== undefined) updates.police_station_name = body.station.policeStationName || null;

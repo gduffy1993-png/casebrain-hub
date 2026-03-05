@@ -114,6 +114,8 @@ export async function GET(
             docCount: 0,
             rawCharsTotal: 0,
             jsonCharsTotal: 0,
+            extractedSummaryCharsTotal: 0,
+            effectiveCharsTotal: 0,
             avgRawCharsPerDoc: 0,
             suspectedScanned: false,
             reasonCodes: [],

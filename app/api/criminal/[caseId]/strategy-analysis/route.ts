@@ -44,9 +44,38 @@ type StrategyAnalysisResponse = StrategyAnalysisData;
 /** Threshold for "doc has text" (same as extraction feedback). */
 const DOC_TEXT_MIN_CHARS = 50;
 
-function computeDocHash(documents: Array<{ id: string; raw_text?: string }>): string {
+/** Get extractable summary length from extracted_json (summary + aiSummary). */
+function getExtractedSummaryChars(d: { extracted_json?: unknown }): number {
+  const ej = d.extracted_json;
+  if (!ej || typeof ej !== "object") return 0;
+  const o = ej as Record<string, unknown>;
+  const s = typeof o.summary === "string" ? o.summary.length : 0;
+  const a = typeof o.aiSummary === "string" ? o.aiSummary.length : 0;
+  return s + a;
+}
+
+/** Document text for bundle: raw_text if present, else summary + aiSummary from extracted_json so "making a summary" is used. */
+function getDocumentTextForBundle(d: { raw_text?: string; extracted_json?: unknown }): string {
+  const raw = typeof d.raw_text === "string" ? d.raw_text.trim() : "";
+  if (raw.length >= DOC_TEXT_MIN_CHARS) return raw;
+  const ej = d.extracted_json;
+  if (ej && typeof ej === "object") {
+    const o = ej as Record<string, unknown>;
+    const parts: string[] = [];
+    if (typeof o.summary === "string" && o.summary.trim()) parts.push(o.summary.trim());
+    if (typeof o.aiSummary === "string" && o.aiSummary.trim()) parts.push(o.aiSummary.trim());
+    if (parts.length) return parts.join("\n");
+  }
+  return raw;
+}
+
+function computeDocHash(documents: Array<{ id: string; raw_text?: string; extracted_json?: unknown }>): string {
   const input = documents
-    .map((d) => `${d.id}:${typeof d.raw_text === "string" ? d.raw_text.length : 0}`)
+    .map((d) => {
+      const rawLen = typeof d.raw_text === "string" ? d.raw_text.length : 0;
+      const summaryLen = getExtractedSummaryChars(d);
+      return `${d.id}:${rawLen}:${summaryLen}`;
+    })
     .sort()
     .join("|");
   return createHash("sha256").update(input).digest("hex").slice(0, 16);
@@ -81,20 +110,21 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       const documents = context.documents ?? [];
       const docCount = context.diagnostics.docCount;
       const rawCharsTotal = context.diagnostics.rawCharsTotal;
+      const effectiveCharsTotal = context.diagnostics.effectiveCharsTotal ?? rawCharsTotal;
       const suspectedScanned = context.diagnostics.suspectedScanned;
-      const textThin = docCount > 0 && rawCharsTotal < 800;
+      const textThin = context.diagnostics.reasonCodes?.includes("TEXT_THIN") ?? (docCount > 0 && rawCharsTotal < 800);
       const reasonCodes = context.diagnostics.reasonCodes ?? [];
 
       const orgIdForQueries = context.case?.org_id ?? context.orgScope?.orgIdResolved ?? "";
       const docsWithTextCount = documents.filter(
-        (d) => typeof d.raw_text === "string" && d.raw_text.trim().length > DOC_TEXT_MIN_CHARS
+        (d) => getDocumentTextForBundle(d).length > DOC_TEXT_MIN_CHARS
       ).length;
-      const bundleChars = rawCharsTotal;
+      const bundleChars = effectiveCharsTotal;
       const docHash = computeDocHash(documents);
       const completeness = reasonCodes.includes("OK") ? 100 : docCount > 0 ? 50 : 0;
 
-      // PHASE 2 FIX: Lower threshold for strategy generation
-      const allowStrategyGeneration = rawCharsTotal >= 800 && !suspectedScanned;
+      // Use effective content (raw + summary/aiSummary) so "making a summary" unblocks strategy
+      const allowStrategyGeneration = effectiveCharsTotal >= 800 && !suspectedScanned;
       const canGenerateAnalysis = context.canGenerateAnalysis ?? false;
 
       // Log case resolution (same source as Case Files)
@@ -189,7 +219,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
             charges: (charges ?? []).map((c: { offence?: string; section?: string | null }) => ({ offence: c?.offence ?? "", section: c?.section ?? null })),
             allegedOffence: matter?.alleged_offence ?? null,
             bundleSnippet: documents
-              .map((d) => (typeof d.raw_text === "string" ? d.raw_text : ""))
+              .map((d) => getDocumentTextForBundle(d))
               .join(" ")
               .slice(0, 2000) || undefined,
           });

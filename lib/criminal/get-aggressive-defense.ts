@@ -110,25 +110,33 @@ export async function getAggressiveDefense({
       
       let rawCharsTotal = 0;
       let jsonCharsTotal = 0;
+      let extractedSummaryCharsTotal = 0;
       for (const doc of docs) {
         const rawText = doc.raw_text ?? "";
         const textLength = typeof rawText === "string" ? rawText.length : 0;
         rawCharsTotal += textLength;
-        
+
         if (doc.extracted_json) {
           try {
             const jsonStr = typeof doc.extracted_json === "string" ? doc.extracted_json : JSON.stringify(doc.extracted_json);
             jsonCharsTotal += jsonStr.length;
+            const obj = typeof doc.extracted_json === "object" && doc.extracted_json !== null ? doc.extracted_json as Record<string, unknown> : null;
+            if (obj) {
+              const s = typeof obj.summary === "string" ? obj.summary.length : 0;
+              const a = typeof obj.aiSummary === "string" ? obj.aiSummary.length : 0;
+              extractedSummaryCharsTotal += s + a;
+            }
           } catch {
             // Ignore
           }
         }
       }
-      
+
+      const effectiveCharsTotal = rawCharsTotal + extractedSummaryCharsTotal;
       const avgRawCharsPerDoc = docs.length > 0 ? rawCharsTotal / docs.length : 0;
       const suspectedScanned = docs.length > 0 && rawCharsTotal < 800 && jsonCharsTotal < 400;
-      const textThin = rawCharsTotal < 500;
-      
+      const textThin = effectiveCharsTotal < 500;
+
       context = {
         case: caseRow as any,
         orgScope: {
@@ -140,11 +148,13 @@ export async function getAggressiveDefense({
           docCount: docs.length,
           rawCharsTotal,
           jsonCharsTotal,
+          extractedSummaryCharsTotal,
+          effectiveCharsTotal,
           avgRawCharsPerDoc,
           suspectedScanned,
           reasonCodes: docs.length === 0 ? ["DOCS_NONE"] : [],
         },
-        canGenerateAnalysis: rawCharsTotal > 0 && !suspectedScanned && !textThin,
+        canGenerateAnalysis: effectiveCharsTotal > 0 && !suspectedScanned && !textThin,
       };
     } else {
       // Fallback: build case context using userId-derived org scope (only if no valid UUID orgId provided)

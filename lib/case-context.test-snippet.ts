@@ -32,9 +32,11 @@ const exampleContext: CaseContext = {
     docCount: 1,
     rawCharsTotal: 5000,
     jsonCharsTotal: 2000,
+    extractedSummaryCharsTotal: 0,
+    effectiveCharsTotal: 5000,
     suspectedScanned: false,
     avgRawCharsPerDoc: 5000,
-    reasonCodes: ["OK"], // Empty if everything is OK
+    reasonCodes: ["OK"],
   },
   canGenerateAnalysis: true, // Can generate because text is sufficient
 };
@@ -62,11 +64,13 @@ const scannedContext: CaseContext = {
   ],
   diagnostics: {
     docCount: 1,
-    rawCharsTotal: 50, // Very low
+    rawCharsTotal: 50,
     jsonCharsTotal: 0,
-    suspectedScanned: true, // Flagged as scanned
+    extractedSummaryCharsTotal: 0,
+    effectiveCharsTotal: 50,
+    suspectedScanned: true,
     avgRawCharsPerDoc: 50,
-    reasonCodes: ["SCANNED_SUSPECTED"], // Reason code set
+    reasonCodes: ["SCANNED_SUSPECTED"],
   },
   canGenerateAnalysis: false, // Cannot generate because suspected scanned
   banner: {
@@ -88,11 +92,13 @@ const notFoundContext: CaseContext = {
     docCount: 0,
     rawCharsTotal: 0,
     jsonCharsTotal: 0,
+    extractedSummaryCharsTotal: 0,
+    effectiveCharsTotal: 0,
     suspectedScanned: false,
     avgRawCharsPerDoc: 0,
-    reasonCodes: ["CASE_NOT_FOUND"], // Reason code set
+    reasonCodes: ["CASE_NOT_FOUND"],
   },
-  canGenerateAnalysis: false, // Cannot generate because case not found
+  canGenerateAnalysis: false,
   banner: {
     severity: "error",
     title: "Case not found",

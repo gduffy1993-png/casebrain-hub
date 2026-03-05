@@ -31,11 +31,15 @@ export type CaseContext = {
     docCount: number;
     rawCharsTotal: number;
     jsonCharsTotal: number;
+    /** Sum of summary + aiSummary lengths from extracted_json; used with rawCharsTotal for gate */
+    extractedSummaryCharsTotal: number;
+    /** rawCharsTotal + extractedSummaryCharsTotal; gate uses this so "making a summary" counts */
+    effectiveCharsTotal: number;
     avgRawCharsPerDoc: number;
     suspectedScanned: boolean; // true if docs exist but rawCharsTotal < 800 and jsonCharsTotal < 400
     reasonCodes: string[]; // CASE_NOT_FOUND, DOCS_NONE, TEXT_THIN, SCANNED_SUSPECTED, OK
   };
-  canGenerateAnalysis: boolean; // false if rawCharsTotal === 0 OR suspectedScanned OR textThin
+  canGenerateAnalysis: boolean; // false if effectiveCharsTotal === 0 OR suspectedScanned OR textThin
   banner?: {
     severity: "warning" | "error" | "info";
     title?: string;
@@ -91,6 +95,8 @@ export async function buildCaseContext(
         docCount: 0,
         rawCharsTotal: 0,
         jsonCharsTotal: 0,
+        extractedSummaryCharsTotal: 0,
+        effectiveCharsTotal: 0,
         avgRawCharsPerDoc: 0,
         suspectedScanned: false,
         reasonCodes: ["CASE_NOT_FOUND"],
@@ -127,19 +133,37 @@ export async function buildCaseContext(
     reasonCodes.push("DOCS_NONE");
   }
 
-  // 5. Compute diagnostics
+  // 5. Compute diagnostics (raw_text + extractable summary/aiSummary from extracted_json so "making a summary" counts)
   let rawCharsTotal = 0;
   let jsonCharsTotal = 0;
+  let extractedSummaryCharsTotal = 0;
 
   // TEMPORARY DEBUG: Log all document fields to diagnose extraction issue
   console.log(`[case-context] DEBUG: Processing ${documents.length} documents for caseId=${caseId}`);
   console.log(`[case-context] DEBUG: orgIdResolved=${orgIdResolved}, method=${method}`);
-  console.log(`[case-context] DEBUG: Gate thresholds - suspectedScanned: rawCharsTotal < 800 AND jsonCharsTotal < 400, textThin: rawCharsTotal < 800`);
+  console.log(`[case-context] DEBUG: Gate thresholds - suspectedScanned: rawCharsTotal < 800 AND jsonCharsTotal < 400, textThin: effectiveCharsTotal < 800`);
 
   for (const doc of documents) {
     const rawText = doc.raw_text ?? "";
     const textLength = typeof rawText === "string" ? rawText.length : 0;
     rawCharsTotal += textLength;
+
+    // Count summary/aiSummary from extracted_json so docs that "made a summary" count toward the gate
+    const extractedJson = doc.extracted_json;
+    if (extractedJson) {
+      try {
+        const jsonStr = typeof extractedJson === "string" ? extractedJson : JSON.stringify(extractedJson);
+        jsonCharsTotal += jsonStr.length;
+        const obj = typeof extractedJson === "object" && extractedJson !== null ? extractedJson as Record<string, unknown> : null;
+        if (obj) {
+          const summary = typeof obj.summary === "string" ? obj.summary : "";
+          const aiSummary = typeof obj.aiSummary === "string" ? obj.aiSummary : "";
+          extractedSummaryCharsTotal += summary.length + aiSummary.length;
+        }
+      } catch {
+        // Ignore JSON stringify errors
+      }
+    }
 
     // TEMPORARY DEBUG: Log document structure
     console.log(`[case-context] DEBUG: docId=${doc.id}, name=${doc.name}`);
@@ -147,7 +171,6 @@ export async function buildCaseContext(
     console.log(`[case-context] DEBUG:   - raw_text exists: ${doc.raw_text !== null && doc.raw_text !== undefined}`);
     console.log(`[case-context] DEBUG:   - extracted_json exists: ${doc.extracted_json !== null && doc.extracted_json !== undefined}`);
     
-    // Check if raw_text is actually in the document object
     const hasRawTextKey = "raw_text" in doc;
     const hasExtractedTextKey = "extracted_text" in doc;
     console.log(`[case-context] DEBUG:   - has "raw_text" key: ${hasRawTextKey}`);
@@ -156,16 +179,6 @@ export async function buildCaseContext(
       const extractedText = (doc as any).extracted_text;
       const extractedTextLength = typeof extractedText === "string" ? extractedText.length : 0;
       console.log(`[case-context] DEBUG:   - extracted_text length: ${extractedTextLength}`);
-    }
-
-    const extractedJson = doc.extracted_json;
-    if (extractedJson) {
-      try {
-        const jsonStr = typeof extractedJson === "string" ? extractedJson : JSON.stringify(extractedJson);
-        jsonCharsTotal += jsonStr.length;
-      } catch {
-        // Ignore JSON stringify errors
-      }
     }
 
     // Debug logging: print extraction char counts and preview (capped in production)
@@ -178,15 +191,18 @@ export async function buildCaseContext(
     }
   }
 
+  const effectiveCharsTotal = rawCharsTotal + extractedSummaryCharsTotal;
+
   // TEMPORARY DEBUG: Log final totals
-  console.log(`[case-context] DEBUG: FINAL TOTALS - rawCharsTotal=${rawCharsTotal}, jsonCharsTotal=${jsonCharsTotal}, docCount=${documents.length}`);
+  console.log(`[case-context] DEBUG: FINAL TOTALS - rawCharsTotal=${rawCharsTotal}, jsonCharsTotal=${jsonCharsTotal}, extractedSummaryCharsTotal=${extractedSummaryCharsTotal}, effectiveCharsTotal=${effectiveCharsTotal}, docCount=${documents.length}`);
 
   const docCount = documents.length;
   const avgRawCharsPerDoc = docCount > 0 ? Math.floor(rawCharsTotal / docCount) : 0;
   
-  // Suspect scanned if very low character counts (threshold: rawCharsTotal < 800 and jsonCharsTotal < 400)
+  // Suspect scanned if very low character counts (raw and full json both tiny)
   const suspectedScanned = docCount > 0 && rawCharsTotal < 800 && jsonCharsTotal < 400;
-  const textThin = docCount > 0 && rawCharsTotal < 800;
+  // Text "thin" if effective content (raw + summary/aiSummary) is below threshold so "making a summary" unblocks
+  const textThin = docCount > 0 && effectiveCharsTotal < 800;
 
   if (suspectedScanned) {
     reasonCodes.push("SCANNED_SUSPECTED");
@@ -202,10 +218,9 @@ export async function buildCaseContext(
     reasonCodes.push("DOCS_NONE");
   }
 
-  // Determine if analysis can be generated
-  // NEVER generate analysis if: no text, suspected scanned, or text too thin
+  // Determine if analysis can be generated (use effective content so summary-only docs can still run)
   const canGenerateAnalysis = 
-    rawCharsTotal > 0 && 
+    effectiveCharsTotal > 0 && 
     !suspectedScanned && 
     !textThin && 
     reasonCodes.includes("OK");
@@ -260,6 +275,8 @@ export async function buildCaseContext(
       docCount,
       rawCharsTotal,
       jsonCharsTotal,
+      extractedSummaryCharsTotal,
+      effectiveCharsTotal,
       avgRawCharsPerDoc,
       suspectedScanned,
       reasonCodes,
