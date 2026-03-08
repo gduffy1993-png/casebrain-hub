@@ -36,23 +36,22 @@ export async function GET(_request: Request, { params }: RouteParams) {
     const supabase = getSupabaseAdminClient();
     const orgId = context.case.org_id ?? context.orgScope?.orgIdResolved ?? authOrgId ?? "";
 
-    const [chargesRes, matterRes] = await Promise.all([
-      supabase
-        .from("criminal_charges")
-        .select("offence, section")
-        .eq("case_id", caseId)
-        .eq("org_id", orgId)
-        .order("charge_date", { ascending: false }),
-      supabase
-        .from("criminal_cases")
-        .select("alleged_offence, offence_override")
-        .eq("id", caseId)
-        .eq("org_id", orgId)
-        .maybeSingle(),
-    ]);
+    const chargesRes = await supabase
+      .from("criminal_charges")
+      .select("offence, section")
+      .eq("case_id", caseId)
+      .eq("org_id", orgId)
+      .order("charge_date", { ascending: false });
 
-    const matterRow = matterRes.data as { alleged_offence?: string | null; offence_override?: string | null } | null;
+    const matterRes = await supabase
+      .from("criminal_cases")
+      .select("alleged_offence, offence_override")
+      .eq("id", caseId)
+      .eq("org_id", orgId)
+      .maybeSingle();
+    const matterRow = matterRes.error ? null : (matterRes.data as { alleged_offence?: string | null; offence_override?: string | null } | null);
     const offenceOverride = matterRow?.offence_override?.trim() || null;
+    const allegedOffence = matterRow?.alleged_offence ?? null;
 
     if (offenceOverride) {
       const offenceType = normaliseOffenceType(offenceOverride);
@@ -67,7 +66,6 @@ export async function GET(_request: Request, { params }: RouteParams) {
       offence: c.offence ?? "",
       section: c.section ?? null,
     }));
-    const allegedOffence = matterRow?.alleged_offence ?? null;
 
     let bundleSnippet: string | undefined;
     if (context.documents.length > 0) {

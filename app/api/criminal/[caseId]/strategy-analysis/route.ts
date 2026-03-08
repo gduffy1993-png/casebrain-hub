@@ -200,14 +200,15 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         .eq("case_id", caseId)
         .eq("org_id", orgIdForQueries);
 
-      const { data: matterRow } = await supabase
+      const matterRes = await supabase
         .from("criminal_cases")
         .select("alleged_offence, offence_override")
         .eq("id", caseId)
         .eq("org_id", orgIdForQueries)
         .maybeSingle();
-      const matter = matterRow as { alleged_offence?: string; offence_override?: string | null } | null;
+      const matter = matterRes.error ? null : (matterRes.data as { alleged_offence?: string | null; offence_override?: string | null } | null);
       const offenceOverride = matter?.offence_override?.trim() || null;
+      const allegedOffence = matter?.alleged_offence ?? null;
 
       const resolvedOffence = offenceOverride
         ? {
@@ -217,7 +218,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
           }
         : resolveOffence({
             charges: (charges ?? []).map((c: { offence?: string; section?: string | null }) => ({ offence: c?.offence ?? "", section: c?.section ?? null })),
-            allegedOffence: matter?.alleged_offence ?? null,
+            allegedOffence,
             bundleSnippet: documents
               .map((d) => getDocumentTextForBundle(d))
               .join(" ")
