@@ -608,17 +608,29 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
               </Card>
             ) : snapshot ? (
               <>
-              {/* Strategy at a glance – one canonical view */}
+              {/* Strategy at a glance – aligned with committed strategy when set; full discipline in Evidence/Strategy columns below */}
               <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
                 <span className="text-sm font-medium text-muted-foreground">Strategy summary</span>
                 <StrategyExportButton caseId={caseId} caseTitle={snapshot?.caseMeta?.title ?? undefined} variant="outline" size="sm" />
               </div>
+              <p className="text-xs text-muted-foreground mb-3">
+                Summary of your strategy and key levers. Full discipline (Defence Plan, commitment, doctrine) is in the Evidence and Strategy columns below.
+              </p>
               <Card className="p-4 mb-6 border-primary/20 bg-primary/5">
                 <h3 className="text-sm font-semibold text-foreground mb-3">Strategy at a glance</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
                   <div>
-                    <p className="text-xs text-muted-foreground">Primary approach</p>
-                    <p className="font-medium text-foreground">{snapshot.strategy?.primary ? String(snapshot.strategy.primary).replace(/_/g, " ") : "—"}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {committedStrategy?.primary ? "Primary approach (committed)" : "Primary approach (recommended)"}
+                    </p>
+                    <p className="font-medium text-foreground">
+                      {(committedStrategy?.primary ?? snapshot?.strategy?.primary)
+                        ? String(committedStrategy?.primary ?? snapshot?.strategy?.primary).replace(/_/g, " ")
+                        : "—"}
+                    </p>
+                    {committedStrategy?.primary && snapshot?.strategy?.primary && committedStrategy.primary !== snapshot.strategy.primary && (
+                      <p className="text-xs text-muted-foreground mt-0.5">Recommended: {String(snapshot.strategy.primary).replace(/_/g, " ")}</p>
+                    )}
                   </div>
                   <div>
                     <p className="text-xs text-muted-foreground">Offence</p>

@@ -751,11 +751,391 @@ type BeastStrategyPack = {
   next72Hours: string[];
 };
 
-function getBeastStrategyPack(strategyType: PrimaryStrategy | null): BeastStrategyPack | null {
+/** Offence-specific Beast packs for theft, burglary, robbery, fraud, ABH, common assault. */
+function getOffenceSpecificBeastPack(
+  strategyType: "fight_charge" | "charge_reduction",
+  code: string
+): BeastStrategyPack | null {
+  const fight = strategyType === "fight_charge";
+  if (code === "theft") {
+    return {
+      dashboard: {
+        objective: fight ? "Force CPS to prove appropriation, dishonesty and intention to permanently deprive. Challenge identification and ownership. Target acquittal or charge reduction." : "Challenge dishonesty or intention to permanently deprive. Seek charge reduction or acquittal.",
+        cpsMustProve: [
+          { element: "Appropriation", cpsEvidence: "Evidence of defendant's dealing with property", defenceChallenge: "Challenge appropriation; consent; ownership" },
+          { element: "Property belonging to another", cpsEvidence: "Ownership/possession evidence", defenceChallenge: "Challenge belonging to another" },
+          { element: "Dishonesty (Ivey/Ghosh)", cpsEvidence: "Circumstances and conduct", defenceChallenge: "Argue not dishonest by standards of ordinary people" },
+          { element: "Intention to permanently deprive", cpsEvidence: "Conduct and circumstances", defenceChallenge: "Argue borrowing or intent to return" },
+        ],
+        top3Attacks: [
+          { target: "Dishonesty", leverage: "If defendant's belief or circumstances undermine dishonesty, case fails", evidenceRequired: "Defendant's account, circumstances [CONDITIONAL]" },
+          { target: "Identification / appropriation", leverage: "If identification or link to property weak, case fails", evidenceRequired: "CCTV, recovery, witness [CONDITIONAL]" },
+          { target: "Disclosure", leverage: "Gaps create abuse of process risk", evidenceRequired: "MG6C, CCTV [CONDITIONAL]" },
+        ],
+        primaryKillSwitch: { condition: "Strong evidence of appropriation, dishonesty and intention to permanently deprive", pivotTo: "charge_reduction or outcome_management" },
+      },
+      cpsTheory: {
+        whatHappened: "CPS will argue: Defendant dishonestly appropriated property belonging to another with intention to permanently deprive. [CONDITIONAL]",
+        intentArgument: "CPS will argue dishonesty and intention to permanently deprive from conduct. Defence will challenge: no appropriation; consent; not dishonest; intent to return. [CONDITIONAL]",
+        identificationArgument: "CPS will rely on identification and link to property. Defence will challenge under Turnbull and evidence of appropriation. [CONDITIONAL]",
+        weaponCausationArgument: "CPS will rely on possession/recovery and circumstances. Defence will argue appropriation or dishonesty not made out. [CONDITIONAL]",
+      },
+      defenceTheory: {
+        narrative: "Defence position: No appropriation; or not dishonest; or no intention to permanently deprive; or property not belonging to another. [CONDITIONAL]",
+        conditionalFlags: [{ area: "Dishonesty", missingEvidence: "Circumstances, defendant's account [CONDITIONAL]" }, { area: "Appropriation", missingEvidence: "CCTV, witness [CONDITIONAL]" }],
+        evidenceSupport: ["If consent or belief → undermines dishonesty [CONDITIONAL]", "If identification weak → Turnbull challenge [CONDITIONAL]"],
+      },
+      attackRoutes: [
+        { target: "Dishonesty", evidenceSupporting: "Defendant's belief or circumstances [CONDITIONAL]", disclosureRequired: "Defendant's account, circumstances", cpsResponse: "CPS will argue dishonest", defenceReply: "Defence will argue not dishonest by standards of ordinary people. [CONDITIONAL]", riskIfFails: "Pivot to charge_reduction or outcome_management." },
+        { target: "Identification / appropriation", evidenceSupporting: "Weak link to property [CONDITIONAL]", disclosureRequired: "CCTV, recovery, witness", cpsResponse: "CPS will argue defendant appropriated", defenceReply: "Defence will challenge identification or appropriation. [CONDITIONAL]", riskIfFails: "Pivot to outcome_management." },
+      ],
+      disclosureLeverage: [{ missingItem: "MG6C / key evidence", whyItMatters: "Cannot assess case without full disclosure", chaseWording: "Request full MG6C and CCTV.", timeEscalation: "Escalate if not provided.", applicationPath: "Challenge if gaps material." }],
+      courtroomPressure: [{ judgeQuestion: "How can you say this was not dishonest?", cpsAnswer: "CPS will argue conduct was dishonest.", defenceReply: "Defence position: Not dishonest by standards of ordinary people; defendant's belief relevant. [CONDITIONAL]", evidenceCheck: "Review defendant's account and circumstances." }],
+      killSwitches: [{ evidenceArrival: "Strong evidence of appropriation, dishonesty and intention to permanently deprive", newRoute: "Pivot to charge_reduction or outcome_management.", preserved: "Mitigation", abandoned: "Act denial." }],
+      residualAttacks: [{ area: "Dishonesty", tested: false, leverage: "Ivey/Ghosh; belief; consent", evidenceNeeded: "Defendant's account [CONDITIONAL]" }, { area: "Appropriation", tested: false, leverage: "No appropriation; consent", evidenceNeeded: "CCTV, witness [CONDITIONAL]" }],
+      next72Hours: ["Request full disclosure (MG6C, CCTV, witness statements)", "Review evidence of appropriation and dishonesty", "Take defendant's account on belief and intent", "Draft disclosure requests"],
+    };
+  }
+  if (code === "burglary") {
+    return {
+      dashboard: {
+        objective: fight ? "Force CPS to prove entry as trespasser and intent (or ulterior offence). Challenge identification and consent. Target acquittal or charge reduction." : "Challenge entry as trespasser or intent. Seek charge reduction or acquittal.",
+        cpsMustProve: [
+          { element: "Entry as trespasser", cpsEvidence: "Forensics, CCTV, witness", defenceChallenge: "Challenge entry; consent; authority to enter" },
+          { element: "Building or part of building", cpsEvidence: "Scene evidence", defenceChallenge: "Challenge definition of building" },
+          { element: "Intent at time of entry", cpsEvidence: "Conduct inside, forensics", defenceChallenge: "Argue no intent to steal/damage/commit GBH or ulterior" },
+          { element: "Identification", cpsEvidence: "CCTV, witness", defenceChallenge: "Turnbull; who entered" },
+        ],
+        top3Attacks: [
+          { target: "Entry as trespasser", leverage: "If consent or authority to enter, no trespass", evidenceRequired: "Evidence of consent, tenancy [CONDITIONAL]" },
+          { target: "Intent at entry", leverage: "If intent at time of entry not proved, burglary fails", evidenceRequired: "Conduct inside, timing [CONDITIONAL]" },
+          { target: "Identification", leverage: "If who entered not proved, case fails", evidenceRequired: "CCTV, forensics [CONDITIONAL]" },
+        ],
+        primaryKillSwitch: { condition: "Strong evidence of entry as trespasser and intent", pivotTo: "charge_reduction or outcome_management" },
+      },
+      cpsTheory: {
+        whatHappened: "CPS will argue: Defendant entered as trespasser with intent to steal/damage/commit GBH or ulterior offence. [CONDITIONAL]",
+        intentArgument: "CPS will argue trespass and intent from forensics and conduct. Defence will challenge: consent to enter; no intent at entry. [CONDITIONAL]",
+        identificationArgument: "CPS will rely on CCTV and forensics. Defence will challenge who entered and Turnbull. [CONDITIONAL]",
+        weaponCausationArgument: "CPS will rely on scene and forensics. Defence will argue entry or intent not made out. [CONDITIONAL]",
+      },
+      defenceTheory: {
+        narrative: "Defence position: No entry as trespasser; or consent/authority; or no intent at time of entry. [CONDITIONAL]",
+        conditionalFlags: [{ area: "Entry / trespass", missingEvidence: "CCTV, forensics, consent [CONDITIONAL]" }, { area: "Intent at entry", missingEvidence: "Conduct, timing [CONDITIONAL]" }],
+        evidenceSupport: ["If consent → no trespass [CONDITIONAL]", "If intent at entry weak → burglary fails [CONDITIONAL]"],
+      },
+      attackRoutes: [
+        { target: "Entry as trespasser", evidenceSupporting: "Consent or authority [CONDITIONAL]", disclosureRequired: "CCTV, forensics, witness", cpsResponse: "CPS will argue trespass", defenceReply: "Defence will argue consent or no entry. [CONDITIONAL]", riskIfFails: "Pivot to intent or outcome_management." },
+        { target: "Intent at entry", evidenceSupporting: "No intent at time of entry [CONDITIONAL]", disclosureRequired: "Conduct inside, timing", cpsResponse: "CPS will argue intent", defenceReply: "Defence will argue intent not formed at entry. [CONDITIONAL]", riskIfFails: "Pivot to outcome_management." },
+      ],
+      disclosureLeverage: [{ missingItem: "CCTV / forensics", whyItMatters: "Cannot assess entry and intent without key evidence", chaseWording: "Request CCTV and forensic evidence.", timeEscalation: "Escalate if not provided.", applicationPath: "Challenge entry or intent if weak." }],
+      courtroomPressure: [{ judgeQuestion: "How can you say there was no trespass?", cpsAnswer: "CPS will argue entry was as trespasser.", defenceReply: "Defence position: Consent or authority to enter; or no entry. [CONDITIONAL]", evidenceCheck: "Review consent and entry evidence." }],
+      killSwitches: [{ evidenceArrival: "Strong evidence of entry as trespasser and intent", newRoute: "Pivot to charge_reduction or outcome_management.", preserved: "Mitigation", abandoned: "Act denial." }],
+      residualAttacks: [{ area: "Trespass", tested: false, leverage: "Consent; authority", evidenceNeeded: "Tenancy, consent [CONDITIONAL]" }, { area: "Intent at entry", tested: false, leverage: "Intent not at entry", evidenceNeeded: "Conduct, timing [CONDITIONAL]" }],
+      next72Hours: ["Request CCTV, forensics, witness statements", "Review entry and consent evidence", "Assess intent at time of entry", "Draft disclosure requests"],
+    };
+  }
+  if (code === "robbery") {
+    return {
+      dashboard: {
+        objective: fight ? "Force CPS to prove theft and force/threat of force at the time. Challenge theft elements or timing. Target acquittal or charge reduction." : "Challenge theft or force/threat or timing. Seek charge reduction or acquittal.",
+        cpsMustProve: [
+          { element: "Theft (all elements)", cpsEvidence: "Evidence of appropriation, dishonesty, intention to permanently deprive", defenceChallenge: "Challenge theft elements" },
+          { element: "Force or threat of force", cpsEvidence: "Victim/witness evidence, injury", defenceChallenge: "Challenge force or threat" },
+          { element: "Immediately before or at time of theft", cpsEvidence: "Sequence evidence", defenceChallenge: "Challenge timing" },
+          { element: "Identification", cpsEvidence: "CCTV, witness", defenceChallenge: "Turnbull" },
+        ],
+        top3Attacks: [
+          { target: "Theft elements", leverage: "If theft not made out, robbery fails", evidenceRequired: "Evidence on appropriation, dishonesty [CONDITIONAL]" },
+          { target: "Force / timing", leverage: "If force not at time of theft, robbery fails", evidenceRequired: "Sequence, witness [CONDITIONAL]" },
+          { target: "Identification", leverage: "Turnbull", evidenceRequired: "CCTV, VIPER [CONDITIONAL]" },
+        ],
+        primaryKillSwitch: { condition: "Strong evidence of theft and force at the time", pivotTo: "charge_reduction or outcome_management" },
+      },
+      cpsTheory: {
+        whatHappened: "CPS will argue: Defendant stole and used force or threat immediately before or at the time. [CONDITIONAL]",
+        intentArgument: "CPS will argue theft and force from victim and sequence. Defence will challenge: no theft; no force/threat; or force not at time of theft. [CONDITIONAL]",
+        identificationArgument: "CPS will rely on victim and witness ID. Defence will challenge Turnbull and timing. [CONDITIONAL]",
+        weaponCausationArgument: "CPS will rely on victim and injury. Defence will argue theft or force/timing not made out. [CONDITIONAL]",
+      },
+      defenceTheory: {
+        narrative: "Defence position: No theft; or no force/threat; or force not at time of theft. [CONDITIONAL]",
+        conditionalFlags: [{ area: "Theft", missingEvidence: "Appropriation, dishonesty [CONDITIONAL]" }, { area: "Force / timing", missingEvidence: "Sequence, witness [CONDITIONAL]" }],
+        evidenceSupport: ["If theft weak → robbery fails [CONDITIONAL]", "If timing weak → force not at time [CONDITIONAL]"],
+      },
+      attackRoutes: [
+        { target: "Theft elements", evidenceSupporting: "Theft not made out [CONDITIONAL]", disclosureRequired: "Evidence of theft", cpsResponse: "CPS will argue theft", defenceReply: "Defence will challenge appropriation/dishonesty/intent. [CONDITIONAL]", riskIfFails: "Focus on force/timing." },
+        { target: "Force / timing", evidenceSupporting: "Force not at time of theft [CONDITIONAL]", disclosureRequired: "Sequence, witness", cpsResponse: "CPS will argue force at time", defenceReply: "Defence will argue timing not made out. [CONDITIONAL]", riskIfFails: "Pivot to outcome_management." },
+      ],
+      disclosureLeverage: [{ missingItem: "CCTV / sequence evidence", whyItMatters: "Timing of force critical", chaseWording: "Request full sequence and CCTV.", timeEscalation: "Escalate if not provided.", applicationPath: "Challenge timing if weak." }],
+      courtroomPressure: [{ judgeQuestion: "How can you say there was no force at the time?", cpsAnswer: "CPS will argue force was at time of theft.", defenceReply: "Defence position: Force not immediately before or at time of theft; or no theft. [CONDITIONAL]", evidenceCheck: "Review sequence evidence." }],
+      killSwitches: [{ evidenceArrival: "Strong evidence of theft and force at the time", newRoute: "Pivot to outcome_management.", preserved: "Mitigation", abandoned: "Act denial." }],
+      residualAttacks: [{ area: "Theft", tested: false, leverage: "Theft elements not made out", evidenceNeeded: "Evidence on theft [CONDITIONAL]" }, { area: "Timing", tested: false, leverage: "Force not at time", evidenceNeeded: "Sequence [CONDITIONAL]" }],
+      next72Hours: ["Request CCTV, sequence evidence, witness statements", "Review theft and force/timing", "Assess charge reduction (theft only)", "Draft disclosure requests"],
+    };
+  }
+  if (code === "fraud") {
+    return {
+      dashboard: {
+        objective: fight ? "Force CPS to prove dishonesty and (false representation / failure to disclose / abuse of position) and gain or loss. Challenge representation and intent. Target acquittal or charge reduction." : "Challenge dishonesty or representation/conduct or gain/loss. Seek charge reduction or acquittal.",
+        cpsMustProve: [
+          { element: "Dishonesty", cpsEvidence: "Ivey/Ghosh; circumstances", defenceChallenge: "Challenge dishonesty" },
+          { element: "False representation / failure to disclose / abuse of position", cpsEvidence: "Documents, communications", defenceChallenge: "Challenge representation or conduct" },
+          { element: "Gain or loss (or intent)", cpsEvidence: "Financial records, outcome", defenceChallenge: "Challenge gain/loss or causation" },
+          { element: "Identification", cpsEvidence: "Documents, digital, witness", defenceChallenge: "Challenge who did the act" },
+        ],
+        top3Attacks: [
+          { target: "Dishonesty", leverage: "If not dishonest, fraud fails", evidenceRequired: "Defendant's account, circumstances [CONDITIONAL]" },
+          { target: "Representation / conduct", leverage: "If representation true or disclosure adequate, case weak", evidenceRequired: "Documents, communications [CONDITIONAL]" },
+          { target: "Disclosure", leverage: "Document gaps create leverage", evidenceRequired: "MG6C, documents [CONDITIONAL]" },
+        ],
+        primaryKillSwitch: { condition: "Strong evidence of dishonesty, representation/conduct and gain/loss", pivotTo: "charge_reduction or outcome_management" },
+      },
+      cpsTheory: {
+        whatHappened: "CPS will argue: Defendant was dishonest and made false representation / failed to disclose / abused position, intending gain or loss. [CONDITIONAL]",
+        intentArgument: "CPS will argue dishonesty and conduct from documents and outcome. Defence will challenge: not dishonest; representation true; no intent. [CONDITIONAL]",
+        identificationArgument: "CPS will rely on documents and digital evidence. Defence will challenge who did the act. [CONDITIONAL]",
+        weaponCausationArgument: "CPS will rely on financial and document evidence. Defence will argue dishonesty or conduct not made out. [CONDITIONAL]",
+      },
+      defenceTheory: {
+        narrative: "Defence position: Not dishonest; or representation/conduct not made out; or no intent to gain/cause loss. [CONDITIONAL]",
+        conditionalFlags: [{ area: "Dishonesty", missingEvidence: "Circumstances, account [CONDITIONAL]" }, { area: "Representation / conduct", missingEvidence: "Documents [CONDITIONAL]" }],
+        evidenceSupport: ["If belief or circumstances → undermines dishonesty [CONDITIONAL]", "If representation true → case weak [CONDITIONAL]"],
+      },
+      attackRoutes: [
+        { target: "Dishonesty", evidenceSupporting: "Defendant's belief [CONDITIONAL]", disclosureRequired: "Documents, defendant's account", cpsResponse: "CPS will argue dishonest", defenceReply: "Defence will argue not dishonest. [CONDITIONAL]", riskIfFails: "Focus on representation or gain/loss." },
+        { target: "Representation / conduct", evidenceSupporting: "Representation true or disclosure adequate [CONDITIONAL]", disclosureRequired: "All communications, documents", cpsResponse: "CPS will argue false representation etc.", defenceReply: "Defence will argue representation/conduct not made out. [CONDITIONAL]", riskIfFails: "Pivot to outcome_management." },
+      ],
+      disclosureLeverage: [{ missingItem: "Full document disclosure", whyItMatters: "Fraud case turns on documents", chaseWording: "Request all relevant documents and communications.", timeEscalation: "Escalate if not provided.", applicationPath: "Challenge if document trail weak." }],
+      courtroomPressure: [{ judgeQuestion: "How can you say this was not dishonest?", cpsAnswer: "CPS will argue conduct was dishonest.", defenceReply: "Defence position: Not dishonest by standards of ordinary people; defendant's belief. [CONDITIONAL]", evidenceCheck: "Review documents and defendant's account." }],
+      killSwitches: [{ evidenceArrival: "Strong evidence of dishonesty, representation/conduct and gain/loss", newRoute: "Pivot to outcome_management.", preserved: "Mitigation", abandoned: "Act denial." }],
+      residualAttacks: [{ area: "Dishonesty", tested: false, leverage: "Ivey/Ghosh; belief", evidenceNeeded: "Account, circumstances [CONDITIONAL]" }, { area: "Representation", tested: false, leverage: "True representation; adequate disclosure", evidenceNeeded: "Documents [CONDITIONAL]" }],
+      next72Hours: ["Request all documents and communications", "Review dishonesty and representation", "Take defendant's account", "Draft disclosure requests"],
+    };
+  }
+  if (code === "s47_oapa") {
+    return {
+      dashboard: {
+        objective: fight ? "Force CPS to prove assault/battery and causation of actual bodily harm. Challenge identification and causation. Target acquittal or charge reduction to common assault." : "Challenge assault or causation of ABH. Seek reduction to common assault or acquittal.",
+        cpsMustProve: [
+          { element: "Assault or battery", cpsEvidence: "Witness, CCTV, victim", defenceChallenge: "Challenge assault/battery" },
+          { element: "Actual bodily harm", cpsEvidence: "Medical evidence", defenceChallenge: "Challenge ABH threshold" },
+          { element: "Causation", cpsEvidence: "Medical linking harm to assault", defenceChallenge: "Challenge causation" },
+          { element: "Identification", cpsEvidence: "Witness, CCTV", defenceChallenge: "Turnbull" },
+        ],
+        top3Attacks: [
+          { target: "Assault / causation", leverage: "If assault or causation not made out, ABH fails", evidenceRequired: "CCTV, medical [CONDITIONAL]" },
+          { target: "ABH threshold", leverage: "If harm does not amount to ABH, common assault only", evidenceRequired: "Medical evidence [CONDITIONAL]" },
+          { target: "Identification", leverage: "Turnbull", evidenceRequired: "VIPER, CCTV [CONDITIONAL]" },
+        ],
+        primaryKillSwitch: { condition: "Strong evidence of assault and causation of ABH", pivotTo: "charge_reduction (common assault) or outcome_management" },
+      },
+      cpsTheory: {
+        whatHappened: "CPS will argue: Defendant assaulted victim and caused actual bodily harm. [CONDITIONAL]",
+        intentArgument: "CPS will argue assault and causation from witness and medical evidence. Defence will challenge: no assault; no causation; harm not ABH. [CONDITIONAL]",
+        identificationArgument: "CPS will rely on witness and CCTV. Defence will challenge Turnbull. [CONDITIONAL]",
+        weaponCausationArgument: "CPS will rely on medical evidence. Defence will argue assault or causation or ABH threshold not made out. [CONDITIONAL]",
+      },
+      defenceTheory: {
+        narrative: "Defence position: No assault/battery; or no causation of ABH; or harm does not amount to ABH. [CONDITIONAL]",
+        conditionalFlags: [{ area: "Assault / causation", missingEvidence: "CCTV, medical [CONDITIONAL]" }, { area: "ABH threshold", missingEvidence: "Medical [CONDITIONAL]" }],
+        evidenceSupport: ["If causation weak → ABH fails [CONDITIONAL]", "If harm below ABH → common assault only [CONDITIONAL]"],
+      },
+      attackRoutes: [
+        { target: "Assault / causation", evidenceSupporting: "No assault or no causation [CONDITIONAL]", disclosureRequired: "CCTV, medical, witness", cpsResponse: "CPS will argue assault and causation", defenceReply: "Defence will challenge assault or causation. [CONDITIONAL]", riskIfFails: "Focus on ABH threshold." },
+        { target: "ABH threshold", evidenceSupporting: "Harm not ABH [CONDITIONAL]", disclosureRequired: "Medical evidence", cpsResponse: "CPS will argue ABH", defenceReply: "Defence will argue harm does not amount to ABH; common assault. [CONDITIONAL]", riskIfFails: "Pivot to outcome_management." },
+      ],
+      disclosureLeverage: [{ missingItem: "Medical evidence / CCTV", whyItMatters: "Causation and ABH threshold", chaseWording: "Request medical and CCTV.", timeEscalation: "Escalate if not provided.", applicationPath: "Challenge causation or ABH if weak." }],
+      courtroomPressure: [{ judgeQuestion: "How can you say the harm is not ABH?", cpsAnswer: "CPS will argue harm amounts to ABH.", defenceReply: "Defence position: Harm does not meet ABH threshold; or causation not made out. [CONDITIONAL]", evidenceCheck: "Review medical evidence." }],
+      killSwitches: [{ evidenceArrival: "Strong evidence of assault and causation of ABH", newRoute: "Pivot to common assault or outcome_management.", preserved: "Mitigation", abandoned: "Act denial." }],
+      residualAttacks: [{ area: "Causation", tested: false, leverage: "No causation of ABH", evidenceNeeded: "Medical [CONDITIONAL]" }, { area: "ABH threshold", tested: false, leverage: "Harm not ABH", evidenceNeeded: "Medical [CONDITIONAL]" }],
+      next72Hours: ["Request medical evidence and CCTV", "Review assault and causation", "Assess ABH threshold and common assault", "Draft disclosure requests"],
+    };
+  }
+  if (code === "common_assault") {
+    return {
+      dashboard: {
+        objective: fight ? "Force CPS to prove assault or battery. Challenge identification and intent. Target acquittal." : "Challenge assault/battery. Seek acquittal or mitigation.",
+        cpsMustProve: [
+          { element: "Assault or battery", cpsEvidence: "Witness, CCTV, victim", defenceChallenge: "Challenge assault or battery" },
+          { element: "Identification", cpsEvidence: "Witness, CCTV", defenceChallenge: "Turnbull" },
+        ],
+        top3Attacks: [
+          { target: "Assault / battery", leverage: "If assault or battery not made out, case fails", evidenceRequired: "CCTV, witness [CONDITIONAL]" },
+          { target: "Identification", leverage: "Turnbull", evidenceRequired: "VIPER, CCTV [CONDITIONAL]" },
+          { target: "Disclosure", leverage: "Gaps create leverage", evidenceRequired: "MG6C [CONDITIONAL]" },
+        ],
+        primaryKillSwitch: { condition: "Strong evidence of assault or battery", pivotTo: "outcome_management" },
+      },
+      cpsTheory: {
+        whatHappened: "CPS will argue: Defendant assaulted or battered the victim. [CONDITIONAL]",
+        intentArgument: "CPS will argue assault/battery from witness and CCTV. Defence will challenge: no assault/battery; identification. [CONDITIONAL]",
+        identificationArgument: "CPS will rely on witness and CCTV. Defence will challenge Turnbull. [CONDITIONAL]",
+        weaponCausationArgument: "CPS will rely on victim and witness. Defence will argue assault/battery not made out. [CONDITIONAL]",
+      },
+      defenceTheory: {
+        narrative: "Defence position: No assault or battery; or identification disputed. [CONDITIONAL]",
+        conditionalFlags: [{ area: "Assault / battery", missingEvidence: "CCTV, witness [CONDITIONAL]" }, { area: "Identification", missingEvidence: "VIPER, CCTV [CONDITIONAL]" }],
+        evidenceSupport: ["If no assault/battery → case fails [CONDITIONAL]", "If ID weak → Turnbull [CONDITIONAL]"],
+      },
+      attackRoutes: [
+        { target: "Assault / battery", evidenceSupporting: "No assault or battery [CONDITIONAL]", disclosureRequired: "CCTV, witness", cpsResponse: "CPS will argue assault/battery", defenceReply: "Defence will challenge assault or battery. [CONDITIONAL]", riskIfFails: "Pivot to outcome_management." },
+        { target: "Identification", evidenceSupporting: "Weak ID [CONDITIONAL]", disclosureRequired: "VIPER, CCTV", cpsResponse: "CPS will argue ID strong", defenceReply: "Defence will challenge under Turnbull. [CONDITIONAL]", riskIfFails: "Pivot to outcome_management." },
+      ],
+      disclosureLeverage: [{ missingItem: "CCTV / witness", whyItMatters: "Assault case turns on evidence of conduct", chaseWording: "Request CCTV and witness statements.", timeEscalation: "Escalate if not provided.", applicationPath: "Challenge if evidence weak." }],
+      courtroomPressure: [{ judgeQuestion: "How can you say there was no assault?", cpsAnswer: "CPS will argue assault/battery proved.", defenceReply: "Defence position: Assault or battery not made out; or identification disputed. [CONDITIONAL]", evidenceCheck: "Review CCTV and witness evidence." }],
+      killSwitches: [{ evidenceArrival: "Strong evidence of assault or battery", newRoute: "Pivot to outcome_management.", preserved: "Mitigation", abandoned: "Act denial." }],
+      residualAttacks: [{ area: "Assault / battery", tested: false, leverage: "No assault or battery", evidenceNeeded: "CCTV, witness [CONDITIONAL]" }, { area: "Identification", tested: false, leverage: "Turnbull", evidenceNeeded: "VIPER [CONDITIONAL]" }],
+      next72Hours: ["Request CCTV and witness statements", "Review assault/battery evidence", "Assess Turnbull", "Draft disclosure requests"],
+    };
+  }
+  return null;
+}
+
+function getBeastStrategyPack(strategyType: PrimaryStrategy | null, offenceCode?: string): BeastStrategyPack | null {
   if (!strategyType) return null;
-  
+  const code = offenceCode?.toLowerCase() ?? "";
+  const isCDArson = code.includes("criminal_damage") || code.includes("arson");
+  const isOapa = code.includes("s18") || code.includes("s20") || code.includes("oapa");
+
   switch (strategyType) {
     case "fight_charge":
+      if (isCDArson) {
+        return {
+          dashboard: {
+            objective: "Force CPS to prove defendant caused the damage or started the fire, and had intent or recklessness as to damage. Challenge causation and identification. Target acquittal or charge reduction. Exploit disclosure gaps.",
+            cpsMustProve: [
+              { element: "Defendant caused damage / started fire", cpsEvidence: "Scene evidence, fire report, CCTV, witness to act", defenceChallenge: "Challenge who caused damage/ignition; alternative cause; presence not proof of act" },
+              { element: "Intent or recklessness as to damage", cpsEvidence: "Circumstances, ignition/damage mechanism", defenceChallenge: "Argue no intent/recklessness; accident; lawful excuse" },
+              { element: "Identification", cpsEvidence: "Witness statements, CCTV, recognition", defenceChallenge: "Turnbull compliance; lighting/visibility; who was at scene" },
+              { element: "Causation (act and damage)", cpsEvidence: "Fire report, forensic cause, exclusion of accident", defenceChallenge: "Dispute causation; accidental cause; no proof defendant did the act" },
+            ],
+            top3Attacks: [
+              { target: "Causation / who did the act", leverage: "If evidence does not place defendant as cause of damage/fire, case fails", evidenceRequired: "Fire report, CCTV, witness to deliberate act [CONDITIONAL]" },
+              { target: "Identification at scene", leverage: "If Turnbull not met or no evidence defendant present/caused damage, case weak", evidenceRequired: "CCTV, witness statements [CONDITIONAL]" },
+              { target: "Disclosure failures", leverage: "Persistent gaps create abuse of process risk", evidenceRequired: "MG6C, fire report, valuation [CONDITIONAL]" },
+            ],
+            primaryKillSwitch: { condition: "Clear evidence defendant caused damage or started fire (CCTV, witness, forensic)", pivotTo: "charge_reduction or outcome_management" },
+          },
+          cpsTheory: {
+            whatHappened: "CPS will argue: Defendant deliberately or recklessly caused damage or started the fire. Evidence places defendant at scene and shows deliberate act (e.g. ignition). [CONDITIONAL - pending full disclosure]",
+            intentArgument: "CPS will argue intent or recklessness as to damage from: (1) Circumstances of fire/damage, (2) Evidence of deliberate act (ignition, accelerant), (3) Exclusion of accident. Defence will challenge: No proof defendant did the act; accident; lawful excuse (s.5 CDA); intent/recklessness not made out. [CONDITIONAL - requires full disclosure]",
+            identificationArgument: "CPS will rely on identification and presence at scene. Defence will challenge under Turnbull and argue presence does not prove defendant caused damage or started fire. [CONDITIONAL - requires VIPER pack and CCTV]",
+            weaponCausationArgument: "CPS will rely on fire report, forensic cause, and scene evidence to prove defendant caused the damage/fire. Defence will argue: cause is disputed; accidental; defendant did not do the act; lawful excuse. [CONDITIONAL - requires fire report and forensic evidence]",
+          },
+          defenceTheory: {
+            narrative: "Defence position: Defendant did not cause the damage or start the fire; or if present, did not do the act alleged. Alternative cause or accident. Lawful excuse (s.5 CDA) may be in issue. [CONDITIONAL - reserved pending full disclosure]",
+            conditionalFlags: [
+              { area: "Causation / who did the act", missingEvidence: "Fire report, CCTV, witness to deliberate act [CONDITIONAL]" },
+              { area: "Intent/recklessness", missingEvidence: "Circumstances, ignition evidence [CONDITIONAL]" },
+              { area: "Lawful excuse", missingEvidence: "Defendant's account, s.5 CDA [CONDITIONAL]" },
+            ],
+            evidenceSupport: [
+              "If no clear evidence defendant caused damage/fire → supports act denial [CONDITIONAL]",
+              "If identification weak → supports Turnbull challenge [CONDITIONAL]",
+              "If disclosure gaps (fire report, CCTV) persist → supports procedural challenge [CONDITIONAL]",
+            ],
+          },
+          attackRoutes: [
+            { target: "Causation (defendant caused damage/fire)", evidenceSupporting: "No forensic/fire report linking defendant to ignition; alternative cause [CONDITIONAL]", disclosureRequired: "Fire report, forensic cause, CCTV, witness statements", cpsResponse: "CPS will argue defendant caused damage or started fire", defenceReply: "Defence will argue evidence does not prove defendant did the act; accident or alternative cause. [CONDITIONAL]", riskIfFails: "If evidence clearly shows defendant caused damage/fire, pivot to lawful excuse or outcome_management." },
+            { target: "Identification (Turnbull)", evidenceSupporting: "Single witness, poor conditions [CONDITIONAL]", disclosureRequired: "VIPER pack, CCTV, initial descriptions", cpsResponse: "CPS will argue identification is strong", defenceReply: "Defence will challenge identification under Turnbull. [CONDITIONAL]", riskIfFails: "If identification strong, focus on causation (who did the act)." },
+            { target: "Disclosure failures", evidenceSupporting: "Fire report, CCTV, valuation not served [CONDITIONAL]", disclosureRequired: "MG6C, fire report, CCTV", cpsResponse: "CPS will argue disclosure complete", defenceReply: "Defence will argue disclosure gaps material. [CONDITIONAL]", riskIfFails: "If disclosure complete, focus on causation and intent." },
+          ],
+          disclosureLeverage: [
+            { missingItem: "Fire report / cause of fire", whyItMatters: "Cannot assess causation without fire cause evidence", chaseWording: "Request fire report and forensic cause evidence.", timeEscalation: "If not provided, request case management hearing.", applicationPath: "Challenge causation if cause evidence weak or absent." },
+            { missingItem: "CCTV / evidence of who acted", whyItMatters: "Cannot assess who caused damage/ignition without scene evidence", chaseWording: "Request all CCTV and scene evidence.", timeEscalation: "If not provided, request case management hearing.", applicationPath: "Challenge act/causation if no evidence defendant did the act." },
+          ],
+          courtroomPressure: [
+            { judgeQuestion: "How can you say your client did not cause the fire when they were at the scene?", cpsAnswer: "CPS will argue presence and circumstances prove defendant caused the fire.", defenceReply: "Defence position: Presence does not prove causation. Prosecution must prove defendant caused the damage/fire beyond reasonable doubt. [CONDITIONAL - requires fire report and scene evidence]", evidenceCheck: "Review fire report, CCTV, and witness evidence before relying on this reply." },
+            { judgeQuestion: "Why is identification being challenged?", cpsAnswer: "CPS will argue identification is strong.", defenceReply: "Defence position: Identification is challenged under Turnbull where relevant. [CONDITIONAL]", evidenceCheck: "Review VIPER pack and identification procedures." },
+          ],
+          killSwitches: [
+            { evidenceArrival: "Clear evidence defendant caused damage or started fire (CCTV, witness, forensic)", newRoute: "Pivot to charge_reduction or outcome_management.", preserved: "Lawful excuse (s.5 CDA), intent/recklessness challenge", abandoned: "Act denial (who did it)." },
+            { evidenceArrival: "Fire report / valuation served and supports prosecution case", newRoute: "Pivot to outcome_management or focus on lawful excuse / intent.", preserved: "Intent/recklessness, lawful excuse", abandoned: "Causation challenge if evidence strong." },
+          ],
+          residualAttacks: [
+            { area: "Causation", tested: false, leverage: "Who caused damage/ignition; accident; alternative cause", evidenceNeeded: "Fire report, CCTV, witness [CONDITIONAL]" },
+            { area: "Intent/recklessness", tested: false, leverage: "Intent or recklessness as to damage not made out", evidenceNeeded: "Circumstances, defendant's account [CONDITIONAL]" },
+            { area: "Lawful excuse", tested: false, leverage: "s.5 CDA lawful excuse", evidenceNeeded: "Defendant's account, evidence of belief [CONDITIONAL]" },
+          ],
+          next72Hours: [
+            "Request full disclosure (fire report, CCTV, valuation, MG6C, witness statements)",
+            "Review evidence of who caused damage/ignition [CONDITIONAL]",
+            "Assess identification evidence for Turnbull compliance [CONDITIONAL]",
+            "Draft disclosure requests (fire report, scene evidence)",
+            "Review lawful excuse (s.5 CDA) if applicable",
+          ],
+        };
+      }
+      const fightOffencePack = getOffenceSpecificBeastPack("fight_charge", code);
+      if (fightOffencePack) return fightOffencePack;
+      if (!isOapa) {
+        return {
+          dashboard: {
+            objective: "Force CPS to prove all elements of the offence beyond reasonable doubt. Challenge act, causation, and identification. Exploit disclosure gaps. Target acquittal or charge reduction.",
+            cpsMustProve: [
+              { element: "Actus reus (conduct)", cpsEvidence: "Evidence of defendant's act or conduct", defenceChallenge: "Challenge act occurred; alternative causation; identity of perpetrator" },
+              { element: "Mens rea (mental element)", cpsEvidence: "Evidence of required intent or recklessness", defenceChallenge: "Challenge mental element; alternative mental state" },
+              { element: "Identification", cpsEvidence: "Witness statements, CCTV, recognition", defenceChallenge: "Turnbull compliance; lighting/visibility; witness reliability" },
+              { element: "Causation", cpsEvidence: "Evidence linking defendant's act to offence", defenceChallenge: "Dispute causation; sequence; alternative causes" },
+            ],
+            top3Attacks: [
+              { target: "Identification reliability", leverage: "If Turnbull guidelines not met, identification is unsafe", evidenceRequired: "VIPER pack, initial descriptions, observation conditions [CONDITIONAL]" },
+              { target: "Act / causation", leverage: "If evidence does not establish defendant's act or causation, case fails", evidenceRequired: "CCTV, witness statements, forensic [CONDITIONAL]" },
+              { target: "Disclosure failures", leverage: "Persistent gaps create abuse of process risk", evidenceRequired: "MG6C, continuity logs, unused material [CONDITIONAL]" },
+            ],
+            primaryKillSwitch: { condition: "Strong evidence establishing defendant's act and causation with complete disclosure", pivotTo: "charge_reduction or outcome_management" },
+          },
+          cpsTheory: {
+            whatHappened: "CPS will argue: Defendant committed the offence. Evidence places defendant at scene and establishes act and required mental element. [CONDITIONAL - pending full disclosure]",
+            intentArgument: "CPS will argue the required mental element from circumstances and evidence of conduct. Defence will challenge: act not proved; causation disputed; mental element not made out; identification weak. [CONDITIONAL - requires full disclosure]",
+            identificationArgument: "CPS will rely on identification (VIPER pack, CCTV, recognition). Defence will challenge under Turnbull where relevant: lighting/visibility, distance/duration, reliability. [CONDITIONAL - requires VIPER pack and CCTV]",
+            weaponCausationArgument: "CPS will rely on evidence linking defendant's conduct to the offence. Defence will argue: act/causation disputed; evidence does not establish defendant's conduct to required standard. [CONDITIONAL - requires full disclosure]",
+          },
+          defenceTheory: {
+            narrative: "Defence position: Defendant did not do the act alleged; or causation is not made out; or required mental element is not proved. Identification contested where relevant. [CONDITIONAL - reserved pending full disclosure]",
+            conditionalFlags: [
+              { area: "Identification", missingEvidence: "VIPER pack, CCTV, initial descriptions [CONDITIONAL]" },
+              { area: "Act / causation", missingEvidence: "Evidence of defendant's conduct, sequence [CONDITIONAL]" },
+              { area: "Mental element", missingEvidence: "Circumstances, defendant's account [CONDITIONAL]" },
+            ],
+            evidenceSupport: [
+              "If identification weak → supports Turnbull challenge [CONDITIONAL]",
+              "If act/causation evidence weak → supports act denial [CONDITIONAL]",
+              "If disclosure gaps persist → supports procedural challenge [CONDITIONAL]",
+            ],
+          },
+          attackRoutes: [
+            { target: "Identification (Turnbull)", evidenceSupporting: "Single witness, poor conditions [CONDITIONAL]", disclosureRequired: "VIPER pack, CCTV, initial descriptions", cpsResponse: "CPS will argue identification is strong", defenceReply: "Defence will challenge identification under Turnbull. [CONDITIONAL]", riskIfFails: "Focus on act/causation or mental element." },
+            { target: "Act / causation", evidenceSupporting: "No clear evidence defendant did the act or caused the result [CONDITIONAL]", disclosureRequired: "CCTV, witness statements, forensic", cpsResponse: "CPS will argue act and causation proved", defenceReply: "Defence will argue evidence does not establish act/causation. [CONDITIONAL]", riskIfFails: "Pivot to charge_reduction or outcome_management." },
+            { target: "Disclosure failures", evidenceSupporting: "MG6C missing, continuity gaps [CONDITIONAL]", disclosureRequired: "MG6C, continuity logs", cpsResponse: "CPS will argue disclosure complete", defenceReply: "Defence will argue disclosure gaps material. [CONDITIONAL]", riskIfFails: "Focus on evidential weaknesses." },
+          ],
+          disclosureLeverage: [
+            { missingItem: "MG6C (unused material schedule)", whyItMatters: "Cannot assess whether material undermines prosecution or assists defence", chaseWording: "Request full MG6C pursuant to CPIA.", timeEscalation: "If not provided, escalate to case management hearing.", applicationPath: "Abuse of process if persistent failures." },
+            { missingItem: "CCTV / key evidence", whyItMatters: "Cannot assess act/causation without key evidence", chaseWording: "Request all relevant CCTV and evidence of defendant's conduct.", timeEscalation: "If not provided, request case management hearing.", applicationPath: "Challenge act/causation if evidence weak or absent." },
+          ],
+          courtroomPressure: [
+            { judgeQuestion: "Why is identification being challenged?", cpsAnswer: "CPS will argue identification is strong.", defenceReply: "Defence position: Identification challenged under Turnbull where relevant. [CONDITIONAL]", evidenceCheck: "Review VIPER pack and identification procedures." },
+            { judgeQuestion: "How can you say the defendant did not do the act?", cpsAnswer: "CPS will argue evidence establishes defendant's conduct.", defenceReply: "Defence position: Evidence does not establish act/causation beyond reasonable doubt. [CONDITIONAL]", evidenceCheck: "Review all evidence of conduct and causation." },
+          ],
+          killSwitches: [
+            { evidenceArrival: "Clear evidence establishing defendant's act and causation", newRoute: "Pivot to charge_reduction or outcome_management.", preserved: "Disclosure leverage if gaps persist", abandoned: "Act denial." },
+            { evidenceArrival: "Complete disclosure with no material gaps", newRoute: "Pivot to charge_reduction or outcome_management. Focus on evidential weaknesses.", preserved: "Act/causation arguments, identification if weak", abandoned: "Abuse of process on disclosure." },
+          ],
+          residualAttacks: [
+            { area: "Identification", tested: false, leverage: "Turnbull, observation conditions", evidenceNeeded: "VIPER pack, CCTV [CONDITIONAL]" },
+            { area: "Act / causation", tested: false, leverage: "Evidence does not establish conduct", evidenceNeeded: "CCTV, witness, forensic [CONDITIONAL]" },
+            { area: "Mental element", tested: false, leverage: "Required intent/recklessness not made out", evidenceNeeded: "Circumstances, defendant's account [CONDITIONAL]" },
+          ],
+          next72Hours: [
+            "Request full disclosure (MG6C, CCTV, witness statements, key evidence)",
+            "Review identification evidence for Turnbull compliance [CONDITIONAL]",
+            "Assess evidence of act and causation",
+            "Draft disclosure requests",
+            "Prepare case management note if disclosure gaps [EVIDENCE-BACKED if gaps confirmed]",
+          ],
+        };
+      }
       return {
         dashboard: {
           objective: "Knock out s18 intent. Force CPS to prove identification and specific intent beyond reasonable doubt. Exploit disclosure gaps and procedural weaknesses. Target acquittal or charge reduction to s20.",
@@ -902,6 +1282,124 @@ function getBeastStrategyPack(strategyType: PrimaryStrategy | null): BeastStrate
         ],
       };
     case "charge_reduction":
+      if (isCDArson) {
+        return {
+          dashboard: {
+            objective: "Accept damage occurred but challenge that defendant caused it or had intent/recklessness. Seek charge reduction or acquittal. Target negotiated outcome if causation or intent is weak.",
+            cpsMustProve: [
+              { element: "Defendant caused damage / fire", cpsEvidence: "Fire report, CCTV, witness", defenceChallenge: "Dispute defendant did the act; accident; alternative cause" },
+              { element: "Intent or recklessness as to damage", cpsEvidence: "Circumstances, ignition evidence", defenceChallenge: "Argue no intent/recklessness; lawful excuse (s.5 CDA)" },
+              { element: "Causation", cpsEvidence: "Forensic cause, scene evidence", defenceChallenge: "Dispute causation; defendant not the cause" },
+            ],
+            top3Attacks: [
+              { target: "Causation (who did the act)", leverage: "If evidence does not prove defendant caused damage/fire, case fails", evidenceRequired: "Fire report, CCTV, witness [CONDITIONAL]" },
+              { target: "Intent/recklessness", leverage: "If circumstances support accident or lawful excuse, intent/recklessness not made out", evidenceRequired: "Circumstances, defendant's account [CONDITIONAL]" },
+              { target: "Valuation / s.1(3)", leverage: "If value or life-endangerment not established, lesser charge may apply", evidenceRequired: "Valuation, expert evidence [CONDITIONAL]" },
+            ],
+            primaryKillSwitch: { condition: "Clear evidence defendant caused damage/fire and had intent or recklessness", pivotTo: "outcome_management" },
+          },
+          cpsTheory: {
+            whatHappened: "CPS will argue: Defendant caused the damage or started the fire with intent or recklessness. [CONDITIONAL - pending full disclosure]",
+            intentArgument: "CPS will argue intent or recklessness from circumstances and evidence of deliberate act. Defence will challenge: defendant did not do the act; accident; lawful excuse. [CONDITIONAL]",
+            identificationArgument: "CPS will rely on identification. Defence may accept identification but challenge causation (who did the act) or intent/recklessness. [CONDITIONAL]",
+            weaponCausationArgument: "CPS will rely on fire report and scene evidence. Defence will argue cause is disputed, defendant did not do the act, or lawful excuse applies. [CONDITIONAL]",
+          },
+          defenceTheory: {
+            narrative: "Defence position: Defendant did not cause the damage/fire; or acted with lawful excuse; or lacked intent/recklessness. [CONDITIONAL - reserved pending full disclosure]",
+            conditionalFlags: [
+              { area: "Causation", missingEvidence: "Fire report, CCTV, witness [CONDITIONAL]" },
+              { area: "Intent/recklessness", missingEvidence: "Circumstances, defendant's account [CONDITIONAL]" },
+            ],
+            evidenceSupport: [
+              "If causation weak → supports act denial or reduction [CONDITIONAL]",
+              "If lawful excuse in play → supports defence [CONDITIONAL]",
+            ],
+          },
+          attackRoutes: [
+            { target: "Causation (defendant caused damage/fire)", evidenceSupporting: "No clear evidence defendant did the act [CONDITIONAL]", disclosureRequired: "Fire report, CCTV, witness", cpsResponse: "CPS will argue defendant caused damage/fire", defenceReply: "Defence will argue evidence does not prove defendant did the act. [CONDITIONAL]", riskIfFails: "Pivot to outcome_management." },
+            { target: "Intent/recklessness or lawful excuse", evidenceSupporting: "Circumstances support accident or lawful excuse [CONDITIONAL]", disclosureRequired: "Defendant's account, circumstances", cpsResponse: "CPS will argue intent/recklessness", defenceReply: "Defence will argue lawful excuse or no intent/recklessness. [CONDITIONAL]", riskIfFails: "Pivot to outcome_management." },
+          ],
+          disclosureLeverage: [
+            { missingItem: "Fire report / cause evidence", whyItMatters: "Cannot assess causation without fire cause", chaseWording: "Request fire report and forensic cause.", timeEscalation: "If not provided, request case management hearing.", applicationPath: "Challenge causation if evidence weak." },
+          ],
+          courtroomPressure: [
+            { judgeQuestion: "How can you argue your client did not cause the fire?", cpsAnswer: "CPS will argue evidence shows defendant caused the fire.", defenceReply: "Defence position: Evidence does not establish defendant caused the damage/fire beyond reasonable doubt. [CONDITIONAL]", evidenceCheck: "Review fire report and scene evidence." },
+          ],
+          killSwitches: [
+            { evidenceArrival: "Clear evidence defendant caused damage/fire and intent or recklessness", newRoute: "Pivot to outcome_management.", preserved: "Lawful excuse if evidence supports", abandoned: "Causation challenge." },
+          ],
+          residualAttacks: [
+            { area: "Causation", tested: false, leverage: "Who caused damage/fire; accident", evidenceNeeded: "Fire report, CCTV [CONDITIONAL]" },
+            { area: "Lawful excuse", tested: false, leverage: "s.5 CDA", evidenceNeeded: "Defendant's account [CONDITIONAL]" },
+          ],
+          next72Hours: [
+            "Request fire report, CCTV, valuation, full disclosure",
+            "Review causation and defendant's account",
+            "Assess lawful excuse (s.5 CDA) if applicable",
+            "Prepare charge reduction or trial defence on causation/intent",
+          ],
+        };
+      }
+      const reductionOffencePack = getOffenceSpecificBeastPack("charge_reduction", code);
+      if (reductionOffencePack) return reductionOffencePack;
+      if (!isOapa) {
+        return {
+          dashboard: {
+            objective: "Challenge prosecution case on act, causation, or mental element. Seek charge reduction or acquittal. Target negotiated outcome if evidence on key elements is weak.",
+            cpsMustProve: [
+              { element: "Act / conduct", cpsEvidence: "Evidence of defendant's act", defenceChallenge: "Dispute act occurred; alternative perpetrator; causation" },
+              { element: "Mental element", cpsEvidence: "Evidence of intent or recklessness", defenceChallenge: "Argue mental element not made out; alternative mental state" },
+              { element: "Causation", cpsEvidence: "Evidence linking act to offence", defenceChallenge: "Dispute causation or link" },
+            ],
+            top3Attacks: [
+              { target: "Act / causation", leverage: "If evidence does not establish defendant's act or causation, case fails", evidenceRequired: "CCTV, witness, forensic [CONDITIONAL]" },
+              { target: "Mental element", leverage: "If circumstances support alternative mental state, higher charge may not be made out", evidenceRequired: "Circumstances, defendant's account [CONDITIONAL]" },
+              { target: "Identification", leverage: "If Turnbull not met, identification unsafe", evidenceRequired: "VIPER pack, CCTV [CONDITIONAL]" },
+            ],
+            primaryKillSwitch: { condition: "Clear evidence on all elements with complete disclosure", pivotTo: "outcome_management" },
+          },
+          cpsTheory: {
+            whatHappened: "CPS will argue: Defendant committed the offence with required mental element. [CONDITIONAL - pending full disclosure]",
+            intentArgument: "CPS will argue mental element from circumstances and conduct. Defence will challenge: act/causation disputed; mental element not made out. [CONDITIONAL]",
+            identificationArgument: "CPS will rely on identification. Defence may accept identification but challenge act/causation or mental element. [CONDITIONAL]",
+            weaponCausationArgument: "CPS will rely on evidence of conduct. Defence will argue act/causation or mental element not proved. [CONDITIONAL]",
+          },
+          defenceTheory: {
+            narrative: "Defence position: Act or causation disputed; or mental element not made out. Seek charge reduction or acquittal. [CONDITIONAL - reserved pending full disclosure]",
+            conditionalFlags: [
+              { area: "Act / causation", missingEvidence: "CCTV, witness, forensic [CONDITIONAL]" },
+              { area: "Mental element", missingEvidence: "Circumstances, defendant's account [CONDITIONAL]" },
+            ],
+            evidenceSupport: [
+              "If act/causation weak → supports reduction or acquittal [CONDITIONAL]",
+              "If mental element weak → supports lesser charge [CONDITIONAL]",
+            ],
+          },
+          attackRoutes: [
+            { target: "Act / causation", evidenceSupporting: "No clear evidence defendant did the act [CONDITIONAL]", disclosureRequired: "CCTV, witness, forensic", cpsResponse: "CPS will argue act and causation proved", defenceReply: "Defence will argue evidence does not establish act/causation. [CONDITIONAL]", riskIfFails: "Pivot to outcome_management." },
+            { target: "Mental element", evidenceSupporting: "Circumstances support alternative mental state [CONDITIONAL]", disclosureRequired: "Circumstances, defendant's account", cpsResponse: "CPS will argue mental element proved", defenceReply: "Defence will argue mental element not made out. [CONDITIONAL]", riskIfFails: "Pivot to outcome_management." },
+          ],
+          disclosureLeverage: [
+            { missingItem: "Key evidence (CCTV, witness, forensic)", whyItMatters: "Cannot assess act/causation without key evidence", chaseWording: "Request all relevant evidence.", timeEscalation: "If not provided, request case management hearing.", applicationPath: "Challenge act/causation if evidence weak." },
+          ],
+          courtroomPressure: [
+            { judgeQuestion: "How can you argue the defendant did not do the act?", cpsAnswer: "CPS will argue evidence establishes defendant's conduct.", defenceReply: "Defence position: Evidence does not establish act/causation beyond reasonable doubt. [CONDITIONAL]", evidenceCheck: "Review all evidence of conduct." },
+          ],
+          killSwitches: [
+            { evidenceArrival: "Clear evidence on act, causation, and mental element", newRoute: "Pivot to outcome_management.", preserved: "Mitigation", abandoned: "Act/causation challenge." },
+          ],
+          residualAttacks: [
+            { area: "Act / causation", tested: false, leverage: "Evidence does not establish conduct", evidenceNeeded: "CCTV, witness [CONDITIONAL]" },
+            { area: "Mental element", tested: false, leverage: "Required mental element not made out", evidenceNeeded: "Circumstances [CONDITIONAL]" },
+          ],
+          next72Hours: [
+            "Request full disclosure (CCTV, witness statements, key evidence)",
+            "Review evidence of act and causation",
+            "Assess mental element and alternative charges",
+            "Prepare charge reduction or trial defence",
+          ],
+        };
+      }
       return {
         dashboard: {
           objective: "Knock out s18 intent threshold. Accept harm occurred but challenge specific intent. Seek charge reduction from s18 to s20 (reckless GBH). Target negotiated reduction before PTPH if medical/sequence evidence supports s20.",
@@ -4756,6 +5254,8 @@ export function StrategyCommitmentPanel({
   const [showHearingScripts, setShowHearingScripts] = useState(false);
   const [declaredDependencies, setDeclaredDependencies] = useState<DeclaredDependency[]>([]);
   const [disclosureTimelineEntries, setDisclosureTimelineEntries] = useState<DisclosureTimelineEntry[]>([]);
+  /** Resolved offence (override > charges > matter) for plan header and offence-aware content. */
+  const [resolvedOffence, setResolvedOffence] = useState<{ offenceType: string; label: string } | null>(null);
   const [enableCourtroomMode, setEnableCourtroomMode] = useState(false);
   const [showCourtroomModeConfirmation, setShowCourtroomModeConfirmation] = useState(false);
   const [courtroomModeConfirmed, setCourtroomModeConfirmed] = useState(false);
@@ -4797,7 +5297,7 @@ export function StrategyCommitmentPanel({
     primary ??
     (strategyRoutes?.[0]?.type as PrimaryStrategy) ??
     "fight_charge";
-  const beastPack = getBeastStrategyPack(safeActiveType);
+  const beastPack = getBeastStrategyPack(safeActiveType, resolvedOffence?.offenceType);
 
   const toggleSection = (sectionId: string) => {
     setExpandedSections(prev => {
@@ -4924,7 +5424,7 @@ export function StrategyCommitmentPanel({
       "Solicitor-controlled. Evidence-linked. Not legal advice.",
       "",
       "OFFENCE:",
-      coordinatorResult?.offence?.label ?? "—",
+      resolvedOffence?.label ?? coordinatorResult?.offence?.label ?? "—",
       "",
       "SOLICITOR-SELECTED STRATEGY:",
       strategyLabel,
@@ -5225,13 +5725,21 @@ export function StrategyCommitmentPanel({
 
     async function computeCoordinatorData() {
       try {
-        // Fetch required data
-        const [chargesRes, depsRes, timelineRes, decisionsRes] = await Promise.all([
+        // Fetch required data (include resolved offence for plan header and offence-aware content)
+        const [chargesRes, depsRes, timelineRes, decisionsRes, offenceRes] = await Promise.all([
           fetch(`/api/criminal/${resolvedCaseId}/charges`).catch(() => null),
           fetch(`/api/criminal/${resolvedCaseId}/dependencies`).catch(() => null),
           fetch(`/api/criminal/${resolvedCaseId}/disclosure-timeline`).catch(() => null),
           fetch(`/api/criminal/${resolvedCaseId}/irreversible-decisions`).catch(() => null),
+          fetch(`/api/criminal/${resolvedCaseId}/offence`).catch(() => null),
         ]);
+
+        const offenceData = offenceRes?.ok ? await offenceRes.json().catch(() => null) : null;
+        const resolvedOffenceFromApi =
+          offenceData?.offenceType && offenceData?.label
+            ? { offenceType: offenceData.offenceType, label: offenceData.label }
+            : null;
+        setResolvedOffence(resolvedOffenceFromApi);
 
         const chargesData = chargesRes?.ok ? await chargesRes.json() : null;
         const charges = chargesData?.data?.charges || chargesData?.charges || [];
@@ -5299,10 +5807,12 @@ export function StrategyCommitmentPanel({
           return;
         }
 
-        // Build evidence snapshot
+        // Build evidence snapshot (use resolved offence when available so plan is offence-correct)
+        const offenceCode = resolvedOffenceFromApi?.offenceType ?? reasoning.offence.code;
+        const offenceLabel = resolvedOffenceFromApi?.label ?? reasoning.offence.label;
         const snapshot = buildEvidenceSnapshot({
-          offenceCode: reasoning.offence.code,
-          offenceLabel: reasoning.offence.label,
+          offenceCode,
+          offenceLabel,
           phase: isCommitted ? 2 : 1,
           recordedPosition: savedPosition?.position_text,
           declaredDependencies: declaredDependencies,
@@ -5738,7 +6248,7 @@ export function StrategyCommitmentPanel({
               <div className="space-y-3 text-xs">
                 <div>
                   <span className="font-semibold text-muted-foreground">Offence: </span>
-                  <span className="text-foreground">{coordinatorResult.offence.label}</span>
+                  <span className="text-foreground">{resolvedOffence?.label ?? coordinatorResult.offence.label}</span>
                 </div>
                 <div>
                   <p className="text-muted-foreground text-xs">Procedural status: see Safety panel.</p>
@@ -6440,7 +6950,7 @@ export function StrategyCommitmentPanel({
                 <div className="space-y-3 text-xs">
                   <div>
                     <span className="font-semibold text-muted-foreground">Offence: </span>
-                    <span className="text-foreground">{coordinatorResult.offence.label}</span>
+                    <span className="text-foreground">{resolvedOffence?.label ?? coordinatorResult.offence.label}</span>
                   </div>
                   <div>
                     <p className="text-muted-foreground text-xs">Procedural status: see Safety panel.</p>
@@ -6542,9 +7052,11 @@ export function StrategyCommitmentPanel({
                 {/* Stage 3: At-a-glance strip — strategy line, key date, disclosure provenance */}
                 {defenceStrategyPlan && (
                   <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs border-t border-primary/20 pt-3 mt-2">
-                    <span className="font-semibold text-muted-foreground">Solicitor-selected strategy: </span>
+                    <span className="font-semibold text-muted-foreground">Offence: </span>
+                    <span className="font-semibold text-foreground">{resolvedOffence?.label ?? coordinatorResult?.offence?.label ?? "—"}</span>
+                    <span className="font-semibold text-muted-foreground">Primary strategy: </span>
                     <span className="font-semibold text-foreground">
-                      {defenceStrategyPlan.strategy_line ?? defenceStrategyPlan.primary_route?.label ?? primary ? strategyOptions.find(o => o.id === primary)?.label ?? "Strategy committed" : "-"}
+                      {primary ? strategyOptions.find(o => o.id === primary)?.label ?? primary.replace(/_/g, " ") : "—"}
                     </span>
                     <span className="text-muted-foreground">Next hearing: TBC</span>
                     <span className="text-muted-foreground italic">Based on disclosure as at {new Date().toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</span>
@@ -7103,7 +7615,7 @@ export function StrategyCommitmentPanel({
                   <div className="space-y-3 text-xs">
                     <div>
                       <span className="font-semibold text-muted-foreground">Offence: </span>
-                      <span className="text-foreground">{coordinatorResult.offence.label}</span>
+                      <span className="text-foreground">{resolvedOffence?.label ?? coordinatorResult.offence.label}</span>
                     </div>
                     <div>
                       <p className="text-muted-foreground text-xs">Procedural status: see Safety panel.</p>
@@ -7425,7 +7937,7 @@ export function StrategyCommitmentPanel({
               <div className="space-y-3 text-xs">
                 <div>
                   <span className="font-semibold text-muted-foreground">Offence: </span>
-                  <span className="text-foreground">{coordinatorResult.offence.label}</span>
+                  <span className="text-foreground">{resolvedOffence?.label ?? coordinatorResult.offence.label}</span>
                 </div>
                 <div>
                   <p className="text-muted-foreground text-xs">Procedural status: see Safety panel.</p>

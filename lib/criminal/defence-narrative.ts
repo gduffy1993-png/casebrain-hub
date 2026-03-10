@@ -24,10 +24,10 @@ export function buildDefenceNarrative(input: DefenceNarrativeInput): string {
   }
 
   if (positionSummary && positionSummary.trim().length > 0) {
-    const summary = positionSummary.trim().length > 280
-      ? positionSummary.trim().slice(0, 277) + "..."
-      : positionSummary.trim();
-    parts.push(`The defence position: ${summary}`);
+    const raw = positionSummary.trim();
+    const summary = raw.length > 280 ? raw.slice(0, 277) + "..." : raw;
+    const withoutPrefix = summary.replace(/^\s*Defence position:\s*/i, "").trim() || summary;
+    parts.push(`The defence position: ${withoutPrefix}`);
   } else if (primaryStrategy) {
     const approach = primaryStrategy.replace(/_/g, " ");
     parts.push(`The primary approach is ${approach}.`);

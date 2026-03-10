@@ -5,7 +5,17 @@
  * No predictions, no invented strategies - only canonical element definitions.
  */
 
-export type OffenceCode = "s18_oapa" | "s20_oapa" | "criminal_damage_arson" | "unknown";
+export type OffenceCode =
+  | "s18_oapa"
+  | "s20_oapa"
+  | "s47_oapa"
+  | "common_assault"
+  | "criminal_damage_arson"
+  | "theft"
+  | "burglary"
+  | "robbery"
+  | "fraud"
+  | "unknown";
 
 export type OffenceElement = {
   id: string;
@@ -53,6 +63,42 @@ export function detectOffence(
       return getS20Def();
     }
 
+    // Robbery (Theft Act s.8) — check before theft
+    if (
+      section.includes("s8") ||
+      section.includes("section 8") ||
+      offence.includes("robbery")
+    ) {
+      return getRobberyDef();
+    }
+
+    // Burglary (Theft Act s.9)
+    if (
+      section.includes("s9") ||
+      section.includes("section 9") ||
+      offence.includes("burglary")
+    ) {
+      return getBurglaryDef();
+    }
+
+    // Theft (Theft Act 1968 s.1)
+    if (offence.includes("theft")) {
+      return getTheftDef();
+    }
+
+    // Fraud (Fraud Act 2006)
+    if (
+      section.includes("fraud") ||
+      section.includes("s1") && offence.includes("fraud") ||
+      section.includes("s2") ||
+      section.includes("s3") ||
+      section.includes("s4") ||
+      offence.includes("fraud by") ||
+      offence.includes("fraudulent")
+    ) {
+      return getFraudDef();
+    }
+
     // Criminal damage / arson (s.1(1) or s.1(3) CDA 1971)
     if (
       section.includes("cda") ||
@@ -64,6 +110,27 @@ export function detectOffence(
       offence.includes("damage by fire")
     ) {
       return getCriminalDamageArsonDef();
+    }
+
+    // s47 OAPA - ABH (assault occasioning actual bodily harm)
+    if (
+      section.includes("s47") ||
+      section.includes("section 47") ||
+      offence.includes("actual bodily harm") ||
+      offence.includes("abh") && !offence.includes("gbh")
+    ) {
+      return getS47Def();
+    }
+
+    // Common assault / battery (s.39 CJA 1988 or common law)
+    if (
+      section.includes("s39") ||
+      section.includes("section 39") ||
+      offence.includes("common assault") ||
+      offence.includes("assault by beating") ||
+      (offence.includes("assault") && !offence.includes("actual") && !offence.includes("bodily") && !offence.includes("gbh") && !offence.includes("wound"))
+    ) {
+      return getCommonAssaultDef();
     }
   }
 
@@ -99,9 +166,16 @@ export function detectOffence(
     ) {
       return getCriminalDamageArsonDef();
     }
+
+    if (extractedStr.includes("robbery")) return getRobberyDef();
+    if (extractedStr.includes("burglary")) return getBurglaryDef();
+    if (extractedStr.includes("theft")) return getTheftDef();
+    if (extractedStr.includes("fraud")) return getFraudDef();
+    if (extractedStr.includes("actual bodily harm") || extractedStr.includes("abh")) return getS47Def();
+    if (extractedStr.includes("common assault") || extractedStr.includes("assault by beating")) return getCommonAssaultDef();
   }
 
-  return getUnknownDef();
+  return getUnknownDef(charges?.[0]?.offence);
 }
 
 /**
@@ -207,40 +281,123 @@ function getCriminalDamageArsonDef(): OffenceDef {
 }
 
 /**
- * Unknown offence fallback
- *
- * Elements:
- * - identification
- * - actus_reus
- * - injury
- * - mental_state
- * - causation
+ * Theft (Theft Act 1968 s.1)
+ * Elements: appropriation, property belonging to another, dishonesty, intention to permanently deprive
  */
-function getUnknownDef(): OffenceDef {
+function getTheftDef(): OffenceDef {
+  return {
+    code: "theft",
+    label: "Theft (s.1 Theft Act 1968)",
+    elements: [
+      { id: "appropriation", label: "Appropriation" },
+      { id: "property_belonging_to_another", label: "Property belonging to another" },
+      { id: "dishonesty", label: "Dishonesty" },
+      { id: "intention_to_permanently_deprive", label: "Intention to permanently deprive" },
+      { id: "identification", label: "Identification" },
+    ],
+  };
+}
+
+/**
+ * Burglary (Theft Act 1968 s.9(1)(a) or (b))
+ * Elements: entry, building/part of building, trespass, intent or ulterior offence
+ */
+function getBurglaryDef(): OffenceDef {
+  return {
+    code: "burglary",
+    label: "Burglary (s.9 Theft Act 1968)",
+    elements: [
+      { id: "entry", label: "Entry as trespasser" },
+      { id: "building_or_part", label: "Building or part of a building" },
+      { id: "intent_or_ulterior", label: "Intent to steal/damage/commit GBH or ulterior offence" },
+      { id: "identification", label: "Identification" },
+    ],
+  };
+}
+
+/**
+ * Robbery (Theft Act 1968 s.8)
+ * Elements: theft, force or threat of force, immediately before or at the time of theft
+ */
+function getRobberyDef(): OffenceDef {
+  return {
+    code: "robbery",
+    label: "Robbery (s.8 Theft Act 1968)",
+    elements: [
+      { id: "theft", label: "Theft (all elements)" },
+      { id: "force_or_threat", label: "Force or threat of force" },
+      { id: "timing", label: "Immediately before or at the time of theft" },
+      { id: "identification", label: "Identification" },
+    ],
+  };
+}
+
+/**
+ * Fraud (Fraud Act 2006 – s.1, 2, 3 or 4)
+ * Elements: dishonesty, (false representation / failure to disclose / abuse of position), gain/loss
+ */
+function getFraudDef(): OffenceDef {
+  return {
+    code: "fraud",
+    label: "Fraud (Fraud Act 2006)",
+    elements: [
+      { id: "dishonesty", label: "Dishonesty" },
+      { id: "representation_or_disclosure_or_abuse", label: "False representation / failure to disclose / abuse of position" },
+      { id: "gain_or_loss", label: "Gain or loss (or intent)" },
+      { id: "identification", label: "Identification" },
+    ],
+  };
+}
+
+/**
+ * s47 OAPA – Assault occasioning actual bodily harm
+ * Elements: assault/battery, ABH, causation
+ */
+function getS47Def(): OffenceDef {
+  return {
+    code: "s47_oapa",
+    label: "s.47 OAPA 1861 - Assault occasioning ABH",
+    elements: [
+      { id: "assault_or_battery", label: "Assault or battery" },
+      { id: "actual_bodily_harm", label: "Actual bodily harm" },
+      { id: "causation", label: "Causation" },
+      { id: "identification", label: "Identification" },
+    ],
+  };
+}
+
+/**
+ * Common assault / battery (s.39 CJA 1988 or common law)
+ * Elements: assault or battery, no need for injury
+ */
+function getCommonAssaultDef(): OffenceDef {
+  return {
+    code: "common_assault",
+    label: "Common assault / Battery (s.39 CJA 1988)",
+    elements: [
+      { id: "assault_or_battery", label: "Assault or battery" },
+      { id: "identification", label: "Identification" },
+    ],
+  };
+}
+
+/**
+ * Unknown offence fallback — used when charge does not match any defined type.
+ * Label uses charge description when available.
+ */
+function getUnknownDef(chargeLabel?: string): OffenceDef {
+  const label =
+    typeof chargeLabel === "string" && chargeLabel.trim().length > 0
+      ? chargeLabel.trim()
+      : "Unknown Offence";
   return {
     code: "unknown",
-    label: "Unknown Offence",
+    label,
     elements: [
-      {
-        id: "identification",
-        label: "Identification",
-      },
-      {
-        id: "actus_reus",
-        label: "Actus Reus",
-      },
-      {
-        id: "injury",
-        label: "Injury",
-      },
-      {
-        id: "mental_state",
-        label: "Mental State",
-      },
-      {
-        id: "causation",
-        label: "Causation",
-      },
+      { id: "identification", label: "Identification" },
+      { id: "actus_reus", label: "Actus Reus" },
+      { id: "mental_state", label: "Mental State" },
+      { id: "causation", label: "Causation" },
     ],
   };
 }

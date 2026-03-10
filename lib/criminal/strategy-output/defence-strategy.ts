@@ -249,7 +249,13 @@ function buildProsecutionPressure(
   const offenceCode = snapshot.offence.code || "";
 
   // Pressure based on offence type
-  if (offenceCode.includes("s18") || offenceCode.includes("18")) {
+  if (offenceCode.includes("criminal_damage") || offenceCode.includes("arson")) {
+    pressure.push("Pressure point: inference that defendant caused damage or started the fire from scene/forensic evidence");
+    pressure.push("Pressure point: intent or recklessness as to damage / danger to life from circumstances");
+    if (snapshot.evidence.key_gaps.some(g => /fire|ignition|damage|cctv/i.test(g))) {
+      pressure.push("Pressure point: outstanding disclosure (e.g. fire report, CCTV) may strengthen causation");
+    }
+  } else if (offenceCode.includes("s18") || offenceCode.includes("18")) {
     // s18 OAPA pressure points
     const intentElement = offenceElements.find(e => e.id === "specific_intent" || e.id === "intent");
     if (intentElement && (intentElement.support === "weak" || intentElement.support === "none")) {
@@ -266,11 +272,29 @@ function buildProsecutionPressure(
       pressure.push("Pressure point: weapon inference from medical mechanism");
     }
   } else if (offenceCode.includes("s20") || offenceCode.includes("20")) {
-    // s20 OAPA pressure points
     pressure.push("Pressure point: recklessness inference from circumstances and injury");
     if (!snapshot.flags.weapon_uncertainty) {
       pressure.push("Pressure point: weapon use inference from injury mechanism");
     }
+  } else if (offenceCode === "theft") {
+    pressure.push("Pressure point: inference of dishonesty and intention to permanently deprive from conduct and circumstances");
+    pressure.push("Pressure point: appropriation and ownership may be inferred from possession or recovery");
+  } else if (offenceCode === "burglary") {
+    pressure.push("Pressure point: inference of entry as trespasser and intent from forensics, CCTV or witness evidence");
+    pressure.push("Pressure point: intent at time of entry may be inferred from conduct inside");
+  } else if (offenceCode === "robbery") {
+    pressure.push("Pressure point: inference of theft and force/threat from victim and witness evidence");
+    pressure.push("Pressure point: timing of force (immediately before or at time of theft) may be inferred from sequence");
+  } else if (offenceCode === "fraud") {
+    pressure.push("Pressure point: inference of dishonesty from representation or conduct and outcome");
+    pressure.push("Pressure point: gain or loss may be inferred from documents or accounts");
+  } else if (offenceCode === "s47_oapa") {
+    pressure.push("Pressure point: inference of assault/battery and causation of ABH from medical and witness evidence");
+    pressure.push("Pressure point: level of harm (ABH) may be inferred from medical evidence");
+  } else if (offenceCode === "common_assault") {
+    pressure.push("Pressure point: inference of assault or battery from victim and witness evidence");
+  } else {
+    pressure.push("Pressure point: prosecution must prove all elements of the offence beyond reasonable doubt");
   }
 
   // Common pressure points based on elements
@@ -311,13 +335,31 @@ function buildDefenceCounters(
     e => e.support === "weak" || e.support === "none"
   );
 
+  const isCDArson = offenceCode.includes("criminal_damage") || offenceCode.includes("arson");
+
   for (const element of disputedElements.slice(0, 4)) {
     const elLower = element.label.toLowerCase();
     const point =
-      offenceCode.includes("s18") && (element.id === "specific_intent" || element.id === "intent")
+      isCDArson && (element.id === "damage" || element.id === "causation" || element.id === "actus")
+        ? "Counter to causation / defendant caused damage or fire"
+        : isCDArson && (element.id === "intent" || element.id === "recklessness")
+        ? "Counter to intent or recklessness as to damage / danger to life"
+        : offenceCode.includes("s18") && (element.id === "specific_intent" || element.id === "intent")
         ? "Counter to s18 specific intent"
         : offenceCode.includes("s20") && (element.id === "recklessness" || element.id === "mental_state")
         ? "Counter to s20 recklessness element"
+        : offenceCode === "theft" && (element.id === "dishonesty" || element.id === "appropriation" || element.id === "intention_to_permanently_deprive")
+        ? `Counter to theft: ${elLower}`
+        : offenceCode === "burglary" && (element.id === "entry" || element.id === "intent_or_ulterior")
+        ? `Counter to burglary: ${elLower}`
+        : offenceCode === "robbery" && (element.id === "theft" || element.id === "force_or_threat" || element.id === "timing")
+        ? `Counter to robbery: ${elLower}`
+        : offenceCode === "fraud" && (element.id === "dishonesty" || element.id === "representation_or_disclosure_or_abuse" || element.id === "gain_or_loss")
+        ? `Counter to fraud: ${elLower}`
+        : offenceCode === "s47_oapa" && (element.id === "assault_or_battery" || element.id === "actual_bodily_harm" || element.id === "causation")
+        ? `Counter to ABH: ${elLower}`
+        : offenceCode === "common_assault" && element.id === "assault_or_battery"
+        ? "Counter to assault or battery"
         : `Counter to ${elLower} element`;
     const safe_wording =
       element.gaps.length > 0
@@ -337,6 +379,14 @@ function buildDefenceCounters(
     counters.push(counter);
   }
 
+  if (isCDArson) {
+    counters.push({
+      point: "Counter to causation (who caused damage / started fire)",
+      safe_wording: "The defence position is that the evidence does not establish that the defendant caused the damage or started the fire; lawful excuse and intent/recklessness are in issue where relevant.",
+      evidence_needed: ["CCTV/evidence of who acted", "Fire report / ignition evidence", "Witness to deliberate act"],
+    });
+  }
+
   // Counter for identification uncertainty — Turnbull / evidence gap
   if (snapshot.flags.id_uncertainty) {
     const idGap = keyGaps.find(g => /cctv|bwv|identification|viper/i.test(g)) || "CCTV/BWV";
@@ -347,8 +397,9 @@ function buildDefenceCounters(
     });
   }
 
-  // Counter for weapon uncertainty — causation / evidence gap
-  if (snapshot.flags.weapon_uncertainty) {
+  // Counter for weapon uncertainty — OAPA/GBH only; CD/Arson uses damage/ignition counter above
+  const isOapa = offenceCode.includes("s18") || offenceCode.includes("s20") || offenceCode.includes("oapa");
+  if (!isCDArson && isOapa && snapshot.flags.weapon_uncertainty) {
     counters.push({
       point: "Counter to weapon / causation inference",
       safe_wording: "The defence position is that the evidence does not clearly establish weapon use or the precise mechanism of injury.",
@@ -360,7 +411,8 @@ function buildDefenceCounters(
 }
 
 /**
- * Build kill switches (3-6 conditional logic breakers)
+ * Build kill switches (3-6 conditional logic breakers).
+ * Offence-specific: CD/Arson uses fire/damage/valuation triggers; GBH uses intent/weapon/sequence.
  */
 function buildKillSwitches(
   snapshot: EvidenceSnapshot,
@@ -368,30 +420,135 @@ function buildKillSwitches(
   routes: Array<{ id: string; status: string }>
 ): ConditionalLogic[] {
   const killSwitches: ConditionalLogic[] = [];
+  const offenceCode = (snapshot.offence?.code ?? "").toLowerCase();
 
-  // Kill switch: sequence evidence shows sustained targeting (evidence-driven wording)
-  const seqGap = snapshot.evidence?.key_gaps?.find(g => /cctv|sequence|timing/i.test(g)) ?? "CCTV/sequence evidence";
-  if (snapshot.flags.sequence_missing) {
+  if (offenceCode.includes("criminal_damage") || offenceCode.includes("arson")) {
+    // CD/Arson: reassessment triggers for damage, fire, ignition, valuation
     killSwitches.push({
-      if: `If ${seqGap} or disclosure shows sustained or targeted attack`,
-      then: "Intent denial route becomes harder; pivot to charge reduction or outcome control",
-      evidence_needed: ["CCTV showing sequence", "Witness statements on duration", "Medical evidence of multiple injuries"],
+      if: "Fire report or forensic report served identifying ignition source or cause",
+      then: "Act denial (damage/ignition) route becomes harder; review route viability",
+      evidence_needed: ["Fire report", "Forensic report on cause", "Scene evidence"],
+      severity: "high",
+    });
+    killSwitches.push({
+      if: "CCTV or witness evidence places defendant at scene and shows deliberate act (e.g. lighting fire)",
+      then: "Act denial route becomes blocked; pivot to outcome control or lawful excuse",
+      evidence_needed: ["CCTV of scene", "Witness to deliberate act", "BWV"],
+      severity: "high",
+    });
+    killSwitches.push({
+      if: "Valuation or schedule of damage served establishing value/life endangerment",
+      then: "Review charge level and route; s.1(3) / value may be in play",
+      evidence_needed: ["Valuation report", "Schedule of damage", "Expert evidence"],
+      severity: "medium",
+    });
+    const requiredDocs = snapshot.disclosure?.required_without_timeline ?? [];
+    if (requiredDocs.length > 0) {
+      killSwitches.push({
+        if: `If ${requiredDocs[0]} is served and shows defendant caused damage or started fire`,
+        then: "Review route viability; disclosure leverage or act denial may become blocked",
+        evidence_needed: requiredDocs.slice(0, 3),
+        severity: "medium",
+      });
+    }
+    if (snapshot.flags.id_uncertainty) {
+      killSwitches.push({
+        if: "Clear identification evidence arrives (CCTV/BWV placing defendant at scene)",
+        then: "Identification challenge becomes harder; act denial may still be viable on causation",
+        evidence_needed: ["CCTV", "BWV", "Witness statements"],
+        severity: "medium",
+      });
+    }
+    return killSwitches.slice(0, 6);
+  }
+
+  const isOapa = offenceCode.includes("s18") || offenceCode.includes("s20") || offenceCode.includes("oapa");
+
+  if (isOapa) {
+    // GBH / OAPA: sequence, weapon, identification, intent
+    const seqGap = snapshot.evidence?.key_gaps?.find(g => /cctv|sequence|timing/i.test(g)) ?? "CCTV/sequence evidence";
+    if (snapshot.flags.sequence_missing) {
+      killSwitches.push({
+        if: `If ${seqGap} or disclosure shows sustained or targeted attack`,
+        then: "Intent denial route becomes harder; pivot to charge reduction or outcome control",
+        evidence_needed: ["CCTV showing sequence", "Witness statements on duration", "Medical evidence of multiple injuries"],
+        severity: "high",
+      });
+    }
+
+    const weaponElement = offenceElements.find(e => e.id.includes("weapon") || e.id.includes("causation"));
+    if (weaponElement && (weaponElement.support === "weak" || weaponElement.support === "none")) {
+      killSwitches.push({
+        if: "Medical mechanism evidence supports deliberate weapon use",
+        then: "Weapon uncertainty leverage reduces; consider basis control or charge reduction",
+        evidence_needed: ["Medical report on mechanism", "Forensic weapon analysis", "Scene photographs"],
+        severity: "high",
+      });
+    }
+
+    const intentElement = offenceElements.find(e => e.id === "specific_intent" || e.id === "intent");
+    if (intentElement && (intentElement.support === "weak" || intentElement.support === "none")) {
+      const intentRoute = routes.find(r => r.id === "intent_denial");
+      if (intentRoute && (intentRoute.status === "viable" || intentRoute.status === "risky")) {
+        killSwitches.push({
+          if: "Evidence arrives showing targeting, premeditation, or sustained violence",
+          then: "Intent denial route becomes harder; pivot to alternative mental state or outcome control",
+          evidence_needed: ["CCTV showing sequence", "Witness statements on targeting", "Defendant statements"],
+          severity: "medium",
+        });
+      }
+    }
+  } else if (offenceCode === "theft") {
+    killSwitches.push({
+      if: "Evidence arrives showing appropriation, dishonesty and intention to permanently deprive (e.g. CCTV, recovery, admissions)",
+      then: "Act denial (theft elements) becomes harder; review route viability",
+      evidence_needed: ["CCTV", "Property recovery", "Witness statements", "Documentary evidence"],
+      severity: "high",
+    });
+  } else if (offenceCode === "burglary") {
+    killSwitches.push({
+      if: "Evidence arrives showing entry as trespasser and intent (e.g. forensics, CCTV, witness)",
+      then: "Act denial (burglary elements) becomes harder; review route viability",
+      evidence_needed: ["CCTV", "Forensic evidence", "Witness statements"],
+      severity: "high",
+    });
+  } else if (offenceCode === "robbery") {
+    killSwitches.push({
+      if: "Evidence arrives showing theft and force/threat at the time (e.g. witness, CCTV, injury)",
+      then: "Act denial (robbery elements) becomes harder; review route viability",
+      evidence_needed: ["CCTV", "Witness statements", "Medical evidence"],
+      severity: "high",
+    });
+  } else if (offenceCode === "fraud") {
+    killSwitches.push({
+      if: "Evidence arrives showing dishonesty and representation/conduct and gain or loss",
+      then: "Act denial (fraud elements) becomes harder; review route viability",
+      evidence_needed: ["Documents", "Financial records", "Witness statements"],
+      severity: "high",
+    });
+  } else if (offenceCode === "s47_oapa") {
+    killSwitches.push({
+      if: "Evidence arrives showing assault/battery and causation of ABH (e.g. medical, CCTV)",
+      then: "Act denial (ABH elements) becomes harder; review route viability",
+      evidence_needed: ["Medical report", "CCTV", "Witness statements"],
+      severity: "high",
+    });
+  } else if (offenceCode === "common_assault") {
+    killSwitches.push({
+      if: "Evidence arrives showing assault or battery (e.g. witness, CCTV)",
+      then: "Act denial becomes harder; review route viability",
+      evidence_needed: ["CCTV", "Witness statements"],
+      severity: "high",
+    });
+  } else {
+    killSwitches.push({
+      if: "Key evidence arrives that clearly establishes defendant's act and causation",
+      then: "Act denial or causation challenge becomes harder; review route viability",
+      evidence_needed: ["CCTV or scene evidence", "Witness statements", "Forensic or documentary evidence"],
       severity: "high",
     });
   }
 
-  // Kill switch: medical mechanism supports deliberate weapon use
-  const weaponElement = offenceElements.find(e => e.id.includes("weapon") || e.id.includes("causation"));
-  if (weaponElement && (weaponElement.support === "weak" || weaponElement.support === "none")) {
-    killSwitches.push({
-      if: "Medical mechanism evidence supports deliberate weapon use",
-      then: "Weapon uncertainty leverage reduces; consider basis control or charge reduction",
-      evidence_needed: ["Medical report on mechanism", "Forensic weapon analysis", "Scene photographs"],
-      severity: "high",
-    });
-  }
-
-  // Kill switch: clear identification evidence arrives
   if (snapshot.flags.id_uncertainty) {
     const idRoute = routes.find(r => r.id === "identification_challenge");
     if (idRoute && (idRoute.status === "viable" || idRoute.status === "risky")) {
@@ -404,21 +561,6 @@ function buildKillSwitches(
     }
   }
 
-  // Kill switch: intent evidence strengthens
-  const intentElement = offenceElements.find(e => e.id === "specific_intent" || e.id === "intent");
-  if (intentElement && (intentElement.support === "weak" || intentElement.support === "none")) {
-    const intentRoute = routes.find(r => r.id === "intent_denial");
-    if (intentRoute && (intentRoute.status === "viable" || intentRoute.status === "risky")) {
-      killSwitches.push({
-        if: "Evidence arrives showing targeting, premeditation, or sustained violence",
-        then: "Intent denial route becomes harder; pivot to alternative mental state or outcome control",
-        evidence_needed: ["CCTV showing sequence", "Witness statements on targeting", "Defendant statements"],
-        severity: "medium",
-      });
-    }
-  }
-
-  // Kill switch: key disclosure served (evidence-driven: document name)
   const requiredDocs = snapshot.disclosure?.required_without_timeline ?? [];
   if (requiredDocs.length > 0) {
     const docName = requiredDocs[0];
@@ -430,7 +572,6 @@ function buildKillSwitches(
     });
   }
 
-  // Kill switch: date conflicts resolved
   if (snapshot.flags.date_conflicts) {
     killSwitches.push({
       if: "Date/time conflicts resolved with continuity evidence",
@@ -440,7 +581,6 @@ function buildKillSwitches(
     });
   }
 
-  // Limit to 6
   return killSwitches.slice(0, 6);
 }
 
