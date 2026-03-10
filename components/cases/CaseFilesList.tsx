@@ -10,8 +10,9 @@ type Document = {
   name: string;
   created_at: string;
   type?: string | null;
-  extractionStatus?: "ok" | "no_text";
+  extractionStatus?: "full" | "summary_only" | "no_text";
   extractionMessage?: string;
+  extractionCharCount?: number;
 };
 
 interface CaseFilesListProps {
@@ -95,9 +96,21 @@ export function CaseFilesList({ documents }: CaseFilesListProps) {
               <p className="text-xs text-accent/50">
                 Uploaded{" "}
                 {new Date(doc.created_at).toLocaleDateString("en-GB")}
+                {doc.extractionCharCount != null && doc.extractionStatus === "full" && (
+                  <> · {doc.extractionCharCount.toLocaleString()} chars</>
+                )}
               </p>
-              {doc.extractionStatus === "no_text" && doc.extractionMessage && (
-                <p className="text-xs text-amber-600 dark:text-amber-500 mt-1" title={doc.extractionMessage}>
+              {doc.extractionMessage && (
+                <p
+                  className={`text-xs mt-1 ${
+                    doc.extractionStatus === "no_text"
+                      ? "text-amber-600 dark:text-amber-500"
+                      : doc.extractionStatus === "summary_only"
+                        ? "text-amber-600/90 dark:text-amber-500/90"
+                        : "text-muted-foreground"
+                  }`}
+                  title={doc.extractionMessage}
+                >
                   {doc.extractionMessage}
                 </p>
               )}

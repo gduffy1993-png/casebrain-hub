@@ -224,6 +224,22 @@ export function CaseOverviewHeader({
                     <Pencil className="h-3 w-3" />
                   </Button>
                 )}
+                {snapshot?.resolvedOffence?.coverageLabel && (
+                  <span
+                    title={snapshot.resolvedOffence.isSupported ? "Offence-specific strategy available" : "Add charge sheet for offence-specific strategy"}
+                  >
+                    <Badge
+                      variant="outline"
+                      className={
+                        snapshot.resolvedOffence.isSupported
+                          ? "text-xs font-normal text-green-600 border-green-500/30 bg-green-500/10"
+                          : "text-xs font-normal text-amber-600 border-amber-500/30 bg-amber-500/10"
+                      }
+                    >
+                      {snapshot.resolvedOffence.coverageLabel}
+                    </Badge>
+                  </span>
+                )}
               </div>
               <div className="flex items-center gap-1.5 shrink-0">
                 <Calendar className="h-3.5 w-3.5 text-muted-foreground" />

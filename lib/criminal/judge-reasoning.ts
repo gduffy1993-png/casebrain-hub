@@ -78,6 +78,30 @@ export function buildJudgeAnalysis(input: BuildJudgeAnalysisInput): JudgeAnalysi
     }
   }
 
+  // Criminal damage / Arson (s.1(1) CDA 1971)
+  if (offenceCode === "criminal_damage_arson") {
+    const propertyElement = elements.find(e => e.id === "property_belonging_to_another");
+    const intentReckElement = elements.find(e => e.id === "intent_or_recklessness");
+    const damageElement = elements.find(e => e.id === "damage_by_fire");
+    if (propertyElement && (propertyElement.support === "weak" || propertyElement.support === "none")) {
+      legal_tests.push("Property belonging to another (s.1(1) CDA)");
+      constraints.push("Court must be satisfied property damaged or destroyed belonged to another");
+      evidential_requirements.push("Evidence of ownership or that defendant did not have lawful control");
+    }
+    if (intentReckElement && (intentReckElement.support === "weak" || intentReckElement.support === "none")) {
+      legal_tests.push("Intent or recklessness as to damage/destruction (s.1(1) CDA)");
+      constraints.push("Court must distinguish intention to destroy/damage from recklessness");
+      evidential_requirements.push("Evidence of intent or recklessness as to damage/destruction");
+    }
+    if (damageElement && (damageElement.support === "weak" || damageElement.support === "none")) {
+      legal_tests.push("Causation: defendant's act caused damage by fire");
+      constraints.push("Court must establish defendant's conduct caused the fire; accidental cause must be excluded");
+      evidential_requirements.push("Evidence of fire origin, ignition, exclusion of accident");
+    }
+    legal_tests.push("Lawful excuse (s.5 CDA) — defendant may raise; prosecution must disprove");
+    evidential_requirements.push("Consider lawful excuse (belief in consent, protection of property)");
+  }
+
   // Injury/Classification element analysis
   const injuryElement = elements.find(e => 
     e.id === "injury_threshold" || e.id === "injury_classification" || e.id === "injury" || e.id === "actual_bodily_harm"
@@ -158,15 +182,17 @@ export function buildJudgeAnalysis(input: BuildJudgeAnalysisInput): JudgeAnalysi
     }
   }
 
-  // Weapon uncertainty analysis
-  const weaponElement = elements.find(e => e.id.includes("weapon"));
-  if (weaponElement && (weaponElement.support === "weak" || weaponElement.support === "none")) {
-    constraints.push("Court must determine weapon presence/use; uncertainty affects causation");
-    evidential_requirements.push("Weapon visibility/mechanism clarity (witness observations, recovery, forensic confirmation)");
-    
-    // Check for witness uncertainty indicators
-    if (weaponElement.gaps.length > 0 || weaponElement.refs.length === 0) {
-      red_flags.push("Witness uncertainty on weapon (visibility, recovery, mechanism unclear)");
+  // Weapon uncertainty analysis (OAPA only — assault/GBH)
+  if (offenceCode === "s18_oapa" || offenceCode === "s20_oapa") {
+    const weaponElement = elements.find(e => e.id.includes("weapon"));
+    if (weaponElement && (weaponElement.support === "weak" || weaponElement.support === "none")) {
+      constraints.push("Court must determine weapon presence/use; uncertainty affects causation");
+      evidential_requirements.push("Weapon visibility/mechanism clarity (witness observations, recovery, forensic confirmation)");
+      
+      // Check for witness uncertainty indicators
+      if (weaponElement.gaps.length > 0 || weaponElement.refs.length === 0) {
+        red_flags.push("Witness uncertainty on weapon (visibility, recovery, mechanism unclear)");
+      }
     }
   }
 

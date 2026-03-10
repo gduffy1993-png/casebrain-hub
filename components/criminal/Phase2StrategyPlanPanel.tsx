@@ -14,6 +14,8 @@ import { Loader2, CheckCircle2, Lock, Unlock, ArrowRight } from "lucide-react";
 
 type Phase2StrategyPlanPanelProps = {
   caseId: string;
+  /** When not assault/OAPA (e.g. arson), show "Charge Reduction" not "Charge Reduction (s18 → s20)". */
+  offenceType?: string;
 };
 
 type Phase2StrategyPlan = {
@@ -31,11 +33,14 @@ type Phase2StrategyPlan = {
   lockedTools: Array<"disclosure" | "evidence_analysis">;
 };
 
-const STRATEGY_LABELS: Record<string, string> = {
-  fight_charge: "Fight Charge (Trial Strategy)",
-  charge_reduction: "Charge Reduction (s18 → s20)",
-  outcome_management: "Outcome Management (Plea/Mitigation)",
-};
+function getStrategyLabels(offenceType?: string): Record<string, string> {
+  const isOapaOrAssault = offenceType === "assault_oapa";
+  return {
+    fight_charge: "Fight Charge (Trial Strategy)",
+    charge_reduction: isOapaOrAssault ? "Charge Reduction (s18 → s20)" : "Charge Reduction",
+    outcome_management: "Outcome Management (Plea/Mitigation)",
+  };
+}
 
 const PHASE_LABELS: Record<string, string> = {
   disclosure: "Disclosure",
@@ -46,7 +51,8 @@ const PHASE_LABELS: Record<string, string> = {
   trial: "Trial Preparation",
 };
 
-export function Phase2StrategyPlanPanel({ caseId }: Phase2StrategyPlanPanelProps) {
+export function Phase2StrategyPlanPanel({ caseId, offenceType }: Phase2StrategyPlanPanelProps) {
+  const STRATEGY_LABELS = getStrategyLabels(offenceType);
   const [plan, setPlan] = useState<Phase2StrategyPlan | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

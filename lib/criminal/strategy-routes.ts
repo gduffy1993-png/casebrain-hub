@@ -297,12 +297,24 @@ function evaluateIntentDenial(ctx: EvaluationContext): RouteAssessment {
 /**
  * Weapon Uncertainty / Causation
  * 
- * Viable if weapon support is weak/none/unclear OR medical mechanism/fracture confirmation is unclear
+ * Only relevant for assault/GBH (OAPA) offences. Viable if weapon support is weak/none/unclear OR medical mechanism unclear.
  */
 function evaluateWeaponUncertaintyCausation(ctx: EvaluationContext): RouteAssessment {
   const reasons: string[] = [];
   const requiredDeps: string[] = [];
   const constraints: string[] = [];
+
+  // Only relevant for s18/s20 OAPA (assault/GBH)
+  if (ctx.offenceDef.code !== "s18_oapa" && ctx.offenceDef.code !== "s20_oapa") {
+    reasons.push("Weapon/causation route only relevant for assault/GBH offences");
+    return {
+      id: "weapon_uncertainty_causation",
+      status: "blocked",
+      reasons,
+      required_dependencies: [],
+      constraints: ["Not applicable to this offence"],
+    };
+  }
 
   // Check for weapon-related elements or evidence
   const weaponElement = ctx.elementsState.find(e => 
@@ -388,13 +400,13 @@ function evaluateActDenial(ctx: EvaluationContext): RouteAssessment {
   const requiredDeps: string[] = [];
   const constraints: string[] = [];
 
-  // Check actus_reus or act_causation element
+  // Check actus_reus, act_causation, or damage_by_fire (arson/criminal damage)
   const actElement = ctx.elementsState.find(e => 
-    e.id === "actus_reus" || e.id === "act_causation"
+    e.id === "actus_reus" || e.id === "act_causation" || e.id === "damage_by_fire"
   );
 
   if (actElement && (actElement.support === "weak" || actElement.support === "none")) {
-    reasons.push(`Actus reus element support: ${actElement.support}`);
+    reasons.push(`${actElement.id} element support: ${actElement.support}`);
     if (actElement.gaps.length > 0) {
       requiredDeps.push(...actElement.gaps);
     }

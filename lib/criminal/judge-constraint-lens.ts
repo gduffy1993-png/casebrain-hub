@@ -55,6 +55,7 @@ export function buildJudgeConstraintLens(
   const isS18 = offenceCode === "s18_oapa";
   const isS20 = offenceCode === "s20_oapa";
   const isOAPA = isS18 || isS20;
+  const isCriminalDamageArson = offenceCode === "criminal_damage_arson";
 
   // Get weak/none elements
   const weakElements = offenceElements.filter(
@@ -186,50 +187,108 @@ export function buildJudgeConstraintLens(
   }
 
   // ============================================================================
-  // CAUSATION CONSTRAINTS
+  // CAUSATION CONSTRAINTS (OAPA: act and injury; criminal damage/arson: act and damage)
   // ============================================================================
   const actElement = offenceElements.find(
-    (e) => e.id === "act_causation" || e.id === "actus_reus" || e.id === "causation"
+    (e) => e.id === "act_causation" || e.id === "actus_reus" || e.id === "causation" || e.id === "damage_by_fire"
   );
   if (actElement && (actElement.support === "weak" || actElement.support === "none")) {
-    constraints.push({
-      title: "Causation Requirement",
-      detail: "The court must establish causation between the act and the injury. The prosecution must prove the act caused the injury beyond reasonable doubt. Absent sequence evidence, the court cannot infer causation.",
-      applies_to: ["causation", "actus_reus"],
-    });
-
-    required_findings.push(
-      "Sequence evidence (timing, mechanism, alternative causation possibilities)"
-    );
-
-    intolerances.push(
-      "The court will not infer causation without evidence of sequence and mechanism"
-    );
+    if (isOAPA) {
+      constraints.push({
+        title: "Causation Requirement",
+        detail: "The court must establish causation between the act and the injury. The prosecution must prove the act caused the injury beyond reasonable doubt. Absent sequence evidence, the court cannot infer causation.",
+        applies_to: ["causation", "actus_reus"],
+      });
+      required_findings.push(
+        "Sequence evidence (timing, mechanism, alternative causation possibilities)"
+      );
+      intolerances.push(
+        "The court will not infer causation without evidence of sequence and mechanism"
+      );
+    } else if (isCriminalDamageArson) {
+      constraints.push({
+        title: "Causation and Damage Requirement",
+        detail: "The court must establish that the defendant's act caused the damage or destruction by fire. The prosecution must prove the defendant's conduct caused the fire beyond reasonable doubt. Absent evidence of origin, ignition, or exclusion of accident, the court cannot infer causation.",
+        applies_to: ["damage_by_fire", "causation"],
+      });
+      required_findings.push(
+        "Evidence of fire origin, ignition, and exclusion of accidental cause"
+      );
+      intolerances.push(
+        "The court will not infer deliberate causation without evidence of origin and mechanism"
+      );
+    } else {
+      constraints.push({
+        title: "Causation Requirement",
+        detail: "The court must establish causation between the act and the consequence. The prosecution must prove the act caused the result beyond reasonable doubt. Absent sequence evidence, the court cannot infer causation.",
+        applies_to: ["causation", "actus_reus"],
+      });
+      required_findings.push(
+        "Sequence evidence (timing, mechanism, alternative causation possibilities)"
+      );
+      intolerances.push(
+        "The court will not infer causation without evidence of sequence and mechanism"
+      );
+    }
   }
 
   // ============================================================================
-  // WEAPON UNCERTAINTY CONSTRAINTS
+  // CRIMINAL DAMAGE / ARSON — Property, intent/recklessness, lawful excuse (s.5 CDA)
   // ============================================================================
-  const weaponElement = offenceElements.find((e) => e.id.includes("weapon"));
-  if (weaponElement && (weaponElement.support === "weak" || weaponElement.support === "none")) {
-    constraints.push({
-      title: "Weapon Presence/Use Requirement",
-      detail: "The court must determine weapon presence and use. The prosecution must prove the weapon was present and used. Absent witness observations, recovery, or forensic confirmation, the court cannot infer weapon use.",
-      applies_to: ["weapon", "causation"],
-    });
+  if (isCriminalDamageArson) {
+    const propertyElement = offenceElements.find((e) => e.id === "property_belonging_to_another");
+    const intentReckElement = offenceElements.find((e) => e.id === "intent_or_recklessness");
+    const lawfulExcuseElement = offenceElements.find((e) => e.id === "lawful_excuse");
+    if (propertyElement && (propertyElement.support === "weak" || propertyElement.support === "none")) {
+      constraints.push({
+        title: "Property Belonging to Another (s.1(1) CDA)",
+        detail: "The court must be satisfied the property damaged or destroyed belonged to another. The prosecution must prove ownership or that the defendant did not have lawful control.",
+        applies_to: ["property_belonging_to_another"],
+      });
+      required_findings.push("Evidence that property belonged to another (ownership, control)");
+    }
+    if (intentReckElement && (intentReckElement.support === "weak" || intentReckElement.support === "none")) {
+      constraints.push({
+        title: "Intent or Recklessness (s.1(1) CDA)",
+        detail: "The court must distinguish intention to destroy or damage from recklessness. The prosecution must prove the defendant intended to destroy or damage the property, or was reckless as to whether it would be destroyed or damaged.",
+        applies_to: ["intent_or_recklessness", "mental_state"],
+      });
+      required_findings.push("Evidence of intent or recklessness as to damage/destruction");
+    }
+    if (lawfulExcuseElement || outstandingDeps.length > 0) {
+      constraints.push({
+        title: "Lawful Excuse (s.5 CDA)",
+        detail: "The court must consider whether the defendant had lawful excuse (e.g. belief in consent, protection of property). The defendant may raise it; the prosecution must disprove it beyond reasonable doubt.",
+        applies_to: ["lawful_excuse"],
+      });
+    }
+  }
 
-    required_findings.push(
-      "Weapon visibility/mechanism clarity (witness observations, recovery, forensic confirmation)"
-    );
+  // ============================================================================
+  // WEAPON UNCERTAINTY CONSTRAINTS (OAPA only — assault/GBH)
+  // ============================================================================
+  if (isOAPA) {
+    const weaponElement = offenceElements.find((e) => e.id.includes("weapon"));
+    if (weaponElement && (weaponElement.support === "weak" || weaponElement.support === "none")) {
+      constraints.push({
+        title: "Weapon Presence/Use Requirement",
+        detail: "The court must determine weapon presence and use. The prosecution must prove the weapon was present and used. Absent witness observations, recovery, or forensic confirmation, the court cannot infer weapon use.",
+        applies_to: ["weapon", "causation"],
+      });
 
-    intolerances.push(
-      "The court will not infer weapon use without evidence of visibility, recovery, or forensic confirmation"
-    );
-
-    if (weaponElement.gaps.length > 0 || weaponElement.refs.length === 0) {
-      red_flags.push(
-        "Witness uncertainty on weapon (visibility, recovery, mechanism unclear) - court must resolve uncertainty"
+      required_findings.push(
+        "Weapon visibility/mechanism clarity (witness observations, recovery, forensic confirmation)"
       );
+
+      intolerances.push(
+        "The court will not infer weapon use without evidence of visibility, recovery, or forensic confirmation"
+      );
+
+      if (weaponElement.gaps.length > 0 || weaponElement.refs.length === 0) {
+        red_flags.push(
+          "Witness uncertainty on weapon (visibility, recovery, mechanism unclear) - court must resolve uncertainty"
+        );
+      }
     }
   }
 
@@ -372,7 +431,7 @@ export function buildJudgeConstraintLens(
         detail: "The court must distinguish specific intent from recklessness. Absent evidence of targeting or deliberation, the court cannot infer specific intent.",
         applies_to: ["specific_intent"],
       });
-    } else if (route.id === "weapon_uncertainty_causation") {
+    } else if (route.id === "weapon_uncertainty_causation" && isOAPA) {
       constraints.push({
         title: "Weapon Uncertainty Route",
         detail: "The court must determine weapon presence and causation. Absent clear evidence of weapon use, the court cannot infer causation from weapon alone.",

@@ -999,7 +999,7 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
                 name: d.name,
                 created_at: d.created_at,
                 type: (d as { type?: string | null }).type ?? null,
-                extractionStatus: hasText ? ("ok" as const) : ("no_text" as const),
+                extractionStatus: hasText ? ("full" as const) : ("no_text" as const),
                 extractionMessage: hasText ? undefined : "This file may be image-only; we couldn't extract text.",
               };
             })}

@@ -290,8 +290,10 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         routeTypes
       );
 
-      // Build procedural_safety from coordinator (same source as Safety panel) for at-a-glance bar
+      // Build procedural_safety, burden map, and pressure points from coordinator (same source as Safety panel)
       let procedural_safety: StrategyAnalysisResponse["procedural_safety"];
+      let burdenMap: StrategyAnalysisResponse["burdenMap"];
+      let pressurePoints: StrategyAnalysisResponse["pressurePoints"];
       try {
         const [caseResult, timelineResult, positionResult] = await Promise.all([
           supabase.from("criminal_cases").select("declared_dependencies, irreversible_decisions").eq("id", caseId).eq("org_id", orgIdForQueries).maybeSingle(),
@@ -331,8 +333,59 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
           evidenceImpactMap,
         });
         procedural_safety = coordinatorResult?.plugin_constraints?.procedural_safety ?? undefined;
+        // Phase 3: Dynamic Burden Map – elements with support and defence leverage
+        if (coordinatorResult?.elements?.length) {
+          burdenMap = coordinatorResult.elements.map((e) => ({
+            id: e.id,
+            label: e.label,
+            support: e.support,
+            leverage:
+              e.support === "weak" || e.support === "none"
+                ? (e.gaps?.length ? "Challenge – gaps in evidence" : "Primary leverage")
+                : e.support === "some"
+                  ? "Challenge if gaps emerge"
+                  : "No challenge",
+          }));
+        }
+        // Phase 3: Pressure points – outstanding disclosure, weak element gaps, procedural items
+        const pressureList: NonNullable<StrategyAnalysisResponse["pressurePoints"]> = [];
+        coordinatorResult?.dependencies?.forEach((d) => {
+          if (d.status === "outstanding") {
+            pressureList.push({
+              id: d.id || `dep-${pressureList.length}`,
+              label: d.label,
+              priority: "HIGH",
+              reason: d.why_it_matters || "Outstanding disclosure",
+            });
+          }
+        });
+        coordinatorResult?.elements?.forEach((e) => {
+          if ((e.support === "weak" || e.support === "none") && e.gaps?.length) {
+            e.gaps.forEach((g, i) => {
+              pressureList.push({
+                id: `gap-${e.id}-${i}`,
+                label: g,
+                priority: "MEDIUM",
+                reason: `Weak support for ${e.label}`,
+              });
+            });
+          }
+        });
+        procedural_safety?.outstandingItems?.forEach((item, i) => {
+          if (!pressureList.some((p) => p.label === item)) {
+            pressureList.push({
+              id: `proc-${i}`,
+              label: item,
+              priority: "CRITICAL",
+              reason: "Procedural – affects fair trial",
+            });
+          }
+        });
+        if (pressureList.length) pressurePoints = pressureList;
       } catch (coordErr) {
         console.warn("[strategy-analysis] Coordinator for procedural_safety failed (non-fatal):", coordErr);
+        burdenMap = undefined;
+        pressurePoints = undefined;
         try {
           const fallback = computeProceduralSafety(evidenceImpactMap);
           procedural_safety = { status: fallback.status, explanation: fallback.explanation, outstandingItems: fallback.outstandingItems ?? [], reasons: fallback.reasons };
@@ -440,6 +493,10 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         diagnostics.orgId = orgIdForQueries;
       }
 
+      // Strategy update context (why / when) for "Why strategy changed" UI
+      const strategyUpdatedAt = new Date().toISOString();
+      const strategyUpdateReason = `Based on ${docCount} documents (${(bundleChars ?? 0).toLocaleString()} chars).`;
+
       // PHASE 3 FIX: Ensure all attack plan outputs are included in response
       // Routes already include: attackPaths, cpsResponses, killSwitches, pivotPlan (from generateStrategyRoute)
       const response: StrategyAnalysisResponse = {
@@ -456,6 +513,10 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         residualSummary,
         procedural_safety,
         resolvedOffence: { offenceType: resolvedOffence.offenceType, label: resolvedOffence.label, source: resolvedOffence.source },
+        strategyUpdatedAt,
+        strategyUpdateReason,
+        burdenMap,
+        pressurePoints,
       };
 
       const elapsedMs = Date.now() - runStartMs;

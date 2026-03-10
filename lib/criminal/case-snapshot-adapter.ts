@@ -22,6 +22,8 @@ export type CaseSnapshot = {
     lastUpdatedAt: string | null;
     hearingNextAt: string | null;
     hearingNextType: string | null;
+    /** Phase 4: Derived stage (pre_ptph, trial_prep, sentencing, post_charge, unknown). */
+    caseStage?: string;
   };
   analysis: {
     hasVersion: boolean;
@@ -36,12 +38,17 @@ export type CaseSnapshot = {
     completenessScore: number; // 0–100
     completenessFlags: BundleCompletenessFlags;
     capabilityTier: CapabilityTier; // thin | partial | full
+    /** Phase 1: Confidence / basis of strategy – what this strategy is based on. */
+    strategyBasisLabel: string;
+    strategyBasisReason?: string;
   };
   charges: ChargeItem[];
   evidence: {
     documents: DocItem[];
     missingEvidence: MissingItem[];
     disclosureItems: DisclosureItem[];
+    /** Phase 4: Disclosure request/chase timeline (requested, chased, served, etc.). */
+    disclosureTimeline?: Array<{ item: string; action: string; date: string; note?: string }>;
   };
   strategy: {
     statusLabel: string;
@@ -52,6 +59,16 @@ export type CaseSnapshot = {
     confidence?: "HIGH" | "MEDIUM" | "LOW";
     exhaustion?: string;
     pivotTriggers?: string[];
+    /** When strategy was last generated (ISO string). */
+    strategyUpdatedAt?: string;
+    /** Short reason (e.g. "Based on 4 documents (12,000 chars).") for "Why strategy changed". */
+    strategyUpdateReason?: string;
+    /** Phase 3: Burden Map – what prosecution must prove, strength, defence leverage */
+    burdenMap?: Array<{ id: string; label: string; support: string; leverage: string }>;
+    /** Phase 3: Pressure points – missing docs, weak inferences, disclosure gaps */
+    pressurePoints?: Array<{ id: string; label: string; priority?: string; reason?: string }>;
+    /** Phase 5: Solicitor instructions / overrides ("I disagree with this assessment" or "Client instructions: …"). */
+    solicitorInstructions?: string | null;
   };
   actions: {
     nextSteps: NextStepItem[];
@@ -73,6 +90,10 @@ export type CaseSnapshot = {
     offenceType: string;
     label: string;
     source: "charges" | "matter" | "bundle" | "unknown" | "override";
+    /** True when offence is in supported taxonomy and we have offence-specific strategy. */
+    isSupported: boolean;
+    /** Short label for UI: "Offence-specific" vs "Generic – add charge sheet". */
+    coverageLabel: string;
   };
 };
 
@@ -90,6 +111,10 @@ export type DocItem = {
   name: string;
   type?: string;
   createdAt: string;
+  /** full = raw text extracted; summary_only = only summary/aiSummary; no_text = none */
+  extractionStatus?: "full" | "summary_only" | "no_text";
+  extractionMessage?: string;
+  extractionCharCount?: number;
 };
 
 export type MissingItem = {
@@ -131,6 +156,8 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
     hearingsResult,
     documentsResult,
     offenceResult,
+    disclosureTimelineResult,
+    strategyNotesResult,
   ] = await Promise.all([
     safeFetch<any>(`/api/cases/${caseId}`).catch(() => ({ ok: false, data: null, error: null })),
     safeFetch<any>(`/api/cases/${caseId}/analysis/version/latest`).catch(() => ({ ok: false, data: null, error: null })),
@@ -140,18 +167,27 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
     safeFetch<any>(`/api/criminal/${caseId}/hearings`).catch(() => ({ ok: false, data: null, error: null })),
     safeFetch<any>(`/api/cases/${caseId}/documents`).catch(() => ({ ok: false, data: null, error: null })),
     safeFetch<any>(`/api/criminal/${caseId}/offence`).catch(() => ({ ok: false, data: null, error: null })),
+    safeFetch<any>(`/api/criminal/${caseId}/disclosure-timeline`).catch(() => ({ ok: false, data: null, error: null })),
+    safeFetch<any>(`/api/criminal/${caseId}/strategy-notes`).catch(() => ({ ok: false, data: null, error: null })),
   ]);
 
   // Normalize case metadata
   const caseData = caseMetaResult.data?.data || caseMetaResult.data || {};
   
-  // Get next hearing from hearings data
+  // Get next hearing and derive case stage from hearings data
   const hearingsData = hearingsResult.data?.hearings || [];
   const now = new Date();
   const nextHearing = hearingsData
     .filter((h: any) => h.hearingDate && new Date(h.hearingDate).getTime() >= now.getTime())
     .sort((a: any, b: any) => new Date(a.hearingDate).getTime() - new Date(b.hearingDate).getTime())[0];
-  
+  const nextType = (nextHearing?.hearingType ?? "").toLowerCase();
+  let caseStage = "unknown";
+  if (nextType.includes("trial")) caseStage = "trial_prep";
+  else if (nextType.includes("sentenc")) caseStage = "sentencing";
+  else if (nextType.includes("ptph") || nextType.includes("pcmh") || nextType.includes("case management")) caseStage = "pre_ptph";
+  else if (nextType.includes("first") || nextType.includes("plea") || nextType.includes("mention")) caseStage = "post_charge";
+  else if (hearingsData.length > 0) caseStage = "pre_ptph";
+
   const caseMeta = {
     title: caseData.title || caseData.name || null,
     opponent: caseData.opponent || null,
@@ -159,6 +195,7 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
     lastUpdatedAt: caseData.updated_at || caseData.updatedAt || null,
     hearingNextAt: nextHearing?.hearingDate || null,
     hearingNextType: nextHearing?.hearingType || null,
+    caseStage,
   };
 
   // Normalize analysis data
@@ -272,7 +309,7 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
       }))
     : [];
 
-  // Normalize documents
+  // Normalize documents (pass through extraction feedback from API)
   const documentsData = documentsResult.data?.data?.documents || documentsResult.data?.documents || [];
   const documents: DocItem[] = Array.isArray(documentsData)
     ? documentsData.map((doc: any) => ({
@@ -280,6 +317,9 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
         name: doc.name || "Unknown document",
         type: doc.type || undefined,
         createdAt: doc.created_at || doc.createdAt || new Date().toISOString(),
+        extractionStatus: doc.extractionStatus === "full" || doc.extractionStatus === "summary_only" || doc.extractionStatus === "no_text" ? doc.extractionStatus : undefined,
+        extractionMessage: typeof doc.extractionMessage === "string" ? doc.extractionMessage : undefined,
+        extractionCharCount: typeof doc.extractionCharCount === "number" ? doc.extractionCharCount : undefined,
       }))
     : [];
 
@@ -299,6 +339,8 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
     completenessScore: bundle.score,
     completenessFlags: bundle.flags,
     capabilityTier: bundle.capabilityTier,
+    strategyBasisLabel: "", // Set below after resolvedOffence
+    strategyBasisReason: undefined as string | undefined,
   };
 
   // Disclosure items - derive from missing evidence (include priority for sort/group)
@@ -309,6 +351,16 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
     lastAction: undefined,
     date: undefined,
     notes: item.notes,
+  }));
+
+  // Phase 4: Disclosure timeline (requested / chased / served)
+  const timelineData = disclosureTimelineResult?.data?.data ?? disclosureTimelineResult?.data ?? {};
+  const rawEntries = Array.isArray(timelineData.entries) ? timelineData.entries : [];
+  const disclosureTimeline = rawEntries.slice(0, 30).map((e: any) => ({
+    item: e.item ?? "",
+    action: e.action ?? "",
+    date: e.date ?? e.action_date ?? "",
+    note: e.note,
   }));
 
   // Normalize strategy data - use the same raw data we checked above
@@ -328,6 +380,14 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
     confidence: strategyDataExists ? (recommendation?.confidence || undefined) : undefined,
     exhaustion: undefined, // Not available from current API
     pivotTriggers: strategyDataExists ? (recommendation?.flipConditions?.map((fc: any) => fc.trigger) || undefined) : undefined,
+    strategyUpdatedAt: strategyDataRaw.strategyUpdatedAt,
+    strategyUpdateReason: strategyDataRaw.strategyUpdateReason,
+    burdenMap: Array.isArray(strategyDataRaw.burdenMap) ? strategyDataRaw.burdenMap : undefined,
+    pressurePoints: Array.isArray(strategyDataRaw.pressurePoints) ? strategyDataRaw.pressurePoints : undefined,
+    solicitorInstructions:
+      strategyNotesResult?.ok && strategyNotesResult?.data != null
+        ? (strategyNotesResult.data?.data?.strategy_notes ?? strategyNotesResult.data?.strategy_notes ?? null)
+        : null,
   };
 
   // Normalize commitment/decision log
@@ -353,19 +413,41 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
   };
 
   const offenceData = offenceResult?.data ?? strategyDataRaw?.resolvedOffence ?? null;
+  const offenceSource = offenceData?.source === "charges" || offenceData?.source === "matter" || offenceData?.source === "bundle" || offenceData?.source === "unknown" || offenceData?.source === "override"
+    ? offenceData.source
+    : "unknown" as const;
+  const offenceType = offenceData && typeof offenceData.offenceType === "string" ? offenceData.offenceType : "other";
+  const isSupportedOffence = offenceType !== "other" && offenceSource !== "unknown";
   const resolvedOffence = offenceData && typeof offenceData.offenceType === "string"
     ? {
         offenceType: offenceData.offenceType,
         label: typeof offenceData.label === "string" ? offenceData.label : "Unknown – add charge sheet / evidence for offence-specific strategy",
-        source: (offenceData.source === "charges" || offenceData.source === "matter" || offenceData.source === "bundle" || offenceData.source === "unknown" || offenceData.source === "override")
-          ? offenceData.source
-          : "unknown" as const,
+        source: offenceSource,
+        isSupported: isSupportedOffence,
+        coverageLabel: isSupportedOffence ? "Offence-specific" : "Generic – add charge sheet for offence-specific strategy",
       }
     : {
         offenceType: "other",
         label: "Unknown – add charge sheet / evidence for offence-specific strategy",
         source: "unknown" as const,
+        isSupported: false,
+        coverageLabel: "Generic – add charge sheet for offence-specific strategy",
       };
+
+  // Strategy basis (confidence): what this strategy is based on
+  if (offenceSource === "unknown" || offenceType === "other") {
+    analysisWithBundle.strategyBasisLabel = "Add charge sheet or key evidence for offence-specific strategy";
+    analysisWithBundle.strategyBasisReason = "Offence not identified.";
+  } else if (bundle.capabilityTier === "full") {
+    analysisWithBundle.strategyBasisLabel = "Based on: full bundle";
+    analysisWithBundle.strategyBasisReason = "Strategy uses full bundle content.";
+  } else if (bundle.capabilityTier === "partial") {
+    analysisWithBundle.strategyBasisLabel = "Based on: partial bundle";
+    analysisWithBundle.strategyBasisReason = "Add key documents for stronger strategy.";
+  } else {
+    analysisWithBundle.strategyBasisLabel = "Based on: summaries only";
+    analysisWithBundle.strategyBasisReason = "Add key documents for better strategy.";
+  }
 
   // DEV-only structured logging for endpoint status (single source of truth)
   if (process.env.NODE_ENV !== "production") {
@@ -405,6 +487,7 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
       documents,
       missingEvidence,
       disclosureItems,
+      disclosureTimeline: disclosureTimeline.length ? disclosureTimeline : undefined,
     },
     strategy,
     actions,

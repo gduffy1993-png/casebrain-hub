@@ -127,6 +127,17 @@ export function CaseStatusStrip({ snapshot }: CaseStatusStripProps) {
         </Badge>
       </div>
 
+      {/* Strategy basis – what the strategy is based on */}
+      {snapshot?.analysis?.strategyBasisLabel && (
+        <div className="flex items-center gap-2" title={snapshot.analysis.strategyBasisReason ?? undefined}>
+          <FileText className="h-4 w-4 text-muted-foreground" />
+          <span className="text-xs text-muted-foreground">Basis:</span>
+          <span className="text-xs font-medium text-foreground max-w-[200px] truncate" title={snapshot.analysis.strategyBasisLabel}>
+            {snapshot.analysis.strategyBasisLabel}
+          </span>
+        </div>
+      )}
+
       {/* Last Updated */}
       {lastUpdated && (
         <div className="flex items-center gap-2">

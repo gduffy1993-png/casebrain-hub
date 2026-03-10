@@ -89,6 +89,15 @@ Do **not** add new strategy architecture (element mapping, explicit route maps, 
 
 **Outcome:** Schema matches code; pipeline verified end-to-end; offence and its source are inspectable. **Only after this** do we do Phase 2+.
 
+**4. Arson / offence-specific strategy (done in code)**
+
+- **offence-elements:** Added `criminal_damage_arson`; `detectOffence()` now recognises arson/CDA from charges and extracted text so the coordinator returns the right offence def (property, damage_by_fire, intent/recklessness, lawful_excuse, identification).
+- **strategy-routes:** Intent denial and weapon/causation routes are gated to s18/s20 OAPA only; arson gets act_denial (including damage_by_fire), procedural disclosure, identification.
+- **judge-constraint-lens + judge-reasoning:** Causation/weapon doctrine only for OAPA; criminal damage/arson gets property, lawful excuse (s.5 CDA), intent/recklessness, and fire causation wording.
+- **UI:** “Charge Reduction (s18 → s20)” only when offence is s18 OAPA; for arson (and others) the label is “Charge Reduction” and content is offence-agnostic.
+
+Re-run strategy on an arson case (e.g. ARSON_TEST_CASE_BUNDLE) and confirm: resolved offence = Criminal damage/Arson; no s18→s20 or injury/weapon doctrine in the plan.
+
 ---
 
 ### Phase 2: Honest feedback and no fake strategy

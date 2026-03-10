@@ -42,6 +42,14 @@ import { CaseOverviewHeader } from "./CaseOverviewHeader";
 import { CaseTimelinePanel } from "./CaseTimelinePanel";
 import { StrategyOverviewSubTab } from "./StrategyOverviewSubTab";
 import { StrategyDoctrineSubTab } from "./StrategyDoctrineSubTab";
+import { StrategyBurdenAndPressure } from "./StrategyBurdenAndPressure";
+import { DisclosureTimelineSection } from "./DisclosureTimelineSection";
+import { HearingReadyStrategy } from "./HearingReadyStrategy";
+import { OffencePlaybookCard } from "./OffencePlaybookCard";
+import { SolicitorInstructionsSection } from "./SolicitorInstructionsSection";
+import { StrategyExportButton } from "./StrategyExportButton";
+import { DefenceNarrativeCard } from "./DefenceNarrativeCard";
+import { RiskOutcomeMatrixCard } from "./RiskOutcomeMatrixCard";
 
 /** Tab ids for criminal case page. URL ?tab= must be one of these. Order: primary then secondary. */
 const CRIMINAL_CASE_TAB_IDS = [
@@ -599,11 +607,101 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
                 <p className="text-xs text-muted-foreground mt-2">Upload a charge sheet or add the alleged offence in Police station so we can tailor strategy to this case.</p>
               </Card>
             ) : snapshot ? (
+              <>
+              {/* Strategy at a glance – one canonical view */}
+              <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
+                <span className="text-sm font-medium text-muted-foreground">Strategy summary</span>
+                <StrategyExportButton caseId={caseId} caseTitle={snapshot?.caseMeta?.title ?? undefined} variant="outline" size="sm" />
+              </div>
+              <Card className="p-4 mb-6 border-primary/20 bg-primary/5">
+                <h3 className="text-sm font-semibold text-foreground mb-3">Strategy at a glance</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+                  <div>
+                    <p className="text-xs text-muted-foreground">Primary approach</p>
+                    <p className="font-medium text-foreground">{snapshot.strategy?.primary ? String(snapshot.strategy.primary).replace(/_/g, " ") : "—"}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground">Offence</p>
+                    <p className="font-medium text-foreground">{snapshot.resolvedOffence?.label ?? "—"}</p>
+                    {snapshot.resolvedOffence?.coverageLabel && (
+                      <span className={`text-xs ${snapshot.resolvedOffence.isSupported ? "text-green-600" : "text-amber-600"}`}>
+                        {snapshot.resolvedOffence.coverageLabel}
+                      </span>
+                    )}
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground">Basis</p>
+                    <p className="font-medium text-foreground">{snapshot.analysis?.strategyBasisLabel ?? "—"}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground">Next hearing</p>
+                    <p className="font-medium text-foreground">
+                      {snapshot.caseMeta?.hearingNextAt
+                        ? `${snapshot.caseMeta?.hearingNextType ?? "Hearing"} ${new Date(snapshot.caseMeta.hearingNextAt).toLocaleDateString("en-GB")}`
+                        : "—"}
+                    </p>
+                  </div>
+                  {snapshot.caseMeta?.caseStage && snapshot.caseMeta.caseStage !== "unknown" && (
+                    <div>
+                      <p className="text-xs text-muted-foreground">Stage</p>
+                      <p className="font-medium text-foreground capitalize">{snapshot.caseMeta.caseStage.replace(/_/g, " ")}</p>
+                    </div>
+                  )}
+                </div>
+                {snapshot.evidence?.disclosureItems?.filter((d) => d.status === "Outstanding" || d.status === "Unknown").length > 0 && (
+                  <div className="mt-3 pt-3 border-t border-border">
+                    <p className="text-xs text-muted-foreground mb-1">What we&apos;re waiting on</p>
+                    <p className="text-sm text-foreground">
+                      {snapshot.evidence.disclosureItems
+                        .filter((d) => d.status === "Outstanding" || d.status === "Unknown")
+                        .slice(0, 5)
+                        .map((d) => d.item)
+                        .join(" · ") || "—"}
+                    </p>
+                  </div>
+                )}
+              </Card>
+
+              <StrategyBurdenAndPressure snapshot={snapshot} />
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                <OffencePlaybookCard snapshot={snapshot} />
+                <SolicitorInstructionsSection
+                  caseId={caseId}
+                  initialValue={snapshot?.strategy?.solicitorInstructions}
+                  onSave={() => buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error)}
+                />
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                <DisclosureTimelineSection snapshot={snapshot} />
+                <HearingReadyStrategy snapshot={snapshot} />
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                <DefenceNarrativeCard snapshot={snapshot} recordedPositionText={savedPosition?.position_text} />
+                <RiskOutcomeMatrixCard snapshot={snapshot} />
+              </div>
+
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <FoldSection title="Evidence" defaultOpen={true}>
                   <ErrorBoundary fallback={mounted ? <div className="text-sm text-muted-foreground">Analysis will deepen as further disclosure is received.</div> : null}>
                     {snapshot && (
                       <div id="section-strategy" className="mb-6">
+                        {(snapshot.analysis?.strategyBasisLabel || snapshot.strategy?.strategyUpdateReason) && (
+                          <div className="text-xs text-muted-foreground mb-2 space-y-0.5">
+                            {snapshot.analysis?.strategyBasisLabel && (
+                              <p title={snapshot.analysis.strategyBasisReason ?? undefined}>
+                                Strategy basis: {snapshot.analysis.strategyBasisLabel}
+                              </p>
+                            )}
+                            {snapshot.strategy?.strategyUpdatedAt && snapshot.strategy?.strategyUpdateReason && (
+                              <p title={snapshot.strategy.strategyUpdatedAt}>
+                                Strategy updated: {snapshot.strategy.strategyUpdateReason}
+                              </p>
+                            )}
+                          </div>
+                        )}
                         <CaseFightPlan caseId={caseId} committedStrategy={committedStrategy} canShowStrategyOutputs={snapshot?.analysis?.canShowStrategyOutputs ?? false} canShowStrategyPreview={snapshot?.analysis?.canShowStrategyPreview ?? false} canShowStrategyFull={snapshot?.analysis?.canShowStrategyFull ?? false} strategyDataExists={snapshot?.strategy?.strategyDataExists ?? false} />
                       </div>
                     )}
@@ -616,6 +714,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
                   </ErrorBoundary>
                 </FoldSection>
               </div>
+              </>
             ) : (
               <Card className="p-6"><div className="text-sm text-muted-foreground">Case data will appear once analysis is run.</div></Card>
             )}
@@ -658,7 +757,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
 
         {activeTab === "next-steps" && (
           <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Strategy plan will appear once analysis is run.</div>}>
-            <Phase2StrategyPlanPanel caseId={caseId} />
+            <Phase2StrategyPlanPanel caseId={caseId} offenceType={snapshot?.resolvedOffence?.offenceType} />
           </ErrorBoundary>
         )}
 

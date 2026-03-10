@@ -121,5 +121,23 @@ export interface StrategyAnalysisData {
     label: string;
     source: "charges" | "matter" | "bundle" | "unknown" | "override";
   };
+  /** When strategy was last generated (ISO string). */
+  strategyUpdatedAt?: string;
+  /** Short reason for strategy basis (e.g. "Based on 4 documents (12,000 chars)."). */
+  strategyUpdateReason?: string;
+  /** Phase 3: Dynamic Burden Map – what prosecution must prove, strength, defence leverage */
+  burdenMap?: Array<{
+    id: string;
+    label: string;
+    support: "strong" | "some" | "weak" | "none";
+    leverage: string;
+  }>;
+  /** Phase 3: Evidence Pressure Points – missing docs, weak inferences, disclosure gaps */
+  pressurePoints?: Array<{
+    id: string;
+    label: string;
+    priority?: "CRITICAL" | "HIGH" | "MEDIUM" | "LOW";
+    reason?: string;
+  }>;
 }
 

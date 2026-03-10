@@ -5,7 +5,7 @@
  * No predictions, no invented strategies - only canonical element definitions.
  */
 
-export type OffenceCode = "s18_oapa" | "s20_oapa" | "unknown";
+export type OffenceCode = "s18_oapa" | "s20_oapa" | "criminal_damage_arson" | "unknown";
 
 export type OffenceElement = {
   id: string;
@@ -52,6 +52,19 @@ export function detectOffence(
     ) {
       return getS20Def();
     }
+
+    // Criminal damage / arson (s.1(1) or s.1(3) CDA 1971)
+    if (
+      section.includes("cda") ||
+      section.includes("criminal damage") ||
+      section.includes("1(1)") ||
+      section.includes("1(3)") ||
+      offence.includes("arson") ||
+      offence.includes("criminal damage") ||
+      offence.includes("damage by fire")
+    ) {
+      return getCriminalDamageArsonDef();
+    }
   }
 
   // Check extracted data as fallback
@@ -74,6 +87,17 @@ export function detectOffence(
       extractedStr.includes("inflicting gbh")
     ) {
       return getS20Def();
+    }
+
+    if (
+      extractedStr.includes("arson") ||
+      extractedStr.includes("criminal damage") ||
+      extractedStr.includes("cda") ||
+      extractedStr.includes("damage by fire") ||
+      extractedStr.includes("s.1(1)") ||
+      extractedStr.includes("s.1(3)")
+    ) {
+      return getCriminalDamageArsonDef();
     }
   }
 
@@ -159,8 +183,32 @@ function getS20Def(): OffenceDef {
 }
 
 /**
+ * Criminal damage / Arson (s.1(1) and s.1(3) CDA 1971)
+ *
+ * Elements:
+ * - property_belonging_to_another
+ * - damage_by_fire (actus reus)
+ * - intent_or_recklessness
+ * - lawful_excuse (s.5 CDA)
+ * - identification
+ */
+function getCriminalDamageArsonDef(): OffenceDef {
+  return {
+    code: "criminal_damage_arson",
+    label: "Criminal damage / Arson (s.1(1) CDA 1971)",
+    elements: [
+      { id: "property_belonging_to_another", label: "Property belonging to another" },
+      { id: "damage_by_fire", label: "Damage/Destruction by fire" },
+      { id: "intent_or_recklessness", label: "Intent or recklessness" },
+      { id: "lawful_excuse", label: "Lawful excuse (s.5 CDA)" },
+      { id: "identification", label: "Identification" },
+    ],
+  };
+}
+
+/**
  * Unknown offence fallback
- * 
+ *
  * Elements:
  * - identification
  * - actus_reus

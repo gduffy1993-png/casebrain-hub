@@ -20,6 +20,8 @@ import { buildJudgeConstraintLens, type JudgeConstraintLens } from "@/lib/crimin
 import { buildRoutePlaybooks, type RoutePlaybooks } from "@/lib/criminal/strategy-output/route-playbooks";
 import { buildHearingScripts, type HearingScripts } from "@/lib/criminal/strategy-output/hearing-scripts";
 import { CollapsibleSection } from "@/components/ui/collapsible-section";
+import { BurdenMapTable } from "./BurdenMapTable";
+import { PressurePointsList } from "./PressurePointsList";
 
 export type PrimaryStrategy = 
   | "fight_charge" 
@@ -261,27 +263,35 @@ export type StrategyCommitment = {
   secondary: SecondaryStrategy[];
 };
 
-const STRATEGY_OPTIONS: Array<{
+/** Strategy options; charge_reduction label is s18→s20 only for OAPA/assault (s18_oapa). */
+function getStrategyOptions(offenceCode?: string): Array<{
   id: PrimaryStrategy;
   label: string;
   description: string;
-}> = [
-  {
-    id: "fight_charge",
-    label: "Fight Charge (Trial Strategy)",
-    description: "Full trial defence. Challenge evidence, intent, and identification. Target: acquittal or dismissal.",
-  },
-  {
-    id: "charge_reduction",
-    label: "Charge Reduction (e.g. s18 → s20)",
-    description: "Accept harm but challenge intent. Target: reduction from s18 to s20 or lesser offence.",
-  },
-  {
-    id: "outcome_management",
-    label: "Outcome Management (Plea / Mitigation)",
-    description: "Focus on sentencing position and mitigation. Target: reduced sentence or non-custodial outcome.",
-  },
-];
+}> {
+  const isS18 = offenceCode === "s18_oapa";
+  const chargeLabel = isS18 ? "Charge Reduction (s18 → s20)" : "Charge Reduction";
+  const chargeDesc = isS18
+    ? "Accept harm but challenge intent. Target: reduction from s18 to s20 or lesser offence."
+    : "Accept elements in part but challenge charge/mental state. Target: reduction to lesser offence where applicable.";
+  return [
+    {
+      id: "fight_charge",
+      label: "Fight Charge (Trial Strategy)",
+      description: "Full trial defence. Challenge evidence, intent, and identification. Target: acquittal or dismissal.",
+    },
+    {
+      id: "charge_reduction",
+      label: chargeLabel,
+      description: chargeDesc,
+    },
+    {
+      id: "outcome_management",
+      label: "Outcome Management (Plea / Mitigation)",
+      description: "Focus on sentencing position and mitigation. Target: reduced sentence or non-custodial outcome.",
+    },
+  ];
+}
 
 // UI-only helpers: wording cleanup and de-duplication (no core logic change)
 /** One consistent label for procedural safety everywhere (at-a-glance, snapshot, route assessment). */
@@ -1179,7 +1189,8 @@ function StrategyCompressionView({
   const killSwitch = beastPack?.dashboard?.primaryKillSwitch?.condition || "Not determined";
 
   // Get primary strategy label
-  const strategyLabel = primary ? STRATEGY_OPTIONS.find(o => o.id === primary)?.label || primary : "Not selected";
+  const strategyOptions = getStrategyOptions();
+  const strategyLabel = primary ? strategyOptions.find(o => o.id === primary)?.label || primary : "Not selected";
 
   // Extract position summary (first sentence)
   const positionSummary = savedPosition?.position_text 
@@ -1603,7 +1614,8 @@ function SupervisorSnapshot({
   const recordedAt = savedPosition?.created_at ? new Date(savedPosition.created_at).toLocaleString("en-GB") : "Not recorded";
 
   // Get strategy label
-  const strategyLabel = primary ? STRATEGY_OPTIONS.find(o => o.id === primary)?.label || primary : "Not committed";
+  const strategyOptions = getStrategyOptions();
+  const strategyLabel = primary ? strategyOptions.find(o => o.id === primary)?.label || primary : "Not committed";
 
   // Required dependencies outstanding
   const requiredOutstanding = declaredDeps.filter(dep => {
@@ -4762,6 +4774,9 @@ export function StrategyCommitmentPanel({
   const storageKey = `casebrain:strategyCommitment:${resolvedCaseId}`;
   const debugBuildId = process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA ?? process.env.NEXT_PUBLIC_BUILD_ID ?? null;
 
+  /** Strategy option labels; charge_reduction shows s18→s20 only for s18 OAPA. */
+  const strategyOptions = getStrategyOptions(coordinatorResult?.offence?.code);
+
   // Single source of truth: GET /api/criminal/[caseId]/strategy-analysis → data.data.procedural_safety
   const effectiveProceduralSafety = proceduralSafetyFromApi;
   const isUnsafeToProceed = effectiveProceduralSafety?.status === "UNSAFE_TO_PROCEED" || effectiveProceduralSafety?.status === "CONDITIONALLY_UNSAFE";
@@ -4802,7 +4817,7 @@ export function StrategyCommitmentPanel({
     const strategyLine =
       defenceStrategyPlan?.strategy_line ??
       defenceStrategyPlan?.primary_route?.label ??
-      (primary ? STRATEGY_OPTIONS.find((o) => o.id === primary)?.label ?? "Strategy committed" : "-");
+      (primary ? strategyOptions.find((o) => o.id === primary)?.label ?? "Strategy committed" : "-");
     const lines: string[] = [
       "DEFENCE STRATEGY PLAN",
       "",
@@ -4902,7 +4917,7 @@ export function StrategyCommitmentPanel({
   /** One-click export for counsel: issues, gaps, tests, strategy, disclosure, key dates */
   const handleExportHearingPack = () => {
     const date = new Date().toLocaleString("en-GB", { dateStyle: "medium", timeStyle: "short" });
-    const strategyLabel = primary ? STRATEGY_OPTIONS.find((o) => o.id === primary)?.label ?? primary : "Not committed";
+    const strategyLabel = primary ? strategyOptions.find((o) => o.id === primary)?.label ?? primary : "Not committed";
     const lines: string[] = [
       "HEARING PREPARATION PACK",
       "Generated: " + date,
@@ -6317,7 +6332,7 @@ export function StrategyCommitmentPanel({
                   className="w-full max-w-md p-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                 >
                   <option value="">-- Select Primary Strategy --</option>
-                  {STRATEGY_OPTIONS.map((option) => (
+                  {strategyOptions.map((option) => (
                     <option key={option.id} value={option.id}>
                       {option.label}
                     </option>
@@ -6329,7 +6344,7 @@ export function StrategyCommitmentPanel({
                 <div className="flex items-center gap-2">
                   <Badge variant="default" className="text-xs">PRIMARY</Badge>
                   <span className="text-sm font-medium text-foreground">
-                    {STRATEGY_OPTIONS.find(o => o.id === primary)?.label ?? primary}
+                    {strategyOptions.find(o => o.id === primary)?.label ?? primary}
                   </span>
                 </div>
                 {!isCommitted && (
@@ -6529,7 +6544,7 @@ export function StrategyCommitmentPanel({
                   <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs border-t border-primary/20 pt-3 mt-2">
                     <span className="font-semibold text-muted-foreground">Solicitor-selected strategy: </span>
                     <span className="font-semibold text-foreground">
-                      {defenceStrategyPlan.strategy_line ?? defenceStrategyPlan.primary_route?.label ?? primary ? STRATEGY_OPTIONS.find(o => o.id === primary)?.label ?? "Strategy committed" : "-"}
+                      {defenceStrategyPlan.strategy_line ?? defenceStrategyPlan.primary_route?.label ?? primary ? strategyOptions.find(o => o.id === primary)?.label ?? "Strategy committed" : "-"}
                     </span>
                     <span className="text-muted-foreground">Next hearing: TBC</span>
                     <span className="text-muted-foreground italic">Based on disclosure as at {new Date().toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</span>
@@ -6591,6 +6606,20 @@ export function StrategyCommitmentPanel({
                 })()}
               </div>
             </>
+          )}
+
+          {/* Burden Map + Pressure points (Phase 3) */}
+          {isCommitted && coordinatorResult && (coordinatorResult.elements?.length > 0 || coordinatorResult.dependencies?.length > 0) && (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
+              {coordinatorResult.elements?.length > 0 && (
+                <BurdenMapTable elements={coordinatorResult.elements} />
+              )}
+              <PressurePointsList
+                elements={coordinatorResult.elements ?? []}
+                dependencies={coordinatorResult.dependencies ?? []}
+                outstandingItems={proceduralSafetyFromApi?.status !== "SAFE" ? (effectiveProceduralSafety?.explanation ? [effectiveProceduralSafety.explanation] : []) : []}
+              />
+            </div>
           )}
 
           {/* Stage 7: What we're waiting on — outstanding disclosure, key docs, client instructions */}
@@ -7845,7 +7874,7 @@ export function StrategyCommitmentPanel({
                 className="w-full p-3 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
               >
                 <option value="">-- Select Primary Strategy --</option>
-                {STRATEGY_OPTIONS.map((option) => (
+                {strategyOptions.map((option) => (
                   <option key={option.id} value={option.id}>
                     {option.label}
                   </option>
@@ -7884,10 +7913,10 @@ export function StrategyCommitmentPanel({
                     })()}
                   </div>
                   <h3 className="text-sm font-semibold text-foreground mb-1">
-                    {STRATEGY_OPTIONS.find(o => o.id === primary)?.label || primary}
+                    {strategyOptions.find(o => o.id === primary)?.label || primary}
                   </h3>
                   <p className="text-xs text-muted-foreground mb-2">
-                    {STRATEGY_OPTIONS.find(o => o.id === primary)?.description}
+                    {strategyOptions.find(o => o.id === primary)?.description}
                   </p>
                   {isCommitted && (
                     <div className="space-y-2 mt-3 pt-3 border-t border-border/50">
@@ -7956,7 +7985,7 @@ export function StrategyCommitmentPanel({
                 </h3>
                 <div className="space-y-2">
                   {secondary.map((strategyId) => {
-                    const option = STRATEGY_OPTIONS.find(o => o.id === strategyId);
+                    const option = strategyOptions.find(o => o.id === strategyId);
                     if (!option) return null;
                     return (
                       <div
@@ -8074,7 +8103,7 @@ export function StrategyCommitmentPanel({
                     })()}
                     <div className="mb-2">
                       <h4 className="text-sm font-semibold text-foreground">
-                        {STRATEGY_OPTIONS.find(o => o.id === recommendation.recommended)?.label || recommendation.recommended}
+                        {strategyOptions.find(o => o.id === recommendation.recommended)?.label || recommendation.recommended}
                       </h4>
                     </div>
                     <p className="text-xs text-muted-foreground mb-3">{recommendation.rationale}</p>
@@ -8098,7 +8127,7 @@ export function StrategyCommitmentPanel({
                                   : "bg-muted text-muted-foreground border-border"
                             } border`}
                           >
-                            {idx + 1}. {STRATEGY_OPTIONS.find(o => o.id === route)?.label || route}
+                            {idx + 1}. {strategyOptions.find(o => o.id === route)?.label || route}
                           </Badge>
                         ))}
                       </div>
@@ -8113,7 +8142,7 @@ export function StrategyCommitmentPanel({
                             <div key={idx} className="p-2 rounded-lg border border-amber-500/20 bg-amber-500/5">
                               <div className="text-xs">
                                 <div className="font-semibold text-foreground mb-1">If: {normIfLabel(flip.evidenceEvent)}</div>
-                                <div className="text-muted-foreground mb-1">→ Pivot condition triggered: {STRATEGY_OPTIONS.find(o => o.id === flip.flipsTo)?.label || flip.flipsTo}</div>
+                                <div className="text-muted-foreground mb-1">→ Pivot condition triggered: {strategyOptions.find(o => o.id === flip.flipsTo)?.label || flip.flipsTo}</div>
                                 <div className="text-muted-foreground mb-1">Why: {flip.why}</div>
                                 <div className="text-muted-foreground">Timing: {flip.timing.replace("_", " ")}</div>
                               </div>
@@ -8221,8 +8250,10 @@ export function StrategyCommitmentPanel({
                         {
                           id: "fallback_charge_reduction",
                           type: "charge_reduction",
-                          title: "Charge Reduction (s18 → s20)",
-                          rationale: "Accept harm occurred but challenge intent threshold. Target reduction from s18 to s20 or lesser offence.",
+                          title: strategyOptions.find(o => o.id === "charge_reduction")?.label ?? "Charge Reduction",
+                          rationale: coordinatorResult?.offence?.code === "s18_oapa"
+                            ? "Accept harm occurred but challenge intent threshold. Target reduction from s18 to s20 or lesser offence."
+                            : "Accept elements in part but challenge charge/mental state. Target reduction to lesser offence where applicable.",
                           winConditions: ["Medical evidence supports s20 not s18", "Circumstances show lack of targeting", "CPS case weak on intent"],
                           risks: ["Medical evidence supports s18", "Clear evidence of specific intent", "Court rejects recklessness argument"],
                           nextActions: ["Request medical evidence", "Review sequence evidence", "Prepare charge reduction negotiation"],
@@ -8620,7 +8651,7 @@ export function StrategyCommitmentPanel({
                     <div key={routeType} className="p-3 rounded-lg border border-border/50 bg-muted/10">
                       <div className="flex items-center gap-2 mb-2">
                         <span className="text-xs font-semibold text-foreground">
-                          {STRATEGY_OPTIONS.find(o => o.id === routeType)?.label || routeType}
+                          {strategyOptions.find(o => o.id === routeType)?.label || routeType}
                         </span>
                         <Badge className={`text-xs ${
                           state.current === "HIGH"
@@ -8765,7 +8796,7 @@ export function StrategyCommitmentPanel({
                   Fallback Strategies (Optional, max 3)
               </h3>
               <div className="space-y-2">
-                {STRATEGY_OPTIONS.filter(o => o.id !== primary).map((option) => {
+                {strategyOptions.filter(o => o.id !== primary).map((option) => {
                   const isSelected = secondary.includes(option.id);
                   return (
                       <label
