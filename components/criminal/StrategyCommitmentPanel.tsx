@@ -16,6 +16,8 @@ import { generateWorstCaseCap, type WorstCaseCap } from "@/lib/criminal/worst-ca
 import { buildStrategyCoordinator, type StrategyCoordinatorResult } from "@/lib/criminal/strategy-coordinator";
 import { buildSolicitorView, type SolicitorView } from "@/lib/criminal/solicitor-view";
 import { buildDefenceStrategyPlan, buildEvidenceSnapshot, buildCPSPressureLens, type DefenceStrategyPlan, type CPSPressureLens } from "@/lib/criminal/strategy-output";
+import { getOffenceWording } from "@/lib/criminal/offence-wording";
+import type { OffenceCode } from "@/lib/criminal/offence-elements";
 import { buildJudgeConstraintLens, type JudgeConstraintLens } from "@/lib/criminal/judge-constraint-lens";
 import { buildRoutePlaybooks, type RoutePlaybooks } from "@/lib/criminal/strategy-output/route-playbooks";
 import { buildHearingScripts, type HearingScripts } from "@/lib/criminal/strategy-output/hearing-scripts";
@@ -992,6 +994,58 @@ function getOffenceSpecificBeastPack(
   return null;
 }
 
+/** Build a Beast pack from offence-wording config for any offence that has wording but no explicit pack. */
+function buildBeastPackFromWording(
+  strategyType: "fight_charge" | "charge_reduction",
+  code: string
+): BeastStrategyPack | null {
+  const wording = getOffenceWording(code as OffenceCode);
+  if (!wording) return null;
+
+  const fight = strategyType === "fight_charge";
+  const objective = fight
+    ? wording.actDenial.objective
+    : "Challenge prosecution case on act, causation, or mental element. Seek charge reduction or acquittal. Target negotiated outcome if evidence on key elements is weak.";
+  const burden = wording.actDenial.burden.length ? wording.actDenial.burden : ["Prosecution must prove act and causation beyond reasonable doubt"];
+  const cpsMustProve = burden.map((b) => ({
+    element: b.replace(/^Prosecution must prove\s+/i, "").trim() || b,
+    cpsEvidence: "Evidence to be assessed",
+    defenceChallenge: "Challenge " + (b.includes("must prove") ? b.split("must prove")[1]?.trim() ?? b : b),
+  }));
+
+  return {
+    dashboard: {
+      objective,
+      cpsMustProve: cpsMustProve.slice(0, 6),
+      top3Attacks: [
+        { target: "Act / causation", leverage: "If evidence does not establish defendant's act or causation, case fails", evidenceRequired: "CCTV, witness, forensic [CONDITIONAL]" },
+        { target: "Identification", leverage: "If Turnbull not met, identification unsafe", evidenceRequired: "VIPER pack, CCTV [CONDITIONAL]" },
+        { target: "Disclosure failures", leverage: "Persistent gaps create abuse of process risk", evidenceRequired: "MG6C, key evidence [CONDITIONAL]" },
+      ],
+      primaryKillSwitch: { condition: wording.actDenial.killSwitch.if, pivotTo: wording.actDenial.killSwitch.then },
+    },
+    cpsTheory: {
+      whatHappened: "CPS will argue: Defendant committed the offence. " + wording.actDenial.posture + " [CONDITIONAL - pending full disclosure]",
+      intentArgument: "CPS will argue required mental element from circumstances and conduct. Defence will challenge: " + wording.actDenial.objective + " [CONDITIONAL]",
+      identificationArgument: "CPS will rely on identification. Defence will challenge under Turnbull where relevant. [CONDITIONAL]",
+      weaponCausationArgument: "CPS will rely on evidence linking defendant's conduct to the offence. Defence will argue act/causation or elements not made out. [CONDITIONAL]",
+    },
+    defenceTheory: {
+      narrative: wording.actDenial.posture + " " + wording.actDenial.objective + " [CONDITIONAL]",
+      conditionalFlags: burden.slice(0, 3).map((b) => ({ area: b.slice(0, 40), missingEvidence: "Evidence to be assessed [CONDITIONAL]" })),
+      evidenceSupport: wording.pressure.length ? wording.pressure : ["If act/causation evidence weak → supports act denial [CONDITIONAL]"],
+    },
+    attackRoutes: [
+      { target: "Act / causation", evidenceSupporting: "No clear evidence defendant did the act [CONDITIONAL]", disclosureRequired: "CCTV, witness, forensic", cpsResponse: "CPS will argue act and causation proved", defenceReply: "Defence will argue evidence does not establish act/causation. [CONDITIONAL]", riskIfFails: "Pivot to outcome_management." },
+    ],
+    disclosureLeverage: [{ missingItem: "Key evidence (CCTV, witness, forensic)", whyItMatters: "Cannot assess act/causation without key evidence", chaseWording: "Request all relevant evidence.", timeEscalation: "If not provided, request case management hearing.", applicationPath: "Challenge act/causation if evidence weak." }],
+    courtroomPressure: [{ judgeQuestion: "How can you argue the defendant did not do the act?", cpsAnswer: "CPS will argue evidence establishes defendant's conduct.", defenceReply: wording.actDenial.posture + " [CONDITIONAL]", evidenceCheck: "Review all evidence of conduct." }],
+    killSwitches: wording.killSwitches.slice(0, 4).map((k) => ({ evidenceArrival: k.if, newRoute: k.then, preserved: "Mitigation", abandoned: "Act denial." })),
+    residualAttacks: burden.slice(0, 2).map((b) => ({ area: b.slice(0, 30), tested: false, leverage: "Challenge element", evidenceNeeded: "Evidence to be assessed [CONDITIONAL]" })),
+    next72Hours: wording.actDenial.nextActions.length ? wording.actDenial.nextActions : ["Request full disclosure", "Review evidence of act and causation", "Draft disclosure requests"],
+  };
+}
+
 function getBeastStrategyPack(strategyType: PrimaryStrategy | null, offenceCode?: string): BeastStrategyPack | null {
   if (!strategyType) return null;
   const code = offenceCode?.toLowerCase() ?? "";
@@ -1069,6 +1123,8 @@ function getBeastStrategyPack(strategyType: PrimaryStrategy | null, offenceCode?
       }
       const fightOffencePack = getOffenceSpecificBeastPack("fight_charge", code);
       if (fightOffencePack) return fightOffencePack;
+      const fightWordingPack = buildBeastPackFromWording("fight_charge", code);
+      if (fightWordingPack) return fightWordingPack;
       if (!isOapa) {
         return {
           dashboard: {
@@ -1342,6 +1398,8 @@ function getBeastStrategyPack(strategyType: PrimaryStrategy | null, offenceCode?
       }
       const reductionOffencePack = getOffenceSpecificBeastPack("charge_reduction", code);
       if (reductionOffencePack) return reductionOffencePack;
+      const reductionWordingPack = buildBeastPackFromWording("charge_reduction", code);
+      if (reductionWordingPack) return reductionWordingPack;
       if (!isOapa) {
         return {
           dashboard: {

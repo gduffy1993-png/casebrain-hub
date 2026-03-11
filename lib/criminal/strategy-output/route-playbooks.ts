@@ -9,6 +9,8 @@ import type { EvidenceSnapshot } from "./types";
 import type { CPSPressureLens } from "./cps-pressure";
 import type { JudgeConstraintLens } from "../judge-constraint-lens";
 import { CANONICAL_ROUTES, type CanonicalRouteId } from "../strategy-routes";
+import { getOffenceWording } from "../offence-wording";
+import type { OffenceCode } from "../offence-elements";
 
 export type RoutePlaybook = {
   route_id: string;
@@ -197,55 +199,10 @@ function buildPostureAndObjective(
       };
 
     case "act_denial": {
-      const offenceCode = (snapshot.offence?.code ?? "").toLowerCase();
-      const isOapa = offenceCode.includes("s18") || offenceCode.includes("s20") || offenceCode.includes("oapa");
-      if (offenceCode.includes("criminal_damage") || offenceCode.includes("arson")) {
-        return {
-          posture: "Defence posture: deny that defendant caused the damage or started the fire; challenge causation and presence at scene.",
-          objective: "Require prosecution to prove defendant caused damage or ignition beyond reasonable doubt; challenge evidence of who did the act.",
-        };
-      }
-      if (isOapa) {
-        return {
-          posture: "Defence posture: deny act occurred or challenge causation between act and injury.",
-          objective: "Require prosecution to prove act and causation beyond reasonable doubt; challenge sequence and mechanism.",
-        };
-      }
-      if (offenceCode === "theft") {
-        return {
-          posture: "Defence posture: deny appropriation or dishonesty or intention to permanently deprive; challenge identification or ownership.",
-          objective: "Require prosecution to prove appropriation, dishonesty, and intention to permanently deprive beyond reasonable doubt.",
-        };
-      }
-      if (offenceCode === "burglary") {
-        return {
-          posture: "Defence posture: deny entry as trespasser or required intent; challenge identification or consent to enter.",
-          objective: "Require prosecution to prove entry as trespasser and intent (or ulterior offence) beyond reasonable doubt.",
-        };
-      }
-      if (offenceCode === "robbery") {
-        return {
-          posture: "Defence posture: deny theft or force/threat of force at the time; challenge identification or timing.",
-          objective: "Require prosecution to prove theft and force or threat of force immediately before or at the time of theft beyond reasonable doubt.",
-        };
-      }
-      if (offenceCode === "fraud") {
-        return {
-          posture: "Defence posture: deny dishonesty or false representation / failure to disclose / abuse of position; challenge intent to gain or cause loss.",
-          objective: "Require prosecution to prove dishonesty and relevant conduct and gain/loss beyond reasonable doubt.",
-        };
-      }
-      if (offenceCode === "s47_oapa") {
-        return {
-          posture: "Defence posture: deny assault or battery or causation of actual bodily harm; challenge identification or mechanism.",
-          objective: "Require prosecution to prove assault/battery and causation of ABH beyond reasonable doubt.",
-        };
-      }
-      if (offenceCode === "common_assault") {
-        return {
-          posture: "Defence posture: deny assault or battery; challenge identification or intent.",
-          objective: "Require prosecution to prove assault or battery beyond reasonable doubt.",
-        };
+      const offenceCode = snapshot.offence?.code;
+      const wording = offenceCode ? getOffenceWording(offenceCode as OffenceCode) : null;
+      if (wording?.actDenial) {
+        return { posture: wording.actDenial.posture, objective: wording.actDenial.objective };
       }
       return {
         posture: "Defence posture: deny the act occurred or challenge causation between defendant's act and the offence.",
@@ -354,38 +311,9 @@ function buildProsecutionBurden(
       break;
 
     case "act_denial": {
-      const isOapa = offenceCode.includes("s18") || offenceCode.includes("s20") || offenceCode.includes("oapa");
-      if (offenceCode.includes("criminal_damage") || offenceCode.includes("arson")) {
-        burden.push("Prosecution must prove defendant caused the damage or started the fire");
-        burden.push("Prosecution must establish causation between defendant's act and damage/ignition");
-        burden.push("Prosecution must provide evidence of defendant's presence and act (e.g. ignition, damage mechanism)");
-      } else if (isOapa) {
-        burden.push("Prosecution must prove act occurred beyond reasonable doubt");
-        burden.push("Prosecution must establish causation between act and injury");
-        burden.push("Prosecution must provide sequence evidence (timing, mechanism)");
-      } else if (offenceCode === "theft") {
-        burden.push("Prosecution must prove appropriation of property belonging to another");
-        burden.push("Prosecution must prove dishonesty (Ghosh/Ivey) and intention to permanently deprive");
-        burden.push("Prosecution must provide evidence linking defendant to the property and conduct");
-      } else if (offenceCode === "burglary") {
-        burden.push("Prosecution must prove entry as trespasser into building or part of building");
-        burden.push("Prosecution must prove intent to steal/damage/commit GBH or ulterior offence at time of entry");
-        burden.push("Prosecution must provide evidence of entry and lack of consent/authority");
-      } else if (offenceCode === "robbery") {
-        burden.push("Prosecution must prove all elements of theft");
-        burden.push("Prosecution must prove force or threat of force used immediately before or at the time of theft");
-        burden.push("Prosecution must provide evidence of theft and force/threat and timing");
-      } else if (offenceCode === "fraud") {
-        burden.push("Prosecution must prove dishonesty and (false representation / failure to disclose / abuse of position)");
-        burden.push("Prosecution must prove intent to make gain or cause loss (or exposure to risk)");
-        burden.push("Prosecution must provide evidence of representation/conduct and gain or loss");
-      } else if (offenceCode === "s47_oapa") {
-        burden.push("Prosecution must prove assault or battery");
-        burden.push("Prosecution must prove causation of actual bodily harm");
-        burden.push("Prosecution must provide evidence of assault and harm and causation");
-      } else if (offenceCode === "common_assault") {
-        burden.push("Prosecution must prove assault or battery beyond reasonable doubt");
-        burden.push("Prosecution must provide evidence of defendant's conduct and victim's apprehension or contact");
+      const actDenialWording = offenceCode ? getOffenceWording(offenceCode as OffenceCode)?.actDenial : null;
+      if (actDenialWording?.burden?.length) {
+        burden.push(...actDenialWording.burden);
       } else {
         burden.push("Prosecution must prove the act occurred beyond reasonable doubt");
         burden.push("Prosecution must establish causation between defendant's act and the offence");
@@ -545,47 +473,11 @@ function buildKillSwitches(
       break;
 
     case "act_denial": {
-      const offenceCode = (snapshot.offence?.code ?? "").toLowerCase();
-      const isOapa = offenceCode.includes("s18") || offenceCode.includes("s20") || offenceCode.includes("oapa");
-      if (offenceCode.includes("criminal_damage") || offenceCode.includes("arson")) {
+      const actDenialWording = snapshot.offence?.code ? getOffenceWording(snapshot.offence.code as OffenceCode)?.actDenial : null;
+      if (actDenialWording?.killSwitch) {
         killSwitches.push({
-          if: "If evidence arrives showing defendant caused damage or started the fire (e.g. CCTV, ignition, witness)",
-          then: "Pivot to alternative route; act denial becomes blocked",
-        });
-      } else if (isOapa) {
-        killSwitches.push({
-          if: "If clear sequence evidence arrives showing act and causation",
-          then: "Pivot to alternative route; act denial becomes blocked",
-        });
-      } else if (offenceCode === "theft") {
-        killSwitches.push({
-          if: "If evidence arrives showing appropriation, dishonesty and intention to permanently deprive (e.g. CCTV, recovery, admissions)",
-          then: "Pivot to alternative route; act denial becomes blocked",
-        });
-      } else if (offenceCode === "burglary") {
-        killSwitches.push({
-          if: "If evidence arrives showing entry as trespasser and intent (e.g. CCTV, forensics, witness)",
-          then: "Pivot to alternative route; act denial becomes blocked",
-        });
-      } else if (offenceCode === "robbery") {
-        killSwitches.push({
-          if: "If evidence arrives showing theft and force/threat at the time (e.g. witness, CCTV, injury)",
-          then: "Pivot to alternative route; act denial becomes blocked",
-        });
-      } else if (offenceCode === "fraud") {
-        killSwitches.push({
-          if: "If evidence arrives showing dishonesty and representation/conduct and gain or loss",
-          then: "Pivot to alternative route; act denial becomes blocked",
-        });
-      } else if (offenceCode === "s47_oapa") {
-        killSwitches.push({
-          if: "If evidence arrives showing assault/battery and causation of ABH (e.g. medical, CCTV)",
-          then: "Pivot to alternative route; act denial becomes blocked",
-        });
-      } else if (offenceCode === "common_assault") {
-        killSwitches.push({
-          if: "If evidence arrives showing assault or battery (e.g. witness, CCTV, injury)",
-          then: "Pivot to alternative route; act denial becomes blocked",
+          if: actDenialWording.killSwitch.if,
+          then: actDenialWording.killSwitch.then,
         });
       } else {
         killSwitches.push({
@@ -713,40 +605,9 @@ function buildNextActions(
       break;
 
     case "act_denial": {
-      const offenceCode = (snapshot.offence?.code ?? "").toLowerCase();
-      const isOapa = offenceCode.includes("s18") || offenceCode.includes("s20") || offenceCode.includes("oapa");
-      if (offenceCode.includes("criminal_damage") || offenceCode.includes("arson")) {
-        actions.push("Review evidence of who caused damage or started fire (CCTV, ignition, presence)");
-        actions.push("Challenge causation and defendant's role if evidence of act is weak");
-        actions.push("Prepare act denial submissions (damage/ignition, not injury)");
-      } else if (isOapa) {
-        actions.push("Review sequence evidence and timing");
-        actions.push("Challenge act and causation if sequence unclear");
-        actions.push("Prepare act denial submissions");
-      } else if (offenceCode === "theft") {
-        actions.push("Review evidence of appropriation, dishonesty and intention to permanently deprive");
-        actions.push("Challenge identification, ownership or consent where weak");
-        actions.push("Prepare act denial submissions (theft elements)");
-      } else if (offenceCode === "burglary") {
-        actions.push("Review evidence of entry as trespasser and intent");
-        actions.push("Challenge consent to enter, identification or intent");
-        actions.push("Prepare act denial submissions (burglary elements)");
-      } else if (offenceCode === "robbery") {
-        actions.push("Review evidence of theft and force/threat at the time");
-        actions.push("Challenge theft elements or timing of force");
-        actions.push("Prepare act denial submissions (robbery elements)");
-      } else if (offenceCode === "fraud") {
-        actions.push("Review evidence of dishonesty and representation/conduct and gain or loss");
-        actions.push("Challenge representation, intent or causation of loss");
-        actions.push("Prepare act denial submissions (fraud elements)");
-      } else if (offenceCode === "s47_oapa") {
-        actions.push("Review evidence of assault/battery and causation of ABH");
-        actions.push("Challenge assault, causation or level of harm");
-        actions.push("Prepare act denial submissions (ABH elements)");
-      } else if (offenceCode === "common_assault") {
-        actions.push("Review evidence of assault or battery");
-        actions.push("Challenge identification or intent");
-        actions.push("Prepare act denial submissions");
+      const actDenialWording = snapshot.offence?.code ? getOffenceWording(snapshot.offence.code as OffenceCode)?.actDenial : null;
+      if (actDenialWording?.nextActions?.length) {
+        actions.push(...actDenialWording.nextActions);
       } else {
         actions.push("Review evidence of defendant's act and causation");
         actions.push("Challenge act and causation if evidence is weak or circumstantial");
