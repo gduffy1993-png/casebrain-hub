@@ -25,12 +25,20 @@ export function generateWorstCaseCap(
   charges: Array<{ offence: string; section?: string }>,
   incidentShape: IncidentShape,
   weaponTracker: WeaponTracker | null,
-  _evidenceImpactMap?: Array<{ evidenceItem: { name: string } }>
+  _evidenceImpactMap?: Array<{ evidenceItem: { name: string } }>,
+  resolvedOffenceLabel?: string
 ): WorstCaseCap {
   const def = detectOffence(charges);
   const code = def.code;
   const topCharge = charges[0];
   const chargeText = topCharge?.offence || def.label || "unknown offence";
+  // When offence not detected from charges, use resolved label from case if provided (avoids "Unknown Offence" in UI)
+  const displayLabel =
+    code !== "unknown"
+      ? chargeText
+      : (resolvedOffenceLabel?.trim() && resolvedOffenceLabel.toLowerCase() !== "unknown offence"
+        ? resolvedOffenceLabel.trim()
+        : chargeText);
   const section = topCharge?.section || "";
 
   const wording = getOffenceWording(code) ?? getGenericWording();
@@ -58,7 +66,7 @@ export function generateWorstCaseCap(
     }
   }
 
-  let ceiling = chargeText;
+  let ceiling = displayLabel;
   if (code === "s18_oapa" && (section?.includes("18") || chargeText.toLowerCase().includes("section 18"))) {
     if (absentEvidence.includes("sustained or targeted intent")) {
       ceiling = "s.20 OAPA 1861 (wounding/inflicting GBH)";

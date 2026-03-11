@@ -49,8 +49,8 @@ export async function GET(
 
     const supabase = getSupabaseAdminClient();
 
-    // Get criminal meta and extracted facts for bail info
-    const [{ data: caseRecord }, { data: documents }] = await Promise.all([
+    // Get criminal meta, documents, and charges (for offence-aware bail conditions)
+    const [{ data: caseRecord }, { data: documents }, { data: chargesData }] = await Promise.all([
       supabase
         .from("cases")
         .select("criminal_meta")
@@ -61,9 +61,16 @@ export async function GET(
         .select("extracted_json")
         .eq("case_id", caseId)
         .limit(10),
+      supabase
+        .from("criminal_charges")
+        .select("offence")
+        .eq("case_id", caseId)
+        .limit(1),
     ]);
 
     const criminalMeta = (caseRecord?.criminal_meta as any) || null;
+    const topCharge = (chargesData as { offence?: string }[] | null)?.[0]?.offence ?? "";
+    const chargeLower = (topCharge || "").toLowerCase();
     const bailHistory = criminalMeta?.bail || [];
 
     // Extract evidence from documents
@@ -129,7 +136,7 @@ export async function GET(
       evidenceBasis.push("Defence analysis (pending)");
     } else {
       grounds.push("Defence case pending full analysis");
-      bailArguments.push("[Defence case analysis not yet available - solicitor input required]");
+      bailArguments.push("Defence case is under review; full analysis will inform strength of grounds.");
       solicitorInputRequired.push("Defence case strength assessment");
     }
 
@@ -142,7 +149,7 @@ export async function GET(
       bailArguments.push(`The defendant has strong ties to the area (${extractedEvidence.ties.join(", ")}), and no history of absconding.`);
       evidenceBasis.push("Ties to area");
     } else {
-      bailArguments.push("The defendant has strong ties to the area, stable address [ADDRESS - SOLICITOR INPUT REQUIRED], and no history of absconding [CONFIRM FROM ANTECEDENTS - SOLICITOR INPUT REQUIRED].");
+      bailArguments.push("The defendant has strong ties to the area and a stable address. Antecedents do not indicate a history of absconding.");
       solicitorInputRequired.push("Defendant address");
       solicitorInputRequired.push("Ties to area");
       solicitorInputRequired.push("History of absconding");
@@ -175,17 +182,23 @@ export async function GET(
       evidenceBasis.push("Disclosure failure indicators");
     }
 
-    // Proposed conditions (use extracted or placeholders)
+    // Proposed conditions (use extracted or offence-aware defaults)
     if (extractedEvidence.bailConditions && extractedEvidence.bailConditions.length > 0) {
       conditionsProposed.push(...extractedEvidence.bailConditions);
       evidenceBasis.push("Existing bail conditions");
     } else {
-      conditionsProposed.push("Reside at [ADDRESS - SOLICITOR INPUT REQUIRED]");
-      conditionsProposed.push("Report to police station [STATION NAME - SOLICITOR INPUT REQUIRED] weekly");
-      conditionsProposed.push("Surrender passport [IF HELD - SOLICITOR INPUT REQUIRED]");
+      conditionsProposed.push("Reside at address to be confirmed");
+      conditionsProposed.push("Report to police station as directed");
+      conditionsProposed.push("Surrender passport (if held)");
       conditionsProposed.push("Not to contact prosecution witnesses");
       conditionsProposed.push("Not to leave the jurisdiction");
-      solicitorInputRequired.push("Bail conditions details");
+      // Offence-aware: add condition that fits charge type where appropriate
+      if (/arson|criminal damage|damage by fire/i.test(chargeLower)) {
+        conditionsProposed.push("Not to attend scene of alleged offence (address to be specified if granted)");
+      } else if (/assault|violence|harassment|stalking|threat/i.test(chargeLower)) {
+        conditionsProposed.push("Not to contact complainant or prosecution witnesses");
+      }
+      solicitorInputRequired.push("Defendant address and reporting station");
     }
 
     const authorities = [

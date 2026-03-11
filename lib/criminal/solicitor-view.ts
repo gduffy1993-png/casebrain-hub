@@ -86,8 +86,9 @@ function buildHeadline(reasoning: StrategyCoordinatorResult): string {
     parts.push("case under review");
   }
 
-  // Offence context
-  if (reasoning.offence.label && reasoning.offence.label !== "Unknown offence") {
+  // Offence context (omit when unknown so we don't show "Unknown Offence" in headline)
+  const offenceLabel = (reasoning.offence.label || "").trim();
+  if (offenceLabel && offenceLabel.toLowerCase() !== "unknown offence") {
     parts.push(`(${reasoning.offence.label})`);
   }
 

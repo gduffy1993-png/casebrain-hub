@@ -48,6 +48,8 @@ export type DefenceStrategyPlan = {
     immediate_actions: string[];
   }>;
   next_72_hours: string[]; // Procedural + tactical tasks (max 8)
+  /** Case-driven defence angles: what's weak or missing in this case (max 6). */
+  defence_angles: string[];
 };
 
 /**
@@ -105,6 +107,9 @@ export function buildDefenceStrategyPlan(input: {
   // Stage 6: Attack sequence (primary / if fails / then)
   const attack_sequence = buildAttackSequence(primary_route, secondary_routes, pivot_plan);
 
+  // Key defence angles: case-driven from weak elements and disclosure gaps (no speculative content)
+  const defence_angles = buildDefenceAngles(snapshot, offenceElements);
+
   return {
     strategy_line,
     risks_fallbacks,
@@ -117,6 +122,7 @@ export function buildDefenceStrategyPlan(input: {
     kill_switches,
     pivot_plan,
     next_72_hours,
+    defence_angles,
   };
 }
 
@@ -156,6 +162,42 @@ function buildPosture(
   return parts.length > 0
     ? `Defence posture: ${parts.join(", ")}.`
     : "Defence posture: case under review.";
+}
+
+/**
+ * Build key defence angles from case state only (weak elements, disclosure gaps, identification).
+ * Case-driven: only surfaces angles supported by this case's evidence state. Max 6.
+ */
+function buildDefenceAngles(
+  snapshot: EvidenceSnapshot,
+  offenceElements: Array<{ id: string; label: string; support: string; gaps?: string[] }>
+): string[] {
+  const angles: string[] = [];
+  const code = (snapshot.offence?.code ?? "").toLowerCase();
+  const keyGaps = snapshot.evidence?.key_gaps ?? [];
+  const requiredMissing = snapshot.disclosure?.required_without_timeline ?? [];
+
+  // From weak/none elements
+  const weak = offenceElements.filter(e => e.support === "weak" || e.support === "none");
+  for (const e of weak.slice(0, 3)) {
+    angles.push(`Evidence does not establish ${e.label.toLowerCase()} to the required standard`);
+  }
+
+  // From key_gaps (offence-aware phrasing)
+  if (angles.length < 6 && keyGaps.some(g => /cctv|footage|video/i.test(g))) {
+    angles.push("No CCTV to confirm or exclude defendant's presence or conduct");
+  }
+  if (angles.length < 6 && (code.includes("criminal_damage") || code.includes("arson")) && keyGaps.some(g => /fire|ignition|cause|origin/i.test(g))) {
+    angles.push("No ignition source or cause of fire established");
+  }
+  if (angles.length < 6 && snapshot.flags?.id_uncertainty) {
+    angles.push("Identification disputed or insufficient");
+  }
+  if (angles.length < 6 && requiredMissing.length > 0) {
+    angles.push("Key disclosure outstanding; prosecution case cannot be fully assessed");
+  }
+
+  return angles.slice(0, 6);
 }
 
 /**

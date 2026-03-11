@@ -197,7 +197,8 @@ export function buildStrategyCoordinator(
       result.routes,
       input.disclosureTimeline || [],
       input.recordedPosition,
-      input.irreversibleDecisions || []
+      input.irreversibleDecisions || [],
+      result.offence.code
     );
     audit_trace.push(`[COORDINATOR] Next actions generated: ${result.next_actions.length} actions`);
 
@@ -759,9 +760,11 @@ function generateNextActionsDeterministic(
   routes: CanonicalRouteAssessment[],
   disclosureTimeline: Array<{ item: string; action: string; date: string; note?: string }>,
   recordedPosition: any,
-  irreversibleDecisions: Array<{ id: string; status: string }>
+  irreversibleDecisions: Array<{ id: string; status: string }>,
+  offenceCode: string = ""
 ): string[] {
   const actions: string[] = [];
+  const isOapa = offenceCode.includes("s18") || offenceCode.includes("s20") || offenceCode.includes("s47") || offenceCode.includes("oapa");
 
   // 1. Chase outstanding dependencies (max 3)
   const outstandingDeps = dependencies.filter(d => d.status === "outstanding");
@@ -790,8 +793,8 @@ function generateNextActionsDeterministic(
     }
   }
 
-  // 3. Confirm medical mechanism (if injury element weak)
-  if (actions.length < 8) {
+  // 3. OAPA only: confirm medical mechanism (if injury element weak). Skip for non-OAPA offences.
+  if (actions.length < 8 && isOapa) {
     const injuryElement = routes.find(r => r.id.includes("weapon") || r.id.includes("causation"));
     if (injuryElement && (injuryElement.status === "risky" || injuryElement.status === "blocked")) {
       actions.push("Confirm medical mechanism and fracture/injury causation");

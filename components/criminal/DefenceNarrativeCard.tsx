@@ -18,10 +18,11 @@ type DefenceNarrativeCardProps = {
 export function DefenceNarrativeCard({ snapshot, recordedPositionText }: DefenceNarrativeCardProps) {
   const offenceLabel = snapshot?.resolvedOffence?.label;
   const primary = snapshot?.strategy?.primary;
+  // Build descriptive leverage from weak elements (avoid repeating "Primary leverage")
   const keyLeverage = snapshot?.strategy?.burdenMap
     ?.filter((e) => e.leverage && e.leverage !== "No challenge")
     .slice(0, 2)
-    .map((e) => e.leverage);
+    .map((e) => (e.leverage === "Primary leverage" && e.label ? `${e.label} weak or disputed` : e.leverage));
   const positionSummary =
     recordedPositionText ??
     snapshot?.decisionLog?.currentPosition?.position;

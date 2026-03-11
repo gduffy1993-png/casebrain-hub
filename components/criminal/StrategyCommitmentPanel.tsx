@@ -3665,11 +3665,13 @@ function WorstCaseCapPanel({
   incidentShape: propIncidentShape,
   weaponTracker: propWeaponTracker,
   evidenceImpactMap,
+  resolvedOffenceLabel,
 }: {
   caseId: string | undefined;
   incidentShape: IncidentShapeAnalysis | null;
   weaponTracker: WeaponTracker | null;
   evidenceImpactMap: EvidenceImpactMap[];
+  resolvedOffenceLabel?: string;
 }) {
   const [worstCaseCap, setWorstCaseCap] = useState<WorstCaseCap | null>(null);
   const [loading, setLoading] = useState(true);
@@ -3707,12 +3709,13 @@ function WorstCaseCapPanel({
           setWeaponTracker(tracker);
         }
 
-        // Generate worst-case cap
+        // Generate worst-case cap (pass resolved offence label when charges API misses it so we don't show "Unknown Offence")
         const cap = generateWorstCaseCap(
           charges.map((c: any) => ({ offence: c.offence || "", section: c.section || "" })),
           incidentShape?.shape || "unclear_disclosure_dependent",
           weaponTracker,
-          evidenceImpactMap
+          evidenceImpactMap,
+          resolvedOffenceLabel
         );
         setWorstCaseCap(cap);
       } catch (error) {
@@ -5430,6 +5433,11 @@ export function StrategyCommitmentPanel({
         cpsPressureLens.pressure_points.slice(0, 4).forEach((p) => lines.push(`• ${p.point}`));
         lines.push("");
       }
+      if ((defenceStrategyPlan.defence_angles?.length ?? 0) > 0) {
+        lines.push("Key defence angles:");
+        (defenceStrategyPlan.defence_angles ?? []).slice(0, 6).forEach((a) => lines.push(`• ${a}`));
+        lines.push("");
+      }
       if ((defenceStrategyPlan.defence_counters?.length ?? 0) > 0) {
         lines.push("Defence counters:");
         dedupeBy((defenceStrategyPlan.defence_counters ?? []).slice(0, 4), (c) => (c.point ?? "") + "\n" + (c.safe_wording ?? "") + "\n" + ((c as { evidence_needed?: string[] }).evidence_needed?.join("\n") ?? "")).forEach((c) => lines.push(`• ${c.point}: ${c.safe_wording}`));
@@ -6420,6 +6428,18 @@ export function StrategyCommitmentPanel({
                   </div>
                 )}
 
+                {/* Key defence angles (case-driven from weak elements and disclosure gaps) */}
+                {defenceStrategyPlan.defence_angles?.length > 0 && (
+                  <div>
+                    <span className="font-semibold text-muted-foreground mb-1 block">Key defence angles:</span>
+                    <ul className="list-disc list-inside space-y-0.5 text-foreground text-xs">
+                      {defenceStrategyPlan.defence_angles.slice(0, 6).map((angle, idx) => (
+                        <li key={idx}>{angle}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
                 {/* Defence Counters */}
                 {defenceStrategyPlan.defence_counters.length > 0 && (
                   <div>
@@ -7320,6 +7340,18 @@ export function StrategyCommitmentPanel({
                   </div>
                 )}
 
+                {/* Key defence angles (case-driven from weak elements and disclosure gaps) */}
+                {defenceStrategyPlan.defence_angles?.length > 0 && (
+                  <div>
+                    <span className="font-semibold text-muted-foreground mb-1 block">Key defence angles:</span>
+                    <ul className="list-disc list-inside space-y-0.5 text-foreground text-xs">
+                      {defenceStrategyPlan.defence_angles.slice(0, 6).map((angle, idx) => (
+                        <li key={idx}>{angle}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
                 {/* Defence Counters, Kill Switches, Pivot Plan (compact) */}
                 {defenceStrategyPlan.defence_counters?.length > 0 && (
                   <div>
@@ -7754,37 +7786,6 @@ export function StrategyCommitmentPanel({
             </div>
           )}
 
-        {/* Case Readiness Gate – single check before hearing */}
-        {isCommitted && (
-          <div className="rounded-lg border-2 p-4 space-y-2">
-            <h3 className="text-sm font-semibold text-foreground">Case Readiness</h3>
-            {effectiveProceduralSafety?.status === "SAFE" ? (
-              <div className="flex items-center gap-2 text-green-700 dark:text-green-400">
-                <CheckCircle className="h-5 w-5 shrink-0" />
-                <div>
-                  <p className="font-medium">Case ready</p>
-                  <p className="text-xs text-muted-foreground">Disclosure complete (per Safety panel). Proceed to hearing preparation.</p>
-                  {hasClientInstructions && (
-                    <p className="text-xs text-muted-foreground mt-1">Client instructions recorded.</p>
-                  )}
-                </div>
-              </div>
-            ) : (
-              <div className="flex items-start gap-2 text-amber-700 dark:text-amber-400">
-                <AlertTriangle className="h-5 w-5 shrink-0 mt-0.5" />
-                <div>
-                  <p className="font-medium">Not ready</p>
-                  <p className="text-xs text-muted-foreground mt-1">{effectiveProceduralSafety?.explanation || "Critical disclosure missing. See Safety panel."}</p>
-                  <p className="text-xs text-muted-foreground mt-1">Resolve before relying on strategy for hearing.</p>
-                  {hasClientInstructions && (
-                    <p className="text-xs text-muted-foreground mt-1">Client instructions recorded.</p>
-                  )}
-                </div>
-              </div>
-            )}
-          </div>
-        )}
-
         {/* Procedural Safety Status - CRITICAL */}
         {isCommitted && (
           <div id="section-safety" className="scroll-mt-24">
@@ -7804,6 +7805,7 @@ export function StrategyCommitmentPanel({
               incidentShape={null}
               weaponTracker={null}
               evidenceImpactMap={evidenceImpactMap}
+              resolvedOffenceLabel={resolvedOffence?.label ?? coordinatorResult?.offence?.label}
             />
           )}
       </div>
@@ -8091,6 +8093,7 @@ export function StrategyCommitmentPanel({
             incidentShape={null}
             weaponTracker={null}
             evidenceImpactMap={evidenceImpactMap}
+            resolvedOffenceLabel={resolvedOffence?.label ?? coordinatorResult?.offence?.label}
           />
         )}
 

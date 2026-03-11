@@ -726,7 +726,8 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
             )}
 
             {strategySubTab === "full" && currentPhase >= 2 && (
-              <FoldSection id="section-bail" title="Bail" defaultOpen={true}>
+              <FoldSection id="section-bail" title="Bail application & conditions" defaultOpen={false}>
+                <p className="text-xs text-muted-foreground mb-4">Template for bail applications. Expand to view or copy. Verify all facts before use.</p>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   {showBailTools && <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Bail application will appear once analysis is run.</div></Card>}><BailApplicationPanel caseId={caseId} /></ErrorBoundary>}
                   <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Bail tracker will appear once analysis is run.</div></Card>}><BailTracker caseId={caseId} /></ErrorBoundary>

@@ -25,8 +25,9 @@ export function PressurePointsList({
     points.push({ label: d.label || d.id, type: "missing_doc" });
   });
   weakElements.forEach((e) => {
-    const gap = e.gaps?.[0] || e.label;
-    points.push({ label: `${e.label}: ${gap}`, type: "weak_inference" });
+    const gap = e.gaps?.[0];
+    const description = gap && gap !== e.label ? gap : "insufficient evidence support";
+    points.push({ label: `${e.label}: ${description}`, type: "weak_inference" });
   });
   outstandingItems.forEach((item) => {
     if (typeof item === "string" && item.trim() && !points.some((p) => p.label === item)) {

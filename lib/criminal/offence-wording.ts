@@ -174,6 +174,51 @@ export const OFFENCE_WORDING: Partial<Record<OffenceCode, OffenceWording>> = {
     ["Pressure point: inference of dishonesty from representation or conduct and outcome", "Pressure point: gain or loss may be inferred from documents or accounts"],
     [{ if: "Evidence arrives showing dishonesty and representation/conduct and gain or loss", then: "Act denial (fraud elements) becomes harder", evidence_needed: ["Documents", "Financial records", "Witness statements"] }]
   ),
+  harassment: w(
+    ["evidence of course of conduct and that it amounted to harassment"],
+    ["course of conduct and harassment / fear of violence"],
+    "Defence posture: deny course of conduct or that conduct amounted to harassment; challenge intent or that victim was harassed.",
+    "Require prosecution to prove course of conduct and that it amounted to harassment beyond reasonable doubt; challenge pattern and effect.",
+    ["Prosecution must prove course of conduct (at least 2 occasions)", "Prosecution must prove conduct amounted to harassment (or fear of violence)", "Prosecution must provide evidence of pattern and victim impact"],
+    "If evidence arrives showing clear course of conduct and harassment (e.g. communications, witness, pattern)",
+    "Pivot to alternative route; act denial becomes blocked",
+    ["Review evidence of course of conduct and alleged harassment", "Challenge whether conduct amounts to harassment or intent", "Prepare act denial submissions (PHA 1997 elements)"],
+    ["Pressure point: inference of course of conduct from communications and witness evidence", "Pressure point: harassment may be inferred from victim and pattern evidence"],
+    [
+      { if: "Further communications or witness evidence establishes clear course of conduct and harassment", then: "Act denial (harassment elements) becomes harder", evidence_needed: ["Communications", "Witness statements", "Pattern evidence"] },
+      { if: "Restraining order or similar history served", then: "Review route; pattern defences may be relevant", evidence_needed: ["Court orders", "Previous findings"] },
+    ]
+  ),
+  drug_possession: w(
+    ["evidence of possession and that substance is a controlled drug"],
+    ["possession of controlled drug"],
+    "Defence posture: deny possession or that the substance was a controlled drug; challenge knowledge or control.",
+    "Require prosecution to prove possession and that substance is a controlled drug beyond reasonable doubt; challenge chain of custody and forensic proof.",
+    ["Prosecution must prove possession (knowledge and control)", "Prosecution must prove substance is a controlled drug (forensic analysis)", "Prosecution must provide evidence of recovery and chain of custody"],
+    "If forensic evidence and chain establish possession of controlled drug",
+    "Pivot to alternative route; act denial becomes blocked",
+    ["Review forensic and chain of custody", "Challenge possession (knowledge/control) or identity of substance", "Prepare act denial submissions (possession and controlled drug)"],
+    ["Pressure point: inference of possession from recovery and location", "Pressure point: controlled drug identity from forensic analysis"],
+    [
+      { if: "Forensic report confirms controlled drug and chain of custody is strong", then: "Act denial (possession/identity) becomes harder", evidence_needed: ["Forensic report", "Chain of custody", "Recovery evidence"] },
+      { if: "Evidence of intent to supply emerges (quantity, packaging)", then: "Review charge; PWITS route may apply", evidence_needed: ["Quantity", "Packaging", "Circumstances"] },
+    ]
+  ),
+  drink_drive: w(
+    ["evidence of driving or in charge and over prescribed limit or unfit"],
+    ["driving or in charge and over limit or unfit through drink or drugs"],
+    "Defence posture: deny driving/in charge or challenge procedure (specimen, procedure, reasonable excuse); challenge reliability of reading.",
+    "Require prosecution to prove driving or in charge and over limit or unfit beyond reasonable doubt; challenge procedure and reasonable excuse.",
+    ["Prosecution must prove driving or in charge", "Prosecution must prove over prescribed limit or unfit through drink/drugs", "Prosecution must prove procedure was correct (specimen, device, timing)"],
+    "If procedure is upheld and reading/assessment stands",
+    "Pivot to alternative route; procedure challenge becomes blocked",
+    ["Review procedure (specimen, device, timing) and reasonable excuse", "Challenge driving/in charge or reliability of reading", "Prepare act denial or procedure submissions"],
+    ["Pressure point: inference from specimen and procedure", "Pressure point: procedure compliance may be presumed if not challenged"],
+    [
+      { if: "Procedure upheld and reading/assessment confirmed (e.g. expert, calibration)", then: "Procedure challenge or act denial becomes harder", evidence_needed: ["Calibration", "Expert evidence", "Procedure record"] },
+      { if: "Evidence of driving and consumption strengthens", then: "In charge / consumption defences reduce", evidence_needed: ["Witness", "CCTV", "Consumption evidence"] },
+    ]
+  ),
 };
 
 // Add wording for all other offence codes using a generic-but-element-aware pattern
