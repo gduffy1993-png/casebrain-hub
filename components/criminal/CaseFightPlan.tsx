@@ -957,9 +957,7 @@ export function CaseFightPlan({
                 <div className="mb-4 p-2 rounded-lg border border-amber-500/20 bg-amber-500/5">
                   <p className="text-xs text-foreground">
                     <span className="font-semibold">Strategy analysis: Preview (gated)</span>
-                    <span className="text-muted-foreground ml-2">
-                      (Using procedural templates - evidence-backed analysis pending disclosure)
-                    </span>
+                    <span className="text-muted-foreground ml-2">Evidence-backed analysis after disclosure.</span>
                   </p>
                 </div>
               );

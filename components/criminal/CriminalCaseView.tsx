@@ -660,18 +660,10 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
                     </div>
                   )}
                 </div>
-                {snapshot.evidence?.disclosureItems?.filter((d) => d.status === "Outstanding" || d.status === "Unknown").length > 0 && (
-                  <div className="mt-3 pt-3 border-t border-border">
-                    <p className="text-xs text-muted-foreground mb-1">What we&apos;re waiting on</p>
-                    <p className="text-sm text-foreground">
-                      {snapshot.evidence.disclosureItems
-                        .filter((d) => d.status === "Outstanding" || d.status === "Unknown")
-                        .slice(0, 5)
-                        .map((d) => d.item)
-                        .join(" · ") || "—"}
-                    </p>
-                  </div>
-                )}
+                {/* What we're waiting on: shown once in Strategy column (WhatWeAreWaitingOn) */}
+                <p className="text-[11px] text-muted-foreground mt-3 pt-2 border-t border-border/50">
+                  For headline, dispute points and route summary see Strategy Overview in the Strategy column below.
+                </p>
               </Card>
 
               <StrategyBurdenAndPressure snapshot={snapshot} />

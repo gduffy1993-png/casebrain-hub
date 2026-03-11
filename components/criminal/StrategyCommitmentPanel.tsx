@@ -2287,8 +2287,7 @@ ${worstCaseCap ? `WORST-CASE EXPOSURE CAP:\n${worstCaseCap.explanation}\n` : ""}
 
             <div>
               <span className="font-semibold text-foreground">Recorded Defence Position: </span>
-              <p className="text-muted-foreground mt-1">{positionLines}</p>
-              <p className="text-muted-foreground text-[10px] mt-1">Recorded: {recordedAt}</p>
+              <p className="text-muted-foreground mt-1 text-[11px]">Recorded: {recordedAt}. Full text in Defence narrative card (Evidence column).</p>
             </div>
 
             <div>
@@ -6350,23 +6349,7 @@ export function StrategyCommitmentPanel({
                     })}
                   </div>
                 </div>
-                {coordinatorResult.judge_analysis && (
-                  <div>
-                    <span className="font-semibold text-muted-foreground mb-2 block">Judge Reasoning (Doctrine):</span>
-                    <div className="space-y-1.5 pl-2">
-                      {coordinatorResult.judge_analysis.legal_tests.slice(0, 3).map((test, idx) => (
-                        <div key={idx} className="text-[11px] text-foreground">
-                          • {softenCourtMust(test)}
-                        </div>
-                      ))}
-                      {coordinatorResult.judge_analysis.constraints.slice(0, 2).map((constraint, idx) => (
-                        <div key={`constraint-${idx}`} className="text-[11px] text-muted-foreground italic">
-                          → {softenCourtMust(constraint)}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
+                {/* Doctrine: see "Legal tests the court will consider" below (single doctrine block) */}
               </div>
             </Card>
           )}
@@ -6546,15 +6529,18 @@ export function StrategyCommitmentPanel({
                             <p className="text-foreground">{softenObjective(playbook.objective)}</p>
                           </div>
 
-                          {/* Prosecution Burden */}
+                          {/* Key burden for this route; full list in Burden map above */}
                           {playbook.prosecution_burden.length > 0 && (
                             <div>
-                              <span className="font-semibold text-muted-foreground mb-1 block">Prosecution Burden:</span>
+                              <span className="font-semibold text-muted-foreground mb-1 block">Key burden (this route):</span>
                               <ul className="list-disc list-inside space-y-0.5 text-foreground">
-                                {playbook.prosecution_burden.map((burden, bIdx) => (
+                                {playbook.prosecution_burden.slice(0, 2).map((burden, bIdx) => (
                                   <li key={bIdx} className="text-[11px]">{softenCourtMust(burden)}</li>
                                 ))}
                               </ul>
+                              {playbook.prosecution_burden.length > 2 && (
+                                <p className="text-[10px] text-muted-foreground mt-1">See Burden map above for full list.</p>
+                              )}
                             </div>
                           )}
 
@@ -7052,23 +7038,7 @@ export function StrategyCommitmentPanel({
                       })}
                     </div>
                   </div>
-                  {coordinatorResult.judge_analysis && (
-                    <div>
-                      <span className="font-semibold text-muted-foreground mb-2 block">Judge Reasoning (Doctrine):</span>
-                      <div className="space-y-1.5 pl-2">
-                        {coordinatorResult.judge_analysis.legal_tests.slice(0, 3).map((test, idx) => (
-                          <div key={idx} className="text-[11px] text-foreground">
-                            • {softenCourtMust(test)}
-                          </div>
-                        ))}
-                        {coordinatorResult.judge_analysis.constraints.slice(0, 2).map((constraint, idx) => (
-                          <div key={`constraint-${idx}`} className="text-[11px] text-muted-foreground italic">
-                            → {softenCourtMust(constraint)}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
+                  {/* Doctrine: see "Legal tests the court will consider" (single doctrine block) */}
                 </div>
               </Card>
             </>
@@ -7413,19 +7383,7 @@ export function StrategyCommitmentPanel({
                     </ul>
                   </Card>
                 )}
-                {(defenceStrategyPlan?.risks_fallbacks?.length ?? 0) > 0 && (
-                  <Card className="p-4 border border-border/50">
-                    <div className="flex items-center gap-2 mb-2">
-                      <AlertTriangle className="h-4 w-4 text-amber-500" />
-                      <h3 className="text-sm font-semibold text-foreground">Risks & fallbacks</h3>
-                    </div>
-                    <ul className="list-disc list-inside space-y-1 text-xs text-foreground">
-                      {(defenceStrategyPlan?.risks_fallbacks ?? []).slice(0, 5).map((bullet, idx) => (
-                        <li key={idx}>{bullet}</li>
-                      ))}
-                    </ul>
-                  </Card>
-                )}
+                {/* Risks & fallbacks removed: same content as Reassessment triggers above */}
                 {hearingScripts && hearingScripts.scripts?.length > 0 && (
                   <Card className="p-4 border border-border/50">
                     <button
@@ -7532,12 +7490,15 @@ export function StrategyCommitmentPanel({
                           </div>
                           {playbook.prosecution_burden?.length > 0 && (
                             <div>
-                              <span className="font-semibold text-muted-foreground mb-1 block">Prosecution Burden:</span>
+                              <span className="font-semibold text-muted-foreground mb-1 block">Key burden (this route):</span>
                               <ul className="list-disc list-inside space-y-0.5 text-foreground">
-                                {playbook.prosecution_burden.map((burden, bIdx) => (
+                                {playbook.prosecution_burden.slice(0, 2).map((burden, bIdx) => (
                                   <li key={bIdx} className="text-[11px]">{softenCourtMust(burden)}</li>
                                 ))}
                               </ul>
+                              {playbook.prosecution_burden.length > 2 && (
+                                <p className="text-[10px] text-muted-foreground mt-1">See Burden map above for full list.</p>
+                              )}
                             </div>
                           )}
                           {playbook.defence_counters?.length > 0 && (
@@ -7717,23 +7678,7 @@ export function StrategyCommitmentPanel({
                         })}
                       </div>
                     </div>
-                    {coordinatorResult.judge_analysis && (
-                      <div>
-                        <span className="font-semibold text-muted-foreground mb-2 block">Judge Reasoning (Doctrine):</span>
-                        <div className="space-y-1.5 pl-2">
-                          {coordinatorResult.judge_analysis.legal_tests.slice(0, 3).map((test, idx) => (
-                            <div key={idx} className="text-[11px] text-foreground">
-                              • {softenCourtMust(test)}
-                            </div>
-                          ))}
-                          {coordinatorResult.judge_analysis.constraints.slice(0, 2).map((constraint, idx) => (
-                            <div key={`constraint-legacy-${idx}`} className="text-[11px] text-muted-foreground italic">
-                              → {softenCourtMust(constraint)}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
+                    {/* Doctrine: see "Legal tests the court will consider" (single doctrine block) */}
                   </div>
                 </Card>
               </div>
@@ -8039,23 +7984,7 @@ export function StrategyCommitmentPanel({
                     })}
                   </div>
                 </div>
-                {coordinatorResult.judge_analysis && (
-                  <div>
-                    <span className="font-semibold text-muted-foreground mb-2 block">Judge Reasoning (Doctrine):</span>
-                    <div className="space-y-1.5 pl-2">
-                      {coordinatorResult.judge_analysis.legal_tests.slice(0, 3).map((test, idx) => (
-                        <div key={idx} className="text-[11px] text-foreground">
-                          • {softenCourtMust(test)}
-                        </div>
-                      ))}
-                      {coordinatorResult.judge_analysis.constraints.slice(0, 2).map((constraint, idx) => (
-                        <div key={`constraint-${idx}`} className="text-[11px] text-muted-foreground italic">
-                          → {softenCourtMust(constraint)}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
+                {/* Doctrine: see "Legal tests the court will consider" (single doctrine block) */}
               </div>
             </Card>
           </>
