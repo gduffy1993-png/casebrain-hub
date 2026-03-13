@@ -11,11 +11,13 @@ import type { CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
 
 type RiskOutcomeMatrixCardProps = {
   snapshot: CaseSnapshot | null;
+  /** When set (from Defence Plan primary route), overrides snapshot strategy so matrix matches committed strategy. */
+  displayPrimaryStrategy?: "fight_charge" | "charge_reduction" | "outcome_management";
 };
 
-export function RiskOutcomeMatrixCard({ snapshot }: RiskOutcomeMatrixCardProps) {
+export function RiskOutcomeMatrixCard({ snapshot, displayPrimaryStrategy }: RiskOutcomeMatrixCardProps) {
   const rows = buildRiskOutcomeMatrix({
-    primaryStrategy: snapshot?.strategy?.primary,
+    primaryStrategy: displayPrimaryStrategy ?? snapshot?.strategy?.primary,
     fallbacks: snapshot?.strategy?.fallbacks,
     confidence: snapshot?.strategy?.confidence,
   });

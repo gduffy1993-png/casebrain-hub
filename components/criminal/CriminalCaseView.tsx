@@ -114,6 +114,8 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   const [currentPhase, setCurrentPhase] = useState<CasePhase>(1);
   const [committedStrategy, setCommittedStrategy] = useState<StrategyCommitment | null>(null);
   const [isStrategyCommitted, setIsStrategyCommitted] = useState(false);
+  /** When Strategy tab panel has a defence plan, this is the display strategy (e.g. Act Denial) so at-a-glance/matrix/snapshot stay in sync. */
+  const [displayStrategy, setDisplayStrategy] = useState<{ displayLabel: string; displayCategory: "fight_charge" | "charge_reduction" | "outcome_management" } | null>(null);
   const [hasSavedPosition, setHasSavedPosition] = useState(false);
   const [isPositionModalOpen, setIsPositionModalOpen] = useState(false);
   /** When user clicks "Edit" on AI suggestion – prefill Record Position modal with this text; cleared on modal close. */
@@ -483,7 +485,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         caseId={caseId}
         snapshot={snapshot ?? null}
         snapshotLoading={snapshotLoading}
-        primaryStrategyLabel={committedStrategy?.primary ?? snapshot?.decisionLog?.currentPosition?.position ?? null}
+        primaryStrategyLabel={displayStrategy?.displayLabel ?? (committedStrategy?.primary ? String(committedStrategy.primary).replace(/_/g, " ") : snapshot?.decisionLog?.currentPosition?.position ?? null)}
       />
 
       {/* Tabbed case content – URL ?tab= controls active tab; default Summary */}
@@ -684,7 +686,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
                 <DefenceNarrativeCard snapshot={snapshot} recordedPositionText={savedPosition?.position_text} />
-                <RiskOutcomeMatrixCard snapshot={snapshot} />
+                <RiskOutcomeMatrixCard snapshot={snapshot} displayPrimaryStrategy={displayStrategy?.displayCategory} />
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -709,7 +711,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
                         <CaseFightPlan caseId={caseId} committedStrategy={committedStrategy} canShowStrategyOutputs={snapshot?.analysis?.canShowStrategyOutputs ?? false} canShowStrategyPreview={snapshot?.analysis?.canShowStrategyPreview ?? false} canShowStrategyFull={snapshot?.analysis?.canShowStrategyFull ?? false} strategyDataExists={snapshot?.strategy?.strategyDataExists ?? false} />
                       </div>
                     )}
-                    <CaseEvidenceColumn caseId={caseId} snapshot={snapshot} onAddDocument={() => setShowAddDocuments(true)} onAddEvidenceUpload={() => setShowAddEvidenceUpload(true)} currentPhase={currentPhase} savedPosition={currentPhase >= 2 ? savedPosition : null} onCommitmentChange={(c) => { if (c) { setCommittedStrategy(c); setIsStrategyCommitted(true); buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error); } else { setCommittedStrategy(null); setIsStrategyCommitted(false); } }} onProceduralSafetyChange={setEffectiveProceduralSafety} hasClientInstructions={hasClientInstructions} onClientInstructionsSaved={() => setHasClientInstructions(true)} />
+                    <CaseEvidenceColumn caseId={caseId} snapshot={snapshot} onAddDocument={() => setShowAddDocuments(true)} onAddEvidenceUpload={() => setShowAddEvidenceUpload(true)} currentPhase={currentPhase} savedPosition={currentPhase >= 2 ? savedPosition : null} onCommitmentChange={(c) => { if (c) { setCommittedStrategy(c); setIsStrategyCommitted(true); buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error); } else { setCommittedStrategy(null); setIsStrategyCommitted(false); setDisplayStrategy(null); } }} onDisplayStrategyUpdate={setDisplayStrategy} onProceduralSafetyChange={setEffectiveProceduralSafety} hasClientInstructions={hasClientInstructions} onClientInstructionsSaved={() => setHasClientInstructions(true)} />
                   </ErrorBoundary>
                 </FoldSection>
                 <FoldSection title="Strategy" defaultOpen={false}>

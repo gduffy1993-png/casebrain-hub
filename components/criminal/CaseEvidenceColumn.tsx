@@ -21,6 +21,8 @@ type CaseEvidenceColumnProps = {
   currentPhase?: number;
   savedPosition?: SavedPosition | null;
   onCommitmentChange?: (commitment: StrategyCommitment | null) => void;
+  /** When committed and plan exists, panel reports display strategy so at-a-glance/matrix/snapshot stay in sync. */
+  onDisplayStrategyUpdate?: (payload: { displayLabel: string; displayCategory: "fight_charge" | "charge_reduction" | "outcome_management" } | null) => void;
   /** Single source: strategy-analysis API. Used to gate phase selector when UNSAFE. */
   onProceduralSafetyChange?: (safety: { status: string; explanation?: string } | null) => void;
   /** When true, Case Readiness Gate shows "Client instructions recorded" */
@@ -29,7 +31,7 @@ type CaseEvidenceColumnProps = {
   onClientInstructionsSaved?: () => void;
 };
 
-export function CaseEvidenceColumn({ caseId, snapshot, onAddDocument, onAddEvidenceUpload, currentPhase = 1, savedPosition, onCommitmentChange, onProceduralSafetyChange, hasClientInstructions, onClientInstructionsSaved }: CaseEvidenceColumnProps) {
+export function CaseEvidenceColumn({ caseId, snapshot, onAddDocument, onAddEvidenceUpload, currentPhase = 1, savedPosition, onCommitmentChange, onDisplayStrategyUpdate, onProceduralSafetyChange, hasClientInstructions, onClientInstructionsSaved }: CaseEvidenceColumnProps) {
   return (
     <div className="space-y-6">
       {/* Current Defence Position - Read-Only Display (Phase 2+ only) */}
@@ -62,6 +64,7 @@ export function CaseEvidenceColumn({ caseId, snapshot, onAddDocument, onAddEvide
             onCommitmentChange={onCommitmentChange}
             savedPosition={savedPosition}
             onProceduralSafetyChange={onProceduralSafetyChange}
+            onDisplayStrategyUpdate={onDisplayStrategyUpdate}
             hasClientInstructions={hasClientInstructions}
           />
         </ErrorBoundary>

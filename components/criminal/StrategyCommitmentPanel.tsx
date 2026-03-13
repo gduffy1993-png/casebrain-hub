@@ -249,6 +249,15 @@ type SavedPosition = {
   created_at: string;
 };
 
+/** Maps plan primary_route.id to the three strategy categories (Risk–Outcome Matrix / at-a-glance). */
+function mapRouteIdToCategory(routeId: string, fallback: PrimaryStrategy): PrimaryStrategy {
+  const id = (routeId || "").toLowerCase();
+  if (id === "act_denial" || id === "identification_challenge") return "fight_charge";
+  if (id === "intent_denial") return "charge_reduction";
+  if (id === "procedural_disclosure_leverage" || id === "mitigation_early_resolution") return "outcome_management";
+  return fallback;
+}
+
 type StrategyCommitmentPanelProps = {
   caseId: string;
   onCommitmentChange: (commitment: StrategyCommitment | null) => void;
@@ -258,6 +267,8 @@ type StrategyCommitmentPanelProps = {
   onProceduralSafetyChange?: (safety: { status: string; explanation?: string } | null) => void;
   /** When true, Case Readiness Gate shows "Client instructions recorded" */
   hasClientInstructions?: boolean;
+  /** When committed and plan exists, report display strategy so Summary/at-a-glance/matrix stay in sync. */
+  onDisplayStrategyUpdate?: (payload: { displayLabel: string; displayCategory: PrimaryStrategy } | null) => void;
 };
 
 export type StrategyCommitment = {
@@ -2049,6 +2060,7 @@ function SupervisorSnapshot({
   caseId,
   savedPosition,
   primary,
+  displayStrategyLabel,
   beastPack,
   nextIrreversibleDecision,
   evidenceImpactMap,
@@ -2059,6 +2071,8 @@ function SupervisorSnapshot({
   caseId: string | undefined;
   savedPosition: { position_text: string; created_at?: string; user_id?: string } | null;
   primary: PrimaryStrategy | null;
+  /** When set (from plan's primary route), overrides label derived from primary so Snapshot matches Defence Plan. */
+  displayStrategyLabel?: string | null;
   beastPack: BeastStrategyPack | null;
   nextIrreversibleDecision: string | null;
   evidenceImpactMap: EvidenceImpactMap[];
@@ -2169,9 +2183,9 @@ function SupervisorSnapshot({
   const positionLines = rawLines.replace(/^\s*Defence position:\s*/i, "").trim() || rawLines;
   const recordedAt = savedPosition?.created_at ? new Date(savedPosition.created_at).toLocaleString("en-GB") : "Not recorded";
 
-  // Get strategy label
+  // Get strategy label: prefer display label from plan when provided so Snapshot matches Defence Plan
   const strategyOptions = getStrategyOptions();
-  const strategyLabel = primary ? strategyOptions.find(o => o.id === primary)?.label || primary : "Not committed";
+  const strategyLabel = (displayStrategyLabel && displayStrategyLabel.trim()) ? displayStrategyLabel.trim() : (primary ? strategyOptions.find(o => o.id === primary)?.label || primary : "Not committed");
 
   // Required dependencies outstanding
   const requiredOutstanding = declaredDeps.filter(dep => {
@@ -5266,6 +5280,7 @@ export function StrategyCommitmentPanel({
   practiceArea = "criminal",
   onProceduralSafetyChange,
   hasClientInstructions,
+  onDisplayStrategyUpdate,
 }: StrategyCommitmentPanelProps) {
   const lens = getLens(practiceArea);
   const params = useParams();
@@ -5344,6 +5359,25 @@ export function StrategyCommitmentPanel({
     isCommitted && defenceStrategyPlan?.primary_route?.label
       ? defenceStrategyPlan.primary_route.label
       : (primary ? strategyOptions.find((o) => o.id === primary)?.label ?? primary?.replace(/_/g, " ") : "—");
+
+  // Report display strategy to parent so Strategy at a glance, at-a-glance bar, Risk–Outcome Matrix and Supervisor Snapshot stay in sync
+  useEffect(() => {
+    if (!onDisplayStrategyUpdate) return;
+    if (isCommitted && defenceStrategyPlan?.primary_route?.label) {
+      const displayCategory = mapRouteIdToCategory(defenceStrategyPlan.primary_route.id, primary ?? "outcome_management");
+      onDisplayStrategyUpdate({ displayLabel: defenceStrategyPlan.primary_route.label, displayCategory });
+    } else {
+      onDisplayStrategyUpdate(null);
+    }
+  }, [onDisplayStrategyUpdate, isCommitted, defenceStrategyPlan?.primary_route?.label, defenceStrategyPlan?.primary_route?.id, primary]);
+
+  // When primary route is a fight route (Act Denial, ID challenge), hide mitigation-focused dispute points in Strategy Overview so it doesn't contradict
+  const isFightPrimaryRoute = defenceStrategyPlan?.primary_route && ["act_denial", "identification_challenge"].includes(defenceStrategyPlan.primary_route.id.toLowerCase());
+  const disputePointsForOverview = (solicitorView?.dispute_points ?? []).length === 0
+    ? []
+    : isFightPrimaryRoute
+      ? (solicitorView!.dispute_points).filter((p: string) => !/mitigation early resolution|Recorded position indicates mitigation/i.test(p))
+      : (solicitorView?.dispute_points ?? []);
 
   // Single source of truth: GET /api/criminal/[caseId]/strategy-analysis → data.data.procedural_safety
   const effectiveProceduralSafety = proceduralSafetyFromApi;
@@ -6276,6 +6310,7 @@ export function StrategyCommitmentPanel({
               caseId={resolvedCaseId}
               savedPosition={savedPosition}
               primary={primary}
+              displayStrategyLabel={committedStrategyDisplayLabel !== "—" ? committedStrategyDisplayLabel : undefined}
               beastPack={null}
               nextIrreversibleDecision={nextIrreversibleDecision}
               evidenceImpactMap={evidenceImpactMap}
@@ -6297,11 +6332,11 @@ export function StrategyCommitmentPanel({
                   <span className="font-semibold text-muted-foreground mb-1 block">Headline:</span>
                   <p className="text-foreground">{solicitorView.headline}</p>
                 </div>
-                {solicitorView.dispute_points.length > 0 && (
+                {disputePointsForOverview.length > 0 && (
                   <div>
                     <span className="font-semibold text-muted-foreground mb-1 block">Dispute Points:</span>
                     <ul className="list-disc list-inside space-y-1 text-foreground">
-                      {solicitorView.dispute_points.map((point, idx) => (
+                      {disputePointsForOverview.map((point, idx) => (
                         <li key={idx}>{point}</li>
                       ))}
                     </ul>
@@ -7089,11 +7124,11 @@ export function StrategyCommitmentPanel({
                     <span className="font-semibold text-muted-foreground mb-1 block">Headline:</span>
                     <p className="text-foreground">{solicitorView.headline}</p>
                   </div>
-                  {solicitorView.dispute_points.length > 0 && (
+                  {disputePointsForOverview.length > 0 && (
                     <div>
                       <span className="font-semibold text-muted-foreground mb-1 block">Dispute Points:</span>
                       <ul className="list-disc list-inside space-y-1 text-foreground">
-                        {solicitorView.dispute_points.map((point, idx) => (
+                        {disputePointsForOverview.map((point, idx) => (
                           <li key={idx}>{point}</li>
                         ))}
                       </ul>
@@ -7822,11 +7857,11 @@ export function StrategyCommitmentPanel({
                       <span className="font-semibold text-muted-foreground mb-1 block">Headline:</span>
                       <p className="text-foreground">{solicitorView.headline}</p>
                     </div>
-                    {solicitorView.dispute_points.length > 0 && (
+                    {disputePointsForOverview.length > 0 && (
                       <div>
                         <span className="font-semibold text-muted-foreground mb-1 block">Dispute Points:</span>
                         <ul className="list-disc list-inside space-y-1 text-foreground">
-                          {solicitorView.dispute_points.map((point, idx) => (
+                          {disputePointsForOverview.map((point, idx) => (
                             <li key={idx}>{point}</li>
                           ))}
                         </ul>
@@ -7945,6 +7980,7 @@ export function StrategyCommitmentPanel({
               caseId={resolvedCaseId}
               savedPosition={savedPosition}
               primary={primary}
+              displayStrategyLabel={committedStrategyDisplayLabel !== "—" ? committedStrategyDisplayLabel : undefined}
               beastPack={null}
               nextIrreversibleDecision={nextIrreversibleDecision}
               evidenceImpactMap={evidenceImpactMap}
@@ -8096,11 +8132,11 @@ export function StrategyCommitmentPanel({
                   <span className="font-semibold text-muted-foreground mb-1 block">Headline:</span>
                   <p className="text-foreground">{solicitorView.headline}</p>
                 </div>
-                {solicitorView.dispute_points.length > 0 && (
+                {disputePointsForOverview.length > 0 && (
                   <div>
                     <span className="font-semibold text-muted-foreground mb-1 block">Dispute Points:</span>
                     <ul className="list-disc list-inside space-y-1 text-foreground">
-                      {solicitorView.dispute_points.map((point, idx) => (
+                      {disputePointsForOverview.map((point, idx) => (
                         <li key={idx}>{point}</li>
                       ))}
                     </ul>
@@ -8235,6 +8271,7 @@ export function StrategyCommitmentPanel({
             caseId={resolvedCaseId}
             savedPosition={savedPosition}
             primary={primary}
+            displayStrategyLabel={committedStrategyDisplayLabel !== "—" ? committedStrategyDisplayLabel : undefined}
             beastPack={isDebug ? beastPack : null}
             nextIrreversibleDecision={nextIrreversibleDecision}
             evidenceImpactMap={evidenceImpactMap}
