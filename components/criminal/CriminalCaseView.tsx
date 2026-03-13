@@ -685,8 +685,17 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-                <DefenceNarrativeCard snapshot={snapshot} recordedPositionText={savedPosition?.position_text} />
-                <RiskOutcomeMatrixCard snapshot={snapshot} displayPrimaryStrategy={displayStrategy?.displayCategory} />
+                <DefenceNarrativeCard
+                  snapshot={snapshot}
+                  recordedPositionText={savedPosition?.position_text}
+                  displayStrategyLabel={displayStrategy?.displayLabel}
+                  displayPositionSummary={displayStrategy?.displayCategory === "fight_charge" ? "Dispute actus reus pending disclosure." : undefined}
+                />
+                <RiskOutcomeMatrixCard
+                snapshot={snapshot}
+                displayPrimaryStrategy={displayStrategy?.displayCategory}
+                displayPrimaryRouteLabel={displayStrategy?.displayLabel}
+              />
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

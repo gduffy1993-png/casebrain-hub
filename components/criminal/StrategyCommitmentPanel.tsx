@@ -2061,6 +2061,8 @@ function SupervisorSnapshot({
   savedPosition,
   primary,
   displayStrategyLabel,
+  /** When set (e.g. fight route), overrides saved position for display so Snapshot matches committed strategy (Act Denial). */
+  displayPositionSummary,
   beastPack,
   nextIrreversibleDecision,
   evidenceImpactMap,
@@ -2073,6 +2075,8 @@ function SupervisorSnapshot({
   primary: PrimaryStrategy | null;
   /** When set (from plan's primary route), overrides label derived from primary so Snapshot matches Defence Plan. */
   displayStrategyLabel?: string | null;
+  /** When set (e.g. fight route), overrides saved position text for "Defence position" line so Snapshot matches committed strategy. */
+  displayPositionSummary?: string | null;
   beastPack: BeastStrategyPack | null;
   nextIrreversibleDecision: string | null;
   evidenceImpactMap: EvidenceImpactMap[];
@@ -2177,11 +2181,11 @@ function SupervisorSnapshot({
     );
   }
 
-  // Extract position info (strip duplicate "Defence position:" prefix for display)
-  const positionText = savedPosition?.position_text || "No position recorded";
+  // Extract position info (strip duplicate "Defence position:" prefix for display). When displayPositionSummary is set (e.g. Act Denial), use it so Snapshot matches committed strategy.
+  const positionText = (displayPositionSummary && displayPositionSummary.trim()) ? displayPositionSummary.trim() : (savedPosition?.position_text || "No position recorded");
   const rawLines = positionText.split(/\n/).slice(0, 2).join(" ").substring(0, 200);
   const positionLines = rawLines.replace(/^\s*Defence position:\s*/i, "").trim() || rawLines;
-  const recordedAt = savedPosition?.created_at ? new Date(savedPosition.created_at).toLocaleString("en-GB") : "Not recorded";
+  const recordedAt = (displayPositionSummary && displayPositionSummary.trim()) ? "Aligned with committed strategy" : (savedPosition?.created_at ? new Date(savedPosition.created_at).toLocaleString("en-GB") : "Not recorded");
 
   // Get strategy label: prefer display label from plan when provided so Snapshot matches Defence Plan
   const strategyOptions = getStrategyOptions();
@@ -6311,6 +6315,7 @@ export function StrategyCommitmentPanel({
               savedPosition={savedPosition}
               primary={primary}
               displayStrategyLabel={committedStrategyDisplayLabel !== "—" ? committedStrategyDisplayLabel : undefined}
+              displayPositionSummary={isFightPrimaryRoute ? "Dispute actus reus pending disclosure." : undefined}
               beastPack={null}
               nextIrreversibleDecision={nextIrreversibleDecision}
               evidenceImpactMap={evidenceImpactMap}
@@ -7981,6 +7986,7 @@ export function StrategyCommitmentPanel({
               savedPosition={savedPosition}
               primary={primary}
               displayStrategyLabel={committedStrategyDisplayLabel !== "—" ? committedStrategyDisplayLabel : undefined}
+              displayPositionSummary={isFightPrimaryRoute ? "Dispute actus reus pending disclosure." : undefined}
               beastPack={null}
               nextIrreversibleDecision={nextIrreversibleDecision}
               evidenceImpactMap={evidenceImpactMap}
@@ -8272,6 +8278,7 @@ export function StrategyCommitmentPanel({
             savedPosition={savedPosition}
             primary={primary}
             displayStrategyLabel={committedStrategyDisplayLabel !== "—" ? committedStrategyDisplayLabel : undefined}
+            displayPositionSummary={isFightPrimaryRoute ? "Dispute actus reus pending disclosure." : undefined}
             beastPack={isDebug ? beastPack : null}
             nextIrreversibleDecision={nextIrreversibleDecision}
             evidenceImpactMap={evidenceImpactMap}

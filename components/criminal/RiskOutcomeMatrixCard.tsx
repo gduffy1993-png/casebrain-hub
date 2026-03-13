@@ -13,9 +13,11 @@ type RiskOutcomeMatrixCardProps = {
   snapshot: CaseSnapshot | null;
   /** When set (from Defence Plan primary route), overrides snapshot strategy so matrix matches committed strategy. */
   displayPrimaryStrategy?: "fight_charge" | "charge_reduction" | "outcome_management";
+  /** When set (e.g. "Act Denial"), shown under the matrix so primary route is explicit. */
+  displayPrimaryRouteLabel?: string | null;
 };
 
-export function RiskOutcomeMatrixCard({ snapshot, displayPrimaryStrategy }: RiskOutcomeMatrixCardProps) {
+export function RiskOutcomeMatrixCard({ snapshot, displayPrimaryStrategy, displayPrimaryRouteLabel }: RiskOutcomeMatrixCardProps) {
   const rows = buildRiskOutcomeMatrix({
     primaryStrategy: displayPrimaryStrategy ?? snapshot?.strategy?.primary,
     fallbacks: snapshot?.strategy?.fallbacks,
@@ -56,6 +58,11 @@ export function RiskOutcomeMatrixCard({ snapshot, displayPrimaryStrategy }: Risk
           </tbody>
         </table>
       </div>
+      {displayPrimaryRouteLabel && displayPrimaryRouteLabel.trim() && (
+        <p className="text-xs text-muted-foreground mt-3 pt-2 border-t border-border/50">
+          Primary route: {displayPrimaryRouteLabel.trim()}
+        </p>
+      )}
     </Card>
   );
 }

@@ -13,23 +13,28 @@ type DefenceNarrativeCardProps = {
   snapshot: CaseSnapshot | null;
   /** Optional recorded position text (from case_positions) – if not in snapshot */
   recordedPositionText?: string | null;
+  /** When set (e.g. Act Denial from Defence Plan), narrative aligns with this instead of stored strategy */
+  displayStrategyLabel?: string | null;
+  /** When set with displayStrategyLabel (e.g. fight route), use this for position line so narrative matches committed strategy */
+  displayPositionSummary?: string | null;
 };
 
-export function DefenceNarrativeCard({ snapshot, recordedPositionText }: DefenceNarrativeCardProps) {
+export function DefenceNarrativeCard({ snapshot, recordedPositionText, displayStrategyLabel, displayPositionSummary }: DefenceNarrativeCardProps) {
   const offenceLabel = snapshot?.resolvedOffence?.label;
-  const primary = snapshot?.strategy?.primary;
+  const primary = displayStrategyLabel ?? snapshot?.strategy?.primary;
   // Build descriptive leverage from weak elements (avoid repeating "Primary leverage")
   const keyLeverage = snapshot?.strategy?.burdenMap
     ?.filter((e) => e.leverage && e.leverage !== "No challenge")
     .slice(0, 2)
     .map((e) => (e.leverage === "Primary leverage" && e.label ? `${e.label} weak or disputed` : e.leverage));
   const positionSummary =
+    displayPositionSummary ??
     recordedPositionText ??
     snapshot?.decisionLog?.currentPosition?.position;
 
   const narrative = buildDefenceNarrative({
     offenceLabel: offenceLabel ?? undefined,
-    primaryStrategy: primary,
+    primaryStrategy: typeof primary === "string" ? primary : undefined,
     keyLeverage,
     positionSummary: positionSummary ?? undefined,
   });
