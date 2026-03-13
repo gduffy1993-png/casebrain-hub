@@ -165,8 +165,84 @@ function buildPosture(
 }
 
 /**
- * Build key defence angles from case state only (weak elements, disclosure gaps, identification).
- * Case-driven: only surfaces angles supported by this case's evidence state. Max 6.
+ * Offence-specific short angle phrase for a weak element (no generic "Evidence does not establish X").
+ * Returns null if no phrase defined; caller can fall back to short label-based line.
+ */
+function getOffenceAnglePhrase(offenceCode: string, elementId: string): string | null {
+  const code = offenceCode.toLowerCase();
+  if (code.includes("criminal_damage") || code.includes("arson")) {
+    const map: Record<string, string> = {
+      property_belonging_to_another: "Ownership / property in issue",
+      damage_by_fire: "Who caused the damage / started the fire not established",
+      intent_or_recklessness: "Intent or recklessness as to damage not established",
+      lawful_excuse: "Lawful excuse in issue",
+      identification: "Identification in dispute",
+      actus_reus: "Who caused the damage / started the fire not established",
+      mental_state: "Intent or recklessness as to damage not established",
+      causation: "Ignition source / mechanism not established",
+    };
+    return map[elementId] ?? null;
+  }
+  if (code.includes("agg_criminal_damage")) {
+    const map: Record<string, string> = {
+      damage: "Who caused the damage not established",
+      intent_or_recklessness: "Intent or recklessness not established",
+      endangerment: "Endangerment of life not established",
+      identification: "Identification in dispute",
+    };
+    return map[elementId] ?? null;
+  }
+  if (code.includes("s18") || code.includes("s20") || code.includes("oapa")) {
+    const map: Record<string, string> = {
+      injury_threshold: "Injury threshold / causation not established",
+      causation: "Causation between act and injury not established",
+      unlawfulness: "Unlawfulness in issue",
+      identification: "Identification in dispute",
+      specific_intent: "Intent to cause serious harm not established",
+      recklessness: "Recklessness not established",
+    };
+    return map[elementId] ?? null;
+  }
+  if (code.includes("s47")) {
+    const map: Record<string, string> = {
+      assault_or_battery: "Assault or battery not established",
+      actual_bodily_harm: "ABH and causation not established",
+      causation: "Causation between act and harm not established",
+      identification: "Identification in dispute",
+    };
+    return map[elementId] ?? null;
+  }
+  if (code.includes("common_assault")) {
+    const map: Record<string, string> = {
+      assault_or_battery: "Assault or battery not established",
+      identification: "Identification in dispute",
+    };
+    return map[elementId] ?? null;
+  }
+  if (code.includes("theft")) {
+    const map: Record<string, string> = {
+      appropriation: "Appropriation not established",
+      dishonesty: "Dishonesty or intention to permanently deprive in issue",
+      identification: "Identification in dispute",
+    };
+    return map[elementId] ?? null;
+  }
+  if (code.includes("fraud")) {
+    const map: Record<string, string> = {
+      dishonesty: "Dishonesty in issue",
+      representation_or_disclosure_or_abuse: "False representation / failure to disclose in issue",
+      gain_or_loss: "Gain or loss not established",
+      identification: "Identification in dispute",
+    };
+    return map[elementId] ?? null;
+  }
+  if (elementId === "identification") return "Identification in dispute";
+  return null;
+}
+
+/**
+ * Build key defence angles: gap-led and disclosure-led first, then ID, then concrete element-based phrases.
+ * No generic "Evidence does not establish X to the required standard". Max 6. Deduped.
  */
 function buildDefenceAngles(
   snapshot: EvidenceSnapshot,
@@ -176,25 +252,37 @@ function buildDefenceAngles(
   const code = (snapshot.offence?.code ?? "").toLowerCase();
   const keyGaps = snapshot.evidence?.key_gaps ?? [];
   const requiredMissing = snapshot.disclosure?.required_without_timeline ?? [];
-
-  // From weak/none elements
   const weak = offenceElements.filter(e => e.support === "weak" || e.support === "none");
-  for (const e of weak.slice(0, 3)) {
-    angles.push(`Evidence does not establish ${e.label.toLowerCase()} to the required standard`);
-  }
 
-  // From key_gaps (offence-aware phrasing)
-  if (angles.length < 6 && keyGaps.some(g => /cctv|footage|video/i.test(g))) {
+  // 1) Gaps and disclosure first (concrete, tactical)
+  if (keyGaps.some(g => /cctv|footage|video/i.test(g))) {
     angles.push("No CCTV to confirm or exclude defendant's presence or conduct");
   }
-  if (angles.length < 6 && (code.includes("criminal_damage") || code.includes("arson")) && keyGaps.some(g => /fire|ignition|cause|origin/i.test(g))) {
+  if ((code.includes("criminal_damage") || code.includes("arson")) && keyGaps.some(g => /fire|ignition|cause|origin/i.test(g))) {
     angles.push("No ignition source or cause of fire established");
   }
-  if (angles.length < 6 && snapshot.flags?.id_uncertainty) {
-    angles.push("Identification disputed or insufficient");
+  if (requiredMissing.length > 0) {
+    const sample = requiredMissing.slice(0, 2).join(", ");
+    angles.push(sample.length > 40 ? "Key disclosure outstanding" : `Outstanding disclosure: ${sample}`);
   }
-  if (angles.length < 6 && requiredMissing.length > 0) {
-    angles.push("Key disclosure outstanding; prosecution case cannot be fully assessed");
+
+  // 2) Identification
+  if (snapshot.flags?.id_uncertainty) {
+    angles.push("Identification in dispute");
+  }
+
+  // 3) Weak elements: offence-specific phrase or short fallback (no long generic line)
+  for (const e of weak) {
+    if (angles.length >= 6) break;
+    const phrase = getOffenceAnglePhrase(code, e.id);
+    const line = phrase ?? `${e.label} not established`;
+    if (!angles.includes(line)) angles.push(line);
+  }
+
+  // 4) One offence-specific "general" angle where it adds value (e.g. lawful excuse for CD/arson)
+  if (angles.length < 6 && (code.includes("criminal_damage") || code.includes("arson")) && weak.some(e => e.id === "intent_or_recklessness" || e.id === "damage_by_fire")) {
+    const line = "Lawful excuse in issue";
+    if (!angles.includes(line)) angles.push(line);
   }
 
   return angles.slice(0, 6);
