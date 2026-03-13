@@ -434,10 +434,33 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
         coverageLabel: "Generic – add charge sheet for offence-specific strategy",
       };
 
-  // Strategy basis (confidence): what this strategy is based on
+  // Strategy basis: concrete numbers (docs, chars) so it's not vague; tier for quality signal
+  const docN = typeof docCount === "number" ? docCount : 0;
+  const charLabel = rawCharsTotal >= 1000
+    ? `${Math.round(rawCharsTotal / 1000)}k chars`
+    : rawCharsTotal > 0
+      ? `${rawCharsTotal.toLocaleString()} chars`
+      : null;
+  const basisNumbers = docN > 0 && charLabel
+    ? `${docN} doc${docN !== 1 ? "s" : ""}, ${charLabel}`
+    : docN > 0
+      ? `${docN} doc${docN !== 1 ? "s" : ""}`
+      : null;
+
   if (offenceSource === "unknown" || offenceType === "other") {
     analysisWithBundle.strategyBasisLabel = "Add charge sheet or key evidence for offence-specific strategy";
     analysisWithBundle.strategyBasisReason = "Offence not identified.";
+  } else if (basisNumbers) {
+    const tierLabel = bundle.capabilityTier === "full"
+      ? "full bundle"
+      : bundle.capabilityTier === "partial"
+        ? "partial bundle"
+        : "summaries only";
+    analysisWithBundle.strategyBasisLabel = `Based on: ${basisNumbers} (${tierLabel})`;
+    analysisWithBundle.strategyBasisReason =
+      bundle.capabilityTier === "full"
+        ? "Strategy uses full bundle content."
+        : "Add key documents for stronger strategy.";
   } else if (bundle.capabilityTier === "full") {
     analysisWithBundle.strategyBasisLabel = "Based on: full bundle";
     analysisWithBundle.strategyBasisReason = "Strategy uses full bundle content.";

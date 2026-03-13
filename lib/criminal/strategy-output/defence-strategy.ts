@@ -50,6 +50,16 @@ export type DefenceStrategyPlan = {
   next_72_hours: string[]; // Procedural + tactical tasks (max 8)
   /** Case-driven defence angles: what's weak or missing in this case (max 6). */
   defence_angles: string[];
+  /** Hard-fight: one sentence – we are running [route]; put prosecution to proof on [weak elements]. */
+  strategy_in_one_line: string;
+  /** Hard-fight: burdens (element labels) where this case has weak/none support – prosecution still must prove. */
+  prosecution_still_must_prove: string[];
+  /** Hard-fight: 1–3 bullets – order to challenge evidence (main weak/gap, ID if disputed, next). */
+  order_to_challenge: string[];
+  /** Hard-fight: no-case / half-time line when arguable (2+ weak elements and critical disclosure outstanding); null otherwise. */
+  no_case_line: string | null;
+  /** Hard-fight: 2–3 bullets from kill switches – risks if we fight. */
+  risks_if_we_fight: string[];
 };
 
 /**
@@ -110,6 +120,21 @@ export function buildDefenceStrategyPlan(input: {
   // Key defence angles: case-driven from weak elements and disclosure gaps (no speculative content)
   const defence_angles = buildDefenceAngles(snapshot, offenceElements);
 
+  // Hard-fight blocks (all case-driven, same logic for every offence)
+  const strategy_in_one_line = buildStrategyInOneLine(primary_route, offenceElements);
+  const prosecution_still_must_prove = buildProsecutionStillMustProve(offenceElements);
+  const order_to_challenge = buildOrderToChallenge(snapshot, offenceElements);
+  const no_case_line = buildNoCaseLine(snapshot, offenceElements);
+  const risks_if_we_fight = buildRisksIfWeFight(kill_switches);
+
+  // Next 72 hours: add fight-specific line when primary route is a fight route
+  const next_72_hours_with_fight = addFightSpecificNextAction(
+    next_72_hours,
+    primary_route,
+    offenceElements,
+    snapshot
+  );
+
   return {
     strategy_line,
     risks_fallbacks,
@@ -121,8 +146,13 @@ export function buildDefenceStrategyPlan(input: {
     defence_counters,
     kill_switches,
     pivot_plan,
-    next_72_hours,
+    next_72_hours: next_72_hours_with_fight,
     defence_angles,
+    strategy_in_one_line,
+    prosecution_still_must_prove,
+    order_to_challenge,
+    no_case_line,
+    risks_if_we_fight,
   };
 }
 
@@ -286,6 +316,105 @@ function buildDefenceAngles(
   }
 
   return angles.slice(0, 6);
+}
+
+/**
+ * Hard-fight: one sentence – we are running [primary route]; put prosecution to proof on [weakest 1–2 elements].
+ */
+function buildStrategyInOneLine(
+  primary_route: DefenceStrategyPlan["primary_route"],
+  offenceElements: Array<{ id: string; label: string; support: string }>
+): string {
+  const weak = offenceElements.filter(e => e.support === "weak" || e.support === "none");
+  const weakLabels = weak.slice(0, 2).map(e => e.label);
+  const proofPart = weakLabels.length > 0
+    ? ` Put prosecution to proof on ${weakLabels.join(" and ")}.`
+    : "";
+  return `We are running: ${primary_route.label}.${proofPart}`;
+}
+
+/**
+ * Hard-fight: list of burdens (element labels) where this case has weak or none support – prosecution still must prove.
+ */
+function buildProsecutionStillMustProve(
+  offenceElements: Array<{ id: string; label: string; support: string }>
+): string[] {
+  return offenceElements
+    .filter(e => e.support === "weak" || e.support === "none")
+    .map(e => e.label);
+}
+
+/**
+ * Hard-fight: 1–3 bullets – order to challenge evidence (main weak element or gap, ID if disputed, next).
+ */
+function buildOrderToChallenge(
+  snapshot: EvidenceSnapshot,
+  offenceElements: Array<{ id: string; label: string; support: string }>
+): string[] {
+  const bullets: string[] = [];
+  const keyGaps = snapshot.evidence?.key_gaps ?? [];
+  const weak = offenceElements.filter(e => e.support === "weak" || e.support === "none");
+
+  if (weak.length > 0) {
+    bullets.push(`Challenge ${weak[0].label} – weak or no support in current evidence`);
+  }
+  if (snapshot.flags?.id_uncertainty && !bullets.some(b => /identification|ID/i.test(b))) {
+    bullets.push("Identification in dispute – challenge ID evidence");
+  }
+  if (keyGaps.length > 0 && bullets.length < 3) {
+    const gap = keyGaps[0];
+    bullets.push(`Obtain or challenge gap: ${gap}`);
+  } else if (weak.length > 1 && bullets.length < 3) {
+    bullets.push(`Challenge ${weak[1].label} – weak or no support`);
+  }
+  return bullets.slice(0, 3);
+}
+
+/**
+ * Hard-fight: no-case / half-time line when arguable (2+ elements weak/none and critical disclosure outstanding).
+ */
+function buildNoCaseLine(
+  snapshot: EvidenceSnapshot,
+  offenceElements: Array<{ id: string; label: string; support: string }>
+): string | null {
+  const weak = offenceElements.filter(e => e.support === "weak" || e.support === "none");
+  const outstanding = snapshot.disclosure?.required_without_timeline ?? [];
+  if (weak.length < 2 || outstanding.length === 0) return null;
+  const weakestLabel = weak[0]?.label ?? "key element";
+  const mainGap = outstanding[0] ?? "key disclosure";
+  return `No case to answer / half-time submission may be open on ${weakestLabel} if ${mainGap} does not strengthen the prosecution case.`;
+}
+
+/**
+ * Hard-fight: 2–3 bullets from kill switches – risks if we fight.
+ */
+function buildRisksIfWeFight(kill_switches: ConditionalLogic[]): string[] {
+  return kill_switches.slice(0, 3).map(k => `If ${k.if}: ${k.then}`);
+}
+
+/**
+ * When primary route is a fight route, add one explicit fight-specific next action.
+ */
+function addFightSpecificNextAction(
+  next_72_hours: string[],
+  primary_route: DefenceStrategyPlan["primary_route"],
+  offenceElements: Array<{ id: string; label: string; support: string }>,
+  snapshot: EvidenceSnapshot
+): string[] {
+  const fightRouteIds = ["act_denial", "identification_challenge", "intent_denial"];
+  if (!fightRouteIds.includes(primary_route.id)) return next_72_hours;
+  const weak = offenceElements.filter(e => e.support === "weak" || e.support === "none");
+  const outstanding = snapshot.disclosure?.required_without_timeline ?? [];
+  const fightLine = weak.length > 0 && outstanding.length > 0
+    ? `Draft no-case note on ${weak[0].label}; chase ${outstanding[0]}`
+    : weak.length > 0
+      ? `Draft no-case note on ${weak[0].label} if disclosure does not strengthen`
+      : outstanding.length > 0
+        ? `Chase critical disclosure: ${outstanding[0]}`
+        : "Identify and document challenge points for trial";
+  const hasFightLine = next_72_hours.some(t => /no-case|chase.*disclosure|challenge points/i.test(t));
+  if (hasFightLine) return next_72_hours;
+  return [fightLine, ...next_72_hours].slice(0, 8);
 }
 
 /**

@@ -3726,7 +3726,7 @@ function WorstCaseCapPanel({
     }
 
     fetchWorstCaseData();
-  }, [caseId, evidenceImpactMap, propIncidentShape, propWeaponTracker]);
+  }, [caseId, evidenceImpactMap, propIncidentShape, propWeaponTracker, resolvedOffenceLabel]);
 
   if (loading) {
     return (
@@ -5417,8 +5417,16 @@ export function StrategyCommitmentPanel({
     }
     lines.push("— What we say and do —", "");
     if (defenceStrategyPlan) {
+      if (defenceStrategyPlan.strategy_in_one_line) {
+        lines.push("Strategy in one line:", defenceStrategyPlan.strategy_in_one_line, "");
+      }
       if (defenceStrategyPlan.attack_sequence) {
         lines.push("Attack order:", defenceStrategyPlan.attack_sequence, "");
+      }
+      if ((defenceStrategyPlan.prosecution_still_must_prove?.length ?? 0) > 0) {
+        lines.push("What prosecution still has to prove:");
+        (defenceStrategyPlan.prosecution_still_must_prove ?? []).forEach((b) => lines.push(`• ${b}`));
+        lines.push("");
       }
       if (defenceStrategyPlan.posture) {
         lines.push("Defence position:", normalizeDefencePositionText(defenceStrategyPlan.posture), "");
@@ -5436,6 +5444,19 @@ export function StrategyCommitmentPanel({
       if ((defenceStrategyPlan.defence_angles?.length ?? 0) > 0) {
         lines.push("Key defence angles:");
         (defenceStrategyPlan.defence_angles ?? []).slice(0, 6).forEach((a) => lines.push(`• ${a}`));
+        lines.push("");
+      }
+      if ((defenceStrategyPlan.order_to_challenge?.length ?? 0) > 0) {
+        lines.push("Order to challenge evidence:");
+        (defenceStrategyPlan.order_to_challenge ?? []).forEach((b) => lines.push(`• ${b}`));
+        lines.push("");
+      }
+      if (defenceStrategyPlan.no_case_line) {
+        lines.push("No case to answer / half-time:", defenceStrategyPlan.no_case_line, "");
+      }
+      if ((defenceStrategyPlan.risks_if_we_fight?.length ?? 0) > 0) {
+        lines.push("Risks if we fight:");
+        (defenceStrategyPlan.risks_if_we_fight ?? []).forEach((r) => lines.push(`• ${r}`));
         lines.push("");
       }
       if ((defenceStrategyPlan.defence_counters?.length ?? 0) > 0) {
@@ -6370,6 +6391,24 @@ export function StrategyCommitmentPanel({
                 <h3 className="text-sm font-semibold text-foreground">How the Defence Case Will Be Run</h3>
               </div>
               <div className="space-y-4 text-xs">
+                {/* Strategy in one line (hard-fight) */}
+                {defenceStrategyPlan.strategy_in_one_line && (
+                  <div className="rounded border border-primary/20 bg-primary/5 p-2">
+                    <span className="font-semibold text-muted-foreground mb-1 block">Strategy in one line</span>
+                    <p className="text-foreground font-medium">{defenceStrategyPlan.strategy_in_one_line}</p>
+                  </div>
+                )}
+                {/* What prosecution still has to prove (hard-fight) */}
+                {defenceStrategyPlan.prosecution_still_must_prove?.length > 0 && (
+                  <div>
+                    <span className="font-semibold text-muted-foreground mb-1 block">What prosecution still has to prove</span>
+                    <ul className="list-disc list-inside space-y-0.5 text-foreground">
+                      {defenceStrategyPlan.prosecution_still_must_prove.map((b, idx) => (
+                        <li key={idx}>{b}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
                 {/* Posture */}
                 {defenceStrategyPlan.posture && (
                   <div>
@@ -6435,6 +6474,36 @@ export function StrategyCommitmentPanel({
                     <ul className="list-disc list-inside space-y-0.5 text-foreground text-xs">
                       {defenceStrategyPlan.defence_angles.slice(0, 6).map((angle, idx) => (
                         <li key={idx}>{angle}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Order to challenge evidence (hard-fight) */}
+                {defenceStrategyPlan.order_to_challenge?.length > 0 && (
+                  <div>
+                    <span className="font-semibold text-muted-foreground mb-1 block">Order to challenge evidence</span>
+                    <ul className="list-disc list-inside space-y-0.5 text-foreground">
+                      {defenceStrategyPlan.order_to_challenge.map((bullet, idx) => (
+                        <li key={idx}>{bullet}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {/* No-case / half-time line (hard-fight, when arguable) */}
+                {defenceStrategyPlan.no_case_line && (
+                  <div className="rounded border border-amber-500/20 bg-amber-500/5 p-2">
+                    <span className="font-semibold text-muted-foreground mb-1 block">No case to answer / half-time</span>
+                    <p className="text-foreground text-[11px]">{defenceStrategyPlan.no_case_line}</p>
+                  </div>
+                )}
+                {/* Risks if we fight (hard-fight) */}
+                {defenceStrategyPlan.risks_if_we_fight?.length > 0 && (
+                  <div>
+                    <span className="font-semibold text-muted-foreground mb-1 block">Risks if we fight</span>
+                    <ul className="list-disc list-inside space-y-0.5 text-foreground">
+                      {defenceStrategyPlan.risks_if_we_fight.map((risk, idx) => (
+                        <li key={idx}>{risk}</li>
                       ))}
                     </ul>
                   </div>
@@ -7277,11 +7346,29 @@ export function StrategyCommitmentPanel({
                 <h3 className="text-sm font-semibold text-foreground">How the Defence Case Will Be Run</h3>
               </div>
               <div className="space-y-4 text-xs">
+                {/* Strategy in one line (hard-fight) */}
+                {defenceStrategyPlan?.strategy_in_one_line && (
+                  <div className="rounded border border-primary/20 bg-primary/5 p-2">
+                    <span className="font-semibold text-muted-foreground mb-1 block">Strategy in one line</span>
+                    <p className="text-foreground text-[11px] font-medium leading-snug">{defenceStrategyPlan.strategy_in_one_line}</p>
+                  </div>
+                )}
                 {/* Stage 6: Attack sequence */}
                 {defenceStrategyPlan?.attack_sequence && (
                   <div className="rounded border border-primary/20 bg-primary/5 p-2">
                     <span className="font-semibold text-muted-foreground mb-1 block">Attack order</span>
                     <p className="text-foreground text-[11px] leading-snug">{defenceStrategyPlan.attack_sequence}</p>
+                  </div>
+                )}
+                {/* What prosecution still has to prove (compact) */}
+                {defenceStrategyPlan?.prosecution_still_must_prove?.length > 0 && (
+                  <div>
+                    <span className="font-semibold text-muted-foreground mb-1 block">What prosecution still has to prove</span>
+                    <ul className="list-disc list-inside space-y-0.5 text-foreground text-[11px]">
+                      {defenceStrategyPlan.prosecution_still_must_prove.slice(0, 5).map((b, idx) => (
+                        <li key={idx}>{b}</li>
+                      ))}
+                    </ul>
                   </div>
                 )}
                 {/* Posture + Primary Route */}
@@ -7347,6 +7434,33 @@ export function StrategyCommitmentPanel({
                     <ul className="list-disc list-inside space-y-0.5 text-foreground text-xs">
                       {defenceStrategyPlan.defence_angles.slice(0, 6).map((angle, idx) => (
                         <li key={idx}>{angle}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {/* Order to challenge (compact) */}
+                {defenceStrategyPlan.order_to_challenge?.length > 0 && (
+                  <div>
+                    <span className="font-semibold text-muted-foreground mb-1 block">Order to challenge evidence</span>
+                    <ul className="list-disc list-inside space-y-0.5 text-foreground text-[11px]">
+                      {defenceStrategyPlan.order_to_challenge.map((bullet, idx) => (
+                        <li key={idx}>{bullet}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {defenceStrategyPlan.no_case_line && (
+                  <div className="rounded border border-amber-500/20 bg-amber-500/5 p-2">
+                    <span className="font-semibold text-muted-foreground mb-1 block">No case / half-time</span>
+                    <p className="text-foreground text-[11px]">{defenceStrategyPlan.no_case_line}</p>
+                  </div>
+                )}
+                {defenceStrategyPlan.risks_if_we_fight?.length > 0 && (
+                  <div>
+                    <span className="font-semibold text-muted-foreground mb-1 block">Risks if we fight</span>
+                    <ul className="list-disc list-inside space-y-0.5 text-foreground text-[11px]">
+                      {defenceStrategyPlan.risks_if_we_fight.map((risk, idx) => (
+                        <li key={idx}>{risk}</li>
                       ))}
                     </ul>
                   </div>

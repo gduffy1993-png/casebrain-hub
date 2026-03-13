@@ -1,7 +1,6 @@
 "use client";
 
 import { Card } from "@/components/ui/card";
-import { MissingEvidencePanel } from "@/components/core/MissingEvidencePanel";
 import { StrategyCommitmentPanel, type StrategyCommitment } from "./StrategyCommitmentPanel";
 import { CaseNotesPanel } from "@/components/core/CaseNotesPanel";
 import { ErrorBoundary } from "@/components/ui/error-boundary";
@@ -76,11 +75,7 @@ export function CaseEvidenceColumn({ caseId, snapshot, onAddDocument, onAddEvide
       </div>
 
       {/* Client instructions & Disclosure live in their own tabs (Client & instructions, Disclosure). No duplicate here. */}
-
-      {/* Missing Evidence – in its own box */}
-      <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Missing evidence panel temporarily unavailable.</div></Card>}>
-        <MissingEvidencePanel caseId={caseId} />
-      </ErrorBoundary>
+      {/* Missing Evidence: not shown in criminal Evidence column; disclosure gaps and "What we're waiting on" are in Strategy / Declared Dependencies. */}
     </div>
   );
 }

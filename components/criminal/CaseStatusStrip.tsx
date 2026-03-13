@@ -28,8 +28,15 @@ export function CaseStatusStrip({ snapshot }: CaseStatusStripProps) {
     disclosureColor = "bg-blue-500/10 text-blue-600 border-blue-500/30";
   }
 
-  // Bundle tier display (Phase A)
+  // Bundle tier display (Phase A): show doc count when available so it's concrete (e.g. "Thin (3 docs)")
   const bundleLabel = bundleTier === "full" ? "Full" : bundleTier === "partial" ? "Partial" : "Thin";
+  const bundleDetail =
+    docCount !== undefined && docCount >= 0
+      ? `${docCount} doc${docCount !== 1 ? "s" : ""}`
+      : bundleScore >= 0
+        ? String(bundleScore)
+        : null;
+  const bundleBadgeText = bundleDetail ? `${bundleLabel} (${bundleDetail})` : bundleLabel;
   const bundleColor =
     bundleTier === "full"
       ? "bg-green-500/10 text-green-600 border-green-500/30"
@@ -100,13 +107,15 @@ export function CaseStatusStrip({ snapshot }: CaseStatusStripProps) {
         </span>
       </div>
 
-      {/* Bundle Completeness (Phase A) */}
+      {/* Bundle Completeness (Phase A): show tier + doc count (e.g. Thin (3 docs)) */}
       <div className="flex items-center gap-2">
         <FileText className="h-4 w-4 text-muted-foreground" />
         <span className="text-xs text-muted-foreground">Bundle:</span>
-        <Badge className={`text-xs border ${bundleColor}`}>
-          {bundleLabel} ({bundleScore})
-        </Badge>
+        <span title={bundleDetail ? `Completeness score: ${bundleScore}` : undefined}>
+          <Badge className={`text-xs border ${bundleColor}`}>
+            {bundleBadgeText}
+          </Badge>
+        </span>
       </div>
 
       {/* Disclosure Status */}
