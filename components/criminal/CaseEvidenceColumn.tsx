@@ -21,6 +21,8 @@ type CaseEvidenceColumnProps = {
   currentPhase?: number;
   savedPosition?: SavedPosition | null;
   onCommitmentChange?: (commitment: StrategyCommitment | null) => void;
+  /** When set, panel mounts so it can report display strategy even before phase 2 (fixes Strategy at a glance / matrix on load). */
+  committedStrategy?: StrategyCommitment | null;
   /** When committed and plan exists, panel reports display strategy so at-a-glance/matrix/snapshot stay in sync. */
   onDisplayStrategyUpdate?: (payload: { displayLabel: string; displayCategory: "fight_charge" | "charge_reduction" | "outcome_management" } | null) => void;
   /** Single source: strategy-analysis API. Used to gate phase selector when UNSAFE. */
@@ -31,7 +33,7 @@ type CaseEvidenceColumnProps = {
   onClientInstructionsSaved?: () => void;
 };
 
-export function CaseEvidenceColumn({ caseId, snapshot, onAddDocument, onAddEvidenceUpload, currentPhase = 1, savedPosition, onCommitmentChange, onDisplayStrategyUpdate, onProceduralSafetyChange, hasClientInstructions, onClientInstructionsSaved }: CaseEvidenceColumnProps) {
+export function CaseEvidenceColumn({ caseId, snapshot, onAddDocument, onAddEvidenceUpload, currentPhase = 1, savedPosition, onCommitmentChange, committedStrategy, onDisplayStrategyUpdate, onProceduralSafetyChange, hasClientInstructions, onClientInstructionsSaved }: CaseEvidenceColumnProps) {
   return (
     <div className="space-y-6">
       {/* Current Defence Position - Read-Only Display (Phase 2+ only) */}
@@ -56,8 +58,8 @@ export function CaseEvidenceColumn({ caseId, snapshot, onAddDocument, onAddEvide
         </Card>
       )}
 
-      {/* Strategy Commitment Panel - Phase 2+ only */}
-      {currentPhase >= 2 && onCommitmentChange && (
+      {/* Strategy Commitment Panel - mount when phase 2+ or when committed (so display strategy is reported for at-a-glance/matrix on load) */}
+      {(currentPhase >= 2 || committedStrategy) && onCommitmentChange && (
         <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Strategy commitment will appear once analysis is run.</div>}>
           <StrategyCommitmentPanel 
             caseId={caseId}

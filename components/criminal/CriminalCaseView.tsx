@@ -476,7 +476,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         </Card>
       ) : snapshot ? (
         <FoldSection title="Case status" defaultOpen={true}>
-          <CaseStatusStrip snapshot={snapshot} />
+          <CaseStatusStrip snapshot={snapshot} displayStrategyCategory={displayStrategy?.displayCategory} />
         </FoldSection>
       ) : null}
 
@@ -623,14 +623,14 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
                   <div>
                     <p className="text-xs text-muted-foreground">
-                      {committedStrategy?.primary ? "Primary approach (committed)" : "Primary approach (recommended)"}
+                      {displayStrategy || committedStrategy?.primary ? "Primary approach (committed)" : "Primary approach (recommended)"}
                     </p>
                     <p className="font-medium text-foreground">
-                      {(committedStrategy?.primary ?? snapshot?.strategy?.primary)
+                      {displayStrategy?.displayLabel ?? ((committedStrategy?.primary ?? snapshot?.strategy?.primary)
                         ? String(committedStrategy?.primary ?? snapshot?.strategy?.primary).replace(/_/g, " ")
-                        : "—"}
+                        : "—")}
                     </p>
-                    {committedStrategy?.primary && snapshot?.strategy?.primary && committedStrategy.primary !== snapshot.strategy.primary && (
+                    {!displayStrategy && committedStrategy?.primary && snapshot?.strategy?.primary && committedStrategy.primary !== snapshot.strategy.primary && (
                       <p className="text-xs text-muted-foreground mt-0.5">Recommended: {String(snapshot.strategy.primary).replace(/_/g, " ")}</p>
                     )}
                   </div>
@@ -711,7 +711,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
                         <CaseFightPlan caseId={caseId} committedStrategy={committedStrategy} canShowStrategyOutputs={snapshot?.analysis?.canShowStrategyOutputs ?? false} canShowStrategyPreview={snapshot?.analysis?.canShowStrategyPreview ?? false} canShowStrategyFull={snapshot?.analysis?.canShowStrategyFull ?? false} strategyDataExists={snapshot?.strategy?.strategyDataExists ?? false} />
                       </div>
                     )}
-                    <CaseEvidenceColumn caseId={caseId} snapshot={snapshot} onAddDocument={() => setShowAddDocuments(true)} onAddEvidenceUpload={() => setShowAddEvidenceUpload(true)} currentPhase={currentPhase} savedPosition={currentPhase >= 2 ? savedPosition : null} onCommitmentChange={(c) => { if (c) { setCommittedStrategy(c); setIsStrategyCommitted(true); buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error); } else { setCommittedStrategy(null); setIsStrategyCommitted(false); setDisplayStrategy(null); } }} onDisplayStrategyUpdate={setDisplayStrategy} onProceduralSafetyChange={setEffectiveProceduralSafety} hasClientInstructions={hasClientInstructions} onClientInstructionsSaved={() => setHasClientInstructions(true)} />
+                    <CaseEvidenceColumn caseId={caseId} snapshot={snapshot} onAddDocument={() => setShowAddDocuments(true)} onAddEvidenceUpload={() => setShowAddEvidenceUpload(true)} currentPhase={currentPhase} savedPosition={currentPhase >= 2 ? savedPosition : null} onCommitmentChange={(c) => { if (c) { setCommittedStrategy(c); setIsStrategyCommitted(true); buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error); } else { setCommittedStrategy(null); setIsStrategyCommitted(false); setDisplayStrategy(null); } }} committedStrategy={committedStrategy} onDisplayStrategyUpdate={setDisplayStrategy} onProceduralSafetyChange={setEffectiveProceduralSafety} hasClientInstructions={hasClientInstructions} onClientInstructionsSaved={() => setHasClientInstructions(true)} />
                   </ErrorBoundary>
                 </FoldSection>
                 <FoldSection title="Strategy" defaultOpen={false}>

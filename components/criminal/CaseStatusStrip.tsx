@@ -6,9 +6,11 @@ import type { CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
 
 type CaseStatusStripProps = {
   snapshot: CaseSnapshot;
+  /** When set (from Defence Plan), Position badge reflects this so it matches Strategy (e.g. Fight for Act Denial). */
+  displayStrategyCategory?: "fight_charge" | "charge_reduction" | "outcome_management" | null;
 };
 
-export function CaseStatusStrip({ snapshot }: CaseStatusStripProps) {
+export function CaseStatusStrip({ snapshot, displayStrategyCategory }: CaseStatusStripProps) {
   // Derive disclosure status conservatively
   const missingCount = snapshot.evidence.missingEvidence.filter(
     (item) => item.status === "MISSING" || item.status === "UNASSESSED"
@@ -66,14 +68,16 @@ export function CaseStatusStrip({ snapshot }: CaseStatusStripProps) {
     analysisColor = "bg-amber-500/10 text-amber-600 border-amber-500/30";
   }
 
-  // Current position
-  const positionLabel = snapshot.decisionLog.currentPosition
-    ? snapshot.decisionLog.currentPosition.position === "fight_charge"
-      ? "Fight"
-      : snapshot.decisionLog.currentPosition.position === "charge_reduction"
-      ? "Reduce"
-      : "Mitigate"
-    : "Not recorded";
+  // Current position: prefer display strategy category when set so Position matches Strategy (e.g. Act Denial → Fight)
+  const positionLabel = displayStrategyCategory
+    ? (displayStrategyCategory === "fight_charge" ? "Fight" : displayStrategyCategory === "charge_reduction" ? "Reduce" : "Mitigate")
+    : snapshot.decisionLog.currentPosition
+      ? snapshot.decisionLog.currentPosition.position === "fight_charge"
+        ? "Fight"
+        : snapshot.decisionLog.currentPosition.position === "charge_reduction"
+        ? "Reduce"
+        : "Mitigate"
+      : "Not recorded";
 
   // Format dates
   const formatDate = (dateStr: string | null) => {
