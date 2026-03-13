@@ -5,7 +5,7 @@
  * All flags and assessments are derived from actual data, never guessed.
  */
 
-import type { EvidenceSnapshot } from "./types";
+import type { EvidenceSnapshot, TimelineEntry } from "./types";
 
 // Re-export type for convenience
 export type { EvidenceSnapshot };
@@ -33,6 +33,8 @@ export function buildEvidenceSnapshot(input: {
     date?: string;
   }>;
   extracted?: any;
+  /** Timeline entries from bundle (witness/CCTV times) for contradiction detection – all criminal cases. */
+  timelineEntries?: TimelineEntry[];
 }): EvidenceSnapshot {
   const snapshot: EvidenceSnapshot = {
     offence: {
@@ -58,6 +60,7 @@ export function buildEvidenceSnapshot(input: {
       key_gaps: [],
     },
     flags: {},
+    timeline_entries: input.timelineEntries ?? [],
   };
 
   // Build disclosure state

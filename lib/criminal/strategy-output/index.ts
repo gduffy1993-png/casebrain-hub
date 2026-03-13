@@ -10,6 +10,7 @@ export type {
   ConditionalLogic,
   SolicitorOverride,
   EvidenceSnapshot,
+  TimelineEntry,
 } from "./types";
 
 // Evidence Anchor Builders

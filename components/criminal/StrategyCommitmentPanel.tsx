@@ -5296,6 +5296,8 @@ export function StrategyCommitmentPanel({
   const [timePressure, setTimePressure] = useState<TimePressureState | null>(null);
   const [confidenceStates, setConfidenceStates] = useState<Record<string, any>>({});
   const [decisionCheckpoints, setDecisionCheckpoints] = useState<DecisionCheckpoint[]>([]);
+  /** Witness timeline entries from strategy-analysis (for contradiction block – all criminal cases). */
+  const [timelineEntriesFromAnalysis, setTimelineEntriesFromAnalysis] = useState<Array<{ source: string; event: string; time?: string }>>([]);
   const [analysisVersionInfo, setAnalysisVersionInfo] = useState<{
     has_analysis_version: boolean;
     analysis_mode: "complete" | "preview" | "none";
@@ -5336,6 +5338,12 @@ export function StrategyCommitmentPanel({
 
   /** Strategy option labels; charge_reduction shows s18→s20 only for s18 OAPA. */
   const strategyOptions = getStrategyOptions(coordinatorResult?.offence?.code);
+
+  /** When committed and we have a defence plan, show the plan's primary route so the page tells one story (e.g. "Act Denial" not "Outcome Management"). */
+  const committedStrategyDisplayLabel =
+    isCommitted && defenceStrategyPlan?.primary_route?.label
+      ? defenceStrategyPlan.primary_route.label
+      : (primary ? strategyOptions.find((o) => o.id === primary)?.label ?? primary?.replace(/_/g, " ") : "—");
 
   // Single source of truth: GET /api/criminal/[caseId]/strategy-analysis → data.data.procedural_safety
   const effectiveProceduralSafety = proceduralSafetyFromApi;
@@ -5467,6 +5475,11 @@ export function StrategyCommitmentPanel({
         (defenceStrategyPlan.cross_examination_themes ?? []).forEach((t) => lines.push(`• ${t}`));
         lines.push("");
       }
+      if ((defenceStrategyPlan.witness_timeline_conflicts?.length ?? 0) > 0) {
+        lines.push("Witness timeline conflicts:");
+        (defenceStrategyPlan.witness_timeline_conflicts ?? []).forEach((t) => lines.push(`• ${t}`));
+        lines.push("");
+      }
       if ((defenceStrategyPlan.risks_if_we_fight?.length ?? 0) > 0) {
         lines.push("Trial risks:");
         (defenceStrategyPlan.risks_if_we_fight ?? []).forEach((r) => lines.push(`• ${r}`));
@@ -5516,7 +5529,7 @@ export function StrategyCommitmentPanel({
   /** One-click export for counsel: issues, gaps, tests, strategy, disclosure, key dates */
   const handleExportHearingPack = () => {
     const date = new Date().toLocaleString("en-GB", { dateStyle: "medium", timeStyle: "short" });
-    const strategyLabel = primary ? strategyOptions.find((o) => o.id === primary)?.label ?? primary : "Not committed";
+    const strategyLabel = defenceStrategyPlan?.primary_route?.label ?? (primary ? strategyOptions.find((o) => o.id === primary)?.label ?? primary : "Not committed");
     const lines: string[] = [
       "HEARING PREPARATION PACK",
       "Generated: " + date,
@@ -5662,6 +5675,11 @@ export function StrategyCommitmentPanel({
           }
           if (data.data.decisionCheckpoints) {
             setDecisionCheckpoints(data.data.decisionCheckpoints);
+          }
+          if (Array.isArray(data.data?.timeline_entries)) {
+            setTimelineEntriesFromAnalysis(data.data.timeline_entries);
+          } else {
+            setTimelineEntriesFromAnalysis([]);
           }
           if (data.data.diagnostics) {
             setIsGated(data.data.diagnostics.isGated || !data.data.diagnostics.canGenerateAnalysis);
@@ -5916,6 +5934,7 @@ export function StrategyCommitmentPanel({
           recordedPosition: savedPosition?.position_text,
           declaredDependencies: declaredDependencies,
           disclosureTimelineEntries: disclosureTimeline,
+          timelineEntries: timelineEntriesFromAnalysis ?? [],
         });
 
         // Build defence strategy plan
@@ -6004,7 +6023,7 @@ export function StrategyCommitmentPanel({
     }
 
     computeCoordinatorData();
-  }, [mounted, resolvedCaseId, savedPosition, primary, evidenceImpactMap, isCommitted]);
+  }, [mounted, resolvedCaseId, savedPosition, primary, evidenceImpactMap, isCommitted, timelineEntriesFromAnalysis]);
 
   // Check for one-time guardrail acknowledgement
   useEffect(() => {
@@ -6539,6 +6558,16 @@ export function StrategyCommitmentPanel({
                     </ul>
                   </div>
                 )}
+                {defenceStrategyPlan.witness_timeline_conflicts?.length > 0 && (
+                  <div className="rounded border border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-950/40 p-2">
+                    <span className="font-semibold text-muted-foreground mb-1 block">Witness timeline conflicts</span>
+                    <ul className="list-disc list-inside space-y-0.5 text-foreground text-[11px]">
+                      {defenceStrategyPlan.witness_timeline_conflicts.map((line, idx) => (
+                        <li key={idx}>{line}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
                 {/* Trial risks (hard-fight) */}
                 {defenceStrategyPlan.risks_if_we_fight?.length > 0 && (
                   <div>
@@ -7029,7 +7058,7 @@ export function StrategyCommitmentPanel({
                 <div className="flex items-center gap-2">
                   <Badge variant="default" className="text-xs">PRIMARY</Badge>
                   <span className="text-sm font-medium text-foreground">
-                    {strategyOptions.find(o => o.id === primary)?.label ?? primary}
+                    {committedStrategyDisplayLabel}
                   </span>
                 </div>
                 {!isCommitted && (
@@ -7215,7 +7244,7 @@ export function StrategyCommitmentPanel({
                     <span className="font-semibold text-foreground">{resolvedOffence?.label ?? coordinatorResult?.offence?.label ?? "—"}</span>
                     <span className="font-semibold text-muted-foreground">Primary strategy: </span>
                     <span className="font-semibold text-foreground">
-                      {primary ? strategyOptions.find(o => o.id === primary)?.label ?? primary.replace(/_/g, " ") : "—"}
+                      {committedStrategyDisplayLabel}
                     </span>
                     <span className="text-muted-foreground">Next hearing: TBC</span>
                     <span className="text-muted-foreground italic">Based on disclosure as at {new Date().toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</span>
@@ -7519,6 +7548,16 @@ export function StrategyCommitmentPanel({
                     <ul className="list-disc list-inside space-y-0.5 text-foreground text-[11px]">
                       {defenceStrategyPlan.cross_examination_themes.map((theme, idx) => (
                         <li key={idx}>{theme}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {defenceStrategyPlan.witness_timeline_conflicts?.length > 0 && (
+                  <div className="rounded border border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-950/40 p-2">
+                    <span className="font-semibold text-muted-foreground mb-1 block">Witness timeline conflicts</span>
+                    <ul className="list-disc list-inside space-y-0.5 text-foreground text-[11px]">
+                      {defenceStrategyPlan.witness_timeline_conflicts.map((line, idx) => (
+                        <li key={idx}>{line}</li>
                       ))}
                     </ul>
                   </div>
@@ -8597,7 +8636,7 @@ export function StrategyCommitmentPanel({
                     })()}
                   </div>
                   <h3 className="text-sm font-semibold text-foreground mb-1">
-                    {strategyOptions.find(o => o.id === primary)?.label || primary}
+                    {isCommitted && defenceStrategyPlan?.primary_route?.label ? defenceStrategyPlan.primary_route.label : (strategyOptions.find(o => o.id === primary)?.label || primary)}
                   </h3>
                   <p className="text-xs text-muted-foreground mb-2">
                     {strategyOptions.find(o => o.id === primary)?.description}

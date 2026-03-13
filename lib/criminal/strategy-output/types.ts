@@ -54,6 +54,16 @@ export type SolicitorOverride = {
 };
 
 /**
+ * Timeline entry – source (witness/doc), event description, time.
+ * Used for witness timeline / contradiction detection (all criminal cases).
+ */
+export type TimelineEntry = {
+  source: string;
+  event: string;
+  time?: string;
+};
+
+/**
  * Evidence Snapshot
  * 
  * Captures the current state of evidence, disclosure, and case posture.
@@ -86,4 +96,6 @@ export type EvidenceSnapshot = {
     weapon_uncertainty?: boolean;
     sequence_missing?: boolean;
   };
+  /** Witness / evidence timeline entries for contradiction detection (cross-examination). */
+  timeline_entries?: TimelineEntry[];
 };

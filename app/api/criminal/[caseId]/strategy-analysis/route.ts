@@ -33,6 +33,7 @@ import { buildStrategyCoordinator } from "@/lib/criminal/strategy-coordinator";
 import { computeProceduralSafety } from "@/lib/criminal/procedural-safety";
 import { resolveOffence } from "@/lib/criminal/offence-resolution";
 import { OFFENCE_TYPE_LABELS, normaliseOffenceType } from "@/lib/criminal/strategy-suggest/constants";
+import { extractTimelineEntriesFromText } from "@/lib/criminal/timeline-extractor";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -460,6 +461,10 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
           : "All routes have residual attack angles available",
       };
 
+      // Witness timeline / contradiction detector – extract from bundle text (all criminal cases)
+      const bundleText = documents.map((d) => getDocumentTextForBundle(d)).join("\n");
+      const timeline_entries = extractTimelineEntriesFromText(bundleText);
+
       // PHASE 3 FIX: Generate artifacts for committed route (if any) - AFTER recommendation is generated
       // Use allowStrategyGeneration to ensure artifacts are generated when evidence allows
       const artifacts = commitment?.primary_strategy
@@ -517,6 +522,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         strategyUpdateReason,
         burdenMap,
         pressurePoints,
+        timeline_entries: timeline_entries.length > 0 ? timeline_entries : undefined,
       };
 
       const elapsedMs = Date.now() - runStartMs;

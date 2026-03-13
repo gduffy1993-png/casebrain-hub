@@ -139,5 +139,7 @@ export interface StrategyAnalysisData {
     priority?: "CRITICAL" | "HIGH" | "MEDIUM" | "LOW";
     reason?: string;
   }>;
+  /** Witness timeline / contradiction detector – SOURCE says EVENT TIME (all criminal cases, cross-examination). */
+  timeline_entries?: Array<{ source: string; event: string; time?: string }>;
 }
 

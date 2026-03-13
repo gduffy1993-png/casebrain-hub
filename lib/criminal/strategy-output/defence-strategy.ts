@@ -8,6 +8,7 @@
 import type { EvidenceSnapshot, EvidenceAnchor, ConditionalLogic } from "./types";
 import { buildGapAnchor, buildTimelineAnchor } from "./anchors";
 import { getOffenceWording } from "../offence-wording";
+import { formatTimelineConflictLines } from "../timeline-extractor";
 
 /**
  * Defence Strategy Plan
@@ -66,6 +67,8 @@ export type DefenceStrategyPlan = {
   disclosure_leverage_line: string | null;
   /** Cross-examination themes: 2–4 bullets from defence angles + order to challenge (counsel-facing). */
   cross_examination_themes: string[];
+  /** Witness timeline conflicts: SOURCE says/shows EVENT TIME – for cross-examination (all criminal cases). */
+  witness_timeline_conflicts: string[];
 };
 
 /**
@@ -135,6 +138,7 @@ export function buildDefenceStrategyPlan(input: {
   const witness_attack_plan = buildWitnessAttackPlan(snapshot, offenceElements);
   const disclosure_leverage_line = buildDisclosureLeverageLine(snapshot, primary_route, secondary_routes);
   const cross_examination_themes = buildCrossExaminationThemes(defence_angles, order_to_challenge);
+  const witness_timeline_conflicts = buildWitnessTimelineConflicts(snapshot);
 
   // Next 72 hours: add fight-specific line when primary route is a fight route
   const next_72_hours_with_fight = addFightSpecificNextAction(
@@ -165,6 +169,7 @@ export function buildDefenceStrategyPlan(input: {
     witness_attack_plan,
     disclosure_leverage_line,
     cross_examination_themes,
+    witness_timeline_conflicts,
   };
 }
 
@@ -491,6 +496,16 @@ function buildCrossExaminationThemes(defence_angles: string[], order_to_challeng
     if (out.length >= 4) break;
   }
   return out.slice(0, 4);
+}
+
+/**
+ * Witness timeline conflicts: format timeline_entries as "SOURCE says/shows EVENT TIME" for cross-examination.
+ * Case-driven from snapshot; works for every criminal case (arson, assault, ID, etc.).
+ */
+function buildWitnessTimelineConflicts(snapshot: EvidenceSnapshot): string[] {
+  const entries = snapshot.timeline_entries ?? [];
+  if (entries.length === 0) return [];
+  return formatTimelineConflictLines(entries);
 }
 
 /**
