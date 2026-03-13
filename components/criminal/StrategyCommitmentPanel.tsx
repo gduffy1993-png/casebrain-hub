@@ -5454,8 +5454,21 @@ export function StrategyCommitmentPanel({
       if (defenceStrategyPlan.no_case_line) {
         lines.push("No case to answer / half-time:", defenceStrategyPlan.no_case_line, "");
       }
+      if ((defenceStrategyPlan.witness_attack_plan?.length ?? 0) > 0) {
+        lines.push("Witness attack plan:");
+        (defenceStrategyPlan.witness_attack_plan ?? []).forEach((b) => lines.push(`• ${b}`));
+        lines.push("");
+      }
+      if (defenceStrategyPlan.disclosure_leverage_line) {
+        lines.push("Disclosure leverage:", defenceStrategyPlan.disclosure_leverage_line, "");
+      }
+      if ((defenceStrategyPlan.cross_examination_themes?.length ?? 0) > 0) {
+        lines.push("Cross-examination themes:");
+        (defenceStrategyPlan.cross_examination_themes ?? []).forEach((t) => lines.push(`• ${t}`));
+        lines.push("");
+      }
       if ((defenceStrategyPlan.risks_if_we_fight?.length ?? 0) > 0) {
-        lines.push("Risks if we fight:");
+        lines.push("Trial risks:");
         (defenceStrategyPlan.risks_if_we_fight ?? []).forEach((r) => lines.push(`• ${r}`));
         lines.push("");
       }
@@ -6497,10 +6510,39 @@ export function StrategyCommitmentPanel({
                     <p className="text-foreground text-[11px]">{defenceStrategyPlan.no_case_line}</p>
                   </div>
                 )}
-                {/* Risks if we fight (hard-fight) */}
+                {/* Witness attack plan */}
+                {defenceStrategyPlan.witness_attack_plan?.length > 0 && (
+                  <div>
+                    <span className="font-semibold text-muted-foreground mb-1 block">Witness attack plan</span>
+                    <ul className="list-disc list-inside space-y-0.5 text-foreground">
+                      {defenceStrategyPlan.witness_attack_plan.map((bullet, idx) => (
+                        <li key={idx}>{bullet}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {/* Disclosure leverage (one line when in attack order) */}
+                {defenceStrategyPlan.disclosure_leverage_line && (
+                  <div className="rounded border border-primary/20 bg-primary/5 p-2">
+                    <span className="font-semibold text-muted-foreground mb-1 block">Disclosure leverage</span>
+                    <p className="text-foreground text-[11px]">{defenceStrategyPlan.disclosure_leverage_line}</p>
+                  </div>
+                )}
+                {/* Cross-examination themes */}
+                {defenceStrategyPlan.cross_examination_themes?.length > 0 && (
+                  <div>
+                    <span className="font-semibold text-muted-foreground mb-1 block">Cross-examination themes</span>
+                    <ul className="list-disc list-inside space-y-0.5 text-foreground">
+                      {defenceStrategyPlan.cross_examination_themes.map((theme, idx) => (
+                        <li key={idx}>{theme}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {/* Trial risks (hard-fight) */}
                 {defenceStrategyPlan.risks_if_we_fight?.length > 0 && (
                   <div>
-                    <span className="font-semibold text-muted-foreground mb-1 block">Risks if we fight</span>
+                    <span className="font-semibold text-muted-foreground mb-1 block">Trial risks</span>
                     <ul className="list-disc list-inside space-y-0.5 text-foreground">
                       {defenceStrategyPlan.risks_if_we_fight.map((risk, idx) => (
                         <li key={idx}>{risk}</li>
@@ -7455,9 +7497,35 @@ export function StrategyCommitmentPanel({
                     <p className="text-foreground text-[11px]">{defenceStrategyPlan.no_case_line}</p>
                   </div>
                 )}
+                {defenceStrategyPlan.witness_attack_plan?.length > 0 && (
+                  <div>
+                    <span className="font-semibold text-muted-foreground mb-1 block">Witness attack plan</span>
+                    <ul className="list-disc list-inside space-y-0.5 text-foreground text-[11px]">
+                      {defenceStrategyPlan.witness_attack_plan.map((bullet, idx) => (
+                        <li key={idx}>{bullet}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {defenceStrategyPlan.disclosure_leverage_line && (
+                  <div className="rounded border border-primary/20 bg-primary/5 p-2">
+                    <span className="font-semibold text-muted-foreground mb-1 block">Disclosure leverage</span>
+                    <p className="text-foreground text-[11px]">{defenceStrategyPlan.disclosure_leverage_line}</p>
+                  </div>
+                )}
+                {defenceStrategyPlan.cross_examination_themes?.length > 0 && (
+                  <div>
+                    <span className="font-semibold text-muted-foreground mb-1 block">Cross-examination themes</span>
+                    <ul className="list-disc list-inside space-y-0.5 text-foreground text-[11px]">
+                      {defenceStrategyPlan.cross_examination_themes.map((theme, idx) => (
+                        <li key={idx}>{theme}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
                 {defenceStrategyPlan.risks_if_we_fight?.length > 0 && (
                   <div>
-                    <span className="font-semibold text-muted-foreground mb-1 block">Risks if we fight</span>
+                    <span className="font-semibold text-muted-foreground mb-1 block">Trial risks</span>
                     <ul className="list-disc list-inside space-y-0.5 text-foreground text-[11px]">
                       {defenceStrategyPlan.risks_if_we_fight.map((risk, idx) => (
                         <li key={idx}>{risk}</li>

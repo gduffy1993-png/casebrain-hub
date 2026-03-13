@@ -58,8 +58,14 @@ export type DefenceStrategyPlan = {
   order_to_challenge: string[];
   /** Hard-fight: no-case / half-time line when arguable (2+ weak elements and critical disclosure outstanding); null otherwise. */
   no_case_line: string | null;
-  /** Hard-fight: 2–3 bullets from kill switches – risks if we fight. */
+  /** Hard-fight: 2–3 bullets from kill switches – trial risks. */
   risks_if_we_fight: string[];
+  /** Witness attack plan: 2–4 theme-based bullets (who to challenge and on what). */
+  witness_attack_plan: string[];
+  /** One sentence on disclosure leverage when disclosure is in attack order; null otherwise. */
+  disclosure_leverage_line: string | null;
+  /** Cross-examination themes: 2–4 bullets from defence angles + order to challenge (counsel-facing). */
+  cross_examination_themes: string[];
 };
 
 /**
@@ -126,6 +132,9 @@ export function buildDefenceStrategyPlan(input: {
   const order_to_challenge = buildOrderToChallenge(snapshot, offenceElements);
   const no_case_line = buildNoCaseLine(snapshot, offenceElements);
   const risks_if_we_fight = buildRisksIfWeFight(kill_switches);
+  const witness_attack_plan = buildWitnessAttackPlan(snapshot, offenceElements);
+  const disclosure_leverage_line = buildDisclosureLeverageLine(snapshot, primary_route, secondary_routes);
+  const cross_examination_themes = buildCrossExaminationThemes(defence_angles, order_to_challenge);
 
   // Next 72 hours: add fight-specific line when primary route is a fight route
   const next_72_hours_with_fight = addFightSpecificNextAction(
@@ -153,6 +162,9 @@ export function buildDefenceStrategyPlan(input: {
     order_to_challenge,
     no_case_line,
     risks_if_we_fight,
+    witness_attack_plan,
+    disclosure_leverage_line,
+    cross_examination_themes,
   };
 }
 
@@ -415,6 +427,70 @@ function addFightSpecificNextAction(
   const hasFightLine = next_72_hours.some(t => /no-case|chase.*disclosure|challenge points/i.test(t));
   if (hasFightLine) return next_72_hours;
   return [fightLine, ...next_72_hours].slice(0, 8);
+}
+
+/**
+ * Witness attack plan: 2–4 theme-based bullets (who to challenge and on what), case-driven from weak elements and ID.
+ */
+function buildWitnessAttackPlan(
+  snapshot: EvidenceSnapshot,
+  offenceElements: Array<{ id: string; label: string; support: string }>
+): string[] {
+  const bullets: string[] = [];
+  const weak = offenceElements.filter(e => e.support === "weak" || e.support === "none");
+  const code = (snapshot.offence?.code ?? "").toLowerCase();
+
+  if (snapshot.flags?.id_uncertainty) {
+    bullets.push("Identification witnesses: challenge any purported ID – no direct recognition / circumstantial only");
+  }
+  const actElement = weak.find(e => /actus|act_|damage|fire|causation/i.test(e.id) || e.label.toLowerCase().includes("actus") || e.label.toLowerCase().includes("causation"));
+  if (actElement) {
+    bullets.push(`Causation / act witnesses: challenge evidence of who did the act – ${actElement.label} not established`);
+  }
+  const intentElement = weak.find(e => /intent|mental|recklessness/i.test(e.id) || e.label.toLowerCase().includes("intent") || e.label.toLowerCase().includes("mental"));
+  if (intentElement && !bullets.some(b => /intent|mental/i.test(b))) {
+    bullets.push(`Intent / state of mind: challenge inference from conduct – ${intentElement.label} in issue`);
+  }
+  if (code.includes("criminal_damage") || code.includes("arson")) {
+    if (!bullets.some(b => /origin|ignition|fire|who started/i.test(b))) {
+      bullets.push("Origin / ignition: challenge evidence of who started fire – no witness to ignition");
+    }
+  }
+  return bullets.slice(0, 4);
+}
+
+/**
+ * One sentence on disclosure leverage when procedural disclosure is in the attack order.
+ */
+function buildDisclosureLeverageLine(
+  snapshot: EvidenceSnapshot,
+  primary_route: DefenceStrategyPlan["primary_route"],
+  secondary_routes: DefenceStrategyPlan["secondary_routes"]
+): string | null {
+  const disclosureRouteIds = ["procedural_disclosure_leverage"];
+  const isPrimary = disclosureRouteIds.includes(primary_route.id);
+  const isSecondary = secondary_routes.some(r => disclosureRouteIds.includes(r.id));
+  if (!isPrimary && !isSecondary) return null;
+  const outstanding = snapshot.disclosure?.required_without_timeline ?? [];
+  const sample = outstanding.slice(0, 3).join(", ");
+  return `Use outstanding disclosure (${sample || "key items"}) for procedural pressure; seek directions and adverse inference or stay if obligations not met.`;
+}
+
+/**
+ * Cross-examination themes: 2–4 bullets from defence angles + order to challenge (counsel-facing label).
+ */
+function buildCrossExaminationThemes(defence_angles: string[], order_to_challenge: string[]): string[] {
+  const combined = [...defence_angles, ...order_to_challenge];
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const line of combined) {
+    const norm = line.slice(0, 80);
+    if (seen.has(norm)) continue;
+    seen.add(norm);
+    out.push(line);
+    if (out.length >= 4) break;
+  }
+  return out.slice(0, 4);
 }
 
 /**
