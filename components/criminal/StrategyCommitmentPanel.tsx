@@ -269,6 +269,8 @@ type StrategyCommitmentPanelProps = {
   hasClientInstructions?: boolean;
   /** When committed and plan exists, report display strategy so Summary/at-a-glance/matrix stay in sync. */
   onDisplayStrategyUpdate?: (payload: { displayLabel: string; displayCategory: PrimaryStrategy } | null) => void;
+  /** When true, Supervisor Snapshot shows strategy-aligned position; when false, shows DB position. */
+  showStrategyAlignedDisplay?: boolean;
 };
 
 export type StrategyCommitment = {
@@ -5285,6 +5287,7 @@ export function StrategyCommitmentPanel({
   onProceduralSafetyChange,
   hasClientInstructions,
   onDisplayStrategyUpdate,
+  showStrategyAlignedDisplay = false,
 }: StrategyCommitmentPanelProps) {
   const lens = getLens(practiceArea);
   const params = useParams();
@@ -6315,7 +6318,7 @@ export function StrategyCommitmentPanel({
               savedPosition={savedPosition}
               primary={primary}
               displayStrategyLabel={committedStrategyDisplayLabel !== "—" ? committedStrategyDisplayLabel : undefined}
-              displayPositionSummary={isFightPrimaryRoute ? "Dispute actus reus pending disclosure." : undefined}
+              displayPositionSummary={showStrategyAlignedDisplay && isFightPrimaryRoute ? "Dispute actus reus pending disclosure." : undefined}
               beastPack={null}
               nextIrreversibleDecision={nextIrreversibleDecision}
               evidenceImpactMap={evidenceImpactMap}
@@ -7986,7 +7989,7 @@ export function StrategyCommitmentPanel({
               savedPosition={savedPosition}
               primary={primary}
               displayStrategyLabel={committedStrategyDisplayLabel !== "—" ? committedStrategyDisplayLabel : undefined}
-              displayPositionSummary={isFightPrimaryRoute ? "Dispute actus reus pending disclosure." : undefined}
+              displayPositionSummary={showStrategyAlignedDisplay && isFightPrimaryRoute ? "Dispute actus reus pending disclosure." : undefined}
               beastPack={null}
               nextIrreversibleDecision={nextIrreversibleDecision}
               evidenceImpactMap={evidenceImpactMap}
@@ -8278,7 +8281,7 @@ export function StrategyCommitmentPanel({
             savedPosition={savedPosition}
             primary={primary}
             displayStrategyLabel={committedStrategyDisplayLabel !== "—" ? committedStrategyDisplayLabel : undefined}
-            displayPositionSummary={isFightPrimaryRoute ? "Dispute actus reus pending disclosure." : undefined}
+            displayPositionSummary={showStrategyAlignedDisplay && isFightPrimaryRoute ? "Dispute actus reus pending disclosure." : undefined}
             beastPack={isDebug ? beastPack : null}
             nextIrreversibleDecision={nextIrreversibleDecision}
             evidenceImpactMap={evidenceImpactMap}

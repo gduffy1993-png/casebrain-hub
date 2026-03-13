@@ -116,6 +116,8 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   const [isStrategyCommitted, setIsStrategyCommitted] = useState(false);
   /** When Strategy tab panel has a defence plan, this is the display strategy (e.g. Act Denial) so at-a-glance/matrix/snapshot stay in sync. */
   const [displayStrategy, setDisplayStrategy] = useState<{ displayLabel: string; displayCategory: "fight_charge" | "charge_reduction" | "outcome_management" } | null>(null);
+  /** When true, narrative/snapshot/matrix show strategy-aligned text (e.g. "Dispute actus reus pending disclosure"). Default off so DB position is shown. */
+  const [showStrategyAlignedDisplay, setShowStrategyAlignedDisplay] = useState(false);
   const [hasSavedPosition, setHasSavedPosition] = useState(false);
   const [isPositionModalOpen, setIsPositionModalOpen] = useState(false);
   /** When user clicks "Edit" on AI suggestion – prefill Record Position modal with this text; cleared on modal close. */
@@ -132,8 +134,8 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
     hearings: { hasData: false },
     pace: { hasData: false },
   });
-  /** From strategy-analysis API (StrategyCommitmentPanel reports when mounted). Used to gate phase selector. */
-  const [effectiveProceduralSafety, setEffectiveProceduralSafety] = useState<{ status: string; explanation?: string } | null>(null);
+  /** From strategy-analysis API (StrategyCommitmentPanel reports when mounted). Used to gate phase selector and Disclosure Timeline banner. */
+  const [effectiveProceduralSafety, setEffectiveProceduralSafety] = useState<{ status: string; explanation?: string; outstandingItems?: string[] } | null>(null);
   /** For Case Readiness Gate: client instructions record present */
   const [hasClientInstructions, setHasClientInstructions] = useState(false);
   /** Matter state for default tab (at_station → police-station, charged etc → strategy) */
@@ -147,6 +149,27 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Persist "Show strategy-aligned display" in sessionStorage (per case) so preference survives refresh
+  const strategyAlignedStorageKey = `strategy-aligned-display-${caseId}`;
+  useEffect(() => {
+    if (!mounted || typeof window === "undefined") return;
+    try {
+      const stored = sessionStorage.getItem(strategyAlignedStorageKey);
+      if (stored === "1") setShowStrategyAlignedDisplay(true);
+    } catch {
+      // ignore
+    }
+  }, [mounted, caseId, strategyAlignedStorageKey]);
+  const setShowStrategyAlignedDisplayWithStorage = (value: boolean) => {
+    setShowStrategyAlignedDisplay(value);
+    try {
+      if (value) sessionStorage.setItem(strategyAlignedStorageKey, "1");
+      else sessionStorage.removeItem(strategyAlignedStorageKey);
+    } catch {
+      // ignore
+    }
+  };
 
   // Fetch client instructions for readiness gate
   useEffect(() => {
@@ -663,6 +686,17 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
                   )}
                 </div>
                 {/* What we're waiting on: shown once in Strategy column (WhatWeAreWaitingOn) */}
+                {(displayStrategy || committedStrategy?.primary) && (
+                  <label className="flex items-center gap-2 mt-3 pt-2 border-t border-border/50 cursor-pointer text-xs text-muted-foreground">
+                    <input
+                      type="checkbox"
+                      checked={showStrategyAlignedDisplay}
+                      onChange={(e) => setShowStrategyAlignedDisplayWithStorage(e.target.checked)}
+                      className="rounded border-border"
+                    />
+                    <span>Show strategy-aligned display</span>
+                  </label>
+                )}
                 <p className="text-[11px] text-muted-foreground mt-3 pt-2 border-t border-border/50">
                   For headline, dispute points and route summary see Strategy Overview in the Strategy column below.
                 </p>
@@ -680,7 +714,11 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-                <DisclosureTimelineSection snapshot={snapshot} />
+                <DisclosureTimelineSection
+                  snapshot={snapshot}
+                  missingCountFromSafety={effectiveProceduralSafety?.outstandingItems?.length ?? 0}
+                  caseId={caseId}
+                />
                 <HearingReadyStrategy snapshot={snapshot} />
               </div>
 
@@ -688,14 +726,14 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
                 <DefenceNarrativeCard
                   snapshot={snapshot}
                   recordedPositionText={savedPosition?.position_text}
-                  displayStrategyLabel={displayStrategy?.displayLabel}
-                  displayPositionSummary={displayStrategy?.displayCategory === "fight_charge" ? "Dispute actus reus pending disclosure." : undefined}
+                  displayStrategyLabel={showStrategyAlignedDisplay ? displayStrategy?.displayLabel : undefined}
+                  displayPositionSummary={showStrategyAlignedDisplay && displayStrategy?.displayCategory === "fight_charge" ? "Dispute actus reus pending disclosure." : undefined}
                 />
                 <RiskOutcomeMatrixCard
-                snapshot={snapshot}
-                displayPrimaryStrategy={displayStrategy?.displayCategory}
-                displayPrimaryRouteLabel={displayStrategy?.displayLabel}
-              />
+                  snapshot={snapshot}
+                  displayPrimaryStrategy={displayStrategy?.displayCategory}
+                  displayPrimaryRouteLabel={showStrategyAlignedDisplay ? displayStrategy?.displayLabel : undefined}
+                />
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -720,7 +758,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
                         <CaseFightPlan caseId={caseId} committedStrategy={committedStrategy} canShowStrategyOutputs={snapshot?.analysis?.canShowStrategyOutputs ?? false} canShowStrategyPreview={snapshot?.analysis?.canShowStrategyPreview ?? false} canShowStrategyFull={snapshot?.analysis?.canShowStrategyFull ?? false} strategyDataExists={snapshot?.strategy?.strategyDataExists ?? false} />
                       </div>
                     )}
-                    <CaseEvidenceColumn caseId={caseId} snapshot={snapshot} onAddDocument={() => setShowAddDocuments(true)} onAddEvidenceUpload={() => setShowAddEvidenceUpload(true)} currentPhase={currentPhase} savedPosition={currentPhase >= 2 ? savedPosition : null} onCommitmentChange={(c) => { if (c) { setCommittedStrategy(c); setIsStrategyCommitted(true); buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error); } else { setCommittedStrategy(null); setIsStrategyCommitted(false); setDisplayStrategy(null); } }} committedStrategy={committedStrategy} onDisplayStrategyUpdate={setDisplayStrategy} onProceduralSafetyChange={setEffectiveProceduralSafety} hasClientInstructions={hasClientInstructions} onClientInstructionsSaved={() => setHasClientInstructions(true)} />
+                    <CaseEvidenceColumn caseId={caseId} snapshot={snapshot} onAddDocument={() => setShowAddDocuments(true)} onAddEvidenceUpload={() => setShowAddEvidenceUpload(true)} currentPhase={currentPhase} savedPosition={currentPhase >= 2 ? savedPosition : null} onCommitmentChange={(c) => { if (c) { setCommittedStrategy(c); setIsStrategyCommitted(true); buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error); } else { setCommittedStrategy(null); setIsStrategyCommitted(false); setDisplayStrategy(null); } }} committedStrategy={committedStrategy} onDisplayStrategyUpdate={setDisplayStrategy} onProceduralSafetyChange={setEffectiveProceduralSafety} showStrategyAlignedDisplay={showStrategyAlignedDisplay} hasClientInstructions={hasClientInstructions} onClientInstructionsSaved={() => setHasClientInstructions(true)} />
                   </ErrorBoundary>
                 </FoldSection>
                 <FoldSection title="Strategy" defaultOpen={false}>

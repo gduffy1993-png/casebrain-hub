@@ -26,14 +26,16 @@ type CaseEvidenceColumnProps = {
   /** When committed and plan exists, panel reports display strategy so at-a-glance/matrix/snapshot stay in sync. */
   onDisplayStrategyUpdate?: (payload: { displayLabel: string; displayCategory: "fight_charge" | "charge_reduction" | "outcome_management" } | null) => void;
   /** Single source: strategy-analysis API. Used to gate phase selector when UNSAFE. */
-  onProceduralSafetyChange?: (safety: { status: string; explanation?: string } | null) => void;
+  onProceduralSafetyChange?: (safety: { status: string; explanation?: string; outstandingItems?: string[] } | null) => void;
+  /** When true, narrative/snapshot/matrix show strategy-aligned display; when false, DB position is shown. */
+  showStrategyAlignedDisplay?: boolean;
   /** When true, Case Readiness Gate shows "Client instructions recorded" */
   hasClientInstructions?: boolean;
   /** Called when client instructions are saved (to refresh readiness gate) */
   onClientInstructionsSaved?: () => void;
 };
 
-export function CaseEvidenceColumn({ caseId, snapshot, onAddDocument, onAddEvidenceUpload, currentPhase = 1, savedPosition, onCommitmentChange, committedStrategy, onDisplayStrategyUpdate, onProceduralSafetyChange, hasClientInstructions, onClientInstructionsSaved }: CaseEvidenceColumnProps) {
+export function CaseEvidenceColumn({ caseId, snapshot, onAddDocument, onAddEvidenceUpload, currentPhase = 1, savedPosition, onCommitmentChange, committedStrategy, onDisplayStrategyUpdate, onProceduralSafetyChange, showStrategyAlignedDisplay = false, hasClientInstructions, onClientInstructionsSaved }: CaseEvidenceColumnProps) {
   return (
     <div className="space-y-6">
       {/* Current Defence Position - Read-Only Display (Phase 2+ only) */}
@@ -67,6 +69,7 @@ export function CaseEvidenceColumn({ caseId, snapshot, onAddDocument, onAddEvide
             savedPosition={savedPosition}
             onProceduralSafetyChange={onProceduralSafetyChange}
             onDisplayStrategyUpdate={onDisplayStrategyUpdate}
+            showStrategyAlignedDisplay={showStrategyAlignedDisplay}
             hasClientInstructions={hasClientInstructions}
           />
         </ErrorBoundary>
