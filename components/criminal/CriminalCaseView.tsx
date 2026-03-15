@@ -48,8 +48,7 @@ import { HearingReadyStrategy } from "./HearingReadyStrategy";
 import { OffencePlaybookCard } from "./OffencePlaybookCard";
 import { SolicitorInstructionsSection } from "./SolicitorInstructionsSection";
 import { StrategyExportButton } from "./StrategyExportButton";
-import { DefenceNarrativeCard } from "./DefenceNarrativeCard";
-import { RiskOutcomeMatrixCard } from "./RiskOutcomeMatrixCard";
+import { DefencePlanBox } from "./DefencePlanBox";
 
 /** Tab ids for criminal case page. URL ?tab= must be one of these. Order: primary then secondary. */
 const CRIMINAL_CASE_TAB_IDS = [
@@ -118,6 +117,8 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   const [displayStrategy, setDisplayStrategy] = useState<{ displayLabel: string; displayCategory: "fight_charge" | "charge_reduction" | "outcome_management" } | null>(null);
   /** When true, narrative/snapshot/matrix show strategy-aligned text (e.g. "Dispute actus reus pending disclosure"). Default off so DB position is shown. */
   const [showStrategyAlignedDisplay, setShowStrategyAlignedDisplay] = useState(false);
+  /** Defence Plan from Evidence column (single source for Strategy tab box). Cleared when commitment cleared. */
+  const [defencePlan, setDefencePlan] = useState<import("@/lib/criminal/strategy-output").DefenceStrategyPlan | null>(null);
   const [hasSavedPosition, setHasSavedPosition] = useState(false);
   const [isPositionModalOpen, setIsPositionModalOpen] = useState(false);
   /** When user clicks "Edit" on AI suggestion – prefill Record Position modal with this text; cleared on modal close. */
@@ -645,30 +646,20 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
                 <h3 className="text-sm font-semibold text-foreground mb-3">Strategy at a glance</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
                   <div>
-                    <p className="text-xs text-muted-foreground">
-                      {displayStrategy || committedStrategy?.primary ? "Primary approach (committed)" : "Primary approach (recommended)"}
+                    <p className="text-xs text-muted-foreground">Recorded position (DB)</p>
+                    <p className="font-medium text-foreground line-clamp-2">
+                      {savedPosition?.position_text?.trim() ? savedPosition.position_text.split(/[.!?]/)[0].trim() + (savedPosition.position_text.includes(".") ? "." : "") : "—"}
                     </p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground">Committed strategy</p>
                     <p className="font-medium text-foreground">
-                      {displayStrategy?.displayLabel ?? ((committedStrategy?.primary ?? snapshot?.strategy?.primary)
-                        ? String(committedStrategy?.primary ?? snapshot?.strategy?.primary).replace(/_/g, " ")
-                        : "—")}
+                      {displayStrategy?.displayLabel ?? (committedStrategy?.primary ? String(committedStrategy.primary).replace(/_/g, " ") : "—")}
                     </p>
-                    {!displayStrategy && committedStrategy?.primary && snapshot?.strategy?.primary && committedStrategy.primary !== snapshot.strategy.primary && (
-                      <p className="text-xs text-muted-foreground mt-0.5">Recommended: {String(snapshot.strategy.primary).replace(/_/g, " ")}</p>
-                    )}
                   </div>
                   <div>
                     <p className="text-xs text-muted-foreground">Offence</p>
                     <p className="font-medium text-foreground">{snapshot.resolvedOffence?.label ?? "—"}</p>
-                    {snapshot.resolvedOffence?.coverageLabel && (
-                      <span className={`text-xs ${snapshot.resolvedOffence.isSupported ? "text-green-600" : "text-amber-600"}`}>
-                        {snapshot.resolvedOffence.coverageLabel}
-                      </span>
-                    )}
-                  </div>
-                  <div>
-                    <p className="text-xs text-muted-foreground">Basis</p>
-                    <p className="font-medium text-foreground">{snapshot.analysis?.strategyBasisLabel ?? "—"}</p>
                   </div>
                   <div>
                     <p className="text-xs text-muted-foreground">Next hearing</p>
@@ -678,29 +669,15 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
                         : "—"}
                     </p>
                   </div>
-                  {snapshot.caseMeta?.caseStage && snapshot.caseMeta.caseStage !== "unknown" && (
-                    <div>
-                      <p className="text-xs text-muted-foreground">Stage</p>
-                      <p className="font-medium text-foreground capitalize">{snapshot.caseMeta.caseStage.replace(/_/g, " ")}</p>
-                    </div>
-                  )}
                 </div>
-                {/* What we're waiting on: shown once in Strategy column (WhatWeAreWaitingOn) */}
-                {(displayStrategy || committedStrategy?.primary) && (
-                  <label className="flex items-center gap-2 mt-3 pt-2 border-t border-border/50 cursor-pointer text-xs text-muted-foreground">
-                    <input
-                      type="checkbox"
-                      checked={showStrategyAlignedDisplay}
-                      onChange={(e) => setShowStrategyAlignedDisplayWithStorage(e.target.checked)}
-                      className="rounded border-border"
-                    />
-                    <span>Show strategy-aligned display</span>
-                  </label>
-                )}
                 <p className="text-[11px] text-muted-foreground mt-3 pt-2 border-t border-border/50">
-                  For headline, dispute points and route summary see Strategy Overview in the Strategy column below.
+                  Full Defence Plan (one source) is in the box below. Evidence and Strategy columns have full discipline.
                 </p>
               </Card>
+
+              <div className="mb-6">
+                <DefencePlanBox plan={defencePlan} primaryRouteLabel={displayStrategy?.displayLabel ?? defencePlan?.primary_route?.label ?? null} />
+              </div>
 
               <StrategyBurdenAndPressure snapshot={snapshot} />
 
@@ -720,20 +697,6 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
                   caseId={caseId}
                 />
                 <HearingReadyStrategy snapshot={snapshot} />
-              </div>
-
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-                <DefenceNarrativeCard
-                  snapshot={snapshot}
-                  recordedPositionText={savedPosition?.position_text}
-                  displayStrategyLabel={showStrategyAlignedDisplay ? displayStrategy?.displayLabel : undefined}
-                  displayPositionSummary={showStrategyAlignedDisplay && displayStrategy?.displayCategory === "fight_charge" ? "Dispute actus reus pending disclosure." : undefined}
-                />
-                <RiskOutcomeMatrixCard
-                  snapshot={snapshot}
-                  displayPrimaryStrategy={displayStrategy?.displayCategory}
-                  displayPrimaryRouteLabel={showStrategyAlignedDisplay ? displayStrategy?.displayLabel : undefined}
-                />
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -758,7 +721,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
                         <CaseFightPlan caseId={caseId} committedStrategy={committedStrategy} canShowStrategyOutputs={snapshot?.analysis?.canShowStrategyOutputs ?? false} canShowStrategyPreview={snapshot?.analysis?.canShowStrategyPreview ?? false} canShowStrategyFull={snapshot?.analysis?.canShowStrategyFull ?? false} strategyDataExists={snapshot?.strategy?.strategyDataExists ?? false} />
                       </div>
                     )}
-                    <CaseEvidenceColumn caseId={caseId} snapshot={snapshot} onAddDocument={() => setShowAddDocuments(true)} onAddEvidenceUpload={() => setShowAddEvidenceUpload(true)} currentPhase={currentPhase} savedPosition={currentPhase >= 2 ? savedPosition : null} onCommitmentChange={(c) => { if (c) { setCommittedStrategy(c); setIsStrategyCommitted(true); buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error); } else { setCommittedStrategy(null); setIsStrategyCommitted(false); setDisplayStrategy(null); } }} committedStrategy={committedStrategy} onDisplayStrategyUpdate={setDisplayStrategy} onProceduralSafetyChange={setEffectiveProceduralSafety} showStrategyAlignedDisplay={showStrategyAlignedDisplay} hasClientInstructions={hasClientInstructions} onClientInstructionsSaved={() => setHasClientInstructions(true)} />
+                    <CaseEvidenceColumn caseId={caseId} snapshot={snapshot} onAddDocument={() => setShowAddDocuments(true)} onAddEvidenceUpload={() => setShowAddEvidenceUpload(true)} currentPhase={currentPhase} savedPosition={currentPhase >= 2 ? savedPosition : null} onCommitmentChange={(c) => { if (c) { setCommittedStrategy(c); setIsStrategyCommitted(true); buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error); } else { setCommittedStrategy(null); setIsStrategyCommitted(false); setDisplayStrategy(null); setDefencePlan(null); } }} committedStrategy={committedStrategy} onDisplayStrategyUpdate={setDisplayStrategy} onProceduralSafetyChange={setEffectiveProceduralSafety} showStrategyAlignedDisplay={showStrategyAlignedDisplay} onDefencePlanUpdate={setDefencePlan} hasClientInstructions={hasClientInstructions} onClientInstructionsSaved={() => setHasClientInstructions(true)} />
                   </ErrorBoundary>
                 </FoldSection>
                 <FoldSection title="Strategy" defaultOpen={false}>

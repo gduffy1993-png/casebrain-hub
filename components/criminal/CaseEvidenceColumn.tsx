@@ -29,13 +29,15 @@ type CaseEvidenceColumnProps = {
   onProceduralSafetyChange?: (safety: { status: string; explanation?: string; outstandingItems?: string[] } | null) => void;
   /** When true, narrative/snapshot/matrix show strategy-aligned display; when false, DB position is shown. */
   showStrategyAlignedDisplay?: boolean;
+  /** When Defence Plan is built (committed strategy), report it so Strategy tab can show the plan box. */
+  onDefencePlanUpdate?: (plan: import("@/lib/criminal/strategy-output").DefenceStrategyPlan | null) => void;
   /** When true, Case Readiness Gate shows "Client instructions recorded" */
   hasClientInstructions?: boolean;
   /** Called when client instructions are saved (to refresh readiness gate) */
   onClientInstructionsSaved?: () => void;
 };
 
-export function CaseEvidenceColumn({ caseId, snapshot, onAddDocument, onAddEvidenceUpload, currentPhase = 1, savedPosition, onCommitmentChange, committedStrategy, onDisplayStrategyUpdate, onProceduralSafetyChange, showStrategyAlignedDisplay = false, hasClientInstructions, onClientInstructionsSaved }: CaseEvidenceColumnProps) {
+export function CaseEvidenceColumn({ caseId, snapshot, onAddDocument, onAddEvidenceUpload, currentPhase = 1, savedPosition, onCommitmentChange, committedStrategy, onDisplayStrategyUpdate, onProceduralSafetyChange, showStrategyAlignedDisplay = false, onDefencePlanUpdate, hasClientInstructions, onClientInstructionsSaved }: CaseEvidenceColumnProps) {
   return (
     <div className="space-y-6">
       {/* Current Defence Position - Read-Only Display (Phase 2+ only) */}
@@ -70,6 +72,7 @@ export function CaseEvidenceColumn({ caseId, snapshot, onAddDocument, onAddEvide
             onProceduralSafetyChange={onProceduralSafetyChange}
             onDisplayStrategyUpdate={onDisplayStrategyUpdate}
             showStrategyAlignedDisplay={showStrategyAlignedDisplay}
+            onDefencePlanUpdate={onDefencePlanUpdate}
             hasClientInstructions={hasClientInstructions}
           />
         </ErrorBoundary>

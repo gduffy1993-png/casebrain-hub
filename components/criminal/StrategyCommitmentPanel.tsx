@@ -271,6 +271,8 @@ type StrategyCommitmentPanelProps = {
   onDisplayStrategyUpdate?: (payload: { displayLabel: string; displayCategory: PrimaryStrategy } | null) => void;
   /** When true, Supervisor Snapshot shows strategy-aligned position; when false, shows DB position. */
   showStrategyAlignedDisplay?: boolean;
+  /** When plan is built (committed strategy), report it so parent can show Defence Plan box in Strategy tab. */
+  onDefencePlanUpdate?: (plan: DefenceStrategyPlan | null) => void;
 };
 
 export type StrategyCommitment = {
@@ -5288,6 +5290,7 @@ export function StrategyCommitmentPanel({
   hasClientInstructions,
   onDisplayStrategyUpdate,
   showStrategyAlignedDisplay = false,
+  onDefencePlanUpdate,
 }: StrategyCommitmentPanelProps) {
   const lens = getLens(practiceArea);
   const params = useParams();
@@ -5377,6 +5380,11 @@ export function StrategyCommitmentPanel({
       onDisplayStrategyUpdate(null);
     }
   }, [onDisplayStrategyUpdate, isCommitted, defenceStrategyPlan?.primary_route?.label, defenceStrategyPlan?.primary_route?.id, primary]);
+
+  // Report plan to parent so Strategy tab can show Defence Plan box (single source of truth)
+  useEffect(() => {
+    onDefencePlanUpdate?.(defenceStrategyPlan);
+  }, [defenceStrategyPlan, onDefencePlanUpdate]);
 
   // When primary route is a fight route (Act Denial, ID challenge), hide mitigation-focused dispute points in Strategy Overview so it doesn't contradict
   const isFightPrimaryRoute = defenceStrategyPlan?.primary_route && ["act_denial", "identification_challenge"].includes(defenceStrategyPlan.primary_route.id.toLowerCase());
