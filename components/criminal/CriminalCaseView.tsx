@@ -115,8 +115,6 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   const [isStrategyCommitted, setIsStrategyCommitted] = useState(false);
   /** When Strategy tab panel has a defence plan, this is the display strategy (e.g. Act Denial) so at-a-glance/matrix/snapshot stay in sync. */
   const [displayStrategy, setDisplayStrategy] = useState<{ displayLabel: string; displayCategory: "fight_charge" | "charge_reduction" | "outcome_management" } | null>(null);
-  /** When true, narrative/snapshot/matrix show strategy-aligned text (e.g. "Dispute actus reus pending disclosure"). Default off so DB position is shown. */
-  const [showStrategyAlignedDisplay, setShowStrategyAlignedDisplay] = useState(false);
   /** Defence Plan from Evidence column (single source for Strategy tab box). Cleared when commitment cleared. */
   const [defencePlan, setDefencePlan] = useState<import("@/lib/criminal/strategy-output").DefenceStrategyPlan | null>(null);
   const [hasSavedPosition, setHasSavedPosition] = useState(false);
@@ -150,27 +148,6 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   useEffect(() => {
     setMounted(true);
   }, []);
-
-  // Persist "Show strategy-aligned display" in sessionStorage (per case) so preference survives refresh
-  const strategyAlignedStorageKey = `strategy-aligned-display-${caseId}`;
-  useEffect(() => {
-    if (!mounted || typeof window === "undefined") return;
-    try {
-      const stored = sessionStorage.getItem(strategyAlignedStorageKey);
-      if (stored === "1") setShowStrategyAlignedDisplay(true);
-    } catch {
-      // ignore
-    }
-  }, [mounted, caseId, strategyAlignedStorageKey]);
-  const setShowStrategyAlignedDisplayWithStorage = (value: boolean) => {
-    setShowStrategyAlignedDisplay(value);
-    try {
-      if (value) sessionStorage.setItem(strategyAlignedStorageKey, "1");
-      else sessionStorage.removeItem(strategyAlignedStorageKey);
-    } catch {
-      // ignore
-    }
-  };
 
   // Fetch client instructions for readiness gate
   useEffect(() => {
@@ -676,7 +653,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
               </Card>
 
               <div className="mb-6">
-                <DefencePlanBox plan={defencePlan} primaryRouteLabel={displayStrategy?.displayLabel ?? defencePlan?.primary_route?.label ?? null} />
+                <DefencePlanBox caseId={caseId} plan={defencePlan} primaryRouteLabel={displayStrategy?.displayLabel ?? defencePlan?.primary_route?.label ?? null} />
               </div>
 
               <StrategyBurdenAndPressure snapshot={snapshot} />
@@ -721,7 +698,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
                         <CaseFightPlan caseId={caseId} committedStrategy={committedStrategy} canShowStrategyOutputs={snapshot?.analysis?.canShowStrategyOutputs ?? false} canShowStrategyPreview={snapshot?.analysis?.canShowStrategyPreview ?? false} canShowStrategyFull={snapshot?.analysis?.canShowStrategyFull ?? false} strategyDataExists={snapshot?.strategy?.strategyDataExists ?? false} />
                       </div>
                     )}
-                    <CaseEvidenceColumn caseId={caseId} snapshot={snapshot} onAddDocument={() => setShowAddDocuments(true)} onAddEvidenceUpload={() => setShowAddEvidenceUpload(true)} currentPhase={currentPhase} savedPosition={currentPhase >= 2 ? savedPosition : null} onCommitmentChange={(c) => { if (c) { setCommittedStrategy(c); setIsStrategyCommitted(true); buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error); } else { setCommittedStrategy(null); setIsStrategyCommitted(false); setDisplayStrategy(null); setDefencePlan(null); } }} committedStrategy={committedStrategy} onDisplayStrategyUpdate={setDisplayStrategy} onProceduralSafetyChange={setEffectiveProceduralSafety} showStrategyAlignedDisplay={showStrategyAlignedDisplay} onDefencePlanUpdate={setDefencePlan} hasClientInstructions={hasClientInstructions} onClientInstructionsSaved={() => setHasClientInstructions(true)} />
+                    <CaseEvidenceColumn caseId={caseId} snapshot={snapshot} onAddDocument={() => setShowAddDocuments(true)} onAddEvidenceUpload={() => setShowAddEvidenceUpload(true)} currentPhase={currentPhase} savedPosition={currentPhase >= 2 ? savedPosition : null} onCommitmentChange={(c) => { if (c) { setCommittedStrategy(c); setIsStrategyCommitted(true); buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error); } else { setCommittedStrategy(null); setIsStrategyCommitted(false); setDisplayStrategy(null); setDefencePlan(null); } }} committedStrategy={committedStrategy} onDisplayStrategyUpdate={setDisplayStrategy} onProceduralSafetyChange={setEffectiveProceduralSafety} onDefencePlanUpdate={setDefencePlan} hasClientInstructions={hasClientInstructions} onClientInstructionsSaved={() => setHasClientInstructions(true)} />
                   </ErrorBoundary>
                 </FoldSection>
                 <FoldSection title="Strategy" defaultOpen={false}>

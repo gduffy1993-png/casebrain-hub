@@ -27,8 +27,6 @@ type CaseEvidenceColumnProps = {
   onDisplayStrategyUpdate?: (payload: { displayLabel: string; displayCategory: "fight_charge" | "charge_reduction" | "outcome_management" } | null) => void;
   /** Single source: strategy-analysis API. Used to gate phase selector when UNSAFE. */
   onProceduralSafetyChange?: (safety: { status: string; explanation?: string; outstandingItems?: string[] } | null) => void;
-  /** When true, narrative/snapshot/matrix show strategy-aligned display; when false, DB position is shown. */
-  showStrategyAlignedDisplay?: boolean;
   /** When Defence Plan is built (committed strategy), report it so Strategy tab can show the plan box. */
   onDefencePlanUpdate?: (plan: import("@/lib/criminal/strategy-output").DefenceStrategyPlan | null) => void;
   /** When true, Case Readiness Gate shows "Client instructions recorded" */
@@ -37,7 +35,7 @@ type CaseEvidenceColumnProps = {
   onClientInstructionsSaved?: () => void;
 };
 
-export function CaseEvidenceColumn({ caseId, snapshot, onAddDocument, onAddEvidenceUpload, currentPhase = 1, savedPosition, onCommitmentChange, committedStrategy, onDisplayStrategyUpdate, onProceduralSafetyChange, showStrategyAlignedDisplay = false, onDefencePlanUpdate, hasClientInstructions, onClientInstructionsSaved }: CaseEvidenceColumnProps) {
+export function CaseEvidenceColumn({ caseId, snapshot, onAddDocument, onAddEvidenceUpload, currentPhase = 1, savedPosition, onCommitmentChange, committedStrategy, onDisplayStrategyUpdate, onProceduralSafetyChange, onDefencePlanUpdate, hasClientInstructions, onClientInstructionsSaved }: CaseEvidenceColumnProps) {
   return (
     <div className="space-y-6">
       {/* Current Defence Position - Read-Only Display (Phase 2+ only) */}
@@ -71,7 +69,6 @@ export function CaseEvidenceColumn({ caseId, snapshot, onAddDocument, onAddEvide
             savedPosition={savedPosition}
             onProceduralSafetyChange={onProceduralSafetyChange}
             onDisplayStrategyUpdate={onDisplayStrategyUpdate}
-            showStrategyAlignedDisplay={showStrategyAlignedDisplay}
             onDefencePlanUpdate={onDefencePlanUpdate}
             hasClientInstructions={hasClientInstructions}
           />
