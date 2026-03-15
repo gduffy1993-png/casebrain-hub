@@ -607,6 +607,31 @@ const OFFENCE_DEFS: Record<Exclude<OffenceCode, "unknown">, { label: string; ele
   },
 };
 
+/** Codes used for offence-elements law corpus (all except unknown). */
+const OFFENCE_CODES_FOR_CORPUS = Object.keys(OFFENCE_DEFS) as (keyof typeof OFFENCE_DEFS)[];
+
+/**
+ * Returns markdown text of all offence definitions for law corpus ingestion (Phase 2).
+ * Used by POST /api/criminal/law/ingest with source "offence_elements".
+ */
+export function getOffenceElementsCorpusText(): string {
+  const lines: string[] = [
+    "# Offence elements (AR/MR)",
+    "",
+    "Canonical actus reus and mens rea elements for criminal offences. The prosecution must prove each element.",
+    "",
+  ];
+  for (const code of OFFENCE_CODES_FOR_CORPUS) {
+    const def = OFFENCE_DEFS[code];
+    const elementList = def.elements.map((e) => e.label).join("; ");
+    lines.push(`## ${def.label}`);
+    lines.push("");
+    lines.push(`Elements: ${elementList}.`);
+    lines.push("");
+  }
+  return lines.join("\n");
+}
+
 function getDefByCode(code: Exclude<OffenceCode, "unknown">): OffenceDef {
   const def = OFFENCE_DEFS[code];
   return { code, label: def.label, elements: def.elements };

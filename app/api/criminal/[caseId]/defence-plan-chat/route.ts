@@ -1,6 +1,6 @@
 /**
  * POST /api/criminal/[caseId]/defence-plan-chat
- * Chat grounded in Defence Plan + criminal law corpus (CPIA etc). No general knowledge.
+ * Chat grounded in Defence Plan + criminal law corpus (CPIA, PACE, offence elements, sentencing, evidence, procedure, case law). No general knowledge.
  */
 
 import { NextRequest, NextResponse } from "next/server";
@@ -18,7 +18,7 @@ const LAW_CHUNKS_LIMIT = 5;
 
 const SYSTEM_PROMPT = `You are assisting a criminal defence solicitor in England & Wales. You answer ONLY using:
 1) The Defence Plan summary provided for this case (how we're running it, attack order, burdens).
-2) The retrieved criminal law (e.g. CPIA disclosure duties, procedure). Use it to ground your answer.
+2) The retrieved criminal law (e.g. CPIA, PACE, offence elements, sentencing, evidence, procedure, case law). Use it to ground your answer.
 
 Rules:
 - Do not give legal advice. Answer in scope of the plan and the law provided. If the law chunks don't cover the question, say so briefly.

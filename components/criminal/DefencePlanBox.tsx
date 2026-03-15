@@ -4,12 +4,15 @@
  * Single "Defence Plan" box – one source of truth for how we're fighting this case.
  * All content is from the committed strategy plan only (no DB position mixed in).
  * Renders narrative, attack order, how we're running it, key plan sections, and chat (Phase 3).
+ * Chat history is persisted per case in localStorage so it survives refresh.
  */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import type { DefenceStrategyPlan } from "@/lib/criminal/strategy-output";
+
+const CHAT_STORAGE_KEY_PREFIX = "casebrain:defence-plan-chat:";
 
 type DefencePlanBoxProps = {
   caseId: string;
@@ -41,10 +44,47 @@ function buildPlanSummary(plan: DefenceStrategyPlan): string {
   return parts.join("\n");
 }
 
+function loadChatFromStorage(caseId: string): ChatMessage[] {
+  if (typeof window === "undefined" || !caseId) return [];
+  try {
+    const raw = localStorage.getItem(`${CHAT_STORAGE_KEY_PREFIX}${caseId}`);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+    return parsed.filter((m): m is ChatMessage => m && typeof m.role === "string" && typeof m.content === "string" && (m.role === "user" || m.role === "assistant"));
+  } catch {
+    return [];
+  }
+}
+
+function saveChatToStorage(caseId: string, messages: ChatMessage[]) {
+  if (typeof window === "undefined" || !caseId) return;
+  try {
+    if (messages.length === 0) localStorage.removeItem(`${CHAT_STORAGE_KEY_PREFIX}${caseId}`);
+    else localStorage.setItem(`${CHAT_STORAGE_KEY_PREFIX}${caseId}`, JSON.stringify(messages));
+  } catch {
+    // ignore quota / private mode
+  }
+}
+
 export function DefencePlanBox({ caseId, plan, primaryRouteLabel }: DefencePlanBoxProps) {
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
+  const [chatLoaded, setChatLoaded] = useState(false);
   const [chatInput, setChatInput] = useState("");
   const [chatLoading, setChatLoading] = useState(false);
+
+  // Load persisted chat for this case on mount (client-only to avoid hydration mismatch)
+  useEffect(() => {
+    if (!caseId) return;
+    setChatMessages(loadChatFromStorage(caseId));
+    setChatLoaded(true);
+  }, [caseId]);
+
+  // Persist chat whenever messages change (after initial load)
+  useEffect(() => {
+    if (!caseId || !chatLoaded) return;
+    saveChatToStorage(caseId, chatMessages);
+  }, [caseId, chatLoaded, chatMessages]);
 
   const handleSendChat = async () => {
     const msg = chatInput.trim();

@@ -12,7 +12,6 @@ import { BailTracker } from "./BailTracker";
 import { ClientAdvicePanel } from "./ClientAdvicePanel";
 import { BailApplicationPanel } from "./BailApplicationPanel";
 import { SentencingMitigationPanel } from "./SentencingMitigationPanel";
-import { CaseFightPlan } from "./CaseFightPlan";
 import { CasePhaseSelector, type CasePhase } from "./CasePhaseSelector";
 import { StrategyCommitmentPanel, type StrategyCommitment } from "./StrategyCommitmentPanel";
 import { Phase2StrategyPlanPanel } from "./Phase2StrategyPlanPanel";
@@ -42,9 +41,7 @@ import { CaseOverviewHeader } from "./CaseOverviewHeader";
 import { CaseTimelinePanel } from "./CaseTimelinePanel";
 import { StrategyOverviewSubTab } from "./StrategyOverviewSubTab";
 import { StrategyDoctrineSubTab } from "./StrategyDoctrineSubTab";
-import { StrategyBurdenAndPressure } from "./StrategyBurdenAndPressure";
 import { DisclosureTimelineSection } from "./DisclosureTimelineSection";
-import { HearingReadyStrategy } from "./HearingReadyStrategy";
 import { OffencePlaybookCard } from "./OffencePlaybookCard";
 import { SolicitorInstructionsSection } from "./SolicitorInstructionsSection";
 import { StrategyExportButton } from "./StrategyExportButton";
@@ -617,7 +614,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
                 <StrategyExportButton caseId={caseId} caseTitle={snapshot?.caseMeta?.title ?? undefined} variant="outline" size="sm" />
               </div>
               <p className="text-xs text-muted-foreground mb-3">
-                Summary of your strategy and key levers. Full discipline (Defence Plan, commitment, doctrine) is in the Evidence and Strategy columns below.
+                Summary of your strategy and key levers. Full Defence Plan is in the box below; commitment and Safety are in the Evidence column.
               </p>
               <Card className="p-4 mb-6 border-primary/20 bg-primary/5">
                 <h3 className="text-sm font-semibold text-foreground mb-3">Strategy at a glance</h3>
@@ -648,15 +645,13 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
                   </div>
                 </div>
                 <p className="text-[11px] text-muted-foreground mt-3 pt-2 border-t border-border/50">
-                  Full Defence Plan (one source) is in the box below. Evidence and Strategy columns have full discipline.
+                  Full Defence Plan is in the box below. Strategy Commitment and Safety are in the Evidence column.
                 </p>
               </Card>
 
               <div className="mb-6">
                 <DefencePlanBox caseId={caseId} plan={defencePlan} primaryRouteLabel={displayStrategy?.displayLabel ?? defencePlan?.primary_route?.label ?? null} />
               </div>
-
-              <StrategyBurdenAndPressure snapshot={snapshot} />
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
                 <OffencePlaybookCard snapshot={snapshot} />
@@ -667,37 +662,17 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
                 />
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+              <div className="mb-6">
                 <DisclosureTimelineSection
                   snapshot={snapshot}
                   missingCountFromSafety={effectiveProceduralSafety?.outstandingItems?.length ?? 0}
                   caseId={caseId}
                 />
-                <HearingReadyStrategy snapshot={snapshot} />
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <FoldSection title="Evidence" defaultOpen={true}>
                   <ErrorBoundary fallback={mounted ? <div className="text-sm text-muted-foreground">Analysis will deepen as further disclosure is received.</div> : null}>
-                    {snapshot && (
-                      <div id="section-strategy" className="mb-6">
-                        {(snapshot.analysis?.strategyBasisLabel || snapshot.strategy?.strategyUpdateReason) && (
-                          <div className="text-xs text-muted-foreground mb-2 space-y-0.5">
-                            {snapshot.analysis?.strategyBasisLabel && (
-                              <p title={snapshot.analysis.strategyBasisReason ?? undefined}>
-                                Strategy basis: {snapshot.analysis.strategyBasisLabel}
-                              </p>
-                            )}
-                            {snapshot.strategy?.strategyUpdatedAt && snapshot.strategy?.strategyUpdateReason && (
-                              <p title={snapshot.strategy.strategyUpdatedAt}>
-                                Strategy updated: {snapshot.strategy.strategyUpdateReason}
-                              </p>
-                            )}
-                          </div>
-                        )}
-                        <CaseFightPlan caseId={caseId} committedStrategy={committedStrategy} canShowStrategyOutputs={snapshot?.analysis?.canShowStrategyOutputs ?? false} canShowStrategyPreview={snapshot?.analysis?.canShowStrategyPreview ?? false} canShowStrategyFull={snapshot?.analysis?.canShowStrategyFull ?? false} strategyDataExists={snapshot?.strategy?.strategyDataExists ?? false} />
-                      </div>
-                    )}
                     <CaseEvidenceColumn caseId={caseId} snapshot={snapshot} onAddDocument={() => setShowAddDocuments(true)} onAddEvidenceUpload={() => setShowAddEvidenceUpload(true)} currentPhase={currentPhase} savedPosition={currentPhase >= 2 ? savedPosition : null} onCommitmentChange={(c) => { if (c) { setCommittedStrategy(c); setIsStrategyCommitted(true); buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error); } else { setCommittedStrategy(null); setIsStrategyCommitted(false); setDisplayStrategy(null); setDefencePlan(null); } }} committedStrategy={committedStrategy} onDisplayStrategyUpdate={setDisplayStrategy} onProceduralSafetyChange={setEffectiveProceduralSafety} onDefencePlanUpdate={setDefencePlan} hasClientInstructions={hasClientInstructions} onClientInstructionsSaved={() => setHasClientInstructions(true)} />
                   </ErrorBoundary>
                 </FoldSection>
