@@ -44,12 +44,19 @@ function section(title: string, children: React.ReactNode) {
 
 function buildPlanSummary(plan: DefenceStrategyPlan): string {
   const parts: string[] = [];
+  if (plan.strategy_stance) parts.push(`Stance: ${plan.strategy_stance === "fight_to_win" ? "Going for a win" : "Damage limitation"}.`);
   if (plan.strategy_in_one_line) parts.push(plan.strategy_in_one_line);
+  if (plan.case_theory_one_go) parts.push("Case theory: " + plan.case_theory_one_go);
   if (plan.attack_sequence) parts.push(plan.attack_sequence);
   if (plan.posture) parts.push(plan.posture);
   if (plan.primary_route?.label) parts.push(`Primary route: ${plan.primary_route.label}`);
   if (plan.prosecution_still_must_prove?.length) parts.push("Prosecution must prove: " + plan.prosecution_still_must_prove.join("; "));
   if (plan.defence_angles?.length) parts.push("Defence angles: " + plan.defence_angles.slice(0, 3).join("; "));
+  if (plan.winning_angles?.length) parts.push("Winning angles: " + plan.winning_angles.slice(0, 3).join("; "));
+  if (plan.offence_leverage_angles?.length) parts.push("Offence leverage: " + plan.offence_leverage_angles.join("; "));
+  if (plan.disclosure_weapon_steps?.length) parts.push("Disclosure as weapon: " + plan.disclosure_weapon_steps.join(" "));
+  if (plan.risks_pivots_short?.length) parts.push("If things change: " + plan.risks_pivots_short.join("; "));
+  if (plan.no_case_line) parts.push(plan.no_case_line);
   return parts.join("\n");
 }
 
