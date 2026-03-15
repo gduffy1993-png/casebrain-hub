@@ -458,6 +458,16 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
           setTimeout(() => document.getElementById("section-solicitor-notes")?.scrollIntoView({ behavior: "smooth" }), 120);
         }}
         onSnapshotRefresh={() => buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error)}
+        defencePlan={defencePlan}
+        hasSavedPosition={hasSavedPosition}
+        isUnsafe={effectiveProceduralSafety?.status === "UNSAFE_TO_PROCEED" || effectiveProceduralSafety?.status === "CONDITIONALLY_UNSAFE"}
+        onNavigateToStrategy={() => {
+          setTab("strategy");
+        }}
+        onNavigateToSafety={() => {
+          setTab("safety-procedural");
+          setTimeout(() => document.getElementById("section-safety")?.scrollIntoView({ behavior: "smooth" }), 150);
+        }}
       />
 
       {/* TOP: Status strip + at-a-glance + Jump to – so Jump to is at the top for easy section access */}

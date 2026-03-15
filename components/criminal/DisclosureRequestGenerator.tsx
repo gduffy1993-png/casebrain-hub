@@ -98,10 +98,13 @@ export function DisclosureRequestGenerator({
           <pre className="text-xs text-foreground whitespace-pre-wrap font-sans max-h-64 overflow-y-auto">
             {text}
           </pre>
-          <Button type="button" variant="ghost" size="sm" className="mt-2 h-7 text-xs" onClick={handleCopy}>
-            <Copy className="h-3 w-3 mr-1" />
-            {copied ? "Copied" : "Copy"}
-          </Button>
+          <div className="mt-2 flex flex-wrap items-center gap-2">
+            <Button type="button" variant="secondary" size="sm" className="h-7 text-xs gap-1" onClick={handleCopy}>
+              <Copy className="h-3 w-3" />
+              {copied ? "Copied" : "Copy and adapt"}
+            </Button>
+            <span className="text-[11px] text-muted-foreground">Paste into your file and edit as needed.</span>
+          </div>
         </div>
       )}
     </Card>

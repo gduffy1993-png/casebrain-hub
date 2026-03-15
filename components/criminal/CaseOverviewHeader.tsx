@@ -47,6 +47,16 @@ export type CaseOverviewHeaderProps = {
   onAddNote?: () => void;
   /** After user corrects offence override, refetch snapshot so strategy/overview update */
   onSnapshotRefresh?: () => void;
+  /** Defence plan for "best way to fight" one-liner and next actions */
+  defencePlan?: { strategy_in_one_line?: string; primary_route?: { label?: string } } | null;
+  /** Has recorded defence position (Phase 2) */
+  hasSavedPosition?: boolean;
+  /** Procedural safety: unsafe = show "Resolve disclosure" in next actions */
+  isUnsafe?: boolean;
+  /** Navigate to Strategy tab (for next-action links) */
+  onNavigateToStrategy?: () => void;
+  /** Navigate to Safety section (for resolve disclosure) */
+  onNavigateToSafety?: () => void;
 };
 
 function formatDate(dateStr: string | null): string {
@@ -113,6 +123,11 @@ export function CaseOverviewHeader({
   onGenerateLetter,
   onAddNote,
   onSnapshotRefresh,
+  defencePlan,
+  hasSavedPosition = false,
+  isUnsafe = false,
+  onNavigateToStrategy,
+  onNavigateToSafety,
 }: CaseOverviewHeaderProps) {
   const [offenceModalOpen, setOffenceModalOpen] = useState(false);
   const [offenceOverrideSaving, setOffenceOverrideSaving] = useState(false);
@@ -192,8 +207,57 @@ export function CaseOverviewHeader({
   const nextSteps = snapshot?.actions?.nextSteps ?? [];
   const documents = snapshot?.evidence?.documents ?? [];
 
+  // Best way to fight: one-line + next 1–3 actions (for "when opening a case")
+  const oneLiner =
+    defencePlan?.strategy_in_one_line?.trim() ||
+    (defencePlan?.primary_route?.label ? `Primary: ${defencePlan.primary_route.label}` : null) ||
+    (primaryStrategy ? strategyLabel(primaryStrategy) : null) ||
+    "—";
+  const nextActions: { label: string; onClick?: () => void }[] = [];
+  if (isUnsafe && onNavigateToSafety) nextActions.push({ label: "Resolve disclosure", onClick: onNavigateToSafety });
+  if (!hasSavedPosition && onNavigateToStrategy) nextActions.push({ label: "Record defence position", onClick: onNavigateToStrategy });
+  if (!isStrategyCommitted && onNavigateToStrategy) nextActions.push({ label: "Confirm strategy", onClick: onNavigateToStrategy });
+  for (const step of nextSteps) {
+    if (nextActions.length >= 3) break;
+    const title = (step as { title?: string }).title ?? String(step);
+    if (title && !nextActions.some((a) => a.label === title))
+      nextActions.push({ label: title, onClick: onNavigateToStrategy });
+  }
+  const topNextActions = nextActions.slice(0, 3);
+
   return (
     <div className="space-y-3">
+      {/* Best way to fight + next 1–3 actions */}
+      {!loading && (oneLiner !== "—" || topNextActions.length > 0) && (
+        <Card className="rounded-xl border-primary/20 bg-primary/5 p-3">
+          <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 text-sm">
+            <span className="font-semibold text-foreground">Best way to fight:</span>
+            <span className="text-foreground/90">{oneLiner}</span>
+          </div>
+          {topNextActions.length > 0 && (
+            <div className="mt-2 flex flex-wrap gap-1.5">
+              <span className="text-xs text-muted-foreground mr-1">Next:</span>
+              {topNextActions.map((a, i) =>
+                a.onClick ? (
+                  <button
+                    key={i}
+                    type="button"
+                    onClick={a.onClick}
+                    className="rounded-md border border-primary/30 bg-background px-2 py-0.5 text-xs font-medium text-primary hover:bg-primary/10"
+                  >
+                    {a.label}
+                  </button>
+                ) : (
+                  <span key={i} className="rounded-md border border-border/50 px-2 py-0.5 text-xs text-muted-foreground">
+                    {a.label}
+                  </span>
+                )
+              )}
+            </div>
+          )}
+        </Card>
+      )}
+
       {/* Case Snapshot row */}
       <Card className="rounded-xl border border-border/80 bg-muted/10 overflow-hidden">
         {loading ? (

@@ -69,6 +69,10 @@ export type DefenceStrategyPlan = {
   cross_examination_themes: string[];
   /** Witness timeline conflicts: SOURCE says/shows EVENT TIME – for cross-examination (all criminal cases). */
   witness_timeline_conflicts: string[];
+  /** Fight stance: going for a win (acquittal/dismissal) vs damage limitation (reduction/mitigation). */
+  strategy_stance: "fight_to_win" | "damage_limitation";
+  /** Top 2–3 winning angles: prosecution pressure + kill switches when fighting to win (surfaced for quick scan). */
+  winning_angles: string[];
 };
 
 /**
@@ -148,6 +152,22 @@ export function buildDefenceStrategyPlan(input: {
     snapshot
   );
 
+  // Fight stance: going for a win vs damage limitation (surfaced in UI)
+  const fightRouteIds = ["act_denial", "identification_challenge", "intent_denial", "self_defence", "weapon_uncertainty_causation", "alternative_mental_state_offence"];
+  const strategy_stance: "fight_to_win" | "damage_limitation" =
+    fightRouteIds.includes(primary_route.id) ? "fight_to_win" : "damage_limitation";
+
+  // Winning angles: top prosecution pressure + kill switches when fighting to win (quick scan)
+  const winning_angles: string[] = [];
+  if (strategy_stance === "fight_to_win") {
+    winning_angles.push(...prosecution_pressure.slice(0, 2));
+    for (const ks of kill_switches.slice(0, 2)) {
+      winning_angles.push(`If ${ks.if}: ${ks.then}`);
+    }
+  } else {
+    winning_angles.push(...prosecution_pressure.slice(0, 3));
+  }
+
   return {
     strategy_line,
     risks_fallbacks,
@@ -170,6 +190,8 @@ export function buildDefenceStrategyPlan(input: {
     disclosure_leverage_line,
     cross_examination_themes,
     witness_timeline_conflicts,
+    strategy_stance,
+    winning_angles: winning_angles.slice(0, 5),
   };
 }
 
@@ -509,40 +531,66 @@ function buildWitnessTimelineConflicts(snapshot: EvidenceSnapshot): string[] {
 }
 
 /**
- * Choose primary route (best viable, else best risky, else first canonical)
+ * Which offence element IDs each route "attacks" – weak prosecution evidence on these helps that route.
+ * Used to rank routes by evidence strength (prefer route with most weak/none on its target elements).
+ */
+const ROUTE_TARGET_ELEMENTS: Record<string, string[]> = {
+  act_denial: ["causation", "actus_reus", "damage", "property_damage", "destruction"],
+  identification_challenge: ["identification"],
+  intent_denial: ["specific_intent", "intent", "mens_rea", "recklessness", "mental_state"],
+  weapon_uncertainty_causation: ["causation", "weapon", "instrument"],
+  self_defence: ["unlawfulness", "self_defence"],
+  alternative_mental_state_offence: ["specific_intent", "intent", "mens_rea", "recklessness"],
+  procedural_disclosure_leverage: [], // disclosure-focused, not element-focused
+  mitigation_early_resolution: [],   // damage limitation
+};
+
+/**
+ * Score a route by how many weak/none prosecution elements it targets (higher = better fit for evidence).
+ */
+function scoreRouteByEvidence(
+  routeId: string,
+  offenceElements: Array<{ id: string; support: string }>
+): number {
+  const targetIds = ROUTE_TARGET_ELEMENTS[routeId];
+  if (!targetIds?.length) return 0;
+  let score = 0;
+  for (const el of offenceElements) {
+    if ((el.support === "weak" || el.support === "none") && targetIds.some(t => el.id.includes(t) || t.includes(el.id)))
+      score += el.support === "none" ? 2 : 1;
+  }
+  return score;
+}
+
+/**
+ * Choose primary route: evidence-driven (prefer route that targets most weak/none elements), then best viable, else best risky.
  */
 function choosePrimaryRoute(
   routes: Array<{ id: string; status: string; reasons: string[] }>,
   snapshot: EvidenceSnapshot,
-  offenceElements: Array<{ gaps: string[] }>
+  offenceElements: Array<{ id: string; support: string; gaps: string[] }>
 ): DefenceStrategyPlan["primary_route"] {
-  // Find best viable route
+  const pick = (list: typeof routes) => {
+    if (list.length === 0) return null;
+    const sorted = [...list].sort((a, b) => scoreRouteByEvidence(b.id, offenceElements) - scoreRouteByEvidence(a.id, offenceElements));
+    const best = sorted[0];
+    const gaps = offenceElements.flatMap(e => e.gaps);
+    return {
+      id: best.id,
+      label: formatRouteLabel(best.id),
+      rationale: best.reasons.slice(0, 3),
+      anchors: gaps.length > 0 ? buildGapAnchor(gaps) : undefined,
+    };
+  };
+
   const viableRoutes = routes.filter(r => r.status === "viable");
-  if (viableRoutes.length > 0) {
-    const bestViable = viableRoutes[0];
-    const gaps = offenceElements.flatMap(e => e.gaps);
-    return {
-      id: bestViable.id,
-      label: formatRouteLabel(bestViable.id),
-      rationale: bestViable.reasons.slice(0, 3),
-      anchors: gaps.length > 0 ? buildGapAnchor(gaps) : undefined,
-    };
-  }
+  const chosen = pick(viableRoutes);
+  if (chosen) return chosen;
 
-  // Find best risky route
   const riskyRoutes = routes.filter(r => r.status === "risky");
-  if (riskyRoutes.length > 0) {
-    const bestRisky = riskyRoutes[0];
-    const gaps = offenceElements.flatMap(e => e.gaps);
-    return {
-      id: bestRisky.id,
-      label: formatRouteLabel(bestRisky.id),
-      rationale: bestRisky.reasons.slice(0, 3),
-      anchors: gaps.length > 0 ? buildGapAnchor(gaps) : undefined,
-    };
-  }
+  const chosenRisky = pick(riskyRoutes);
+  if (chosenRisky) return chosenRisky;
 
-  // Fallback to first route
   const firstRoute = routes[0] || { id: "procedural_disclosure_leverage", reasons: [] };
   return {
     id: firstRoute.id,

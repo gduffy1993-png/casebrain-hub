@@ -188,6 +188,17 @@ export async function POST(request: Request) {
     caseId = newCase.id;
     isNewCase = true;
     console.log(`[upload] Created new case with ID: ${caseId}`);
+    // Ensure criminal cases have a criminal_cases row so list/dashboard show offence and next hearing
+    if (normalizedProvidedPracticeArea === "criminal") {
+      try {
+        await supabase.from("criminal_cases").upsert(
+          { id: caseId, org_id: orgId },
+          { onConflict: "id" }
+        );
+      } catch (e) {
+        console.warn("[upload] criminal_cases upsert failed (non-fatal):", e);
+      }
+    }
   } else if (caseId) {
     console.log(`[upload] Using existing case ID: ${caseId} for "${caseTitle}"`);
   }

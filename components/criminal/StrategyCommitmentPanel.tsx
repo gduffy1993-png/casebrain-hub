@@ -3367,11 +3367,14 @@ function ProceduralSafetyPanel({
   evidenceImpactMap,
   declaredDependencies,
   disclosureTimelineEntries,
+  onComputedStatusChange,
 }: {
   caseId?: string;
   evidenceImpactMap: EvidenceImpactMap[];
   declaredDependencies?: DeclaredDependency[];
   disclosureTimelineEntries?: DisclosureTimelineEntry[];
+  /** Called when computed status is available so parent can align Case Readiness with this panel. */
+  onComputedStatusChange?: (status: string, explanation?: string) => void;
 }) {
   const [disclosureState, setDisclosureState] = useState<DisclosureState | null>(null);
   const [loading, setLoading] = useState(true);
@@ -3407,6 +3410,23 @@ function ProceduralSafetyPanel({
 
     computeState();
   }, [caseId, evidenceImpactMap, declaredDependencies, disclosureTimelineEntries]);
+
+  // Report computed status to parent so Case Readiness and Safety panel stay in sync
+  useEffect(() => {
+    if (!disclosureState || !onComputedStatusChange) return;
+    const statusMap: Record<DisclosureState["status"], string> = {
+      safe: "SAFE",
+      conditionally_unsafe: "CONDITIONALLY_UNSAFE",
+      unsafe: "UNSAFE_TO_PROCEED",
+    };
+    const status = statusMap[disclosureState.status];
+    const explanation = disclosureState.rationale?.length
+      ? disclosureState.rationale.join(" ")
+      : disclosureState.missing_items.length
+        ? `${disclosureState.missing_items.length} critical/high item(s) missing`
+        : undefined;
+    onComputedStatusChange(status, explanation);
+  }, [disclosureState, onComputedStatusChange]);
 
   if (loading) {
     return (
@@ -5324,6 +5344,8 @@ export function StrategyCommitmentPanel({
   const [coordinatorResult, setCoordinatorResult] = useState<StrategyCoordinatorResult | null>(null);
   /** Procedural safety from strategy-analysis API (same source as Safety panel). Badge must use this, not coordinatorResult. */
   const [proceduralSafetyFromApi, setProceduralSafetyFromApi] = useState<{ status: string; explanation?: string } | null>(null);
+  /** Safety panel's computed status (documents + dependencies). When set, this overrides API for Case Readiness so both match. */
+  const [safetyPanelComputedStatus, setSafetyPanelComputedStatus] = useState<{ status: string; explanation?: string } | null>(null);
   const [solicitorView, setSolicitorView] = useState<SolicitorView | null>(null);
   const [defenceStrategyPlan, setDefenceStrategyPlan] = useState<DefenceStrategyPlan | null>(null);
   const [cpsPressureLens, setCpsPressureLens] = useState<CPSPressureLens | null>(null);
@@ -5379,6 +5401,11 @@ export function StrategyCommitmentPanel({
     onDefencePlanUpdate?.(defenceStrategyPlan);
   }, [defenceStrategyPlan, onDefencePlanUpdate]);
 
+  // Clear Safety panel status when case changes so we don't show another case's status
+  useEffect(() => {
+    setSafetyPanelComputedStatus(null);
+  }, [resolvedCaseId]);
+
   // When primary route is a fight route (Act Denial, ID challenge), hide mitigation-focused dispute points in Strategy Overview so it doesn't contradict
   const isFightPrimaryRoute = defenceStrategyPlan?.primary_route && ["act_denial", "identification_challenge"].includes(defenceStrategyPlan.primary_route.id.toLowerCase());
   const disputePointsForOverview = (solicitorView?.dispute_points ?? []).length === 0
@@ -5387,8 +5414,8 @@ export function StrategyCommitmentPanel({
       ? (solicitorView!.dispute_points).filter((p: string) => !/mitigation early resolution|Recorded position indicates mitigation/i.test(p))
       : (solicitorView?.dispute_points ?? []);
 
-  // Single source of truth: GET /api/criminal/[caseId]/strategy-analysis → data.data.procedural_safety
-  const effectiveProceduralSafety = proceduralSafetyFromApi;
+  // Single source of truth: prefer Safety panel's computed status (documents + deps) so Case Readiness and Safety badge match; fallback to API.
+  const effectiveProceduralSafety = safetyPanelComputedStatus ?? proceduralSafetyFromApi;
   const isUnsafeToProceed = effectiveProceduralSafety?.status === "UNSAFE_TO_PROCEED" || effectiveProceduralSafety?.status === "CONDITIONALLY_UNSAFE";
   const unsafeActionReason = effectiveProceduralSafety?.explanation || "Critical disclosure missing";
 
@@ -7169,6 +7196,7 @@ export function StrategyCommitmentPanel({
               evidenceImpactMap={evidenceImpactMap}
               declaredDependencies={declaredDependencies}
               disclosureTimelineEntries={disclosureTimelineEntries}
+              onComputedStatusChange={(status, explanation) => setSafetyPanelComputedStatus({ status, explanation })}
             />
           </div>
         )}
@@ -7447,6 +7475,7 @@ export function StrategyCommitmentPanel({
               evidenceImpactMap={evidenceImpactMap}
               declaredDependencies={declaredDependencies}
               disclosureTimelineEntries={disclosureTimelineEntries}
+              onComputedStatusChange={(status, explanation) => setSafetyPanelComputedStatus({ status, explanation })}
             />
           </div>
         )}

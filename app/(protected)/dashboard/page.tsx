@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { Card } from "@/components/ui/card";
-import { ArrowRight, Upload, Inbox } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Upload, Inbox, Shield, ArrowUpDown, ArrowDownAZ } from "lucide-react";
 
 type CaseRow = {
   id: string;
@@ -14,6 +15,9 @@ type CaseRow = {
   disclosure_outstanding?: number | null;
   next_hearing_date?: string | null;
   next_hearing_type?: string | null;
+  phase?: number;
+  offence_label?: string | null;
+  safety_one_line?: string | null;
 };
 
 function formatUpdated(updatedAt: string | null | undefined): string {
@@ -51,11 +55,28 @@ export default function DashboardPage() {
       .then((res) => res.json())
       .then((data) => {
         const list = Array.isArray(data.cases) ? data.cases : [];
-        setCases(list.slice(0, 10));
+        setCases(list);
       })
       .catch(() => setCases([]))
       .finally(() => setLoading(false));
   }, []);
+
+  const [sortBy, setSortBy] = useState<"updated" | "title">("updated");
+  const [filterUnsafeOnly, setFilterUnsafeOnly] = useState(false);
+  const filteredAndSortedCases = useMemo(() => {
+    let list = [...cases];
+    if (filterUnsafeOnly)
+      list = list.filter((c) => (c.disclosure_outstanding ?? 0) > 0);
+    if (sortBy === "title")
+      list.sort((a, b) => (a.title ?? "").localeCompare(b.title ?? ""));
+    else
+      list.sort((a, b) => {
+        const ta = a.updated_at ? new Date(a.updated_at).getTime() : 0;
+        const tb = b.updated_at ? new Date(b.updated_at).getTime() : 0;
+        return tb - ta;
+      });
+    return list;
+  }, [cases, sortBy, filterUnsafeOnly]);
 
   return (
     <div className="space-y-6">
@@ -65,22 +86,44 @@ export default function DashboardPage() {
       </header>
 
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <span className="text-sm font-medium text-accent/80">Recent cases</span>
-        <Link
-          href="/upload"
-          className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-white hover:opacity-90"
-        >
-          <Upload className="h-4 w-4" />
-          New upload
-        </Link>
+        <span className="text-sm font-medium text-accent/80">All matters</span>
+        <div className="flex flex-wrap items-center gap-2">
+          <Button
+            variant={filterUnsafeOnly ? "primary" : "outline"}
+            size="sm"
+            onClick={() => setFilterUnsafeOnly(!filterUnsafeOnly)}
+            className="gap-1.5"
+          >
+            <Shield className="h-3.5 w-3.5" />
+            {filterUnsafeOnly ? "Unsafe only" : "All"}
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setSortBy(sortBy === "updated" ? "title" : "updated")}
+            className="gap-1.5"
+          >
+            {sortBy === "title" ? <ArrowDownAZ className="h-3.5 w-3.5" /> : <ArrowUpDown className="h-3.5 w-3.5" />}
+            {sortBy === "updated" ? "By date" : "By name"}
+          </Button>
+          <Link href="/upload">
+            <Button className="gap-2">
+              <Upload className="h-4 w-4" />
+              New case
+            </Button>
+          </Link>
+          <Link href="/cases">
+            <Button variant="outline" size="sm">View all at /cases</Button>
+          </Link>
+        </div>
       </div>
 
       <Card>
         {loading ? (
           <div className="p-8 text-center text-sm text-accent/60">Loading...</div>
-        ) : cases.length > 0 ? (
+        ) : filteredAndSortedCases.length > 0 ? (
           <ul className="divide-y divide-primary/10">
-            {cases.map((c) => (
+            {filteredAndSortedCases.map((c) => (
               <li key={c.id}>
                 <Link
                   href={`/cases/${c.id}`}
@@ -89,20 +132,14 @@ export default function DashboardPage() {
                   <div className="min-w-0 flex-1">
                     <p className="truncate font-semibold text-accent">{c.title}</p>
                     <p className="mt-0.5 text-xs text-accent/60">
+                      <span className="font-medium text-foreground/80">{c.offence_label ?? "—"}</span>
+                      {c.phase != null && (
+                        <span className="ml-1.5">· Phase {c.phase}</span>
+                      )}
                       {c.next_hearing_date
-                        ? `Next: ${formatNextHearing(c.next_hearing_date, c.next_hearing_type)}`
+                        ? ` · Next: ${formatNextHearing(c.next_hearing_date, c.next_hearing_type)}`
                         : ""}
-                      {c.next_hearing_date && (c.strategy_recorded || c.disclosure_outstanding != null) ? " · " : ""}
-                      {c.strategy_recorded && c.strategy_preview
-                        ? `Strategy: ${c.strategy_preview}`
-                        : c.strategy_recorded
-                          ? "Strategy: Recorded"
-                          : "Strategy: —"}
-                      {c.disclosure_outstanding != null && c.disclosure_outstanding > 0
-                        ? ` · Disclosure: ${c.disclosure_outstanding} outstanding`
-                        : c.disclosure_outstanding === 0
-                          ? " · Disclosure: None outstanding"
-                          : ""}
+                      {c.safety_one_line ? ` · ${c.safety_one_line}` : ""}
                     </p>
                     <p className="mt-0.5 text-xs text-accent/50">
                       Last updated: {formatUpdated(c.updated_at)}
@@ -119,7 +156,9 @@ export default function DashboardPage() {
         ) : (
           <div className="p-8 text-center">
             <p className="text-sm text-accent/70">
-              No cases yet. Upload documents or create a case from Intake.
+              {filterUnsafeOnly
+                ? "No unsafe cases. All matters are clear on disclosure."
+                : "No cases yet. Upload documents or create a case from Intake."}
             </p>
             <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
               <Link

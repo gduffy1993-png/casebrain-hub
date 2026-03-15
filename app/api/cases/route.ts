@@ -127,13 +127,13 @@ export async function GET(request: Request) {
     let positionsData: { case_id: string; position_text: string }[] = [];
     let disclosureData: { case_id: string }[] = [];
     let trackerData: { case_id: string; missing_items?: string[] | null }[] = [];
-    let criminalData: { id: string; next_hearing_date: string | null; next_hearing_type: string | null }[] = [];
+    let criminalData: { id: string; next_hearing_date: string | null; next_hearing_type: string | null; alleged_offence: string | null; offence_override: string | null }[] = [];
     try {
       const [p, d, t, cr] = await Promise.all([
         supabase.from("case_positions").select("case_id, position_text").eq("org_id", orgId).in("case_id", caseIds).order("created_at", { ascending: false }),
         supabase.from("case_disclosure_chasers").select("case_id").eq("org_id", orgId).in("case_id", caseIds).neq("status", "received"),
         supabase.from("disclosure_tracker").select("case_id, missing_items").eq("org_id", orgId).in("case_id", caseIds),
-        supabase.from("criminal_cases").select("id, next_hearing_date, next_hearing_type").eq("org_id", orgId).in("id", caseIds),
+        supabase.from("criminal_cases").select("id, next_hearing_date, next_hearing_type, alleged_offence, offence_override").eq("org_id", orgId).in("id", caseIds),
       ]);
       positionsData = p.data ?? [];
       disclosureData = d.data ?? [];
@@ -154,9 +154,12 @@ export async function GET(request: Request) {
       if (n > 0) trackerByCase.set(row.case_id, n);
     }
     const nextHearingByCase = new Map<string, { date: string; type: string | null }>();
+    const offenceByCase = new Map<string, string>();
     for (const row of criminalData) {
       if (row.next_hearing_date)
         nextHearingByCase.set(row.id, { date: row.next_hearing_date, type: row.next_hearing_type ?? null });
+      const offenceLabel = (row.offence_override ?? row.alleged_offence ?? "").trim() || "—";
+      offenceByCase.set(row.id, offenceLabel);
     }
 
     const casesWithStatus = list.map((c) => {
@@ -171,6 +174,9 @@ export async function GET(request: Request) {
       const trackerCount = trackerByCase.get(c.id) ?? 0;
       const disclosureOutstanding = chaserCount > 0 ? chaserCount : trackerCount;
       const nextHearing = nextHearingByCase.get(c.id) ?? null;
+      const phase = positionText != null && positionText.trim().length > 0 ? 2 : 1;
+      const offence_label = offenceByCase.get(c.id) ?? "—";
+      const safety_one_line = disclosureOutstanding > 0 ? `${disclosureOutstanding} outstanding` : "Safe";
       return {
         ...c,
         strategy_recorded: positionText != null && positionText.trim().length > 0,
@@ -178,6 +184,9 @@ export async function GET(request: Request) {
         disclosure_outstanding: disclosureOutstanding as number,
         next_hearing_date: nextHearing?.date ?? null,
         next_hearing_type: nextHearing?.type ?? null,
+        phase,
+        offence_label,
+        safety_one_line,
       };
     });
 

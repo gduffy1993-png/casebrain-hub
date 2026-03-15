@@ -108,11 +108,29 @@ export function CriminalCaseAtAGlanceBar({
               </p>
             )}
             <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-              {/* Single source: procedural status is in Safety panel only. No duplicate SAFE/UNSAFE here. */}
+              {/* Safety front and centre: status + what to resolve when unsafe */}
               <div className="flex items-center gap-2">
                 <Shield className="h-4 w-4 text-muted-foreground shrink-0" />
-                <span className="text-sm text-muted-foreground">Procedural status:</span>
-                <span className="text-sm text-muted-foreground">see Safety panel</span>
+                <span className="text-sm text-muted-foreground">Safety:</span>
+                {safetyLoading ? (
+                  <span className="text-sm text-muted-foreground">Loading…</span>
+                ) : safetyStatus ? (
+                  <span
+                    className={`text-sm font-medium ${
+                      safetyStatus === "SAFE"
+                        ? "text-green-600 dark:text-green-400"
+                        : "text-amber-600 dark:text-amber-400"
+                    }`}
+                  >
+                    {safetyStatus === "SAFE"
+                      ? "Safe to proceed"
+                      : safetyStatus === "UNSAFE_TO_PROCEED"
+                        ? "Unsafe – resolve before proceeding"
+                        : "Conditionally unsafe"}
+                  </span>
+                ) : (
+                  <span className="text-sm text-muted-foreground">See Safety panel</span>
+                )}
                 <a
                   href="#section-safety"
                   onClick={(e) => {
@@ -124,6 +142,24 @@ export function CriminalCaseAtAGlanceBar({
                   View safety
                 </a>
               </div>
+              {/* What to resolve when unsafe */}
+              {(safetyStatus === "UNSAFE_TO_PROCEED" || safetyStatus === "CONDITIONALLY_UNSAFE") &&
+                (criticalCount > 0 || highCount > 0) && (
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs text-amber-600 dark:text-amber-400">
+                      Resolve: {criticalCount > 0 ? `${criticalCount} critical` : ""}
+                      {criticalCount > 0 && highCount > 0 ? ", " : ""}
+                      {highCount > 0 ? `${highCount} high` : ""} →
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => handleJump("section-safety")}
+                      className="text-xs font-medium text-primary hover:underline"
+                    >
+                      Safety panel
+                    </button>
+                  </div>
+                )}
 
               {/* Disclosure hub: one place for "what's outstanding" */}
               <div className="flex items-center gap-2">
