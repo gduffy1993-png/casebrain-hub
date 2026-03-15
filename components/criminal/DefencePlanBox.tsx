@@ -137,11 +137,72 @@ export function DefencePlanBox({ caseId, plan, primaryRouteLabel, offenceType, c
     );
   }
 
+  const isFightToWin = plan.strategy_stance === "fight_to_win";
+
   return (
     <Card className="p-6 border-2 border-primary/25 bg-primary/5">
       <h3 className="text-sm font-semibold text-foreground mb-1">Defence Plan</h3>
-      {primaryRouteLabel && (
-        <p className="text-xs text-muted-foreground mb-4">Primary route: {primaryRouteLabel}</p>
+      <div className="flex flex-wrap items-center gap-2 mb-2">
+        {primaryRouteLabel && (
+          <p className="text-xs text-muted-foreground">Primary route: {primaryRouteLabel}</p>
+        )}
+        {plan.strategy_stance && (
+          <span
+            className={`inline-block rounded-full px-2 py-0.5 text-[11px] font-semibold ${
+              isFightToWin
+                ? "bg-green-500/20 text-green-700 dark:text-green-400 border border-green-500/30"
+                : "bg-amber-500/20 text-amber-700 dark:text-amber-400 border border-amber-500/30"
+            }`}
+          >
+            {isFightToWin ? "Going for a win" : "Damage limitation"}
+          </span>
+        )}
+      </div>
+      {plan.winning_angles?.length > 0 && (
+        <div className="mb-4 rounded-lg border border-primary/20 bg-primary/10 p-3">
+          <p className="text-xs font-semibold text-foreground uppercase tracking-wide mb-1.5">Winning angles</p>
+          <ul className="text-sm text-foreground space-y-0.5 list-disc pl-4">
+            {plan.winning_angles.slice(0, 5).map((a, i) => (
+              <li key={i}>{a}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {plan.case_theory_one_go && (
+        <div className="mb-4 rounded-lg border border-primary/20 bg-primary/5 p-3">
+          <p className="text-xs font-semibold text-foreground uppercase tracking-wide mb-1.5">Case theory</p>
+          <p className="text-sm text-foreground">{plan.case_theory_one_go}</p>
+        </div>
+      )}
+      {plan.offence_leverage_angles?.length > 0 && (
+        <div className="mb-4 rounded-lg border border-amber-500/20 bg-amber-500/5 p-3">
+          <p className="text-xs font-semibold text-foreground uppercase tracking-wide mb-1.5">Offence leverage</p>
+          <ul className="text-sm text-foreground space-y-0.5 list-disc pl-4">
+            {plan.offence_leverage_angles.map((a, i) => (
+              <li key={i}>{a}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {plan.disclosure_weapon_steps?.length > 0 && (
+        <div className="mb-4 rounded-lg border border-amber-500/20 bg-amber-500/5 p-3">
+          <p className="text-xs font-semibold text-foreground uppercase tracking-wide mb-1.5">Disclosure as weapon</p>
+          <ol className="text-sm text-foreground space-y-0.5 list-decimal pl-4">
+            {plan.disclosure_weapon_steps.map((s, i) => (
+              <li key={i}>{s}</li>
+            ))}
+          </ol>
+        </div>
+      )}
+      {plan.risks_pivots_short?.length > 0 && (
+        <div className="mb-4 rounded-lg border border-border/50 bg-muted/30 p-3">
+          <p className="text-xs font-semibold text-foreground uppercase tracking-wide mb-1.5">If things change</p>
+          <ul className="text-sm text-foreground space-y-0.5 list-disc pl-4">
+            {plan.risks_pivots_short.map((r, i) => (
+              <li key={i}>{r}</li>
+            ))}
+          </ul>
+        </div>
       )}
       <div className="space-y-4">
         {plan.strategy_in_one_line && section("How we're running it", <p className="font-medium">{plan.strategy_in_one_line}</p>)}

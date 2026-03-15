@@ -73,6 +73,14 @@ export type DefenceStrategyPlan = {
   strategy_stance: "fight_to_win" | "damage_limitation";
   /** Top 2–3 winning angles: prosecution pressure + kill switches when fighting to win (surfaced for quick scan). */
   winning_angles: string[];
+  /** Offence-specific high-leverage fight angles (1–3) for "best way to fight" and plan. */
+  offence_leverage_angles: string[];
+  /** Disclosure as weapon: chase X then consider no case/abuse (2–3 steps). */
+  disclosure_weapon_steps: string[];
+  /** Case theory in one go: prosecution case / our case / best angle (one short paragraph). */
+  case_theory_one_go: string;
+  /** Risks and pivots in 2–3 short bullets for at-a-glance / Best way to fight. */
+  risks_pivots_short: string[];
 };
 
 /**
@@ -168,6 +176,11 @@ export function buildDefenceStrategyPlan(input: {
     winning_angles.push(...prosecution_pressure.slice(0, 3));
   }
 
+  const offence_leverage_angles = buildOffenceLeverageAngles(snapshot, offenceElements, primary_route);
+  const disclosure_weapon_steps = buildDisclosureWeaponSteps(snapshot, offenceElements, no_case_line);
+  const case_theory_one_go = buildCaseTheoryOneGo(snapshot, posture, primary_route, prosecution_still_must_prove, defence_angles);
+  const risks_pivots_short = buildRisksPivotsShort(risks_fallbacks, pivot_plan);
+
   return {
     strategy_line,
     risks_fallbacks,
@@ -192,6 +205,10 @@ export function buildDefenceStrategyPlan(input: {
     witness_timeline_conflicts,
     strategy_stance,
     winning_angles: winning_angles.slice(0, 5),
+    offence_leverage_angles,
+    disclosure_weapon_steps,
+    case_theory_one_go,
+    risks_pivots_short,
   };
 }
 
@@ -531,16 +548,107 @@ function buildWitnessTimelineConflicts(snapshot: EvidenceSnapshot): string[] {
 }
 
 /**
+ * Offence-specific high-leverage fight angles (1–3) – sharpen "best way to fight".
+ */
+function buildOffenceLeverageAngles(
+  snapshot: EvidenceSnapshot,
+  offenceElements: Array<{ id: string; label: string; support: string }>,
+  primary_route: DefenceStrategyPlan["primary_route"]
+): string[] {
+  const code = (snapshot.offence?.code ?? "").toLowerCase();
+  const weak = offenceElements.filter(e => e.support === "weak" || e.support === "none");
+  const angles: string[] = [];
+
+  if (code.includes("criminal_damage") || code.includes("arson")) {
+    if (weak.some(e => /lawful_excuse|intent_or_recklessness/i.test(e.id))) angles.push("Lawful excuse – put prosecution to proof on intent/recklessness");
+    if (weak.some(e => /damage|fire|causation/i.test(e.id))) angles.push("Causation / who started fire – no direct evidence; challenge origin and mechanism");
+    if (snapshot.flags?.id_uncertainty) angles.push("Identification – challenge ID; no recognition / circumstantial only");
+  } else if (code.includes("oapa") || code.includes("s18") || code.includes("s20") || code.includes("s47")) {
+    if (weak.some(e => /intent|specific_intent|recklessness/i.test(e.id))) angles.push("Intent / recklessness – challenge inference from conduct; put prosecution to proof");
+    if (weak.some(e => /causation|injury|actus/i.test(e.id))) angles.push("Act and causation – challenge sequence and mechanism");
+    if (snapshot.flags?.id_uncertainty) angles.push("Identification – Turnbull; challenge ID evidence");
+  } else if (code.includes("theft") || code.includes("burglary") || code.includes("robbery")) {
+    if (weak.some(e => /dishonesty|appropriation|intention/i.test(e.id))) angles.push("Dishonesty / intention – put prosecution to proof");
+    if (snapshot.flags?.id_uncertainty) angles.push("Identification – challenge ID");
+  }
+
+  if (angles.length === 0 && weak.length > 0) {
+    angles.push(`Put prosecution to proof on ${weak[0].label}`);
+    if (weak.length > 1) angles.push(weak[1].label + " – weak or no support");
+  }
+  return angles.slice(0, 3);
+}
+
+/**
+ * Disclosure as weapon: chase X then consider no case / abuse (2–3 steps).
+ */
+function buildDisclosureWeaponSteps(
+  snapshot: EvidenceSnapshot,
+  offenceElements: Array<{ id: string; label: string; support: string }>,
+  no_case_line: string | null
+): string[] {
+  const outstanding = snapshot.disclosure?.required_without_timeline ?? [];
+  const weak = offenceElements.filter(e => e.support === "weak" || e.support === "none");
+  const steps: string[] = [];
+  if (outstanding.length === 0) return steps;
+  const chaseList = outstanding.slice(0, 3).join(", ");
+  steps.push(`Chase disclosure: ${chaseList}.`);
+  if (weak.length >= 2 && no_case_line) {
+    steps.push(`If not served by next hearing, consider no-case submission on ${weak[0]?.label ?? "key element"} if disclosure does not strengthen prosecution case.`);
+  } else if (outstanding.length > 0) {
+    steps.push("If disclosure not provided, seek directions and adverse inference or stay if CPIA obligations not met.");
+  }
+  return steps.slice(0, 3);
+}
+
+/**
+ * Case theory in one go: prosecution case / our case / best angle (one short paragraph).
+ */
+function buildCaseTheoryOneGo(
+  snapshot: EvidenceSnapshot,
+  posture: string,
+  primary_route: DefenceStrategyPlan["primary_route"],
+  prosecution_still_must_prove: string[],
+  defence_angles: string[]
+): string {
+  const offenceLabel = snapshot.offence?.label ?? "the offence";
+  const prosecutionBrief = prosecution_still_must_prove.length > 0
+    ? `Prosecution must prove ${prosecution_still_must_prove.slice(0, 2).join(" and ")}.`
+    : "Prosecution must prove all elements beyond reasonable doubt.";
+  const ourCase = posture.replace(/^Defence posture: /i, "").trim() || `We are running ${primary_route.label}.`;
+  const bestAngle = defence_angles[0] ?? primary_route.label;
+  return `${prosecutionBrief} Our case: ${ourCase} Best angle: ${bestAngle}.`;
+}
+
+/**
+ * Risks and pivots in 2–3 short bullets for at-a-glance / Best way to fight.
+ */
+function buildRisksPivotsShort(
+  risks_fallbacks: string[],
+  pivot_plan: DefenceStrategyPlan["pivot_plan"]
+): string[] {
+  const out: string[] = [];
+  for (const r of risks_fallbacks.slice(0, 2)) {
+    out.push(r.length > 100 ? r.slice(0, 97) + "…" : r);
+  }
+  if (out.length < 3 && pivot_plan.length > 0) {
+    const p = pivot_plan[0];
+    out.push(`Pivot: if ${p.if_triggered} → ${p.new_route}`);
+  }
+  return out.slice(0, 3);
+}
+
+/**
  * Which offence element IDs each route "attacks" – weak prosecution evidence on these helps that route.
  * Used to rank routes by evidence strength (prefer route with most weak/none on its target elements).
  */
 const ROUTE_TARGET_ELEMENTS: Record<string, string[]> = {
-  act_denial: ["causation", "actus_reus", "damage", "property_damage", "destruction"],
+  act_denial: ["causation", "actus_reus", "damage", "damage_by_fire", "property_damage", "destruction"],
   identification_challenge: ["identification"],
-  intent_denial: ["specific_intent", "intent", "mens_rea", "recklessness", "mental_state"],
+  intent_denial: ["specific_intent", "intent", "mens_rea", "recklessness", "mental_state", "intent_or_recklessness"],
   weapon_uncertainty_causation: ["causation", "weapon", "instrument"],
-  self_defence: ["unlawfulness", "self_defence"],
-  alternative_mental_state_offence: ["specific_intent", "intent", "mens_rea", "recklessness"],
+  self_defence: ["unlawfulness", "lawful_excuse", "self_defence"],
+  alternative_mental_state_offence: ["specific_intent", "intent", "mens_rea", "recklessness", "intent_or_recklessness"],
   procedural_disclosure_leverage: [], // disclosure-focused, not element-focused
   mitigation_early_resolution: [],   // damage limitation
 };

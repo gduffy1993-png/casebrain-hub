@@ -47,8 +47,8 @@ export type CaseOverviewHeaderProps = {
   onAddNote?: () => void;
   /** After user corrects offence override, refetch snapshot so strategy/overview update */
   onSnapshotRefresh?: () => void;
-  /** Defence plan for "best way to fight" one-liner and next actions */
-  defencePlan?: { strategy_in_one_line?: string; primary_route?: { label?: string } } | null;
+  /** Defence plan for "best way to fight" one-liner, next actions, and risks/pivots */
+  defencePlan?: { strategy_in_one_line?: string; primary_route?: { label?: string }; risks_pivots_short?: string[] } | null;
   /** Has recorded defence position (Phase 2) */
   hasSavedPosition?: boolean;
   /** Procedural safety: unsafe = show "Resolve disclosure" in next actions */
@@ -227,8 +227,8 @@ export function CaseOverviewHeader({
 
   return (
     <div className="space-y-3">
-      {/* Best way to fight + next 1–3 actions */}
-      {!loading && (oneLiner !== "—" || topNextActions.length > 0) && (
+      {/* Best way to fight + next 1–3 actions + risks/pivots */}
+      {!loading && (oneLiner !== "—" || topNextActions.length > 0 || (defencePlan as { risks_pivots_short?: string[] } | null)?.risks_pivots_short?.length) && (
         <Card className="rounded-xl border-primary/20 bg-primary/5 p-3">
           <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 text-sm">
             <span className="font-semibold text-foreground">Best way to fight:</span>
@@ -255,6 +255,16 @@ export function CaseOverviewHeader({
               )}
             </div>
           )}
+          {defencePlan?.risks_pivots_short?.length ? (
+            <div className="mt-2 pt-2 border-t border-primary/10">
+              <p className="text-xs font-medium text-muted-foreground mb-0.5">If things change:</p>
+              <ul className="text-xs text-foreground space-y-0.5 list-disc pl-4">
+                {defencePlan.risks_pivots_short.slice(0, 3).map((r, i) => (
+                  <li key={i}>{r}</li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
         </Card>
       )}
 
