@@ -94,3 +94,24 @@ export async function retrieveLawChunks(
   if (sourceFilter) return rows.filter((r) => r.source === sourceFilter);
   return rows;
 }
+
+/**
+ * Return chunk counts per source (for verifying ingestion). Used by GET /api/criminal/law/counts.
+ */
+export async function getLawChunkCountsBySource(): Promise<Record<string, number>> {
+  const supabase = getSupabaseAdminClient();
+  const { data, error } = await supabase
+    .from("criminal_law_chunks")
+    .select("source")
+    .not("embedding", "is", null);
+  if (error) {
+    console.error("[getLawChunkCountsBySource]", error);
+    return {};
+  }
+  const counts: Record<string, number> = {};
+  for (const row of data ?? []) {
+    const s = row.source ?? "unknown";
+    counts[s] = (counts[s] ?? 0) + 1;
+  }
+  return counts;
+}

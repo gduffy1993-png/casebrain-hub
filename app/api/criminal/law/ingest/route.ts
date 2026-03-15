@@ -1,7 +1,8 @@
 /**
  * POST /api/criminal/law/ingest
  * Ingest criminal law content into the corpus. Requires OPENAI_API_KEY.
- * Body: { source: "cpia" | "offence_elements" | "pace_d" | "pace_abce" | "sentencing" | "evidence" | "procedure" | "case_law" }.
+ * Body: { source: "cpia" | "offence_elements" | "pace_d" | "pace_abce" | "sentencing" | "evidence" | "procedure" | "case_law" | "all" }.
+ * Use source: "all" to ingest every slice in sequence (returns results per source and totalCount).
  */
 
 import { NextResponse } from "next/server";
@@ -80,6 +81,56 @@ export async function POST(req: Request) {
   const sourceKey = body.source ?? "cpia";
   const sourceLabel = SOURCE_LABEL[sourceKey] ?? sourceKey;
 
+  if (sourceKey === "all") {
+    const keys = Object.keys(SOURCE_LABEL);
+    const results: { source: string; count: number; error?: string }[] = [];
+    let totalCount = 0;
+    for (const key of keys) {
+      const label = SOURCE_LABEL[key];
+      if (key === "offence_elements") {
+        const raw = getOffenceElementsCorpusText();
+        const chunks: LawChunk[] = [];
+        const sections = raw.split(/\n(?=## )/m).filter((s) => s.trim());
+        for (const section of sections) {
+          const lines = section.trim().split("\n");
+          const title = lines[0].replace(/^##\s*/, "").trim();
+          const content = lines.slice(1).join("\n").trim();
+          if (!content) continue;
+          const subChunks = chunkText(content, 1200, 100);
+          if (subChunks.length === 1) {
+            chunks.push({ source: label, title, content_text: content });
+          } else {
+            subChunks.forEach((text, i) => {
+              chunks.push({ source: label, title: `${title} (part ${i + 1})`, content_text: text });
+            });
+          }
+        }
+        const del = await deleteLawChunksBySource(label);
+        if (!del.ok) {
+          results.push({ source: label, count: 0, error: del.error });
+          continue;
+        }
+        const result = await ingestLawChunks(chunks);
+        if (!result.ok) {
+          results.push({ source: label, count: 0, error: result.error });
+          continue;
+        }
+        results.push({ source: label, count: result.count });
+        totalCount += result.count;
+      } else if (FILE_SOURCES[key]) {
+        const filePath = path.join(process.cwd(), "content", "criminal-law", FILE_SOURCES[key]);
+        const result = await ingestFromFile(label, filePath);
+        if (!result.ok) {
+          results.push({ source: label, count: 0, error: result.error ?? "Unknown error" });
+          continue;
+        }
+        results.push({ source: label, count: result.count });
+        totalCount += result.count;
+      }
+    }
+    return NextResponse.json({ ok: true, source: "all", results, totalCount });
+  }
+
   if (sourceKey === "offence_elements") {
     const raw = getOffenceElementsCorpusText();
     const chunks: LawChunk[] = [];
@@ -116,7 +167,7 @@ export async function POST(req: Request) {
   }
 
   return NextResponse.json(
-    { ok: false, error: "Unknown source. Use: cpia, offence_elements, pace_d, pace_abce, sentencing, evidence, procedure, case_law." },
+    { ok: false, error: "Unknown source. Use: cpia, offence_elements, pace_d, pace_abce, sentencing, evidence, procedure, case_law, or all." },
     { status: 400 }
   );
 }
