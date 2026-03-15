@@ -11,6 +11,7 @@ import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import type { DefenceStrategyPlan } from "@/lib/criminal/strategy-output";
+import { LawSliceSuggestions } from "./LawSliceSuggestions";
 
 const CHAT_STORAGE_KEY_PREFIX = "casebrain:defence-plan-chat:";
 
@@ -20,6 +21,14 @@ type DefencePlanBoxProps = {
   plan: DefenceStrategyPlan | null;
   /** e.g. "Act Denial" – primary route label for header when plan exists */
   primaryRouteLabel?: string | null;
+  /** For Phase 5 law slice suggestions (offence-specific) */
+  offenceType?: string | null;
+  /** For Phase 5 law slice suggestions (phase 2 vs 3) */
+  currentPhase?: number;
+  /** For Phase 5 evidence-aware chat: short summary of evidence/disclosure so answers are case-specific */
+  evidenceSummary?: string | null;
+  /** For Phase 5 timeline reasoning: key dates and next hearing so chat can reason over timeline */
+  timelineSummary?: string | null;
 };
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
@@ -67,7 +76,7 @@ function saveChatToStorage(caseId: string, messages: ChatMessage[]) {
   }
 }
 
-export function DefencePlanBox({ caseId, plan, primaryRouteLabel }: DefencePlanBoxProps) {
+export function DefencePlanBox({ caseId, plan, primaryRouteLabel, offenceType, currentPhase = 2, evidenceSummary, timelineSummary }: DefencePlanBoxProps) {
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
   const [chatLoaded, setChatLoaded] = useState(false);
   const [chatInput, setChatInput] = useState("");
@@ -97,7 +106,12 @@ export function DefencePlanBox({ caseId, plan, primaryRouteLabel }: DefencePlanB
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify({ message: msg, planSummary: buildPlanSummary(plan) }),
+        body: JSON.stringify({
+          message: msg,
+          planSummary: buildPlanSummary(plan),
+          evidenceSummary: evidenceSummary?.slice(0, 1500) ?? "",
+          timelineSummary: timelineSummary?.slice(0, 800) ?? "",
+        }),
       });
       const data = await res.json().catch(() => ({}));
       if (data.ok && typeof data.reply === "string") {
@@ -145,6 +159,7 @@ export function DefencePlanBox({ caseId, plan, primaryRouteLabel }: DefencePlanB
       </div>
 
       <div className="mt-6 pt-4 border-t border-border/50">
+        <LawSliceSuggestions offenceType={offenceType} currentPhase={currentPhase} hasPlan={true} />
         <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">Ask about this plan</p>
         <p className="text-[11px] text-muted-foreground mb-2">Answers use your Defence Plan and criminal law (e.g. CPIA) only.</p>
         {chatMessages.length > 0 && (

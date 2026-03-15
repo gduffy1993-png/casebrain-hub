@@ -19,6 +19,7 @@ import { AnalysisGateBanner, type AnalysisGateBannerProps } from "@/components/A
 import { Scale, Shield, Loader2, FileText, Target, AlertCircle } from "lucide-react";
 // Phase 2 components
 import { buildCaseSnapshot, type CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
+import { buildEvidenceContext, buildTimelineContext } from "@/lib/criminal/evidence-context";
 import { CaseStatusStrip } from "./CaseStatusStrip";
 import { CriminalCaseAtAGlanceBar } from "./CriminalCaseAtAGlanceBar";
 import { CaseEvidenceColumn } from "./CaseEvidenceColumn";
@@ -42,6 +43,8 @@ import { CaseTimelinePanel } from "./CaseTimelinePanel";
 import { StrategyOverviewSubTab } from "./StrategyOverviewSubTab";
 import { StrategyDoctrineSubTab } from "./StrategyDoctrineSubTab";
 import { DisclosureTimelineSection } from "./DisclosureTimelineSection";
+import { DisclosureRequestGenerator } from "./DisclosureRequestGenerator";
+import { HearingPrepGenerator } from "./HearingPrepGenerator";
 import { OffencePlaybookCard } from "./OffencePlaybookCard";
 import { SolicitorInstructionsSection } from "./SolicitorInstructionsSection";
 import { StrategyExportButton } from "./StrategyExportButton";
@@ -650,7 +653,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
               </Card>
 
               <div className="mb-6">
-                <DefencePlanBox caseId={caseId} plan={defencePlan} primaryRouteLabel={displayStrategy?.displayLabel ?? defencePlan?.primary_route?.label ?? null} />
+                <DefencePlanBox caseId={caseId} plan={defencePlan} primaryRouteLabel={displayStrategy?.displayLabel ?? defencePlan?.primary_route?.label ?? null} offenceType={snapshot?.resolvedOffence?.offenceType} currentPhase={currentPhase} evidenceSummary={snapshot ? buildEvidenceContext(snapshot, effectiveProceduralSafety?.outstandingItems) : undefined} timelineSummary={snapshot ? buildTimelineContext(snapshot) : undefined} />
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
@@ -667,6 +670,21 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
                   snapshot={snapshot}
                   missingCountFromSafety={effectiveProceduralSafety?.outstandingItems?.length ?? 0}
                   caseId={caseId}
+                />
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                <DisclosureRequestGenerator
+                  caseId={caseId}
+                  planSummary={defencePlan ? [defencePlan.strategy_in_one_line, defencePlan.attack_sequence, defencePlan.primary_route?.label].filter(Boolean).join("\n") : undefined}
+                  evidenceSummary={snapshot ? buildEvidenceContext(snapshot, effectiveProceduralSafety?.outstandingItems) : undefined}
+                  timelineSummary={snapshot ? buildTimelineContext(snapshot) : undefined}
+                />
+                <HearingPrepGenerator
+                  caseId={caseId}
+                  planSummary={defencePlan ? [defencePlan.strategy_in_one_line, defencePlan.attack_sequence, defencePlan.primary_route?.label].filter(Boolean).join("\n") : undefined}
+                  evidenceSummary={snapshot ? buildEvidenceContext(snapshot, effectiveProceduralSafety?.outstandingItems) : undefined}
+                  timelineSummary={snapshot ? buildTimelineContext(snapshot) : undefined}
                 />
               </div>
 

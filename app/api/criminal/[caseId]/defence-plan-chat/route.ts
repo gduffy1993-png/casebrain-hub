@@ -18,11 +18,14 @@ const LAW_CHUNKS_LIMIT = 5;
 
 const SYSTEM_PROMPT = `You are assisting a criminal defence solicitor in England & Wales. You answer ONLY using:
 1) The Defence Plan summary provided for this case (how we're running it, attack order, burdens).
-2) The retrieved criminal law (e.g. CPIA, PACE, offence elements, sentencing, evidence, procedure, case law). Use it to ground your answer.
+2) The evidence/disclosure context for this case (what documents and disclosure the case has, what's outstanding). Use it to give answers that fit this case's evidence.
+3) The case timeline (next hearing, disclosure events) when provided. Use it to reason about what happened when and what is due.
+4) The retrieved criminal law (e.g. CPIA, PACE, offence elements, sentencing, evidence, procedure, case law). Use it to ground your answer.
 
 Rules:
 - Do not give legal advice. Answer in scope of the plan and the law provided. If the law chunks don't cover the question, say so briefly.
 - Be short and practical. No predictions ("the court will"), no made-up case law or sections.
+- When the law chunks mention case names or authorities (e.g. R v Jogee, Turnbull guidelines, R v H and C), cite them in your answer where relevant so the solicitor can use the reference.
 - If the question is outside the plan and law context, say you can only answer from the Defence Plan and criminal law in the system.`;
 
 export async function POST(request: NextRequest, { params }: RouteParams) {
@@ -43,7 +46,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     return NextResponse.json({ ok: false, error: "Case not found" }, { status: 404 });
   }
 
-  let body: { message?: string; planSummary?: string } = {};
+  let body: { message?: string; planSummary?: string; evidenceSummary?: string; timelineSummary?: string } = {};
   try {
     body = await request.json();
   } catch {
@@ -56,6 +59,8 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   }
 
   const planSummary = typeof body.planSummary === "string" ? body.planSummary.slice(0, 2000) : "";
+  const evidenceSummary = typeof body.evidenceSummary === "string" ? body.evidenceSummary.slice(0, 1500) : "";
+  const timelineSummary = typeof body.timelineSummary === "string" ? body.timelineSummary.slice(0, 800) : "";
 
   const lawChunks = await retrieveLawChunks(message, LAW_CHUNKS_LIMIT);
   const lawBlock =
@@ -67,6 +72,8 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
 
   const contextParts: string[] = [];
   if (planSummary) contextParts.push(`Defence Plan for this case:\n${planSummary}`);
+  if (evidenceSummary) contextParts.push(`Evidence/disclosure for this case:\n${evidenceSummary}`);
+  if (timelineSummary) contextParts.push(`Case timeline:\n${timelineSummary}`);
   contextParts.push(`Relevant criminal law (use only this):\n${lawBlock}`);
   const userContent = `${contextParts.join("\n\n")}\n\n---\nSolicitor question:\n${message}`;
 
