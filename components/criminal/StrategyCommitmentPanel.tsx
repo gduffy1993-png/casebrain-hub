@@ -263,8 +263,8 @@ type StrategyCommitmentPanelProps = {
   onCommitmentChange: (commitment: StrategyCommitment | null) => void;
   savedPosition?: SavedPosition | null;
   practiceArea?: PracticeArea; // Defaults to "criminal" for backward compatibility
-  /** When provided, called with API procedural safety so parent can gate phase/actions. Single source: strategy-analysis API. */
-  onProceduralSafetyChange?: (safety: { status: string; explanation?: string } | null) => void;
+  /** When provided, called with API procedural safety or Safety panel (status, explanation, outstandingItems for chat grounding). */
+  onProceduralSafetyChange?: (safety: { status: string; explanation?: string; outstandingItems?: string[] } | null) => void;
   /** When true, Case Readiness Gate shows "Client instructions recorded" */
   hasClientInstructions?: boolean;
   /** When committed and plan exists, report display strategy so Summary/at-a-glance/matrix stay in sync. */
@@ -3373,8 +3373,8 @@ function ProceduralSafetyPanel({
   evidenceImpactMap: EvidenceImpactMap[];
   declaredDependencies?: DeclaredDependency[];
   disclosureTimelineEntries?: DisclosureTimelineEntry[];
-  /** Called when computed status is available so parent can align Case Readiness with this panel. */
-  onComputedStatusChange?: (status: string, explanation?: string) => void;
+  /** Called when computed status is available so parent can align Case Readiness and chat grounding with this panel. */
+  onComputedStatusChange?: (status: string, explanation?: string, missingItemLabels?: string[]) => void;
 }) {
   const [disclosureState, setDisclosureState] = useState<DisclosureState | null>(null);
   const [loading, setLoading] = useState(true);
@@ -3411,7 +3411,7 @@ function ProceduralSafetyPanel({
     computeState();
   }, [caseId, evidenceImpactMap, declaredDependencies, disclosureTimelineEntries]);
 
-  // Report computed status to parent so Case Readiness and Safety panel stay in sync
+  // Report computed status and actual missing item labels to parent (for Case Readiness + chat grounding)
   useEffect(() => {
     if (!disclosureState || !onComputedStatusChange) return;
     const statusMap: Record<DisclosureState["status"], string> = {
@@ -3425,7 +3425,8 @@ function ProceduralSafetyPanel({
       : disclosureState.missing_items.length
         ? `${disclosureState.missing_items.length} critical/high item(s) missing`
         : undefined;
-    onComputedStatusChange(status, explanation);
+    const missingItemLabels = disclosureState.missing_items.map((i) => i.label);
+    onComputedStatusChange(status, explanation, missingItemLabels);
   }, [disclosureState, onComputedStatusChange]);
 
   if (loading) {
@@ -7196,7 +7197,10 @@ export function StrategyCommitmentPanel({
               evidenceImpactMap={evidenceImpactMap}
               declaredDependencies={declaredDependencies}
               disclosureTimelineEntries={disclosureTimelineEntries}
-              onComputedStatusChange={(status, explanation) => setSafetyPanelComputedStatus({ status, explanation })}
+              onComputedStatusChange={(status, explanation, missingItemLabels) => {
+                setSafetyPanelComputedStatus({ status, explanation });
+                onProceduralSafetyChange?.({ status, explanation, outstandingItems: missingItemLabels ?? [] });
+              }}
             />
           </div>
         )}
@@ -7475,7 +7479,10 @@ export function StrategyCommitmentPanel({
               evidenceImpactMap={evidenceImpactMap}
               declaredDependencies={declaredDependencies}
               disclosureTimelineEntries={disclosureTimelineEntries}
-              onComputedStatusChange={(status, explanation) => setSafetyPanelComputedStatus({ status, explanation })}
+              onComputedStatusChange={(status, explanation, missingItemLabels) => {
+                setSafetyPanelComputedStatus({ status, explanation });
+                onProceduralSafetyChange?.({ status, explanation, outstandingItems: missingItemLabels ?? [] });
+              }}
             />
           </div>
         )}

@@ -60,6 +60,21 @@ function buildPlanSummary(plan: DefenceStrategyPlan): string {
   return parts.join("\n");
 }
 
+/** Compressed plan for chat only: high-leverage sections, capped length so the model has room to complete answers. */
+const MAX_PLAN_FOR_CHAT = 1200;
+function buildPlanSummaryForChat(plan: DefenceStrategyPlan): string {
+  const parts: string[] = [];
+  if (plan.strategy_stance) parts.push(`Stance: ${plan.strategy_stance === "fight_to_win" ? "Going for a win" : "Damage limitation"}.`);
+  if (plan.case_theory_one_go) parts.push(plan.case_theory_one_go);
+  if (plan.strategy_in_one_line) parts.push(plan.strategy_in_one_line);
+  if (plan.prosecution_still_must_prove?.length) parts.push("Prosecution must prove: " + plan.prosecution_still_must_prove.slice(0, 3).join("; "));
+  if (plan.offence_leverage_angles?.length) parts.push("Offence leverage: " + plan.offence_leverage_angles.join("; "));
+  if (plan.disclosure_weapon_steps?.length) parts.push("Disclosure as weapon: " + plan.disclosure_weapon_steps.join(" "));
+  if (plan.no_case_line) parts.push(plan.no_case_line);
+  const out = parts.join("\n");
+  return out.length > MAX_PLAN_FOR_CHAT ? out.slice(0, MAX_PLAN_FOR_CHAT - 3) + "…" : out;
+}
+
 function loadChatFromStorage(caseId: string): ChatMessage[] {
   if (typeof window === "undefined" || !caseId) return [];
   try {
@@ -115,9 +130,9 @@ export function DefencePlanBox({ caseId, plan, primaryRouteLabel, offenceType, c
         credentials: "include",
         body: JSON.stringify({
           message: msg,
-          planSummary: buildPlanSummary(plan),
-          evidenceSummary: evidenceSummary?.slice(0, 1500) ?? "",
-          timelineSummary: timelineSummary?.slice(0, 800) ?? "",
+          planSummary: buildPlanSummaryForChat(plan),
+          evidenceSummary: evidenceSummary?.slice(0, 1200) ?? "",
+          timelineSummary: timelineSummary?.slice(0, 500) ?? "",
         }),
       });
       const data = await res.json().catch(() => ({}));
