@@ -9,7 +9,7 @@ import { Target, CheckCircle2, AlertCircle, X, Lock, ArrowRight, TrendingUp, Ale
 import { useToast } from "@/components/Toast";
 import { getLens, type PracticeArea } from "@/lib/lenses";
 import { computeProceduralSafety, computeProceduralSafetyFromDependencies, type ProceduralSafety, type DeclaredDependency, type DisclosureTimelineEntry } from "@/lib/criminal/procedural-safety";
-import { computeDisclosureState, type DisclosureState } from "@/lib/criminal/disclosure-state";
+import { computeDisclosureState, deriveBundleMentionedTopics, type DisclosureState } from "@/lib/criminal/disclosure-state";
 import { extractWeaponTracker, type WeaponTracker } from "@/lib/criminal/weapon-tracker";
 import { classifyIncidentShape, type IncidentShapeAnalysis } from "@/lib/criminal/incident-shape";
 import { generateWorstCaseCap, type WorstCaseCap } from "@/lib/criminal/worst-case-cap";
@@ -3387,17 +3387,22 @@ function ProceduralSafetyPanel({
 
     async function computeState() {
       try {
-        // Fetch documents to check for SIMULATED and match disclosure items
-        const docsRes = await fetch(`/api/cases/${caseId}/documents`, { cache: "no-store", credentials: "include" }).catch(() => null);
+        const [docsRes, keyFactsRes] = await Promise.all([
+          fetch(`/api/cases/${caseId}/documents`, { cache: "no-store", credentials: "include" }).catch(() => null),
+          fetch(`/api/cases/${caseId}/key-facts`, { cache: "no-store", credentials: "include" }).catch(() => null),
+        ]);
         const docsData = docsRes?.ok ? await docsRes.json() : null;
         const documents = docsData?.data?.documents || docsData?.documents || [];
+        const keyFactsData = keyFactsRes?.ok ? await keyFactsRes.json() : null;
+        const keyFacts = keyFactsData?.data?.keyFacts ?? null;
+        const bundleMentionedTopics = deriveBundleMentionedTopics(keyFacts);
 
-        // Compute disclosure state using single source of truth
         const state = computeDisclosureState({
           documents: documents.map((d: any) => ({ name: d.name, title: d.name, id: d.id })),
           declaredDependencies: declaredDependencies || [],
           disclosureTimeline: disclosureTimelineEntries || [],
           evidenceImpactMap: evidenceImpactMap,
+          bundleMentionedTopics: bundleMentionedTopics.length > 0 ? bundleMentionedTopics : undefined,
         });
 
         setDisclosureState(state);
@@ -6007,12 +6012,34 @@ export function StrategyCommitmentPanel({
           timelineEntries: timelineEntriesFromAnalysis ?? [],
         });
 
-        // Build defence strategy plan
+        // V2: Key Facts → Strategy seeds; agreed case theory line (fetch key-facts and agreed-summary)
+        let keyFactsSeeds: { defenceAngles: string[] } | undefined;
+        let agreedCaseTheoryLine: string | null = null;
+        try {
+          const [kfRes, agreedRes] = await Promise.all([
+            fetch(`/api/cases/${resolvedCaseId}/key-facts`, { cache: "no-store", credentials: "include" }),
+            fetch(`/api/criminal/${resolvedCaseId}/agreed-summary`, { cache: "no-store", credentials: "include" }),
+          ]);
+          const kfData = kfRes?.ok ? await kfRes.json() : null;
+          const keyFacts = kfData?.data?.keyFacts ?? null;
+          if (keyFacts) {
+            const { deriveStrategySeedsFromKeyFacts } = await import("@/lib/criminal/key-facts-v2");
+            keyFactsSeeds = deriveStrategySeedsFromKeyFacts(keyFacts);
+          }
+          const agreedData = agreedRes?.ok ? await agreedRes.json() : null;
+          agreedCaseTheoryLine = agreedData?.caseTheoryLine ?? null;
+        } catch {
+          // non-fatal
+        }
+
+        // Build defence strategy plan (Summary + case theory → Strategy when agreedCaseTheoryLine set)
         const defencePlan = buildDefenceStrategyPlan({
           snapshot,
           offenceElements: reasoning.elements,
           routes: reasoning.routes,
           recordedPosition: savedPosition?.position_text,
+          keyFactsSeeds,
+          agreedCaseTheoryLine: agreedCaseTheoryLine ?? undefined,
         });
         setDefenceStrategyPlan(defencePlan);
 

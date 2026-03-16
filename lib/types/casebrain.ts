@@ -932,6 +932,52 @@ export type KeyFactsBundleSummarySection = {
   body: string;
 };
 
+/** V2: Single fact with source and confidence (narrative stays in Summary; only discrete facts here). */
+export type StructuredKeyFact = {
+  text: string;
+  category: KeyFactCategory;
+  source: string;
+  confidence: "high" | "medium" | "low";
+};
+
+/** V2: Categories for key facts hierarchy (solicitor-grade). */
+export type KeyFactCategory =
+  | "people"
+  | "places"
+  | "times"
+  | "evidence"
+  | "disclosure"
+  | "risks"
+  | "statements"
+  | "cctvRefs"
+  | "forensicRefs"
+  | "charge";
+
+/** V2: Key facts grouped by category; feeds Summary, Safety, Strategy. Narrative stays in Summary tab. */
+export type KeyFactsV2Hierarchy = {
+  people: StructuredKeyFact[];
+  places: StructuredKeyFact[];
+  times: StructuredKeyFact[];
+  evidence: StructuredKeyFact[];
+  disclosure: StructuredKeyFact[];
+  risks: StructuredKeyFact[];
+  statements: StructuredKeyFact[];
+  cctvRefs: StructuredKeyFact[];
+  forensicRefs: StructuredKeyFact[];
+  charge: StructuredKeyFact[];
+};
+
+/** V2: Solicitor buckets for Summary tab (prosecution / defence / disputed / agreed / unknowns / missing disclosure / risks). */
+export type SolicitorBuckets = {
+  prosecutionCase: string[];
+  defenceCase: string[];
+  disputedIssues: string[];
+  agreedFacts: string[];
+  unknowns: string[];
+  missingDisclosure: string[];
+  risks: string[];
+};
+
 export type KeyFactsSummary = {
   caseId: string;
   practiceArea?: PracticeArea;
@@ -951,6 +997,10 @@ export type KeyFactsSummary = {
   nextStepsBrief?: string;
   bundleSummarySections?: KeyFactsBundleSummarySection[];
   layeredSummary?: import("@/lib/layered-summary/types").LayeredSummary | null;
+  /** V2: Structured facts only (no narrative). When present, prefer for Key Facts display. */
+  structuredKeyFacts?: KeyFactsV2Hierarchy | null;
+  /** V2: Solicitor buckets for Summary tab (prosecution, defence, disputed, agreed, unknowns, missing disclosure, risks). */
+  solicitorBuckets?: SolicitorBuckets | null;
 };
 
 // =============================================================================

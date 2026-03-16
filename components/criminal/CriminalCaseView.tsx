@@ -516,7 +516,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
             <CaseSummaryPanel
               caseId={caseId}
               caseTitle={snapshot?.caseMeta?.title ?? "Untitled Case"}
-              practiceArea={null}
+              practiceArea="criminal"
               summary={null}
             />
           </ErrorBoundary>

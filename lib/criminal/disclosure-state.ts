@@ -1,9 +1,70 @@
 /**
  * Disclosure State - Single Source of Truth
- * 
+ *
  * Computes canonical disclosure state from multiple sources to prevent UI contradictions.
  * This function is the ONLY place that determines disclosure status.
+ * V2: Optional bundleMentionedTopics (from Key Facts) filters which items are relevant.
  */
+
+/** V2: Derive topics mentioned in the case from key-facts response (structuredKeyFacts + solicitorBuckets). Pass to computeDisclosureState as bundleMentionedTopics. */
+export function deriveBundleMentionedTopics(keyFacts: {
+  structuredKeyFacts?: {
+    cctvRefs: unknown[];
+    forensicRefs: unknown[];
+    disclosure: unknown[];
+    evidence: unknown[];
+  } | null;
+  solicitorBuckets?: {
+    missingDisclosure: string[];
+    prosecutionCase: string[];
+    defenceCase: string[];
+  } | null;
+} | null): string[] {
+  if (!keyFacts) return [];
+  const topics: string[] = [];
+  const add = (s: string) => {
+    const t = s.toLowerCase().trim();
+    if (t && !topics.includes(t)) topics.push(t);
+  };
+  if (keyFacts.structuredKeyFacts) {
+    const s = keyFacts.structuredKeyFacts;
+    if (s.cctvRefs?.length) {
+      add("cctv");
+      add("cctv continuity");
+    }
+    if (s.forensicRefs?.length) {
+      add("forensic");
+      add("fire cause");
+      add("footwear");
+    }
+    if (s.disclosure?.length) {
+      add("disclosure");
+      add("interview");
+      add("custody");
+    }
+    if (s.evidence?.length) add("evidence");
+  }
+  const missing = keyFacts.solicitorBuckets?.missingDisclosure ?? [];
+  const allText = [
+    ...missing,
+    ...(keyFacts.solicitorBuckets?.prosecutionCase ?? []),
+    ...(keyFacts.solicitorBuckets?.defenceCase ?? []),
+  ].join(" ").toLowerCase();
+  if (/cctv|footage|continuity/i.test(allText)) add("cctv");
+  if (/bwv|body worn/i.test(allText)) add("bwv");
+  if (/999|cad|dispatch/i.test(allText)) {
+    add("999");
+    add("cad");
+  }
+  if (/interview|pace/i.test(allText)) add("interview");
+  if (/custody/i.test(allText)) add("custody record");
+  if (/forensic|fire cause|accelerant|footwear/i.test(allText)) {
+    add("forensic");
+    add("fire cause");
+    add("footwear");
+  }
+  return topics;
+}
 
 /**
  * Standard disclosure items that must be checked
@@ -53,6 +114,13 @@ const STANDARD_DISCLOSURE_ITEMS = [
   },
 ] as const;
 
+/** V2: Only included when bundle/key facts mention these (Key Facts → Safety). */
+const CONDITIONAL_DISCLOSURE_ITEMS = [
+  { key: "fire_cause_report", label: "Fire cause report", severity: "high" as const, patterns: ["fire cause", "cause of fire", "cause report", "accelerant"] },
+  { key: "forensic_report", label: "Forensic report", severity: "high" as const, patterns: ["forensic", "forensics", "comparison", "footwear"] },
+  { key: "footwear_comparison", label: "Footwear comparison", severity: "high" as const, patterns: ["footwear", "footwear comparison", "not yet compared"] },
+] as const;
+
 export type DisclosureState = {
   is_simulated: boolean;
   missing_items: Array<{
@@ -90,6 +158,8 @@ type DisclosureStateInput = {
       urgency?: string;
     };
   }>;
+  /** V2: When set, only check standard/conditional items that match these topics (from Key Facts / bundle). If absent, all standard items are checked. */
+  bundleMentionedTopics?: string[];
 };
 
 /**
@@ -104,11 +174,18 @@ function isSimulated(documents: DisclosureStateInput["documents"]): boolean {
   });
 }
 
+type DisclosureItem = {
+  key: string;
+  label: string;
+  severity: string;
+  patterns: readonly string[];
+};
+
 /**
  * Check if a disclosure item is satisfied (served/received in timeline or present in documents)
  */
 function isItemSatisfied(
-  item: typeof STANDARD_DISCLOSURE_ITEMS[number],
+  item: DisclosureItem,
   input: DisclosureStateInput
 ): boolean {
   const itemKey = item.key.toLowerCase();
@@ -217,20 +294,33 @@ function isItemSatisfied(
   return false;
 }
 
+/** Returns true if this item is relevant given bundle/key-facts mentioned topics (V2). */
+function isItemRelevant(
+  item: { patterns: readonly string[] },
+  bundleMentionedTopics: string[] | undefined,
+): boolean {
+  if (!bundleMentionedTopics || bundleMentionedTopics.length === 0) return true;
+  const lower = bundleMentionedTopics.map((t) => t.toLowerCase());
+  return item.patterns.some((p) => lower.some((t) => t.includes(p) || p.includes(t)));
+}
+
 /**
  * Compute canonical disclosure state
- * 
+ *
  * This is the SINGLE SOURCE OF TRUTH for disclosure status.
  * All UI panels should use this function to prevent contradictions.
+ * V2: When bundleMentionedTopics is provided, only items matching those topics are checked (Key Facts → Safety).
  */
 export function computeDisclosureState(input: DisclosureStateInput): DisclosureState {
   const is_simulated = isSimulated(input.documents);
   const missing_items: DisclosureState["missing_items"] = [];
   const satisfied_items: DisclosureState["satisfied_items"] = [];
   const rationale: string[] = [];
+  const topics = (input.bundleMentionedTopics ?? []).map((t) => t.toLowerCase());
 
-  // Check each standard disclosure item
+  // Check each standard disclosure item (only if relevant when bundleMentionedTopics provided)
   for (const item of STANDARD_DISCLOSURE_ITEMS) {
+    if (!isItemRelevant(item, input.bundleMentionedTopics)) continue;
     const satisfied = isItemSatisfied(item, input);
 
     if (satisfied) {
@@ -238,6 +328,22 @@ export function computeDisclosureState(input: DisclosureStateInput): DisclosureS
         key: item.key,
         label: item.label,
       });
+    } else {
+      missing_items.push({
+        key: item.key,
+        label: item.label,
+        severity: item.severity,
+      });
+    }
+  }
+
+  // V2: Conditional items (only when bundle/key facts mention them)
+  for (const item of CONDITIONAL_DISCLOSURE_ITEMS) {
+    if (!isItemRelevant(item, input.bundleMentionedTopics)) continue;
+    const satisfied = isItemSatisfied(item, input);
+
+    if (satisfied) {
+      satisfied_items.push({ key: item.key, label: item.label });
     } else {
       missing_items.push({
         key: item.key,

@@ -21,10 +21,11 @@ const LAW_CHUNKS_LIMIT = 4;
 const MAX_OUTPUT_TOKENS = 1024;
 
 const SYSTEM_PROMPT = `You are assisting a criminal defence solicitor in England & Wales. You answer ONLY using:
-1) The Defence Plan summary provided for this case (stance, case theory, how we're running it, attack order, prosecution must prove, defence angles, winning angles, offence leverage, disclosure as weapon, if things change). Use these sections in your reasoning.
-2) The evidence/disclosure context for this case. CRITICAL: For missing or outstanding disclosure, use ONLY the items listed in "MISSING DISCLOSURE ITEMS (use ONLY these...)". Never suggest or assume items (e.g. Charge Sheet, Witness Statements, Key Documentary Evidence) that are not in that list. If no missing items are listed, do not invent any.
-3) The case timeline (next hearing, disclosure events) when provided. Use it to reason about what happened when and what is due.
-4) The retrieved criminal law (e.g. CPIA, PACE, offence elements, sentencing, evidence, procedure, case law). Use it to ground your answer.
+1) The agreed case summary and case theory line when provided — these are the canonical case narrative; use them first.
+2) The Defence Plan summary provided for this case (stance, case theory, how we're running it, attack order, prosecution must prove, defence angles, winning angles, offence leverage, disclosure as weapon, if things change). Use these sections in your reasoning.
+3) The evidence/disclosure context for this case. CRITICAL: For missing or outstanding disclosure, use ONLY the items listed in "MISSING DISCLOSURE ITEMS (use ONLY these...)". Never suggest or assume items (e.g. Charge Sheet, Witness Statements, Key Documentary Evidence) that are not in that list. If no missing items are listed, do not invent any.
+4) The case timeline (next hearing, disclosure events) when provided. Use it to reason about what happened when and what is due.
+5) The retrieved criminal law (e.g. CPIA, PACE, offence elements, sentencing, evidence, procedure, case law). Use it to ground your answer.
 
 Rules:
 - Do not give legal advice. Answer in scope of the plan and the law provided. If the law chunks don't cover the question, say so briefly.
@@ -67,6 +68,27 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   const evidenceSummary = typeof body.evidenceSummary === "string" ? body.evidenceSummary.slice(0, MAX_EVIDENCE_CHARS) : "";
   const timelineSummary = typeof body.timelineSummary === "string" ? body.timelineSummary.slice(0, MAX_TIMELINE_CHARS) : "";
 
+  // V2: Agreed case summary and case theory for chat grounding (canonical case narrative)
+  let agreedBlock = "";
+  try {
+    const { data: agreedRow } = await supabase
+      .from("criminal_cases")
+      .select("agreed_summary_detailed, case_theory_line")
+      .eq("id", caseId)
+      .eq("org_id", orgId)
+      .maybeSingle();
+    const detailed = (agreedRow as any)?.agreed_summary_detailed?.trim();
+    const theory = (agreedRow as any)?.case_theory_line?.trim();
+    if (detailed || theory) {
+      const parts: string[] = [];
+      if (theory) parts.push(`Agreed case theory line: ${theory}`);
+      if (detailed) parts.push(`Agreed case summary (detailed):\n${detailed.slice(0, 1500)}`);
+      agreedBlock = parts.join("\n\n");
+    }
+  } catch {
+    // non-fatal
+  }
+
   const lawChunks = await retrieveLawChunks(message, LAW_CHUNKS_LIMIT);
   const lawBlock =
     lawChunks.length > 0
@@ -76,6 +98,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       : "(No matching law chunks in corpus for this question.)";
 
   const contextParts: string[] = [];
+  if (agreedBlock) contextParts.push(`Agreed case narrative (use as canonical):\n${agreedBlock}`);
   if (planSummary) contextParts.push(`Defence Plan for this case:\n${planSummary}`);
   if (evidenceSummary) contextParts.push(`Evidence/disclosure for this case:\n${evidenceSummary}`);
   if (timelineSummary) contextParts.push(`Case timeline:\n${timelineSummary}`);

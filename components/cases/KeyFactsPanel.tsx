@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import type { KeyFactsSummary, KeyFactsKeyDate } from "@/lib/types/casebrain";
+import type { KeyFactsSummary, KeyFactsKeyDate, KeyFactsV2Hierarchy, KeyFactCategory } from "@/lib/types/casebrain";
 import type { ExtractedCaseFacts } from "@/types";
 import { selectDefaultRole } from "@/lib/layered-summary/default-role";
 import type { CaseSolicitorRole, DomainKey } from "@/lib/layered-summary/types";
@@ -46,6 +46,62 @@ const fundingBadgeColors: Record<string, string> = {
   other: "bg-slate-500/20 text-slate-400",
   unknown: "bg-slate-500/20 text-slate-400",
 };
+
+const CATEGORY_LABELS: Record<KeyFactCategory, string> = {
+  people: "People",
+  places: "Places",
+  times: "Times",
+  evidence: "Evidence",
+  disclosure: "Disclosure",
+  risks: "Risks",
+  statements: "Statements",
+  cctvRefs: "CCTV / BWV",
+  forensicRefs: "Forensics",
+  charge: "Charge",
+};
+
+function StructuredKeyFactsBlock({ hierarchy }: { hierarchy: KeyFactsV2Hierarchy }) {
+  const entries = (
+    [
+      "people",
+      "places",
+      "times",
+      "charge",
+      "evidence",
+      "disclosure",
+      "cctvRefs",
+      "forensicRefs",
+      "risks",
+      "statements",
+    ] as const
+  )
+    .map((cat) => ({ category: cat, items: hierarchy[cat] }))
+    .filter(({ items }) => items.length > 0);
+  if (entries.length === 0) return null;
+  return (
+    <div className="rounded-xl border border-primary/20 bg-primary/5 p-4">
+      <p className="text-xs uppercase tracking-wide text-accent/50">Structured key facts (V2)</p>
+      <p className="mt-0.5 text-xs text-accent/60">Discrete facts only; source and confidence shown.</p>
+      <div className="mt-3 space-y-3">
+        {entries.map(({ category, items }) => (
+          <div key={category}>
+            <p className="text-xs font-medium text-accent/70">{CATEGORY_LABELS[category]}</p>
+            <ul className="mt-1 space-y-1">
+              {items.map((f, i) => (
+                <li key={`${category}-${i}`} className="flex flex-wrap items-baseline gap-2 text-sm text-accent/90">
+                  <span>- {f.text}</span>
+                  <span className="text-xs text-accent/50">
+                    [{f.source} · {f.confidence}]
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export function CaseKeyFactsPanel({ caseId }: KeyFactsPanelProps) {
   const [keyFacts, setKeyFacts] = useState<KeyFactsSummary | null>(null);
@@ -421,6 +477,11 @@ export function CaseKeyFactsPanel({ caseId }: KeyFactsPanelProps) {
             </div>
           )}
         </div>
+
+        {/* V2: Structured Key Facts (discrete facts only; narrative stays in Summary / Bundle Summary) */}
+        {keyFacts.practiceArea === "criminal" && keyFacts.structuredKeyFacts && (
+          <StructuredKeyFactsBlock hierarchy={keyFacts.structuredKeyFacts} />
+        )}
 
         {/* Headline Summary */}
         {keyFacts.headlineSummary && (

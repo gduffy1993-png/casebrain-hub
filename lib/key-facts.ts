@@ -458,6 +458,20 @@ export async function buildKeyFactsSummary(
         ...(disclosureGaps.length > 0 ? [`Disclosure gaps: ${disclosureGaps.slice(0, 5).join(", ")}`] : []),
       ].slice(0, 16);
 
+      // V2: Structured key facts only (no narrative). Narrative stays in Summary / bundleSummarySections.
+      const keyFactsV2 = await import("@/lib/criminal/key-facts-v2");
+      const structuredKeyFacts =
+        extractedMeta != null
+          ? keyFactsV2.buildCriminalStructuredKeyFacts(
+              extractedMeta,
+              documents && documents.length > 0 ? (documents[0] as any).name ?? "Combined Bundle" : "Combined Bundle",
+            )
+          : null;
+      const solicitorBuckets =
+        extractedMeta != null
+          ? keyFactsV2.buildCriminalSolicitorBuckets(extractedMeta, bundleSummarySections)
+          : null;
+
       return {
         caseId,
         practiceArea: normalizedPracticeArea,
@@ -477,6 +491,8 @@ export async function buildKeyFactsSummary(
         nextStepsBrief: nextHearing ? `Prepare for next hearing (${new Date(nextHearing).toISOString().slice(0, 10)}). Stabilise disclosure/continuity before committing positions.` : "Stabilise disclosure/continuity (MG6, custody, interview recording, CCTV/BWV/999).",
         bundleSummarySections,
         layeredSummary,
+        structuredKeyFacts: structuredKeyFacts ?? undefined,
+        solicitorBuckets: solicitorBuckets ?? undefined,
       };
     } catch (err) {
       // Absolute safety: never throw for key facts
@@ -497,6 +513,8 @@ export async function buildKeyFactsSummary(
         keyDates: caseData.created_at
           ? [{ label: "Instructions", date: caseData.created_at, isPast: true }]
           : [],
+        structuredKeyFacts: undefined,
+        solicitorBuckets: undefined,
         mainRisks: [],
         primaryIssues: ["Key facts not yet available (run extraction / upload charge sheet, MG forms, court listing)."],
         nextStepsBrief: "Upload core criminal bundle docs (charge sheet, MG5/MG6, custody record, interview, listing).",

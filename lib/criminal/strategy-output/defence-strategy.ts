@@ -104,8 +104,12 @@ export function buildDefenceStrategyPlan(input: {
     required_dependencies: string[];
   }>;
   recordedPosition?: string;
+  /** V2: Seeds from Key Facts (e.g. defence angles to prepend when bundle says "client denies", "no CCTV"). */
+  keyFactsSeeds?: { defenceAngles?: string[] };
+  /** V2: Agreed case theory line (one sentence). When set, used in case_theory_one_go and strategy_in_one_line. */
+  agreedCaseTheoryLine?: string | null;
 }): DefenceStrategyPlan {
-  const { snapshot, offenceElements, routes, recordedPosition } = input;
+  const { snapshot, offenceElements, routes, recordedPosition, keyFactsSeeds, agreedCaseTheoryLine } = input;
 
   // Build posture
   const posture = buildPosture(snapshot, offenceElements);
@@ -138,8 +142,10 @@ export function buildDefenceStrategyPlan(input: {
   // Stage 6: Attack sequence (primary / if fails / then)
   const attack_sequence = buildAttackSequence(primary_route, secondary_routes, pivot_plan);
 
-  // Key defence angles: case-driven from weak elements and disclosure gaps (no speculative content)
-  const defence_angles = buildDefenceAngles(snapshot, offenceElements);
+  // Key defence angles: case-driven from weak elements and disclosure gaps; V2: prepend Key Facts seeds when provided
+  const builtAngles = buildDefenceAngles(snapshot, offenceElements);
+  const seedAngles = keyFactsSeeds?.defenceAngles?.length ? keyFactsSeeds.defenceAngles : [];
+  const defence_angles = seedAngles.length > 0 ? [...seedAngles, ...builtAngles].slice(0, 6) : builtAngles;
 
   // Hard-fight blocks (all case-driven, same logic for every offence)
   const strategy_in_one_line = buildStrategyInOneLine(primary_route, offenceElements);
@@ -178,7 +184,14 @@ export function buildDefenceStrategyPlan(input: {
 
   const offence_leverage_angles = buildOffenceLeverageAngles(snapshot, offenceElements, primary_route);
   const disclosure_weapon_steps = buildDisclosureWeaponSteps(snapshot, offenceElements, no_case_line);
-  const case_theory_one_go = buildCaseTheoryOneGo(snapshot, posture, primary_route, prosecution_still_must_prove, defence_angles);
+  const case_theory_one_go =
+    agreedCaseTheoryLine?.trim()
+      ? agreedCaseTheoryLine.trim()
+      : buildCaseTheoryOneGo(snapshot, posture, primary_route, prosecution_still_must_prove, defence_angles);
+  const strategy_in_one_line_final =
+    agreedCaseTheoryLine?.trim()
+      ? agreedCaseTheoryLine.trim()
+      : strategy_in_one_line;
   const risks_pivots_short = buildRisksPivotsShort(risks_fallbacks, pivot_plan);
 
   return {
@@ -194,7 +207,7 @@ export function buildDefenceStrategyPlan(input: {
     pivot_plan,
     next_72_hours: next_72_hours_with_fight,
     defence_angles,
-    strategy_in_one_line,
+    strategy_in_one_line: strategy_in_one_line_final,
     prosecution_still_must_prove,
     order_to_challenge,
     no_case_line,
