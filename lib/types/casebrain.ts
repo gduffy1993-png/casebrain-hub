@@ -1121,6 +1121,17 @@ export type HearingPrepPack = {
   sections: HearingPrepSection[];
 };
 
+/** D2: Structured criminal hearing prep (what to say, ask, challenge, request; disclosure to push; risks; fallbacks). */
+export type CriminalHearingPrepStructured = {
+  whatToSay: string[];
+  whatToAsk: string[];
+  whatToChallenge: string[];
+  whatToRequest: string[];
+  disclosureToPush: string[];
+  risksToFlag: string[];
+  fallbacks: string[];
+};
+
 // =============================================================================
 // Phase K1: Complaint Risk Meter
 // =============================================================================

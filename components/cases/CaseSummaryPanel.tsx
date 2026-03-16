@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { FileText, Users, Calendar, Building, AlertCircle, Scale, Shield, HelpCircle, CheckCircle2, AlertTriangle, Save } from "lucide-react";
+import { VerdictRatingBlock } from "@/components/criminal/VerdictRatingBlock";
 import { Button } from "@/components/ui/button";
 import type { CaseInsights } from "@/lib/core/enterprise-types";
 import type { KeyFactsSummary, SolicitorBuckets } from "@/lib/types/casebrain";
@@ -39,6 +40,8 @@ export function CaseSummaryPanel({
     agreedSummaryDetailed: string | null;
     agreedSummaryFull: string | null;
     caseTheoryLine: string | null;
+    agreedSummaryUpdatedAt: string | null;
+    caseTheoryUpdatedAt: string | null;
   } | null>(null);
 
   // Try to fetch insights summary for richer one-liner, but don't block on it
@@ -75,6 +78,8 @@ export function CaseSummaryPanel({
           agreedSummaryDetailed: agreedData.agreedSummaryDetailed ?? null,
           agreedSummaryFull: agreedData.agreedSummaryFull ?? null,
           caseTheoryLine: agreedData.caseTheoryLine ?? null,
+          agreedSummaryUpdatedAt: agreedData.agreedSummaryUpdatedAt ?? null,
+          caseTheoryUpdatedAt: agreedData.caseTheoryUpdatedAt ?? null,
         });
       }
     });
@@ -177,9 +182,18 @@ export function CaseSummaryPanel({
                   agreedSummaryDetailed: data.agreedSummaryDetailed ?? null,
                   agreedSummaryFull: data.agreedSummaryFull ?? null,
                   caseTheoryLine: data.caseTheoryLine ?? null,
+                  agreedSummaryUpdatedAt: data.agreedSummaryUpdatedAt ?? null,
+                  caseTheoryUpdatedAt: data.caseTheoryUpdatedAt ?? null,
                 }));
             }}
           />
+        )}
+
+        {/* D5: Rate summary (criminal) */}
+        {practiceArea === "criminal" && (
+          <div className="flex items-center gap-2">
+            <VerdictRatingBlock caseId={caseId} target="summary" className="text-white/60" />
+          </div>
         )}
 
         {/* V2: Solicitor buckets (criminal) */}
@@ -209,6 +223,8 @@ function AgreedSummaryBlock({
     agreedSummaryDetailed: string | null;
     agreedSummaryFull: string | null;
     caseTheoryLine: string | null;
+    agreedSummaryUpdatedAt?: string | null;
+    caseTheoryUpdatedAt?: string | null;
   } | null;
   onSaved: () => void;
 }) {
@@ -249,6 +265,14 @@ function AgreedSummaryBlock({
     <div className="rounded-xl border border-primary/20 bg-primary/5 p-4">
       <p className="text-xs uppercase tracking-wide text-white/50">Agreed case summary (V2)</p>
       <p className="mt-0.5 text-xs text-white/40">Canonical for Strategy and chat. Edit and save to update.</p>
+      {(agreedSummary?.agreedSummaryUpdatedAt || agreedSummary?.caseTheoryUpdatedAt) && (
+        <p className="mt-1 text-[11px] text-white/40">
+          Last agreed:{" "}
+          {agreedSummary.agreedSummaryUpdatedAt && `summary ${new Date(agreedSummary.agreedSummaryUpdatedAt).toLocaleDateString("en-GB")}`}
+          {agreedSummary.agreedSummaryUpdatedAt && agreedSummary.caseTheoryUpdatedAt && "; "}
+          {agreedSummary.caseTheoryUpdatedAt && `case theory ${new Date(agreedSummary.caseTheoryUpdatedAt).toLocaleDateString("en-GB")}`}
+        </p>
+      )}
       {editing ? (
         <div className="mt-3 space-y-3">
           <div>

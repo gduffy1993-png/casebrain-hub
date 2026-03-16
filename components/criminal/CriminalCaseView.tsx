@@ -34,6 +34,7 @@ import { BackToTop } from "@/components/ui/back-to-top";
 import { CaseTabs, type TabItem } from "@/components/ui/tabs";
 import { DisclosureTrackerTable } from "./DisclosureTrackerTable";
 import { DisclosureChasersPanel } from "./DisclosureChasersPanel";
+import { DisclosurePressureDashboard } from "./DisclosurePressureDashboard";
 import { ClientInstructionsRecorder } from "./ClientInstructionsRecorder";
 import { PoliceStationTab } from "./PoliceStationTab";
 import { PleaRecordCard } from "./PleaRecordCard";
@@ -49,6 +50,8 @@ import { OffencePlaybookCard } from "./OffencePlaybookCard";
 import { SolicitorInstructionsSection } from "./SolicitorInstructionsSection";
 import { StrategyExportButton } from "./StrategyExportButton";
 import { DefencePlanBox } from "./DefencePlanBox";
+import { StrategyTimelineSection } from "./StrategyTimelineSection";
+import { VerdictRatingBlock } from "./VerdictRatingBlock";
 
 /** Tab ids for criminal case page. URL ?tab= must be one of these. Order: primary then secondary. */
 const CRIMINAL_CASE_TAB_IDS = [
@@ -660,7 +663,19 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
                 <p className="text-[11px] text-muted-foreground mt-3 pt-2 border-t border-border/50">
                   Full Defence Plan is in the box below. Strategy Commitment and Safety are in the Evidence column.
                 </p>
+                <div className="mt-2 pt-2 border-t border-border/50">
+                  <VerdictRatingBlock caseId={caseId} target="strategy" />
+                </div>
               </Card>
+
+              <div className="mb-6">
+                <StrategyTimelineSection
+                  strategyInOneLine={defencePlan?.strategy_in_one_line ?? undefined}
+                  next72Hours={defencePlan?.next_72_hours ?? []}
+                  waitingFor={effectiveProceduralSafety?.outstandingItems ?? []}
+                  risksPivotsShort={defencePlan?.risks_pivots_short ?? []}
+                />
+              </div>
 
               <div className="mb-6">
                 <DefencePlanBox caseId={caseId} plan={defencePlan} primaryRouteLabel={displayStrategy?.displayLabel ?? defencePlan?.primary_route?.label ?? null} offenceType={snapshot?.resolvedOffence?.offenceType} currentPhase={currentPhase} evidenceSummary={snapshot ? buildEvidenceContext(snapshot, effectiveProceduralSafety?.outstandingItems) : undefined} timelineSummary={snapshot ? buildTimelineContext(snapshot) : undefined} />
@@ -695,6 +710,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
                   planSummary={defencePlan ? [defencePlan.strategy_in_one_line, defencePlan.attack_sequence, defencePlan.primary_route?.label].filter(Boolean).join("\n") : undefined}
                   evidenceSummary={snapshot ? buildEvidenceContext(snapshot, effectiveProceduralSafety?.outstandingItems) : undefined}
                   timelineSummary={snapshot ? buildTimelineContext(snapshot) : undefined}
+                  outstandingDisclosure={effectiveProceduralSafety?.outstandingItems ?? undefined}
                 />
               </div>
 
@@ -738,6 +754,9 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
 
         {activeTab === "disclosure" && snapshot && (
           <div id="section-disclosure" className="space-y-6">
+            <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Disclosure pressure temporarily unavailable.</div></Card>}>
+              <DisclosurePressureDashboard caseId={caseId} />
+            </ErrorBoundary>
             <FirstDisclosureRequestCard caseId={caseId} />
             <DisclosureTrackerTable items={snapshot.evidence.disclosureItems} />
             <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Disclosure chase list temporarily unavailable.</div></Card>}>
@@ -747,6 +766,9 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         )}
         {activeTab === "disclosure" && !snapshot && (
           <div className="space-y-6">
+            <ErrorBoundary fallback={null}>
+              <DisclosurePressureDashboard caseId={caseId} />
+            </ErrorBoundary>
             <FirstDisclosureRequestCard caseId={caseId} />
             <Card className="p-4"><p className="text-sm text-muted-foreground">Run analysis to see disclosure tracker and chasers.</p></Card>
           </div>

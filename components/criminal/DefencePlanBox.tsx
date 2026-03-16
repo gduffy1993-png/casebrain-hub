@@ -5,13 +5,22 @@
  * All content is from the committed strategy plan only (no DB position mixed in).
  * Renders narrative, attack order, how we're running it, key plan sections, and chat (Phase 3).
  * Chat history is persisted per case in localStorage so it survives refresh.
+ * D4: Chat UX – auto-scroll, bubbles, typing indicator, sticky input, collapsible plan, command shortcuts.
  */
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { ChevronDown, ChevronUp, Send, Loader2 } from "lucide-react";
 import type { DefenceStrategyPlan } from "@/lib/criminal/strategy-output";
 import { LawSliceSuggestions } from "./LawSliceSuggestions";
+import { VerdictRatingBlock } from "./VerdictRatingBlock";
+
+const CHAT_COMMAND_PROMPTS: Record<string, string> = {
+  "/disclosure": "What disclosure should I be pushing in this case and what are the CPIA duties?",
+  "/timeline": "What are the key dates and next steps in this case?",
+  "/plan": "Summarise our defence plan and the main angles we're running.",
+};
 
 const CHAT_STORAGE_KEY_PREFIX = "casebrain:defence-plan-chat:";
 
@@ -103,6 +112,8 @@ export function DefencePlanBox({ caseId, plan, primaryRouteLabel, offenceType, c
   const [chatLoaded, setChatLoaded] = useState(false);
   const [chatInput, setChatInput] = useState("");
   const [chatLoading, setChatLoading] = useState(false);
+  const [planSectionOpen, setPlanSectionOpen] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Load persisted chat for this case on mount (client-only to avoid hydration mismatch)
   useEffect(() => {
@@ -117,9 +128,19 @@ export function DefencePlanBox({ caseId, plan, primaryRouteLabel, offenceType, c
     saveChatToStorage(caseId, chatMessages);
   }, [caseId, chatLoaded, chatMessages]);
 
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [chatMessages, chatLoading]);
+
+  const resolveMessage = (raw: string): string => {
+    const trimmed = raw.trim().toLowerCase();
+    return CHAT_COMMAND_PROMPTS[trimmed] ?? CHAT_COMMAND_PROMPTS[Object.keys(CHAT_COMMAND_PROMPTS).find((k) => trimmed.startsWith(k)) ?? ""] ?? raw.trim();
+  };
+
   const handleSendChat = async () => {
-    const msg = chatInput.trim();
-    if (!msg || !plan || !caseId) return;
+    const raw = chatInput.trim();
+    if (!raw || !plan || !caseId) return;
+    const msg = resolveMessage(raw);
     setChatInput("");
     setChatMessages((prev) => [...prev, { role: "user", content: msg }]);
     setChatLoading(true);
@@ -180,6 +201,16 @@ export function DefencePlanBox({ caseId, plan, primaryRouteLabel, offenceType, c
           </span>
         )}
       </div>
+      <button
+        type="button"
+        onClick={() => setPlanSectionOpen((o) => !o)}
+        className="flex items-center gap-2 w-full text-left py-2 text-xs font-semibold text-muted-foreground hover:text-foreground border-y border-border/50"
+      >
+        {planSectionOpen ? <ChevronUp className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />}
+        Plan details
+      </button>
+      {planSectionOpen && (
+      <>
       {plan.winning_angles?.length > 0 && (
         <div className="mb-4 rounded-lg border border-primary/20 bg-primary/10 p-3">
           <p className="text-xs font-semibold text-foreground uppercase tracking-wide mb-1.5">Winning angles</p>
@@ -240,36 +271,53 @@ export function DefencePlanBox({ caseId, plan, primaryRouteLabel, offenceType, c
         {plan.risks_if_we_fight?.length > 0 && section("Trial risks", <ul className="list-disc pl-4 space-y-0.5">{plan.risks_if_we_fight.slice(0, 4).map((r, i) => <li key={i}>{r}</li>)}</ul>)}
         {plan.defence_counters?.length > 0 && section("Defence counters", <ul className="space-y-1">{plan.defence_counters.slice(0, 3).map((c, i) => <li key={i}><span className="font-medium">{c.point}:</span> {c.safe_wording}</li>)}</ul>)}
       </div>
+      </>
+      )}
 
-      <div className="mt-6 pt-4 border-t border-border/50">
+      <div className="mt-6 pt-4 border-t border-border/50 flex flex-col min-h-0">
         <LawSliceSuggestions offenceType={offenceType} currentPhase={currentPhase} hasPlan={true} />
-        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">Ask about this plan</p>
-        <p className="text-[11px] text-muted-foreground mb-2">Answers use your Defence Plan and criminal law (e.g. CPIA) only.</p>
-        {chatMessages.length > 0 && (
-          <div className="space-y-2 mb-3 max-h-48 overflow-y-auto">
+        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1">Ask about this plan</p>
+        <div className="rounded border border-border/50 bg-muted/20 px-2 py-1.5 mb-2 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] text-muted-foreground">
+          <span>Context:</span>
+          <span>Plan</span>
+          {evidenceSummary && <span>· Evidence</span>}
+          {timelineSummary && <span>· Timeline</span>}
+        </div>
+        <div className="flex flex-col">
+          <div className="min-h-[80px] max-h-64 overflow-y-auto space-y-2 mb-3 pr-1">
             {chatMessages.map((m, i) => (
               <div
                 key={i}
-                className={`rounded-lg px-3 py-2 text-sm ${m.role === "user" ? "bg-primary/15 text-foreground ml-4" : "bg-muted/50 text-foreground mr-4"}`}
+                className={`rounded-2xl px-3 py-2 text-sm max-w-[90%] ${m.role === "user" ? "ml-auto bg-primary text-primary-foreground rounded-br-md" : "mr-auto bg-muted/60 text-foreground rounded-bl-md"}`}
               >
-                {m.content}
+                <p className="whitespace-pre-wrap">{m.content}</p>
               </div>
             ))}
+            {chatLoading && (
+              <div className="mr-auto rounded-2xl rounded-bl-md px-3 py-2 bg-muted/60 text-muted-foreground text-sm flex items-center gap-1.5">
+                <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                <span>Thinking…</span>
+              </div>
+            )}
+            <div ref={messagesEndRef} />
           </div>
-        )}
-        <div className="flex gap-2">
-          <input
-            type="text"
-            value={chatInput}
-            onChange={(e) => setChatInput(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && handleSendChat()}
-            placeholder="e.g. What disclosure duties apply?"
-            className="flex-1 rounded-md border border-border bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
-            disabled={chatLoading}
-          />
-          <Button type="button" size="sm" onClick={handleSendChat} disabled={chatLoading || !chatInput.trim()}>
-            {chatLoading ? "…" : "Send"}
-          </Button>
+          <div className="flex gap-2 flex-shrink-0">
+            <input
+              type="text"
+              value={chatInput}
+              onChange={(e) => setChatInput(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && handleSendChat()}
+              placeholder="Ask or type /disclosure, /timeline, /plan"
+              className="flex-1 rounded-full border border-border bg-background px-4 py-2 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
+              disabled={chatLoading}
+            />
+            <Button type="button" size="sm" className="rounded-full shrink-0" onClick={handleSendChat} disabled={chatLoading || !chatInput.trim()}>
+              {chatLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
+            </Button>
+          </div>
+          <div className="mt-2 pt-2 border-t border-border/50">
+            <VerdictRatingBlock caseId={caseId} target="chat" />
+          </div>
         </div>
       </div>
     </Card>
