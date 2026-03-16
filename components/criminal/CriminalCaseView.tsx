@@ -52,6 +52,7 @@ import { StrategyExportButton } from "./StrategyExportButton";
 import { DefencePlanBox } from "./DefencePlanBox";
 import { StrategyTimelineSection } from "./StrategyTimelineSection";
 import { VerdictRatingBlock } from "./VerdictRatingBlock";
+import { ChangeListSection } from "./ChangeListSection";
 
 /** Tab ids for criminal case page. URL ?tab= must be one of these. Order: primary then secondary. */
 const CRIMINAL_CASE_TAB_IDS = [
@@ -667,6 +668,10 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
                   <VerdictRatingBlock caseId={caseId} target="strategy" />
                 </div>
               </Card>
+
+              <div className="mb-6">
+                <ChangeListSection caseId={caseId} />
+              </div>
 
               <div className="mb-6">
                 <StrategyTimelineSection

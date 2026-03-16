@@ -11,7 +11,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, ChevronUp, Send, Loader2 } from "lucide-react";
+import { ChevronDown, ChevronUp, Send, Loader2, Check, Pencil, X } from "lucide-react";
 import type { DefenceStrategyPlan } from "@/lib/criminal/strategy-output";
 import { LawSliceSuggestions } from "./LawSliceSuggestions";
 import { VerdictRatingBlock } from "./VerdictRatingBlock";
@@ -20,6 +20,7 @@ const CHAT_COMMAND_PROMPTS: Record<string, string> = {
   "/disclosure": "What disclosure should I be pushing in this case and what are the CPIA duties?",
   "/timeline": "What are the key dates and next steps in this case?",
   "/plan": "Summarise our defence plan and the main angles we're running.",
+  "/propose": "__PROPOSE__", // special: triggers propose-summary API and proposal card
 };
 
 const CHAT_STORAGE_KEY_PREFIX = "casebrain:defence-plan-chat:";
@@ -41,6 +42,8 @@ type DefencePlanBoxProps = {
 };
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
+
+type PendingProposal = { caseTheoryLine?: string; agreedSummaryDetailed?: string };
 
 function section(title: string, children: React.ReactNode) {
   return (
@@ -113,6 +116,9 @@ export function DefencePlanBox({ caseId, plan, primaryRouteLabel, offenceType, c
   const [chatInput, setChatInput] = useState("");
   const [chatLoading, setChatLoading] = useState(false);
   const [planSectionOpen, setPlanSectionOpen] = useState(false);
+  const [pendingProposal, setPendingProposal] = useState<PendingProposal | null>(null);
+  const [editingProposal, setEditingProposal] = useState<PendingProposal | null>(null);
+  const [proposalSaving, setProposalSaving] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Load persisted chat for this case on mount (client-only to avoid hydration mismatch)
@@ -137,10 +143,67 @@ export function DefencePlanBox({ caseId, plan, primaryRouteLabel, offenceType, c
     return CHAT_COMMAND_PROMPTS[trimmed] ?? CHAT_COMMAND_PROMPTS[Object.keys(CHAT_COMMAND_PROMPTS).find((k) => trimmed.startsWith(k)) ?? ""] ?? raw.trim();
   };
 
+  const runProposeFlow = async () => {
+    if (!plan || !caseId) return;
+    setChatInput("");
+    setChatMessages((prev) => [...prev, { role: "user", content: "Propose summary & case theory" }]);
+    setChatLoading(true);
+    setPendingProposal(null);
+    try {
+      const res = await fetch(`/api/criminal/${caseId}/propose-summary`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          planSummary: buildPlanSummaryForChat(plan),
+          evidenceSummary: evidenceSummary?.slice(0, 1200) ?? "",
+          timelineSummary: timelineSummary?.slice(0, 500) ?? "",
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (data.ok && typeof data.reply === "string") {
+        setChatMessages((prev) => [...prev, { role: "assistant", content: data.reply }]);
+        if (data.proposal && (data.proposal.caseTheoryLine || data.proposal.agreedSummaryDetailed)) {
+          setPendingProposal(data.proposal);
+        }
+      } else {
+        setChatMessages((prev) => [...prev, { role: "assistant", content: "Could not generate proposal. Try again." }]);
+      }
+    } catch {
+      setChatMessages((prev) => [...prev, { role: "assistant", content: "Something went wrong. Try again." }]);
+    } finally {
+      setChatLoading(false);
+    }
+  };
+
+  const handleAcceptProposal = async () => {
+    if (!pendingProposal || !caseId || proposalSaving) return;
+    setProposalSaving(true);
+    try {
+      const res = await fetch(`/api/criminal/${caseId}/agreed-summary`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          caseTheoryLine: pendingProposal.caseTheoryLine ?? null,
+          agreedSummaryDetailed: pendingProposal.agreedSummaryDetailed ?? null,
+        }),
+      });
+      if (res.ok) setPendingProposal(null);
+    } finally {
+      setProposalSaving(false);
+    }
+  };
+
   const handleSendChat = async () => {
     const raw = chatInput.trim();
     if (!raw || !plan || !caseId) return;
-    const msg = resolveMessage(raw);
+    const resolved = resolveMessage(raw);
+    if (resolved === "__PROPOSE__" || raw.toLowerCase().trim().startsWith("/propose")) {
+      runProposeFlow();
+      return;
+    }
+    const msg = resolved;
     setChatInput("");
     setChatMessages((prev) => [...prev, { role: "user", content: msg }]);
     setChatLoading(true);
@@ -283,6 +346,91 @@ export function DefencePlanBox({ caseId, plan, primaryRouteLabel, offenceType, c
           {evidenceSummary && <span>· Evidence</span>}
           {timelineSummary && <span>· Timeline</span>}
         </div>
+        <Button type="button" variant="outline" size="sm" className="mb-2 self-start text-xs" onClick={runProposeFlow} disabled={chatLoading}>
+          Propose summary & case theory
+        </Button>
+        {pendingProposal && (pendingProposal.caseTheoryLine || pendingProposal.agreedSummaryDetailed) && (
+          <div className="mb-3 rounded-lg border-2 border-primary/30 bg-primary/5 p-3">
+            <p className="text-xs font-semibold text-foreground mb-2">Proposed (Agree / Edit / Reject)</p>
+            {pendingProposal.caseTheoryLine && (
+              <p className="text-sm font-medium text-foreground mb-1">{pendingProposal.caseTheoryLine}</p>
+            )}
+            {pendingProposal.agreedSummaryDetailed && (
+              <p className="text-sm text-foreground whitespace-pre-wrap">{pendingProposal.agreedSummaryDetailed}</p>
+            )}
+            <div className="mt-3 flex flex-wrap gap-2">
+              <Button type="button" size="sm" onClick={handleAcceptProposal} disabled={proposalSaving}>
+                <Check className="h-3.5 w-3.5 mr-1" />
+                {proposalSaving ? "Saving…" : "Agree"}
+              </Button>
+              <Button type="button" size="sm" variant="outline" onClick={() => setEditingProposal({ ...pendingProposal })}>
+                <Pencil className="h-3.5 w-3.5 mr-1" />
+                Edit
+              </Button>
+              <Button type="button" size="sm" variant="ghost" onClick={() => setPendingProposal(null)}>
+                <X className="h-3.5 w-3.5 mr-1" />
+                Reject
+              </Button>
+            </div>
+          </div>
+        )}
+        {editingProposal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+            <Card className="w-full max-w-lg max-h-[90vh] overflow-hidden flex flex-col">
+              <div className="p-3 border-b border-border font-medium text-sm">Edit proposal</div>
+              <div className="p-3 overflow-y-auto flex-1 space-y-3">
+                <div>
+                  <label className="text-xs font-medium text-muted-foreground block mb-1">Case theory line</label>
+                  <textarea
+                    className="w-full rounded border border-border bg-background px-2 py-1.5 text-sm min-h-[60px]"
+                    value={editingProposal.caseTheoryLine ?? ""}
+                    onChange={(e) => setEditingProposal((p) => (p ? { ...p, caseTheoryLine: e.target.value } : null))}
+                    placeholder="One sentence"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs font-medium text-muted-foreground block mb-1">Agreed summary (detailed)</label>
+                  <textarea
+                    className="w-full rounded border border-border bg-background px-2 py-1.5 text-sm min-h-[120px]"
+                    value={editingProposal.agreedSummaryDetailed ?? ""}
+                    onChange={(e) => setEditingProposal((p) => (p ? { ...p, agreedSummaryDetailed: e.target.value } : null))}
+                    placeholder="2–3 paragraphs"
+                  />
+                </div>
+              </div>
+              <div className="p-3 border-t border-border flex gap-2">
+                <Button
+                  size="sm"
+                  onClick={async () => {
+                    if (!editingProposal || !caseId || proposalSaving) return;
+                    setProposalSaving(true);
+                    try {
+                      const res = await fetch(`/api/criminal/${caseId}/agreed-summary`, {
+                        method: "PATCH",
+                        headers: { "Content-Type": "application/json" },
+                        credentials: "include",
+                        body: JSON.stringify({
+                          caseTheoryLine: editingProposal.caseTheoryLine?.trim() || null,
+                          agreedSummaryDetailed: editingProposal.agreedSummaryDetailed?.trim() || null,
+                        }),
+                      });
+                      if (res.ok) {
+                        setPendingProposal(null);
+                        setEditingProposal(null);
+                      }
+                    } finally {
+                      setProposalSaving(false);
+                    }
+                  }}
+                  disabled={proposalSaving}
+                >
+                  {proposalSaving ? "Saving…" : "Save"}
+                </Button>
+                <Button size="sm" variant="outline" onClick={() => setEditingProposal(null)}>Cancel</Button>
+              </div>
+            </Card>
+          </div>
+        )}
         <div className="flex flex-col">
           <div className="min-h-[80px] max-h-64 overflow-y-auto space-y-2 mb-3 pr-1">
             {chatMessages.map((m, i) => (
@@ -307,7 +455,7 @@ export function DefencePlanBox({ caseId, plan, primaryRouteLabel, offenceType, c
               value={chatInput}
               onChange={(e) => setChatInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && handleSendChat()}
-              placeholder="Ask or type /disclosure, /timeline, /plan"
+              placeholder="Ask or /disclosure, /timeline, /plan, /propose"
               className="flex-1 rounded-full border border-border bg-background px-4 py-2 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
               disabled={chatLoading}
             />

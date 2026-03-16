@@ -8,6 +8,7 @@ import { requireAuthContextApi } from "@/lib/auth-api";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { getOpenAIClient } from "@/lib/openai";
 import { retrieveLawChunks } from "@/lib/criminal/criminal-law-corpus";
+import { getChangeListForContext } from "@/lib/criminal/verdict-change-list";
 
 type RouteParams = { params: Promise<{ caseId: string }> };
 
@@ -97,7 +98,10 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
           .join("\n\n---\n\n")
       : "(No matching law chunks in corpus for this question.)";
 
+  const changeList = await getChangeListForContext(supabase, caseId, orgId);
+
   const contextParts: string[] = [];
+  if (changeList) contextParts.push(changeList);
   if (agreedBlock) contextParts.push(`Agreed case narrative (use as canonical):\n${agreedBlock}`);
   if (planSummary) contextParts.push(`Defence Plan for this case:\n${planSummary}`);
   if (evidenceSummary) contextParts.push(`Evidence/disclosure for this case:\n${evidenceSummary}`);
