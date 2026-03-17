@@ -1,7 +1,6 @@
 /**
- * POST /api/criminal/[caseId]/phase1-detect
- * Run Phase 1 detection from bundle: offence, stance, stage. Persist to criminal_cases.
- * Call after upload or when user clicks "Refresh from bundle".
+ * GET  /api/criminal/[caseId]/phase1-detect — return stored Phase 1 state (no run).
+ * POST /api/criminal/[caseId]/phase1-detect — run Phase 1 detection and persist.
  */
 
 import { NextResponse } from "next/server";
@@ -15,6 +14,49 @@ import { buildKeyFactsSummary } from "@/lib/key-facts";
 type RouteParams = { params: Promise<{ caseId: string }> };
 
 const BUNDLE_SNIPPET_CHARS = 8000;
+
+export async function GET(_request: Request, { params }: RouteParams) {
+  try {
+    const { caseId } = await params;
+    const authRes = await requireAuthContextApi();
+    if (!authRes.ok) return authRes.response;
+    const { userId, orgId: authOrgId } = authRes.context;
+    const context = await buildCaseContext(caseId, { userId, orgIdHint: authOrgId });
+    if (!context.case) {
+      return NextResponse.json({ ok: false, error: "Case not found" }, { status: 404 });
+    }
+    const orgId = context.case.org_id ?? authOrgId ?? "";
+    const supabase = getSupabaseAdminClient();
+    const { data, error } = await supabase
+      .from("criminal_cases")
+      .select("offence_detected_code, offence_detected_label, stance_detected, stage_detected")
+      .eq("id", caseId)
+      .eq("org_id", orgId)
+      .maybeSingle();
+    if (error) {
+      console.error("[phase1-detect] GET error:", error);
+      return NextResponse.json({ ok: false, error: "Failed to load Phase 1 state" }, { status: 500 });
+    }
+    const row = data as {
+      offence_detected_code?: string | null;
+      offence_detected_label?: string | null;
+      stance_detected?: string | null;
+      stage_detected?: string | null;
+    } | null;
+    return NextResponse.json({
+      ok: true,
+      data: {
+        offenceCode: row?.offence_detected_code ?? null,
+        offenceLabel: row?.offence_detected_label ?? null,
+        stance: row?.stance_detected ?? null,
+        stage: row?.stage_detected ?? null,
+      },
+    });
+  } catch (err) {
+    console.error("[phase1-detect] GET error:", err);
+    return NextResponse.json({ ok: false, error: "Phase 1 state failed" }, { status: 500 });
+  }
+}
 
 export async function POST(_request: Request, { params }: RouteParams) {
   try {

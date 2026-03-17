@@ -250,6 +250,15 @@ type SavedPosition = {
 };
 
 /** Maps plan primary_route.id to the three strategy categories (Risk–Outcome Matrix / at-a-glance). */
+/** Map Phase 1 stance_detected string to PrimaryStrategy for pre-fill. */
+function mapStanceDetectedToPrimary(stance: string | null): PrimaryStrategy | null {
+  if (!stance || typeof stance !== "string") return null;
+  const s = stance.trim();
+  if (s === "Recklessness challenge") return "charge_reduction";
+  if (["Intent denial + Causation", "Put to proof", "Act denial", "Lawful force"].includes(s)) return "fight_charge";
+  return null;
+}
+
 function mapRouteIdToCategory(routeId: string, fallback: PrimaryStrategy): PrimaryStrategy {
   const id = (routeId || "").toLowerCase();
   if (id === "act_denial" || id === "identification_challenge") return "fight_charge";
@@ -5378,6 +5387,10 @@ export function StrategyCommitmentPanel({
     hasTrialTheory: false,
     hasDisclosureApps: false,
   });
+  /** Phase 1 detected from bundle (offence, stance, stage). Used to pre-fill strategy and show banner. */
+  const [phase1Detected, setPhase1Detected] = useState<{ offenceLabel: string | null; stance: string | null; stage: string | null } | null>(null);
+  /** When true, user has clicked "Change strategy" so we show the dropdown as override. */
+  const [showStrategyOverride, setShowStrategyOverride] = useState(false);
   const { push: showToast } = useToast();
   const storageKey = `casebrain:strategyCommitment:${resolvedCaseId}`;
   const debugBuildId = process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA ?? process.env.NEXT_PUBLIC_BUILD_ID ?? null;
@@ -5801,16 +5814,44 @@ export function StrategyCommitmentPanel({
     fetchPosition();
   }, [resolvedCaseId, propSavedPosition]);
 
-  // Load commitment from API on mount
+  // Load commitment and Phase 1 detected state on mount
   useEffect(() => {
     if (!resolvedCaseId) return;
-    
-    async function loadCommitment() {
+    setShowStrategyOverride(false);
+
+    async function loadCommitmentAndPhase1() {
+      let phase1Data: { offenceLabel: string | null; stance: string | null; stage: string | null } | null = null;
       try {
-        const response = await fetch(`/api/criminal/${resolvedCaseId}/strategy-commitment`);
-        if (response.ok) {
-          const result = await response.json();
-          // Committed strategy exists when committed_at or primary_strategy is present (newest row from GET)
+        const [commitRes, phase1Res] = await Promise.all([
+          fetch(`/api/criminal/${resolvedCaseId}/strategy-commitment`),
+          fetch(`/api/criminal/${resolvedCaseId}/phase1-detect`),
+        ]);
+
+        // Phase 1: store for banner and pre-fill
+        if (phase1Res.ok) {
+          const phase1Json = await phase1Res.json();
+          if (phase1Json?.ok && phase1Json?.data) {
+            const d = phase1Json.data as { offenceLabel?: string | null; stance?: string | null; stage?: string | null };
+            if (d.offenceLabel ?? d.stance ?? d.stage) {
+              phase1Data = {
+                offenceLabel: d.offenceLabel ?? null,
+                stance: d.stance ?? null,
+                stage: d.stage ?? null,
+              };
+              setPhase1Detected(phase1Data);
+            } else {
+              setPhase1Detected(null);
+            }
+          } else {
+            setPhase1Detected(null);
+          }
+        } else {
+          setPhase1Detected(null);
+        }
+
+        // Commitment: if present, use it
+        if (commitRes.ok) {
+          const result = await commitRes.json();
           const hasCommitment = result.ok && result.data && (result.data.committed_at || result.data.primary_strategy);
           if (hasCommitment) {
             const strategy = result.data;
@@ -5823,39 +5864,51 @@ export function StrategyCommitmentPanel({
               secondary: strategy.fallback_strategies || strategy.secondary || [],
             });
             return;
-          } else {
-            setIsCommitted(false);
-            setCommittedAt(null);
-            setPrimary(null);
-            setSecondary([]);
           }
         }
       } catch (error) {
         console.error("Failed to load strategy commitment:", error);
-        // On error, assume no commitment
-        setIsCommitted(false);
-        setCommittedAt(null);
       }
 
-      // Fallback to localStorage if no API commitment
-    try {
-      const saved = typeof window !== "undefined" ? window.localStorage.getItem(storageKey) : null;
-      if (saved) {
-        const parsed = JSON.parse(saved) as StrategyCommitment;
-        if (parsed?.primary) {
-          setPrimary(parsed.primary);
+      setIsCommitted(false);
+      setCommittedAt(null);
+      setPrimary(null);
+      setSecondary([]);
+
+      // No API commitment: try localStorage
+      try {
+        const saved = typeof window !== "undefined" ? window.localStorage.getItem(storageKey) : null;
+        if (saved) {
+          const parsed = JSON.parse(saved) as StrategyCommitment;
+          if (parsed?.primary) {
+            setPrimary(parsed.primary);
             setSecondary(parsed.secondary?.slice(0, 3) || []);
-          onCommitmentChange({
-            primary: parsed.primary,
+            onCommitmentChange({
+              primary: parsed.primary,
               secondary: parsed.secondary?.slice(0, 3) || [],
-          });
+            });
+            return;
+          }
+        }
+      } catch {
+        // fail silently
+      }
+
+      // No commitment and no localStorage: pre-fill from Phase 1 stance
+      if (phase1Data?.stance) {
+        const mapped = mapStanceDetectedToPrimary(phase1Data.stance);
+        if (mapped) {
+          setPrimary(mapped);
+          onCommitmentChange({ primary: mapped, secondary: [] });
+          try {
+            window.localStorage.setItem(storageKey, JSON.stringify({ primary: mapped, secondary: [] }));
+          } catch {
+            // ignore
+          }
         }
       }
-    } catch {
-      // fail silently; treat as no saved commitment
     }
-    }
-    loadCommitment();
+    loadCommitmentAndPhase1();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resolvedCaseId]);
 
@@ -7087,6 +7140,17 @@ export function StrategyCommitmentPanel({
 
           {/* Strategy Commitment - primary selection and Commit (always visible in Phase 2 so user can commit) */}
           <Card className="p-4 border-2 border-primary/30 bg-primary/5">
+            {phase1Detected && (phase1Detected.offenceLabel ?? phase1Detected.stance ?? phase1Detected.stage) && (
+              <div className="mb-3 p-2.5 rounded-lg border border-primary/30 bg-primary/10 text-xs text-foreground">
+                <span className="font-medium text-primary">Detected from bundle:</span>
+                {" "}
+                {[
+                  phase1Detected.offenceLabel && `Offence: ${phase1Detected.offenceLabel}`,
+                  phase1Detected.stance && `Stance: ${phase1Detected.stance}`,
+                  phase1Detected.stage && `Stage: ${phase1Detected.stage}`,
+                ].filter(Boolean).join(" · ")}
+              </div>
+            )}
             <div className="flex items-center gap-2 mb-2">
               <Target className="h-4 w-4 text-primary" />
               <h3 className="text-sm font-semibold text-foreground">Strategy Commitment</h3>
@@ -7131,15 +7195,30 @@ export function StrategyCommitmentPanel({
                   Clear
                 </Button>
               )}
+              {primary && phase1Detected && !showStrategyOverride && !isCommitted && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowStrategyOverride(true)}
+                  className="text-muted-foreground"
+                >
+                  Change strategy (override)
+                </Button>
+              )}
             </div>
-            {!primary ? (
+            {(!primary || showStrategyOverride) ? (
               <div>
-                <label className="text-xs font-medium text-foreground block mb-2">Select Primary Strategy</label>
+                <label className="text-xs font-medium text-foreground block mb-2">
+                  {primary && showStrategyOverride ? "Override primary strategy" : "Select Primary Strategy"}
+                </label>
                 <select
-                  value=""
+                  value={primary ?? ""}
                   onChange={(e) => {
                     const value = e.target.value as PrimaryStrategy;
-                    if (value) handlePrimarySelect(value);
+                    if (value) {
+                      handlePrimarySelect(value);
+                      setShowStrategyOverride(false);
+                    }
                   }}
                   className="w-full max-w-md p-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                 >
@@ -7150,6 +7229,11 @@ export function StrategyCommitmentPanel({
                     </option>
                   ))}
                 </select>
+                {primary && showStrategyOverride && (
+                  <Button variant="ghost" size="sm" className="mt-2 text-muted-foreground" onClick={() => setShowStrategyOverride(false)}>
+                    Keep detected strategy
+                  </Button>
+                )}
               </div>
             ) : (
               <div className="p-3 rounded-lg border border-primary/20 bg-primary/5">
@@ -7728,6 +7812,18 @@ export function StrategyCommitmentPanel({
           </div>
         </div>
         
+        {phase1Detected && (phase1Detected.offenceLabel ?? phase1Detected.stance ?? phase1Detected.stage) && (
+          <div className="mb-4 p-3 rounded-lg border border-primary/30 bg-primary/10 text-sm text-foreground">
+            <span className="font-medium text-primary">Detected from bundle:</span>
+            {" "}
+            {[
+              phase1Detected.offenceLabel && `Offence: ${phase1Detected.offenceLabel}`,
+              phase1Detected.stance && `Stance: ${phase1Detected.stance}`,
+              phase1Detected.stage && `Stage: ${phase1Detected.stage}`,
+            ].filter(Boolean).join(" · ")}
+          </div>
+        )}
+
         <div className="flex items-start justify-between">
           <div>
             <div className="flex items-center gap-2 mb-2">
@@ -7787,19 +7883,36 @@ export function StrategyCommitmentPanel({
               Clear
             </Button>
           )}
+          {primary && phase1Detected && !showStrategyOverride && !isCommitted && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setShowStrategyOverride(true)}
+              className="text-muted-foreground"
+            >
+              Change strategy (override)
+            </Button>
+          )}
           </div>
         </div>
 
-        {!primary ? (
+        {(!primary || showStrategyOverride) ? (
           <div className="space-y-4">
             <div>
-              <h3 className="text-sm font-semibold text-foreground mb-3">Select Primary Strategy</h3>
-              <p className="text-xs text-muted-foreground mb-3">No strategy committed yet. Select a primary strategy to begin.</p>
+              <h3 className="text-sm font-semibold text-foreground mb-3">
+                {primary && showStrategyOverride ? "Override primary strategy" : "Select Primary Strategy"}
+              </h3>
+              <p className="text-xs text-muted-foreground mb-3">
+                {primary && showStrategyOverride ? "Choose a different strategy or keep the detected one." : "No strategy committed yet. Select a primary strategy to begin."}
+              </p>
               <select
-                value=""
+                value={primary ?? ""}
                 onChange={(e) => {
                   const value = e.target.value as PrimaryStrategy;
-                  if (value) handlePrimarySelect(value);
+                  if (value) {
+                    handlePrimarySelect(value);
+                    setShowStrategyOverride(false);
+                  }
                 }}
                 className="w-full p-3 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
               >
@@ -7810,6 +7923,11 @@ export function StrategyCommitmentPanel({
                   </option>
                 ))}
               </select>
+              {primary && showStrategyOverride && (
+                <Button variant="ghost" size="sm" className="mt-2 text-muted-foreground" onClick={() => setShowStrategyOverride(false)}>
+                  Keep detected strategy
+                </Button>
+              )}
             </div>
           </div>
         ) : (
