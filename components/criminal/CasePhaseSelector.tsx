@@ -62,7 +62,6 @@ export function CasePhaseSelector({
 
   const handlePhaseChange = (phase: CasePhase) => {
     if (disabledWhenUnsafe) return;
-    if (phase === 2 && !hasSavedPosition) return;
     setLocalPhase(phase);
     onPhaseChange(phase);
   };
@@ -95,9 +94,9 @@ export function CasePhaseSelector({
             variant={localPhase === 2 ? "primary" : "outline"}
             size="sm"
             onClick={() => handlePhaseChange(2)}
-            disabled={!hasSavedPosition || disabledWhenUnsafe}
+            disabled={disabledWhenUnsafe}
             className="flex items-center gap-2"
-            title={disabledWhenUnsafe ? unsafeReason : !hasSavedPosition ? "Record a position to unlock Phase 2" : undefined}
+            title={disabledWhenUnsafe ? unsafeReason : undefined}
           >
             <CheckCircle className="h-3.5 w-3.5" />
             Phase 2: Positioning & Options
@@ -144,10 +143,10 @@ export function CasePhaseSelector({
             <AlertTriangle className="h-4 w-4 text-blue-400 mt-0.5 flex-shrink-0" />
             <div className="flex-1">
               <p className="text-xs font-semibold text-blue-400 mb-1">
-                PHASE 2 LOCKED
+                Optional: Record position
               </p>
               <p className="text-xs text-blue-300/80 mb-2">
-                Record a defence position to unlock Phase 2 tools (bail, charge reduction, plea options).
+                You can record a defence position to tailor strategy, or go straight to Strategy to see the system&apos;s proposal from the bundle.
               </p>
               {onRecordPosition && (
                 <Button

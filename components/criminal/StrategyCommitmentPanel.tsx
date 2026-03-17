@@ -5862,6 +5862,29 @@ export function StrategyCommitmentPanel({
             return;
           }
         }
+
+        // No detected data yet: run detection once so Strategy can pre-fill (bundle → offence/stance/stage)
+        if (!phase1Data) {
+          try {
+            const runRes = await fetch(`/api/criminal/${resolvedCaseId}/phase1-detect`, { method: "POST", credentials: "include" });
+            if (runRes.ok) {
+              const runJson = await runRes.json();
+              if (runJson?.ok && runJson?.data) {
+                const r = runJson.data as { offenceLabel?: string | null; stance?: string | null; stage?: string | null };
+                if (r.offenceLabel ?? r.stance ?? r.stage) {
+                  phase1Data = {
+                    offenceLabel: r.offenceLabel ?? null,
+                    stance: r.stance ?? null,
+                    stage: r.stage ?? null,
+                  };
+                  setPhase1Detected(phase1Data);
+                }
+              }
+            }
+          } catch {
+            // non-fatal; continue with no pre-fill
+          }
+        }
       } catch (error) {
         console.error("Failed to load strategy commitment:", error);
       }

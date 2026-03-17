@@ -262,7 +262,7 @@ export function RecordPositionModal({
         throw new Error(errorData.error || `Failed to save position (${response.status})`);
       }
 
-      showToast("Defence position saved. Advancing to Phase 2.", "success");
+      showToast("Defence position saved.", "success");
       onSuccess();
       onClose();
       setPositionText("");
@@ -317,7 +317,7 @@ export function RecordPositionModal({
         throw new Error(errorData.error || `Failed to save position (${response.status})`);
       }
 
-      showToast("Defence position saved. Phase 2 is now unlocked.", "success");
+      showToast("Defence position saved. Strategy will use this to tailor advice.", "success");
       onSuccess();
       onClose();
       setPositionText("");
@@ -401,7 +401,7 @@ export function RecordPositionModal({
           {showPhase2CTA && (
             <div className="flex items-center gap-2 rounded-lg border border-blue-500/20 bg-blue-500/5 p-3">
               <p className="text-xs text-blue-300/80 flex-1">
-                Defence position saved. Phase 2 is now unlocked — you can now choose how to run the case.
+                Defence position saved. You can use Strategy to confirm or override how the case is run.
               </p>
               {onPhase2Request && (
                 <Button
@@ -413,7 +413,7 @@ export function RecordPositionModal({
                   }}
                   className="text-xs"
                 >
-                  Go to Phase 2
+                  Go to Strategy
                 </Button>
               )}
             </div>
