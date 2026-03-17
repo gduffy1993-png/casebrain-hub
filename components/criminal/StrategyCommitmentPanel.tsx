@@ -21,6 +21,7 @@ import type { OffenceCode } from "@/lib/criminal/offence-elements";
 import { buildJudgeConstraintLens, type JudgeConstraintLens } from "@/lib/criminal/judge-constraint-lens";
 import { buildRoutePlaybooks, type RoutePlaybooks } from "@/lib/criminal/strategy-output/route-playbooks";
 import { buildHearingScripts, type HearingScripts } from "@/lib/criminal/strategy-output/hearing-scripts";
+import { mapStanceDetectedToPrimary as mapStanceDetectedToPrimaryStrategy } from "@/lib/criminal/phase1-detection";
 import { CollapsibleSection } from "@/components/ui/collapsible-section";
 import { BurdenMapTable } from "./BurdenMapTable";
 import { PressurePointsList } from "./PressurePointsList";
@@ -250,13 +251,8 @@ type SavedPosition = {
 };
 
 /** Maps plan primary_route.id to the three strategy categories (Risk–Outcome Matrix / at-a-glance). */
-/** Map Phase 1 stance_detected string to PrimaryStrategy for pre-fill. */
 function mapStanceDetectedToPrimary(stance: string | null): PrimaryStrategy | null {
-  if (!stance || typeof stance !== "string") return null;
-  const s = stance.trim();
-  if (s === "Recklessness challenge") return "charge_reduction";
-  if (["Intent denial + Causation", "Put to proof", "Act denial", "Lawful force"].includes(s)) return "fight_charge";
-  return null;
+  return mapStanceDetectedToPrimaryStrategy(stance);
 }
 
 function mapRouteIdToCategory(routeId: string, fallback: PrimaryStrategy): PrimaryStrategy {

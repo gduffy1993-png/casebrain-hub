@@ -28,6 +28,7 @@ import { mapEvidenceImpact, getCommonMissingEvidence } from "@/lib/criminal/evid
 import { buildTimePressureState } from "@/lib/criminal/time-pressure-engine";
 import { calculateConfidenceDrift } from "@/lib/criminal/confidence-drift-engine";
 import { generateDecisionCheckpoints } from "@/lib/criminal/decision-checkpoints";
+import { mapStanceDetectedToPrimary } from "@/lib/criminal/phase1-detection";
 import { scanResidualAttacks } from "@/lib/criminal/residual-attack-scanner";
 import { buildStrategyCoordinator } from "@/lib/criminal/strategy-coordinator";
 import { computeProceduralSafety } from "@/lib/criminal/procedural-safety";
@@ -170,15 +171,29 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         );
       }
 
-      // Check if strategy is committed
-      const { data: commitment } = await supabase
-        .from("case_strategy_commitments")
-        .select("primary_strategy")
-        .eq("case_id", caseId)
-        .eq("org_id", orgIdForQueries)
-        .order("created_at", { ascending: false })
-        .limit(1)
-        .maybeSingle();
+      // Check if strategy is committed; when not, use Phase 1 stance_detected for selectedRoute/artifacts
+      const [commitmentRes, stanceRes] = await Promise.all([
+        supabase
+          .from("case_strategy_commitments")
+          .select("primary_strategy")
+          .eq("case_id", caseId)
+          .eq("org_id", orgIdForQueries)
+          .order("created_at", { ascending: false })
+          .limit(1)
+          .maybeSingle(),
+        supabase
+          .from("criminal_cases")
+          .select("stance_detected")
+          .eq("id", caseId)
+          .eq("org_id", orgIdForQueries)
+          .maybeSingle(),
+      ]);
+      const commitment = commitmentRes.data;
+      const stanceDetected = (stanceRes.data as { stance_detected?: string | null } | null)?.stance_detected ?? null;
+      const effectivePrimary =
+        commitment?.primary_strategy ??
+        mapStanceDetectedToPrimary(stanceDetected) ??
+        undefined;
 
       // Get case facts for artifacts
       const { data: caseData } = await supabase
@@ -475,11 +490,11 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       const bundleText = documents.map((d) => getDocumentTextForBundle(d)).join("\n");
       const timeline_entries = extractTimelineEntriesFromText(bundleText);
 
-      // PHASE 3 FIX: Generate artifacts for committed route (if any) - AFTER recommendation is generated
-      // Use allowStrategyGeneration to ensure artifacts are generated when evidence allows
-      const artifacts = commitment?.primary_strategy
+      // PHASE 3 FIX: Generate artifacts for committed or detected stance - AFTER recommendation is generated
+      // Use effectivePrimary (commitment first, else Phase 1 stance_detected) so strategy uses detected stance unless overridden
+      const artifacts = effectivePrimary
         ? generateArtifacts(
-            commitment.primary_strategy as "fight_charge" | "charge_reduction" | "outcome_management",
+            effectivePrimary as "fight_charge" | "charge_reduction" | "outcome_management",
             allowStrategyGeneration, // Use allowStrategyGeneration instead of canGenerateAnalysis
             {
               caseTitle: caseData?.title || undefined,
@@ -516,7 +531,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       // Routes already include: attackPaths, cpsResponses, killSwitches, pivotPlan (from generateStrategyRoute)
       const response: StrategyAnalysisResponse = {
         routes: routesWithResidual, // Contains attackPaths, cpsResponses, killSwitches, pivotPlan, residual
-        selectedRoute: commitment?.primary_strategy || undefined,
+        selectedRoute: effectivePrimary ?? undefined,
         artifacts,
         evidenceImpact,
         canGenerateAnalysis, // This is for confidence caps/warnings (not visibility)

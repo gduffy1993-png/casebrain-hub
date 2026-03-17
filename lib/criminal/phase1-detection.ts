@@ -73,6 +73,21 @@ export function detectStanceFromBundle(input: {
   return "Put to proof";
 }
 
+/** Primary strategy type used by strategy-commitment and strategy-analysis. */
+export type PrimaryStrategyType = "fight_charge" | "charge_reduction" | "outcome_management";
+
+/**
+ * Map Phase 1 stance_detected string to PrimaryStrategyType.
+ * Used by Strategy UI (pre-fill) and strategy-analysis (selectedRoute/artifacts when no commitment).
+ */
+export function mapStanceDetectedToPrimary(stance: string | null): PrimaryStrategyType | null {
+  if (!stance || typeof stance !== "string") return null;
+  const s = stance.trim();
+  if (s === "Recklessness challenge") return "charge_reduction";
+  if (["Intent denial + Causation", "Put to proof", "Act denial", "Lawful force"].includes(s)) return "fight_charge";
+  return null;
+}
+
 /**
  * Infer procedural stage from disclosure state. If any critical or high item is missing,
  * we are not ready for plea. Uses same disclosure state as Safety.
