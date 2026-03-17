@@ -13,7 +13,7 @@
  */
 
 import type { RouteType } from "./strategy-fight-types";
-import { detectOffence, type OffenceDef } from "./offence-elements";
+import { detectOffence, getOffenceDefFromPhase1, type OffenceDef } from "./offence-elements";
 import { evaluateRoutes, CANONICAL_ROUTES, type RouteAssessment as CanonicalRouteAssessment } from "./strategy-routes";
 import { buildJudgeAnalysis, type JudgeAnalysis } from "./judge-reasoning";
 import { buildCourtroomModePack, type CourtroomModePack } from "./courtroom-mode";
@@ -103,6 +103,8 @@ export type StrategyCoordinatorInput = {
     position_text?: string;
     primary?: RouteType;
   };
+  /** Phase 1: When set, use this offence from bundle (evidence-driven) instead of re-detecting from charges. */
+  preferredOffence?: { code: string; label: string };
   evidenceImpactMap?: Array<{
     evidenceItem: {
       name: string;
@@ -139,11 +141,13 @@ export function buildStrategyCoordinator(
   };
 
   try {
-    // Step 1: Detect offence using canonical detection
-    audit_trace.push("[COORDINATOR] Step 1: Detecting offence using canonical detection");
-    const offenceDef = detectOffence(input.charges, input.extracted);
+    // Step 1: Offence – use Phase 1 preferred (bundle-derived) when set, else canonical detection
+    audit_trace.push("[COORDINATOR] Step 1: Offence (preferred from bundle or detect from charges)");
+    const offenceDef: OffenceDef = input.preferredOffence
+      ? getOffenceDefFromPhase1(input.preferredOffence.code, input.preferredOffence.label)
+      : detectOffence(input.charges, input.extracted);
     result.offence = { code: offenceDef.code, label: offenceDef.label };
-    audit_trace.push(`[COORDINATOR] Offence detected: ${offenceDef.code} - ${offenceDef.label}`);
+    audit_trace.push(`[COORDINATOR] Offence: ${offenceDef.code} - ${offenceDef.label}`);
 
     // Step 2: Build offence elements state from canonical elements
     audit_trace.push("[COORDINATOR] Step 2: Building offence elements state from canonical elements");

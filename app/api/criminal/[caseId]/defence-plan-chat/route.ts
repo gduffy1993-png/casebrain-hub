@@ -69,23 +69,34 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   const evidenceSummary = typeof body.evidenceSummary === "string" ? body.evidenceSummary.slice(0, MAX_EVIDENCE_CHARS) : "";
   const timelineSummary = typeof body.timelineSummary === "string" ? body.timelineSummary.slice(0, MAX_TIMELINE_CHARS) : "";
 
-  // V2: Agreed case summary and case theory for chat grounding (canonical case narrative)
+  // V2: Agreed case summary, case theory, and Phase 1 detected offence/stance for chat grounding
   let agreedBlock = "";
   try {
     const { data: agreedRow } = await supabase
       .from("criminal_cases")
-      .select("agreed_summary_detailed, case_theory_line")
+      .select("agreed_summary_detailed, case_theory_line, offence_detected_label, stance_detected, stage_detected")
       .eq("id", caseId)
       .eq("org_id", orgId)
       .maybeSingle();
-    const detailed = (agreedRow as any)?.agreed_summary_detailed?.trim();
-    const theory = (agreedRow as any)?.case_theory_line?.trim();
-    if (detailed || theory) {
-      const parts: string[] = [];
-      if (theory) parts.push(`Agreed case theory line: ${theory}`);
-      if (detailed) parts.push(`Agreed case summary (detailed):\n${detailed.slice(0, 1500)}`);
-      agreedBlock = parts.join("\n\n");
-    }
+    const row = agreedRow as {
+      agreed_summary_detailed?: string | null;
+      case_theory_line?: string | null;
+      offence_detected_label?: string | null;
+      stance_detected?: string | null;
+      stage_detected?: string | null;
+    } | null;
+    const detailed = row?.agreed_summary_detailed?.trim();
+    const theory = row?.case_theory_line?.trim();
+    const offenceLabel = row?.offence_detected_label?.trim();
+    const stance = row?.stance_detected?.trim();
+    const stage = row?.stage_detected?.trim();
+    const parts: string[] = [];
+    if (offenceLabel) parts.push(`Offence (from bundle): ${offenceLabel}`);
+    if (stance) parts.push(`Defence stance (from bundle): ${stance}`);
+    if (stage) parts.push(`Procedural stage: ${stage}`);
+    if (theory) parts.push(`Agreed case theory line: ${theory}`);
+    if (detailed) parts.push(`Agreed case summary (detailed):\n${detailed.slice(0, 1500)}`);
+    if (parts.length) agreedBlock = parts.join("\n\n");
   } catch {
     // non-fatal
   }

@@ -10,11 +10,27 @@ import { requireAuthContextApi } from "@/lib/auth-api";
 import { buildCaseContext } from "@/lib/case-context";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { resolveOffence } from "@/lib/criminal/offence-resolution";
+import type { OffenceType } from "@/lib/criminal/strategy-suggest/constants";
 import { OFFENCE_TYPE_LABELS, normaliseOffenceType } from "@/lib/criminal/strategy-suggest/constants";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
 };
+
+/** Map Phase 1 offence code (e.g. s20_oapa, theft) to strategy OffenceType for API/UI. */
+function offenceCodeToType(code: string): OffenceType {
+  const c = (code ?? "").toLowerCase();
+  if (/s18|s20|s47|oapa|common_assault|assault/.test(c)) return "assault_oapa";
+  if (c === "theft") return "theft";
+  if (c === "burglary") return "burglary";
+  if (c === "robbery") return "robbery";
+  if (/criminal_damage|arson/.test(c)) return "criminal_damage_arson";
+  if (/drug/.test(c)) return "drugs";
+  if (c === "fraud") return "fraud";
+  if (/sexual|rape/.test(c)) return "sexual";
+  if (/affray|violent_disorder|poa|public_order/.test(c)) return "public_order";
+  return "other";
+}
 
 const BUNDLE_SNIPPET_LENGTH = 2000;
 
@@ -45,13 +61,20 @@ export async function GET(_request: Request, { params }: RouteParams) {
 
     const matterRes = await supabase
       .from("criminal_cases")
-      .select("alleged_offence, offence_override")
+      .select("alleged_offence, offence_override, offence_detected_code, offence_detected_label")
       .eq("id", caseId)
       .eq("org_id", orgId)
       .maybeSingle();
-    const matterRow = matterRes.error ? null : (matterRes.data as { alleged_offence?: string | null; offence_override?: string | null } | null);
+    const matterRow = matterRes.error ? null : (matterRes.data as {
+      alleged_offence?: string | null;
+      offence_override?: string | null;
+      offence_detected_code?: string | null;
+      offence_detected_label?: string | null;
+    } | null);
     const offenceOverride = matterRow?.offence_override?.trim() || null;
     const allegedOffence = matterRow?.alleged_offence ?? null;
+    const offenceDetectedCode = matterRow?.offence_detected_code?.trim() || null;
+    const offenceDetectedLabel = matterRow?.offence_detected_label?.trim() || null;
 
     if (offenceOverride) {
       const offenceType = normaliseOffenceType(offenceOverride);
@@ -59,6 +82,15 @@ export async function GET(_request: Request, { params }: RouteParams) {
         offenceType,
         label: OFFENCE_TYPE_LABELS[offenceType],
         source: "override",
+      });
+    }
+
+    if (offenceDetectedCode && offenceDetectedLabel) {
+      const offenceType = normaliseOffenceType(offenceCodeToType(offenceDetectedCode));
+      return NextResponse.json({
+        offenceType,
+        label: offenceDetectedLabel,
+        source: "charges",
       });
     }
 

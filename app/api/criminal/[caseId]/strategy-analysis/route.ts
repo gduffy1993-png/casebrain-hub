@@ -297,11 +297,16 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       let pressurePoints: StrategyAnalysisResponse["pressurePoints"];
       try {
         const [caseResult, timelineResult, positionResult] = await Promise.all([
-          supabase.from("criminal_cases").select("declared_dependencies, irreversible_decisions").eq("id", caseId).eq("org_id", orgIdForQueries).maybeSingle(),
+          supabase.from("criminal_cases").select("declared_dependencies, irreversible_decisions, offence_detected_code, offence_detected_label").eq("id", caseId).eq("org_id", orgIdForQueries).maybeSingle(),
           supabase.from("criminal_disclosure_timeline").select("item, action, action_date, note").eq("case_id", caseId).order("action_date", { ascending: false }),
           supabase.from("case_positions").select("position_text").eq("case_id", caseId).eq("org_id", orgIdForQueries).order("created_at", { ascending: false }).limit(1).maybeSingle(),
         ]);
-        const criminalCase = caseResult?.data as { declared_dependencies?: unknown[]; irreversible_decisions?: unknown[] } | null | undefined;
+        const criminalCase = caseResult?.data as {
+          declared_dependencies?: unknown[];
+          irreversible_decisions?: unknown[];
+          offence_detected_code?: string | null;
+          offence_detected_label?: string | null;
+        } | null | undefined;
         const declaredDependencies = Array.isArray(criminalCase?.declared_dependencies) ? criminalCase.declared_dependencies.filter(Boolean) : [];
         const irreversibleDecisions = Array.isArray(criminalCase?.irreversible_decisions) ? criminalCase.irreversible_decisions.filter(Boolean) : [];
         const timelineData = Array.isArray(timelineResult?.data) ? timelineResult.data : [];
@@ -315,10 +320,15 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         const recordedPosition = positionData?.position_text
           ? { position_type: "recorded" as const, position_text: positionData.position_text, primary: undefined }
           : undefined;
+        const preferredOffence =
+          criminalCase?.offence_detected_code && criminalCase?.offence_detected_label
+            ? { code: criminalCase.offence_detected_code, label: criminalCase.offence_detected_label }
+            : undefined;
         const coordinatorResult = buildStrategyCoordinator({
           caseId,
           extracted: null,
           charges: (charges || []).map((c: any) => ({ offence: c?.offence, section: c?.section, count: c?.count })),
+          preferredOffence,
           disclosureTimeline,
           declaredDependencies: declaredDependencies.map((d: any) => {
             const raw = (d?.status as string) || "required";

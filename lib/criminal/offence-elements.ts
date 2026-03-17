@@ -653,6 +653,17 @@ function getUnknownDef(chargeLabel?: string): OffenceDef {
 }
 
 /**
+ * Phase 1: Build OffenceDef from bundle-derived code/label so strategy uses evidence-driven offence.
+ * Acknowledges every case (unknown -> use charge label as display).
+ */
+export function getOffenceDefFromPhase1(code: string, label: string): OffenceDef {
+  const c = code?.trim();
+  if (c && c !== "unknown" && (c as OffenceCode) in OFFENCE_DEFS)
+    return getDefByCode(c as Exclude<OffenceCode, "unknown">);
+  return getUnknownDef(label?.trim() || undefined);
+}
+
+/**
  * Detect offence from charges and extracted data.
  * Order matters: more specific offences first.
  */
