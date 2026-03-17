@@ -135,74 +135,18 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 
       // No need to check analysis gate - return deterministic steps regardless
 
-      // Get strategy commitment - try dedicated columns first, fall back to details JSON
-      const { data: commitment, error: commitmentError } = await supabase
-        .from("case_strategy_commitments")
-        .select(`
-          id,
-          case_id,
-          org_id,
-          title,
-          primary_strategy,
-          fallback_strategies,
-          strategy_type,
-          locked,
-          status,
-          priority,
-          committed_at,
-          created_at
-        `)
-        .eq("case_id", caseId)
-        .eq("org_id", caseRow.org_id)
-        .order("created_at", { ascending: false })
-        .limit(1)
-        .maybeSingle();
-
-      if (commitmentError) {
-        console.error("Failed to fetch strategy commitment:", commitmentError);
-        return NextResponse.json(
-          { 
-            ok: false, 
-            error: "Failed to fetch strategy commitment",
-            details: commitmentError.message || String(commitmentError),
-          },
-          { status: 500 }
-        );
-      }
-
-      if (!commitment) {
-        return NextResponse.json(
-          { 
-            ok: false, 
-            banner: "No committed strategy found. Commit a strategy first.",
-          },
-          { status: 200 }
-        );
-      }
-
-      // Extract primary_strategy and fallback_strategies
-      const primary_strategy = commitment.primary_strategy;
-      let fallback_strategies: string[] = [];
-      
-      // Handle JSONB array for fallback_strategies
-      if (commitment.fallback_strategies) {
-        if (Array.isArray(commitment.fallback_strategies)) {
-          fallback_strategies = commitment.fallback_strategies;
-        } else if (typeof commitment.fallback_strategies === "string") {
-          try {
-            fallback_strategies = JSON.parse(commitment.fallback_strategies);
-          } catch {
-            fallback_strategies = [];
-          }
-        }
-      }
+      // Single source of truth: case state snapshot
+      const { getCaseStateSnapshot } = await import("@/lib/criminal/case-state-snapshot");
+      const { mapStanceDetectedToPrimary } = await import("@/lib/criminal/phase1-detection");
+      const caseState = await getCaseStateSnapshot(caseId, caseRow.org_id);
+      const primary_strategy =
+        caseState.strategy_committed_primary ??
+        mapStanceDetectedToPrimary(caseState.stance_detected);
+      const fallback_strategies = caseState.strategy_committed_secondary ?? [];
 
       if (!primary_strategy) {
         return NextResponse.json(
-          { 
-            ok: false, 
-            banner: "Invalid strategy commitment - missing primary strategy",
-          },
+          { ok: false, banner: "No committed strategy found. Commit a strategy first." },
           { status: 200 }
         );
       }

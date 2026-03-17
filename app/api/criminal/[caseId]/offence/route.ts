@@ -9,6 +9,7 @@ import { NextResponse } from "next/server";
 import { requireAuthContextApi } from "@/lib/auth-api";
 import { buildCaseContext } from "@/lib/case-context";
 import { getSupabaseAdminClient } from "@/lib/supabase";
+import { getCaseStateSnapshot } from "@/lib/criminal/case-state-snapshot";
 import { resolveOffence } from "@/lib/criminal/offence-resolution";
 import type { OffenceType } from "@/lib/criminal/strategy-suggest/constants";
 import { OFFENCE_TYPE_LABELS, normaliseOffenceType } from "@/lib/criminal/strategy-suggest/constants";
@@ -52,6 +53,9 @@ export async function GET(_request: Request, { params }: RouteParams) {
     const supabase = getSupabaseAdminClient();
     const orgId = context.case.org_id ?? context.orgScope?.orgIdResolved ?? authOrgId ?? "";
 
+    // Single source of truth for detected offence
+    const caseState = await getCaseStateSnapshot(caseId, orgId);
+
     const chargesRes = await supabase
       .from("criminal_charges")
       .select("offence, section")
@@ -61,20 +65,16 @@ export async function GET(_request: Request, { params }: RouteParams) {
 
     const matterRes = await supabase
       .from("criminal_cases")
-      .select("alleged_offence, offence_override, offence_detected_code, offence_detected_label")
+      .select("alleged_offence, offence_override")
       .eq("id", caseId)
       .eq("org_id", orgId)
       .maybeSingle();
     const matterRow = matterRes.error ? null : (matterRes.data as {
       alleged_offence?: string | null;
       offence_override?: string | null;
-      offence_detected_code?: string | null;
-      offence_detected_label?: string | null;
     } | null);
     const offenceOverride = matterRow?.offence_override?.trim() || null;
     const allegedOffence = matterRow?.alleged_offence ?? null;
-    const offenceDetectedCode = matterRow?.offence_detected_code?.trim() || null;
-    const offenceDetectedLabel = matterRow?.offence_detected_label?.trim() || null;
 
     if (offenceOverride) {
       const offenceType = normaliseOffenceType(offenceOverride);
@@ -85,6 +85,8 @@ export async function GET(_request: Request, { params }: RouteParams) {
       });
     }
 
+    const offenceDetectedCode = caseState.offence_detected_code?.trim() || null;
+    const offenceDetectedLabel = caseState.offence_detected_label?.trim() || null;
     if (offenceDetectedCode && offenceDetectedLabel) {
       const offenceType = normaliseOffenceType(offenceCodeToType(offenceDetectedCode));
       return NextResponse.json({

@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { requireAuthContext } from "@/lib/auth";
 import { buildCaseContext, guardAnalysis } from "@/lib/case-context";
 import { getSupabaseAdminClient } from "@/lib/supabase";
+import { getCaseStateSnapshot } from "@/lib/criminal/case-state-snapshot";
 
 export const runtime = "nodejs";
 
@@ -12,6 +13,9 @@ type SentencingMitigation = {
   reductionFactors: string[];
   readyToUseSubmission: string;
   authorities: string[];
+  /** From case state snapshot: offence and stage for offence-specific tailoring */
+  offenceLabel?: string | null;
+  stageDetected?: string | null;
 };
 
 export async function GET(
@@ -46,6 +50,10 @@ export async function GET(
     }
 
     const supabase = getSupabaseAdminClient();
+    const orgId = context.case?.org_id ?? "";
+
+    // Single source of truth: case state snapshot for offence/stage (offence-specific mitigation)
+    const caseState = await getCaseStateSnapshot(caseId, orgId);
 
     // Get case details
     const { data: caseRecord } = await supabase
@@ -78,9 +86,12 @@ export async function GET(
     reductionFactors.push("Impact of sentence on dependents");
     reductionFactors.push("Prospects of rehabilitation");
 
-    // Get charges for sentencing guidelines
+    // Get charges for sentencing guidelines; prefer detected offence from snapshot
     const charges = criminalMeta?.charges || [];
-    const primaryCharge = charges[0]?.charge || "Offense";
+    const primaryCharge =
+      caseState.offence_detected_label?.trim() ||
+      charges[0]?.charge ||
+      "Offence";
 
     const authorities = [
       "Sentencing Act 2020",
@@ -110,6 +121,8 @@ I submit that in light of the personal and legal mitigation set out above, and t
       reductionFactors,
       readyToUseSubmission,
       authorities,
+      offenceLabel: caseState.offence_detected_label || null,
+      stageDetected: caseState.stage_detected || null,
     };
 
     return NextResponse.json({ ok: true, data: result });

@@ -2,6 +2,7 @@ import "server-only";
 import { NextRequest, NextResponse } from "next/server";
 import { requireAuthContext } from "@/lib/auth";
 import { buildCaseContext, guardAnalysis } from "@/lib/case-context";
+import { getCaseStateSnapshot } from "@/lib/criminal/case-state-snapshot";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 
 export const runtime = "nodejs";
@@ -48,8 +49,12 @@ export async function GET(
     }
 
     const supabase = getSupabaseAdminClient();
+    const orgId = context.case?.org_id ?? "";
 
-    // Get criminal meta, documents, and charges (for offence-aware bail conditions)
+    // Single source of truth for offence (offence-aware bail conditions)
+    const caseState = await getCaseStateSnapshot(caseId, orgId);
+
+    // Get criminal meta, documents, and charges (fallback for offence if no snapshot)
     const [{ data: caseRecord }, { data: documents }, { data: chargesData }] = await Promise.all([
       supabase
         .from("cases")
@@ -69,7 +74,10 @@ export async function GET(
     ]);
 
     const criminalMeta = (caseRecord?.criminal_meta as any) || null;
-    const topCharge = (chargesData as { offence?: string }[] | null)?.[0]?.offence ?? "";
+    const topCharge =
+      (caseState.offence_detected_label?.trim() ||
+        (chargesData as { offence?: string }[] | null)?.[0]?.offence) ??
+      "";
     const chargeLower = (topCharge || "").toLowerCase();
     const bailHistory = criminalMeta?.bail || [];
 

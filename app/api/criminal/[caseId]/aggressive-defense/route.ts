@@ -136,40 +136,22 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         }
       }
 
-      // Check if strategy is committed
-      const { data: commitment } = await supabase
-        .from("case_strategy_commitments")
-        .select(`
-          id,
-          case_id,
-          title,
-          primary_strategy,
-          fallback_strategies,
-          strategy_type,
-          locked,
-          status,
-          priority,
-          committed_at,
-          committed_by,
-          created_at
-        `)
-        .eq("case_id", caseId)
-        .eq("org_id", caseRow.org_id)
-        .order("created_at", { ascending: false })
-        .limit(1)
-        .maybeSingle();
+      // Single source of truth: case state snapshot for strategy_committed flag
+      const { getCaseStateSnapshot } = await import("@/lib/criminal/case-state-snapshot");
+      const caseState = await getCaseStateSnapshot(caseId, caseRow.org_id);
+      const strategy_committed = !!(caseState.strategy_committed_primary ?? caseState.strategy_committed_at);
 
       // Success response - ensure diagnostics.orgId matches case's actual org_id (UUID)
       const diagnostics = diagnosticsFromContext(caseId, context);
       if (diagnostics) {
         diagnostics.orgId = caseRow.org_id; // Override with case's actual org_id (never derived from userId)
-        (diagnostics as any).strategy_committed = !!commitment; // Add strategy_committed flag
+        (diagnostics as any).strategy_committed = strategy_committed; // Add strategy_committed flag
       }
       return NextResponse.json({
         ok: true,
         data: {
           ...result.data,
-          strategy_committed: !!commitment, // Also add to data for easy access
+          strategy_committed, // Also add to data for easy access
         },
         diagnostics: diagnostics || {
           caseId,
@@ -182,7 +164,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
           textThin: context.diagnostics.reasonCodes.includes("TEXT_THIN"),
           traceId: `trace-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
           updatedAt: new Date().toISOString(),
-          strategy_committed: !!commitment,
+          strategy_committed,
         },
       });
     } catch (error) {
