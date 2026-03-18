@@ -160,6 +160,7 @@ export async function POST(_request: Request, { params }: RouteParams) {
       extracted: null,
       keyFactsText: keyFactsText || bundleText.slice(0, 3000),
       mg5Snippet: bundleText.slice(0, 4000),
+      bundleTextForOffenceRefinement: bundleText,
       interviewStance,
       disclosureState,
     });
