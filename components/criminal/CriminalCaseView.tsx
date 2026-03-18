@@ -12,7 +12,7 @@ import { BailTracker } from "./BailTracker";
 import { ClientAdvicePanel } from "./ClientAdvicePanel";
 import { BailApplicationPanel } from "./BailApplicationPanel";
 import { SentencingMitigationPanel } from "./SentencingMitigationPanel";
-import { CasePhaseSelector, type CasePhase } from "./CasePhaseSelector";
+import type { CasePhase } from "./CasePhaseSelector";
 import { StrategyCommitmentPanel, type StrategyCommitment } from "./StrategyCommitmentPanel";
 import { Phase2StrategyPlanPanel } from "./Phase2StrategyPlanPanel";
 import { AnalysisGateBanner, type AnalysisGateBannerProps } from "@/components/AnalysisGateBanner";
@@ -30,6 +30,7 @@ import { CaseSummaryPanel } from "@/components/cases/CaseSummaryPanel";
 import { CaseKeyFactsPanel } from "@/components/cases/KeyFactsPanel";
 import { ChargesPanel } from "./ChargesPanel";
 import { RecordPositionModal } from "./RecordPositionModal";
+import { CaseReviewConfirm } from "./CaseReviewConfirm";
 import { BackToTop } from "@/components/ui/back-to-top";
 import { CaseTabs, type TabItem } from "@/components/ui/tabs";
 import { DisclosureTrackerTable } from "./DisclosureTrackerTable";
@@ -147,6 +148,25 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   const [matterClosed, setMatterClosed] = useState<{ at: string; reason: string | null } | null>(null);
   /** Strategy tab sub-view: overview | doctrine | full */
   const [strategySubTab, setStrategySubTab] = useState<"overview" | "doctrine" | "full">("full");
+  /** null = loading; false = show Review & Confirm gate; true = full workspace */
+  const [reviewConfirmed, setReviewConfirmed] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    let c = false;
+    fetch(`/api/criminal/${caseId}/phase1-detect`, { credentials: "include" })
+      .then((r) => r.json())
+      .then((j) => {
+        if (c) return;
+        if (j.ok && j.data) setReviewConfirmed(!!j.data.reviewConfirmedAt);
+        else setReviewConfirmed(false);
+      })
+      .catch(() => {
+        if (!c) setReviewConfirmed(false);
+      });
+    return () => {
+      c = true;
+    };
+  }, [caseId]);
 
   // Mark as mounted after hydration
   useEffect(() => {
@@ -387,15 +407,6 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
     checkPanelData();
   }, [caseId]);
 
-  // Phase 1: Disclosure & Readiness (default when DISCLOSURE-FIRST)
-  // Phase 2: Positioning & Options
-  // Phase 3: Sentencing & Outcome
-
-  const showBailTools = currentPhase >= 2 || panelData.bail.hasData;
-  const showSentencingTools = currentPhase >= 3;
-  const showCourtHearings = currentPhase >= 1 && (panelData.hearings.hasData || currentPhase >= 2);
-  const showPACE = currentPhase >= 1 && (panelData.pace.hasData || currentPhase >= 2);
-
   // Determine if we have extracted data (independent of analysis mode)
   // These checks are extraction-based only, NOT analysis-based
   const hasExtractedSummary = snapshot?.caseMeta?.title && snapshot.caseMeta.title !== "Untitled Case";
@@ -426,6 +437,36 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
     const query = params.toString();
     router.replace(query ? `${pathname}?${query}` : pathname, { scroll: false });
   };
+
+  if (reviewConfirmed === null) {
+    return (
+      <div className="flex min-h-[40vh] flex-col items-center justify-center gap-3">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        <p className="text-sm text-muted-foreground">Loading workspace…</p>
+      </div>
+    );
+  }
+
+  if (!reviewConfirmed) {
+    return (
+      <CaseReviewConfirm
+        caseId={caseId}
+        onConfirmed={() => {
+          setReviewConfirmed(true);
+          setCurrentPhase(3);
+          setIsStrategyCommitted(true);
+          buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error);
+          router.replace(`/cases/${caseId}?tab=strategy`, { scroll: false });
+        }}
+      />
+    );
+  }
+
+  const p = 3 as CasePhase;
+  const showBailTools = true;
+  const showSentencingTools = true;
+  const showCourtHearings = true;
+  const showPACE = true;
 
   return (
     <div className="space-y-6">
@@ -534,19 +575,10 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
 
         {activeTab === "strategy" && (
           <div className="space-y-6">
-            <FoldSection title="Case phase" defaultOpen={true}>
-              <CasePhaseSelector
-                caseId={caseId}
-                isDisclosureFirstMode={isDisclosureFirstMode}
-                onPhaseChange={setCurrentPhase}
-                defaultPhase={1}
-                currentPhase={currentPhase}
-                hasSavedPosition={hasSavedPosition}
-                onRecordPosition={() => setIsPositionModalOpen(true)}
-                disabledWhenUnsafe={effectiveProceduralSafety?.status === "UNSAFE_TO_PROCEED" || effectiveProceduralSafety?.status === "CONDITIONALLY_UNSAFE"}
-                unsafeReason={effectiveProceduralSafety?.explanation || (effectiveProceduralSafety?.status ? "Critical disclosure missing" : undefined)}
-              />
-            </FoldSection>
+            <div className="rounded-lg border border-border/60 bg-muted/20 px-4 py-3 text-sm text-muted-foreground">
+              Case workspace is unlocked. Offence, stance, stage, and strategy were set on <strong>Review & confirm</strong>.
+              Record client position from Strategy or Client & instructions when needed.
+            </div>
             {gateBanner && (
               <FoldSection title="Analysis required" defaultOpen={true}>
                 <AnalysisGateBanner
@@ -606,11 +638,11 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
 
             {strategySubTab === "full" && (
               <>
-            {currentPhase >= 2 && searchParams.get("debug") === "1" && (
+            {searchParams.get("debug") === "1" && (
               <Card className="p-4 bg-amber-500/5 border-amber-500/20">
                 <h3 className="text-sm font-semibold text-foreground mb-2">DEBUG: Strategy visibility</h3>
                 <pre className="text-xs text-muted-foreground whitespace-pre-wrap font-mono">
-                  {JSON.stringify({ currentPhase, hasSavedPosition, snapshotExists: !!snapshot }, null, 2)}
+                  {JSON.stringify({ workspacePhase: p, hasSavedPosition, snapshotExists: !!snapshot }, null, 2)}
                 </pre>
               </Card>
             )}
@@ -683,7 +715,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
               </div>
 
               <div className="mb-6">
-                <DefencePlanBox caseId={caseId} plan={defencePlan} primaryRouteLabel={displayStrategy?.displayLabel ?? defencePlan?.primary_route?.label ?? null} offenceType={snapshot?.resolvedOffence?.offenceType} currentPhase={currentPhase} evidenceSummary={snapshot ? buildEvidenceContext(snapshot, effectiveProceduralSafety?.outstandingItems) : undefined} timelineSummary={snapshot ? buildTimelineContext(snapshot) : undefined} />
+                <DefencePlanBox caseId={caseId} plan={defencePlan} primaryRouteLabel={displayStrategy?.displayLabel ?? defencePlan?.primary_route?.label ?? null} offenceType={snapshot?.resolvedOffence?.offenceType} currentPhase={p} evidenceSummary={snapshot ? buildEvidenceContext(snapshot, effectiveProceduralSafety?.outstandingItems) : undefined} timelineSummary={snapshot ? buildTimelineContext(snapshot) : undefined} />
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
@@ -722,12 +754,12 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <FoldSection title="Evidence" defaultOpen={true}>
                   <ErrorBoundary fallback={mounted ? <div className="text-sm text-muted-foreground">Analysis will deepen as further disclosure is received.</div> : null}>
-                    <CaseEvidenceColumn caseId={caseId} snapshot={snapshot} onAddDocument={() => setShowAddDocuments(true)} onAddEvidenceUpload={() => setShowAddEvidenceUpload(true)} currentPhase={currentPhase} savedPosition={currentPhase >= 2 ? savedPosition : null} onCommitmentChange={(c) => { if (c) { setCommittedStrategy(c); setIsStrategyCommitted(true); buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error); } else { setCommittedStrategy(null); setIsStrategyCommitted(false); setDisplayStrategy(null); setDefencePlan(null); } }} committedStrategy={committedStrategy} onDisplayStrategyUpdate={setDisplayStrategy} onProceduralSafetyChange={setEffectiveProceduralSafety} onDefencePlanUpdate={setDefencePlan} hasClientInstructions={hasClientInstructions} onClientInstructionsSaved={() => setHasClientInstructions(true)} />
+                    <CaseEvidenceColumn caseId={caseId} snapshot={snapshot} onAddDocument={() => setShowAddDocuments(true)} onAddEvidenceUpload={() => setShowAddEvidenceUpload(true)} currentPhase={p} savedPosition={savedPosition} onCommitmentChange={(c) => { if (c) { setCommittedStrategy(c); setIsStrategyCommitted(true); buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error); } else { setCommittedStrategy(null); setIsStrategyCommitted(false); setDisplayStrategy(null); setDefencePlan(null); } }} committedStrategy={committedStrategy} onDisplayStrategyUpdate={setDisplayStrategy} onProceduralSafetyChange={setEffectiveProceduralSafety} onDefencePlanUpdate={setDefencePlan} hasClientInstructions={hasClientInstructions} onClientInstructionsSaved={() => setHasClientInstructions(true)} />
                   </ErrorBoundary>
                 </FoldSection>
                 <FoldSection title="Strategy" defaultOpen={false}>
                   <ErrorBoundary fallback={<div className="text-sm text-muted-foreground">Run analysis to populate this section.</div>}>
-                    <CaseStrategyColumn caseId={caseId} snapshot={snapshot} currentPhase={currentPhase} onPositionChange={(has) => { setHasSavedPosition(has); setCurrentPhase(has ? 2 : 1); }} savedPosition={savedPosition} onRecordPosition={() => { setPendingPositionText(null); setIsPositionModalOpen(true); }} onUsePositionSuggestion={async (text, opts) => { try { const res = await fetch(`/api/criminal/${caseId}/position`, { method: "POST", headers: { "Content-Type": "application/json" }, credentials: "include", body: JSON.stringify({ position_text: text.trim(), phase: 2, ...(opts?.fromAiSuggestion && { source: "ai_suggested" }) }) }); if (!res.ok) throw new Error("Failed to save position"); const data = await res.json(); if (data.ok && (data.data || data.position)) { setSavedPosition(data.data || data.position); setHasSavedPosition(true); setCurrentPhase(2); setPendingPositionText(null); } } catch (e) { console.error(e); } }} onEditPositionSuggestion={(text) => { setPendingPositionText(text); setIsPositionModalOpen(true); }} onCommitmentChange={(c) => { if (c) { setCommittedStrategy(c); setIsStrategyCommitted(true); buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error); } else { setCommittedStrategy(null); setIsStrategyCommitted(false); } }} />
+                    <CaseStrategyColumn caseId={caseId} snapshot={snapshot} currentPhase={p} onPositionChange={(has) => { setHasSavedPosition(has); setCurrentPhase(has ? 2 : 1); }} savedPosition={savedPosition} onRecordPosition={() => { setPendingPositionText(null); setIsPositionModalOpen(true); }} onUsePositionSuggestion={async (text, opts) => { try { const res = await fetch(`/api/criminal/${caseId}/position`, { method: "POST", headers: { "Content-Type": "application/json" }, credentials: "include", body: JSON.stringify({ position_text: text.trim(), phase: 2, ...(opts?.fromAiSuggestion && { source: "ai_suggested" }) }) }); if (!res.ok) throw new Error("Failed to save position"); const data = await res.json(); if (data.ok && (data.data || data.position)) { setSavedPosition(data.data || data.position); setHasSavedPosition(true); setCurrentPhase(2); setPendingPositionText(null); } } catch (e) { console.error(e); } }} onEditPositionSuggestion={(text) => { setPendingPositionText(text); setIsPositionModalOpen(true); }} onCommitmentChange={(c) => { if (c) { setCommittedStrategy(c); setIsStrategyCommitted(true); buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error); } else { setCommittedStrategy(null); setIsStrategyCommitted(false); } }} />
                   </ErrorBoundary>
                 </FoldSection>
               </div>
@@ -735,10 +767,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
             ) : (
               <Card className="p-6"><div className="text-sm text-muted-foreground">Case data will appear once analysis is run.</div></Card>
             )}
-              </>
-            )}
 
-            {strategySubTab === "full" && currentPhase >= 2 && (
               <FoldSection id="section-bail" title="Bail application & conditions" defaultOpen={false}>
                 <p className="text-xs text-muted-foreground mb-4">Template for bail applications. Expand to view or copy. Verify all facts before use.</p>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -746,13 +775,12 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
                   <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Bail tracker will appear once analysis is run.</div></Card>}><BailTracker caseId={caseId} /></ErrorBoundary>
                 </div>
               </FoldSection>
-            )}
-            {strategySubTab === "full" && currentPhase >= 3 && (
               <FoldSection title="Sentencing Tools" defaultOpen={true}>
                 <div className="space-y-6">
                   {showSentencingTools && <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Sentencing mitigation will appear once analysis is run.</div></Card>}><SentencingMitigationPanel caseId={caseId} /></ErrorBoundary>}
                 </div>
               </FoldSection>
+              </>
             )}
           </div>
         )}
@@ -788,7 +816,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         {activeTab === "hearings" && (
           <div className="space-y-6">
             <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Court hearings unavailable.</div>}>
-              <CourtHearingsPanel caseId={caseId} currentPhase={currentPhase} />
+              <CourtHearingsPanel caseId={caseId} currentPhase={p} />
             </ErrorBoundary>
             <PleaRecordCard caseId={caseId} />
             <FoldSection title="Trial date alerts" defaultOpen={false}>
@@ -824,13 +852,10 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
                 When phase = sentencing or guilty plea: mitigation, PSR, and sentencing guidelines. Use Strategy tab for outcome management.
               </p>
             </Card>
-            {currentPhase >= 3 && showSentencingTools && (
+            {showSentencingTools && (
               <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Sentencing mitigation will appear once analysis is run.</div></Card>}>
                 <SentencingMitigationPanel caseId={caseId} />
               </ErrorBoundary>
-            )}
-            {currentPhase < 3 && (
-              <Card className="p-4"><p className="text-sm text-muted-foreground">Sentencing tools appear in Phase 3 (Sentencing & Outcome).</p></Card>
             )}
             <FoldSection title="Sentencing checklist" defaultOpen={false}>
               <div className="p-3 space-y-2 text-sm text-muted-foreground">
@@ -862,7 +887,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         {activeTab === "additional-tools" && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {showPACE && <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">PACE compliance will appear once analysis is run.</div></Card>}><PACEComplianceChecker caseId={caseId} /></ErrorBoundary>}
-            {showCourtHearings && <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Court hearings will appear once analysis is run.</div></Card>}><CourtHearingsPanel caseId={caseId} currentPhase={currentPhase} /></ErrorBoundary>}
+            {showCourtHearings && <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Court hearings will appear once analysis is run.</div></Card>}><CourtHearingsPanel caseId={caseId} currentPhase={p} /></ErrorBoundary>}
             <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Client advice will appear once analysis is run.</div></Card>}><ClientAdvicePanel caseId={caseId} /></ErrorBoundary>
           </div>
         )}
@@ -944,14 +969,14 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
           router.refresh();
         }}
         initialText={pendingPositionText ?? savedPosition?.position_text ?? ""}
-        currentPhase={currentPhase}
+        currentPhase={p}
         onPhase2Request={() => {
           setCurrentPhase(2);
         }}
         onAutoAdvanceToPhase2={() => {
           setCurrentPhase(2);
         }}
-        showPhase2CTA={!hasSavedPosition && currentPhase === 1}
+        showPhase2CTA={false}
       />
 
       <BackToTop />

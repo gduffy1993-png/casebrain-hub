@@ -29,7 +29,7 @@ export async function GET(_request: Request, { params }: RouteParams) {
     const supabase = getSupabaseAdminClient();
     const { data, error } = await supabase
       .from("criminal_cases")
-      .select("offence_detected_code, offence_detected_label, stance_detected, stage_detected")
+      .select("offence_detected_code, offence_detected_label, stance_detected, stage_detected, review_confirmed_at, agreed_summary_detailed")
       .eq("id", caseId)
       .eq("org_id", orgId)
       .maybeSingle();
@@ -42,6 +42,8 @@ export async function GET(_request: Request, { params }: RouteParams) {
       offence_detected_label?: string | null;
       stance_detected?: string | null;
       stage_detected?: string | null;
+      review_confirmed_at?: string | null;
+      agreed_summary_detailed?: string | null;
     } | null;
     return NextResponse.json({
       ok: true,
@@ -50,6 +52,8 @@ export async function GET(_request: Request, { params }: RouteParams) {
         offenceLabel: row?.offence_detected_label ?? null,
         stance: row?.stance_detected ?? null,
         stage: row?.stage_detected ?? null,
+        reviewConfirmedAt: row?.review_confirmed_at ?? null,
+        defencePlanDraft: row?.agreed_summary_detailed ?? null,
       },
     });
   } catch (err) {
@@ -164,6 +168,11 @@ export async function POST(_request: Request, { params }: RouteParams) {
       interviewStance,
       disclosureState,
     });
+
+    const { data: ccRow } = await supabase.from("criminal_cases").select("id").eq("id", caseId).maybeSingle();
+    if (!ccRow) {
+      await supabase.from("criminal_cases").insert({ id: caseId, org_id: orgId });
+    }
 
     const { error } = await supabase
       .from("criminal_cases")

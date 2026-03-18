@@ -120,6 +120,8 @@ export function DefencePlanBox({ caseId, plan, primaryRouteLabel, offenceType, c
   const [editingProposal, setEditingProposal] = useState<PendingProposal | null>(null);
   const [proposalSaving, setProposalSaving] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  /** Scroll only this panel — scrollIntoView on the sentinel scrolls the whole page. */
+  const messagesScrollRef = useRef<HTMLDivElement>(null);
 
   // Load persisted chat for this case on mount (client-only to avoid hydration mismatch)
   useEffect(() => {
@@ -135,7 +137,10 @@ export function DefencePlanBox({ caseId, plan, primaryRouteLabel, offenceType, c
   }, [caseId, chatLoaded, chatMessages]);
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    const el = messagesScrollRef.current;
+    if (el) {
+      el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
+    }
   }, [chatMessages, chatLoading]);
 
   const resolveMessage = (raw: string): string => {
@@ -432,7 +437,10 @@ export function DefencePlanBox({ caseId, plan, primaryRouteLabel, offenceType, c
           </div>
         )}
         <div className="flex flex-col">
-          <div className="min-h-[80px] max-h-64 overflow-y-auto space-y-2 mb-3 pr-1">
+          <div
+            ref={messagesScrollRef}
+            className="min-h-[80px] max-h-64 overflow-y-auto overflow-x-hidden space-y-2 mb-3 pr-1 overscroll-contain"
+          >
             {chatMessages.map((m, i) => (
               <div
                 key={i}
@@ -447,7 +455,6 @@ export function DefencePlanBox({ caseId, plan, primaryRouteLabel, offenceType, c
                 <span>Thinking…</span>
               </div>
             )}
-            <div ref={messagesEndRef} />
           </div>
           <div className="flex gap-2 flex-shrink-0">
             <input

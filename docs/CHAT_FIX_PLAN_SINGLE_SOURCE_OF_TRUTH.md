@@ -17,6 +17,16 @@
 - Anything you want to add, change, or decide before Cursor codes it goes here (or paste into chat and we'll fold it in).
 - Current decisions: Option A first (shared helper), 6-step migration order, snapshot schema and forbidden sources as below.
 
+### Defence Plan chat — scroll containment (UX)
+
+- **Issue:** Auto-scroll to latest message used `scrollIntoView` on a sentinel inside the chat; browsers scroll **all scrollable ancestors**, so the **whole CaseBrain page** jumped down as well as the chat panel.
+- **Fix:** Scroll **only** the chat messages container (`overflow-y-auto`) via `element.scrollTo({ top: scrollHeight })` on that container; optional `overscroll-contain` to reduce scroll chaining.
+- **Acceptance:** Typing/sending in Defence Plan chat moves only the inner chat scroller; the case page scroll position stays put unless the user scrolls the page themselves.
+
+### Review & Confirm (replaces multi-phase UI)
+
+- See **`docs/REVIEW_AND_CONFIRM.md`**. Users without `review_confirmed_at` (and not grandfathered) complete one screen before the full case workspace. Snapshot remains authoritative; Defence Plan text is narrative only.
+
 ---
 
 ## What could make Chat more accurate (additions to consider)
