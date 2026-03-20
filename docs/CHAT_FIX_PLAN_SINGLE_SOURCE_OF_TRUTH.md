@@ -17,7 +17,21 @@
 - Anything you want to add, change, or decide before Cursor codes it goes here (or paste into chat and we'll fold it in).
 - Current decisions: Option A first (shared helper), 6-step migration order, snapshot schema and forbidden sources as below.
 
-### Defence Plan chat — scroll containment (UX)
+### Defence Plan chat — prompt hardening (reasoning + dataset-aligned behaviour)
+
+**Encoded in** `app/api/criminal/[caseId]/defence-plan-chat/route.ts` (`buildSystemPrompt`):
+
+- **GBH injury threshold:** When offence/facts describe GBH-level harm, the model must not relabel as ABH or dispute severity; focus on intent/recklessness, causation, and defences.
+- **Causation:** Single blow + natural fall = one incident; **forbidden** phrasing: “breaks the chain of causation” for that pattern.
+- **Disclosure:** Strict mirror of evidence context—served/retained/available must never be called outstanding; no invented gaps.
+- **No re-ask:** If snapshot fields are set, do not ask the user to confirm/provide offence/stance/stage/strategy again.
+- **Contradictions & messy evidence:** Flag document conflicts; no invented harmonisation; partial CCTV/BWV/timeline limits; thin context → say limits without drifting snapshot; acknowledge strong Crown pattern only when supported by provided text, while staying strategy/stance-aligned.
+
+*(Copilot’s wider dataset checklist—section delimiters, MG11 variation, JSON metadata per case, validators, edge-case packs—belongs in bundle generation / ingestion tooling; the bullet above is what we enforce in Chat today.)*
+
+**Fictional GBH bundle (`docs/fictional-bundle-gbh/`)** — `FICTIONAL_GBH_BUNDLE_COPY_PASTE.txt` now includes JSON metadata, `=== SECTION ===` delimiters, enriched MG5/MG6/custody/MG11s, CCTV continuity + partial 999/CAD + IR summary, and documented document tensions for regression testing. See `docs/fictional-bundle-gbh/README.md`.
+
+### Plan chat — scroll containment (UX)
 
 - **Issue:** Auto-scroll to latest message used `scrollIntoView` on a sentinel inside the chat; browsers scroll **all scrollable ancestors**, so the **whole CaseBrain page** jumped down as well as the chat panel.
 - **Fix:** Scroll **only** the chat messages container (`overflow-y-auto`) via `element.scrollTo({ top: scrollHeight })` on that container; optional `overscroll-contain` to reduce scroll chaining.
