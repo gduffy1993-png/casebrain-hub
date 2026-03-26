@@ -200,7 +200,6 @@ const NAV_ITEMS: NavItem[] = [
     label: "Bin",
     href: "/bin",
     icon: <Trash2 className="h-4 w-4" />,
-    hideFromNav: true,
   },
   {
     label: "Settings",

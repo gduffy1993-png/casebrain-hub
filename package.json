@@ -34,6 +34,7 @@
     "worker:pi-risk": "ts-node scripts/worker-pi-risk.ts",
     "generate-test-pdf": "node scripts/generate-test-pdf.js",
     "generate:fictional-pdfs": "node scripts/generate-fictional-case-pdfs.cjs",
+    "generate:fictional-sources:0406-0435": "node scripts/generate-fictional-case-sources-0406-0435.cjs",
     "electron": "electron .",
     "desktop": "concurrently \"npm run dev\" \"wait-on http://localhost:3000 && electron .\"",
     "desktop:standalone": "electron .",

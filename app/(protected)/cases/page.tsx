@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Plus } from "lucide-react";
 import { PiQuickActions } from "@/components/pi/PiQuickActions";
 import { CaseArchiveButton } from "@/components/cases/CaseArchiveButton";
+import { BulkArchiveCasesButton } from "@/components/cases/BulkArchiveCasesButton";
 import { CasesPageClient } from "@/components/cases/CasesPageClient";
 import { CurrentPersonaBadge } from "@/components/layout/CurrentPersonaBadge";
 
@@ -84,6 +85,7 @@ export default async function CasesPage({ searchParams }: CasesPageProps) {
               Upload to create case
             </Button>
           </Link>
+          <BulkArchiveCasesButton caseIds={cases.map((c) => c.id)} visibleCount={cases.length} />
           {process.env.NEXT_PUBLIC_ENABLE_LABS === "true" && (
           <div className="flex gap-2">
             <Link href="/cases/new/pi">
