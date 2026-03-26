@@ -17,7 +17,14 @@ const ACCEPTED_TYPES = [
   "application/pdf",
   "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
   "text/plain",
+  "application/zip",
 ];
+
+type UploadMode = "single_case" | "one_case_per_file" | "zip_by_folder" | "multi_slot";
+
+const MULTI_SLOT_COUNT = 5;
+
+type SlotState = { label: string; files: File[] };
 
 type UploadFormProps = {
   caseId?: string;
@@ -61,6 +68,14 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
   
   const [files, setFiles] = useState<FileList | null>(null);
   const [caseTitle, setCaseTitle] = useState("");
+  const [uploadMode, setUploadMode] = useState<UploadMode>("single_case");
+  const [caseSlots, setCaseSlots] = useState<SlotState[]>(() =>
+    Array.from({ length: MULTI_SLOT_COUNT }, (_, i) => ({
+      label: `Case ${i + 1}`,
+      files: [] as File[],
+    })),
+  );
+  const [slotUploadKey, setSlotUploadKey] = useState(0);
   const [practiceArea, setPracticeArea] = useState<PracticeArea>(currentPracticeArea);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -178,13 +193,114 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
       console.log("[upload-form] ✅✅✅ OWNER CHECK - clearing paywall error before submit");
       setPaywallError(null);
     }
-    
+
+    if (!caseId && uploadMode === "multi_slot") {
+      const slotsWithFiles = caseSlots.filter((s) => s.files.length > 0);
+      if (slotsWithFiles.length === 0) {
+        setError("Add PDFs or documents to at least one case slot.");
+        return;
+      }
+      setError(null);
+      setIsSubmitting(true);
+      if (isOwnerHardcoded || isOwner || bypassActive) {
+        setPaywallError(null);
+      }
+      try {
+        const prefix = caseTitle.trim();
+        let totalUploaded = 0;
+        const createdCaseIds: string[] = [];
+
+        for (let i = 0; i < caseSlots.length; i++) {
+          const slot = caseSlots[i]!;
+          if (!slot.files.length) continue;
+
+          const slotLabel = (slot.label.trim() || `Case ${i + 1}`).trim();
+          const fullTitle = prefix ? `${prefix} — ${slotLabel}` : slotLabel;
+
+          const formData = new FormData();
+          formData.set("caseTitle", fullTitle);
+          formData.set("practiceArea", practiceArea);
+          formData.set("uploadMode", "single_case");
+          slot.files.forEach((file) => formData.append("files", file));
+
+          const response = await fetch("/api/upload", {
+            method: "POST",
+            body: formData,
+          });
+          const payload = await response.json().catch(() => null);
+
+          if (!response.ok) {
+            if (response.status === 402 && payload) {
+              if (isOwnerHardcoded || isOwner || bypassActive) {
+                throw new Error(payload.error ?? "Upload failed");
+              }
+              const trialErrorCodes = ["TRIAL_EXPIRED", "DOC_LIMIT", "CASE_LIMIT"];
+              if (payload.code && trialErrorCodes.includes(payload.code)) {
+                setPaywallError({
+                  error: payload.code as "TRIAL_EXPIRED" | "DOC_LIMIT" | "CASE_LIMIT",
+                  limit: payload.limit,
+                  plan: payload.plan,
+                  message: payload.error,
+                  price: payload.upgrade?.price || "£39/user/month",
+                });
+                return;
+              }
+            }
+            const paywallErrors: UsageLimitError[] = [
+              "PDF_LIMIT_REACHED",
+              "CASE_LIMIT_REACHED",
+              "FREE_TRIAL_ALREADY_USED",
+              "PHONE_NOT_VERIFIED",
+              "ABUSE_DETECTED",
+            ];
+            if (isOwnerHardcoded || isOwner || bypassActive) {
+              throw new Error(payload?.error ?? "Upload failed");
+            }
+            if (payload?.error && (paywallErrors.includes(payload.error) || payload.error === "UPGRADE_REQUIRED")) {
+              setPaywallError({
+                error: payload.error === "UPGRADE_REQUIRED" ? "PDF_LIMIT_REACHED" : payload.error,
+                limit: payload.limit,
+                plan: payload.plan,
+              });
+              return;
+            }
+            throw new Error(payload?.error ?? "Upload failed");
+          }
+
+          const uploaded = (payload?.uploadedCount as number | undefined) ?? slot.files.length;
+          totalUploaded += uploaded;
+          if (payload?.caseId) createdCaseIds.push(payload.caseId as string);
+        }
+
+        setCaseSlots(
+          Array.from({ length: MULTI_SLOT_COUNT }, (_, i) => ({
+            label: `Case ${i + 1}`,
+            files: [],
+          })),
+        );
+        setSlotUploadKey((k) => k + 1);
+        setCaseTitle("");
+        pushToast(
+          `Created ${createdCaseIds.length} case(s), uploaded ${totalUploaded} file(s). Open Cases to review each.`,
+          "success",
+        );
+        router.push("/cases");
+      } catch (uploadError) {
+        setError(uploadError instanceof Error ? uploadError.message : "Upload failed");
+        pushToast(uploadError instanceof Error ? uploadError.message : "Upload failed");
+      } finally {
+        setIsSubmitting(false);
+      }
+      return;
+    }
+
     if (!files?.length) {
       setError("Select at least one document to upload.");
       return;
     }
-    if (!caseTitle.trim()) {
-      setError("Provide a case title or reference.");
+    const effectiveMode: UploadMode = caseId ? "single_case" : uploadMode;
+    if (!caseId && effectiveMode !== "zip_by_folder" && !caseTitle.trim()) {
+      setError("Provide a case title or reference (used as the case name or as a prefix for each new case).");
       return;
     }
     setError(null);
@@ -197,8 +313,9 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
 
     try {
       const formData = new FormData();
-      formData.set("caseTitle", caseTitle);
+      formData.set("caseTitle", caseTitle.trim() || "Import");
       formData.set("practiceArea", practiceArea);
+      formData.set("uploadMode", caseId ? "single_case" : uploadMode);
       if (caseId) {
         formData.set("caseId", caseId);
       }
@@ -280,24 +397,31 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
       }
 
       const result = await response.json();
-      const uploadedCaseId = result.caseId;
+      const uploadedCaseId = result.caseId as string | undefined;
+      const uploadedCaseIds = result.caseIds as string[] | undefined;
+      const casesCreated = (result.casesCreated as number | undefined) ?? 1;
       const uploadedCount = result.uploadedCount ?? files.length;
       const skippedCount = result.skippedFiles?.length ?? 0;
 
       setFiles(null);
       setCaseTitle("");
-      
+
       if (skippedCount > 0) {
         pushToast(`Uploaded ${uploadedCount} file(s). ${skippedCount} duplicate(s) skipped.`, "warning");
+      } else if (casesCreated > 1) {
+        pushToast(
+          `Created ${casesCreated} cases and uploaded ${uploadedCount} file(s). Open Cases to review each.`,
+          "success",
+        );
       } else {
-        pushToast(`Uploaded ${uploadedCount} file${uploadedCount > 1 ? "s" : ""} into ${caseTitle}.`, "success");
+        pushToast(`Uploaded ${uploadedCount} file${uploadedCount > 1 ? "s" : ""}.`, "success");
       }
-      
-      // Navigate to the case page to see the uploaded files
-      if (uploadedCaseId) {
+
+      if (uploadedCaseIds && uploadedCaseIds.length > 1) {
+        router.push("/cases");
+      } else if (uploadedCaseId) {
         router.push(`/cases/${uploadedCaseId}`);
       } else if (caseId) {
-        // If we came from a case page, redirect back to it
         router.push(`/cases/${caseId}`);
       } else {
         router.refresh();
@@ -412,45 +536,188 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
           )}
         </div>
 
+        {/* Bulk upload mode (new cases only) */}
+        {!caseId ? (
+          <div className="space-y-2 rounded-2xl border border-primary/15 bg-surface/80 p-4 text-left">
+            <label className="block text-sm font-semibold text-accent">Upload layout</label>
+            <p className="text-xs text-accent/60">
+              Avoid putting every file into one case by mistake: pick how files map to cases.
+            </p>
+            <div className="mt-2 flex flex-col gap-2 text-sm text-accent">
+              <label className="flex cursor-pointer items-start gap-2">
+                <input
+                  type="radio"
+                  name="uploadMode"
+                  checked={uploadMode === "single_case"}
+                  onChange={() => setUploadMode("single_case")}
+                  className="mt-1"
+                />
+                <span>
+                  <span className="font-medium">One case</span> — all selected files go into the same case (default).
+                </span>
+              </label>
+              <label className="flex cursor-pointer items-start gap-2">
+                <input
+                  type="radio"
+                  name="uploadMode"
+                  checked={uploadMode === "one_case_per_file"}
+                  onChange={() => setUploadMode("one_case_per_file")}
+                  className="mt-1"
+                />
+                <span>
+                  <span className="font-medium">One case per file</span> — each PDF/DOCX/TXT becomes its own case.
+                  Title below is used as a prefix (e.g. &quot;Batch Jan — R v Pike&quot;).
+                </span>
+              </label>
+              <label className="flex cursor-pointer items-start gap-2">
+                <input
+                  type="radio"
+                  name="uploadMode"
+                  checked={uploadMode === "zip_by_folder"}
+                  onChange={() => setUploadMode("zip_by_folder")}
+                  className="mt-1"
+                />
+                <span>
+                  <span className="font-medium">Zip: folder = case</span> — upload one or more zips; each{" "}
+                  <strong>top-level folder</strong> inside a zip becomes one case with the files inside it. Optional
+                  loose PDFs are added to a separate case. Use <code className="text-xs">.zip</code> only for the
+                  archive mode.
+                </span>
+              </label>
+              <label className="flex cursor-pointer items-start gap-2">
+                <input
+                  type="radio"
+                  name="uploadMode"
+                  checked={uploadMode === "multi_slot"}
+                  onChange={() => setUploadMode("multi_slot")}
+                  className="mt-1"
+                />
+                <span>
+                  <span className="font-medium">Up to 5 cases (boxes)</span> — separate upload area per case.
+                  Put PDFs (or DOCX/TXT) in each box; only filled boxes create a new case. Optional prefix applies to
+                  all (e.g. &quot;Batch A — Case 1&quot;).
+                </span>
+              </label>
+            </div>
+          </div>
+        ) : null}
+
         {/* Case Title */}
         <div>
           <label className="block text-sm font-semibold text-accent">
-            Case title / reference
+            {caseId
+              ? "Case title / reference"
+              : uploadMode === "zip_by_folder"
+                ? "Title prefix (optional)"
+                : uploadMode === "one_case_per_file"
+                  ? "Title prefix for each case"
+                  : uploadMode === "multi_slot"
+                    ? "Batch prefix (optional)"
+                    : "Case title / reference"}
           </label>
           <input
             type="text"
-            required
+            required={
+              Boolean(caseId) ||
+              uploadMode === "single_case" ||
+              uploadMode === "one_case_per_file"
+            }
             value={caseTitle}
             onChange={(event) => setCaseTitle(event.target.value)}
-            placeholder="e.g. Matthews v Northbound Transport Ltd"
+            placeholder={
+              uploadMode === "zip_by_folder"
+                ? "e.g. Fictional batch (defaults to Import if empty)"
+                : uploadMode === "one_case_per_file"
+                  ? "e.g. Eval batch"
+                  : uploadMode === "multi_slot"
+                    ? "e.g. Fictional eval (leave empty to use only slot names)"
+                    : "e.g. Matthews v Northbound Transport Ltd"
+            }
             className="mt-2 w-full rounded-2xl border border-primary/20 bg-surface px-4 py-3 text-sm text-accent shadow-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/40"
           />
         </div>
 
-        {/* File Upload */}
-        <div>
-          <label className="block text-sm font-semibold text-accent mb-2">
-            Documents
-          </label>
-          <label className="mx-auto flex cursor-pointer flex-col items-center gap-2 rounded-full bg-surface px-6 py-3 text-sm font-semibold text-primary shadow-sm transition hover:bg-primary/20">
-            <input
-              type="file"
-              multiple
-              accept={ACCEPTED_TYPES.join(",")}
-              className="hidden"
-              onChange={(event) => {
-                setFiles(event.target.files);
-                // Clear any previous errors when new files are selected
-                setError(null);
-                setPaywallError(null);
-              }}
-            />
-            Choose files
-          </label>
-        </div>
+        {/* Multi-slot grid (new cases only) */}
+        {!caseId && uploadMode === "multi_slot" ? (
+          <div
+            key={slotUploadKey}
+            className="grid gap-3 text-left sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"
+          >
+            {caseSlots.map((slot, i) => (
+              <div
+                key={`${slotUploadKey}-slot-${i}`}
+                className="flex flex-col gap-2 rounded-2xl border border-primary/20 bg-surface/90 p-3 shadow-sm"
+              >
+                <label className="text-xs font-semibold text-accent">Slot {i + 1}</label>
+                <input
+                  type="text"
+                  value={slot.label}
+                  onChange={(e) => {
+                    const v = e.target.value;
+                    setCaseSlots((prev) => {
+                      const next = [...prev];
+                      next[i] = { ...next[i]!, label: v };
+                      return next;
+                    });
+                  }}
+                  placeholder={`Case ${i + 1}`}
+                  className="w-full rounded-xl border border-primary/15 bg-surface px-3 py-2 text-sm text-accent outline-none focus:border-primary"
+                />
+                <label className="flex cursor-pointer flex-col items-center gap-1 rounded-xl border border-dashed border-primary/30 bg-surface-muted/40 px-2 py-4 text-center text-xs text-accent/80 hover:bg-primary/5">
+                  <input
+                    type="file"
+                    multiple
+                    accept={ACCEPTED_TYPES.join(",")}
+                    className="hidden"
+                    onChange={(e) => {
+                      const list = e.target.files ? Array.from(e.target.files) : [];
+                      setCaseSlots((prev) => {
+                        const next = [...prev];
+                        next[i] = { ...next[i]!, files: list };
+                        return next;
+                      });
+                      setError(null);
+                      setPaywallError(null);
+                    }}
+                  />
+                  {slot.files.length > 0 ? (
+                    <span className="font-medium text-primary">
+                      {slot.files.length} file{slot.files.length > 1 ? "s" : ""}
+                    </span>
+                  ) : (
+                    <span>Add PDF / DOCX / TXT</span>
+                  )}
+                </label>
+              </div>
+            ))}
+          </div>
+        ) : null}
+
+        {/* File Upload (single list — hidden in multi-slot mode) */}
+        {uploadMode !== "multi_slot" || caseId ? (
+          <div>
+            <label className="block text-sm font-semibold text-accent mb-2">
+              Documents
+            </label>
+            <label className="mx-auto flex cursor-pointer flex-col items-center gap-2 rounded-full bg-surface px-6 py-3 text-sm font-semibold text-primary shadow-sm transition hover:bg-primary/20">
+              <input
+                type="file"
+                multiple
+                accept={ACCEPTED_TYPES.join(",")}
+                className="hidden"
+                onChange={(event) => {
+                  setFiles(event.target.files);
+                  setError(null);
+                  setPaywallError(null);
+                }}
+              />
+              Choose files
+            </label>
+          </div>
+        ) : null}
       </div>
 
-      {files?.length ? (
+      {uploadMode !== "multi_slot" && files?.length ? (
         <p className="text-xs text-accent/50">
           {files.length} file{files.length > 1 ? "s" : ""} selected
         </p>

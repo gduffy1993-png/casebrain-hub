@@ -21,8 +21,76 @@ import { getTrialStatus } from "@/lib/paywall/trialLimits";
 import { trialLimit402Body } from "@/lib/paywall/trialLimit402";
 import { extractCriminalCaseMeta, persistCriminalCaseMeta } from "@/lib/criminal/structured-extractor";
 import { normalizePracticeArea } from "@/lib/types/casebrain";
+import { expandZipsToFolderCaseGroups } from "@/lib/upload/zip-to-case-groups";
 
 export const runtime = "nodejs";
+
+type UploadJob = { caseId: string; files: File[] };
+
+async function createCaseForUpload(params: {
+  supabase: ReturnType<typeof getSupabaseAdminClient>;
+  orgId: string;
+  userId: string;
+  email: string | null;
+  title: string;
+  practiceArea: ReturnType<typeof normalizePracticeArea>;
+}): Promise<{ ok: true; caseId: string } | { ok: false; response: NextResponse }> {
+  const { supabase, orgId, userId, email, title, practiceArea } = params;
+  try {
+    const trialStatus = await getTrialStatus({
+      supabase,
+      orgId,
+      userId,
+      email,
+    });
+    if (trialStatus.isBlocked && trialStatus.reason === "CASE_LIMIT") {
+      return {
+        ok: false,
+        response: NextResponse.json(
+          trialLimit402Body("CASE_LIMIT", trialStatus),
+          { status: 402 },
+        ),
+      };
+    }
+  } catch (trialError) {
+    console.error("[upload] Trial status check failed, allowing case creation:", trialError);
+  }
+
+  const { data: newCase, error: caseError } = await supabase
+    .from("cases")
+    .insert({
+      org_id: orgId,
+      title,
+      created_by: userId,
+      practice_area: practiceArea,
+    })
+    .select("id")
+    .maybeSingle();
+
+  if (caseError || !newCase) {
+    console.error("[upload] Failed to create case:", caseError);
+    return {
+      ok: false,
+      response: NextResponse.json(
+        { error: "Failed to create case", details: caseError?.message },
+        { status: 500 },
+      ),
+    };
+  }
+
+  if (practiceArea === "criminal") {
+    try {
+      await supabase.from("criminal_cases").upsert(
+        { id: newCase.id, org_id: orgId },
+        { onConflict: "id" },
+      );
+    } catch (e) {
+      console.warn("[upload] criminal_cases upsert failed (non-fatal):", e);
+    }
+  }
+
+  return { ok: true, caseId: newCase.id };
+}
 
 const STORAGE_BUCKET = env.SUPABASE_STORAGE_BUCKET;
 const MAX_UPLOAD_BYTES = env.FILE_UPLOAD_MAX_MB * 1024 * 1024;
@@ -74,6 +142,13 @@ export async function POST(request: Request) {
     (formData.get("practiceArea") as string | null)?.trim() ?? "other_litigation";
   const normalizedProvidedPracticeArea = normalizePracticeArea(practiceArea);
   const providedCaseId = (formData.get("caseId") as string | null)?.trim() ?? undefined;
+  const uploadModeRaw = (formData.get("uploadMode") as string | null)?.trim() ?? "single_case";
+  const uploadModeParsed =
+    uploadModeRaw === "one_case_per_file" || uploadModeRaw === "zip_by_folder"
+      ? uploadModeRaw
+      : "single_case";
+  const effectiveUploadMode = providedCaseId ? "single_case" : uploadModeParsed;
+  const titlePrefix = caseTitle?.trim() || "Import";
 
   if (!files.length) {
     return NextResponse.json(
@@ -82,7 +157,7 @@ export async function POST(request: Request) {
     );
   }
 
-  if (!caseTitle && !providedCaseId) {
+  if (!providedCaseId && effectiveUploadMode === "single_case" && !caseTitle?.trim()) {
     return NextResponse.json(
       { error: "Case title or case ID is required" },
       { status: 400 },
@@ -91,10 +166,8 @@ export async function POST(request: Request) {
 
   const supabase = getSupabaseAdminClient();
 
-  let caseId: string | undefined;
-  let isNewCase = false;
+  let jobs: UploadJob[];
 
-  // If caseId is provided (uploading to existing case), use it directly
   if (providedCaseId) {
     // Verify the case exists and belongs to this org
     const { data: existingCase, error: caseLookupError } = await supabase
@@ -119,15 +192,93 @@ export async function POST(request: Request) {
       );
     }
 
-    caseId = existingCase.id;
-    console.log(`[upload] Using provided case ID: ${caseId} for "${existingCase.title}"`);
+    console.log(`[upload] Using provided case ID: ${existingCase.id} for "${existingCase.title}"`);
+    jobs = [{ caseId: existingCase.id, files }];
+  } else if (effectiveUploadMode === "zip_by_folder") {
+    const zips = files.filter((f) => f.name.toLowerCase().endsWith(".zip"));
+    const nonZip = files.filter((f) => !f.name.toLowerCase().endsWith(".zip"));
+    if (!zips.length) {
+      return NextResponse.json(
+        { error: "Zip folder mode needs at least one .zip file." },
+        { status: 400 },
+      );
+    }
+    let groups;
+    try {
+      groups = await expandZipsToFolderCaseGroups(zips, titlePrefix);
+    } catch (e) {
+      console.error("[upload] Zip expand failed:", e);
+      return NextResponse.json(
+        {
+          error: "Could not read zip file(s).",
+          details: e instanceof Error ? e.message : String(e),
+        },
+        { status: 400 },
+      );
+    }
+    if (!groups.length) {
+      return NextResponse.json(
+        { error: "No PDF, DOCX, or TXT files found inside the zip(s)." },
+        { status: 400 },
+      );
+    }
+    jobs = [];
+    for (const g of groups) {
+      const cre = await createCaseForUpload({
+        supabase,
+        orgId,
+        userId,
+        email,
+        title: g.caseTitle,
+        practiceArea: normalizedProvidedPracticeArea,
+      });
+      if (!cre.ok) return cre.response;
+      jobs.push({ caseId: cre.caseId, files: g.files });
+    }
+    if (nonZip.length) {
+      const cre = await createCaseForUpload({
+        supabase,
+        orgId,
+        userId,
+        email,
+        title: `${titlePrefix} — (files outside zip)`,
+        practiceArea: normalizedProvidedPracticeArea,
+      });
+      if (!cre.ok) return cre.response;
+      jobs.push({ caseId: cre.caseId, files: nonZip });
+    }
+  } else if (effectiveUploadMode === "one_case_per_file") {
+    const nonZip = files.filter((f) => !f.name.toLowerCase().endsWith(".zip"));
+    if (!nonZip.length) {
+      return NextResponse.json(
+        {
+          error:
+            "One-case-per-file mode needs PDF, DOCX, or TXT files. For zips with folders, use Zip (folder = case) mode.",
+        },
+        { status: 400 },
+      );
+    }
+    jobs = [];
+    for (const file of nonZip) {
+      const stem = file.name.replace(/\.[^/.]+$/, "") || file.name;
+      const cre = await createCaseForUpload({
+        supabase,
+        orgId,
+        userId,
+        email,
+        title: `${titlePrefix} — ${stem}`,
+        practiceArea: normalizedProvidedPracticeArea,
+      });
+      if (!cre.ok) return cre.response;
+      jobs.push({ caseId: cre.caseId, files: [file] });
+    }
   } else {
-    // No caseId provided - lookup by title (legacy behavior for new case creation)
-    const { data: existingCase, error: caseLookupError } = await supabase
+    let singleCaseId: string | undefined;
+    const { data: titleMatchCase, error: caseLookupError } = await supabase
       .from("cases")
       .select("id, title")
       .eq("org_id", orgId)
-      .eq("title", caseTitle)
+      .eq("title", caseTitle!)
       .maybeSingle();
 
     if (caseLookupError) {
@@ -138,124 +289,27 @@ export async function POST(request: Request) {
       );
     }
 
-    caseId = existingCase?.id;
-  }
+    singleCaseId = titleMatchCase?.id;
 
-  if (!caseId) {
-    // Check trial limits before creating new case
-    // SAFETY: Wrap in try-catch to prevent crashes
-    try {
-      const trialStatus = await getTrialStatus({
+    if (!singleCaseId) {
+      const cre = await createCaseForUpload({
         supabase,
         orgId,
         userId,
         email,
+        title: caseTitle!,
+        practiceArea: normalizedProvidedPracticeArea,
       });
-
-      if (trialStatus.isBlocked && trialStatus.reason === "CASE_LIMIT") {
-        return NextResponse.json(
-          trialLimit402Body("CASE_LIMIT", trialStatus),
-          { status: 402 },
-        );
-      }
-    } catch (trialError) {
-      // SAFETY: If trial check fails, log but allow the request
-      // This prevents crashes if there's a database issue
-      console.error("[upload] Trial status check failed, allowing case creation:", trialError);
-      // Continue with case creation - better to allow than crash
+      if (!cre.ok) return cre.response;
+      singleCaseId = cre.caseId;
+      console.log(`[upload] Created new case with ID: ${singleCaseId}`);
+    } else {
+      console.log(`[upload] Using existing case ID: ${singleCaseId} for "${caseTitle}"`);
     }
 
-    console.log(`[upload] Creating new case: "${caseTitle}" for org ${orgId}`);
-    const { data: newCase, error: caseError } = await supabase
-      .from("cases")
-      .insert({
-        org_id: orgId,
-        title: caseTitle,
-        created_by: userId,
-        practice_area: normalizedProvidedPracticeArea,
-      })
-      .select("id")
-      .maybeSingle();
-
-    if (caseError || !newCase) {
-      console.error("[upload] Failed to create case:", caseError);
-      return NextResponse.json(
-        { error: "Failed to create case", details: caseError?.message },
-        { status: 500 },
-      );
-    }
-
-    caseId = newCase.id;
-    isNewCase = true;
-    console.log(`[upload] Created new case with ID: ${caseId}`);
-    // Ensure criminal cases have a criminal_cases row so list/dashboard show offence and next hearing
-    if (normalizedProvidedPracticeArea === "criminal") {
-      try {
-        await supabase.from("criminal_cases").upsert(
-          { id: caseId, org_id: orgId },
-          { onConflict: "id" }
-        );
-      } catch (e) {
-        console.warn("[upload] criminal_cases upsert failed (non-fatal):", e);
-      }
-    }
-  } else if (caseId) {
-    console.log(`[upload] Using existing case ID: ${caseId} for "${caseTitle}"`);
+    jobs = [{ caseId: singleCaseId, files }];
   }
 
-  // Ensure we have a caseId before proceeding
-  if (!caseId) {
-    return NextResponse.json(
-      { error: "Failed to resolve case ID" },
-      { status: 500 },
-    );
-  }
-
-  // Use the case's org_id for all document inserts so strategy/analysis sees the same docs as Case Files
-  const { data: caseRow } = await supabase
-    .from("cases")
-    .select("org_id")
-    .eq("id", caseId)
-    .maybeSingle();
-  const documentOrgId = (caseRow?.org_id as string) ?? orgId;
-
-  // Resolve practice area from DB for existing cases (do not trust client-provided practiceArea)
-  const { data: resolvedCaseForArea } = await supabase
-    .from("cases")
-    .select("id, practice_area")
-    .eq("id", caseId)
-    .eq("org_id", orgId)
-    .maybeSingle();
-  const storedPracticeAreaRaw = (resolvedCaseForArea?.practice_area ?? null) as string | null;
-  let resolvedPracticeArea = normalizePracticeArea(storedPracticeAreaRaw ?? practiceArea);
-
-  // If user selected criminal but the case is stored as other/null, safely repair it.
-  if (
-    normalizedProvidedPracticeArea === "criminal" &&
-    resolvedPracticeArea !== "criminal" &&
-    (!storedPracticeAreaRaw || normalizePracticeArea(storedPracticeAreaRaw) === "other_litigation")
-  ) {
-    console.error("[upload] practice_area mismatch: selected criminal but stored is not criminal. Repairing.", {
-      caseId,
-      storedPracticeAreaRaw,
-      selected: practiceArea,
-    });
-    try {
-      await supabase
-        .from("cases")
-        .update({ practice_area: "criminal" } as any)
-        .eq("id", caseId)
-        .eq("org_id", orgId);
-      resolvedPracticeArea = "criminal";
-    } catch (e) {
-      // Non-fatal: continue with resolvedPracticeArea
-    }
-  }
-
-  // `resolvedPracticeArea` is now the source of truth for downstream logic.
-
-  // Check trial limits before uploading documents (always check, regardless of new/existing case)
-  // SAFETY: Wrap in try-catch to prevent crashes
   try {
     const trialStatusDoc = await getTrialStatus({
       supabase,
@@ -271,16 +325,54 @@ export async function POST(request: Request) {
       );
     }
   } catch (trialError) {
-    // SAFETY: If trial check fails, log but allow the request
-    // This prevents crashes if there's a database issue
     console.error("[upload] Trial status check failed, allowing document upload:", trialError);
-    // Continue with upload - better to allow than crash
   }
 
   const documentIds: string[] = [];
   const skippedFiles: string[] = [];
 
-  for (const file of files) {
+  for (const job of jobs) {
+    const caseId = job.caseId;
+
+    const { data: caseRow } = await supabase
+      .from("cases")
+      .select("org_id")
+      .eq("id", caseId)
+      .maybeSingle();
+    const documentOrgId = (caseRow?.org_id as string) ?? orgId;
+
+    const { data: resolvedCaseForArea } = await supabase
+      .from("cases")
+      .select("id, practice_area")
+      .eq("id", caseId)
+      .eq("org_id", orgId)
+      .maybeSingle();
+    const storedPracticeAreaRaw = (resolvedCaseForArea?.practice_area ?? null) as string | null;
+    let resolvedPracticeArea = normalizePracticeArea(storedPracticeAreaRaw ?? practiceArea);
+
+    if (
+      normalizedProvidedPracticeArea === "criminal" &&
+      resolvedPracticeArea !== "criminal" &&
+      (!storedPracticeAreaRaw || normalizePracticeArea(storedPracticeAreaRaw) === "other_litigation")
+    ) {
+      console.error("[upload] practice_area mismatch: selected criminal but stored is not criminal. Repairing.", {
+        caseId,
+        storedPracticeAreaRaw,
+        selected: practiceArea,
+      });
+      try {
+        await supabase
+          .from("cases")
+          .update({ practice_area: "criminal" } as any)
+          .eq("id", caseId)
+          .eq("org_id", orgId);
+        resolvedPracticeArea = "criminal";
+      } catch (e) {
+        // Non-fatal: continue with resolvedPracticeArea
+      }
+    }
+
+    for (const file of job.files) {
     if (file.size > MAX_UPLOAD_BYTES) {
       return NextResponse.json(
         {
@@ -788,7 +880,11 @@ export async function POST(request: Request) {
         riskFlags: storedRiskFlags.length,
       },
     });
+    }
   }
+
+  const primaryCaseId = jobs[0]?.caseId;
+  const distinctCaseIds = [...new Set(jobs.map((j) => j.caseId))];
 
   // PAYWALL: Increment usage after successful upload
   // NOTE: DO NOT increment usage for owners (they bypass limits)
@@ -804,31 +900,39 @@ export async function POST(request: Request) {
     // Don't fail the upload if usage recording fails
   }
 
-  console.log(`[upload] Upload complete. Case: ${caseId}, Documents: ${documentIds.length}, Skipped: ${skippedFiles.length}`);
-  
-  // FIX: Invalidate cache when new documents are uploaded
-  if (documentIds.length > 0 && caseId) {
+  console.log(
+    `[upload] Upload complete. Cases: ${distinctCaseIds.join(", ")}, Documents: ${documentIds.length}, Skipped: ${skippedFiles.length}`,
+  );
+
+  if (documentIds.length > 0) {
     try {
       const { invalidateCaseCache } = await import("@/lib/llm/cache");
-      await invalidateCaseCache(orgId, caseId);
+      for (const cid of distinctCaseIds) {
+        await invalidateCaseCache(orgId, cid);
+      }
     } catch (error) {
       console.warn("[upload] Failed to invalidate cache:", error);
-      // Don't fail upload if cache invalidation fails
     }
   }
-  
-  return NextResponse.json({ 
-    caseId, 
-    documentIds,
-    skippedFiles: skippedFiles.length > 0 ? skippedFiles : undefined,
-    isOwner, // Include owner flag in response
-    bypassActive: isOwner,
-    message: skippedFiles.length > 0 
-      ? `${skippedFiles.length} duplicate file(s) skipped: ${skippedFiles.join(", ")}`
-      : undefined,
-    success: true,
-    uploadedCount: documentIds.length
-  }, { status: 201 });
+
+  return NextResponse.json(
+    {
+      caseId: primaryCaseId,
+      caseIds: distinctCaseIds,
+      casesCreated: distinctCaseIds.length,
+      documentIds,
+      skippedFiles: skippedFiles.length > 0 ? skippedFiles : undefined,
+      isOwner,
+      bypassActive: isOwner,
+      message:
+        skippedFiles.length > 0
+          ? `${skippedFiles.length} duplicate file(s) skipped: ${skippedFiles.join(", ")}`
+          : undefined,
+      success: true,
+      uploadedCount: documentIds.length,
+    },
+    { status: 201 },
+  );
 }
 
 async function extractTextFromFile(file: File, buffer: Buffer): Promise<string> {
