@@ -1,6 +1,6 @@
 /**
  * POST /api/criminal/[caseId]/defence-plan-chat
- * Chat grounded in detected offence/stance/stage + committed strategy (single source of truth), then Defence Plan, evidence, law.
+ * Chat uses (1) case state snapshot for committed strategy/stance/stage and (2) bundle excerpt + user message as primary for document facts (charge, MG5/MG6/MG11, exhibits, interview, schedule).
  * Reads latest DB state on every request; no caching. Aligned with Strategy tab.
  */
 
@@ -14,15 +14,15 @@ import { getCaseStateSnapshot } from "@/lib/criminal/case-state-snapshot";
 
 type RouteParams = { params: Promise<{ caseId: string }> };
 
-const AI_TIMEOUT_MS = 25_000;
-const MAX_MESSAGE_LENGTH = 800;
-const MAX_REPLY_LENGTH = 2000;
+const AI_TIMEOUT_MS = 45_000;
+const MAX_MESSAGE_LENGTH = 16_000;
+const MAX_REPLY_LENGTH = 8000;
 const MAX_PLAN_SUMMARY_CHARS = 1200;
 const MAX_EVIDENCE_CHARS = 1200;
 const MAX_TIMELINE_CHARS = 500;
 const LAW_CHUNKS_LIMIT = 4;
-const MAX_OUTPUT_TOKENS = 1024;
-const MAX_BUNDLE_EXCERPT_CHARS = 3500;
+const MAX_OUTPUT_TOKENS = 3072;
+const MAX_BUNDLE_EXCERPT_CHARS = 12_000;
 
 function getDocumentTextForChat(d: { raw_text?: string | null; extracted_json?: unknown }): string {
   const raw = typeof d.raw_text === "string" ? d.raw_text.trim() : "";
@@ -187,7 +187,9 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   let snapshot: Awaited<ReturnType<typeof getCaseStateSnapshot>> | null = null;
   try {
     snapshot = await getCaseStateSnapshot(caseId, orgId);
-    const truthLines: string[] = ["SOURCE OF TRUTH (authoritative; do not override):"];
+    const truthLines: string[] = [
+      "CASE STATE SNAPSHOT (strategy / stance / stage; document facts in bundle excerpt may override offence wording for 'what the papers say' questions):",
+    ];
     if (snapshot.offence_detected_code || snapshot.offence_detected_label)
       truthLines.push(`OFFENCE: ${[snapshot.offence_detected_code, snapshot.offence_detected_label].filter(Boolean).join(" — ")}`);
     if (snapshot.stance_detected) truthLines.push(`STANCE: ${snapshot.stance_detected}`);
@@ -197,7 +199,8 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     if (truthLines.length > 1) {
       sourceOfTruthBlock = truthLines.join("\n");
     } else {
-      sourceOfTruthBlock = "SOURCE OF TRUTH (authoritative): No detected offence, stance, or stage for this case yet. If the user asks something that requires them, say you need the detected offence, stance, and stage to answer properly.";
+      sourceOfTruthBlock =
+        "CASE STATE SNAPSHOT: No detected offence, stance, or stage for this case yet. If the user asks something that requires them for strategy, say you need the detected offence, stance, and stage to answer properly.";
     }
 
     const { data: narrativeRow } = await supabase
@@ -211,7 +214,10 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     const theory = nr?.case_theory_line?.trim();
     const narrativeParts: string[] = [];
     if (theory) narrativeParts.push(`Case theory line: ${theory}`);
-    if (detailed) narrativeParts.push(`Agreed case summary (narrative only; if it conflicts with SOURCE OF TRUTH above, follow SOURCE OF TRUTH):\n${detailed.slice(0, 1500)}`);
+    if (detailed)
+      narrativeParts.push(
+        `Agreed case summary (narrative only; if it conflicts with verbatim bundle excerpt or pasted charge/MG text, prefer the documents):\n${detailed.slice(0, 1500)}`
+      );
     if (narrativeParts.length) narrativeBlock = narrativeParts.join("\n\n");
   } catch {
     // non-fatal
@@ -250,8 +256,12 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   if (changeList) contextParts.push(changeList);
   if (sourceOfTruthBlock) contextParts.push(sourceOfTruthBlock);
   if (narrativeBlock) contextParts.push(narrativeBlock);
-  if (bundleExcerpt) contextParts.push(`Bundle excerpt (use for factual detail; do not contradict SOURCE OF TRUTH):\n${bundleExcerpt}`);
-  if (planSummary) contextParts.push(`Defence Plan for this case (supporting; align with SOURCE OF TRUTH):\n${planSummary}`);
+  if (bundleExcerpt)
+    contextParts.push(
+      `Bundle excerpt (PRIMARY for charge wording, MG5/MG6/MG11, exhibits, interview summary, disclosure schedule, chase text, CCTV/999/CAD notes. For document Q&A, this overrides snapshot offence label if they conflict; note discrepancy briefly.):\n${bundleExcerpt}`
+    );
+  if (planSummary)
+    contextParts.push(`Defence Plan for this case (supporting; align with case state snapshot for strategy):\n${planSummary}`);
   if (evidenceSummary) contextParts.push(`Evidence/disclosure for this case:\n${evidenceSummary}`);
   if (timelineSummary) contextParts.push(`Case timeline:\n${timelineSummary}`);
   contextParts.push(`Relevant criminal law (use only this):\n${lawBlock}`);
