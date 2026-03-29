@@ -24,6 +24,21 @@ const LAW_CHUNKS_LIMIT = 4;
 const MAX_OUTPUT_TOKENS = 3072;
 const MAX_BUNDLE_EXCERPT_CHARS = 12_000;
 
+/** Exhibit-style refs in replies must appear verbatim in bundle/user text (prevents EX-CAD-[PHONE#…] style hallucinations). */
+const EX_REF_RE = /\bEX-[A-Za-z0-9_.#-]+(?:\[[^\]]*\])?/gi;
+
+function extractExhibitRefs(text: string): string[] {
+  const matches = text.match(EX_REF_RE) ?? [];
+  return [...new Set(matches.map((x) => x.trim()).filter(Boolean))];
+}
+
+/** Refs in `reply` that do not appear as substrings in `haystack` (case-insensitive). */
+function ungroundedExhibitRefs(reply: string, haystack: string): string[] {
+  if (!reply.trim() || !haystack.trim()) return [];
+  const h = haystack.toLowerCase();
+  return extractExhibitRefs(reply).filter((r) => !h.includes(r.toLowerCase()));
+}
+
 function getDocumentTextForChat(d: { raw_text?: string | null; extracted_json?: unknown }): string {
   const raw = typeof d.raw_text === "string" ? d.raw_text.trim() : "";
   if (raw.length > 100) return raw;
@@ -125,7 +140,7 @@ CONTRADICTIONS, MESSY EVIDENCE, AND CONFIDENCE
 Real bundles are often inconsistent (MG5 vs MG6, custody vs medical, interview vs BWV, timestamps, ID conditions). You must:
 - **Flag** material contradictions when the user content shows them; **do not** invent tidy explanations or facts that are not in the materials.
 - Prefer **"the documents disagree on X"** or **"insufficient detail to resolve Y"** over smoothing conflicts away.
-- Where CCTV/BWV/999/CAD are described as partial, missing, poor quality, or continuity is broken, reason within those limits—do not assume perfect footage or timelines.
+- Where CCTV/BWV/999/CAD are described as partial, missing, poor quality, or continuity is broken, reason within those limits—do not assume perfect footage, timelines, or "full CCTV" when the text only supports partial clips, extracts, or outstanding continuity.
 - If the context is genuinely thin (e.g. one witness, no corroboration), say that limits what can be concluded **without** switching offence/stance/strategy unless the user asks.
 - If multiple items point to a strong Crown pattern (consistent witnesses, clear footage described as such), you may note that as a tactical reality while staying aligned with the committed **strategy** and **stance**—do not pretend a weak case is strong or vice versa without support in the text provided.
 
@@ -133,6 +148,16 @@ Real bundles are often inconsistent (MG5 vs MG6, custody vs medical, interview v
 BUNDLE EXCERPT (FACTUAL DETAIL)
 ========================
 Use the bundle excerpt ONLY for factual detail. It does NOT override the snapshot.
+
+========================
+DOCUMENT Q&A — MG5/MG6, DISCLOSURE, INTERVIEW, EXHIBITS (MANDATORY)
+========================
+- **MG6 schedule vs extract:** When answering about disclosure, mirror **both** the schedule/listing and any **extract / MG6 narrative** lines. Do not merge "served" and "awaited" across different rows—keep continuity, lab/forensics, medical/GP records, and 999/CAD/CCTV as separate items when the table does.
+- **999 / CAD / CCTV:** Give **full MG6 row sense** (what is served vs awaited) and, where the excerpt includes a separate note (e.g. extract, continuity), treat it as distinct from the schedule row—do not collapse into one vague line.
+- **Crown case / hook:** If the tension or "live issue" appears in **MG5** and is **repeated or underscored in MG6** (e.g. same proposition in both), cite **both** locations—not MG5 alone.
+- **Elements / particulars:** If the user asks whether all **elements** or **particulars** are spelled out, check **MG5 wording** honestly. If three limbs (e.g. unlawfulness / assault / GBH-level harm) are not all explicit in MG5 but are inferable or repeated elsewhere, say that clearly instead of understating.
+- **Interview:** Use the **interview summary or transcript excerpt** in the bundle. Include relevant branches: **no comment**, **partial account**, **alternative explanation**—when the text supports them, do not drop silence on technical matters or a short factual account where present.
+- **Exhibit references:** Every token like **EX-…** in your answer must be **copied character-for-character** from the bundle excerpt (or user-pasted document text in the thread). Do **not** invent suffixes, placeholders, phone fragments, or bracketed pseudo-IDs. If unsure, refer generically to "the CAD exhibit" without a ref.
 
 ========================
 HOW TO ANSWER
@@ -268,35 +293,61 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   const userContent = `${contextParts.join("\n\n")}\n\n---\nSolicitor question:\n${message}`;
 
   const openai = getOpenAIClient();
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), AI_TIMEOUT_MS);
-
   const systemPrompt = buildSystemPrompt(snapshot);
-  let completion;
+  const exhibitHaystack = `${bundleExcerpt}\n${message}`;
+  const bundleHasExhibitRefs = extractExhibitRefs(bundleExcerpt).length > 0;
+
+  async function runChat(messages: { role: "system" | "user" | "assistant"; content: string }[]) {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), AI_TIMEOUT_MS);
+    try {
+      const completion = await openai.chat.completions.create(
+        {
+          model: "gpt-4o-mini",
+          messages,
+          max_tokens: MAX_OUTPUT_TOKENS,
+          temperature: 0.2,
+        },
+        { signal: controller.signal }
+      );
+      clearTimeout(timeoutId);
+      return completion.choices[0]?.message?.content?.trim() ?? "";
+    } catch (err: unknown) {
+      clearTimeout(timeoutId);
+      throw err;
+    }
+  }
+
+  let raw: string;
   try {
-    completion = await openai.chat.completions.create(
-      {
-        model: "gpt-4o-mini",
-        messages: [
-          { role: "system", content: systemPrompt },
-          { role: "user", content: userContent },
-        ],
-        max_tokens: MAX_OUTPUT_TOKENS,
-        temperature: 0.2,
-      },
-      { signal: controller.signal }
-    );
+    raw = await runChat([
+      { role: "system", content: systemPrompt },
+      { role: "user", content: userContent },
+    ]);
   } catch (err: unknown) {
-    clearTimeout(timeoutId);
     const isAbort = err instanceof Error && err.name === "AbortError";
     return NextResponse.json(
       { ok: false, error: isAbort ? "Request timed out" : "Unable to get a response" },
       { status: 502 }
     );
   }
-  clearTimeout(timeoutId);
 
-  const raw = completion.choices[0]?.message?.content?.trim() ?? "";
+  const badRefs = ungroundedExhibitRefs(raw, exhibitHaystack);
+  if (badRefs.length > 0 && bundleHasExhibitRefs) {
+    const correction = `Your previous answer used exhibit reference(s) that do not appear verbatim in the bundle excerpt or the solicitor question: ${badRefs.join(", ")}. Regenerate the **full** answer. Copy every EX-… token exactly from the documents only; if no exact ref exists, describe the item without a fake EX- code.`;
+    try {
+      const second = await runChat([
+        { role: "system", content: systemPrompt },
+        { role: "user", content: userContent },
+        { role: "assistant", content: raw },
+        { role: "user", content: correction },
+      ]);
+      if (second.trim()) raw = second;
+    } catch {
+      // keep first reply if retry fails
+    }
+  }
+
   const reply = raw.slice(0, MAX_REPLY_LENGTH);
 
   return NextResponse.json({ ok: true, reply }, { status: 200 });
