@@ -24,19 +24,68 @@ const LAW_CHUNKS_LIMIT = 4;
 const MAX_OUTPUT_TOKENS = 3072;
 const MAX_BUNDLE_EXCERPT_CHARS = 12_000;
 
-/** Exhibit-style refs in replies must appear verbatim in bundle/user text (prevents EX-CAD-[PHONE#…] style hallucinations). */
-const EX_REF_RE = /\bEX-[A-Za-z0-9_.#-]+(?:\[[^\]]*\])?/gi;
+/**
+ * Exhibit refs as they appear in Northshire-style bundles: EX-CCTV-81, EX-CAD-800431, EX-999-TXT, EX-MG6-EMAIL.
+ * Used to build the allowed set from the bundle (exact tokens only).
+ */
+const STRICT_EX_REF_RE = /\bEX-[A-Za-z0-9]+(?:-[A-Za-z0-9]+)+\b/gi;
 
-function extractExhibitRefs(text: string): string[] {
-  const matches = text.match(EX_REF_RE) ?? [];
-  return [...new Set(matches.map((x) => x.trim()).filter(Boolean))];
+/**
+ * Tokens to scan for in model replies — strict form plus malformed CAD like EX-CAD-[PHONE#…] (must not pass as grounded).
+ */
+const REPLY_EX_REF_RE = new RegExp(
+  `${STRICT_EX_REF_RE.source}|\\bEX-[A-Za-z0-9]+-\\[[^\\]]+\\]`,
+  "gi"
+);
+
+function collectAllowedExRefs(haystack: string): Set<string> {
+  const set = new Set<string>();
+  const re = new RegExp(STRICT_EX_REF_RE.source, "gi");
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(haystack)) !== null) set.add(m[0].toLowerCase());
+  return set;
 }
 
-/** Refs in `reply` that do not appear as substrings in `haystack` (case-insensitive). */
-function ungroundedExhibitRefs(reply: string, haystack: string): string[] {
-  if (!reply.trim() || !haystack.trim()) return [];
-  const h = haystack.toLowerCase();
-  return extractExhibitRefs(reply).filter((r) => !h.includes(r.toLowerCase()));
+function extractReplyExRefs(reply: string): string[] {
+  const re = new RegExp(REPLY_EX_REF_RE.source, "gi");
+  const seen = new Set<string>();
+  const out: string[] = [];
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(reply)) !== null) {
+    const t = m[0].trim();
+    const k = t.toLowerCase();
+    if (t && !seen.has(k)) {
+      seen.add(k);
+      out.push(t);
+    }
+  }
+  return out;
+}
+
+/** Refs in reply that are not exactly present as allowed bundle tokens (case-insensitive). */
+function ungroundedExhibitRefs(reply: string, allowed: Set<string>): string[] {
+  if (!reply.trim() || allowed.size === 0) return [];
+  return extractReplyExRefs(reply).filter((r) => !allowed.has(r.toLowerCase()));
+}
+
+/**
+ * Replace hallucinated EX-… tokens. Single EX-CAD-… in bundle → substitute that ref for any bad CAD-like token; else generic placeholder.
+ */
+function sanitizeExhibitRefsInReply(reply: string, allowed: Set<string>): string {
+  const bad = ungroundedExhibitRefs(reply, allowed);
+  if (bad.length === 0) return reply;
+  const cadAllowed = [...allowed].filter((r) => r.startsWith("ex-cad-"));
+  let s = reply;
+  for (const token of bad) {
+    const reSafe = token.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const isCadLike = /^EX-CAD-/i.test(token);
+    const repl =
+      isCadLike && cadAllowed.length === 1
+        ? `EX-CAD-${cadAllowed[0].slice("ex-cad-".length)}`
+        : "(exhibit ref: use verbatim code from bundle exhibit list only)";
+    s = s.replace(new RegExp(reSafe, "gi"), repl);
+  }
+  return s;
 }
 
 function getDocumentTextForChat(d: { raw_text?: string | null; extracted_json?: unknown }): string {
@@ -152,16 +201,19 @@ Use the bundle excerpt ONLY for factual detail. It does NOT override the snapsho
 ========================
 DOCUMENT Q&A — MG5/MG6, DISCLOSURE, INTERVIEW, EXHIBITS (MANDATORY)
 ========================
-- **MG6 schedule vs extract:** When answering about disclosure, mirror **both** the schedule/listing and any **extract / MG6 narrative** lines. Do not merge "served" and "awaited" across different rows—keep continuity, lab/forensics, medical/GP records, and 999/CAD/CCTV as separate items when the table does.
-- **999 / CAD / CCTV:** Give **full MG6 row sense** (what is served vs awaited) and, where the excerpt includes a separate note (e.g. extract, continuity), treat it as distinct from the schedule row—do not collapse into one vague line.
-- **Crown case / hook:** If the tension or "live issue" appears in **MG5** and is **repeated or underscored in MG6** (e.g. same proposition in both), cite **both** locations—not MG5 alone.
-- **Elements / particulars:** If the user asks whether all **elements** or **particulars** are spelled out, check **MG5 wording** honestly. If three limbs (e.g. unlawfulness / assault / GBH-level harm) are not all explicit in MG5 but are inferable or repeated elsewhere, say that clearly instead of understating.
-- **Interview:** Use the **interview summary or transcript excerpt** in the bundle. Include relevant branches: **no comment**, **partial account**, **alternative explanation**—when the text supports them, do not drop silence on technical matters or a short factual account where present.
-- **Exhibit references:** Every token like **EX-…** in your answer must be **copied character-for-character** from the bundle excerpt (or user-pasted document text in the thread). Do **not** invent suffixes, placeholders, phone fragments, or bracketed pseudo-IDs. If unsure, refer generically to "the CAD exhibit" without a ref.
+- **Charge / papers:** For charge wording or "what the papers say," use the **charge sheet extract** in the bundle when present. If it conflicts with the snapshot offence line, state both briefly and treat the **bundle** as authoritative for the literal tag.
+- **MG6 served/outstanding (checklist):** (1) One line per category row in the MG6 table (MG5, MG11, CCTV, 999, CAD, Forensics/medical, Continuity/chain: include every row shown). (2) Per category, **served (initial)** and **awaiting / retained / note** as **separate** bullets when the table has two columns, never one merged bullet for both. (3) **Forensics/medical:** include awaiting **lab report / GP records** when the table says so, even if a strategy note is served. (4) **Continuity / chain:** state **both** cells (e.g. served **draft or unsigned** vs awaited **corrected continuity**). (5) **999:** if schedule or extract says **partial / extract** or **full master awaited**, do not imply the **full master** is already served. Mirror MG6 schedule **and** CCTV/999/CAD extract subsections; carry extract details (clock offset, till-camera, engineer note, etc.) into the right paragraph, not dropped.
+- **CCTV / 999 / CAD (three paragraphs when asked):** Paragraph 1 = CCTV only: MG6 CCTV row plus every **CCTV note** detail (continuity, draft/unsigned, clock offset, till-camera or hallway segment, engineer note, partial served, tidy schedule, etc.). Paragraph 2 = 999 only: MG6 999 row plus **999 note** (partial extract, full master awaited, reconciliation). Paragraph 3 = CAD only: MG6 CAD row plus **CAD note** (partial print, fuller log, narrative on MG6). Do not blend channels into one paragraph.
+- **Hook:** If MG5 **names** the friction and MG6 **tension / example note** repeats the same idea, say **named in MG5 and repeated in MG6**. Do not call it "undefined" or "only flagged" when the text gives a concrete label.
+- **MG5 offence fit / elements:** Be honest about what MG5 does and does not spell out. If **assault-stock** lines (push/punch, intent/recklessness) appear but the **charge** is not assault-led (theft, handling, fraud, public order, etc.), say they read as **generic boilerplate** unless MG5 ties them to this case.
+- **Interview:** You must **explicitly** cover each limb that appears in the summary: **partial account**; **denies core allegation or alternative explanation**; **no comment on certain technical matters**; **requests full CCTV/999 scope**. Omitting **no comment** or **partial account** is incorrect.
+- **Client-safe summary:** Do not use **full CCTV**, **full CCTV window**, or **complete CCTV footage** unless the bundle clearly states full footage or master files are served. Prefer **partial**, **extract**, **continuity outstanding**, **engineer note awaited**, **full 999 master awaited**, when that matches MG6 or extracts.
+- **Exhibits:** **EX-** codes **verbatim** from the exhibit list only. **EX-CAD-** must be followed by **digits only** (e.g. EX-CAD-800431). Never bracketed CAD tokens, **PHONE#**, hashes, or invented refs. If no code is visible, describe the item without a fake EX- code.
 
 ========================
 HOW TO ANSWER
 ========================
+- For MG5/MG6/exhibit/interview/disclosure questions, apply **DOCUMENT Q&A** above first; do not shorten in a way that drops rows, columns, or interview limbs.
 - Be precise, offence-aware, stance-aware, stage-aware, and strategy-aligned.
 - Use the snapshot as the anchor for all reasoning.
 - If the user asks something outside the case, answer normally (not restricted by snapshot).
@@ -295,7 +347,8 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   const openai = getOpenAIClient();
   const systemPrompt = buildSystemPrompt(snapshot);
   const exhibitHaystack = `${bundleExcerpt}\n${message}`;
-  const bundleHasExhibitRefs = extractExhibitRefs(bundleExcerpt).length > 0;
+  const allowedExRefs = collectAllowedExRefs(exhibitHaystack);
+  const bundleHasExhibitRefs = allowedExRefs.size > 0;
 
   async function runChat(messages: { role: "system" | "user" | "assistant"; content: string }[]) {
     const controller = new AbortController();
@@ -332,9 +385,9 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     );
   }
 
-  const badRefs = ungroundedExhibitRefs(raw, exhibitHaystack);
+  const badRefs = ungroundedExhibitRefs(raw, allowedExRefs);
   if (badRefs.length > 0 && bundleHasExhibitRefs) {
-    const correction = `Your previous answer used exhibit reference(s) that do not appear verbatim in the bundle excerpt or the solicitor question: ${badRefs.join(", ")}. Regenerate the **full** answer. Copy every EX-… token exactly from the documents only; if no exact ref exists, describe the item without a fake EX- code.`;
+    const correction = `Your previous answer used exhibit reference(s) that are not exact matches to the bundle exhibit list: ${badRefs.join(", ")}. CAD refs must be like EX-CAD- plus digits only (no brackets, no PHONE#). Regenerate the **full** answer. Copy every EX-… token exactly from the exhibit list.`;
     try {
       const second = await runChat([
         { role: "system", content: systemPrompt },
@@ -347,6 +400,8 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       // keep first reply if retry fails
     }
   }
+
+  if (bundleHasExhibitRefs) raw = sanitizeExhibitRefsInReply(raw, allowedExRefs);
 
   const reply = raw.slice(0, MAX_REPLY_LENGTH);
 
