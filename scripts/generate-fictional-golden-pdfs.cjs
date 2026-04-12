@@ -1,12 +1,15 @@
 /**
- * Generate selectable-text PDFs from docs/fictional-golden-10/NS-CPS-*.txt
- * Usage: npm run generate:fictional-golden
+ * Generate selectable-text PDFs from NS-CPS-*.txt in a docs folder.
+ * Usage: npm run generate:fictional-golden-pdfs
+ *        npm run generate:fictional-kitchen-pdf
+ *        node scripts/generate-fictional-golden-pdfs.cjs docs/some-folder
  */
 const fs = require("fs");
 const path = require("path");
 const puppeteer = require("puppeteer");
 
-const DOCS_DIR = path.join(__dirname, "../docs/fictional-golden-10");
+const relDocs = process.argv[2] || "docs/fictional-golden-10";
+const DOCS_DIR = path.isAbsolute(relDocs) ? relDocs : path.join(__dirname, "..", relDocs);
 
 function escapeHtml(s) {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");

@@ -1,0 +1,93 @@
+===============================================================================
+NORTHSHIRE CPS / POLICE — FICTIONAL BUNDLE (TEST DATA ONLY)
+===============================================================================
+Reference: NS-CPS-2026-KS01
+Short title: Kitchen-sink eval — mixed counts + messy disclosure (fictional)
+Accused: RILEY KENT (DOB 14/07/2001)
+Other party / key witness: SAM TAYLOR (DOB 22/03/1990)
+Stage: PTPH | Messiness: Messy (by design)
+Primary eval hook: Late email + MG5 amount vs MG11 amount + wrong index line (OCR)
+===============================================================================
+
+NOTE: This is fictional training data for product testing only. It is not legal advice and not a real disclosure bundle. It deliberately packs charge, MG5/MG6/MG11, CCTV/999/CAD extracts, interview, chase, exhibits, continuity, forensics awaited, partial 999, generic boilerplate in MG5, and a named tension between MG5 and MG11.
+
+=== SECTION: COVER_INDEX ===
+
+INDEX (fictional)
+
+Document                                              | Note
+------------------------------------------------------|------------------------------
+Charge sheet extract                                  | Below
+MG5 — Case summary                                    | Draft narrative
+MG6(a) — Schedule of initial disclosure              | Served vs outstanding
+MG11 — Key witness statement                          | Status marker included
+CCTV / 999 / CAD / BWV                               | Extract notes
+Interview summary                                     | Fictional extract
+Disclosure chase note                                 | Fictional email / letter
+Exhibit list                                          | Verbatim EX- refs
+
+=== SECTION: CHARGE ===
+
+CHARGE SHEET — EXTRACT (FICTION)
+Defendant: RILEY KENT
+Offence(s) as tag: Theft shoplift + public order s.4 + criminal damage (fictional charge drafting for test data).
+Plea: Not guilty (fictional).
+
+=== SECTION: MG5 ===
+
+MG5 — CASE SUMMARY (DRAFT)
+Allegation (fiction): At a Northshire retail unit, the Crown allege conduct consistent with Theft shoplift, Public order s.4, and criminal damage in a single incident narrative.
+The defence account (fiction): denies the core allegation or disputes the precise mechanics (e.g. push vs punch, or intent vs recklessness).
+Grounds for dispute / friction (fiction): Late email, forgot attachment; MG5 recorded alleged retail loss at £400 while MG11 refers to £450; index line shows wrong surname spelling (OCR).
+CCTV / tech: see MG6 and extracts for served vs outstanding detail; at least one timing/continuity issue is flagged on the schedule.
+
+=== SECTION: MG6 ===
+
+MG6(a) — SCHEDULE OF INITIAL DISCLOSURE (FICTION)
+Category                        | Served (initial)                        | Awaiting / Retained / Note
+--------------------------------|------------------------------------------|----------------------------------------
+MG5 case summary                | yes (draft)                             | final after reconciliation
+MG11 key witness                | yes (possibly draft)                      | signed copy if draft
+CCTV / footage list             | yes (partial / served)                  | continuity statement / engineer note
+999 calls                       | served (extract)                               | full master audio outstanding
+CAD / dispatch                  | partial print served                    | fuller narrative attachment
+Forensics / medical             | strategy note served                    | lab report / GP records
+Continuity / chain               | draft or unsigned                           | corrected continuity to be provided
+Example “tension” note (fiction): Late email, forgot attachment; MG5 £400 vs MG11 £450; index OCR name error.
+
+=== SECTION: MG11 ===
+
+MG11 — KEY WITNESS STATEMENT (EXTRACT)
+Status marker (fiction): draft statement (signature block pending).
+I describe what I saw / heard as best as I can. I am aware that some timing and detail may be uncertain.
+I mention that CCTV and/or 999 material exists but that the version served might be incomplete or extracted.
+Amount note (fiction): my statement refers to £450 loss at the till area; I understand MG5 may show a different figure pending reconciliation.
+
+=== SECTION: CCTV_999_CAD ===
+
+CCTV / 999 / CAD / BWV — EXTRACTS (FICTION)
+CCTV note: continuity issue flagged (draft / unsigned); till-camera clock offset noted in schedule; hallway segment extract pending; engineer review note awaited.
+999 note: partial extract served; full master awaited or flagged for reconciliation.
+CAD note: dispatch line present; fuller log or narrative attachment listed on MG6.
+
+=== SECTION: DISCLOSURE ===
+
+DISCLOSURE CHASE — EXTRACT (FICTION)
+Email: “Please confirm outstanding items so we can update the MG5 narrative and reconcile the schedule before next hearing.”
+
+=== SECTION: INTERVIEW ===
+
+INTERVIEW SUMMARY — IR-### (FICTIONAL EXTRACT)
+Caution given. Defendant gives partial account: denies core allegation or claims alternative explanation.
+No comment on certain technical matters; requests full disclosure of the CCTV/999 scope.
+
+=== SECTION: EXHIBITS ===
+
+EXHIBIT LIST (FICTION)
+EX-CCTV-99 (served)
+EX-999-TXT (extract; served)
+EX-CAD-800999 (partial print)
+EX-MG6-EMAIL (chase)
+===============================================================================
+END OF FILE — NS-CPS-2026-KS01
+===============================================================================
