@@ -68,22 +68,35 @@ function ungroundedExhibitRefs(reply: string, allowed: Set<string>): string[] {
   return extractReplyExRefs(reply).filter((r) => !allowed.has(r.toLowerCase()));
 }
 
+const INSTRUCTIONAL_EX_PLACEHOLDER =
+  "(exhibit ref: use verbatim code from bundle exhibit list only)";
+
+function formatExCadFromAllowed(lowercaseCad: string): string {
+  const digits = lowercaseCad.startsWith("ex-cad-") ? lowercaseCad.slice("ex-cad-".length) : lowercaseCad.replace(/^ex-cad-/i, "");
+  return `EX-CAD-${digits}`;
+}
+
 /**
- * Replace hallucinated EX-… tokens. Single EX-CAD-… in bundle → substitute that ref for any bad CAD-like token; else generic placeholder.
+ * Replace hallucinated EX-… tokens. Prefer the bundle's EX-CAD line when there is exactly one CAD ref (typical Northshire bundles).
+ * Never leave the internal instructional placeholder in user-visible text — it trains the model to echo instructions.
  */
 function sanitizeExhibitRefsInReply(reply: string, allowed: Set<string>): string {
   const bad = ungroundedExhibitRefs(reply, allowed);
   if (bad.length === 0) return reply;
   const cadAllowed = [...allowed].filter((r) => r.startsWith("ex-cad-"));
+  const singleCadRepl = cadAllowed.length >= 1 ? formatExCadFromAllowed(cadAllowed[0]) : null;
   let s = reply;
   for (const token of bad) {
     const reSafe = token.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const isCadLike = /^EX-CAD-/i.test(token);
     const repl =
-      isCadLike && cadAllowed.length === 1
-        ? `EX-CAD-${cadAllowed[0].slice("ex-cad-".length)}`
-        : "(exhibit ref: use verbatim code from bundle exhibit list only)";
+      isCadLike && singleCadRepl
+        ? singleCadRepl
+        : "Check the exhibit list in the bundle for the exact EX- code (copy character-for-character).";
     s = s.replace(new RegExp(reSafe, "gi"), repl);
+  }
+  if (singleCadRepl) {
+    s = s.split(INSTRUCTIONAL_EX_PLACEHOLDER).join(singleCadRepl);
   }
   return s;
 }
@@ -206,9 +219,12 @@ DOCUMENT Q&A — MG5/MG6, DISCLOSURE, INTERVIEW, EXHIBITS (MANDATORY)
 - **CCTV / 999 / CAD (three paragraphs when asked):** Paragraph 1 = CCTV only: MG6 CCTV row plus every **CCTV note** detail (continuity, draft/unsigned, clock offset, till-camera or hallway segment, engineer note, partial served, tidy schedule, etc.). Paragraph 2 = 999 only: MG6 999 row plus **999 note** (partial extract, full master awaited, reconciliation). Paragraph 3 = CAD only: MG6 CAD row plus **CAD note** (partial print, fuller log, narrative on MG6). Do not blend channels into one paragraph.
 - **Hook:** If MG5 **names** the friction and MG6 **tension / example note** repeats the same idea, say **named in MG5 and repeated in MG6**. Do not call it "undefined" or "only flagged" when the text gives a concrete label.
 - **MG5 offence fit / elements:** Be honest about what MG5 does and does not spell out. If **assault-stock** lines (push/punch, intent/recklessness) appear but the **charge** is not assault-led (theft, handling, fraud, public order, etc.), say they read as **generic boilerplate** unless MG5 ties them to this case.
-- **Interview:** You must **explicitly** cover each limb that appears in the summary: **partial account**; **denies core allegation or alternative explanation**; **no comment on certain technical matters**; **requests full CCTV/999 scope**. Omitting **no comment** or **partial account** is incorrect.
+- **Interview:** You must **explicitly** cover each limb that appears in the summary: **partial account**; **denies core allegation or alternative explanation**; **no comment on certain technical matters**; **requests full CCTV/999 scope**. Omitting **no comment** or **partial account** is incorrect. **"No comment"** on technical matters is **not** the same as **"leaves open"** or refusing to answer — quote it faithfully when present.
 - **Client-safe summary:** Do not use **full CCTV**, **full CCTV window**, or **complete CCTV footage** unless the bundle clearly states full footage or master files are served. Prefer **partial**, **extract**, **continuity outstanding**, **engineer note awaited**, **full 999 master awaited**, when that matches MG6 or extracts.
-- **Exhibits:** **EX-** codes **verbatim** from the exhibit list only. **EX-CAD-** must be followed by **digits only** (e.g. EX-CAD-800431). Never bracketed CAD tokens, **PHONE#**, hashes, or invented refs. If no code is visible, describe the item without a fake EX- code.
+- **Exhibits:** **EX-** codes **verbatim** from the exhibit list only. **EX-CAD-** must be followed by **digits only** (e.g. EX-CAD-800431). Never bracketed CAD tokens, **PHONE#**, hashes, or invented refs. **Never** output instruction-style placeholders such as "(exhibit ref: …" — always the **literal** line from the exhibit list. If no code is visible, describe the item without a fake EX- code.
+- **Crown sequence (MG5 + charge only):** Bullets must be the **Crown's** alleged facts as framed in MG5/charge. Do **not** merge the **defence account** (e.g. work tool, denial mechanics) into the Crown sequence unless MG5 presents them as Crown allegations.
+- **Live issues / frictions:** List only issues the bundle **actually names** (phrases, headings, tension lines). Do **not** attach generic labels (e.g. "amount disputes", "timeline slip") unless that wording or clear equivalent appears in the cited section.
+- **CCTV / completeness tension:** MG5 may say CCTV is "tidy" or consistent while MG11 or an **extract note** flags partial/incomplete material — that is **not** "MG5 vs MG6" unless the **MG6 schedule row** itself contradicts MG5; cite the right sections.
 
 ========================
 HOW TO ANSWER
@@ -387,7 +403,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
 
   const badRefs = ungroundedExhibitRefs(raw, allowedExRefs);
   if (badRefs.length > 0 && bundleHasExhibitRefs) {
-    const correction = `Your previous answer used exhibit reference(s) that are not exact matches to the bundle exhibit list: ${badRefs.join(", ")}. CAD refs must be like EX-CAD- plus digits only (no brackets, no PHONE#). Regenerate the **full** answer. Copy every EX-… token exactly from the exhibit list.`;
+    const correction = `Your previous answer used exhibit reference(s) that are not exact matches to the bundle exhibit list: ${badRefs.join(", ")}. CAD refs must be EX-CAD- followed by digits only (no brackets, no PHONE). Rewrite the **full** answer and copy each EX- token exactly as printed in the bundle exhibit list — no templates or invented codes.`;
     try {
       const second = await runChat([
         { role: "system", content: systemPrompt },
