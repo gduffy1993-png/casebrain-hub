@@ -38,11 +38,17 @@ const REPLY_EX_REF_RE = new RegExp(
   "gi"
 );
 
+/** CAD refs use digits; strict \\b token scan can miss glued/table text — always merge these. */
+const EX_CAD_DIGITS_RE = /EX-CAD-\d+/gi;
+
 function collectAllowedExRefs(haystack: string): Set<string> {
   const set = new Set<string>();
   const re = new RegExp(STRICT_EX_REF_RE.source, "gi");
   let m: RegExpExecArray | null;
   while ((m = re.exec(haystack)) !== null) set.add(m[0].toLowerCase());
+  for (const cm of haystack.matchAll(new RegExp(EX_CAD_DIGITS_RE.source, "gi"))) {
+    set.add(cm[0].toLowerCase());
+  }
   return set;
 }
 
@@ -71,6 +77,30 @@ function ungroundedExhibitRefs(reply: string, allowed: Set<string>): string[] {
 const INSTRUCTIONAL_EX_PLACEHOLDER =
   "(exhibit ref: use verbatim code from bundle exhibit list only)";
 
+/** Shown when CAD cannot be inferred — model must not echo this as the "code"; post-process injects real EX-CAD-… when haystack has exactly one. */
+const GENERIC_EX_ADVICE_PHRASE =
+  "Check the exhibit list in the bundle for the exact EX- code (copy character-for-character).";
+
+function uniqueExCadsInHaystack(haystack: string): string[] {
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const cm of haystack.matchAll(new RegExp(EX_CAD_DIGITS_RE.source, "gi"))) {
+    const k = cm[0].toLowerCase();
+    if (!seen.has(k)) {
+      seen.add(k);
+      out.push(cm[0]);
+    }
+  }
+  return out;
+}
+
+/** If the reply contains our generic EX advice but the bundle has a single EX-CAD-… line, swap in that literal. */
+function replaceGenericExAdviceWithLiteralCad(reply: string, haystack: string): string {
+  const cads = uniqueExCadsInHaystack(haystack);
+  if (cads.length !== 1) return reply;
+  return reply.split(GENERIC_EX_ADVICE_PHRASE).join(cads[0]);
+}
+
 function formatExCadFromAllowed(lowercaseCad: string): string {
   const digits = lowercaseCad.startsWith("ex-cad-") ? lowercaseCad.slice("ex-cad-".length) : lowercaseCad.replace(/^ex-cad-/i, "");
   return `EX-CAD-${digits}`;
@@ -92,7 +122,7 @@ function sanitizeExhibitRefsInReply(reply: string, allowed: Set<string>): string
     const repl =
       isCadLike && singleCadRepl
         ? singleCadRepl
-        : "Check the exhibit list in the bundle for the exact EX- code (copy character-for-character).";
+        : GENERIC_EX_ADVICE_PHRASE;
     s = s.replace(new RegExp(reSafe, "gi"), repl);
   }
   if (singleCadRepl) {
@@ -214,14 +244,14 @@ Use the bundle excerpt ONLY for factual detail. It does NOT override the snapsho
 ========================
 DOCUMENT Q&A — MG5/MG6, DISCLOSURE, INTERVIEW, EXHIBITS (MANDATORY)
 ========================
-- **Charge / papers:** For charge wording or "what the papers say," use the **charge sheet extract** in the bundle when present. If it conflicts with the snapshot offence line, state both briefly and treat the **bundle** as authoritative for the literal tag.
+- **Charge / papers:** For charge wording or "what the papers say," use the **charge sheet extract** in the bundle when present. If it conflicts with the snapshot offence line, state both briefly and treat the **bundle** as authoritative for the literal tag. For a **one-sentence charge summary**, use **only** words from the charge extract — do **not** substitute MG5’s allegation paragraph as the charge sentence.
 - **MG6 served/outstanding (checklist):** (1) One line per category row in the MG6 table (MG5, MG11, CCTV, 999, CAD, Forensics/medical, Continuity/chain: include every row shown). (2) Per category, **served (initial)** and **awaiting / retained / note** as **separate** bullets when the table has two columns, never one merged bullet for both. (3) **Forensics/medical:** include awaiting **lab report / GP records** when the table says so, even if a strategy note is served. (4) **Continuity / chain:** state **both** cells (e.g. served **draft or unsigned** vs awaited **corrected continuity**). (5) **999:** if schedule or extract says **partial / extract** or **full master awaited**, do not imply the **full master** is already served. Mirror MG6 schedule **and** CCTV/999/CAD extract subsections; carry extract details (clock offset, till-camera, engineer note, etc.) into the right paragraph, not dropped.
 - **CCTV / 999 / CAD (three paragraphs when asked):** Paragraph 1 = CCTV only: MG6 CCTV row plus every **CCTV note** detail (continuity, draft/unsigned, clock offset, till-camera or hallway segment, engineer note, partial served, tidy schedule, etc.). Paragraph 2 = 999 only: MG6 999 row plus **999 note** (partial extract, full master awaited, reconciliation). Paragraph 3 = CAD only: MG6 CAD row plus **CAD note** (partial print, fuller log, narrative on MG6). Do not blend channels into one paragraph.
 - **Hook:** If MG5 **names** the friction and MG6 **tension / example note** repeats the same idea, say **named in MG5 and repeated in MG6**. Do not call it "undefined" or "only flagged" when the text gives a concrete label.
 - **MG5 offence fit / elements:** Be honest about what MG5 does and does not spell out. If **assault-stock** lines (push/punch, intent/recklessness) appear but the **charge** is not assault-led (theft, handling, fraud, public order, etc.), say they read as **generic boilerplate** unless MG5 ties them to this case.
 - **Interview:** You must **explicitly** cover each limb that appears in the summary: **partial account**; **denies core allegation or alternative explanation**; **no comment on certain technical matters**; **requests full CCTV/999 scope**. Omitting **no comment** or **partial account** is incorrect. **"No comment"** on technical matters is **not** the same as **"leaves open"** or refusing to answer — quote it faithfully when present.
 - **Client-safe summary:** Do not use **full CCTV**, **full CCTV window**, or **complete CCTV footage** unless the bundle clearly states full footage or master files are served. Prefer **partial**, **extract**, **continuity outstanding**, **engineer note awaited**, **full 999 master awaited**, when that matches MG6 or extracts.
-- **Exhibits:** **EX-** codes **verbatim** from the exhibit list only. **EX-CAD-** must be followed by **digits only** (e.g. EX-CAD-800431). Never bracketed CAD tokens, **PHONE#**, hashes, or invented refs. **Never** output instruction-style placeholders such as "(exhibit ref: …" — always the **literal** line from the exhibit list. If no code is visible, describe the item without a fake EX- code.
+- **Exhibits:** **EX-** codes **verbatim** from the exhibit list only. **EX-CAD-** must be followed by **digits only** (e.g. EX-CAD-800431). Never bracketed CAD tokens, **PHONE#**, hashes, or invented refs. **Never** output instruction-style placeholders such as "(exhibit ref: …" — always the **literal** line from the exhibit list. **Never** output generic advisory sentences in place of a code (e.g. do not paste meta-instructions about "checking the exhibit list") — the answer must show the **actual** EX-CAD- plus digits from the list. If no code is visible, describe the item without a fake EX- code.
 - **Crown sequence (MG5 + charge only):** Bullets must be the **Crown's** alleged facts as framed in MG5/charge. Do **not** merge the **defence account** (e.g. work tool, denial mechanics) into the Crown sequence unless MG5 presents them as Crown allegations.
 - **Live issues / frictions:** List only issues the bundle **actually names** (phrases, headings, tension lines). Do **not** attach generic labels (e.g. "amount disputes", "timeline slip") unless that wording or clear equivalent appears in the cited section.
 - **CCTV / completeness tension:** MG5 may say CCTV is "tidy" or consistent while MG11 or an **extract note** flags partial/incomplete material — that is **not** "MG5 vs MG6" unless the **MG6 schedule row** itself contradicts MG5; cite the right sections.
@@ -418,6 +448,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   }
 
   if (bundleHasExhibitRefs) raw = sanitizeExhibitRefsInReply(raw, allowedExRefs);
+  raw = replaceGenericExAdviceWithLiteralCad(raw, exhibitHaystack);
 
   const reply = raw.slice(0, MAX_REPLY_LENGTH);
 
