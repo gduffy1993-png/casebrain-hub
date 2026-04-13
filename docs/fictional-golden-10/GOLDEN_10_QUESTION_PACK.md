@@ -2,6 +2,8 @@
 
 Run in two batches (Q1-5, then Q6-10) to reduce truncation risk.
 
+**Before Q1:** Quote **`Reference:`**, **`Short title:`**, accused name, and key witness / other party name verbatim from the bundle header so the run is self-identifying.
+
 ## Core 10
 1. Served / outstanding — From MG6 + CCTV/999/CAD only, list served vs partial/extract vs draft/unsigned vs awaited.
 2. Charge — State offence tag(s) and plea from charge extract.

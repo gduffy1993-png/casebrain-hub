@@ -94,11 +94,40 @@ function uniqueExCadsInHaystack(haystack: string): string[] {
   return out;
 }
 
-/** If the reply contains our generic EX advice but the bundle has a single EX-CAD-… line, swap in that literal. */
+/** If the reply echoes our generic EX advice, swap in a literal EX-CAD-… from the haystack (first match when several appear). */
 function replaceGenericExAdviceWithLiteralCad(reply: string, haystack: string): string {
   const cads = uniqueExCadsInHaystack(haystack);
-  if (cads.length !== 1) return reply;
-  return reply.split(GENERIC_EX_ADVICE_PHRASE).join(cads[0]);
+  if (cads.length < 1) return reply;
+  const literal = cads[0];
+  const esc = GENERIC_EX_ADVICE_PHRASE.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return reply.replace(new RegExp(esc, "gi"), literal);
+}
+
+const NORTHSHIRE_BUNDLE_REF_RE = /NS-CPS-2026-\d{4}/gi;
+
+function uniqueNorthshireRefs(haystack: string): string[] {
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const m of haystack.matchAll(new RegExp(NORTHSHIRE_BUNDLE_REF_RE.source, "gi"))) {
+    if (!seen.has(m[0])) {
+      seen.add(m[0]);
+      out.push(m[0]);
+    }
+  }
+  return out;
+}
+
+/**
+ * Fix model / scrubber corruption of Reference lines (e.g. NS-CPS-[PHONE#…]) when the bundle contains exactly one canonical NS-CPS-2026-####.
+ */
+function replaceCorruptedNorthshireBundleRefs(reply: string, haystack: string): string {
+  const refs = uniqueNorthshireRefs(haystack);
+  if (refs.length !== 1) return reply;
+  const canonical = refs[0];
+  let s = reply;
+  s = s.replace(/NS-CPS-\[PHONE#[^\]]*\]/gi, canonical);
+  s = s.replace(/NS-CPS-\[[^\]]*PHONE[^\]]*\]/gi, canonical);
+  return s;
 }
 
 function formatExCadFromAllowed(lowercaseCad: string): string {
@@ -113,7 +142,7 @@ function formatExCadFromAllowed(lowercaseCad: string): string {
 function sanitizeExhibitRefsInReply(reply: string, allowed: Set<string>): string {
   const bad = ungroundedExhibitRefs(reply, allowed);
   if (bad.length === 0) return reply;
-  const cadAllowed = [...allowed].filter((r) => r.startsWith("ex-cad-"));
+  const cadAllowed = [...allowed].filter((r) => r.startsWith("ex-cad-")).sort();
   const singleCadRepl = cadAllowed.length >= 1 ? formatExCadFromAllowed(cadAllowed[0]) : null;
   let s = reply;
   for (const token of bad) {
@@ -252,7 +281,9 @@ DOCUMENT Q&A — MG5/MG6, DISCLOSURE, INTERVIEW, EXHIBITS (MANDATORY)
 - **Interview:** You must **explicitly** cover each limb that appears in the summary: **partial account**; **denies core allegation or alternative explanation**; **no comment on certain technical matters**; **requests full CCTV/999 scope**. Omitting **no comment** or **partial account** is incorrect. **"No comment"** on technical matters is **not** the same as **"leaves open"** or refusing to answer — quote it faithfully when present.
 - **Client-safe summary:** Do not use **full CCTV**, **full CCTV window**, or **complete CCTV footage** unless the bundle clearly states full footage or master files are served. Prefer **partial**, **extract**, **continuity outstanding**, **engineer note awaited**, **full 999 master awaited**, when that matches MG6 or extracts.
 - **Exhibits:** **EX-** codes **verbatim** from the exhibit list only. **EX-CAD-** must be followed by **digits only** (e.g. EX-CAD-800431). Never bracketed CAD tokens, **PHONE#**, hashes, or invented refs. **Never** output instruction-style placeholders such as "(exhibit ref: …" — always the **literal** line from the exhibit list. **Never** output generic advisory sentences in place of a code (e.g. do not paste meta-instructions about "checking the exhibit list") — the answer must show the **actual** EX-CAD- plus digits from the list. If no code is visible, describe the item without a fake EX- code.
-- **Crown sequence (MG5 + charge only):** Bullets must be the **Crown's** alleged facts as framed in MG5/charge. Do **not** merge the **defence account** (e.g. work tool, denial mechanics) into the Crown sequence unless MG5 presents them as Crown allegations.
+- **Bundle reference id (the Reference line):** Copy **exactly** **NS-CPS-2026-** plus the **four-digit** suffix as printed in the bundle header (e.g. NS-CPS-2026-0436). Do **not** use bracket placeholders, PHONE-hash placeholders, hashes, truncated codes, or invented IDs — they are wrong for eval and disclosure discipline.
+- **Crown sequence (MG5 + charge only):** Bullets must be the **Crown's** alleged facts as framed in MG5/charge. Do **not** merge the **defence account** (e.g. work tool, denial mechanics) into the Crown sequence unless MG5 presents them as Crown allegations. Do **not** add bullets that are **only** "the defendant denies", "defence disputes", or "prosecution must prove X" unless MG5/charge text itself frames those as Crown factual allegations.
+- **Disclosure gap lists:** Do **not** claim gaps for document types the bundle never names (e.g. custody record, custody CCTV, interview recording, fire report) unless those words appear. Do **not** use **full CCTV window** / **complete CCTV footage** when the bundle only describes **partial**, **extract**, **continuity draft/unsigned**, or **full master awaited** for 999 — mirror MG6 and extract wording.
 - **Live issues / frictions:** List only issues the bundle **actually names** (phrases, headings, tension lines). Do **not** attach generic labels (e.g. "amount disputes", "timeline slip") unless that wording or clear equivalent appears in the cited section.
 - **CCTV / completeness tension:** MG5 may say CCTV is "tidy" or consistent while MG11 or an **extract note** flags partial/incomplete material — that is **not** "MG5 vs MG6" unless the **MG6 schedule row** itself contradicts MG5; cite the right sections.
 
@@ -449,6 +480,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
 
   if (bundleHasExhibitRefs) raw = sanitizeExhibitRefsInReply(raw, allowedExRefs);
   raw = replaceGenericExAdviceWithLiteralCad(raw, exhibitHaystack);
+  raw = replaceCorruptedNorthshireBundleRefs(raw, exhibitHaystack);
 
   const reply = raw.slice(0, MAX_REPLY_LENGTH);
 

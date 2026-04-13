@@ -4,7 +4,15 @@ Use **Defence plan chat** with **one bundle per case**. Ask the **same** questio
 
 Run in **batches** (e.g. 10–15 per turn) if the UI truncates. Mark **Pass / Fail** and paste failures for tuning.
 
+**Run header:** Start each eval with **item 0** (below) so pasted answers are self-identifying — anyone scoring can see which `Reference:` / PDF the block belongs to without guessing.
+
 You cannot list **every** question that will ever exist in criminal practice; this file is a **wide starter matrix**. Add your own stems when real cases expose a gap (e.g. bad character directions, hearsay, cell-site, BWV). Keep answers **bundle + snapshot + law chunks** grounded — not verdict predictions.
+
+---
+
+## 0. Run header (ask first — labels this PDF)
+
+**0.** Quote the **`Reference:`** line, **`Short title:`**, accused name, and key witness / other party name **exactly** as printed in the fictional bundle header (character-for-character). If a field is missing from the excerpt, say “not in excerpt” for that field only.
 
 ---
 
@@ -218,9 +226,10 @@ Use these as the **minimum** regression set per PDF:
 
 ## One-shot ordered list (copy everything in the block below)
 
-Same order as the doc: **A–K** (1–43), **M–S** (44–77), then **Golden 10** (78–87). Optional paraphrases for F and I sit after the block.
+Same order as the doc: **0** (run header), **A–K** (1–43), **M–S** (44–77), then **Golden 10** (78–87). Optional paraphrases for F and I sit after the block.
 
 ```
+0. Quote the Reference: line, Short title, accused name, and key witness / other party name exactly as printed in the fictional bundle header (character-for-character). If a field is missing from the excerpt, say “not in excerpt” for that field only.
 1. What offence tag(s) and plea appear on the charge sheet extract? Quote the line.
 2. Summarise the charge in one sentence using only wording from the charge extract.
 3. If the case snapshot offence differs from the charge extract, which should a solicitor rely on for “what the papers say” and why?
@@ -318,16 +327,17 @@ Same order as the doc: **A–K** (1–43), **M–S** (44–77), then **Golden 10
 
 ## Pass / fail tags (for your notes)
 
-Use short tags when logging: `charge`, `mg5`, `mg6-grid`, `mg6-forensics`, `mg6-continuity`, `hook`, `mg11`, `cctv-para`, `999-para`, `cad-para`, `interview-partial`, `interview-nocomment`, `chase`, `exhibit-verbatim`, `exhibit-cad`, `client-safe`, `contradiction`, `snapshot-align`, `strategy-override`, `crown-gaps`, `witness-id`, `forensics`, `procedure`, `offence-drill`, `safety-boundary`.
+Use short tags when logging: `run-header`, `charge`, `mg5`, `mg6-grid`, `mg6-forensics`, `mg6-continuity`, `hook`, `mg11`, `cctv-para`, `999-para`, `cad-para`, `interview-partial`, `interview-nocomment`, `chase`, `exhibit-verbatim`, `exhibit-cad`, `client-safe`, `contradiction`, `snapshot-align`, `strategy-override`, `crown-gaps`, `witness-id`, `forensics`, `procedure`, `offence-drill`, `safety-boundary`.
 
 ---
 
 ## Count
 
-- **Single copy-paste:** **One-shot ordered list** — flat **1–87** (1–43 A–K, 44–77 M–S, 78–87 Golden 10), plus optional F/I paraphrase lines after the code block.
-- Sections **A–K**: **43** numbered items (+ variants + optional Q37 stress test).
+- **Single copy-paste:** **One-shot ordered list** — flat **0–87** (**0** = run header; **1–43** A–K; **44–77** M–S; **78–87** Golden 10), plus optional F/I paraphrase lines after the code block.
+- **Run header:** **1** stem (**0**), not part of A–K numbering in section bodies; ask it first in every run.
+- Sections **A–K**: **43** numbered items (**1–43**) (+ variants + optional Q37 stress test).
 - Sections **M–S**: **34** numbered items (**44–77**).
 - Section **L**: **10** golden questions (parallel compact battery).
-- **Total numbered stems (A–K + M–S)**: **77** asks before paraphrases; **L** adds **10** compact checks (overlap by design with A–K — use **L** for fast regression, **M–S** for criminal breadth).
+- **Total numbered stems:** **1** run header (**0**) + **77** (A–K + M–S) + **10** Golden compact (**78–87**, overlap with A–K by design) → **88** lines in the one-shot block; **78** distinct eval stems if you skip Golden duplicate (**1–77** + **0**).
 
 Expand any bucket with **your own** paraphrases until failures stop; add **PDF-specific** extras when a bundle has a unique line (e.g. second CAD ref, BWV log, cell-site). Add new **subsections under R** when you support more offence families in test data.
