@@ -22,7 +22,10 @@ const MAX_EVIDENCE_CHARS = 1200;
 const MAX_TIMELINE_CHARS = 500;
 const LAW_CHUNKS_LIMIT = 4;
 const MAX_OUTPUT_TOKENS = 3072;
-const MAX_BUNDLE_EXCERPT_CHARS = 12_000;
+/** Model context budget; truncation uses head+tail so Reference + exhibit list survive. */
+const MAX_BUNDLE_EXCERPT_CHARS = 24_000;
+/** Hard cap on raw bundle text used for ref extraction / post-process (avoid huge rows). */
+const MAX_BUNDLE_FULL_CHARS_FOR_REFS = 200_000;
 
 /**
  * Exhibit refs as they appear in Northshire-style bundles: EX-CCTV-81, EX-CAD-800431, EX-999-TXT, EX-MG6-EMAIL.
@@ -100,7 +103,9 @@ function replaceGenericExAdviceWithLiteralCad(reply: string, haystack: string): 
   if (cads.length < 1) return reply;
   const literal = cads[0];
   const esc = GENERIC_EX_ADVICE_PHRASE.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  return reply.replace(new RegExp(esc, "gi"), literal);
+  let s = reply.replace(new RegExp(`${esc}\\s*\\.?`, "gi"), literal);
+  s = s.replace(new RegExp(esc, "gi"), literal);
+  return s;
 }
 
 const NORTHSHIRE_BUNDLE_REF_RE = /NS-CPS-2026-\d{4}/gi;
@@ -118,15 +123,18 @@ function uniqueNorthshireRefs(haystack: string): string[] {
 }
 
 /**
- * Fix model / scrubber corruption of Reference lines (e.g. NS-CPS-[PHONE#…]) when the bundle contains exactly one canonical NS-CPS-2026-####.
+ * Fix model / scrubber corruption of Reference lines (e.g. NS-CPS-[PHONE#…]) when the bundle contains
+ * at least one canonical NS-CPS-2026-####. Uses the first match (typical single-bundle case).
  */
 function replaceCorruptedNorthshireBundleRefs(reply: string, haystack: string): string {
   const refs = uniqueNorthshireRefs(haystack);
-  if (refs.length !== 1) return reply;
+  if (refs.length < 1) return reply;
   const canonical = refs[0];
   let s = reply;
   s = s.replace(/NS-CPS-\[PHONE#[^\]]*\]/gi, canonical);
   s = s.replace(/NS-CPS-\[[^\]]*PHONE[^\]]*\]/gi, canonical);
+  s = s.replace(/NS-CPS-\[#[^\]]+\]/gi, canonical);
+  s = s.replace(/NS-CPS-\[HASH[^\]]*\]/gi, canonical);
   return s;
 }
 
@@ -172,6 +180,17 @@ function getDocumentTextForChat(d: { raw_text?: string | null; extracted_json?: 
     if (parts.length) return parts.join("\n");
   }
   return raw;
+}
+
+/** Keep start (charge/MG5) and end (exhibit list, END marker) when trimming for the model. */
+function truncateBundleForModel(full: string, max: number): string {
+  if (full.length <= max) return full;
+  const sep =
+    "\n\n[... bundle excerpt truncated for length; beginning and end preserved ...]\n\n";
+  const budget = Math.max(0, max - sep.length);
+  const head = Math.floor(budget * 0.5);
+  const tail = budget - head;
+  return `${full.slice(0, head)}${sep}${full.slice(-tail)}`;
 }
 
 /** Build system prompt with snapshot values embedded so the model sees OFFENCE/STANCE/STAGE/STRATEGY as system-level authority. */
@@ -379,14 +398,16 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
 
   // Bundle excerpt so the model can reason from actual document wording (MG5, charges, key facts)
   let bundleExcerpt = "";
+  let combinedBundleFull = "";
   try {
     const { data: docs } = await supabase
       .from("documents")
       .select("raw_text, extracted_json")
       .eq("case_id", caseId);
     if (docs?.length) {
-      const combined = docs.map((d) => getDocumentTextForChat(d)).filter(Boolean).join("\n\n");
-      if (combined) bundleExcerpt = combined.slice(0, MAX_BUNDLE_EXCERPT_CHARS);
+      combinedBundleFull = docs.map((d) => getDocumentTextForChat(d)).filter(Boolean).join("\n\n");
+      const capped = combinedBundleFull.slice(0, MAX_BUNDLE_FULL_CHARS_FOR_REFS);
+      if (capped) bundleExcerpt = truncateBundleForModel(capped, MAX_BUNDLE_EXCERPT_CHARS);
     }
   } catch {
     // non-fatal
@@ -423,7 +444,16 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
 
   const openai = getOpenAIClient();
   const systemPrompt = buildSystemPrompt(snapshot);
-  const exhibitHaystack = `${bundleExcerpt}\n${message}`;
+  /** Full bundle text + user-supplied summaries so EX-CAD / Reference are discoverable even if model context is truncated. */
+  const exhibitHaystack = [
+    combinedBundleFull.slice(0, MAX_BUNDLE_FULL_CHARS_FOR_REFS),
+    planSummary,
+    evidenceSummary,
+    timelineSummary,
+    message,
+  ]
+    .filter((s) => typeof s === "string" && s.trim().length > 0)
+    .join("\n\n");
   const allowedExRefs = collectAllowedExRefs(exhibitHaystack);
   const bundleHasExhibitRefs = allowedExRefs.size > 0;
 
@@ -464,7 +494,11 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
 
   const badRefs = ungroundedExhibitRefs(raw, allowedExRefs);
   if (badRefs.length > 0 && bundleHasExhibitRefs) {
-    const correction = `Your previous answer used exhibit reference(s) that are not exact matches to the bundle exhibit list: ${badRefs.join(", ")}. CAD refs must be EX-CAD- followed by digits only (no brackets, no PHONE). Rewrite the **full** answer and copy each EX- token exactly as printed in the bundle exhibit list — no templates or invented codes.`;
+    const refHint =
+      uniqueNorthshireRefs(exhibitHaystack).length >= 1
+        ? ` The bundle Reference line must be copied exactly as printed (e.g. ${uniqueNorthshireRefs(exhibitHaystack)[0]}).`
+        : "";
+    const correction = `Your previous answer used exhibit reference(s) that are not exact matches to the bundle exhibit list: ${badRefs.join(", ")}. CAD refs must be EX-CAD- followed by digits only (no brackets, no PHONE). Rewrite the **full** answer and copy each EX- token exactly as printed in the bundle exhibit list — no templates or invented codes.${refHint}`;
     try {
       const second = await runChat([
         { role: "system", content: systemPrompt },
@@ -481,6 +515,12 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   if (bundleHasExhibitRefs) raw = sanitizeExhibitRefsInReply(raw, allowedExRefs);
   raw = replaceGenericExAdviceWithLiteralCad(raw, exhibitHaystack);
   raw = replaceCorruptedNorthshireBundleRefs(raw, exhibitHaystack);
+  if (
+    uniqueNorthshireRefs(exhibitHaystack).length >= 1 &&
+    (/NS-CPS-\[PHONE/i.test(raw) || /NS-CPS-\[#[^\]]+\]/i.test(raw))
+  ) {
+    raw = replaceCorruptedNorthshireBundleRefs(raw, exhibitHaystack);
+  }
 
   const reply = raw.slice(0, MAX_REPLY_LENGTH);
 

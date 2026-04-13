@@ -1,0 +1,114 @@
+===============================================================================
+NORTHSHIRE CPS / POLICE — FICTIONAL BUNDLE (TEST DATA ONLY)
+===============================================================================
+Reference: NS-CPS-2026-EVAL01
+Short title: Mega mixed counts — theft + ABH + drugs + blade + POA (eval coverage)
+Accused: RILEY STONE (DOB 14/08/1999)
+Co-defendant on charge extract: JORDAN PEEL (DOB 03/12/1998) (fictional joint enterprise line — separate count linkage)
+Other party / key witness: SKYLER NGUYEN (DOB 22/05/1994)
+Stage: PTPH | Messiness: Messy
+Primary eval hook: Cell-site map vs till roll reconciliation
+===============================================================================
+
+NOTE: This is fictional training data. It is not legal advice and not a real disclosure bundle.
+
+=== SECTION: COVER_INDEX ===
+
+INDEX (fictional)
+
+Document                                              | Note
+------------------------------------------------------|------------------------------
+Charge sheet extract                                  | Below — multiple count tags
+MG5 — Case summary                                    | Draft narrative
+MG6(a) — Schedule of initial disclosure              | Served vs outstanding + BWV + digital
+MG11 — Key witness statement                          | ID + bad-character flag line
+CCTV / 999 / CAD / BWV                               | Extract notes
+Interview summary                                     | Fictional extract
+Disclosure chase note                                 | Fictional email / letter
+Exhibit list                                          | Verbatim EX- refs
+
+=== SECTION: CHARGE ===
+
+CHARGE SHEET — EXTRACT (FICTION)
+Defendant: RILEY STONE
+Co-defendant named on extract (fiction): JORDAN PEEL (linked to Count 2 only on the face of the extract).
+Count 1 tag (fiction): Theft from shop — retail (£847.20 till reconciliation in dispute).
+Count 2 tag (fiction): s.47 ABH — injury (bruising / closed fist) at Northshire Retail Park.
+Count 3 tag (fiction): Possession Class B drug (cannabis) — small quantity; messages context referenced in MG5.
+Count 4 tag (fiction): Possession bladed article in public place (non-lock folding knife fiction).
+Count 5 tag (fiction): Public order — threatening / abusive behaviour (s.4-style fiction label).
+Plea: Not guilty (fictional) on all counts.
+
+=== SECTION: MG5 ===
+
+MG5 — CASE SUMMARY (DRAFT)
+Allegation (fiction): The Crown say that at Northshire Retail Park on 02/01/2026 events unfolded involving theft from a shop till (amount £847.20 on MG5 narrative vs £902.40 on MG11 schedule line), an assault causing bruising with a closed fist, possession of a small bag of cannabis with message context on a handset, possession of a folding knife in public, and threatening behaviour toward staff.
+The defence account (fiction): denies the core allegation or disputes the precise mechanics (e.g. push vs punch, or intent vs recklessness) where those stock lines appear; otherwise disputes identification on cell-site attribution and disputes till reconciliation.
+Grounds for dispute / friction (fiction): Cell-site map vs till roll reconciliation; MG5 £ narrative vs MG11 higher till figure; medical evidence schedule only for ABH limb; BWV continuity draft/unsigned.
+Injury narrative (fiction): Crown say bruising to cheek and tenderness — GP triage note served as strategy summary only; full GP records awaited per MG6.
+Drug narrative (fiction): Crown reference messages thread “meet corner shop” as context — download extract partial; full handset B download awaited.
+CCTV / tech: at least one timing, continuity, or extraction issue appears in the schedule; BWV segment served as partial with engineer note awaited.
+
+=== SECTION: MG6 ===
+
+MG6(a) — SCHEDULE OF INITIAL DISCLOSURE (FICTION)
+Category                        | Served (initial)                        | Awaiting / Retained / Note
+--------------------------------|------------------------------------------|----------------------------------------
+MG5 case summary                | yes (draft)                             | final after reconciliation
+MG11 key witness                | yes (possibly draft)                    | signed copy if draft
+CCTV / footage list             | yes (partial / served)                  | continuity statement / engineer note
+999 calls                       | served (extract)                        | full master audio outstanding
+CAD / dispatch                  | partial print served                    | fuller narrative attachment
+Forensics / medical             | strategy note served                    | lab report / GP records
+Continuity / chain              | draft or unsigned                       | corrected continuity to be provided
+Phones / downloads              | extract handset A served                | full download handset B + iCloud continuity awaited
+Cell-site / attribution         | initial map PDF served                  | full attribution pack + RF engineering note awaited
+BWV / body-worn                 | partial segment served (officer A)      | primary officer full shift download + redaction log awaited
+Bad character / PNC index       | index flag line served (PNC summary)    | full gateway application & bad-character directions not in bundle
+Example “tension” note (fiction): Cell-site map vs till roll reconciliation.
+
+=== SECTION: MG11 ===
+
+MG11 — KEY WITNESS STATEMENT (EXTRACT)
+Status marker (fiction): draft statement (signature block pending).
+Identification (fiction): Officer did not conduct a formal VIP-style parade; recognition described as from BWV stills and in-store CCTV stills only — bundle text says “no Turnbull directions drafted.”
+Single-witness risk (fiction): bundle text states “single civilian witness to the till grab; corroboration from CCTV/BWV only if continuity resolved.”
+Bad character (fiction): MG11 footnote flags “PNC index shows unrelated 2019 dishonesty — Crown bad-character gateway not exhibited in this extract.”
+I describe what I saw / heard as best as I can. I am aware that some timing and detail may be uncertain.
+I mention that CCTV and/or 999 material exists but that the version served might be incomplete or extracted.
+
+=== SECTION: CCTV_999_CAD ===
+
+CCTV / 999 / CAD / BWV — EXTRACTS (FICTION)
+CCTV note: partial clips served; continuity issues flagged (draft / unsigned); clock offset +2s noted vs till receipt timestamps.
+999 note: partial extract served; full master awaited or flagged for reconciliation.
+CAD note: dispatch line present; fuller log or narrative attachment listed on MG6.
+BWV note: partial officer-A segment served; redaction log awaited; continuity for second officer body-worn described as “segment pending.”
+
+=== SECTION: DISCLOSURE ===
+
+DISCLOSURE CHASE — EXTRACT (FICTION)
+Email: “Please confirm outstanding items so we can update the MG5 narrative and reconcile the schedule before next hearing.”
+
+=== SECTION: INTERVIEW ===
+
+INTERVIEW SUMMARY — IR-EVAL01 (FICTIONAL EXTRACT)
+Caution given. Defendant gives partial account: denies core allegation or claims alternative explanation.
+No comment on certain technical matters; requests full disclosure of the CCTV/999 scope.
+
+=== SECTION: EXHIBITS ===
+
+EXHIBIT LIST (FICTION)
+EX-CCTV-EVAL01-A (served)
+EX-CCTV-EVAL01-B (extract; served)
+EX-999-TXT (extract; served)
+EX-CAD-809901 (partial print)
+EX-BWV-EVAL01 (partial segment)
+EX-CELL-EVAL01 (initial map)
+EX-HANDSET-A (extract)
+EX-MG6-EMAIL (chase)
+EX-PNC-IDX (index flag summary — fictional)
+
+===============================================================================
+END OF FILE — NS-CPS-2026-EVAL01
+===============================================================================
