@@ -517,7 +517,8 @@ export async function POST(request: Request) {
         name: file.name,
         type: file.type,
         storage_url: `${STORAGE_BUCKET}/${storagePath}`,
-        raw_text: redactedText, // Store extracted raw text for case-context diagnostics
+        raw_text: redactedText,
+        extracted_text: redactedText,
         extracted_json: enrichedExtraction,
         uploaded_by: userId,
         redaction_map: redactionMap,
