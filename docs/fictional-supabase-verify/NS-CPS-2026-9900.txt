@@ -1,0 +1,78 @@
+===============================================================================
+CASEBRAIN — SUPABASE VERIFICATION BUNDLE (FICTIONAL TEST ONLY)
+Created for: upload / raw_text / extracted_text / redaction checks — 2026-04-18
+This filename and Reference are UNIQUE — not part of fictional-golden-10 (0431–0440).
+===============================================================================
+Reference: NS-CPS-2026-9900
+Verification marker: VERIFY-SUPABASE-20260418
+Short title: Supabase pipeline smoke test (fictional)
+Accused: ZARA VERIFY (DOB 01/01/1990)
+Stage: Test bundle | Purpose: distinguish new upload in dashboard and DB
+===============================================================================
+
+NOTE: Fictional training data only. Not legal advice.
+
+=== SECTION: COVER_INDEX ===
+
+INDEX (fictional — use this Reference line verbatim in tests)
+
+Document                                              | Note
+------------------------------------------------------|------------------------------
+Charge sheet extract                                  | Below
+MG5 — Case summary                                    | Draft
+MG6(a) — Schedule of initial disclosure                 | Served vs outstanding
+MG11 — Key witness statement                          | Extract
+CCTV / 999 / CAD                                      | Extract notes
+Exhibit list                                          | EX- codes below
+
+=== SECTION: CHARGE ===
+
+CHARGE SHEET — EXTRACT (FICTION)
+Defendant: ZARA VERIFY
+Offence(s) (fiction): Test offence label for pipeline verification.
+Plea: Not guilty (fiction).
+
+=== SECTION: MG5 ===
+
+MG5 — CASE SUMMARY (DRAFT)
+Allegation (fiction): Northshire test narrative for VERIFY-SUPABASE-20260418.
+The defence (fiction): denies for test purposes.
+
+=== SECTION: MG6 ===
+
+MG6(a) — SCHEDULE OF INITIAL DISCLOSURE (FICTION)
+Category                        | Served (initial)           | Note
+--------------------------------|----------------------------|------------------------
+999 call extracts               | served (extract)           | reconciliation note
+CAD / dispatch                  | partial print served       | see EX-CAD below
+MG5 case summary                | yes (draft)                | final after review
+
+=== SECTION: MG11 ===
+
+MG11 — KEY WITNESS STATEMENT (EXTRACT)
+I give this statement for the VERIFY bundle. CCTV and 999 material may exist.
+Timing is stated as accurately as I can recall.
+
+=== SECTION: CCTV_999_CAD ===
+
+CCTV / 999 / CAD — EXTRACTS (FICTION)
+999: fictional log reference 999-VERIFY-20260418-01.
+CAD: dispatch line must remain readable — EX-CAD-991234 and EX-CAD-800439 appear on the exhibit list.
+
+=== SECTION: PII SANITY (SHOULD REDACT IN APP) ===
+
+The following are dummy PII to confirm redaction still runs (they must NOT replace legal refs above):
+Contact (fiction): 07700 900123
+Email (fiction): supabase.verify.test@example.com
+
+=== SECTION: EXHIBITS ===
+
+EXHIBIT LIST (FICTION — verbatim EX- codes for eval)
+EX-CCTV-VERIFY-01 (served)
+EX-999-TXT-VERIFY (extract)
+EX-CAD-991234 (primary test CAD code — unique to this bundle)
+EX-CAD-800439 (secondary — matches common test pattern)
+EX-MG6-SCHED-VERIFY (chase)
+===============================================================================
+END OF FILE — NS-CPS-2026-9900 — VERIFY-SUPABASE-20260418
+===============================================================================

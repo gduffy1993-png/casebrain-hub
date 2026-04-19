@@ -37,6 +37,7 @@
     "generate:fictional-golden-sources": "node scripts/generate-fictional-golden-10-sources.cjs",
     "generate:fictional-golden-pdfs": "node scripts/generate-fictional-golden-pdfs.cjs",
     "generate:fictional-kitchen-pdf": "node scripts/generate-fictional-golden-pdfs.cjs docs/fictional-kitchen-sink",
+    "generate:fictional-supabase-verify-pdf": "node scripts/generate-fictional-golden-pdfs.cjs docs/fictional-supabase-verify",
     "generate:fictional-golden": "npm run generate:fictional-golden-sources && npm run generate:fictional-golden-pdfs",
     "generate:fictional-sources:0406-0435": "node scripts/generate-fictional-case-sources-0406-0435.cjs",
     "electron": "electron .",
