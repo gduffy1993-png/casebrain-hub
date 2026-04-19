@@ -193,6 +193,60 @@ function truncateBundleForModel(full: string, max: number): string {
   return `${full.slice(0, head)}${sep}${full.slice(-tail)}`;
 }
 
+const HEADER_SCAN_CHARS = 16_000;
+
+/**
+ * Deterministic "sticky" headline from bundle text so Reference / hook / EX- codes survive
+ * long prompts and head+tail truncation. Parsed from the start of the combined document text.
+ */
+function extractBundleHeadlineBlock(full: string): string | null {
+  if (!full || full.trim().length < 30) return null;
+  const scanHeader = full.slice(0, HEADER_SCAN_CHARS);
+  const lines: string[] = [];
+
+  const ref = scanHeader.match(/^\s*Reference:\s*(.+)$/im);
+  const short = scanHeader.match(/^\s*Short title:\s*(.+)$/im);
+  const accused = scanHeader.match(/^\s*Accused:\s*(.+)$/im);
+  const witness =
+    scanHeader.match(/^\s*Other party\s*\/\s*key witness:\s*(.+)$/im) ??
+    scanHeader.match(/^\s*Key witness:\s*(.+)$/im);
+  const hook = scanHeader.match(/^\s*Primary eval hook:\s*(.+)$/im);
+  const offenceTag = scanHeader.match(/Offence\(s\) as tag:\s*(.+)$/im);
+  const plea = scanHeader.match(/^\s*Plea:\s*(.+)$/im);
+
+  if (ref) lines.push(`Reference: ${ref[1]!.trim()}`);
+  if (short) lines.push(`Short title: ${short[1]!.trim()}`);
+  if (accused) lines.push(`Accused: ${accused[1]!.trim()}`);
+  if (witness) lines.push(`Other party / key witness: ${witness[1]!.trim()}`);
+  if (hook) lines.push(`Primary eval hook: ${hook[1]!.trim()}`);
+  if (offenceTag) lines.push(`Offence(s) as tag: ${offenceTag[1]!.trim()}`);
+  if (plea) lines.push(`Plea: ${plea[1]!.trim()}`);
+
+  const exSet = new Set<string>();
+  const scanEx = full.slice(0, MAX_BUNDLE_FULL_CHARS_FOR_REFS);
+  const exStrict = new RegExp(STRICT_EX_REF_RE.source, "gi");
+  let em: RegExpExecArray | null;
+  while ((em = exStrict.exec(scanEx)) !== null) exSet.add(em[0]);
+  for (const cm of scanEx.matchAll(new RegExp(EX_CAD_DIGITS_RE.source, "gi"))) {
+    exSet.add(cm[0]);
+  }
+  const exSorted = [...exSet].sort((a, b) => a.localeCompare(b));
+  if (exSorted.length) {
+    lines.push("");
+    lines.push("Exhibit codes from bundle (verbatim):");
+    for (const x of exSorted) lines.push(`  ${x}`);
+  }
+
+  if (lines.length === 0) return null;
+
+  return [
+    "========================",
+    "BUNDLE HEADLINE (read first — key labels + exhibit codes; may repeat text below)",
+    "========================",
+    ...lines,
+  ].join("\n");
+}
+
 /** Build system prompt with snapshot values embedded so the model sees OFFENCE/STANCE/STAGE/STRATEGY as system-level authority. */
 function buildSystemPrompt(snapshot: Awaited<ReturnType<typeof getCaseStateSnapshot>> | null): string {
   const offenceLabel = snapshot?.offence_detected_label?.trim() ?? "(not set)";
@@ -413,6 +467,8 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     // non-fatal
   }
 
+  const bundleHeadlineBlock = extractBundleHeadlineBlock(combinedBundleFull);
+
   // Offence-aware law retrieval: include detected offence in query so relevant law is prioritised
   const lawQuery = snapshot?.offence_detected_label
     ? `${message} ${snapshot.offence_detected_label}`.trim()
@@ -428,6 +484,9 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   const changeList = await getChangeListForContext(supabase, caseId, orgId);
 
   const contextParts: string[] = [];
+  if (bundleHeadlineBlock) {
+    contextParts.push(bundleHeadlineBlock);
+  }
   if (changeList) contextParts.push(changeList);
   if (sourceOfTruthBlock) contextParts.push(sourceOfTruthBlock);
   if (narrativeBlock) contextParts.push(narrativeBlock);
