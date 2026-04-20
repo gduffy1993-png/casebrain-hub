@@ -3,6 +3,7 @@ import { getSupabaseAdminClient } from "@/lib/supabase";
 import { Card } from "@/components/ui/card";
 import { Trash2, RotateCcw, AlertTriangle } from "lucide-react";
 import { BinCaseCard } from "@/components/cases/BinCaseCard";
+import { BinDeleteAllButton } from "@/components/cases/BinDeleteAllButton";
 
 export default async function BinPage() {
   const { orgId } = await requireAuthContext();
@@ -65,6 +66,7 @@ export default async function BinPage() {
       <Card
         title={`Archived Cases (${archivedCases?.length ?? 0})`}
         description="Cases that have been moved to the bin. Restore or delete permanently."
+        action={<BinDeleteAllButton archivedCount={archivedCases?.length ?? 0} />}
       >
         {archivedCases && archivedCases.length > 0 ? (
           <div className="space-y-3">
