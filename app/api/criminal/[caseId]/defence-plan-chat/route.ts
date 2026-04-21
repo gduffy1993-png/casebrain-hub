@@ -218,7 +218,12 @@ function extractBundleHeadlineBlock(full: string): string | null {
   if (short) lines.push(`Short title: ${short[1]!.trim()}`);
   if (accused) lines.push(`Accused: ${accused[1]!.trim()}`);
   if (witness) lines.push(`Other party / key witness: ${witness[1]!.trim()}`);
-  if (hook) lines.push(`Primary eval hook: ${hook[1]!.trim()}`);
+  if (hook) {
+    lines.push(`Primary eval hook: ${hook[1]!.trim()}`);
+    lines.push(
+      "(For hook / friction / eval-tension questions: this line is the primary hook — not the separate “defence account” sentence in MG5 unless that sentence is literally the same.)",
+    );
+  }
   if (offenceTag) lines.push(`Offence(s) as tag: ${offenceTag[1]!.trim()}`);
   if (plea) lines.push(`Plea: ${plea[1]!.trim()}`);
 
@@ -366,6 +371,7 @@ TRUST & GROUNDING (SOLICITOR-GRADE)
 - **Cite where you see it:** For material facts (served/outstanding, hook, exhibit codes, interview limbs, chase wording), tie the point to **where** it appears in the materials — e.g. "(MG6 schedule — 999 row)", "(Exhibit list — EX-…)", "(Interview summary)". A short tag is enough; no long footnotes.
 - **Not in the bundle:** If the question asks for a document, topic, or fact **not named** in the bundle excerpt or BUNDLE HEADLINE, say **not stated in the materials provided** (or **not in the excerpt**) — do **not** invent custody records, BWV, fire reports, or extra witnesses unless those words appear.
 - **Accused name:** The defendant's name for any summary must match the **Accused:** line in the **BUNDLE HEADLINE** / bundle header. A person named only as a **third party**, **witness**, or **hook** label (e.g. "Third party Carl") is **not** the accused unless the header lists them as Accused — do not swap names between cases or conflate hook text with defendant identity.
+- **Witness / MG11 names (no invention):** Do **not** invent or guess a witness forename or surname for **MG11** or any row (e.g. do not write "the witness, Jane Smith") unless that **exact name** appears in the materials — charge sheet, **Accused:** / **Other party / key witness:** header lines, or the witness statement body. If MG11 is anonymous (only "I describe what I saw…" with no printed name), say **the key witness** or **the witness statement** — never fabricate a name to sound concrete.
 - **Three answer shapes** (follow the solicitor's ask; default to precise factual unless they ask otherwise):
   - **Analyst / disclosure** — MG6 + CCTV/999/CAD extracts + exhibits; checklist style; **verbatim** codes and **Primary eval hook** when relevant.
   - **Tactics / pressure** — Options grounded in **specific** gaps or tensions the bundle names; no generic crime-blog strategy disconnected from this file.
