@@ -54,6 +54,7 @@ import { DefencePlanBox } from "./DefencePlanBox";
 import { StrategyTimelineSection } from "./StrategyTimelineSection";
 import { VerdictRatingBlock } from "./VerdictRatingBlock";
 import { ChangeListSection } from "./ChangeListSection";
+import { BundleSourcePanels } from "./BundleSourcePanels";
 
 /** Tab ids for criminal case page. URL ?tab= must be one of these. Order: primary then secondary. */
 const CRIMINAL_CASE_TAB_IDS = [
@@ -624,6 +625,8 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
                 </button>
               ))}
             </div>
+
+            <BundleSourcePanels caseId={caseId} />
 
             {strategySubTab === "overview" && (
               <StrategyOverviewSubTab
