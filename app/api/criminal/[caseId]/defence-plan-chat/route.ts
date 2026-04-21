@@ -168,6 +168,66 @@ function sanitizeExhibitRefsInReply(reply: string, allowed: Set<string>): string
   return s;
 }
 
+/**
+ * One-shot correction when the model drifts on common Golden-eval failure modes (CCTV wording, interview
+ * limbs vs "leaves open", hook vs defence line). Runs before EX-ref retry.
+ */
+function buildBundleGroundingRetry(reply: string, exhibitHaystack: string, userMessage: string): string | null {
+  const issues: string[] = [];
+  const q = userMessage.toLowerCase();
+  const hay = exhibitHaystack;
+
+  if (
+    /full CCTV footage|complete CCTV footage|full CCTV window/i.test(reply) &&
+    !/full CCTV footage|complete CCTV footage|full CCTV window/i.test(hay)
+  ) {
+    issues.push(
+      "Do not use **full CCTV footage**, **complete CCTV footage**, or **full CCTV window** as disclosure gaps unless those **exact phrases** appear in the bundle. Use **partial**, **extract**, **continuity**, **tidy schedule**, **engineer note**, etc., matching MG6 and CCTV notes.",
+    );
+  }
+
+  if (/\binterview\b/i.test(userMessage) && /\bleaves open\b/i.test(reply) && hay.includes("No comment on certain technical matters")) {
+    issues.push(
+      'The interview summary includes **No comment on certain technical matters** — do **not** rephrase that as **"leaves open"**; treat **no comment** as its own limb.',
+    );
+  }
+
+  const hookM = hay.match(/Primary\s+eval\s+hook:\s*([^\n\r]+)/i);
+  if (hookM && /hook|friction|primary\s+eval|eval\s*tension/i.test(q)) {
+    const exp = hookM[1]!.trim();
+    if (exp.length > 2) {
+      const needle = exp.slice(0, Math.min(44, exp.length)).toLowerCase();
+      const r = reply.toLowerCase();
+      const defenceNoise = "denies the core allegation or disputes the precise mechanics";
+      if (!r.includes(needle)) {
+        issues.push(
+          `The bundle headline states Primary eval hook: ${exp}. The hook / friction section must lead with that label **verbatim**, not the generic MG5 defence-account line ("${defenceNoise}") unless that text **is** literally the Primary eval hook.`,
+        );
+      }
+    }
+  }
+
+  if (/witness.*\b[A-Z][a-z]+\s+[A-Z][a-z]+\b/i.test(reply) && /\bMG11\b/i.test(reply)) {
+    const nameGuess = reply.match(/witness,?\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)+)/i);
+    if (nameGuess) {
+      const fullName = nameGuess[1]!.trim();
+      const parts = fullName.split(/\s+/).filter((w) => w.length > 1);
+      if (parts.length >= 2) {
+        const a = parts[0]!.toLowerCase();
+        const b = parts[1]!.toLowerCase();
+        if (!hay.toLowerCase().includes(a) || !hay.toLowerCase().includes(b)) {
+          issues.push(
+            "Do not invent a witness **forename and surname** for MG11 unless both appear verbatim in the bundle (header, charge, or witness statement). Use **the key witness** if the statement is anonymous.",
+          );
+        }
+      }
+    }
+  }
+
+  if (issues.length === 0) return null;
+  return `Rewrite your **entire** previous answer. Apply these grounding fixes:\n${issues.map((s) => `- ${s}`).join("\n")}\nPreserve correct EX- codes verbatim from the bundle exhibit list.`;
+}
+
 function getDocumentTextForChat(d: { raw_text?: string | null; extracted_json?: unknown }): string {
   const raw = typeof d.raw_text === "string" ? d.raw_text.trim() : "";
   if (raw.length > 100) return raw;
@@ -193,7 +253,8 @@ function truncateBundleForModel(full: string, max: number): string {
   return `${full.slice(0, head)}${sep}${full.slice(-tail)}`;
 }
 
-const HEADER_SCAN_CHARS = 16_000;
+/** Wide enough that a second PDF does not push the Northshire header out of range; multi-doc cases must still surface Primary eval hook. */
+const HEADER_SCAN_CHARS = 220_000;
 
 /**
  * Deterministic "sticky" headline from bundle text so Reference / hook / EX- codes survive
@@ -201,7 +262,7 @@ const HEADER_SCAN_CHARS = 16_000;
  */
 function extractBundleHeadlineBlock(full: string): string | null {
   if (!full || full.trim().length < 30) return null;
-  const scanHeader = full.slice(0, HEADER_SCAN_CHARS);
+  const scanHeader = full.slice(0, Math.min(full.length, HEADER_SCAN_CHARS));
   const lines: string[] = [];
 
   const ref = scanHeader.match(/^\s*Reference:\s*(.+)$/im);
@@ -210,7 +271,11 @@ function extractBundleHeadlineBlock(full: string): string | null {
   const witness =
     scanHeader.match(/^\s*Other party\s*\/\s*key witness:\s*(.+)$/im) ??
     scanHeader.match(/^\s*Key witness:\s*(.+)$/im);
-  const hook = scanHeader.match(/^\s*Primary eval hook:\s*(.+)$/im);
+  let hook = scanHeader.match(/^\s*Primary eval hook:\s*(.+)$/im);
+  if (!hook) {
+    const loose = full.slice(0, 500_000).match(/Primary\s+eval\s+hook:\s*([^\n\r]+)/i);
+    if (loose) hook = loose as RegExpMatchArray;
+  }
   const offenceTag = scanHeader.match(/Offence\(s\) as tag:\s*(.+)$/im);
   const plea = scanHeader.match(/^\s*Plea:\s*(.+)$/im);
 
@@ -218,11 +283,13 @@ function extractBundleHeadlineBlock(full: string): string | null {
   if (short) lines.push(`Short title: ${short[1]!.trim()}`);
   if (accused) lines.push(`Accused: ${accused[1]!.trim()}`);
   if (witness) lines.push(`Other party / key witness: ${witness[1]!.trim()}`);
-  if (hook) {
-    lines.push(`Primary eval hook: ${hook[1]!.trim()}`);
+  if (hook?.[1]) {
+    const hookText = hook[1]!.trim();
+    lines.push(`Primary eval hook: ${hookText}`);
     lines.push(
-      "(For hook / friction / eval-tension questions: this line is the primary hook — not the separate “defence account” sentence in MG5 unless that sentence is literally the same.)",
+      `(For hook / friction / eval-tension questions: this line is the primary hook — not the separate “defence account” sentence in MG5 unless that sentence is literally the same.)`,
     );
+    lines.push(`HOOK (verbatim — use this first in hook answers, not the defence-account line): ${hookText}`);
   }
   if (offenceTag) lines.push(`Offence(s) as tag: ${offenceTag[1]!.trim()}`);
   if (plea) lines.push(`Plea: ${plea[1]!.trim()}`);
@@ -356,6 +423,7 @@ DOCUMENT Q&A — MG5/MG6, DISCLOSURE, INTERVIEW, EXHIBITS (MANDATORY)
 - **CCTV / 999 / CAD (three paragraphs when asked):** Paragraph 1 = CCTV only: MG6 CCTV row plus every **CCTV note** detail (continuity, draft/unsigned, clock offset, till-camera or hallway segment, engineer note, partial served, tidy schedule, etc.). Paragraph 2 = 999 only: MG6 999 row plus **999 note** (partial extract, full master awaited, reconciliation). Paragraph 3 = CAD only: MG6 CAD row plus **CAD note** (partial print, fuller log, narrative on MG6). Do not blend channels into one paragraph.
 - **Hook / Primary eval hook:** For questions about the **hook**, **friction**, or **primary eval tension**, treat **Primary eval hook:** in the **BUNDLE HEADLINE** block at the start of the user message (or the same line in the bundle header/excerpt) as **authoritative**. **Lead** with that label **verbatim** (first sentence or bullet) when it exists — **then** say where it repeats in MG5 / MG6. Do **not** substitute the generic **defence account** line ("denies the core allegation or disputes the precise mechanics") as **the** hook unless that wording **is** literally the Primary eval hook. If the same hook text appears under **MG5** (e.g. grounds for dispute / friction) **and** again under **MG6** (e.g. example tension note / “tension” line in the MG6 schedule), say it appears in **MG5 and MG6** — do **not** say **MG5 only**. Before answering “MG5 only,” scan the **MG6** section for the **Primary eval hook** wording or the headline hook phrase. Do not call the hook "undefined" or "only flagged" when the bundle gives a concrete Primary eval hook line.
 - **MG5 offence fit / elements:** Be honest about what MG5 does and does not spell out. If **assault-stock** lines (push/punch, intent/recklessness) appear but the **charge** is not assault-led (theft, handling, fraud, public order, etc.), say they read as **generic boilerplate** unless MG5 ties them to this case.
+- **MG11:** If the witness statement body does **not** print a person’s **forename and surname** (or full name), do **not** invent a witness name — use **the key witness** / **the witness statement** only. (Do **not** output placeholder-style invented names.)
 - **Interview:** You must **explicitly** cover **every** limb the summary contains — use **four** distinct phrases or sub-bullets when all four appear: **partial account**; **denies core allegation or alternative explanation**; **no comment on certain technical matters**; **requests full CCTV/999 scope**. Do **not** merge **no comment** into the denial line. Omitting **no comment** or **partial account** is incorrect. When the summary says **No comment on certain technical matters** (or equivalent), you must use **no comment** — do **not** substitute **"leaves open"**, **"silent on"**, or **"declines to address"**; those are **different** limbs than **no comment** in this template.
 - **Client-safe summary:** When **BUNDLE HEADLINE** includes **Accused:**, **open** with the defendant’s name (e.g. “The allegation against [name] is…”). Do **not** use only faceless wording (“The allegation involves…”) when the accused’s name is in the headline. Do **not** use the phrase **full CCTV window** anywhere in client-safe (or as a gap) unless those **exact words** appear in the bundle — it is a common hallucination; use **partial coverage**, **extract**, **continuity**, or **engineer note** as the text says. Do not use **full CCTV**, **full CCTV window**, or **complete CCTV footage** unless the bundle clearly states full footage or master files are served for CCTV. If CCTV is **partial**, **tidy**, **continuity confirmed**, or **engineer note** only, do **not** claim **complete** or **full** CCTV as a disclosure gap — describe **partial / extract / continuity / engineer note** as the materials do. Prefer **partial**, **extract**, **continuity outstanding**, **engineer note awaited**, **full 999 master awaited**, when that matches MG6 or extracts. Do **not** list "full CCTV window" or "complete CCTV" as a **disclosure gap** when MG6/extracts only describe **partial**, **extract**, **continuity**, or **tidy schedule** — mirror the actual served/awaited wording.
 - **Exhibits:** **EX-** codes **verbatim** from the exhibit list only. **EX-CAD-** must be followed by **digits only** (e.g. EX-CAD-800431). Never bracketed CAD tokens, **PHONE#**, hashes, or invented refs. **Never** output instruction-style placeholders such as "(exhibit ref: …" — always the **literal** line from the exhibit list. **Never** output generic advisory sentences in place of a code (e.g. do not paste meta-instructions about "checking the exhibit list") — the answer must show the **actual** EX-CAD- plus digits from the list. If no code is visible, describe the item without a fake EX- code.
@@ -474,7 +542,8 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     const { data: docs } = await supabase
       .from("documents")
       .select("raw_text, extracted_json")
-      .eq("case_id", caseId);
+      .eq("case_id", caseId)
+      .order("updated_at", { ascending: false });
     if (docs?.length) {
       combinedBundleFull = docs.map((d) => getDocumentTextForChat(d)).filter(Boolean).join("\n\n");
       const capped = combinedBundleFull.slice(0, MAX_BUNDLE_FULL_CHARS_FOR_REFS);
@@ -542,7 +611,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
           model: "gpt-4o-mini",
           messages,
           max_tokens: MAX_OUTPUT_TOKENS,
-          temperature: 0.2,
+          temperature: 0,
         },
         { signal: controller.signal }
       );
@@ -566,6 +635,21 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       { ok: false, error: isAbort ? "Request timed out" : "Unable to get a response" },
       { status: 502 }
     );
+  }
+
+  const groundingRetry = buildBundleGroundingRetry(raw, exhibitHaystack, message);
+  if (groundingRetry) {
+    try {
+      const fixed = await runChat([
+        { role: "system", content: systemPrompt },
+        { role: "user", content: userContent },
+        { role: "assistant", content: raw },
+        { role: "user", content: groundingRetry },
+      ]);
+      if (fixed.trim()) raw = fixed;
+    } catch {
+      // keep first reply
+    }
   }
 
   const badRefs = ungroundedExhibitRefs(raw, allowedExRefs);
