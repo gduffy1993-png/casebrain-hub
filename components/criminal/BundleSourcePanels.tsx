@@ -282,7 +282,7 @@ export function BundleSourcePanels({ caseId }: Props) {
         <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <FileText className="h-4 w-4 text-foreground" />
-            <h3 className="text-sm font-semibold text-foreground">Bundle header</h3>
+            <h3 className="text-sm font-semibold text-foreground">Bundle Header (extracted from PDF)</h3>
           </div>
           {hasHeader && (
             <Button type="button" variant="ghost" size="sm" className="gap-1 text-xs" onClick={copyHeader}>
@@ -315,8 +315,7 @@ export function BundleSourcePanels({ caseId }: Props) {
       <Card className="border-violet-500/35 bg-violet-500/[0.07] p-3 dark:bg-violet-950/40">
         <p className="text-xs font-medium text-violet-950 dark:text-violet-200">Source text vs AI output</p>
         <p className="mt-1 text-[11px] leading-relaxed text-violet-950/90 dark:text-violet-200/85">
-          The verbatim blocks below are taken from your uploaded bundle (extracted PDF text). Defence plan chat and other panels may be
-          model-generated — use this section to verify names, references, and MG sections against the underlying documents.
+          This section shows text extracted directly from the uploaded PDF. It is not model-generated.
         </p>
       </Card>
 
@@ -329,14 +328,14 @@ export function BundleSourcePanels({ caseId }: Props) {
             <p className="text-xs text-muted-foreground">No <code className="rounded bg-muted px-1">SECTION: MG5</code> block found.</p>
           )}
         </FoldSection>
-        <FoldSection title="MG6 (from bundle text)" defaultOpen={false}>
+        <FoldSection title="MG6 Schedule (extracted from bundle text)" defaultOpen={false}>
           {data.snippets.mg6 ? (
             <pre className={snippetPreClass}>{data.snippets.mg6}</pre>
           ) : (
             <p className="text-xs text-muted-foreground">No <code className="rounded bg-muted px-1">SECTION: MG6</code> block found.</p>
           )}
         </FoldSection>
-        <FoldSection title="Exhibits (from bundle text)" defaultOpen={false}>
+        <FoldSection title="Exhibits (extracted from bundle text)" defaultOpen={false}>
           {data.snippets.exhibits ? (
             <pre className={snippetPreClass}>{data.snippets.exhibits}</pre>
           ) : (

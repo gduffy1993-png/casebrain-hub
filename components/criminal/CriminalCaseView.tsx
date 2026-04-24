@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { ErrorBoundary } from "@/components/ui/error-boundary";
@@ -16,7 +16,7 @@ import type { CasePhase } from "./CasePhaseSelector";
 import { StrategyCommitmentPanel, type StrategyCommitment } from "./StrategyCommitmentPanel";
 import { Phase2StrategyPlanPanel } from "./Phase2StrategyPlanPanel";
 import { AnalysisGateBanner, type AnalysisGateBannerProps } from "@/components/AnalysisGateBanner";
-import { Scale, Shield, Loader2, FileText, Target, AlertCircle } from "lucide-react";
+import { Scale, Shield, Loader2, FileText, Target, AlertCircle, Upload } from "lucide-react";
 // Phase 2 components
 import { buildCaseSnapshot, type CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
 import { buildEvidenceContext, buildTimelineContext } from "@/lib/criminal/evidence-context";
@@ -26,6 +26,8 @@ import { CaseEvidenceColumn } from "./CaseEvidenceColumn";
 import { CaseStrategyColumn } from "./CaseStrategyColumn";
 import { EvidenceSelectorModal } from "@/components/cases/EvidenceSelectorModal";
 import { AddEvidenceModal } from "./AddEvidenceModal";
+import { useToast } from "@/components/Toast";
+import { Button } from "@/components/ui/button";
 import { CaseSummaryPanel } from "@/components/cases/CaseSummaryPanel";
 import { CaseKeyFactsPanel } from "@/components/cases/KeyFactsPanel";
 import { ChargesPanel } from "./ChargesPanel";
@@ -100,6 +102,10 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
+  const { push: showToast } = useToast();
+  /** Survives AddEvidenceModal delayed onSuccess (upload toast + 1.5s) so bundle-replace vs default is correct. */
+  const addEvidenceIntentRef = useRef<"default" | "bundle-replace">("default");
+  const [bundleReplaceExtracting, setBundleReplaceExtracting] = useState(false);
   
   // Hydration guard: prevent ErrorBoundary fallback from showing during initial mount
   const [mounted, setMounted] = useState(false);
@@ -788,25 +794,58 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
           </div>
         )}
 
-        {activeTab === "disclosure" && snapshot && (
+        {activeTab === "disclosure" && (
           <div id="section-disclosure" className="space-y-6">
-            <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Disclosure pressure temporarily unavailable.</div></Card>}>
-              <DisclosurePressureDashboard caseId={caseId} />
-            </ErrorBoundary>
-            <FirstDisclosureRequestCard caseId={caseId} />
-            <DisclosureTrackerTable items={snapshot.evidence.disclosureItems} />
-            <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Disclosure chase list temporarily unavailable.</div></Card>}>
-              <DisclosureChasersPanel caseId={caseId} />
-            </ErrorBoundary>
-          </div>
-        )}
-        {activeTab === "disclosure" && !snapshot && (
-          <div className="space-y-6">
-            <ErrorBoundary fallback={null}>
-              <DisclosurePressureDashboard caseId={caseId} />
-            </ErrorBoundary>
-            <FirstDisclosureRequestCard caseId={caseId} />
-            <Card className="p-4"><p className="text-sm text-muted-foreground">Run analysis to see disclosure tracker and chasers.</p></Card>
+            <Card className="border-border/80 p-4 shadow-sm">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <p className="text-sm font-medium text-foreground">Replace bundle PDF</p>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    Upload a new or corrected PDF for this case (same upload flow as elsewhere). After upload, the newest file is
+                    re-extracted so Strategy bundle source text matches the file.
+                  </p>
+                </div>
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="shrink-0 gap-2"
+                  disabled={bundleReplaceExtracting || showAddEvidenceUpload}
+                  onClick={() => {
+                    addEvidenceIntentRef.current = "bundle-replace";
+                    setShowAddEvidenceUpload(true);
+                  }}
+                >
+                  {bundleReplaceExtracting ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <Upload className="h-4 w-4" />
+                  )}
+                  Replace bundle PDF
+                </Button>
+              </div>
+            </Card>
+            {snapshot ? (
+              <>
+                <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Disclosure pressure temporarily unavailable.</div></Card>}>
+                  <DisclosurePressureDashboard caseId={caseId} />
+                </ErrorBoundary>
+                <FirstDisclosureRequestCard caseId={caseId} />
+                <DisclosureTrackerTable items={snapshot.evidence.disclosureItems} />
+                <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Disclosure chase list temporarily unavailable.</div></Card>}>
+                  <DisclosureChasersPanel caseId={caseId} />
+                </ErrorBoundary>
+              </>
+            ) : (
+              <>
+                <ErrorBoundary fallback={null}>
+                  <DisclosurePressureDashboard caseId={caseId} />
+                </ErrorBoundary>
+                <FirstDisclosureRequestCard caseId={caseId} />
+                <Card className="p-4">
+                  <p className="text-sm text-muted-foreground">Run analysis to see disclosure tracker and chasers.</p>
+                </Card>
+              </>
+            )}
           </div>
         )}
 
@@ -896,7 +935,13 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         )}
 
         {activeTab === "police-station" && (
-          <PoliceStationTab caseId={caseId} onAddEvidenceUpload={() => setShowAddEvidenceUpload(true)} />
+          <PoliceStationTab
+            caseId={caseId}
+            onAddEvidenceUpload={() => {
+              addEvidenceIntentRef.current = "default";
+              setShowAddEvidenceUpload(true);
+            }}
+          />
         )}
       </CaseTabs>
 
@@ -913,6 +958,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
           }}
           onUploadMoreEvidence={() => {
             setShowAddDocuments(false);
+            addEvidenceIntentRef.current = "default";
             setShowAddEvidenceUpload(true);
           }}
         />
@@ -924,10 +970,44 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
           caseId={caseId}
           caseTitle={snapshot?.caseMeta?.title || undefined}
           isOpen={showAddEvidenceUpload}
-          onClose={() => setShowAddEvidenceUpload(false)}
-          onSuccess={async () => {
+          onClose={() => {
             setShowAddEvidenceUpload(false);
-            // Reload snapshot to reflect new documents
+            addEvidenceIntentRef.current = "default";
+          }}
+          onSuccess={async (payload) => {
+            setShowAddEvidenceUpload(false);
+            const intent = addEvidenceIntentRef.current;
+            addEvidenceIntentRef.current = "default";
+
+            const ids = payload?.documentIds ?? [];
+            const latestId = ids.length > 0 ? ids[ids.length - 1] : undefined;
+
+            if (intent === "bundle-replace" && latestId) {
+              setBundleReplaceExtracting(true);
+              try {
+                const res = await fetch("/api/extract", {
+                  method: "POST",
+                  credentials: "include",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ documentId: latestId }),
+                });
+                const json = (await res.json()) as { error?: string; suggestion?: string; success?: boolean };
+                if (!res.ok || !json.success) {
+                  const msg = json.error ?? "Re-extract failed";
+                  showToast(json.suggestion ? `${msg} — ${json.suggestion}` : msg, "error");
+                } else {
+                  showToast("New bundle PDF extracted — text refreshed from storage.", "success");
+                  if (typeof window !== "undefined") {
+                    window.dispatchEvent(new CustomEvent("analysis-rerun-complete", { detail: { caseId } }));
+                  }
+                }
+              } catch (e) {
+                showToast(e instanceof Error ? e.message : "Re-extract failed", "error");
+              } finally {
+                setBundleReplaceExtracting(false);
+              }
+            }
+
             try {
               const newSnapshot = await buildCaseSnapshot(caseId);
               setSnapshot(newSnapshot);

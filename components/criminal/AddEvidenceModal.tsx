@@ -6,12 +6,16 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useToast } from "@/components/Toast";
 
+export type AddEvidenceSuccessPayload = {
+  documentIds: string[];
+};
+
 type AddEvidenceModalProps = {
   caseId: string;
   caseTitle?: string;
   isOpen: boolean;
   onClose: () => void;
-  onSuccess?: () => void;
+  onSuccess?: (payload: AddEvidenceSuccessPayload) => void;
 };
 
 export function AddEvidenceModal({
@@ -69,11 +73,17 @@ export function AddEvidenceModal({
         body: formData,
       });
 
-      const data = await res.json();
+      const data = (await res.json()) as {
+        error?: string;
+        documentIds?: string[];
+        success?: boolean;
+      };
 
       if (!res.ok) {
         throw new Error(data.error || "Failed to upload evidence");
       }
+
+      const documentIds = Array.isArray(data.documentIds) ? data.documentIds : [];
 
       setResult({
         success: true,
@@ -91,7 +101,7 @@ export function AddEvidenceModal({
         }
         onClose();
         if (onSuccess) {
-          onSuccess();
+          onSuccess({ documentIds });
         }
       }, 1500);
     } catch (error) {
