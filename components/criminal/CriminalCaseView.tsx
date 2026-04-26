@@ -460,6 +460,9 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   const currentCaseIndex = caseNavList.findIndex((c) => c.id === caseId);
   const prevCase = currentCaseIndex > 0 ? caseNavList[currentCaseIndex - 1] : null;
   const nextCase = currentCaseIndex >= 0 && currentCaseIndex < caseNavList.length - 1 ? caseNavList[currentCaseIndex + 1] : null;
+  const evalCaseRegex = /NS-CPS-2026-04\d{2}/i;
+  const evalCases = caseNavList.filter((c) => evalCaseRegex.test(c.title)).slice(0, 40);
+  const evalCaseIndex = evalCases.findIndex((c) => c.id === caseId);
 
   const navigateToCase = (targetCaseId: string) => {
     if (!targetCaseId || targetCaseId === caseId) return;
@@ -600,6 +603,38 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
             </Button>
           </div>
         </div>
+        {evalCases.length > 0 && (
+          <div className="mt-3 border-t border-border/60 pt-3">
+            <div className="mb-2 flex items-center justify-between gap-2">
+              <p className="text-xs font-medium text-foreground">Eval mode: NS-CPS 0401-0440 quick jump</p>
+              <p className="text-[11px] text-muted-foreground">
+                {evalCaseIndex >= 0 ? `Eval case ${evalCaseIndex + 1} of ${evalCases.length}` : `${evalCases.length} eval cases`}
+              </p>
+            </div>
+            <div className="max-w-full overflow-x-auto">
+              <div className="flex min-w-max items-center gap-1.5 pb-1">
+                {evalCases.map((c, i) => {
+                  const isActive = c.id === caseId;
+                  return (
+                    <button
+                      key={c.id}
+                      type="button"
+                      onClick={() => navigateToCase(c.id)}
+                      className={`rounded-md border px-2.5 py-1 text-xs font-medium transition-colors ${
+                        isActive
+                          ? "border-primary bg-primary text-primary-foreground"
+                          : "border-border bg-background text-foreground hover:bg-muted/50"
+                      }`}
+                      title={c.title}
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        )}
       </Card>
 
       {/* TOP: Status strip + at-a-glance + Jump to – so Jump to is at the top for easy section access */}
