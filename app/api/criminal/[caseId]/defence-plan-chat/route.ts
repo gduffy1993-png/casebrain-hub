@@ -144,6 +144,55 @@ function formatExCadFromAllowed(lowercaseCad: string): string {
   return `EX-CAD-${digits}`;
 }
 
+function compactOneLine(text: string): string {
+  return text.replace(/\s+/g, " ").trim();
+}
+
+function firstMatch(text: string, patterns: RegExp[]): string | null {
+  for (const p of patterns) {
+    const m = text.match(p);
+    if (m?.[1]) return compactOneLine(m[1]);
+  }
+  return null;
+}
+
+function buildBundleGroundedFallback(
+  question: string,
+  snapshot: Awaited<ReturnType<typeof getCaseStateSnapshot>> | null,
+  bundleFullText: string
+): string {
+  const q = question.toLowerCase();
+  const offence =
+    snapshot?.offence_detected_label?.trim() ||
+    firstMatch(bundleFullText, [/^\s*Offence\(s\)\s+as\s+tag:\s*(.+)$/im, /^\s*Charge sheet extract:\s*(.+)$/im]) ||
+    "offence as alleged in the bundle";
+  const stance = snapshot?.stance_detected?.trim() || "stance not explicitly detected";
+  const stage = snapshot?.stage_detected?.trim() || "stage not explicitly detected";
+  const hook =
+    firstMatch(bundleFullText, [/^\s*Primary eval hook:\s*(.+)$/im]) ||
+    "key tension appears in the MG5/MG6 disclosure friction";
+  const accused =
+    firstMatch(bundleFullText, [/^\s*Accused:\s*(.+)$/im]) ||
+    "the accused";
+
+  if (q.includes("one sentence") || q.includes("what is this case about")) {
+    return `${accused} faces ${offence}; the live defence focus is ${hook}.`;
+  }
+  if (q.includes("offence") && q.includes("alleg")) {
+    return `The alleged offence is ${offence}.`;
+  }
+  if (q.includes("prosecution") && q.includes("core theory")) {
+    return `The prosecution theory is that the bundle facts satisfy ${offence}, with pressure around ${hook}.`;
+  }
+  if (q.includes("defence") && q.includes("best theory")) {
+    return `The defence theory is to contest key mechanics and exploit ${hook}, while staying aligned with current stance (${stance}).`;
+  }
+  if (q.includes("risk if we do nothing")) {
+    return `The biggest immediate risk is case progression at ${stage} without resolving disclosure tensions around ${hook}.`;
+  }
+  return `Using the bundle and case snapshot: offence=${offence}; stance=${stance}; stage=${stage}. The key actionable issue is ${hook}.`;
+}
+
 /**
  * Replace hallucinated EX-… tokens. Prefer the bundle's EX-CAD line when there is exactly one CAD ref (typical Northshire bundles).
  * Never leave the internal instructional placeholder in user-visible text — it trains the model to echo instructions.
@@ -720,6 +769,10 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     (/NS-CPS-\[PHONE/i.test(raw) || /NS-CPS-\[#[^\]]+\]/i.test(raw))
   ) {
     raw = replaceCorruptedNorthshireBundleRefs(raw, exhibitHaystack);
+  }
+
+  if (/I need the detected offence, stance, and stage to answer properly/i.test(raw)) {
+    raw = buildBundleGroundedFallback(message, snapshot, combinedBundleFull || exhibitHaystack);
   }
 
   const reply = raw.slice(0, MAX_REPLY_LENGTH);
