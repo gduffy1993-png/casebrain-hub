@@ -136,6 +136,7 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
   const [evalRows, setEvalRows] = useState<
     Array<{ caseId: string; caseTitle: string; questionNo: number; question: string; answer: string; error?: string }>
   >([]);
+  const [evalCopyMessage, setEvalCopyMessage] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   /** Scroll only this panel — scrollIntoView on the sentinel scrolls the whole page. */
   const messagesScrollRef = useRef<HTMLDivElement>(null);
@@ -301,7 +302,35 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
         ].join("\t"),
       )
       .join("\n");
-    await navigator.clipboard.writeText(`${header}\n${body}`);
+    const payload = `${header}\n${body}`;
+    try {
+      if (typeof navigator !== "undefined" && navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(payload);
+        setEvalCopyMessage("Copied full results to clipboard.");
+      } else {
+        throw new Error("Clipboard API unavailable");
+      }
+    } catch {
+      try {
+        if (typeof document === "undefined") throw new Error("No document available");
+        const ta = document.createElement("textarea");
+        ta.value = payload;
+        ta.setAttribute("readonly", "true");
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        ta.style.pointerEvents = "none";
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        const copied = document.execCommand("copy");
+        document.body.removeChild(ta);
+        if (!copied) throw new Error("execCommand copy failed");
+        setEvalCopyMessage("Copied full results to clipboard.");
+      } catch {
+        setEvalCopyMessage("Copy blocked by browser. Select rows and copy manually.");
+      }
+    }
+    setTimeout(() => setEvalCopyMessage(null), 3000);
   };
 
   const renderCaseNavAndEvalRunner = () => (
@@ -371,6 +400,9 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
             <span className="text-[11px] text-muted-foreground">
               Progress: {evalProgress.done}/{evalProgress.total}
             </span>
+            {evalCopyMessage && (
+              <span className="text-[11px] text-muted-foreground">{evalCopyMessage}</span>
+            )}
           </div>
           {evalRows.length > 0 && (
             <div className="mt-2 max-h-48 overflow-auto rounded border border-border/60 bg-background p-2">
