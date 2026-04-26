@@ -98,6 +98,9 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   /** Survives AddEvidenceModal delayed onSuccess (upload toast + 1.5s) so bundle-replace vs default is correct. */
   const addEvidenceIntentRef = useRef<"default" | "bundle-replace">("default");
   const [bundleReplaceExtracting, setBundleReplaceExtracting] = useState(false);
+  const [caseNavLoading, setCaseNavLoading] = useState(false);
+  const [caseNavError, setCaseNavError] = useState<string | null>(null);
+  const [caseNavList, setCaseNavList] = useState<Array<{ id: string; title: string }>>([]);
   
   // Hydration guard: prevent ErrorBoundary fallback from showing during initial mount
   const [mounted, setMounted] = useState(false);
@@ -201,6 +204,34 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
       .catch(() => {});
     return () => { cancelled = true; };
   }, [caseId]);
+
+  // Case navigator list for quick previous/next traversal during training/review
+  useEffect(() => {
+    let cancelled = false;
+    async function loadCaseNavigator() {
+      setCaseNavLoading(true);
+      setCaseNavError(null);
+      try {
+        const response = await fetch("/api/cases", { credentials: "include", cache: "no-store" });
+        const data = (await response.json().catch(() => ({}))) as { cases?: Array<{ id: string; title: string }> };
+        if (!response.ok) throw new Error("Failed to load cases");
+        const rows = Array.isArray(data.cases) ? data.cases : [];
+        const sorted = [...rows].sort((a, b) => (a.title ?? "").localeCompare(b.title ?? "", undefined, { numeric: true, sensitivity: "base" }));
+        if (!cancelled) setCaseNavList(sorted.map((c) => ({ id: c.id, title: c.title || "Untitled Case" })));
+      } catch (e) {
+        if (!cancelled) {
+          setCaseNavError(e instanceof Error ? e.message : "Failed to load cases");
+          setCaseNavList([]);
+        }
+      } finally {
+        if (!cancelled) setCaseNavLoading(false);
+      }
+    }
+    loadCaseNavigator();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   // Phase 2: Build snapshot on mount
   useEffect(() => {
@@ -426,6 +457,17 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
       ? tabFromUrl
       : defaultTabByState;
 
+  const currentCaseIndex = caseNavList.findIndex((c) => c.id === caseId);
+  const prevCase = currentCaseIndex > 0 ? caseNavList[currentCaseIndex - 1] : null;
+  const nextCase = currentCaseIndex >= 0 && currentCaseIndex < caseNavList.length - 1 ? caseNavList[currentCaseIndex + 1] : null;
+
+  const navigateToCase = (targetCaseId: string) => {
+    if (!targetCaseId || targetCaseId === caseId) return;
+    const params = new URLSearchParams(searchParams.toString());
+    const query = params.toString();
+    router.push(query ? `/cases/${targetCaseId}?${query}` : `/cases/${targetCaseId}`);
+  };
+
   const setTab = (tabId: string) => {
     const params = new URLSearchParams(searchParams.toString());
     if (tabId === activeTab) {
@@ -511,6 +553,54 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
           setTimeout(() => document.getElementById("section-safety")?.scrollIntoView({ behavior: "smooth" }), 150);
         }}
       />
+
+      <Card className="border-border/80 p-3 shadow-sm">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="text-xs text-muted-foreground">
+            {caseNavLoading ? (
+              "Loading case navigator..."
+            ) : caseNavError ? (
+              "Case navigator unavailable."
+            ) : currentCaseIndex >= 0 ? (
+              <>Case {currentCaseIndex + 1} of {caseNavList.length}</>
+            ) : (
+              <>Case navigator ready ({caseNavList.length} loaded)</>
+            )}
+          </div>
+          <div className="flex flex-wrap items-center gap-2">
+            <Button
+              type="button"
+              size="sm"
+              variant="outline"
+              disabled={!prevCase || caseNavLoading}
+              onClick={() => prevCase && navigateToCase(prevCase.id)}
+            >
+              Previous case
+            </Button>
+            <select
+              className="h-9 min-w-[260px] rounded-md border border-border bg-background px-2 text-xs text-foreground"
+              value={caseId}
+              disabled={caseNavLoading || caseNavList.length === 0}
+              onChange={(e) => navigateToCase(e.target.value)}
+            >
+              {caseNavList.map((c) => (
+                <option key={c.id} value={c.id}>
+                  {c.title}
+                </option>
+              ))}
+            </select>
+            <Button
+              type="button"
+              size="sm"
+              variant="outline"
+              disabled={!nextCase || caseNavLoading}
+              onClick={() => nextCase && navigateToCase(nextCase.id)}
+            >
+              Next case
+            </Button>
+          </div>
+        </div>
+      </Card>
 
       {/* TOP: Status strip + at-a-glance + Jump to – so Jump to is at the top for easy section access */}
       {/* Phase 2: Case Status Strip */}
