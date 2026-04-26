@@ -395,10 +395,12 @@ GUARDRAILS (MANDATORY)
 
 7. NO FALLBACK TO DEFENCE PLAN
    - Do NOT say "I can only answer from the Defence Plan."
-   - ONLY when OFFENCE, STANCE, STAGE and STRATEGY are genuinely missing or marked as "(not set)" in SOURCE OF TRUTH, say: "I need the detected offence, stance, stage, and committed strategy to answer properly." When they are present, you MUST answer using them.
+   - Do NOT output refusal templates like "I need the detected offence, stance, and stage to answer properly."
+   - If snapshot fields are missing, answer from the bundle excerpt and disclosed case facts, and state assumptions briefly.
 
 8. MISSING CONTEXT BEHAVIOUR
-   - If offence/stance/stage/strategy are missing, do NOT guess. Ask for the missing fields. If they are present, you must NOT ask for them again; instead, answer using them.
+   - If offence/stance/stage/strategy are missing, do NOT guess hidden facts. Use bundle-grounded wording and clearly mark unknowns.
+   - If they are present, you must NOT ask for them again; instead, answer using them.
 
 9. CAUSATION — ONE INCIDENT; FORBIDDEN PHRASING
    - When the facts describe a single blow or assault followed by a fall and impact (e.g. head to kerb, pavement, road), treat that as **one continuous sequence** arising from the defendant's act.
@@ -517,7 +519,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       sourceOfTruthBlock = truthLines.join("\n");
     } else {
       sourceOfTruthBlock =
-        "CASE STATE SNAPSHOT: No detected offence, stance, or stage for this case yet. If the user asks something that requires them for strategy, say you need the detected offence, stance, and stage to answer properly.";
+        "CASE STATE SNAPSHOT: No detected offence, stance, or stage for this case yet. Use the bundle excerpt and disclosed case facts, and mark any uncertainty explicitly.";
     }
 
     const { data: narrativeRow } = await supabase
@@ -690,13 +692,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     }
   }
 
-  const snapshotIsUsable =
-    !!snapshot?.offence_detected_label &&
-    !!snapshot?.stance_detected &&
-    !!snapshot?.stage_detected &&
-    !!snapshot?.strategy_committed_primary;
   if (
-    snapshotIsUsable &&
     /I need the detected offence, stance, and stage to answer properly/i.test(raw)
   ) {
     try {
@@ -707,7 +703,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
         {
           role: "user",
           content:
-            "Do not ask for offence, stance, stage, or strategy. They are present in the snapshot above. Rewrite with a direct answer grounded in this case.",
+            "Do not ask for offence, stance, stage, or strategy. Rewrite with a direct answer grounded in this case. If any are missing, use bundle-grounded wording and explicitly state unknowns instead of refusing.",
         },
       ]);
       if (forced.trim()) raw = forced;
