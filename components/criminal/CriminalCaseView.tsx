@@ -463,8 +463,18 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   const evalCaseIndex = evalCases.findIndex((c) => c.id === caseId);
   const navCases = evalCaseIndex >= 0 ? evalCases : caseNavList;
   const navCaseIndex = navCases.findIndex((c) => c.id === caseId);
-  const prevCase = navCaseIndex > 0 ? navCases[navCaseIndex - 1] : null;
-  const nextCase = navCaseIndex >= 0 && navCaseIndex < navCases.length - 1 ? navCases[navCaseIndex + 1] : null;
+  const prevCase =
+    navCaseIndex > 0
+      ? navCases[navCaseIndex - 1]
+      : navCaseIndex === -1 && navCases.length > 0
+        ? navCases[navCases.length - 1]
+        : null;
+  const nextCase =
+    navCaseIndex >= 0 && navCaseIndex < navCases.length - 1
+      ? navCases[navCaseIndex + 1]
+      : navCaseIndex === -1 && navCases.length > 0
+        ? navCases[0]
+        : null;
 
   const navigateToCase = (targetCaseId: string) => {
     if (!targetCaseId || targetCaseId === caseId) return;

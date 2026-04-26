@@ -128,6 +128,7 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
   const [editingProposal, setEditingProposal] = useState<PendingProposal | null>(null);
   const [proposalSaving, setProposalSaving] = useState(false);
   const [evalInput, setEvalInput] = useState("");
+  const [evalScope, setEvalScope] = useState<"current" | "5" | "10" | "20" | "all">("all");
   const [evalRunning, setEvalRunning] = useState(false);
   const [evalProgress, setEvalProgress] = useState<{ done: number; total: number }>({ done: 0, total: 0 });
   const [evalRows, setEvalRows] = useState<
@@ -203,10 +204,19 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
       .slice(0, 10);
   };
 
+  const selectedEvalCases = (): Array<{ id: string; title: string }> => {
+    if (evalScope === "current") return [{ id: caseId, title: "Current case" }];
+    if (evalScope === "5") return evalCases.slice(0, 5);
+    if (evalScope === "10") return evalCases.slice(0, 10);
+    if (evalScope === "20") return evalCases.slice(0, 20);
+    return evalCases;
+  };
+
   const runEvalAcrossCases = async () => {
     const questions = parseEvalQuestions();
-    if (questions.length === 0 || evalCases.length === 0 || evalRunning) return;
-    const total = questions.length * evalCases.length;
+    const runCases = selectedEvalCases();
+    if (questions.length === 0 || runCases.length === 0 || evalRunning) return;
+    const total = questions.length * runCases.length;
     setEvalRunning(true);
     setEvalRows([]);
     setEvalProgress({ done: 0, total });
@@ -216,7 +226,7 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
     try {
       for (let qIdx = 0; qIdx < questions.length; qIdx += 1) {
         const question = questions[qIdx]!;
-        for (const c of evalCases) {
+        for (const c of runCases) {
           let answer = "";
           let error: string | undefined;
           try {
@@ -472,8 +482,20 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
               disabled={evalRunning}
             />
             <div className="mt-2 flex flex-wrap items-center gap-2">
+              <select
+                className="h-8 rounded-md border border-border bg-background px-2 text-xs text-foreground"
+                value={evalScope}
+                onChange={(e) => setEvalScope(e.target.value as "current" | "5" | "10" | "20" | "all")}
+                disabled={evalRunning}
+              >
+                <option value="current">Current case only</option>
+                <option value="5">First 5 eval cases</option>
+                <option value="10">First 10 eval cases</option>
+                <option value="20">First 20 eval cases</option>
+                <option value="all">All eval cases</option>
+              </select>
               <Button type="button" size="sm" onClick={runEvalAcrossCases} disabled={evalRunning || parseEvalQuestions().length === 0}>
-                {evalRunning ? "Running..." : `Run on ${evalCases.length} cases`}
+                {evalRunning ? "Running..." : `Run on ${selectedEvalCases().length} case${selectedEvalCases().length === 1 ? "" : "s"}`}
               </Button>
               <Button type="button" size="sm" variant="outline" onClick={copyEvalRows} disabled={evalRows.length === 0}>
                 Copy results
