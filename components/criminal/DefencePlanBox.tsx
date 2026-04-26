@@ -227,28 +227,46 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
 
     const rows: Array<{ caseId: string; caseTitle: string; questionNo: number; question: string; answer: string; error?: string }> = [];
     let done = 0;
+    const askCaseWithRetry = async (targetCaseId: string, question: string): Promise<{ answer: string; error?: string }> => {
+      const maxAttempts = 3;
+      for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 80_000);
+        try {
+          const res = await fetch(`/api/criminal/${targetCaseId}/defence-plan-chat`, {
+            method: "POST",
+            credentials: "include",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message: question }),
+            signal: controller.signal,
+          });
+          const data = (await res.json().catch(() => ({}))) as { ok?: boolean; reply?: string; error?: string };
+          if (res.ok && data.ok && typeof data.reply === "string" && data.reply.trim().length > 0) {
+            clearTimeout(timeoutId);
+            return { answer: data.reply };
+          }
+          const errText = data.error ?? `HTTP ${res.status}`;
+          if (attempt === maxAttempts) {
+            clearTimeout(timeoutId);
+            return { answer: "", error: errText };
+          }
+        } catch (e) {
+          if (attempt === maxAttempts) {
+            clearTimeout(timeoutId);
+            return { answer: "", error: e instanceof Error ? e.message : "Unknown error" };
+          }
+        } finally {
+          clearTimeout(timeoutId);
+        }
+        await new Promise((resolve) => setTimeout(resolve, attempt * 1000));
+      }
+      return { answer: "", error: "Unable to get a response" };
+    };
     try {
       for (let qIdx = 0; qIdx < questions.length; qIdx += 1) {
         const question = questions[qIdx]!;
         for (const c of runCases) {
-          let answer = "";
-          let error: string | undefined;
-          try {
-            const res = await fetch(`/api/criminal/${c.id}/defence-plan-chat`, {
-              method: "POST",
-              credentials: "include",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ message: question }),
-            });
-            const data = (await res.json().catch(() => ({}))) as { ok?: boolean; reply?: string; error?: string };
-            if (!res.ok || !data.ok || typeof data.reply !== "string") {
-              error = data.error ?? `HTTP ${res.status}`;
-            } else {
-              answer = data.reply;
-            }
-          } catch (e) {
-            error = e instanceof Error ? e.message : "Unknown error";
-          }
+          const { answer, error } = await askCaseWithRetry(c.id, question);
 
           rows.push({
             caseId: c.id,

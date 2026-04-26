@@ -14,14 +14,15 @@ import { getCaseStateSnapshot } from "@/lib/criminal/case-state-snapshot";
 
 type RouteParams = { params: Promise<{ caseId: string }> };
 
-const AI_TIMEOUT_MS = 45_000;
+const AI_TIMEOUT_MS = 70_000;
 const MAX_MESSAGE_LENGTH = 16_000;
 const MAX_REPLY_LENGTH = 8000;
 const MAX_PLAN_SUMMARY_CHARS = 1200;
 const MAX_EVIDENCE_CHARS = 1200;
 const MAX_TIMELINE_CHARS = 500;
 const LAW_CHUNKS_LIMIT = 4;
-const MAX_OUTPUT_TOKENS = 3072;
+const MAX_OUTPUT_TOKENS = 1400;
+const MAX_AI_ATTEMPTS = 2;
 /** Model context budget; truncation uses head+tail so Reference + exhibit list survive. */
 const MAX_BUNDLE_EXCERPT_CHARS = 24_000;
 /** Hard cap on raw bundle text used for ref extraction / post-process (avoid huge rows). */
@@ -627,9 +628,22 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     }
   }
 
+  async function runChatWithRetry(messages: { role: "system" | "user" | "assistant"; content: string }[]) {
+    let lastError: unknown;
+    for (let attempt = 1; attempt <= MAX_AI_ATTEMPTS; attempt += 1) {
+      try {
+        const out = await runChat(messages);
+        if (out.trim()) return out;
+      } catch (err: unknown) {
+        lastError = err;
+      }
+    }
+    throw lastError ?? new Error("Model returned empty response");
+  }
+
   let raw: string;
   try {
-    raw = await runChat([
+    raw = await runChatWithRetry([
       { role: "system", content: systemPrompt },
       { role: "user", content: userContent },
     ]);
@@ -673,6 +687,32 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       if (second.trim()) raw = second;
     } catch {
       // keep first reply if retry fails
+    }
+  }
+
+  const snapshotIsUsable =
+    !!snapshot?.offence_detected_label &&
+    !!snapshot?.stance_detected &&
+    !!snapshot?.stage_detected &&
+    !!snapshot?.strategy_committed_primary;
+  if (
+    snapshotIsUsable &&
+    /I need the detected offence, stance, and stage to answer properly/i.test(raw)
+  ) {
+    try {
+      const forced = await runChatWithRetry([
+        { role: "system", content: systemPrompt },
+        { role: "user", content: userContent },
+        { role: "assistant", content: raw },
+        {
+          role: "user",
+          content:
+            "Do not ask for offence, stance, stage, or strategy. They are present in the snapshot above. Rewrite with a direct answer grounded in this case.",
+        },
+      ]);
+      if (forced.trim()) raw = forced;
+    } catch {
+      // keep current reply
     }
   }
 
