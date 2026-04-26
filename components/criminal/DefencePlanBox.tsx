@@ -29,8 +29,6 @@ type DefencePlanBoxProps = {
   caseId: string;
   /** Plan from StrategyCommitmentPanel (built from committed strategy + coordinator). Null when not committed or not yet loaded. */
   plan: DefenceStrategyPlan | null;
-  /** e.g. "Act Denial" – primary route label for header when plan exists */
-  primaryRouteLabel?: string | null;
   /** For Phase 5 law slice suggestions (offence-specific) */
   offenceType?: string | null;
   /** For Phase 5 law slice suggestions (phase 2 vs 3) */
@@ -110,7 +108,7 @@ function saveChatToStorage(caseId: string, messages: ChatMessage[]) {
   }
 }
 
-export function DefencePlanBox({ caseId, plan, primaryRouteLabel, offenceType, currentPhase = 2, evidenceSummary, timelineSummary }: DefencePlanBoxProps) {
+export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, evidenceSummary, timelineSummary }: DefencePlanBoxProps) {
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
   const [chatLoaded, setChatLoaded] = useState(false);
   const [chatInput, setChatInput] = useState("");
@@ -254,9 +252,6 @@ export function DefencePlanBox({ caseId, plan, primaryRouteLabel, offenceType, c
     <Card className="p-6 border-2 border-primary/25 bg-primary/5">
       <h3 className="text-sm font-semibold text-foreground mb-1">Defence Plan</h3>
       <div className="flex flex-wrap items-center gap-2 mb-2">
-        {primaryRouteLabel && (
-          <p className="text-xs text-muted-foreground">Primary route: {primaryRouteLabel}</p>
-        )}
         {plan.strategy_stance && (
           <span
             className={`inline-block rounded-full px-2 py-0.5 text-[11px] font-semibold ${

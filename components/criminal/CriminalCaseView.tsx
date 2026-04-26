@@ -8,9 +8,7 @@ import { FoldSection } from "@/components/ui/fold-section";
 // Legacy panels - only used in collapsed "Additional Tools" section
 import { PACEComplianceChecker } from "./PACEComplianceChecker";
 import { CourtHearingsPanel } from "./CourtHearingsPanel";
-import { BailTracker } from "./BailTracker";
 import { ClientAdvicePanel } from "./ClientAdvicePanel";
-import { BailApplicationPanel } from "./BailApplicationPanel";
 import { SentencingMitigationPanel } from "./SentencingMitigationPanel";
 import type { CasePhase } from "./CasePhaseSelector";
 import { StrategyCommitmentPanel, type StrategyCommitment } from "./StrategyCommitmentPanel";
@@ -46,16 +44,10 @@ import { CaseOverviewHeader } from "./CaseOverviewHeader";
 import { CaseTimelinePanel } from "./CaseTimelinePanel";
 import { StrategyOverviewSubTab } from "./StrategyOverviewSubTab";
 import { StrategyDoctrineSubTab } from "./StrategyDoctrineSubTab";
-import { DisclosureTimelineSection } from "./DisclosureTimelineSection";
-import { DisclosureRequestGenerator } from "./DisclosureRequestGenerator";
-import { HearingPrepGenerator } from "./HearingPrepGenerator";
-import { OffencePlaybookCard } from "./OffencePlaybookCard";
-import { SolicitorInstructionsSection } from "./SolicitorInstructionsSection";
 import { StrategyExportButton } from "./StrategyExportButton";
 import { DefencePlanBox } from "./DefencePlanBox";
 import { StrategyTimelineSection } from "./StrategyTimelineSection";
 import { VerdictRatingBlock } from "./VerdictRatingBlock";
-import { ChangeListSection } from "./ChangeListSection";
 import { BundleSourcePanels } from "./BundleSourcePanels";
 
 /** Tab ids for criminal case page. URL ?tab= must be one of these. Order: primary then secondary. */
@@ -470,7 +462,6 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   }
 
   const p = 3 as CasePhase;
-  const showBailTools = true;
   const showSentencingTools = true;
   const showCourtHearings = true;
   const showPACE = true;
@@ -506,8 +497,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         onAddHearing={() => setTab("hearings")}
         onGenerateLetter={() => setTab("disclosure")}
         onAddNote={() => {
-          setTab("strategy");
-          setTimeout(() => document.getElementById("section-solicitor-notes")?.scrollIntoView({ behavior: "smooth" }), 120);
+          setTab("client-instructions");
         }}
         onSnapshotRefresh={() => buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error)}
         defencePlan={defencePlan}
@@ -666,6 +656,23 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
               </Card>
             ) : snapshot ? (
               <>
+              {(effectiveProceduralSafety?.status === "UNSAFE_TO_PROCEED" || effectiveProceduralSafety?.status === "CONDITIONALLY_UNSAFE") && (
+                <Card className="mb-6 border-amber-500/30 bg-amber-500/5 p-4">
+                  <p className="text-sm font-semibold text-foreground">Primary safety blocker</p>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    {effectiveProceduralSafety?.outstandingItems?.length ?? 0} disclosure blocker
+                    {(effectiveProceduralSafety?.outstandingItems?.length ?? 0) === 1 ? "" : "s"} currently prevent safe progression.
+                    Resolve these first, then re-check strategy outputs.
+                  </p>
+                  {(effectiveProceduralSafety?.outstandingItems?.length ?? 0) > 0 && (
+                    <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-foreground">
+                      {(effectiveProceduralSafety?.outstandingItems ?? []).slice(0, 3).map((item, i) => (
+                        <li key={`${item}-${i}`}>{item}</li>
+                      ))}
+                    </ul>
+                  )}
+                </Card>
+              )}
               {/* Strategy at a glance – aligned with committed strategy when set; full discipline in Evidence/Strategy columns below */}
               <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
                 <span className="text-sm font-medium text-muted-foreground">Strategy summary</span>
@@ -711,10 +718,6 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
               </Card>
 
               <div className="mb-6">
-                <ChangeListSection caseId={caseId} />
-              </div>
-
-              <div className="mb-6">
                 <StrategyTimelineSection
                   strategyInOneLine={defencePlan?.strategy_in_one_line ?? undefined}
                   next72Hours={defencePlan?.next_72_hours ?? []}
@@ -724,44 +727,11 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
               </div>
 
               <div className="mb-6">
-                <DefencePlanBox caseId={caseId} plan={defencePlan} primaryRouteLabel={displayStrategy?.displayLabel ?? defencePlan?.primary_route?.label ?? null} offenceType={snapshot?.resolvedOffence?.offenceType} currentPhase={p} evidenceSummary={snapshot ? buildEvidenceContext(snapshot, effectiveProceduralSafety?.outstandingItems) : undefined} timelineSummary={snapshot ? buildTimelineContext(snapshot) : undefined} />
-              </div>
-
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-                <OffencePlaybookCard snapshot={snapshot} />
-                <SolicitorInstructionsSection
-                  caseId={caseId}
-                  initialValue={snapshot?.strategy?.solicitorInstructions}
-                  onSave={() => buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error)}
-                />
-              </div>
-
-              <div className="mb-6">
-                <DisclosureTimelineSection
-                  snapshot={snapshot}
-                  missingCountFromSafety={effectiveProceduralSafety?.outstandingItems?.length ?? 0}
-                  caseId={caseId}
-                />
-              </div>
-
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-                <DisclosureRequestGenerator
-                  caseId={caseId}
-                  planSummary={defencePlan ? [defencePlan.strategy_in_one_line, defencePlan.attack_sequence, defencePlan.primary_route?.label].filter(Boolean).join("\n") : undefined}
-                  evidenceSummary={snapshot ? buildEvidenceContext(snapshot, effectiveProceduralSafety?.outstandingItems) : undefined}
-                  timelineSummary={snapshot ? buildTimelineContext(snapshot) : undefined}
-                />
-                <HearingPrepGenerator
-                  caseId={caseId}
-                  planSummary={defencePlan ? [defencePlan.strategy_in_one_line, defencePlan.attack_sequence, defencePlan.primary_route?.label].filter(Boolean).join("\n") : undefined}
-                  evidenceSummary={snapshot ? buildEvidenceContext(snapshot, effectiveProceduralSafety?.outstandingItems) : undefined}
-                  timelineSummary={snapshot ? buildTimelineContext(snapshot) : undefined}
-                  outstandingDisclosure={effectiveProceduralSafety?.outstandingItems ?? undefined}
-                />
+                <DefencePlanBox caseId={caseId} plan={defencePlan} offenceType={snapshot?.resolvedOffence?.offenceType} currentPhase={p} evidenceSummary={snapshot ? buildEvidenceContext(snapshot, effectiveProceduralSafety?.outstandingItems) : undefined} timelineSummary={snapshot ? buildTimelineContext(snapshot) : undefined} />
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <FoldSection title="Evidence" defaultOpen={true}>
+                <FoldSection title="Evidence" defaultOpen={false}>
                   <ErrorBoundary fallback={mounted ? <div className="text-sm text-muted-foreground">Analysis will deepen as further disclosure is received.</div> : null}>
                     <CaseEvidenceColumn caseId={caseId} snapshot={snapshot} onAddDocument={() => setShowAddDocuments(true)} onAddEvidenceUpload={() => setShowAddEvidenceUpload(true)} currentPhase={p} savedPosition={savedPosition} onCommitmentChange={(c) => { if (c) { setCommittedStrategy(c); setIsStrategyCommitted(true); buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error); } else { setCommittedStrategy(null); setIsStrategyCommitted(false); setDisplayStrategy(null); setDefencePlan(null); } }} committedStrategy={committedStrategy} onDisplayStrategyUpdate={setDisplayStrategy} onProceduralSafetyChange={setEffectiveProceduralSafety} onDefencePlanUpdate={setDefencePlan} hasClientInstructions={hasClientInstructions} onClientInstructionsSaved={() => setHasClientInstructions(true)} />
                   </ErrorBoundary>
@@ -776,19 +746,6 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
             ) : (
               <Card className="p-6"><div className="text-sm text-muted-foreground">Case data will appear once analysis is run.</div></Card>
             )}
-
-              <FoldSection id="section-bail" title="Bail application & conditions" defaultOpen={false}>
-                <p className="text-xs text-muted-foreground mb-4">Template for bail applications. Expand to view or copy. Verify all facts before use.</p>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  {showBailTools && <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Bail application will appear once analysis is run.</div></Card>}><BailApplicationPanel caseId={caseId} /></ErrorBoundary>}
-                  <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Bail tracker will appear once analysis is run.</div></Card>}><BailTracker caseId={caseId} /></ErrorBoundary>
-                </div>
-              </FoldSection>
-              <FoldSection title="Sentencing Tools" defaultOpen={true}>
-                <div className="space-y-6">
-                  {showSentencingTools && <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Sentencing mitigation will appear once analysis is run.</div></Card>}><SentencingMitigationPanel caseId={caseId} /></ErrorBoundary>}
-                </div>
-              </FoldSection>
               </>
             )}
           </div>
