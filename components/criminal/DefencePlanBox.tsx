@@ -282,6 +282,103 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
     await navigator.clipboard.writeText(`${header}\n${body}`);
   };
 
+  const renderCaseNavAndEvalRunner = () => (
+    <>
+      {caseNav && (caseNav.canGoPrev || caseNav.canGoNext || caseNav.label) && (
+        <div className="mb-3 rounded-md border border-border/60 bg-muted/20 p-2.5">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <p className="text-[11px] text-muted-foreground">{caseNav.label ?? "Case navigation"}</p>
+            <div className="flex items-center gap-2">
+              <Button
+                type="button"
+                size="sm"
+                variant="outline"
+                disabled={!caseNav.canGoPrev}
+                onClick={caseNav.onGoPrev}
+              >
+                Previous case
+              </Button>
+              <Button
+                type="button"
+                size="sm"
+                variant="outline"
+                disabled={!caseNav.canGoNext}
+                onClick={caseNav.onGoNext}
+              >
+                Next case
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+      {evalCases.length > 0 && (
+        <div className="mb-3 rounded-md border border-border/60 bg-muted/20 p-2.5">
+          <p className="text-[11px] font-medium text-foreground">Bulk eval runner (ask same question(s) across all eval cases)</p>
+          <p className="mt-1 text-[11px] text-muted-foreground">
+            Enter up to 10 questions (one per line). Runner will execute each question across {evalCases.length} cases.
+          </p>
+          <textarea
+            value={evalInput}
+            onChange={(e) => setEvalInput(e.target.value)}
+            placeholder={"1) What is the case in one sentence?\n2) What disclosure is missing?\n... (up to 10 lines)"}
+            className="mt-2 h-28 w-full rounded-md border border-border bg-background px-2 py-2 text-xs text-foreground outline-none focus:ring-2 focus:ring-primary/30"
+            disabled={evalRunning}
+          />
+          <div className="mt-2 flex flex-wrap items-center gap-2">
+            <select
+              className="h-8 rounded-md border border-border bg-background px-2 text-xs text-foreground"
+              value={evalScope}
+              onChange={(e) => setEvalScope(e.target.value as "current" | "5" | "10" | "20" | "all")}
+              disabled={evalRunning}
+            >
+              <option value="current">Current case only</option>
+              <option value="5">First 5 eval cases</option>
+              <option value="10">First 10 eval cases</option>
+              <option value="20">First 20 eval cases</option>
+              <option value="all">All eval cases</option>
+            </select>
+            <Button type="button" size="sm" onClick={runEvalAcrossCases} disabled={evalRunning || parseEvalQuestions().length === 0}>
+              {evalRunning ? "Running..." : `Run on ${selectedEvalCases().length} case${selectedEvalCases().length === 1 ? "" : "s"}`}
+            </Button>
+            <Button type="button" size="sm" variant="outline" onClick={copyEvalRows} disabled={evalRows.length === 0}>
+              Copy results
+            </Button>
+            <Button type="button" size="sm" variant="ghost" onClick={() => setEvalRows([])} disabled={evalRunning || evalRows.length === 0}>
+              Clear
+            </Button>
+            <span className="text-[11px] text-muted-foreground">
+              Progress: {evalProgress.done}/{evalProgress.total}
+            </span>
+          </div>
+          {evalRows.length > 0 && (
+            <div className="mt-2 max-h-48 overflow-auto rounded border border-border/60 bg-background p-2">
+              <table className="w-full text-[11px]">
+                <thead>
+                  <tr className="text-left text-muted-foreground">
+                    <th className="pr-2">Case</th>
+                    <th className="pr-2">Q#</th>
+                    <th className="pr-2">Status</th>
+                    <th>Preview</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {evalRows.slice(-120).map((r, idx) => (
+                    <tr key={`${r.caseId}-${r.questionNo}-${idx}`} className="border-t border-border/40 align-top">
+                      <td className="pr-2 py-1 text-foreground">{r.caseTitle}</td>
+                      <td className="pr-2 py-1 text-foreground">{r.questionNo}</td>
+                      <td className="pr-2 py-1">{r.error ? <span className="text-red-600">error</span> : <span className="text-emerald-600">ok</span>}</td>
+                      <td className="py-1 text-muted-foreground">{(r.error ?? r.answer).slice(0, 120)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+      )}
+    </>
+  );
+
   const handleAcceptProposal = async () => {
     if (!pendingProposal || !caseId || proposalSaving) return;
     setProposalSaving(true);
@@ -342,6 +439,7 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
     return (
       <Card className="p-6 border-2 border-primary/20 bg-primary/5">
         <h3 className="text-sm font-semibold text-foreground mb-2">Defence Plan</h3>
+        {renderCaseNavAndEvalRunner()}
         <p className="text-sm text-muted-foreground">
           Commit to a strategy in the Evidence column to see your Defence Plan here. This box shows how we're fighting the case from one source only.
         </p>
@@ -441,98 +539,7 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
       )}
 
       <div className="mt-6 pt-4 border-t border-border/50 flex flex-col min-h-0">
-        {caseNav && (caseNav.canGoPrev || caseNav.canGoNext || caseNav.label) && (
-          <div className="mb-3 rounded-md border border-border/60 bg-muted/20 p-2.5">
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <p className="text-[11px] text-muted-foreground">{caseNav.label ?? "Case navigation"}</p>
-              <div className="flex items-center gap-2">
-                <Button
-                  type="button"
-                  size="sm"
-                  variant="outline"
-                  disabled={!caseNav.canGoPrev}
-                  onClick={caseNav.onGoPrev}
-                >
-                  Previous case
-                </Button>
-                <Button
-                  type="button"
-                  size="sm"
-                  variant="outline"
-                  disabled={!caseNav.canGoNext}
-                  onClick={caseNav.onGoNext}
-                >
-                  Next case
-                </Button>
-              </div>
-            </div>
-          </div>
-        )}
-        {evalCases.length > 0 && (
-          <div className="mb-3 rounded-md border border-border/60 bg-muted/20 p-2.5">
-            <p className="text-[11px] font-medium text-foreground">Bulk eval runner (ask same question(s) across all eval cases)</p>
-            <p className="mt-1 text-[11px] text-muted-foreground">
-              Enter up to 10 questions (one per line). Runner will execute each question across {evalCases.length} cases.
-            </p>
-            <textarea
-              value={evalInput}
-              onChange={(e) => setEvalInput(e.target.value)}
-              placeholder={"1) What is the case in one sentence?\n2) What disclosure is missing?\n... (up to 10 lines)"}
-              className="mt-2 h-28 w-full rounded-md border border-border bg-background px-2 py-2 text-xs text-foreground outline-none focus:ring-2 focus:ring-primary/30"
-              disabled={evalRunning}
-            />
-            <div className="mt-2 flex flex-wrap items-center gap-2">
-              <select
-                className="h-8 rounded-md border border-border bg-background px-2 text-xs text-foreground"
-                value={evalScope}
-                onChange={(e) => setEvalScope(e.target.value as "current" | "5" | "10" | "20" | "all")}
-                disabled={evalRunning}
-              >
-                <option value="current">Current case only</option>
-                <option value="5">First 5 eval cases</option>
-                <option value="10">First 10 eval cases</option>
-                <option value="20">First 20 eval cases</option>
-                <option value="all">All eval cases</option>
-              </select>
-              <Button type="button" size="sm" onClick={runEvalAcrossCases} disabled={evalRunning || parseEvalQuestions().length === 0}>
-                {evalRunning ? "Running..." : `Run on ${selectedEvalCases().length} case${selectedEvalCases().length === 1 ? "" : "s"}`}
-              </Button>
-              <Button type="button" size="sm" variant="outline" onClick={copyEvalRows} disabled={evalRows.length === 0}>
-                Copy results
-              </Button>
-              <Button type="button" size="sm" variant="ghost" onClick={() => setEvalRows([])} disabled={evalRunning || evalRows.length === 0}>
-                Clear
-              </Button>
-              <span className="text-[11px] text-muted-foreground">
-                Progress: {evalProgress.done}/{evalProgress.total}
-              </span>
-            </div>
-            {evalRows.length > 0 && (
-              <div className="mt-2 max-h-48 overflow-auto rounded border border-border/60 bg-background p-2">
-                <table className="w-full text-[11px]">
-                  <thead>
-                    <tr className="text-left text-muted-foreground">
-                      <th className="pr-2">Case</th>
-                      <th className="pr-2">Q#</th>
-                      <th className="pr-2">Status</th>
-                      <th>Preview</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {evalRows.slice(-120).map((r, idx) => (
-                      <tr key={`${r.caseId}-${r.questionNo}-${idx}`} className="border-t border-border/40 align-top">
-                        <td className="pr-2 py-1 text-foreground">{r.caseTitle}</td>
-                        <td className="pr-2 py-1 text-foreground">{r.questionNo}</td>
-                        <td className="pr-2 py-1">{r.error ? <span className="text-red-600">error</span> : <span className="text-emerald-600">ok</span>}</td>
-                        <td className="py-1 text-muted-foreground">{(r.error ?? r.answer).slice(0, 120)}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
-          </div>
-        )}
+        {renderCaseNavAndEvalRunner()}
         <LawSliceSuggestions offenceType={offenceType} currentPhase={currentPhase} hasPlan={true} />
         <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1">Ask about this plan</p>
         <div className="rounded border border-border/50 bg-muted/20 px-2 py-1.5 mb-2 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] text-muted-foreground">
