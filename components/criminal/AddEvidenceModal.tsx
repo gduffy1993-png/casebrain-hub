@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useToast } from "@/components/Toast";
 
+const MAX_FILES_PER_BATCH = 20;
+
 export type AddEvidenceSuccessPayload = {
   documentIds: string[];
 };
@@ -43,6 +45,14 @@ export function AddEvidenceModal({
     const pdfFiles = selectedFiles.filter(
       (file) => file.type === "application/pdf" || file.name.toLowerCase().endsWith(".pdf")
     );
+    if (pdfFiles.length > MAX_FILES_PER_BATCH) {
+      setFiles(pdfFiles.slice(0, MAX_FILES_PER_BATCH));
+      setResult({
+        success: false,
+        error: `Only the first ${MAX_FILES_PER_BATCH} PDF files were kept.`,
+      });
+      return;
+    }
     setFiles(pdfFiles);
     setResult(null);
   };
@@ -50,6 +60,10 @@ export function AddEvidenceModal({
   const handleSubmit = async () => {
     if (files.length === 0) {
       setResult({ success: false, error: "Please select at least one PDF file" });
+      return;
+    }
+    if (files.length > MAX_FILES_PER_BATCH) {
+      setResult({ success: false, error: `You can upload up to ${MAX_FILES_PER_BATCH} files at a time.` });
       return;
     }
 
@@ -152,7 +166,7 @@ export function AddEvidenceModal({
             />
             {files.length > 0 && (
               <p className="mt-2 text-xs text-muted-foreground">
-                {files.length} file(s) selected: {files.map(f => f.name).join(", ")}
+                {files.length} file(s) selected (max {MAX_FILES_PER_BATCH}): {files.map(f => f.name).join(", ")}
               </p>
             )}
           </div>

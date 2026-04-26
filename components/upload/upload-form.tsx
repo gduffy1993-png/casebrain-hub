@@ -23,6 +23,7 @@ const ACCEPTED_TYPES = [
 type UploadMode = "single_case" | "one_case_per_file" | "zip_by_folder" | "multi_slot";
 
 const MULTI_SLOT_COUNT = 5;
+const MAX_FILES_PER_BATCH = 20;
 
 type SlotState = { label: string; files: File[] };
 
@@ -200,6 +201,11 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
         setError("Add PDFs or documents to at least one case slot.");
         return;
       }
+      const totalFiles = slotsWithFiles.reduce((sum, slot) => sum + slot.files.length, 0);
+      if (totalFiles > MAX_FILES_PER_BATCH) {
+        setError(`You can upload up to ${MAX_FILES_PER_BATCH} files at a time. Remove some files and retry.`);
+        return;
+      }
       setError(null);
       setIsSubmitting(true);
       if (isOwnerHardcoded || isOwner || bypassActive) {
@@ -296,6 +302,10 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
 
     if (!files?.length) {
       setError("Select at least one document to upload.");
+      return;
+    }
+    if (files.length > MAX_FILES_PER_BATCH) {
+      setError(`You can upload up to ${MAX_FILES_PER_BATCH} files at a time. Remove some files and retry.`);
       return;
     }
     const effectiveMode: UploadMode = caseId ? "single_case" : uploadMode;
@@ -670,13 +680,18 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
                     accept={ACCEPTED_TYPES.join(",")}
                     className="hidden"
                     onChange={(e) => {
-                      const list = e.target.files ? Array.from(e.target.files) : [];
+                      const selected = e.target.files ? Array.from(e.target.files) : [];
+                      const list = selected.slice(0, MAX_FILES_PER_BATCH);
+                      if (selected.length > MAX_FILES_PER_BATCH) {
+                        setError(`Slot ${i + 1}: only the first ${MAX_FILES_PER_BATCH} files were kept.`);
+                      } else {
+                        setError(null);
+                      }
                       setCaseSlots((prev) => {
                         const next = [...prev];
                         next[i] = { ...next[i]!, files: list };
                         return next;
                       });
-                      setError(null);
                       setPaywallError(null);
                     }}
                   />
@@ -706,8 +721,16 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
                 accept={ACCEPTED_TYPES.join(",")}
                 className="hidden"
                 onChange={(event) => {
-                  setFiles(event.target.files);
-                  setError(null);
+                  const list = event.target.files ? Array.from(event.target.files) : [];
+                  const clipped = list.slice(0, MAX_FILES_PER_BATCH);
+                  const dt = new DataTransfer();
+                  clipped.forEach((file) => dt.items.add(file));
+                  setFiles(dt.files);
+                  if (list.length > MAX_FILES_PER_BATCH) {
+                    setError(`Only the first ${MAX_FILES_PER_BATCH} files were kept.`);
+                  } else {
+                    setError(null);
+                  }
                   setPaywallError(null);
                 }}
               />

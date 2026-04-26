@@ -94,6 +94,7 @@ async function createCaseForUpload(params: {
 
 const STORAGE_BUCKET = env.SUPABASE_STORAGE_BUCKET;
 const MAX_UPLOAD_BYTES = env.FILE_UPLOAD_MAX_MB * 1024 * 1024;
+const MAX_FILES_PER_REQUEST = 20;
 
 export async function POST(request: Request) {
   const { userId, orgId } = await requireAuthContext();
@@ -153,6 +154,13 @@ export async function POST(request: Request) {
   if (!files.length) {
     return NextResponse.json(
       { error: "No files provided" },
+      { status: 400 },
+    );
+  }
+
+  if (files.length > MAX_FILES_PER_REQUEST) {
+    return NextResponse.json(
+      { error: `Too many files provided (max ${MAX_FILES_PER_REQUEST} per upload).` },
       { status: 400 },
     );
   }

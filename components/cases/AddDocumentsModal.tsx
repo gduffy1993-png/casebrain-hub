@@ -5,6 +5,8 @@ import { X, Upload, Loader2, CheckCircle, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
+const MAX_FILES_PER_BATCH = 20;
+
 type AddDocumentsModalProps = {
   caseId: string;
   caseTitle: string;
@@ -32,6 +34,14 @@ export function AddDocumentsModal({
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFiles = Array.from(e.target.files || []);
+    if (selectedFiles.length > MAX_FILES_PER_BATCH) {
+      setFiles(selectedFiles.slice(0, MAX_FILES_PER_BATCH));
+      setResult({
+        success: false,
+        error: `Only the first ${MAX_FILES_PER_BATCH} files were kept.`,
+      });
+      return;
+    }
     setFiles(selectedFiles);
     setResult(null);
   };
@@ -39,6 +49,10 @@ export function AddDocumentsModal({
   const handleSubmit = () => {
     if (files.length === 0) {
       setResult({ success: false, error: "Please select at least one file" });
+      return;
+    }
+    if (files.length > MAX_FILES_PER_BATCH) {
+      setResult({ success: false, error: `You can upload up to ${MAX_FILES_PER_BATCH} files at a time.` });
       return;
     }
 
@@ -118,7 +132,7 @@ export function AddDocumentsModal({
             />
             {files.length > 0 && (
               <p className="mt-2 text-xs text-accent/60">
-                {files.length} file(s) selected
+                {files.length} file(s) selected (max {MAX_FILES_PER_BATCH})
               </p>
             )}
           </div>
