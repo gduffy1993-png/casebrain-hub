@@ -458,11 +458,13 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
       : defaultTabByState;
 
   const currentCaseIndex = caseNavList.findIndex((c) => c.id === caseId);
-  const prevCase = currentCaseIndex > 0 ? caseNavList[currentCaseIndex - 1] : null;
-  const nextCase = currentCaseIndex >= 0 && currentCaseIndex < caseNavList.length - 1 ? caseNavList[currentCaseIndex + 1] : null;
   const evalCaseRegex = /NS-CPS-2026-04\d{2}/i;
   const evalCases = caseNavList.filter((c) => evalCaseRegex.test(c.title)).slice(0, 40);
   const evalCaseIndex = evalCases.findIndex((c) => c.id === caseId);
+  const navCases = evalCaseIndex >= 0 ? evalCases : caseNavList;
+  const navCaseIndex = navCases.findIndex((c) => c.id === caseId);
+  const prevCase = navCaseIndex > 0 ? navCases[navCaseIndex - 1] : null;
+  const nextCase = navCaseIndex >= 0 && navCaseIndex < navCases.length - 1 ? navCases[navCaseIndex + 1] : null;
 
   const navigateToCase = (targetCaseId: string) => {
     if (!targetCaseId || targetCaseId === caseId) return;
@@ -564,8 +566,8 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
               "Loading case navigator..."
             ) : caseNavError ? (
               "Case navigator unavailable."
-            ) : currentCaseIndex >= 0 ? (
-              <>Case {currentCaseIndex + 1} of {caseNavList.length}</>
+            ) : navCaseIndex >= 0 ? (
+              <>Case {navCaseIndex + 1} of {navCases.length}</>
             ) : (
               <>Case navigator ready ({caseNavList.length} loaded)</>
             )}
@@ -859,10 +861,11 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
                   currentPhase={p}
                   evidenceSummary={snapshot ? buildEvidenceContext(snapshot, effectiveProceduralSafety?.outstandingItems) : undefined}
                   timelineSummary={snapshot ? buildTimelineContext(snapshot) : undefined}
+                  evalCases={evalCases}
                   caseNav={{
                     label:
-                      currentCaseIndex >= 0
-                        ? `Case ${currentCaseIndex + 1} of ${caseNavList.length}`
+                      navCaseIndex >= 0
+                        ? `Case ${navCaseIndex + 1} of ${navCases.length}`
                         : caseNavList.length > 0
                           ? `${caseNavList.length} cases loaded`
                           : null,

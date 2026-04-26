@@ -45,6 +45,8 @@ type DefencePlanBoxProps = {
     onGoPrev?: () => void;
     onGoNext?: () => void;
   };
+  /** Optional eval case list for bulk question runs (e.g. NS-CPS 0401-0440). */
+  evalCases?: Array<{ id: string; title: string }>;
 };
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
@@ -116,7 +118,7 @@ function saveChatToStorage(caseId: string, messages: ChatMessage[]) {
   }
 }
 
-export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, evidenceSummary, timelineSummary, caseNav }: DefencePlanBoxProps) {
+export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, evidenceSummary, timelineSummary, caseNav, evalCases = [] }: DefencePlanBoxProps) {
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
   const [chatLoaded, setChatLoaded] = useState(false);
   const [chatInput, setChatInput] = useState("");
@@ -125,6 +127,12 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
   const [pendingProposal, setPendingProposal] = useState<PendingProposal | null>(null);
   const [editingProposal, setEditingProposal] = useState<PendingProposal | null>(null);
   const [proposalSaving, setProposalSaving] = useState(false);
+  const [evalInput, setEvalInput] = useState("");
+  const [evalRunning, setEvalRunning] = useState(false);
+  const [evalProgress, setEvalProgress] = useState<{ done: number; total: number }>({ done: 0, total: 0 });
+  const [evalRows, setEvalRows] = useState<
+    Array<{ caseId: string; caseTitle: string; questionNo: number; question: string; answer: string; error?: string }>
+  >([]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   /** Scroll only this panel — scrollIntoView on the sentinel scrolls the whole page. */
   const messagesScrollRef = useRef<HTMLDivElement>(null);
@@ -185,6 +193,83 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
     } finally {
       setChatLoading(false);
     }
+  };
+
+  const parseEvalQuestions = (): string[] => {
+    return evalInput
+      .split(/\r?\n/)
+      .map((q) => q.trim())
+      .filter((q) => q.length > 0)
+      .slice(0, 10);
+  };
+
+  const runEvalAcrossCases = async () => {
+    const questions = parseEvalQuestions();
+    if (questions.length === 0 || evalCases.length === 0 || evalRunning) return;
+    const total = questions.length * evalCases.length;
+    setEvalRunning(true);
+    setEvalRows([]);
+    setEvalProgress({ done: 0, total });
+
+    const rows: Array<{ caseId: string; caseTitle: string; questionNo: number; question: string; answer: string; error?: string }> = [];
+    let done = 0;
+    try {
+      for (let qIdx = 0; qIdx < questions.length; qIdx += 1) {
+        const question = questions[qIdx]!;
+        for (const c of evalCases) {
+          let answer = "";
+          let error: string | undefined;
+          try {
+            const res = await fetch(`/api/criminal/${c.id}/defence-plan-chat`, {
+              method: "POST",
+              credentials: "include",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ message: question }),
+            });
+            const data = (await res.json().catch(() => ({}))) as { ok?: boolean; reply?: string; error?: string };
+            if (!res.ok || !data.ok || typeof data.reply !== "string") {
+              error = data.error ?? `HTTP ${res.status}`;
+            } else {
+              answer = data.reply;
+            }
+          } catch (e) {
+            error = e instanceof Error ? e.message : "Unknown error";
+          }
+
+          rows.push({
+            caseId: c.id,
+            caseTitle: c.title,
+            questionNo: qIdx + 1,
+            question,
+            answer,
+            ...(error ? { error } : {}),
+          });
+          done += 1;
+          setEvalProgress({ done, total });
+          setEvalRows([...rows]);
+        }
+      }
+    } finally {
+      setEvalRunning(false);
+    }
+  };
+
+  const copyEvalRows = async () => {
+    if (evalRows.length === 0) return;
+    const header = ["case_id", "case_title", "question_no", "question", "answer", "error"].join("\t");
+    const body = evalRows
+      .map((r) =>
+        [
+          r.caseId,
+          r.caseTitle.replace(/\t/g, " "),
+          String(r.questionNo),
+          r.question.replace(/\t/g, " "),
+          (r.answer || "").replace(/\t/g, " ").replace(/\r?\n/g, " \\n "),
+          (r.error || "").replace(/\t/g, " "),
+        ].join("\t"),
+      )
+      .join("\n");
+    await navigator.clipboard.writeText(`${header}\n${body}`);
   };
 
   const handleAcceptProposal = async () => {
@@ -371,6 +456,59 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
                 </Button>
               </div>
             </div>
+          </div>
+        )}
+        {evalCases.length > 0 && (
+          <div className="mb-3 rounded-md border border-border/60 bg-muted/20 p-2.5">
+            <p className="text-[11px] font-medium text-foreground">Bulk eval runner (ask same question(s) across all eval cases)</p>
+            <p className="mt-1 text-[11px] text-muted-foreground">
+              Enter up to 10 questions (one per line). Runner will execute each question across {evalCases.length} cases.
+            </p>
+            <textarea
+              value={evalInput}
+              onChange={(e) => setEvalInput(e.target.value)}
+              placeholder={"1) What is the case in one sentence?\n2) What disclosure is missing?\n... (up to 10 lines)"}
+              className="mt-2 h-28 w-full rounded-md border border-border bg-background px-2 py-2 text-xs text-foreground outline-none focus:ring-2 focus:ring-primary/30"
+              disabled={evalRunning}
+            />
+            <div className="mt-2 flex flex-wrap items-center gap-2">
+              <Button type="button" size="sm" onClick={runEvalAcrossCases} disabled={evalRunning || parseEvalQuestions().length === 0}>
+                {evalRunning ? "Running..." : `Run on ${evalCases.length} cases`}
+              </Button>
+              <Button type="button" size="sm" variant="outline" onClick={copyEvalRows} disabled={evalRows.length === 0}>
+                Copy results
+              </Button>
+              <Button type="button" size="sm" variant="ghost" onClick={() => setEvalRows([])} disabled={evalRunning || evalRows.length === 0}>
+                Clear
+              </Button>
+              <span className="text-[11px] text-muted-foreground">
+                Progress: {evalProgress.done}/{evalProgress.total}
+              </span>
+            </div>
+            {evalRows.length > 0 && (
+              <div className="mt-2 max-h-48 overflow-auto rounded border border-border/60 bg-background p-2">
+                <table className="w-full text-[11px]">
+                  <thead>
+                    <tr className="text-left text-muted-foreground">
+                      <th className="pr-2">Case</th>
+                      <th className="pr-2">Q#</th>
+                      <th className="pr-2">Status</th>
+                      <th>Preview</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {evalRows.slice(-120).map((r, idx) => (
+                      <tr key={`${r.caseId}-${r.questionNo}-${idx}`} className="border-t border-border/40 align-top">
+                        <td className="pr-2 py-1 text-foreground">{r.caseTitle}</td>
+                        <td className="pr-2 py-1 text-foreground">{r.questionNo}</td>
+                        <td className="pr-2 py-1">{r.error ? <span className="text-red-600">error</span> : <span className="text-emerald-600">ok</span>}</td>
+                        <td className="py-1 text-muted-foreground">{(r.error ?? r.answer).slice(0, 120)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
           </div>
         )}
         <LawSliceSuggestions offenceType={offenceType} currentPhase={currentPhase} hasPlan={true} />
