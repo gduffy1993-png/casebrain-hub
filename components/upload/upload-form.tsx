@@ -22,7 +22,7 @@ const ACCEPTED_TYPES = [
 
 type UploadMode = "single_case" | "one_case_per_file" | "zip_by_folder" | "multi_slot";
 
-const MULTI_SLOT_COUNT = 5;
+const MULTI_SLOT_COUNT = 20;
 const MAX_FILES_PER_BATCH = 20;
 
 type SlotState = { label: string; files: File[] };
@@ -603,7 +603,7 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
                   className="mt-1"
                 />
                 <span>
-                  <span className="font-medium">Up to 5 cases (boxes)</span> — separate upload area per case.
+                  <span className="font-medium">Up to 20 cases (boxes)</span> — separate upload area per case.
                   Put PDFs (or DOCX/TXT) in each box; only filled boxes create a new case. Optional prefix applies to
                   all (e.g. &quot;Batch A — Case 1&quot;).
                 </span>
