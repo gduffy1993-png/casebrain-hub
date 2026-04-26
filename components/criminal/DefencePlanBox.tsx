@@ -37,6 +37,14 @@ type DefencePlanBoxProps = {
   evidenceSummary?: string | null;
   /** For Phase 5 timeline reasoning: key dates and next hearing so chat can reason over timeline */
   timelineSummary?: string | null;
+  /** Quick case navigation controls for eval/training flow */
+  caseNav?: {
+    label?: string | null;
+    canGoPrev: boolean;
+    canGoNext: boolean;
+    onGoPrev?: () => void;
+    onGoNext?: () => void;
+  };
 };
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
@@ -108,7 +116,7 @@ function saveChatToStorage(caseId: string, messages: ChatMessage[]) {
   }
 }
 
-export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, evidenceSummary, timelineSummary }: DefencePlanBoxProps) {
+export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, evidenceSummary, timelineSummary, caseNav }: DefencePlanBoxProps) {
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
   const [chatLoaded, setChatLoaded] = useState(false);
   const [chatInput, setChatInput] = useState("");
@@ -338,6 +346,33 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
       )}
 
       <div className="mt-6 pt-4 border-t border-border/50 flex flex-col min-h-0">
+        {caseNav && (caseNav.canGoPrev || caseNav.canGoNext || caseNav.label) && (
+          <div className="mb-3 rounded-md border border-border/60 bg-muted/20 p-2.5">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <p className="text-[11px] text-muted-foreground">{caseNav.label ?? "Case navigation"}</p>
+              <div className="flex items-center gap-2">
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="outline"
+                  disabled={!caseNav.canGoPrev}
+                  onClick={caseNav.onGoPrev}
+                >
+                  Previous case
+                </Button>
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="outline"
+                  disabled={!caseNav.canGoNext}
+                  onClick={caseNav.onGoNext}
+                >
+                  Next case
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
         <LawSliceSuggestions offenceType={offenceType} currentPhase={currentPhase} hasPlan={true} />
         <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1">Ask about this plan</p>
         <div className="rounded border border-border/50 bg-muted/20 px-2 py-1.5 mb-2 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] text-muted-foreground">

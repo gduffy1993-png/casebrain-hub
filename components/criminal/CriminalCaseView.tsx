@@ -852,7 +852,26 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
               </div>
 
               <div className="mb-6">
-                <DefencePlanBox caseId={caseId} plan={defencePlan} offenceType={snapshot?.resolvedOffence?.offenceType} currentPhase={p} evidenceSummary={snapshot ? buildEvidenceContext(snapshot, effectiveProceduralSafety?.outstandingItems) : undefined} timelineSummary={snapshot ? buildTimelineContext(snapshot) : undefined} />
+                <DefencePlanBox
+                  caseId={caseId}
+                  plan={defencePlan}
+                  offenceType={snapshot?.resolvedOffence?.offenceType}
+                  currentPhase={p}
+                  evidenceSummary={snapshot ? buildEvidenceContext(snapshot, effectiveProceduralSafety?.outstandingItems) : undefined}
+                  timelineSummary={snapshot ? buildTimelineContext(snapshot) : undefined}
+                  caseNav={{
+                    label:
+                      currentCaseIndex >= 0
+                        ? `Case ${currentCaseIndex + 1} of ${caseNavList.length}`
+                        : caseNavList.length > 0
+                          ? `${caseNavList.length} cases loaded`
+                          : null,
+                    canGoPrev: !!prevCase,
+                    canGoNext: !!nextCase,
+                    onGoPrev: prevCase ? () => navigateToCase(prevCase.id) : undefined,
+                    onGoNext: nextCase ? () => navigateToCase(nextCase.id) : undefined,
+                  }}
+                />
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
