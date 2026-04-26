@@ -43,9 +43,9 @@ export default function SignInPage() {
     <div className="min-h-screen flex items-center justify-center p-6 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
       <div className="w-full max-w-md space-y-8">
         <div className="text-center space-y-2">
-          <h1 className="text-3xl font-bold text-foreground">Sign In</h1>
+          <h1 className="text-3xl font-bold text-foreground">Sign in to CaseBrain</h1>
           <p className="text-sm text-muted-foreground">
-            Sign in to your CaseBrain account
+            Continue to your secure criminal-defence workspace.
           </p>
         </div>
 
@@ -59,7 +59,7 @@ export default function SignInPage() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                Email
+                Work email
               </label>
               <input
                 id="email"
@@ -99,6 +99,10 @@ export default function SignInPage() {
               {isLoading ? "Signing in..." : "Sign In"}
             </Button>
           </form>
+
+          <div className="rounded border border-border/60 bg-muted/20 p-3 text-xs text-muted-foreground">
+            Data is encrypted in transit and at rest. Case documents are not used to train public AI models.
+          </div>
 
           <div className="text-center text-sm text-muted-foreground">
             Don't have an account?{" "}

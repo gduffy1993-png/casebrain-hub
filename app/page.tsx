@@ -174,10 +174,10 @@ function MarketingHomepage() {
             {/* Left: Text Content */}
             <div className="space-y-8">
               <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight">
-                AI paralegal for modern litigation teams.
+                Criminal defence workspace for bundle truth and fast case action.
           </h1>
               <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed">
-                Upload your case bundle and let CaseBrain extract facts, build chronologies, flag risks, and identify missing evidence automatically.
+                Upload a bundle, surface disclosure blockers, and keep strategy grounded in source text.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/sign-in">
@@ -194,7 +194,7 @@ function MarketingHomepage() {
                 </a>
               </div>
               <p className="text-xs text-muted-foreground">
-                No credit card needed. Designed for UK litigation teams.
+                No credit card needed. Built for UK criminal defence teams.
               </p>
             </div>
 
@@ -221,7 +221,7 @@ function MarketingHomepage() {
       <section className="px-4 py-8 bg-muted/30 border-y border-border/50">
         <div className="mx-auto max-w-7xl text-center">
           <p className="text-sm text-muted-foreground">
-            Built for: <span className="text-foreground font-medium">Housing disrepair</span> · <span className="text-foreground font-medium">Personal injury</span> · <span className="text-foreground font-medium">Clinical negligence</span> · <span className="text-foreground font-medium">General litigation</span>
+            Built for: <span className="text-foreground font-medium">Criminal defence solicitors</span> · <span className="text-foreground font-medium">Police station teams</span> · <span className="text-foreground font-medium">Crown Court preparation</span>
           </p>
         </div>
       </section>
@@ -234,7 +234,7 @@ function MarketingHomepage() {
               See CaseBrain in action
             </h2>
             <p className="text-lg text-muted-foreground">
-              Watch how CaseBrain processes case bundles and extracts key information
+              See criminal bundle extraction, disclosure blockers, and strategy flow in action
             </p>
           </div>
           <div className="rounded-lg border border-border overflow-hidden bg-card shadow-xl">
@@ -263,10 +263,10 @@ function MarketingHomepage() {
                 <FileText className="h-6 w-6 text-primary" />
               </div>
               <h3 className="text-lg font-semibold text-foreground mb-2">
-                Full fact extraction
+                Bundle-grounded extraction
               </h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                CaseBrain processes entire bundles, extracting parties, dates, events, and key facts across all document types.
+                Extracts accused, witnesses, MG sections, exhibits, and key dates from uploaded bundle text.
               </p>
             </Card>
 
@@ -275,10 +275,10 @@ function MarketingHomepage() {
                 <Calendar className="h-6 w-6 text-primary" />
               </div>
               <h3 className="text-lg font-semibold text-foreground mb-2">
-                Automatic limitation
+                Strategy timeline
               </h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Timeline built from all documents with automatic limitation calculations, including minors and hybrid cases.
+                Tracks doing now, waiting for disclosure, next steps, and pivot risks in one timeline.
               </p>
             </Card>
 
@@ -287,10 +287,10 @@ function MarketingHomepage() {
                 <AlertTriangle className="h-6 w-6 text-primary" />
               </div>
               <h3 className="text-lg font-semibold text-foreground mb-2">
-                Awaab's Law alerts
+                Procedural safety blockers
               </h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Flags hazards, under-5s, symptoms and compliance failures with CRITICAL / HIGH / MEDIUM status and deadline tracking.
+                Flags unsafe-to-proceed gaps and what must be resolved before hearing strategy can be relied on.
               </p>
             </Card>
 
@@ -299,10 +299,10 @@ function MarketingHomepage() {
                 <Search className="h-6 w-6 text-primary" />
               </div>
               <h3 className="text-lg font-semibold text-foreground mb-2">
-                Missing Evidence Finder
+                Missing disclosure finder
               </h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Identifies gaps such as missing tenancy docs, medical reports, engineer surveys, or witness statements.
+                Surfaces missing CCTV windows, continuity records, interview materials, and other key disclosure items.
               </p>
             </Card>
 
@@ -311,10 +311,10 @@ function MarketingHomepage() {
                 <Briefcase className="h-6 w-6 text-primary" />
               </div>
               <h3 className="text-lg font-semibold text-foreground mb-2">
-                Case Heatmap
+                Source text vs AI clarity
               </h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Visual RAG assessment across liability, causation, quantum, evidence completeness, and procedural compliance.
+                Keeps extracted text beside AI outputs so solicitors can verify names, hooks, and MG references quickly.
               </p>
             </Card>
 
@@ -323,10 +323,10 @@ function MarketingHomepage() {
                 <Download className="h-6 w-6 text-primary" />
               </div>
               <h3 className="text-lg font-semibold text-foreground mb-2">
-                One-click bundles & letters
+                Practical solicitor outputs
               </h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Export summaries, key issues, and draft letters into templates ready for review and sending.
+                Supports defence planning, client-safe wording, and concise solicitor-controlled exports.
               </p>
             </Card>
           </div>
@@ -337,7 +337,7 @@ function MarketingHomepage() {
       <section className="px-4 py-20 bg-gradient-to-b from-transparent to-muted/20">
         <div className="mx-auto max-w-7xl">
           <h2 className="text-3xl lg:text-4xl font-bold text-foreground text-center mb-12">
-            Designed around real litigation roles
+            Designed around real criminal defence roles
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {/* Housing Solicitor */}
@@ -357,10 +357,10 @@ function MarketingHomepage() {
                 */}
               </div>
               <h3 className="text-lg font-semibold text-foreground mb-2">
-                Senior Housing Solicitor
+                Criminal Defence Solicitor
               </h3>
               <p className="text-sm text-muted-foreground italic">
-                "I use CaseBrain to quickly identify Awaab's Law triggers and missing evidence in disrepair cases. It saves me hours on each file."
+                "CaseBrain helps me spot disclosure gaps quickly and keeps strategy grounded in what is actually in the bundle."
               </p>
             </Card>
 
@@ -380,10 +380,10 @@ function MarketingHomepage() {
                 */}
               </div>
               <h3 className="text-lg font-semibold text-foreground mb-2">
-                PI Litigator
+                Police Station Representative
               </h3>
               <p className="text-sm text-muted-foreground italic">
-                "CaseBrain's limitation calculations and risk flags help me spot issues early. The case heatmap gives me instant visibility."
+                "I can structure instructions faster and see what evidence we still need before interview and first hearing."
               </p>
             </Card>
 
@@ -403,10 +403,10 @@ function MarketingHomepage() {
                 */}
             </div>
               <h3 className="text-lg font-semibold text-foreground mb-2">
-                Clinical Negligence Paralegal
+                Crown Court Prep Team
               </h3>
               <p className="text-sm text-muted-foreground italic">
-                "The automatic chronology and missing evidence finder help me prepare bundles faster. Everything is structured and ready for review."
+                "MG sections, disclosure blockers, and strategy timeline in one place make trial prep far less fragmented."
               </p>
             </Card>
           </div>
@@ -432,7 +432,7 @@ function MarketingHomepage() {
                 Upload the bundle
               </h3>
               <p className="text-muted-foreground leading-relaxed">
-                Drop in your PDFs, emails, letters, medical records, and tenancy documents. CaseBrain accepts multiple file types.
+                Upload criminal bundle PDFs and supporting documents. CaseBrain extracts source text for strategy work.
               </p>
             </div>
 
@@ -445,7 +445,7 @@ function MarketingHomepage() {
                 CaseBrain reads the file
               </h3>
               <p className="text-muted-foreground leading-relaxed">
-                We extract facts, dates, limitation triggers, risk flags, and compliance issues across housing, PI, and clinical negligence.
+                We extract case facts, MG references, chronology points, and disclosure blockers from uploaded material.
               </p>
             </div>
 
@@ -458,7 +458,7 @@ function MarketingHomepage() {
                 Your team reviews & acts
               </h3>
               <p className="text-muted-foreground leading-relaxed">
-                Edit, export, and send. Everything is structured and ready for qualified professionals to review and act on.
+                Review source text against AI outputs, update strategy, and run next hearing/disclosure actions.
               </p>
             </div>
           </div>
@@ -500,7 +500,7 @@ function MarketingHomepage() {
               <li className="flex items-start gap-3">
                 <AlertTriangle className="h-5 w-5 text-primary mt-0.5 shrink-0" />
                 <p className="text-sm text-muted-foreground">
-                  CaseBrain does not provide legal advice; it structures the file for qualified professionals. All outputs should be reviewed by a qualified solicitor.
+                  CaseBrain does not provide legal advice; it structures criminal case materials for qualified professionals. All outputs should be reviewed by a qualified solicitor.
                 </p>
               </li>
             </ul>
@@ -543,7 +543,7 @@ function MarketingHomepage() {
                 <span className="text-lg font-semibold text-foreground">CaseBrain Hub</span>
               </div>
               <p className="text-sm text-muted-foreground">
-                AI paralegal platform that helps UK litigation teams automate case document workflows safely.
+                Criminal-defence workspace that helps UK teams structure bundle evidence and act faster with solicitor control.
               </p>
             </div>
 

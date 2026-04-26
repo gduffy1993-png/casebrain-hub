@@ -78,9 +78,9 @@ export default function SignUpPage() {
     <div className="min-h-screen flex items-center justify-center p-6 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
       <div className="w-full max-w-md space-y-8">
         <div className="text-center space-y-2">
-          <h1 className="text-3xl font-bold text-foreground">Create Account</h1>
+          <h1 className="text-3xl font-bold text-foreground">Create your CaseBrain account</h1>
           <p className="text-sm text-muted-foreground">
-            Sign up for your CaseBrain account
+            Secure criminal-defence workspace for bundle analysis and disclosure prep.
           </p>
         </div>
 
@@ -94,7 +94,7 @@ export default function SignUpPage() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                Email
+                Work email
               </label>
               <input
                 id="email"
@@ -110,7 +110,7 @@ export default function SignUpPage() {
 
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-foreground mb-2">
-                Password
+                Create password
               </label>
               <input
                 id="password"
@@ -121,9 +121,10 @@ export default function SignUpPage() {
                 placeholder="••••••••"
                 className="w-full px-3 py-2 bg-background border border-border rounded-md text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                 required
-                minLength={6}
+                minLength={8}
                 disabled={isLoading}
               />
+              <p className="mt-1 text-xs text-muted-foreground">Minimum 8 characters.</p>
             </div>
 
             <Button
@@ -135,6 +136,22 @@ export default function SignUpPage() {
               {isLoading ? "Creating account..." : "Create Account"}
             </Button>
           </form>
+
+          <div className="rounded border border-border/60 bg-muted/20 p-3 text-xs text-muted-foreground">
+            Data is encrypted in transit and at rest. Case documents are not used to train public AI models.
+          </div>
+
+          <div className="text-center text-xs text-muted-foreground">
+            By creating an account, you agree to our{" "}
+            <Link href="/terms" className="text-primary hover:underline">
+              Terms
+            </Link>{" "}
+            and{" "}
+            <Link href="/privacy" className="text-primary hover:underline">
+              Privacy Policy
+            </Link>
+            .
+          </div>
 
           <div className="text-center text-sm text-muted-foreground">
             Already have an account?{" "}
