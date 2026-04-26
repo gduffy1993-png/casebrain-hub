@@ -476,11 +476,18 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         ? navCases[0]
         : null;
 
-  const navigateToCase = (targetCaseId: string) => {
+  const navigateToCase = (
+    targetCaseId: string,
+    options?: { forceTab?: "strategy" | "summary" | "charges" | "disclosure" | "hearings" | "client-instructions" | "police-station"; preserveQuery?: boolean }
+  ) => {
     if (!targetCaseId || targetCaseId === caseId) return;
-    const params = new URLSearchParams(searchParams.toString());
+    const preserveQuery = options?.preserveQuery ?? true;
+    const params = preserveQuery ? new URLSearchParams(searchParams.toString()) : new URLSearchParams();
+    if (options?.forceTab) {
+      params.set("tab", options.forceTab);
+    }
     const query = params.toString();
-    router.push(query ? `/cases/${targetCaseId}?${query}` : `/cases/${targetCaseId}`);
+    router.push(query ? `/cases/${targetCaseId}?${query}` : `/cases/${targetCaseId}`, { scroll: false });
   };
 
   const setTab = (tabId: string) => {
@@ -881,8 +888,8 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
                           : null,
                     canGoPrev: !!prevCase,
                     canGoNext: !!nextCase,
-                    onGoPrev: prevCase ? () => navigateToCase(prevCase.id) : undefined,
-                    onGoNext: nextCase ? () => navigateToCase(nextCase.id) : undefined,
+                    onGoPrev: prevCase ? () => navigateToCase(prevCase.id, { forceTab: "strategy", preserveQuery: false }) : undefined,
+                    onGoNext: nextCase ? () => navigateToCase(nextCase.id, { forceTab: "strategy", preserveQuery: false }) : undefined,
                   }}
                 />
               </div>
