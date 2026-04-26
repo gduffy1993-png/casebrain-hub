@@ -47,6 +47,8 @@ type DefencePlanBoxProps = {
   };
   /** Optional eval case list for bulk question runs (e.g. NS-CPS 0401-0440). */
   evalCases?: Array<{ id: string; title: string }>;
+  /** Full case list for bulk runs (preferred when available). */
+  allCases?: Array<{ id: string; title: string }>;
 };
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
@@ -118,7 +120,7 @@ function saveChatToStorage(caseId: string, messages: ChatMessage[]) {
   }
 }
 
-export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, evidenceSummary, timelineSummary, caseNav, evalCases = [] }: DefencePlanBoxProps) {
+export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, evidenceSummary, timelineSummary, caseNav, evalCases = [], allCases = [] }: DefencePlanBoxProps) {
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
   const [chatLoaded, setChatLoaded] = useState(false);
   const [chatInput, setChatInput] = useState("");
@@ -204,12 +206,14 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
       .slice(0, 10);
   };
 
+  const runnerCases = allCases.length > 0 ? allCases : evalCases;
+
   const selectedEvalCases = (): Array<{ id: string; title: string }> => {
     if (evalScope === "current") return [{ id: caseId, title: "Current case" }];
-    if (evalScope === "5") return evalCases.slice(0, 5);
-    if (evalScope === "10") return evalCases.slice(0, 10);
-    if (evalScope === "20") return evalCases.slice(0, 20);
-    return evalCases;
+    if (evalScope === "5") return runnerCases.slice(0, 5);
+    if (evalScope === "10") return runnerCases.slice(0, 10);
+    if (evalScope === "20") return runnerCases.slice(0, 20);
+    return runnerCases;
   };
 
   const runEvalAcrossCases = async () => {
@@ -311,11 +315,11 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
           </div>
         </div>
       )}
-      {evalCases.length > 0 && (
+      {runnerCases.length > 0 && (
         <div className="mb-3 rounded-md border border-border/60 bg-muted/20 p-2.5">
-          <p className="text-[11px] font-medium text-foreground">Bulk eval runner (ask same question(s) across all eval cases)</p>
+          <p className="text-[11px] font-medium text-foreground">Bulk eval runner (ask same question(s) across selected cases)</p>
           <p className="mt-1 text-[11px] text-muted-foreground">
-            Enter up to 10 questions (one per line). Runner will execute each question across {evalCases.length} cases.
+            Enter up to 10 questions (one per line). Runner will execute each question across {runnerCases.length} loaded cases.
           </p>
           <textarea
             value={evalInput}
@@ -332,10 +336,10 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
               disabled={evalRunning}
             >
               <option value="current">Current case only</option>
-              <option value="5">First 5 eval cases</option>
-              <option value="10">First 10 eval cases</option>
-              <option value="20">First 20 eval cases</option>
-              <option value="all">All eval cases</option>
+              <option value="5">First 5 cases</option>
+              <option value="10">First 10 cases</option>
+              <option value="20">First 20 cases</option>
+              <option value="all">All loaded cases</option>
             </select>
             <Button type="button" size="sm" onClick={runEvalAcrossCases} disabled={evalRunning || parseEvalQuestions().length === 0}>
               {evalRunning ? "Running..." : `Run on ${selectedEvalCases().length} case${selectedEvalCases().length === 1 ? "" : "s"}`}

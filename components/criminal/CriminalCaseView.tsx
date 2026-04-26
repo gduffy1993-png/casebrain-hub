@@ -599,18 +599,6 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
             >
               Previous case
             </Button>
-            <select
-              className="h-9 min-w-[260px] rounded-md border border-border bg-background px-2 text-xs text-foreground"
-              value={caseId}
-              disabled={caseNavLoading || caseNavList.length === 0}
-              onChange={(e) => navigateToCase(e.target.value)}
-            >
-              {caseNavList.map((c) => (
-                <option key={c.id} value={c.id}>
-                  {c.title}
-                </option>
-              ))}
-            </select>
             <Button
               type="button"
               size="sm"
@@ -879,6 +867,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
                   evidenceSummary={snapshot ? buildEvidenceContext(snapshot, effectiveProceduralSafety?.outstandingItems) : undefined}
                   timelineSummary={snapshot ? buildTimelineContext(snapshot) : undefined}
                   evalCases={evalCases}
+                  allCases={caseNavList}
                   caseNav={{
                     label:
                       navCaseIndex >= 0
