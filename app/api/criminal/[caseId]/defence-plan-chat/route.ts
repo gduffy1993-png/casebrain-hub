@@ -398,6 +398,69 @@ function detectUnsupportedClaimViolations(question: string, reply: string, hayst
   return issues;
 }
 
+function detectQuestionIntentViolations(question: string, reply: string): string[] {
+  const issues: string[] = [];
+  const q = question.toLowerCase();
+  const lower = reply.toLowerCase();
+
+  const hasAny = (patterns: RegExp[]) => patterns.some((p) => p.test(reply));
+  const hasTokens = (tokens: string[]) => tokens.some((t) => lower.includes(t));
+
+  if (q.includes("what is still unknown")) {
+    if (!hasTokens(["not stated", "unknown", "outstanding", "awaited", "pending"])) {
+      issues.push("Q3 intent miss: must identify unknown/outstanding items");
+    }
+  }
+  if (q.includes("key dates and timeline anchors")) {
+    if (!hasTokens(["stage", "hearing", "next", "disclosure", "timeline", "date"])) {
+      issues.push("Q4 intent miss: must provide timeline/procedural anchors");
+    }
+  }
+  if (q.includes("next procedural milestone")) {
+    if (!hasTokens(["next", "milestone", "hearing", "disclosure", "step"]) || !hasTokens(["matters", "impact", "risk", "consequence"])) {
+      issues.push("Q5 intent miss: must state next step and why it matters");
+    }
+  }
+  if (q.includes("strongest cross-examination theme")) {
+    if (!hasTokens(["cross", "theme", "challenge", "credibility", "inconsisten"])) {
+      issues.push("Q8 intent miss: must state cross-examination theme");
+    }
+  }
+  if (q.includes("impeachment material should we prioritise obtaining")) {
+    if (!hasAny([/mg11/i, /cctv/i, /999/i, /cad/i, /audio/i, /continuity/i])) {
+      issues.push("Q9 intent miss: must list concrete impeachment materials");
+    }
+  }
+
+  return issues;
+}
+
+function detectCaseSummaryTemplateLeak(question: string, reply: string): string[] {
+  const issues: string[] = [];
+  const q = question.toLowerCase();
+  const guarded =
+    q.includes("top 3 facts") ||
+    q.includes("still unknown") ||
+    q.includes("key dates and timeline anchors") ||
+    q.includes("next procedural milestone") ||
+    q.includes("single biggest risk") ||
+    q.includes("which witness is most vulnerable") ||
+    q.includes("strongest cross-examination theme") ||
+    q.includes("impeachment material should we prioritise obtaining") ||
+    (q.includes("what admissions") && q.includes("unsafe"));
+  if (!guarded) return issues;
+
+  if (
+    /faces .+\n\s*-\s*current posture\s*->/i.test(reply) ||
+    /current posture\s*->/i.test(reply) ||
+    /procedural position\s*->/i.test(reply) ||
+    /priority pressure point\s*->/i.test(reply)
+  ) {
+    issues.push("case-summary template leak detected");
+  }
+  return issues;
+}
+
 function buildDeterministicCompliantFallback(
   question: string,
   snapshot: Awaited<ReturnType<typeof getCaseStateSnapshot>> | null,
@@ -413,14 +476,6 @@ function buildDeterministicCompliantFallback(
   const hook =
     firstMatch(bundleFullText, [/^\s*Primary eval hook:\s*(.+)$/im]) ||
     "disclosure reliability tension";
-
-  if (q.includes("top 3 facts that help the defence")) {
-    return [
-      `- ${hook} -> This creates direct pressure on Crown reliability.`,
-      "- Incomplete disclosure items -> Missing material limits confidence in the prosecution narrative.",
-      `- Defence stance (${stance}) -> Preserves challenge to the core allegation and elements of ${offence}.`,
-    ].join("\n");
-  }
 
   if (q.includes("top 3 facts that hurt the defence")) {
     return [
@@ -442,7 +497,7 @@ function buildDeterministicCompliantFallback(
     ].join("\n");
   }
 
-  return buildBundleGroundedFallback(question, snapshot, bundleFullText);
+  return "";
 }
 
 function buildQuestionSpecificRules(question: string): string {
@@ -1132,6 +1187,8 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       ...detectQuestionDisciplineViolations(message, raw),
       ...detectLanguageDisciplineViolations(message, raw),
       ...detectUnsupportedClaimViolations(message, raw, exhibitHaystack),
+      ...detectQuestionIntentViolations(message, raw),
+      ...detectCaseSummaryTemplateLeak(message, raw),
     ];
     if (allIssues.length === 0) break;
     try {
@@ -1143,7 +1200,9 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
         "4) For Q2, never include defence-positive / Crown-weakness points.",
         "5) For Q6, provide one single risk only.",
         "6) For Q10, map unsafe admissions to offence elements and tactical consequences.",
-        "7) Follow the question-specific rules exactly.",
+        "7) Answer the specific question intent directly; do not substitute generic case summary.",
+        "8) Never use template labels like Current posture / Procedural position / Priority pressure point.",
+        "9) Follow the question-specific rules exactly.",
         buildQuestionSpecificRules(message),
         `Current violations: ${allIssues.join("; ")}.`,
       ].join("\n");
@@ -1166,10 +1225,19 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     ...detectQuestionDisciplineViolations(message, raw),
     ...detectLanguageDisciplineViolations(message, raw),
     ...detectUnsupportedClaimViolations(message, raw, exhibitHaystack),
+    ...detectQuestionIntentViolations(message, raw),
+    ...detectCaseSummaryTemplateLeak(message, raw),
   ];
   if (residualIssues.length > 0) {
-    raw = buildDeterministicCompliantFallback(message, snapshot, combinedBundleFull || exhibitHaystack);
-    raw = polishSolicitorTone(cleanLeadInPhrases(raw));
+    const q = message.toLowerCase();
+    const criticalFallback =
+      q.includes("top 3 facts that hurt the defence") ||
+      q.includes("single biggest risk if we do nothing this week") ||
+      (q.includes("what admissions") && q.includes("unsafe"));
+    if (criticalFallback) {
+      const forced = buildDeterministicCompliantFallback(message, snapshot, combinedBundleFull || exhibitHaystack);
+      if (forced.trim()) raw = polishSolicitorTone(cleanLeadInPhrases(forced));
+    }
   }
 
   const reply = raw.slice(0, MAX_REPLY_LENGTH);
