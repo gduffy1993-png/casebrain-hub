@@ -311,10 +311,31 @@ function detectQuestionDisciplineViolations(question: string, reply: string): st
 
   if (q.includes("single biggest risk if we do nothing this week")) {
     if (bullets.length > 1) issues.push("Q6 must contain one risk only (max one bullet)");
+    if (lines.length > 2) issues.push("Q6 must be concise (risk line + one consequence line max)");
   }
 
   if (q.includes("strongest cross-examination theme")) {
     if (bullets.length > 1) issues.push("Q8 should keep one theme line and max one supporting bullet");
+  }
+
+  if (q.includes("still unknown")) {
+    if (bullets.length < 3 || bullets.length > 4) issues.push("Q3 must contain 3-4 bullets");
+  }
+
+  if (q.includes("key dates and timeline anchors")) {
+    if (bullets.length !== 3) issues.push("Q4 must contain exactly 3 bullets");
+  }
+
+  if (q.includes("next procedural milestone")) {
+    if (bullets.length !== 3) issues.push("Q5 must contain exactly 3 bullets");
+  }
+
+  if (q.includes("which witness is most vulnerable")) {
+    if (bullets.length < 2 || bullets.length > 3) issues.push("Q7 must contain 2-3 supporting bullets");
+  }
+
+  if (q.includes("impeachment material should we prioritise obtaining")) {
+    if (bullets.length < 3 || bullets.length > 5) issues.push("Q9 must contain 3-5 concrete items");
   }
 
   if (q.includes("what admissions") && q.includes("unsafe")) {
@@ -326,6 +347,7 @@ function detectQuestionDisciplineViolations(question: string, reply: string): st
     if (elementHits < 2 || consequenceHits < 2) {
       issues.push("Q10 must link admissions to offence elements and tactical consequence");
     }
+    if (bullets.length < 3 || bullets.length > 4) issues.push("Q10 must contain 3-4 unsafe admissions");
   }
 
   return issues;
@@ -350,6 +372,77 @@ function detectLanguageDisciplineViolations(question: string, reply: string): st
   }
 
   return issues;
+}
+
+function detectUnsupportedClaimViolations(question: string, reply: string, haystack: string): string[] {
+  const issues: string[] = [];
+  const q = question.toLowerCase();
+  const lowerReply = reply.toLowerCase();
+  const lowerHay = haystack.toLowerCase();
+
+  // High-impact factual guard: do not state a witness statement is signed unless the bundle context supports it.
+  if (
+    /key witness statement is signed|signed statement|signed mg11/i.test(lowerReply) &&
+    !/(signed copy .*served|mg11.*signed.*served|signed mg11.*served)/i.test(lowerHay)
+  ) {
+    issues.push("unsupported claim: statement marked signed without bundle support");
+  }
+
+  // For Q2 specifically, do not reframe crown-weakness as defence-harm.
+  if (q.includes("top 3 facts that hurt the defence")) {
+    if (/weak id|weak identification/i.test(lowerReply)) {
+      issues.push("unsupported polarity: weak ID cannot hurt defence");
+    }
+  }
+
+  return issues;
+}
+
+function buildDeterministicCompliantFallback(
+  question: string,
+  snapshot: Awaited<ReturnType<typeof getCaseStateSnapshot>> | null,
+  bundleFullText: string
+): string {
+  const q = question.toLowerCase();
+  const offence =
+    snapshot?.offence_detected_label?.trim() ||
+    firstMatch(bundleFullText, [/^\s*Offence\(s\)\s+as\s+tag:\s*(.+)$/im, /^\s*Charge sheet extract:\s*(.+)$/im]) ||
+    "offence as alleged in the bundle";
+  const stance = snapshot?.stance_detected?.trim() || "not guilty / prosecution to proof";
+  const stage = snapshot?.stage_detected?.trim() || "stage not clearly stated in the materials provided";
+  const hook =
+    firstMatch(bundleFullText, [/^\s*Primary eval hook:\s*(.+)$/im]) ||
+    "disclosure reliability tension";
+
+  if (q.includes("top 3 facts that help the defence")) {
+    return [
+      `- ${hook} -> This creates direct pressure on Crown reliability.`,
+      "- Incomplete disclosure items -> Missing material limits confidence in the prosecution narrative.",
+      `- Defence stance (${stance}) -> Preserves challenge to the core allegation and elements of ${offence}.`,
+    ].join("\n");
+  }
+
+  if (q.includes("top 3 facts that hurt the defence")) {
+    return [
+      `- Charge exposure (${offence}) -> The offence elements remain live unless positively displaced.`,
+      "- Crown may regularise current disclosure gaps -> Defence advantage can narrow before hearing.",
+      "- Draft witness evidence may be finalised -> A cleaner Crown account can reduce cross-exam leverage.",
+    ].join("\n");
+  }
+
+  if (q.includes("single biggest risk if we do nothing this week")) {
+    return `Disclosure remains unresolved before the next procedural step, undermining targeted challenge strategy.\n- If key materials are not chased now, defence leverage narrows at the next hearing (${stage}).`;
+  }
+
+  if (q.includes("what admissions") && q.includes("unsafe")) {
+    return [
+      `- Admitting act mechanics that satisfy ${offence} elements -> Concedes core prosecution building blocks and weakens ${stance}.`,
+      "- Admitting intent/recklessness where disputed -> Concedes mental element and narrows viable defence routes.",
+      "- Admitting identification/presence beyond current case posture -> Collapses challenge to attribution and strengthens Crown proof.",
+    ].join("\n");
+  }
+
+  return buildBundleGroundedFallback(question, snapshot, bundleFullText);
 }
 
 function buildQuestionSpecificRules(question: string): string {
@@ -1038,6 +1131,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       ...detectFormatViolations(raw),
       ...detectQuestionDisciplineViolations(message, raw),
       ...detectLanguageDisciplineViolations(message, raw),
+      ...detectUnsupportedClaimViolations(message, raw, exhibitHaystack),
     ];
     if (allIssues.length === 0) break;
     try {
@@ -1065,6 +1159,17 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       // keep current reply if rewrite pass fails
       break;
     }
+  }
+
+  const residualIssues = [
+    ...detectFormatViolations(raw),
+    ...detectQuestionDisciplineViolations(message, raw),
+    ...detectLanguageDisciplineViolations(message, raw),
+    ...detectUnsupportedClaimViolations(message, raw, exhibitHaystack),
+  ];
+  if (residualIssues.length > 0) {
+    raw = buildDeterministicCompliantFallback(message, snapshot, combinedBundleFull || exhibitHaystack);
+    raw = polishSolicitorTone(cleanLeadInPhrases(raw));
   }
 
   const reply = raw.slice(0, MAX_REPLY_LENGTH);
