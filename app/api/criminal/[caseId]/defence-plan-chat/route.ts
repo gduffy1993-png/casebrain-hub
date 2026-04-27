@@ -270,6 +270,88 @@ function detectFormatViolations(reply: string): string[] {
   return issues;
 }
 
+function detectQuestionDisciplineViolations(question: string, reply: string): string[] {
+  const issues: string[] = [];
+  const q = question.toLowerCase();
+  const lines = reply
+    .split(/\r?\n/)
+    .map((l) => l.trim())
+    .filter(Boolean);
+  const bullets = lines.filter((l) => /^[-*]\s+/.test(l));
+  const nonBulletLines = lines.filter((l) => !/^[-*]\s+/.test(l));
+  const hasNumbered = lines.some((l) => /^\d+\.\s+/.test(l));
+  const lower = reply.toLowerCase();
+
+  if (hasNumbered) issues.push("numbered list format is not allowed");
+
+  if (q.includes("top 3 facts that help the defence")) {
+    if (bullets.length !== 3) issues.push("Q1 must have exactly 3 bullets");
+    if (nonBulletLines.length > 0) issues.push("Q1 must not include intro/non-bullet lines");
+  }
+
+  if (q.includes("top 3 facts that hurt the defence")) {
+    if (bullets.length !== 3) issues.push("Q2 must have exactly 3 bullets");
+    if (nonBulletLines.length > 0) issues.push("Q2 must not include intro/non-bullet lines");
+    const bannedHelpfulPhrases = [
+      "weak id",
+      "weak identification",
+      "cctv continuity issues",
+      "continuity issues flagged",
+      "incomplete disclosure",
+      "outstanding disclosure",
+      "full master audio",
+      "partial cctv",
+      "partial 999",
+      "mg5 vs mg6",
+    ];
+    if (bannedHelpfulPhrases.some((p) => lower.includes(p))) {
+      issues.push("Q2 contains defence-positive / crown-weakness material");
+    }
+  }
+
+  if (q.includes("single biggest risk if we do nothing this week")) {
+    if (bullets.length > 1) issues.push("Q6 must contain one risk only (max one bullet)");
+  }
+
+  if (q.includes("strongest cross-examination theme")) {
+    if (bullets.length > 1) issues.push("Q8 should keep one theme line and max one supporting bullet");
+  }
+
+  if (q.includes("what admissions") && q.includes("unsafe")) {
+    if (/no admissions should be made/i.test(reply)) {
+      issues.push("Q10 cannot use generic 'no admissions should be made' wording");
+    }
+    const elementHits = (lower.match(/\b(intent|recklessness|force|possession|identif|mechanic|causation)\b/g) ?? []).length;
+    const consequenceHits = (lower.match(/\b(concedes|undermines|collapses|weakens|damages)\b/g) ?? []).length;
+    if (elementHits < 2 || consequenceHits < 2) {
+      issues.push("Q10 must link admissions to offence elements and tactical consequence");
+    }
+  }
+
+  return issues;
+}
+
+function detectLanguageDisciplineViolations(question: string, reply: string): string[] {
+  const issues: string[] = [];
+  const q = question.toLowerCase();
+  const lower = reply.toLowerCase();
+
+  const weakVerbs = ["suggests", "indicates", "may", "could"];
+  const weakHits = weakVerbs.filter((w) => new RegExp(`\\b${w}\\b`, "i").test(lower));
+  if (weakHits.length > 0 && !/(not stated in the materials|not in materials|uncertain|unknown)/i.test(lower)) {
+    issues.push(`weak language present (${weakHits.join(", ")})`);
+  }
+
+  if (
+    (q.includes("top 3 facts that help the defence") || q.includes("top 3 facts that hurt the defence")) &&
+    /the top (three|3) facts|top defence advantage|top defense advantage/i.test(reply)
+  ) {
+    issues.push("top-3 answers must not include framing intros");
+  }
+
+  return issues;
+}
+
 function buildQuestionSpecificRules(question: string): string {
   const q = question.toLowerCase();
   const rules: string[] = [];
@@ -951,19 +1033,25 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
 
   raw = polishSolicitorTone(cleanLeadInPhrases(raw));
 
-  const formatIssues = detectFormatViolations(raw);
-  if (formatIssues.length > 0) {
+  for (let pass = 1; pass <= 2; pass += 1) {
+    const allIssues = [
+      ...detectFormatViolations(raw),
+      ...detectQuestionDisciplineViolations(message, raw),
+      ...detectLanguageDisciplineViolations(message, raw),
+    ];
+    if (allIssues.length === 0) break;
     try {
       const rewriteInstruction = [
-        "Rewrite your previous answer to comply exactly with this mandatory format:",
-        "1) First line must directly answer in one sentence; no intro phrasing.",
-        "2) Then 2-5 bullets, each in form: Point -> why it matters.",
-        "3) No hedging words (may/appears/could) unless uncertainty is explicit and necessary.",
-        '4) If key information is missing, include exactly once: "Not stated in the materials." then short procedural anchors only.',
-        "5) Keep tight and scannable; no unnecessary paragraphs or filler.",
-        "6) Follow the question-specific rules exactly.",
+        "Rewrite your previous answer to comply exactly with this mandatory format and discipline rules:",
+        "1) Obey bullet count/shape required by the question; no numbered lists.",
+        "2) Use Point -> why it matters where bullets are required.",
+        "3) Remove banned intros, filler, and weak verbs unless explicit uncertainty is required.",
+        "4) For Q2, never include defence-positive / Crown-weakness points.",
+        "5) For Q6, provide one single risk only.",
+        "6) For Q10, map unsafe admissions to offence elements and tactical consequences.",
+        "7) Follow the question-specific rules exactly.",
         buildQuestionSpecificRules(message),
-        `Current violations: ${formatIssues.join("; ")}.`,
+        `Current violations: ${allIssues.join("; ")}.`,
       ].join("\n");
       const rewritten = await runChatWithRetry([
         { role: "system", content: systemPrompt },
@@ -971,11 +1059,11 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
         { role: "assistant", content: raw },
         { role: "user", content: rewriteInstruction },
       ]);
-      if (rewritten.trim()) {
-        raw = polishSolicitorTone(cleanLeadInPhrases(rewritten));
-      }
+      if (!rewritten.trim()) break;
+      raw = polishSolicitorTone(cleanLeadInPhrases(rewritten));
     } catch {
       // keep current reply if rewrite pass fails
+      break;
     }
   }
 
