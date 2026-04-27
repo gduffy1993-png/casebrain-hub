@@ -270,15 +270,56 @@ function detectFormatViolations(reply: string): string[] {
   return issues;
 }
 
-function violatesHouseStyle(reply: string): boolean {
-  const lines = reply.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
-  if (lines.length === 0) return false;
-  const first = lines[0] ?? "";
-  if (/^(based on|from the materials|given the current|it appears|this suggests)/i.test(first)) return true;
-  if (first.length > 220) return true;
-  const hedgeHits = reply.match(/\b(may|appears|could|might)\b/gi)?.length ?? 0;
-  if (hedgeHits >= 3) return true;
-  return false;
+function buildQuestionSpecificRules(question: string): string {
+  const q = question.toLowerCase();
+  const rules: string[] = [];
+
+  if (q.includes("top 3 facts that help the defence")) {
+    rules.push(
+      "- Return exactly 3 defence-positive facts.",
+      "- Do NOT include prosecution-strength points in this answer.",
+      "- First line must directly state the top defence advantage."
+    );
+  }
+  if (q.includes("top 3 facts that hurt the defence")) {
+    rules.push(
+      "- Return exactly 3 defence-negative facts (prosecution strengths / defence vulnerabilities).",
+      "- Do NOT include defence-strength points in this answer.",
+      "- If a fact weakens the Crown (e.g. weak ID), it cannot be listed as hurting the defence."
+    );
+  }
+  if (q.includes("still unknown")) {
+    rules.push(
+      '- Start with "Not stated in the materials." once, then list only concrete unknowns that are actually awaited / missing.',
+      "- Do not repeat settled facts as unknowns."
+    );
+  }
+  if (q.includes("key dates and timeline anchors")) {
+    rules.push(
+      '- If exact dates are absent, start with "Not stated in the materials." once.',
+      "- Then provide only procedural anchors (stage, disclosure position, next-hearing anchor)."
+    );
+  }
+  if (q.includes("single biggest risk if we do nothing this week")) {
+    rules.push("- Name one single risk in the first line; supporting bullets should explain consequences, not introduce new primary risks.");
+  }
+  if (q.includes("which witness is most vulnerable")) {
+    rules.push("- Name one witness in line 1 and tie each bullet to concrete reliability pressure points in the provided materials.");
+  }
+  if (q.includes("strongest cross-examination theme")) {
+    rules.push("- Name one cross-examination theme only; bullets must show how to exploit it using case-linked facts.");
+  }
+  if (q.includes("impeachment material should we prioritise obtaining")) {
+    rules.push("- Prioritise 3-5 concrete items max, each explicitly linked to a contradiction, reliability gap, or missing continuity point.");
+  }
+  if (q.includes("what admissions") && q.includes("unsafe")) {
+    rules.push(
+      "- Do NOT answer with 'Not stated in the materials.'",
+      "- Identify admissions to avoid based on offence elements, stance, and disputed mechanics in this case."
+    );
+  }
+
+  return rules.length ? `\nQUESTION-SPECIFIC RULES (MANDATORY)\n${rules.join("\n")}` : "";
 }
 
 /**
@@ -766,7 +807,8 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   if (evidenceSummary) contextParts.push(`Evidence/disclosure for this case:\n${evidenceSummary}`);
   if (timelineSummary) contextParts.push(`Case timeline:\n${timelineSummary}`);
   contextParts.push(`Relevant criminal law (use only this):\n${lawBlock}`);
-  const userContent = `${contextParts.join("\n\n")}\n\n---\nSolicitor question:\n${message}`;
+  const questionSpecificRules = buildQuestionSpecificRules(message);
+  const userContent = `${contextParts.join("\n\n")}\n${questionSpecificRules}\n\n---\nSolicitor question:\n${message}`;
 
   const openai = getOpenAIClient();
   const systemPrompt = buildSystemPrompt(snapshot);
@@ -919,6 +961,8 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
         "3) No hedging words (may/appears/could) unless uncertainty is explicit and necessary.",
         '4) If key information is missing, include exactly once: "Not stated in the materials." then short procedural anchors only.',
         "5) Keep tight and scannable; no unnecessary paragraphs or filler.",
+        "6) Follow the question-specific rules exactly.",
+        buildQuestionSpecificRules(message),
         `Current violations: ${formatIssues.join("; ")}.`,
       ].join("\n");
       const rewritten = await runChatWithRetry([
