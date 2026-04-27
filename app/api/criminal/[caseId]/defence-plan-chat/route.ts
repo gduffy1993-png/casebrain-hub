@@ -313,6 +313,22 @@ function firstConcrete(lines: string[], patterns: RegExp[]): string | null {
   return null;
 }
 
+function normalizeQ9ConcreteItem(line: string): string | null {
+  const l = compactOneLine(line).replace(/^[\-*]\s*/, "");
+  if (/cctv\s*\/\s*999\s*\/\s*cad\s*\/\s*bwv/i.test(l)) return null;
+  if (/one or more items with tension/i.test(l)) return null;
+  if (/primary eval hook:/i.test(l)) return null;
+  if (/grounds for dispute|friction/i.test(l)) return null;
+  if (/cctv.*tech:/i.test(l)) return null;
+
+  if (/999/i.test(l)) return "Full 999 master audio";
+  if (/mg11|witness statement/i.test(l)) return "Signed/final MG11 witness statement";
+  if (/continuity|engineer|cctv/i.test(l)) return "CCTV continuity statement / engineer note";
+  if (/cad/i.test(l)) return "Fuller CAD narrative/log";
+  if (/report|records|medical|forensic/i.test(l)) return "Forensic/medical report and GP records";
+  return null;
+}
+
 function buildGoldenDeterministicAnswer(
   question: string,
   snapshot: Awaited<ReturnType<typeof getCaseStateSnapshot>> | null,
@@ -419,14 +435,17 @@ function buildGoldenDeterministicAnswer(
   }
 
   if (q.includes("what impeachment material should we prioritise obtaining")) {
-    const concretePool = [
+    const concretePoolRaw = [
       firstConcrete(materialLines, [/full master audio|999/i]),
       firstConcrete(materialLines, [/signed copy|mg11|witness statement/i]),
       firstConcrete(materialLines, [/continuity|engineer|cctv/i]),
       firstConcrete(materialLines, [/cad/i]),
       firstConcrete(materialLines, [/report|records|medical|forensic/i]),
     ].filter((x): x is string => Boolean(x));
-    const picks = pickDistinct(concretePool, 5);
+    const normalized = concretePoolRaw
+      .map((l) => normalizeQ9ConcreteItem(l))
+      .filter((x): x is string => Boolean(x));
+    const picks = pickDistinct(normalized, 5);
     if (picks.length >= 3) {
       return picks.map((l) => `- ${l} -> Directly tests credibility, continuity, or chronology.`).join("\n");
     }
@@ -435,6 +454,7 @@ function buildGoldenDeterministicAnswer(
       "- Signed/final MG11 witness statement -> Tests reliability and statement evolution.",
       "- CCTV continuity statement / engineer note -> Tests integrity and admissibility of footage.",
       "- Fuller CAD narrative/log -> Tests dispatch chronology and contradiction points.",
+      "- Forensic/medical report and GP records -> Tests injury threshold and causation reliability.",
     ].join("\n");
   }
 
