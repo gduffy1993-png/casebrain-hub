@@ -282,6 +282,37 @@ function extractLinesByKeywords(text: string, keywords: string[], maxItems: numb
   return out;
 }
 
+function pickDistinct(lines: string[], maxItems: number): string[] {
+  const out: string[] = [];
+  const seenRoots = new Set<string>();
+  for (const line of lines) {
+    const lower = line.toLowerCase();
+    const root =
+      lower.includes("999") ? "999" :
+      lower.includes("mg11") || lower.includes("witness") ? "mg11" :
+      lower.includes("cctv") ? "cctv" :
+      lower.includes("continuity") ? "continuity" :
+      lower.includes("cad") ? "cad" :
+      lower.includes("report") || lower.includes("records") ? "medical" :
+      lower.includes("hook") || lower.includes("friction") ? "hook" :
+      lower.includes("stance") ? "stance" :
+      lower.includes("stage") ? "stage" :
+      lower.slice(0, 24);
+    if (seenRoots.has(root)) continue;
+    seenRoots.add(root);
+    out.push(line);
+    if (out.length >= maxItems) break;
+  }
+  return out;
+}
+
+function firstConcrete(lines: string[], patterns: RegExp[]): string | null {
+  for (const line of lines) {
+    if (patterns.some((p) => p.test(line))) return line;
+  }
+  return null;
+}
+
 function buildGoldenDeterministicAnswer(
   question: string,
   snapshot: Awaited<ReturnType<typeof getCaseStateSnapshot>> | null,
@@ -311,11 +342,20 @@ function buildGoldenDeterministicAnswer(
   );
 
   if (q.includes("top 3 facts that help the defence most")) {
-    return [
-      `- ${hook} -> This directly pressures Crown reliability on core facts.`,
-      "- Incomplete disclosure material -> Missing items reduce confidence in prosecution sequence and continuity.",
-      `- Defence posture (${stance}) -> Preserves challenge to act, intent, and attribution elements.`,
-    ].join("\n");
+    const candidates: string[] = [];
+    candidates.push(`${hook} -> This directly pressures Crown reliability on core facts.`);
+    const witnessWeak = firstConcrete(materialLines, [/mg11|witness/i]);
+    if (witnessWeak) candidates.push(`${witnessWeak} -> Weakens confidence in witness reliability and consistency.`);
+    const continuityGap = firstConcrete(materialLines, [/continuity|cctv|999|cad/i]);
+    if (continuityGap) candidates.push(`${continuityGap} -> Limits confidence in sequence and corroboration.`);
+    if (/lawful force|put to proof|not guilty/i.test(stance)) {
+      candidates.push(`Defence posture (${stance}) -> Preserves challenge to act, intent, and attribution elements.`);
+    }
+    const selected = pickDistinct(candidates, 3);
+    while (selected.length < 3) {
+      selected.push("Disclosure reliability tension -> Creates exploitable uncertainty in prosecution chronology.");
+    }
+    return selected.map((x) => `- ${x}`).join("\n");
   }
 
   if (q.includes("top 3 facts that hurt the defence most")) {
@@ -327,7 +367,8 @@ function buildGoldenDeterministicAnswer(
   }
 
   if (q.includes("what is still unknown that could change outcome materially")) {
-    const picks = unknownLines.slice(0, 4);
+    const priority = unknownLines.filter((l) => /999|mg11|continuity|cad|report|records/i.test(l));
+    const picks = pickDistinct(priority.length > 0 ? priority : unknownLines, 3);
     const bullets =
       picks.length > 0
         ? picks.map((l) => `- ${l} -> Could materially alter reliability, timeline, or causation assessment.`)
@@ -378,9 +419,14 @@ function buildGoldenDeterministicAnswer(
   }
 
   if (q.includes("what impeachment material should we prioritise obtaining")) {
-    const picks = materialLines
-      .filter((l) => /999|mg11|cctv|cad|continuity|audio|records|report/i.test(l))
-      .slice(0, 5);
+    const concretePool = [
+      firstConcrete(materialLines, [/full master audio|999/i]),
+      firstConcrete(materialLines, [/signed copy|mg11|witness statement/i]),
+      firstConcrete(materialLines, [/continuity|engineer|cctv/i]),
+      firstConcrete(materialLines, [/cad/i]),
+      firstConcrete(materialLines, [/report|records|medical|forensic/i]),
+    ].filter((x): x is string => Boolean(x));
+    const picks = pickDistinct(concretePool, 5);
     if (picks.length >= 3) {
       return picks.map((l) => `- ${l} -> Directly tests credibility, continuity, or chronology.`).join("\n");
     }
