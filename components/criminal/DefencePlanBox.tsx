@@ -228,6 +228,8 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
 
     const rows: Array<{ caseId: string; caseTitle: string; questionNo: number; question: string; answer: string; error?: string }> = [];
     let done = 0;
+    const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+    const jitter = (baseMs: number) => baseMs + Math.floor(Math.random() * 250);
     const askCaseWithRetry = async (targetCaseId: string, question: string): Promise<{ answer: string; error?: string }> => {
       const maxAttempts = 3;
       for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
@@ -259,7 +261,7 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
         } finally {
           clearTimeout(timeoutId);
         }
-        await new Promise((resolve) => setTimeout(resolve, attempt * 1000));
+        await sleep(jitter(attempt * 1000));
       }
       return { answer: "", error: "Unable to get a response" };
     };
@@ -280,7 +282,11 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
           done += 1;
           setEvalProgress({ done, total });
           setEvalRows([...rows]);
+          // Gentle pacing lowers API burst pressure during long bulk runs.
+          await sleep(error ? jitter(1_500) : jitter(450));
         }
+        // Brief pause between questions to avoid synchronized load spikes.
+        if (qIdx < questions.length - 1) await sleep(jitter(1_100));
       }
     } finally {
       setEvalRunning(false);

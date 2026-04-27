@@ -166,8 +166,8 @@ function buildBundleGroundedFallback(
     snapshot?.offence_detected_label?.trim() ||
     firstMatch(bundleFullText, [/^\s*Offence\(s\)\s+as\s+tag:\s*(.+)$/im, /^\s*Charge sheet extract:\s*(.+)$/im]) ||
     "offence as alleged in the bundle";
-  const stance = snapshot?.stance_detected?.trim() || "stance not explicitly detected";
-  const stage = snapshot?.stage_detected?.trim() || "stage not explicitly detected";
+  const stance = snapshot?.stance_detected?.trim() || "stance not clearly stated in the materials provided";
+  const stage = snapshot?.stage_detected?.trim() || "stage not clearly stated in the materials provided";
   const hook =
     firstMatch(bundleFullText, [/^\s*Primary eval hook:\s*(.+)$/im]) ||
     "key tension appears in the MG5/MG6 disclosure friction";
@@ -190,7 +190,95 @@ function buildBundleGroundedFallback(
   if (q.includes("risk if we do nothing")) {
     return `The biggest immediate risk is case progression at ${stage} without resolving disclosure tensions around ${hook}.`;
   }
-  return `Using the bundle and case snapshot: offence=${offence}; stance=${stance}; stage=${stage}. The key actionable issue is ${hook}.`;
+  return [
+    `${accused} faces ${offence}.`,
+    `- Current posture -> ${stance}.`,
+    `- Procedural position -> ${stage}.`,
+    `- Priority pressure point -> ${hook}.`,
+  ].join("\n");
+}
+
+function cleanLeadInPhrases(reply: string): string {
+  return reply
+    .replace(/^\s*Based on (the )?(provided )?(bundle|materials|case state snapshot)[^,]*,\s*/i, "")
+    .replace(/^\s*Given (the )?(current )?(case state snapshot|case state)[^,]*,\s*/i, "")
+    .replace(/^\s*In the context of (the )?case[^,]*,\s*/i, "")
+    .trim();
+}
+
+function polishSolicitorTone(reply: string): string {
+  let out = reply.trim();
+
+  // Keep legal substance intact, but tighten soft/verbal filler.
+  out = out
+    .replace(/\bit is important to note that\b/gi, "")
+    .replace(/\bit should be noted that\b/gi, "")
+    .replace(/\bit appears that\b/gi, "it is")
+    .replace(/\bin my view,\s*/gi, "")
+    .replace(/\bit is clear that\b/gi, "")
+    .replace(/\bthe key point here is that\b/gi, "")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+
+  const lines = out.split(/\r?\n/);
+  const polishedLines = lines.map((line, idx) => {
+    const trimmed = line.trim();
+    if (!trimmed) return "";
+
+    // Keep the first line decisive.
+    if (idx === 0) {
+      return trimmed.replace(/^[\-*]\s+/, "");
+    }
+
+    // Normalize bullets and tighten "because" phrasing into solicitor-friendly arrows.
+    if (/^[-*]\s+/.test(trimmed)) {
+      const body = trimmed.replace(/^[-*]\s+/, "").replace(/\s+because\s+/i, " -> ");
+      return `- ${body}`;
+    }
+
+    return trimmed;
+  });
+
+  return polishedLines.join("\n").replace(/\n{3,}/g, "\n\n").trim();
+}
+
+function detectFormatViolations(reply: string): string[] {
+  const issues: string[] = [];
+  const trimmed = reply.trim();
+  if (!trimmed) return ["empty response"];
+
+  const lines = trimmed.split(/\r?\n/).map((l) => l.trim());
+  const firstLine = lines.find((l) => l.length > 0) || "";
+  const bullets = lines.filter((l) => /^[-*]\s+/.test(l));
+  const bannedLeadIn = /^(Based on|From the materials|It appears|Given the current case state|In the context of)/i;
+
+  if (bannedLeadIn.test(firstLine)) issues.push("first line uses banned intro");
+  if (/^[-*]\s+/.test(firstLine)) issues.push("first line is a bullet, not a direct sentence");
+  if (firstLine.length < 8) issues.push("first line too short to answer directly");
+
+  if (bullets.length > 5) issues.push("too many supporting bullets (>5)");
+  if (bullets.length >= 1) {
+    const nonArrowBullets = bullets.filter((b) => !/\s->\s/.test(b));
+    if (nonArrowBullets.length > 0) issues.push("bullets missing 'Point -> why it matters' shape");
+  }
+
+  const hedge = /\b(may|appears|could)\b/i;
+  if (hedge.test(trimmed) && !/(not stated|uncertain|insufficient|unknown|not in the materials)/i.test(trimmed)) {
+    issues.push("hedging language without explicit uncertainty marker");
+  }
+
+  return issues;
+}
+
+function violatesHouseStyle(reply: string): boolean {
+  const lines = reply.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
+  if (lines.length === 0) return false;
+  const first = lines[0] ?? "";
+  if (/^(based on|from the materials|given the current|it appears|this suggests)/i.test(first)) return true;
+  if (first.length > 220) return true;
+  const hedgeHits = reply.match(/\b(may|appears|could|might)\b/gi)?.length ?? 0;
+  if (hedgeHits >= 3) return true;
+  return false;
 }
 
 /**
@@ -512,7 +600,44 @@ HOW TO ANSWER
 - Never invent offence, stance, stage, or strategy.
 - Do not give legal advice. Be short and practical. No predictions ("the court will"), no made-up case law or sections.
 - For disclosure: outstanding items only as explicitly supported by the evidence context; never treat served/retained items as gaps.
-- When the law chunks mention authorities relevant to this case's offence/stance, cite them where appropriate.`;
+- When the law chunks mention authorities relevant to this case's offence/stance, cite them where appropriate.
+- Start with a direct answer line. Do NOT use lead-ins like "Based on the bundle" or "Given the current case state".
+- Prefer concise bullets in this format: "<point> -> <why it matters>".
+- Limit hedging terms ("may", "appears", "could") unless uncertainty is explicit in evidence.
+- For timeline/date questions: if exact dates are missing, state "Exact dates not stated." once, then give procedural anchors only.
+- For unsafe-admissions questions: tie each unsafe admission to offence elements and current defence posture; avoid generic templates.
+
+OUTPUT FORMAT (MANDATORY)
+1. First line:
+- Must answer the question directly in one sentence.
+- No introductions.
+- No phrases like "Based on…", "It appears…", "From the materials…"
+
+2. Supporting points:
+- Use 2-5 bullet points max.
+- Format:
+  - Point -> why it matters
+- Each bullet must be concrete and case-linked (no generic legal statements).
+
+3. Language rules:
+- No hedging words: "may", "appears", "could" unless uncertainty is explicit and necessary.
+- No filler or background explanation unless asked.
+- No repetition of the question.
+
+4. If information is missing:
+- State once: "Not stated in the materials."
+- Then give procedural or logical anchors only (short).
+
+5. Length control:
+- Keep answers tight and scannable.
+- Avoid paragraphs unless absolutely necessary.
+
+6. Consistency:
+- Tone must be decisive, professional, and practical.
+- Do not switch tone between answers in the same run.
+
+7. Enforcement:
+- If output violates any rule, rewrite before returning.`;
 }
 
 export async function POST(request: NextRequest, { params }: RouteParams) {
@@ -742,7 +867,9 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   }
 
   if (
-    /I need the detected offence, stance, and stage to answer properly/i.test(raw)
+    /I need the detected offence, stance, and stage to answer properly/i.test(raw) ||
+    /I cannot provide (a )?(proper )?answer without/i.test(raw) ||
+    /I can(?:not|'t) answer (this )?properly without/i.test(raw)
   ) {
     try {
       const forced = await runChatWithRetry([
@@ -771,8 +898,41 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     raw = replaceCorruptedNorthshireBundleRefs(raw, exhibitHaystack);
   }
 
-  if (/I need the detected offence, stance, and stage to answer properly/i.test(raw)) {
+  if (
+    /I need the detected offence, stance, and stage to answer properly/i.test(raw) ||
+    /I cannot provide (a )?(proper )?answer without/i.test(raw) ||
+    /I can(?:not|'t) answer (this )?properly without/i.test(raw) ||
+    /no detected offence|no detected stance|no detected stage/i.test(raw)
+  ) {
     raw = buildBundleGroundedFallback(message, snapshot, combinedBundleFull || exhibitHaystack);
+  }
+
+  raw = polishSolicitorTone(cleanLeadInPhrases(raw));
+
+  const formatIssues = detectFormatViolations(raw);
+  if (formatIssues.length > 0) {
+    try {
+      const rewriteInstruction = [
+        "Rewrite your previous answer to comply exactly with this mandatory format:",
+        "1) First line must directly answer in one sentence; no intro phrasing.",
+        "2) Then 2-5 bullets, each in form: Point -> why it matters.",
+        "3) No hedging words (may/appears/could) unless uncertainty is explicit and necessary.",
+        '4) If key information is missing, include exactly once: "Not stated in the materials." then short procedural anchors only.',
+        "5) Keep tight and scannable; no unnecessary paragraphs or filler.",
+        `Current violations: ${formatIssues.join("; ")}.`,
+      ].join("\n");
+      const rewritten = await runChatWithRetry([
+        { role: "system", content: systemPrompt },
+        { role: "user", content: userContent },
+        { role: "assistant", content: raw },
+        { role: "user", content: rewriteInstruction },
+      ]);
+      if (rewritten.trim()) {
+        raw = polishSolicitorTone(cleanLeadInPhrases(rewritten));
+      }
+    } catch {
+      // keep current reply if rewrite pass fails
+    }
   }
 
   const reply = raw.slice(0, MAX_REPLY_LENGTH);

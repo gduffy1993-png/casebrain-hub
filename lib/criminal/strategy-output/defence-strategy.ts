@@ -771,7 +771,7 @@ function buildProsecutionPressure(
   const wording = getOffenceWording(offenceCode as import("../offence-elements").OffenceCode);
   if (wording?.pressure?.length) {
     pressure.push(...wording.pressure);
-  } else {
+    } else {
     pressure.push("Pressure point: prosecution must prove all elements of the offence beyond reasonable doubt");
   }
   if (snapshot.evidence.key_gaps.some(g => /fire|ignition|damage|cctv/i.test(g)) && (offenceCode.includes("criminal_damage") || offenceCode.includes("arson"))) {
@@ -925,34 +925,34 @@ function buildKillSwitches(
   // OAPA: add sequence/weapon/intent kill switches from evidence context
   const isOapa = offenceCode.includes("s18") || offenceCode.includes("s20") || offenceCode.includes("oapa");
   if (isOapa) {
-    const seqGap = snapshot.evidence?.key_gaps?.find(g => /cctv|sequence|timing/i.test(g)) ?? "CCTV/sequence evidence";
-    if (snapshot.flags.sequence_missing) {
+  const seqGap = snapshot.evidence?.key_gaps?.find(g => /cctv|sequence|timing/i.test(g)) ?? "CCTV/sequence evidence";
+  if (snapshot.flags.sequence_missing) {
+    killSwitches.push({
+      if: `If ${seqGap} or disclosure shows sustained or targeted attack`,
+      then: "Intent denial route becomes harder; pivot to charge reduction or outcome control",
+      evidence_needed: ["CCTV showing sequence", "Witness statements on duration", "Medical evidence of multiple injuries"],
+      severity: "high",
+    });
+  }
+  const weaponElement = offenceElements.find(e => e.id.includes("weapon") || e.id.includes("causation"));
+  if (weaponElement && (weaponElement.support === "weak" || weaponElement.support === "none")) {
+    killSwitches.push({
+      if: "Medical mechanism evidence supports deliberate weapon use",
+      then: "Weapon uncertainty leverage reduces; consider basis control or charge reduction",
+      evidence_needed: ["Medical report on mechanism", "Forensic weapon analysis", "Scene photographs"],
+      severity: "high",
+    });
+  }
+  const intentElement = offenceElements.find(e => e.id === "specific_intent" || e.id === "intent");
+  if (intentElement && (intentElement.support === "weak" || intentElement.support === "none")) {
+    const intentRoute = routes.find(r => r.id === "intent_denial");
+    if (intentRoute && (intentRoute.status === "viable" || intentRoute.status === "risky")) {
       killSwitches.push({
-        if: `If ${seqGap} or disclosure shows sustained or targeted attack`,
-        then: "Intent denial route becomes harder; pivot to charge reduction or outcome control",
-        evidence_needed: ["CCTV showing sequence", "Witness statements on duration", "Medical evidence of multiple injuries"],
-        severity: "high",
+        if: "Evidence arrives showing targeting, premeditation, or sustained violence",
+        then: "Intent denial route becomes harder; pivot to alternative mental state or outcome control",
+        evidence_needed: ["CCTV showing sequence", "Witness statements on targeting", "Defendant statements"],
+        severity: "medium",
       });
-    }
-    const weaponElement = offenceElements.find(e => e.id.includes("weapon") || e.id.includes("causation"));
-    if (weaponElement && (weaponElement.support === "weak" || weaponElement.support === "none")) {
-      killSwitches.push({
-        if: "Medical mechanism evidence supports deliberate weapon use",
-        then: "Weapon uncertainty leverage reduces; consider basis control or charge reduction",
-        evidence_needed: ["Medical report on mechanism", "Forensic weapon analysis", "Scene photographs"],
-        severity: "high",
-      });
-    }
-    const intentElement = offenceElements.find(e => e.id === "specific_intent" || e.id === "intent");
-    if (intentElement && (intentElement.support === "weak" || intentElement.support === "none")) {
-      const intentRoute = routes.find(r => r.id === "intent_denial");
-      if (intentRoute && (intentRoute.status === "viable" || intentRoute.status === "risky")) {
-        killSwitches.push({
-          if: "Evidence arrives showing targeting, premeditation, or sustained violence",
-          then: "Intent denial route becomes harder; pivot to alternative mental state or outcome control",
-          evidence_needed: ["CCTV showing sequence", "Witness statements on targeting", "Defendant statements"],
-          severity: "medium",
-        });
       }
     }
   }
