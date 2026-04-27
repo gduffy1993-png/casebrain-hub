@@ -242,6 +242,13 @@ function polishSolicitorTone(reply: string): string {
   return polishedLines.join("\n").replace(/\n{3,}/g, "\n\n").trim();
 }
 
+function sanitizePlaceholderPhrases(reply: string): string {
+  return reply
+    .replace(/Unknown\s*[–-]\s*add charge sheet for offence-specific strategy/gi, "the charged offence as stated in the papers")
+    .replace(/\.\./g, ".")
+    .trim();
+}
+
 function detectFormatViolations(reply: string): string[] {
   const issues: string[] = [];
   const trimmed = reply.trim();
@@ -281,8 +288,19 @@ function detectQuestionDisciplineViolations(question: string, reply: string): st
   const nonBulletLines = lines.filter((l) => !/^[-*]\s+/.test(l));
   const hasNumbered = lines.some((l) => /^\d+\.\s+/.test(l));
   const lower = reply.toLowerCase();
+  const isGoldenQuestion =
+    q.includes("top 3 facts") ||
+    q.includes("still unknown") ||
+    q.includes("key dates and timeline anchors") ||
+    q.includes("next procedural milestone") ||
+    q.includes("single biggest risk") ||
+    q.includes("which witness is most vulnerable") ||
+    q.includes("strongest cross-examination theme") ||
+    q.includes("impeachment material should we prioritise obtaining") ||
+    (q.includes("what admissions") && q.includes("unsafe"));
 
   if (hasNumbered) issues.push("numbered list format is not allowed");
+  if (isGoldenQuestion && nonBulletLines.length > 0) issues.push("golden-question answers must be bullet-only (no intro lines)");
 
   if (q.includes("top 3 facts that help the defence")) {
     if (bullets.length !== 3) issues.push("Q1 must have exactly 3 bullets");
@@ -310,8 +328,8 @@ function detectQuestionDisciplineViolations(question: string, reply: string): st
   }
 
   if (q.includes("single biggest risk if we do nothing this week")) {
-    if (bullets.length > 1) issues.push("Q6 must contain one risk only (max one bullet)");
-    if (lines.length > 2) issues.push("Q6 must be concise (risk line + one consequence line max)");
+    if (bullets.length < 1 || bullets.length > 2) issues.push("Q6 must contain 1-2 bullets total");
+    if (lines.length > 2) issues.push("Q6 must be concise (max two lines)");
   }
 
   if (q.includes("strongest cross-examination theme")) {
@@ -336,6 +354,9 @@ function detectQuestionDisciplineViolations(question: string, reply: string): st
 
   if (q.includes("impeachment material should we prioritise obtaining")) {
     if (bullets.length < 3 || bullets.length > 5) issues.push("Q9 must contain 3-5 concrete items");
+    const obtainableNouns = ["audio", "statement", "cctv", "cad", "report", "records", "continuity", "mg11"];
+    const badBullets = bullets.filter((b) => !obtainableNouns.some((n) => b.toLowerCase().includes(n)));
+    if (badBullets.length > 0) issues.push("Q9 bullets must name concrete obtainable materials");
   }
 
   if (q.includes("what admissions") && q.includes("unsafe")) {
@@ -348,6 +369,10 @@ function detectQuestionDisciplineViolations(question: string, reply: string): st
       issues.push("Q10 must link admissions to offence elements and tactical consequence");
     }
     if (bullets.length < 3 || bullets.length > 4) issues.push("Q10 must contain 3-4 unsafe admissions");
+    const bulletConsequenceHits = bullets.filter((b) => /\b(concedes|undermines|collapses|weakens|damages)\b/i.test(b)).length;
+    if (bulletConsequenceHits < Math.min(3, bullets.length)) {
+      issues.push("Q10 each admission should include a clear consequence verb");
+    }
   }
 
   return issues;
@@ -393,6 +418,9 @@ function detectUnsupportedClaimViolations(question: string, reply: string, hayst
     if (/weak id|weak identification/i.test(lowerReply)) {
       issues.push("unsupported polarity: weak ID cannot hurt defence");
     }
+  }
+  if (/Unknown\s*[–-]\s*add charge sheet for offence-specific strategy/i.test(reply)) {
+    issues.push("placeholder offence text leaked to user output");
   }
 
   return issues;
@@ -470,7 +498,7 @@ function buildDeterministicCompliantFallback(
   const offence =
     snapshot?.offence_detected_label?.trim() ||
     firstMatch(bundleFullText, [/^\s*Offence\(s\)\s+as\s+tag:\s*(.+)$/im, /^\s*Charge sheet extract:\s*(.+)$/im]) ||
-    "offence as alleged in the bundle";
+    "the charged offence as stated in the papers";
   const stance = snapshot?.stance_detected?.trim() || "not guilty / prosecution to proof";
   const stage = snapshot?.stage_detected?.trim() || "stage not clearly stated in the materials provided";
   const hook =
@@ -486,7 +514,10 @@ function buildDeterministicCompliantFallback(
   }
 
   if (q.includes("single biggest risk if we do nothing this week")) {
-    return `Disclosure remains unresolved before the next procedural step, undermining targeted challenge strategy.\n- If key materials are not chased now, defence leverage narrows at the next hearing (${stage}).`;
+    return [
+      "- Disclosure remains unresolved before the next procedural step -> defence leverage narrows at hearing.",
+      `- If key materials are not chased now -> tactical challenge window closes at ${stage}.`,
+    ].join("\n");
   }
 
   if (q.includes("what admissions") && q.includes("unsafe")) {
@@ -1179,7 +1210,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     raw = buildBundleGroundedFallback(message, snapshot, combinedBundleFull || exhibitHaystack);
   }
 
-  raw = polishSolicitorTone(cleanLeadInPhrases(raw));
+  raw = sanitizePlaceholderPhrases(polishSolicitorTone(cleanLeadInPhrases(raw)));
 
   for (let pass = 1; pass <= 2; pass += 1) {
     const allIssues = [
@@ -1213,7 +1244,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
         { role: "user", content: rewriteInstruction },
       ]);
       if (!rewritten.trim()) break;
-      raw = polishSolicitorTone(cleanLeadInPhrases(rewritten));
+      raw = sanitizePlaceholderPhrases(polishSolicitorTone(cleanLeadInPhrases(rewritten)));
     } catch {
       // keep current reply if rewrite pass fails
       break;
@@ -1236,7 +1267,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       (q.includes("what admissions") && q.includes("unsafe"));
     if (criticalFallback) {
       const forced = buildDeterministicCompliantFallback(message, snapshot, combinedBundleFull || exhibitHaystack);
-      if (forced.trim()) raw = polishSolicitorTone(cleanLeadInPhrases(forced));
+      if (forced.trim()) raw = sanitizePlaceholderPhrases(polishSolicitorTone(cleanLeadInPhrases(forced)));
     }
   }
 
