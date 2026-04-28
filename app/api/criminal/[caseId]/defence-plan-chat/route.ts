@@ -521,6 +521,111 @@ function buildCpsPressureLensAnswer(
   ].join("\n");
 }
 
+type ChatIntent = "defence_strength" | "risk" | "cross_exam" | "disclosure" | "next_step" | "general";
+
+function detectChatIntent(question: string): { intent: ChatIntent; confidence: number } {
+  const q = goldenQuestionNorm(question);
+  if (/risk|danger|biggest risk|vulnerab/i.test(q)) return { intent: "risk", confidence: 0.9 };
+  if (/cross|cross-exam|challenge witness|impeach/i.test(q)) return { intent: "cross_exam", confidence: 0.9 };
+  if (/disclosure|missing|unknown|obtain|chase/i.test(q)) return { intent: "disclosure", confidence: 0.9 };
+  if (/next step|what should i do|what do i do now|this week|action/i.test(q)) return { intent: "next_step", confidence: 0.85 };
+  if (/defence strength|strongest point|help the defence|can i win|position now/i.test(q)) {
+    return { intent: "defence_strength", confidence: 0.8 };
+  }
+  return { intent: "general", confidence: 0.5 };
+}
+
+type Stage2Data = {
+  q1: string[];
+  q6: string;
+  q7: string[];
+  q8: string;
+  q9: string[];
+  cps: { crownRepairs: string[]; defenceActions: string[]; riskIfIgnored: string };
+};
+
+function linesFromAnswer(answer: string): string[] {
+  return answer
+    .split(/\r?\n/)
+    .map((l) => l.trim())
+    .filter(Boolean)
+    .map((l) => l.replace(/^\-\s*/, ""));
+}
+
+function buildStage2Data(
+  snapshot: Awaited<ReturnType<typeof getCaseStateSnapshot>> | null,
+  bundleFullText: string
+): Stage2Data {
+  const q1 = linesFromAnswer(buildGoldenDeterministicAnswer("What are the top 3 facts that help the defence most?", snapshot, bundleFullText) || "");
+  const q6 = (buildGoldenDeterministicAnswer("What is the single biggest risk if we do nothing this week?", snapshot, bundleFullText) || "").trim();
+  const q7 = linesFromAnswer(buildGoldenDeterministicAnswer("Which witness is most vulnerable to challenge and why?", snapshot, bundleFullText) || "");
+  const q8 = (buildGoldenDeterministicAnswer("What is the strongest cross-examination theme?", snapshot, bundleFullText) || "").trim();
+  const q9 = linesFromAnswer(buildGoldenDeterministicAnswer("What impeachment material should we prioritise obtaining?", snapshot, bundleFullText) || "");
+
+  const cpsBlock = buildCpsPressureLensAnswer("cps pressure lens", snapshot, bundleFullText);
+  const cpsLines = cpsBlock.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
+  const crownStart = cpsLines.findIndex((l) => /Crown Repair Targets/i.test(l));
+  const defenceStart = cpsLines.findIndex((l) => /Defence Pre-emption Actions/i.test(l));
+  const crownRepairs = crownStart >= 0
+    ? cpsLines.slice(crownStart + 1, defenceStart >= 0 ? defenceStart : undefined).map((l) => l.replace(/^\-\s*/, ""))
+    : [];
+  const defenceActions = defenceStart >= 0
+    ? cpsLines.slice(defenceStart + 1).map((l) => l.replace(/^\-\s*/, ""))
+    : [];
+  const riskIfIgnored =
+    "If not actioned now, the Crown may repair current weaknesses before hearing and reduce defence cross-examination leverage.";
+
+  return { q1, q6, q7, q8, q9, cps: { crownRepairs, defenceActions, riskIfIgnored } };
+}
+
+function buildStage2Reply(intent: ChatIntent, confidence: number, data: Stage2Data): string {
+  const routed: ChatIntent = confidence < 0.7 ? "general" : intent;
+  switch (routed) {
+    case "defence_strength":
+      return ["Key defence strengths:", ...data.q1.slice(0, 3).map((l) => `- ${l}`)].join("\n");
+    case "risk":
+      return [
+        "Main risk:",
+        data.q6,
+        "",
+        "If not addressed:",
+        `- ${data.cps.riskIfIgnored}`,
+      ].join("\n");
+    case "cross_exam":
+      return [
+        "Cross-examination focus:",
+        data.q8,
+        "",
+        "Most vulnerable witness:",
+        ...data.q7.slice(0, 3).map((l) => `- ${l}`),
+      ].join("\n");
+    case "disclosure":
+      return [
+        "Key disclosure to obtain:",
+        ...data.q9.slice(0, 5).map((l) => `- ${l}`),
+        "",
+        "Crown likely repair moves:",
+        ...data.cps.crownRepairs.slice(0, 3).map((l) => `- ${l}`),
+      ].join("\n");
+    case "next_step":
+      return [
+        "Immediate actions this week:",
+        ...data.cps.defenceActions.slice(0, 3).map((l) => `- ${l}`),
+      ].join("\n");
+    default:
+      return [
+        "Key defence position:",
+        ...data.q1.slice(0, 2).map((l) => `- ${l}`),
+        "",
+        "Main risk:",
+        data.q6,
+        "",
+        "Immediate actions:",
+        ...data.cps.defenceActions.slice(0, 2).map((l) => `- ${l}`),
+      ].join("\n");
+  }
+}
+
 function extractLinesByKeywords(text: string, keywords: string[], maxItems: number): string[] {
   const out: string[] = [];
   const lines = text
@@ -1534,6 +1639,19 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       MAX_REPLY_LENGTH
     );
     return NextResponse.json({ ok: true, reply }, { status: 200 });
+  }
+
+  const { intent, confidence } = detectChatIntent(message);
+  if (intent !== "general" || confidence >= 0.7) {
+    const stage2Data = buildStage2Data(snapshot, combinedBundleFull);
+    const routed = buildStage2Reply(intent, confidence, stage2Data);
+    if (routed.trim()) {
+      const reply = sanitizePlaceholderPhrases(polishSolicitorTone(cleanLeadInPhrases(routed))).slice(
+        0,
+        MAX_REPLY_LENGTH
+      );
+      return NextResponse.json({ ok: true, reply }, { status: 200 });
+    }
   }
 
   // Offence-aware law retrieval: include detected offence in query so relevant law is prioritised
