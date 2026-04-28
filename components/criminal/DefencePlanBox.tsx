@@ -16,6 +16,9 @@ import type { DefenceStrategyPlan } from "@/lib/criminal/strategy-output";
 import { LawSliceSuggestions } from "./LawSliceSuggestions";
 import { VerdictRatingBlock } from "./VerdictRatingBlock";
 
+const DEV_CASE_PICKER_ENABLED =
+  process.env.NEXT_PUBLIC_DEV_CASE_PICKER === "true" || process.env.NODE_ENV !== "production";
+
 const CHAT_COMMAND_PROMPTS: Record<string, string> = {
   "/disclosure": "What disclosure should I be pushing in this case and what are the CPIA duties?",
   "/timeline": "What are the key dates and next steps in this case?",
@@ -130,7 +133,8 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
   const [editingProposal, setEditingProposal] = useState<PendingProposal | null>(null);
   const [proposalSaving, setProposalSaving] = useState(false);
   const [evalInput, setEvalInput] = useState("");
-  const [evalScope, setEvalScope] = useState<"current" | "5" | "10" | "20" | "all">("all");
+  const [evalScope, setEvalScope] = useState<"current" | "5" | "10" | "20" | "all" | "manual">("all");
+  const [manualCaseIds, setManualCaseIds] = useState<string[]>([]);
   const [evalRunning, setEvalRunning] = useState(false);
   const [evalProgress, setEvalProgress] = useState<{ done: number; total: number }>({ done: 0, total: 0 });
   const [evalRows, setEvalRows] = useState<
@@ -210,6 +214,10 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
   const runnerCases = allCases.length > 0 ? allCases : evalCases;
 
   const selectedEvalCases = (): Array<{ id: string; title: string }> => {
+    if (evalScope === "manual") {
+      const byId = new Map(runnerCases.map((c) => [c.id, c] as const));
+      return manualCaseIds.map((id) => byId.get(id)).filter((c): c is { id: string; title: string } => Boolean(c));
+    }
     if (evalScope === "current") return [{ id: caseId, title: "Current case" }];
     if (evalScope === "5") return runnerCases.slice(0, 5);
     if (evalScope === "10") return runnerCases.slice(0, 10);
@@ -385,7 +393,7 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
             <select
               className="h-8 rounded-md border border-border bg-background px-2 text-xs text-foreground"
               value={evalScope}
-              onChange={(e) => setEvalScope(e.target.value as "current" | "5" | "10" | "20" | "all")}
+              onChange={(e) => setEvalScope(e.target.value as "current" | "5" | "10" | "20" | "all" | "manual")}
               disabled={evalRunning}
             >
               <option value="current">Current case only</option>
@@ -393,6 +401,7 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
               <option value="10">First 10 cases</option>
               <option value="20">First 20 cases</option>
               <option value="all">All loaded cases</option>
+              {DEV_CASE_PICKER_ENABLED && <option value="manual">Manual case pick (dev/test)</option>}
             </select>
             <Button type="button" size="sm" onClick={runEvalAcrossCases} disabled={evalRunning || parseEvalQuestions().length === 0}>
               {evalRunning ? "Running..." : `Run on ${selectedEvalCases().length} case${selectedEvalCases().length === 1 ? "" : "s"}`}
@@ -410,6 +419,51 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
               <span className="text-[11px] text-muted-foreground">{evalCopyMessage}</span>
             )}
           </div>
+          {DEV_CASE_PICKER_ENABLED && evalScope === "manual" && (
+            <div className="mt-2 rounded border border-border/60 bg-background p-2">
+              <p className="text-[11px] font-medium text-foreground">Choose exact cases ({manualCaseIds.length} selected)</p>
+              <div className="mt-1 max-h-36 overflow-auto space-y-1">
+                {runnerCases.map((c) => {
+                  const checked = manualCaseIds.includes(c.id);
+                  return (
+                    <label key={c.id} className="flex items-center gap-2 text-[11px] text-foreground">
+                      <input
+                        type="checkbox"
+                        checked={checked}
+                        disabled={evalRunning}
+                        onChange={(e) => {
+                          setManualCaseIds((prev) =>
+                            e.target.checked ? [...prev, c.id] : prev.filter((id) => id !== c.id)
+                          );
+                        }}
+                      />
+                      <span className="truncate">{c.title}</span>
+                    </label>
+                  );
+                })}
+              </div>
+              <div className="mt-2 flex gap-2">
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="outline"
+                  disabled={evalRunning}
+                  onClick={() => setManualCaseIds(runnerCases.map((c) => c.id))}
+                >
+                  Select all loaded
+                </Button>
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="ghost"
+                  disabled={evalRunning || manualCaseIds.length === 0}
+                  onClick={() => setManualCaseIds([])}
+                >
+                  Clear selection
+                </Button>
+              </div>
+            </div>
+          )}
           {evalRows.length > 0 && (
             <div className="mt-2 max-h-48 overflow-auto rounded border border-border/60 bg-background p-2">
               <table className="w-full text-[11px]">
