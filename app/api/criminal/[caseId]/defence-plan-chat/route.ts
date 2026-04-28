@@ -249,8 +249,28 @@ function sanitizePlaceholderPhrases(reply: string): string {
     .trim();
 }
 
+/** US/UK spelling so golden-eval gates (especially Q9 deterministic path) stay consistent. */
+function goldenQuestionNorm(question: string): string {
+  return question.toLowerCase().replace(/\bprioritize\b/g, "prioritise");
+}
+
+/** Index-table / category row from fictional bundles — not a concrete disclosure item. */
+function isGroupedMediaIndexRow(line: string): boolean {
+  const l = compactOneLine(line).replace(/^[\-*]\s*/, "");
+  if (/one or more items with tension/i.test(l)) return true;
+  return /cctv\s*\/\s*999\s*\/\s*cad(?:\s*\/\s*bwv)?/i.test(l);
+}
+
+const Q9_CONCRETE_LABELS = new Set([
+  "Full 999 master audio",
+  "Signed/final MG11 witness statement",
+  "CCTV continuity statement / engineer note",
+  "Fuller CAD narrative/log",
+  "Forensic/medical report and GP records",
+]);
+
 function isGoldenEvalQuestion(question: string): boolean {
-  const q = question.toLowerCase();
+  const q = goldenQuestionNorm(question);
   return (
     q.includes("top 3 facts that help the defence most") ||
     q.includes("top 3 facts that hurt the defence most") ||
@@ -315,8 +335,7 @@ function firstConcrete(lines: string[], patterns: RegExp[]): string | null {
 
 function normalizeQ9ConcreteItem(line: string): string | null {
   const l = compactOneLine(line).replace(/^[\-*]\s*/, "");
-  if (/cctv\s*\/\s*999\s*\/\s*cad\s*\/\s*bwv/i.test(l)) return null;
-  if (/one or more items with tension/i.test(l)) return null;
+  if (isGroupedMediaIndexRow(l)) return null;
   if (/primary eval hook:/i.test(l)) return null;
   if (/grounds for dispute|friction/i.test(l)) return null;
   if (/cctv.*tech:/i.test(l)) return null;
@@ -334,7 +353,7 @@ function buildGoldenDeterministicAnswer(
   snapshot: Awaited<ReturnType<typeof getCaseStateSnapshot>> | null,
   bundleFullText: string
 ): string | null {
-  const q = question.toLowerCase();
+  const q = goldenQuestionNorm(question);
   if (!isGoldenEvalQuestion(question)) return null;
 
   const offence =
@@ -362,7 +381,10 @@ function buildGoldenDeterministicAnswer(
     candidates.push(`${hook} -> This directly pressures Crown reliability on core facts.`);
     const witnessWeak = firstConcrete(materialLines, [/mg11|witness/i]);
     if (witnessWeak) candidates.push(`${witnessWeak} -> Weakens confidence in witness reliability and consistency.`);
-    const continuityGap = firstConcrete(materialLines, [/continuity|cctv|999|cad/i]);
+    const continuityGap = firstConcrete(
+      materialLines.filter((ln) => !isGroupedMediaIndexRow(ln)),
+      [/continuity|engineer|cctv|999|cad/i]
+    );
     if (continuityGap) candidates.push(`${continuityGap} -> Limits confidence in sequence and corroboration.`);
     if (/lawful force|put to proof|not guilty/i.test(stance)) {
       candidates.push(`Defence posture (${stance}) -> Preserves challenge to act, intent, and attribution elements.`);
@@ -435,17 +457,21 @@ function buildGoldenDeterministicAnswer(
   }
 
   if (q.includes("what impeachment material should we prioritise obtaining")) {
+    const materialForQ9 = materialLines.filter((ln) => !isGroupedMediaIndexRow(ln));
     const concretePoolRaw = [
-      firstConcrete(materialLines, [/full master audio|999/i]),
-      firstConcrete(materialLines, [/signed copy|mg11|witness statement/i]),
-      firstConcrete(materialLines, [/continuity|engineer|cctv/i]),
-      firstConcrete(materialLines, [/cad/i]),
-      firstConcrete(materialLines, [/report|records|medical|forensic/i]),
+      firstConcrete(materialForQ9, [/full master audio|999/i]),
+      firstConcrete(materialForQ9, [/signed copy|mg11|witness statement/i]),
+      firstConcrete(materialForQ9, [/continuity|engineer|cctv/i]),
+      firstConcrete(materialForQ9, [/cad/i]),
+      firstConcrete(materialForQ9, [/report|records|medical|forensic/i]),
     ].filter((x): x is string => Boolean(x));
     const normalized = concretePoolRaw
       .map((l) => normalizeQ9ConcreteItem(l))
       .filter((x): x is string => Boolean(x));
-    const picks = pickDistinct(normalized, 5);
+    const picks = pickDistinct(
+      normalized.filter((label) => Q9_CONCRETE_LABELS.has(label)),
+      5
+    );
     if (picks.length >= 3) {
       return picks.map((l) => `- ${l} -> Directly tests credibility, continuity, or chronology.`).join("\n");
     }
@@ -500,7 +526,7 @@ function detectFormatViolations(reply: string): string[] {
 
 function detectQuestionDisciplineViolations(question: string, reply: string): string[] {
   const issues: string[] = [];
-  const q = question.toLowerCase();
+  const q = goldenQuestionNorm(question);
   const lines = reply
     .split(/\r?\n/)
     .map((l) => l.trim())
@@ -578,6 +604,9 @@ function detectQuestionDisciplineViolations(question: string, reply: string): st
     const obtainableNouns = ["audio", "statement", "cctv", "cad", "report", "records", "continuity", "mg11"];
     const badBullets = bullets.filter((b) => !obtainableNouns.some((n) => b.toLowerCase().includes(n)));
     if (badBullets.length > 0) issues.push("Q9 bullets must name concrete obtainable materials");
+    if (bullets.some((b) => isGroupedMediaIndexRow(b))) {
+      issues.push("Q9 must not echo CCTV/999/CAD/BWV index category row");
+    }
   }
 
   if (q.includes("what admissions") && q.includes("unsafe")) {
@@ -601,7 +630,7 @@ function detectQuestionDisciplineViolations(question: string, reply: string): st
 
 function detectLanguageDisciplineViolations(question: string, reply: string): string[] {
   const issues: string[] = [];
-  const q = question.toLowerCase();
+  const q = goldenQuestionNorm(question);
   const lower = reply.toLowerCase();
 
   const weakVerbs = ["suggests", "indicates", "may", "could"];
@@ -622,7 +651,7 @@ function detectLanguageDisciplineViolations(question: string, reply: string): st
 
 function detectUnsupportedClaimViolations(question: string, reply: string, haystack: string): string[] {
   const issues: string[] = [];
-  const q = question.toLowerCase();
+  const q = goldenQuestionNorm(question);
   const lowerReply = reply.toLowerCase();
   const lowerHay = haystack.toLowerCase();
 
@@ -649,7 +678,7 @@ function detectUnsupportedClaimViolations(question: string, reply: string, hayst
 
 function detectQuestionIntentViolations(question: string, reply: string): string[] {
   const issues: string[] = [];
-  const q = question.toLowerCase();
+  const q = goldenQuestionNorm(question);
   const lower = reply.toLowerCase();
 
   const hasAny = (patterns: RegExp[]) => patterns.some((p) => p.test(reply));
@@ -686,7 +715,7 @@ function detectQuestionIntentViolations(question: string, reply: string): string
 
 function detectCaseSummaryTemplateLeak(question: string, reply: string): string[] {
   const issues: string[] = [];
-  const q = question.toLowerCase();
+  const q = goldenQuestionNorm(question);
   const guarded =
     q.includes("top 3 facts") ||
     q.includes("still unknown") ||
@@ -715,7 +744,7 @@ function buildDeterministicCompliantFallback(
   snapshot: Awaited<ReturnType<typeof getCaseStateSnapshot>> | null,
   bundleFullText: string
 ): string {
-  const q = question.toLowerCase();
+  const q = goldenQuestionNorm(question);
   const offence =
     snapshot?.offence_detected_label?.trim() ||
     firstMatch(bundleFullText, [/^\s*Offence\(s\)\s+as\s+tag:\s*(.+)$/im, /^\s*Charge sheet extract:\s*(.+)$/im]) ||
@@ -753,7 +782,7 @@ function buildDeterministicCompliantFallback(
 }
 
 function buildQuestionSpecificRules(question: string): string {
-  const q = question.toLowerCase();
+  const q = goldenQuestionNorm(question);
   const rules: string[] = [];
 
   if (q.includes("top 3 facts that help the defence")) {
@@ -1491,7 +1520,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     ...detectCaseSummaryTemplateLeak(message, raw),
   ];
   if (residualIssues.length > 0) {
-    const q = message.toLowerCase();
+    const q = goldenQuestionNorm(message);
     const criticalFallback =
       q.includes("top 3 facts that hurt the defence") ||
       q.includes("single biggest risk if we do nothing this week") ||
