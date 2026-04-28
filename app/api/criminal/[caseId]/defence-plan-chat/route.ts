@@ -312,6 +312,51 @@ function isQ1CorroborationLeverageLine(line: string): boolean {
   return true;
 }
 
+function scoreLeverageStrict(line: string): number {
+  const l = compactOneLine(line).toLowerCase();
+  if (
+    l.includes("contradict") ||
+    l.includes("inconsisten") ||
+    l.includes("mismatch") ||
+    l.includes("conflict") ||
+    (l.includes("mg5") && l.includes("mg6")) ||
+    (l.includes("two") && l.includes("date") && l.includes("differ"))
+  ) return 3;
+  if (
+    l.includes("draft") ||
+    l.includes("unsigned") ||
+    l.includes("ocr") ||
+    l.includes("partial") ||
+    l.includes("corrupt")
+  ) return 2;
+  if (
+    l.includes("missing") ||
+    l.includes("outstanding") ||
+    l.includes("not served") ||
+    l.includes("awaited")
+  ) return 1;
+  return 0;
+}
+
+function pickTopLeverageStrict(lines: string[], count: number): string[] {
+  return lines
+    .map((line, idx) => ({ line, score: scoreLeverageStrict(line), idx }))
+    .sort((a, b) => (b.score - a.score) || (a.idx - b.idx))
+    .slice(0, count)
+    .map((x) => x.line);
+}
+
+function buildQ7ReasonSafe(witness: string, material: string[]): string {
+  const picked = pickTopLeverageStrict(material, 2);
+  const top = picked[0] ?? "uncertain material";
+  const second = picked[1] ?? "supporting evidence gap";
+  return [
+    `- ${witness} -> Vulnerable because account relies on ${top.toLowerCase()}.`,
+    `- ${top} -> Weakens consistency under cross-examination.`,
+    `- ${second} -> Limits corroboration and increases exposure to challenge.`,
+  ].join("\n");
+}
+
 /** First Q6 bullet: hook-shaped primary risk, else disclosure fallback. */
 function q6PrimaryRiskLineFromHook(hook: string): string {
   const h = hook.toLowerCase();
@@ -442,20 +487,20 @@ function buildGoldenDeterministicAnswer(
 
   if (q.includes("top 3 facts that help the defence most")) {
     const q1Material = materialLines.filter((ln) => isQ1CorroborationLeverageLine(ln));
-    const candidates: string[] = [];
-    candidates.push(`${hook} -> This directly pressures Crown reliability on core facts.`);
-    const witnessWeak = firstConcrete(q1Material, [/mg11|witness statement|key witness/i]);
-    if (witnessWeak) candidates.push(`${witnessWeak} -> Weakens confidence in witness reliability and consistency.`);
-    const continuityGap = firstConcrete(q1Material, [/continuity|engineer|cctv|999|cad/i]);
-    if (continuityGap) candidates.push(`${continuityGap} -> Limits confidence in sequence and corroboration.`);
-    if (/lawful force|put to proof|not guilty/i.test(stance)) {
-      candidates.push(`Defence posture (${stance}) -> Preserves challenge to act, intent, and attribution elements.`);
+    const picked = pickTopLeverageStrict(q1Material, 3);
+    while (picked.length < 3) {
+      if (/lawful force|put to proof|not guilty/i.test(stance)) {
+        picked.push(`Defence posture (${stance})`);
+      } else {
+        picked.push("Disclosure reliability tension");
+      }
     }
-    const selected = pickDistinct(candidates, 3);
-    while (selected.length < 3) {
-      selected.push("Disclosure reliability tension -> Creates exploitable uncertainty in prosecution chronology.");
-    }
-    return selected.map((x) => `- ${x}`).join("\n");
+    const q1Bullets = [
+      `- ${hook} -> This directly pressures the Crown case on a key issue.`,
+      `- ${picked[0]} -> Undermines reliability or consistency.`,
+      `- ${picked[1]} -> Leaves an evidential gap the defence can exploit.`,
+    ];
+    return q1Bullets.join("\n");
   }
 
   if (q.includes("top 3 facts that hurt the defence most")) {
@@ -504,11 +549,8 @@ function buildGoldenDeterministicAnswer(
   }
 
   if (q.includes("which witness is most vulnerable to challenge and why")) {
-    return [
-      `- ${witness} -> Vulnerable because account reliability is tied to draft/uncertain supporting material.`,
-      "- Draft/uncertain statement status -> Weakens confidence in precision and consistency under cross-examination.",
-      "- Incomplete CCTV/999/continuity context -> Creates corroboration gaps that can be exploited at trial.",
-    ].join("\n");
+    const q7Material = materialLines.filter((ln) => isQ1CorroborationLeverageLine(ln));
+    return buildQ7ReasonSafe(witness, q7Material);
   }
 
   if (q.includes("what is the strongest cross-examination theme")) {

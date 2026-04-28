@@ -1,6 +1,6 @@
 /**
  * Offence Elements Library
- *
+ * 
  * Deterministic offence detection and element mapping for all criminal case types.
  * No predictions — only canonical element definitions.
  */
