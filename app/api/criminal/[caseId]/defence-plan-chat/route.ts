@@ -269,6 +269,70 @@ const Q9_CONCRETE_LABELS = new Set([
   "Forensic/medical report and GP records",
 ]);
 
+const Q9_ORDERED_LABELS = [
+  "Full 999 master audio",
+  "Signed/final MG11 witness statement",
+  "CCTV continuity statement / engineer note",
+  "Fuller CAD narrative/log",
+  "Forensic/medical report and GP records",
+] as const;
+
+const Q9_TESTS_REASON: Record<string, string> = {
+  "Full 999 master audio": "chronology and verbal account consistency",
+  "Signed/final MG11 witness statement": "reliability and statement evolution",
+  "CCTV continuity statement / engineer note": "integrity and admissibility of footage",
+  "Fuller CAD narrative/log": "dispatch chronology and contradiction points",
+  "Forensic/medical report and GP records": "injury threshold and causation reliability",
+};
+
+function formatGoldenQ9Bullet(label: string): string {
+  const why = Q9_TESTS_REASON[label] ?? "credibility, continuity, and chronology";
+  return `- ${label} -> Tests ${why}.`;
+}
+
+/** Exclude bundle headers and “tidy schedule” rows from Q1 “corroboration gap” slot (wrong lever / wrong arrow). */
+function isQ1CorroborationLeverageLine(line: string): boolean {
+  const t = compactOneLine(line).replace(/^[\-*]\s*/, "").trim();
+  const l = t.toLowerCase();
+  if (t.length < 12) return false;
+  if (/^accused\s*:/i.test(t)) return false;
+  if (/^reference\s*:/i.test(t)) return false;
+  if (/^short title\s*:/i.test(t)) return false;
+  if (/^stage\s*:/i.test(t)) return false;
+  if (/^primary eval hook\s*:/i.test(t)) return false;
+  if (isGroupedMediaIndexRow(t)) return false;
+  if (/cctv\s*\/\s*tech/i.test(l)) {
+    const hasTension =
+      /issue|tension|outstanding|partial|draft|contradict|corrupt|gap|awaited|unsigned|incomplete|timing|extraction/i.test(
+        l
+      );
+    const readsTidy = /consistent|tidily|tidy|served/i.test(l);
+    if (readsTidy && !hasTension) return false;
+  }
+  return true;
+}
+
+/** First Q6 bullet: hook-shaped primary risk, else disclosure fallback. */
+function q6PrimaryRiskLineFromHook(hook: string): string {
+  const h = hook.toLowerCase();
+  let primary =
+    "Disclosure remains unresolved before the next procedural step -> Defence challenge window narrows at hearing.";
+  if (/weak\s*id|identification|id\s+lighting/i.test(h)) {
+    primary =
+      "Identification evidence may crystallise as 'unchallenged' before the next hearing -> narrows the practical window to run a focused ID challenge.";
+  } else if (/one-punch|self-?defen|lawful\s*force|provocation/i.test(h)) {
+    primary =
+      "Crown narrative on force, timing, and proportionality may harden without a contemporaneous defence paper-trail -> weakens self-defence leverage at hearing.";
+  } else if (/cctv|clock|continuity|bwv|999|cad/i.test(h)) {
+    primary =
+      "AV / dispatch / continuity issues may be regularised on Crown terms if not pinned in disclosure correspondence now -> reduces cross-exam traction on sequence.";
+  } else if (/mg6|contradict|draft|index|insurer|bank|ocr/i.test(h)) {
+    primary =
+      "Document inconsistencies (schedules, indices, drafts) may be reconciled unfavourably if not logged and chased this week -> defence loses 'paper trail' advantage.";
+  }
+  return `- ${primary}`;
+}
+
 function isGoldenEvalQuestion(question: string): boolean {
   const q = goldenQuestionNorm(question);
   return (
@@ -377,14 +441,12 @@ function buildGoldenDeterministicAnswer(
   );
 
   if (q.includes("top 3 facts that help the defence most")) {
+    const q1Material = materialLines.filter((ln) => isQ1CorroborationLeverageLine(ln));
     const candidates: string[] = [];
     candidates.push(`${hook} -> This directly pressures Crown reliability on core facts.`);
-    const witnessWeak = firstConcrete(materialLines, [/mg11|witness/i]);
+    const witnessWeak = firstConcrete(q1Material, [/mg11|witness statement|key witness/i]);
     if (witnessWeak) candidates.push(`${witnessWeak} -> Weakens confidence in witness reliability and consistency.`);
-    const continuityGap = firstConcrete(
-      materialLines.filter((ln) => !isGroupedMediaIndexRow(ln)),
-      [/continuity|engineer|cctv|999|cad/i]
-    );
+    const continuityGap = firstConcrete(q1Material, [/continuity|engineer|cctv|999|cad/i]);
     if (continuityGap) candidates.push(`${continuityGap} -> Limits confidence in sequence and corroboration.`);
     if (/lawful force|put to proof|not guilty/i.test(stance)) {
       candidates.push(`Defence posture (${stance}) -> Preserves challenge to act, intent, and attribution elements.`);
@@ -436,7 +498,7 @@ function buildGoldenDeterministicAnswer(
 
   if (q.includes("what is the single biggest risk if we do nothing this week")) {
     return [
-      "- Disclosure remains unresolved before the next procedural step -> Defence challenge window narrows at hearing.",
+      q6PrimaryRiskLineFromHook(hook),
       "- Consequence -> Crown narrative hardens while defence loses leverage on continuity and reliability points.",
     ].join("\n");
   }
@@ -473,15 +535,9 @@ function buildGoldenDeterministicAnswer(
       5
     );
     if (picks.length >= 3) {
-      return picks.map((l) => `- ${l} -> Directly tests credibility, continuity, or chronology.`).join("\n");
+      return picks.map((l) => formatGoldenQ9Bullet(l)).join("\n");
     }
-    return [
-      "- Full 999 master audio -> Tests chronology and verbal account consistency.",
-      "- Signed/final MG11 witness statement -> Tests reliability and statement evolution.",
-      "- CCTV continuity statement / engineer note -> Tests integrity and admissibility of footage.",
-      "- Fuller CAD narrative/log -> Tests dispatch chronology and contradiction points.",
-      "- Forensic/medical report and GP records -> Tests injury threshold and causation reliability.",
-    ].join("\n");
+    return Q9_ORDERED_LABELS.map((l) => formatGoldenQ9Bullet(l)).join("\n");
   }
 
   if (q.includes("what admissions (if any) are unsafe for the defence to make")) {
@@ -765,7 +821,10 @@ function buildDeterministicCompliantFallback(
 
   if (q.includes("single biggest risk if we do nothing this week")) {
     return [
-      "- Disclosure remains unresolved before the next procedural step -> defence leverage narrows at hearing.",
+      q6PrimaryRiskLineFromHook(hook).replace(
+        "Defence challenge window narrows at hearing.",
+        "defence leverage narrows at hearing."
+      ),
       `- If key materials are not chased now -> tactical challenge window closes at ${stage}.`,
     ].join("\n");
   }
