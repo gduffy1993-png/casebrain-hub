@@ -525,11 +525,17 @@ type ChatIntent = "defence_strength" | "risk" | "cross_exam" | "disclosure" | "n
 
 function detectChatIntent(question: string): { intent: ChatIntent; confidence: number } {
   const q = goldenQuestionNorm(question);
-  if (/risk|danger|biggest risk|vulnerab/i.test(q)) return { intent: "risk", confidence: 0.9 };
-  if (/cross|cross-exam|challenge witness|impeach/i.test(q)) return { intent: "cross_exam", confidence: 0.9 };
-  if (/disclosure|missing|unknown|obtain|chase/i.test(q)) return { intent: "disclosure", confidence: 0.9 };
-  if (/next step|what should i do|what do i do now|this week|action/i.test(q)) return { intent: "next_step", confidence: 0.85 };
-  if (/defence strength|strongest point|help the defence|can i win|position now/i.test(q)) {
+  if (/risk|danger|biggest risk|vulnerab|problem here/i.test(q)) return { intent: "risk", confidence: 0.9 };
+  if (/cross|cross-exam|challenge witness|impeach|attack this witness|attack witness|how do i attack/i.test(q)) {
+    return { intent: "cross_exam", confidence: 0.9 };
+  }
+  if (/disclosure|missing|unknown|obtain|chase|what evidence am i missing|need to chase/i.test(q)) {
+    return { intent: "disclosure", confidence: 0.9 };
+  }
+  if (/next step|what should i do|what do i do now|this week|action|what should i be doing next|doing next/i.test(q)) {
+    return { intent: "next_step", confidence: 0.9 };
+  }
+  if (/defence strength|strongest point|help the defence|can i win|position now|overall position|just give me the overall position/i.test(q)) {
     return { intent: "defence_strength", confidence: 0.8 };
   }
   return { intent: "general", confidence: 0.5 };
