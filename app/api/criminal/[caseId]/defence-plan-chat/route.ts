@@ -375,11 +375,16 @@ function pickTopLeverageStrict(lines: string[], count: number, excludeRoots: Set
 }
 
 function q1ImpactReason(line: string): string {
-  const score = scoreLeverageStrict(line);
   const l = cleanLeverageLine(line).toLowerCase();
-  if (score >= 3) return "Forces the Crown to reconcile a direct inconsistency in its record.";
-  if (score === 2) return "Puts witness reliability and account stability under immediate pressure.";
-  if (/999|cad|continuity|cctv|bwv/.test(l)) return "Creates a chronology or continuity gap the defence can exploit.";
+  if (/(contradict|inconsisten|mismatch|conflict)/i.test(l) || (l.includes("mg5") && l.includes("mg6"))) {
+    return "Forces the Crown to reconcile a direct inconsistency in its record.";
+  }
+  if (/(cctv|bwv|999|cad|continuity|clock|timeline)/i.test(l)) {
+    return "Creates a sequence or continuity gap the defence can exploit.";
+  }
+  if (/(draft|unsigned|ocr|partial|corrupt)/i.test(l)) {
+    return "Puts witness reliability and account stability under immediate pressure.";
+  }
   return "Creates evidential pressure the Crown must answer before hearing.";
 }
 
