@@ -338,22 +338,64 @@ function scoreLeverageStrict(line: string): number {
   return 0;
 }
 
-function pickTopLeverageStrict(lines: string[], count: number): string[] {
-  return lines
-    .map((line, idx) => ({ line, score: scoreLeverageStrict(line), idx }))
-    .sort((a, b) => (b.score - a.score) || (a.idx - b.idx))
-    .slice(0, count)
-    .map((x) => x.line);
+function cleanLeverageLine(line: string): string {
+  return compactOneLine(line)
+    .replace(/^Grounds for dispute \/ friction \(fiction\)\s*:\s*/i, "")
+    .replace(/^[\-*]\s*/, "")
+    .trim();
+}
+
+function leverageRootForLine(line: string): string {
+  const l = cleanLeverageLine(line).toLowerCase();
+  if (l.includes("mg5") && l.includes("mg6")) return "mg5_mg6";
+  if (l.includes("mg11") || l.includes("witness")) return "mg11";
+  if (l.includes("999")) return "999";
+  if (l.includes("cad")) return "cad";
+  if (l.includes("continuity")) return "continuity";
+  if (l.includes("cctv") || l.includes("bwv")) return "cctv_bwv";
+  if (l.includes("index") || l.includes("ocr")) return "index_ocr";
+  return l.slice(0, 24);
+}
+
+function pickTopLeverageStrict(lines: string[], count: number, excludeRoots: Set<string> = new Set()): string[] {
+  const ranked = lines
+    .map((line, idx) => ({ line: cleanLeverageLine(line), score: scoreLeverageStrict(line), idx }))
+    .filter((x) => x.line.length > 0)
+    .sort((a, b) => (b.score - a.score) || (a.idx - b.idx));
+  const out: string[] = [];
+  const seenRoots = new Set<string>(excludeRoots);
+  for (const item of ranked) {
+    const root = leverageRootForLine(item.line);
+    if (seenRoots.has(root)) continue;
+    seenRoots.add(root);
+    out.push(item.line);
+    if (out.length >= count) break;
+  }
+  return out;
+}
+
+function q1ImpactReason(line: string): string {
+  const score = scoreLeverageStrict(line);
+  const l = cleanLeverageLine(line).toLowerCase();
+  if (score >= 3) return "Forces the Crown to reconcile a direct inconsistency in its record.";
+  if (score === 2) return "Puts witness reliability and account stability under immediate pressure.";
+  if (/999|cad|continuity|cctv|bwv/.test(l)) return "Creates a chronology or continuity gap the defence can exploit.";
+  return "Creates evidential pressure the Crown must answer before hearing.";
 }
 
 function buildQ7ReasonSafe(witness: string, material: string[]): string {
-  const picked = pickTopLeverageStrict(material, 2);
+  const cleaned = material.map((ln) => cleanLeverageLine(ln));
+  const picked = pickTopLeverageStrict(cleaned, 2);
   const top = picked[0] ?? "uncertain material";
-  const second = picked[1] ?? "supporting evidence gap";
+  let second = picked[1] ?? "supporting evidence gap";
+  if (leverageRootForLine(top) === "mg11") {
+    const alt = pickTopLeverageStrict(cleaned, 1, new Set(["mg11"]));
+    if (alt[0]) second = alt[0];
+  }
   return [
     `- ${witness} -> Vulnerable because account relies on ${top.toLowerCase()}.`,
-    `- ${top} -> Weakens consistency under cross-examination.`,
-    `- ${second} -> Limits corroboration and increases exposure to challenge.`,
+    `- ${top} -> ${q1ImpactReason(top)}`,
+    `- ${second} -> ${q1ImpactReason(second)}`,
   ].join("\n");
 }
 
@@ -392,6 +434,86 @@ function isGoldenEvalQuestion(question: string): boolean {
     q.includes("what impeachment material should we prioritise obtaining") ||
     q.includes("what admissions (if any) are unsafe for the defence to make")
   );
+}
+
+function isCpsPressureLensQuestion(question: string): boolean {
+  const q = goldenQuestionNorm(question);
+  return (
+    (q.includes("cps") && (q.includes("pressure") || q.includes("repair") || q.includes("fix"))) ||
+    (q.includes("crown") && (q.includes("repair") || q.includes("fix") || q.includes("must address"))) ||
+    (q.includes("defence") && q.includes("preemption")) ||
+    q.includes("pressure lens")
+  );
+}
+
+function buildCpsPressureLensAnswer(
+  question: string,
+  snapshot: Awaited<ReturnType<typeof getCaseStateSnapshot>> | null,
+  bundleFullText: string
+): string {
+  if (!isCpsPressureLensQuestion(question)) return "";
+
+  const hook =
+    firstMatch(bundleFullText, [/^\s*Primary eval hook:\s*(.+)$/im]) ||
+    "disclosure reliability tension";
+  const stage = snapshot?.stage_detected?.trim() || "stage not clearly stated in the materials provided";
+  const material = extractLinesByKeywords(
+    bundleFullText,
+    ["mg5", "mg6", "mg11", "cctv", "999", "cad", "continuity", "draft", "unsigned", "outstanding", "awaited", "contradict", "inconsisten", "mismatch", "conflict"],
+    20
+  ).filter((ln) => isQ1CorroborationLeverageLine(ln));
+
+  const repairTargets: string[] = [];
+  const defenceActions: string[] = [];
+  const pushPair = (target: string, action: string) => {
+    if (!repairTargets.includes(target)) repairTargets.push(target);
+    if (!defenceActions.includes(action)) defenceActions.push(action);
+  };
+
+  for (const line of material) {
+    const l = line.toLowerCase();
+    if (
+      l.includes("contradict") ||
+      l.includes("inconsisten") ||
+      l.includes("mismatch") ||
+      l.includes("conflict") ||
+      (l.includes("mg5") && l.includes("mg6"))
+    ) {
+      pushPair(
+        `- Resolve contradiction in record -> ${line}.`,
+        "- Lock the contradiction in correspondence now -> prevent silent Crown clean-up before hearing."
+      );
+      continue;
+    }
+    if (l.includes("draft") || l.includes("unsigned") || l.includes("ocr") || l.includes("partial") || l.includes("corrupt")) {
+      pushPair(
+        `- Stabilise reliability gap -> ${line}.`,
+        "- Demand dated final versions with provenance notes -> preserve impeachment route if wording shifts."
+      );
+      continue;
+    }
+    if (l.includes("missing") || l.includes("outstanding") || l.includes("not served") || l.includes("awaited") || l.includes("999") || l.includes("cad")) {
+      pushPair(
+        `- Complete missing material chain -> ${line}.`,
+        "- Chase disclosure with deadlines and an audit trail -> stop repair on Crown terms alone."
+      );
+    }
+  }
+
+  if (repairTargets.length === 0) {
+    repairTargets.push(`- Primary repair pressure from current file -> ${hook}.`);
+  }
+  if (defenceActions.length === 0) {
+    defenceActions.push(`- Send a focused disclosure chase this week -> preserve challenge window at ${stage}.`);
+  }
+
+  return [
+    "Crown Repair Targets (evidence-grounded)",
+    ...repairTargets.slice(0, 3),
+    "",
+    "Defence Pre-emption Actions (this week)",
+    ...defenceActions.slice(0, 3),
+  ].join("\n");
 }
 
 function extractLinesByKeywords(text: string, keywords: string[], maxItems: number): string[] {
@@ -487,7 +609,8 @@ function buildGoldenDeterministicAnswer(
 
   if (q.includes("top 3 facts that help the defence most")) {
     const q1Material = materialLines.filter((ln) => isQ1CorroborationLeverageLine(ln));
-    const picked = pickTopLeverageStrict(q1Material, 3);
+    const hookRoot = leverageRootForLine(hook);
+    const picked = pickTopLeverageStrict(q1Material, 3, new Set([hookRoot]));
     while (picked.length < 3) {
       if (/lawful force|put to proof|not guilty/i.test(stance)) {
         picked.push(`Defence posture (${stance})`);
@@ -497,8 +620,8 @@ function buildGoldenDeterministicAnswer(
     }
     const q1Bullets = [
       `- ${hook} -> This directly pressures the Crown case on a key issue.`,
-      `- ${picked[0]} -> Undermines reliability or consistency.`,
-      `- ${picked[1]} -> Leaves an evidential gap the defence can exploit.`,
+      `- ${cleanLeverageLine(picked[0])} -> ${q1ImpactReason(picked[0])}`,
+      `- ${cleanLeverageLine(picked[1])} -> ${q1ImpactReason(picked[1])}`,
     ];
     return q1Bullets.join("\n");
   }
@@ -1393,6 +1516,15 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   const deterministicGolden = buildGoldenDeterministicAnswer(message, snapshot, combinedBundleFull);
   if (deterministicGolden) {
     const reply = sanitizePlaceholderPhrases(polishSolicitorTone(cleanLeadInPhrases(deterministicGolden))).slice(
+      0,
+      MAX_REPLY_LENGTH
+    );
+    return NextResponse.json({ ok: true, reply }, { status: 200 });
+  }
+
+  const cpsPressureLens = buildCpsPressureLensAnswer(message, snapshot, combinedBundleFull);
+  if (cpsPressureLens) {
+    const reply = sanitizePlaceholderPhrases(polishSolicitorTone(cleanLeadInPhrases(cpsPressureLens))).slice(
       0,
       MAX_REPLY_LENGTH
     );
