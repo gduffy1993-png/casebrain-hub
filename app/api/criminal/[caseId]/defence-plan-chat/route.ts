@@ -656,7 +656,12 @@ function buildSpecificDisclosureTopItem(data: Stage2Data): string | null {
   return null;
 }
 
-function buildStage2Reply(intent: ChatIntent, confidence: number, data: Stage2Data): string {
+function buildStage2Reply(
+  intent: ChatIntent,
+  confidence: number,
+  data: Stage2Data,
+  snapshot: Awaited<ReturnType<typeof getCaseStateSnapshot>> | null
+): string {
   const routed: ChatIntent = confidence < 0.7 ? "general" : intent;
   const q1Distinct = pickDistinct(data.q1, 4);
   const q7Distinct = pickDistinct(data.q7, 4);
@@ -675,6 +680,16 @@ function buildStage2Reply(intent: ChatIntent, confidence: number, data: Stage2Da
     hasTimelineIssue: /timeline|chronology|timestamp|clock|cctv|bwv|999|cad|continuity/.test(signalHaystack),
     hasDisclosureGap: /disclosure|outstanding|awaited|pending|not served|schedule|audit trail/.test(signalHaystack),
     hasWitnessConflict: /mg11|witness|statement|draft|unsigned|inconsisten|contradict/.test(signalHaystack),
+    offenceType:
+      /knife|weapon|blade/.test(signalHaystack)
+        ? "weapon"
+        : /injury|assault|violence|force|push|punch/.test(signalHaystack) || /assault|robbery|gbh|abh/i.test(snapshot?.offence_detected_label ?? "")
+          ? "violence"
+          : /fraud|dishonesty|theft|handling/i.test(signalHaystack) || /fraud|dishonesty|theft|handling/i.test(snapshot?.offence_detected_label ?? "")
+            ? "dishonesty"
+            : "unknown",
+    stageLabel: snapshot?.stage_detected ?? "",
+    stanceLabel: snapshot?.stance_detected ?? "",
   });
   const pressureBlock = [
     "",
@@ -686,6 +701,9 @@ function buildStage2Reply(intent: ChatIntent, confidence: number, data: Stage2Da
     "",
     "Defence counters:",
     ...pressure.defenceCounters.slice(0, 2).map((l) => `- ${l}`),
+    "",
+    "Hearing focus:",
+    ...pressure.hearingLines.slice(0, 3).map((l) => `- ${l}`),
   ].join("\n");
   switch (routed) {
     case "defence_strength":
@@ -1806,7 +1824,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   const { intent, confidence } = detectChatIntent(message);
   if (intent !== "general" || confidence >= 0.7) {
     const stage2Data = buildStage2Data(snapshot, combinedBundleFull);
-    const routed = buildStage2Reply(intent, confidence, stage2Data);
+    const routed = buildStage2Reply(intent, confidence, stage2Data, snapshot);
     if (routed.trim()) {
       const reply = sanitizePlaceholderPhrases(polishSolicitorTone(cleanLeadInPhrases(routed))).slice(
         0,
