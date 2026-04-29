@@ -11,6 +11,7 @@ import { getOpenAIClient } from "@/lib/openai";
 import { retrieveLawChunks } from "@/lib/criminal/criminal-law-corpus";
 import { getChangeListForContext } from "@/lib/criminal/verdict-change-list";
 import { getCaseStateSnapshot } from "@/lib/criminal/case-state-snapshot";
+import { buildPressureLayer } from "@/lib/criminal/cps-judge-pressure";
 
 type RouteParams = { params: Promise<{ caseId: string }> };
 
@@ -667,6 +668,25 @@ function buildStage2Reply(intent: ChatIntent, confidence: number, data: Stage2Da
   const crownRepairsDistinct = pickDistinct(data.cps.crownRepairs, 4);
   const defenceActionsDistinct = pickDistinct(data.cps.defenceActions, 4);
   const specificRisk = buildSpecificStage2Risk(data);
+  const signalHaystack = [...data.q1, data.q6, ...data.q7, data.q8, ...data.q9, ...data.cps.crownRepairs, ...data.cps.defenceActions]
+    .join(" ")
+    .toLowerCase();
+  const pressure = buildPressureLayer({
+    hasTimelineIssue: /timeline|chronology|timestamp|clock|cctv|bwv|999|cad|continuity/.test(signalHaystack),
+    hasDisclosureGap: /disclosure|outstanding|awaited|pending|not served|schedule|audit trail/.test(signalHaystack),
+    hasWitnessConflict: /mg11|witness|statement|draft|unsigned|inconsisten|contradict/.test(signalHaystack),
+  });
+  const pressureBlock = [
+    "",
+    "CPS pressure:",
+    ...pressure.cpsPressure.slice(0, 2).map((l) => `- ${l}`),
+    "",
+    "Judge constraints:",
+    ...pressure.judgeConstraints.slice(0, 2).map((l) => `- ${l}`),
+    "",
+    "Defence counters:",
+    ...pressure.defenceCounters.slice(0, 2).map((l) => `- ${l}`),
+  ].join("\n");
   switch (routed) {
     case "defence_strength":
       return [
@@ -680,6 +700,7 @@ function buildStage2Reply(intent: ChatIntent, confidence: number, data: Stage2Da
         ...(defenceActionsDistinct.length > 0
           ? [`- ${defenceActionsDistinct[0]}`]
           : ["- Send a focused disclosure chase this week to prevent Crown clean-up before hearing."]),
+        ...pressureBlock.split("\n"),
       ].join("\n");
     case "risk":
       return [
@@ -688,6 +709,7 @@ function buildStage2Reply(intent: ChatIntent, confidence: number, data: Stage2Da
         "",
         "If not addressed:",
         `- ${data.cps.riskIfIgnored}`,
+        ...pressureBlock.split("\n"),
       ].join("\n");
     case "cross_exam":
       return [
@@ -696,6 +718,7 @@ function buildStage2Reply(intent: ChatIntent, confidence: number, data: Stage2Da
         "",
         "Most vulnerable witness:",
         ...q7Distinct.slice(0, 3).map((l) => `- ${l}`),
+        ...pressureBlock.split("\n"),
       ].join("\n");
     case "disclosure":
       return [
@@ -704,11 +727,13 @@ function buildStage2Reply(intent: ChatIntent, confidence: number, data: Stage2Da
         "",
         "Crown likely repair moves:",
         ...crownRepairsDistinct.slice(0, 3).map((l) => `- ${l}`),
+        ...pressureBlock.split("\n"),
       ].join("\n");
     case "next_step":
       return [
         "Immediate actions this week:",
         ...defenceActionsDistinct.slice(0, 3).map((l) => `- ${l}`),
+        ...pressureBlock.split("\n"),
       ].join("\n");
     default:
       return [
@@ -720,6 +745,7 @@ function buildStage2Reply(intent: ChatIntent, confidence: number, data: Stage2Da
         "",
         "Immediate actions:",
         ...defenceActionsDistinct.slice(0, 2).map((l) => `- ${l}`),
+        ...pressureBlock.split("\n"),
       ].join("\n");
   }
 }
