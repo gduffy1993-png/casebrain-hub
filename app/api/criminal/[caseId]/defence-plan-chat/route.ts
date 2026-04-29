@@ -535,7 +535,10 @@ function detectChatIntent(question: string): { intent: ChatIntent; confidence: n
   if (/next step|what should i do|what do i do now|this week|action|what should i be doing next|doing next/i.test(q)) {
     return { intent: "next_step", confidence: 0.9 };
   }
-  if (/defence strength|strongest point|help the defence|can i win|can we win|can we beat this|how strong is this case|position now|overall position|just give me the overall position|where do we stand/i.test(q)) {
+  if (/overall position|just give me the overall position|where do we stand|position now|overall view|brief me like i have 60 seconds/i.test(q)) {
+    return { intent: "general", confidence: 0.9 };
+  }
+  if (/defence strength|strongest point|help the defence|can i win|can we win|can we beat this|how strong is this case/i.test(q)) {
     return { intent: "defence_strength", confidence: 0.8 };
   }
   return { intent: "general", confidence: 0.5 };
@@ -586,9 +589,25 @@ function buildStage2Data(
 
 function buildStage2Reply(intent: ChatIntent, confidence: number, data: Stage2Data): string {
   const routed: ChatIntent = confidence < 0.7 ? "general" : intent;
+  const q1Distinct = pickDistinct(data.q1, 4);
+  const q7Distinct = pickDistinct(data.q7, 4);
+  const q9Distinct = pickDistinct(data.q9, 6);
+  const crownRepairsDistinct = pickDistinct(data.cps.crownRepairs, 4);
+  const defenceActionsDistinct = pickDistinct(data.cps.defenceActions, 4);
   switch (routed) {
     case "defence_strength":
-      return ["Key defence strengths:", ...data.q1.slice(0, 3).map((l) => `- ${l}`)].join("\n");
+      return [
+        "Key defence strengths:",
+        ...q1Distinct.slice(0, 3).map((l) => `- ${l}`),
+        "",
+        "Main risk:",
+        data.q6,
+        "",
+        "Immediate action:",
+        ...(defenceActionsDistinct.length > 0
+          ? [`- ${defenceActionsDistinct[0]}`]
+          : ["- Send a focused disclosure chase this week to prevent Crown clean-up before hearing."]),
+      ].join("\n");
     case "risk":
       return [
         "Main risk:",
@@ -603,31 +622,31 @@ function buildStage2Reply(intent: ChatIntent, confidence: number, data: Stage2Da
         data.q8,
         "",
         "Most vulnerable witness:",
-        ...data.q7.slice(0, 3).map((l) => `- ${l}`),
+        ...q7Distinct.slice(0, 3).map((l) => `- ${l}`),
       ].join("\n");
     case "disclosure":
       return [
         "Key disclosure to obtain:",
-        ...data.q9.slice(0, 5).map((l) => `- ${l}`),
+        ...q9Distinct.slice(0, 5).map((l) => `- ${l}`),
         "",
         "Crown likely repair moves:",
-        ...data.cps.crownRepairs.slice(0, 3).map((l) => `- ${l}`),
+        ...crownRepairsDistinct.slice(0, 3).map((l) => `- ${l}`),
       ].join("\n");
     case "next_step":
       return [
         "Immediate actions this week:",
-        ...data.cps.defenceActions.slice(0, 3).map((l) => `- ${l}`),
+        ...defenceActionsDistinct.slice(0, 3).map((l) => `- ${l}`),
       ].join("\n");
     default:
       return [
         "Key defence position:",
-        ...data.q1.slice(0, 2).map((l) => `- ${l}`),
+        ...q1Distinct.slice(0, 2).map((l) => `- ${l}`),
         "",
         "Main risk:",
         data.q6,
         "",
         "Immediate actions:",
-        ...data.cps.defenceActions.slice(0, 2).map((l) => `- ${l}`),
+        ...defenceActionsDistinct.slice(0, 2).map((l) => `- ${l}`),
       ].join("\n");
   }
 }
