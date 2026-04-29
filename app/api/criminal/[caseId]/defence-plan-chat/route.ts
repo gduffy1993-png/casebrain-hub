@@ -676,8 +676,12 @@ function buildStage2Reply(
   const signalHaystack = [...data.q1, data.q6, ...data.q7, data.q8, ...data.q9, ...data.cps.crownRepairs, ...data.cps.defenceActions]
     .join(" ")
     .toLowerCase();
+  const concreteTimelineHaystack = [...data.q1, ...data.q9, ...data.cps.crownRepairs]
+    .map((l) => l.toLowerCase())
+    .filter((l) => !/document continuity gap|core reliability tension in mg5\/mg6 material/.test(l))
+    .join(" ");
   const pressure = buildPressureLayer({
-    hasTimelineIssue: /timeline|chronology|timestamp|clock|cctv|bwv|999|cad|continuity/.test(signalHaystack),
+    hasTimelineIssue: /timestamp|clock|cctv|bwv|999|cad|continuity statement|engineer note|master audio/.test(concreteTimelineHaystack),
     hasDisclosureGap: /disclosure|outstanding|awaited|pending|not served|schedule|audit trail/.test(signalHaystack),
     hasWitnessConflict: /mg11|witness|statement|draft|unsigned|inconsisten|contradict/.test(signalHaystack),
     offenceType:
