@@ -29,6 +29,8 @@ export function buildPressureLayer(signals: PressureSignals): PressureOutput {
     .replace(/^[\-*]\s*/, "")
     .replace(/\s*->.*$/i, "")
     .replace(/\s*\([^)]+\)\s*$/i, "")
+    .replace(/\s+(may|might|could|unless|if)\b.*$/i, "")
+    .replace(/\s+(is|are)\s+challenged\b.*$/i, "")
     .replace(/\s+/g, " ")
     .trim()
     .slice(0, 120) || "outstanding disclosure items";
