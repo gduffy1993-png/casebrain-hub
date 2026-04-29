@@ -587,13 +587,65 @@ function buildStage2Data(
   return { q1, q6, q7, q8, q9, cps: { crownRepairs, defenceActions, riskIfIgnored } };
 }
 
+function buildSpecificStage2Risk(data: Stage2Data): string {
+  const q1 = data.q1.map((l) => l.toLowerCase());
+  const repairs = data.cps.crownRepairs.map((l) => l.toLowerCase());
+  const has999 = q1.some((l) => l.includes("999")) || repairs.some((l) => l.includes("999"));
+  const hasCctv = q1.some((l) => l.includes("cctv")) || repairs.some((l) => l.includes("cctv"));
+  const hasWitness = q1.some((l) => l.includes("mg11") || l.includes("witness")) || repairs.some((l) => l.includes("mg11") || l.includes("witness"));
+  const hasDisclosure = q1.some((l) => l.includes("disclosure")) || repairs.some((l) => l.includes("disclosure"));
+
+  if (has999 || hasCctv) {
+    return [
+      "- AV / dispatch chronology issues may be regularised on Crown terms if not pinned in disclosure correspondence now -> cross-exam leverage on sequence narrows quickly.",
+      "- Consequence -> once continuity is regularised, timeline challenge value drops before hearing.",
+    ].join("\n");
+  }
+  if (hasWitness) {
+    return [
+      "- Witness-account instability (draft/final shifts, wording drift) may be cured before hearing if versions are not fixed now -> reliability attack window narrows.",
+      "- Consequence -> prosecution can present a tidier account with fewer impeachment openings.",
+    ].join("\n");
+  }
+  if (hasDisclosure) {
+    return [
+      "- Outstanding disclosure gaps may be reframed as complete unless chased with deadlines now -> defence loses paper-trail leverage.",
+      "- Consequence -> weak points become harder to reopen at hearing.",
+    ].join("\n");
+  }
+  return data.q6;
+}
+
+function buildSpecificDisclosureTopItem(data: Stage2Data): string | null {
+  const q1 = data.q1.map((l) => l.toLowerCase()).join(" ");
+  const repairs = data.cps.crownRepairs.map((l) => l.toLowerCase()).join(" ");
+  if (q1.includes("999") || repairs.includes("999")) {
+    return "Full 999 master audio + timing metadata -> Locks chronology before Crown can harmonise extracts.";
+  }
+  if (q1.includes("cctv") || repairs.includes("cctv")) {
+    return "CCTV continuity statement / calibration records -> Tests integrity of timeline and footage admissibility.";
+  }
+  if (q1.includes("mg11") || q1.includes("witness") || repairs.includes("mg11") || repairs.includes("witness")) {
+    return "Signed final MG11 + version history -> Preserves impeachment route if wording shifts.";
+  }
+  if (q1.includes("disclosure") || repairs.includes("disclosure")) {
+    return "Disclosure schedule audit trail (served vs outstanding by date) -> Prevents silent Crown clean-up.";
+  }
+  return null;
+}
+
 function buildStage2Reply(intent: ChatIntent, confidence: number, data: Stage2Data): string {
   const routed: ChatIntent = confidence < 0.7 ? "general" : intent;
   const q1Distinct = pickDistinct(data.q1, 4);
   const q7Distinct = pickDistinct(data.q7, 4);
-  const q9Distinct = pickDistinct(data.q9, 6);
+  const disclosureTop = buildSpecificDisclosureTopItem(data);
+  const q9Distinct = pickDistinct(
+    disclosureTop ? [disclosureTop, ...data.q9] : data.q9,
+    6
+  );
   const crownRepairsDistinct = pickDistinct(data.cps.crownRepairs, 4);
   const defenceActionsDistinct = pickDistinct(data.cps.defenceActions, 4);
+  const specificRisk = buildSpecificStage2Risk(data);
   switch (routed) {
     case "defence_strength":
       return [
@@ -601,7 +653,7 @@ function buildStage2Reply(intent: ChatIntent, confidence: number, data: Stage2Da
         ...q1Distinct.slice(0, 3).map((l) => `- ${l}`),
         "",
         "Main risk:",
-        data.q6,
+        specificRisk,
         "",
         "Immediate action:",
         ...(defenceActionsDistinct.length > 0
@@ -611,7 +663,7 @@ function buildStage2Reply(intent: ChatIntent, confidence: number, data: Stage2Da
     case "risk":
       return [
         "Main risk:",
-        data.q6,
+        specificRisk,
         "",
         "If not addressed:",
         `- ${data.cps.riskIfIgnored}`,
@@ -643,7 +695,7 @@ function buildStage2Reply(intent: ChatIntent, confidence: number, data: Stage2Da
         ...q1Distinct.slice(0, 2).map((l) => `- ${l}`),
         "",
         "Main risk:",
-        data.q6,
+        specificRisk,
         "",
         "Immediate actions:",
         ...defenceActionsDistinct.slice(0, 2).map((l) => `- ${l}`),
