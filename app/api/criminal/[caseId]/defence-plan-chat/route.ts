@@ -391,38 +391,55 @@ function q1ImpactReason(line: string): string {
 function buildQ7ReasonSafe(witness: string, material: string[]): string {
   const cleaned = material.map((ln) => cleanLeverageLine(ln));
   const picked = pickTopLeverageStrict(cleaned, 2);
-  const top = picked[0] ?? "uncertain material";
-  let second = picked[1] ?? "supporting evidence gap";
+  const top = picked[0] ?? "disclosure reliability tension";
+  let second = picked[1] ?? "document continuity gap";
   if (leverageRootForLine(top) === "mg11") {
     const alt = pickTopLeverageStrict(cleaned, 1, new Set(["mg11"]));
     if (alt[0]) second = alt[0];
   }
+  const witnessLabel = /^the key witness$/i.test(witness) ? "the primary MG11 witness" : witness;
   return [
-    `- ${witness} -> Vulnerable because account relies on ${top.toLowerCase()}.`,
+    `- ${witnessLabel} -> Vulnerable because account relies on ${top.toLowerCase()}.`,
     `- ${top} -> ${q1ImpactReason(top)}`,
     `- ${second} -> ${q1ImpactReason(second)}`,
   ].join("\n");
 }
 
 /** First Q6 bullet: hook-shaped primary risk, else disclosure fallback. */
-function q6PrimaryRiskLineFromHook(hook: string): string {
+function q6PrimaryRiskLineFromHook(hook: string, materialLines: string[] = []): string {
   const h = hook.toLowerCase();
+  const ml = materialLines.map((l) => l.toLowerCase()).join(" ");
   let primary =
     "Disclosure remains unresolved before the next procedural step -> Defence challenge window narrows at hearing.";
-  if (/weak\s*id|identification|id\s+lighting/i.test(h)) {
+  if (/weak\s*id|identification|id\s+lighting/i.test(h) || /identification|id parade|id procedure/.test(ml)) {
     primary =
       "Identification evidence may crystallise as 'unchallenged' before the next hearing -> narrows the practical window to run a focused ID challenge.";
-  } else if (/one-punch|self-?defen|lawful\s*force|provocation/i.test(h)) {
+  } else if (/one-punch|self-?defen|lawful\s*force|provocation/i.test(h) || /self-defence|lawful force/.test(ml)) {
     primary =
       "Crown narrative on force, timing, and proportionality may harden without a contemporaneous defence paper-trail -> weakens self-defence leverage at hearing.";
-  } else if (/cctv|clock|continuity|bwv|999|cad/i.test(h)) {
+  } else if (/cctv|clock|continuity|bwv|999|cad/i.test(h) || /cctv|continuity|999|cad|timestamp|clock/.test(ml)) {
     primary =
       "AV / dispatch / continuity issues may be regularised on Crown terms if not pinned in disclosure correspondence now -> reduces cross-exam traction on sequence.";
-  } else if (/mg6|contradict|draft|index|insurer|bank|ocr/i.test(h)) {
+  } else if (/mg6|contradict|draft|index|insurer|bank|ocr/i.test(h) || /draft|unsigned|index|ocr|disclosure/.test(ml)) {
     primary =
       "Document inconsistencies (schedules, indices, drafts) may be reconciled unfavourably if not logged and chased this week -> defence loses 'paper trail' advantage.";
   }
   return `- ${primary}`;
+}
+
+function chooseCrossExamTheme(hook: string, materialLines: string[]): string {
+  const h = hook.toLowerCase();
+  const ml = materialLines.map((l) => l.toLowerCase()).join(" ");
+  if (/999|cad|cctv|bwv|timeline|clock|timestamp|continuity/.test(h) || /999|cad|cctv|bwv|timeline|clock|timestamp|continuity/.test(ml)) {
+    return "Timeline and continuity contradictions";
+  }
+  if (/mg11|witness|statement|draft|unsigned/.test(h) || /mg11|witness|statement|draft|unsigned/.test(ml)) {
+    return "Witness-account reliability and statement evolution";
+  }
+  if (/knife|weapon|threat|escalation/.test(h) || /knife|weapon|threat|escalation/.test(ml)) {
+    return "Weapon allegation escalation across sources";
+  }
+  return "Core reliability tension in MG5/MG6 material";
 }
 
 function isGoldenEvalQuestion(question: string): boolean {
@@ -437,7 +454,8 @@ function isGoldenEvalQuestion(question: string): boolean {
     q.includes("which witness is most vulnerable to challenge and why") ||
     q.includes("what is the strongest cross-examination theme") ||
     q.includes("what impeachment material should we prioritise obtaining") ||
-    q.includes("what admissions (if any) are unsafe for the defence to make")
+    q.includes("what admissions (if any) are unsafe for the defence to make") ||
+    q.includes("what is the best realistic outcome if we execute properly from here")
   );
 }
 
@@ -798,12 +816,18 @@ function buildGoldenDeterministicAnswer(
     const q1Material = materialLines.filter((ln) => isQ1CorroborationLeverageLine(ln));
     const hookRoot = leverageRootForLine(hook);
     const picked = pickTopLeverageStrict(q1Material, 3, new Set([hookRoot]));
+    const fallbackPool = [
+      /lawful force|put to proof|not guilty/i.test(stance) ? `Defence posture (${stance})` : "Disclosure reliability tension",
+      "Document continuity gap",
+      "Disclosure reliability tension",
+      `Case-stage pressure point (${stage})`,
+    ];
+    let fallbackIdx = 0;
     while (picked.length < 3) {
-      if (/lawful force|put to proof|not guilty/i.test(stance)) {
-        picked.push(`Defence posture (${stance})`);
-      } else {
-        picked.push("Disclosure reliability tension");
-      }
+      const candidate = fallbackPool[Math.min(fallbackIdx, fallbackPool.length - 1)];
+      fallbackIdx += 1;
+      if (picked.some((p) => leverageRootForLine(p) === leverageRootForLine(candidate))) continue;
+      picked.push(candidate);
     }
     const q1Bullets = [
       `- ${hook} -> This directly pressures the Crown case on a key issue.`,
@@ -853,7 +877,7 @@ function buildGoldenDeterministicAnswer(
 
   if (q.includes("what is the single biggest risk if we do nothing this week")) {
     return [
-      q6PrimaryRiskLineFromHook(hook),
+      q6PrimaryRiskLineFromHook(hook, materialLines),
       "- Consequence -> Crown narrative hardens while defence loses leverage on continuity and reliability points.",
     ].join("\n");
   }
@@ -864,9 +888,11 @@ function buildGoldenDeterministicAnswer(
   }
 
   if (q.includes("what is the strongest cross-examination theme")) {
+    const theme = chooseCrossExamTheme(hook, materialLines);
+    const witnessRef = /^the key witness$/i.test(witness) ? "the primary MG11 witness" : witness.toLowerCase();
     return [
-      `- ${hook} -> Use this as the single cross-exam spine to test reliability, sequence, and consistency.`,
-      "- Exploit point -> press witness on uncertainty against disclosure gaps and document inconsistencies.",
+      `- ${theme} -> Use this as the single cross-exam spine to test reliability, sequence, and consistency.`,
+      `- Exploit point -> press ${witnessRef} on contradiction points tied to ${theme.toLowerCase()}.`,
     ].join("\n");
   }
 
@@ -898,6 +924,23 @@ function buildGoldenDeterministicAnswer(
       "- Admitting intent/recklessness where disputed -> Undermines the live defence route and narrows viable arguments.",
       "- Admitting attribution/identification beyond current posture -> Collapses challenge to who did what.",
       "- Admitting causation sequence without qualification -> Strengthens Crown linkage and weakens defence contest.",
+    ].join("\n");
+  }
+
+  if (q.includes("what is the best realistic outcome if we execute properly from here")) {
+    const theme = chooseCrossExamTheme(hook, materialLines);
+    const route =
+      /timeline|continuity|chronology|cctv|999|cad/i.test(theme)
+        ? "timeline challenge route"
+        : /witness|statement/i.test(theme)
+          ? "witness reliability route"
+          : /weapon/i.test(theme)
+            ? "weapon allegation challenge route"
+            : "core reliability challenge route";
+    return [
+      `- Best realistic outcome -> Dismissal at review stage or acquittal at trial via the ${route}.`,
+      "- Near-term win condition -> lock disclosure contradictions now so the Crown cannot regularise weak points before hearing.",
+      "- Tactical focus -> keep defence posture consistent and tie each challenge to a concrete record mismatch.",
     ].join("\n");
   }
 
