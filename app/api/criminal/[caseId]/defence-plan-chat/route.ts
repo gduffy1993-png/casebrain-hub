@@ -535,7 +535,7 @@ function detectChatIntent(question: string): { intent: ChatIntent; confidence: n
   if (/next step|what should i do|what do i do now|this week|action|what should i be doing next|doing next/i.test(q)) {
     return { intent: "next_step", confidence: 0.9 };
   }
-  if (/defence strength|strongest point|help the defence|can i win|position now|overall position|just give me the overall position/i.test(q)) {
+  if (/defence strength|strongest point|help the defence|can i win|can we win|can we beat this|how strong is this case|position now|overall position|just give me the overall position|where do we stand/i.test(q)) {
     return { intent: "defence_strength", confidence: 0.8 };
   }
   return { intent: "general", confidence: 0.5 };
