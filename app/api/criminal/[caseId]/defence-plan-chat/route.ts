@@ -698,6 +698,12 @@ function buildStage2Reply(
     .map((l) => l.toLowerCase())
     .filter((l) => !/document continuity gap|core reliability tension in mg5\/mg6 material|disclosure reliability tension/.test(l))
     .join(" ");
+  const concreteSignalLines = [...data.q1, data.q6, ...data.cps.crownRepairs]
+    .map((l) => l.trim())
+    .filter((l) => l.length > 0)
+    .filter((l) => !/core reliability tension in mg5\/mg6 material|document continuity gap|disclosure reliability tension/i.test(l));
+  const primarySignal = concreteSignalLines[0] ?? "unresolved disclosure status";
+  const thinCase = concreteSignalLines.length < 2;
   const pressure = buildPressureLayer({
     hasTimelineIssue: /timestamp|clock|cctv|bwv|999|cad|continuity statement|engineer note|master audio/.test(concreteTimelineHaystack),
     hasDisclosureGap: /disclosure|outstanding|awaited|pending|not served|schedule|audit trail|reconcile|regularise/.test(concretePressureHaystack),
@@ -712,6 +718,8 @@ function buildStage2Reply(
             : "unknown",
     stageLabel: snapshot?.stage_detected ?? "",
     stanceLabel: snapshot?.stance_detected ?? "",
+    primarySignal,
+    thinCase,
   });
   const pressureBlock = [
     "",
@@ -938,14 +946,17 @@ function buildGoldenDeterministicAnswer(
             "- Final witness statement status -> Could shift credibility and consistency analysis.",
             "- CCTV continuity/engineer confirmation -> Could alter admissibility and evidential weight.",
           ];
-    return ["- Not stated in the materials.", ...bullets].join("\n");
+    return [
+      "- Evidence detail remains incomplete at this stage -> outcome-critical points are still driven by what is not yet disclosed.",
+      ...bullets,
+    ].join("\n");
   }
 
   if (q.includes("what are the key dates and timeline anchors")) {
     return [
-      "- Not stated in the materials.",
+      "- Exact listed dates are not yet fixed in the served materials -> treat chronology as provisional for case strategy.",
       `- Stage anchor -> ${stage}.`,
-      "- Hearing/disclosure anchor -> next step is tied to disclosure reconciliation and readiness.",
+      "- Hearing/disclosure anchor -> hold position at not-ready-for-plea until disclosure reconciliation is complete.",
     ].join("\n");
   }
 
