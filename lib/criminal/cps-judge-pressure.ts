@@ -63,8 +63,8 @@ export function buildPressureLayer(signals: PressureSignals): PressureOutput {
   }
 
   if (signals.offenceType === "violence") {
-    judgeConstraints.push("Court will test whether force sequence and causation are proved beyond reasonable doubt.");
-    hearingLines.push("The defence position is put to proof on force sequence and causation.");
+    judgeConstraints.push("Court will test core act elements, attribution, and reliability beyond reasonable doubt.");
+    hearingLines.push("The defence position is put to proof on core act elements and attribution.");
   } else if (signals.offenceType === "weapon") {
     judgeConstraints.push("Court will scrutinise weapon allegation consistency across dispatch, witness, and schedule records.");
     hearingLines.push("Weapon allegation reliability is contested and must be proven with consistent source records.");

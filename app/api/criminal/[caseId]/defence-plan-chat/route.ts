@@ -656,6 +656,21 @@ function buildSpecificDisclosureTopItem(data: Stage2Data): string | null {
   return null;
 }
 
+function withSourceTag(line: string): string {
+  const l = line.toLowerCase();
+  let tag = "";
+  if (/mg11|witness statement|witness/.test(l)) tag = "MG11";
+  else if (/mg6|schedule|disclosure/.test(l)) tag = "MG6";
+  else if (/\bmg5\b|case summary/.test(l)) tag = "MG5";
+  else if (/\bcad\b/.test(l)) tag = "CAD";
+  else if (/999|master audio/.test(l)) tag = "999";
+  else if (/cctv|bwv|continuity|engineer note|calibration|footage/.test(l)) tag = "CCTV";
+  else if (/forensic|medical|records|gp/.test(l)) tag = "Forensic/Medical";
+  if (!tag) return line;
+  if (/\([^)]+\)$/.test(line.trim())) return line;
+  return `${line} (${tag})`;
+}
+
 function buildStage2Reply(
   intent: ChatIntent,
   confidence: number,
@@ -716,7 +731,7 @@ function buildStage2Reply(
     case "defence_strength":
       return [
         "Key defence strengths:",
-        ...q1Distinct.slice(0, 3).map((l) => `- ${l}`),
+        ...q1Distinct.slice(0, 3).map((l) => `- ${withSourceTag(l)}`),
         "",
         "Main risk:",
         specificRisk,
@@ -742,34 +757,34 @@ function buildStage2Reply(
         data.q8,
         "",
         "Most vulnerable witness:",
-        ...q7Distinct.slice(0, 3).map((l) => `- ${l}`),
+        ...q7Distinct.slice(0, 3).map((l) => `- ${withSourceTag(l)}`),
         ...pressureBlock.split("\n"),
       ].join("\n");
     case "disclosure":
       return [
         "Key disclosure to obtain:",
-        ...q9Distinct.slice(0, 5).map((l) => `- ${l}`),
+        ...q9Distinct.slice(0, 5).map((l) => `- ${withSourceTag(l)}`),
         "",
         "Crown likely repair moves:",
-        ...crownRepairsDistinct.slice(0, 3).map((l) => `- ${l}`),
+        ...crownRepairsDistinct.slice(0, 3).map((l) => `- ${withSourceTag(l)}`),
         ...pressureBlock.split("\n"),
       ].join("\n");
     case "next_step":
       return [
         "Immediate actions this week:",
-        ...defenceActionsDistinct.slice(0, 3).map((l) => `- ${l}`),
+        ...defenceActionsDistinct.slice(0, 3).map((l) => `- ${withSourceTag(l)}`),
         ...pressureBlock.split("\n"),
       ].join("\n");
     default:
       return [
         "Key defence position:",
-        ...q1Distinct.slice(0, 2).map((l) => `- ${l}`),
+        ...q1Distinct.slice(0, 2).map((l) => `- ${withSourceTag(l)}`),
         "",
         "Main risk:",
         specificRisk,
         "",
         "Immediate actions:",
-        ...defenceActionsDistinct.slice(0, 2).map((l) => `- ${l}`),
+        ...defenceActionsDistinct.slice(0, 2).map((l) => `- ${withSourceTag(l)}`),
         ...pressureBlock.split("\n"),
       ].join("\n");
   }
