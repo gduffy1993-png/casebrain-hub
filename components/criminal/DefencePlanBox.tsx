@@ -17,7 +17,8 @@ import { LawSliceSuggestions } from "./LawSliceSuggestions";
 import { VerdictRatingBlock } from "./VerdictRatingBlock";
 
 const DEV_CASE_PICKER_ENABLED =
-  process.env.NEXT_PUBLIC_DEV_CASE_PICKER === "true" || process.env.NODE_ENV !== "production";
+  /^(1|true|yes|on)$/i.test((process.env.NEXT_PUBLIC_DEV_CASE_PICKER ?? "").trim()) ||
+  process.env.NODE_ENV !== "production";
 
 const CHAT_COMMAND_PROMPTS: Record<string, string> = {
   "/disclosure": "What disclosure should I be pushing in this case and what are the CPIA duties?",
@@ -141,6 +142,7 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
     Array<{ caseId: string; caseTitle: string; questionNo: number; question: string; answer: string; error?: string }>
   >([]);
   const [evalCopyMessage, setEvalCopyMessage] = useState<string | null>(null);
+  const [forceCasePicker, setForceCasePicker] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   /** Scroll only this panel — scrollIntoView on the sentinel scrolls the whole page. */
   const messagesScrollRef = useRef<HTMLDivElement>(null);
@@ -164,6 +166,22 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
       el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
     }
   }, [chatMessages, chatLoading]);
+
+  // Runtime escape hatch: lets us enable manual picker if env injection is missing in deployed builds.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const queryEnabled = /^(1|true|yes|on)$/i.test((params.get("casePicker") ?? "").trim());
+      const storedEnabled = /^(1|true|yes|on)$/i.test((localStorage.getItem("casebrain:devCasePicker") ?? "").trim());
+      if (queryEnabled) localStorage.setItem("casebrain:devCasePicker", "true");
+      setForceCasePicker(queryEnabled || storedEnabled);
+    } catch {
+      // non-fatal
+    }
+  }, []);
+
+  const showCasePicker = DEV_CASE_PICKER_ENABLED || forceCasePicker;
 
   const resolveMessage = (raw: string): string => {
     const trimmed = raw.trim().toLowerCase();
@@ -401,7 +419,7 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
               <option value="10">First 10 cases</option>
               <option value="20">First 20 cases</option>
               <option value="all">All loaded cases</option>
-              {DEV_CASE_PICKER_ENABLED && <option value="manual">Manual case pick (dev/test)</option>}
+              {showCasePicker && <option value="manual">Manual case pick (dev/test)</option>}
             </select>
             <Button type="button" size="sm" onClick={runEvalAcrossCases} disabled={evalRunning || parseEvalQuestions().length === 0}>
               {evalRunning ? "Running..." : `Run on ${selectedEvalCases().length} case${selectedEvalCases().length === 1 ? "" : "s"}`}
@@ -419,7 +437,7 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
               <span className="text-[11px] text-muted-foreground">{evalCopyMessage}</span>
             )}
           </div>
-          {DEV_CASE_PICKER_ENABLED && evalScope === "manual" && (
+          {showCasePicker && evalScope === "manual" && (
             <div className="mt-2 rounded border border-border/60 bg-background p-2">
               <p className="text-[11px] font-medium text-foreground">Choose exact cases ({manualCaseIds.length} selected)</p>
               <div className="mt-1 max-h-36 overflow-auto space-y-1">
