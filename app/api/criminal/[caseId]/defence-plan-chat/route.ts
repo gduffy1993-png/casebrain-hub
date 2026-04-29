@@ -430,6 +430,9 @@ function q6PrimaryRiskLineFromHook(hook: string, materialLines: string[] = []): 
 function chooseCrossExamTheme(hook: string, materialLines: string[]): string {
   const h = hook.toLowerCase();
   const ml = materialLines.map((l) => l.toLowerCase()).join(" ");
+  if (/disclosure|outstanding|awaited|pending|not served|schedule/.test(ml)) {
+    return "Disclosure-chain integrity and late-regularisation pressure";
+  }
   if (/999|cad|cctv|bwv|timeline|clock|timestamp|continuity/.test(h) || /999|cad|cctv|bwv|timeline|clock|timestamp|continuity/.test(ml)) {
     return "Timeline and continuity contradictions";
   }
@@ -838,10 +841,23 @@ function buildGoldenDeterministicAnswer(
   }
 
   if (q.includes("top 3 facts that hurt the defence most")) {
-    return [
+    const ml = materialLines.map((l) => l.toLowerCase()).join(" ");
+    const hasCctv = /cctv|bwv|footage|continuity/.test(ml);
+    const hasWitness = /mg11|witness|statement/.test(ml);
+    const hasForensic = /forensic|medical|report|records/.test(ml);
+    const hasDisclosureGap = /outstanding|awaited|pending|not served|disclosure/.test(`${ml} ${unknownLines.join(" ").toLowerCase()}`);
+    const bullets: string[] = [
       `- Charge exposure (${offence}) -> Elements remain live unless positively displaced by defence evidence.`,
-      "- Crown can regularise current disclosure gaps -> Defence leverage can narrow before hearing.",
-      "- Draft/uncertain witness material may be finalised -> A cleaner Crown narrative can reduce cross-exam traction.",
+    ];
+    if (hasWitness) bullets.push("- Witness account may be regularised before hearing -> Reliability challenges become narrower at trial.");
+    if (hasCctv) bullets.push("- Partial/technical media can still anchor Crown chronology if regularised -> Defence sequence challenges lose force.");
+    if (hasForensic) bullets.push("- Medical/forensic material may solidify causation/injury framing -> Defence contest window narrows.");
+    if (hasDisclosureGap) bullets.push("- Crown can regularise current disclosure gaps -> Defence leverage can narrow before hearing.");
+    while (bullets.length < 3) bullets.push("- Procedural momentum favours the served Crown record unless defence contradictions are fixed early.");
+    return [
+      bullets[0],
+      bullets[1],
+      bullets[2],
     ].join("\n");
   }
 
