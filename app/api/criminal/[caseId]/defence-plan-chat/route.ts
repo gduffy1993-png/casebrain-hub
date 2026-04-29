@@ -659,7 +659,8 @@ function buildSpecificDisclosureTopItem(data: Stage2Data): string | null {
 function withSourceTag(line: string): string {
   const l = line.toLowerCase();
   let tag = "";
-  if (/mg11|witness statement|witness/.test(l)) tag = "MG11";
+  if (/core reliability tension in mg5\/mg6|mg5.*mg6|mg6.*mg5/.test(l)) tag = "MG5/MG6";
+  else if (/mg11|witness statement|witness/.test(l)) tag = "MG11";
   else if (/mg6|schedule|disclosure/.test(l)) tag = "MG6";
   else if (/\bmg5\b|case summary/.test(l)) tag = "MG5";
   else if (/\bcad\b/.test(l)) tag = "CAD";
@@ -701,8 +702,8 @@ function buildStage2Reply(
   const concreteSignalLines = [...data.q1, data.q6, ...data.cps.crownRepairs]
     .map((l) => l.trim())
     .filter((l) => l.length > 0)
-    .filter((l) => !/core reliability tension in mg5\/mg6 material|document continuity gap|disclosure reliability tension/i.test(l));
-  const primarySignal = concreteSignalLines[0] ?? "unresolved disclosure status";
+    .filter((l) => !/core reliability tension in mg5\/mg6 material|document continuity gap|disclosure reliability tension|defence posture/i.test(l));
+  const primarySignal = concreteSignalLines[0] ?? "outstanding disclosure items";
   const thinCase = concreteSignalLines.length < 2;
   const pressure = buildPressureLayer({
     hasTimelineIssue: /timestamp|clock|cctv|bwv|999|cad|continuity statement|engineer note|master audio/.test(concreteTimelineHaystack),

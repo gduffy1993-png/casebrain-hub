@@ -24,7 +24,14 @@ export function buildPressureLayer(signals: PressureSignals): PressureOutput {
 
   const stage = signals.stageLabel?.trim() || "current stage";
   const stance = signals.stanceLabel?.trim() || "put to proof";
-  const primarySignal = signals.primarySignal?.trim() || "the current evidential contradiction";
+  const rawPrimarySignal = signals.primarySignal?.trim() || "outstanding disclosure items";
+  const primarySignal = rawPrimarySignal
+    .replace(/^[\-*]\s*/, "")
+    .replace(/\s*->.*$/i, "")
+    .replace(/\s*\([^)]+\)\s*$/i, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, 120) || "outstanding disclosure items";
 
   const lane: "timeline" | "disclosure" | "witness" | "general" =
     signals.hasTimelineIssue ? "timeline" :
