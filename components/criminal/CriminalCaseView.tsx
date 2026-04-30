@@ -884,7 +884,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <FoldSection title="Evidence" defaultOpen={false}>
+                <FoldSection title="Evidence" defaultOpen={false} keepMountedWhenClosed={true}>
                   <ErrorBoundary fallback={mounted ? <div className="text-sm text-muted-foreground">Analysis will deepen as further disclosure is received.</div> : null}>
                     <CaseEvidenceColumn caseId={caseId} snapshot={snapshot} onAddDocument={() => setShowAddDocuments(true)} onAddEvidenceUpload={() => setShowAddEvidenceUpload(true)} currentPhase={p} savedPosition={savedPosition} onCommitmentChange={(c) => { if (c) { setCommittedStrategy(c); setIsStrategyCommitted(true); buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error); } else { setCommittedStrategy(null); setIsStrategyCommitted(false); setDisplayStrategy(null); setDefencePlan(null); } }} committedStrategy={committedStrategy} onDisplayStrategyUpdate={setDisplayStrategy} onProceduralSafetyChange={setEffectiveProceduralSafety} onDefencePlanUpdate={setDefencePlan} hasClientInstructions={hasClientInstructions} onClientInstructionsSaved={() => setHasClientInstructions(true)} />
                   </ErrorBoundary>

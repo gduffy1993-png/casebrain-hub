@@ -15,6 +15,8 @@ export type FoldSectionProps = {
   children: React.ReactNode;
   /** Extra class on the outer wrapper (card) */
   className?: string;
+  /** Keep children mounted while collapsed (useful when hidden content drives parent state). */
+  keepMountedWhenClosed?: boolean;
 };
 
 /**
@@ -28,6 +30,7 @@ export function FoldSection({
   id: sectionId,
   children,
   className = "",
+  keepMountedWhenClosed = false,
 }: FoldSectionProps) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
@@ -49,7 +52,14 @@ export function FoldSection({
           <ChevronDown className="h-4 w-4 text-accent/50 shrink-0" aria-hidden />
         )}
       </button>
-      {isOpen && <CardContent className="pt-0 pb-4 px-4 border-t border-white/10">{children}</CardContent>}
+      {(isOpen || keepMountedWhenClosed) && (
+        <CardContent
+          className={`pt-0 pb-4 px-4 border-t border-white/10 ${!isOpen ? "hidden" : ""}`}
+          aria-hidden={!isOpen}
+        >
+          {children}
+        </CardContent>
+      )}
     </Card>
   );
 
