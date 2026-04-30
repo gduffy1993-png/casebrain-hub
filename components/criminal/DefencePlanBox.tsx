@@ -19,6 +19,7 @@ import { VerdictRatingBlock } from "./VerdictRatingBlock";
 const DEV_CASE_PICKER_ENABLED =
   /^(1|true|yes|on)$/i.test((process.env.NEXT_PUBLIC_DEV_CASE_PICKER ?? "").trim()) ||
   process.env.NODE_ENV !== "production";
+const BULK_EVAL_RUNNER_ENABLED = /^(1|true|yes|on)$/i.test((process.env.NEXT_PUBLIC_BULK_EVAL_RUNNER ?? "").trim());
 
 const CHAT_COMMAND_PROMPTS: Record<string, string> = {
   "/disclosure": "What disclosure should I be pushing in this case and what are the CPIA duties?",
@@ -394,7 +395,7 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
           </div>
         </div>
       )}
-      {runnerCases.length > 0 && (
+      {BULK_EVAL_RUNNER_ENABLED && runnerCases.length > 0 && (
         <div className="mb-3 rounded-md border border-border/60 bg-muted/20 p-2.5">
           <p className="text-[11px] font-medium text-foreground">Bulk eval runner (ask same question(s) across selected cases)</p>
           <p className="mt-1 text-[11px] text-muted-foreground">

@@ -43,71 +43,71 @@ export function buildPressureLayer(signals: PressureSignals): PressureOutput {
 
   if (lane === "timeline") {
     cpsPressure.push(
-      `Crown will try to cure chronology defects around ${primarySignal} by late continuity/timing reconciliation.`
+      `Chronology pressure: Crown will try to regularise ${primarySignal} with late continuity/timing fixes.`
     );
     judgeConstraints.push(
-      "Court will require a clear view on whether chronology conflict is material to live offence elements."
+      "Chronology test: court will ask whether the timing conflict is material to live offence elements."
     );
     defenceCounters.push(
-      "Require dated continuity and timing metadata now, and record non-compliance for case-management directions."
+      "Continuity demand: require dated timing metadata now; record non-compliance and seek case-management directions."
     );
-    hearingLines.push("Position: chronology remains contested and plea readiness is opposed until defects are cured.");
+    hearingLines.push("Hearing stance: chronology remains contested; oppose plea-readiness until defects are cured.");
   }
 
   if (lane === "disclosure") {
     cpsPressure.push(
-      `Crown will present disclosure as effectively complete unless ${primarySignal} is challenged with deadlines.`
+      `Disclosure pressure: Crown will frame disclosure as complete unless ${primarySignal} is challenged on deadline.`
     );
     judgeConstraints.push(
-      "Court expects specific disclosure requests and a clear explanation of materiality before hearing."
+      "Disclosure test: court expects specific requests and clear materiality before hearing."
     );
     defenceCounters.push(
-      "Serve a dated disclosure schedule demand, require item-by-item status, and seek directions if deadlines are missed."
+      "Disclosure demand: serve a dated item-by-item schedule; if deadlines slip, seek directions immediately."
     );
-    hearingLines.push(`Position: disclosure remains incomplete at ${stage}; defence is not ready for plea or settled merits.`);
+    hearingLines.push(`Hearing stance: disclosure remains incomplete at ${stage}; not ready for plea or settled merits.`);
   }
 
   if (lane === "witness") {
     cpsPressure.push(
-      `Crown will rely on final witness wording and downplay inconsistencies linked to ${primarySignal}.`
+      `Witness pressure: Crown will rely on final wording and downplay inconsistency around ${primarySignal}.`
     );
     judgeConstraints.push(
-      "Court will tolerate minor variance only if defence cannot tie inconsistency to a core contested issue."
+      "Witness test: court tolerates minor variance unless defence ties it to a core contested issue."
     );
     defenceCounters.push(
-      "Anchor challenge to version-to-version wording and timing changes, and force the witness to adopt one account."
+      "Witness challenge: pin version-to-version wording/timing changes and force adoption of one account."
     );
-    hearingLines.push("Position: witness reliability is actively contested and requires version-specific testing before plea posture shifts.");
+    hearingLines.push("Hearing stance: witness reliability is contested and requires version-specific testing before plea posture shifts.");
   }
 
   if (signals.offenceType === "violence") {
-    judgeConstraints.push("Court will test core act elements, attribution, and reliability beyond reasonable doubt.");
+    judgeConstraints.push("Violence framing: court will test act elements, attribution, and reliability to criminal standard.");
     hearingLines.push("Defence posture: put to proof on act mechanics, attribution, and reliability.");
   } else if (signals.offenceType === "weapon") {
-    judgeConstraints.push("Court will scrutinise weapon allegation consistency across dispatch, witness, and schedule records.");
-    hearingLines.push("Defence posture: weapon allegation reliability is contested and must be proven by consistent source records.");
+    judgeConstraints.push("Weapon framing: court will scrutinise consistency across dispatch, witness, and schedule records.");
+    hearingLines.push("Defence posture: weapon allegation reliability is contested and must be proven by consistent records.");
   } else if (signals.offenceType === "dishonesty") {
-    judgeConstraints.push("Court will focus on transaction/document trail coherence and inference of dishonesty.");
-    hearingLines.push("Defence posture: challenge document-trail coherence and inference against the accused.");
+    judgeConstraints.push("Dishonesty framing: court will focus on trail coherence and inference of dishonesty.");
+    hearingLines.push("Defence posture: challenge trail coherence and inference against the accused.");
   }
 
   if (lane === "general" || cpsPressure.length === 0) {
-    cpsPressure.push("Crown will attempt to narrow disputed issues and frame the file as hearing-ready.");
+    cpsPressure.push("General pressure: Crown will narrow disputed issues and frame the file as hearing-ready.");
   }
   if (judgeConstraints.length === 0) {
     judgeConstraints.push("Court will prioritise case management readiness and concrete issue definition.");
   }
   if (defenceCounters.length === 0) {
-    defenceCounters.push("Issue a written contradiction schedule now and require Crown responses by deadline.");
+    defenceCounters.push("Counter-step: issue a written contradiction schedule now and require Crown responses by deadline.");
   }
   if (hearingLines.length === 0) {
     hearingLines.push(
-      `Defence posture remains ${stance}; maintain not-ready-for-plea position until live elements are supported on settled disclosure.`
+      `Hearing stance: defence remains ${stance}; maintain not-ready-for-plea until live elements are supported on settled disclosure.`
     );
   }
 
   if (signals.thinCase) {
-    hearingLines.unshift(`Thin bundle warning: maintain procedural pressure and avoid merits concessions until primary disclosure is served at ${stage}.`);
+    hearingLines.unshift(`Thin-bundle warning: keep procedural pressure; avoid merits concessions until primary disclosure is served at ${stage}.`);
   }
 
   return { cpsPressure, judgeConstraints, defenceCounters, hearingLines };
