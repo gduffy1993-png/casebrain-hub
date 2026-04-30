@@ -720,7 +720,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
               Record client position from Strategy or Client & instructions when needed.
             </div>
             {gateBanner && (
-              <FoldSection title="Analysis required" defaultOpen={true}>
+              <FoldSection title="Analysis required" defaultOpen={false}>
                 <AnalysisGateBanner
                   banner={gateBanner.banner}
                   diagnostics={gateBanner.diagnostics}
