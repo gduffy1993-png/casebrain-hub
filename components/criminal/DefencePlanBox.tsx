@@ -29,6 +29,7 @@ const CHAT_COMMAND_PROMPTS: Record<string, string> = {
 };
 
 const CHAT_STORAGE_KEY_PREFIX = "casebrain:defence-plan-chat:";
+const MAX_CHAT_HISTORY_MESSAGES = 80;
 
 type DefencePlanBoxProps = {
   caseId: string;
@@ -109,7 +110,8 @@ function loadChatFromStorage(caseId: string): ChatMessage[] {
     if (!raw) return [];
     const parsed = JSON.parse(raw);
     if (!Array.isArray(parsed)) return [];
-    return parsed.filter((m): m is ChatMessage => m && typeof m.role === "string" && typeof m.content === "string" && (m.role === "user" || m.role === "assistant"));
+    const messages = parsed.filter((m): m is ChatMessage => m && typeof m.role === "string" && typeof m.content === "string" && (m.role === "user" || m.role === "assistant"));
+    return messages.slice(-MAX_CHAT_HISTORY_MESSAGES);
   } catch {
     return [];
   }
@@ -119,7 +121,7 @@ function saveChatToStorage(caseId: string, messages: ChatMessage[]) {
   if (typeof window === "undefined" || !caseId) return;
   try {
     if (messages.length === 0) localStorage.removeItem(`${CHAT_STORAGE_KEY_PREFIX}${caseId}`);
-    else localStorage.setItem(`${CHAT_STORAGE_KEY_PREFIX}${caseId}`, JSON.stringify(messages));
+    else localStorage.setItem(`${CHAT_STORAGE_KEY_PREFIX}${caseId}`, JSON.stringify(messages.slice(-MAX_CHAT_HISTORY_MESSAGES)));
   } catch {
     // ignore quota / private mode
   }
@@ -147,10 +149,12 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
   const messagesEndRef = useRef<HTMLDivElement>(null);
   /** Scroll only this panel — scrollIntoView on the sentinel scrolls the whole page. */
   const messagesScrollRef = useRef<HTMLDivElement>(null);
+  const initialChatScrollDoneRef = useRef(false);
 
   // Load persisted chat for this case on mount (client-only to avoid hydration mismatch)
   useEffect(() => {
     if (!caseId) return;
+    initialChatScrollDoneRef.current = false;
     setChatMessages(loadChatFromStorage(caseId));
     setChatLoaded(true);
   }, [caseId]);
@@ -164,7 +168,9 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
   useEffect(() => {
     const el = messagesScrollRef.current;
     if (el) {
-      el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
+      const isInitialScroll = !initialChatScrollDoneRef.current;
+      el.scrollTo({ top: el.scrollHeight, behavior: isInitialScroll ? "auto" : "smooth" });
+      if (isInitialScroll) initialChatScrollDoneRef.current = true;
     }
   }, [chatMessages, chatLoading]);
 
