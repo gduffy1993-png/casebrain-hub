@@ -98,6 +98,12 @@ const PRACTICE_AREA_ROLE_OPTIONS: RoleOption[] = [
   { value: "general_litigation_solicitor", label: "General Litigation Solicitor", icon: <FileText className="h-3 w-3" />, practiceArea: "other_litigation" },
 ];
 
+/** Pilot / criminal-first: Cases submenu shows only list + criminal defence (set NEXT_PUBLIC_SIDEBAR_ALL_PRACTICE_AREAS=true to restore full list). */
+const showAllPracticeAreasInCasesNav = process.env.NEXT_PUBLIC_SIDEBAR_ALL_PRACTICE_AREAS === "true";
+const CASES_SIDEBAR_ROLE_OPTIONS: RoleOption[] = showAllPracticeAreasInCasesNav
+  ? PRACTICE_AREA_ROLE_OPTIONS
+  : PRACTICE_AREA_ROLE_OPTIONS.filter((r) => r.value === "all" || r.value === "criminal_solicitor");
+
 const labsEnabled = process.env.NEXT_PUBLIC_ENABLE_LABS === "true";
 
 const NAV_ITEMS: NavItem[] = [
@@ -233,17 +239,20 @@ function SidebarContent() {
     const newRoles = { ...selectedRoles, [itemKey]: role };
     setSelectedRoles(newRoles);
     localStorage.setItem("sidebar_selected_roles", JSON.stringify(newRoles));
-    
-    // Update URL if on cases page
-    if (pathname?.startsWith("/cases")) {
-      const currentUrl = window.location.href;
-      const url = new URL(currentUrl);
+
+    // Only sync URL on the cases list. On /cases/[caseId] (or nested routes), the role row's
+    // onClick navigates to /cases?... — if we push here first we stay on the case page and
+    // Criminal Defense appears to "do nothing".
+    const onCasesList =
+      pathname === "/cases" || pathname === "/cases/";
+    if (onCasesList) {
+      const url = new URL(window.location.href);
       if (role === "all") {
         url.searchParams.delete("role");
       } else {
         url.searchParams.set("role", role);
       }
-      router.push(url.pathname + url.search);
+      router.push(`${url.pathname}${url.search}`);
     }
   };
 
@@ -348,8 +357,8 @@ function SidebarContent() {
                 </div>
                 
                 {isExpanded && (() => {
-                  const roleOptions = item.usePracticeAreaRoles 
-                    ? PRACTICE_AREA_ROLE_OPTIONS 
+                  const roleOptions = item.usePracticeAreaRoles
+                    ? CASES_SIDEBAR_ROLE_OPTIONS
                     : GENERAL_ROLE_OPTIONS;
                   
                   return (

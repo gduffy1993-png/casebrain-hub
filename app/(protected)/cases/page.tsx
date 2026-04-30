@@ -17,14 +17,27 @@ type CasesPageProps = {
   searchParams: { practiceArea?: string; role?: string };
 };
 
-const PRACTICE_AREA_FILTERS: Array<{ label: string; value: string }> = [
+/** Match sidebar: pilot shows criminal caseload only unless this env is set. */
+const SHOW_ALL_PRACTICE_AREA_FILTERS = process.env.NEXT_PUBLIC_SIDEBAR_ALL_PRACTICE_AREAS === "true";
+
+const PRACTICE_AREA_FILTERS_FULL: Array<{ label: string; value: string }> = [
   { label: "All", value: "all" },
   { label: "PI", value: "personal_injury" },
   { label: "Clinical Neg", value: "clinical_negligence" },
   { label: "Housing Disrepair", value: "housing_disrepair" },
   { label: "Family", value: "family" },
+  { label: "Criminal", value: "criminal" },
   { label: "General", value: "general" },
 ];
+
+const PRACTICE_AREA_FILTERS_CRIMINAL_PILOT: Array<{ label: string; value: string }> = [
+  { label: "All", value: "all" },
+  { label: "Criminal defence", value: "criminal" },
+];
+
+const PRACTICE_AREA_FILTERS = SHOW_ALL_PRACTICE_AREA_FILTERS
+  ? PRACTICE_AREA_FILTERS_FULL
+  : PRACTICE_AREA_FILTERS_CRIMINAL_PILOT;
 
 export default async function CasesPage({ searchParams }: CasesPageProps) {
   const { orgId } = await requireAuthContext();
@@ -105,7 +118,7 @@ export default async function CasesPage({ searchParams }: CasesPageProps) {
         </div>
       </div>
 
-      <FilterToolbar selected={selectedPracticeArea} />
+      <FilterToolbar selected={selectedPracticeArea} filters={PRACTICE_AREA_FILTERS} />
 
       <Card>
         {cases.length ? (
@@ -154,10 +167,16 @@ export default async function CasesPage({ searchParams }: CasesPageProps) {
   );
 }
 
-function FilterToolbar({ selected }: { selected: string }) {
+function FilterToolbar({
+  selected,
+  filters,
+}: {
+  selected: string;
+  filters: Array<{ label: string; value: string }>;
+}) {
   return (
     <div className="flex flex-wrap gap-2">
-      {PRACTICE_AREA_FILTERS.map((filter) => {
+      {filters.map((filter) => {
         const isActive = selected === filter.value;
         return (
           <Link
@@ -183,6 +202,9 @@ function FilterToolbar({ selected }: { selected: string }) {
 }
 
 function PracticeBadge({ practiceArea }: { practiceArea: string | null }) {
+  if (practiceArea === "criminal") {
+    return <Badge className="bg-primary/15 text-primary border border-primary/25">Criminal</Badge>;
+  }
   if (practiceArea === "pi") {
     return <Badge className="bg-primary/10 text-primary">PI</Badge>;
   }
@@ -191,6 +213,9 @@ function PracticeBadge({ practiceArea }: { practiceArea: string | null }) {
   }
   if (practiceArea === "housing_disrepair") {
     return <Badge className="bg-success/10 text-success">Housing Disrepair</Badge>;
+  }
+  if (practiceArea === "family") {
+    return <Badge className="bg-secondary/15 text-secondary">Family</Badge>;
   }
   return <Badge variant="default">General</Badge>;
 }
@@ -204,8 +229,9 @@ function EmptyState({ selectedPracticeArea }: { selectedPracticeArea: string }) 
     <div className="flex flex-col items-center justify-center gap-3 rounded-3xl border border-dashed border-primary/30 bg-surface-muted/60 p-16 text-center">
       <h2 className="text-lg font-semibold text-accent">No {label.toLowerCase()} found.</h2>
       <p className="max-w-md text-sm text-accent/60">
-        Upload a disclosure pack or run the PI / Clinical Neg intake wizard to start building your
-        timeline.
+        {selectedPracticeArea === "criminal"
+          ? "Upload a disclosure pack or bundle to create a criminal matter, or open an existing case from Upload."
+          : "Upload a disclosure pack or run the PI / Clinical Neg intake wizard to start building your timeline."}
       </p>
     </div>
   );
