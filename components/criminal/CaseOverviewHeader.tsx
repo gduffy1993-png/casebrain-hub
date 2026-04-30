@@ -164,6 +164,9 @@ export function CaseOverviewHeader({
 
   const station = matter?.station ?? null;
   const matterState = matter?.matterState ?? null;
+  /** Only show station / arrest-context fields when matter is actually in police-station phase. */
+  const showPoliceStationContext =
+    matterState === "at_station" || matterState === "bailed" || matterState === "rui";
   const caseStatusLabel = deriveCaseStatus(matterState, isStrategyCommitted);
 
   // Offence: resolved (charges + matter + bundle) first, else fallback to first charge or matter
@@ -315,23 +318,27 @@ export function CaseOverviewHeader({
                   </span>
                 )}
               </div>
-              <div className="flex items-center gap-1.5 shrink-0">
-                <Calendar className="h-3.5 w-3.5 text-muted-foreground" />
-                <span className="text-muted-foreground">Incident:</span>
-                <span className="font-medium text-foreground">{formatDate(dateOfIncident)}</span>
-              </div>
-              <div className="flex items-center gap-1.5 shrink-0">
-                <User className="h-3.5 w-3.5 text-muted-foreground" />
-                <span className="text-muted-foreground">Client:</span>
-                <span className="font-medium text-foreground">{clientInitials}</span>
-              </div>
-              <div className="flex items-center gap-1.5 shrink-0">
-                <MapPin className="h-3.5 w-3.5 text-muted-foreground" />
-                <span className="text-muted-foreground">Station:</span>
-                <span className="font-medium text-foreground truncate max-w-[120px]" title={policeStation}>
-                  {policeStation}
-                </span>
-              </div>
+              {showPoliceStationContext && (
+                <>
+                  <div className="flex items-center gap-1.5 shrink-0">
+                    <Calendar className="h-3.5 w-3.5 text-muted-foreground" />
+                    <span className="text-muted-foreground">Incident:</span>
+                    <span className="font-medium text-foreground">{formatDate(dateOfIncident)}</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 shrink-0">
+                    <User className="h-3.5 w-3.5 text-muted-foreground" />
+                    <span className="text-muted-foreground">Client:</span>
+                    <span className="font-medium text-foreground">{clientInitials}</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 shrink-0">
+                    <MapPin className="h-3.5 w-3.5 text-muted-foreground" />
+                    <span className="text-muted-foreground">Station:</span>
+                    <span className="font-medium text-foreground truncate max-w-[120px]" title={policeStation}>
+                      {policeStation}
+                    </span>
+                  </div>
+                </>
+              )}
               <div className="flex items-center gap-1.5 shrink-0">
                 <Calendar className="h-3.5 w-3.5 text-muted-foreground" />
                 <span className="text-muted-foreground">Next:</span>

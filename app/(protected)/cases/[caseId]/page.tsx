@@ -1006,11 +1006,13 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
           />
         </Card>
 
-        <LettersPanel 
-          caseId={caseId} 
-          letters={letters ?? []} 
-          practiceArea={caseRecord.practice_area ?? undefined}
-        />
+        {!isCriminalCase && (
+          <LettersPanel
+            caseId={caseId}
+            letters={letters ?? []}
+            practiceArea={caseRecord.practice_area ?? undefined}
+          />
+        )}
       </aside>
 
       <main className="space-y-4">
@@ -1044,46 +1046,48 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
         </CollapsibleSection>
         )}
 
-        {/* Action Bar Card - Export, Archive, etc. */}
-        <Card
-          title={
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <span>Actions</span>
+        {/* Action bar: non-criminal only — criminal workspace handles strategy/disclosure; role is always criminal. */}
+        {!isCriminalCase && (
+          <Card
+            title={
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <span>Actions</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CasePageClientWithActions
+                    caseId={caseId}
+                    caseTitle={caseRecord.title ?? "Untitled Case"}
+                    analysisStale={caseRecord.analysis_stale ?? false}
+                    latestDelta={null} // Will be fetched client-side if needed
+                  />
+                  <CaseOverviewExportButton caseId={caseId} caseTitle={caseRecord.title ?? undefined} />
+                  <CasePackExportButton caseId={caseId} />
+                  <CaseArchiveButton caseId={caseId} caseTitle={caseRecord.title} />
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <CasePageClientWithActions
+            }
+          >
+            <div className="space-y-3">
+              <div>
+                <PracticeAreaSelector
                   caseId={caseId}
-                  caseTitle={caseRecord.title ?? "Untitled Case"}
-                  analysisStale={caseRecord.analysis_stale ?? false}
-                  latestDelta={null} // Will be fetched client-side if needed
+                  currentPracticeArea={(caseRecord.practice_area ?? "other_litigation") as PracticeArea}
                 />
-                <CaseOverviewExportButton caseId={caseId} caseTitle={caseRecord.title ?? undefined} />
-                <CasePackExportButton caseId={caseId} />
-              <CaseArchiveButton caseId={caseId} caseTitle={caseRecord.title} />
               </div>
+              {labsEnabled && (
+                <>
+                  <div>
+                    <ConditionalPortalShare caseId={caseId} />
+                  </div>
+                  <div>
+                    <CaseTypeSelector caseId={caseId} initialValue={caseRecord.practice_area ?? "general"} />
+                  </div>
+                </>
+              )}
             </div>
-          }
-        >
-          <div className="space-y-3">
-            <div>
-              <PracticeAreaSelector
-                caseId={caseId}
-                currentPracticeArea={(caseRecord.practice_area ?? "other_litigation") as PracticeArea}
-              />
-            </div>
-          {labsEnabled && (
-            <>
-                <div>
-                <ConditionalPortalShare caseId={caseId} />
-              </div>
-                <div>
-                <CaseTypeSelector caseId={caseId} initialValue={caseRecord.practice_area ?? "general"} />
-              </div>
-            </>
-          )}
-          </div>
-        </Card>
+          </Card>
+        )}
 
         {/* Legacy overview panels removed - now handled by CaseWorkspaceLayout */}
 

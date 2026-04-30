@@ -444,6 +444,13 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   const hasCharges = (snapshot?.charges?.length ?? 0) >= 1;
   const hasReadLayerData = hasExtractedSummary || hasExtractedFacts || hasCharges;
 
+  const policeStationTabAllowed =
+    matterState === "at_station" || matterState === "bailed" || matterState === "rui";
+
+  const criminalTabsVisible = CRIMINAL_CASE_TABS.filter(
+    (t) => t.id !== "police-station" || policeStationTabAllowed,
+  );
+
   // Tab from URL ?tab=; default from matter state or Summary
   const tabFromUrl = searchParams.get("tab");
   const defaultTabByState =
@@ -452,10 +459,14 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
       : matterState === "charged" || matterState === "before_first_hearing" || matterState === "before_ptph" || matterState === "before_trial" || matterState === "trial"
         ? "strategy"
         : DEFAULT_TAB;
-  const activeTab =
+  const rawTab =
     tabFromUrl && CRIMINAL_CASE_TAB_IDS.includes(tabFromUrl as (typeof CRIMINAL_CASE_TAB_IDS)[number])
       ? tabFromUrl
       : defaultTabByState;
+  const activeTab =
+    rawTab === "police-station" && !policeStationTabAllowed
+      ? DEFAULT_TAB
+      : rawTab;
 
   const currentCaseIndex = caseNavList.findIndex((c) => c.id === caseId);
   const evalCaseRegex = /NS-CPS-2026-04\d{2}/i;
@@ -545,7 +556,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
           <p className="text-xs text-foreground">
             <strong>Matter closed</strong>
             {matterClosed.at && ` (${new Date(matterClosed.at).toLocaleDateString("en-GB")})`}
-            {matterClosed.reason ? ` – ${matterClosed.reason}` : ""}. You can archive from Actions on the case page.
+            {matterClosed.reason ? ` – ${matterClosed.reason}` : ""}. You can archive from the case list (⋯ on the case card) or Settings.
           </p>
         </div>
       )}
@@ -676,7 +687,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
       {/* Tabbed case content – URL ?tab= controls active tab; default Summary */}
       <CaseTabs
         activeTab={activeTab}
-        tabs={CRIMINAL_CASE_TABS}
+        tabs={criminalTabsVisible}
         onTabChange={setTab}
       >
         {activeTab === "key-facts" && (
