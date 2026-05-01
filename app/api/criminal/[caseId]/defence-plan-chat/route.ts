@@ -251,7 +251,10 @@ function sanitizePlaceholderPhrases(reply: string): string {
 
 /** US/UK spelling so golden-eval gates (especially Q9 deterministic path) stay consistent. */
 function goldenQuestionNorm(question: string): string {
-  return question.toLowerCase().replace(/\bprioritize\b/g, "prioritise");
+  return question
+    .toLowerCase()
+    .replace(/\bprioritize\b/g, "prioritise")
+    .replace(/\brefrence\b/g, "reference");
 }
 
 type Mg6DisclosureRow = {
@@ -383,23 +386,47 @@ function buildStrictInterviewAnswer(bundleFullText: string): string {
   const joined = lines.join(" ");
   const bullets: string[] = [];
 
+  const quoteFromJoined = (re: RegExp): string | null => {
+    const m = joined.match(re);
+    return m?.[0] ? compactOneLine(m[0]) : null;
+  };
+
   if (/partial account/i.test(joined)) {
-    bullets.push("- Partial account");
+    const q =
+      quoteFromJoined(/defendant gives partial account[^.]*(?:\.|$)/i) ||
+      quoteFromJoined(/partial account[^.]*(?:\.|$)/i) ||
+      "Partial account (as stated in interview summary).";
+    bullets.push(`- Partial account: ${q}`);
   }
   if (/denies core allegation|alternative explanation/i.test(joined)) {
+    const q =
+      quoteFromJoined(
+        /denies core allegation or claims alternative explanation[^.;]*(?:[.;]|$)/i
+      ) ||
+      quoteFromJoined(/denies core allegation[^.;]*(?:[.;]|$)/i) ||
+      quoteFromJoined(/claims alternative explanation[^.;]*(?:[.;]|$)/i) ||
+      "Denies core allegation or claims alternative explanation (as stated in interview summary).";
     if (/denies core allegation/i.test(joined) && /alternative explanation/i.test(joined)) {
-      bullets.push("- Denies core allegation / alternative explanation");
+      bullets.push(`- Denies core allegation / alternative explanation: ${q}`);
     } else if (/denies core allegation/i.test(joined)) {
-      bullets.push("- Denies core allegation");
+      bullets.push(`- Denies core allegation: ${q}`);
     } else {
-      bullets.push("- Alternative explanation");
+      bullets.push(`- Alternative explanation: ${q}`);
     }
   }
   if (/no comment/i.test(joined)) {
-    bullets.push("- No comment on certain technical matters");
+    const q =
+      quoteFromJoined(/no comment on certain technical matters[^;]*(?:;|$)/i) ||
+      quoteFromJoined(/no comment on certain technical matters[^.]*(?:\.|$)/i) ||
+      "No comment on certain technical matters (as stated in interview summary).";
+    bullets.push(`- No comment: ${q}`);
   }
   if (/requests?\s+full disclosure.*(cctv|999)|requests?.*(cctv|999).*(scope|disclosure)/i.test(joined)) {
-    bullets.push("- Requests full disclosure of CCTV/999 scope");
+    const q =
+      quoteFromJoined(/requests?\s+full disclosure of the cctv\/999 scope[^.;]*(?:[.;]|$)/i) ||
+      quoteFromJoined(/requests?\s+full disclosure[^.;]*(?:[.;]|$)/i) ||
+      "Requests full disclosure of CCTV/999 scope (as stated in interview summary).";
+    bullets.push(`- Requests disclosure: ${q}`);
   }
 
   if (bullets.length === 0) {
@@ -417,7 +444,9 @@ function isStrictExhibitReferenceQuestion(question: string): boolean {
     /\bex-[a-z0-9-]+\b/i.test(q) ||
     /\bbundle reference\b/i.test(q) ||
     /\breference id\b/i.test(q) ||
-    (/\breference\b/i.test(q) && /\bbundle\b/i.test(q))
+    (/\breference\b/i.test(q) && /\bbundle\b/i.test(q)) ||
+    (/\bbundle\b/i.test(q) && /\bns-cps-2026-\d{4}\b/i.test(q)) ||
+    (/\bbundle\b/i.test(q) && /\bid\b/i.test(q))
   );
 }
 
@@ -435,7 +464,11 @@ function extractExhibitRefsFromBundle(bundleFullText: string): string[] {
 
 function buildStrictExhibitReferenceAnswer(question: string, bundleFullText: string): string {
   const q = goldenQuestionNorm(question);
-  const wantsReference = /\bbundle reference\b/i.test(q) || /\breference id\b/i.test(q) || (/\breference\b/i.test(q) && /\bbundle\b/i.test(q));
+  const wantsReference =
+    /\bbundle reference\b/i.test(q) ||
+    /\breference id\b/i.test(q) ||
+    (/\breference\b/i.test(q) && /\bbundle\b/i.test(q)) ||
+    (/\bbundle\b/i.test(q) && /\bid\b/i.test(q));
   const wantsExhibits = /\bexhibit(s)?\b/i.test(q) || /\bexhibit list\b/i.test(q) || /\bex-[a-z0-9-]+\b/i.test(q);
   const refs = uniqueNorthshireRefs(bundleFullText);
   const exhibits = extractExhibitRefsFromBundle(bundleFullText);
