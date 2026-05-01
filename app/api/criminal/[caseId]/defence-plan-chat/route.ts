@@ -1489,7 +1489,10 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     );
   if (planSummary)
     contextParts.push(`Defence Plan for this case (supporting; align with case state snapshot for strategy):\n${planSummary}`);
-  if (evidenceSummary) contextParts.push(`Evidence/disclosure for this case:\n${evidenceSummary}`);
+  if (evidenceSummary)
+    contextParts.push(
+      `Evidence/disclosure (system tracker only; for served/outstanding/partial rows use the bundle excerpt earlier in this message, not this block alone):\n${evidenceSummary}`
+    );
   if (timelineSummary) contextParts.push(`Case timeline:\n${timelineSummary}`);
   contextParts.push(`Relevant criminal law (use only this):\n${lawBlock}`);
   const questionSpecificRules = buildQuestionSpecificRules(message);

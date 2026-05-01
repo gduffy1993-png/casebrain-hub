@@ -7,8 +7,8 @@ import type { CaseSnapshot } from "./case-snapshot-adapter";
 
 /**
  * Returns a plain-text summary of evidence and disclosure for this case (for chat context).
- * Puts Safety panel missing items FIRST with an explicit "use ONLY these" rule so the model
- * does not fall back to generic disclosure (Charge Sheet, Witness Statements, etc.).
+ * Safety-panel flags are supplemental: they must not override MG6 / bundle wording (the model
+ * used to treat "use ONLY these" as a full inventory and invent or mis-order disclosure).
  */
 export function buildEvidenceContext(
   snapshot: CaseSnapshot | null | undefined,
@@ -16,10 +16,9 @@ export function buildEvidenceContext(
 ): string {
   const parts: string[] = [];
 
-  // 1) Safety panel missing items FIRST – authoritative list for chat (no generic fallbacks)
   if (outstandingItems?.length) {
     parts.push(
-      `MISSING DISCLOSURE ITEMS (use ONLY these in answers – do not refer to Charge Sheet, Witness Statements, Key Documentary Evidence, or any item not in this list): ${outstandingItems.join("; ")}.`
+      `Procedural safety / disclosure-tracker hints: ${outstandingItems.join("; ")}. These are high-level Safety-panel flags, not a complete served/outstanding schedule — for disclosure lists, mirror the MG6 table and CCTV/999/CAD extract lines in the bundle excerpt when present.`
     );
   }
 
@@ -38,8 +37,8 @@ export function buildEvidenceContext(
   if (disclosureItems?.length) {
     const received = disclosureItems.filter((i) => i.status === "Received");
     const outstanding = disclosureItems.filter((i) => i.status === "Outstanding" || i.status === "Partial");
-    if (received.length) parts.push(`Disclosure received: ${received.map((i) => i.item).join("; ")}.`);
-    if (outstanding.length && !outstandingItems?.length) parts.push(`Disclosure outstanding: ${outstanding.map((i) => i.item).join("; ")}.`);
+    if (received.length) parts.push(`Disclosure received (tracker): ${received.map((i) => i.item).join("; ")}.`);
+    if (outstanding.length) parts.push(`Disclosure outstanding (tracker): ${outstanding.map((i) => i.item).join("; ")}.`);
   }
 
   if (disclosureTimeline?.length) {
@@ -47,10 +46,10 @@ export function buildEvidenceContext(
     parts.push(`Timeline: ${recent.join("; ")}.`);
   }
 
-  if (missingEvidence?.length && !outstandingItems?.length) {
+  if (missingEvidence?.length) {
     const critical = missingEvidence.filter((m) => m.priority === "CRITICAL" || m.priority === "HIGH");
     if (critical.length) {
-      parts.push(`Missing / critical: ${critical.map((m) => m.label).join("; ")}.`);
+      parts.push(`Missing / critical (tracker): ${critical.map((m) => m.label).join("; ")}.`);
     }
   }
 
