@@ -725,6 +725,41 @@ function detectLanguageDisciplineViolations(question: string, reply: string): st
   return issues;
 }
 
+/** Generic disclosure / ops items the model often invents; must appear in bundle text if cited in reply. */
+function detectBundleHallucinationViolations(
+  reply: string,
+  haystack: string,
+  snapshot: Awaited<ReturnType<typeof getCaseStateSnapshot>> | null
+): string[] {
+  const issues: string[] = [];
+  const primary = snapshot?.strategy_committed_primary?.trim() ?? "";
+
+  const genericPhrases: Array<{ label: string; re: RegExp }> = [
+    { label: "custody record", re: /\bcustody record\b/i },
+    { label: "custody cctv", re: /\bcustody cctv\b/i },
+    { label: "fire cause / fire report", re: /\bfire (cause|report)\b/i },
+    { label: "footwear", re: /\bfootwear\b/i },
+    { label: "interview recording", re: /\binterview recording\b/i },
+  ];
+  for (const { label, re } of genericPhrases) {
+    if (re.test(reply) && !re.test(haystack)) {
+      issues.push(`cited "${label}" but phrase not present in bundle — remove or say not stated`);
+    }
+  }
+
+  if (primary === "fight_charge" && /\bcharge reduction\b/i.test(reply)) {
+    issues.push('committed strategy is fight_charge — remove "charge reduction"; say fight/contest charge');
+  }
+  if (primary && primary !== "charge_reduction" && /\bcommitted strategy of charge reduction\b/i.test(reply)) {
+    issues.push("do not claim charge reduction commitment — check STRATEGY in snapshot");
+  }
+  if (primary && !/\bcharge_reduction\b/i.test(primary) && /\bcharge reduction strategy\b/i.test(reply)) {
+    issues.push("remove charge reduction framing unless snapshot strategy is charge_reduction");
+  }
+
+  return issues;
+}
+
 function detectUnsupportedClaimViolations(question: string, reply: string, haystack: string): string[] {
   const issues: string[] = [];
   const q = goldenQuestionNorm(question);
@@ -909,7 +944,55 @@ function buildQuestionSpecificRules(question: string): string {
     );
   }
 
+  if (
+    /\bsafe to run\b/i.test(q) ||
+    /\bunsafe to (run|proceed)\b/i.test(q) ||
+    /\brun safely\b/i.test(q)
+  ) {
+    rules.push(
+      "- Base safe/unsafe on STAGE, STANCE, STRATEGY in the case state snapshot + explicit bundle tensions (Primary eval hook, MG6 notes).",
+      '- Do NOT invent "adverse inferences from silence" unless the bundle or interview summary actually raises silence / no comment in those terms.',
+      "- Do NOT invent a charge-reduction posture unless STRATEGY (committed) is charge_reduction."
+    );
+  }
+  if (/\bwhat disclosure\b/i.test(q) || (/\bdisclosure\b/i.test(q) && /\b(missing|outstanding|awaited)\b/i.test(q))) {
+    rules.push(
+      "- List missing/partial items using wording from the MG6 schedule and CCTV/999/CAD extract sections in the bundle excerpt.",
+      "- Do NOT append a generic law-firm disclosure shopping list (custody, fire, footwear, etc.) unless those topics appear verbatim in the bundle excerpt.",
+      "- If the Evidence context block lists items, each bullet must still be reconcilable with MG6 or extracts — drop items that are not in the bundle text."
+    );
+  }
+  if (/\bdefen[cs]e plan\b/i.test(q) && (/\bone page\b/i.test(q) || /\bfull\b/i.test(q) || /\boverview\b/i.test(q))) {
+    rules.push(
+      "- Build the plan from the committed STRATEGY code + stance + MG5/MG6 hooks in the bundle; do not substitute a random primary route label.",
+      "- Do not list missing disclosure items that are not named in the bundle excerpt."
+    );
+  }
+
   return rules.length ? `\nQUESTION-SPECIFIC RULES (MANDATORY)\n${rules.join("\n")}` : "";
+}
+
+function buildGroundingDisciplineBlock(snapshot: Awaited<ReturnType<typeof getCaseStateSnapshot>> | null): string {
+  const code = snapshot?.strategy_committed_primary?.trim();
+  const human =
+    code === "fight_charge"
+      ? "fight the charge at trial (NOT charge reduction)"
+      : code === "charge_reduction"
+        ? "charge reduction"
+        : code === "outcome_management"
+          ? "outcome management / mitigation focus"
+          : code && code !== "(not set)"
+            ? code.replace(/_/g, " ")
+            : "not set";
+  return [
+    "========================",
+    "GROUNDING DISCIPLINE (read every time)",
+    "========================",
+    `- Committed STRATEGY code: ${code ?? "(not set)"}. Describe it to the user as: ${human}.`,
+    '- Internal code fight_charge means contesting the charge — never describe it as "charge reduction".',
+    "- For disclosure gaps: tie each item to MG6 / extract / exhibit wording in the bundle excerpt. Do not invent custody record, fire report, footwear comparison, or interview recording unless those appear in the bundle.",
+    "- The Evidence/disclosure context block may include system placeholders — if they conflict with the MG6 table in the bundle excerpt, prefer the bundle wording.",
+  ].join("\n");
 }
 
 /**
@@ -1152,6 +1235,7 @@ GUARDRAILS (MANDATORY)
 4. STRATEGY DISCIPLINE
    - You must align with the committed primary strategy.
    - Do NOT contradict how the case is being run.
+   - Internal code **fight_charge** means contesting the charge at trial — never describe it as "charge reduction" unless STRATEGY is **charge_reduction**.
 
 5. NARRATIVE VS AUTHORITY
    - Narrative is NOT authoritative.
@@ -1397,6 +1481,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   }
   if (changeList) contextParts.push(changeList);
   if (sourceOfTruthBlock) contextParts.push(sourceOfTruthBlock);
+  if (snapshot) contextParts.push(buildGroundingDisciplineBlock(snapshot));
   if (narrativeBlock) contextParts.push(narrativeBlock);
   if (bundleExcerpt)
     contextParts.push(
@@ -1557,6 +1642,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       ...detectQuestionDisciplineViolations(message, raw),
       ...detectLanguageDisciplineViolations(message, raw),
       ...detectUnsupportedClaimViolations(message, raw, exhibitHaystack),
+      ...detectBundleHallucinationViolations(raw, exhibitHaystack, snapshot),
       ...detectQuestionIntentViolations(message, raw),
       ...detectCaseSummaryTemplateLeak(message, raw),
     ];
@@ -1595,6 +1681,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     ...detectQuestionDisciplineViolations(message, raw),
     ...detectLanguageDisciplineViolations(message, raw),
     ...detectUnsupportedClaimViolations(message, raw, exhibitHaystack),
+    ...detectBundleHallucinationViolations(raw, exhibitHaystack, snapshot),
     ...detectQuestionIntentViolations(message, raw),
     ...detectCaseSummaryTemplateLeak(message, raw),
   ];
