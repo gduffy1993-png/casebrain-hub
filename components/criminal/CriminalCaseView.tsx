@@ -31,6 +31,7 @@ import { CaseKeyFactsPanel } from "@/components/cases/KeyFactsPanel";
 import { ChargesPanel } from "./ChargesPanel";
 import { RecordPositionModal } from "./RecordPositionModal";
 import { CaseReviewConfirm } from "./CaseReviewConfirm";
+import { REVIEW_STAGE_OPTIONS } from "@/lib/criminal/review-confirm-ui";
 import { BackToTop } from "@/components/ui/back-to-top";
 import { CaseTabs, type TabItem } from "@/components/ui/tabs";
 import { DisclosureTrackerTable } from "./DisclosureTrackerTable";
@@ -154,21 +155,68 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   const [reviewConfirmed, setReviewConfirmed] = useState<boolean | null>(null);
 
   useEffect(() => {
-    let c = false;
-    fetch(`/api/criminal/${caseId}/phase1-detect`, { credentials: "include" })
-      .then((r) => r.json())
-      .then((j) => {
-        if (c) return;
-        if (j.ok && j.data) setReviewConfirmed(!!j.data.reviewConfirmedAt);
-        else setReviewConfirmed(false);
-      })
-      .catch(() => {
-        if (!c) setReviewConfirmed(false);
-      });
+    let cancelled = false;
+    (async () => {
+      try {
+        const first = await fetch(`/api/criminal/${caseId}/phase1-detect`, { credentials: "include" }).then((r) =>
+          r.json(),
+        );
+        if (cancelled) return;
+        if (first.ok && first.data?.reviewConfirmedAt) {
+          setReviewConfirmed(true);
+          return;
+        }
+        await fetch(`/api/criminal/${caseId}/phase1-detect`, { method: "POST", credentials: "include" });
+        const get = await fetch(`/api/criminal/${caseId}/phase1-detect`, { credentials: "include" }).then((r) =>
+          r.json(),
+        );
+        if (cancelled) return;
+        if (!get.ok || !get.data) {
+          setReviewConfirmed(false);
+          return;
+        }
+        const d = get.data as {
+          offenceCode?: string | null;
+          offenceLabel?: string | null;
+          stance?: string | null;
+          stage?: string | null;
+          defencePlanDraft?: string | null;
+          reviewConfirmedAt?: string | null;
+        };
+        if (d.reviewConfirmedAt) {
+          setReviewConfirmed(true);
+          return;
+        }
+        const body = {
+          offenceCode: d.offenceCode?.trim() || "unknown",
+          offenceLabel: d.offenceLabel?.trim() || "Unknown offence — set below",
+          stance: d.stance?.trim() || "Put to proof",
+          stage: d.stage?.trim() || REVIEW_STAGE_OPTIONS[1],
+          defencePlanText: typeof d.defencePlanDraft === "string" ? d.defencePlanDraft : "",
+        };
+        const rc = await fetch(`/api/criminal/${caseId}/review-confirm`, {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        });
+        const rj = await rc.json().catch(() => ({}));
+        if (cancelled) return;
+        if (rc.ok && rj.ok) {
+          setReviewConfirmed(true);
+          buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error);
+          router.replace(`/cases/${caseId}?tab=strategy`, { scroll: false });
+          return;
+        }
+        setReviewConfirmed(false);
+      } catch {
+        if (!cancelled) setReviewConfirmed(false);
+      }
+    })();
     return () => {
-      c = true;
+      cancelled = true;
     };
-  }, [caseId]);
+  }, [caseId, router]);
 
   // Mark as mounted after hydration
   useEffect(() => {

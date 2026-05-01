@@ -11,7 +11,6 @@ import { getOpenAIClient } from "@/lib/openai";
 import { retrieveLawChunks } from "@/lib/criminal/criminal-law-corpus";
 import { getChangeListForContext } from "@/lib/criminal/verdict-change-list";
 import { getCaseStateSnapshot } from "@/lib/criminal/case-state-snapshot";
-import { buildPressureLayer } from "@/lib/criminal/cps-judge-pressure";
 
 type RouteParams = { params: Promise<{ caseId: string }> };
 
@@ -313,137 +312,25 @@ function isQ1CorroborationLeverageLine(line: string): boolean {
   return true;
 }
 
-function scoreLeverageStrict(line: string): number {
-  const l = compactOneLine(line).toLowerCase();
-  if (
-    l.includes("contradict") ||
-    l.includes("inconsisten") ||
-    l.includes("mismatch") ||
-    l.includes("conflict") ||
-    (l.includes("mg5") && l.includes("mg6")) ||
-    (l.includes("two") && l.includes("date") && l.includes("differ"))
-  ) return 3;
-  if (
-    l.includes("draft") ||
-    l.includes("unsigned") ||
-    l.includes("ocr") ||
-    l.includes("partial") ||
-    l.includes("corrupt")
-  ) return 2;
-  if (
-    l.includes("missing") ||
-    l.includes("outstanding") ||
-    l.includes("not served") ||
-    l.includes("awaited")
-  ) return 1;
-  return 0;
-}
-
-function cleanLeverageLine(line: string): string {
-  return compactOneLine(line)
-    .replace(/^Grounds for dispute \/ friction \(fiction\)\s*:\s*/i, "")
-    .replace(/^[\-*]\s*/, "")
-    .trim();
-}
-
-function leverageRootForLine(line: string): string {
-  const l = cleanLeverageLine(line).toLowerCase();
-  if (l.includes("mg5") && l.includes("mg6")) return "mg5_mg6";
-  if (l.includes("mg11") || l.includes("witness")) return "mg11";
-  if (l.includes("999")) return "999";
-  if (l.includes("cad")) return "cad";
-  if (l.includes("continuity")) return "continuity";
-  if (l.includes("cctv") || l.includes("bwv")) return "cctv_bwv";
-  if (l.includes("index") || l.includes("ocr")) return "index_ocr";
-  return l.slice(0, 24);
-}
-
-function pickTopLeverageStrict(lines: string[], count: number, excludeRoots: Set<string> = new Set()): string[] {
-  const ranked = lines
-    .map((line, idx) => ({ line: cleanLeverageLine(line), score: scoreLeverageStrict(line), idx }))
-    .filter((x) => x.line.length > 0)
-    .sort((a, b) => (b.score - a.score) || (a.idx - b.idx));
-  const out: string[] = [];
-  const seenRoots = new Set<string>(excludeRoots);
-  for (const item of ranked) {
-    const root = leverageRootForLine(item.line);
-    if (seenRoots.has(root)) continue;
-    seenRoots.add(root);
-    out.push(item.line);
-    if (out.length >= count) break;
-  }
-  return out;
-}
-
-function q1ImpactReason(line: string): string {
-  const l = cleanLeverageLine(line).toLowerCase();
-  if (/(contradict|inconsisten|mismatch|conflict)/i.test(l) || (l.includes("mg5") && l.includes("mg6"))) {
-    return "Forces the Crown to reconcile a direct inconsistency in its record.";
-  }
-  if (/(cctv|bwv|999|cad|continuity|clock|timeline)/i.test(l)) {
-    return "Creates a sequence or continuity gap the defence can exploit.";
-  }
-  if (/(draft|unsigned|ocr|partial|corrupt)/i.test(l)) {
-    return "Puts witness reliability and account stability under immediate pressure.";
-  }
-  return "Creates evidential pressure the Crown must answer before hearing.";
-}
-
-function buildQ7ReasonSafe(witness: string, material: string[]): string {
-  const cleaned = material.map((ln) => cleanLeverageLine(ln));
-  const picked = pickTopLeverageStrict(cleaned, 2);
-  const top = picked[0] ?? "disclosure reliability tension";
-  let second = picked[1] ?? "document continuity gap";
-  if (leverageRootForLine(top) === "mg11") {
-    const alt = pickTopLeverageStrict(cleaned, 1, new Set(["mg11"]));
-    if (alt[0]) second = alt[0];
-  }
-  const witnessLabel = /^the key witness$/i.test(witness) ? "the primary MG11 witness" : witness;
-  return [
-    `- ${witnessLabel} -> Vulnerable because account relies on ${top.toLowerCase()}.`,
-    `- ${top} -> ${q1ImpactReason(top)}`,
-    `- ${second} -> ${q1ImpactReason(second)}`,
-  ].join("\n");
-}
-
 /** First Q6 bullet: hook-shaped primary risk, else disclosure fallback. */
-function q6PrimaryRiskLineFromHook(hook: string, materialLines: string[] = []): string {
+function q6PrimaryRiskLineFromHook(hook: string): string {
   const h = hook.toLowerCase();
-  const ml = materialLines.map((l) => l.toLowerCase()).join(" ");
   let primary =
     "Disclosure remains unresolved before the next procedural step -> Defence challenge window narrows at hearing.";
-  if (/weak\s*id|identification|id\s+lighting/i.test(h) || /identification|id parade|id procedure/.test(ml)) {
+  if (/weak\s*id|identification|id\s+lighting/i.test(h)) {
     primary =
       "Identification evidence may crystallise as 'unchallenged' before the next hearing -> narrows the practical window to run a focused ID challenge.";
-  } else if (/one-punch|self-?defen|lawful\s*force|provocation/i.test(h) || /self-defence|lawful force/.test(ml)) {
+  } else if (/one-punch|self-?defen|lawful\s*force|provocation/i.test(h)) {
     primary =
       "Crown narrative on force, timing, and proportionality may harden without a contemporaneous defence paper-trail -> weakens self-defence leverage at hearing.";
-  } else if (/cctv|clock|continuity|bwv|999|cad/i.test(h) || /cctv|continuity|999|cad|timestamp|clock/.test(ml)) {
+  } else if (/cctv|clock|continuity|bwv|999|cad/i.test(h)) {
     primary =
       "AV / dispatch / continuity issues may be regularised on Crown terms if not pinned in disclosure correspondence now -> reduces cross-exam traction on sequence.";
-  } else if (/mg6|contradict|draft|index|insurer|bank|ocr/i.test(h) || /draft|unsigned|index|ocr|disclosure/.test(ml)) {
+  } else if (/mg6|contradict|draft|index|insurer|bank|ocr/i.test(h)) {
     primary =
       "Document inconsistencies (schedules, indices, drafts) may be reconciled unfavourably if not logged and chased this week -> defence loses 'paper trail' advantage.";
   }
   return `- ${primary}`;
-}
-
-function chooseCrossExamTheme(hook: string, materialLines: string[]): string {
-  const h = hook.toLowerCase();
-  const ml = materialLines.map((l) => l.toLowerCase()).join(" ");
-  if (/disclosure|outstanding|awaited|pending|not served|schedule/.test(ml)) {
-    return "Disclosure-chain integrity and late-regularisation pressure";
-  }
-  if (/999|cad|cctv|bwv|timeline|clock|timestamp|continuity/.test(h) || /999|cad|cctv|bwv|timeline|clock|timestamp|continuity/.test(ml)) {
-    return "Timeline and continuity contradictions";
-  }
-  if (/mg11|witness|statement|draft|unsigned/.test(h) || /mg11|witness|statement|draft|unsigned/.test(ml)) {
-    return "Witness-account reliability and statement evolution";
-  }
-  if (/knife|weapon|threat|escalation/.test(h) || /knife|weapon|threat|escalation/.test(ml)) {
-    return "Weapon allegation escalation across sources";
-  }
-  return "Core reliability tension in MG5/MG6 material";
 }
 
 function isGoldenEvalQuestion(question: string): boolean {
@@ -458,345 +345,8 @@ function isGoldenEvalQuestion(question: string): boolean {
     q.includes("which witness is most vulnerable to challenge and why") ||
     q.includes("what is the strongest cross-examination theme") ||
     q.includes("what impeachment material should we prioritise obtaining") ||
-    q.includes("what admissions (if any) are unsafe for the defence to make") ||
-    q.includes("what is the best realistic outcome if we execute properly from here")
+    q.includes("what admissions (if any) are unsafe for the defence to make")
   );
-}
-
-function isCpsPressureLensQuestion(question: string): boolean {
-  const q = goldenQuestionNorm(question);
-  return (
-    (q.includes("cps") && (q.includes("pressure") || q.includes("repair") || q.includes("fix"))) ||
-    (q.includes("crown") && (q.includes("repair") || q.includes("fix") || q.includes("must address"))) ||
-    (q.includes("defence") && q.includes("preemption")) ||
-    q.includes("pressure lens")
-  );
-}
-
-function buildCpsPressureLensAnswer(
-  question: string,
-  snapshot: Awaited<ReturnType<typeof getCaseStateSnapshot>> | null,
-  bundleFullText: string
-): string {
-  if (!isCpsPressureLensQuestion(question)) return "";
-
-  const hook =
-    firstMatch(bundleFullText, [/^\s*Primary eval hook:\s*(.+)$/im]) ||
-    "disclosure reliability tension";
-  const stage = snapshot?.stage_detected?.trim() || "stage not clearly stated in the materials provided";
-  const material = extractLinesByKeywords(
-    bundleFullText,
-    ["mg5", "mg6", "mg11", "cctv", "999", "cad", "continuity", "draft", "unsigned", "outstanding", "awaited", "contradict", "inconsisten", "mismatch", "conflict"],
-    20
-  ).filter((ln) => isQ1CorroborationLeverageLine(ln));
-
-  const repairTargets: string[] = [];
-  const defenceActions: string[] = [];
-  const pushPair = (target: string, action: string) => {
-    if (!repairTargets.includes(target)) repairTargets.push(target);
-    if (!defenceActions.includes(action)) defenceActions.push(action);
-  };
-
-  for (const line of material) {
-    const l = line.toLowerCase();
-    if (
-      l.includes("contradict") ||
-      l.includes("inconsisten") ||
-      l.includes("mismatch") ||
-      l.includes("conflict") ||
-      (l.includes("mg5") && l.includes("mg6"))
-    ) {
-      pushPair(
-        `- Resolve contradiction in record -> ${line}.`,
-        "- Lock the contradiction in correspondence now -> prevent silent Crown clean-up before hearing."
-      );
-      continue;
-    }
-    if (l.includes("draft") || l.includes("unsigned") || l.includes("ocr") || l.includes("partial") || l.includes("corrupt")) {
-      pushPair(
-        `- Stabilise reliability gap -> ${line}.`,
-        "- Demand dated final versions with provenance notes -> preserve impeachment route if wording shifts."
-      );
-      continue;
-    }
-    if (l.includes("missing") || l.includes("outstanding") || l.includes("not served") || l.includes("awaited") || l.includes("999") || l.includes("cad")) {
-      pushPair(
-        `- Complete missing material chain -> ${line}.`,
-        "- Chase disclosure with deadlines and an audit trail -> stop repair on Crown terms alone."
-      );
-    }
-  }
-
-  if (repairTargets.length === 0) {
-    repairTargets.push(`- Primary repair pressure from current file -> ${hook}.`);
-  }
-  if (defenceActions.length === 0) {
-    defenceActions.push(`- Send a focused disclosure chase this week -> preserve challenge window at ${stage}.`);
-  }
-
-  return [
-    "Crown Repair Targets (evidence-grounded)",
-    ...repairTargets.slice(0, 3),
-    "",
-    "Defence Pre-emption Actions (this week)",
-    ...defenceActions.slice(0, 3),
-  ].join("\n");
-}
-
-type ChatIntent = "defence_strength" | "risk" | "cross_exam" | "disclosure" | "next_step" | "general";
-
-function detectChatIntent(question: string): { intent: ChatIntent; confidence: number } {
-  const q = goldenQuestionNorm(question);
-  if (/risk|danger|biggest risk|vulnerab|problem here/i.test(q)) return { intent: "risk", confidence: 0.9 };
-  if (/cross|cross-exam|challenge witness|impeach|attack this witness|attack witness|how do i attack/i.test(q)) {
-    return { intent: "cross_exam", confidence: 0.9 };
-  }
-  if (/disclosure|missing|unknown|obtain|chase|what evidence am i missing|need to chase/i.test(q)) {
-    return { intent: "disclosure", confidence: 0.9 };
-  }
-  if (/next step|what should i do|what do i do now|this week|action|what should i be doing next|doing next/i.test(q)) {
-    return { intent: "next_step", confidence: 0.9 };
-  }
-  if (/overall position|just give me the overall position|where do we stand|position now|overall view|brief me like i have 60 seconds/i.test(q)) {
-    return { intent: "general", confidence: 0.9 };
-  }
-  if (/defence strength|strongest point|help the defence|can i win|can we win|can we beat this|how strong is this case/i.test(q)) {
-    return { intent: "defence_strength", confidence: 0.8 };
-  }
-  return { intent: "general", confidence: 0.5 };
-}
-
-type Stage2Data = {
-  q1: string[];
-  q6: string;
-  q7: string[];
-  q8: string;
-  q9: string[];
-  cps: { crownRepairs: string[]; defenceActions: string[]; riskIfIgnored: string };
-};
-
-function linesFromAnswer(answer: string): string[] {
-  return answer
-    .split(/\r?\n/)
-    .map((l) => l.trim())
-    .filter(Boolean)
-    .map((l) => l.replace(/^\-\s*/, ""));
-}
-
-function buildStage2Data(
-  snapshot: Awaited<ReturnType<typeof getCaseStateSnapshot>> | null,
-  bundleFullText: string
-): Stage2Data {
-  const q1 = linesFromAnswer(buildGoldenDeterministicAnswer("What are the top 3 facts that help the defence most?", snapshot, bundleFullText) || "");
-  const q6 = (buildGoldenDeterministicAnswer("What is the single biggest risk if we do nothing this week?", snapshot, bundleFullText) || "").trim();
-  const q7 = linesFromAnswer(buildGoldenDeterministicAnswer("Which witness is most vulnerable to challenge and why?", snapshot, bundleFullText) || "");
-  const q8 = (buildGoldenDeterministicAnswer("What is the strongest cross-examination theme?", snapshot, bundleFullText) || "").trim();
-  const q9 = linesFromAnswer(buildGoldenDeterministicAnswer("What impeachment material should we prioritise obtaining?", snapshot, bundleFullText) || "");
-
-  const cpsBlock = buildCpsPressureLensAnswer("cps pressure lens", snapshot, bundleFullText);
-  const cpsLines = cpsBlock.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
-  const crownStart = cpsLines.findIndex((l) => /Crown Repair Targets/i.test(l));
-  const defenceStart = cpsLines.findIndex((l) => /Defence Pre-emption Actions/i.test(l));
-  const crownRepairs = crownStart >= 0
-    ? cpsLines.slice(crownStart + 1, defenceStart >= 0 ? defenceStart : undefined).map((l) => l.replace(/^\-\s*/, ""))
-    : [];
-  const defenceActions = defenceStart >= 0
-    ? cpsLines.slice(defenceStart + 1).map((l) => l.replace(/^\-\s*/, ""))
-    : [];
-  const riskIfIgnored =
-    "If not actioned now, the Crown may repair current weaknesses before hearing and reduce defence cross-examination leverage.";
-
-  return { q1, q6, q7, q8, q9, cps: { crownRepairs, defenceActions, riskIfIgnored } };
-}
-
-function buildSpecificStage2Risk(data: Stage2Data): string {
-  const q1 = data.q1.map((l) => l.toLowerCase());
-  const repairs = data.cps.crownRepairs.map((l) => l.toLowerCase());
-  const has999 = q1.some((l) => l.includes("999")) || repairs.some((l) => l.includes("999"));
-  const hasCctv = q1.some((l) => l.includes("cctv")) || repairs.some((l) => l.includes("cctv"));
-  const hasWitness = q1.some((l) => l.includes("mg11") || l.includes("witness")) || repairs.some((l) => l.includes("mg11") || l.includes("witness"));
-  const hasDisclosure = q1.some((l) => l.includes("disclosure")) || repairs.some((l) => l.includes("disclosure"));
-
-  if (has999 || hasCctv) {
-    return [
-      "- AV / dispatch chronology issues may be regularised on Crown terms if not pinned in disclosure correspondence now -> cross-exam leverage on sequence narrows quickly.",
-      "- Consequence -> once continuity is regularised, timeline challenge value drops before hearing.",
-    ].join("\n");
-  }
-  if (hasWitness) {
-    return [
-      "- Witness-account instability (draft/final shifts, wording drift) may be cured before hearing if versions are not fixed now -> reliability attack window narrows.",
-      "- Consequence -> prosecution can present a tidier account with fewer impeachment openings.",
-    ].join("\n");
-  }
-  if (hasDisclosure) {
-    return [
-      "- Outstanding disclosure gaps may be reframed as complete unless chased with deadlines now -> defence loses paper-trail leverage.",
-      "- Consequence -> weak points become harder to reopen at hearing.",
-    ].join("\n");
-  }
-  return data.q6;
-}
-
-function buildSpecificDisclosureTopItem(data: Stage2Data): string | null {
-  const q1 = data.q1.map((l) => l.toLowerCase()).join(" ");
-  const repairs = data.cps.crownRepairs.map((l) => l.toLowerCase()).join(" ");
-  if (q1.includes("999") || repairs.includes("999")) {
-    return "Full 999 master audio + timing metadata -> Locks chronology before Crown can harmonise extracts.";
-  }
-  if (q1.includes("cctv") || repairs.includes("cctv")) {
-    return "CCTV continuity statement / calibration records -> Tests integrity of timeline and footage admissibility.";
-  }
-  if (q1.includes("mg11") || q1.includes("witness") || repairs.includes("mg11") || repairs.includes("witness")) {
-    return "Signed final MG11 + version history -> Preserves impeachment route if wording shifts.";
-  }
-  if (q1.includes("disclosure") || repairs.includes("disclosure")) {
-    return "Disclosure schedule audit trail (served vs outstanding by date) -> Prevents silent Crown clean-up.";
-  }
-  return null;
-}
-
-function withSourceTag(line: string): string {
-  const l = line.toLowerCase();
-  let tag = "";
-  if (/core reliability tension in mg5\/mg6|mg5.*mg6|mg6.*mg5/.test(l)) tag = "MG5/MG6";
-  else if (/mg11|witness statement|witness/.test(l)) tag = "MG11";
-  else if (/mg6|schedule|disclosure/.test(l)) tag = "MG6";
-  else if (/\bmg5\b|case summary/.test(l)) tag = "MG5";
-  else if (/\bcad\b/.test(l)) tag = "CAD";
-  else if (/999|master audio/.test(l)) tag = "999";
-  else if (/cctv|bwv|continuity|engineer note|calibration|footage/.test(l)) tag = "CCTV";
-  else if (/forensic|medical|records|gp/.test(l)) tag = "Forensic/Medical";
-  if (!tag) return line;
-  if (/\([^)]+\)$/.test(line.trim())) return line;
-  return `${line} (${tag})`;
-}
-
-function buildStage2Reply(
-  intent: ChatIntent,
-  confidence: number,
-  data: Stage2Data,
-  snapshot: Awaited<ReturnType<typeof getCaseStateSnapshot>> | null
-): string {
-  const routed: ChatIntent = confidence < 0.7 ? "general" : intent;
-  const q1Distinct = pickDistinct(data.q1, 4);
-  const q7Distinct = pickDistinct(data.q7, 4);
-  const disclosureTop = buildSpecificDisclosureTopItem(data);
-  const q9Distinct = pickDistinct(
-    disclosureTop ? [disclosureTop, ...data.q9] : data.q9,
-    6
-  );
-  const crownRepairsDistinct = pickDistinct(data.cps.crownRepairs, 4);
-  const defenceActionsDistinct = pickDistinct(data.cps.defenceActions, 4);
-  const specificRisk = buildSpecificStage2Risk(data);
-  const signalHaystack = [...data.q1, data.q6, ...data.q7, data.q8, ...data.q9, ...data.cps.crownRepairs, ...data.cps.defenceActions]
-    .join(" ")
-    .toLowerCase();
-  const concretePressureHaystack = [...data.q1, data.q6, ...data.cps.crownRepairs]
-    .map((l) => l.toLowerCase())
-    .join(" ");
-  const concreteTimelineHaystack = [...data.q1, data.q6, ...data.cps.crownRepairs]
-    .map((l) => l.toLowerCase())
-    .filter((l) => !/document continuity gap|core reliability tension in mg5\/mg6 material|disclosure reliability tension/.test(l))
-    .join(" ");
-  const concreteSignalLines = [...data.q1, data.q6, ...data.cps.crownRepairs]
-    .map((l) => l.trim())
-    .filter((l) => l.length > 0)
-    .filter((l) => !/core reliability tension in mg5\/mg6 material|document continuity gap|disclosure reliability tension|defence posture/i.test(l));
-  const primarySignal = concreteSignalLines[0] ?? "outstanding disclosure items";
-  const thinCase = concreteSignalLines.length < 2;
-  const pressure = buildPressureLayer({
-    hasTimelineIssue: /timestamp|clock|cctv|bwv|999|cad|continuity statement|engineer note|master audio/.test(concreteTimelineHaystack),
-    hasDisclosureGap: /disclosure|outstanding|awaited|pending|not served|schedule|audit trail|reconcile|regularise/.test(concretePressureHaystack),
-    hasWitnessConflict: /mg11|witness/.test(concretePressureHaystack) && /draft|unsigned|version|inconsisten|contradict|conflict/.test(concretePressureHaystack),
-    offenceType:
-      /knife|weapon|blade/.test(signalHaystack)
-        ? "weapon"
-        : /injury|assault|violence|force|push|punch/.test(signalHaystack) || /assault|robbery|gbh|abh/i.test(snapshot?.offence_detected_label ?? "")
-          ? "violence"
-          : /fraud|dishonesty|theft|handling/i.test(signalHaystack) || /fraud|dishonesty|theft|handling/i.test(snapshot?.offence_detected_label ?? "")
-            ? "dishonesty"
-            : "unknown",
-    stageLabel: snapshot?.stage_detected ?? "",
-    stanceLabel: snapshot?.stance_detected ?? "",
-    primarySignal,
-    thinCase,
-  });
-  const pressureBlock = [
-    "",
-    "CPS pressure:",
-    ...pressure.cpsPressure.slice(0, 2).map((l) => `- ${l}`),
-    "",
-    "Judge constraints:",
-    ...pressure.judgeConstraints.slice(0, 2).map((l) => `- ${l}`),
-    "",
-    "Defence counters:",
-    ...pressure.defenceCounters.slice(0, 2).map((l) => `- ${l}`),
-    "",
-    "Hearing focus:",
-    ...pressure.hearingLines.slice(0, 3).map((l) => `- ${l}`),
-  ].join("\n");
-  switch (routed) {
-    case "defence_strength":
-      return [
-        "Key defence strengths:",
-        ...q1Distinct.slice(0, 3).map((l) => `- ${withSourceTag(l)}`),
-        "",
-        "Main risk:",
-        specificRisk,
-        "",
-        "Immediate action:",
-        ...(defenceActionsDistinct.length > 0
-          ? [`- ${defenceActionsDistinct[0]}`]
-          : ["- Send a focused disclosure chase this week to prevent Crown clean-up before hearing."]),
-        ...pressureBlock.split("\n"),
-      ].join("\n");
-    case "risk":
-      return [
-        "Main risk:",
-        specificRisk,
-        "",
-        "If not addressed:",
-        `- ${data.cps.riskIfIgnored}`,
-        ...pressureBlock.split("\n"),
-      ].join("\n");
-    case "cross_exam":
-      return [
-        "Cross-examination focus:",
-        data.q8,
-        "",
-        "Most vulnerable witness:",
-        ...q7Distinct.slice(0, 3).map((l) => `- ${withSourceTag(l)}`),
-        ...pressureBlock.split("\n"),
-      ].join("\n");
-    case "disclosure":
-      return [
-        "Key disclosure to obtain:",
-        ...q9Distinct.slice(0, 5).map((l) => `- ${withSourceTag(l)}`),
-        "",
-        "Crown likely repair moves:",
-        ...crownRepairsDistinct.slice(0, 3).map((l) => `- ${withSourceTag(l)}`),
-        ...pressureBlock.split("\n"),
-      ].join("\n");
-    case "next_step":
-      return [
-        "Immediate actions this week:",
-        ...defenceActionsDistinct.slice(0, 3).map((l) => `- ${withSourceTag(l)}`),
-        ...pressureBlock.split("\n"),
-      ].join("\n");
-    default:
-      return [
-        "Key defence position:",
-        ...q1Distinct.slice(0, 2).map((l) => `- ${withSourceTag(l)}`),
-        "",
-        "Main risk:",
-        specificRisk,
-        "",
-        "Immediate actions:",
-        ...defenceActionsDistinct.slice(0, 2).map((l) => `- ${withSourceTag(l)}`),
-        ...pressureBlock.split("\n"),
-      ].join("\n");
-  }
 }
 
 function extractLinesByKeywords(text: string, keywords: string[], maxItems: number): string[] {
@@ -892,47 +442,47 @@ function buildGoldenDeterministicAnswer(
 
   if (q.includes("top 3 facts that help the defence most")) {
     const q1Material = materialLines.filter((ln) => isQ1CorroborationLeverageLine(ln));
-    const hookRoot = leverageRootForLine(hook);
-    const picked = pickTopLeverageStrict(q1Material, 3, new Set([hookRoot]));
-    const fallbackPool = [
-      /lawful force|put to proof|not guilty/i.test(stance) ? `Defence posture (${stance})` : "Disclosure reliability tension",
-      "Document continuity gap",
-      "Disclosure reliability tension",
-      `Case-stage pressure point (${stage})`,
-    ];
-    let fallbackIdx = 0;
-    while (picked.length < 3) {
-      const candidate = fallbackPool[Math.min(fallbackIdx, fallbackPool.length - 1)];
-      fallbackIdx += 1;
-      if (picked.some((p) => leverageRootForLine(p) === leverageRootForLine(candidate))) continue;
-      picked.push(candidate);
+    const selected: string[] = [];
+    selected.push(`${hook} -> This directly pressures Crown reliability on core facts.`);
+
+    const contradictionFirst = firstConcrete(q1Material, [
+      /contradict|inconsisten|mismatch|conflict|bad index|ocr|corrupt|clock|timing|vs\b/i,
+    ]);
+    if (contradictionFirst) {
+      selected.push(`${contradictionFirst} -> Exposes direct inconsistency in the prosecution account.`);
     }
-    const q1Bullets = [
-      `- ${hook} -> This directly pressures the Crown case on a key issue.`,
-      `- ${cleanLeverageLine(picked[0])} -> ${q1ImpactReason(picked[0])}`,
-      `- ${cleanLeverageLine(picked[1])} -> ${q1ImpactReason(picked[1])}`,
-    ];
-    return q1Bullets.join("\n");
+
+    const reliabilityWeak = firstConcrete(
+      q1Material.filter((ln) => !selected.some((s) => s.includes(ln))),
+      [/mg11|witness statement|draft|unsigned|uncertain|partial/i]
+    );
+    if (reliabilityWeak) {
+      selected.push(`${reliabilityWeak} -> Weakens confidence in witness reliability and consistency.`);
+    }
+
+    const missingLeverage = firstConcrete(
+      q1Material.filter((ln) => !selected.some((s) => s.includes(ln))),
+      [/outstanding|awaited|to be provided|pending|missing|continuity|engineer|cctv|999|cad/i]
+    );
+    if (missingLeverage) {
+      selected.push(`${missingLeverage} -> Limits confidence in sequence and corroboration.`);
+    }
+
+    if (selected.length < 3 && /lawful force|put to proof|not guilty/i.test(stance)) {
+      selected.push(`Defence posture (${stance}) -> Preserves challenge to act, intent, and attribution elements.`);
+    }
+    const finalPicks = pickDistinct(selected, 3);
+    while (finalPicks.length < 3) {
+      finalPicks.push("Disclosure reliability tension -> Creates exploitable uncertainty in prosecution chronology.");
+    }
+    return finalPicks.map((x) => `- ${x}`).join("\n");
   }
 
   if (q.includes("top 3 facts that hurt the defence most")) {
-    const ml = materialLines.map((l) => l.toLowerCase()).join(" ");
-    const hasCctv = /cctv|bwv|footage|continuity/.test(ml);
-    const hasWitness = /mg11|witness|statement/.test(ml);
-    const hasForensic = /forensic|medical|report|records/.test(ml);
-    const hasDisclosureGap = /outstanding|awaited|pending|not served|disclosure/.test(`${ml} ${unknownLines.join(" ").toLowerCase()}`);
-    const bullets: string[] = [
-      `- Charge exposure (${offence}) -> Elements remain live unless positively displaced by defence evidence.`,
-    ];
-    if (hasWitness) bullets.push("- Witness account may be regularised before hearing -> Reliability challenges become narrower at trial.");
-    if (hasCctv) bullets.push("- Partial/technical media can still anchor Crown chronology if regularised -> Defence sequence challenges lose force.");
-    if (hasForensic) bullets.push("- Medical/forensic material may solidify causation/injury framing -> Defence contest window narrows.");
-    if (hasDisclosureGap) bullets.push("- Crown can regularise current disclosure gaps -> Defence leverage can narrow before hearing.");
-    while (bullets.length < 3) bullets.push("- Procedural momentum favours the served Crown record unless defence contradictions are fixed early.");
     return [
-      bullets[0],
-      bullets[1],
-      bullets[2],
+      `- Charge exposure (${offence}) -> Elements remain live unless positively displaced by defence evidence.`,
+      "- Crown can regularise current disclosure gaps -> Defence leverage can narrow before hearing.",
+      "- Draft/uncertain witness material may be finalised -> A cleaner Crown narrative can reduce cross-exam traction.",
     ].join("\n");
   }
 
@@ -947,17 +497,14 @@ function buildGoldenDeterministicAnswer(
             "- Final witness statement status -> Could shift credibility and consistency analysis.",
             "- CCTV continuity/engineer confirmation -> Could alter admissibility and evidential weight.",
           ];
-    return [
-      "- Evidence detail remains incomplete at this stage -> outcome-critical points are still driven by what is not yet disclosed.",
-      ...bullets,
-    ].join("\n");
+    return ["- Not stated in the materials.", ...bullets].join("\n");
   }
 
   if (q.includes("what are the key dates and timeline anchors")) {
     return [
-      "- Exact listed dates are not yet fixed in the served materials -> treat chronology as provisional for case strategy.",
+      "- Not stated in the materials.",
       `- Stage anchor -> ${stage}.`,
-      "- Hearing/disclosure anchor -> hold position at not-ready-for-plea until disclosure reconciliation is complete.",
+      "- Hearing/disclosure anchor -> next step is tied to disclosure reconciliation and readiness.",
     ].join("\n");
   }
 
@@ -971,22 +518,23 @@ function buildGoldenDeterministicAnswer(
 
   if (q.includes("what is the single biggest risk if we do nothing this week")) {
     return [
-      q6PrimaryRiskLineFromHook(hook, materialLines),
+      q6PrimaryRiskLineFromHook(hook),
       "- Consequence -> Crown narrative hardens while defence loses leverage on continuity and reliability points.",
     ].join("\n");
   }
 
   if (q.includes("which witness is most vulnerable to challenge and why")) {
-    const q7Material = materialLines.filter((ln) => isQ1CorroborationLeverageLine(ln));
-    return buildQ7ReasonSafe(witness, q7Material);
+    return [
+      `- ${witness} -> Vulnerable because account reliability is tied to draft/uncertain supporting material.`,
+      "- Draft/uncertain statement status -> Weakens confidence in precision and consistency under cross-examination.",
+      "- Incomplete CCTV/999/continuity context -> Creates corroboration gaps that can be exploited at trial.",
+    ].join("\n");
   }
 
   if (q.includes("what is the strongest cross-examination theme")) {
-    const theme = chooseCrossExamTheme(hook, materialLines);
-    const witnessRef = /^the key witness$/i.test(witness) ? "the primary MG11 witness" : witness.toLowerCase();
     return [
-      `- ${theme} -> Use this as the single cross-exam spine to test reliability, sequence, and consistency.`,
-      `- Exploit point -> press ${witnessRef} on contradiction points tied to ${theme.toLowerCase()}.`,
+      `- ${hook} -> Use this as the single cross-exam spine to test reliability, sequence, and consistency.`,
+      "- Exploit point -> press witness on uncertainty against disclosure gaps and document inconsistencies.",
     ].join("\n");
   }
 
@@ -1018,23 +566,6 @@ function buildGoldenDeterministicAnswer(
       "- Admitting intent/recklessness where disputed -> Undermines the live defence route and narrows viable arguments.",
       "- Admitting attribution/identification beyond current posture -> Collapses challenge to who did what.",
       "- Admitting causation sequence without qualification -> Strengthens Crown linkage and weakens defence contest.",
-    ].join("\n");
-  }
-
-  if (q.includes("what is the best realistic outcome if we execute properly from here")) {
-    const theme = chooseCrossExamTheme(hook, materialLines);
-    const route =
-      /timeline|continuity|chronology|cctv|999|cad/i.test(theme)
-        ? "timeline challenge route"
-        : /witness|statement/i.test(theme)
-          ? "witness reliability route"
-          : /weapon/i.test(theme)
-            ? "weapon allegation challenge route"
-            : "core reliability challenge route";
-    return [
-      `- Best realistic outcome -> Dismissal at review stage or acquittal at trial via the ${route}.`,
-      "- Near-term win condition -> lock disclosure contradictions now so the Crown cannot regularise weak points before hearing.",
-      "- Tactical focus -> keep defence posture consistent and tie each challenge to a concrete record mismatch.",
     ].join("\n");
   }
 
@@ -1844,28 +1375,6 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       MAX_REPLY_LENGTH
     );
     return NextResponse.json({ ok: true, reply }, { status: 200 });
-  }
-
-  const cpsPressureLens = buildCpsPressureLensAnswer(message, snapshot, combinedBundleFull);
-  if (cpsPressureLens) {
-    const reply = sanitizePlaceholderPhrases(polishSolicitorTone(cleanLeadInPhrases(cpsPressureLens))).slice(
-      0,
-      MAX_REPLY_LENGTH
-    );
-    return NextResponse.json({ ok: true, reply }, { status: 200 });
-  }
-
-  const { intent, confidence } = detectChatIntent(message);
-  if (intent !== "general" || confidence >= 0.7) {
-    const stage2Data = buildStage2Data(snapshot, combinedBundleFull);
-    const routed = buildStage2Reply(intent, confidence, stage2Data, snapshot);
-    if (routed.trim()) {
-      const reply = sanitizePlaceholderPhrases(polishSolicitorTone(cleanLeadInPhrases(routed))).slice(
-        0,
-        MAX_REPLY_LENGTH
-      );
-      return NextResponse.json({ ok: true, reply }, { status: 200 });
-    }
   }
 
   // Offence-aware law retrieval: include detected offence in query so relevant law is prioritised
