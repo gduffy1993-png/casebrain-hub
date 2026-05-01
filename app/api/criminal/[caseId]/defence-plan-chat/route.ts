@@ -356,8 +356,8 @@ function isStrictInterviewQuestion(question: string): boolean {
 function isLlmFreeTextAllowed(question: string): boolean {
   const q = goldenQuestionNorm(question);
   // Free-text LLM generation is limited to tactical prompts only.
-  if (isStrictInterviewQuestion(q) || isStrictMg6DisclosureQuestion(q)) return false;
-  if (/\b(disclosure|mg6|interview)\b/i.test(q)) return false;
+  if (isStrictInterviewQuestion(q) || isStrictMg6DisclosureQuestion(q) || isStrictExhibitReferenceQuestion(q)) return false;
+  if (/\b(disclosure|mg6|interview|exhibit|reference)\b/i.test(q)) return false;
   return /\b(pressure|strategy|tactics)\b/i.test(q);
 }
 
@@ -407,6 +407,52 @@ function buildStrictInterviewAnswer(bundleFullText: string): string {
   }
 
   return bullets.join("\n");
+}
+
+function isStrictExhibitReferenceQuestion(question: string): boolean {
+  const q = goldenQuestionNorm(question);
+  return (
+    /\bexhibit(s)?\b/i.test(q) ||
+    /\bexhibit list\b/i.test(q) ||
+    /\bex-[a-z0-9-]+\b/i.test(q) ||
+    /\bbundle reference\b/i.test(q) ||
+    /\breference id\b/i.test(q) ||
+    (/\breference\b/i.test(q) && /\bbundle\b/i.test(q))
+  );
+}
+
+function extractExhibitRefsFromBundle(bundleFullText: string): string[] {
+  const sectionMatch = bundleFullText.match(
+    /=== SECTION:\s*EXHIBITS ===([\s\S]*?)(?:=== SECTION:|END OF FILE)/i
+  );
+  const scope = sectionMatch?.[1] ?? bundleFullText;
+  const refs = new Set<string>();
+  for (const m of scope.matchAll(new RegExp(STRICT_EX_REF_RE.source, "gi"))) {
+    refs.add(m[0].toUpperCase());
+  }
+  return [...refs];
+}
+
+function buildStrictExhibitReferenceAnswer(question: string, bundleFullText: string): string {
+  const q = goldenQuestionNorm(question);
+  const wantsReference = /\bbundle reference\b/i.test(q) || /\breference id\b/i.test(q) || (/\breference\b/i.test(q) && /\bbundle\b/i.test(q));
+  const wantsExhibits = /\bexhibit(s)?\b/i.test(q) || /\bexhibit list\b/i.test(q) || /\bex-[a-z0-9-]+\b/i.test(q);
+  const refs = uniqueNorthshireRefs(bundleFullText);
+  const exhibits = extractExhibitRefsFromBundle(bundleFullText);
+  const out: string[] = [];
+
+  if (wantsReference) {
+    if (refs.length > 0) out.push(...refs.map((r) => `- ${r}`));
+    else out.push("- Insufficient detail in the materials to determine exhibit/reference details.");
+  }
+  if (wantsExhibits) {
+    if (exhibits.length > 0) out.push(...exhibits.map((e) => `- ${e}`));
+    else out.push("- Insufficient detail in the materials to determine exhibit/reference details.");
+  }
+  if (out.length > 0) return out.join("\n");
+  if (exhibits.length > 0) return exhibits.map((e) => `- ${e}`).join("\n");
+  if (refs.length > 0) return refs.map((r) => `- ${r}`).join("\n");
+  return "Insufficient detail in the materials to determine exhibit/reference details.";
 }
 
 /** Index-table / category row from fictional bundles — not a concrete disclosure item. */
@@ -1615,6 +1661,12 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   // Strict interview route: interview/account questions bypass full LLM generation.
   if (isStrictInterviewQuestion(message)) {
     const reply = buildStrictInterviewAnswer(combinedBundleFull);
+    return NextResponse.json({ ok: true, reply }, { status: 200 });
+  }
+
+  // Strict exhibit/reference route: return verbatim refs/codes; bypass full LLM generation.
+  if (isStrictExhibitReferenceQuestion(message)) {
+    const reply = buildStrictExhibitReferenceAnswer(message, combinedBundleFull);
     return NextResponse.json({ ok: true, reply }, { status: 200 });
   }
 
