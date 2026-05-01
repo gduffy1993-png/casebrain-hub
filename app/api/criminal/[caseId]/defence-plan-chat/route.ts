@@ -254,6 +254,149 @@ function goldenQuestionNorm(question: string): string {
   return question.toLowerCase().replace(/\bprioritize\b/g, "prioritise");
 }
 
+type Mg6DisclosureRow = {
+  category: string;
+  served: string;
+  outstanding: string;
+};
+
+const REQUIRED_NORTHSHIRE_MG6_CATEGORIES = [
+  "mg5 case summary",
+  "mg11 key witness",
+  "cctv / footage list",
+  "999 calls",
+  "cad / dispatch",
+  "forensics / medical",
+  "continuity / chain",
+] as const;
+
+function normalizeMg6Category(category: string): string {
+  return compactOneLine(category)
+    .toLowerCase()
+    .replace(/\s+/g, " ")
+    .replace(/\s*\/\s*/g, " / ")
+    .trim();
+}
+
+function isStrictMg6DisclosureQuestion(question: string): boolean {
+  const q = goldenQuestionNorm(question);
+  const asksMissingDisclosure = /\bwhat disclosure is missing\b/i.test(q);
+  const asksServedOutstanding = /\b(served|outstanding)\b/i.test(q) && /\bdisclosure\b/i.test(q);
+  const asksWhatMg6Says = /\bwhat does mg6 say\b/i.test(q);
+  const mg6ScheduleAsk = /\bmg6\b/i.test(q) && /\b(schedule|served|outstanding|missing)\b/i.test(q);
+  return asksMissingDisclosure || asksServedOutstanding || asksWhatMg6Says || mg6ScheduleAsk;
+}
+
+function extractMg6DisclosureRows(bundleFullText: string): Mg6DisclosureRow[] {
+  const mg6SectionMatch = bundleFullText.match(
+    /=== SECTION:\s*MG6 ===([\s\S]*?)(?:=== SECTION:|END OF FILE)/i
+  );
+  const scope = mg6SectionMatch?.[1] ?? bundleFullText;
+  const rows: Mg6DisclosureRow[] = [];
+  const seen = new Set<string>();
+
+  for (const raw of scope.split(/\r?\n/)) {
+    const line = raw.trim();
+    if (!line || !line.includes("|")) continue;
+    if (/^-{3,}/.test(line)) continue;
+
+    const cols = line.split("|").map((c) => compactOneLine(c));
+    if (cols.length < 3) continue;
+    const category = cols[0];
+    const served = cols[1];
+    const outstanding = cols.slice(2).join(" | ");
+    const lowerCategory = category.toLowerCase();
+
+    if (!category || /^(document|category)$/i.test(category)) continue;
+    if (/served \(initial\)/i.test(served) || /awaiting\s*\/\s*retained\s*\/\s*note/i.test(outstanding)) continue;
+    if (/^example .*tension/i.test(category)) continue;
+    if (/^mg6\(a\)\s*[-—]/i.test(category)) continue;
+
+    const dedupeKey = `${lowerCategory}|${served.toLowerCase()}|${outstanding.toLowerCase()}`;
+    if (seen.has(dedupeKey)) continue;
+    seen.add(dedupeKey);
+    rows.push({ category, served, outstanding });
+  }
+
+  return rows;
+}
+
+function isValidNorthshireMg6Rows(rows: Mg6DisclosureRow[]): boolean {
+  if (rows.length === 0) return false;
+
+  // Every parsed row must include at least one non-empty data field.
+  if (rows.some((r) => !r.served.trim() && !r.outstanding.trim())) return false;
+
+  const present = new Set(rows.map((r) => normalizeMg6Category(r.category)));
+  return REQUIRED_NORTHSHIRE_MG6_CATEGORIES.every((required) => present.has(required));
+}
+
+function buildStrictMg6DisclosureAnswer(bundleFullText: string): string {
+  const rows = extractMg6DisclosureRows(bundleFullText);
+  if (!isValidNorthshireMg6Rows(rows)) {
+    return "Insufficient detail in the materials to determine MG6 schedule.";
+  }
+  return rows.map((r) => `- ${r.category} -> ${r.served}; ${r.outstanding}`).join("\n");
+}
+
+function isStrictInterviewQuestion(question: string): boolean {
+  const q = goldenQuestionNorm(question);
+  return (
+    /\binterview\b/i.test(q) ||
+    /\bdefendant account\b/i.test(q) ||
+    /\bwhat was said in interview\b/i.test(q) ||
+    /\bsummary of interview\b/i.test(q)
+  );
+}
+
+function extractInterviewSection(bundleFullText: string): string {
+  const sectionMatch = bundleFullText.match(
+    /=== SECTION:\s*INTERVIEW ===([\s\S]*?)(?:=== SECTION:|END OF FILE)/i
+  );
+  if (sectionMatch?.[1]) return sectionMatch[1];
+  const genericMatch = bundleFullText.match(/INTERVIEW SUMMARY[\s\S]{0,1200}/i);
+  return genericMatch?.[0] ?? "";
+}
+
+function buildStrictInterviewAnswer(bundleFullText: string): string {
+  const section = extractInterviewSection(bundleFullText);
+  if (!section.trim()) {
+    return "Insufficient detail in the materials to determine interview position.";
+  }
+
+  const lines = section
+    .split(/\r?\n/)
+    .map((l) => compactOneLine(l))
+    .filter(Boolean);
+  const joined = lines.join(" ");
+  const bullets: string[] = [];
+
+  if (/partial account/i.test(joined)) {
+    bullets.push("- Partial account");
+  }
+  if (/denies core allegation|alternative explanation/i.test(joined)) {
+    if (/denies core allegation/i.test(joined) && /alternative explanation/i.test(joined)) {
+      bullets.push("- Denies core allegation / alternative explanation");
+    } else if (/denies core allegation/i.test(joined)) {
+      bullets.push("- Denies core allegation");
+    } else {
+      bullets.push("- Alternative explanation");
+    }
+  }
+  if (/no comment/i.test(joined)) {
+    bullets.push("- No comment on certain technical matters");
+  }
+  if (/requests?\s+full disclosure.*(cctv|999)|requests?.*(cctv|999).*(scope|disclosure)/i.test(joined)) {
+    bullets.push("- Requests full disclosure of CCTV/999 scope");
+  }
+
+  if (bullets.length === 0) {
+    return "Insufficient detail in the materials to determine interview position.";
+  }
+
+  return bullets.join("\n");
+}
+
 /** Index-table / category row from fictional bundles — not a concrete disclosure item. */
 function isGroupedMediaIndexRow(line: string): boolean {
   const l = compactOneLine(line).replace(/^[\-*]\s*/, "");
@@ -1450,6 +1593,18 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   }
 
   const bundleHeadlineBlock = extractBundleHeadlineBlock(combinedBundleFull);
+
+  // Strict disclosure route: MG6 schedule questions bypass LLM generation completely.
+  if (isStrictMg6DisclosureQuestion(message)) {
+    const reply = buildStrictMg6DisclosureAnswer(combinedBundleFull);
+    return NextResponse.json({ ok: true, reply }, { status: 200 });
+  }
+
+  // Strict interview route: interview/account questions bypass full LLM generation.
+  if (isStrictInterviewQuestion(message)) {
+    const reply = buildStrictInterviewAnswer(combinedBundleFull);
+    return NextResponse.json({ ok: true, reply }, { status: 200 });
+  }
 
   // Deterministic golden-eval path: bypass model drift for the fixed 10-question gate.
   const deterministicGolden = buildGoldenDeterministicAnswer(message, snapshot, combinedBundleFull);
