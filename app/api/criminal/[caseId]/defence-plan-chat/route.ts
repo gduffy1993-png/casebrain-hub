@@ -283,8 +283,10 @@ function isStrictMg6DisclosureQuestion(question: string): boolean {
   const asksMissingDisclosure = /\bwhat disclosure is missing\b/i.test(q);
   const asksServedOutstanding = /\b(served|outstanding)\b/i.test(q) && /\bdisclosure\b/i.test(q);
   const asksWhatMg6Says = /\bwhat does mg6 say\b/i.test(q);
-  const mg6ScheduleAsk = /\bmg6\b/i.test(q) && /\b(schedule|served|outstanding|missing)\b/i.test(q);
-  return asksMissingDisclosure || asksServedOutstanding || asksWhatMg6Says || mg6ScheduleAsk;
+  const mg6ScheduleAsk = /\bmg6\b/i.test(q) && /\b(schedule|served|outstanding|missing|position|summary)\b/i.test(q);
+  const mg6PositionOrSummary = /\bmg6 (position|summary)\b/i.test(q);
+  const anyDisclosureAsk = /\bdisclosure\b/i.test(q);
+  return asksMissingDisclosure || asksServedOutstanding || asksWhatMg6Says || mg6ScheduleAsk || mg6PositionOrSummary || anyDisclosureAsk;
 }
 
 function extractMg6DisclosureRows(bundleFullText: string): Mg6DisclosureRow[] {
@@ -345,8 +347,18 @@ function isStrictInterviewQuestion(question: string): boolean {
     /\binterview\b/i.test(q) ||
     /\bdefendant account\b/i.test(q) ||
     /\bwhat was said in interview\b/i.test(q) ||
-    /\bsummary of interview\b/i.test(q)
+    /\bsummary of interview\b/i.test(q) ||
+    /\binterview summary\b/i.test(q) ||
+    /\binterview position\b/i.test(q)
   );
+}
+
+function isLlmFreeTextAllowed(question: string): boolean {
+  const q = goldenQuestionNorm(question);
+  // Free-text LLM generation is limited to tactical prompts only.
+  if (isStrictInterviewQuestion(q) || isStrictMg6DisclosureQuestion(q)) return false;
+  if (/\b(disclosure|mg6|interview)\b/i.test(q)) return false;
+  return /\b(pressure|strategy|tactics)\b/i.test(q);
 }
 
 function extractInterviewSection(bundleFullText: string): string {
@@ -1655,6 +1667,12 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
 
   const openai = getOpenAIClient();
   const systemPrompt = buildSystemPrompt(snapshot);
+  if (!isLlmFreeTextAllowed(message)) {
+    const reply = sanitizePlaceholderPhrases(
+      polishSolicitorTone(cleanLeadInPhrases(buildBundleGroundedFallback(message, snapshot, combinedBundleFull)))
+    ).slice(0, MAX_REPLY_LENGTH);
+    return NextResponse.json({ ok: true, reply }, { status: 200 });
+  }
   /** Full bundle text + user-supplied summaries so EX-CAD / Reference are discoverable even if model context is truncated. */
   const exhibitHaystack = [
     combinedBundleFull.slice(0, MAX_BUNDLE_FULL_CHARS_FOR_REFS),
