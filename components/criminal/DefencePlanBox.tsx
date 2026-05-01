@@ -19,7 +19,9 @@ import { VerdictRatingBlock } from "./VerdictRatingBlock";
 const DEV_CASE_PICKER_ENABLED =
   /^(1|true|yes|on)$/i.test((process.env.NEXT_PUBLIC_DEV_CASE_PICKER ?? "").trim()) ||
   process.env.NODE_ENV !== "production";
-const BULK_EVAL_RUNNER_ENABLED = /^(1|true|yes|on)$/i.test((process.env.NEXT_PUBLIC_BULK_EVAL_RUNNER ?? "").trim());
+const BULK_EVAL_RUNNER_ENABLED =
+  /^(1|true|yes|on)$/i.test((process.env.NEXT_PUBLIC_BULK_EVAL_RUNNER ?? "").trim()) ||
+  process.env.NODE_ENV !== "production";
 
 const CHAT_COMMAND_PROMPTS: Record<string, string> = {
   "/disclosure": "What disclosure should I be pushing in this case and what are the CPIA duties?",
@@ -146,6 +148,7 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
   >([]);
   const [evalCopyMessage, setEvalCopyMessage] = useState<string | null>(null);
   const [forceCasePicker, setForceCasePicker] = useState(false);
+  const [forceBulkEvalRunner, setForceBulkEvalRunner] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   /** Scroll only this panel — scrollIntoView on the sentinel scrolls the whole page. */
   const messagesScrollRef = useRef<HTMLDivElement>(null);
@@ -188,7 +191,22 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
     }
   }, []);
 
+  // Runtime escape hatch for bulk eval runner visibility (helpful in deployed builds).
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const queryEnabled = /^(1|true|yes|on)$/i.test((params.get("bulkEval") ?? "").trim());
+      const storedEnabled = /^(1|true|yes|on)$/i.test((localStorage.getItem("casebrain:bulkEvalRunner") ?? "").trim());
+      if (queryEnabled) localStorage.setItem("casebrain:bulkEvalRunner", "true");
+      setForceBulkEvalRunner(queryEnabled || storedEnabled);
+    } catch {
+      // non-fatal
+    }
+  }, []);
+
   const showCasePicker = DEV_CASE_PICKER_ENABLED || forceCasePicker;
+  const showBulkEvalRunner = BULK_EVAL_RUNNER_ENABLED || forceBulkEvalRunner;
 
   const resolveMessage = (raw: string): string => {
     const trimmed = raw.trim().toLowerCase();
@@ -401,7 +419,7 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
           </div>
         </div>
       )}
-      {BULK_EVAL_RUNNER_ENABLED && runnerCases.length > 0 && (
+      {showBulkEvalRunner && runnerCases.length > 0 && (
         <div className="mb-3 rounded-md border border-border/60 bg-muted/20 p-2.5">
           <p className="text-[11px] font-medium text-foreground">Bulk eval runner (ask same question(s) across selected cases)</p>
           <p className="mt-1 text-[11px] text-muted-foreground">
