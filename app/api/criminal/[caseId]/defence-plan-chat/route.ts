@@ -156,6 +156,107 @@ function firstMatch(text: string, patterns: RegExp[]): string | null {
   return null;
 }
 
+/** Routes bundle-grounded interpretive questions; only `strategy_default` may use the generic pre-LLM / refusal slab in guarded paths. */
+type QuestionMode =
+  | "allegation"
+  | "missing_evidence"
+  | "conflict"
+  | "legal_proof"
+  | "weakness_prosecution"
+  | "weakness_defence"
+  | "next_steps"
+  | "strategy_default";
+
+function detectQuestionMode(question: string): QuestionMode {
+  const q = goldenQuestionNorm(question);
+  if (/\bprimary allegation\b/i.test(q)) return "allegation";
+  if (/\bwhat evidence appears to be missing\b/i.test(q) || /\bmissing or incomplete\b/i.test(q)) return "missing_evidence";
+  if (/\binconsisten|\bconflicts in the evidence\b/i.test(q)) return "conflict";
+  if (/\bmust the prosecution still prove\b/i.test(q)) return "legal_proof";
+  if (/\bweakness in the prosecution case\b/i.test(q)) return "weakness_prosecution";
+  if (/\bweakness in the defence case\b/i.test(q)) return "weakness_defence";
+  if (/\bnext 24 hours\b/i.test(q)) return "next_steps";
+  return "strategy_default";
+}
+
+function buildQuestionModeBlock(mode: QuestionMode): string {
+  switch (mode) {
+    case "allegation":
+      return [
+        "",
+        "QUESTION MODE: allegation",
+        "MODE RULES (MANDATORY):",
+        "- State the primary allegation in one sentence using bundle wording only (charge sheet extract / offence tag).",
+        '- Do not include defence strategy, "live defence focus", or Primary eval hook in that sentence unless the user explicitly requested a separate second sentence for context.',
+      ].join("\n");
+    case "missing_evidence":
+      return [
+        "",
+        "QUESTION MODE: missing_evidence",
+        "MODE RULES (MANDATORY):",
+        "- List only missing or incomplete evidence using MG6 outstanding column, bundle extracts, exhibits, and disclosure notes in the excerpt.",
+        "- Do not answer with Current posture / Procedural position / Priority pressure point unless the question asks for procedural posture.",
+      ].join("\n");
+    case "conflict":
+      return [
+        "",
+        "QUESTION MODE: conflict",
+        "MODE RULES (MANDATORY):",
+        "- Identify tensions between at least two named sources (e.g. MG5 vs MG6, witness vs CAD, CCTV vs timeline).",
+        "- Do not substitute a generic case summary for conflict analysis.",
+      ].join("\n");
+    case "legal_proof":
+      return [
+        "",
+        "QUESTION MODE: legal_proof",
+        "MODE RULES (MANDATORY):",
+        "- State what the prosecution must prove based on the charge and case summary wording in the bundle only.",
+        '- If offence elements are not explicit, begin with "From the materials, the elements implied are…" and derive cautiously from the bundle.',
+        "- Do not use the generic posture / procedural / pressure template.",
+      ].join("\n");
+    case "weakness_prosecution":
+      return [
+        "",
+        "QUESTION MODE: weakness_prosecution",
+        "MODE RULES (MANDATORY):",
+        "- Give the single biggest weakness in the prosecution case only; evidence-linked.",
+        "- Do not discuss defence weakness here.",
+      ].join("\n");
+    case "weakness_defence":
+      return [
+        "",
+        "QUESTION MODE: weakness_defence",
+        "MODE RULES (MANDATORY):",
+        "- Give the single biggest weakness in the defence position (vulnerabilities for the defence).",
+        "- Do not repeat the prosecution weakness answer.",
+      ].join("\n");
+    case "next_steps":
+      return [
+        "",
+        "QUESTION MODE: next_steps",
+        "MODE RULES (MANDATORY):",
+        "- Give 2–4 concrete actions for the next 24 hours tied to gaps or tensions in the bundle.",
+        "- No posture/procedural summary template.",
+      ].join("\n");
+    default:
+      return "";
+  }
+}
+
+/** Verbatim charge line when the prompt demands bundle-only allegation wording. */
+function isStrictPrimaryAllegationQuestion(question: string): boolean {
+  const q = goldenQuestionNorm(question);
+  if (!/\bprimary allegation\b/i.test(q)) return false;
+  return /\bone sentence\b/i.test(q) || /\bbundle wording\b/i.test(q) || /\busing only the bundle\b/i.test(q);
+}
+
+function buildStrictPrimaryAllegationAnswer(bundleFullText: string): string | null {
+  const tag =
+    firstMatch(bundleFullText, [/^\s*Offence\(s\)\s+as\s+tag:\s*(.+)$/im, /^\s*Charge sheet extract:\s*(.+)$/im]);
+  if (!tag) return null;
+  return compactOneLine(tag.replace(/\(fictional charge drafting for test data\)\.?/gi, "").trim());
+}
+
 function buildBundleGroundedFallback(
   question: string,
   snapshot: Awaited<ReturnType<typeof getCaseStateSnapshot>> | null,
@@ -175,7 +276,15 @@ function buildBundleGroundedFallback(
     firstMatch(bundleFullText, [/^\s*Accused:\s*(.+)$/im]) ||
     "the accused";
 
-  if (q.includes("one sentence") || q.includes("what is this case about")) {
+  if (/\bprimary allegation\b/i.test(q)) {
+    const line = buildStrictPrimaryAllegationAnswer(bundleFullText);
+    if (line) return line;
+  }
+
+  if (
+    (q.includes("one sentence") || q.includes("what is this case about")) &&
+    !/\bprimary allegation\b/i.test(q)
+  ) {
     return `${accused} faces ${offence}; the live defence focus is ${hook}.`;
   }
   if (q.includes("offence") && q.includes("alleg")) {
@@ -354,14 +463,6 @@ function isStrictInterviewQuestion(question: string): boolean {
     /\binterview summary\b/i.test(q) ||
     /\binterview position\b/i.test(q)
   );
-}
-
-function isLlmFreeTextAllowed(question: string): boolean {
-  const q = goldenQuestionNorm(question);
-  // Free-text LLM generation is limited to tactical prompts only.
-  if (isStrictInterviewQuestion(q) || isStrictMg6DisclosureQuestion(q) || isStrictExhibitReferenceQuestion(q)) return false;
-  if (/\b(disclosure|mg6|interview|exhibit|reference)\b/i.test(q)) return false;
-  return /\b(pressure|strategy|tactics)\b/i.test(q);
 }
 
 function extractInterviewSection(bundleFullText: string): string {
@@ -1061,7 +1162,9 @@ function detectQuestionIntentViolations(question: string, reply: string): string
 function detectCaseSummaryTemplateLeak(question: string, reply: string): string[] {
   const issues: string[] = [];
   const q = goldenQuestionNorm(question);
+  const mode = detectQuestionMode(question);
   const guarded =
+    mode !== "strategy_default" ||
     q.includes("top 3 facts") ||
     q.includes("still unknown") ||
     q.includes("key dates and timeline anchors") ||
@@ -1703,6 +1806,13 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     return NextResponse.json({ ok: true, reply }, { status: 200 });
   }
 
+  if (isStrictPrimaryAllegationQuestion(message)) {
+    const line = buildStrictPrimaryAllegationAnswer(combinedBundleFull);
+    if (line) {
+      return NextResponse.json({ ok: true, reply: line }, { status: 200 });
+    }
+  }
+
   // Deterministic golden-eval path: bypass model drift for the fixed 10-question gate.
   const deterministicGolden = buildGoldenDeterministicAnswer(message, snapshot, combinedBundleFull);
   if (deterministicGolden) {
@@ -1747,17 +1857,14 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     );
   if (timelineSummary) contextParts.push(`Case timeline:\n${timelineSummary}`);
   contextParts.push(`Relevant criminal law (use only this):\n${lawBlock}`);
-  const questionSpecificRules = buildQuestionSpecificRules(message);
+  const questionMode = detectQuestionMode(message);
+  const modeInstructions = buildQuestionModeBlock(questionMode);
+  const questionSpecificRules =
+    buildQuestionSpecificRules(message) + (modeInstructions ? `\n${modeInstructions}` : "");
   const userContent = `${contextParts.join("\n\n")}\n${questionSpecificRules}\n\n---\nSolicitor question:\n${message}`;
 
   const openai = getOpenAIClient();
   const systemPrompt = buildSystemPrompt(snapshot);
-  if (!isLlmFreeTextAllowed(message)) {
-    const reply = sanitizePlaceholderPhrases(
-      polishSolicitorTone(cleanLeadInPhrases(buildBundleGroundedFallback(message, snapshot, combinedBundleFull)))
-    ).slice(0, MAX_REPLY_LENGTH);
-    return NextResponse.json({ ok: true, reply }, { status: 200 });
-  }
   /** Full bundle text + user-supplied summaries so EX-CAD / Reference are discoverable even if model context is truncated. */
   const exhibitHaystack = [
     combinedBundleFull.slice(0, MAX_BUNDLE_FULL_CHARS_FOR_REFS),
@@ -1892,7 +1999,9 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     /I can(?:not|'t) answer (this )?properly without/i.test(raw) ||
     /no detected offence|no detected stance|no detected stage/i.test(raw)
   ) {
-    raw = buildBundleGroundedFallback(message, snapshot, combinedBundleFull || exhibitHaystack);
+    if (questionMode === "strategy_default") {
+      raw = buildBundleGroundedFallback(message, snapshot, combinedBundleFull || exhibitHaystack);
+    }
   }
 
   raw = sanitizePlaceholderPhrases(polishSolicitorTone(cleanLeadInPhrases(raw)));
@@ -1919,8 +2028,9 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
         "6) For Q10, map unsafe admissions to offence elements and tactical consequences.",
         "7) Answer the specific question intent directly; do not substitute generic case summary.",
         "8) Never use template labels like Current posture / Procedural position / Priority pressure point.",
-        "9) Follow the question-specific rules exactly.",
+        "9) Follow the question-specific rules and MODE RULES exactly.",
         buildQuestionSpecificRules(message),
+        modeInstructions,
         `Current violations: ${allIssues.join("; ")}.`,
       ].join("\n");
       const rewritten = await runChatWithRetry([
