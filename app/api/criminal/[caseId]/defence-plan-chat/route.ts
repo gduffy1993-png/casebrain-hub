@@ -148,6 +148,11 @@ function compactOneLine(text: string): string {
   return text.replace(/\s+/g, " ").trim();
 }
 
+/** Both MG5 and MG6 (or two sources) flag incompleteness → single disclosure/evidence gap, not a contradiction. */
+function isCombinedGap(text: string): boolean {
+  return /(partial|extract|continuity|draft|incomplete)/i.test(text);
+}
+
 function firstMatch(text: string, patterns: RegExp[]): string | null {
   for (const p of patterns) {
     const m = text.match(p);
@@ -197,6 +202,7 @@ type BundleAnswerSignals = {
   hasCctvContinuityRisk: boolean;
   hasCctvAppearsStrong: boolean;
   has999Gap: boolean;
+  hasCadGap: boolean;
   hasWitnessDraftTension: boolean;
   hasBwvVsWitnessTension: boolean;
   hasPartialAccountOrSilence: boolean;
@@ -217,39 +223,87 @@ function mapPrimarySlugToIssueType(slug: BundlePrimarySlug): IssueType {
   return m[slug];
 }
 
-/** Canonical next-step stems per issue type — Q10 must expand these with bundle specifics (Action -> test -> impact). */
-const NEXT_STEP_CANONICAL: Record<IssueType, [string, string, string]> = {
+/** Two deterministic variants per issue type — pick by bundle length (stateless variation). */
+const NEXT_STEP_VARIANTS: Record<IssueType, [string, string, string][]> = {
   identification: [
-    "Obtain full 999 master audio to test ID conditions",
-    "Clarify lighting / visibility / distance factors relevant to identification",
-    "Secure final or signed MG11 for consistency on identification",
+    [
+      "Obtain full 999 master audio to test ID conditions",
+      "Clarify lighting / visibility / distance factors relevant to identification",
+      "Secure final or signed MG11 for consistency on identification",
+    ],
+    [
+      "Secure full 999 recording and timestamps to test ID conditions",
+      "Compare witness description to the accused using descriptors held in this bundle",
+      "Obtain ID procedure / parade-related disclosure referenced on MG6 for this case",
+    ],
   ],
   cctv: [
-    "Obtain continuity statement / engineer note for CCTV",
-    "Verify timestamps and extraction completeness against the schedule",
-    "Cross-check CCTV against witness timeline and CAD anchors",
+    [
+      "Obtain continuity statement / engineer note for CCTV",
+      "Verify timestamps and extraction completeness against the schedule",
+      "Cross-check CCTV against witness timeline and CAD anchors",
+    ],
+    [
+      "Request engineer note / continuity resolution for served CCTV extracts",
+      "Map clip timestamps to incident sequence using bundle-held routing",
+      "Align CCTV extracts with CAD dispatch windows named in the excerpt",
+    ],
   ],
   "999": [
-    "Obtain full 999 master audio (not extract only)",
-    "Compare CAD + 999 for timeline consistency",
-    "Identify discrepancies with MG5 narrative where the bundle flags 999 friction",
+    [
+      "Obtain full 999 master audio (not extract only)",
+      "Compare CAD + 999 for timeline consistency",
+      "Identify discrepancies with MG5 narrative where the bundle flags 999 friction",
+    ],
+    [
+      "Secure full 999 recording (master, not redacted extract)",
+      "Reconcile CAD dispatch entries with 999 call timing on the schedule",
+      "Cross-reference 999 content with MG5 incident narrative for this case",
+    ],
   ],
   witness: [
-    "Obtain signed MG11",
-    "Compare draft vs final witness statement for material changes",
-    "Test witness account against other evidence (e.g. BWV, CAD) named in the bundle",
+    [
+      "Obtain signed MG11",
+      "Compare draft vs final witness statement for material changes",
+      "Test witness account against other evidence (e.g. BWV, CAD) named in the bundle",
+    ],
+    [
+      "Secure final MG11",
+      "Compare MG11 drafts to served statements for material shifts",
+      "Line up witness account against BWV/CAD rows referenced for this witness",
+    ],
   ],
   continuity: [
-    "Obtain full continuity statement for disputed exhibits",
-    "Verify chain of evidence handling where the bundle flags continuity risk",
-    "Identify gaps affecting admissibility or weight at trial",
+    [
+      "Obtain full continuity statement for disputed exhibits",
+      "Verify chain of evidence handling where the bundle flags continuity risk",
+      "Identify gaps affecting admissibility or weight at trial",
+    ],
+    [
+      "Chase outstanding continuity documentation tied to the MG6 friction rows",
+      "Confirm exhibit movement/handling notes where the bundle marks continuity risk",
+      "Record how continuity gaps affect weight at trial on these papers",
+    ],
   ],
   other: [
-    "Chase the highest-impact MG6 outstanding item tied to the Primary eval hook",
-    "Reconcile MG5 narrative against the served schedule rows referenced in the bundle",
-    "Prepare a short hearing note linking disclosure gaps to the elements in dispute",
+    [
+      "Chase the highest-impact MG6 outstanding item tied to the Primary eval hook",
+      "Reconcile MG5 narrative against the served schedule rows referenced in the bundle",
+      "Prepare a short hearing note linking disclosure gaps to the elements in dispute",
+    ],
+    [
+      "Prioritise MG6 rows that match the Primary eval hook for immediate chase",
+      "Align MG5 case summary with served schedule lines cited in the excerpt",
+      "Draft a proof-facing note on which elements remain contested on the papers",
+    ],
   ],
 };
+
+function pickNextStepTriples(issueType: IssueType, bundleHaystack: string): [string, string, string] {
+  const variants = NEXT_STEP_VARIANTS[issueType];
+  const idx = bundleHaystack.length % variants.length;
+  return variants[idx]!;
+}
 
 function analyzeBundleAnswerSignals(bundleHaystack: string): BundleAnswerSignals {
   const text = bundleHaystack.slice(0, MAX_BUNDLE_FULL_CHARS_FOR_REFS);
@@ -261,7 +315,9 @@ function analyzeBundleAnswerSignals(bundleHaystack: string): BundleAnswerSignals
     /\b(weak id|weak identification|id parade|stills before id|mg6 passenger id|passenger id)\b/i.test(lower) ||
     /\bweak id\b/i.test(hookLower) ||
     (/\b(identif|identifying|attribution)\b/i.test(hookLower) &&
-      /\b(weak|dispute|challenge|parade|stills)\b/i.test(hookLower));
+      /\b(weak|dispute|challenge|parade|stills)\b/i.test(hookLower)) ||
+    (/\b(lighting|recognition|facial|visual id|identification procedure)\b/i.test(lower) &&
+      /\b(identif|identifying|accused|witness|weak id|parade)\b/i.test(lower));
 
   const hasCctvContinuityRisk =
     /\b(cctv|footage).*\b(partial|continuity|extraction|engineer|incomplete)\b/i.test(lower) ||
@@ -275,6 +331,11 @@ function analyzeBundleAnswerSignals(bundleHaystack: string): BundleAnswerSignals
     /\b999\b.*\b(partial|outstanding|awaited|extract|master audio|tape gap)\b/i.test(lower) ||
     /\b999 tape gap\b/i.test(lower);
 
+  const hasCadGap =
+    /\bcad\b.*\b(partial|outstanding|awaited|extract|print|narrative|attachment)\b/i.test(lower) ||
+    /\b(fuller\s+)?narrative\s+attachment\b/i.test(lower) ||
+    /\bcad dispatch\b.*\b(partial|print)\b/i.test(lower);
+
   const hasWitnessDraftTension =
     /\b(mg11|key witness).*\b(draft|unsigned|possibly draft)\b/i.test(lower) ||
     /\b(draft|unsigned).*\b(statement|mg11|witness)\b/i.test(lower);
@@ -285,11 +346,14 @@ function analyzeBundleAnswerSignals(bundleHaystack: string): BundleAnswerSignals
   const hasPartialAccountOrSilence =
     /\bpartial account\b/i.test(lower) || /\bno comment\b/i.test(lower) || /\bno comment on\b/i.test(lower);
 
+  const hasDisclosureGap = has999Gap || hasCadGap;
+
+  /** Priority: ID → CCTV → audio/CAD disclosure → witness credibility → general (avoid defaulting to witness when CCTV/999 dominate). */
   let primaryProsecutionIssue: BundlePrimarySlug = "disclosure_general";
   if (hasIdentificationPressure) primaryProsecutionIssue = "identification";
-  else if (hasBwvVsWitnessTension || hasWitnessDraftTension) primaryProsecutionIssue = "witness_credibility";
   else if (hasCctvContinuityRisk) primaryProsecutionIssue = "cctv_integrity";
-  else if (has999Gap) primaryProsecutionIssue = "disclosure_audio";
+  else if (hasDisclosureGap) primaryProsecutionIssue = "disclosure_audio";
+  else if (hasBwvVsWitnessTension || hasWitnessDraftTension) primaryProsecutionIssue = "witness_credibility";
 
   const issueType = mapPrimarySlugToIssueType(primaryProsecutionIssue);
 
@@ -299,6 +363,7 @@ function analyzeBundleAnswerSignals(bundleHaystack: string): BundleAnswerSignals
     hasCctvContinuityRisk,
     hasCctvAppearsStrong,
     has999Gap,
+    hasCadGap,
     hasWitnessDraftTension,
     hasBwvVsWitnessTension,
     hasPartialAccountOrSilence,
@@ -307,20 +372,20 @@ function analyzeBundleAnswerSignals(bundleHaystack: string): BundleAnswerSignals
   };
 }
 
-/** One-line stems for Pressure point — must echo THIS bundle’s rows; avoid boilerplate repeated across cases. */
+/** One-line stems for Pressure point — same primary issue as Q8; Crown survives *despite* that weakness; no generic MG11/CCTV boilerplate. */
 function bundlePressurePointStem(s: BundleAnswerSignals): string {
   const hook = compactOneLine(s.hookLine || "").slice(0, 120);
   switch (s.primaryProsecutionIssue) {
     case "identification":
-      return `Despite instability on ID in your headline, Crown can still pitch proof through whichever corroborating routes this bundle actually lists (name exhibit/MG rows — e.g. 999/CAD/CCTV/MG11 lines referenced for this case). Hook anchor: ${hook || "Primary eval hook"}.`;
+      return `Mirror your ID headline: Crown can still rely on the witness description / parade route / corroboration lines named in this bundle to maintain attribution despite lighting, distance, or procedure strain — name the actual rows. Hook: ${hook || "—"}.`;
     case "witness_credibility":
-      return `Despite credibility strain in your headline, Crown can still rely on whichever witness-led materials this schedule marks as served or awaited (cite this bundle’s MG11/BWV/CAD rows by role — do not use stock phrases like “final witness statements” or “body-worn alignment”). Hook: ${hook || "—"}.`;
+      return `Mirror your witness headline: Crown can still rely on the account this bundle treats as the live witness position to carry narrative weight despite draft/unsigned or interview tension — cite role + MG11/BWV rows from the excerpt, not generic “statements” labels. Hook: ${hook || "—"}.`;
     case "cctv_integrity":
-      return `Despite continuity/extraction strain in your headline, Crown can still rely on engineer/continuity resolution and usable extracts once the MG6 CCTV rows are reconciled — tie to THIS excerpt’s CCTV/999 friction. Hook: ${hook || "—"}.`;
+      return `Mirror your CCTV headline: Crown can still rely on served extracts plus engineer or continuity answers (once closed) to anchor mechanics despite extraction gaps — tie to the CCTV/MG6 friction rows here. Hook: ${hook || "—"}.`;
     case "disclosure_audio":
-      return `Despite incomplete call audio in your headline, Crown can still rely on full master 999 + CAD consistency once those MG6 rows are closed — name what THIS bundle lists as outstanding. Hook: ${hook || "—"}.`;
+      return `Mirror your 999/CAD headline: Crown can still rely on dispatch timing and any served call material to hold sequence together until master audio closes — name outstanding 999/CAD lines from this bundle. Hook: ${hook || "—"}.`;
     default:
-      return `Despite disclosure gaps in your headline, Crown can still rely on closing the specific MG6/MG5 hook items named here (not a generic disclosure list). Hook: ${hook || "—"}.`;
+      return `Mirror your disclosure headline: Crown can still rely on completing the specific MG6 hook rows and MG5 narrative anchors named here to preserve proof on the elements in dispute — no generic chase list. Hook: ${hook || "—"}.`;
   }
 }
 
@@ -347,17 +412,17 @@ function bundleProsecutionExploitStem(theme: string): string {
 function bundleThisMattersStem(s: BundleAnswerSignals): string {
   switch (s.issueType) {
     case "identification":
-      return 'Start the sentence with "This determines whether…" or "This impacts how the jury will assess … identification …" — tie to the hook/MG rows for THIS case.';
+      return 'One sentence, proof-facing: "This determines whether attribution can be proved to the criminal standard" — adapt with bundle vocabulary (not disclosure admin).';
     case "witness":
-      return 'Start with "This affects whether the Crown can prove … witness credibility …" using sources named in this bundle.';
+      return 'One sentence, proof-facing: "This determines whether the witness account can support the prosecution case" — adapt using this witness/MG11 material.';
     case "cctv":
-      return 'Start with "This determines whether … CCTV … can carry weight / admissibility …" for the continuity rows flagged here.';
+      return 'One sentence, proof-facing: "This determines whether CCTV can carry sufficient weight for proof once continuity is resolved" — tie to footage rows here.';
     case "999":
-      return 'Start with "This affects whether the Crown can prove … sequence/timing …" using 999/CAD reconciliation for THIS case.';
+      return 'One sentence, proof-facing: "This determines whether sequence and timing can be proved" via 999/CAD — not a disclosure checklist.';
     case "continuity":
-      return 'Start with "This determines whether … continuity … issues undermine weight or admissibility …" on these papers.';
+      return 'One sentence, proof-facing: "This determines whether continuity issues undermine weight or admissibility for proof on these exhibits."';
     default:
-      return 'Start with "This affects whether the Crown can prove …" the elements still live on this bundle before the next hearing.';
+      return 'One sentence, proof-facing: "This determines whether the Crown can prove the elements still contested on these papers" — link to the hook, not generic procedure.';
   }
 }
 
@@ -416,6 +481,7 @@ function buildBundleAnswerLayerBlock(mode: QuestionMode, bundleHaystack: string)
         "- Open with a **direct conclusion** using **calibrated** strength (e.g. identification \"is unstable / undermined / weakened because…\") — reserve absolute verbs (\"fails\", \"collapses\") only if the bundle explicitly supports them.",
         "- Merge related problems into **one** causal opening tied to the locked primary issue; do not join unrelated issues with \"and\" in sentence one.",
         "- Max **2** bullets; each bullet supports **only** that same primary issue; use -> ; ban hedged openers like \"this may undermine / this could affect\".",
+        "- Before any **vs** label: if both MG5 and MG6 passages match partial / extract / continuity / draft / incomplete patterns, treat as **one combined disclosure or evidence gap** — not a contradiction.",
         "- Do not use **vs** between MG5 and MG6 when both only describe partial/incomplete/draft — say **combined gap**.",
         "",
         "OPPOSITION PRESSURE (required — after main answer, max 1 extra sentence; constraint-based only):",
@@ -452,6 +518,7 @@ function buildBundleAnswerLayerBlock(mode: QuestionMode, bundleHaystack: string)
         `- ${themeExplain[theme] ?? themeExplain.defence_theory_gap}`,
         "- Must **not** reuse prosecution-weakness phrasing or mirror Q8 structure; explain how the defence loses **despite** any Crown frailty.",
         "- Open with a **direct conclusion** about defence vulnerability — not \"The single biggest weakness is\".",
+        "- First line must be a **complete English sentence** starting with a **capital letter** — never raw theme slugs (`identification_jury`, etc.) or broken fragments like \"Identification jury The defence…\".",
         "- Max **2** bullets; only support that headline; -> format.",
         "",
         "OPPOSITION PRESSURE (required — after main answer, max 1 extra sentence; constraint-based only):",
@@ -463,7 +530,7 @@ function buildBundleAnswerLayerBlock(mode: QuestionMode, bundleHaystack: string)
       ].join("\n");
     }
     case "next_steps": {
-      const [a1, a2, a3] = NEXT_STEP_CANONICAL[s.issueType];
+      const [a1, a2, a3] = pickNextStepTriples(s.issueType, bundleHaystack);
       return [
         "",
         "ANSWER CONSTRUCTION (Q10 — next 24 hours)",
@@ -479,7 +546,7 @@ function buildBundleAnswerLayerBlock(mode: QuestionMode, bundleHaystack: string)
         "",
         "OUTCOME LINK (required — after the 3 bullets, max 1 sentence):",
         "This matters because:",
-        `- One sentence only: **trial-facing impact** — prefer openings like "This determines whether…", "This affects whether the Crown can prove…", "This impacts how the jury will assess…" (pick one; stay tied to THIS bundle).`,
+        `- One sentence only: **proof** (criminal standard / witness account / footage weight / timing) — must match issueType **${s.issueType}** as Q8; not admin or disclosure process for its own sake.`,
         `- Hint (adapt opener only): ${bundleThisMattersStem(s)}`,
       ].join("\n");
     }
@@ -488,7 +555,8 @@ function buildBundleAnswerLayerBlock(mode: QuestionMode, bundleHaystack: string)
         "",
         "ANSWER CONSTRUCTION (conflict / inconsistencies)",
         "- If two sources both indicate **partial / incomplete / draft / continuity risk** for the same item, classify as **combined gap**, not **MG5 vs MG6**.",
-        "- Reserve **vs** / \"documents disagree\" for **true** contradiction (incompatible dates, names, served vs not served).",
+        "- If both sides match partial / extract / continuity / draft / incomplete wording, that is **one gap** — never **vs** or contradiction framing.",
+        "- Reserve **vs** / \"documents disagree\" for **true** contradiction (incompatible dates, names, served vs not served, different sequences).",
         "- One primary headline; max **4** bullets; each distinct.",
       ].join("\n");
     default:
@@ -522,7 +590,7 @@ function buildQuestionModeBlock(mode: QuestionMode): string {
         "- Pick ONE primary tension headline in the opening sentence (strongest impact on trial outcome).",
         "- Use at most 4 supporting bullets; each bullet -> consequence must be materially different (no three bullets restating the same disclosure gap).",
         "- **True conflict:** sources assert incompatible facts (dates, names, who did what, served vs not served). Say explicitly that the documents disagree.",
-        "- **Combined gap (not a vs):** when MG5 and MG6 both describe incomplete/partial/continuity problems for the same item, describe one combined disclosure/reliability gap — do not frame as MG5 vs MG6 unless they actually contradict.",
+        "- **Combined gap (not a vs):** when MG5 and MG6 both describe incomplete/partial/continuity/extract/draft problems for the same item, describe one combined disclosure/reliability gap — do not frame as MG5 vs MG6 unless they actually contradict.",
         "- Identify tensions between named sources (e.g. witness vs CAD, CCTV vs timeline) where relevant.",
         "- Do not substitute a generic case summary for conflict analysis.",
       ].join("\n");
@@ -1269,7 +1337,16 @@ function detectSharpAnswerStyleViolations(question: string, reply: string): stri
   const q = goldenQuestionNorm(question);
   const trimmed = reply.trim();
   const lower = trimmed.toLowerCase();
-  const first = trimmed.split(/\r?\n/).find((l) => l.trim().length > 0) || "";
+  const lines = trimmed.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
+  const first = lines[0] || "";
+
+  if (
+    /\bmg5\s+vs\s+mg6\b/i.test(lower) &&
+    isCombinedGap(lower) &&
+    !/\b(different date|incompatible|contradict(s|ory)?|disagree on (who|which)|served vs not)\b/i.test(lower)
+  ) {
+    issues.push("prefer combined-gap wording for MG5/MG6 when both flag incompleteness — avoid 'vs'");
+  }
 
   if (q.includes("weakness in the prosecution case") || q.includes("weakness in the defence case")) {
     if (/^the single biggest weakness (in the (prosecution|defence) case )?is\b/i.test(first.trim())) {
@@ -1278,11 +1355,31 @@ function detectSharpAnswerStyleViolations(question: string, reply: string): stri
     if (/\bthis (may|might|could) (undermine|affect|weaken)\b/i.test(lower)) {
       issues.push("replace soft consequence clauses ('this may undermine/affect') with direct outcome language grounded in the bundle");
     }
+  }
+
+  if (q.includes("weakness in the prosecution case")) {
+    if (/\bfinal witness statements\b|\bbody-worn alignment\b/i.test(lower)) {
+      issues.push("pressure point uses banned generic phrasing — tie to this bundle’s primary issue");
+    }
+    if (/\bcan rely on mg11 and cctv\b/i.test(lower) || /\brely on (the )?mg11 (and|&) cctv\b/i.test(lower)) {
+      issues.push("pressure point is generic (MG11+CCTV boilerplate) — state how Crown survives the headline weakness on these papers");
+    }
+  }
+
+  if (q.includes("weakness in the defence case")) {
+    const plainFirst = first.replace(/^\*\*?|\*\*?$/g, "").replace(/\*\*/g, "").trim();
+    if (plainFirst.length > 0 && !/^[A-Z]/.test(plainFirst)) {
+      issues.push("Q9 opening line must start with a capital letter (one headline sentence)");
+    }
     if (
-      /\bmg5\s+vs\s+mg6\b/i.test(lower) &&
-      /partial|incomplete|outstanding|awaited|draft|continuity/i.test(lower)
+      /^(identification_jury|cctv_outweighs_account|no_alternative_narrative|adverse_inference_or_partial|failure_to_displace|over_reliance_challenge|defence_theory_gap)\b/i.test(
+        plainFirst
+      )
     ) {
-      issues.push("prefer combined-gap wording for MG5/MG6 when both flag incompleteness — avoid 'vs'");
+      issues.push("Q9 must not leak raw theme slug as opening — write a plain English headline");
+    }
+    if (/^(identification\s+jury|weakness[_\s]prosecution|defence[_\s]risk)\b/i.test(plainFirst)) {
+      issues.push("Q9 opening must not be a broken label fragment — use a full sentence");
     }
   }
 
