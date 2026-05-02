@@ -202,7 +202,11 @@ function buildQuestionModeBlock(mode: QuestionMode): string {
         "",
         "QUESTION MODE: conflict",
         "MODE RULES (MANDATORY):",
-        "- Identify tensions between at least two named sources (e.g. MG5 vs MG6, witness vs CAD, CCTV vs timeline).",
+        "- Pick ONE primary tension headline in the opening sentence (strongest impact on trial outcome).",
+        "- Use at most 4 supporting bullets; each bullet -> consequence must be materially different (no three bullets restating the same disclosure gap).",
+        "- **True conflict:** sources assert incompatible facts (dates, names, who did what, served vs not served). Say explicitly that the documents disagree.",
+        "- **Combined gap (not a vs):** when MG5 and MG6 both describe incomplete/partial/continuity problems for the same item, describe one combined disclosure/reliability gap — do not frame as MG5 vs MG6 unless they actually contradict.",
+        "- Identify tensions between named sources (e.g. witness vs CAD, CCTV vs timeline) where relevant.",
         "- Do not substitute a generic case summary for conflict analysis.",
       ].join("\n");
     case "legal_proof":
@@ -218,24 +222,32 @@ function buildQuestionModeBlock(mode: QuestionMode): string {
       return [
         "",
         "QUESTION MODE: weakness_prosecution",
+        "LENS: Why the Crown case may fail or be undermined on these materials (not how the defence loses).",
         "MODE RULES (MANDATORY):",
-        "- Give the single biggest weakness in the prosecution case only; evidence-linked.",
+        "- Opening sentence = the single biggest prosecution weakness only (dominant issue).",
+        "- At most 2 supporting bullets; each must use -> and must not duplicate the same category (e.g. do not list partial 999 + CAD partial + MG11 draft if they are the same disclosure-completeness theme — collapse into one bullet unless genuinely distinct).",
+        "- Evidence-linked; name documents/lines where possible.",
         "- Do not discuss defence weakness here.",
       ].join("\n");
     case "weakness_defence":
       return [
         "",
         "QUESTION MODE: weakness_defence",
+        "LENS: How the defence could still lose — risks to the defendant despite any Crown frailties (not a second prosecution weakness list).",
         "MODE RULES (MANDATORY):",
-        "- Give the single biggest weakness in the defence position (vulnerabilities for the defence).",
-        "- Do not repeat the prosecution weakness answer.",
+        "- Opening sentence = the single biggest **defence-side** vulnerability (e.g. thin positive case, partial account / no comment risk, adverse inference, credibility of the defence theory, key witness dependency, legal label / mechanics disputes that hurt the defendant).",
+        "- Do **not** headline Crown-side gaps (e.g. weak identification, contradictory officer summaries, outstanding Crown disclosure) as the defence \"weakness\" — those usually assist the defence unless you add a bridging sentence explaining why the defence still loses anyway (e.g. jury may accept ID; defence cannot exploit inconsistency at trial).",
+        "- Do not reuse wording or mirror the structure of a prosecution-weakness answer; do not repeat the prosecution weakness answer.",
+        "- At most 2 supporting bullets with -> ; each must be defence-risk focused.",
       ].join("\n");
     case "next_steps":
       return [
         "",
         "QUESTION MODE: next_steps",
         "MODE RULES (MANDATORY):",
-        "- Give 2–4 concrete actions for the next 24 hours tied to gaps or tensions in the bundle.",
+        "- Give 2–3 concrete actions for the next 24 hours (hard max 3 bullets).",
+        "- Each bullet must follow: **Action** -> **what it secures or tests** -> **why it matters** for proof, disclosure leverage, or the next hearing (not bare \"chase/review/confirm\" admin).",
+        "- Prioritise by impact on outcome; tie each step to a Primary eval hook / MG6 outstanding row / tension in the excerpt where possible.",
         "- No posture/procedural summary template.",
       ].join("\n");
     default:
@@ -1159,6 +1171,53 @@ function detectQuestionIntentViolations(question: string, reply: string): string
   return issues;
 }
 
+function detectWeaknessConflictStepsViolations(question: string, reply: string): string[] {
+  const issues: string[] = [];
+  const q = goldenQuestionNorm(question);
+  const lower = reply.toLowerCase();
+  const lines = reply
+    .split(/\r?\n/)
+    .map((l) => l.trim())
+    .filter(Boolean);
+  const bullets = lines.filter((l) => /^[-*]\s+/.test(l));
+
+  if (q.includes("weakness in the prosecution case")) {
+    if (bullets.length > 2) issues.push("prosecution weakness: max 2 supporting bullets with headline sentence");
+  }
+
+  if (q.includes("weakness in the defence case")) {
+    if (bullets.length > 2) issues.push("defence weakness: max 2 supporting bullets with headline sentence");
+    if (
+      /\bweak (id|identification)\b/i.test(reply) &&
+      /\b(undermin|vulnerab|biggest weakness|damages the defence|hurts the defence|defence's position|defence position)\b/i.test(lower) &&
+      !/\b(exploit|attack|challenge|contest|reasonable doubt|jury may reject)\b/i.test(lower)
+    ) {
+      issues.push(
+        "defence weakness lens: weak identification normally weakens the Crown — pick a defence-side risk or explain why the defendant still loses on ID"
+      );
+    }
+    const head = reply.slice(0, 550).toLowerCase();
+    if (
+      /\bcontradictory officer\b/i.test(head) &&
+      !/\b(defence (relies|depends|builds on)|cannot exploit|jury may still|still convict)\b/i.test(head)
+    ) {
+      issues.push(
+        "defence weakness lens: contradictory officer summaries usually undermine Crown consistency — reframe as Crown tension or explain defence reliance"
+      );
+    }
+  }
+
+  if (/\binconsisten|\bconflicts in the evidence\b/i.test(q)) {
+    if (bullets.length > 4) issues.push("conflict question: max 4 bullets; prioritise the single strongest tension in the opening line");
+  }
+
+  if (q.includes("next 24 hours")) {
+    if (bullets.length > 3) issues.push("next 24 hours: max 3 action bullets");
+  }
+
+  return issues;
+}
+
 function detectCaseSummaryTemplateLeak(question: string, reply: string): string[] {
   const issues: string[] = [];
   const q = goldenQuestionNorm(question);
@@ -1303,6 +1362,25 @@ function buildQuestionSpecificRules(question: string): string {
     rules.push(
       "- Build the plan from the committed STRATEGY code + stance + MG5/MG6 hooks in the bundle; do not substitute a random primary route label.",
       "- Do not list missing disclosure items that are not named in the bundle excerpt."
+    );
+  }
+
+  if (/\bweakness in the prosecution case\b/i.test(q)) {
+    rules.push(
+      "- Headline = single biggest Crown weakness; max 2 supporting bullets; bullets must use -> and avoid repeating the same disclosure theme.",
+      "- Do not discuss how the defence might lose."
+    );
+  }
+  if (/\bweakness in the defence case\b/i.test(q)) {
+    rules.push(
+      "- Headline = single biggest risk **to the defence** (how the defendant could still lose). Do not headline Crown evidential gaps unless you explain why they still lose the defence.",
+      "- Max 2 supporting bullets with -> ; must not mirror the prosecution-weakness answer."
+    );
+  }
+  if (/\bnext 24 hours\b/i.test(q)) {
+    rules.push(
+      "- 2–3 actions maximum; each bullet: step -> what it secures/tests -> why it matters for proof or the next hearing.",
+      "- Disclose/chase items must state what proof element or leverage they unlock — not admin-only."
     );
   }
 
@@ -2014,6 +2092,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       ...detectUnsupportedClaimViolations(message, raw, exhibitHaystack),
       ...detectBundleHallucinationViolations(raw, exhibitHaystack, snapshot),
       ...detectQuestionIntentViolations(message, raw),
+      ...detectWeaknessConflictStepsViolations(message, raw),
       ...detectCaseSummaryTemplateLeak(message, raw),
     ];
     if (allIssues.length === 0) break;
@@ -2029,6 +2108,8 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
         "7) Answer the specific question intent directly; do not substitute generic case summary.",
         "8) Never use template labels like Current posture / Procedural position / Priority pressure point.",
         "9) Follow the question-specific rules and MODE RULES exactly.",
+        "10) Prosecution weakness = Crown fail points only; defence weakness = defendant lose-risk only (do not headline Crown frailty as defence weakness).",
+        "11) Next 24h: max 3 bullets; each bullet ties disclosure/step to proof or hearing consequence.",
         buildQuestionSpecificRules(message),
         modeInstructions,
         `Current violations: ${allIssues.join("; ")}.`,
@@ -2054,6 +2135,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     ...detectUnsupportedClaimViolations(message, raw, exhibitHaystack),
     ...detectBundleHallucinationViolations(raw, exhibitHaystack, snapshot),
     ...detectQuestionIntentViolations(message, raw),
+    ...detectWeaknessConflictStepsViolations(message, raw),
     ...detectCaseSummaryTemplateLeak(message, raw),
   ];
   if (residualIssues.length > 0) {
