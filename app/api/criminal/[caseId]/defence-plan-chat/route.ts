@@ -307,34 +307,39 @@ function analyzeBundleAnswerSignals(bundleHaystack: string): BundleAnswerSignals
   };
 }
 
-/** One-line stems for opposition-pressure prompts — constraint-based, no outcomes stated as facts. */
+/** One-line stems for Pressure point — must echo THIS bundle’s rows; avoid boilerplate repeated across cases. */
 function bundlePressurePointStem(s: BundleAnswerSignals): string {
+  const hook = compactOneLine(s.hookLine || "").slice(0, 120);
   switch (s.primaryProsecutionIssue) {
     case "identification":
-      return "Crown can still rely on corroboration between sources actually named in the bundle (e.g. witness, CCTV, 999 extracts) where those rows appear served.";
+      return `Despite instability on ID in your headline, Crown can still pitch proof through whichever corroborating routes this bundle actually lists (name exhibit/MG rows — e.g. 999/CAD/CCTV/MG11 lines referenced for this case). Hook anchor: ${hook || "Primary eval hook"}.`;
     case "witness_credibility":
-      return "Crown can still rely on final witness statements and body-worn alignment once served as referenced in the schedule.";
+      return `Despite credibility strain in your headline, Crown can still rely on whichever witness-led materials this schedule marks as served or awaited (cite this bundle’s MG11/BWV/CAD rows by role — do not use stock phrases like “final witness statements” or “body-worn alignment”). Hook: ${hook || "—"}.`;
     case "cctv_integrity":
-      return "Crown can still rely on continuity/engineer resolution and timestamp reconciliation once outstanding CCTV rows are served.";
+      return `Despite continuity/extraction strain in your headline, Crown can still rely on engineer/continuity resolution and usable extracts once the MG6 CCTV rows are reconciled — tie to THIS excerpt’s CCTV/999 friction. Hook: ${hook || "—"}.`;
     case "disclosure_audio":
-      return "Crown can still rely on full master audio and CAD reconciliation once disclosure completes as flagged on MG6.";
+      return `Despite incomplete call audio in your headline, Crown can still rely on full master 999 + CAD consistency once those MG6 rows are closed — name what THIS bundle lists as outstanding. Hook: ${hook || "—"}.`;
     default:
-      return "Crown can still rely on regularising outstanding disclosure tied to the Primary eval hook before hearing.";
+      return `Despite disclosure gaps in your headline, Crown can still rely on closing the specific MG6/MG5 hook items named here (not a generic disclosure list). Hook: ${hook || "—"}.`;
   }
 }
 
 function bundleProsecutionExploitStem(theme: string): string {
   const map: Record<string, string> = {
     identification_jury:
-      "Where attribution is disputed on the papers, Crown can structure proof around consistency across sources actually listed (witness/CCTV/999 rows).",
+      "Crown can present attribution as turning on the corroborating sources actually listed for this case once disclosure is complete.",
     cctv_outweighs_account:
-      "Where the bundle treats CCTV as served or usable, Crown can anchor mechanics on footage notwithstanding defence challenge to completeness.",
+      "Crown can lean on footage extracts this bundle treats as usable to anchor timing/mechanics notwithstanding defence complaints about completeness.",
     no_alternative_narrative:
-      "Where the defence account is partial or undeveloped on the bundle, Crown can press absence of a coherent competing mechanics narrative.",
+      "Crown can argue the defence leaves key mechanics unstated on the papers so the Crown narrative remains comparatively intact.",
     adverse_inference_or_partial:
-      "Where interview MG11 notes partial account or no comment, Crown can frame gaps as narrowing innocent explanations consistent with those routes.",
+      "Crown can invite adverse inference / comment on gaps where interview summaries flag partial account or no-comment routes.",
+    failure_to_displace:
+      "Crown can argue the defence challenge does not positively displace the Crown’s documentary sequence as pleaded in MG5.",
+    over_reliance_challenge:
+      "Crown can argue the defence over-relies on attacking Crown disclosure without a positive account that meets the allegations on the bundle.",
     defence_theory_gap:
-      "Where MG5 sets out mechanics and defence theory is thin on the papers, Crown can tie facts pleaded to the charged offence elements.",
+      "Crown can tie MG5 mechanics to the charged offence elements where the defence theory is not spelled out on the papers.",
   };
   return map[theme] ?? map.defence_theory_gap;
 }
@@ -342,29 +347,36 @@ function bundleProsecutionExploitStem(theme: string): string {
 function bundleThisMattersStem(s: BundleAnswerSignals): string {
   switch (s.issueType) {
     case "identification":
-      return "Completing these steps locks whether attribution can be tested fairly against the hook on identification.";
+      return 'Start the sentence with "This determines whether…" or "This impacts how the jury will assess … identification …" — tie to the hook/MG rows for THIS case.';
     case "witness":
-      return "Completing these steps fixes witness/BWV stability — the usual lever where MG11 or BWV is flagged draft or inconsistent.";
+      return 'Start with "This affects whether the Crown can prove … witness credibility …" using sources named in this bundle.';
     case "cctv":
-      return "Completing these steps determines whether footage can carry weight once continuity rows are resolved.";
+      return 'Start with "This determines whether … CCTV … can carry weight / admissibility …" for the continuity rows flagged here.';
     case "999":
-      return "Completing these steps determines whether call context and dispatch alignment support the Crown sequence.";
+      return 'Start with "This affects whether the Crown can prove … sequence/timing …" using 999/CAD reconciliation for THIS case.';
     case "continuity":
-      return "Completing these steps addresses chain and weight where continuity is the live issue.";
+      return 'Start with "This determines whether … continuity … issues undermine weight or admissibility …" on these papers.';
     default:
-      return "Completing these steps forces the Crown to meet proof on the elements still in play on the papers.";
+      return 'Start with "This affects whether the Crown can prove …" the elements still live on this bundle before the next hearing.';
   }
 }
 
-function pickDefenceRiskTheme(s: BundleAnswerSignals): string {
+function pickDefenceRiskTheme(s: BundleAnswerSignals, bundleHaystack: string): string {
+  const lower = bundleHaystack.slice(0, MAX_BUNDLE_FULL_CHARS_FOR_REFS).toLowerCase();
   if (s.hasIdentificationPressure) {
     return "identification_jury";
   }
   if (s.hasCctvAppearsStrong && !s.hasCctvContinuityRisk) {
     return "cctv_outweighs_account";
   }
+  if (/\bno comment\b/i.test(lower)) {
+    return "adverse_inference_or_partial";
+  }
   if (s.hasPartialAccountOrSilence && !s.hasIdentificationPressure) {
-    return "no_alternative_narrative";
+    const jitter = ((s.hookLine?.length ?? 0) + bundleHaystack.length) % 3;
+    if (jitter === 0) return "no_alternative_narrative";
+    if (jitter === 1) return "failure_to_displace";
+    return "over_reliance_challenge";
   }
   if (s.hasPartialAccountOrSilence) {
     return "adverse_inference_or_partial";
@@ -401,8 +413,8 @@ function buildBundleAnswerLayerBlock(mode: QuestionMode, bundleHaystack: string)
         "",
         "ANSWER CONSTRUCTION (Q8 — prosecution weakness)",
         primaryLine,
-        "- Open with a **direct conclusion** (e.g. \"Identification fails because…\", \"The timeline cannot be anchored because…\") — NOT \"The single biggest weakness is\".",
-        "- Merge related problems into **one** causal opening (e.g. weak ID **because** 999/audio/context incomplete). Do not join unrelated issues with \"and\" in sentence one.",
+        "- Open with a **direct conclusion** using **calibrated** strength (e.g. identification \"is unstable / undermined / weakened because…\") — reserve absolute verbs (\"fails\", \"collapses\") only if the bundle explicitly supports them.",
+        "- Merge related problems into **one** causal opening tied to the locked primary issue; do not join unrelated issues with \"and\" in sentence one.",
         "- Max **2** bullets; each bullet supports **only** that same primary issue; use -> ; ban hedged openers like \"this may undermine / this could affect\".",
         "- Do not use **vs** between MG5 and MG6 when both only describe partial/incomplete/draft — say **combined gap**.",
         "",
@@ -410,27 +422,33 @@ function buildBundleAnswerLayerBlock(mode: QuestionMode, bundleHaystack: string)
         'After your bullets, output exactly two lines:',
         "Pressure point:",
         `- One sentence only: what the Crown can **still rely on in the materials** to meet its burden on this point (sources/types named in the bundle — not trial predictions).`,
-        `- Hint (adapt; do not copy verbatim if inconsistent with excerpt): ${bundlePressurePointStem(s)}`,
-        "- No probabilities, no \"the jury will\", no facts not in the bundle.",
+        `- Hint (adapt; do not copy verbatim): ${bundlePressurePointStem(s)}`,
+        "- Pressure point must answer **what Crown would still rely on to survive YOUR headline weakness** — same issue only.",
+        "- **Banned recycled wording:** do not write generic pairs like \"final witness statements\", \"body-worn alignment\", or other stock phrases; name actual rows/refs from THIS excerpt.",
+        "- No probabilities stated as facts; no invented exhibits.",
       ].join("\n");
     case "weakness_defence": {
-      const theme = pickDefenceRiskTheme(s);
+      const theme = pickDefenceRiskTheme(s, bundleHaystack);
       const themeExplain: Record<string, string> = {
         identification_jury:
-          "Lead with how the defence **still loses on identification** (e.g. jury accepts Crown ID; defence cannot exclude the accused) — NOT Crown weak-ID as if it were a defence problem.",
+          "Lead with defence-side risk on attribution (e.g. Crown evidence still sufficient on the papers to sustain ID if corroboration completes) — NOT Crown weak-ID framed as defence weakness.",
         cctv_outweighs_account:
-          "Lead with how **objective footage** may dominate a thin/partial defence account if the materials suggest usable CCTV.",
+          "Lead with risk that usable CCTV on the bundle outweighs or narrows the defence account on mechanics.",
         no_alternative_narrative:
-          "Lead with **absence of a clear alternative narrative** or an account too thin to displace the Crown story.",
+          "Lead with thin or unstated defence mechanics — vary wording; do **not** reuse identical \"no alternative narrative\" phrasing across cases.",
         adverse_inference_or_partial:
-          "Lead with **adverse inference / partial account / no comment** (bundle-anchored) as the main route the Crown can still win.",
+          "Lead with **adverse inference** risk where partial account / no-comment routes appear in interview/MG11 summaries.",
+        failure_to_displace:
+          "Lead with **failure to displace** Crown documentary proof — defence challenge does not replace Crown sequence on the bundle.",
+        over_reliance_challenge:
+          "Lead with **over-reliance on attacking Crown disclosure** without a positive defence account that meets the pleaded allegations.",
         defence_theory_gap:
-          "Lead with internal gaps in the defence position as shown in the bundle (not a second list of Crown disclosure frailties).",
+          "Lead with gaps internal to the defence position on these papers (vary phrasing case-by-case).",
       };
       return [
         "",
         "ANSWER CONSTRUCTION (Q9 — defence weakness)",
-        `DEFENCE-RISK THEME HINT (use ONE headline; vary — do **not** default to partial account/no comment if a higher-priority theme applies): ${theme}`,
+        `DEFENCE-RISK THEME HINT (use ONE headline; rotate themes — adverse inference / failure to displace Crown proof / over-reliance on weak challenge — avoid repeating identical sentences across cases): ${theme}`,
         `- ${themeExplain[theme] ?? themeExplain.defence_theory_gap}`,
         "- Must **not** reuse prosecution-weakness phrasing or mirror Q8 structure; explain how the defence loses **despite** any Crown frailty.",
         "- Open with a **direct conclusion** about defence vulnerability — not \"The single biggest weakness is\".",
@@ -461,8 +479,8 @@ function buildBundleAnswerLayerBlock(mode: QuestionMode, bundleHaystack: string)
         "",
         "OUTCOME LINK (required — after the 3 bullets, max 1 sentence):",
         "This matters because:",
-        `- One sentence only: tie the **combined effect** of these actions to proof or hearing posture using bundle hooks (no speculation).`,
-        `- Hint (adapt): ${bundleThisMattersStem(s)}`,
+        `- One sentence only: **trial-facing impact** — prefer openings like "This determines whether…", "This affects whether the Crown can prove…", "This impacts how the jury will assess…" (pick one; stay tied to THIS bundle).`,
+        `- Hint (adapt opener only): ${bundleThisMattersStem(s)}`,
       ].join("\n");
     }
     case "conflict":
@@ -521,9 +539,9 @@ function buildQuestionModeBlock(mode: QuestionMode): string {
       return [
         "",
         "QUESTION MODE: weakness_prosecution",
-        "LENS: Why the Crown case fails or is undermined on these materials (not how the defence loses).",
+        "LENS: Where the Crown case is **weakened / undermined / unstable** on these materials (not how the defence loses).",
         "MODE RULES (MANDATORY):",
-        "- **One** merged primary issue in the opening sentence — direct conclusion first (e.g. \"Identification fails because…\"); ban framing clauses like \"The single biggest weakness is\".",
+        "- **One** merged primary issue — calibrated wording first (\"is undermined\", \"is unstable\", \"is weakened\") unless the bundle explicitly supports a stronger claim; ban \"The single biggest weakness is\".",
         "- At most **2** supporting bullets; bullets must only reinforce **that same** issue; merge related gaps into one causal chain.",
         "- Evidence-linked; name documents/lines where possible; avoid **vs** when sources agree it is partial/incomplete.",
         "- Do not discuss defence weakness here.",
@@ -1760,16 +1778,16 @@ function buildQuestionSpecificRules(question: string): string {
 
   if (/\bweakness in the prosecution case\b/i.test(q)) {
     rules.push(
-      "- **One** primary issue in the opening line (merge related points); start with a direct conclusion; max 2 supporting bullets; -> format.",
+      "- **One** primary issue in the opening line (merge related points); use calibrated strength (unstable / undermined / weakened) unless the bundle clearly supports stronger language; max 2 supporting bullets; -> format.",
       "- Do not use soft openers (\"The single biggest weakness is\", \"this may undermine\").",
       "- Do not discuss how the defence might lose.",
-      '- After bullets: required footer exactly — line "Pressure point:" then **one sentence** only (what Crown can still rely on in the materials for this issue). No verdict predictions.'
+      '- After bullets: "Pressure point:" then **one sentence** — what Crown would still rely on **despite that same weakness**, using THIS bundle’s rows (no stock phrases like "final witness statements" / "body-worn alignment").'
     );
   }
   if (/\bweakness in the defence case\b/i.test(q)) {
     rules.push(
       "- Headline = how the defence **still loses** (not Crown weakness); must differ from a prosecution-weakness answer; max 2 bullets with -> .",
-      "- Start with a direct conclusion; follow ANSWER CONSTRUCTION theme hints — do not default to partial account/no comment if another theme is indicated.",
+      "- Vary themes (adverse inference / failure to displace Crown proof / over-reliance on challenge) — do not repeat identical \"no alternative narrative\" wording across cases.",
       "- Do not headline Crown evidential gaps unless you bridge why the defendant still loses.",
       '- After bullets: required footer exactly — line "Prosecution exploit:" then **one sentence** only (how Crown uses the papers to press that weakness). No verdict predictions.'
     );
@@ -1778,7 +1796,7 @@ function buildQuestionSpecificRules(question: string): string {
     rules.push(
       "- **Max 3** action lines; each ties to ANSWER CONSTRUCTION: Action -> what it tests -> why it matters.",
       "- No generic disclosure repetition unrelated to that pressure.",
-      '- After the 3 actions: required footer exactly — line "This matters because:" then **one sentence** linking the steps to proof/hearing posture from the bundle.'
+      '- After the 3 actions: "This matters because:" then **one sentence** with trial-facing impact (e.g. "This determines whether…", "This affects whether the Crown can prove…", "This impacts how the jury will assess…") tied to THIS bundle.'
     );
   }
 
