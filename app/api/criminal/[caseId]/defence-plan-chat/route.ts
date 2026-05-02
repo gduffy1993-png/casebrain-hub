@@ -299,9 +299,18 @@ const NEXT_STEP_VARIANTS: Record<IssueType, [string, string, string][]> = {
   ],
 };
 
+/** Stable spread across bundles — raw length collides often (same char count → identical Q10). */
+function hashStringForVariant(s: string): number {
+  let h = 5381;
+  for (let i = 0; i < s.length; i++) {
+    h = (h * 33) ^ s.charCodeAt(i);
+  }
+  return Math.abs(h);
+}
+
 function pickNextStepTriples(issueType: IssueType, bundleHaystack: string): [string, string, string] {
   const variants = NEXT_STEP_VARIANTS[issueType];
-  const idx = bundleHaystack.length % variants.length;
+  const idx = hashStringForVariant(bundleHaystack) % variants.length;
   return variants[idx]!;
 }
 
@@ -434,17 +443,21 @@ function pickDefenceRiskTheme(s: BundleAnswerSignals, bundleHaystack: string): s
   if (s.hasCctvAppearsStrong && !s.hasCctvContinuityRisk) {
     return "cctv_outweighs_account";
   }
-  if (/\bno comment\b/i.test(lower)) {
-    return "adverse_inference_or_partial";
-  }
-  if (s.hasPartialAccountOrSilence && !s.hasIdentificationPressure) {
-    const jitter = ((s.hookLine?.length ?? 0) + bundleHaystack.length) % 3;
-    if (jitter === 0) return "no_alternative_narrative";
-    if (jitter === 1) return "failure_to_displace";
-    return "over_reliance_challenge";
-  }
-  if (s.hasPartialAccountOrSilence) {
-    return "adverse_inference_or_partial";
+  /** Interview bundles almost always mention "no comment" — do not force one theme; rotate like partial-account cases. */
+  const hasInterviewFrailtySignals =
+    s.hasPartialAccountOrSilence ||
+    /\bno comment\b/i.test(lower) ||
+    /\bpartial account\b/i.test(lower);
+
+  if (hasInterviewFrailtySignals) {
+    const themes = [
+      "adverse_inference_or_partial",
+      "failure_to_displace",
+      "over_reliance_challenge",
+      "no_alternative_narrative",
+    ] as const;
+    const idx = hashStringForVariant(compactOneLine(s.hookLine || "") + bundleHaystack) % themes.length;
+    return themes[idx]!;
   }
   return "defence_theory_gap";
 }
@@ -485,7 +498,7 @@ function buildBundleAnswerLayerBlock(mode: QuestionMode, bundleHaystack: string)
         "- Do not use **vs** between MG5 and MG6 when both only describe partial/incomplete/draft — say **combined gap**.",
         "",
         "OPPOSITION PRESSURE (required — after main answer, max 1 extra sentence; constraint-based only):",
-        'After your bullets, output exactly two lines:',
+        "Output this **two-line block** (label line, then sentence line — sentence must **not** start with `-` or `*`):",
         "Pressure point:",
         `- One sentence only: what the Crown can **still rely on in the materials** to meet its burden on this point (sources/types named in the bundle — not trial predictions).`,
         `- Hint (adapt; do not copy verbatim): ${bundlePressurePointStem(s)}`,
@@ -514,9 +527,10 @@ function buildBundleAnswerLayerBlock(mode: QuestionMode, bundleHaystack: string)
       return [
         "",
         "ANSWER CONSTRUCTION (Q9 — defence weakness)",
-        `DEFENCE-RISK THEME HINT (use ONE headline; rotate themes — adverse inference / failure to displace Crown proof / over-reliance on weak challenge — avoid repeating identical sentences across cases): ${theme}`,
+        `DEFENCE-RISK THEME HINT (one headline — locked theme for this bundle: **${theme}**; write to that theme, not a generic adverse-inference / partial-account script):`,
         `- ${themeExplain[theme] ?? themeExplain.defence_theory_gap}`,
         "- Must **not** reuse prosecution-weakness phrasing or mirror Q8 structure; explain how the defence loses **despite** any Crown frailty.",
+        "- Vary bullet wording from other cases: if the theme is **failure_to_displace** or **over_reliance_challenge**, lead with that angle — do **not** paste the same \"partial account / no comment / adverse inference\" triple as every other interview bundle.",
         "- Open with a **direct conclusion** about defence vulnerability — not \"The single biggest weakness is\".",
         "- First line must be a **complete English sentence** starting with a **capital letter** — never raw theme slugs (`identification_jury`, etc.) or broken fragments like \"Identification jury The defence…\".",
         "- Max **2** bullets; only support that headline; -> format.",
@@ -1363,6 +1377,9 @@ function detectSharpAnswerStyleViolations(question: string, reply: string): stri
     }
     if (/\bcan rely on mg11 and cctv\b/i.test(lower) || /\brely on (the )?mg11 (and|&) cctv\b/i.test(lower)) {
       issues.push("pressure point is generic (MG11+CCTV boilerplate) — state how Crown survives the headline weakness on these papers");
+    }
+    if (/\bpressure point:\s*[\n\r]+\s*[-*•]/i.test(trimmed)) {
+      issues.push('Q8: line after "Pressure point:" must be plain prose, not a markdown bullet');
     }
   }
 
