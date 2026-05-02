@@ -179,6 +179,305 @@ function detectQuestionMode(question: string): QuestionMode {
   return "strategy_default";
 }
 
+/** Same slug for Q8 and Q10 — single source of truth from bundle text (stateless). */
+type BundlePrimarySlug =
+  | "identification"
+  | "witness_credibility"
+  | "cctv_integrity"
+  | "disclosure_audio"
+  | "disclosure_general";
+
+/** Normalised issue bucket for Q10 canonical actions — must stay aligned with `BundlePrimarySlug`. */
+type IssueType = "identification" | "cctv" | "999" | "witness" | "continuity" | "other";
+
+/** Heuristic bundle signals for answer construction (prompt injection only; no routing changes). */
+type BundleAnswerSignals = {
+  hookLine: string | null;
+  hasIdentificationPressure: boolean;
+  hasCctvContinuityRisk: boolean;
+  hasCctvAppearsStrong: boolean;
+  has999Gap: boolean;
+  hasWitnessDraftTension: boolean;
+  hasBwvVsWitnessTension: boolean;
+  hasPartialAccountOrSilence: boolean;
+  /** Same key used for Q8 headline guidance and Q10 action lock (string slug). */
+  primaryProsecutionIssue: BundlePrimarySlug;
+  /** Derived category for deterministic Q10 stems — matches Q8 via shared `analyzeBundleAnswerSignals`. */
+  issueType: IssueType;
+};
+
+function mapPrimarySlugToIssueType(slug: BundlePrimarySlug): IssueType {
+  const m: Record<BundlePrimarySlug, IssueType> = {
+    identification: "identification",
+    witness_credibility: "witness",
+    cctv_integrity: "cctv",
+    disclosure_audio: "999",
+    disclosure_general: "other",
+  };
+  return m[slug];
+}
+
+/** Canonical next-step stems per issue type — Q10 must expand these with bundle specifics (Action -> test -> impact). */
+const NEXT_STEP_CANONICAL: Record<IssueType, [string, string, string]> = {
+  identification: [
+    "Obtain full 999 master audio to test ID conditions",
+    "Clarify lighting / visibility / distance factors relevant to identification",
+    "Secure final or signed MG11 for consistency on identification",
+  ],
+  cctv: [
+    "Obtain continuity statement / engineer note for CCTV",
+    "Verify timestamps and extraction completeness against the schedule",
+    "Cross-check CCTV against witness timeline and CAD anchors",
+  ],
+  "999": [
+    "Obtain full 999 master audio (not extract only)",
+    "Compare CAD + 999 for timeline consistency",
+    "Identify discrepancies with MG5 narrative where the bundle flags 999 friction",
+  ],
+  witness: [
+    "Obtain signed MG11",
+    "Compare draft vs final witness statement for material changes",
+    "Test witness account against other evidence (e.g. BWV, CAD) named in the bundle",
+  ],
+  continuity: [
+    "Obtain full continuity statement for disputed exhibits",
+    "Verify chain of evidence handling where the bundle flags continuity risk",
+    "Identify gaps affecting admissibility or weight at trial",
+  ],
+  other: [
+    "Chase the highest-impact MG6 outstanding item tied to the Primary eval hook",
+    "Reconcile MG5 narrative against the served schedule rows referenced in the bundle",
+    "Prepare a short hearing note linking disclosure gaps to the elements in dispute",
+  ],
+};
+
+function analyzeBundleAnswerSignals(bundleHaystack: string): BundleAnswerSignals {
+  const text = bundleHaystack.slice(0, MAX_BUNDLE_FULL_CHARS_FOR_REFS);
+  const lower = text.toLowerCase();
+  const hookLine = firstMatch(text, [/^\s*Primary eval hook:\s*(.+)$/im]);
+  const hookLower = (hookLine || "").toLowerCase();
+
+  const hasIdentificationPressure =
+    /\b(weak id|weak identification|id parade|stills before id|mg6 passenger id|passenger id)\b/i.test(lower) ||
+    /\bweak id\b/i.test(hookLower) ||
+    (/\b(identif|identifying|attribution)\b/i.test(hookLower) &&
+      /\b(weak|dispute|challenge|parade|stills)\b/i.test(hookLower));
+
+  const hasCctvContinuityRisk =
+    /\b(cctv|footage).*\b(partial|continuity|extraction|engineer|incomplete)\b/i.test(lower) ||
+    /\bcontinuity.*(issue|flag|draft)\b/i.test(lower);
+
+  const hasCctvAppearsStrong =
+    /\b(cctv|footage).*\b(tidy|continuity (confirmed|statement)|schedule.*consist)\b/i.test(lower) &&
+    !hasCctvContinuityRisk;
+
+  const has999Gap =
+    /\b999\b.*\b(partial|outstanding|awaited|extract|master audio|tape gap)\b/i.test(lower) ||
+    /\b999 tape gap\b/i.test(lower);
+
+  const hasWitnessDraftTension =
+    /\b(mg11|key witness).*\b(draft|unsigned|possibly draft)\b/i.test(lower) ||
+    /\b(draft|unsigned).*\b(statement|mg11|witness)\b/i.test(lower);
+
+  const hasBwvVsWitnessTension =
+    /\b(bwv|body[-\s]?worn)\b/i.test(lower) && /\b(mg11|witness statement|key witness)\b/i.test(lower);
+
+  const hasPartialAccountOrSilence =
+    /\bpartial account\b/i.test(lower) || /\bno comment\b/i.test(lower) || /\bno comment on\b/i.test(lower);
+
+  let primaryProsecutionIssue: BundlePrimarySlug = "disclosure_general";
+  if (hasIdentificationPressure) primaryProsecutionIssue = "identification";
+  else if (hasBwvVsWitnessTension || hasWitnessDraftTension) primaryProsecutionIssue = "witness_credibility";
+  else if (hasCctvContinuityRisk) primaryProsecutionIssue = "cctv_integrity";
+  else if (has999Gap) primaryProsecutionIssue = "disclosure_audio";
+
+  const issueType = mapPrimarySlugToIssueType(primaryProsecutionIssue);
+
+  return {
+    hookLine,
+    hasIdentificationPressure,
+    hasCctvContinuityRisk,
+    hasCctvAppearsStrong,
+    has999Gap,
+    hasWitnessDraftTension,
+    hasBwvVsWitnessTension,
+    hasPartialAccountOrSilence,
+    primaryProsecutionIssue,
+    issueType,
+  };
+}
+
+/** One-line stems for opposition-pressure prompts — constraint-based, no outcomes stated as facts. */
+function bundlePressurePointStem(s: BundleAnswerSignals): string {
+  switch (s.primaryProsecutionIssue) {
+    case "identification":
+      return "Crown can still rely on corroboration between sources actually named in the bundle (e.g. witness, CCTV, 999 extracts) where those rows appear served.";
+    case "witness_credibility":
+      return "Crown can still rely on final witness statements and body-worn alignment once served as referenced in the schedule.";
+    case "cctv_integrity":
+      return "Crown can still rely on continuity/engineer resolution and timestamp reconciliation once outstanding CCTV rows are served.";
+    case "disclosure_audio":
+      return "Crown can still rely on full master audio and CAD reconciliation once disclosure completes as flagged on MG6.";
+    default:
+      return "Crown can still rely on regularising outstanding disclosure tied to the Primary eval hook before hearing.";
+  }
+}
+
+function bundleProsecutionExploitStem(theme: string): string {
+  const map: Record<string, string> = {
+    identification_jury:
+      "Where attribution is disputed on the papers, Crown can structure proof around consistency across sources actually listed (witness/CCTV/999 rows).",
+    cctv_outweighs_account:
+      "Where the bundle treats CCTV as served or usable, Crown can anchor mechanics on footage notwithstanding defence challenge to completeness.",
+    no_alternative_narrative:
+      "Where the defence account is partial or undeveloped on the bundle, Crown can press absence of a coherent competing mechanics narrative.",
+    adverse_inference_or_partial:
+      "Where interview MG11 notes partial account or no comment, Crown can frame gaps as narrowing innocent explanations consistent with those routes.",
+    defence_theory_gap:
+      "Where MG5 sets out mechanics and defence theory is thin on the papers, Crown can tie facts pleaded to the charged offence elements.",
+  };
+  return map[theme] ?? map.defence_theory_gap;
+}
+
+function bundleThisMattersStem(s: BundleAnswerSignals): string {
+  switch (s.issueType) {
+    case "identification":
+      return "Completing these steps locks whether attribution can be tested fairly against the hook on identification.";
+    case "witness":
+      return "Completing these steps fixes witness/BWV stability — the usual lever where MG11 or BWV is flagged draft or inconsistent.";
+    case "cctv":
+      return "Completing these steps determines whether footage can carry weight once continuity rows are resolved.";
+    case "999":
+      return "Completing these steps determines whether call context and dispatch alignment support the Crown sequence.";
+    case "continuity":
+      return "Completing these steps addresses chain and weight where continuity is the live issue.";
+    default:
+      return "Completing these steps forces the Crown to meet proof on the elements still in play on the papers.";
+  }
+}
+
+function pickDefenceRiskTheme(s: BundleAnswerSignals): string {
+  if (s.hasIdentificationPressure) {
+    return "identification_jury";
+  }
+  if (s.hasCctvAppearsStrong && !s.hasCctvContinuityRisk) {
+    return "cctv_outweighs_account";
+  }
+  if (s.hasPartialAccountOrSilence && !s.hasIdentificationPressure) {
+    return "no_alternative_narrative";
+  }
+  if (s.hasPartialAccountOrSilence) {
+    return "adverse_inference_or_partial";
+  }
+  return "defence_theory_gap";
+}
+
+function buildBundleAnswerLayerBlock(mode: QuestionMode, bundleHaystack: string): string {
+  if (!bundleHaystack.trim()) return "";
+  const s = analyzeBundleAnswerSignals(bundleHaystack);
+
+  const sharedLock = `SHARED LOCK (same bundle inference for Q8 & Q10 — do not drift): primaryProsecutionIssue="${s.primaryProsecutionIssue}" | issueType="${s.issueType}"`;
+
+  const primaryLine = `${sharedLock}. INFERRED PRIMARY PROSECUTION PRESSURE for Q8 (ONE merged headline; bullets only this chain): ${s.primaryProsecutionIssue.toUpperCase().replace(/_/g, " ")}${
+    s.hookLine ? ` — hook: ${compactOneLine(s.hookLine)}` : ""
+  }`;
+
+  const actionMap: Record<BundlePrimarySlug, string> = {
+    identification:
+      "Map actions to ID/timing/corroboration using bundle-named materials only.",
+    witness_credibility:
+      "Map actions to witness/BWV/MG11 alignment using bundle-named materials only.",
+    cctv_integrity:
+      "Map actions to CCTV integrity / timestamps / continuity using bundle-named materials only.",
+    disclosure_audio:
+      "Map actions to 999/CAD audio completeness using bundle-named materials only.",
+    disclosure_general:
+      "Map actions to the strongest MG6/hook row — not a generic disclosure shopping list.",
+  };
+
+  switch (mode) {
+    case "weakness_prosecution":
+      return [
+        "",
+        "ANSWER CONSTRUCTION (Q8 — prosecution weakness)",
+        primaryLine,
+        "- Open with a **direct conclusion** (e.g. \"Identification fails because…\", \"The timeline cannot be anchored because…\") — NOT \"The single biggest weakness is\".",
+        "- Merge related problems into **one** causal opening (e.g. weak ID **because** 999/audio/context incomplete). Do not join unrelated issues with \"and\" in sentence one.",
+        "- Max **2** bullets; each bullet supports **only** that same primary issue; use -> ; ban hedged openers like \"this may undermine / this could affect\".",
+        "- Do not use **vs** between MG5 and MG6 when both only describe partial/incomplete/draft — say **combined gap**.",
+        "",
+        "OPPOSITION PRESSURE (required — after main answer, max 1 extra sentence; constraint-based only):",
+        'After your bullets, output exactly two lines:',
+        "Pressure point:",
+        `- One sentence only: what the Crown can **still rely on in the materials** to meet its burden on this point (sources/types named in the bundle — not trial predictions).`,
+        `- Hint (adapt; do not copy verbatim if inconsistent with excerpt): ${bundlePressurePointStem(s)}`,
+        "- No probabilities, no \"the jury will\", no facts not in the bundle.",
+      ].join("\n");
+    case "weakness_defence": {
+      const theme = pickDefenceRiskTheme(s);
+      const themeExplain: Record<string, string> = {
+        identification_jury:
+          "Lead with how the defence **still loses on identification** (e.g. jury accepts Crown ID; defence cannot exclude the accused) — NOT Crown weak-ID as if it were a defence problem.",
+        cctv_outweighs_account:
+          "Lead with how **objective footage** may dominate a thin/partial defence account if the materials suggest usable CCTV.",
+        no_alternative_narrative:
+          "Lead with **absence of a clear alternative narrative** or an account too thin to displace the Crown story.",
+        adverse_inference_or_partial:
+          "Lead with **adverse inference / partial account / no comment** (bundle-anchored) as the main route the Crown can still win.",
+        defence_theory_gap:
+          "Lead with internal gaps in the defence position as shown in the bundle (not a second list of Crown disclosure frailties).",
+      };
+      return [
+        "",
+        "ANSWER CONSTRUCTION (Q9 — defence weakness)",
+        `DEFENCE-RISK THEME HINT (use ONE headline; vary — do **not** default to partial account/no comment if a higher-priority theme applies): ${theme}`,
+        `- ${themeExplain[theme] ?? themeExplain.defence_theory_gap}`,
+        "- Must **not** reuse prosecution-weakness phrasing or mirror Q8 structure; explain how the defence loses **despite** any Crown frailty.",
+        "- Open with a **direct conclusion** about defence vulnerability — not \"The single biggest weakness is\".",
+        "- Max **2** bullets; only support that headline; -> format.",
+        "",
+        "OPPOSITION PRESSURE (required — after main answer, max 1 extra sentence; constraint-based only):",
+        'After your bullets, output exactly two lines:',
+        "Prosecution exploit:",
+        `- One sentence only: how the Crown can **use the materials** to press that defence weakness (only routes raised by the bundle, e.g. partial account / no comment).`,
+        `- Hint (adapt): ${bundleProsecutionExploitStem(theme)}`,
+        "- No verdict predictions; no invented Crown tactics beyond document types in the excerpt.",
+      ].join("\n");
+    }
+    case "next_steps": {
+      const [a1, a2, a3] = NEXT_STEP_CANONICAL[s.issueType];
+      return [
+        "",
+        "ANSWER CONSTRUCTION (Q10 — next 24 hours)",
+        sharedLock,
+        `Q10 MUST use issueType **${s.issueType}** — the SAME inference as Q8 for this bundle (${s.primaryProsecutionIssue}). Do NOT re-pick a different theme from the excerpt.`,
+        "Use ONLY these three canonical action stems (rewrite into bundle-specific wording; keep the same proof purpose):",
+        `1) ${a1}`,
+        `2) ${a2}`,
+        `3) ${a3}`,
+        `${actionMap[s.primaryProsecutionIssue]}`,
+        "- Output exactly **3** bullets. Each bullet: **Action** -> **what it tests** -> **why it matters** (two -> arrows or equivalent three-part clarity).",
+        "- Forbidden generic ops phrases: \"confirm outstanding items\", \"review materials\", \"review the bundle\", bare \"chase disclosure\" without naming what proof element it serves.",
+        "",
+        "OUTCOME LINK (required — after the 3 bullets, max 1 sentence):",
+        "This matters because:",
+        `- One sentence only: tie the **combined effect** of these actions to proof or hearing posture using bundle hooks (no speculation).`,
+        `- Hint (adapt): ${bundleThisMattersStem(s)}`,
+      ].join("\n");
+    }
+    case "conflict":
+      return [
+        "",
+        "ANSWER CONSTRUCTION (conflict / inconsistencies)",
+        "- If two sources both indicate **partial / incomplete / draft / continuity risk** for the same item, classify as **combined gap**, not **MG5 vs MG6**.",
+        "- Reserve **vs** / \"documents disagree\" for **true** contradiction (incompatible dates, names, served vs not served).",
+        "- One primary headline; max **4** bullets; each distinct.",
+      ].join("\n");
+    default:
+      return "";
+  }
+}
+
 function buildQuestionModeBlock(mode: QuestionMode): string {
   switch (mode) {
     case "allegation":
@@ -222,33 +521,32 @@ function buildQuestionModeBlock(mode: QuestionMode): string {
       return [
         "",
         "QUESTION MODE: weakness_prosecution",
-        "LENS: Why the Crown case may fail or be undermined on these materials (not how the defence loses).",
+        "LENS: Why the Crown case fails or is undermined on these materials (not how the defence loses).",
         "MODE RULES (MANDATORY):",
-        "- Opening sentence = the single biggest prosecution weakness only (dominant issue).",
-        "- At most 2 supporting bullets; each must use -> and must not duplicate the same category (e.g. do not list partial 999 + CAD partial + MG11 draft if they are the same disclosure-completeness theme — collapse into one bullet unless genuinely distinct).",
-        "- Evidence-linked; name documents/lines where possible.",
+        "- **One** merged primary issue in the opening sentence — direct conclusion first (e.g. \"Identification fails because…\"); ban framing clauses like \"The single biggest weakness is\".",
+        "- At most **2** supporting bullets; bullets must only reinforce **that same** issue; merge related gaps into one causal chain.",
+        "- Evidence-linked; name documents/lines where possible; avoid **vs** when sources agree it is partial/incomplete.",
         "- Do not discuss defence weakness here.",
       ].join("\n");
     case "weakness_defence":
       return [
         "",
         "QUESTION MODE: weakness_defence",
-        "LENS: How the defence could still lose — risks to the defendant despite any Crown frailties (not a second prosecution weakness list).",
+        "LENS: How the defence still loses — defendant-side risk despite Crown frailty (not a second prosecution-weakness answer).",
         "MODE RULES (MANDATORY):",
-        "- Opening sentence = the single biggest **defence-side** vulnerability (e.g. thin positive case, partial account / no comment risk, adverse inference, credibility of the defence theory, key witness dependency, legal label / mechanics disputes that hurt the defendant).",
-        "- Do **not** headline Crown-side gaps (e.g. weak identification, contradictory officer summaries, outstanding Crown disclosure) as the defence \"weakness\" — those usually assist the defence unless you add a bridging sentence explaining why the defence still loses anyway (e.g. jury may accept ID; defence cannot exploit inconsistency at trial).",
-        "- Do not reuse wording or mirror the structure of a prosecution-weakness answer; do not repeat the prosecution weakness answer.",
-        "- At most 2 supporting bullets with -> ; each must be defence-risk focused.",
+        "- Opening sentence = **direct** conclusion about defence vulnerability (not \"The single biggest weakness is\").",
+        "- Do **not** headline Crown-side gaps as the defence \"weakness\"; vary headline using ANSWER CONSTRUCTION theme hints — avoid repeating partial-account/no-comment boilerplate when a higher-priority risk applies.",
+        "- Do not reuse prosecution-weakness wording or parallel structure.",
+        "- At most **2** supporting bullets with -> ; defence-risk only.",
       ].join("\n");
     case "next_steps":
       return [
         "",
         "QUESTION MODE: next_steps",
         "MODE RULES (MANDATORY):",
-        "- Give 2–3 concrete actions for the next 24 hours (hard max 3 bullets).",
-        "- Each bullet must follow: **Action** -> **what it secures or tests** -> **why it matters** for proof, disclosure leverage, or the next hearing (not bare \"chase/review/confirm\" admin).",
-        "- Prioritise by impact on outcome; tie each step to a Primary eval hook / MG6 outstanding row / tension in the excerpt where possible.",
-        "- No posture/procedural summary template.",
+        "- **2–3** concrete actions (hard max **3** bullets); derive priorities from the inferred primary prosecution pressure in ANSWER CONSTRUCTION — not a generic disclosure checklist.",
+        "- Each bullet: **Action** -> **what it tests** -> **why it matters** for proof or the next hearing.",
+        "- No bare chase/confirm/review; no posture summary template.",
       ].join("\n");
     default:
       return "";
@@ -919,7 +1217,7 @@ function buildGoldenDeterministicAnswer(
   return null;
 }
 
-function detectFormatViolations(reply: string): string[] {
+function detectFormatViolations(_question: string, reply: string): string[] {
   const issues: string[] = [];
   const trimmed = reply.trim();
   if (!trimmed) return ["empty response"];
@@ -942,6 +1240,105 @@ function detectFormatViolations(reply: string): string[] {
   const hedge = /\b(may|appears|could)\b/i;
   if (hedge.test(trimmed) && !/(not stated|uncertain|insufficient|unknown|not in the materials)/i.test(trimmed)) {
     issues.push("hedging language without explicit uncertainty marker");
+  }
+
+  return issues;
+}
+
+/** Style guardrails for sharp direct answers (Q8/Q9/Q10). */
+function detectSharpAnswerStyleViolations(question: string, reply: string): string[] {
+  const issues: string[] = [];
+  const q = goldenQuestionNorm(question);
+  const trimmed = reply.trim();
+  const lower = trimmed.toLowerCase();
+  const first = trimmed.split(/\r?\n/).find((l) => l.trim().length > 0) || "";
+
+  if (q.includes("weakness in the prosecution case") || q.includes("weakness in the defence case")) {
+    if (/^the single biggest weakness (in the (prosecution|defence) case )?is\b/i.test(first.trim())) {
+      issues.push("start with a direct conclusion sentence; drop the framing clause 'The single biggest weakness is'");
+    }
+    if (/\bthis (may|might|could) (undermine|affect|weaken)\b/i.test(lower)) {
+      issues.push("replace soft consequence clauses ('this may undermine/affect') with direct outcome language grounded in the bundle");
+    }
+    if (
+      /\bmg5\s+vs\s+mg6\b/i.test(lower) &&
+      /partial|incomplete|outstanding|awaited|draft|continuity/i.test(lower)
+    ) {
+      issues.push("prefer combined-gap wording for MG5/MG6 when both flag incompleteness — avoid 'vs'");
+    }
+  }
+
+  return issues;
+}
+
+/** Ensures opposition-pressure footer blocks are present (prompt-required). */
+function detectOppositionLayerViolations(question: string, reply: string): string[] {
+  const issues: string[] = [];
+  const q = goldenQuestionNorm(question);
+  const t = reply.trim();
+
+  if (q.includes("weakness in the prosecution case")) {
+    if (!/\bPressure point:\s*\n\s*\S+/i.test(t) && !/\bPressure point:\s+\S+/i.test(t)) {
+      issues.push('Q8 missing required footer: "Pressure point:" plus one sentence');
+    }
+  }
+  if (q.includes("weakness in the defence case")) {
+    if (!/\bProsecution exploit:\s*\n\s*\S+/i.test(t) && !/\bProsecution exploit:\s+\S+/i.test(t)) {
+      issues.push('Q9 missing required footer: "Prosecution exploit:" plus one sentence');
+    }
+  }
+  if (q.includes("next 24 hours")) {
+    if (!/\bThis matters because:\s*\n\s*\S+/i.test(t) && !/\bThis matters because:\s+\S+/i.test(t)) {
+      issues.push('Q10 missing required footer: "This matters because:" plus one sentence');
+    }
+  }
+
+  return issues;
+}
+
+/** Validator for Q10 — uses same `analyzeBundleAnswerSignals` as Q8 (no drift). */
+function issueTypeAnchorPattern(t: IssueType): RegExp {
+  const p: Record<IssueType, RegExp> = {
+    identification:
+      /\b(identif|identifying|parade|999|description|attribution|witness|mg11|lighting|visibility|distance)\b/i,
+    cctv: /\b(cctv|footage|camera|continuity|engineer|timestamp|extract)\b/i,
+    "999": /\b(999|cad|dispatch|audio|master|nine[-\s]?nine)\b/i,
+    witness: /\b(mg11|witness|statement|bwv|body[-\s]?worn|draft|signed)\b/i,
+    continuity: /\b(continuity|chain|handling|admissib)\b/i,
+    other: /\b(mg6|disclosure|outstanding|schedule|hook|mg5|reconcil)\b/i,
+  };
+  return p[t];
+}
+
+function detectNextStepsViolations(question: string, reply: string, haystack: string): string[] {
+  const issues: string[] = [];
+  const q = goldenQuestionNorm(question);
+  if (!q.includes("next 24 hours") || !haystack.trim()) return issues;
+
+  const lower = reply.toLowerCase();
+  const banned = [
+    /\bconfirm outstanding items\b/i,
+    /\breview materials\b/i,
+    /\breview the bundle\b/i,
+    /\breview served documents\b/i,
+    /\bfollow up on outstanding\b/i,
+    /\bconfirm outstanding\b/i,
+  ];
+  for (const re of banned) {
+    if (re.test(lower)) issues.push("Q10: banned generic ops phrase — tie steps to locked issueType canonical stems");
+  }
+
+  const sig = analyzeBundleAnswerSignals(haystack);
+  if (!issueTypeAnchorPattern(sig.issueType).test(reply)) {
+    issues.push(
+      `Q10 must anchor vocabulary to issueType "${sig.issueType}" / primary "${sig.primaryProsecutionIssue}" (same bundle inference as Q8)`
+    );
+  }
+
+  const lines = reply.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
+  const stepLines = lines.filter((l) => (l.match(/\s->\s/g) ?? []).length >= 2);
+  if (stepLines.length !== 3) {
+    issues.push("Q10 must have exactly 3 lines in Action -> test -> impact form (two -> per line)");
   }
 
   return issues;
@@ -1211,10 +1608,6 @@ function detectWeaknessConflictStepsViolations(question: string, reply: string):
     if (bullets.length > 4) issues.push("conflict question: max 4 bullets; prioritise the single strongest tension in the opening line");
   }
 
-  if (q.includes("next 24 hours")) {
-    if (bullets.length > 3) issues.push("next 24 hours: max 3 action bullets");
-  }
-
   return issues;
 }
 
@@ -1367,20 +1760,25 @@ function buildQuestionSpecificRules(question: string): string {
 
   if (/\bweakness in the prosecution case\b/i.test(q)) {
     rules.push(
-      "- Headline = single biggest Crown weakness; max 2 supporting bullets; bullets must use -> and avoid repeating the same disclosure theme.",
-      "- Do not discuss how the defence might lose."
+      "- **One** primary issue in the opening line (merge related points); start with a direct conclusion; max 2 supporting bullets; -> format.",
+      "- Do not use soft openers (\"The single biggest weakness is\", \"this may undermine\").",
+      "- Do not discuss how the defence might lose.",
+      '- After bullets: required footer exactly — line "Pressure point:" then **one sentence** only (what Crown can still rely on in the materials for this issue). No verdict predictions.'
     );
   }
   if (/\bweakness in the defence case\b/i.test(q)) {
     rules.push(
-      "- Headline = single biggest risk **to the defence** (how the defendant could still lose). Do not headline Crown evidential gaps unless you explain why they still lose the defence.",
-      "- Max 2 supporting bullets with -> ; must not mirror the prosecution-weakness answer."
+      "- Headline = how the defence **still loses** (not Crown weakness); must differ from a prosecution-weakness answer; max 2 bullets with -> .",
+      "- Start with a direct conclusion; follow ANSWER CONSTRUCTION theme hints — do not default to partial account/no comment if another theme is indicated.",
+      "- Do not headline Crown evidential gaps unless you bridge why the defendant still loses.",
+      '- After bullets: required footer exactly — line "Prosecution exploit:" then **one sentence** only (how Crown uses the papers to press that weakness). No verdict predictions.'
     );
   }
   if (/\bnext 24 hours\b/i.test(q)) {
     rules.push(
-      "- 2–3 actions maximum; each bullet: step -> what it secures/tests -> why it matters for proof or the next hearing.",
-      "- Disclose/chase items must state what proof element or leverage they unlock — not admin-only."
+      "- **Max 3** action lines; each ties to ANSWER CONSTRUCTION: Action -> what it tests -> why it matters.",
+      "- No generic disclosure repetition unrelated to that pressure.",
+      '- After the 3 actions: required footer exactly — line "This matters because:" then **one sentence** linking the steps to proof/hearing posture from the bundle.'
     );
   }
 
@@ -1937,8 +2335,14 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   contextParts.push(`Relevant criminal law (use only this):\n${lawBlock}`);
   const questionMode = detectQuestionMode(message);
   const modeInstructions = buildQuestionModeBlock(questionMode);
+  const answerConstructionLayer = buildBundleAnswerLayerBlock(
+    questionMode,
+    combinedBundleFull.trim().length > 0 ? combinedBundleFull : bundleExcerpt
+  );
   const questionSpecificRules =
-    buildQuestionSpecificRules(message) + (modeInstructions ? `\n${modeInstructions}` : "");
+    buildQuestionSpecificRules(message) +
+    (modeInstructions ? `\n${modeInstructions}` : "") +
+    (answerConstructionLayer ? `\n${answerConstructionLayer}` : "");
   const userContent = `${contextParts.join("\n\n")}\n${questionSpecificRules}\n\n---\nSolicitor question:\n${message}`;
 
   const openai = getOpenAIClient();
@@ -2086,13 +2490,16 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
 
   for (let pass = 1; pass <= 2; pass += 1) {
     const allIssues = [
-      ...detectFormatViolations(raw),
+      ...detectFormatViolations(message, raw),
+      ...detectSharpAnswerStyleViolations(message, raw),
+      ...detectOppositionLayerViolations(message, raw),
       ...detectQuestionDisciplineViolations(message, raw),
       ...detectLanguageDisciplineViolations(message, raw),
       ...detectUnsupportedClaimViolations(message, raw, exhibitHaystack),
       ...detectBundleHallucinationViolations(raw, exhibitHaystack, snapshot),
       ...detectQuestionIntentViolations(message, raw),
       ...detectWeaknessConflictStepsViolations(message, raw),
+      ...detectNextStepsViolations(message, raw, exhibitHaystack),
       ...detectCaseSummaryTemplateLeak(message, raw),
     ];
     if (allIssues.length === 0) break;
@@ -2112,6 +2519,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
         "11) Next 24h: max 3 bullets; each bullet ties disclosure/step to proof or hearing consequence.",
         buildQuestionSpecificRules(message),
         modeInstructions,
+        answerConstructionLayer,
         `Current violations: ${allIssues.join("; ")}.`,
       ].join("\n");
       const rewritten = await runChatWithRetry([
@@ -2129,13 +2537,16 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   }
 
   const residualIssues = [
-    ...detectFormatViolations(raw),
+    ...detectFormatViolations(message, raw),
+    ...detectSharpAnswerStyleViolations(message, raw),
+    ...detectOppositionLayerViolations(message, raw),
     ...detectQuestionDisciplineViolations(message, raw),
     ...detectLanguageDisciplineViolations(message, raw),
     ...detectUnsupportedClaimViolations(message, raw, exhibitHaystack),
     ...detectBundleHallucinationViolations(raw, exhibitHaystack, snapshot),
     ...detectQuestionIntentViolations(message, raw),
     ...detectWeaknessConflictStepsViolations(message, raw),
+    ...detectNextStepsViolations(message, raw, exhibitHaystack),
     ...detectCaseSummaryTemplateLeak(message, raw),
   ];
   if (residualIssues.length > 0) {
