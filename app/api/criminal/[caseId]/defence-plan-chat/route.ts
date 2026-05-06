@@ -927,7 +927,9 @@ function isValidNorthshireMg6Rows(rows: Mg6DisclosureRow[]): boolean {
 function buildStrictMg6DisclosureAnswer(bundleFullText: string): string {
   const rows = extractMg6DisclosureRows(bundleFullText);
   if (!isValidNorthshireMg6Rows(rows)) {
-    return "Insufficient detail in the materials to determine MG6 schedule.";
+    return enforceActionFormatThreeLines(
+      "Core point: The MG6 schedule cannot be safely extracted in full from the current bundle, so disclosure status is provisional.\nEvidence reference: MG6 rows are missing, incomplete, or not clearly structured in the available materials.\nNext step: Obtain the full MG6 schedule table and reconcile each category row before advising final disclosure position."
+    );
   }
   return rows.map((r) => `- ${r.category} -> ${r.served}; ${r.outstanding}`).join("\n");
 }
@@ -956,7 +958,9 @@ function extractInterviewSection(bundleFullText: string): string {
 function buildStrictInterviewAnswer(bundleFullText: string): string {
   const section = extractInterviewSection(bundleFullText);
   if (!section.trim()) {
-    return "Insufficient detail in the materials to determine interview position.";
+    return enforceActionFormatThreeLines(
+      "Core point: The interview position cannot be safely confirmed from the current bundle and should be treated as provisional.\nEvidence reference: Interview summary wording is missing or too thin to verify account, denials, or no-comment limbs.\nNext step: Obtain the full interview summary/transcript and map each key limb before advising plea or strategy."
+    );
   }
 
   const lines = section
@@ -1010,7 +1014,9 @@ function buildStrictInterviewAnswer(bundleFullText: string): string {
   }
 
   if (bullets.length === 0) {
-    return "Insufficient detail in the materials to determine interview position.";
+    return enforceActionFormatThreeLines(
+      "Core point: The interview section is present but does not provide a reliable extracted position for advice.\nEvidence reference: Core interview limbs (account/denial/no-comment/disclosure request) are unclear or not explicitly stated.\nNext step: Pull the underlying interview record and verify each limb before final strategy advice."
+    );
   }
 
   return bullets.join("\n");
@@ -1065,7 +1071,9 @@ function buildStrictExhibitReferenceAnswer(question: string, bundleFullText: str
   if (out.length > 0) return out.join("\n");
   if (exhibits.length > 0) return exhibits.map((e) => `- ${e}`).join("\n");
   if (refs.length > 0) return refs.map((r) => `- ${r}`).join("\n");
-  return "Insufficient detail in the materials to determine exhibit/reference details.";
+  return enforceActionFormatThreeLines(
+    "Core point: The bundle reference/exhibit identifiers are not safely extractable from the current materials.\nEvidence reference: Expected EX- codes or bundle reference IDs are missing or incomplete in the visible text.\nNext step: Obtain the full exhibit list/reference page and verify exact IDs before relying on reference-based submissions."
+  );
 }
 
 /** Index-table / category row from fictional bundles — not a concrete disclosure item. */
@@ -2524,12 +2532,16 @@ async function runFastEvalResponse(
   const routed = buildFastEvalKeywordReply(message, snapshot, combinedBundleFull, bundleSlice);
   if (routed) return routed;
   if (bundleSlice.length < 200) {
-    return "Insufficient bundle text to answer.";
+    return enforceActionFormatThreeLines(
+      "Core point: The available bundle text is too limited for a safe case-specific answer.\nEvidence reference: MG5/MG6/MG11/CCTV/CAD/999/interview detail is not sufficiently present in the extracted snippet.\nNext step: Expand the bundle text available to the assistant, then re-run before giving final plea or strategy advice."
+    );
   }
   try {
     return await fastEvalOpenaiOnce(openai, message, bundleSlice);
   } catch {
-    return "Timeout — insufficient time to generate grounded answer.";
+    return enforceActionFormatThreeLines(
+      "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy."
+    );
   }
 }
 
@@ -3006,8 +3018,11 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
 
   const isGeneric = !isGroundedAnswer(reply);
   if (isGeneric) {
+    const forced = enforceActionFormatThreeLines(
+      "Core point: The MG5 summary is not clearly extractable from the current bundle, so prosecution reliance must be treated as inferred rather than confirmed.\nEvidence reference: MG5 reference is missing or incomplete; supporting MG11, CCTV, or CAD linkage not visible in current materials.\nNext step: Obtain the full MG5 summary and cross-check with MG11/CCTV to identify what the prosecution actually relies on."
+    );
     return NextResponse.json(
-      { ok: true, reply: "Not grounded in bundle — requires MG5/MG6/exhibit reference." },
+      { ok: true, reply: forced },
       { status: 200 }
     );
   }

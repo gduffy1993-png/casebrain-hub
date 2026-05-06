@@ -30,6 +30,7 @@ const GOLDEN_QUESTIONS: string[] = [
   "What should be done in the next 24 hours?",
   "What is the biggest risk at trial?",
 ];
+const QUESTION_TIMEOUT_MS = 20000;
 
 export function GoldenEvalRunner() {
   const [running, setRunning] = useState(false);
@@ -101,29 +102,41 @@ export function GoldenEvalRunner() {
             current: `${c.title || c.id} — ${q}`,
           });
           try {
-            const res = await fetch(`/api/criminal/${c.id}/defence-plan-chat`, {
-              method: "POST",
-              credentials: "include",
-              headers: {
-                "Content-Type": "application/json",
-                "x-fast-eval": "1",
-              },
-              body: JSON.stringify({ message: q }),
-            });
-            const json = (await res.json().catch(() => ({}))) as { reply?: string; ok?: boolean; error?: string };
-            nextRows.push({
-              case_id: c.id,
-              case_title: c.title || "Untitled case",
-              question: q,
-              answer: typeof json.reply === "string" ? json.reply : json.error || `HTTP ${res.status}`,
-              ok: res.ok,
-              status: res.status,
-              duration_ms: Date.now() - started,
-              timestamp: new Date().toISOString(),
-              weak: isWeak(typeof json.reply === "string" ? json.reply : json.error || `HTTP ${res.status}`),
-            });
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), QUESTION_TIMEOUT_MS);
+            try {
+              const res = await fetch(`/api/criminal/${c.id}/defence-plan-chat`, {
+                method: "POST",
+                credentials: "include",
+                signal: controller.signal,
+                headers: {
+                  "Content-Type": "application/json",
+                  "x-fast-eval": "1",
+                },
+                body: JSON.stringify({ message: q }),
+              });
+              const json = (await res.json().catch(() => ({}))) as { reply?: string; ok?: boolean; error?: string };
+              nextRows.push({
+                case_id: c.id,
+                case_title: c.title || "Untitled case",
+                question: q,
+                answer: typeof json.reply === "string" ? json.reply : json.error || `HTTP ${res.status}`,
+                ok: res.ok,
+                status: res.status,
+                duration_ms: Date.now() - started,
+                timestamp: new Date().toISOString(),
+                weak: isWeak(typeof json.reply === "string" ? json.reply : json.error || `HTTP ${res.status}`),
+              });
+            } finally {
+              clearTimeout(timeoutId);
+            }
           } catch (e) {
-            const errorText = e instanceof Error ? e.message : String(e);
+            const errorText =
+              e instanceof DOMException && e.name === "AbortError"
+                ? `Timed out after ${QUESTION_TIMEOUT_MS / 1000}s`
+                : e instanceof Error
+                  ? e.message
+                  : String(e);
             nextRows.push({
               case_id: c.id,
               case_title: c.title || "Untitled case",
