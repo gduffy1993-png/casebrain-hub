@@ -961,37 +961,128 @@ function buildStrictMg5EvidenceAnswer(bundleFullText: string): string {
     .map((l) => compactOneLine(l))
     .filter(Boolean);
 
-  const evidenceLines = pickDistinct(
-    lines.filter(
-      (l) =>
-        /(mg11|cctv|cad|999|ex-|exhibit|statement|interview|bwv|forensic|medical|continuity)/i.test(l) &&
-        !/(denies core allegation|alternative explanation|put to proof)/i.test(l)
-    ),
-    2
-  );
+  const defenceNoise = /denies core allegation|alternative explanation|put to proof/i;
 
-  const evidenceTags = new Set<string>();
-  for (const ln of evidenceLines) {
-    if (/mg11/i.test(ln)) evidenceTags.add("MG11");
-    if (/cctv/i.test(ln)) evidenceTags.add("CCTV");
-    if (/\bcad\b/i.test(ln)) evidenceTags.add("CAD");
-    if (/\b999\b/i.test(ln)) evidenceTags.add("999");
-    if (/ex-|exhibit/i.test(ln)) evidenceTags.add("EX references");
-    if (/interview|bwv/i.test(ln)) evidenceTags.add("interview/BWV");
-    if (/forensic|medical/i.test(ln)) evidenceTags.add("forensic/medical");
-    if (/continuity/i.test(ln)) evidenceTags.add("continuity material");
+  const hasSourceSignal = (l: string) =>
+    /\bmg\s*11\b|\bmg11\b|\bcctv\b|\bcad\b|\b999\b|\bbwv\b|ex-[a-z0-9-]+|\bexhibit\b|\binterview\b|\bforensic\b|\bmedical\b|\bcontinuity\b/i.test(
+      l
+    );
+
+  const isFrictionOrHookLabelLine = (l: string) =>
+    /^\s*grounds\s+for\s+dispute|^\s*friction\s*\(fiction\)|primary\s+eval\s+hook/i.test(l.trim());
+
+  /** Prefer quotable source-oriented lines; drop friction/hook preambles from the reference text when present. */
+  function formatMg5EvidenceRefLine(l: string): string {
+    const stripped = l
+      .replace(/^\s*grounds\s+for\s+dispute\s*\/\s*friction\s*\(fiction\)\s*:\s*/i, "")
+      .replace(/^\s*friction\s*\(fiction\)\s*:\s*/i, "")
+      .trim();
+    return stripped.length > 0 ? stripped : l;
   }
 
-  if (evidenceLines.length === 0 || evidenceTags.size === 0) {
+  function mg5RefLineScore(l: string): number {
+    let s = 0;
+    const t = l.trim();
+    if (!isFrictionOrHookLabelLine(t)) s += 2;
+    if (/cctv\s*\/\s*tech|injury narrative|\bmg\s*11\b|\bmg11\b/i.test(t)) s += 1;
+    return s;
+  }
+
+  const candidates = lines.filter((l) => hasSourceSignal(l) && !defenceNoise.test(l));
+  const ranked = [...candidates].sort((a, b) => mg5RefLineScore(b) - mg5RefLineScore(a));
+  const evidenceLinesRaw = pickDistinct(ranked.length > 0 ? ranked : candidates, 2);
+  const evidenceLines = evidenceLinesRaw.map(formatMg5EvidenceRefLine);
+
+  type Mg5EvidenceTags = {
+    cctv: boolean;
+    mg11: boolean;
+    cad: boolean;
+    n999: boolean;
+    bwv: boolean;
+    ex: boolean;
+    interview: boolean;
+    med: boolean;
+    cont: boolean;
+  };
+
+  const tags: Mg5EvidenceTags = {
+    cctv: false,
+    mg11: false,
+    cad: false,
+    n999: false,
+    bwv: false,
+    ex: false,
+    interview: false,
+    med: false,
+    cont: false,
+  };
+
+  const linesForTags = candidates.length > 0 ? candidates : ranked;
+  for (const ln of linesForTags) {
+    if (/\bmg\s*11\b|\bmg11\b/i.test(ln)) tags.mg11 = true;
+    if (/\bcctv\b/i.test(ln)) tags.cctv = true;
+    if (/\bcad\b/i.test(ln)) tags.cad = true;
+    if (/\b999\b/i.test(ln)) tags.n999 = true;
+    if (/\bbwv\b/i.test(ln)) tags.bwv = true;
+    if (/ex-[a-z0-9-]+|\bexhibit\b/i.test(ln)) tags.ex = true;
+    if (/\binterview\b/i.test(ln)) tags.interview = true;
+    if (/\bforensic\b|\bmedical\b|injury narrative/i.test(ln)) tags.med = true;
+    if (/\bcontinuity\b/i.test(ln)) tags.cont = true;
+  }
+
+  if (evidenceLines.length === 0 || linesForTags.length === 0) {
     return enforceActionFormatThreeLines(
       "Core point: The MG5 summary is not clearly extractable from the current bundle, so prosecution reliance must be treated as inferred rather than confirmed.\nEvidence reference: MG5 reference is missing or incomplete; supporting MG11, CCTV, or CAD linkage not visible in current materials.\nNext step: Obtain the full MG5 summary and cross-check with MG11/CCTV to identify what the prosecution actually relies on."
     );
   }
 
-  const tagLine = Array.from(evidenceTags).slice(0, 4).join(", ");
+  const relianceParts: string[] = [];
+  if (tags.cctv) relianceParts.push("CCTV on visual coverage and timings");
+  if (tags.mg11) relianceParts.push("MG11 on the witness account");
+  if (tags.n999 || tags.cad) relianceParts.push("999 and CAD on call and dispatch chronology");
+  if (tags.med) relianceParts.push("medical and forensic material on injury and causation");
+  if (tags.cont) relianceParts.push("continuity and extraction");
+  if (tags.bwv || tags.interview) relianceParts.push("interview and BWV on what was said at the station");
+  if (tags.ex) relianceParts.push("served exhibits");
+
+  const coreBody =
+    relianceParts.length > 0
+      ? `MG5 on these papers frames Crown reliance around ${relianceParts.slice(0, 4).join("; ")}; treat that framing as unchecked until matched to the underlying items.`
+      : "MG5 points to documentary support in the bundle, but the categories are not labelled clearly enough to paraphrase safely.";
+
   const refLine = evidenceLines.join(" | ");
+
+  const nextChunks: string[] = [];
+  if (tags.cctv || tags.cont) {
+    nextChunks.push("check CCTV continuity, timestamps, and extraction notes against the schedule");
+  }
+  if (tags.mg11) {
+    nextChunks.push("compare MG11 with CCTV, 999, and CAD to test consistency on sequence and detail");
+  }
+  if (tags.n999 || tags.cad) {
+    nextChunks.push("secure full 999 audio and fuller CAD logs, then reconcile timings with MG5");
+  }
+  if (tags.med) {
+    nextChunks.push("confirm injury threshold and causation against the cited medical or forensic records");
+  }
+  if ((tags.bwv || tags.interview) && nextChunks.length < 2) {
+    nextChunks.push("read interview or BWV alongside MG5 lines so Crown reliance is not assumed beyond the text");
+  }
+  if (tags.ex && nextChunks.length === 0) {
+    nextChunks.push("confirm each MG5-linked exhibit reference is served and corresponds to the live schedule");
+  }
+
+  let nextStep: string;
+  if (nextChunks.length > 0) {
+    const body = nextChunks.slice(0, 2).join("; ");
+    nextStep = `Next step: ${body.charAt(0).toUpperCase()}${body.slice(1)}.`;
+  } else {
+    nextStep =
+      "Next step: Obtain the full MG5 and map each cited source line before plea or trial strategy.";
+  }
+
   return enforceActionFormatThreeLines(
-    `Core point: On the current papers, MG5 appears to rely on ${tagLine}; this remains provisional until the full MG5 narrative is confirmed.\nEvidence reference: ${refLine}\nNext step: Cross-check the MG5 reliance points against MG11/CCTV/CAD/999 source material and confirm any missing supporting item before final strategy advice.`
+    `Core point: ${coreBody}\nEvidence reference: ${refLine}\n${nextStep}`
   );
 }
 
