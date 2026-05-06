@@ -89,9 +89,9 @@ const MAX_EVIDENCE_CHARS = 1200;
 const MAX_TIMELINE_CHARS = 500;
 const LAW_CHUNKS_LIMIT = 4;
 const MAX_OUTPUT_TOKENS = 1400;
-/** Extra attempts with exponential backoff after SDK retries (helps 429 / transient API overload). */
-const OPENAI_RETRY_ATTEMPTS = 6;
-const OPENAI_RETRY_BASE_DELAY_MS = 2000;
+/** Extra attempts with exponential backoff after SDK retries (helps 429 / transient API overload). Kept modest so normal chat does not wait minutes on failures. */
+const OPENAI_RETRY_ATTEMPTS = 4;
+const OPENAI_RETRY_BASE_DELAY_MS = 900;
 /** Model context budget; truncation uses head+tail so Reference + exhibit list survive. */
 const MAX_BUNDLE_EXCERPT_CHARS = 24_000;
 /** Hard cap on raw bundle text used for ref extraction / post-process (avoid huge rows). */
@@ -2535,11 +2535,15 @@ STRICT:
 
 /** Hard cap for fast-eval OpenAI abort (ms). */
 const FAST_EVAL_OPENAI_MS = 9_000;
+/** x-eval-mode:1 — target ~20s end-to-end (smaller context + single LLM call + tighter timeout). */
+const EVAL_MODE_OPENAI_MS = 18_000;
+const EVAL_MODE_MAX_TOKENS = 200;
 
 /** Fast-eval only: bundle head + deduped keyword-matched lines, capped ~3000 chars (normal mode unchanged). */
-function buildFastEvalBundleSlice(bundle: string): string {
-  const MAX_HEAD = 2000;
-  const MAX_TOTAL = 3000;
+function buildFastEvalBundleSlice(bundle: string, aggressive = false): string {
+  const MAX_HEAD = aggressive ? 1000 : 2000;
+  const MAX_TOTAL = aggressive ? 1400 : 3000;
+  const maxMatchedLines = aggressive ? 30 : 50;
 
   const head = (bundle || "").slice(0, MAX_HEAD);
 
@@ -2552,7 +2556,7 @@ function buildFastEvalBundleSlice(bundle: string): string {
     const l = line.toLowerCase();
     if (keywords.some((k) => l.includes(k.toLowerCase()))) {
       matchedSet.add(line.trim());
-      if (matchedSet.size >= 50) break;
+      if (matchedSet.size >= maxMatchedLines) break;
     }
   }
 
@@ -2563,10 +2567,19 @@ function buildFastEvalBundleSlice(bundle: string): string {
   return combined;
 }
 
-/** Sends only system (one line) + user message = question + bundle snippet (no other context). */
-async function fastEvalOpenaiOnce(openai: OpenAIClient, message: string, bundleSlice: string): Promise<string> {
+type FastEvalOpenAIOpts = { timeoutMs?: number; maxTokens?: number };
+
+/** Sends only system (one line) + user message = question + bundle snippet (no other context). Single attempt — no retry loop. */
+async function fastEvalOpenaiOnce(
+  openai: OpenAIClient,
+  message: string,
+  bundleSlice: string,
+  callOpts?: FastEvalOpenAIOpts
+): Promise<string> {
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), FAST_EVAL_OPENAI_MS);
+  const ms = callOpts?.timeoutMs ?? FAST_EVAL_OPENAI_MS;
+  const maxTok = callOpts?.maxTokens ?? 250;
+  const timeout = setTimeout(() => controller.abort(), ms);
   const userContent = `Question:\n${message}\n\nBundle:\n${bundleSlice}`;
 
   try {
@@ -2577,7 +2590,7 @@ async function fastEvalOpenaiOnce(openai: OpenAIClient, message: string, bundleS
           { role: "system", content: FAST_EVAL_SYSTEM_PROMPT },
           { role: "user", content: userContent },
         ],
-        max_tokens: 250,
+        max_tokens: maxTok,
         temperature: 0,
       },
       { signal: controller.signal }
@@ -2661,14 +2674,22 @@ function buildFastEvalKeywordReply(
   return null;
 }
 
-/** Rule-based routes first; else one LLM call — never uses contextParts, law, or long instruction blocks. */
+type FastEvalRunOpts = {
+  /** Smaller bundle slice (x-eval-mode) for latency. */
+  aggressiveSlice?: boolean;
+  openaiTimeoutMs?: number;
+  maxTokens?: number;
+};
+
+/** Rule-based routes first; else one LLM call — never uses contextParts, law, or long instruction blocks. No multi-retry backoff. */
 async function runFastEvalResponse(
   message: string,
   snapshot: CaseSnapshot | null,
   combinedBundleFull: string,
-  openai: OpenAIClient
+  openai: OpenAIClient,
+  opts?: FastEvalRunOpts
 ): Promise<string> {
-  const bundleSlice = buildFastEvalBundleSlice(combinedBundleFull || "");
+  const bundleSlice = buildFastEvalBundleSlice(combinedBundleFull || "", Boolean(opts?.aggressiveSlice));
   const routed = buildFastEvalKeywordReply(message, snapshot, combinedBundleFull, bundleSlice);
   if (routed) return routed;
   if (bundleSlice.length < 200) {
@@ -2677,7 +2698,10 @@ async function runFastEvalResponse(
     );
   }
   try {
-    return await fastEvalOpenaiOnce(openai, message, bundleSlice);
+    return await fastEvalOpenaiOnce(openai, message, bundleSlice, {
+      timeoutMs: opts?.openaiTimeoutMs,
+      maxTokens: opts?.maxTokens,
+    });
   } catch {
     return enforceActionFormatThreeLines(
       "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy."
@@ -2691,6 +2715,9 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   const isEvalBypass = isEvalBypassRequest(request);
   /** Optional: minimal latency path for eval — skips law chunks, long prompts, and multi-retry LLM. */
   const isFastEval = request.headers.get("x-fast-eval") === "1";
+  /** In-app / bulk eval: tight bundle + single LLM attempt + no law/changelog (same fast-eval pipeline). */
+  const isEvalMode = request.headers.get("x-eval-mode") === "1";
+  const isLightweightEvalLlm = isFastEval || isEvalMode;
 
   const supabase = getSupabaseAdminClient();
 
@@ -2747,37 +2774,55 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   const evidenceSummary = typeof body.evidenceSummary === "string" ? body.evidenceSummary.slice(0, MAX_EVIDENCE_CHARS) : "";
   const timelineSummary = typeof body.timelineSummary === "string" ? body.timelineSummary.slice(0, MAX_TIMELINE_CHARS) : "";
 
-  // Single source of truth: unified case state snapshot (no cache). Narrative fetched separately and is never authoritative.
+  // Snapshot, narrative row, and documents load in parallel — previously sequential and added felt latency on every question.
   let sourceOfTruthBlock = "";
   let narrativeBlock = "";
   let snapshot: Awaited<ReturnType<typeof getCaseStateSnapshot>> | null = null;
+  let bundleExcerpt = "";
+  let combinedBundleFull = "";
   try {
-    snapshot = await getCaseStateSnapshot(caseId, orgId);
-    const truthLines: string[] = [
-      "CASE STATE SNAPSHOT (strategy / stance / stage; document facts in bundle excerpt may override offence wording for 'what the papers say' questions):",
-    ];
-    if (snapshot.offence_detected_code || snapshot.offence_detected_label)
-      truthLines.push(`OFFENCE: ${[snapshot.offence_detected_code, snapshot.offence_detected_label].filter(Boolean).join(" — ")}`);
-    if (snapshot.stance_detected) truthLines.push(`STANCE: ${snapshot.stance_detected}`);
-    if (snapshot.stage_detected) truthLines.push(`STAGE: ${snapshot.stage_detected}`);
-    if (snapshot.strategy_committed_primary)
-      truthLines.push(`STRATEGY: ${snapshot.strategy_committed_primary}${snapshot.strategy_committed_secondary.length ? ` (fallbacks: ${snapshot.strategy_committed_secondary.join(", ")})` : ""}${snapshot.strategy_committed_at ? ` (committed)` : ""}`);
-    if (truthLines.length > 1) {
-      sourceOfTruthBlock = truthLines.join("\n");
+    const [snap, docsResult, narrativeResult] = await Promise.all([
+      getCaseStateSnapshot(caseId, orgId).catch(() => null),
+      supabase
+        .from("documents")
+        .select("raw_text, extracted_json")
+        .eq("case_id", caseId)
+        .order("updated_at", { ascending: false }),
+      supabase
+        .from("criminal_cases")
+        .select("agreed_summary_detailed, case_theory_line")
+        .eq("id", caseId)
+        .eq("org_id", orgId)
+        .maybeSingle(),
+    ]);
+
+    if (snap) {
+      snapshot = snap;
+      const truthLines: string[] = [
+        "CASE STATE SNAPSHOT (strategy / stance / stage; document facts in bundle excerpt may override offence wording for 'what the papers say' questions):",
+      ];
+      if (snapshot.offence_detected_code || snapshot.offence_detected_label)
+        truthLines.push(`OFFENCE: ${[snapshot.offence_detected_code, snapshot.offence_detected_label].filter(Boolean).join(" — ")}`);
+      if (snapshot.stance_detected) truthLines.push(`STANCE: ${snapshot.stance_detected}`);
+      if (snapshot.stage_detected) truthLines.push(`STAGE: ${snapshot.stage_detected}`);
+      if (snapshot.strategy_committed_primary)
+        truthLines.push(`STRATEGY: ${snapshot.strategy_committed_primary}${snapshot.strategy_committed_secondary.length ? ` (fallbacks: ${snapshot.strategy_committed_secondary.join(", ")})` : ""}${snapshot.strategy_committed_at ? ` (committed)` : ""}`);
+      if (truthLines.length > 1) {
+        sourceOfTruthBlock = truthLines.join("\n");
+      } else {
+        sourceOfTruthBlock =
+          "CASE STATE SNAPSHOT: No detected offence, stance, or stage for this case yet. Use the bundle excerpt and disclosed case facts, and mark any uncertainty explicitly.";
+      }
     } else {
       sourceOfTruthBlock =
         "CASE STATE SNAPSHOT: No detected offence, stance, or stage for this case yet. Use the bundle excerpt and disclosed case facts, and mark any uncertainty explicitly.";
     }
 
-    const { data: narrativeRow } = await supabase
-      .from("criminal_cases")
-      .select("agreed_summary_detailed, case_theory_line")
-      .eq("id", caseId)
-      .eq("org_id", orgId)
-      .maybeSingle();
-    const nr = narrativeRow as { agreed_summary_detailed?: string | null; case_theory_line?: string | null } | null;
-    const detailed = nr?.agreed_summary_detailed?.trim();
-    const theory = nr?.case_theory_line?.trim();
+    const narrativeRow = narrativeResult.data as
+      | { agreed_summary_detailed?: string | null; case_theory_line?: string | null }
+      | null;
+    const detailed = narrativeRow?.agreed_summary_detailed?.trim();
+    const theory = narrativeRow?.case_theory_line?.trim();
     const narrativeParts: string[] = [];
     if (theory) narrativeParts.push(`Case theory line: ${theory}`);
     if (detailed)
@@ -2785,19 +2830,8 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
         `Agreed case summary (narrative only; if it conflicts with verbatim bundle excerpt or pasted charge/MG text, prefer the documents):\n${detailed.slice(0, 1500)}`
       );
     if (narrativeParts.length) narrativeBlock = narrativeParts.join("\n\n");
-  } catch {
-    // non-fatal
-  }
 
-  // Bundle excerpt so the model can reason from actual document wording (MG5, charges, key facts)
-  let bundleExcerpt = "";
-  let combinedBundleFull = "";
-  try {
-    const { data: docs } = await supabase
-      .from("documents")
-      .select("raw_text, extracted_json")
-      .eq("case_id", caseId)
-      .order("updated_at", { ascending: false });
+    const docs = docsResult.data;
     if (docs?.length) {
       combinedBundleFull = docs.map((d) => getDocumentTextForChat(d)).filter(Boolean).join("\n\n");
       const capped = combinedBundleFull.slice(0, MAX_BUNDLE_FULL_CHARS_FOR_REFS);
@@ -2839,9 +2873,16 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     return NextResponse.json({ ok: true, reply }, { status: 200 });
   }
 
-  if (isFastEval) {
+  if (isLightweightEvalLlm) {
     const openai = getOpenAIClient();
-    let reply = await runFastEvalResponse(message, snapshot, combinedBundleFull, openai);
+    const fastEvalOpts: FastEvalRunOpts | undefined = isEvalMode
+      ? {
+          aggressiveSlice: true,
+          openaiTimeoutMs: EVAL_MODE_OPENAI_MS,
+          maxTokens: EVAL_MODE_MAX_TOKENS,
+        }
+      : undefined;
+    let reply = await runFastEvalResponse(message, snapshot, combinedBundleFull, openai, fastEvalOpts);
     reply = enforceActionFormatThreeLines(reply);
 
     const isGeneric = !isGroundedAnswer(reply);
@@ -2872,7 +2913,10 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   const lawQuery = snapshot?.offence_detected_label
     ? `${message} ${snapshot.offence_detected_label}`.trim()
     : message;
-  const lawChunks = isEvalBypass ? [] : await retrieveLawChunks(lawQuery, LAW_CHUNKS_LIMIT);
+  const [lawChunks, changeList] = await Promise.all([
+    isEvalBypass ? Promise.resolve([] as Awaited<ReturnType<typeof retrieveLawChunks>>) : retrieveLawChunks(lawQuery, LAW_CHUNKS_LIMIT),
+    getChangeListForContext(supabase, caseId, orgId),
+  ]);
   const lawBlock =
     lawChunks.length > 0
       ? lawChunks
@@ -2881,8 +2925,6 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       : isEvalBypass
         ? "(Eval run: law corpus retrieval disabled — rely on bundle excerpt and case state snapshot only.)"
         : "(No matching law chunks in corpus for this question.)";
-
-  const changeList = await getChangeListForContext(supabase, caseId, orgId);
 
   const contextParts: string[] = [];
   if (bundleHeadlineBlock) {

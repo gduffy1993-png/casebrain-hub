@@ -30,7 +30,21 @@ const GOLDEN_QUESTIONS: string[] = [
   "What should be done in the next 24 hours?",
   "What is the biggest risk at trial?",
 ];
-const QUESTION_TIMEOUT_MS = 20000;
+/** Fast-eval is lighter than full chat but cold starts + network need headroom; 20s caused frequent false aborts. */
+const QUESTION_TIMEOUT_MS = 90_000;
+
+function formatGoldenFetchError(e: unknown, timeoutMs: number): string {
+  if (typeof DOMException !== "undefined" && e instanceof DOMException && e.name === "AbortError") {
+    return `Timed out after ${Math.round(timeoutMs / 1000)}s (browser limit).`;
+  }
+  if (e instanceof Error) {
+    if (e.name === "AbortError" || /signal is aborted|aborted without reason/i.test(e.message)) {
+      return `Timed out after ${Math.round(timeoutMs / 1000)}s (browser limit).`;
+    }
+    return e.message;
+  }
+  return String(e);
+}
 
 export function GoldenEvalRunner() {
   const [running, setRunning] = useState(false);
@@ -112,6 +126,7 @@ export function GoldenEvalRunner() {
                 headers: {
                   "Content-Type": "application/json",
                   "x-fast-eval": "1",
+                  "x-eval-mode": "1",
                 },
                 body: JSON.stringify({ message: q }),
               });
@@ -131,12 +146,7 @@ export function GoldenEvalRunner() {
               clearTimeout(timeoutId);
             }
           } catch (e) {
-            const errorText =
-              e instanceof DOMException && e.name === "AbortError"
-                ? `Timed out after ${QUESTION_TIMEOUT_MS / 1000}s`
-                : e instanceof Error
-                  ? e.message
-                  : String(e);
+            const errorText = formatGoldenFetchError(e, QUESTION_TIMEOUT_MS);
             nextRows.push({
               case_id: c.id,
               case_title: c.title || "Untitled case",

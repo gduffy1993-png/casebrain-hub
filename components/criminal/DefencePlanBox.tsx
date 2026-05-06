@@ -31,6 +31,22 @@ const CHAT_COMMAND_PROMPTS: Record<string, string> = {
 const CHAT_STORAGE_KEY_PREFIX = "casebrain:defence-plan-chat:";
 const MAX_CHAT_HISTORY_MESSAGES = 80;
 
+/** Bulk-eval hits full defence-plan-chat (DB + law + LLM). 80s often aborted before the server finished → "signal is aborted without reason". */
+const BULK_EVAL_FETCH_TIMEOUT_MS = 150_000;
+
+function formatBulkEvalFetchError(e: unknown, timeoutMs: number): string {
+  if (typeof DOMException !== "undefined" && e instanceof DOMException && e.name === "AbortError") {
+    return `Timed out after ${Math.round(timeoutMs / 1000)}s (browser limit).`;
+  }
+  if (e instanceof Error) {
+    if (e.name === "AbortError" || /signal is aborted|aborted without reason/i.test(e.message)) {
+      return `Timed out after ${Math.round(timeoutMs / 1000)}s (browser limit).`;
+    }
+    return e.message;
+  }
+  return "Unknown error";
+}
+
 type DefencePlanBoxProps = {
   caseId: string;
   /** Plan from StrategyCommitmentPanel (built from committed strategy + coordinator). Null when not committed or not yet loaded. */
@@ -284,12 +300,12 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
       const maxAttempts = 3;
       for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 80_000);
+        const timeoutId = setTimeout(() => controller.abort(), BULK_EVAL_FETCH_TIMEOUT_MS);
         try {
           const res = await fetch(`/api/criminal/${targetCaseId}/defence-plan-chat`, {
             method: "POST",
             credentials: "include",
-            headers: { "Content-Type": "application/json" },
+            headers: { "Content-Type": "application/json", "x-eval-mode": "1" },
             body: JSON.stringify({ message: question }),
             signal: controller.signal,
           });
@@ -306,7 +322,7 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
         } catch (e) {
           if (attempt === maxAttempts) {
             clearTimeout(timeoutId);
-            return { answer: "", error: e instanceof Error ? e.message : "Unknown error" };
+            return { answer: "", error: formatBulkEvalFetchError(e, BULK_EVAL_FETCH_TIMEOUT_MS) };
           }
         } finally {
           clearTimeout(timeoutId);
