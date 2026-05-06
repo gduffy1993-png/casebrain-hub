@@ -203,6 +203,11 @@ const NAV_ITEMS: NavItem[] = [
     icon: <Search className="h-4 w-4" />,
   },
   {
+    label: "Golden Sweep",
+    href: "/eval",
+    icon: <BarChart2 className="h-4 w-4" />,
+  },
+  {
     label: "Bin",
     href: "/bin",
     icon: <Trash2 className="h-4 w-4" />,

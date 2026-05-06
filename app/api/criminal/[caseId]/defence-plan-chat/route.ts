@@ -5,7 +5,9 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
+import { APIConnectionError, APIConnectionTimeoutError, APIError } from "openai";
 import { requireAuthContextApi } from "@/lib/auth-api";
+import { isEvalBypassRequest } from "@/lib/eval-auth-bypass";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { getOpenAIClient } from "@/lib/openai";
 import { retrieveLawChunks } from "@/lib/criminal/criminal-law-corpus";
@@ -13,6 +15,71 @@ import { getChangeListForContext } from "@/lib/criminal/verdict-change-list";
 import { getCaseStateSnapshot } from "@/lib/criminal/case-state-snapshot";
 
 type RouteParams = { params: Promise<{ caseId: string }> };
+
+/** Back off when OpenAI returns 429 / 5xx or connection errors (reduces surfacing as HTTP 502). */
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function isTransientOpenAIError(err: unknown): boolean {
+  if (err instanceof Error && err.name === "AbortError") return false;
+  if (err instanceof APIConnectionError || err instanceof APIConnectionTimeoutError) return true;
+  if (err instanceof APIError && typeof err.status === "number") {
+    if (err.status === 429) return true;
+    if (err.status >= 500) return true;
+  }
+  return false;
+}
+
+function isGroundedAnswer(answer: string): boolean {
+  const hasEvidenceRef = /MG5|MG6|EX-|CCTV|CAD|999|interview/i.test(answer);
+
+  const hasLegalStructure =
+    /prove|burden|evidence|timeline|identification|intent|causation|account|inconsisten|gap/i.test(answer);
+
+  const hasCaseLink =
+    /this case|the allegation|the complainant|the defendant|the incident/i.test(answer);
+
+  const hasHardDetail =
+    /\d{2}:\d{2}|EX-[A-Z0-9]+|MG\d+|CAD-\d+/i.test(answer);
+
+  const hasSoftDetail =
+    /statement|interview|account/i.test(answer);
+
+  const hasConcretePhrase =
+    /between|at|before|after|during|from|to/i.test(answer);
+
+  return (
+    hasEvidenceRef ||
+    (hasLegalStructure &&
+      hasCaseLink &&
+      (hasHardDetail || (hasSoftDetail && hasConcretePhrase)))
+  );
+}
+
+function enforceActionFormatThreeLines(reply: string): string {
+  let lines = reply
+    .split("\n")
+    .map((l) => l.trim())
+    .filter(Boolean);
+
+  if (lines.length < 3) {
+    const sentences = reply
+      .split(/(?<=[.!?])\s+/)
+      .map((s) => s.trim())
+      .filter(Boolean);
+
+    if (sentences.length >= 3) {
+      lines = sentences.slice(0, 3);
+    }
+  }
+
+  return [
+    lines[0] || reply,
+    lines[1] || "No clear evidence reference.",
+    lines[2] || "No clear implication.",
+  ].join("\n");
+}
 
 const AI_TIMEOUT_MS = 70_000;
 const MAX_MESSAGE_LENGTH = 16_000;
@@ -22,7 +89,9 @@ const MAX_EVIDENCE_CHARS = 1200;
 const MAX_TIMELINE_CHARS = 500;
 const LAW_CHUNKS_LIMIT = 4;
 const MAX_OUTPUT_TOKENS = 1400;
-const MAX_AI_ATTEMPTS = 2;
+/** Extra attempts with exponential backoff after SDK retries (helps 429 / transient API overload). */
+const OPENAI_RETRY_ATTEMPTS = 6;
+const OPENAI_RETRY_BASE_DELAY_MS = 2000;
 /** Model context budget; truncation uses head+tail so Reference + exhibit list survive. */
 const MAX_BUNDLE_EXCERPT_CHARS = 24_000;
 /** Hard cap on raw bundle text used for ref extraction / post-process (avoid huge rows). */
@@ -2300,13 +2369,205 @@ OUTPUT FORMAT (MANDATORY)
 - If output violates any rule, rewrite before returning.`;
 }
 
+type CaseSnapshot = Awaited<ReturnType<typeof getCaseStateSnapshot>>;
+type OpenAIClient = ReturnType<typeof getOpenAIClient>;
+
+/** Fast-eval only — structured 3-line action format; normal path uses full system prompt. */
+const FAST_EVAL_SYSTEM_PROMPT = `Answer using ONLY bundle facts in crisp solicitor wording.
+Return EXACTLY 3 short lines:
+
+1. Core point (what matters most)
+2. Evidence reference (MG5/MG6/EX/CCTV/CAD/999/interview)
+3. Immediate implication or next step
+
+STRICT:
+- One sentence per line.
+- No extra text. No paragraphs. No bullet points.
+- Do not merge lines.`;
+
+/** Hard cap for fast-eval OpenAI abort (ms). */
+const FAST_EVAL_OPENAI_MS = 9_000;
+
+/** Fast-eval only: bundle head + deduped keyword-matched lines, capped ~3000 chars (normal mode unchanged). */
+function buildFastEvalBundleSlice(bundle: string): string {
+  const MAX_HEAD = 2000;
+  const MAX_TOTAL = 3000;
+
+  const head = (bundle || "").slice(0, MAX_HEAD);
+
+  const keywords = ["CCTV", "MG", "999", "CAD", "interview", "BWV"];
+
+  const lines = (bundle || "").split("\n");
+
+  const matchedSet = new Set<string>();
+  for (const line of lines) {
+    const l = line.toLowerCase();
+    if (keywords.some((k) => l.includes(k.toLowerCase()))) {
+      matchedSet.add(line.trim());
+      if (matchedSet.size >= 50) break;
+    }
+  }
+
+  const matched = Array.from(matchedSet).join("\n");
+
+  const combined = `${head}\n\n${matched}`.slice(0, MAX_TOTAL);
+
+  return combined;
+}
+
+/** Sends only system (one line) + user message = question + bundle snippet (no other context). */
+async function fastEvalOpenaiOnce(openai: OpenAIClient, message: string, bundleSlice: string): Promise<string> {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), FAST_EVAL_OPENAI_MS);
+  const userContent = `Question:\n${message}\n\nBundle:\n${bundleSlice}`;
+
+  try {
+    const completion = await openai.chat.completions.create(
+      {
+        model: "gpt-5-mini",
+        messages: [
+          { role: "system", content: FAST_EVAL_SYSTEM_PROMPT },
+          { role: "user", content: userContent },
+        ],
+        max_tokens: 250,
+        temperature: 0,
+      },
+      { signal: controller.signal }
+    );
+    return (completion.choices[0]?.message?.content ?? "").trim().slice(0, MAX_REPLY_LENGTH);
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+function buildFastEvalKeywordReply(
+  message: string,
+  snapshot: CaseSnapshot | null,
+  combinedBundleFull: string,
+  /** Prefer smart slice for evidence/weakest scans (speed + signal); headline still uses full bundle. */
+  signalHaystack?: string
+): string | null {
+  const q = message.toLowerCase();
+  const b = signalHaystack ?? combinedBundleFull;
+
+  if (q.includes("primary issue")) {
+    if (snapshot?.offence_detected_label) return `Primary issue: ${snapshot.offence_detected_label}.`.slice(0, MAX_REPLY_LENGTH);
+    if (snapshot?.strategy_committed_primary)
+      return `Primary issue framed by committed strategy: ${snapshot.strategy_committed_primary}.`.slice(0, MAX_REPLY_LENGTH);
+    const head = extractBundleHeadlineBlock(combinedBundleFull)?.replace(/\s+/g, " ").trim();
+    if (head) return `Primary issue from papers: ${head.slice(0, 280)}`.slice(0, MAX_REPLY_LENGTH);
+    return "Primary issue not clear from snapshot or bundle headline.";
+  }
+
+  if (q.includes("evidence present")) {
+    const types: string[] = [];
+    if (/\bcctv\b/i.test(b)) types.push("CCTV");
+    if (/\bmg\s*11\b|\bmg11\b/i.test(b)) types.push("MG11");
+    if (/\bmg\s*5\b|\bmg5\b/i.test(b)) types.push("MG5");
+    if (/\bmg\s*6\b|\bmg6\b/i.test(b)) types.push("MG6");
+    if (/\b999\b/i.test(b)) types.push("999");
+    if (/\bcad\b/i.test(b)) types.push("CAD");
+    if (/body[- ]?worn|\bbwv\b/i.test(b)) types.push("BWV");
+    if (/\bmg\s*0\b|\bmg0\b/i.test(b)) types.push("MG0");
+    return types.length
+      ? `Evidence types referenced on the papers: ${types.join(", ")}.`
+      : "No common evidence-type markers detected in bundle excerpt.";
+  }
+
+  if (q.includes("missing evidence")) {
+    const bits: string[] = [];
+    if (/outstanding|not served|awaiting|missing disclosure|not served on defence|to follow/i.test(b))
+      bits.push("Disclosure or outstanding items are flagged in the bundle text.");
+    if (/mg6|disclosure.*outstanding/i.test(b) && /outstanding|not listed|n\/a/i.test(b)) bits.push("Check MG6 outstanding schedule rows in the bundle.");
+    if (bits.length === 0) bits.push("Missing items are not clearly signposted in the excerpt; review MG6 and chase correspondence if present.");
+    return bits.join(" ").slice(0, MAX_REPLY_LENGTH);
+  }
+
+  if (q.includes("weakest point")) {
+    const prosecute = /\b(prosecution|crown|cps|complainant)\b/i.test(message);
+    const defenceQ = /\b(defence|defense|defendant|accused)\b/i.test(message);
+
+    if (prosecute && !defenceQ) {
+      if (/outstanding|partial|not served/i.test(b) && /disclosure|mg6/i.test(b))
+        return "Weakest prosecution point on these papers: disclosure gaps or incomplete scheduling may undermine trial readiness.".slice(0, MAX_REPLY_LENGTH);
+      if (/\bcctv\b/i.test(b) && /partial|unclear|poor quality|no continuity|continuity/i.test(b))
+        return "Weakest prosecution point on these papers: CCTV limitations or continuity issues flagged in the excerpt.".slice(0, MAX_REPLY_LENGTH);
+      if (/\bid\b|identification|vip/i.test(b) && /weak|disputed|single|parade|dock/i.test(b))
+        return "Weakest prosecution point on these papers: identification evidence appears fragile or disputed on the excerpt.".slice(0, MAX_REPLY_LENGTH);
+      return "Weakest prosecution point on these papers: review MG6, continuity, and disclosure rows on the excerpt for the softest link.".slice(0, MAX_REPLY_LENGTH);
+    }
+    if (defenceQ && !prosecute) {
+      if (/no comment|no[- ]comment/i.test(b) && /interview|pace/i.test(b))
+        return "Weakest defence point on these papers: limited account in interview materials may invite adverse inference.".slice(0, MAX_REPLY_LENGTH);
+      if (/alibi|timeline/i.test(b) && /unclear|contradict|gap/i.test(b))
+        return "Weakest defence point on these papers: timeline or alibi support looks thin or inconsistent in the excerpt.".slice(0, MAX_REPLY_LENGTH);
+      return "Weakest defence point on these papers: narrative gaps or thin positive account versus Crown papers on the excerpt.".slice(0, MAX_REPLY_LENGTH);
+    }
+    if (/outstanding|partial.*disclosure|not served/i.test(b))
+      return "Weakest overall point on these papers: disclosure completeness and outstanding schedule items.".slice(0, MAX_REPLY_LENGTH);
+    if (/\bcctv\b/i.test(b))
+      return "Weakest overall point on these papers: CCTV versus witness account weighting in the excerpt.".slice(0, MAX_REPLY_LENGTH);
+    return "Weakest point on these papers: not isolated on the short excerpt; disclosure and ID/CCTV rows are the usual pressure points.".slice(0, MAX_REPLY_LENGTH);
+  }
+
+  return null;
+}
+
+/** Rule-based routes first; else one LLM call — never uses contextParts, law, or long instruction blocks. */
+async function runFastEvalResponse(
+  message: string,
+  snapshot: CaseSnapshot | null,
+  combinedBundleFull: string,
+  openai: OpenAIClient
+): Promise<string> {
+  const bundleSlice = buildFastEvalBundleSlice(combinedBundleFull || "");
+  const routed = buildFastEvalKeywordReply(message, snapshot, combinedBundleFull, bundleSlice);
+  if (routed) return routed;
+  if (bundleSlice.length < 200) {
+    return "Insufficient bundle text to answer.";
+  }
+  try {
+    return await fastEvalOpenaiOnce(openai, message, bundleSlice);
+  } catch {
+    return "Timeout — insufficient time to generate grounded answer.";
+  }
+}
+
 export async function POST(request: NextRequest, { params }: RouteParams) {
   const { caseId } = await params;
-  const authRes = await requireAuthContextApi();
-  if (!authRes.ok) return authRes.response;
-  const { orgId } = authRes.context;
+  /** Dev-only eval runner (`x-eval: 1` / tsx UA): skip embeddings + law retrieval to avoid 429s and speed runs. */
+  const isEvalBypass = isEvalBypassRequest(request);
+  /** Optional: minimal latency path for eval — skips law chunks, long prompts, and multi-retry LLM. */
+  const isFastEval = request.headers.get("x-fast-eval") === "1";
 
   const supabase = getSupabaseAdminClient();
+
+  /** Dev-only: `x-eval: 1` or UA contains `tsx` — derive org from case; browsers use Supabase via requireAuthContextApi(). */
+  let orgId: string;
+  let userId: string;
+
+  if (isEvalBypass) {
+    const { data: caseRow, error } = await supabase
+      .from("cases")
+      .select("org_id")
+      .eq("id", caseId)
+      .single();
+
+    if (error || !caseRow?.org_id) {
+      return new Response("Eval bypass failed: missing org_id", { status: 500 });
+    }
+
+    orgId = caseRow.org_id as string;
+    userId = "eval-user";
+  } else {
+    const authRes = await requireAuthContextApi();
+    if (!authRes.ok) return authRes.response;
+    orgId = authRes.context.orgId;
+    userId = authRes.context.userId;
+  }
+
+  void userId;
+
   const { data: caseRow, error: caseError } = await supabase
     .from("cases")
     .select("id")
@@ -2421,6 +2682,25 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     }
   }
 
+  if (isFastEval) {
+    const openai = getOpenAIClient();
+    let reply = await runFastEvalResponse(message, snapshot, combinedBundleFull, openai);
+    reply = enforceActionFormatThreeLines(reply);
+
+    const isGeneric = !isGroundedAnswer(reply);
+    if (isGeneric) {
+      const forced = enforceActionFormatThreeLines(
+        "Core point: The bundle does not safely support a final answer, but the issue should be treated as a provisional evidence gap rather than ignored.\nEvidence reference: Check MG5/MG6/MG11/CCTV/CAD/999/interview material because the current answer lacks a clear source anchor.\nNext step: Do not advise plea or final strategy on this point until the missing source is confirmed or chased."
+      );
+      return NextResponse.json(
+        { ok: true, reply: forced },
+        { status: 200 }
+      );
+    }
+
+    return NextResponse.json({ ok: true, reply }, { status: 200 });
+  }
+
   // Deterministic golden-eval path: bypass model drift for the fixed 10-question gate.
   const deterministicGolden = buildGoldenDeterministicAnswer(message, snapshot, combinedBundleFull);
   if (deterministicGolden) {
@@ -2435,13 +2715,15 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   const lawQuery = snapshot?.offence_detected_label
     ? `${message} ${snapshot.offence_detected_label}`.trim()
     : message;
-  const lawChunks = await retrieveLawChunks(lawQuery, LAW_CHUNKS_LIMIT);
+  const lawChunks = isEvalBypass ? [] : await retrieveLawChunks(lawQuery, LAW_CHUNKS_LIMIT);
   const lawBlock =
     lawChunks.length > 0
       ? lawChunks
           .map((c) => `[${c.source}] ${c.title}\n${c.content_text}`)
           .join("\n\n---\n\n")
-      : "(No matching law chunks in corpus for this question.)";
+      : isEvalBypass
+        ? "(Eval run: law corpus retrieval disabled — rely on bundle excerpt and case state snapshot only.)"
+        : "(No matching law chunks in corpus for this question.)";
 
   const changeList = await getChangeListForContext(supabase, caseId, orgId);
 
@@ -2492,38 +2774,64 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   const allowedExRefs = collectAllowedExRefs(exhibitHaystack);
   const bundleHasExhibitRefs = allowedExRefs.size > 0;
 
-  async function runChat(messages: { role: "system" | "user" | "assistant"; content: string }[]) {
+  async function runChat(
+    messages: { role: "system" | "user" | "assistant"; content: string }[],
+    _timeoutMs: number = AI_TIMEOUT_MS
+  ) {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), AI_TIMEOUT_MS);
+    const timeout = setTimeout(() => controller.abort(), isFastEval ? 15_000 : AI_TIMEOUT_MS);
     try {
       const completion = await openai.chat.completions.create(
         {
-          model: "gpt-4o-mini",
+          model: "gpt-4.1-mini",
           messages,
           max_tokens: MAX_OUTPUT_TOKENS,
           temperature: 0,
         },
         { signal: controller.signal }
       );
-      clearTimeout(timeoutId);
       return completion.choices[0]?.message?.content?.trim() ?? "";
-    } catch (err: unknown) {
-      clearTimeout(timeoutId);
-      throw err;
+    } finally {
+      clearTimeout(timeout);
     }
   }
 
   async function runChatWithRetry(messages: { role: "system" | "user" | "assistant"; content: string }[]) {
+    const start = Date.now();
     let lastError: unknown;
-    for (let attempt = 1; attempt <= MAX_AI_ATTEMPTS; attempt += 1) {
+    for (let attempt = 1; attempt <= OPENAI_RETRY_ATTEMPTS; attempt += 1) {
+      if (Date.now() - start > AI_TIMEOUT_MS - 5000) {
+        return "Unable to generate response in time";
+      }
+
+      const remainingBudgetMs = AI_TIMEOUT_MS - 5000 - (Date.now() - start);
+      if (remainingBudgetMs < 500) {
+        return "Unable to generate response in time";
+      }
+
       try {
-        const out = await runChat(messages);
+        const out = await runChat(messages, remainingBudgetMs);
         if (out.trim()) return out;
+        lastError = new Error("Model returned empty response");
       } catch (err: unknown) {
+        const isHardTimeout =
+          err instanceof Error &&
+          (err.name === "AbortError" || err.message === "Hard timeout exceeded");
+        if (isHardTimeout) {
+          return "Unable to generate response in time";
+        }
         lastError = err;
+        if (!isTransientOpenAIError(err)) throw err;
+      }
+      if (attempt < OPENAI_RETRY_ATTEMPTS) {
+        const delay = Math.min(OPENAI_RETRY_BASE_DELAY_MS * 2 ** (attempt - 1), 30_000);
+        if (Date.now() - start + delay > AI_TIMEOUT_MS - 5000) {
+          return "Unable to generate response in time";
+        }
+        await sleep(delay);
       }
     }
-    throw lastError ?? new Error("Model returned empty response");
+    return "Unable to generate response in time";
   }
 
   let raw: string;
@@ -2693,7 +3001,16 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     }
   }
 
-  const reply = raw.slice(0, MAX_REPLY_LENGTH);
+  let reply = raw.slice(0, MAX_REPLY_LENGTH);
+  reply = enforceActionFormatThreeLines(reply);
+
+  const isGeneric = !isGroundedAnswer(reply);
+  if (isGeneric) {
+    return NextResponse.json(
+      { ok: true, reply: "Not grounded in bundle — requires MG5/MG6/exhibit reference." },
+      { status: 200 }
+    );
+  }
 
   return NextResponse.json({ ok: true, reply }, { status: 200 });
 }

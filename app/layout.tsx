@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 
 const inter = Inter({
@@ -49,12 +50,19 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const clerkPk = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
+  const inner = clerkPk ? (
+    <ClerkProvider publishableKey={clerkPk}>{children}</ClerkProvider>
+  ) : (
+    children
+  );
+
   return (
     <html lang="en" className="dark">
       <body
         className={`${inter.variable} font-sans bg-background text-accent min-h-screen`}
       >
-        {children}
+        {inner}
       </body>
     </html>
   );

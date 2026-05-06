@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { requireAuthContext } from "@/lib/auth";
+import { isEvalBypassRequest } from "@/lib/eval-auth-bypass";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 
 export const runtime = "nodejs";
@@ -18,7 +19,30 @@ function latestPositionsByCase(
 
 export async function GET(request: Request) {
   try {
-    const { orgId } = await requireAuthContext();
+    const isEval = isEvalBypassRequest(request);
+
+    if (isEval) {
+      const orgId = process.env.EVAL_ORG_ID?.trim();
+      if (!orgId) {
+        return new Response("Missing EVAL_ORG_ID", { status: 500 });
+      }
+
+      const supabase = getSupabaseAdminClient();
+      const { data, error } = await supabase
+        .from("cases")
+        .select("*")
+        .eq("org_id", orgId)
+        .order("updated_at", { ascending: false });
+
+      if (error) {
+        return new Response(error.message, { status: 500 });
+      }
+
+      return NextResponse.json({ cases: data ?? [] });
+    }
+
+    const ctx = await requireAuthContext();
+    const { orgId } = ctx;
     const supabase = getSupabaseAdminClient();
     const { searchParams } = new URL(request.url);
     const q = searchParams.get("q")?.trim() ?? "";

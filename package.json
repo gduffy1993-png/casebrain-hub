@@ -43,6 +43,8 @@
     "eval:defence-chat": "node scripts/run-eval.cjs",
     "eval:defence-chat:mts": "tsx scripts/run-eval.mts",
     "eval:defence-chat:watch": "tsx scripts/run-eval.mts --watch",
+    "eval:score": "tsx scripts/score-eval.mts",
+    "eval:dataset": "tsx scripts/run-eval.mts && tsx scripts/score-eval.mts",
     "electron": "electron .",
     "desktop": "concurrently \"npm run dev\" \"wait-on http://localhost:3000 && electron .\"",
     "desktop:standalone": "electron .",

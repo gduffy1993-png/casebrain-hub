@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import TestAuth from "@/components/TestAuth";
 import { createClient } from "@/lib/supabase/browser";
 import {
   Upload,
@@ -593,6 +594,14 @@ function MarketingHomepage() {
           </div>
         </div>
       </footer>
+
+      {process.env.NEXT_PUBLIC_SHOW_CLERK_TEST === "1" && (
+        <div className="border-t border-border/50 bg-slate-900/50 px-4 py-6">
+          <div className="mx-auto max-w-4xl">
+            <TestAuth />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
