@@ -946,6 +946,55 @@ function isStrictInterviewQuestion(question: string): boolean {
   );
 }
 
+function isStrictMg5EvidenceQuestion(question: string): boolean {
+  const q = goldenQuestionNorm(question);
+  return q.includes("what evidence does mg5 rely on");
+}
+
+function buildStrictMg5EvidenceAnswer(bundleFullText: string): string {
+  const mg5SectionMatch = bundleFullText.match(
+    /=== SECTION:\s*MG5 ===([\s\S]*?)(?:=== SECTION:|END OF FILE)/i
+  );
+  const scope = mg5SectionMatch?.[1] ?? bundleFullText;
+  const lines = scope
+    .split(/\r?\n/)
+    .map((l) => compactOneLine(l))
+    .filter(Boolean);
+
+  const evidenceLines = pickDistinct(
+    lines.filter(
+      (l) =>
+        /(mg11|cctv|cad|999|ex-|exhibit|statement|interview|bwv|forensic|medical|continuity)/i.test(l) &&
+        !/(denies core allegation|alternative explanation|put to proof)/i.test(l)
+    ),
+    2
+  );
+
+  const evidenceTags = new Set<string>();
+  for (const ln of evidenceLines) {
+    if (/mg11/i.test(ln)) evidenceTags.add("MG11");
+    if (/cctv/i.test(ln)) evidenceTags.add("CCTV");
+    if (/\bcad\b/i.test(ln)) evidenceTags.add("CAD");
+    if (/\b999\b/i.test(ln)) evidenceTags.add("999");
+    if (/ex-|exhibit/i.test(ln)) evidenceTags.add("EX references");
+    if (/interview|bwv/i.test(ln)) evidenceTags.add("interview/BWV");
+    if (/forensic|medical/i.test(ln)) evidenceTags.add("forensic/medical");
+    if (/continuity/i.test(ln)) evidenceTags.add("continuity material");
+  }
+
+  if (evidenceLines.length === 0 || evidenceTags.size === 0) {
+    return enforceActionFormatThreeLines(
+      "Core point: The MG5 summary is not clearly extractable from the current bundle, so prosecution reliance must be treated as inferred rather than confirmed.\nEvidence reference: MG5 reference is missing or incomplete; supporting MG11, CCTV, or CAD linkage not visible in current materials.\nNext step: Obtain the full MG5 summary and cross-check with MG11/CCTV to identify what the prosecution actually relies on."
+    );
+  }
+
+  const tagLine = Array.from(evidenceTags).slice(0, 4).join(", ");
+  const refLine = evidenceLines.join(" | ");
+  return enforceActionFormatThreeLines(
+    `Core point: On the current papers, MG5 appears to rely on ${tagLine}; this remains provisional until the full MG5 narrative is confirmed.\nEvidence reference: ${refLine}\nNext step: Cross-check the MG5 reliance points against MG11/CCTV/CAD/999 source material and confirm any missing supporting item before final strategy advice.`
+  );
+}
+
 function extractInterviewSection(bundleFullText: string): string {
   const sectionMatch = bundleFullText.match(
     /=== SECTION:\s*INTERVIEW ===([\s\S]*?)(?:=== SECTION:|END OF FILE)/i
@@ -2692,6 +2741,11 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     if (line) {
       return NextResponse.json({ ok: true, reply: line }, { status: 200 });
     }
+  }
+
+  if (isStrictMg5EvidenceQuestion(message)) {
+    const reply = buildStrictMg5EvidenceAnswer(combinedBundleFull);
+    return NextResponse.json({ ok: true, reply }, { status: 200 });
   }
 
   if (isFastEval) {
