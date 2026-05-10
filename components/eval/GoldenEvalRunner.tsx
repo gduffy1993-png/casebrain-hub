@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
@@ -46,13 +46,48 @@ function formatGoldenFetchError(e: unknown, timeoutMs: number): string {
   return String(e);
 }
 
+type RecentRun = { id: string; created_at: string; source: string; row_count: number };
+
 export function GoldenEvalRunner() {
   const [running, setRunning] = useState(false);
   const [rows, setRows] = useState<EvalRow[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [progress, setProgress] = useState({ done: 0, total: 0, current: "" });
   const [showWeakOnly, setShowWeakOnly] = useState(false);
+  const [recentRuns, setRecentRuns] = useState<RecentRun[]>([]);
+  const [cloudMessage, setCloudMessage] = useState<string | null>(null);
   const cancelRef = useRef(false);
+
+  const refreshRecentRuns = useCallback(async () => {
+    try {
+      const res = await fetch("/api/eval-sweeps", { credentials: "include", cache: "no-store" });
+      const json = (await res.json().catch(() => ({}))) as { runs?: RecentRun[] };
+      if (res.ok && Array.isArray(json.runs)) setRecentRuns(json.runs);
+    } catch {
+      // non-fatal
+    }
+  }, []);
+
+  useEffect(() => {
+    void refreshRecentRuns();
+  }, [refreshRecentRuns]);
+
+  async function downloadServerRun(runId: string) {
+    try {
+      const res = await fetch(`/api/eval-sweeps/${runId}`, { credentials: "include", cache: "no-store" });
+      const json = await res.json().catch(() => null);
+      if (!res.ok || !json) return;
+      const blob = new Blob([JSON.stringify(json, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `eval-sweep-${runId.slice(0, 8)}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch {
+      // non-fatal
+    }
+  }
 
   function isWeak(answer: string) {
     if (!answer) return true;
@@ -177,6 +212,40 @@ export function GoldenEvalRunner() {
       } catch {
         // non-fatal
       }
+
+      try {
+        const qn = (qtext: string) => Math.max(1, GOLDEN_QUESTIONS.indexOf(qtext) + 1);
+        const saveRes = await fetch("/api/eval-sweeps", {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            source: "golden",
+            questions: GOLDEN_QUESTIONS,
+            rows: nextRows.map((r) => ({
+              case_id: r.case_id,
+              case_title: r.case_title,
+              question_no: qn(r.question),
+              question: r.question,
+              answer: r.answer,
+              error: r.ok ? null : r.answer,
+              duration_ms: r.duration_ms,
+              weak: r.weak,
+              http_status: r.status,
+            })),
+          }),
+        });
+        const saved = (await saveRes.json().catch(() => ({}))) as { ok?: boolean; runId?: string; error?: string };
+        if (saveRes.ok && saved.runId) {
+          setCloudMessage(`Saved to workspace (${saved.runId.slice(0, 8)}…)`);
+          void refreshRecentRuns();
+        } else {
+          setCloudMessage(saved.error ? `Cloud save failed: ${saved.error}` : "Cloud save failed.");
+        }
+      } catch {
+        setCloudMessage("Cloud save failed (offline?). Download JSON locally.");
+      }
+
       setProgress({ done, total, current: "Done" });
     } catch (e) {
       setError(e instanceof Error ? e.message : String(e));
@@ -209,10 +278,35 @@ export function GoldenEvalRunner() {
     <Card className="p-4 space-y-3">
       <h2 className="text-lg font-semibold">Golden Eval Runner</h2>
       <p className="text-sm text-muted-foreground">
-        Runs 10 fixed questions across all cases and stores full question/answer output.
+        Runs 10 fixed questions across all cases. Each finished run is saved to your org (Supabase) — download anytime below or use
+        Download JSON for a local copy.
       </p>
 
-      <div className="flex gap-2">
+      {cloudMessage && <p className="text-xs text-muted-foreground">{cloudMessage}</p>}
+
+      {recentRuns.length > 0 && (
+        <div className="text-xs space-y-1">
+          <p className="font-medium text-foreground">Recent saved runs</p>
+          <ul className="max-h-24 overflow-auto space-y-1 text-muted-foreground">
+            {recentRuns.slice(0, 8).map((r) => (
+              <li key={r.id} className="flex flex-wrap items-center gap-2">
+                <span>
+                  {new Date(r.created_at).toLocaleString()} · {r.row_count} rows · {r.source}
+                </span>
+                <button
+                  type="button"
+                  className="text-primary underline hover:no-underline"
+                  onClick={() => void downloadServerRun(r.id)}
+                >
+                  Download
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <div className="flex flex-wrap gap-2">
         <Button onClick={runGolden} disabled={running}>
           {running ? "Running..." : "Run Golden Across All Cases"}
         </Button>

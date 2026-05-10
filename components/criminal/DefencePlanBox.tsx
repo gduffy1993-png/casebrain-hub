@@ -354,6 +354,34 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
         // Brief pause between questions to avoid synchronized load spikes.
         if (qIdx < questions.length - 1) await sleep(jitter(1_100));
       }
+
+      if (rows.length > 0) {
+        try {
+          const saveRes = await fetch("/api/eval-sweeps", {
+            method: "POST",
+            credentials: "include",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              source: "defence_box",
+              questions,
+              rows: rows.map((r) => ({
+                case_id: r.caseId,
+                case_title: r.caseTitle,
+                question_no: r.questionNo,
+                question: r.question,
+                answer: r.answer,
+                error: r.error ?? null,
+              })),
+            }),
+          });
+          const j = (await saveRes.json().catch(() => ({}))) as { ok?: boolean; runId?: string };
+          if (saveRes.ok && j.runId) {
+            setEvalCopyMessage(`Saved to workspace (${String(j.runId).slice(0, 8)}…). Copy results still works.`);
+          }
+        } catch {
+          // non-fatal
+        }
+      }
     } finally {
       setEvalRunning(false);
     }
