@@ -1,6 +1,8 @@
 /**
  * Normalise document row to plain text for bundle parsing (aligned with defence-plan-chat).
- * Prefers extracted_text when present, then raw_text, then extracted_json summaries.
+ * When both `extracted_text` and `raw_text` exist, uses whichever body is **longer** so a short/stale
+ * extract row cannot shadow the full PDF/`raw_text` bundle (common after uploads).
+ * Otherwise: substantial raw_text, then extracted_text, then extracted_json summaries.
  */
 export function getDocumentBodyText(d: {
   raw_text?: string | null;
@@ -8,9 +10,14 @@ export function getDocumentBodyText(d: {
   extracted_json?: unknown;
 }): string {
   const et = typeof d.extracted_text === "string" ? d.extracted_text.trim() : "";
-  if (et.length > 0) return et;
   const raw = typeof d.raw_text === "string" ? d.raw_text.trim() : "";
+
+  if (et.length > 0 && raw.length > 0) {
+    return raw.length >= et.length ? raw : et;
+  }
+
   if (raw.length > 100) return raw;
+  if (et.length > 0) return et;
   const ej = d.extracted_json;
   if (ej && typeof ej === "object") {
     const o = ej as Record<string, unknown>;

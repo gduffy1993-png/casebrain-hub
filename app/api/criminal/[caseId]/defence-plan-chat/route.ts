@@ -13,6 +13,7 @@ import { getOpenAIClient } from "@/lib/openai";
 import { retrieveLawChunks } from "@/lib/criminal/criminal-law-corpus";
 import { getChangeListForContext } from "@/lib/criminal/verdict-change-list";
 import { getCaseStateSnapshot } from "@/lib/criminal/case-state-snapshot";
+import { getDocumentBodyText } from "@/lib/bundle/bundle-document-text";
 
 type RouteParams = { params: Promise<{ caseId: string }> };
 
@@ -743,7 +744,21 @@ function buildStrictPrimaryAllegationAnswer(bundleFullText: string): string | nu
   // Prefer MG5 “Allegation (fiction):” line when present — full Crown-framed sentence (fictional bundles).
   const mg5AllegationLine = firstMatch(bundleFullText, [/^Allegation \(fiction\):\s*(.+)$/im]);
   if (mg5AllegationLine) {
-    return compactOneLine(mg5AllegationLine);
+    let line = compactOneLine(mg5AllegationLine);
+    // Short extracts / ai_summary sometimes truncate before “consistent with …”; stitch offence tag from CHARGE (still bundle wording).
+    if (!/\bconsistent with\b/i.test(line)) {
+      const tagRaw =
+        firstMatch(bundleFullText, [/^\s*Offence\(s\)\s+as\s+tag:\s*(.+)$/im]) ??
+        null;
+      if (tagRaw) {
+        const tagCore = compactOneLine(tagRaw.replace(/\(fictional charge drafting for test data\)\.?/gi, "").trim());
+        if (tagCore) {
+          const base = line.replace(/\s*\.\s*$/, "").trim();
+          line = compactOneLine(`${base} consistent with ${tagCore}.`);
+        }
+      }
+    }
+    return line;
   }
 
   // Verbatim charge/tag lines (prefer explicit charge extract over internal offence tag).
@@ -2272,20 +2287,6 @@ function buildBundleGroundingRetry(reply: string, exhibitHaystack: string, userM
   return `Rewrite your **entire** previous answer. Apply these grounding fixes:\n${issues.map((s) => `- ${s}`).join("\n")}\nPreserve correct EX- codes verbatim from the bundle exhibit list.`;
 }
 
-function getDocumentTextForChat(d: { raw_text?: string | null; extracted_json?: unknown }): string {
-  const raw = typeof d.raw_text === "string" ? d.raw_text.trim() : "";
-  if (raw.length > 100) return raw;
-  const ej = d.extracted_json;
-  if (ej && typeof ej === "object") {
-    const o = ej as Record<string, unknown>;
-    const parts: string[] = [];
-    if (typeof o.summary === "string" && o.summary.trim()) parts.push(o.summary.trim());
-    if (typeof o.aiSummary === "string" && o.aiSummary.trim()) parts.push(o.aiSummary.trim());
-    if (parts.length) return parts.join("\n");
-  }
-  return raw;
-}
-
 /** Keep start (charge/MG5) and end (exhibit list, END marker) when trimming for the model. */
 function truncateBundleForModel(full: string, max: number): string {
   if (full.length <= max) return full;
@@ -2812,7 +2813,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       getCaseStateSnapshot(caseId, orgId).catch(() => null),
       supabase
         .from("documents")
-        .select("raw_text, extracted_json")
+        .select("raw_text, extracted_text, extracted_json")
         .eq("case_id", caseId)
         .order("updated_at", { ascending: false }),
       supabase
@@ -2860,7 +2861,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
 
     const docs = docsResult.data;
     if (docs?.length) {
-      combinedBundleFull = docs.map((d) => getDocumentTextForChat(d)).filter(Boolean).join("\n\n");
+      combinedBundleFull = docs.map((d) => getDocumentBodyText(d)).filter(Boolean).join("\n\n");
       const capped = combinedBundleFull.slice(0, MAX_BUNDLE_FULL_CHARS_FOR_REFS);
       if (capped) bundleExcerpt = truncateBundleForModel(capped, MAX_BUNDLE_EXCERPT_CHARS);
     }
