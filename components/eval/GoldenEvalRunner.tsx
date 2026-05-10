@@ -3,12 +3,14 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { buildEvalSummaryStats, isEvalWeakAnswer } from "@/lib/eval-run-metadata";
 
 type CaseRow = { id: string; title?: string | null };
 
 type EvalRow = {
   case_id: string;
   case_title: string;
+  question_no: number;
   question: string;
   answer: string;
   ok: boolean;
@@ -16,6 +18,8 @@ type EvalRow = {
   duration_ms: number;
   timestamp: string;
   weak: boolean;
+  /** From defence-plan-chat `x-casebrain-route` */
+  route_tag: string | null;
 };
 
 const GOLDEN_QUESTIONS: string[] = [
@@ -89,17 +93,6 @@ export function GoldenEvalRunner() {
     }
   }
 
-  function isWeak(answer: string) {
-    if (!answer) return true;
-    const lower = answer.toLowerCase();
-    return (
-      lower.includes("not grounded") ||
-      lower.includes("insufficient") ||
-      lower.includes("unclear") ||
-      answer.trim().length < 80
-    );
-  }
-
   const summary = useMemo(() => {
     const total = rows.length;
     const ok = rows.filter((r) => r.ok).length;
@@ -107,6 +100,21 @@ export function GoldenEvalRunner() {
     const avgMs = total > 0 ? Math.round(rows.reduce((a, r) => a + r.duration_ms, 0) / total) : 0;
     return { total, ok, weak, avgMs };
   }, [rows]);
+
+  const runMeta = useMemo(
+    () =>
+      buildEvalSummaryStats(
+        rows.map((r) => ({
+          ok: r.ok,
+          weak: r.weak,
+          answer: r.answer,
+          duration_ms: r.duration_ms,
+          route_tag: r.route_tag,
+        })),
+        GOLDEN_QUESTIONS
+      ),
+    [rows]
+  );
 
   const displayedRows = useMemo(() => {
     if (!showWeakOnly) return rows;
@@ -145,6 +153,7 @@ export function GoldenEvalRunner() {
             return;
           }
           const started = Date.now();
+          const qn = Math.max(1, GOLDEN_QUESTIONS.indexOf(q) + 1);
           setProgress({
             done,
             total,
@@ -165,17 +174,22 @@ export function GoldenEvalRunner() {
                 },
                 body: JSON.stringify({ message: q }),
               });
+              const routeTag = res.headers.get("x-casebrain-route")?.trim() || null;
               const json = (await res.json().catch(() => ({}))) as { reply?: string; ok?: boolean; error?: string };
+              const text =
+                typeof json.reply === "string" ? json.reply : json.error || `HTTP ${res.status}`;
               nextRows.push({
                 case_id: c.id,
                 case_title: c.title || "Untitled case",
+                question_no: qn,
                 question: q,
-                answer: typeof json.reply === "string" ? json.reply : json.error || `HTTP ${res.status}`,
+                answer: text,
                 ok: res.ok,
                 status: res.status,
                 duration_ms: Date.now() - started,
                 timestamp: new Date().toISOString(),
-                weak: isWeak(typeof json.reply === "string" ? json.reply : json.error || `HTTP ${res.status}`),
+                weak: isEvalWeakAnswer(text),
+                route_tag: routeTag,
               });
             } finally {
               clearTimeout(timeoutId);
@@ -185,13 +199,15 @@ export function GoldenEvalRunner() {
             nextRows.push({
               case_id: c.id,
               case_title: c.title || "Untitled case",
+              question_no: qn,
               question: q,
               answer: errorText,
               ok: false,
               status: 0,
               duration_ms: Date.now() - started,
               timestamp: new Date().toISOString(),
-              weak: isWeak(errorText),
+              weak: isEvalWeakAnswer(errorText),
+              route_tag: null,
             });
           }
           done += 1;
@@ -214,7 +230,16 @@ export function GoldenEvalRunner() {
       }
 
       try {
-        const qn = (qtext: string) => Math.max(1, GOLDEN_QUESTIONS.indexOf(qtext) + 1);
+        const summary_stats = buildEvalSummaryStats(
+          nextRows.map((r) => ({
+            ok: r.ok,
+            weak: r.weak,
+            answer: r.answer,
+            duration_ms: r.duration_ms,
+            route_tag: r.route_tag,
+          })),
+          GOLDEN_QUESTIONS
+        );
         const saveRes = await fetch("/api/eval-sweeps", {
           method: "POST",
           credentials: "include",
@@ -222,16 +247,18 @@ export function GoldenEvalRunner() {
           body: JSON.stringify({
             source: "golden",
             questions: GOLDEN_QUESTIONS,
+            summary_stats,
             rows: nextRows.map((r) => ({
               case_id: r.case_id,
               case_title: r.case_title,
-              question_no: qn(r.question),
+              question_no: r.question_no,
               question: r.question,
               answer: r.answer,
               error: r.ok ? null : r.answer,
               duration_ms: r.duration_ms,
               weak: r.weak,
               http_status: r.status,
+              route_tag: r.route_tag,
             })),
           }),
         });
@@ -263,6 +290,7 @@ export function GoldenEvalRunner() {
       generated_at: new Date().toISOString(),
       questions: GOLDEN_QUESTIONS,
       summary,
+      summary_stats: runMeta,
       rows,
     };
     const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
@@ -338,7 +366,13 @@ export function GoldenEvalRunner() {
         <div>Total answers: {summary.total}</div>
         <div>HTTP OK: {summary.ok}</div>
         <div>Weak answers: {summary.weak}</div>
+        <div>Timeout-like: {runMeta.timeout_like_count}</div>
         <div>Avg time: {summary.avgMs}ms</div>
+        <div className="text-muted-foreground truncate" title={JSON.stringify(runMeta.route_counts)}>
+          Routes: {Object.entries(runMeta.route_counts)
+            .map(([k, v]) => `${k}:${v}`)
+            .join(" · ")}
+        </div>
       </div>
 
       <div className="max-h-[420px] overflow-auto rounded-md border border-border">
@@ -346,6 +380,8 @@ export function GoldenEvalRunner() {
           <thead className="sticky top-0 bg-background">
             <tr className="border-b border-border text-left">
               <th className="p-2">Case</th>
+              <th className="p-2">Q#</th>
+              <th className="p-2">Route</th>
               <th className="p-2">Question</th>
               <th className="p-2">Answer</th>
               <th className="p-2">Status</th>
@@ -358,6 +394,8 @@ export function GoldenEvalRunner() {
                 className={r.weak ? "bg-red-50/70 dark:bg-red-950/30 border-b border-border" : "border-b border-border"}
               >
                 <td className="p-2 align-top">{r.case_title}</td>
+                <td className="p-2 align-top">{r.question_no}</td>
+                <td className="p-2 align-top font-mono text-xs">{r.route_tag ?? "—"}</td>
                 <td className="p-2 align-top">{r.question}</td>
                 <td className="p-2 align-top whitespace-pre-wrap">{r.answer}</td>
                 <td className="p-2 align-top">{r.status || (r.ok ? 200 : "ERR")}</td>
@@ -365,7 +403,7 @@ export function GoldenEvalRunner() {
             ))}
             {displayedRows.length === 0 && (
               <tr>
-                <td className="p-3 text-muted-foreground" colSpan={4}>
+                <td className="p-3 text-muted-foreground" colSpan={6}>
                   {rows.length === 0 ? "No results yet." : "No weak answers in current run."}
                 </td>
               </tr>

@@ -81,6 +81,16 @@ function enforceActionFormatThreeLines(reply: string): string {
   ].join("\n");
 }
 
+const CASEBRAIN_ROUTE_HEADER = "x-casebrain-route";
+
+function jsonWithRoute(
+  data: { ok?: boolean; reply?: string; error?: string },
+  route: string,
+  status = 200
+) {
+  return NextResponse.json(data, { status, headers: { [CASEBRAIN_ROUTE_HEADER]: route } });
+}
+
 const AI_TIMEOUT_MS = 70_000;
 const MAX_MESSAGE_LENGTH = 16_000;
 const MAX_REPLY_LENGTH = 8000;
@@ -2536,14 +2546,15 @@ STRICT:
 /** Hard cap for fast-eval OpenAI abort (ms). */
 const FAST_EVAL_OPENAI_MS = 9_000;
 /** x-eval-mode:1 — target ~20s end-to-end (smaller context + single LLM call + tighter timeout). */
-const EVAL_MODE_OPENAI_MS = 18_000;
-const EVAL_MODE_MAX_TOKENS = 200;
+/** Vercel + gpt-5-mini: 18s caused mass timeout fallbacks; 45s targets real answers in eval mode. */
+const EVAL_MODE_OPENAI_MS = 45_000;
+const EVAL_MODE_MAX_TOKENS = 220;
 
 /** Fast-eval only: bundle head + deduped keyword-matched lines, capped ~3000 chars (normal mode unchanged). */
 function buildFastEvalBundleSlice(bundle: string, aggressive = false): string {
-  const MAX_HEAD = aggressive ? 1000 : 2000;
-  const MAX_TOTAL = aggressive ? 1400 : 3000;
-  const maxMatchedLines = aggressive ? 30 : 50;
+  const MAX_HEAD = aggressive ? 1400 : 2000;
+  const MAX_TOTAL = aggressive ? 2200 : 3000;
+  const maxMatchedLines = aggressive ? 40 : 50;
 
   const head = (bundle || "").slice(0, MAX_HEAD);
 
@@ -2846,31 +2857,31 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   // Strict disclosure route: MG6 schedule questions bypass LLM generation completely.
   if (isStrictMg6DisclosureQuestion(message)) {
     const reply = buildStrictMg6DisclosureAnswer(combinedBundleFull);
-    return NextResponse.json({ ok: true, reply }, { status: 200 });
+    return jsonWithRoute({ ok: true, reply }, "strict_mg6");
   }
 
   // Strict interview route: interview/account questions bypass full LLM generation.
   if (isStrictInterviewQuestion(message)) {
     const reply = buildStrictInterviewAnswer(combinedBundleFull);
-    return NextResponse.json({ ok: true, reply }, { status: 200 });
+    return jsonWithRoute({ ok: true, reply }, "strict_interview");
   }
 
   // Strict exhibit/reference route: return verbatim refs/codes; bypass full LLM generation.
   if (isStrictExhibitReferenceQuestion(message)) {
     const reply = buildStrictExhibitReferenceAnswer(message, combinedBundleFull);
-    return NextResponse.json({ ok: true, reply }, { status: 200 });
+    return jsonWithRoute({ ok: true, reply }, "strict_exhibit");
   }
 
   if (isStrictPrimaryAllegationQuestion(message)) {
     const line = buildStrictPrimaryAllegationAnswer(combinedBundleFull);
     if (line) {
-      return NextResponse.json({ ok: true, reply: line }, { status: 200 });
+      return jsonWithRoute({ ok: true, reply: line }, "strict_primary_allegation");
     }
   }
 
   if (isStrictMg5EvidenceQuestion(message)) {
     const reply = buildStrictMg5EvidenceAnswer(combinedBundleFull);
-    return NextResponse.json({ ok: true, reply }, { status: 200 });
+    return jsonWithRoute({ ok: true, reply }, "strict_mg5");
   }
 
   if (isLightweightEvalLlm) {
@@ -2890,13 +2901,10 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       const forced = enforceActionFormatThreeLines(
         "Core point: The bundle does not safely support a final answer, but the issue should be treated as a provisional evidence gap rather than ignored.\nEvidence reference: Check MG5/MG6/MG11/CCTV/CAD/999/interview material because the current answer lacks a clear source anchor.\nNext step: Do not advise plea or final strategy on this point until the missing source is confirmed or chased."
       );
-      return NextResponse.json(
-        { ok: true, reply: forced },
-        { status: 200 }
-      );
+      return jsonWithRoute({ ok: true, reply: forced }, "lightweight_eval_grounding_fallback");
     }
 
-    return NextResponse.json({ ok: true, reply }, { status: 200 });
+    return jsonWithRoute({ ok: true, reply }, "lightweight_eval");
   }
 
   // Deterministic golden-eval path: bypass model drift for the fixed 10-question gate.
@@ -2906,7 +2914,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       0,
       MAX_REPLY_LENGTH
     );
-    return NextResponse.json({ ok: true, reply }, { status: 200 });
+    return jsonWithRoute({ ok: true, reply }, "deterministic_golden");
   }
 
   // Offence-aware law retrieval: include detected offence in query so relevant law is prioritised
@@ -3043,7 +3051,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     const isAbort = err instanceof Error && err.name === "AbortError";
     return NextResponse.json(
       { ok: false, error: isAbort ? "Request timed out" : "Unable to get a response" },
-      { status: 502 }
+      { status: 502, headers: { [CASEBRAIN_ROUTE_HEADER]: "error_openai_upstream" } }
     );
   }
 
@@ -3208,11 +3216,8 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     const forced = enforceActionFormatThreeLines(
       "Core point: The MG5 summary is not clearly extractable from the current bundle, so prosecution reliance must be treated as inferred rather than confirmed.\nEvidence reference: MG5 reference is missing or incomplete; supporting MG11, CCTV, or CAD linkage not visible in current materials.\nNext step: Obtain the full MG5 summary and cross-check with MG11/CCTV to identify what the prosecution actually relies on."
     );
-    return NextResponse.json(
-      { ok: true, reply: forced },
-      { status: 200 }
-    );
+    return jsonWithRoute({ ok: true, reply: forced }, "full_chat_ungrounded_fallback");
   }
 
-  return NextResponse.json({ ok: true, reply }, { status: 200 });
+  return jsonWithRoute({ ok: true, reply }, "full_chat");
 }

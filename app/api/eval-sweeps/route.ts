@@ -18,6 +18,8 @@ type SweepRowIn = {
   duration_ms?: number | null;
   weak?: boolean | null;
   http_status?: number | null;
+  /** From `x-casebrain-route` on defence-plan-chat (strict_mg6, lightweight_eval, etc.) */
+  route_tag?: string | null;
 };
 
 export async function GET() {
@@ -28,7 +30,7 @@ export async function GET() {
   const supabase = getSupabaseAdminClient();
   const { data, error } = await supabase
     .from("eval_sweep_runs")
-    .select("id, created_at, source, row_count")
+    .select("id, created_at, source, row_count, summary_stats")
     .eq("org_id", orgId)
     .order("created_at", { ascending: false })
     .limit(40);
@@ -50,6 +52,8 @@ export async function POST(request: Request) {
     source?: string;
     questions?: string[];
     rows?: SweepRowIn[];
+    /** Aggregates: route_counts, timeout_like_count, weak_count, etc. */
+    summary_stats?: Record<string, unknown>;
   };
   try {
     body = await request.json();
@@ -77,6 +81,7 @@ export async function POST(request: Request) {
       source,
       question_labels: Array.isArray(body.questions) ? body.questions : null,
       row_count: rowsIn.length,
+      summary_stats: body.summary_stats && typeof body.summary_stats === "object" ? body.summary_stats : null,
     })
     .select("id")
     .single();
@@ -100,6 +105,7 @@ export async function POST(request: Request) {
     duration_ms: typeof r.duration_ms === "number" ? Math.round(r.duration_ms) : null,
     weak: typeof r.weak === "boolean" ? r.weak : null,
     http_status: typeof r.http_status === "number" ? r.http_status : null,
+    route_tag: r.route_tag != null && String(r.route_tag).trim() ? String(r.route_tag).trim().slice(0, 64) : null,
     sort_order,
   }));
 

@@ -21,7 +21,7 @@ export async function GET(_request: Request, { params }: RouteParams) {
 
   const { data: run, error: runErr } = await supabase
     .from("eval_sweep_runs")
-    .select("id, org_id, created_at, source, question_labels, row_count")
+    .select("id, org_id, created_at, source, question_labels, row_count, summary_stats")
     .eq("id", runId)
     .eq("org_id", orgId)
     .maybeSingle();
@@ -36,7 +36,7 @@ export async function GET(_request: Request, { params }: RouteParams) {
   const { data: rows, error: rowsErr } = await supabase
     .from("eval_sweep_rows")
     .select(
-      "case_id, case_title, question_no, question, answer, error, duration_ms, weak, http_status, sort_order"
+      "case_id, case_title, question_no, question, answer, error, duration_ms, weak, http_status, route_tag, sort_order"
     )
     .eq("run_id", runId)
     .eq("org_id", orgId)
@@ -53,6 +53,7 @@ export async function GET(_request: Request, { params }: RouteParams) {
     generated_at: run.created_at,
     source: run.source,
     row_count: run.row_count,
+    summary_stats: run.summary_stats ?? null,
     questions,
     rows: rows ?? [],
   });

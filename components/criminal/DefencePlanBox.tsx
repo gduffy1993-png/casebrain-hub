@@ -15,6 +15,7 @@ import { ChevronDown, ChevronUp, Send, Loader2, Check, Pencil, X } from "lucide-
 import type { DefenceStrategyPlan } from "@/lib/criminal/strategy-output";
 import { LawSliceSuggestions } from "./LawSliceSuggestions";
 import { VerdictRatingBlock } from "./VerdictRatingBlock";
+import { buildEvalSummaryStats, isEvalWeakAnswer } from "@/lib/eval-run-metadata";
 
 const DEV_CASE_PICKER_ENABLED =
   /^(1|true|yes|on)$/i.test((process.env.NEXT_PUBLIC_DEV_CASE_PICKER ?? "").trim()) ||
@@ -158,7 +159,19 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
   const [evalRunning, setEvalRunning] = useState(false);
   const [evalProgress, setEvalProgress] = useState<{ done: number; total: number }>({ done: 0, total: 0 });
   const [evalRows, setEvalRows] = useState<
-    Array<{ caseId: string; caseTitle: string; questionNo: number; question: string; answer: string; error?: string }>
+    Array<{
+      caseId: string;
+      caseTitle: string;
+      questionNo: number;
+      question: string;
+      answer: string;
+      error?: string;
+      duration_ms: number;
+      route_tag: string | null;
+      weak: boolean;
+      http_status: number;
+      ok: boolean;
+    }>
   >([]);
   const [evalCopyMessage, setEvalCopyMessage] = useState<string | null>(null);
   const [forceCasePicker, setForceCasePicker] = useState(false);
@@ -292,13 +305,36 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
     setEvalRows([]);
     setEvalProgress({ done: 0, total });
 
-    const rows: Array<{ caseId: string; caseTitle: string; questionNo: number; question: string; answer: string; error?: string }> = [];
+    const rows: Array<{
+      caseId: string;
+      caseTitle: string;
+      questionNo: number;
+      question: string;
+      answer: string;
+      error?: string;
+      duration_ms: number;
+      route_tag: string | null;
+      weak: boolean;
+      http_status: number;
+      ok: boolean;
+    }> = [];
     let done = 0;
     const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
     const jitter = (baseMs: number) => baseMs + Math.floor(Math.random() * 250);
-    const askCaseWithRetry = async (targetCaseId: string, question: string): Promise<{ answer: string; error?: string }> => {
+    const askCaseWithRetry = async (
+      targetCaseId: string,
+      question: string
+    ): Promise<{
+      answer: string;
+      error?: string;
+      duration_ms: number;
+      route_tag: string | null;
+      http_status: number;
+      ok: boolean;
+    }> => {
       const maxAttempts = 3;
       for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+        const started = Date.now();
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), BULK_EVAL_FETCH_TIMEOUT_MS);
         try {
@@ -309,34 +345,58 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
             body: JSON.stringify({ message: question }),
             signal: controller.signal,
           });
+          const duration_ms = Date.now() - started;
+          const route_tag = res.headers.get("x-casebrain-route")?.trim() || null;
           const data = (await res.json().catch(() => ({}))) as { ok?: boolean; reply?: string; error?: string };
           if (res.ok && data.ok && typeof data.reply === "string" && data.reply.trim().length > 0) {
             clearTimeout(timeoutId);
-            return { answer: data.reply };
+            return { answer: data.reply, duration_ms, route_tag, http_status: res.status, ok: true };
           }
           const errText = data.error ?? `HTTP ${res.status}`;
           if (attempt === maxAttempts) {
             clearTimeout(timeoutId);
-            return { answer: "", error: errText };
+            return {
+              answer: "",
+              error: errText,
+              duration_ms,
+              route_tag,
+              http_status: res.status,
+              ok: false,
+            };
           }
         } catch (e) {
+          const duration_ms = Date.now() - started;
           if (attempt === maxAttempts) {
             clearTimeout(timeoutId);
-            return { answer: "", error: formatBulkEvalFetchError(e, BULK_EVAL_FETCH_TIMEOUT_MS) };
+            return {
+              answer: "",
+              error: formatBulkEvalFetchError(e, BULK_EVAL_FETCH_TIMEOUT_MS),
+              duration_ms,
+              route_tag: null,
+              http_status: 0,
+              ok: false,
+            };
           }
         } finally {
           clearTimeout(timeoutId);
         }
         await sleep(jitter(attempt * 1000));
       }
-      return { answer: "", error: "Unable to get a response" };
+      return {
+        answer: "",
+        error: "Unable to get a response",
+        duration_ms: 0,
+        route_tag: null,
+        http_status: 0,
+        ok: false,
+      };
     };
     try {
       for (let qIdx = 0; qIdx < questions.length; qIdx += 1) {
         const question = questions[qIdx]!;
         for (const c of runCases) {
-          const { answer, error } = await askCaseWithRetry(c.id, question);
-
+          const { answer, error, duration_ms, route_tag, http_status, ok } = await askCaseWithRetry(c.id, question);
+          const combined = answer || error || "";
           rows.push({
             caseId: c.id,
             caseTitle: c.title,
@@ -344,6 +404,11 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
             question,
             answer,
             ...(error ? { error } : {}),
+            duration_ms,
+            route_tag,
+            http_status,
+            ok,
+            weak: isEvalWeakAnswer(combined),
           });
           done += 1;
           setEvalProgress({ done, total });
@@ -364,6 +429,16 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
             body: JSON.stringify({
               source: "defence_box",
               questions,
+              summary_stats: buildEvalSummaryStats(
+                rows.map((r) => ({
+                  ok: r.ok,
+                  weak: r.weak,
+                  answer: r.answer || r.error || "",
+                  duration_ms: r.duration_ms,
+                  route_tag: r.route_tag,
+                })),
+                questions
+              ),
               rows: rows.map((r) => ({
                 case_id: r.caseId,
                 case_title: r.caseTitle,
@@ -371,6 +446,10 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
                 question: r.question,
                 answer: r.answer,
                 error: r.error ?? null,
+                duration_ms: r.duration_ms,
+                weak: r.weak,
+                http_status: r.http_status,
+                route_tag: r.route_tag,
               })),
             }),
           });
@@ -389,7 +468,7 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
 
   const copyEvalRows = async () => {
     if (evalRows.length === 0) return;
-    const header = ["case_id", "case_title", "question_no", "question", "answer", "error"].join("\t");
+    const header = ["case_id", "case_title", "question_no", "question", "answer", "error", "duration_ms", "route_tag", "weak", "http_status"].join("\t");
     const body = evalRows
       .map((r) =>
         [
@@ -399,6 +478,10 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
           r.question.replace(/\t/g, " "),
           (r.answer || "").replace(/\t/g, " ").replace(/\r?\n/g, " \\n "),
           (r.error || "").replace(/\t/g, " "),
+          String(r.duration_ms ?? ""),
+          (r.route_tag ?? "").replace(/\t/g, " "),
+          r.weak ? "1" : "0",
+          String(r.http_status ?? ""),
         ].join("\t"),
       )
       .join("\n");
@@ -557,6 +640,7 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
                   <tr className="text-left text-muted-foreground">
                     <th className="pr-2">Case</th>
                     <th className="pr-2">Q#</th>
+                    <th className="pr-2">Route</th>
                     <th className="pr-2">Status</th>
                     <th>Preview</th>
                   </tr>
@@ -566,6 +650,9 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
                     <tr key={`${r.caseId}-${r.questionNo}-${idx}`} className="border-t border-border/40 align-top">
                       <td className="pr-2 py-1 text-foreground">{r.caseTitle}</td>
                       <td className="pr-2 py-1 text-foreground">{r.questionNo}</td>
+                      <td className="pr-2 py-1 font-mono text-[10px] text-muted-foreground max-w-[88px] truncate" title={r.route_tag ?? ""}>
+                        {r.route_tag ?? "—"}
+                      </td>
                       <td className="pr-2 py-1">{r.error ? <span className="text-red-600">error</span> : <span className="text-emerald-600">ok</span>}</td>
                       <td className="py-1 text-muted-foreground">{(r.error ?? r.answer).slice(0, 120)}</td>
                     </tr>
