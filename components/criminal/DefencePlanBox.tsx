@@ -8,7 +8,7 @@
  * D4: Chat UX – auto-scroll, bubbles, typing indicator, sticky input, collapsible plan, command shortcuts.
  */
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, ChevronUp, Send, Loader2, Check, Pencil, X } from "lucide-react";
@@ -16,6 +16,11 @@ import type { DefenceStrategyPlan } from "@/lib/criminal/strategy-output";
 import { LawSliceSuggestions } from "./LawSliceSuggestions";
 import { VerdictRatingBlock } from "./VerdictRatingBlock";
 import { buildEvalSummaryStats, isEvalWeakAnswer } from "@/lib/eval-run-metadata";
+import {
+  GOLDEN_SWEEP_QUESTIONS,
+  buildGoldenSweepRegressionMeta,
+  summarizeEvalRowsByQuestion,
+} from "@/lib/eval-golden-sweep";
 
 const DEV_CASE_PICKER_ENABLED =
   /^(1|true|yes|on)$/i.test((process.env.NEXT_PUBLIC_DEV_CASE_PICKER ?? "").trim()) ||
@@ -157,7 +162,19 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
   const [evalScope, setEvalScope] = useState<"current" | "5" | "10" | "20" | "all" | "manual">("all");
   const [manualCaseIds, setManualCaseIds] = useState<string[]>([]);
   const [evalRunning, setEvalRunning] = useState(false);
-  const [evalProgress, setEvalProgress] = useState<{ done: number; total: number }>({ done: 0, total: 0 });
+  const [evalProgress, setEvalProgress] = useState<{
+    done: number;
+    total: number;
+    questionIndex?: number;
+    questionTotal?: number;
+    caseIndex?: number;
+    caseTotal?: number;
+    elapsedMs?: number;
+    etaMs?: number | null;
+  }>({ done: 0, total: 0 });
+  /** After a run completes; drives labels + JSON export. */
+  const [evalSweepMode, setEvalSweepMode] = useState<"manual" | "golden_10" | null>(null);
+  const [evalGroupByQuestion, setEvalGroupByQuestion] = useState(false);
   const [evalRows, setEvalRows] = useState<
     Array<{
       caseId: string;
@@ -296,28 +313,45 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
     return runnerCases;
   };
 
-  const runEvalAcrossCases = async () => {
-    const questions = parseEvalQuestions();
+  type EvalSweepRow = {
+    caseId: string;
+    caseTitle: string;
+    questionNo: number;
+    question: string;
+    answer: string;
+    error?: string;
+    duration_ms: number;
+    route_tag: string | null;
+    weak: boolean;
+    http_status: number;
+    ok: boolean;
+  };
+
+  type EvalSweepOpts = {
+    apiSource: "defence_box" | "defence_box_golden";
+    sweepMode: "manual" | "golden_10";
+  };
+
+  const executeEvalSweep = async (questions: string[], opts: EvalSweepOpts) => {
     const runCases = selectedEvalCases();
     if (questions.length === 0 || runCases.length === 0 || evalRunning) return;
     const total = questions.length * runCases.length;
+    const sweepStartedAt = Date.now();
     setEvalRunning(true);
     setEvalRows([]);
-    setEvalProgress({ done: 0, total });
+    setEvalSweepMode(null);
+    setEvalProgress({
+      done: 0,
+      total,
+      questionIndex: 1,
+      questionTotal: questions.length,
+      caseIndex: 1,
+      caseTotal: runCases.length,
+      elapsedMs: 0,
+      etaMs: null,
+    });
 
-    const rows: Array<{
-      caseId: string;
-      caseTitle: string;
-      questionNo: number;
-      question: string;
-      answer: string;
-      error?: string;
-      duration_ms: number;
-      route_tag: string | null;
-      weak: boolean;
-      http_status: number;
-      ok: boolean;
-    }> = [];
+    const rows: EvalSweepRow[] = [];
     let done = 0;
     const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
     const jitter = (baseMs: number) => baseMs + Math.floor(Math.random() * 250);
@@ -391,10 +425,12 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
         ok: false,
       };
     };
+
     try {
       for (let qIdx = 0; qIdx < questions.length; qIdx += 1) {
         const question = questions[qIdx]!;
-        for (const c of runCases) {
+        for (let cIdx = 0; cIdx < runCases.length; cIdx += 1) {
+          const c = runCases[cIdx]!;
           const { answer, error, duration_ms, route_tag, http_status, ok } = await askCaseWithRetry(c.id, question);
           const combined = answer || error || "";
           rows.push({
@@ -411,34 +447,53 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
             weak: isEvalWeakAnswer(combined),
           });
           done += 1;
-          setEvalProgress({ done, total });
+          const elapsedMs = Date.now() - sweepStartedAt;
+          let etaMs: number | null = null;
+          if (done > 0 && done < total) {
+            etaMs = ((total - done) / done) * elapsedMs;
+          }
+          setEvalProgress({
+            done,
+            total,
+            questionIndex: qIdx + 1,
+            questionTotal: questions.length,
+            caseIndex: cIdx + 1,
+            caseTotal: runCases.length,
+            elapsedMs,
+            etaMs,
+          });
           setEvalRows([...rows]);
-          // Gentle pacing lowers API burst pressure during long bulk runs.
           await sleep(error ? jitter(1_500) : jitter(450));
         }
-        // Brief pause between questions to avoid synchronized load spikes.
         if (qIdx < questions.length - 1) await sleep(jitter(1_100));
       }
 
       if (rows.length > 0) {
         try {
+          const aggregateStats = buildEvalSummaryStats(
+            rows.map((r) => ({
+              ok: r.ok,
+              weak: r.weak,
+              answer: r.answer || r.error || "",
+              duration_ms: r.duration_ms,
+              route_tag: r.route_tag,
+            })),
+            questions
+          );
+          const summary_stats = {
+            ...aggregateStats,
+            sweep_mode: opts.sweepMode,
+            per_question: summarizeEvalRowsByQuestion(rows, questions),
+            ...(opts.sweepMode === "golden_10" ? buildGoldenSweepRegressionMeta() : {}),
+          };
           const saveRes = await fetch("/api/eval-sweeps", {
             method: "POST",
             credentials: "include",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-              source: "defence_box",
+              source: opts.apiSource,
               questions,
-              summary_stats: buildEvalSummaryStats(
-                rows.map((r) => ({
-                  ok: r.ok,
-                  weak: r.weak,
-                  answer: r.answer || r.error || "",
-                  duration_ms: r.duration_ms,
-                  route_tag: r.route_tag,
-                })),
-                questions
-              ),
+              summary_stats,
               rows: rows.map((r) => ({
                 case_id: r.caseId,
                 case_title: r.caseTitle,
@@ -461,9 +516,76 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
           // non-fatal
         }
       }
+      setEvalSweepMode(opts.sweepMode === "golden_10" ? "golden_10" : "manual");
+      if (opts.sweepMode === "golden_10") setEvalGroupByQuestion(true);
     } finally {
       setEvalRunning(false);
     }
+  };
+
+  const runEvalAcrossCases = async () => {
+    const questions = parseEvalQuestions();
+    await executeEvalSweep(questions, { apiSource: "defence_box", sweepMode: "manual" });
+  };
+
+  const runGoldenSweepTen = async () => {
+    await executeEvalSweep([...GOLDEN_SWEEP_QUESTIONS], {
+      apiSource: "defence_box_golden",
+      sweepMode: "golden_10",
+    });
+  };
+
+  const formatSweepEta = (ms: number | null | undefined) => {
+    if (ms == null || !Number.isFinite(ms) || ms < 500) return "—";
+    const sec = Math.round(ms / 1000);
+    if (sec < 90) return `~${sec}s`;
+    const m = Math.floor(sec / 60);
+    const s = sec % 60;
+    return `~${m}m ${s}s`;
+  };
+
+  const evalRowsGrouped = useMemo(() => {
+    const m = new Map<number, EvalSweepRow[]>();
+    for (const r of evalRows) {
+      const arr = m.get(r.questionNo) ?? [];
+      arr.push(r);
+      m.set(r.questionNo, arr);
+    }
+    return [...m.entries()].sort((a, b) => a[0] - b[0]);
+  }, [evalRows]);
+
+  const downloadEvalSweepJson = () => {
+    if (evalRows.length === 0) return;
+    const questionsOrdered = evalRowsGrouped.map(([, rs]) => rs[0]?.question ?? "").filter(Boolean);
+    const aggregateStats = buildEvalSummaryStats(
+      evalRows.map((r) => ({
+        ok: r.ok,
+        weak: r.weak,
+        answer: r.answer || r.error || "",
+        duration_ms: r.duration_ms,
+        route_tag: r.route_tag,
+      })),
+      questionsOrdered
+    );
+    const payload = {
+      exported_at: new Date().toISOString(),
+      sweep_mode: evalSweepMode,
+      questions: questionsOrdered,
+      row_count: evalRows.length,
+      summary_stats: {
+        ...aggregateStats,
+        per_question: summarizeEvalRowsByQuestion(evalRows, questionsOrdered),
+        ...(evalSweepMode === "golden_10" ? buildGoldenSweepRegressionMeta() : {}),
+      },
+      rows: evalRows,
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `eval-sweep-${evalSweepMode ?? "manual"}-${new Date().toISOString().replace(/[:.]/g, "-")}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
   };
 
   const copyEvalRows = async () => {
@@ -549,7 +671,7 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
         <div className="mb-3 rounded-md border border-border/60 bg-muted/20 p-2.5">
           <p className="text-[11px] font-medium text-foreground">Bulk eval runner (ask same question(s) across selected cases)</p>
           <p className="mt-1 text-[11px] text-muted-foreground">
-            Enter up to 10 questions (one per line). Runner will execute each question across {runnerCases.length} loaded cases.
+            Enter up to 10 questions (one per line). Runner runs <strong>question-by-question</strong> (Q1 across all selected cases, then Q2, …) — not case-first.
           </p>
           <textarea
             value={evalInput}
@@ -573,16 +695,61 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
               {showCasePicker && <option value="manual">Manual case pick (dev/test)</option>}
             </select>
             <Button type="button" size="sm" onClick={runEvalAcrossCases} disabled={evalRunning || parseEvalQuestions().length === 0}>
-              {evalRunning ? "Running..." : `Run on ${selectedEvalCases().length} case${selectedEvalCases().length === 1 ? "" : "s"}`}
+              {evalRunning ? "Running..." : `Run custom (${selectedEvalCases().length} case${selectedEvalCases().length === 1 ? "" : "s"})`}
+            </Button>
+            <Button
+              type="button"
+              size="sm"
+              variant="secondary"
+              onClick={() => void runGoldenSweepTen()}
+              disabled={evalRunning || selectedEvalCases().length === 0}
+              title="Canonical 10 questions × selected cases; one saved sweep"
+            >
+              {evalRunning ? "Running..." : `Golden sweep 10×${selectedEvalCases().length}`}
             </Button>
             <Button type="button" size="sm" variant="outline" onClick={copyEvalRows} disabled={evalRows.length === 0}>
-              Copy results
+              Copy TSV
             </Button>
-            <Button type="button" size="sm" variant="ghost" onClick={() => setEvalRows([])} disabled={evalRunning || evalRows.length === 0}>
+            <Button type="button" size="sm" variant="outline" onClick={downloadEvalSweepJson} disabled={evalRows.length === 0}>
+              Download JSON
+            </Button>
+            <Button
+              type="button"
+              size="sm"
+              variant="ghost"
+              onClick={() => {
+                setEvalRows([]);
+                setEvalProgress({ done: 0, total: 0 });
+                setEvalSweepMode(null);
+              }}
+              disabled={evalRunning || evalRows.length === 0}
+            >
               Clear
             </Button>
+            <label className="flex items-center gap-1.5 text-[11px] text-muted-foreground cursor-pointer">
+              <input
+                type="checkbox"
+                checked={evalGroupByQuestion}
+                onChange={(e) => setEvalGroupByQuestion(e.target.checked)}
+                disabled={evalRunning}
+              />
+              Group by question
+            </label>
             <span className="text-[11px] text-muted-foreground">
-              Progress: {evalProgress.done}/{evalProgress.total}
+              {evalProgress.total > 0 ? (
+                <>
+                  Q{evalProgress.questionIndex ?? "?"}/{evalProgress.questionTotal ?? "?"} — Case {evalProgress.caseIndex ?? "?"}/{evalProgress.caseTotal ?? "?"} ·{" "}
+                  {evalProgress.done}/{evalProgress.total}
+                  {evalRunning && evalProgress.elapsedMs != null ? (
+                    <>
+                      {" "}
+                      · {Math.round(evalProgress.elapsedMs / 1000)}s · ETA {formatSweepEta(evalProgress.etaMs)}
+                    </>
+                  ) : null}
+                </>
+              ) : (
+                <>Idle</>
+              )}
             </span>
             {evalCopyMessage && (
               <span className="text-[11px] text-muted-foreground">{evalCopyMessage}</span>
@@ -659,6 +826,31 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
                   ))}
                 </tbody>
               </table>
+            </div>
+          )}
+          {evalGroupByQuestion && evalRowsGrouped.length > 0 && (
+            <div className="mt-2 max-h-56 space-y-1 overflow-auto rounded border border-border/60 bg-muted/10 p-2">
+              <p className="text-[11px] font-medium text-foreground">Grouped by question</p>
+              {evalRowsGrouped.map(([qn, rs]) => {
+                const weakN = rs.filter((r) => r.weak).length;
+                const routes = rs.reduce<Record<string, number>>((acc, r) => {
+                  const t = r.route_tag ?? "unknown";
+                  acc[t] = (acc[t] ?? 0) + 1;
+                  return acc;
+                }, {});
+                const routeSummary = Object.entries(routes)
+                  .map(([k, v]) => `${k}:${v}`)
+                  .join(" · ");
+                return (
+                  <details key={qn} className="rounded border border-border/50 bg-background px-2 py-1">
+                    <summary className="cursor-pointer text-[11px] text-foreground">
+                      Q{qn} · weak {weakN}/{rs.length}
+                      {routeSummary ? ` · ${routeSummary.length > 160 ? `${routeSummary.slice(0, 157)}…` : routeSummary}` : ""}
+                    </summary>
+                    <p className="mt-1 text-[10px] leading-snug text-muted-foreground">{rs[0]?.question ?? ""}</p>
+                  </details>
+                );
+              })}
             </div>
           )}
         </div>

@@ -62,7 +62,9 @@ export async function POST(request: Request) {
   }
 
   const source =
-    body.source === "defence_box" || body.source === "golden" ? body.source : "golden";
+    body.source === "defence_box" || body.source === "defence_box_golden" || body.source === "golden"
+      ? body.source
+      : "golden";
   const rowsIn = Array.isArray(body.rows) ? body.rows : [];
   if (rowsIn.length === 0) {
     return NextResponse.json({ error: "rows must be a non-empty array" }, { status: 400 });
