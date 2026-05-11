@@ -22,6 +22,7 @@ import {
   summarizeEvalRowsByQuestion,
 } from "@/lib/eval-golden-sweep";
 import type { EvalMetaV1 } from "@/lib/eval-observability";
+import { sortCasesForEvalScan } from "@/lib/eval-case-sort";
 
 const DEV_CASE_PICKER_ENABLED =
   /^(1|true|yes|on)$/i.test((process.env.NEXT_PUBLIC_DEV_CASE_PICKER ?? "").trim()) ||
@@ -300,7 +301,8 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
   };
 
   const runnerCasesBase = allCases.length > 0 ? allCases : evalCases;
-  const runnerCases = runnerCasesBase.length > 0 ? runnerCasesBase : [{ id: caseId, title: "Current case" }];
+  const runnerCases =
+    runnerCasesBase.length > 0 ? sortCasesForEvalScan(runnerCasesBase) : [{ id: caseId, title: "Current case" }];
 
   const selectedEvalCases = (): Array<{ id: string; title: string }> => {
     if (evalScope === "manual") {
@@ -459,7 +461,7 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
             route_tag,
             http_status,
             ok,
-            weak: isEvalWeakAnswer(combined),
+            weak: isEvalWeakAnswer(combined, { route_tag }),
             eval_meta,
           });
           done += 1;

@@ -54,6 +54,7 @@ import { execSync } from "child_process";
 import { mkdir, readFile, writeFile } from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
+import { sortCasesForEvalScan } from "../lib/eval-case-sort";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.join(__dirname, "..");
@@ -312,17 +313,19 @@ async function getCaseIds(): Promise<string[]> {
     );
   }
 
-  const cases: string[] = [];
+  const rows: { id: string; title?: string | null }[] = [];
   for (const item of casesRaw) {
     if (typeof item === "object" && item !== null && typeof (item as { id?: unknown }).id === "string") {
-      cases.push((item as { id: string }).id);
+      const it = item as { id: string; title?: string | null };
+      rows.push({ id: it.id, title: it.title });
     }
   }
+  const sortedIds = sortCasesForEvalScan(rows).map((r) => r.id);
 
   const maxCases = process.env.EVAL_MAX_CASES ? parseInt(process.env.EVAL_MAX_CASES, 10) : null;
 
   const selectedCases =
-    maxCases != null && Number.isFinite(maxCases) && maxCases > 0 ? cases.slice(0, maxCases) : cases;
+    maxCases != null && Number.isFinite(maxCases) && maxCases > 0 ? sortedIds.slice(0, maxCases) : sortedIds;
 
   return selectedCases;
 }

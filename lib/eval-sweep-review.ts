@@ -83,7 +83,7 @@ export function normalizeSweepRow(r: {
     question_no: r.question_no,
     question: r.question,
     answer: r.answer,
-    weak: Boolean(r.weak) || isEvalWeakAnswer(r.answer),
+    weak: Boolean(r.weak) || isEvalWeakAnswer(r.answer, { route_tag: r.route_tag ?? null }),
     http_status: http,
     duration_ms: typeof r.duration_ms === "number" ? r.duration_ms : 0,
     route_tag: r.route_tag ?? null,
@@ -101,7 +101,7 @@ export function isSuspiciouslyShortAnswer(answer: string, routeTag: string | nul
 
 /** Row belongs in “Problems only”: weak, HTTP error, fallback route, timeout-like text, or suspiciously short (non-strict). */
 export function isProblemSweepRow(r: NormalizedSweepRow): boolean {
-  if (r.weak || isEvalWeakAnswer(r.answer)) return true;
+  if (r.weak || isEvalWeakAnswer(r.answer, { route_tag: r.route_tag ?? null })) return true;
   if (r.http_status !== 200) return true;
   const tag = (r.route_tag ?? "").trim();
   if (tag && GOLDEN_FALLBACK_ROUTE_TAGS.has(tag)) return true;
@@ -127,7 +127,9 @@ export function buildPerQuestionSummaries(
   return questions.map((q, i) => {
     const question_no = i + 1;
     const subset = rows.filter((r) => r.question_no === question_no);
-    const weak_count = subset.filter((r) => r.weak || isEvalWeakAnswer(r.answer)).length;
+    const weak_count = subset.filter(
+      (r) => r.weak || isEvalWeakAnswer(r.answer, { route_tag: r.route_tag ?? null })
+    ).length;
     const http_fail_count = subset.filter((r) => r.http_status !== 200 && r.http_status !== 0).length;
     const durations = subset.map((r) => r.duration_ms).filter((x) => x >= 0);
     const avg_duration_ms =
@@ -225,8 +227,10 @@ export function compareGoldenSweeps(
 
   for (const cur of current) {
     const prev = baseMap.get(rowKey(cur));
-    const prevWeak = prev ? prev.weak || isEvalWeakAnswer(prev.answer) : false;
-    const curWeak = cur.weak || isEvalWeakAnswer(cur.answer);
+    const prevWeak = prev
+      ? prev.weak || isEvalWeakAnswer(prev.answer, { route_tag: prev.route_tag ?? null })
+      : false;
+    const curWeak = cur.weak || isEvalWeakAnswer(cur.answer, { route_tag: cur.route_tag ?? null });
 
     if (prev) {
       if (prevWeak && !curWeak) improved.push(cur);

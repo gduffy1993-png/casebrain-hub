@@ -9,6 +9,7 @@ import {
   sweepSemanticHints,
   type EvalMetaV1,
 } from "@/lib/eval-observability";
+import { sortCasesForEvalScan } from "@/lib/eval-case-sort";
 import { buildEvalSummaryStats, isEvalWeakAnswer } from "@/lib/eval-run-metadata";
 import { EvalSweepReviewPanel } from "@/components/eval/EvalSweepReviewPanel";
 
@@ -135,7 +136,7 @@ export function GoldenEvalRunner() {
     setProgress({ done: 0, total: 0, current: "Loading cases..." });
 
     try {
-      const cases = await loadCases();
+      const cases = sortCasesForEvalScan(await loadCases());
       const total = cases.length * GOLDEN_QUESTIONS.length;
       const nextRows: EvalRow[] = [];
       let done = 0;
@@ -190,7 +191,7 @@ export function GoldenEvalRunner() {
                 status: res.status,
                 duration_ms: Date.now() - started,
                 timestamp: new Date().toISOString(),
-                weak: isEvalWeakAnswer(text),
+                weak: isEvalWeakAnswer(text, { route_tag: routeTag }),
                 route_tag: routeTag,
                 eval_meta: em,
               });
@@ -209,7 +210,7 @@ export function GoldenEvalRunner() {
               status: 0,
               duration_ms: Date.now() - started,
               timestamp: new Date().toISOString(),
-              weak: isEvalWeakAnswer(errorText),
+              weak: isEvalWeakAnswer(errorText, { route_tag: null }),
               route_tag: null,
               eval_meta: null,
             });
