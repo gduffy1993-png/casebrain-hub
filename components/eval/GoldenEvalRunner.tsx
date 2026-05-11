@@ -4,6 +4,11 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { GOLDEN_SWEEP_QUESTIONS, summarizeEvalRowsByQuestion } from "@/lib/eval-golden-sweep";
+import {
+  buildSystemicCollapseWarnings,
+  sweepSemanticHints,
+  type EvalMetaV1,
+} from "@/lib/eval-observability";
 import { buildEvalSummaryStats, isEvalWeakAnswer } from "@/lib/eval-run-metadata";
 import { EvalSweepReviewPanel } from "@/components/eval/EvalSweepReviewPanel";
 
@@ -22,6 +27,8 @@ type EvalRow = {
   weak: boolean;
   /** From defence-plan-chat `x-casebrain-route` */
   route_tag: string | null;
+  /** From defence-plan-chat JSON `eval_meta` */
+  eval_meta?: EvalMetaV1 | null;
 };
 
 /** Canonical 10-question sweep — mutable copy for indexing / saves (same strings as lib). */
@@ -164,9 +171,15 @@ export function GoldenEvalRunner() {
                 body: JSON.stringify({ message: q }),
               });
               const routeTag = res.headers.get("x-casebrain-route")?.trim() || null;
-              const json = (await res.json().catch(() => ({}))) as { reply?: string; ok?: boolean; error?: string };
+              const json = (await res.json().catch(() => ({}))) as {
+                reply?: string;
+                ok?: boolean;
+                error?: string;
+                eval_meta?: EvalMetaV1;
+              };
               const text =
                 typeof json.reply === "string" ? json.reply : json.error || `HTTP ${res.status}`;
+              const em = json.eval_meta && json.eval_meta.v === 1 ? json.eval_meta : null;
               nextRows.push({
                 case_id: c.id,
                 case_title: c.title || "Untitled case",
@@ -179,6 +192,7 @@ export function GoldenEvalRunner() {
                 timestamp: new Date().toISOString(),
                 weak: isEvalWeakAnswer(text),
                 route_tag: routeTag,
+                eval_meta: em,
               });
             } finally {
               clearTimeout(timeoutId);
@@ -197,6 +211,7 @@ export function GoldenEvalRunner() {
               timestamp: new Date().toISOString(),
               weak: isEvalWeakAnswer(errorText),
               route_tag: null,
+              eval_meta: null,
             });
           }
           done += 1;
@@ -259,6 +274,7 @@ export function GoldenEvalRunner() {
               weak: r.weak,
               http_status: r.status,
               route_tag: r.route_tag,
+              row_meta: r.eval_meta ?? null,
             })),
           }),
         });

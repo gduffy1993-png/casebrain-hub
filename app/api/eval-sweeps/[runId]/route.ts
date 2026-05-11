@@ -36,7 +36,7 @@ export async function GET(_request: Request, { params }: RouteParams) {
   const { data: rows, error: rowsErr } = await supabase
     .from("eval_sweep_rows")
     .select(
-      "case_id, case_title, question_no, question, answer, error, duration_ms, weak, http_status, route_tag, sort_order"
+      "case_id, case_title, question_no, question, answer, error, duration_ms, weak, http_status, route_tag, row_meta, sort_order"
     )
     .eq("run_id", runId)
     .eq("org_id", orgId)

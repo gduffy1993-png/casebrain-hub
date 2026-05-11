@@ -11,6 +11,7 @@ import {
   slowestSweepRows,
   type NormalizedSweepRow,
 } from "@/lib/eval-sweep-review";
+import { buildSystemicCollapseWarnings, type EvalMetaV1 } from "@/lib/eval-observability";
 
 export type ReviewEvalRow = {
   case_id: string;
@@ -23,6 +24,8 @@ export type ReviewEvalRow = {
   duration_ms: number;
   weak: boolean;
   route_tag: string | null;
+  eval_meta?: EvalMetaV1 | null;
+  row_meta?: unknown | null;
 };
 
 type ViewMode = "all" | "problems" | "by_question";
@@ -59,6 +62,19 @@ export function EvalSweepReviewPanel({ rows, questions, baselineRows, onClearBas
   const slowest = useMemo(() => slowestSweepRows(normalized, 20), [normalized]);
 
   const driftWarnings = useMemo(() => goldenSweepRouteDriftWarnings(normalized), [normalized]);
+
+  const systemicWarnings = useMemo(
+    () =>
+      buildSystemicCollapseWarnings(
+        normalized.map((r) => ({
+          question_no: r.question_no,
+          answer: r.answer,
+          route_tag: r.route_tag,
+          eval_meta: r.eval_meta ?? null,
+        }))
+      ),
+    [normalized]
+  );
 
   const comparison = useMemo(() => {
     if (!normalizedBaseline.length || !normalized.length) return null;
@@ -256,6 +272,22 @@ export function EvalSweepReviewPanel({ rows, questions, baselineRows, onClearBas
                           )}
                         </div>
                         <pre className="mt-1 whitespace-pre-wrap text-muted-foreground">{nr.answer}</pre>
+                        {nr.eval_meta && (
+                          <details className="mt-1 text-[11px] text-muted-foreground">
+                            <summary className="cursor-pointer select-none">Observability</summary>
+                            <pre className="mt-1 max-h-36 overflow-auto rounded border border-border p-1 bg-muted/30 font-mono whitespace-pre-wrap">
+                              {JSON.stringify(
+                                {
+                                  route_trace: nr.eval_meta.route_trace,
+                                  grounding_metrics: nr.eval_meta.grounding_metrics,
+                                  fingerprint: nr.eval_meta.answer_fingerprint,
+                                },
+                                null,
+                                2
+                              )}
+                            </pre>
+                          </details>
+                        )}
                       </div>
                     ))}
                   </div>
@@ -293,7 +325,25 @@ export function EvalSweepReviewPanel({ rows, questions, baselineRows, onClearBas
                   <td className="p-2 align-top">{r.question_no}</td>
                   <td className="p-2 align-top font-mono text-xs">{r.route_tag ?? "—"}</td>
                   <td className="p-2 align-top">{questions[r.question_no - 1] ?? r.question}</td>
-                  <td className="p-2 align-top whitespace-pre-wrap">{r.answer}</td>
+                  <td className="p-2 align-top whitespace-pre-wrap">
+                    {r.answer}
+                    {r.eval_meta && (
+                      <details className="mt-1 text-xs text-muted-foreground">
+                        <summary className="cursor-pointer select-none">Observability</summary>
+                        <pre className="mt-1 max-h-36 overflow-auto rounded border border-border p-1 bg-muted/30 font-mono whitespace-pre-wrap">
+                          {JSON.stringify(
+                            {
+                              route_trace: r.eval_meta.route_trace,
+                              grounding_metrics: r.eval_meta.grounding_metrics,
+                              fingerprint: r.eval_meta.answer_fingerprint,
+                            },
+                            null,
+                            2
+                          )}
+                        </pre>
+                      </details>
+                    )}
+                  </td>
                   <td className="p-2 align-top">{r.http_status}</td>
                 </tr>
               ))}

@@ -21,6 +21,7 @@ import {
   buildGoldenSweepRegressionMeta,
   summarizeEvalRowsByQuestion,
 } from "@/lib/eval-golden-sweep";
+import type { EvalMetaV1 } from "@/lib/eval-observability";
 
 const DEV_CASE_PICKER_ENABLED =
   /^(1|true|yes|on)$/i.test((process.env.NEXT_PUBLIC_DEV_CASE_PICKER ?? "").trim()) ||
@@ -325,6 +326,7 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
     weak: boolean;
     http_status: number;
     ok: boolean;
+    eval_meta?: EvalMetaV1 | null;
   };
 
   type EvalSweepOpts = {
@@ -365,6 +367,7 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
       route_tag: string | null;
       http_status: number;
       ok: boolean;
+      eval_meta: EvalMetaV1 | null;
     }> => {
       const maxAttempts = 3;
       for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
@@ -381,10 +384,16 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
           });
           const duration_ms = Date.now() - started;
           const route_tag = res.headers.get("x-casebrain-route")?.trim() || null;
-          const data = (await res.json().catch(() => ({}))) as { ok?: boolean; reply?: string; error?: string };
+          const data = (await res.json().catch(() => ({}))) as {
+            ok?: boolean;
+            reply?: string;
+            error?: string;
+            eval_meta?: EvalMetaV1;
+          };
+          const em = data.eval_meta && data.eval_meta.v === 1 ? data.eval_meta : null;
           if (res.ok && data.ok && typeof data.reply === "string" && data.reply.trim().length > 0) {
             clearTimeout(timeoutId);
-            return { answer: data.reply, duration_ms, route_tag, http_status: res.status, ok: true };
+            return { answer: data.reply, duration_ms, route_tag, http_status: res.status, ok: true, eval_meta: em };
           }
           const errText = data.error ?? `HTTP ${res.status}`;
           if (attempt === maxAttempts) {
@@ -396,6 +405,7 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
               route_tag,
               http_status: res.status,
               ok: false,
+              eval_meta: null,
             };
           }
         } catch (e) {
@@ -409,6 +419,7 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
               route_tag: null,
               http_status: 0,
               ok: false,
+              eval_meta: null,
             };
           }
         } finally {
@@ -423,6 +434,7 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
         route_tag: null,
         http_status: 0,
         ok: false,
+        eval_meta: null,
       };
     };
 
@@ -431,7 +443,10 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
         const question = questions[qIdx]!;
         for (let cIdx = 0; cIdx < runCases.length; cIdx += 1) {
           const c = runCases[cIdx]!;
-          const { answer, error, duration_ms, route_tag, http_status, ok } = await askCaseWithRetry(c.id, question);
+          const { answer, error, duration_ms, route_tag, http_status, ok, eval_meta } = await askCaseWithRetry(
+            c.id,
+            question
+          );
           const combined = answer || error || "";
           rows.push({
             caseId: c.id,
@@ -445,6 +460,7 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
             http_status,
             ok,
             weak: isEvalWeakAnswer(combined),
+            eval_meta,
           });
           done += 1;
           const elapsedMs = Date.now() - sweepStartedAt;
@@ -505,6 +521,7 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
                 weak: r.weak,
                 http_status: r.http_status,
                 route_tag: r.route_tag,
+                row_meta: r.eval_meta ?? null,
               })),
             }),
           });

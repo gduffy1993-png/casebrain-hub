@@ -20,6 +20,8 @@ type SweepRowIn = {
   http_status?: number | null;
   /** From `x-casebrain-route` on defence-plan-chat (strict_mg6, lightweight_eval, etc.) */
   route_tag?: string | null;
+  /** Structured observability from defence-plan-chat JSON `eval_meta` */
+  row_meta?: Record<string, unknown> | null;
 };
 
 export async function GET() {
@@ -108,6 +110,10 @@ export async function POST(request: Request) {
     weak: typeof r.weak === "boolean" ? r.weak : null,
     http_status: typeof r.http_status === "number" ? r.http_status : null,
     route_tag: r.route_tag != null && String(r.route_tag).trim() ? String(r.route_tag).trim().slice(0, 64) : null,
+    row_meta:
+      r.row_meta != null && typeof r.row_meta === "object" && !Array.isArray(r.row_meta)
+        ? (r.row_meta as Record<string, unknown>)
+        : null,
     sort_order,
   }));
 

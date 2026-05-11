@@ -7,6 +7,7 @@ import {
   TIMEOUT_OR_ABORT_ANSWER_RE,
   isEvalWeakAnswer,
 } from "@/lib/eval-run-metadata";
+import type { EvalMetaV1 } from "@/lib/eval-observability";
 
 /** Routes that indicate grounding / pipeline fallback (worth surfacing in “Problems”). */
 export const GOLDEN_FALLBACK_ROUTE_TAGS = new Set([
@@ -38,7 +39,20 @@ export type NormalizedSweepRow = {
   duration_ms: number;
   route_tag: string | null;
   ok: boolean;
+  eval_meta?: EvalMetaV1 | null;
 };
+
+function pickEvalMeta(r: {
+  eval_meta?: EvalMetaV1 | null;
+  row_meta?: unknown | null;
+}): EvalMetaV1 | null {
+  if (r.eval_meta && r.eval_meta.v === 1) return r.eval_meta;
+  const rm = r.row_meta;
+  if (rm && typeof rm === "object" && rm !== null && "v" in rm && (rm as { v: unknown }).v === 1) {
+    return rm as EvalMetaV1;
+  }
+  return null;
+}
 
 export function normalizeSweepRow(r: {
   case_id: string;
@@ -52,6 +66,8 @@ export function normalizeSweepRow(r: {
   duration_ms?: number | null;
   route_tag?: string | null;
   ok?: boolean;
+  eval_meta?: EvalMetaV1 | null;
+  row_meta?: unknown | null;
 }): NormalizedSweepRow {
   const http =
     typeof r.http_status === "number"
@@ -72,6 +88,7 @@ export function normalizeSweepRow(r: {
     duration_ms: typeof r.duration_ms === "number" ? r.duration_ms : 0,
     route_tag: r.route_tag ?? null,
     ok: r.ok !== false && http === 200,
+    eval_meta: pickEvalMeta(r),
   };
 }
 

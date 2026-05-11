@@ -14,6 +14,7 @@ import { retrieveLawChunks } from "@/lib/criminal/criminal-law-corpus";
 import { getChangeListForContext } from "@/lib/criminal/verdict-change-list";
 import { getCaseStateSnapshot } from "@/lib/criminal/case-state-snapshot";
 import { getDocumentBodyText } from "@/lib/bundle/bundle-document-text";
+import { buildEvalMetaV1, type EvalMetaV1, type ReplyFinalization } from "@/lib/eval-observability";
 
 type RouteParams = { params: Promise<{ caseId: string }> };
 
@@ -85,11 +86,32 @@ function enforceActionFormatThreeLines(reply: string): string {
 const CASEBRAIN_ROUTE_HEADER = "x-casebrain-route";
 
 function jsonWithRoute(
-  data: { ok?: boolean; reply?: string; error?: string },
+  data: { ok?: boolean; reply?: string; error?: string; eval_meta?: EvalMetaV1 },
   route: string,
   status = 200
 ) {
   return NextResponse.json(data, { status, headers: { [CASEBRAIN_ROUTE_HEADER]: route } });
+}
+
+function routeEvalMeta(
+  routeName: string,
+  message: string,
+  reply: string,
+  bundleHaystack: string,
+  bundleCharsFull: number,
+  grounded: boolean,
+  extras?: { fallback_reason?: string; reply_finalization?: ReplyFinalization }
+): EvalMetaV1 {
+  return buildEvalMetaV1({
+    selected_route: routeName,
+    question_mode: detectQuestionMode(message),
+    reply,
+    bundle_haystack: bundleHaystack,
+    bundle_chars_full: bundleCharsFull,
+    grounded_gate_passed: grounded,
+    fallback_reason: extras?.fallback_reason,
+    reply_finalization: extras?.reply_finalization,
+  });
 }
 
 const AI_TIMEOUT_MS = 70_000;
@@ -2886,31 +2908,82 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   // Strict disclosure route: MG6 schedule questions bypass LLM generation completely.
   if (isStrictMg6DisclosureQuestion(message)) {
     const reply = buildStrictMg6DisclosureAnswer(combinedBundleFull);
-    return jsonWithRoute({ ok: true, reply }, "strict_mg6");
+    return jsonWithRoute(
+      {
+        ok: true,
+        reply,
+        eval_meta: routeEvalMeta("strict_mg6", message, reply, combinedBundleFull, combinedBundleFull.length, true, {
+          reply_finalization: "deterministic",
+        }),
+      },
+      "strict_mg6"
+    );
   }
 
   // Strict interview route: interview/account questions bypass full LLM generation.
   if (isStrictInterviewQuestion(message)) {
     const reply = buildStrictInterviewAnswer(combinedBundleFull);
-    return jsonWithRoute({ ok: true, reply }, "strict_interview");
+    return jsonWithRoute(
+      {
+        ok: true,
+        reply,
+        eval_meta: routeEvalMeta("strict_interview", message, reply, combinedBundleFull, combinedBundleFull.length, true, {
+          reply_finalization: "deterministic",
+        }),
+      },
+      "strict_interview"
+    );
   }
 
   // Strict exhibit/reference route: return verbatim refs/codes; bypass full LLM generation.
   if (isStrictExhibitReferenceQuestion(message)) {
     const reply = buildStrictExhibitReferenceAnswer(message, combinedBundleFull);
-    return jsonWithRoute({ ok: true, reply }, "strict_exhibit");
+    return jsonWithRoute(
+      {
+        ok: true,
+        reply,
+        eval_meta: routeEvalMeta("strict_exhibit", message, reply, combinedBundleFull, combinedBundleFull.length, true, {
+          reply_finalization: "deterministic",
+        }),
+      },
+      "strict_exhibit"
+    );
   }
 
   if (isStrictPrimaryAllegationQuestion(message)) {
     const line = buildStrictPrimaryAllegationAnswer(combinedBundleFull);
     if (line) {
-      return jsonWithRoute({ ok: true, reply: line }, "strict_primary_allegation");
+      return jsonWithRoute(
+        {
+          ok: true,
+          reply: line,
+          eval_meta: routeEvalMeta(
+            "strict_primary_allegation",
+            message,
+            line,
+            combinedBundleFull,
+            combinedBundleFull.length,
+            true,
+            { reply_finalization: "deterministic" }
+          ),
+        },
+        "strict_primary_allegation"
+      );
     }
   }
 
   if (isStrictMg5EvidenceQuestion(message)) {
     const reply = buildStrictMg5EvidenceAnswer(combinedBundleFull);
-    return jsonWithRoute({ ok: true, reply }, "strict_mg5");
+    return jsonWithRoute(
+      {
+        ok: true,
+        reply,
+        eval_meta: routeEvalMeta("strict_mg5", message, reply, combinedBundleFull, combinedBundleFull.length, true, {
+          reply_finalization: "deterministic",
+        }),
+      },
+      "strict_mg5"
+    );
   }
 
   const useLightweightEvalLlm =
@@ -2933,10 +3006,37 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       const forced = enforceActionFormatThreeLines(
         "Core point: The bundle does not safely support a final answer, but the issue should be treated as a provisional evidence gap rather than ignored.\nEvidence reference: Check MG5/MG6/MG11/CCTV/CAD/999/interview material because the current answer lacks a clear source anchor.\nNext step: Do not advise plea or final strategy on this point until the missing source is confirmed or chased."
       );
-      return jsonWithRoute({ ok: true, reply: forced }, "lightweight_eval_grounding_fallback");
+      return jsonWithRoute(
+        {
+          ok: true,
+          reply: forced,
+          eval_meta: routeEvalMeta(
+            "lightweight_eval_grounding_fallback",
+            message,
+            forced,
+            combinedBundleFull,
+            combinedBundleFull.length,
+            true,
+            {
+              fallback_reason: "lightweight_not_grounded_after_three_line",
+              reply_finalization: "lightweight_fallback_template",
+            }
+          ),
+        },
+        "lightweight_eval_grounding_fallback"
+      );
     }
 
-    return jsonWithRoute({ ok: true, reply }, "lightweight_eval");
+    return jsonWithRoute(
+      {
+        ok: true,
+        reply,
+        eval_meta: routeEvalMeta("lightweight_eval", message, reply, combinedBundleFull, combinedBundleFull.length, true, {
+          reply_finalization: "three_line",
+        }),
+      },
+      "lightweight_eval"
+    );
   }
 
   // Deterministic golden-eval path: bypass model drift for the fixed 10-question gate.
@@ -2946,7 +3046,16 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       0,
       MAX_REPLY_LENGTH
     );
-    return jsonWithRoute({ ok: true, reply }, "deterministic_golden");
+    return jsonWithRoute(
+      {
+        ok: true,
+        reply,
+        eval_meta: routeEvalMeta("deterministic_golden", message, reply, combinedBundleFull, combinedBundleFull.length, true, {
+          reply_finalization: "deterministic",
+        }),
+      },
+      "deterministic_golden"
+    );
   }
 
   // Offence-aware law retrieval: include detected offence in query so relevant law is prioritised
@@ -3241,15 +3350,52 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   }
 
   let reply = raw.slice(0, MAX_REPLY_LENGTH);
-  reply = enforceActionFormatThreeLines(reply);
+  const threeLine = enforceActionFormatThreeLines(reply);
+  let replyFinalization: ReplyFinalization;
+  if (isGroundedAnswer(threeLine)) {
+    reply = threeLine;
+    replyFinalization = "three_line";
+  } else if (isGroundedAnswer(reply)) {
+    replyFinalization = "capped_full";
+  } else {
+    reply = threeLine;
+    replyFinalization = "three_line";
+  }
 
   const isGeneric = !isGroundedAnswer(reply);
   if (isGeneric) {
     const forced = enforceActionFormatThreeLines(
       "Core point: The MG5 summary is not clearly extractable from the current bundle, so prosecution reliance must be treated as inferred rather than confirmed.\nEvidence reference: MG5 reference is missing or incomplete; supporting MG11, CCTV, or CAD linkage not visible in current materials.\nNext step: Obtain the full MG5 summary and cross-check with MG11/CCTV to identify what the prosecution actually relies on."
     );
-    return jsonWithRoute({ ok: true, reply: forced }, "full_chat_ungrounded_fallback");
+    return jsonWithRoute(
+      {
+        ok: true,
+        reply: forced,
+        eval_meta: routeEvalMeta(
+          "full_chat_ungrounded_fallback",
+          message,
+          forced,
+          exhibitHaystack,
+          combinedBundleFull.length,
+          false,
+          {
+            fallback_reason: "full_chat_grounding_gate_failed",
+            reply_finalization: "forced_ungrounded_template",
+          }
+        ),
+      },
+      "full_chat_ungrounded_fallback"
+    );
   }
 
-  return jsonWithRoute({ ok: true, reply }, "full_chat");
+  return jsonWithRoute(
+    {
+      ok: true,
+      reply,
+      eval_meta: routeEvalMeta("full_chat", message, reply, exhibitHaystack, combinedBundleFull.length, true, {
+        reply_finalization: replyFinalization,
+      }),
+    },
+    "full_chat"
+  );
 }
