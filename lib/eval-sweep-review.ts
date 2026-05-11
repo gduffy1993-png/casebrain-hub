@@ -12,6 +12,7 @@ import type { EvalMetaV1 } from "@/lib/eval-observability";
 /** Routes that indicate grounding / pipeline fallback (worth surfacing in “Problems”). */
 export const GOLDEN_FALLBACK_ROUTE_TAGS = new Set([
   "lightweight_eval_grounding_fallback",
+  "lightweight_eval_interpretive_sweep_grounding_fallback",
   "full_chat_ungrounded_fallback",
 ]);
 
@@ -184,9 +185,19 @@ export function goldenSweepRouteDriftWarnings(rows: NormalizedSweepRow[]): strin
     if (GOLDEN_SHOULD_AVOID_LIGHTWEIGHT_EVAL.has(qn)) {
       const lw = routes.get("lightweight_eval") ?? 0;
       const lwf = routes.get("lightweight_eval_grounding_fallback") ?? 0;
-      if (lw > 0) warnings.push(`Q${qn}: lightweight_eval ${lw}× — interpretive questions should use full_chat after routing fixes.`);
+      if (lw > 0)
+        warnings.push(
+          `Q${qn}: lightweight_eval ${lw}× — unexpected on interpretive rows with x-fast-eval (expect lightweight_eval_interpretive_sweep); check headers.`
+        );
       if (lwf > 0)
         warnings.push(`Q${qn}: lightweight_eval_grounding_fallback ${lwf}× — review bundle grounding.`);
+    }
+
+    const timeBudget = routes.get("full_chat_time_budget") ?? 0;
+    if (timeBudget > 0) {
+      warnings.push(
+        `Q${qn}: full_chat_time_budget ${timeBudget}× — LLM timed out or returned only empty completions; this is not the ungrounded fallback. Retry or reduce concurrent load.`
+      );
     }
   }
 

@@ -63,10 +63,12 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
 
-  const source =
+  /** DB `eval_sweep_runs.source` CHECK allows only `golden` | `defence_box` — map UI aliases. */
+  const sourceRaw =
     body.source === "defence_box" || body.source === "defence_box_golden" || body.source === "golden"
       ? body.source
       : "golden";
+  const source = sourceRaw === "defence_box_golden" ? "defence_box" : sourceRaw;
   const rowsIn = Array.isArray(body.rows) ? body.rows : [];
   if (rowsIn.length === 0) {
     return NextResponse.json({ error: "rows must be a non-empty array" }, { status: 400 });

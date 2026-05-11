@@ -1,7 +1,7 @@
 /** Shared helpers for in-app eval exports and weak filtering. */
 
 export const TIMEOUT_OR_ABORT_ANSWER_RE =
-  /timed run prevented|browser limit|signal is aborted|aborted without reason/i;
+  /timed run prevented|browser limit|signal is aborted|aborted without reason|unable to generate response in time/i;
 
 /** Northshire exhibit list from strict_exhibit often has many short lines — do not score as weak. */
 function looksLikeNorthshireStrictExhibitList(answer: string): boolean {

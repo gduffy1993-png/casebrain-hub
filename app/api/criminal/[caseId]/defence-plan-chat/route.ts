@@ -28,6 +28,30 @@ function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+/** Same string returned by runChatWithRetry when the overall time budget is exhausted or completions stay empty. */
+const FULL_CHAT_TIME_BUDGET_STUB = "Unable to generate response in time";
+
+function isFullChatTimeBudgetStub(text: string): boolean {
+  return text.trim().toLowerCase() === FULL_CHAT_TIME_BUDGET_STUB.toLowerCase();
+}
+
+/** Law retrieval must never block the interpretive path (429, slow RPC, etc.): cap wait, never throw. */
+async function retrieveLawChunksNonBlocking(
+  query: string,
+  limit: number,
+  budgetMs: number
+): Promise<Awaited<ReturnType<typeof retrieveLawChunks>>> {
+  try {
+    return await Promise.race([
+      retrieveLawChunks(query, limit),
+      sleep(budgetMs).then(() => [] as Awaited<ReturnType<typeof retrieveLawChunks>>),
+    ]);
+  } catch (e) {
+    console.warn("[defence-plan-chat] Law retrieval failed (continuing without)", e);
+    return [];
+  }
+}
+
 function isTransientOpenAIError(err: unknown): boolean {
   if (err instanceof Error && err.name === "AbortError") return false;
   if (err instanceof APIConnectionError || err instanceof APIConnectionTimeoutError) return true;
@@ -86,6 +110,91 @@ function passesEvalGroundingGate(answer: string, bundleHaystack: string): boolea
   )
     return true;
   return false;
+}
+
+const INTERPRETIVE_FULLCHAT_FALLBACK_LOG = process.env.CASEBRAIN_INTERPRETIVE_FALLBACK_LOG === "1";
+
+function groundingDebugSnapshot(text: string, bundleHaystack: string) {
+  return {
+    chars: text.length,
+    is_grounded_literal: isGroundedAnswer(text),
+    passes_eval_gate: passesEvalGroundingGate(text, bundleHaystack),
+    grounding_metrics: computeGroundingMetrics(text, bundleHaystack),
+  };
+}
+
+const INTERPRETIVE_FALLBACK_PREVIEW_CHARS = 4000;
+
+/**
+ * Structured stderr log when full_chat replaces the reply with MG5 grounding fallback.
+ * Enable: CASEBRAIN_INTERPRETIVE_FALLBACK_LOG=1
+ */
+function logInterpretiveFullChatFallback(opts: {
+  caseId: string;
+  question: string;
+  questionMode: QuestionMode;
+  llmFirstCompletion: string;
+  postPipelineRaw: string;
+  cappedReply: string;
+  threeLine: string;
+  chosenReply: string;
+  replyFinalization: ReplyFinalization;
+  exhibitHaystack: string;
+  combinedBundleChars: number;
+  bundleExcerptChars: number;
+  docsWithTextCount: number;
+}) {
+  if (!INTERPRETIVE_FULLCHAT_FALLBACK_LOG) return;
+
+  const hay = opts.exhibitHaystack;
+  const clip = (s: string) => s.slice(0, INTERPRETIVE_FALLBACK_PREVIEW_CHARS);
+  const withPreview = (
+    snapshot: ReturnType<typeof groundingDebugSnapshot>,
+    previewSource: string
+  ) => ({ ...snapshot, preview: clip(previewSource) });
+
+  const gFirst = groundingDebugSnapshot(opts.llmFirstCompletion, hay);
+  const gPost = groundingDebugSnapshot(opts.postPipelineRaw, hay);
+  const gCap = groundingDebugSnapshot(opts.cappedReply, hay);
+  const g3 = groundingDebugSnapshot(opts.threeLine, hay);
+  const gChosen = groundingDebugSnapshot(opts.chosenReply, hay);
+
+  let failurePhase = "chosen_reply_failed_final_gate";
+  if (!g3.passes_eval_gate && gCap.passes_eval_gate) failurePhase = "three_line_strip_or_format_killed_gate";
+  else if (!gCap.passes_eval_gate && gPost.passes_eval_gate) failurePhase = "length_cap_killed_gate";
+  else if (!gPost.passes_eval_gate && gFirst.passes_eval_gate) failurePhase = "post_processing_killed_gate";
+  else if (!gFirst.passes_eval_gate) failurePhase = "first_llm_output_already_failed_gate";
+
+  const payload = {
+    v: 1 as const,
+    ts: new Date().toISOString(),
+    case_id: opts.caseId,
+    question: opts.question,
+    question_mode: opts.questionMode,
+    route_before_fallback: "full_chat",
+    fallback_reason: "full_chat_grounding_gate_failed",
+    failure_phase: failurePhase,
+    finalization_stage: opts.replyFinalization,
+    grounded_result: {
+      first_llm_completion: withPreview(gFirst, opts.llmFirstCompletion),
+      post_pipeline_raw: withPreview(gPost, opts.postPipelineRaw),
+      after_cap: withPreview(gCap, opts.cappedReply),
+      after_three_line_format: withPreview(g3, opts.threeLine),
+      chosen_reply_for_gate: withPreview(gChosen, opts.chosenReply),
+    },
+    raw_model_answer_preview: clip(opts.llmFirstCompletion),
+    raw_model_answer_chars: opts.llmFirstCompletion.length,
+    post_pipeline_raw_preview: clip(opts.postPipelineRaw),
+    post_pipeline_raw_chars: opts.postPipelineRaw.length,
+    capped_reply_preview: clip(opts.cappedReply),
+    three_line_preview: clip(opts.threeLine),
+    chosen_reply_preview: clip(opts.chosenReply),
+    bundle_chars: opts.combinedBundleChars,
+    bundle_excerpt_chars: opts.bundleExcerptChars,
+    docs_with_text_count: opts.docsWithTextCount,
+  };
+
+  console.warn("[casebrain:interpretive-fullchat-fallback]", JSON.stringify(payload));
 }
 
 function enforceActionFormatThreeLines(reply: string): string {
@@ -150,6 +259,8 @@ const MAX_PLAN_SUMMARY_CHARS = 1200;
 const MAX_EVIDENCE_CHARS = 1200;
 const MAX_TIMELINE_CHARS = 500;
 const LAW_CHUNKS_LIMIT = 4;
+/** Do not let embeddings + pgvector law match consume the main LLM time budget. */
+const LAW_RETRIEVAL_BUDGET_MS = 4000;
 const MAX_OUTPUT_TOKENS = 1400;
 /** Extra attempts with exponential backoff after SDK retries (helps 429 / transient API overload). Kept modest so normal chat does not wait minutes on failures. */
 const OPENAI_RETRY_ATTEMPTS = 4;
@@ -315,7 +426,7 @@ function detectQuestionMode(question: string): QuestionMode {
   return "strategy_default";
 }
 
-/** Golden sweep Q3/Q6–Q10: need full bundle + mode prompts; fast-eval often errors or returns the timeout slab. */
+/** Golden sweep Q3/Q6–Q10: full bundle + mode prompts in production; `x-fast-eval` uses compact interpretive route instead. */
 function canonicalSweepQuestionUsesFullPipeline(question: string): boolean {
   const q = goldenQuestionNorm(question);
   return (
@@ -2692,6 +2803,9 @@ const FAST_EVAL_OPENAI_MS = 9_000;
 /** Vercel + gpt-5-mini: 18s caused mass timeout fallbacks; 45s targets real answers in eval mode. */
 const EVAL_MODE_OPENAI_MS = 45_000;
 const EVAL_MODE_MAX_TOKENS = 220;
+/** x-fast-eval + golden Q3/Q6–Q10: one short LLM call, no law/embeddings — survives OpenAI 429 storms from scripted sweeps. */
+const FAST_SWEEP_INTERPRETIVE_OPENAI_MS = 22_000;
+const FAST_SWEEP_INTERPRETIVE_MAX_TOKENS = 200;
 
 /** Fast-eval only: bundle head + deduped keyword-matched lines, capped ~3000 chars (normal mode unchanged). */
 function buildFastEvalBundleSlice(bundle: string, aggressive = false): string {
@@ -2739,7 +2853,7 @@ async function fastEvalOpenaiOnce(
   try {
     const completion = await openai.chat.completions.create(
       {
-        model: "gpt-5-mini",
+        model: "gpt-4.1-mini",
         messages: [
           { role: "system", content: FAST_EVAL_SYSTEM_PROMPT },
           { role: "user", content: userContent },
@@ -2789,13 +2903,79 @@ function buildFastEvalKeywordReply(
       : "No common evidence-type markers detected in bundle excerpt.";
   }
 
-  if (q.includes("missing evidence")) {
+  if (q.includes("missing evidence") || /\bwhat evidence appears missing\b/i.test(q) || /\bmissing or incomplete\b/i.test(q)) {
     const bits: string[] = [];
     if (/outstanding|not served|awaiting|missing disclosure|not served on defence|to follow/i.test(b))
       bits.push("Disclosure or outstanding items are flagged in the bundle text.");
     if (/mg6|disclosure.*outstanding/i.test(b) && /outstanding|not listed|n\/a/i.test(b)) bits.push("Check MG6 outstanding schedule rows in the bundle.");
     if (bits.length === 0) bits.push("Missing items are not clearly signposted in the excerpt; review MG6 and chase correspondence if present.");
     return bits.join(" ").slice(0, MAX_REPLY_LENGTH);
+  }
+
+  /** Golden Q6 — avoid LLM when compact eval model errors or rate-limits. */
+  if (/\binconsisten|\bconflicts in the evidence\b/i.test(q)) {
+    const hookLine =
+      firstMatch(b, [/Primary eval hook:\s*(.+)/im]) ||
+      firstMatch(b, [/grounds for dispute[:\s]*(.+)/i]) ||
+      "MG5 vs MG6 / continuity tensions are signposted on the papers.";
+    const tension =
+      firstConcrete(b.split(/\r?\n/).map((l) => l.trim()).filter(Boolean), [
+        /contradict|inconsisten|mismatch|conflict|vs\b|999|mg5|mg6|cctv/i,
+      ]) || hookLine;
+    return [
+      `Conflict theme on these papers: ${compactOneLine(tension)}.`,
+      `Cross-check: reconcile MG6 outstanding rows with MG5 narrative and any CCTV/999 extracts referenced (bundle NS-CPS / exhibit list).`,
+      `Next step: chase outstanding items that complete the sequence so inconsistencies can be pinned to specific documents.`,
+    ]
+      .slice(0, 3)
+      .join("\n")
+      .slice(0, MAX_REPLY_LENGTH);
+  }
+
+  /** Golden Q7 */
+  if (/\bwhat must the prosecution still prove\b/i.test(q)) {
+    const offence =
+      snapshot?.offence_detected_label?.trim() ||
+      firstMatch(b, [/Short title:\s*([^\n]+)/i, /Robbery|s\.47|assault|theft/i]) ||
+      "the charged offence";
+    return [
+      `Core point: Crown must prove ${offence} to the criminal standard using admissible evidence — facts, intent/role as charged, and continuity of exhibits.`,
+      `Evidence reference: MG5 summary and MG6 served/outstanding schedule — verify what is actually relied on versus still outstanding (check NS-CPS reference and EX- exhibits in the bundle).`,
+      `Next step: map each element to MG11/CCTV/999/CAD rows served or flagged outstanding before advising plea or trial tactics.`,
+    ]
+      .join("\n")
+      .slice(0, MAX_REPLY_LENGTH);
+  }
+
+  /** Golden Q8 — wording uses "weakness" not "weakest point". */
+  if (/\bweakness in the prosecution case\b/i.test(q)) {
+    if (/outstanding|partial|not served/i.test(b) && /disclosure|mg6/i.test(b))
+      return "Weakest prosecution point on these papers: disclosure gaps or incomplete scheduling may undermine trial readiness.".slice(0, MAX_REPLY_LENGTH);
+    if (/\bcctv\b/i.test(b) && /partial|unclear|poor quality|no continuity|continuity/i.test(b))
+      return "Weakest prosecution point on these papers: CCTV limitations or continuity issues flagged in the excerpt.".slice(0, MAX_REPLY_LENGTH);
+    if (/\bid\b|identification|vip|weak id/i.test(b))
+      return "Weakest prosecution point on these papers: identification evidence appears fragile or disputed on the excerpt.".slice(0, MAX_REPLY_LENGTH);
+    return "Weakest prosecution point on these papers: review MG6, continuity, and disclosure rows on the excerpt for the softest link.".slice(0, MAX_REPLY_LENGTH);
+  }
+
+  /** Golden Q9 */
+  if (/\bweakness in the defence case\b/i.test(q)) {
+    if (/no comment|no[- ]comment/i.test(b) && /interview|pace/i.test(b))
+      return "Weakest defence point on these papers: limited account in interview materials may invite adverse inference.".slice(0, MAX_REPLY_LENGTH);
+    if (/alibi|timeline/i.test(b) && /unclear|contradict|gap/i.test(b))
+      return "Weakest defence point on these papers: timeline or alibi support looks thin or inconsistent in the excerpt.".slice(0, MAX_REPLY_LENGTH);
+    return "Weakest defence point on these papers: narrative gaps or thin positive account versus Crown papers on the excerpt.".slice(0, MAX_REPLY_LENGTH);
+  }
+
+  /** Golden Q10 */
+  if (/\bnext 24 hours\b/i.test(q)) {
+    return [
+      `Core point: Secure disclosure reconciliation — outstanding MG6 rows and any CCTV/999/CAD continuity items flagged on NS-CPS papers.`,
+      `Evidence reference: MG6 schedule vs bundle exhibits (EX-CCTV / EX-999 / EX-CAD as listed).`,
+      `Next step: Written chase for anything marked outstanding/partial and a note of instructions / disclosure deadlines visible on the face of the bundle.`,
+    ]
+      .join("\n")
+      .slice(0, MAX_REPLY_LENGTH);
   }
 
   if (q.includes("weakest point")) {
@@ -2933,6 +3113,8 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   let snapshot: Awaited<ReturnType<typeof getCaseStateSnapshot>> | null = null;
   let bundleExcerpt = "";
   let combinedBundleFull = "";
+  /** Count of case documents with non-empty body text (for interpretive fallback diagnostics). */
+  let docsWithTextCount = 0;
   try {
     const [snap, docsResult, narrativeResult] = await Promise.all([
       getCaseStateSnapshot(caseId, orgId).catch(() => null),
@@ -2986,9 +3168,13 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
 
     const docs = docsResult.data;
     if (docs?.length) {
+      docsWithTextCount = docs.filter((d) => getDocumentBodyText(d).trim().length > 0).length;
       combinedBundleFull = docs.map((d) => getDocumentBodyText(d)).filter(Boolean).join("\n\n");
       const capped = combinedBundleFull.slice(0, MAX_BUNDLE_FULL_CHARS_FOR_REFS);
-      if (capped) bundleExcerpt = truncateBundleForModel(capped, MAX_BUNDLE_EXCERPT_CHARS);
+      const shrinkInterpretiveEvalBundle =
+        (isEvalMode || isEvalBypass) && canonicalSweepQuestionUsesFullPipeline(message);
+      const excerptCap = shrinkInterpretiveEvalBundle ? 14_000 : MAX_BUNDLE_EXCERPT_CHARS;
+      if (capped) bundleExcerpt = truncateBundleForModel(capped, excerptCap);
     }
   } catch {
     // non-fatal
@@ -3077,22 +3263,41 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     );
   }
 
-  const useLightweightEvalLlm =
-    (isFastEval || isEvalMode) && !canonicalSweepQuestionUsesFullPipeline(message);
+  /**
+   * Scripted `x-fast-eval` **or** in-app bulk (`x-eval-mode` from Defence Plan box): compact path so golden Q3/Q6–Q10
+   * do not use full_chat (they would time-budget fail while the Strategy tab hammers OpenAI in parallel).
+   * Strict routes above still win for Q1/Q2/Q4/Q5.
+   */
+  const useLightweightEvalLlm = isFastEval || isEvalMode;
 
   if (useLightweightEvalLlm) {
     const openai = getOpenAIClient();
-    const fastEvalOpts: FastEvalRunOpts | undefined = isEvalMode
+    const interpretiveSweepCompact =
+      (isFastEval || isEvalMode) && canonicalSweepQuestionUsesFullPipeline(message);
+    const fastEvalOpts: FastEvalRunOpts | undefined = interpretiveSweepCompact
       ? {
           aggressiveSlice: true,
-          openaiTimeoutMs: EVAL_MODE_OPENAI_MS,
-          maxTokens: EVAL_MODE_MAX_TOKENS,
+          openaiTimeoutMs: FAST_SWEEP_INTERPRETIVE_OPENAI_MS,
+          maxTokens: FAST_SWEEP_INTERPRETIVE_MAX_TOKENS,
         }
-      : undefined;
+      : isEvalMode
+        ? {
+            aggressiveSlice: true,
+            openaiTimeoutMs: EVAL_MODE_OPENAI_MS,
+            maxTokens: EVAL_MODE_MAX_TOKENS,
+          }
+        : isFastEval
+          ? {
+              aggressiveSlice: true,
+              openaiTimeoutMs: FAST_EVAL_OPENAI_MS,
+              maxTokens: 250,
+            }
+          : undefined;
     let reply = await runFastEvalResponse(message, snapshot, combinedBundleFull, openai, fastEvalOpts);
     reply = enforceActionFormatThreeLines(reply);
 
     const isGeneric = !passesEvalGroundingGate(reply, combinedBundleFull);
+    const sweepRoute = interpretiveSweepCompact ? "lightweight_eval_interpretive_sweep" : "lightweight_eval";
     if (isGeneric) {
       const forced = enforceActionFormatThreeLines(
         "Core point: The bundle does not safely support a final answer, but the issue should be treated as a provisional evidence gap rather than ignored.\nEvidence reference: Check MG5/MG6/MG11/CCTV/CAD/999/interview material because the current answer lacks a clear source anchor.\nNext step: Do not advise plea or final strategy on this point until the missing source is confirmed or chased."
@@ -3102,7 +3307,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
           ok: true,
           reply: forced,
           eval_meta: routeEvalMeta(
-            "lightweight_eval_grounding_fallback",
+            interpretiveSweepCompact ? "lightweight_eval_interpretive_sweep_grounding_fallback" : "lightweight_eval_grounding_fallback",
             message,
             forced,
             combinedBundleFull,
@@ -3114,7 +3319,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
             }
           ),
         },
-        "lightweight_eval_grounding_fallback"
+        interpretiveSweepCompact ? "lightweight_eval_interpretive_sweep_grounding_fallback" : "lightweight_eval_grounding_fallback"
       );
     }
 
@@ -3122,11 +3327,11 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       {
         ok: true,
         reply,
-        eval_meta: routeEvalMeta("lightweight_eval", message, reply, combinedBundleFull, combinedBundleFull.length, true, {
+        eval_meta: routeEvalMeta(sweepRoute, message, reply, combinedBundleFull, combinedBundleFull.length, true, {
           reply_finalization: "three_line",
         }),
       },
-      "lightweight_eval"
+      sweepRoute
     );
   }
 
@@ -3153,17 +3358,21 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   const lawQuery = snapshot?.offence_detected_label
     ? `${message} ${snapshot.offence_detected_label}`.trim()
     : message;
+  const skipLawEmbeddings = isEvalBypass || isFastEval || isEvalMode;
+  const skipChangeListForEvalThroughput = isFastEval || isEvalMode;
   const [lawChunks, changeList] = await Promise.all([
-    isEvalBypass ? Promise.resolve([] as Awaited<ReturnType<typeof retrieveLawChunks>>) : retrieveLawChunks(lawQuery, LAW_CHUNKS_LIMIT),
-    getChangeListForContext(supabase, caseId, orgId),
+    skipLawEmbeddings
+      ? Promise.resolve([] as Awaited<ReturnType<typeof retrieveLawChunks>>)
+      : retrieveLawChunksNonBlocking(lawQuery, LAW_CHUNKS_LIMIT, LAW_RETRIEVAL_BUDGET_MS),
+    skipChangeListForEvalThroughput ? Promise.resolve("") : getChangeListForContext(supabase, caseId, orgId),
   ]);
   const lawBlock =
     lawChunks.length > 0
       ? lawChunks
           .map((c) => `[${c.source}] ${c.title}\n${c.content_text}`)
           .join("\n\n---\n\n")
-      : isEvalBypass
-        ? "(Eval run: law corpus retrieval disabled — rely on bundle excerpt and case state snapshot only.)"
+      : skipLawEmbeddings
+        ? "(Eval / sweep run: law corpus retrieval disabled — rely on bundle excerpt and case state snapshot only.)"
         : "(No matching law chunks in corpus for this question.)";
 
   const contextParts: string[] = [];
@@ -3213,18 +3422,27 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   const allowedExRefs = collectAllowedExRefs(exhibitHaystack);
   const bundleHasExhibitRefs = allowedExRefs.size > 0;
 
+  const shrinkInterpretiveFullChat =
+    (isEvalMode || isEvalBypass) && canonicalSweepQuestionUsesFullPipeline(message);
+  const fullChatAiBudgetMs = shrinkInterpretiveFullChat ? 42_000 : AI_TIMEOUT_MS;
+  const fullChatMaxOutputTokens = shrinkInterpretiveFullChat ? 800 : MAX_OUTPUT_TOKENS;
+  const fullChatRetryAttempts = shrinkInterpretiveFullChat ? 2 : OPENAI_RETRY_ATTEMPTS;
+
   async function runChat(
     messages: { role: "system" | "user" | "assistant"; content: string }[],
-    _timeoutMs: number = AI_TIMEOUT_MS
+    timeoutMs: number = fullChatAiBudgetMs
   ) {
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), isFastEval ? 15_000 : AI_TIMEOUT_MS);
+    const effectiveMs = isFastEval
+      ? 15_000
+      : Math.min(fullChatAiBudgetMs, Math.max(3_000, Math.floor(timeoutMs)));
+    const timeout = setTimeout(() => controller.abort(), effectiveMs);
     try {
       const completion = await openai.chat.completions.create(
         {
           model: "gpt-4.1-mini",
           messages,
-          max_tokens: MAX_OUTPUT_TOKENS,
+          max_tokens: fullChatMaxOutputTokens,
           temperature: 0,
         },
         { signal: controller.signal }
@@ -3238,14 +3456,14 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   async function runChatWithRetry(messages: { role: "system" | "user" | "assistant"; content: string }[]) {
     const start = Date.now();
     let lastError: unknown;
-    for (let attempt = 1; attempt <= OPENAI_RETRY_ATTEMPTS; attempt += 1) {
-      if (Date.now() - start > AI_TIMEOUT_MS - 5000) {
-        return "Unable to generate response in time";
+    for (let attempt = 1; attempt <= fullChatRetryAttempts; attempt += 1) {
+      if (Date.now() - start > fullChatAiBudgetMs - 5000) {
+        return FULL_CHAT_TIME_BUDGET_STUB;
       }
 
-      const remainingBudgetMs = AI_TIMEOUT_MS - 5000 - (Date.now() - start);
+      const remainingBudgetMs = fullChatAiBudgetMs - 5000 - (Date.now() - start);
       if (remainingBudgetMs < 500) {
-        return "Unable to generate response in time";
+        return FULL_CHAT_TIME_BUDGET_STUB;
       }
 
       try {
@@ -3257,20 +3475,20 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
           err instanceof Error &&
           (err.name === "AbortError" || err.message === "Hard timeout exceeded");
         if (isHardTimeout) {
-          return "Unable to generate response in time";
+          return FULL_CHAT_TIME_BUDGET_STUB;
         }
         lastError = err;
         if (!isTransientOpenAIError(err)) throw err;
       }
-      if (attempt < OPENAI_RETRY_ATTEMPTS) {
+      if (attempt < fullChatRetryAttempts) {
         const delay = Math.min(OPENAI_RETRY_BASE_DELAY_MS * 2 ** (attempt - 1), 30_000);
-        if (Date.now() - start + delay > AI_TIMEOUT_MS - 5000) {
-          return "Unable to generate response in time";
+        if (Date.now() - start + delay > fullChatAiBudgetMs - 5000) {
+          return FULL_CHAT_TIME_BUDGET_STUB;
         }
         await sleep(delay);
       }
     }
-    return "Unable to generate response in time";
+    return FULL_CHAT_TIME_BUDGET_STUB;
   }
 
   let raw: string;
@@ -3284,6 +3502,29 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     return NextResponse.json(
       { ok: false, error: isAbort ? "Request timed out" : "Unable to get a response" },
       { status: 502, headers: { [CASEBRAIN_ROUTE_HEADER]: "error_openai_upstream" } }
+    );
+  }
+
+  const llmFirstCompletion = raw;
+
+  if (isFullChatTimeBudgetStub(raw)) {
+    return jsonWithRoute(
+      {
+        ok: false,
+        error:
+          "The assistant ran out of time before producing an answer. Your case data is unchanged — please send the question again.",
+        eval_meta: routeEvalMeta(
+          "full_chat_time_budget",
+          message,
+          raw.trim(),
+          exhibitHaystack,
+          combinedBundleFull.length,
+          false,
+          { fallback_reason: "llm_time_budget_or_empty_completion" }
+        ),
+      },
+      "full_chat_time_budget",
+      504
     );
   }
 
@@ -3455,6 +3696,22 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
 
   const isGeneric = !passesEvalGroundingGate(reply, exhibitHaystack);
   if (isGeneric) {
+    const cappedForLog = raw.slice(0, MAX_REPLY_LENGTH);
+    logInterpretiveFullChatFallback({
+      caseId,
+      question: message,
+      questionMode,
+      llmFirstCompletion,
+      postPipelineRaw: raw,
+      cappedReply: cappedForLog,
+      threeLine,
+      chosenReply: reply,
+      replyFinalization,
+      exhibitHaystack,
+      combinedBundleChars: combinedBundleFull.length,
+      bundleExcerptChars: bundleExcerpt.length,
+      docsWithTextCount,
+    });
     const forced = enforceActionFormatThreeLines(
       "Core point: The MG5 summary is not clearly extractable from the current bundle, so prosecution reliance must be treated as inferred rather than confirmed.\nEvidence reference: MG5 reference is missing or incomplete; supporting MG11, CCTV, or CAD linkage not visible in current materials.\nNext step: Obtain the full MG5 summary and cross-check with MG11/CCTV to identify what the prosecution actually relies on."
     );

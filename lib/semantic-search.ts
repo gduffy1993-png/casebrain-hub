@@ -55,13 +55,17 @@ export async function generateEmbedding(text: string): Promise<number[] | null> 
     });
 
     if (!response.ok) {
-      throw new Error(`OpenAI API error: ${response.status}`);
+      const status = response.status;
+      // Callers treat null as "no embedding" (e.g. law retrieval continues). Do not throw — avoids noisy stacks on 429.
+      console.warn(`[generateEmbedding] OpenAI ${status}; skipping embedding for this call`);
+      return null;
     }
 
     const data = await response.json();
     return data.data[0].embedding;
   } catch (error) {
-    console.error("Failed to generate embedding:", error);
+    const msg = error instanceof Error ? error.message : String(error);
+    console.warn("[generateEmbedding] request failed:", msg);
     return null;
   }
 }

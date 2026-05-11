@@ -75,24 +75,29 @@ export async function retrieveLawChunks(
   limit = 5,
   sourceFilter?: string
 ): Promise<Array<{ source: string; title: string; content_text: string; similarity: number }>> {
-  const embedding = await generateEmbedding(query);
-  if (!embedding) return [];
+  try {
+    const embedding = await generateEmbedding(query);
+    if (!embedding) return [];
 
-  const supabase = getSupabaseAdminClient();
-  let queryBuilder = supabase.rpc("match_criminal_law_chunks", {
-    query_embedding: embedding,
-    match_count: limit,
-  });
+    const supabase = getSupabaseAdminClient();
+    const queryBuilder = supabase.rpc("match_criminal_law_chunks", {
+      query_embedding: embedding,
+      match_count: limit,
+    });
 
-  // If we had a filter we'd add .eq("source", sourceFilter) but RPC doesn't support that easily; filter in app
-  const { data, error } = await queryBuilder;
-  if (error) {
-    console.error("[retrieveLawChunks]", error);
+    // If we had a filter we'd add .eq("source", sourceFilter) but RPC doesn't support that easily; filter in app
+    const { data, error } = await queryBuilder;
+    if (error) {
+      console.error("[retrieveLawChunks]", error);
+      return [];
+    }
+    const rows = (data ?? []) as Array<{ source: string; title: string; content_text: string; similarity: number }>;
+    if (sourceFilter) return rows.filter((r) => r.source === sourceFilter);
+    return rows;
+  } catch (e) {
+    console.warn("[retrieveLawChunks] failed (caller continues without law chunks):", e);
     return [];
   }
-  const rows = (data ?? []) as Array<{ source: string; title: string; content_text: string; similarity: number }>;
-  if (sourceFilter) return rows.filter((r) => r.source === sourceFilter);
-  return rows;
 }
 
 /**

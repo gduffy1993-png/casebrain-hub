@@ -3298,5 +3298,305 @@
     "question": "Explain the biggest risk at trial?",
     "answer": "Core point: The bundle does not safely support a final answer, but the issue should be treated as a provisional evidence gap rather than ignored.\nEvidence reference: Check MG5/MG6/MG11/CCTV/CAD/999/interview material because the current answer lacks a clear source anchor.\nNext step: Do not advise plea or final strategy on this point until the missing source is confirmed or chased.",
     "timestamp": "2026-05-06T19:46:11.250Z"
+  },
+  {
+    "case_id": "69a1f87b-901f-4457-9c37-1b959160ebc1",
+    "question": "What is the primary allegation in one sentence using only bundle wording?",
+    "answer": "At a Northshire location matching the offence tag, the Crown say events unfolded in a way consistent with Robbery + s.47.",
+    "timestamp": "2026-05-11T21:11:22.475Z"
+  },
+  {
+    "case_id": "69a1f87b-901f-4457-9c37-1b959160ebc1",
+    "question": "What is the main weakness in the prosecution case?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:11:27.406Z"
+  },
+  {
+    "case_id": "69a1f87b-901f-4457-9c37-1b959160ebc1",
+    "question": "Identify is the main weakness in the defence case?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:11:32.251Z"
+  },
+  {
+    "case_id": "69a1f87b-901f-4457-9c37-1b959160ebc1",
+    "question": "Identify should be done in the next 24 hours?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:11:36.898Z"
+  },
+  {
+    "case_id": "69a1f87b-901f-4457-9c37-1b959160ebc1",
+    "question": "What evidence appears to be missing?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:11:41.462Z"
+  },
+  {
+    "case_id": "69a1f87b-901f-4457-9c37-1b959160ebc1",
+    "question": "Where are the main inconsistencies in the evidence?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:11:45.963Z"
+  },
+  {
+    "case_id": "69a1f87b-901f-4457-9c37-1b959160ebc1",
+    "question": "Identify does MG6 say is outstanding?",
+    "answer": "- MG5 case summary -> yes (draft); final after reconciliation\n- MG11 key witness -> yes (possibly draft); signed copy if draft\n- CCTV / footage list -> yes (partial / served); continuity statement / engineer note\n- 999 calls -> served (extract); full master audio outstanding\n- CAD / dispatch -> partial print served; fuller narrative attachment\n- Forensics / medical -> strategy note served; lab report / GP records\n- Continuity / chain -> draft or unsigned; corrected continuity to be provided\n- Bundle anchor: NS-CPS-2026-0401 · exhibits EX-CCTV-51, EX-999-TXT, EX-CAD-800401, EX-MG6-EMAIL.",
+    "timestamp": "2026-05-11T21:11:48.819Z"
+  },
+  {
+    "case_id": "69a1f87b-901f-4457-9c37-1b959160ebc1",
+    "question": "What does the CCTV show or fail to show?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:11:53.273Z"
+  },
+  {
+    "case_id": "69a1f87b-901f-4457-9c37-1b959160ebc1",
+    "question": "Identify is the risk with identification evidence?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:11:58.297Z"
+  },
+  {
+    "case_id": "69a1f87b-901f-4457-9c37-1b959160ebc1",
+    "question": "Where is the strongest point for the prosecution?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:12:02.954Z"
+  },
+  {
+    "case_id": "69a1f87b-901f-4457-9c37-1b959160ebc1",
+    "question": "Identify is the strongest point for the defence?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:12:07.378Z"
+  },
+  {
+    "case_id": "69a1f87b-901f-4457-9c37-1b959160ebc1",
+    "question": "Identify part of the case depends on witness reliability?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:12:12.001Z"
+  },
+  {
+    "case_id": "69a1f87b-901f-4457-9c37-1b959160ebc1",
+    "question": "What disclosure should be chased immediately?",
+    "answer": "- MG5 case summary -> yes (draft); final after reconciliation\n- MG11 key witness -> yes (possibly draft); signed copy if draft\n- CCTV / footage list -> yes (partial / served); continuity statement / engineer note\n- 999 calls -> served (extract); full master audio outstanding\n- CAD / dispatch -> partial print served; fuller narrative attachment\n- Forensics / medical -> strategy note served; lab report / GP records\n- Continuity / chain -> draft or unsigned; corrected continuity to be provided\n- Bundle anchor: NS-CPS-2026-0401 · exhibits EX-CCTV-51, EX-999-TXT, EX-CAD-800401, EX-MG6-EMAIL.",
+    "timestamp": "2026-05-11T21:12:14.693Z"
+  },
+  {
+    "case_id": "69a1f87b-901f-4457-9c37-1b959160ebc1",
+    "question": "Identify timeline issues appear in the case?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:12:19.409Z"
+  },
+  {
+    "case_id": "69a1f87b-901f-4457-9c37-1b959160ebc1",
+    "question": "Identify part of the prosecution case is most fragile?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:12:23.931Z"
+  },
+  {
+    "case_id": "69a1f87b-901f-4457-9c37-1b959160ebc1",
+    "question": "What part of the defence case is weakest?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:12:28.479Z"
+  },
+  {
+    "case_id": "69a1f87b-901f-4457-9c37-1b959160ebc1",
+    "question": "What would the Crown rely on most at trial?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:12:32.940Z"
+  },
+  {
+    "case_id": "69a1f87b-901f-4457-9c37-1b959160ebc1",
+    "question": "What could undermine the defence position?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:12:37.827Z"
+  },
+  {
+    "case_id": "69a1f87b-901f-4457-9c37-1b959160ebc1",
+    "question": "What is missing from the bundle that matters most?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:12:42.347Z"
+  },
+  {
+    "case_id": "69a1f87b-901f-4457-9c37-1b959160ebc1",
+    "question": "What are the next three priority actions?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:12:46.871Z"
+  },
+  {
+    "case_id": "69a1f87b-901f-4457-9c37-1b959160ebc1",
+    "question": "What evidence needs testing first?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:12:51.559Z"
+  },
+  {
+    "case_id": "69a1f87b-901f-4457-9c37-1b959160ebc1",
+    "question": "Where could the prosecution recover a weak point?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:12:56.112Z"
+  },
+  {
+    "case_id": "69a1f87b-901f-4457-9c37-1b959160ebc1",
+    "question": "How does the biggest risk to the defence?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:13:00.717Z"
+  },
+  {
+    "case_id": "69a1f87b-901f-4457-9c37-1b959160ebc1",
+    "question": "Explain the biggest uncertainty in the case?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:13:05.371Z"
+  },
+  {
+    "case_id": "69a1f87b-901f-4457-9c37-1b959160ebc1",
+    "question": "What needs to be confirmed urgently?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:13:10.016Z"
+  },
+  {
+    "case_id": "0dbb6ec9-5d94-4141-9370-7ca525b7669b",
+    "question": "What is the primary allegation in one sentence using only bundle wording?",
+    "answer": "At a Northshire location matching the offence tag, the Crown say events unfolded in a way consistent with s.20 GBH.",
+    "timestamp": "2026-05-11T21:13:12.863Z"
+  },
+  {
+    "case_id": "0dbb6ec9-5d94-4141-9370-7ca525b7669b",
+    "question": "Explain the main weakness in the prosecution case?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:13:17.413Z"
+  },
+  {
+    "case_id": "0dbb6ec9-5d94-4141-9370-7ca525b7669b",
+    "question": "Where is the main weakness in the defence case?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:13:21.921Z"
+  },
+  {
+    "case_id": "0dbb6ec9-5d94-4141-9370-7ca525b7669b",
+    "question": "What should be done in the next 24 hours?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:13:26.721Z"
+  },
+  {
+    "case_id": "0dbb6ec9-5d94-4141-9370-7ca525b7669b",
+    "question": "What evidence appears to be missing?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:13:31.334Z"
+  },
+  {
+    "case_id": "0dbb6ec9-5d94-4141-9370-7ca525b7669b",
+    "question": "Where are the main inconsistencies in the evidence?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:13:35.910Z"
+  },
+  {
+    "case_id": "0dbb6ec9-5d94-4141-9370-7ca525b7669b",
+    "question": "What does MG6 say is outstanding?",
+    "answer": "- MG5 case summary -> yes (draft); final after reconciliation\n- MG11 key witness -> yes (possibly draft); signed copy if draft\n- CCTV / footage list -> yes (partial / served); continuity statement / engineer note\n- 999 calls -> served (extract); full master audio outstanding\n- CAD / dispatch -> partial print served; fuller narrative attachment\n- Forensics / medical -> strategy note served; lab report / GP records\n- Continuity / chain -> draft or unsigned; corrected continuity to be provided\n- Bundle anchor: NS-CPS-2026-0402 · exhibits EX-CCTV-52, EX-999-TXT, EX-CAD-800402, EX-MG6-EMAIL.",
+    "timestamp": "2026-05-11T21:13:38.607Z"
+  },
+  {
+    "case_id": "0dbb6ec9-5d94-4141-9370-7ca525b7669b",
+    "question": "Identify does the CCTV show or fail to show?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:13:43.237Z"
+  },
+  {
+    "case_id": "0dbb6ec9-5d94-4141-9370-7ca525b7669b",
+    "question": "How does the risk with identification evidence?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:13:47.667Z"
+  },
+  {
+    "case_id": "0dbb6ec9-5d94-4141-9370-7ca525b7669b",
+    "question": "What is the strongest point for the prosecution?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:13:52.432Z"
+  },
+  {
+    "case_id": "0dbb6ec9-5d94-4141-9370-7ca525b7669b",
+    "question": "What is the strongest point for the defence?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:13:56.962Z"
+  },
+  {
+    "case_id": "0dbb6ec9-5d94-4141-9370-7ca525b7669b",
+    "question": "What part of the case depends on witness reliability?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:14:01.605Z"
+  },
+  {
+    "case_id": "0dbb6ec9-5d94-4141-9370-7ca525b7669b",
+    "question": "Identify disclosure should be chased immediately?",
+    "answer": "- MG5 case summary -> yes (draft); final after reconciliation\n- MG11 key witness -> yes (possibly draft); signed copy if draft\n- CCTV / footage list -> yes (partial / served); continuity statement / engineer note\n- 999 calls -> served (extract); full master audio outstanding\n- CAD / dispatch -> partial print served; fuller narrative attachment\n- Forensics / medical -> strategy note served; lab report / GP records\n- Continuity / chain -> draft or unsigned; corrected continuity to be provided\n- Bundle anchor: NS-CPS-2026-0402 · exhibits EX-CCTV-52, EX-999-TXT, EX-CAD-800402, EX-MG6-EMAIL.",
+    "timestamp": "2026-05-11T21:14:04.320Z"
+  },
+  {
+    "case_id": "0dbb6ec9-5d94-4141-9370-7ca525b7669b",
+    "question": "What timeline issues appear in the case?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:14:08.761Z"
+  },
+  {
+    "case_id": "0dbb6ec9-5d94-4141-9370-7ca525b7669b",
+    "question": "Identify part of the prosecution case is most fragile?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:14:13.273Z"
+  },
+  {
+    "case_id": "0dbb6ec9-5d94-4141-9370-7ca525b7669b",
+    "question": "What part of the defence case is weakest?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:14:17.761Z"
+  },
+  {
+    "case_id": "0dbb6ec9-5d94-4141-9370-7ca525b7669b",
+    "question": "What would the Crown rely on most at trial?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:14:22.380Z"
+  },
+  {
+    "case_id": "0dbb6ec9-5d94-4141-9370-7ca525b7669b",
+    "question": "What could undermine the defence position?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:14:27.852Z"
+  },
+  {
+    "case_id": "0dbb6ec9-5d94-4141-9370-7ca525b7669b",
+    "question": "How does missing from the bundle that matters most?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:14:33.055Z"
+  },
+  {
+    "case_id": "0dbb6ec9-5d94-4141-9370-7ca525b7669b",
+    "question": "What are the next three priority actions?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:14:38.145Z"
+  },
+  {
+    "case_id": "0dbb6ec9-5d94-4141-9370-7ca525b7669b",
+    "question": "Identify evidence needs testing first?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:14:43.446Z"
+  },
+  {
+    "case_id": "0dbb6ec9-5d94-4141-9370-7ca525b7669b",
+    "question": "Where could the prosecution recover a weak point?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:14:48.887Z"
+  },
+  {
+    "case_id": "0dbb6ec9-5d94-4141-9370-7ca525b7669b",
+    "question": "Where is the biggest risk to the defence?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:14:54.214Z"
+  },
+  {
+    "case_id": "0dbb6ec9-5d94-4141-9370-7ca525b7669b",
+    "question": "Identify is the biggest uncertainty in the case?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:14:59.566Z"
+  },
+  {
+    "case_id": "0dbb6ec9-5d94-4141-9370-7ca525b7669b",
+    "question": "What needs to be confirmed urgently?",
+    "answer": "Core point: A timed run prevented a safely grounded answer on this pass.\nEvidence reference: No reliable anchor to MG5/MG6/MG11/CCTV/CAD/999/interview could be confirmed before timeout.\nNext step: Re-run this question with a fresh request and confirm source anchors before advising final strategy.",
+    "timestamp": "2026-05-11T21:15:04.439Z"
   }
 ]

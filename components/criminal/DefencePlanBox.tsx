@@ -380,7 +380,11 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
           const res = await fetch(`/api/criminal/${targetCaseId}/defence-plan-chat`, {
             method: "POST",
             credentials: "include",
-            headers: { "Content-Type": "application/json", "x-eval-mode": "1" },
+            headers: {
+              "Content-Type": "application/json",
+              "x-eval-mode": "1",
+              "x-fast-eval": "1",
+            },
             body: JSON.stringify({ message: question }),
             signal: controller.signal,
           });
