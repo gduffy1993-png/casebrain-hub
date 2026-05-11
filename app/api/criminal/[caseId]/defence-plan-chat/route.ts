@@ -264,6 +264,19 @@ function detectQuestionMode(question: string): QuestionMode {
   return "strategy_default";
 }
 
+/** Golden sweep Q3/Q6–Q10: need full bundle + mode prompts; fast-eval often errors or returns the timeout slab. */
+function canonicalSweepQuestionUsesFullPipeline(question: string): boolean {
+  const q = goldenQuestionNorm(question);
+  return (
+    /\bwhat evidence appears missing or incomplete\b/i.test(q) ||
+    /\binconsistencies or conflicts in the evidence\b/i.test(q) ||
+    /\bwhat must the prosecution still prove\b/i.test(q) ||
+    /\bweakness in the prosecution case\b/i.test(q) ||
+    /\bweakness in the defence case\b/i.test(q) ||
+    /\bnext 24 hours\b/i.test(q)
+  );
+}
+
 /** Same slug for Q8 and Q10 — single source of truth from bundle text (stateless). */
 type BundlePrimarySlug =
   | "identification"
@@ -1243,11 +1256,11 @@ function buildStrictExhibitReferenceAnswer(question: string, bundleFullText: str
 
   if (wantsReference) {
     if (refs.length > 0) out.push(...refs.map((r) => `- ${r}`));
-    else out.push("- Insufficient detail in the materials to determine exhibit/reference details.");
+    else out.push("- The visible excerpt does not support a reliable list of reference IDs.");
   }
   if (wantsExhibits) {
     if (exhibits.length > 0) out.push(...exhibits.map((e) => `- ${e}`));
-    else out.push("- Insufficient detail in the materials to determine exhibit/reference details.");
+    else out.push("- The visible excerpt does not support a reliable list of exhibit codes.");
   }
   if (out.length > 0) return out.join("\n");
   if (exhibits.length > 0) return exhibits.map((e) => `- ${e}`).join("\n");
@@ -2745,7 +2758,6 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   const isFastEval = request.headers.get("x-fast-eval") === "1";
   /** In-app / bulk eval: tight bundle + single LLM attempt + no law/changelog (same fast-eval pipeline). */
   const isEvalMode = request.headers.get("x-eval-mode") === "1";
-  const isLightweightEvalLlm = isFastEval || isEvalMode;
 
   const supabase = getSupabaseAdminClient();
 
@@ -2901,7 +2913,10 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     return jsonWithRoute({ ok: true, reply }, "strict_mg5");
   }
 
-  if (isLightweightEvalLlm) {
+  const useLightweightEvalLlm =
+    (isFastEval || isEvalMode) && !canonicalSweepQuestionUsesFullPipeline(message);
+
+  if (useLightweightEvalLlm) {
     const openai = getOpenAIClient();
     const fastEvalOpts: FastEvalRunOpts | undefined = isEvalMode
       ? {
