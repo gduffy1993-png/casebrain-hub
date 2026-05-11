@@ -3,7 +3,9 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { GOLDEN_SWEEP_QUESTIONS, summarizeEvalRowsByQuestion } from "@/lib/eval-golden-sweep";
 import { buildEvalSummaryStats, isEvalWeakAnswer } from "@/lib/eval-run-metadata";
+import { EvalSweepReviewPanel } from "@/components/eval/EvalSweepReviewPanel";
 
 type CaseRow = { id: string; title?: string | null };
 
@@ -22,18 +24,8 @@ type EvalRow = {
   route_tag: string | null;
 };
 
-const GOLDEN_QUESTIONS: string[] = [
-  "What is the primary allegation in one sentence using only bundle wording?",
-  "What evidence does MG5 rely on?",
-  "What does MG6 say is served and outstanding?",
-  "What is the key weakness in the prosecution case?",
-  "What is the key weakness in the defence case?",
-  "What must the prosecution prove to win?",
-  "What is the strongest defence angle?",
-  "What disclosure is missing right now?",
-  "What should be done in the next 24 hours?",
-  "What is the biggest risk at trial?",
-];
+/** Canonical 10-question sweep — mutable copy for indexing / saves (same strings as lib). */
+const GOLDEN_QUESTIONS: string[] = [...GOLDEN_SWEEP_QUESTIONS];
 /** Fast-eval is lighter than full chat but cold starts + network need headroom; 20s caused frequent false aborts. */
 const QUESTION_TIMEOUT_MS = 90_000;
 
@@ -55,9 +47,10 @@ type RecentRun = { id: string; created_at: string; source: string; row_count: nu
 export function GoldenEvalRunner() {
   const [running, setRunning] = useState(false);
   const [rows, setRows] = useState<EvalRow[]>([]);
+  /** Snapshot taken when a new run starts — compared to the completed run in EvalSweepReviewPanel. */
+  const [baselineRows, setBaselineRows] = useState<EvalRow[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [progress, setProgress] = useState({ done: 0, total: 0, current: "" });
-  const [showWeakOnly, setShowWeakOnly] = useState(false);
   const [recentRuns, setRecentRuns] = useState<RecentRun[]>([]);
   const [cloudMessage, setCloudMessage] = useState<string | null>(null);
   const cancelRef = useRef(false);
@@ -116,11 +109,6 @@ export function GoldenEvalRunner() {
     [rows]
   );
 
-  const displayedRows = useMemo(() => {
-    if (!showWeakOnly) return rows;
-    return rows.filter((r) => r.weak);
-  }, [rows, showWeakOnly]);
-
   async function loadCases(): Promise<CaseRow[]> {
     const res = await fetch("/api/cases", { credentials: "include", cache: "no-store" });
     const json = (await res.json().catch(() => ({}))) as { cases?: CaseRow[]; error?: string };
@@ -135,6 +123,7 @@ export function GoldenEvalRunner() {
     cancelRef.current = false;
     setRunning(true);
     setError(null);
+    setBaselineRows(rows.length > 0 ? [...rows] : null);
     setRows([]);
     setProgress({ done: 0, total: 0, current: "Loading cases..." });
 
@@ -230,16 +219,27 @@ export function GoldenEvalRunner() {
       }
 
       try {
-        const summary_stats = buildEvalSummaryStats(
-          nextRows.map((r) => ({
-            ok: r.ok,
-            weak: r.weak,
-            answer: r.answer,
-            duration_ms: r.duration_ms,
-            route_tag: r.route_tag,
-          })),
-          GOLDEN_QUESTIONS
-        );
+        const sweepRowsForStats = nextRows.map((r) => ({
+          questionNo: r.question_no,
+          ok: r.ok,
+          weak: r.weak,
+          answer: r.answer,
+          duration_ms: r.duration_ms,
+          route_tag: r.route_tag,
+        }));
+        const summary_stats = {
+          ...buildEvalSummaryStats(
+            sweepRowsForStats.map((r) => ({
+              ok: r.ok,
+              weak: r.weak,
+              answer: r.answer,
+              duration_ms: r.duration_ms,
+              route_tag: r.route_tag,
+            })),
+            GOLDEN_QUESTIONS
+          ),
+          per_question: summarizeEvalRowsByQuestion(sweepRowsForStats, GOLDEN_QUESTIONS),
+        };
         const saveRes = await fetch("/api/eval-sweeps", {
           method: "POST",
           credentials: "include",
@@ -286,11 +286,22 @@ export function GoldenEvalRunner() {
   }
 
   function downloadJson() {
+    const sweepRowsForDownload = rows.map((r) => ({
+      questionNo: r.question_no,
+      ok: r.ok,
+      weak: r.weak,
+      answer: r.answer,
+      duration_ms: r.duration_ms,
+      route_tag: r.route_tag,
+    }));
     const payload = {
       generated_at: new Date().toISOString(),
       questions: GOLDEN_QUESTIONS,
       summary,
-      summary_stats: runMeta,
+      summary_stats: {
+        ...runMeta,
+        per_question: summarizeEvalRowsByQuestion(sweepRowsForDownload, GOLDEN_QUESTIONS),
+      },
       rows,
     };
     const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
@@ -344,13 +355,6 @@ export function GoldenEvalRunner() {
         <Button variant="secondary" onClick={downloadJson} disabled={rows.length === 0}>
           Download JSON
         </Button>
-        <Button
-          variant={showWeakOnly ? "primary" : "outline"}
-          onClick={() => setShowWeakOnly((v) => !v)}
-          disabled={rows.length === 0}
-        >
-          {showWeakOnly ? "Showing Weak Only" : "Show Weak Only"}
-        </Button>
       </div>
 
       {error && <p className="text-sm text-red-600">{error}</p>}
@@ -375,42 +379,12 @@ export function GoldenEvalRunner() {
         </div>
       </div>
 
-      <div className="max-h-[420px] overflow-auto rounded-md border border-border">
-        <table className="w-full text-sm">
-          <thead className="sticky top-0 bg-background">
-            <tr className="border-b border-border text-left">
-              <th className="p-2">Case</th>
-              <th className="p-2">Q#</th>
-              <th className="p-2">Route</th>
-              <th className="p-2">Question</th>
-              <th className="p-2">Answer</th>
-              <th className="p-2">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {displayedRows.map((r, idx) => (
-              <tr
-                key={`${r.case_id}-${idx}-${r.timestamp}`}
-                className={r.weak ? "bg-red-50/70 dark:bg-red-950/30 border-b border-border" : "border-b border-border"}
-              >
-                <td className="p-2 align-top">{r.case_title}</td>
-                <td className="p-2 align-top">{r.question_no}</td>
-                <td className="p-2 align-top font-mono text-xs">{r.route_tag ?? "—"}</td>
-                <td className="p-2 align-top">{r.question}</td>
-                <td className="p-2 align-top whitespace-pre-wrap">{r.answer}</td>
-                <td className="p-2 align-top">{r.status || (r.ok ? 200 : "ERR")}</td>
-              </tr>
-            ))}
-            {displayedRows.length === 0 && (
-              <tr>
-                <td className="p-3 text-muted-foreground" colSpan={6}>
-                  {rows.length === 0 ? "No results yet." : "No weak answers in current run."}
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
+      <EvalSweepReviewPanel
+        rows={rows}
+        questions={GOLDEN_QUESTIONS}
+        baselineRows={baselineRows}
+        onClearBaseline={() => setBaselineRows(null)}
+      />
     </Card>
   );
 }
