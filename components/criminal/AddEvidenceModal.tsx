@@ -158,7 +158,7 @@ export function AddEvidenceModal({
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
       <Card className="w-full max-w-2xl p-6">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold text-foreground">Add Evidence</h2>
+          <h2 className="text-lg font-semibold text-foreground">Add evidence — multi-PDF + combine</h2>
           <Button
             variant="ghost"
             size="icon"
