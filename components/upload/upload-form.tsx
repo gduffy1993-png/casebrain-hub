@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/browser";
 import { CloudUpload, Loader2 } from "lucide-react";
@@ -32,6 +32,19 @@ const MULTI_SLOT_COUNT = 20;
 const MAX_FILES_PER_BATCH = MAX_SEPARATE_PDF_UPLOAD;
 
 type SlotState = { label: string; files: File[] };
+
+function isSlotBulkAssignableFile(f: File): boolean {
+  const n = f.name.toLowerCase();
+  return (
+    n.endsWith(".pdf") ||
+    n.endsWith(".docx") ||
+    n.endsWith(".doc") ||
+    n.endsWith(".txt") ||
+    f.type === "application/pdf" ||
+    f.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
+    f.type === "text/plain"
+  );
+}
 
 type UploadFormProps = {
   caseId?: string;
@@ -194,6 +207,54 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
   useEffect(() => {
     setPracticeArea(currentPracticeArea);
   }, [currentPracticeArea]);
+
+  const bulkSlotListRef = useRef<HTMLInputElement>(null);
+  const bulkSlotFolderRef = useRef<HTMLInputElement>(null);
+
+  /** One pick → file 1 → slot 1 … up to 20 slots (sorted by filename). Skips zips. */
+  const assignBulkFilesToSlots = (raw: File[]) => {
+    const picked = raw
+      .filter(isSlotBulkAssignableFile)
+      .sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: "base", numeric: true }));
+    if (picked.length === 0) {
+      setError("No PDF, DOCX, or TXT files in that selection.");
+      return;
+    }
+    const max = Math.min(picked.length, MULTI_SLOT_COUNT);
+    setCaseSlots((prev) =>
+      prev.map((s, i) => ({
+        ...s,
+        files: i < max && picked[i] ? [picked[i]!] : [],
+      }))
+    );
+    setError(null);
+    if (picked.length > MULTI_SLOT_COUNT) {
+      pushToast(
+        `Filled slots 1–${MULTI_SLOT_COUNT} (${MULTI_SLOT_COUNT} files). ${picked.length - MULTI_SLOT_COUNT} more files in that pick were skipped — upload this batch, then pick the next.`,
+        "warning",
+      );
+    } else {
+      pushToast(`Filled ${max} slot(s) in order (Case 1 = first file).`, "success");
+    }
+  };
+
+  const handleBulkSlotListChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const list = e.target.files ? Array.from(e.target.files) : [];
+    assignBulkFilesToSlots(list);
+    e.target.value = "";
+  };
+
+  const handleBulkSlotFolderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const list = e.target.files ? Array.from(e.target.files) : [];
+    assignBulkFilesToSlots(list);
+    e.target.value = "";
+  };
+
+  const clearAllSlotFiles = () => {
+    setCaseSlots((prev) => prev.map((s) => ({ ...s, files: [] })));
+    setError(null);
+    pushToast("Cleared all slot files.", "success");
+  };
 
   // Turn off combine when selection is not all-PDF (merge would not apply).
   useEffect(() => {
@@ -657,9 +718,9 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
                   className="mt-1"
                 />
                 <span>
-                  <span className="font-medium">Up to 20 cases (boxes)</span> — separate upload area per case.
-                  Put PDFs (or DOCX/TXT) in each box; only filled boxes create a new case. Optional prefix applies to
-                  all (e.g. &quot;Batch A — Case 1&quot;).
+                  <span className="font-medium">Up to 20 cases (boxes)</span> — one file per case by default, or
+                  several per slot. Use <strong>Fill slots from one pick</strong> below to map many files to boxes in
+                  one go (training batches).
                 </span>
               </label>
             </div>
@@ -703,10 +764,57 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
 
         {/* Multi-slot grid (new cases only) */}
         {!caseId && uploadMode === "multi_slot" ? (
-          <div
-            key={slotUploadKey}
-            className="grid gap-3 text-left sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"
-          >
+          <div className="space-y-4 text-left">
+            <div className="rounded-2xl border border-primary/25 bg-primary/5 p-4">
+              <p className="text-sm font-semibold text-accent">Fill slots from one pick</p>
+              <p className="mt-1 text-xs text-accent/70">
+                Choose up to {MULTI_SLOT_COUNT} PDFs/DOCX/TXT in one dialog (Ctrl+A in a folder), or pick a folder —
+                files are sorted by name and assigned in order: slot 1 = first file, slot 2 = second, … Zips are
+                skipped here (use Zip mode for archives).
+              </p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <input
+                  ref={bulkSlotListRef}
+                  type="file"
+                  multiple
+                  accept=".pdf,.doc,.docx,.txt,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain"
+                  className="hidden"
+                  onChange={handleBulkSlotListChange}
+                />
+                <Button
+                  type="button"
+                  variant="secondary"
+                  className="text-sm"
+                  onClick={() => bulkSlotListRef.current?.click()}
+                >
+                  Choose many files → slots 1–{MULTI_SLOT_COUNT}
+                </Button>
+                <input
+                  ref={bulkSlotFolderRef}
+                  type="file"
+                  className="hidden"
+                  // @ts-expect-error Chromium directory picker (not in narrow DOM typings)
+                  webkitdirectory=""
+                  onChange={handleBulkSlotFolderChange}
+                />
+                <Button
+                  type="button"
+                  variant="secondary"
+                  className="text-sm"
+                  onClick={() => bulkSlotFolderRef.current?.click()}
+                >
+                  Choose folder → first {MULTI_SLOT_COUNT} PDF/DOCX/TXT
+                </Button>
+                <Button type="button" variant="ghost" className="text-sm text-accent/80" onClick={clearAllSlotFiles}>
+                  Clear all slot files
+                </Button>
+              </div>
+            </div>
+
+            <div
+              key={slotUploadKey}
+              className="grid gap-3 text-left sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"
+            >
             {caseSlots.map((slot, i) => (
               <div
                 key={`${slotUploadKey}-slot-${i}`}
@@ -759,6 +867,7 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
                 </label>
               </div>
             ))}
+          </div>
           </div>
         ) : null}
 
