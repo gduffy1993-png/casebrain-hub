@@ -15,6 +15,10 @@ Use this set for rapid regression after prompt/app changes.
 | 9 | NS-CPS-2026-0439 | Affray + assault PC | Wrong name OCR on index | Trial-ish (index) | Messy |
 | 10 | NS-CPS-2026-0440 | Mixed counts: theft + blade + POA | Late email, forgot attachment | PTPH | Messy |
 
+## Related (different question set)
+
+The **Defence Plan / bulk runner “Golden sweep 10”** (canonical strings in code, used with **Download debug bundle**) has its own pass/fail guide: [`../GOLDEN_SWEEP_ACCEPTANCE_RUBRIC.md`](../GOLDEN_SWEEP_ACCEPTANCE_RUBRIC.md). The **Core 10** list in `GOLDEN_10_QUESTION_PACK.md` below is for **PDF-style** manual passes on these fictional files — do not mix the two batteries when interpreting results.
+
 ## Notes
 - All bundles use the same section structure so question batteries are reusable.
 - Each case has one explicit hook for targeted checks.

@@ -12,6 +12,11 @@ import { usePracticeArea } from "@/components/providers/PracticeAreaProvider";
 import { PaywallModal } from "@/components/paywall/PaywallModal";
 import { usePaywallStatus } from "@/hooks/usePaywallStatus";
 import type { UsageLimitError } from "@/lib/usage-limits";
+import {
+  MAX_SEPARATE_PDF_UPLOAD,
+  MAX_SOURCE_PDFS_FOR_MERGE,
+  mergePdfFilesToSingleFile,
+} from "@/lib/client/merge-pdfs";
 
 const ACCEPTED_TYPES = [
   "application/pdf",
@@ -23,7 +28,8 @@ const ACCEPTED_TYPES = [
 type UploadMode = "single_case" | "one_case_per_file" | "zip_by_folder" | "multi_slot";
 
 const MULTI_SLOT_COUNT = 20;
-const MAX_FILES_PER_BATCH = 20;
+/** Per-request cap for `/api/upload` when not merging (matches API). */
+const MAX_FILES_PER_BATCH = MAX_SEPARATE_PDF_UPLOAD;
 
 type SlotState = { label: string; files: File[] };
 
@@ -79,7 +85,10 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
   const [slotUploadKey, setSlotUploadKey] = useState(0);
   const [practiceArea, setPracticeArea] = useState<PracticeArea>(currentPracticeArea);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [mergeBusy, setMergeBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  /** When set, PDF-only selections of 21+ files are merged client-side into one upload. */
+  const [combinePdfsBeforeUpload, setCombinePdfsBeforeUpload] = useState(false);
   const [paywallError, setPaywallError] = useState<{
     error: UsageLimitError | "TRIAL_EXPIRED" | "DOC_LIMIT" | "CASE_LIMIT";
     limit?: number;
@@ -185,6 +194,16 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
   useEffect(() => {
     setPracticeArea(currentPracticeArea);
   }, [currentPracticeArea]);
+
+  // Turn off combine when selection is not all-PDF (merge would not apply).
+  useEffect(() => {
+    if (!files?.length) return;
+    const arr = Array.from(files);
+    const allPdf = arr.every(
+      (f) => f.type === "application/pdf" || f.name.toLowerCase().endsWith(".pdf")
+    );
+    if (!allPdf) setCombinePdfsBeforeUpload(false);
+  }, [files]);
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
@@ -304,24 +323,56 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
       setError("Select at least one document to upload.");
       return;
     }
-    if (files.length > MAX_FILES_PER_BATCH) {
-      setError(`You can upload up to ${MAX_FILES_PER_BATCH} files at a time. Remove some files and retry.`);
+    const fileArr = Array.from(files);
+    const effectiveMode: UploadMode = caseId ? "single_case" : uploadMode;
+    const allPdf =
+      fileArr.length > 0 &&
+      fileArr.every((f) => f.type === "application/pdf" || f.name.toLowerCase().endsWith(".pdf"));
+
+    if (fileArr.length > MAX_SOURCE_PDFS_FOR_MERGE) {
+      setError(`You can select at most ${MAX_SOURCE_PDFS_FOR_MERGE} files.`);
       return;
     }
-    const effectiveMode: UploadMode = caseId ? "single_case" : uploadMode;
+
+    if (effectiveMode === "single_case") {
+      if (fileArr.length > MAX_SEPARATE_PDF_UPLOAD) {
+        if (!combinePdfsBeforeUpload || !allPdf) {
+          setError(
+            `More than ${MAX_SEPARATE_PDF_UPLOAD} files: remove some, or choose PDFs only and enable "Combine PDFs into one file" below.`
+          );
+          return;
+        }
+      }
+    } else if (fileArr.length > MAX_SEPARATE_PDF_UPLOAD) {
+      setError(
+        `You can upload up to ${MAX_SEPARATE_PDF_UPLOAD} files at a time. Remove some files and retry.`
+      );
+      return;
+    }
+
     if (!caseId && effectiveMode !== "zip_by_folder" && !caseTitle.trim()) {
       setError("Provide a case title or reference (used as the case name or as a prefix for each new case).");
       return;
     }
     setError(null);
     setIsSubmitting(true);
-    
+
     // NUCLEAR: Clear paywall error again right before upload
     if (isOwnerHardcoded || isOwner || bypassActive) {
       setPaywallError(null);
     }
 
     try {
+      let filesToPost = fileArr;
+      if (effectiveMode === "single_case" && combinePdfsBeforeUpload && allPdf && fileArr.length > 1) {
+        setMergeBusy(true);
+        try {
+          filesToPost = [await mergePdfFilesToSingleFile(fileArr)];
+        } finally {
+          setMergeBusy(false);
+        }
+      }
+
       const formData = new FormData();
       formData.set("caseTitle", caseTitle.trim() || "Import");
       formData.set("practiceArea", practiceArea);
@@ -329,7 +380,7 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
       if (caseId) {
         formData.set("caseId", caseId);
       }
-      Array.from(files).forEach((file) => {
+      filesToPost.forEach((file) => {
         formData.append("files", file);
       });
 
@@ -410,7 +461,9 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
       const uploadedCaseId = result.caseId as string | undefined;
       const uploadedCaseIds = result.caseIds as string[] | undefined;
       const casesCreated = (result.casesCreated as number | undefined) ?? 1;
-      const uploadedCount = result.uploadedCount ?? files.length;
+      const mergedFromMany =
+        fileArr.length > 1 && filesToPost.length === 1 && allPdf && combinePdfsBeforeUpload;
+      const uploadedCount = (result.uploadedCount as number | undefined) ?? filesToPost.length;
       const skippedCount = result.skippedFiles?.length ?? 0;
 
       setFiles(null);
@@ -424,7 +477,8 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
           "success",
         );
       } else {
-        pushToast(`Uploaded ${uploadedCount} file${uploadedCount > 1 ? "s" : ""}.`, "success");
+        const mergeNote = mergedFromMany ? ` (${fileArr.length} PDFs combined into one).` : ".";
+        pushToast(`Uploaded ${uploadedCount} file${uploadedCount > 1 ? "s" : ""}${mergeNote}`, "success");
       }
 
       if (uploadedCaseIds && uploadedCaseIds.length > 1) {
@@ -722,12 +776,12 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
                 className="hidden"
                 onChange={(event) => {
                   const list = event.target.files ? Array.from(event.target.files) : [];
-                  const clipped = list.slice(0, MAX_FILES_PER_BATCH);
+                  const clipped = list.slice(0, MAX_SOURCE_PDFS_FOR_MERGE);
                   const dt = new DataTransfer();
                   clipped.forEach((file) => dt.items.add(file));
                   setFiles(dt.files);
-                  if (list.length > MAX_FILES_PER_BATCH) {
-                    setError(`Only the first ${MAX_FILES_PER_BATCH} files were kept.`);
+                  if (list.length > MAX_SOURCE_PDFS_FOR_MERGE) {
+                    setError(`Only the first ${MAX_SOURCE_PDFS_FOR_MERGE} files were kept.`);
                   } else {
                     setError(null);
                   }
@@ -741,9 +795,32 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
       </div>
 
       {uploadMode !== "multi_slot" && files?.length ? (
-        <p className="text-xs text-accent/50">
-          {files.length} file{files.length > 1 ? "s" : ""} selected
-        </p>
+        <div className="space-y-2">
+          <p className="text-xs text-accent/50">
+            {files.length} file{files.length > 1 ? "s" : ""} selected
+            {files.length > MAX_SEPARATE_PDF_UPLOAD ? ` — merge up to ${MAX_SOURCE_PDFS_FOR_MERGE} PDFs into one below` : ""}
+          </p>
+          {uploadMode === "single_case" &&
+            files.length >= 2 &&
+            Array.from(files).every(
+              (f) => f.type === "application/pdf" || f.name.toLowerCase().endsWith(".pdf")
+            ) && (
+              <label className="flex cursor-pointer items-start gap-2 rounded-lg border border-primary/20 bg-surface-muted/40 p-3 text-left text-xs text-accent">
+                <input
+                  type="checkbox"
+                  className="mt-0.5"
+                  checked={combinePdfsBeforeUpload}
+                  onChange={(e) => setCombinePdfsBeforeUpload(e.target.checked)}
+                  disabled={isSubmitting}
+                />
+                <span>
+                  <span className="font-semibold text-accent">Combine PDFs into one file</span> before upload
+                  (stitches in your browser, then sends one PDF — use when you have more than {MAX_SEPARATE_PDF_UPLOAD}{" "}
+                  PDFs). PDFs only; max {MAX_SOURCE_PDFS_FOR_MERGE} sources.
+                </span>
+              </label>
+            )}
+        </div>
       ) : null}
 
       {error && (
@@ -757,7 +834,7 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
           {isSubmitting ? (
             <span className="flex items-center gap-2">
               <Loader2 className="h-4 w-4 animate-spin" />
-              Uploading…
+              {mergeBusy ? "Combining PDFs…" : "Uploading…"}
             </span>
           ) : (
             "Upload and Extract"

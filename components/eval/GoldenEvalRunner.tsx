@@ -3,14 +3,22 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { GOLDEN_SWEEP_QUESTIONS, summarizeEvalRowsByQuestion } from "@/lib/eval-golden-sweep";
+import {
+  buildGoldenSweepRegressionMeta,
+  GOLDEN_SWEEP_QUESTIONS,
+  summarizeEvalRowsByQuestion,
+} from "@/lib/eval-golden-sweep";
 import {
   buildSystemicCollapseWarnings,
   sweepSemanticHints,
   type EvalMetaV1,
 } from "@/lib/eval-observability";
+import { bulkEvalBuildAugmentedRows } from "@/lib/bulk-eval-result-present";
 import { sortCasesForEvalScan } from "@/lib/eval-case-sort";
-import { buildEvalSummaryStats, isEvalWeakAnswer } from "@/lib/eval-run-metadata";
+import {
+  buildEvalSummaryStats,
+  isEvalWeakAnswer,
+} from "@/lib/eval-run-metadata";
 import { EvalSweepReviewPanel } from "@/components/eval/EvalSweepReviewPanel";
 
 type CaseRow = { id: string; title?: string | null };
@@ -31,6 +39,24 @@ type EvalRow = {
   /** From defence-plan-chat JSON `eval_meta` */
   eval_meta?: EvalMetaV1 | null;
 };
+
+function goldenRowsToBulkInput(rows: EvalRow[]) {
+  return rows.map((r) => ({
+    caseId: r.case_id,
+    caseTitle: r.case_title,
+    questionNo: r.question_no,
+    question: r.question,
+    answer: r.answer,
+    error: r.ok ? undefined : r.answer,
+    ok: r.ok,
+    http_status: r.status,
+    weak: r.weak,
+    route_tag: r.route_tag,
+    eval_meta: r.eval_meta ?? null,
+    duration_ms: r.duration_ms,
+    timestamp: r.timestamp,
+  }));
+}
 
 /** Canonical 10-question sweep — mutable copy for indexing / saves (same strings as lib). */
 const GOLDEN_QUESTIONS: string[] = [...GOLDEN_SWEEP_QUESTIONS];
@@ -111,6 +137,7 @@ export function GoldenEvalRunner() {
           answer: r.answer,
           duration_ms: r.duration_ms,
           route_tag: r.route_tag,
+          question_no: r.question_no,
         })),
         GOLDEN_QUESTIONS
       ),
@@ -243,6 +270,8 @@ export function GoldenEvalRunner() {
           duration_ms: r.duration_ms,
           route_tag: r.route_tag,
         }));
+        const bulkRows = goldenRowsToBulkInput(nextRows);
+        const { rows_augmented, final_summary } = bulkEvalBuildAugmentedRows(bulkRows, "golden_10");
         const summary_stats = {
           ...buildEvalSummaryStats(
             sweepRowsForStats.map((r) => ({
@@ -255,6 +284,8 @@ export function GoldenEvalRunner() {
             GOLDEN_QUESTIONS
           ),
           per_question: summarizeEvalRowsByQuestion(sweepRowsForStats, GOLDEN_QUESTIONS),
+          final_quality_summary: { ...final_summary, main_issue: final_summary.mainIssue },
+          ...buildGoldenSweepRegressionMeta(),
         };
         const saveRes = await fetch("/api/eval-sweeps", {
           method: "POST",
@@ -264,18 +295,21 @@ export function GoldenEvalRunner() {
             source: "golden",
             questions: GOLDEN_QUESTIONS,
             summary_stats,
-            rows: nextRows.map((r) => ({
-              case_id: r.case_id,
-              case_title: r.case_title,
-              question_no: r.question_no,
+            rows: rows_augmented.map((r) => ({
+              case_id: r.caseId,
+              case_title: r.caseTitle,
+              question_no: r.questionNo,
               question: r.question,
               answer: r.answer,
-              error: r.ok ? null : r.answer,
+              error: r.ok ? null : (r.error ?? r.answer),
               duration_ms: r.duration_ms,
               weak: r.weak,
-              http_status: r.status,
+              http_status: r.http_status,
               route_tag: r.route_tag,
-              row_meta: r.eval_meta ?? null,
+              row_meta:
+                r.eval_meta && typeof r.eval_meta === "object"
+                  ? { ...(r.eval_meta as Record<string, unknown>), ui_final_quality: r.final_quality, ui_final_issue: r.final_issue }
+                  : { ui_final_quality: r.final_quality, ui_final_issue: r.final_issue },
             })),
           }),
         });
@@ -303,6 +337,9 @@ export function GoldenEvalRunner() {
   }
 
   function downloadJson() {
+    if (rows.length === 0) return;
+    const bulkRows = goldenRowsToBulkInput(rows);
+    const { rows_augmented, final_summary } = bulkEvalBuildAugmentedRows(bulkRows, "golden_10");
     const sweepRowsForDownload = rows.map((r) => ({
       questionNo: r.question_no,
       ok: r.ok,
@@ -318,8 +355,14 @@ export function GoldenEvalRunner() {
       summary_stats: {
         ...runMeta,
         per_question: summarizeEvalRowsByQuestion(sweepRowsForDownload, GOLDEN_QUESTIONS),
+        final_quality_summary: { ...final_summary, main_issue: final_summary.mainIssue },
+        ...buildGoldenSweepRegressionMeta(),
       },
-      rows,
+      rows: rows.map((r, i) => ({
+        ...r,
+        final_quality: rows_augmented[i]!.final_quality,
+        final_issue: rows_augmented[i]!.final_issue,
+      })),
     };
     const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
     const url = URL.createObjectURL(blob);

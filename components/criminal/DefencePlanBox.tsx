@@ -8,21 +8,35 @@
  * D4: Chat UX – auto-scroll, bubbles, typing indicator, sticky input, collapsible plan, command shortcuts.
  */
 
-import { useState, useEffect, useRef, useMemo } from "react";
+import { Fragment, useState, useEffect, useRef, useMemo } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, ChevronUp, Send, Loader2, Check, Pencil, X } from "lucide-react";
 import type { DefenceStrategyPlan } from "@/lib/criminal/strategy-output";
 import { LawSliceSuggestions } from "./LawSliceSuggestions";
 import { VerdictRatingBlock } from "./VerdictRatingBlock";
-import { buildEvalSummaryStats, isEvalWeakAnswer } from "@/lib/eval-run-metadata";
+import {
+  buildEvalSummaryStats,
+  isEvalWeakAnswer,
+} from "@/lib/eval-run-metadata";
 import {
   GOLDEN_SWEEP_QUESTIONS,
   buildGoldenSweepRegressionMeta,
   summarizeEvalRowsByQuestion,
 } from "@/lib/eval-golden-sweep";
-import type { EvalMetaV1 } from "@/lib/eval-observability";
+import { type EvalMetaV1 } from "@/lib/eval-observability";
+import {
+  buildBulkEvalPresentCtx,
+  bulkEvalBuildAugmentedRows,
+  bulkEvalPreviewShort,
+  bulkEvalQualityFinal,
+  bulkEvalResolvedFinalIssue,
+  bulkEvalRunLabel,
+  bulkEvalSweepSummary,
+  type BulkEvalPresentCtx,
+} from "@/lib/bulk-eval-result-present";
 import { sortCasesForEvalScan } from "@/lib/eval-case-sort";
+import { buildDefencePlanDebugBundleV1, downloadJsonObject } from "@/lib/debug-bundle";
 
 const DEV_CASE_PICKER_ENABLED =
   /^(1|true|yes|on)$/i.test((process.env.NEXT_PUBLIC_DEV_CASE_PICKER ?? "").trim()) ||
@@ -177,22 +191,23 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
   /** After a run completes; drives labels + JSON export. */
   const [evalSweepMode, setEvalSweepMode] = useState<"manual" | "golden_10" | null>(null);
   const [evalGroupByQuestion, setEvalGroupByQuestion] = useState(false);
-  const [evalRows, setEvalRows] = useState<
-    Array<{
-      caseId: string;
-      caseTitle: string;
-      questionNo: number;
-      question: string;
-      answer: string;
-      error?: string;
-      duration_ms: number;
-      route_tag: string | null;
-      weak: boolean;
-      http_status: number;
-      ok: boolean;
-    }>
-  >([]);
+  type EvalSweepRowState = {
+    caseId: string;
+    caseTitle: string;
+    questionNo: number;
+    question: string;
+    answer: string;
+    error?: string;
+    duration_ms: number;
+    route_tag: string | null;
+    weak: boolean;
+    http_status: number;
+    ok: boolean;
+    eval_meta?: EvalMetaV1 | null;
+  };
+  const [evalRows, setEvalRows] = useState<EvalSweepRowState[]>([]);
   const [evalCopyMessage, setEvalCopyMessage] = useState<string | null>(null);
+  const [evalExpandedRowKey, setEvalExpandedRowKey] = useState<string | null>(null);
   const [forceCasePicker, setForceCasePicker] = useState(false);
   const [forceBulkEvalRunner, setForceBulkEvalRunner] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -343,7 +358,8 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
     const sweepStartedAt = Date.now();
     setEvalRunning(true);
     setEvalRows([]);
-    setEvalSweepMode(null);
+    setEvalExpandedRowKey(null);
+    setEvalSweepMode(opts.sweepMode);
     setEvalProgress({
       done: 0,
       total,
@@ -454,10 +470,11 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
             question
           );
           const combined = answer || error || "";
+          const qn = qIdx + 1;
           rows.push({
             caseId: c.id,
             caseTitle: c.title,
-            questionNo: qIdx + 1,
+            questionNo: qn,
             question,
             answer,
             ...(error ? { error } : {}),
@@ -499,13 +516,16 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
               answer: r.answer || r.error || "",
               duration_ms: r.duration_ms,
               route_tag: r.route_tag,
+              question_no: r.questionNo,
             })),
             questions
           );
+          const { rows_augmented, final_summary } = bulkEvalBuildAugmentedRows(rows, opts.sweepMode);
           const summary_stats = {
             ...aggregateStats,
             sweep_mode: opts.sweepMode,
             per_question: summarizeEvalRowsByQuestion(rows, questions),
+            final_quality_summary: { ...final_summary, main_issue: final_summary.mainIssue },
             ...(opts.sweepMode === "golden_10" ? buildGoldenSweepRegressionMeta() : {}),
           };
           const saveRes = await fetch("/api/eval-sweeps", {
@@ -516,7 +536,7 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
               source: opts.apiSource,
               questions,
               summary_stats,
-              rows: rows.map((r) => ({
+              rows: rows_augmented.map((r) => ({
                 case_id: r.caseId,
                 case_title: r.caseTitle,
                 question_no: r.questionNo,
@@ -527,7 +547,10 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
                 weak: r.weak,
                 http_status: r.http_status,
                 route_tag: r.route_tag,
-                row_meta: r.eval_meta ?? null,
+                row_meta:
+                  r.eval_meta && typeof r.eval_meta === "object"
+                    ? { ...(r.eval_meta as Record<string, unknown>), ui_final_quality: r.final_quality, ui_final_issue: r.final_issue }
+                    : { ui_final_quality: r.final_quality, ui_final_issue: r.final_issue },
               })),
             }),
           });
@@ -568,7 +591,7 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
   };
 
   const evalRowsGrouped = useMemo(() => {
-    const m = new Map<number, EvalSweepRow[]>();
+    const m = new Map<number, EvalSweepRowState[]>();
     for (const r of evalRows) {
       const arr = m.get(r.questionNo) ?? [];
       arr.push(r);
@@ -576,6 +599,61 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
     }
     return [...m.entries()].sort((a, b) => a[0] - b[0]);
   }, [evalRows]);
+
+  const bulkEvalCtx: BulkEvalPresentCtx = useMemo(
+    () => buildBulkEvalPresentCtx(evalRows, evalSweepMode),
+    [evalRows, evalSweepMode]
+  );
+
+  const evalSweepSummary = useMemo(
+    () => bulkEvalSweepSummary(evalRows, bulkEvalCtx),
+    [evalRows, bulkEvalCtx]
+  );
+
+  const downloadFullDebugBundle = () => {
+    const payload = buildDefencePlanDebugBundleV1({
+      caseId,
+      plan,
+      offenceType,
+      currentPhase,
+      evidenceSummary,
+      timelineSummary,
+      caseNavLabel: caseNav?.label ?? null,
+      evalCasesCount: evalCases.length,
+      allCasesCount: allCases.length,
+      chatMessages,
+      evalRows: evalRows.map((r) => ({
+        caseId: r.caseId,
+        caseTitle: r.caseTitle,
+        questionNo: r.questionNo,
+        question: r.question,
+        answer: r.answer,
+        error: r.error,
+        duration_ms: r.duration_ms,
+        route_tag: r.route_tag,
+        weak: r.weak,
+        http_status: r.http_status,
+        ok: r.ok,
+        eval_meta: r.eval_meta ?? undefined,
+      })),
+      evalSweepMode,
+      evalProgress: {
+        done: evalProgress.done,
+        total: evalProgress.total,
+        questionIndex: evalProgress.questionIndex,
+        questionTotal: evalProgress.questionTotal,
+        caseIndex: evalProgress.caseIndex,
+        caseTotal: evalProgress.caseTotal,
+      },
+      bulkEvalRequestHeaders: {
+        "Content-Type": "application/json",
+        "x-eval-mode": "1",
+        "x-fast-eval": "1",
+      },
+      bulkEvalFetchTimeoutMs: BULK_EVAL_FETCH_TIMEOUT_MS,
+    });
+    downloadJsonObject("casebrain-debug-bundle", payload);
+  };
 
   const downloadEvalSweepJson = () => {
     if (evalRows.length === 0) return;
@@ -590,6 +668,7 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
       })),
       questionsOrdered
     );
+    const { final_summary, rows_augmented } = bulkEvalBuildAugmentedRows(evalRows, evalSweepMode);
     const payload = {
       exported_at: new Date().toISOString(),
       sweep_mode: evalSweepMode,
@@ -598,9 +677,10 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
       summary_stats: {
         ...aggregateStats,
         per_question: summarizeEvalRowsByQuestion(evalRows, questionsOrdered),
+        final_quality_summary: { ...final_summary, main_issue: final_summary.mainIssue },
         ...(evalSweepMode === "golden_10" ? buildGoldenSweepRegressionMeta() : {}),
       },
-      rows: evalRows,
+      rows: rows_augmented,
     };
     const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
     const url = URL.createObjectURL(blob);
@@ -613,8 +693,22 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
 
   const copyEvalRows = async () => {
     if (evalRows.length === 0) return;
-    const header = ["case_id", "case_title", "question_no", "question", "answer", "error", "duration_ms", "route_tag", "weak", "http_status"].join("\t");
-    const body = evalRows
+    const { rows_augmented } = bulkEvalBuildAugmentedRows(evalRows, evalSweepMode);
+    const header = [
+      "case_id",
+      "case_title",
+      "question_no",
+      "question",
+      "answer",
+      "error",
+      "duration_ms",
+      "route_tag",
+      "weak",
+      "http_status",
+      "final_quality",
+      "final_issue",
+    ].join("\t");
+    const body = rows_augmented
       .map((r) =>
         [
           r.caseId,
@@ -627,6 +721,8 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
           (r.route_tag ?? "").replace(/\t/g, " "),
           r.weak ? "1" : "0",
           String(r.http_status ?? ""),
+          r.final_quality,
+          (r.final_issue || "").replace(/\t/g, " "),
         ].join("\t"),
       )
       .join("\n");
@@ -739,11 +835,21 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
             <Button
               type="button"
               size="sm"
+              variant="secondary"
+              onClick={downloadFullDebugBundle}
+              title="One file: case, URL, plan, chat, eval rows, browser + build info (no passwords)"
+            >
+              Debug bundle
+            </Button>
+            <Button
+              type="button"
+              size="sm"
               variant="ghost"
               onClick={() => {
                 setEvalRows([]);
                 setEvalProgress({ done: 0, total: 0 });
                 setEvalSweepMode(null);
+                setEvalExpandedRowKey(null);
               }}
               disabled={evalRunning || evalRows.length === 0}
             >
@@ -824,38 +930,134 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
             </div>
           )}
           {evalRows.length > 0 && (
-            <div className="mt-2 max-h-48 overflow-auto rounded border border-border/60 bg-background p-2">
-              <table className="w-full text-[11px]">
-                <thead>
-                  <tr className="text-left text-muted-foreground">
-                    <th className="pr-2">Case</th>
-                    <th className="pr-2">Q#</th>
-                    <th className="pr-2">Route</th>
-                    <th className="pr-2">Status</th>
-                    <th>Preview</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {evalRows.slice(-120).map((r, idx) => (
-                    <tr key={`${r.caseId}-${r.questionNo}-${idx}`} className="border-t border-border/40 align-top">
-                      <td className="pr-2 py-1 text-foreground">{r.caseTitle}</td>
-                      <td className="pr-2 py-1 text-foreground">{r.questionNo}</td>
-                      <td className="pr-2 py-1 font-mono text-[10px] text-muted-foreground max-w-[88px] truncate" title={r.route_tag ?? ""}>
-                        {r.route_tag ?? "—"}
-                      </td>
-                      <td className="pr-2 py-1">{r.error ? <span className="text-red-600">error</span> : <span className="text-emerald-600">ok</span>}</td>
-                      <td className="py-1 text-muted-foreground">{(r.error ?? r.answer).slice(0, 120)}</td>
+            <div className="mt-2 space-y-2">
+              <div className="rounded-md border border-border/70 bg-muted/25 px-3 py-2 text-[11px] text-foreground">
+                <p className="font-semibold text-foreground">
+                  {evalSweepMode === "golden_10" ? "Golden sweep result" : "Bulk eval result"}
+                </p>
+                <ul className="mt-1.5 list-none space-y-0.5 text-muted-foreground">
+                  <li>
+                    <span className="text-foreground/80">Total:</span> {evalSweepSummary.total}
+                  </li>
+                  <li>
+                    <span className="text-emerald-700 dark:text-emerald-400">Pass:</span> {evalSweepSummary.pass}
+                  </li>
+                  <li>
+                    <span className="text-amber-700 dark:text-amber-400">Weak:</span> {evalSweepSummary.weak}
+                  </li>
+                  <li>
+                    <span className="text-red-700 dark:text-red-400">Fail:</span> {evalSweepSummary.fail}
+                  </li>
+                  <li>
+                    <span className="text-orange-700 dark:text-orange-400">Timeout / error:</span> {evalSweepSummary.timeoutError}
+                  </li>
+                  <li className="pt-1 text-foreground">
+                    <span className="font-medium text-muted-foreground">Main issue:</span> {evalSweepSummary.mainIssue}
+                  </li>
+                </ul>
+              </div>
+              <div className="max-h-[min(28rem,70vh)] overflow-auto rounded border border-border/60 bg-background p-2">
+                <table className="w-full text-[11px]">
+                  <thead>
+                    <tr className="text-left text-muted-foreground">
+                      <th className="pr-2">Case</th>
+                      <th className="pr-2">Q#</th>
+                      <th className="pr-2">Route</th>
+                      <th className="pr-2">Run</th>
+                      <th className="pr-2">Quality</th>
+                      <th className="pr-2">Issue</th>
+                      <th className="pr-2">Preview</th>
+                      <th className="w-24" />
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {evalRows.slice(-120).map((r, idx) => {
+                      const rowKey = `${r.caseId}-${r.questionNo}-${idx}`;
+                      const runL = bulkEvalRunLabel(r);
+                      const qual = bulkEvalQualityFinal(r, bulkEvalCtx);
+                      const issue = bulkEvalResolvedFinalIssue(r, bulkEvalCtx);
+                      const previewSource = r.error ?? r.answer;
+                      const expanded = evalExpandedRowKey === rowKey;
+                      const runCls =
+                        runL === "ok"
+                          ? "text-emerald-600 dark:text-emerald-400"
+                          : runL === "timeout"
+                            ? "text-orange-600 dark:text-orange-400"
+                            : runL === "skipped"
+                              ? "text-muted-foreground"
+                              : "text-red-600 dark:text-red-400";
+                      const qualCls =
+                        qual === "pass"
+                          ? "text-emerald-600 dark:text-emerald-400"
+                          : qual === "weak"
+                            ? "text-amber-600 dark:text-amber-400"
+                            : qual === "fail"
+                              ? "text-red-600 dark:text-red-400"
+                              : "text-orange-600 dark:text-orange-400";
+                      return (
+                        <Fragment key={rowKey}>
+                          <tr className="border-t border-border/40 align-top">
+                            <td className="pr-2 py-1 text-foreground max-w-[120px] truncate" title={r.caseTitle}>
+                              {r.caseTitle}
+                            </td>
+                            <td className="pr-2 py-1 text-foreground">{r.questionNo}</td>
+                            <td
+                              className="pr-2 py-1 font-mono text-[10px] text-muted-foreground max-w-[100px] truncate"
+                              title={r.route_tag ?? ""}
+                            >
+                              {r.route_tag ?? "—"}
+                            </td>
+                            <td className={`pr-2 py-1 font-medium capitalize ${runCls}`}>{runL}</td>
+                            <td className={`pr-2 py-1 font-medium capitalize ${qualCls}`}>{qual}</td>
+                            <td className="pr-2 py-1 text-muted-foreground max-w-[120px] truncate" title={issue}>
+                              {issue}
+                            </td>
+                            <td className="py-1 text-muted-foreground max-w-[200px] break-words leading-snug">
+                              {bulkEvalPreviewShort(previewSource)}
+                            </td>
+                            <td className="py-1 align-top">
+                              <Button
+                                type="button"
+                                variant="ghost"
+                                size="sm"
+                                className="h-7 px-1.5 text-[10px] text-primary"
+                                onClick={() => setEvalExpandedRowKey(expanded ? null : rowKey)}
+                              >
+                                {expanded ? "Hide" : "View full"}
+                              </Button>
+                            </td>
+                          </tr>
+                          {expanded ? (
+                            <tr className="bg-muted/30">
+                              <td colSpan={8} className="px-2 py-2 text-[11px] text-foreground">
+                                <p className="text-[10px] font-medium text-muted-foreground">Full answer / error</p>
+                                <pre className="mt-1 max-h-64 overflow-auto whitespace-pre-wrap break-words font-sans text-[11px]">
+                                  {previewSource || "—"}
+                                </pre>
+                              </td>
+                            </tr>
+                          ) : null}
+                        </Fragment>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
             </div>
           )}
           {evalGroupByQuestion && evalRowsGrouped.length > 0 && (
             <div className="mt-2 max-h-56 space-y-1 overflow-auto rounded border border-border/60 bg-muted/10 p-2">
               <p className="text-[11px] font-medium text-foreground">Grouped by question</p>
               {evalRowsGrouped.map(([qn, rs]) => {
-                const weakN = rs.filter((r) => r.weak).length;
+                let passN = 0;
+                let weakN = 0;
+                let failN = 0;
+                for (const row of rs) {
+                  const q = bulkEvalQualityFinal(row, bulkEvalCtx);
+                  if (q === "pass") passN += 1;
+                  else if (q === "weak") weakN += 1;
+                  else failN += 1;
+                }
                 const routes = rs.reduce<Record<string, number>>((acc, r) => {
                   const t = r.route_tag ?? "unknown";
                   acc[t] = (acc[t] ?? 0) + 1;
@@ -867,8 +1069,8 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
                 return (
                   <details key={qn} className="rounded border border-border/50 bg-background px-2 py-1">
                     <summary className="cursor-pointer text-[11px] text-foreground">
-                      Q{qn} · weak {weakN}/{rs.length}
-                      {routeSummary ? ` · ${routeSummary.length > 160 ? `${routeSummary.slice(0, 157)}…` : routeSummary}` : ""}
+                      Q{qn} — Pass: {passN} · Weak: {weakN} · Fail: {failN}
+                      {routeSummary ? ` · ${routeSummary.length > 120 ? `${routeSummary.slice(0, 117)}…` : routeSummary}` : ""}
                     </summary>
                     <p className="mt-1 text-[10px] leading-snug text-muted-foreground">{rs[0]?.question ?? ""}</p>
                   </details>
@@ -1043,6 +1245,14 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
       <div className="mt-6 pt-4 border-t border-border/50 flex flex-col min-h-0">
         {renderCaseNavAndEvalRunner()}
         <LawSliceSuggestions offenceType={offenceType} currentPhase={currentPhase} hasPlan={true} />
+        <div className="mb-2 flex flex-wrap items-center gap-2">
+          <Button type="button" size="sm" variant="outline" onClick={downloadFullDebugBundle}>
+            Download debug bundle
+          </Button>
+          <span className="text-[10px] text-muted-foreground max-w-[14rem] leading-tight">
+            One JSON: this page, case, plan, chat, golden questions, eval results, device — no secrets.
+          </span>
+        </div>
         <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1">Ask about this plan</p>
         <div className="rounded border border-border/50 bg-muted/20 px-2 py-1.5 mb-2 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] text-muted-foreground">
           <span>Context:</span>
