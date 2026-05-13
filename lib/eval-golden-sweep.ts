@@ -5,7 +5,7 @@ import { buildEvalSummaryStats } from "@/lib/eval-run-metadata";
  * Order matches intended regression passes; keep wording stable for strict routes.
  */
 export const GOLDEN_SWEEP_QUESTIONS = [
-  "What is the primary allegation in one sentence using only the charge/bundle wording?",
+  "What is the primary allegation in one sentence using only charge/bundle wording as printed in these papers (charge sheet extract, offence tag, offence as charged, or count line) — no generic offence label, synopsis heading, or law-summary paraphrase?",
   "What does MG6 say is served and outstanding?",
   "What evidence appears missing or incomplete right now?",
   "What was said in interview?",

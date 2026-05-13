@@ -10,7 +10,7 @@ import { buildEvalSummaryStats, isEvalWeakAnswer } from "@/lib/eval-run-metadata
 import { goldenSweepRouteDriftWarnings, normalizeSweepRow } from "@/lib/eval-sweep-review";
 
 /** Bump when you add/remove top-level bundle sections. */
-export const DEBUG_BUNDLE_SCHEMA_VERSION = 3;
+export const DEBUG_BUNDLE_SCHEMA_VERSION = 4;
 
 const MAX_PLAN_JSON_CHARS = 120_000;
 const MAX_CONTEXT_CHARS = 24_000;
@@ -314,6 +314,7 @@ export function buildDefencePlanDebugBundleV1(input: BuildDefencePlanDebugBundle
         weak_heuristic: isEvalWeakAnswer(r.answer || r.error || "", { route_tag: r.route_tag }),
         final_quality: r.final_quality,
         final_issue: r.final_issue,
+        final_collapse_rule: r.final_collapse_rule,
         final_is_not_pass: r.final_quality !== "pass",
       }))
     : weak_row_flags;

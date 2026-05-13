@@ -43,6 +43,12 @@ const DEV_CASE_PICKER_ENABLED =
   process.env.NODE_ENV !== "production";
 const BULK_EVAL_RUNNER_ENABLED = true;
 
+/** Stable string id for bulk-eval maps and manual selection (JSON ids may be number or string). */
+function normalizeEvalCaseId(raw: unknown): string {
+  if (raw == null) return "";
+  return String(raw).trim();
+}
+
 const CHAT_COMMAND_PROMPTS: Record<string, string> = {
   "/disclosure": "What disclosure should I be pushing in this case and what are the CPIA duties?",
   "/timeline": "What are the key dates and next steps in this case?",
@@ -315,16 +321,31 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
       .slice(0, 10);
   };
 
-  const runnerCasesBase = allCases.length > 0 ? allCases : evalCases;
-  const runnerCases =
-    runnerCasesBase.length > 0 ? sortCasesForEvalScan(runnerCasesBase) : [{ id: caseId, title: "Current case" }];
+  const runnerCases = useMemo((): Array<{ id: string; title: string }> => {
+    const base = allCases.length > 0 ? allCases : evalCases;
+    if (base.length === 0) {
+      const id = normalizeEvalCaseId(caseId);
+      return id ? [{ id, title: "Current case" }] : [];
+    }
+    return sortCasesForEvalScan(base)
+      .map((c) => {
+        const id = normalizeEvalCaseId(c.id);
+        if (!id) return null;
+        const title = typeof c.title === "string" && c.title.trim() ? c.title.trim() : "Untitled Case";
+        return { id, title };
+      })
+      .filter((c): c is { id: string; title: string } => c != null);
+  }, [allCases, evalCases, caseId]);
 
   const selectedEvalCases = (): Array<{ id: string; title: string }> => {
     if (evalScope === "manual") {
       const byId = new Map(runnerCases.map((c) => [c.id, c] as const));
-      return manualCaseIds.map((id) => byId.get(id)).filter((c): c is { id: string; title: string } => Boolean(c));
+      return manualCaseIds
+        .map((id) => byId.get(normalizeEvalCaseId(id)))
+        .filter((c): c is { id: string; title: string } => Boolean(c));
     }
-    if (evalScope === "current") return [{ id: caseId, title: "Current case" }];
+    const currentId = normalizeEvalCaseId(caseId);
+    if (evalScope === "current") return currentId ? [{ id: currentId, title: "Current case" }] : [];
     if (evalScope === "5") return runnerCases.slice(0, 5);
     if (evalScope === "10") return runnerCases.slice(0, 10);
     if (evalScope === "20") return runnerCases.slice(0, 20);
@@ -549,8 +570,17 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
                 route_tag: r.route_tag,
                 row_meta:
                   r.eval_meta && typeof r.eval_meta === "object"
-                    ? { ...(r.eval_meta as Record<string, unknown>), ui_final_quality: r.final_quality, ui_final_issue: r.final_issue }
-                    : { ui_final_quality: r.final_quality, ui_final_issue: r.final_issue },
+                    ? {
+                        ...(r.eval_meta as Record<string, unknown>),
+                        ui_final_quality: r.final_quality,
+                        ui_final_issue: r.final_issue,
+                        ui_final_collapse_rule: r.final_collapse_rule,
+                      }
+                    : {
+                        ui_final_quality: r.final_quality,
+                        ui_final_issue: r.final_issue,
+                        ui_final_collapse_rule: r.final_collapse_rule,
+                      },
               })),
             }),
           });
@@ -707,6 +737,7 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
       "http_status",
       "final_quality",
       "final_issue",
+      "final_collapse_rule",
     ].join("\t");
     const body = rows_augmented
       .map((r) =>
@@ -723,6 +754,7 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
           String(r.http_status ?? ""),
           r.final_quality,
           (r.final_issue || "").replace(/\t/g, " "),
+          (r.final_collapse_rule ?? "").replace(/\t/g, " "),
         ].join("\t"),
       )
       .join("\n");
@@ -898,7 +930,11 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
                         disabled={evalRunning}
                         onChange={(e) => {
                           setManualCaseIds((prev) =>
-                            e.target.checked ? [...prev, c.id] : prev.filter((id) => id !== c.id)
+                            e.target.checked
+                              ? prev.includes(c.id)
+                                ? prev
+                                : [...prev, c.id]
+                              : prev.filter((id) => id !== c.id)
                           );
                         }}
                       />
@@ -913,7 +949,7 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
                   size="sm"
                   variant="outline"
                   disabled={evalRunning}
-                  onClick={() => setManualCaseIds(runnerCases.map((c) => c.id))}
+                  onClick={() => setManualCaseIds([...new Set(runnerCases.map((c) => c.id))])}
                 >
                   Select all loaded
                 </Button>

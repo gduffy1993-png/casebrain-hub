@@ -8,73 +8,22 @@ import {
   GOLDEN_SWEEP_QUESTIONS,
   summarizeEvalRowsByQuestion,
 } from "@/lib/eval-golden-sweep";
-import {
-  buildSystemicCollapseWarnings,
-  sweepSemanticHints,
-  type EvalMetaV1,
-} from "@/lib/eval-observability";
 import { bulkEvalBuildAugmentedRows } from "@/lib/bulk-eval-result-present";
 import { sortCasesForEvalScan } from "@/lib/eval-case-sort";
 import {
   buildEvalSummaryStats,
-  isEvalWeakAnswer,
 } from "@/lib/eval-run-metadata";
 import { EvalSweepReviewPanel } from "@/components/eval/EvalSweepReviewPanel";
+import {
+  GOLDEN_QUESTIONS,
+  goldenSweepRowsToBulkInput,
+  runGoldenSweepForCases,
+  type GoldenSweepEvalRow,
+} from "@/lib/eval/golden-sweep-client";
 
 type CaseRow = { id: string; title?: string | null };
 
-type EvalRow = {
-  case_id: string;
-  case_title: string;
-  question_no: number;
-  question: string;
-  answer: string;
-  ok: boolean;
-  status: number;
-  duration_ms: number;
-  timestamp: string;
-  weak: boolean;
-  /** From defence-plan-chat `x-casebrain-route` */
-  route_tag: string | null;
-  /** From defence-plan-chat JSON `eval_meta` */
-  eval_meta?: EvalMetaV1 | null;
-};
-
-function goldenRowsToBulkInput(rows: EvalRow[]) {
-  return rows.map((r) => ({
-    caseId: r.case_id,
-    caseTitle: r.case_title,
-    questionNo: r.question_no,
-    question: r.question,
-    answer: r.answer,
-    error: r.ok ? undefined : r.answer,
-    ok: r.ok,
-    http_status: r.status,
-    weak: r.weak,
-    route_tag: r.route_tag,
-    eval_meta: r.eval_meta ?? null,
-    duration_ms: r.duration_ms,
-    timestamp: r.timestamp,
-  }));
-}
-
-/** Canonical 10-question sweep — mutable copy for indexing / saves (same strings as lib). */
-const GOLDEN_QUESTIONS: string[] = [...GOLDEN_SWEEP_QUESTIONS];
-/** Fast-eval is lighter than full chat but cold starts + network need headroom; 20s caused frequent false aborts. */
-const QUESTION_TIMEOUT_MS = 90_000;
-
-function formatGoldenFetchError(e: unknown, timeoutMs: number): string {
-  if (typeof DOMException !== "undefined" && e instanceof DOMException && e.name === "AbortError") {
-    return `Timed out after ${Math.round(timeoutMs / 1000)}s (browser limit).`;
-  }
-  if (e instanceof Error) {
-    if (e.name === "AbortError" || /signal is aborted|aborted without reason/i.test(e.message)) {
-      return `Timed out after ${Math.round(timeoutMs / 1000)}s (browser limit).`;
-    }
-    return e.message;
-  }
-  return String(e);
-}
+type EvalRow = GoldenSweepEvalRow;
 
 type RecentRun = { id: string; created_at: string; source: string; row_count: number };
 
@@ -139,7 +88,7 @@ export function GoldenEvalRunner() {
           route_tag: r.route_tag,
           question_no: r.question_no,
         })),
-        GOLDEN_QUESTIONS
+        [...GOLDEN_QUESTIONS]
       ),
     [rows]
   );
@@ -165,87 +114,22 @@ export function GoldenEvalRunner() {
     try {
       const cases = sortCasesForEvalScan(await loadCases());
       const total = cases.length * GOLDEN_QUESTIONS.length;
-      const nextRows: EvalRow[] = [];
-      let done = 0;
-      setProgress({ done, total, current: `Loaded ${cases.length} cases` });
+      const buffer: EvalRow[] = [];
+      setProgress({ done: 0, total, current: `Loaded ${cases.length} cases` });
 
-      for (const c of cases) {
-        for (const q of GOLDEN_QUESTIONS) {
-          if (cancelRef.current) {
-            setProgress((p) => ({ ...p, current: "Cancelled" }));
-            setRunning(false);
-            return;
-          }
-          const started = Date.now();
-          const qn = Math.max(1, GOLDEN_QUESTIONS.indexOf(q) + 1);
-          setProgress({
-            done,
-            total,
-            current: `${c.title || c.id} — ${q}`,
-          });
-          try {
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), QUESTION_TIMEOUT_MS);
-            try {
-              const res = await fetch(`/api/criminal/${c.id}/defence-plan-chat`, {
-                method: "POST",
-                credentials: "include",
-                signal: controller.signal,
-                headers: {
-                  "Content-Type": "application/json",
-                  "x-fast-eval": "1",
-                  "x-eval-mode": "1",
-                },
-                body: JSON.stringify({ message: q }),
-              });
-              const routeTag = res.headers.get("x-casebrain-route")?.trim() || null;
-              const json = (await res.json().catch(() => ({}))) as {
-                reply?: string;
-                ok?: boolean;
-                error?: string;
-                eval_meta?: EvalMetaV1;
-              };
-              const text =
-                typeof json.reply === "string" ? json.reply : json.error || `HTTP ${res.status}`;
-              const em = json.eval_meta && json.eval_meta.v === 1 ? json.eval_meta : null;
-              nextRows.push({
-                case_id: c.id,
-                case_title: c.title || "Untitled case",
-                question_no: qn,
-                question: q,
-                answer: text,
-                ok: res.ok,
-                status: res.status,
-                duration_ms: Date.now() - started,
-                timestamp: new Date().toISOString(),
-                weak: isEvalWeakAnswer(text, { route_tag: routeTag }),
-                route_tag: routeTag,
-                eval_meta: em,
-              });
-            } finally {
-              clearTimeout(timeoutId);
-            }
-          } catch (e) {
-            const errorText = formatGoldenFetchError(e, QUESTION_TIMEOUT_MS);
-            nextRows.push({
-              case_id: c.id,
-              case_title: c.title || "Untitled case",
-              question_no: qn,
-              question: q,
-              answer: errorText,
-              ok: false,
-              status: 0,
-              duration_ms: Date.now() - started,
-              timestamp: new Date().toISOString(),
-              weak: isEvalWeakAnswer(errorText, { route_tag: null }),
-              route_tag: null,
-              eval_meta: null,
-            });
-          }
-          done += 1;
-          setRows([...nextRows]);
-          setProgress((p) => ({ ...p, done }));
-        }
+      const nextRows = await runGoldenSweepForCases(cases, {
+        shouldCancel: () => cancelRef.current,
+        onRow: (row, { done, total: t }) => {
+          buffer.push(row);
+          setRows([...buffer]);
+          setProgress({ done, total: t, current: `${row.case_title} — ${row.question}` });
+        },
+        onProgress: (p) => setProgress(p),
+      });
+
+      if (cancelRef.current) {
+        setProgress((p) => ({ ...p, current: "Cancelled" }));
+        return;
       }
 
       try {
@@ -270,7 +154,7 @@ export function GoldenEvalRunner() {
           duration_ms: r.duration_ms,
           route_tag: r.route_tag,
         }));
-        const bulkRows = goldenRowsToBulkInput(nextRows);
+        const bulkRows = goldenSweepRowsToBulkInput(nextRows);
         const { rows_augmented, final_summary } = bulkEvalBuildAugmentedRows(bulkRows, "golden_10");
         const summary_stats = {
           ...buildEvalSummaryStats(
@@ -281,9 +165,9 @@ export function GoldenEvalRunner() {
               duration_ms: r.duration_ms,
               route_tag: r.route_tag,
             })),
-            GOLDEN_QUESTIONS
+            [...GOLDEN_QUESTIONS]
           ),
-          per_question: summarizeEvalRowsByQuestion(sweepRowsForStats, GOLDEN_QUESTIONS),
+          per_question: summarizeEvalRowsByQuestion(sweepRowsForStats, [...GOLDEN_QUESTIONS]),
           final_quality_summary: { ...final_summary, main_issue: final_summary.mainIssue },
           ...buildGoldenSweepRegressionMeta(),
         };
@@ -308,8 +192,17 @@ export function GoldenEvalRunner() {
               route_tag: r.route_tag,
               row_meta:
                 r.eval_meta && typeof r.eval_meta === "object"
-                  ? { ...(r.eval_meta as Record<string, unknown>), ui_final_quality: r.final_quality, ui_final_issue: r.final_issue }
-                  : { ui_final_quality: r.final_quality, ui_final_issue: r.final_issue },
+                  ? {
+                      ...(r.eval_meta as Record<string, unknown>),
+                      ui_final_quality: r.final_quality,
+                      ui_final_issue: r.final_issue,
+                      ui_final_collapse_rule: r.final_collapse_rule,
+                    }
+                  : {
+                      ui_final_quality: r.final_quality,
+                      ui_final_issue: r.final_issue,
+                      ui_final_collapse_rule: r.final_collapse_rule,
+                    },
             })),
           }),
         });
@@ -324,7 +217,7 @@ export function GoldenEvalRunner() {
         setCloudMessage("Cloud save failed (offline?). Download JSON locally.");
       }
 
-      setProgress({ done, total, current: "Done" });
+      setProgress({ done: nextRows.length, total, current: "Done" });
     } catch (e) {
       setError(e instanceof Error ? e.message : String(e));
     } finally {
@@ -338,7 +231,7 @@ export function GoldenEvalRunner() {
 
   function downloadJson() {
     if (rows.length === 0) return;
-    const bulkRows = goldenRowsToBulkInput(rows);
+    const bulkRows = goldenSweepRowsToBulkInput(rows);
     const { rows_augmented, final_summary } = bulkEvalBuildAugmentedRows(bulkRows, "golden_10");
     const sweepRowsForDownload = rows.map((r) => ({
       questionNo: r.question_no,
@@ -354,7 +247,7 @@ export function GoldenEvalRunner() {
       summary,
       summary_stats: {
         ...runMeta,
-        per_question: summarizeEvalRowsByQuestion(sweepRowsForDownload, GOLDEN_QUESTIONS),
+        per_question: summarizeEvalRowsByQuestion(sweepRowsForDownload, [...GOLDEN_QUESTIONS]),
         final_quality_summary: { ...final_summary, main_issue: final_summary.mainIssue },
         ...buildGoldenSweepRegressionMeta(),
       },
@@ -362,6 +255,7 @@ export function GoldenEvalRunner() {
         ...r,
         final_quality: rows_augmented[i]!.final_quality,
         final_issue: rows_augmented[i]!.final_issue,
+        final_collapse_rule: rows_augmented[i]!.final_collapse_rule,
       })),
     };
     const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
@@ -441,11 +335,10 @@ export function GoldenEvalRunner() {
 
       <EvalSweepReviewPanel
         rows={rows}
-        questions={GOLDEN_QUESTIONS}
+        questions={GOLDEN_SWEEP_QUESTIONS}
         baselineRows={baselineRows}
         onClearBaseline={() => setBaselineRows(null)}
       />
     </Card>
   );
 }
-

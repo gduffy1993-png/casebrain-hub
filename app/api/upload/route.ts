@@ -22,10 +22,36 @@ import { trialLimit402Body } from "@/lib/paywall/trialLimit402";
 import { extractCriminalCaseMeta, persistCriminalCaseMeta } from "@/lib/criminal/structured-extractor";
 import { normalizePracticeArea } from "@/lib/types/casebrain";
 import { expandZipsToFolderCaseGroups } from "@/lib/upload/zip-to-case-groups";
+import { EVAL_PACK_LABELS, inferEvalPackFromTitle, parseEvalPackId } from "@/lib/eval-packs";
+import { extractTextFromFile } from "@/lib/upload/extract-text-from-file";
 
 export const runtime = "nodejs";
 
 type UploadJob = { caseId: string; files: File[] };
+
+function evalPackColumnsForNewCase(
+  explicitPackId: string | undefined,
+  title: string
+): { eval_pack_id: string | null; eval_pack_name: string | null; eval_case_no: number | null } {
+  const explicit = parseEvalPackId(explicitPackId);
+  if (explicit) {
+    const inferredNo = inferEvalPackFromTitle(title)?.eval_case_no ?? null;
+    return {
+      eval_pack_id: explicit,
+      eval_pack_name: EVAL_PACK_LABELS[explicit],
+      eval_case_no: inferredNo,
+    };
+  }
+  const inferred = inferEvalPackFromTitle(title);
+  if (!inferred) {
+    return { eval_pack_id: null, eval_pack_name: null, eval_case_no: null };
+  }
+  return {
+    eval_pack_id: inferred.pack_id,
+    eval_pack_name: inferred.pack_name,
+    eval_case_no: inferred.eval_case_no,
+  };
+}
 
 async function createCaseForUpload(params: {
   supabase: ReturnType<typeof getSupabaseAdminClient>;
@@ -34,8 +60,11 @@ async function createCaseForUpload(params: {
   email: string | null;
   title: string;
   practiceArea: ReturnType<typeof normalizePracticeArea>;
+  /** Optional eval pack id from upload form (A–J); title inference fills when unset. */
+  evalPackExplicitId?: string;
 }): Promise<{ ok: true; caseId: string } | { ok: false; response: NextResponse }> {
-  const { supabase, orgId, userId, email, title, practiceArea } = params;
+  const { supabase, orgId, userId, email, title, practiceArea, evalPackExplicitId } = params;
+  const evalPackCols = evalPackColumnsForNewCase(evalPackExplicitId, title);
   try {
     const trialStatus = await getTrialStatus({
       supabase,
@@ -63,6 +92,7 @@ async function createCaseForUpload(params: {
       title,
       created_by: userId,
       practice_area: practiceArea,
+      ...evalPackCols,
     })
     .select("id")
     .maybeSingle();
@@ -137,6 +167,11 @@ export async function POST(request: Request) {
 
   const formData = await request.formData();
   const files = formData.getAll("files").filter(isFile);
+  const evalPackExplicitRaw = (formData.get("evalPackId") as string | null)?.trim();
+  const evalPackExplicitId =
+    evalPackExplicitRaw && evalPackExplicitRaw.toLowerCase() !== "none"
+      ? parseEvalPackId(evalPackExplicitRaw) ?? undefined
+      : undefined;
   const caseTitle =
     (formData.get("caseTitle") as string | null)?.trim() ?? undefined;
   const practiceArea =
@@ -239,6 +274,7 @@ export async function POST(request: Request) {
         email,
         title: g.caseTitle,
         practiceArea: normalizedProvidedPracticeArea,
+        evalPackExplicitId,
       });
       if (!cre.ok) return cre.response;
       jobs.push({ caseId: cre.caseId, files: g.files });
@@ -251,6 +287,7 @@ export async function POST(request: Request) {
         email,
         title: `${titlePrefix} — (files outside zip)`,
         practiceArea: normalizedProvidedPracticeArea,
+        evalPackExplicitId,
       });
       if (!cre.ok) return cre.response;
       jobs.push({ caseId: cre.caseId, files: nonZip });
@@ -276,6 +313,7 @@ export async function POST(request: Request) {
         email,
         title: `${titlePrefix} — ${stem}`,
         practiceArea: normalizedProvidedPracticeArea,
+        evalPackExplicitId,
       });
       if (!cre.ok) return cre.response;
       jobs.push({ caseId: cre.caseId, files: [file] });
@@ -307,12 +345,24 @@ export async function POST(request: Request) {
         email,
         title: caseTitle!,
         practiceArea: normalizedProvidedPracticeArea,
+        evalPackExplicitId,
       });
       if (!cre.ok) return cre.response;
       singleCaseId = cre.caseId;
       console.log(`[upload] Created new case with ID: ${singleCaseId}`);
     } else {
       console.log(`[upload] Using existing case ID: ${singleCaseId} for "${caseTitle}"`);
+      if (evalPackExplicitId) {
+        const packCols = evalPackColumnsForNewCase(evalPackExplicitId, titleMatchCase?.title ?? caseTitle!);
+        const { error: packPatchErr } = await supabase
+          .from("cases")
+          .update(packCols)
+          .eq("id", singleCaseId)
+          .eq("org_id", orgId);
+        if (packPatchErr) {
+          console.warn("[upload] Failed to apply eval pack tags to existing case:", packPatchErr.message);
+        }
+      }
     }
 
     jobs = [{ caseId: singleCaseId, files }];
@@ -964,46 +1014,6 @@ export async function POST(request: Request) {
     },
     { status: 201 },
   );
-}
-
-async function extractTextFromFile(file: File, buffer: Buffer): Promise<string> {
-  if (file.type === "application/pdf") {
-    try {
-      const pdfParse = (await import("pdf-parse")).default;
-      const result = await pdfParse(buffer, {
-        // Options to handle corrupted PDFs more gracefully
-        max: 0, // Parse all pages
-      });
-      return result.text || "";
-    } catch (error) {
-      // Re-throw with more context
-      throw new Error(
-        `PDF parsing failed: ${error instanceof Error ? error.message : "Unknown error"}. The PDF may be corrupted, password-protected, or use an unsupported format.`,
-      );
-    }
-  }
-
-  if (
-    file.type ===
-    "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-  ) {
-    try {
-      const mammoth = await import("mammoth");
-      const result = await mammoth.extractRawText({ buffer });
-      return result.value || "";
-    } catch (error) {
-      throw new Error(
-        `DOCX parsing failed: ${error instanceof Error ? error.message : "Unknown error"}`,
-      );
-    }
-  }
-
-  // For plain text files, try UTF-8 first, then fallback to latin1
-  try {
-    return buffer.toString("utf-8");
-  } catch {
-    return buffer.toString("latin1");
-  }
 }
 
 function isFile(value: FormDataEntryValue): value is File {

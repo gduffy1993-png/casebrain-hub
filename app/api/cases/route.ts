@@ -17,6 +17,33 @@ function latestPositionsByCase(
   return map;
 }
 
+/** Earliest-uploaded document name per case (for eval pack filename inference). */
+async function fetchEvalDocHintsMap(
+  supabase: ReturnType<typeof getSupabaseAdminClient>,
+  orgId: string,
+  caseIds: string[],
+  enabled: boolean
+): Promise<Map<string, string | null>> {
+  const m = new Map<string, string | null>();
+  for (const id of caseIds) m.set(id, null);
+  if (!enabled || caseIds.length === 0) return m;
+  const { data: docRows, error } = await supabase
+    .from("documents")
+    .select("case_id, name, created_at")
+    .in("case_id", caseIds)
+    .eq("org_id", orgId)
+    .order("created_at", { ascending: true });
+  if (error) {
+    console.warn("[api/cases] eval_doc_hints:", error.message);
+    return m;
+  }
+  for (const r of docRows ?? []) {
+    const cid = String(r.case_id);
+    if (m.get(cid) == null && r.name) m.set(cid, String(r.name));
+  }
+  return m;
+}
+
 export async function GET(request: Request) {
   try {
     const isEval = isEvalBypassRequest(request);
@@ -47,6 +74,7 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const q = searchParams.get("q")?.trim() ?? "";
     const view = searchParams.get("view")?.trim() ?? "";
+    const evalDocHints = searchParams.get("eval_doc_hints") === "1";
 
     const isPoliceStationView = view === "police_station";
 
@@ -67,7 +95,7 @@ export async function GET(request: Request) {
 
       const { data: casesData, error } = await supabase
         .from("cases")
-        .select("id, title, updated_at")
+        .select("id, title, updated_at, eval_pack_id, eval_pack_name, eval_case_no")
         .eq("org_id", orgId)
         .eq("is_archived", false)
         .in("id", stationCaseIds)
@@ -78,6 +106,7 @@ export async function GET(request: Request) {
       }
       list = casesData;
       const caseIds = list.map((c) => c.id);
+      const docHintByCase = await fetchEvalDocHintsMap(supabase, orgId, caseIds, evalDocHints);
 
       let positionsData: { case_id: string; position_text: string }[] = [];
       let criminalData: { id: string; next_hearing_date: string | null; next_hearing_type: string | null }[] = [];
@@ -109,6 +138,7 @@ export async function GET(request: Request) {
         const matterState = matterStateByCase.get(c.id) ?? null;
         return {
           ...c,
+          eval_doc_hint: docHintByCase.get(c.id) ?? null,
           strategy_recorded: positionText != null && positionText.trim().length > 0,
           strategy_preview: strategy_preview || null,
           disclosure_outstanding: null as number | null,
@@ -123,7 +153,7 @@ export async function GET(request: Request) {
 
     let query = supabase
       .from("cases")
-      .select("id, title, updated_at")
+      .select("id, title, updated_at, eval_pack_id, eval_pack_name, eval_case_no")
       .eq("org_id", orgId)
       .eq("is_archived", false);
 
@@ -146,6 +176,7 @@ export async function GET(request: Request) {
     }
 
     const caseIds = list.map((c) => c.id);
+    const docHintByCase = await fetchEvalDocHintsMap(supabase, orgId, caseIds, evalDocHints);
 
     // Enrich with position, disclosure count, next hearing – non-fatal so case list always returns
     let positionsData: { case_id: string; position_text: string }[] = [];
@@ -203,6 +234,7 @@ export async function GET(request: Request) {
       const safety_one_line = disclosureOutstanding > 0 ? `${disclosureOutstanding} outstanding` : "Safe";
       return {
         ...c,
+        eval_doc_hint: docHintByCase.get(c.id) ?? null,
         strategy_recorded: positionText != null && positionText.trim().length > 0,
         strategy_preview: strategy_preview || null,
         disclosure_outstanding: disclosureOutstanding as number,

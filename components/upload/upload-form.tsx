@@ -17,6 +17,7 @@ import {
   MAX_SOURCE_PDFS_FOR_MERGE,
   mergePdfFilesToSingleFile,
 } from "@/lib/client/merge-pdfs";
+import { EVAL_PACK_IDS, EVAL_PACK_LABELS } from "@/lib/eval-packs";
 
 const ACCEPTED_TYPES = [
   "application/pdf",
@@ -97,6 +98,8 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
   );
   const [slotUploadKey, setSlotUploadKey] = useState(0);
   const [practiceArea, setPracticeArea] = useState<PracticeArea>(currentPracticeArea);
+  /** Internal eval harness: tags new cases with eval_pack_* when not "none". */
+  const [evalPackId, setEvalPackId] = useState<string>("none");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [mergeBusy, setMergeBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -307,6 +310,9 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
           formData.set("caseTitle", fullTitle);
           formData.set("practiceArea", practiceArea);
           formData.set("uploadMode", "single_case");
+          if ((isOwnerHardcoded || isOwner || bypassActive) && evalPackId !== "none") {
+            formData.set("evalPackId", evalPackId);
+          }
           slot.files.forEach((file) => formData.append("files", file));
 
           const response = await fetch("/api/upload", {
@@ -444,6 +450,9 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
       filesToPost.forEach((file) => {
         formData.append("files", file);
       });
+      if (!caseId && (isOwnerHardcoded || isOwner || bypassActive) && evalPackId !== "none") {
+        formData.set("evalPackId", evalPackId);
+      }
 
       const response = await fetch("/api/upload", {
         method: "POST",
@@ -660,6 +669,27 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
             </p>
           )}
         </div>
+
+        {(isOwnerHardcoded || isOwner || bypassActive) && !caseId && (
+          <div className="space-y-2 rounded-2xl border border-dashed border-primary/25 bg-surface/80 p-4 text-left">
+            <label className="block text-sm font-semibold text-accent">Evaluation pack (internal)</label>
+            <p className="text-xs text-accent/60">
+              Optional. New uploads are tagged for the Eval Pack Runner. Leave as normal for production matters.
+            </p>
+            <select
+              value={evalPackId}
+              onChange={(e) => setEvalPackId(e.target.value)}
+              className="mt-2 w-full rounded-2xl border border-primary/20 bg-surface px-4 py-3 text-sm text-accent shadow-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/40"
+            >
+              <option value="none">None / normal case</option>
+              {EVAL_PACK_IDS.map((id) => (
+                <option key={id} value={id}>
+                  Pack {id} — {EVAL_PACK_LABELS[id]}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
 
         {/* Bulk upload mode (new cases only) */}
         {!caseId ? (

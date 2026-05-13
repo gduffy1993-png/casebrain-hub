@@ -546,32 +546,80 @@ function extractInterviewSectionHeadingLabel(bundleFullText: string): string | n
   return m2?.[1] ?? null;
 }
 
-/** CPS-style charge sheet: Statement of offence + Particulars → one anchored sentence (verbatim from CHARGE). */
+/** CPS / indictment text inside CHARGE section only — priority order, no MG5. */
+function extractLiteralChargeFromChargeBody(chargeBody: string): string | null {
+  const body = chargeBody.trim();
+  if (!body) return null;
+  const parts: string[] = [];
+
+  const stmtBlock = body.match(
+    /\bStatement\s+of\s+offence\s*\r?\n+([\s\S]*?)(?=\r?\n\r?\n|\r?\n(?:Particulars\s+of\s+offence|Count\s*\d|CHARGE\s*$|Plea:|Bail|Next hearing|===)|$)/i
+  )?.[1];
+  if (stmtBlock) {
+    const s = compactOneLine(stmtBlock.replace(/\s+/g, " ").trim());
+    if (s.length >= 8) parts.push(s.endsWith(".") ? s : `${s}.`);
+  }
+
+  const partBlock = body.match(
+    /\bParticulars\s+of\s+offence\s*\r?\n+([\s\S]*?)(?=\r?\n\r?\n|\r?\n(?:Plea:|Bail status:|Next hearing:|Count\s*\d|CHARGE\s*$|===)|$)/i
+  )?.[1];
+  if (partBlock) {
+    const p = compactOneLine(partBlock.replace(/\s+/g, " ").trim());
+    if (p.length >= 12) {
+      const dup = parts[0] && p.toLowerCase().startsWith(parts[0].toLowerCase().slice(0, 12));
+      if (!dup) parts.push(p.endsWith(".") ? p : `${p}.`);
+    }
+  }
+
+  const cw = firstMatch(body, [
+    /^\s*Charge\s+wording\s*[:\s]+(.+)$/im,
+    /^\s*Charge\s+particulars\s*[:\s]+(.+)$/im,
+  ]);
+  if (cw && compactOneLine(cw).length > 12) {
+    const c = compactOneLine(cw);
+    if (!parts.some((p) => p.toLowerCase().includes(c.toLowerCase().slice(0, Math.min(24, c.length))))) {
+      parts.push(c.endsWith(".") ? c : `${c}.`);
+    }
+  }
+
+  const count1 = firstMatch(body, [/^\s*Count\s*1[^:]{0,40}:\s*(.+)$/im]);
+  if (count1 && compactOneLine(count1).length > 10) {
+    const c = compactOneLine(count1);
+    if (!parts.some((p) => p.includes(c.slice(0, 20)))) parts.push(c.endsWith(".") ? c : `${c}.`);
+  }
+
+  for (const raw of body.split(/\r?\n/)) {
+    const l = raw.trim();
+    if (l.length < 28) continue;
+    if (/^statement\s+of\s+offence|^particulars|^defendant:|^plea:|^bail|^count\s/i.test(l)) continue;
+    if (/^on\s+\d{1,2}[\s\/.\-]\w+[\s\/.\-]\d{2,4}\b/i.test(l) || /^on\s+the\s+\d/i.test(l)) {
+      const o = compactOneLine(l);
+      if (o.length > 24 && !parts.some((p) => p.includes(o.slice(0, 28)))) {
+        parts.push(o.endsWith(".") ? o : `${o}.`);
+        break;
+      }
+    }
+  }
+
+  if (parts.length === 0) return null;
+  return compactOneLine(parts.join(" ")).slice(0, 560);
+}
+
+/** CPS-style charge sheet: literal lines from CHARGE + optional defendant prefix. */
 function extractChargeSheetStatementAndParticularsSentence(bundleFullText: string): string | null {
   const chargeBody = extractSectionBodyByName(bundleFullText, "CHARGE");
   if (!chargeBody) return null;
+  const core = extractLiteralChargeFromChargeBody(chargeBody);
+  if (!core || core.length < 12) return null;
   const defendant =
     firstMatch(chargeBody, [/^\s*Defendant:\s*(.+)$/im]) ?? firstMatch(bundleFullText, [/^\s*Accused:\s*(.+)$/im]);
-  const stmt = chargeBody.match(/\bStatement\s+of\s+offence\s*\r?\n+\s*([^\r\n]+)/i)?.[1]?.trim();
-  const partBlock = chargeBody.match(
-    /\bParticulars\s+of\s+offence\s*\r?\n+([\s\S]*?)(?=\r?\n\r?\n|\r?\n(?:Plea:|Bail status:|Next hearing:|===)|$)/i
-  )?.[1] ?? "";
-  const particulars = compactOneLine(partBlock.replace(/\s+/g, " ").trim());
-  if (!stmt && !particulars) return null;
-  const chunks: string[] = [];
-  if (stmt) chunks.push(stmt.endsWith(".") ? stmt : `${stmt}.`);
-  if (particulars && particulars.toLowerCase() !== (stmt ?? "").toLowerCase()) {
-    chunks.push(particulars.endsWith(".") ? particulars : `${particulars}.`);
-  }
-  const core = compactOneLine(chunks.join(" "));
-  if (core.length < 16) return null;
   const defCore = defendant ? compactOneLine(defendant.replace(/\(fictional\)\.?/gi, "").trim()) : "";
-  if (defCore) return `${defCore} is charged that ${core}`.slice(0, 520);
-  return core.slice(0, 520);
+  if (defCore) return `${defCore} is charged that ${core}`.slice(0, 560);
+  return core.slice(0, 560);
 }
 
 /**
- * One sentence from CHARGE + MG5 only (Northshire / Pack A): defendant + offence tag + concrete MG5 line,
+ * One sentence from CHARGE + MG5 only (Northshire / Pack A): verbatim tag label + concrete MG5 line(s),
  * skipping the boilerplate allegation template when a better MG5 line exists.
  */
 function buildNorthshireRichPrimaryAllegationSentence(bundleFullText: string): string | null {
@@ -581,10 +629,11 @@ function buildNorthshireRichPrimaryAllegationSentence(bundleFullText: string): s
   const defendant =
     firstMatch(hayHead, [/^\s*Defendant:\s*(.+)$/im, /^\s*Accused:\s*(.+)$/im]) ??
     firstMatch(bundleFullText, [/^\s*Accused:\s*(.+)$/im]);
-  const tag = firstMatch(chargeBody + bundleFullText, [/^\s*Offence\(s\)\s+as\s+tag:\s*(.+)$/im]);
-  if (!tag) return null;
-  const tagCore = compactOneLine(tag.replace(/\(fictional charge drafting for test data\)\.?/gi, "").trim());
-  if (!tagCore) return null;
+  const tagRaw = firstMatch(chargeBody + bundleFullText, [/^\s*Offence\(s\)\s+as\s+tag:\s*(.+)$/im]);
+  if (!tagRaw) return null;
+  const tagValue = compactOneLine(tagRaw.replace(/\(fictional charge drafting for test data\)\.?/gi, "").trim());
+  if (!tagValue) return null;
+  const tagLiteralBundle = `Offence(s) as tag: ${tagValue}`;
   const defCore = defendant ? compactOneLine(defendant.replace(/\(fictional\)\.?/gi, "").trim()) : "";
 
   const mg5Lines = mg5Body.split(/\r?\n/).map((l) => compactOneLine(l)).filter(Boolean);
@@ -611,18 +660,25 @@ function buildNorthshireRichPrimaryAllegationSentence(bundleFullText: string): s
     }
   }
 
+  const injuryLine = mg5Lines.find((l) => /^Injury narrative/i.test(l));
+  if (crownNut && injuryLine && /^The Crown suggest/i.test(crownNut)) {
+    const inj = compactOneLine(injuryLine);
+    const merged = `${crownNut.endsWith(".") ? crownNut : `${crownNut}.`} ${inj.endsWith(".") ? inj : `${inj}.`}`;
+    if (merged.length <= 340) crownNut = merged;
+  }
+
   if (defCore && crownNut) {
     const nut = crownNut.endsWith(".") ? crownNut : `${crownNut}.`;
-    return `${defCore} is named on the charge papers facing ${tagCore}; ${nut}`.slice(0, 520);
+    return `${defCore} is named on the charge extract (${tagLiteralBundle}); ${nut}`.slice(0, 560);
   }
   if (crownNut) {
     const nut = crownNut.endsWith(".") ? crownNut : `${crownNut}.`;
-    return `The charge papers identify the offence as ${tagCore}; ${nut}`.slice(0, 520);
+    return `The charge extract records (${tagLiteralBundle}); ${nut}`.slice(0, 560);
   }
   if (defCore) {
-    return `${defCore} is named on the charge extract facing ${tagCore} (Offence(s) as tag).`.slice(0, 400);
+    return `${defCore} is named on the charge extract (${tagLiteralBundle}).`.slice(0, 400);
   }
-  return `The charge extract identifies the allegation as ${tagCore} (Offence(s) as tag).`.slice(0, 400);
+  return `The charge extract records (${tagLiteralBundle}).`.slice(0, 400);
 }
 
 /** Routes bundle-grounded interpretive questions; only `strategy_default` may use the generic pre-LLM / refusal slab in guarded paths. */
@@ -1062,7 +1118,7 @@ function buildQuestionModeBlock(mode: QuestionMode): string {
         "",
         "QUESTION MODE: allegation",
         "MODE RULES (MANDATORY):",
-        "- State the primary allegation in one sentence using bundle wording only (charge sheet extract / offence tag).",
+        "- One sentence only: repeat the offence allegation using wording that actually appears on the charge sheet extract, offence tag, offence as charged, or count line — not a generic offence name, synopsis title, or textbook paraphrase.",
         '- Do not include defence strategy, "live defence focus", or Primary eval hook in that sentence unless the user explicitly requested a separate second sentence for context.',
       ].join("\n");
     case "missing_evidence":
@@ -1149,15 +1205,22 @@ function buildStrictPrimaryAllegationAnswer(bundleFullText: string): string | nu
     compactOneLine(s.replace(/\(fictional charge drafting for test data\)\.?/gi, "").trim());
 
   const chargeSheetOne = extractChargeSheetStatementAndParticularsSentence(bundleFullText);
-  if (chargeSheetOne) {
-    const core = stripFictionalChargeNote(chargeSheetOne);
-    if (core) return core.length <= 520 ? core : core.slice(0, 520);
-  }
-
   const richNs = buildNorthshireRichPrimaryAllegationSentence(bundleFullText);
-  if (richNs) {
-    const core = stripFictionalChargeNote(richNs);
-    if (core) return core.length <= 520 ? core : core.slice(0, 520);
+  const sheetCore = chargeSheetOne ? stripFictionalChargeNote(chargeSheetOne) : "";
+  const richCore = richNs ? stripFictionalChargeNote(richNs) : "";
+
+  /** Prefer literal CHARGE particulars when long enough; else Northshire rich if it carries materially more bundle wording. */
+  if (sheetCore.length >= 55) {
+    return sheetCore.length <= 560 ? sheetCore : sheetCore.slice(0, 560);
+  }
+  if (richCore && sheetCore && richCore.length > sheetCore.length + 28) {
+    return richCore.length <= 560 ? richCore : richCore.slice(0, 560);
+  }
+  if (sheetCore) {
+    return sheetCore.length <= 560 ? sheetCore : sheetCore.slice(0, 560);
+  }
+  if (richCore) {
+    return richCore.length <= 560 ? richCore : richCore.slice(0, 560);
   }
 
   const fictionLine = firstMatch(bundleFullText, [/^Allegation \(fiction\):\s*(.+)$/im]);
@@ -1201,8 +1264,8 @@ function buildStrictPrimaryAllegationAnswer(bundleFullText: string): string | nu
       /^\s*The\s+allegation\s+is\s+that\s+(.+)$/im,
       /^\s*Count\s*1[^:]{0,24}:\s*(.+)$/im,
       /^\s*Offence\(s\)\s+as\s+tag:\s*(.+)$/im,
-      /^\s*Short\s+title:\s*(.+)$/im,
       /^\s*(On\s+\d{1,2}[\s\/.\-]\d{1,2}[\s\/.\-]\d{2,4}[^\n]{0,220})$/im,
+      /^\s*Short\s+title:\s*(.+)$/im,
     ]) ?? null;
   if (chargeOrTagOrShort) {
     const core = stripFictionalChargeNote(chargeOrTagOrShort);
@@ -1609,9 +1672,9 @@ function buildGoldenProsecutionWeaknessDeterministic(
       ? `the MG6 schedule flags material as partial, extract-only, or awaited — ${weakBits.slice(0, 2).join("; ")}`
       : `documentary and narrative alignment on these papers still turn on ${leadTension.slice(0, 200)}`;
   return [
-    `Core point: Crown proof on ${label} remains sensitive where ${crownNarrative}.`,
-    `Evidence reference: ${evRefLabel} — ${hook?.trim() ? `${hookLine} | ` : ""}${ev}.`,
-    `Next step: Chase the named MG6 rows (999/CAD/CCTV/MG11/continuity/lab) and reconcile them against MG5 before fixing trial theory.`,
+    `Prosecution frailty (${label}): Crown proof remains sensitive where ${crownNarrative}.`,
+    `Anchored in this file: ${evRefLabel} — ${hook?.trim() ? `${hookLine} | ` : ""}${ev}.`,
+    `Immediate chase: MG6 rows (999/CAD/CCTV/MG11/continuity/lab) named above, reconciled against MG5 before trial theory is fixed.`,
   ].join("\n");
 }
 
@@ -1684,9 +1747,9 @@ function buildGoldenDefenceWeaknessDeterministic(bundleFullText: string): string
   const disputeOrAcct = dispute || defenceAcct;
 
   return [
-    `Core point: On ${label}${refTag}, defence vulnerability concentrates where interview posture (${limbs}) meets Crown proof described in MG5 (${crownProof}) — ${mg6Text}`,
-    `Evidence reference: ${crownSignals.join("; ") || "MG5/MG6 bundle rows"}${hook ? `; Primary eval hook: ${hook}.` : "."}${disputeOrAcct ? ` Stated dispute / defence account on papers: ${disputeOrAcct.slice(0, 220)}.` : ""}${intExcerpt ? ` Interview line: ${compactOneLine(intExcerpt).slice(0, 200)}.` : joined.length > 40 ? ` Interview excerpt: ${joined.length > 200 ? `${joined.slice(0, 200)}…` : joined}.` : ""}`,
-    `Next step: Take instructions on each interview limb, then map what the Crown can prove from served MG11/CCTV/999/CAD extracts against the charge wording and the outstanding MG6 cells named above.`,
+    `Defence-side exposure (${label}${refTag}): vulnerability sits where interview posture (${limbs}) meets Crown proof in MG5 (${crownProof}) — ${mg6Text}`,
+    `What the papers show: ${crownSignals.join("; ") || "MG5/MG6 bundle rows"}${hook ? `; Primary eval hook: ${hook}.` : "."}${disputeOrAcct ? ` Stated dispute / defence account on papers: ${disputeOrAcct.slice(0, 220)}.` : ""}${intExcerpt ? ` Interview line: ${compactOneLine(intExcerpt).slice(0, 200)}.` : joined.length > 40 ? ` Interview excerpt: ${joined.length > 200 ? `${joined.slice(0, 200)}…` : joined}.` : ""}`,
+    `Instructions-led follow-up: map each interview limb to what Crown can prove from served MG11/CCTV/999/CAD against the printed charge and the MG6 cells still outstanding.`,
   ].join("\n");
 }
 
@@ -1739,15 +1802,15 @@ function buildGoldenNext24Deterministic(bundleFullText: string): string | null {
 
   if (chases.length > 0) {
     const chaseList = chases.map((c, i) => `${i + 1}) ${c.verb} (${c.detail})`).join(" ");
-    const core = `Core point: Next 24 hours on ${label}: execute concrete MG6-driven chases tied to ${hook ? `Primary eval hook "${hook}"` : dispute ? `stated dispute / defence position (${dispute.slice(0, 120)})` : "the charge and MG6 schedule"} and interview/Crown-route risk — ${chaseList.slice(0, 480)}${chaseList.length > 480 ? "…" : ""}`;
-    const ev = `Evidence reference: MG6 schedule rows (served vs outstanding); offence label ${label}; interview/client risk: ${intClip || "see INTERVIEW section in bundle"}.${hook ? ` Hook: ${hook}.` : dispute ? ` Dispute: ${dispute.slice(0, 160)}.` : ""}${friction ? ` MG5 friction: ${friction}.` : ""}`;
-    const next = `Next step: Diary each chase (999 audio, CAD pack, CCTV continuity/engineer note, signed MG11, lab/GP, continuity correction) with deadlines; confirm written client instructions on each outstanding MG6 cell; update proof map vs charge wording before next hearing.`;
+    const core = `Next 24 hours (${label}): MG6-first chases tied to ${hook ? `Primary eval hook "${hook}"` : dispute ? `stated dispute / defence position (${dispute.slice(0, 120)})` : "the printed charge and MG6 schedule"} and interview/Crown-route risk — ${chaseList.slice(0, 480)}${chaseList.length > 480 ? "…" : ""}`;
+    const ev = `Tied to this bundle: MG6 served vs outstanding rows; offence label ${label}; interview/client risk: ${intClip || "see INTERVIEW section in bundle"}.${hook ? ` Hook: ${hook}.` : dispute ? ` Dispute: ${dispute.slice(0, 160)}.` : ""}${friction ? ` MG5 friction: ${friction}.` : ""}`;
+    const next = `Deliver today: diary each named chase (999 audio, CAD pack, CCTV continuity/engineer note, signed MG11, lab/GP, continuity correction) with deadlines; written client instructions per outstanding MG6 cell; proof map updated against charge wording before the next hearing.`;
     return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
   }
 
-  const coreClean = `Core point: MG6 schedule checked for ${label} does not flag fresh partial/extract/master-audio or draft-continuity rows on this pass — do not invent missing items; pivot next 24 hours to client instructions, proof mapping on the printed charge, plea/threshold risk, and hearing preparation.`;
-  const evClean = `Evidence reference: Offence / charge label ${label}; ${hook ? `Primary eval hook: ${hook}.` : dispute ? `Defence position / dispute: ${dispute.slice(0, 200)}.` : "Bundle MG5/MG6/interview as served."} Interview stance / disclosure posture: ${intClip || "INTERVIEW section — record instructions on account vs Crown documentary route"}.${friction ? ` MG5 friction: ${friction}.` : ""}`;
-  const nextClean = `Next step: Written client instructions on proof targets; one-page element chart after charge wording; plea-risk and hearing note; cross-check MG5 vs MG11/CCTV/999/CAD lines the Crown will run; index/exhibit hygiene — avoid boilerplate “disclosure reconciliation” unless each bullet names a bundle row or exhibit to act on.`;
+  const coreClean = `MG6 pass for ${label}: no fresh partial/extract/master-audio or draft-continuity rows flagged on this sweep — do not invent gaps; use the window for client instructions, charge-specific proof mapping, plea/threshold risk, and hearing prep.`;
+  const evClean = `Grounding lines: offence / charge label ${label}; ${hook ? `Primary eval hook: ${hook}.` : dispute ? `Defence position / dispute: ${dispute.slice(0, 200)}.` : "Bundle MG5/MG6/interview as served."} Interview stance / disclosure posture: ${intClip || "INTERVIEW section — record instructions on account vs Crown documentary route"}.${friction ? ` MG5 friction: ${friction}.` : ""}`;
+  const nextClean = `Concrete outputs: written instructions on proof targets; one-page element chart from the printed charge; plea-risk and hearing note; MG5 cross-checked to MG11/CCTV/999/CAD lines the Crown will run; exhibit index hygiene — each action names a bundle row or exhibit, not generic disclosure reconciliation.`;
   return enforceActionFormatThreeLines(`${coreClean}\n${evClean}\n${nextClean}`, { interpretiveGolden: true });
 }
 
@@ -3506,17 +3569,17 @@ function goldenFastEvalBundleTailInstructions(message: string): string {
   }
   if (/\bweakness in the prosecution case\b/i.test(q) || /\bsingle biggest weakness in the prosecution case\b/i.test(q)) {
     parts.push(
-      "Pick the strongest Crown frailty evidenced in THIS Bundle (charge/MG5 narrative vs MG6 served rows, ID, CCTV/999/CAD partiality, interview vs documentary material, defence dispute lines). Quote or paraphrase a verbatim bundle label; Primary eval hook is optional. Do not open with generic disclosure-scheduling boilerplate that could apply to any file."
+      "Pick the strongest Crown frailty evidenced in THIS Bundle (charge/MG5 narrative vs MG6 served rows, ID, CCTV/999/CAD partiality, interview vs documentary material, defence dispute lines). Quote or paraphrase a verbatim bundle label; Primary eval hook is optional. Do not open with generic disclosure-scheduling boilerplate that could apply to any file. Avoid recycled three-line stems ('Core point:', 'Evidence reference:', 'Next step:') — lead with a case-specific Crown-frailty finding, then support it."
     );
   }
   if (/\bweakness in the defence case\b/i.test(q) || /\bsingle biggest weakness in the defence case\b/i.test(q)) {
     parts.push(
-      "Tie exposure to THIS interview summary, printed charge/offence wording, MG6 served material, and Crown routes (MG11/CCTV/999/CAD) named in the Bundle. Do not default to generic “narrative gaps or thin positive account” unless you cite the actual interview / MG5 / MG6 lines above."
+      "Tie exposure to THIS interview summary, printed charge/offence wording, MG6 served material, and Crown routes (MG11/CCTV/999/CAD) named in the Bundle. Do not default to generic “narrative gaps or thin positive account” unless you cite the actual interview / MG5 / MG6 lines above. Avoid opening with the same template stems used for prosecution-weakness answers — vary the first clause while staying bundle-grounded."
     );
   }
   if (/\bnext 24 hours\b/i.test(q)) {
     parts.push(
-      "2–4 short action lines chasing named gaps from the MG6 anchor above (e.g. full 999 master, CAD narrative attachment, CCTV continuity/engineer note, signed MG11, lab/GP, reconcile MG5/MG6). Do not open with only “secure disclosure reconciliation” unless the same line names the concrete MG6 items for this case."
+      "2–4 short action lines chasing named gaps from the MG6 anchor above (e.g. full 999 master, CAD narrative attachment, CCTV continuity/engineer note, signed MG11, lab/GP, reconcile MG5/MG6). Do not open with only “secure disclosure reconciliation” unless the same line names the concrete MG6 items for this case. Do not mirror Q8/Q9 with identical 'Core point / Evidence / Next step' headers — time-bound imperatives tied to this bundle first."
     );
   }
   if (/\binconsisten|\bconflicts in the evidence\b/i.test(q)) {
