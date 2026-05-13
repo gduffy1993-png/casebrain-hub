@@ -4,20 +4,19 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/browser";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { bulkEvalBuildAugmentedRows } from "@/lib/bulk-eval-result-present";
 import { EvalSweepReviewPanel, type ReviewEvalRow } from "@/components/eval/EvalSweepReviewPanel";
 import {
-  buildCursorEvalFixBrief,
-  buildPackRunSummaryStatsForSave,
+  buildCombinedCursorEvalFixBrief,
+  buildCombinedEvalPackSweepsExport,
+  buildGoldenEvalSweepSavePayload,
+  buildSingleSweepExportDocument,
+  buildWeakRowsCsvForPack,
+  buildWeakRowsCsvForPacks,
+  buildWeakRowsJsonForPack,
   summarizePackGoldenRun,
   type PackGoldenMatrixRow,
 } from "@/lib/eval-pack-run-summary";
-import {
-  GOLDEN_QUESTIONS,
-  goldenSweepRowsToBulkInput,
-  runGoldenSweepForCases,
-  type GoldenSweepEvalRow,
-} from "@/lib/eval/golden-sweep-client";
+import { GOLDEN_QUESTIONS, runGoldenSweepForCases, type GoldenSweepEvalRow } from "@/lib/eval/golden-sweep-client";
 import { GOLDEN_SWEEP_QUESTIONS } from "@/lib/eval-golden-sweep";
 import { sortCasesForEvalScan } from "@/lib/eval-case-sort";
 import {
@@ -148,7 +147,14 @@ export function EvalPackRunner() {
   const [matrix, setMatrix] = useState<PackGoldenMatrixRow[]>([]);
   const [detailPackId, setDetailPackId] = useState<EvalPackId | null>(null);
   const [cloudMessage, setCloudMessage] = useState<string | null>(null);
-  const [fixBrief, setFixBrief] = useState<string | null>(null);
+  const [fixBrief, setFixBrief] = useState<{
+    text: string;
+    title: string;
+    filenameSuffix: string;
+  } | null>(null);
+  const [fixBriefMessage, setFixBriefMessage] = useState<string | null>(null);
+  /** Matrix result rows selected for combined brief / exports */
+  const [matrixCheckedIds, setMatrixCheckedIds] = useState<Set<EvalPackId>>(() => new Set());
   const [backfillBusy, setBackfillBusy] = useState(false);
   const cancelRef = useRef(false);
   const stopAfterCurrentPackRef = useRef(false);
@@ -283,49 +289,12 @@ export function EvalPackRunner() {
   }
 
   async function savePackSweep(packId: EvalPackId, caseCount: number, rows: GoldenSweepEvalRow[]) {
-    const bulkRows = goldenSweepRowsToBulkInput(rows);
-    const { rows_augmented } = bulkEvalBuildAugmentedRows(bulkRows, "golden_10");
-    const summary_stats = {
-      ...buildPackRunSummaryStatsForSave(rows),
-      eval_pack_id: packId,
-      eval_pack_name: EVAL_PACK_LABELS[packId],
-      eval_pack_runner: true,
-      eval_pack_case_count: caseCount,
-    };
+    const body = buildGoldenEvalSweepSavePayload(packId, caseCount, rows);
     const saveRes = await fetch("/api/eval-sweeps", {
       method: "POST",
       credentials: "include",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        source: "golden",
-        questions: [...GOLDEN_SWEEP_QUESTIONS],
-        summary_stats,
-        rows: rows_augmented.map((r) => ({
-          case_id: r.caseId,
-          case_title: r.caseTitle,
-          question_no: r.questionNo,
-          question: r.question,
-          answer: r.answer,
-          error: r.ok ? null : (r.error ?? r.answer),
-          duration_ms: r.duration_ms,
-          weak: r.weak,
-          http_status: r.http_status,
-          route_tag: r.route_tag,
-          row_meta:
-            r.eval_meta && typeof r.eval_meta === "object"
-              ? {
-                  ...(r.eval_meta as Record<string, unknown>),
-                  ui_final_quality: r.final_quality,
-                  ui_final_issue: r.final_issue,
-                  ui_final_collapse_rule: r.final_collapse_rule,
-                }
-              : {
-                  ui_final_quality: r.final_quality,
-                  ui_final_issue: r.final_issue,
-                  ui_final_collapse_rule: r.final_collapse_rule,
-                },
-        })),
-      }),
+      body: JSON.stringify(body),
     });
     const saved = (await saveRes.json().catch(() => ({}))) as { ok?: boolean; runId?: string; error?: string };
     if (!saveRes.ok || !saved.runId) {
@@ -340,8 +309,10 @@ export function EvalPackRunner() {
     stopAfterCurrentPackRef.current = false;
     setRunning(true);
     setCloudMessage(null);
+    setFixBriefMessage(null);
     setMatrix([]);
     setFixBrief(null);
+    setMatrixCheckedIds(new Set());
     setDetailPackId(null);
 
     let latestCases: CaseApiRow[] = [];
@@ -374,8 +345,18 @@ export function EvalPackRunner() {
 
     const totalInRun = packsToRun.reduce((acc, id) => acc + countLocal(id) * GOLDEN_QUESTIONS.length, 0);
     let doneInRun = 0;
+    let packsCompleted = 0;
     const matrixOut: PackGoldenMatrixRow[] = [];
     const saveNotes: string[] = [];
+
+    setProgress({
+      currentPack: null,
+      packIndex: 0,
+      packTotal: packsToRun.length,
+      doneInRun: 0,
+      totalInRun,
+      currentLabel: "Starting…",
+    });
 
     try {
       for (let pi = 0; pi < packsToRun.length; pi++) {
@@ -409,18 +390,27 @@ export function EvalPackRunner() {
             });
           },
           onProgress: (p) => {
-            setProgress({
+            setProgress((prev) => ({
               currentPack: packId,
               packIndex: pi + 1,
               packTotal: packsToRun.length,
-              doneInRun: runStartDone,
+              doneInRun: prev.doneInRun,
               totalInRun,
               currentLabel: p.current,
-            });
+            }));
           },
         });
 
         doneInRun += rows.length;
+
+        setProgress({
+          currentPack: packId,
+          packIndex: pi + 1,
+          packTotal: packsToRun.length,
+          doneInRun,
+          totalInRun,
+          currentLabel: `Pack ${packId}: sweep complete (${rows.length} answers)`,
+        });
 
         if (cancelRef.current && rows.length < packRowTotal) {
           setCloudMessage([...saveNotes, "Run cancelled mid-pack."].join(" "));
@@ -435,11 +425,21 @@ export function EvalPackRunner() {
         );
         matrixOut.push(summaryRow);
         setMatrix([...matrixOut]);
+        packsCompleted += 1;
 
         try {
           const runId = await savePackSweep(packId, packCases.length, rows);
           saveNotes.push(`Pack ${packId} saved (${runId.slice(0, 8)}…).`);
           setCloudMessage(saveNotes.join(" "));
+          const last = matrixOut.length - 1;
+          if (last >= 0) {
+            matrixOut[last] = {
+              ...matrixOut[last]!,
+              sweep_run_id: runId,
+              sweep_saved_at: new Date().toISOString(),
+            };
+            setMatrix([...matrixOut]);
+          }
         } catch (e) {
           saveNotes.push(
             `Pack ${packId} in-memory only — save failed: ${e instanceof Error ? e.message : String(e)}.`
@@ -455,7 +455,15 @@ export function EvalPackRunner() {
         }
       }
 
-      setProgress((p) => ({ ...p, currentLabel: "Done", currentPack: null }));
+      const runPartial = packsCompleted < packsToRun.length;
+      setProgress({
+        currentPack: null,
+        packIndex: packsCompleted,
+        packTotal: packsToRun.length,
+        doneInRun,
+        totalInRun,
+        currentLabel: runPartial ? `Stopped after ${packsCompleted} of ${packsToRun.length} pack(s)` : "Complete",
+      });
     } catch (e) {
       setCloudMessage(e instanceof Error ? e.message : String(e));
     } finally {
@@ -472,10 +480,139 @@ export function EvalPackRunner() {
     stopAfterCurrentPackRef.current = true;
   }
 
-  function copyFixBrief() {
-    const text = buildCursorEvalFixBrief(matrix);
-    setFixBrief(text);
-    void navigator.clipboard.writeText(text).catch(() => {});
+  function downloadJsonFile(obj: unknown, filename: string) {
+    const blob = new Blob([JSON.stringify(obj, null, 2)], { type: "application/json;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  function downloadTextFile(content: string, filename: string, mime: string) {
+    const blob = new Blob([content], { type: mime });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  function toggleMatrixRowChecked(pid: EvalPackId) {
+    setMatrixCheckedIds((prev) => {
+      const n = new Set(prev);
+      if (n.has(pid)) n.delete(pid);
+      else n.add(pid);
+      return n;
+    });
+    setFixBriefMessage(null);
+  }
+
+  function clearMatrixSelection() {
+    setMatrixCheckedIds(new Set());
+    setFixBriefMessage(null);
+  }
+
+  function selectAllMatrixRowsVisible() {
+    setMatrixCheckedIds(new Set(matrix.map((m) => m.pack_id as EvalPackId)));
+    setFixBriefMessage(null);
+  }
+
+  function matrixRowsForCheckedIds(ids: Set<EvalPackId>): PackGoldenMatrixRow[] {
+    return matrix.filter((m) => ids.has(m.pack_id as EvalPackId));
+  }
+
+  function generateBriefForPacks(packs: PackGoldenMatrixRow[], title: string, filenameSuffix: string) {
+    if (packs.length === 0) {
+      setFixBriefMessage("Select at least one pack result (row checkboxes).");
+      return;
+    }
+    const text = buildCombinedCursorEvalFixBrief(packs);
+    setFixBrief({ text, title, filenameSuffix });
+    setFixBriefMessage(null);
+  }
+
+  function generateBriefForCheckedMatrixRows() {
+    const packs = matrixRowsForCheckedIds(matrixCheckedIds);
+    const suffix = packs.map((p) => p.pack_id).join("-") || "none";
+    generateBriefForPacks(packs, `Cursor fix brief — ${packs.length} pack(s) selected`, suffix);
+  }
+
+  function generateBriefForAllMatrixRows() {
+    generateBriefForPacks(
+      matrix,
+      `Cursor fix brief — all ${matrix.length} visible pack(s)`,
+      matrix.map((m) => m.pack_id).join("-") || "all"
+    );
+  }
+
+  function generateFixBriefForPack(packId: EvalPackId) {
+    const row = matrix.find((m) => m.pack_id === packId);
+    if (!row) return;
+    generateBriefForPacks([row], `Cursor fix brief — Pack ${row.pack_id}`, row.pack_id);
+  }
+
+  function copyFixBriefToClipboard() {
+    if (!fixBrief) return;
+    void navigator.clipboard.writeText(fixBrief.text).catch(() => {});
+  }
+
+  function downloadFixBriefTxt() {
+    if (!fixBrief) return;
+    downloadTextFile(fixBrief.text, `cursor-eval-fix-brief-${fixBrief.filenameSuffix}.txt`, "text/plain;charset=utf-8");
+  }
+
+  function downloadSweepJsonForPack(m: PackGoldenMatrixRow) {
+    downloadJsonFile(buildSingleSweepExportDocument(m), `eval-sweep-pack-${m.pack_id}.json`);
+  }
+
+  function downloadWeakRowsJsonForPack(m: PackGoldenMatrixRow) {
+    downloadJsonFile(buildWeakRowsJsonForPack(m), `eval-weak-rows-pack-${m.pack_id}.json`);
+  }
+
+  function downloadWeakRowsCsvForPack(m: PackGoldenMatrixRow) {
+    downloadTextFile(
+      buildWeakRowsCsvForPack(m),
+      `eval-weak-rows-pack-${m.pack_id}.csv`,
+      "text/csv;charset=utf-8"
+    );
+  }
+
+  function downloadSelectedSweepsCombinedJson() {
+    const packs = matrixRowsForCheckedIds(matrixCheckedIds);
+    if (packs.length === 0) {
+      setFixBriefMessage("Select at least one pack result (checkboxes).");
+      return;
+    }
+    setFixBriefMessage(null);
+    downloadJsonFile(
+      buildCombinedEvalPackSweepsExport(packs, new Date().toISOString()),
+      `eval-packs-sweeps-selected-${packs.map((p) => p.pack_id).join("-")}.json`
+    );
+  }
+
+  function downloadAllVisibleSweepsCombinedJson() {
+    if (matrix.length === 0) return;
+    downloadJsonFile(
+      buildCombinedEvalPackSweepsExport(matrix, new Date().toISOString()),
+      `eval-packs-sweeps-all-${matrix.map((p) => p.pack_id).join("-")}.json`
+    );
+  }
+
+  function downloadSelectedWeakRowsCsv() {
+    const packs = matrixRowsForCheckedIds(matrixCheckedIds);
+    if (packs.length === 0) {
+      setFixBriefMessage("Select at least one pack result (checkboxes).");
+      return;
+    }
+    setFixBriefMessage(null);
+    downloadTextFile(
+      buildWeakRowsCsvForPacks(packs),
+      `eval-weak-rows-selected-${packs.map((p) => p.pack_id).join("-")}.csv`,
+      "text/csv;charset=utf-8"
+    );
   }
 
   const detailMatrix = detailPackId ? matrix.find((m) => m.pack_id === detailPackId) : null;
@@ -488,10 +625,31 @@ export function EvalPackRunner() {
       <div>
         <h2 className="text-lg font-semibold">Eval Pack Runner (internal)</h2>
         <p className="text-sm text-muted-foreground">
-          Runs Golden 10 per eval pack (A–J), one pack at a time, with a separate saved sweep per pack. Counts use{" "}
-          <code className="text-xs">eval_pack_*</code> when set, then title patterns, then the earliest document filename
-          per case.
+          Golden 10 sweep per pack (A–J). Case counts use <code className="text-xs">eval_pack_*</code> when set, then
+          title patterns, then the earliest document filename per case.
         </p>
+      </div>
+
+      <div className="rounded-md border border-border bg-muted/25 px-3 py-2 text-xs text-muted-foreground space-y-1.5">
+        <p className="font-medium text-foreground">What each part does</p>
+        <ul className="list-disc pl-4 space-y-1">
+          <li>
+            <span className="text-foreground font-medium">Import pack</span> — uploads files and creates or updates cases
+            tagged for that pack (adds evidence; does not run questions).
+          </li>
+          <li>
+            <span className="text-foreground font-medium">Run selected packs</span> — runs the Golden 10 questions against
+            those cases and saves an eval sweep per pack to the cloud.
+          </li>
+          <li>
+            <span className="text-foreground font-medium">Pack results matrix</span> — shows the saved run outcomes from the
+            current session (one row per pack completed in this run).
+          </li>
+          <li>
+            <span className="text-foreground font-medium">Cursor Fix Brief</span> — combined repair prompt from one or more
+            checked pack results (summary + grouped issues). Use matrix checkboxes and the brief/export buttons below.
+          </li>
+        </ul>
       </div>
 
       <div className="flex flex-wrap gap-2">
@@ -576,31 +734,91 @@ export function EvalPackRunner() {
         <Button type="button" variant="outline" onClick={stopAfterCurrentPack} disabled={!running}>
           Stop after current pack
         </Button>
-        <Button type="button" variant="outline" onClick={copyFixBrief} disabled={matrix.length === 0}>
-          Generate Cursor Fix Brief
-        </Button>
       </div>
 
+      {fixBriefMessage && <p className="text-sm text-amber-600 dark:text-amber-500">{fixBriefMessage}</p>}
       {cloudMessage && <p className="text-xs text-muted-foreground">{cloudMessage}</p>}
 
-      <div className="text-sm space-y-1">
+      <div className="text-sm space-y-1 rounded-md border border-border bg-muted/20 px-3 py-2">
+        <p className="text-xs font-medium text-muted-foreground">Run progress</p>
         <div>
-          Overall progress: {progress.doneInRun}/{progress.totalInRun || "—"}
+          Overall:{" "}
+          {progress.totalInRun > 0
+            ? `${progress.doneInRun} / ${progress.totalInRun} answers (${GOLDEN_QUESTIONS.length} per case)`
+            : "—"}
         </div>
         <div>
-          Pack progress: {progress.packTotal ? `${progress.packIndex}/${progress.packTotal}` : "—"}
-          {progress.currentPack ? ` — current pack ${progress.currentPack}` : ""}
+          Packs:{" "}
+          {progress.packTotal > 0
+            ? running
+              ? `${progress.packIndex} / ${progress.packTotal} — ${
+                  progress.currentPack ? `running pack ${progress.currentPack}` : "in progress"
+                }`
+              : `${progress.packIndex} / ${progress.packTotal} complete`
+            : "—"}
         </div>
-        <div className="text-muted-foreground truncate">{progress.currentLabel}</div>
+        <div className="text-muted-foreground truncate text-xs">{progress.currentLabel}</div>
       </div>
 
       {matrix.length > 0 && (
         <div className="space-y-2">
-          <h3 className="text-base font-semibold">Pack results matrix</h3>
-          <div className="max-h-72 overflow-auto rounded-md border border-border text-xs">
-            <table className="w-full text-left">
+          <div className="flex flex-wrap items-end justify-between gap-2">
+            <div>
+              <h3 className="text-base font-semibold">Pack results matrix</h3>
+              <p className="text-xs text-muted-foreground">
+                This session&apos;s completed packs. Tick rows to combine briefs or multi-file exports. Row actions download
+                one pack at a time.
+              </p>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-2 rounded-md border border-border bg-muted/15 px-2 py-2">
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={generateBriefForCheckedMatrixRows}
+              disabled={matrixCheckedIds.size === 0}
+            >
+              Generate Cursor brief (selected)
+            </Button>
+            <Button type="button" variant="outline" size="sm" onClick={generateBriefForAllMatrixRows}>
+              Generate Cursor brief (all visible)
+            </Button>
+            <Button type="button" variant="outline" size="sm" onClick={selectAllMatrixRowsVisible}>
+              Select all visible
+            </Button>
+            <Button type="button" variant="outline" size="sm" onClick={clearMatrixSelection}>
+              Clear selection
+            </Button>
+          </div>
+          <div className="flex flex-wrap gap-2 rounded-md border border-border bg-muted/15 px-2 py-2">
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={downloadSelectedSweepsCombinedJson}
+              disabled={matrixCheckedIds.size === 0}
+            >
+              Download selected sweeps JSON
+            </Button>
+            <Button type="button" variant="outline" size="sm" onClick={downloadAllVisibleSweepsCombinedJson}>
+              Download all visible sweeps JSON
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={downloadSelectedWeakRowsCsv}
+              disabled={matrixCheckedIds.size === 0}
+            >
+              Download selected weak rows CSV
+            </Button>
+          </div>
+          <div className="max-h-96 overflow-auto rounded-md border border-border text-xs">
+            <table className="w-full min-w-[1040px] text-left">
               <thead className="sticky top-0 bg-muted/90">
                 <tr>
+                  <th className="w-8 p-2" aria-label="Select for export" />
                   <th className="p-2">Pack</th>
                   <th className="p-2">Name</th>
                   <th className="p-2">Cases</th>
@@ -614,40 +832,98 @@ export function EvalPackRunner() {
                   <th className="p-2">Collapse Q</th>
                   <th className="p-2">Avg ms</th>
                   <th className="p-2">Routes</th>
+                  <th className="p-2 min-w-[220px]">Actions</th>
                 </tr>
               </thead>
               <tbody>
-                {matrix.map((m) => (
-                  <tr
-                    key={m.pack_id}
-                    className={`border-t border-border cursor-pointer hover:bg-muted/50 ${detailPackId === (m.pack_id as EvalPackId) ? "bg-muted/40" : ""}`}
-                    onClick={() =>
-                      setDetailPackId((prev) =>
-                        prev === (m.pack_id as EvalPackId) ? null : (m.pack_id as EvalPackId)
-                      )
-                    }
-                  >
-                    <td className="p-2 font-mono">{m.pack_id}</td>
-                    <td className="p-2 max-w-[140px] truncate" title={m.pack_name}>
-                      {m.pack_name}
-                    </td>
-                    <td className="p-2">{m.case_count}</td>
-                    <td className="p-2">{m.row_count}</td>
-                    <td className="p-2">{m.pass}</td>
-                    <td className="p-2">{m.weak}</td>
-                    <td className="p-2">{m.fail}</td>
-                    <td className="p-2">{m.timeout}</td>
-                    <td className="p-2 max-w-[120px] truncate" title={m.main_issue}>
-                      {m.main_issue}
-                    </td>
-                    <td className="p-2">{m.fallback_count}</td>
-                    <td className="p-2">{m.collapse_warning_count}</td>
-                    <td className="p-2">{m.avg_duration_ms}</td>
-                    <td className="p-2 max-w-[180px] truncate" title={formatRouteCounts(m.route_counts)}>
-                      {formatRouteCounts(m.route_counts)}
-                    </td>
-                  </tr>
-                ))}
+                {matrix.map((m) => {
+                  const pid = m.pack_id as EvalPackId;
+                  const checked = matrixCheckedIds.has(pid);
+                  return (
+                    <tr
+                      key={m.pack_id}
+                      className={`border-t border-border hover:bg-muted/40 ${checked ? "bg-primary/5 ring-1 ring-inset ring-primary/25" : ""}`}
+                    >
+                      <td className="p-2 align-middle" onClick={(e) => e.stopPropagation()}>
+                        <input
+                          type="checkbox"
+                          className="h-4 w-4 cursor-pointer accent-primary"
+                          checked={checked}
+                          onChange={() => toggleMatrixRowChecked(pid)}
+                          aria-label={`Select pack ${m.pack_id} for combined export`}
+                        />
+                      </td>
+                      <td className="p-2 font-mono">{m.pack_id}</td>
+                      <td className="p-2 max-w-[140px] truncate" title={m.pack_name}>
+                        {m.pack_name}
+                      </td>
+                      <td className="p-2">{m.case_count}</td>
+                      <td className="p-2">{m.row_count}</td>
+                      <td className="p-2">{m.pass}</td>
+                      <td className="p-2">{m.weak}</td>
+                      <td className="p-2">{m.fail}</td>
+                      <td className="p-2">{m.timeout}</td>
+                      <td className="p-2 max-w-[120px] truncate" title={m.main_issue}>
+                        {m.main_issue}
+                      </td>
+                      <td className="p-2">{m.fallback_count}</td>
+                      <td className="p-2">{m.collapse_warning_count}</td>
+                      <td className="p-2">{m.avg_duration_ms}</td>
+                      <td className="p-2 max-w-[180px] truncate" title={formatRouteCounts(m.route_counts)}>
+                        {formatRouteCounts(m.route_counts)}
+                      </td>
+                      <td className="p-2 align-top">
+                        <div className="flex flex-col gap-1">
+                          <Button
+                            type="button"
+                            variant="outline"
+                            size="sm"
+                            className="h-7 px-2 text-[10px] justify-start"
+                            onClick={() => setDetailPackId(pid)}
+                          >
+                            View details
+                          </Button>
+                          <Button
+                            type="button"
+                            variant="outline"
+                            size="sm"
+                            className="h-7 px-2 text-[10px] justify-start"
+                            onClick={() => generateFixBriefForPack(pid)}
+                          >
+                            Generate Cursor brief
+                          </Button>
+                          <Button
+                            type="button"
+                            variant="outline"
+                            size="sm"
+                            className="h-7 px-2 text-[10px] justify-start"
+                            onClick={() => downloadSweepJsonForPack(m)}
+                          >
+                            Download sweep JSON
+                          </Button>
+                          <Button
+                            type="button"
+                            variant="outline"
+                            size="sm"
+                            className="h-7 px-2 text-[10px] justify-start"
+                            onClick={() => downloadWeakRowsJsonForPack(m)}
+                          >
+                            Download weak rows JSON
+                          </Button>
+                          <Button
+                            type="button"
+                            variant="outline"
+                            size="sm"
+                            className="h-7 px-2 text-[10px] justify-start"
+                            onClick={() => downloadWeakRowsCsvForPack(m)}
+                          >
+                            Download weak rows CSV
+                          </Button>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
@@ -703,13 +979,47 @@ export function EvalPackRunner() {
       )}
 
       {fixBrief && (
-        <div className="space-y-2">
-          <p className="text-sm font-medium">Cursor Fix Brief (copied to clipboard)</p>
+        <div className="space-y-3 rounded-md border border-zinc-700 bg-zinc-950 px-3 py-3 text-zinc-100 shadow-inner dark:border-zinc-600">
+          <div className="flex flex-wrap items-start justify-between gap-2">
+            <div>
+              <p className="text-sm font-semibold text-zinc-50">Cursor Fix Brief</p>
+              <p className="text-xs text-zinc-400">{fixBrief.title}. Use Copy or Download; nothing is sent automatically.</p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <Button
+                type="button"
+                variant="secondary"
+                size="sm"
+                className="border-zinc-600 bg-zinc-800 text-zinc-100 hover:bg-zinc-700"
+                onClick={copyFixBriefToClipboard}
+              >
+                Copy brief
+              </Button>
+              <Button
+                type="button"
+                variant="secondary"
+                size="sm"
+                className="border-zinc-600 bg-zinc-800 text-zinc-100 hover:bg-zinc-700"
+                onClick={downloadFixBriefTxt}
+              >
+                Download .txt
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                className="border-zinc-600 text-zinc-200 hover:bg-zinc-800"
+                onClick={() => setFixBrief(null)}
+              >
+                Clear
+              </Button>
+            </div>
+          </div>
           <textarea
             readOnly
-            className="w-full min-h-[200px] rounded-md border border-border bg-muted/30 p-2 font-mono text-xs"
-            value={fixBrief}
-            onFocus={(e) => e.target.select()}
+            className="w-full min-h-[220px] resize-y rounded-md border border-zinc-700 bg-black/50 p-3 font-mono text-xs leading-relaxed text-zinc-100 placeholder:text-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500"
+            value={fixBrief.text}
+            spellCheck={false}
           />
         </div>
       )}

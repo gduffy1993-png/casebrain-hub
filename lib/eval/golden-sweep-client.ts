@@ -57,6 +57,12 @@ export async function runGoldenSweepForCases(
   opts.onProgress({ done, total, current: `Running ${cases.length} cases × ${GOLDEN_QUESTIONS.length} questions` });
 
   for (const c of cases) {
+    /**
+     * Skip the rest of a case's questions when the case has been deleted/archived
+     * mid-run. Without this we waste 10 "Case not found" rows per missing case
+     * and the sweep summary inherits noise that looks like a real eval failure.
+     */
+    let caseMissing = false;
     for (const q of GOLDEN_QUESTIONS) {
       if (opts.shouldCancel()) {
         opts.onProgress({ done, total, current: "Cancelled" });
@@ -64,6 +70,27 @@ export async function runGoldenSweepForCases(
       }
       const started = Date.now();
       const qn = Math.max(1, GOLDEN_QUESTIONS.indexOf(q) + 1);
+      if (caseMissing) {
+        const skipText = "Case skipped: case_id no longer resolves (likely deleted/archived between case-list snapshot and run).";
+        const skippedRow: GoldenSweepEvalRow = {
+          case_id: c.id,
+          case_title: c.title || "Untitled case",
+          question_no: qn,
+          question: q,
+          answer: skipText,
+          ok: false,
+          status: 404,
+          duration_ms: 0,
+          timestamp: new Date().toISOString(),
+          weak: false,
+          route_tag: "case_not_found_skipped",
+          eval_meta: null,
+        };
+        nextRows.push(skippedRow);
+        done += 1;
+        opts.onRow(skippedRow, { done, total });
+        continue;
+      }
       opts.onProgress({
         done,
         total,
@@ -95,6 +122,9 @@ export async function runGoldenSweepForCases(
           const text =
             typeof json.reply === "string" ? json.reply : json.error || `HTTP ${res.status}`;
           const em = json.eval_meta && json.eval_meta.v === 1 ? json.eval_meta : null;
+          if (res.status === 404 && /case not found/i.test(text)) {
+            caseMissing = true;
+          }
           row = {
             case_id: c.id,
             case_title: c.title || "Untitled case",
