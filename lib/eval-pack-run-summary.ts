@@ -487,7 +487,7 @@ function pushTuningConstraintsBlock(lines: string[], packs: PackGoldenMatrixRow[
   lines.push("3. Rerun Pack B (Golden 10).");
   lines.push("4. Rerun Pack C (Golden 10).");
   lines.push("5. Rerun Pack D (Golden 10).");
-  lines.push("After changes to shared code (`lib/bulk-eval-result-present.ts`, `lib/eval-sweep-review.ts`, defence-plan-chat route), rerun the full A–J set.");
+  lines.push("After changes to shared code (`lib/bulk-eval-result-present.ts`, `lib/eval-sweep-review.ts`, defence-plan-chat route), rerun the full A–T set.");
   lines.push("");
   lines.push("---");
   lines.push("");
@@ -654,7 +654,7 @@ export function buildCombinedCursorEvalFixBrief(packs: PackGoldenMatrixRow[]): s
         "- do_not_change: Pack A files, Pack B files, normal upload flow, hallucination protection, exhibit extraction (unless clearly needed), strict routes that already pass A/B, MG6 parser, interview parser, grounding gate."
       );
       lines.push(
-        `- regression: rerun Pack ${m.pack_id} golden 10 via Eval Pack Runner; rerun A, B, C, D after any change; if touching shared code, rerun full A–J.`
+        `- regression: rerun Pack ${m.pack_id} golden 10 via Eval Pack Runner; rerun A, B, C, D after any change; if touching shared code, rerun full A–T.`
       );
       lines.push("");
     }

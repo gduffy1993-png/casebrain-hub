@@ -60,7 +60,7 @@ async function createCaseForUpload(params: {
   email: string | null;
   title: string;
   practiceArea: ReturnType<typeof normalizePracticeArea>;
-  /** Optional eval pack id from upload form (A–J); title inference fills when unset. */
+  /** Optional eval pack id from upload form (A–T); title inference fills when unset. */
   evalPackExplicitId?: string;
 }): Promise<{ ok: true; caseId: string } | { ok: false; response: NextResponse }> {
   const { supabase, orgId, userId, email, title, practiceArea, evalPackExplicitId } = params;

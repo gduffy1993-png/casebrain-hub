@@ -625,7 +625,7 @@ export function EvalPackRunner() {
       <div>
         <h2 className="text-lg font-semibold">Eval Pack Runner (internal)</h2>
         <p className="text-sm text-muted-foreground">
-          Golden 10 sweep per pack (A–J). Case counts use <code className="text-xs">eval_pack_*</code> when set, then
+          Golden 10 sweep per pack (A–T). Case counts use <code className="text-xs">eval_pack_*</code> when set, then
           title patterns, then the earliest document filename per case.
         </p>
       </div>
@@ -726,7 +726,7 @@ export function EvalPackRunner() {
           {running ? "Running…" : "Run selected packs"}
         </Button>
         <Button type="button" variant="secondary" onClick={() => void runPacks("all")} disabled={running}>
-          Run all packs (A–J with cases)
+          Run all packs (A–T with cases)
         </Button>
         <Button type="button" variant="outline" onClick={cancelRun} disabled={!running}>
           Cancel
