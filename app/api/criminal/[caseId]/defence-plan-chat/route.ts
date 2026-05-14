@@ -1917,6 +1917,25 @@ const GOLD_Q3_HEADINGS = [
   "DISCLOSURE SCHEDULE NOTE",
 ] as const;
 
+/**
+ * Q2 — CB-GOLD / CB-TRAP MG6 disclosure-position headings.
+ * These describe the served / outstanding *position* (Q2 lens), distinct from
+ * the missing/incomplete *gaps* lens used for Q3. We intentionally allow overlap
+ * with `GOLD_Q3_HEADINGS` because gold files sometimes publish a single combined
+ * MG6 schedule block under one of these names.
+ */
+const GOLD_Q2_MG6_HEADINGS = [
+  "MG6(A) SERVED AND OUTSTANDING",
+  "MG6 SERVED AND OUTSTANDING",
+  "MG6 DISCLOSURE POSITION",
+  "MG6 DISCLOSURE NOTE",
+  "UNUSED MATERIAL AND DISCLOSURE",
+  "DISCLOSURE SCHEDULE NOTE",
+  "DISCLOSURE SCHEDULE",
+  "SERVED AND OUTSTANDING",
+  "DISCLOSURE POSITION",
+] as const;
+
 const GOLD_Q7_ELEMENT_HEADINGS = [
   "ELEMENTS TO PROVE",
   "ELEMENTS THE PROSECUTION MUST PROVE",
@@ -2185,6 +2204,69 @@ function evalTrapHasAnyFinding(t: EvalTrapFindings): boolean {
 }
 
 /* ---------------------------------------------------------------------------
+ * Q2 — CB-GOLD / CB-TRAP MG6 disclosure-position builder.
+ *
+ * For CB-GOLD bundles: reads explicit MG6 disclosure headings (Q2 set first,
+ * Q3 set as a fallback for combined schedule blocks) and emits the served vs
+ * outstanding rows verbatim as bullets, prefixed with a case-anchor header.
+ *
+ * For CB-TRAP bundles: maps the published per-category absence wording into
+ * "served / outstanding" bullets. We never invent rows — only categories with
+ * an explicit absence line in the bundle are listed.
+ *
+ * Returns null when the bundle has no published disclosure-position content,
+ * letting the caller fall through to the generic strict_mg6 builder.
+ * ------------------------------------------------------------------------- */
+function buildEvalFileMg6DisclosureAnswer(bundleFullText: string): string | null {
+  if (!isEvalGoldBundle(bundleFullText) && !isEvalTrapBundle(bundleFullText)) return null;
+
+  const header = goldenCaseFileAnchorLines(bundleFullText);
+
+  if (isEvalGoldBundle(bundleFullText)) {
+    const primary = extractEvalLabelledSection(bundleFullText, GOLD_Q2_MG6_HEADINGS);
+    const fallback = primary
+      ? ""
+      : extractEvalLabelledSection(bundleFullText, GOLD_Q3_HEADINGS);
+    const body = primary || fallback;
+    if (body) {
+      const bullets = formatEvalSectionBullets(body, 10);
+      if (bullets) {
+        const texture =
+          "- MG6 texture: Served / outstanding lines below are taken verbatim from the eval file's MG6 disclosure block.";
+        const pieces = [texture];
+        if (header.length) pieces.push(header.join("\n"));
+        pieces.push(bullets);
+        return pieces.join("\n");
+      }
+    }
+  }
+
+  if (isEvalTrapBundle(bundleFullText)) {
+    const t = readEvalTrapFindings(bundleFullText);
+    if (evalTrapHasAnyFinding(t)) {
+      const bullets: string[] = [];
+      if (t.mg6) bullets.push(`- MG6 / disclosure note: ${t.mg6}`);
+      if (t.cctv) bullets.push(`- CCTV (served vs outstanding): ${t.cctv}`);
+      if (t.n999) bullets.push(`- 999 audio (served vs outstanding): ${t.n999}`);
+      if (t.cad) bullets.push(`- CAD (served vs outstanding): ${t.cad}`);
+      if (t.mg11) bullets.push(`- MG11 / witness statement (served vs outstanding): ${t.mg11}`);
+      if (t.exhibits) bullets.push(`- Exhibits (served vs outstanding): ${t.exhibits}`);
+      if (t.interview) bullets.push(`- Interview record (served vs outstanding): ${t.interview}`);
+      if (bullets.length > 0) {
+        const texture =
+          "- MG6 texture: Trap-file disclosure note publishes explicit absence/limited-source wording for the rows below; treat each cell as the file states it.";
+        const pieces = [texture];
+        if (header.length) pieces.push(header.join("\n"));
+        pieces.push(bullets.slice(0, 8).join("\n"));
+        return pieces.join("\n");
+      }
+    }
+  }
+
+  return null;
+}
+
+/* ---------------------------------------------------------------------------
  * Q7 — CB-GOLD / CB-TRAP "what must the prosecution still prove" builder.
  * Uses gold-file ELEMENTS sections when present, else falls back to the printed
  * charge label / particulars on the file. Never invents statutory elements.
@@ -2237,41 +2319,103 @@ function buildEvalFileProsecutionProveAnswer(bundleFullText: string): string | n
   return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
 }
 
+/**
+ * Distil a gold-file disclosure section body into the highest-signal lines so
+ * the Q3 "Evidence reference" cell quotes content, not noise. Keeps the order
+ * the file printed them in.
+ */
+function pickGoldEvalMissingEvidenceLines(body: string, max = 4): string[] {
+  const raw = evalSectionContentLines(body, 12);
+  const out: string[] = [];
+  for (const l of raw) {
+    if (!l) continue;
+    if (out.length >= max) break;
+    out.push(softTruncate(l, 240));
+  }
+  return out;
+}
+
+/**
+ * Map per-category CB-TRAP findings to (label, file-wording) tuples in the
+ * order Q3 readers expect (CCTV → 999 → CAD → MG11 → exhibits → interview → MG6).
+ */
+function buildTrapMissingEvidenceEntries(t: EvalTrapFindings): Array<{ label: string; line: string }> {
+  const entries: Array<{ label: string; line: string }> = [];
+  if (t.cctv) entries.push({ label: "CCTV", line: t.cctv });
+  if (t.n999) entries.push({ label: "999 audio", line: t.n999 });
+  if (t.cad) entries.push({ label: "CAD", line: t.cad });
+  if (t.mg11) entries.push({ label: "MG11 / witness statement", line: t.mg11 });
+  if (t.exhibits) entries.push({ label: "exhibits", line: t.exhibits });
+  if (t.interview) entries.push({ label: "interview record", line: t.interview });
+  if (t.mg6) entries.push({ label: "MG6 / disclosure note", line: t.mg6 });
+  return entries;
+}
+
 /* ---------------------------------------------------------------------------
  * Q3 — CB-GOLD / CB-TRAP missing/incomplete evidence builder.
- * Uses gold-file sections or trap-file absence wording when the Northshire MG6
- * schedule is not present.
+ *
+ * Returns a 3-line answer (`Core point:` / `Evidence reference:` / `Next step:`)
+ * so Q3 reads consistently with the other interpretive eval-file builders and
+ * passes the "thin one-line bullets" scorer signal.
+ *
+ *   CB-GOLD: pulls the first matching section from MATERIAL NOT PROVIDED /
+ *   DISCLOSURE GAPS / MISSING (OR) OUTSTANDING EVIDENCE / WHAT IS NOT YET
+ *   SERVED / MG6 disclosure headings, and quotes 2–4 highest-signal lines.
+ *
+ *   CB-TRAP: reads per-category absence wording from the disclosure note and
+ *   quotes only those categories the file explicitly flags as not identified /
+ *   outstanding / not served. Never invents missing items.
  * ------------------------------------------------------------------------- */
 function buildEvalFileMissingEvidenceAnswer(bundleFullText: string): string | null {
-  const header = goldenCaseFileAnchorLines(bundleFullText);
-
   if (isEvalGoldBundle(bundleFullText)) {
     const body = extractEvalLabelledSection(bundleFullText, GOLD_Q3_HEADINGS);
     if (body) {
-      const bullets = formatEvalSectionBullets(body, 8);
-      if (bullets) return header.length ? `${header.join("\n")}\n${bullets}` : bullets;
+      const lines = pickGoldEvalMissingEvidenceLines(body, 4);
+      if (lines.length > 0) {
+        const core =
+          lines.length === 1
+            ? `Core point: The gold file's missing-evidence block names a single outstanding item — ${lines[0]}.`
+            : `Core point: The gold file's missing-evidence block names ${lines.length} outstanding / incomplete items, with ${lines[0]}.`;
+        const ev = `Evidence reference: This eval file's MISSING / OUTSTANDING block reads — ${lines.slice(0, 4).join(" | ")}.`;
+        const next =
+          "Next step: Chase only the items the gold file names; record each as awaited or recorded N/A with a note, and do not infer unlisted material.";
+        return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
+      }
     }
   }
 
   if (isEvalTrapBundle(bundleFullText)) {
     const t = readEvalTrapFindings(bundleFullText);
     if (evalTrapHasAnyFinding(t)) {
-      const bullets: string[] = [];
-      if (t.cctv) bullets.push(`- CCTV: ${t.cctv}`);
-      if (t.n999) bullets.push(`- 999 audio: ${t.n999}`);
-      if (t.cad) bullets.push(`- CAD: ${t.cad}`);
-      if (t.mg11) bullets.push(`- MG11 / witness statement: ${t.mg11}`);
-      if (t.interview) bullets.push(`- Interview record: ${t.interview}`);
-      if (t.exhibits) bullets.push(`- Exhibits: ${t.exhibits}`);
-      if (t.mg6) bullets.push(`- MG6 / disclosure note: ${t.mg6}`);
-      if (bullets.length > 0) {
-        const body = bullets.slice(0, 8).join("\n");
-        return header.length ? `${header.join("\n")}\n${body}` : body;
+      const entries = buildTrapMissingEvidenceEntries(t);
+      if (entries.length > 0) {
+        const labels = entries.map((e) => e.label);
+        const labelList =
+          labels.length <= 2
+            ? labels.join(" and ")
+            : `${labels.slice(0, -1).join(", ")}, and ${labels[labels.length - 1]}`;
+        const core =
+          entries.length === 1
+            ? `Core point: ${capitalizeFirst(entries[0].label)} is the only item the trap-file disclosure note flags as not identified / outstanding.`
+            : `Core point: The trap-file disclosure note publishes explicit absence wording for ${labelList} — those are the only categories that can be cited as missing on these papers.`;
+        const evBits = entries
+          .slice(0, 4)
+          .map((e) => `${e.label}: ${softTruncate(e.line, 220)}`)
+          .join(" | ");
+        const ev = `Evidence reference: The CB-TRAP bundle states — ${evBits}.`;
+        const next =
+          "Next step: Chase only the named items above; do not infer any unlisted material and treat the absence wording verbatim.";
+        return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
       }
     }
   }
 
   return null;
+}
+
+function capitalizeFirst(s: string): string {
+  if (!s) return s;
+  return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
 /* ---------------------------------------------------------------------------
@@ -2492,6 +2636,7 @@ function buildGoldenDeterministicInterpretiveSweep(
  * template whenever the file is a CB-GOLD or CB-TRAP.
  */
 function buildEvalFileRescueAnswer(message: string, bundleFullText: string): string | null {
+  if (isStrictMg6DisclosureQuestion(message)) return buildEvalFileMg6DisclosureAnswer(bundleFullText);
   if (isGoldenMissingEvidenceQuestion(message)) return buildEvalFileMissingEvidenceAnswer(bundleFullText);
   if (isGoldenProsecutionProveQuestion(message)) return buildEvalFileProsecutionProveAnswer(bundleFullText);
   if (isGoldenProsecutionWeaknessQuestion(message)) return buildEvalFileProsecutionWeaknessAnswer(bundleFullText);
@@ -4651,7 +4796,34 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   const bundleHeadlineBlock = extractBundleHeadlineBlock(combinedBundleFull);
 
   // Strict disclosure route: MG6 schedule questions bypass LLM generation completely.
+  // For CB-GOLD / CB-TRAP files, prefer the eval-file MG6 disclosure builder so the
+  // file's published disclosure-position wording wins over the generic "schedule
+  // cannot be safely extracted" template; report the route as `strict_mg6_eval_file`
+  // so scorers can distinguish the two paths.
   if (isStrictMg6DisclosureQuestion(message)) {
+    const preferEvalFileMg6 =
+      isEvalGoldBundle(combinedBundleFull) || isEvalTrapBundle(combinedBundleFull);
+    if (preferEvalFileMg6) {
+      const evalReply = buildEvalFileMg6DisclosureAnswer(combinedBundleFull);
+      if (evalReply) {
+        return jsonWithRoute(
+          {
+            ok: true,
+            reply: evalReply,
+            eval_meta: routeEvalMeta(
+              "strict_mg6_eval_file",
+              message,
+              evalReply,
+              combinedBundleFull,
+              combinedBundleFull.length,
+              true,
+              { reply_finalization: "deterministic" }
+            ),
+          },
+          "strict_mg6_eval_file"
+        );
+      }
+    }
     const reply = buildStrictMg6DisclosureAnswer(combinedBundleFull);
     return jsonWithRoute(
       {

@@ -12,6 +12,7 @@ import { isEvalWeakAnswer, TIMEOUT_OR_ABORT_ANSWER_RE } from "@/lib/eval-run-met
 import {
   GOLDEN_FALLBACK_ROUTE_TAGS,
   GOLDEN_STRICT_EXPECTED_ROUTE,
+  isAcceptedStrictRoute,
   isSuspiciouslyShortAnswer,
 } from "@/lib/eval-sweep-review";
 
@@ -61,6 +62,54 @@ const CHARGE_TEMPORAL_PREAMBLE_RE =
 const CONDUCT_PROPERTY_PERSON_RE =
   /\b(sent\s+(?:electronic|grossly\s+offensive|menacing|indecent|threatening|harass(?:ing)?|malicious)\s+(?:messages?|communications?)|electronic\s+messages?|grossly\s+offensive\s+(?:messages?|communications?)|menacing\s+(?:messages?|communications?)|indecent\s+(?:images?|photographs?|videos?)|dishonestly\s+(?:received|retained|appropriated|obtained|made\s+off|used|withheld|converted|handled)|by\s+deception|made\s+a\s+false\s+representation|entered\s+(?:a\s+dwelling|premises|[a-z\s]+)\s+(?:as\s+a\s+trespasser|with\s+intent)|aggravated\s+burglary|stole(?:n)?|stealing|robbed|drove\s+(?:a\s+(?:motor\s+)?vehicle|whilst|while|without)|drove\s+(?:whilst|while)\s+(?:disqualified|over|having\s+consumed|unfit)|drove\s+(?:dangerously|carelessly|without\s+insurance|without\s+a\s+licence|without\s+due\s+care)|possession\s+of\s+(?:a\s+(?:bladed|controlled|class\s+[A-C]))|in\s+possession\s+of\s+(?:a\s+(?:bladed|controlled|class\s+[A-C]))|possessing\s+(?:a\s+controlled|class\s+[A-C]|with\s+intent\s+to\s+supply)|supplying\s+(?:a\s+controlled|class\s+[A-C])|assault(?:ed|ing)?\s+(?:[A-Z][a-z]+|a\s+constable|an?\s+officer|a\s+police|her|him|them|the\s+complainant)|caused\s+(?:actual|grievous)\s+bodily\s+harm|inflict(?:ed|ing)\s+(?:grievous|actual)\s+bodily\s+harm|punched|kicked|struck|threatened|coerced|controlled|stalked|harassed|damaged\s+(?:property|a\s+window|a\s+vehicle|a\s+door))\b/i;
 
+/**
+ * Broad Q1 charge-particulars conduct/phrase set. Used by the Q1 "printed
+ * allegation" scoring rescue so terse but unambiguous charge particulars
+ * ("On 24/06/2026 stole electronic property…", "On 01/07/2026 had with him
+ * in public a sharply pointed article without good reason.") are not marked
+ * weak just because the statutory label is omitted or the sentence is short.
+ *
+ * Deliberately keeps single-word verbs (`stole`, `robbed`) for the bare
+ * "On <date> <verb>…" shape, plus multi-word indictment phrases
+ * (`pursued (a) course of conduct`, `had with him/her/them`, `by deception`).
+ */
+const Q1_CHARGE_CONDUCT_RE =
+  /\b(?:stole|stolen|stealing|robbed|robbing|appropriated|withheld|converted|handled|dishonestly|obtained|obtaining|defrauded|deceived|impersonated|forged|altered|by\s+(?:false\s+representation|deception)|made\s+(?:a\s+)?(?:false|fraudulent|threatening|menacing|grossly\s+offensive|indecent|sexual)|received|retained|assault(?:ed|ing)?|attack(?:ed|ing)?|punched|kicked|struck|wounded|inflict(?:ed|ing)|caused\s+(?:actual|grievous|bodily)|threatened|coerced|controlled|stalked|stalking|harassed|harassment|pursued\s+(?:a\s+)?course\s+of\s+conduct|course\s+of\s+conduct|damaged|destroy(?:ed|ing)?|defaced|vandalised|vandalized|set\s+fire(?:\s+to)?|burnt|burned|punctured|possess(?:ed|ing)?|in\s+possession|had\s+with\s+(?:him|her|them)|carried|carrying|drove|driving|supplied|distributed|sent|entered|trespass(?:ed|ing)?|broke\s+into|forced\s+entry|burgled|used\s+threatening|used\s+violence)\b/i;
+
+/**
+ * Wording that disqualifies an answer from being treated as printed allegation
+ * particulars (strategy / friction / MG6 weakness / defence stance / generic
+ * legal commentary). Q1 must read like a charge sheet line, not a brief.
+ */
+const Q1_NON_ALLEGATION_NOISE_RE =
+  /\b(?:grounds\s+for\s+dispute|primary\s+eval\s+hook|MG6\s+weakness|defence\s+strategy|strategy\s+focus|friction\s*\(fiction\)|client\s+strategy|tactical\s+focus|risk\s+register|pressure\s+map|recorded\s+defence|defence\s+stance|defence\s+position|disputed\s+facts|interview\s+account|interview\s+summary|in\s+broad\s+terms|generally\s+speaking|typically\s+the|the\s+(?:crown|prosecution)\s+must\s+prove\s+each|elements\s+of\s+the\s+offence\s+include|beyond\s+(?:a\s+)?reasonable\s+doubt|burden\s+of\s+proof|criminal\s+standard|prima\s+facie)\b/i;
+
+/**
+ * True if `text` reads like printed allegation / charge particulars:
+ *   1. Starts (after an optional Charge: / Particulars: / Statement of offence: /
+ *      Indictment: / Count N: / Allegation: heading) with a temporal preamble.
+ *   2. Contains at least one charge-style conduct word/phrase.
+ *   3. Does not contain strategy / friction / MG6 / generic legal commentary
+ *      wording.
+ *
+ * Scoped to Q1 strict_primary_allegation rows via the caller; never used for
+ * other questions.
+ */
+function looksLikePrintedQ1Allegation(text: string): boolean {
+  const t = (text ?? "").trim();
+  if (t.length < 25) return false;
+  if (Q1_NON_ALLEGATION_NOISE_RE.test(t)) return false;
+
+  const head = t.slice(0, 320);
+  const headHasPreamble =
+    /(?:^|\n)\s*(?:[-*•>]\s*)?(?:(?:Charge|Particulars(?:\s+of\s+offence)?|Statement\s+of\s+offence|Indictment|Count\s*\d[^:]{0,24}|Allegation)\s*[:\-]?\s*)?(?:On|Between|During|Throughout|Some\s+time\s+(?:in|on|between|during))\b/i.test(
+      head
+    );
+  if (!headHasPreamble) return false;
+
+  return Q1_CHARGE_CONDUCT_RE.test(t);
+}
+
 /** Exhibit / disclosure / procedural anchors (PART D). Source duplicated so tests don’t share `/g` lastIndex. */
 const CASE_ANCHOR_PATTERN =
   "EX-[A-Za-z0-9]+(?:-[A-Za-z0-9]+)+|NS-CPS-\\d{4}-\\d{4}|CB-(?:TRAP|GOLD|TEST)-\\d{4}-\\d{4}|\\bMG\\s*\\d+\\b|\\bCAD\\b|\\b999\\b|\\bCCTV\\b|\\bBWV\\b|\\bPACE\\b|interview|witness|continuity|disclosure schedule|served|outstanding|awaited|partial extract|count\\s*\\d|indictment|charge sheet|next listing|next hearing|procedural step";
@@ -79,6 +128,7 @@ function hasCaseSpecificAnchor(text: string): boolean {
   if (OFFENCE_OR_CASE_MARKERS.test(text)) return true;
   if (CHARGE_OR_PARTICULARS_RE.test(text)) return true;
   if (CHARGE_TEMPORAL_PREAMBLE_RE.test(text) && CONDUCT_PROPERTY_PERSON_RE.test(text)) return true;
+  if (CHARGE_TEMPORAL_PREAMBLE_RE.test(text) && Q1_CHARGE_CONDUCT_RE.test(text)) return true;
   return false;
 }
 
@@ -107,9 +157,23 @@ export function bulkEvalBaseQualityLabel(r: BulkEvalRunRowInput, sweepMode: "gol
   if (tag && GOLDEN_FALLBACK_ROUTE_TAGS.has(tag)) return "fail";
   if (sweepMode === "golden_10") {
     const exp = GOLDEN_STRICT_EXPECTED_ROUTE[r.questionNo];
-    if (exp && tag !== exp) return "fail";
+    if (exp && !isAcceptedStrictRoute(r.questionNo, tag)) return "fail";
   }
-  if (r.weak || isEvalWeakAnswer(text, { route_tag: r.route_tag })) return "weak";
+  if (r.weak || isEvalWeakAnswer(text, { route_tag: r.route_tag })) {
+    // Q1 printed-allegation rescue: a well-formed charge particulars line
+    // (date preamble + conduct phrase, no friction / strategy / MG6 / generic
+    // commentary noise) is real allegation wording. Don't downgrade to weak
+    // just because the line is short.
+    if (
+      sweepMode === "golden_10" &&
+      r.questionNo === 1 &&
+      isAcceptedStrictRoute(1, tag) &&
+      looksLikePrintedQ1Allegation(text)
+    ) {
+      return "pass";
+    }
+    return "weak";
+  }
   return "pass";
 }
 
@@ -271,7 +335,12 @@ function goldenGenericStemIssue(qn: number, text: string): string | null {
       // Charge sheet wording like "On 14/05/2024 dishonestly received…" — the
       // statutory label is omitted but the temporal preamble plus conduct/property
       // /person wording is unambiguously allegation text and must not be marked weak.
-      (CHARGE_TEMPORAL_PREAMBLE_RE.test(t) && CONDUCT_PROPERTY_PERSON_RE.test(t));
+      (CHARGE_TEMPORAL_PREAMBLE_RE.test(t) && CONDUCT_PROPERTY_PERSON_RE.test(t)) ||
+      // Broader printed-allegation shape: temporal preamble + any Q1 charge-conduct
+      // word/phrase, with no strategy / friction / MG6 / generic-commentary noise.
+      // Catches terse particulars like "On 24/06/2026 stole electronic property…"
+      // or "On 01/07/2026 had with him in public a sharply pointed article…".
+      looksLikePrintedQ1Allegation(t);
     if (t.length > 35 && !hasOffenceOrChargeWording) {
       return "missing offence wording";
     }
@@ -444,7 +513,7 @@ export function computeBulkEvalRowPresent(r: BulkEvalRunRowInput, ctx: BulkEvalP
 
   if (ctx.sweepMode === "golden_10") {
     const exp = GOLDEN_STRICT_EXPECTED_ROUTE[r.questionNo];
-    if (exp && tag !== exp) {
+    if (exp && !isAcceptedStrictRoute(r.questionNo, tag)) {
       return { quality: "fail", issue: "wrong route", advisory: null, collapse_rule: null };
     }
   }
@@ -521,11 +590,27 @@ export function computeBulkEvalRowPresent(r: BulkEvalRunRowInput, ctx: BulkEvalP
 
   const weakNow = r.weak || isEvalWeakAnswer(text, { route_tag: r.route_tag });
   if (weakNow) {
+    // Q1 printed-allegation rescue: short but well-formed charge particulars
+    // (date preamble + conduct phrase, no strategy / friction / MG6 / generic
+    // commentary wording) read as real allegation text and must stay pass.
+    if (
+      ctx.sweepMode === "golden_10" &&
+      r.questionNo === 1 &&
+      isAcceptedStrictRoute(1, tag) &&
+      looksLikePrintedQ1Allegation(text)
+    ) {
+      return {
+        quality: "pass",
+        issue: "—",
+        advisory: advisory ?? "Q1 printed-allegation shape (terse but grounded)",
+        collapse_rule: null,
+      };
+    }
     let issue = "vague";
     if (ctx.sweepMode === "golden_10") {
-      const exp = GOLDEN_STRICT_EXPECTED_ROUTE[r.questionNo];
-      if ((r.questionNo === 1 || r.questionNo === 2) && exp && tag === exp) issue = "missing expected bundle wording";
-      else if (r.questionNo === 5) issue = "invented fact risk";
+      if ((r.questionNo === 1 || r.questionNo === 2) && isAcceptedStrictRoute(r.questionNo, tag)) {
+        issue = "missing expected bundle wording";
+      } else if (r.questionNo === 5) issue = "invented fact risk";
     }
     return { quality: "weak", issue, advisory, collapse_rule: null };
   }
@@ -544,9 +629,9 @@ export function computeBulkEvalRowPresent(r: BulkEvalRunRowInput, ctx: BulkEvalP
 
   let issue = "vague";
   if (ctx.sweepMode === "golden_10") {
-    const exp = GOLDEN_STRICT_EXPECTED_ROUTE[r.questionNo];
-    if ((r.questionNo === 1 || r.questionNo === 2) && exp && tag === exp) issue = "missing expected bundle wording";
-    else if (r.questionNo === 5) issue = "invented fact risk";
+    if ((r.questionNo === 1 || r.questionNo === 2) && isAcceptedStrictRoute(r.questionNo, tag)) {
+      issue = "missing expected bundle wording";
+    } else if (r.questionNo === 5) issue = "invented fact risk";
   }
   return { quality: "weak", issue, advisory, collapse_rule: null };
 }

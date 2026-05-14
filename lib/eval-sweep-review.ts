@@ -24,6 +24,34 @@ export const GOLDEN_STRICT_EXPECTED_ROUTE: Record<number, string> = {
   5: "strict_exhibit",
 };
 
+/**
+ * Accepted route aliases per golden question. The route printed on a row may
+ * be the canonical strict route OR any listed alias and still count as a
+ * correct route. Used to keep CB-GOLD / CB-TRAP eval-file paths (e.g.
+ * `strict_mg6_eval_file`) from being scored as "wrong route".
+ */
+export const GOLDEN_STRICT_ACCEPTED_ROUTE_ALIASES: Record<number, readonly string[]> = {
+  1: [],
+  2: ["strict_mg6_eval_file"],
+  4: [],
+  5: [],
+};
+
+/**
+ * True if `tag` is the canonical strict route for `questionNo` or one of its
+ * accepted aliases (e.g. `strict_mg6_eval_file` for Q2). Returns false when
+ * the question has no canonical expectation or when `tag` is empty.
+ */
+export function isAcceptedStrictRoute(questionNo: number, tag: string | null | undefined): boolean {
+  const t = (tag ?? "").trim();
+  if (!t) return false;
+  const expected = GOLDEN_STRICT_EXPECTED_ROUTE[questionNo];
+  if (!expected) return false;
+  if (t === expected) return true;
+  const aliases = GOLDEN_STRICT_ACCEPTED_ROUTE_ALIASES[questionNo] ?? [];
+  return aliases.includes(t);
+}
+
 /** These questions should use full chat (not fast-eval) after routing fixes. */
 export const GOLDEN_SHOULD_AVOID_LIGHTWEIGHT_EVAL = new Set([3, 6, 7, 8, 9, 10]);
 
@@ -173,12 +201,14 @@ export function goldenSweepRouteDriftWarnings(rows: NormalizedSweepRow[]): strin
 
     const expected = GOLDEN_STRICT_EXPECTED_ROUTE[qn];
     if (expected) {
+      const acceptedAliases = GOLDEN_STRICT_ACCEPTED_ROUTE_ALIASES[qn] ?? [];
       for (const [route, count] of routes) {
-        if (route !== expected && route !== "unknown") {
-          warnings.push(
-            `Q${qn}: expected "${expected}" for all rows, but "${route}" appeared ${count}× (check routing).`
-          );
-        }
+        if (route === "unknown") continue;
+        if (route === expected) continue;
+        if (acceptedAliases.includes(route)) continue;
+        warnings.push(
+          `Q${qn}: expected "${expected}" for all rows, but "${route}" appeared ${count}× (check routing).`
+        );
       }
     }
 
