@@ -38,10 +38,49 @@ const OFFENCE_OR_CASE_MARKERS =
 const CHARGE_OR_PARTICULARS_RE =
   /\b(contrary\s+to|contrary\s+to\s+section|section\s*\d+|s\.?\s*\d+\s*of\s*the|count\s*\d|on\s+the\s+\d{1,2}(st|nd|rd|th)?\s+day\s+of|particulars|statement\s+of\s+offence|indictment|charge\s+sheet)\b/i;
 
+/**
+ * Temporal preamble shape commonly used on real charge sheets / particulars.
+ *
+ *   "On 14/05/2024 at 22:30 …"           — numeric date, optional `at` time
+ *   "On 14 May 2024 …"                   — month-name date
+ *   "Between 01/01/2024 and 31/01/2024 …" / "Between January and March …"
+ *   "During / Throughout … 2024 …"
+ *   "Some time in/on/between/during …"
+ *
+ * No trailing `at` required — a charge that opens "On 14 May 2024 dishonestly received
+ * stolen electronic property…" is still real charge wording.
+ */
+const CHARGE_TEMPORAL_PREAMBLE_RE =
+  /\b(?:On\s+\d{1,2}(?:st|nd|rd|th)?(?:[\s\/.\-]\d{1,2}[\s\/.\-]\d{2,4}|\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{2,4})|Between\s+[^\n,]{2,}\s+(?:and|to)\s+[^\n]{2,}|During\s+[^\n]{3,}|Throughout\s+[^\n]{3,}|Some\s+time\s+(?:in|on|between|during)\s+[^\n]{3,})\b/i;
+
+/**
+ * Conduct / property / person wording typically printed in particulars when the
+ * statutory offence label is omitted. Covers communications, dishonesty/fraud,
+ * burglary, driving, drugs, and the standard violence/property verbs.
+ */
+const CONDUCT_PROPERTY_PERSON_RE =
+  /\b(sent\s+(?:electronic|grossly\s+offensive|menacing|indecent|threatening|harass(?:ing)?|malicious)\s+(?:messages?|communications?)|electronic\s+messages?|grossly\s+offensive\s+(?:messages?|communications?)|menacing\s+(?:messages?|communications?)|indecent\s+(?:images?|photographs?|videos?)|dishonestly\s+(?:received|retained|appropriated|obtained|made\s+off|used|withheld|converted|handled)|by\s+deception|made\s+a\s+false\s+representation|entered\s+(?:a\s+dwelling|premises|[a-z\s]+)\s+(?:as\s+a\s+trespasser|with\s+intent)|aggravated\s+burglary|stole(?:n)?|stealing|robbed|drove\s+(?:a\s+(?:motor\s+)?vehicle|whilst|while|without)|drove\s+(?:whilst|while)\s+(?:disqualified|over|having\s+consumed|unfit)|drove\s+(?:dangerously|carelessly|without\s+insurance|without\s+a\s+licence|without\s+due\s+care)|possession\s+of\s+(?:a\s+(?:bladed|controlled|class\s+[A-C]))|in\s+possession\s+of\s+(?:a\s+(?:bladed|controlled|class\s+[A-C]))|possessing\s+(?:a\s+controlled|class\s+[A-C]|with\s+intent\s+to\s+supply)|supplying\s+(?:a\s+controlled|class\s+[A-C])|assault(?:ed|ing)?\s+(?:[A-Z][a-z]+|a\s+constable|an?\s+officer|a\s+police|her|him|them|the\s+complainant)|caused\s+(?:actual|grievous)\s+bodily\s+harm|inflict(?:ed|ing)\s+(?:grievous|actual)\s+bodily\s+harm|punched|kicked|struck|threatened|coerced|controlled|stalked|harassed|damaged\s+(?:property|a\s+window|a\s+vehicle|a\s+door))\b/i;
+
 /** Exhibit / disclosure / procedural anchors (PART D). Source duplicated so tests don’t share `/g` lastIndex. */
 const CASE_ANCHOR_PATTERN =
-  "EX-[A-Za-z0-9]+(?:-[A-Za-z0-9]+)+|NS-CPS-\\d{4}-\\d{4}|\\bMG\\s*\\d+\\b|\\bCAD\\b|\\b999\\b|\\bCCTV\\b|\\bBWV\\b|\\bPACE\\b|interview|witness|continuity|disclosure schedule|served|outstanding|awaited|partial extract|count\\s*\\d|indictment|charge sheet";
+  "EX-[A-Za-z0-9]+(?:-[A-Za-z0-9]+)+|NS-CPS-\\d{4}-\\d{4}|CB-(?:TRAP|GOLD|TEST)-\\d{4}-\\d{4}|\\bMG\\s*\\d+\\b|\\bCAD\\b|\\b999\\b|\\bCCTV\\b|\\bBWV\\b|\\bPACE\\b|interview|witness|continuity|disclosure schedule|served|outstanding|awaited|partial extract|count\\s*\\d|indictment|charge sheet|next listing|next hearing|procedural step";
 const CASE_ANCHOR_RE_ANY = new RegExp(`(?:${CASE_ANCHOR_PATTERN})`, "i");
+
+/**
+ * Stronger case-specific anchor signal used to downgrade collapse/stem weak rows.
+ * Combines structured anchors (EX-/MG-/CAD/CCTV/999, served/outstanding, next listing)
+ * with a Q1-style charge preamble + conduct phrase. A long answer carrying any of
+ * these is treated as case-specific enough to stop a "repeat fingerprint pair" or
+ * "stem clustering" weak label.
+ */
+function hasCaseSpecificAnchor(text: string): boolean {
+  if (!text) return false;
+  if (CASE_ANCHOR_RE_ANY.test(text)) return true;
+  if (OFFENCE_OR_CASE_MARKERS.test(text)) return true;
+  if (CHARGE_OR_PARTICULARS_RE.test(text)) return true;
+  if (CHARGE_TEMPORAL_PREAMBLE_RE.test(text) && CONDUCT_PROPERTY_PERSON_RE.test(text)) return true;
+  return false;
+}
 
 function rowText(r: BulkEvalRunRowInput): string {
   return (r.answer || r.error || "").trim();
@@ -226,7 +265,13 @@ function goldenGenericStemIssue(qn: number, text: string): string | null {
       return "generic template";
     }
     const hasOffenceOrChargeWording =
-      OFFENCE_OR_CASE_MARKERS.test(t) || CHARGE_OR_PARTICULARS_RE.test(t) || CASE_ANCHOR_RE_ANY.test(t);
+      OFFENCE_OR_CASE_MARKERS.test(t) ||
+      CHARGE_OR_PARTICULARS_RE.test(t) ||
+      CASE_ANCHOR_RE_ANY.test(t) ||
+      // Charge sheet wording like "On 14/05/2024 dishonestly received…" — the
+      // statutory label is omitted but the temporal preamble plus conduct/property
+      // /person wording is unambiguously allegation text and must not be marked weak.
+      (CHARGE_TEMPORAL_PREAMBLE_RE.test(t) && CONDUCT_PROPERTY_PERSON_RE.test(t));
     if (t.length > 35 && !hasOffenceOrChargeWording) {
       return "missing offence wording";
     }
@@ -421,6 +466,16 @@ export function computeBulkEvalRowPresent(r: BulkEvalRunRowInput, ctx: BulkEvalP
     };
   }
   if (ctx.repeatFingerprintPairRowKeys.has(rowKey)) {
+    // Case-specific anchors (offence/charge wording, EX-/MG-/CAD/CCTV/999/served-outstanding,
+    // Q1 temporal preamble + conduct) override the digest-shaped collapse warning.
+    if (hasCaseSpecificAnchor(text)) {
+      return {
+        quality: "pass",
+        issue: "—",
+        advisory: "repeated digest shape — case anchors present (advisory)",
+        collapse_rule: "repeat_fingerprint_pair",
+      };
+    }
     return {
       quality: "weak",
       issue: "repeat source digest (≥2 cases)",
@@ -429,6 +484,14 @@ export function computeBulkEvalRowPresent(r: BulkEvalRunRowInput, ctx: BulkEvalP
     };
   }
   if (ctx.stemClusterKeys.has(rowKey)) {
+    if (hasCaseSpecificAnchor(text)) {
+      return {
+        quality: "pass",
+        issue: "—",
+        advisory: "shared opening stem — case anchors present (advisory)",
+        collapse_rule: "stem_clustering",
+      };
+    }
     return {
       quality: "weak",
       issue: "stem clustering",

@@ -463,9 +463,29 @@ function compactOneLine(text: string): string {
 /**
  * Truncate at a soft boundary (sentence end > clause end > word end) so allegation /
  * charge wording is never cut mid-word. Pack A/B Q1 must read clean even at the cap.
+ *
+ * If the input only slightly overshoots `max`, look up to `sentenceHeadroom` characters
+ * beyond `max` for a real sentence end so charge particulars are not chopped mid-sentence
+ * just because the printed line is a few words over the limit.
  */
-function softTruncate(text: string, max: number): string {
+function softTruncate(text: string, max: number, sentenceHeadroom = 160): string {
   if (text.length <= max) return text;
+  const lookahead = Math.min(text.length, max + Math.max(0, sentenceHeadroom));
+  if (lookahead > max) {
+    const window = text.slice(0, lookahead);
+    const sentenceEndAhead = Math.max(
+      window.lastIndexOf(". "),
+      window.lastIndexOf("! "),
+      window.lastIndexOf("? ")
+    );
+    if (sentenceEndAhead >= max) {
+      return window.slice(0, sentenceEndAhead + 1).trim();
+    }
+    if (window.length === text.length) {
+      const last = window.trimEnd();
+      if (/[.!?]$/.test(last)) return last;
+    }
+  }
   const slice = text.slice(0, max);
   const sentenceEnd = Math.max(slice.lastIndexOf(". "), slice.lastIndexOf("! "), slice.lastIndexOf("? "));
   if (sentenceEnd >= Math.floor(max * 0.6)) return slice.slice(0, sentenceEnd + 1).trim();
@@ -662,14 +682,14 @@ function buildNorthshireRichPrimaryAllegationSentence(bundleFullText: string): s
       crownNut = compactOneLine(l.replace(/^Allegation\s*\(fiction\):\s*/i, ""));
       break;
     }
-    if (/^The Crown suggest/i.test(l) || /^Injury narrative/i.test(l) || /^CCTV\s*\/\s*tech/i.test(l) || /^Grounds for dispute/i.test(l)) {
+    if (/^The Crown suggest/i.test(l) || /^Injury narrative/i.test(l) || /^CCTV\s*\/\s*tech/i.test(l)) {
       crownNut = compactOneLine(l);
       break;
     }
   }
   if (!crownNut && mg5Lines.length > 0) {
     for (const l of mg5Lines) {
-      if (/^The Crown suggest|^Injury narrative|^Grounds for dispute|^CCTV\s*\/\s*tech/i.test(l)) {
+      if (/^The Crown suggest|^Injury narrative|^CCTV\s*\/\s*tech/i.test(l)) {
         crownNut = compactOneLine(l);
         break;
       }
@@ -1216,6 +1236,29 @@ function isStrictPrimaryAllegationQuestion(question: string): boolean {
   );
 }
 
+/**
+ * Trim wording that doesn't belong in a printed-allegation Q1 answer.
+ * Q1 must read like a charge sheet line, not a strategy / defence-friction note.
+ * We never strip charge wording — only drop trailing friction/strategy/eval-hook
+ * preambles where the bundle has accidentally injected them ahead of the charge.
+ */
+function stripQ1NonAllegationWording(answer: string | null): string | null {
+  if (!answer) return answer;
+  let out = answer;
+  out = out.replace(
+    /(^|[\s;.\-])(Grounds\s+for\s+dispute(?:\s*\/\s*friction(?:\s*\(fiction\))?)?\s*:?[^.;]*[.;])/gi,
+    "$1"
+  );
+  out = out.replace(/(^|[\s;.\-])Primary\s+eval\s+hook[^.;]*[.;]/gi, "$1");
+  out = out.replace(/(^|[\s;.\-])MG6\s+weakness[^.;]*[.;]/gi, "$1");
+  out = out.replace(/(^|[\s;.\-])Friction\s*\(fiction\)\s*:?[^.;]*[.;]/gi, "$1");
+  out = out.replace(/(^|[\s;.\-])Defence\s+strategy[^.;]*[.;]/gi, "$1");
+  out = out.replace(/(^|[\s;.\-])Strategy\s+focus[^.;]*[.;]/gi, "$1");
+  out = out.replace(/\s{2,}/g, " ").trim();
+  out = out.replace(/^[\s;,\-.]+/, "").trim();
+  return out || answer;
+}
+
 function buildStrictPrimaryAllegationAnswer(bundleFullText: string): string | null {
   const stripFictionalChargeNote = (s: string) =>
     compactOneLine(s.replace(/\(fictional charge drafting for test data\)\.?/gi, "").trim());
@@ -1275,12 +1318,22 @@ function buildStrictPrimaryAllegationAnswer(bundleFullText: string): string | nu
       /^\s*Offence\(s\)\s+as\s+charged\s*:?\s*(.+)$/im,
       /^\s*Offence\(s\):\s*(.+)$/im,
       /^\s*Charge\s+sheet\s+extract\s*[:\-]?\s*(.+)$/im,
+      /^\s*Charge\s*:?\s*(.+)$/im,
+      /^\s*Particulars\s*(?:of\s+offence)?\s*:?\s*(.+)$/im,
+      /^\s*Statement\s+of\s+offence\s*:?\s*(.+)$/im,
+      /^\s*Indictment\s*:?\s*(.+)$/im,
       /^\s*Allegation:\s*(.+)$/im,
       /^\s*The\s+offence\s+charged\s*[:\-]\s*(.+)$/im,
       /^\s*The\s+allegation\s+is\s+that\s+(.+)$/im,
       /^\s*Count\s*1[^:]{0,24}:\s*(.+)$/im,
       /^\s*Offence\(s\)\s+as\s+tag:\s*(.+)$/im,
-      /^\s*(On\s+\d{1,2}[\s\/.\-]\d{1,2}[\s\/.\-]\d{2,4}[^\n]{0,220})$/im,
+      // Explicit temporal preambles common on charge sheets / particulars.
+      /^\s*(On\s+\d{1,2}[\s\/.\-]\d{1,2}[\s\/.\-]\d{2,4}[^\n]{0,260})$/im,
+      /^\s*(On\s+\d{1,2}(?:st|nd|rd|th)?\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{2,4}[^\n]{0,260})$/im,
+      /^\s*(Between\s+[^,\n]{3,}\s+and\s+[^\n]{3,260})$/im,
+      /^\s*(During\s+[^\n]{3,260})$/im,
+      /^\s*(Throughout\s+[^\n]{3,260})$/im,
+      /^\s*(Some\s+time\s+(?:in|on|between|during)\s+[^\n]{3,260})$/im,
       /^\s*Short\s+title:\s*(.+)$/im,
     ]) ?? null;
   if (chargeOrTagOrShort) {
@@ -1317,7 +1370,7 @@ function buildBundleGroundedFallback(
     "the accused";
 
   if (/\bprimary allegation\b/i.test(q)) {
-    const line = buildStrictPrimaryAllegationAnswer(bundleFullText);
+    const line = stripQ1NonAllegationWording(buildStrictPrimaryAllegationAnswer(bundleFullText));
     if (line) return line;
   }
 
@@ -1864,6 +1917,18 @@ const GOLD_Q3_HEADINGS = [
   "DISCLOSURE SCHEDULE NOTE",
 ] as const;
 
+const GOLD_Q7_ELEMENT_HEADINGS = [
+  "ELEMENTS TO PROVE",
+  "ELEMENTS THE PROSECUTION MUST PROVE",
+  "WHAT THE CROWN MUST PROVE",
+  "WHAT THE PROSECUTION MUST PROVE",
+  "PROSECUTION ELEMENTS",
+  "OFFENCE ELEMENTS",
+  "ELEMENTS OF THE OFFENCE",
+  "STATUTORY ELEMENTS",
+  "PROOF MAP",
+] as const;
+
 const GOLD_Q8_PRESSURE_HEADINGS = [
   "PROSECUTION WEAKNESS PRESSURE",
   "PROSECUTION WEAKNESS",
@@ -2068,15 +2133,20 @@ type EvalTrapFindings = {
 };
 
 const TRAP_ABSENCE_PATTERNS = [
-  /not\s+(?:identified|served|referenced|listed|named|provided|available|recorded|disclosed)/i,
+  /not\s+(?:identified|served|referenced|listed|named|provided|available|recorded|disclosed|on\s+file|in\s+(?:the\s+)?(?:bundle|schedule|disclosure|file))/i,
   /no(?:t)?\s+(?:cctv|999|cad|mg11|exhibit|interview|disclosure)\b/i,
-  /\bno\s+(?:reference|record|entry|item|comment\s+only)\b/i,
+  /\bno\s+(?:reference|record|entry|item|comment\s+only|cctv|999|cad|exhibits?|witness\s+statements?|disclosure\s+note)\b/i,
+  /\bmissing\s+from\s+(?:the\s+)?(?:bundle|file|disclosure|schedule|papers)\b/i,
+  /\bnot\s+on\s+(?:the\s+)?(?:file|bundle|schedule|papers)\b/i,
+  /\babsent\s+from\s+(?:the\s+)?(?:bundle|file|disclosure|schedule|papers)\b/i,
+  /\b(?:item|entry|reference|exhibit)\s+absent\b/i,
   /\boutstanding\b/i,
-  /\bnothing\s+identified\b/i,
-  /\bnone\s+listed\b/i,
+  /\bnothing\s+(?:identified|recorded|served|listed|disclosed)\b/i,
+  /\bnone\s+(?:listed|served|identified|recorded|disclosed)\b/i,
   /\bawaited\b/i,
+  /\bpending\s+(?:service|disclosure|identification)\b/i,
   /\bno\s+comment\s+only\b/i,
-  /\bnot\s+yet\s+(?:served|disclosed|identified|named)\b/i,
+  /\bnot\s+yet\s+(?:served|disclosed|identified|named|provided|on\s+file|in\s+(?:the\s+)?(?:bundle|schedule))\b/i,
 ];
 
 function findTrapLine(bundleFullText: string, lead: RegExp): string | null {
@@ -2112,6 +2182,59 @@ function readEvalTrapFindings(bundleFullText: string): EvalTrapFindings {
 
 function evalTrapHasAnyFinding(t: EvalTrapFindings): boolean {
   return Boolean(t.cctv || t.cad || t.n999 || t.mg11 || t.interview || t.exhibits || t.mg6);
+}
+
+/* ---------------------------------------------------------------------------
+ * Q7 — CB-GOLD / CB-TRAP "what must the prosecution still prove" builder.
+ * Uses gold-file ELEMENTS sections when present, else falls back to the printed
+ * charge label / particulars on the file. Never invents statutory elements.
+ * ------------------------------------------------------------------------- */
+function buildEvalFileProsecutionProveAnswer(bundleFullText: string): string | null {
+  if (!isEvalGoldBundle(bundleFullText) && !isEvalTrapBundle(bundleFullText)) return null;
+
+  const elements = extractEvalLabelledSection(bundleFullText, GOLD_Q7_ELEMENT_HEADINGS);
+  const route = extractEvalLabelledSection(bundleFullText, GOLD_Q8_ROUTE_HEADINGS);
+  const labelRaw =
+    firstMatch(bundleFullText, [
+      /^\s*Offence\(s\)\s+as\s+tag:\s*(.+)$/im,
+      /^\s*Offence\(s\)\s+as\s+charged\s*:?\s*(.+)$/im,
+      /^\s*Charge\s+wording\s*:?\s*(.+)$/im,
+      /^\s*Charge\s*:?\s*(.+)$/im,
+      /^\s*Particulars\s*(?:of\s+offence)?\s*:?\s*(.+)$/im,
+      /^\s*Statement\s+of\s+offence\s*:?\s*(.+)$/im,
+      /^\s*Indictment\s*:?\s*(.+)$/im,
+      /^\s*Offence\(s\):\s*(.+)$/im,
+      /^\s*Charge\s+sheet\s+extract\s*[:\-]?\s*(.+)$/im,
+      /^\s*Allegation:\s*(.+)$/im,
+      /^\s*The\s+offence\s+charged\s*[:\-]\s*(.+)$/im,
+      /^\s*The\s+allegation\s+is\s+that\s+(.+)$/im,
+      /^\s*Count\s*1[^:]{0,24}:\s*(.+)$/im,
+      /^\s*(On\s+\d{1,2}[\s\/.\-]\d{1,2}[\s\/.\-]\d{2,4}[^\n]{0,260})$/im,
+      /^\s*(On\s+\d{1,2}(?:st|nd|rd|th)?\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{2,4}[^\n]{0,260})$/im,
+      /^\s*(Between\s+[^,\n]{3,}\s+and\s+[^\n]{3,260})$/im,
+      /^\s*Short\s+title:\s*(.+)$/im,
+    ])?.replace(/\(fictional charge drafting for test data\)\.?/gi, "") ?? null;
+  const label = labelRaw ? compactOneLine(labelRaw).slice(0, 280) : "";
+
+  if (!elements && !route && !label) return null;
+
+  const core = elements
+    ? `Core point: For the charged label on the papers, the Crown must prove each element published on this eval file (${compactOneLine(elements).slice(0, 240)}).`
+    : label
+      ? `Core point: For the charged label on the papers (${label}), the Crown must prove every statutory element of that offence to the criminal standard, using only evidence lawfully before the court.`
+      : `Core point: The Crown must prove every statutory element of the charged offence using evidence lawfully before the court (see published route on this eval file).`;
+
+  const evParts: string[] = [];
+  if (elements) evParts.push(`Elements section: ${compactOneLine(elements).slice(0, 240)}`);
+  if (route) evParts.push(`Crown route: ${compactOneLine(route).slice(0, 240)}`);
+  if (label && !elements) evParts.push(`Charge wording: ${label.slice(0, 240)}`);
+  const ev = `Evidence reference: ${evParts.length > 0 ? evParts.join(" | ") : "See ELEMENTS / charge wording on this eval file."}`;
+
+  const next = elements
+    ? "Next step: Map MG5/MG6 and named exhibits against each printed element; do not infer un-listed limbs."
+    : "Next step: Derive each statutory element from the printed charge wording, then map MG5/MG6 and exhibit rows to each limb on the file.";
+
+  return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
 }
 
 /* ---------------------------------------------------------------------------
@@ -2321,7 +2444,16 @@ function buildGoldenDeterministicInterpretiveSweep(
 ): string | null {
   const preferEvalFile = isEvalGoldBundle(bundleFullText) || isEvalTrapBundle(bundleFullText);
 
-  if (isGoldenProsecutionProveQuestion(message)) return buildGoldenProsecutionProveDeterministic(bundleFullText, snapshot);
+  if (isGoldenProsecutionProveQuestion(message)) {
+    if (preferEvalFile) {
+      const evalAns = buildEvalFileProsecutionProveAnswer(bundleFullText);
+      if (evalAns) return evalAns;
+    }
+    return (
+      buildGoldenProsecutionProveDeterministic(bundleFullText, snapshot) ??
+      buildEvalFileProsecutionProveAnswer(bundleFullText)
+    );
+  }
 
   if (isGoldenProsecutionWeaknessQuestion(message)) {
     if (preferEvalFile) {
@@ -2361,6 +2493,7 @@ function buildGoldenDeterministicInterpretiveSweep(
  */
 function buildEvalFileRescueAnswer(message: string, bundleFullText: string): string | null {
   if (isGoldenMissingEvidenceQuestion(message)) return buildEvalFileMissingEvidenceAnswer(bundleFullText);
+  if (isGoldenProsecutionProveQuestion(message)) return buildEvalFileProsecutionProveAnswer(bundleFullText);
   if (isGoldenProsecutionWeaknessQuestion(message)) return buildEvalFileProsecutionWeaknessAnswer(bundleFullText);
   if (isGoldenDefenceWeaknessQuestion(message)) return buildEvalFileDefenceWeaknessAnswer(bundleFullText);
   if (isGoldenNext24HoursQuestion(message)) return buildEvalFileNext24Answer(bundleFullText);
@@ -4563,7 +4696,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   }
 
   if (isStrictPrimaryAllegationQuestion(message)) {
-    const line = buildStrictPrimaryAllegationAnswer(combinedBundleFull);
+    const line = stripQ1NonAllegationWording(buildStrictPrimaryAllegationAnswer(combinedBundleFull));
     if (line) {
       return jsonWithRoute(
         {
