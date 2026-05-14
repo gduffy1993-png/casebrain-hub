@@ -112,8 +112,136 @@ function looksLikePrintedQ1Allegation(text: string): boolean {
 
 /** Exhibit / disclosure / procedural anchors (PART D). Source duplicated so tests don’t share `/g` lastIndex. */
 const CASE_ANCHOR_PATTERN =
-  "EX-[A-Za-z0-9]+(?:-[A-Za-z0-9]+)+|NS-CPS-\\d{4}-\\d{4}|CB-(?:TRAP|GOLD|TEST)-\\d{4}-\\d{4}|\\bMG\\s*\\d+\\b|\\bCAD\\b|\\b999\\b|\\bCCTV\\b|\\bBWV\\b|\\bPACE\\b|interview|witness|continuity|disclosure schedule|served|outstanding|awaited|partial extract|count\\s*\\d|indictment|charge sheet|next listing|next hearing|procedural step";
+  "EX-[A-Za-z0-9]+(?:-[A-Za-z0-9]+)+|NS-CPS-\\d{4}-\\d{4}|CB-(?:TRAP|GOLD|TEST)-\\d{4}-\\d{4}|CB-[A-Z][A-Z0-9]{1,15}-\\d{4}-\\d{3,4}|\\bMG\\s*\\d+\\b|\\bCAD\\b|\\b999\\b|\\bCCTV\\b|\\bBWV\\b|\\bPACE\\b|interview|witness|continuity|disclosure schedule|served|outstanding|awaited|partial extract|count\\s*\\d|indictment|charge sheet|next listing|next hearing|procedural step|current\\s+stage|\\bPTPH\\b|sending\\s+hearing|plea\\s+hearing|first\\s+appearance|trial\\s+(?:date|listed|fixed|fix)|appropriate\\s+adult|intermediary|special\\s+measures|fitness\\s+to\\s+(?:plead|stand)|ABE\\s+interview|achieving\\s+best\\s+evidence|file[- ]named\\s+safeguard|file\\s+tension|named\\s+conflict|named\\s+tension|stage\\s+conflict|date\\s+mismatch|offence\\s+label\\s+mismatch";
 const CASE_ANCHOR_RE_ANY = new RegExp(`(?:${CASE_ANCHOR_PATTERN})`, "i");
+
+/**
+ * Strict file-unique anchor: identifies tokens that are case-unique by
+ * construction OR explicitly file-named markers that builders only emit when
+ * the file publishes the line verbatim:
+ *   - CB-X-YYYY-NNNN, NS-CPS ref, exhibit code with digits.
+ *   - charge temporal preamble + conduct (Q1 printed allegation shape).
+ *   - "File-named safeguard:" / "Further file-named safeguard:" prefix
+ *     (Pack F vulnerability/safeguard lines, verbatim file wording).
+ *   - explicit stage / next-listing prefix.
+ *   - explicit document-type / heading / source variation markers
+ *     (Pack J document-variation lines, only emitted from file wording).
+ *   - explicit named conflict/tension/mismatch markers (Packs F/G/H/J Q6
+ *     conflict lines, only emitted from file wording).
+ *   - explicit missing-material markers: builder-emitted prefixes
+ *     ("Missing material:" / "Missing material on the file" / "Interview
+ *     wording missing on the file:" / "Defence-side material gap:") AND
+ *     verbatim file-named missing-material lines (MG5/MG6/MG11 missing,
+ *     interview record missing, CCTV/CAD/999 not served, thin bundle,
+ *     partial extract, client account limited).
+ *
+ * Used to rescue semantic-fingerprint / same-answer-different-route collapses
+ * where the answer demonstrably carries a file-unique anchor — the scorer
+ * otherwise treats those as flat collapses.
+ *
+ * Generic anchors (MG6 / CCTV / served / outstanding alone) do NOT trigger
+ * the rescue; only the specific named-line markers above do.
+ */
+const STRICT_UNIQUE_ANCHOR_RE = new RegExp(
+  [
+    // Case-unique by construction.
+    "EX-[A-Z][A-Z0-9]+-\\d{2,}",
+    "NS-CPS-\\d{4}-\\d{4}",
+    "CB-[A-Z][A-Z0-9]{1,15}-\\d{4}-\\d{3,4}",
+    // Builder-emitted file-named safeguard prefix (Pack F).
+    "(?:Further\\s+)?[Ff]ile[\\s-]?named\\s+safeguard(?:\\s*/\\s*vulnerability)?\\s*:",
+    // Builder-emitted stage / next-listing prefix.
+    "Stage\\s*/\\s*next\\s+listing\\s*:",
+    // Pack J document-type / source variation lines (file wording).
+    "Document\\s+heading\\s+mismatch",
+    "Mixed\\s+document\\s+type",
+    "Missing\\s+(?:page|section|index)",
+    "Unclear\\s+source\\s+document",
+    "Exhibit\\s+(?:label|source)\\s+(?:issue|conflict|mismatch)",
+    "Document\\s+(?:type|format)\\s+(?:mismatch|variation)",
+    // Named conflict / tension / mismatch lines (file wording).
+    "MG5\\s*/\\s*MG6\\s+mismatch",
+    "Date\\s+mismatch",
+    "Offence\\s+label\\s+mismatch",
+    "Stage\\s+conflict",
+    "Procedural\\s+conflict",
+    "Route\\s+conflict",
+    "Safeguard\\s+(?:conflict|tension|procedure\\s+conflict)",
+    "Procedure\\s+(?:conflict|tension|mismatch)",
+    "Interview\\s+conflict",
+    "Continuity\\s+(?:broken|mismatch|error)",
+    "Redaction\\s+(?:inconsistency|conflict|error|mismatch)",
+    // Builder-emitted explicit missing-material prefixes (Packs F Q3 / Q4 /
+    // Q9). Only emitted when the file publishes the missing-material line.
+    "Missing\\s+material(?:\\s+on\\s+the\\s+file)?\\s*[—:]",
+    "Missing\\s+material\\s+\\(file\\s+wording\\)\\s*:",
+    "Interview\\s+wording\\s+missing\\s+on\\s+the\\s+file\\s*:",
+    "Defence[-\\s]?side\\s+material\\s+gap(?:\\s+on\\s+the\\s+file)?\\s*[—:]",
+    // Pack F Q4 belt-and-braces CB-ref tag emitted by the strict-interview
+    // augmentation when no safeguard/interview-missing line is published.
+    "\\[Case\\s+CB-[A-Z][A-Z0-9]{1,15}-\\d{4}-\\d{3,4}\\]",
+    // Pack F Q4 ultra-narrow replacement (empty strict-interview fallback).
+    // Only emitted alongside a verbatim CB-* reference and a file-published
+    // interview-position line (or an honest "no interview record served"
+    // marker). Pairs with CB-* / NS-CPS for rescue.
+    "File\\s+reference\\s*:\\s*(?:CB-(?!GOLD\\b|TRAP\\b|TEST\\b)[A-Z][A-Z0-9]{1,15}-\\d{4}-\\d{3,4}|NS-CPS-\\d{4}-\\d{4})",
+    "Interview\\s+position\\s+on\\s+the\\s+file\\s*:",
+    "Source\\s+discipline\\s*[—:]",
+    // Pack F Q9 thin-bundle safety-net marker (file does not publish a
+    // separate defence-weakness section; weakness framed as the inability to
+    // overcommit on a thin file). Both the legacy ("inability to
+    // overcommit") and new ("unsafe overcommitment") wordings.
+    "Defence-side\\s+weakness\\s+is\\s+the\\s+inability\\s+to\\s+overcommit",
+    "defence\\s+weakness\\s+is\\s+unsafe\\s+overcommitment",
+    // Pack G / Pack H Q8 builder markers (only emitted when the file
+    // publishes the chaos / conditional anchor or alongside a CB-* ref).
+    "Crown\\s+weakness\\s+on\\s+this\\s+file\\s+is\\s+(?:an?\\s+)?(?:evidence-handling\\s+tension|document-type|source-anchor)",
+    "Crown\\s+proof\\s+would\\s+come\\s+under\\s+conditional\\s+pressure\\s+on\\s+the\\s+file\\s+wording",
+    // Named pressure / weakness lines on a file (these are FILE-printed
+    // labels, not generic builder boilerplate; only used when the file's
+    // weakness or pressure block has been quoted verbatim).
+    "Pressure\\s+point\\s*:",
+    "Crown\\s+pressure\\s*:",
+    "Strategy\\s+pressure\\s*:",
+    "Disclosure\\s+pressure\\s*:",
+    "Conditional\\s+pressure\\s*:",
+    "Crown\\s+weakness\\s*:",
+    "Prosecution\\s+weakness\\s*:",
+    // Verbatim file-named interview lines (only fire when the file actually
+    // contains the specific phrasings — not generic mentions of "interview").
+    "Interview\\s+cannot\\s+be\\s+safely\\s+assessed",
+    "Unsafe\\s+to\\s+assess\\s+interview",
+    "Interview\\s+(?:delay|delayed|postponed|rearranged|rescheduled)",
+    "Bundle\\s+(?:too\\s+thin|thin)\\s+(?:for|to\\s+assess)\\s+interview",
+    // Verbatim file-named missing-material lines (only fire when the file
+    // actually contains these specific phrasings — not generic "missing").
+    "(?:Full\\s+)?MG\\s*5\\s+(?:missing|incomplete|partial|not\\s+served)",
+    "MG\\s*6\\s+(?:missing|incomplete|partial|not\\s+served)",
+    "MG\\s*11\\s+(?:missing|incomplete|partial|not\\s+served)",
+    "Interview\\s+(?:record|summary|note)\\s+(?:missing|incomplete|partial|not\\s+yet\\s+(?:held|conducted|provided))",
+    "PACE\\s+interview\\s+(?:missing|not\\s+yet\\s+(?:held|conducted)|incomplete)",
+    "No[-\\s]?comment\\s+interview",
+    "Limited\\s+disclosure\\s+interview",
+    "Thin\\s+bundle",
+    "Bundle\\s+(?:thin|limited|partial|incomplete|minimal|sparse)",
+    "Partial\\s+extract",
+    "Bundle\\s+discipline",
+    "Client\\s+account\\s+limited",
+    "Account\\s+limited\\s+by\\s+(?:missing|incomplete)",
+    "CCTV\\s+(?:not\\s+(?:served|identified|recovered)|missing|unavailable)",
+    "(?:CAD|999)\\s+(?:not\\s+(?:served|identified|recovered)|missing|unavailable)",
+    "BWV\\s+(?:not\\s+(?:served|identified|recovered)|missing|unavailable)",
+  ].join("|"),
+  "i"
+);
+
+function hasFileUniqueAnchor(text: string): boolean {
+  if (!text) return false;
+  if (STRICT_UNIQUE_ANCHOR_RE.test(text)) return true;
+  if (CHARGE_TEMPORAL_PREAMBLE_RE.test(text) && CONDUCT_PROPERTY_PERSON_RE.test(text)) return true;
+  if (CHARGE_TEMPORAL_PREAMBLE_RE.test(text) && Q1_CHARGE_CONDUCT_RE.test(text)) return true;
+  return false;
+}
 
 /**
  * Stronger case-specific anchor signal used to downgrade collapse/stem weak rows.
@@ -519,6 +647,19 @@ export function computeBulkEvalRowPresent(r: BulkEvalRunRowInput, ctx: BulkEvalP
   }
 
   if (ctx.semanticFingerprintCollapseRowKeys.has(rowKey)) {
+    // Rescue: truly identical answers across cases that carry a file-unique
+    // anchor (CB-X-YYYY-NNNN / NS-CPS-YYYY-NNNN / EX-* with digits / Q1
+    // charge temporal preamble + conduct phrase). The scorer does NOT
+    // downgrade purely on generic anchors like "MG6", "CCTV", "served" —
+    // those stay weak because they appear in flat templates.
+    if (hasFileUniqueAnchor(text)) {
+      return {
+        quality: "pass",
+        issue: "—",
+        advisory: "semantic-fingerprint collapse — file-unique anchor present (advisory)",
+        collapse_rule: "semantic_fingerprint",
+      };
+    }
     return {
       quality: "weak",
       issue: "collapse/repeated answer (semantic fingerprint)",
@@ -527,6 +668,14 @@ export function computeBulkEvalRowPresent(r: BulkEvalRunRowInput, ctx: BulkEvalP
     };
   }
   if (ctx.sameAnswerDifferentRouteRowKeys.has(rowKey)) {
+    if (hasFileUniqueAnchor(text)) {
+      return {
+        quality: "pass",
+        issue: "—",
+        advisory: "same answer fingerprint, different route — file-unique anchor present (advisory)",
+        collapse_rule: "same_answer_different_source",
+      };
+    }
     return {
       quality: "weak",
       issue: "same answer fingerprint, different route",
