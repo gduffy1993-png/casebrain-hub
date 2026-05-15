@@ -262,8 +262,8 @@ const STRICT_UNIQUE_ANCHOR_RE = new RegExp(
     "do\\s+not\\s+infer\\s+extra\\s+contradictions\\s+or\\s+blend\\s+defendants",
     // Packs L / N / O / P / Q / R / S / T structured-eval builders (narrow
     // phrases only emitted from those pack-gated paths).
-    "EX-(?:L|N|O|P|Q|R|S|T)-[A-Z0-9]+(?:-[A-Z0-9]+)*(?:-\\d{2,})?",
-    "EX-[LNOPQRST]\\s+exhibit\\s+codes\\s+on\\s+file\\s*:",
+    "EX-(?:L|N|O|P|Q|R|S|T|U)-[A-Z0-9]+(?:-[A-Z0-9]+)*(?:-\\d{2,})?",
+    "EX-[LNOPQRSTU]\\s+exhibit\\s+codes\\s+on\\s+file\\s*:",
     "prosecution\\s+weakness\\s+is\\s+stage/procedure\\s+pressure\\s*:",
     "prosecution\\s+weakness\\s+is\\s+safeguard/procedure\\s+pressure\\s*:",
     "prosecution\\s+weakness\\s+is\\s+the\\s+file-published\\s+instruction\\s+conflict\\s*:",
@@ -273,6 +273,15 @@ const STRICT_UNIQUE_ANCHOR_RE = new RegExp(
     "no\\s+safe\\s+contradiction\\s+can\\s+be\\s+finalised\\s+on\\s+this\\s+thin\\s+file",
     "solicitor\\s+review\\s+readiness\\s+on\\s+the\\s+file\\s+is\\s+limited\\s+by",
     "missing/incomplete\\s+material\\s+and\\s+document-integrity\\s+context",
+    // Pack U OCR/scanned eval builders (verbatim file lines in Evidence; phrases only from Pack U path).
+    "Core\\s+allegation\\s*:",
+    "Charge\\s*/\\s*visual-proof\\s+lines\\s*:",
+    "Interview/client-account\\s+lines\\s*:",
+    "Visual/source\\s+limitation\\s+lines\\s*:",
+    "no\\s+reliable\\s+interview/client\\s+account\\s+wording",
+    "interview/client\\s+account\\s+on\\s+the\\s+file\\s+is",
+    "prosecution\\s+weakness\\s+is\\s+the\\s+visual/source\\s+limitation\\s*:",
+    "defence\\s+weakness\\s+is\\s+unsafe\\s+overreliance\\s+on\\s+visual\\s+material",
     "the\\s+live\\s+inconsistency\\s*/\\s*procedure\\s+tension\\s+on\\s+the\\s+file\\s+is",
     "At\\s+the\\s+file-published\\s+stage\\s+\\(",
     "Stage\\s+/\\s+listing\\s+lines\\s*:",

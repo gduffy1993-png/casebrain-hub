@@ -1245,6 +1245,8 @@ function isStrictPrimaryAllegationQuestion(question: string): boolean {
 function stripQ1NonAllegationWording(answer: string | null): string | null {
   if (!answer) return answer;
   let out = answer;
+  // OCR/heading fragments (Pack U scanned bundles) — not a charge line.
+  out = out.replace(/(^|[\s;.\-])\/\s*allegation\b\.?/gi, "$1");
   out = out.replace(
     /(^|[\s;.\-])(Grounds\s+for\s+dispute(?:\s*\/\s*friction(?:\s*\(fiction\))?)?\s*:?[^.;]*[.;])/gi,
     "$1"
@@ -3794,9 +3796,427 @@ function isPackTSolicitorReviewEvalBundle(bundleFullText: string): boolean {
   return /\bPACK\s*T\b/i.test(bundleFullText) || /\bCB-REVIEW\b/i.test(bundleFullText) || /\bCB-READY\b/i.test(bundleFullText);
 }
 
+/**
+ * Pack U — Scanned / Photo / OCR fictional eval bundles only (`PACK U`,
+ * `CB-OCR`, `CB-SCAN`, `CB-PHOTO`, `EX-U-*`). Narrow markers so A–T packs
+ * are unchanged when these tokens are absent.
+ */
+function isPackUScannedPhotoOcrEvalBundle(bundleFullText: string): boolean {
+  if (!bundleFullText || !isStructuredEvalBundle(bundleFullText)) return false;
+  return (
+    /\bPACK\s*U\b/i.test(bundleFullText) ||
+    /\bCB-OCR\b/i.test(bundleFullText) ||
+    /\bCB-SCAN\b/i.test(bundleFullText) ||
+    /\bCB-PHOTO\b/i.test(bundleFullText) ||
+    /\bEX-U-/i.test(bundleFullText)
+  );
+}
+
+/** Long-line collector for OCR/scanned bundles (charge/particulars can exceed 320 chars). */
+function collectPackULongSignalLines(
+  bundleFullText: string,
+  matcher: (line: string, upper: string) => boolean,
+  max: number,
+  maxLineLen = 520
+): string[] {
+  if (!bundleFullText) return [];
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const raw of bundleFullText.split(/\r?\n/)) {
+    if (out.length >= max) break;
+    const line = raw.trim();
+    if (!line || line.length < 8 || line.length > maxLineLen) continue;
+    if (looksLikeNewEvalSectionHeader(line)) continue;
+    const upper = line.toUpperCase();
+    if (!matcher(line, upper)) continue;
+    const key = upper.replace(/\s+/g, " ").slice(0, 200);
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(softTruncate(line, 400));
+  }
+  return out;
+}
+
+function extractPackUCaseAnchor(bundleFullText: string): string | null {
+  const ocr = bundleFullText.match(/\bCB-OCR-\d{4}-\d{3,4}\b/i)?.[0]?.toUpperCase();
+  if (ocr) return ocr;
+  const scan = bundleFullText.match(/\bCB-SCAN-\d{4}-\d{3,4}\b/i)?.[0]?.toUpperCase();
+  if (scan) return scan;
+  const photo = bundleFullText.match(/\bCB-PHOTO-\d{4}-\d{3,4}\b/i)?.[0]?.toUpperCase();
+  if (photo) return photo;
+  const exU = extractStructuredEvalPackLetterExhibitCodes(bundleFullText, "U", 1)[0];
+  if (exU) return exU;
+  const cs = extractCaseSpecificRef(bundleFullText);
+  if (cs && /\bCB-(?:OCR|SCAN|PHOTO)\b/i.test(cs)) return cs.toUpperCase();
+  return extractCaseSpecificRef(bundleFullText);
+}
+
+function isPackUJunkPrimaryAllegationLine(s: string): boolean {
+  const c = compactOneLine(s).trim();
+  if (c.length < 16) return true;
+  if (/^\/+\s*allegation\b\.?$/i.test(c)) return true;
+  if (/^allegation\b\.?$/i.test(c)) return true;
+  if (/^charge\s*\/\s*allegation\b\.?$/i.test(c)) return true;
+  if (/^ch\s*\/\s*allegation\b\.?$/i.test(c)) return true;
+  return false;
+}
+
+/** Q1-only: label-only offence tag lines that collapse across cases unless enriched. */
+function isPackUThinOffenceTypeOrChargeAllegationLabel(s: string): boolean {
+  const c = compactOneLine(s).trim();
+  if (/^\s*Offence\s+type\s*:\s*[^,.;:]{1,42}\s*\.?$/i.test(c)) return true;
+  if (/^\s*Charge\s*\/\s*allegation\s*:\s*[^,.;:]{1,42}\s*\.?$/i.test(c)) return true;
+  if (/^\s*Offence\s+type\s*:/i.test(c) && c.length < 72) return true;
+  if (/^\s*Charge\s*\/\s*allegation\s*:/i.test(c) && c.length < 72) return true;
+  return false;
+}
+
+function extractPackUQ1PrintedDefendantName(bundleFullText: string): string | null {
+  const d =
+    firstMatch(bundleFullText, [
+      /^\s*Accused\s*:\s*([A-Za-z][^\n,]{1,72})/im,
+      /^\s*Defendant\s*:\s*([A-Za-z][^\n,]{1,72})/im,
+      /^\s*Defendant\s+name\s*:\s*([A-Za-z][^\n,]{1,72})/im,
+    ]) ?? null;
+  if (!d) return null;
+  const one = compactOneLine(d).replace(/\s*\(.*$/, "").trim();
+  return one.length >= 3 && one.length <= 90 ? one : null;
+}
+
+/** MG5 / Crown summary allegation wording (verbatim lines only). */
+function collectPackUMg5CrownAllegationNarrativeLines(bundleFullText: string, max = 6): string[] {
+  return collectPackULongSignalLines(
+    bundleFullText,
+    (_line, U) =>
+      /\bMG5\s+SUMMARY\s+LINE\s*:/i.test(_line) ||
+      /\bTHE\s+CROWN\s+SUMMARY\s+ALLEGES\b/i.test(U) ||
+      /\bCROWN\s+SUMMARY\s+ALLEGES\b/i.test(U) ||
+      /\bWAS\s+INVOLVED\s+IN\s+THE\s+OFFENCE\s+AT\b/.test(U) ||
+      (/\bALLEGES\s+THAT\b/.test(U) && /\b(CROWN|MG5|SUMMARY)\b/.test(U)),
+    max
+  );
+}
+
+function finalizePackUPrimaryAllegationOneLine(
+  bundleFullText: string,
+  candidate: string,
+  leadRef: string | null
+): string {
+  const c = compactOneLine(candidate).trim();
+  if (!c) return candidate;
+
+  if (!isPackUThinOffenceTypeOrChargeAllegationLabel(c)) {
+    return c;
+  }
+
+  const ref = leadRef?.trim() || null;
+  const mg5Ranked = [
+    ...collectPackUMg5CrownAllegationNarrativeLines(bundleFullText, 5),
+    ...extractStructuredEvalLines(
+      bundleFullText,
+      ["MG5 SUMMARY", "MG5 — CASE SUMMARY", "MG5 CASE SUMMARY", "MG5"] as const,
+      2
+    ),
+    ...collectPackUStrategyImageMg5Lines(bundleFullText, 3),
+  ];
+  const cLow = c.toLowerCase();
+  const mg5Pick =
+    mg5Ranked.find((ln) => {
+      const L = compactOneLine(ln);
+      if (L.length < 28 || L.toLowerCase() === cLow) return false;
+      return /\b(ALLEG|MG5|CROWN|INVOLVED\s+IN\s+THE\s+OFFENCE|SUMMARY|DEFENDANT|COMPLAINANT)\b/i.test(L);
+    }) ??
+    mg5Ranked.find((ln) => {
+      const L = compactOneLine(ln);
+      return L.length >= 28 && L.toLowerCase() !== cLow;
+    }) ??
+    null;
+
+  const defendant = extractPackUQ1PrintedDefendantName(bundleFullText);
+  const offenceTail = c.replace(/^\s*(?:Offence\s+type|Charge\s*\/\s*allegation)\s*[:\-]\s*/i, "").trim() || c;
+
+  if (ref && mg5Pick) {
+    return `Core allegation: ${ref} — the printed papers identify ${c} and MG5 on the file says the Crown alleges ${compactOneLine(mg5Pick)}.`;
+  }
+  if (ref && defendant) {
+    return `Core allegation: ${ref} — ${defendant} is alleged, on the printed file wording, to be involved in ${offenceTail}.`;
+  }
+  if (ref) {
+    return `Core allegation: ${ref} — ${c}.`;
+  }
+  return c;
+}
+
+function collectPackUChargeCandidateLines(bundleFullText: string, max = 6): string[] {
+  return collectPackULongSignalLines(
+    bundleFullText,
+    (_line, U) =>
+      /\b(CHARGE|ALLEGATION)\b/.test(U) ||
+      /\bEXACT\s+CHARGE\s+WORDING\b/.test(U) ||
+      /\bOFFENCE\s+TYPE\b/.test(U) ||
+      /\bSTATEMENT\s+OF\s+OFFENCE\b/.test(U) ||
+      /\bPARTICULARS\s+OF\s+OFFENCE\b/.test(U) ||
+      /\bIS\s+ALLEGED\s+TO\b/.test(U) ||
+      /\bCONTRARY\s+TO\b/.test(U) ||
+      (/\bON\s+\d{1,2}[\s\/.\-]\d{1,2}[\s\/.\-]\d{2,4}\b/.test(U) &&
+        /\b(AT|IN|,)\b/.test(U) &&
+        /\b(?:unlawfully|maliciously|dishonestly|assault|theft|robbed|wounding|harm|inflict|caused|contrary\s+to|is\s+alleged\s+to)\b/i.test(
+          _line
+        )),
+    max
+  );
+}
+
+function collectPackUInterviewClientAccountLines(bundleFullText: string, max = 8): string[] {
+  return collectPackULongSignalLines(
+    bundleFullText,
+    (_line, U) =>
+      /\bINTERVIEW\b.*\bCLIENT\b/.test(U) ||
+      /\bCLIENT\s+ACCOUNT\b/.test(U) ||
+      /\bINTERVIEW\s*\/\s*CLIENT\s+ACCOUNT\b/.test(U) ||
+      /\bCLIENT\s+ACCOUNT\s*:/.test(U) ||
+      /\bINTERVIEW\s*:/.test(U) ||
+      /\bNO\s+COMMENT\b/.test(U) ||
+      /\bDENIED\s+THE\s+ALLEGATION\b/.test(U) ||
+      /\bPARTIAL\s+ADMISSION\b/.test(U) ||
+      /\bALTERNATIVE\s+EXPLANATION\b/.test(U) ||
+      /\bCLIENT\s+DISPUTES\s+IDENTIFICATION\b/.test(U) ||
+      /\bCLIENT\s+SAYS\b.*\b(SCREENSHOT|PHOTO)\b/.test(U) ||
+      /\bCLIENT\s+SAYS\b.*\b(TIMESTAMP|CONTEXT|SOURCE)\b/.test(U) ||
+      /\bDEFENCE\s+SAYS\b.*\bVISUAL\b/.test(U) ||
+      /\bDEFENCE\s+SAYS\b.*\b(INCOMPLETE|UNSAFE|LOW[-\s]?CONFIDENCE)\b/.test(U),
+    max
+  );
+}
+
+function collectPackUVisualOcrLimitationLines(bundleFullText: string, max = 10): string[] {
+  return collectPackULongSignalLines(
+    bundleFullText,
+    (_line, U) =>
+      /\bIMAGE\s+SAFETY\b/.test(U) ||
+      /\bVISUAL\s+EVIDENCE\b/.test(U) ||
+      /\bOCR\s+QUALITY\b/.test(U) ||
+      /\bFACE\s+NOT\s+SAFELY\s+IDENTIFIABLE\b/.test(U) ||
+      /\bFULL\s+CCTV\s+MASTER\s+OUTSTANDING\b/.test(U) ||
+      /\bSOURCE\s+FILE\s+NOT\s+SERVED\b/.test(U) ||
+      /\bCONTINUITY\b.*\bPROVENANCE\b/.test(U) ||
+      /\bPROVENANCE\b/.test(U) ||
+      /\bFULL[-\s]?RESOLUTION\s+ORIGINAL\s+NOT\s+SERVED\b/.test(U) ||
+      /\bSCREENSHOT\s+SENDER\s+CROPPED\b/.test(U) ||
+      /\bPHOTO\s+HAS\s+NO\s+TIMESTAMP\b/.test(U) ||
+      /\bIMAGE\s+TOO\s+BLURR(?:Y|ED)?\b/.test(U) ||
+      /\bLOW[-\s]?CONFIDENCE\b/.test(U) ||
+      /\bCANNOT\s+CONFIRM\s+CAUSATION\s+FROM\s+PHOTO\s+ALONE\b/.test(U) ||
+      /\bMALICIOUS\s+NOTE\b/.test(U) ||
+      /\bPROMPT[-\s]?INJECTION\b/.test(U) ||
+      /\bTREAT\s+VISIBLE\s+TEXT\s+AS\s+EVIDENCE\b/.test(U) ||
+      /\bEXHIBIT\s+LABEL\s+CONFLICTS\s+WITH\s+MG6\b/.test(U) ||
+      /\bTIMESTAMP\s+VISIBLE\b.*\bSOURCE\s+FILE\s+NOT\s+SERVED\b/.test(U),
+    max
+  );
+}
+
+function collectPackUStrategyImageMg5Lines(bundleFullText: string, max = 6): string[] {
+  return collectPackULongSignalLines(
+    bundleFullText,
+    (_line, U) =>
+      /\bMG5\s+SUMMARY\b/.test(U) ||
+      /\bSTRATEGY\s+USEFULNESS\b/.test(U) ||
+      /\bTHIS\s+MAY\s+ASSIST\s+THE\s+CROWN\b/.test(U) ||
+      /\bTHIS\s+MAY\s+ASSIST\s+THE\s+DEFENCE\b/.test(U),
+    max
+  );
+}
+
+function buildPackUPrimaryAllegationAnswer(bundleFullText: string): string | null {
+  if (!isPackUScannedPhotoOcrEvalBundle(bundleFullText)) return null;
+  const cbOcr = bundleFullText.match(/\bCB-OCR-\d{4}-\d{3,4}\b/i)?.[0]?.toUpperCase() ?? null;
+  const anchor = extractPackUCaseAnchor(bundleFullText);
+  const leadRef = cbOcr ?? anchor;
+
+  let candidate: string | null = null;
+
+  const strict = buildStrictPrimaryAllegationAnswer(bundleFullText);
+  if (strict) {
+    const s = stripQ1NonAllegationWording(compactOneLine(strict));
+    if (s && !isPackUJunkPrimaryAllegationLine(s)) candidate = s;
+  }
+
+  if (!candidate) {
+    const wide = firstMatch(bundleFullText, [
+      /\bExact\s+charge\s+wording\s*[:\-]\s*([^\n]{18,520})/i,
+      /\b(?:Charge|CHARGE)\s*\/\s*(?:Allegation|ALLEGATION)\s*[:\-]?\s*([^\n]{14,520})/i,
+      /\bAllegation\s*[:\-]\s*([^\n]{14,520})/i,
+      /\bCharge\s*[:\-]\s*([^\n]{14,520})/i,
+      /\bParticulars\s+of\s+offence\s*[:\-]\s*([^\n]{14,520})/i,
+      /\bStatement\s+of\s+offence\s*[:\-]\s*([^\n]{14,520})/i,
+      /(\bThe\s+Crown\s+summary\s+alleges\s+that\b[^\n]{10,400})/i,
+      /(\bwas\s+involved\s+in\s+the\s+offence\s+at\b[^\n]{10,400})/i,
+      /(\bOn\s+\d{1,2}[\s\/.\-]\d{1,2}[\s\/.\-]\d{2,4}[^\n]{16,520}\bis\s+alleged\s+to\b[^\n]*)/i,
+      /(\bOn\s+\d{1,2}[\s\/.\-]\d{1,2}[\s\/.\-]\d{2,4}[^\n]{16,520}\bcontrary\s+to\b[^\n]*)/i,
+    ]);
+    if (wide) {
+      const w = stripQ1NonAllegationWording(compactOneLine(wide));
+      if (w && !isPackUJunkPrimaryAllegationLine(w)) candidate = w;
+    }
+  }
+
+  if (!candidate) {
+    const ranked = collectPackUChargeCandidateLines(bundleFullText, 8);
+    const best = ranked.find((ln) => !isPackUJunkPrimaryAllegationLine(ln));
+    if (best) candidate = compactOneLine(best);
+  }
+
+  if (candidate) {
+    const out = finalizePackUPrimaryAllegationOneLine(bundleFullText, candidate, leadRef);
+    return softTruncate(compactOneLine(out), 560);
+  }
+
+  if (leadRef) {
+    return compactOneLine(
+      `${leadRef} → the served bundle text on this file does not safely print a discrete charge/allegation sentence to quote verbatim; treat the primary allegation as not confirmed from OCR/heading fragments alone.`
+    );
+  }
+  return null;
+}
+
+function buildPackUInterviewReplacement(bundleFullText: string): string | null {
+  if (!isPackUScannedPhotoOcrEvalBundle(bundleFullText)) return null;
+  const anchor = extractPackUCaseAnchor(bundleFullText);
+  if (!anchor) return null;
+
+  const accLines = collectPackUInterviewClientAccountLines(bundleFullText, 8);
+  const exU = extractStructuredEvalPackLetterExhibitCodes(bundleFullText, "U", 6);
+  const exClause = exU.length > 0 ? exU.join(", ") : "none printed in excerpt";
+
+  if (accLines.length === 0) {
+    const core = `Core point: ${anchor} → no reliable interview/client account wording is printed in the served text.`;
+    const ev = `Evidence reference: Interview/client-account lines: none matched in excerpt || EX-U exhibit codes on file: ${exClause}.`;
+    const next =
+      "Next step: Treat any oral account as instructions only unless supported by served source material; do not infer extra interview content from the OCR bundle headings alone.";
+    return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
+  }
+
+  const lead = accLines[0];
+  const core = `Core point: ${anchor} → interview/client account on the file is ${lead}.`;
+  const ev = `Evidence reference: Interview/client-account lines: ${accLines.slice(0, 5).join(" | ")} || EX-U exhibit codes on file: ${exClause}.`;
+  const next =
+    "Next step: Treat the account as instructions only unless supported by served source material; do not infer extra interview content beyond the quoted lines.";
+  return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
+}
+
+function buildStructuredEvalPackUProsecutionProofAnswer(bundleFullText: string): string | null {
+  if (!isPackUScannedPhotoOcrEvalBundle(bundleFullText)) return null;
+  const anchor = extractPackUCaseAnchor(bundleFullText);
+  if (!anchor) return null;
+
+  const chargeLines = collectPackUChargeCandidateLines(bundleFullText, 5);
+  const mg5Lines = extractStructuredEvalLines(
+    bundleFullText,
+    ["MG5 SUMMARY", "MG5 — CASE SUMMARY", "MG5 CASE SUMMARY", "MG5"] as const,
+    2
+  );
+  const strategyLines = collectPackUStrategyImageMg5Lines(bundleFullText, 4);
+  const visualLines = collectPackUVisualOcrLimitationLines(bundleFullText, 6);
+  const exU = extractStructuredEvalPackLetterExhibitCodes(bundleFullText, "U", 6);
+  const exClause = exU.length > 0 ? exU.join(", ") : "none printed in excerpt";
+
+  const chargePick = chargeLines[0] ?? mg5Lines[0] ?? null;
+  const visPick = visualLines[0] ?? strategyLines[0] ?? null;
+
+  let core: string;
+  if (chargePick && visPick) {
+    core = `Core point: ${anchor} → the Crown must still prove the printed allegation and must not rely on the visual item beyond what the file safely supports — ${visPick}.`;
+  } else if (chargePick) {
+    core = `Core point: ${anchor} → the Crown must still prove the printed charge/allegation line on this file (${chargePick}); treat any visual exhibit only within the OCR/scanned limitations the bundle publishes.`;
+  } else if (visPick) {
+    core = `Core point: ${anchor} → the Crown must still prove the case to the criminal standard; the file limits reliance on the visual/OCR material — ${visPick}.`;
+  } else {
+    core = `Core point: ${anchor} → the Crown must still prove the case on the served papers; do not treat the scanned image or OCR extract as uncritical proof without the printed charge context and disclosure anchors this file actually shows.`;
+  }
+
+  const evBits: string[] = [];
+  if (chargePick) evBits.push(`Charge / visual-proof lines: ${chargePick}`);
+  if (mg5Lines[0] && mg5Lines[0] !== chargePick) evBits.push(`MG5 summary line: ${mg5Lines[0]}`);
+  if (visPick) evBits.push(`Visual/limitation line: ${visPick}`);
+  if (visualLines[1]) evBits.push(`Further visual/OCR limitation: ${visualLines[1]}`);
+  if (strategyLines[0] && strategyLines[0] !== visPick) evBits.push(`Strategy / image-safety line: ${strategyLines[0]}`);
+  evBits.push(`EX-U exhibit codes on file: ${exClause}`);
+  const ev = `Evidence reference: ${evBits.join(" || ")}.`;
+
+  const next =
+    "Next step: Build the proof map from the printed charge and chase source/continuity/provenance before treating the image as proof; do not infer identification or causation beyond what the served text supports.";
+  return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
+}
+
+function buildStructuredEvalPackUProsecutionWeaknessAnswer(bundleFullText: string): string | null {
+  if (!isPackUScannedPhotoOcrEvalBundle(bundleFullText)) return null;
+  const anchor = extractPackUCaseAnchor(bundleFullText);
+  if (!anchor) return null;
+
+  const visualLines = collectPackUVisualOcrLimitationLines(bundleFullText, 8);
+  const strategyLines = collectPackUStrategyImageMg5Lines(bundleFullText, 3);
+  const exU = extractStructuredEvalPackLetterExhibitCodes(bundleFullText, "U", 6);
+  const exClause = exU.length > 0 ? exU.join(", ") : "none printed in excerpt";
+
+  const lead =
+    visualLines[0] ??
+    strategyLines.find((l) => /\bIMAGE\s+SAFETY\b|\bVISUAL\s+EVIDENCE\b|\bOCR\b/i.test(l)) ??
+    strategyLines[0] ??
+    null;
+
+  if (!lead) {
+    const core = `Core point: ${anchor} → prosecution weakness on this OCR bundle is provisional: the file does not publish a discrete visual/source-limitation sentence beyond headings; treat pressure as disclosure/source chasing only.`;
+    const ev = `Evidence reference: Visual/source limitation lines: none matched in excerpt || EX-U exhibit codes on file: ${exClause}.`;
+    const next =
+      "Next step: Treat this as disclosure/source/continuity pressure only; chase the original source material before advising plea or final strategy.";
+    return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
+  }
+
+  const core = `Core point: ${anchor} → prosecution weakness is the visual/source limitation: ${lead}.`;
+  const pool = [...visualLines, ...strategyLines.filter((s) => !visualLines.includes(s))];
+  const ev = `Evidence reference: Visual/source limitation lines: ${dedupeCompactLines(pool, 5).join(" | ")} || EX-U exhibit codes on file: ${exClause}.`;
+  const next =
+    "Next step: Treat this as disclosure/source/continuity pressure only; chase the original source material before advising plea or final strategy; do not predict conviction or treat the image as proof of innocence.";
+  return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
+}
+
+function buildStructuredEvalPackUDefenceWeaknessAnswer(bundleFullText: string): string | null {
+  if (!isPackUScannedPhotoOcrEvalBundle(bundleFullText)) return null;
+  const anchor = extractPackUCaseAnchor(bundleFullText);
+  if (!anchor) return null;
+
+  const vis = collectPackUVisualOcrLimitationLines(bundleFullText, 4);
+  const iv = collectPackUInterviewClientAccountLines(bundleFullText, 4);
+  const exU = extractStructuredEvalPackLetterExhibitCodes(bundleFullText, "U", 6);
+  const exClause = exU.length > 0 ? exU.join(", ") : "none printed in excerpt";
+
+  const limitation = vis[0] ?? null;
+  const acct = iv[0] ?? null;
+  const leadFile = limitation ?? acct;
+
+  if (!leadFile) {
+    const core = `Core point: ${anchor} → defence weakness on this OCR bundle is provisional until interview lines and visual/source limits are printed beyond generic headings.`;
+    const ev = `Evidence reference: Client/account/visual lines: none matched in excerpt || EX-U exhibit codes on file: ${exClause}.`;
+    const next =
+      "Next step: Do not lock the defence theory until source/continuity/provenance is served and the solicitor has reviewed the visual item.";
+    return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
+  }
+
+  const core = `Core point: ${anchor} → defence weakness is unsafe overreliance on visual material while the file says ${leadFile}.`;
+  const evBits: string[] = [];
+  if (acct) evBits.push(`Interview/client-account line: ${acct}`);
+  if (limitation && limitation !== acct) evBits.push(`Visual limitation line: ${limitation}`);
+  if (vis[1]) evBits.push(`Further visual line: ${vis[1]}`);
+  const ev = `Evidence reference: ${evBits.join(" || ") || `Client/account/visual lines: ${leadFile}`} || EX-U exhibit codes on file: ${exClause}.`;
+  const next =
+    "Next step: Do not lock the defence theory until source/continuity/provenance is served and the solicitor has reviewed the visual item.";
+  return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
+}
+
 function extractStructuredEvalPackLetterExhibitCodes(
   bundleFullText: string,
-  letter: "L" | "N" | "O" | "P" | "Q" | "R" | "S" | "T",
+  letter: "L" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U",
   maxCount = 6
 ): string[] {
   if (!bundleFullText) return [];
@@ -3816,7 +4236,10 @@ function extractStructuredEvalPackLetterExhibitCodes(
   return out;
 }
 
-function extractPackLetterFamilyCaseAnchor(bundleFullText: string, letter: "L" | "N" | "O" | "P" | "Q" | "R" | "S" | "T"): string | null {
+function extractPackLetterFamilyCaseAnchor(
+  bundleFullText: string,
+  letter: "L" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U"
+): string | null {
   const caseRef = extractCaseSpecificRef(bundleFullText);
   if (caseRef) return caseRef;
   const ex = extractStructuredEvalPackLetterExhibitCodes(bundleFullText, letter, 1);
@@ -5072,6 +5495,10 @@ function buildStructuredEvalInconsistenciesAnswer(bundleFullText: string): strin
  * ------------------------------------------------------------------------- */
 function buildStructuredEvalProsecutionProofAnswer(bundleFullText: string): string | null {
   if (!isStructuredEvalBundle(bundleFullText)) return null;
+  if (isPackUScannedPhotoOcrEvalBundle(bundleFullText)) {
+    const pu = buildStructuredEvalPackUProsecutionProofAnswer(bundleFullText);
+    if (pu) return pu;
+  }
   if (isPackLStageWorkflowEvalBundle(bundleFullText)) {
     const pl = buildStructuredEvalPackLStageProsecutionProofAnswer(bundleFullText);
     if (pl) return pl;
@@ -5144,6 +5571,10 @@ function buildStructuredEvalProsecutionProofAnswer(bundleFullText: string): stri
  * ------------------------------------------------------------------------- */
 function buildStructuredEvalProsecutionWeaknessAnswer(bundleFullText: string): string | null {
   if (!isStructuredEvalBundle(bundleFullText)) return null;
+  if (isPackUScannedPhotoOcrEvalBundle(bundleFullText)) {
+    const pu = buildStructuredEvalPackUProsecutionWeaknessAnswer(bundleFullText);
+    if (pu) return pu;
+  }
   if (isPackKMessyRealWorldEvalBundle(bundleFullText)) {
     const pk = buildStructuredEvalPackKMessyProsecutionWeaknessAnswer(bundleFullText);
     if (pk) return pk;
@@ -5372,6 +5803,10 @@ function buildStructuredEvalProsecutionWeaknessAnswer(bundleFullText: string): s
  * ------------------------------------------------------------------------- */
 function buildStructuredEvalDefenceWeaknessAnswer(bundleFullText: string): string | null {
   if (!isStructuredEvalBundle(bundleFullText)) return null;
+  if (isPackUScannedPhotoOcrEvalBundle(bundleFullText)) {
+    const pu = buildStructuredEvalPackUDefenceWeaknessAnswer(bundleFullText);
+    if (pu) return pu;
+  }
   const weaknessLines = extractStructuredEvalLines(
     bundleFullText,
     [
@@ -8025,6 +8460,10 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
         }
       }
     }
+    if (isPackUScannedPhotoOcrEvalBundle(combinedBundleFull)) {
+      const packUInt = buildPackUInterviewReplacement(combinedBundleFull);
+      if (packUInt) reply = packUInt;
+    }
     return jsonWithRoute(
       {
         ok: true,
@@ -8053,7 +8492,12 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   }
 
   if (isStrictPrimaryAllegationQuestion(message)) {
-    const line = stripQ1NonAllegationWording(buildStrictPrimaryAllegationAnswer(combinedBundleFull));
+    let line: string | null = null;
+    if (isPackUScannedPhotoOcrEvalBundle(combinedBundleFull)) {
+      line = buildPackUPrimaryAllegationAnswer(combinedBundleFull);
+      if (line) line = stripQ1NonAllegationWording(line);
+    }
+    if (!line) line = stripQ1NonAllegationWording(buildStrictPrimaryAllegationAnswer(combinedBundleFull));
     if (line) {
       return jsonWithRoute(
         {
