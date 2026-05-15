@@ -3998,6 +3998,107 @@ function buildStructuredEvalPackOMissingEvidenceAnswer(bundleFullText: string): 
   return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
 }
 
+/** Pack S Q3 — extra verbatim lines for export-safety / handover / caveat / provisional-vs-final wording. */
+function collectPackSMissingEvidenceDetailLines(bundleFullText: string, max = 10): string[] {
+  return collectStructuredEvalLooseLines(
+    bundleFullText,
+    (_line, U) =>
+      (/\bWORK\s+PRODUCT\b/.test(U) &&
+        /\b(?:BEFORE|UNTIL|PRIOR|WHILE|ALL\s+MATERIAL|MATERIAL\s+IS\s+SERVED|FULLY\s+SERVED)\b/.test(U)) ||
+      (/\bDOCUMENT\b/.test(U) && /\b(?:NEEDED|REQUIRED)\b/.test(U) && /\bFINAL\b/.test(U)) ||
+      /\bFINAL\s+WORDING\b/.test(U) ||
+      (/\bCLIENT\s+INSTRUCTIONS?\b/.test(U) && /\bCONFIRMATION\b/.test(U)) ||
+      /\bINSTRUCTIONS?\s+CONFIRMATION\b/.test(U) ||
+      (/\bPROVISIONAL\b/.test(U) && /\b(?:FINAL|ADVICE|EXPORT|POINTS?)\b/.test(U)) ||
+      (/\bEXPORT\b/.test(U) &&
+        /\b(?:MUST\s+NOT|SHOULD\s+NOT|NOT\s+PRESENT|CAVEAT|PROVISIONAL|INCOMPLETE|AWAITING)\b/.test(U)) ||
+      (/\b(?:INTERVIEW|ACCOUNT)\b/.test(U) && /\bSUMMARY\b/.test(U) && /\bCAVEAT\b/.test(U)) ||
+      /\bONLY\s+WITH\s+CAVEATS?\b/.test(U) ||
+      /\bSOLICITOR\s+EXPORT\b/.test(U) ||
+      (/\bHANDOVER\b/.test(U) && /\b(?:MISSING|INCOMPLETE|OUTSTANDING|AWAITING|NOT\s+SERVED)\b/.test(U)) ||
+      /\bEXPORT\s+SAFETY\b/.test(U),
+    max
+  );
+}
+
+/**
+ * Pack S Q3 only — solicitor export eval files (`PACK S`, `CB-EXPORT`, `EX-S-*`).
+ * Verbatim lines only; anchors on CB-EXPORT or EX-S-* to avoid the generic “eval file names N items…” collapse.
+ */
+function buildStructuredEvalPackSMissingEvidenceAnswer(bundleFullText: string): string | null {
+  if (!isPackSSolicitorExportEvalBundle(bundleFullText)) return null;
+
+  const exs = extractStructuredEvalPackLetterExhibitCodes(bundleFullText, "S", 8);
+  const cbRef = bundleFullText.match(/\bCB-EXPORT-\d{4}-\d{3,4}\b/i)?.[0]?.toUpperCase() ?? null;
+  const cs = extractCaseSpecificRef(bundleFullText);
+  const refLabel =
+    cbRef ??
+    exs[0] ??
+    (cs && /\bCB-EXPORT\b/i.test(cs) ? cs : null) ??
+    null;
+  if (!refLabel) return null;
+
+  const exportLines = collectPackSSolicitorExportLines(bundleFullText, 10);
+  const missingCore = collectLooseQ3MissingLines(bundleFullText, 8);
+  const detailLines = collectPackSMissingEvidenceDetailLines(bundleFullText, 10);
+
+  const exportRanked = [
+    ...detailLines.filter((l) => /\bPROVISIONAL\b/i.test(l) && /\b(?:FINAL|ADVICE|EXPORT)\b/i.test(l)),
+    ...detailLines.filter((l) => /\bWORK\s+PRODUCT\b/i.test(l)),
+    ...exportLines.filter((l) => /\bCAVEAT\b/i.test(l)),
+    ...exportLines.filter((l) => /\bMISSING\s+SOURCE\b/i.test(l)),
+    ...exportLines.filter((l) => /\bUNSAFE\s+FINAL\b/i.test(l)),
+    ...detailLines,
+    ...exportLines,
+  ];
+  const exportPick = dedupeCompactLines(exportRanked, 10);
+
+  const missingRanked = [
+    ...missingCore,
+    ...detailLines.filter((l) => !missingCore.some((c) => c.toLowerCase() === l.toLowerCase())),
+  ];
+  const missingAll = dedupeCompactLines(missingRanked, 12);
+
+  const leadMissing =
+    missingAll.find((l) => /\b(?:NOT\s+SERVED|OUTSTANDING|MISSING|AWAITING|AWAITED|NOT\s+YET\s+SERVED)\b/i.test(l)) ??
+    missingAll[0] ??
+    null;
+  const leadExport =
+    exportPick.find((l) => /\bPROVISIONAL\b/i.test(l) && /\b(?:FINAL|ADVICE|EXPORT)\b/i.test(l)) ??
+    exportPick.find((l) => /\bWORK\s+PRODUCT\b/i.test(l) && /\b(?:BEFORE|UNTIL|PRIOR|ALL\s+MATERIAL)\b/i.test(l)) ??
+    exportPick.find((l) => /\bCAVEAT\b/i.test(l)) ??
+    exportPick.find((l) => /\bMISSING\s+SOURCE\b/i.test(l)) ??
+    exportPick[0] ??
+    null;
+
+  const leadFile =
+    leadMissing ??
+    leadExport ??
+    findFirstBundleLineMatching(bundleFullText, /\bCB-EXPORT-\d{4}-\d{3,4}\b/i) ??
+    findFirstBundleLineMatching(bundleFullText, /\bEX-S-/i);
+  if (!leadFile) return null;
+
+  const core = `Core point: ${refLabel} → missing/incomplete material affects solicitor export safety: ${softTruncate(leadFile, 260)}.`;
+
+  const mergedEv = dedupeCompactLines([...missingAll, ...exportPick], 10).map((l) => softTruncate(l, 200));
+  const evBits: string[] = [];
+  if (mergedEv.length > 0) {
+    evBits.push(`Missing/outstanding/export-caveat lines: ${mergedEv.join(" | ")}`);
+  }
+  if (exs.length > 0) {
+    evBits.push(`EX-S exhibit codes on file: ${exs.join(", ")}`);
+  }
+  const ev =
+    evBits.length > 0
+      ? `Evidence reference: ${evBits.join(" || ")}.`
+      : `Evidence reference: ${refLabel} — verbatim missing/export-caveat lines are not isolated on this excerpt beyond the Core point quotation; cross-check the published export / handover block.`;
+
+  const next =
+    "Next step: Prepare the export with the named caveat; chase only the named missing material and do not present provisional points as final advice.";
+
+  return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
+}
+
 function collectPackLStageWorkflowExtraLines(bundleFullText: string, max = 10): string[] {
   return dedupeCompactLines(
     [...collectLooseQ10Next24Lines(bundleFullText, max), ...collectLooseQ2DisclosureLines(bundleFullText, 6)],
@@ -4716,6 +4817,10 @@ function buildStructuredEvalMissingEvidenceAnswer(bundleFullText: string): strin
   if (isPackOInstructionConflictEvalBundle(bundleFullText)) {
     const po = buildStructuredEvalPackOMissingEvidenceAnswer(bundleFullText);
     if (po) return po;
+  }
+  if (isPackSSolicitorExportEvalBundle(bundleFullText)) {
+    const ps = buildStructuredEvalPackSMissingEvidenceAnswer(bundleFullText);
+    if (ps) return ps;
   }
   if (isPackPBadFactsCpsPressureEvalBundle(bundleFullText)) {
     const pp = buildStructuredEvalPackPMissingEvidenceAnswer(bundleFullText);
