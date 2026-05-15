@@ -22,6 +22,7 @@ import { sortCasesForEvalScan } from "@/lib/eval-case-sort";
 import {
   EVAL_PACK_IDS,
   EVAL_PACK_LABELS,
+  EVAL_PACK_LOCKED_BASELINE_IDS,
   parseEvalPackId,
   resolveCaseEvalPack,
   type EvalPackId,
@@ -142,7 +143,7 @@ export function EvalPackRunner() {
 
   const [cases, setCases] = useState<CaseApiRow[]>([]);
   const [loadError, setLoadError] = useState<string | null>(null);
-  const [selectedPacks, setSelectedPacks] = useState<Set<EvalPackId>>(() => new Set(EVAL_PACK_IDS));
+  const [selectedPacks, setSelectedPacks] = useState<Set<EvalPackId>>(() => new Set());
   const [running, setRunning] = useState(false);
   const [matrix, setMatrix] = useState<PackGoldenMatrixRow[]>([]);
   const [detailPackId, setDetailPackId] = useState<EvalPackId | null>(null);
@@ -234,6 +235,28 @@ export function EvalPackRunner() {
     }
     return m;
   }, [cases]);
+
+  const selectedCount = selectedPacks.size;
+  const allSelected = selectedCount === EVAL_PACK_IDS.length;
+
+  const primaryRunLabel = (() => {
+    if (selectedCount === 0) return "Select packs to run";
+    if (allSelected) return "Run all selected packs";
+    if (selectedCount === 1) return "Run selected pack";
+    return "Run selected packs";
+  })();
+
+  function selectNoPacks() {
+    setSelectedPacks(new Set());
+  }
+
+  function selectLockedBaselineAT() {
+    setSelectedPacks(new Set(EVAL_PACK_LOCKED_BASELINE_IDS));
+  }
+
+  function selectOnlyPack(id: EvalPackId) {
+    setSelectedPacks(new Set([id]));
+  }
 
   function togglePack(id: EvalPackId) {
     setSelectedPacks((prev) => {
@@ -338,7 +361,11 @@ export function EvalPackRunner() {
         : ordered.filter((id) => selectedPacks.has(id) && countLocal(id) > 0);
 
     if (packsToRun.length === 0) {
-      setCloudMessage("No packs with cases to run (tag uploads or use filename patterns).");
+      setCloudMessage(
+        mode === "all"
+          ? "No packs with cases to run (tag uploads or use filename patterns)."
+          : "No selected packs have cases to run (import cases for that pack or adjust selection)."
+      );
       setRunning(false);
       return;
     }
@@ -625,9 +652,15 @@ export function EvalPackRunner() {
       <div>
         <h2 className="text-lg font-semibold">Eval Pack Runner (internal)</h2>
         <p className="text-sm text-muted-foreground">
-          Golden 10 sweep per pack (A–T). Case counts use <code className="text-xs">eval_pack_*</code> when set, then
+          Golden 10 sweep per pack (A–X). Case counts use <code className="text-xs">eval_pack_*</code> when set, then
           title patterns, then the earliest document filename per case.
         </p>
+        {selectedCount === 0 && (
+          <p className="text-sm text-amber-700 dark:text-amber-500 mt-2">
+            No packs selected. Choose one pack to run, use quick-select below, choose &quot;Select all&quot; for every
+            pack, or &quot;A–T locked baseline&quot; for the documented regression set — then run.
+          </p>
+        )}
       </div>
 
       <div className="rounded-md border border-border bg-muted/25 px-3 py-2 text-xs text-muted-foreground space-y-1.5">
@@ -638,8 +671,8 @@ export function EvalPackRunner() {
             tagged for that pack (adds evidence; does not run questions).
           </li>
           <li>
-            <span className="text-foreground font-medium">Run selected packs</span> — runs the Golden 10 questions against
-            those cases and saves an eval sweep per pack to the cloud.
+            <span className="text-foreground font-medium">Run selected packs</span> — runs the Golden 10 questions
+            against cases in the packs you tick (A–X); primary button stays off until at least one pack is selected.
           </li>
           <li>
             <span className="text-foreground font-medium">Pack results matrix</span> — shows the saved run outcomes from the
@@ -665,8 +698,26 @@ export function EvalPackRunner() {
         >
           {backfillBusy ? "Backfilling…" : "Backfill pack tags (owner)"}
         </Button>
+        <Button type="button" variant="outline" size="sm" onClick={selectNoPacks} disabled={running}>
+          Select none
+        </Button>
         <Button type="button" variant="outline" size="sm" onClick={selectAllPacks} disabled={running}>
-          Select all packs
+          Select all
+        </Button>
+        <Button type="button" variant="secondary" size="sm" onClick={selectLockedBaselineAT} disabled={running}>
+          A–T locked baseline
+        </Button>
+        <Button type="button" variant="outline" size="sm" onClick={() => selectOnlyPack("U")} disabled={running}>
+          U only
+        </Button>
+        <Button type="button" variant="outline" size="sm" onClick={() => selectOnlyPack("V")} disabled={running}>
+          V only
+        </Button>
+        <Button type="button" variant="outline" size="sm" onClick={() => selectOnlyPack("W")} disabled={running}>
+          W only
+        </Button>
+        <Button type="button" variant="outline" size="sm" onClick={() => selectOnlyPack("X")} disabled={running}>
+          X only
         </Button>
         <Button type="button" variant="outline" size="sm" onClick={selectPacksWithCases} disabled={running}>
           Select packs with cases
@@ -722,11 +773,11 @@ export function EvalPackRunner() {
       </div>
 
       <div className="flex flex-wrap gap-2">
-        <Button type="button" onClick={() => void runPacks("selected")} disabled={running}>
-          {running ? "Running…" : "Run selected packs"}
+        <Button type="button" onClick={() => void runPacks("selected")} disabled={running || selectedCount === 0}>
+          {running ? "Running…" : primaryRunLabel}
         </Button>
         <Button type="button" variant="secondary" onClick={() => void runPacks("all")} disabled={running}>
-          Run all packs (A–T with cases)
+          Run every pack with cases (ignores checkboxes)
         </Button>
         <Button type="button" variant="outline" onClick={cancelRun} disabled={!running}>
           Cancel

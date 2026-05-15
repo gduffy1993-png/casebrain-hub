@@ -72,3 +72,7 @@ These are **accepted baseline weaknesses**, not current blockers:
 ## Warning
 
 **This baseline proves controlled evaluation reliability, not autonomous legal advice. Solicitor review remains required.**
+
+## Packs U–X (registry only; not part of this baseline)
+
+Eval harness registry has been extended with **U–X** (OCR/scan/photo, strategy leverage, timeline/alibi, hearing/court-move) for upcoming corpora. They are **not** included in the **A–T** locked numbers above and are not yet a documented full-regression lock.
