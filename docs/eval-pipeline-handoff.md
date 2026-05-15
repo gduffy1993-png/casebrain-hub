@@ -26,3 +26,8 @@
 ## Manual sweep JSON note
 
 - Single-question manual exports use **`questionNo: 1`** for the first (only) question — normal if the question text is golden Q3 wording.
+
+## Locked internal eval pack baselines (hub)
+
+- **Pack K** (messy real-world PDFs / `CB-MESSY` / `CB-REAL`): **400** rows, **400** HTTP OK, **397 pass / 3 weak / 0 fail / 0 timeout**. Remaining weak: **Q1** only (missing-offence-wording scorer flag, **3** rows). Q8: **0** fail, no grounding fallback; Q3/Q6 collapse addressed. **Locked — do not tune Pack K further** unless explicitly reopening the lock.
+- **Next pack:** run **M only** (not K–T together). Pack **M** = multi-defendant / multi-count; identifiers include **`CB-MDPRESS`**, **`CB-MULTI2`**, **`Pack M`**, **`CB-M`** (see `lib/eval-packs.ts`).

@@ -146,8 +146,20 @@ const STRICT_UNIQUE_ANCHOR_RE = new RegExp(
   [
     // Case-unique by construction.
     "EX-[A-Z][A-Z0-9]+-\\d{2,}",
+    "EX-K-[A-Z0-9]+(?:-[A-Z0-9]+)*(?:-\\d{2,})?",
+    "EX-M-[A-Z0-9]+(?:-[A-Z0-9]+)*(?:-\\d{2,})?",
     "NS-CPS-\\d{4}-\\d{4}",
     "CB-[A-Z][A-Z0-9]{1,15}-\\d{4}-\\d{3,4}",
+    // Additional Northshire-style case-file tokens (case-specific by file
+    // convention — interview record refs, custody/chain refs, classic
+    // CPS-style NS/YYYY/NNNNN refs). Used by the Pack G / Pack H Q8 builder
+    // when CB-* / EX-* are not present on the bundle. Each pattern requires
+    // structural markers + digit groups so plain "001" never matches.
+    "NS-IR-\\d{4}-\\d{4}-\\d{3,6}",
+    "NS-CR-\\d{4}-\\d{4}(?:-\\d{3,6})?",
+    "CR-FP-\\d{3,6}",
+    "CR-CHAIN-\\d{3,6}",
+    "NS\\/\\d{4}\\/\\d{4,6}",
     // Builder-emitted file-named safeguard prefix (Pack F).
     "(?:Further\\s+)?[Ff]ile[\\s-]?named\\s+safeguard(?:\\s*/\\s*vulnerability)?\\s*:",
     // Builder-emitted stage / next-listing prefix.
@@ -184,9 +196,14 @@ const STRICT_UNIQUE_ANCHOR_RE = new RegExp(
     // Only emitted alongside a verbatim CB-* reference and a file-published
     // interview-position line (or an honest "no interview record served"
     // marker). Pairs with CB-* / NS-CPS for rescue.
-    "File\\s+reference\\s*:\\s*(?:CB-(?!GOLD\\b|TRAP\\b|TEST\\b)[A-Z][A-Z0-9]{1,15}-\\d{4}-\\d{3,4}|NS-CPS-\\d{4}-\\d{4})",
+    "File\\s+reference\\s*:\\s*(?:CB-(?!GOLD\\b|TRAP\\b|TEST\\b)[A-Z][A-Z0-9]{1,15}-\\d{4}-\\d{3,4}|NS-CPS-\\d{4}-\\d{4}|EX-[A-Z][A-Z0-9]+-\\d{2,})",
+    "Interview\\s+position\\s+on\\s+the\\s+file\\s+is",
     "Interview\\s+position\\s+on\\s+the\\s+file\\s*:",
+    "Interview/custody\\s+wording\\s+on\\s+this\\s+file\\s*[—:]",
     "Source\\s+discipline\\s*[—:]",
+    "Stance\\s+markers\\s+on\\s+file\\s*:",
+    "Exhibit\\s+code\\(s\\)\\s+referenced\\s+on\\s+file\\s*:",
+    "Further\\s+interview\\s+wording\\s*:",
     // Pack F Q9 thin-bundle safety-net marker (file does not publish a
     // separate defence-weakness section; weakness framed as the inability to
     // overcommit on a thin file). Both the legacy ("inability to
@@ -196,7 +213,73 @@ const STRICT_UNIQUE_ANCHOR_RE = new RegExp(
     // Pack G / Pack H Q8 builder markers (only emitted when the file
     // publishes the chaos / conditional anchor or alongside a CB-* ref).
     "Crown\\s+weakness\\s+on\\s+this\\s+file\\s+is\\s+(?:an?\\s+)?(?:evidence-handling\\s+tension|document-type|source-anchor)",
+    "on\\s+the\\s+file\\s+wording,\\s+this\\s+would\\s+put\\s+pressure\\s+on\\s+the\\s+Crown\\s+route\\s+if\\s+proved",
     "Crown\\s+proof\\s+would\\s+come\\s+under\\s+conditional\\s+pressure\\s+on\\s+the\\s+file\\s+wording",
+    "Pressure\\s+runs\\s+against\\s+continuity\\s*/\\s*order",
+    // Pack G chaos / conflict wording (only fires when the file publishes
+    // these specific labelled phrasings — not generic "conflict" mentions).
+    "MG\\s*5\\s*/\\s*MG\\s*6\\s+mismatch",
+    "MG\\s*6\\s*/\\s*MG\\s*5\\s+mismatch",
+    "Witness\\s+(?:conflict|mismatch|contradiction)",
+    "Unclear\\s+(?:source|exhibit)\\s+(?:label|reference|document)",
+    "Inconsistent\\s+(?:statement|exhibit|evidence|log|entry)",
+    "Source\\s+conflict",
+    "Duplicate\\s+(?:page|exhibit|entry|log)",
+    "Out\\s+of\\s+(?:sequence|order)",
+    // Pack H pressure / route labels — only the file-printed colon-labelled
+    // forms (covered above by "Pressure point:", "Crown pressure:", etc.)
+    // and the named route-pressure phrasings count. "would put pressure on"
+    // / "if proved" / "would weaken" by themselves are deliberately NOT
+    // listed: they are common LLM boilerplate and the scorer must keep
+    // those weak. The Q8 builder emits CB-* and the labelled "Crown
+    // weakness on this file is" / "on the file wording, this would put
+    // pressure on the Crown route if proved" — those already rescue via
+    // CB-* + the builder phrasings above.
+    "Prosecution\\s+route\\s+pressure",
+    "Route\\s+pressure\\s+on\\s+the\\s+file",
+    "Disclosure\\s+(?:gap|delay|outstanding)\\s+on\\s+the\\s+file",
+    "Crown\\s+proof\\s+under\\s+pressure\\s+on\\s+the\\s+file",
+    // Pack K messy-real-world structured-eval builders (verbatim file lines
+    // only in Core; these markers pair with CB-* / EX-K-* in the answer).
+    "the\\s+prosecution\\s+weakness\\s+is\\s+that\\s+the\\s+messy\\s+bundle\\s+leaves\\s+the\\s+Crown\\s+route\\s+dependent\\s+on",
+    "missing/incomplete\\s+material\\s+is",
+    "the\\s+live\\s+inconsistency/conflict\\s+is",
+    "Duplicate\\s+MG\\s*6",
+    "Low\\s*quality\\s+extract",
+    "Partial\\s+exhibit\\s+list",
+    "Pack\\s+K\\s+exhibit\\s+codes\\s+on\\s+file\\s*:",
+    "EX-K\\s+exhibit\\s+codes\\s+on\\s+file\\s*:",
+    // Pack M multi-defendant / multi-count builders (verbatim file lines in
+    // Core/Evidence; these phrases only appear with the Pack M structured path).
+    "the\\s+prosecution\\s+weakness\\s+is\\s+defendant/count\\s+attribution\\s*:",
+    "missing/incomplete\\s+material\\s+is\\s+defendant/count-specific\\s*:",
+    "File-published\\s+multi-defendant\\s*/\\s*count\\s+lines\\s*:",
+    "Conflict\\s*/\\s*co-defendant\\s*/\\s*count\\s+lines\\s*:",
+    "EX-M\\s+exhibit\\s+codes\\s+on\\s+file\\s*:",
+    "Map\\s+each\\s+prosecution\\s+weakness\\s+to\\s+the\\s+correct\\s+defendant\\s+and\\s+count",
+    "do\\s+not\\s+blend\\s+co-defendant\\s+evidence\\s+or\\s+count\\s+evidence",
+    "Resolve\\s+that\\s+named\\s+conflict\\s+per\\s+defendant\\s+and\\s+per\\s+count\\s+before\\s+fixing\\s+trial\\s+theory",
+    "do\\s+not\\s+infer\\s+extra\\s+contradictions\\s+or\\s+blend\\s+defendants",
+    // Packs L / N / O / P / Q / R / S / T structured-eval builders (narrow
+    // phrases only emitted from those pack-gated paths).
+    "EX-(?:L|N|O|P|Q|R|S|T)-[A-Z0-9]+(?:-[A-Z0-9]+)*(?:-\\d{2,})?",
+    "EX-[LNOPQRST]\\s+exhibit\\s+codes\\s+on\\s+file\\s*:",
+    "prosecution\\s+weakness\\s+is\\s+stage/procedure\\s+pressure\\s*:",
+    "prosecution\\s+weakness\\s+is\\s+safeguard/procedure\\s+pressure\\s*:",
+    "prosecution\\s+weakness\\s+is\\s+the\\s+file-published\\s+instruction\\s+conflict\\s*:",
+    "prosecution\\s+weakness\\s+for\\s+solicitor\\s+output\\s+is\\s+the\\s+file-published\\s+unresolved\\s+evidence/disclosure\\s+caveat\\s*:",
+    "conditional\\s+source-integrity\\s*/\\s*document-instruction\\s+contamination\\s+pressure",
+    "missing/outstanding\\s+material\\s+and\\s+CPS/defence-pressure\\s+context",
+    "no\\s+safe\\s+contradiction\\s+can\\s+be\\s+finalised\\s+on\\s+this\\s+thin\\s+file",
+    "solicitor\\s+review\\s+readiness\\s+on\\s+the\\s+file\\s+is\\s+limited\\s+by",
+    "missing/incomplete\\s+material\\s+and\\s+document-integrity\\s+context",
+    "the\\s+live\\s+inconsistency\\s*/\\s*procedure\\s+tension\\s+on\\s+the\\s+file\\s+is",
+    "At\\s+the\\s+file-published\\s+stage\\s+\\(",
+    "Stage\\s+/\\s+listing\\s+lines\\s*:",
+    "Conflict\\s+/\\s+stage\\s+/\\s+proof-route\\s+lines\\s*:",
+    "Thin\\s+/\\s+no-safe\\s+/\\s+missing\\s+lines\\s*:",
+    "Missing\\s+/\\s+integrity\\s+lines\\s*:",
+    "Missing\\s+/\\s+review\\s+caveat\\s+lines\\s*:",
     // Named pressure / weakness lines on a file (these are FILE-printed
     // labels, not generic builder boilerplate; only used when the file's
     // weakness or pressure block has been quoted verbatim).
