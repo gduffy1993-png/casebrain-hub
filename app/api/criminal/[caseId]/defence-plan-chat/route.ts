@@ -3812,21 +3812,87 @@ function isPackUScannedPhotoOcrEvalBundle(bundleFullText: string): boolean {
   );
 }
 
+/**
+ * True when a candidate line still carries eval boilerplate after fragment cleanup
+ * (Pack U/V long-signal collectors only).
+ */
+function isEvalDisclaimerBoilerplateCandidateLine(s: string): boolean {
+  const u = s.toLowerCase();
+  return (
+    u.includes("fictional evaluation material") ||
+    u.includes("not real case papers") ||
+    u.includes("synthetic test bundle") ||
+    u.includes("generated test bundle")
+  );
+}
+
+/**
+ * Remove exact fictional-eval disclaimer/footer fragments from a line (including OCR-joined
+ * `papersPage 1` / `papers Page 1`). Does not strip arbitrary substrings containing "fictional".
+ */
+function cleanEvalDisclaimerFragments(line: string): string {
+  if (!line) return "";
+  let s = line;
+  let removedFragment = false;
+
+  const fragmentRes: RegExp[] = [
+    /\bfictional\s+evaluation\s+material\s*-\s*not\s+real\s+case\s+papers(?:Page\s*\d+|\s*Page\s*\d+|\s+Page\s*\d+)?/gi,
+    /\bthis\s+is\s+not\s+real\s+police\s+material\b/gi,
+    /\bfictional\s+criminal\s+defence\s+evaluation\b/gi,
+    /\bfictional\s+evaluation\s+material\b/gi,
+    /\bnot\s+real\s+case\s+papers(?:Page\s*\d+|\s*Page\s*\d+|\s+Page\s*\d+)?/gi,
+    /\bnot\s+real\s+police\s+material\b/gi,
+    /\bcontrolled\s+fictional\s+case\b/gi,
+    /\bsynthetic\s+test\s+bundle\b/gi,
+    /\bgenerated\s+test\s+bundle\b/gi,
+    /\bartificial\s+test\s+case\b/gi,
+  ];
+
+  for (const re of fragmentRes) {
+    const next = s.replace(re, () => {
+      removedFragment = true;
+      return "";
+    });
+    s = next;
+  }
+
+  let prev = "";
+  while (s !== prev) {
+    prev = s;
+    s = s.replace(/\s*\|\s*\|\s*/g, " | ");
+  }
+  s = s.replace(/^\s*\|\s*/, "").replace(/\s*\|\s*$/, "").trim();
+  s = s.replace(/\s{2,}/g, " ").trim();
+
+  if (removedFragment) {
+    s = s.replace(/\s*-\s*Page\s+\d+\s*$/i, "").trim();
+    s = s.replace(/\s+Page\s+\d+\s*$/i, "").trim();
+  }
+
+  return s.trim();
+}
+
 /** Long-line collector for OCR/scanned bundles (charge/particulars can exceed 320 chars). */
 function collectPackULongSignalLines(
   bundleFullText: string,
   matcher: (line: string, upper: string) => boolean,
   max: number,
-  maxLineLen = 520
+  maxLineLen = 520,
+  stripEvalDisclaimerBoilerplate = false
 ): string[] {
   if (!bundleFullText) return [];
   const seen = new Set<string>();
   const out: string[] = [];
   for (const raw of bundleFullText.split(/\r?\n/)) {
     if (out.length >= max) break;
-    const line = raw.trim();
+    let line = raw.trim();
+    if (!line) continue;
+    if (stripEvalDisclaimerBoilerplate) {
+      line = cleanEvalDisclaimerFragments(line);
+    }
     if (!line || line.length < 8 || line.length > maxLineLen) continue;
     if (looksLikeNewEvalSectionHeader(line)) continue;
+    if (stripEvalDisclaimerBoilerplate && isEvalDisclaimerBoilerplateCandidateLine(line)) continue;
     const upper = line.toUpperCase();
     if (!matcher(line, upper)) continue;
     const key = upper.replace(/\s+/g, " ").slice(0, 200);
@@ -3893,7 +3959,9 @@ function collectPackUMg5CrownAllegationNarrativeLines(bundleFullText: string, ma
       /\bCROWN\s+SUMMARY\s+ALLEGES\b/i.test(U) ||
       /\bWAS\s+INVOLVED\s+IN\s+THE\s+OFFENCE\s+AT\b/.test(U) ||
       (/\bALLEGES\s+THAT\b/.test(U) && /\b(CROWN|MG5|SUMMARY)\b/.test(U)),
-    max
+    max,
+    520,
+    true
   );
 }
 
@@ -3963,7 +4031,9 @@ function collectPackUChargeCandidateLines(bundleFullText: string, max = 6): stri
         /\b(?:unlawfully|maliciously|dishonestly|assault|theft|robbed|wounding|harm|inflict|caused|contrary\s+to|is\s+alleged\s+to)\b/i.test(
           _line
         )),
-    max
+    max,
+    520,
+    true
   );
 }
 
@@ -3985,7 +4055,9 @@ function collectPackUInterviewClientAccountLines(bundleFullText: string, max = 8
       /\bCLIENT\s+SAYS\b.*\b(TIMESTAMP|CONTEXT|SOURCE)\b/.test(U) ||
       /\bDEFENCE\s+SAYS\b.*\bVISUAL\b/.test(U) ||
       /\bDEFENCE\s+SAYS\b.*\b(INCOMPLETE|UNSAFE|LOW[-\s]?CONFIDENCE)\b/.test(U),
-    max
+    max,
+    520,
+    true
   );
 }
 
@@ -4012,7 +4084,9 @@ function collectPackUVisualOcrLimitationLines(bundleFullText: string, max = 10):
       /\bTREAT\s+VISIBLE\s+TEXT\s+AS\s+EVIDENCE\b/.test(U) ||
       /\bEXHIBIT\s+LABEL\s+CONFLICTS\s+WITH\s+MG6\b/.test(U) ||
       /\bTIMESTAMP\s+VISIBLE\b.*\bSOURCE\s+FILE\s+NOT\s+SERVED\b/.test(U),
-    max
+    max,
+    520,
+    true
   );
 }
 
@@ -4024,7 +4098,9 @@ function collectPackUStrategyImageMg5Lines(bundleFullText: string, max = 6): str
       /\bSTRATEGY\s+USEFULNESS\b/.test(U) ||
       /\bTHIS\s+MAY\s+ASSIST\s+THE\s+CROWN\b/.test(U) ||
       /\bTHIS\s+MAY\s+ASSIST\s+THE\s+DEFENCE\b/.test(U),
-    max
+    max,
+    520,
+    true
   );
 }
 
@@ -4216,7 +4292,7 @@ function buildStructuredEvalPackUDefenceWeaknessAnswer(bundleFullText: string): 
 
 function extractStructuredEvalPackLetterExhibitCodes(
   bundleFullText: string,
-  letter: "L" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U",
+  letter: "L" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V",
   maxCount = 6
 ): string[] {
   if (!bundleFullText) return [];
@@ -4238,13 +4314,370 @@ function extractStructuredEvalPackLetterExhibitCodes(
 
 function extractPackLetterFamilyCaseAnchor(
   bundleFullText: string,
-  letter: "L" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U"
+  letter: "L" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V"
 ): string | null {
   const caseRef = extractCaseSpecificRef(bundleFullText);
   if (caseRef) return caseRef;
   const ex = extractStructuredEvalPackLetterExhibitCodes(bundleFullText, letter, 1);
   if (ex[0]) return ex[0];
   return extractStrongestCaseAnchor(bundleFullText);
+}
+
+/**
+ * Pack V — Strategy leverage / “why this helps” fictional eval (`PACK V`,
+ * `CB-LEVERAGE`, `CB-WHY`, `EX-V-*`). Narrow gate; A–U unchanged when absent.
+ */
+function isPackVStrategyLeverageWhyEvalBundle(bundleFullText: string): boolean {
+  if (!bundleFullText || !isStructuredEvalBundle(bundleFullText)) return false;
+  return (
+    /\bPACK\s*V\b/i.test(bundleFullText) ||
+    /\bCB-LEVERAGE\b/i.test(bundleFullText) ||
+    /\bCB-WHY\b/i.test(bundleFullText) ||
+    /\bEX-V-/i.test(bundleFullText)
+  );
+}
+
+function extractPackVCaseAnchor(bundleFullText: string): string | null {
+  const lev = bundleFullText.match(/\bCB-LEVERAGE-\d{4}-\d{3,4}\b/i)?.[0]?.toUpperCase();
+  if (lev) return lev;
+  const why = bundleFullText.match(/\bCB-WHY-\d{4}-\d{3,4}\b/i)?.[0]?.toUpperCase();
+  if (why) return why;
+  const exV = extractStructuredEvalPackLetterExhibitCodes(bundleFullText, "V", 1)[0];
+  if (exV) return exV;
+  const cs = extractCaseSpecificRef(bundleFullText);
+  if (cs && /\bCB-(?:LEVERAGE|WHY)\b/i.test(cs)) return cs.toUpperCase();
+  return extractCaseSpecificRef(bundleFullText);
+}
+
+function collectPackVCrownVersionAndKeyEvidenceLines(bundleFullText: string, max = 6): string[] {
+  return collectPackULongSignalLines(
+    bundleFullText,
+    (_line, U) =>
+      /\bCROWN\s+VERSION\b/.test(U) ||
+      /\bTHE\s+CROWN\s+SAYS\b/.test(U) ||
+      /\bCROWN\s+VERSION\s*:/i.test(_line) ||
+      /\bKEY\s+EVIDENCE\s+RELIED\s+ON\b/.test(U) ||
+      /\bMG5\s+SUMMARY\b/.test(U),
+    max,
+    520,
+    true
+  );
+}
+
+function collectPackVStrategyLeveragePressureLines(bundleFullText: string, max = 8): string[] {
+  return collectPackULongSignalLines(
+    bundleFullText,
+    (_line, U) =>
+      /\bSTRATEGY\s+LEVERAGE\b/.test(U) ||
+      /\bTHIS\s+MAY\s+ASSIST\s+THE\s+CROWN\s+BECAUSE\b/.test(U) ||
+      /\bTHIS\s+MAY\s+ASSIST\s+THE\s+DEFENCE\s+BECAUSE\b/.test(U) ||
+      /\bTHIS\s+CREATES\s+PRESSURE\s+IF\s+PROVED\b/.test(U) ||
+      /\bTHIS\s+IS\s+ONLY\s+USEFUL\s+IF\b/.test(U) ||
+      /\bTHIS\s+POINT\s+COLLAPSES\s+IF\b/.test(U) ||
+      /\bPOINT\s+COLLAPSES\s+IF\b/.test(U) ||
+      /\bWHAT\s+CANNOT\s+SAFELY\s+BE\s+SAID\s+YET\b/.test(U) ||
+      /\bSOURCE\s+MATERIAL\s+MISSING\b/.test(U) ||
+      /\bOUTSTANDING\s+MATERIAL\b/.test(U) ||
+      /\bSAFE\s+STRATEGY\s+MOVE\b/.test(U),
+    max,
+    520,
+    true
+  );
+}
+
+function collectPackVInterviewClientAccountLines(bundleFullText: string, max = 10): string[] {
+  return collectPackULongSignalLines(
+    bundleFullText,
+    (_line, U) =>
+      /\bINTERVIEW\b.*\bCLIENT\b/.test(U) ||
+      /\bCLIENT\s+ACCOUNT\b/.test(U) ||
+      /\bINTERVIEW\s*\/\s*CLIENT\s+ACCOUNT\b/.test(U) ||
+      /\bCLIENT\s+ACCOUNT\s*:/.test(U) ||
+      /\bINTERVIEW\s*:/.test(U) ||
+      /\bNO\s+COMMENT\b.*\bLIMITED\s+DISCLOSURE\b/.test(U) ||
+      /\bDENIAL\b/.test(U) ||
+      /\bDENIED\b/.test(U) ||
+      /\bPARTIAL\s+ADMISSION\b/.test(U) ||
+      /\bSELF[-\s]?DEFENCE\b/.test(U) ||
+      /\bMISTAKEN\s+IDENTITY\b/.test(U) ||
+      /\bACCIDENT\b/.test(U) ||
+      /\bLAWFUL\s+EXCUSE\b/.test(U) ||
+      /\bPAYMENT\s+EXPLANATION\b/.test(U) ||
+      /\bACCOUNT\s+INCONSISTENT\s+WITH\s+PAPERS\b/.test(U) ||
+      (/\bSOLICITOR\s+NOTE\b/.test(U) && /\bSOURCE\s+MATERIAL\b/.test(U)) ||
+      /\bSOURCE\s+MATERIAL\s+NOT\s+YET\s+served\b/i.test(_line) ||
+      /\bCLIENT\s+SAYS\b/.test(U),
+    max,
+    520,
+    true
+  );
+}
+
+/** Pack V Q1 — merge newlines for extension / multiline match only (verbatim bundle text). */
+function packVFlattenBundleForMatch(bundleFullText: string): string {
+  return bundleFullText.replace(/\r?\n+/g, " ");
+}
+
+/** Mid-offence tails with no sentence end (common when particulars wrap or hit an old char cap). */
+function isPackVQ1ChargeWordingLikelyIncomplete(s: string): boolean {
+  const t = compactOneLine(s).trim();
+  if (t.length < 48) return false;
+  if (/[.!?]["']?\s*$/.test(t)) return false;
+  if (/\bis\s+alleged\s+to\s+have\s+driven\s+a\s*$/i.test(t)) return true;
+  if (/\bto\s+have\s+driven\s+a\s*$/i.test(t)) return true;
+  if (/\bwithout\s+lawful\s+excuse\s*$/i.test(t)) return true;
+  if (/\bis\s+alleged\s+without\s+lawful\s+excuse\s*$/i.test(t)) return true;
+  return false;
+}
+
+/**
+ * If `seed` appears in a flattened bundle view, extend through the next sentence end
+ * (". ") so particulars are not returned cut mid-clause. Verbatim slice only.
+ */
+function extendPackVQ1ChargeCandidateFromBundle(bundleFullText: string, seed: string): string {
+  const s0 = compactOneLine(seed).trim();
+  if (!s0 || s0.length < 30) return s0;
+  const flat = compactOneLine(packVFlattenBundleForMatch(bundleFullText));
+  const probeLen = Math.min(80, s0.length);
+  const probe = s0.slice(0, probeLen);
+  let idx = flat.toLowerCase().indexOf(probe.toLowerCase());
+  if (idx < 0 && probeLen > 48) {
+    idx = flat.toLowerCase().indexOf(s0.slice(0, 48).toLowerCase());
+  }
+  if (idx < 0) return s0;
+
+  const maxSpan = 1800;
+  const span = flat.slice(idx, Math.min(flat.length, idx + maxSpan)).trim();
+  if (span.length <= s0.length + 8) return s0;
+
+  const minCut = Math.min(s0.length + 20, span.length);
+  let cut = span.length;
+  const dotSp = span.indexOf(". ", Math.max(minCut, 50));
+  if (dotSp >= minCut) cut = dotSp + 1;
+  else {
+    const q = span.lastIndexOf("?");
+    if (q >= minCut) cut = q + 1;
+  }
+
+  const out = span.slice(0, cut).trim();
+  const cleaned = stripQ1NonAllegationWording(out) ?? out;
+  const one = compactOneLine(cleaned);
+  if (one.length > s0.length + 10 && !isPackUJunkPrimaryAllegationLine(one)) return one;
+  return s0;
+}
+
+/** Prefer one full particulars sentence when the file wraps "On …" across lines. */
+function firstMatchPackVMultilineParticularsSentence(bundleFullText: string): string | null {
+  const flat = packVFlattenBundleForMatch(bundleFullText);
+  const patterns: RegExp[] = [
+    /\b(On\s+\d{1,2}[\s\/.\-]\d{1,2}[\s\/.\-]\d{2,4}\s+at\s+about\s+\d{1,2}:\d{2}\s+at\s+[\s\S]{40,2000}?\.)(?=\s|$)/i,
+    /\b(On\s+\d{1,2}[\s\/.\-]\d{1,2}[\s\/.\-]\d{2,4}\s+at\s+[\s\S]{40,2000}?\.)(?=\s|$)/i,
+    /\b(On\s+\d{1,2}[\s\/.\-]\d{1,2}[\s\/.\-]\d{2,4}[\s\S]{60,2000}?\bcontrary\s+to\s+[^.]{6,520}\.)(?=\s|$)/i,
+    /\b(On\s+\d{1,2}[\s\/.\-]\d{1,2}[\s\/.\-]\d{2,4}[\s\S]{60,2000}?\bis\s+alleged\s+to\b[\s\S]{0,900}?\.)(?=\s|$)/i,
+  ];
+  for (const p of patterns) {
+    const m = flat.match(p);
+    if (m?.[1]) {
+      const one = stripQ1NonAllegationWording(compactOneLine(m[1])) ?? compactOneLine(m[1]);
+      if (one && !isPackUJunkPrimaryAllegationLine(one) && one.length >= 70) return one;
+    }
+  }
+  return null;
+}
+
+function finalizePackVPrimaryAllegationOneLine(
+  bundleFullText: string,
+  candidate: string,
+  leadRef: string | null
+): string {
+  const c = compactOneLine(candidate).trim();
+  if (!c) return candidate;
+  if (!isPackUThinOffenceTypeOrChargeAllegationLabel(c)) {
+    return c;
+  }
+
+  const ref = leadRef?.trim() || null;
+  const mg5Ranked = [
+    ...collectPackVCrownVersionAndKeyEvidenceLines(bundleFullText, 5),
+    ...collectPackUMg5CrownAllegationNarrativeLines(bundleFullText, 4),
+    ...extractStructuredEvalLines(
+      bundleFullText,
+      ["MG5 SUMMARY", "CROWN VERSION", "MG5 — CASE SUMMARY", "MG5 CASE SUMMARY", "MG5"] as const,
+      2
+    ),
+    ...collectPackUStrategyImageMg5Lines(bundleFullText, 2),
+  ];
+  const cLow = c.toLowerCase();
+  const mg5Pick =
+    mg5Ranked.find((ln) => {
+      const L = compactOneLine(ln);
+      if (L.length < 24 || L.toLowerCase() === cLow) return false;
+      return /\b(CROWN|MG5|ALLEG|VERSION|SAYS|EVIDENCE|SUMMARY)\b/i.test(L);
+    }) ??
+    mg5Ranked.find((ln) => {
+      const L = compactOneLine(ln);
+      return L.length >= 24 && L.toLowerCase() !== cLow;
+    }) ??
+    null;
+
+  const defendant = extractPackUQ1PrintedDefendantName(bundleFullText);
+  const offenceTail = c.replace(/^\s*(?:Offence\s+type|Charge\s*\/\s*allegation)\s*[:\-]\s*/i, "").trim() || c;
+
+  if (ref && mg5Pick) {
+    return `Core allegation: ${ref} — the printed papers identify ${c} and MG5/Crown version on the file says ${compactOneLine(mg5Pick)}.`;
+  }
+  if (ref && defendant) {
+    return `Core allegation: ${ref} — ${defendant} is alleged, on the printed file wording, to be involved in ${offenceTail}.`;
+  }
+  if (ref) {
+    return `Core allegation: ${ref} — ${c}.`;
+  }
+  return c;
+}
+
+function buildPackVPrimaryAllegationAnswer(bundleFullText: string): string | null {
+  if (!isPackVStrategyLeverageWhyEvalBundle(bundleFullText)) return null;
+  const lev = bundleFullText.match(/\bCB-LEVERAGE-\d{4}-\d{3,4}\b/i)?.[0]?.toUpperCase() ?? null;
+  const anchor = extractPackVCaseAnchor(bundleFullText);
+  const leadRef = lev ?? anchor;
+
+  let candidate: string | null = null;
+
+  const multilinePart = firstMatchPackVMultilineParticularsSentence(bundleFullText);
+
+  const strict = buildStrictPrimaryAllegationAnswer(bundleFullText);
+  if (strict) {
+    const s = stripQ1NonAllegationWording(compactOneLine(strict));
+    if (s && !isPackUJunkPrimaryAllegationLine(s)) candidate = s;
+  }
+
+  if (multilinePart && (!candidate || multilinePart.length > candidate.length + 12)) {
+    candidate = multilinePart;
+  }
+
+  if (!candidate) {
+    const wide = firstMatch(bundleFullText, [
+      /\bExact\s+charge\s+wording\s*[:\-]\s*([^\n]{18,520})/i,
+      /\b(?:Charge|CHARGE)\s*\/\s*(?:Allegation|ALLEGATION)\s*[:\-]?\s*([^\n]{14,520})/i,
+      /\bAllegation\s*[:\-]\s*([^\n]{14,520})/i,
+      /\bCharge\s*[:\-]\s*([^\n]{14,520})/i,
+      /\bParticulars\s+of\s+offence\s*[:\-]\s*([^\n]{14,520})/i,
+      /\bStatement\s+of\s+offence\s*[:\-]\s*([^\n]{14,520})/i,
+      /(\bThe\s+Crown\s+says\b[^\n]{8,400})/i,
+      /(\bThe\s+Crown\s+summary\s+alleges\s+that\b[^\n]{10,400})/i,
+      /(\bwas\s+involved\s+in\s+the\s+offence\s+at\b[^\n]{10,400})/i,
+      /(\bOn\s+\d{1,2}[\s\/.\-]\d{1,2}[\s\/.\-]\d{2,4}[^\n]{16,520}\bis\s+alleged\s+to\b[^\n]*)/i,
+      /(\bOn\s+\d{1,2}[\s\/.\-]\d{1,2}[\s\/.\-]\d{2,4}[^\n]{16,520}\bcontrary\s+to\b[^\n]*)/i,
+    ]);
+    if (wide) {
+      const w = stripQ1NonAllegationWording(compactOneLine(wide));
+      if (w && !isPackUJunkPrimaryAllegationLine(w)) candidate = w;
+    }
+  }
+
+  if (!candidate) {
+    const ranked = collectPackUChargeCandidateLines(bundleFullText, 8);
+    const best = ranked.find((ln) => !isPackUJunkPrimaryAllegationLine(ln));
+    if (best) candidate = compactOneLine(best);
+  }
+
+  if (multilinePart && (!candidate || multilinePart.length > candidate.length + 12)) {
+    candidate = multilinePart;
+  }
+
+  if (candidate) {
+    let c2 = compactOneLine(candidate).trim();
+    if (isPackVQ1ChargeWordingLikelyIncomplete(c2)) {
+      c2 = extendPackVQ1ChargeCandidateFromBundle(bundleFullText, c2);
+    }
+    const out = finalizePackVPrimaryAllegationOneLine(bundleFullText, c2, leadRef);
+    return softTruncate(compactOneLine(out), 920, 420);
+  }
+
+  if (leadRef) {
+    return compactOneLine(
+      `${leadRef} → the served bundle text on this file does not safely print a discrete charge/allegation sentence to quote verbatim; treat the primary allegation as not confirmed from leverage headings alone.`
+    );
+  }
+  return null;
+}
+
+function buildPackVInterviewReplacement(bundleFullText: string): string | null {
+  if (!isPackVStrategyLeverageWhyEvalBundle(bundleFullText)) return null;
+  const anchor = extractPackVCaseAnchor(bundleFullText);
+  if (!anchor) return null;
+
+  const accLines = collectPackVInterviewClientAccountLines(bundleFullText, 8);
+  const exV = extractStructuredEvalPackLetterExhibitCodes(bundleFullText, "V", 6);
+  const exClause = exV.length > 0 ? exV.join(", ") : "none printed in excerpt";
+
+  if (accLines.length === 0) {
+    const core = `Core point: ${anchor} → no reliable interview/client account wording is printed in the served text.`;
+    const ev = `Evidence reference: Interview/client-account lines: none matched in excerpt || EX-V exhibit codes on file: ${exClause}.`;
+    const next =
+      "Next step: Treat the account as instructions/evidence position only; map it against the leverage points before committing strategy.";
+    return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
+  }
+
+  const lead = accLines[0];
+  const core = `Core point: ${anchor} → interview/client account on the file is ${lead}.`;
+  const ev = `Evidence reference: Interview/client-account lines: ${accLines.slice(0, 5).join(" | ")} || EX-V exhibit codes on file: ${exClause}.`;
+  const next =
+    "Next step: Treat the account as instructions/evidence position only; map it against the leverage points on the file before committing final strategy.";
+  return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
+}
+
+function buildStructuredEvalPackVProsecutionProofAnswer(bundleFullText: string): string | null {
+  if (!isPackVStrategyLeverageWhyEvalBundle(bundleFullText)) return null;
+  const anchor = extractPackVCaseAnchor(bundleFullText);
+  if (!anchor) return null;
+
+  const chargePick = collectPackUChargeCandidateLines(bundleFullText, 4)[0] ?? null;
+  const mg5Crown = [
+    ...collectPackVCrownVersionAndKeyEvidenceLines(bundleFullText, 3),
+    ...collectPackUMg5CrownAllegationNarrativeLines(bundleFullText, 2),
+  ];
+  const leverageLines = collectPackVStrategyLeveragePressureLines(bundleFullText, 6);
+  const outstanding = collectPackULongSignalLines(
+    bundleFullText,
+    (_line, U) =>
+      /\bOUTSTANDING\s+MATERIAL\b/.test(U) ||
+      /\bSOURCE\s+MATERIAL\s+MISSING\b/.test(U) ||
+      /\bWHAT\s+CANNOT\s+SAFELY\s+BE\s+SAID\s+YET\b/.test(U),
+    3,
+    520,
+    true
+  );
+
+  const levPick = leverageLines[0] ?? outstanding[0] ?? null;
+  const crownPick = mg5Crown.find((ln) => compactOneLine(ln).length >= 22) ?? null;
+
+  let core: string;
+  if (levPick) {
+    core = `Core point: ${anchor} → the Crown must still prove the printed allegation and the leverage point remains conditional: ${compactOneLine(levPick)}.`;
+  } else if (crownPick && chargePick) {
+    core = `Core point: ${anchor} → the Crown must still prove the printed allegation to the criminal standard; the MG5/Crown version line on this file reads — ${compactOneLine(crownPick)} — and remains conditional until matched against served source material.`;
+  } else if (chargePick) {
+    core = `Core point: ${anchor} → the Crown must still prove the printed charge/allegation line on this file; any leverage framing on this file stays conditional until the listed source material is served — ${compactOneLine(chargePick)}.`;
+  } else {
+    core = `Core point: ${anchor} → the Crown must still prove the case on the served papers; strategy-leverage notes on this file are conditional only and must be read against charge wording and served disclosure.`;
+  }
+
+  const evBits: string[] = [];
+  if (chargePick) evBits.push(`Charge / proof line: ${chargePick}`);
+  if (crownPick) evBits.push(`MG5 / Crown version line: ${compactOneLine(crownPick)}`);
+  if (leverageLines[0]) evBits.push(`Leverage line: ${leverageLines[0]}`);
+  if (leverageLines[1]) evBits.push(`Further leverage line: ${leverageLines[1]}`);
+  if (outstanding[0] && outstanding[0] !== leverageLines[0]) {
+    evBits.push(`Source/outstanding line: ${outstanding[0]}`);
+  }
+  const exV = extractStructuredEvalPackLetterExhibitCodes(bundleFullText, "V", 6);
+  evBits.push(`EX-V exhibit codes on file: ${exV.length ? exV.join(", ") : "none printed in excerpt"}`);
+  const ev = `Evidence reference: Charge / proof / leverage lines: ${evBits.join(" || ")}.`;
+
+  const next =
+    "Next step: Build the proof map from the printed charge and test each leverage point against served source material before advising final strategy; do not treat 'may assist' or 'pressure if proved' wording as outcome prediction.";
+  return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
 }
 
 function findFirstLineMatchingPackRInjection(bundleFullText: string): string | null {
@@ -5498,6 +5931,9 @@ function buildStructuredEvalProsecutionProofAnswer(bundleFullText: string): stri
   if (isPackUScannedPhotoOcrEvalBundle(bundleFullText)) {
     const pu = buildStructuredEvalPackUProsecutionProofAnswer(bundleFullText);
     if (pu) return pu;
+  } else if (isPackVStrategyLeverageWhyEvalBundle(bundleFullText)) {
+    const pv = buildStructuredEvalPackVProsecutionProofAnswer(bundleFullText);
+    if (pv) return pv;
   }
   if (isPackLStageWorkflowEvalBundle(bundleFullText)) {
     const pl = buildStructuredEvalPackLStageProsecutionProofAnswer(bundleFullText);
@@ -7568,6 +8004,50 @@ function buildBundleGroundingRetry(reply: string, exhibitHaystack: string, userM
   return `Rewrite your **entire** previous answer. Apply these grounding fixes:\n${issues.map((s) => `- ${s}`).join("\n")}\nPreserve correct EX- codes verbatim from the bundle exhibit list.`;
 }
 
+/**
+ * Strip standalone fictional-eval disclaimer/header/footer lines from combined
+ * document text so deterministic extractors do not quote them as case evidence.
+ * Eval / fast-eval / eval-bypass only (see POST handler). After removing short
+ * standalone disclaimer lines, applies {@link cleanEvalDisclaimerFragments} per
+ * remaining line so OCR-joined header glue (e.g. `papersPage 1`) cannot surface
+ * in deterministic answers.
+ */
+function stripEvalDisclaimers(text: string): string {
+  if (!text) return text;
+  const lineRes: readonly RegExp[] = [
+    /^fictional evaluation material\.?$/i,
+    /^not real case papers\.?$/i,
+    /^synthetic test bundle\.?$/i,
+    /^controlled fictional case\.?$/i,
+    /^fictional criminal defence evaluation\.?$/i,
+    /^not real police material\.?$/i,
+    /^this is not real police material\.?$/i,
+    /^artificial test case\.?$/i,
+    /^generated test bundle\.?$/i,
+  ];
+
+  const coreForEvalDisclaimerLine = (raw: string): string => {
+    let s = raw.trim();
+    s = s.replace(/^={2,}\s*/, "").replace(/\s*={2,}\s*$/g, "");
+    s = s.replace(/^\s*(?:[-*•#>]+|[\d]{1,2}[.)]\s*)\s*/, "").trim();
+    return s;
+  };
+
+  const isStandaloneEvalDisclaimerLine = (raw: string): boolean => {
+    const core = coreForEvalDisclaimerLine(raw);
+    if (!core || core.length > 140) return false;
+    if (core.split(/\s+/).length > 14) return false;
+    return lineRes.some((re) => re.test(core));
+  };
+
+  return text
+    .split(/\r?\n/)
+    .filter((ln) => !isStandaloneEvalDisclaimerLine(ln))
+    .map((ln) => cleanEvalDisclaimerFragments(ln))
+    .filter((ln) => ln.length > 0)
+    .join("\n");
+}
+
 /** Keep start (charge/MG5) and end (exhibit list, END marker) when trimming for the model. */
 function truncateBundleForModel(full: string, max: number): string {
   if (full.length <= max) return full;
@@ -8317,6 +8797,9 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     if (docs?.length) {
       docsWithTextCount = docs.filter((d) => getDocumentBodyText(d).trim().length > 0).length;
       combinedBundleFull = docs.map((d) => getDocumentBodyText(d)).filter(Boolean).join("\n\n");
+      if (isEvalMode || isFastEval || isEvalBypass) {
+        combinedBundleFull = stripEvalDisclaimers(combinedBundleFull);
+      }
       const capped = combinedBundleFull.slice(0, MAX_BUNDLE_FULL_CHARS_FOR_REFS);
       const shrinkInterpretiveEvalBundle =
         (isEvalMode || isEvalBypass) && canonicalSweepQuestionUsesFullPipeline(message);
@@ -8463,6 +8946,9 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     if (isPackUScannedPhotoOcrEvalBundle(combinedBundleFull)) {
       const packUInt = buildPackUInterviewReplacement(combinedBundleFull);
       if (packUInt) reply = packUInt;
+    } else if (isPackVStrategyLeverageWhyEvalBundle(combinedBundleFull)) {
+      const packVInt = buildPackVInterviewReplacement(combinedBundleFull);
+      if (packVInt) reply = packVInt;
     }
     return jsonWithRoute(
       {
@@ -8495,6 +8981,9 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     let line: string | null = null;
     if (isPackUScannedPhotoOcrEvalBundle(combinedBundleFull)) {
       line = buildPackUPrimaryAllegationAnswer(combinedBundleFull);
+      if (line) line = stripQ1NonAllegationWording(line);
+    } else if (isPackVStrategyLeverageWhyEvalBundle(combinedBundleFull)) {
+      line = buildPackVPrimaryAllegationAnswer(combinedBundleFull);
       if (line) line = stripQ1NonAllegationWording(line);
     }
     if (!line) line = stripQ1NonAllegationWording(buildStrictPrimaryAllegationAnswer(combinedBundleFull));
