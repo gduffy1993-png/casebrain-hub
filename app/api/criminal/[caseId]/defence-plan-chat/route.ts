@@ -4292,7 +4292,7 @@ function buildStructuredEvalPackUDefenceWeaknessAnswer(bundleFullText: string): 
 
 function extractStructuredEvalPackLetterExhibitCodes(
   bundleFullText: string,
-  letter: "L" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V",
+  letter: "L" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W",
   maxCount = 6
 ): string[] {
   if (!bundleFullText) return [];
@@ -4314,7 +4314,7 @@ function extractStructuredEvalPackLetterExhibitCodes(
 
 function extractPackLetterFamilyCaseAnchor(
   bundleFullText: string,
-  letter: "L" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V"
+  letter: "L" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W"
 ): string | null {
   const caseRef = extractCaseSpecificRef(bundleFullText);
   if (caseRef) return caseRef;
@@ -4677,6 +4677,491 @@ function buildStructuredEvalPackVProsecutionProofAnswer(bundleFullText: string):
 
   const next =
     "Next step: Build the proof map from the printed charge and test each leverage point against served source material before advising final strategy; do not treat 'may assist' or 'pressure if proved' wording as outcome prediction.";
+  return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
+}
+
+/**
+ * Pack W — Timeline / sequence / alibi conflict fictional eval (`PACK W`,
+ * `CB-TIMELINE`, `CB-SEQUENCE`, `CB-ALIBI`, `EX-W-*`). Narrow gate; A–V
+ * unchanged when these tokens are absent.
+ */
+function isPackWTimelineSequenceAlibiEvalBundle(bundleFullText: string): boolean {
+  if (!bundleFullText || !isStructuredEvalBundle(bundleFullText)) return false;
+  return (
+    /\bPACK\s*W\b/i.test(bundleFullText) ||
+    /\bCB-TIMELINE\b/i.test(bundleFullText) ||
+    /\bCB-SEQUENCE\b/i.test(bundleFullText) ||
+    /\bCB-ALIBI\b/i.test(bundleFullText) ||
+    /\bEX-W-/i.test(bundleFullText)
+  );
+}
+
+function extractPackWCaseAnchor(bundleFullText: string): string | null {
+  const tl = bundleFullText.match(/\bCB-TIMELINE-\d{4}-\d{3,4}\b/i)?.[0]?.toUpperCase() ?? null;
+  if (tl) return tl;
+  const sq = bundleFullText.match(/\bCB-SEQUENCE-\d{4}-\d{3,4}\b/i)?.[0]?.toUpperCase() ?? null;
+  if (sq) return sq;
+  const al = bundleFullText.match(/\bCB-ALIBI-\d{4}-\d{3,4}\b/i)?.[0]?.toUpperCase() ?? null;
+  if (al) return al;
+  const exW = extractStructuredEvalPackLetterExhibitCodes(bundleFullText, "W", 1)[0];
+  if (exW) return exW;
+  const cs = extractCaseSpecificRef(bundleFullText);
+  if (cs && /\bCB-(?:TIMELINE|SEQUENCE|ALIBI)\b/i.test(cs)) return cs.toUpperCase();
+  return extractCaseSpecificRef(bundleFullText);
+}
+
+function collectPackWInterviewTimingAccountLines(bundleFullText: string, max = 10): string[] {
+  return collectStructuredEvalLooseLines(
+    bundleFullText,
+    (_line, U) =>
+      /\bINTERVIEW\b.*\bCLIENT\s+ACCOUNT\b/.test(U) ||
+      /\bCLIENT\s+ACCOUNT\b/.test(U) ||
+      /\bINTERVIEW\s*\/\s*CLIENT\s+ACCOUNT\b/.test(U) ||
+      /\bCLIENT\s+ACCOUNT\s+TIME\b/.test(U) ||
+      /^\s*INTERVIEW\s*[:\-]/i.test(_line) ||
+      /^\s*CLIENT\s+ACCOUNT\s*[:\-]/i.test(_line) ||
+      /\bCLIENT\s+SAYS\b/.test(U) ||
+      /\bNOT\s+A\s+SAFE\s+ALIBI\s+UNLESS\b/.test(U) ||
+      /\bALIBI[-\s]?STYLE\s+ACCOUNT\b/.test(U) ||
+      /\bTIMING\s+ACCOUNT\b/.test(U) ||
+      /\bCLIENT\s+SAYS\s+THEY\s+LEFT\s+AT\b/.test(U) ||
+      /\bCLIENT\s+SAYS\s+THEY\s+WERE\s+ELSEWHERE\b/.test(U) ||
+      /\bNO\s+COMMENT\b/.test(U) ||
+      /\bPARTIAL\s+ADMISSION\b/.test(U) ||
+      /\bDENIAL\b/.test(U) ||
+      /\bDENIED\b/.test(U) ||
+      /\bACCOUNT\s+CONFLICTS\s+WITH\b/.test(U) ||
+      /\bSOURCE\s+MATERIAL\s+NOT\s+YET\s+served\b/i.test(_line) ||
+      /\bSOURCE\s+MATERIAL\s+NOT\s+SERVED\b/.test(U),
+    max
+  );
+}
+
+function collectPackWTimingAccountLimitLines(bundleFullText: string, max = 8): string[] {
+  return collectStructuredEvalLooseLines(
+    bundleFullText,
+    (_line, U) =>
+      /\bTIMELINE\s+TABLE\b/.test(U) ||
+      /\bTIMING\s+CONFLICT\b/.test(U) ||
+      /\bSEQUENCE\s+NOTES\b/.test(U) ||
+      /\bTIMELINE\s+PRESSURE\s*[:\-]/.test(U) ||
+      /\bKEY\s+TIMING\s+CONFLICT\s*[:\-]/.test(U) ||
+      /\bNOT\s+A\s+SAFE\s+ALIBI\s+UNLESS\b/.test(U) ||
+      /\bSOURCE\s+TIME\s+MAY\s+DIFFER\b/.test(U) ||
+      /\bFULL\s+CCTV\s+MASTER\s+OUTSTANDING\b/.test(U) ||
+      /\bORIGINAL\s+WITNESS\b.*\bOUTSTANDING\b/i.test(_line) ||
+      /\bCAD\s+AUDIT\s+TRAIL\s+OUTSTANDING\b/.test(U) ||
+      /\b999\s+AUDIO\s+OUTSTANDING\b/.test(U) ||
+      /\bWITNESS\s+TIME\b/.test(U) ||
+      /\bCCTV\s+TIMESTAMP\b/.test(U) ||
+      /\b999\s+CALL\s+TIME\b/.test(U) ||
+      /\bCAD\s+TIME\b/.test(U) ||
+      /\bRECEIPT\s+TIME\b/.test(U) ||
+      /\bPHONE\s+MESSAGE\s+TIME\b/.test(U) ||
+      /\bCLIENT\s+ACCOUNT\s+TIME\b/.test(U),
+    max
+  );
+}
+
+function collectPackWTimelineProofLines(bundleFullText: string, max = 6): string[] {
+  return collectStructuredEvalLooseLines(
+    bundleFullText,
+    (_line, U) =>
+      /\bTIMELINE\s+TABLE\b/.test(U) ||
+      /\bTIMING\s+CONFLICT\b/.test(U) ||
+      /\bSEQUENCE\s+NOTES\b/.test(U) ||
+      /\bTIMELINE\s+PRESSURE\s*[:\-]/.test(U) ||
+      /\bKEY\s+TIMING\s+CONFLICT\s*[:\-]/.test(U) ||
+      /\bCCTV\s+TIMESTAMP\b/.test(U) ||
+      /\bWITNESS\s+TIME\b/.test(U) ||
+      /\b999\s+CALL\s+TIME\b/.test(U) ||
+      /\bCAD\s+TIME\b/.test(U) ||
+      /\bRECEIPT\s+TIME\b/.test(U) ||
+      /\bPHONE\s+MESSAGE\s+TIME\b/.test(U) ||
+      /\bCLIENT\s+ACCOUNT\s+TIME\b/.test(U) ||
+      /\bSOURCE\s+TIME\s+MAY\s+DIFFER\b/.test(U) ||
+      /\bNOT\s+A\s+SAFE\s+ALIBI\s+UNLESS\b/.test(U) ||
+      /\bFULL\s+CCTV\s+MASTER\s+OUTSTANDING\b/.test(U) ||
+      /\bORIGINAL\s+WITNESS\b.*\bOUTSTANDING\b/i.test(_line) ||
+      /\bCAD\s+AUDIT\s+TRAIL\s+OUTSTANDING\b/.test(U) ||
+      /\b999\s+AUDIO\s+OUTSTANDING\b/.test(U) ||
+      /\bSOURCE\s+MATERIAL\s+NOT\s+(?:SERVED|YET\s+served)\b/i.test(_line),
+    max
+  );
+}
+
+function collectPackWTimelineWeaknessLines(bundleFullText: string, max = 6): string[] {
+  return collectStructuredEvalLooseLines(
+    bundleFullText,
+    (_line, U) =>
+      /\bTIMELINE\s+PRESSURE\s*[:\-]/.test(U) ||
+      /\bKEY\s+TIMING\s+CONFLICT\s*[:\-]/.test(U) ||
+      /\bWITNESS\s+TIME\s+IS\s+(?:EARLIER|LATER)\s+THAN\s+CCTV\s+TIMESTAMP\b/i.test(_line) ||
+      /\bCCTV\s+TIMESTAMP\s+DIFFERS\s+FROM\b/.test(U) ||
+      /\bRECEIPT\s+TIME\s+CONFLICTS\s+WITH\b/.test(U) ||
+      /\bPHONE\s+MESSAGE\s+TIME\s+CONFLICTS\s+WITH\b/.test(U) ||
+      /\bCLIENT\s+ACCOUNT\s+TIME\s+CONFLICTS\s+WITH\s+CROWN\s+SEQUENCE\b/i.test(_line) ||
+      /\bSOURCE\s+TIME\s+MAY\s+DIFFER\b/.test(U) ||
+      /\bNOT\s+A\s+SAFE\s+ALIBI\s+UNLESS\b/.test(U) ||
+      /\bFULL\s+CCTV\s+MASTER\s+OUTSTANDING\b/.test(U) ||
+      /\bCAD\s+AUDIT\s+TRAIL\s+OUTSTANDING\b/.test(U) ||
+      /\b999\s+AUDIO\s+OUTSTANDING\b/.test(U) ||
+      /\bORIGINAL\s+WITNESS\s+STATEMENT\b.*\bOUTSTANDING\b/i.test(_line) ||
+      /\bSOURCE\s+MATERIAL\s+NOT\s+(?:SERVED|YET\s+served)\b/i.test(_line),
+    max
+  );
+}
+
+/** Pack W Q1 — flatten wrapped PDF lines for span search (same newline join as Pack V). */
+function packWFlattenBundleForMatch(bundleFullText: string): string {
+  return packVFlattenBundleForMatch(bundleFullText);
+}
+
+/** Truncated allegation tails (comma cut-off, article-open, mid-verb) common on Pack W timeline PDFs. */
+function isPackWQ1AllegationWordingLikelyIncomplete(s: string): boolean {
+  const t = compactOneLine(s).trim();
+  if (t.length < 36) return true;
+  if (/[.!?]["']?\s*$/.test(t)) return false;
+  if (/\bused\s+threatening,?\s*$/i.test(t)) return true;
+  if (/\bentered\s+a\s*$/i.test(t)) return true;
+  if (/\bdriven\s+a\s*$/i.test(t)) return true;
+  if (/\bwithout\s+lawful\s+excuse\s*$/i.test(t)) return true;
+  if (/\bassaulted\s+another\s+by\s*$/i.test(t)) return true;
+  if (/\bpossessed\s+a\s*$/i.test(t)) return true;
+  if (/\bdishonestly\s+appropriated\s*$/i.test(t)) return true;
+  if (/\bis\s+alleged\s+to\s+have\s+driven\s+a\s*$/i.test(t)) return true;
+  if (/\bis\s+alleged\s+to\s+have\s+entered\s+a\s*$/i.test(t)) return true;
+  if (/\bis\s+alleged\s+to\s+have\s+used\s+threatening,?\s*$/i.test(t)) return true;
+  if (/\bis\s+alleged\s+to\b/i.test(t) && /,\s*$/.test(t)) return true;
+  if (/\b(the|a|an)\s+$/i.test(t)) return true;
+  if (/\b(to|by|with|of|in)\s+$/i.test(t)) return true;
+  return false;
+}
+
+/**
+ * If `seed` appears in a flattened bundle view, extend through the next sentence end (". ")
+ * so particulars are not returned mid-clause. Verbatim slice only (Pack W Q1).
+ */
+function extendPackWQ1AllegationCandidateFromBundle(bundleFullText: string, seed: string): string {
+  const s0 = compactOneLine(seed).trim();
+  if (!s0 || s0.length < 24) return s0;
+  const flat = compactOneLine(packWFlattenBundleForMatch(bundleFullText));
+  const probeLen = Math.min(96, s0.length);
+  const probe = s0.slice(0, probeLen);
+  let idx = flat.toLowerCase().indexOf(probe.toLowerCase());
+  if (idx < 0 && probeLen > 52) {
+    idx = flat.toLowerCase().indexOf(s0.slice(0, 52).toLowerCase());
+  }
+  if (idx < 0) return s0;
+
+  const maxSpan = 2200;
+  const span = flat.slice(idx, Math.min(flat.length, idx + maxSpan)).trim();
+  if (span.length <= s0.length + 6) return s0;
+
+  const minCut = Math.min(Math.max(s0.length + 12, 52), span.length);
+  let cut = span.length;
+  const dotSp = span.indexOf(". ", Math.max(minCut, 40));
+  if (dotSp >= minCut) cut = dotSp + 1;
+  else {
+    const dotAt = span.indexOf(".", Math.max(minCut, 40));
+    if (dotAt >= minCut && (dotAt === span.length - 1 || /\s/.test(span.charAt(dotAt + 1) || " "))) {
+      cut = dotAt + 1;
+    } else {
+      const semi = span.indexOf("; ", minCut);
+      if (semi >= minCut && semi < minCut + 900) cut = semi + 1;
+      else {
+        const q = span.lastIndexOf("?");
+        if (q >= minCut) cut = q + 1;
+      }
+    }
+  }
+
+  const out = span.slice(0, cut).trim();
+  const cleaned = stripQ1NonAllegationWording(out) ?? out;
+  const one = compactOneLine(cleaned);
+  if (one.length > s0.length + 8 && !isPackUJunkPrimaryAllegationLine(one)) return one;
+  return s0;
+}
+
+function stripPackWQ1AllegationLabelPrefix(s: string): string {
+  return compactOneLine(s)
+    .replace(/^\s*Exact\s+allegation\s+wording\s*[:\-]\s*/i, "")
+    .replace(/^\s*Exact\s+charge\s+wording\s*[:\-]\s*/i, "")
+    .replace(/^\s*(?:Charge|CHARGE)\s*\/\s*(?:Allegation|ALLEGATION)\s*[:\-]\s*/i, "")
+    .trim();
+}
+
+function polishPackWQ1AllegationCandidate(bundleFullText: string, candidate: string): string {
+  let t = stripPackWQ1AllegationLabelPrefix(candidate);
+  for (let i = 0; i < 3; i++) {
+    if (!isPackWQ1AllegationWordingLikelyIncomplete(t)) break;
+    const ext = extendPackWQ1AllegationCandidateFromBundle(bundleFullText, t);
+    if (ext === t) break;
+    t = stripPackWQ1AllegationLabelPrefix(ext);
+  }
+  return compactOneLine(t).trim();
+}
+
+/** Prefer one full particulars sentence when label / "On …" lines wrap across rows (Pack W Q1). */
+function firstMatchPackWMultilineAllegationSentence(bundleFullText: string): string | null {
+  const flat = compactOneLine(packWFlattenBundleForMatch(bundleFullText));
+  const patterns: RegExp[] = [
+    /\bExact\s+allegation\s+wording\s*[:\-]\s*(On\s+\d{1,2}[\s\/.\-]\d{1,2}[\s\/.\-]\d{2,4}[\s\S]{40,2000}?\.)(?=\s|$)/i,
+    /\bCharge\s*\/\s*Allegation\s*[:\-]\s*(On\s+\d{1,2}[\s\/.\-]\d{1,2}[\s\/.\-]\d{2,4}[\s\S]{40,2000}?\.)(?=\s|$)/i,
+    /\b(?:Charge|CHARGE)\s*\/\s*(?:Allegation|ALLEGATION)\s*[:\-]?\s*(On\s+\d{1,2}[\s\/.\-]\d{1,2}[\s\/.\-]\d{2,4}[\s\S]{40,2000}?\.)(?=\s|$)/i,
+    /\b(On\s+\d{1,2}[\s\/.\-]\d{1,2}[\s\/.\-]\d{2,4}\s+at\s+about\s+\d{1,2}:\d{2}\s+at\s+[\s\S]{40,2000}?\.)(?=\s|$)/i,
+    /\b(On\s+\d{1,2}[\s\/.\-]\d{1,2}[\s\/.\-]\d{2,4}[\s\S]{60,2000}?\bcontrary\s+to\s+[^.]{6,520}\.)(?=\s|$)/i,
+    /\b(On\s+\d{1,2}[\s\/.\-]\d{1,2}[\s\/.\-]\d{2,4}[\s\S]{60,2000}?\bis\s+alleged\s+to\b[\s\S]{0,1200}?\.)(?=\s|$)/i,
+  ];
+  for (const p of patterns) {
+    const m = flat.match(p);
+    if (m?.[1]) {
+      const one = stripQ1NonAllegationWording(compactOneLine(m[1])) ?? compactOneLine(m[1]);
+      const stripped = stripPackWQ1AllegationLabelPrefix(one);
+      if (stripped && !isPackUJunkPrimaryAllegationLine(stripped) && stripped.length >= 68) return stripped;
+    }
+  }
+  return null;
+}
+
+function buildPackWPrimaryAllegationAnswer(bundleFullText: string): string | null {
+  if (!isPackWTimelineSequenceAlibiEvalBundle(bundleFullText)) return null;
+  const leadRef = extractPackWCaseAnchor(bundleFullText);
+
+  let candidate: string | null = firstMatchPackWMultilineAllegationSentence(bundleFullText);
+
+  const strict = buildStrictPrimaryAllegationAnswer(bundleFullText);
+  if (strict) {
+    const s = stripQ1NonAllegationWording(compactOneLine(strict));
+    if (s && !isPackUJunkPrimaryAllegationLine(s)) {
+      if (!candidate || s.length > candidate.length + 8) candidate = s;
+    }
+  }
+
+  if (!candidate) {
+    const wide =
+      firstMatch(bundleFullText, [
+        /\bExact\s+allegation\s+wording\s*[:\-]\s*([^\n]{18,520})/i,
+        /\bExact\s+charge\s+wording\s*[:\-]\s*([^\n]{18,520})/i,
+        /\b(?:Charge|CHARGE)\s*\/\s*(?:Allegation|ALLEGATION)\s*[:\-]?\s*([^\n]{14,520})/i,
+        /\bAllegation\s*[:\-]\s*([^\n]{14,520})/i,
+        /\bCharge\s*[:\-]\s*([^\n]{14,520})/i,
+        /\bOffence\s+type\s*[:\-]\s*([^\n]{10,420})/i,
+        /\bMG5\s+SUMMARY\s*[:\-]\s*([^\n]{14,520})/i,
+        /\bCrown\s+version\s*[:\-]\s*([^\n]{14,520})/i,
+        /(\bThe\s+Crown\s+says\b[^\n]{8,400})/i,
+        /(\bThe\s+Crown\s+summary\s+alleges\b[^\n]{10,520})/i,
+        /(\bOn\s+\d{1,2}[\s\/.\-]\d{1,2}[\s\/.\-]\d{2,4}[^\n]{16,520}\bis\s+alleged\s+to\b[^\n]*)/i,
+        /(\bOn\s+\d{1,2}[\s\/.\-]\d{1,2}[\s\/.\-]\d{2,4}[^\n]{16,520}\bcontrary\s+to\b[^\n]*)/i,
+      ]) ?? null;
+    if (wide) {
+      const w = stripQ1NonAllegationWording(compactOneLine(wide));
+      if (w && !isPackUJunkPrimaryAllegationLine(w)) candidate = w;
+    }
+  }
+
+  if (!candidate) {
+    const ranked = collectPackUChargeCandidateLines(bundleFullText, 8);
+    const best = ranked.find((ln) => !isPackUJunkPrimaryAllegationLine(ln));
+    if (best) candidate = compactOneLine(best);
+  }
+
+  const mg5Snippet =
+    extractStructuredEvalLines(bundleFullText, ["MG5 SUMMARY", "MG5 — CASE SUMMARY", "MG5 CASE SUMMARY", "MG5"] as const, 1)[0] ??
+    collectStructuredEvalLooseLines(
+      bundleFullText,
+      (_l, U) => /\bMG5\s+SUMMARY\b/.test(U) || /\bCROWN\s+VERSION\b/.test(U) || /\bTHE\s+CROWN\s+SAYS\b/.test(U),
+      1
+    )[0] ??
+    null;
+
+  if (candidate) {
+    const polished = polishPackWQ1AllegationCandidate(bundleFullText, candidate);
+    const c2 = compactOneLine(polished).trim();
+    const out = finalizePackVPrimaryAllegationOneLine(bundleFullText, c2, leadRef);
+    return softTruncate(compactOneLine(out), 920, 420);
+  }
+
+  if (leadRef && mg5Snippet) {
+    const ot =
+      extractStructuredEvalLines(bundleFullText, ["OFFENCE TYPE"] as const, 1)[0] ??
+      collectStructuredEvalLooseLines(bundleFullText, (_l, U) => /^\s*Offence\s+type\s*:/i.test(_l), 1)[0] ??
+      null;
+    if (ot) {
+      return softTruncate(
+        compactOneLine(
+          `Core allegation: ${leadRef} — the printed papers identify ${compactOneLine(ot)} and MG5/Crown version says ${compactOneLine(mg5Snippet)}.`
+        ),
+        920,
+        420
+      );
+    }
+    return softTruncate(compactOneLine(`Core allegation: ${leadRef} — ${compactOneLine(mg5Snippet)}.`), 920, 420);
+  }
+
+  if (leadRef) {
+    return compactOneLine(
+      `Core allegation: ${leadRef} → the served bundle text on this file does not safely print a discrete charge/allegation sentence to quote verbatim; treat the primary allegation as provisional until the printed charge line is located on served papers.`
+    );
+  }
+  return null;
+}
+
+function buildPackWInterviewReplacement(bundleFullText: string): string | null {
+  if (!isPackWTimelineSequenceAlibiEvalBundle(bundleFullText)) return null;
+  const anchor = extractPackWCaseAnchor(bundleFullText);
+  if (!anchor) return null;
+
+  const accLines = collectPackWInterviewTimingAccountLines(bundleFullText, 10);
+  const timingLines = collectPackWTimingAccountLimitLines(bundleFullText, 6);
+  const exW = extractStructuredEvalPackLetterExhibitCodes(bundleFullText, "W", 6);
+  const exClause = exW.length > 0 ? exW.join(", ") : "none printed in excerpt";
+
+  if (accLines.length > 0) {
+    const lead = accLines[0];
+    const core = `Core point: ${anchor} → interview/client timing account on the file is ${lead}.`;
+    const ev = `Evidence reference: Interview/client-account/timing lines: ${accLines.slice(0, 5).join(" | ")} || EX-W exhibit codes on file: ${exClause}.`;
+    const next =
+      "Next step: Treat the account as instructions/evidence position only; test it against CCTV/CAD/999/witness/receipt/phone timing before treating it as an alibi or final strategy.";
+    return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
+  }
+
+  if (timingLines.length > 0) {
+    const core = `Core point: ${anchor} → no reliable interview/client account wording is printed, but the file does publish timing-account limits: ${timingLines[0]}.`;
+    const ev = `Evidence reference: Timing-account/source lines: ${timingLines.slice(0, 5).join(" | ")} || EX-W exhibit codes on file: ${exClause}.`;
+    const next =
+      "Next step: Do not infer interview content; chase the missing interview/account source and test any timing point against served source material.";
+    return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
+  }
+
+  const core = `Core point: ${anchor} → no reliable interview/client account wording is printed in the served text.`;
+  const ev = `Evidence reference: Interview/client-account/timing lines: none matched in excerpt || EX-W exhibit codes on file: ${exClause}.`;
+  const next =
+    "Next step: Do not infer interview content; chase the missing interview/account source and test any timing point against served source material.";
+  return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
+}
+
+function buildStructuredEvalPackWProsecutionProofAnswer(bundleFullText: string): string | null {
+  if (!isPackWTimelineSequenceAlibiEvalBundle(bundleFullText)) return null;
+  const anchor = extractPackWCaseAnchor(bundleFullText);
+  if (!anchor) return null;
+
+  const chargePick =
+    collectPackUChargeCandidateLines(bundleFullText, 4)[0] ??
+    collectStructuredEvalLooseLines(
+      bundleFullText,
+      (_line, U) =>
+        /^\s*(?:CHARGE|STATEMENT\s+OF\s+OFFENCE|PARTICULARS\s+OF\s+OFFENCE)\b/i.test(_line) ||
+        /\bCHARGE\s*\/\s*ALLEGATION\b/.test(U),
+      2
+    )[0] ??
+    null;
+  const mg5Crown = [
+    ...extractStructuredEvalLines(bundleFullText, ["MG5 SUMMARY", "CROWN VERSION", "MG5"] as const, 2),
+    ...collectStructuredEvalLooseLines(
+      bundleFullText,
+      (_l, U) => /\bTHE\s+CROWN\s+SAYS\b/.test(U) || /\bCROWN\s+SUMMARY\s+ALLEGES\b/.test(U),
+      2
+    ),
+  ].filter(Boolean);
+  const timelinePick = collectPackWTimelineProofLines(bundleFullText, 4);
+  const missingPick = collectStructuredEvalLooseLines(
+    bundleFullText,
+    (_l, U) =>
+      (/\bSOURCE\s+MATERIAL\s+NOT\b/.test(U) && /\bSERVED\b/.test(U)) ||
+      /\bSOURCE\s+MATERIAL\s+NOT\s+YET\s+served\b/i.test(_l) ||
+      /\bFULL\s+CCTV\s+MASTER\s+OUTSTANDING\b/.test(U) ||
+      /\bNOT\s+A\s+SAFE\s+ALIBI\s+UNLESS\b/.test(U),
+    2
+  );
+
+  const crownPick = mg5Crown.find((ln) => compactOneLine(ln).length >= 16) ?? null;
+  const timePick = timelinePick[0] ?? null;
+  const missPick = missingPick[0] ?? null;
+
+  const fallbackLoose = collectStructuredEvalLooseLines(
+    bundleFullText,
+    (_l, U) => /\bTIMELINE\b/.test(U) || /\bSEQUENCE\b/.test(U) || /\bALIBI\b/.test(U),
+    2
+  );
+  const fb = fallbackLoose[0] ?? null;
+
+  if (!chargePick && !crownPick && !timePick && !missPick && !fb) return null;
+
+  const timingFrag =
+    timePick != null
+      ? compactOneLine(timePick)
+      : missPick != null
+        ? compactOneLine(missPick)
+        : fb != null
+          ? compactOneLine(fb)
+          : "the printed timing sequence on the file remains provisional until reconciled against served source material";
+
+  let core: string;
+  if (timePick ?? missPick ?? fb) {
+    core = `Core point: ${anchor} → the Crown must still prove the printed allegation and the timing sequence remains conditional: ${timingFrag}.`;
+  } else if (crownPick && chargePick) {
+    core = `Core point: ${anchor} → the Crown must still prove the printed allegation to the criminal standard; the MG5/Crown version line reads — ${compactOneLine(crownPick)} — and timing/source limits on the file must still be reconciled before trial theory is locked.`;
+  } else if (chargePick) {
+    core = `Core point: ${anchor} → the Crown must still prove the printed charge/allegation line — ${compactOneLine(chargePick)} — and any timing account on the file stays provisional until served CCTV/CAD/999/witness material is mapped.`;
+  } else {
+    core = `Core point: ${anchor} → the Crown must still prove the case on the served papers; timeline wording on this file is conditional only and must be read against the printed charge and served disclosure.`;
+  }
+
+  const evBits: string[] = [];
+  if (chargePick) evBits.push(compactOneLine(chargePick));
+  if (crownPick && compactOneLine(crownPick) !== compactOneLine(chargePick ?? "")) {
+    evBits.push(compactOneLine(crownPick));
+  }
+  if (timePick) evBits.push(compactOneLine(timePick));
+  if (timelinePick[1]) evBits.push(compactOneLine(timelinePick[1]));
+  if (missPick && compactOneLine(missPick) !== compactOneLine(timePick ?? "")) {
+    evBits.push(compactOneLine(missPick));
+  }
+  if (fb && !timePick && !missPick) evBits.push(compactOneLine(fb));
+  const exW = extractStructuredEvalPackLetterExhibitCodes(bundleFullText, "W", 6);
+  evBits.push(`EX-W exhibit codes on file: ${exW.length ? exW.join(", ") : "none printed in excerpt"}`);
+  const ev = `Evidence reference: Charge / proof / timing lines: ${evBits.join(" || ")}.`;
+
+  const next =
+    "Next step: Build the proof map from the printed charge and reconcile CCTV/CAD/999/witness/client timing before advising final strategy; treat timing as provisional and do not treat source times as proving innocence.";
+  return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
+}
+
+function buildStructuredEvalPackWProsecutionWeaknessAnswer(bundleFullText: string): string | null {
+  if (!isPackWTimelineSequenceAlibiEvalBundle(bundleFullText)) return null;
+  const anchor = extractPackWCaseAnchor(bundleFullText);
+  if (!anchor) return null;
+
+  const weakLines = collectPackWTimelineWeaknessLines(bundleFullText, 6);
+  const altLines = collectStructuredEvalLooseLines(
+    bundleFullText,
+    (_l, U) =>
+      /\bTIMING\s+CONFLICT\b/.test(U) ||
+      (/\bSEQUENCE\b/.test(U) && /\bCONFLICT\b/.test(U)) ||
+      (/\bOUTSTANDING\b/.test(U) && /\b(?:CCTV|CAD|999|WITNESS)\b/.test(U)),
+    4
+  );
+  const lead = weakLines[0] ?? altLines[0] ?? null;
+  const second = weakLines[1] ?? altLines[1] ?? null;
+
+  if (!lead) {
+    const provisional = collectPackWTimingAccountLimitLines(bundleFullText, 3)[0] ?? null;
+    if (!provisional) return null;
+    const core = `Core point: ${anchor} → prosecution weakness is provisional pressure caused by timing/source limits on the file: ${compactOneLine(provisional)}.`;
+    const exW = extractStructuredEvalPackLetterExhibitCodes(bundleFullText, "W", 6);
+    const ev = `Evidence reference: Timeline/source conflict lines: ${compactOneLine(provisional)} || EX-W exhibit codes on file: ${exW.length ? exW.join(", ") : "none printed in excerpt"}.`;
+    const next =
+      "Next step: Treat this as timing/disclosure/cross-exam pressure only; chase the original source material before advising plea or final strategy.";
+    return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
+  }
+
+  const core = `Core point: ${anchor} → prosecution weakness is the timeline/source conflict: ${compactOneLine(lead)}.`;
+  const evBits = [lead, second].filter(Boolean).map((s) => compactOneLine(s!));
+  const exW = extractStructuredEvalPackLetterExhibitCodes(bundleFullText, "W", 6);
+  const ev = `Evidence reference: Timeline/source conflict lines: ${evBits.join(" | ")} || EX-W exhibit codes on file: ${exW.length ? exW.join(", ") : "none printed in excerpt"}.`;
+  const next =
+    "Next step: Treat this as timing/disclosure/cross-exam pressure only; chase the original source material before advising plea or final strategy.";
   return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
 }
 
@@ -5934,6 +6419,9 @@ function buildStructuredEvalProsecutionProofAnswer(bundleFullText: string): stri
   } else if (isPackVStrategyLeverageWhyEvalBundle(bundleFullText)) {
     const pv = buildStructuredEvalPackVProsecutionProofAnswer(bundleFullText);
     if (pv) return pv;
+  } else if (isPackWTimelineSequenceAlibiEvalBundle(bundleFullText)) {
+    const pw = buildStructuredEvalPackWProsecutionProofAnswer(bundleFullText);
+    if (pw) return pw;
   }
   if (isPackLStageWorkflowEvalBundle(bundleFullText)) {
     const pl = buildStructuredEvalPackLStageProsecutionProofAnswer(bundleFullText);
@@ -6010,6 +6498,10 @@ function buildStructuredEvalProsecutionWeaknessAnswer(bundleFullText: string): s
   if (isPackUScannedPhotoOcrEvalBundle(bundleFullText)) {
     const pu = buildStructuredEvalPackUProsecutionWeaknessAnswer(bundleFullText);
     if (pu) return pu;
+  }
+  if (isPackWTimelineSequenceAlibiEvalBundle(bundleFullText)) {
+    const pw = buildStructuredEvalPackWProsecutionWeaknessAnswer(bundleFullText);
+    if (pw) return pw;
   }
   if (isPackKMessyRealWorldEvalBundle(bundleFullText)) {
     const pk = buildStructuredEvalPackKMessyProsecutionWeaknessAnswer(bundleFullText);
@@ -8949,6 +9441,9 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     } else if (isPackVStrategyLeverageWhyEvalBundle(combinedBundleFull)) {
       const packVInt = buildPackVInterviewReplacement(combinedBundleFull);
       if (packVInt) reply = packVInt;
+    } else if (isPackWTimelineSequenceAlibiEvalBundle(combinedBundleFull)) {
+      const packWInt = buildPackWInterviewReplacement(combinedBundleFull);
+      if (packWInt) reply = packWInt;
     }
     return jsonWithRoute(
       {
@@ -8984,6 +9479,9 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       if (line) line = stripQ1NonAllegationWording(line);
     } else if (isPackVStrategyLeverageWhyEvalBundle(combinedBundleFull)) {
       line = buildPackVPrimaryAllegationAnswer(combinedBundleFull);
+      if (line) line = stripQ1NonAllegationWording(line);
+    } else if (isPackWTimelineSequenceAlibiEvalBundle(combinedBundleFull)) {
+      line = buildPackWPrimaryAllegationAnswer(combinedBundleFull);
       if (line) line = stripQ1NonAllegationWording(line);
     }
     if (!line) line = stripQ1NonAllegationWording(buildStrictPrimaryAllegationAnswer(combinedBundleFull));

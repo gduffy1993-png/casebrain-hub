@@ -262,8 +262,8 @@ const STRICT_UNIQUE_ANCHOR_RE = new RegExp(
     "do\\s+not\\s+infer\\s+extra\\s+contradictions\\s+or\\s+blend\\s+defendants",
     // Packs L / N / O / P / Q / R / S / T structured-eval builders (narrow
     // phrases only emitted from those pack-gated paths).
-    "EX-(?:L|N|O|P|Q|R|S|T|U|V)-[A-Z0-9]+(?:-[A-Z0-9]+)*(?:-\\d{2,})?",
-    "EX-[LNOPQRSTUV]\\s+exhibit\\s+codes\\s+on\\s+file\\s*:",
+    "EX-(?:L|N|O|P|Q|R|S|T|U|V|W)-[A-Z0-9]+(?:-[A-Z0-9]+)*(?:-\\d{2,})?",
+    "EX-[LNOPQRSTUVW]\\s+exhibit\\s+codes\\s+on\\s+file\\s*:",
     "prosecution\\s+weakness\\s+is\\s+stage/procedure\\s+pressure\\s*:",
     "prosecution\\s+weakness\\s+is\\s+safeguard/procedure\\s+pressure\\s*:",
     "prosecution\\s+weakness\\s+is\\s+the\\s+file-published\\s+instruction\\s+conflict\\s*:",
@@ -296,6 +296,17 @@ const STRICT_UNIQUE_ANCHOR_RE = new RegExp(
     "This\\s+is\\s+only\\s+useful\\s+if",
     "This\\s+point\\s+collapses\\s+if",
     "the\\s+live\\s+inconsistency\\s*/\\s*procedure\\s+tension\\s+on\\s+the\\s+file\\s+is",
+    // Pack W timeline / sequence / alibi eval (verbatim file lines; Pack W path only).
+    "Charge\\s*/\\s*proof\\s*/\\s*timing\\s+lines\\s*:",
+    "Interview\\/client-account\\/timing\\s+lines\\s*:",
+    "Timing-account\\/source\\s+lines\\s*:",
+    "Timeline\\/source\\s+conflict\\s+lines\\s*:",
+    "interview/client\\s+timing\\s+account\\s+on\\s+the\\s+file\\s+is",
+    "timing\\s+sequence\\s+remains\\s+conditional\\s*:",
+    "Timeline\\s+pressure\\s*:",
+    "Key\\s+timing\\s+conflict\\s*:",
+    "not\\s+a\\s+safe\\s+alibi\\s+unless",
+    "source\\s+time\\s+may\\s+differ",
     "At\\s+the\\s+file-published\\s+stage\\s+\\(",
     "Stage\\s+/\\s+listing\\s+lines\\s*:",
     "Conflict\\s+/\\s+stage\\s+/\\s+proof-route\\s+lines\\s*:",
