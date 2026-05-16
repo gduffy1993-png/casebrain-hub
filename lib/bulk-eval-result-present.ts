@@ -262,8 +262,8 @@ const STRICT_UNIQUE_ANCHOR_RE = new RegExp(
     "do\\s+not\\s+infer\\s+extra\\s+contradictions\\s+or\\s+blend\\s+defendants",
     // Packs L / N / O / P / Q / R / S / T structured-eval builders (narrow
     // phrases only emitted from those pack-gated paths).
-    "EX-(?:L|N|O|P|Q|R|S|T|U|V|W)-[A-Z0-9]+(?:-[A-Z0-9]+)*(?:-\\d{2,})?",
-    "EX-[LNOPQRSTUVW]\\s+exhibit\\s+codes\\s+on\\s+file\\s*:",
+    "EX-(?:L|N|O|P|Q|R|S|T|U|V|W|X)-[A-Z0-9]+(?:-[A-Z0-9]+)*(?:-\\d{2,})?",
+    "EX-[LNOPQRSTUVWX]\\s+exhibit\\s+codes\\s+on\\s+file\\s*:",
     "prosecution\\s+weakness\\s+is\\s+stage/procedure\\s+pressure\\s*:",
     "prosecution\\s+weakness\\s+is\\s+safeguard/procedure\\s+pressure\\s*:",
     "prosecution\\s+weakness\\s+is\\s+the\\s+file-published\\s+instruction\\s+conflict\\s*:",
@@ -313,6 +313,25 @@ const STRICT_UNIQUE_ANCHOR_RE = new RegExp(
     "Thin\\s+/\\s+no-safe\\s+/\\s+missing\\s+lines\\s*:",
     "Missing\\s+/\\s+integrity\\s+lines\\s*:",
     "Missing\\s+/\\s+review\\s+caveat\\s+lines\\s*:",
+    // Pack X hearing / court move / disclosure eval (verbatim file lines; Pack X path only).
+    "Charge\\s*/\\s*proof\\s*/\\s*hearing\\s+lines\\s*:",
+    "Hearing/disclosure/source\\s+lines\\s*:",
+    "Defence/hearing\\s+risk\\s+lines\\s*:",
+    "Interview/client/hearing-position\\s+lines\\s*:",
+    "interview/client/hearing\\s+position\\s+on\\s+the\\s+file\\s+is",
+    "the\\s+Crown\\s+must\\s+still\\s+prove\\s+the\\s+printed\\s+allegation",
+    "hearing\\s+move\\s+remains\\s+conditional",
+    "court[-\\s]?facing\\s+issue",
+    "disclosure\\s+hearing\\s+move",
+    "possible\\s+hearing\\s+move",
+    "ask\\s+the\\s+court\\s+to\\s+record\\s+outstanding\\s+disclosure",
+    "set\\s+a\\s+timetable",
+    "preserve\\s+adjournment",
+    "final\\s+advice\\s+depends\\s+on\\s+source\\s+material",
+    "do\\s+not\\s+overstate",
+    "prosecution\\s+weakness\\s+is\\s+the\\s+court/disclosure/source-material\\s+gap\\s*:",
+    "prosecution\\s+weakness\\s+is\\s+provisional\\s+pressure\\s+caused\\s+by\\s+source/disclosure\\s+limits",
+    "defence\\s+weakness\\s+is\\s+that\\s+the\\s+hearing/strategy\\s+position\\s+is\\s+provisional\\s*:",
     // Named pressure / weakness lines on a file (these are FILE-printed
     // labels, not generic builder boilerplate; only used when the file's
     // weakness or pressure block has been quoted verbatim).

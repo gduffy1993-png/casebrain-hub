@@ -4292,7 +4292,7 @@ function buildStructuredEvalPackUDefenceWeaknessAnswer(bundleFullText: string): 
 
 function extractStructuredEvalPackLetterExhibitCodes(
   bundleFullText: string,
-  letter: "L" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W",
+  letter: "L" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X",
   maxCount = 6
 ): string[] {
   if (!bundleFullText) return [];
@@ -4314,7 +4314,7 @@ function extractStructuredEvalPackLetterExhibitCodes(
 
 function extractPackLetterFamilyCaseAnchor(
   bundleFullText: string,
-  letter: "L" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W"
+  letter: "L" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X"
 ): string | null {
   const caseRef = extractCaseSpecificRef(bundleFullText);
   if (caseRef) return caseRef;
@@ -5162,6 +5162,397 @@ function buildStructuredEvalPackWProsecutionWeaknessAnswer(bundleFullText: strin
   const ev = `Evidence reference: Timeline/source conflict lines: ${evBits.join(" | ")} || EX-W exhibit codes on file: ${exW.length ? exW.join(", ") : "none printed in excerpt"}.`;
   const next =
     "Next step: Treat this as timing/disclosure/cross-exam pressure only; chase the original source material before advising plea or final strategy.";
+  return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
+}
+
+/**
+ * Pack X — Hearing / court move reasoning fictional eval (`PACK X`,
+ * `CB-HEARING`, `CB-COURT`, `CB-MOVE`, `EX-X-*`). Narrow gate; A–W unchanged when absent.
+ */
+function isPackXHearingCourtMoveEvalBundle(bundleFullText: string): boolean {
+  if (!bundleFullText || !isStructuredEvalBundle(bundleFullText)) return false;
+  return (
+    /\bPACK\s*X\b/i.test(bundleFullText) ||
+    /\bCB-HEARING\b/i.test(bundleFullText) ||
+    /\bCB-COURT\b/i.test(bundleFullText) ||
+    /\bCB-MOVE\b/i.test(bundleFullText) ||
+    /\bEX-X-/i.test(bundleFullText)
+  );
+}
+
+function extractPackXCaseAnchor(bundleFullText: string): string | null {
+  const hr = bundleFullText.match(/\bCB-HEARING-\d{4}-\d{3,4}\b/i)?.[0]?.toUpperCase() ?? null;
+  if (hr) return hr;
+  const ct = bundleFullText.match(/\bCB-COURT-\d{4}-\d{3,4}\b/i)?.[0]?.toUpperCase() ?? null;
+  if (ct) return ct;
+  const mv = bundleFullText.match(/\bCB-MOVE-\d{4}-\d{3,4}\b/i)?.[0]?.toUpperCase() ?? null;
+  if (mv) return mv;
+  const exX = extractStructuredEvalPackLetterExhibitCodes(bundleFullText, "X", 1)[0];
+  if (exX) return exX;
+  const cs = extractCaseSpecificRef(bundleFullText);
+  if (cs && /\bCB-(?:HEARING|COURT|MOVE)\b/i.test(cs)) return cs.toUpperCase();
+  return extractCaseSpecificRef(bundleFullText);
+}
+
+function collectPackXInterviewHearingPositionLines(bundleFullText: string, max = 10): string[] {
+  return collectStructuredEvalLooseLines(
+    bundleFullText,
+    (_line, U) =>
+      /\bNO\s+COMMENT\b.*\bLIMITED\s+DISCLOSURE\b/.test(U) ||
+      (/\bNO\s+COMMENT\b/.test(U) && /\bLIMITED\s+DISCLOSURE\b/.test(U)) ||
+      /\bCLIENT\s+SAYS\b.*\bADVICE\s+DEPENDED\b/.test(U) ||
+      /\bCLIENT\s+POSITION\b.*\bDEPENDS\s+ON\s+DISCLOSURE\b/.test(U) ||
+      /\bHEARING\s+NOTE\b/.test(U) ||
+      /\bCOURT[-\s]?FACING\s+ISSUE\b/.test(U) ||
+      /\bSOLICITOR\s+NOTE\b/.test(U) ||
+      /\bADVICE\s+DEPENDED\s+ON\s+MISSING\s+MATERIAL\b/.test(U) ||
+      /\bDO\s+NOT\s+OVERSTATE\s+FINAL\s+APPLICATION\b/.test(U) ||
+      /\bSOURCE\s+MATERIAL\s+NOT\s+YET\s+served\b/i.test(_line) ||
+      /\bDEFENCE\s+POSITION\s+PROVISIONAL\b/.test(U) ||
+      /\bCANNOT\s+BE\s+FINALISED\b/i.test(U) ||
+      /\bDISCLOSURE\s+HEARING\s+MOVE\b/.test(U) ||
+      (/\bADJOURNMENT\b/.test(U) && /\b(?:TIMETABLE|PRESERVE|DISCLOSURE)\b/.test(U)) ||
+      /\bPRESERVE\s+(?:POSITION|ADJOURNMENT)\b/.test(U) ||
+      /\bINTERVIEW\b.*\bCLIENT\b/.test(U) ||
+      /\bCLIENT\s+ACCOUNT\b/.test(U),
+    max
+  );
+}
+
+function collectPackXHearingSourceLimitLines(bundleFullText: string, max = 8): string[] {
+  return collectStructuredEvalLooseLines(
+    bundleFullText,
+    (_line, U) =>
+      /\bPOSSIBLE\s+HEARING\s+MOVE\b/.test(U) ||
+      /\bDISCLOSURE\s+CHRONOLOGY\b/.test(U) ||
+      /\bMG\s*6\s+SAYS\b.*\bOUTSTANDING\b/i.test(_line) ||
+      /\bKEY\s+SOURCE\s+MATERIAL\s+REMAINS\s+OUTSTANDING\b/i.test(U) ||
+      /\bFULL\s+CCTV\b.*\bOUTSTANDING\b/i.test(_line) ||
+      /\bCONTINUITY\s+STATEMENT\b.*\bOUTSTANDING\b/i.test(_line) ||
+      /\bUNUSED\s+SCHEDULE\b.*\bOUTSTANDING\b/i.test(U) ||
+      /\bFINAL\s+ADVICE\s+DEPENDS\s+ON\b/.test(U) ||
+      /\bASK\s+THE\s+COURT\s+TO\s+RECORD\b/.test(U) ||
+      /\bSET\s+A\s+TIMETABLE\b/.test(U) ||
+      /\bSOURCE\s+MATERIAL\s+OUTSTANDING\b/.test(U),
+    max
+  );
+}
+
+function collectPackXHearingDisclosureProofLines(bundleFullText: string, max = 7): string[] {
+  return collectStructuredEvalLooseLines(
+    bundleFullText,
+    (_line, U) =>
+      /\bDISCLOSURE\s+HEARING\s+MOVE\b/.test(U) ||
+      /\bCOURT[-\s]?FACING\s+ISSUE\b/.test(U) ||
+      /\bMG\s*6\s+SAYS\b.*\bOUTSTANDING\b/i.test(_line) ||
+      /\bFULL\s+CCTV\b.*\bOUTSTANDING\b/i.test(_line) ||
+      /\bCONTINUITY\s+STATEMENT\b.*\bOUTSTANDING\b/i.test(_line) ||
+      /\bDISCLOSURE\s+CHRONOLOGY\b/.test(U) ||
+      /\bFINAL\s+ADVICE\s+DEPENDS\s+ON\b/.test(U) ||
+      /\bPOSSIBLE\s+HEARING\s+MOVE\b/.test(U) ||
+      /\bDO\s+NOT\s+OVERSTATE\s+FINAL\s+APPLICATION\b/.test(U),
+    max
+  );
+}
+
+function collectPackXHearingDisclosureWeaknessLines(bundleFullText: string, max = 7): string[] {
+  return collectStructuredEvalLooseLines(
+    bundleFullText,
+    (_line, U) =>
+      /\bMG\s*6\s+SAYS\b.*\bOUTSTANDING\b/i.test(_line) ||
+      /\bFULL\s+CCTV\b.*\bOUTSTANDING\b/i.test(_line) ||
+      /\bCONTINUITY\s+STATEMENT\b.*\bOUTSTANDING\b/i.test(_line) ||
+      /\bUNUSED\s+SCHEDULE\b.*\bOUTSTANDING\b/i.test(U) ||
+      /\bDISCLOSURE\s+CHRONOLOGY\b/.test(U) ||
+      /\bFINAL\s+ADVICE\s+DEPENDS\s+ON\b/.test(U) ||
+      /\bPOSSIBLE\s+HEARING\s+MOVE\b/.test(U) ||
+      /\bASK\s+THE\s+COURT\s+TO\s+RECORD\s+OUTSTANDING\s+DISCLOSURE\b/i.test(_line) ||
+      /\bSET\s+A\s+TIMETABLE\b/.test(U) ||
+      /\bPRESERVE\s+ADJOURNMENT\b/.test(U) ||
+      /\bDO\s+NOT\s+OVERSTATE\s+FINAL\s+APPLICATION\b/.test(U) ||
+      /\bCOURT[-\s]?FACING\s+ISSUE\b.*\bDISCLOSURE\s+HEARING\s+MOVE\b/i.test(_line),
+    max
+  );
+}
+
+function collectPackXDefenceHearingRiskLines(bundleFullText: string, max = 8): string[] {
+  return collectStructuredEvalLooseLines(
+    bundleFullText,
+    (_line, U) =>
+      /\bNO\s+COMMENT\b.*\bLIMITED\s+DISCLOSURE\b/.test(U) ||
+      /\bCLIENT\s+SAYS\b.*\bADVICE\s+DEPENDED\b/.test(U) ||
+      /\bDO\s+NOT\s+OVERSTATE\s+FINAL\s+APPLICATION\b/.test(U) ||
+      /\bFINAL\s+ADVICE\s+DEPENDS\s+ON\b/.test(U) ||
+      /\bCOURT[-\s]?FACING\s+ISSUE\b.*\bDISCLOSURE\s+HEARING\s+MOVE\b/i.test(_line) ||
+      /\bPOSSIBLE\s+HEARING\s+MOVE\b/.test(U) ||
+      /\bPRESERVE\s+ADJOURNMENT\b/.test(U) ||
+      /\bSOURCE\s+MATERIAL\b.*\bOUTSTANDING\b/i.test(_line) ||
+      /\bSOLICITOR\s+REVIEW\s+REQUIRED\b/.test(U) ||
+      /\bDEFENCE\s+POSITION\s+PROVISIONAL\b/.test(U),
+    max
+  );
+}
+
+function buildPackXPrimaryAllegationAnswer(bundleFullText: string): string | null {
+  if (!isPackXHearingCourtMoveEvalBundle(bundleFullText)) return null;
+  const leadRef = extractPackXCaseAnchor(bundleFullText);
+
+  let candidate: string | null = firstMatchPackWMultilineAllegationSentence(bundleFullText);
+
+  const strict = buildStrictPrimaryAllegationAnswer(bundleFullText);
+  if (strict) {
+    const s = stripQ1NonAllegationWording(compactOneLine(strict));
+    if (s && !isPackUJunkPrimaryAllegationLine(s)) {
+      if (!candidate || s.length > candidate.length + 8) candidate = s;
+    }
+  }
+
+  if (!candidate) {
+    const wide =
+      firstMatch(bundleFullText, [
+        /\bExact\s+allegation\s+wording\s*[:\-]\s*([^\n]{18,520})/i,
+        /\bExact\s+charge\s+wording\s*[:\-]\s*([^\n]{18,520})/i,
+        /\b(?:Charge|CHARGE)\s*\/\s*(?:Allegation|ALLEGATION)\s*[:\-]?\s*([^\n]{14,520})/i,
+        /\bAllegation\s*[:\-]\s*([^\n]{14,520})/i,
+        /\bCharge\s*[:\-]\s*([^\n]{14,520})/i,
+        /\bOffence\s+type\s*[:\-]\s*([^\n]{10,420})/i,
+        /\bMG5\s+SUMMARY\s*[:\-]\s*([^\n]{14,520})/i,
+        /\bCrown\s+version\s*[:\-]\s*([^\n]{14,520})/i,
+        /(\bThe\s+Crown\s+says\b[^\n]{8,400})/i,
+        /(\bThe\s+Crown\s+summary\s+alleges\b[^\n]{10,520})/i,
+        /(\bOn\s+\d{1,2}[\s\/.\-]\d{1,2}[\s\/.\-]\d{2,4}[^\n]{16,520}\bis\s+alleged\s+to\b[^\n]*)/i,
+        /(\bOn\s+\d{1,2}[\s\/.\-]\d{1,2}[\s\/.\-]\d{2,4}[^\n]{16,520}\bcontrary\s+to\b[^\n]*)/i,
+      ]) ?? null;
+    if (wide) {
+      const w = stripQ1NonAllegationWording(compactOneLine(wide));
+      if (w && !isPackUJunkPrimaryAllegationLine(w)) candidate = w;
+    }
+  }
+
+  if (!candidate) {
+    const ranked = collectPackUChargeCandidateLines(bundleFullText, 8);
+    const best = ranked.find((ln) => !isPackUJunkPrimaryAllegationLine(ln));
+    if (best) candidate = compactOneLine(best);
+  }
+
+  const mg5Snippet =
+    extractStructuredEvalLines(bundleFullText, ["MG5 SUMMARY", "MG5 — CASE SUMMARY", "MG5 CASE SUMMARY", "MG5"] as const, 1)[0] ??
+    collectStructuredEvalLooseLines(
+      bundleFullText,
+      (_l, U) => /\bMG5\s+SUMMARY\b/.test(U) || /\bCROWN\s+VERSION\b/.test(U) || /\bTHE\s+CROWN\s+SAYS\b/.test(U),
+      1
+    )[0] ??
+    null;
+
+  if (candidate) {
+    const polished = polishPackWQ1AllegationCandidate(bundleFullText, candidate);
+    const c2 = compactOneLine(polished).trim();
+    const out = finalizePackVPrimaryAllegationOneLine(bundleFullText, c2, leadRef);
+    const one = compactOneLine(out).trim();
+    if (!isPackUJunkPrimaryAllegationLine(one)) {
+      return softTruncate(one, 920, 420);
+    }
+  }
+
+  if (leadRef && mg5Snippet) {
+    const ot =
+      extractStructuredEvalLines(bundleFullText, ["OFFENCE TYPE"] as const, 1)[0] ??
+      collectStructuredEvalLooseLines(bundleFullText, (_l, U) => /^\s*Offence\s+type\s*:/i.test(_l), 1)[0] ??
+      null;
+    if (ot) {
+      return softTruncate(
+        compactOneLine(
+          `Core allegation: ${leadRef} — the printed papers identify ${compactOneLine(ot)} and MG5/Crown version says ${compactOneLine(mg5Snippet)}.`
+        ),
+        920,
+        420
+      );
+    }
+    return softTruncate(compactOneLine(`Core allegation: ${leadRef} — ${compactOneLine(mg5Snippet)}.`), 920, 420);
+  }
+
+  if (leadRef) {
+    return compactOneLine(
+      `Core allegation: ${leadRef} → the served bundle text on this file does not safely print a discrete charge/allegation sentence to quote verbatim; treat the primary allegation as provisional until the printed charge line is located on served papers.`
+    );
+  }
+  return null;
+}
+
+function buildPackXInterviewReplacement(bundleFullText: string): string | null {
+  if (!isPackXHearingCourtMoveEvalBundle(bundleFullText)) return null;
+  const anchor = extractPackXCaseAnchor(bundleFullText);
+  if (!anchor) return null;
+
+  const posLines = collectPackXInterviewHearingPositionLines(bundleFullText, 10);
+  const hearingLimits = collectPackXHearingSourceLimitLines(bundleFullText, 6);
+  const exX = extractStructuredEvalPackLetterExhibitCodes(bundleFullText, "X", 6);
+  const exClause = exX.length > 0 ? exX.join(", ") : "none printed in excerpt";
+
+  if (posLines.length > 0) {
+    const lead = posLines[0];
+    const core = `Core point: ${anchor} → interview/client/hearing position on the file is ${lead}.`;
+    const ev = `Evidence reference: Interview/client/hearing-position lines: ${posLines.slice(0, 5).join(" | ")} || EX-X exhibit codes on file: ${exClause}.`;
+    const next =
+      "Next step: Treat the account as provisional; test it against served disclosure and hearing timetable before advising plea, final strategy, or court application.";
+    return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
+  }
+
+  if (hearingLimits.length > 0) {
+    const core = `Core point: ${anchor} → no reliable interview/client account wording is printed, but the file publishes hearing-position limits: ${hearingLimits[0]}.`;
+    const ev = `Evidence reference: Hearing/source lines: ${hearingLimits.slice(0, 5).join(" | ")} || EX-X exhibit codes on file: ${exClause}.`;
+    const next =
+      "Next step: Do not infer interview content; record what source material or instructions are needed before final advice.";
+    return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
+  }
+
+  const core = `Core point: ${anchor} → no reliable interview/client account wording is printed in the served text.`;
+  const ev = `Evidence reference: Interview/client/hearing-position lines: none matched in excerpt || EX-X exhibit codes on file: ${exClause}.`;
+  const next =
+    "Next step: Do not infer interview content; record what source material or instructions are needed before final advice.";
+  return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
+}
+
+function buildStructuredEvalPackXProsecutionProofAnswer(bundleFullText: string): string | null {
+  if (!isPackXHearingCourtMoveEvalBundle(bundleFullText)) return null;
+  const anchor = extractPackXCaseAnchor(bundleFullText);
+  if (!anchor) return null;
+
+  const chargePick =
+    collectPackUChargeCandidateLines(bundleFullText, 4)[0] ??
+    collectStructuredEvalLooseLines(
+      bundleFullText,
+      (_line, U) =>
+        /^\s*(?:CHARGE|STATEMENT\s+OF\s+OFFENCE|PARTICULARS\s+OF\s+OFFENCE)\b/i.test(_line) ||
+        /\bCHARGE\s*\/\s*ALLEGATION\b/.test(U),
+      2
+    )[0] ??
+    null;
+  const mg5Crown = [
+    ...extractStructuredEvalLines(bundleFullText, ["MG5 SUMMARY", "CROWN VERSION", "MG5"] as const, 2),
+    ...collectStructuredEvalLooseLines(
+      bundleFullText,
+      (_l, U) => /\bTHE\s+CROWN\s+SAYS\b/.test(U) || /\bCROWN\s+SUMMARY\s+ALLEGES\b/.test(U),
+      2
+    ),
+  ].filter(Boolean);
+  const hearingPick = collectPackXHearingDisclosureProofLines(bundleFullText, 5);
+  const crownPick = mg5Crown.find((ln) => compactOneLine(ln).length >= 16) ?? null;
+  const hearPick = hearingPick[0] ?? null;
+  const missPick =
+    collectStructuredEvalLooseLines(
+      bundleFullText,
+      (_l, U) =>
+        (/\bSOURCE\s+MATERIAL\s+NOT\b/.test(U) && /\bSERVED\b/.test(U)) ||
+        /\bSOURCE\s+MATERIAL\s+NOT\s+YET\s+served\b/i.test(_l) ||
+        /\bMG\s*6\s+SAYS\b.*\bOUTSTANDING\b/i.test(_l),
+      2
+    )[0] ?? null;
+
+  const fb =
+    collectStructuredEvalLooseLines(
+      bundleFullText,
+      (_l, U) => /\bCOURT\s+STAGE\b/.test(U) || /\bHEARING\s+MOVE\b/.test(U) || /\bDISCLOSURE\s+HEARING\b/.test(U),
+      2
+    )[0] ?? null;
+
+  if (!chargePick && !crownPick && !hearPick && !missPick && !fb) return null;
+
+  const hearFrag = hearPick
+    ? compactOneLine(hearPick)
+    : missPick
+      ? compactOneLine(missPick)
+      : fb
+        ? compactOneLine(fb)
+        : "disclosure and hearing steps on the file remain conditional until reconciled against served material";
+
+  let core: string;
+  if (hearPick ?? missPick ?? fb) {
+    core = `Core point: ${anchor} → the Crown must still prove the printed allegation; the hearing move remains conditional because ${hearFrag}.`;
+  } else if (crownPick && chargePick) {
+    core = `Core point: ${anchor} → the Crown must still prove the printed allegation to the criminal standard; the MG5/Crown version line reads — ${compactOneLine(crownPick)} — and any hearing or disclosure position on the file stays conditional until served materials are mapped.`;
+  } else if (chargePick) {
+    core = `Core point: ${anchor} → the Crown must still prove the printed charge/allegation line — ${compactOneLine(chargePick)} — and hearing-stage disclosure on this file remains conditional until served MG6 and listed source material are reviewed.`;
+  } else {
+    core = `Core point: ${anchor} → the Crown must still prove the case on the served papers; hearing and disclosure wording on this file is conditional only and must be read against the printed charge.`;
+  }
+
+  const evBits: string[] = [];
+  if (chargePick) evBits.push(compactOneLine(chargePick));
+  if (crownPick && compactOneLine(crownPick) !== compactOneLine(chargePick ?? "")) evBits.push(compactOneLine(crownPick));
+  if (hearPick) evBits.push(compactOneLine(hearPick));
+  if (hearingPick[1]) evBits.push(compactOneLine(hearingPick[1]));
+  if (missPick && compactOneLine(missPick) !== compactOneLine(hearPick ?? "")) evBits.push(compactOneLine(missPick));
+  if (fb && !hearPick && !missPick) evBits.push(compactOneLine(fb));
+  const exX = extractStructuredEvalPackLetterExhibitCodes(bundleFullText, "X", 6);
+  evBits.push(`EX-X exhibit codes on file: ${exX.length ? exX.join(", ") : "none printed in excerpt"}`);
+  const ev = `Evidence reference: Charge / proof / hearing lines: ${evBits.join(" || ")}.`;
+
+  const next =
+    "Next step: Build the proof map from the printed charge and use the hearing move only to record or chase disclosure; do not predict trial outcome or overstate what the hearing can achieve.";
+  return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
+}
+
+function buildStructuredEvalPackXProsecutionWeaknessAnswer(bundleFullText: string): string | null {
+  if (!isPackXHearingCourtMoveEvalBundle(bundleFullText)) return null;
+  const anchor = extractPackXCaseAnchor(bundleFullText);
+  if (!anchor) return null;
+
+  const weakLines = collectPackXHearingDisclosureWeaknessLines(bundleFullText, 7);
+  const altLines = collectStructuredEvalLooseLines(
+    bundleFullText,
+    (_l, U) =>
+      /\bOUTSTANDING\s+DISCLOSURE\b/.test(U) ||
+      /\bDISCLOSURE\s+HEARING\s+MOVE\b/.test(U) ||
+      (/\bMG\s*6\b/.test(U) && /\bOUTSTANDING\b/.test(U)),
+    4
+  );
+  const lead = weakLines[0] ?? altLines[0] ?? null;
+  const second = weakLines[1] ?? altLines[1] ?? null;
+
+  if (!lead) {
+    const provisional = collectPackXHearingSourceLimitLines(bundleFullText, 3)[0] ?? null;
+    if (!provisional) return null;
+    const core = `Core point: ${anchor} → prosecution weakness is provisional pressure caused by source/disclosure limits on the file: ${compactOneLine(provisional)}.`;
+    const exX = extractStructuredEvalPackLetterExhibitCodes(bundleFullText, "X", 6);
+    const ev = `Evidence reference: Hearing/disclosure/source lines: ${compactOneLine(provisional)} || EX-X exhibit codes on file: ${exX.length ? exX.join(", ") : "none printed in excerpt"}.`;
+    const next =
+      "Next step: Treat this as disclosure/hearing pressure only; chase or record the source-material gap before advising plea or final strategy.";
+    return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
+  }
+
+  const core = `Core point: ${anchor} → prosecution weakness is the court/disclosure/source-material gap: ${compactOneLine(lead)}.`;
+  const evBits = [lead, second].filter(Boolean).map((s) => compactOneLine(s!));
+  const exX = extractStructuredEvalPackLetterExhibitCodes(bundleFullText, "X", 6);
+  const ev = `Evidence reference: Hearing/disclosure/source lines: ${evBits.join(" | ")} || EX-X exhibit codes on file: ${exX.length ? exX.join(", ") : "none printed in excerpt"}.`;
+  const next =
+    "Next step: Treat this as disclosure/hearing pressure only; chase or record the source-material gap before advising plea or final strategy.";
+  return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
+}
+
+function buildStructuredEvalPackXDefenceWeaknessAnswer(bundleFullText: string): string | null {
+  if (!isPackXHearingCourtMoveEvalBundle(bundleFullText)) return null;
+  const anchor = extractPackXCaseAnchor(bundleFullText);
+  if (!anchor) return null;
+
+  const riskLines = collectPackXDefenceHearingRiskLines(bundleFullText, 8);
+  if (riskLines.length > 0) {
+    const lead = riskLines[0];
+    const core = `Core point: ${anchor} → defence weakness is that the hearing/strategy position is provisional: ${lead}.`;
+    const exX = extractStructuredEvalPackLetterExhibitCodes(bundleFullText, "X", 6);
+    const ev = `Evidence reference: Defence/hearing risk lines: ${riskLines.slice(0, 5).join(" | ")} || EX-X exhibit codes on file: ${exX.length ? exX.join(", ") : "none printed in excerpt"}.`;
+    const next =
+      "Next step: Do not present the point as final strategy; record instructions, chase source material, and keep the hearing move limited to disclosure, timetable, or position preservation.";
+    return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
+  }
+
+  const lim = collectPackXHearingSourceLimitLines(bundleFullText, 2)[0] ?? null;
+  if (!lim) return null;
+  const core = `Core point: ${anchor} → defence weakness is that the hearing/strategy position is provisional: ${compactOneLine(lim)}.`;
+  const exX = extractStructuredEvalPackLetterExhibitCodes(bundleFullText, "X", 6);
+  const ev = `Evidence reference: Defence/hearing risk lines: ${compactOneLine(lim)} || EX-X exhibit codes on file: ${exX.length ? exX.join(", ") : "none printed in excerpt"}.`;
+  const next =
+    "Next step: Do not present the point as final strategy; record instructions, chase source material, and keep the hearing move limited to disclosure, timetable, or position preservation.";
   return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
 }
 
@@ -6294,7 +6685,16 @@ function buildStructuredEvalMg6DisclosureAnswer(bundleFullText: string): string 
     source === "headings"
       ? "This eval file's MG6 / disclosure block reads"
       : "Disclosure-position lines on the file read";
-  const ev = `Evidence reference: ${evIntro} — ${evBits.join(" || ") || lines.join(" | ")}.`;
+  const packXAnnex = (() => {
+    if (!isPackXHearingCourtMoveEvalBundle(bundleFullText)) return "";
+    const anchor = extractPackXCaseAnchor(bundleFullText);
+    const exX = extractStructuredEvalPackLetterExhibitCodes(bundleFullText, "X", 6);
+    const bits: string[] = [];
+    if (anchor) bits.push(`File reference: ${anchor}`);
+    if (exX.length) bits.push(`EX-X exhibit codes on file: ${exX.join(", ")}`);
+    return bits.length ? ` || ${bits.join(" || ")}` : "";
+  })();
+  const ev = `Evidence reference: ${evIntro} — ${evBits.join(" || ") || lines.join(" | ")}${packXAnnex}.`;
   const next =
     outstanding.length > 0
       ? "Next step: Treat each outstanding / awaiting cell as live disclosure pressure; chase only the items named on the file and do not infer further cells that are not printed."
@@ -6422,6 +6822,9 @@ function buildStructuredEvalProsecutionProofAnswer(bundleFullText: string): stri
   } else if (isPackWTimelineSequenceAlibiEvalBundle(bundleFullText)) {
     const pw = buildStructuredEvalPackWProsecutionProofAnswer(bundleFullText);
     if (pw) return pw;
+  } else if (isPackXHearingCourtMoveEvalBundle(bundleFullText)) {
+    const px = buildStructuredEvalPackXProsecutionProofAnswer(bundleFullText);
+    if (px) return px;
   }
   if (isPackLStageWorkflowEvalBundle(bundleFullText)) {
     const pl = buildStructuredEvalPackLStageProsecutionProofAnswer(bundleFullText);
@@ -6502,6 +6905,10 @@ function buildStructuredEvalProsecutionWeaknessAnswer(bundleFullText: string): s
   if (isPackWTimelineSequenceAlibiEvalBundle(bundleFullText)) {
     const pw = buildStructuredEvalPackWProsecutionWeaknessAnswer(bundleFullText);
     if (pw) return pw;
+  }
+  if (isPackXHearingCourtMoveEvalBundle(bundleFullText)) {
+    const px = buildStructuredEvalPackXProsecutionWeaknessAnswer(bundleFullText);
+    if (px) return px;
   }
   if (isPackKMessyRealWorldEvalBundle(bundleFullText)) {
     const pk = buildStructuredEvalPackKMessyProsecutionWeaknessAnswer(bundleFullText);
@@ -6734,6 +7141,10 @@ function buildStructuredEvalDefenceWeaknessAnswer(bundleFullText: string): strin
   if (isPackUScannedPhotoOcrEvalBundle(bundleFullText)) {
     const pu = buildStructuredEvalPackUDefenceWeaknessAnswer(bundleFullText);
     if (pu) return pu;
+  }
+  if (isPackXHearingCourtMoveEvalBundle(bundleFullText)) {
+    const px = buildStructuredEvalPackXDefenceWeaknessAnswer(bundleFullText);
+    if (px) return px;
   }
   const weaknessLines = extractStructuredEvalLines(
     bundleFullText,
@@ -9444,6 +9855,9 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     } else if (isPackWTimelineSequenceAlibiEvalBundle(combinedBundleFull)) {
       const packWInt = buildPackWInterviewReplacement(combinedBundleFull);
       if (packWInt) reply = packWInt;
+    } else if (isPackXHearingCourtMoveEvalBundle(combinedBundleFull)) {
+      const packXInt = buildPackXInterviewReplacement(combinedBundleFull);
+      if (packXInt) reply = packXInt;
     }
     return jsonWithRoute(
       {
@@ -9482,6 +9896,9 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       if (line) line = stripQ1NonAllegationWording(line);
     } else if (isPackWTimelineSequenceAlibiEvalBundle(combinedBundleFull)) {
       line = buildPackWPrimaryAllegationAnswer(combinedBundleFull);
+      if (line) line = stripQ1NonAllegationWording(line);
+    } else if (isPackXHearingCourtMoveEvalBundle(combinedBundleFull)) {
+      line = buildPackXPrimaryAllegationAnswer(combinedBundleFull);
       if (line) line = stripQ1NonAllegationWording(line);
     }
     if (!line) line = stripQ1NonAllegationWording(buildStrictPrimaryAllegationAnswer(combinedBundleFull));
