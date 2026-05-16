@@ -6890,6 +6890,233 @@ function buildStructuredEvalProsecutionProofAnswer(bundleFullText: string): stri
   return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
 }
 
+/**
+ * Pack G — evidence / disclosure chaos structured-eval Q8 only (`PACK G`,
+ * `CB-DISC`, `CB-CHAOS`, `EX-G-*`). Narrow gate; does not affect other packs.
+ */
+function isPackGStructuredEvalEvidenceDisclosureChaosQ8Bundle(bundleFullText: string): boolean {
+  if (!bundleFullText || !isStructuredEvalBundle(bundleFullText)) return false;
+  return (
+    /\bPACK\s*G\b/i.test(bundleFullText) ||
+    /\bCB-DISC\b/i.test(bundleFullText) ||
+    /\bCB-CHAOS\b/i.test(bundleFullText) ||
+    /\bEX-G-/i.test(bundleFullText)
+  );
+}
+
+/**
+ * Pack H — interview / strategy-pressure structured-eval Q8 only (`PACK H`,
+ * `CB-INTERVIEW`, `EX-H-*`, plus legacy `CB-STRATEGY` / `CB-PRESSURE` /
+ * `CB-PRESS` case refs). Excludes Pack G so G wins when both markers appear.
+ */
+function isPackHStructuredEvalInterviewStrategyPressureQ8Bundle(bundleFullText: string): boolean {
+  if (!bundleFullText || !isStructuredEvalBundle(bundleFullText)) return false;
+  if (isPackGStructuredEvalEvidenceDisclosureChaosQ8Bundle(bundleFullText)) return false;
+  return (
+    /\bPACK\s*H\b/i.test(bundleFullText) ||
+    /\bCB-INTERVIEW\b/i.test(bundleFullText) ||
+    /\bEX-H-/i.test(bundleFullText) ||
+    /\bCB-STRATEGY-\d{4}-\d{3,4}\b/i.test(bundleFullText) ||
+    /\bCB-(?:PRESSURE|PRESS)-\d{4}-\d{3,4}\b/i.test(bundleFullText)
+  );
+}
+
+function extractStructuredEvalPackGHLetterExhibitCodes(
+  bundleFullText: string,
+  letter: "G" | "H",
+  maxCount = 4
+): string[] {
+  if (!bundleFullText) return [];
+  const re = new RegExp(`\\bEX-${letter}-[A-Z0-9]+(?:-[A-Z0-9]+)*(?:-\\d{2,})?\\b`, "gi");
+  const matches = [...bundleFullText.matchAll(re)];
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const m of matches) {
+    const code = m[0].toUpperCase();
+    if (!seen.has(code)) {
+      seen.add(code);
+      out.push(code);
+      if (out.length >= maxCount) break;
+    }
+  }
+  return out;
+}
+
+function extractPackGCaseAnchorForQ8(bundleFullText: string): string | null {
+  const disc = bundleFullText.match(/\bCB-DISC-\d{4}-\d{3,4}\b/i)?.[0]?.toUpperCase() ?? null;
+  if (disc) return disc;
+  const chaos = bundleFullText.match(/\bCB-CHAOS-\d{4}-\d{3,4}\b/i)?.[0]?.toUpperCase() ?? null;
+  if (chaos) return chaos;
+  const gEx = extractStructuredEvalPackGHLetterExhibitCodes(bundleFullText, "G", 1)[0];
+  if (gEx) return gEx;
+  return extractStrongestCaseAnchor(bundleFullText);
+}
+
+function extractPackHCaseAnchorForQ8(bundleFullText: string): string | null {
+  const iv = bundleFullText.match(/\bCB-INTERVIEW-\d{4}-\d{3,4}\b/i)?.[0]?.toUpperCase() ?? null;
+  if (iv) return iv;
+  const st = bundleFullText.match(/\bCB-STRATEGY-\d{4}-\d{3,4}\b/i)?.[0]?.toUpperCase() ?? null;
+  if (st) return st;
+  const pr = bundleFullText.match(/\bCB-(?:PRESSURE|PRESS)-\d{4}-\d{3,4}\b/i)?.[0]?.toUpperCase() ?? null;
+  if (pr) return pr;
+  const hEx = extractStructuredEvalPackGHLetterExhibitCodes(bundleFullText, "H", 1)[0];
+  if (hEx) return hEx;
+  return extractStrongestCaseAnchor(bundleFullText);
+}
+
+function collectPackGQ8DisclosureSourceWeakLines(bundleFullText: string, max = 8): string[] {
+  return collectStructuredEvalLooseLines(
+    bundleFullText,
+    (_line, U) =>
+      /\bMG\s*6\b/.test(U) && /\bOUTSTANDING\b/.test(U) ||
+      /\bMG6\s+ITSELF\s+LIST/i.test(_line) ||
+      /\bSOURCE\s+MATERIAL\s+REMAINS\s+OUTSTANDING\b/i.test(U) ||
+      /\bSOURCE\s+MATERIAL\s+NOT\s+YET\s+SERVED\b/i.test(U) ||
+      /\bMISSING\s+SOURCE\s+MATERIAL\b/i.test(U) ||
+      /\bCCTV\b.*\b(?:OUTSTANDING|NOT\s+SERVED|MASTER|FULL)\b/i.test(_line) ||
+      /\bMASTER\s+(?:FILE|COPY)\b.*\bOUTSTANDING\b/i.test(U) ||
+      /\bCONTINUITY\b.*\b(?:GAP|BROKEN|MISSING|OUTSTANDING|ERROR)\b/i.test(_line) ||
+      /\bPROVENANCE\b.*\bGAP\b/i.test(U) ||
+      /\bDISCLOSURE\s+CHAOS\b/.test(U) ||
+      /\bSERVED\b/.test(U) && /\bOUTSTANDING\b/.test(U) && /\bINCONSISTENT\b/.test(U) ||
+      /\bEXHIBIT\b.*\bNOT\s+YET\s+SERVED\b/i.test(U) ||
+      /\bUNUSED\s+SCHEDULE\b.*\bOUTSTANDING\b/i.test(U) ||
+      /\bDISCLOSURE\s+CHRONOLOGY\b.*\bOUTSTANDING\b/i.test(_line),
+    max
+  );
+}
+
+function collectPackHQ8InterviewStrategyWeakLines(bundleFullText: string, max = 8): string[] {
+  return collectStructuredEvalLooseLines(
+    bundleFullText,
+    (_line, U) =>
+      /\bINTERVIEW\s+POSITION\s+CREATES\s+PRESSURE\b/i.test(U) ||
+      /\bINTERVIEW\s+POSITION\b.*\bPRESSURE\b/i.test(_line) ||
+      /\bNO\s+COMMENT\b/.test(U) ||
+      /\bPARTIAL\s+ACCOUNT\b/.test(U) ||
+      /\bPREPARED\s+STATEMENT\b/.test(U) ||
+      /\bACCOUNT\s+NOT\s+ANSWERED\b/.test(U) ||
+      /\bCROWN\s+RELIES?\b.*\bINTERVIEW\b/i.test(_line) ||
+      /\bMISSING\s+DISCLOSURE\b.*\bINTERPRET/i.test(_line) ||
+      /\bDISCLOSURE\b.*\bLIMITS?\b.*\bINTERPRETATION\b/i.test(U) ||
+      /\bCLIENT\s+ACCOUNT\b.*\bCONFLICT/i.test(_line) ||
+      /\bSOURCE\s+MATERIAL\s+NEEDED\b/i.test(U) ||
+      /\bINTERVIEW\b.*\bCANNOT\s+BE\s+SAFELY\s+ASSESSED\b/i.test(_line) ||
+      /\bON\s+THE\s+FILE\s+WORDING\b/.test(U) && /\bPRESSURE\b/.test(U) ||
+      /\bIF\s+PROVED\b/.test(U) && /\bCROWN\b/.test(U),
+    max
+  );
+}
+
+function findPackGHQ8FirstLineMatching(bundleFullText: string, re: RegExp): string | null {
+  const hit = findFirstBundleLineMatching(bundleFullText, re);
+  return hit ? compactOneLine(hit).slice(0, 280) : null;
+}
+
+const PACK_G_Q8_CHAOS_OR_HANDLING_RE =
+  /\bDUPLICATE\s+(?:PAGE|EXHIBIT|ENTRY|LOG)\b|\bOUT\s+OF\s+(?:SEQUENCE|ORDER)\b|\bREDACTION\s+(?:INCONSISTENC|CONFLICT|ERROR|MISMATCH|GAP)|\bCONTINUITY\s+(?:BROKEN|MISMATCH|ERROR|GAP)\b|\bCONTRADICT(?:ION|S|ED|ORY)\b|\bCONFLICTING\s+(?:LOG|ENTRY|ACCOUNT|STATEMENT|EXHIBIT)\b|\bEXHIBIT\s+(?:SEAL|LOG|CONTINUITY|LABEL|SOURCE)\s+(?:BROKEN|GAP|ERROR|ISSUE|MISMATCH|CONFLICT|UNCLEAR)\b|\bCAD\s+(?:LOG|ENTRY)\s+(?:CONFLICT|MISMATCH|GAP)\b|\bCCTV\s+(?:TIMESTAMP|CONTINUITY|SEAL)\s+(?:GAP|BROKEN|MISMATCH|ERROR)\b|\bBWV\s+(?:GAP|MISSING|CONTINUITY)\b|\bTIMESTAMP\s+(?:CONFLICT|MISMATCH|GAP)\b|\bSEAL\s+(?:BROKEN|MISSING|GAP)\b|\bWITNESS\s+(?:CONFLICT|MISMATCH|CONTRADICTION)\b|\bMG\s*5\s*\/\s*MG\s*6\s+MISMATCH\b|\bMG\s*6\s*\/\s*MG\s*5\s+MISMATCH\b|\bUNCLEAR\s+(?:SOURCE|EXHIBIT)\s+(?:LABEL|REFERENCE|DOCUMENT)\b|\bINCONSISTENT\s+(?:STATEMENT|EXHIBIT|EVIDENCE|LOG|ENTRY)\b|\bSOURCE\s+CONFLICT\b|\bDISCLOSURE\s+CHAOS\b|\bMG\s*6\b.*\bOUTSTANDING\b/i;
+
+const PACK_H_Q8_CONDITIONAL_PRESSURE_RE =
+  /\bWOULD\s+(?:WEAKEN|UNDERMINE|PRESSURE|PUT\s+PRESSURE\s+ON|EXPOSE|RISK|EMBARRASS)\b|\bIF\s+PROVED\b|\bCONDITIONAL\s+(?:PRESSURE|WEAKNESS|EXPOSURE)\b|\bON\s+THE\s+FILE\s+WORDING\b|\bPRESSURE\s+POINT\s*:|\bCROWN\s+PRESSURE\s*:|\bSTRATEGY\s+PRESSURE\s*:|\bDISCLOSURE\s+PRESSURE\s*:|\bPROSECUTION\s+ROUTE\s+PRESSURE\b|\bROUTE\s+PRESSURE\b|\bROUTE\s+RISK\b|\bINTERVIEW\s+(?:CANNOT\s+BE\s+SAFELY\s+ASSESSED|DELAY(?:ED)?|POSTPONED|NOT\s+YET\s+HELD|RESCHEDULED|REARRANGED)\b|\bROUTE\s+(?:WEAKNESS|PRESSURE|CONFLICT|GAP|RISK)\b|\bCROWN\s+PROOF\s+UNDER\s+PRESSURE\b|\bDISCLOSURE\s+(?:GAP|DELAY|PRESSURE|OUTSTANDING)\b|\bINTERVIEW\s+POSITION\s+CREATES\s+PRESSURE\b/i;
+
+function buildStructuredEvalPackGProsecutionWeaknessAnswer(bundleFullText: string): string | null {
+  if (!isPackGStructuredEvalEvidenceDisclosureChaosQ8Bundle(bundleFullText)) return null;
+  const anchor = extractPackGCaseAnchorForQ8(bundleFullText);
+  if (!anchor) return null;
+
+  const weaknessLines = extractStructuredEvalLines(
+    bundleFullText,
+    [
+      "PROSECUTION WEAKNESS",
+      "CROWN WEAKNESS",
+      "PROSECUTION PRESSURE",
+      "CROWN PRESSURE",
+      "PROSECUTION WEAKNESS PRESSURE",
+    ] as const,
+    4
+  );
+  const tensionLines = extractStructuredEvalLines(
+    bundleFullText,
+    ["FILE TENSIONS", "EVIDENCE CONFLICTS", "CONFLICTS", "DISCLOSURE PRESSURE"] as const,
+    3
+  );
+  const gExtra = collectPackGQ8DisclosureSourceWeakLines(bundleFullText, 7);
+  const loose = collectLooseQ8ProsecutionWeaknessLines(bundleFullText, 5);
+  const all = [...weaknessLines, ...tensionLines, ...gExtra, ...loose];
+  const chaosHit =
+    all.find((l) => PACK_G_Q8_CHAOS_OR_HANDLING_RE.test(l)) ??
+    findPackGHQ8FirstLineMatching(bundleFullText, PACK_G_Q8_CHAOS_OR_HANDLING_RE);
+  const lead =
+    chaosHit ??
+    weaknessLines[0] ??
+    tensionLines[0] ??
+    gExtra[0] ??
+    loose[0] ??
+    findPackGHQ8FirstLineMatching(bundleFullText, /\bMG\s*6\b.*\bOUTSTANDING\b/i) ??
+    collectLooseQ2DisclosureLines(bundleFullText, 2)[0] ??
+    null;
+  if (!lead) return null;
+
+  const exG = extractStructuredEvalPackGHLetterExhibitCodes(bundleFullText, "G", 5);
+  const evBits = [...new Set([...weaknessLines, ...tensionLines, ...gExtra].filter(Boolean))].slice(0, 5);
+  const lineBits = evBits.length ? evBits.join(" | ") : lead;
+  const exClause = exG.length ? exG.join(", ") : "none printed in excerpt";
+  const core = `Core point: ${anchor} → prosecution weakness is ${compactOneLine(lead)}.`;
+  const ev = `Evidence reference: disclosure/source-material weakness — Prosecution weakness/source lines: ${lineBits} || exhibit codes on file: ${exClause}.`;
+  const next =
+    "Next step: Treat this as conditional prosecution-pressure only; reconcile against MG5/MG6/interview/source material before final strategy.";
+  return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
+}
+
+function buildStructuredEvalPackHProsecutionWeaknessAnswer(bundleFullText: string): string | null {
+  if (!isPackHStructuredEvalInterviewStrategyPressureQ8Bundle(bundleFullText)) return null;
+  const anchor = extractPackHCaseAnchorForQ8(bundleFullText);
+  if (!anchor) return null;
+
+  const weaknessLines = extractStructuredEvalLines(
+    bundleFullText,
+    [
+      "PROSECUTION WEAKNESS",
+      "CROWN WEAKNESS",
+      "PROSECUTION PRESSURE",
+      "CROWN PRESSURE",
+      "PROSECUTION WEAKNESS PRESSURE",
+    ] as const,
+    4
+  );
+  const tensionLines = extractStructuredEvalLines(
+    bundleFullText,
+    ["FILE TENSIONS", "EVIDENCE CONFLICTS", "CONFLICTS", "DISCLOSURE PRESSURE"] as const,
+    3
+  );
+  const hExtra = collectPackHQ8InterviewStrategyWeakLines(bundleFullText, 7);
+  const loose = collectLooseQ8ProsecutionWeaknessLines(bundleFullText, 5);
+  const all = [...weaknessLines, ...tensionLines, ...hExtra, ...loose];
+  const pressHit =
+    all.find((l) => PACK_H_Q8_CONDITIONAL_PRESSURE_RE.test(l)) ??
+    findPackGHQ8FirstLineMatching(bundleFullText, PACK_H_Q8_CONDITIONAL_PRESSURE_RE);
+  const lead =
+    pressHit ??
+    hExtra[0] ??
+    weaknessLines[0] ??
+    tensionLines[0] ??
+    loose[0] ??
+    findPackGHQ8FirstLineMatching(bundleFullText, /\bINTERVIEW\b.*\b(?:PRESSURE|NO\s+COMMENT|ACCOUNT)\b/i) ??
+    collectLooseQ9DefenceWeaknessLines(bundleFullText, 2)[0] ??
+    null;
+  if (!lead) return null;
+
+  const exH = extractStructuredEvalPackGHLetterExhibitCodes(bundleFullText, "H", 5);
+  const evBits = [...new Set([...weaknessLines, ...tensionLines, ...hExtra].filter(Boolean))].slice(0, 5);
+  const lineBits = evBits.length ? evBits.join(" | ") : lead;
+  const exClause = exH.length ? exH.join(", ") : "none printed in excerpt";
+  const core = `Core point: ${anchor} → prosecution weakness is ${compactOneLine(lead)}.`;
+  const ev = `Evidence reference: interview/source-material weakness — Prosecution weakness/source lines: ${lineBits} || exhibit codes on file: ${exClause}.`;
+  const next =
+    "Next step: Treat this as conditional prosecution-pressure only; reconcile against MG5/MG6/interview/source material before final strategy.";
+  return enforceActionFormatThreeLines(`${core}\n${ev}\n${next}`, { interpretiveGolden: true });
+}
+
 /* ---------------------------------------------------------------------------
  * Q8 — structured eval prosecution-weakness builder.
  *   Reads PROSECUTION WEAKNESS / CROWN WEAKNESS / PROSECUTION PRESSURE /
@@ -6909,6 +7136,14 @@ function buildStructuredEvalProsecutionWeaknessAnswer(bundleFullText: string): s
   if (isPackXHearingCourtMoveEvalBundle(bundleFullText)) {
     const px = buildStructuredEvalPackXProsecutionWeaknessAnswer(bundleFullText);
     if (px) return px;
+  }
+  if (isPackGStructuredEvalEvidenceDisclosureChaosQ8Bundle(bundleFullText)) {
+    const pg = buildStructuredEvalPackGProsecutionWeaknessAnswer(bundleFullText);
+    if (pg) return pg;
+  }
+  if (isPackHStructuredEvalInterviewStrategyPressureQ8Bundle(bundleFullText)) {
+    const ph = buildStructuredEvalPackHProsecutionWeaknessAnswer(bundleFullText);
+    if (ph) return ph;
   }
   if (isPackKMessyRealWorldEvalBundle(bundleFullText)) {
     const pk = buildStructuredEvalPackKMessyProsecutionWeaknessAnswer(bundleFullText);

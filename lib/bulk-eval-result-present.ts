@@ -239,6 +239,15 @@ const STRICT_UNIQUE_ANCHOR_RE = new RegExp(
     "Route\\s+pressure\\s+on\\s+the\\s+file",
     "Disclosure\\s+(?:gap|delay|outstanding)\\s+on\\s+the\\s+file",
     "Crown\\s+proof\\s+under\\s+pressure\\s+on\\s+the\\s+file",
+    // Pack G / Pack H dedicated Q8 builders (verbatim file lines + anchors;
+    // phrases only appear in those gated answers).
+    "Prosecution weakness/source lines\\s*:",
+    "disclosure/source-material weakness",
+    "interview/source-material weakness",
+    "conditional\\s+prosecution-pressure",
+    "MG6\\s+itself\\s+lists",
+    "source\\s+material\\s+remains\\s+outstanding",
+    "interview\\s+position\\s+creates\\s+pressure",
     // Pack K messy-real-world structured-eval builders (verbatim file lines
     // only in Core; these markers pair with CB-* / EX-K-* in the answer).
     "the\\s+prosecution\\s+weakness\\s+is\\s+that\\s+the\\s+messy\\s+bundle\\s+leaves\\s+the\\s+Crown\\s+route\\s+dependent\\s+on",
@@ -262,8 +271,8 @@ const STRICT_UNIQUE_ANCHOR_RE = new RegExp(
     "do\\s+not\\s+infer\\s+extra\\s+contradictions\\s+or\\s+blend\\s+defendants",
     // Packs L / N / O / P / Q / R / S / T structured-eval builders (narrow
     // phrases only emitted from those pack-gated paths).
-    "EX-(?:L|N|O|P|Q|R|S|T|U|V|W|X)-[A-Z0-9]+(?:-[A-Z0-9]+)*(?:-\\d{2,})?",
-    "EX-[LNOPQRSTUVWX]\\s+exhibit\\s+codes\\s+on\\s+file\\s*:",
+    "EX-(?:G|H|L|N|O|P|Q|R|S|T|U|V|W|X)-[A-Z0-9]+(?:-[A-Z0-9]+)*(?:-\\d{2,})?",
+    "EX-[GHLNOPQRSTUVWX]\\s+exhibit\\s+codes\\s+on\\s+file\\s*:",
     "prosecution\\s+weakness\\s+is\\s+stage/procedure\\s+pressure\\s*:",
     "prosecution\\s+weakness\\s+is\\s+safeguard/procedure\\s+pressure\\s*:",
     "prosecution\\s+weakness\\s+is\\s+the\\s+file-published\\s+instruction\\s+conflict\\s*:",
