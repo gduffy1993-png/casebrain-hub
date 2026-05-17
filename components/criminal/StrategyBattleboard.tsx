@@ -3,11 +3,18 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Loader2, Shield, Swords } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ChevronDown, ChevronUp, Loader2, Shield, Swords } from "lucide-react";
 import type { BattleboardOutput, BattleboardRoute, BattleboardRouteStatus } from "@/lib/criminal/strategy-battleboard";
 
-type StrategyBattleboardProps = {
+export type StrategyBattleboardProps = {
   caseId: string;
+  /** Compact layout for Case Control Room — primary route + shortened backups. */
+  compact?: boolean;
+  maxBackupRoutes?: number;
+  /** When set, skips internal fetch (parent already loaded battleboard). */
+  battleboardData?: BattleboardOutput | null;
+  battleboardLoading?: boolean;
 };
 
 function statusBadgeVariant(status: BattleboardRouteStatus): "success" | "warning" | "danger" {
@@ -97,51 +104,209 @@ function RouteCard({ route, isPrimary }: { route: BattleboardRoute; isPrimary?: 
   );
 }
 
-export function StrategyBattleboard({ caseId }: StrategyBattleboardProps) {
-  const [data, setData] = useState<BattleboardOutput | null>(null);
-  const [loading, setLoading] = useState(true);
+function CompactBackupRoute({ route }: { route: BattleboardRoute }) {
+  return (
+    <div className="rounded-md border border-border/50 bg-card/80 px-3 py-2">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <p className="text-sm font-medium text-foreground">{route.title}</p>
+        <Badge variant={statusBadgeVariant(route.status)} size="sm">
+          {statusLabel(route.status)}
+        </Badge>
+      </div>
+      {route.evidence_anchors[0] && (
+        <p className="text-xs text-muted-foreground mt-1 line-clamp-2">{route.evidence_anchors[0]}</p>
+      )}
+      {route.collapse_risks[0] && (
+        <p className="text-[11px] text-amber-700 dark:text-amber-400 mt-1 line-clamp-1">
+          {route.collapse_risks[0]}
+        </p>
+      )}
+    </div>
+  );
+}
+
+function BattleboardBody({
+  data,
+  compact,
+  maxBackupRoutes,
+  showFull,
+  onToggleFull,
+}: {
+  data: BattleboardOutput;
+  compact: boolean;
+  maxBackupRoutes: number;
+  showFull: boolean;
+  onToggleFull: () => void;
+}) {
+  const backupRoutes = data.routes.filter((r) => r.id !== data.primary_route?.id);
+  const compactBackups = backupRoutes.slice(0, maxBackupRoutes);
+  const useCompactLayout = compact && !showFull;
+
+  return (
+    <>
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/50 bg-muted/30 px-4 py-3 -mx-4 -mt-4 mb-4">
+        <div className="flex items-center gap-2">
+          <Swords className="h-4 w-4 text-primary" />
+          <h3 className="text-sm font-semibold text-foreground">Strategy Battleboard</h3>
+        </div>
+        <div className="flex items-center gap-2">
+          <Badge variant={overallBadgeVariant(data.overall_status)} size="md">
+            {data.overall_status.replace(/_/g, " ")}
+          </Badge>
+          {compact && (
+            <Button type="button" variant="outline" size="sm" onClick={onToggleFull}>
+              {showFull ? (
+                <>
+                  <ChevronUp className="h-3.5 w-3.5 mr-1" />
+                  Compact view
+                </>
+              ) : (
+                <>
+                  <ChevronDown className="h-3.5 w-3.5 mr-1" />
+                  Show full Battleboard
+                </>
+              )}
+            </Button>
+          )}
+        </div>
+      </div>
+
+      <div className="space-y-4">
+        <div className="flex items-start gap-2 rounded-md border border-border/50 bg-muted/20 p-3">
+          <Shield className="h-4 w-4 text-muted-foreground shrink-0 mt-0.5" />
+          <p className="text-sm text-foreground">{data.solicitor_safe_summary}</p>
+        </div>
+
+        {data.position_notice && data.position_notice !== data.solicitor_safe_summary && (
+          <p className="text-xs text-amber-700 dark:text-amber-400 border border-amber-500/30 bg-amber-500/10 rounded-md px-3 py-2">
+            {data.position_notice}
+          </p>
+        )}
+
+        {data.primary_route ? (
+          <RouteCard route={data.primary_route} isPrimary />
+        ) : (
+          <Card className="p-4 border-dashed border-border/60">
+            <p className="text-sm text-muted-foreground">
+              No primary route ranked yet. Review backup routes below or add bundle material.
+            </p>
+          </Card>
+        )}
+
+        {useCompactLayout ? (
+          <>
+            {compactBackups.length > 0 && (
+              <div className="space-y-2">
+                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                  Backup routes{backupRoutes.length > maxBackupRoutes ? ` (top ${maxBackupRoutes})` : ""}
+                </p>
+                {compactBackups.map((route) => (
+                  <CompactBackupRoute key={route.id} route={route} />
+                ))}
+              </div>
+            )}
+          </>
+        ) : (
+          backupRoutes.length > 0 && (
+            <div className="space-y-3">
+              <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Backup routes</p>
+              {backupRoutes.map((route) => (
+                <RouteCard key={route.id} route={route} />
+              ))}
+            </div>
+          )
+        )}
+
+        {data.global_collapse_risks.length > 0 && (
+          <div>
+            <p className="text-xs font-semibold text-foreground mb-2">Global collapse risks</p>
+            <ul className="text-sm text-muted-foreground list-disc pl-4 space-y-0.5">
+              {data.global_collapse_risks.map((r, i) => (
+                <li key={i}>{r}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {data.urgent_next_moves.length > 0 && (
+          <div>
+            <p className="text-xs font-semibold text-foreground mb-2">Urgent next moves</p>
+            <ul className="text-sm text-foreground list-disc pl-4 space-y-0.5">
+              {data.urgent_next_moves.map((m, i) => (
+                <li key={i}>{m}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <p className="text-[11px] text-muted-foreground">
+          Read-only control panel. Conditional pressure only — not a prediction of outcome. Needs solicitor
+          review before court.
+        </p>
+      </div>
+    </>
+  );
+}
+
+export function StrategyBattleboard({
+  caseId,
+  compact = false,
+  maxBackupRoutes = 2,
+  battleboardData,
+  battleboardLoading,
+}: StrategyBattleboardProps) {
+  const parentOwnsData = battleboardData !== undefined;
+  const [internalData, setInternalData] = useState<BattleboardOutput | null>(null);
+  const [internalLoading, setInternalLoading] = useState(!parentOwnsData);
   const [error, setError] = useState<string | null>(null);
+  const [showFull, setShowFull] = useState(false);
+
+  const data = parentOwnsData ? battleboardData : internalData;
+  const loading = parentOwnsData ? Boolean(battleboardLoading) : internalLoading;
 
   useEffect(() => {
-    if (!caseId) {
-      setLoading(false);
-      setError("No case selected.");
-      setData(null);
-      return;
-    }
+    if (parentOwnsData || !caseId) return;
     let cancelled = false;
-    setLoading(true);
+    setInternalLoading(true);
     setError(null);
     fetch(`/api/criminal/${caseId}/strategy-battleboard`, { cache: "no-store", credentials: "include" })
       .then(async (r) => {
         const res = await r.json().catch(() => ({}));
         if (cancelled) return;
         if (!r.ok) {
-          setData(null);
+          setInternalData(null);
           setError(res?.error || `Request failed (${r.status})`);
           return;
         }
         if (res?.ok && res?.data) {
-          setData(res.data as BattleboardOutput);
+          setInternalData(res.data as BattleboardOutput);
           setError(null);
         } else {
-          setData(null);
+          setInternalData(null);
           setError(res?.error || "Failed to load battleboard");
         }
       })
       .catch((err) => {
         if (!cancelled) {
           setError(err?.message || "Failed to load battleboard");
-          setData(null);
+          setInternalData(null);
         }
       })
       .finally(() => {
-        if (!cancelled) setLoading(false);
+        if (!cancelled) setInternalLoading(false);
       });
     return () => {
       cancelled = true;
     };
-  }, [caseId]);
+  }, [caseId, parentOwnsData]);
+
+  useEffect(() => {
+    if (!caseId && !parentOwnsData) {
+      setInternalLoading(false);
+      setError("No case selected.");
+      setInternalData(null);
+    }
+  }, [caseId, parentOwnsData]);
 
   if (loading) {
     return (
@@ -180,77 +345,16 @@ export function StrategyBattleboard({ caseId }: StrategyBattleboardProps) {
     );
   }
 
-  const backupRoutes = data.routes.filter((r) => r.id !== data.primary_route?.id);
-
   return (
     <Card className="overflow-hidden border-primary/30 border-border/60" data-testid="strategy-battleboard">
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/50 bg-muted/30 px-4 py-3">
-        <div className="flex items-center gap-2">
-          <Swords className="h-4 w-4 text-primary" />
-          <h3 className="text-sm font-semibold text-foreground">Strategy Battleboard</h3>
-        </div>
-        <Badge variant={overallBadgeVariant(data.overall_status)} size="md">
-          {data.overall_status.replace(/_/g, " ")}
-        </Badge>
-      </div>
-
-      <div className="p-4 space-y-4">
-        <div className="flex items-start gap-2 rounded-md border border-border/50 bg-muted/20 p-3">
-          <Shield className="h-4 w-4 text-muted-foreground shrink-0 mt-0.5" />
-          <p className="text-sm text-foreground">{data.solicitor_safe_summary}</p>
-        </div>
-
-        {data.position_notice && data.position_notice !== data.solicitor_safe_summary && (
-          <p className="text-xs text-amber-700 dark:text-amber-400 border border-amber-500/30 bg-amber-500/10 rounded-md px-3 py-2">
-            {data.position_notice}
-          </p>
-        )}
-
-        {data.primary_route ? (
-          <RouteCard route={data.primary_route} isPrimary />
-        ) : (
-          <Card className="p-4 border-dashed border-border/60">
-            <p className="text-sm text-muted-foreground">
-              No primary route ranked yet. Review backup routes below or add bundle material.
-            </p>
-          </Card>
-        )}
-
-        {backupRoutes.length > 0 && (
-          <div className="space-y-3">
-            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Backup routes</p>
-            {backupRoutes.map((route) => (
-              <RouteCard key={route.id} route={route} />
-            ))}
-          </div>
-        )}
-
-        {data.global_collapse_risks.length > 0 && (
-          <div>
-            <p className="text-xs font-semibold text-foreground mb-2">Global collapse risks</p>
-            <ul className="text-sm text-muted-foreground list-disc pl-4 space-y-0.5">
-              {data.global_collapse_risks.map((r, i) => (
-                <li key={i}>{r}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {data.urgent_next_moves.length > 0 && (
-          <div>
-            <p className="text-xs font-semibold text-foreground mb-2">Urgent next moves</p>
-            <ul className="text-sm text-foreground list-disc pl-4 space-y-0.5">
-              {data.urgent_next_moves.map((m, i) => (
-                <li key={i}>{m}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        <p className="text-[11px] text-muted-foreground">
-          Read-only control panel. Conditional pressure only — not a prediction of outcome. Needs solicitor
-          review before court.
-        </p>
+      <div className="p-4">
+        <BattleboardBody
+          data={data}
+          compact={compact}
+          maxBackupRoutes={maxBackupRoutes}
+          showFull={showFull}
+          onToggleFull={() => setShowFull((v) => !v)}
+        />
       </div>
     </Card>
   );

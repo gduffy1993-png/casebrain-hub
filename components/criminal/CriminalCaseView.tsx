@@ -48,6 +48,7 @@ import { StrategyDoctrineSubTab } from "./StrategyDoctrineSubTab";
 import { StrategyExportButton } from "./StrategyExportButton";
 import { DefencePlanBox } from "./DefencePlanBox";
 import { StrategyBattleboard } from "./StrategyBattleboard";
+import { CaseControlRoom } from "./CaseControlRoom";
 import { StrategyTimelineSection } from "./StrategyTimelineSection";
 import { VerdictRatingBlock } from "./VerdictRatingBlock";
 import { BundleSourcePanels } from "./BundleSourcePanels";
@@ -154,6 +155,21 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   const [strategySubTab, setStrategySubTab] = useState<"overview" | "doctrine" | "full">("full");
   /** null = loading; false = show Review & Confirm gate; true = full workspace */
   const [reviewConfirmed, setReviewConfirmed] = useState<boolean | null>(null);
+  /** Case Control Room (Phase 1): ?controlRoom=1 or localStorage casebrain:caseControlRoom=true */
+  const [useControlRoom, setUseControlRoom] = useState(false);
+
+  useEffect(() => {
+    const fromQuery = searchParams.get("controlRoom") === "1";
+    if (fromQuery) {
+      setUseControlRoom(true);
+      return;
+    }
+    try {
+      setUseControlRoom(localStorage.getItem("casebrain:caseControlRoom") === "true");
+    } catch {
+      setUseControlRoom(false);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     let cancelled = false;
@@ -590,6 +606,109 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   const showCourtHearings = true;
   const showPACE = true;
 
+  const controlRoomSharedModals = (
+    <>
+      <RecordPositionModal
+        caseId={caseId}
+        charges={snapshot?.charges?.map((c) => ({ offence: c.offence, section: c.section ?? null })) ?? []}
+        isOpen={isPositionModalOpen}
+        onClose={() => {
+          setIsPositionModalOpen(false);
+          setPendingPositionText(null);
+        }}
+        onSuccess={async () => {
+          try {
+            const response = await fetch(`/api/criminal/${caseId}/position`, {
+              credentials: "include",
+            });
+            if (response.ok) {
+              const data = await response.json();
+              if (data.ok && (data.data || data.position)) {
+                setSavedPosition(data.data || data.position);
+                setHasSavedPosition(true);
+                setCurrentPhase(2);
+              } else {
+                setSavedPosition(null);
+                setHasSavedPosition(false);
+                setCurrentPhase(1);
+              }
+            }
+          } catch (error) {
+            console.error("[CriminalCaseView] Failed to refetch position:", error);
+          }
+          router.refresh();
+        }}
+        initialText={pendingPositionText ?? savedPosition?.position_text ?? ""}
+        currentPhase={p}
+        onPhase2Request={() => setCurrentPhase(2)}
+        onAutoAdvanceToPhase2={() => setCurrentPhase(2)}
+        showPhase2CTA={false}
+      />
+      {showAddEvidenceUpload && (
+        <AddEvidenceModal
+          caseId={caseId}
+          caseTitle={snapshot?.caseMeta?.title ?? undefined}
+          isOpen={showAddEvidenceUpload}
+          onClose={() => setShowAddEvidenceUpload(false)}
+          onSuccess={async () => {
+            setShowAddEvidenceUpload(false);
+            try {
+              const newSnapshot = await buildCaseSnapshot(caseId);
+              setSnapshot(newSnapshot);
+            } catch (error) {
+              console.error("Failed to reload snapshot:", error);
+            }
+            router.refresh();
+          }}
+        />
+      )}
+    </>
+  );
+
+  if (useControlRoom) {
+    return (
+      <div className="space-y-4">
+        <div className="rounded-lg border border-border/80 bg-muted/30 px-3 py-2 text-center">
+          <p className="text-xs text-muted-foreground">
+            All outputs are evidence-linked. No predictions. No legal advice. Solicitor-controlled.
+          </p>
+        </div>
+        {matterClosed && (
+          <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-center">
+            <p className="text-xs text-foreground">
+              <strong>Matter closed</strong>
+              {matterClosed.at && ` (${new Date(matterClosed.at).toLocaleDateString("en-GB")})`}
+              {matterClosed.reason ? ` – ${matterClosed.reason}` : ""}.
+            </p>
+          </div>
+        )}
+        <CaseControlRoom
+          caseId={caseId}
+          snapshot={snapshot}
+          snapshotLoading={snapshotLoading}
+          savedPosition={savedPosition}
+          hasSavedPosition={hasSavedPosition}
+          defencePlan={defencePlan}
+          displayStrategy={displayStrategy}
+          committedStrategy={committedStrategy}
+          matterState={matterState}
+          effectiveProceduralSafety={effectiveProceduralSafety}
+          evidenceSummary={
+            snapshot ? buildEvidenceContext(snapshot, effectiveProceduralSafety?.outstandingItems) : undefined
+          }
+          timelineSummary={snapshot ? buildTimelineContext(snapshot) : undefined}
+          onRecordPosition={() => {
+            setPendingPositionText(null);
+            setIsPositionModalOpen(true);
+          }}
+          onUploadEvidence={() => setShowAddEvidenceUpload(true)}
+        />
+        {controlRoomSharedModals}
+        <BackToTop />
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-6">
       {/* No-hallucination guarantee – visible trust line */}
@@ -670,6 +789,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
             </Button>
           </div>
         </div>
+        {/* TODO: Later hide eval tools (Golden Sweep, bulk runner) behind dev/admin/debug. */}
         {evalCases.length > 0 && (
           <div className="mt-3 border-t border-border/60 pt-3">
             <div className="mb-2 flex items-center justify-between gap-2">
