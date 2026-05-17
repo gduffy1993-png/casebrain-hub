@@ -37,10 +37,24 @@ export type BattleboardOutput = {
   generated_at: string;
   overall_status: BattleboardOverallStatus;
   solicitor_safe_summary: string;
+  position_trust?: BattleboardPositionTrust;
+  position_notice?: string | null;
   primary_route?: BattleboardRoute;
   routes: BattleboardRoute[];
   global_collapse_risks: string[];
   urgent_next_moves: string[];
+};
+
+export type BattleboardPositionTrust =
+  | "recorded"
+  | "interview_from_file"
+  | "provisional"
+  | "not_recorded";
+
+export type BattleboardRecordedPositionMeta = {
+  position_text: string;
+  phase?: number | null;
+  source?: string | null;
 };
 
 export type StrategyBattleboardInput = {
@@ -48,13 +62,85 @@ export type StrategyBattleboardInput = {
   bundle_text: string;
   offence_label?: string | null;
   committed_strategy?: string | null;
+  /** @deprecated Use recorded_position — kept for callers that only pass text */
   position_text?: string | null;
+  recorded_position?: BattleboardRecordedPositionMeta | null;
+  /** Phase 1 / police-station detected stance — not a confirmed solicitor position */
+  stance_detected?: string | null;
+  /** Police station interview stance field (no_comment, prepared_statement, etc.) */
+  interview_stance?: string | null;
   strategy_summary_lines?: string[];
   outstanding_disclosure?: string[];
 };
 
+export type ResolvedBattleboardPosition = {
+  trust: BattleboardPositionTrust;
+  notice: string | null;
+  recorded_summary: string | null;
+  interview_account_lines: string[];
+  bundle_supports_act_denial: boolean;
+  bundle_supports_no_comment: boolean;
+  bundle_supports_admission: boolean;
+};
+
+/** Phase 1 / review-confirm stance labels — not substantive recorded positions on their own */
+const PHASE1_STANCE_LABELS = [
+  "act denial",
+  "put to proof",
+  "lawful force",
+  "intent denial + causation",
+  "recklessness challenge",
+  "reserved pending disclosure",
+  "specific intent challenge",
+  "diminished responsibility (if raised)",
+] as const;
+
+const PROVISIONAL_POSITION_NOTICE =
+  "Defence position not safely recorded yet — position is provisional; take/record instructions before relying on it.";
+
+const NOT_RECORDED_NOTICE =
+  "Defence position not safely recorded yet — routes below follow file wording and interview material only.";
+
 const FORBIDDEN_PHRASE_RE =
   /\b(this\s+wins|wins\s+the\s+case|Crown\s+will\s+lose|proves\s+innocence|guaranteed|definitely\s+defeats\s+the\s+case|acquittal\s+is\s+certain)\b/i;
+
+/** Eval / training / test-bundle disclaimers — must not appear on solicitor-facing cards. */
+const EVAL_BOILERPLATE_RES: RegExp[] = [
+  /fictional\s+training\s+data/i,
+  /not\s+legal\s+advice/i,
+  /not\s+a\s+real\s+disclosure\s+bundle/i,
+  /fictional\s+extract/i,
+  /fictional\s+charge\s+drafting/i,
+  /\bfiction\s*:/i,
+  /\(fiction\)/i,
+  /fictional\s+email/i,
+  /fictional\s+letter/i,
+  /\bfictional\b/i,
+  /\btraining\s+data\b/i,
+  /\btest\s+data\b/i,
+  /controlled\s+fictional/i,
+  /generated\s+test\s+bundle/i,
+  /NOTE:\s*This\s+is\s+fictional/i,
+  /this\s+is\s+(?:a\s+)?fictional/i,
+  /fictional\s+(?:training|test|case|bundle|matter|scenario|disclosure)/i,
+  /for\s+training\s+(?:and\s+evaluation|purposes?)\s+only/i,
+  /training\s+purposes?\s+only/i,
+  /synthetic\s+(?:case|bundle|training)/i,
+  /\bI\s+mention\s+that\b/i,
+  /Grounds\s+for\s+dispute\s*\/\s*friction/i,
+  /Example\s+tension\s+note/i,
+  /={2,}\s*SECTION:/i,
+  /\bSECTION:\s*[A-Z]/i,
+  /^Short\s+title:/i,
+  /^Stage:/i,
+  /^Messiness:/i,
+];
+
+/** Strong evidence / disclosure anchors — keep even when the line is short */
+const STRONG_EVIDENCE_ANCHOR_RE =
+  /\b(MG6|MG11|MG5|CCTV|CAD|999|BWV|EX-[\w\d]+|interview|PACE|disclosure|continuity|source\s+material|outstanding|not\s+served|served|medical|forensic|witness\s+statement|unused\s+material|disclosure\s+chase|MG6C|MG0)\b/i;
+
+const DISPLAY_PREFIX_RES = /^File\s+wording:\s*/i;
 
 const CONDITIONAL_MARKERS =
   /\b(outstanding|not\s+served|awaiting|missing|provisional|conditional|if\s+proved|may\s+assist|needs?\s+solicitor\s+review|do\s+not\s+overstate|source\s+material\s+needed)\b/i;
@@ -63,10 +149,380 @@ function compactOneLine(s: string): string {
   return s.replace(/\s+/g, " ").trim();
 }
 
-function isSafePhrase(s: string): boolean {
+function stripDisplayPrefixes(s: string): string {
+  return compactOneLine(s).replace(DISPLAY_PREFIX_RES, "");
+}
+
+function countUsefulWords(s: string): number {
+  const words = s
+    .toLowerCase()
+    .replace(/[^\w\s'-]/g, " ")
+    .split(/\s+/)
+    .filter((w) => w.length > 1);
+  const stop = new Set([
+    "or",
+    "and",
+    "the",
+    "a",
+    "an",
+    "vs",
+    "if",
+    "to",
+    "of",
+    "in",
+    "on",
+    "at",
+    "is",
+    "are",
+    "was",
+    "were",
+    "that",
+    "this",
+    "with",
+    "for",
+    "as",
+    "be",
+    "by",
+    "it",
+    "we",
+    "you",
+    "they",
+    "he",
+    "she",
+  ]);
+  return words.filter((w) => !stop.has(w)).length;
+}
+
+export function hasStrongEvidenceAnchor(s: string): boolean {
+  return STRONG_EVIDENCE_ANCHOR_RE.test(s);
+}
+
+function anchorStrengthScore(s: string): number {
+  let score = 0;
+  const t = s;
+  if (/\bMG6\b/i.test(t)) score += 4;
+  if (/\bMG11\b/i.test(t)) score += 4;
+  if (/\bMG5\b/i.test(t)) score += 2;
+  if (/\bCCTV\b/i.test(t)) score += 3;
+  if (/\bCAD\b/i.test(t)) score += 3;
+  if (/\b999\b/i.test(t)) score += 3;
+  if (/\bBWV\b/i.test(t)) score += 2;
+  if (/\bEX-[\w\d]+/i.test(t)) score += 3;
+  if (/\binterview\b/i.test(t)) score += 2;
+  if (/\bcontinuity\b/i.test(t)) score += 2;
+  if (/\boutstanding\b/i.test(t)) score += 2;
+  if (/\bnot\s+served\b/i.test(t)) score += 2;
+  if (/\bsource\s+material\b/i.test(t)) score += 2;
+  if (/\b(medical|forensic)\b/i.test(t)) score += 2;
+  return score;
+}
+
+function isSectionHeadingLine(s: string): boolean {
   const t = compactOneLine(s);
-  if (t.length < 8) return false;
-  return !FORBIDDEN_PHRASE_RE.test(t);
+  if (/^={2,}\s*.+={2,}$/.test(t)) return true;
+  if (/^={2,}\s*SECTION:/i.test(t)) return true;
+  if (/^SECTION:\s*[A-Z0-9 _-]+\s*$/i.test(t)) return true;
+  if (/^(Short\s+title|Stage|Messiness):\s*.+$/i.test(t) && t.length < 100) return true;
+  if (/^SECTION:\s*[A-Z]/i.test(t) && t.length < 80) return true;
+  return false;
+}
+
+function isWeakFragmentLine(s: string): boolean {
+  const t = compactOneLine(s);
+  if (!t) return true;
+  if (hasStrongEvidenceAnchor(t)) return false;
+  if (isSectionHeadingLine(t)) return true;
+  if (/^\(?or\s+[\w\s,/()-]{0,80}\)\.?\s*$/i.test(t)) return true;
+  if (/^[\(\[][^)\]]{0,60}[\)\]]\.?\s*$/.test(t) && countUsefulWords(t) < 5) return true;
+  if (/^(vs\.?|and|or)\s+/i.test(t) && countUsefulWords(t) < 5) return true;
+  if (t.length < 20 && countUsefulWords(t) < 3) return true;
+  return countUsefulWords(t) < 5;
+}
+
+function isEvalBoilerplate(s: string): boolean {
+  return EVAL_BOILERPLATE_RES.some((re) => re.test(s));
+}
+
+function isBattleboardArtefact(s: string): boolean {
+  const t = compactOneLine(s);
+  if (!t) return true;
+  if (isEvalBoilerplate(t)) return true;
+  if (isSectionHeadingLine(t)) return true;
+  if (isWeakFragmentLine(t)) return true;
+  return false;
+}
+
+function isSafePhrase(s: string): boolean {
+  const t = stripDisplayPrefixes(s);
+  if (!t) return false;
+  if (isBattleboardArtefact(t)) return false;
+  if (FORBIDDEN_PHRASE_RE.test(t)) return false;
+  if (hasStrongEvidenceAnchor(t)) return t.length >= 8;
+  return t.length >= 12 && countUsefulWords(t) >= 5;
+}
+
+function sanitizeDisplayLine(s: string): string | null {
+  const c = stripDisplayPrefixes(s);
+  if (!c || !isSafePhrase(c)) return null;
+  return c;
+}
+
+function sanitizeStringList(lines: string[], max: number): string[] {
+  return uniqueSafe(lines, max);
+}
+
+function sanitizeRoute(route: BattleboardRoute): BattleboardRoute {
+  const hearing = sanitizeDisplayLine(route.hearing_line);
+  const safety = sanitizeDisplayLine(route.safety_note);
+  return {
+    ...route,
+    why_it_helps: sanitizeStringList(route.why_it_helps, 4),
+    what_hurts_us: sanitizeStringList(route.what_hurts_us, 3),
+    evidence_anchors: sanitizeStringList(route.evidence_anchors, 6),
+    collapse_risks: sanitizeStringList(route.collapse_risks, 5),
+    next_moves: sanitizeStringList(route.next_moves, 5),
+    hearing_line: hearing ?? route.hearing_line,
+    safety_note: safety ?? route.safety_note,
+  };
+}
+
+function normalizePositionCompare(text: string): string {
+  return compactOneLine(text)
+    .toLowerCase()
+    .replace(/^defence\s+position\s*:\s*/i, "")
+    .replace(/\.$/, "")
+    .trim();
+}
+
+/** Default police-station / Phase 1 stance label saved as position — not a confirmed defence position */
+export function isDefaultStanceOnlyPosition(text: string | null | undefined): boolean {
+  if (!text?.trim()) return true;
+  const n = normalizePositionCompare(text);
+  if (!n) return true;
+  if (/^act\s+denial$/.test(n)) return true;
+  if (n.length <= 40 && PHASE1_STANCE_LABELS.some((label) => n === label)) return true;
+  if (/^stance\s*:\s*/.test(n) && n.length < 48) return true;
+  return false;
+}
+
+function isSubstantiveRecordedPosition(
+  text: string,
+  meta?: { phase?: number | null; source?: string | null },
+): boolean {
+  const t = compactOneLine(text);
+  if (!t || isDefaultStanceOnlyPosition(t)) return false;
+  if (/\bto be completed after disclosure\b/i.test(t) && t.length < 140) return false;
+  if (meta?.phase === 1 && t.length < 90 && !/defence\s+position\s*:/i.test(t)) return false;
+  if (meta?.source === "ai_suggested") {
+    return t.length >= 40;
+  }
+  return t.length >= 28 || /defence\s+position\s*:/i.test(t);
+}
+
+function isPhase1StanceLabelLine(line: string): boolean {
+  const c = compactOneLine(line);
+  if (c.length < 4 || c.length > 120) return false;
+  return isDefaultStanceOnlyPosition(c) || /^stance\s*:\s*/i.test(c);
+}
+
+export function extractBundleInterviewSignals(bundleText: string): {
+  noComment: boolean;
+  preparedStatement: boolean;
+  partialAdmission: boolean;
+  denialOfAct: boolean;
+  selfDefence: boolean;
+} {
+  const u = bundleText;
+  return {
+    noComment: /\bno\s+comment\b/i.test(u) || /\bdeclined\s+to\s+answer\b/i.test(u),
+    preparedStatement: /\bprepared\s+statement\b/i.test(u),
+    partialAdmission:
+      /\bpartial\s+admission\b/i.test(u) ||
+      /\badmits?\s+that\b/i.test(u) ||
+      /\badmitted\s+(that\s+)?/i.test(u),
+    denialOfAct:
+      /\bdenies?\s+(the\s+)?(act|offence|allegation|involvement)\b/i.test(u) ||
+      /\bdenied\s+(the\s+)?(act|offence|allegation)\b/i.test(u) ||
+      /\bnot\s+me\b.*\b(identif|offence|act)\b/i.test(u),
+    selfDefence: /\bself[- ]?defen[cs]e\b/i.test(u) || /\blawful\s+(force|excuse)\b/i.test(u),
+  };
+}
+
+function extractInterviewAccountLines(bundleText: string, max = 4): string[] {
+  const patterns = [
+    /\bno\s+comment\b/i,
+    /\bprepared\s+statement\b/i,
+    /\bpartial\s+admission\b/i,
+    /\bdenies?\s+(the\s+)?(act|offence|allegation)/i,
+    /\bdenied\s+(the\s+)?(act|offence|allegation)/i,
+    /\binterview\b/i,
+    /\bPACE\b/i,
+    /\bclient\s+account\b/i,
+    /\banswered\s+questions\b/i,
+  ];
+  return extractLinesMatching(bundleText, patterns, max);
+}
+
+function interviewStanceToLines(stance: string | null | undefined): string[] {
+  if (!stance?.trim()) return [];
+  const s = stance.trim().toLowerCase();
+  if (s === "no_comment") return ["Interview stance (station record): no comment."];
+  if (s === "prepared_statement") return ["Interview stance (station record): prepared statement."];
+  if (s === "answered") return ["Interview stance (station record): answered questions."];
+  return [];
+}
+
+export function resolveBattleboardPosition(input: {
+  bundle_text: string;
+  recorded_position?: BattleboardRecordedPositionMeta | null;
+  position_text?: string | null;
+  stance_detected?: string | null;
+  interview_stance?: string | null;
+}): ResolvedBattleboardPosition {
+  const bundleText = (input.bundle_text ?? "").trim();
+  const signals = extractBundleInterviewSignals(bundleText);
+  const fileInterviewLines = uniqueSafe(
+    [...extractInterviewAccountLines(bundleText, 4), ...interviewStanceToLines(input.interview_stance)],
+    5,
+  );
+
+  const recordedMeta =
+    input.recorded_position ??
+    (input.position_text?.trim()
+      ? { position_text: input.position_text.trim(), phase: null, source: null }
+      : null);
+
+  const recordedText = recordedMeta?.position_text?.trim() ?? "";
+  const substantiveRecorded =
+    recordedText.length > 0 &&
+    isSubstantiveRecordedPosition(recordedText, {
+      phase: recordedMeta?.phase,
+      source: recordedMeta?.source,
+    });
+
+  const recordedDeniesAct =
+    substantiveRecorded &&
+    /\bden(y|ies|ied)\b/i.test(recordedText) &&
+    !signals.noComment &&
+    !signals.partialAdmission;
+
+  const onlyPlaceholderActDenial =
+    !substantiveRecorded &&
+    (isDefaultStanceOnlyPosition(recordedText) ||
+      normalizePositionCompare(input.stance_detected ?? "") === "act denial");
+
+  if (substantiveRecorded) {
+    return {
+      trust: "recorded",
+      notice: null,
+      recorded_summary: compactOneLine(recordedText).slice(0, 240),
+      interview_account_lines: fileInterviewLines,
+      bundle_supports_act_denial: signals.denialOfAct || recordedDeniesAct,
+      bundle_supports_no_comment: signals.noComment,
+      bundle_supports_admission: signals.partialAdmission,
+    };
+  }
+
+  if (fileInterviewLines.length > 0 || signals.noComment || signals.preparedStatement || signals.partialAdmission) {
+    return {
+      trust: "interview_from_file",
+      notice: onlyPlaceholderActDenial ? PROVISIONAL_POSITION_NOTICE : null,
+      recorded_summary: null,
+      interview_account_lines: fileInterviewLines,
+      bundle_supports_act_denial: signals.denialOfAct,
+      bundle_supports_no_comment: signals.noComment,
+      bundle_supports_admission: signals.partialAdmission,
+    };
+  }
+
+  if (onlyPlaceholderActDenial || isDefaultStanceOnlyPosition(recordedText) || isDefaultStanceOnlyPosition(input.stance_detected)) {
+    return {
+      trust: "provisional",
+      notice: PROVISIONAL_POSITION_NOTICE,
+      recorded_summary: null,
+      interview_account_lines: [],
+      bundle_supports_act_denial: false,
+      bundle_supports_no_comment: false,
+      bundle_supports_admission: false,
+    };
+  }
+
+  return {
+    trust: "not_recorded",
+    notice: NOT_RECORDED_NOTICE,
+    recorded_summary: null,
+    interview_account_lines: [],
+    bundle_supports_act_denial: signals.denialOfAct,
+    bundle_supports_no_comment: signals.noComment,
+    bundle_supports_admission: signals.partialAdmission,
+  };
+}
+
+function applyPositionGuardrails(
+  routes: BattleboardRoute[],
+  position: ResolvedBattleboardPosition,
+): BattleboardRoute[] {
+  const assumeConflict =
+    position.trust === "provisional" ||
+    position.trust === "not_recorded" ||
+    (position.trust === "interview_from_file" && position.notice != null);
+
+  const assumedActDenialWithoutSupport =
+    position.trust === "provisional" ||
+    (position.trust === "recorded" && !position.bundle_supports_act_denial && !position.bundle_supports_no_comment);
+
+  return routes.map((route) => {
+    let next = { ...route };
+
+    if (assumeConflict) {
+      next.collapse_risks = uniqueSafe(
+        ["Assumed position may conflict with interview or served evidence.", ...next.collapse_risks],
+        6,
+      );
+    }
+
+    if (route.route_type === "interview") {
+      const anchors = position.interview_account_lines.length
+        ? uniqueSafe([...position.interview_account_lines, ...next.evidence_anchors], 6)
+        : next.evidence_anchors;
+
+      if (position.bundle_supports_no_comment) {
+        next.evidence_anchors = uniqueSafe(
+          [
+            ...anchors.filter((a) => /\bno\s+comment\b/i.test(a)),
+            ...anchors.filter((a) => !/\bact\s+denial\b/i.test(a) && !isPhase1StanceLabelLine(a)),
+          ],
+          6,
+        );
+        if (next.evidence_anchors.length === 0 && position.interview_account_lines.length) {
+          next.evidence_anchors = uniqueSafe(position.interview_account_lines, 6);
+        }
+      } else if (position.interview_account_lines.length) {
+        next.evidence_anchors = anchors;
+      }
+
+      if (
+        (position.trust === "provisional" || position.trust === "not_recorded") &&
+        !position.bundle_supports_act_denial &&
+        !position.bundle_supports_no_comment &&
+        !position.bundle_supports_admission
+      ) {
+        if (next.status === "viable") next.status = "conditional";
+        if (next.evidence_anchors.length === 0 && next.status !== "blocked") {
+          return null;
+        }
+      }
+
+      if (assumedActDenialWithoutSupport && position.bundle_supports_admission) {
+        next.what_hurts_us = uniqueSafe(
+          ["Interview or served material may contain admissions — do not assume act denial.", ...next.what_hurts_us],
+          4,
+        );
+      }
+    }
+
+    return next;
+  }).filter((r): r is BattleboardRoute => r != null);
 }
 
 function uniqueSafe(lines: string[], max: number): string[] {
@@ -84,16 +540,19 @@ function uniqueSafe(lines: string[], max: number): string[] {
 
 function extractLinesMatching(bundleText: string, patterns: RegExp[], max = 5): string[] {
   if (!bundleText) return [];
-  const out: string[] = [];
+  const candidates: string[] = [];
   for (const raw of bundleText.split(/\r?\n/)) {
     const l = raw.trim();
-    if (l.length < 12 || l.length > 360) continue;
+    if (l.length < 8 || l.length > 360) continue;
+    if (isBattleboardArtefact(l)) continue;
+    if (isPhase1StanceLabelLine(l)) continue;
+    if (!hasStrongEvidenceAnchor(l) && l.length < 12) continue;
     if (patterns.some((p) => p.test(l))) {
-      out.push(l);
-      if (out.length >= max * 2) break;
+      candidates.push(l);
     }
   }
-  return uniqueSafe(out, max);
+  candidates.sort((a, b) => anchorStrengthScore(b) - anchorStrengthScore(a));
+  return uniqueSafe(candidates, max);
 }
 
 function bundleHas(bundleText: string, patterns: RegExp[]): boolean {
@@ -244,7 +703,8 @@ const ROUTE_SPECS: RouteSpec[] = [
       /\bno\s+comment\b/i,
       /\bprepared\s+statement\b/i,
       /\bpartial\s+admission\b/i,
-      /\bdenial\b/i,
+      /\bdenies?\s+(the\s+)?(act|offence|allegation)/i,
+      /\bdenied\s+(the\s+)?(act|offence|allegation)/i,
       /\bclient\s+account\b/i,
       /\binterview\b/i,
       /\bPACE\b/i,
@@ -457,19 +917,26 @@ function buildRouteFromSpec(
   spec: RouteSpec,
   bundleText: string,
   bundleThin: boolean,
-  extraAnchors: string[]
+  extraAnchors: string[],
+  position?: ResolvedBattleboardPosition,
 ): BattleboardRoute | null {
   const score = scoreRoute(bundleText, spec);
   if (score === 0 && extraAnchors.length === 0) return null;
 
   const fileLines = extractLinesMatching(bundleText, spec.signals, 4);
-  const evidence_anchors = uniqueSafe([...fileLines, ...extraAnchors], 6);
-  const why_it_helps = uniqueSafe(
-    fileLines.length > 0
-      ? fileLines.map((l) => `File wording: ${l}`)
-      : spec.defaultWhy,
-    4
+  const interviewExtras =
+    spec.route_type === "interview" && position?.interview_account_lines.length
+      ? position.interview_account_lines
+      : [];
+  const evidence_anchors = uniqueSafe([...fileLines, ...interviewExtras, ...extraAnchors], 6);
+  const substantiveAnchors = evidence_anchors.filter(
+    (a) => hasStrongEvidenceAnchor(a) || countUsefulWords(a) >= 5,
   );
+
+  let why_it_helps = uniqueSafe(fileLines.length > 0 ? fileLines : spec.defaultWhy, 4);
+  if (why_it_helps.length === 0) {
+    why_it_helps = uniqueSafe(spec.defaultWhy, 4);
+  }
   const what_hurts_us = uniqueSafe(spec.defaultHurts, 3);
   const collapse_risks = uniqueSafe(spec.collapseRisks, 5);
   const next_moves = uniqueSafe(spec.nextMoves, 5);
@@ -477,15 +944,27 @@ function buildRouteFromSpec(
     bundleHas(bundleText, [CONDITIONAL_MARKERS]) ||
     evidence_anchors.some((a) => CONDITIONAL_MARKERS.test(a));
 
-  const status = deriveRouteStatus(
-    evidence_anchors,
+  let status = deriveRouteStatus(
+    substantiveAnchors.length > 0 ? substantiveAnchors : evidence_anchors,
     next_moves,
     bundleThin,
     score,
-    textConditional
+    textConditional,
   );
 
-  if (status === "blocked" && evidence_anchors.length === 0) return null;
+  const displayAnchors =
+    substantiveAnchors.length > 0 ? substantiveAnchors : evidence_anchors;
+
+  const onlyWeakFileSupport =
+    displayAnchors.length === 0 && extraAnchors.length === 0 && score > 0;
+
+  if (onlyWeakFileSupport || (displayAnchors.length === 0 && extraAnchors.length === 0)) {
+    return null;
+  }
+
+  if (status === "blocked" && displayAnchors.length === 0) {
+    return null;
+  }
 
   return {
     id: spec.id,
@@ -494,7 +973,7 @@ function buildRouteFromSpec(
     route_type: spec.route_type,
     why_it_helps,
     what_hurts_us,
-    evidence_anchors,
+    evidence_anchors: displayAnchors,
     collapse_risks,
     next_moves,
     hearing_line: spec.hearingLine,
@@ -518,21 +997,20 @@ const GLOBAL_COLLAPSE = uniqueSafe(
 export function buildStrategyBattleboard(input: StrategyBattleboardInput): BattleboardOutput {
   const bundleText = (input.bundle_text ?? "").trim();
   const bundleThin = bundleText.length < 800;
-  const extraContext = uniqueSafe(
-    [
-      input.offence_label ? `Offence on file: ${input.offence_label}` : "",
-      input.committed_strategy ? `Committed strategy marker: ${input.committed_strategy}` : "",
-      input.position_text ? compactOneLine(input.position_text).slice(0, 240) : "",
-      ...(input.strategy_summary_lines ?? []),
-      ...(input.outstanding_disclosure ?? []).map((d) => `Outstanding disclosure: ${d}`),
-    ].filter(Boolean),
-    8
-  );
 
-  const disclosureExtras =
+  const positionContext = resolveBattleboardPosition({
+    bundle_text: bundleText,
+    recorded_position: input.recorded_position,
+    position_text: input.position_text,
+    stance_detected: input.stance_detected,
+    interview_stance: input.interview_stance,
+  });
+
+  const disclosureExtrasRaw =
     input.outstanding_disclosure && input.outstanding_disclosure.length > 0
       ? input.outstanding_disclosure
       : extractLinesMatching(bundleText, [/\boutstanding\b/i, /\bnot\s+served\b/i, /\bMG6\b/i], 4);
+  const disclosureExtras = uniqueSafe(disclosureExtrasRaw, 8);
 
   const routes: BattleboardRoute[] = [];
 
@@ -543,9 +1021,13 @@ export function buildStrategyBattleboard(input: StrategyBattleboardInput): Battl
         : spec.route_type === "mitigation" && bundleThin
           ? ["Thin bundle — fight routes may stay conditional until material is served."]
           : [];
-    const route = buildRouteFromSpec(spec, bundleText, bundleThin, extra);
+    const route = buildRouteFromSpec(spec, bundleText, bundleThin, extra, positionContext);
     if (route) routes.push(route);
   }
+
+  const guardedRoutes = applyPositionGuardrails(routes, positionContext);
+  routes.length = 0;
+  routes.push(...guardedRoutes);
 
   routes.sort((a, b) => {
     const sr = statusRank(b.status) - statusRank(a.status);
@@ -564,16 +1046,23 @@ export function buildStrategyBattleboard(input: StrategyBattleboardInput): Battl
 
   const urgent_next_moves = uniqueSafe(
     [
+      ...(positionContext.trust === "provisional" || positionContext.trust === "not_recorded"
+        ? ["Record defence position / take instructions before committing strategy."]
+        : []),
       ...disclosureExtras.map((d) => `Chase/record: ${d}`),
       ...(primary_route?.next_moves ?? []),
       "Reconcile MG5/MG6/interview/source material before final strategy.",
-      "Record defence position and preserve hearing timetable.",
+      ...(positionContext.trust === "recorded"
+        ? ["Record defence position and preserve hearing timetable."]
+        : []),
     ],
     6
   );
 
   let solicitor_safe_summary: string;
-  if (bundleThin) {
+  if (positionContext.notice) {
+    solicitor_safe_summary = positionContext.notice;
+  } else if (bundleThin) {
     solicitor_safe_summary =
       "Bundle text is thin on the system record — routes below are provisional and need solicitor review. Do not overstate at hearing until source material is served.";
   } else if (primary_route) {
@@ -587,14 +1076,28 @@ export function buildStrategyBattleboard(input: StrategyBattleboardInput): Battl
       "No fight route could be anchored safely from the current file text — needs solicitor review before hearing strategy is fixed.";
   }
 
+  const globalRisks =
+    positionContext.trust === "provisional" || positionContext.trust === "not_recorded"
+      ? uniqueSafe(
+          ["Assumed position may conflict with interview or served evidence.", ...GLOBAL_COLLAPSE],
+          8,
+        )
+      : GLOBAL_COLLAPSE;
+
+  const sanitizedRoutes = routes.map(sanitizeRoute);
+  const sanitizedPrimary = sanitizedRoutes[0];
+  const summaryLine = sanitizeDisplayLine(solicitor_safe_summary);
+
   return {
     case_id: input.case_id,
     generated_at: new Date().toISOString(),
     overall_status,
-    solicitor_safe_summary,
-    primary_route,
-    routes,
-    global_collapse_risks: GLOBAL_COLLAPSE,
-    urgent_next_moves,
+    solicitor_safe_summary: summaryLine ?? solicitor_safe_summary,
+    position_trust: positionContext.trust,
+    position_notice: positionContext.notice,
+    primary_route: sanitizedPrimary,
+    routes: sanitizedRoutes,
+    global_collapse_risks: sanitizeStringList(globalRisks, 8),
+    urgent_next_moves: sanitizeStringList(urgent_next_moves, 6),
   };
 }

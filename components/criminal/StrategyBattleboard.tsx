@@ -200,6 +200,12 @@ export function StrategyBattleboard({ caseId }: StrategyBattleboardProps) {
           <p className="text-sm text-foreground">{data.solicitor_safe_summary}</p>
         </div>
 
+        {data.position_notice && data.position_notice !== data.solicitor_safe_summary && (
+          <p className="text-xs text-amber-700 dark:text-amber-400 border border-amber-500/30 bg-amber-500/10 rounded-md px-3 py-2">
+            {data.position_notice}
+          </p>
+        )}
+
         {data.primary_route ? (
           <RouteCard route={data.primary_route} isPrimary />
         ) : (

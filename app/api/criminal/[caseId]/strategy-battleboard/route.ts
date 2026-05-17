@@ -51,7 +51,7 @@ export async function GET(_request: Request, { params }: RouteParams) {
     ] = await Promise.all([
       supabase
         .from("case_positions")
-        .select("position_text")
+        .select("position_text, phase, source")
         .eq("case_id", caseId)
         .eq("org_id", orgIdForQueries)
         .order("created_at", { ascending: false })
@@ -67,7 +67,7 @@ export async function GET(_request: Request, { params }: RouteParams) {
         .maybeSingle(),
       supabase
         .from("criminal_cases")
-        .select("declared_dependencies, alleged_offence")
+        .select("declared_dependencies, alleged_offence, stance_detected, interview_stance")
         .eq("id", caseId)
         .eq("org_id", orgIdForQueries)
         .maybeSingle(),
@@ -128,12 +128,26 @@ export async function GET(_request: Request, { params }: RouteParams) {
 
     const outstanding_disclosure = disclosureState.missing_items.map((m) => m.label);
 
+    const positionText =
+      typeof positionRow?.position_text === "string" ? positionRow.position_text.trim() : "";
+
     const battleboard = buildStrategyBattleboard({
       case_id: caseId,
       bundle_text,
       offence_label,
       committed_strategy: commitmentRow?.primary_strategy ?? null,
-      position_text: positionRow?.position_text ?? null,
+      position_text: positionText || null,
+      recorded_position: positionText
+        ? {
+            position_text: positionText,
+            phase: typeof positionRow?.phase === "number" ? positionRow.phase : null,
+            source: typeof positionRow?.source === "string" ? positionRow.source : null,
+          }
+        : null,
+      stance_detected:
+        typeof criminalCase?.stance_detected === "string" ? criminalCase.stance_detected : null,
+      interview_stance:
+        typeof criminalCase?.interview_stance === "string" ? criminalCase.interview_stance : null,
       strategy_summary_lines: caseTitle ? [`Case title: ${caseTitle}`] : [],
       outstanding_disclosure,
     });
