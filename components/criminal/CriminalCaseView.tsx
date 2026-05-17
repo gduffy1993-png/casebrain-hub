@@ -47,6 +47,7 @@ import { StrategyOverviewSubTab } from "./StrategyOverviewSubTab";
 import { StrategyDoctrineSubTab } from "./StrategyDoctrineSubTab";
 import { StrategyExportButton } from "./StrategyExportButton";
 import { DefencePlanBox } from "./DefencePlanBox";
+import { StrategyBattleboard } from "./StrategyBattleboard";
 import { StrategyTimelineSection } from "./StrategyTimelineSection";
 import { VerdictRatingBlock } from "./VerdictRatingBlock";
 import { BundleSourcePanels } from "./BundleSourcePanels";
@@ -811,6 +812,10 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
                   {tab === "overview" ? "Overview" : tab === "doctrine" ? "Legal doctrine" : "Full output"}
                 </button>
               ))}
+            </div>
+
+            <div className="mb-6">
+              <StrategyBattleboard caseId={caseId} />
             </div>
 
             <BundleSourcePanels caseId={caseId} />
