@@ -16,6 +16,7 @@ import { Phase2StrategyPlanPanel } from "./Phase2StrategyPlanPanel";
 import { AnalysisGateBanner, type AnalysisGateBannerProps } from "@/components/AnalysisGateBanner";
 import { Scale, Shield, Loader2, FileText, Target, AlertCircle, Upload } from "lucide-react";
 // Phase 2 components
+import { sortCasesForDisplay } from "@/lib/case-list-sort";
 import { buildCaseSnapshot, type CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
 import { buildEvidenceContext, buildTimelineContext } from "@/lib/criminal/evidence-context";
 import { CaseStatusStrip } from "./CaseStatusStrip";
@@ -278,10 +279,20 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
       setCaseNavError(null);
       try {
         const response = await fetch("/api/cases", { credentials: "include", cache: "no-store" });
-        const data = (await response.json().catch(() => ({}))) as { cases?: Array<{ id: string; title: string }> };
+        const data = (await response.json().catch(() => ({}))) as {
+          cases?: Array<{
+            id: string;
+            title?: string | null;
+            updated_at?: string | null;
+            created_at?: string | null;
+            eval_pack_id?: string | null;
+            eval_case_no?: number | null;
+            next_hearing_date?: string | null;
+          }>;
+        };
         if (!response.ok) throw new Error("Failed to load cases");
         const rows = Array.isArray(data.cases) ? data.cases : [];
-        const sorted = [...rows].sort((a, b) => (a.title ?? "").localeCompare(b.title ?? "", undefined, { numeric: true, sensitivity: "base" }));
+        const sorted = sortCasesForDisplay(rows);
         if (!cancelled) setCaseNavList(sorted.map((c) => ({ id: c.id, title: c.title || "Untitled Case" })));
       } catch (e) {
         if (!cancelled) {

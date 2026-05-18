@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { requireAuthContext } from "@/lib/auth";
+import { sortCasesForDisplay } from "@/lib/case-list-sort";
 import { isEvalBypassRequest } from "@/lib/eval-auth-bypass";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 
@@ -65,7 +66,16 @@ export async function GET(request: Request) {
         return new Response(error.message, { status: 500 });
       }
 
-      return NextResponse.json({ cases: data ?? [] });
+      const evalCases = (data ?? []) as Array<{
+        id: string;
+        title?: string | null;
+        updated_at?: string | null;
+        created_at?: string | null;
+        eval_pack_id?: string | null;
+        eval_pack_name?: string | null;
+        eval_case_no?: number | null;
+      }>;
+      return NextResponse.json({ cases: sortCasesForDisplay(evalCases) });
     }
 
     const ctx = await requireAuthContext();
@@ -148,22 +158,19 @@ export async function GET(request: Request) {
         };
       });
 
-      return NextResponse.json({ cases: casesWithStatus });
+      return NextResponse.json({ cases: sortCasesForDisplay(casesWithStatus) });
     }
 
     let query = supabase
       .from("cases")
-      .select("id, title, updated_at, eval_pack_id, eval_pack_name, eval_case_no")
+      .select("id, title, updated_at, created_at, eval_pack_id, eval_pack_name, eval_case_no")
       .eq("org_id", orgId)
       .eq("is_archived", false);
 
     if (q.length > 0) {
       query = query.ilike("title", `%${q}%`);
     }
-    const { data: cases, error } = await query.order(
-      q.length > 0 ? "title" : "updated_at",
-      { ascending: q.length > 0 }
-    );
+    const { data: cases, error } = await query;
 
     if (error) {
       console.error("[api/cases] Supabase error:", error.message);
@@ -246,7 +253,7 @@ export async function GET(request: Request) {
       };
     });
 
-    return NextResponse.json({ cases: casesWithStatus });
+    return NextResponse.json({ cases: sortCasesForDisplay(casesWithStatus) });
   } catch (err) {
     console.error("[api/cases] Error:", err);
     return NextResponse.json({ cases: [] });

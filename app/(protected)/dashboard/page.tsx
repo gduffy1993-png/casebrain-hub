@@ -4,12 +4,16 @@ import Link from "next/link";
 import { useEffect, useState, useMemo } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { sortCasesForDisplay } from "@/lib/case-list-sort";
 import { ArrowRight, Upload, Inbox, Shield, ArrowUpDown, ArrowDownAZ } from "lucide-react";
 
 type CaseRow = {
   id: string;
   title: string;
   updated_at?: string | null;
+  created_at?: string | null;
+  eval_pack_id?: string | null;
+  eval_case_no?: number | null;
   strategy_recorded?: boolean;
   strategy_preview?: string | null;
   disclosure_outstanding?: number | null;
@@ -68,13 +72,8 @@ export default function DashboardPage() {
     if (filterUnsafeOnly)
       list = list.filter((c) => (c.disclosure_outstanding ?? 0) > 0);
     if (sortBy === "title")
-      list.sort((a, b) => (a.title ?? "").localeCompare(b.title ?? ""));
-    else
-      list.sort((a, b) => {
-        const ta = a.updated_at ? new Date(a.updated_at).getTime() : 0;
-        const tb = b.updated_at ? new Date(b.updated_at).getTime() : 0;
-        return tb - ta;
-      });
+      list.sort((a, b) => (a.title ?? "").localeCompare(b.title ?? "", undefined, { numeric: true }));
+    else list = sortCasesForDisplay(list);
     return list;
   }, [cases, sortBy, filterUnsafeOnly]);
 

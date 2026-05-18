@@ -38,6 +38,8 @@ export type ControlRoomAssistantContext = {
 export const BATTLEBOARD_FALLBACK_TIMEOUT_HEADER =
   "The assistant timed out. Here is the file-based Battleboard fallback:";
 
+const FALLBACK_INTRO = "File-based view — conditional, solicitor review required.";
+
 const GENERIC_CHASE_PATTERNS = [
   /\bbwv\b/i,
   /\bbody\s*worn\b/i,
@@ -202,15 +204,24 @@ export function parseMg6OutstandingLines(mg6Text: string | null | undefined): st
 function buildClientAccountSummary(fileText: string): string {
   const t = fileText.toLowerCase();
   if (/no comment.*technical|no comment on certain technical/i.test(t)) {
-    return "Your account on file: partial account; may deny the core allegation or give an alternative explanation; no comment on some technical matters; request for full CCTV/999 disclosure scope.";
+    return "Partial account on file; may deny the core allegation or give an alternative explanation; no comment on some technical matters; request for full CCTV/999 disclosure scope.";
   }
   if (/partial account.*denies|denies core allegation/i.test(t)) {
-    return "Your account on file: partial account; denies core allegation or alternative explanation offered — check interview summary on file.";
+    return "Partial account on file; denies the core allegation or an alternative explanation — check the interview summary before the meeting.";
   }
-  return "Your account on file: check interview summary on file before the client meeting.";
+  return "Check the interview summary on file before the client meeting.";
 }
 
 type ClassifiedExhibit = { code: string; role: "proof" | "disclosure" };
+
+function classifyExhibitRole(code: string, context: string): ClassifiedExhibit["role"] {
+  const c = code.toUpperCase();
+  if (/EX-MG6-EMAIL|MG6-EMAIL/i.test(c)) return "disclosure";
+  if (/\(chase\)/i.test(context) && /EX-MG6|MG6-EMAIL/i.test(c)) return "disclosure";
+  if (/^EX-CAD-|^EX-CCTV-|^EX-999-/i.test(c)) return "proof";
+  if (/^EX-MG6/i.test(c) && /chase|email/i.test(c)) return "disclosure";
+  return "proof";
+}
 
 export function classifyExhibitsFromFile(
   exhibitsText: string | null | undefined,
@@ -222,11 +233,7 @@ export function classifyExhibitsFromFile(
     const code = m[1].toUpperCase();
     const idx = m.index ?? 0;
     const context = blob.slice(Math.max(0, idx - 20), idx + code.length + 40).toLowerCase();
-    const role: ClassifiedExhibit["role"] =
-      /mg6|email|chase|disclosure/.test(context) || /mg6-email/.test(code.toLowerCase())
-        ? "disclosure"
-        : "proof";
-    found.set(code, { code, role });
+    found.set(code, { code, role: classifyExhibitRole(code, context) });
   }
   return [...found.values()];
 }
@@ -275,64 +282,64 @@ function filterBattleboardLines(lines: string[], derived: DerivedFileContext): s
     });
 }
 
-/** Synthesised Crown pressure — no raw MG5 fragments or defence-account quotes. */
-function buildCpsPressureLines(ctx: ControlRoomAssistantContext, derived: DerivedFileContext): string[] {
+/** Concise prosecution-route summary — no raw MG5 fragments or defence-account quotes. */
+function buildCpsAnswer(ctx: ControlRoomAssistantContext, derived: DerivedFileContext): string {
   const t = derived.fileText.toLowerCase();
-  const allegation = derived.cleanAllegation;
+  const allegationPhrase = isUnknownAllegation(derived.cleanAllegation)
+    ? "the charged allegation"
+    : `the ${derived.cleanAllegation}`;
 
-  const crownElements: string[] = [];
-  if (!isUnknownAllegation(allegation)) crownElements.push(allegation);
-  if (/stop\s*search|bad character/i.test(t)) crownElements.push("stop-search context");
-  if (/bad character|mg6.*character/i.test(t)) crownElements.push("MG6 bad-character/disclosure tension on file");
-  if (/message|context|drug|pwits|possession|supply/i.test(t)) crownElements.push("messages/context supporting the drug narrative");
-  if (/mg11|witness statement/i.test(t)) crownElements.push("draft or served MG11");
-  if (/cctv|999|cad/.test(t)) crownElements.push("served partial CCTV, 999, and/or CAD material (scope to reconcile)");
-
-  const lines: string[] = [];
-
-  if (!isUnknownAllegation(allegation)) {
-    lines.push(
-      `Put ${allegation} to proof on the served material (check exact charge wording on the charge sheet).`,
-    );
-  } else {
-    lines.push("Put the charged allegation to proof — check exact wording on the charge sheet.");
+  const basis: string[] = [];
+  if (/stop\s*search|bad character/i.test(t)) basis.push("stop-search context");
+  if (/message|context|drug|pwits|possession|supply/i.test(t)) {
+    basis.push("messages or context if served");
   }
+  if (/mg11|witness statement/i.test(t)) basis.push("MG11 evidence");
+  const media: string[] = [];
+  if (/cctv/.test(t)) media.push("CCTV");
+  if (/999/.test(t)) media.push("999");
+  if (/cad/.test(t)) media.push("CAD");
+  if (media.length) basis.push(`${media.join(", ")} material where present`);
 
-  if (crownElements.length > 1) {
-    lines.push(
-      `CPS may rely on the ${crownElements.join(", ")} — conditional on what is actually served and proved at trial.`,
-    );
-  } else if (derived.primaryHook) {
-    lines.push(`CPS narrative pressure on file may centre on: ${derived.primaryHook} — conditional.`);
+  const basisText =
+    basis.length > 0 ? basis.join(", ") : derived.primaryHook ?? "the served source material on file";
+
+  let answer = `CPS may put ${allegationPhrase} allegation on the basis of ${basisText}.`;
+
+  const exhibitNote = buildServedExhibitsNote(derived);
+  if (exhibitNote) answer += ` ${exhibitNote}`;
+
+  const disclosurePressure =
+    derived.hasMg6Schedule || derived.mg6Outstanding.length > 0
+      ? "The defence pressure point is disclosure: MG6 still shows source material outstanding, so the route should not be fixed until those items are served and checked."
+      : "Defence pressure may turn on what is actually served — reconcile the file before fixing the route.";
+
+  return `${answer}\n\n${disclosurePressure}`;
+}
+
+function buildServedExhibitsNote(derived: DerivedFileContext): string {
+  const proof = derived.proofExhibits;
+  const disclosure = derived.disclosureExhibits;
+  if (!proof.length && !disclosure.length) return "";
+
+  const hasCad = proof.some((c) => /^EX-CAD-/i.test(c));
+  const cadNeedsReconciliation =
+    hasCad &&
+    (derived.mg6Outstanding.some((m) => /cad|dispatch/i.test(m.toLowerCase())) ||
+      /fuller cad|cad.*narrative/i.test(derived.fileText.toLowerCase()));
+
+  let note = "";
+  if (proof.length) {
+    note = `Crown may also reference served/source exhibits such as ${proof.join(", ")} if proved`;
+    if (cadNeedsReconciliation) {
+      note += ", noting the CAD material may still need fuller narrative reconciliation";
+    }
+    note += ".";
   }
-
-  for (const code of derived.proofExhibits) {
-    lines.push(`Exhibit on file (Crown may reference if served): ${code}`);
+  if (disclosure.length) {
+    note += ` Disclosure/chase material only: ${disclosure.join(", ")}.`;
   }
-
-  if (derived.disclosureExhibits.length > 0) {
-    lines.push(`Disclosure/chase only (not Crown proof): ${derived.disclosureExhibits.join(", ")}`);
-  }
-
-  const bb = ctx.battleboard;
-  if (bb) {
-    const anchors = uniqueLines(
-      (bb.primary_route?.evidence_anchors ?? [])
-        .concat(bb.routes.flatMap((r) => r.evidence_anchors))
-        .filter((a) => !/ex-mg6|mg6-email|\(chase\)/i.test(a))
-        .map((a) => `Material referenced on file: ${sanitizeSolicitorText(a)}`),
-      3,
-    );
-    lines.push(...anchors);
-    const summary = filterBattleboardLines([bb.solicitor_safe_summary], derived);
-    if (summary[0] && summary[0].length < 200) lines.push(summary[0]);
-  }
-
-  if (derived.hasMg6Schedule) {
-    lines.push("MG6(a) schedule on file — reconcile served vs outstanding before fixing hearing lines.");
-  }
-
-  return uniqueLines(lines, 8);
+  return note;
 }
 
 function buildOrderedMg6ChaseItems(derived: DerivedFileContext): string[] {
@@ -351,77 +358,205 @@ function buildOrderedMg6ChaseItems(derived: DerivedFileContext): string[] {
 function buildDisclosureChaseLetter(ctx: ControlRoomAssistantContext, derived: DerivedFileContext): string {
   const items = buildOrderedMg6ChaseItems(derived);
 
-  const extraMissing = ctx.missingEvidence
-    .map((m) => sanitizeSolicitorText(m))
-    .filter((m) => {
-      if (!m) return false;
-      const ml = m.toLowerCase();
-      return !items.some((i) => i.toLowerCase().includes(ml.slice(0, Math.min(18, ml.length))));
-    })
-    .slice(0, 2)
-    .map((m) => `Please serve/confirm: ${m}`);
-
-  const body = uniqueLines([...items, ...extraMissing], 10);
-
-  if (!body.length) {
+  if (!items.length) {
     return [
-      "Dear Officer in Case,",
-      "We act for the defendant. Please confirm MG6(a) served vs outstanding items and dates.",
+      "Dear Officer in the Case,",
+      "",
+      "We act for the defendant.",
+      "",
+      "Please confirm MG6(a) served vs outstanding items and expected service dates.",
+      "",
+      "Solicitor review required before sending.",
+      "",
       "Yours faithfully,",
     ].join("\n");
   }
 
   return [
-    "Dear Officer in Case,",
-    "We act for the defendant. Please serve/confirm:",
-    ...body.map((c) => `• ${c}`),
-    "Please confirm dates served and any material still outstanding before the next hearing.",
-    "Conditional — solicitor review before send.",
+    "Dear Officer in the Case,",
+    "",
+    "We act for the defendant.",
+    "",
+    "Please confirm service of the following outstanding material:",
+    "",
+    ...items.map((c) => `• ${c}`),
+    "",
+    "Please confirm what has been served, what remains outstanding, and the expected service dates before the next hearing.",
+    "",
+    "Solicitor review required before sending.",
+    "",
     "Yours faithfully,",
   ].join("\n");
 }
 
-function buildEvidenceChaseList(ctx: ControlRoomAssistantContext, derived: DerivedFileContext): string[] {
-  const priority = uniqueLines([
-    ...derived.mg6Outstanding.map((m) => `MG6 — ${m}`),
-    ...ctx.missingEvidence.map((m) => `Outstanding on file: ${m}`),
-  ]);
+function buildEvidenceChaseAnswer(ctx: ControlRoomAssistantContext, derived: DerivedFileContext): string {
+  const mg6Items = buildOrderedMg6ChaseItems(derived);
+  const fromParsed =
+    mg6Items.length > 0
+      ? mg6Items
+      : derived.mg6Outstanding.map((m) => sanitizeSolicitorText(m.replace(/^[^:]+:\s*/, "").trim() || m));
 
-  const secondary = filterGenericChaseLines(
-    uniqueLines([
-      ...(ctx.battleboard?.routes ?? [])
-        .filter((r) => r.route_type === "disclosure" || r.route_type === "continuity")
-        .flatMap((r) => r.next_moves),
-      ...(ctx.battleboard?.primary_route?.next_moves ?? []),
-      ...(ctx.battleboard?.urgent_next_moves ?? []),
-    ]),
-    derived.fileText,
-  ).filter((line) => !priority.some((p) => p.toLowerCase().includes(line.slice(0, 20).toLowerCase())));
+  if (!fromParsed.length) {
+    const missingOnly = uniqueLines(
+      ctx.missingEvidence.map((m) => sanitizeSolicitorText(m)).filter(Boolean),
+      6,
+    );
+    if (!missingOnly.length) return "";
+    return `Priority disclosure/source material to chase:\n\n${bulletBlock(missingOnly)}`;
+  }
 
-  return uniqueLines([...priority, ...secondary], 10);
+  const extras = uniqueLines(
+    ctx.missingEvidence
+      .map((m) => sanitizeSolicitorText(m))
+      .filter((m) => {
+        if (!m) return false;
+        const ml = m.toLowerCase();
+        return !fromParsed.some((i) => i.toLowerCase().includes(ml.slice(0, Math.min(14, ml.length))));
+      }),
+    2,
+  );
+
+  let body = `Priority disclosure/source material to chase:\n\n${bulletBlock(fromParsed)}`;
+  if (extras.length) body += `\n\n${bulletBlock(extras)}`;
+  return body;
 }
 
-function buildClientExplanation(ctx: ControlRoomAssistantContext, derived: DerivedFileContext): string[] {
+type RouteRiskBucket = {
+  id: string;
+  label: string;
+  fileSupports: (fileText: string) => boolean;
+  matchesBattleboard: (risk: string) => boolean;
+};
+
+/** Priority-ordered route risks — one label per semantic bucket. */
+const ROUTE_RISK_BUCKETS: RouteRiskBucket[] = [
+  {
+    id: "cctv_timing",
+    label: "full CCTV supports the Crown timing",
+    fileSupports: (t) => /\bcctv|footage|video\b/.test(t),
+    matchesBattleboard: (r) => /\bcctv|footage|video|digital source|master file\b/i.test(r),
+  },
+  {
+    id: "mg11",
+    label: "MG11 evidence is consistent and served",
+    fileSupports: (t) => /\bmg11|witness statement\b/.test(t),
+    matchesBattleboard: (r) => /\bmg11|witness statement\b/i.test(r),
+  },
+  {
+    id: "cad999",
+    label: "CAD/999 timing supports the Crown sequence",
+    fileSupports: (t) => /\b999|cad|dispatch\b/.test(t),
+    matchesBattleboard: (r) => /\b999|cad|dispatch\b/i.test(r),
+  },
+  {
+    id: "account_conflict",
+    label: "the client account conflicts with served source material",
+    fileSupports: (t) => /\bdenies|conflict|partial account|account\b/.test(t),
+    matchesBattleboard: (r) => /\baccount|conflict|client account\b/i.test(r) && !/\badmission\b/i.test(r),
+  },
+  {
+    id: "interview_admission",
+    label: "interview admissions narrow the available route",
+    fileSupports: (t) => /\badmission|no comment on\b/.test(t),
+    matchesBattleboard: (r) => /\badmission|interview\b/i.test(r),
+  },
+  {
+    id: "expert",
+    label: "expert or source material comes back against the defence",
+    fileSupports: (t) => /\bexpert|forensic|lab|gp|medical\b/.test(t),
+    matchesBattleboard: (r) => /\bexpert|forensic|lab|gp|medical\b/i.test(r),
+  },
+  {
+    id: "continuity",
+    label: "continuity/provenance is later proved on served material",
+    fileSupports: (t) => /\bcontinuity|provenance|chain of\b/.test(t),
+    matchesBattleboard: (r) => /\bcontinuity|provenance\b/i.test(r),
+  },
+];
+
+function routeRiskSemanticKey(text: string): string {
+  const l = text.toLowerCase();
+  for (const bucket of ROUTE_RISK_BUCKETS) {
+    if (bucket.matchesBattleboard(l)) return bucket.id;
+  }
+  if (/continuity|provenance/.test(l)) return "continuity";
+  if (/cctv|footage|digital source/.test(l)) return "cctv_timing";
+  if (/mg11|witness/.test(l)) return "mg11";
+  if (/999|cad/.test(l)) return "cad999";
+  if (/account|conflict/.test(l)) return "account_conflict";
+  if (/admission|interview/.test(l)) return "interview_admission";
+  if (/expert|forensic|lab/.test(l)) return "expert";
+  return l.slice(0, 40);
+}
+
+function collectBattleboardCollapseRisks(ctx: ControlRoomAssistantContext): string[] {
+  const bb = ctx.battleboard;
+  const primary = bb?.primary_route;
+  return [
+    ...(bb?.global_collapse_risks ?? []),
+    ...(primary?.collapse_risks ?? []),
+    ...(bb?.routes ?? []).flatMap((r) => r.collapse_risks),
+    ctx.positionNotice ? sanitizeSolicitorText(ctx.positionNotice) : "",
+  ]
+    .map((r) => sanitizeSolicitorText(r))
+    .filter((r) => r && !isUnusableQuotedSourceLine(r));
+}
+
+function buildRouteWeakensAnswer(ctx: ControlRoomAssistantContext, derived: DerivedFileContext): string {
+  const file = derived.fileText.toLowerCase();
+  const boardRisks = collectBattleboardCollapseRisks(ctx);
+  const boardBucketIds = new Set<string>();
+  for (const risk of boardRisks) {
+    for (const bucket of ROUTE_RISK_BUCKETS) {
+      if (bucket.matchesBattleboard(risk)) boardBucketIds.add(bucket.id);
+    }
+  }
+
+  const bullets: string[] = [];
+  const usedKeys = new Set<string>();
+
+  for (const bucket of ROUTE_RISK_BUCKETS) {
+    if (bullets.length >= 5) break;
+    if (!bucket.fileSupports(file) && !boardBucketIds.has(bucket.id)) continue;
+    bullets.push(bucket.label);
+    usedKeys.add(bucket.id);
+  }
+
+  for (const risk of boardRisks) {
+    if (bullets.length >= 5) break;
+    const key = routeRiskSemanticKey(risk);
+    if (usedKeys.has(key)) continue;
+    if (risk.length > 160) continue;
+    bullets.push(risk);
+    usedKeys.add(key);
+  }
+
+  if (!bullets.length) return "";
+  return `This route weakens or collapses if:\n\n${bulletBlock(bullets)}`;
+}
+
+function buildClientExplanation(ctx: ControlRoomAssistantContext, derived: DerivedFileContext): string {
   const primary = ctx.battleboard?.primary_route;
   const focus =
     primary?.route_type === "disclosure" || /disclosure|source material/i.test(primary?.title ?? "")
       ? "Disclosure/source-material pressure"
       : sanitizeSolicitorText(primary?.title ?? "Disclosure/source-material pressure");
 
-  return uniqueLines(
-    [
-      `Stage on file: ${derived.displayStage}.`,
-      !isUnknownAllegation(derived.cleanAllegation)
-        ? `Allegation on file: ${derived.cleanAllegation}.`
-        : "",
-      derived.primaryHook ? `Main issue: ${derived.primaryHook}.` : "Main issue: disclosure and source-material pressure on file.",
-      `Current focus: ${focus}.`,
-      buildClientAccountSummary(derived.fileText),
-      "Position remains provisional until solicitor records instructions.",
-      "This is not legal advice — explain options calmly; solicitor to confirm before the client relies on any line.",
-    ],
-    8,
-  );
+  const parts = [
+    `Stage on file: ${derived.displayStage}`,
+    !isUnknownAllegation(derived.cleanAllegation)
+      ? `Allegation on file: ${derived.cleanAllegation}`
+      : "",
+    derived.primaryHook
+      ? `Main issue: ${derived.primaryHook}`
+      : "Main issue: disclosure and source-material pressure on file",
+    `Current focus: ${focus}`,
+    `Account on file: ${buildClientAccountSummary(derived.fileText)}`,
+    "What happens next: your solicitor should record instructions, chase outstanding disclosure, and confirm the hearing line before you rely on it.",
+    "Your solicitor must confirm this before you rely on it.",
+  ].filter(Boolean);
+
+  return parts.join("\n\n");
 }
 
 export function hasBattleboardFallbackData(ctx: ControlRoomAssistantContext): boolean {
@@ -454,55 +589,45 @@ export function tryLocalSuggestedAnswer(
   const derived = buildDerived(ctx);
   const bb = ctx.battleboard;
   const primary = bb?.primary_route;
-  const prefix = "From file Battleboard (conditional — solicitor review required):\n\n";
-
   switch (prompt) {
     case "What would CPS argue?": {
-      const lines = buildCpsPressureLines(ctx, derived);
-      if (!lines.length) return null;
-      return prefix + bulletBlock(lines);
+      const body = buildCpsAnswer(ctx, derived);
+      if (!body.trim()) return null;
+      return `${FALLBACK_INTRO}\n\n${body}`;
     }
 
     case "What evidence should I chase?": {
-      const chase = buildEvidenceChaseList(ctx, derived);
-      if (!chase.length) return null;
-      return prefix + bulletBlock(chase);
+      const body = buildEvidenceChaseAnswer(ctx, derived);
+      if (!body.trim()) return null;
+      return `${FALLBACK_INTRO}\n\n${body}`;
     }
 
     case "What would make us lose?": {
-      const risks = uniqueLines([
-        ...(bb?.global_collapse_risks ?? []),
-        ...(primary?.collapse_risks ?? []),
-        ...(bb?.routes ?? []).flatMap((r) => r.collapse_risks),
-        ctx.positionNotice ? sanitizeSolicitorText(ctx.positionNotice) : "",
-        derived.primaryHook
-          ? `If ${derived.primaryHook} is not managed on instructions, the route may weaken — conditional.`
-          : "",
-      ]);
-      if (!risks.length) return null;
-      return prefix + bulletBlock(risks.slice(0, 6));
+      const body = buildRouteWeakensAnswer(ctx, derived);
+      if (!body.trim()) return null;
+      return `${FALLBACK_INTRO}\n\n${body}`;
     }
 
     case "What can I safely say at hearing?": {
       const line = primary?.hearing_line?.trim();
+      if (!line) return null;
       const safety = primary?.safety_note?.trim();
-      if (!line && !safety) return null;
-      const parts = uniqueLines([
-        line ? `Provisional hearing line: ${sanitizeSolicitorText(line)}` : "",
-        safety ? `Safety: ${sanitizeSolicitorText(safety)}` : "",
-        "Do not overstate — conditional on served material, MG6 reconciliation, and client instructions.",
-      ]);
-      return prefix + parts.join("\n\n");
+      const parts = [
+        `Safe provisional line: ${sanitizeSolicitorText(line)}`,
+        "Do not overstate. This is disclosure pressure only, conditional on served material, MG6 reconciliation, and client instructions.",
+        safety ? sanitizeSolicitorText(safety) : "",
+      ].filter(Boolean);
+      return `${FALLBACK_INTRO}\n\n${parts.join("\n\n")}`;
     }
 
     case "Explain this to client": {
-      const parts = buildClientExplanation(ctx, derived);
-      if (parts.length < 2) return null;
-      return prefix + parts.join("\n\n");
+      const body = buildClientExplanation(ctx, derived);
+      if (!body.trim()) return null;
+      return `${FALLBACK_INTRO}\n\n${body}`;
     }
 
     case "Draft disclosure chase": {
-      return prefix + buildDisclosureChaseLetter(ctx, derived);
+      return `${FALLBACK_INTRO}\n\n${buildDisclosureChaseLetter(ctx, derived)}`;
     }
 
     default:
@@ -531,7 +656,7 @@ export function buildBattleboardTimeoutFallback(ctx: ControlRoomAssistantContext
   ]);
 
   if (!parts.length) return null;
-  return parts.join("\n\n") + "\n\nSolicitor review required — not a prediction of outcome.";
+  return `${FALLBACK_INTRO}\n\n${parts.join("\n\n")}`;
 }
 
 export function isAssistantUpstreamFailure(status: number, rawError?: string): boolean {

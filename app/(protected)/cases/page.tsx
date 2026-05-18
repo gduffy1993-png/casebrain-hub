@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { clsx } from "clsx";
 import { requireAuthContext } from "@/lib/auth";
+import { sortCasesForDisplay } from "@/lib/case-list-sort";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -50,10 +51,9 @@ export default async function CasesPage({ searchParams }: CasesPageProps) {
 
   let query = supabase
     .from("cases")
-    .select("id, title, summary, practice_area, updated_at")
+    .select("id, title, summary, practice_area, updated_at, created_at, eval_pack_id, eval_pack_name, eval_case_no")
     .eq("org_id", orgId)
-    .eq("is_archived", false) // Exclude archived cases
-    .order("updated_at", { ascending: false });
+    .eq("is_archived", false); // Exclude archived cases
 
   if (selectedPracticeArea !== "all") {
     if (selectedPracticeArea === "general") {
@@ -66,15 +66,35 @@ export default async function CasesPage({ searchParams }: CasesPageProps) {
     }
   }
 
-  const { data: cases, error } = await query;
+  const { data: casesRaw, error } = await query;
 
   if (error) {
     throw error;
   }
 
-  if (!cases) {
+  if (!casesRaw) {
     notFound();
   }
+
+  const caseIds = casesRaw.map((c) => c.id);
+  const nextHearingByCase = new Map<string, string>();
+  if (caseIds.length > 0) {
+    const { data: criminalRows } = await supabase
+      .from("criminal_cases")
+      .select("id, next_hearing_date")
+      .eq("org_id", orgId)
+      .in("id", caseIds);
+    for (const row of criminalRows ?? []) {
+      if (row.next_hearing_date) nextHearingByCase.set(row.id, row.next_hearing_date);
+    }
+  }
+
+  const cases = sortCasesForDisplay(
+    casesRaw.map((c) => ({
+      ...c,
+      next_hearing_date: nextHearingByCase.get(c.id) ?? null,
+    })),
+  );
 
   return (
     <div className="space-y-6">
