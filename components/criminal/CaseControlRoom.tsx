@@ -9,7 +9,6 @@ import {
   ListChecks,
   Loader2,
   Scale,
-  Target,
   Upload,
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
@@ -18,7 +17,13 @@ import { Button } from "@/components/ui/button";
 import { StrategyBattleboard } from "./StrategyBattleboard";
 import { DashboardCard } from "./control-room/DashboardCard";
 import { ControlRoomAssistantDock } from "./control-room/ControlRoomAssistant";
-import { GlanceItem, RiskColumn, SummaryBlock } from "./control-room/GlanceGrid";
+import { AboveFoldSummary } from "./control-room/AboveFoldSummary";
+import { RiskColumn } from "./control-room/GlanceGrid";
+import {
+  collectChaseItems,
+  formatDisclosureGlance,
+  formatMissingEvidenceStrip,
+} from "./control-room/chaseItems";
 import type { CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
 import type { DefenceStrategyPlan } from "@/lib/criminal/strategy-output";
 import type { StrategyCommitment } from "./StrategyCommitmentPanel";
@@ -74,8 +79,8 @@ type BundleSourceSummary = {
   };
 };
 
-function formatGbDate(dateStr: string | null | undefined): string {
-  if (!dateStr) return "—";
+function formatGbDate(dateStr: string | null | undefined): string | null {
+  if (!dateStr) return null;
   try {
     return new Date(dateStr).toLocaleDateString("en-GB", {
       day: "numeric",
@@ -83,8 +88,39 @@ function formatGbDate(dateStr: string | null | undefined): string {
       year: "numeric",
     });
   } catch {
-    return "—";
+    return null;
   }
+}
+
+function formatNextHearing(snapshot: CaseSnapshot | null): string {
+  const at = snapshot?.caseMeta?.hearingNextAt;
+  if (!at) return "No hearing date safely extracted";
+  const datePart = formatGbDate(at);
+  if (!datePart) return "No hearing date safely extracted";
+  const type = snapshot?.caseMeta?.hearingNextType?.trim();
+  return type ? `${type} · ${datePart}` : datePart;
+}
+
+function resolveClientLabel(matter: MatterSummary | null, snapshot: CaseSnapshot | null): string {
+  const initials = matter?.clientInitials?.trim();
+  if (initials && initials.length >= 2 && !/^client\b/i.test(initials)) {
+    return initials;
+  }
+  return "Client name not safely extracted";
+}
+
+function stripRepeatedPositionNotice(items: string[], notice: string | null | undefined): string[] {
+  if (!notice?.trim()) {
+    return items.filter((i) => !/defence position not safely recorded/i.test(i));
+  }
+  const key = notice.slice(0, 48).toLowerCase();
+  return items.filter((i) => {
+    const t = i.trim().toLowerCase();
+    if (!t) return false;
+    if (t.includes(key)) return false;
+    if (/defence position not safely recorded/i.test(t)) return false;
+    return true;
+  });
 }
 
 function buildPlanSummary(plan: DefenceStrategyPlan | null): string {
@@ -202,10 +238,7 @@ export function CaseControlRoom({
   }, [defencePlan, battleboard]);
 
   const caseTitle = snapshot?.caseMeta?.title?.trim() || "Criminal case";
-  const defendant =
-    matter?.clientInitials?.trim() ||
-    snapshot?.caseMeta?.title?.split("–")[0]?.trim() ||
-    "Client not labelled";
+  const clientLabel = resolveClientLabel(matter, snapshot);
   const allegation = useMemo(
     () => resolveAllegationLabel(snapshot, matter, battleboard, bundleSource),
     [snapshot, matter, battleboard, bundleSource],
@@ -223,20 +256,23 @@ export function CaseControlRoom({
     return stageFromMatter;
   }, [bundleSource, stageFromMatter]);
   const stage = displayStage;
-  const nextHearing = snapshot?.caseMeta?.hearingNextAt
-    ? `${snapshot.caseMeta.hearingNextType ? `${snapshot.caseMeta.hearingNextType} · ` : ""}${formatGbDate(snapshot.caseMeta.hearingNextAt)}`
-    : "—";
+  const nextHearing = formatNextHearing(snapshot);
 
-  const missingItemsAll = useMemo(() => {
-    const fromSnap =
-      snapshot?.evidence.missingEvidence
-        ?.filter((m) => m.status === "MISSING" || m.status === "UNASSESSED")
-        .map((m) => m.label) ?? [];
-    const fromSafety = effectiveProceduralSafety?.outstandingItems ?? [];
-    return uniqueStrings([...fromSafety, ...fromSnap]);
-  }, [snapshot, effectiveProceduralSafety]);
+  const chaseItemsAll = useMemo(
+    () =>
+      collectChaseItems({
+        snapshotMissing: snapshot?.evidence.missingEvidence,
+        proceduralOutstanding: effectiveProceduralSafety?.outstandingItems,
+        battleboard,
+      }),
+    [snapshot, effectiveProceduralSafety, battleboard],
+  );
 
-  const missingItems = useMemo(() => missingItemsAll.slice(0, 5), [missingItemsAll]);
+  const chaseItems = useMemo(() => chaseItemsAll.slice(0, 6), [chaseItemsAll]);
+  const missingEvidenceStrip = useMemo(
+    () => formatMissingEvidenceStrip(chaseItemsAll),
+    [chaseItemsAll],
+  );
 
   const riskLabel = useMemo(() => {
     if (effectiveProceduralSafety?.status === "UNSAFE_TO_PROCEED") return "Procedural — resolve disclosure";
@@ -264,17 +300,25 @@ export function CaseControlRoom({
     [snapshot, bundleSource, battleboard],
   );
 
-  const disclosureLabel = snapshot
-    ? missingItems.length === 0
-      ? "No tracked gaps"
-      : `${missingItems.length} outstanding item${missingItems.length === 1 ? "" : "s"}`
-    : "—";
+  const disclosureLabel = snapshot ? formatDisclosureGlance(chaseItemsAll) : "—";
+
+  const positionNoticeOnce = useMemo(() => {
+    const notice = battleboard?.position_notice?.trim();
+    if (notice) return notice;
+    if (!hasSavedPosition) {
+      return "Defence position not safely recorded yet — record instructions before fixing strategy.";
+    }
+    return null;
+  }, [battleboard, hasSavedPosition]);
 
   const immediateActions = useMemo(() => {
     const items: string[] = [];
-    if (!hasSavedPosition) items.push("Record defence position / take instructions before committing strategy.");
-    for (const m of missingItems.slice(0, 3)) {
-      items.push(`Chase/record disclosure: ${m}`);
+    if (!hasSavedPosition && !positionNoticeOnce) {
+      items.push("Record defence position / take instructions before committing strategy.");
+    }
+    for (const m of chaseItems.slice(0, 4)) {
+      const line = m.startsWith("Chase") ? m : `Chase/record: ${m}`;
+      if (!items.includes(line)) items.push(line);
     }
     if (battleboard?.urgent_next_moves?.length) {
       for (const u of battleboard.urgent_next_moves) {
@@ -295,24 +339,21 @@ export function CaseControlRoom({
       if (items.length >= 8) break;
       if (!items.some((i) => i.toLowerCase().includes(d.slice(0, 20).toLowerCase()))) items.push(d);
     }
-    return items.slice(0, 8);
-  }, [hasSavedPosition, missingItems, battleboard, defencePlan]);
+    return stripRepeatedPositionNotice(items, positionNoticeOnce).slice(0, 8);
+  }, [hasSavedPosition, chaseItems, battleboard, defencePlan, positionNoticeOnce]);
 
   const { evidentialRisks, proceduralRisks, strategicRisks } = useMemo(
-    () => deriveRiskColumns(battleboard, defencePlan, snapshot, effectiveProceduralSafety, missingItems),
-    [battleboard, defencePlan, snapshot, effectiveProceduralSafety, missingItems],
+    () =>
+      deriveRiskColumns(
+        battleboard,
+        defencePlan,
+        snapshot,
+        effectiveProceduralSafety,
+        chaseItems,
+        positionNoticeOnce,
+      ),
+    [battleboard, defencePlan, snapshot, effectiveProceduralSafety, chaseItems, positionNoticeOnce],
   );
-
-  const cpsMustProve = useMemo(() => {
-    if (offenceWordingUnknown) {
-      return [
-        "Crown must prove the charged allegation as printed; offence wording should be checked against the charge sheet.",
-      ];
-    }
-    const primary = `Crown must prove the allegation as charged: ${allegation}. Check charge wording against the source document before final advice.`;
-    const fromPlan = filterStaleOffenceWording(defencePlan?.prosecution_still_must_prove ?? []);
-    return uniqueStrings([primary, ...fromPlan]).slice(0, 3);
-  }, [offenceWordingUnknown, allegation, defencePlan]);
 
   const strategyBasisNotice = useMemo(() => {
     const label = snapshot?.analysis.strategyBasisLabel?.trim();
@@ -336,22 +377,22 @@ export function CaseControlRoom({
   }, [battleboard, defencePlan]);
 
   const defenceRisks = useMemo(() => {
-    const items = uniqueStrings(
-      filterStaleOffenceWording([
-        ...(battleboard?.primary_route?.collapse_risks ?? []),
-        ...(battleboard?.global_collapse_risks ?? []),
-        ...(defencePlan?.risks_if_we_fight ?? []),
-        ...(defencePlan?.risks_pivots_short ?? []),
-      ]),
+    const items = stripRepeatedPositionNotice(
+      uniqueStrings(
+        filterStaleOffenceWording([
+          ...(battleboard?.primary_route?.collapse_risks ?? []),
+          ...(battleboard?.global_collapse_risks ?? []),
+          ...(defencePlan?.risks_if_we_fight ?? []),
+          ...(defencePlan?.risks_pivots_short ?? []),
+        ]),
+      ),
+      positionNoticeOnce,
     );
-    if (battleboard?.position_notice && !items.some((i) => i.includes(battleboard.position_notice!.slice(0, 40)))) {
-      items.push(battleboard.position_notice);
-    }
-    if (items.length) return items.slice(0, 4);
+    if (items.length) return items.slice(0, 2);
     return [
       "Assumed position may conflict with interview or served evidence — solicitor review required.",
     ];
-  }, [battleboard, defencePlan]);
+  }, [battleboard, defencePlan, positionNoticeOnce]);
 
   const bestRouteTitle =
     battleboard?.primary_route?.title ||
@@ -378,7 +419,7 @@ export function CaseControlRoom({
                 Control Room
               </Badge>
             </div>
-            <p className="text-sm text-muted-foreground mt-0.5">{defendant}</p>
+            <p className="text-sm text-muted-foreground mt-0.5">{clientLabel}</p>
           </div>
           <div className="flex flex-wrap gap-2">
             <Button type="button" variant="outline" size="sm" onClick={exitClassic}>
@@ -398,8 +439,8 @@ export function CaseControlRoom({
           <StripCell label="Risk" value={riskLabel} warn />
           <StripCell
             label="Missing evidence"
-            value={missingItems[0] ?? (missingItems.length ? `${missingItems.length} items` : "None tracked")}
-            warn={missingItems.length > 0}
+            value={missingEvidenceStrip.label}
+            warn={missingEvidenceStrip.warn}
           />
           <StripCell label="Next hearing" value={nextHearing} icon={<Calendar className="h-3 w-3" />} />
           <StripCell label="Position" value={positionLabel} className="lg:col-span-2" />
@@ -407,78 +448,60 @@ export function CaseControlRoom({
       </Card>
 
       <div className="mt-3 xl:mr-[min(360px,26vw)] xl:pr-3 space-y-3 max-w-[1400px]">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
-          <DashboardCard title="Case at a glance" icon={<FileText className="h-4 w-4 text-primary" />}>
-            {snapshotLoading ? (
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <Loader2 className="h-4 w-4 animate-spin" />
-                Loading case data…
-              </div>
-            ) : (
-              <dl className="grid grid-cols-2 gap-x-3 gap-y-2.5">
-                <GlanceItem label="Allegation" value={allegation} />
-                <GlanceItem label="Stage" value={stage} />
-                <GlanceItem label="Next hearing" value={nextHearing} />
-                <GlanceItem label="Bundle health" value={bundleLabel} />
-                <GlanceItem label="Disclosure" value={disclosureLabel} />
-                <GlanceItem label="Current position" value={positionLabel} />
-              </dl>
-            )}
+        {snapshotLoading ? (
+          <DashboardCard title="Case summary" icon={<FileText className="h-4 w-4 text-primary" />}>
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <Loader2 className="h-4 w-4 animate-spin" />
+              Loading case data…
+            </div>
           </DashboardCard>
+        ) : (
+          <AboveFoldSummary
+            allegation={allegation}
+            stage={stage}
+            bundleLabel={bundleLabel}
+            positionLabel={positionLabel}
+            nextHearing={nextHearing}
+            disclosureLabel={disclosureLabel}
+            bestRouteTitle={bestRouteTitle}
+            routeStatus={battleboard?.primary_route?.status ?? null}
+            prosecutionWeakness={prosecutionWeakness}
+            defenceRisks={defenceRisks}
+            immediateActions={immediateActions}
+            strategyBasisNotice={strategyBasisNotice}
+            positionNotice={positionNoticeOnce}
+          />
+        )}
 
-          <DashboardCard title="What matters now" icon={<Target className="h-4 w-4 text-primary shrink-0" />}>
-            <div className="rounded-md border border-primary/25 bg-primary/5 px-3 py-2 mb-3">
-              <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wide">
-                Best current route
+        {immediateActions.length > 3 && (
+          <DashboardCard
+            title="Further actions"
+            icon={<ListChecks className="h-4 w-4 text-primary shrink-0" />}
+            bodyClassName="py-2"
+          >
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-1 text-xs text-foreground list-disc pl-4">
+              {immediateActions.slice(3, 8).map((item, i) => (
+                <li key={i} className="line-clamp-2">
+                  {item}
+                </li>
+              ))}
+            </ul>
+            {chaseItems.length > 0 && (
+              <p className="text-[10px] text-muted-foreground mt-2 border-t border-border/40 pt-2">
+                Chase on file: {chaseItems.slice(0, 3).join(" · ")}
+                {chaseItems.length > 3 ? ` (+${chaseItems.length - 3} more)` : ""}
               </p>
-              <p className="text-base font-semibold text-foreground mt-0.5 leading-snug">{bestRouteTitle}</p>
-              {battleboard?.primary_route?.status && (
-                <Badge variant="secondary" size="sm" className="mt-1.5">
-                  {battleboard.primary_route.status} — conditional on served material
-                </Badge>
-              )}
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              <SummaryBlock label="What CPS must prove" items={cpsMustProve} compact />
-              <SummaryBlock label="Prosecution weakness" items={prosecutionWeakness} compact />
-              <SummaryBlock label="Defence risk" items={defenceRisks} compact />
-            </div>
-            {(strategyBasisNotice || battleboard?.position_notice) && (
-              <div className="mt-2 space-y-1.5">
-                {strategyBasisNotice && (
-                  <p className="text-[11px] text-amber-700 dark:text-amber-400 border border-amber-500/30 bg-amber-500/10 rounded-md px-2 py-1">
-                    {strategyBasisNotice.label}
-                    {strategyBasisNotice.reason ? ` — ${strategyBasisNotice.reason}` : ""}
-                  </p>
-                )}
-                {battleboard?.position_notice && (
-                  <p className="text-[11px] text-amber-700 dark:text-amber-400 border border-amber-500/30 bg-amber-500/10 rounded-md px-2 py-1">
-                    {battleboard.position_notice}
-                  </p>
-                )}
-              </div>
             )}
           </DashboardCard>
-        </div>
-
-        <DashboardCard
-          title="Immediate next actions"
-          icon={<ListChecks className="h-4 w-4 text-primary shrink-0" />}
-          bodyClassName="py-2"
-        >
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-1 text-xs text-foreground list-disc pl-4">
-            {immediateActions.slice(0, 6).map((item, i) => (
-              <li key={i} className="line-clamp-2">
-                {item}
-              </li>
-            ))}
-          </ul>
-        </DashboardCard>
+        )}
 
         <StrategyBattleboard
           caseId={caseId}
           compact
           maxBackupRoutes={2}
+          maxUrgentMoves={6}
+          maxCollapseRisks={5}
+          hidePositionNotice
           battleboardData={battleboard}
           battleboardLoading={battleboardLoading}
         />
@@ -509,8 +532,8 @@ export function CaseControlRoom({
           battleboard,
           allegation,
           stage: displayStage,
-          positionNotice: battleboard?.position_notice ?? null,
-          missingEvidence: missingItemsAll,
+          positionNotice: positionNoticeOnce,
+          missingEvidence: chaseItemsAll,
           bundleHeader: bundleSource?.header ?? null,
           bundleSnippets: bundleSource?.snippets ?? null,
           fileTextHints: evidenceSummary?.slice(0, 2500),
@@ -635,21 +658,24 @@ function deriveRiskColumns(
   defencePlan: DefenceStrategyPlan | null,
   snapshot: CaseSnapshot | null,
   proceduralSafety: ProceduralSafety,
-  missingItems: string[],
+  chaseItems: string[],
+  positionNotice: string | null,
 ): { evidentialRisks: string[]; proceduralRisks: string[]; strategicRisks: string[] } {
-  const raw: string[] = uniqueStrings([
-    ...(battleboard?.primary_route?.collapse_risks ?? []),
-    ...(battleboard?.global_collapse_risks ?? []),
-    ...(defencePlan?.kill_switches?.map((k) => k.if) ?? []),
-    ...(defencePlan?.risks_if_we_fight ?? []),
-    ...(defencePlan?.risks_pivots_short ?? []),
-    ...(defencePlan?.risks_fallbacks ?? []),
-    ...(snapshot?.strategy.pressurePoints?.map((p) => p.label) ?? []),
-    ...(proceduralSafety?.outstandingItems ?? []),
-    ...missingItems.map((m) => `Outstanding: ${m}`),
-    ...(defencePlan?.disclosure_weapon_steps ?? []),
-    ...(battleboard?.position_notice ? [battleboard.position_notice] : []),
-  ]);
+  const raw: string[] = stripRepeatedPositionNotice(
+    uniqueStrings([
+      ...(battleboard?.primary_route?.collapse_risks ?? []),
+      ...(battleboard?.global_collapse_risks ?? []),
+      ...(defencePlan?.kill_switches?.map((k) => k.if) ?? []),
+      ...(defencePlan?.risks_if_we_fight ?? []),
+      ...(defencePlan?.risks_pivots_short ?? []),
+      ...(defencePlan?.risks_fallbacks ?? []),
+      ...(snapshot?.strategy.pressurePoints?.map((p) => p.label) ?? []),
+      ...(proceduralSafety?.outstandingItems ?? []),
+      ...chaseItems.map((m) => `Outstanding: ${m}`),
+      ...(defencePlan?.disclosure_weapon_steps ?? []),
+    ]),
+    positionNotice,
+  );
 
   const evidential: string[] = [];
   const procedural: string[] = [];

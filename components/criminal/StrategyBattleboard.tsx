@@ -12,6 +12,10 @@ export type StrategyBattleboardProps = {
   /** Compact layout for Case Control Room — primary route + shortened backups. */
   compact?: boolean;
   maxBackupRoutes?: number;
+  maxUrgentMoves?: number;
+  maxCollapseRisks?: number;
+  /** Suppress duplicate position banner when Control Room shows it above the fold. */
+  hidePositionNotice?: boolean;
   /** When set, skips internal fetch (parent already loaded battleboard). */
   battleboardData?: BattleboardOutput | null;
   battleboardLoading?: boolean;
@@ -35,6 +39,19 @@ function overallBadgeVariant(
   if (status === "usable") return "success";
   if (status === "thin_bundle") return "warning";
   return "secondary";
+}
+
+function overallStatusLabel(status: BattleboardOutput["overall_status"]): string {
+  switch (status) {
+    case "usable":
+      return "Routes available";
+    case "thin_bundle":
+      return "Thin bundle — provisional";
+    case "needs_review":
+      return "Needs solicitor review";
+    default:
+      return "Routes available";
+  }
 }
 
 function BattleboardShell({ children }: { children: ReactNode }) {
@@ -68,6 +85,36 @@ function BulletSection({
         ))}
       </ul>
     </div>
+  );
+}
+
+function CompactPrimaryRoute({ route }: { route: BattleboardRoute }) {
+  return (
+    <Card className="p-4 border-primary/40 bg-primary/5">
+      <div className="flex flex-wrap items-start justify-between gap-2">
+        <div>
+          <p className="text-[10px] font-semibold uppercase tracking-wide text-primary mb-1">Best route</p>
+          <h4 className="text-sm font-semibold text-foreground">{route.title}</h4>
+        </div>
+        <Badge variant={statusBadgeVariant(route.status)} size="md">
+          {statusLabel(route.status)}
+        </Badge>
+      </div>
+      <div className="mt-3 space-y-2 text-sm">
+        <BulletSection title="Why it helps" items={route.why_it_helps.slice(0, 2)} />
+        <BulletSection title="Evidence anchors" items={route.evidence_anchors.slice(0, 3)} />
+        <div className="rounded-md border border-border/50 bg-muted/30 p-2.5">
+          <p className="text-xs font-semibold text-foreground mb-1">Safe hearing line</p>
+          <p className="text-sm text-foreground line-clamp-3">{route.hearing_line}</p>
+        </div>
+        {route.safety_note && (
+          <p className="text-xs text-muted-foreground border-t border-border/50 pt-2">
+            <span className="font-medium text-foreground">Safety: </span>
+            {route.safety_note}
+          </p>
+        )}
+      </div>
+    </Card>
   );
 }
 
@@ -129,18 +176,32 @@ function BattleboardBody({
   data,
   compact,
   maxBackupRoutes,
+  maxUrgentMoves,
+  maxCollapseRisks,
+  hidePositionNotice,
   showFull,
   onToggleFull,
 }: {
   data: BattleboardOutput;
   compact: boolean;
   maxBackupRoutes: number;
+  maxUrgentMoves: number;
+  maxCollapseRisks: number;
+  hidePositionNotice: boolean;
   showFull: boolean;
   onToggleFull: () => void;
 }) {
   const backupRoutes = data.routes.filter((r) => r.id !== data.primary_route?.id);
   const compactBackups = backupRoutes.slice(0, maxBackupRoutes);
   const useCompactLayout = compact && !showFull;
+  const collapseRisks = data.global_collapse_risks.slice(
+    0,
+    useCompactLayout ? maxCollapseRisks : data.global_collapse_risks.length,
+  );
+  const urgentMoves = data.urgent_next_moves.slice(
+    0,
+    useCompactLayout ? maxUrgentMoves : data.urgent_next_moves.length,
+  );
 
   return (
     <>
@@ -151,7 +212,7 @@ function BattleboardBody({
         </div>
         <div className="flex items-center gap-2">
           <Badge variant={overallBadgeVariant(data.overall_status)} size="md">
-            {data.overall_status.replace(/_/g, " ")}
+            {overallStatusLabel(data.overall_status)}
           </Badge>
           {compact && (
             <Button type="button" variant="outline" size="sm" onClick={onToggleFull}>
@@ -177,14 +238,20 @@ function BattleboardBody({
           <p className="text-sm text-foreground">{data.solicitor_safe_summary}</p>
         </div>
 
-        {data.position_notice && data.position_notice !== data.solicitor_safe_summary && (
-          <p className="text-xs text-amber-700 dark:text-amber-400 border border-amber-500/30 bg-amber-500/10 rounded-md px-3 py-2">
-            {data.position_notice}
-          </p>
-        )}
+        {data.position_notice &&
+          !hidePositionNotice &&
+          data.position_notice !== data.solicitor_safe_summary && (
+            <p className="text-xs text-amber-700 dark:text-amber-400 border border-amber-500/30 bg-amber-500/10 rounded-md px-3 py-2">
+              {data.position_notice}
+            </p>
+          )}
 
         {data.primary_route ? (
-          <RouteCard route={data.primary_route} isPrimary />
+          useCompactLayout ? (
+            <CompactPrimaryRoute route={data.primary_route} />
+          ) : (
+            <RouteCard route={data.primary_route} isPrimary />
+          )
         ) : (
           <Card className="p-4 border-dashed border-border/60">
             <p className="text-sm text-muted-foreground">
@@ -217,23 +284,41 @@ function BattleboardBody({
           )
         )}
 
-        {data.global_collapse_risks.length > 0 && (
+        {collapseRisks.length > 0 && (
           <div>
-            <p className="text-xs font-semibold text-foreground mb-2">Global collapse risks</p>
-            <ul className="text-sm text-muted-foreground list-disc pl-4 space-y-0.5">
-              {data.global_collapse_risks.map((r, i) => (
-                <li key={i}>{r}</li>
+            <p className="text-xs font-semibold text-foreground mb-2">
+              Global collapse risks
+              {useCompactLayout && data.global_collapse_risks.length > maxCollapseRisks
+                ? ` (top ${maxCollapseRisks})`
+                : ""}
+            </p>
+            <ul
+              className={`text-muted-foreground list-disc pl-4 space-y-0.5 ${useCompactLayout ? "text-xs" : "text-sm"}`}
+            >
+              {collapseRisks.map((r, i) => (
+                <li key={i} className={useCompactLayout ? "line-clamp-2" : undefined}>
+                  {r}
+                </li>
               ))}
             </ul>
           </div>
         )}
 
-        {data.urgent_next_moves.length > 0 && (
+        {urgentMoves.length > 0 && (
           <div>
-            <p className="text-xs font-semibold text-foreground mb-2">Urgent next moves</p>
-            <ul className="text-sm text-foreground list-disc pl-4 space-y-0.5">
-              {data.urgent_next_moves.map((m, i) => (
-                <li key={i}>{m}</li>
+            <p className="text-xs font-semibold text-foreground mb-2">
+              Urgent next moves
+              {useCompactLayout && data.urgent_next_moves.length > maxUrgentMoves
+                ? ` (top ${maxUrgentMoves})`
+                : ""}
+            </p>
+            <ul
+              className={`text-foreground list-disc pl-4 space-y-0.5 ${useCompactLayout ? "text-xs" : "text-sm"}`}
+            >
+              {urgentMoves.map((m, i) => (
+                <li key={i} className={useCompactLayout ? "line-clamp-2" : undefined}>
+                  {m}
+                </li>
               ))}
             </ul>
           </div>
@@ -252,6 +337,9 @@ export function StrategyBattleboard({
   caseId,
   compact = false,
   maxBackupRoutes = 2,
+  maxUrgentMoves = 6,
+  maxCollapseRisks = 5,
+  hidePositionNotice = false,
   battleboardData,
   battleboardLoading,
 }: StrategyBattleboardProps) {
@@ -352,6 +440,9 @@ export function StrategyBattleboard({
           data={data}
           compact={compact}
           maxBackupRoutes={maxBackupRoutes}
+          maxUrgentMoves={maxUrgentMoves}
+          maxCollapseRisks={maxCollapseRisks}
+          hidePositionNotice={hidePositionNotice}
           showFull={showFull}
           onToggleFull={() => setShowFull((v) => !v)}
         />
