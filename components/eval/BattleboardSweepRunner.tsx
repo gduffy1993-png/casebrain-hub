@@ -10,6 +10,7 @@ import {
   buildBattleboardSweepFullExport,
   groupRowsByPackOrdered,
   scoreBattleboardOutput,
+  computeRouteDistribution,
   sortBattleboardSweepRows,
   summarizeBattleboardSweep,
   type BattleboardPackSweepResult,
@@ -608,6 +609,46 @@ export function BattleboardSweepRunner() {
               </div>
             </dl>
 
+            {summary.route_distribution && summary.total > 0 && (
+              <div className="mt-4 space-y-3 text-xs">
+                <p className="font-medium text-accent/70">Route distribution (Phase 2)</p>
+                {summary.route_distribution.disclosure_overuse_warning && (
+                  <p className="rounded-lg border border-warning/30 bg-warning/10 px-3 py-2 text-warning">
+                    {summary.route_distribution.disclosure_overuse_warning} (
+                    {summary.route_distribution.disclosure_primary_pct}% disclosure primary)
+                  </p>
+                )}
+                <p className="text-accent/60">
+                  Disclosure primary: {summary.route_distribution.disclosure_primary_count} /{" "}
+                  {summary.total} ({summary.route_distribution.disclosure_primary_pct}%)
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {Object.entries(summary.route_distribution.route_type_counts)
+                    .sort((a, b) => b[1] - a[1])
+                    .map(([type, count]) => (
+                      <span
+                        key={type}
+                        className="rounded-md border border-primary/15 bg-surface-muted/50 px-2 py-0.5"
+                      >
+                        {type}: {count}
+                      </span>
+                    ))}
+                </div>
+                {summary.route_distribution.top_primary_titles.length > 0 && (
+                  <div>
+                    <p className="text-accent/50 mb-1">Top primary route titles</p>
+                    <ul className="space-y-0.5 text-accent/70">
+                      {summary.route_distribution.top_primary_titles.slice(0, 8).map((t) => (
+                        <li key={t.title}>
+                          {t.count}× {t.title}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            )}
+
             {summary.issue_groups.length > 0 && (
               <div className="mt-4">
                 <p className="text-xs font-medium text-accent/60 mb-2">Main issue groups</p>
@@ -695,6 +736,20 @@ export function BattleboardSweepRunner() {
                         ))}
                       </ul>
                     )}
+                    {(() => {
+                      const dist = computeRouteDistribution(pack.rows);
+                      if (pack.rows.length <= 0) return null;
+                      return (
+                        <p className="mt-2 text-accent/50">
+                          Primary types:{" "}
+                          {Object.entries(dist.route_type_counts)
+                            .map(([k, v]) => `${k} ${v}`)
+                            .join(" · ")}
+                          {dist.disclosure_primary_pct > 0 &&
+                            ` · disclosure ${dist.disclosure_primary_pct}%`}
+                        </p>
+                      );
+                    })()}
                   </div>
                 ))}
               </div>
@@ -725,6 +780,7 @@ export function BattleboardSweepRunner() {
                               <th className="pr-2">Case</th>
                               <th className="pr-2">Q</th>
                               <th className="pr-2">Route</th>
+                              <th className="pr-2">Match</th>
                               <th>Issue</th>
                             </tr>
                           </thead>
@@ -753,6 +809,13 @@ export function BattleboardSweepRunner() {
                                   title={r.primary_route_title ?? ""}
                                 >
                                   {r.primary_route_type ?? "—"}
+                                </td>
+                                <td
+                                  className="pr-2 max-w-[88px] truncate"
+                                  title={r.route_family_match_reason ?? ""}
+                                >
+                                  {r.route_family_match ? "yes" : "no"}
+                                  {r.corpus_markers ? ` · ${r.corpus_markers}` : ""}
                                 </td>
                                 <td className="text-accent/70">{r.issue}</td>
                               </tr>

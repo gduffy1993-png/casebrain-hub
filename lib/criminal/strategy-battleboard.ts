@@ -14,6 +14,8 @@ export type BattleboardRouteType =
   | "causation"
   | "continuity"
   | "mitigation"
+  | "safeguards"
+  | "multiparty"
   | "unknown";
 
 export type BattleboardRoute = {
@@ -32,6 +34,19 @@ export type BattleboardRoute = {
 
 export type BattleboardOverallStatus = "usable" | "thin_bundle" | "needs_review";
 
+/** Read-only engine diagnostics for Battleboard Sweep export (not shown on solicitor cards). */
+export type BattleboardEngineDiagnostics = {
+  corpus_markers: string | null;
+  safeguards_signal_count: number;
+  multiparty_signal_count: number;
+  timeline_signal_count: number;
+  backup_route_types: string[];
+  backup_route_titles: string[];
+  primary_anchor_sample: string[];
+  safeguards_anchor_sample: string[];
+  multiparty_anchor_sample: string[];
+};
+
 export type BattleboardOutput = {
   case_id: string;
   generated_at: string;
@@ -43,6 +58,8 @@ export type BattleboardOutput = {
   routes: BattleboardRoute[];
   global_collapse_risks: string[];
   urgent_next_moves: string[];
+  /** Sweep/debug only — signal counts and backup routes from the source bundle. */
+  diagnostics?: BattleboardEngineDiagnostics;
 };
 
 export type BattleboardPositionTrust =
@@ -139,6 +156,81 @@ const EVAL_BOILERPLATE_RES: RegExp[] = [
 /** Strong evidence / disclosure anchors — keep even when the line is short */
 const STRONG_EVIDENCE_ANCHOR_RE =
   /\b(MG6|MG11|MG5|CCTV|CAD|999|BWV|EX-[\w\d]+|interview|PACE|disclosure|continuity|source\s+material|outstanding|not\s+served|served|medical|forensic|witness\s+statement|unused\s+material|disclosure\s+chase|MG6C|MG0)\b/i;
+
+/** Pack F/N eval markers + participation wording (file-derived anchors). */
+const SAFEGUARDS_SIGNAL_PATTERNS: RegExp[] = [
+  /\bCB-VULN\b/i,
+  /\bCB-SAFEGUARDS\b/i,
+  /\bCB-YOUTH2\b/i,
+  /\byouth\b/i,
+  /\byoung\s+person\b/i,
+  /\bchild\s+defendant\b/i,
+  /\bjuvenile\b/i,
+  /\bunder\s+18\b/i,
+  /\bage\s+1[0-7]\b/i,
+  /\bDOB\b.*\b(200[89]|201[0-9])\b/i,
+  /\bvulnerab/i,
+  /\bappropriate\s+adult\b/i,
+  /\bAA\s+(?:present|called|required|attended|not)\b/i,
+  /\bparent\b/i,
+  /\bguardian\b/i,
+  /\bparent\/guardian\b/i,
+  /\bat\s+interview\b/i,
+  /\blearning\s+difficult/i,
+  /\bADHD\b/i,
+  /\bautism\b/i,
+  /\bneurodivers/i,
+  /\bmental\s+health\b/i,
+  /\banxiety\b/i,
+  /\bpanic\b/i,
+  /\bself[- ]?harm\b/i,
+  /\binterpreter\b/i,
+  /\blanguage\s+difficult/i,
+  /\bcommunication\s+difficult/i,
+  /\bspecial\s+measures\b/i,
+  /\bparticipation\b/i,
+  /\bintermediary\b/i,
+  /\bfitness\b/i,
+  /\bcapacity\b/i,
+  /\bcustody\s+healthcare\b/i,
+  /\bliaison\s+and\s+diversion\b/i,
+  /\bPACE\s+Code\s+C\b/i,
+  /\bno\s+appropriate\s+adult\b/i,
+];
+
+const MULTIPARTY_SIGNAL_PATTERNS: RegExp[] = [
+  /\bCB-MULTI\b/i,
+  /\bCB-MDPRESS\b/i,
+  /\bCB-MULTI2\b/i,
+  /\bco[-\s]?defendant/i,
+  /\bco[-\s]?accused/i,
+  /\bmultiple\s+defendants?\b/i,
+  /\bdefendant\s+[12AB]\b/i,
+  /\bcount\s+[12]\b/i,
+  /\balternative\s+count\b/i,
+  /\bjoint\s+enterprise\b/i,
+  /\bsecondary\s+party\b/i,
+  /\battribution\b/i,
+  /\bseparate\s+role\b/i,
+  /\bmixed\s+evidence\b/i,
+  /\bphone\s+belongs\s+to\b/i,
+  /\bvehicle\s+belongs\s+to\b/i,
+  /\bone\s+defendant\s+admitted\b/i,
+  /\bdefendant\s+1\b/i,
+  /\bdefendant\s+2\b/i,
+  /\bD1\b/i,
+  /\bD2\b/i,
+  /\bseparate\s+defendant\b/i,
+  /\bseparate\s+count\b/i,
+  /\bwho\s+did\s+what\b/i,
+  /\brole\s+of\s+(?:each\s+)?defendant\b/i,
+];
+
+const SAFEGUARDS_ANCHOR_RE =
+  /\b(youth|young\s+person|child|juvenile|under\s+18|vulnerab|appropriate\s+adult|\bAA\b|parent|guardian|interpreter|intermediary|special\s+measures|participation|mental\s+health|learning\s+difficult|communication\s+difficult|fitness|capacity|liaison|CB-VULN|CB-SAFEGUARDS|PACE\s+Code\s+C)\b/i;
+
+const MULTIPARTY_ANCHOR_RE =
+  /\b(co[-\s]?defendant|co[-\s]?accused|defendant\s+[12AB]|count\s+[12]|joint\s+enterprise|attribution|separate\s+(?:defendant|count|role)|phone\s+belongs|vehicle\s+belongs|mixed\s+evidence|CB-MULTI|who\s+did\s+what)\b/i;
 
 const DISPLAY_PREFIX_RES = /^File\s+wording:\s*/i;
 
@@ -555,9 +647,66 @@ function extractLinesMatching(bundleText: string, patterns: RegExp[], max = 5): 
   return uniqueSafe(candidates, max);
 }
 
+/** File lines for safeguards/multiparty routes — family wording counts as anchor material. */
+function extractFamilyLinesMatching(
+  bundleText: string,
+  patterns: RegExp[],
+  familyAnchorRe: RegExp,
+  max = 5,
+): string[] {
+  if (!bundleText) return [];
+  const candidates: string[] = [];
+  for (const raw of bundleText.split(/\r?\n/)) {
+    const l = raw.trim();
+    if (l.length < 6 || l.length > 360) continue;
+    if (isBattleboardArtefact(l)) continue;
+    if (isPhase1StanceLabelLine(l)) continue;
+    const signalHit = patterns.some((p) => p.test(l));
+    const familyHit = familyAnchorRe.test(l);
+    if (!signalHit && !familyHit) continue;
+    if (!familyHit && !hasStrongEvidenceAnchor(l) && l.length < 14) continue;
+    candidates.push(l);
+  }
+  candidates.sort((a, b) => {
+    const fa = familyAnchorRe.test(a) ? 10 : 0;
+    const fb = familyAnchorRe.test(b) ? 10 : 0;
+    if (fa !== fb) return fb - fa;
+    return anchorStrengthScore(b) - anchorStrengthScore(a);
+  });
+  return uniqueSafe(candidates, max);
+}
+
+function isSubstantiveAnchorForRoute(routeType: BattleboardRouteType, line: string): boolean {
+  if (routeType === "safeguards") {
+    return SAFEGUARDS_ANCHOR_RE.test(line) || countUsefulWords(line) >= 5;
+  }
+  if (routeType === "multiparty") {
+    return MULTIPARTY_ANCHOR_RE.test(line) || countUsefulWords(line) >= 5;
+  }
+  return hasStrongEvidenceAnchor(line) || countUsefulWords(line) >= 5;
+}
+
 function bundleHas(bundleText: string, patterns: RegExp[]): boolean {
   const u = bundleText.toUpperCase();
   return patterns.some((p) => p.test(bundleText) || p.test(u));
+}
+
+/** Count how many safeguard signal patterns hit the bundle (for ranking, not predictions). */
+export function safeguardsSignalScore(bundleText: string): number {
+  let n = 0;
+  for (const p of SAFEGUARDS_SIGNAL_PATTERNS) {
+    if (p.test(bundleText)) n += 1;
+  }
+  return n;
+}
+
+/** Count how many multi-defendant / multi-count signal patterns hit the bundle. */
+export function multipartySignalScore(bundleText: string): number {
+  let n = 0;
+  for (const p of MULTIPARTY_SIGNAL_PATTERNS) {
+    if (p.test(bundleText)) n += 1;
+  }
+  return n;
 }
 
 type RouteSpec = {
@@ -656,21 +805,72 @@ const ROUTE_SPECS: RouteSpec[] = [
     safetyNote: "Do not present a firm alibi unless instructions and served material support it.",
   },
   {
+    id: "safeguards",
+    route_type: "safeguards",
+    title: "Safeguards / participation pressure",
+    signals: SAFEGUARDS_SIGNAL_PATTERNS,
+    defaultWhy: [
+      "Safeguards or participation issues may affect interview reliability, fairness, directions, or hearing readiness if proved on the file.",
+      "May assist only where served custody/interview records show a live participation or vulnerability issue — conditional on material.",
+    ],
+    defaultHurts: [
+      "Safeguards may be documented as properly complied with on served papers.",
+      "Vulnerability may not be linked to the disputed issue on the Crown route.",
+    ],
+    collapseRisks: [
+      "Custody/interview record shows safeguards were correctly followed.",
+      "Vulnerability is not linked to the disputed issue on served material.",
+      "Appropriate adult / interpreter records support the Crown account if proved.",
+    ],
+    nextMoves: [
+      "Chase custody record, appropriate adult record, and interpreter record if referenced.",
+      "Chase vulnerability assessment, medical, or liaison notes if listed.",
+      "Record instructions on participation and understanding before fixing hearing strategy.",
+    ],
+    hearingLine:
+      "Ask the court to record any safeguards/participation issue and direct service of relevant custody and interview records — conditional on served material.",
+    safetyNote: "Not a merits win — solicitor review required before advancing participation challenges.",
+  },
+  {
+    id: "multiparty",
+    route_type: "multiparty",
+    title: "Separate defendant / count-specific pressure",
+    signals: MULTIPARTY_SIGNAL_PATTERNS,
+    defaultWhy: [
+      "The Crown must prove the right allegation against the right defendant/count; evidence may not transfer safely between parties or counts.",
+      "May assist if served material shows attribution, ownership, or role disputes — provisional until reviewed.",
+    ],
+    defaultHurts: [
+      "Shared evidence, joint activity, admissions, or attribution evidence may connect defendants or counts on the papers.",
+      "Co-defendant material may be admissible and consistent with the Crown case if proved.",
+    ],
+    collapseRisks: [
+      "Crown can tie each item to this defendant and count on served material.",
+      "Co-defendant evidence is admissible and consistent if proved.",
+      "Joint enterprise or shared conduct wording undermines separate-role pressure.",
+    ],
+    nextMoves: [
+      "Build defendant-by-defendant evidence matrix from served papers.",
+      "Build count-by-count proof table before fixing trial theory.",
+      "Chase attribution material, phone ownership, vehicle ownership, and role evidence if outstanding.",
+    ],
+    hearingLine:
+      "Ask the court to record that case management directions must separate defendant and count issues — conditional on served evidence and solicitor review.",
+    safetyNote: "Conditional on served evidence and solicitor review — do not overstate separate-role points.",
+  },
+  {
     id: "disclosure",
     route_type: "disclosure",
     title: "Disclosure / source-material pressure",
     signals: [
-      /\bMG6\b/i,
-      /\boutstanding\b/i,
+      /\boutstanding\s+(?:disclosure|material|CCTV|MG6|source)/i,
       /\bnot\s+served\b/i,
-      /\bawaiting\b/i,
-      /\bdisclosure\b/i,
+      /\bawaiting\s+(?:disclosure|material|CCTV|MG6)/i,
       /\bunused\s+material\b/i,
-      /\bMG11\b/i,
-      /\bCCTV\s+master\b/i,
-      /\bcontinuity\b/i,
-      /\bsource\s+material\b/i,
       /\bdisclosure\s+chaos\b/i,
+      /\bstill\s+outstanding\b/i,
+      /\bMG6C\b/i,
+      /\bfull\s+disclosure\s+not\b/i,
     ],
     defaultWhy: [
       "May assist as conditional prosecution-pressure if MG6 or schedules show outstanding CCTV/CAD/999/MG11 or unused material.",
@@ -889,6 +1089,111 @@ function scoreRoute(bundleText: string, spec: RouteSpec): number {
   return score;
 }
 
+function timelineSignalScore(bundleText: string): number {
+  const spec = ROUTE_SPECS.find((s) => s.id === "timeline");
+  return spec ? scoreRoute(bundleText, spec) : 0;
+}
+
+function hearingSignalScore(bundleText: string): number {
+  const patterns = [
+    /\bhearing\b/i,
+    /\blisting\b/i,
+    /\btimetable\b/i,
+    /\badjourn/i,
+    /\bPCMH\b/i,
+    /\bCMH\b/i,
+    /\bcourt\s+move\b/i,
+    /\bmention\s+hearing\b/i,
+    /\bplea\s+and\s+trial\b/i,
+  ];
+  let n = 0;
+  for (const p of patterns) {
+    if (p.test(bundleText)) n += 1;
+  }
+  return n;
+}
+
+function disclosurePressureScore(bundleText: string, outstandingLabels: string[]): number {
+  let n = 0;
+  const patterns = [
+    /\bnot\s+served\b/i,
+    /\boutstanding\s+(?:disclosure|material|CCTV|MG6)/i,
+    /\bawaiting\s+(?:disclosure|material)/i,
+    /\bunused\s+material\b/i,
+    /\bdisclosure\s+chaos\b/i,
+    /\bMG6C\b/i,
+    /\bstill\s+outstanding\b/i,
+  ];
+  for (const p of patterns) {
+    if (p.test(bundleText)) n += 1;
+  }
+  if (outstandingLabels.length >= 2) n += 2;
+  else if (outstandingLabels.length === 1) n += 1;
+  return n;
+}
+
+function rankRouteForPrimary(
+  route: BattleboardRoute,
+  bundleText: string,
+  outstandingLabels: string[],
+): number {
+  const saf = safeguardsSignalScore(bundleText);
+  const multi = multipartySignalScore(bundleText);
+  const time = timelineSignalScore(bundleText);
+  const hear = hearingSignalScore(bundleText);
+  const discPress = disclosurePressureScore(bundleText, outstandingLabels);
+
+  let rank = statusRank(route.status) * 40 + route.evidence_anchors.length * 6;
+
+  switch (route.route_type) {
+    case "safeguards":
+      rank += 140 + saf * 22;
+      if (saf >= 1) rank += 45;
+      if (saf >= 3) rank += 35;
+      break;
+    case "multiparty":
+      rank += 130 + multi * 22;
+      if (multi >= 1) rank += 40;
+      if (multi >= 3) rank += 30;
+      break;
+    case "timeline":
+      rank += 95 + time * 12 + hear * 8;
+      if (saf >= 1) rank -= 55 + saf * 12;
+      if (saf >= 3) rank -= 35;
+      break;
+    case "identity":
+      rank += 88;
+      break;
+    case "interview":
+      rank += 82;
+      break;
+    case "continuity":
+      rank += 78;
+      break;
+    case "causation":
+      rank += 72;
+      break;
+    case "intent":
+      rank += 68;
+      break;
+    case "mitigation":
+      rank += 35;
+      break;
+    case "disclosure":
+      rank += 25 + discPress * 12;
+      if (saf >= 2) rank -= 70;
+      if (multi >= 2) rank -= 70;
+      if (time >= 2) rank -= 45;
+      if (hear >= 2) rank -= 35;
+      if (discPress <= 1 && outstandingLabels.length === 0) rank -= 55;
+      break;
+    default:
+      rank += 40;
+  }
+
+  return rank;
+}
+
 function deriveRouteStatus(
   anchors: string[],
   nextMoves: string[],
@@ -923,14 +1228,19 @@ function buildRouteFromSpec(
   const score = scoreRoute(bundleText, spec);
   if (score === 0 && extraAnchors.length === 0) return null;
 
-  const fileLines = extractLinesMatching(bundleText, spec.signals, 4);
+  const fileLines =
+    spec.route_type === "safeguards"
+      ? extractFamilyLinesMatching(bundleText, spec.signals, SAFEGUARDS_ANCHOR_RE, 5)
+      : spec.route_type === "multiparty"
+        ? extractFamilyLinesMatching(bundleText, spec.signals, MULTIPARTY_ANCHOR_RE, 5)
+        : extractLinesMatching(bundleText, spec.signals, 4);
   const interviewExtras =
     spec.route_type === "interview" && position?.interview_account_lines.length
       ? position.interview_account_lines
       : [];
   const evidence_anchors = uniqueSafe([...fileLines, ...interviewExtras, ...extraAnchors], 6);
-  const substantiveAnchors = evidence_anchors.filter(
-    (a) => hasStrongEvidenceAnchor(a) || countUsefulWords(a) >= 5,
+  const substantiveAnchors = evidence_anchors.filter((a) =>
+    isSubstantiveAnchorForRoute(spec.route_type, a),
   );
 
   let why_it_helps = uniqueSafe(fileLines.length > 0 ? fileLines : spec.defaultWhy, 4);
@@ -1011,16 +1321,26 @@ export function buildStrategyBattleboard(input: StrategyBattleboardInput): Battl
       ? input.outstanding_disclosure
       : extractLinesMatching(bundleText, [/\boutstanding\b/i, /\bnot\s+served\b/i, /\bMG6\b/i], 4);
   const disclosureExtras = uniqueSafe(disclosureExtrasRaw, 8);
+  const disclosureSpec = ROUTE_SPECS.find((s) => s.id === "disclosure");
+  const disclosureSignalHits = disclosureSpec ? scoreRoute(bundleText, disclosureSpec) : 0;
+  const genuineDisclosurePressure =
+    disclosureExtras.length > 0 || disclosurePressureScore(bundleText, disclosureExtrasRaw) >= 2;
 
   const routes: BattleboardRoute[] = [];
 
   for (const spec of ROUTE_SPECS) {
-    const extra =
-      spec.route_type === "disclosure"
-        ? disclosureExtras
-        : spec.route_type === "mitigation" && bundleThin
-          ? ["Thin bundle — fight routes may stay conditional until material is served."]
-          : [];
+    let extra: string[] = [];
+    if (spec.route_type === "disclosure") {
+      if (genuineDisclosurePressure || disclosureSignalHits >= 2) {
+        extra = disclosureExtras;
+      }
+    } else if (spec.route_type === "safeguards" && safeguardsSignalScore(bundleText) >= 1) {
+      extra = extractFamilyLinesMatching(bundleText, spec.signals, SAFEGUARDS_ANCHOR_RE, 5);
+    } else if (spec.route_type === "multiparty" && multipartySignalScore(bundleText) >= 1) {
+      extra = extractFamilyLinesMatching(bundleText, spec.signals, MULTIPARTY_ANCHOR_RE, 5);
+    } else if (spec.route_type === "mitigation" && bundleThin) {
+      extra = ["Thin bundle — fight routes may stay conditional until material is served."];
+    }
     const route = buildRouteFromSpec(spec, bundleText, bundleThin, extra, positionContext);
     if (route) routes.push(route);
   }
@@ -1029,11 +1349,25 @@ export function buildStrategyBattleboard(input: StrategyBattleboardInput): Battl
   routes.length = 0;
   routes.push(...guardedRoutes);
 
+  const outstandingLabels = disclosureExtrasRaw.map((l) => compactOneLine(l)).filter(Boolean);
+
   routes.sort((a, b) => {
+    const pr = rankRouteForPrimary(b, bundleText, outstandingLabels) - rankRouteForPrimary(a, bundleText, outstandingLabels);
+    if (pr !== 0) return pr;
     const sr = statusRank(b.status) - statusRank(a.status);
     if (sr !== 0) return sr;
     return b.evidence_anchors.length - a.evidence_anchors.length;
   });
+
+  const safScore = safeguardsSignalScore(bundleText);
+  if (safScore >= 2) {
+    const safIdx = routes.findIndex((r) => r.route_type === "safeguards");
+    const timelineIdx = routes.findIndex((r) => r.route_type === "timeline");
+    if (safIdx > 0 && timelineIdx === 0 && safIdx !== -1) {
+      const [safRoute] = routes.splice(safIdx, 1);
+      routes.unshift(safRoute);
+    }
+  }
 
   const primary_route = routes[0];
   const viableCount = routes.filter((r) => r.status === "viable").length;
@@ -1088,6 +1422,24 @@ export function buildStrategyBattleboard(input: StrategyBattleboardInput): Battl
   const sanitizedPrimary = sanitizedRoutes[0];
   const summaryLine = sanitizeDisplayLine(solicitor_safe_summary);
 
+  const corpusMarkers = (() => {
+    const hits: string[] = [];
+    if (/\bCB-THIN\b/i.test(bundleText)) hits.push("CB-THIN");
+    if (/\bCB-NOSAFE\b/i.test(bundleText)) hits.push("CB-NOSAFE");
+    if (/\bCB-VULN\b/i.test(bundleText)) hits.push("CB-VULN");
+    if (/\bCB-SAFEGUARDS\b/i.test(bundleText)) hits.push("CB-SAFEGUARDS");
+    if (/\bCB-YOUTH2\b/i.test(bundleText)) hits.push("CB-YOUTH2");
+    if (/\bCB-EXHIBIT\b/i.test(bundleText)) hits.push("CB-EXHIBIT");
+    if (/\bCB-MULTI2\b/i.test(bundleText)) hits.push("CB-MULTI2");
+    else if (/\bCB-MULTI\b/i.test(bundleText)) hits.push("CB-MULTI");
+    if (/\bCB-MDPRESS\b/i.test(bundleText)) hits.push("CB-MDPRESS");
+    return hits.length ? hits.join("+") : null;
+  })();
+
+  const safRoute = sanitizedRoutes.find((r) => r.route_type === "safeguards");
+  const multiRoute = sanitizedRoutes.find((r) => r.route_type === "multiparty");
+  const backupRoutes = sanitizedRoutes.slice(1);
+
   return {
     case_id: input.case_id,
     generated_at: new Date().toISOString(),
@@ -1099,5 +1451,16 @@ export function buildStrategyBattleboard(input: StrategyBattleboardInput): Battl
     routes: sanitizedRoutes,
     global_collapse_risks: sanitizeStringList(globalRisks, 8),
     urgent_next_moves: sanitizeStringList(urgent_next_moves, 6),
+    diagnostics: {
+      corpus_markers: corpusMarkers,
+      safeguards_signal_count: safScore,
+      multiparty_signal_count: multipartySignalScore(bundleText),
+      timeline_signal_count: timelineSignalScore(bundleText),
+      backup_route_types: backupRoutes.map((r) => r.route_type),
+      backup_route_titles: backupRoutes.map((r) => r.title),
+      primary_anchor_sample: (sanitizedPrimary?.evidence_anchors ?? []).slice(0, 3),
+      safeguards_anchor_sample: (safRoute?.evidence_anchors ?? []).slice(0, 3),
+      multiparty_anchor_sample: (multiRoute?.evidence_anchors ?? []).slice(0, 3),
+    },
   };
 }
