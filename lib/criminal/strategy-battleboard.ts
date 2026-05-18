@@ -40,11 +40,17 @@ export type BattleboardEngineDiagnostics = {
   safeguards_signal_count: number;
   multiparty_signal_count: number;
   timeline_signal_count: number;
+  cps_pressure_signal_count: number;
+  readiness_signal_count: number;
+  hearing_court_signal_count: number;
   backup_route_types: string[];
   backup_route_titles: string[];
   primary_anchor_sample: string[];
   safeguards_anchor_sample: string[];
   multiparty_anchor_sample: string[];
+  cps_pressure_anchor_sample: string[];
+  readiness_anchor_sample: string[];
+  hearing_court_anchor_sample: string[];
 };
 
 export type BattleboardOutput = {
@@ -155,7 +161,7 @@ const EVAL_BOILERPLATE_RES: RegExp[] = [
 
 /** Strong evidence / disclosure anchors — keep even when the line is short */
 const STRONG_EVIDENCE_ANCHOR_RE =
-  /\b(MG6|MG11|MG5|CCTV|CAD|999|BWV|EX-[\w\d]+|interview|PACE|disclosure|continuity|source\s+material|outstanding|not\s+served|served|medical|forensic|witness\s+statement|unused\s+material|disclosure\s+chase|MG6C|MG0)\b/i;
+  /\b(MG6|MG11|MG5|CCTV|CAD|999|BWV|EX-[\w\d]+|interview|PACE|disclosure|continuity|source\s+material|outstanding|not\s+served|served|medical|forensic|witness\s+statement|unused\s+material|disclosure\s+chase|MG6C|MG0|CB-OCR|CB-SCAN|CB-PHOTO|CB-MESSY|OCR|scanned|illegible)\b/i;
 
 /** Pack F/N eval markers + participation wording (file-derived anchors). */
 const SAFEGUARDS_SIGNAL_PATTERNS: RegExp[] = [
@@ -232,7 +238,198 @@ const SAFEGUARDS_ANCHOR_RE =
 const MULTIPARTY_ANCHOR_RE =
   /\b(co[-\s]?defendant|co[-\s]?accused|defendant\s+[12AB]|count\s+[12]|joint\s+enterprise|attribution|separate\s+(?:defendant|count|role)|phone\s+belongs|vehicle\s+belongs|mixed\s+evidence|CB-MULTI|who\s+did\s+what)\b/i;
 
+/** Pack P — damaging facts / prosecution pressure (not plea advice). */
+const CPS_PRESSURE_SIGNAL_PATTERNS: RegExp[] = [
+  /\bCB-CPS\b/i,
+  /\bCB-PRESSURE\b/i,
+  /\bCB-PRESS\b/i,
+  /\badmission\b/i,
+  /\baccepts\s+presence\b/i,
+  /\baccepts\s+possession\b/i,
+  /\bno\s+comment\s+after\s+disclosure\b/i,
+  /\bcaught\s+on\s+CCTV\b/i,
+  /\bcomplainant\s+supported\b/i,
+  /\bindependent\s+evidence\b/i,
+  /\bforensic\s+match\b/i,
+  /\bbad\s+character\b/i,
+  /\bprevious\s+incident\b/i,
+  /\baccount\s+conflicts?\b/i,
+  /\bconflicts?\s+with\s+(?:CCTV|witness|phone|medical|CAD)\b/i,
+  /\bstrong\s+prosecution\b/i,
+  /\bprosecution\s+pressure\b/i,
+  /\bCPS\s+pressure\b/i,
+  /\bdefence\s+weakness\b/i,
+  /\brisky\s+denial\b/i,
+  /\bunsafe\s+to\s+run\s+positive\s+defence\b/i,
+  /\bdamage\s+limitation\b/i,
+  /\bbasis\s+of\s+plea\b/i,
+  /\bsentencing\s+exposure\b/i,
+  /\bdamaging\s+interview\b/i,
+  /\bpartial\s+admission\b/i,
+  /\bCrown\s+strength\b/i,
+  /\bprosecution\s+case\s+strong\b/i,
+];
+
+const CPS_PRESSURE_ANCHOR_RE =
+  /\b(admission|accepts\s+presence|accepts\s+possession|CCTV|forensic|bad\s+character|account\s+conflict|prosecution\s+pressure|CPS\s+pressure|damage\s+limitation|basis\s+of\s+plea|defence\s+weakness|risky\s+denial|CB-CPS|CB-PRESSURE|CB-PRESS)\b/i;
+
+/** Pack T / S — review readiness / case-control. */
+const READINESS_SIGNAL_PATTERNS: RegExp[] = [
+  /\bCB-REVIEW\b/i,
+  /\bCB-READY\b/i,
+  /\bCB-EXPORT\b/i,
+  /\bsupervisor\s+review\b/i,
+  /\bfile\s+review\b/i,
+  /\btrial\s+readiness\b/i,
+  /\bhearing\s+prep\b/i,
+  /\battendance\s+note\b/i,
+  /\bcounsel\s+note\b/i,
+  /\bcase\s+theory\b/i,
+  /\boutstanding\s+instructions\b/i,
+  /\bunresolved\s+defence\s+position\b/i,
+  /\bmissing\s+proof\s+checklist\b/i,
+  /\breview\s+before\s+hearing\b/i,
+  /\bsolicitor\s+sign[-\s]?off\b/i,
+  /\bhandover\b/i,
+  /\breadiness\b/i,
+  /\bexport\s+checklist\b/i,
+  /\bclient\s+update\s+letter\b/i,
+  /\bEX-S-/i,
+  /\bbundle\s+reference\b/i,
+  /\bwork\s+product\b/i,
+  /\bsolicitor\s+export\b/i,
+  /\battendance\s+note\b/i,
+];
+
+const READINESS_ANCHOR_RE =
+  /\b(supervisor\s+review|file\s+review|trial\s+readiness|hearing\s+prep|readiness|sign[-\s]?off|handover|outstanding\s+instructions|proof\s+checklist|CB-REVIEW|CB-READY|CB-EXPORT|EX-S-|export\s+checklist|work\s+product|client\s+update|bundle\s+reference|attendance\s+note|solicitor\s+export)\b/i;
+
+/** Pack X — hearing / court move (expanded). */
+const HEARING_COURT_SIGNAL_PATTERNS: RegExp[] = [
+  /\bCB-HEARING\b/i,
+  /\bCB-COURT\b/i,
+  /\bCB-MOVE\b/i,
+  /\bEX-X-/i,
+  /\bPTPH\b/i,
+  /\btrial\s+tomorrow\b/i,
+  /\bremand\s+review\b/i,
+  /\bfirst\s+appearance\b/i,
+  /\bbail\s+application\b/i,
+  /\bRUI\b/i,
+  /\bplea\s+and\s+trial\s+preparation\b/i,
+  /\bdirections\s+hearing\b/i,
+  /\badjournment\b/i,
+  /\bdisclosure\s+order\b/i,
+  /\btimetable\b/i,
+  /\bcourt\s+should\s+be\s+asked\b/i,
+  /\bprocedural\s+next\s+step\b/i,
+  /\blisting\b/i,
+  /\bmention\s+hearing\b/i,
+  /\bCMH\b/i,
+  /\bPCMH\b/i,
+];
+
+const HEARING_COURT_ANCHOR_RE =
+  /\b(PTPH|CMH|PCMH|remand|bail|RUI|adjourn|listing|timetable|disclosure\s+order|CB-HEARING|CB-COURT|CB-MOVE|EX-X-)\b/i;
+
+/** Corpus gates — special routes only when pack markers or strong dedicated signals justify them. */
+const CPS_CORPUS_GATE_RE = /\b(?:CB-PRESSURE|CB-PRESS|CB-CPS|PACK\s*P)\b/i;
+const READINESS_CORPUS_GATE_RE = /\b(?:CB-EXPORT|CB-REVIEW|CB-READY|PACK\s*[ST])\b/i;
+const HEARING_CORPUS_GATE_RE = /\b(?:CB-HEARING|CB-COURT|CB-MOVE|PACK\s*X|EX-X-)\b/i;
+const CHAOS_CORPUS_GATE_RE = /\b(?:CB-CHAOS|CB-DISC|PACK\s*G)\b/i;
+const CONFLICT_CORPUS_GATE_RE = /\b(?:CB-INSTRUCT|CB-CONFLICT|PACK\s*O)\b/i;
+const MESSY_CORPUS_GATE_RE = /\b(?:CB-MESSY|CB-REAL|PACK\s*K)\b/i;
+const OCR_CORPUS_GATE_RE = /\b(?:CB-OCR|CB-SCAN|CB-PHOTO|PACK\s*U|EX-U-)\b/i;
+
+const EVIDENCE_CHAOS_SIGNAL_PATTERNS: RegExp[] = [
+  /\bCB-CHAOS\b/i,
+  /\bCB-DISC\b/i,
+  /\bevidence\s+chaos\b/i,
+  /\bdisclosure\s+chaos\b/i,
+  /\bexhibit\s+conflict\b/i,
+  /\bcontinuity\s+gap\b/i,
+  /\bmissing\s+chain\b/i,
+  /\bchain\s+of\s+custody\b/i,
+  /\binconsistent\s+records?\b/i,
+  /\bdocument\s+conflict\b/i,
+  /\bmetadata\s+conflict\b/i,
+  /\bversion\s+conflict\b/i,
+  /\bCCTV\s+conflict\b/i,
+  /\bCAD\s+conflict\b/i,
+  /\btime\s+conflict\b/i,
+  /\bconflicting\s+(?:CCTV|CAD|999|statements?)\b/i,
+];
+
+const CLIENT_CONFLICT_SIGNAL_PATTERNS: RegExp[] = [
+  /\bCB-INSTRUCT\b/i,
+  /\bCB-CONFLICT\b/i,
+  /\baccount\s+conflicts?\b/i,
+  /\baccount\s+inconsistent\b/i,
+  /\binstructions?\s+not\s+yet\s+locked\b/i,
+  /\binstructions?\s+conflict\b/i,
+  /\bdenies\s+but\b/i,
+  /\baccepts\s+presence\s+but\b/i,
+  /\baccount\s+changed\b/i,
+  /\bconflict\s+between\s+instructions\b/i,
+  /\bconflicts?\s+with\s+(?:CCTV|witness|phone|medical|CAD|papers)\b/i,
+  /\bEX-O-/i,
+];
+
+const CLIENT_CONFLICT_ANCHOR_RE =
+  /\b(client\s+account|instruction|account\s+conflict|CB-CONFLICT|CB-INSTRUCT|EX-O-|inconsistent\s+with|denies\s+but|accepts\s+presence\s+but|instructions?\s+not\s+yet\s+locked)\b/i;
+
 const DISPLAY_PREFIX_RES = /^File\s+wording:\s*/i;
+
+function isCpsCorpus(bundleText: string): boolean {
+  return CPS_CORPUS_GATE_RE.test(bundleText);
+}
+
+function isReadinessCorpus(bundleText: string): boolean {
+  return READINESS_CORPUS_GATE_RE.test(bundleText);
+}
+
+function isHearingCorpus(bundleText: string): boolean {
+  return HEARING_CORPUS_GATE_RE.test(bundleText);
+}
+
+function isChaosCorpus(bundleText: string): boolean {
+  return CHAOS_CORPUS_GATE_RE.test(bundleText);
+}
+
+function isConflictCorpus(bundleText: string): boolean {
+  return CONFLICT_CORPUS_GATE_RE.test(bundleText);
+}
+
+function isMessyCorpus(bundleText: string): boolean {
+  return MESSY_CORPUS_GATE_RE.test(bundleText);
+}
+
+function isOcrCorpus(bundleText: string): boolean {
+  return OCR_CORPUS_GATE_RE.test(bundleText);
+}
+
+/** Whether a meta route (cps/readiness/hearing/client_conflict) may be built for this bundle. */
+function shouldBuildMetaRoute(
+  routeId: string,
+  bundleText: string,
+  scores: { cps: number; ready: number; hear: number; conflict: number },
+): boolean {
+  switch (routeId) {
+    case "cps_pressure":
+      if (isConflictCorpus(bundleText) || isChaosCorpus(bundleText)) return false;
+      return isCpsCorpus(bundleText) || scores.cps >= 4;
+    case "readiness":
+      if (isChaosCorpus(bundleText) || isConflictCorpus(bundleText)) return false;
+      return isReadinessCorpus(bundleText) || scores.ready >= 4;
+    case "hearing_court":
+      if (isChaosCorpus(bundleText)) return false;
+      return isHearingCorpus(bundleText) || scores.hear >= 4;
+    case "client_account_conflict":
+      return isConflictCorpus(bundleText) || scores.conflict >= 3;
+    default:
+      return true;
+  }
+}
 
 const CONDITIONAL_MARKERS =
   /\b(outstanding|not\s+served|awaiting|missing|provisional|conditional|if\s+proved|may\s+assist|needs?\s+solicitor\s+review|do\s+not\s+overstate|source\s+material\s+needed)\b/i;
@@ -683,6 +880,23 @@ function isSubstantiveAnchorForRoute(routeType: BattleboardRouteType, line: stri
   if (routeType === "multiparty") {
     return MULTIPARTY_ANCHOR_RE.test(line) || countUsefulWords(line) >= 5;
   }
+  if (routeType === "mitigation") {
+    return CPS_PRESSURE_ANCHOR_RE.test(line) || countUsefulWords(line) >= 5;
+  }
+  if (routeType === "interview") {
+    return (
+      CLIENT_CONFLICT_ANCHOR_RE.test(line) ||
+      hasStrongEvidenceAnchor(line) ||
+      countUsefulWords(line) >= 5
+    );
+  }
+  if (routeType === "unknown") {
+    return (
+      READINESS_ANCHOR_RE.test(line) ||
+      HEARING_COURT_ANCHOR_RE.test(line) ||
+      countUsefulWords(line) >= 5
+    );
+  }
   return hasStrongEvidenceAnchor(line) || countUsefulWords(line) >= 5;
 }
 
@@ -704,6 +918,46 @@ export function safeguardsSignalScore(bundleText: string): number {
 export function multipartySignalScore(bundleText: string): number {
   let n = 0;
   for (const p of MULTIPARTY_SIGNAL_PATTERNS) {
+    if (p.test(bundleText)) n += 1;
+  }
+  return n;
+}
+
+export function cpsPressureSignalScore(bundleText: string): number {
+  let n = 0;
+  for (const p of CPS_PRESSURE_SIGNAL_PATTERNS) {
+    if (p.test(bundleText)) n += 1;
+  }
+  return n;
+}
+
+export function readinessSignalScore(bundleText: string): number {
+  let n = 0;
+  for (const p of READINESS_SIGNAL_PATTERNS) {
+    if (p.test(bundleText)) n += 1;
+  }
+  return n;
+}
+
+export function hearingCourtSignalScore(bundleText: string): number {
+  let n = 0;
+  for (const p of HEARING_COURT_SIGNAL_PATTERNS) {
+    if (p.test(bundleText)) n += 1;
+  }
+  return n;
+}
+
+export function clientConflictSignalScore(bundleText: string): number {
+  let n = 0;
+  for (const p of CLIENT_CONFLICT_SIGNAL_PATTERNS) {
+    if (p.test(bundleText)) n += 1;
+  }
+  return n;
+}
+
+export function evidenceChaosSignalScore(bundleText: string): number {
+  let n = 0;
+  for (const p of EVIDENCE_CHAOS_SIGNAL_PATTERNS) {
     if (p.test(bundleText)) n += 1;
   }
   return n;
@@ -1021,6 +1275,14 @@ const ROUTE_SPECS: RouteSpec[] = [
       /\bsource\s+file\b/i,
       /\blab\b/i,
       /\bhandling\b/i,
+      /\bCB-OCR\b/i,
+      /\bCB-SCAN\b/i,
+      /\bCB-PHOTO\b/i,
+      /\bOCR\b/i,
+      /\bscanned\b/i,
+      /\billegible\b/i,
+      /\bimage\s+quality\b/i,
+      /\bphoto\s+evidence\b/i,
     ],
     defaultWhy: [
       "May assist if continuity, seal, or source-file wording on the file is incomplete or inconsistent.",
@@ -1079,6 +1341,114 @@ const ROUTE_SPECS: RouteSpec[] = [
       "The defence preserves position on merits while recording that strategy remains provisional pending served material — do not overstate.",
     safetyNote: "Mitigation is a fallback, not a substitute for testing outstanding source material.",
   },
+  {
+    id: "cps_pressure",
+    route_type: "mitigation",
+    title: "CPS pressure / damage-limitation pressure",
+    signals: CPS_PRESSURE_SIGNAL_PATTERNS,
+    defaultWhy: [
+      "The served material may show prosecution pressure from admissions, CCTV, forensic match, or account conflict — conditional on what is actually published.",
+      "May assist in identifying what can still be tested (admissibility, disclosure gaps, instruction conflicts) without treating the route as a merits win.",
+    ],
+    defaultHurts: [
+      "Strong prosecution material on the papers limits realistic fight routes.",
+      "Client account or interview wording may conflict with served CCTV/witness/phone/medical/CAD material.",
+      "Risky denial or positive defence may be unsafe until instructions and served material are reconciled.",
+    ],
+    collapseRisks: [
+      "Further disclosure or served CCTV/forensic material strengthens the Crown case.",
+      "Instructions cannot be aligned with the damaging account on the file.",
+      "Mitigation or basis discussion may be required if fight routes stay conditional.",
+    ],
+    nextMoves: [
+      "Lock instructions on account, admissions, and what the client accepts or denies on the papers.",
+      "Identify admissibility and outstanding disclosure issues before fixing hearing strategy.",
+      "Separate damage-limitation thinking from live chase routes — no plea advice here.",
+      "Record what would make a positive defence unsafe on current material.",
+    ],
+    hearingLine:
+      "The defence asks the court to record that prosecution pressure on the papers is noted and that strategy remains provisional pending instructions and served material — do not overstate.",
+    safetyNote: "Pressure point only — not a plea recommendation, outcome prediction, or merits win.",
+  },
+  {
+    id: "readiness",
+    route_type: "unknown",
+    title: "Review readiness / case-control pressure",
+    signals: READINESS_SIGNAL_PATTERNS,
+    defaultWhy: [
+      "File may show review, readiness, handover, or outstanding-instruction issues that must be cleared before strategy is relied on at hearing.",
+      "May assist as a case-control pressure point — conditional on supervisor/file review wording on the papers.",
+    ],
+    defaultHurts: [
+      "Review gaps are closed quickly and the file is trial-ready on served material.",
+      "Outstanding instructions are recorded and no readiness issue remains.",
+    ],
+    collapseRisks: [
+      "Hearing proceeds without proof checklist / instructions / sign-off completed.",
+      "Case theory shifts when late material is served after review was marked complete.",
+    ],
+    nextMoves: [
+      "Complete file/supervisor review and proof checklist before the next hearing.",
+      "Record outstanding instructions and unresolved defence position.",
+      "Confirm hearing prep, attendance note, and counsel handover items on the file.",
+    ],
+    hearingLine:
+      "Ask the court to record that the defence requires time to complete review/readiness steps before strategy is fixed — provisional until sign-off.",
+    safetyNote: "Case-control route — solicitor review required; not a substitute for merits strategy.",
+  },
+  {
+    id: "hearing_court",
+    route_type: "unknown",
+    title: "Hearing / court move pressure",
+    signals: HEARING_COURT_SIGNAL_PATTERNS,
+    defaultWhy: [
+      "Listing, remand, bail, PTPH, directions, or timetable wording on the file may require a procedural next step before merits routes are fixed.",
+      "May assist if the court needs to record timetable/disclosure-order pressure — conditional on served papers.",
+    ],
+    defaultHurts: [
+      "Court timetable is fixed and Crown material is served on time.",
+      "Procedural window passes without securing directions needed for the defence chase.",
+    ],
+    collapseRisks: [
+      "Adjournment refused and hearing proceeds without outstanding directions.",
+      "Disclosure order not recorded and chase routes lose timetable leverage.",
+    ],
+    nextMoves: [
+      "Prepare hearing line on listing, remand, bail, or PTPH directions as published on the file.",
+      "Ask for disclosure order / timetable where source material is still outstanding.",
+      "Record procedural next step before fixing trial theory.",
+    ],
+    hearingLine:
+      "The defence asks the court to record the next hearing step and any timetable/disclosure directions needed — conditional on listing papers.",
+    safetyNote: "Procedural pressure only — merits routes remain provisional until material is served.",
+  },
+  {
+    id: "client_account_conflict",
+    route_type: "interview",
+    title: "Client account / file conflict pressure",
+    signals: CLIENT_CONFLICT_SIGNAL_PATTERNS,
+    defaultWhy: [
+      "Client instructions or account wording may conflict with served CCTV/witness/phone/medical/CAD material — conditional on what the file actually publishes.",
+      "May assist in identifying what must be locked in instructions before a positive defence is advanced.",
+    ],
+    defaultHurts: [
+      "Client account aligns with served papers after clarification.",
+      "Instructions are recorded and no material conflict remains on the file.",
+    ],
+    collapseRisks: [
+      "Instructions cannot be reconciled with served source material.",
+      "Positive defence advanced before account conflict is resolved.",
+      "Late served material widens the gap between account and papers.",
+    ],
+    nextMoves: [
+      "Lock instructions on what the client accepts, denies, and disputes on the papers.",
+      "Test account wording against served CCTV/witness/phone/medical/CAD before fixing strategy.",
+      "Record what would make a positive defence unsafe on current material.",
+    ],
+    hearingLine:
+      "The defence asks the court to record that instructions/account conflict must be resolved before strategy is fixed — provisional until reconciled with served material.",
+    safetyNote: "Not a merits win — solicitor review required before relying on any account-led route.",
+  },
 ];
 
 function scoreRoute(bundleText: string, spec: RouteSpec): number {
@@ -1095,22 +1465,7 @@ function timelineSignalScore(bundleText: string): number {
 }
 
 function hearingSignalScore(bundleText: string): number {
-  const patterns = [
-    /\bhearing\b/i,
-    /\blisting\b/i,
-    /\btimetable\b/i,
-    /\badjourn/i,
-    /\bPCMH\b/i,
-    /\bCMH\b/i,
-    /\bcourt\s+move\b/i,
-    /\bmention\s+hearing\b/i,
-    /\bplea\s+and\s+trial\b/i,
-  ];
-  let n = 0;
-  for (const p of patterns) {
-    if (p.test(bundleText)) n += 1;
-  }
-  return n;
+  return hearingCourtSignalScore(bundleText);
 }
 
 function disclosurePressureScore(bundleText: string, outstandingLabels: string[]): number {
@@ -1141,7 +1496,17 @@ function rankRouteForPrimary(
   const multi = multipartySignalScore(bundleText);
   const time = timelineSignalScore(bundleText);
   const hear = hearingSignalScore(bundleText);
+  const cps = cpsPressureSignalScore(bundleText);
+  const ready = readinessSignalScore(bundleText);
   const discPress = disclosurePressureScore(bundleText, outstandingLabels);
+  const exportPack = isReadinessCorpus(bundleText);
+  const chaos = isChaosCorpus(bundleText);
+  const conflict = isConflictCorpus(bundleText);
+  const messy = isMessyCorpus(bundleText);
+  const ocr = isOcrCorpus(bundleText);
+  const cpsAllowed = isCpsCorpus(bundleText);
+  const hearAllowed = isHearingCorpus(bundleText);
+  const readyAllowed = isReadinessCorpus(bundleText);
 
   let rank = statusRank(route.status) * 40 + route.evidence_anchors.length * 6;
 
@@ -1157,18 +1522,31 @@ function rankRouteForPrimary(
       if (multi >= 3) rank += 30;
       break;
     case "timeline":
-      rank += 95 + time * 12 + hear * 8;
+      rank += 95 + time * 12 + (hearAllowed ? hear * 8 : 0);
+      if (chaos) rank += 55 + time * 8;
+      if (messy && discPress < 2) rank -= 35;
+      if (ocr && time < 3) rank -= 45;
       if (saf >= 1) rank -= 55 + saf * 12;
       if (saf >= 3) rank -= 35;
       break;
     case "identity":
       rank += 88;
+      if (chaos) rank += 45;
       break;
     case "interview":
-      rank += 82;
+      if (route.id === "client_account_conflict") {
+        rank += 125 + clientConflictSignalScore(bundleText) * 20;
+        if (conflict) rank += 80;
+      } else {
+        rank += 82;
+        if (conflict) rank += 35;
+      }
       break;
     case "continuity":
       rank += 78;
+      if (chaos) rank += 60;
+      if (ocr) rank += 70;
+      if (messy) rank += 25;
       break;
     case "causation":
       rank += 72;
@@ -1177,18 +1555,50 @@ function rankRouteForPrimary(
       rank += 68;
       break;
     case "mitigation":
-      rank += 35;
+      if (route.id === "cps_pressure") {
+        rank += cpsAllowed ? 120 + cps * 24 : 35 + cps * 8;
+        if (cpsAllowed && cps >= 2) rank += 70;
+        if (exportPack && ready >= 1) rank -= 120;
+        if (conflict || chaos) rank -= 150;
+      } else {
+        rank += 40 + cps * 14;
+        if (cps >= 3 && cpsAllowed) rank += 25;
+      }
       break;
     case "disclosure":
       rank += 25 + discPress * 12;
+      if (messy && discPress >= 1) rank += 65;
+      if (ocr && discPress >= 1) rank += 40;
+      if (chaos && discPress >= 1) rank += 70;
       if (saf >= 2) rank -= 70;
       if (multi >= 2) rank -= 70;
-      if (time >= 2) rank -= 45;
-      if (hear >= 2) rank -= 35;
+      if (cpsAllowed && cps >= 2) rank -= 85;
+      if (readyAllowed && ready >= 2) rank -= 65;
+      if (hearAllowed && hear >= 2) rank -= 35;
+      if (chaos && !discPress) rank -= 40;
       if (discPress <= 1 && outstandingLabels.length === 0) rank -= 55;
       break;
     default:
-      rank += 40;
+      if (route.id === "readiness") {
+        rank += readyAllowed ? 110 + ready * 22 : 30 + ready * 8;
+        if (readyAllowed && ready >= 2) rank += 55;
+        if (exportPack) {
+          rank += 90 + route.evidence_anchors.length * 4;
+          if (ready >= 1) rank += 40;
+        }
+        if (chaos || conflict) rank -= 90;
+      } else if (route.id === "hearing_court") {
+        rank += hearAllowed ? 105 + hear * 18 : 25 + hear * 6;
+        if (hearAllowed && hear >= 2) rank += 50;
+        if (chaos || conflict) rank -= 90;
+      } else {
+        rank += 40;
+      }
+      break;
+  }
+
+  if (route.id === "cps_pressure" && !cpsAllowed) {
+    rank -= 100;
   }
 
   return rank;
@@ -1233,7 +1643,20 @@ function buildRouteFromSpec(
       ? extractFamilyLinesMatching(bundleText, spec.signals, SAFEGUARDS_ANCHOR_RE, 5)
       : spec.route_type === "multiparty"
         ? extractFamilyLinesMatching(bundleText, spec.signals, MULTIPARTY_ANCHOR_RE, 5)
-        : extractLinesMatching(bundleText, spec.signals, 4);
+        : spec.id === "cps_pressure"
+          ? extractFamilyLinesMatching(bundleText, spec.signals, CPS_PRESSURE_ANCHOR_RE, 5)
+          : spec.id === "readiness"
+            ? extractFamilyLinesMatching(bundleText, spec.signals, READINESS_ANCHOR_RE, 5)
+            : spec.id === "hearing_court"
+              ? extractFamilyLinesMatching(bundleText, spec.signals, HEARING_COURT_ANCHOR_RE, 5)
+              : spec.id === "client_account_conflict"
+                ? extractFamilyLinesMatching(
+                    bundleText,
+                    spec.signals,
+                    CLIENT_CONFLICT_ANCHOR_RE,
+                    5,
+                  )
+                : extractLinesMatching(bundleText, spec.signals, 4);
   const interviewExtras =
     spec.route_type === "interview" && position?.interview_account_lines.length
       ? position.interview_account_lines
@@ -1243,9 +1666,13 @@ function buildRouteFromSpec(
     isSubstantiveAnchorForRoute(spec.route_type, a),
   );
 
-  let why_it_helps = uniqueSafe(fileLines.length > 0 ? fileLines : spec.defaultWhy, 4);
-  if (why_it_helps.length === 0) {
-    why_it_helps = uniqueSafe(spec.defaultWhy, 4);
+  const substantiveFileLines = fileLines.filter((l) => compactOneLine(l).length >= 36);
+  let why_it_helps = uniqueSafe(
+    substantiveFileLines.length > 0 ? substantiveFileLines : fileLines.length > 0 ? fileLines : spec.defaultWhy,
+    4,
+  );
+  if (why_it_helps.length === 0 || why_it_helps.every((h) => compactOneLine(h).length < 36)) {
+    why_it_helps = uniqueSafe([...why_it_helps, ...spec.defaultWhy], 4);
   }
   const what_hurts_us = uniqueSafe(spec.defaultHurts, 3);
   const collapse_risks = uniqueSafe(spec.collapseRisks, 5);
@@ -1328,7 +1755,23 @@ export function buildStrategyBattleboard(input: StrategyBattleboardInput): Battl
 
   const routes: BattleboardRoute[] = [];
 
+  const cpsScore = cpsPressureSignalScore(bundleText);
+  const readyScore = readinessSignalScore(bundleText);
+  const hearScore = hearingCourtSignalScore(bundleText);
+  const conflictScore = clientConflictSignalScore(bundleText);
+  const exportPack = isReadinessCorpus(bundleText);
+  const metaScores = { cps: cpsScore, ready: readyScore, hear: hearScore, conflict: conflictScore };
+
   for (const spec of ROUTE_SPECS) {
+    if (spec.id === "mitigation" && cpsScore >= 2) {
+      continue;
+    }
+    if (spec.id === "cps_pressure" && exportPack && readyScore >= 1) {
+      continue;
+    }
+    if (!shouldBuildMetaRoute(spec.id, bundleText, metaScores)) {
+      continue;
+    }
     let extra: string[] = [];
     if (spec.route_type === "disclosure") {
       if (genuineDisclosurePressure || disclosureSignalHits >= 2) {
@@ -1338,6 +1781,14 @@ export function buildStrategyBattleboard(input: StrategyBattleboardInput): Battl
       extra = extractFamilyLinesMatching(bundleText, spec.signals, SAFEGUARDS_ANCHOR_RE, 5);
     } else if (spec.route_type === "multiparty" && multipartySignalScore(bundleText) >= 1) {
       extra = extractFamilyLinesMatching(bundleText, spec.signals, MULTIPARTY_ANCHOR_RE, 5);
+    } else if (spec.id === "cps_pressure" && cpsScore >= 1) {
+      extra = extractFamilyLinesMatching(bundleText, spec.signals, CPS_PRESSURE_ANCHOR_RE, 5);
+    } else if (spec.id === "readiness" && readyScore >= 1) {
+      extra = extractFamilyLinesMatching(bundleText, spec.signals, READINESS_ANCHOR_RE, 5);
+    } else if (spec.id === "hearing_court" && hearScore >= 1) {
+      extra = extractFamilyLinesMatching(bundleText, spec.signals, HEARING_COURT_ANCHOR_RE, 5);
+    } else if (spec.id === "client_account_conflict" && conflictScore >= 1) {
+      extra = extractFamilyLinesMatching(bundleText, spec.signals, CLIENT_CONFLICT_ANCHOR_RE, 5);
     } else if (spec.route_type === "mitigation" && bundleThin) {
       extra = ["Thin bundle — fight routes may stay conditional until material is served."];
     }
@@ -1366,6 +1817,64 @@ export function buildStrategyBattleboard(input: StrategyBattleboardInput): Battl
     if (safIdx > 0 && timelineIdx === 0 && safIdx !== -1) {
       const [safRoute] = routes.splice(safIdx, 1);
       routes.unshift(safRoute);
+    }
+  }
+
+  function promoteRouteToPrimary(routeId: string): void {
+    const idx = routes.findIndex((r) => r.id === routeId);
+    if (idx <= 0 || idx === -1) return;
+    const [route] = routes.splice(idx, 1);
+    routes.unshift(route);
+  }
+
+  if (isCpsCorpus(bundleText) && cpsScore >= 2) {
+    promoteRouteToPrimary("cps_pressure");
+  }
+  if (isReadinessCorpus(bundleText) && readyScore >= 1) {
+    promoteRouteToPrimary("readiness");
+  }
+  if (isHearingCorpus(bundleText) && hearScore >= 2) {
+    promoteRouteToPrimary("hearing_court");
+  }
+  if (isConflictCorpus(bundleText) && conflictScore >= 1) {
+    promoteRouteToPrimary("client_account_conflict");
+  }
+
+  if (isChaosCorpus(bundleText)) {
+    const metaPrimary = ["readiness", "hearing_court", "cps_pressure"].includes(routes[0]?.id ?? "");
+    if (metaPrimary) {
+      const preferred = routes.find((r) =>
+        ["continuity", "disclosure", "timeline", "identity", "interview"].includes(r.route_type),
+      );
+      if (preferred && preferred.id !== routes[0]?.id) {
+        promoteRouteToPrimary(preferred.id);
+      }
+    }
+  }
+
+  if (isMessyCorpus(bundleText) && disclosurePressureScore(bundleText, outstandingLabels) >= 1) {
+    promoteRouteToPrimary("disclosure");
+  }
+
+  if (isOcrCorpus(bundleText)) {
+    const weakTimelinePrimary =
+      routes[0]?.route_type === "timeline" &&
+      !(routes[0]?.evidence_anchors ?? []).some((a) => hasStrongEvidenceAnchor(a));
+    if (weakTimelinePrimary) {
+      const preferred = routes.find(
+        (r) =>
+          ["continuity", "disclosure", "identity"].includes(r.route_type) &&
+          (r.evidence_anchors?.length ?? 0) > 0,
+      );
+      if (preferred) promoteRouteToPrimary(preferred.id);
+    }
+  }
+
+  if (timelineSignalScore(bundleText) >= 2 && routes[0]?.route_type === "disclosure") {
+    const tIdx = routes.findIndex((r) => r.route_type === "timeline");
+    if (tIdx > 0) {
+      const [tRoute] = routes.splice(tIdx, 1);
+      routes.unshift(tRoute);
     }
   }
 
@@ -1433,11 +1942,23 @@ export function buildStrategyBattleboard(input: StrategyBattleboardInput): Battl
     if (/\bCB-MULTI2\b/i.test(bundleText)) hits.push("CB-MULTI2");
     else if (/\bCB-MULTI\b/i.test(bundleText)) hits.push("CB-MULTI");
     if (/\bCB-MDPRESS\b/i.test(bundleText)) hits.push("CB-MDPRESS");
+    if (/\bCB-CPS\b/i.test(bundleText)) hits.push("CB-CPS");
+    if (/\bCB-PRESSURE\b/i.test(bundleText)) hits.push("CB-PRESSURE");
+    if (/\bCB-PRESS\b/i.test(bundleText)) hits.push("CB-PRESS");
+    if (/\bCB-EXPORT\b/i.test(bundleText)) hits.push("CB-EXPORT");
+    if (/\bCB-REVIEW\b/i.test(bundleText)) hits.push("CB-REVIEW");
+    if (/\bCB-READY\b/i.test(bundleText)) hits.push("CB-READY");
+    if (/\bCB-HEARING\b/i.test(bundleText)) hits.push("CB-HEARING");
+    if (/\bCB-COURT\b/i.test(bundleText)) hits.push("CB-COURT");
+    if (/\bCB-MOVE\b/i.test(bundleText)) hits.push("CB-MOVE");
     return hits.length ? hits.join("+") : null;
   })();
 
   const safRoute = sanitizedRoutes.find((r) => r.route_type === "safeguards");
   const multiRoute = sanitizedRoutes.find((r) => r.route_type === "multiparty");
+  const cpsRoute = sanitizedRoutes.find((r) => r.id === "cps_pressure");
+  const readyRoute = sanitizedRoutes.find((r) => r.id === "readiness");
+  const hearRoute = sanitizedRoutes.find((r) => r.id === "hearing_court");
   const backupRoutes = sanitizedRoutes.slice(1);
 
   return {
@@ -1456,11 +1977,17 @@ export function buildStrategyBattleboard(input: StrategyBattleboardInput): Battl
       safeguards_signal_count: safScore,
       multiparty_signal_count: multipartySignalScore(bundleText),
       timeline_signal_count: timelineSignalScore(bundleText),
+      cps_pressure_signal_count: cpsScore,
+      readiness_signal_count: readyScore,
+      hearing_court_signal_count: hearScore,
       backup_route_types: backupRoutes.map((r) => r.route_type),
       backup_route_titles: backupRoutes.map((r) => r.title),
       primary_anchor_sample: (sanitizedPrimary?.evidence_anchors ?? []).slice(0, 3),
       safeguards_anchor_sample: (safRoute?.evidence_anchors ?? []).slice(0, 3),
       multiparty_anchor_sample: (multiRoute?.evidence_anchors ?? []).slice(0, 3),
+      cps_pressure_anchor_sample: (cpsRoute?.evidence_anchors ?? []).slice(0, 3),
+      readiness_anchor_sample: (readyRoute?.evidence_anchors ?? []).slice(0, 3),
+      hearing_court_anchor_sample: (hearRoute?.evidence_anchors ?? []).slice(0, 3),
     },
   };
 }

@@ -48,6 +48,9 @@ export type BattleboardSweepRow = {
   primary_anchor_sample: string | null;
   safeguards_signal_count: number | null;
   multiparty_signal_count: number | null;
+  cps_pressure_signal_count: number | null;
+  readiness_signal_count: number | null;
+  hearing_court_signal_count: number | null;
   safeguards_anchor_sample: string | null;
   multiparty_anchor_sample: string | null;
   route_family_match_reason: string | null;
@@ -157,13 +160,38 @@ const CONDITIONAL_MARKERS =
   /\b(outstanding|not\s+served|awaiting|missing|provisional|conditional|if\s+proved|may\s+assist|needs?\s+solicitor\s+review|do\s+not\s+overstate|source\s+material|record\s+instructions|not\s+safely\s+recorded)\b/i;
 
 const STRONG_ANCHOR_RE =
-  /\b(MG6|MG11|MG5|CCTV|CAD|999|BWV|EX-[\w\d-]+|interview|PACE|disclosure|continuity|witness|unused\s+material)\b/i;
+  /\b(MG6|MG11|MG5|CCTV|CAD|999|BWV|EX-[\w\d-]+|interview|PACE|disclosure|continuity|witness|unused\s+material|CB-OCR|CB-SCAN|CB-PHOTO|CB-MESSY|OCR|scanned|illegible)\b/i;
 
 const SAFEGUARDS_STRONG_ANCHOR_RE =
   /\b(youth|young\s+person|child|juvenile|under\s+18|vulnerab|appropriate\s+adult|\bAA\b|parent|guardian|interpreter|intermediary|special\s+measures|participation|mental\s+health|learning\s+difficult|communication\s+difficult|fitness|capacity|liaison|CB-VULN|CB-SAFEGUARDS|CB-YOUTH2|PACE\s+Code\s+C)\b/i;
 
 const MULTIPARTY_STRONG_ANCHOR_RE =
   /\b(co[-\s]?defendant|co[-\s]?accused|defendant\s+[12AB]|count\s+[12]|joint\s+enterprise|attribution|separate\s+(?:defendant|count|role)|phone\s+belongs|vehicle\s+belongs|mixed\s+evidence|CB-MULTI|CB-MDPRESS|CB-MULTI2|who\s+did\s+what)\b/i;
+
+const CPS_STRONG_ANCHOR_RE =
+  /\b(admission|accepts\s+presence|accepts\s+possession|CCTV|forensic|bad\s+character|account\s+conflict|prosecution\s+pressure|CPS\s+pressure|damage\s+limitation|defence\s+weakness|risky\s+denial|CB-CPS|CB-PRESSURE|CB-PRESS)\b/i;
+
+const READINESS_STRONG_ANCHOR_RE =
+  /\b(supervisor\s+review|file\s+review|trial\s+readiness|hearing\s+prep|readiness|sign[-\s]?off|handover|outstanding\s+instructions|proof\s+checklist|CB-REVIEW|CB-READY|CB-EXPORT|EX-S-|export\s+checklist|work\s+product|client\s+update|bundle\s+reference|attendance\s+note|solicitor\s+export)\b/i;
+
+const EXPORT_PACK_CORPUS_RE = /\bCB-EXPORT\b|\bPACK\s*S\b/i;
+
+function hasExportReadinessBackup(board: BattleboardOutput): boolean {
+  const r = (board.routes ?? []).find((x) => x.id === "readiness");
+  if (!r || r.status === "blocked") return false;
+  const anchors = r.evidence_anchors ?? [];
+  if (anchors.length === 0) return false;
+  return anchors.some((a) => READINESS_STRONG_ANCHOR_RE.test(a) || /\bEX-S-/i.test(a));
+}
+
+const HEARING_STRONG_ANCHOR_RE =
+  /\b(PTPH|CMH|PCMH|remand|bail|RUI|adjourn|listing|timetable|disclosure\s+order|CB-HEARING|CB-COURT|CB-MOVE|EX-X-)\b/i;
+
+const CLIENT_CONFLICT_STRONG_ANCHOR_RE =
+  /\b(client\s+account|instruction|account\s+conflict|CB-CONFLICT|CB-INSTRUCT|EX-O-|inconsistent\s+with|denies\s+but)\b/i;
+
+const CHAOS_CORPUS_GATE_RE = /\b(?:CB-CHAOS|CB-DISC|PACK\s*G)\b/i;
+const CONFLICT_CORPUS_GATE_RE = /\b(?:CB-INSTRUCT|CB-CONFLICT|PACK\s*O)\b/i;
 
 const GENERIC_MOVE_RE =
   /\b(review\s+(the\s+)?(file|bundle|disclosure)|check\s+disclosure|consider\s+position)\b/i;
@@ -202,7 +230,9 @@ const ROUTE_TYPE_KEYWORDS: Record<
   },
   mitigation: {
     label: "mitigation/sentencing",
-    patterns: [/mitigat|sentenc|plea|credit|remorse|reduced/i],
+    patterns: [
+      /mitigat|sentenc|plea|credit|remorse|reduced|CPS\s+pressure|prosecution\s+pressure|damage\s+limit|bad\s+fact|defence\s+weakness/i,
+    ],
   },
   safeguards: {
     label: "youth/vulnerability/safeguards",
@@ -381,22 +411,51 @@ function findRoutes(board: BattleboardOutput, types: BattleboardRouteType[]): Ba
   return (board.routes ?? []).filter((r) => set.has(r.route_type));
 }
 
-function isStrongAnchorForRoute(routeType: BattleboardRouteType | string | null | undefined, anchor: string): boolean {
+function isStrongAnchorForRoute(
+  routeType: BattleboardRouteType | string | null | undefined,
+  anchor: string,
+  routeId?: string | null,
+): boolean {
   const a = compact(anchor);
   if (!a) return false;
   if (routeType === "safeguards") return SAFEGUARDS_STRONG_ANCHOR_RE.test(a);
   if (routeType === "multiparty") return MULTIPARTY_STRONG_ANCHOR_RE.test(a);
+  if (routeType === "mitigation") return CPS_STRONG_ANCHOR_RE.test(a) || STRONG_ANCHOR_RE.test(a);
+  if (routeType === "interview") {
+    if (routeId === "client_account_conflict") {
+      return CLIENT_CONFLICT_STRONG_ANCHOR_RE.test(a) || STRONG_ANCHOR_RE.test(a);
+    }
+    return STRONG_ANCHOR_RE.test(a);
+  }
+  if (routeType === "unknown") {
+    if (routeId === "readiness") return READINESS_STRONG_ANCHOR_RE.test(a);
+    if (routeId === "hearing_court") return HEARING_STRONG_ANCHOR_RE.test(a);
+    return READINESS_STRONG_ANCHOR_RE.test(a) || HEARING_STRONG_ANCHOR_RE.test(a);
+  }
   return STRONG_ANCHOR_RE.test(a);
 }
 
 function routeHasStrongFamilyAnchors(route: BattleboardRoute): boolean {
   const anchors = route.evidence_anchors ?? [];
-  return anchors.some((a) => isStrongAnchorForRoute(route.route_type, a));
+  return anchors.some((a) => isStrongAnchorForRoute(route.route_type, a, route.id));
 }
 
-function hasStrongBackup(board: BattleboardOutput, types: BattleboardRouteType[]): boolean {
-  return findRoutes(board, types).some(
+function hasStrongBackup(
+  board: BattleboardOutput,
+  types: BattleboardRouteType[],
+  routeIds?: string[],
+): boolean {
+  const byType = findRoutes(board, types).some(
     (r) =>
+      r.status !== "blocked" &&
+      (r.why_it_helps?.length ?? 0) > 0 &&
+      routeHasStrongFamilyAnchors(r),
+  );
+  if (byType) return true;
+  if (!routeIds?.length) return false;
+  return (board.routes ?? []).some(
+    (r) =>
+      routeIds.includes(r.id) &&
       r.status !== "blocked" &&
       (r.why_it_helps?.length ?? 0) > 0 &&
       routeHasStrongFamilyAnchors(r),
@@ -433,7 +492,9 @@ function corpusMentions(board: BattleboardOutput, patterns: RegExp[]): boolean {
 
 function genericRouteReason(primary: BattleboardRoute): string {
   const anchors = primary.evidence_anchors ?? [];
-  const strongAnchors = anchors.filter((a) => isStrongAnchorForRoute(primary.route_type, a));
+  const strongAnchors = anchors.filter((a) =>
+    isStrongAnchorForRoute(primary.route_type, a, primary.id),
+  );
   const parts: string[] = [];
   if (isDisclosureLedRoute(primary)) parts.push("disclosure-led primary");
   if (anchors.length > 0 && strongAnchors.length === 0) parts.push("no strong file anchors on primary");
@@ -450,7 +511,9 @@ function genericRouteReason(primary: BattleboardRoute): string {
 
 function isGenericRoute(primary: BattleboardRoute): boolean {
   const anchors = primary.evidence_anchors ?? [];
-  const strongAnchors = anchors.filter((a) => isStrongAnchorForRoute(primary.route_type, a));
+  const strongAnchors = anchors.filter((a) =>
+    isStrongAnchorForRoute(primary.route_type, a, primary.id),
+  );
   if (anchors.length > 0 && strongAnchors.length === 0) return true;
 
   const helps = primary.why_it_helps ?? [];
@@ -523,6 +586,9 @@ function emptyDiagnosticsFields(): Pick<
   | "primary_anchor_sample"
   | "safeguards_signal_count"
   | "multiparty_signal_count"
+  | "cps_pressure_signal_count"
+  | "readiness_signal_count"
+  | "hearing_court_signal_count"
   | "safeguards_anchor_sample"
   | "multiparty_anchor_sample"
   | "route_family_match_reason"
@@ -534,6 +600,9 @@ function emptyDiagnosticsFields(): Pick<
     primary_anchor_sample: null,
     safeguards_signal_count: null,
     multiparty_signal_count: null,
+    cps_pressure_signal_count: null,
+    readiness_signal_count: null,
+    hearing_court_signal_count: null,
     safeguards_anchor_sample: null,
     multiparty_anchor_sample: null,
     route_family_match_reason: null,
@@ -548,6 +617,9 @@ function diagnosticsFromBoard(board: BattleboardOutput | null): Pick<
   | "primary_anchor_sample"
   | "safeguards_signal_count"
   | "multiparty_signal_count"
+  | "cps_pressure_signal_count"
+  | "readiness_signal_count"
+  | "hearing_court_signal_count"
   | "safeguards_anchor_sample"
   | "multiparty_anchor_sample"
   | "corpus_markers"
@@ -564,6 +636,9 @@ function diagnosticsFromBoard(board: BattleboardOutput | null): Pick<
     safeguards_anchor_sample: join(d.safeguards_anchor_sample),
     multiparty_anchor_sample: join(d.multiparty_anchor_sample),
     corpus_markers: d.corpus_markers,
+    cps_pressure_signal_count: d.cps_pressure_signal_count,
+    readiness_signal_count: d.readiness_signal_count,
+    hearing_court_signal_count: d.hearing_court_signal_count,
   };
 }
 
@@ -594,15 +669,22 @@ function evaluatePackRouteQuality(
     case "W": {
       result.expected_route_family = "timeline / sequence / alibi";
       const timelinePatterns = [/timeline|sequence|alibi|cctv|cad|999|timing|footage/i];
-      result.route_family_match = routeFamilyMatchPrimary(
+      const timelinePrimary = routeFamilyMatchPrimary(
         primary,
         ["timeline", "continuity", "identity"],
         timelinePatterns,
       );
+      const timelineBackup = hasStrongBackup(board, ["timeline", "continuity", "identity"]);
+      result.route_family_match = timelinePrimary || timelineBackup;
+      result.route_family_match_reason = result.route_family_match
+        ? timelinePrimary
+          ? `Timeline primary (time=${board.diagnostics?.timeline_signal_count ?? 0}).`
+          : "Timeline/continuity/ID strong backup."
+        : `Timeline pack mismatch (primary=${primary.route_type}).`;
       if (
         disclosurePrimary &&
-        hasStrongBackup(board, ["timeline", "continuity"]) &&
-        !result.route_family_match
+        timelineBackup &&
+        !timelinePrimary
       ) {
         result.weakIssues.push("Timeline pack primary route ranked behind disclosure.");
       }
@@ -613,15 +695,28 @@ function evaluatePackRouteQuality(
     }
     case "X": {
       result.expected_route_family = "hearing / court move";
-      const hearingPatterns = [/hearing|court\s+move|listing|timetable|adjourn|PCMH|CMH|procedural/i];
-      const hearingFocused =
-        routeFamilyMatchPrimary(primary, ["disclosure", "unknown"], hearingPatterns) ||
-        !disclosurePrimary;
-      result.route_family_match = hearingFocused && !isGenericHearingLine(primary.hearing_line);
+      const hearingPatterns = [
+        /hearing|court\s+move|listing|timetable|adjourn|PCMH|CMH|PTPH|remand|bail|RUI|procedural|next\s+hearing|directions|disclosure\s+order/i,
+      ];
+      const hearingPrimary =
+        primary.id === "hearing_court" ||
+        routeFamilyMatchPrimary(primary, ["unknown", "timeline"], hearingPatterns);
+      const hearingBackup = hasStrongBackup(board, ["unknown"], ["hearing_court"]);
+      const hearingLineOk = !isGenericHearingLine(primary.hearing_line);
+      result.route_family_match =
+        (hearingPrimary || hearingBackup) && hearingLineOk && !isGenericRoute(primary);
+      result.route_family_match_reason = result.route_family_match
+        ? hearingPrimary
+          ? `Hearing/court primary (hear=${board.diagnostics?.hearing_court_signal_count ?? 0}).`
+          : "Hearing/court route strong backup."
+        : `Hearing pack mismatch (primary=${primary.route_type}, id=${primary.id ?? "—"}).`;
+      if (disclosurePrimary && !hearingPrimary && !hearingBackup) {
+        result.weakIssues.push("Hearing pack over-ranked disclosure without court-move route.");
+      }
       if (disclosurePrimary && isGenericHearingLine(primary.hearing_line)) {
         result.weakIssues.push("Hearing pack route too generic.");
       }
-      if (!hearingFocused) {
+      if (!result.route_family_match && !disclosurePrimary) {
         result.pack_pressure_note = "Court-facing timetable / hearing move should lead or be explicit.";
       }
       break;
@@ -638,30 +733,167 @@ function evaluatePackRouteQuality(
       }
       break;
     }
+    case "G": {
+      result.expected_route_family = "evidence / disclosure chaos";
+      const chaosPatterns = [
+        /continuity|provenance|exhibit|CCTV|CAD|999|timeline|sequence|MG6|disclosure|conflict|chaos|metadata|chain/i,
+      ];
+      const chaosPrimary =
+        ["continuity", "timeline", "identity", "disclosure", "interview"].includes(
+          primary.route_type,
+        ) || routeFamilyMatchPrimary(primary, ["continuity", "timeline", "identity", "disclosure"], chaosPatterns);
+      const chaosBackup = hasStrongBackup(board, [
+        "continuity",
+        "timeline",
+        "identity",
+        "disclosure",
+        "interview",
+      ]);
+      const metaMisrank = ["readiness", "cps_pressure", "hearing_court"].includes(primary.id ?? "");
+      result.route_family_match =
+        (chaosPrimary || chaosBackup) && !isGenericRoute(primary) && !metaMisrank;
+      result.route_family_match_reason = result.route_family_match
+        ? chaosPrimary
+          ? `Evidence-chaos primary (${primary.route_type}).`
+          : "Evidence-chaos route strong backup."
+        : `Pack G mismatch: primary=${primary.id ?? primary.route_type}.`;
+      if (metaMisrank && !chaosBackup) {
+        result.weakIssues.push(
+          "Evidence-chaos pack over-ranked CPS/hearing/readiness — continuity/timeline/disclosure should lead.",
+        );
+      }
+      if (!result.route_family_match && isGenericWhyItHelps(primary.why_it_helps ?? [])) {
+        result.weakIssues.push("Evidence-chaos route needs file-anchored why_it_helps.");
+      }
+      break;
+    }
     case "O": {
       result.expected_route_family = "client account / instruction conflict";
       const conflictPatterns = [
-        /client\s+account|instruction|conflict|mismatch|position\s+caution|account\s+vs/i,
+        /client\s+account|instruction|conflict|mismatch|position\s+caution|account\s+vs|denies\s+but|inconsistent/i,
       ];
+      const conflictPrimary =
+        primary.id === "client_account_conflict" ||
+        routeFamilyMatchPrimary(primary, ["interview"], conflictPatterns);
+      const conflictBackup =
+        hasStrongBackup(board, ["interview"], ["client_account_conflict"]) ||
+        (board.routes ?? []).some(
+          (r) =>
+            r.id === "client_account_conflict" &&
+            r.status !== "blocked" &&
+            routeHasStrongFamilyAnchors(r),
+        );
+      const conflictCorpus = CONFLICT_CORPUS_GATE_RE.test(corpus);
       result.route_family_match =
-        routeFamilyMatchPrimary(primary, ["interview", "intent", "unknown"], conflictPatterns) ||
-        corpusMentions(board, conflictPatterns);
-      if (disclosurePrimary && !result.route_family_match) {
+        (conflictPrimary || conflictBackup) &&
+        !isGenericRoute(primary) &&
+        !(conflictCorpus && primary.id === "cps_pressure" && !conflictBackup);
+      result.route_family_match_reason = result.route_family_match
+        ? conflictPrimary
+          ? "Client-account conflict primary."
+          : "Client-account conflict strong backup with file anchors."
+        : `Pack O mismatch: primary=${primary.id ?? primary.route_type}.`;
+      if (disclosurePrimary && !conflictPrimary && !conflictBackup) {
         result.weakIssues.push("Client-instruction conflict not surfaced strongly enough.");
+      }
+      if (conflictCorpus && primary.id === "cps_pressure" && !conflictBackup) {
+        result.weakIssues.push(
+          "Conflict pack over-ranked CPS pressure — client-account route should lead when CB-CONFLICT/INSTRUCT markers present.",
+        );
       }
       break;
     }
     case "P": {
-      result.expected_route_family = "bad facts / mitigation / Crown strength";
+      result.expected_route_family = "bad facts / CPS pressure / damage limitation";
       const badFactPatterns = [
-        /bad\s+facts|mitigat|damage\s+limit|Crown\s+strength|prosecution\s+case|weak\s+fight|sentenc/i,
+        /bad\s+facts|mitigat|damage\s+limit|Crown\s+strength|prosecution|CPS\s+pressure|prosecution\s+pressure|defence\s+weakness|risky\s+denial|admission|accepts\s+presence/i,
       ];
-      result.route_family_match =
+      const cpsSignals = board.diagnostics?.cps_pressure_signal_count ?? 0;
+      const cpsPrimary =
+        primary.id === "cps_pressure" ||
         primary.route_type === "mitigation" ||
-        corpusMentions(board, badFactPatterns) ||
-        !disclosurePrimary;
-      if (disclosurePrimary && !corpusMentions(board, badFactPatterns)) {
+        routeFamilyMatchPrimary(primary, ["mitigation", "interview"], badFactPatterns);
+      const cpsBackup =
+        hasStrongBackup(board, ["mitigation", "interview"]) ||
+        hasStrongBackup(board, ["mitigation"], ["cps_pressure"]);
+      const genericWhy = isGenericWhyItHelps(primary.why_it_helps ?? []);
+      result.route_family_match =
+        (cpsPrimary || cpsBackup) &&
+        !(disclosurePrimary && genericWhy) &&
+        !isGenericRoute(primary);
+      result.route_family_match_reason = result.route_family_match
+        ? cpsPrimary
+          ? `CPS/bad-facts primary (cps=${cpsSignals}).`
+          : "CPS/bad-facts strong backup."
+        : `Pack P mismatch: primary=${primary.route_type}, disclosure=${disclosurePrimary}, cps=${cpsSignals}.`;
+      if (disclosurePrimary && (cpsSignals >= 1 || corpusMentions(board, badFactPatterns))) {
         result.weakIssues.push("Bad facts pack over-ranked disclosure.");
+      }
+      if (disclosurePrimary && genericWhy) {
+        result.weakIssues.push("Bad facts pack disclosure primary uses generic why_it_helps.");
+      }
+      break;
+    }
+    case "S": {
+      const exportCorpus = EXPORT_PACK_CORPUS_RE.test(corpus);
+      if (exportCorpus) {
+        // Pack S corpus is CB-EXPORT work-product; readiness beats incidental CPS wording (e.g. basis-of-plea caveat).
+        result.expected_route_family = "export / readiness workflow";
+        const readinessPrimary =
+          primary.id === "readiness" ||
+          /readiness|export|case-control/i.test(primary.title);
+        const readinessBackup = hasExportReadinessBackup(board);
+        const exportOk =
+          readinessPrimary ||
+          readinessBackup ||
+          (!disclosurePrimary &&
+            primary.id !== "cps_pressure" &&
+            routeHasStrongFamilyAnchors(primary));
+        result.route_family_match = exportOk && !isGenericRoute(primary);
+        result.route_family_match_reason = result.route_family_match
+          ? readinessPrimary
+            ? `Export pack: readiness primary (ready=${board.diagnostics?.readiness_signal_count ?? 0}).`
+            : "Export pack: readiness/export strong backup with file anchors."
+          : `Export pack: expected readiness/export (primary=${primary.id ?? primary.route_type}).`;
+        if (disclosurePrimary && isGenericWhyItHelps(primary.why_it_helps ?? [])) {
+          result.weakIssues.push("Export pack disclosure primary uses generic why_it_helps.");
+        }
+        if (primary.id === "cps_pressure" && !readinessBackup && !readinessPrimary) {
+          result.weakIssues.push(
+            "Export pack over-ranked CPS pressure — readiness/export route should lead when EX-S/CB-EXPORT anchors exist.",
+          );
+        }
+      } else {
+        result.expected_route_family = "solicitor export / workflow";
+        result.route_family_match = !disclosurePrimary || routeHasStrongFamilyAnchors(primary);
+      }
+      break;
+    }
+    case "T": {
+      result.expected_route_family = "solicitor review / case-control readiness";
+      const readyPatterns = [
+        /supervisor\s+review|file\s+review|trial\s+readiness|hearing\s+prep|readiness|sign-off|handover|outstanding\s+instructions|proof\s+checklist|CB-REVIEW|CB-READY/i,
+      ];
+      const readyPrimary =
+        primary.id === "readiness" ||
+        /readiness|case-control|review/i.test(primary.title) ||
+        routeFamilyMatchPrimary(primary, ["unknown", "interview"], readyPatterns);
+      const readyBackup = hasStrongBackup(board, ["unknown"], ["readiness"]);
+      const genericWhy = isGenericWhyItHelps(primary.why_it_helps ?? []);
+      result.route_family_match =
+        (readyPrimary || readyBackup) &&
+        !(disclosurePrimary && genericWhy) &&
+        !isGenericRoute(primary);
+      result.route_family_match_reason = result.route_family_match
+        ? readyPrimary
+          ? `Review readiness primary (ready=${board.diagnostics?.readiness_signal_count ?? 0}).`
+          : "Review readiness strong backup."
+        : `Pack T mismatch: primary=${primary.route_type}, disclosure=${disclosurePrimary}.`;
+      if (disclosurePrimary && !readyPrimary && !readyBackup) {
+        result.weakIssues.push("Review-readiness pack over-ranked disclosure.");
+      }
+      if (disclosurePrimary && genericWhy) {
+        result.weakIssues.push("Review-readiness pack disclosure primary uses generic why_it_helps.");
       }
       break;
     }
@@ -1173,6 +1405,9 @@ export function battleboardSweepWeakFailRowsToCsv(rows: BattleboardSweepRow[]): 
     "corpus_markers",
     "safeguards_signal_count",
     "multiparty_signal_count",
+    "cps_pressure_signal_count",
+    "readiness_signal_count",
+    "hearing_court_signal_count",
     "backup_route_types",
     "backup_route_titles",
     "primary_anchor_sample",
@@ -1213,6 +1448,9 @@ export function battleboardSweepWeakFailRowsToCsv(rows: BattleboardSweepRow[]): 
         r.corpus_markers,
         r.safeguards_signal_count,
         r.multiparty_signal_count,
+        r.cps_pressure_signal_count,
+        r.readiness_signal_count,
+        r.hearing_court_signal_count,
         r.backup_route_types,
         r.backup_route_titles,
         r.primary_anchor_sample,
