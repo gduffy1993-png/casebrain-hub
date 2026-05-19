@@ -12,6 +12,7 @@ import {
   BarChart2,
   Building2,
   CalendarClock,
+  Gavel,
   CheckSquare,
   Code,
   GitBranch,
@@ -36,6 +37,7 @@ import {
 } from "lucide-react";
 import { WhatsAppButton } from "@/components/support/WhatsAppButton";
 import type { ReactNode } from "react";
+import { Fragment } from "react";
 
 type NavItem = {
   label: string;
@@ -107,6 +109,7 @@ const CASES_SIDEBAR_ROLE_OPTIONS: RoleOption[] = showAllPracticeAreasInCasesNav
 const labsEnabled = process.env.NEXT_PUBLIC_ENABLE_LABS === "true";
 
 const NAV_ITEMS: NavItem[] = [
+  { label: "Court Today", href: "/court-today", icon: <Gavel className="h-4 w-4" /> },
   { label: "Dashboard", href: "/dashboard", icon: <Home className="h-4 w-4" /> },
   { label: "Police station", href: "/police-station", icon: <Building2 className="h-4 w-4" /> },
   // Compliance and Team tabs hidden for v1 pilot - code preserved but not shown in nav
@@ -276,7 +279,7 @@ function SidebarContent() {
   );
 
   return (
-    <aside className="flex h-full w-64 flex-col border-r border-white/10 bg-surface/50 backdrop-blur-xl">
+    <aside className="flex h-full w-64 flex-col border-r border-slate-800 bg-slate-900 text-slate-100">
       {/* Logo Section */}
       <div className="flex items-center gap-3 px-6 py-6">
         <div className="relative">
@@ -287,9 +290,9 @@ function SidebarContent() {
           <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary to-secondary opacity-50 blur-xl" />
         </div>
         <div>
-          <p className="text-base font-bold text-accent">CaseBrain</p>
-          <p className="text-[10px] uppercase tracking-widest text-primary font-semibold">
-            Intelligent Legal Workspace
+          <p className="text-base font-bold text-white">CaseBrain</p>
+          <p className="text-[10px] uppercase tracking-widest text-slate-400 font-semibold">
+            Criminal defence workflow
           </p>
         </div>
       </div>
@@ -297,6 +300,14 @@ function SidebarContent() {
       {/* Navigation */}
       <nav className="flex-1 space-y-1 px-3 overflow-y-auto">
         {visibleItems.map((item) => {
+          const sectionLabel =
+            item.href === "/court-today"
+              ? "Court diary"
+              : item.href === "/cases"
+                ? "Case work"
+                : item.href === "/dashboard"
+                  ? "Workspace"
+                  : null;
           const isActive =
             pathname === item.href || pathname?.startsWith(`${item.href}/`);
           const itemKey = item.href;
@@ -305,7 +316,13 @@ function SidebarContent() {
 
           if (item.hasRoleFilter) {
             return (
-              <div key={item.href} className="space-y-1">
+              <Fragment key={item.href}>
+                {sectionLabel && (
+                  <p className="px-3 pt-3 pb-1 text-[10px] font-semibold uppercase tracking-wider text-slate-500 first:pt-1">
+                    {sectionLabel}
+                  </p>
+                )}
+              <div className="space-y-1">
                 <div className="flex items-center gap-1">
                   <button
                     onClick={() => toggleExpanded(itemKey)}
@@ -429,12 +446,18 @@ function SidebarContent() {
                   );
                 })()}
               </div>
+              </Fragment>
             );
           }
 
           return (
+            <Fragment key={item.href}>
+              {sectionLabel && (
+                <p className="px-3 pt-3 pb-1 text-[10px] font-semibold uppercase tracking-wider text-slate-500 first:pt-1">
+                  {sectionLabel}
+                </p>
+              )}
             <Link
-              key={item.href}
               href={item.href}
               className={clsx(
                 "group flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-200",
@@ -461,6 +484,7 @@ function SidebarContent() {
                 <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
               )}
             </Link>
+            </Fragment>
           );
         })}
       </nav>
@@ -484,7 +508,7 @@ function SidebarContent() {
 export function Sidebar() {
   return (
     <Suspense fallback={
-      <aside className="flex h-full w-64 flex-col border-r border-white/10 bg-surface/50 backdrop-blur-xl">
+      <aside className="flex h-full w-64 flex-col border-r border-slate-800 bg-slate-900 text-slate-100">
         <div className="flex items-center gap-3 px-6 py-6">
           <div className="h-11 w-11 rounded-xl bg-surface-muted animate-pulse" />
           <div className="space-y-2">

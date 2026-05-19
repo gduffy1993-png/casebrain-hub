@@ -16,6 +16,12 @@ export type StrategyBattleboardProps = {
   maxCollapseRisks?: number;
   /** Suppress duplicate position banner when Control Room shows it above the fold. */
   hidePositionNotice?: boolean;
+  /** Control Room cockpit already shows primary route — omit duplicate card. */
+  hidePrimaryRoute?: boolean;
+  /** Light court-diary cards (Control Room expanded Battleboard). */
+  lightWorkflow?: boolean;
+  /** Omit outer Card wrapper when parent provides a panel shell. */
+  bare?: boolean;
   /** When set, skips internal fetch (parent already loaded battleboard). */
   battleboardData?: BattleboardOutput | null;
   battleboardLoading?: boolean;
@@ -54,12 +60,21 @@ function overallStatusLabel(status: BattleboardOutput["overall_status"]): string
   }
 }
 
-function BattleboardShell({ children }: { children: ReactNode }) {
+function BattleboardShell({
+  children,
+  title = "Strategy Battleboard",
+}: {
+  children: ReactNode;
+  title?: string;
+}) {
   return (
-    <Card className="overflow-hidden border-primary/30 border-border/60" data-testid="strategy-battleboard">
-      <div className="flex items-center gap-2 border-b border-border/50 bg-muted/30 px-4 py-3">
-        <Swords className="h-4 w-4 text-primary" />
-        <h3 className="text-sm font-semibold text-foreground">Strategy Battleboard</h3>
+    <Card
+      className="overflow-hidden border-slate-200 bg-white shadow-sm"
+      data-testid="strategy-battleboard"
+    >
+      <div className="flex items-center gap-2 border-b border-slate-100 bg-slate-50/80 px-4 py-3">
+        <Swords className="h-4 w-4 text-blue-700" />
+        <h3 className="text-sm font-semibold text-slate-900">{title}</h3>
       </div>
       <div className="p-4">{children}</div>
     </Card>
@@ -88,9 +103,21 @@ function BulletSection({
   );
 }
 
-function CompactPrimaryRoute({ route }: { route: BattleboardRoute }) {
+function CompactPrimaryRoute({
+  route,
+  lightWorkflow,
+}: {
+  route: BattleboardRoute;
+  lightWorkflow?: boolean;
+}) {
   return (
-    <Card className="p-4 border-primary/40 bg-primary/5">
+    <Card
+      className={
+        lightWorkflow
+          ? "p-4 border-blue-200/60 bg-blue-50/40 shadow-sm"
+          : "p-4 border-primary/40 bg-primary/5"
+      }
+    >
       <div className="flex flex-wrap items-start justify-between gap-2">
         <div>
           <p className="text-[10px] font-semibold uppercase tracking-wide text-primary mb-1">Best route</p>
@@ -118,9 +145,24 @@ function CompactPrimaryRoute({ route }: { route: BattleboardRoute }) {
   );
 }
 
-function RouteCard({ route, isPrimary }: { route: BattleboardRoute; isPrimary?: boolean }) {
+function RouteCard({
+  route,
+  isPrimary,
+  lightWorkflow,
+}: {
+  route: BattleboardRoute;
+  isPrimary?: boolean;
+  lightWorkflow?: boolean;
+}) {
+  const cardClass = lightWorkflow
+    ? isPrimary
+      ? "p-4 border-blue-200/60 bg-blue-50/40 shadow-sm"
+      : "p-4 border-slate-200 bg-white shadow-sm"
+    : isPrimary
+      ? "p-4 border-primary/40 bg-primary/5"
+      : "p-4 border-border/60 bg-card";
   return (
-    <Card className={`p-4 ${isPrimary ? "border-primary/40 bg-primary/5" : "border-border/60 bg-card"}`}>
+    <Card className={cardClass}>
       <div className="flex flex-wrap items-start justify-between gap-2">
         <div>
           {isPrimary && (
@@ -151,9 +193,21 @@ function RouteCard({ route, isPrimary }: { route: BattleboardRoute; isPrimary?: 
   );
 }
 
-function CompactBackupRoute({ route }: { route: BattleboardRoute }) {
+function CompactBackupRoute({
+  route,
+  lightWorkflow,
+}: {
+  route: BattleboardRoute;
+  lightWorkflow?: boolean;
+}) {
   return (
-    <div className="rounded-md border border-border/50 bg-card/80 px-3 py-2">
+    <div
+      className={
+        lightWorkflow
+          ? "rounded-md border border-slate-200 bg-slate-50/80 px-3 py-2"
+          : "rounded-md border border-border/50 bg-card/80 px-3 py-2"
+      }
+    >
       <div className="flex flex-wrap items-center justify-between gap-2">
         <p className="text-sm font-medium text-foreground">{route.title}</p>
         <Badge variant={statusBadgeVariant(route.status)} size="sm">
@@ -179,6 +233,8 @@ function BattleboardBody({
   maxUrgentMoves,
   maxCollapseRisks,
   hidePositionNotice,
+  hidePrimaryRoute,
+  lightWorkflow,
   showFull,
   onToggleFull,
 }: {
@@ -188,6 +244,8 @@ function BattleboardBody({
   maxUrgentMoves: number;
   maxCollapseRisks: number;
   hidePositionNotice: boolean;
+  hidePrimaryRoute: boolean;
+  lightWorkflow: boolean;
   showFull: boolean;
   onToggleFull: () => void;
 }) {
@@ -205,6 +263,7 @@ function BattleboardBody({
 
   return (
     <>
+      {compact && !lightWorkflow && (
       <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/50 bg-muted/30 px-4 py-3 -mx-4 -mt-4 mb-4">
         <div className="flex items-center gap-2">
           <Swords className="h-4 w-4 text-primary" />
@@ -214,7 +273,6 @@ function BattleboardBody({
           <Badge variant={overallBadgeVariant(data.overall_status)} size="md">
             {overallStatusLabel(data.overall_status)}
           </Badge>
-          {compact && (
             <Button type="button" variant="outline" size="sm" onClick={onToggleFull}>
               {showFull ? (
                 <>
@@ -228,14 +286,24 @@ function BattleboardBody({
                 </>
               )}
             </Button>
-          )}
         </div>
       </div>
+      )}
 
       <div className="space-y-4">
-        <div className="flex items-start gap-2 rounded-md border border-border/50 bg-muted/20 p-3">
-          <Shield className="h-4 w-4 text-muted-foreground shrink-0 mt-0.5" />
-          <p className="text-sm text-foreground">{data.solicitor_safe_summary}</p>
+        <div
+          className={`flex items-start gap-2 ${
+            lightWorkflow
+              ? "rounded-md border border-slate-200 bg-slate-50/80 p-3"
+              : "rounded-md border border-border/50 bg-muted/20 p-3"
+          }`}
+        >
+          <Shield
+            className={`h-4 w-4 shrink-0 mt-0.5 ${lightWorkflow ? "text-slate-500" : "text-muted-foreground"}`}
+          />
+          <p className={`text-sm ${lightWorkflow ? "text-slate-800" : "text-foreground"}`}>
+            {data.solicitor_safe_summary}
+          </p>
         </div>
 
         {data.position_notice &&
@@ -246,19 +314,26 @@ function BattleboardBody({
             </p>
           )}
 
-        {data.primary_route ? (
-          useCompactLayout ? (
-            <CompactPrimaryRoute route={data.primary_route} />
+        {!hidePrimaryRoute &&
+          (data.primary_route ? (
+            useCompactLayout ? (
+              <CompactPrimaryRoute route={data.primary_route} lightWorkflow={lightWorkflow} />
+            ) : (
+              <RouteCard route={data.primary_route} isPrimary lightWorkflow={lightWorkflow} />
+            )
           ) : (
-            <RouteCard route={data.primary_route} isPrimary />
-          )
-        ) : (
-          <Card className="p-4 border-dashed border-border/60">
-            <p className="text-sm text-muted-foreground">
-              No primary route ranked yet. Review backup routes below or add bundle material.
-            </p>
-          </Card>
-        )}
+            <Card
+              className={
+                lightWorkflow
+                  ? "p-4 border-dashed border-slate-200 bg-white"
+                  : "p-4 border-dashed border-border/60"
+              }
+            >
+              <p className={`text-sm ${lightWorkflow ? "text-slate-600" : "text-muted-foreground"}`}>
+                No primary route ranked yet. Review backup routes below or add bundle material.
+              </p>
+            </Card>
+          ))}
 
         {useCompactLayout ? (
           <>
@@ -268,7 +343,7 @@ function BattleboardBody({
                   Backup routes{backupRoutes.length > maxBackupRoutes ? ` (top ${maxBackupRoutes})` : ""}
                 </p>
                 {compactBackups.map((route) => (
-                  <CompactBackupRoute key={route.id} route={route} />
+                  <CompactBackupRoute key={route.id} route={route} lightWorkflow={lightWorkflow} />
                 ))}
               </div>
             )}
@@ -278,7 +353,7 @@ function BattleboardBody({
             <div className="space-y-3">
               <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Backup routes</p>
               {backupRoutes.map((route) => (
-                <RouteCard key={route.id} route={route} />
+                <RouteCard key={route.id} route={route} lightWorkflow={lightWorkflow} />
               ))}
             </div>
           )
@@ -340,6 +415,9 @@ export function StrategyBattleboard({
   maxUrgentMoves = 6,
   maxCollapseRisks = 5,
   hidePositionNotice = false,
+  hidePrimaryRoute = false,
+  lightWorkflow = false,
+  bare = false,
   battleboardData,
   battleboardLoading,
 }: StrategyBattleboardProps) {
@@ -433,20 +511,41 @@ export function StrategyBattleboard({
     );
   }
 
-  return (
-    <Card className="overflow-hidden border-primary/30 border-border/60" data-testid="strategy-battleboard">
-      <div className="p-4">
-        <BattleboardBody
-          data={data}
-          compact={compact}
-          maxBackupRoutes={maxBackupRoutes}
-          maxUrgentMoves={maxUrgentMoves}
-          maxCollapseRisks={maxCollapseRisks}
-          hidePositionNotice={hidePositionNotice}
-          showFull={showFull}
-          onToggleFull={() => setShowFull((v) => !v)}
-        />
+  const body = (
+    <BattleboardBody
+      data={data}
+      compact={compact}
+      maxBackupRoutes={maxBackupRoutes}
+      maxUrgentMoves={maxUrgentMoves}
+      maxCollapseRisks={maxCollapseRisks}
+      hidePositionNotice={hidePositionNotice}
+      hidePrimaryRoute={hidePrimaryRoute}
+      lightWorkflow={lightWorkflow}
+      showFull={showFull}
+      onToggleFull={() => setShowFull((v) => !v)}
+    />
+  );
+
+  if (bare) {
+    return (
+      <div className="min-w-0" data-testid="strategy-battleboard">
+        {body}
       </div>
+    );
+  }
+
+  return (
+    <Card
+      className="overflow-hidden border-slate-200 bg-white shadow-sm"
+      data-testid="strategy-battleboard"
+    >
+      {!compact && !lightWorkflow && (
+        <div className="flex items-center gap-2 border-b border-slate-100 bg-slate-50/80 px-4 py-3">
+          <Swords className="h-4 w-4 text-blue-700" />
+          <h3 className="text-sm font-semibold text-slate-900">Strategy Battleboard</h3>
+        </div>
+      )}
+      <div className={lightWorkflow ? "py-1" : "p-4"}>{body}</div>
     </Card>
   );
 }

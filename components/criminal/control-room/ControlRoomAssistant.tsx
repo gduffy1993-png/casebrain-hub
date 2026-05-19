@@ -167,14 +167,14 @@ function AssistantChat({
   );
 
   return (
-    <Card className="border-border/60 flex flex-col h-full min-h-0 shadow-lg bg-card">
-      <div className="flex items-center justify-between gap-2 border-b border-border/50 px-3 py-2.5 bg-muted/30 shrink-0">
+    <Card className="border-slate-200 flex flex-col h-full min-h-0 shadow-md bg-white">
+      <div className="flex items-center justify-between gap-2 border-b border-slate-100 px-3 py-2.5 bg-slate-50/90 shrink-0">
         <div className="flex items-center gap-2 min-w-0">
-          <MessageSquare className="h-4 w-4 text-primary shrink-0" />
+          <MessageSquare className="h-4 w-4 text-blue-700 shrink-0" />
           <div className="min-w-0">
-            <h3 className="text-sm font-semibold text-foreground truncate">CaseBrain Assistant</h3>
-            <p className="text-[10px] text-muted-foreground truncate">
-              Secondary · file-first prompts · solicitor review
+            <h3 className="text-sm font-semibold text-slate-900 truncate">CaseBrain Assistant</h3>
+            <p className="text-[10px] text-slate-500 truncate">
+              Beta · secondary to case data · solicitor review
             </p>
           </div>
         </div>
@@ -271,7 +271,7 @@ export function ControlRoomAssistantDock(props: ControlRoomAssistantProps) {
   return (
     <>
       <aside
-        className="hidden xl:flex flex-col fixed right-0 top-14 z-30 w-[min(360px,26vw)] h-[calc(100vh-3.5rem)] border-l border-border/60 bg-background/95 backdrop-blur-sm p-3"
+        className="hidden xl:flex flex-col fixed right-0 top-14 z-30 w-[min(360px,26vw)] h-[calc(100vh-3.5rem)] border-l border-slate-200 bg-slate-50/95 backdrop-blur-sm p-3"
         aria-label="Case assistant"
       >
         <AssistantChat {...props} />

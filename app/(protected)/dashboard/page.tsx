@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState, useMemo } from "react";
+import { Suspense, useEffect, useState, useMemo } from "react";
+import { CourtTodayDashboardRedirect } from "@/components/criminal/court-today/CourtTodayDashboardRedirect";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { sortCasesForDisplay } from "@/lib/case-list-sort";
@@ -79,6 +80,9 @@ export default function DashboardPage() {
 
   return (
     <div className="space-y-6">
+      <Suspense fallback={null}>
+        <CourtTodayDashboardRedirect />
+      </Suspense>
       <header>
         <h1 className="text-2xl font-semibold text-accent">Criminal cases</h1>
         <p className="text-sm text-accent/60">Your workspace</p>

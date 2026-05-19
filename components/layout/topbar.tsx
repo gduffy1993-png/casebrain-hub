@@ -55,7 +55,7 @@ export function Topbar({ onQuickUpload }: TopbarProps) {
   };
 
   return (
-    <header className="sticky top-0 z-20 flex h-16 items-center justify-between border-b bg-surface px-6">
+    <header className="sticky top-0 z-20 flex h-16 items-center justify-between border-b border-slate-200 bg-white px-6">
       <div className="flex flex-col">
         <span className="text-xs uppercase tracking-wide text-accent/50">
           {orgName}

@@ -2,27 +2,16 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import {
-  AlertTriangle,
-  Calendar,
-  FileText,
-  ListChecks,
-  Loader2,
-  Scale,
-  Upload,
-} from "lucide-react";
+import { AlertTriangle, Loader2 } from "lucide-react";
 import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { StrategyBattleboard } from "./StrategyBattleboard";
 import { DashboardCard } from "./control-room/DashboardCard";
 import { ControlRoomAssistantDock } from "./control-room/ControlRoomAssistant";
-import { AboveFoldSummary } from "./control-room/AboveFoldSummary";
+import { ControlRoomBattleboardAccordion } from "./control-room/ControlRoomBattleboardAccordion";
+import { ControlRoomCockpit } from "./control-room/ControlRoomCockpit";
 import { RiskColumn } from "./control-room/GlanceGrid";
 import {
   collectChaseItems,
   formatDisclosureGlance,
-  formatMissingEvidenceStrip,
 } from "./control-room/chaseItems";
 import type { CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
 import type { DefenceStrategyPlan } from "@/lib/criminal/strategy-output";
@@ -269,11 +258,6 @@ export function CaseControlRoom({
   );
 
   const chaseItems = useMemo(() => chaseItemsAll.slice(0, 6), [chaseItemsAll]);
-  const missingEvidenceStrip = useMemo(
-    () => formatMissingEvidenceStrip(chaseItemsAll),
-    [chaseItemsAll],
-  );
-
   const riskLabel = useMemo(() => {
     if (effectiveProceduralSafety?.status === "UNSAFE_TO_PROCEED") return "Procedural — resolve disclosure";
     if (effectiveProceduralSafety?.status === "CONDITIONALLY_UNSAFE") return "Conditional — disclosure gaps";
@@ -402,61 +386,30 @@ export function CaseControlRoom({
       ? String(committedStrategy.primary).replace(/_/g, " ")
       : "Provisional — commit strategy or record position");
 
+  const safeCourtLine = useMemo(() => {
+    const fromRoute = battleboard?.primary_route?.hearing_line?.trim();
+    if (fromRoute) return fromRoute;
+    const summary = battleboard?.solicitor_safe_summary?.trim();
+    if (summary) return summary.slice(0, 600);
+    return "Prepare a conditional hearing line after reviewing served material — do not overstate position or facts.";
+  }, [battleboard]);
+
   const exitClassic = () => {
     router.replace(`/cases/${caseId}?tab=strategy`);
   };
 
   return (
-    <div className="min-h-0 pb-20 xl:pb-4" data-testid="case-control-room">
-      {/* Top case strip */}
-      <Card className="border-border/60 bg-gradient-to-r from-muted/40 via-card to-muted/20 overflow-hidden">
-        <div className="px-3 py-2.5 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <div className="min-w-0">
-            <div className="flex flex-wrap items-center gap-2">
-              <Scale className="h-5 w-5 text-primary shrink-0" />
-              <h1 className="text-lg font-semibold text-foreground truncate">{caseTitle}</h1>
-              <Badge variant="secondary" size="sm">
-                Control Room
-              </Badge>
-            </div>
-            <p className="text-sm text-muted-foreground mt-0.5">{clientLabel}</p>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            <Button type="button" variant="outline" size="sm" onClick={exitClassic}>
-              Classic workspace
-            </Button>
-            <Button type="button" variant="outline" size="sm" onClick={onUploadEvidence}>
-              <Upload className="h-3.5 w-3.5 mr-1" />
-              Upload
-            </Button>
-            <Button type="button" size="sm" onClick={onRecordPosition}>
-              Record position
-            </Button>
-          </div>
-        </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-px bg-border/50 border-t border-border/50 text-xs">
-          <StripCell label="Stage" value={stage} />
-          <StripCell label="Risk" value={riskLabel} warn />
-          <StripCell
-            label="Missing evidence"
-            value={missingEvidenceStrip.label}
-            warn={missingEvidenceStrip.warn}
-          />
-          <StripCell label="Next hearing" value={nextHearing} icon={<Calendar className="h-3 w-3" />} />
-          <StripCell label="Position" value={positionLabel} className="lg:col-span-2" />
-        </div>
-      </Card>
-
-      <div className="mt-3 xl:mr-[min(360px,26vw)] xl:pr-3 space-y-3 max-w-[1400px]">
+    <div className="min-h-0 pb-20 xl:pb-4 text-slate-900" data-testid="case-control-room">
+      <div className="xl:mr-[min(360px,26vw)] xl:pr-3 max-w-[1400px]">
         {snapshotLoading ? (
-          <DashboardCard title="Case summary" icon={<FileText className="h-4 w-4 text-primary" />}>
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <Loader2 className="h-4 w-4 animate-spin" />
-              Loading case data…
-            </div>
-          </DashboardCard>
+          <Card className="p-8 flex items-center justify-center gap-2 text-slate-600 border-slate-200 bg-white">
+            <Loader2 className="h-5 w-5 animate-spin text-blue-700" />
+            Loading case data…
+          </Card>
         ) : (
-          <AboveFoldSummary
+          <ControlRoomCockpit
+            caseTitle={caseTitle}
+            clientLabel={clientLabel}
             allegation={allegation}
             stage={stage}
             bundleLabel={bundleLabel}
@@ -470,55 +423,37 @@ export function CaseControlRoom({
             immediateActions={immediateActions}
             strategyBasisNotice={strategyBasisNotice}
             positionNotice={positionNoticeOnce}
+            riskLabel={riskLabel}
+            safeCourtLine={safeCourtLine}
+            loading={snapshotLoading}
+            onRecordPosition={onRecordPosition}
+            onUploadEvidence={onUploadEvidence}
+            onExitClassic={exitClassic}
+            battleboardSection={
+              <ControlRoomBattleboardAccordion
+                caseId={caseId}
+                battleboard={battleboard}
+                battleboardLoading={battleboardLoading}
+                riskOverviewSection={
+                  <DashboardCard
+                    title="Risk & weakness overview"
+                    icon={<AlertTriangle className="h-4 w-4 text-amber-600 shrink-0" />}
+                    bodyClassName="py-2"
+                    className="border-slate-200 bg-white"
+                  >
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                      <RiskColumn title="Evidential" items={evidentialRisks} />
+                      <RiskColumn title="Procedural / disclosure" items={proceduralRisks} />
+                      <RiskColumn title="Strategic" items={strategicRisks} />
+                    </div>
+                  </DashboardCard>
+                }
+              />
+            }
           />
         )}
 
-        {immediateActions.length > 3 && (
-          <DashboardCard
-            title="Further actions"
-            icon={<ListChecks className="h-4 w-4 text-primary shrink-0" />}
-            bodyClassName="py-2"
-          >
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-1 text-xs text-foreground list-disc pl-4">
-              {immediateActions.slice(3, 8).map((item, i) => (
-                <li key={i} className="line-clamp-2">
-                  {item}
-                </li>
-              ))}
-            </ul>
-            {chaseItems.length > 0 && (
-              <p className="text-[10px] text-muted-foreground mt-2 border-t border-border/40 pt-2">
-                Chase on file: {chaseItems.slice(0, 3).join(" · ")}
-                {chaseItems.length > 3 ? ` (+${chaseItems.length - 3} more)` : ""}
-              </p>
-            )}
-          </DashboardCard>
-        )}
-
-        <StrategyBattleboard
-          caseId={caseId}
-          compact
-          maxBackupRoutes={2}
-          maxUrgentMoves={6}
-          maxCollapseRisks={5}
-          hidePositionNotice
-          battleboardData={battleboard}
-          battleboardLoading={battleboardLoading}
-        />
-
-        <DashboardCard
-          title="Risk & weakness overview"
-          icon={<AlertTriangle className="h-4 w-4 text-amber-500 shrink-0" />}
-          bodyClassName="py-2"
-        >
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-            <RiskColumn title="Evidential" items={evidentialRisks} />
-            <RiskColumn title="Procedural / disclosure" items={proceduralRisks} />
-            <RiskColumn title="Strategic" items={strategicRisks} />
-          </div>
-        </DashboardCard>
-
-        <p className="text-[10px] text-center text-muted-foreground pb-1">
+        <p className="text-[10px] text-center text-slate-500 pb-1 mt-4">
           Evidence-linked · conditional · provisional where stated · solicitor review required · no predictions
         </p>
       </div>
@@ -716,30 +651,3 @@ function uniqueStrings(items: string[]): string[] {
   return out;
 }
 
-function StripCell({
-  label,
-  value,
-  warn,
-  icon,
-  className = "",
-}: {
-  label: string;
-  value: string;
-  warn?: boolean;
-  icon?: React.ReactNode;
-  className?: string;
-}) {
-  return (
-    <div className={`bg-card/90 px-3 py-2 ${className}`}>
-      <p className="text-[10px] uppercase tracking-wide text-muted-foreground">{label}</p>
-      <p
-        className={`text-xs font-medium mt-0.5 flex items-center gap-1 line-clamp-2 ${
-          warn ? "text-amber-700 dark:text-amber-400" : "text-foreground"
-        }`}
-      >
-        {icon}
-        {value}
-      </p>
-    </div>
-  );
-}

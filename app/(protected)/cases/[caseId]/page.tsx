@@ -25,6 +25,7 @@ import { PiValuationHelper } from "@/components/pi/PiValuationHelper";
 // Sidebar utility tools still imported below
 import { HousingQuantumCalculator } from "@/components/housing/HousingQuantumCalculator";
 import { CriminalCaseView } from "@/components/criminal/CriminalCaseView";
+import { CriminalCasePageLayout } from "@/components/criminal/CriminalCasePageLayout";
 import { CaseWorkspaceLayout } from "@/components/cases/CaseWorkspaceLayout";
 import { normalizePracticeArea } from "@/lib/types/casebrain";
 import { LitigationGuidancePanel } from "@/components/core/LitigationGuidancePanel";
@@ -986,24 +987,45 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
   };
   const practiceAreaLabel = PRACTICE_AREA_LABEL_MAP[caseRecord.practice_area ?? ""] ?? "General";
 
+  const caseFileDocuments = (documents ?? []).map(
+    (d: { id: string; name: string; created_at: string; raw_text?: string | null }) => {
+      const rawText = d.raw_text;
+      const hasText = typeof rawText === "string" && rawText.trim().length > 50;
+      return {
+        id: d.id,
+        name: d.name,
+        created_at: d.created_at,
+        type: (d as { type?: string | null }).type ?? null,
+        extractionStatus: hasText ? ("full" as const) : ("no_text" as const),
+        extractionMessage: hasText ? undefined : "This file may be image-only; we couldn't extract text.",
+      };
+    },
+  );
+
+  if (isCriminalCase) {
+    return (
+      <CriminalCasePageLayout documents={caseFileDocuments}>
+        <CasePageClient
+          casePracticeArea={caseRecord.practice_area as PracticeArea | null | undefined}
+        />
+        <ErrorBoundary
+          fallback={
+            <div className="p-4">
+              <p className="text-sm text-accent/60">Unable to load criminal case view right now.</p>
+            </div>
+          }
+        >
+          <CriminalCaseView caseId={caseId} />
+        </ErrorBoundary>
+      </CriminalCasePageLayout>
+    );
+  }
+
   return (
     <div className="grid gap-6 xl:grid-cols-[360px_1fr_320px]">
       <aside className="space-y-4">
         <Card title="Case Files">
-          <CaseFilesList
-            documents={(documents ?? []).map((d: { id: string; name: string; created_at: string; raw_text?: string | null }) => {
-              const rawText = d.raw_text;
-              const hasText = typeof rawText === "string" && rawText.trim().length > 50;
-              return {
-                id: d.id,
-                name: d.name,
-                created_at: d.created_at,
-                type: (d as { type?: string | null }).type ?? null,
-                extractionStatus: hasText ? ("full" as const) : ("no_text" as const),
-                extractionMessage: hasText ? undefined : "This file may be image-only; we couldn't extract text.",
-              };
-            })}
-          />
+          <CaseFilesList documents={caseFileDocuments} />
         </Card>
 
         {!isCriminalCase && (
