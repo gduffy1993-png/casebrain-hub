@@ -1464,6 +1464,46 @@ function timelineSignalScore(bundleText: string): number {
   return spec ? scoreRoute(bundleText, spec) : 0;
 }
 
+/** Injury mechanism / medical causation dispute signals (fall, contact, furniture, etc.). */
+function causationSignalScore(bundleText: string): number {
+  const spec = ROUTE_SPECS.find((s) => s.id === "causation");
+  let score = spec ? scoreRoute(bundleText, spec) : 0;
+  const mechanismPatterns = [
+    /\bcausation\s+disputed\b/i,
+    /\bdisputed\s+causation\b/i,
+    /\bhow\s+the\s+injury\b/i,
+    /\binjury\s+(?:was\s+)?caused\b/i,
+    /\bmechanism\s+of\s+injury\b/i,
+    /\bfall\b/i,
+    /\b(?:bottle|glass)\b/i,
+    /\bfurniture\b/i,
+    /\btable\b/i,
+    /\bimpact\s+with\b/i,
+    /\bstruggle\b/i,
+    /\balternative\s+cause\b/i,
+    /\bmedical\s+causation\b/i,
+    /\bself[- ]?defence\s+and\s+causation/i,
+  ];
+  for (const re of mechanismPatterns) {
+    if (re.test(bundleText)) score += 1;
+  }
+  return score;
+}
+
+function hasCausationMechanismDispute(bundleText: string): boolean {
+  const hits = [
+    /\b(?:fall|fell|falling)\b/i.test(bundleText),
+    /\b(?:bottle|glass)\b/i.test(bundleText),
+    /\b(?:table|furniture)\b/i.test(bundleText),
+    /\bimpact\s+with\b/i.test(bundleText),
+    /\bstruggle\b/i.test(bundleText),
+    /\bcausation\s+disputed\b/i.test(bundleText),
+    /\bdisputed\s+causation\b/i.test(bundleText),
+    /\bhow\s+the\s+injury\b/i.test(bundleText),
+  ].filter(Boolean).length;
+  return hits >= 2;
+}
+
 function hearingSignalScore(bundleText: string): number {
   return hearingCourtSignalScore(bundleText);
 }
@@ -1495,6 +1535,7 @@ function rankRouteForPrimary(
   const saf = safeguardsSignalScore(bundleText);
   const multi = multipartySignalScore(bundleText);
   const time = timelineSignalScore(bundleText);
+  const caus = causationSignalScore(bundleText);
   const hear = hearingSignalScore(bundleText);
   const cps = cpsPressureSignalScore(bundleText);
   const ready = readinessSignalScore(bundleText);
@@ -1528,6 +1569,8 @@ function rankRouteForPrimary(
       if (ocr && time < 3) rank -= 45;
       if (saf >= 1) rank -= 55 + saf * 12;
       if (saf >= 3) rank -= 35;
+      if (hasCausationMechanismDispute(bundleText) && caus >= 2) rank -= 45;
+      if (caus > time && caus >= 2) rank -= 30;
       break;
     case "identity":
       rank += 88;
@@ -1549,7 +1592,12 @@ function rankRouteForPrimary(
       if (messy) rank += 25;
       break;
     case "causation":
-      rank += 72;
+      rank += 78 + caus * 16;
+      if (caus >= 2) rank += 42;
+      if (caus >= 4) rank += 28;
+      if (hasCausationMechanismDispute(bundleText)) rank += 55;
+      if (time >= 2 && caus >= time) rank += 35;
+      if (messy && caus >= 2) rank += 20;
       break;
     case "intent":
       rank += 68;
@@ -1876,6 +1924,23 @@ export function buildStrategyBattleboard(input: StrategyBattleboardInput): Battl
       const [tRoute] = routes.splice(tIdx, 1);
       routes.unshift(tRoute);
     }
+  }
+
+  const causScore = causationSignalScore(bundleText);
+  const timeScore = timelineSignalScore(bundleText);
+  if (
+    causScore >= 2 &&
+    routes[0]?.route_type === "timeline" &&
+    (causScore > timeScore || hasCausationMechanismDispute(bundleText))
+  ) {
+    promoteRouteToPrimary("causation");
+  }
+  if (
+    routes[0]?.route_type === "timeline" &&
+    causScore >= 3 &&
+    hasCausationMechanismDispute(bundleText)
+  ) {
+    promoteRouteToPrimary("causation");
   }
 
   const primary_route = routes[0];

@@ -31,6 +31,12 @@ import {
   buildControlRoomHref,
   buildHearingWarRoomHref,
 } from "./disclosureChaseLinks";
+import type { ExtractedBundleCaseMetadata } from "@/lib/criminal/extract-bundle-case-metadata";
+import {
+  resolveCaseHeaderMetadata,
+  sanitizeHeaderAllegation,
+  sanitizeHeaderClient,
+} from "@/lib/criminal/resolve-case-header-metadata";
 
 const LOCAL_STORAGE_PREFIX = "casebrain:disclosure-chase:";
 
@@ -40,11 +46,14 @@ type MatterSummary = {
   clientInitials: string | null;
   allegedOffence: string | null;
   stageDetected: string | null;
+  defendantName?: string | null;
+  bailOutcome?: string | null;
 };
 
 type BundleSourceSummary = {
   documentCount: number;
-  header?: { stage: string | null };
+  header?: { stage: string | null; shortTitle?: string | null; accused?: string | null };
+  caseMetadata?: ExtractedBundleCaseMetadata | null;
 };
 
 export type DisclosureChaseProps = {
@@ -83,56 +92,6 @@ function statusBadgeVariant(
   }
 }
 
-function sanitizeHeaderClient(label: string): string {
-  const t = label.trim();
-  if (!t || /^client\b/i.test(t) || /not safely extracted/i.test(t)) {
-    return "Client name not safely extracted";
-  }
-  return t;
-}
-
-function sanitizeHeaderAllegation(raw: string): string {
-  const t = raw.trim();
-  if (!t) return "Offence wording not safely extracted";
-  const l = t.toLowerCase();
-  if (
-    l.startsWith("unknown") ||
-    l.includes("add charge sheet") ||
-    l.includes("offence-specific strategy") ||
-    l.includes("not safely extracted")
-  ) {
-    return "Offence wording not safely extracted";
-  }
-  return t;
-}
-
-function formatGbDate(dateStr: string | null | undefined): string | null {
-  if (!dateStr) return null;
-  try {
-    return new Date(dateStr).toLocaleDateString("en-GB", {
-      day: "numeric",
-      month: "short",
-      year: "numeric",
-    });
-  } catch {
-    return null;
-  }
-}
-
-function formatHearingStatus(snapshot: CaseSnapshot | null): string {
-  const at = snapshot?.caseMeta?.hearingNextAt;
-  if (!at) return "No hearing date safely extracted";
-  const datePart = formatGbDate(at);
-  if (!datePart) return "No hearing date safely extracted";
-  const type = snapshot?.caseMeta?.hearingNextType?.trim();
-  return type ? `${type} · ${datePart}` : datePart;
-}
-
-function resolveClientLabel(matter: MatterSummary | null): string {
-  const initials = matter?.clientInitials?.trim();
-  if (initials && initials.length >= 2 && !/^client\b/i.test(initials)) return initials;
-  return "Client name not safely extracted";
-}
 
 function deriveBundleHealth(
   snapshot: CaseSnapshot | null,
@@ -393,6 +352,8 @@ export function DisclosureChase({
           clientInitials: data.clientInitials ?? data.station?.clientInitials ?? null,
           allegedOffence: data.station?.allegedOffence ?? data.allegedOffence ?? null,
           stageDetected: data.matterState ?? data.stage ?? null,
+          defendantName: data.defendantName ?? null,
+          bailOutcome: data.bailOutcome ?? null,
         });
       })
       .catch(() => {});
@@ -431,7 +392,14 @@ export function DisclosureChase({
         const d = res.data as BundleSourceSummary & { documentCount?: number };
         setBundleSource({
           documentCount: d.documentCount ?? 0,
-          header: d.header ? { stage: d.header.stage ?? null } : undefined,
+          header: d.header
+            ? {
+                stage: d.header.stage ?? null,
+                shortTitle: d.header.shortTitle ?? null,
+                accused: d.header.accused ?? null,
+              }
+            : undefined,
+          caseMetadata: d.caseMetadata ?? null,
         });
       })
       .catch(() => {});
@@ -440,24 +408,39 @@ export function DisclosureChase({
     };
   }, [caseId]);
 
-  const clientLabel = sanitizeHeaderClient(resolveClientLabel(matter));
-  const allegation = sanitizeHeaderAllegation(
-    snapshot?.resolvedOffence?.label?.trim() ||
-      matter?.allegedOffence?.trim() ||
-      snapshot?.charges?.[0]?.offence?.trim() ||
-      "",
+  const headerMeta = useMemo(
+    () =>
+      resolveCaseHeaderMetadata({
+        snapshot,
+        matter: matter
+          ? {
+              clientInitials: matter.clientInitials,
+              defendantName: matter.defendantName,
+              allegedOffence: matter.allegedOffence,
+              stageDetected: matter.stageDetected,
+              bailOutcome: matter.bailOutcome,
+            }
+          : null,
+        bundleMetadata: bundleSource?.caseMetadata,
+        bundleHeader: bundleSource?.header,
+        matterState,
+      }),
+    [snapshot, matter, bundleSource, matterState],
   );
-  const stage =
-    bundleSource?.header?.stage?.trim() ||
-    matter?.stageDetected?.replace(/_/g, " ") ||
-    snapshot?.caseMeta?.caseStage?.replace(/_/g, " ") ||
-    matterState?.replace(/_/g, " ") ||
-    "Stage not recorded";
+
+  const clientLabel = sanitizeHeaderClient(headerMeta.clientLabel);
+  const allegation = sanitizeHeaderAllegation(headerMeta.allegation);
+  const stage = headerMeta.stage;
+  const metadataNote = headerMeta.metadataNote;
 
   const positionStatus =
     hasSavedPosition && savedPosition?.position_text?.trim()
       ? savedPosition.position_text.split(/[.!?]/)[0].trim() + "."
-      : "Position not safely recorded yet";
+      : headerMeta.defencePosition
+        ? headerMeta.defencePosition.length > 100
+          ? `${headerMeta.defencePosition.slice(0, 97)}…`
+          : headerMeta.defencePosition
+        : "Position not safely recorded yet";
 
   const brief: DisclosureChaseBrief = useMemo(
     () =>
@@ -467,8 +450,11 @@ export function DisclosureChase({
         clientLabel,
         allegation,
         stage,
-        hearingStatus: formatHearingStatus(snapshot),
-        hearingDateIso: snapshot?.caseMeta?.hearingNextAt ?? null,
+        hearingStatus: headerMeta.nextHearing,
+        hearingDateIso:
+          bundleSource?.caseMetadata?.nextHearingIso ??
+          snapshot?.caseMeta?.hearingNextAt ??
+          null,
         bundleHealth: deriveBundleHealth(snapshot, bundleSource, battleboard),
         positionStatus,
         battleboard,
@@ -558,6 +544,10 @@ export function DisclosureChase({
 
           <dl className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-px bg-slate-100">
             {[
+              {
+                label: "Court",
+                value: headerMeta.court?.trim() || "Court not safely extracted",
+              },
               { label: "Stage", value: brief.stage },
               { label: "Bundle", value: brief.bundleHealth },
               { label: "Position", value: brief.positionStatus },
@@ -578,6 +568,9 @@ export function DisclosureChase({
               {brief.hearingDeadlineNote}
             </p>
           )}
+          {metadataNote ? (
+            <p className="px-4 py-2 text-[10px] text-slate-400 border-t border-slate-100">{metadataNote}</p>
+          ) : null}
         </header>
 
         {loading ? (

@@ -33,6 +33,12 @@ import { buildDisclosureChaseHref } from "@/components/criminal/disclosure-chase
 import { buildControlRoomHref, buildHearingWarRoomHref } from "./hearingWarRoomLinks";
 import { HearingWarRoomAssistant } from "./HearingWarRoomAssistant";
 import type { ControlRoomAssistantContext } from "@/components/criminal/control-room/assistantBattleboardFallback";
+import type { ExtractedBundleCaseMetadata } from "@/lib/criminal/extract-bundle-case-metadata";
+import {
+  resolveCaseHeaderMetadata,
+  sanitizeHeaderAllegation,
+  sanitizeHeaderClient,
+} from "@/lib/criminal/resolve-case-header-metadata";
 
 const ABOVE_FOLD_LIST_CAP = 5;
 
@@ -48,12 +54,15 @@ type MatterSummary = {
   clientInitials: string | null;
   allegedOffence: string | null;
   stageDetected: string | null;
+  defendantName?: string | null;
+  bailOutcome?: string | null;
 };
 
 type BundleSourceSummary = {
   documentCount: number;
   combinedTextLength: number;
-  header?: { shortTitle: string | null; stage: string | null };
+  header?: { shortTitle: string | null; stage: string | null; accused?: string | null };
+  caseMetadata?: ExtractedBundleCaseMetadata | null;
 };
 
 export type HearingWarRoomProps = {
@@ -90,44 +99,6 @@ function formatGbDate(dateStr: string | null | undefined): string | null {
   }
 }
 
-function formatHearingStatus(snapshot: CaseSnapshot | null): string {
-  const at = snapshot?.caseMeta?.hearingNextAt;
-  if (!at) return "No hearing date safely extracted";
-  const datePart = formatGbDate(at);
-  if (!datePart) return "No hearing date safely extracted";
-  const type = snapshot?.caseMeta?.hearingNextType?.trim();
-  return type ? `${type} · ${datePart}` : datePart;
-}
-
-function resolveClientLabel(matter: MatterSummary | null, snapshot: CaseSnapshot | null): string {
-  const initials = matter?.clientInitials?.trim();
-  if (initials && initials.length >= 2 && !/^client\b/i.test(initials)) return initials;
-  return "Client name not safely extracted";
-}
-
-function sanitizeHeaderClient(label: string): string {
-  const t = label.trim();
-  if (!t || /^client\b/i.test(t) || /not safely extracted/i.test(t)) {
-    return "Client name not safely extracted";
-  }
-  return t;
-}
-
-function sanitizeHeaderAllegation(raw: string): string {
-  const t = raw.trim();
-  if (!t) return "Offence wording not safely extracted";
-  const l = t.toLowerCase();
-  if (
-    l.startsWith("unknown") ||
-    l.includes("add charge sheet") ||
-    l.includes("offence-specific strategy") ||
-    l.includes("check charge sheet") ||
-    l.includes("not safely extracted")
-  ) {
-    return "Offence wording not safely extracted";
-  }
-  return t;
-}
 
 function deriveBundleHealth(
   snapshot: CaseSnapshot | null,
@@ -263,6 +234,8 @@ export function HearingWarRoom({
           clientInitials: data.clientInitials ?? data.station?.clientInitials ?? null,
           allegedOffence: data.station?.allegedOffence ?? data.allegedOffence ?? null,
           stageDetected: data.matterState ?? data.stage ?? null,
+          defendantName: data.defendantName ?? null,
+          bailOutcome: data.bailOutcome ?? null,
         });
       })
       .catch(() => {});
@@ -303,8 +276,13 @@ export function HearingWarRoom({
           documentCount: d.documentCount ?? 0,
           combinedTextLength: d.combinedTextLength ?? 0,
           header: d.header
-            ? { shortTitle: d.header.shortTitle ?? null, stage: d.header.stage ?? null }
+            ? {
+                shortTitle: d.header.shortTitle ?? null,
+                stage: d.header.stage ?? null,
+                accused: d.header.accused ?? null,
+              }
             : undefined,
+          caseMetadata: d.caseMetadata ?? null,
         });
       })
       .catch(() => {});
@@ -314,19 +292,32 @@ export function HearingWarRoom({
   }, [caseId]);
 
   const caseTitle = snapshot?.caseMeta?.title?.trim() || "Criminal case";
-  const clientLabel = sanitizeHeaderClient(resolveClientLabel(matter, snapshot));
-  const allegation = sanitizeHeaderAllegation(
-    snapshot?.resolvedOffence?.label?.trim() ||
-      matter?.allegedOffence?.trim() ||
-      snapshot?.charges?.[0]?.offence?.trim() ||
-      "",
+
+  const headerMeta = useMemo(
+    () =>
+      resolveCaseHeaderMetadata({
+        snapshot,
+        matter: matter
+          ? {
+              clientInitials: matter.clientInitials,
+              defendantName: matter.defendantName,
+              allegedOffence: matter.allegedOffence,
+              stageDetected: matter.stageDetected,
+              bailOutcome: matter.bailOutcome,
+            }
+          : null,
+        bundleMetadata: bundleSource?.caseMetadata,
+        bundleHeader: bundleSource?.header,
+        matterState,
+      }),
+    [snapshot, matter, bundleSource, matterState],
   );
-  const stage =
-    bundleSource?.header?.stage?.trim() ||
-    matter?.stageDetected?.replace(/_/g, " ") ||
-    snapshot?.caseMeta?.caseStage?.replace(/_/g, " ") ||
-    matterState?.replace(/_/g, " ") ||
-    "Stage not recorded";
+
+  const clientLabel = sanitizeHeaderClient(headerMeta.clientLabel);
+  const allegation = sanitizeHeaderAllegation(headerMeta.allegation);
+  const stage = headerMeta.stage;
+  const hearingStatus = headerMeta.nextHearing;
+  const metadataNote = headerMeta.metadataNote;
 
   const chaseItemsAll = useMemo(
     () =>
@@ -341,9 +332,13 @@ export function HearingWarRoom({
   const positionStatus =
     hasSavedPosition && savedPosition?.position_text?.trim()
       ? savedPosition.position_text.split(/[.!?]/)[0].trim() + "."
-      : battleboard?.position_notice?.includes("not safely recorded")
-        ? "Position not safely recorded yet"
-        : "Position not recorded";
+      : headerMeta.defencePosition
+        ? headerMeta.defencePosition.length > 100
+          ? `${headerMeta.defencePosition.slice(0, 97)}…`
+          : headerMeta.defencePosition
+        : battleboard?.position_notice?.includes("not safely recorded")
+          ? "Position not safely recorded yet"
+          : "Position not recorded";
 
   const readiness = useMemo(() => {
     if (effectiveProceduralSafety?.status === "UNSAFE_TO_PROCEED") {
@@ -363,7 +358,7 @@ export function HearingWarRoom({
         clientLabel,
         allegation,
         stage,
-        hearingStatus: formatHearingStatus(snapshot),
+        hearingStatus,
         bundleHealth: deriveBundleHealth(snapshot, bundleSource, battleboard),
         positionStatus,
         readiness,
@@ -379,7 +374,7 @@ export function HearingWarRoom({
       clientLabel,
       allegation,
       stage,
-      snapshot,
+      hearingStatus,
       bundleSource,
       battleboard,
       positionStatus,
@@ -470,6 +465,10 @@ export function HearingWarRoom({
 
           <dl className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-px bg-slate-100">
             {[
+              {
+                label: "Court",
+                value: headerMeta.court?.trim() || "Court not safely extracted",
+              },
               { label: "Stage", value: brief.stage },
               { label: "Hearing", value: brief.hearingStatus },
               { label: "Bundle", value: brief.bundleHealth },
@@ -483,7 +482,7 @@ export function HearingWarRoom({
                   "Provisional",
               },
             ].map((tile) => (
-              <div key={tile.label} className="bg-white px-3 py-2.5">
+              <div key={tile.label} className="bg-white px-3 py-2.5 min-w-0">
                 <dt className={workflowSectionTitle}>{tile.label}</dt>
                 <dd className="text-xs font-medium text-slate-900 mt-1 line-clamp-3 leading-snug">
                   {loading ? "…" : tile.value}
@@ -491,6 +490,9 @@ export function HearingWarRoom({
               </div>
             ))}
           </dl>
+          {metadataNote ? (
+            <p className="px-4 py-2 text-[10px] text-slate-400 border-t border-slate-100">{metadataNote}</p>
+          ) : null}
         </header>
 
         {loading ? (

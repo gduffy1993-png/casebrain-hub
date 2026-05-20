@@ -33,7 +33,7 @@ export async function GET(_request: Request, { params }: RouteParams) {
     const { data, error } = await supabase
       .from("criminal_cases")
       .select(
-        "matter_state, time_in_custody_at, next_pace_review_at, interview_stance, station_summary, grounds_for_arrest, date_of_arrest, alleged_offence, custody_number, police_station_name, client_initials, client_yob, representation_type, risk_appropriate_adult, risk_interpreter, risk_mental_health, risk_medical_issues, initial_disclosure_received, initial_disclosure_notes, bail_return_date, bail_outcome, matter_closed_at, matter_closed_reason, plea, plea_date"
+        "matter_state, time_in_custody_at, next_pace_review_at, interview_stance, station_summary, grounds_for_arrest, date_of_arrest, alleged_offence, custody_number, police_station_name, client_initials, client_yob, defendant_name, representation_type, risk_appropriate_adult, risk_interpreter, risk_mental_health, risk_medical_issues, initial_disclosure_received, initial_disclosure_notes, bail_return_date, bail_outcome, matter_closed_at, matter_closed_reason, plea, plea_date"
       )
       .eq("id", caseId)
       .eq("org_id", orgId)
@@ -86,6 +86,9 @@ export async function GET(_request: Request, { params }: RouteParams) {
       matterClosedReason: data.matter_closed_reason ?? null,
       plea: row.plea ?? null,
       pleaDate: row.plea_date ?? null,
+      defendantName: (row.defendant_name as string | null) ?? null,
+      clientInitials: row.client_initials ?? data.client_initials ?? null,
+      allegedOffence: row.alleged_offence ?? null,
     });
   } catch (err) {
     console.error("[criminal/matter] GET:", err);

@@ -20,6 +20,12 @@ import type { CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
 import type { DefenceStrategyPlan } from "@/lib/criminal/strategy-output";
 import type { StrategyCommitment } from "./StrategyCommitmentPanel";
 import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
+import type { ExtractedBundleCaseMetadata } from "@/lib/criminal/extract-bundle-case-metadata";
+import {
+  resolveCaseHeaderMetadata,
+  sanitizeHeaderAllegation,
+  sanitizeHeaderClient,
+} from "@/lib/criminal/resolve-case-header-metadata";
 
 type SavedPosition = {
   position_text: string;
@@ -54,6 +60,8 @@ type MatterSummary = {
   clientInitials: string | null;
   allegedOffence: string | null;
   stageDetected: string | null;
+  defendantName?: string | null;
+  bailOutcome?: string | null;
 };
 
 type BundleSourceSummary = {
@@ -63,12 +71,14 @@ type BundleSourceSummary = {
     shortTitle: string | null;
     stage: string | null;
     primaryEvalHook: string | null;
+    accused?: string | null;
   };
   snippets?: {
     mg5: string | null;
     mg6: string | null;
     exhibits: string | null;
   };
+  caseMetadata?: ExtractedBundleCaseMetadata | null;
 };
 
 function formatGbDate(dateStr: string | null | undefined): string | null {
@@ -93,13 +103,6 @@ function formatNextHearing(snapshot: CaseSnapshot | null): string {
   return type ? `${type} · ${datePart}` : datePart;
 }
 
-function resolveClientLabel(matter: MatterSummary | null, snapshot: CaseSnapshot | null): string {
-  const initials = matter?.clientInitials?.trim();
-  if (initials && initials.length >= 2 && !/^client\b/i.test(initials)) {
-    return initials;
-  }
-  return "Client name not safely extracted";
-}
 
 function stripRepeatedPositionNotice(items: string[], notice: string | null | undefined): string[] {
   if (!notice?.trim()) {
@@ -157,6 +160,8 @@ export function CaseControlRoom({
           clientInitials: data.clientInitials ?? data.station?.clientInitials ?? null,
           allegedOffence: data.station?.allegedOffence ?? data.allegedOffence ?? null,
           stageDetected: data.matterState ?? data.stage ?? null,
+          defendantName: data.defendantName ?? data.station?.defendantName ?? null,
+          bailOutcome: data.bailOutcome ?? null,
         });
       })
       .catch(() => {});
@@ -201,8 +206,10 @@ export function CaseControlRoom({
                 shortTitle: d.header.shortTitle ?? null,
                 stage: d.header.stage ?? null,
                 primaryEvalHook: d.header.primaryEvalHook ?? null,
+                accused: d.header.accused ?? null,
               }
             : undefined,
+          caseMetadata: d.caseMetadata ?? null,
           snippets: d.snippets
             ? {
                 mg5: d.snippets.mg5 ?? null,
@@ -230,25 +237,33 @@ export function CaseControlRoom({
   }, [defencePlan, battleboard]);
 
   const caseTitle = snapshot?.caseMeta?.title?.trim() || "Criminal case";
-  const clientLabel = resolveClientLabel(matter, snapshot);
-  const allegation = useMemo(
-    () => resolveAllegationLabel(snapshot, matter, battleboard, bundleSource),
-    [snapshot, matter, battleboard, bundleSource],
+
+  const headerMeta = useMemo(
+    () =>
+      resolveCaseHeaderMetadata({
+        snapshot,
+        matter: matter
+          ? {
+              clientInitials: matter.clientInitials,
+              defendantName: matter.defendantName,
+              allegedOffence: matter.allegedOffence,
+              stageDetected: matter.stageDetected,
+              bailOutcome: matter.bailOutcome,
+            }
+          : null,
+        bundleMetadata: bundleSource?.caseMetadata,
+        bundleHeader: bundleSource?.header,
+        matterState,
+      }),
+    [snapshot, matter, bundleSource, matterState],
   );
+
+  const clientLabel = sanitizeHeaderClient(headerMeta.clientLabel);
+  const allegation = sanitizeHeaderAllegation(headerMeta.allegation);
   const offenceWordingUnknown = useMemo(() => isUnknownOffenceLabel(allegation), [allegation]);
-  const stageFromMatter =
-    matter?.stageDetected ||
-    snapshot?.caseMeta?.caseStage?.replace(/_/g, " ") ||
-    matterState?.replace(/_/g, " ") ||
-    "Stage not recorded";
-  const displayStage = useMemo(() => {
-    const fromHeader = bundleSource?.header?.stage?.trim();
-    if (fromHeader && !/^unknown|not recorded|—$/i.test(fromHeader)) return fromHeader;
-    if (stageFromMatter && !/^unknown|stage not recorded|—$/i.test(stageFromMatter)) return stageFromMatter;
-    return stageFromMatter;
-  }, [bundleSource, stageFromMatter]);
-  const stage = displayStage;
-  const nextHearing = formatNextHearing(snapshot);
+  const stage = headerMeta.stage;
+  const nextHearing = headerMeta.nextHearing;
+  const metadataNote = headerMeta.metadataNote;
 
   const chaseItemsAll = useMemo(
     () =>
@@ -278,9 +293,13 @@ export function CaseControlRoom({
   const positionLabel = hasSavedPosition && savedPosition?.position_text?.trim()
     ? savedPosition.position_text.split(/[.!?]/)[0].trim() +
       (savedPosition.position_text.includes(".") ? "." : "")
-    : battleboard?.position_notice?.includes("not safely recorded")
-      ? "Position not safely recorded yet"
-      : "Position not recorded";
+    : headerMeta.defencePosition
+      ? headerMeta.defencePosition.length > 120
+        ? `${headerMeta.defencePosition.slice(0, 117)}…`
+        : headerMeta.defencePosition
+      : battleboard?.position_notice?.includes("not safely recorded")
+        ? "Position not safely recorded yet"
+        : "Position not recorded";
 
   const bundleLabel = useMemo(
     () => deriveBundleHealthLabel(snapshot, bundleSource, battleboard),
@@ -414,6 +433,7 @@ export function CaseControlRoom({
           <ControlRoomCockpit
             caseTitle={caseTitle}
             clientLabel={clientLabel}
+            courtLabel={headerMeta.court?.trim() || undefined}
             allegation={allegation}
             stage={stage}
             bundleLabel={bundleLabel}
@@ -433,6 +453,7 @@ export function CaseControlRoom({
             onRecordPosition={onRecordPosition}
             onUploadEvidence={onUploadEvidence}
             onExitClassic={exitClassic}
+            metadataNote={metadataNote}
             hearingWarRoomHref={buildHearingWarRoomHref(caseId, { controlRoom: true })}
             disclosureChaseHref={buildDisclosureChaseHref(caseId, { controlRoom: true })}
             battleboardSection={
@@ -472,7 +493,7 @@ export function CaseControlRoom({
         assistantContext={{
           battleboard,
           allegation,
-          stage: displayStage,
+          stage,
           positionNotice: positionNoticeOnce,
           missingEvidence: chaseItemsAll,
           bundleHeader: bundleSource?.header ?? null,

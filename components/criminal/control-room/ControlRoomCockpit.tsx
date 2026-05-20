@@ -18,6 +18,7 @@ import type { AboveFoldSummaryProps } from "./AboveFoldSummary";
 export type ControlRoomCockpitProps = AboveFoldSummaryProps & {
   caseTitle: string;
   clientLabel: string;
+  courtLabel?: string;
   riskLabel: string;
   safeCourtLine: string;
   onRecordPosition: () => void;
@@ -27,6 +28,7 @@ export type ControlRoomCockpitProps = AboveFoldSummaryProps & {
   disclosureChaseHref?: string;
   battleboardSection: ReactNode;
   furtherActionsSection?: ReactNode;
+  metadataNote?: string;
 };
 
 function StatTile({
@@ -65,6 +67,7 @@ function readinessTone(riskLabel: string): "default" | "success" | "warning" | "
 export function ControlRoomCockpit({
   caseTitle,
   clientLabel,
+  courtLabel,
   allegation,
   stage,
   bundleLabel,
@@ -88,6 +91,7 @@ export function ControlRoomCockpit({
   disclosureChaseHref,
   battleboardSection,
   furtherActionsSection,
+  metadataNote,
 }: ControlRoomCockpitProps) {
   const topActions = immediateActions.slice(0, 3);
   const biggestRisk =
@@ -126,12 +130,19 @@ export function ControlRoomCockpit({
         </div>
         <p className="px-4 pb-3 text-xs text-slate-500 flex flex-wrap gap-x-4 gap-y-1">
           <span>
+            <span className="font-medium text-slate-600">Court:</span>{" "}
+            {loading ? "—" : courtLabel ?? "Court not safely extracted"}
+          </span>
+          <span>
             <span className="font-medium text-slate-600">Stage:</span> {loading ? "—" : stage}
           </span>
           <span>
             <span className="font-medium text-slate-600">Next hearing:</span> {loading ? "—" : nextHearing}
           </span>
         </p>
+        {metadataNote ? (
+          <p className="px-4 pb-2 text-[10px] text-slate-400 border-t border-slate-100">{metadataNote}</p>
+        ) : null}
       </header>
 
       {(positionNotice || strategyBasisNotice) && (

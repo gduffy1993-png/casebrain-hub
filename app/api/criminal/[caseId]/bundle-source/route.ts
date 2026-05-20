@@ -50,6 +50,7 @@ export async function GET(_request: Request, { params }: RouteParams) {
         health: payload.health,
         header: payload.header,
         snippets: payload.snippets,
+        caseMetadata: payload.caseMetadata,
       },
     });
   } catch (e) {

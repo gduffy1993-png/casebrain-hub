@@ -1,3 +1,4 @@
+import { extractBundleCaseMetadata, type ExtractedBundleCaseMetadata } from "@/lib/criminal/extract-bundle-case-metadata";
 import { combineCaseDocumentsText, getDocumentBodyText } from "./bundle-document-text";
 
 const HEADER_SCAN = 16_000;
@@ -151,6 +152,7 @@ export function buildBundleSourcePayload(docs: Array<Record<string, unknown>>): 
   health: BundleHealth;
   header: ParsedBundleHeader | null;
   snippets: BundleSnippets;
+  caseMetadata: ExtractedBundleCaseMetadata;
 } {
   const typed = docs as Array<{
     id: string;
@@ -163,6 +165,7 @@ export function buildBundleSourcePayload(docs: Array<Record<string, unknown>>): 
 
   const combinedText = combineCaseDocumentsText(typed);
   const header = parseBundleHeaderFields(combinedText);
+  const caseMetadata = extractBundleCaseMetadata(combinedText, header);
   const snippets = extractBundleSnippets(combinedText);
   const health = computeBundleHealth(typed, combinedText, header);
 
@@ -180,5 +183,5 @@ export function buildBundleSourcePayload(docs: Array<Record<string, unknown>>): 
     };
   });
 
-  return { combinedText, documentRows, health, header, snippets };
+  return { combinedText, documentRows, health, header, snippets, caseMetadata };
 }
