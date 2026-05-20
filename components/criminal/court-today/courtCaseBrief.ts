@@ -1,4 +1,5 @@
 import { collectChaseItems } from "@/components/criminal/control-room/chaseItems";
+import { buildHearingWarRoomHref } from "@/components/criminal/hearing-war-room/hearingWarRoomLinks";
 import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
 import type {
   CourtCaseBrief,
@@ -233,6 +234,7 @@ export function buildCourtCaseBrief(
     chaseSummary: chaseSummary(chaseItems),
     safeCourtLine,
     controlRoomHref: buildCaseControlRoomHref(caseId),
+    hearingWarRoomHref: buildHearingWarRoomHref(caseId, { controlRoom: true }),
     disclosureChaseHref: buildDisclosureChaseHref(caseId),
     strategyHref: buildStrategyHref(caseId),
   };

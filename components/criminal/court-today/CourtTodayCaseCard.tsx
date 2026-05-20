@@ -118,6 +118,12 @@ export function CourtTodayCaseCard({ brief }: { brief: CourtCaseBrief }) {
             <MessageSquare className="h-3.5 w-3.5" />
             Safe Court Line
           </Button>
+          <Link href={brief.hearingWarRoomHref}>
+            <Button type="button" size="sm" variant="outline" className="gap-1">
+              <Gavel className="h-3.5 w-3.5" />
+              Hearing War Room
+            </Button>
+          </Link>
           <Link href={buildDisclosureChaseHref(brief.caseId)}>
             <Button type="button" size="sm" variant="outline" className="gap-1">
               <FileSearch className="h-3.5 w-3.5" />

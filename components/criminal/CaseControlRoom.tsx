@@ -9,6 +9,7 @@ import { ControlRoomAssistantDock } from "./control-room/ControlRoomAssistant";
 import { ControlRoomBattleboardAccordion } from "./control-room/ControlRoomBattleboardAccordion";
 import { ControlRoomCockpit } from "./control-room/ControlRoomCockpit";
 import { RiskColumn } from "./control-room/GlanceGrid";
+import { buildHearingWarRoomHref } from "./hearing-war-room/hearingWarRoomLinks";
 import {
   collectChaseItems,
   formatDisclosureGlance,
@@ -429,6 +430,7 @@ export function CaseControlRoom({
             onRecordPosition={onRecordPosition}
             onUploadEvidence={onUploadEvidence}
             onExitClassic={exitClassic}
+            hearingWarRoomHref={buildHearingWarRoomHref(caseId, { controlRoom: true })}
             battleboardSection={
               <ControlRoomBattleboardAccordion
                 caseId={caseId}

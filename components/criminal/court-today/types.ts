@@ -35,6 +35,7 @@ export type CourtCaseBrief = {
   chaseSummary: string;
   safeCourtLine: string;
   controlRoomHref: string;
+  hearingWarRoomHref: string;
   disclosureChaseHref: string;
   strategyHref: string;
 };

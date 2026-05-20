@@ -9,6 +9,7 @@ import {
   Target,
   Upload,
 } from "lucide-react";
+import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { workflowCard, workflowMuted, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
@@ -22,6 +23,7 @@ export type ControlRoomCockpitProps = AboveFoldSummaryProps & {
   onRecordPosition: () => void;
   onUploadEvidence: () => void;
   onExitClassic: () => void;
+  hearingWarRoomHref?: string;
   battleboardSection: ReactNode;
   furtherActionsSection?: ReactNode;
 };
@@ -81,6 +83,7 @@ export function ControlRoomCockpit({
   onRecordPosition,
   onUploadEvidence,
   onExitClassic,
+  hearingWarRoomHref,
   battleboardSection,
   furtherActionsSection,
 }: ControlRoomCockpitProps) {
@@ -208,6 +211,15 @@ export function ControlRoomCockpit({
             {loading ? "Loading provisional wording…" : safeCourtLine}
           </blockquote>
           <p className="text-[10px] text-slate-500 mt-2">Provisional · solicitor review · do not overstate</p>
+          {hearingWarRoomHref ? (
+            <div className="mt-3">
+              <Link href={hearingWarRoomHref}>
+                <Button type="button" size="sm" variant="outline" className="gap-1 text-emerald-900 border-emerald-300">
+                  Open Hearing War Room
+                </Button>
+              </Link>
+            </div>
+          ) : null}
         </div>
       </div>
 

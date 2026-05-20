@@ -50,6 +50,7 @@ import { StrategyExportButton } from "./StrategyExportButton";
 import { DefencePlanBox } from "./DefencePlanBox";
 import { StrategyBattleboard } from "./StrategyBattleboard";
 import { CaseControlRoom } from "./CaseControlRoom";
+import { HearingWarRoom } from "./hearing-war-room/HearingWarRoom";
 import { StrategyTimelineSection } from "./StrategyTimelineSection";
 import { VerdictRatingBlock } from "./VerdictRatingBlock";
 import { BundleSourcePanels } from "./BundleSourcePanels";
@@ -62,6 +63,7 @@ const CRIMINAL_CASE_TAB_IDS = [
   "disclosure",
   "next-steps",
   "hearings",
+  "hearing-war-room",
   "timeline",
   "client-instructions",
   "sentencing",
@@ -79,6 +81,7 @@ const CRIMINAL_CASE_TABS: TabItem[] = [
   { id: "disclosure", label: "Disclosure" },
   { id: "next-steps", label: "Next steps" },
   { id: "hearings", label: "Hearings" },
+  { id: "hearing-war-room", label: "Hearing War Room" },
   { id: "timeline", label: "Timeline" },
   { id: "client-instructions", label: "Client & instructions" },
   { id: "sentencing", label: "Sentencing" },
@@ -675,6 +678,52 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
       )}
     </>
   );
+
+  const hearingWarRoomSharedProps = {
+    caseId,
+    snapshot,
+    snapshotLoading,
+    hasSavedPosition,
+    savedPosition,
+    defencePlan,
+    displayStrategy,
+    committedStrategy,
+    matterState,
+    effectiveProceduralSafety,
+    evidenceSummary: snapshot
+      ? buildEvidenceContext(snapshot, effectiveProceduralSafety?.outstandingItems)
+      : undefined,
+    timelineSummary: snapshot ? buildTimelineContext(snapshot) : undefined,
+    onRecordPosition: () => {
+      setPendingPositionText(null);
+      setIsPositionModalOpen(true);
+    },
+    onUploadEvidence: () => setShowAddEvidenceUpload(true),
+  };
+
+  if (activeTab === "hearing-war-room") {
+    return (
+      <div className="space-y-4">
+        <div className="rounded-lg border border-border/80 bg-muted/30 px-3 py-2 text-center">
+          <p className="text-xs text-muted-foreground">
+            All outputs are evidence-linked. No predictions. No legal advice. Solicitor-controlled.
+          </p>
+        </div>
+        {matterClosed && (
+          <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-center">
+            <p className="text-xs text-foreground">
+              <strong>Matter closed</strong>
+              {matterClosed.at && ` (${new Date(matterClosed.at).toLocaleDateString("en-GB")})`}
+              {matterClosed.reason ? ` – ${matterClosed.reason}` : ""}.
+            </p>
+          </div>
+        )}
+        <HearingWarRoom {...hearingWarRoomSharedProps} controlRoomMode={useControlRoom} />
+        {controlRoomSharedModals}
+        <BackToTop />
+      </div>
+    );
+  }
 
   if (useControlRoom) {
     return (
