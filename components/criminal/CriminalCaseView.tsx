@@ -51,6 +51,7 @@ import { DefencePlanBox } from "./DefencePlanBox";
 import { StrategyBattleboard } from "./StrategyBattleboard";
 import { CaseControlRoom } from "./CaseControlRoom";
 import { HearingWarRoom } from "./hearing-war-room/HearingWarRoom";
+import { DisclosureChase } from "./disclosure-chase/DisclosureChase";
 import { StrategyTimelineSection } from "./StrategyTimelineSection";
 import { VerdictRatingBlock } from "./VerdictRatingBlock";
 import { BundleSourcePanels } from "./BundleSourcePanels";
@@ -64,6 +65,7 @@ const CRIMINAL_CASE_TAB_IDS = [
   "next-steps",
   "hearings",
   "hearing-war-room",
+  "disclosure-chase",
   "timeline",
   "client-instructions",
   "sentencing",
@@ -82,6 +84,7 @@ const CRIMINAL_CASE_TABS: TabItem[] = [
   { id: "next-steps", label: "Next steps" },
   { id: "hearings", label: "Hearings" },
   { id: "hearing-war-room", label: "Hearing War Room" },
+  { id: "disclosure-chase", label: "Disclosure Chase" },
   { id: "timeline", label: "Timeline" },
   { id: "client-instructions", label: "Client & instructions" },
   { id: "sentencing", label: "Sentencing" },
@@ -700,6 +703,40 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
     },
     onUploadEvidence: () => setShowAddEvidenceUpload(true),
   };
+
+  const disclosureChaseSharedProps = {
+    caseId,
+    snapshot,
+    snapshotLoading,
+    hasSavedPosition,
+    savedPosition,
+    matterState,
+    effectiveProceduralSafety,
+  };
+
+  if (activeTab === "disclosure-chase") {
+    return (
+      <div className="space-y-4">
+        <div className="rounded-lg border border-border/80 bg-muted/30 px-3 py-2 text-center">
+          <p className="text-xs text-muted-foreground">
+            All outputs are evidence-linked. No predictions. No legal advice. Solicitor-controlled.
+          </p>
+        </div>
+        {matterClosed && (
+          <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-center">
+            <p className="text-xs text-foreground">
+              <strong>Matter closed</strong>
+              {matterClosed.at && ` (${new Date(matterClosed.at).toLocaleDateString("en-GB")})`}
+              {matterClosed.reason ? ` – ${matterClosed.reason}` : ""}.
+            </p>
+          </div>
+        )}
+        <DisclosureChase {...disclosureChaseSharedProps} controlRoomMode={useControlRoom} />
+        {controlRoomSharedModals}
+        <BackToTop />
+      </div>
+    );
+  }
 
   if (activeTab === "hearing-war-room") {
     return (

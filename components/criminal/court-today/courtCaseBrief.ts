@@ -1,4 +1,5 @@
 import { collectChaseItems } from "@/components/criminal/control-room/chaseItems";
+import { buildDisclosureChaseHref as buildDisclosureChaseTabHref } from "@/components/criminal/disclosure-chase/disclosureChaseLinks";
 import { buildHearingWarRoomHref } from "@/components/criminal/hearing-war-room/hearingWarRoomLinks";
 import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
 import type {
@@ -28,9 +29,7 @@ export function buildCaseControlRoomHref(caseId: string): string {
 }
 
 export function buildDisclosureChaseHref(caseId: string): string {
-  const id = caseId.trim();
-  if (!id || INVALID_CASE_IDS.has(id)) return "/cases";
-  return `/cases/${id}?tab=disclosure`;
+  return buildDisclosureChaseTabHref(caseId, { controlRoom: true });
 }
 
 export function buildStrategyHref(caseId: string): string {

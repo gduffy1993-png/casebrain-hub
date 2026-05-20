@@ -24,6 +24,7 @@ export type ControlRoomCockpitProps = AboveFoldSummaryProps & {
   onUploadEvidence: () => void;
   onExitClassic: () => void;
   hearingWarRoomHref?: string;
+  disclosureChaseHref?: string;
   battleboardSection: ReactNode;
   furtherActionsSection?: ReactNode;
 };
@@ -84,6 +85,7 @@ export function ControlRoomCockpit({
   onUploadEvidence,
   onExitClassic,
   hearingWarRoomHref,
+  disclosureChaseHref,
   battleboardSection,
   furtherActionsSection,
 }: ControlRoomCockpitProps) {
@@ -154,6 +156,15 @@ export function ControlRoomCockpit({
         <StatTile label="Readiness" value={loading ? "—" : riskLabel} tone={readinessTone(riskLabel)} />
         <StatTile label="Disclosure chase" value={loading ? "—" : disclosureLabel} />
       </div>
+      {disclosureChaseHref ? (
+        <div className="flex flex-wrap gap-2">
+          <Link href={disclosureChaseHref}>
+            <Button type="button" size="sm" variant="outline" className="gap-1 text-violet-900 border-violet-300">
+              Open Disclosure Chase
+            </Button>
+          </Link>
+        </div>
+      ) : null}
 
       <div className={`${workflowCard} p-4 border-blue-200/60 bg-gradient-to-br from-blue-50/80 to-white`}>
         <p className={`${workflowSectionTitle} flex items-center gap-1 text-blue-800/80`}>

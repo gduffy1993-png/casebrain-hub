@@ -8,6 +8,7 @@ import {
   CheckSquare,
   ClipboardList,
   Copy,
+  FileSearch,
   Gavel,
   LayoutDashboard,
   Loader2,
@@ -28,6 +29,7 @@ import {
   buildHearingWarRoomBrief,
   type HearingWarRoomBrief,
 } from "./buildHearingWarRoomBrief";
+import { buildDisclosureChaseHref } from "@/components/criminal/disclosure-chase/disclosureChaseLinks";
 import { buildControlRoomHref, buildHearingWarRoomHref } from "./hearingWarRoomLinks";
 import { HearingWarRoomAssistant } from "./HearingWarRoomAssistant";
 import type { ControlRoomAssistantContext } from "@/components/criminal/control-room/assistantBattleboardFallback";
@@ -451,6 +453,12 @@ export function HearingWarRoom({
                   </Button>
                 </Link>
               )}
+              <Link href={buildDisclosureChaseHref(caseId, { controlRoom: controlRoomMode })}>
+                <Button type="button" size="sm" variant="outline" className="gap-1 text-violet-900 border-violet-300">
+                  <FileSearch className="h-3.5 w-3.5" />
+                  Disclosure Chase
+                </Button>
+              </Link>
               <Button type="button" size="sm" variant="outline" onClick={onRecordPosition}>
                 Record position
               </Button>
@@ -518,13 +526,21 @@ export function HearingWarRoom({
                 items={brief.doNotOverstate}
                 tone="warn"
               />
-              <BriefListCard
-                title="Ask court to record"
-                icon={<Scale className="h-4 w-4 text-blue-700" />}
-                items={brief.askCourtToRecord}
-                tone="court"
-                previewCount={ABOVE_FOLD_LIST_CAP}
-              />
+              <div className="space-y-2">
+                <BriefListCard
+                  title="Ask court to record"
+                  icon={<Scale className="h-4 w-4 text-blue-700" />}
+                  items={brief.askCourtToRecord}
+                  tone="court"
+                  previewCount={ABOVE_FOLD_LIST_CAP}
+                />
+                <Link
+                  href={buildDisclosureChaseHref(caseId, { controlRoom: controlRoomMode })}
+                  className="inline-flex text-xs font-medium text-violet-800 hover:text-violet-950 px-1"
+                >
+                  Open full Disclosure Chase tracker →
+                </Link>
+              </div>
               <BriefListCard
                 title="Instructions needed before hearing"
                 icon={<ClipboardList className="h-4 w-4 text-slate-600" />}
