@@ -11,8 +11,4 @@ export function buildHearingWarRoomHref(
   return `/cases/${id}?${params.toString()}`;
 }
 
-export function buildControlRoomHref(caseId: string): string {
-  const id = caseId.trim();
-  if (!id || INVALID_CASE_IDS.has(id)) return "/cases";
-  return `/cases/${id}?tab=strategy&controlRoom=1`;
-}
+export { buildControlRoomCaseHref as buildControlRoomHref } from "@/components/criminal/criminalCaseNavigation";

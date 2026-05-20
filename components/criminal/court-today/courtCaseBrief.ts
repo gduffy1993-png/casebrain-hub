@@ -1,3 +1,7 @@
+import {
+  buildClassicCaseHref,
+  buildControlRoomCaseHref,
+} from "@/components/criminal/criminalCaseNavigation";
 import { collectChaseItems } from "@/components/criminal/control-room/chaseItems";
 import { buildDisclosureChaseHref as buildDisclosureChaseTabHref } from "@/components/criminal/disclosure-chase/disclosureChaseLinks";
 import { buildHearingWarRoomHref } from "@/components/criminal/hearing-war-room/hearingWarRoomLinks";
@@ -14,6 +18,8 @@ const NO_HEARING_LABEL = "No hearing date safely detected";
 
 const INVALID_CASE_IDS = new Set(["", "{id}", "undefined", "null"]);
 
+export { buildControlRoomCaseHref as buildCaseControlRoomHref, buildClassicCaseHref as buildStrategyHref };
+
 /** Resolve a real case id from API row shape (never a route placeholder). */
 export function resolveCourtCaseId(row: CourtCasesApiRow & { case_id?: string | null }): string {
   const raw = row.id ?? row.case_id;
@@ -22,24 +28,12 @@ export function resolveCourtCaseId(row: CourtCasesApiRow & { case_id?: string | 
   return id;
 }
 
-export function buildCaseControlRoomHref(caseId: string): string {
-  const id = caseId.trim();
-  if (!id || INVALID_CASE_IDS.has(id)) return "/cases";
-  return `/cases/${id}?tab=strategy&controlRoom=1`;
-}
-
 export function buildDisclosureChaseHref(caseId: string): string {
   return buildDisclosureChaseTabHref(caseId, { controlRoom: true });
 }
 
-export function buildStrategyHref(caseId: string): string {
-  const id = caseId.trim();
-  if (!id || INVALID_CASE_IDS.has(id)) return "/cases";
-  return `/cases/${id}?tab=strategy`;
-}
-
 /** @deprecated Use buildCaseControlRoomHref — kept for callers that imported the old name. */
-export const controlRoomHref = buildCaseControlRoomHref;
+export const controlRoomHref = buildControlRoomCaseHref;
 
 function startOfLocalDay(d: Date): Date {
   return new Date(d.getFullYear(), d.getMonth(), d.getDate());
@@ -232,10 +226,10 @@ export function buildCourtCaseBrief(
     chaseItems,
     chaseSummary: chaseSummary(chaseItems),
     safeCourtLine,
-    controlRoomHref: buildCaseControlRoomHref(caseId),
+    controlRoomHref: buildControlRoomCaseHref(caseId),
     hearingWarRoomHref: buildHearingWarRoomHref(caseId, { controlRoom: true }),
     disclosureChaseHref: buildDisclosureChaseHref(caseId),
-    strategyHref: buildStrategyHref(caseId),
+    strategyHref: buildClassicCaseHref(caseId),
   };
 }
 

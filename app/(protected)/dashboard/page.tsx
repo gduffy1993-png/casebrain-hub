@@ -5,6 +5,7 @@ import { Suspense, useEffect, useState, useMemo } from "react";
 import { CourtTodayDashboardRedirect } from "@/components/criminal/court-today/CourtTodayDashboardRedirect";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { buildControlRoomCaseHref } from "@/components/criminal/criminalCaseNavigation";
 import { sortCasesForDisplay } from "@/lib/case-list-sort";
 import { ArrowRight, Upload, Inbox, Shield, ArrowUpDown, ArrowDownAZ } from "lucide-react";
 
@@ -129,7 +130,7 @@ export default function DashboardPage() {
             {filteredAndSortedCases.map((c) => (
               <li key={c.id}>
                 <Link
-                  href={`/cases/${c.id}`}
+                  href={buildControlRoomCaseHref(c.id)}
                   className="flex flex-wrap items-center justify-between gap-3 p-4 hover:bg-surface-muted/50 sm:flex-nowrap"
                 >
                   <div className="min-w-0 flex-1">

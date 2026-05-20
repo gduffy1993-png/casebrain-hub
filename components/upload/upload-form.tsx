@@ -18,6 +18,7 @@ import {
   mergePdfFilesToSingleFile,
 } from "@/lib/client/merge-pdfs";
 import { EVAL_PACK_IDS, EVAL_PACK_LABELS } from "@/lib/eval-packs";
+import { buildControlRoomCaseHref, isCriminalPracticeArea } from "@/components/criminal/criminalCaseNavigation";
 
 const ACCEPTED_TYPES = [
   "application/pdf",
@@ -551,12 +552,15 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
         pushToast(`Uploaded ${uploadedCount} file${uploadedCount > 1 ? "s" : ""}${mergeNote}`, "success");
       }
 
+      const caseHref = (id: string) =>
+        isCriminalPracticeArea(practiceArea) ? buildControlRoomCaseHref(id) : `/cases/${id}`;
+
       if (uploadedCaseIds && uploadedCaseIds.length > 1) {
         router.push("/cases");
       } else if (uploadedCaseId) {
-        router.push(`/cases/${uploadedCaseId}`);
+        router.push(caseHref(uploadedCaseId));
       } else if (caseId) {
-        router.push(`/cases/${caseId}`);
+        router.push(caseHref(caseId));
       } else {
         router.refresh();
       }

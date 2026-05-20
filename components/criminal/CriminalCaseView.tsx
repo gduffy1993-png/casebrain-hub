@@ -50,6 +50,13 @@ import { StrategyExportButton } from "./StrategyExportButton";
 import { DefencePlanBox } from "./DefencePlanBox";
 import { StrategyBattleboard } from "./StrategyBattleboard";
 import { CaseControlRoom } from "./CaseControlRoom";
+import {
+  appendControlRoomParams,
+  buildControlRoomCaseHref,
+  persistControlRoomPreference,
+  resolveControlRoomFromSearchParams,
+  shouldRedirectToControlRoom,
+} from "./criminalCaseNavigation";
 import { HearingWarRoom } from "./hearing-war-room/HearingWarRoom";
 import { DisclosureChase } from "./disclosure-chase/DisclosureChase";
 import { StrategyTimelineSection } from "./StrategyTimelineSection";
@@ -162,21 +169,27 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   const [strategySubTab, setStrategySubTab] = useState<"overview" | "doctrine" | "full">("full");
   /** null = loading; false = show Review & Confirm gate; true = full workspace */
   const [reviewConfirmed, setReviewConfirmed] = useState<boolean | null>(null);
-  /** Case Control Room (Phase 1): ?controlRoom=1 or localStorage casebrain:caseControlRoom=true */
-  const [useControlRoom, setUseControlRoom] = useState(false);
+  /** Case Control Room: default on; classic workspace via Control Room button sets preference false. */
+  const [useControlRoom, setUseControlRoom] = useState(true);
 
   useEffect(() => {
-    const fromQuery = searchParams.get("controlRoom") === "1";
-    if (fromQuery) {
-      setUseControlRoom(true);
-      return;
-    }
-    try {
-      setUseControlRoom(localStorage.getItem("casebrain:caseControlRoom") === "true");
-    } catch {
-      setUseControlRoom(false);
+    const active = resolveControlRoomFromSearchParams(searchParams);
+    setUseControlRoom(active);
+    if (searchParams.get("controlRoom") === "1") {
+      persistControlRoomPreference(true);
     }
   }, [searchParams]);
+
+  useEffect(() => {
+    if (reviewConfirmed !== true) return;
+    if (!shouldRedirectToControlRoom(searchParams)) return;
+    const params = appendControlRoomParams(new URLSearchParams(searchParams.toString()), {
+      defaultTab: "strategy",
+    });
+    const query = params.toString();
+    if (query === searchParams.toString()) return;
+    router.replace(`${pathname}?${query}`, { scroll: false });
+  }, [reviewConfirmed, searchParams, pathname, router]);
 
   useEffect(() => {
     let cancelled = false;
@@ -229,7 +242,8 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         if (rc.ok && rj.ok) {
           setReviewConfirmed(true);
           buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error);
-          router.replace(`/cases/${caseId}?tab=strategy`, { scroll: false });
+          persistControlRoomPreference(true);
+          router.replace(buildControlRoomCaseHref(caseId), { scroll: false });
           return;
         }
         setReviewConfirmed(false);
@@ -575,12 +589,15 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   ) => {
     if (!targetCaseId || targetCaseId === caseId) return;
     const preserveQuery = options?.preserveQuery ?? true;
-    const params = preserveQuery ? new URLSearchParams(searchParams.toString()) : new URLSearchParams();
+    let params = preserveQuery ? new URLSearchParams(searchParams.toString()) : new URLSearchParams();
     if (options?.forceTab) {
       params.set("tab", options.forceTab);
     }
+    params = appendControlRoomParams(params, { defaultTab: "strategy" });
     const query = params.toString();
-    router.push(query ? `/cases/${targetCaseId}?${query}` : `/cases/${targetCaseId}`, { scroll: false });
+    router.push(query ? `/cases/${targetCaseId}?${query}` : buildControlRoomCaseHref(targetCaseId), {
+      scroll: false,
+    });
   };
 
   const setTab = (tabId: string) => {
@@ -612,7 +629,8 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
           setCurrentPhase(3);
           setIsStrategyCommitted(true);
           buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error);
-          router.replace(`/cases/${caseId}?tab=strategy`, { scroll: false });
+          persistControlRoomPreference(true);
+          router.replace(buildControlRoomCaseHref(caseId), { scroll: false });
         }}
       />
     );

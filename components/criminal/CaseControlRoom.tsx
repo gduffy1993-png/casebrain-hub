@@ -9,6 +9,7 @@ import { ControlRoomAssistantDock } from "./control-room/ControlRoomAssistant";
 import { ControlRoomBattleboardAccordion } from "./control-room/ControlRoomBattleboardAccordion";
 import { ControlRoomCockpit } from "./control-room/ControlRoomCockpit";
 import { RiskColumn } from "./control-room/GlanceGrid";
+import { buildClassicCaseHref, clearControlRoomPreference } from "./criminalCaseNavigation";
 import { buildDisclosureChaseHref } from "./disclosure-chase/disclosureChaseLinks";
 import { buildHearingWarRoomHref } from "./hearing-war-room/hearingWarRoomLinks";
 import {
@@ -397,7 +398,8 @@ export function CaseControlRoom({
   }, [battleboard]);
 
   const exitClassic = () => {
-    router.replace(`/cases/${caseId}?tab=strategy`);
+    clearControlRoomPreference();
+    router.replace(buildClassicCaseHref(caseId));
   };
 
   return (

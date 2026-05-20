@@ -2,6 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { buildControlRoomCaseHref } from "@/components/criminal/criminalCaseNavigation";
 import { Search, ArrowRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { useState, useEffect, useCallback } from "react";
@@ -82,7 +83,7 @@ export default function SearchPage() {
                     <h3 className="font-semibold text-accent">{c.title}</h3>
                   </div>
                   <Link
-                    href={`/cases/${c.id}`}
+                    href={buildControlRoomCaseHref(c.id)}
                     className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
                   >
                     Open

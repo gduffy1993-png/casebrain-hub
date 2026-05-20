@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { CaseFilesList } from "@/components/cases/CaseFilesList";
 import { CaseFilesCompactStrip } from "./CaseFilesCompactStrip";
+import { resolveControlRoomFromSearchParams } from "./criminalCaseNavigation";
 
 type CaseFileDocument = {
   id: string;
@@ -18,18 +19,10 @@ type CaseFileDocument = {
 
 function useControlRoomActive(): boolean {
   const searchParams = useSearchParams();
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState(true);
 
   useEffect(() => {
-    if (searchParams.get("controlRoom") === "1") {
-      setActive(true);
-      return;
-    }
-    try {
-      setActive(localStorage.getItem("casebrain:caseControlRoom") === "true");
-    } catch {
-      setActive(false);
-    }
+    setActive(resolveControlRoomFromSearchParams(searchParams));
   }, [searchParams]);
 
   return active;

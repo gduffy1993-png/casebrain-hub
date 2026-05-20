@@ -12,6 +12,7 @@ import { PiQuickActions } from "@/components/pi/PiQuickActions";
 import { CaseArchiveButton } from "@/components/cases/CaseArchiveButton";
 import { BulkArchiveCasesButton } from "@/components/cases/BulkArchiveCasesButton";
 import { CasesPageClient } from "@/components/cases/CasesPageClient";
+import { resolveCaseEntryHref } from "@/components/criminal/criminalCaseNavigation";
 import { CurrentPersonaBadge } from "@/components/layout/CurrentPersonaBadge";
 
 type CasesPageProps = {
@@ -147,7 +148,7 @@ export default async function CasesPage({ searchParams }: CasesPageProps) {
               <li key={caseItem.id}>
                 <div className="flex h-full flex-col rounded-2xl border border-primary/10 bg-surface-muted/80 p-5 transition hover:border-primary/40 hover:shadow-card">
                   <div className="flex items-start justify-between gap-3">
-                    <Link href={`/cases/${caseItem.id}`} className="flex-1">
+                    <Link href={resolveCaseEntryHref(caseItem.id, caseItem.practice_area)} className="flex-1">
                       <div className="flex items-start justify-between gap-3">
                         <div className="flex-1">
                           <p className="text-sm font-semibold text-accent">{caseItem.title}</p>
