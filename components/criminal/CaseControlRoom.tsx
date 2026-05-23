@@ -7,11 +7,14 @@ import { Card } from "@/components/ui/card";
 import { DashboardCard } from "./control-room/DashboardCard";
 import { ControlRoomAssistantDock } from "./control-room/ControlRoomAssistant";
 import { ControlRoomBattleboardAccordion } from "./control-room/ControlRoomBattleboardAccordion";
+import { CaseSummaryCard } from "./control-room/CaseSummaryCard";
 import { ControlRoomCockpit } from "./control-room/ControlRoomCockpit";
+import { CaseWorkflowShell } from "./workflow/CaseWorkflowShell";
+import { buildCaseSummarySnippet } from "@/lib/criminal/build-case-summary-snippet";
+import { formatCaseBundleHealthLabel } from "@/lib/criminal/format-case-bundle-health";
+import type { DocumentRowMeta } from "@/lib/bundle/parse-bundle-display";
 import { RiskColumn } from "./control-room/GlanceGrid";
 import { buildClassicCaseHref, clearControlRoomPreference } from "./criminalCaseNavigation";
-import { buildDisclosureChaseHref } from "./disclosure-chase/disclosureChaseLinks";
-import { buildHearingWarRoomHref } from "./hearing-war-room/hearingWarRoomLinks";
 import {
   collectChaseItems,
   formatDisclosureGlance,
@@ -67,6 +70,8 @@ type MatterSummary = {
 type BundleSourceSummary = {
   documentCount: number;
   combinedTextLength: number;
+  documentRows?: DocumentRowMeta[];
+  frontMatterScan?: string | null;
   header?: {
     shortTitle: string | null;
     stage: string | null;
@@ -197,10 +202,15 @@ export function CaseControlRoom({
       .then((r) => r.json())
       .then((res) => {
         if (cancelled || !res?.ok || !res?.data) return;
-        const d = res.data as BundleSourceSummary;
+        const d = res.data as BundleSourceSummary & {
+          documentRows?: DocumentRowMeta[];
+          frontMatterScan?: string;
+        };
         setBundleSource({
           documentCount: d.documentCount ?? 0,
           combinedTextLength: d.combinedTextLength ?? 0,
+          documentRows: Array.isArray(d.documentRows) ? d.documentRows : undefined,
+          frontMatterScan: d.frontMatterScan ?? null,
           header: d.header
             ? {
                 shortTitle: d.header.shortTitle ?? null,
@@ -276,6 +286,31 @@ export function CaseControlRoom({
   );
 
   const chaseItems = useMemo(() => chaseItemsAll.slice(0, 6), [chaseItemsAll]);
+
+  const caseSummary = useMemo(
+    () =>
+      buildCaseSummarySnippet({
+        clientLabel,
+        allegation,
+        defencePosition: headerMeta.defencePosition,
+        complainant: headerMeta.complainant,
+        court: headerMeta.court,
+        battleboard,
+        chaseItems: chaseItemsAll,
+        bundleMg5: bundleSource?.snippets?.mg5,
+        bundleCombinedText: bundleSource?.frontMatterScan ?? null,
+      }),
+    [
+      clientLabel,
+      allegation,
+      headerMeta,
+      battleboard,
+      chaseItemsAll,
+      bundleSource?.snippets?.mg5,
+      bundleSource?.frontMatterScan,
+    ],
+  );
+
   const riskLabel = useMemo(() => {
     if (effectiveProceduralSafety?.status === "UNSAFE_TO_PROCEED") return "Procedural — resolve disclosure";
     if (effectiveProceduralSafety?.status === "CONDITIONALLY_UNSAFE") return "Conditional — disclosure gaps";
@@ -302,8 +337,21 @@ export function CaseControlRoom({
         : "Position not recorded";
 
   const bundleLabel = useMemo(
-    () => deriveBundleHealthLabel(snapshot, bundleSource, battleboard),
-    [snapshot, bundleSource, battleboard],
+    () =>
+      formatCaseBundleHealthLabel({
+        documentCount: Math.max(
+          snapshot?.analysis.docCount ?? 0,
+          bundleSource?.documentCount ?? 0,
+          snapshot?.evidence.documents?.length ?? 0,
+        ),
+        combinedTextLength: bundleSource?.combinedTextLength ?? 0,
+        capabilityTier: snapshot?.analysis.capabilityTier,
+        battleboard,
+        documentRows: bundleSource?.documentRows,
+        hasBattleboardMaterial,
+        bundleTextHint: bundleSource?.frontMatterScan,
+      }),
+    [snapshot, bundleSource, battleboard, hasBattleboardMaterial],
   );
 
   const disclosureLabel = snapshot ? formatDisclosureGlance(chaseItemsAll) : "—";
@@ -430,6 +478,12 @@ export function CaseControlRoom({
             Loading case data…
           </Card>
         ) : (
+          <CaseWorkflowShell
+            caseId={caseId}
+            onRecordPosition={onRecordPosition}
+            onUploadEvidence={onUploadEvidence}
+          >
+          <CaseSummaryCard summary={caseSummary} loading={snapshotLoading} />
           <ControlRoomCockpit
             caseTitle={caseTitle}
             clientLabel={clientLabel}
@@ -450,12 +504,8 @@ export function CaseControlRoom({
             riskLabel={riskLabel}
             safeCourtLine={safeCourtLine}
             loading={snapshotLoading}
-            onRecordPosition={onRecordPosition}
-            onUploadEvidence={onUploadEvidence}
             onExitClassic={exitClassic}
             metadataNote={metadataNote}
-            hearingWarRoomHref={buildHearingWarRoomHref(caseId, { controlRoom: true })}
-            disclosureChaseHref={buildDisclosureChaseHref(caseId, { controlRoom: true })}
             battleboardSection={
               <ControlRoomBattleboardAccordion
                 caseId={caseId}
@@ -478,6 +528,7 @@ export function CaseControlRoom({
               />
             }
           />
+          </CaseWorkflowShell>
         )}
 
         <p className="text-[10px] text-center text-slate-500 pb-1 mt-4">
@@ -547,12 +598,6 @@ function battleboardHasMaterial(bb: BattleboardOutput | null): boolean {
   return bb.routes.some((r) => r.evidence_anchors.length > 0);
 }
 
-function formatChars(n: number): string {
-  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M chars`;
-  if (n >= 1000) return `${Math.round(n / 1000)}k chars`;
-  return `${n} chars`;
-}
-
 function resolveAllegationLabel(
   snapshot: CaseSnapshot | null,
   matter: MatterSummary | null,
@@ -573,36 +618,6 @@ function resolveAllegationLabel(
     return "Offence wording not safely extracted yet — check charge sheet / MG5 header on file.";
   }
   return "Offence wording not safely extracted yet";
-}
-
-function deriveBundleHealthLabel(
-  snapshot: CaseSnapshot | null,
-  bundleSource: BundleSourceSummary | null,
-  battleboard: BattleboardOutput | null,
-): string {
-  const docCount = Math.max(
-    snapshot?.analysis.docCount ?? 0,
-    bundleSource?.documentCount ?? 0,
-    snapshot?.evidence.documents?.length ?? 0,
-  );
-  const combinedLen = bundleSource?.combinedTextLength ?? 0;
-  const hasAnchors = battleboardHasMaterial(battleboard);
-  const tier = snapshot?.analysis.capabilityTier;
-
-  if (docCount === 0 && combinedLen === 0 && !hasAnchors) {
-    return "Thin (no documents on record)";
-  }
-  if (docCount === 0 && hasAnchors) {
-    return "Documents detected — summary still provisional";
-  }
-  if (docCount === 0 && combinedLen > 0) {
-    return `Text on file (${formatChars(combinedLen)}) — doc count pending`;
-  }
-
-  const tierLabel =
-    tier === "full" ? "Strong" : tier === "partial" ? "Partial" : hasAnchors ? "Partial (on file text)" : "Thin";
-  const textSuffix = combinedLen > 0 ? ` · ${formatChars(combinedLen)} text` : "";
-  return `${tierLabel} (${docCount} doc${docCount !== 1 ? "s" : ""}${textSuffix})`;
 }
 
 function isProceduralRisk(text: string): boolean {

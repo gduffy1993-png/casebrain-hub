@@ -62,6 +62,7 @@ import { DisclosureChase } from "./disclosure-chase/DisclosureChase";
 import { StrategyTimelineSection } from "./StrategyTimelineSection";
 import { VerdictRatingBlock } from "./VerdictRatingBlock";
 import { BundleSourcePanels } from "./BundleSourcePanels";
+import { WorkflowSafetyLine } from "./workflow/WorkflowSafetyLine";
 
 /** Tab ids for criminal case page. URL ?tab= must be one of these. Order: primary then secondary. */
 const CRIMINAL_CASE_TAB_IDS = [
@@ -735,11 +736,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   if (activeTab === "disclosure-chase") {
     return (
       <div className="space-y-4">
-        <div className="rounded-lg border border-border/80 bg-muted/30 px-3 py-2 text-center">
-          <p className="text-xs text-muted-foreground">
-            All outputs are evidence-linked. No predictions. No legal advice. Solicitor-controlled.
-          </p>
-        </div>
+        <WorkflowSafetyLine />
         {matterClosed && (
           <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-center">
             <p className="text-xs text-foreground">
@@ -759,11 +756,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   if (activeTab === "hearing-war-room") {
     return (
       <div className="space-y-4">
-        <div className="rounded-lg border border-border/80 bg-muted/30 px-3 py-2 text-center">
-          <p className="text-xs text-muted-foreground">
-            All outputs are evidence-linked. No predictions. No legal advice. Solicitor-controlled.
-          </p>
-        </div>
+        <WorkflowSafetyLine />
         {matterClosed && (
           <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-center">
             <p className="text-xs text-foreground">
@@ -783,11 +776,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   if (useControlRoom) {
     return (
       <div className="space-y-4">
-        <div className="rounded-lg border border-border/80 bg-muted/30 px-3 py-2 text-center">
-          <p className="text-xs text-muted-foreground">
-            All outputs are evidence-linked. No predictions. No legal advice. Solicitor-controlled.
-          </p>
-        </div>
+        <WorkflowSafetyLine />
         {matterClosed && (
           <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-center">
             <p className="text-xs text-foreground">

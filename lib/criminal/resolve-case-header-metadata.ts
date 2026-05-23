@@ -195,6 +195,27 @@ function resolveStage(
   return { label: "Stage not recorded", source: "unavailable" };
 }
 
+function formatHearingFromIso(iso: string, hearingType: string | null | undefined): string | null {
+  try {
+    const d = new Date(iso);
+    if (Number.isNaN(d.getTime())) return null;
+    const datePart = d.toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    });
+    const hasTime = d.getHours() !== 0 || d.getMinutes() !== 0;
+    const timePart = hasTime
+      ? d.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit", hour12: false })
+      : null;
+    const display = timePart ? `${datePart} at ${timePart}` : datePart;
+    const type = hearingType?.trim();
+    return type ? `${type} · ${display}` : display;
+  } catch {
+    return null;
+  }
+}
+
 function resolveNextHearing(
   snapshot: CaseSnapshot | null,
   bundle: BundleCaseMetadataInput,
@@ -205,6 +226,16 @@ function resolveNextHearing(
     const display = parsed?.display ?? bundle.nextHearingRaw.trim();
     const label = type ? `${type} · ${display}` : display;
     return { label, source: bundle.nextHearingSource };
+  }
+
+  if (bundle?.nextHearingIso) {
+    const fromIso = formatHearingFromIso(
+      bundle.nextHearingIso,
+      snapshot?.caseMeta?.hearingNextType,
+    );
+    if (fromIso) {
+      return { label: fromIso, source: bundle.nextHearingSource };
+    }
   }
 
   const at = snapshot?.caseMeta?.hearingNextAt;

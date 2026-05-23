@@ -19,7 +19,12 @@ export function CaseFilesCompactStrip({ documents }: { documents: CaseFileDocume
   const count = documents.length;
 
   return (
-    <section className={workflowCard} aria-label="Case files" data-testid="case-files-compact">
+    <section
+      id="case-files"
+      className={workflowCard}
+      aria-label="Case files"
+      data-testid="case-files-compact"
+    >
       <button
         type="button"
         className="w-full flex items-center justify-between gap-2 px-4 py-3 text-left hover:bg-slate-50/80 transition-colors"

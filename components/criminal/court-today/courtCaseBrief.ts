@@ -5,6 +5,12 @@ import {
 import { collectChaseItems } from "@/components/criminal/control-room/chaseItems";
 import { buildDisclosureChaseHref as buildDisclosureChaseTabHref } from "@/components/criminal/disclosure-chase/disclosureChaseLinks";
 import { buildHearingWarRoomHref } from "@/components/criminal/hearing-war-room/hearingWarRoomLinks";
+import type { CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
+import {
+  resolveCaseHeaderMetadata,
+  sanitizeHeaderAllegation,
+  sanitizeHeaderClient,
+} from "@/lib/criminal/resolve-case-header-metadata";
 import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
 import type {
   CourtCaseBrief,
@@ -15,6 +21,7 @@ import type {
 } from "./types";
 
 const NO_HEARING_LABEL = "No hearing date safely detected";
+const NEEDS_REVIEW_LABEL = "Needs hearing review";
 
 const INVALID_CASE_IDS = new Set(["", "{id}", "undefined", "null"]);
 
@@ -72,29 +79,95 @@ function formatHearingDate(d: Date, type: string | null | undefined): string {
   return `${typePrefix}${datePart}`;
 }
 
-function extractClientFromTitle(title: string): string | null {
-  const trimmed = title.trim();
-  const rv = trimmed.match(/\bR\s+v\s+(.+)/i);
-  if (rv?.[1]) {
-    const name = rv[1].split(/[–—-]/)[0]?.trim();
-    if (name && name.length >= 2) return name;
-  }
-  const parts = trimmed.split(/\s+-\s+/);
-  if (parts.length >= 2) {
-    const last = parts[parts.length - 1]?.trim();
-    if (last && last.length >= 2 && !/^CB-/i.test(last) && !/^Pack\s/i.test(last)) {
-      return last;
-    }
-  }
-  return null;
+function buildCourtTodaySnapshotStub(row: CourtCasesApiRow): CaseSnapshot {
+  const offence = row.offence_label?.trim();
+  const genericOffence =
+    !offence || offence === "—" || /^unknown/i.test(offence) || offence.includes("add charge sheet");
+  return {
+    caseMeta: {
+      title: row.title,
+      opponent: null,
+      role: null,
+      lastUpdatedAt: row.updated_at ?? null,
+      hearingNextAt: row.next_hearing_date ?? null,
+      hearingNextType: row.next_hearing_type ?? null,
+    },
+    analysis: {
+      hasVersion: false,
+      mode: "none",
+      canShowStrategyOutputs: false,
+      canShowStrategyPreview: false,
+      canShowStrategyFull: false,
+      completenessScore: 0,
+      completenessFlags: {
+        hasChargeSheetOrIndictment: false,
+        hasMG5CaseSummary: false,
+        hasWitnessStatements: false,
+        hasCCTV: false,
+        hasCCTVContinuityOrNativeExport: false,
+        hasBWV: false,
+        has999CAD: false,
+        hasCustodyRecord: false,
+        hasInterviewRecordingOrTranscript: false,
+        hasMedicalEvidence: false,
+        hasMG6Schedules: false,
+      },
+      capabilityTier: "thin",
+      strategyBasisLabel: "Bundle on file",
+    },
+    charges: genericOffence
+      ? []
+      : [
+          {
+            id: "court-today-stub",
+            offence,
+            section: null,
+            status: "active",
+            location: null,
+          },
+        ],
+    evidence: { documents: [], missingEvidence: [], disclosureItems: [] },
+    strategy: { statusLabel: "Provisional", hasRenderableData: false, strategyDataExists: false },
+    actions: { nextSteps: [] },
+    decisionLog: { history: [] },
+    resolvedOffence: {
+      offenceType: "unknown",
+      label: genericOffence ? "Unknown" : offence,
+      source: "matter",
+      isSupported: false,
+      coverageLabel: "Generic – add charge sheet",
+    },
+  };
 }
 
-function resolveAllegation(row: CourtCasesApiRow): string {
-  const label = row.offence_label?.trim();
-  if (label && label !== "—" && !/^unknown/i.test(label)) return label;
-  const fromTitle = row.title.split(/\s+-\s+/).find((p) => /\b(GBH|assault|robbery|fraud|theft|driving)\b/i.test(p));
-  if (fromTitle?.trim()) return fromTitle.trim();
-  return "Offence wording not safely extracted";
+function resolveCourtHeader(row: CourtCasesApiRow, enrichment: CourtTodayEnrichment) {
+  return resolveCaseHeaderMetadata({
+    snapshot: buildCourtTodaySnapshotStub(row),
+    bundleMetadata: enrichment.bundleMetadata,
+    bundleHeader: enrichment.bundleHeader
+      ? {
+          shortTitle: enrichment.bundleHeader.shortTitle,
+          stage: enrichment.bundleHeader.stage,
+          accused: enrichment.bundleHeader.accused,
+        }
+      : null,
+    matter:
+      row.offence_label && row.offence_label !== "—"
+        ? { allegedOffence: row.offence_label }
+        : null,
+  });
+}
+
+/** Structured DB hearing first, then extracted bundle ISO — no guessing. */
+export function resolveCourtHearingDate(
+  row: CourtCasesApiRow,
+  enrichment: CourtTodayEnrichment = {},
+): Date | null {
+  const fromDb = parseHearingDate(row.next_hearing_date);
+  if (fromDb) return fromDb;
+  const iso = enrichment.bundleMetadata?.nextHearingIso;
+  if (iso) return parseHearingDate(iso);
+  return null;
 }
 
 function resolveBundleHealth(row: CourtCasesApiRow, battleboard: BattleboardOutput | null | undefined): string {
@@ -161,17 +234,24 @@ export function buildCourtCaseBrief(
 ): CourtCaseBrief {
   const caseId = resolveCourtCaseId(row);
   const battleboard = enrichment.battleboard ?? null;
-  const hearingDate = parseHearingDate(row.next_hearing_date);
+  const headerMeta = resolveCourtHeader(row, enrichment);
+  const hearingDate = resolveCourtHearingDate(row, enrichment);
   const bucket = resolveHearingBucket(hearingDate);
-  const clientFromTitle = extractClientFromTitle(row.title);
-  const clientLabel = clientFromTitle ?? "Client name not safely extracted";
-  const allegation = resolveAllegation(row);
+  const clientLabel = sanitizeHeaderClient(headerMeta.clientLabel);
+  const allegation = sanitizeHeaderAllegation(headerMeta.allegation);
+  const stage =
+    headerMeta.stage && !/^stage not recorded$/i.test(headerMeta.stage)
+      ? headerMeta.stage
+      : "Stage not safely extracted — open case file";
   const chaseItems = buildChaseItems(row, battleboard);
   const readiness = resolveReadiness(row, bucket, chaseItems.length, battleboard, allegation, clientLabel);
 
   const hearingLabel = hearingDate
     ? formatHearingDate(hearingDate, row.next_hearing_type)
-    : NO_HEARING_LABEL;
+    : headerMeta.nextHearingSource !== "unavailable" &&
+        !headerMeta.nextHearing.includes("not safely extracted")
+      ? headerMeta.nextHearing
+      : NO_HEARING_LABEL;
 
   const hearingTimeLabel = hearingDate
     ? hearingDate.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })
@@ -213,7 +293,7 @@ export function buildCourtCaseBrief(
     caseTitle: row.title,
     clientLabel,
     allegation,
-    stage: "Stage not safely extracted — open case file",
+    stage,
     hearingLabel,
     hearingTimeLabel: hearingTimeLabel && hearingTimeLabel !== "00:00" ? hearingTimeLabel : null,
     hearingBucket: bucket,
@@ -242,7 +322,7 @@ export function bucketLabel(bucket: HearingBucket): string {
     case "this_week":
       return "This week";
     case "no_hearing":
-      return "No hearing date safely detected";
+      return NEEDS_REVIEW_LABEL;
   }
 }
 

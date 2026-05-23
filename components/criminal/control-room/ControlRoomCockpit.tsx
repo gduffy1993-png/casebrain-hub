@@ -7,9 +7,7 @@ import {
   MessageSquareQuote,
   Scale,
   Target,
-  Upload,
 } from "lucide-react";
-import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { workflowCard, workflowMuted, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
@@ -21,11 +19,7 @@ export type ControlRoomCockpitProps = AboveFoldSummaryProps & {
   courtLabel?: string;
   riskLabel: string;
   safeCourtLine: string;
-  onRecordPosition: () => void;
-  onUploadEvidence: () => void;
   onExitClassic: () => void;
-  hearingWarRoomHref?: string;
-  disclosureChaseHref?: string;
   battleboardSection: ReactNode;
   furtherActionsSection?: ReactNode;
   metadataNote?: string;
@@ -84,11 +78,7 @@ export function ControlRoomCockpit({
   riskLabel,
   safeCourtLine,
   loading,
-  onRecordPosition,
-  onUploadEvidence,
   onExitClassic,
-  hearingWarRoomHref,
-  disclosureChaseHref,
   battleboardSection,
   furtherActionsSection,
   metadataNote,
@@ -118,13 +108,6 @@ export function ControlRoomCockpit({
           <div className="flex flex-wrap gap-2 shrink-0">
             <Button type="button" variant="outline" size="sm" onClick={onExitClassic} className="bg-white">
               Classic workspace
-            </Button>
-            <Button type="button" variant="outline" size="sm" onClick={onUploadEvidence} className="bg-white">
-              <Upload className="h-3.5 w-3.5 mr-1" />
-              Upload
-            </Button>
-            <Button type="button" size="sm" onClick={onRecordPosition}>
-              Record position
             </Button>
           </div>
         </div>
@@ -167,16 +150,6 @@ export function ControlRoomCockpit({
         <StatTile label="Readiness" value={loading ? "—" : riskLabel} tone={readinessTone(riskLabel)} />
         <StatTile label="Disclosure chase" value={loading ? "—" : disclosureLabel} />
       </div>
-      {disclosureChaseHref ? (
-        <div className="flex flex-wrap gap-2">
-          <Link href={disclosureChaseHref}>
-            <Button type="button" size="sm" variant="outline" className="gap-1 text-violet-900 border-violet-300">
-              Open Disclosure Chase
-            </Button>
-          </Link>
-        </div>
-      ) : null}
-
       <div className={`${workflowCard} p-4 border-blue-200/60 bg-gradient-to-br from-blue-50/80 to-white`}>
         <p className={`${workflowSectionTitle} flex items-center gap-1 text-blue-800/80`}>
           <Target className="h-3.5 w-3.5" />
@@ -233,15 +206,6 @@ export function ControlRoomCockpit({
             {loading ? "Loading provisional wording…" : safeCourtLine}
           </blockquote>
           <p className="text-[10px] text-slate-500 mt-2">Provisional · solicitor review · do not overstate</p>
-          {hearingWarRoomHref ? (
-            <div className="mt-3">
-              <Link href={hearingWarRoomHref}>
-                <Button type="button" size="sm" variant="outline" className="gap-1 text-emerald-900 border-emerald-300">
-                  Open Hearing War Room
-                </Button>
-              </Link>
-            </div>
-          ) : null}
         </div>
       </div>
 

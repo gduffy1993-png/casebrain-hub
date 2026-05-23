@@ -1,4 +1,9 @@
-import { extractBundleCaseMetadata, type ExtractedBundleCaseMetadata } from "@/lib/criminal/extract-bundle-case-metadata";
+import {
+  buildMetadataScan,
+  extractBundleCaseMetadata,
+  type ExtractedBundleCaseMetadata,
+} from "@/lib/criminal/extract-bundle-case-metadata";
+import { buildBundleSizeProfile, type BundleSizeProfile } from "@/lib/bundle/bundle-display-profile";
 import { combineCaseDocumentsText, getDocumentBodyText } from "./bundle-document-text";
 
 const HEADER_SCAN = 16_000;
@@ -153,6 +158,8 @@ export function buildBundleSourcePayload(docs: Array<Record<string, unknown>>): 
   header: ParsedBundleHeader | null;
   snippets: BundleSnippets;
   caseMetadata: ExtractedBundleCaseMetadata;
+  sizeProfile: BundleSizeProfile;
+  frontMatterScan: string;
 } {
   const typed = docs as Array<{
     id: string;
@@ -183,5 +190,23 @@ export function buildBundleSourcePayload(docs: Array<Record<string, unknown>>): 
     };
   });
 
-  return { combinedText, documentRows, health, header, snippets, caseMetadata };
+  const sizeProfile = buildBundleSizeProfile(
+    typed.length,
+    combinedText.length,
+    typed.map((d) => ({ name: d.name, extracted_json: d.extracted_json })),
+    documentRows,
+  );
+
+  const frontMatterScan = buildMetadataScan(combinedText);
+
+  return {
+    combinedText,
+    documentRows,
+    health,
+    header,
+    snippets,
+    caseMetadata,
+    sizeProfile,
+    frontMatterScan,
+  };
 }

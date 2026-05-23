@@ -4,8 +4,28 @@
  */
 
 import type { ParsedBundleHeader } from "@/lib/bundle/parse-bundle-display";
+import { repairDisplayWordSpacing } from "@/lib/criminal/display-text";
 
-const SCAN_CHARS = 28_000;
+/** Front matter + high-value procedural sections (not full 1000-page scan). */
+const FRONT_MATTER_CHARS = 80_000;
+const SECTION_BLOCK_CHARS = 6_000;
+
+const HIGH_VALUE_SECTIONS = [
+  "COVER_INDEX",
+  "COVER",
+  "INDEX",
+  "CHARGE",
+  "CHARGE_SHEET",
+  "CHARGES",
+  "INDICTMENT",
+  "PROCEDURAL",
+  "PROCEDURAL_STATUS",
+  "CASE_SUMMARY",
+  "SUMMARY",
+  "HEARING",
+  "HEARING_NOTE",
+  "MG5",
+] as const;
 
 export type MetadataFieldSource =
   | "structured_field"
@@ -36,10 +56,7 @@ export type ExtractedBundleCaseMetadata = {
 };
 
 function cleanLineValue(raw: string): string | null {
-  const t = raw
-    .replace(/\s+/g, " ")
-    .replace(/\[[^\]]{0,80}\]/g, "")
-    .trim();
+  const t = repairDisplayWordSpacing(raw.replace(/\[[^\]]{0,80}\]/g, ""));
   if (!t || t.length < 2) return null;
   if (/^(?:n\/a|none|unknown|—|-|\?)$/i.test(t)) return null;
   if (t.length > 280) return `${t.slice(0, 277)}…`;
@@ -57,6 +74,47 @@ function extractLabeledValue(scan: string, labelPatterns: string[]): string | nu
     }
   }
   return null;
+}
+
+/** Label followed by value on same line (optional colon), stopping at pipe or next label. */
+function extractInlineLabeled(scan: string, labels: string[], maxLen = 200): string | null {
+  for (const label of labels) {
+    const escaped = label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const re = new RegExp(
+      `\\b${escaped}\\s*:?\\s*([^\\n|]{3,${maxLen}}?)(?=\\s*\\||\\s+(?:DOB|Stage|Court|Charge|Defence|Defense|Next\\s+hearing|Bundle\\s+size)\\b|$)`,
+      "i",
+    );
+    const m = scan.match(re);
+    if (m?.[1]) {
+      const v = cleanLineValue(m[1]);
+      if (v) return v;
+    }
+  }
+  return null;
+}
+
+function extractSectionBlock(full: string, sectionNames: string[], maxLen = SECTION_BLOCK_CHARS): string | null {
+  for (const name of sectionNames) {
+    const re = new RegExp(`===\\s*SECTION:\\s*${name}\\s*===([\\s\\S]{0,${maxLen}})`, "i");
+    const m = full.match(re);
+    if (m?.[1]?.trim()) return m[1].trim();
+  }
+  return null;
+}
+
+/** Highest-value text for metadata: front pages + cover/charge/hearing sections. */
+export function buildMetadataScan(fullText: string): string {
+  if (!fullText?.trim()) return "";
+  const parts: string[] = [fullText.slice(0, FRONT_MATTER_CHARS)];
+  const front = parts[0]!;
+  for (const section of HIGH_VALUE_SECTIONS) {
+    const block = extractSectionBlock(fullText, [section]);
+    if (block && block.length >= 24) {
+      const anchor = block.slice(0, Math.min(120, block.length));
+      if (!front.includes(anchor)) parts.push(block);
+    }
+  }
+  return parts.join("\n\n");
 }
 
 /** Stop before these tokens when trimming a person-name capture from table-style PDF text. */
@@ -94,14 +152,9 @@ function sanitizePersonName(value: string): string | null {
   return words.join(" ");
 }
 
-/**
- * Defendant/accused/client from colon labels or table-style PDF rows (no colon).
- * Prefers Defendant/Accused over Client; does not use Complainant.
- */
 function extractDefendantName(scan: string): string | null {
   const colonFirst =
-    extractLabeledValue(scan, ["Defendant", "Accused", "Defendant name", "Client"]) ??
-    null;
+    extractLabeledValue(scan, ["Defendant", "Accused", "Defendant name", "Client"]) ?? null;
   if (colonFirst) {
     const v = sanitizePersonName(colonFirst);
     if (v) return v;
@@ -110,6 +163,7 @@ function extractDefendantName(scan: string): string | null {
   const tablePatterns: RegExp[] = [
     new RegExp(`\\bDefendant\\s+name\\s*:?\\s*${PERSON_NAME_CAPTURE}`, "i"),
     new RegExp(`\\bDefendant\\s*:?\\s*${PERSON_NAME_CAPTURE}`, "i"),
+    new RegExp(`\\bDefendant\\s+${PERSON_NAME_CAPTURE}`, "i"),
     new RegExp(`\\bAccused\\s*:?\\s*${PERSON_NAME_CAPTURE}`, "i"),
     new RegExp(`\\bClient\\s+${PERSON_NAME_CAPTURE}`, "i"),
   ];
@@ -125,7 +179,6 @@ function extractDefendantName(scan: string): string | null {
   return null;
 }
 
-/** Complainant from colon or table-style rows (e.g. Complainant Oliver Shaw). */
 function extractComplainantName(scan: string): string | null {
   const colon =
     extractLabeledValue(scan, ["Complainant", "Victim", "Other party / key witness", "Key witness"]) ??
@@ -151,16 +204,6 @@ function extractComplainantName(scan: string): string | null {
   return null;
 }
 
-function extractSectionBlock(scan: string, sectionNames: string[]): string | null {
-  for (const name of sectionNames) {
-    const re = new RegExp(`===\\s*SECTION:\\s*${name}\\s*===([\\s\\S]{0,4000})`, "i");
-    const m = scan.match(re);
-    if (m?.[1]?.trim()) return m[1].trim();
-  }
-  return null;
-}
-
-/** Parse UK-style hearing date/time from free text (no timezone guess beyond local). */
 export function parseUkHearingDateTime(raw: string): { iso: string | null; display: string } | null {
   const t = raw.trim();
   if (!t) return null;
@@ -221,6 +264,10 @@ export function formatOffenceDisplayFromBundle(raw: string): string {
   const t = raw.trim();
   if (!t) return t;
 
+  if (/\bmurder\b/i.test(t) && /contrary to common law/i.test(t)) {
+    return "Murder, contrary to common law";
+  }
+
   const hasS47 = /\bsection\s*47\b|\bs\.?\s*47\b/i.test(t);
   const hasAbh = /\bactual bodily harm\b|\bABH\b/i.test(t);
   if (hasS47 && hasAbh) {
@@ -246,6 +293,9 @@ function extractOffenceFromChargeBlock(block: string): string | null {
       const v = cleanLineValue(line.replace(/^offence\s*[:]\s*/i, ""));
       if (v) return v;
     }
+    if (/contrary to common law/i.test(line) && /\bmurder\b/i.test(line)) {
+      return "Murder, contrary to common law";
+    }
     if (/contrary to section\s*\d+/i.test(line) && line.length >= 24) {
       return cleanLineValue(line);
     }
@@ -260,29 +310,229 @@ function extractOffenceFromChargeBlock(block: string): string | null {
   return null;
 }
 
+function normalizeChargeOffence(raw: string): string | null {
+  const t = raw.trim();
+  if (!t) return null;
+  const murder = t.match(/\b(murder,?\s+contrary to common law)\b/i);
+  if (murder?.[1]) return formatOffenceDisplayFromBundle(murder[1]);
+  if (/charged with\s+murder/i.test(t) && /contrary to common law/i.test(t)) {
+    return "Murder, contrary to common law";
+  }
+  if (/^[^.]{0,40}\s+is charged with\s+/i.test(t)) {
+    const inner = t.replace(/^[^.]{0,80}?\s+is charged with\s+/i, "").trim();
+    const m2 = inner.match(/\b(murder[^.|]{0,80}contrary to common law)\b/i);
+    if (m2?.[1]) return formatOffenceDisplayFromBundle(m2[1]);
+    if (/murder/i.test(inner)) return formatOffenceDisplayFromBundle(inner.split(/[.|]/)[0] ?? inner);
+  }
+  return cleanLineValue(t);
+}
+
+function extractOffenceWording(scan: string, fullText: string): { wording: string | null; source: MetadataFieldSource } {
+  let offenceWording =
+    extractLabeledValue(scan, ["Offence", "Offense", "Charge", "Allegation"]) ??
+    extractInlineLabeled(scan, ["Offence", "Offense", "Charge", "Allegation"]) ??
+    null;
+
+  if (offenceWording) {
+    const norm = normalizeChargeOffence(offenceWording);
+    if (norm) return { wording: norm, source: "extracted_cover_fallback" };
+  }
+
+  const chargeInline = scan.match(
+    /\bCharge\s+((?:murder|manslaughter)[^.\n|]{0,80}contrary to common law)/i,
+  );
+  if (chargeInline?.[1]) {
+    return { wording: formatOffenceDisplayFromBundle(chargeInline[1]), source: "extracted_charge_fallback" };
+  }
+
+  const chargedWith = scan.match(
+    /\b(?:is\s+)?charged with\s+(murder[^.\n|]{0,100}contrary to common law)/i,
+  );
+  if (chargedWith?.[1]) {
+    return { wording: "Murder, contrary to common law", source: "extracted_charge_fallback" };
+  }
+
+  const murderStandalone = scan.match(/\b(Murder,?\s+contrary to common law)\b/i);
+  if (murderStandalone?.[1]) {
+    return { wording: "Murder, contrary to common law", source: "extracted_charge_fallback" };
+  }
+
+  const chargeBlock =
+    extractSectionBlock(fullText, ["CHARGE", "CHARGE_SHEET", "CHARGES", "INDICTMENT"]) ?? scan;
+  const fromCharge = extractOffenceFromChargeBlock(chargeBlock);
+  if (fromCharge) {
+    return { wording: formatOffenceDisplayFromBundle(fromCharge), source: "extracted_charge_fallback" };
+  }
+
+  return { wording: null, source: "unavailable" };
+}
+
+function extractCourt(scan: string): string | null {
+  const labeled =
+    extractLabeledValue(scan, ["Court", "Venue", "Crown Court", "Magistrates"]) ??
+    extractInlineLabeled(scan, ["Court", "Venue"]);
+  if (labeled && /crown court|magistrates/i.test(labeled)) return labeled;
+
+  const inline = scan.match(/\bCourt\s+([A-Z][a-z]+(?:\s+[A-Za-z]+)*\s+Crown Court)\b/i);
+  if (inline?.[1]) return cleanLineValue(inline[1]);
+
+  const courtLine = scan.match(/\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*\s+Crown Court)\b/);
+  if (courtLine?.[1]) return cleanLineValue(courtLine[1]);
+
+  return labeled ? cleanLineValue(labeled) : null;
+}
+
+function extractNextHearing(scan: string): {
+  raw: string | null;
+  iso: string | null;
+  source: MetadataFieldSource;
+} {
+  let nextHearingRaw =
+    extractLabeledValue(scan, [
+      "Next hearing",
+      "Next Hearing",
+      "Hearing date",
+      "Listed",
+      "Date of hearing",
+    ]) ?? extractInlineLabeled(scan, ["Next hearing", "Next Hearing", "Hearing date"]) ?? null;
+
+  if (!nextHearingRaw) {
+    const inlineDate = scan.match(
+      /\bNext hearing\s+(\d{1,2}\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4}(?:\s+at\s+\d{1,2}:\d{2})?)/i,
+    );
+    if (inlineDate?.[1]) nextHearingRaw = cleanLineValue(inlineDate[1]);
+  }
+
+  if (!nextHearingRaw) {
+    const listed = scan.match(
+      /Hearing listed at\s+[^.\n]{0,80}?\s+on\s+(\d{1,2}\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4}(?:\s+at\s+\d{1,2}:\d{2})?)/i,
+    );
+    if (listed?.[1]) nextHearingRaw = cleanLineValue(listed[1]);
+  }
+
+  if (!nextHearingRaw) {
+    const listedFull = scan.match(
+      /Hearing listed at\s+([^.\n]{12,120})/i,
+    );
+    if (listedFull?.[1]) {
+      const inner = listedFull[1];
+      const dateIn = inner.match(
+        /(\d{1,2}\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4}(?:\s+at\s+\d{1,2}:\d{2})?)/i,
+      );
+      if (dateIn?.[1]) nextHearingRaw = cleanLineValue(dateIn[1]);
+    }
+  }
+
+  let nextHearingIso: string | null = null;
+  if (nextHearingRaw) {
+    const parsed = parseUkHearingDateTime(nextHearingRaw);
+    if (parsed?.iso) nextHearingIso = parsed.iso;
+  }
+
+  return {
+    raw: nextHearingRaw,
+    iso: nextHearingIso,
+    source: nextHearingRaw ? "extracted_procedural_fallback" : "unavailable",
+  };
+}
+
+function extractStage(scan: string, parsedHeader?: ParsedBundleHeader | null): string | null {
+  const stageLine = scan.match(
+    /\b(?:Stage|Procedural stage|Case stage)\s*:?\s*([^\n|]{4,120}?)(?=\s*(?:\||\n|Custody|Defence|Defense|Next hearing|Bundle)\b)/i,
+  );
+  if (stageLine?.[1]) {
+    const v = cleanLineValue(stageLine[1]);
+    if (v) return v;
+  }
+  return (
+    extractLabeledValue(scan, ["Stage", "Procedural stage", "Case stage"]) ??
+    parsedHeader?.stage?.trim() ??
+    null
+  );
+}
+
+function extractBailStatus(scan: string): string | null {
+  const remanded = scan.match(/\b(?:Custody status|Remand status|Bail status)\s+((?:Remanded|Bailed|Released)[^.\n|]{0,80})/i);
+  if (remanded?.[1]) {
+    const v = cleanLineValue(remanded[1]);
+    if (v) return v;
+  }
+  return (
+    extractLabeledValue(scan, ["Bail status", "Bail", "Custody status", "Remand status"]) ??
+    extractInlineLabeled(scan, ["Bail status", "Remand status"]) ??
+    null
+  );
+}
+
+function formatDefencePositionDisplay(raw: string): string {
+  const t = repairDisplayWordSpacing(raw);
+  return t.replace(/^not guilty\.?\s*/i, "Not guilty — ");
+}
+
+/** Reject junk captures (e.g. lone "The" from generic "Position" labels). */
+function sanitizeDefencePositionValue(raw: string | null): string | null {
+  if (!raw?.trim()) return null;
+  const t = formatDefencePositionDisplay(raw.trim());
+  if (!t || t.length < 12) return null;
+  const words = t.split(/\s+/).filter(Boolean);
+  if (words.length < 2) return null;
+  if (/^(?:the|a|an|on|in|at|or|and|not)$/i.test(t)) return null;
+  const hasPositionCue =
+    /\b(?:not guilty|denies|deny|no comment|self-defence|self defense|causation|attribution|disputed|provisional)\b/i.test(
+      t,
+    );
+  if (!hasPositionCue && words.length < 4) return null;
+  return t.length > 280 ? `${t.slice(0, 277)}…` : t;
+}
+
 function extractDefencePosition(scan: string): string | null {
-  const direct = extractLabeledValue(scan, [
-    "Defence position",
-    "Defense position",
-    "Defence case",
-    "Defence stance",
-    "Position",
-  ]);
-  if (direct) return direct;
+  const defenceLine = scan.match(
+    /\bDefence position\s+((?:Not guilty|Denies|No comment)[^|\n]{10,220})/i,
+  );
+  if (defenceLine?.[1]) {
+    const v = sanitizeDefencePositionValue(defenceLine[1]);
+    if (v) return v;
+  }
+
+  const direct =
+    extractLabeledValue(scan, [
+      "Defence position",
+      "Defense position",
+      "Defence case",
+      "Defence stance",
+    ]) ?? extractInlineLabeled(scan, ["Defence position", "Defense position", "Defence case"]);
+  if (direct) {
+    const v = sanitizeDefencePositionValue(direct);
+    if (v) return v;
+  }
 
   const proc = extractSectionBlock(scan, ["PROCEDURAL", "PROCEDURAL_STATUS", "CASE_SUMMARY", "SUMMARY"]);
   if (proc) {
-    const inProc = extractLabeledValue(proc, ["Defence position", "Defense position", "Defence case"]);
-    if (inProc) return inProc;
-    const ng = proc.match(/not guilty[^.\n]{0,120}/i);
-    if (ng) return cleanLineValue(ng[0]);
+    const inProc =
+      extractLabeledValue(proc, ["Defence position", "Defense position", "Defence case"]) ??
+      extractInlineLabeled(proc, ["Defence position", "Defense position"]);
+    if (inProc) {
+      const v = sanitizeDefencePositionValue(inProc);
+      if (v) return v;
+    }
+    const ng = proc.match(/not guilty[^.\n]{0,160}/i);
+    if (ng) {
+      const v = sanitizeDefencePositionValue(ng[0]);
+      if (v) return v;
+    }
   }
+
+  const ngScan = scan.match(
+    /\bNot guilty\.?\s*[^.\n]{0,120}(?:self-defence|causation|attribution)[^.\n]{0,80}/i,
+  );
+  if (ngScan?.[0]) {
+    const v = sanitizeDefencePositionValue(ngScan[0]);
+    if (v) return v;
+  }
+
   return null;
 }
 
-/**
- * Extract header metadata from combined document text (and optional eval-style header).
- */
 export function extractBundleCaseMetadata(
   fullText: string,
   parsedHeader?: ParsedBundleHeader | null,
@@ -310,77 +560,41 @@ export function extractBundleCaseMetadata(
 
   if (!fullText || fullText.trim().length < 40) return empty;
 
-  const scan = fullText.slice(0, SCAN_CHARS);
+  const scan = buildMetadataScan(fullText);
 
   let defendantName = extractDefendantName(scan) ?? parsedHeader?.accused?.trim() ?? null;
   if (defendantName) defendantName = sanitizePersonName(defendantName) ?? defendantName;
-  let defendantSource: MetadataFieldSource = defendantName ? "extracted_cover_fallback" : "unavailable";
+  const defendantSource: MetadataFieldSource = defendantName ? "extracted_cover_fallback" : "unavailable";
 
   let complainant = extractComplainantName(scan) ?? parsedHeader?.otherParty?.trim() ?? null;
   if (complainant) complainant = sanitizePersonName(complainant) ?? complainant;
-  let complainantSource: MetadataFieldSource = complainant ? "extracted_cover_fallback" : "unavailable";
+  const complainantSource: MetadataFieldSource = complainant ? "extracted_cover_fallback" : "unavailable";
 
-  let court = extractLabeledValue(scan, ["Court", "Venue", "Crown Court", "Magistrates"]);
-  if (!court) {
-    const courtLine = scan.match(/\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*\s+Crown Court)\b/);
-    if (courtLine?.[1]) court = cleanLineValue(courtLine[1]);
-  }
-  let courtSource: MetadataFieldSource = court ? "extracted_cover_fallback" : "unavailable";
+  const court = extractCourt(scan);
+  const courtSource: MetadataFieldSource = court ? "extracted_cover_fallback" : "unavailable";
 
-  let nextHearingRaw =
-    extractLabeledValue(scan, [
-      "Next hearing",
-      "Next Hearing",
-      "Hearing date",
-      "Listed",
-      "Date of hearing",
-    ]) ?? null;
-  let nextHearingSource: MetadataFieldSource = nextHearingRaw
-    ? "extracted_procedural_fallback"
-    : "unavailable";
-  let nextHearingIso: string | null = null;
-  if (nextHearingRaw) {
-    const parsed = parseUkHearingDateTime(nextHearingRaw);
-    if (parsed?.iso) nextHearingIso = parsed.iso;
-  }
+  const hearing = extractNextHearing(scan);
 
-  let stage =
-    extractLabeledValue(scan, ["Stage", "Procedural stage", "Case stage"]) ??
-    parsedHeader?.stage?.trim() ??
-    null;
-  let stageSource: MetadataFieldSource = stage ? "extracted_cover_fallback" : "unavailable";
+  const stage = extractStage(scan, parsedHeader);
+  const stageSource: MetadataFieldSource = stage ? "extracted_cover_fallback" : "unavailable";
 
-  let offenceWording =
-    extractLabeledValue(scan, ["Offence", "Offense", "Charge", "Allegation"]) ?? null;
-  let offenceSource: MetadataFieldSource = offenceWording
-    ? "extracted_cover_fallback"
-    : "unavailable";
-
-  if (!offenceWording) {
-    const chargeBlock =
-      extractSectionBlock(scan, ["CHARGE", "CHARGE_SHEET", "CHARGES", "INDICTMENT"]) ?? scan;
-    const fromCharge = extractOffenceFromChargeBlock(chargeBlock);
-    if (fromCharge) {
-      offenceWording = fromCharge;
-      offenceSource = "extracted_charge_fallback";
-    }
-  }
+  let { wording: offenceWording, source: offenceSource } = extractOffenceWording(scan, fullText);
 
   if (!offenceWording && parsedHeader?.shortTitle?.trim()) {
     const short = parsedHeader.shortTitle.trim();
-    if (/contrary to section|oapa|abh|gbh|assault/i.test(short)) {
+    if (/contrary to section|oapa|abh|gbh|assault|murder|common law/i.test(short)) {
       offenceWording = short;
       offenceSource = "extracted_cover_fallback";
     }
   }
 
-  let offenceDisplay = offenceWording ? formatOffenceDisplayFromBundle(offenceWording) : null;
+  const offenceDisplay = offenceWording ? formatOffenceDisplayFromBundle(offenceWording) : null;
 
-  let bailStatus = extractLabeledValue(scan, ["Bail status", "Bail", "Custody status"]);
-  let bailStatusSource: MetadataFieldSource = bailStatus ? "extracted_procedural_fallback" : "unavailable";
+  const bailStatus = extractBailStatus(scan);
+  const bailStatusSource: MetadataFieldSource = bailStatus ? "extracted_procedural_fallback" : "unavailable";
 
-  let defencePosition = extractDefencePosition(scan);
-  let defencePositionSource: MetadataFieldSource = defencePosition
+  const defencePosition = extractDefencePosition(scan);
+  const defencePositionSource: MetadataFieldSource = defencePosition
     ? "extracted_procedural_fallback"
     : "unavailable";
 
@@ -391,9 +605,9 @@ export function extractBundleCaseMetadata(
     complainantSource,
     court,
     courtSource,
-    nextHearingRaw,
-    nextHearingIso,
-    nextHearingSource,
+    nextHearingRaw: hearing.raw,
+    nextHearingIso: hearing.iso,
+    nextHearingSource: hearing.source,
     stage,
     stageSource,
     offenceWording,

@@ -1,16 +1,15 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { ChevronDown, ChevronRight, Search } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { Search } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CourtTodayCaseCard } from "./CourtTodayCaseCard";
 import { bucketLabel } from "./courtCaseBrief";
 import type { CourtCaseBrief } from "./types";
 
-const INITIAL_VISIBLE = 12;
+const SAMPLE_SIZE = 12;
 const LOAD_MORE_STEP = 20;
-const AUTO_COLLAPSE_THRESHOLD = 20;
 
 function matchesReviewSearch(brief: CourtCaseBrief, query: string): boolean {
   const q = query.trim().toLowerCase();
@@ -27,10 +26,16 @@ function matchesReviewSearch(brief: CourtCaseBrief, query: string): boolean {
   return haystack.includes(q);
 }
 
-export function CourtTodayReviewSection({ items }: { items: CourtCaseBrief[] }) {
+export function CourtTodayReviewSection({
+  items,
+  onEnrichCaseIds,
+}: {
+  items: CourtCaseBrief[];
+  onEnrichCaseIds?: (caseIds: string[]) => void | Promise<void>;
+}) {
   const total = items.length;
-  const [expanded, setExpanded] = useState(total <= AUTO_COLLAPSE_THRESHOLD);
-  const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE);
+  const [reviewMode, setReviewMode] = useState<"idle" | "sample" | "search">("idle");
+  const [visibleCount, setVisibleCount] = useState(SAMPLE_SIZE);
   const [search, setSearch] = useState("");
 
   const filtered = useMemo(
@@ -46,14 +51,14 @@ export function CourtTodayReviewSection({ items }: { items: CourtCaseBrief[] }) 
   const canLoadMore = visibleCount < filtered.length;
   const remaining = filtered.length - visible.length;
 
-  const handleExpand = () => {
-    setExpanded(true);
-    setVisibleCount(INITIAL_VISIBLE);
-  };
+  const showList = reviewMode === "sample" || (reviewMode === "search" && search.trim().length > 0);
 
-  const handleLoadMore = () => {
-    setVisibleCount((n) => Math.min(n + LOAD_MORE_STEP, filtered.length));
-  };
+  const visibleIdsKey = visible.map((b) => b.caseId).join(",");
+
+  useEffect(() => {
+    if (!onEnrichCaseIds || !showList || !visibleIdsKey) return;
+    void onEnrichCaseIds(visibleIdsKey.split(",").filter(Boolean));
+  }, [showList, visibleIdsKey, onEnrichCaseIds]);
 
   if (total === 0) {
     return (
@@ -73,87 +78,86 @@ export function CourtTodayReviewSection({ items }: { items: CourtCaseBrief[] }) 
 
   return (
     <section aria-labelledby="court-bucket-no_hearing" className="border-t border-border/50 pt-6">
-      <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
-        <div>
-          <h2
-            id="court-bucket-no_hearing"
-            className="text-sm font-semibold text-foreground uppercase tracking-wide"
-          >
-            {bucketLabel("no_hearing")}
-          </h2>
-          <p className="text-xs text-muted-foreground mt-1">
-            Hearing dates must be on the file — dates are not guessed.
-          </p>
-        </div>
-        <Button
-          type="button"
-          variant="outline"
-          size="sm"
-          className="gap-1"
-          onClick={() => setExpanded((v) => !v)}
-        >
-          {expanded ? (
-            <>
-              <ChevronDown className="h-3.5 w-3.5" />
-              Collapse list
-            </>
-          ) : (
-            <>
-              <ChevronRight className="h-3.5 w-3.5" />
-              Show list
-            </>
-          )}
-        </Button>
-      </div>
+      <h2
+        id="court-bucket-no_hearing"
+        className="text-sm font-semibold text-foreground uppercase tracking-wide"
+      >
+        {bucketLabel("no_hearing")} ({total.toLocaleString()})
+      </h2>
 
-      <Card className="border-amber-500/25 bg-amber-500/5 px-4 py-3 mb-4">
-        <p className="text-sm font-medium text-foreground">
-          {total.toLocaleString()} matter{total === 1 ? "" : "s"} need hearing review
+      <Card className="border-amber-500/25 bg-amber-500/5 px-4 py-3 mt-3 mb-4">
+        <p className="text-sm text-foreground leading-relaxed">
+          Hearing dates were not safely extracted. Review bundle or listing papers before placing
+          these matters in the diary.
         </p>
         <p className="text-xs text-muted-foreground mt-1">
-          No hearing date safely detected on the current file record. Review dates on the bundle or
-          listing papers — only a sample is shown below until you expand or search.
+          Dates are not guessed. Use the actions below to open a sample or search by client, title,
+          or offence.
         </p>
       </Card>
 
-      {!expanded ? (
+      {!showList ? (
         <div className="flex flex-wrap gap-2">
-          <Button type="button" size="sm" onClick={handleExpand}>
-            Show first {Math.min(INITIAL_VISIBLE, total)} matters
+          <Button
+            type="button"
+            size="sm"
+            variant="primary"
+            onClick={() => {
+              setReviewMode("sample");
+              setVisibleCount(SAMPLE_SIZE);
+              setSearch("");
+            }}
+          >
+            Review sample
           </Button>
-          {total > INITIAL_VISIBLE && (
-            <span className="text-xs text-muted-foreground self-center">
-              +{(total - INITIAL_VISIBLE).toLocaleString()} more not loaded
-            </span>
-          )}
+          <Button
+            type="button"
+            size="sm"
+            variant="outline"
+            onClick={() => {
+              setReviewMode("search");
+              setVisibleCount(SAMPLE_SIZE);
+            }}
+          >
+            Search review matters
+          </Button>
         </div>
       ) : (
         <>
-          <div className="mb-3 relative max-w-md">
-            <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
-            <input
-              type="search"
-              value={search}
-              onChange={(e) => {
-                setSearch(e.target.value);
-                setVisibleCount(INITIAL_VISIBLE);
-              }}
-              placeholder="Filter by client, title, offence…"
-              className="w-full rounded-md border border-border/60 bg-background pl-8 pr-3 py-2 text-sm text-foreground placeholder:text-muted-foreground"
-              aria-label="Filter review matters"
-            />
-          </div>
+          {reviewMode === "search" && (
+            <div className="mb-3 relative max-w-md">
+              <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
+              <input
+                type="search"
+                value={search}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                  setVisibleCount(SAMPLE_SIZE);
+                }}
+                placeholder="Filter by client, title, offence…"
+                className="w-full rounded-md border border-border/60 bg-background pl-8 pr-3 py-2 text-sm text-foreground placeholder:text-muted-foreground"
+                aria-label="Search review matters"
+                autoFocus
+              />
+            </div>
+          )}
 
-          {search.trim() && (
+          {reviewMode === "search" && search.trim() && (
             <p className="text-xs text-muted-foreground mb-3">
               {filtered.length.toLocaleString()} match{filtered.length === 1 ? "" : "es"}
               {filtered.length !== total ? ` of ${total.toLocaleString()} total` : ""}
             </p>
           )}
 
+          {reviewMode === "sample" && (
+            <p className="text-xs text-muted-foreground mb-3">
+              Showing a sample of {Math.min(SAMPLE_SIZE, total)} matters — not the full list.
+            </p>
+          )}
+
           {filtered.length === 0 ? (
             <Card className="border-dashed border-border/60 bg-muted/10 px-4 py-5 text-sm text-muted-foreground">
-              No matters match this filter. Clear search to see the review sample again.
+              No matters match this search. Clear the filter or return to review actions.
             </Card>
           ) : (
             <>
@@ -164,26 +168,42 @@ export function CourtTodayReviewSection({ items }: { items: CourtCaseBrief[] }) 
               </div>
               <div className="flex flex-wrap items-center gap-3 mt-4">
                 {canLoadMore && (
-                  <Button type="button" variant="outline" size="sm" onClick={handleLoadMore}>
-                    Show more ({Math.min(LOAD_MORE_STEP, remaining).toLocaleString()} of{" "}
-                    {remaining.toLocaleString()} remaining)
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setVisibleCount((n) => Math.min(n + LOAD_MORE_STEP, filtered.length))}
+                  >
+                    Show more
                   </Button>
                 )}
-                {!canLoadMore && filtered.length > INITIAL_VISIBLE && (
+                {!canLoadMore && filtered.length > SAMPLE_SIZE && (
                   <span className="text-xs text-muted-foreground">
                     Showing all {filtered.length.toLocaleString()} filtered matters.
                   </span>
                 )}
-                {visibleCount > INITIAL_VISIBLE && (
+                {visibleCount > SAMPLE_SIZE && (
                   <Button
                     type="button"
                     variant="ghost"
                     size="sm"
-                    onClick={() => setVisibleCount(INITIAL_VISIBLE)}
+                    onClick={() => setVisibleCount(SAMPLE_SIZE)}
                   >
                     Show fewer
                   </Button>
                 )}
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    setReviewMode("idle");
+                    setSearch("");
+                    setVisibleCount(SAMPLE_SIZE);
+                  }}
+                >
+                  Back to review actions
+                </Button>
               </div>
             </>
           )}

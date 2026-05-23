@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { Loader2, Scale } from "lucide-react";
 import { Card } from "@/components/ui/card";
@@ -8,14 +8,29 @@ import { workflowCard } from "@/components/criminal/workflow/workflowUi";
 import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
 import { CourtTodayReviewSection } from "./CourtTodayReviewSection";
 import { CourtTodayDiarySection } from "./CourtTodayDiarySection";
-import { buildCourtCaseBrief, resolveCourtCaseId } from "./courtCaseBrief";
-import type { CourtCasesApiRow, HearingBucket } from "./types";
+import { resolveCourtCaseId } from "./courtCaseBrief";
+import {
+  buildCourtTodayBuckets,
+  countBuckets,
+  pickRecentNoDateCandidates,
+  RECENT_NO_DATE_ENRICH_LIMIT,
+  scheduledCaseIdsFromBuckets,
+} from "./courtTodayDiary";
+import { enrichCourtTodayBundles, type CourtTodayBundlePayload } from "./courtTodayBundleMetadata";
+import type { CourtCaseBrief, CourtCasesApiRow, CourtTodayEnrichment, HearingBucket } from "./types";
 
 const SCHEDULE_BUCKETS: Exclude<HearingBucket, "no_hearing">[] = [
   "today",
   "tomorrow",
   "this_week",
 ];
+
+const EMPTY_BUCKETS: Record<HearingBucket, CourtCaseBrief[]> = {
+  today: [],
+  tomorrow: [],
+  this_week: [],
+  no_hearing: [],
+};
 
 async function fetchBattleboard(caseId: string): Promise<BattleboardOutput | null> {
   try {
@@ -44,6 +59,22 @@ async function enrichBattleboards(caseIds: string[]): Promise<Map<string, Battle
     }
   }
   return map;
+}
+
+function mergeBundlePayloads(
+  prev: Map<string, CourtTodayEnrichment>,
+  bundles: Map<string, CourtTodayBundlePayload>,
+): Map<string, CourtTodayEnrichment> {
+  const next = new Map(prev);
+  for (const [id, bundle] of bundles) {
+    const existing = next.get(id) ?? {};
+    next.set(id, {
+      ...existing,
+      bundleMetadata: bundle.caseMetadata ?? existing.bundleMetadata ?? null,
+      bundleHeader: bundle.header ?? existing.bundleHeader ?? null,
+    });
+  }
+  return next;
 }
 
 function StatPill({
@@ -76,8 +107,13 @@ function StatPill({
 export function CourtTodayClient() {
   const [rows, setRows] = useState<CourtCasesApiRow[]>([]);
   const [loading, setLoading] = useState(true);
-  const [enriching, setEnriching] = useState(false);
+  const [enrichmentByCase, setEnrichmentByCase] = useState<Map<string, CourtTodayEnrichment>>(
+    new Map(),
+  );
   const [battleboards, setBattleboards] = useState<Map<string, BattleboardOutput>>(new Map());
+  const [checkingRecent, setCheckingRecent] = useState(false);
+  const [enrichingLabels, setEnrichingLabels] = useState(false);
+  const [statusLine, setStatusLine] = useState<string | null>(null);
 
   const todayLabel = useMemo(
     () =>
@@ -105,6 +141,7 @@ export function CourtTodayClient() {
               .filter((row): row is CourtCasesApiRow => row != null)
           : [];
         setRows(list);
+        setStatusLine("Building diary from saved hearing dates…");
       })
       .catch(() => {
         if (!cancelled) setRows([]);
@@ -117,67 +154,110 @@ export function CourtTodayClient() {
     };
   }, []);
 
-  const preliminaryBriefs = useMemo(
-    () => rows.map((row) => buildCourtCaseBrief(row)),
-    [rows],
+  const displayBuckets = useMemo(
+    () =>
+      loading
+        ? EMPTY_BUCKETS
+        : buildCourtTodayBuckets(rows, enrichmentByCase, battleboards),
+    [rows, enrichmentByCase, battleboards, loading],
   );
 
-  const enrichIds = useMemo(() => {
-    const ids = new Set<string>();
-    for (const b of preliminaryBriefs) {
-      if (b.hearingBucket !== "no_hearing") ids.add(b.caseId);
-    }
-    return [...ids].slice(0, 36);
-  }, [preliminaryBriefs]);
+  const stats = useMemo(() => {
+    const counts = countBuckets(displayBuckets);
+    const scheduled = [
+      ...displayBuckets.today,
+      ...displayBuckets.tomorrow,
+      ...displayBuckets.this_week,
+    ];
+    return {
+      ...counts,
+      red: scheduled.filter((b) => b.readiness === "red").length,
+      amber: scheduled.filter((b) => b.readiness === "amber").length,
+      ready: scheduled.filter((b) => b.readiness === "green").length,
+    };
+  }, [displayBuckets]);
 
+  /** Background: enrich latest no-date matters only (not all 961). */
   useEffect(() => {
-    if (loading || enrichIds.length === 0) return;
+    if (loading || rows.length === 0) return;
+
+    const candidates = pickRecentNoDateCandidates(rows, RECENT_NO_DATE_ENRICH_LIMIT);
+    if (candidates.length === 0) {
+      setStatusLine(null);
+      return;
+    }
+
     let cancelled = false;
-    setEnriching(true);
-    enrichBattleboards(enrichIds)
-      .then((map) => {
-        if (!cancelled) setBattleboards(map);
+    setCheckingRecent(true);
+    setStatusLine(`Checking recent no-date matters (${candidates.length})…`);
+
+    const ids = candidates.map((r) => resolveCourtCaseId(r)).filter(Boolean);
+
+    enrichCourtTodayBundles(ids)
+      .then((bundles) => {
+        if (cancelled) return;
+        setEnrichmentByCase((prev) => mergeBundlePayloads(prev, bundles));
+        setStatusLine(null);
+      })
+      .catch(() => {
+        if (!cancelled) setStatusLine(null);
       })
       .finally(() => {
-        if (!cancelled) setEnriching(false);
+        if (!cancelled) setCheckingRecent(false);
       });
+
     return () => {
       cancelled = true;
     };
-  }, [loading, enrichIds.slice().sort().join(",")]);
+  }, [loading, rows.length]);
 
-  const byBucket = useMemo(() => {
-    const groups = {
-      today: [] as ReturnType<typeof buildCourtCaseBrief>[],
-      tomorrow: [] as ReturnType<typeof buildCourtCaseBrief>[],
-      this_week: [] as ReturnType<typeof buildCourtCaseBrief>[],
-      no_hearing: [] as ReturnType<typeof buildCourtCaseBrief>[],
-    };
-    for (const row of rows) {
-      const brief = buildCourtCaseBrief(row, {
-        battleboard: battleboards.get(row.id) ?? null,
+  const scheduledIdsKey = useMemo(
+    () => scheduledCaseIdsFromBuckets(displayBuckets, 48).join(","),
+    [displayBuckets],
+  );
+
+  /** Optional richer labels + battleboard for scheduled matters only (not all cases). */
+  useEffect(() => {
+    if (loading || !scheduledIdsKey) return;
+
+    let cancelled = false;
+    setEnrichingLabels(true);
+    const scheduledIds = scheduledIdsKey.split(",").filter(Boolean);
+
+    Promise.all([
+      enrichCourtTodayBundles(scheduledIds),
+      enrichBattleboards(scheduledIds),
+    ])
+      .then(([bundles, boards]) => {
+        if (cancelled) return;
+        setEnrichmentByCase((prev) => mergeBundlePayloads(prev, bundles));
+        setBattleboards(boards);
+      })
+      .finally(() => {
+        if (!cancelled) setEnrichingLabels(false);
       });
-      groups[brief.hearingBucket].push(brief);
-    }
-    return groups;
-  }, [rows, battleboards]);
 
-  const stats = useMemo(() => {
-    const inCourtToday = byBucket.today.length;
-    const red = byBucket.today.filter((b) => b.readiness === "red").length +
-      byBucket.tomorrow.filter((b) => b.readiness === "red").length +
-      byBucket.this_week.filter((b) => b.readiness === "red").length;
-    const amber =
-      byBucket.today.filter((b) => b.readiness === "amber").length +
-      byBucket.tomorrow.filter((b) => b.readiness === "amber").length +
-      byBucket.this_week.filter((b) => b.readiness === "amber").length;
-    const ready =
-      byBucket.today.filter((b) => b.readiness === "green").length +
-      byBucket.tomorrow.filter((b) => b.readiness === "green").length +
-      byBucket.this_week.filter((b) => b.readiness === "green").length;
-    const review = byBucket.no_hearing.length;
-    return { inCourtToday, red, amber, ready, review };
-  }, [byBucket]);
+    return () => {
+      cancelled = true;
+    };
+  }, [loading, scheduledIdsKey]);
+
+  const enrichCaseIds = useCallback(async (caseIds: string[]) => {
+    const unique = [...new Set(caseIds.filter(Boolean))];
+    if (unique.length === 0) return;
+
+    const bundles = await enrichCourtTodayBundles(unique);
+    setEnrichmentByCase((prev) => mergeBundlePayloads(prev, bundles));
+  }, []);
+
+  useEffect(() => {
+    if (loading || process.env.NODE_ENV !== "development") return;
+    console.info("[CourtToday] fast-first counts", {
+      totalCases: rows.length,
+      enrichmentCached: enrichmentByCase.size,
+      ...stats,
+    });
+  }, [loading, rows.length, enrichmentByCase.size, stats]);
 
   return (
     <div className="space-y-5 max-w-[1600px]" data-testid="court-today">
@@ -189,8 +269,8 @@ export function CourtTodayClient() {
           </div>
           <p className="text-sm text-slate-600 mt-1">{todayLabel}</p>
           <p className="text-xs text-slate-500 mt-0.5 max-w-2xl">
-            Court-day command centre — conditional, source-linked summaries only. No outcome
-            predictions. Open Control Room for full routes and case assistant.
+            Court-day command centre — diary uses saved hearing dates first. Recent no-date matters
+            are checked in the background only.
           </p>
         </div>
         <Link
@@ -202,17 +282,24 @@ export function CourtTodayClient() {
       </header>
 
       <div className="flex flex-wrap gap-2">
-        <StatPill label="Hearings today" value={stats.inCourtToday} />
+        <StatPill label="Hearings today" value={stats.today} />
         <StatPill label="Matters at risk" value={stats.red} tone="danger" />
         <StatPill label="Missing evidence" value={stats.amber} tone="warning" />
         <StatPill label="Ready for court" value={stats.ready} tone="success" />
-        <StatPill label="No hearing date" value={stats.review} tone="muted" />
+        <StatPill label="Needs hearing review" value={stats.review} tone="muted" />
       </div>
 
-      {enriching && (
+      {(statusLine || checkingRecent || enrichingLabels) && (
         <p className="text-xs text-muted-foreground flex items-center gap-2">
-          <Loader2 className="h-3.5 w-3.5 animate-spin" />
-          Loading battleboard routes for scheduled hearings…
+          {(checkingRecent || enrichingLabels) && (
+            <Loader2 className="h-3.5 w-3.5 animate-spin shrink-0" />
+          )}
+          {statusLine ??
+            (checkingRecent
+              ? "Checking recent no-date matters…"
+              : enrichingLabels
+                ? "Loading routes for scheduled hearings…"
+                : null)}
         </p>
       )}
 
@@ -231,11 +318,14 @@ export function CourtTodayClient() {
             <CourtTodayDiarySection
               key={bucket}
               bucket={bucket}
-              items={byBucket[bucket]}
+              items={displayBuckets[bucket]}
               defaultExpanded={bucket === "today"}
             />
           ))}
-          <CourtTodayReviewSection items={byBucket.no_hearing} />
+          <CourtTodayReviewSection
+            items={displayBuckets.no_hearing}
+            onEnrichCaseIds={enrichCaseIds}
+          />
         </div>
       )}
 

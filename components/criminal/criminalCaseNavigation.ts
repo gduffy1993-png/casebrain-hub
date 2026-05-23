@@ -70,6 +70,39 @@ export function shouldRedirectToControlRoom(searchParams: {
   return getControlRoomPreference() !== false;
 }
 
+export type CaseWorkflowTabId =
+  | "control-room"
+  | "battleboard"
+  | "hearing-war-room"
+  | "disclosure-chase"
+  | "documents"
+  | "position";
+
+export function buildCaseWorkflowTabHref(caseId: string, tab: CaseWorkflowTabId): string {
+  const id = caseId.trim();
+  if (!id || INVALID_CASE_IDS.has(id)) return "/cases";
+  switch (tab) {
+    case "control-room":
+      return buildControlRoomCaseHref(id);
+    case "battleboard":
+      return `${buildControlRoomCaseHref(id)}#full-battleboard`;
+    case "hearing-war-room": {
+      const p = new URLSearchParams({ tab: "hearing-war-room", controlRoom: "1" });
+      return `/cases/${id}?${p.toString()}`;
+    }
+    case "disclosure-chase": {
+      const p = new URLSearchParams({ tab: "disclosure-chase", controlRoom: "1" });
+      return `/cases/${id}?${p.toString()}`;
+    }
+    case "documents":
+      return `${buildControlRoomCaseHref(id)}#case-files`;
+    case "position": {
+      const p = new URLSearchParams({ tab: "client-instructions", controlRoom: "1" });
+      return `/cases/${id}?${p.toString()}`;
+    }
+  }
+}
+
 export function appendControlRoomParams(
   params: URLSearchParams,
   options?: { defaultTab?: string },

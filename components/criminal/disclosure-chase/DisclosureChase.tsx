@@ -6,8 +6,6 @@ import {
   Check,
   Copy,
   FileSearch,
-  Gavel,
-  LayoutDashboard,
   Loader2,
   MessageSquareQuote,
   Scale,
@@ -27,11 +25,10 @@ import {
   type DisclosureChaseBrief,
   type DisclosureChaseItem,
 } from "./buildDisclosureChaseBrief";
-import {
-  buildControlRoomHref,
-  buildHearingWarRoomHref,
-} from "./disclosureChaseLinks";
+import { CaseWorkflowShell } from "@/components/criminal/workflow/CaseWorkflowShell";
 import type { ExtractedBundleCaseMetadata } from "@/lib/criminal/extract-bundle-case-metadata";
+import { formatCaseBundleHealthLabel } from "@/lib/criminal/format-case-bundle-health";
+import type { DocumentRowMeta } from "@/lib/bundle/parse-bundle-display";
 import {
   resolveCaseHeaderMetadata,
   sanitizeHeaderAllegation,
@@ -52,6 +49,9 @@ type MatterSummary = {
 
 type BundleSourceSummary = {
   documentCount: number;
+  combinedTextLength?: number;
+  documentRows?: DocumentRowMeta[];
+  frontMatterScan?: string | null;
   header?: { stage: string | null; shortTitle?: string | null; accused?: string | null };
   caseMetadata?: ExtractedBundleCaseMetadata | null;
 };
@@ -98,14 +98,17 @@ function deriveBundleHealth(
   bundleSource: BundleSourceSummary | null,
   battleboard: BattleboardOutput | null,
 ): string {
-  if (battleboard?.overall_status === "thin_bundle") return "Thin bundle — provisional only";
-  const docCount = Math.max(
-    snapshot?.analysis.docCount ?? 0,
-    bundleSource?.documentCount ?? 0,
-    snapshot?.evidence.documents?.length ?? 0,
-  );
-  if (docCount === 0) return "Thin (no documents on record)";
-  return `${docCount} document(s) on file — review before chase`;
+  return formatCaseBundleHealthLabel({
+    documentCount: Math.max(
+      snapshot?.analysis.docCount ?? 0,
+      bundleSource?.documentCount ?? 0,
+      snapshot?.evidence.documents?.length ?? 0,
+    ),
+    combinedTextLength: bundleSource?.combinedTextLength ?? 0,
+    capabilityTier: snapshot?.analysis.capabilityTier,
+    battleboard,
+    documentRows: bundleSource?.documentRows,
+  });
 }
 
 function CounterTile({ label, value, tone }: { label: string; value: number; tone?: string }) {
@@ -313,6 +316,7 @@ export function DisclosureChase({
   const [battleboard, setBattleboard] = useState<BattleboardOutput | null>(null);
   const [battleboardLoading, setBattleboardLoading] = useState(true);
   const [bundleSource, setBundleSource] = useState<BundleSourceSummary | null>(null);
+  const [bundleLoading, setBundleLoading] = useState(true);
   const [filter, setFilter] = useState<ChaseFilterBucket>("all");
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [localStatus, setLocalStatus] = useState<LocalChaseMap>({});
@@ -385,6 +389,7 @@ export function DisclosureChase({
 
   useEffect(() => {
     let cancelled = false;
+    setBundleLoading(true);
     fetch(`/api/criminal/${caseId}/bundle-source`, { cache: "no-store", credentials: "include" })
       .then((r) => r.json())
       .then((res) => {
@@ -392,6 +397,11 @@ export function DisclosureChase({
         const d = res.data as BundleSourceSummary & { documentCount?: number };
         setBundleSource({
           documentCount: d.documentCount ?? 0,
+          combinedTextLength: (d as { combinedTextLength?: number }).combinedTextLength ?? 0,
+          documentRows: Array.isArray((d as { documentRows?: DocumentRowMeta[] }).documentRows)
+            ? (d as { documentRows: DocumentRowMeta[] }).documentRows
+            : undefined,
+          frontMatterScan: (d as { frontMatterScan?: string }).frontMatterScan ?? null,
           header: d.header
             ? {
                 stage: d.header.stage ?? null,
@@ -402,7 +412,10 @@ export function DisclosureChase({
           caseMetadata: d.caseMetadata ?? null,
         });
       })
-      .catch(() => {});
+      .catch(() => {})
+      .finally(() => {
+        if (!cancelled) setBundleLoading(false);
+      });
     return () => {
       cancelled = true;
     };
@@ -431,6 +444,11 @@ export function DisclosureChase({
   const clientLabel = sanitizeHeaderClient(headerMeta.clientLabel);
   const allegation = sanitizeHeaderAllegation(headerMeta.allegation);
   const stage = headerMeta.stage;
+  const headerLoading = snapshotLoading || bundleLoading;
+  const hearingDisplay =
+    headerLoading && /not safely extracted/i.test(headerMeta.nextHearing)
+      ? "…"
+      : headerMeta.nextHearing;
   const metadataNote = headerMeta.metadataNote;
 
   const positionStatus =
@@ -450,7 +468,7 @@ export function DisclosureChase({
         clientLabel,
         allegation,
         stage,
-        hearingStatus: headerMeta.nextHearing,
+        hearingStatus: hearingDisplay,
         hearingDateIso:
           bundleSource?.caseMetadata?.nextHearingIso ??
           snapshot?.caseMeta?.hearingNextAt ??
@@ -471,6 +489,8 @@ export function DisclosureChase({
       battleboard,
       positionStatus,
       effectiveProceduralSafety,
+      headerMeta.nextHearing,
+      hearingDisplay,
     ],
   );
 
@@ -504,11 +524,12 @@ export function DisclosureChase({
     }
   }, [filteredItems, selectedId]);
 
-  const loading = snapshotLoading || battleboardLoading;
+  const loading = snapshotLoading || battleboardLoading || bundleLoading;
 
   return (
     <div className="min-h-0 pb-8 text-slate-900" data-testid="disclosure-chase">
       <div className="max-w-[1400px] space-y-4">
+        <CaseWorkflowShell caseId={caseId}>
         <header className={`${workflowCard} overflow-hidden`}>
           <div className="px-4 py-3 border-b border-slate-100 bg-gradient-to-r from-violet-50/80 to-white flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div className="min-w-0">
@@ -524,22 +545,6 @@ export function DisclosureChase({
               </p>
               <p className={`text-xs ${workflowMuted} mt-0.5`}>{brief.caseTitle}</p>
             </div>
-            <div className="flex flex-wrap gap-2 shrink-0">
-              {controlRoomMode ? (
-                <Link href={buildControlRoomHref(caseId)}>
-                  <Button type="button" size="sm" variant="outline" className="gap-1">
-                    <LayoutDashboard className="h-3.5 w-3.5" />
-                    Control Room
-                  </Button>
-                </Link>
-              ) : null}
-              <Link href={buildHearingWarRoomHref(caseId, { controlRoom: controlRoomMode })}>
-                <Button type="button" size="sm" variant="outline" className="gap-1">
-                  <Gavel className="h-3.5 w-3.5" />
-                  Hearing War Room
-                </Button>
-              </Link>
-            </div>
           </div>
 
           <dl className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-px bg-slate-100">
@@ -548,10 +553,10 @@ export function DisclosureChase({
                 label: "Court",
                 value: headerMeta.court?.trim() || "Court not safely extracted",
               },
-              { label: "Stage", value: brief.stage },
+              { label: "Stage", value: headerLoading ? "…" : stage },
               { label: "Bundle", value: brief.bundleHealth },
               { label: "Position", value: brief.positionStatus },
-              { label: "Hearing", value: brief.hearingStatus },
+              { label: "Hearing", value: headerLoading ? "…" : hearingDisplay },
               { label: "Disclosure", value: brief.disclosureSummary },
               { label: "Routes linked", value: String(brief.linkedRoutes.length) },
             ].map((tile) => (
@@ -692,6 +697,7 @@ export function DisclosureChase({
             </p>
           </>
         )}
+        </CaseWorkflowShell>
       </div>
     </div>
   );

@@ -1,3 +1,5 @@
+import type { ParsedBundleHeader } from "@/lib/bundle/parse-bundle-display";
+import type { ExtractedBundleCaseMetadata } from "@/lib/criminal/extract-bundle-case-metadata";
 import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
 
 export type CourtReadiness = "green" | "amber" | "red" | "review";
@@ -42,4 +44,6 @@ export type CourtCaseBrief = {
 
 export type CourtTodayEnrichment = {
   battleboard?: BattleboardOutput | null;
+  bundleMetadata?: ExtractedBundleCaseMetadata | null;
+  bundleHeader?: ParsedBundleHeader | null;
 };

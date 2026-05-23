@@ -51,6 +51,9 @@ export async function GET(_request: Request, { params }: RouteParams) {
         header: payload.header,
         snippets: payload.snippets,
         caseMetadata: payload.caseMetadata,
+        sizeProfile: payload.sizeProfile,
+        frontMatterScanLength: payload.frontMatterScan.length,
+        frontMatterScan: payload.frontMatterScan,
       },
     });
   } catch (e) {

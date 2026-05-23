@@ -30,10 +30,13 @@ import {
   type HearingWarRoomBrief,
 } from "./buildHearingWarRoomBrief";
 import { buildDisclosureChaseHref } from "@/components/criminal/disclosure-chase/disclosureChaseLinks";
-import { buildControlRoomHref, buildHearingWarRoomHref } from "./hearingWarRoomLinks";
+import { CaseWorkflowShell } from "@/components/criminal/workflow/CaseWorkflowShell";
+import { buildControlRoomHref } from "./hearingWarRoomLinks";
 import { HearingWarRoomAssistant } from "./HearingWarRoomAssistant";
 import type { ControlRoomAssistantContext } from "@/components/criminal/control-room/assistantBattleboardFallback";
 import type { ExtractedBundleCaseMetadata } from "@/lib/criminal/extract-bundle-case-metadata";
+import { formatCaseBundleHealthLabel } from "@/lib/criminal/format-case-bundle-health";
+import type { DocumentRowMeta } from "@/lib/bundle/parse-bundle-display";
 import {
   resolveCaseHeaderMetadata,
   sanitizeHeaderAllegation,
@@ -61,6 +64,8 @@ type MatterSummary = {
 type BundleSourceSummary = {
   documentCount: number;
   combinedTextLength: number;
+  documentRows?: DocumentRowMeta[];
+  frontMatterScan?: string | null;
   header?: { shortTitle: string | null; stage: string | null; accused?: string | null };
   caseMetadata?: ExtractedBundleCaseMetadata | null;
 };
@@ -105,18 +110,18 @@ function deriveBundleHealth(
   bundleSource: BundleSourceSummary | null,
   battleboard: BattleboardOutput | null,
 ): string {
-  if (battleboard?.overall_status === "thin_bundle") return "Thin bundle — provisional routes only";
-  if (battleboard?.overall_status === "needs_review") return "Routes need solicitor review";
-  const docCount = Math.max(
-    snapshot?.analysis.docCount ?? 0,
-    bundleSource?.documentCount ?? 0,
-    snapshot?.evidence.documents?.length ?? 0,
-  );
-  if (docCount === 0) return "Thin (no documents on record)";
-  const tier = snapshot?.analysis.capabilityTier;
-  if (tier === "full") return `Strong (${docCount} doc${docCount !== 1 ? "s" : ""})`;
-  if (tier === "partial") return `Partial (${docCount} doc${docCount !== 1 ? "s" : ""})`;
-  return `${docCount} document(s) on file — review before court`;
+  return formatCaseBundleHealthLabel({
+    documentCount: Math.max(
+      snapshot?.analysis.docCount ?? 0,
+      bundleSource?.documentCount ?? 0,
+      snapshot?.evidence.documents?.length ?? 0,
+    ),
+    combinedTextLength: bundleSource?.combinedTextLength ?? 0,
+    capabilityTier: snapshot?.analysis.capabilityTier,
+    battleboard,
+    documentRows: bundleSource?.documentRows,
+    bundleTextHint: bundleSource?.frontMatterScan,
+  });
 }
 
 function BriefListCard({
@@ -223,6 +228,7 @@ export function HearingWarRoom({
   const [battleboard, setBattleboard] = useState<BattleboardOutput | null>(null);
   const [battleboardLoading, setBattleboardLoading] = useState(true);
   const [bundleSource, setBundleSource] = useState<BundleSourceSummary | null>(null);
+  const [bundleLoading, setBundleLoading] = useState(true);
 
   useEffect(() => {
     let cancelled = false;
@@ -267,6 +273,7 @@ export function HearingWarRoom({
 
   useEffect(() => {
     let cancelled = false;
+    setBundleLoading(true);
     fetch(`/api/criminal/${caseId}/bundle-source`, { cache: "no-store", credentials: "include" })
       .then((r) => r.json())
       .then((res) => {
@@ -275,6 +282,8 @@ export function HearingWarRoom({
         setBundleSource({
           documentCount: d.documentCount ?? 0,
           combinedTextLength: d.combinedTextLength ?? 0,
+          documentRows: Array.isArray(d.documentRows) ? d.documentRows : undefined,
+          frontMatterScan: (d as { frontMatterScan?: string }).frontMatterScan ?? null,
           header: d.header
             ? {
                 shortTitle: d.header.shortTitle ?? null,
@@ -285,7 +294,10 @@ export function HearingWarRoom({
           caseMetadata: d.caseMetadata ?? null,
         });
       })
-      .catch(() => {});
+      .catch(() => {})
+      .finally(() => {
+        if (!cancelled) setBundleLoading(false);
+      });
     return () => {
       cancelled = true;
     };
@@ -316,7 +328,12 @@ export function HearingWarRoom({
   const clientLabel = sanitizeHeaderClient(headerMeta.clientLabel);
   const allegation = sanitizeHeaderAllegation(headerMeta.allegation);
   const stage = headerMeta.stage;
-  const hearingStatus = headerMeta.nextHearing;
+  const hearingDisplay =
+    (snapshotLoading || bundleLoading) &&
+    /not safely extracted/i.test(headerMeta.nextHearing)
+      ? "…"
+      : headerMeta.nextHearing;
+  const hearingStatus = hearingDisplay;
   const metadataNote = headerMeta.metadataNote;
 
   const chaseItemsAll = useMemo(
@@ -413,10 +430,16 @@ export function HearingWarRoom({
 
   const loading = snapshotLoading || battleboardLoading;
   const controlRoomHref = buildControlRoomHref(caseId);
+  const headerLoading = snapshotLoading || bundleLoading;
 
   return (
     <div className="min-h-0 pb-20 xl:pb-4 text-slate-900" data-testid="hearing-war-room">
       <div className="xl:mr-[min(360px,26vw)] xl:pr-3 max-w-[1400px] space-y-4">
+        <CaseWorkflowShell
+          caseId={caseId}
+          onRecordPosition={onRecordPosition}
+          onUploadEvidence={onUploadEvidence}
+        >
         <header className={`${workflowCard} overflow-hidden`}>
           <div className="px-4 py-3 border-b border-slate-100 bg-gradient-to-r from-blue-50/80 to-white flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div className="min-w-0">
@@ -432,35 +455,16 @@ export function HearingWarRoom({
               </p>
               <p className={`text-xs ${workflowMuted} mt-0.5`}>{caseTitle}</p>
             </div>
-            <div className="flex flex-wrap gap-2 shrink-0">
-              {controlRoomMode ? (
-                <Link href={controlRoomHref}>
-                  <Button type="button" size="sm" variant="outline" className="gap-1">
-                    <LayoutDashboard className="h-3.5 w-3.5" />
-                    Control Room
-                  </Button>
-                </Link>
-              ) : (
-                <Link href={buildHearingWarRoomHref(caseId, { controlRoom: true })}>
+            {controlRoomMode ? null : (
+              <div className="flex flex-wrap gap-2 shrink-0">
+                <Link href={buildControlRoomHref(caseId)}>
                   <Button type="button" size="sm" variant="outline" className="gap-1">
                     <LayoutDashboard className="h-3.5 w-3.5" />
                     Open Control Room
                   </Button>
                 </Link>
-              )}
-              <Link href={buildDisclosureChaseHref(caseId, { controlRoom: controlRoomMode })}>
-                <Button type="button" size="sm" variant="outline" className="gap-1 text-violet-900 border-violet-300">
-                  <FileSearch className="h-3.5 w-3.5" />
-                  Disclosure Chase
-                </Button>
-              </Link>
-              <Button type="button" size="sm" variant="outline" onClick={onRecordPosition}>
-                Record position
-              </Button>
-              <Button type="button" size="sm" variant="outline" onClick={onUploadEvidence}>
-                Upload evidence
-              </Button>
-            </div>
+              </div>
+            )}
           </div>
 
           <dl className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-px bg-slate-100">
@@ -469,8 +473,8 @@ export function HearingWarRoom({
                 label: "Court",
                 value: headerMeta.court?.trim() || "Court not safely extracted",
               },
-              { label: "Stage", value: brief.stage },
-              { label: "Hearing", value: brief.hearingStatus },
+              { label: "Stage", value: headerLoading ? "…" : stage },
+              { label: "Hearing", value: headerLoading ? "…" : hearingDisplay },
               { label: "Bundle", value: brief.bundleHealth },
               { label: "Position", value: brief.positionStatus },
               { label: "Readiness", value: brief.readiness },
@@ -614,6 +618,7 @@ export function HearingWarRoom({
             </div>
           </>
         )}
+        </CaseWorkflowShell>
       </div>
 
       <HearingWarRoomAssistant

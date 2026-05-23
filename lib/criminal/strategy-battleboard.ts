@@ -3,6 +3,8 @@
  * Solicitor-safe fight-route panel; not predictions or eval logic.
  */
 
+import { repairDisplayWordSpacing } from "@/lib/criminal/display-text";
+
 export type BattleboardRouteStatus = "viable" | "conditional" | "blocked";
 
 export type BattleboardRouteType =
@@ -435,7 +437,7 @@ const CONDITIONAL_MARKERS =
   /\b(outstanding|not\s+served|awaiting|missing|provisional|conditional|if\s+proved|may\s+assist|needs?\s+solicitor\s+review|do\s+not\s+overstate|source\s+material\s+needed)\b/i;
 
 function compactOneLine(s: string): string {
-  return s.replace(/\s+/g, " ").trim();
+  return repairDisplayWordSpacing(s);
 }
 
 function stripDisplayPrefixes(s: string): string {
@@ -1676,6 +1678,67 @@ function statusRank(s: BattleboardRouteStatus): number {
   return 1;
 }
 
+const ATTRIBUTION_SECOND_MALE_TITLE = "Attribution / second male / source-material pressure";
+const ATTRIBUTION_SECOND_MALE_HEARING_LINE =
+  "Ask the court to record that attribution, second-male involvement, and source-material issues remain conditional on served evidence and solicitor review.";
+const ATTRIBUTION_SECOND_MALE_SAFETY_NOTE =
+  "Conditional on served evidence and solicitor review — do not overstate attribution or second-male points without source proof.";
+
+function defendantNameFromBundle(bundleText: string): string {
+  const scan = bundleText.slice(0, 80_000);
+  const m =
+    scan.match(/\bDefendant\s*:?\s*([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,2})(?:\s|\||\s+DOB\b)/) ??
+    scan.match(/\bDefendant\s+([A-Z][a-z]+\s+[A-Z][a-z]+)/);
+  return m?.[1]?.trim() ?? "this defendant";
+}
+
+function resolveMultipartyCollapseRisks(bundleText: string): string[] {
+  const name = defendantNameFromBundle(bundleText);
+  return [
+    `Crown may link the missing/source material to ${name} if served.`,
+    "Second-male evidence may assist or weaken attribution depending on what is served.",
+    "Attribution and source-material issues remain conditional until the underlying material is reviewed.",
+  ];
+}
+
+function resolveMultipartyWhatHurts(bundleText: string): string[] {
+  const name = defendantNameFromBundle(bundleText);
+  return [
+    `Crown may link served source material to ${name} if proved on the papers.`,
+    "Second-male evidence may assist or weaken attribution depending on what is served.",
+  ];
+}
+
+/** Single-defendant bundle with attribution / second-male dispute (not true multi-defendant). */
+function isAttributionSecondMaleBundle(bundleText: string): boolean {
+  const attributionIssue = /\b(?:second[\s-]?male|attribution|wrong\s+attribution|alternate\s+attacker)\b/i.test(
+    bundleText,
+  );
+  const separateDefendantCue =
+    /\b(?:co-?defendant|co-?accused|multiple\s+defendants?|separate\s+defendant|defendant\s+[12AB]|count\s+[12]\b)/i.test(
+      bundleText,
+    );
+  return attributionIssue && !separateDefendantCue;
+}
+
+function resolveMultipartyRouteTitle(spec: RouteSpec, bundleText: string): string {
+  if (spec.route_type !== "multiparty") return spec.title;
+  if (isAttributionSecondMaleBundle(bundleText)) return ATTRIBUTION_SECOND_MALE_TITLE;
+  return spec.title;
+}
+
+function resolveMultipartyHearingLine(spec: RouteSpec, bundleText: string): string {
+  if (spec.route_type !== "multiparty") return spec.hearingLine;
+  if (isAttributionSecondMaleBundle(bundleText)) return ATTRIBUTION_SECOND_MALE_HEARING_LINE;
+  return spec.hearingLine;
+}
+
+function resolveMultipartySafetyNote(spec: RouteSpec, bundleText: string): string {
+  if (spec.route_type !== "multiparty") return spec.safetyNote;
+  if (isAttributionSecondMaleBundle(bundleText)) return ATTRIBUTION_SECOND_MALE_SAFETY_NOTE;
+  return spec.safetyNote;
+}
+
 function buildRouteFromSpec(
   spec: RouteSpec,
   bundleText: string,
@@ -1722,8 +1785,16 @@ function buildRouteFromSpec(
   if (why_it_helps.length === 0 || why_it_helps.every((h) => compactOneLine(h).length < 36)) {
     why_it_helps = uniqueSafe([...why_it_helps, ...spec.defaultWhy], 4);
   }
-  const what_hurts_us = uniqueSafe(spec.defaultHurts, 3);
-  const collapse_risks = uniqueSafe(spec.collapseRisks, 5);
+  const attributionSecondMale =
+    spec.route_type === "multiparty" && isAttributionSecondMaleBundle(bundleText);
+  const what_hurts_us = uniqueSafe(
+    attributionSecondMale ? resolveMultipartyWhatHurts(bundleText) : spec.defaultHurts,
+    3,
+  );
+  const collapse_risks = uniqueSafe(
+    attributionSecondMale ? resolveMultipartyCollapseRisks(bundleText) : spec.collapseRisks,
+    5,
+  );
   const next_moves = uniqueSafe(spec.nextMoves, 5);
   const textConditional =
     bundleHas(bundleText, [CONDITIONAL_MARKERS]) ||
@@ -1753,7 +1824,7 @@ function buildRouteFromSpec(
 
   return {
     id: spec.id,
-    title: spec.title,
+    title: resolveMultipartyRouteTitle(spec, bundleText),
     status,
     route_type: spec.route_type,
     why_it_helps,
@@ -1761,8 +1832,8 @@ function buildRouteFromSpec(
     evidence_anchors: displayAnchors,
     collapse_risks,
     next_moves,
-    hearing_line: spec.hearingLine,
-    safety_note: spec.safetyNote,
+    hearing_line: resolveMultipartyHearingLine(spec, bundleText),
+    safety_note: resolveMultipartySafetyNote(spec, bundleText),
   };
 }
 

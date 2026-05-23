@@ -42,7 +42,12 @@ export function ControlRoomBattleboardAccordion({
     battleboard?.routes.filter((r) => r.id !== battleboard.primary_route?.id).length ?? 0;
 
   return (
-    <section className={workflowCard} aria-label="Full Battleboard" data-testid="control-room-battleboard-accordion">
+    <section
+      id="full-battleboard"
+      className={workflowCard}
+      aria-label="Full Battleboard"
+      data-testid="control-room-battleboard-accordion"
+    >
       <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 bg-slate-50/80 px-4 py-3">
         <div className="flex items-center gap-2 min-w-0">
           <Swords className="h-4 w-4 text-blue-700 shrink-0" />
