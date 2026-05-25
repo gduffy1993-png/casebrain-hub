@@ -978,6 +978,145 @@ type RouteSpec = {
   safetyNote: string;
 };
 
+/** Pack Y 40x40 workflow offence families — display/ranking only, not eval logic. */
+type PackYFamily = "affray" | "fraud" | "pwits" | "robbery";
+
+const AFFRAY_FAMILY_SIGNALS: RegExp[] = [
+  /\baffray\b/i,
+  /\bcrowd\s+disorder\b/i,
+  /\bgroup\s+violence\b/i,
+  /\bmultiple\s+suspects\b/i,
+  /\bpresence\s+accepted\b/i,
+  /\bviolence\s+disputed\b/i,
+  /\brole\s+disputed\b/i,
+  /\bidentification\s+disputed\b/i,
+  /\bCCTV\s+obstructed\b/i,
+  /\b(?:police\s+)?BWV\s+not\s+served\b/i,
+  /\bwitness\s+viewpoint\s+poor\b/i,
+  /\bpublic\s+order\b/i,
+  /\bparticipation\s+disputed\b/i,
+];
+
+const FRAUD_FAMILY_SIGNALS: RegExp[] = [
+  /\bfraud\s+by\s+false\s+representation\b/i,
+  /\bfraud\b/i,
+  /\bdishonesty\s+disputed\b/i,
+  /\baccount\s+control\s+disputed\b/i,
+  /\bbanking\s+schedules?\b/i,
+  /\bdevice\s+extraction\b/i,
+  /\bemail\s*\/\s*IP\s+logs?\b/i,
+  /\baccount\s+ownership\b/i,
+  /\bdocument\s+attribution\b/i,
+  /\blogin\s+(?:records?|logs?)\b/i,
+];
+
+const PWITS_FAMILY_SIGNALS: RegExp[] = [
+  /\bpossession\s+with\s+intent\s+to\s+supply\b/i,
+  /\bPWITS\b/i,
+  /\bclass\s+A\s+drugs?\b/i,
+  /\bpossession\s+disputed\b/i,
+  /\bknowledge\s+disputed\b/i,
+  /\bintent\s+to\s+supply\s+disputed\b/i,
+  /\bphone\s+attribution\s+disputed\b/i,
+  /\bshared\s+address\b/i,
+  /\bmultiple\s+occupants\b/i,
+  /\broom\s+ownership\b/i,
+  /\bphone\s+extraction\b/i,
+  /\b(?:cash|drugs)\s+continuity\b/i,
+  /\bdrug\s+supply\b/i,
+];
+
+const ROBBERY_FAMILY_SIGNALS: RegExp[] = [
+  /\brobbery\b/i,
+  /\bidentification\s+disputed\b/i,
+  /\bmasked\s+suspect\b/i,
+  /\bpoor\s+lighting\b/i,
+  /\b(?:co-?accused|unknown\s+male)\b/i,
+  /\bparticipation\s+disputed\b/i,
+  /\bstolen\s+property\s+recovered\s+elsewhere\b/i,
+  /\bID\s+procedure\s+issue\b/i,
+  /\bVIPER\b/i,
+  /\bidentification\s+procedure\b/i,
+];
+
+function offenceFamilyContext(bundleText: string, offenceLabel?: string | null): string {
+  const label = offenceLabel?.trim();
+  return label ? `Offence: ${label}\n${bundleText}` : bundleText;
+}
+
+function scoreFamilySignals(ctx: string, patterns: RegExp[], offenceBoost?: RegExp): number {
+  let score = offenceBoost?.test(ctx) ? 3 : 0;
+  for (const p of patterns) {
+    if (p.test(ctx)) score += 1;
+  }
+  return score;
+}
+
+export function affrayFamilyScore(ctx: string): number {
+  return scoreFamilySignals(ctx, AFFRAY_FAMILY_SIGNALS, /\baffray\b/i);
+}
+
+export function fraudFamilyScore(ctx: string): number {
+  return scoreFamilySignals(ctx, FRAUD_FAMILY_SIGNALS, /\bfraud\b/i);
+}
+
+export function pwitsFamilyScore(ctx: string): number {
+  return scoreFamilySignals(
+    ctx,
+    PWITS_FAMILY_SIGNALS,
+    /\b(?:PWITS|possession\s+with\s+intent\s+to\s+supply)\b/i,
+  );
+}
+
+export function robberyFamilyScore(ctx: string): number {
+  return scoreFamilySignals(ctx, ROBBERY_FAMILY_SIGNALS, /\brobbery\b/i);
+}
+
+export function detectPackYFamily(ctx: string): PackYFamily | null {
+  const scores: { family: PackYFamily; score: number }[] = [
+    { family: "affray", score: affrayFamilyScore(ctx) },
+    { family: "fraud", score: fraudFamilyScore(ctx) },
+    { family: "pwits", score: pwitsFamilyScore(ctx) },
+    { family: "robbery", score: robberyFamilyScore(ctx) },
+  ];
+  const eligible = scores.filter((s) => s.score >= 2);
+  if (!eligible.length) return null;
+  eligible.sort((a, b) => b.score - a.score);
+  return eligible[0]!.family;
+}
+
+function isInjuryLedCausationBundle(ctx: string): boolean {
+  const injuryOffence =
+    /\b(?:ABH|GBH|unlawful wounding|grievous bodily|actual bodily harm|murder|manslaughter|wounding)\b/i.test(
+      ctx,
+    );
+  const mechanism = hasCausationMechanismDispute(ctx);
+  const injuryFocus =
+    /\b(?:injury\s+mechanism|medical\s+causation|how\s+the\s+injury|injury\s+level)\b/i.test(ctx);
+  return injuryOffence && (mechanism || injuryFocus);
+}
+
+function shouldSuppressCausationForOffenceFamily(ctx: string): boolean {
+  const family = detectPackYFamily(ctx);
+  if (!family) return false;
+  return !isInjuryLedCausationBundle(ctx);
+}
+
+function shouldBuildPackYRoute(routeId: string, ctx: string): boolean {
+  switch (routeId) {
+    case "pack_y_affray":
+      return affrayFamilyScore(ctx) >= 2;
+    case "pack_y_fraud":
+      return fraudFamilyScore(ctx) >= 2;
+    case "pack_y_pwits":
+      return pwitsFamilyScore(ctx) >= 2;
+    case "pack_y_robbery":
+      return robberyFamilyScore(ctx) >= 2;
+    default:
+      return false;
+  }
+}
+
 const ROUTE_SPECS: RouteSpec[] = [
   {
     id: "identity",
@@ -1226,6 +1365,114 @@ const ROUTE_SPECS: RouteSpec[] = [
     hearingLine:
       "Intent remains a live Crown limb to prove; any defence point is conditional on served material and instructions — do not overstate.",
     safetyNote: "Do not advance intent theories not supported by instructions and served papers.",
+  },
+  {
+    id: "pack_y_affray",
+    route_type: "identity",
+    title: "Public-order participation / identification / role pressure",
+    signals: AFFRAY_FAMILY_SIGNALS,
+    defaultWhy: [
+      "May assist if served material leaves participation, identification, or role in dispute on a public-order file.",
+      "Conditional on CCTV/BWV/witness source material — presence alone may not prove violence on the papers.",
+    ],
+    defaultHurts: [
+      "Clear CCTV/BWV may link the client to violent conduct if proved on served material.",
+      "Witness accounts may support Crown participation wording if consistent on the file.",
+    ],
+    collapseRisks: [
+      "Served CCTV/BWV may support Crown participation and identification if proved.",
+      "Witness viewpoint may be sufficient on served MG11 material — conditional review required.",
+      "Outstanding source material may return consistent with the Crown route if served.",
+    ],
+    nextMoves: [
+      "Chase CCTV master, BWV, and witness viewpoint/continuity material if outstanding.",
+      "Take instructions on participation, role, and identification dispute only if supported.",
+      "Record what public-order source material remains outstanding before fixing trial theory.",
+    ],
+    hearingLine:
+      "Participation, identification, and role remain conditional on served CCTV/BWV/witness source material; the defence does not overstate presence as proof of violence.",
+    safetyNote: "Conditional on served material and instructions — do not overstate public-order points at court.",
+  },
+  {
+    id: "pack_y_fraud",
+    route_type: "intent",
+    title: "Fraud / account-control / dishonesty pressure",
+    signals: FRAUD_FAMILY_SIGNALS,
+    defaultWhy: [
+      "May assist if banking, device, login or document material on the file leaves dishonesty or account control in dispute.",
+      "Conditional until full banking schedules, device extraction and witness material are served and reviewed.",
+    ],
+    defaultHurts: [
+      "Banking schedules or device logs may support Crown account-control if proved on served papers.",
+      "Document attribution may link the client to the account if consistent on the file.",
+    ],
+    collapseRisks: [
+      "Served banking/device/login material may support Crown dishonesty if proved.",
+      "Witness or document attribution may undermine the defence account if consistent.",
+      "Outstanding expert/source material may return against the defence route if served.",
+    ],
+    nextMoves: [
+      "Chase banking schedules, device extraction, email/IP logs and account-ownership material.",
+      "Map document attribution against served schedules before fixing trial theory.",
+      "Record instructions on dishonesty/account-control dispute only if supported.",
+    ],
+    hearingLine:
+      "Dishonesty, account control, and document attribution remain conditional on full banking, device, login and witness material.",
+    safetyNote: "Needs solicitor review before advancing fraud/dishonesty points not supported by served papers.",
+  },
+  {
+    id: "pack_y_pwits",
+    route_type: "intent",
+    title: "Possession / knowledge / phone-attribution pressure",
+    signals: PWITS_FAMILY_SIGNALS,
+    defaultWhy: [
+      "May assist if search, phone, room-ownership or continuity wording leaves possession, knowledge or supply intent in dispute.",
+      "Conditional on full phone extraction, search continuity and forensic material being served and reviewed.",
+    ],
+    defaultHurts: [
+      "Phone extraction or search material may support Crown possession/knowledge if proved.",
+      "Shared-address or multi-occupier wording may weaken sole-occupier attribution on the papers.",
+    ],
+    collapseRisks: [
+      "Served phone/search/continuity material may support Crown possession and intent if proved.",
+      "Forensic or cash/drugs continuity may link the client to the drugs if consistent on the file.",
+      "Outstanding material may return consistent with the Crown route if served.",
+    ],
+    nextMoves: [
+      "Chase phone extraction, search continuity, room-ownership and forensic material if outstanding.",
+      "Take instructions on possession, knowledge and intent-to-supply dispute only if supported.",
+      "Record what PWITS source material remains outstanding before fixing trial theory.",
+    ],
+    hearingLine:
+      "Possession, knowledge, intent to supply and phone attribution remain conditional on full phone, search, continuity and forensic material.",
+    safetyNote: "Conditional on served material — do not overstate possession/knowledge points at court.",
+  },
+  {
+    id: "pack_y_robbery",
+    route_type: "identity",
+    title: "Identification / participation / attribution pressure",
+    signals: ROBBERY_FAMILY_SIGNALS,
+    defaultWhy: [
+      "May assist if identification, participation or attribution remains in dispute on the robbery file.",
+      "Conditional on CCTV, ID procedure, phone and witness source material being served and reviewed.",
+    ],
+    defaultHurts: [
+      "Clear CCTV or ID procedure material may support Crown identification if proved.",
+      "Co-accused or unknown-male material may connect the client to the robbery on served papers.",
+    ],
+    collapseRisks: [
+      "Served CCTV/ID procedure material may support Crown identification if proved.",
+      "Phone or witness material may undermine participation/attribution dispute if consistent.",
+      "Stolen-property recovery elsewhere may still be consistent with Crown route if proved on the file.",
+    ],
+    nextMoves: [
+      "Chase CCTV, VIPER/ID procedure, phone evidence and witness source material if outstanding.",
+      "Take instructions on identification, participation and attribution dispute only if supported.",
+      "Record what robbery source material remains outstanding before fixing trial theory.",
+    ],
+    hearingLine:
+      "Identification, participation and attribution remain conditional on full CCTV, ID procedure material, phone evidence and witness source material.",
+    safetyNote: "Conditional on served material and instructions — do not overstate ID/participation points.",
   },
   {
     id: "causation",
@@ -1533,7 +1780,10 @@ function rankRouteForPrimary(
   route: BattleboardRoute,
   bundleText: string,
   outstandingLabels: string[],
+  offenceLabel?: string | null,
 ): number {
+  const familyCtx = offenceFamilyContext(bundleText, offenceLabel);
+  const packFamily = detectPackYFamily(familyCtx);
   const saf = safeguardsSignalScore(bundleText);
   const multi = multipartySignalScore(bundleText);
   const time = timelineSignalScore(bundleText);
@@ -1575,6 +1825,16 @@ function rankRouteForPrimary(
       if (caus > time && caus >= 2) rank -= 30;
       break;
     case "identity":
+      if (route.id === "pack_y_affray") {
+        rank += 155 + affrayFamilyScore(familyCtx) * 22;
+        if (packFamily === "affray") rank += 85;
+        break;
+      }
+      if (route.id === "pack_y_robbery") {
+        rank += 155 + robberyFamilyScore(familyCtx) * 22;
+        if (packFamily === "robbery") rank += 85;
+        break;
+      }
       rank += 88;
       if (chaos) rank += 45;
       break;
@@ -1594,6 +1854,7 @@ function rankRouteForPrimary(
       if (messy) rank += 25;
       break;
     case "causation":
+      if (packFamily && !isInjuryLedCausationBundle(familyCtx)) rank -= 110;
       rank += 78 + caus * 16;
       if (caus >= 2) rank += 42;
       if (caus >= 4) rank += 28;
@@ -1602,6 +1863,16 @@ function rankRouteForPrimary(
       if (messy && caus >= 2) rank += 20;
       break;
     case "intent":
+      if (route.id === "pack_y_fraud") {
+        rank += 155 + fraudFamilyScore(familyCtx) * 22;
+        if (packFamily === "fraud") rank += 85;
+        break;
+      }
+      if (route.id === "pack_y_pwits") {
+        rank += 155 + pwitsFamilyScore(familyCtx) * 22;
+        if (packFamily === "pwits") rank += 85;
+        break;
+      }
       rank += 68;
       break;
     case "mitigation":
@@ -1853,6 +2124,8 @@ const GLOBAL_COLLAPSE = uniqueSafe(
 export function buildStrategyBattleboard(input: StrategyBattleboardInput): BattleboardOutput {
   const bundleText = (input.bundle_text ?? "").trim();
   const bundleThin = bundleText.length < 800;
+  const familyCtx = offenceFamilyContext(bundleText, input.offence_label);
+  const packYFamily = detectPackYFamily(familyCtx);
 
   const positionContext = resolveBattleboardPosition({
     bundle_text: bundleText,
@@ -1882,6 +2155,12 @@ export function buildStrategyBattleboard(input: StrategyBattleboardInput): Battl
   const metaScores = { cps: cpsScore, ready: readyScore, hear: hearScore, conflict: conflictScore };
 
   for (const spec of ROUTE_SPECS) {
+    if (spec.id === "causation" && shouldSuppressCausationForOffenceFamily(familyCtx)) {
+      continue;
+    }
+    if (spec.id.startsWith("pack_y_") && !shouldBuildPackYRoute(spec.id, familyCtx)) {
+      continue;
+    }
     if (spec.id === "mitigation" && cpsScore >= 2) {
       continue;
     }
@@ -1908,6 +2187,8 @@ export function buildStrategyBattleboard(input: StrategyBattleboardInput): Battl
       extra = extractFamilyLinesMatching(bundleText, spec.signals, HEARING_COURT_ANCHOR_RE, 5);
     } else if (spec.id === "client_account_conflict" && conflictScore >= 1) {
       extra = extractFamilyLinesMatching(bundleText, spec.signals, CLIENT_CONFLICT_ANCHOR_RE, 5);
+    } else if (spec.id.startsWith("pack_y_") && shouldBuildPackYRoute(spec.id, familyCtx)) {
+      extra = extractLinesMatching(bundleText, spec.signals, 4);
     } else if (spec.route_type === "mitigation" && bundleThin) {
       extra = ["Thin bundle — fight routes may stay conditional until material is served."];
     }
@@ -1922,7 +2203,9 @@ export function buildStrategyBattleboard(input: StrategyBattleboardInput): Battl
   const outstandingLabels = disclosureExtrasRaw.map((l) => compactOneLine(l)).filter(Boolean);
 
   routes.sort((a, b) => {
-    const pr = rankRouteForPrimary(b, bundleText, outstandingLabels) - rankRouteForPrimary(a, bundleText, outstandingLabels);
+    const pr =
+      rankRouteForPrimary(b, bundleText, outstandingLabels, input.offence_label) -
+      rankRouteForPrimary(a, bundleText, outstandingLabels, input.offence_label);
     if (pr !== 0) return pr;
     const sr = statusRank(b.status) - statusRank(a.status);
     if (sr !== 0) return sr;
@@ -2000,6 +2283,7 @@ export function buildStrategyBattleboard(input: StrategyBattleboardInput): Battl
   const causScore = causationSignalScore(bundleText);
   const timeScore = timelineSignalScore(bundleText);
   if (
+    !packYFamily &&
     causScore >= 2 &&
     routes[0]?.route_type === "timeline" &&
     (causScore > timeScore || hasCausationMechanismDispute(bundleText))
@@ -2007,11 +2291,16 @@ export function buildStrategyBattleboard(input: StrategyBattleboardInput): Battl
     promoteRouteToPrimary("causation");
   }
   if (
+    !packYFamily &&
     routes[0]?.route_type === "timeline" &&
     causScore >= 3 &&
     hasCausationMechanismDispute(bundleText)
   ) {
     promoteRouteToPrimary("causation");
+  }
+
+  if (packYFamily) {
+    promoteRouteToPrimary(`pack_y_${packYFamily}`);
   }
 
   const primary_route = routes[0];
