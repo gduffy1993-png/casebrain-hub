@@ -1,5 +1,5 @@
 /**
- * Internal eval pack registry (A–Y). Orchestration / reporting only — not used in answer generation.
+ * Internal eval pack registry (A–Z). Orchestration / reporting only — not used in answer generation.
  *
  * A–J were the original regression / generalisation corpus. K–T extend the
  * harness (messy PDFs, workflow, multi-D, safeguards, conflicts, CPS pressure,
@@ -8,6 +8,7 @@
  * documented full-regression lock; U–X are next eval waves (not in that lock).
  * Pack Y is the 40×40 criminal workflow stress corpus (metadata, Court Today,
  * Control Room, battleboard families, War Room / Disclosure Chase) — not in A–T lock.
+ * Pack Z is the 40×500 large criminal bundle stress corpus — not in A–T lock.
  */
 
 export type EvalPackId =
@@ -35,7 +36,8 @@ export type EvalPackId =
   | "V"
   | "W"
   | "X"
-  | "Y";
+  | "Y"
+  | "Z";
 
 export const EVAL_PACK_IDS: readonly EvalPackId[] = [
   "A",
@@ -63,16 +65,30 @@ export const EVAL_PACK_IDS: readonly EvalPackId[] = [
   "W",
   "X",
   "Y",
+  "Z",
 ];
 
-/** A–T locked full-regression baseline (orchestration / runner quick-select only). Unchanged — does not include Y. */
+/** A–T locked full-regression baseline (orchestration / runner quick-select only). Unchanged — does not include Y or Z. */
 export const EVAL_PACK_LOCKED_BASELINE_IDS: readonly EvalPackId[] = EVAL_PACK_IDS.filter((id) => id <= "T");
 
 /** Pack Y only — 40×40 criminal workflow stress. */
 export const EVAL_PACK_Y_ONLY_IDS: readonly EvalPackId[] = ["Y"];
 
-/** All selectable orchestration packs (A–Y). */
-export const EVAL_PACK_A_THROUGH_Y_IDS: readonly EvalPackId[] = EVAL_PACK_IDS;
+/** Pack Z only — 40×500 large criminal bundle stress. */
+export const EVAL_PACK_Z_ONLY_IDS: readonly EvalPackId[] = ["Z"];
+
+/** All selectable orchestration packs except Pack Z (A–Y quick-select). */
+export const EVAL_PACK_A_THROUGH_Y_IDS: readonly EvalPackId[] = EVAL_PACK_IDS.filter((id) => id !== "Z");
+
+/** All selectable orchestration packs (A–Z). */
+export const EVAL_PACK_A_THROUGH_Z_IDS: readonly EvalPackId[] = EVAL_PACK_IDS;
+
+/** Import preview uses sequential slots 1…N (not filename inference) for these packs. */
+export const EVAL_PACK_SEQUENTIAL_IMPORT_SLOT_IDS: readonly EvalPackId[] = ["Y", "Z"];
+
+export function evalPackUsesSequentialImportSlots(packId: EvalPackId): boolean {
+  return packId === "Y" || packId === "Z";
+}
 
 export const EVAL_PACK_LABELS: Record<EvalPackId, string> = {
   A: "Northshire regression / stability",
@@ -100,14 +116,19 @@ export const EVAL_PACK_LABELS: Record<EvalPackId, string> = {
   W: "Timeline / sequence / alibi conflict",
   X: "Hearing / court move reasoning",
   Y: "40x40 Criminal Workflow Stress",
+  Z: "40x500 Large Criminal Bundle Stress",
 };
 
 /** Full display name for DB `eval_pack_name` when tagging Pack Y imports/uploads. */
 export const EVAL_PACK_Y_DISPLAY_NAME = "Pack Y — 40x40 Criminal Workflow Stress";
 
+/** Full display name for DB `eval_pack_name` when tagging Pack Z imports/uploads. */
+export const EVAL_PACK_Z_DISPLAY_NAME = "Pack Z — 40x500 Large Criminal Bundle Stress Pack";
+
 /** Stored `eval_pack_name` / inferred pack_name for a pack id. */
 export function evalPackNameForStorage(id: EvalPackId): string {
   if (id === "Y") return EVAL_PACK_Y_DISPLAY_NAME;
+  if (id === "Z") return EVAL_PACK_Z_DISPLAY_NAME;
   return EVAL_PACK_LABELS[id];
 }
 
@@ -223,6 +244,18 @@ export function inferEvalPackFromTitle(title: string): InferredEvalPack | null {
     /\bCRIMINAL\s+WORKFLOW\s+STRESS\b/i.test(upper)
   )
     return pick("Y");
+
+  // Pack Z — 40×500 large bundle stress (`CB-Z-500-MUR-0001`, etc.).
+  if (
+    /\bPACK\s*Z\b/i.test(upper) ||
+    /\bCB-Z-500\b/i.test(upper) ||
+    /\bCB-Z-\d{4}-\d{3,4}\b/i.test(upper) ||
+    /\bCB-Z\b/i.test(upper) ||
+    /\b40X500\b/i.test(upper) ||
+    /\b40\s*x\s*500\b/i.test(upper) ||
+    /\bLARGE\s+CRIMINAL\s+BUNDLE\s+STRESS\b/i.test(upper)
+  )
+    return pick("Z");
 
   return null;
 }

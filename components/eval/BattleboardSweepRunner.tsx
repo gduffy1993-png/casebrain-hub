@@ -20,8 +20,10 @@ import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
 import {
   EVAL_PACK_IDS,
   EVAL_PACK_LABELS,
+  EVAL_PACK_A_THROUGH_Y_IDS,
   EVAL_PACK_LOCKED_BASELINE_IDS,
   EVAL_PACK_Y_ONLY_IDS,
+  EVAL_PACK_Z_ONLY_IDS,
   parseEvalPackId,
   resolveCaseEvalPack,
   type EvalPackId,
@@ -236,13 +238,22 @@ export function BattleboardSweepRunner() {
     setSelectedPacks(next);
   }
 
-  /** All packs A–Y (distinct from Golden’s A–T regression lock). */
-  function selectAllPacksAXY() {
+  /** All packs A–Z (distinct from Golden’s A–T regression lock). */
+  function selectAllPacksAXZ() {
     setSelectedPacks(new Set(EVAL_PACK_IDS));
+  }
+
+  /** All packs A–Y (excludes Pack Z). */
+  function selectAllPacksAY() {
+    setSelectedPacks(new Set(EVAL_PACK_A_THROUGH_Y_IDS));
   }
 
   function selectPackYOnly() {
     setSelectedPacks(new Set(EVAL_PACK_Y_ONLY_IDS));
+  }
+
+  function selectPackZOnly() {
+    setSelectedPacks(new Set(EVAL_PACK_Z_ONLY_IDS));
   }
 
   function selectOnlyPack(id: EvalPackId) {
@@ -502,11 +513,17 @@ export function BattleboardSweepRunner() {
           <Button type="button" variant="outline" size="sm" onClick={selectAllPacksWithCases}>
             Select all packs with cases
           </Button>
-          <Button type="button" variant="outline" size="sm" onClick={selectAllPacksAXY}>
+          <Button type="button" variant="outline" size="sm" onClick={selectAllPacksAXZ}>
+            A–Z all packs
+          </Button>
+          <Button type="button" variant="outline" size="sm" onClick={selectAllPacksAY}>
             A–Y all packs
           </Button>
           <Button type="button" variant="outline" size="sm" onClick={selectPackYOnly}>
             Y only
+          </Button>
+          <Button type="button" variant="outline" size="sm" onClick={selectPackZOnly}>
+            Z only
           </Button>
           <Button
             type="button"

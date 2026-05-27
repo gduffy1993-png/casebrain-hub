@@ -46,6 +46,24 @@ function testInferModeStillCollidesWithoutSequential() {
   assert.ok(warnings.some((w) => /collision|Duplicate inferred|Adjusted/i.test(w)));
 }
 
+function testSequentialPackZSlots() {
+  const files = ["CB-Z-500-MUR-0001.pdf", "CB-Z-500-MUR-0008.pdf", "CB-Z-500-MUR-0018.pdf"].map(fakeFile);
+  const { rows } = buildPackImportPreview({
+    packId: "Z",
+    files,
+    manifest: new Map(),
+    existingPackCaseNos: new Set(),
+    preferSequentialSlots: true,
+  });
+  assert.equal(rows.length, 3);
+  assert.deepEqual(
+    rows.map((r) => r.evalCaseNo),
+    [1, 2, 3]
+  );
+  assert.ok(rows.every((r) => r.packId === "Z"));
+}
+
 testSequentialPackYSlots();
+testSequentialPackZSlots();
 testInferModeStillCollidesWithoutSequential();
 console.log("eval-pack-import-preview.test.ts: ok");

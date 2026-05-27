@@ -22,8 +22,10 @@ import { sortCasesForEvalScan } from "@/lib/eval-case-sort";
 import {
   EVAL_PACK_IDS,
   EVAL_PACK_LABELS,
+  EVAL_PACK_A_THROUGH_Y_IDS,
   EVAL_PACK_LOCKED_BASELINE_IDS,
   EVAL_PACK_Y_ONLY_IDS,
+  EVAL_PACK_Z_ONLY_IDS,
   evalPackNameForStorage,
   parseEvalPackId,
   resolveCaseEvalPack,
@@ -321,6 +323,10 @@ export function EvalPackRunner() {
 
   function selectAllPacks() {
     setSelectedPacks(new Set(EVAL_PACK_IDS));
+  }
+
+  function selectAllPacksAY() {
+    setSelectedPacks(new Set(EVAL_PACK_A_THROUGH_Y_IDS));
   }
 
   function selectPacksWithCases() {
@@ -713,7 +719,7 @@ export function EvalPackRunner() {
       <div>
         <h2 className="text-lg font-semibold">Eval Pack Runner (internal)</h2>
         <p className="text-sm text-muted-foreground">
-          Golden 10 sweep per pack (A–Y). Pack row counts come from server{" "}
+          Golden 10 sweep per pack (A–Z). Pack row counts come from server{" "}
           <code className="text-xs">eval_pack_id</code> aggregates; sweeps use tagged cases plus untagged
           title/doc inference.
         </p>
@@ -764,6 +770,9 @@ export function EvalPackRunner() {
           Select none
         </Button>
         <Button type="button" variant="outline" size="sm" onClick={selectAllPacks} disabled={running}>
+          A–Z all packs
+        </Button>
+        <Button type="button" variant="outline" size="sm" onClick={selectAllPacksAY} disabled={running}>
           A–Y all packs
         </Button>
         <Button type="button" variant="secondary" size="sm" onClick={selectLockedBaselineAT} disabled={running}>
@@ -777,6 +786,15 @@ export function EvalPackRunner() {
           disabled={running}
         >
           Y only
+        </Button>
+        <Button
+          type="button"
+          variant="outline"
+          size="sm"
+          onClick={() => setSelectedPacks(new Set(EVAL_PACK_Z_ONLY_IDS))}
+          disabled={running}
+        >
+          Z only
         </Button>
         <Button type="button" variant="outline" size="sm" onClick={() => selectOnlyPack("U")} disabled={running}>
           U only

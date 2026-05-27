@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { EVAL_PACK_LABELS, type EvalPackId } from "@/lib/eval-packs";
+import { EVAL_PACK_LABELS, evalPackUsesSequentialImportSlots, type EvalPackId } from "@/lib/eval-packs";
 import {
   PACK_IMPORT_CHUNK_SIZE,
   buildPackImportPreview,
@@ -80,7 +80,7 @@ export function PackImportModal({ packId, isOpen, onClose, existingPackCaseNos, 
         files,
         manifest: manifestMap,
         existingPackCaseNos,
-        preferSequentialSlots: packId === "Y",
+        preferSequentialSlots: evalPackUsesSequentialImportSlots(packId),
       }),
     [packId, files, manifestMap, existingPackCaseNos]
   );
