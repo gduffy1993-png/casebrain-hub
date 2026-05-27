@@ -22,7 +22,7 @@ import { trialLimit402Body } from "@/lib/paywall/trialLimit402";
 import { extractCriminalCaseMeta, persistCriminalCaseMeta } from "@/lib/criminal/structured-extractor";
 import { normalizePracticeArea } from "@/lib/types/casebrain";
 import { expandZipsToFolderCaseGroups } from "@/lib/upload/zip-to-case-groups";
-import { EVAL_PACK_LABELS, inferEvalPackFromTitle, parseEvalPackId } from "@/lib/eval-packs";
+import { evalPackNameForStorage, inferEvalPackFromTitle, parseEvalPackId } from "@/lib/eval-packs";
 import { extractTextFromFile } from "@/lib/upload/extract-text-from-file";
 
 export const runtime = "nodejs";
@@ -38,7 +38,7 @@ function evalPackColumnsForNewCase(
     const inferredNo = inferEvalPackFromTitle(title)?.eval_case_no ?? null;
     return {
       eval_pack_id: explicit,
-      eval_pack_name: EVAL_PACK_LABELS[explicit],
+      eval_pack_name: evalPackNameForStorage(explicit),
       eval_case_no: inferredNo,
     };
   }

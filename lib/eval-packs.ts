@@ -1,11 +1,13 @@
 /**
- * Internal eval pack registry (A–X). Orchestration / reporting only — not used in answer generation.
+ * Internal eval pack registry (A–Y). Orchestration / reporting only — not used in answer generation.
  *
  * A–J were the original regression / generalisation corpus. K–T extend the
  * harness (messy PDFs, workflow, multi-D, safeguards, conflicts, CPS pressure,
  * thin bundle, injection, exports, review). U–X add OCR/scan/photo, strategy
  * leverage, timeline/alibi, and hearing/court-move corpora. A–T stay the
  * documented full-regression lock; U–X are next eval waves (not in that lock).
+ * Pack Y is the 40×40 criminal workflow stress corpus (metadata, Court Today,
+ * Control Room, battleboard families, War Room / Disclosure Chase) — not in A–T lock.
  */
 
 export type EvalPackId =
@@ -32,7 +34,8 @@ export type EvalPackId =
   | "U"
   | "V"
   | "W"
-  | "X";
+  | "X"
+  | "Y";
 
 export const EVAL_PACK_IDS: readonly EvalPackId[] = [
   "A",
@@ -59,10 +62,17 @@ export const EVAL_PACK_IDS: readonly EvalPackId[] = [
   "V",
   "W",
   "X",
+  "Y",
 ];
 
-/** A–T locked full-regression baseline (orchestration / runner quick-select only). */
+/** A–T locked full-regression baseline (orchestration / runner quick-select only). Unchanged — does not include Y. */
 export const EVAL_PACK_LOCKED_BASELINE_IDS: readonly EvalPackId[] = EVAL_PACK_IDS.filter((id) => id <= "T");
+
+/** Pack Y only — 40×40 criminal workflow stress. */
+export const EVAL_PACK_Y_ONLY_IDS: readonly EvalPackId[] = ["Y"];
+
+/** All selectable orchestration packs (A–Y). */
+export const EVAL_PACK_A_THROUGH_Y_IDS: readonly EvalPackId[] = EVAL_PACK_IDS;
 
 export const EVAL_PACK_LABELS: Record<EvalPackId, string> = {
   A: "Northshire regression / stability",
@@ -89,7 +99,17 @@ export const EVAL_PACK_LABELS: Record<EvalPackId, string> = {
   V: "Strategy leverage / why this helps",
   W: "Timeline / sequence / alibi conflict",
   X: "Hearing / court move reasoning",
+  Y: "40x40 Criminal Workflow Stress",
 };
+
+/** Full display name for DB `eval_pack_name` when tagging Pack Y imports/uploads. */
+export const EVAL_PACK_Y_DISPLAY_NAME = "Pack Y — 40x40 Criminal Workflow Stress";
+
+/** Stored `eval_pack_name` / inferred pack_name for a pack id. */
+export function evalPackNameForStorage(id: EvalPackId): string {
+  if (id === "Y") return EVAL_PACK_Y_DISPLAY_NAME;
+  return EVAL_PACK_LABELS[id];
+}
 
 export type InferredEvalPack = {
   pack_id: EvalPackId;
@@ -118,7 +138,7 @@ export function inferEvalPackFromTitle(title: string): InferredEvalPack | null {
 
   const pick = (id: EvalPackId): InferredEvalPack => ({
     pack_id: id,
-    pack_name: EVAL_PACK_LABELS[id],
+    pack_name: evalPackNameForStorage(id),
     eval_case_no: caseNo,
   });
 
@@ -192,6 +212,18 @@ export function inferEvalPackFromTitle(title: string): InferredEvalPack | null {
   )
     return pick("X");
 
+  // Pack Y — 40×40 workflow stress (does not use CB-WORKFLOW — reserved for Pack L).
+  if (
+    /\bPACK\s*Y\b/i.test(upper) ||
+    /\bCB-Y\b/i.test(upper) ||
+    /\bCB-40X40\b/i.test(upper) ||
+    /\b40X40\b/i.test(upper) ||
+    /\b40\s*x\s*40\b/i.test(upper) ||
+    /\bWORKFLOW\s+STRESS\b/i.test(upper) ||
+    /\bCRIMINAL\s+WORKFLOW\s+STRESS\b/i.test(upper)
+  )
+    return pick("Y");
+
   return null;
 }
 
@@ -261,4 +293,32 @@ export function resolveCaseEvalPack(row: {
     }
   }
   return null;
+}
+
+/** Cases explicitly tagged with `eval_pack_id` (primary count for eval runner display). */
+export function countCasesForTaggedPack(
+  rows: { eval_pack_id?: string | null }[],
+  packId: EvalPackId
+): number {
+  return rows.filter((r) => parseEvalPackId(r.eval_pack_id) === packId).length;
+}
+
+/** Cases resolved to a pack via title/doc inference only (no DB tag). */
+export function countInferredOnlyCasesForPack(
+  rows: {
+    title?: string | null;
+    eval_pack_id?: string | null;
+    eval_pack_name?: string | null;
+    eval_case_no?: number | null;
+    eval_doc_hint?: string | null;
+  }[],
+  packId: EvalPackId
+): number {
+  let n = 0;
+  for (const row of rows) {
+    if (parseEvalPackId(row.eval_pack_id)) continue;
+    const r = resolveCaseEvalPack(row);
+    if (r?.pack_id === packId) n += 1;
+  }
+  return n;
 }

@@ -10,7 +10,7 @@ import { env } from "@/lib/env";
 import { detectRiskFlags, notifyHighSeverityFlags, storeRiskFlags } from "@/lib/risk";
 import { redact } from "@/lib/redact";
 import { extractTextFromFile } from "@/lib/upload/extract-text-from-file";
-import { EVAL_PACK_LABELS, type EvalPackId } from "@/lib/eval-packs";
+import { evalPackNameForStorage, type EvalPackId } from "@/lib/eval-packs";
 import { isAllowedPackImportFileName, isEvalGoldAnswerFileName } from "@/lib/eval-pack-import-ui";
 
 const STORAGE_BUCKET = env.SUPABASE_STORAGE_BUCKET;
@@ -19,6 +19,15 @@ const MAX_UPLOAD_BYTES = env.FILE_UPLOAD_MAX_MB * 1024 * 1024;
 export type EvalPackImportItem = {
   evalCaseNo: number;
   caseTitle: string;
+};
+
+export type EvalPackImportChunkResult = {
+  created: number;
+  updated: number;
+  replaced: number;
+  skipped: number;
+  warnings: string[];
+  errors: string[];
 };
 
 async function removeCaseDocumentsAndStorage(
@@ -45,6 +54,122 @@ async function removeCaseDocumentsAndStorage(
   await supabase.from("documents").delete().eq("case_id", caseId).eq("org_id", orgId);
 }
 
+/** Remove one document row (and storage) by name on a case — for replace-without-skip. */
+async function removeDocumentByNameOnCase(
+  supabase: SupabaseClient,
+  caseId: string,
+  orgId: string,
+  fileName: string
+): Promise<void> {
+  const { data: dupDoc } = await supabase
+    .from("documents")
+    .select("id, storage_url")
+    .eq("case_id", caseId)
+    .eq("org_id", orgId)
+    .eq("name", fileName)
+    .maybeSingle();
+  if (!dupDoc?.id) return;
+  const storageUrl = String((dupDoc as { storage_url?: string }).storage_url ?? "");
+  const prefix = `${STORAGE_BUCKET}/`;
+  if (storageUrl.startsWith(prefix)) {
+    const path = storageUrl.slice(prefix.length);
+    try {
+      await supabase.storage.from(STORAGE_BUCKET).remove([path]);
+    } catch {
+      // non-fatal
+    }
+  }
+  await supabase.from("documents").delete().eq("id", dupDoc.id).eq("org_id", orgId);
+}
+
+/** Clear all documents on every case tagged for this pack (cases remain). */
+export async function clearPackCaseDocuments(
+  supabase: SupabaseClient,
+  orgId: string,
+  packId: EvalPackId
+): Promise<number> {
+  const { data: packCases } = await supabase
+    .from("cases")
+    .select("id")
+    .eq("org_id", orgId)
+    .eq("eval_pack_id", packId)
+    .eq("is_archived", false);
+  let n = 0;
+  for (const row of packCases ?? []) {
+    const id = row.id as string;
+    await removeCaseDocumentsAndStorage(supabase, STORAGE_BUCKET, id, orgId);
+    n += 1;
+  }
+  return n;
+}
+
+/** Archive duplicate / out-of-range cases for one pack (replace import prep). */
+export async function pruneDuplicatePackCases(
+  supabase: SupabaseClient,
+  orgId: string,
+  packId: EvalPackId
+): Promise<number> {
+  const { data } = await supabase
+    .from("cases")
+    .select("id, eval_case_no")
+    .eq("org_id", orgId)
+    .eq("eval_pack_id", packId)
+    .eq("is_archived", false);
+
+  let archived = 0;
+  const bySlot = new Map<number, string[]>();
+  const orphanIds: string[] = [];
+
+  for (const row of data ?? []) {
+    const id = row.id as string;
+    const n = (row as { eval_case_no?: number | null }).eval_case_no;
+    if (typeof n !== "number" || n < 1 || n > 40) {
+      orphanIds.push(id);
+      continue;
+    }
+    const list = bySlot.get(n) ?? [];
+    list.push(id);
+    bySlot.set(n, list);
+  }
+
+  const stamp = new Date().toISOString();
+  for (const id of orphanIds) {
+    await supabase.from("cases").update({ is_archived: true, updated_at: stamp }).eq("id", id).eq("org_id", orgId);
+    archived += 1;
+  }
+  for (const ids of bySlot.values()) {
+    if (ids.length <= 1) continue;
+    ids.sort();
+    for (let i = 1; i < ids.length; i++) {
+      await supabase
+        .from("cases")
+        .update({ is_archived: true, updated_at: stamp })
+        .eq("id", ids[i]!)
+        .eq("org_id", orgId);
+      archived += 1;
+    }
+  }
+  return archived;
+}
+
+export async function countPackCases(
+  supabase: SupabaseClient,
+  orgId: string,
+  packId: EvalPackId
+): Promise<number> {
+  const { count, error } = await supabase
+    .from("cases")
+    .select("id", { count: "exact", head: true })
+    .eq("org_id", orgId)
+    .eq("eval_pack_id", packId)
+    .eq("is_archived", false);
+  if (error) {
+    console.warn("[eval-pack-import] countPackCases:", error.message);
+    return 0;
+  }
+  return count ?? 0;
+}
+
 /** One chunk (≤20 files). Owner-only route — no paywall increment. */
 export async function runEvalPackImportChunk(params: {
   supabase: SupabaseClient;
@@ -52,22 +177,46 @@ export async function runEvalPackImportChunk(params: {
   userId: string;
   email: string | null;
   packId: EvalPackId;
+  packLabel?: string;
   replaceExisting: boolean;
+  clearPackDocumentsFirst?: boolean;
   items: EvalPackImportItem[];
   files: File[];
-}): Promise<{ created: number; updated: number; skipped: number; warnings: string[]; errors: string[] }> {
-  const { supabase, orgId, userId, email, packId, replaceExisting, items, files } = params;
+}): Promise<EvalPackImportChunkResult> {
+  const {
+    supabase,
+    orgId,
+    userId,
+    email,
+    packId,
+    replaceExisting,
+    clearPackDocumentsFirst,
+    items,
+    files,
+  } = params;
   const warnings: string[] = [];
   const errors: string[] = [];
   let created = 0;
   let updated = 0;
+  let replaced = 0;
   let skipped = 0;
 
-  const packLabel = EVAL_PACK_LABELS[packId];
+  const packLabel = params.packLabel ?? evalPackNameForStorage(packId);
 
   if (items.length !== files.length) {
     errors.push(`items length (${items.length}) does not match files (${files.length})`);
-    return { created, updated, skipped, warnings, errors };
+    return { created, updated, replaced, skipped, warnings, errors };
+  }
+
+  if (clearPackDocumentsFirst && replaceExisting) {
+    const pruned = await pruneDuplicatePackCases(supabase, orgId, packId);
+    if (pruned > 0) {
+      warnings.push(`Replace mode: archived ${pruned} duplicate or out-of-range Pack ${packId} case(s).`);
+    }
+    const cleared = await clearPackCaseDocuments(supabase, orgId, packId);
+    if (cleared > 0) {
+      warnings.push(`Replace mode: cleared documents on ${cleared} existing Pack ${packId} case(s) before import.`);
+    }
   }
 
   for (let i = 0; i < files.length; i++) {
@@ -157,47 +306,21 @@ export async function runEvalPackImportChunk(params: {
       }
     }
 
-    const { data: existingCase } = await supabase
+    let caseId: string;
+    let createdNewCaseDraft = false;
+    let didReplace = false;
+
+    const { data: exactPackCase } = await supabase
       .from("cases")
-      .select("id, title")
+      .select("id, eval_pack_id")
       .eq("org_id", orgId)
       .eq("eval_pack_id", packId)
       .eq("eval_case_no", evalCaseNo)
       .eq("is_archived", false)
       .maybeSingle();
 
-    const caseExistedPrior = Boolean(existingCase?.id);
-    let caseId: string;
-    let createdNewCaseDraft = false;
-
-    if (!caseExistedPrior) {
-      const { data: newCase, error: insErr } = await supabase
-        .from("cases")
-        .insert({
-          org_id: orgId,
-          title: caseTitle,
-          created_by: userId,
-          practice_area: "criminal",
-          eval_pack_id: packId,
-          eval_pack_name: packLabel,
-          eval_case_no: evalCaseNo,
-        })
-        .select("id")
-        .maybeSingle();
-      if (insErr || !newCase?.id) {
-        errors.push(`${file.name}: failed to create case — ${insErr?.message ?? "unknown"}`);
-        skipped += 1;
-        continue;
-      }
-      caseId = newCase.id as string;
-      createdNewCaseDraft = true;
-      try {
-        await supabase.from("criminal_cases").upsert({ id: caseId, org_id: orgId }, { onConflict: "id" });
-      } catch {
-        // non-fatal
-      }
-    } else {
-      caseId = existingCase!.id as string;
+    if (exactPackCase?.id) {
+      caseId = exactPackCase.id as string;
       await supabase
         .from("cases")
         .update({
@@ -205,6 +328,7 @@ export async function runEvalPackImportChunk(params: {
           eval_pack_id: packId,
           eval_pack_name: packLabel,
           eval_case_no: evalCaseNo,
+          practice_area: "criminal",
           updated_at: new Date().toISOString(),
         })
         .eq("id", caseId)
@@ -212,18 +336,108 @@ export async function runEvalPackImportChunk(params: {
 
       if (replaceExisting) {
         await removeCaseDocumentsAndStorage(supabase, STORAGE_BUCKET, caseId, orgId);
+        didReplace = true;
       } else {
-        const { data: dupDoc } = await supabase
+        await removeDocumentByNameOnCase(supabase, caseId, orgId, file.name);
+      }
+    } else {
+      const { data: untaggedSlot } = await supabase
+        .from("cases")
+        .select("id")
+        .eq("org_id", orgId)
+        .eq("eval_case_no", evalCaseNo)
+        .eq("is_archived", false)
+        .is("eval_pack_id", null)
+        .maybeSingle();
+
+      if (untaggedSlot?.id) {
+        caseId = untaggedSlot.id as string;
+        await supabase
+          .from("cases")
+          .update({
+            title: caseTitle,
+            eval_pack_id: packId,
+            eval_pack_name: packLabel,
+            eval_case_no: evalCaseNo,
+            practice_area: "criminal",
+            updated_at: new Date().toISOString(),
+          })
+          .eq("id", caseId)
+          .eq("org_id", orgId);
+        warnings.push(`${file.name}: retagged untagged slot ${evalCaseNo} to Pack ${packId}.`);
+        if (replaceExisting) {
+          await removeCaseDocumentsAndStorage(supabase, STORAGE_BUCKET, caseId, orgId);
+          didReplace = true;
+        } else {
+          await removeDocumentByNameOnCase(supabase, caseId, orgId, file.name);
+        }
+      } else {
+        const { data: docRow } = await supabase
           .from("documents")
-          .select("id")
-          .eq("case_id", caseId)
+          .select("case_id")
           .eq("org_id", orgId)
           .eq("name", file.name)
+          .limit(1)
           .maybeSingle();
-        if (dupDoc) {
-          warnings.push(`${file.name}: duplicate filename on case ${evalCaseNo} — skipped`);
-          skipped += 1;
-          continue;
+
+        if (docRow?.case_id) {
+          caseId = docRow.case_id as string;
+          const { data: caseRow } = await supabase
+            .from("cases")
+            .select("eval_pack_id")
+            .eq("id", caseId)
+            .eq("org_id", orgId)
+            .maybeSingle();
+          const priorPack = (caseRow as { eval_pack_id?: string | null } | null)?.eval_pack_id ?? null;
+          await supabase
+            .from("cases")
+            .update({
+              title: caseTitle,
+              eval_pack_id: packId,
+              eval_pack_name: packLabel,
+              eval_case_no: evalCaseNo,
+              practice_area: "criminal",
+              updated_at: new Date().toISOString(),
+            })
+            .eq("id", caseId)
+            .eq("org_id", orgId);
+          if (priorPack !== packId) {
+            warnings.push(
+              `${file.name}: matched existing document — retagged to Pack ${packId} (${packLabel}) slot ${evalCaseNo}.`
+            );
+          }
+          if (replaceExisting) {
+            await removeCaseDocumentsAndStorage(supabase, STORAGE_BUCKET, caseId, orgId);
+            didReplace = true;
+          } else {
+            await removeDocumentByNameOnCase(supabase, caseId, orgId, file.name);
+          }
+        } else {
+          const { data: newCase, error: insErr } = await supabase
+            .from("cases")
+            .insert({
+              org_id: orgId,
+              title: caseTitle,
+              created_by: userId,
+              practice_area: "criminal",
+              eval_pack_id: packId,
+              eval_pack_name: packLabel,
+              eval_case_no: evalCaseNo,
+            })
+            .select("id")
+            .maybeSingle();
+          if (insErr || !newCase?.id) {
+            errors.push(`${file.name}: failed to create case — ${insErr?.message ?? "unknown"}`);
+            skipped += 1;
+            continue;
+          }
+          caseId = newCase.id as string;
+          createdNewCaseDraft = true;
+          try {
+            await supabase.from("criminal_cases").upsert({ id: caseId, org_id: orgId }, { onConflict: "id" });
+          } catch {
+            // non-fatal
+          }
         }
       }
     }
@@ -274,8 +488,11 @@ export async function runEvalPackImportChunk(params: {
       continue;
     }
 
-    if (caseExistedPrior) updated += 1;
-    else created += 1;
+    if (createdNewCaseDraft) created += 1;
+    else {
+      updated += 1;
+      if (didReplace) replaced += 1;
+    }
 
     if (summary) {
       await supabase
@@ -342,18 +559,6 @@ export async function runEvalPackImportChunk(params: {
       })();
     }
 
-    try {
-      const baseUrl =
-        process.env.NEXT_PUBLIC_APP_URL ||
-        (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
-      void fetch(`${baseUrl}/api/criminal/${caseId}/process`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-      }).catch(() => {});
-    } catch {
-      // non-fatal
-    }
-
     await appendAuditLog({
       caseId,
       userId,
@@ -368,5 +573,5 @@ export async function runEvalPackImportChunk(params: {
     });
   }
 
-  return { created, updated, skipped, warnings, errors };
+  return { created, updated, replaced, skipped, warnings, errors };
 }

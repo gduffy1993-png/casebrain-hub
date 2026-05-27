@@ -21,6 +21,7 @@ import {
   EVAL_PACK_IDS,
   EVAL_PACK_LABELS,
   EVAL_PACK_LOCKED_BASELINE_IDS,
+  EVAL_PACK_Y_ONLY_IDS,
   parseEvalPackId,
   resolveCaseEvalPack,
   type EvalPackId,
@@ -235,9 +236,13 @@ export function BattleboardSweepRunner() {
     setSelectedPacks(next);
   }
 
-  /** All 24 packs A–X (distinct from Golden’s A–T regression lock). */
-  function selectLockedBaselineAX() {
+  /** All packs A–Y (distinct from Golden’s A–T regression lock). */
+  function selectAllPacksAXY() {
     setSelectedPacks(new Set(EVAL_PACK_IDS));
+  }
+
+  function selectPackYOnly() {
+    setSelectedPacks(new Set(EVAL_PACK_Y_ONLY_IDS));
   }
 
   function selectOnlyPack(id: EvalPackId) {
@@ -497,8 +502,11 @@ export function BattleboardSweepRunner() {
           <Button type="button" variant="outline" size="sm" onClick={selectAllPacksWithCases}>
             Select all packs with cases
           </Button>
-          <Button type="button" variant="outline" size="sm" onClick={selectLockedBaselineAX}>
-            A–X all packs
+          <Button type="button" variant="outline" size="sm" onClick={selectAllPacksAXY}>
+            A–Y all packs
+          </Button>
+          <Button type="button" variant="outline" size="sm" onClick={selectPackYOnly}>
+            Y only
           </Button>
           <Button
             type="button"

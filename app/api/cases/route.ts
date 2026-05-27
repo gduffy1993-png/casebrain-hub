@@ -28,19 +28,24 @@ async function fetchEvalDocHintsMap(
   const m = new Map<string, string | null>();
   for (const id of caseIds) m.set(id, null);
   if (!enabled || caseIds.length === 0) return m;
-  const { data: docRows, error } = await supabase
-    .from("documents")
-    .select("case_id, name, created_at")
-    .in("case_id", caseIds)
-    .eq("org_id", orgId)
-    .order("created_at", { ascending: true });
-  if (error) {
-    console.warn("[api/cases] eval_doc_hints:", error.message);
-    return m;
-  }
-  for (const r of docRows ?? []) {
-    const cid = String(r.case_id);
-    if (m.get(cid) == null && r.name) m.set(cid, String(r.name));
+
+  const CHUNK = 150;
+  for (let i = 0; i < caseIds.length; i += CHUNK) {
+    const chunk = caseIds.slice(i, i + CHUNK);
+    const { data: docRows, error } = await supabase
+      .from("documents")
+      .select("case_id, name, created_at")
+      .in("case_id", chunk)
+      .eq("org_id", orgId)
+      .order("created_at", { ascending: true });
+    if (error) {
+      console.warn("[api/cases] eval_doc_hints chunk:", error.message);
+      continue;
+    }
+    for (const r of docRows ?? []) {
+      const cid = String(r.case_id);
+      if (m.get(cid) == null && r.name) m.set(cid, String(r.name));
+    }
   }
   return m;
 }
@@ -161,23 +166,30 @@ export async function GET(request: Request) {
       return NextResponse.json({ cases: sortCasesForDisplay(casesWithStatus) });
     }
 
-    let query = supabase
-      .from("cases")
-      .select("id, title, updated_at, created_at, eval_pack_id, eval_pack_name, eval_case_no")
-      .eq("org_id", orgId)
-      .eq("is_archived", false);
-
-    if (q.length > 0) {
-      query = query.ilike("title", `%${q}%`);
+    const PAGE = 1000;
+    const allCases: typeof list = [];
+    let pageFrom = 0;
+    while (true) {
+      let pageQuery = supabase
+        .from("cases")
+        .select("id, title, updated_at, created_at, eval_pack_id, eval_pack_name, eval_case_no")
+        .eq("org_id", orgId)
+        .eq("is_archived", false);
+      if (q.length > 0) {
+        pageQuery = pageQuery.ilike("title", `%${q}%`);
+      }
+      const { data: page, error: pageErr } = await pageQuery.range(pageFrom, pageFrom + PAGE - 1);
+      if (pageErr) {
+        console.error("[api/cases] Supabase error:", pageErr.message);
+        return NextResponse.json({ cases: [] });
+      }
+      const rows = page ?? [];
+      allCases.push(...rows);
+      if (rows.length < PAGE) break;
+      pageFrom += PAGE;
     }
-    const { data: cases, error } = await query;
 
-    if (error) {
-      console.error("[api/cases] Supabase error:", error.message);
-      return NextResponse.json({ cases: [] });
-    }
-
-    list = cases ?? [];
+    list = allCases;
     if (list.length === 0) {
       return NextResponse.json({ cases: [] });
     }

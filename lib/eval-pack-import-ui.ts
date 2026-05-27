@@ -115,6 +115,8 @@ export function buildPackImportPreview(args: {
   files: File[];
   manifest: Map<string, ManifestRow>;
   existingPackCaseNos: Set<number>;
+  /** Assign slots 1…N in sort order (avoids filename inference collisions e.g. Pack Y 0108→8). */
+  preferSequentialSlots?: boolean;
 }): { rows: PackImportPreviewRow[]; warnings: string[] } {
   const warnings: string[] = [];
   const rawFull = listPackImportNonGoldSorted(args.files);
@@ -172,7 +174,9 @@ export function buildPackImportPreview(args: {
     const man = args.manifest.get(f.name.toLowerCase());
     let desired =
       man?.eval_case_no != null && man.eval_case_no >= 1 ? Math.min(40, man.eval_case_no) : null;
-    if (desired == null) desired = inferEvalCaseNoFromFilename(f.name);
+    if (desired == null && !args.preferSequentialSlots) {
+      desired = inferEvalCaseNoFromFilename(f.name);
+    }
     if (desired == null) desired = seq;
     const beforeAlloc = desired;
     const prev = desiredSeen.get(beforeAlloc);

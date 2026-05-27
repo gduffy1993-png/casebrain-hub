@@ -26,9 +26,14 @@ function mergeUniqueFiles(prev: File[], incoming: File[]): File[] {
 
 export type PackImportCompleteSummary = {
   packId: EvalPackId;
+  selected_count: number;
+  will_import_count: number;
   created: number;
   updated: number;
+  replaced: number;
   skipped: number;
+  error_count: number;
+  final_pack_count: number;
   warnings: string[];
   errors: string[];
 };
@@ -75,6 +80,7 @@ export function PackImportModal({ packId, isOpen, onClose, existingPackCaseNos, 
         files,
         manifest: manifestMap,
         existingPackCaseNos,
+        preferSequentialSlots: packId === "Y",
       }),
     [packId, files, manifestMap, existingPackCaseNos]
   );
@@ -119,19 +125,27 @@ export function PackImportModal({ packId, isOpen, onClose, existingPackCaseNos, 
     if (!canImport || !replaceOk) return;
     setBusy(true);
     setLastError(null);
+    const selectedCount = files.length;
+    const willImportCount = importPairs.length;
     let created = 0;
     let updated = 0;
+    let replaced = 0;
     let skipped = 0;
+    let finalPackCount = 0;
     const warnings: string[] = [...previewWarnings];
     const errors: string[] = [];
 
     try {
       for (let i = 0; i < importPairs.length; i += PACK_IMPORT_CHUNK_SIZE) {
         const slice = importPairs.slice(i, i + PACK_IMPORT_CHUNK_SIZE);
+        const isFirstChunk = i === 0;
         const fd = new FormData();
         fd.append("packId", packId);
         fd.append("replaceExisting", replaceExisting ? "true" : "false");
         fd.append("confirmReplace", confirmReplace ? "true" : "false");
+        fd.append("clearPackDocumentsFirst", isFirstChunk && replaceExisting ? "true" : "false");
+        fd.append("selectedCount", String(selectedCount));
+        fd.append("willImportCount", String(willImportCount));
         fd.append(
           "items",
           JSON.stringify(slice.map((p) => ({ evalCaseNo: p.row.evalCaseNo, caseTitle: p.row.caseTitle })))
@@ -142,18 +156,44 @@ export function PackImportModal({ packId, isOpen, onClose, existingPackCaseNos, 
         const json = (await res.json().catch(() => ({}))) as PackImportCompleteSummary & {
           ok?: boolean;
           error?: string;
+          created_count?: number;
+          updated_count?: number;
+          replaced_count?: number;
+          skipped_count?: number;
         };
         if (!res.ok) {
           throw new Error(json.error || res.statusText || "Import failed");
         }
-        created += json.created ?? 0;
-        updated += json.updated ?? 0;
-        skipped += json.skipped ?? 0;
+        created += json.created_count ?? json.created ?? 0;
+        updated += json.updated_count ?? json.updated ?? 0;
+        replaced += json.replaced_count ?? json.replaced ?? 0;
+        skipped += json.skipped_count ?? json.skipped ?? 0;
+        finalPackCount = json.final_pack_count ?? finalPackCount;
         if (Array.isArray(json.warnings)) warnings.push(...json.warnings);
         if (Array.isArray(json.errors)) errors.push(...json.errors);
       }
 
-      await onComplete({ packId, created, updated, skipped, warnings, errors });
+      if (willImportCount > 0 && finalPackCount !== willImportCount) {
+        warnings.push(
+          `Pack ${packId} final case count is ${finalPackCount} but ${willImportCount} file(s) were imported — expected ${willImportCount}. Check for archived duplicates or import errors.`
+        );
+      }
+
+      const summary: PackImportCompleteSummary = {
+        packId,
+        selected_count: selectedCount,
+        will_import_count: willImportCount,
+        created,
+        updated,
+        replaced,
+        skipped,
+        error_count: errors.length,
+        final_pack_count: finalPackCount,
+        warnings,
+        errors,
+      };
+      console.info("[pack-import]", summary);
+      await onComplete(summary);
       onClose();
     } catch (e) {
       setLastError(e instanceof Error ? e.message : String(e));
@@ -248,28 +288,35 @@ export function PackImportModal({ packId, isOpen, onClose, existingPackCaseNos, 
         {lastError && <p className="text-sm text-red-600">{lastError}</p>}
 
         <div className="min-h-0 flex-1 overflow-auto rounded-md border border-border">
-          <table className="w-full text-left text-xs">
-            <thead className="sticky top-0 bg-muted/95">
-              <tr>
-                <th className="p-2">File</th>
-                <th className="p-2">#</th>
-                <th className="p-2">Title</th>
-                <th className="p-2">Pack</th>
-                <th className="p-2">Action</th>
+          <table className="w-full text-left text-xs text-foreground">
+            <thead className="sticky top-0 z-[1] border-b border-border bg-muted">
+              <tr className="text-foreground">
+                <th className="p-2 font-medium">File</th>
+                <th className="p-2 font-medium">#</th>
+                <th className="p-2 font-medium">Title</th>
+                <th className="p-2 font-medium">Pack</th>
+                <th className="p-2 font-medium">Action</th>
               </tr>
             </thead>
             <tbody>
               {rows.map((r, idx) => (
-                <tr key={`${r.fileName}-${idx}`} className={r.unsupported ? "bg-muted/40 text-muted-foreground" : ""}>
-                  <td className="max-w-[200px] truncate p-2" title={r.fileName}>
+                <tr
+                  key={`${r.fileName}-${idx}`}
+                  className={
+                    r.unsupported
+                      ? "border-t border-border/60 bg-muted/30 text-muted-foreground"
+                      : "border-t border-border/60 odd:bg-card even:bg-muted/20"
+                  }
+                >
+                  <td className="max-w-[200px] truncate p-2 text-foreground" title={r.fileName}>
                     {r.fileName}
                   </td>
-                  <td className="p-2 font-mono">{r.unsupported ? "—" : r.evalCaseNo}</td>
-                  <td className="max-w-[240px] truncate p-2" title={r.caseTitle}>
+                  <td className="p-2 font-mono text-foreground">{r.unsupported ? "—" : r.evalCaseNo}</td>
+                  <td className="max-w-[240px] truncate p-2 text-foreground" title={r.caseTitle}>
                     {r.unsupported ? "—" : r.caseTitle}
                   </td>
-                  <td className="p-2 font-mono">{r.packId}</td>
-                  <td className="p-2">{r.unsupported ? "skip" : r.action}</td>
+                  <td className="p-2 font-mono text-foreground">{r.packId}</td>
+                  <td className="p-2 text-foreground">{r.unsupported ? "skip" : r.action}</td>
                 </tr>
               ))}
               {rows.length === 0 && (

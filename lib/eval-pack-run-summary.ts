@@ -13,7 +13,7 @@ import {
 } from "@/lib/eval-sweep-review";
 import { goldenSweepRowsToBulkInput, GOLDEN_QUESTIONS, type GoldenSweepEvalRow } from "@/lib/eval/golden-sweep-client";
 import { GOLDEN_SWEEP_QUESTIONS } from "@/lib/eval-golden-sweep";
-import { EVAL_PACK_LABELS, type EvalPackId } from "@/lib/eval-packs";
+import { EVAL_PACK_LABELS, evalPackNameForStorage, type EvalPackId } from "@/lib/eval-packs";
 
 export type PackGoldenMatrixRow = {
   pack_id: string;
@@ -141,7 +141,7 @@ export function buildGoldenEvalSweepSavePayload(
   const summary_stats = {
     ...buildPackRunSummaryStatsForSave(rows),
     eval_pack_id: packId,
-    eval_pack_name: EVAL_PACK_LABELS[packId],
+    eval_pack_name: evalPackNameForStorage(packId),
     eval_pack_runner: true,
     eval_pack_case_count: caseCount,
   };

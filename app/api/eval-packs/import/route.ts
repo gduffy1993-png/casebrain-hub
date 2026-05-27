@@ -2,8 +2,12 @@ import { NextResponse } from "next/server";
 import { requireAuthContext, getCurrentUser } from "@/lib/auth";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { isOwnerUser } from "@/lib/paywall/owner";
-import { parseEvalPackId } from "@/lib/eval-packs";
-import { runEvalPackImportChunk, type EvalPackImportItem } from "@/lib/eval-pack-import-server";
+import { evalPackNameForStorage, parseEvalPackId } from "@/lib/eval-packs";
+import {
+  countPackCases,
+  runEvalPackImportChunk,
+  type EvalPackImportItem,
+} from "@/lib/eval-pack-import-server";
 import { PACK_IMPORT_CHUNK_SIZE } from "@/lib/eval-pack-import-ui";
 
 export const runtime = "nodejs";
@@ -62,6 +66,7 @@ export async function POST(req: Request) {
     );
   }
 
+  const clearPackDocumentsFirst = String(form.get("clearPackDocumentsFirst") ?? "") === "true";
   const items = parseItems(String(form.get("items") ?? ""));
   if (!items) {
     return NextResponse.json({ error: "Invalid items JSON (expect [{ evalCaseNo, caseTitle }, …])" }, { status: 400 });
@@ -84,24 +89,42 @@ export async function POST(req: Request) {
     );
   }
 
+  const selectedCount = Number(form.get("selectedCount") ?? items.length) || items.length;
+  const willImportCount = Number(form.get("willImportCount") ?? items.length) || items.length;
+
   const supabase = getSupabaseAdminClient();
+  const packLabel = evalPackNameForStorage(packId);
   const result = await runEvalPackImportChunk({
     supabase,
     orgId,
     userId,
     email,
     packId,
+    packLabel,
     replaceExisting,
+    clearPackDocumentsFirst,
     items,
     files,
   });
 
+  const finalPackCount = await countPackCases(supabase, orgId, packId);
+
   return NextResponse.json({
     ok: true,
     packId,
+    packLabel,
+    selected_count: selectedCount,
+    will_import_count: willImportCount,
     created: result.created,
     updated: result.updated,
+    replaced: result.replaced,
     skipped: result.skipped,
+    created_count: result.created,
+    updated_count: result.updated,
+    replaced_count: result.replaced,
+    skipped_count: result.skipped,
+    error_count: result.errors.length,
+    final_pack_count: finalPackCount,
     warnings: result.warnings,
     errors: result.errors,
   });
