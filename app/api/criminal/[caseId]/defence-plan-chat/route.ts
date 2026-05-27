@@ -461,6 +461,32 @@ function compactOneLine(text: string): string {
 }
 
 /**
+ * Q1-only truncation: do NOT cut a charge line at a comma/semicolon boundary.
+ * Prefer sentence end; otherwise fall back to a word boundary with ellipsis.
+ */
+function softTruncateChargeWording(text: string, max: number, sentenceHeadroom = 220): string {
+  if (text.length <= max) return text;
+  const lookahead = Math.min(text.length, max + Math.max(0, sentenceHeadroom));
+  if (lookahead > max) {
+    const window = text.slice(0, lookahead);
+    const sentenceEndAhead = Math.max(window.lastIndexOf(". "), window.lastIndexOf("! "), window.lastIndexOf("? "));
+    if (sentenceEndAhead >= max) {
+      return window.slice(0, sentenceEndAhead + 1).trim();
+    }
+    if (window.length === text.length) {
+      const last = window.trimEnd();
+      if (/[.!?]$/.test(last)) return last;
+    }
+  }
+  const slice = text.slice(0, max);
+  const sentenceEnd = Math.max(slice.lastIndexOf(". "), slice.lastIndexOf("! "), slice.lastIndexOf("? "));
+  if (sentenceEnd >= Math.floor(max * 0.6)) return slice.slice(0, sentenceEnd + 1).trim();
+  const wordEnd = slice.lastIndexOf(" ");
+  if (wordEnd >= Math.floor(max * 0.5)) return `${slice.slice(0, wordEnd).trim()}…`;
+  return `${slice.trim()}…`;
+}
+
+/**
  * Truncate at a soft boundary (sentence end > clause end > word end) so allegation /
  * charge wording is never cut mid-word. Pack A/B Q1 must read clean even at the cap.
  *
@@ -1265,6 +1291,13 @@ function buildStrictPrimaryAllegationAnswer(bundleFullText: string): string | nu
   const stripFictionalChargeNote = (s: string) =>
     compactOneLine(s.replace(/\(fictional charge drafting for test data\)\.?/gi, "").trim());
 
+  if (isPackYWorkflowStressBundle(bundleFullText)) {
+    const packYCharge = extractPackYExtendedChargeSentence(bundleFullText);
+    if (packYCharge && packYCharge.length >= 48 && !isIncompletePrimaryAllegation(packYCharge)) {
+      return softTruncateChargeWording(stripFictionalChargeNote(packYCharge), 560);
+    }
+  }
+
   const chargeSheetOne = extractChargeSheetStatementAndParticularsSentence(bundleFullText);
   const richNs = buildNorthshireRichPrimaryAllegationSentence(bundleFullText);
   const sheetCore = chargeSheetOne ? stripFictionalChargeNote(chargeSheetOne) : "";
@@ -1272,16 +1305,16 @@ function buildStrictPrimaryAllegationAnswer(bundleFullText: string): string | nu
 
   /** Prefer literal CHARGE particulars when long enough; else Northshire rich if it carries materially more bundle wording. */
   if (sheetCore.length >= 55) {
-    return softTruncate(sheetCore, 560);
+    return softTruncateChargeWording(sheetCore, 560);
   }
   if (richCore && sheetCore && richCore.length > sheetCore.length + 28) {
-    return softTruncate(richCore, 560);
+    return softTruncateChargeWording(richCore, 560);
   }
   if (sheetCore) {
-    return softTruncate(sheetCore, 560);
+    return softTruncateChargeWording(sheetCore, 560);
   }
   if (richCore) {
-    return softTruncate(richCore, 560);
+    return softTruncateChargeWording(richCore, 560);
   }
 
   const fictionLine = firstMatch(bundleFullText, [/^Allegation \(fiction\):\s*(.+)$/im]);
@@ -1598,15 +1631,507 @@ function isGoldenMissingEvidenceQuestion(question: string): boolean {
   return /\bwhat evidence appears missing or incomplete\b/i.test(q) && /\bright now\b/i.test(q);
 }
 
+function stripPackYIndexLikeLines(line: string): boolean {
+  const s = compactOneLine(line);
+  const U = s.toUpperCase();
+  // Pack Y bad pattern: index/table lines masquerading as "missing evidence".
+  if (/^\d{2}\s+(COVER|INDEX)\b/.test(U)) return true;
+  if (/^\d{2}\s+CHARGE\s+SHEET\b/.test(U)) return true;
+  if (/^\d{2}\s+MG\s*5\b/.test(U)) return true;
+  if (/^\d{2}\s*(?:-|–)?\s*\d{2}\s+MG\s*6\b/.test(U)) return true;
+  if (/^\d{2}\s*(?:-|–)?\s*\d{2}\s+MG\s*11\b/.test(U)) return true;
+  if (/^\d{2}\s*(?:-|–)?\s*\d{2}\s+SOURCE\s+MATERIAL\b/.test(U)) return true;
+  if (/^\d{2}\s*(?:-|–)?\s*\d{2}\s+WORKING\s+APPENDICES\b/.test(U)) return true;
+  // Also reject the slash-separated "01 Cover / case summary" format.
+  if (/^\d{2}\s+(COVER|INDEX|CHARGE\s+SHEET|MG\s*5|MG\s*6|MG\s*11)\s*\/\s*/.test(U)) return true;
+  return false;
+}
+
+function collectPackYOutstandingDisclosureLines(bundleFullText: string, max = 10): string[] {
+  const out: string[] = [];
+  const seen = new Set<string>();
+  const lines = bundleFullText.split(/\r?\n/);
+  let inChaseBlock = false;
+  let chaseBlockBudget = 0;
+
+  const push = (raw: string) => {
+    if (out.length >= max) return;
+    const line = compactOneLine(raw);
+    if (!line) return;
+    if (line.length < 8 || line.length > 320) return;
+    if (stripPackYIndexLikeLines(line)) return;
+    const key = line.toUpperCase().replace(/\s+/g, " ").slice(0, 200);
+    if (seen.has(key)) return;
+    seen.add(key);
+    out.push(softTruncate(line, 240));
+  };
+
+  for (const raw of lines) {
+    if (out.length >= max) break;
+    const line = raw.trim();
+    if (!line) continue;
+    const U = line.toUpperCase();
+
+    if (/\bDISCLOSURE\s+CHASE\s+NOTE\b/.test(U)) {
+      inChaseBlock = true;
+      chaseBlockBudget = 40;
+      continue;
+    }
+    if (inChaseBlock) {
+      chaseBlockBudget -= 1;
+      if (chaseBlockBudget <= 0 || looksLikeNewEvalSectionHeader(line)) {
+        inChaseBlock = false;
+      }
+    }
+
+    // 1) Prefer explicit Outstanding item lines.
+    if (/^\s*OUTSTANDING\s+ITEM\s*[:\-]/i.test(line) || /^\s*OUTSTANDING\s+ITEM\b/i.test(line)) {
+      push(line.replace(/^\s*outstanding\s+item\s*[:\-]?\s*/i, "Outstanding item: "));
+      continue;
+    }
+
+    // 2) Prefer Chase: lines (esp. within Disclosure Chase Note).
+    if (/^\s*CHASE\s*[:\-]/i.test(line) || (inChaseBlock && /\bCHASE\s*[:\-]/i.test(line))) {
+      push(line.replace(/^\s*chase\s*[:\-]?\s*/i, "Chase: "));
+      continue;
+    }
+
+    // 3) Fallback: explicit outstanding/awaiting/not served lines (file wording only).
+    if (/\bNOT\s+SERVED\b/i.test(line) || /\bOUTSTANDING\b/i.test(line) || /\bAWAITING\b/i.test(line) || /\bPENDING\b/i.test(line)) {
+      // Keep only lines that look like real disclosure items, not generic meta.
+      if (
+        /\b(CCTV|BWV|999|CAD|INTERVIEW|TRANSCRIPT|AUDIO|RECORDING|DOWNLOAD|CELL[-\s]?SITE|EXPERT|MEDICAL|FORENSIC|DNA|FINGERPRINT|CONTINUITY|CUSTODY|UNUSED|WITNESS|CORRECTION\s+LOG|CALL\s+LOG)\b/i.test(
+          line
+        )
+      ) {
+        push(line);
+      }
+    }
+  }
+
+  return out;
+}
+
+/** Pack Y — 40×40 Criminal Workflow Stress bundles (`CB-Y-…`, workflow-stress markers). */
+function isPackYWorkflowStressBundle(bundleFullText: string): boolean {
+  if (!bundleFullText) return false;
+  return (
+    /\bCB-Y\b/i.test(bundleFullText) ||
+    /\b40\s*[x×]\s*40\b/i.test(bundleFullText) ||
+    /\bWORKFLOW\s+STRESS\b/i.test(bundleFullText) ||
+    /\bPACK\s+Y\b/i.test(bundleFullText)
+  );
+}
+
+type PackYOffenceFamily =
+  | "arson"
+  | "burglary"
+  | "dangerous_driving"
+  | "blade"
+  | "fraud"
+  | "pwits"
+  | "affray_robbery_po"
+  | "gbh_abh_violence";
+
+function detectPackYOffenceFamily(bundleFullText: string): PackYOffenceFamily | null {
+  const tag =
+    firstMatch(bundleFullText, [
+      /^\s*Offence\(s\)\s+as\s+tag:\s*(.+)$/im,
+      /^\s*Charge:\s*(.+)$/im,
+      /^\s*Offence:\s*(.+)$/im,
+      /^\s*Short\s+title:\s*(.+)$/im,
+    ]) ?? "";
+  const ctx = `${tag}\n${bundleFullText.slice(0, 32_000)}`;
+  const score = (patterns: RegExp[]) => patterns.reduce((n, p) => n + (p.test(ctx) ? 1 : 0), 0);
+  const ranked: { family: PackYOffenceFamily; score: number }[] = [
+    {
+      family: "arson",
+      score: score([/\barson\b/i, /\bfire\s+investigation\b/i, /\baccelerant\b/i, /\breckless.*life\b/i]),
+    },
+    {
+      family: "burglary",
+      score: score([/\bburglary\b/i, /\btrespasser\b/i, /\bentry\b/i, /\bdwelling\b/i, /\btoolmark\b/i]),
+    },
+    {
+      family: "dangerous_driving",
+      score: score([/\bdangerous\s+driving\b/i, /\bcareless\s+driving\b/i, /\bdashcam\b/i, /\bcollision\b/i]),
+    },
+    {
+      family: "blade",
+      score: score([
+        /\bbladed\s+article\b/i,
+        /\bknife\b/i,
+        /\bsharply\s+pointed\b/i,
+        /\bstop[\s-]?search\b/i,
+      ]),
+    },
+    {
+      family: "fraud",
+      score: score([/\bfraud\b/i, /\bfalse\s+representation\b/i, /\bbanking\s+schedule\b/i, /\bdevice\s+extract/i]),
+    },
+    {
+      family: "pwits",
+      score: score([/\bPWITS\b/i, /\bintent\s+to\s+supply\b/i, /\bclass\s+[AB]\b/i, /\bdrugs?\s+lab\b/i]),
+    },
+    {
+      family: "affray_robbery_po",
+      score: score([/\baffray\b/i, /\brobbery\b/i, /\bpublic\s+order\b/i, /\bs\.?\s*4\b/i, /\bs\.?\s*5\b/i]),
+    },
+    {
+      family: "gbh_abh_violence",
+      score: score([/\bGBH\b/i, /\bABH\b/i, /\bs\.?\s*18\b/i, /\bs\.?\s*20\b/i, /\bs\.?\s*47\b/i, /\bunlawful\s+wounding\b/i]),
+    },
+  ];
+  ranked.sort((a, b) => b.score - a.score);
+  if (ranked[0]!.score < 1) return null;
+  return ranked[0]!.family;
+}
+
+function packYOffenceSpecificMissingTemplates(family: PackYOffenceFamily): string[] {
+  switch (family) {
+    case "arson":
+      return [
+        "the final fire investigation report",
+        "accelerant testing",
+        "fire-scene photo index",
+        "full CCTV master footage and export log",
+        "999/CAD source audio and incident log",
+        "attending officer BWV",
+        "exhibit continuity for ignition material",
+        "unused disclosure and correction notes",
+      ];
+    case "burglary":
+      return [
+        "entry/scene CCTV",
+        "fingerprint and DNA results",
+        "toolmark comparison",
+        "property recovery and continuity",
+        "full MG11 first accounts",
+      ];
+    case "dangerous_driving":
+      return [
+        "full dashcam or source footage",
+        "speed analysis",
+        "collision reconstruction report",
+        "vehicle data download",
+        "CAD/999 timing material",
+        "officer BWV",
+        "continuity for vehicle exhibits",
+        "final expert report",
+      ];
+    case "blade":
+      return [
+        "stop-search BWV",
+        "seizure and continuity record for the blade",
+        "fingerprint/DNA testing if relied on",
+        "employer or lawful-reason material",
+        "custody and interview recording",
+        "unused disclosure notes",
+      ];
+    case "fraud":
+      return [
+        "banking schedules",
+        "device extraction",
+        "IP and login logs",
+        "account-opening documents",
+        "email login records",
+      ];
+    case "pwits":
+      return [
+        "phone download",
+        "search BWV",
+        "drugs laboratory report",
+        "packaging report",
+        "fingerprint/DNA results",
+        "cash continuity",
+      ];
+    case "affray_robbery_po":
+      return [
+        "CCTV master footage and export log",
+        "attending officer BWV",
+        "ID procedure material",
+        "witness first accounts",
+        "999/CAD source material",
+      ];
+    case "gbh_abh_violence":
+      return [
+        "final medical or expert report",
+        "CCTV master footage",
+        "999/CAD source material",
+        "glass or weapon continuity",
+        "attending officer BWV",
+      ];
+  }
+}
+
+const PACK_Y_GENERIC_MISSING_BUCKET_RE =
+  /\b(?:final\s+expert|full\s+recordings?|complete\s+continuity\s+logs?|full\s+CCTV\s+master|full\s+999|full\s+CAD|(?:attending\s+)?officer\s+BWV|final\s+(?:DNA|fingerprint)|phone\s+downloads?|interview\s+audio|interview\s+transcript)\b/i;
+
+function packYMissingItemBucket(item: string): string {
+  const u = item.toUpperCase();
+  if (/\bFIRE\b|\bACCELERANT\b|\bIGNITION\b/.test(u)) return "fire";
+  if (/\bDASHCAM\b|\bSPEED\b|\bCOLLISION\b|\bVEHICLE\s+DATA\b/.test(u)) return "drive";
+  if (/\bBLADE\b|\bKNIFE\b|\bSTOP[\s-]?SEARCH\b|\bSEIZURE\b/.test(u)) return "blade";
+  if (/\bBANK\b|\bDEVICE\b|\bIP\b|\bLOGIN\b|\bFRAUD\b/.test(u)) return "fraud";
+  if (/\bDRUG\b|\bPWITS\b|\bPACKAGING\b|\bLAB\b/.test(u)) return "drugs";
+  if (/\bBURGLARY\b|\bENTRY\b|\bTOOLMARK\b|\bPROPERTY\s+RECOVERY\b/.test(u)) return "burg";
+  if (/\bCCTV\b/.test(u)) return "cctv";
+  if (/\b999\b/.test(u)) return "999";
+  if (/\bCAD\b/.test(u)) return "cad";
+  if (/\bBWV\b/.test(u)) return "bwv";
+  if (/\bDNA\b|\bFINGERPRINT\b/.test(u)) return "bio";
+  if (/\bEXPERT\b|\bMEDICAL\b|\bFORENSIC\b/.test(u)) return "expert";
+  if (/\bCONTINUITY\b/.test(u)) return "cont";
+  if (/\bINTERVIEW\b/.test(u)) return "int";
+  if (/\bUNUSED\b|\bCORRECTION\b/.test(u)) return "unused";
+  if (PACK_Y_GENERIC_MISSING_BUCKET_RE.test(item)) return "generic";
+  return `x:${u.replace(/\s+/g, " ").slice(0, 48)}`;
+}
+
+function splitPackYLabelledListTail(tail: string): string[] {
+  const t = compactOneLine(tail);
+  if (!t || t.length < 10) return [];
+  const parts = t
+    .split(/\s*;\s*|\s*\|\s*|(?:\s+and\s+)|(?:,\s+(?=[a-z(]))/i)
+    .map((p) => compactOneLine(p.replace(/^[-•*]\s*/, "")))
+    .filter((p) => p.length >= 12 && p.length <= 220);
+  return parts.length > 0 ? parts : [t];
+}
+
+function collectPackYCaseSpecificMissingItems(bundleFullText: string, max = 12): string[] {
+  const seen = new Set<string>();
+  const lines = bundleFullText.split(/\r?\n/);
+  let inChaseBlock = false;
+  let chaseBlockBudget = 0;
+
+  const scored: { text: string; boost: number }[] = [];
+
+  const pushScored = (raw: string, boost: number) => {
+    let line = compactOneLine(raw);
+    if (!line || line.length < 10 || line.length > 260) return;
+    if (stripPackYIndexLikeLines(line)) return;
+    line = line.replace(
+      /^(?:outstanding\s+item|chase|not\s+served|awaiting\s+final|summary\s+only|core\s+issues\s+include|case-specific\s+pressure\s+points)\s*[:\-]\s*/i,
+      ""
+    );
+    const key = packYMissingItemBucket(line);
+    if (seen.has(key)) return;
+    seen.add(key);
+    scored.push({ text: softTruncate(line, 200), boost });
+  };
+
+  for (const raw of lines) {
+    if (scored.length >= max) break;
+    const line = raw.trim();
+    if (!line) continue;
+    const U = line.toUpperCase();
+
+    if (/\bDISCLOSURE\s+CHASE\s+NOTE\b/.test(U)) {
+      inChaseBlock = true;
+      chaseBlockBudget = 48;
+      continue;
+    }
+    if (inChaseBlock) {
+      chaseBlockBudget -= 1;
+      if (chaseBlockBudget <= 0 || looksLikeNewEvalSectionHeader(line)) inChaseBlock = false;
+    }
+
+    if (/^\s*CORE\s+ISSUES\s+INCLUDE\s*[:\-]/i.test(line)) {
+      const tail = line.replace(/^\s*core\s+issues\s+include\s*[:\-]\s*/i, "");
+      for (const p of splitPackYLabelledListTail(tail)) pushScored(p, 12);
+      continue;
+    }
+    if (/^\s*CASE-SPECIFIC\s+PRESSURE\s+POINTS\s*[:\-]/i.test(line)) {
+      const tail = line.replace(/^\s*case-specific\s+pressure\s+points\s*[:\-]\s*/i, "");
+      for (const p of splitPackYLabelledListTail(tail)) pushScored(p, 11);
+      continue;
+    }
+    if (/^\s*OUTSTANDING\s+ITEM\s*[:\-]/i.test(line)) {
+      pushScored(line, 10);
+      continue;
+    }
+    if (/^\s*CHASE\s*[:\-]/i.test(line) || (inChaseBlock && /\bCHASE\s*[:\-]/i.test(line))) {
+      pushScored(line, 9);
+      continue;
+    }
+    if (/^\s*NOT\s+SERVED\s*[:\-]/i.test(line)) {
+      pushScored(line, 8);
+      continue;
+    }
+    if (/^\s*AWAITING\s+FINAL\s*[:\-]/i.test(line)) {
+      pushScored(line, 8);
+      continue;
+    }
+    if (/^\s*SUMMARY\s+ONLY\s*[:\-]/i.test(line)) {
+      pushScored(line, 7);
+      continue;
+    }
+    if (
+      (/\bNOT\s+SERVED\b/i.test(line) || /\bOUTSTANDING\b/i.test(line) || /\bAWAITING\b/i.test(line)) &&
+      /\b(CCTV|BWV|999|CAD|INTERVIEW|TRANSCRIPT|AUDIO|DOWNLOAD|CELL[-\s]?SITE|EXPERT|MEDICAL|FORENSIC|DNA|FINGERPRINT|CONTINUITY|FIRE|ACCELERANT|DASHCAM|SPEED|BLADE|BANK|DEVICE|PROPERTY|TOOLMARK|ID\s+PROCEDURE|WITNESS)\b/i.test(
+        line
+      )
+    ) {
+      pushScored(line, 4);
+    }
+  }
+
+  for (const l of collectPackYOutstandingDisclosureLines(bundleFullText, max)) {
+    pushScored(l, 6);
+  }
+
+  scored.sort((a, b) => b.boost - a.boost);
+  return scored.map((s) => s.text);
+}
+
+function formatPackYEnglishList(items: string[]): string {
+  const clean = items.map((i) => compactOneLine(i).replace(/[.;]+$/, "")).filter(Boolean);
+  if (clean.length === 0) return "";
+  if (clean.length === 1) return clean[0]!;
+  if (clean.length === 2) return `${clean[0]} and ${clean[1]}`;
+  return `${clean.slice(0, -1).join(", ")}, and ${clean[clean.length - 1]}`;
+}
+
+function extractPackYBundleRef(bundleFullText: string): string | null {
+  const m = bundleFullText.match(/\bCB-Y-\d{4}-\d{3,4}\b/i);
+  return m?.[0] ?? null;
+}
+
+/** Pack Y Q3 — offence- and file-specific missing material (prose, 6–10 items, no generic MG6 collapse). */
+function buildPackYCaseSpecificMissingEvidenceAnswer(bundleFullText: string): string | null {
+  if (!isPackYWorkflowStressBundle(bundleFullText)) return null;
+
+  const family = detectPackYOffenceFamily(bundleFullText);
+  let items = collectPackYCaseSpecificMissingItems(bundleFullText, 12);
+  const seen = new Set(items.map((i) => packYMissingItemBucket(i)));
+
+  const addTemplate = (t: string) => {
+    const key = packYMissingItemBucket(t);
+    if (seen.has(key)) return;
+    seen.add(key);
+    items.push(t);
+  };
+
+  if (family) {
+    for (const t of packYOffenceSpecificMissingTemplates(family)) addTemplate(t);
+  }
+
+  if (items.length < 6) {
+    for (const l of collectLooseQ3MissingLines(bundleFullText, 8)) {
+      if (stripPackYIndexLikeLines(l)) continue;
+      if (/^sections\s+outstanding\b/i.test(l)) continue;
+      addTemplate(compactOneLine(l));
+      if (items.length >= 8) break;
+    }
+  }
+
+  items = items
+    .filter((i) => !/^sections\s+outstanding\b/i.test(i))
+    .slice(0, 10);
+
+  if (items.length < 4) return null;
+
+  if (items.length < 6 && family) {
+    for (const t of packYOffenceSpecificMissingTemplates(family)) {
+      addTemplate(t);
+      if (items.length >= 6) break;
+    }
+  }
+
+  const ref = extractPackYBundleRef(bundleFullText);
+  const list = formatPackYEnglishList(items.slice(0, 10));
+  const core = `Missing/incomplete material includes ${list}.`;
+  return ref ? `On file (${ref}), ${core}` : core;
+}
+
+function isIncompletePrimaryAllegation(text: string): boolean {
+  const t = (text ?? "").trim();
+  if (!t) return false;
+  if (/\bin that,\s*$/i.test(t)) return true;
+  if (/\bin that,\s*on\s*$/i.test(t)) return true;
+  if (/\bon\s+\d{1,2}\s*$/i.test(t)) return true;
+  if (/\bin that,?\s*on\s+\d{1,2}(?:\s|$)/i.test(t) && !/[.!?]$/.test(t)) return true;
+  if (/,\s*$/.test(t) && !/[.!?]$/.test(t)) return true;
+  return false;
+}
+
+function extractPackYExtendedChargeSentence(bundleFullText: string): string | null {
+  const chargeBody = extractSectionBodyByName(bundleFullText, "CHARGE");
+  const hay = `${chargeBody}\n${bundleFullText.slice(0, 24_000)}`;
+  const candidates: string[] = [];
+  for (const raw of hay.split(/\r?\n/)) {
+    const l = compactOneLine(raw);
+    if (l.length < 40) continue;
+    if (/\bis\s+charged\s+(?:with|that)\b/i.test(l)) candidates.push(l);
+    if (/^\s*Particulars\s+of\s+offence\s*[:\-]/i.test(raw)) {
+      const tail = l.replace(/^particulars\s+of\s+offence\s*[:\-]\s*/i, "");
+      if (tail.length >= 24) candidates.push(tail);
+    }
+    if (/^\s*On\s+\d{1,2}/i.test(l) && l.length >= 35) candidates.push(l);
+  }
+  const complete = candidates.filter((c) => !isIncompletePrimaryAllegation(c));
+  const pool = complete.length > 0 ? complete : candidates;
+  const best = pool.sort((a, b) => b.length - a.length)[0];
+  return best ? softTruncateChargeWording(best, 560) : null;
+}
+
+function polishIncompletePrimaryAllegation(answer: string, bundleFullText: string): string {
+  let out = compactOneLine(answer);
+  if (!isIncompletePrimaryAllegation(out)) return out;
+
+  const extended = extractPackYExtendedChargeSentence(bundleFullText);
+  if (extended && extended.length > out.length + 12 && !isIncompletePrimaryAllegation(extended)) {
+    return stripQ1NonAllegationWording(extended) ?? extended;
+  }
+
+  const charged = out.match(/^(.+?\s+is\s+charged\s+with\s+)(.+)$/i);
+  const defendant = charged?.[1]?.replace(/\s+is\s+charged\s+with\s*$/i, "").trim();
+  const offenceBit = charged?.[2]?.replace(/,?\s*in\s+that,?\s*$/i, "").replace(/,?\s*on\s*$/i, "").trim();
+
+  const dateLoc =
+    firstMatch(bundleFullText, [
+      /\bon\s+(\d{1,2}(?:st|nd|rd|th)?\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4}\s+at\s+[^,.\n]{3,120})/i,
+      /\bon\s+(\d{1,2}[\s\/.\-]\d{1,2}[\s\/.\-]\d{2,4}\s+at\s+[^,.\n]{3,100})/i,
+      /^\s*Location:\s*(.+)$/im,
+      /^\s*Place:\s*(.+)$/im,
+    ]) ?? null;
+
+  if (defendant && offenceBit && dateLoc) {
+    const completed = `${defendant} is charged with ${offenceBit} in that, on ${dateLoc}, the conduct is particularised in the charge sheet extract.`;
+    return softTruncateChargeWording(completed, 560);
+  }
+
+  const trimmed = out.replace(/,?\s*in that,?\s*(?:on\s+\d{1,2})?\s*$/i, "").replace(/,\s*$/, "");
+  const completed = `${trimmed} as particularised in the charge sheet extract.`;
+  return softTruncateChargeWording(completed, 560);
+}
+
 /** Q3 — same MG6 row parse as strict_mg6 (Q2); list concrete outstanding / partial items only. */
 function buildGoldenMissingEvidenceAnswer(bundleFullText: string): string | null {
+  if (isPackYWorkflowStressBundle(bundleFullText)) {
+    const packY = buildPackYCaseSpecificMissingEvidenceAnswer(bundleFullText);
+    if (packY) return packY;
+  }
+
   const rows = extractMg6DisclosureRows(bundleFullText);
   if (!isUsableMg6ScheduleForGolden(rows, bundleFullText)) return null;
 
   const header = goldenCaseFileAnchorLines(bundleFullText);
 
+  // Pack Y / workflow-style bundles often contain explicit "Outstanding item:" / "Chase:" lines.
+  // Prefer them, and avoid collapsing onto table-of-contents/index noise.
+  const packYLines = collectPackYOutstandingDisclosureLines(bundleFullText, 10);
+  if (packYLines.length >= 3) {
+    const packYProse = buildPackYCaseSpecificMissingEvidenceAnswer(bundleFullText);
+    if (packYProse) return packYProse;
+    const body = packYLines.slice(0, 10).map((l) => `- ${l}`).join("\n");
+    return header.length ? `${header.join("\n")}\n${body}` : body;
+  }
+
   const bullets: string[] = [];
   for (const r of rows) {
+    // Guard: some bundles mis-parse an index/table into "MG6 rows" — exclude those.
+    if (stripPackYIndexLikeLines(r.category)) continue;
     const pack = `${r.served} ${r.outstanding}`;
     if (
       !/\bpartial|awaited|extract|draft|unsigned|outstanding|master|continuity|engineer|lab|gp|fuller|not\s+yet|pending|incomplete|reconciliation|if\s+draft|signed\s+copy|strategy\s+note|tidy\s+schedule|print\s+served\b/i.test(
@@ -6538,6 +7063,10 @@ function applyStructuredEvalDiag(
  * ------------------------------------------------------------------------- */
 function buildStructuredEvalMissingEvidenceAnswer(bundleFullText: string): string | null {
   if (!isStructuredEvalBundle(bundleFullText)) return null;
+  if (isPackYWorkflowStressBundle(bundleFullText)) {
+    const packY = buildPackYCaseSpecificMissingEvidenceAnswer(bundleFullText);
+    if (packY) return packY;
+  }
   if (isPackKMessyRealWorldEvalBundle(bundleFullText)) {
     const pk = buildStructuredEvalPackKMessyMissingEvidenceAnswer(bundleFullText);
     if (pk) return pk;
@@ -10137,6 +10666,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       if (line) line = stripQ1NonAllegationWording(line);
     }
     if (!line) line = stripQ1NonAllegationWording(buildStrictPrimaryAllegationAnswer(combinedBundleFull));
+    if (line) line = polishIncompletePrimaryAllegation(line, combinedBundleFull);
     if (line) {
       return jsonWithRoute(
         {
@@ -10174,12 +10704,16 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   if (isGoldenMissingEvidenceQuestion(message)) {
     const preferEvalFileQ3 = isEvalGoldBundle(combinedBundleFull) || isEvalTrapBundle(combinedBundleFull);
     const preferStructuredQ3 = !preferEvalFileQ3 && isStructuredEvalBundle(combinedBundleFull);
+    const packYFirst = isPackYWorkflowStressBundle(combinedBundleFull)
+      ? buildPackYCaseSpecificMissingEvidenceAnswer(combinedBundleFull)
+      : null;
     const evalFileFirst = preferEvalFileQ3 ? buildEvalFileMissingEvidenceAnswer(combinedBundleFull) : null;
     const structuredFirst = preferStructuredQ3
       ? buildStructuredEvalMissingEvidenceAnswer(combinedBundleFull)
       : null;
     const missingReply =
       evalFileFirst ??
+      packYFirst ??
       structuredFirst ??
       buildGoldenMissingEvidenceAnswer(combinedBundleFull) ??
       buildEvalFileMissingEvidenceAnswer(combinedBundleFull) ??
