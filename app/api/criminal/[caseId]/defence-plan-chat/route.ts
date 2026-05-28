@@ -29,7 +29,9 @@ import {
 import {
   buildPackAAStrictMg6DisclosureAnswerWithMeta,
   buildPackAAStrictPrimaryAllegation,
+  buildPackAAStrictProsecutionProveAnswerWithMeta,
   isPackAAMessyBundle,
+  isPackAAProsecutionProveQuestion,
 } from "@/lib/criminal/pack-aa-messy-parsers";
 
 type RouteParams = { params: Promise<{ caseId: string }> };
@@ -8207,6 +8209,10 @@ function buildGoldenDeterministicInterpretiveSweep(
   }
 
   if (isGoldenProsecutionProveQuestion(message)) {
+    if (isPackAAMessyBundle(bundleFullText)) {
+      const packAAQ7 = buildPackAAStrictProsecutionProveAnswerWithMeta(bundleFullText);
+      if (packAAQ7) return packAAQ7.answer;
+    }
     if (preferEvalFile) {
       const evalAns = buildEvalFileProsecutionProveAnswer(bundleFullText);
       if (evalAns) return evalAns;
@@ -10855,6 +10861,45 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
               maxTokens: 250,
             }
           : undefined;
+
+    if (isPackAAProsecutionProveQuestion(message) && isPackAAMessyBundle(combinedBundleFull)) {
+      const packAAQ7Built = buildPackAAStrictProsecutionProveAnswerWithMeta(combinedBundleFull);
+      if (packAAQ7Built) {
+        const { answer: packAAQ7, meta: packAAQ7Meta } = packAAQ7Built;
+        const grounded = passesEvalGroundingGate(packAAQ7, combinedBundleFull);
+        const sweepRouteEarly = interpretiveSweepCompact ? "lightweight_eval_interpretive_sweep" : "lightweight_eval";
+        const baseEvalMeta = routeEvalMeta(
+          sweepRouteEarly,
+          message,
+          packAAQ7,
+          combinedBundleFull,
+          combinedBundleFull.length,
+          grounded,
+          {
+            reply_finalization: "deterministic",
+            fallback_reason: applyStructuredEvalDiag(undefined, message, combinedBundleFull, packAAQ7, useLightweightEvalLlm),
+          }
+        );
+        const packAAQ7EvalMeta = {
+          ...baseEvalMeta,
+          route_trace: {
+            ...baseEvalMeta.route_trace,
+            pack_aa_q7_builder_used: true,
+            pack_aa_q7_parser_version: packAAQ7Meta.parser_version,
+            pack_aa_q7_offence_family: packAAQ7Meta.offence_family,
+            pack_aa_q7_charge_source: packAAQ7Meta.charge_source,
+          },
+        } as EvalMetaV1;
+        return jsonWithRoute(
+          {
+            ok: true,
+            reply: packAAQ7,
+            eval_meta: packAAQ7EvalMeta,
+          },
+          sweepRouteEarly
+        );
+      }
+    }
 
     const detSweep = buildGoldenDeterministicInterpretiveSweep(message, snapshot, combinedBundleFull);
     if (detSweep) {

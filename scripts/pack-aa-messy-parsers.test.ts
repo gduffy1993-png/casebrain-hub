@@ -1,14 +1,17 @@
 /**
- * Pack AA Q1/Q2 deterministic parser smoke test.
+ * Pack AA Q1/Q2/Q7 deterministic parser smoke test.
  * Run: npx tsx scripts/pack-aa-messy-parsers.test.ts
  */
 import assert from "node:assert/strict";
+import { fingerprintAnswer } from "../lib/eval-observability";
 import { isEvalWeakAnswer } from "../lib/eval-run-metadata";
 import {
   assertPackAAServedLineHasNoForbiddenPhrases,
   buildPackAAStrictMg6DisclosureAnswer,
   buildPackAAStrictMg6DisclosureAnswerWithMeta,
   buildPackAAStrictPrimaryAllegation,
+  buildPackAAStrictProsecutionProveAnswer,
+  buildPackAAStrictProsecutionProveAnswerWithMeta,
   extractPackAAServedLineBody,
   isPackAAMessyBundle,
   sanitizePackAAMg6Buckets,
@@ -168,5 +171,84 @@ assert.equal(q2Meta!.meta.answer_shape, "mg6_served_outstanding_unclear");
 assert.equal(q2Meta!.meta.served_count, 1);
 assert.ok(q2Meta!.meta.outstanding_count >= 1);
 assert.ok(q2Meta!.meta.draft_unclear_count >= 1);
+
+const BUNDLE_Q7_ABH = `
+CB-AA-MESSY-2026-0007
+Pack AA - Real-World Messy Criminal Bundle Stress
+Charge: OLD VERSION
+Corrected indictment: Assault occasioning actual bodily harm, section 47 OAPA 1861
+Particulars: On a date in 2026 at or near Westbridge Parade, Priya Vale struck Eli Rook.
+Live issues: identification and medical causation
+MG6 DISCLOSURE SCHEDULE
+CCTV master: served
+BWV: defence request outstanding
+witness first account: not yet served
+Interview: no comment on key allegations
+`;
+
+const BUNDLE_Q7_ROBBERY = `
+CB-AA-MESSY-2026-0012
+Pack AA - Real-World Messy Criminal Bundle Stress
+Corrected charge: Robbery, section 8 Theft Act 1968
+MG5 route: force used during theft from shop
+MG6 DISCLOSURE SCHEDULE
+CCTV: full master not on file
+CAD log not served: awaited
+`;
+
+const BUNDLE_Q7_FRAUD = `
+CB-AA-MESSY-2026-0018
+Pack AA - Real-World Messy Criminal Bundle Stress
+Corrected indictment: Fraud by false representation, section 2 Fraud Act 2006
+MG6 row: device download outstanding
+phone attribution: to follow
+`;
+
+const BUNDLE_Q7_PWITS = `
+CB-AA-MESSY-2026-0025
+Pack AA - Real-World Messy Criminal Bundle Stress
+Count 1: Possession with intent to supply a controlled drug (cocaine)
+MG6 row: packaging and cash attribution outstanding
+forensic continuity: not yet served
+`;
+
+const BUNDLE_Q7_PUBLIC_ORDER = `
+CB-AA-MESSY-2026-0030
+Pack AA - Real-World Messy Criminal Bundle Stress
+Charge: Affray, section 3 Public Order Act 1986
+MG6 row: BWV partial extract served only
+`;
+
+const q7Abh = buildPackAAStrictProsecutionProveAnswer(BUNDLE_Q7_ABH);
+const q7Rob = buildPackAAStrictProsecutionProveAnswer(BUNDLE_Q7_ROBBERY);
+const q7Fraud = buildPackAAStrictProsecutionProveAnswer(BUNDLE_Q7_FRAUD);
+const q7Pwits = buildPackAAStrictProsecutionProveAnswer(BUNDLE_Q7_PWITS);
+const q7Po = buildPackAAStrictProsecutionProveAnswer(BUNDLE_Q7_PUBLIC_ORDER);
+
+assert.ok(q7Abh && q7Rob && q7Fraud && q7Pwits && q7Po);
+for (const ans of [q7Abh!, q7Rob!, q7Fraud!, q7Pwits!, q7Po!]) {
+  assert.match(ans, /must prove/i);
+  assert.ok(!/OLD VERSION|DRAFT ONLY|DUPLICATE|CORRECTED LATER|PAGE REF WRONG/i.test(ans));
+  assert.ok(!/Core point: For the charged label on the papers \(OLD VERSION\)/i.test(ans));
+  assert.ok(!/\bunclear\b/i.test(ans), "Q7 must avoid weak-trigger substring unclear");
+  assert.equal(isEvalWeakAnswer(ans, { route_tag: "lightweight_eval_interpretive_sweep" }), false);
+  assert.match(ans, /on these papers|served source|MG6|depends on/i);
+}
+
+assert.match(q7Abh!, /GBH \/ ABH|assault|actual bodily harm|section 47/i);
+assert.match(q7Rob!, /For this robbery allegation/i);
+assert.match(q7Fraud!, /For this fraud allegation/i);
+assert.match(q7Pwits!, /For this PWITS allegation/i);
+assert.match(q7Po!, /For this public-order allegation/i);
+
+const q7AbhMeta = buildPackAAStrictProsecutionProveAnswerWithMeta(BUNDLE_Q7_ABH);
+assert.equal(q7AbhMeta!.meta.parser_version, "proof-map-v1");
+assert.equal(q7AbhMeta!.meta.charge_source, "corrected_charge");
+assert.equal(q7AbhMeta!.meta.offence_family, "gbh_s20_abh");
+
+const fps = new Set(
+  [q7Abh, q7Rob, q7Fraud, q7Pwits, q7Po].map((a) => fingerprintAnswer(a!))
+);
+assert.equal(fps.size, 5, "Q7 answers should not share one fingerprint across offence families");
 
 console.log("pack-aa-messy-parsers.test.ts: ok");

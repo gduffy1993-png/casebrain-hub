@@ -1,5 +1,5 @@
 /**
- * Pack AA (V2 messy real-world bundle) deterministic parsers for strict Q1/Q2.
+ * Pack AA (V2 messy real-world bundle) deterministic parsers for strict Q1/Q2/Q7.
  */
 
 function compact(text: string): string {
@@ -523,4 +523,340 @@ export function buildPackAAStrictMg6DisclosureAnswerWithMeta(
 
 export function buildPackAAStrictMg6DisclosureAnswer(bundleFullText: string): string | null {
   return buildPackAAStrictMg6DisclosureAnswerWithMeta(bundleFullText)?.answer ?? null;
+}
+
+/* ---------------------------------------------------------------------------
+ * Q7 — prosecution proof map (offence-family specific; avoids generic collapse)
+ * ------------------------------------------------------------------------- */
+
+export type PackAAOffenceFamily =
+  | "murder"
+  | "manslaughter"
+  | "gbh_s18"
+  | "gbh_s20_abh"
+  | "robbery"
+  | "burglary"
+  | "theft"
+  | "pwits"
+  | "possession"
+  | "fraud"
+  | "public_order"
+  | "harassment"
+  | "sexual"
+  | "driving"
+  | "generic";
+
+export type PackAAQ7ChargeSource =
+  | "corrected_charge"
+  | "indictment"
+  | "count"
+  | "q1_parser"
+  | "offence_family_fallback";
+
+export function isPackAAProsecutionProveQuestion(question: string): boolean {
+  return /\bwhat must the prosecution still prove\b/i.test(question.replace(/\s+/g, " ").trim());
+}
+
+function detectPackAAOffenceFamily(bundle: string): PackAAOffenceFamily {
+  const b = bundle.toLowerCase();
+  if (/\bmurder\b|s\.?\s*1\s+(?:ha|homicide)|unlawful\s+killing.*intent\s+to\s+kill/i.test(b)) return "murder";
+  if (/\bmanslaughter\b/.test(b)) return "manslaughter";
+  if (/s\.?\s*18\b|intent\s+to\s+cause\s+(?:really\s+)?serious\s+harm|wounding\s+with\s+intent/i.test(b)) return "gbh_s18";
+  if (/actual\s+bodily\s+harm|\babh\b|s\.?\s*47\b|s\.?\s*20\b|grievous\s+bodily\s+harm|\bgbh\b/i.test(b)) return "gbh_s20_abh";
+  if (/\brobbery\b/.test(b)) return "robbery";
+  if (/\bburglary\b|entry\s+as\s+a\s+trespasser/i.test(b)) return "burglary";
+  if (/\btheft\b|steal|shoplift|appropriat/i.test(b)) return "theft";
+  if (/\bpwits\b|possession\s+with\s+intent\s+to\s+supply|intent\s+to\s+supply/i.test(b)) return "pwits";
+  if (/\bknife\b|bladed\s+article|offensive\s+weapon|firearm|prohibited\s+weapon|s\.?\s*1\b.*weapon/i.test(b)) return "possession";
+  if (/\bfraud\b|false\s+representation|dishonest/i.test(b)) return "fraud";
+  if (/affray|violent\s+disorder|public\s+order|riot\b/i.test(b)) return "public_order";
+  if (/harassment|stalking|coercive\s+control/i.test(b)) return "harassment";
+  if (/sexual|rape|assault\s+by\s+penetration|indecent/i.test(b)) return "sexual";
+  if (/\bdriv(?:ing|e)\b|excess\s+alcohol|drink[- ]?drive|careless\s+driving|over\s+the\s+limit/i.test(b)) return "driving";
+  if (/\bdrug\b|controlled\s+drug|possession\s+of\s+a\s+controlled/i.test(b)) return "pwits";
+  return "generic";
+}
+
+function resolvePackAAChargeForQ7(bundle: string): {
+  charge: string | null;
+  particulars: string | null;
+  chargeSource: PackAAQ7ChargeSource;
+} {
+  const normalized = bundle.replace(/\r\n/g, "\n").replace(/\r/g, "\n");
+
+  const correctedScope =
+    sliceWindow(normalized, /\b(?:corrected\s+charge|corrected\s+indictment|latest\s+indictment)\b/i, 80, 4000) ?? "";
+  const correctedCharge =
+    parseSingleLineLabel(correctedScope, "Corrected charge") ??
+    parseSingleLineLabel(correctedScope, "Corrected indictment") ??
+    parseSingleLineLabel(correctedScope, "Latest indictment");
+  if (correctedCharge) {
+    return {
+      charge: correctedCharge,
+      particulars: extractParticularsNear(correctedScope),
+      chargeSource: "corrected_charge",
+    };
+  }
+
+  const chargeSheetScope = sliceWindow(normalized, /\b(?:charge\s+sheet|indictment)\b/i, 120, 5000) ?? "";
+  const chargeSheetCharge =
+    parseSingleLineLabel(chargeSheetScope, "Charge") ??
+    parseSingleLineLabel(chargeSheetScope, "Indictment") ??
+    parseSingleLineLabel(chargeSheetScope, "Statement of offence");
+  if (chargeSheetCharge) {
+    return {
+      charge: chargeSheetCharge,
+      particulars: extractParticularsNear(chargeSheetScope),
+      chargeSource: "indictment",
+    };
+  }
+
+  const countScope = sliceWindow(normalized, /\bCount\s*(?:1|2)\s*:/i, 120, 3500) ?? "";
+  const countCharge = parseSingleLineLabel(countScope, "Count\\s*(?:1|2)");
+  if (countCharge) {
+    return {
+      charge: countCharge,
+      particulars: extractParticularsNear(countScope),
+      chargeSource: "count",
+    };
+  }
+
+  const defendantScope = sliceWindow(normalized, /\b(?:Defendant|Accused|Client)\s*:/i, 80, 4500) ?? "";
+  const combinedCharge =
+    parseSingleLineLabel(defendantScope, "Charge") ??
+    parseSingleLineLabel(defendantScope, "Indictment") ??
+    parseSingleLineLabel(defendantScope, "Statement of offence");
+  if (combinedCharge) {
+    return {
+      charge: combinedCharge,
+      particulars: extractParticularsNear(defendantScope),
+      chargeSource: "q1_parser",
+    };
+  }
+
+  return { charge: null, particulars: null, chargeSource: "offence_family_fallback" };
+}
+
+function packAAQ7AllegationLabel(family: PackAAOffenceFamily): string {
+  const labels: Record<PackAAOffenceFamily, string> = {
+    murder: "murder",
+    manslaughter: "manslaughter",
+    gbh_s18: "GBH with intent (s.18)",
+    gbh_s20_abh: "GBH / ABH",
+    robbery: "robbery",
+    burglary: "burglary",
+    theft: "theft",
+    pwits: "PWITS",
+    possession: "possession / weapon",
+    fraud: "fraud",
+    public_order: "public-order",
+    harassment: "harassment / stalking / coercive control",
+    sexual: "sexual",
+    driving: "driving / road traffic",
+    generic: "criminal",
+  };
+  return labels[family];
+}
+
+function packAAQ7ElementLines(family: PackAAOffenceFamily): string[] {
+  switch (family) {
+    case "murder":
+      return [
+        "The Crown must prove unlawful killing, causation, and intent to kill or cause really serious harm.",
+        "Where joint enterprise or attribution is live on the papers, it must prove participation, assistance or encouragement, and the intent or knowledge required on the Crown route.",
+        "On these papers, proof depends on served source material such as CCTV, pathology, phone, witness, forensic and interview material; those links remain live and should not be assumed from presence alone.",
+      ];
+    case "manslaughter":
+      return [
+        "The Crown must prove the unlawful act or gross negligence route as charged, causation, and that the death resulted from the defendant's act or omission.",
+        "Causation and medical mechanism remain tied to final expert or pathology material where the bundle flags partial or outstanding disclosure.",
+      ];
+    case "gbh_s18":
+      return [
+        "The Crown must prove unlawful wounding or grievous bodily harm and specific intent to cause really serious harm.",
+        "Causation, intent, weapon or contact, and medical mechanism remain live where the bundle references injury, scene, or expert material.",
+      ];
+    case "gbh_s20_abh":
+      return [
+        "The Crown must prove assault or unlawful force, causation of injury, and the mental element required for the section charged.",
+        "Medical causation and injury mechanism must be tied to served medical or scene material rather than summary-only rows.",
+      ];
+    case "robbery":
+      return [
+        "The Crown must prove theft, force or threat of force, timing of force, dishonesty, intention permanently to deprive, and identification or participation.",
+        "Route pressure on these papers may turn on CCTV, BWV, witness accounts, and continuity of seized items.",
+      ];
+    case "burglary":
+      return [
+        "The Crown must prove entry as a trespasser, the relevant intent or ulterior offence, identification, and any attribution or forensic continuity relied on.",
+      ];
+    case "theft":
+      return [
+        "The Crown must prove dishonest appropriation, property belonging to another, and intention permanently to deprive.",
+      ];
+    case "pwits":
+      return [
+        "The Crown must prove possession, knowledge or control, that the substance is a controlled drug, intent to supply, and phone, packaging or cash attribution where the Crown route relies on them.",
+      ];
+    case "possession":
+      return [
+        "The Crown must prove possession or control, knowledge, the prohibited item or status, and public place or lawful excuse where relevant.",
+        "Continuity, search, and forensic handling remain live where the MG6 schedule flags partial or outstanding material.",
+      ];
+    case "fraud":
+      return [
+        "The Crown must prove representation, falsity, dishonesty, intent to gain or cause loss, and account, device or document attribution where relied on.",
+      ];
+    case "public_order":
+      return [
+        "The Crown must prove the conduct, the public-order threshold, participation or role, identification, and intent, fear or violence elements as charged.",
+      ];
+    case "harassment":
+      return [
+        "The Crown must prove course of conduct, knowledge or reasonable knowledge, controlling or harassing effect, attribution of messages or accounts, and context.",
+      ];
+    case "sexual":
+      return [
+        "The Crown must prove the act alleged, identity, absence of consent where relevant, and lack of reasonable belief in consent where relevant — tied to communications, ABE or BWV, disclosure sensitivity, and complainant or client accounts as the bundle describes them.",
+        "Sensitive unused or complainant material should not be assumed proved from schedule presence alone; solicitor review is required.",
+      ];
+    case "driving":
+      return [
+        "The Crown must prove identity as driver, the driving standard or procedure alleged, and impairment, limit, device calibration or continuity as relevant on the papers.",
+      ];
+    default:
+      return [
+        "The Crown must prove each element of the offence charged to the criminal standard using evidence lawfully before the court.",
+        "On these papers, proof should be mapped to MG5 narrative, MG6 served rows, and named witness or exhibit material without inferring unlisted limbs.",
+      ];
+  }
+}
+
+function collectPackAAQ7Anchors(bundle: string, family: PackAAOffenceFamily): string[] {
+  const head = bundle.slice(0, 180_000);
+  const b = head.toLowerCase();
+  const anchors: string[] = [];
+  const seen = new Set<string>();
+
+  const push = (s: string) => {
+    const c = compact(s);
+    if (!c || c.length < 12 || seen.has(c.toLowerCase())) return;
+    seen.add(c.toLowerCase());
+    anchors.push(c.slice(0, 200));
+  };
+
+  const caseRef = head.match(/\b(CB-AA-MESSY-\d{4}-\d{4})\b/i)?.[1];
+  if (caseRef) push(`Bundle reference ${caseRef}`);
+
+  const liveIssues =
+    parseSingleLineLabel(head, "Live issues") ??
+    parseSingleLineLabel(head, "Key disputed issues") ??
+    parseSingleLineLabel(head, "Live issues identified");
+  if (liveIssues && !hasBadQ1Marker(liveIssues)) push(`Live issues on papers: ${liveIssues}`);
+
+  const mg5Route =
+    parseSingleLineLabel(head, "Crown route") ??
+    parseSingleLineLabel(head, "Prosecution route") ??
+    parseSingleLineLabel(head, "MG5 route");
+  if (mg5Route && !hasBadQ1Marker(mg5Route)) push(`MG5 route wording: ${mg5Route}`);
+
+  const mg6 = collectAAClassifiedBucketsFromBundle(head);
+  for (const line of [...mg6.outstanding, ...mg6.draft].slice(0, 2)) {
+    push(`MG6 disclosure row: ${line}`);
+  }
+  for (const line of mg6.served.filter(isCleanPositiveServedLine).slice(0, 1)) {
+    push(`MG6 served row: ${line}`);
+  }
+
+  if (/\bcctv\b/i.test(b) && /\b(served|outstanding|master|partial|extract)\b/i.test(b)) {
+    push("CCTV master or extract rows appear on the MG6 / source schedule");
+  }
+  if (/\bbwv\b/i.test(b)) push("BWV or scene video material is referenced on the papers");
+  if (/\b999\b/i.test(b)) push("999 audio or call-handling material is referenced");
+  if (/\bcad\b/i.test(b)) push("CAD or control-room export material is referenced");
+  if (/no\s+comment|prepared\s+statement|denies|interview/i.test(b)) {
+    push("Interview posture or account markers appear in the bundle");
+  }
+  if (/\bphone\b|device|cell\s*site|download|handset/i.test(b)) push("Phone or device attribution material is referenced");
+  if (/\bpathology\b|medical|forensic|dna|fingerprint/i.test(b)) {
+    push("Medical, pathology or forensic source material is referenced");
+  }
+  if (/\bwitness\b|mg\s*11|identification|turnbull|parade/i.test(b)) {
+    push("Witness or identification material remains part of the Crown route");
+  }
+  if (/\bvulnerab|safeguard|youth|appropriate\s+adult/i.test(b)) {
+    push("Safeguarding or vulnerability markers appear and may affect how accounts are weighed");
+  }
+
+  if (family === "sexual" && /\bsensitive|unused|abe\b/i.test(b)) {
+    push("Sensitive or unused disclosure scheduling may affect what can be relied on at trial");
+  }
+
+  return anchors.slice(0, 4);
+}
+
+function packAAQ7ChargePhrase(
+  safeCharge: string | null,
+  particulars: string | null,
+  family: PackAAOffenceFamily,
+  bundle: string
+): string {
+  if (safeCharge) {
+    let phrase = safeCharge.replace(/[.;]+$/, "");
+    if (particulars && !hasBadQ1Marker(particulars)) {
+      phrase += `; particulars on the papers reference ${particulars.replace(/[.;]+$/, "")}`;
+    }
+    return phrase;
+  }
+  const familyWords = offenceFamilyFallback(bundle);
+  return `The bundle indicates ${familyWords}, but the final charge wording still requires solicitor review`;
+}
+
+export type PackAAQ7BuildMeta = {
+  parser_version: "proof-map-v1";
+  offence_family: PackAAOffenceFamily;
+  charge_source: PackAAQ7ChargeSource;
+};
+
+export function buildPackAAStrictProsecutionProveAnswerWithMeta(
+  bundleFullText: string
+): { answer: string; meta: PackAAQ7BuildMeta } | null {
+  if (!isPackAAMessyBundle(bundleFullText)) return null;
+
+  const head = bundleFullText.slice(0, 250_000);
+  const family = detectPackAAOffenceFamily(head);
+  const { charge, particulars, chargeSource } = resolvePackAAChargeForQ7(head);
+  const safeCharge = charge && !hasBadQ1Marker(charge) ? charge : null;
+  const chargePhrase = packAAQ7ChargePhrase(safeCharge, particulars, family, head);
+  const allegation = packAAQ7AllegationLabel(family);
+
+  const lines: string[] = [
+    `For this ${allegation} allegation on these papers (${chargePhrase}), the Crown must prove:`,
+    ...packAAQ7ElementLines(family).map((l) => `- ${l}`),
+  ];
+
+  const anchors = collectPackAAQ7Anchors(head, family);
+  if (anchors.length) {
+    lines.push(
+      `- On these papers, proof also depends on: ${anchors.join(" | ")}. Those links remain live and should not be assumed from schedule presence alone.`
+    );
+  }
+
+  lines.push(
+    "- Reliability note: MG6/disclosure rows may include old, corrected, partial or summary-only material; map each element to served source before trial theory is fixed."
+  );
+
+  const answer = lines.join("\n");
+  return {
+    answer,
+    meta: {
+      parser_version: "proof-map-v1",
+      offence_family: family,
+      charge_source: safeCharge ? chargeSource : "offence_family_fallback",
+    },
+  };
+}
+
+export function buildPackAAStrictProsecutionProveAnswer(bundleFullText: string): string | null {
+  return buildPackAAStrictProsecutionProveAnswerWithMeta(bundleFullText)?.answer ?? null;
 }
