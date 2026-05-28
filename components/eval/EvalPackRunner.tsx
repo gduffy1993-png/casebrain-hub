@@ -22,7 +22,10 @@ import { sortCasesForEvalScan } from "@/lib/eval-case-sort";
 import {
   EVAL_PACK_IDS,
   EVAL_PACK_LABELS,
+  EVAL_PACK_A_THROUGH_AA_IDS,
   EVAL_PACK_A_THROUGH_Y_IDS,
+  EVAL_PACK_A_THROUGH_Z_IDS,
+  EVAL_PACK_AA_ONLY_IDS,
   EVAL_PACK_LOCKED_BASELINE_IDS,
   EVAL_PACK_Y_ONLY_IDS,
   EVAL_PACK_Z_ONLY_IDS,
@@ -322,7 +325,11 @@ export function EvalPackRunner() {
   }
 
   function selectAllPacks() {
-    setSelectedPacks(new Set(EVAL_PACK_IDS));
+    setSelectedPacks(new Set(EVAL_PACK_A_THROUGH_Z_IDS));
+  }
+
+  function selectAllPacksAA() {
+    setSelectedPacks(new Set(EVAL_PACK_A_THROUGH_AA_IDS));
   }
 
   function selectAllPacksAY() {
@@ -772,6 +779,9 @@ export function EvalPackRunner() {
         <Button type="button" variant="outline" size="sm" onClick={selectAllPacks} disabled={running}>
           A–Z all packs
         </Button>
+        <Button type="button" variant="outline" size="sm" onClick={selectAllPacksAA} disabled={running}>
+          A–AA all packs
+        </Button>
         <Button type="button" variant="outline" size="sm" onClick={selectAllPacksAY} disabled={running}>
           A–Y all packs
         </Button>
@@ -795,6 +805,15 @@ export function EvalPackRunner() {
           disabled={running}
         >
           Z only
+        </Button>
+        <Button
+          type="button"
+          variant="outline"
+          size="sm"
+          onClick={() => setSelectedPacks(new Set(EVAL_PACK_AA_ONLY_IDS))}
+          disabled={running}
+        >
+          AA only
         </Button>
         <Button type="button" variant="outline" size="sm" onClick={() => selectOnlyPack("U")} disabled={running}>
           U only

@@ -1,5 +1,5 @@
 /**
- * Internal eval pack registry (A–Z). Orchestration / reporting only — not used in answer generation.
+ * Internal eval pack registry (A–Z, AA). Orchestration / reporting only — not used in answer generation.
  *
  * A–J were the original regression / generalisation corpus. K–T extend the
  * harness (messy PDFs, workflow, multi-D, safeguards, conflicts, CPS pressure,
@@ -9,6 +9,7 @@
  * Pack Y is the 40×40 criminal workflow stress corpus (metadata, Court Today,
  * Control Room, battleboard families, War Room / Disclosure Chase) — not in A–T lock.
  * Pack Z is the 40×500 large criminal bundle stress corpus — not in A–T lock.
+ * Pack AA is the V2 real-world messy criminal bundle stress corpus — not in A–T lock.
  */
 
 export type EvalPackId =
@@ -37,7 +38,8 @@ export type EvalPackId =
   | "W"
   | "X"
   | "Y"
-  | "Z";
+  | "Z"
+  | "AA";
 
 export const EVAL_PACK_IDS: readonly EvalPackId[] = [
   "A",
@@ -66,10 +68,13 @@ export const EVAL_PACK_IDS: readonly EvalPackId[] = [
   "X",
   "Y",
   "Z",
+  "AA",
 ];
 
-/** A–T locked full-regression baseline (orchestration / runner quick-select only). Unchanged — does not include Y or Z. */
-export const EVAL_PACK_LOCKED_BASELINE_IDS: readonly EvalPackId[] = EVAL_PACK_IDS.filter((id) => id <= "T");
+/** A–T locked full-regression baseline (orchestration / runner quick-select only). Unchanged — does not include Y, Z, or AA. */
+export const EVAL_PACK_LOCKED_BASELINE_IDS: readonly EvalPackId[] = EVAL_PACK_IDS.filter(
+  (id) => id.length === 1 && id <= "T"
+);
 
 /** Pack Y only — 40×40 criminal workflow stress. */
 export const EVAL_PACK_Y_ONLY_IDS: readonly EvalPackId[] = ["Y"];
@@ -77,17 +82,25 @@ export const EVAL_PACK_Y_ONLY_IDS: readonly EvalPackId[] = ["Y"];
 /** Pack Z only — 40×500 large criminal bundle stress. */
 export const EVAL_PACK_Z_ONLY_IDS: readonly EvalPackId[] = ["Z"];
 
-/** All selectable orchestration packs except Pack Z (A–Y quick-select). */
-export const EVAL_PACK_A_THROUGH_Y_IDS: readonly EvalPackId[] = EVAL_PACK_IDS.filter((id) => id !== "Z");
+/** Pack AA only — V2 real-world messy criminal bundle stress. */
+export const EVAL_PACK_AA_ONLY_IDS: readonly EvalPackId[] = ["AA"];
 
-/** All selectable orchestration packs (A–Z). */
-export const EVAL_PACK_A_THROUGH_Z_IDS: readonly EvalPackId[] = EVAL_PACK_IDS;
+/** All selectable orchestration packs except Pack Z and AA (A–Y quick-select). */
+export const EVAL_PACK_A_THROUGH_Y_IDS: readonly EvalPackId[] = EVAL_PACK_IDS.filter(
+  (id) => id.length === 1 && id !== "Z"
+);
+
+/** All single-letter orchestration packs A–Z (excludes AA). */
+export const EVAL_PACK_A_THROUGH_Z_IDS: readonly EvalPackId[] = EVAL_PACK_IDS.filter((id) => id.length === 1);
+
+/** All selectable orchestration packs including AA (A–AA quick-select). */
+export const EVAL_PACK_A_THROUGH_AA_IDS: readonly EvalPackId[] = EVAL_PACK_IDS;
 
 /** Import preview uses sequential slots 1…N (not filename inference) for these packs. */
-export const EVAL_PACK_SEQUENTIAL_IMPORT_SLOT_IDS: readonly EvalPackId[] = ["Y", "Z"];
+export const EVAL_PACK_SEQUENTIAL_IMPORT_SLOT_IDS: readonly EvalPackId[] = ["Y", "Z", "AA"];
 
 export function evalPackUsesSequentialImportSlots(packId: EvalPackId): boolean {
-  return packId === "Y" || packId === "Z";
+  return EVAL_PACK_SEQUENTIAL_IMPORT_SLOT_IDS.includes(packId);
 }
 
 export const EVAL_PACK_LABELS: Record<EvalPackId, string> = {
@@ -117,6 +130,7 @@ export const EVAL_PACK_LABELS: Record<EvalPackId, string> = {
   X: "Hearing / court move reasoning",
   Y: "40x40 Criminal Workflow Stress",
   Z: "40x500 Large Criminal Bundle Stress",
+  AA: "Real-World Messy Criminal Bundle Stress",
 };
 
 /** Full display name for DB `eval_pack_name` when tagging Pack Y imports/uploads. */
@@ -125,10 +139,15 @@ export const EVAL_PACK_Y_DISPLAY_NAME = "Pack Y — 40x40 Criminal Workflow Stre
 /** Full display name for DB `eval_pack_name` when tagging Pack Z imports/uploads. */
 export const EVAL_PACK_Z_DISPLAY_NAME = "Pack Z — 40x500 Large Criminal Bundle Stress Pack";
 
+/** Full display name for DB `eval_pack_name` when tagging Pack AA imports/uploads. */
+export const EVAL_PACK_AA_DISPLAY_NAME =
+  "Pack AA — Real-World Messy Criminal Bundle Stress Pack";
+
 /** Stored `eval_pack_name` / inferred pack_name for a pack id. */
 export function evalPackNameForStorage(id: EvalPackId): string {
   if (id === "Y") return EVAL_PACK_Y_DISPLAY_NAME;
   if (id === "Z") return EVAL_PACK_Z_DISPLAY_NAME;
+  if (id === "AA") return EVAL_PACK_AA_DISPLAY_NAME;
   return EVAL_PACK_LABELS[id];
 }
 
@@ -257,12 +276,26 @@ export function inferEvalPackFromTitle(title: string): InferredEvalPack | null {
   )
     return pick("Z");
 
+  // Pack AA — V2 real-world messy bundles (before Pack K `CB-MESSY`).
+  if (
+    /\bPACK\s*AA\b/i.test(upper) ||
+    /\bCB-AA-MESSY\b/i.test(upper) ||
+    /\bCB-AA\b/i.test(upper) ||
+    /\bAA-MESSY\b/i.test(upper) ||
+    /\bREAL-?WORLD\s+MESSY\b/i.test(upper) ||
+    /\bMESSY\s+CRIMINAL\s+BUNDLE\s+STRESS\b/i.test(upper) ||
+    /\bV2\s+MESSY\b/i.test(upper) ||
+    /\bMESSY\s+BUNDLE\s+V2\b/i.test(upper)
+  )
+    return pick("AA");
+
   return null;
 }
 
 export function parseEvalPackId(raw: string | null | undefined): EvalPackId | null {
   const s = (raw ?? "").trim().toUpperCase();
   if (!s || s === "NONE" || s === "NORMAL") return null;
+  if (s === "AA") return "AA";
   if (EVAL_PACK_IDS.includes(s as EvalPackId)) return s as EvalPackId;
   return null;
 }

@@ -20,7 +20,10 @@ import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
 import {
   EVAL_PACK_IDS,
   EVAL_PACK_LABELS,
+  EVAL_PACK_A_THROUGH_AA_IDS,
   EVAL_PACK_A_THROUGH_Y_IDS,
+  EVAL_PACK_A_THROUGH_Z_IDS,
+  EVAL_PACK_AA_ONLY_IDS,
   EVAL_PACK_LOCKED_BASELINE_IDS,
   EVAL_PACK_Y_ONLY_IDS,
   EVAL_PACK_Z_ONLY_IDS,
@@ -238,12 +241,17 @@ export function BattleboardSweepRunner() {
     setSelectedPacks(next);
   }
 
-  /** All packs A–Z (distinct from Golden’s A–T regression lock). */
+  /** All packs A–Z (excludes Pack AA). */
   function selectAllPacksAXZ() {
-    setSelectedPacks(new Set(EVAL_PACK_IDS));
+    setSelectedPacks(new Set(EVAL_PACK_A_THROUGH_Z_IDS));
   }
 
-  /** All packs A–Y (excludes Pack Z). */
+  /** All packs A–AA. */
+  function selectAllPacksAA() {
+    setSelectedPacks(new Set(EVAL_PACK_A_THROUGH_AA_IDS));
+  }
+
+  /** All packs A–Y (excludes Pack Z and AA). */
   function selectAllPacksAY() {
     setSelectedPacks(new Set(EVAL_PACK_A_THROUGH_Y_IDS));
   }
@@ -254,6 +262,10 @@ export function BattleboardSweepRunner() {
 
   function selectPackZOnly() {
     setSelectedPacks(new Set(EVAL_PACK_Z_ONLY_IDS));
+  }
+
+  function selectPackAAOnly() {
+    setSelectedPacks(new Set(EVAL_PACK_AA_ONLY_IDS));
   }
 
   function selectOnlyPack(id: EvalPackId) {
@@ -516,6 +528,9 @@ export function BattleboardSweepRunner() {
           <Button type="button" variant="outline" size="sm" onClick={selectAllPacksAXZ}>
             A–Z all packs
           </Button>
+          <Button type="button" variant="outline" size="sm" onClick={selectAllPacksAA}>
+            A–AA all packs
+          </Button>
           <Button type="button" variant="outline" size="sm" onClick={selectAllPacksAY}>
             A–Y all packs
           </Button>
@@ -524,6 +539,9 @@ export function BattleboardSweepRunner() {
           </Button>
           <Button type="button" variant="outline" size="sm" onClick={selectPackZOnly}>
             Z only
+          </Button>
+          <Button type="button" variant="outline" size="sm" onClick={selectPackAAOnly}>
+            AA only
           </Button>
           <Button
             type="button"

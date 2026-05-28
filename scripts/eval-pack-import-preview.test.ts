@@ -63,7 +63,25 @@ function testSequentialPackZSlots() {
   assert.ok(rows.every((r) => r.packId === "Z"));
 }
 
+function testSequentialPackAASlots() {
+  const files = ["CB-AA-MESSY-0001.pdf", "CB-AA-MESSY-0008.pdf", "CB-AA-MESSY-0018.pdf"].map(fakeFile);
+  const { rows } = buildPackImportPreview({
+    packId: "AA",
+    files,
+    manifest: new Map(),
+    existingPackCaseNos: new Set(),
+    preferSequentialSlots: true,
+  });
+  assert.equal(rows.length, 3);
+  assert.deepEqual(
+    rows.map((r) => r.evalCaseNo),
+    [1, 2, 3]
+  );
+  assert.ok(rows.every((r) => r.packId === "AA"));
+}
+
 testSequentialPackYSlots();
 testSequentialPackZSlots();
+testSequentialPackAASlots();
 testInferModeStillCollidesWithoutSequential();
 console.log("eval-pack-import-preview.test.ts: ok");

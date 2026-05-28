@@ -5,6 +5,7 @@
 import assert from "node:assert/strict";
 import {
   EVAL_PACK_A_THROUGH_Y_IDS,
+  EVAL_PACK_A_THROUGH_Z_IDS,
   EVAL_PACK_IDS,
   EVAL_PACK_LABELS,
   EVAL_PACK_LOCKED_BASELINE_IDS,
@@ -23,6 +24,8 @@ assert.equal(parseEvalPackId("Z"), "Z");
 assert.ok(!EVAL_PACK_LOCKED_BASELINE_IDS.includes("Z"));
 assert.deepEqual(EVAL_PACK_Z_ONLY_IDS, ["Z"]);
 assert.ok(!EVAL_PACK_A_THROUGH_Y_IDS.includes("Z"));
+assert.ok(!EVAL_PACK_A_THROUGH_Z_IDS.includes("AA"));
+assert.equal(EVAL_PACK_A_THROUGH_Z_IDS.length, 26);
 assert.ok(evalPackUsesSequentialImportSlots("Z"));
 assert.ok(evalPackUsesSequentialImportSlots("Y"));
 
