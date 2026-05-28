@@ -21,6 +21,11 @@ import {
   type ReplyFinalization,
 } from "@/lib/eval-observability";
 import { extractMg6ScheduleRowsFromScope } from "@/lib/mg6-schedule-parse";
+import {
+  buildPackZStrictPrimaryAllegation,
+  hasPackZChargeSheetExtract,
+  isPackZLargeBundleStressBundle,
+} from "@/lib/criminal/pack-z-primary-allegation";
 
 type RouteParams = { params: Promise<{ caseId: string }> };
 
@@ -1291,6 +1296,11 @@ function buildStrictPrimaryAllegationAnswer(bundleFullText: string): string | nu
   const stripFictionalChargeNote = (s: string) =>
     compactOneLine(s.replace(/\(fictional charge drafting for test data\)\.?/gi, "").trim());
 
+  if (isPackZLargeBundleStressBundle(bundleFullText) && hasPackZChargeSheetExtract(bundleFullText)) {
+    const packZ = buildPackZStrictPrimaryAllegation(bundleFullText);
+    if (packZ) return stripFictionalChargeNote(packZ) ?? packZ;
+  }
+
   if (isPackYWorkflowStressBundle(bundleFullText)) {
     const packYCharge = extractPackYExtendedChargeSentence(bundleFullText);
     if (packYCharge && packYCharge.length >= 48 && !isIncompletePrimaryAllegation(packYCharge)) {
@@ -1298,53 +1308,63 @@ function buildStrictPrimaryAllegationAnswer(bundleFullText: string): string | nu
     }
   }
 
-  const chargeSheetOne = extractChargeSheetStatementAndParticularsSentence(bundleFullText);
-  const richNs = buildNorthshireRichPrimaryAllegationSentence(bundleFullText);
-  const sheetCore = chargeSheetOne ? stripFictionalChargeNote(chargeSheetOne) : "";
-  const richCore = richNs ? stripFictionalChargeNote(richNs) : "";
+  // Pack Z bundles use CHARGE SHEET EXTRACT — skip Northshire short-tag paths that return offence labels only.
+  if (!isPackZLargeBundleStressBundle(bundleFullText)) {
+    const chargeSheetOne = extractChargeSheetStatementAndParticularsSentence(bundleFullText);
+    const richNs = buildNorthshireRichPrimaryAllegationSentence(bundleFullText);
+    const sheetCore = chargeSheetOne ? stripFictionalChargeNote(chargeSheetOne) : "";
+    const richCore = richNs ? stripFictionalChargeNote(richNs) : "";
 
-  /** Prefer literal CHARGE particulars when long enough; else Northshire rich if it carries materially more bundle wording. */
-  if (sheetCore.length >= 55) {
-    return softTruncateChargeWording(sheetCore, 560);
-  }
-  if (richCore && sheetCore && richCore.length > sheetCore.length + 28) {
-    return softTruncateChargeWording(richCore, 560);
-  }
-  if (sheetCore) {
-    return softTruncateChargeWording(sheetCore, 560);
-  }
-  if (richCore) {
-    return softTruncateChargeWording(richCore, 560);
+    /** Prefer literal CHARGE particulars when long enough; else Northshire rich if it carries materially more bundle wording. */
+    if (sheetCore.length >= 55) {
+      return softTruncateChargeWording(sheetCore, 560);
+    }
+    if (richCore && sheetCore && richCore.length > sheetCore.length + 28) {
+      return softTruncateChargeWording(richCore, 560);
+    }
+    if (sheetCore) {
+      return softTruncateChargeWording(sheetCore, 560);
+    }
+    if (richCore) {
+      return softTruncateChargeWording(richCore, 560);
+    }
   }
 
-  const fictionLine = firstMatch(bundleFullText, [/^Allegation \(fiction\):\s*(.+)$/im]);
-  if (fictionLine) {
-    const line = compactOneLine(fictionLine);
-    const consistent = line.match(/\bconsistent with\s+(.+?)\s*\.?\s*$/i);
-    if (consistent?.[1]) {
-      const nut = stripFictionalChargeNote(consistent[1]);
-      if (nut && !/Northshire location matching|Crown say events unfolded|matching the offence tag/i.test(line)) {
-        return nut.length <= 400 ? nut : nut.slice(0, 400);
+  if (!isPackZLargeBundleStressBundle(bundleFullText)) {
+    const fictionLine = firstMatch(bundleFullText, [/^Allegation \(fiction\):\s*(.+)$/im]);
+    if (fictionLine) {
+      const line = compactOneLine(fictionLine);
+      const consistent = line.match(/\bconsistent with\s+(.+?)\s*\.?\s*$/i);
+      if (consistent?.[1]) {
+        const nut = stripFictionalChargeNote(consistent[1]);
+        if (nut && !/Northshire location matching|Crown say events unfolded|matching the offence tag/i.test(line)) {
+          return nut.length <= 400 ? nut : nut.slice(0, 400);
+        }
       }
-    }
-    if (
-      /Northshire location matching the offence tag|Crown say events unfolded|matching the offence tag/i.test(line)
-    ) {
-      const tagFallback =
-        firstMatch(bundleFullText, [
-          /^\s*Offence\(s\)\s+as\s+tag:\s*(.+)$/im,
-          /^\s*Offence\(s\)\s+as\s+charged\s*:?\s*(.+)$/im,
-          /^\s*Charge\s+wording\s*:?\s*(.+)$/im,
-          /^\s*Offence\(s\):\s*(.+)$/im,
-          /^\s*Charge\s+sheet\s+extract\s*[:\-]?\s*(.+)$/im,
-        ]) ?? null;
-      if (tagFallback) {
-        const core = stripFictionalChargeNote(tagFallback);
-        if (core) return core;
+      if (
+        /Northshire location matching the offence tag|Crown say events unfolded|matching the offence tag/i.test(line)
+      ) {
+        const tagFallback =
+          firstMatch(bundleFullText, [
+            /^\s*Offence\(s\)\s+as\s+tag:\s*(.+)$/im,
+            /^\s*Offence\(s\)\s+as\s+charged\s*:?\s*(.+)$/im,
+            /^\s*Charge\s+wording\s*:?\s*(.+)$/im,
+            /^\s*Offence\(s\):\s*(.+)$/im,
+            /^\s*Charge\s+sheet\s+extract\s*[:\-]?\s*(.+)$/im,
+          ]) ?? null;
+        if (tagFallback) {
+          const core = stripFictionalChargeNote(tagFallback);
+          if (core) return core;
+        }
+        return null;
       }
-      return null;
+      return softTruncate(line, 400);
     }
-    return softTruncate(line, 400);
+  }
+
+  if (isPackZLargeBundleStressBundle(bundleFullText) && hasPackZChargeSheetExtract(bundleFullText)) {
+    const packZ = buildPackZStrictPrimaryAllegation(bundleFullText);
+    if (packZ) return stripFictionalChargeNote(packZ) ?? packZ;
   }
 
   const chargeOrTagOrShort =
@@ -2078,6 +2098,13 @@ function extractPackYExtendedChargeSentence(bundleFullText: string): string | nu
 function polishIncompletePrimaryAllegation(answer: string, bundleFullText: string): string {
   let out = compactOneLine(answer);
   if (!isIncompletePrimaryAllegation(out)) return out;
+
+  if (isPackZLargeBundleStressBundle(bundleFullText) && hasPackZChargeSheetExtract(bundleFullText)) {
+    const packZ = buildPackZStrictPrimaryAllegation(bundleFullText);
+    if (packZ && packZ.length > out.length + 8 && !isIncompletePrimaryAllegation(packZ)) {
+      return stripQ1NonAllegationWording(packZ) ?? packZ;
+    }
+  }
 
   const extended = extractPackYExtendedChargeSentence(bundleFullText);
   if (extended && extended.length > out.length + 12 && !isIncompletePrimaryAllegation(extended)) {
@@ -10652,7 +10679,11 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
 
   if (isStrictPrimaryAllegationQuestion(message)) {
     let line: string | null = null;
-    if (isPackUScannedPhotoOcrEvalBundle(combinedBundleFull)) {
+    if (isPackZLargeBundleStressBundle(combinedBundleFull) && hasPackZChargeSheetExtract(combinedBundleFull)) {
+      const packZ = buildPackZStrictPrimaryAllegation(combinedBundleFull);
+      if (packZ) line = stripQ1NonAllegationWording(packZ) ?? packZ;
+    }
+    if (!line && isPackUScannedPhotoOcrEvalBundle(combinedBundleFull)) {
       line = buildPackUPrimaryAllegationAnswer(combinedBundleFull);
       if (line) line = stripQ1NonAllegationWording(line);
     } else if (isPackVStrategyLeverageWhyEvalBundle(combinedBundleFull)) {
