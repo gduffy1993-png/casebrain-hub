@@ -26,6 +26,11 @@ import {
   hasPackZChargeSheetExtract,
   isPackZLargeBundleStressBundle,
 } from "@/lib/criminal/pack-z-primary-allegation";
+import {
+  buildPackAAStrictMg6DisclosureAnswerWithMeta,
+  buildPackAAStrictPrimaryAllegation,
+  isPackAAMessyBundle,
+} from "@/lib/criminal/pack-aa-messy-parsers";
 
 type RouteParams = { params: Promise<{ caseId: string }> };
 
@@ -1295,6 +1300,11 @@ function stripQ1NonAllegationWording(answer: string | null): string | null {
 function buildStrictPrimaryAllegationAnswer(bundleFullText: string): string | null {
   const stripFictionalChargeNote = (s: string) =>
     compactOneLine(s.replace(/\(fictional charge drafting for test data\)\.?/gi, "").trim());
+
+  if (isPackAAMessyBundle(bundleFullText)) {
+    const packAA = buildPackAAStrictPrimaryAllegation(bundleFullText);
+    if (packAA) return stripFictionalChargeNote(packAA) ?? packAA;
+  }
 
   if (isPackZLargeBundleStressBundle(bundleFullText) && hasPackZChargeSheetExtract(bundleFullText)) {
     const packZ = buildPackZStrictPrimaryAllegation(bundleFullText);
@@ -10512,6 +10522,43 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   // cannot be safely extracted" template; report the route as `strict_mg6_eval_file`
   // so scorers can distinguish the two paths.
   if (isStrictMg6DisclosureQuestion(message)) {
+    if (isPackAAMessyBundle(combinedBundleFull)) {
+      const packAABuilt = buildPackAAStrictMg6DisclosureAnswerWithMeta(combinedBundleFull);
+      if (packAABuilt) {
+        const { answer: packAA, meta: packAAQ2Meta } = packAABuilt;
+        const baseEvalMeta = routeEvalMeta(
+          "strict_mg6_eval_file",
+          message,
+          packAA,
+          combinedBundleFull,
+          combinedBundleFull.length,
+          true,
+          { reply_finalization: "deterministic" }
+        );
+        const packAAEvalMeta = {
+          ...baseEvalMeta,
+          route_trace: {
+            ...baseEvalMeta.route_trace,
+            pack_aa_q2_parser_version: packAAQ2Meta.parser_version,
+            pack_aa_q2_builder_used: true,
+            pack_aa_q2_answer_shape: packAAQ2Meta.answer_shape,
+            served_count: packAAQ2Meta.served_count,
+            outstanding_count: packAAQ2Meta.outstanding_count,
+            draft_unclear_count: packAAQ2Meta.draft_unclear_count,
+            served_suppressed_reason: packAAQ2Meta.served_suppressed_reason,
+          },
+        } as EvalMetaV1;
+        return jsonWithRoute(
+          {
+            ok: true,
+            reply: packAA,
+            eval_meta: packAAEvalMeta,
+          },
+          "strict_mg6_eval_file"
+        );
+      }
+    }
+
     const preferEvalFileMg6 =
       isEvalGoldBundle(combinedBundleFull) || isEvalTrapBundle(combinedBundleFull);
     if (preferEvalFileMg6) {
@@ -10679,6 +10726,10 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
 
   if (isStrictPrimaryAllegationQuestion(message)) {
     let line: string | null = null;
+    if (isPackAAMessyBundle(combinedBundleFull)) {
+      const packAA = buildPackAAStrictPrimaryAllegation(combinedBundleFull);
+      if (packAA) line = stripQ1NonAllegationWording(packAA) ?? packAA;
+    }
     if (isPackZLargeBundleStressBundle(combinedBundleFull) && hasPackZChargeSheetExtract(combinedBundleFull)) {
       const packZ = buildPackZStrictPrimaryAllegation(combinedBundleFull);
       if (packZ) line = stripQ1NonAllegationWording(packZ) ?? packZ;
