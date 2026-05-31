@@ -37,6 +37,8 @@ import {
 } from "@/lib/bulk-eval-result-present";
 import { sortCasesForEvalScan } from "@/lib/eval-case-sort";
 import { buildDefencePlanDebugBundleV1, downloadJsonObject } from "@/lib/debug-bundle";
+import { createClient } from "@/lib/supabase/browser";
+import { isCriminalPilotMode, shouldShowInternalDevTools } from "@/lib/pilot-mode";
 
 const DEV_CASE_PICKER_ENABLED =
   /^(1|true|yes|on)$/i.test((process.env.NEXT_PUBLIC_DEV_CASE_PICKER ?? "").trim()) ||
@@ -216,6 +218,14 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
   const [evalExpandedRowKey, setEvalExpandedRowKey] = useState<string | null>(null);
   const [forceCasePicker, setForceCasePicker] = useState(false);
   const [forceBulkEvalRunner, setForceBulkEvalRunner] = useState(false);
+  const [devToolsUserId, setDevToolsUserId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      setDevToolsUserId(user?.id ?? null);
+    });
+  }, []);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   /** Scroll only this panel — scrollIntoView on the sentinel scrolls the whole page. */
   const messagesScrollRef = useRef<HTMLDivElement>(null);
@@ -272,8 +282,11 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
     }
   }, []);
 
-  const showCasePicker = DEV_CASE_PICKER_ENABLED || forceCasePicker;
-  const showBulkEvalRunner = BULK_EVAL_RUNNER_ENABLED || forceBulkEvalRunner;
+  const internalDevTools = shouldShowInternalDevTools(devToolsUserId);
+  const showCasePicker =
+    internalDevTools && (DEV_CASE_PICKER_ENABLED || forceCasePicker) && !isCriminalPilotMode();
+  const showBulkEvalRunner =
+    internalDevTools && (BULK_EVAL_RUNNER_ENABLED || forceBulkEvalRunner) && !isCriminalPilotMode();
 
   const resolveMessage = (raw: string): string => {
     const trimmed = raw.trim().toLowerCase();

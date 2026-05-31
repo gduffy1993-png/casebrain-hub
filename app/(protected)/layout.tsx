@@ -6,6 +6,7 @@ import { PracticeAreaProvider } from "@/components/providers/PracticeAreaProvide
 import { SeniorityProvider } from "@/components/providers/SeniorityProvider";
 import { OwnerStatusChip } from "@/components/debug/OwnerStatusChip";
 import { PaywallKiller } from "@/components/debug/PaywallKiller";
+import { shouldShowInternalDevTools } from "@/lib/pilot-mode";
 
 export default async function ProtectedLayout({ children }: { children: ReactNode }) {
   const supabase = await createClient();
@@ -17,17 +18,18 @@ export default async function ProtectedLayout({ children }: { children: ReactNod
     redirect("/sign-in");
   }
 
-  // TODO: Add organization check when organization system is implemented
-  // For now, we'll skip the organization gate and render directly
+  const showInternalDevTools = shouldShowInternalDevTools(user.id);
 
   return (
     <PracticeAreaProvider>
       <SeniorityProvider>
         <AppShell>{children}</AppShell>
-        <Suspense fallback={null}>
-          <OwnerStatusChip />
-        </Suspense>
-        <PaywallKiller />
+        {showInternalDevTools && (
+          <Suspense fallback={null}>
+            <OwnerStatusChip />
+          </Suspense>
+        )}
+        {showInternalDevTools && <PaywallKiller />}
       </SeniorityProvider>
     </PracticeAreaProvider>
   );

@@ -21,6 +21,7 @@ import {
   buildStrategyHref,
   readinessLabel,
 } from "./courtCaseBrief";
+import { isCriminalPilotMode } from "@/lib/pilot-mode";
 
 function readinessVariant(
   readiness: CourtCaseBrief["readiness"],
@@ -37,7 +38,65 @@ function readinessVariant(
   }
 }
 
-export function CourtTodayCaseCard({ brief }: { brief: CourtCaseBrief }) {
+function PilotCaseCard({ brief }: { brief: CourtCaseBrief }) {
+  const hasMissingEvidence = brief.chaseItems.length > 0;
+
+  return (
+    <Card className="border-slate-200 bg-white overflow-hidden shadow-sm">
+      <div className="flex flex-col gap-3 p-4">
+        <div className="flex flex-wrap items-start justify-between gap-2">
+          <div className="min-w-0 flex-1">
+            {brief.hearingTimeLabel && brief.hearingBucket !== "no_hearing" && (
+              <p className="text-xs font-semibold text-blue-800 tabular-nums mb-1">
+                {brief.hearingTimeLabel}
+              </p>
+            )}
+            <h3 className="text-sm font-semibold text-slate-900 line-clamp-2">{brief.clientLabel}</h3>
+            <p className="text-xs text-slate-600 line-clamp-2 mt-0.5">{brief.allegation}</p>
+          </div>
+          <Calendar className="h-4 w-4 text-slate-400 shrink-0" />
+        </div>
+
+        <dl className="grid grid-cols-2 gap-x-3 gap-y-1.5 text-xs">
+          <div>
+            <dt className="text-slate-500">Court</dt>
+            <dd className="font-medium text-slate-800 line-clamp-2">{brief.courtLabel}</dd>
+          </div>
+          <div>
+            <dt className="text-slate-500">Hearing</dt>
+            <dd className="font-medium text-slate-800 line-clamp-2">{brief.hearingLabel}</dd>
+          </div>
+          <div className="col-span-2">
+            <dt className="text-slate-500">Stage</dt>
+            <dd className="font-medium text-slate-800 line-clamp-2">{brief.stage}</dd>
+          </div>
+        </dl>
+
+        <div className="flex flex-wrap gap-1.5">
+          <Badge variant={readinessVariant(brief.readiness)} size="sm">
+            {readinessLabel(brief.readiness, { pilot: true })}
+          </Badge>
+          {hasMissingEvidence && (
+            <Badge variant="warning" size="sm">
+              Missing evidence · {brief.chaseItems.length}
+            </Badge>
+          )}
+        </div>
+
+        <div className="pt-1 border-t border-slate-100">
+          <Link href={buildCaseControlRoomHref(brief.caseId)}>
+            <Button type="button" size="sm" className="gap-1 w-full sm:w-auto">
+              <LayoutDashboard className="h-3.5 w-3.5" />
+              Open Control Room
+            </Button>
+          </Link>
+        </div>
+      </div>
+    </Card>
+  );
+}
+
+function ClassicCaseCard({ brief }: { brief: CourtCaseBrief }) {
   const [showLine, setShowLine] = useState(false);
 
   return (
@@ -140,4 +199,11 @@ export function CourtTodayCaseCard({ brief }: { brief: CourtCaseBrief }) {
       </div>
     </Card>
   );
+}
+
+export function CourtTodayCaseCard({ brief }: { brief: CourtCaseBrief }) {
+  if (isCriminalPilotMode()) {
+    return <PilotCaseCard brief={brief} />;
+  }
+  return <ClassicCaseCard brief={brief} />;
 }

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/browser";
 import { Button } from "@/components/ui/button";
+import { getPostLoginPath } from "@/lib/pilot-mode";
 
 export default function SignUpPage() {
   const router = useRouter();
@@ -40,7 +41,7 @@ export default function SignUpPage() {
       }
 
       // If session exists, user is automatically signed in
-      router.push("/dashboard");
+      router.push(getPostLoginPath());
       router.refresh();
     } catch (err) {
       setError("An unexpected error occurred");

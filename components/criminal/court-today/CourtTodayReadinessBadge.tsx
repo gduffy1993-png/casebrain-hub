@@ -19,10 +19,16 @@ function readinessVariant(
   }
 }
 
-export function CourtTodayReadinessBadge({ readiness }: { readiness: CourtReadiness }) {
+export function CourtTodayReadinessBadge({
+  readiness,
+  pilotMode,
+}: {
+  readiness: CourtReadiness;
+  pilotMode?: boolean;
+}) {
   return (
     <Badge variant={readinessVariant(readiness)} size="sm" className="font-medium">
-      {readinessLabel(readiness)}
+      {readinessLabel(readiness, { pilot: pilotMode })}
     </Badge>
   );
 }

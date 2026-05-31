@@ -18,6 +18,7 @@ import {
 } from "./courtTodayDiary";
 import { enrichCourtTodayBundles, type CourtTodayBundlePayload } from "./courtTodayBundleMetadata";
 import type { CourtCaseBrief, CourtCasesApiRow, CourtTodayEnrichment, HearingBucket } from "./types";
+import { filterPilotVisibleCases, isCriminalPilotMode } from "@/lib/pilot-mode";
 
 const SCHEDULE_BUCKETS: Exclude<HearingBucket, "no_hearing">[] = [
   "today",
@@ -81,10 +82,12 @@ function StatPill({
   label,
   value,
   tone,
+  compact,
 }: {
   label: string;
   value: number;
   tone?: "default" | "danger" | "warning" | "success" | "muted";
+  compact?: boolean;
 }) {
   const toneClass =
     tone === "danger"
@@ -97,9 +100,23 @@ function StatPill({
             ? "text-slate-500"
             : "text-slate-900";
   return (
-    <div className={`${workflowCard} px-4 py-3 min-w-[8rem] flex-1`}>
-      <p className="text-[10px] uppercase tracking-wide text-slate-500 font-medium">{label}</p>
-      <p className={`text-2xl font-semibold tabular-nums mt-0.5 ${toneClass}`}>{value}</p>
+    <div
+      className={`${workflowCard} px-4 py-3 min-w-[8rem] flex-1 ${compact ? "opacity-90" : ""}`}
+    >
+      <p
+        className={`uppercase tracking-wide text-slate-500 font-medium ${
+          compact ? "text-[9px]" : "text-[10px]"
+        }`}
+      >
+        {label}
+      </p>
+      <p
+        className={`font-semibold tabular-nums mt-0.5 ${toneClass} ${
+          compact ? "text-lg" : "text-2xl"
+        }`}
+      >
+        {value}
+      </p>
     </div>
   );
 }
@@ -133,7 +150,9 @@ export function CourtTodayClient() {
       .then((data) => {
         if (cancelled) return;
         const list = Array.isArray(data.cases)
-          ? (data.cases as CourtCasesApiRow[])
+          ? filterPilotVisibleCases(
+              data.cases as CourtCasesApiRow[],
+            )
               .map((row) => {
                 const id = resolveCourtCaseId(row);
                 return id ? { ...row, id } : null;
@@ -259,6 +278,10 @@ export function CourtTodayClient() {
     });
   }, [loading, rows.length, enrichmentByCase.size, stats]);
 
+  const pilotMode = isCriminalPilotMode();
+  const scheduledEmpty =
+    !loading && stats.today === 0 && stats.tomorrow === 0 && stats.thisWeek === 0;
+
   return (
     <div className="space-y-5 max-w-[1600px]" data-testid="court-today">
       <header className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
@@ -267,18 +290,34 @@ export function CourtTodayClient() {
             <Scale className="h-6 w-6 text-blue-700" />
             <h1 className="text-2xl font-semibold text-slate-900">Court Today</h1>
           </div>
-          <p className="text-sm text-slate-600 mt-1">{todayLabel}</p>
-          <p className="text-xs text-slate-500 mt-0.5 max-w-2xl">
-            Court-day command centre — diary uses saved hearing dates first. Recent no-date matters
-            are checked in the background only.
-          </p>
+          {pilotMode ? (
+            <>
+              <p className="text-sm text-slate-700 mt-1.5 font-medium">
+                Pilot criminal defence matters
+              </p>
+              <p className="text-xs text-slate-500 mt-1">{todayLabel}</p>
+              <p className="text-xs text-slate-500 mt-1 max-w-2xl">
+                Evidence-linked · Conditional · Solicitor review required
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="text-sm text-slate-600 mt-1">{todayLabel}</p>
+              <p className="text-xs text-slate-500 mt-0.5 max-w-2xl">
+                Court-day command centre — open a matter into Control Room for strategy, disclosure
+                chase, and hearing prep. Provisional display · solicitor review required.
+              </p>
+            </>
+          )}
         </div>
-        <Link
-          href="/dashboard"
-          className="text-sm text-muted-foreground hover:text-foreground underline-offset-2 hover:underline"
-        >
-          Classic dashboard
-        </Link>
+        {!pilotMode && (
+          <Link
+            href="/dashboard"
+            className="text-sm text-muted-foreground hover:text-foreground underline-offset-2 hover:underline"
+          >
+            Classic dashboard
+          </Link>
+        )}
       </header>
 
       <div className="flex flex-wrap gap-2">
@@ -286,10 +325,15 @@ export function CourtTodayClient() {
         <StatPill label="Matters at risk" value={stats.red} tone="danger" />
         <StatPill label="Missing evidence" value={stats.amber} tone="warning" />
         <StatPill label="Ready for court" value={stats.ready} tone="success" />
-        <StatPill label="Needs hearing review" value={stats.review} tone="muted" />
+        <StatPill
+          label={pilotMode ? "Needs review" : "Needs hearing review"}
+          value={stats.review}
+          tone="muted"
+          compact={pilotMode}
+        />
       </div>
 
-      {(statusLine || checkingRecent || enrichingLabels) && (
+      {!pilotMode && (statusLine || checkingRecent || enrichingLabels) && (
         <p className="text-xs text-muted-foreground flex items-center gap-2">
           {(checkingRecent || enrichingLabels) && (
             <Loader2 className="h-3.5 w-3.5 animate-spin shrink-0" />
@@ -309,17 +353,54 @@ export function CourtTodayClient() {
           Loading matters…
         </Card>
       ) : rows.length === 0 ? (
-        <Card className="p-8 text-center text-sm text-muted-foreground">
-          No cases on record. Upload a bundle or create a matter from Intake.
+        <Card className="p-8 text-center border-slate-200 bg-white">
+          <p className="text-sm font-medium text-slate-800">
+            No criminal matters on record yet.
+          </p>
+          <p className="text-sm text-slate-600 mt-2">
+            Upload a defence bundle to begin the court-prep workflow.
+          </p>
+          <Link
+            href="/upload"
+            className="inline-block mt-4 text-sm font-medium text-blue-700 hover:text-blue-900 underline-offset-2 hover:underline"
+          >
+            Upload bundle
+          </Link>
         </Card>
       ) : (
         <div className="space-y-4">
+          {scheduledEmpty && (
+            <Card className="border border-slate-200 bg-white px-6 py-8 text-center shadow-sm">
+              <p className="text-base font-medium text-slate-800">
+                No listed hearings found from saved case data yet.
+              </p>
+              <p className="text-sm text-slate-600 mt-2 max-w-lg mx-auto">
+                Upload or open a pilot matter to review the court-prep workflow.
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-4 mt-5">
+                <Link
+                  href="/upload"
+                  className="text-sm font-medium text-blue-700 hover:text-blue-900 underline-offset-2 hover:underline"
+                >
+                  Upload bundle
+                </Link>
+                <Link
+                  href="/cases"
+                  className="text-sm font-medium text-slate-700 hover:text-slate-900 underline-offset-2 hover:underline"
+                >
+                  Open cases
+                </Link>
+              </div>
+            </Card>
+          )}
           {SCHEDULE_BUCKETS.map((bucket) => (
             <CourtTodayDiarySection
               key={bucket}
               bucket={bucket}
               items={displayBuckets[bucket]}
-              defaultExpanded={bucket === "today"}
+              defaultExpanded={bucket === "today" && !scheduledEmpty}
+              suppressEmptyCopy={pilotMode && scheduledEmpty}
+              pilotMode={pilotMode}
             />
           ))}
           <CourtTodayReviewSection
@@ -329,8 +410,10 @@ export function CourtTodayClient() {
         </div>
       )}
 
-      <p className="text-[10px] text-center text-muted-foreground pb-4">
-        Provisional display from existing case data · solicitor review required · not legal advice
+      <p className="text-[10px] text-center text-slate-400 pb-4">
+        {pilotMode
+          ? "Evidence-linked display · conditional · solicitor review required · not legal advice"
+          : "Provisional display from existing case data · solicitor review required · not legal advice"}
       </p>
     </div>
   );

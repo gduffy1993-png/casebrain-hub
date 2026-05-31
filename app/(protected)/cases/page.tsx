@@ -14,6 +14,7 @@ import { BulkArchiveCasesButton } from "@/components/cases/BulkArchiveCasesButto
 import { CasesPageClient } from "@/components/cases/CasesPageClient";
 import { resolveCaseEntryHref } from "@/components/criminal/criminalCaseNavigation";
 import { CurrentPersonaBadge } from "@/components/layout/CurrentPersonaBadge";
+import { filterCasesForPilotUser, isCriminalPilotMode, shouldShowInternalDevTools } from "@/lib/pilot-mode";
 
 type CasesPageProps = {
   searchParams: { practiceArea?: string; role?: string };
@@ -42,8 +43,10 @@ const PRACTICE_AREA_FILTERS = SHOW_ALL_PRACTICE_AREA_FILTERS
   : PRACTICE_AREA_FILTERS_CRIMINAL_PILOT;
 
 export default async function CasesPage({ searchParams }: CasesPageProps) {
-  const { orgId } = await requireAuthContext();
+  const { orgId, userId } = await requireAuthContext();
   const supabase = getSupabaseAdminClient();
+  const pilotMode = isCriminalPilotMode();
+  const showInternalTools = shouldShowInternalDevTools(userId);
   
   // Get practice area from URL params (set by role selection or global selector)
   // Default to "all" if no practice area in URL
@@ -78,23 +81,68 @@ export default async function CasesPage({ searchParams }: CasesPageProps) {
   }
 
   const caseIds = casesRaw.map((c) => c.id);
-  const nextHearingByCase = new Map<string, string>();
+  const criminalByCase = new Map<
+    string,
+    {
+      next_hearing_date: string | null;
+      defendant_name: string | null;
+      court_name: string | null;
+      court_type: string | null;
+      alleged_offence: string | null;
+      offence_override: string | null;
+    }
+  >();
+  const chargeOffencesByCase = new Map<string, string[]>();
+
   if (caseIds.length > 0) {
-    const { data: criminalRows } = await supabase
-      .from("criminal_cases")
-      .select("id, next_hearing_date")
-      .eq("org_id", orgId)
-      .in("id", caseIds);
+    const [{ data: criminalRows }, { data: chargeRows }] = await Promise.all([
+      supabase
+        .from("criminal_cases")
+        .select(
+          "id, next_hearing_date, defendant_name, court_name, court_type, alleged_offence, offence_override",
+        )
+        .eq("org_id", orgId)
+        .in("id", caseIds),
+      supabase.from("criminal_charges").select("case_id, offence").eq("org_id", orgId).in("case_id", caseIds),
+    ]);
+
     for (const row of criminalRows ?? []) {
-      if (row.next_hearing_date) nextHearingByCase.set(row.id, row.next_hearing_date);
+      criminalByCase.set(row.id, {
+        next_hearing_date: row.next_hearing_date ?? null,
+        defendant_name: row.defendant_name ?? null,
+        court_name: row.court_name ?? null,
+        court_type: row.court_type ?? null,
+        alleged_offence: row.alleged_offence ?? null,
+        offence_override: row.offence_override ?? null,
+      });
+    }
+
+    for (const row of chargeRows ?? []) {
+      const offence = row.offence?.trim();
+      if (!offence) continue;
+      const list = chargeOffencesByCase.get(row.case_id) ?? [];
+      list.push(offence);
+      chargeOffencesByCase.set(row.case_id, list);
     }
   }
 
   const cases = sortCasesForDisplay(
-    casesRaw.map((c) => ({
-      ...c,
-      next_hearing_date: nextHearingByCase.get(c.id) ?? null,
-    })),
+    filterCasesForPilotUser(
+      casesRaw.map((c) => {
+        const criminal = criminalByCase.get(c.id);
+        return {
+          ...c,
+          next_hearing_date: criminal?.next_hearing_date ?? null,
+          defendant_name: criminal?.defendant_name ?? null,
+          court_name: criminal?.court_name ?? null,
+          court_type: criminal?.court_type ?? null,
+          alleged_offence: criminal?.alleged_offence ?? null,
+          offence_override: criminal?.offence_override ?? null,
+          charge_offences: chargeOffencesByCase.get(c.id) ?? null,
+        };
+      }),
+      userId,
+    ),
   );
 
   return (
@@ -104,11 +152,13 @@ export default async function CasesPage({ searchParams }: CasesPageProps) {
         <div>
           <h1 className="text-2xl font-semibold text-accent">Cases</h1>
           <p className="text-sm text-accent/60">
-            {selectedPracticeArea !== "all" && selectedRole
-              ? `Filtered to ${PRACTICE_AREA_FILTERS.find(f => f.value === selectedPracticeArea)?.label ?? selectedPracticeArea} cases (${selectedRole})`
-              : selectedPracticeArea !== "all"
-                ? `Filtered to ${PRACTICE_AREA_FILTERS.find(f => f.value === selectedPracticeArea)?.label ?? selectedPracticeArea} cases`
-                : "All matters scoped to your organisation. Filter by practice area to focus on specific areas."}
+            {pilotMode && !showInternalTools
+              ? "Pilot criminal defence matters with bundle-derived metadata on file."
+              : selectedPracticeArea !== "all" && selectedRole
+                ? `Filtered to ${PRACTICE_AREA_FILTERS.find((f) => f.value === selectedPracticeArea)?.label ?? selectedPracticeArea} cases (${selectedRole})`
+                : selectedPracticeArea !== "all"
+                  ? `Filtered to ${PRACTICE_AREA_FILTERS.find((f) => f.value === selectedPracticeArea)?.label ?? selectedPracticeArea} cases`
+                  : "All matters scoped to your organisation. Filter by practice area to focus on specific areas."}
           </p>
         </div>
         <CurrentPersonaBadge />
@@ -119,7 +169,11 @@ export default async function CasesPage({ searchParams }: CasesPageProps) {
               Upload to create case
             </Button>
           </Link>
-          <BulkArchiveCasesButton caseIds={cases.map((c) => c.id)} visibleCount={cases.length} />
+          <BulkArchiveCasesButton
+            caseIds={cases.map((c) => c.id)}
+            visibleCount={cases.length}
+            hidden={pilotMode && !showInternalTools}
+          />
           {process.env.NEXT_PUBLIC_ENABLE_LABS === "true" && (
           <div className="flex gap-2">
             <Link href="/cases/new/pi">
@@ -181,7 +235,10 @@ export default async function CasesPage({ searchParams }: CasesPageProps) {
             ))}
           </ul>
         ) : (
-          <EmptyState selectedPracticeArea={selectedPracticeArea} />
+          <EmptyState
+            selectedPracticeArea={selectedPracticeArea}
+            pilotMode={pilotMode && !showInternalTools}
+          />
         )}
       </Card>
     </div>
@@ -241,7 +298,30 @@ function PracticeBadge({ practiceArea }: { practiceArea: string | null }) {
   return <Badge variant="default">General</Badge>;
 }
 
-function EmptyState({ selectedPracticeArea }: { selectedPracticeArea: string }) {
+function EmptyState({
+  selectedPracticeArea,
+  pilotMode = false,
+}: {
+  selectedPracticeArea: string;
+  pilotMode?: boolean;
+}) {
+  if (pilotMode) {
+    return (
+      <div className="flex flex-col items-center justify-center gap-3 rounded-3xl border border-dashed border-slate-200 bg-white p-16 text-center">
+        <h2 className="text-lg font-semibold text-slate-900">No pilot matters are ready yet.</h2>
+        <p className="max-w-md text-sm text-slate-600">
+          Upload the prepared pilot bundles to create the demo matters.
+        </p>
+        <Link
+          href="/upload"
+          className="mt-2 text-sm font-medium text-blue-700 hover:text-blue-900 underline-offset-2 hover:underline"
+        >
+          Upload bundle
+        </Link>
+      </div>
+    );
+  }
+
   const label =
     PRACTICE_AREA_FILTERS.find((filter) => filter.value === selectedPracticeArea)?.label ??
     "cases";

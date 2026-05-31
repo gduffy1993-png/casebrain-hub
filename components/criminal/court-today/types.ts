@@ -19,6 +19,7 @@ export type CourtCasesApiRow = {
 };
 
 export type CourtCaseBrief = {
+  courtLabel: string;
   caseId: string;
   caseTitle: string;
   clientLabel: string;

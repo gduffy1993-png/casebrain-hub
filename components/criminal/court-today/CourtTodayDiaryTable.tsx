@@ -14,6 +14,7 @@ import {
 import { CourtTodayReadinessBadge } from "./CourtTodayReadinessBadge";
 import { buildCaseControlRoomHref } from "./courtCaseBrief";
 import type { CourtCaseBrief } from "./types";
+import { isCriminalPilotMode } from "@/lib/pilot-mode";
 
 function ChaseCell({ brief }: { brief: CourtCaseBrief }) {
   const n = brief.chaseItems.length;
@@ -43,7 +44,42 @@ function SafeLineButton({ brief }: { brief: CourtCaseBrief }) {
   );
 }
 
-function CourtTodayRow({ brief }: { brief: CourtCaseBrief }) {
+function CourtTodayRow({ brief, pilotMode }: { brief: CourtCaseBrief; pilotMode?: boolean }) {
+  if (pilotMode) {
+    return (
+      <tr className={workflowTrHover}>
+        <td className={`${workflowTd} tabular-nums font-medium text-slate-900 w-[4.5rem]`}>
+          {brief.hearingTimeLabel ?? "—"}
+        </td>
+        <td className={`${workflowTd} min-w-[8rem]`}>
+          <p className="font-medium text-slate-900 line-clamp-1">{brief.clientLabel}</p>
+        </td>
+        <td className={`${workflowTd} max-w-[10rem]`}>
+          <span className="line-clamp-2 text-xs">{brief.allegation}</span>
+        </td>
+        <td className={`${workflowTd} max-w-[8rem]`}>
+          <span className="line-clamp-2 text-xs text-slate-600">{brief.courtLabel}</span>
+        </td>
+        <td className={`${workflowTd} max-w-[8rem]`}>
+          <span className="line-clamp-2 text-xs text-slate-600">{brief.stage}</span>
+        </td>
+        <td className={workflowTd}>
+          <CourtTodayReadinessBadge readiness={brief.readiness} pilotMode />
+        </td>
+        <td className={workflowTd}>
+          <ChaseCell brief={brief} />
+        </td>
+        <td className={`${workflowTd} whitespace-nowrap`}>
+          <Link href={buildCaseControlRoomHref(brief.caseId)}>
+            <Button type="button" size="sm" className="h-7 text-xs">
+              Open Control Room
+            </Button>
+          </Link>
+        </td>
+      </tr>
+    );
+  }
+
   return (
     <tr className={workflowTrHover}>
       <td className={`${workflowTd} tabular-nums font-medium text-slate-900 w-[4.5rem]`}>
@@ -85,7 +121,13 @@ function CourtTodayRow({ brief }: { brief: CourtCaseBrief }) {
   );
 }
 
-export function CourtTodayDiaryTable({ items }: { items: CourtCaseBrief[] }) {
+export function CourtTodayDiaryTable({
+  items,
+  pilotMode = isCriminalPilotMode(),
+}: {
+  items: CourtCaseBrief[];
+  pilotMode?: boolean;
+}) {
   if (items.length === 0) return null;
 
   return (
@@ -95,33 +137,73 @@ export function CourtTodayDiaryTable({ items }: { items: CourtCaseBrief[] }) {
           <thead>
             <tr>
               <th className={workflowTh}>Time</th>
-              <th className={workflowTh}>Client / matter</th>
-              <th className={workflowTh}>Offence</th>
-              <th className={workflowTh}>Stage</th>
-              <th className={workflowTh}>Readiness</th>
-              <th className={workflowTh}>Best pressure route</th>
-              <th className={workflowTh}>Key risk</th>
-              <th className={workflowTh}>Disclosure</th>
+              <th className={workflowTh}>{pilotMode ? "Client" : "Client / matter"}</th>
+              <th className={workflowTh}>{pilotMode ? "Charge" : "Offence"}</th>
+              {pilotMode ? (
+                <>
+                  <th className={workflowTh}>Court</th>
+                  <th className={workflowTh}>Stage</th>
+                  <th className={workflowTh}>Risk</th>
+                  <th className={workflowTh}>Missing</th>
+                </>
+              ) : (
+                <>
+                  <th className={workflowTh}>Stage</th>
+                  <th className={workflowTh}>Readiness</th>
+                  <th className={workflowTh}>Best pressure route</th>
+                  <th className={workflowTh}>Key risk</th>
+                  <th className={workflowTh}>Disclosure</th>
+                </>
+              )}
               <th className={workflowTh}>Actions</th>
             </tr>
           </thead>
           <tbody>
             {items.map((brief) => (
-              <CourtTodayRow key={brief.caseId} brief={brief} />
+              <CourtTodayRow key={brief.caseId} brief={brief} pilotMode={pilotMode} />
             ))}
           </tbody>
         </table>
       </div>
       <div className="md:hidden grid gap-2">
         {items.map((brief) => (
-          <CourtTodayMobileRow key={brief.caseId} brief={brief} />
+          <CourtTodayMobileRow key={brief.caseId} brief={brief} pilotMode={pilotMode} />
         ))}
       </div>
     </>
   );
 }
 
-function CourtTodayMobileRow({ brief }: { brief: CourtCaseBrief }) {
+function CourtTodayMobileRow({
+  brief,
+  pilotMode,
+}: {
+  brief: CourtCaseBrief;
+  pilotMode?: boolean;
+}) {
+  if (pilotMode) {
+    return (
+      <div className="rounded-lg border border-slate-200 bg-white p-3 space-y-2 text-sm">
+        <div className="flex justify-between gap-2">
+          <div>
+            <p className="font-semibold text-slate-900">{brief.clientLabel}</p>
+            <p className="text-xs text-slate-600 line-clamp-1">{brief.allegation}</p>
+            <p className="text-xs text-slate-500 mt-0.5">
+              {brief.hearingTimeLabel ?? brief.hearingLabel} · {brief.courtLabel}
+            </p>
+          </div>
+          <CourtTodayReadinessBadge readiness={brief.readiness} pilotMode />
+        </div>
+        <p className="text-xs text-slate-600">{brief.stage}</p>
+        <Link href={buildCaseControlRoomHref(brief.caseId)} className="block">
+          <Button type="button" size="sm" className="w-full h-8">
+            Open Control Room
+          </Button>
+        </Link>
+      </div>
+    );
+  }
+
   return (
     <div className="rounded-lg border border-slate-200 bg-white p-3 space-y-2 text-sm">
       <div className="flex justify-between gap-2">

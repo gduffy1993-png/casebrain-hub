@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/browser";
 import { Button } from "@/components/ui/button";
+import { getPostLoginPath } from "@/lib/pilot-mode";
 
 export default function SignInPage() {
   const router = useRouter();
@@ -31,7 +32,7 @@ export default function SignInPage() {
         return;
       }
 
-      router.push("/dashboard");
+      router.push(getPostLoginPath());
       router.refresh();
     } catch (err) {
       setError("An unexpected error occurred");

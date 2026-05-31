@@ -2,11 +2,13 @@
 
 import Link from "next/link";
 import { Suspense, useEffect, useState, useMemo } from "react";
+import { useRouter } from "next/navigation";
 import { CourtTodayDashboardRedirect } from "@/components/criminal/court-today/CourtTodayDashboardRedirect";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { buildControlRoomCaseHref } from "@/components/criminal/criminalCaseNavigation";
 import { sortCasesForDisplay } from "@/lib/case-list-sort";
+import { filterPilotVisibleCases, isCriminalPilotMode } from "@/lib/pilot-mode";
 import { ArrowRight, Upload, Inbox, Shield, ArrowUpDown, ArrowDownAZ } from "lucide-react";
 
 type CaseRow = {
@@ -53,14 +55,21 @@ function formatNextHearing(dateStr: string | null | undefined, typeStr: string |
 }
 
 export default function DashboardPage() {
+  const router = useRouter();
   const [cases, setCases] = useState<CaseRow[]>([]);
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (isCriminalPilotMode()) {
+      router.replace("/court-today");
+    }
+  }, [router]);
 
   useEffect(() => {
     fetch("/api/cases", { credentials: "include" })
       .then((res) => res.json())
       .then((data) => {
-        const list = Array.isArray(data.cases) ? data.cases : [];
+        const list = Array.isArray(data.cases) ? filterPilotVisibleCases(data.cases as CaseRow[]) : [];
         setCases(list);
       })
       .catch(() => setCases([]))

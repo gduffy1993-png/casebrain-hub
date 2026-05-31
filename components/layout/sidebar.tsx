@@ -38,6 +38,12 @@ import {
 import { WhatsAppButton } from "@/components/support/WhatsAppButton";
 import type { ReactNode } from "react";
 import { Fragment } from "react";
+import { createClient } from "@/lib/supabase/browser";
+import {
+  CRIMINAL_PILOT_NAV_HREFS,
+  isCriminalPilotMode,
+  shouldShowInternalDevTools,
+} from "@/lib/pilot-mode";
 
 type NavItem = {
   label: string;
@@ -209,6 +215,15 @@ const NAV_ITEMS: NavItem[] = [
     label: "Golden Sweep",
     href: "/eval",
     icon: <BarChart2 className="h-4 w-4" />,
+    hideFromNav: true,
+    labsOnly: true,
+  },
+  {
+    label: "Battleboard Sweep",
+    href: "/battleboard-sweep",
+    icon: <BarChart2 className="h-4 w-4" />,
+    hideFromNav: true,
+    labsOnly: true,
   },
   {
     label: "Bin",
@@ -229,6 +244,14 @@ function SidebarContent() {
   const { setSeniority } = useSeniority();
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
   const [selectedRoles, setSelectedRoles] = useState<Record<string, SolicitorRole>>({});
+  const [userId, setUserId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      setUserId(user?.id ?? null);
+    });
+  }, []);
 
   // Load selected roles from localStorage
   useEffect(() => {
@@ -274,9 +297,14 @@ function SidebarContent() {
     setExpandedItems(newExpanded);
   };
 
-  const visibleItems = NAV_ITEMS.filter(
-    (item) => !item.hideFromNav && (!item.labsOnly || labsEnabled),
-  );
+  const pilotNavActive = isCriminalPilotMode() && !shouldShowInternalDevTools(userId);
+  const pilotNavSet = new Set<string>(CRIMINAL_PILOT_NAV_HREFS);
+
+  const visibleItems = NAV_ITEMS.filter((item) => {
+    if (item.hideFromNav) return false;
+    if (pilotNavActive && !pilotNavSet.has(item.href)) return false;
+    return !item.labsOnly || labsEnabled || shouldShowInternalDevTools(userId);
+  });
 
   return (
     <aside className="flex h-full w-64 flex-col border-r border-slate-800 bg-slate-900 text-slate-100">
@@ -490,17 +518,25 @@ function SidebarContent() {
       </nav>
 
       {/* Footer */}
-      <div className="border-t border-white/10 px-4 py-4 space-y-3">
-        <WhatsAppButton />
-        <div className="rounded-xl bg-gradient-to-r from-primary/10 to-secondary/10 p-4">
-          <p className="text-xs font-medium text-accent-soft">
-            CaseBrain Hub © {new Date().getFullYear()}
-          </p>
-          <p className="mt-1 text-[10px] text-accent-muted">
-            All actions are logged for audit compliance.
+      {pilotNavActive ? (
+        <div className="border-t border-white/10 px-4 py-4">
+          <p className="text-[10px] text-slate-500 leading-relaxed">
+            CaseBrain · Criminal defence pilot
           </p>
         </div>
-      </div>
+      ) : (
+        <div className="border-t border-white/10 px-4 py-4 space-y-3">
+          <WhatsAppButton />
+          <div className="rounded-xl bg-gradient-to-r from-primary/10 to-secondary/10 p-4">
+            <p className="text-xs font-medium text-accent-soft">
+              CaseBrain Hub © {new Date().getFullYear()}
+            </p>
+            <p className="mt-1 text-[10px] text-accent-muted">
+              All actions are logged for audit compliance.
+            </p>
+          </div>
+        </div>
+      )}
     </aside>
   );
 }

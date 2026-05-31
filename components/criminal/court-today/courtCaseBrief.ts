@@ -288,12 +288,18 @@ export function buildCourtCaseBrief(
     ? row.strategy_preview?.trim() || "Position recorded"
     : "Position not safely recorded yet";
 
+  const courtLabel =
+    headerMeta.court?.trim() && !/court not safely extracted/i.test(headerMeta.court)
+      ? headerMeta.court.trim()
+      : "Court not safely extracted";
+
   return {
     caseId,
     caseTitle: row.title,
     clientLabel,
     allegation,
     stage,
+    courtLabel,
     hearingLabel,
     hearingTimeLabel: hearingTimeLabel && hearingTimeLabel !== "00:00" ? hearingTimeLabel : null,
     hearingBucket: bucket,
@@ -313,7 +319,7 @@ export function buildCourtCaseBrief(
   };
 }
 
-export function bucketLabel(bucket: HearingBucket): string {
+export function bucketLabel(bucket: HearingBucket, opts?: { pilot?: boolean }): string {
   switch (bucket) {
     case "today":
       return "Today";
@@ -322,20 +328,20 @@ export function bucketLabel(bucket: HearingBucket): string {
     case "this_week":
       return "This week";
     case "no_hearing":
-      return NEEDS_REVIEW_LABEL;
+      return opts?.pilot ? "Matters needing date review" : NEEDS_REVIEW_LABEL;
   }
 }
 
-export function readinessLabel(readiness: CourtReadiness): string {
+export function readinessLabel(readiness: CourtReadiness, opts?: { pilot?: boolean }): string {
   switch (readiness) {
     case "green":
-      return "Ready";
+      return "Ready for court";
     case "amber":
-      return "Amber";
+      return opts?.pilot ? "Missing evidence" : "Amber";
     case "red":
-      return "Red";
+      return opts?.pilot ? "At risk" : "Red";
     case "review":
-      return "Needs hearing review";
+      return opts?.pilot ? "Date review" : "Needs hearing review";
   }
 }
 

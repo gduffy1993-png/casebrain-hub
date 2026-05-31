@@ -25,10 +25,10 @@ import {
   CheckCircle2,
   Clock,
   Users,
-  Home,
-  Heart,
-  Stethoscope,
+  Gavel,
+  Scale,
 } from "lucide-react";
+import { getPostLoginPath } from "@/lib/pilot-mode";
 
 export default function HomePage() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
@@ -42,7 +42,7 @@ export default function HomePage() {
       } = await supabase.auth.getUser();
       setIsAuthenticated(!!user);
       if (user) {
-        router.replace("/dashboard");
+        router.replace(getPostLoginPath());
       }
     };
     checkAuth();
@@ -59,7 +59,7 @@ export default function HomePage() {
   if (isAuthenticated) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-slate-950">
-        <p className="text-sm text-slate-400">Redirecting to dashboard...</p>
+        <p className="text-sm text-slate-400">Redirecting to your workspace…</p>
       </div>
     );
   }
@@ -175,10 +175,10 @@ function MarketingHomepage() {
             {/* Left: Text Content */}
             <div className="space-y-8">
               <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight">
-                Criminal defence workspace for bundle truth and fast case action.
+                Criminal defence control room for evidence-heavy cases.
           </h1>
               <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed">
-                Upload a bundle, surface disclosure blockers, and keep strategy grounded in source text.
+                Upload the bundle, map disclosure gaps, and keep strategy conditional on served source material — with solicitor review at every step.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/sign-in">
@@ -199,18 +199,36 @@ function MarketingHomepage() {
               </p>
             </div>
 
-            {/* Right: Placeholder for visual balance */}
+            {/* Right: Criminal control room preview (no housing / other practice areas) */}
             <div className="relative">
               <div className="rounded-2xl bg-card border border-border shadow-2xl shadow-black/60 overflow-hidden">
-                <div className="aspect-video bg-muted/30 flex items-center justify-center">
-                    <div className="text-center space-y-4 p-8">
-                      <div className="mx-auto w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center">
-                        <Play className="h-10 w-10 text-primary" />
-                      </div>
-                      <p className="text-sm font-medium text-foreground">
-                      Watch the demo below
-                      </p>
+                <div className="border-b border-border/60 bg-slate-900/90 px-4 py-3 flex items-center gap-2">
+                  <Scale className="h-4 w-4 text-primary" />
+                  <span className="text-xs font-semibold text-slate-200">Court Today · Control Room</span>
+                </div>
+                <div className="p-5 space-y-3 bg-gradient-to-b from-slate-900/40 to-card">
+                  <div className="rounded-lg border border-border/50 bg-background/80 p-3 space-y-2">
+                    <p className="text-[10px] uppercase tracking-wide text-muted-foreground font-medium">Today&apos;s hearing</p>
+                    <p className="text-sm font-semibold text-foreground">R v Client — GBH / disclosure chase</p>
+                    <p className="text-xs text-muted-foreground">MG6 rows outstanding · strategy route conditional</p>
                   </div>
+                  <div className="grid grid-cols-3 gap-2 text-center">
+                    <div className="rounded-md border border-border/40 bg-muted/30 px-2 py-2">
+                      <Gavel className="h-4 w-4 mx-auto text-primary mb-1" />
+                      <p className="text-[10px] text-muted-foreground">War Room</p>
+                    </div>
+                    <div className="rounded-md border border-border/40 bg-muted/30 px-2 py-2">
+                      <Search className="h-4 w-4 mx-auto text-primary mb-1" />
+                      <p className="text-[10px] text-muted-foreground">Disclosure</p>
+                    </div>
+                    <div className="rounded-md border border-border/40 bg-muted/30 px-2 py-2">
+                      <FileText className="h-4 w-4 mx-auto text-primary mb-1" />
+                      <p className="text-[10px] text-muted-foreground">Documents</p>
+                    </div>
+                  </div>
+                  <p className="text-[10px] text-center text-muted-foreground">
+                    Evidence-linked · provisional · solicitor review required
+                  </p>
                 </div>
               </div>
             </div>
@@ -341,73 +359,45 @@ function MarketingHomepage() {
             Designed around real criminal defence roles
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {/* Housing Solicitor */}
             <Card className="p-6 text-center">
               <div className="mx-auto mb-4 w-20 h-20 rounded-full bg-muted border-2 border-border overflow-hidden relative">
-                {/* Placeholder - replace with /images/role-housing.jpg */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                  <Home className="h-10 w-10 text-primary" />
+                  <Shield className="h-10 w-10 text-primary" />
                 </div>
-                {/* Uncomment when you have the image:
-                <Image
-                  src="/images/role-housing.jpg"
-                  alt="Housing Solicitor"
-                  fill
-                  className="object-cover"
-                />
-                */}
               </div>
               <h3 className="text-lg font-semibold text-foreground mb-2">
                 Criminal Defence Solicitor
               </h3>
               <p className="text-sm text-muted-foreground italic">
-                "CaseBrain helps me spot disclosure gaps quickly and keeps strategy grounded in what is actually in the bundle."
+                &ldquo;CaseBrain helps me spot disclosure gaps quickly and keeps strategy grounded in what is actually in the bundle.&rdquo;
               </p>
             </Card>
 
-            {/* PI Litigator */}
             <Card className="p-6 text-center">
               <div className="mx-auto mb-4 w-20 h-20 rounded-full bg-muted border-2 border-border overflow-hidden relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                  <Stethoscope className="h-10 w-10 text-primary" />
+                  <Gavel className="h-10 w-10 text-primary" />
                 </div>
-                {/* Uncomment when you have the image:
-                <Image
-                  src="/images/role-pi.jpg"
-                  alt="PI Litigator"
-                  fill
-                  className="object-cover"
-                />
-                */}
               </div>
               <h3 className="text-lg font-semibold text-foreground mb-2">
                 Police Station Representative
               </h3>
               <p className="text-sm text-muted-foreground italic">
-                "I can structure instructions faster and see what evidence we still need before interview and first hearing."
+                &ldquo;I can structure instructions faster and see what evidence we still need before interview and first hearing.&rdquo;
               </p>
             </Card>
 
-            {/* Clinical Negligence Paralegal */}
             <Card className="p-6 text-center">
               <div className="mx-auto mb-4 w-20 h-20 rounded-full bg-muted border-2 border-border overflow-hidden relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                  <Heart className="h-10 w-10 text-primary" />
+                  <Scale className="h-10 w-10 text-primary" />
                 </div>
-                {/* Uncomment when you have the image:
-                <Image
-                  src="/images/role-clinical.jpg"
-                  alt="Clinical Negligence Paralegal"
-                  fill
-                  className="object-cover"
-                />
-                */}
-            </div>
+              </div>
               <h3 className="text-lg font-semibold text-foreground mb-2">
                 Crown Court Prep Team
               </h3>
               <p className="text-sm text-muted-foreground italic">
-                "MG sections, disclosure blockers, and strategy timeline in one place make trial prep far less fragmented."
+                &ldquo;MG sections, disclosure blockers, and strategy timeline in one place make trial prep far less fragmented.&rdquo;
               </p>
             </Card>
           </div>

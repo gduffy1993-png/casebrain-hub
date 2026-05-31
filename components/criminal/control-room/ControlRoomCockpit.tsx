@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import Link from "next/link";
 import {
   AlertTriangle,
   ListChecks,
@@ -10,16 +11,19 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { buildCaseWorkflowTabHref } from "@/components/criminal/criminalCaseNavigation";
 import { workflowCard, workflowMuted, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
 import type { AboveFoldSummaryProps } from "./AboveFoldSummary";
 
 export type ControlRoomCockpitProps = AboveFoldSummaryProps & {
+  caseId: string;
   caseTitle: string;
   clientLabel: string;
   courtLabel?: string;
   riskLabel: string;
   safeCourtLine: string;
-  onExitClassic: () => void;
+  onExitClassic?: () => void;
+  hideClassicWorkspace?: boolean;
   battleboardSection: ReactNode;
   furtherActionsSection?: ReactNode;
   metadataNote?: string;
@@ -59,6 +63,7 @@ function readinessTone(riskLabel: string): "default" | "success" | "warning" | "
 }
 
 export function ControlRoomCockpit({
+  caseId,
   caseTitle,
   clientLabel,
   courtLabel,
@@ -79,6 +84,7 @@ export function ControlRoomCockpit({
   safeCourtLine,
   loading,
   onExitClassic,
+  hideClassicWorkspace = false,
   battleboardSection,
   furtherActionsSection,
   metadataNote,
@@ -106,9 +112,26 @@ export function ControlRoomCockpit({
             </p>
           </div>
           <div className="flex flex-wrap gap-2 shrink-0">
-            <Button type="button" variant="outline" size="sm" onClick={onExitClassic} className="bg-white">
-              Classic workspace
-            </Button>
+            <Link href={buildCaseWorkflowTabHref(caseId, "hearing-war-room")}>
+              <Button type="button" variant="primary" size="sm">
+                Hearing War Room
+              </Button>
+            </Link>
+            <Link href={buildCaseWorkflowTabHref(caseId, "disclosure-chase")}>
+              <Button type="button" variant="outline" size="sm" className="bg-white">
+                Disclosure Chase
+              </Button>
+            </Link>
+            <Link href={buildCaseWorkflowTabHref(caseId, "documents")}>
+              <Button type="button" variant="outline" size="sm" className="bg-white">
+                Documents
+              </Button>
+            </Link>
+            {!hideClassicWorkspace && onExitClassic && (
+              <Button type="button" variant="ghost" size="sm" onClick={onExitClassic} className="text-slate-500">
+                Classic workspace
+              </Button>
+            )}
           </div>
         </div>
         <p className="px-4 pb-3 text-xs text-slate-500 flex flex-wrap gap-x-4 gap-y-1">

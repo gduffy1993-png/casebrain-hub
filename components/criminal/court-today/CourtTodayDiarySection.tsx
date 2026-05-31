@@ -18,17 +18,28 @@ const EMPTY_COPY: Record<Exclude<HearingBucket, "no_hearing">, string> = {
   this_week: "No matters with a hearing date safely extracted for the rest of this week.",
 };
 
+const PILOT_EMPTY_COPY: Record<Exclude<HearingBucket, "no_hearing">, string> = {
+  today: "No hearings listed for today in saved case data.",
+  tomorrow: "No hearings listed for tomorrow in saved case data.",
+  this_week: "No hearings listed for the rest of this week in saved case data.",
+};
+
 export function CourtTodayDiarySection({
   bucket,
   items,
   defaultExpanded = true,
+  suppressEmptyCopy = false,
+  pilotMode = false,
 }: {
   bucket: Exclude<HearingBucket, "no_hearing">;
   items: CourtCaseBrief[];
   defaultExpanded?: boolean;
+  suppressEmptyCopy?: boolean;
+  pilotMode?: boolean;
 }) {
   const [expanded, setExpanded] = useState(defaultExpanded);
   const title = bucketLabel(bucket);
+  const emptyCopy = pilotMode ? PILOT_EMPTY_COPY[bucket] : EMPTY_COPY[bucket];
 
   return (
     <section aria-labelledby={`court-bucket-${bucket}`} className={workflowCard}>
@@ -54,12 +65,14 @@ export function CourtTodayDiarySection({
       {expanded && (
         <div className="px-1 pb-1">
           {items.length === 0 ? (
-            <div className="flex items-start gap-3 px-4 py-5 text-sm text-slate-600 border-t border-dashed border-slate-200 mx-3 mb-3 rounded-md bg-slate-50/80">
-              <Calendar className="h-4 w-4 shrink-0 mt-0.5 opacity-70" />
-              <p>{EMPTY_COPY[bucket]}</p>
-            </div>
+            suppressEmptyCopy ? null : (
+              <div className="flex items-start gap-3 px-4 py-5 text-sm text-slate-600 border-t border-dashed border-slate-200 mx-3 mb-3 rounded-md bg-slate-50/80">
+                <Calendar className="h-4 w-4 shrink-0 mt-0.5 opacity-70" />
+                <p>{emptyCopy}</p>
+              </div>
+            )
           ) : (
-            <CourtTodayDiaryTable items={items} />
+            <CourtTodayDiaryTable items={items} pilotMode={pilotMode} />
           )}
         </div>
       )}

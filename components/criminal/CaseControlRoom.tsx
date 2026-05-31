@@ -12,6 +12,7 @@ import { ControlRoomCockpit } from "./control-room/ControlRoomCockpit";
 import { CaseWorkflowShell } from "./workflow/CaseWorkflowShell";
 import { buildCaseSummarySnippet } from "@/lib/criminal/build-case-summary-snippet";
 import { formatCaseBundleHealthLabel } from "@/lib/criminal/format-case-bundle-health";
+import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import type { DocumentRowMeta } from "@/lib/bundle/parse-bundle-display";
 import { RiskColumn } from "./control-room/GlanceGrid";
 import { buildClassicCaseHref, clearControlRoomPreference } from "./criminalCaseNavigation";
@@ -485,6 +486,7 @@ export function CaseControlRoom({
           >
           <CaseSummaryCard summary={caseSummary} loading={snapshotLoading} />
           <ControlRoomCockpit
+            caseId={caseId}
             caseTitle={caseTitle}
             clientLabel={clientLabel}
             courtLabel={headerMeta.court?.trim() || undefined}
@@ -505,6 +507,7 @@ export function CaseControlRoom({
             safeCourtLine={safeCourtLine}
             loading={snapshotLoading}
             onExitClassic={exitClassic}
+            hideClassicWorkspace={isCriminalPilotMode()}
             metadataNote={metadataNote}
             battleboardSection={
               <ControlRoomBattleboardAccordion

@@ -9,18 +9,20 @@ import { Archive, Loader2, Trash2 } from "lucide-react";
 type BulkArchiveCasesButtonProps = {
   caseIds: string[];
   visibleCount: number;
+  hidden?: boolean;
 };
 
 export function BulkArchiveCasesButton({
   caseIds,
   visibleCount,
+  hidden = false,
 }: BulkArchiveCasesButtonProps) {
   const [showConfirm, setShowConfirm] = useState(false);
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
   const { push: showToast } = useToast();
 
-  if (!visibleCount) return null;
+  if (hidden || !visibleCount) return null;
 
   const handleArchiveMany = () => {
     startTransition(async () => {

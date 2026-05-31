@@ -8,6 +8,7 @@ import {
   type CaseWorkflowTabId,
 } from "@/components/criminal/criminalCaseNavigation";
 import { workflowCard } from "./workflowUi";
+import { isCriminalPilotMode } from "@/lib/pilot-mode";
 
 const TABS: { id: CaseWorkflowTabId; label: string }[] = [
   { id: "control-room", label: "Control Room" },
@@ -42,6 +43,12 @@ export function CaseWorkflowNav({ caseId }: { caseId: string }) {
     return () => window.removeEventListener("hashchange", sync);
   }, []);
   const active = resolveActiveTab(searchParams, hash);
+  const pilotEmphasis = new Set<CaseWorkflowTabId>([
+    "hearing-war-room",
+    "disclosure-chase",
+    "documents",
+    "battleboard",
+  ]);
 
   return (
     <nav
@@ -52,6 +59,7 @@ export function CaseWorkflowNav({ caseId }: { caseId: string }) {
       {TABS.map((t) => {
         const href = buildCaseWorkflowTabHref(caseId, t.id);
         const isActive = active === t.id;
+        const emphasized = isCriminalPilotMode() && pilotEmphasis.has(t.id);
         return (
           <Link
             key={t.id}
@@ -59,7 +67,9 @@ export function CaseWorkflowNav({ caseId }: { caseId: string }) {
             className={
               isActive
                 ? "rounded-md px-3 py-1.5 text-xs font-semibold bg-blue-700 text-white shadow-sm"
-                : "rounded-md px-3 py-1.5 text-xs font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                : emphasized
+                  ? "rounded-md px-3 py-1.5 text-xs font-semibold text-slate-800 border border-slate-200 bg-white hover:border-blue-300 hover:bg-blue-50/60"
+                  : "rounded-md px-3 py-1.5 text-xs font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900"
             }
             aria-current={isActive ? "page" : undefined}
             prefetch={pathname.startsWith("/cases/")}
