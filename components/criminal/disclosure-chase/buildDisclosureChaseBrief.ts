@@ -1,5 +1,20 @@
 import { collectChaseItems } from "@/components/criminal/control-room/chaseItems";
 import type { BattleboardOutput, BattleboardRouteType } from "@/lib/criminal/strategy-battleboard";
+import {
+  filterWorkflowItems,
+  normalizeWorkflowPilotLabel,
+  prioritizeWorkflowItems,
+  resolveWorkflowProfile,
+  formatPilotCourtLine,
+  formatPilotDraftChaseWording,
+  isMalformedPilotEvidenceAnchor,
+  pilotCleanupVisibleText,
+  sanitizePilotVisibleLine,
+  workflowDisclosureCaseWideLine,
+  workflowDisclosureChaseLabels,
+  workflowDisclosureWhyItMatters,
+} from "@/lib/criminal/pilot-workflow";
+import { isCriminalPilotMode } from "@/lib/pilot-mode";
 
 const FORBIDDEN_RE =
   /\b(this wins|case collapses|crowns?\s+will\s+lose|crown\s+case\s+collapses|guaranteed|will\s+be\s+acquitted)\b/i;
@@ -160,6 +175,8 @@ export type BuildDisclosureChaseBriefInput = {
   battleboard: BattleboardOutput | null;
   snapshotMissing?: { label: string; status: string }[];
   proceduralOutstanding?: string[];
+  bundleText?: string | null;
+  profileHint?: import("@/lib/criminal/pilot-workflow").WorkflowProfile | null;
 };
 
 function normalizeRawLabel(raw: string): string {
@@ -513,17 +530,78 @@ function splitPrimaryAdditional(items: DisclosureChaseItem[]): {
   };
 }
 
+function buildWorkflowProfileDisclosureItems(
+  labels: string[],
+  battleboard: BattleboardOutput | null,
+  deadline: DeadlineContext,
+  profile: Exclude<ReturnType<typeof resolveWorkflowProfile>, "generic">,
+): DisclosureChaseItem[] {
+  return labels.map((label, idx) => {
+    const normalized = normalizeWorkflowPilotLabel(label);
+    return {
+      id: `workflow-chase-${profile}-${idx}`,
+      familyId: "other" as const,
+      label: normalized,
+      whyItMatters: workflowDisclosureWhyItMatters(normalized, profile),
+      source: "Crown / disclosure officer (confirm on file)",
+      baseStatus: deadline.baseStatus,
+      urgency: deadline.urgency,
+      deadlineLabel: deadline.sharedLabel,
+      evidenceAnchor: (() => {
+        const raw = battleboard?.primary_route?.evidence_anchors?.[0] ?? null;
+        if (!raw || isMalformedPilotEvidenceAnchor(raw)) return null;
+        return raw;
+      })(),
+      linkedRoute: battleboard?.primary_route?.title ?? null,
+      draftChaseWording: formatPilotDraftChaseWording(normalized),
+      courtLine: formatPilotCourtLine(normalized),
+      mergedFrom: [normalized],
+    };
+  });
+}
+
 export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput): DisclosureChaseBrief {
-  const chaseLabels = collectChaseItems({
+  const workflowContext = {
+    caseTitle: input.caseTitle,
+    allegation: input.allegation,
+    routeTitle: input.battleboard?.primary_route?.title,
+    bundleText: input.bundleText,
+    clientLabel: input.clientLabel,
+    profileHint: input.profileHint,
+  };
+  const profile = resolveWorkflowProfile(workflowContext);
+  const profileLabels = workflowDisclosureChaseLabels(workflowContext);
+
+  const chaseLabelsRaw = collectChaseItems({
     snapshotMissing: input.snapshotMissing,
     proceduralOutstanding: input.proceduralOutstanding,
     battleboard: input.battleboard,
   });
+  const chaseLabels = prioritizeWorkflowItems(
+    filterWorkflowItems(chaseLabelsRaw, workflowContext),
+    workflowContext,
+  );
 
   const days = daysUntilHearing(input.hearingDateIso);
   const deadline = resolveDeadlineContext(days);
-  const items = groupAndMergeLabels(chaseLabels, input.battleboard, deadline);
-  const { primaryItems, additionalItems } = splitPrimaryAdditional(items);
+
+  let items: DisclosureChaseItem[];
+  let primaryItems: DisclosureChaseItem[];
+  let additionalItems: DisclosureChaseItem[];
+
+  if (profileLabels && profile !== "generic") {
+    primaryItems = buildWorkflowProfileDisclosureItems(
+      profileLabels,
+      input.battleboard,
+      deadline,
+      profile,
+    );
+    additionalItems = [];
+    items = primaryItems;
+  } else {
+    items = groupAndMergeLabels(chaseLabels, input.battleboard, deadline);
+    ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
+  }
 
   const linkedRoutes = [
     ...new Set(items.map((i) => i.linkedRoute).filter((r): r is string => Boolean(r?.trim()))),
@@ -544,11 +622,13 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   };
 
   const disclosureSummary =
-    items.length === 0
-      ? "No source-material chase items safely detected"
-      : items.length === 1
-        ? "1 grouped chase item — provisional"
-        : `${items.length} grouped chase items — provisional`;
+    profileLabels && profile !== "generic"
+      ? `${primaryItems.length} priority chase items — provisional`
+      : items.length === 0
+        ? "No source-material chase items safely detected"
+        : items.length === 1
+          ? "1 grouped chase item — provisional"
+          : `${items.length} grouped chase items — provisional`;
 
   return {
     caseId: input.caseId,
@@ -560,7 +640,16 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
     bundleHealth: input.bundleHealth,
     positionStatus: input.positionStatus,
     disclosureSummary,
-    safeCourtLine: resolveSafeCourtLine(input.battleboard),
+    safeCourtLine: (() => {
+      const profileLine =
+        isCriminalPilotMode() ? workflowDisclosureCaseWideLine(workflowContext) : null;
+      if (profileLine) return pilotCleanupVisibleText(profileLine);
+      const raw = resolveSafeCourtLine(input.battleboard);
+      if (!isCriminalPilotMode()) return raw;
+      return pilotCleanupVisibleText(
+        sanitizePilotVisibleLine(raw, workflowContext) ?? raw,
+      );
+    })(),
     items,
     primaryItems,
     additionalItems,

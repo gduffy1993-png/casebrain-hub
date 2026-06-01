@@ -12,6 +12,7 @@ import {
   sanitizeHeaderClient,
 } from "@/lib/criminal/resolve-case-header-metadata";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
+import { pilotCourtChaseLabels } from "@/lib/criminal/pilot-workflow";
 import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
 import type {
   CourtCaseBrief,
@@ -244,7 +245,20 @@ function resolveReadiness(
   return "amber";
 }
 
-function buildChaseItems(row: CourtCasesApiRow, battleboard: BattleboardOutput | null | undefined): string[] {
+function buildChaseItems(
+  row: CourtCasesApiRow,
+  battleboard: BattleboardOutput | null | undefined,
+  enrichment: CourtTodayEnrichment = {},
+): string[] {
+  if (isCriminalPilotMode()) {
+    const pilotLabels = pilotCourtChaseLabels({
+      caseTitle: row.title,
+      allegation: row.offence_label ?? undefined,
+      routeTitle: battleboard?.primary_route?.title,
+      clientLabel: row.title,
+    });
+    if (pilotLabels.length) return pilotLabels;
+  }
   const fromBoard = collectChaseItems({ battleboard: battleboard ?? null });
   if (fromBoard.length) return fromBoard.slice(0, 6);
   const n = row.disclosure_outstanding ?? 0;
@@ -274,9 +288,11 @@ function resolvePilotAllegationFallback(caseTitle: string): string | null {
   if (!t) return null;
   if (/\bFraud\s*\/\s*Financial Crime\b/i.test(t)) return "Fraud by false representation";
   if (/\bPWITS\s*\/\s*Phone Attribution\b/i.test(t)) {
-    return "PWITS Class A / possession with intent to supply";
+    return "Possession with intent to supply Class A controlled drugs";
   }
-  if (/\bRobbery\s*\/\s*Poor ID\b/i.test(t)) return "Robbery";
+  if (/\bRobbery\s*\/\s*Poor ID\b/i.test(t)) return "Robbery, Theft Act 1968 s.8";
+  if (/\bKian\s+Doyle\b/i.test(t)) return "Possession with intent to supply Class A controlled drugs";
+  if (/\bLeon\s+Marsh\b/i.test(t)) return "Robbery, Theft Act 1968 s.8";
   return null;
 }
 
@@ -318,7 +334,7 @@ export function buildCourtCaseBrief(
     headerMeta.stage && !/^stage not recorded$/i.test(headerMeta.stage)
       ? headerMeta.stage
       : "Stage not safely extracted — open case file";
-  const chaseItems = buildChaseItems(row, battleboard);
+  const chaseItems = buildChaseItems(row, battleboard, enrichment);
   const readiness = resolveReadiness(row, bucket, chaseItems.length, battleboard, allegation, clientLabel);
   const hearingTimeLabel = resolveHearingTimeLabel(row, enrichment, hearingDate);
 

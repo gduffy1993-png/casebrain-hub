@@ -7,15 +7,9 @@ import { Card } from "@/components/ui/card";
 import { CaseFilesList } from "@/components/cases/CaseFilesList";
 import { CaseFilesCompactStrip } from "./CaseFilesCompactStrip";
 import { resolveControlRoomFromSearchParams } from "./criminalCaseNavigation";
-
-type CaseFileDocument = {
-  id: string;
-  name: string;
-  created_at: string;
-  type?: string | null;
-  extractionStatus?: "full" | "summary_only" | "no_text";
-  extractionMessage?: string;
-};
+import { usePilotDocumentsTabActive } from "@/components/criminal/workflow/useCaseWorkflowActiveTab";
+import { isCriminalPilotMode } from "@/lib/pilot-mode";
+import type { CaseWorkflowDocument } from "@/components/criminal/workflow/caseWorkflowDocuments";
 
 function useControlRoomActive(): boolean {
   const searchParams = useSearchParams();
@@ -34,16 +28,22 @@ export function CriminalCasePageLayout({
   rightAside,
 }: {
   children: ReactNode;
-  documents: CaseFileDocument[];
+  documents: CaseWorkflowDocument[];
   rightAside?: ReactNode;
 }) {
   const controlRoom = useControlRoomActive();
+  const pilotDocumentsTab = usePilotDocumentsTabActive();
+  const hideBottomFilesStrip = isCriminalPilotMode() && pilotDocumentsTab;
 
   if (controlRoom) {
     return (
-      <div className="w-full max-w-[100%] space-y-4" data-layout="control-room">
+      <div
+        className="w-full space-y-4 xl:mr-[min(360px,26vw)] xl:pr-3 max-w-[1400px]"
+        data-layout="control-room"
+        data-documents-focus={pilotDocumentsTab ? "true" : undefined}
+      >
         {children}
-        <CaseFilesCompactStrip documents={documents} />
+        {!hideBottomFilesStrip ? <CaseFilesCompactStrip documents={documents} /> : null}
       </div>
     );
   }

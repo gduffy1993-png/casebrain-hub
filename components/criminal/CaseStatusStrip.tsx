@@ -3,6 +3,8 @@
 import { Badge } from "@/components/ui/badge";
 import { Calendar, FileText, AlertCircle, CheckCircle2, Clock } from "lucide-react";
 import type { CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
+import { isCriminalPilotMode } from "@/lib/pilot-mode";
+import { pilotStrategyBasisDisplay, shouldSuppressPilotStrategyBasisReason } from "@/lib/criminal/pilot-workflow";
 
 type CaseStatusStripProps = {
   snapshot: CaseSnapshot;
@@ -11,6 +13,7 @@ type CaseStatusStripProps = {
 };
 
 export function CaseStatusStrip({ snapshot, displayStrategyCategory }: CaseStatusStripProps) {
+  const pilotMode = isCriminalPilotMode();
   // Derive disclosure status conservatively
   const missingCount = snapshot.evidence.missingEvidence.filter(
     (item) => item.status === "MISSING" || item.status === "UNASSESSED"
@@ -146,7 +149,8 @@ export function CaseStatusStrip({ snapshot, displayStrategyCategory }: CaseStatu
           <FileText className="h-4 w-4 text-muted-foreground" />
           <span className="text-xs text-muted-foreground">Basis:</span>
           <span className="text-xs font-medium text-foreground max-w-[200px] truncate" title={snapshot.analysis.strategyBasisLabel}>
-            {snapshot.analysis.strategyBasisLabel}
+            {pilotStrategyBasisDisplay(snapshot.analysis.strategyBasisLabel) ??
+              snapshot.analysis.strategyBasisLabel}
           </span>
         </div>
       )}

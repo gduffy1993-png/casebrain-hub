@@ -42,6 +42,18 @@ import {
   sanitizeHeaderAllegation,
   sanitizeHeaderClient,
 } from "@/lib/criminal/resolve-case-header-metadata";
+import {
+  cleanPilotHeaderClient,
+  cleanPilotCourtHeaderCell,
+  cleanPilotHearingHeaderCell,
+  pilotCaseBrainPositionStatus,
+  pilotPositionDisplayLabel,
+  pilotDisplayMetadataNote,
+  workflowHeaderOverrides,
+  workflowPrimaryRouteTitle,
+} from "@/lib/criminal/pilot-workflow";
+import { isCriminalPilotMode } from "@/lib/pilot-mode";
+import { usePilotDemoSession } from "@/components/criminal/workflow/usePilotDemoSession";
 
 const ABOVE_FOLD_LIST_CAP = 5;
 
@@ -87,8 +99,8 @@ export type HearingWarRoomProps = {
   evidenceSummary?: string;
   timelineSummary?: string;
   controlRoomMode?: boolean;
-  onRecordPosition: () => void;
-  onUploadEvidence: () => void;
+  onRecordPosition?: () => void;
+  onUploadEvidence?: () => void;
 };
 
 function formatGbDate(dateStr: string | null | undefined): string | null {
@@ -303,7 +315,7 @@ export function HearingWarRoom({
     };
   }, [caseId]);
 
-  const caseTitle = snapshot?.caseMeta?.title?.trim() || "Criminal case";
+  const caseTitleBase = snapshot?.caseMeta?.title?.trim() || "Criminal case";
 
   const headerMeta = useMemo(
     () =>
@@ -325,16 +337,51 @@ export function HearingWarRoom({
     [snapshot, matter, bundleSource, matterState],
   );
 
-  const clientLabel = sanitizeHeaderClient(headerMeta.clientLabel);
-  const allegation = sanitizeHeaderAllegation(headerMeta.allegation);
+  const clientLabelBase = sanitizeHeaderClient(headerMeta.clientLabel);
+  const allegationBase = sanitizeHeaderAllegation(headerMeta.allegation);
+  const clientLabel = isCriminalPilotMode() ? cleanPilotHeaderClient(clientLabelBase) : clientLabelBase;
+  const pilotHeader = useMemo(
+    () =>
+      workflowHeaderOverrides(caseTitleBase, {
+        allegation: allegationBase,
+        routeTitle: battleboard?.primary_route?.title,
+        bundleText: bundleSource?.frontMatterScan ?? null,
+        clientLabel,
+      }),
+    [caseTitleBase, allegationBase, clientLabel, battleboard?.primary_route?.title, bundleSource?.frontMatterScan],
+  );
+  const caseTitle = pilotHeader?.displayTitle ?? pilotHeader?.title ?? caseTitleBase;
+  const allegation = pilotHeader?.allegation ?? allegationBase;
+  const workflowContext = useMemo(
+    () => ({
+      caseTitle,
+      allegation,
+      routeTitle: battleboard?.primary_route?.title,
+      bundleText: bundleSource?.frontMatterScan ?? null,
+      clientLabel,
+      profileHint: pilotHeader?.profile ?? null,
+    }),
+    [caseTitle, allegation, clientLabel, battleboard?.primary_route?.title, bundleSource?.frontMatterScan, pilotHeader?.profile],
+  );
   const stage = headerMeta.stage;
-  const hearingDisplay =
-    (snapshotLoading || bundleLoading) &&
-    /not safely extracted/i.test(headerMeta.nextHearing)
+  const metadataNote = pilotDisplayMetadataNote(headerMeta.metadataNote);
+  const pilotMode = isCriminalPilotMode();
+  const { uploadDisabled: pilotUploadDisabled, recordPositionDisabled: pilotRecordPositionHidden } =
+    usePilotDemoSession();
+  const hearingDateIso =
+    bundleSource?.caseMetadata?.nextHearingIso ?? snapshot?.caseMeta?.hearingNextAt ?? null;
+  const courtDisplay = pilotMode
+    ? cleanPilotCourtHeaderCell(headerMeta.court)
+    : headerMeta.court?.trim() || "Court not safely extracted";
+  const hearingDisplay = pilotMode
+    ? cleanPilotHearingHeaderCell(
+        snapshotLoading || bundleLoading ? "…" : headerMeta.nextHearing,
+        hearingDateIso,
+      )
+    : (snapshotLoading || bundleLoading) && /not safely extracted/i.test(headerMeta.nextHearing)
       ? "…"
       : headerMeta.nextHearing;
   const hearingStatus = hearingDisplay;
-  const metadataNote = headerMeta.metadataNote;
 
   const chaseItemsAll = useMemo(
     () =>
@@ -346,26 +393,47 @@ export function HearingWarRoom({
     [snapshot, effectiveProceduralSafety, battleboard],
   );
 
-  const positionStatus =
-    hasSavedPosition && savedPosition?.position_text?.trim()
-      ? savedPosition.position_text.split(/[.!?]/)[0].trim() + "."
-      : headerMeta.defencePosition
-        ? headerMeta.defencePosition.length > 100
+  const positionStatus = useMemo(() => {
+    let raw: string;
+    if (hasSavedPosition && savedPosition?.position_text?.trim()) {
+      raw =
+        savedPosition.position_text.split(/[.!?]/)[0].trim() +
+        (savedPosition.position_text.includes(".") ? "." : "");
+    } else if (headerMeta.defencePosition) {
+      raw =
+        headerMeta.defencePosition.length > 100
           ? `${headerMeta.defencePosition.slice(0, 97)}…`
-          : headerMeta.defencePosition
-        : battleboard?.position_notice?.includes("not safely recorded")
-          ? "Position not safely recorded yet"
-          : "Position not recorded";
+          : headerMeta.defencePosition;
+    } else if (pilotMode && !hasSavedPosition) {
+      raw = pilotCaseBrainPositionStatus(false);
+    } else if (battleboard?.position_notice?.includes("not safely recorded")) {
+      raw = "Position not safely recorded yet";
+    } else {
+      raw = "Position not recorded";
+    }
+    return pilotMode ? pilotPositionDisplayLabel(raw, workflowContext) : raw;
+  }, [
+    hasSavedPosition,
+    savedPosition,
+    headerMeta.defencePosition,
+    pilotMode,
+    battleboard?.position_notice,
+    workflowContext,
+  ]);
 
   const readiness = useMemo(() => {
     if (effectiveProceduralSafety?.status === "UNSAFE_TO_PROCEED") {
       return "Conditional — procedural disclosure gaps";
     }
-    if (!hasSavedPosition) return "Conditional — record position";
+    if (!hasSavedPosition) {
+      return pilotRecordPositionHidden && pilotMode
+        ? "Conditional — confirm instructions"
+        : "Conditional — record position";
+    }
     if (chaseItemsAll.length >= 2) return "Conditional — source material outstanding";
     if (battleboard?.primary_route) return "Routes on file — solicitor review";
     return "Review — standard caution";
-  }, [effectiveProceduralSafety, hasSavedPosition, chaseItemsAll, battleboard]);
+  }, [effectiveProceduralSafety, hasSavedPosition, chaseItemsAll, battleboard, pilotMode, pilotRecordPositionHidden]);
 
   const brief: HearingWarRoomBrief = useMemo(
     () =>
@@ -384,6 +452,9 @@ export function HearingWarRoom({
         chaseItems: chaseItemsAll,
         defencePlan,
         proceduralOutstanding: effectiveProceduralSafety?.outstandingItems,
+        bundleText: bundleSource?.frontMatterScan ?? null,
+        profileHint: pilotHeader?.profile ?? null,
+        pilotDemoReadOnly: pilotRecordPositionHidden,
       }),
     [
       caseId,
@@ -400,6 +471,8 @@ export function HearingWarRoom({
       chaseItemsAll,
       defencePlan,
       effectiveProceduralSafety,
+      pilotHeader?.profile,
+      pilotRecordPositionHidden,
     ],
   );
 
@@ -437,8 +510,10 @@ export function HearingWarRoom({
       <div className="xl:mr-[min(360px,26vw)] xl:pr-3 max-w-[1400px] space-y-4">
         <CaseWorkflowShell
           caseId={caseId}
-          onRecordPosition={onRecordPosition}
-          onUploadEvidence={onUploadEvidence}
+          onRecordPosition={pilotRecordPositionHidden ? undefined : onRecordPosition}
+          onUploadEvidence={pilotUploadDisabled ? undefined : onUploadEvidence}
+          pilotUploadDisabled={pilotUploadDisabled}
+          pilotRecordPositionHidden={pilotRecordPositionHidden}
         >
         <header className={`${workflowCard} overflow-hidden`}>
           <div className="px-4 py-3 border-b border-slate-100 bg-gradient-to-r from-blue-50/80 to-white flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
@@ -450,10 +525,12 @@ export function HearingWarRoom({
                   Court prep
                 </Badge>
               </div>
-              <p className={`mt-1 text-sm ${workflowMuted}`}>
-                {clientLabel} · {allegation}
-              </p>
-              <p className={`text-xs ${workflowMuted} mt-0.5`}>{caseTitle}</p>
+              <p className="mt-1 text-sm font-medium text-slate-800">{caseTitle}</p>
+              {!pilotHeader && (
+                <p className={`text-xs ${workflowMuted} mt-0.5`}>
+                  {clientLabel} · {allegation}
+                </p>
+              )}
             </div>
             {controlRoomMode ? null : (
               <div className="flex flex-wrap gap-2 shrink-0">
@@ -471,7 +548,7 @@ export function HearingWarRoom({
             {[
               {
                 label: "Court",
-                value: headerMeta.court?.trim() || "Court not safely extracted",
+                value: courtDisplay,
               },
               { label: "Stage", value: headerLoading ? "…" : stage },
               { label: "Hearing", value: headerLoading ? "…" : hearingDisplay },
@@ -481,6 +558,7 @@ export function HearingWarRoom({
               {
                 label: "Primary route",
                 value:
+                  workflowPrimaryRouteTitle(workflowContext) ||
                   battleboard?.primary_route?.title ||
                   displayStrategy?.displayLabel ||
                   "Provisional",

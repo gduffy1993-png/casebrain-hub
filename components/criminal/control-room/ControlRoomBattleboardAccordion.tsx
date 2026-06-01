@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { StrategyBattleboard } from "@/components/criminal/StrategyBattleboard";
 import { workflowCard, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
+import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
 
 export type ControlRoomBattleboardAccordionProps = {
@@ -35,6 +36,13 @@ export function ControlRoomBattleboardAccordion({
   riskOverviewSection,
 }: ControlRoomBattleboardAccordionProps) {
   const [open, setOpen] = useState(false);
+  const pilotMode = isCriminalPilotMode();
+  const sectionTitle = pilotMode ? "Route detail" : "Full Battleboard";
+  const sectionSubtitle = pilotMode
+    ? "Detailed route reasoning — optional"
+    : "Deep strategy — optional detail";
+  const openLabel = pilotMode ? "Open route detail" : "Open Full Battleboard";
+  const collapseLabel = pilotMode ? "Collapse route detail" : "Collapse Battleboard";
 
   const backupRoutes =
     battleboard?.routes.filter((r) => r.id !== battleboard.primary_route?.id).slice(0, 2) ?? [];
@@ -45,15 +53,15 @@ export function ControlRoomBattleboardAccordion({
     <section
       id="full-battleboard"
       className={workflowCard}
-      aria-label="Full Battleboard"
+      aria-label={sectionTitle}
       data-testid="control-room-battleboard-accordion"
     >
       <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 bg-slate-50/80 px-4 py-3">
         <div className="flex items-center gap-2 min-w-0">
           <Swords className="h-4 w-4 text-blue-700 shrink-0" />
           <div className="min-w-0">
-            <h2 className="text-sm font-semibold text-slate-900">Full Battleboard</h2>
-            <p className="text-[11px] text-slate-500">Deep strategy — optional detail</p>
+            <h2 className="text-sm font-semibold text-slate-900">{sectionTitle}</h2>
+            <p className="text-[11px] text-slate-500">{sectionSubtitle}</p>
           </div>
         </div>
         {!open && battleboard && (
@@ -108,10 +116,12 @@ export function ControlRoomBattleboardAccordion({
             </p>
           )}
 
-          <Button type="button" size="sm" className="w-full sm:w-auto" onClick={() => setOpen(true)}>
-            <ChevronRight className="h-3.5 w-3.5 mr-1" />
-            Open Full Battleboard
-          </Button>
+          {!pilotMode && (
+            <Button type="button" size="sm" className="w-full sm:w-auto" onClick={() => setOpen(true)}>
+              <ChevronRight className="h-3.5 w-3.5 mr-1" />
+              {openLabel}
+            </Button>
+          )}
         </div>
       )}
 
@@ -120,7 +130,7 @@ export function ControlRoomBattleboardAccordion({
           <div className="px-4 py-2 flex justify-end">
             <Button type="button" variant="outline" size="sm" onClick={() => setOpen(false)}>
               <ChevronDown className="h-3.5 w-3.5 mr-1" />
-              Collapse Battleboard
+              {collapseLabel}
             </Button>
           </div>
           <div className="px-4 pb-4 space-y-4">

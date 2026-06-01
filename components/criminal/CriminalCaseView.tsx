@@ -50,6 +50,10 @@ import { StrategyExportButton } from "./StrategyExportButton";
 import { DefencePlanBox } from "./DefencePlanBox";
 import { StrategyBattleboard } from "./StrategyBattleboard";
 import { CaseControlRoom } from "./CaseControlRoom";
+import { usePilotDemoSession } from "@/components/criminal/workflow/usePilotDemoSession";
+import { PilotDocumentsView } from "@/components/criminal/workflow/PilotDocumentsView";
+import { isCriminalPilotMode } from "@/lib/pilot-mode";
+import { CASE_FILES_HASH } from "@/components/criminal/workflow/focusCaseDocuments";
 import {
   appendControlRoomParams,
   buildControlRoomCaseHref,
@@ -74,6 +78,7 @@ const CRIMINAL_CASE_TAB_IDS = [
   "hearings",
   "hearing-war-room",
   "disclosure-chase",
+  "documents",
   "timeline",
   "client-instructions",
   "sentencing",
@@ -172,6 +177,20 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   const [reviewConfirmed, setReviewConfirmed] = useState<boolean | null>(null);
   /** Case Control Room: default on; classic workspace via Control Room button sets preference false. */
   const [useControlRoom, setUseControlRoom] = useState(true);
+  const { uploadDisabled: pilotUploadDisabled, recordPositionDisabled: pilotRecordPositionHidden } =
+    usePilotDemoSession();
+  const openUploadEvidence = pilotUploadDisabled
+    ? undefined
+    : () => {
+        addEvidenceIntentRef.current = "default";
+        setShowAddEvidenceUpload(true);
+      };
+  const openRecordPosition = pilotRecordPositionHidden
+    ? undefined
+    : () => {
+        setPendingPositionText(null);
+        setIsPositionModalOpen(true);
+      };
 
   useEffect(() => {
     const active = resolveControlRoomFromSearchParams(searchParams);
@@ -180,6 +199,16 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
       persistControlRoomPreference(true);
     }
   }, [searchParams]);
+
+  useEffect(() => {
+    if (!isCriminalPilotMode() || reviewConfirmed !== true) return;
+    if (searchParams.get("tab") === "documents") return;
+    if (typeof window === "undefined" || window.location.hash !== CASE_FILES_HASH) return;
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("tab", "documents");
+    params.set("controlRoom", "1");
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+  }, [reviewConfirmed, searchParams, pathname, router]);
 
   useEffect(() => {
     if (reviewConfirmed !== true) return;
@@ -716,11 +745,8 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
       ? buildEvidenceContext(snapshot, effectiveProceduralSafety?.outstandingItems)
       : undefined,
     timelineSummary: snapshot ? buildTimelineContext(snapshot) : undefined,
-    onRecordPosition: () => {
-      setPendingPositionText(null);
-      setIsPositionModalOpen(true);
-    },
-    onUploadEvidence: () => setShowAddEvidenceUpload(true),
+    onRecordPosition: openRecordPosition,
+    onUploadEvidence: openUploadEvidence,
   };
 
   const disclosureChaseSharedProps = {
@@ -732,6 +758,31 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
     matterState,
     effectiveProceduralSafety,
   };
+
+  if (activeTab === "documents" && isCriminalPilotMode()) {
+    return (
+      <div className="space-y-4">
+        <WorkflowSafetyLine />
+        {matterClosed && (
+          <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-center">
+            <p className="text-xs text-foreground">
+              <strong>Matter closed</strong>
+              {matterClosed.at && ` (${new Date(matterClosed.at).toLocaleDateString("en-GB")})`}
+              {matterClosed.reason ? ` – ${matterClosed.reason}` : ""}.
+            </p>
+          </div>
+        )}
+        <PilotDocumentsView
+          caseId={caseId}
+          snapshot={snapshot}
+          pilotUploadDisabled={pilotUploadDisabled}
+          pilotRecordPositionHidden={pilotRecordPositionHidden}
+        />
+        {controlRoomSharedModals}
+        <BackToTop />
+      </div>
+    );
+  }
 
   if (activeTab === "disclosure-chase") {
     return (
@@ -801,11 +852,8 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
             snapshot ? buildEvidenceContext(snapshot, effectiveProceduralSafety?.outstandingItems) : undefined
           }
           timelineSummary={snapshot ? buildTimelineContext(snapshot) : undefined}
-          onRecordPosition={() => {
-            setPendingPositionText(null);
-            setIsPositionModalOpen(true);
-          }}
-          onUploadEvidence={() => setShowAddEvidenceUpload(true)}
+          onRecordPosition={openRecordPosition}
+          onUploadEvidence={openUploadEvidence}
         />
         {controlRoomSharedModals}
         <BackToTop />
@@ -839,7 +887,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         snapshot={snapshot ?? null}
         snapshotLoading={snapshotLoading}
         isStrategyCommitted={isStrategyCommitted}
-        onUploadEvidence={() => setShowAddEvidenceUpload(true)}
+        onUploadEvidence={openUploadEvidence}
         onAddClientInstructions={() => setTab("client-instructions")}
         onAddHearing={() => setTab("hearings")}
         onGenerateLetter={() => setTab("disclosure")}
@@ -1174,7 +1222,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <FoldSection title="Evidence" defaultOpen={false} keepMountedWhenClosed={true}>
                   <ErrorBoundary fallback={mounted ? <div className="text-sm text-muted-foreground">Analysis will deepen as further disclosure is received.</div> : null}>
-                    <CaseEvidenceColumn caseId={caseId} snapshot={snapshot} onAddDocument={() => setShowAddDocuments(true)} onAddEvidenceUpload={() => setShowAddEvidenceUpload(true)} currentPhase={p} savedPosition={savedPosition} onCommitmentChange={(c) => { if (c) { setCommittedStrategy(c); setIsStrategyCommitted(true); buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error); } else { setCommittedStrategy(null); setIsStrategyCommitted(false); setDisplayStrategy(null); setDefencePlan(null); } }} committedStrategy={committedStrategy} onDisplayStrategyUpdate={setDisplayStrategy} onProceduralSafetyChange={setEffectiveProceduralSafety} onDefencePlanUpdate={setDefencePlan} hasClientInstructions={hasClientInstructions} onClientInstructionsSaved={() => setHasClientInstructions(true)} />
+                    <CaseEvidenceColumn caseId={caseId} snapshot={snapshot} onAddDocument={() => setShowAddDocuments(true)} onAddEvidenceUpload={openUploadEvidence} currentPhase={p} savedPosition={savedPosition} onCommitmentChange={(c) => { if (c) { setCommittedStrategy(c); setIsStrategyCommitted(true); buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error); } else { setCommittedStrategy(null); setIsStrategyCommitted(false); setDisplayStrategy(null); setDefencePlan(null); } }} committedStrategy={committedStrategy} onDisplayStrategyUpdate={setDisplayStrategy} onProceduralSafetyChange={setEffectiveProceduralSafety} onDefencePlanUpdate={setDefencePlan} hasClientInstructions={hasClientInstructions} onClientInstructionsSaved={() => setHasClientInstructions(true)} />
                   </ErrorBoundary>
                 </FoldSection>
                 <FoldSection title="Strategy" defaultOpen={false}>
@@ -1203,23 +1251,25 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
                     re-extracted so Strategy bundle source text matches the file.
                   </p>
                 </div>
-                <Button
-                  type="button"
-                  variant="outline"
-                  className="shrink-0 gap-2"
-                  disabled={bundleReplaceExtracting || showAddEvidenceUpload}
-                  onClick={() => {
-                    addEvidenceIntentRef.current = "bundle-replace";
-                    setShowAddEvidenceUpload(true);
-                  }}
-                >
-                  {bundleReplaceExtracting ? (
-                    <Loader2 className="h-4 w-4 animate-spin" />
-                  ) : (
-                    <Upload className="h-4 w-4" />
-                  )}
-                  Replace bundle PDF
-                </Button>
+                {openUploadEvidence && (
+                  <Button
+                    type="button"
+                    variant="outline"
+                    className="shrink-0 gap-2"
+                    disabled={bundleReplaceExtracting || showAddEvidenceUpload}
+                    onClick={() => {
+                      addEvidenceIntentRef.current = "bundle-replace";
+                      setShowAddEvidenceUpload(true);
+                    }}
+                  >
+                    {bundleReplaceExtracting ? (
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                    ) : (
+                      <Upload className="h-4 w-4" />
+                    )}
+                    Replace bundle PDF
+                  </Button>
+                )}
               </div>
             </Card>
             {snapshot ? (
@@ -1335,10 +1385,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
         {activeTab === "police-station" && (
           <PoliceStationTab
             caseId={caseId}
-            onAddEvidenceUpload={() => {
-              addEvidenceIntentRef.current = "default";
-              setShowAddEvidenceUpload(true);
-            }}
+            onAddEvidenceUpload={openUploadEvidence}
           />
         )}
       </CaseTabs>
@@ -1354,11 +1401,15 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
             buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error);
             router.refresh();
           }}
-          onUploadMoreEvidence={() => {
-            setShowAddDocuments(false);
-            addEvidenceIntentRef.current = "default";
-            setShowAddEvidenceUpload(true);
-          }}
+          onUploadMoreEvidence={
+            openUploadEvidence
+              ? () => {
+                  setShowAddDocuments(false);
+                  addEvidenceIntentRef.current = "default";
+                  setShowAddEvidenceUpload(true);
+                }
+              : undefined
+          }
         />
       )}
 

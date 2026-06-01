@@ -120,6 +120,7 @@ export function CaseFilesList({ documents }: CaseFilesListProps) {
                 variant="secondary"
                 size="sm"
                 className="gap-2"
+                data-testid="case-file-view-button"
                 onClick={() => handleView(doc.id, doc.name)}
                 disabled={isOpening}
               >

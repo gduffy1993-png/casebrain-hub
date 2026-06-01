@@ -94,8 +94,10 @@ export function buildCaseWorkflowTabHref(caseId: string, tab: CaseWorkflowTabId)
       const p = new URLSearchParams({ tab: "disclosure-chase", controlRoom: "1" });
       return `/cases/${id}?${p.toString()}`;
     }
-    case "documents":
-      return `${buildControlRoomCaseHref(id)}#case-files`;
+    case "documents": {
+      const p = new URLSearchParams({ tab: "documents", controlRoom: "1" });
+      return `/cases/${id}?${p.toString()}`;
+    }
     case "position": {
       const p = new URLSearchParams({ tab: "client-instructions", controlRoom: "1" });
       return `/cases/${id}?${p.toString()}`;

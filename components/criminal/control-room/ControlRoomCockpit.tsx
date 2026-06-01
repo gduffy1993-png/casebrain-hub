@@ -1,7 +1,6 @@
 "use client";
 
 import type { ReactNode } from "react";
-import Link from "next/link";
 import {
   AlertTriangle,
   ListChecks,
@@ -11,8 +10,9 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { buildCaseWorkflowTabHref } from "@/components/criminal/criminalCaseNavigation";
 import { workflowCard, workflowMuted, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
+import { pilotRouteStatusBadgeLabel } from "@/lib/criminal/pilot-workflow";
+import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import type { AboveFoldSummaryProps } from "./AboveFoldSummary";
 
 export type ControlRoomCockpitProps = AboveFoldSummaryProps & {
@@ -27,6 +27,7 @@ export type ControlRoomCockpitProps = AboveFoldSummaryProps & {
   battleboardSection: ReactNode;
   furtherActionsSection?: ReactNode;
   metadataNote?: string;
+  bundlePositionNote?: string | null;
 };
 
 function StatTile({
@@ -88,6 +89,7 @@ export function ControlRoomCockpit({
   battleboardSection,
   furtherActionsSection,
   metadataNote,
+  bundlePositionNote,
 }: ControlRoomCockpitProps) {
   const topActions = immediateActions.slice(0, 3);
   const biggestRisk =
@@ -107,32 +109,21 @@ export function ControlRoomCockpit({
               </Badge>
             </div>
             <p className="text-sm text-slate-600 mt-0.5">{clientLabel}</p>
-            <p className="text-xs text-slate-500 mt-1 line-clamp-2">
-              {loading ? "Loading allegation…" : allegation}
-            </p>
+            {allegation ? (
+              <p className="text-xs text-slate-500 mt-1 line-clamp-2">
+                {loading ? "Loading allegation…" : allegation}
+              </p>
+            ) : null}
           </div>
-          <div className="flex flex-wrap gap-2 shrink-0">
-            <Link href={buildCaseWorkflowTabHref(caseId, "hearing-war-room")}>
-              <Button type="button" variant="primary" size="sm">
-                Hearing War Room
-              </Button>
-            </Link>
-            <Link href={buildCaseWorkflowTabHref(caseId, "disclosure-chase")}>
-              <Button type="button" variant="outline" size="sm" className="bg-white">
-                Disclosure Chase
-              </Button>
-            </Link>
-            <Link href={buildCaseWorkflowTabHref(caseId, "documents")}>
-              <Button type="button" variant="outline" size="sm" className="bg-white">
-                Documents
-              </Button>
-            </Link>
-            {!hideClassicWorkspace && onExitClassic && (
-              <Button type="button" variant="ghost" size="sm" onClick={onExitClassic} className="text-slate-500">
-                Classic workspace
-              </Button>
-            )}
-          </div>
+          {!hideClassicWorkspace ? (
+            <div className="flex flex-wrap gap-2 shrink-0">
+              {onExitClassic ? (
+                <Button type="button" variant="ghost" size="sm" onClick={onExitClassic} className="text-slate-500">
+                  Classic workspace
+                </Button>
+              ) : null}
+            </div>
+          ) : null}
         </div>
         <p className="px-4 pb-3 text-xs text-slate-500 flex flex-wrap gap-x-4 gap-y-1">
           <span>
@@ -143,7 +134,10 @@ export function ControlRoomCockpit({
             <span className="font-medium text-slate-600">Stage:</span> {loading ? "—" : stage}
           </span>
           <span>
-            <span className="font-medium text-slate-600">Next hearing:</span> {loading ? "—" : nextHearing}
+            <span className="font-medium text-slate-600">
+              {hideClassicWorkspace ? "Hearing:" : "Next hearing:"}
+            </span>{" "}
+            {loading ? "—" : nextHearing}
           </span>
         </p>
         {metadataNote ? (
@@ -167,6 +161,9 @@ export function ControlRoomCockpit({
         </div>
       )}
 
+      {bundlePositionNote && !loading ? (
+        <p className="text-[11px] text-slate-500 px-1">{bundlePositionNote}</p>
+      ) : null}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
         <StatTile label="Bundle health" value={loading ? "—" : bundleLabel} />
         <StatTile label="Position status" value={loading ? "—" : positionLabel} />
@@ -181,7 +178,9 @@ export function ControlRoomCockpit({
         <p className="text-lg font-semibold text-slate-900 mt-1 leading-snug">{bestRouteTitle}</p>
         {routeStatus && (
           <Badge variant="secondary" size="sm" className="mt-2 bg-white/80">
-            {routeStatus} — conditional on served material
+            {isCriminalPilotMode()
+              ? pilotRouteStatusBadgeLabel(routeStatus)
+              : `${routeStatus} — conditional on served material`}
           </Badge>
         )}
         {prosecutionWeakness.length > 0 && (

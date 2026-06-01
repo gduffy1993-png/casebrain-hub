@@ -2,6 +2,8 @@
 
 import { Calendar, Target } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { pilotRouteStatusBadgeLabel } from "@/lib/criminal/pilot-workflow";
+import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import { GlanceItem, SummaryBlock } from "./GlanceGrid";
 
 export type AboveFoldSummaryProps = {
@@ -74,7 +76,9 @@ export function AboveFoldSummary({
             </p>
             {routeStatus && (
               <Badge variant="secondary" size="sm" className="mt-1.5">
-                {routeStatus} — conditional on served material
+                {isCriminalPilotMode()
+                  ? pilotRouteStatusBadgeLabel(routeStatus)
+                  : `${routeStatus} — conditional on served material`}
               </Badge>
             )}
           </div>

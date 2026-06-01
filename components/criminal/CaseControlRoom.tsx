@@ -13,6 +13,30 @@ import { CaseWorkflowShell } from "./workflow/CaseWorkflowShell";
 import { buildCaseSummarySnippet } from "@/lib/criminal/build-case-summary-snippet";
 import { formatCaseBundleHealthLabel } from "@/lib/criminal/format-case-bundle-health";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
+import { usePilotDemoSession } from "@/components/criminal/workflow/usePilotDemoSession";
+import { mapSnapshotToWorkflowDocuments } from "@/components/criminal/workflow/caseWorkflowDocuments";
+import {
+  cleanPilotHeaderClient,
+  filterBattleboardForWorkflowPilot,
+  filterWorkflowPilotLines,
+  cleanPilotCourtHeaderCell,
+  cleanPilotHearingHeaderCell,
+  pilotBundlePositionNote,
+  pilotPositionDisplayLabel,
+  pilotCleanupVisibleText,
+  sanitizePilotVisibleLine,
+  pilotCaseBrainPositionStatus,
+  pilotDisplayMetadataNote,
+  pilotStrategyBasisDisplay,
+  shouldSuppressPilotStrategyBasisReason,
+  workflowDisclosureChaseLabels,
+  workflowHeaderOverrides,
+  workflowPrimaryRouteTitle,
+  workflowSafeCourtLine,
+  workflowTopNextActions,
+  prioritizeWorkflowItems,
+  showPilotRouteDetailPanel,
+} from "@/lib/criminal/pilot-workflow";
 import type { DocumentRowMeta } from "@/lib/bundle/parse-bundle-display";
 import { RiskColumn } from "./control-room/GlanceGrid";
 import { buildClassicCaseHref, clearControlRoomPreference } from "./criminalCaseNavigation";
@@ -56,8 +80,8 @@ export type CaseControlRoomProps = {
   effectiveProceduralSafety: ProceduralSafety;
   evidenceSummary?: string;
   timelineSummary?: string;
-  onRecordPosition: () => void;
-  onUploadEvidence: () => void;
+  onRecordPosition?: () => void;
+  onUploadEvidence?: () => void;
 };
 
 type MatterSummary = {
@@ -269,21 +293,68 @@ export function CaseControlRoom({
     [snapshot, matter, bundleSource, matterState],
   );
 
-  const clientLabel = sanitizeHeaderClient(headerMeta.clientLabel);
-  const allegation = sanitizeHeaderAllegation(headerMeta.allegation);
+  const clientLabelBase = sanitizeHeaderClient(headerMeta.clientLabel);
+  const allegationBase = sanitizeHeaderAllegation(headerMeta.allegation);
+  const clientLabel = isCriminalPilotMode() ? cleanPilotHeaderClient(clientLabelBase) : clientLabelBase;
+
+  const pilotOverrides = useMemo(
+    () =>
+      workflowHeaderOverrides(caseTitle, {
+        allegation: allegationBase,
+        routeTitle: battleboard?.primary_route?.title,
+        bundleText: bundleSource?.frontMatterScan ?? null,
+        clientLabel,
+      }),
+    [caseTitle, allegationBase, clientLabel, battleboard?.primary_route?.title, bundleSource?.frontMatterScan],
+  );
+  const caseTitleDisplay = pilotOverrides?.displayTitle ?? pilotOverrides?.title ?? caseTitle;
+  const allegation = pilotOverrides?.allegation ?? allegationBase;
+
+  const workflowContext = useMemo(
+    () => ({
+      caseTitle: caseTitleDisplay,
+      allegation,
+      routeTitle: battleboard?.primary_route?.title,
+      bundleText: bundleSource?.frontMatterScan ?? null,
+      clientLabel,
+      profileHint: pilotOverrides?.profile ?? null,
+    }),
+    [caseTitleDisplay, allegation, clientLabel, battleboard?.primary_route?.title, bundleSource?.frontMatterScan, pilotOverrides?.profile],
+  );
+
+  const pilotMode = isCriminalPilotMode();
+  const { uploadDisabled: pilotUploadDisabled, recordPositionDisabled: pilotRecordPositionHidden } =
+    usePilotDemoSession();
   const offenceWordingUnknown = useMemo(() => isUnknownOffenceLabel(allegation), [allegation]);
   const stage = headerMeta.stage;
   const nextHearing = headerMeta.nextHearing;
   const metadataNote = headerMeta.metadataNote;
+  const hearingDateIso =
+    bundleSource?.caseMetadata?.nextHearingIso ?? snapshot?.caseMeta?.hearingNextAt ?? null;
+  const courtLabelDisplay = pilotMode
+    ? cleanPilotCourtHeaderCell(headerMeta.court)
+    : headerMeta.court?.trim() || undefined;
+  const hearingLabelDisplay = pilotMode
+    ? cleanPilotHearingHeaderCell(nextHearing, hearingDateIso)
+    : nextHearing;
+
+  const filteredBattleboard = useMemo(
+    () => filterBattleboardForWorkflowPilot(battleboard, workflowContext),
+    [battleboard, workflowContext],
+  );
 
   const chaseItemsAll = useMemo(
-    () =>
-      collectChaseItems({
+    () => {
+      const profileLabels = workflowDisclosureChaseLabels(workflowContext);
+      if (profileLabels?.length) return profileLabels;
+      const raw = collectChaseItems({
         snapshotMissing: snapshot?.evidence.missingEvidence,
         proceduralOutstanding: effectiveProceduralSafety?.outstandingItems,
         battleboard,
-      }),
-    [snapshot, effectiveProceduralSafety, battleboard],
+      });
+      return prioritizeWorkflowItems(raw, workflowContext);
+    },
+    [snapshot, effectiveProceduralSafety, battleboard, workflowContext],
   );
 
   const chaseItems = useMemo(() => chaseItemsAll.slice(0, 6), [chaseItemsAll]);
@@ -296,19 +367,25 @@ export function CaseControlRoom({
         defencePosition: headerMeta.defencePosition,
         complainant: headerMeta.complainant,
         court: headerMeta.court,
-        battleboard,
+        battleboard: filteredBattleboard ?? battleboard,
         chaseItems: chaseItemsAll,
         bundleMg5: bundleSource?.snippets?.mg5,
         bundleCombinedText: bundleSource?.frontMatterScan ?? null,
+        primaryPressureRouteLabel: workflowPrimaryRouteTitle(workflowContext),
+        pilotMode,
+        workflowContext,
       }),
     [
       clientLabel,
       allegation,
       headerMeta,
       battleboard,
+      filteredBattleboard,
       chaseItemsAll,
       bundleSource?.snippets?.mg5,
       bundleSource?.frontMatterScan,
+      workflowContext,
+      pilotMode,
     ],
   );
 
@@ -326,16 +403,33 @@ export function CaseControlRoom({
     return "Review — standard caution";
   }, [effectiveProceduralSafety, snapshot, defencePlan, battleboard, hasBattleboardMaterial]);
 
-  const positionLabel = hasSavedPosition && savedPosition?.position_text?.trim()
-    ? savedPosition.position_text.split(/[.!?]/)[0].trim() +
-      (savedPosition.position_text.includes(".") ? "." : "")
-    : headerMeta.defencePosition
-      ? headerMeta.defencePosition.length > 120
-        ? `${headerMeta.defencePosition.slice(0, 117)}…`
-        : headerMeta.defencePosition
-      : battleboard?.position_notice?.includes("not safely recorded")
-        ? "Position not safely recorded yet"
-        : "Position not recorded";
+  const positionLabel = useMemo(() => {
+    if (hasSavedPosition && savedPosition?.position_text?.trim()) {
+      const first =
+        savedPosition.position_text.split(/[.!?]/)[0].trim() +
+        (savedPosition.position_text.includes(".") ? "." : "");
+      return pilotMode ? pilotPositionDisplayLabel(first, workflowContext) : first;
+    }
+    if (headerMeta.defencePosition) {
+      const raw =
+        headerMeta.defencePosition.length > 120
+          ? `${headerMeta.defencePosition.slice(0, 117)}…`
+          : headerMeta.defencePosition;
+      return pilotMode ? pilotPositionDisplayLabel(raw, workflowContext) : raw;
+    }
+    if (pilotMode && !hasSavedPosition) return pilotCaseBrainPositionStatus(false);
+    if (battleboard?.position_notice?.includes("not safely recorded")) {
+      return "Position not safely recorded yet";
+    }
+    return "Position not recorded";
+  }, [
+    hasSavedPosition,
+    savedPosition,
+    headerMeta.defencePosition,
+    pilotMode,
+    workflowContext,
+    battleboard?.position_notice,
+  ]);
 
   const bundleLabel = useMemo(
     () =>
@@ -358,15 +452,29 @@ export function CaseControlRoom({
   const disclosureLabel = snapshot ? formatDisclosureGlance(chaseItemsAll) : "—";
 
   const positionNoticeOnce = useMemo(() => {
+    if (hasSavedPosition) return null;
     const notice = battleboard?.position_notice?.trim();
-    if (notice) return notice;
-    if (!hasSavedPosition) {
-      return "Defence position not safely recorded yet — record instructions before fixing strategy.";
+    if (pilotMode) {
+      if (notice) {
+        const sanitized = sanitizePilotVisibleLine(notice, workflowContext);
+        if (sanitized) return sanitized;
+      }
+      return pilotRecordPositionHidden
+        ? "Defence position not safely recorded yet — position is provisional; confirm client instructions before relying on it."
+        : "Defence position not safely recorded yet — record instructions before fixing strategy.";
     }
-    return null;
-  }, [battleboard, hasSavedPosition]);
+    if (notice) return notice;
+    return "Defence position not safely recorded yet — record instructions before fixing strategy.";
+  }, [battleboard, hasSavedPosition, pilotMode, pilotRecordPositionHidden, workflowContext]);
+
+  const workflowDocuments = useMemo(
+    () => mapSnapshotToWorkflowDocuments(snapshot),
+    [snapshot],
+  );
 
   const immediateActions = useMemo(() => {
+    const profileActions = workflowTopNextActions(workflowContext);
+    if (profileActions?.length) return profileActions;
     const items: string[] = [];
     if (!hasSavedPosition && !positionNoticeOnce) {
       items.push("Record defence position / take instructions before committing strategy.");
@@ -395,19 +503,28 @@ export function CaseControlRoom({
       if (!items.some((i) => i.toLowerCase().includes(d.slice(0, 20).toLowerCase()))) items.push(d);
     }
     return stripRepeatedPositionNotice(items, positionNoticeOnce).slice(0, 8);
-  }, [hasSavedPosition, chaseItems, battleboard, defencePlan, positionNoticeOnce]);
+  }, [hasSavedPosition, chaseItems, battleboard, defencePlan, positionNoticeOnce, workflowContext]);
 
   const { evidentialRisks, proceduralRisks, strategicRisks } = useMemo(
     () =>
       deriveRiskColumns(
-        battleboard,
+        filteredBattleboard,
         defencePlan,
         snapshot,
         effectiveProceduralSafety,
         chaseItems,
         positionNoticeOnce,
+        workflowContext,
       ),
-    [battleboard, defencePlan, snapshot, effectiveProceduralSafety, chaseItems, positionNoticeOnce],
+    [
+      filteredBattleboard,
+      defencePlan,
+      snapshot,
+      effectiveProceduralSafety,
+      chaseItems,
+      positionNoticeOnce,
+      workflowContext,
+    ],
   );
 
   const strategyBasisNotice = useMemo(() => {
@@ -415,31 +532,47 @@ export function CaseControlRoom({
     const reason = snapshot?.analysis.strategyBasisReason?.trim();
     if (!label && !reason) return null;
     if (!offenceWordingUnknown && isStaleOffenceStrategyNotice(label, reason)) return null;
-    return { label: label ?? "", reason };
+    const pilotLabel = pilotStrategyBasisDisplay(label);
+    return {
+      label: pilotLabel ?? label ?? "",
+      reason: shouldSuppressPilotStrategyBasisReason(label) ? undefined : reason,
+    };
   }, [snapshot, offenceWordingUnknown]);
 
   const prosecutionWeakness = useMemo(() => {
-    const fromRoute = filterStaleOffenceWording(battleboard?.primary_route?.why_it_helps?.slice(0, 3) ?? []);
+    const fromRoute = filterStaleOffenceWording(
+      filterWorkflowPilotLines(battleboard?.primary_route?.why_it_helps ?? [], workflowContext, {
+        max: 3,
+        useFallbacks: false,
+      }),
+    );
     if (fromRoute.length) return fromRoute;
-    const fromPlan = filterStaleOffenceWording([
-      ...(defencePlan?.prosecution_pressure ?? []),
-      ...(defencePlan?.winning_angles ?? []),
-    ]);
+    const fromPlan = filterStaleOffenceWording(
+      filterWorkflowPilotLines(
+        [...(defencePlan?.prosecution_pressure ?? []), ...(defencePlan?.winning_angles ?? [])],
+        workflowContext,
+        { max: 3, useFallbacks: false },
+      ),
+    );
     if (fromPlan.length) return fromPlan.slice(0, 3);
     return [
       "Outstanding source material may limit how Crown can prove its case — conditional on what is served.",
     ];
-  }, [battleboard, defencePlan]);
+  }, [battleboard, defencePlan, workflowContext]);
 
   const defenceRisks = useMemo(() => {
     const items = stripRepeatedPositionNotice(
-      uniqueStrings(
-        filterStaleOffenceWording([
-          ...(battleboard?.primary_route?.collapse_risks ?? []),
-          ...(battleboard?.global_collapse_risks ?? []),
-          ...(defencePlan?.risks_if_we_fight ?? []),
-          ...(defencePlan?.risks_pivots_short ?? []),
-        ]),
+      filterWorkflowPilotLines(
+        uniqueStrings(
+          filterStaleOffenceWording([
+            ...(filteredBattleboard?.primary_route?.collapse_risks ?? []),
+            ...(filteredBattleboard?.global_collapse_risks ?? []),
+            ...(defencePlan?.risks_if_we_fight ?? []),
+            ...(defencePlan?.risks_pivots_short ?? []),
+          ]),
+        ),
+        workflowContext,
+        { max: 4 },
       ),
       positionNoticeOnce,
     );
@@ -447,23 +580,41 @@ export function CaseControlRoom({
     return [
       "Assumed position may conflict with interview or served evidence — solicitor review required.",
     ];
-  }, [battleboard, defencePlan, positionNoticeOnce]);
+  }, [filteredBattleboard, defencePlan, positionNoticeOnce, workflowContext]);
 
-  const bestRouteTitle =
+  const bundlePositionNote = pilotMode ? pilotBundlePositionNote(workflowContext) : null;
+
+  const bestRouteTitleRaw =
+    workflowPrimaryRouteTitle(workflowContext) ||
     battleboard?.primary_route?.title ||
     defencePlan?.primary_route?.label ||
     displayStrategy?.displayLabel ||
     (committedStrategy?.primary
       ? String(committedStrategy.primary).replace(/_/g, " ")
       : "Provisional — commit strategy or record position");
+  const bestRouteTitle = pilotMode ? pilotCleanupVisibleText(bestRouteTitleRaw) : bestRouteTitleRaw;
 
   const safeCourtLine = useMemo(() => {
-    const fromRoute = battleboard?.primary_route?.hearing_line?.trim();
-    if (fromRoute) return fromRoute;
-    const summary = battleboard?.solicitor_safe_summary?.trim();
-    if (summary) return summary.slice(0, 600);
-    return "Prepare a conditional hearing line after reviewing served material — do not overstate position or facts.";
-  }, [battleboard]);
+    const profileLine = workflowSafeCourtLine(workflowContext);
+    let line: string;
+    if (profileLine) line = profileLine;
+    else {
+      const fromRoute = battleboard?.primary_route?.hearing_line?.trim();
+      if (fromRoute) line = fromRoute;
+      else {
+        const summary = battleboard?.solicitor_safe_summary?.trim();
+        line = summary
+          ? summary.slice(0, 600)
+          : "Prepare a conditional hearing line after reviewing served material — do not overstate position or facts.";
+      }
+    }
+    if (pilotMode) {
+      return pilotCleanupVisibleText(
+        sanitizePilotVisibleLine(line, workflowContext) ?? line,
+      );
+    }
+    return line;
+  }, [battleboard, workflowContext, pilotMode]);
 
   const exitClassic = () => {
     clearControlRoomPreference();
@@ -481,20 +632,23 @@ export function CaseControlRoom({
         ) : (
           <CaseWorkflowShell
             caseId={caseId}
-            onRecordPosition={onRecordPosition}
-            onUploadEvidence={onUploadEvidence}
+            documents={workflowDocuments}
+            onRecordPosition={pilotRecordPositionHidden ? undefined : onRecordPosition}
+            onUploadEvidence={pilotUploadDisabled ? undefined : onUploadEvidence}
+            pilotUploadDisabled={pilotUploadDisabled}
+            pilotRecordPositionHidden={pilotRecordPositionHidden}
           >
           <CaseSummaryCard summary={caseSummary} loading={snapshotLoading} />
           <ControlRoomCockpit
             caseId={caseId}
-            caseTitle={caseTitle}
+            caseTitle={caseTitleDisplay}
             clientLabel={clientLabel}
-            courtLabel={headerMeta.court?.trim() || undefined}
-            allegation={allegation}
+            courtLabel={courtLabelDisplay}
+            allegation={pilotOverrides ? "" : allegation}
             stage={stage}
             bundleLabel={bundleLabel}
             positionLabel={positionLabel}
-            nextHearing={nextHearing}
+            nextHearing={hearingLabelDisplay}
             disclosureLabel={disclosureLabel}
             bestRouteTitle={bestRouteTitle}
             routeStatus={battleboard?.primary_route?.status ?? null}
@@ -508,27 +662,30 @@ export function CaseControlRoom({
             loading={snapshotLoading}
             onExitClassic={exitClassic}
             hideClassicWorkspace={isCriminalPilotMode()}
-            metadataNote={metadataNote}
+            metadataNote={pilotDisplayMetadataNote(metadataNote)}
+            bundlePositionNote={bundlePositionNote}
             battleboardSection={
-              <ControlRoomBattleboardAccordion
-                caseId={caseId}
-                battleboard={battleboard}
-                battleboardLoading={battleboardLoading}
-                riskOverviewSection={
-                  <DashboardCard
-                    title="Risk & weakness overview"
-                    icon={<AlertTriangle className="h-4 w-4 text-amber-600 shrink-0" />}
-                    bodyClassName="py-2"
-                    className="border-slate-200 bg-white"
-                  >
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                      <RiskColumn title="Evidential" items={evidentialRisks} />
-                      <RiskColumn title="Procedural / disclosure" items={proceduralRisks} />
-                      <RiskColumn title="Strategic" items={strategicRisks} />
-                    </div>
-                  </DashboardCard>
-                }
-              />
+              showPilotRouteDetailPanel() ? (
+                <ControlRoomBattleboardAccordion
+                  caseId={caseId}
+                  battleboard={filteredBattleboard}
+                  battleboardLoading={battleboardLoading}
+                  riskOverviewSection={
+                    <DashboardCard
+                      title="Risk & weakness overview"
+                      icon={<AlertTriangle className="h-4 w-4 text-amber-600 shrink-0" />}
+                      bodyClassName="py-2"
+                      className="border-slate-200 bg-white"
+                    >
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                        <RiskColumn title="Evidential" items={evidentialRisks} />
+                        <RiskColumn title="Procedural / disclosure" items={proceduralRisks} />
+                        <RiskColumn title="Strategic" items={strategicRisks} />
+                      </div>
+                    </DashboardCard>
+                  }
+                />
+              ) : undefined
             }
           />
           </CaseWorkflowShell>
@@ -640,20 +797,32 @@ function deriveRiskColumns(
   proceduralSafety: ProceduralSafety,
   chaseItems: string[],
   positionNotice: string | null,
+  workflowContext?: {
+    caseTitle?: string | null;
+    allegation?: string | null;
+    routeTitle?: string | null;
+    bundleText?: string | null;
+  },
 ): { evidentialRisks: string[]; proceduralRisks: string[]; strategicRisks: string[] } {
   const raw: string[] = stripRepeatedPositionNotice(
-    uniqueStrings([
-      ...(battleboard?.primary_route?.collapse_risks ?? []),
-      ...(battleboard?.global_collapse_risks ?? []),
-      ...(defencePlan?.kill_switches?.map((k) => k.if) ?? []),
-      ...(defencePlan?.risks_if_we_fight ?? []),
-      ...(defencePlan?.risks_pivots_short ?? []),
-      ...(defencePlan?.risks_fallbacks ?? []),
-      ...(snapshot?.strategy.pressurePoints?.map((p) => p.label) ?? []),
-      ...(proceduralSafety?.outstandingItems ?? []),
-      ...chaseItems.map((m) => `Outstanding: ${m}`),
-      ...(defencePlan?.disclosure_weapon_steps ?? []),
-    ]),
+    uniqueStrings(
+      filterWorkflowPilotLines(
+        [
+          ...(battleboard?.primary_route?.collapse_risks ?? []),
+          ...(battleboard?.global_collapse_risks ?? []),
+          ...(defencePlan?.kill_switches?.map((k) => k.if) ?? []),
+          ...(defencePlan?.risks_if_we_fight ?? []),
+          ...(defencePlan?.risks_pivots_short ?? []),
+          ...(defencePlan?.risks_fallbacks ?? []),
+          ...(snapshot?.strategy.pressurePoints?.map((p) => p.label) ?? []),
+          ...(proceduralSafety?.outstandingItems ?? []),
+          ...chaseItems.map((m) => `Outstanding: ${m}`),
+          ...(defencePlan?.disclosure_weapon_steps ?? []),
+        ],
+        workflowContext ?? {},
+        { max: 24, useFallbacks: false },
+      ),
+    ),
     positionNotice,
   );
 
@@ -668,10 +837,16 @@ function deriveRiskColumns(
   }
 
   if (evidential.length === 0 && battleboard?.primary_route?.collapse_risks?.length) {
-    evidential.push(...battleboard.primary_route.collapse_risks);
+    evidential.push(
+      ...filterWorkflowPilotLines(battleboard.primary_route.collapse_risks, workflowContext ?? {}, {
+        max: 3,
+      }),
+    );
   }
   if (strategic.length === 0 && battleboard?.global_collapse_risks?.length) {
-    for (const g of battleboard.global_collapse_risks) {
+    for (const g of filterWorkflowPilotLines(battleboard.global_collapse_risks, workflowContext ?? {}, {
+      max: 3,
+    })) {
       if (isStrategicRisk(g)) strategic.push(g);
       else if (!procedural.includes(g) && !evidential.includes(g)) evidential.push(g);
     }

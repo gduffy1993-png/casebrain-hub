@@ -200,3 +200,37 @@ export function filterCourtTodayCasesForPilotUser<
 export function getPostLoginPath(): string {
   return isCriminalPilotMode() ? "/court-today" : "/dashboard";
 }
+
+/** Non-admin pilot demo: uploads hidden in UI only (backend unchanged). */
+export function isPilotDemoUploadDisabled(userId?: string | null): boolean {
+  return isCriminalPilotMode() && !isInternalAdminUser(userId);
+}
+
+/** Non-admin pilot demo: hide Disclosure Chase mark chased/received (local state UI only). */
+export function isPilotDemoChaseActionsDisabled(userId?: string | null): boolean {
+  return isPilotDemoUploadDisabled(userId);
+}
+
+export const PILOT_DEMO_UPLOAD_NOTICE =
+  "Pilot demo mode — uploads are disabled for this session.";
+
+const LEGACY_DISCLOSURE_CHASE_PREFIX = "casebrain:disclosure-chase:";
+
+/** Isolated chase status storage for pilot demo (avoids stale dev localStorage). */
+export function pilotDisclosureChaseStorageKey(caseId: string): string {
+  return `casebrain:pilot-demo-chase:v1:${caseId}`;
+}
+
+export function legacyDisclosureChaseStorageKey(caseId: string): string {
+  return `${LEGACY_DISCLOSURE_CHASE_PREFIX}${caseId}`;
+}
+
+/** Drop old chase keys when starting a pilot demo session. */
+export function clearLegacyDisclosureChaseStorage(caseId: string): void {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.removeItem(legacyDisclosureChaseStorageKey(caseId));
+  } catch {
+    /* ignore */
+  }
+}

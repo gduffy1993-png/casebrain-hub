@@ -318,7 +318,12 @@ export function resolveCaseHeaderMetadata(input: {
 }
 
 export function sanitizeHeaderClient(label: string): string {
-  const t = label.trim();
+  const t = label
+    .trim()
+    .replace(/\bPrimary allegation\b.*$/i, "")
+    .replace(/\bPrimary\b.*$/i, "")
+    .replace(/\b(sheet\s*\/\s*indictment|indictment|extract)\b.*$/i, "")
+    .trim();
   if (!t || /^client\b/i.test(t) || /not safely extracted/i.test(t)) {
     return NOT_EXTRACTED_CLIENT;
   }
@@ -326,7 +331,11 @@ export function sanitizeHeaderClient(label: string): string {
 }
 
 export function sanitizeHeaderAllegation(raw: string): string {
-  const t = raw.trim();
+  const t = raw
+    .trim()
+    .replace(/^(?:primary allegation)\s*/i, "")
+    .replace(/\b(sheet\s*\/\s*indictment|indictment|extract)\b.*$/i, "")
+    .trim();
   if (!t) return NOT_EXTRACTED_OFFENCE;
   const l = t.toLowerCase();
   if (

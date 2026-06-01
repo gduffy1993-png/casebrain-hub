@@ -42,6 +42,7 @@ import { createClient } from "@/lib/supabase/browser";
 import {
   CRIMINAL_PILOT_NAV_HREFS,
   isCriminalPilotMode,
+  isPilotDemoUploadDisabled,
   shouldShowInternalDevTools,
 } from "@/lib/pilot-mode";
 
@@ -300,8 +301,11 @@ function SidebarContent() {
   const pilotNavActive = isCriminalPilotMode() && !shouldShowInternalDevTools(userId);
   const pilotNavSet = new Set<string>(CRIMINAL_PILOT_NAV_HREFS);
 
+  const pilotUploadHidden = pilotNavActive && isPilotDemoUploadDisabled(userId);
+
   const visibleItems = NAV_ITEMS.filter((item) => {
     if (item.hideFromNav) return false;
+    if (pilotUploadHidden && item.href === "/upload") return false;
     if (pilotNavActive && !pilotNavSet.has(item.href)) return false;
     return !item.labsOnly || labsEnabled || shouldShowInternalDevTools(userId);
   });

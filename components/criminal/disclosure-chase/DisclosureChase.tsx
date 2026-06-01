@@ -34,6 +34,24 @@ import {
   sanitizeHeaderAllegation,
   sanitizeHeaderClient,
 } from "@/lib/criminal/resolve-case-header-metadata";
+import {
+  cleanPilotHeaderClient,
+  cleanPilotCourtHeaderCell,
+  cleanPilotHearingHeaderCell,
+  pilotCaseBrainPositionStatus,
+  pilotPositionDisplayLabel,
+  pilotDisplayMetadataNote,
+  workflowHeaderOverrides,
+} from "@/lib/criminal/pilot-workflow";
+import {
+  clearLegacyDisclosureChaseStorage,
+  isCriminalPilotMode,
+  isPilotDemoUploadDisabled,
+  isPilotDemoChaseActionsDisabled,
+  pilotDisclosureChaseStorageKey,
+  shouldShowInternalDevTools,
+} from "@/lib/pilot-mode";
+import { createClient } from "@/lib/supabase/browser";
 
 const LOCAL_STORAGE_PREFIX = "casebrain:disclosure-chase:";
 
@@ -136,6 +154,7 @@ function ChaseItemCard({
   onSelect,
   onMarkChased,
   onMarkReceived,
+  hideChaseStateActions = false,
 }: {
   item: DisclosureChaseItem;
   status: ChaseItemStatus;
@@ -143,6 +162,7 @@ function ChaseItemCard({
   onSelect: () => void;
   onMarkChased: () => void;
   onMarkReceived: () => void;
+  hideChaseStateActions?: boolean;
 }) {
   const [copied, setCopied] = useState<"chase" | "court" | null>(null);
 
@@ -184,12 +204,16 @@ function ChaseItemCard({
         </div>
       </dl>
       <div className="px-4 pb-3 flex flex-wrap gap-1.5" onClick={(e) => e.stopPropagation()}>
-        <Button type="button" size="sm" variant="outline" className="h-7 text-xs" onClick={onMarkChased}>
-          Mark chased
-        </Button>
-        <Button type="button" size="sm" variant="outline" className="h-7 text-xs" onClick={onMarkReceived}>
-          Mark received
-        </Button>
+        {!hideChaseStateActions && (
+          <>
+            <Button type="button" size="sm" variant="outline" className="h-7 text-xs" onClick={onMarkChased}>
+              Mark chased
+            </Button>
+            <Button type="button" size="sm" variant="outline" className="h-7 text-xs" onClick={onMarkReceived}>
+              Mark received
+            </Button>
+          </>
+        )}
         <Button
           type="button"
           size="sm"
@@ -221,12 +245,14 @@ function DetailPanel({
   brief,
   onMarkChased,
   onMarkReceived,
+  hideChaseStateActions = false,
 }: {
   item: DisclosureChaseItem;
   status: ChaseItemStatus;
   brief: DisclosureChaseBrief;
   onMarkChased: () => void;
   onMarkReceived: () => void;
+  hideChaseStateActions?: boolean;
 }) {
   return (
     <aside className={`${workflowCard} sticky top-4`}>
@@ -252,7 +278,9 @@ function DetailPanel({
           </p>
           {item.linkedRoute && (
             <p>
-              <span className="text-slate-500">Battleboard route: </span>
+              <span className="text-slate-500">
+                {isCriminalPilotMode() ? "Linked route: " : "Battleboard route: "}
+              </span>
               {item.linkedRoute}
             </p>
           )}
@@ -285,15 +313,17 @@ function DetailPanel({
             {item.courtLine}
           </p>
         </div>
-        <div className="flex flex-wrap gap-2 pt-1">
-          <Button type="button" size="sm" variant="outline" onClick={onMarkChased}>
-            Mark chased
-          </Button>
-          <Button type="button" size="sm" variant="outline" onClick={onMarkReceived}>
-            <Check className="h-3.5 w-3.5 mr-1" />
-            Mark received
-          </Button>
-        </div>
+        {!hideChaseStateActions ? (
+          <div className="flex flex-wrap gap-2 pt-1">
+            <Button type="button" size="sm" variant="outline" onClick={onMarkChased}>
+              Mark chased
+            </Button>
+            <Button type="button" size="sm" variant="outline" onClick={onMarkReceived}>
+              <Check className="h-3.5 w-3.5 mr-1" />
+              Mark received
+            </Button>
+          </div>
+        ) : null}
         <p className="text-[10px] text-slate-500 border-t border-slate-100 pt-3">
           Case-wide court line (provisional): {brief.safeCourtLine}
         </p>
@@ -322,25 +352,53 @@ export function DisclosureChase({
   const [localStatus, setLocalStatus] = useState<LocalChaseMap>({});
   const [showAdditional, setShowAdditional] = useState(false);
 
+  const [pilotFreshChase, setPilotFreshChase] = useState(false);
+  const [pilotUploadDisabled, setPilotUploadDisabled] = useState(false);
+  const [pilotChaseActionsHidden, setPilotChaseActionsHidden] = useState(false);
+
   useEffect(() => {
-    try {
-      const raw = localStorage.getItem(`${LOCAL_STORAGE_PREFIX}${caseId}`);
-      if (raw) setLocalStatus(JSON.parse(raw) as LocalChaseMap);
-    } catch {
-      /* ignore */
-    }
+    let cancelled = false;
+    createClient()
+      .auth.getUser()
+      .then(({ data: { user } }) => {
+        if (cancelled) return;
+        const fresh = isCriminalPilotMode() && !shouldShowInternalDevTools(user?.id);
+        setPilotFreshChase(fresh);
+        setPilotUploadDisabled(isPilotDemoUploadDisabled(user?.id));
+        setPilotChaseActionsHidden(isPilotDemoChaseActionsDisabled(user?.id));
+        if (fresh) clearLegacyDisclosureChaseStorage(caseId);
+        try {
+          const key = fresh
+            ? pilotDisclosureChaseStorageKey(caseId)
+            : `${LOCAL_STORAGE_PREFIX}${caseId}`;
+          const raw = localStorage.getItem(key);
+          if (raw) setLocalStatus(JSON.parse(raw) as LocalChaseMap);
+          else setLocalStatus({});
+        } catch {
+          setLocalStatus({});
+        }
+      })
+      .catch(() => {
+        if (!cancelled) setLocalStatus({});
+      });
+    return () => {
+      cancelled = true;
+    };
   }, [caseId]);
 
   const persistLocal = useCallback(
     (next: LocalChaseMap) => {
       setLocalStatus(next);
       try {
-        localStorage.setItem(`${LOCAL_STORAGE_PREFIX}${caseId}`, JSON.stringify(next));
+        const key = pilotFreshChase
+          ? pilotDisclosureChaseStorageKey(caseId)
+          : `${LOCAL_STORAGE_PREFIX}${caseId}`;
+        localStorage.setItem(key, JSON.stringify(next));
       } catch {
         /* ignore */
       }
     },
-    [caseId],
+    [caseId, pilotFreshChase],
   );
 
   const markChased = (id: string) => persistLocal({ ...localStatus, [id]: "Chased" });
@@ -441,47 +499,90 @@ export function DisclosureChase({
     [snapshot, matter, bundleSource, matterState],
   );
 
-  const clientLabel = sanitizeHeaderClient(headerMeta.clientLabel);
-  const allegation = sanitizeHeaderAllegation(headerMeta.allegation);
+  const clientLabelBase = sanitizeHeaderClient(headerMeta.clientLabel);
+  const allegationBase = sanitizeHeaderAllegation(headerMeta.allegation);
+  const titleBase = snapshot?.caseMeta?.title?.trim() || "Criminal case";
+  const clientLabel = isCriminalPilotMode() ? cleanPilotHeaderClient(clientLabelBase) : clientLabelBase;
+  const pilotHeader = useMemo(
+    () =>
+      workflowHeaderOverrides(titleBase, {
+        allegation: allegationBase,
+        routeTitle: battleboard?.primary_route?.title,
+        bundleText: bundleSource?.frontMatterScan ?? null,
+        clientLabel,
+      }),
+    [titleBase, allegationBase, clientLabel, battleboard?.primary_route?.title, bundleSource?.frontMatterScan],
+  );
+  const caseTitle = pilotHeader?.displayTitle ?? pilotHeader?.title ?? titleBase;
+  const allegation = pilotHeader?.allegation ?? allegationBase;
+  const workflowContext = useMemo(
+    () => ({
+      caseTitle,
+      allegation,
+      routeTitle: battleboard?.primary_route?.title,
+      bundleText: bundleSource?.frontMatterScan ?? null,
+      clientLabel,
+      profileHint: pilotHeader?.profile ?? null,
+    }),
+    [caseTitle, allegation, clientLabel, battleboard?.primary_route?.title, bundleSource?.frontMatterScan, pilotHeader?.profile],
+  );
   const stage = headerMeta.stage;
   const headerLoading = snapshotLoading || bundleLoading;
-  const hearingDisplay =
-    headerLoading && /not safely extracted/i.test(headerMeta.nextHearing)
+  const pilotMode = isCriminalPilotMode();
+  const hearingDateIso =
+    bundleSource?.caseMetadata?.nextHearingIso ?? snapshot?.caseMeta?.hearingNextAt ?? null;
+  const courtDisplay = pilotMode
+    ? cleanPilotCourtHeaderCell(headerMeta.court)
+    : headerMeta.court?.trim() || "Court not safely extracted";
+  const hearingDisplay = pilotMode
+    ? cleanPilotHearingHeaderCell(
+        headerLoading ? "…" : headerMeta.nextHearing,
+        hearingDateIso,
+      )
+    : headerLoading && /not safely extracted/i.test(headerMeta.nextHearing)
       ? "…"
       : headerMeta.nextHearing;
-  const metadataNote = headerMeta.metadataNote;
+  const metadataNote = pilotDisplayMetadataNote(headerMeta.metadataNote);
 
-  const positionStatus =
-    hasSavedPosition && savedPosition?.position_text?.trim()
-      ? savedPosition.position_text.split(/[.!?]/)[0].trim() + "."
-      : headerMeta.defencePosition
-        ? headerMeta.defencePosition.length > 100
+  const positionStatus = useMemo(() => {
+    let raw: string;
+    if (hasSavedPosition && savedPosition?.position_text?.trim()) {
+      raw = savedPosition.position_text.split(/[.!?]/)[0].trim() + ".";
+    } else if (headerMeta.defencePosition) {
+      raw =
+        headerMeta.defencePosition.length > 100
           ? `${headerMeta.defencePosition.slice(0, 97)}…`
-          : headerMeta.defencePosition
-        : "Position not safely recorded yet";
+          : headerMeta.defencePosition;
+    } else if (pilotMode) {
+      raw = pilotCaseBrainPositionStatus(false);
+    } else {
+      raw = "Position not safely recorded yet";
+    }
+    return pilotMode ? pilotPositionDisplayLabel(raw, workflowContext) : raw;
+  }, [hasSavedPosition, savedPosition, headerMeta.defencePosition, pilotMode, workflowContext]);
 
   const brief: DisclosureChaseBrief = useMemo(
     () =>
       buildDisclosureChaseBrief({
         caseId,
-        caseTitle: snapshot?.caseMeta?.title?.trim() || "Criminal case",
+        caseTitle,
         clientLabel,
         allegation,
         stage,
         hearingStatus: hearingDisplay,
-        hearingDateIso:
-          bundleSource?.caseMetadata?.nextHearingIso ??
-          snapshot?.caseMeta?.hearingNextAt ??
-          null,
+        hearingDateIso,
         bundleHealth: deriveBundleHealth(snapshot, bundleSource, battleboard),
         positionStatus,
         battleboard,
         snapshotMissing: snapshot?.evidence.missingEvidence,
         proceduralOutstanding: effectiveProceduralSafety?.outstandingItems,
+        bundleText: bundleSource?.frontMatterScan ?? null,
+        profileHint: pilotHeader?.profile ?? null,
       }),
     [
       caseId,
       snapshot,
+      caseTitle,
       clientLabel,
       allegation,
       stage,
@@ -491,6 +592,7 @@ export function DisclosureChase({
       effectiveProceduralSafety,
       headerMeta.nextHearing,
       hearingDisplay,
+      pilotHeader?.profile,
     ],
   );
 
@@ -529,7 +631,11 @@ export function DisclosureChase({
   return (
     <div className="min-h-0 pb-8 text-slate-900" data-testid="disclosure-chase">
       <div className="max-w-[1400px] space-y-4">
-        <CaseWorkflowShell caseId={caseId}>
+        <CaseWorkflowShell
+          caseId={caseId}
+          pilotUploadDisabled={pilotUploadDisabled}
+          pilotRecordPositionHidden={pilotUploadDisabled}
+        >
         <header className={`${workflowCard} overflow-hidden`}>
           <div className="px-4 py-3 border-b border-slate-100 bg-gradient-to-r from-violet-50/80 to-white flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div className="min-w-0">
@@ -540,10 +646,12 @@ export function DisclosureChase({
                   Source material
                 </Badge>
               </div>
-              <p className={`mt-1 text-sm ${workflowMuted}`}>
-                {clientLabel} · {allegation}
-              </p>
-              <p className={`text-xs ${workflowMuted} mt-0.5`}>{brief.caseTitle}</p>
+              <p className="mt-1 text-sm font-medium text-slate-800">{caseTitle}</p>
+              {!pilotHeader && (
+                <p className={`text-xs ${workflowMuted} mt-0.5`}>
+                  {clientLabel} · {allegation}
+                </p>
+              )}
             </div>
           </div>
 
@@ -551,7 +659,7 @@ export function DisclosureChase({
             {[
               {
                 label: "Court",
-                value: headerMeta.court?.trim() || "Court not safely extracted",
+                value: courtDisplay,
               },
               { label: "Stage", value: headerLoading ? "…" : stage },
               { label: "Bundle", value: brief.bundleHealth },
@@ -646,6 +754,7 @@ export function DisclosureChase({
                       onSelect={() => setSelectedId(item.id)}
                       onMarkChased={() => markChased(item.id)}
                       onMarkReceived={() => markReceived(item.id)}
+                      hideChaseStateActions={pilotChaseActionsHidden}
                     />
                   ))}
                   {filteredAdditional.length > 0 && (
@@ -673,6 +782,7 @@ export function DisclosureChase({
                               onSelect={() => setSelectedId(item.id)}
                               onMarkChased={() => markChased(item.id)}
                               onMarkReceived={() => markReceived(item.id)}
+                              hideChaseStateActions={pilotChaseActionsHidden}
                             />
                           ))}
                         </div>
@@ -687,13 +797,16 @@ export function DisclosureChase({
                     brief={brief}
                     onMarkChased={() => markChased(selectedItem.id)}
                     onMarkReceived={() => markReceived(selectedItem.id)}
+                    hideChaseStateActions={pilotChaseActionsHidden}
                   />
                 )}
               </div>
             )}
 
             <p className="text-[10px] text-center text-slate-500">
-              Provisional · appears outstanding on file · solicitor review · Mark chased/received stored locally only
+              {pilotChaseActionsHidden
+                ? "Provisional · appears outstanding on file · solicitor review"
+                : "Provisional · appears outstanding on file · solicitor review · Mark chased/received stored locally only"}
             </p>
           </>
         )}

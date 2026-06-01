@@ -1,11 +1,20 @@
 import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
 import { buildMetadataScan } from "@/lib/criminal/extract-bundle-case-metadata";
+import {
+  cleanupPilotVisiblePunctuation,
+  looksLikePilotBundleReferenceLine,
+  pilotCaseSummaryLead,
+  sanitizePilotVisibleLine,
+  softenPilotRiskWording,
+  type WorkflowProfileContext,
+} from "@/lib/criminal/pilot-workflow";
 
 const FALLBACK =
   "Case summary not safely extracted yet — open documents or rerun analysis.";
 
-function cleanSnippet(text: string, maxLen: number): string {
-  const t = text.replace(/\s+/g, " ").trim();
+function cleanSnippet(text: string, maxLen: number, pilotMode = false): string {
+  let t = text.replace(/\s+/g, " ").trim();
+  if (pilotMode) t = cleanupPilotVisiblePunctuation(t);
   if (!t) return "";
   if (t.length <= maxLen) return t;
   return `${t.slice(0, maxLen - 1).trim()}…`;
@@ -120,6 +129,10 @@ export function buildCaseSummarySnippet(input: {
   bundleMg5?: string | null;
   /** Front-matter scan from bundle-source (not full 1000-page text). */
   bundleCombinedText?: string | null;
+  /** Clean profile route label — preferred over battleboard why_it_helps in pilot. */
+  primaryPressureRouteLabel?: string | null;
+  pilotMode?: boolean;
+  workflowContext?: WorkflowProfileContext | null;
 }): string {
   const client = input.clientLabel.trim();
   const allegation = input.allegation.trim();
@@ -128,7 +141,14 @@ export function buildCaseSummarySnippet(input: {
 
   const lines: string[] = [];
 
-  if (hasClient && hasAllegation) {
+  const pilotLead =
+    input.pilotMode && input.workflowContext
+      ? pilotCaseSummaryLead(client, input.workflowContext)
+      : null;
+
+  if (pilotLead) {
+    lines.push(`${pilotLead} The summary remains conditional on served material.`);
+  } else if (hasClient && hasAllegation) {
     const complainant =
       input.complainant?.trim() && !notExtracted(input.complainant)
         ? ` against ${input.complainant.trim()}`
@@ -149,22 +169,43 @@ export function buildCaseSummarySnippet(input: {
 
   const defence = input.defencePosition?.trim();
   if (defence && defence.length >= 12 && !/not safely recorded/i.test(defence)) {
-    lines.push(`Defence position on file (provisional): ${cleanSnippet(defence, 160)}`);
-  } else if (input.battleboard?.position_notice?.trim()) {
+    const defenceLine =
+      input.pilotMode && input.workflowContext
+        ? sanitizePilotVisibleLine(defence, input.workflowContext) ?? defence
+        : defence;
+    lines.push(`Defence position on file (provisional): ${cleanSnippet(defenceLine, 160)}`);
+  } else if (!input.pilotMode && input.battleboard?.position_notice?.trim()) {
     lines.push(cleanSnippet(input.battleboard.position_notice, 140));
   }
 
   const route = input.battleboard?.primary_route;
-  if (route?.why_it_helps?.[0]) {
-    lines.push(`Key pressure route (conditional): ${cleanSnippet(route.why_it_helps[0], 120)}`);
-  } else if (route?.title) {
-    lines.push(`Primary route on file: ${route.title} — conditional on served material.`);
+  const pressureLabel = input.primaryPressureRouteLabel?.trim();
+  const pilot = Boolean(input.pilotMode);
+  if (pressureLabel) {
+    lines.push(`Key pressure route (conditional): ${cleanSnippet(pressureLabel, 120, pilot)}`);
+  } else if (route?.why_it_helps?.[0] && !looksLikePilotBundleReferenceLine(route.why_it_helps[0])) {
+    const routeLine =
+      pilot && input.workflowContext
+        ? sanitizePilotVisibleLine(route.why_it_helps[0], input.workflowContext) ??
+          route.why_it_helps[0]
+        : route.why_it_helps[0];
+    lines.push(`Key pressure route (conditional): ${cleanSnippet(routeLine, 120, pilot)}`);
+  } else if (route?.title && !looksLikePilotBundleReferenceLine(route.title)) {
+    lines.push(
+      `Primary route on file: ${cleanSnippet(route.title, 80, pilot)} — conditional on served material.`,
+    );
   }
 
   const disputes: string[] = [];
   for (const r of route?.collapse_risks ?? []) {
     if (disputes.length >= 2) break;
-    const t = cleanSnippet(r, 80);
+    const raw =
+      input.pilotMode && input.workflowContext
+        ? sanitizePilotVisibleLine(r, input.workflowContext) ?? ""
+        : input.pilotMode
+          ? softenPilotRiskWording(r)
+          : r;
+    const t = cleanSnippet(raw, 80, pilot);
     if (t) disputes.push(t);
   }
   if (disputes.length) {
@@ -173,9 +214,14 @@ export function buildCaseSummarySnippet(input: {
 
   const chase = (input.chaseItems ?? []).filter(Boolean).slice(0, 2);
   if (chase.length) {
-    lines.push(`Outstanding material: ${chase.map((c) => cleanSnippet(c, 90)).join("; ")}.`);
+    lines.push(`Outstanding material: ${chase.map((c) => cleanSnippet(c, 90, pilot)).join("; ")}.`);
   } else if ((input.battleboard?.urgent_next_moves?.length ?? 0) > 0) {
-    lines.push(cleanSnippet(input.battleboard!.urgent_next_moves![0]!, 120));
+    const move =
+      pilot && input.workflowContext
+        ? sanitizePilotVisibleLine(input.battleboard!.urgent_next_moves![0]!, input.workflowContext) ??
+          input.battleboard!.urgent_next_moves![0]!
+        : input.battleboard!.urgent_next_moves![0]!;
+    lines.push(cleanSnippet(move, 120, pilot));
   }
 
   let trimmed = lines.filter(Boolean);
@@ -209,5 +255,10 @@ export function buildCaseSummarySnippet(input: {
 
   trimmed = trimmed.slice(0, 6);
   if (trimmed.length === 0) return FALLBACK;
+  if (input.pilotMode) {
+    return cleanupPilotVisiblePunctuation(
+      trimmed.map((line) => cleanupPilotVisiblePunctuation(line)).join("\n"),
+    );
+  }
   return trimmed.join("\n");
 }

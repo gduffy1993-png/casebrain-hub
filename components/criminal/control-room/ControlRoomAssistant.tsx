@@ -4,6 +4,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Loader2, MessageSquare, Send, X } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { usePilotDocumentsTabActive } from "@/components/criminal/workflow/useCaseWorkflowActiveTab";
+import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import {
   BATTLEBOARD_FALLBACK_TIMEOUT_HEADER,
   SUGGESTED_PROMPTS,
@@ -194,7 +196,7 @@ function AssistantChat({
             disabled={sending}
             onClick={() => sendMessage(prompt)}
             className="text-[10px] px-1.5 py-0.5 rounded border border-border/60 bg-muted/30 text-foreground hover:bg-muted/60 transition-colors"
-            title="Answers from Battleboard when available — no AI call"
+            title="Answers from Control Room and case documents when available — no AI call"
           >
             {prompt}
           </button>
@@ -204,7 +206,7 @@ function AssistantChat({
       <div className="flex-1 overflow-y-auto p-2.5 space-y-2 min-h-0">
         {messages.length === 0 && (
           <p className="text-xs text-muted-foreground leading-relaxed">
-            Suggested prompts answer from the dashboard Battleboard first. Custom questions use the assistant
+            Suggested prompts answer from Control Room and case documents first. Custom questions use the assistant
             when available — conditional only; solicitor review required.
           </p>
         )}
@@ -254,6 +256,11 @@ function AssistantChat({
 /** Desktop fixed dock + mobile FAB drawer — assistant is secondary to the dashboard. */
 export function ControlRoomAssistantDock(props: ControlRoomAssistantProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const documentsFocus = usePilotDocumentsTabActive();
+
+  useEffect(() => {
+    if (documentsFocus) setMobileOpen(false);
+  }, [documentsFocus]);
 
   useEffect(() => {
     if (!mobileOpen) return;
@@ -267,6 +274,10 @@ export function ControlRoomAssistantDock(props: ControlRoomAssistantProps) {
       document.body.style.overflow = "";
     };
   }, [mobileOpen]);
+
+  if (isCriminalPilotMode() && documentsFocus) {
+    return null;
+  }
 
   return (
     <>

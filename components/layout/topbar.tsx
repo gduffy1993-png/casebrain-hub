@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/browser";
 import { Button } from "@/components/ui/button";
 import { GlobalSolicitorRoleSelector } from "./GlobalSolicitorRoleSelector";
-import { isCriminalPilotMode } from "@/lib/pilot-mode";
+import { isCriminalPilotMode, isPilotDemoUploadDisabled } from "@/lib/pilot-mode";
 
 type TopbarProps = {
   onQuickUpload?: () => void;
@@ -14,7 +14,7 @@ type TopbarProps = {
 
 export function Topbar({ onQuickUpload }: TopbarProps) {
   const pilotMode = isCriminalPilotMode();
-  const [user, setUser] = useState<{ email?: string; fullName?: string } | null>(null);
+  const [user, setUser] = useState<{ id?: string; email?: string; fullName?: string } | null>(null);
   const [orgName, setOrgName] = useState<string>("Organisation");
   const router = useRouter();
 
@@ -27,6 +27,7 @@ export function Topbar({ onQuickUpload }: TopbarProps) {
 
       if (currentUser) {
         setUser({
+          id: currentUser.id,
           email: currentUser.email || undefined,
           fullName: currentUser.user_metadata?.name || currentUser.email || undefined,
         });
@@ -86,14 +87,16 @@ export function Topbar({ onQuickUpload }: TopbarProps) {
             </>
           )}
         </Button>
-        <Button
-          variant="primary"
-          size="sm"
-          className="gap-2"
-          onClick={onQuickUpload ?? (() => router.push("/upload"))}
-        >
-          <Plus className="h-4 w-4" /> New Upload
-        </Button>
+        {!isPilotDemoUploadDisabled(user?.id) && (
+          <Button
+            variant="primary"
+            size="sm"
+            className="gap-2"
+            onClick={onQuickUpload ?? (() => router.push("/upload"))}
+          >
+            <Plus className="h-4 w-4" /> New Upload
+          </Button>
+        )}
         <div className="flex items-center gap-1">
           {!pilotMode && (
             <Button
