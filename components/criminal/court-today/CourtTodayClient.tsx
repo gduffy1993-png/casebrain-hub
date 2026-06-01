@@ -12,6 +12,7 @@ import { resolveCourtCaseId } from "./courtCaseBrief";
 import {
   buildCourtTodayBuckets,
   countBuckets,
+  hasStructuredHearingDate,
   pickRecentNoDateCandidates,
   RECENT_NO_DATE_ENRICH_LIMIT,
   scheduledCaseIdsFromBuckets,
@@ -216,11 +217,15 @@ export function CourtTodayClient() {
     };
   }, [displayBuckets]);
 
-  /** Background: enrich latest no-date matters only (not all 961). */
+  /** Background: enrich no-date matters without scanning the full historical caseload. */
   useEffect(() => {
     if (loading || rows.length === 0) return;
 
-    const candidates = pickRecentNoDateCandidates(rows, RECENT_NO_DATE_ENRICH_LIMIT);
+    const pilotMode = isCriminalPilotMode();
+    const candidates =
+      pilotMode && !showInternalDevTools
+        ? rows.filter((r) => !hasStructuredHearingDate(r))
+        : pickRecentNoDateCandidates(rows, RECENT_NO_DATE_ENRICH_LIMIT);
     if (candidates.length === 0) {
       setStatusLine(null);
       return;
@@ -248,7 +253,7 @@ export function CourtTodayClient() {
     return () => {
       cancelled = true;
     };
-  }, [loading, rows.length]);
+  }, [loading, rows, showInternalDevTools]);
 
   const scheduledIdsKey = useMemo(
     () => scheduledCaseIdsFromBuckets(displayBuckets, 48).join(","),
@@ -459,7 +464,7 @@ export function CourtTodayClient() {
               pilotMode={pilotMode}
             />
           ))}
-          {displayBuckets.no_hearing.length > 0 && (
+          {displayBuckets.no_hearing.length > 0 && (!pilotMode || showInternalDevTools) && (
             <CourtTodayReviewSection
               items={displayBuckets.no_hearing}
               onEnrichCaseIds={enrichCaseIds}

@@ -397,6 +397,13 @@ function extractNextHearing(scan: string): {
     ]) ?? extractInlineLabeled(scan, ["Next hearing", "Next Hearing", "Hearing date"]) ?? null;
 
   if (!nextHearingRaw) {
+    const weekdayLine = scan.match(
+      /\bNext hearing\s*:?\s*((?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\s+\d{1,2}\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4}(?:\s+at\s+\d{1,2}:\d{2})?(?:\s+for\s+[A-Za-z][A-Za-z0-9\/\-\s]{1,40})?)/i,
+    );
+    if (weekdayLine?.[1]) nextHearingRaw = cleanLineValue(weekdayLine[1]);
+  }
+
+  if (!nextHearingRaw) {
     const inlineDate = scan.match(
       /\bNext hearing\s+(\d{1,2}\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4}(?:\s+at\s+\d{1,2}:\d{2})?)/i,
     );
@@ -421,6 +428,13 @@ function extractNextHearing(scan: string): {
       );
       if (dateIn?.[1]) nextHearingRaw = cleanLineValue(dateIn[1]);
     }
+  }
+
+  if (nextHearingRaw) {
+    nextHearingRaw = nextHearingRaw
+      .replace(/\s+\b(?:Defendant|Accused|Client)\b\s*[:\-].*$/i, "")
+      .replace(/\s+\bCourt\b\s*[:\-].*$/i, "")
+      .trim();
   }
 
   let nextHearingIso: string | null = null;

@@ -11,6 +11,7 @@ import {
   sanitizeHeaderAllegation,
   sanitizeHeaderClient,
 } from "@/lib/criminal/resolve-case-header-metadata";
+import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
 import type {
   CourtCaseBrief,
@@ -24,6 +25,8 @@ const NO_HEARING_LABEL = "No hearing date safely detected";
 const NEEDS_REVIEW_LABEL = "Needs hearing review";
 
 const INVALID_CASE_IDS = new Set(["", "{id}", "undefined", "null"]);
+const PILOT_BAD_ALLEGATION_RE =
+  /\b(sheet|indictment|primary allegation|not safely extracted|check charge sheet)\b/i;
 
 export { buildControlRoomCaseHref as buildCaseControlRoomHref, buildClassicCaseHref as buildStrategyHref };
 
@@ -228,6 +231,45 @@ function chaseSummary(items: string[]): string {
   return `${items.slice(0, 2).join(" · ")}${items.length > 2 ? ` (+${items.length - 2} more)` : ""}`;
 }
 
+function cleanPilotClientLabel(raw: string): string {
+  const t = raw.trim();
+  if (!t) return t;
+  const cleaned = t
+    .replace(/\b(?:Primary allegation|Primary)\b.*$/i, "")
+    .replace(/\b(?:sheet\s*\/\s*indictment|charge sheet|indictment)\b.*$/i, "")
+    .trim();
+  const personLike = cleaned.match(/\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+){1,2})\b/);
+  return (personLike?.[1] ?? cleaned).trim();
+}
+
+function resolvePilotAllegationFallback(caseTitle: string): string | null {
+  const t = caseTitle.trim();
+  if (!t) return null;
+  if (/\bFraud\s*\/\s*Financial Crime\b/i.test(t)) return "Fraud by false representation";
+  if (/\bPWITS\s*\/\s*Phone Attribution\b/i.test(t)) {
+    return "PWITS Class A / possession with intent to supply";
+  }
+  if (/\bRobbery\s*\/\s*Poor ID\b/i.test(t)) return "Robbery";
+  return null;
+}
+
+function cleanPilotCourtLabel(raw: string): string {
+  let t = raw.trim();
+  if (!t) return t;
+
+  // Some sources accidentally concatenate multiple labeled fields into `court`.
+  // Keep only the court name portion.
+  t = t
+    .replace(/\.\s*Next hearing\b[\s\S]*/i, "")
+    .replace(/\s+Next hearing:\s*[\s\S]*/i, "")
+    .replace(/\.\s*Defendant:\s*[\s\S]*/i, "")
+    .replace(/\s+Defendant:\s*[\s\S]*/i, "")
+    .replace(/\s+at\s+\d{1,2}:\d{2}\s+for\s+PTPH\b[\s\S]*/i, "")
+    .trim();
+
+  return t;
+}
+
 export function buildCourtCaseBrief(
   row: CourtCasesApiRow,
   enrichment: CourtTodayEnrichment = {},
@@ -237,8 +279,14 @@ export function buildCourtCaseBrief(
   const headerMeta = resolveCourtHeader(row, enrichment);
   const hearingDate = resolveCourtHearingDate(row, enrichment);
   const bucket = resolveHearingBucket(hearingDate);
-  const clientLabel = sanitizeHeaderClient(headerMeta.clientLabel);
-  const allegation = sanitizeHeaderAllegation(headerMeta.allegation);
+  const pilotMode = isCriminalPilotMode();
+  const clientLabelBase = sanitizeHeaderClient(headerMeta.clientLabel);
+  const allegationBase = sanitizeHeaderAllegation(headerMeta.allegation);
+  const clientLabel = pilotMode ? cleanPilotClientLabel(clientLabelBase) : clientLabelBase;
+  const allegation =
+    pilotMode && PILOT_BAD_ALLEGATION_RE.test(allegationBase)
+      ? resolvePilotAllegationFallback(row.title) ?? allegationBase
+      : allegationBase;
   const stage =
     headerMeta.stage && !/^stage not recorded$/i.test(headerMeta.stage)
       ? headerMeta.stage
@@ -288,10 +336,14 @@ export function buildCourtCaseBrief(
     ? row.strategy_preview?.trim() || "Position recorded"
     : "Position not safely recorded yet";
 
-  const courtLabel =
-    headerMeta.court?.trim() && !/court not safely extracted/i.test(headerMeta.court)
-      ? headerMeta.court.trim()
-      : "Court not safely extracted";
+  const courtRaw = headerMeta.court?.trim();
+  const courtSafe =
+    courtRaw && !/court not safely extracted/i.test(courtRaw)
+      ? pilotMode
+        ? cleanPilotCourtLabel(courtRaw)
+        : courtRaw
+      : "";
+  const courtLabel = courtSafe.trim() ? courtSafe.trim() : "Court not safely extracted";
 
   return {
     caseId,
