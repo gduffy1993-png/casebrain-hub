@@ -68,18 +68,45 @@ export function resolveHearingBucket(hearingDate: Date | null, now = new Date())
   return "no_hearing";
 }
 
-function formatHearingDate(d: Date, type: string | null | undefined): string {
+function formatHearingDate(
+  d: Date,
+  type: string | null | undefined,
+  literalTimeLabel?: string | null,
+): string {
   const datePart = d.toLocaleDateString("en-GB", {
     weekday: "short",
     day: "numeric",
     month: "short",
     year: "numeric",
   });
-  const timePart = d.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
-  const hasTime = d.getHours() !== 0 || d.getMinutes() !== 0;
+  const timePart =
+    literalTimeLabel?.trim() ||
+    d.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
+  const hasTime = Boolean(literalTimeLabel?.trim()) || d.getHours() !== 0 || d.getMinutes() !== 0;
   const typePrefix = type?.trim() ? `${type.trim()} · ` : "";
   if (hasTime) return `${typePrefix}${datePart} · ${timePart}`;
   return `${typePrefix}${datePart}`;
+}
+
+function extractLiteralHearingTime(raw: string | null | undefined): string | null {
+  const t = raw?.trim();
+  if (!t) return null;
+  const match = t.match(/\b(?:at\s+)?([01]?\d|2[0-3]):([0-5]\d)\b/i);
+  if (!match) return null;
+  const hour = match[1]!.padStart(2, "0");
+  const minute = match[2]!;
+  return `${hour}:${minute}`;
+}
+
+function resolveHearingTimeLabel(
+  row: CourtCasesApiRow,
+  enrichment: CourtTodayEnrichment,
+  hearingDate: Date | null,
+): string | null {
+  const literalFromBundle = extractLiteralHearingTime(enrichment.bundleMetadata?.nextHearingRaw);
+  if (literalFromBundle) return literalFromBundle;
+  if (!hearingDate) return null;
+  return hearingDate.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
 }
 
 function buildCourtTodaySnapshotStub(row: CourtCasesApiRow): CaseSnapshot {
@@ -293,17 +320,14 @@ export function buildCourtCaseBrief(
       : "Stage not safely extracted — open case file";
   const chaseItems = buildChaseItems(row, battleboard);
   const readiness = resolveReadiness(row, bucket, chaseItems.length, battleboard, allegation, clientLabel);
+  const hearingTimeLabel = resolveHearingTimeLabel(row, enrichment, hearingDate);
 
   const hearingLabel = hearingDate
-    ? formatHearingDate(hearingDate, row.next_hearing_type)
+    ? formatHearingDate(hearingDate, row.next_hearing_type, hearingTimeLabel)
     : headerMeta.nextHearingSource !== "unavailable" &&
         !headerMeta.nextHearing.includes("not safely extracted")
       ? headerMeta.nextHearing
       : NO_HEARING_LABEL;
-
-  const hearingTimeLabel = hearingDate
-    ? hearingDate.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })
-    : null;
 
   const primaryRouteTitle =
     battleboard?.primary_route?.title?.trim() ||
