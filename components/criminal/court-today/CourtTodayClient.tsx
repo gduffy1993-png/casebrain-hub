@@ -217,6 +217,11 @@ export function CourtTodayClient() {
     };
   }, [displayBuckets]);
 
+  const scheduledMatters = useMemo(
+    () => [...displayBuckets.today, ...displayBuckets.tomorrow, ...displayBuckets.this_week],
+    [displayBuckets],
+  );
+
   /** Background: enrich no-date matters without scanning the full historical caseload. */
   useEffect(() => {
     if (loading || rows.length === 0) return;
@@ -304,6 +309,11 @@ export function CourtTodayClient() {
   }, [loading, rows.length, enrichmentByCase.size, stats]);
 
   const pilotMode = isCriminalPilotMode();
+  const pilotNonAdmin = pilotMode && !showInternalDevTools;
+  const pilotMissingEvidenceItems = useMemo(
+    () => scheduledMatters.reduce((sum, brief) => sum + brief.chaseItems.length, 0),
+    [scheduledMatters],
+  );
   const pilotEmpty = pilotMode && !loading && rows.length === 0;
   const scheduledEmpty =
     !loading && stats.today === 0 && stats.tomorrow === 0 && stats.thisWeek === 0;
@@ -353,12 +363,16 @@ export function CourtTodayClient() {
         <div className="flex flex-wrap gap-2">
           <StatPill label="Hearings today" value={stats.today} />
           <StatPill label="Matters at risk" value={stats.red} tone="danger" />
-          <StatPill label="Missing evidence" value={stats.amber} tone="warning" />
+          <StatPill
+            label={pilotNonAdmin ? "Missing evidence items" : "Missing evidence"}
+            value={pilotNonAdmin ? pilotMissingEvidenceItems : stats.amber}
+            tone="warning"
+          />
           <StatPill label="Ready for court" value={stats.ready} tone="success" />
           {!pilotMode && (
             <StatPill label="Needs hearing review" value={stats.review} tone="muted" />
           )}
-          {pilotMode && stats.review > 0 && (
+          {pilotMode && !pilotNonAdmin && stats.review > 0 && (
             <StatPill label="Needs review" value={stats.review} tone="muted" compact />
           )}
         </div>
