@@ -36,6 +36,31 @@ const EVAL_STRESS_CASE_TITLE_RE =
 
 const GENERIC_DEV_CASE_TITLE_RE = /^case\s*\d+\s*$/i;
 
+/** Real solicitor pilot demo matters — always visible to non-admin pilot users. */
+const PILOT_DEMO_MATTER_ALLOWLIST_RES = [
+  /\bR\s*v\.?\s*Marcus\s+Vale\b/i,
+  /\bR\s*v\.?\s*Kian\s+Doyle\b/i,
+  /\bR\s*v\.?\s*Leon\s+Marsh\b/i,
+] as const;
+
+export function isPilotDemoAllowlistMatter(title: string | null | undefined): boolean {
+  const t = title?.trim() ?? "";
+  if (!t) return false;
+  return PILOT_DEMO_MATTER_ALLOWLIST_RES.some((re) => re.test(t));
+}
+
+/** Internal date-control / QA matters hidden from non-admin pilot users (display-only). */
+export function isInternalPilotTestCaseTitle(title: string | null | undefined): boolean {
+  if (isPilotDemoAllowlistMatter(title)) return false;
+  const t = title?.trim() ?? "";
+  if (!t) return false;
+  if (/date-control/i.test(t)) return true;
+  if (/date control/i.test(t)) return true;
+  if (/\btest\b/i.test(t)) return true;
+  if (/\binternal\b/i.test(t)) return true;
+  return false;
+}
+
 export type PilotCaseFilterRow = {
   title?: string | null;
   summary?: string | null;
@@ -126,6 +151,7 @@ function hasDocumentDerivedTitle(title: string): boolean {
 /** Display-only: matter has real criminal metadata suitable for a pilot demo. */
 export function isPilotReadyCase(row: PilotCaseFilterRow): boolean {
   if (isEvalOrStressTestCase(row)) return false;
+  if (isInternalPilotTestCaseTitle(row.title)) return false;
   if (isGenericDevCaseTitle(row.title)) return false;
 
   const title = row.title?.trim() ?? "";

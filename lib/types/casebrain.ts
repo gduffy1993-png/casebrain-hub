@@ -93,8 +93,8 @@ export const PRACTICE_AREA_OPTIONS: Array<{
   },
   {
     value: "criminal",
-    label: "Criminal Defense Solicitor",
-    description: "Defense work, PACE compliance, evidence analysis, loophole detection, get off strategies.",
+    label: "Criminal Defence Solicitor",
+    description: "Defence work, PACE compliance, evidence analysis, and court preparation.",
   },
   {
     value: "other_litigation",

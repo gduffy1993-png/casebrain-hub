@@ -102,7 +102,7 @@ const PRACTICE_AREA_ROLE_OPTIONS: RoleOption[] = [
   { value: "housing_solicitor", label: "Housing Solicitor", icon: <Home className="h-3 w-3" />, practiceArea: "housing_disrepair" },
   { value: "pi_solicitor", label: "PI Solicitor", icon: <BriefcaseMedical className="h-3 w-3" />, practiceArea: "personal_injury" },
   { value: "clinical_neg_solicitor", label: "Clinical Neg Solicitor", icon: <BriefcaseMedical className="h-3 w-3" />, practiceArea: "clinical_negligence" },
-  { value: "criminal_solicitor", label: "Criminal Defense Solicitor", icon: <Shield className="h-3 w-3" />, practiceArea: "criminal" },
+  { value: "criminal_solicitor", label: "Criminal Defence Solicitor", icon: <Shield className="h-3 w-3" />, practiceArea: "criminal" },
   { value: "general_litigation_solicitor", label: "General Litigation Solicitor", icon: <FileText className="h-3 w-3" />, practiceArea: "other_litigation" },
 ];
 
