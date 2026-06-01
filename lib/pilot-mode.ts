@@ -44,6 +44,7 @@ export type PilotCaseFilterRow = {
   defendant_name?: string | null;
   alleged_offence?: string | null;
   offence_override?: string | null;
+  offence_label?: string | null;
   charge_offences?: string[] | null;
   court_name?: string | null;
   court_type?: string | null;
@@ -81,6 +82,8 @@ function resolveOffenceLabel(row: PilotCaseFilterRow): string {
   if (override) return override;
   const alleged = row.alleged_offence?.trim();
   if (alleged) return alleged;
+  const apiLabel = row.offence_label?.trim();
+  if (apiLabel && apiLabel !== "—") return apiLabel;
   const charges = (row.charge_offences ?? []).map((o) => o?.trim()).filter(Boolean) as string[];
   return charges[0] ?? "";
 }
@@ -156,6 +159,15 @@ export function filterCasesForPilotUser<T extends PilotCaseFilterRow>(
 ): T[] {
   if (!isCriminalPilotMode()) return cases;
   if (shouldShowInternalDevTools(userId)) return cases;
+  return cases.filter(isPilotReadyCase);
+}
+
+/** Court Today / dashboard list — same pilot-ready filter for non-admin users. */
+export function filterCourtTodayCasesForPilotUser<
+  T extends PilotCaseFilterRow,
+>(cases: T[], userId?: string | null): T[] {
+  if (!isCriminalPilotMode()) return cases.filter((c) => !isEvalOrStressTestCase(c));
+  if (shouldShowInternalDevTools(userId)) return cases.filter((c) => !isEvalOrStressTestCase(c));
   return cases.filter(isPilotReadyCase);
 }
 

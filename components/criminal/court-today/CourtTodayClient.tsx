@@ -18,7 +18,11 @@ import {
 } from "./courtTodayDiary";
 import { enrichCourtTodayBundles, type CourtTodayBundlePayload } from "./courtTodayBundleMetadata";
 import type { CourtCaseBrief, CourtCasesApiRow, CourtTodayEnrichment, HearingBucket } from "./types";
-import { filterPilotVisibleCases, isCriminalPilotMode } from "@/lib/pilot-mode";
+import {
+  filterCourtTodayCasesForPilotUser,
+  isCriminalPilotMode,
+  shouldShowInternalDevTools,
+} from "@/lib/pilot-mode";
 
 const SCHEDULE_BUCKETS: Exclude<HearingBucket, "no_hearing">[] = [
   "today",
@@ -124,6 +128,7 @@ function StatPill({
 export function CourtTodayClient() {
   const [rows, setRows] = useState<CourtCasesApiRow[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showInternalDevTools, setShowInternalDevTools] = useState(false);
   const [enrichmentByCase, setEnrichmentByCase] = useState<Map<string, CourtTodayEnrichment>>(
     new Map(),
   );
@@ -145,19 +150,34 @@ export function CourtTodayClient() {
 
   useEffect(() => {
     let cancelled = false;
-    fetch("/api/cases", { credentials: "include" })
-      .then((r) => r.json())
-      .then((data) => {
+    Promise.all([
+      fetch("/api/cases", { credentials: "include" }).then((r) => r.json()),
+      fetch("/api/user/me", { credentials: "include" })
+        .then((r) => (r.ok ? r.json() : null))
+        .catch(() => null),
+    ])
+      .then(([data, me]) => {
         if (cancelled) return;
+        const uid =
+          (me?.user?.id as string | undefined) ??
+          (me?.database?.user_id as string | undefined) ??
+          null;
+        setShowInternalDevTools(shouldShowInternalDevTools(uid));
         const list = Array.isArray(data.cases)
-          ? filterPilotVisibleCases(
-              data.cases as CourtCasesApiRow[],
+          ? filterCourtTodayCasesForPilotUser(
+              (data.cases as CourtCasesApiRow[])
+                .map((row) => {
+                  const id = resolveCourtCaseId(row);
+                  return id ? { ...row, id } : null;
+                })
+                .filter((row): row is CourtCasesApiRow => row != null)
+                .map((row) => ({
+                  ...row,
+                  alleged_offence:
+                    row.offence_label && row.offence_label !== "—" ? row.offence_label : null,
+                })),
+              uid,
             )
-              .map((row) => {
-                const id = resolveCourtCaseId(row);
-                return id ? { ...row, id } : null;
-              })
-              .filter((row): row is CourtCasesApiRow => row != null)
           : [];
         setRows(list);
         setStatusLine("Building diary from saved hearing dates…");
@@ -279,8 +299,12 @@ export function CourtTodayClient() {
   }, [loading, rows.length, enrichmentByCase.size, stats]);
 
   const pilotMode = isCriminalPilotMode();
+  const pilotEmpty = pilotMode && !loading && rows.length === 0;
   const scheduledEmpty =
     !loading && stats.today === 0 && stats.tomorrow === 0 && stats.thisWeek === 0;
+  /** Non-admin pilot: no hearings scheduled — hide review counts and diary shells. */
+  const pilotHideReviewClutter =
+    pilotMode && !showInternalDevTools && scheduledEmpty;
 
   return (
     <div className="space-y-5 max-w-[1600px]" data-testid="court-today">
@@ -320,18 +344,20 @@ export function CourtTodayClient() {
         )}
       </header>
 
-      <div className="flex flex-wrap gap-2">
-        <StatPill label="Hearings today" value={stats.today} />
-        <StatPill label="Matters at risk" value={stats.red} tone="danger" />
-        <StatPill label="Missing evidence" value={stats.amber} tone="warning" />
-        <StatPill label="Ready for court" value={stats.ready} tone="success" />
-        <StatPill
-          label={pilotMode ? "Needs review" : "Needs hearing review"}
-          value={stats.review}
-          tone="muted"
-          compact={pilotMode}
-        />
-      </div>
+      {!pilotEmpty && !pilotHideReviewClutter && (
+        <div className="flex flex-wrap gap-2">
+          <StatPill label="Hearings today" value={stats.today} />
+          <StatPill label="Matters at risk" value={stats.red} tone="danger" />
+          <StatPill label="Missing evidence" value={stats.amber} tone="warning" />
+          <StatPill label="Ready for court" value={stats.ready} tone="success" />
+          {!pilotMode && (
+            <StatPill label="Needs hearing review" value={stats.review} tone="muted" />
+          )}
+          {pilotMode && stats.review > 0 && (
+            <StatPill label="Needs review" value={stats.review} tone="muted" compact />
+          )}
+        </div>
+      )}
 
       {!pilotMode && (statusLine || checkingRecent || enrichingLabels) && (
         <p className="text-xs text-muted-foreground flex items-center gap-2">
@@ -353,12 +379,16 @@ export function CourtTodayClient() {
           Loading matters…
         </Card>
       ) : rows.length === 0 ? (
-        <Card className="p-8 text-center border-slate-200 bg-white">
-          <p className="text-sm font-medium text-slate-800">
-            No criminal matters on record yet.
+        <Card className="p-8 text-center border-slate-200 bg-white shadow-sm">
+          <p className="text-base font-medium text-slate-800">
+            {pilotMode
+              ? "No pilot matters are ready yet."
+              : "No criminal matters on record yet."}
           </p>
-          <p className="text-sm text-slate-600 mt-2">
-            Upload a defence bundle to begin the court-prep workflow.
+          <p className="text-sm text-slate-600 mt-2 max-w-md mx-auto">
+            {pilotMode
+              ? "Upload the prepared pilot bundles to create the demo matters."
+              : "Upload a defence bundle to begin the court-prep workflow."}
           </p>
           <Link
             href="/upload"
@@ -366,6 +396,30 @@ export function CourtTodayClient() {
           >
             Upload bundle
           </Link>
+        </Card>
+      ) : pilotHideReviewClutter ? (
+        <Card className="border border-slate-200 bg-white px-6 py-8 text-center shadow-sm">
+          <p className="text-base font-medium text-slate-800">
+            No listed hearings found from saved case data yet.
+          </p>
+          <p className="text-sm text-slate-600 mt-2 max-w-lg mx-auto">
+            Open a pilot matter from Cases or upload a prepared bundle to review the court-prep
+            workflow.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-4 mt-5">
+            <Link
+              href="/upload"
+              className="text-sm font-medium text-blue-700 hover:text-blue-900 underline-offset-2 hover:underline"
+            >
+              Upload bundle
+            </Link>
+            <Link
+              href="/cases"
+              className="text-sm font-medium text-slate-700 hover:text-slate-900 underline-offset-2 hover:underline"
+            >
+              Open cases
+            </Link>
+          </div>
         </Card>
       ) : (
         <div className="space-y-4">
@@ -375,7 +429,9 @@ export function CourtTodayClient() {
                 No listed hearings found from saved case data yet.
               </p>
               <p className="text-sm text-slate-600 mt-2 max-w-lg mx-auto">
-                Upload or open a pilot matter to review the court-prep workflow.
+                {pilotMode
+                  ? "Open a pilot matter from Cases or upload a prepared bundle to review the court-prep workflow."
+                  : "Upload or open a matter to review the court-prep workflow."}
               </p>
               <div className="flex flex-wrap items-center justify-center gap-4 mt-5">
                 <Link
@@ -403,10 +459,12 @@ export function CourtTodayClient() {
               pilotMode={pilotMode}
             />
           ))}
-          <CourtTodayReviewSection
-            items={displayBuckets.no_hearing}
-            onEnrichCaseIds={enrichCaseIds}
-          />
+          {displayBuckets.no_hearing.length > 0 && (
+            <CourtTodayReviewSection
+              items={displayBuckets.no_hearing}
+              onEnrichCaseIds={enrichCaseIds}
+            />
+          )}
         </div>
       )}
 

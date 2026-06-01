@@ -28,7 +28,7 @@ import {
   Gavel,
   Scale,
 } from "lucide-react";
-import { getPostLoginPath } from "@/lib/pilot-mode";
+import { getPostLoginPath, isCriminalPilotMode } from "@/lib/pilot-mode";
 
 export default function HomePage() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
@@ -64,7 +64,143 @@ export default function HomePage() {
     );
   }
 
-  return <MarketingHomepage />;
+  return isCriminalPilotMode() ? <PilotMarketingHomepage /> : <MarketingHomepage />;
+}
+
+function PilotMarketingHomepage() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+      <nav className="sticky top-0 z-50 border-b border-border/50 bg-card/80 backdrop-blur-xl">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div className="flex h-16 items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="h-8 w-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm">
+                CB
+              </div>
+              <span className="text-lg font-semibold text-foreground">CaseBrain Hub</span>
+            </div>
+            <div className="hidden md:flex items-center gap-3">
+              <Link href="/sign-in">
+                <Button variant="ghost" size="sm">
+                  Sign in
+                </Button>
+              </Link>
+              <Link href="/sign-in">
+                <Button variant="primary" size="sm">
+                  Start pilot
+                </Button>
+              </Link>
+            </div>
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden text-muted-foreground hover:text-foreground"
+              aria-label="Menu"
+            >
+              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
+          {mobileMenuOpen && (
+            <div className="md:hidden border-t border-border/50 py-4 space-y-2">
+              <Link href="/sign-in" className="block">
+                <Button variant="ghost" size="sm" className="w-full">
+                  Sign in
+                </Button>
+              </Link>
+              <Link href="/sign-in" className="block">
+                <Button variant="primary" size="sm" className="w-full">
+                  Start pilot
+                </Button>
+              </Link>
+            </div>
+          )}
+        </div>
+      </nav>
+
+      <section className="px-4 py-20 lg:py-28">
+        <div className="mx-auto max-w-3xl text-center space-y-8">
+          <h1 className="text-4xl lg:text-5xl font-bold text-foreground leading-tight">
+            Criminal defence control room for evidence-heavy cases.
+          </h1>
+          <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+            Upload case papers and surface the allegation, disclosure gaps, missing evidence, risk
+            points, safe court line and next actions — with solicitor review.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/sign-in">
+              <Button variant="outline" size="lg" className="text-base w-full sm:w-auto">
+                Sign in
+              </Button>
+            </Link>
+            <Link href="/sign-in">
+              <Button variant="primary" size="lg" className="text-base w-full sm:w-auto">
+                Start pilot
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+          </div>
+          <p className="text-xs text-muted-foreground">
+            Evidence-linked · conditional · solicitor review required · UK criminal defence
+          </p>
+        </div>
+      </section>
+
+      <section className="px-4 pb-20">
+        <div className="mx-auto max-w-5xl grid md:grid-cols-3 gap-6">
+          <Card className="p-6 bg-card/80 border-border/60">
+            <div className="mb-4 inline-flex rounded-xl bg-primary/10 p-3">
+              <Calendar className="h-6 w-6 text-primary" />
+            </div>
+            <h2 className="text-lg font-semibold text-foreground mb-2">Court Today</h2>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Court diary for pilot matters — hearings, risk flags, and missing evidence at a glance.
+            </p>
+          </Card>
+          <Card className="p-6 bg-card/80 border-border/60">
+            <div className="mb-4 inline-flex rounded-xl bg-primary/10 p-3">
+              <Gavel className="h-6 w-6 text-primary" />
+            </div>
+            <h2 className="text-lg font-semibold text-foreground mb-2">Control Room</h2>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Evidence-linked strategy workspace — pressure routes, hearing line, and next actions.
+            </p>
+          </Card>
+          <Card className="p-6 bg-card/80 border-border/60">
+            <div className="mb-4 inline-flex rounded-xl bg-primary/10 p-3">
+              <Search className="h-6 w-6 text-primary" />
+            </div>
+            <h2 className="text-lg font-semibold text-foreground mb-2">Disclosure Chase</h2>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Track served and outstanding material — MG6 rows, CCTV, and continuity gaps.
+            </p>
+          </Card>
+        </div>
+      </section>
+
+      <footer className="border-t border-border bg-card/50 px-4 py-10">
+        <div className="mx-auto max-w-5xl text-center space-y-3">
+          <p className="text-xs text-muted-foreground">
+            Provisional, evidence-linked outputs · solicitor review required · not legal advice
+          </p>
+          <nav className="flex flex-wrap items-center justify-center gap-4 text-xs text-muted-foreground">
+            <Link href="/terms" className="hover:text-foreground">
+              Terms
+            </Link>
+            <Link href="/privacy" className="hover:text-foreground">
+              Privacy
+            </Link>
+            <Link href="/security" className="hover:text-foreground">
+              Security
+            </Link>
+          </nav>
+          <p className="text-xs text-muted-foreground">
+            © {new Date().getFullYear()} CaseBrain Hub
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
 }
 
 function MarketingHomepage() {
