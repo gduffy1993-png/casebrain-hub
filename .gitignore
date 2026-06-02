@@ -13,6 +13,9 @@ out
 *.tsbuildinfo
 tsconfig.tsbuildinfo
 
+# CaseBrain Auditor generated reports
+artifacts/casebrain-auditor/
+
 # Supabase CLI temp
 supabase/.temp/
 
