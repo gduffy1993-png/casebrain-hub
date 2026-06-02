@@ -103,7 +103,8 @@ export function buildTrainingDataRows(result: AuditorRunResult): TrainingDataRow
     if (!group.badOutputSnippet && !issue.badText) continue;
 
     const caseRow = cases.find((c) => c.caseId === issue.caseId);
-    const badRaw = (issue.badText || group.badOutputSnippet).slice(0, 300);
+    const badRawSource = issue.badText ?? group.badOutputSnippet ?? "";
+    const badRaw = badRawSource.slice(0, 300);
     const redacted = redactForTraining(badRaw, summary.pack);
     const suggestedRedacted = redactForTraining(
       (group.suggestedBetterOutput ?? group.correctFixPrinciple ?? "").slice(0, 300),
