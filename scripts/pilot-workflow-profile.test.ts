@@ -35,6 +35,15 @@ const {
   pilotReadinessWithoutSavedPosition,
 } = require("../lib/criminal/pilot-workflow") as typeof import("../lib/criminal/pilot-workflow");
 
+const {
+  PILOT_COURT_TODAY_ANCHOR,
+  shouldUsePilotCourtTodayAnchor,
+  formatPilotCourtTodayHeader,
+} = require("../lib/pilot-mode") as typeof import("../lib/pilot-mode");
+
+const { resolveHearingBucket } =
+  require("../components/criminal/court-today/courtCaseBrief") as typeof import("../components/criminal/court-today/courtCaseBrief");
+
 const { resolveCaseWorkflowActiveTab } =
   require("../components/criminal/workflow/useCaseWorkflowActiveTab") as typeof import("../components/criminal/workflow/useCaseWorkflowActiveTab");
 const { buildCaseWorkflowTabHref } =
@@ -434,6 +443,26 @@ assert.ok(
     ],
     { caseTitle: "R v Kian Doyle" },
   ).some((a) => /Count\s*2.*criminal property/i.test(a)),
+);
+
+assert.ok(shouldUsePilotCourtTodayAnchor("9df92f69-4b0b-4f2b-816a-a41a9853ec2"));
+
+const prevAdminId = process.env.NEXT_PUBLIC_ADMIN_USER_ID;
+process.env.NEXT_PUBLIC_ADMIN_USER_ID = "63ccc8dc-842e-49b5-9aa9-dcff855eb10";
+assert.ok(!shouldUsePilotCourtTodayAnchor("63ccc8dc-842e-49b5-9aa9-dcff855eb10"));
+if (prevAdminId === undefined) delete process.env.NEXT_PUBLIC_ADMIN_USER_ID;
+else process.env.NEXT_PUBLIC_ADMIN_USER_ID = prevAdminId;
+
+assert.match(formatPilotCourtTodayHeader(PILOT_COURT_TODAY_ANCHOR), /Monday/i);
+assert.match(formatPilotCourtTodayHeader(PILOT_COURT_TODAY_ANCHOR), /1 June 2026/);
+
+assert.equal(
+  resolveHearingBucket(new Date("2026-06-01T11:30:00"), PILOT_COURT_TODAY_ANCHOR),
+  "today",
+);
+assert.equal(
+  resolveHearingBucket(new Date("2026-06-01T11:30:00"), new Date("2027-01-15")),
+  "no_hearing",
 );
 
 console.log("pilot-workflow-profile.test.ts OK");

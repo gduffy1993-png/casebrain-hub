@@ -313,15 +313,21 @@ function cleanPilotCourtLabel(raw: string): string {
   return t;
 }
 
+export type BuildCourtCaseBriefOpts = {
+  /** Override “today” for hearing buckets (non-admin pilot Court Today anchor). */
+  bucketNow?: Date;
+};
+
 export function buildCourtCaseBrief(
   row: CourtCasesApiRow,
   enrichment: CourtTodayEnrichment = {},
+  opts?: BuildCourtCaseBriefOpts,
 ): CourtCaseBrief {
   const caseId = resolveCourtCaseId(row);
   const battleboard = enrichment.battleboard ?? null;
   const headerMeta = resolveCourtHeader(row, enrichment);
   const hearingDate = resolveCourtHearingDate(row, enrichment);
-  const bucket = resolveHearingBucket(hearingDate);
+  const bucket = resolveHearingBucket(hearingDate, opts?.bucketNow);
   const pilotMode = isCriminalPilotMode();
   const clientLabelBase = sanitizeHeaderClient(headerMeta.clientLabel);
   const allegationBase = sanitizeHeaderAllegation(headerMeta.allegation);

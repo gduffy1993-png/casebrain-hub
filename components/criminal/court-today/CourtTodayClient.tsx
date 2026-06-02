@@ -21,8 +21,11 @@ import { enrichCourtTodayBundles, type CourtTodayBundlePayload } from "./courtTo
 import type { CourtCaseBrief, CourtCasesApiRow, CourtTodayEnrichment, HearingBucket } from "./types";
 import {
   filterCourtTodayCasesForPilotUser,
+  formatPilotCourtTodayHeader,
+  getPilotCourtTodayNow,
   isCriminalPilotMode,
   shouldShowInternalDevTools,
+  shouldUsePilotCourtTodayAnchor,
 } from "@/lib/pilot-mode";
 
 const SCHEDULE_BUCKETS: Exclude<HearingBucket, "no_hearing">[] = [
@@ -130,6 +133,7 @@ export function CourtTodayClient() {
   const [rows, setRows] = useState<CourtCasesApiRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [showInternalDevTools, setShowInternalDevTools] = useState(false);
+  const [pilotUserId, setPilotUserId] = useState<string | null>(null);
   const [enrichmentByCase, setEnrichmentByCase] = useState<Map<string, CourtTodayEnrichment>>(
     new Map(),
   );
@@ -138,15 +142,14 @@ export function CourtTodayClient() {
   const [enrichingLabels, setEnrichingLabels] = useState(false);
   const [statusLine, setStatusLine] = useState<string | null>(null);
 
-  const todayLabel = useMemo(
-    () =>
-      new Date().toLocaleDateString("en-GB", {
-        weekday: "long",
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-      }),
-    [],
+  const courtTodayNow = useMemo(
+    () => getPilotCourtTodayNow(pilotUserId),
+    [pilotUserId, showInternalDevTools],
+  );
+  const todayLabel = useMemo(() => formatPilotCourtTodayHeader(courtTodayNow), [courtTodayNow]);
+  const courtTodayBucketNow = useMemo(
+    () => (shouldUsePilotCourtTodayAnchor(pilotUserId) ? courtTodayNow : undefined),
+    [pilotUserId, courtTodayNow, showInternalDevTools],
   );
 
   useEffect(() => {
@@ -163,6 +166,7 @@ export function CourtTodayClient() {
           (me?.user?.id as string | undefined) ??
           (me?.database?.user_id as string | undefined) ??
           null;
+        setPilotUserId(uid);
         setShowInternalDevTools(shouldShowInternalDevTools(uid));
         const list = Array.isArray(data.cases)
           ? filterCourtTodayCasesForPilotUser(
@@ -198,8 +202,10 @@ export function CourtTodayClient() {
     () =>
       loading
         ? EMPTY_BUCKETS
-        : buildCourtTodayBuckets(rows, enrichmentByCase, battleboards),
-    [rows, enrichmentByCase, battleboards, loading],
+        : buildCourtTodayBuckets(rows, enrichmentByCase, battleboards, {
+            bucketNow: courtTodayBucketNow,
+          }),
+    [rows, enrichmentByCase, battleboards, loading, courtTodayBucketNow],
   );
 
   const stats = useMemo(() => {

@@ -1,4 +1,4 @@
-import { buildCourtCaseBrief, resolveCourtCaseId } from "./courtCaseBrief";
+import { buildCourtCaseBrief, resolveCourtCaseId, type BuildCourtCaseBriefOpts } from "./courtCaseBrief";
 import type { CourtCaseBrief, CourtCasesApiRow, CourtTodayEnrichment, HearingBucket } from "./types";
 import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
 
@@ -50,6 +50,7 @@ export function buildCourtTodayBuckets(
   rows: CourtCasesApiRow[],
   enrichment: Map<string, CourtTodayEnrichment>,
   battleboards: Map<string, BattleboardOutput>,
+  opts?: BuildCourtCaseBriefOpts,
 ): Record<HearingBucket, CourtCaseBrief[]> {
   const merged = mergeRowsWithExtractedHearings(rows, enrichment);
   const groups: Record<HearingBucket, CourtCaseBrief[]> = {
@@ -62,10 +63,14 @@ export function buildCourtTodayBuckets(
   for (const row of merged) {
     const id = resolveCourtCaseId(row);
     const enrich = enrichment.get(id) ?? {};
-    const brief = buildCourtCaseBrief(row, {
-      ...enrich,
-      battleboard: battleboards.get(id) ?? enrich.battleboard ?? null,
-    });
+    const brief = buildCourtCaseBrief(
+      row,
+      {
+        ...enrich,
+        battleboard: battleboards.get(id) ?? enrich.battleboard ?? null,
+      },
+      opts,
+    );
     groups[brief.hearingBucket].push(brief);
   }
 

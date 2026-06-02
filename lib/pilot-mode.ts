@@ -31,6 +31,28 @@ export function shouldShowInternalDevTools(userId?: string | null): boolean {
   return isInternalAdminUser(userId);
 }
 
+/** Fixed Court Today diary anchor for non-admin pilot (local calendar: 1 June 2026). */
+export const PILOT_COURT_TODAY_ANCHOR = new Date(2026, 5, 1);
+
+/** Non-admin pilot Court Today uses a stable demo “today” instead of the real clock. */
+export function shouldUsePilotCourtTodayAnchor(userId?: string | null): boolean {
+  return isCriminalPilotMode() && !shouldShowInternalDevTools(userId);
+}
+
+export function getPilotCourtTodayNow(userId?: string | null): Date {
+  if (shouldUsePilotCourtTodayAnchor(userId)) return PILOT_COURT_TODAY_ANCHOR;
+  return new Date();
+}
+
+export function formatPilotCourtTodayHeader(now: Date): string {
+  return now.toLocaleDateString("en-GB", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+}
+
 const EVAL_STRESS_CASE_TITLE_RE =
   /\b(CB-AA2?|CB-Z|CB-GOLD|CB-TRAP|CB-MESSY|CB-REAL|CB-K-|NS-CPS(?:-\d+)?|PACK\s*(?:AA|[A-Z]{1,2})\b|GOLDEN\s+SWEEP|EVAL\s+PACK|stress\s+pack|eval\s+case)\b/i;
 
