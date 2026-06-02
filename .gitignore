@@ -13,8 +13,14 @@ out
 *.tsbuildinfo
 tsconfig.tsbuildinfo
 
-# CaseBrain Auditor generated reports
+# CaseBrain Auditor generated reports (never commit case snippets / review data)
 artifacts/casebrain-auditor/
+artifacts/casebrain-auditor/training-data.jsonl
+artifacts/casebrain-auditor/manifest-review-queue.json
+artifacts/casebrain-auditor/manifest-review-queue.md
+artifacts/casebrain-auditor/results.json
+artifacts/casebrain-auditor/failures.csv
+artifacts/casebrain-auditor/weak.csv
 
 # Supabase CLI temp
 supabase/.temp/

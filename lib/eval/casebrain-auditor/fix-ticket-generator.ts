@@ -34,8 +34,22 @@ export function generateFixPromptsByGroup(groups: GroupedFailure[]): string {
       }
     }
     lines.push("");
+    if (g.badOutputSnippet) {
+      lines.push("### Correct-fix output");
+      lines.push(`- **badOutputSnippet:** \`${g.badOutputSnippet}\``);
+      lines.push(`- **whyItIsWrong:** ${g.whyItIsWrong ?? "—"}`);
+      lines.push(`- **correctFixPrinciple:** ${g.correctFixPrinciple ?? "—"}`);
+      lines.push(`- **suggestedBetterOutput:** ${g.suggestedBetterOutput ?? "—"}`);
+      lines.push(`- **fixType:** ${g.fixType ?? "uncertain_needs_review"}`);
+      lines.push(`- **confidence:** ${g.confidence ?? "medium"}`);
+      lines.push(`- **needsHumanReview:** ${g.needsHumanReview ? "yes" : "no"}`);
+      lines.push("");
+    }
     lines.push("### Expected replacement principle");
     lines.push(g.expectedBehaviour);
+    lines.push("");
+    lines.push("### Likely shared cause");
+    lines.push(g.likelySharedCause);
     lines.push("");
     lines.push("### Fix instruction");
     lines.push(g.suggestedCursorFix);

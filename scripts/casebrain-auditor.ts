@@ -33,6 +33,7 @@ function parseArgs(argv: string[]) {
   let limit: number | undefined;
   let offset = 0;
   let familyFilter: AuditorFamilyProfile | undefined;
+  let exportTrainingData = false;
 
   for (let i = 2; i < argv.length; i++) {
     const arg = argv[i];
@@ -49,6 +50,7 @@ function parseArgs(argv: string[]) {
     else if (arg === "--limit" && argv[i + 1]) limit = Number(argv[++i]);
     else if (arg === "--offset" && argv[i + 1]) offset = Number(argv[++i]);
     else if (arg === "--family" && argv[i + 1]) familyFilter = argv[++i] as AuditorFamilyProfile;
+    else if (arg === "--export-training-data") exportTrainingData = true;
     else if (arg === "--help" || arg === "-h") {
       console.log(`Usage: npx tsx scripts/casebrain-auditor.ts [options]
 
@@ -65,6 +67,7 @@ Options:
   --out <dir>           Output directory
   --baseline <json>     Compare to previous results.json
   --base-url <url>      Reserved for future DOM checks
+  --export-training-data  Write training-data.jsonl (local artifact; never commit)
 
 Does not start npm run dev or manage environment variables.
 `);
@@ -92,6 +95,7 @@ Does not start npm run dev or manage environment variables.
     limit,
     offset,
     familyFilter,
+    exportTrainingData,
   };
 }
 
@@ -111,6 +115,7 @@ async function main() {
     limit: opts.limit,
     offset: opts.offset,
     familyFilter: opts.familyFilter,
+    exportTrainingData: opts.exportTrainingData,
   });
 
   if (opts.jsonOnly) console.log(path.join(opts.outDir, "results.json"));

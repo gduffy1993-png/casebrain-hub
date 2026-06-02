@@ -53,6 +53,16 @@ export type UserRoleMode = "pilot-non-admin" | "admin" | "normal";
 
 export type ReleaseGate = "GREEN" | "AMBER" | "RED";
 
+export type FixType =
+  | "exact_truth_fix"
+  | "source_grounded_fix"
+  | "profile_rule_fix"
+  | "wording_cleanup"
+  | "ui_permission_fix"
+  | "documents_navigation_fix"
+  | "court_today_date_fix"
+  | "uncertain_needs_review";
+
 export type CaseTruthManifest = {
   caseId: string;
   caseTitle: string;
@@ -133,6 +143,13 @@ export type GroupedFailure = {
   blastRadius?: string;
   likelyFiles?: string[];
   regressionTestName?: string;
+  badOutputSnippet?: string;
+  whyItIsWrong?: string;
+  correctFixPrinciple?: string;
+  suggestedBetterOutput?: string;
+  fixType?: FixType;
+  confidence?: "high" | "medium" | "low";
+  needsHumanReview?: boolean;
 };
 
 export type AuditorRunOptions = {
@@ -150,6 +167,7 @@ export type AuditorRunOptions = {
   limit?: number;
   offset?: number;
   familyFilter?: AuditorFamilyProfile;
+  exportTrainingData?: boolean;
 };
 
 export type AuditorRunSummary = {

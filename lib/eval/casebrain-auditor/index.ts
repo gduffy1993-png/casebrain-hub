@@ -3,8 +3,11 @@ import path from "node:path";
 import { auditFamily40Case } from "./family-40-audit";
 import { runDiscoveryCase } from "./discovery-mode";
 import { resolvePack } from "./pack-registry";
+import { attachCorrectFixToGroups } from "./correct-fix";
 import { generateFixPromptsByGroup } from "./fix-ticket-generator";
 import { groupFailuresByFingerprint, topFingerprints } from "./grouped-failures";
+import { writeManifestReviewQueue } from "./manifest-review-queue";
+import { writeTrainingDataJsonl } from "./training-data-export";
 import {
   collectAggregateCourtToday,
   collectCaseSurfaces,
@@ -222,7 +225,8 @@ export async function runAuditor(options: AuditorRunOptions): Promise<AuditorRun
     allIssues.push(...scorePilotUi(runId, pack.id, pilotUi, options.userRole));
   }
 
-  const groups = groupFailuresByFingerprint(allIssues);
+  let groups = groupFailuresByFingerprint(allIssues);
+  groups = attachCorrectFixToGroups(groups, { pack: options.pack, cases: caseResults });
   const dataSource =
     options.pack === "full-960"
       ? `discovery scan (family-40 catalog corpus, limit=${options.limit ?? "all"})`
@@ -264,6 +268,16 @@ export async function runAuditor(options: AuditorRunOptions): Promise<AuditorRun
   writeScoreboardMd(path.join(outDir, "scoreboard.md"), summary, groups, baseline);
   writeDemoBlockersMd(path.join(outDir, "demo-blockers.md"), allIssues);
   if (baseline) writeBaselineDiffMd(path.join(outDir, "baseline-diff.md"), baseline);
+
+  if (options.pack === "family-40") {
+    const n = writeManifestReviewQueue(outDir);
+    console.log(`Manifest review queue: ${n} uncertain case(s) → manifest-review-queue.md / .json`);
+  }
+
+  if (options.exportTrainingData) {
+    const n = writeTrainingDataJsonl(outDir, result);
+    console.log(`Training-data export: ${n} row(s) → training-data.jsonl (approvedForTraining defaults false)`);
+  }
 
   printConsoleSummary(summary, outDir, groups);
   return result;

@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { PROTECTED_FILES_NOTE } from "./issue-fingerprints";
 import type { AuditorIssue, AuditorRunResult, AuditorRunSummary, BaselineComparison, GroupedFailure } from "./types";
 
 function csvEscape(value: string): string {
@@ -68,7 +69,12 @@ export function writeWeakCsv(filePath: string, issues: AuditorIssue[]): void {
 }
 
 export function writeGroupedFailuresMd(filePath: string, groups: GroupedFailure[]): void {
-  const lines: string[] = ["# CaseBrain Auditor — grouped failures", ""];
+  const lines: string[] = [
+    "# CaseBrain Auditor — grouped failures",
+    "",
+    PROTECTED_FILES_NOTE,
+    "",
+  ];
   for (const sev of ["CRITICAL", "HIGH", "MEDIUM", "LOW"] as const) {
     const subset = groups.filter((g) => g.severity === sev);
     if (!subset.length) continue;
@@ -87,6 +93,17 @@ export function writeGroupedFailuresMd(filePath: string, groups: GroupedFailure[
         lines.push(`- _+${g.affectedCount - g.examples.length} more_`);
       }
       lines.push("");
+      if (g.badOutputSnippet) {
+        lines.push("**Correct-fix output:**");
+        lines.push(`- badOutputSnippet: \`${g.badOutputSnippet}\``);
+        lines.push(`- whyItIsWrong: ${g.whyItIsWrong ?? "—"}`);
+        lines.push(`- correctFixPrinciple: ${g.correctFixPrinciple ?? "—"}`);
+        lines.push(`- suggestedBetterOutput: ${g.suggestedBetterOutput ?? "—"}`);
+        lines.push(`- fixType: ${g.fixType ?? "uncertain_needs_review"}`);
+        lines.push(`- confidence: ${g.confidence ?? "medium"}`);
+        lines.push(`- needsHumanReview: ${g.needsHumanReview ? "yes" : "no"}`);
+        lines.push("");
+      }
       lines.push("**Expected behaviour:**", g.expectedBehaviour, "");
       lines.push("**Likely shared cause:**", g.likelySharedCause, "");
       if (g.fixImpactCategory) lines.push(`**Fix impact:** ${g.fixImpactCategory} | **Blast radius:** ${g.blastRadius ?? "—"}`);

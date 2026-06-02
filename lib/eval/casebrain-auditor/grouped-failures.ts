@@ -7,7 +7,12 @@ const MAX_EXAMPLES = 3;
 export function groupFailuresByFingerprint(issues: AuditorIssue[]): GroupedFailure[] {
   const map = new Map<string, GroupedFailure>();
 
-  for (const issue of issues.filter((i) => i.status === "fail" || (i.status === "weak" && i.severity !== "LOW"))) {
+  for (const issue of issues.filter(
+    (i) =>
+      i.status === "fail" ||
+      (i.status === "weak" && i.severity !== "LOW") ||
+      (i.status === "warn" && i.fingerprint.startsWith("manifest.")),
+  )) {
     let group = map.get(issue.fingerprint);
     if (!group) {
       group = {
