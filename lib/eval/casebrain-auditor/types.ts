@@ -1,5 +1,27 @@
 import type { WorkflowProfile } from "@/lib/criminal/pilot-workflow";
 
+/** Auditor-only family (violence not in pilot-workflow WorkflowProfile). */
+export type AuditorFamilyProfile =
+  | "fraud_account_control"
+  | "pwits_phone_attribution"
+  | "robbery_identification"
+  | "violence_domestic_assault";
+
+export type ManifestCertainty = "confirmed" | "uncertain";
+
+export type AuditorMode = "standard" | "discovery";
+
+export type FixImpactCategory =
+  | "global_filter"
+  | "profile_rule"
+  | "screen_display"
+  | "truth_manifest"
+  | "source_grounding"
+  | "strategy_ranking"
+  | "ui_permission"
+  | "documents_navigation"
+  | "court_today_date";
+
 export type AuditorPackId =
   | "pilot-3"
   | "family-40"
@@ -35,6 +57,13 @@ export type CaseTruthManifest = {
   caseId: string;
   caseTitle: string;
   profile: WorkflowProfile;
+  /** Auditor family (may differ from workflow profile for violence). */
+  auditorFamily?: AuditorFamilyProfile;
+  manifestCertainty?: ManifestCertainty;
+  sourceRef?: string;
+  offenceTag?: string;
+  certaintyNote?: string;
+  bundleFound?: boolean;
   expectedDefendant: string;
   expectedAllegation: string;
   expectedCourt: string;
@@ -76,6 +105,15 @@ export type AuditorIssue = {
   demoBlocker: boolean;
   message: string;
   releaseBlocking: boolean;
+  /** False for uncertain manifests / discovery-only findings. */
+  manifestConfirmed: boolean;
+};
+
+export type Family40CaseManifest = CaseTruthManifest & {
+  auditorFamily: AuditorFamilyProfile;
+  manifestCertainty: ManifestCertainty;
+  sourceRef: string;
+  offenceTag: string;
 };
 
 export type GroupedFailure = {
@@ -91,10 +129,15 @@ export type GroupedFailure = {
   likelySharedCause: string;
   suggestedCursorFix: string;
   releaseBlocking: boolean;
+  fixImpactCategory?: FixImpactCategory;
+  blastRadius?: string;
+  likelyFiles?: string[];
+  regressionTestName?: string;
 };
 
 export type AuditorRunOptions = {
   pack: AuditorPackId;
+  mode: AuditorMode;
   strict: boolean;
   failOnMedium: boolean;
   includeSynthetic: boolean;
@@ -104,22 +147,30 @@ export type AuditorRunOptions = {
   baselinePath?: string;
   /** Reserved for future DOM checks against a running app — not used in MVP. */
   baseUrl?: string;
+  limit?: number;
+  offset?: number;
+  familyFilter?: AuditorFamilyProfile;
 };
 
 export type AuditorRunSummary = {
   runId: string;
   pack: AuditorPackId;
+  mode: AuditorMode;
   ranAt: string;
   userRole: UserRoleMode;
   pilotUserId: string;
   dataSource: string;
   totalCases: number;
   totalSurfaces: number;
+  confirmedCases: number;
+  uncertainCases: number;
   passCount: number;
   weakCount: number;
   failCount: number;
+  confirmedFailCount: number;
   criticalCount: number;
   highCount: number;
+  confirmedHighCount: number;
   mediumCount: number;
   lowCount: number;
   demoBlockerCount: number;
@@ -133,12 +184,16 @@ export type BaselineComparison = {
   fixedFailures: string[];
   repeatedFailures: string[];
   worsenedFailures: string[];
+  improvedFailures: string[];
 };
 
 export type CaseAuditResult = {
   caseId: string;
   caseTitle: string;
   profile: WorkflowProfile;
+  auditorFamily?: AuditorFamilyProfile;
+  manifestCertainty?: ManifestCertainty;
+  sourceRef?: string;
   screens: ScreenCollection[];
   issues: AuditorIssue[];
   pass: boolean;

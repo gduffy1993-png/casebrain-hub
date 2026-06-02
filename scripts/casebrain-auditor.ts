@@ -2,22 +2,25 @@
 /**
  * CaseBrain Auditor — separate from Next.js dev server.
  *
- * Developer workflow:
- *   cd C:\Users\gduff\casebrain-hub
  *   $env:NEXT_PUBLIC_CRIMINAL_PILOT_MODE="true"
- *   npm run dev
- *
- * Auditor (same shell env recommended for pilot UI flag checks):
  *   npx tsx scripts/casebrain-auditor.ts --pack pilot-3 --user-role pilot-non-admin
- *
- * Does NOT start Next.js, spawn dev, or manage env beyond reading process.env.
+ *   npx tsx scripts/casebrain-auditor.ts --pack family-40 --user-role pilot-non-admin
+ *   npx tsx scripts/casebrain-auditor.ts --pack full-960 --mode discovery --limit 50
  */
 import path from "node:path";
-import { runAuditor, shouldExitNonZero, type AuditorPackId, type UserRoleMode } from "@/lib/eval/casebrain-auditor";
+import {
+  runAuditor,
+  shouldExitNonZero,
+  type AuditorFamilyProfile,
+  type AuditorMode,
+  type AuditorPackId,
+  type UserRoleMode,
+} from "@/lib/eval/casebrain-auditor";
 import { PILOT_DEMO_USER_ID } from "@/lib/eval/casebrain-auditor/truth-manifests";
 
 function parseArgs(argv: string[]) {
   let pack: AuditorPackId = "pilot-3";
+  let mode: AuditorMode = "standard";
   let strict = false;
   let failOnMedium = false;
   let includeSynthetic = false;
@@ -27,6 +30,9 @@ function parseArgs(argv: string[]) {
   let baselinePath: string | undefined;
   let baseUrl: string | undefined;
   let pilotUserId = PILOT_DEMO_USER_ID;
+  let limit: number | undefined;
+  let offset = 0;
+  let familyFilter: AuditorFamilyProfile | undefined;
 
   for (let i = 2; i < argv.length; i++) {
     const arg = argv[i];
@@ -35,42 +41,65 @@ function parseArgs(argv: string[]) {
     else if (arg === "--include-synthetic") includeSynthetic = true;
     else if (arg === "--json") jsonOnly = true;
     else if (arg === "--pack" && argv[i + 1]) pack = argv[++i] as AuditorPackId;
+    else if (arg === "--mode" && argv[i + 1]) mode = argv[++i] as AuditorMode;
     else if (arg === "--out" && argv[i + 1]) outDir = path.resolve(argv[++i]!);
     else if (arg === "--baseline" && argv[i + 1]) baselinePath = path.resolve(argv[++i]!);
     else if (arg === "--user-role" && argv[i + 1]) userRole = argv[++i] as UserRoleMode;
     else if (arg === "--base-url" && argv[i + 1]) baseUrl = argv[++i];
+    else if (arg === "--limit" && argv[i + 1]) limit = Number(argv[++i]);
+    else if (arg === "--offset" && argv[i + 1]) offset = Number(argv[++i]);
+    else if (arg === "--family" && argv[i + 1]) familyFilter = argv[++i] as AuditorFamilyProfile;
     else if (arg === "--help" || arg === "-h") {
-      console.log(`Usage: npx tsx scripts/casebrain-auditor.ts --pack pilot-3 [options]
+      console.log(`Usage: npx tsx scripts/casebrain-auditor.ts [options]
 
 Options:
-  --pack <id>                 pilot-3 (active) | family-40 | profile-clash | …
-  --user-role <role>          pilot-non-admin | admin | normal
-  --strict                    Exit 1 on any non-GREEN gate
-  --fail-on-medium            Exit 1 on MEDIUM severity
-  --include-synthetic         Treat synthetic-surface failures as blocking
-  --out <dir>                 Output directory
-  --baseline <results.json>   Compare to previous run
-  --base-url <url>            Reserved for future DOM checks (not used in MVP)
-  --json                      Print results.json path after run
+  --pack <id>           pilot-3 | family-40 | full-960 | …
+  --mode <mode>         standard | discovery (required for full-960)
+  --user-role <role>    pilot-non-admin | admin | normal
+  --family <profile>    fraud_account_control | pwits_phone_attribution | robbery_identification | violence_domestic_assault
+  --limit <n>           Cap cases scanned (discovery / family-40)
+  --offset <n>          Skip first n cases
+  --strict              Exit 1 on RED release gate
+  --fail-on-medium      Exit 1 on MEDIUM severity
+  --include-synthetic   Treat synthetic-surface failures as blocking
+  --out <dir>           Output directory
+  --baseline <json>     Compare to previous results.json
+  --base-url <url>      Reserved for future DOM checks
 
 Does not start npm run dev or manage environment variables.
-Set NEXT_PUBLIC_CRIMINAL_PILOT_MODE=true in your shell for pilot UI flag checks.
 `);
       process.exit(0);
     }
   }
 
+  if (pack === "full-960") mode = "discovery";
   if (baseUrl) {
-    console.warn(`Note: --base-url ${baseUrl} is reserved for future DOM checks; MVP uses live-builder only.`);
+    console.warn(`Note: --base-url ${baseUrl} reserved for future DOM checks; MVP uses live-builder only.`);
   }
 
-  return { pack, strict, failOnMedium, includeSynthetic, jsonOnly, outDir, userRole, baselinePath, pilotUserId, baseUrl };
+  return {
+    pack,
+    mode,
+    strict,
+    failOnMedium,
+    includeSynthetic,
+    jsonOnly,
+    outDir,
+    userRole,
+    baselinePath,
+    pilotUserId,
+    baseUrl,
+    limit,
+    offset,
+    familyFilter,
+  };
 }
 
 async function main() {
   const opts = parseArgs(process.argv);
   const result = await runAuditor({
     pack: opts.pack,
+    mode: opts.mode,
     strict: opts.strict,
     failOnMedium: opts.failOnMedium,
     includeSynthetic: opts.includeSynthetic,
@@ -79,6 +108,9 @@ async function main() {
     pilotUserId: opts.pilotUserId,
     baselinePath: opts.baselinePath,
     baseUrl: opts.baseUrl,
+    limit: opts.limit,
+    offset: opts.offset,
+    familyFilter: opts.familyFilter,
   });
 
   if (opts.jsonOnly) console.log(path.join(opts.outDir, "results.json"));

@@ -40,6 +40,17 @@ export function generateFixPromptsByGroup(groups: GroupedFailure[]): string {
     lines.push("### Fix instruction");
     lines.push(g.suggestedCursorFix);
     lines.push("");
+    if (g.fixImpactCategory) {
+      lines.push(`### Fix impact: ${g.fixImpactCategory}`);
+      lines.push(`Blast radius: ${g.blastRadius ?? "—"}`);
+      if (g.likelyFiles?.length) lines.push(`Likely files: ${g.likelyFiles.join(", ")}`);
+    }
+    if (g.regressionTestName) {
+      lines.push("");
+      lines.push(`### Regression test name`);
+      lines.push(`\`${g.regressionTestName}\``);
+    }
+    lines.push("");
     lines.push("### Acceptance checks");
     lines.push("- [ ] `npx tsx scripts/casebrain-auditor.ts --pack pilot-3 --user-role pilot-non-admin`");
     lines.push(`- [ ] Fingerprint \`${g.fingerprint}\` cleared for affected profiles`);

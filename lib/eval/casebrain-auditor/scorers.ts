@@ -10,6 +10,7 @@ import {
   STRATEGY_REQUIRED_CONDITIONAL_MARKERS,
 } from "./strategy-judge-rubric";
 import type {
+  AuditorFamilyProfile,
   AuditorIssue,
   AuditorPackId,
   AuditorScreen,
@@ -28,19 +29,35 @@ const REQUIRED_SCREENS: AuditorScreen[] = [
 ];
 
 function issue(
-  partial: Omit<AuditorIssue, "releaseBlocking"> & { releaseBlocking?: boolean },
+  partial: Omit<AuditorIssue, "releaseBlocking" | "manifestConfirmed"> & {
+    releaseBlocking?: boolean;
+    manifestConfirmed?: boolean;
+  },
 ): AuditorIssue {
   const releaseBlocking =
     partial.releaseBlocking ??
     (partial.severity === "CRITICAL" || partial.severity === "HIGH");
-  return { ...partial, releaseBlocking };
+  return {
+    ...partial,
+    releaseBlocking,
+    manifestConfirmed: partial.manifestConfirmed ?? true,
+  };
+}
+
+function auditProfile(manifest: CaseTruthManifest): AuditorFamilyProfile | CaseTruthManifest["profile"] {
+  return manifest.auditorFamily ?? manifest.profile;
 }
 
 function inferLeakageFingerprint(
-  profile: CaseTruthManifest["profile"],
+  profile: ReturnType<typeof auditProfile>,
   match: string,
 ): { fingerprint: string; severity: "CRITICAL" | "HIGH"; fix: string } {
   const t = match.toLowerCase();
+  if (profile === "violence_domestic_assault") {
+    if (/bank|device\/login|account-control|phone extraction|intent to supply/.test(t)) {
+      return { fingerprint: "profile_leakage.violence_fraud", severity: "HIGH", fix: "Violence family filter." };
+    }
+  }
   if (profile === "fraud_account_control") {
     if (/cctv|bwv/.test(t)) return { fingerprint: "profile_leakage.fraud_cctv", severity: "HIGH", fix: "Fraud CCTV/BWV suppress." };
     if (/999|cad/.test(t)) return { fingerprint: "profile_leakage.fraud_cad999", severity: "HIGH", fix: "Fraud CAD/999 suppress." };
@@ -61,16 +78,20 @@ function inferLeakageFingerprint(
   return { fingerprint: "strategy.wrong_primary_route", severity: "HIGH", fix: "Profile filter in pilot-workflow." };
 }
 
-function profileLeakageRuleApplies(fingerprint: string, profile: CaseTruthManifest["profile"]): boolean {
+function profileLeakageRuleApplies(
+  fingerprint: string,
+  profile: ReturnType<typeof auditProfile>,
+): boolean {
   if (fingerprint.startsWith("profile_leakage.fraud_")) return profile === "fraud_account_control";
   if (fingerprint.startsWith("profile_leakage.pwits_")) return profile === "pwits_phone_attribution";
   if (fingerprint.startsWith("profile_leakage.robbery_")) return profile === "robbery_identification";
+  if (fingerprint.startsWith("profile_leakage.violence_")) return profile === "violence_domestic_assault";
   return true;
 }
 
 function matchFingerprintRulesForProfile(
   text: string,
-  profile: CaseTruthManifest["profile"],
+  profile: ReturnType<typeof auditProfile>,
 ): Array<FingerprintRule & { match: string }> {
   const hits: Array<FingerprintRule & { match: string }> = [];
   for (const rule of ALL_FINGERPRINT_RULES) {
@@ -101,7 +122,7 @@ function fingerprintHits(
   const out: AuditorIssue[] = [];
   const seen = new Set<string>();
 
-  for (const hit of matchFingerprintRulesForProfile(text, manifest.profile)) {
+  for (const hit of matchFingerprintRulesForProfile(text, auditProfile(manifest))) {
     const key = `${hit.fingerprint}|${hit.match}`;
     if (seen.has(key)) continue;
     seen.add(key);
@@ -171,7 +192,7 @@ function checkManifestForbidden(
   for (const re of manifest.forbiddenConcepts) {
     const m = text.match(re);
     if (!m || skipTexts.has(m[0].toLowerCase())) continue;
-    const fp = inferLeakageFingerprint(manifest.profile, m[0]);
+    const fp = inferLeakageFingerprint(auditProfile(manifest), m[0]);
     out.push(
       issue({
         runId,

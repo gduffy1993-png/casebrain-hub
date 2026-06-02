@@ -89,6 +89,9 @@ export function writeGroupedFailuresMd(filePath: string, groups: GroupedFailure[
       lines.push("");
       lines.push("**Expected behaviour:**", g.expectedBehaviour, "");
       lines.push("**Likely shared cause:**", g.likelySharedCause, "");
+      if (g.fixImpactCategory) lines.push(`**Fix impact:** ${g.fixImpactCategory} | **Blast radius:** ${g.blastRadius ?? "—"}`);
+      if (g.regressionTestName) lines.push(`**Regression test:** \`${g.regressionTestName}\``);
+      if (g.likelyFiles?.length) lines.push(`**Likely files:** ${g.likelyFiles.join(", ")}`);
       lines.push("**Suggested Cursor fix brief:**", g.suggestedCursorFix, "");
       lines.push("_Do not patch case-by-case. Patch the shared rule/profile/filter._", "");
     }
@@ -112,11 +115,14 @@ export function writeScoreboardMd(
     "",
     "| Metric | Value |",
     "|--------|-------|",
+    `| Mode | ${summary.mode} |`,
     `| Cases | ${summary.totalCases} |`,
+    `| Confirmed / uncertain | ${summary.confirmedCases} / ${summary.uncertainCases} |`,
     `| Surfaces | ${summary.totalSurfaces} |`,
     `| Pass | ${summary.passCount} |`,
     `| Weak | ${summary.weakCount} |`,
     `| Fail (blocking) | ${summary.failCount} |`,
+    `| Confirmed HIGH+ | ${summary.confirmedHighCount} |`,
     `| CRITICAL | ${summary.criticalCount} |`,
     `| HIGH | ${summary.highCount} |`,
     `| Demo blockers | ${summary.demoBlockerCount} |`,
@@ -149,6 +155,9 @@ export function printConsoleSummary(
   console.log(`Pack: ${summary.pack} | Run: ${summary.runId}`);
   console.log(`Cases: ${summary.totalCases} | Surfaces: ${summary.totalSurfaces}`);
   console.log(`Pass: ${summary.passCount} | Weak: ${summary.weakCount} | Fail: ${summary.failCount}`);
+  console.log(
+    `Confirmed: ${summary.confirmedCases} | Uncertain: ${summary.uncertainCases} | Confirmed HIGH+: ${summary.confirmedHighCount}`,
+  );
   console.log(`CRITICAL: ${summary.criticalCount} | HIGH: ${summary.highCount} | Demo blockers: ${summary.demoBlockerCount}`);
   console.log("");
   console.log("Failure groups by severity:");
@@ -162,5 +171,60 @@ export function printConsoleSummary(
   console.log("");
   console.log(`Grouped failures: ${path.join(outDir, "grouped-failures.md")}`);
   console.log(`Fix prompts:      ${path.join(outDir, "fix-prompts-by-group.md")}`);
+  console.log(`Demo blockers:    ${path.join(outDir, "demo-blockers.md")}`);
   console.log("");
+}
+
+export function writeDemoBlockersMd(filePath: string, issues: AuditorIssue[]): void {
+  const blockers = issues.filter((i) => i.demoBlocker);
+  const lines = [
+    "# CaseBrain Auditor — demo blockers",
+    "",
+    `Total demo-blocker findings: ${blockers.length}`,
+    "",
+  ];
+  const byFp = new Map<string, AuditorIssue[]>();
+  for (const i of blockers) {
+    const list = byFp.get(i.fingerprint) ?? [];
+    list.push(i);
+    byFp.set(i.fingerprint, list);
+  }
+  for (const [fp, list] of [...byFp.entries()].sort((a, b) => b[1].length - a[1].length)) {
+    lines.push(`## ${fp} (${list.length})`, "");
+    for (const i of list.slice(0, 3)) {
+      lines.push(`- ${i.caseTitle} / ${i.screen}: \`${i.badText.slice(0, 120)}\` (${i.manifestConfirmed ? "confirmed" : "needs-review"})`);
+    }
+    if (list.length > 3) lines.push(`- _+${list.length - 3} more_`);
+    lines.push("");
+  }
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, lines.join("\n"), "utf8");
+}
+
+export function writeBaselineDiffMd(filePath: string, baseline: BaselineComparison): void {
+  const lines = [
+    "# CaseBrain Auditor — baseline diff",
+    "",
+    `Baseline run: ${baseline.baselineRunId ?? "unknown"}`,
+    "",
+    "## Summary",
+    "",
+    `| Metric | Count |`,
+    `|--------|-------|`,
+    `| New failures | ${baseline.newFailures.length} |`,
+    `| Fixed failures | ${baseline.fixedFailures.length} |`,
+    `| Improved (fixed) | ${baseline.improvedFailures.length} |`,
+    `| Repeated | ${baseline.repeatedFailures.length} |`,
+    `| Worsened | ${baseline.worsenedFailures.length} |`,
+    "",
+    "## New failures",
+    ...baseline.newFailures.slice(0, 50).map((k) => `- ${k}`),
+    "",
+    "## Fixed / improved",
+    ...baseline.fixedFailures.slice(0, 50).map((k) => `- ${k}`),
+    "",
+    "_Full lists are in results.json when comparing runs with --baseline._",
+  ];
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, lines.join("\n"), "utf8");
 }

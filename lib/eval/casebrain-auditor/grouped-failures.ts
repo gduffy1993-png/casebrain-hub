@@ -1,3 +1,4 @@
+import { enrichGroupedFailure } from "./fix-impact";
 import type { AuditorIssue, GroupedFailure } from "./types";
 import { severityRank } from "./issue-fingerprints";
 
@@ -49,10 +50,12 @@ export function groupFailuresByFingerprint(issues: AuditorIssue[]): GroupedFailu
     }
   }
 
-  return [...map.values()].sort((a, b) => {
-    const d = severityRank(b.severity) - severityRank(a.severity);
-    return d !== 0 ? d : b.affectedCount - a.affectedCount;
-  });
+  return [...map.values()]
+    .map(enrichGroupedFailure)
+    .sort((a, b) => {
+      const d = severityRank(b.severity) - severityRank(a.severity);
+      return d !== 0 ? d : b.affectedCount - a.affectedCount;
+    });
 }
 
 export function topFingerprints(issues: AuditorIssue[], limit = 10) {

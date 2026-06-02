@@ -127,6 +127,123 @@ export const PROFILE_LEAKAGE_RULES: FingerprintRule[] = [
     expected: "Robbery must not show bank/device/fraud language.",
     suggestedSharedFix: "Suppress fraud leakage in robbery_identification.",
   },
+  {
+    fingerprint: "profile_leakage.fraud_robbery",
+    issueFamily: "profile_leakage",
+    severity: "HIGH",
+    demoBlocker: true,
+    patterns: [/\brobbery\b/i, /identification \/ participation/i],
+    expected: "Fraud must not show robbery/ID route language.",
+    suggestedSharedFix: "Fraud profile suppress robbery leakage.",
+  },
+  {
+    fingerprint: "profile_leakage.fraud_pwits_phone",
+    issueFamily: "profile_leakage",
+    severity: "HIGH",
+    demoBlocker: true,
+    patterns: [/intent to supply/i, /phone-attribution pressure/i],
+    expected: "Fraud must not show PWITS/phone route.",
+    suggestedSharedFix: "Fraud profile suppress PWITS leakage.",
+  },
+  {
+    fingerprint: "profile_leakage.pwits_robbery_id",
+    issueFamily: "profile_leakage",
+    severity: "HIGH",
+    demoBlocker: true,
+    patterns: [/\brobbery\b/i, /visual\s*id/i],
+    expected: "PWITS must not show robbery/visual ID route.",
+    suggestedSharedFix: "PWITS profile suppress robbery leakage.",
+  },
+  {
+    fingerprint: "profile_leakage.violence_fraud",
+    issueFamily: "profile_leakage",
+    severity: "HIGH",
+    demoBlocker: true,
+    patterns: [/\bbank export\b/i, /account-control/i, /device\/login/i],
+    expected: "Violence must not show fraud/bank/device language.",
+    suggestedSharedFix: "Violence-family filter (auditor + future workflow profile).",
+  },
+  {
+    fingerprint: "profile_leakage.violence_pwits",
+    issueFamily: "profile_leakage",
+    severity: "HIGH",
+    demoBlocker: true,
+    patterns: [/intent to supply/i, /phone extraction/i, /phone-attribution/i],
+    expected: "Violence must not show PWITS/phone route.",
+    suggestedSharedFix: "Violence-family filter.",
+  },
+  {
+    fingerprint: "profile_leakage.violence_robbery_id",
+    issueFamily: "profile_leakage",
+    severity: "HIGH",
+    demoBlocker: true,
+    patterns: [/robbery identification/i, /second-male attribution/i],
+    expected: "Violence must not show robbery-ID route unless source-backed.",
+    suggestedSharedFix: "Violence-family filter.",
+  },
+];
+
+export type DiscoveryPattern = {
+  pattern: RegExp;
+  fingerprint: string;
+  issueFamily: string;
+  severity: import("./types").AuditorSeverity;
+  expected: string;
+  suggestedSharedFix: string;
+  demoBlocker?: boolean;
+};
+
+export const UNIVERSAL_DISCOVERY_PATTERNS: DiscoveryPattern[] = [
+  {
+    pattern: /\bagainst extract\b/i,
+    fingerprint: "wording.against_extract",
+    issueFamily: "wording",
+    severity: "MEDIUM",
+    expected: "No '/ against extract' fragments.",
+    suggestedSharedFix: "sanitizePilotVisibleLine / pilotCleanupVisibleText.",
+  },
+  {
+    pattern: /conditional\s*[-–—,]\s*conditional\s+on/i,
+    fingerprint: "wording.duplicate_conditional",
+    issueFamily: "wording",
+    severity: "LOW",
+    expected: "Single conditional phrasing.",
+    suggestedSharedFix: "pilotRouteStatusBadgeLabel cleanup.",
+  },
+  {
+    pattern: /consistent\.\./i,
+    fingerprint: "wording.double_full_stop",
+    issueFamily: "wording",
+    severity: "LOW",
+    expected: "Clean punctuation.",
+    suggestedSharedFix: "cleanupPilotVisiblePunctuation.",
+  },
+  {
+    pattern: /\b(CB-TRAP|eval pack|date-control|Priya)\b/i,
+    fingerprint: "wording.internal_debug_visible",
+    issueFamily: "wording",
+    severity: "HIGH",
+    expected: "No internal/dev/eval case labels in pilot-visible copy.",
+    suggestedSharedFix: "filterCourtTodayCasesForPilotUser / isEvalOrStressTestCase.",
+    demoBlocker: true,
+  },
+  {
+    pattern: /Interview admission narrows the defence route/i,
+    fingerprint: "source.unsupported_interview_admission",
+    issueFamily: "source",
+    severity: "CRITICAL",
+    expected: "No unsupported interview admission.",
+    suggestedSharedFix: "sanitizePilotVisibleLine profile-aware replacements.",
+    demoBlocker: true,
+  },
+  {
+    pattern: /CAD\/999 timing supports Crown sequence/i,
+    fingerprint: "source.overstated_cad999",
+    issueFamily: "source",
+    severity: "HIGH",
+    expected: "Conditional CAD/999 wording.",
+    suggestedSharedFix: "softenPilotRiskWording.",
+  },
 ];
 
 export const SOURCE_RULES: FingerprintRule[] = [
