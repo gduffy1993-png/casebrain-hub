@@ -342,6 +342,9 @@ const ROBBERY_SOURCE_MATERIAL_PHRASE =
 /** Pilot disclosure “case-wide court line” — profile-specific, no generic forensic wording. */
 export function workflowDisclosureCaseWideLine(context: WorkflowProfileContext): string | null {
   const profile = resolveWorkflowProfile(context);
+  if (profile === "fraud_account_control") {
+    return "Account-control and dishonesty issues remain conditional on served bank/export, device/login, mailbox and POCA/source-of-funds material.";
+  }
   if (profile === "pwits_phone_attribution") {
     return "Possession, knowledge, intent to supply and phone attribution remain conditional on full phone extraction, search BWV, drug/cash continuity and co-occupier material.";
   }
@@ -620,7 +623,10 @@ export function sanitizePilotVisibleLine(
   }
 
   if (isMalformedPilotEvidenceAnchor(t)) {
-    if (profile === "robbery_identification") {
+    if (/against extract/i.test(t)) {
+      t = t.replace(/\s*\/\s*against extract\b/gi, "").replace(/\bagainst extract\b/gi, "").trim();
+      if (!t) return null;
+    } else if (profile === "robbery_identification") {
       const recovered = normalizeRobberyPilotVisibleLine(t);
       if (
         recovered === "CCTV footage is not served in full; second-male attribution remains unresolved."
@@ -670,8 +676,24 @@ export function sanitizePilotVisibleLine(
     return null;
   }
 
-  let s = cleanupPilotVisiblePunctuation(softenPilotRiskWording(normalizeWorkflowPilotLabel(t)));
-  s = s.replace(/\s*\/\s*against extract\b/gi, "").trim();
+  let s = cleanupPilotVisiblePunctuation(
+    softenPilotRiskWording(normalizeWorkflowPilotLabel(t), profile),
+  );
+  if (
+    profile === "robbery_identification" &&
+    /Interview denial remains to be tested against bank\/device\/source material/i.test(s)
+  ) {
+    s =
+      "Interview denial remains to be tested against served CCTV/ID and complainant material.";
+  }
+  if (
+    profile === "pwits_phone_attribution" &&
+    /Interview denial remains to be tested against bank\/device\/source material/i.test(s)
+  ) {
+    s =
+      "Interview denial remains to be tested against served phone extraction, search BWV and continuity material.";
+  }
+  s = s.replace(/\s*\/\s*against extract\b/gi, "").replace(/\bagainst extract\b/gi, "").trim();
   return cleanupPilotVisiblePunctuation(s) || null;
 }
 
@@ -696,7 +718,8 @@ export function pilotFinalizeBriefLines(lines: string[]): string[] {
 /** Pilot UI copy pass — punctuation only (Control Room / Case Summary). */
 export function pilotCleanupVisibleText(text: string): string {
   if (!isCriminalPilotMode() || !text.trim()) return text;
-  return cleanupPilotVisiblePunctuation(text);
+  let s = text.trim().replace(/\s*\/\s*against extract\b/gi, "").replace(/\bagainst extract\b/gi, "");
+  return cleanupPilotVisiblePunctuation(s);
 }
 
 /** Pilot case summary opener for demo matters. */
@@ -789,7 +812,10 @@ export function pilotOutstandingVerbForLabel(label: string): "appear" | "appears
 }
 
 /** Soften absolute collapse-risk wording in pilot mode. */
-export function softenPilotRiskWording(text: string): string {
+export function softenPilotRiskWording(
+  text: string,
+  profile: WorkflowProfile = "generic",
+): string {
   if (!isCriminalPilotMode() || !text.trim()) return text;
   let s = text.trim();
   s = s.replace(
@@ -806,10 +832,15 @@ export function softenPilotRiskWording(text: string): string {
     /Outstanding expert\/source material may return against the defence route if served\.?/gi,
     "Outstanding bank/device/source material may support the Crown if served.",
   );
-  s = s.replace(
-    /Interview admission narrows the defence route\.?/gi,
-    "Interview denial remains to be tested against bank/device/source material.",
-  );
+  s = s.replace(/Interview admission narrows the defence route\.?/gi, () => {
+    if (profile === "robbery_identification") {
+      return "Interview denial remains to be tested against served CCTV/ID and complainant material.";
+    }
+    if (profile === "pwits_phone_attribution") {
+      return "Interview denial remains to be tested against served phone extraction, search BWV and continuity material.";
+    }
+    return "Interview denial remains to be tested against bank/device/source material.";
+  });
   s = s.replace(
     /\bCAD\/999 timing supports Crown sequence\.?/gi,
     "CAD/999 timing may affect sequence if served and reconciled.",
@@ -869,13 +900,13 @@ export function formatPilotDraftChaseWording(label: string): string {
 }
 
 const FRAUD_VISIBLE_SUPPRESS =
-  /\b(cctv|bwv|999|cad|custody|body.worn|mg11|call audio|full cctv|timing supports crown|confirms crown timing|crown sequence|crown timing)\b/i;
+  /\b(cctv|bwv|999|cad|custody|body.worn|mg11|call audio|full cctv|timing supports crown|confirms crown timing|crown sequence|crown timing|phone or witness material|participation\/attribution dispute)\b/i;
 
 const PWITS_VISIBLE_SUPPRESS =
   /\b(cctv full|cctv continuity|999|cad|medical|expert report|pathology|mg11\s+is\s+consistent|mg11\s+consistent)\b/i;
 
 const ROBBERY_VISIBLE_SUPPRESS =
-  /\b(custody record|custody cctv|mg11|body.worn|bwv\b|body-worn)\b/i;
+  /\b(custody record|custody cctv|mg11|body.worn|bwv\b|body-worn|bank export|bank\/device|device\/login|account[- ]?control|fraud by)\b/i;
 
 /** Suppress generic violence/source-template lines from visible pilot workflow output. */
 export function shouldSuppressWorkflowPilotLine(line: string, profile: WorkflowProfile): boolean {
@@ -901,6 +932,9 @@ export function shouldSuppressWorkflowPilotLine(line: string, profile: WorkflowP
     if (/\b(stolen.property|recovered elsewhere)\b/i.test(norm)) return true;
     if (/\bphone evidence\b/i.test(norm) && !/\bno phone\b/i.test(norm)) return true;
     if (/\bphone or witness\b/i.test(norm) && !/\bwitness, id or association\b/i.test(norm)) return true;
+    if (/\bCount\s*2:\s*Possession of criminal property\b/i.test(norm)) return true;
+    if (/\bbank\/device\/source material\b/i.test(norm)) return true;
+    if (/\bbank\b/i.test(norm) && !/\bbank\s+(holiday|branch)\b/i.test(norm)) return true;
     return ROBBERY_VISIBLE_SUPPRESS.test(norm) || /\bcctv full window\b/i.test(norm);
   }
   return shouldSuppressGenericChaseLabel(norm, profile);
