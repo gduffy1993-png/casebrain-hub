@@ -8,6 +8,7 @@ import { generateFixPromptsByGroup } from "./fix-ticket-generator";
 import { groupFailuresByFingerprint, topFingerprints } from "./grouped-failures";
 import { writeManifestReviewQueue } from "./manifest-review-queue";
 import { writeTrainingDataJsonl } from "./training-data-export";
+import { copyRunArtifactsToLatest, resolveArtifactDirs } from "./artifact-output";
 import {
   collectAggregateCourtToday,
   collectCaseSurfaces,
@@ -258,28 +259,54 @@ export async function runAuditor(options: AuditorRunOptions): Promise<AuditorRun
     baseline,
   };
 
-  const outDir = options.outDir;
-  fs.mkdirSync(outDir, { recursive: true });
-  writeResultsJson(path.join(outDir, "results.json"), result);
-  writeFailuresCsv(path.join(outDir, "failures.csv"), allIssues);
-  writeWeakCsv(path.join(outDir, "weak.csv"), allIssues);
-  writeGroupedFailuresMd(path.join(outDir, "grouped-failures.md"), groups);
-  fs.writeFileSync(path.join(outDir, "fix-prompts-by-group.md"), generateFixPromptsByGroup(groups), "utf8");
-  writeScoreboardMd(path.join(outDir, "scoreboard.md"), summary, groups, baseline);
-  writeDemoBlockersMd(path.join(outDir, "demo-blockers.md"), allIssues);
-  if (baseline) writeBaselineDiffMd(path.join(outDir, "baseline-diff.md"), baseline);
+  const artifactRoot = options.outDir;
+  const { runDir, latestDir, latestSlug } = resolveArtifactDirs(
+    artifactRoot,
+    runId,
+    pack.id,
+    options.mode,
+  );
+  fs.mkdirSync(runDir, { recursive: true });
+
+  const writtenFiles: string[] = [];
+
+  const writeArtifact = (fileName: string, writeFn: (filePath: string) => void) => {
+    writeFn(path.join(runDir, fileName));
+    writtenFiles.push(fileName);
+  };
+
+  writeArtifact("results.json", (p) => writeResultsJson(p, result));
+  writeArtifact("failures.csv", (p) => writeFailuresCsv(p, allIssues));
+  writeArtifact("weak.csv", (p) => writeWeakCsv(p, allIssues));
+  writeArtifact("grouped-failures.md", (p) => writeGroupedFailuresMd(p, groups));
+  writeArtifact("fix-prompts-by-group.md", (p) =>
+    fs.writeFileSync(p, generateFixPromptsByGroup(groups), "utf8"),
+  );
+  writeArtifact("scoreboard.md", (p) => writeScoreboardMd(p, summary, groups, baseline));
+  writeArtifact("demo-blockers.md", (p) => writeDemoBlockersMd(p, allIssues));
+  if (baseline) {
+    writeArtifact("baseline-diff.md", (p) => writeBaselineDiffMd(p, baseline));
+  }
 
   if (options.pack === "family-40") {
-    const n = writeManifestReviewQueue(outDir);
-    console.log(`Manifest review queue: ${n} uncertain case(s) → manifest-review-queue.md / .json`);
+    const n = writeManifestReviewQueue(runDir);
+    writtenFiles.push("manifest-review-queue.md", "manifest-review-queue.json");
+    console.log(
+      `Manifest review queue: ${n} uncertain case(s) → ${path.join(runDir, "manifest-review-queue.md")}`,
+    );
   }
 
   if (options.exportTrainingData) {
-    const n = writeTrainingDataJsonl(outDir, result);
-    console.log(`Training-data export: ${n} row(s) → training-data.jsonl (approvedForTraining defaults false)`);
+    const n = writeTrainingDataJsonl(runDir, result);
+    writtenFiles.push("training-data.jsonl");
+    console.log(
+      `Training-data export: ${n} row(s) → ${path.join(runDir, "training-data.jsonl")} (approvedForTraining defaults false)`,
+    );
   }
 
-  printConsoleSummary(summary, outDir, groups);
+  copyRunArtifactsToLatest(runDir, latestDir, writtenFiles);
+
+  printConsoleSummary(summary, runDir, latestDir, latestSlug, groups);
   return result;
 }
 

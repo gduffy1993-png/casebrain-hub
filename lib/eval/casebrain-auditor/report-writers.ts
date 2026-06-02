@@ -164,7 +164,9 @@ export function writeResultsJson(filePath: string, result: AuditorRunResult): vo
 
 export function printConsoleSummary(
   summary: AuditorRunSummary,
-  outDir: string,
+  runDir: string,
+  latestDir: string,
+  latestSlug: string,
   groups: GroupedFailure[],
 ): void {
   console.log("");
@@ -186,9 +188,12 @@ export function printConsoleSummary(
   console.log("Top fingerprints:");
   for (const t of summary.topFingerprints) console.log(`  ${t.count}x  ${t.fingerprint}`);
   console.log("");
-  console.log(`Grouped failures: ${path.join(outDir, "grouped-failures.md")}`);
-  console.log(`Fix prompts:      ${path.join(outDir, "fix-prompts-by-group.md")}`);
-  console.log(`Demo blockers:    ${path.join(outDir, "demo-blockers.md")}`);
+  console.log(`Run folder:       ${runDir}`);
+  console.log(`Latest (${latestSlug}): ${latestDir}`);
+  console.log(`Grouped failures: ${path.join(runDir, "grouped-failures.md")}`);
+  console.log(`Fix prompts:      ${path.join(runDir, "fix-prompts-by-group.md")}`);
+  console.log(`Demo blockers:    ${path.join(runDir, "demo-blockers.md")}`);
+  console.log(`Latest copy:      ${path.join(latestDir, "grouped-failures.md")}`);
   console.log("");
 }
 

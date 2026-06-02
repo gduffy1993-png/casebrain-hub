@@ -64,7 +64,7 @@ Options:
   --strict              Exit 1 on RED release gate
   --fail-on-medium      Exit 1 on MEDIUM severity
   --include-synthetic   Treat synthetic-surface failures as blocking
-  --out <dir>           Output directory
+  --out <dir>           Artifact root (default: artifacts/casebrain-auditor; writes runs/{runId} + latest/{pack})
   --baseline <json>     Compare to previous results.json
   --base-url <url>      Reserved for future DOM checks
   --export-training-data  Write training-data.jsonl (local artifact; never commit)
@@ -118,7 +118,10 @@ async function main() {
     exportTrainingData: opts.exportTrainingData,
   });
 
-  if (opts.jsonOnly) console.log(path.join(opts.outDir, "results.json"));
+  if (opts.jsonOnly) {
+    const slug = opts.pack === "full-960" ? "full-960-discovery" : opts.pack;
+    console.log(path.join(opts.outDir, "latest", slug, "results.json"));
+  }
 
   process.exit(shouldExitNonZero(result.summary, opts) ? 1 : 0);
 }
