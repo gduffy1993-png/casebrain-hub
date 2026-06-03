@@ -162,7 +162,7 @@ export function buildDiscoveryManifestFromRealCase(row: RealCaseRow): CaseTruthM
   };
 }
 
-async function loadBattleboardInputs(
+export async function loadRealCaseBattleboardInputs(
   caseId: string,
   orgId: string,
 ): Promise<{
@@ -393,7 +393,7 @@ export async function collectRealCaseDiscoverySurfaces(
   orgId: string,
   _opts: { userRole: UserRoleMode },
 ): Promise<ScreenCollection[]> {
-  const loaded = await loadBattleboardInputs(row.caseId, orgId);
+  const loaded = await loadRealCaseBattleboardInputs(row.caseId, orgId);
   if (!loaded) {
     return [
       screen("control_room", { error: "case_not_found" }, "missing", "api-output", ["case"]),

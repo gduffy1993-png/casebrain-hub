@@ -245,7 +245,12 @@ function loadBatchResumeState(rollupDir: string): {
 
 export async function runReal960BatchDiscovery(
   options: AuditorRunOptions,
-): Promise<{ rollup: Real960Rollup; rollupDir: string; result: AuditorRunResult }> {
+): Promise<{
+  rollup: Real960Rollup;
+  rollupDir: string;
+  result: AuditorRunResult;
+  playbackDir?: string;
+}> {
   const orgId = process.env.EVAL_ORG_ID?.trim();
   if (!orgId) {
     throw new Error("batch real-960 requires EVAL_ORG_ID in environment.");
@@ -430,9 +435,26 @@ export async function runReal960BatchDiscovery(
     groups: mergedGroups,
   };
 
+  let playbackDir: string | undefined;
+  if (options.corpusPlayback && allRows.length > 0) {
+    const { runCorpusPlaybackFromRows } = await import("./corpus-playback-run");
+    if (!options.quietConsole) {
+      console.log(`\n[batch] Writing corpus playback for ${allRows.length} rows…`);
+    }
+    const pb = await runCorpusPlaybackFromRows(allRows, {
+      outDir: options.outDir,
+      orgId,
+      userRole: options.userRole,
+      quietConsole: options.quietConsole ?? false,
+      caseTimeoutMs: options.batchCaseTimeoutMs,
+    });
+    playbackDir = pb.outDir;
+  }
+
   if (!options.quietConsole) {
     console.log("");
     console.log(`Batch rollup: ${rollupDir}`);
+    if (playbackDir) console.log(`Corpus playback: ${playbackDir}`);
     console.log(`Cases scanned: ${totalScanned} | Chunks: ${chunkRecords.length}`);
     console.log(
       `Corpus A=${corpusBucketCounts.A} B=${corpusBucketCounts.B} C=${corpusBucketCounts.C} | Production gate: ${productionReleaseGate}`,
@@ -440,5 +462,5 @@ export async function runReal960BatchDiscovery(
     printConsoleSummary(summary, rollupDir, rollupDir, REAL_960_ROLLUP_SLUG, mergedGroups);
   }
 
-  return { rollup, rollupDir, result };
+  return { rollup, rollupDir, result, playbackDir };
 }
