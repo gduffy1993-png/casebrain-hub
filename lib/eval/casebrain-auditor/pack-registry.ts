@@ -47,7 +47,7 @@ export const AUDITOR_PACKS: Record<AuditorPackId, AuditorPackDefinition> = {
     label: "Full 960 discovery",
     status: "discovery-only",
     description:
-      "Broad discovery scan — uses family-40 catalog as read-only corpus until DB case export is wired. Strict grading not implemented.",
+      "Broad discovery scan — fictional family-40 catalog (default) or read-only real org cases with --corpus real.",
     caseManifests: buildAllFamily40Manifests(),
     expectedCaseCount: FAMILY_40_CATALOG.length,
   },

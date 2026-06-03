@@ -11,6 +11,8 @@ export type ManifestCertainty = "confirmed" | "uncertain";
 
 export type AuditorMode = "standard" | "discovery";
 
+export type AuditorCorpus = "fictional" | "real";
+
 export type FixImpactCategory =
   | "global_filter"
   | "profile_rule"
@@ -168,6 +170,15 @@ export type AuditorRunOptions = {
   offset?: number;
   familyFilter?: AuditorFamilyProfile;
   exportTrainingData?: boolean;
+  /** full-960 discovery: fictional catalog (default) or read-only real cases via EVAL_ORG_ID */
+  corpus?: AuditorCorpus;
+  exportCaseList?: boolean;
+  /** When false, only writes runs/{runId}/ (batch chunks). Default true. */
+  writeLatest?: boolean;
+  quietConsole?: boolean;
+  batch?: boolean;
+  batchChunkSize?: number;
+  batchMaxCases?: number;
 };
 
 export type AuditorRunSummary = {

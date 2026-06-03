@@ -7,6 +7,7 @@ import { attachCorrectFixToGroups } from "./correct-fix";
 import { generateFixPromptsByGroup } from "./fix-ticket-generator";
 import { groupFailuresByFingerprint, topFingerprints } from "./grouped-failures";
 import { writeManifestReviewQueue } from "./manifest-review-queue";
+import { writeOffenceCoverageReports } from "./offence-coverage";
 import { writeTrainingDataJsonl } from "./training-data-export";
 import { copyRunArtifactsToLatest, resolveArtifactDirs } from "./artifact-output";
 import {
@@ -164,54 +165,87 @@ export async function runAuditor(options: AuditorRunOptions): Promise<AuditorRun
   const pack = resolvePack(options.pack, options.mode);
   const runId = newRunId();
   const pilotUserId = options.pilotUserId || PILOT_DEMO_USER_ID;
-  const manifests = filterManifests(pack.caseManifests, options);
+  const corpus = options.corpus ?? "fictional";
 
   const allIssues: AuditorIssue[] = [];
   const caseResults: CaseAuditResult[] = [];
   let totalSurfaces = 0;
+  let realCorpusRows: import("./real-case-collector").RealCaseRow[] = [];
 
   const collectorOpts = { userRole: options.userRole, pilotUserId };
 
-  for (const manifest of manifests) {
-    let screens;
-    let issues: AuditorIssue[];
+  const useRealCorpus =
+    options.pack === "full-960" && options.mode === "discovery" && corpus === "real";
 
-    if (options.pack === "pilot-3") {
-      ({ screens, issues } = auditPilot3Case(runId, manifest, { ...options, pilotUserId }));
-    } else if (options.pack === "family-40") {
-      const result = auditFamily40Case(runId, "family-40", manifest as import("./types").Family40CaseManifest, {
-        includeSynthetic: options.includeSynthetic,
-        userRole: options.userRole,
-        pilotUserId,
-      });
-      screens = result.screens;
-      issues = result.issues;
-    } else if (options.pack === "full-960" && options.mode === "discovery") {
-      ({ screens, issues } = runDiscoveryCase(runId, "full-960", manifest, collectorOpts));
-    } else {
-      throw new Error(`Unsupported pack/mode: ${options.pack} / ${options.mode}`);
+  if (useRealCorpus) {
+    const orgId = process.env.EVAL_ORG_ID?.trim();
+    if (!orgId) {
+      throw new Error(
+        "full-960 --corpus real requires EVAL_ORG_ID in environment (read-only Supabase list).",
+      );
+    }
+    const limit = options.limit ?? 50;
+    const offset = options.offset ?? 0;
+
+    const { auditFull960RealCorpus, buildRealCaseListExport } = await import("./full-960-real-audit");
+
+    if (options.exportCaseList) {
+      console.log("Note: case list also written to run folder as full-960-case-list.json");
     }
 
-    totalSurfaces += screens.length;
-    allIssues.push(...issues);
-
-    const blocking = issues.filter((i) => i.releaseBlocking && i.manifestConfirmed);
-    caseResults.push({
-      caseId: manifest.caseId,
-      caseTitle: manifest.caseTitle,
-      profile: manifest.profile,
-      auditorFamily: manifest.auditorFamily,
-      manifestCertainty: manifest.manifestCertainty,
-      sourceRef: manifest.sourceRef,
-      screens,
-      issues,
-      pass:
-        manifest.manifestCertainty !== "uncertain" &&
-        blocking.length === 0 &&
-        !issues.some((i) => i.fingerprint === "ui.surface_not_collected" && i.releaseBlocking),
-      failCount: blocking.filter((i) => i.status === "fail").length,
-      weakCount: issues.filter((i) => i.status === "weak").length,
+    const realResult = await auditFull960RealCorpus(runId, orgId, {
+      userRole: options.userRole,
+      limit,
+      offset,
     });
+    realCorpusRows = realResult.realRows;
+    caseResults.push(...realResult.caseResults);
+    allIssues.push(...realResult.issues);
+    totalSurfaces = realResult.totalSurfaces;
+  } else {
+    const manifests = filterManifests(pack.caseManifests, options);
+
+    for (const manifest of manifests) {
+      let screens;
+      let issues: AuditorIssue[];
+
+      if (options.pack === "pilot-3") {
+        ({ screens, issues } = auditPilot3Case(runId, manifest, { ...options, pilotUserId }));
+      } else if (options.pack === "family-40") {
+        const result = auditFamily40Case(runId, "family-40", manifest as import("./types").Family40CaseManifest, {
+          includeSynthetic: options.includeSynthetic,
+          userRole: options.userRole,
+          pilotUserId,
+        });
+        screens = result.screens;
+        issues = result.issues;
+      } else if (options.pack === "full-960" && options.mode === "discovery") {
+        ({ screens, issues } = runDiscoveryCase(runId, "full-960", manifest, collectorOpts));
+      } else {
+        throw new Error(`Unsupported pack/mode: ${options.pack} / ${options.mode}`);
+      }
+
+      totalSurfaces += screens.length;
+      allIssues.push(...issues);
+
+      const blocking = issues.filter((i) => i.releaseBlocking && i.manifestConfirmed);
+      caseResults.push({
+        caseId: manifest.caseId,
+        caseTitle: manifest.caseTitle,
+        profile: manifest.profile,
+        auditorFamily: manifest.auditorFamily,
+        manifestCertainty: manifest.manifestCertainty,
+        sourceRef: manifest.sourceRef,
+        screens,
+        issues,
+        pass:
+          manifest.manifestCertainty !== "uncertain" &&
+          blocking.length === 0 &&
+          !issues.some((i) => i.fingerprint === "ui.surface_not_collected" && i.releaseBlocking),
+        failCount: blocking.filter((i) => i.status === "fail").length,
+        weakCount: issues.filter((i) => i.status === "weak").length,
+      });
+    }
   }
 
   let aggregate: Record<string, unknown> = {};
@@ -228,9 +262,10 @@ export async function runAuditor(options: AuditorRunOptions): Promise<AuditorRun
 
   let groups = groupFailuresByFingerprint(allIssues);
   groups = attachCorrectFixToGroups(groups, { pack: options.pack, cases: caseResults });
-  const dataSource =
-    options.pack === "full-960"
-      ? `discovery scan (family-40 catalog corpus, limit=${options.limit ?? "all"})`
+  const dataSource = useRealCorpus
+    ? `real corpus discovery (EVAL_ORG_ID, criminal cases, limit=${options.limit ?? 50}, offset=${options.offset ?? 0}) — buildStrategyBattleboard read-only`
+    : options.pack === "full-960"
+      ? `discovery scan (fictional family-40 catalog, limit=${options.limit ?? "all"})`
       : options.pack === "family-40"
         ? "live-builder + family-40 truth manifests (confirmed + uncertain scaffold)"
         : "live-builder (stress battleboard through pilot filters); no browser/DOM";
@@ -288,6 +323,23 @@ export async function runAuditor(options: AuditorRunOptions): Promise<AuditorRun
     writeArtifact("baseline-diff.md", (p) => writeBaselineDiffMd(p, baseline));
   }
 
+  if (useRealCorpus && realCorpusRows.length > 0) {
+    const { buildRealCaseListExport } = await import("./full-960-real-audit");
+    const listExport = await buildRealCaseListExport(
+      process.env.EVAL_ORG_ID!.trim(),
+      options.limit ?? realCorpusRows.length,
+      options.offset ?? 0,
+    );
+    fs.writeFileSync(
+      path.join(runDir, "full-960-case-list.json"),
+      JSON.stringify(listExport, null, 2),
+      "utf8",
+    );
+    writtenFiles.push("full-960-case-list.json");
+    writeOffenceCoverageReports(runDir, realCorpusRows);
+    writtenFiles.push("offence-coverage.json", "offence-coverage.md");
+  }
+
   if (options.pack === "family-40") {
     const n = writeManifestReviewQueue(runDir);
     writtenFiles.push("manifest-review-queue.md", "manifest-review-queue.json");
@@ -299,14 +351,20 @@ export async function runAuditor(options: AuditorRunOptions): Promise<AuditorRun
   if (options.exportTrainingData) {
     const n = writeTrainingDataJsonl(runDir, result);
     writtenFiles.push("training-data.jsonl");
-    console.log(
-      `Training-data export: ${n} row(s) → ${path.join(runDir, "training-data.jsonl")} (approvedForTraining defaults false)`,
-    );
+    if (!options.quietConsole) {
+      console.log(
+        `Training-data export: ${n} row(s) → ${path.join(runDir, "training-data.jsonl")} (approvedForTraining defaults false)`,
+      );
+    }
   }
 
-  copyRunArtifactsToLatest(runDir, latestDir, writtenFiles);
+  if (options.writeLatest !== false) {
+    copyRunArtifactsToLatest(runDir, latestDir, writtenFiles);
+  }
 
-  printConsoleSummary(summary, runDir, latestDir, latestSlug, groups);
+  if (!options.quietConsole) {
+    printConsoleSummary(summary, runDir, latestDir, latestSlug, groups);
+  }
   return result;
 }
 

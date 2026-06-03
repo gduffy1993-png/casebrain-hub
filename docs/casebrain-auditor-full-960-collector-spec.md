@@ -1,6 +1,6 @@
 # CaseBrain Auditor — full-960 read-only collector specification
 
-**Status:** Discovery-only scaffold. No DB access, no production tuning, no strict grading.
+**Status:** Phase 1 implemented — `--corpus real` with `EVAL_ORG_ID` (read-only Supabase + `buildStrategyBattleboard`).
 
 This document defines what must exist before `full-960` can move from pattern discovery to safe large-corpus auditing.
 
@@ -48,8 +48,9 @@ Before persisting collector output to disk:
 ## Paging and noise control
 
 ```powershell
+$env:EVAL_ORG_ID="your-org-uuid"
 $env:NEXT_PUBLIC_CRIMINAL_PILOT_MODE="true"
-npx tsx scripts/casebrain-auditor.ts --pack full-960 --mode discovery --limit 50 --offset 0 --user-role pilot-non-admin
+npx tsx scripts/casebrain-auditor.ts --pack full-960 --mode discovery --corpus real --limit 50 --offset 0 --user-role pilot-non-admin
 ```
 
 - **`--limit`:** Max cases per run (default: all in discovery corpus).
