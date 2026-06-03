@@ -37,7 +37,9 @@ function bucketForRow(row: RealCaseRow): string {
 }
 
 function likelyCauseForUnknown(row: RealCaseRow, inferenceText: string): string {
-  if (!inferenceText.trim()) return "No alleged_offence and no criminal_charges rows — metadata empty.";
+  if (!inferenceText.trim()) {
+    return "No alleged_offence and no criminal_charges — metadata empty (often test/placeholder cases; not a routing bug).";
+  }
   if (/\b(dangerous driving|driving whilst|no insurance|fail to stop|motoring|speeding|drink drive|drug drive)\b/i.test(inferenceText)) {
     return "Motoring offence — no workflow profile family (by design returns null).";
   }
