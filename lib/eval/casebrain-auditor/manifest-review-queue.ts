@@ -13,7 +13,10 @@ export type ManifestReviewEntry = {
   evidenceNeededToConfirmFamily: string[];
   fieldsNeededBeforeStrictGrading: string[];
   proposedNextAction: string;
+  /** Fictional family-40 only — real corpus uses discovery manifests, not promote queue. */
   canPromoteToConfirmed: false;
+  fictionalOnly: true;
+  humanGateRequired: true;
 };
 
 const STANDARD_FIELDS_NEEDED = [
@@ -46,15 +49,17 @@ export function buildManifestReviewQueue(): ManifestReviewEntry[] {
         `Confirm offence tag: ${m.offenceTag}`,
         "Human reviewer assigns primary workflow family",
         m.auditorFamily === "violence_domestic_assault"
-          ? "Confirm violence_domestic_assault exists in pilot-workflow before strict grade"
+          ? "Confirm violence_domestic_assault workflow profile matches bundle offence tags"
           : "Confirm no mixed-count offence dominates another family",
       ],
       fieldsNeededBeforeStrictGrading: [...STANDARD_FIELDS_NEEDED],
       proposedNextAction:
         m.auditorFamily === "violence_domestic_assault"
-          ? "Defer strict grading until violence workflow profile is added to pilot-workflow; keep discovery-only."
+          ? "If bundle confirms violence family, promote manifestCertainty to confirmed in family-40-catalog and re-run family-40."
           : "If offence clearly matches family after bundle review, promote manifestCertainty to confirmed and re-run family-40.",
       canPromoteToConfirmed: false,
+      fictionalOnly: true,
+      humanGateRequired: true,
     };
   });
 }
@@ -69,7 +74,9 @@ export function writeManifestReviewQueue(outDir: string): number {
   const lines = [
     "# CaseBrain Auditor — manifest review queue",
     "",
-    `Uncertain family-40 cases: **${entries.length}** (not release-blocking; not counted as pass).`,
+    `Uncertain family-40 cases: **${entries.length}** (fictional promote queue only — not release-blocking).`,
+    "",
+    "_Real corpus cases are not promoted via this queue — use offence-coverage + charge metadata routing._",
     "",
   ];
 
@@ -83,7 +90,8 @@ export function writeManifestReviewQueue(outDir: string): number {
     lines.push("- **Fields needed before strict grading:**");
     for (const f of e.fieldsNeededBeforeStrictGrading) lines.push(`  - ${f}`);
     lines.push(`- **Proposed next action:** ${e.proposedNextAction}`);
-    lines.push(`- **canPromoteToConfirmed:** false`, "");
+    lines.push(`- **canPromoteToConfirmed:** false (human gate)`);
+    lines.push(`- **fictionalOnly:** true`, "");
   }
 
   fs.writeFileSync(path.join(outDir, "manifest-review-queue.md"), lines.join("\n"), "utf8");

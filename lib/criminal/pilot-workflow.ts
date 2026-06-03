@@ -199,7 +199,7 @@ const PROFILE_SIGNAL_RULES: Array<{
   {
     profile: "violence_domestic_assault",
     patterns: [
-      { re: /\b(assault|gbh|abh|oapa|s\.18|s\.20|s\.47|affray|violence|domestic)\b/i, weight: 14 },
+      { re: /\b(assault|gbh|abh|oapa|s\.18|s\.20|s\.47|affray|violence|domestic|arson|reckless)\b/i, weight: 14 },
       { re: /\b(complainant|mg11|injury|medical|hospital|retraction)\b/i, weight: 10 },
       { re: /\b(bwv|body.worn|999|cad|self.defence)\b/i, weight: 6 },
     ],
@@ -941,6 +941,11 @@ export function softenSolicitorSourceWording(
     /\b999\/CAD timing may support the Crown sequence once served\.?/gi,
     "CAD/999 timing may affect sequence if served and reconciled.",
   );
+  s = s.replace(/\bestablishes guilt\b/gi, "may bear on the Crown case if served and consistent");
+  s = s.replace(/\bproves participation\b/gi, "may bear on participation if served and consistent");
+  s = s.replace(/\bconfirms participation\b/gi, "may bear on participation if served and consistent");
+  s = s.replace(/\bproves the (?:offence|case)\b/gi, "may support the Crown case if served and consistent");
+  s = s.replace(/\bdefinitely (?:proves|shows|confirms)\b/gi, "may show if served and consistent");
   return cleanupPilotVisiblePunctuation(s);
 }
 
@@ -965,6 +970,21 @@ export function normalizeWorkflowPilotLabel(line: string): string {
     .replace(/\bmg11\b/gi, "MG11")
     .replace(/\s+/g, " ")
     .trim();
+}
+
+/** Collapse duplicate chase labels after normalisation (case-insensitive). */
+export function dedupeWorkflowChaseLabels(labels: string[]): string[] {
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const raw of labels) {
+    const normalized = normalizeWorkflowPilotLabel(raw);
+    if (!normalized) continue;
+    const key = normalized.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(normalized);
+  }
+  return out;
 }
 
 /** Pilot disclosure chase court-record line with plural-aware grammar. */

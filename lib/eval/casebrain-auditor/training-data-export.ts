@@ -35,7 +35,26 @@ export type TrainingDataRow = {
   approvedForTraining: boolean;
   needsHumanReview: boolean;
   trainingUse: TrainingUse;
+  /** Human gate — autopilot never sets true for real corpus or unconfirmed manifests. */
+  trainingApprovalNote: string;
 };
+
+export type TrainingExportSummary = {
+  totalRows: number;
+  dedupedRows: number;
+  approvedCount: number;
+  needsReviewCount: number;
+  excludedRealCorpus: number;
+  exportRules: string[];
+};
+
+const TRAINING_EXPORT_RULES = [
+  "Never commit training-data.jsonl to git.",
+  "approvedForTraining defaults false — human must approve fictional confirmed rows only.",
+  "Real corpus (full-960 discovery) rows are export-only for review, never auto-approved.",
+  "Rows deduped by fingerprint + caseId + screen.",
+  "Redaction flags force needsHumanReview.",
+];
 
 function trainingUseFor(fingerprint: string, fixType: string): TrainingUse {
   if (fingerprint.startsWith("manifest.")) return "manifest_review";
@@ -57,18 +76,43 @@ function sourceGroundingStatus(issue: AuditorIssue, fixType: string): TrainingDa
   return "unknown";
 }
 
+function trainingApprovalNote(
+  pack: AuditorRunResult["summary"]["pack"],
+  issue: AuditorIssue,
+  fixType: string,
+  redactionStatus: string,
+): string {
+  if (!isFictionalEvalPack(pack)) return "Real corpus — not eligible for auto-approval.";
+  if (!issue.manifestConfirmed) return "Manifest not confirmed — human review required.";
+  if (fixType === "uncertain_needs_review") return "Fix type uncertain — human review required.";
+  if (redactionStatus === "needs_review") return "Redaction flagged sensitive content.";
+  if (fixType === "exact_truth_fix" || fixType === "source_grounded_fix") {
+    return "Source-grounded fix — human must verify before training.";
+  }
+  return "Scaffold only — set approvedForTraining manually after review.";
+}
+
 function approvedDefault(
   pack: AuditorRunResult["summary"]["pack"],
   issue: AuditorIssue,
   fixType: string,
   redactionStatus: string,
 ): boolean {
-  if (!isFictionalEvalPack(pack)) return false;
-  if (!issue.manifestConfirmed) return false;
-  if (fixType === "uncertain_needs_review") return false;
-  if (redactionStatus === "needs_review") return false;
-  if (fixType === "exact_truth_fix" || fixType === "source_grounded_fix") return false;
+  // Autopilot scaffold: never auto-approve — human gate only.
+  void trainingApprovalNote(pack, issue, fixType, redactionStatus);
   return false;
+}
+
+function dedupeTrainingRows(rows: TrainingDataRow[]): TrainingDataRow[] {
+  const seen = new Set<string>();
+  const out: TrainingDataRow[] = [];
+  for (const row of rows) {
+    const key = `${row.fingerprint}|${row.caseId}|${row.screen}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(row);
+  }
+  return out;
 }
 
 export function buildTrainingDataRows(result: AuditorRunResult): TrainingDataRow[] {
@@ -132,18 +176,36 @@ export function buildTrainingDataRows(result: AuditorRunResult): TrainingDataRow
       approvedForTraining: approvedDefault(summary.pack, issue, fixType, redacted.redactionStatus),
       needsHumanReview: group.needsHumanReview ?? true,
       trainingUse: trainingUseFor(issue.fingerprint, fixType),
+      trainingApprovalNote: trainingApprovalNote(summary.pack, issue, fixType, redacted.redactionStatus),
     };
     rows.push(row);
   }
 
-  return rows;
+  return dedupeTrainingRows(rows);
+}
+
+export function summarizeTrainingExport(rows: TrainingDataRow[]): TrainingExportSummary {
+  return {
+    totalRows: rows.length,
+    dedupedRows: rows.length,
+    approvedCount: rows.filter((r) => r.approvedForTraining).length,
+    needsReviewCount: rows.filter((r) => r.needsHumanReview).length,
+    excludedRealCorpus: rows.filter((r) => r.trainingApprovalNote.includes("Real corpus")).length,
+    exportRules: TRAINING_EXPORT_RULES,
+  };
 }
 
 export function writeTrainingDataJsonl(outDir: string, result: AuditorRunResult): number {
   const rows = buildTrainingDataRows(result);
+  const summary = summarizeTrainingExport(rows);
   const filePath = path.join(outDir, "training-data.jsonl");
   fs.mkdirSync(outDir, { recursive: true });
   const lines = rows.map((r) => JSON.stringify(r));
   fs.writeFileSync(filePath, lines.join("\n") + (lines.length ? "\n" : ""), "utf8");
+  fs.writeFileSync(
+    path.join(outDir, "training-export-summary.json"),
+    JSON.stringify({ generatedAt: new Date().toISOString(), ...summary }, null, 2),
+    "utf8",
+  );
   return rows.length;
 }

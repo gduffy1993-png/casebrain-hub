@@ -197,6 +197,52 @@ function writeRollupMarkdown(rollupDir: string, rollup: Real960Rollup): void {
   fs.writeFileSync(path.join(rollupDir, "real-960-rollup.md"), lines.join("\n"), "utf8");
 }
 
+function loadBatchResumeState(rollupDir: string): {
+  offset: number;
+  chunkIndex: number;
+  priorRecords: BatchChunkRecord[];
+  priorIssues: AuditorIssue[];
+  priorCases: import("./types").CaseAuditResult[];
+  priorSurfaces: number;
+} | null {
+  const p = path.join(rollupDir, "real-960-rollup.json");
+  if (!fs.existsSync(p)) return null;
+  try {
+    const prior = JSON.parse(fs.readFileSync(p, "utf8")) as Real960Rollup;
+    const ok = prior.chunkRecords.filter((c) => c.status === "ok" && c.casesScanned > 0);
+    if (ok.length === 0) return null;
+    const last = ok[ok.length - 1]!;
+
+    const priorIssues: AuditorIssue[] = [];
+    const priorCases: import("./types").CaseAuditResult[] = [];
+    let priorSurfaces = 0;
+    for (const rec of ok) {
+      if (!rec.runDir) continue;
+      const resultsPath = path.join(rec.runDir, "results.json");
+      if (!fs.existsSync(resultsPath)) continue;
+      try {
+        const parsed = JSON.parse(fs.readFileSync(resultsPath, "utf8")) as AuditorRunResult;
+        priorIssues.push(...(parsed.issues ?? []));
+        priorCases.push(...(parsed.cases ?? []));
+        priorSurfaces += parsed.summary?.totalSurfaces ?? 0;
+      } catch {
+        /* skip corrupt chunk artifact */
+      }
+    }
+
+    return {
+      offset: last.offset + last.limit,
+      chunkIndex: last.chunkIndex + 1,
+      priorRecords: ok,
+      priorIssues,
+      priorCases,
+      priorSurfaces,
+    };
+  } catch {
+    return null;
+  }
+}
+
 export async function runReal960BatchDiscovery(
   options: AuditorRunOptions,
 ): Promise<{ rollup: Real960Rollup; rollupDir: string; result: AuditorRunResult }> {
@@ -208,14 +254,25 @@ export async function runReal960BatchDiscovery(
   const chunkSize = options.batchChunkSize ?? 50;
   const maxCases = options.batchMaxCases ?? 1000;
 
-  const allIssues: AuditorIssue[] = [];
-  const allCases: import("./types").CaseAuditResult[] = [];
+  const rollupDir = path.join(options.outDir, "latest", REAL_960_ROLLUP_SLUG);
+  const resume = options.batchResume ? loadBatchResumeState(rollupDir) : null;
+
+  const allIssues: AuditorIssue[] = resume ? [...resume.priorIssues] : [];
+  const allCases: import("./types").CaseAuditResult[] = resume ? [...resume.priorCases] : [];
   const allRows: RealCaseRow[] = [];
-  const chunkRecords: BatchChunkRecord[] = [];
-  let totalSurfaces = 0;
-  let offset = 0;
-  let chunkIndex = 0;
-  let totalScanned = 0;
+  const chunkRecords: BatchChunkRecord[] = resume ? [...resume.priorRecords] : [];
+  let totalSurfaces = resume?.priorSurfaces ?? 0;
+  let offset = resume?.offset ?? 0;
+  let chunkIndex = resume?.chunkIndex ?? 0;
+  let totalScanned = resume
+    ? resume.priorRecords.reduce((n, c) => n + c.casesScanned, 0)
+    : 0;
+
+  if (resume && !options.quietConsole) {
+    console.log(
+      `[batch] Resuming from offset=${offset} chunkIndex=${chunkIndex} (${totalScanned} cases already scanned)`,
+    );
+  }
 
   while (totalScanned < maxCases) {
     const limit = Math.min(chunkSize, maxCases - totalScanned);
@@ -347,7 +404,6 @@ export async function runReal960BatchDiscovery(
     summary,
   };
 
-  const rollupDir = path.join(options.outDir, "latest", REAL_960_ROLLUP_SLUG);
   fs.mkdirSync(rollupDir, { recursive: true });
 
   const mergedGroups = mergeExamples(groups, 3);

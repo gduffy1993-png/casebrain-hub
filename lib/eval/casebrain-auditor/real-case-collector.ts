@@ -5,6 +5,7 @@
 import { combineCaseDocumentsText } from "@/lib/bundle/bundle-document-text";
 import { computeDisclosureState } from "@/lib/criminal/disclosure-state";
 import {
+  dedupeWorkflowChaseLabels,
   filterBattleboardForWorkflowPilot,
   filterWorkflowPilotLines,
   resolveWorkflowProfile,
@@ -45,6 +46,8 @@ export type RealCaseRow = {
   evalPackId: string | null;
   evalPackName: string | null;
   corpusBucket: CorpusBucket;
+  /** Merged from criminal_charges when case metadata offence is thin. */
+  chargeOffences: string[];
 };
 
 export type RealCaseListExport = {
@@ -90,10 +93,25 @@ export function inferAuditorFamilyFromOffence(offence: string | null | undefined
   if (/\b(pwit|pwits|supply|class a|class b|drug| cocaine| heroin| cannabis)\b/.test(t)) return "pwits_phone_attribution";
   if (/\b(robbery|snatch|mugging)\b/.test(t)) return "robbery_identification";
   if (/\b(assault|gbh|abh|violence|affray|domestic|s\.18|s\.20|s\.47|oapa)\b/.test(t)) return "violence_domestic_assault";
-  if (/\b(burglary|criminal damage|public order|s\.4|s\.5|affray|bladed|knife|blade)\b/.test(t)) return "violence_domestic_assault";
+  if (/\b(arson|reckless|endanger|criminal damage|fire)\b/.test(t)) return "violence_domestic_assault";
+  if (/\b(burglary|public order|s\.4|s\.5|bladed|knife|blade)\b/.test(t)) return "violence_domestic_assault";
   if (/\b(theft|shoplifting|handling|taking without consent|twoc)\b/.test(t)) return "robbery_identification";
   if (/\b(dangerous driving|driving whilst|no insurance|fail to stop|motoring)\b/.test(t)) return null;
   return null;
+}
+
+/** Prefer explicit metadata; enrich inference with charge rows when present. */
+export function mergeOffenceSignals(
+  primary: string | null | undefined,
+  charges: string[],
+): { offenceLabel: string | null; inferenceText: string } {
+  const parts = [primary?.trim(), ...charges.map((c) => c.trim()).filter(Boolean)].filter(Boolean) as string[];
+  const unique = [...new Set(parts.map((p) => p.toLowerCase()))].map(
+    (low) => parts.find((p) => p.toLowerCase() === low)!,
+  );
+  const inferenceText = unique.join("; ");
+  const offenceLabel = primary?.trim() || unique[0] || null;
+  return { offenceLabel, inferenceText };
 }
 
 function workflowProfileHintFromRow(row: RealCaseRow): WorkflowProfile | null {
@@ -106,10 +124,12 @@ function workflowProfileHintFromRow(row: RealCaseRow): WorkflowProfile | null {
 }
 
 function workflowContextFromRow(row: RealCaseRow) {
+  const allegation =
+    [row.offenceLabel ?? row.allegedOffence, ...row.chargeOffences].filter(Boolean).join("; ") || "";
   return {
     caseTitle: row.caseTitle,
     clientLabel: row.defendantName ?? "Client",
-    allegation: row.offenceLabel ?? row.allegedOffence ?? "",
+    allegation,
     profileHint: workflowProfileHintFromRow(row),
   };
 }
@@ -283,13 +303,18 @@ export async function fetchRealCaseRows(
 
   const ids = cases.map((c) => c.id);
 
-  const [{ data: criminalRows }, { data: docRows }] = await Promise.all([
+  const [{ data: criminalRows }, { data: docRows }, { data: chargeRows }] = await Promise.all([
     supabase
       .from("criminal_cases")
       .select("id, defendant_name, alleged_offence, offence_override")
       .eq("org_id", orgId)
       .in("id", ids),
     supabase.from("documents").select("case_id").eq("org_id", orgId).in("case_id", ids),
+    supabase
+      .from("criminal_charges")
+      .select("case_id, offence, section")
+      .eq("org_id", orgId)
+      .in("case_id", ids),
   ]);
 
   const criminalById = new Map((criminalRows ?? []).map((r) => [r.id, r]));
@@ -297,6 +322,15 @@ export async function fetchRealCaseRows(
   for (const d of docRows ?? []) {
     const cid = String(d.case_id);
     docCountByCase.set(cid, (docCountByCase.get(cid) ?? 0) + 1);
+  }
+  const chargesByCase = new Map<string, string[]>();
+  for (const ch of chargeRows ?? []) {
+    const cid = String(ch.case_id);
+    const label = [ch.offence, ch.section].filter(Boolean).join(" ").trim();
+    if (!label) continue;
+    const list = chargesByCase.get(cid) ?? [];
+    list.push(label);
+    chargesByCase.set(cid, list);
   }
 
   if (criminalOnly) {
@@ -311,15 +345,19 @@ export async function fetchRealCaseRows(
       (typeof cr?.offence_override === "string" && cr.offence_override.trim()) ||
       (typeof cr?.alleged_offence === "string" && cr.alleged_offence.trim()) ||
       null;
+    const chargeOffences = chargesByCase.get(c.id) ?? [];
+    const { offenceLabel, inferenceText } = mergeOffenceSignals(alleged, chargeOffences);
     const ctx = {
       caseTitle: c.title ?? "",
       clientLabel: (typeof cr?.defendant_name === "string" && cr.defendant_name) || "Client",
-      allegation: alleged ?? "",
+      allegation: inferenceText || offenceLabel || "",
       profileHint: null as WorkflowProfile | null,
     };
-    const workflowProfile = resolveWorkflowProfileFromSignals(ctx);
-    const offenceLabel = alleged;
-    const auditorFamily = inferAuditorFamilyFromOffence(offenceLabel);
+    let workflowProfile = resolveWorkflowProfileFromSignals(ctx);
+    const auditorFamily = inferAuditorFamilyFromOffence(inferenceText || offenceLabel);
+    if (workflowProfile === "generic" && auditorFamily) {
+      workflowProfile = auditorFamily;
+    }
 
     const documentCount = docCountByCase.get(c.id) ?? 0;
     const rowForBucket = {
@@ -343,6 +381,7 @@ export async function fetchRealCaseRows(
       evalPackId: c.eval_pack_id ?? null,
       evalPackName: c.eval_pack_name ?? null,
       corpusBucket: classifyCorpusBucket(rowForBucket),
+      chargeOffences,
     };
   });
 
@@ -409,14 +448,33 @@ export async function collectRealCaseDiscoverySurfaces(
     ),
   );
 
+  const rawChaseLabels = battleboard.routes.flatMap((r) => r.next_moves ?? []);
+  const filteredChase = filterWorkflowPilotLines(rawChaseLabels, ctx, { max: 12 });
+  const outstandingLabels = dedupeWorkflowChaseLabels(filteredChase).slice(0, 8);
+
   screens.push(
     screen(
       "disclosure_chase",
       {
-        outstandingCount: battleboard.routes[0]?.next_moves?.length ?? 0,
-        outstandingLabels: battleboard.routes.flatMap((r) => r.next_moves ?? []).slice(0, 8),
+        outstandingCount: outstandingLabels.length,
+        outstandingLabels,
+        rawCountBeforeDedupe: rawChaseLabels.length,
       },
       row.documentCount > 0 ? "collected" : "partial",
+      surfaceSource,
+    ),
+  );
+
+  screens.push(
+    screen(
+      "hearing_war_room",
+      {
+        hearingLine: bb.primary_route?.hearing_line ?? "",
+        overallStatus: bb.overall_status,
+        thinBundle: bb.overall_status === "thin_bundle",
+        positionNotice: bb.position_notice,
+      },
+      "collected",
       surfaceSource,
     ),
   );

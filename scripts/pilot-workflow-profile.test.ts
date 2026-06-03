@@ -99,6 +99,14 @@ assert.equal(
 );
 
 assert.equal(
+  resolveWorkflowProfileFromSignals({
+    caseTitle: "Case 8",
+    allegation: "Arson being reckless as to whether life was endangered",
+  }),
+  "violence_domestic_assault",
+);
+
+assert.equal(
   resolveWorkflowProfile({ caseTitle: "Case 12", allegation: "Offence not safely extracted" }),
   "generic",
 );
