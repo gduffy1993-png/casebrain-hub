@@ -12,7 +12,6 @@ const MALFORMED_ANCHOR_PATTERNS = [
 ];
 
 export function toWorkflowProfile(family: AuditorFamilyProfile): WorkflowProfile {
-  if (family === "violence_domestic_assault") return "generic";
   return family;
 }
 

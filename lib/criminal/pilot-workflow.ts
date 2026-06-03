@@ -6,6 +6,7 @@ export type WorkflowProfile =
   | "fraud_account_control"
   | "pwits_phone_attribution"
   | "robbery_identification"
+  | "violence_domestic_assault"
   | "generic";
 
 /** @deprecated Use {@link WorkflowProfile}. */
@@ -132,6 +133,38 @@ const PROFILE_PACKS: Record<Exclude<WorkflowProfile, "generic">, ProfilePack> = 
     ],
     rankDown: [/\b(medical|pathology|hospital)\b/i],
   },
+  violence_domestic_assault: {
+    primaryRouteTitle: "Violence / complainant account / injury and participation pressure",
+    disclosureItems: [
+      "Complainant first account / MG11",
+      "BWV / incident footage",
+      "Medical report / injury photos",
+      "999 / CAD material",
+      "Retraction or further complainant statement",
+      "Third-party witness statements",
+      "Domestic context / safeguarding material",
+      "Final signed complainant statement",
+    ],
+    nextActions: [
+      "Chase complainant first account and BWV/incident footage.",
+      "Chase medical/injury material and any retraction or further statement.",
+      "Take instructions on self-defence, causation, domestic context and complainant account.",
+    ],
+    courtRecordAsks: [
+      "Ask the court to record that complainant first account / MG11 appears outstanding on the current papers.",
+      "Ask the court to record that BWV/incident footage appears outstanding.",
+      "Ask the court to record that medical/injury material appears outstanding.",
+      "Ask the court to record that 999/CAD material appears outstanding.",
+      "Ask the court to record that any retraction or further complainant statement appears outstanding.",
+    ],
+    suppressGeneric: /\b(bank|device\/login|phone extraction|intent to supply|poca|account-control)\b/i,
+    rankUp: [
+      /\b(assault|gbh|abh|oapa|s\.18|s\.20|s\.47|violence|domestic|affray)\b/i,
+      /\b(complainant|mg11|injury|medical|bwv|body.worn)\b/i,
+      /\b(999|cad|retraction|self.defence|causation)\b/i,
+    ],
+    rankDown: [/\b(bank|pwits|intent to supply|phone extraction|robbery identification)\b/i],
+  },
 };
 
 /** Weighted signal rules — higher weight wins when multiple profiles match. */
@@ -161,6 +194,14 @@ const PROFILE_SIGNAL_RULES: Array<{
       { re: /\b(robbery|mugging|snatch|street robbery)\b/i, weight: 14 },
       { re: /\b(poor identification|identification issue|viper|id parade)\b/i, weight: 10 },
       { re: /\b(complainant first account|unknown male|co-defendant)\b/i, weight: 6 },
+    ],
+  },
+  {
+    profile: "violence_domestic_assault",
+    patterns: [
+      { re: /\b(assault|gbh|abh|oapa|s\.18|s\.20|s\.47|affray|violence|domestic)\b/i, weight: 14 },
+      { re: /\b(complainant|mg11|injury|medical|hospital|retraction)\b/i, weight: 10 },
+      { re: /\b(bwv|body.worn|999|cad|self.defence)\b/i, weight: 6 },
     ],
   },
 ];
@@ -222,6 +263,7 @@ function scoreProfile(context: WorkflowProfileContext): Map<WorkflowProfile, num
     ["fraud_account_control", 0],
     ["pwits_phone_attribution", 0],
     ["robbery_identification", 0],
+    ["violence_domestic_assault", 0],
     ["generic", 0],
   ]);
 
@@ -266,6 +308,7 @@ export function resolveWorkflowProfileFromSignals(context: WorkflowProfileContex
     "fraud_account_control",
     "pwits_phone_attribution",
     "robbery_identification",
+    "violence_domestic_assault",
   ] as const) {
     const s = scores.get(profile) ?? 0;
     if (s > bestScore) {
@@ -693,6 +736,13 @@ export function sanitizePilotVisibleLine(
       "Interview denial remains to be tested against served CCTV/ID and complainant material.";
   }
   if (
+    profile === "violence_domestic_assault" &&
+    /Interview denial remains to be tested against bank\/device\/source material/i.test(s)
+  ) {
+    s =
+      "Interview denial remains to be tested against served complainant, BWV and medical material.";
+  }
+  if (
     profile === "pwits_phone_attribution" &&
     /Interview denial remains to be tested against bank\/device\/source material/i.test(s)
   ) {
@@ -874,6 +924,9 @@ export function softenSolicitorSourceWording(
     if (profile === "pwits_phone_attribution") {
       return "Interview denial remains to be tested against served phone extraction, search BWV and continuity material.";
     }
+    if (profile === "violence_domestic_assault") {
+      return "Interview denial remains to be tested against served complainant, BWV and medical material.";
+    }
     return "Interview denial remains to be tested against bank/device/source material.";
   });
   s = s.replace(
@@ -952,6 +1005,9 @@ const PWITS_VISIBLE_SUPPRESS =
 const ROBBERY_VISIBLE_SUPPRESS =
   /\b(custody record|custody cctv|mg11|body.worn|bwv\b|body-worn|bank export|bank\/device|device\/login|account[- ]?control|fraud by)\b/i;
 
+const VIOLENCE_VISIBLE_SUPPRESS =
+  /\b(bank export|bank\/device|device\/login|phone extraction|intent to supply|poca|account-control|pwits|robbery identification route)\b/i;
+
 /** Suppress generic violence/source-template lines from visible pilot workflow output. */
 export function shouldSuppressWorkflowPilotLine(line: string, profile: WorkflowProfile): boolean {
   if (profile === "generic" || !line.trim()) return false;
@@ -981,6 +1037,10 @@ export function shouldSuppressWorkflowPilotLine(line: string, profile: WorkflowP
     if (/\bbank\b/i.test(norm) && !/\bbank\s+(holiday|branch)\b/i.test(norm)) return true;
     return ROBBERY_VISIBLE_SUPPRESS.test(norm) || /\bcctv full window\b/i.test(norm);
   }
+  if (profile === "violence_domestic_assault") {
+    if (/\b(complainant|mg11|medical|injury|bwv|999|cad|retraction)\b/i.test(norm)) return false;
+    return VIOLENCE_VISIBLE_SUPPRESS.test(norm);
+  }
   return shouldSuppressGenericChaseLabel(norm, profile);
 }
 
@@ -1005,6 +1065,13 @@ export function workflowProfileFallbackRisks(context: WorkflowProfileContext): s
       "CCTV master/continuity may bear on identification — appears outstanding until served.",
       "ID procedure and complainant first account may affect identification fairness — solicitor review required.",
       "999/CAD timing and co-defendant attribution may remain live pending served material.",
+    ];
+  }
+  if (profile === "violence_domestic_assault") {
+    return [
+      "Complainant account and BWV may bear on participation/causation — appears outstanding until served.",
+      "Medical/injury material may affect the route — solicitor review required before fixing position.",
+      "Domestic context and any retraction may remain live pending served material.",
     ];
   }
   return [];
@@ -1239,6 +1306,24 @@ export function workflowDisclosureWhyItMatters(label: string, profile: WorkflowP
       return "Final signed complainant statement may bear on identification — appears outstanding until served.";
     }
     return "Identification/source material appears outstanding on the current papers — solicitor review required.";
+  }
+  if (profile === "violence_domestic_assault") {
+    if (/\bcomplainant|mg11|first account\b/.test(l)) {
+      return "Complainant account may bear on participation and causation — appears outstanding until served.";
+    }
+    if (/\bbwv|body.worn|incident footage\b/.test(l)) {
+      return "BWV/incident footage may bear on what occurred — appears outstanding until served.";
+    }
+    if (/\bmedical|injury|hospital\b/.test(l)) {
+      return "Medical/injury material may bear on harm and causation — appears outstanding.";
+    }
+    if (/\b999|cad\b/.test(l)) {
+      return "999/CAD material may bear on deployment and sequence — appears outstanding.";
+    }
+    if (/\bretraction|further statement\b/.test(l)) {
+      return "Retraction or further complainant material may affect the account — appears outstanding.";
+    }
+    return "Violence/source material appears outstanding on the current papers — solicitor review required.";
   }
   return "Source material appears outstanding on the current papers — solicitor review required.";
 }

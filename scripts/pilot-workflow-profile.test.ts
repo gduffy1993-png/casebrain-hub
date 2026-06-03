@@ -11,6 +11,7 @@ const {
   firstMatchIndex,
   prioritizeWorkflowItems,
   resolveWorkflowProfile,
+  resolveWorkflowProfileFromSignals,
   workflowCourtRecordAsks,
   workflowDisclosureChaseLabels,
   workflowDraftDisclosureSnippet,
@@ -85,7 +86,20 @@ assert.equal(
 );
 
 assert.equal(
+  resolveWorkflowProfileFromSignals({
+    caseTitle: "R v Client",
+    allegation: "Assault occasioning actual bodily harm s.47 OAPA",
+  }),
+  "violence_domestic_assault",
+);
+
+assert.equal(
   resolveWorkflowProfile({ caseTitle: "Generic assault", allegation: "Assault ABH" }),
+  "violence_domestic_assault",
+);
+
+assert.equal(
+  resolveWorkflowProfile({ caseTitle: "Case 12", allegation: "Offence not safely extracted" }),
   "generic",
 );
 

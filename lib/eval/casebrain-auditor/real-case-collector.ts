@@ -89,7 +89,10 @@ export function inferAuditorFamilyFromOffence(offence: string | null | undefined
   if (/\b(fraud|dishonest|account|bank|money laundering|poca)\b/.test(t)) return "fraud_account_control";
   if (/\b(pwit|pwits|supply|class a|class b|drug| cocaine| heroin| cannabis)\b/.test(t)) return "pwits_phone_attribution";
   if (/\b(robbery|snatch|mugging)\b/.test(t)) return "robbery_identification";
-  if (/\b(assault|gbh|abh|violence|affray|domestic|s\.18|s\.20|s\.47)\b/.test(t)) return "violence_domestic_assault";
+  if (/\b(assault|gbh|abh|violence|affray|domestic|s\.18|s\.20|s\.47|oapa)\b/.test(t)) return "violence_domestic_assault";
+  if (/\b(burglary|criminal damage|public order|s\.4|s\.5|affray|bladed|knife|blade)\b/.test(t)) return "violence_domestic_assault";
+  if (/\b(theft|shoplifting|handling|taking without consent|twoc)\b/.test(t)) return "robbery_identification";
+  if (/\b(dangerous driving|driving whilst|no insurance|fail to stop|motoring)\b/.test(t)) return null;
   return null;
 }
 
@@ -98,6 +101,7 @@ function workflowProfileHintFromRow(row: RealCaseRow): WorkflowProfile | null {
   if (row.auditorFamily === "fraud_account_control") return "fraud_account_control";
   if (row.auditorFamily === "pwits_phone_attribution") return "pwits_phone_attribution";
   if (row.auditorFamily === "robbery_identification") return "robbery_identification";
+  if (row.auditorFamily === "violence_domestic_assault") return "violence_domestic_assault";
   return null;
 }
 

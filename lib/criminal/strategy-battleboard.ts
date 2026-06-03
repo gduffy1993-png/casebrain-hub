@@ -1813,6 +1813,7 @@ function rankRouteForPrimary(
       rank += 130 + multi * 22;
       if (multi >= 1) rank += 40;
       if (multi >= 3) rank += 30;
+      if (packFamily) rank -= 95;
       break;
     case "timeline":
       rank += 95 + time * 12 + (hearAllowed ? hear * 8 : 0);
@@ -2303,6 +2304,15 @@ export function buildStrategyBattleboard(input: StrategyBattleboardInput): Battl
     promoteRouteToPrimary(`pack_y_${packYFamily}`);
   }
 
+  const multiCountScore = multipartySignalScore(bundleText);
+  if (
+    packYFamily &&
+    routes[0]?.route_type === "multiparty" &&
+    multiCountScore >= 1
+  ) {
+    promoteRouteToPrimary(`pack_y_${packYFamily}`);
+  }
+
   const primary_route = routes[0];
   const viableCount = routes.filter((r) => r.status === "viable").length;
   const conditionalCount = routes.filter((r) => r.status === "conditional").length;
@@ -2339,6 +2349,10 @@ export function buildStrategyBattleboard(input: StrategyBattleboardInput): Battl
         ? "May assist if proved on served material."
         : "Conditional on served source material and instructions."
     } This is a control panel, not a prediction of outcome.`;
+    if (multiCountScore >= 2 && primary_route.route_type !== "multiparty") {
+      solicitor_safe_summary +=
+        " Multiple counts or co-defendants are noted — review each count separately; do not let one count drive strategy on all counts.";
+    }
   } else {
     solicitor_safe_summary =
       "No fight route could be anchored safely from the current file text — needs solicitor review before hearing strategy is fixed.";
