@@ -224,8 +224,10 @@ export function writeCorpusPlaybackArtifacts(
   artifactRoot: string,
   playbacks: CorpusCasePlayback[],
   orgId: string,
+  opts?: { slug?: string; skipSprint?: boolean },
 ): { outDir: string; summary: PlaybackSummary } {
-  const outDir = path.join(artifactRoot, "latest", CORPUS_PLAYBACK_SLUG);
+  const slug = opts?.slug ?? CORPUS_PLAYBACK_SLUG;
+  const outDir = path.join(artifactRoot, "latest", slug);
   fs.mkdirSync(outDir, { recursive: true });
 
   let previous: PlaybackSummary | null = null;
@@ -265,16 +267,18 @@ export function writeCorpusPlaybackArtifacts(
     );
   }
 
-  writeCorpusPlaybackSprintArtifacts(outDir, playbacks, summary, {
-    rosterUnsafeBaseline: previous?.rosterUnsafeCount,
-    learningLogLines: [
-      "Playback check tuning: lineLooksOverconfident ignores safe ‘do not overstate’ guidance.",
-      "Leakage scans limited to solicitor-visible surfaces (not collapse-risk pool).",
-      "inferFamilyFromRouteTitle: public-order routes map to violence, not robbery via ‘identification’.",
-      "pickWorkflowPrimaryRoute: family pack_y routes preferred over multiparty meta routes.",
-      "offence_label merges all charge rows for mixed-count inference.",
-    ],
-  });
+  if (!opts?.skipSprint) {
+    writeCorpusPlaybackSprintArtifacts(outDir, playbacks, summary, {
+      rosterUnsafeBaseline: previous?.rosterUnsafeCount,
+      learningLogLines: [
+        "Playback check tuning: lineLooksOverconfident ignores safe ‘do not overstate’ guidance.",
+        "Leakage scans limited to solicitor-visible surfaces (not collapse-risk pool).",
+        "inferFamilyFromRouteTitle: public-order routes map to violence, not robbery via ‘identification’.",
+        "pickWorkflowPrimaryRoute: family pack_y routes preferred over multiparty meta routes.",
+        "offence_label merges all charge rows for mixed-count inference.",
+      ],
+    });
+  }
 
   return { outDir, summary };
 }
