@@ -93,7 +93,8 @@ export function inferAuditorFamilyFromOffence(offence: string | null | undefined
   if (/\b(pwit|pwits|supply|class a|class b|drug| cocaine| heroin| cannabis)\b/.test(t)) return "pwits_phone_attribution";
   if (/\b(robbery|snatch|mugging)\b/.test(t)) return "robbery_identification";
   if (/\b(assault|gbh|abh|violence|affray|domestic|s\.18|s\.20|s\.47|oapa)\b/.test(t)) return "violence_domestic_assault";
-  if (/\b(burglary|criminal damage|public order|s\.4|s\.5|affray|bladed|knife|blade)\b/.test(t)) return "violence_domestic_assault";
+  if (/\b(arson|reckless|endanger|criminal damage|fire)\b/.test(t)) return "violence_domestic_assault";
+  if (/\b(burglary|public order|s\.4|s\.5|bladed|knife|blade)\b/.test(t)) return "violence_domestic_assault";
   if (/\b(theft|shoplifting|handling|taking without consent|twoc)\b/.test(t)) return "robbery_identification";
   if (/\b(dangerous driving|driving whilst|no insurance|fail to stop|motoring)\b/.test(t)) return null;
   return null;
@@ -352,8 +353,11 @@ export async function fetchRealCaseRows(
       allegation: inferenceText || offenceLabel || "",
       profileHint: null as WorkflowProfile | null,
     };
-    const workflowProfile = resolveWorkflowProfileFromSignals(ctx);
+    let workflowProfile = resolveWorkflowProfileFromSignals(ctx);
     const auditorFamily = inferAuditorFamilyFromOffence(inferenceText || offenceLabel);
+    if (workflowProfile === "generic" && auditorFamily) {
+      workflowProfile = auditorFamily;
+    }
 
     const documentCount = docCountByCase.get(c.id) ?? 0;
     const rowForBucket = {

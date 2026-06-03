@@ -199,7 +199,7 @@ const PROFILE_SIGNAL_RULES: Array<{
   {
     profile: "violence_domestic_assault",
     patterns: [
-      { re: /\b(assault|gbh|abh|oapa|s\.18|s\.20|s\.47|affray|violence|domestic)\b/i, weight: 14 },
+      { re: /\b(assault|gbh|abh|oapa|s\.18|s\.20|s\.47|affray|violence|domestic|arson|reckless)\b/i, weight: 14 },
       { re: /\b(complainant|mg11|injury|medical|hospital|retraction)\b/i, weight: 10 },
       { re: /\b(bwv|body.worn|999|cad|self.defence)\b/i, weight: 6 },
     ],
