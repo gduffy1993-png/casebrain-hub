@@ -197,6 +197,7 @@ export async function runAuditor(options: AuditorRunOptions): Promise<AuditorRun
       userRole: options.userRole,
       limit,
       offset,
+      caseTimeoutMs: options.batchCaseTimeoutMs,
     });
     realCorpusRows = realResult.realRows;
     caseResults.push(...realResult.caseResults);

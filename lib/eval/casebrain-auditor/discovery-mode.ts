@@ -126,6 +126,41 @@ export function scoreDiscoverySurfaces(
     );
   }
 
+  const strategyScreen = screens.find((s) => s.screen === "strategy");
+  const overallStatus = strategyScreen?.payload?.overallStatus;
+  const thinBundle =
+    overallStatus === "thin_bundle" ||
+    screens.some((s) => s.payload?.thinBundle === true || s.payload?.overallStatus === "thin_bundle");
+
+  if (thinBundle) {
+    const overconfident = /\b(proves|establishes guilt|confirms participation|definitely shows|narrows the defence route)\b/i;
+    for (const col of screensToScan) {
+      const m = col.allText.match(overconfident);
+      if (!m) continue;
+      issues.push(
+        tagDiscoveryIssue(manifest, {
+          runId,
+          pack,
+          caseId: manifest.caseId,
+          caseTitle: manifest.caseTitle,
+          screen: col.screen,
+          status: "weak",
+          severity: "MEDIUM",
+          fingerprint: "wording.thin_bundle_overconfident",
+          issueFamily: "wording",
+          badText: m[0],
+          expected: "Thin bundle — provisional wording only; no proof/certainty language.",
+          surfaceSource: col.surfaceSource,
+          collectionStatus: col.collectionStatus,
+          suggestedSharedFix: "softenSolicitorSourceWording; ensure overall_status thin_bundle surfaces honesty.",
+          demoBlocker: manifest.corpusBucket === "B",
+          message: `wording.thin_bundle_overconfident: ${m[0]}`,
+          releaseBlocking: false,
+        }),
+      );
+    }
+  }
+
   return issues;
 }
 

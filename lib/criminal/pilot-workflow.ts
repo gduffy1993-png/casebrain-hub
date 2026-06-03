@@ -941,6 +941,11 @@ export function softenSolicitorSourceWording(
     /\b999\/CAD timing may support the Crown sequence once served\.?/gi,
     "CAD/999 timing may affect sequence if served and reconciled.",
   );
+  s = s.replace(/\bestablishes guilt\b/gi, "may bear on the Crown case if served and consistent");
+  s = s.replace(/\bproves participation\b/gi, "may bear on participation if served and consistent");
+  s = s.replace(/\bconfirms participation\b/gi, "may bear on participation if served and consistent");
+  s = s.replace(/\bproves the (?:offence|case)\b/gi, "may support the Crown case if served and consistent");
+  s = s.replace(/\bdefinitely (?:proves|shows|confirms)\b/gi, "may show if served and consistent");
   return cleanupPilotVisiblePunctuation(s);
 }
 
@@ -965,6 +970,21 @@ export function normalizeWorkflowPilotLabel(line: string): string {
     .replace(/\bmg11\b/gi, "MG11")
     .replace(/\s+/g, " ")
     .trim();
+}
+
+/** Collapse duplicate chase labels after normalisation (case-insensitive). */
+export function dedupeWorkflowChaseLabels(labels: string[]): string[] {
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const raw of labels) {
+    const normalized = normalizeWorkflowPilotLabel(raw);
+    if (!normalized) continue;
+    const key = normalized.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(normalized);
+  }
+  return out;
 }
 
 /** Pilot disclosure chase court-record line with plural-aware grammar. */

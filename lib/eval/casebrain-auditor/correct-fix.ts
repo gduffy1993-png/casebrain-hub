@@ -248,6 +248,30 @@ function templateForFingerprint(
     };
   }
 
+  if (fingerprint === "wording.thin_bundle_overconfident") {
+    return {
+      badOutputSnippet: bad,
+      whyItIsWrong: "Thin bundle must not use proof/certainty language — routes are provisional only.",
+      correctFixPrinciple: "Use conditional phrasing; surface thin_bundle status in HWR/strategy copy.",
+      suggestedBetterOutput: "Provisional routes only — position remains conditional on served material.",
+      fixType: "wording_cleanup",
+      confidence: "high",
+      needsHumanReview: false,
+    };
+  }
+
+  if (fingerprint === "collector.case_timeout") {
+    return {
+      badOutputSnippet: bad,
+      whyItIsWrong: "Read-only collect exceeded timeout — case skipped to protect batch.",
+      correctFixPrinciple: "Investigate bundle size; tune batchCaseTimeoutMs; rerun case in isolation.",
+      suggestedBetterOutput: "Case collect completes within timeout with partial surfaces.",
+      fixType: "uncertain_needs_review",
+      confidence: "low",
+      needsHumanReview: true,
+    };
+  }
+
   if (fingerprint.startsWith("anchor.")) {
     return {
       badOutputSnippet: bad,

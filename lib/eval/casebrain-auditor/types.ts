@@ -186,6 +186,10 @@ export type AuditorRunOptions = {
   batch?: boolean;
   batchChunkSize?: number;
   batchMaxCases?: number;
+  /** Continue from last ok chunk in latest rollup (read-only resume). */
+  batchResume?: boolean;
+  /** Per-case collect timeout — default 120s. */
+  batchCaseTimeoutMs?: number;
 };
 
 export type AuditorRunSummary = {
