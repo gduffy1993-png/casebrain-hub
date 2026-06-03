@@ -510,7 +510,7 @@ export function scoreAggregateCourtToday(
   }
 
   const titles = ((p.visibleTitles as string[]) ?? []).join("\n");
-  if (/Priya|CB-TRAP|eval pack|date-control/i.test(titles)) {
+  if (/CB-TRAP|eval pack|date-control/i.test(titles)) {
     issues.push(fieldFail(runId, pack, stub, "court_today", "CRITICAL", "court_today.dev_case_visible", titles.slice(0, 100), "No dev/eval cases.", col));
   }
 

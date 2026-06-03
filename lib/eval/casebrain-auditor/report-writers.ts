@@ -122,11 +122,21 @@ export function writeScoreboardMd(
   summary: AuditorRunSummary,
   groups: GroupedFailure[],
   baseline?: BaselineComparison,
+  opts?: { productionReleaseGate?: string; corpusBucketCounts?: Record<string, number> },
 ): void {
   const lines = [
     "# CaseBrain Auditor — scoreboard",
     "",
-    `## Release gate: ${summary.releaseGate}`,
+    `## Release gate (all): ${summary.releaseGate}`,
+    ...(opts?.productionReleaseGate
+      ? [`## Production gate (A+B): ${opts.productionReleaseGate}`, ""]
+      : []),
+    ...(opts?.corpusBucketCounts
+      ? [
+          `Corpus buckets: A=${opts.corpusBucketCounts.A ?? 0} B=${opts.corpusBucketCounts.B ?? 0} C=${opts.corpusBucketCounts.C ?? 0}`,
+          "",
+        ]
+      : []),
     "",
     `Run: ${summary.runId} | Pack: ${summary.pack} | ${summary.ranAt}`,
     "",

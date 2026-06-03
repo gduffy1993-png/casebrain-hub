@@ -8,13 +8,16 @@ import {
   filterBattleboardForWorkflowPilot,
   filterWorkflowPilotLines,
   resolveWorkflowProfile,
+  resolveWorkflowProfileFromSignals,
   workflowDisclosureCaseWideLine,
   workflowPrimaryRouteTitle,
   workflowSafeCourtLine,
   type WorkflowProfile,
 } from "@/lib/criminal/pilot-workflow";
 import { buildStrategyBattleboard, type BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
+import { classifyCorpusBucket } from "./corpus-bucket";
 import { getAuditorSupabaseAdmin } from "./script-supabase";
+import type { CorpusBucket } from "./types";
 import type {
   AuditorFamilyProfile,
   AuditorScreen,
@@ -41,6 +44,7 @@ export type RealCaseRow = {
   auditorFamily: AuditorFamilyProfile | null;
   evalPackId: string | null;
   evalPackName: string | null;
+  corpusBucket: CorpusBucket;
 };
 
 export type RealCaseListExport = {
@@ -89,12 +93,20 @@ export function inferAuditorFamilyFromOffence(offence: string | null | undefined
   return null;
 }
 
+function workflowProfileHintFromRow(row: RealCaseRow): WorkflowProfile | null {
+  if (row.workflowProfile !== "generic") return row.workflowProfile;
+  if (row.auditorFamily === "fraud_account_control") return "fraud_account_control";
+  if (row.auditorFamily === "pwits_phone_attribution") return "pwits_phone_attribution";
+  if (row.auditorFamily === "robbery_identification") return "robbery_identification";
+  return null;
+}
+
 function workflowContextFromRow(row: RealCaseRow) {
   return {
     caseTitle: row.caseTitle,
     clientLabel: row.defendantName ?? "Client",
     allegation: row.offenceLabel ?? row.allegedOffence ?? "",
-    profileHint: row.workflowProfile !== "generic" ? row.workflowProfile : null,
+    profileHint: workflowProfileHintFromRow(row),
   };
 }
 
@@ -110,6 +122,7 @@ export function buildDiscoveryManifestFromRealCase(row: RealCaseRow): CaseTruthM
     sourceRef: row.caseId,
     offenceTag: allegation,
     certaintyNote: "Real uploaded case — discovery-only; no strict truth manifest.",
+    corpusBucket: row.corpusBucket,
     bundleFound: row.documentCount > 0,
     expectedDefendant: row.defendantName ?? "Unknown",
     expectedAllegation: allegation,
@@ -300,15 +313,24 @@ export async function fetchRealCaseRows(
       allegation: alleged ?? "",
       profileHint: null as WorkflowProfile | null,
     };
-    const workflowProfile = resolveWorkflowProfile(ctx);
+    const workflowProfile = resolveWorkflowProfileFromSignals(ctx);
     const offenceLabel = alleged;
     const auditorFamily = inferAuditorFamilyFromOffence(offenceLabel);
 
+    const documentCount = docCountByCase.get(c.id) ?? 0;
+    const rowForBucket = {
+      title: c.title,
+      eval_pack_id: c.eval_pack_id,
+      eval_pack_name: c.eval_pack_name,
+      defendant_name: typeof cr?.defendant_name === "string" ? cr.defendant_name : null,
+      alleged_offence: alleged,
+      documentCount,
+    };
     return {
       caseId: c.id,
       caseTitle: c.title ?? "Untitled",
       practiceArea: c.practice_area ?? null,
-      documentCount: docCountByCase.get(c.id) ?? 0,
+      documentCount,
       defendantName: typeof cr?.defendant_name === "string" ? cr.defendant_name : null,
       allegedOffence: alleged,
       offenceLabel,
@@ -316,6 +338,7 @@ export async function fetchRealCaseRows(
       auditorFamily,
       evalPackId: c.eval_pack_id ?? null,
       evalPackName: c.eval_pack_name ?? null,
+      corpusBucket: classifyCorpusBucket(rowForBucket),
     };
   });
 

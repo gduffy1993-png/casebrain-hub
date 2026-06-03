@@ -22,6 +22,9 @@ const {
   formatPilotDraftChaseWording,
   pilotDisplayMetadataNote,
   softenPilotRiskWording,
+  softenSolicitorSourceWording,
+  stripInternalEvalMarkers,
+  isInternalEvalMarkerOnlyLine,
   workflowPrimaryRouteTitle,
   pilotCourtChaseLabels,
   isMalformedPilotEvidenceAnchor,
@@ -387,6 +390,23 @@ assert.equal(
   }),
   "Interview denial remains to be tested against bank/device/source material.",
 );
+
+assert.equal(
+  softenSolicitorSourceWording("Interview admission narrows the defence route.", "generic"),
+  "Interview denial remains to be tested against bank/device/source material.",
+);
+
+process.env.NEXT_PUBLIC_CRIMINAL_PILOT_MODE = "";
+assert.ok(
+  !filterWorkflowPilotLines(["Interview admission narrows the defence route."], {
+    caseTitle: "Pack Q — Case 1 — CB-NOSAFE-2026-0001",
+  }).some((l) => /Interview admission narrows/i.test(l)),
+);
+
+assert.equal(stripInternalEvalMarkers("CB-TRAP"), "");
+assert.ok(isInternalEvalMarkerOnlyLine("CB-TRAP"));
+
+process.env.NEXT_PUBLIC_CRIMINAL_PILOT_MODE = "true";
 
 assert.equal(
   sanitizePilotVisibleLine("Position served pending full disclosure", { caseTitle: "R v Marcus Vale" }),

@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { isProductionScoredBucket } from "./corpus-bucket";
 import type { RealCaseRow } from "./real-case-collector";
 
 export type OffenceCoverageRow = {
@@ -51,19 +52,41 @@ export function writeOffenceCoverageReports(outDir: string, rows: RealCaseRow[])
     "utf8",
   );
 
+  const byCorpus = { A: 0, B: 0, C: 0 };
+  for (const r of rows) {
+    byCorpus[r.corpusBucket] += 1;
+  }
+
   const lines = [
     "# CaseBrain Auditor — offence coverage map",
     "",
     `Cases in this run: **${rows.length}**`,
     "",
-    "| Bucket | Count | Generic/unknown profile | Sample case IDs |",
-    "|--------|------:|------------------------:|-----------------|",
+    `Corpus: **A** real work ${byCorpus.A} · **B** pilot-visible ${byCorpus.B} · **C** lab/eval ${byCorpus.C}`,
+    "",
+    "| Offence/family bucket | Count | Generic/unknown profile | Sample case IDs |",
+    "|-----------------------|------:|------------------------:|-----------------|",
   ];
 
   for (const c of coverage) {
     lines.push(
       `| ${c.bucket} | ${c.count} | ${c.genericProfileCount} | ${c.sampleCaseIds.join(", ")} |`,
     );
+  }
+
+  const productionRows = rows.filter((r) => isProductionScoredBucket(r.corpusBucket));
+  if (productionRows.length > 0) {
+    lines.push("", "## Production corpus (A+B) only", "");
+    lines.push(`Cases: **${productionRows.length}**`, "");
+    lines.push(
+      "| Offence/family bucket | Count | Generic/unknown profile | Sample case IDs |",
+      "|-----------------------|------:|------------------------:|-----------------|",
+    );
+    for (const c of buildOffenceCoverage(productionRows)) {
+      lines.push(
+        `| ${c.bucket} | ${c.count} | ${c.genericProfileCount} | ${c.sampleCaseIds.join(", ")} |`,
+      );
+    }
   }
 
   lines.push("", "_Discovery-only — promotes manifest work on high-count buckets._", "");

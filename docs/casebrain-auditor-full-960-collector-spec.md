@@ -53,6 +53,19 @@ $env:NEXT_PUBLIC_CRIMINAL_PILOT_MODE="true"
 npx tsx scripts/casebrain-auditor.ts --pack full-960 --mode discovery --corpus real --limit 50 --offset 0 --user-role pilot-non-admin
 ```
 
+### Full org batch rollup (read-only)
+
+```powershell
+$env:NEXT_PUBLIC_CRIMINAL_PILOT_MODE="true"
+npx tsx scripts/casebrain-auditor.ts --pack full-960 --mode discovery --corpus real --batch --chunk-size 50 --max 1000
+```
+
+Output: `artifacts/casebrain-auditor/latest/full-960-real-rollup/`
+
+- **Production gate (A+B)** — firm + pilot-visible cases only (north-star metric).
+- **Release gate (all)** — includes lab/eval bucket C (AMBER expected).
+- Corpus buckets: **A** real work, **B** pilot-visible, **C** lab/eval.
+
 - **`--limit`:** Max cases per run (default: all in discovery corpus).
 - **`--offset`:** Skip first N cases for batched runs.
 - **`--family`:** Optional filter to one `AuditorFamilyProfile`.

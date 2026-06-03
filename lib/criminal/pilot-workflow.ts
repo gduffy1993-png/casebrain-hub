@@ -253,10 +253,8 @@ function scoreProfile(context: WorkflowProfileContext): Map<WorkflowProfile, num
   return scores;
 }
 
-/** Resolve workflow profile from case signals. Non-pilot mode always returns generic. */
-export function resolveWorkflowProfile(context: WorkflowProfileContext): WorkflowProfile {
-  if (!isCriminalPilotMode()) return "generic";
-
+/** Profile from offence/title signals — used by auditor collector (not gated on pilot UI mode). */
+export function resolveWorkflowProfileFromSignals(context: WorkflowProfileContext): WorkflowProfile {
   const forced = resolveProfileFromContext(context);
   if (forced !== "generic") return forced;
 
@@ -276,9 +274,14 @@ export function resolveWorkflowProfile(context: WorkflowProfileContext): Workflo
     }
   }
 
-  // Require a meaningful signal — demo title alone (100) or combined score >= 12.
   if (bestScore < 12) return "generic";
   return best;
+}
+
+/** Resolve workflow profile from case signals. Non-pilot mode always returns generic. */
+export function resolveWorkflowProfile(context: WorkflowProfileContext): WorkflowProfile {
+  if (!isCriminalPilotMode()) return "generic";
+  return resolveWorkflowProfileFromSignals(context);
 }
 
 /** @deprecated Alias for {@link resolveWorkflowProfile}. */
@@ -613,9 +616,15 @@ export function sanitizePilotVisibleLine(
   line: string,
   context: WorkflowProfileContext,
 ): string | null {
-  if (!isCriminalPilotMode()) return line.trim() || null;
   let t = line.trim();
   if (!t) return null;
+  const profileEarly = resolveWorkflowProfile(context);
+  if (/Interview admission narrows the defence route/i.test(t)) {
+    t = softenSolicitorSourceWording(t, profileEarly);
+  }
+  t = stripInternalEvalMarkers(t);
+  if (!t || isInternalEvalMarkerOnlyLine(t)) return null;
+  if (!isCriminalPilotMode()) return t;
 
   const profile = resolveWorkflowProfile(context);
   if (profile === "robbery_identification") {
@@ -666,11 +675,8 @@ export function sanitizePilotVisibleLine(
       ? "Outstanding bank/device/source material may support the Crown if served."
       : null;
   }
-  if (
-    profile === "fraud_account_control" &&
-    /Interview admission narrows the defence route/i.test(t)
-  ) {
-    return "Interview denial remains to be tested against bank/device/source material.";
+  if (/Interview admission narrows the defence route/i.test(t)) {
+    return softenSolicitorSourceWording(t, profile);
   }
   if (profile === "pwits_phone_attribution" && /\bcctv\b/i.test(t) && !/\bsearch\s+bwv\b/i.test(t)) {
     return null;
@@ -778,10 +784,30 @@ function pilotBackupRouteDisplayTitle(title: string, profile: WorkflowProfile): 
   return t;
 }
 
+const INTERNAL_EVAL_MARKER_RE =
+  /\b(?:CB-(?:TRAP|STAGE|INJECT|NOSAFE|GOLD|MESSY|PILOT|AA2?|Z|TEST)(?:-\d{4}-\d+)?|eval\s+pack|date-control)\b/gi;
+
+/** Remove eval/stress harness ids from solicitor-visible copy. */
+export function stripInternalEvalMarkers(text: string): string {
+  return text
+    .replace(INTERNAL_EVAL_MARKER_RE, "")
+    .replace(/\s{2,}/g, " ")
+    .replace(/^[\s|–—-]+|[\s|–—-]+$/g, "")
+    .trim();
+}
+
+/** True when a line is only an internal eval marker (no substantive copy). */
+export function isInternalEvalMarkerOnlyLine(text: string): boolean {
+  const t = text.trim();
+  if (!t) return true;
+  return stripInternalEvalMarkers(t).length === 0;
+}
+
 /** True when a line is a bundle reference rather than a clean profile route label. */
 export function looksLikePilotBundleReferenceLine(text: string): boolean {
   const t = text.trim();
   if (!t) return false;
+  if (isInternalEvalMarkerOnlyLine(t)) return true;
   return (
     /\bCB-PILOT-\d+/i.test(t) ||
     /\|\s*pilot bundle\b/i.test(t) ||
@@ -811,13 +837,14 @@ export function pilotOutstandingVerbForLabel(label: string): "appear" | "appears
   return disclosureChaseUsesPluralSubject(label) ? "appear" : "appears";
 }
 
-/** Soften absolute collapse-risk wording in pilot mode. */
-export function softenPilotRiskWording(
+/** Source-safe replacements — applies in pilot and non-pilot (API, auditor, solicitor UI). */
+export function softenSolicitorSourceWording(
   text: string,
   profile: WorkflowProfile = "generic",
 ): string {
-  if (!isCriminalPilotMode() || !text.trim()) return text;
-  let s = text.trim();
+  if (!text.trim()) return text;
+  let s = stripInternalEvalMarkers(text.trim());
+  if (!s) return "";
   s = s.replace(
     /\bFull CCTV confirms Crown timing\b\.?/gi,
     "Full CCTV may support Crown timing if served and consistent",
@@ -830,6 +857,14 @@ export function softenPilotRiskWording(
   );
   s = s.replace(
     /Outstanding expert\/source material may return against the defence route if served\.?/gi,
+    "Outstanding bank/device/source material may support the Crown if served.",
+  );
+  s = s.replace(
+    /Missing expert\/source report comes back against defence\.?/gi,
+    "Outstanding bank/device/source material may support the Crown if served.",
+  );
+  s = s.replace(
+    /Missing expert\/source report returns against the defence\.?/gi,
     "Outstanding bank/device/source material may support the Crown if served.",
   );
   s = s.replace(/Interview admission narrows the defence route\.?/gi, () => {
@@ -854,6 +889,15 @@ export function softenPilotRiskWording(
     "CAD/999 timing may affect sequence if served and reconciled.",
   );
   return cleanupPilotVisiblePunctuation(s);
+}
+
+/** Soften absolute collapse-risk wording in pilot mode. */
+export function softenPilotRiskWording(
+  text: string,
+  profile: WorkflowProfile = "generic",
+): string {
+  if (!isCriminalPilotMode() || !text.trim()) return text;
+  return softenSolicitorSourceWording(text, profile);
 }
 
 /** Fix broken chase labels (e.g. cCTV → CCTV). */
@@ -966,13 +1010,46 @@ export function workflowProfileFallbackRisks(context: WorkflowProfileContext): s
   return [];
 }
 
+function softenWorkflowLineList(
+  lines: string[],
+  context: WorkflowProfileContext,
+  max: number,
+): string[] {
+  const profile = resolveWorkflowProfile(context);
+  const unique: string[] = [];
+  const seen = new Set<string>();
+  for (const raw of lines) {
+    let visible = raw.trim();
+    if (!visible) continue;
+    visible = softenSolicitorSourceWording(visible, profile);
+    if (/Interview admission narrows the defence route/i.test(visible)) continue;
+    if (isCriminalPilotMode()) {
+      const sanitized = sanitizePilotVisibleLine(visible, context);
+      if (!sanitized) continue;
+      visible = sanitized;
+    } else {
+      visible = cleanupPilotVisiblePunctuation(visible);
+      if (!visible) continue;
+    }
+    const key = visible.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    unique.push(visible);
+  }
+  return unique.slice(0, max);
+}
+
 export function filterWorkflowPilotLines(
   lines: string[],
   context: WorkflowProfileContext,
   opts?: { max?: number; useFallbacks?: boolean },
 ): string[] {
-  if (!isCriminalPilotMode()) return lines.slice(0, opts?.max);
   const profile = resolveWorkflowProfile(context);
+  if (!isCriminalPilotMode()) {
+    const max = opts?.max ?? lines.length;
+    const softened = softenWorkflowLineList(lines, context, max);
+    return softened.length > 0 ? softened : lines.slice(0, max);
+  }
   if (profile === "generic") return lines.slice(0, opts?.max);
 
   const unique: string[] = [];
@@ -1046,29 +1123,64 @@ function filterSolicitorSummary(summary: string | undefined, context: WorkflowPr
     : "Provisional route — solicitor review required pending served material.";
 }
 
+function softenBattleboardRoutes(
+  bb: BattleboardOutput,
+  context: WorkflowProfileContext,
+): BattleboardOutput {
+  const profile = resolveWorkflowProfile(context);
+  const softenList = (items: string[]) =>
+    items
+      .map((l) => softenSolicitorSourceWording(l.trim(), profile))
+      .filter((l) => l.length > 0 && !/Interview admission narrows the defence route/i.test(l));
+  const softenRoute = (r: BattleboardRoute): BattleboardRoute => ({
+    ...r,
+    collapse_risks: softenList(r.collapse_risks ?? []),
+    what_hurts_us: softenList(r.what_hurts_us ?? []),
+    why_it_helps: softenList(r.why_it_helps ?? []),
+    evidence_anchors: softenList(r.evidence_anchors ?? []),
+  });
+  const routes = bb.routes.map(softenRoute);
+  const primary = bb.primary_route
+    ? routes.find((r) => r.id === bb.primary_route!.id) ?? softenRoute(bb.primary_route)
+    : bb.primary_route;
+  return {
+    ...bb,
+    routes,
+    primary_route: primary,
+    global_collapse_risks: softenList(bb.global_collapse_risks ?? []),
+    urgent_next_moves: softenList(bb.urgent_next_moves ?? []),
+    solicitor_safe_summary: bb.solicitor_safe_summary
+      ? softenSolicitorSourceWording(bb.solicitor_safe_summary, profile)
+      : bb.solicitor_safe_summary,
+  };
+}
+
 /** Strip generic template leakage from battleboard output in pilot workflow mode. */
 export function filterBattleboardForWorkflowPilot(
   bb: BattleboardOutput | null,
   context: WorkflowProfileContext,
 ): BattleboardOutput | null {
-  if (!bb || !isCriminalPilotMode()) return bb;
+  if (!bb) return bb;
+  const softened = softenBattleboardRoutes(bb, context);
+  if (!isCriminalPilotMode()) return softened;
   const profile = resolveWorkflowProfile(context);
-  if (profile === "generic") return bb;
+  if (profile === "generic") return softened;
 
-  const routes = bb.routes.map((r) => filterRouteLists(r, context));
-  const primary = bb.primary_route
-    ? routes.find((r) => r.id === bb.primary_route!.id) ?? filterRouteLists(bb.primary_route, context)
-    : bb.primary_route;
+  const routes = softened.routes.map((r) => filterRouteLists(r, context));
+  const primary = softened.primary_route
+    ? routes.find((r) => r.id === softened.primary_route!.id) ??
+      filterRouteLists(softened.primary_route, context)
+    : softened.primary_route;
 
   return {
-    ...bb,
+    ...softened,
     routes,
     primary_route: primary,
-    global_collapse_risks: filterWorkflowPilotLines(bb.global_collapse_risks ?? [], context, {
+    global_collapse_risks: filterWorkflowPilotLines(softened.global_collapse_risks ?? [], context, {
       max: 5,
     }),
-    urgent_next_moves: filterWorkflowPilotLines(bb.urgent_next_moves ?? [], context, { max: 5 }),
-    solicitor_safe_summary: filterSolicitorSummary(bb.solicitor_safe_summary, context),
+    urgent_next_moves: filterWorkflowPilotLines(softened.urgent_next_moves ?? [], context, { max: 5 }),
+    solicitor_safe_summary: filterSolicitorSummary(softened.solicitor_safe_summary, context),
   };
 }
 

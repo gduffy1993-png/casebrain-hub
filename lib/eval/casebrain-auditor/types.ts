@@ -13,6 +13,8 @@ export type AuditorMode = "standard" | "discovery";
 
 export type AuditorCorpus = "fictional" | "real";
 
+export type CorpusBucket = "A" | "B" | "C";
+
 export type FixImpactCategory =
   | "global_filter"
   | "profile_rule"
@@ -75,6 +77,8 @@ export type CaseTruthManifest = {
   sourceRef?: string;
   offenceTag?: string;
   certaintyNote?: string;
+  /** Real corpus: A=firm work, B=pilot-visible, C=lab/eval (excluded from production gate). */
+  corpusBucket?: CorpusBucket;
   bundleFound?: boolean;
   expectedDefendant: string;
   expectedAllegation: string;
@@ -119,6 +123,9 @@ export type AuditorIssue = {
   releaseBlocking: boolean;
   /** False for uncertain manifests / discovery-only findings. */
   manifestConfirmed: boolean;
+  corpusBucket?: CorpusBucket;
+  /** Lab/eval bucket — excluded from production release gate. */
+  productionExcluded?: boolean;
 };
 
 export type Family40CaseManifest = CaseTruthManifest & {

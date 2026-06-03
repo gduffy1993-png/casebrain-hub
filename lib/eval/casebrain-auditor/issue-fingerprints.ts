@@ -219,7 +219,7 @@ export const UNIVERSAL_DISCOVERY_PATTERNS: DiscoveryPattern[] = [
     suggestedSharedFix: "cleanupPilotVisiblePunctuation.",
   },
   {
-    pattern: /\b(CB-TRAP|eval pack|date-control|Priya)\b/i,
+    pattern: /\b(CB-TRAP|eval pack|date-control)\b/i,
     fingerprint: "wording.internal_debug_visible",
     issueFamily: "wording",
     severity: "HIGH",

@@ -1,11 +1,11 @@
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
+import { tagDiscoveryIssue } from "./discovery-issue";
 import { matchFingerprintRules } from "./issue-fingerprints";
 import { runSourceGroundingPatternScan } from "./source-grounding-rubric";
 import { collectCaseSurfaces } from "./surface-collectors";
 import type {
   AuditorIssue,
   AuditorPackId,
-  AuditorScreen,
   CaseTruthManifest,
   ScreenCollection,
 } from "./types";
@@ -22,26 +22,27 @@ export function scoreDiscoverySurfaces(
   const screensToScan = screens.filter((s) => s.collectionStatus !== "missing");
 
   if (screens.length === 0 || screens.every((s) => s.collectionStatus === "missing")) {
-    issues.push({
-      runId,
-      pack,
-      caseId: manifest.caseId,
-      caseTitle: manifest.caseTitle,
-      screen: "control_room",
-      status: "fail",
-      severity: "HIGH",
-      fingerprint: "ui.surface_not_collected",
-      issueFamily: "ui",
-      badText: "",
-      expected: "At least one workflow surface must be collected for discovery.",
-      surfaceSource: "live-builder",
-      collectionStatus: "missing",
-      suggestedSharedFix: "Enable NEXT_PUBLIC_CRIMINAL_PILOT_MODE=true or fix builder collectors.",
-      demoBlocker: false,
-      message: "No surfaces collected",
-      releaseBlocking: false,
-      manifestConfirmed: false,
-    });
+    issues.push(
+      tagDiscoveryIssue(manifest, {
+        runId,
+        pack,
+        caseId: manifest.caseId,
+        caseTitle: manifest.caseTitle,
+        screen: "control_room",
+        status: "fail",
+        severity: "HIGH",
+        fingerprint: "ui.surface_not_collected",
+        issueFamily: "ui",
+        badText: "",
+        expected: "At least one workflow surface must be collected for discovery.",
+        surfaceSource: "live-builder",
+        collectionStatus: "missing",
+        suggestedSharedFix: "Enable NEXT_PUBLIC_CRIMINAL_PILOT_MODE=true or fix builder collectors.",
+        demoBlocker: false,
+        message: "No surfaces collected",
+        releaseBlocking: false,
+      }),
+    );
     return issues;
   }
 
@@ -50,75 +51,79 @@ export function scoreDiscoverySurfaces(
     for (const re of UNIVERSAL_DISCOVERY_PATTERNS) {
       const m = text.match(re.pattern);
       if (!m) continue;
-      issues.push({
-        runId,
-        pack,
-        caseId: manifest.caseId,
-        caseTitle: manifest.caseTitle,
-        screen: col.screen,
-        status: "weak",
-        severity: re.severity,
-        fingerprint: re.fingerprint,
-        issueFamily: re.issueFamily,
-        badText: m[0],
-        expected: re.expected,
-        surfaceSource: col.surfaceSource,
-        collectionStatus: col.collectionStatus,
-        suggestedSharedFix: re.suggestedSharedFix,
-        demoBlocker: re.demoBlocker ?? false,
-        message: `${re.fingerprint}: ${m[0]}`,
-        releaseBlocking: false,
-        manifestConfirmed: false,
-      });
-    }
-
-    for (const src of runSourceGroundingPatternScan(text)) {
-      if (src.severity === "CRITICAL" && /unsupported_admission/i.test(src.fingerprint)) {
-        issues.push({
+      issues.push(
+        tagDiscoveryIssue(manifest, {
           runId,
           pack,
           caseId: manifest.caseId,
           caseTitle: manifest.caseTitle,
           screen: col.screen,
-          status: "fail",
-          severity: "CRITICAL",
-          fingerprint: src.fingerprint,
-          issueFamily: "source",
-          badText: src.match,
-          expected: src.expected,
+          status: "weak",
+          severity: re.severity,
+          fingerprint: re.fingerprint,
+          issueFamily: re.issueFamily,
+          badText: m[0],
+          expected: re.expected,
           surfaceSource: col.surfaceSource,
           collectionStatus: col.collectionStatus,
-          suggestedSharedFix: "source-grounding filters",
-          demoBlocker: true,
-          message: src.fingerprint,
-          releaseBlocking: true,
-          manifestConfirmed: false,
-        });
+          suggestedSharedFix: re.suggestedSharedFix,
+          demoBlocker: (re.demoBlocker ?? false) && manifest.corpusBucket !== "C",
+          message: `${re.fingerprint}: ${m[0]}`,
+          releaseBlocking: false,
+        }),
+      );
+    }
+
+    for (const src of runSourceGroundingPatternScan(text)) {
+      if (src.severity === "CRITICAL" && /unsupported_admission/i.test(src.fingerprint)) {
+        issues.push(
+          tagDiscoveryIssue(manifest, {
+            runId,
+            pack,
+            caseId: manifest.caseId,
+            caseTitle: manifest.caseTitle,
+            screen: col.screen,
+            status: "fail",
+            severity: "CRITICAL",
+            fingerprint: src.fingerprint,
+            issueFamily: "source",
+            badText: src.match,
+            expected: src.expected,
+            surfaceSource: col.surfaceSource,
+            collectionStatus: col.collectionStatus,
+            suggestedSharedFix: "softenSolicitorSourceWording / filterBattleboardForWorkflowPilot",
+            demoBlocker: manifest.corpusBucket !== "C",
+            message: src.fingerprint,
+            releaseBlocking: manifest.corpusBucket !== "C",
+          }),
+        );
       }
     }
   }
 
   if (!isCriminalPilotMode()) {
-    issues.push({
-      runId,
-      pack,
-      caseId: manifest.caseId,
-      caseTitle: manifest.caseTitle,
-      screen: "pilot_ui",
-      status: "weak",
-      severity: "MEDIUM",
-      fingerprint: "manifest.insufficient_truth_data",
-      issueFamily: "manifest",
-      badText: "NEXT_PUBLIC_CRIMINAL_PILOT_MODE not set",
-      expected: "Pilot mode env for representative discovery filters.",
-      surfaceSource: "synthetic",
-      collectionStatus: "partial",
-      suggestedSharedFix: "Set NEXT_PUBLIC_CRIMINAL_PILOT_MODE=true in shell.",
-      demoBlocker: false,
-      message: "Discovery run without pilot mode",
-      releaseBlocking: false,
-      manifestConfirmed: false,
-    });
+    issues.push(
+      tagDiscoveryIssue(manifest, {
+        runId,
+        pack,
+        caseId: manifest.caseId,
+        caseTitle: manifest.caseTitle,
+        screen: "pilot_ui",
+        status: "weak",
+        severity: "MEDIUM",
+        fingerprint: "manifest.insufficient_truth_data",
+        issueFamily: "manifest",
+        badText: "NEXT_PUBLIC_CRIMINAL_PILOT_MODE not set",
+        expected: "Pilot mode env for representative discovery filters.",
+        surfaceSource: "synthetic",
+        collectionStatus: "partial",
+        suggestedSharedFix: "Set NEXT_PUBLIC_CRIMINAL_PILOT_MODE=true in shell.",
+        demoBlocker: false,
+        message: "Discovery run without pilot mode",
+        releaseBlocking: false,
+        productionExcluded: true,
+      }),
+    );
   }
 
   return issues;

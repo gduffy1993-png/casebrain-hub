@@ -3,6 +3,10 @@ import path from "node:path";
 import { attachCorrectFixToGroups } from "./correct-fix";
 import { generateFixPromptsByGroup } from "./fix-ticket-generator";
 import { groupFailuresByFingerprint, topFingerprints } from "./grouped-failures";
+import {
+  computeProductionReleaseGate,
+  summarizeBucketCounts,
+} from "./corpus-bucket";
 import { buildOffenceCoverage, writeOffenceCoverageReports } from "./offence-coverage";
 import type { RealCaseRow } from "./real-case-collector";
 import {
@@ -67,6 +71,9 @@ export type Real960Rollup = {
   topFingerprints: Array<{ fingerprint: string; count: number }>;
   topIssueFamilies: Array<{ issueFamily: string; count: number }>;
   offenceCoverage: ReturnType<typeof buildOffenceCoverage>;
+  corpusBucketCounts: Record<"A" | "B" | "C", number>;
+  productionReleaseGate: ReleaseGate;
+  productionTopFingerprints: Array<{ fingerprint: string; count: number }>;
   groups: GroupedFailure[];
   summary: AuditorRunSummary;
 };
@@ -130,9 +137,16 @@ function writeRollupMarkdown(rollupDir: string, rollup: Real960Rollup): void {
     `Org: ${rollup.orgId}`,
     `Cases scanned: **${rollup.totalCasesScanned}**`,
     `Chunks: ${rollup.chunksCompleted} ok, ${rollup.chunksFailed} failed, ${rollup.chunksEmpty} empty`,
-    `Release gate: **${rollup.releaseGate}**`,
+    `Release gate (all): **${rollup.releaseGate}**`,
+    `Production gate (A+B only): **${rollup.productionReleaseGate}**`,
     "",
-    "## Severity totals",
+    "## Corpus buckets",
+    "",
+    `| A — real work | B — pilot visible | C — lab/eval |`,
+    `|--------------:|------------------:|-------------:|`,
+    `| ${rollup.corpusBucketCounts.A} | ${rollup.corpusBucketCounts.B} | ${rollup.corpusBucketCounts.C} |`,
+    "",
+    "## Severity totals (all corpus)",
     "",
     `| CRITICAL | HIGH | MEDIUM | LOW | Demo blockers |`,
     `|----------|------|--------|-----|---------------|`,
@@ -144,6 +158,15 @@ function writeRollupMarkdown(rollupDir: string, rollup: Real960Rollup): void {
 
   for (const t of rollup.topFingerprints.slice(0, 20)) {
     lines.push(`- ${t.count}× \`${t.fingerprint}\``);
+  }
+
+  lines.push("", "## Top fingerprints (production A+B only)", "");
+  if (rollup.productionTopFingerprints.length === 0) {
+    lines.push("- _(none)_");
+  } else {
+    for (const t of rollup.productionTopFingerprints.slice(0, 20)) {
+      lines.push(`- ${t.count}× \`${t.fingerprint}\``);
+    }
   }
 
   lines.push("", "## Top issue families", "");
@@ -288,6 +311,10 @@ export async function runReal960BatchDiscovery(
     familyCounts.set(i.issueFamily, (familyCounts.get(i.issueFamily) ?? 0) + 1);
   }
 
+  const productionIssues = allIssues.filter((i) => !i.productionExcluded);
+  const productionReleaseGate = computeProductionReleaseGate(allIssues);
+  const corpusBucketCounts = summarizeBucketCounts(allRows);
+
   const rollup: Real960Rollup = {
     generatedAt: new Date().toISOString(),
     orgId,
@@ -309,6 +336,9 @@ export async function runReal960BatchDiscovery(
     confirmedCases: summary.confirmedCases,
     uncertainCases: summary.uncertainCases,
     topFingerprints: summary.topFingerprints,
+    corpusBucketCounts,
+    productionReleaseGate,
+    productionTopFingerprints: topFingerprints(productionIssues, 25),
     topIssueFamilies: [...familyCounts.entries()]
       .map(([issueFamily, count]) => ({ issueFamily, count }))
       .sort((a, b) => b.count - a.count),
@@ -327,7 +357,10 @@ export async function runReal960BatchDiscovery(
     generateFixPromptsByGroup(mergedGroups),
     "utf8",
   );
-  writeScoreboardMd(path.join(rollupDir, "scoreboard.md"), summary, mergedGroups);
+  writeScoreboardMd(path.join(rollupDir, "scoreboard.md"), summary, mergedGroups, undefined, {
+    productionReleaseGate,
+    corpusBucketCounts,
+  });
   writeDemoBlockersMd(path.join(rollupDir, "demo-blockers.md"), allIssues);
   writeOffenceCoverageReports(rollupDir, allRows);
   fs.writeFileSync(path.join(rollupDir, "real-960-rollup.json"), JSON.stringify(rollup, null, 2), "utf8");
@@ -345,6 +378,9 @@ export async function runReal960BatchDiscovery(
     console.log("");
     console.log(`Batch rollup: ${rollupDir}`);
     console.log(`Cases scanned: ${totalScanned} | Chunks: ${chunkRecords.length}`);
+    console.log(
+      `Corpus A=${corpusBucketCounts.A} B=${corpusBucketCounts.B} C=${corpusBucketCounts.C} | Production gate: ${productionReleaseGate}`,
+    );
     printConsoleSummary(summary, rollupDir, rollupDir, REAL_960_ROLLUP_SLUG, mergedGroups);
   }
 
