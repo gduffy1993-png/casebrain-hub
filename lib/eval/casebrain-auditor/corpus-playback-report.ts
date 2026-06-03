@@ -8,6 +8,7 @@ import type {
   PlaybackSummary,
   SectionCounts,
 } from "./corpus-playback-types";
+import { writeCorpusPlaybackSprintArtifacts } from "./corpus-playback-sprint";
 import { CORPUS_PLAYBACK_SLUG } from "./corpus-playback-types";
 
 const SECTION_FILES: Record<PlaybackSection, string> = {
@@ -50,6 +51,8 @@ function buildSummary(
   const checkCounts: Record<string, number> = {};
   let unsafeCount = 0;
   let needsReviewCount = 0;
+  let rosterUnsafeCount = 0;
+  let rosterNeedsReviewCount = 0;
 
   for (const p of playbacks) {
     corpusBucketCounts[p.corpusBucket] += 1;
@@ -60,6 +63,10 @@ function buildSummary(
       checkCounts[f.checkId] = (checkCounts[f.checkId] ?? 0) + 1;
       if (f.severity === "unsafe") unsafeCount += 1;
       else needsReviewCount += 1;
+      if (isProductionScoredBucket(p.corpusBucket)) {
+        if (f.severity === "unsafe") rosterUnsafeCount += 1;
+        else rosterNeedsReviewCount += 1;
+      }
     }
   }
 
@@ -82,8 +89,11 @@ function buildSummary(
     checkCounts,
     unsafeCount,
     needsReviewCount,
+    rosterUnsafeCount,
+    rosterNeedsReviewCount,
     previousRunAt: previous?.generatedAt ?? null,
     deltaChecks,
+    deltaRosterUnsafe: previous ? rosterUnsafeCount - (previous.rosterUnsafeCount ?? 0) : undefined,
   };
 }
 
@@ -186,6 +196,8 @@ function write00Summary(outDir: string, summary: PlaybackSummary): void {
     "",
     `**Unsafe:** ${summary.unsafeCount} · **Needs review:** ${summary.needsReviewCount}`,
     "",
+    `**Roster A+B unsafe:** ${summary.rosterUnsafeCount} · **Roster needs review:** ${summary.rosterNeedsReviewCount}`,
+    "",
   );
 
   if (summary.previousRunAt) {
@@ -238,8 +250,31 @@ export function writeCorpusPlaybackArtifacts(
   const casesDir = path.join(outDir, "cases");
   fs.mkdirSync(casesDir, { recursive: true });
   for (const p of playbacks) {
-    fs.writeFileSync(path.join(casesDir, `${p.caseId}.json`), JSON.stringify(p, null, 2), "utf8");
+    const reviewFields = {
+      canPromoteToConfirmed: false as const,
+      needsHumanConfirmation: true,
+      playbackReviewNote:
+        p.findings.some((f) => f.checkId.startsWith("routing.")) ?
+          "Routing/charge uncertainty — human confirmation required for real case."
+        : undefined,
+    };
+    fs.writeFileSync(
+      path.join(casesDir, `${p.caseId}.json`),
+      JSON.stringify({ ...p, review: reviewFields }, null, 2),
+      "utf8",
+    );
   }
+
+  writeCorpusPlaybackSprintArtifacts(outDir, playbacks, summary, {
+    rosterUnsafeBaseline: previous?.rosterUnsafeCount,
+    learningLogLines: [
+      "Playback check tuning: lineLooksOverconfident ignores safe ‘do not overstate’ guidance.",
+      "Leakage scans limited to solicitor-visible surfaces (not collapse-risk pool).",
+      "inferFamilyFromRouteTitle: public-order routes map to violence, not robbery via ‘identification’.",
+      "pickWorkflowPrimaryRoute: family pack_y routes preferred over multiparty meta routes.",
+      "offence_label merges all charge rows for mixed-count inference.",
+    ],
+  });
 
   return { outDir, summary };
 }

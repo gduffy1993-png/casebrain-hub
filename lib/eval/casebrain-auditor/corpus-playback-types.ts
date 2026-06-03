@@ -59,6 +59,9 @@ export type PlaybackSummary = {
   checkCounts: Record<string, number>;
   unsafeCount: number;
   needsReviewCount: number;
+  rosterUnsafeCount: number;
+  rosterNeedsReviewCount: number;
   previousRunAt: string | null;
   deltaChecks: Record<string, number>;
+  deltaRosterUnsafe?: number;
 };
