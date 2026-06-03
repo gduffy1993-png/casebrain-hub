@@ -94,7 +94,12 @@ export function inferAuditorFamilyFromOffence(offence: string | null | undefined
   if (/\b(robbery|snatch|mugging)\b/.test(t)) return "robbery_identification";
   if (/\b(assault|gbh|abh|violence|affray|domestic|s\.18|s\.20|s\.47|oapa)\b/.test(t)) return "violence_domestic_assault";
   if (/\b(arson|reckless|endanger|criminal damage|fire)\b/.test(t)) return "violence_domestic_assault";
-  if (/\b(burglary|public order|s\.4|s\.5|bladed|knife|blade)\b/.test(t)) return "violence_domestic_assault";
+  if (/\b(coercive|controlling behaviour|restraining|domestic abuse|rape|sexual offence)\b/.test(t)) {
+    return "violence_domestic_assault";
+  }
+  if (/\b(burglary|public order|s\.4|s\.5|bladed|knife|blade|affray|violent disorder)\b/.test(t)) {
+    return "violence_domestic_assault";
+  }
   if (/\b(theft|shoplifting|handling|taking without consent|twoc)\b/.test(t)) return "robbery_identification";
   if (/\b(dangerous driving|driving whilst|no insurance|fail to stop|motoring)\b/.test(t)) return null;
   return null;
@@ -227,11 +232,18 @@ export async function loadRealCaseBattleboardInputs(
   const bundleRaw = combineCaseDocumentsText(docs);
   const bundle_text = bundleRaw.slice(0, MAX_BUNDLE_CHARS);
 
-  const firstCharge = (charges ?? [])[0] as { offence?: string; section?: string | null } | undefined;
+  const chargeLabels = (charges ?? [])
+    .map((c) => {
+      const row = c as { offence?: string; section?: string | null };
+      return [row.offence, row.section].filter(Boolean).join(" ").trim();
+    })
+    .filter(Boolean);
+  const alleged =
+    (typeof criminalCase?.alleged_offence === "string" && criminalCase.alleged_offence.trim()) || "";
   const offence_label =
-    firstCharge?.offence?.trim() ||
-    (typeof criminalCase?.alleged_offence === "string" ? criminalCase.alleged_offence.trim() : "") ||
-    null;
+    chargeLabels.length > 0
+      ? [...new Set(chargeLabels)].join("; ")
+      : alleged || null;
 
   type Dep = { id?: string; label?: string; status?: "required" | "helpful" | "not_needed" };
   const rawDeps = (criminalCase as { declared_dependencies?: Dep[] } | null)?.declared_dependencies;

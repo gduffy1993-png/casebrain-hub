@@ -22,11 +22,38 @@ function finding(
 export function inferFamilyFromRouteTitle(title: string | null | undefined): AuditorFamilyProfile | null {
   const t = (title ?? "").toLowerCase();
   if (!t.trim()) return null;
-  if (/\bfraud|account|bank|dishonest\b/.test(t)) return "fraud_account_control";
-  if (/\bpwit|pwits|drug|supply|phone\b/.test(t)) return "pwits_phone_attribution";
-  if (/\brobbery|identification|snatch\b/.test(t)) return "robbery_identification";
-  if (/\bviolence|assault|complainant|gbh|abh|domestic|arson\b/.test(t)) return "violence_domestic_assault";
+  if (/\bfraud|account[-\s]?control|dishonest\b/.test(t)) return "fraud_account_control";
+  if (/\bpwit|pwits|possession|supply|class a|class b|drug\b/.test(t)) return "pwits_phone_attribution";
+  if (/\bviolence|complainant|gbh|abh|assault|affray|domestic|public[-\s]?order|injury|arson\b/.test(t)) {
+    return "violence_domestic_assault";
+  }
+  if (/\brobbery|snatch|mugging\b/.test(t)) return "robbery_identification";
+  if (/\bidentification\b/.test(t) && /\brobbery|snatch|mugging\b/.test(t)) return "robbery_identification";
   return null;
+}
+
+function lineLooksOverconfident(line: string): boolean {
+  if (/do not overstate|provisional|conditional on served|may\b|appears outstanding/i.test(line)) {
+    return false;
+  }
+  if (/\b(proves|establishes guilt|confirms participation|definitely shows|narrows the defence route)\b/i.test(line)) {
+    return true;
+  }
+  if (/\b(confirms|establishes|admitted)\b/i.test(line) && !/\bmay\b/i.test(line)) {
+    return true;
+  }
+  return false;
+}
+
+function solicitorVisibleLeakageTexts(playback: CorpusCasePlayback): string[] {
+  return [
+    playback.primaryRouteTitle ?? "",
+    playback.solicitorSafeSummary ?? "",
+    ...playback.courtLines,
+    ...playback.hearingLines,
+    ...playback.disclosureChaseLabels,
+    ...playback.evidenceAnchors.slice(0, 4),
+  ].filter(Boolean);
 }
 
 function familiesConflict(a: AuditorFamilyProfile | null, b: AuditorFamilyProfile | null): boolean {
@@ -148,7 +175,7 @@ export function runCorpusPlaybackChecks(playback: CorpusCasePlayback): PlaybackF
   ].join("\n");
 
   for (const line of playback.courtLines) {
-    if (COURT_OVERCONFIDENT.test(line)) {
+    if (lineLooksOverconfident(line)) {
       findings.push(
         finding(
           "court_and_hearing",
@@ -162,7 +189,7 @@ export function runCorpusPlaybackChecks(playback: CorpusCasePlayback): PlaybackF
   }
 
   for (const line of playback.hearingLines) {
-    if (OVERCONFIDENT.test(line)) {
+    if (lineLooksOverconfident(line)) {
       findings.push(
         finding(
           "court_and_hearing",
@@ -191,7 +218,7 @@ export function runCorpusPlaybackChecks(playback: CorpusCasePlayback): PlaybackF
 
   if (playback.thinBundleStatus) {
     for (const line of allLines.split(/\n/).filter(Boolean)) {
-      if (OVERCONFIDENT.test(line)) {
+      if (lineLooksOverconfident(line)) {
         findings.push(
           finding(
             "thin_bundle_honesty",
@@ -256,12 +283,7 @@ export function runCorpusPlaybackChecks(playback: CorpusCasePlayback): PlaybackF
   }
 
   if (profile !== "generic") {
-    for (const text of [
-      ...playback.collapseRisks,
-      ...playback.evidenceAnchors,
-      playback.solicitorSafeSummary ?? "",
-      ...playback.disclosureChaseLabels,
-    ]) {
+    for (const text of solicitorVisibleLeakageTexts(playback)) {
       findings.push(...leakageFindings(playback, profile, text, "profile_leakage"));
     }
   }

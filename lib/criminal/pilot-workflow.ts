@@ -365,6 +365,60 @@ export function workflowPrimaryRouteTitle(context: WorkflowProfileContext): stri
   return PROFILE_PACKS[profile].primaryRouteTitle;
 }
 
+function profilePackRouteId(profile: Exclude<WorkflowProfile, "generic">): string | null {
+  switch (profile) {
+    case "fraud_account_control":
+      return "pack_y_fraud";
+    case "pwits_phone_attribution":
+      return "pack_y_pwits";
+    case "robbery_identification":
+      return "pack_y_robbery";
+    case "violence_domestic_assault":
+      return "pack_y_affray";
+    default:
+      return null;
+  }
+}
+
+const META_ROUTE_TYPES = new Set<BattleboardRoute["route_type"]>(["multiparty", "safeguards", "disclosure"]);
+const META_ROUTE_IDS = new Set(["cps_pressure", "readiness", "hearing_court"]);
+
+/** Prefer family-aligned pack_y / substantive route over multiparty/hearing meta routes in pilot mode. */
+export function pickWorkflowPrimaryRoute(
+  routes: BattleboardRoute[],
+  context: WorkflowProfileContext,
+): BattleboardRoute | null {
+  if (!routes.length) return null;
+  const profile = resolveWorkflowProfile(context);
+  if (profile === "generic") return routes[0] ?? null;
+
+  if (profile === "violence_domestic_assault") {
+    const violenceRoute = routes.find((r) =>
+      /\b(violence|complainant|gbh|abh|assault|injury|domestic|oapa)\b/i.test(r.title),
+    );
+    if (violenceRoute) return violenceRoute;
+  }
+
+  const packId = profilePackRouteId(profile);
+  const packRoute = packId ? routes.find((r) => r.id === packId) : undefined;
+  if (packRoute) return packRoute;
+
+  const core = PROFILE_PACKS[profile].primaryRouteTitle
+    .toLowerCase()
+    .replace(/\s+pressure$/, "")
+    .trim();
+  const byTitle = routes.find((r) => {
+    const t = r.title.toLowerCase();
+    return t.includes(core) || core.split("/").some((part) => part.trim() && t.includes(part.trim()));
+  });
+  if (byTitle) return byTitle;
+
+  const substantive = routes.find(
+    (r) => !META_ROUTE_TYPES.has(r.route_type) && !META_ROUTE_IDS.has(r.id),
+  );
+  return substantive ?? routes[0] ?? null;
+}
+
 export function workflowSafeCourtLine(context: WorkflowProfileContext): string | null {
   const profile = resolveWorkflowProfile(context);
   switch (profile) {
@@ -1225,6 +1279,9 @@ function softenBattleboardRoutes(
     what_hurts_us: softenList(r.what_hurts_us ?? []),
     why_it_helps: softenList(r.why_it_helps ?? []),
     evidence_anchors: softenList(r.evidence_anchors ?? []),
+    hearing_line: r.hearing_line
+      ? softenSolicitorSourceWording(r.hearing_line, profile)
+      : r.hearing_line,
   });
   const routes = bb.routes.map(softenRoute);
   const primary = bb.primary_route
@@ -1254,10 +1311,13 @@ export function filterBattleboardForWorkflowPilot(
   if (profile === "generic") return softened;
 
   const routes = softened.routes.map((r) => filterRouteLists(r, context));
-  const primary = softened.primary_route
-    ? routes.find((r) => r.id === softened.primary_route!.id) ??
-      filterRouteLists(softened.primary_route, context)
-    : softened.primary_route;
+  const picked = pickWorkflowPrimaryRoute(routes, context);
+  const primary = picked
+    ? routes.find((r) => r.id === picked.id) ?? filterRouteLists(picked, context)
+    : softened.primary_route
+      ? routes.find((r) => r.id === softened.primary_route!.id) ??
+        filterRouteLists(softened.primary_route, context)
+      : softened.primary_route;
 
   return {
     ...softened,
