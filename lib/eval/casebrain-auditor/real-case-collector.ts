@@ -17,6 +17,11 @@ import {
 } from "@/lib/criminal/pilot-workflow";
 import { buildStrategyBattleboard, type BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
 import { classifyCorpusBucket } from "./corpus-bucket";
+import {
+  isClearMoneyLaunderingFraudText,
+  isMotoringOffenceText,
+  resolveProvisionalWorkflowFromOffence,
+} from "./provisional-offence-policy";
 import { getAuditorSupabaseAdmin } from "./script-supabase";
 import type { CorpusBucket } from "./types";
 import type {
@@ -89,11 +94,16 @@ function screen(
 export function inferAuditorFamilyFromOffence(offence: string | null | undefined): AuditorFamilyProfile | null {
   const t = (offence ?? "").toLowerCase();
   if (!t.trim()) return null;
-  if (/\b(fraud|dishonest|account|bank|money laundering|poca)\b/.test(t)) return "fraud_account_control";
+  if (resolveProvisionalWorkflowFromOffence(t)) return null;
+  if (isClearMoneyLaunderingFraudText(t)) return "fraud_account_control";
+  if (/\b(fraud|dishonest|account|bank|poca)\b/.test(t) && !/\bmoney laundering\b/.test(t)) {
+    return "fraud_account_control";
+  }
   if (/\b(pwit|pwits|supply|class a|class b|drug| cocaine| heroin| cannabis)\b/.test(t)) return "pwits_phone_attribution";
   if (/\b(robbery|snatch|mugging)\b/.test(t)) return "robbery_identification";
   if (/\b(assault|gbh|abh|violence|affray|domestic|s\.18|s\.20|s\.47|oapa)\b/.test(t)) return "violence_domestic_assault";
-  if (/\b(arson|reckless|endanger|criminal damage|fire)\b/.test(t)) return "violence_domestic_assault";
+  if (/\b(arson|criminal damage|fire)\b/.test(t) && !isMotoringOffenceText(t)) return "violence_domestic_assault";
+  if (/\b(reckless|endanger)\b/.test(t) && !isMotoringOffenceText(t)) return "violence_domestic_assault";
   if (/\b(coercive|controlling behaviour|restraining|domestic abuse|rape|sexual offence)\b/.test(t)) {
     return "violence_domestic_assault";
   }
@@ -101,7 +111,7 @@ export function inferAuditorFamilyFromOffence(offence: string | null | undefined
     return "violence_domestic_assault";
   }
   if (/\b(burglary|burglar|dwelling)\b/.test(t)) return "violence_domestic_assault";
-  if (/\b(theft|shoplifting|handling|taking without consent|twoc)\b/.test(t)) return "robbery_identification";
+  if (/\b(theft|shoplifting|handling)\b/.test(t)) return "robbery_identification";
   if (/\b(harassment|stalking|malicious communications|controlling|coercive)\b/.test(t)) {
     return "violence_domestic_assault";
   }
@@ -111,8 +121,37 @@ export function inferAuditorFamilyFromOffence(offence: string | null | undefined
   if (/\b(simple possession|possession of (?:a )?class\s*[ab]|possession of controlled)\b/.test(t)) {
     return "pwits_phone_attribution";
   }
-  if (/\b(dangerous driving|driving whilst|no insurance|fail to stop|motoring|speeding)\b/.test(t)) return null;
+  if (/\b(dangerous driving|driving whilst|no insurance|fail to stop|motoring|speeding|careless driving)\b/.test(t)) {
+    return null;
+  }
   return null;
+}
+
+function resolveRowWorkflowProfile(
+  inferenceText: string,
+  offenceLabel: string | null,
+  ctx: {
+    caseTitle: string;
+    clientLabel: string;
+    allegation: string;
+    profileHint: WorkflowProfile | null;
+  },
+): { workflowProfile: WorkflowProfile; auditorFamily: AuditorFamilyProfile | null } {
+  const text = inferenceText || offenceLabel || "";
+  const provisional = resolveProvisionalWorkflowFromOffence(text);
+  if (provisional) {
+    return { workflowProfile: provisional, auditorFamily: null };
+  }
+  const chargeFamily = inferAuditorFamilyFromOffence(text);
+  let workflowProfile = resolveWorkflowProfileFromSignals(ctx);
+  const auditorFamily = chargeFamily;
+  if (workflowProfile === "generic" && auditorFamily) {
+    workflowProfile = auditorFamily;
+  } else if (chargeFamily && workflowProfile !== chargeFamily) {
+    const allegationFamily = inferAuditorFamilyFromOffence(inferenceText);
+    if (allegationFamily === chargeFamily) workflowProfile = chargeFamily;
+  }
+  return { workflowProfile, auditorFamily };
 }
 
 /** Prefer explicit metadata; enrich inference with charge rows when present. */
@@ -375,15 +414,7 @@ export async function fetchRealCaseRows(
       allegation: inferenceText || offenceLabel || "",
       profileHint: null as WorkflowProfile | null,
     };
-    const chargeFamily = inferAuditorFamilyFromOffence(inferenceText || offenceLabel);
-    let workflowProfile = resolveWorkflowProfileFromSignals(ctx);
-    const auditorFamily = chargeFamily;
-    if (workflowProfile === "generic" && auditorFamily) {
-      workflowProfile = auditorFamily;
-    } else if (chargeFamily && workflowProfile !== chargeFamily) {
-      const allegationFamily = inferAuditorFamilyFromOffence(inferenceText);
-      if (allegationFamily === chargeFamily) workflowProfile = chargeFamily;
-    }
+    const { workflowProfile, auditorFamily } = resolveRowWorkflowProfile(inferenceText, offenceLabel, ctx);
 
     const documentCount = docCountByCase.get(c.id) ?? 0;
     const rowForBucket = {
@@ -477,21 +508,13 @@ export async function fetchRealCaseRowsByIds(
         null;
       const chargeOffences = chargesByCase.get(c.id) ?? [];
       const { offenceLabel, inferenceText } = mergeOffenceSignals(alleged, chargeOffences);
-      const chargeFamily = inferAuditorFamilyFromOffence(inferenceText || offenceLabel);
       const ctx = {
         caseTitle: c.title ?? "",
         clientLabel: (typeof cr?.defendant_name === "string" && cr.defendant_name) || "Client",
         allegation: inferenceText || offenceLabel || "",
         profileHint: null as WorkflowProfile | null,
       };
-      let workflowProfile = resolveWorkflowProfileFromSignals(ctx);
-      const auditorFamily = chargeFamily;
-      if (workflowProfile === "generic" && auditorFamily) {
-        workflowProfile = auditorFamily;
-      } else if (chargeFamily && workflowProfile !== chargeFamily) {
-        const allegationFamily = inferAuditorFamilyFromOffence(inferenceText);
-        if (allegationFamily === chargeFamily) workflowProfile = chargeFamily;
-      }
+      const { workflowProfile, auditorFamily } = resolveRowWorkflowProfile(inferenceText, offenceLabel, ctx);
 
       const documentCount = docCountByCase.get(c.id) ?? 0;
       const rowForBucket = {

@@ -1,4 +1,5 @@
 import type { WorkflowProfile } from "@/lib/criminal/pilot-workflow";
+import { isProvisionalWorkflowProfile } from "@/lib/eval/casebrain-auditor/provisional-offence-policy";
 import type { CorpusCasePlayback, PlaybackFinding, PlaybackSection } from "./corpus-playback-types";
 import type { AuditorFamilyProfile } from "./types";
 import { redactPlaybackSnippet } from "./corpus-playback-redact";
@@ -118,7 +119,7 @@ export function runCorpusPlaybackChecks(playback: CorpusCasePlayback): PlaybackF
   const routeFamily = playback.routeFamily;
   const profile = playback.workflowProfile;
 
-  if (playback.inferenceText.trim() && !chargeFamily) {
+  if (playback.inferenceText.trim() && !chargeFamily && !isProvisionalWorkflowProfile(profile)) {
     findings.push(
       finding(
         "routing_mismatch",
@@ -126,6 +127,21 @@ export function runCorpusPlaybackChecks(playback: CorpusCasePlayback): PlaybackF
         "needs_review",
         playback.inferenceText.slice(0, 120),
         "Charge/offence text present but no inferred family (motoring/procedural or unmapped).",
+      ),
+    );
+  }
+
+  if (
+    profile === "generic_provisional" ||
+    profile === "generic_serious_violence_provisional"
+  ) {
+    findings.push(
+      finding(
+        "routing_mismatch",
+        "routing.provisional_needs_human_review",
+        "needs_review",
+        playback.inferenceText.slice(0, 120),
+        "Provisional offence family — human review required before strict grading.",
       ),
     );
   }
@@ -142,7 +158,7 @@ export function runCorpusPlaybackChecks(playback: CorpusCasePlayback): PlaybackF
     );
   }
 
-  if (chargeFamily && routeFamily && familiesConflict(chargeFamily, routeFamily)) {
+  if (chargeFamily && routeFamily && familiesConflict(chargeFamily, routeFamily) && !isProvisionalWorkflowProfile(profile)) {
     findings.push(
       finding(
         "routing_mismatch",
@@ -154,7 +170,12 @@ export function runCorpusPlaybackChecks(playback: CorpusCasePlayback): PlaybackF
     );
   }
 
-  if (chargeFamily && profile !== "generic" && familiesConflict(chargeFamily, profile as AuditorFamilyProfile)) {
+  if (
+    chargeFamily &&
+    profile !== "generic" &&
+    !isProvisionalWorkflowProfile(profile) &&
+    familiesConflict(chargeFamily, profile as AuditorFamilyProfile)
+  ) {
     findings.push(
       finding(
         "routing_mismatch",
@@ -293,7 +314,7 @@ export function runCorpusPlaybackChecks(playback: CorpusCasePlayback): PlaybackF
     );
   }
 
-  if (profile !== "generic") {
+  if (profile !== "generic" && !isProvisionalWorkflowProfile(profile)) {
     for (const text of solicitorVisibleLeakageTexts(playback)) {
       findings.push(...leakageFindings(playback, profile, text, "profile_leakage"));
     }
