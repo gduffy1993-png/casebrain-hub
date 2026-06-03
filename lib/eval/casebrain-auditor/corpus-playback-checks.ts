@@ -251,10 +251,19 @@ export function runCorpusPlaybackChecks(playback: CorpusCasePlayback): PlaybackF
 
   if (playback.disclosureChaseLabels.length > 0 && profile !== "generic") {
     const wrongFamily = playback.disclosureChaseLabels.some((l) => {
-      if (profile === "fraud_account_control") return ROBBERY_LEAK.test(l) || VIOLENCE_LEAK.test(l);
-      if (profile === "pwits_phone_attribution") return FRAUD_LEAK.test(l) || ROBBERY_LEAK.test(l);
-      if (profile === "robbery_identification") return FRAUD_LEAK.test(l) || PWITS_LEAK.test(l);
-      if (profile === "violence_domestic_assault") return FRAUD_LEAK.test(l) || PWITS_LEAK.test(l);
+      const t = l.toLowerCase();
+      if (profile === "fraud_account_control") {
+        return /\b(pwits|class a|drug continuity|phone extraction|search bwv)\b/i.test(t);
+      }
+      if (profile === "pwits_phone_attribution") {
+        return /\b(bank export|bank schedule|account[-\s]?control|poca)\b/i.test(t);
+      }
+      if (profile === "robbery_identification") {
+        return /\b(bank export|bank schedule|class a|intent to supply|poca)\b/i.test(t);
+      }
+      if (profile === "violence_domestic_assault") {
+        return /\b(bank export|bank schedule|account[-\s]?control|pwits|class a drug)\b/i.test(t);
+      }
       return false;
     });
     if (wrongFamily) {
@@ -270,14 +279,16 @@ export function runCorpusPlaybackChecks(playback: CorpusCasePlayback): PlaybackF
     }
   }
 
+  const visibleAnchors = new Set(playback.evidenceAnchors.map((a) => a.toLowerCase().trim()));
   for (const anchor of playback.malformedLineCandidates) {
+    if (!visibleAnchors.has(anchor.toLowerCase().trim())) continue;
     findings.push(
       finding(
         "profile_leakage",
         "anchor.malformed",
         "needs_review",
         anchor,
-        "Malformed or cut-off evidence anchor candidate.",
+        "Malformed or cut-off evidence anchor on solicitor-visible surface.",
       ),
     );
   }

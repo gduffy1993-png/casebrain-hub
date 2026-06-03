@@ -1,6 +1,11 @@
 import fs from "node:fs";
 import path from "node:path";
 import { isProductionScoredBucket } from "./corpus-bucket";
+import {
+  writeFinalReviewSummary,
+  writeHumanMappingDecisions,
+  writeRemainingIssuesTriage,
+} from "./corpus-playback-triage";
 import { redactPlaybackSnippet } from "./corpus-playback-redact";
 import type { CorpusCasePlayback, PlaybackFinding, PlaybackSummary } from "./corpus-playback-types";
 import type { AuditorFamilyProfile } from "./types";
@@ -527,6 +532,18 @@ export function writeCorpusPlaybackSprintArtifacts(
   );
 
   writeTrainingCandidates(outDir, playbacks);
+  writeRemainingIssuesTriage(outDir, playbacks, summary);
+  writeHumanMappingDecisions(outDir, playbacks);
+  const canaryPath = path.join(outDir, "canary-pack.json");
+  let canarySize = 0;
+  if (fs.existsSync(canaryPath)) {
+    try {
+      canarySize = (JSON.parse(fs.readFileSync(canaryPath, "utf8")) as { caseIds?: string[] }).caseIds?.length ?? 0;
+    } catch {
+      canarySize = 0;
+    }
+  }
+  writeFinalReviewSummary(outDir, summary, { canarySize, replayLatestAdded: true });
 
   const log = opts?.learningLogLines ?? [
     "Sprint artifacts generated from playback run — see git commits for code fixes.",

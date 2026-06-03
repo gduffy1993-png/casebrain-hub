@@ -92,5 +92,28 @@ testPublicOrderNotRobbery();
 testSafeProvesLineNotFlagged();
 testOverconfidentStillFlagged();
 testCollapseRiskPhoneNotLeakage();
+function testChaseWrongFamilyNotPhoneOnViolence() {
+  const p = basePlayback({
+    workflowProfile: "violence_domestic_assault",
+    disclosureChaseLabels: ["Chase full phone extraction and BWV if outstanding."],
+  });
+  const findings = runCorpusPlaybackChecks(p);
+  assert.equal(
+    findings.filter((f) => f.checkId === "chase.wrong_family_label").length,
+    0,
+  );
+}
+
+function testMalformedHiddenWhenNotVisible() {
+  const p = basePlayback({
+    evidenceAnchors: ["Clean MG11 reference on file"],
+    malformedLineCandidates: ["schedule12Served summary only"],
+  });
+  const findings = runCorpusPlaybackChecks(p);
+  assert.equal(findings.filter((f) => f.checkId === "anchor.malformed").length, 0);
+}
+
 testChargeRouteMismatch();
+testChaseWrongFamilyNotPhoneOnViolence();
+testMalformedHiddenWhenNotVisible();
 console.log("corpus-playback-checks.test.ts: ok");
