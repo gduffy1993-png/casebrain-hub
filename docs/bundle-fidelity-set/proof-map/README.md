@@ -2,12 +2,14 @@
 
 Connects Phase 3/3.5 source-backed facts to **proof points** and an **evidence dependency graph** (Battleboard/War Room inputs later).
 
-## Run (4a slice 1)
+## Run (4a slice 2)
 
 ```powershell
 npx tsx scripts/proof-map-fidelity.ts --pack gold
 npx tsx scripts/proof-map-fidelity-gold.test.ts
 ```
+
+Gold expects: Ella + Sam (slice 1), GBH Pike + S18 Clarke (slice 2 — violence/GBH/S18 lens).
 
 Reports (gitignored):
 

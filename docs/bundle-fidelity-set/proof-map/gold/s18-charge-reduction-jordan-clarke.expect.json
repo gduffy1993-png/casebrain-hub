@@ -1,0 +1,21 @@
+{
+  "bundleId": "s18-charge-reduction-jordan-clarke",
+  "offenceLens": "violence_gbh",
+  "proofPointIds": [
+    "pp-unlawful-assault",
+    "pp-serious-injury",
+    "pp-intent-really-serious-harm",
+    "pp-causation",
+    "pp-identification-attribution",
+    "pp-witness-reliability",
+    "pp-cctv-bwv-999-cad",
+    "pp-medical-expert",
+    "pp-interview-custody",
+    "pp-disclosure-fair-trial",
+    "pp-self-defence-provisional"
+  ],
+  "minLinks": 20,
+  "requiredLinkTypes": ["missing", "disclosure_chase"],
+  "requiredMissingIssues": ["Phone Data", "MG6C", "continuity"],
+  "humanReviewRequired": true
+}

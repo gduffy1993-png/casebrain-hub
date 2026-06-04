@@ -25,6 +25,28 @@ function detectLens(charge: string, bundleText: string): ProofMapOffenceLens {
   return "unknown";
 }
 
+function snippet(line: string, max = 220): string {
+  const s = line.replace(/\s+/g, " ").trim();
+  return s.length <= max ? s : `${s.slice(0, max - 3)}...`;
+}
+
+function findBasisSnippet(bundleText: string, patterns: RegExp[], fallback: string): string {
+  for (const line of bundleText.split("\n")) {
+    if (patterns.some((p) => p.test(line))) return snippet(line);
+  }
+  return fallback;
+}
+
+function isS18OrIntentCharge(charge: string): boolean {
+  return /section\s*18|wounding with intent|intent to cause|really serious harm/i.test(charge);
+}
+
+function bundleMentionsSelfDefence(bundleText: string): boolean {
+  return /\b(self[- ]?defence|self defense|accident|justification|lawful excuse|complainant moved first|first aggression)\b/i.test(
+    bundleText,
+  );
+}
+
 function motoringProofPoints(charge: string, metaBasis: string): ProofMapProofPoint[] {
   return [
     {
@@ -120,39 +142,172 @@ function genericProvisionalProofPoints(charge: string, metaBasis: string): Proof
   ];
 }
 
-function violenceProofPoints(charge: string, metaBasis: string): ProofMapProofPoint[] {
-  return [
+function violenceProofPoints(charge: string, metaBasis: string, bundleText: string): ProofMapProofPoint[] {
+  const injuryBasis = findBasisSnippet(
+    bundleText,
+    [/grievous bodily harm|gbh|laceration|fracture|injury|wound/i],
+    metaBasis || charge,
+  );
+  const idBasis = findBasisSnippet(
+    bundleText,
+    [/witness|identification|cctv|mg11|eye-witness|hood/i],
+    "Witness and CCTV material referenced on bundle — verify quality on served papers.",
+  );
+  const disclosureBasis = findBasisSnippet(
+    bundleText,
+    [/outstanding|mg6|not yet served|not yet disclosed|incomplete/i],
+    "MG6 / outstanding disclosure rows govern violence route dependencies.",
+  );
+
+  const points: ProofMapProofPoint[] = [
     {
-      id: "pp-unlawful-force",
-      label: "Unlawful force / injury",
-      crownMustProve: "Crown must prove unlawful force and qualifying injury — elements sketch only.",
+      id: "pp-unlawful-assault",
+      label: "Unlawful assault / force",
+      crownMustProve:
+        "Crown must prove the defendant applied unlawful force — elements sketch only; verify particulars against MG5.",
       confidenceTag: "provisional",
       humanReviewRequired: false,
-      sourceSection: "Charge / MG5",
+      sourceSection: "Charge sheet / MG5",
       sourceBasis: metaBasis || charge,
-      doNotOverstate: "Do not state injury mechanism or intent as final without medical/expert on file.",
+      doNotOverstate: "Do not treat force as finally proved without reconciled witness/CCTV/medical material.",
     },
     {
-      id: "pp-identification",
-      label: "Identification / attribution",
-      crownMustProve: "Crown must prove the defendant as perpetrator — CCTV/witness quality may be limited.",
+      id: "pp-serious-injury",
+      label: "Serious injury / GBH threshold",
+      crownMustProve:
+        "Crown must prove qualifying injury (e.g. GBH/wounding threshold) — provisional until served medical/expert material.",
       confidenceTag: "provisional",
       humanReviewRequired: false,
-      sourceSection: "MG5 / witness / CCTV schedule",
-      sourceBasis: "Bundle references witness and CCTV material — verify served quality on papers.",
-      doNotOverstate: "Do not treat partial CCTV or weak ID as conclusive.",
+      sourceSection: "Charge / medical references",
+      sourceBasis: injuryBasis,
+      doNotOverstate: "Do not state injury grade or mechanism as final without served medical/expert reports.",
+    },
+    {
+      id: "pp-causation",
+      label: "Causation / mechanism",
+      crownMustProve:
+        "Crown must link act to injury (e.g. blow, fall, kerb) — timing and sequence may be disputed on papers.",
+      confidenceTag: "provisional",
+      humanReviewRequired: false,
+      sourceSection: "MG5 / witness / medical",
+      sourceBasis: findBasisSnippet(
+        bundleText,
+        [/causation|kerb|fall|mechanism|sequence|one punch/i],
+        "MG5 narrative describes incident sequence — verify against medical and CCTV when served.",
+      ),
+      doNotOverstate: "Do not state causation is finally proved while expert/medical/CCTV gaps remain.",
+    },
+    {
+      id: "pp-identification-attribution",
+      label: "Identification / attribution",
+      crownMustProve: "Crown must prove the defendant as perpetrator — ID may depend on CCTV/witness quality.",
+      confidenceTag: "provisional",
+      humanReviewRequired: false,
+      sourceSection: "MG5 / MG11 / CCTV",
+      sourceBasis: idBasis,
+      doNotOverstate: "Do not treat partial CCTV, weak lighting, or friend witness alone as conclusive ID.",
+    },
+    {
+      id: "pp-witness-reliability",
+      label: "Witness reliability / timing",
+      crownMustProve: "N/A — assess witness accounts and timing consistency on served papers.",
+      confidenceTag: "provisional",
+      humanReviewRequired: false,
+      sourceSection: "MG11 / CAD / index",
+      sourceBasis: findBasisSnippet(
+        bundleText,
+        [/witness|mg11|timing|estimate|corrected|cad/i],
+        "Witness statements and timing references on bundle — check for conflicts.",
+      ),
+      doNotOverstate: "Do not merge conflicting witness/CAD/index timings into one account.",
+    },
+    {
+      id: "pp-cctv-bwv-999-cad",
+      label: "CCTV / BWV / 999 / CAD",
+      crownMustProve: "N/A — continuity and full logs may be required for sequence and ID routes.",
+      confidenceTag: "provisional",
+      humanReviewRequired: false,
+      sourceSection: "CCTV list / CAD / 999",
+      sourceBasis: findBasisSnippet(
+        bundleText,
+        [/cctv|bwv|999|cad|footage|audio|dispatch/i],
+        "Bundle references CCTV/BWV/999/CAD — verify served vs outstanding on MG6.",
+      ),
+      doNotOverstate: "Do not say full footage or audio is available if only partial extracts or lists are served.",
+    },
+    {
+      id: "pp-medical-expert",
+      label: "Medical / expert evidence",
+      crownMustProve: "Crown may rely on medical/expert evidence for injury and mechanism — often outstanding on initial papers.",
+      confidenceTag: "provisional",
+      humanReviewRequired: false,
+      sourceSection: "Medical / forensic schedule",
+      sourceBasis: findBasisSnippet(
+        bundleText,
+        [/medical|hospital|forensic|expert|report/i],
+        "Medical/forensic references on bundle — chase if marked outstanding.",
+      ),
+      doNotOverstate: "Do not state injury mechanism or expert opinion as final until reports are served.",
+    },
+    {
+      id: "pp-interview-custody",
+      label: "Interview / custody / PACE",
+      crownMustProve: "N/A — interview account and custody/PACE compliance may affect route assessment.",
+      confidenceTag: "provisional",
+      humanReviewRequired: false,
+      sourceSection: "Interview / custody record",
+      sourceBasis: findBasisSnippet(
+        bundleText,
+        [/interview|no comment|pace|custody|caution/i],
+        "Interview/custody material referenced on bundle.",
+      ),
+      doNotOverstate: "Do not infer guilt from no comment; do not overstate pre-interview disclosure.",
     },
     {
       id: "pp-disclosure-fair-trial",
       label: "Disclosure completeness",
-      crownMustProve: "N/A — medical, CCTV continuity, unused material may affect route.",
+      crownMustProve: "N/A — chase CCTV continuity, medical, 999/CAD/BWV, unused material before fixing route.",
       confidenceTag: "provisional",
       humanReviewRequired: false,
       sourceSection: "MG6 / disclosure",
-      sourceBasis: "Check MG6/outstanding rows on bundle for violence route dependencies.",
-      doNotOverstate: "Do not fix trial route before disclosure gaps are chased.",
+      sourceBasis: disclosureBasis,
+      doNotOverstate: "Do not fix trial/hearing position before outstanding violence disclosure is chased.",
     },
   ];
+
+  if (isS18OrIntentCharge(charge)) {
+    points.splice(2, 0, {
+      id: "pp-intent-really-serious-harm",
+      label: "Intent / really serious harm (s18)",
+      crownMustProve:
+        "Crown must prove intent to cause really serious harm for s18 — charge reduction to s20 may be live; sketch only.",
+      confidenceTag: "needs_solicitor_review",
+      humanReviewRequired: true,
+      sourceSection: "Charge sheet / MG5",
+      sourceBasis: metaBasis || charge,
+      doNotOverstate: "Do not state intent is proved; do not advise charge reduction outcome — solicitor to review.",
+    });
+  }
+
+  if (bundleMentionsSelfDefence(bundleText)) {
+    points.push({
+      id: "pp-self-defence-provisional",
+      label: "Self-defence / lawful excuse (provisional)",
+      crownMustProve: "N/A — defence route only if source supports live issue; not established on thin papers.",
+      confidenceTag: "provisional",
+      humanReviewRequired: true,
+      sourceSection: "Witness / MG5",
+      sourceBasis: findBasisSnippet(
+        bundleText,
+        [/self[- ]?defence|accident|justification|moved first|first aggression/i],
+        "Bundle may raise self-defence or justification — verify source basis.",
+      ),
+      doNotOverstate:
+        "Do not say self-defence is established; say it is a live provisional issue pending full CCTV/medical/interview material.",
+    });
+  }
+
+  return points;
 }
 
 function unknownProofPoints(charge: string): ProofMapProofPoint[] {
@@ -180,17 +335,67 @@ function unknownProofPoints(charge: string): ProofMapProofPoint[] {
   ];
 }
 
-function proofPointsForLens(lens: ProofMapOffenceLens, charge: string, metaBasis: string): ProofMapProofPoint[] {
+function proofPointsForLens(
+  lens: ProofMapOffenceLens,
+  charge: string,
+  metaBasis: string,
+  bundleText: string,
+): ProofMapProofPoint[] {
   switch (lens) {
     case "motoring":
       return motoringProofPoints(charge, metaBasis);
     case "generic_provisional":
       return genericProvisionalProofPoints(charge, metaBasis);
     case "violence_gbh":
-      return violenceProofPoints(charge, metaBasis);
+      return violenceProofPoints(charge, metaBasis, bundleText);
     default:
       return unknownProofPoints(charge);
   }
+}
+
+function violenceProofPointIdsForIssue(issue: string): string[] {
+  const i = issue.toLowerCase();
+  const ids = new Set<string>(["pp-disclosure-fair-trial"]);
+
+  if (/cctv|bwv|footage|export|continuity/.test(i)) {
+    ids.add("pp-cctv-bwv-999-cad");
+    ids.add("pp-identification-attribution");
+  }
+  if (/999|cad|dispatch|timing|incident date/.test(i)) {
+    ids.add("pp-cctv-bwv-999-cad");
+    ids.add("pp-witness-reliability");
+    ids.add("pp-causation");
+  }
+  if (/medical|hospital|forensic|expert|injury/.test(i)) {
+    ids.add("pp-medical-expert");
+    ids.add("pp-serious-injury");
+    ids.add("pp-causation");
+  }
+  if (/interview|custody|pace|caution|no comment/.test(i)) {
+    ids.add("pp-interview-custody");
+  }
+  if (/phone|mg6|mg6c|pending|incomplete|unused/.test(i)) {
+    ids.add("pp-disclosure-fair-trial");
+    ids.add("pp-identification-attribution");
+  }
+  if (/witness|mg11|identification|attribution/.test(i)) {
+    ids.add("pp-witness-reliability");
+    ids.add("pp-identification-attribution");
+    ids.add("pp-unlawful-assault");
+  }
+  if (/self[- ]?defence|justification|accident/.test(i)) {
+    ids.add("pp-self-defence-provisional");
+    ids.add("pp-unlawful-assault");
+  }
+  if (/intent|s18|really serious/.test(i)) {
+    ids.add("pp-intent-really-serious-harm");
+  }
+
+  if (ids.size === 1) {
+    ids.add("pp-unlawful-assault");
+    ids.add("pp-causation");
+  }
+  return [...ids];
 }
 
 function mapIssueToProofPoints(issue: string, lens: ProofMapOffenceLens): string[] {
@@ -208,10 +413,7 @@ function mapIssueToProofPoints(issue: string, lens: ProofMapOffenceLens): string
     return ["pp-disclosure-fair-trial"];
   }
   if (lens === "violence_gbh") {
-    if (/cctv|medical|bwv|999|cad|interview|forensic/.test(i)) {
-      return ["pp-identification", "pp-unlawful-force", "pp-disclosure-fair-trial"];
-    }
-    return ["pp-disclosure-fair-trial"];
+    return violenceProofPointIdsForIssue(issue);
   }
   return ["pp-charge-elements", "pp-disclosure-fair-trial"];
 }
@@ -265,9 +467,15 @@ function linksFromContradiction(block: ContradictionBlock, lens: ProofMapOffence
       ? ["pp-collision-causation", "pp-driver-identification"]
       : lens === "generic_provisional"
         ? ["pp-witness-messaging", "pp-intention-knowledge"]
-        : ["pp-identification", "pp-unlawful-force"];
+        : [
+            "pp-causation",
+            "pp-witness-reliability",
+            "pp-identification-attribution",
+            "pp-unlawful-assault",
+            "pp-cctv-bwv-999-cad",
+          ];
 
-  return proofPointIds.map((proofPointId) => ({
+  const base = proofPointIds.map((proofPointId) => ({
     proofPointId,
     linkType: "contradiction" as const,
     label: block.issue,
@@ -275,14 +483,28 @@ function linksFromContradiction(block: ContradictionBlock, lens: ProofMapOffence
     sourceBasis: block.sourceBasis,
     status: "conflicting" as const,
     routeImpact: block.whyItMatters,
-    defenceRisk: "Contradiction unresolved — attribution/reliability not safe to finalise.",
-    routeChangeIf: "If sources are reconciled on file, reassess linked proof points.",
+    crownRisk: "Unresolved contradiction may weaken proof point reliance on served papers.",
+    defenceRisk: "Contradiction unresolved — attribution/reliability not safe to finalise; route remains provisional.",
+    routeChangeIf: "If sources are reconciled on file, reassess linked proof points and routes.",
     disclosureChase: block.safeNextAction,
     safeHearingAction: "Ask court to record outstanding reconciliation; do not concede disputed fact.",
     doNotOverstate: block.doNotOverstate,
     confidenceTag: block.confidenceTag,
     linkedExplanationIssue: block.issue,
   }));
+
+  if (lens === "violence_gbh") {
+    const riskLinks = proofPointIds.slice(0, 2).map((proofPointId) => ({
+      ...base[0],
+      proofPointId,
+      linkType: "risk" as ProofMapLinkType,
+      label: `${block.issue} — route risk`,
+      routeImpact: `Route to attack this proof point remains provisional: ${block.whyItMatters}`,
+    }));
+    return [...base, ...riskLinks];
+  }
+
+  return base;
 }
 
 function lintProofMapText(text: string): string[] {
@@ -300,7 +522,7 @@ export function generateProofMap(
   const metaBasis = [meta.offenceWording, meta.defendantName].filter(Boolean).join(" — ");
   const lens = detectLens(charge, bundleText);
   const explanation = generateExplanationFidelity(bundleText);
-  const proofPoints = proofPointsForLens(lens, charge, metaBasis);
+  const proofPoints = proofPointsForLens(lens, charge, metaBasis, bundleText);
 
   const humanReviewReasons: string[] = [];
   if (lens === "unknown") humanReviewReasons.push("Offence lens unmapped — generic proof map only.");
@@ -315,6 +537,7 @@ export function generateProofMap(
   const missingSection = explanation.find((s) => s.key === "missing-material");
   const contraSection = explanation.find((s) => s.key === "contradictions");
   const disclosureSection = explanation.find((s) => s.key === "disclosure-dependencies");
+  const custodySection = explanation.find((s) => s.key === "custody-interview");
 
   for (const block of missingSection?.blocks ?? []) {
     links.push(...linksFromExplanationBlock(block, lens, "missing"));
@@ -324,6 +547,24 @@ export function generateProofMap(
   }
   for (const block of disclosureSection?.blocks ?? []) {
     links.push(...linksFromExplanationBlock(block, lens, "disclosure_chase"));
+  }
+
+  for (const block of custodySection?.blocks ?? []) {
+    const linkType =
+      block.status === "served" ? ("supports" as const) : ("missing" as const);
+    links.push(...linksFromExplanationBlock(block, lens, linkType));
+    if (lens === "violence_gbh" && block.status === "served") {
+      links.push(
+        ...mapIssueToProofPoints(block.issue, lens).map((proofPointId) => ({
+          ...linksFromExplanationBlock(block, lens, "route_impact" as ProofMapLinkType)[0],
+          proofPointId,
+          linkType: "route_impact" as const,
+          label: `${block.issue} — interview/custody route note`,
+          routeImpact: block.whyItMatters,
+          safeHearingAction: block.safeNextAction,
+        })),
+      );
+    }
   }
 
   for (const block of missingSection?.blocks ?? []) {

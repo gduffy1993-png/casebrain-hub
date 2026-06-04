@@ -1,5 +1,5 @@
 /**
- * Gold proof-map fidelity — Phase 4a slice 1.
+ * Gold proof-map fidelity — Phase 4a slice 2 (violence / GBH / S18).
  * Run: npx tsx scripts/proof-map-fidelity-gold.test.ts
  */
 import assert from "node:assert/strict";
@@ -11,7 +11,7 @@ import { lintProofMapResult } from "../lib/eval/casebrain-auditor/proof-map-gene
 
 const EXPECT_DIR = path.join(__dirname, "..", "docs", "bundle-fidelity-set", "proof-map", "gold");
 const expectIds = fs.readdirSync(EXPECT_DIR).filter((f) => f.endsWith(".expect.json"));
-assert.ok(expectIds.length >= 2, "expected >= 2 gold proof-map expect files");
+assert.ok(expectIds.length >= 4, "expected >= 4 gold proof-map expect files (Ella, Sam, Pike, S18)");
 
 let passed = 0;
 for (const entry of loadGoldPack()) {

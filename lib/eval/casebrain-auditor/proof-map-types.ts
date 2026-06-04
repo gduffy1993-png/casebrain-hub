@@ -89,4 +89,5 @@ export const FORBIDDEN_PROOF_MAP_PHRASES = [
   "proves innocence",
   "will win",
   "guilty beyond doubt",
+  "guaranteed",
 ];
