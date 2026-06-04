@@ -1,0 +1,20 @@
+{
+  "bundleId": "gbh-pike-jordan-pike",
+  "offenceLens": "violence_gbh",
+  "proofPointIds": [
+    "pp-unlawful-assault",
+    "pp-serious-injury",
+    "pp-causation",
+    "pp-identification-attribution",
+    "pp-witness-reliability",
+    "pp-cctv-bwv-999-cad",
+    "pp-medical-expert",
+    "pp-interview-custody",
+    "pp-disclosure-fair-trial",
+    "pp-self-defence-provisional"
+  ],
+  "minLinks": 20,
+  "requiredLinkTypes": ["missing", "contradiction", "disclosure_chase"],
+  "requiredMissingIssues": ["CCTV", "Medical", "999"],
+  "humanReviewRequired": true
+}

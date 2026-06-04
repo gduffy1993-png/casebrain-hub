@@ -1,0 +1,18 @@
+{
+  "bundleId": "pilot-3-kian-doyle",
+  "offenceLens": "pwits",
+  "proofPointIds": [
+    "pp-possession",
+    "pp-supply-inference",
+    "pp-quantity-packaging",
+    "pp-drugs-lab",
+    "pp-cash-seizure",
+    "pp-phone-attribution-messages",
+    "pp-disclosure-fair-trial",
+    "pp-possession-only-dispute"
+  ],
+  "minLinks": 15,
+  "requiredLinkTypes": ["missing", "disclosure_chase"],
+  "requiredMissingIssues": ["phone extraction", "BWV"],
+  "humanReviewRequired": true
+}

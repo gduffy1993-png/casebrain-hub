@@ -1,0 +1,17 @@
+{
+  "bundleId": "pilot-3-leon-marsh",
+  "offenceLens": "robbery_id",
+  "proofPointIds": [
+    "pp-taking-property",
+    "pp-force-threat",
+    "pp-identification-attribution",
+    "pp-complainant-witness",
+    "pp-cctv-bwv-999-cad",
+    "pp-continuity-timing",
+    "pp-disclosure-fair-trial"
+  ],
+  "minLinks": 15,
+  "requiredLinkTypes": ["missing", "disclosure_chase"],
+  "requiredMissingIssues": ["CCTV master", "999"],
+  "humanReviewRequired": false
+}
