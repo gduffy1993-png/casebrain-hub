@@ -402,47 +402,153 @@ So: extraction and Key Facts feed everyone; Safety feeds Summary/Chat/Dashboard/
 | Phase | Name | Status |
 |-------|------|--------|
 | 0–2 | Measurement + safety + playback/canary | **Done** — A+B gate clean, pilot-3 + production-pass GREEN |
-| 3 | Bundle fidelity / truth keys | **In progress** — branch `bundle-fidelity`, gold set + runner v1 |
-| 4 | Explanation brain (why route/disclosure matters) | Planned — product UI |
+| 3 | Bundle fidelity / truth keys | **Done** — gold 7/7, local PDF lane scaffolded (`bundle-fidelity` branch) |
+| **3.5** | **Source-backed explanation + inconsistency fidelity** | **Next** — see §9.3; bridge before UI |
+| 4 | Explanation brain (why route/disclosure matters) | Planned — product UI **after Phase 3.5 (§9.3)** |
 | 5 | Hero demo + hearing + supervisor | Planned — video-ready |
 | 6 | Self-serve + video | Planned |
 | 7 | Client plain-English layer | Planned |
 | 8 | Export (notes, letters, prep) | Planned |
 | 9 | Feedback flywheel (fingerprints → fix → canary) | Scaffolded via playback triage |
-| **10** | **Legal Q&A brain (case-aware questions)** | **Planned — see §9.3** |
+| **10** | **Legal Q&A brain (case-aware questions)** | **Planned — see §9.4** |
 | 11 | Offence map expansion (human-approved) | Planned |
 | 12 | Real PDF stress / optional depth | Planned |
 
 **Working method (all phases):** scan → separate artifact files → fingerprints → **one shared fix** → canary/playback/fidelity re-run. Never bulk-fix; never commit client PDFs or artifacts.
 
-## 9.2 Phase 3 — bundle fidelity (current)
+## 9.2 Phase 3 — bundle fidelity (read the papers)
 
-**Goal:** Prove CaseBrain **reads** bundle text correctly (defendant, charge, stage, doc types) — not answer style.
+**Goal:** Prove CaseBrain **reads** bundle text correctly (defendant, charge, stage, doc types, missing signals, provisional route) — not answer style.
 
-**Repo gold set (7):** pilot-3 heroes (linked-only until demo text exported), S18 Jordan Clarke, GBH Pike, **Ella Shaw motoring thin**, **Sam Okonkwo generic provisional**. See `docs/bundle-fidelity-set/README.md`.
+**Repo gold set (7):** pilot-3 manifest snapshots, S18 Jordan Clarke, GBH Pike, **Ella Shaw motoring thin**, **Sam Okonkwo generic provisional**. See `docs/bundle-fidelity-set/README.md`.
 
-**Command:** `npx tsx scripts/bundle-fidelity.ts --pack gold` → report under `artifacts/casebrain-auditor/latest/bundle-fidelity/` (gitignored).
+**Commands:**
+- `npx tsx scripts/bundle-fidelity.ts --pack gold`
+- `npx tsx scripts/bundle-fidelity-ingest-local-pdfs.ts` then `--pack local` (gitignored)
 
-**Local later:** User’s real PDFs + truth keys stay **out of git**; use template `docs/bundle-fidelity-set/truth-key.template.json`.
+**Reports:** `artifacts/casebrain-auditor/latest/bundle-fidelity/` (gitignored).
 
-## 9.3 Phase 10 — Legal Q&A brain (case-aware questions)
+**Local:** User PDFs + truth keys stay **out of git**; `artifacts/bundle-fidelity-local/`.
+
+**Exit:** Gold passes; local lane ingests and runs; shared extract rules only (no case-by-case tuning in repo).
+
+---
+
+## 9.3 Phase 3.5 — source-backed explanation + inconsistency fidelity (bridge)
+
+**Why this phase exists:** Phase 3 asks *“did we read the bundle?”* Phase 3.5 asks *“can we explain what the papers actually say — safely, with sources, and flag when sources disagree?”* That is the natural bridge before Phase 4 puts copy on screen.
+
+### 9.3.1 What Phase 3.5 is not
+
+- Not: generic chase lines (“CCTV missing”) with no source basis.
+- Not: inventing served material, locations, or outcomes not on the papers.
+- Not: production UI, live chat, or legal advice to the public.
+- Not: committed real PDFs, client truth keys, or artifact commits.
+
+### 9.3.2 What Phase 3.5 is
+
+Two fidelity lanes on **gold + local gitignored bundle text**:
+
+| Lane | Checks |
+|------|--------|
+| **A — Missing / partial material** | For each material item: what the bundle **says** (served / partial / outstanding); **which section**; short **source basis**; **why it matters** to route, risk, or hearing; **safe next action**; **do-not-overstate** warning |
+| **B — Inconsistency / contradiction** | When sources conflict (e.g. weapon location A vs B; date in charge vs MG5; “stills served” vs “master footage outstanding”): **Source A says X**, **Source B says Y**, **why it matters** (continuity, provenance, attribution, reliability), **safe next action**, **do not reconcile into one fact** |
+
+**Example (bad → good):**
+
+| Bad | Good (Phase 3.5 style) |
+|-----|-------------------------|
+| “CCTV missing.” | “CCTV **stills** are served. The outstanding-material page states the **full CCTV master footage and export log** are outstanding. That matters because the route depends on timing, attribution, driver issue, causation, and continuity. Safe next step: chase master footage and export log before fixing the hearing position. **Do not** say CCTV is absent; say **full source footage is not yet served**.” |
+
+**Example (contradiction):**
+
+```txt
+Source A (MG5): weapon recovered at Morrisons.
+Source B (officer note): weapon seized from mail/package.
+Status: conflicting — not reconciled on papers.
+Why it matters: continuity, provenance, exhibit linkage, attribution.
+Safe next step: chase seizure log, exhibit schedule, continuity statement.
+Do not overstate: do not state final recovery location until reconciled.
+```
+
+### 9.3.3 Required fields per explanation block
+
+Every generated block (missing or contradiction) must include:
+
+| Field | Purpose |
+|-------|---------|
+| **issue** | Short label (e.g. full CCTV export, weapon location, CAD timing) |
+| **sourceSection** | Document/section (MG5, MG6, outstanding page, witness, custody) |
+| **sourceBasis** | Quote, paraphrase with page ref, or explicit “bundle states…” |
+| **status** | `served` \| `partial` \| `outstanding` \| `conflicting` \| `unclear` |
+| **whyItMatters** | Link to route / risk / hearing / disclosure dependency |
+| **safeNextAction** | Chase / record on file / take instructions — no outcome advice |
+| **confidenceTag** | `settled` \| `likely` \| `provisional` \| `needs_solicitor_review` |
+| **doNotOverstate** | Explicit cap (e.g. do not say absent when partial stills served) |
+
+### 9.3.4 Output types (starter report sections)
+
+Reports under `artifacts/casebrain-auditor/latest/bundle-fidelity/explanation-fidelity/` (gitignored):
+
+1. **Missing material explanations** — CCTV/CAD/999/BWV/interview/expert/medical/forensic/custody disclosure gaps.
+2. **Contradiction / inconsistency map** — cross-source conflicts with reconciliation status.
+3. **Police station / interview caution** — PACE, pre-interview disclosure limits, no-comment positioning (source-backed only).
+4. **Disclosure dependency** — why MG6/outstanding lists affect route and chase priority.
+
+### 9.3.5 Acceptance criteria (Phase 3.5 exit)
+
+- Runs on **gold** and **local** bundle text (local stays gitignored).
+- **Does not invent** facts; `unclear` / `needs_solicitor_review` when basis thin.
+- **No** production UI changes; evaluator/artifact lane only.
+- **No** real PDFs or artifacts committed.
+- Pilot exemplar: **Sienna Avery / local-001 dangerous driving** — must surface at minimum:
+  - CCTV stills served vs master/export outstanding
+  - 999 audio / CAD log outstanding where bundle says so
+  - BWV / expert / medical / forensic / full interview outstanding where stated
+  - Custody/PACE limited pre-interview disclosure if on papers
+  - Timing conflicts (CAD vs witness vs corrected index) flagged as **conflicting**, not merged
+- Same method as playback: separate files, fingerprints, one shared fix, re-run.
+
+### 9.3.6 Commands (planned)
+
+```powershell
+npx tsx scripts/bundle-fidelity-explanation.ts --pack gold
+npx tsx scripts/bundle-fidelity-explanation.ts --pack local
+```
+
+*(Scaffold in slice 3.5a — see proposal below; not UI.)*
+
+### 9.3.7 Relationship to other phases
+
+```txt
+Phase 3   = read the papers correctly (metadata + doc signals)
+Phase 3.5 = explain the paper truth safely (sources + contradictions)
+Phase 4   = put those explanations in the product UI
+Phase 5   = hero demo + hearing + supervisor surfaces
+Phase 10  = legal Q&A (after explanation fidelity + UI are solid)
+```
+
+---
+
+## 9.4 Phase 10 — Legal Q&A brain (case-aware questions)
 
 **Purpose:** Help solicitors who are strong in one area but weaker in another (motoring vs fraud vs PWITS, charge elements, procedure, disclosure, hearing). **Second brain + checker** — not replacement counsel.
 
 **Gate — do not build until:**
 - Phase 3 bundle fidelity is strong (charge/defendant/docs read reliably on gold set).
+- **Phase 3.5 explanation fidelity** passes on gold + local exemplars (source-backed missing material + contradictions; no invented facts).
 - Phase 4–5 explanation + hero surfaces are in product UI.
 - Chat grounding already uses agreed summary, Safety, case theory (V2 §3, §6 B6).
 
-If Q&A runs on badly read PDFs, it will sound clever and be **unsafe**.
+If Q&A runs on badly read PDFs or thin explanation blocks, it will sound clever and be **unsafe**.
 
-### 9.3.1 What it is not
+### 9.4.1 What it is not
 
 - Not: user asks → AI gives confident legal advice (“plead guilty”, “you will win”, “Crown cannot prove it”).
 - Not: abstract law essay disconnected from the file.
 - Not: training on committed client PDFs or firm case data in git.
 
-### 9.3.2 What it is
+### 9.4.2 What it is
 
 Flow:
 
@@ -461,7 +567,7 @@ User asks legal/workflow question
 |-----|-----------------|
 | “Yes, argue careless driving.” | “Reduction *may* be an issue depending on standard of driving, causation, injury evidence, expert/collision material, and **served papers**. On current bundle: **provisional only**. Chase dashcam, expert, CAD, medical link. **Solicitor must confirm** after full disclosure.” |
 
-### 9.3.3 Required layers (safeguards)
+### 9.4.3 Required layers (safeguards)
 
 | Layer | Requirement |
 |-------|-------------|
@@ -472,7 +578,7 @@ User asks legal/workflow question
 | **Required outputs** | What’s missing, what solicitor must verify, safe next step, link to route/disclosure where relevant |
 | **UI disclaimer** | Persistent: not legal advice; for qualified solicitor use; verify before court/client reliance |
 
-### 9.3.4 Question domains (starter bank)
+### 9.4.4 Question domains (starter bank)
 
 - Charge elements and differences (e.g. possession vs PWITS; s18 vs s20; dangerous driving standard)
 - Disclosure / CPIA (what to chase, why MG6 matters, incomplete schedules)
@@ -481,7 +587,7 @@ User asks legal/workflow question
 - Thin bundle / provisional routes — what not to overstate
 - Offence families the solicitor does not usually handle (motoring, fraud account-control, etc.)
 
-### 9.3.5 Training / quality method (same as playback)
+### 9.4.5 Training / quality method (same as playback)
 
 Not ML on client files. Use:
 
@@ -496,20 +602,20 @@ Not ML on client files. Use:
 
 Pilot pack idea: `legal-qa-pilot` (fictional cases only) — parallel to `pilot-3` and `bundle-fidelity --pack gold`.
 
-### 9.3.6 Integration with V2 chat
+### 9.4.6 Integration with V2 chat
 
 - Extends **§3.5 Chat as case builder** and **§3.6 sources/confidence** — Legal Q&A is a **mode** or command family (e.g. `/law`, `/charge`, `/disclosure`) with stricter guards than general chat.
 - Grounding order: agreed summary → case theory → Safety missing items → route/profile → law slices → **approved legal KB** → fidelity signals (“charge read as X”).
 - Client-facing copy (Phase 7) must never be **more** confident than solicitor/Q&A output.
 
-### 9.3.7 Success criteria (Phase 10 exit)
+### 9.4.7 Success criteria (Phase 10 exit)
 
 - Fictional question pack: ≥85% pass on auditor (no unsafe advice patterns).
 - Hero cases: sample questions return case-linked, provisionally worded answers.
 - Playback + fidelity gates still green after Q&A guard changes.
 - Solicitor review sign-off on gold answer bank before public/demo Q&A.
 
-### 9.3.8 Product promise (when ready)
+### 9.4.8 Product promise (when ready)
 
 ```txt
 Ask CaseBrain anything about the file.
@@ -522,18 +628,19 @@ It never pretends to be the solicitor.
 
 ---
 
-## 9.4 Build order relative to V2
+## 9.5 Build order relative to V2
 
 | Priority | Track |
 |----------|--------|
-| **Now** | Phase 3 fidelity (read papers right) |
+| **Done** | Phase 3 fidelity (read papers right) |
+| **Now** | **Phase 3.5** explanation + inconsistency fidelity (artifact lane only) |
 | **Next** | Phase 4–5 explanation + hero UI (V2 Hearing Prep aligns here) |
 | **Then** | V2 Phase A–B core where it unblocks agreed summary + chat grounding |
 | **Then** | Phase 6–9 pilot product + feedback |
-| **Then** | **Phase 10 Legal Q&A** (after §9.3.1 gates) |
+| **Then** | **Phase 10 Legal Q&A** (after §9.4.1 gates + Phase 3.5 exit) |
 | **Later** | Phase 11–12 offence map + real PDF stress |
 
-V2 **chat modernisation** (§3.11, Phase D4) can ship UI polish before or in parallel with Legal Q&A **content** guards — but Legal Q&A **logic** must not precede fidelity.
+V2 **chat modernisation** (§3.11, Phase D4) can ship UI polish before or in parallel with Legal Q&A **content** guards — but Legal Q&A **logic** must not precede Phase 3 + **3.5** fidelity.
 
 ---
 
