@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://casebrain.local/schemas/explanation-block.json",
+  "title": "ExplanationFidelityBlock",
+  "description": "Source-backed explanation block for Phase 3.5 bundle fidelity",
+  "type": "object",
+  "required": [
+    "issue",
+    "sourceSection",
+    "sourceBasis",
+    "status",
+    "whyItMatters",
+    "safeNextAction",
+    "confidenceTag",
+    "doNotOverstate"
+  ],
+  "properties": {
+    "issue": { "type": "string", "minLength": 1 },
+    "sourceSection": { "type": "string", "minLength": 1 },
+    "sourceBasis": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": ["served", "partial", "outstanding", "conflicting", "unclear"]
+    },
+    "whyItMatters": { "type": "string" },
+    "safeNextAction": { "type": "string" },
+    "confidenceTag": {
+      "type": "string",
+      "enum": [
+        "settled",
+        "likely",
+        "provisional",
+        "needs_solicitor_review",
+        "not_enough_information"
+      ]
+    },
+    "doNotOverstate": { "type": "string", "minLength": 1 }
+  },
+  "additionalProperties": false
+}
