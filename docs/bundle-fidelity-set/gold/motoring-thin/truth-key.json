@@ -1,0 +1,35 @@
+{
+  "bundleId": "motoring-thin-ella-shaw",
+  "fictional": true,
+  "label": "R v Ella Shaw — motoring thin",
+  "purpose": "Motoring provisional extraction on thin initial disclosure",
+  "defendant": "Ella Shaw",
+  "aliases": ["Shaw"],
+  "charge": "Dangerous driving contrary to section 2 Road Traffic Act 1988",
+  "chargeKeywords": ["dangerous driving", "road traffic act", "section 2"],
+  "court": "Northvale Magistrates' Court",
+  "hearingDate": "2024-09-18",
+  "stage": "Magistrates — first hearing",
+  "documentTypesExpected": ["charge_sheet", "mg5", "index"],
+  "documentTypesForbidden": [],
+  "evidenceSignalsExpected": ["anpr", "dashcam", "cad", "999"],
+  "missingMaterialExpected": [
+    "dashcam",
+    "cctv export",
+    "collision expert",
+    "full cad",
+    "999 log"
+  ],
+  "thinBundleExpected": true,
+  "expectedWorkflowProfile": "generic_motoring_provisional",
+  "expectedRouteFamily": null,
+  "prohibitedFamilies": [
+    "fraud_account_control",
+    "pwits_phone_attribution",
+    "robbery_identification",
+    "violence_domestic_assault"
+  ],
+  "expectedProvisionalStatus": true,
+  "humanReviewExpected": false,
+  "notes": "Motoring must not map to violence despite collision wording."
+}

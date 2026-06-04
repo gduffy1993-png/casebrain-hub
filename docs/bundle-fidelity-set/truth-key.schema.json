@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "casebrain-bundle-fidelity-truth-key",
+  "title": "BundleFidelityTruthKey",
+  "type": "object",
+  "required": [
+    "bundleId",
+    "fictional",
+    "defendant",
+    "charge",
+    "expectedWorkflowProfile",
+    "thinBundleExpected"
+  ],
+  "properties": {
+    "bundleId": { "type": "string" },
+    "fictional": { "type": "boolean" },
+    "label": { "type": "string" },
+    "purpose": { "type": "string" },
+    "sourceType": {
+      "type": "string",
+      "enum": ["markdown-bundle", "single-text-file", "pilot-3-manifest", "linked-external"]
+    },
+    "sourceRef": { "type": "string" },
+    "defendant": { "type": "string" },
+    "aliases": { "type": "array", "items": { "type": "string" } },
+    "charge": { "type": "string" },
+    "chargeKeywords": { "type": "array", "items": { "type": "string" } },
+    "court": { "type": "string" },
+    "hearingDate": { "type": "string" },
+    "stage": { "type": "string" },
+    "documentTypesExpected": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "charge_sheet",
+          "mg5",
+          "mg6",
+          "mg11",
+          "cctv",
+          "bwv",
+          "cad",
+          "999",
+          "interview",
+          "medical",
+          "custody",
+          "index"
+        ]
+      }
+    },
+    "documentTypesForbidden": { "type": "array", "items": { "type": "string" } },
+    "evidenceSignalsExpected": { "type": "array", "items": { "type": "string" } },
+    "missingMaterialExpected": { "type": "array", "items": { "type": "string" } },
+    "thinBundleExpected": { "type": "boolean" },
+    "expectedWorkflowProfile": { "type": "string" },
+    "expectedRouteFamily": { "type": ["string", "null"] },
+    "prohibitedFamilies": { "type": "array", "items": { "type": "string" } },
+    "expectedProvisionalStatus": { "type": "boolean" },
+    "humanReviewExpected": { "type": "boolean" },
+    "notes": { "type": "string" },
+    "linkStatus": {
+      "type": "string",
+      "enum": ["runnable", "linked-only", "placeholder"]
+    }
+  }
+}

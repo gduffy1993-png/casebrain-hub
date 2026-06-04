@@ -1,0 +1,25 @@
+{
+  "bundleId": "pilot-3-kian-doyle",
+  "missingMaterial": [
+    {
+      "issueContains": "phone extraction",
+      "status": "outstanding",
+      "sourceBasisContains": ["phone extraction", "outstanding"],
+      "doNotOverstateRequired": true
+    },
+    {
+      "issueContains": "BWV",
+      "status": "outstanding",
+      "sourceBasisContains": ["BWV", "outstanding"],
+      "doNotOverstateRequired": true
+    }
+  ],
+  "disclosureDependencies": [
+    {
+      "issueContains": "Disclosure chase",
+      "status": "outstanding",
+      "sourceBasisContains": ["Disclosure chase", "outstanding"],
+      "doNotOverstateRequired": true
+    }
+  ]
+}

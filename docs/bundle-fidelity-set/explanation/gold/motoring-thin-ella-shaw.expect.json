@@ -1,0 +1,39 @@
+{
+  "bundleId": "motoring-thin-ella-shaw",
+  "missingMaterial": [
+    {
+      "issueContains": "Dashcam",
+      "status": "outstanding",
+      "sourceBasisContains": ["Dashcam", "outstanding"],
+      "doNotOverstateRequired": true
+    },
+    {
+      "issueContains": "CAD",
+      "status": "outstanding",
+      "sourceBasisContains": ["CAD", "outstanding"],
+      "doNotOverstateRequired": true
+    },
+    {
+      "issueContains": "Collision expert",
+      "status": "outstanding",
+      "sourceBasisContains": ["Collision expert", "Outstanding"],
+      "doNotOverstateRequired": true
+    }
+  ],
+  "custodyInterview": [
+    {
+      "issueContains": "no comment",
+      "status": "served",
+      "sourceBasisContains": ["no comment"],
+      "doNotOverstateRequired": false
+    }
+  ],
+  "disclosureDependencies": [
+    {
+      "issueContains": "Disclosure",
+      "status": "outstanding",
+      "sourceBasisContains": ["outstanding", "disclosure"],
+      "doNotOverstateRequired": true
+    }
+  ]
+}

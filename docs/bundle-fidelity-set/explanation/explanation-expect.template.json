@@ -1,0 +1,22 @@
+{
+  "bundleId": "local-000-example",
+  "fictional": false,
+  "label": "Example local case — gitignore real expects",
+  "notes": "Copy to artifacts/bundle-fidelity-local/cases/<case-id>/explanation-expect.json (never commit).",
+  "missingMaterial": [
+    {
+      "issue": "full CCTV master footage",
+      "status": "outstanding",
+      "sourceSection": "outstanding disclosure list",
+      "sourceBasisContains": ["master footage", "export log"],
+      "doNotOverstateContains": ["not absent", "stills"]
+    }
+  ],
+  "contradictions": [
+    {
+      "issue": "incident timing",
+      "reconciliationStatus": "conflicting",
+      "sourceBasisContains": ["CAD", "witness"]
+    }
+  ]
+}

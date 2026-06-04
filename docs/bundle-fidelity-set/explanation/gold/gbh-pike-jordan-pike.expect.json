@@ -1,0 +1,62 @@
+{
+  "bundleId": "gbh-pike-jordan-pike",
+  "missingMaterial": [
+    {
+      "issueContains": "CCTV export",
+      "status": "outstanding",
+      "sourceBasisContains": ["CCTV", "outstanding"],
+      "doNotOverstateRequired": true
+    },
+    {
+      "issueContains": "Medical",
+      "status": "outstanding",
+      "sourceBasisContains": ["medical", "not yet served"],
+      "doNotOverstateRequired": true
+    },
+    {
+      "issueContains": "999",
+      "status": "outstanding",
+      "sourceBasisContains": ["999", "not yet disclosed"],
+      "doNotOverstateRequired": true
+    }
+  ],
+  "contradictions": [
+    {
+      "issueContains": "incident date",
+      "reconciliationStatus": "conflicting",
+      "sourceBasisContains": ["14 March", "15 March"]
+    },
+    {
+      "issueContains": "CAD",
+      "reconciliationStatus": "conflicting",
+      "sourceBasisContains": ["00:24", "00:30"]
+    },
+    {
+      "issueContains": "CCTV export",
+      "reconciliationStatus": "conflicting",
+      "sourceBasisContains": ["footage", "outstanding"]
+    }
+  ],
+  "custodyInterview": [
+    {
+      "issueContains": "no comment",
+      "status": "served",
+      "sourceBasisContains": ["no comment"],
+      "doNotOverstateRequired": false
+    },
+    {
+      "issueContains": "custody",
+      "status": "outstanding",
+      "sourceBasisContains": ["custody", "not yet"],
+      "doNotOverstateRequired": true
+    }
+  ],
+  "disclosureDependencies": [
+    {
+      "issueContains": "MG6",
+      "status": "outstanding",
+      "sourceBasisContains": ["MG6", "outstanding"],
+      "doNotOverstateRequired": true
+    }
+  ]
+}

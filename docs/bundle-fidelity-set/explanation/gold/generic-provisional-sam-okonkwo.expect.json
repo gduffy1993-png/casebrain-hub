@@ -1,0 +1,25 @@
+{
+  "bundleId": "generic-provisional-sam-okonkwo",
+  "missingMaterial": [
+    {
+      "issueContains": "phone",
+      "status": "outstanding",
+      "sourceBasisContains": ["Outstanding", "message"],
+      "doNotOverstateRequired": true
+    },
+    {
+      "issueContains": "interview",
+      "status": "outstanding",
+      "sourceBasisContains": ["Not served", "interview"],
+      "doNotOverstateRequired": true
+    }
+  ],
+  "disclosureDependencies": [
+    {
+      "issueContains": "MG6",
+      "status": "outstanding",
+      "sourceBasisContains": ["MG6", "outstanding"],
+      "doNotOverstateRequired": true
+    }
+  ]
+}
