@@ -43,6 +43,8 @@ function buildSafeHearingLine(
   }
   if (map.humanReviewRequired) {
     parts.push("Solicitor review required before fixing final hearing position or concessions.");
+  } else if (map.offenceLens === "generic_provisional" || map.offenceLens === "unknown") {
+    parts.push("Solicitor review required before fixing final hearing position or concessions.");
   }
   parts.push("Take instructions; chase disclosure; record asks on the court file.");
   return parts.join(" ");
@@ -350,6 +352,8 @@ export function generateWarRoomView(
     doNotOverstate,
     solicitorReviewRequired:
       map.humanReviewRequired ||
+      map.offenceLens === "generic_provisional" ||
+      map.offenceLens === "unknown" ||
       forbidden.length > 0 ||
       map.proofPoints.some((p) => p.confidenceTag === "needs_solicitor_review"),
     solicitorReviewReasons: [...new Set(solicitorReviewReasons)],

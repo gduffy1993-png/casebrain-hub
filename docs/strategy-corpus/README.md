@@ -63,4 +63,6 @@ See `lib/eval/casebrain-auditor/strategy-corpus-recipes.ts` for failure-mode tag
 
 ## Generator version
 
-`4e-v1.0.0` — see `STRATEGY_CORPUS_GENERATOR_VERSION` in `strategy-corpus-types.ts`.
+`4e-v1.0.0` (slice 2) — see `STRATEGY_CORPUS_GENERATOR_VERSION` and `STRATEGY_CORPUS_PHASE` in `strategy-corpus-types.ts`.
+
+Slice 2 shared fixes: structured contradiction sections, generic provisional lens/proof points, violence/PWITS human-review propagation.

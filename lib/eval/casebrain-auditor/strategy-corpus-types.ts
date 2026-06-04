@@ -1,6 +1,6 @@
 export const STRATEGY_CORPUS_GENERATOR_VERSION = "4e-v1.0.0";
 
-export const STRATEGY_CORPUS_PHASE = "4e-slice-1";
+export const STRATEGY_CORPUS_PHASE = "4e-slice-2";
 
 export type StrategyCorpusSplit = "discovery" | "validation" | "holdout";
 

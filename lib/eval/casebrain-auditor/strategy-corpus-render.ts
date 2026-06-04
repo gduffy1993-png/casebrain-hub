@@ -1,4 +1,4 @@
-import type { StrategyCorpusManifest } from "./strategy-corpus-types";
+import type { ContradictionSpec, StrategyCorpusManifest } from "./strategy-corpus-types";
 
 function fictionalHeader(): string {
   return [
@@ -6,6 +6,78 @@ function fictionalHeader(): string {
     "Training/Test Document — Synthetic Criminal Bundle Factory v1 (Phase 4e)",
     "",
   ].join("\n");
+}
+
+function contradictionSourceDetail(c: ContradictionSpec, side: "A" | "B", m: StrategyCorpusManifest): string {
+  const label = c.label.toLowerCase();
+  if (/timing|date|charge particulars/.test(label)) {
+    return side === "A"
+      ? "Particulars date: 14 March 2024 (charge sheet)"
+      : "MG5 narrative: evening of 15 March 2024";
+  }
+  if (/cad|sequence timing|dispatch/.test(label)) {
+    return side === "A"
+      ? "CAD partial extract — 00:24 dispatch reference"
+      : "Officer MG11 — attendance approximately 00:30";
+  }
+  if (/cctv|identification/.test(label)) {
+    return side === "A"
+      ? "CCTV still / partial export — description on bundle"
+      : "Witness MG11 — conflicting description / export outstanding";
+  }
+  if (/weapon|provenance/.test(label)) {
+    return side === "A"
+      ? "Scene log — item recovered / tagged"
+      : "Exhibit schedule — provenance incomplete or conflicting";
+  }
+  if (/device|handset|subscriber|attribution/.test(label)) {
+    return side === "A"
+      ? "Handset seizure notes — attribution asserted"
+      : "Subscriber / IMEI material — attribution unresolved on papers";
+  }
+  if (/injury|causation|medical/.test(label)) {
+    return side === "A"
+      ? "Witness account — mechanism described"
+      : "Medical summary — mechanism differs or incomplete";
+  }
+  if (/charge wording|corrected/.test(label)) {
+    return side === "A"
+      ? `Original charge sheet — ${m.chargeWording}`
+      : "Corrected charge sheet — amended particulars on bundle";
+  }
+  return side === "A"
+    ? `${c.sourceA} — partial account on bundle`
+    : `${c.sourceB} — conflicting account; unresolved on papers`;
+}
+
+function contradictionsSection(m: StrategyCorpusManifest): string {
+  if (!m.contradictions.length) return "";
+
+  const lines = [
+    "=== SECTION: CONTRADICTIONS ===",
+    "",
+    "# Contradictions on served papers (Fictional)",
+    "",
+    "**Human review:** provisional — do not treat conflicting points as agreed facts.",
+    "",
+  ];
+
+  for (const c of m.contradictions) {
+    const sourceA = contradictionSourceDetail(c, "A", m);
+    const sourceB = contradictionSourceDetail(c, "B", m);
+    lines.push(
+      `## CONTRADICTION — ${c.label}`,
+      "",
+      "**Status:** conflicting — unresolved on papers",
+      "**Source section:** Charge sheet / MG5 / witness material",
+      `**Source basis:** ${sourceA} conflicts with ${sourceB}`,
+      `**Source A (${c.sourceA}):** ${sourceA}`,
+      `**Source B (${c.sourceB}):** ${sourceB}`,
+      "",
+    );
+  }
+
+  return lines.join("\n");
 }
 
 function coverSection(m: StrategyCorpusManifest): string {
@@ -25,12 +97,14 @@ function coverSection(m: StrategyCorpusManifest): string {
     `**Recipe:** ${m.recipeId}`,
     "",
     "**Primary route:** provisional — chase disclosure before fixing hearing position.",
+    "**Human review:** serious/provisional offence — solicitor review before fixing hearing position.",
     "",
   ].join("\n");
 }
 
 function chargeSection(m: StrategyCorpusManifest): string {
   const corrected = m.failureModeTags.includes("corrected_charge_sheet");
+  const timingContra = m.failureModeTags.includes("timing_contradiction");
   const lines = [
     "=== SECTION: CHARGE ===",
     "",
@@ -42,12 +116,17 @@ function chargeSection(m: StrategyCorpusManifest): string {
   if (m.countNumber > 1) {
     lines.push(`**Counts:** ${m.countNumber} counts on indictment — verify particulars on file.`);
   }
-  if (corrected) {
+  if (corrected || timingContra) {
     lines.push(
       "",
-      "**Note:** Corrected charge sheet replaces original — compare date particulars with MG5.",
-      "**Original particulars date:** 14 March 2024",
+      "**Note:** Compare particulars with MG5 — dates/wording may conflict on export.",
+      "**Particulars of offence date:** 14 March 2024",
+    );
+  }
+  if (corrected) {
+    lines.push(
       "**Corrected particulars date:** 15 March 2024",
+      "**Original charge sheet retained** — corrected sheet also on file.",
     );
   }
   lines.push("", "**Court:** Fictional Crown / Magistrates listing", "");
@@ -66,6 +145,11 @@ function mg5Section(m: StrategyCorpusManifest): string {
     ].join("\n");
   }
 
+  const timingContra = m.failureModeTags.includes("timing_contradiction");
+  const cctvConflict =
+    m.failureModeTags.includes("partial_cctv") ||
+    m.failureModeTags.includes("cctv_stills_no_master");
+
   const lines = [
     "=== SECTION: MG5 ===",
     "",
@@ -76,7 +160,9 @@ function mg5Section(m: StrategyCorpusManifest): string {
     "",
     "## Summary",
     "",
-    "Prosecution summary on current papers remains provisional. Core identification, attribution, and continuity material may be outstanding.",
+    timingContra
+      ? "Prosecution summary records the incident on the evening of 15 March 2024 — compare with charge particulars."
+      : "Prosecution summary on current papers remains provisional. Core identification, attribution, and continuity material may be outstanding.",
     "",
     "## Evidence relied upon (current papers)",
     "",
@@ -86,6 +172,20 @@ function mg5Section(m: StrategyCorpusManifest): string {
   for (const doc of m.documentInventory.filter((d) => d.status !== "outstanding").slice(0, 5)) {
     lines.push(`${n}. **${doc.docType}** — ${doc.status} on export`);
     n++;
+  }
+
+  if (cctvConflict) {
+    lines.push(
+      "",
+      "CCTV footage is being arranged/held by OIC; MG6 lists export/continuity as outstanding or not yet served.",
+    );
+  }
+
+  if (m.failureModeTags.includes("cad_summary_no_full_cad")) {
+    lines.push(
+      "",
+      "Partial CAD extract attached — 00:24 dispatch reference; full CAD log retained/outstanding.",
+    );
   }
 
   lines.push("", "## Disclosure chase (outstanding on export)", "");
@@ -99,16 +199,6 @@ function mg5Section(m: StrategyCorpusManifest): string {
       "## Defence note (provisional)",
       "",
       "Defence indicates self-defence / lawful excuse may be raised — complainant moved first; full account awaits instructions.",
-    );
-  }
-
-  for (const c of m.contradictions) {
-    lines.push(
-      "",
-      `## Contradiction flag: ${c.label}`,
-      "",
-      `- ${c.sourceA}: partial account on bundle`,
-      `- ${c.sourceB}: conflicting timing/wording — unresolved on papers`,
     );
   }
 
@@ -165,6 +255,7 @@ export function renderCorpusBundleText(m: StrategyCorpusManifest): string {
     coverSection(m),
     chargeSection(m),
     mg5Section(m),
+    contradictionsSection(m),
     mg6Section(m),
     disclosureIndex(m),
   ].join("\n");

@@ -161,9 +161,13 @@ export function scoreCorpusCase(
   }
 
   const serious =
+    manifest.offenceFamily === "generic_provisional" ||
+    manifest.offenceFamily === "violence_gbh_s18" ||
     manifest.expectations.requiresHumanReviewWhenSerious ||
     manifest.failureModeTags.includes("self_defence_pattern") ||
-    /section\s*18|intent|wounding with intent/i.test(manifest.chargeWording);
+    /section\s*18|intent|wounding with intent|witness intimidation|serious offence|provisional charge/i.test(
+      manifest.chargeWording,
+    );
   const reviewOk =
     !serious ||
     warRoom.solicitorReviewRequired ||
