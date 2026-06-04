@@ -6,9 +6,9 @@ Gold bundles with **truth keys** prove CaseBrain **reads** bundle text correctly
 
 | # | Bundle ID | Location | Status |
 |---|-----------|----------|--------|
-| 1 | `pilot-3-marcus-vale` | `gold/pilot-3/marcus-vale.truth-key.json` | **Linked-only** — in-app demo manifest |
-| 2 | `pilot-3-kian-doyle` | `gold/pilot-3/kian-doyle.truth-key.json` | **Linked-only** |
-| 3 | `pilot-3-leon-marsh` | `gold/pilot-3/leon-marsh.truth-key.json` | **Linked-only** |
+| 1 | `pilot-3-marcus-vale` | `gold/pilot-3/marcus-vale/` | **Runnable** — manifest snapshot (not full demo text) |
+| 2 | `pilot-3-kian-doyle` | `gold/pilot-3/kian-doyle/` | **Runnable** — manifest snapshot |
+| 3 | `pilot-3-leon-marsh` | `gold/pilot-3/leon-marsh/` | **Runnable** — manifest snapshot |
 | 4 | `s18-charge-reduction-jordan-clarke` | `gold/s18-charge-reduction/truth-key.json` | **Runnable** — `test_bundles/s18_charge_reduction_bundle_v1/` |
 | 5 | `gbh-pike-jordan-pike` | `gold/gbh-pike/truth-key.json` | **Runnable** — `docs/fictional-bundle-gbh/FICTIONAL_GBH_BUNDLE_COPY_PASTE.txt` |
 | 6 | `motoring-thin-ella-shaw` | `gold/motoring-thin/` | **Runnable** — markdown bundle + truth key |

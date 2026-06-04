@@ -63,10 +63,21 @@ function cleanLineValue(raw: string): string | null {
   return t;
 }
 
+/** Strip markdown emphasis/heading markers so fictional gold bundles label-match reliably. */
+export function normalizeMetadataScanText(text: string): string {
+  return text
+    .replace(/\*\*([^*]+)\*\*/g, "$1")
+    .replace(/^#+\s+/gm, "")
+    .replace(/^\s*[-*]\s+/gm, "");
+}
+
 function extractLabeledValue(scan: string, labelPatterns: string[]): string | null {
   for (const label of labelPatterns) {
     const escaped = label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const re = new RegExp(`^\\s*${escaped}\\s*[:\\-–]\\s*(.+)$`, "im");
+    const re = new RegExp(
+      `^\\s*(?:\\*\\*)?${escaped}(?:\\*\\*)?\\s*[:\\-–]\\s*(.+)$`,
+      "im",
+    );
     const m = scan.match(re);
     if (m?.[1]) {
       const v = cleanLineValue(m[1]);
@@ -114,7 +125,7 @@ export function buildMetadataScan(fullText: string): string {
       if (!front.includes(anchor)) parts.push(block);
     }
   }
-  return parts.join("\n\n");
+  return normalizeMetadataScanText(parts.join("\n\n"));
 }
 
 /** Stop before these tokens when trimming a person-name capture from table-style PDF text. */
@@ -146,7 +157,9 @@ function sanitizePersonName(value: string): string | null {
   if (words.length < 1 || words.length > 4) return null;
   const labelWords =
     /^(?:defendant|accused|client|complainant|victim|name|the|and|or|dob|doi|mr|mrs|ms|dr)$/i;
-  if (words.some((w) => labelWords.test(w))) return null;
+  const verbWords =
+    /^(?:contacted|communicated|alleged|denied|admitted|is|was|has|had|that|which|against|contrary|witness|victim|complainant)$/i;
+  if (words.some((w) => labelWords.test(w) || verbWords.test(w))) return null;
   if (!words.every((w) => /^[A-Za-z][A-Za-z'’.\-]{1,}$/.test(w))) return null;
   if (words.length >= 3 && /\b(was|is|has|had|that|which|against|contrary)\b/i.test(t)) return null;
   return words.join(" ");
@@ -174,6 +187,12 @@ function extractDefendantName(scan: string): string | null {
       const v = sanitizePersonName(m[1]);
       if (v) return v;
     }
+  }
+
+  const rv = scan.match(/\bR\s+v\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,2})\b/);
+  if (rv?.[1]) {
+    const v = sanitizePersonName(rv[1]);
+    if (v) return v;
   }
 
   return null;
@@ -286,15 +305,53 @@ export function formatOffenceDisplayFromBundle(raw: string): string {
   return t.length > 140 ? `${t.slice(0, 137)}…` : t;
 }
 
+function isSpuriousChargeLabelValue(value: string): boolean {
+  const t = value.trim().toLowerCase();
+  if (!t || t.length < 8) return true;
+  if (/^charge\s*sheet$/i.test(t) || t === "sheet") return true;
+  if (/^count\s*\d+$/i.test(t)) return true;
+  return false;
+}
+
 function extractOffenceFromChargeBlock(block: string): string | null {
   const lines = block.split(/\n/).map((l) => l.trim()).filter(Boolean);
-  for (const line of lines) {
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i]!;
+    if (/^statement of offence/i.test(line)) {
+      const same = line.replace(/^statement of offence\s*:?\s*/i, "").trim();
+      if (same.length >= 16) {
+        const v = cleanLineValue(same);
+        if (v) return v;
+      }
+      const next = lines[i + 1];
+      if (next && next.length >= 16) {
+        const v = cleanLineValue(next);
+        if (v) return v;
+      }
+    }
     if (/^offence\s*[:]/i.test(line)) {
       const v = cleanLineValue(line.replace(/^offence\s*[:]\s*/i, ""));
-      if (v) return v;
+      if (v && !isSpuriousChargeLabelValue(v)) return v;
     }
-    if (/contrary to common law/i.test(line) && /\bmurder\b/i.test(line)) {
-      return "Murder, contrary to common law";
+    const countLine = line.match(/^count\s*\d+\s*[:\\-]?\s*(.+)$/i);
+    if (countLine?.[1]) {
+      const v = cleanLineValue(countLine[1]);
+      if (v && v.length >= 16) return v;
+    }
+    if (/contrary to common law/i.test(line) && /\b(pervert|murder|manslaughter)\b/i.test(line)) {
+      return cleanLineValue(line);
+    }
+    if (/\bdangerous driving\b/i.test(line) && /contrary to section/i.test(line)) {
+      return cleanLineValue(line);
+    }
+    if (/\bwounding with intent\b/i.test(line) || /\bs\.?\s*18\b.*oapa/i.test(line)) {
+      return cleanLineValue(line);
+    }
+    if (/pervert(ing)?\s+the\s+course\s+of\s+justice/i.test(line)) {
+      return cleanLineValue(line);
+    }
+    if (/section\s*20\b.*oapa|grievous bodily harm/i.test(line) && line.length >= 20) {
+      return cleanLineValue(line);
     }
     if (/contrary to section\s*\d+/i.test(line) && line.length >= 24) {
       return cleanLineValue(line);
@@ -304,9 +361,13 @@ function extractOffenceFromChargeBlock(block: string): string | null {
     }
   }
   const multi = block.match(
-    /(?:count\s*\d+\s*[:\\-]?\s*)?([^\n]{20,200}contrary to section\s*\d+[^\n]{0,80})/i,
+    /(?:count\s*\d+\s*[:\\-]?\s*)?([^\n]{16,200}contrary to (?:section\s*\d+|common law)[^\n]{0,120})/i,
   );
   if (multi?.[1]) return cleanLineValue(multi[1]);
+  const wounding = block.match(
+    /\b(Wounding with intent[^\n]{10,120}(?:OAPA|Offences Against the Person Act)[^\n]{0,40})/i,
+  );
+  if (wounding?.[1]) return cleanLineValue(wounding[1]);
   return null;
 }
 
@@ -328,12 +389,22 @@ function normalizeChargeOffence(raw: string): string | null {
 }
 
 function extractOffenceWording(scan: string, fullText: string): { wording: string | null; source: MetadataFieldSource } {
+  const chargeBlockRaw =
+    extractSectionBlock(fullText, ["CHARGE", "CHARGE_SHEET", "CHARGES", "INDICTMENT"]) ?? null;
+  const chargeBlock = chargeBlockRaw ? normalizeMetadataScanText(chargeBlockRaw) : null;
+  if (chargeBlock) {
+    const fromCharge = extractOffenceFromChargeBlock(chargeBlock);
+    if (fromCharge) {
+      return { wording: formatOffenceDisplayFromBundle(fromCharge), source: "extracted_charge_fallback" };
+    }
+  }
+
   let offenceWording =
-    extractLabeledValue(scan, ["Offence", "Offense", "Charge", "Allegation"]) ??
-    extractInlineLabeled(scan, ["Offence", "Offense", "Charge", "Allegation"]) ??
+    extractLabeledValue(scan, ["Offence", "Offense", "Statement of offence"]) ??
+    extractInlineLabeled(scan, ["Offence", "Offense", "Statement of offence"]) ??
     null;
 
-  if (offenceWording) {
+  if (offenceWording && !isSpuriousChargeLabelValue(offenceWording) && offenceWording.length < 200) {
     const norm = normalizeChargeOffence(offenceWording);
     if (norm) return { wording: norm, source: "extracted_cover_fallback" };
   }
@@ -357,11 +428,9 @@ function extractOffenceWording(scan: string, fullText: string): { wording: strin
     return { wording: "Murder, contrary to common law", source: "extracted_charge_fallback" };
   }
 
-  const chargeBlock =
-    extractSectionBlock(fullText, ["CHARGE", "CHARGE_SHEET", "CHARGES", "INDICTMENT"]) ?? scan;
-  const fromCharge = extractOffenceFromChargeBlock(chargeBlock);
-  if (fromCharge) {
-    return { wording: formatOffenceDisplayFromBundle(fromCharge), source: "extracted_charge_fallback" };
+  const fromScanCharge = extractOffenceFromChargeBlock(scan);
+  if (fromScanCharge) {
+    return { wording: formatOffenceDisplayFromBundle(fromScanCharge), source: "extracted_charge_fallback" };
   }
 
   return { wording: null, source: "unavailable" };

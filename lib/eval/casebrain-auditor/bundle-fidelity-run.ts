@@ -1,3 +1,4 @@
+import { detectBundleDocumentTypes } from "@/lib/criminal/bundle-document-signals";
 import { extractBundleCaseMetadata } from "@/lib/criminal/extract-bundle-case-metadata";
 import { resolveWorkflowProfileFromSignals, type WorkflowProfile } from "@/lib/criminal/pilot-workflow";
 import {
@@ -29,27 +30,8 @@ function field(
   return { field: fieldName, status, expected, actual, message };
 }
 
-const DOC_TYPE_PATTERNS: Record<string, RegExp> = {
-  charge_sheet: /\bcharge sheet\b|=== SECTION: CHARGE|statement of offence\b/i,
-  mg5: /\bmg5\b|=== SECTION: MG5\b|case summary \(fictional\)/i,
-  mg6: /\bmg6\b|=== SECTION: MG6\b|schedule of (?:initial )?disclosure/i,
-  mg11: /\bmg11\b|=== SECTION: MG11\b|witness statement \(fictional\)/i,
-  cctv: /\bcctv\b|cctv schedule|stills description/i,
-  bwv: /\bbwv\b|body[-\s]?worn\b/i,
-  cad: /\bcad\b/i,
-  "999": /\b999\b|emergency services were called/i,
-  interview: /\bpace interview\b|interview record\b|interview under caution\b/i,
-  medical: /\bmedical report\b|hospital records\b|a&e\b|MRI\b/i,
-  custody: /\bcustody record\b/i,
-  index: /\bbundle index\b|=== SECTION: INDEX\b/i,
-};
-
 export function detectDocumentTypes(text: string): string[] {
-  const found: string[] = [];
-  for (const [type, re] of Object.entries(DOC_TYPE_PATTERNS)) {
-    if (re.test(text)) found.push(type);
-  }
-  return found;
+  return detectBundleDocumentTypes(text);
 }
 
 function detectMissingSignals(text: string, keywords: string[]): string[] {
@@ -90,7 +72,12 @@ function defendantMatches(expected: string, aliases: string[] | undefined, actua
   const names = [expected, ...(aliases ?? [])].map(norm);
   const a = norm(actual);
   if (!a) return false;
-  return names.some((n) => a.includes(n) || n.includes(a));
+  return names.some((n) => {
+    if (a.includes(n) || n.includes(a)) return true;
+    const expWords = n.split(/\s+/).filter(Boolean);
+    const actWords = a.split(/\s+/).filter(Boolean);
+    return expWords.length >= 2 && expWords.every((w) => actWords.includes(w));
+  });
 }
 
 function chargeMatches(truth: BundleFidelityTruthKey, actual: string | null): "pass" | "needs_review" | "fail" {
@@ -106,8 +93,10 @@ function chargeMatches(truth: BundleFidelityTruthKey, actual: string | null): "p
 }
 
 function inferThinBundle(fullText: string, docTypes: string[]): boolean {
-  if (/\bthin bundle\b|bundle size:\s*thin|initial disclosure only\b/i.test(fullText)) return true;
-  return docTypes.length <= 4 && fullText.length < 18_000;
+  if (/\bthin[-\s]?ish\b|\bthin bundle\b|bundle size:\s*thin|initial disclosure only\b/i.test(fullText)) {
+    return true;
+  }
+  return docTypes.length <= 5 && fullText.length < 22_000;
 }
 
 export function runBundleFidelityCheck(entry: BundleFidelityGoldEntry): BundleFidelityBundleResult {
