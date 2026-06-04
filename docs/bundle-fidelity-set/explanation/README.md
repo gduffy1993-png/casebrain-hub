@@ -8,10 +8,11 @@ Proves CaseBrain can **explain** what bundle text says — with sources, status,
 
 Master plan: `docs/CASEBRAIN_V2_MASTER_PLAN.md` §9.3.
 
-## Run (3.5a scaffold)
+## Run (3.5b)
 
 ```powershell
 npx tsx scripts/bundle-fidelity-explanation.ts --pack gold
+npx tsx scripts/explanation-fidelity-gold.test.ts
 npx tsx scripts/bundle-fidelity-explanation.ts --pack local
 ```
 
@@ -47,9 +48,9 @@ Contradictions add `sourceA`, `sourceB`, `reconciliationStatus`.
 - Do not merge conflicting sources into one fact.
 - Real PDFs and client expects stay out of git (`artifacts/bundle-fidelity-local/`).
 
-## Gold expectations (3.5b — planned)
+## Gold expectations (3.5b)
 
-`docs/bundle-fidelity-set/explanation/gold/*.expect.json` — fictional cases only.
+`docs/bundle-fidelity-set/explanation/gold/*.expect.json` — fictional cases only (7 bundles).
 
 ## Local exemplar (3.5c — planned)
 

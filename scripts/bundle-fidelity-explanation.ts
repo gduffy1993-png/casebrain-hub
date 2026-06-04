@@ -5,7 +5,7 @@
  *   npx tsx scripts/bundle-fidelity-explanation.ts --pack gold
  *   npx tsx scripts/bundle-fidelity-explanation.ts --pack local
  *
- * 3.5a: types, report writer, runner shell only (no generator).
+ * 3.5b: rule-based generator + gold expects (no LLM).
  */
 import {
   runExplanationGoldPack,
@@ -35,7 +35,9 @@ function printSummary(
   console.log("");
   console.log("Explanation fidelity (", summary.phase, "):");
   console.log("  Runnable:", summary.runnable, "/", summary.total);
-  console.log("  Scaffolded:", summary.scaffolded);
+  console.log("  Passed:", summary.passed);
+  console.log("  Failed:", summary.failed);
+  console.log("  Needs review:", summary.needsReview);
   console.log("  Skipped:", summary.skipped);
   console.log("Report:", outDir);
   console.log("");

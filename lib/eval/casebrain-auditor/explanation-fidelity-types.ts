@@ -69,7 +69,7 @@ export type ExplanationFidelityCaseResult = {
 export type ExplanationFidelitySummary = {
   generatedAt: string;
   pack: "gold" | "local";
-  phase: "3.5a-scaffold";
+  phase: "3.5a-scaffold" | "3.5b" | "3.5b-local-generator";
   total: number;
   runnable: number;
   scaffolded: number;

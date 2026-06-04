@@ -1,0 +1,25 @@
+{
+  "bundleId": "pilot-3-leon-marsh",
+  "missingMaterial": [
+    {
+      "issueContains": "CCTV master",
+      "status": "outstanding",
+      "sourceBasisContains": ["CCTV master", "outstanding"],
+      "doNotOverstateRequired": true
+    },
+    {
+      "issueContains": "999",
+      "status": "outstanding",
+      "sourceBasisContains": ["999", "outstanding"],
+      "doNotOverstateRequired": true
+    }
+  ],
+  "disclosureDependencies": [
+    {
+      "issueContains": "Disclosure chase",
+      "status": "outstanding",
+      "sourceBasisContains": ["Disclosure chase", "outstanding"],
+      "doNotOverstateRequired": true
+    }
+  ]
+}

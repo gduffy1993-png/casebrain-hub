@@ -1,0 +1,25 @@
+{
+  "bundleId": "pilot-3-marcus-vale",
+  "missingMaterial": [
+    {
+      "issueContains": "bank export",
+      "status": "outstanding",
+      "sourceBasisContains": ["bank export", "outstanding"],
+      "doNotOverstateRequired": true
+    },
+    {
+      "issueContains": "mailbox",
+      "status": "outstanding",
+      "sourceBasisContains": ["mailbox", "outstanding"],
+      "doNotOverstateRequired": true
+    }
+  ],
+  "disclosureDependencies": [
+    {
+      "issueContains": "Disclosure chase",
+      "status": "outstanding",
+      "sourceBasisContains": ["Disclosure chase", "outstanding"],
+      "doNotOverstateRequired": true
+    }
+  ]
+}
