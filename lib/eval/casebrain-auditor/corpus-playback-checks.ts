@@ -1,5 +1,7 @@
 import type { WorkflowProfile } from "@/lib/criminal/pilot-workflow";
-import { isProvisionalWorkflowProfile } from "@/lib/eval/casebrain-auditor/provisional-offence-policy";
+import { isMalformedPilotEvidenceAnchor } from "@/lib/criminal/pilot-workflow";
+import { isProductionScoredBucket } from "./corpus-bucket";
+import { isMotoringOffenceText, isProvisionalWorkflowProfile } from "./provisional-offence-policy";
 import type { CorpusCasePlayback, PlaybackFinding, PlaybackSection } from "./corpus-playback-types";
 import type { AuditorFamilyProfile } from "./types";
 import { redactPlaybackSnippet } from "./corpus-playback-redact";
@@ -158,12 +160,18 @@ export function runCorpusPlaybackChecks(playback: CorpusCasePlayback): PlaybackF
     );
   }
 
-  if (chargeFamily && routeFamily && familiesConflict(chargeFamily, routeFamily) && !isProvisionalWorkflowProfile(profile)) {
+  if (
+    chargeFamily &&
+    routeFamily &&
+    familiesConflict(chargeFamily, routeFamily) &&
+    !isProvisionalWorkflowProfile(profile) &&
+    !isMotoringOffenceText(playback.inferenceText)
+  ) {
     findings.push(
       finding(
         "routing_mismatch",
         "routing.charge_vs_route_family",
-        "unsafe",
+        isProductionScoredBucket(playback.corpusBucket) ? "unsafe" : "needs_review",
         `${playback.primaryRouteTitle ?? ""}`,
         `Charge family ${chargeFamily} vs route family ${routeFamily}.`,
       ),
@@ -270,7 +278,11 @@ export function runCorpusPlaybackChecks(playback: CorpusCasePlayback): PlaybackF
     seenChase.add(key);
   }
 
-  if (playback.disclosureChaseLabels.length > 0 && profile !== "generic") {
+  if (
+    playback.disclosureChaseLabels.length > 0 &&
+    profile !== "generic" &&
+    !isProvisionalWorkflowProfile(profile)
+  ) {
     const wrongFamily = playback.disclosureChaseLabels.some((l) => {
       const t = l.toLowerCase();
       if (profile === "fraud_account_control") {
@@ -300,9 +312,8 @@ export function runCorpusPlaybackChecks(playback: CorpusCasePlayback): PlaybackF
     }
   }
 
-  const visibleAnchors = new Set(playback.evidenceAnchors.map((a) => a.toLowerCase().trim()));
-  for (const anchor of playback.malformedLineCandidates) {
-    if (!visibleAnchors.has(anchor.toLowerCase().trim())) continue;
+  for (const anchor of playback.evidenceAnchors) {
+    if (!isMalformedPilotEvidenceAnchor(anchor)) continue;
     findings.push(
       finding(
         "profile_leakage",

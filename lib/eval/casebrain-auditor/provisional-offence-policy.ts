@@ -15,7 +15,7 @@ export function isProvisionalWorkflowProfile(
 }
 
 const MOTORING_RE =
-  /\b(dangerous driving|careless driving|driving without due care|due care and attention|road traffic act|rt\.?\s*a\.?\s*1988|motoring|speeding|no insurance|fail to stop|drink.?drive|drug.?drive|driving whilst|unfit to drive|causing (?:serious )?injury by (?:dangerous|careless|inconsiderate) driving|inconsiderate driving)\b/i;
+  /\b(dangerous driving|careless driving|driving without due care|due care and attention|road traffic act|rt\.?\s*a\.?\s*1988|motoring|speeding|no insurance|fail to stop|drink[-\s]?drive|drug[-\s]?drive|drink drug driving|driving whilst|unfit to drive|causing (?:serious )?injury by (?:dangerous|careless|inconsiderate) driving|inconsiderate driving)\b/i;
 
 const TWOC_RE =
   /\b(taking (?:a )?(?:motor )?vehicle without consent|took a mechanically propelled vehicle without|twoc|vehicle interference)\b/i;

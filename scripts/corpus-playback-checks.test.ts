@@ -113,7 +113,53 @@ function testMalformedHiddenWhenNotVisible() {
   assert.equal(findings.filter((f) => f.checkId === "anchor.malformed").length, 0);
 }
 
-testChargeRouteMismatch();
+function testChargeRouteMismatchUnsafeOnRoster() {
+  const p = basePlayback({
+    corpusBucket: "A",
+    inferredChargeFamily: "fraud_account_control",
+    workflowProfile: "fraud_account_control",
+    routeFamily: "pwits_phone_attribution",
+    primaryRouteTitle: "Possession / knowledge / phone-attribution pressure",
+  });
+  const findings = runCorpusPlaybackChecks(p);
+  const hit = findings.find((f) => f.checkId === "routing.charge_vs_route_family");
+  assert.ok(hit);
+  assert.equal(hit!.severity, "unsafe");
+}
+
+function testChargeRouteMismatchNeedsReviewOnBucketC() {
+  const p = basePlayback({
+    corpusBucket: "C",
+    inferredChargeFamily: "fraud_account_control",
+    workflowProfile: "fraud_account_control",
+    routeFamily: "pwits_phone_attribution",
+    primaryRouteTitle: "Possession / knowledge / phone-attribution pressure",
+  });
+  const findings = runCorpusPlaybackChecks(p);
+  const hit = findings.find((f) => f.checkId === "routing.charge_vs_route_family");
+  assert.ok(hit);
+  assert.equal(hit!.severity, "needs_review");
+}
+
+function testMotoringChargeSkipsRouteMismatch() {
+  const p = basePlayback({
+    corpusBucket: "C",
+    inferenceText: "Drink drug driving contrary to section 4 Road Traffic Act 1988",
+    inferredChargeFamily: null,
+    workflowProfile: "generic_motoring_provisional",
+    routeFamily: "violence_domestic_assault",
+    primaryRouteTitle: "Public-order participation / identification / role pressure",
+  });
+  const findings = runCorpusPlaybackChecks(p);
+  assert.equal(
+    findings.filter((f) => f.checkId === "routing.charge_vs_route_family").length,
+    0,
+  );
+}
+
+testChargeRouteMismatchUnsafeOnRoster();
+testChargeRouteMismatchNeedsReviewOnBucketC();
+testMotoringChargeSkipsRouteMismatch();
 testChaseWrongFamilyNotPhoneOnViolence();
 testMalformedHiddenWhenNotVisible();
 console.log("corpus-playback-checks.test.ts: ok");

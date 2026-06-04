@@ -1352,6 +1352,30 @@ function softenBattleboardRoutes(
   };
 }
 
+function sanitizeProvisionalRoutes(
+  bb: BattleboardOutput,
+  context: WorkflowProfileContext,
+): BattleboardOutput {
+  const routes = bb.routes.map((r) => ({
+    ...r,
+    evidence_anchors: sanitizePilotEvidenceAnchors(r.evidence_anchors ?? [], context),
+    collapse_risks: filterWorkflowPilotLines(r.collapse_risks ?? [], context, { max: 4, useFallbacks: false }),
+    why_it_helps: filterWorkflowPilotLines(r.why_it_helps ?? [], context, { max: 4, useFallbacks: false }),
+    next_moves: filterWorkflowPilotLines(r.next_moves ?? [], context, { max: 6, useFallbacks: false }),
+  }));
+  const primary = bb.primary_route
+    ? routes.find((r) => r.id === bb.primary_route!.id) ?? routes[0]
+    : bb.primary_route;
+  return {
+    ...bb,
+    routes,
+    primary_route: primary ?? bb.primary_route,
+    solicitor_safe_summary: bb.solicitor_safe_summary
+      ? (sanitizePilotVisibleLine(bb.solicitor_safe_summary, context) ?? bb.solicitor_safe_summary)
+      : bb.solicitor_safe_summary,
+  };
+}
+
 /** Strip generic template leakage from battleboard output in pilot workflow mode. */
 export function filterBattleboardForWorkflowPilot(
   bb: BattleboardOutput | null,
@@ -1361,7 +1385,9 @@ export function filterBattleboardForWorkflowPilot(
   const softened = softenBattleboardRoutes(bb, context);
   if (!isCriminalPilotMode()) return softened;
   const profile = resolveWorkflowProfile(context);
-  if (profile === "generic" || isProvisionalWorkflowProfile(profile)) return softened;
+  if (profile === "generic" || isProvisionalWorkflowProfile(profile)) {
+    return sanitizeProvisionalRoutes(softened, context);
+  }
 
   const routes = softened.routes.map((r) => filterRouteLists(r, context));
   const picked = pickWorkflowPrimaryRoute(routes, context);

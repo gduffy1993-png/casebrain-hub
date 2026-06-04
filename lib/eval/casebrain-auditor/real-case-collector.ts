@@ -95,6 +95,7 @@ export function inferAuditorFamilyFromOffence(offence: string | null | undefined
   const t = (offence ?? "").toLowerCase();
   if (!t.trim()) return null;
   if (resolveProvisionalWorkflowFromOffence(t)) return null;
+  if (isMotoringOffenceText(t)) return null;
   if (isClearMoneyLaunderingFraudText(t)) return "fraud_account_control";
   if (/\b(fraud|dishonest|account|bank|poca)\b/.test(t) && !/\bmoney laundering\b/.test(t)) {
     return "fraud_account_control";

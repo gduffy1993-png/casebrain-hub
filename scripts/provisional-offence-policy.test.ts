@@ -60,4 +60,10 @@ assert.equal(
 assert.equal(isMotoringOffenceText("Dangerous driving"), true);
 assert.equal(isMotoringOffenceText("Section 18 GBH"), false);
 
+assert.equal(isMotoringOffenceText("Drink drug driving"), true);
+assert.equal(
+  inferAuditorFamilyFromOffence("Drink drug driving contrary to section 4 Road Traffic Act 1988"),
+  null,
+);
+
 console.log("provisional-offence-policy.test.ts: ok");

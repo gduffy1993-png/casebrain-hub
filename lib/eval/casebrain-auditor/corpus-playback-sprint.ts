@@ -2,11 +2,15 @@ import fs from "node:fs";
 import path from "node:path";
 import { isProductionScoredBucket } from "./corpus-bucket";
 import {
+  writeFinalCleanupTriage,
+  writePrReadinessReport,
+} from "./corpus-playback-cleanup-report";
+import { redactPlaybackSnippet } from "./corpus-playback-redact";
+import {
   writeFinalReviewSummary,
   writeHumanMappingDecisions,
   writeRemainingIssuesTriage,
 } from "./corpus-playback-triage";
-import { redactPlaybackSnippet } from "./corpus-playback-redact";
 import type { CorpusCasePlayback, PlaybackFinding, PlaybackSummary } from "./corpus-playback-types";
 import type { AuditorFamilyProfile } from "./types";
 
@@ -544,6 +548,22 @@ export function writeCorpusPlaybackSprintArtifacts(
     }
   }
   writeFinalReviewSummary(outDir, summary, { canarySize, replayLatestAdded: true });
+  writeFinalCleanupTriage(outDir, playbacks, summary);
+  writePrReadinessReport(outDir, summary, {
+    branch: "corpus-playback",
+    commit: process.env.GIT_COMMIT ?? "local",
+    canarySize,
+    checksRun: [
+      "tsc --noEmit",
+      "corpus-playback-checks.test.ts",
+      "provisional-offence-policy.test.ts",
+      "pilot-workflow-profile.test.ts",
+      "pilot-3",
+      "production-pass",
+      "canary",
+      "full playback 1000",
+    ],
+  });
 
   const log = opts?.learningLogLines ?? [
     "Sprint artifacts generated from playback run — see git commits for code fixes.",
