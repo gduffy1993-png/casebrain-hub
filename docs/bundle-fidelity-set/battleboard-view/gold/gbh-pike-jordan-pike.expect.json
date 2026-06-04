@@ -1,0 +1,11 @@
+{
+  "bundleId": "gbh-pike-jordan-pike",
+  "offenceLens": "violence_gbh",
+  "primaryRouteContains": ["Violence", "injury"],
+  "requiredProofPointsAttacked": ["pp-unlawful-assault", "pp-cctv-bwv-999-cad", "pp-disclosure-fair-trial"],
+  "minMissingItems": 3,
+  "requiredMissingContains": ["CCTV", "Medical"],
+  "minContradictions": 1,
+  "minDisclosureChasePriorities": 1,
+  "humanReviewRequired": true
+}

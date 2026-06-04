@@ -1,0 +1,10 @@
+{
+  "bundleId": "pilot-3-kian-doyle",
+  "offenceLens": "pwits",
+  "primaryRouteContains": ["Possession", "phone"],
+  "requiredProofPointsAttacked": ["pp-supply-inference", "pp-phone-attribution-messages"],
+  "minMissingItems": 4,
+  "requiredMissingContains": ["phone extraction", "BWV"],
+  "minDisclosureChasePriorities": 3,
+  "humanReviewRequired": true
+}
