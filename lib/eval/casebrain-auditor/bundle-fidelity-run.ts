@@ -11,11 +11,16 @@ import {
 import type { BundleFidelityGoldEntry } from "./bundle-fidelity-pack";
 import { loadLocalPack } from "./bundle-fidelity-local";
 import { loadGoldPack, readBundleText } from "./bundle-fidelity-pack";
+import { NEEDS_REVIEW } from "./bundle-fidelity-ingest";
 import type {
   BundleFidelityBundleResult,
   BundleFidelityFieldResult,
   BundleFidelityTruthKey,
 } from "./bundle-fidelity-types";
+
+function isNeedsReview(value: unknown): value is typeof NEEDS_REVIEW {
+  return value === NEEDS_REVIEW;
+}
 
 function norm(s: string | null | undefined): string {
   return (s ?? "").toLowerCase().replace(/\s+/g, " ").trim();
@@ -50,11 +55,29 @@ function detectMissingSignals(text: string, keywords: string[]): string[] {
   return missing;
 }
 
+function profileHintFromBundleId(bundleId: string): WorkflowProfile | null {
+  const id = bundleId.toLowerCase();
+  if (/dangerous|motoring|dvr/.test(id)) return resolveProvisionalWorkflowFromOffence("dangerous driving") ?? "generic_motoring_provisional";
+  if (/fraud|frd/.test(id)) return "fraud_account_control";
+  if (/pwit|pwi/.test(id)) return "pwits_phone_attribution";
+  if (/gbh|s18|violence/.test(id)) return "violence_domestic_assault";
+  return null;
+}
+
 function resolveWorkflowProfile(fullText: string, truth: BundleFidelityTruthKey): WorkflowProfile {
   const meta = extractBundleCaseMetadata(fullText);
-  const inferenceText = [meta.offenceWording, meta.offenceDisplay, truth.charge].filter(Boolean).join(" — ");
+  const chargeForInference = isNeedsReview(truth.charge) ? "" : String(truth.charge ?? "");
+  const inferenceText = [meta.offenceWording, meta.offenceDisplay, chargeForInference, truth.bundleId]
+    .filter(Boolean)
+    .join(" — ");
+  const idHint = profileHintFromBundleId(truth.bundleId);
   const provisional = resolveProvisionalWorkflowFromOffence(inferenceText);
   if (provisional) return provisional;
+  if (idHint && !isNeedsReview(truth.expectedWorkflowProfile)) {
+    const textProv = resolveProvisionalWorkflowFromOffence(inferenceText);
+    if (textProv) return textProv;
+    if (idHint !== "generic_motoring_provisional") return idHint;
+  }
 
   const chargeFamily = inferAuditorFamilyFromOffence(inferenceText);
   const fromSignals = resolveWorkflowProfileFromSignals({
@@ -82,11 +105,13 @@ function defendantMatches(expected: string, aliases: string[] | undefined, actua
 }
 
 function chargeMatches(truth: BundleFidelityTruthKey, actual: string | null): "pass" | "needs_review" | "fail" {
+  if (isNeedsReview(truth.charge)) return "needs_review";
   const a = norm(actual);
   if (!a || a === "sheet" || a.length < 8) return "fail";
   const keywords = truth.chargeKeywords ?? [];
-  const hits = keywords.filter((k) => a.includes(norm(k)) || norm(truth.charge).includes(norm(k)));
-  if (hits.length >= Math.min(2, keywords.length) || a.includes(norm(truth.charge).slice(0, 24))) {
+  const chargeStr = typeof truth.charge === "string" ? truth.charge : "";
+  const hits = keywords.filter((k) => a.includes(norm(k)) || norm(chargeStr).includes(norm(k)));
+  if (hits.length >= Math.min(2, keywords.length) || (chargeStr && a.includes(norm(chargeStr).slice(0, 24)))) {
     return "pass";
   }
   if (keywords.some((k) => a.includes(norm(k)))) return "needs_review";
@@ -134,18 +159,32 @@ export function runBundleFidelityCheck(entry: BundleFidelityGoldEntry): BundleFi
   const docTypes = detectDocumentTypes(fullText);
   const workflowProfile = resolveWorkflowProfile(fullText, truth);
   const chargeFamily = inferAuditorFamilyFromOffence(
-    [meta.offenceWording, meta.offenceDisplay, truth.charge].filter(Boolean).join(" "),
+    [meta.offenceWording, meta.offenceDisplay, isNeedsReview(truth.charge) ? "" : truth.charge]
+      .filter(Boolean)
+      .join(" "),
   );
   const thin = inferThinBundle(fullText, docTypes);
   const missingDetected = detectMissingSignals(fullText, truth.missingMaterialExpected ?? []);
 
   const fields: BundleFidelityFieldResult[] = [];
 
-  fields.push(
-    defendantMatches(truth.defendant, truth.aliases, meta.defendantName)
-      ? field("defendant", "pass", truth.defendant, meta.defendantName ?? "—")
-      : field("defendant", "fail", truth.defendant, meta.defendantName ?? "—", "Defendant name not extracted."),
-  );
+  if (isNeedsReview(truth.defendant)) {
+    fields.push(
+      field(
+        "defendant",
+        meta.defendantName ? "needs_review" : "fail",
+        NEEDS_REVIEW,
+        meta.defendantName ?? "—",
+        "Confirm defendant on papers.",
+      ),
+    );
+  } else {
+    fields.push(
+      defendantMatches(truth.defendant, truth.aliases, meta.defendantName)
+        ? field("defendant", "pass", truth.defendant, meta.defendantName ?? "—")
+        : field("defendant", "fail", truth.defendant, meta.defendantName ?? "—", "Defendant name not extracted."),
+    );
+  }
 
   const chargeStatus = chargeMatches(truth, meta.offenceWording ?? meta.offenceDisplay);
   fields.push(
@@ -158,7 +197,9 @@ export function runBundleFidelityCheck(entry: BundleFidelityGoldEntry): BundleFi
     ),
   );
 
-  if (truth.court) {
+  if (truth.court && isNeedsReview(truth.court)) {
+    fields.push(field("court", "needs_review", NEEDS_REVIEW, meta.court ?? "—", "Confirm court."));
+  } else if (truth.court && typeof truth.court === "string") {
     const courtOk = norm(meta.court).includes(norm(truth.court).slice(0, 12));
     fields.push(
       courtOk
@@ -167,7 +208,9 @@ export function runBundleFidelityCheck(entry: BundleFidelityGoldEntry): BundleFi
     );
   }
 
-  if (truth.stage) {
+  if (truth.stage && isNeedsReview(truth.stage)) {
+    fields.push(field("stage", "needs_review", NEEDS_REVIEW, meta.stage ?? "—", "Confirm stage."));
+  } else if (truth.stage && typeof truth.stage === "string") {
     const stageOk =
       norm(meta.stage).includes(norm(truth.stage).slice(0, 10)) ||
       norm(fullText).includes(norm(truth.stage).slice(0, 12));
@@ -178,17 +221,23 @@ export function runBundleFidelityCheck(entry: BundleFidelityGoldEntry): BundleFi
     );
   }
 
-  fields.push(
-    workflowProfile === truth.expectedWorkflowProfile
-      ? field("workflowProfile", "pass", String(truth.expectedWorkflowProfile), workflowProfile)
-      : field(
-          "workflowProfile",
-          "fail",
-          String(truth.expectedWorkflowProfile),
-          workflowProfile,
-          "Workflow profile mismatch.",
-        ),
-  );
+  if (isNeedsReview(truth.expectedWorkflowProfile)) {
+    fields.push(
+      field("workflowProfile", "needs_review", NEEDS_REVIEW, workflowProfile, "Confirm expected workflow profile."),
+    );
+  } else {
+    fields.push(
+      workflowProfile === truth.expectedWorkflowProfile
+        ? field("workflowProfile", "pass", String(truth.expectedWorkflowProfile), workflowProfile)
+        : field(
+            "workflowProfile",
+            "fail",
+            String(truth.expectedWorkflowProfile),
+            workflowProfile,
+            "Workflow profile mismatch.",
+          ),
+    );
+  }
 
   if (truth.expectedRouteFamily) {
     fields.push(
@@ -226,11 +275,15 @@ export function runBundleFidelityCheck(entry: BundleFidelityGoldEntry): BundleFi
   }
 
   if (truth.thinBundleExpected != null) {
-    fields.push(
-      thin === truth.thinBundleExpected
-        ? field("thinBundle", "pass", String(truth.thinBundleExpected), String(thin))
-        : field("thinBundle", "needs_review", String(truth.thinBundleExpected), String(thin)),
-    );
+    if (isNeedsReview(truth.thinBundleExpected)) {
+      fields.push(field("thinBundle", "needs_review", NEEDS_REVIEW, String(thin), "Confirm thin bundle flag."));
+    } else {
+      fields.push(
+        thin === truth.thinBundleExpected
+          ? field("thinBundle", "pass", String(truth.thinBundleExpected), String(thin))
+          : field("thinBundle", "needs_review", String(truth.thinBundleExpected), String(thin)),
+      );
+    }
   }
 
   if ((truth.missingMaterialExpected ?? []).length) {

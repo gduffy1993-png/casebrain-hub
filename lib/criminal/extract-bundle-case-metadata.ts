@@ -399,6 +399,24 @@ function extractOffenceWording(scan: string, fullText: string): { wording: strin
     }
   }
 
+  const chargeLabelLine = scan.match(/^Charge:\s*(.+)$/im);
+  if (chargeLabelLine?.[1]) {
+    const v = cleanLineValue(chargeLabelLine[1]);
+    if (v && !isSpuriousChargeLabelValue(v)) {
+      return { wording: formatOffenceDisplayFromBundle(v), source: "extracted_cover_fallback" };
+    }
+  }
+
+  const chargedWithGeneric = scan.match(
+    /\b(?:is\s+)?charged with\s+([^.\n]{12,160}?)(?:\s+in that|\s+on \d|\.\s)/i,
+  );
+  if (chargedWithGeneric?.[1]) {
+    const v = cleanLineValue(chargedWithGeneric[1]);
+    if (v && !isSpuriousChargeLabelValue(v)) {
+      return { wording: formatOffenceDisplayFromBundle(v), source: "extracted_charge_fallback" };
+    }
+  }
+
   let offenceWording =
     extractLabeledValue(scan, ["Offence", "Offense", "Statement of offence"]) ??
     extractInlineLabeled(scan, ["Offence", "Offense", "Statement of offence"]) ??

@@ -27,7 +27,15 @@ artifacts/bundle-fidelity-local/
 2. Fill the truth key from your PDF (defendant, charge, court, docs present/missing).
 3. Paste **extracted text** (not the PDF file) into `bundle-text.md` in the same folder.  
    Slice 3 compares text extract only; PDF upload/OCR is a later slice.
-4. Run:
+4. **Or automate from PDF paths** (text extract only; PDF stays outside repo):
+
+```powershell
+npx tsx scripts/bundle-fidelity-ingest-local-pdfs.ts
+```
+
+Edit paths in that script, or duplicate the pattern for your own PDFs.
+
+5. Run:
 
 ```powershell
 $env:NEXT_PUBLIC_CRIMINAL_PILOT_MODE="true"
