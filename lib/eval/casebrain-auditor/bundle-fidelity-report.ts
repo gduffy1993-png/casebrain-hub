@@ -46,3 +46,8 @@ export function writeBundleFidelityReport(summary: BundleFidelitySummary, outDir
 export function defaultBundleFidelityOutDir(): string {
   return path.join(process.cwd(), "artifacts", "casebrain-auditor", "latest", BUNDLE_FIDELITY_SLUG);
 }
+
+export function bundleFidelityOutDirForPack(pack: "gold" | "local"): string {
+  const base = defaultBundleFidelityOutDir();
+  return pack === "local" ? path.join(base, "local") : base;
+}

@@ -9,6 +9,7 @@ import {
   resolveProvisionalWorkflowFromOffence,
 } from "./provisional-offence-policy";
 import type { BundleFidelityGoldEntry } from "./bundle-fidelity-pack";
+import { loadLocalPack } from "./bundle-fidelity-local";
 import { loadGoldPack, readBundleText } from "./bundle-fidelity-pack";
 import type {
   BundleFidelityBundleResult,
@@ -104,13 +105,17 @@ export function runBundleFidelityCheck(entry: BundleFidelityGoldEntry): BundleFi
   const linkStatus = truth.linkStatus ?? (entry.bundleTextPaths.length ? "runnable" : "linked-only");
   const label = truth.label ?? truth.bundleId;
 
-  if (linkStatus === "linked-only" || !entry.bundleTextPaths.length) {
+  if (linkStatus === "linked-only" || linkStatus === "placeholder" || !entry.bundleTextPaths.length) {
+    const skipReason =
+      linkStatus === "placeholder"
+        ? "Add bundle-text.md (pasted extract). PDF-only folders are not read in slice 3."
+        : "No markdown/text bundle linked — use pilot-3 auditor or export demo text (slice 2).";
     return {
       bundleId: truth.bundleId,
       label,
-      linkStatus: "linked-only",
+      linkStatus: linkStatus === "placeholder" ? "placeholder" : "linked-only",
       skipped: true,
-      skipReason: "No markdown/text bundle linked — use pilot-3 auditor or export demo text (slice 2).",
+      skipReason,
       overall: "needs_review",
       fields: [
         field(
@@ -257,13 +262,15 @@ export function runBundleFidelityCheck(entry: BundleFidelityGoldEntry): BundleFi
   };
 }
 
-export function runGoldPack(): import("./bundle-fidelity-types").BundleFidelitySummary {
-  const entries = loadGoldPack();
+function summarizePack(
+  pack: string,
+  entries: BundleFidelityGoldEntry[],
+): import("./bundle-fidelity-types").BundleFidelitySummary {
   const results = entries.map(runBundleFidelityCheck);
   const runnable = results.filter((r) => !r.skipped);
   return {
     generatedAt: new Date().toISOString(),
-    pack: "gold",
+    pack,
     total: results.length,
     runnable: runnable.length,
     passed: runnable.filter((r) => r.overall === "pass").length,
@@ -272,4 +279,16 @@ export function runGoldPack(): import("./bundle-fidelity-types").BundleFidelityS
     skipped: results.filter((r) => r.skipped).length,
     results,
   };
+}
+
+export function runGoldPack(): import("./bundle-fidelity-types").BundleFidelitySummary {
+  return summarizePack("gold", loadGoldPack());
+}
+
+export function runLocalPack(): {
+  summary: import("./bundle-fidelity-types").BundleFidelitySummary;
+  warnings: string[];
+} {
+  const { entries, warnings } = loadLocalPack();
+  return { summary: summarizePack("local", entries), warnings };
 }

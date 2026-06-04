@@ -1,6 +1,7 @@
 import type { WorkflowProfile } from "@/lib/criminal/pilot-workflow";
 
 export type BundleFidelityLinkStatus = "runnable" | "linked-only" | "placeholder";
+/** placeholder = local folder waiting for bundle-text.md */
 
 export type BundleFidelityTruthKey = {
   bundleId: string;

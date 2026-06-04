@@ -41,11 +41,21 @@ Report (local, gitignored):
 
 `artifacts/casebrain-auditor/latest/bundle-fidelity/`
 
-## Local real PDFs (later — not in repo)
+## Local real PDFs (slice 3 scaffold — not in repo)
 
-1. Copy `truth-key.template.json` to a **gitignored** folder, e.g. `artifacts/bundle-fidelity-local/my-case/truth-key.json`.
-2. Keep PDFs on your machine only — **never commit** raw client bundles or real names.
-3. Run fidelity against pasted text or local path when slice 2+ supports it.
+See **`local/README.md`** and **`local/FIVE_SLOT_GUIDE.md`**.
+
+```powershell
+npx tsx scripts/bundle-fidelity.ts --pack local
+```
+
+Gitignored root: `artifacts/bundle-fidelity-local/cases/<your-id>/`  
+Template: `local/truth-key.template.json`  
+Report: `artifacts/casebrain-auditor/latest/bundle-fidelity/local/`
+
+1. Copy template → `artifacts/bundle-fidelity-local/cases/<id>/truth-key.json` (`"fictional": false`).
+2. Add **`bundle-text.md`** (pasted extract). PDF on disk optional — **not read** until a later slice.
+3. Never commit local folder or real client data.
 
 **Warning:** Real PDFs, local truth keys with client data, and run artifacts must stay out of git unless fictional/redacted and explicitly approved.
 
