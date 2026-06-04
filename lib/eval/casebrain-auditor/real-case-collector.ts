@@ -17,6 +17,11 @@ import {
 } from "@/lib/criminal/pilot-workflow";
 import { buildStrategyBattleboard, type BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
 import { classifyCorpusBucket } from "./corpus-bucket";
+import {
+  isClearMoneyLaunderingFraudText,
+  isMotoringOffenceText,
+  resolveProvisionalWorkflowFromOffence,
+} from "./provisional-offence-policy";
 import { getAuditorSupabaseAdmin } from "./script-supabase";
 import type { CorpusBucket } from "./types";
 import type {
@@ -89,15 +94,65 @@ function screen(
 export function inferAuditorFamilyFromOffence(offence: string | null | undefined): AuditorFamilyProfile | null {
   const t = (offence ?? "").toLowerCase();
   if (!t.trim()) return null;
-  if (/\b(fraud|dishonest|account|bank|money laundering|poca)\b/.test(t)) return "fraud_account_control";
+  if (resolveProvisionalWorkflowFromOffence(t)) return null;
+  if (isMotoringOffenceText(t)) return null;
+  if (isClearMoneyLaunderingFraudText(t)) return "fraud_account_control";
+  if (/\b(fraud|dishonest|account|bank|poca)\b/.test(t) && !/\bmoney laundering\b/.test(t)) {
+    return "fraud_account_control";
+  }
   if (/\b(pwit|pwits|supply|class a|class b|drug| cocaine| heroin| cannabis)\b/.test(t)) return "pwits_phone_attribution";
   if (/\b(robbery|snatch|mugging)\b/.test(t)) return "robbery_identification";
   if (/\b(assault|gbh|abh|violence|affray|domestic|s\.18|s\.20|s\.47|oapa)\b/.test(t)) return "violence_domestic_assault";
-  if (/\b(arson|reckless|endanger|criminal damage|fire)\b/.test(t)) return "violence_domestic_assault";
-  if (/\b(burglary|public order|s\.4|s\.5|bladed|knife|blade)\b/.test(t)) return "violence_domestic_assault";
-  if (/\b(theft|shoplifting|handling|taking without consent|twoc)\b/.test(t)) return "robbery_identification";
-  if (/\b(dangerous driving|driving whilst|no insurance|fail to stop|motoring)\b/.test(t)) return null;
+  if (/\b(arson|criminal damage|fire)\b/.test(t) && !isMotoringOffenceText(t)) return "violence_domestic_assault";
+  if (/\b(reckless|endanger)\b/.test(t) && !isMotoringOffenceText(t)) return "violence_domestic_assault";
+  if (/\b(coercive|controlling behaviour|restraining|domestic abuse|rape|sexual offence)\b/.test(t)) {
+    return "violence_domestic_assault";
+  }
+  if (/\b(burglary|public order|s\.4|s\.5|bladed|knife|blade|affray|violent disorder)\b/.test(t)) {
+    return "violence_domestic_assault";
+  }
+  if (/\b(burglary|burglar|dwelling)\b/.test(t)) return "violence_domestic_assault";
+  if (/\b(theft|shoplifting|handling)\b/.test(t)) return "robbery_identification";
+  if (/\b(harassment|stalking|malicious communications|controlling|coercive)\b/.test(t)) {
+    return "violence_domestic_assault";
+  }
+  if (/\b(knife|blade|offensive weapon|firearm|wounding|malicious wounding)\b/.test(t)) {
+    return "violence_domestic_assault";
+  }
+  if (/\b(simple possession|possession of (?:a )?class\s*[ab]|possession of controlled)\b/.test(t)) {
+    return "pwits_phone_attribution";
+  }
+  if (/\b(dangerous driving|driving whilst|no insurance|fail to stop|motoring|speeding|careless driving)\b/.test(t)) {
+    return null;
+  }
   return null;
+}
+
+function resolveRowWorkflowProfile(
+  inferenceText: string,
+  offenceLabel: string | null,
+  ctx: {
+    caseTitle: string;
+    clientLabel: string;
+    allegation: string;
+    profileHint: WorkflowProfile | null;
+  },
+): { workflowProfile: WorkflowProfile; auditorFamily: AuditorFamilyProfile | null } {
+  const text = inferenceText || offenceLabel || "";
+  const provisional = resolveProvisionalWorkflowFromOffence(text);
+  if (provisional) {
+    return { workflowProfile: provisional, auditorFamily: null };
+  }
+  const chargeFamily = inferAuditorFamilyFromOffence(text);
+  let workflowProfile = resolveWorkflowProfileFromSignals(ctx);
+  const auditorFamily = chargeFamily;
+  if (workflowProfile === "generic" && auditorFamily) {
+    workflowProfile = auditorFamily;
+  } else if (chargeFamily && workflowProfile !== chargeFamily) {
+    const allegationFamily = inferAuditorFamilyFromOffence(inferenceText);
+    if (allegationFamily === chargeFamily) workflowProfile = chargeFamily;
+  }
+  return { workflowProfile, auditorFamily };
 }
 
 /** Prefer explicit metadata; enrich inference with charge rows when present. */
@@ -162,7 +217,7 @@ export function buildDiscoveryManifestFromRealCase(row: RealCaseRow): CaseTruthM
   };
 }
 
-async function loadBattleboardInputs(
+export async function loadRealCaseBattleboardInputs(
   caseId: string,
   orgId: string,
 ): Promise<{
@@ -227,11 +282,18 @@ async function loadBattleboardInputs(
   const bundleRaw = combineCaseDocumentsText(docs);
   const bundle_text = bundleRaw.slice(0, MAX_BUNDLE_CHARS);
 
-  const firstCharge = (charges ?? [])[0] as { offence?: string; section?: string | null } | undefined;
+  const chargeLabels = (charges ?? [])
+    .map((c) => {
+      const row = c as { offence?: string; section?: string | null };
+      return [row.offence, row.section].filter(Boolean).join(" ").trim();
+    })
+    .filter(Boolean);
+  const alleged =
+    (typeof criminalCase?.alleged_offence === "string" && criminalCase.alleged_offence.trim()) || "";
   const offence_label =
-    firstCharge?.offence?.trim() ||
-    (typeof criminalCase?.alleged_offence === "string" ? criminalCase.alleged_offence.trim() : "") ||
-    null;
+    chargeLabels.length > 0
+      ? [...new Set(chargeLabels)].join("; ")
+      : alleged || null;
 
   type Dep = { id?: string; label?: string; status?: "required" | "helpful" | "not_needed" };
   const rawDeps = (criminalCase as { declared_dependencies?: Dep[] } | null)?.declared_dependencies;
@@ -353,11 +415,7 @@ export async function fetchRealCaseRows(
       allegation: inferenceText || offenceLabel || "",
       profileHint: null as WorkflowProfile | null,
     };
-    let workflowProfile = resolveWorkflowProfileFromSignals(ctx);
-    const auditorFamily = inferAuditorFamilyFromOffence(inferenceText || offenceLabel);
-    if (workflowProfile === "generic" && auditorFamily) {
-      workflowProfile = auditorFamily;
-    }
+    const { workflowProfile, auditorFamily } = resolveRowWorkflowProfile(inferenceText, offenceLabel, ctx);
 
     const documentCount = docCountByCase.get(c.id) ?? 0;
     const rowForBucket = {
@@ -388,12 +446,113 @@ export async function fetchRealCaseRows(
   return { rows, totalFetched: rows.length };
 }
 
+export async function fetchRealCaseRowsByIds(
+  orgId: string,
+  caseIds: string[],
+): Promise<RealCaseRow[]> {
+  const ids = [...new Set(caseIds.filter(Boolean))];
+  if (ids.length === 0) return [];
+
+  const supabase = getAuditorSupabaseAdmin();
+  const { data: casePages, error } = await supabase
+    .from("cases")
+    .select("id, title, practice_area, eval_pack_id, eval_pack_name")
+    .eq("org_id", orgId)
+    .eq("is_archived", false)
+    .in("id", ids);
+
+  if (error) throw new Error(`fetchRealCaseRowsByIds: ${error.message}`);
+  const cases = casePages ?? [];
+  if (cases.length === 0) return [];
+
+  const fetchedIds = cases.map((c) => c.id);
+
+  const [{ data: criminalRows }, { data: docRows }, { data: chargeRows }] = await Promise.all([
+    supabase
+      .from("criminal_cases")
+      .select("id, defendant_name, alleged_offence, offence_override")
+      .eq("org_id", orgId)
+      .in("id", fetchedIds),
+    supabase.from("documents").select("case_id").eq("org_id", orgId).in("case_id", fetchedIds),
+    supabase
+      .from("criminal_charges")
+      .select("case_id, offence, section")
+      .eq("org_id", orgId)
+      .in("case_id", fetchedIds),
+  ]);
+
+  const criminalById = new Map((criminalRows ?? []).map((r) => [r.id, r]));
+  const docCountByCase = new Map<string, number>();
+  for (const d of docRows ?? []) {
+    const cid = String(d.case_id);
+    docCountByCase.set(cid, (docCountByCase.get(cid) ?? 0) + 1);
+  }
+  const chargesByCase = new Map<string, string[]>();
+  for (const ch of chargeRows ?? []) {
+    const cid = String(ch.case_id);
+    const label = [ch.offence, ch.section].filter(Boolean).join(" ").trim();
+    if (!label) continue;
+    const list = chargesByCase.get(cid) ?? [];
+    list.push(label);
+    chargesByCase.set(cid, list);
+  }
+
+  const idOrder = new Map(ids.map((id, i) => [id, i]));
+
+  const rows: RealCaseRow[] = cases
+    .filter((c) => c.practice_area === "criminal" || criminalById.has(c.id))
+    .map((c) => {
+      const cr = criminalById.get(c.id);
+      const alleged =
+        (typeof cr?.offence_override === "string" && cr.offence_override.trim()) ||
+        (typeof cr?.alleged_offence === "string" && cr.alleged_offence.trim()) ||
+        null;
+      const chargeOffences = chargesByCase.get(c.id) ?? [];
+      const { offenceLabel, inferenceText } = mergeOffenceSignals(alleged, chargeOffences);
+      const ctx = {
+        caseTitle: c.title ?? "",
+        clientLabel: (typeof cr?.defendant_name === "string" && cr.defendant_name) || "Client",
+        allegation: inferenceText || offenceLabel || "",
+        profileHint: null as WorkflowProfile | null,
+      };
+      const { workflowProfile, auditorFamily } = resolveRowWorkflowProfile(inferenceText, offenceLabel, ctx);
+
+      const documentCount = docCountByCase.get(c.id) ?? 0;
+      const rowForBucket = {
+        title: c.title,
+        eval_pack_id: c.eval_pack_id,
+        eval_pack_name: c.eval_pack_name,
+        defendant_name: typeof cr?.defendant_name === "string" ? cr.defendant_name : null,
+        alleged_offence: alleged,
+        documentCount,
+      };
+      return {
+        caseId: c.id,
+        caseTitle: c.title ?? "Untitled",
+        practiceArea: c.practice_area ?? null,
+        documentCount,
+        defendantName: typeof cr?.defendant_name === "string" ? cr.defendant_name : null,
+        allegedOffence: alleged,
+        offenceLabel,
+        workflowProfile,
+        auditorFamily,
+        evalPackId: c.eval_pack_id ?? null,
+        evalPackName: c.eval_pack_name ?? null,
+        corpusBucket: classifyCorpusBucket(rowForBucket),
+        chargeOffences,
+      };
+    })
+    .sort((a, b) => (idOrder.get(a.caseId) ?? 999) - (idOrder.get(b.caseId) ?? 999));
+
+  return rows;
+}
+
 export async function collectRealCaseDiscoverySurfaces(
   row: RealCaseRow,
   orgId: string,
   _opts: { userRole: UserRoleMode },
 ): Promise<ScreenCollection[]> {
-  const loaded = await loadBattleboardInputs(row.caseId, orgId);
+  const loaded = await loadRealCaseBattleboardInputs(row.caseId, orgId);
   if (!loaded) {
     return [
       screen("control_room", { error: "case_not_found" }, "missing", "api-output", ["case"]),

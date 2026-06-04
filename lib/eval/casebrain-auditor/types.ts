@@ -190,6 +190,8 @@ export type AuditorRunOptions = {
   batchResume?: boolean;
   /** Per-case collect timeout — default 120s. */
   batchCaseTimeoutMs?: number;
+  /** After real batch, write corpus-playback artifacts (second collect pass). */
+  corpusPlayback?: boolean;
 };
 
 export type AuditorRunSummary = {

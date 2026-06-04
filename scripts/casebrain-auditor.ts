@@ -64,6 +64,7 @@ function parseArgs(argv: string[]) {
   let batch = false;
   let batchChunkSize = 50;
   let batchMaxCases = 1000;
+  let corpusPlayback = false;
 
   for (let i = 2; i < argv.length; i++) {
     const arg = argv[i];
@@ -86,6 +87,7 @@ function parseArgs(argv: string[]) {
     else if (arg === "--batch") batch = true;
     else if (arg === "--chunk-size" && argv[i + 1]) batchChunkSize = Number(argv[++i]);
     else if (arg === "--max" && argv[i + 1]) batchMaxCases = Number(argv[++i]);
+    else if (arg === "--playback") corpusPlayback = true;
     else if (arg === "--help" || arg === "-h") {
       console.log(`Usage: npx tsx scripts/casebrain-auditor.ts [options]
 
@@ -101,6 +103,7 @@ Options:
   --batch               Run real full-960 discovery in chunks and write rollup (requires --corpus real)
   --chunk-size <n>      Cases per batch chunk (default 50)
   --max <n>             Max cases to scan in batch mode (default 1000)
+  --playback            After batch, write corpus-playback/ (second collect; gitignored)
   --strict              Exit 1 on RED release gate
   --fail-on-medium      Exit 1 on MEDIUM severity
   --include-synthetic   Treat synthetic-surface failures as blocking
@@ -142,6 +145,7 @@ Does not start npm run dev or manage environment variables.
     batch,
     batchChunkSize,
     batchMaxCases,
+    corpusPlayback,
   };
 }
 
@@ -170,6 +174,7 @@ async function main() {
       batch: true,
       batchChunkSize: opts.batchChunkSize,
       batchMaxCases: opts.batchMaxCases,
+      corpusPlayback: opts.corpusPlayback,
       writeLatest: false,
     });
     if (opts.jsonOnly) console.log(rollupDir);

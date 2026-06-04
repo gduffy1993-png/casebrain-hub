@@ -1,3 +1,14 @@
+import {
+  GENERIC_PROVISIONAL_COURT_LINE,
+  GENERIC_PROVISIONAL_PRIMARY_ROUTE_TITLE,
+  isProvisionalWorkflowProfile,
+  MOTORING_DISCLOSURE_ITEMS,
+  MOTORING_PRIMARY_ROUTE_TITLE,
+  MOTORING_PROVISIONAL_COURT_LINE,
+  resolveProvisionalWorkflowFromOffence,
+  SERIOUS_VIOLENCE_PRIMARY_ROUTE_TITLE,
+  SERIOUS_VIOLENCE_PROVISIONAL_COURT_LINE,
+} from "@/lib/eval/casebrain-auditor/provisional-offence-policy";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import type { BattleboardOutput, BattleboardRoute } from "@/lib/criminal/strategy-battleboard";
 
@@ -7,7 +18,16 @@ export type WorkflowProfile =
   | "pwits_phone_attribution"
   | "robbery_identification"
   | "violence_domestic_assault"
+  | "generic_motoring_provisional"
+  | "generic_serious_violence_provisional"
+  | "generic_provisional"
   | "generic";
+
+/** Standard family profiles with full disclosure packs. */
+export type StandardWorkflowProfile = Exclude<
+  WorkflowProfile,
+  "generic" | "generic_motoring_provisional" | "generic_serious_violence_provisional" | "generic_provisional"
+>;
 
 /** @deprecated Use {@link WorkflowProfile}. */
 export type PilotWorkflowProfile = WorkflowProfile;
@@ -36,7 +56,7 @@ type ProfilePack = {
   rankDown: RegExp[];
 };
 
-const PROFILE_PACKS: Record<Exclude<WorkflowProfile, "generic">, ProfilePack> = {
+const PROFILE_PACKS: Record<StandardWorkflowProfile, ProfilePack> = {
   fraud_account_control: {
     primaryRouteTitle: "Fraud / account-control / dishonesty pressure",
     disclosureItems: [
@@ -300,6 +320,10 @@ export function resolveWorkflowProfileFromSignals(context: WorkflowProfileContex
   const forced = resolveProfileFromContext(context);
   if (forced !== "generic") return forced;
 
+  const allegationText = [context.allegation, context.caseTitle].filter(Boolean).join("; ");
+  const provisional = resolveProvisionalWorkflowFromOffence(allegationText);
+  if (provisional) return provisional;
+
   const scores = scoreProfile(context);
   let best: WorkflowProfile = "generic";
   let bestScore = 0;
@@ -333,24 +357,27 @@ export function resolvePilotWorkflowProfile(context: WorkflowProfileContext): Wo
 }
 
 export function isWorkflowDemoProfile(context: WorkflowProfileContext): boolean {
-  return resolveWorkflowProfile(context) !== "generic";
+  const p = resolveWorkflowProfile(context);
+  return p !== "generic";
 }
 
 export function workflowDisclosureChaseLabels(context: WorkflowProfileContext): string[] | null {
   const profile = resolveWorkflowProfile(context);
   if (profile === "generic") return null;
+  if (profile === "generic_motoring_provisional") return [...MOTORING_DISCLOSURE_ITEMS];
+  if (isProvisionalWorkflowProfile(profile)) return null;
   return PROFILE_PACKS[profile].disclosureItems;
 }
 
 export function workflowCourtRecordAsks(context: WorkflowProfileContext): string[] | null {
   const profile = resolveWorkflowProfile(context);
-  if (profile === "generic") return null;
+  if (profile === "generic" || isProvisionalWorkflowProfile(profile)) return null;
   return PROFILE_PACKS[profile].courtRecordAsks.map(normalizeWorkflowPilotLabel).slice(0, 5);
 }
 
 export function workflowTopNextActions(context: WorkflowProfileContext): string[] | null {
   const profile = resolveWorkflowProfile(context);
-  if (profile === "generic") return null;
+  if (profile === "generic" || isProvisionalWorkflowProfile(profile)) return null;
   return PROFILE_PACKS[profile].nextActions;
 }
 
@@ -362,7 +389,64 @@ export function pilotTopNextActions(context: WorkflowProfileContext): string[] |
 export function workflowPrimaryRouteTitle(context: WorkflowProfileContext): string | null {
   const profile = resolveWorkflowProfile(context);
   if (profile === "generic") return null;
+  if (profile === "generic_motoring_provisional") return MOTORING_PRIMARY_ROUTE_TITLE;
+  if (profile === "generic_serious_violence_provisional") return SERIOUS_VIOLENCE_PRIMARY_ROUTE_TITLE;
+  if (profile === "generic_provisional") return GENERIC_PROVISIONAL_PRIMARY_ROUTE_TITLE;
   return PROFILE_PACKS[profile].primaryRouteTitle;
+}
+
+function profilePackRouteId(profile: StandardWorkflowProfile): string | null {
+  switch (profile) {
+    case "fraud_account_control":
+      return "pack_y_fraud";
+    case "pwits_phone_attribution":
+      return "pack_y_pwits";
+    case "robbery_identification":
+      return "pack_y_robbery";
+    case "violence_domestic_assault":
+      return "pack_y_affray";
+    default:
+      return null;
+  }
+}
+
+const META_ROUTE_TYPES = new Set<BattleboardRoute["route_type"]>(["multiparty", "safeguards", "disclosure"]);
+const META_ROUTE_IDS = new Set(["cps_pressure", "readiness", "hearing_court"]);
+
+/** Prefer family-aligned pack_y / substantive route over multiparty/hearing meta routes in pilot mode. */
+export function pickWorkflowPrimaryRoute(
+  routes: BattleboardRoute[],
+  context: WorkflowProfileContext,
+): BattleboardRoute | null {
+  if (!routes.length) return null;
+  const profile = resolveWorkflowProfile(context);
+  if (profile === "generic" || isProvisionalWorkflowProfile(profile)) return routes[0] ?? null;
+
+  if (profile === "violence_domestic_assault") {
+    const violenceRoute = routes.find((r) =>
+      /\b(violence|complainant|gbh|abh|assault|injury|domestic|oapa)\b/i.test(r.title),
+    );
+    if (violenceRoute) return violenceRoute;
+  }
+
+  const packId = profilePackRouteId(profile);
+  const packRoute = packId ? routes.find((r) => r.id === packId) : undefined;
+  if (packRoute) return packRoute;
+
+  const core = PROFILE_PACKS[profile].primaryRouteTitle
+    .toLowerCase()
+    .replace(/\s+pressure$/, "")
+    .trim();
+  const byTitle = routes.find((r) => {
+    const t = r.title.toLowerCase();
+    return t.includes(core) || core.split("/").some((part) => part.trim() && t.includes(part.trim()));
+  });
+  if (byTitle) return byTitle;
+
+  const substantive = routes.find(
+    (r) => !META_ROUTE_TYPES.has(r.route_type) && !META_ROUTE_IDS.has(r.id),
+  );
+  return substantive ?? routes[0] ?? null;
 }
 
 export function workflowSafeCourtLine(context: WorkflowProfileContext): string | null {
@@ -374,6 +458,12 @@ export function workflowSafeCourtLine(context: WorkflowProfileContext): string |
       return "Possession and phone-attribution issues remain conditional on served extraction and search material. The defence asks the court to record outstanding source material on a timetable — position remains provisional pending instructions.";
     case "robbery_identification":
       return "Identification and participation remain conditional on full CCTV, ID procedure material, 999/CAD timing, complainant statement, second-male attribution and interview material. The defence asks the court to record outstanding source material on a timetable — position remains provisional pending instructions.";
+    case "generic_motoring_provisional":
+      return MOTORING_PROVISIONAL_COURT_LINE;
+    case "generic_serious_violence_provisional":
+      return SERIOUS_VIOLENCE_PROVISIONAL_COURT_LINE;
+    case "generic_provisional":
+      return GENERIC_PROVISIONAL_COURT_LINE;
     default:
       return null;
   }
@@ -396,6 +486,15 @@ export function workflowDisclosureCaseWideLine(context: WorkflowProfileContext):
   }
   if (profile === "robbery_identification") {
     return ROBBERY_DISCLOSURE_CASE_WIDE;
+  }
+  if (profile === "generic_motoring_provisional") {
+    return "Standard of driving, driver attribution, collision sequence, dashcam/CCTV/BWV, CAD/999, expert/collision material, medical/injury evidence where relevant, and served interview/account remain conditional on service.";
+  }
+  if (profile === "generic_serious_violence_provisional") {
+    return "Serious violence strategy remains provisional pending served material and solicitor review.";
+  }
+  if (profile === "generic_provisional") {
+    return "Route and disclosure priorities remain provisional pending human review of offence family and served material.";
   }
   return null;
 }
@@ -452,11 +551,19 @@ export function workflowHeaderOverrides(
 
   const title = t.startsWith("R v") ? t : t;
   const allegationFromContext = fullContext.allegation?.trim();
+  const defaultAllegation =
+    profile === "generic_motoring_provisional"
+      ? MOTORING_PRIMARY_ROUTE_TITLE.split(" pressure")[0]
+      : profile === "generic_serious_violence_provisional"
+        ? SERIOUS_VIOLENCE_PRIMARY_ROUTE_TITLE
+        : profile === "generic_provisional"
+          ? GENERIC_PROVISIONAL_PRIMARY_ROUTE_TITLE
+          : PROFILE_PACKS[profile].primaryRouteTitle.split(" pressure")[0] ?? profile;
   const cleanAllegation =
     allegationFromContext &&
     !/\b(offence wording not safely extracted|unknown|add charge sheet)\b/i.test(allegationFromContext)
       ? allegationFromContext
-      : PROFILE_PACKS[profile].primaryRouteTitle.split(" pressure")[0] ?? profile;
+      : defaultAllegation;
 
   return {
     title,
@@ -1225,6 +1332,9 @@ function softenBattleboardRoutes(
     what_hurts_us: softenList(r.what_hurts_us ?? []),
     why_it_helps: softenList(r.why_it_helps ?? []),
     evidence_anchors: softenList(r.evidence_anchors ?? []),
+    hearing_line: r.hearing_line
+      ? softenSolicitorSourceWording(r.hearing_line, profile)
+      : r.hearing_line,
   });
   const routes = bb.routes.map(softenRoute);
   const primary = bb.primary_route
@@ -1242,6 +1352,30 @@ function softenBattleboardRoutes(
   };
 }
 
+function sanitizeProvisionalRoutes(
+  bb: BattleboardOutput,
+  context: WorkflowProfileContext,
+): BattleboardOutput {
+  const routes = bb.routes.map((r) => ({
+    ...r,
+    evidence_anchors: sanitizePilotEvidenceAnchors(r.evidence_anchors ?? [], context),
+    collapse_risks: filterWorkflowPilotLines(r.collapse_risks ?? [], context, { max: 4, useFallbacks: false }),
+    why_it_helps: filterWorkflowPilotLines(r.why_it_helps ?? [], context, { max: 4, useFallbacks: false }),
+    next_moves: filterWorkflowPilotLines(r.next_moves ?? [], context, { max: 6, useFallbacks: false }),
+  }));
+  const primary = bb.primary_route
+    ? routes.find((r) => r.id === bb.primary_route!.id) ?? routes[0]
+    : bb.primary_route;
+  return {
+    ...bb,
+    routes,
+    primary_route: primary ?? bb.primary_route,
+    solicitor_safe_summary: bb.solicitor_safe_summary
+      ? (sanitizePilotVisibleLine(bb.solicitor_safe_summary, context) ?? bb.solicitor_safe_summary)
+      : bb.solicitor_safe_summary,
+  };
+}
+
 /** Strip generic template leakage from battleboard output in pilot workflow mode. */
 export function filterBattleboardForWorkflowPilot(
   bb: BattleboardOutput | null,
@@ -1251,13 +1385,18 @@ export function filterBattleboardForWorkflowPilot(
   const softened = softenBattleboardRoutes(bb, context);
   if (!isCriminalPilotMode()) return softened;
   const profile = resolveWorkflowProfile(context);
-  if (profile === "generic") return softened;
+  if (profile === "generic" || isProvisionalWorkflowProfile(profile)) {
+    return sanitizeProvisionalRoutes(softened, context);
+  }
 
   const routes = softened.routes.map((r) => filterRouteLists(r, context));
-  const primary = softened.primary_route
-    ? routes.find((r) => r.id === softened.primary_route!.id) ??
-      filterRouteLists(softened.primary_route, context)
-    : softened.primary_route;
+  const picked = pickWorkflowPrimaryRoute(routes, context);
+  const primary = picked
+    ? routes.find((r) => r.id === picked.id) ?? filterRouteLists(picked, context)
+    : softened.primary_route
+      ? routes.find((r) => r.id === softened.primary_route!.id) ??
+        filterRouteLists(softened.primary_route, context)
+      : softened.primary_route;
 
   return {
     ...softened,
@@ -1349,12 +1488,12 @@ export function workflowDisclosureWhyItMatters(label: string, profile: WorkflowP
 }
 
 export function shouldSuppressGenericChaseLabel(label: string, profile: WorkflowProfile): boolean {
-  if (profile === "generic") return false;
+  if (profile === "generic" || isProvisionalWorkflowProfile(profile)) return false;
   return PROFILE_PACKS[profile].suppressGeneric.test(label);
 }
 
 function packFor(profile: WorkflowProfile): ProfilePack | null {
-  if (profile === "generic") return null;
+  if (profile === "generic" || isProvisionalWorkflowProfile(profile)) return null;
   return PROFILE_PACKS[profile];
 }
 
