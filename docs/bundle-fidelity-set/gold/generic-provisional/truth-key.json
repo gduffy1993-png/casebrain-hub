@@ -1,0 +1,34 @@
+{
+  "bundleId": "generic-provisional-sam-okonkwo",
+  "fictional": true,
+  "label": "R v Sam Okonkwo — perverting the course of justice",
+  "purpose": "Generic provisional route; human review; no wrong-family auto mapping",
+  "defendant": "Sam Okonkwo",
+  "aliases": ["Okonkwo"],
+  "charge": "Doing an act tending and intended to pervert the course of justice",
+  "chargeKeywords": ["pervert", "course of justice", "common law"],
+  "court": "Eastmere Crown Court",
+  "hearingDate": "2024-10-22",
+  "stage": "Crown Court — PTPH",
+  "documentTypesExpected": ["charge_sheet", "mg5", "mg11", "mg6", "index"],
+  "documentTypesForbidden": [],
+  "evidenceSignalsExpected": ["mg11", "mg6", "phone", "message"],
+  "missingMaterialExpected": [
+    "phone download",
+    "message export",
+    "defendant interview",
+    "unused material"
+  ],
+  "thinBundleExpected": true,
+  "expectedWorkflowProfile": "generic_provisional",
+  "expectedRouteFamily": null,
+  "prohibitedFamilies": [
+    "fraud_account_control",
+    "pwits_phone_attribution",
+    "robbery_identification",
+    "violence_domestic_assault"
+  ],
+  "expectedProvisionalStatus": true,
+  "humanReviewExpected": true,
+  "notes": "Background mentions fraud enquiry — must not route as fraud_account_control on charge alone."
+}
