@@ -404,7 +404,7 @@ So: extraction and Key Facts feed everyone; Safety feeds Summary/Chat/Dashboard/
 | 0–2 | Measurement + safety + playback/canary | **Done** — A+B gate clean, pilot-3 + production-pass GREEN |
 | 3 | Bundle fidelity / truth keys | **Done** — gold 7/7 (`bundle-fidelity` → main) |
 | **3.5** | **Source-backed explanation + inconsistency fidelity** | **Done** — gold 7/7; local exemplar (Sienna) on gitignored lane |
-| **4** | **Universal criminal strategy spine + Battleboard / War Room** | **Next (plan/logic)** — see §9.4; **no UI until explicit “start Phase 4”** |
+| **4** | **Proof Map + strategy spine + Battleboard / War Room** | **Next (plan/eval)** — §9.4; Proof Map **4a** before UI **4d** |
 | 5 | Hero demo + hearing + supervisor | Planned — video-ready (after Phase 4 logic is solid) |
 | 6 | Self-serve + video | Planned |
 | 7 | Client plain-English layer | Planned |
@@ -523,53 +523,112 @@ npx tsx scripts/bundle-fidelity-explanation.ts --pack local
 ```txt
 Phase 3   = read the papers correctly (metadata + doc signals)
 Phase 3.5 = explain the paper truth safely (sources + contradictions)
-Phase 4   = strategy spine + Battleboard / War Room (source-backed; all cases)
+Phase 4   = Proof Map → Battleboard / War Room (source-backed; all cases)
 Phase 5   = hero demo + hearing + supervisor surfaces
 Phase 10  = legal Q&A (after Phase 4 strategy + grounding are solid)
 ```
 
 ---
 
-## 9.4 Phase 4 — Universal criminal strategy spine + Battleboard / War Room
+## 9.4 Phase 4 — Proof Map, strategy spine, Battleboard / War Room
 
 **Gate:** Do **not** build product UI until the user explicitly says **“start Phase 4”**. Until then: plan, specs, and **artifact/evaluator lanes** only (same discipline as Phase 3 / 3.5).
 
 **Universal rule:** Applies to **every** criminal case — existing matters, hero bundles, gold fiction, local gitignored PDFs, and future offences. **No** hero-only logic; **no** case-by-case hacks in repo.
+
+**Central engine:** The **Proof Map / Evidence Dependency Graph** is how we **prove** deep strategy before showing it in the product. Battleboard, War Room, Disclosure Chase, Supervisor View, and Client View must all read from the **same source-backed map** (UI in slice **4d** only).
 
 ### 9.4.1 What Phase 4 is not
 
 - Not: “best route” labels with no source basis.
 - Not: overconfident outcomes (“this wins”, “Crown collapses”, “proves innocence”).
 - Not: deep strategy when papers are thin — must stay **provisional** or **needs_solicitor_review**.
-- Not: offence-specific fiction invented when lens is unknown (use generic provisional spine + human review).
+- Not: offence-specific fiction invented when lens is unknown (use generic provisional proof map + human review).
 - Not: replacing solicitor judgment or final advice.
+- Not: UI before Proof Map + Battleboard + War Room evaluators pass.
 
 ### 9.4.2 What Phase 4 is
 
-Phase 4 **consumes the same source-backed explanation blocks** as Phase 3.5 (missing material, contradictions, disclosure dependencies, custody/interview caps) and builds **deeper, still source-backed** strategy outputs for:
+Phase 4 **consumes Phase 3.5 explanation blocks** (missing material, contradictions, disclosure dependencies, custody/interview caps) and builds a **Proof Map**, then **views** on that map:
 
 | Layer | Role |
 |-------|------|
-| **Universal strategy spine** | Same 13-step scaffold for any criminal charge (see §9.4.3) |
-| **Battleboard** | Why routes are live/dead; what helps, hurts, conflicts, is missing; what would collapse a route; confidence + do-not-overstate |
-| **War Room** | Safe court action from Battleboard: hearing lines, record asks, disclosure timetable, what not to concede/overstate, Crown X → safe defence Y |
+| **Proof Map / Evidence Dependency Graph** | Connects every source-backed fact to charge, Crown proof points, evidence for/against, gaps, contradictions, route impact, risk, chase, court-safe caps (see §9.4.3) |
+| **Universal strategy spine** | Same 13-step scaffold for any charge — feeds and validates Proof Map nodes (§9.4.4) |
+| **Battleboard** | **Strategy view** of the Proof Map: why routes are live; which proof point they attack; helps/hurts/conflicts/missing; collapse risks; confidence + do-not-overstate |
+| **War Room** | **Hearing-action view** of the same map: safe lines, record asks, disclosure timetable, non-concessions, Crown X → safe defence Y |
 
 ```txt
 Phase 3   → read paper truth
 Phase 3.5 → explain paper truth (sources, gaps, contradictions)
-Phase 4   → reason from that truth (strategy spine → Battleboard → War Room)
-Phase 5+  → product surfaces (hero, hearing prep UI) — after Phase 4 logic passes eval
+Phase 4a  → Proof Map / evidence dependency graph (evaluator — prove deep strategy)
+Phase 4b  → Battleboard (strategy view of Proof Map)
+Phase 4c  → War Room (court-action view of Proof Map)
+Phase 4d  → product UI (last)
+Phase 5+  → hero demo, supervisor, client surfaces — after 4a–4c pass
 ```
 
-### 9.4.3 Universal strategy spine (all criminal cases)
+### 9.4.3 Proof Map / Evidence Dependency Graph (Phase 4a — evaluator first)
 
-For **any** case with bundle text + extract metadata, CaseBrain runs this spine before offence-specific detail:
+**Purpose:** Prove that CaseBrain can map paper truth to **proof points, strategy, risk, and court action** before any UI. Not a detour — this is the **central engine** for consistent Battleboard, War Room, Disclosure Chase, Supervisor, and Client views.
+
+Every **source-backed node** on the map links (where papers support it):
+
+| # | Link |
+|---|------|
+| 1 | **Charge / offence** |
+| 2 | **Crown proof points** (safe high level — elements sketch, not verdict advice) |
+| 3 | **Evidence supporting** each proof point |
+| 4 | **Evidence weakening** each proof point |
+| 5 | **Missing / partial material** linked to each proof point |
+| 6 | **Contradictions / inconsistencies** linked to each proof point |
+| 7 | **Defence route impact** (which routes this node helps or limits) |
+| 8 | **Crown risk / defence risk** (procedural or evidential — provisional wording) |
+| 9 | **What would change** the advice or route if served / reconciled |
+| 10 | **What to chase** (disclosure / clarification) |
+| 11 | **What can safely be said at court** (on these papers) |
+| 12 | **What must not be overstated** |
+| 13 | **Human review** flag where offence family or source support is uncertain |
+
+**Required node fields (evaluator):** align with Phase 3.5 — `sourceSection`, `sourceBasis`, `status`, `confidenceTag`, `doNotOverstate`; plus `proofPointId`, `linkedExplanationIssue` where applicable.
+
+**Example — weapon provenance conflict:**
+
+```txt
+Proof point affected: weapon provenance / continuity / attribution
+Source A: weapon found at Morrisons (MG5 / officer note — cite section)
+Source B: weapon seized from mail/package (seizure note — cite section)
+Status: conflicting — not reconciled
+Risk: exhibit reliability and attribution unresolved on served papers
+Next action: chase seizure log, exhibit schedule, continuity statement, officer MG11, BWV/photos
+Do not overstate: do not state final seizure location until reconciled
+```
+
+**Example — self-defence route (provisional):**
+
+```txt
+Proof point: unlawful force / self-defence live issue
+Supporting (provisional): witness says complainant moved first (MG11 — source basis)
+Weakening / gap: CCTV partial only; medical/expert not final; CAD/999 timing unresolved;
+  full interview transcript outstanding
+Route impact: self-defence live but provisional — not established
+→ Battleboard explains why route is live but capped
+→ War Room gives safe hearing wording + disclosure asks (see §9.4.6–9.4.7)
+```
+
+Offence-specific **lenses** (§9.4.5) add proof-point **detail** only when safely detected — never replace the universal map.
+
+**Evaluator output (gitignored):** e.g. `artifacts/casebrain-auditor/latest/strategy-fidelity/proof-map/` with per-case graph JSON + human-readable summary (gold fiction first; optional local expects).
+
+### 9.4.4 Universal strategy spine (all criminal cases)
+
+The spine **feeds** Proof Map construction and sanity-checks that every case runs the same scaffold before offence lenses apply:
 
 | Step | Output (source-backed or provisional) |
 |------|----------------------------------------|
 | 1 | Identify **charge / offence** (from papers; flag if unclear) |
 | 2 | Identify **stage / hearing** |
-| 3 | What the Crown must prove — **high level, safe wording** (elements sketch; not verdict advice) |
+| 3 | What the Crown must prove — **high level, safe wording** |
 | 4 | **Served** evidence (only what bundle says is served) |
 | 5 | **Missing / partial** evidence (from Phase 3.5 blocks) |
 | 6 | **Contradictions / inconsistencies** (from Phase 3.5; do not merge) |
@@ -581,29 +640,28 @@ For **any** case with bundle text + extract metadata, CaseBrain runs this spine 
 | 12 | What **must not be overstated** |
 | 13 | **Human review** flag when offence family or source support is uncertain |
 
-Offence-specific **lenses** add detail **only when safely detected** from charge text + doc signals — never override the spine.
-
-### 9.4.4 Offence-specific lenses (additive only)
+### 9.4.5 Offence-specific lenses (additive only)
 
 | Lens | Safe detail themes (when detected) |
 |------|-----------------------------------|
-| **Fraud** | Dishonesty, account control, transactions, banking/source of funds, representation, loss |
-| **PWITS** | Possession, supply inference, quantity, packaging, drugs lab, cash, phone attribution, messages, cell-site |
-| **Violence / GBH** | Identity, self-defence, causation, injury, medical, BWV/CCTV, witness reliability |
-| **Robbery / ID** | Identification, force/threat, timing, CCTV, complainant account, continuity |
+| **Fraud** | Dishonesty, representation, account control, transaction trail, loss, source of funds |
+| **PWITS** | Possession, supply inference, quantity, packaging, lab report, phone attribution, messages, cell-site, cash |
+| **Violence / GBH** | Identity, self-defence, injury, causation, intent, medical, BWV/CCTV, witness reliability |
+| **Robbery / ID** | Force/threat, taking, identification, CCTV, complainant account, timing, continuity |
 | **Motoring** | Driving standard, driver ID, collision sequence, dashcam/CCTV, CAD/999, telematics, expert/collision, injury causation |
 | **Serious / provisional** | Attempted murder, murder, perverting, witness intimidation, etc. — **cautious** unless dedicated lens exists |
-| **Unknown / unmapped** | Generic provisional source-backed route + **needs_solicitor_review** |
+| **Unknown / unmapped** | Generic provisional proof map + **needs_solicitor_review** |
 
-### 9.4.5 Battleboard (target behaviour)
+### 9.4.6 Battleboard (Phase 4b — strategy view of Proof Map)
 
-Not only “best route”. Each live route explains:
+Not only “best route”. Each live route is a **view over Proof Map nodes** and explains:
 
 - **Why** this route is live on the papers
+- **Which Crown proof point** it attacks or supports
 - **Which source** supports it (`sourceSection` / `sourceBasis`)
-- Evidence that **helps** / **hurts** / **conflicts**
+- Evidence that **helps** / **hurts** / **conflicts** (from linked map edges)
 - What is **missing** before the route can firm up
-- What would make the defence **lose** the route (evidential or procedural)
+- What would **collapse** the route (evidential or procedural)
 - **Safest next move**
 - **confidenceTag** + **doNotOverstate**
 
@@ -615,9 +673,9 @@ medical/expert evidence is not final, and full CAD/999/BWV/interview material re
 Do not say self-defence is established; say it is a live issue requiring further service.
 ```
 
-### 9.4.6 War Room (target behaviour)
+### 9.4.7 War Room (Phase 4c — hearing-action view of Proof Map)
 
-Battleboard **thinks**; War Room **turns it into safe court action** (still source-backed):
+Battleboard **thinks** from the map; War Room **turns the same map** into safe court action (still source-backed):
 
 - Safe **hearing line**
 - What to ask the court to **record**
@@ -636,23 +694,25 @@ exhibit log and officer statement are reconciled. Ask for seizure log, exhibit s
 statement, officer MG11, BWV and photographs. Do not state final location as fact until reconciled.
 ```
 
-### 9.4.7 Acceptance rules (Phase 4 exit — before UI)
+### 9.4.8 Acceptance rules (Phase 4 exit — before UI)
 
 - No deep strategy unless **source-backed** or clearly tagged **provisional** / **needs_solicitor_review**.
-- Every Battleboard/War Room block must trace to Phase 3.5-style fields where applicable.
-- **No** case-by-case tuning in repo; shared spine + lens rules only.
+- **Proof Map nodes** must trace to Phase 3.5 explanation blocks or direct bundle text — no orphan strategy.
+- Battleboard and War Room outputs must **reference Proof Map edges** (same proof point IDs / issue links).
+- **No** case-by-case tuning in repo; shared map + lens rules only.
 - **Forbidden:** “this wins”, “Crown cannot prove”, “proves innocence”, plea/outcome advice without qualification.
+- If source is **missing or conflicting**, say so and give **safe next action** — do not merge contradictions.
 - Evaluator packs (gold + optional local expects) mirror Phase 3.5 — reports **gitignored** under `artifacts/`.
 - Pilot-3 + production-pass remain green after shared rule changes.
 
-### 9.4.8 Phase 4 build slices (when user says “start Phase 4”)
+### 9.4.9 Phase 4 build slices (when user says “start Phase 4”)
 
 | Slice | Deliverable |
 |-------|-------------|
-| **4a** | Strategy spine evaluator (artifact lane; gold fiction) |
-| **4b** | Battleboard generator + expects |
-| **4c** | War Room generator + expects |
-| **4d** | Product UI (Control Room / hearing surfaces) — **last** |
+| **4a** | **Proof Map / Evidence Dependency Graph** — evaluator, gold expects, artifact reports |
+| **4b** | **Battleboard** — strategy view of Proof Map + expects |
+| **4c** | **War Room** — hearing-action view of Proof Map + expects |
+| **4d** | **Product UI** (Control Room, Disclosure Chase, Supervisor, Client) — **last** |
 
 Until **4a–4c** pass on gold (and agreed local exemplars), **4d UI stays off**.
 
@@ -665,7 +725,7 @@ Until **4a–4c** pass on gold (and agreed local exemplars), **4d UI stays off**
 **Gate — do not build until:**
 - Phase 3 bundle fidelity is strong (charge/defendant/docs read reliably on gold set).
 - **Phase 3.5 explanation fidelity** passes on gold + local exemplars (source-backed missing material + contradictions; no invented facts).
-- Phase 4 strategy spine + Battleboard/War Room pass eval (§9.4.7); product UI only after explicit “start Phase 4”.
+- Phase 4 **Proof Map + Battleboard + War Room** pass eval (§9.4.8–9.4.9); product UI only after **4a–4c** and explicit “start Phase 4”.
 - Phase 5 hero surfaces align with War Room hearing outputs.
 - Chat grounding already uses agreed summary, Safety, case theory (V2 §3, §6 B6).
 
@@ -763,7 +823,7 @@ It never pretends to be the solicitor.
 |----------|--------|
 | **Done** | Phase 3 + **3.5** (read + explain paper truth; gold 7/7) |
 | **Merge** | `bundle-fidelity` → `main` (lock Phase 3 / 3.5) |
-| **Next** | **Phase 4** strategy spine + Battleboard / War Room (**plan + eval first**; UI gated) |
+| **Next** | **Phase 4a–4c** Proof Map → Battleboard → War Room (**eval first**; UI **4d** gated) |
 | **Then** | Phase 5 hero demo + hearing surfaces (V2 Hearing Prep aligns with War Room) |
 | **Then** | V2 Phase A–B core where it unblocks agreed summary + chat grounding |
 | **Then** | Phase 6–9 pilot product + feedback |
