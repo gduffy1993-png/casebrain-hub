@@ -393,4 +393,148 @@ So: extraction and Key Facts feed everyone; Safety feeds Summary/Chat/Dashboard/
 
 ---
 
+# 9. Criminal pilot roadmap (measurement, fidelity, product brains)
+
+*Runs alongside V2 sections 6–8. This is the **ship-safe** track: corpus playback, bundle fidelity, hero demo, then solicitor-facing brains. Do not skip grounding before legal Q&A.*
+
+## 9.1 Status (as of corpus-playback merge to main)
+
+| Phase | Name | Status |
+|-------|------|--------|
+| 0–2 | Measurement + safety + playback/canary | **Done** — A+B gate clean, pilot-3 + production-pass GREEN |
+| 3 | Bundle fidelity / truth keys | **In progress** — branch `bundle-fidelity`, gold set + runner v1 |
+| 4 | Explanation brain (why route/disclosure matters) | Planned — product UI |
+| 5 | Hero demo + hearing + supervisor | Planned — video-ready |
+| 6 | Self-serve + video | Planned |
+| 7 | Client plain-English layer | Planned |
+| 8 | Export (notes, letters, prep) | Planned |
+| 9 | Feedback flywheel (fingerprints → fix → canary) | Scaffolded via playback triage |
+| **10** | **Legal Q&A brain (case-aware questions)** | **Planned — see §9.3** |
+| 11 | Offence map expansion (human-approved) | Planned |
+| 12 | Real PDF stress / optional depth | Planned |
+
+**Working method (all phases):** scan → separate artifact files → fingerprints → **one shared fix** → canary/playback/fidelity re-run. Never bulk-fix; never commit client PDFs or artifacts.
+
+## 9.2 Phase 3 — bundle fidelity (current)
+
+**Goal:** Prove CaseBrain **reads** bundle text correctly (defendant, charge, stage, doc types) — not answer style.
+
+**Repo gold set (7):** pilot-3 heroes (linked-only until demo text exported), S18 Jordan Clarke, GBH Pike, **Ella Shaw motoring thin**, **Sam Okonkwo generic provisional**. See `docs/bundle-fidelity-set/README.md`.
+
+**Command:** `npx tsx scripts/bundle-fidelity.ts --pack gold` → report under `artifacts/casebrain-auditor/latest/bundle-fidelity/` (gitignored).
+
+**Local later:** User’s real PDFs + truth keys stay **out of git**; use template `docs/bundle-fidelity-set/truth-key.template.json`.
+
+## 9.3 Phase 10 — Legal Q&A brain (case-aware questions)
+
+**Purpose:** Help solicitors who are strong in one area but weaker in another (motoring vs fraud vs PWITS, charge elements, procedure, disclosure, hearing). **Second brain + checker** — not replacement counsel.
+
+**Gate — do not build until:**
+- Phase 3 bundle fidelity is strong (charge/defendant/docs read reliably on gold set).
+- Phase 4–5 explanation + hero surfaces are in product UI.
+- Chat grounding already uses agreed summary, Safety, case theory (V2 §3, §6 B6).
+
+If Q&A runs on badly read PDFs, it will sound clever and be **unsafe**.
+
+### 9.3.1 What it is not
+
+- Not: user asks → AI gives confident legal advice (“plead guilty”, “you will win”, “Crown cannot prove it”).
+- Not: abstract law essay disconnected from the file.
+- Not: training on committed client PDFs or firm case data in git.
+
+### 9.3.2 What it is
+
+Flow:
+
+```txt
+User asks legal/workflow question
+→ CaseBrain loads case facts (agreed summary, Key Facts, Safety, route, bundle fidelity signals)
+→ Pulls from approved legal sources (statute, Crim PR, CPIA/disclosure guidance, Sentencing Council, CPS legal guidance, solicitor-approved notes — not memory alone)
+→ Answers with: legal point | why it matters | what evidence affects it | what is missing | risk if wrong | safe next step
+→ Confidence tag on every answer
+→ Disclaimer: solicitor must verify; not final advice
+```
+
+**Example (motoring):**
+
+| Bad | CaseBrain-style |
+|-----|-----------------|
+| “Yes, argue careless driving.” | “Reduction *may* be an issue depending on standard of driving, causation, injury evidence, expert/collision material, and **served papers**. On current bundle: **provisional only**. Chase dashcam, expert, CAD, medical link. **Solicitor must confirm** after full disclosure.” |
+
+### 9.3.3 Required layers (safeguards)
+
+| Layer | Requirement |
+|-------|-------------|
+| **Case-aware** | “On **these** papers…” or “papers do not safely support that yet” — never abstract-only on a live matter |
+| **Source-backed** | Cite or name basis (statute, rule, guidance, plan); flag when source missing |
+| **Confidence tags** | `settled` \| `likely` \| `provisional` \| `needs_solicitor_review` \| `not_enough_information` |
+| **Forbidden outputs** | Outcome guarantees, plea advice, “proves innocence”, “Crown cannot prove” without qualification |
+| **Required outputs** | What’s missing, what solicitor must verify, safe next step, link to route/disclosure where relevant |
+| **UI disclaimer** | Persistent: not legal advice; for qualified solicitor use; verify before court/client reliance |
+
+### 9.3.4 Question domains (starter bank)
+
+- Charge elements and differences (e.g. possession vs PWITS; s18 vs s20; dangerous driving standard)
+- Disclosure / CPIA (what to chase, why MG6 matters, incomplete schedules)
+- Identification, CCTV/BWV continuity, interview / no-comment implications (procedural, not verdict)
+- First hearing / PTPH safe asks (align with Hearing Prep Mode §3.9)
+- Thin bundle / provisional routes — what not to overstate
+- Offence families the solicitor does not usually handle (motoring, fraud account-control, etc.)
+
+### 9.3.5 Training / quality method (same as playback)
+
+Not ML on client files. Use:
+
+| Asset | Role |
+|-------|------|
+| **Question bank** | Approved solicitor questions per domain |
+| **Gold answers** | Safe wording + required elements |
+| **Bad-answer traps** | Overconfidence, no source, no case link, final advice |
+| **Auditor checks** | Cited source? linked to case? missing material stated? confidence tag? |
+| **Separate reports** | e.g. `legal-qa-overconfident.md`, `legal-qa-no-case-link.md` |
+| **One fix per fingerprint** | Shared prompt/rule/guard — re-run Q&A pack |
+
+Pilot pack idea: `legal-qa-pilot` (fictional cases only) — parallel to `pilot-3` and `bundle-fidelity --pack gold`.
+
+### 9.3.6 Integration with V2 chat
+
+- Extends **§3.5 Chat as case builder** and **§3.6 sources/confidence** — Legal Q&A is a **mode** or command family (e.g. `/law`, `/charge`, `/disclosure`) with stricter guards than general chat.
+- Grounding order: agreed summary → case theory → Safety missing items → route/profile → law slices → **approved legal KB** → fidelity signals (“charge read as X”).
+- Client-facing copy (Phase 7) must never be **more** confident than solicitor/Q&A output.
+
+### 9.3.7 Success criteria (Phase 10 exit)
+
+- Fictional question pack: ≥85% pass on auditor (no unsafe advice patterns).
+- Hero cases: sample questions return case-linked, provisionally worded answers.
+- Playback + fidelity gates still green after Q&A guard changes.
+- Solicitor review sign-off on gold answer bank before public/demo Q&A.
+
+### 9.3.8 Product promise (when ready)
+
+```txt
+Ask CaseBrain anything about the file.
+It answers carefully.
+It shows what it relies on.
+It says what is missing.
+It tells you what a solicitor must verify.
+It never pretends to be the solicitor.
+```
+
+---
+
+## 9.4 Build order relative to V2
+
+| Priority | Track |
+|----------|--------|
+| **Now** | Phase 3 fidelity (read papers right) |
+| **Next** | Phase 4–5 explanation + hero UI (V2 Hearing Prep aligns here) |
+| **Then** | V2 Phase A–B core where it unblocks agreed summary + chat grounding |
+| **Then** | Phase 6–9 pilot product + feedback |
+| **Then** | **Phase 10 Legal Q&A** (after §9.3.1 gates) |
+| **Later** | Phase 11–12 offence map + real PDF stress |
+
+V2 **chat modernisation** (§3.11, Phase D4) can ship UI polish before or in parallel with Legal Q&A **content** guards — but Legal Q&A **logic** must not precede fidelity.
+
+---
+
 *End of CaseBrain V2 Master Plan. When ready, turn chosen items into concrete specs and code.*
