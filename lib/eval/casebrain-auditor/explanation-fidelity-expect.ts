@@ -41,6 +41,21 @@ export function loadGoldExplanationExpect(bundleId: string): ExplanationGoldExpe
   return JSON.parse(fs.readFileSync(file, "utf8")) as ExplanationGoldExpect;
 }
 
+/** Gitignored: `artifacts/bundle-fidelity-local/cases/<case>/explanation-expect.json` */
+export function loadLocalExplanationExpect(caseDir: string): ExplanationGoldExpect | null {
+  const file = path.join(caseDir, "explanation-expect.json");
+  if (!fs.existsSync(file)) return null;
+  return JSON.parse(fs.readFileSync(file, "utf8")) as ExplanationGoldExpect;
+}
+
+export function loadExplanationExpect(bundleId: string, caseDir?: string): ExplanationGoldExpect | null {
+  if (caseDir) {
+    const local = loadLocalExplanationExpect(caseDir);
+    if (local) return local;
+  }
+  return loadGoldExplanationExpect(bundleId);
+}
+
 function norm(s: string): string {
   return s.toLowerCase().replace(/\s+/g, " ").trim();
 }
@@ -179,16 +194,17 @@ export type ExplanationCaseEvaluation = {
 export function evaluateExplanationCase(
   bundleId: string,
   bundleText: string,
+  caseDir?: string,
 ): ExplanationCaseEvaluation {
   const sections = generateExplanationFidelity(bundleText);
-  const expect = loadGoldExplanationExpect(bundleId);
+  const expect = loadExplanationExpect(bundleId, caseDir);
   const generatedBlockCount =
     sections.reduce((n, s) => n + s.blocks.length + s.contradictions.length, 0) ?? 0;
 
   if (!expect) {
     return {
       expect: null,
-      failures: ["no gold explanation expect file"],
+      failures: caseDir ? ["no local explanation-expect.json in case folder"] : ["no gold explanation expect file"],
       generatedBlockCount,
     };
   }

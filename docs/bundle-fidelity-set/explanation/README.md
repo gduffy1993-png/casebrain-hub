@@ -52,6 +52,9 @@ Contradictions add `sourceA`, `sourceB`, `reconciliationStatus`.
 
 `docs/bundle-fidelity-set/explanation/gold/*.expect.json` — fictional cases only (7 bundles).
 
-## Local exemplar (3.5c — planned)
+## Local exemplar (3.5c)
 
-Copy `explanation-expect.template.json` into a gitignored local case folder (e.g. `local-001-dangerous-driving`).
+Copy `docs/bundle-fidelity-set/local/explanation-expect.template.json` →  
+`artifacts/bundle-fidelity-local/cases/<case-id>/explanation-expect.json` (gitignored).
+
+Cases without a local expect file: generator runs, overall `needs_review` (no invented pass).

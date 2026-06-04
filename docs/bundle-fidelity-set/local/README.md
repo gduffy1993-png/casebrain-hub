@@ -40,7 +40,13 @@ Edit paths in that script, or duplicate the pattern for your own PDFs.
 ```powershell
 $env:NEXT_PUBLIC_CRIMINAL_PILOT_MODE="true"
 npx tsx scripts/bundle-fidelity.ts --pack local
+npx tsx scripts/bundle-fidelity-explanation.ts --pack local
 ```
+
+**Phase 3.5c — explanation fidelity (local):** copy  
+`docs/bundle-fidelity-set/local/explanation-expect.template.json` →  
+`artifacts/bundle-fidelity-local/cases/<case-id>/explanation-expect.json`  
+(gitignored; never commit real client expects).
 
 Report (local only, gitignored):
 

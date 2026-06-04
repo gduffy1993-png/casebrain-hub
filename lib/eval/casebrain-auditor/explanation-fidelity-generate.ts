@@ -67,7 +67,70 @@ function inferStatus(line: string): ExplanationMaterialStatus {
   return "unclear";
 }
 
+function whyItMattersForIssue(issue: string): string {
+  const i = issue.toLowerCase();
+  if (/cctv|dashcam|video|footage|export log/.test(i)) {
+    return "Timing, attribution, identification/driver issue, causation, continuity, and hearing safety depend on full footage and export logs — not stills or summaries alone.";
+  }
+  if (/999|cad/.test(i)) {
+    return "Emergency-call and dispatch timing affect sequence reconstruction, source reliability, and route safety — partial CAD/999 summaries are not verbatim final proof.";
+  }
+  if (/bwv|body worn/.test(i)) {
+    return "Officer BWV affects scene reconstruction, attendance timing, custody continuity, and whether officer accounts align with other sources.";
+  }
+  if (/expert|medical|forensic|collision|reconstruction/.test(i)) {
+    return "Causation, injury mechanism, collision data, and evidential weight cannot be treated as final without served expert/medical/forensic reports.";
+  }
+  if (/interview|custody|pace/.test(i)) {
+    return "PACE compliance, pre-interview disclosure, and the full interview record affect what can safely be put to the client and court.";
+  }
+  return "Route, disclosure chase priority, and hearing position depend on whether this material is served, partial, or still outstanding.";
+}
+
+function safeNextActionForIssue(issue: string): string {
+  const i = issue.toLowerCase();
+  if (/cctv|master|export/.test(i)) {
+    return "Chase master footage, export log, and continuity statement before fixing the hearing position.";
+  }
+  if (/999/.test(i)) return "Chase full 999 audio and compare with CAD and witness accounts.";
+  if (/cad/.test(i)) return "Chase full CAD incident log; do not treat summary note as final dispatch record.";
+  if (/bwv/.test(i)) return "Chase BWV export from attending officers and align with CAD/999 timing.";
+  if (/expert|medical|forensic/.test(i)) {
+    return "Chase final expert/medical/forensic report; record that causation remains provisional on current papers.";
+  }
+  if (/interview|transcript/.test(i)) {
+    return "Chase full interview audio/transcript and custody material before relying on the summary.";
+  }
+  if (/custody/.test(i)) return "Chase custody CCTV and full custody record; note any pre-interview disclosure limits.";
+  return "Record on file; chase prosecution disclosure with a focused request; take instructions before fixing the hearing position.";
+}
+
+function doNotOverstateForIssue(issue: string, status: ExplanationMaterialStatus): string {
+  const i = issue.toLowerCase();
+  if (/cctv|footage|video/.test(i)) {
+    if (status === "partial") {
+      return "Do not say CCTV is missing; say full master footage/export log is not yet served while stills or summaries may be on file.";
+    }
+    return "Do not state full CCTV is available for playback until master export and continuity are on file.";
+  }
+  if (/999|cad/.test(i)) {
+    return "Do not treat CAD/999 summaries as verbatim final proof; full audio/logs may still be outstanding.";
+  }
+  if (/expert|medical|forensic|causation/.test(i)) {
+    return "Do not state causation or mechanism as finally proved until served expert/medical/forensic material is on file.";
+  }
+  if (/interview|no comment/.test(i)) {
+    return "Do not overstate no-comment, silence, or admissions where full interview audio/transcript is not served.";
+  }
+  if (status === "partial") {
+    return "Do not describe this as fully absent if partial material or summaries are on the papers.";
+  }
+  return "Do not state this is served or complete until the bundle records service or a full export on file.";
+}
+
 function isDisclosureGapLine(line: string): boolean {
+  if (/^Outstanding item:/i.test(line.trim())) return true;
+  if (/^O\d+Full /i.test(line.trim())) return true;
   if (OUTSTANDING_MARKERS.test(line)) return true;
   if (/\b(PENDING|NOT OBTAINED|NOT YET|INCOMPLETE)\b/i.test(line)) {
     return /item\s*\d|status:|mg6|cctv|phone|forensic|medical|disclosure|continuity|unused/i.test(line);
@@ -106,18 +169,10 @@ function blockFromLine(
     sourceSection: overrides?.sourceSection ?? section,
     sourceBasis: basis,
     status,
-    whyItMatters:
-      overrides?.whyItMatters ??
-      "Route, disclosure chase priority, and hearing position depend on whether this material is served, partial, or still outstanding.",
-    safeNextAction:
-      overrides?.safeNextAction ??
-      "Record on file; chase prosecution disclosure with a focused request tied to this item; take instructions before fixing the hearing position.",
+    whyItMatters: overrides?.whyItMatters ?? whyItMattersForIssue(issue),
+    safeNextAction: overrides?.safeNextAction ?? safeNextActionForIssue(issue),
     confidenceTag: overrides?.confidenceTag ?? confidence,
-    doNotOverstate:
-      overrides?.doNotOverstate ??
-      (status === "partial"
-        ? "Do not describe this as fully absent if partial material or summaries are on the papers."
-        : "Do not state this is served or complete until the bundle records service or a full export on file."),
+    doNotOverstate: overrides?.doNotOverstate ?? doNotOverstateForIssue(issue, status),
   };
 }
 
@@ -151,14 +206,67 @@ function scanMg6cItems(section: SectionChunk): ExplanationBlock[] {
   return blocks;
 }
 
-function scanLinesForMissing(ctx: { text: string; sections: SectionChunk[] }): ExplanationBlock[] {
+function scanStructuredOutstandingItems(ctx: { text: string; sections: SectionChunk[] }): ExplanationBlock[] {
   const blocks: ExplanationBlock[] = [];
+  const section =
+    ctx.sections.find((s) => /mg6|outstanding|disclosure schedule/i.test(s.name))?.name ??
+    "MG6 disclosure schedule";
+
+  for (const line of ctx.text.split("\n")) {
+    const m = line.match(/^Outstanding item:\s*(.+?)\.?\s*$/i);
+    if (!m) continue;
+    const item = m[1].trim();
+    const b = blockFromLine(line, section, {
+      issue: item,
+      status: "outstanding",
+      sourceBasis: snippet(line),
+    });
+    if (b) blocks.push(b);
+  }
+  return blocks;
+}
+
+function detectCctvStillsVsMaster(ctx: { text: string; lower: string }): ExplanationBlock[] {
+  const hasStills = /cctv still|stills are served|still images only/i.test(ctx.lower);
+  const hasMasterOut = /master footage|export log.*outstanding|full cctv master/i.test(ctx.lower);
+  if (!hasStills || !hasMasterOut) return [];
+
+  const basisLine =
+    ctx.text.split("\n").find((l) => /stills are served|still images only|master footage/i.test(l)) ??
+    "CCTV stills served; full master footage and export log outstanding on papers.";
+
+  return [
+    {
+      issue: "CCTV — stills served; full master footage / export log outstanding",
+      sourceSection: "CCTV / video section",
+      sourceBasis: snippet(basisLine),
+      status: "partial",
+      whyItMatters: whyItMattersForIssue("CCTV master footage"),
+      safeNextAction: safeNextActionForIssue("CCTV export log"),
+      confidenceTag: "provisional",
+      doNotOverstate: doNotOverstateForIssue("CCTV footage", "partial"),
+    },
+  ];
+}
+
+function scanLinesForMissing(ctx: { text: string; sections: SectionChunk[] }): ExplanationBlock[] {
+  const blocks: ExplanationBlock[] = [
+    ...detectCctvStillsVsMaster({ text: ctx.text, lower: ctx.text.toLowerCase() }),
+    ...scanStructuredOutstandingItems(ctx),
+  ];
   for (const section of ctx.sections) {
     blocks.push(...scanMg6cItems(section));
     for (const line of section.body.split("\n")) {
       if (!isDisclosureGapLine(line)) continue;
+      if (/^Outstanding item:/i.test(line.trim())) continue;
       if (/^\s*\|?\s*item\s*\|/i.test(line) || /^\s*[-|]+\s*$/.test(line)) continue;
       if (/partial dna|partial view|partial angle|partial profile|lighting poor/i.test(line)) continue;
+      if (
+        line.length > 160 &&
+        !/Full (CCTV|999|CAD|BWV|expert|interview|Custody)/i.test(line)
+      ) {
+        continue;
+      }
       const b = blockFromLine(line, section.name);
       if (b) blocks.push(b);
     }
@@ -218,6 +326,32 @@ function detectContradictions(text: string, lower: string): ContradictionBlock[]
     });
   }
 
+  if (
+    (/cad timing differs|conflicts with cad\/cctv|timing conflicts/i.test(lower) ||
+      (/corrected index/i.test(lower) && /cad/i.test(lower) && /witness/i.test(lower))) &&
+    !out.some((b) => /timing/i.test(b.issue))
+  ) {
+    const basisLine =
+      text.split("\n").find((l) => /cad timing differs|conflicts with cad/i.test(l)) ??
+      "Papers record timing differences between CAD, witness accounts, and/or corrected index material.";
+    out.push({
+      issue: "incident timing — CAD / witness / corrected index unresolved",
+      sourceSection: "999 / CAD section / witness statements / index",
+      sourceBasis: snippet(basisLine),
+      status: "conflicting",
+      whyItMatters:
+        "Attribution, sequence, reliability, and route safety depend on a reconciled timeline — served papers do not yet resolve it.",
+      safeNextAction:
+        "Chase full CAD incident log, 999 audio, and source behind any corrected index; do not adopt one timing as final.",
+      confidenceTag: "needs_solicitor_review",
+      doNotOverstate:
+        "Do not say Crown timing is wrong; say timing is unresolved or conflicting on the served papers.",
+      sourceA: "CAD summary / dispatch timing on papers",
+      sourceB: "Witness account and/or corrected index timing",
+      reconciliationStatus: "conflicting",
+    });
+  }
+
   if (/footage[\s\S]{0,120}(secured|held|arranged)/i.test(lower) && /cctv[\s\S]{0,200}(awaiting|not yet|outstanding|not served)/i.test(lower)) {
     out.push({
       issue: "CCTV export — MG5 hold language vs disclosure outstanding",
@@ -260,7 +394,39 @@ function detectCustodyInterview(ctx: { text: string; lower: string; sections: Se
     });
   }
 
-  if (/pre-interview disclosure|limited disclosure|not yet provided.*custody|custody cctv.*not yet/i.test(ctx.lower)) {
+  const interviewOutLine = ctx.text.split("\n").find((l) => /full interview recording and transcript are outstanding/i.test(l));
+  if (interviewOutLine) {
+    blocks.push({
+      issue: "full interview audio / transcript outstanding",
+      sourceSection: "Interview summary",
+      sourceBasis: snippet(interviewOutLine),
+      status: "outstanding",
+      whyItMatters: whyItMattersForIssue("interview transcript"),
+      safeNextAction: safeNextActionForIssue("interview transcript"),
+      confidenceTag: "provisional",
+      doNotOverstate: doNotOverstateForIssue("interview", "outstanding"),
+    });
+  }
+
+  const custodyOutLine = ctx.text.split("\n").find((l) => /custody cctv and full custody record/i.test(l));
+  if (custodyOutLine) {
+    blocks.push({
+      issue: "custody CCTV / full custody record outstanding",
+      sourceSection: "Custody / PACE",
+      sourceBasis: snippet(custodyOutLine),
+      status: "outstanding",
+      whyItMatters: whyItMattersForIssue("custody"),
+      safeNextAction: safeNextActionForIssue("custody"),
+      confidenceTag: "needs_solicitor_review",
+      doNotOverstate: doNotOverstateForIssue("custody", "outstanding"),
+    });
+  }
+
+  if (
+    /pre-interview disclosure|limited disclosure|disclosure before interview was incomplete|custody cctv.*not yet/i.test(
+      ctx.lower,
+    )
+  ) {
     blocks.push({
       issue: "custody / pre-interview disclosure limits",
       sourceSection: "Custody record / disclosure",
@@ -309,7 +475,7 @@ export function generateExplanationFidelity(bundleText: string): ExplanationFide
   const sections = parseSections(text);
   const ctx = { text, lower, sections };
 
-  const missing = dedupeBlocks([...scanLinesForMissing(ctx), ...detectPilotDisclosureChase(ctx)]).slice(0, 24);
+  const missing = dedupeBlocks([...scanLinesForMissing(ctx), ...detectPilotDisclosureChase(ctx)]).slice(0, 32);
 
   const contradictions = detectContradictions(text, lower);
 
