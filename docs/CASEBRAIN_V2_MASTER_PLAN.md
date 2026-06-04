@@ -404,7 +404,9 @@ So: extraction and Key Facts feed everyone; Safety feeds Summary/Chat/Dashboard/
 | 0–2 | Measurement + safety + playback/canary | **Done** — A+B gate clean, pilot-3 + production-pass GREEN |
 | 3 | Bundle fidelity / truth keys | **Done** — gold 7/7 (`bundle-fidelity` → main) |
 | **3.5** | **Source-backed explanation + inconsistency fidelity** | **Done** — gold 7/7; local exemplar (Sienna) on gitignored lane |
-| **4** | **Proof Map + strategy spine + Battleboard / War Room** | **Next (plan/eval)** — §9.4; Proof Map **4a** before UI **4d** |
+| **4** | **Proof Map + strategy spine + Battleboard / War Room** | **In progress** — §9.4; **4a–4b** eval done; **4c** next; UI **4d** gated |
+| **4e** | **Strategy corpus expansion + holdout stress pack** | **Planned (docs)** — §9.7; **1k scored corpus** after **4c** |
+| **4f** | **Synthetic Criminal Bundle Factory (scale-up)** | **Planned (docs)** — §9.8; **1k→5k→10k→50k** capacity; staged render only |
 | 5 | Hero demo + hearing + supervisor | Planned — video-ready (after Phase 4 logic is solid) |
 | 6 | Self-serve + video | Planned |
 | 7 | Client plain-English layer | Planned |
@@ -412,7 +414,7 @@ So: extraction and Key Facts feed everyone; Safety feeds Summary/Chat/Dashboard/
 | 9 | Feedback flywheel (fingerprints → fix → canary) | Scaffolded via playback triage |
 | **10** | **Legal Q&A brain (case-aware questions)** | **Planned — see §9.5** |
 | 11 | Offence map expansion (human-approved) | Planned |
-| 12 | Real PDF stress / optional depth | Planned |
+| 12 | Real PDF stress / optional depth | Planned — complements **§9.7** (local gitignored); not bulk manual upload |
 
 **Working method (all phases):** scan → separate artifact files → fingerprints → **one shared fix** → canary/playback/fidelity re-run. Never bulk-fix; never commit client PDFs or artifacts.
 
@@ -565,6 +567,9 @@ Phase 4a  → Proof Map / evidence dependency graph (evaluator — prove deep st
 Phase 4b  → Battleboard (strategy view of Proof Map)
 Phase 4c  → War Room (court-action view of Proof Map)
 Phase 4d  → product UI (last)
+Phase 4e  → first 1k scored strategy corpus (factory v1)
+Phase 4f  → Synthetic Criminal Bundle Factory scale-up (50k capacity; staged materialisation)
+Phase 4d  → product UI (last)
 Phase 5+  → hero demo, supervisor, client surfaces — after 4a–4c pass
 ```
 
@@ -713,8 +718,209 @@ statement, officer MG11, BWV and photographs. Do not state final location as fac
 | **4b** | **Battleboard** — strategy view of Proof Map + expects |
 | **4c** | **War Room** — hearing-action view of Proof Map + expects |
 | **4d** | **Product UI** (Control Room, Disclosure Chase, Supervisor, Client) — **last** |
+| **4e** | **Strategy corpus expansion** — first **1k** scored fictional corpus + holdout packs (§9.7) — **after 4c** |
+| **4f** | **Synthetic Criminal Bundle Factory** — generator architecture to **50k** variants; staged materialisation only (§9.8) |
 
-Until **4a–4c** pass on gold (and agreed local exemplars), **4d UI stays off**.
+Until **4a–4c** pass on gold (and agreed local exemplars), **4d UI stays off**. Until **4e** design is locked and **4c** is green, **do not** mass-generate bundles or tune on holdout. **50k is long-term private stress capacity — not a near-term deliverable.**
+
+---
+
+## 9.7 Strategy corpus expansion + holdout stress pack (Phase 4e — planned)
+
+**Status:** **Plan only** — document now; **implement after Phase 4c War Room evaluator** merges. This is the **first production run** of the **Synthetic Criminal Bundle Factory** (§9.8) at **1,000 cases** — not a throwaway dataset.
+
+**Goal:** Train and test **pattern survival** across unseen bundles — not memorise individual PDFs or bundle IDs.
+
+**Relationship to §9.8:** Phase **4e** ships factory **v1** + first **1k** manifest/truth-key/expect lane + blind eval runners. Phase **4f** scales the **same factory** to 5k / 10k / 50k without changing the scoring philosophy.
+
+### 9.7.1 Corpus strategy (recommended — mixed A + B, not C at scale)
+
+| Lane | Role | In git? |
+|------|------|--------|
+| **A — Generated fictional corpus** | Primary scale: ~1000 cases with **truth keys** + structured bundle text (and optional PDF shells when extract/OCR lane is ready) | Truth keys + **fictional** fixture metadata only; **no** raw PDFs in repo |
+| **B — Local real PDF ingest** | Secondary **layout/OCR/realism stress** — small batches, manual ingest script (`bundle-fidelity-ingest-local-pdfs`) | **Gitignored** PDFs + local truth keys + local expects |
+| **C — Manual upload (1000)** | **Not recommended** for bulk — too slow, non-reproducible, risks client material in wrong place | N/A |
+| **D — Mixed** | **Yes:** A for scored blind eval; B for private stress; gold **7** stays the regression anchor | See `docs/bundle-fidelity-set/README.md` |
+
+**Honest sequencing:** Today’s fidelity evaluators run on **repo-safe bundle text** (markdown/copy-paste). Phase **4e** can start with **1000 fictional bundles + truth keys** (same schema as gold) and add **PDF generation** as a parallel stress layer once product extract/OCR is in scope — do not block 4c on 1000 PDFs.
+
+### 9.7.2 Suggested split (stratified, not random-only)
+
+| Pack | Count | Use |
+|------|------:|-----|
+| **Discovery / training** | **700** | Fingerprint mining; shared rule fixes; may re-run after fixes |
+| **Validation** | **150** | Tune **shared** thresholds/lenses only; never per-case hacks |
+| **Secret holdout** | **150** | **Blind first**; **untouched** during fix loops; final gate only |
+
+Stratify by **offence family** (fraud, PWITS, violence/GBH/S18, robbery/ID, motoring, generic provisional, serious provisional) and by **failure-mode tags** (thin bundle, messy index, partial CCTV, CAD/999 gap, interview summary only, custody/PACE, timing contradiction, exhibit continuity, ID dispute, phone attribution, self-defence provisional, etc.) — see user pattern list in §9.7.4.
+
+### 9.7.3 Method (same as playback — non-negotiable)
+
+1. **Blind run first** on discovery (and holdout only at milestones).
+2. **Separate artifact files** per case; **group fingerprints** (regex/issue families), not case IDs.
+3. **One shared fix** per fingerprint → re-run discovery + validation; **holdout frozen** until release candidate.
+4. Score full stack where available: bundle → explanation (3.5) → proof map (4a) → battleboard (4b) → war room (4c).
+5. **No** case-by-case tuning in repo; **no** committing client PDFs, local truth keys, or artifacts.
+
+### 9.7.4 Pattern coverage (fictional corpus themes)
+
+Include deliberate variation (not one “perfect” bundle shape):
+
+- Thin vs normal vs messy-OCR-style text; duplicate pages; wrong indexes; corrected charge sheets
+- Missing MG5; incomplete MG6; draft/corrected MG11
+- CCTV stills without master; CAD summary without full log; 999 summary without audio; interview summary without transcript
+- Custody/PACE disclosure gaps; multi-defendant; multi-count
+- Offence families: fraud, PWITS, GBH/S18, robbery/ID, motoring, perverting, witness intimidation, serious provisional
+- Cross-cutting: weapon provenance conflicts, timing contradictions, exhibit continuity, self-defence (provisional), causation disputes, ID disputes, phone/device attribution disputes
+
+### 9.7.5 What **not** to do (avoid overfitting)
+
+- Do **not** tune rules to make **holdout** pass during development.
+- Do **not** add per-case `if (bundleId === …)` fixes in repo.
+- Do **not** merge holdout cases into discovery after seeing failures.
+- Do **not** treat validation pass rate as ship gate if fixes were driven by validation peeking.
+- Do **not** commit real client PDFs or firm matter text “for convenience.”
+- Do **not** chase **1000/1000 pass** — chase **fingerprint collapse rate** and **no unsafe advice** patterns.
+- Do **not** use the corpus to **memorise** outputs (no answer-key matching per PDF filename).
+- Do **not** start mass PDF generation **before** 4c War Room evaluator exists (strategy spine must be scoreable end-to-end).
+
+### 9.7.6 Gates and commands (future — scaffold TBD)
+
+Planned packs under `docs/bundle-fidelity-set/` (structure TBD): `corpus-discovery/`, `corpus-validation/`, `corpus-holdout/` — truth keys in repo; bundle/PDF bodies gitignored or generated in CI sandbox.
+
+Example future commands (not implemented yet):
+
+```powershell
+npx tsx scripts/strategy-corpus-fidelity.ts --pack discovery --blind
+npx tsx scripts/strategy-corpus-fidelity.ts --pack holdout --blind  # release only
+```
+
+Reports: `artifacts/casebrain-auditor/latest/strategy-corpus/` (gitignored).
+
+### 9.7.7 Relationship to Phase 12 and §9.8
+
+**Phase 12 (real PDF stress)** remains the **private/local** lane for a small set of real layouts. **Phase 4e** is the **first large fictional scored corpus**. **Phase 4f** is the **long-term factory scale-up** (up to **50k** scenario capacity). All three feed fingerprints into the same shared-fix loop; none replaces gold **7** or pilot-3/production-pass gates.
+
+---
+
+## 9.8 Synthetic Criminal Bundle Factory (Phase 4f — planned scale-up)
+
+**Status:** **Architecture plan only** — design during **4e** so the first **1k** run uses factory patterns; **do not** materialise 50k cases until evaluator stability and storage/runbook are proven.
+
+**Purpose:** A **parametric generator** capable of **50,000+ fictional criminal case variants** (scenario identity + truth + expects), with **lazy/staged materialisation** — most cases exist as **manifest + truth key + expectations** until a run explicitly renders bundle text or a **sampled** PDF subset.
+
+**This is not:** 50,000 full PDFs on day one; LLM-authored case law essays; committed client matter text; a pass-rate vanity metric.
+
+### 9.8.1 Factory architecture (long-term)
+
+```txt
+Seed + scenario recipe (offence family, tags, doc mix, gap/contradiction profile)
+  → Case manifest (inventory, labels, fingerprint tags, split assignment)
+  → truth-key.json (ground truth for bundle fidelity)
+  → optional bundle text (markdown sections) — rendered on demand
+  → optional expectation files (explanation / proof-map / battleboard / war-room)
+  → optional PDF shell — sampled subset only, when OCR/layout lane exists
+  → Eval runners (staged: read → explain → map → battleboard → war room)
+  → Fingerprint rollup (not per-case tuning)
+```
+
+**Core principles:**
+
+| Principle | Meaning |
+|-----------|---------|
+| **Capacity ≠ materialisation** | Factory can *address* 50k IDs; only **N** are rendered/run per stage |
+| **Deterministic seeds** | `seed` + `recipeId` → reproducible case; reruns comparable |
+| **Manifest-first** | Truth lives in manifest/truth-key; bundle text is a **view** |
+| **Stratified tags** | Every case carries offence family + failure-mode fingerprint tags |
+| **Holdout frozen** | Secret holdout manifest list never merged into discovery mid-loop |
+| **Gold 7 anchor** | Hand-crafted gold stays small, human-readable regression |
+
+Complements **1000-case safety playback** (product surfaces) with **scored strategy depth** (paper truth → court-safe outputs).
+
+### 9.8.2 Staged scale (recommended gates)
+
+| Stage | Target capacity | Materialise (typical) | Gate before next stage |
+|-------|----------------:|------------------------|-------------------------|
+| **4e — v1** | **1,000** | ~1k manifests + truth keys; ~1k bundle text; **0–50 PDF samples** | Full stack eval stable; fingerprint loop works; holdout blind once |
+| **4f.1** | **5,000** | Manifests/truth keys for 5k; **run** discovery on 1k–2k text bundles per loop | Top fingerprint groups collapsing; no unsafe advice regressions |
+| **4f.2** | **10,000** | Manifests for 10k; batch eval in chunks (e.g. 50–100); PDF sample **1–2%** | Evaluator runtime + artifact storage under control |
+| **4f.3** | **50,000** | **Long-term private stress corpus** — manifests + truth keys at scale; text rendered in batches; PDF **≤0.5–1%** sample | Release-candidate holdout; legal review of factory templates |
+
+**Split ratios (hold at every stage):** ~**70% discovery / 15% validation / 15% secret holdout** (e.g. 1k → 700/150/150; 50k → 35k/7.5k/7.5k). Stratify within each split by offence family and fingerprint tag — not pure random.
+
+### 9.8.3 Text vs PDF (honest default)
+
+| Output | Default | When |
+|--------|---------|------|
+| **Manifest + truth-key + expects** | **Always** | All stages |
+| **Markdown / text bundle** | **Primary** for eval | 4e–4f until extract/OCR product lane is in scope |
+| **PDF render** | **Sampled subset only** | Layout/OCR stress; never required for strategy fidelity scoring |
+
+**50k should mean 50k scored scenarios**, not 50k binary PDFs in git or on laptop disk by default.
+
+### 9.8.4 Case manifest schema (minimum fields — future spec)
+
+Each generated case should carry enough structure to test **read → explain → proof map → battleboard → war room** without case-specific repo code:
+
+| Field group | Fields (indicative) |
+|-------------|---------------------|
+| **Identity** | `caseId`, `seed`, `recipeId`, `fictional`, `generatorVersion`, `split` (`discovery` \| `validation` \| `holdout`) |
+| **Charge / stage** | `offenceFamily`, `offenceLens`, `chargeWording`, `stage`, `court`, `hearingDate`, `defendant(s)`, `coDefendants`, `counts[]` |
+| **Document inventory** | `documents[]`: `{ type, status: served\|partial\|outstanding\|conflicting, sectionRef }` — MG5, MG6, MG11, CCTV, CAD, 999, BWV, interview, custody, medical, index, charge sheet |
+| **Evidence states** | `evidenceSignals`: CCTV (stills/master), CAD/999 (summary/full), BWV, phone download, lab, cash, bank export, device logs, ID procedure |
+| **Ground truth gaps** | `missingMaterialExpected[]`, `contradictionsExpected[]` (source A vs B, unreconciled) |
+| **Strategy expects** | `explanationExpectRef`, `proofMapExpectRef`, `battleboardExpectRef`, `warRoomExpectRef` (paths or inline schema version) |
+| **Fingerprint tags** | `fingerprintTags[]` — e.g. `thin_bundle`, `bad_index`, `cctv_stills_no_master`, `cad_timing_conflict`, `pace_limited_disclosure`, `weapon_provenance_conflict`, `pwits_phone_outstanding` |
+| **Prohibited / caps** | `prohibitedFamilies[]`, `humanReviewExpected`, `doNotOverstateThemes[]` |
+| **Materialisation** | `bundleTextPath`, `pdfPath`, `materialisedAt`, `linkStatus` (`manifest-only` \| `text-rendered` \| `pdf-sampled`) |
+
+Expect files should assert **patterns** (contains issue, link type, proof point id) — not verbatim paragraph matching — to avoid memorisation.
+
+### 9.8.5 Variation dimensions (factory recipes)
+
+Recipes combine weighted draws across:
+
+- Offence family and charge wording variants; serious/provisional offences
+- Stage, court, hearing date; multi-count; multi-defendant
+- Document mix quality (missing MG5, incomplete MG6, draft/corrected MG11, bad index, duplicate pages, corrected charge sheet, late evidence)
+- Missing/partial evidence (CCTV stills without master; CAD summary without log; 999 summary without audio; interview summary without transcript)
+- Contradictions (timing, incident date, exhibit location/continuity, witness reliability)
+- Custody/PACE/disclosure schedule quality
+- Cross-cutting disputes: self-defence (provisional), causation, identity, phone/device attribution, weapon provenance
+
+### 9.8.6 Storage and performance risks
+
+| Risk | Mitigation |
+|------|------------|
+| **Disk** (50k text bundles) | Manifest-only default; render text to **gitignored cache** or object store; chunk by split |
+| **Git repo size** | Commit **schemas + recipes + small gold** only; not 50k bodies or PDFs |
+| **Eval runtime** | Batch/chunk runners (`--chunk-size`, `--offset`); fingerprint rollup without per-case human review |
+| **Artifact explosion** | Aggregate reports by fingerprint; cap per-case JSON retention; TTL on discovery artifacts |
+| **False confidence** | Holdout frozen; report **unsafe / contradiction-merge / overstatement** rates, not pass % alone |
+| **Generator bugs at scale** | `generatorVersion` on every manifest; replay seed; template unit tests on recipes |
+| **LLM drift** | **No LLM in factory v1** — templated parametric generation only |
+
+### 9.8.7 What **not** to do (50k scale)
+
+- Do **not** materialise 50k PDFs as a milestone.
+- Do **not** commit corpus bodies, PDFs, or run artifacts.
+- Do **not** chase **50k/50k pass**.
+- Do **not** tune on holdout or merge holdout into discovery.
+- Do **not** add per-case fixes in application code.
+- Do **not** use factory output to fine-tune models on memorised bundles (if ML is ever added — out of scope for now).
+- Do **not** skip **4c** or gold **7** because “we have 50k scenarios.”
+- Do **not** let factory replace solicitor review on real matters.
+
+### 9.8.8 Success metrics (factory era)
+
+Prioritise:
+
+1. **Unsafe advice / forbidden phrase** rate → zero tolerance on sampled runs  
+2. **Fingerprint frequency** → top groups trend down after shared fixes  
+3. **Explanation** — source basis present; contradictions not merged  
+4. **Proof map** — proof points and links trace to Phase 3.5 / bundle text  
+5. **Battleboard / War Room** — provisional caps, disclosure chase, no outcome certainty  
+6. **Holdout** — blind milestone only; not a daily tuning target  
 
 ---
 
@@ -821,14 +1027,16 @@ It never pretends to be the solicitor.
 
 | Priority | Track |
 |----------|--------|
-| **Done** | Phase 3 + **3.5** (read + explain paper truth; gold 7/7) |
-| **Merge** | `bundle-fidelity` → `main` (lock Phase 3 / 3.5) |
-| **Next** | **Phase 4a–4c** Proof Map → Battleboard → War Room (**eval first**; UI **4d** gated) |
+| **Done** | Phase 3 + **3.5** (gold 7/7); Phase **4a** Proof Map; Phase **4b** Battleboard-view (eval) |
+| **Next** | Phase **4c** War Room-view evaluator → merge; then lock **4a–4c** on gold |
+| **Then** | Phase **4e** — first **1k** scored strategy corpus (factory v1) — §9.7 |
+| **Then** | Phase **4f** — factory scale-up **1k→5k→10k→50k** (manifest-first, staged runs) — §9.8 |
+| **Then** | Phase **4d** product UI (only after **4a–4c** + agreed corpus gates) |
 | **Then** | Phase 5 hero demo + hearing surfaces (V2 Hearing Prep aligns with War Room) |
 | **Then** | V2 Phase A–B core where it unblocks agreed summary + chat grounding |
 | **Then** | Phase 6–9 pilot product + feedback |
 | **Then** | **Phase 10 Legal Q&A** (after §9.5.1 gates + Phase 4 exit) |
-| **Later** | Phase 11–12 offence map + real PDF stress |
+| **Later** | Phase 11 offence map expansion; Phase 12 local real-PDF stress (gitignored) + factory PDF sampling |
 
 V2 **chat modernisation** (§3.11, Phase D4) can ship UI polish before or in parallel with Legal Q&A **content** guards — but Legal Q&A **logic** must not precede Phase 3 + **3.5** + **4** strategy fidelity.
 

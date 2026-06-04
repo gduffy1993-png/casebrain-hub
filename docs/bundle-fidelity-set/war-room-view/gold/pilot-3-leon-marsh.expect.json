@@ -1,0 +1,10 @@
+{
+  "bundleId": "pilot-3-leon-marsh",
+  "offenceLens": "robbery_id",
+  "safeHearingLineContains": ["provisional", "papers"],
+  "minCourtRecordRequests": 4,
+  "minDisclosureTimetableRequests": 4,
+  "requiredProofPointIdsReferenced": ["pp-cctv-bwv-999-cad", "pp-identification-attribution"],
+  "requiredCourtRecordContains": ["CCTV"],
+  "solicitorReviewRequired": false
+}
