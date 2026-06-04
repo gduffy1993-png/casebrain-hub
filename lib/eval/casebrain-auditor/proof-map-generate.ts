@@ -310,6 +310,342 @@ function violenceProofPoints(charge: string, metaBasis: string, bundleText: stri
   return points;
 }
 
+function fraudProofPoints(charge: string, metaBasis: string, bundleText: string): ProofMapProofPoint[] {
+  const disclosureBasis = findBasisSnippet(
+    bundleText,
+    [/outstanding|disclosure chase|mg6|not served/i],
+    "Pilot disclosure chase list — bank/device/mailbox material outstanding on export.",
+  );
+  return [
+    {
+      id: "pp-dishonest-representation",
+      label: "Dishonesty / false representation",
+      crownMustProve:
+        "Crown must prove dishonest false representation (or equivalent fraud element) — sketch only; verify particulars on served MG5/charge.",
+      confidenceTag: "provisional",
+      humanReviewRequired: false,
+      sourceSection: "Charge sheet / MG5",
+      sourceBasis: metaBasis || charge,
+      doNotOverstate: "Do not state dishonesty or representation is proved on thin pilot export without served bank/source material.",
+    },
+    {
+      id: "pp-account-control",
+      label: "Account control / ownership",
+      crownMustProve:
+        "Crown must link the defendant to account control or benefit — often depends on bank/device/mailbox source material not fully served.",
+      confidenceTag: "provisional",
+      humanReviewRequired: false,
+      sourceSection: "MG5 / account material",
+      sourceBasis: findBasisSnippet(
+        bundleText,
+        [/account ownership|account.control|control material|beneficiary/i],
+        "Account ownership / control material marked outstanding on disclosure chase.",
+      ),
+      doNotOverstate: "Do not treat account control as established without served ownership/login/source exports.",
+    },
+    {
+      id: "pp-transaction-trail",
+      label: "Transaction trail / bank schedule",
+      crownMustProve:
+        "Crown must prove transaction trail linking representation to loss — bank export/schedule often required; provisional on thin papers.",
+      confidenceTag: "provisional",
+      humanReviewRequired: false,
+      sourceSection: "Bank / schedule material",
+      sourceBasis: findBasisSnippet(
+        bundleText,
+        [/bank export|bank schedule|transaction|source.of.funds|poca/i],
+        "Full bank export and bank schedule source data outstanding on export.",
+      ),
+      doNotOverstate: "Do not map transaction trail as complete while bank export/schedule remains outstanding.",
+    },
+    {
+      id: "pp-bank-source-material",
+      label: "Bank / source material",
+      crownMustProve: "Crown relies on bank statements, schedules, or source-of-funds material — chase if outstanding.",
+      confidenceTag: "provisional",
+      humanReviewRequired: false,
+      sourceSection: "Bank export / POCA",
+      sourceBasis: findBasisSnippet(
+        bundleText,
+        [/bank export|source bank|poca|source.of.funds/i],
+        "Full bank export / source bank statements — outstanding on pilot export.",
+      ),
+      doNotOverstate: "Do not say bank/source material is on file if disclosure chase marks it outstanding.",
+    },
+    {
+      id: "pp-device-account-attribution",
+      label: "Device / login / IP attribution",
+      crownMustProve:
+        "Crown may rely on device, login audit, IP/access logs for attribution — provisional until served.",
+      confidenceTag: "provisional",
+      humanReviewRequired: false,
+      sourceSection: "Device / access logs",
+      sourceBasis: findBasisSnippet(
+        bundleText,
+        [/device|login audit|ip \/ access|access logs|mailbox|email source/i],
+        "Device/login audit and mailbox export marked outstanding on disclosure chase.",
+      ),
+      doNotOverstate: "Do not attribute account activity to defendant without served device/mailbox/IP material.",
+    },
+    {
+      id: "pp-disclosure-fair-trial",
+      label: "Disclosure completeness (fraud route)",
+      crownMustProve: "N/A — chase bank, device, mailbox, witness/accountant material before fixing route.",
+      confidenceTag: "provisional",
+      humanReviewRequired: false,
+      sourceSection: "MG5 disclosure chase",
+      sourceBasis: disclosureBasis,
+      doNotOverstate: "Do not fix hearing position while core fraud source material remains outstanding.",
+    },
+  ];
+}
+
+function bundleMentionsCellSite(bundleText: string): boolean {
+  return /\bcell[- ]?site|cellsite|location data|mast data\b/i.test(bundleText);
+}
+
+function bundleMentionsPossessionSupplyDispute(bundleText: string): boolean {
+  return /\bpossession\s*\/\s*knowledge|possession.only|simple possession|user.?dealer|supply inference\b/i.test(
+    bundleText,
+  );
+}
+
+function pwitsProofPoints(charge: string, metaBasis: string, bundleText: string): ProofMapProofPoint[] {
+  const disclosureBasis = findBasisSnippet(
+    bundleText,
+    [/outstanding|disclosure chase|phone extraction|bwv/i],
+    "Pilot disclosure chase — phone/BWV/lab material outstanding on export.",
+  );
+  const points: ProofMapProofPoint[] = [
+    {
+      id: "pp-possession",
+      label: "Possession",
+      crownMustProve:
+        "Crown must prove possession of controlled drug — verify quantity, location, and continuity on served papers.",
+      confidenceTag: "provisional",
+      humanReviewRequired: false,
+      sourceSection: "Charge sheet / MG5",
+      sourceBasis: metaBasis || charge,
+      doNotOverstate: "Do not state possession is finally proved without served search/seizure and lab continuity.",
+    },
+    {
+      id: "pp-supply-inference",
+      label: "Supply inference / intent to supply",
+      crownMustProve:
+        "Crown must prove intent to supply (not mere possession) — inference may depend on phone, packaging, cash; solicitor to review.",
+      confidenceTag: "needs_solicitor_review",
+      humanReviewRequired: true,
+      sourceSection: "Charge sheet / MG5",
+      sourceBasis: metaBasis || charge,
+      doNotOverstate: "Do not state supply intent is proved from charge wording alone; phone download often outstanding.",
+    },
+    {
+      id: "pp-quantity-packaging",
+      label: "Quantity / packaging",
+      crownMustProve: "Crown may rely on quantity, wraps, or packaging for supply inference — verify on served material.",
+      confidenceTag: "provisional",
+      humanReviewRequired: false,
+      sourceSection: "Search / drugs exhibit",
+      sourceBasis: findBasisSnippet(
+        bundleText,
+        [/quantity|packaging|wrap|dealer|weight|drug item/i],
+        "Drug item continuity / packaging references on disclosure chase.",
+      ),
+      doNotOverstate: "Do not quantify or characterise drugs as supply-level without served lab/search material.",
+    },
+    {
+      id: "pp-drugs-lab",
+      label: "Drugs lab / continuity",
+      crownMustProve: "Crown must prove substance and continuity — lab report/continuity note may be outstanding.",
+      confidenceTag: "provisional",
+      humanReviewRequired: false,
+      sourceSection: "Lab / continuity",
+      sourceBasis: findBasisSnippet(
+        bundleText,
+        [/lab|continuity|forensic|substance/i],
+        "Drug item continuity / lab continuity note outstanding on export.",
+      ),
+      doNotOverstate: "Do not state drug type or weight as final until lab and continuity are served.",
+    },
+    {
+      id: "pp-cash-seizure",
+      label: "Cash seizure",
+      crownMustProve: "N/A — cash may support supply inference if properly evidenced; chase counting note if outstanding.",
+      confidenceTag: "provisional",
+      humanReviewRequired: false,
+      sourceSection: "Search / cash exhibit",
+      sourceBasis: findBasisSnippet(
+        bundleText,
+        [/cash seizure|counting note|cash/i],
+        "Cash seizure / counting note outstanding on disclosure chase.",
+      ),
+      doNotOverstate: "Do not treat cash alone as proof of supply without context from served search/phone material.",
+    },
+    {
+      id: "pp-phone-attribution-messages",
+      label: "Phone attribution / messages",
+      crownMustProve:
+        "Crown may rely on phone extraction, SIM/IMEI, messages for attribution and supply — often outstanding on initial papers.",
+      confidenceTag: "provisional",
+      humanReviewRequired: false,
+      sourceSection: "Phone / MG6",
+      sourceBasis: findBasisSnippet(
+        bundleText,
+        [/phone extraction|phone attribution|sim|imei|subscriber|message/i],
+        "Full phone extraction and attribution material outstanding on export.",
+      ),
+      doNotOverstate: "Do not attribute handset or messages to defendant until extraction/ownership material is served.",
+    },
+    {
+      id: "pp-disclosure-fair-trial",
+      label: "Disclosure completeness (PWITS route)",
+      crownMustProve: "N/A — chase phone download, BWV, lab, cash, premises material before fixing route.",
+      confidenceTag: "provisional",
+      humanReviewRequired: false,
+      sourceSection: "MG5 disclosure chase",
+      sourceBasis: disclosureBasis,
+      doNotOverstate: "Do not fix hearing position while core phone/lab/BWV disclosure remains outstanding.",
+    },
+  ];
+
+  if (bundleMentionsCellSite(bundleText)) {
+    points.splice(6, 0, {
+      id: "pp-cell-site",
+      label: "Cell-site / location data",
+      crownMustProve: "N/A — cell-site may support attribution or movement; verify served download and schedule.",
+      confidenceTag: "provisional",
+      humanReviewRequired: false,
+      sourceSection: "Phone / cell-site",
+      sourceBasis: findBasisSnippet(
+        bundleText,
+        [/cell[- ]?site|location data|mast/i],
+        "Cell-site material referenced on bundle — verify served vs outstanding.",
+      ),
+      doNotOverstate: "Do not map movement or attribution from cell-site without served expert/download material.",
+    });
+  }
+
+  if (bundleMentionsPossessionSupplyDispute(bundleText)) {
+    points.push({
+      id: "pp-possession-only-dispute",
+      label: "Possession-only vs supply (provisional)",
+      crownMustProve:
+        "N/A — route may turn on possession/knowledge vs supply inference; dispute live only if instructions and served material support it.",
+      confidenceTag: "provisional",
+      humanReviewRequired: true,
+      sourceSection: "Cover / MG5 route",
+      sourceBasis: findBasisSnippet(
+        bundleText,
+        [/possession\s*\/\s*knowledge|possession.only|simple possession/i],
+        "Bundle route references possession/knowledge pressure — verify against served phone/lab material.",
+      ),
+      doNotOverstate:
+        "Do not advise possession-only outcome; say dispute is provisional pending phone download and solicitor instructions.",
+    });
+  }
+
+  return points;
+}
+
+function robberyIdProofPoints(charge: string, metaBasis: string, bundleText: string): ProofMapProofPoint[] {
+  const disclosureBasis = findBasisSnippet(
+    bundleText,
+    [/outstanding|disclosure chase|cctv master|999/i],
+    "Pilot disclosure chase — CCTV/999/complainant material outstanding on export.",
+  );
+  return [
+    {
+      id: "pp-taking-property",
+      label: "Taking / property",
+      crownMustProve:
+        "Crown must prove theft element (appropriation of property belonging to another) as part of robbery — sketch only.",
+      confidenceTag: "provisional",
+      humanReviewRequired: false,
+      sourceSection: "Charge sheet / MG5",
+      sourceBasis: metaBasis || charge,
+      doNotOverstate: "Do not state property and taking are finally proved without served complainant/CCTV material.",
+    },
+    {
+      id: "pp-force-threat",
+      label: "Force / threat (robbery)",
+      crownMustProve:
+        "Crown must prove force or threat of force immediately before or at time of stealing — verify on served accounts.",
+      confidenceTag: "provisional",
+      humanReviewRequired: false,
+      sourceSection: "Charge sheet / MG5",
+      sourceBasis: metaBasis || charge,
+      doNotOverstate: "Do not treat force/threat as established on thin export without complainant/CCTV/999 material.",
+    },
+    {
+      id: "pp-identification-attribution",
+      label: "Identification / participation",
+      crownMustProve:
+        "Crown must prove defendant as robber or participant — ID route depends on CCTV, complainant, ID procedure.",
+      confidenceTag: "provisional",
+      humanReviewRequired: false,
+      sourceSection: "MG11 / CCTV / ID procedure",
+      sourceBasis: findBasisSnippet(
+        bundleText,
+        [/identification|id procedure|attribution|co-defendant|unknown male|description/i],
+        "ID procedure and attribution material marked outstanding on disclosure chase.",
+      ),
+      doNotOverstate: "Do not treat description, stills, or partial ID alone as conclusive participation proof.",
+    },
+    {
+      id: "pp-complainant-witness",
+      label: "Complainant / witness account",
+      crownMustProve: "Crown relies on complainant and witness accounts — first account and signed statement may be outstanding.",
+      confidenceTag: "provisional",
+      humanReviewRequired: false,
+      sourceSection: "MG11 / complainant",
+      sourceBasis: findBasisSnippet(
+        bundleText,
+        [/complainant|witness|first account|signed complainant/i],
+        "Complainant first account and final signed statement outstanding on export.",
+      ),
+      doNotOverstate: "Do not merge complainant accounts or treat unsigned/partial accounts as final.",
+    },
+    {
+      id: "pp-cctv-bwv-999-cad",
+      label: "CCTV / BWV / 999 / CAD",
+      crownMustProve: "N/A — master footage, export log, 999/CAD timing often required for ID and sequence routes.",
+      confidenceTag: "provisional",
+      humanReviewRequired: false,
+      sourceSection: "CCTV / 999 / CAD",
+      sourceBasis: findBasisSnippet(
+        bundleText,
+        [/cctv master|999|cad|bwv|footage|export log/i],
+        "Full CCTV master and 999/CAD timing material outstanding on disclosure chase.",
+      ),
+      doNotOverstate: "Do not say full CCTV or emergency call material is available if chase marks it outstanding.",
+    },
+    {
+      id: "pp-continuity-timing",
+      label: "Continuity / timing",
+      crownMustProve: "N/A — CCTV continuity, export log, and CAD/999 timing must be reconciled before fixing ID route.",
+      confidenceTag: "provisional",
+      humanReviewRequired: false,
+      sourceSection: "CCTV continuity / CAD",
+      sourceBasis: findBasisSnippet(
+        bundleText,
+        [/continuity|export log|timing|cad|999/i],
+        "CCTV continuity / export log and 999/CAD timing outstanding on export.",
+      ),
+      doNotOverstate: "Do not finalise sequence or ID timing while continuity and CAD gaps remain.",
+    },
+    {
+      id: "pp-disclosure-fair-trial",
+      label: "Disclosure completeness (robbery / ID route)",
+      crownMustProve: "N/A — chase CCTV master, ID procedure, complainant, 999/CAD before fixing hearing position.",
+      confidenceTag: "provisional",
+      humanReviewRequired: false,
+      sourceSection: "MG5 disclosure chase",
+      sourceBasis: disclosureBasis,
+      doNotOverstate: "Do not fix robbery/ID hearing position while core identification material is outstanding.",
+    },
+  ];
+}
+
 function unknownProofPoints(charge: string): ProofMapProofPoint[] {
   return [
     {
@@ -348,6 +684,12 @@ function proofPointsForLens(
       return genericProvisionalProofPoints(charge, metaBasis);
     case "violence_gbh":
       return violenceProofPoints(charge, metaBasis, bundleText);
+    case "fraud":
+      return fraudProofPoints(charge, metaBasis, bundleText);
+    case "pwits":
+      return pwitsProofPoints(charge, metaBasis, bundleText);
+    case "robbery_id":
+      return robberyIdProofPoints(charge, metaBasis, bundleText);
     default:
       return unknownProofPoints(charge);
   }
@@ -398,6 +740,117 @@ function violenceProofPointIdsForIssue(issue: string): string[] {
   return [...ids];
 }
 
+function fraudProofPointIdsForIssue(issue: string): string[] {
+  const i = issue.toLowerCase();
+  const ids = new Set<string>(["pp-disclosure-fair-trial"]);
+
+  if (/bank|statement|export|schedule|transaction|poca|source.of.funds|source bank/.test(i)) {
+    ids.add("pp-bank-source-material");
+    ids.add("pp-transaction-trail");
+    ids.add("pp-dishonest-representation");
+  }
+  if (/device|login|ip|access log|mailbox|email/.test(i)) {
+    ids.add("pp-device-account-attribution");
+    ids.add("pp-account-control");
+  }
+  if (/account|ownership|control|benefit/.test(i)) {
+    ids.add("pp-account-control");
+    ids.add("pp-dishonest-representation");
+  }
+  if (/witness|accountant|bookkeeper/.test(i)) {
+    ids.add("pp-dishonest-representation");
+    ids.add("pp-transaction-trail");
+  }
+  if (/disclosure|mg6|outstanding|chase/.test(i)) {
+    ids.add("pp-disclosure-fair-trial");
+  }
+
+  if (ids.size === 1) {
+    ids.add("pp-dishonest-representation");
+    ids.add("pp-account-control");
+  }
+  return [...ids];
+}
+
+function pwitsProofPointIdsForIssue(issue: string): string[] {
+  const i = issue.toLowerCase();
+  const ids = new Set<string>(["pp-disclosure-fair-trial"]);
+
+  if (/phone|extraction|sim|imei|subscriber|message|attribution/.test(i)) {
+    ids.add("pp-phone-attribution-messages");
+    ids.add("pp-supply-inference");
+    ids.add("pp-possession");
+  }
+  if (/bwv|search|seizure|continuity|premises|co-occupier/.test(i)) {
+    ids.add("pp-possession");
+    ids.add("pp-drugs-lab");
+  }
+  if (/drug|lab|item continuity|packaging|quantity|wrap/.test(i)) {
+    ids.add("pp-drugs-lab");
+    ids.add("pp-quantity-packaging");
+    ids.add("pp-supply-inference");
+  }
+  if (/cash|counting/.test(i)) {
+    ids.add("pp-cash-seizure");
+    ids.add("pp-supply-inference");
+  }
+  if (/cell[- ]?site|location data|mast/.test(i)) {
+    ids.add("pp-cell-site");
+    ids.add("pp-phone-attribution-messages");
+  }
+  if (/possession.only|simple possession|user.?dealer/.test(i)) {
+    ids.add("pp-possession-only-dispute");
+    ids.add("pp-possession");
+  }
+  if (/disclosure|mg6|outstanding|chase/.test(i)) {
+    ids.add("pp-disclosure-fair-trial");
+  }
+
+  if (ids.size === 1) {
+    ids.add("pp-possession");
+    ids.add("pp-supply-inference");
+  }
+  return [...ids];
+}
+
+function robberyProofPointIdsForIssue(issue: string): string[] {
+  const i = issue.toLowerCase();
+  const ids = new Set<string>(["pp-disclosure-fair-trial"]);
+
+  if (/cctv|bwv|footage|export|master|continuity/.test(i)) {
+    ids.add("pp-cctv-bwv-999-cad");
+    ids.add("pp-continuity-timing");
+    ids.add("pp-identification-attribution");
+  }
+  if (/999|cad|timing|dispatch/.test(i)) {
+    ids.add("pp-cctv-bwv-999-cad");
+    ids.add("pp-continuity-timing");
+    ids.add("pp-complainant-witness");
+  }
+  if (/complainant|witness|first account|signed|description|clothing/.test(i)) {
+    ids.add("pp-complainant-witness");
+    ids.add("pp-identification-attribution");
+    ids.add("pp-force-threat");
+  }
+  if (/id procedure|identification|attribution|co-defendant|unknown male/.test(i)) {
+    ids.add("pp-identification-attribution");
+    ids.add("pp-taking-property");
+  }
+  if (/force|threat|robbery|stealing/.test(i)) {
+    ids.add("pp-force-threat");
+    ids.add("pp-taking-property");
+  }
+  if (/disclosure|mg6|outstanding|chase/.test(i)) {
+    ids.add("pp-disclosure-fair-trial");
+  }
+
+  if (ids.size === 1) {
+    ids.add("pp-taking-property");
+    ids.add("pp-identification-attribution");
+  }
+  return [...ids];
+}
+
 function mapIssueToProofPoints(issue: string, lens: ProofMapOffenceLens): string[] {
   const i = issue.toLowerCase();
   if (lens === "motoring") {
@@ -414,6 +867,15 @@ function mapIssueToProofPoints(issue: string, lens: ProofMapOffenceLens): string
   }
   if (lens === "violence_gbh") {
     return violenceProofPointIdsForIssue(issue);
+  }
+  if (lens === "fraud") {
+    return fraudProofPointIdsForIssue(issue);
+  }
+  if (lens === "pwits") {
+    return pwitsProofPointIdsForIssue(issue);
+  }
+  if (lens === "robbery_id") {
+    return robberyProofPointIdsForIssue(issue);
   }
   return ["pp-charge-elements", "pp-disclosure-fair-trial"];
 }
@@ -462,18 +924,49 @@ function linksFromExplanationBlock(
 }
 
 function linksFromContradiction(block: ContradictionBlock, lens: ProofMapOffenceLens): ProofMapLink[] {
-  const proofPointIds =
-    lens === "motoring"
-      ? ["pp-collision-causation", "pp-driver-identification"]
-      : lens === "generic_provisional"
-        ? ["pp-witness-messaging", "pp-intention-knowledge"]
-        : [
-            "pp-causation",
-            "pp-witness-reliability",
-            "pp-identification-attribution",
-            "pp-unlawful-assault",
-            "pp-cctv-bwv-999-cad",
-          ];
+  const proofPointIds = (() => {
+    switch (lens) {
+      case "motoring":
+        return ["pp-collision-causation", "pp-driver-identification"];
+      case "generic_provisional":
+        return ["pp-witness-messaging", "pp-intention-knowledge"];
+      case "violence_gbh":
+        return [
+          "pp-causation",
+          "pp-witness-reliability",
+          "pp-identification-attribution",
+          "pp-unlawful-assault",
+          "pp-cctv-bwv-999-cad",
+        ];
+      case "fraud":
+        return [
+          "pp-dishonest-representation",
+          "pp-transaction-trail",
+          "pp-account-control",
+          "pp-bank-source-material",
+          "pp-device-account-attribution",
+        ];
+      case "pwits":
+        return [
+          "pp-supply-inference",
+          "pp-phone-attribution-messages",
+          "pp-possession",
+          "pp-quantity-packaging",
+          "pp-drugs-lab",
+        ];
+      case "robbery_id":
+        return [
+          "pp-identification-attribution",
+          "pp-complainant-witness",
+          "pp-cctv-bwv-999-cad",
+          "pp-continuity-timing",
+          "pp-taking-property",
+          "pp-force-threat",
+        ];
+      default:
+        return ["pp-charge-elements", "pp-disclosure-fair-trial"];
+    }
+  })();
 
   const base = proofPointIds.map((proofPointId) => ({
     proofPointId,
@@ -493,7 +986,7 @@ function linksFromContradiction(block: ContradictionBlock, lens: ProofMapOffence
     linkedExplanationIssue: block.issue,
   }));
 
-  if (lens === "violence_gbh") {
+  if (lens === "violence_gbh" || lens === "robbery_id") {
     const riskLinks = proofPointIds.slice(0, 2).map((proofPointId) => ({
       ...base[0],
       proofPointId,
@@ -553,7 +1046,7 @@ export function generateProofMap(
     const linkType =
       block.status === "served" ? ("supports" as const) : ("missing" as const);
     links.push(...linksFromExplanationBlock(block, lens, linkType));
-    if (lens === "violence_gbh" && block.status === "served") {
+    if ((lens === "violence_gbh" || lens === "robbery_id") && block.status === "served") {
       links.push(
         ...mapIssueToProofPoints(block.issue, lens).map((proofPointId) => ({
           ...linksFromExplanationBlock(block, lens, "route_impact" as ProofMapLinkType)[0],
