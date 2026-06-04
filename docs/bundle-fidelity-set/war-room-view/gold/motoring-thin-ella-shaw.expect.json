@@ -1,0 +1,10 @@
+{
+  "bundleId": "motoring-thin-ella-shaw",
+  "offenceLens": "motoring",
+  "safeHearingLineContains": ["provisional", "papers"],
+  "minCourtRecordRequests": 3,
+  "minDisclosureTimetableRequests": 3,
+  "requiredProofPointIdsReferenced": ["pp-disclosure-fair-trial", "pp-driving-standard"],
+  "requiredCourtRecordContains": ["Dashcam"],
+  "solicitorReviewRequired": false
+}

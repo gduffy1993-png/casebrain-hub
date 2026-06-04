@@ -1,0 +1,10 @@
+{
+  "bundleId": "s18-charge-reduction-jordan-clarke",
+  "offenceLens": "violence_gbh",
+  "safeHearingLineContains": ["provisional", "papers"],
+  "minCourtRecordRequests": 5,
+  "minDisclosureTimetableRequests": 5,
+  "minDoNotConcede": 3,
+  "requiredProofPointIdsReferenced": ["pp-disclosure-fair-trial", "pp-intent-really-serious-harm"],
+  "solicitorReviewRequired": true
+}
