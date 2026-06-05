@@ -1,0 +1,14 @@
+{
+  "localId": "rm-001-motoring-thin",
+  "anonymisedLabel": "Motoring thin — Defendant A",
+  "offenceFamily": "motoring_dangerous",
+  "stage": "Magistrates — first hearing",
+  "inputType": "bundle-text",
+  "documentTypesExpected": ["charge_sheet", "mg5", "mg6"],
+  "knownMissingMaterial": ["cctv master", "dashcam export"],
+  "knownContradictions": [],
+  "redactionStatus": "anonymised",
+  "discoveryNotes": "LOCAL ONLY — copy to artifacts/casebrain-auditor/local-real-matters/<localId>/manifest.json. Never commit real client data.",
+  "holdout": false,
+  "neverCommit": true
+}
