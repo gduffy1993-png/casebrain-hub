@@ -745,6 +745,7 @@ Until **4a–4c** pass on gold (and agreed local exemplars), **4d UI stays off**
 | 8 | **Pre-hearing readiness score** | **Slice 1 shipped (local):** flag-gated badge (`?readiness=1` + `?reasoningV2=1`); `lib/criminal/pre-hearing-readiness/README.md` |
 | 9 | **Route comparison** | Planned — identity / role / causation / self-defence / possession vs supply / mitigation with helps/hurts/missing/collapse |
 | 10 | **Real-layout PDF/OCR stress lane** | **Slice 2 shipped (eval):** 50 fictional PDF samples + deliberate traps, gitignored; `lib/eval/casebrain-auditor/real-layout-pdf-ocr-stress/README.md` |
+| 10b | **Real-matter auditor lane** | **Slice 1 shipped (eval):** gitignored `local-real-matters/` + discovery/strict-truth runner; `docs/real-matter-auditor/README.md` |
 | 11 | **Audio-to-Bundle Loop** | **Docs only** — §9.6.3 |
 | 12 | **Phase 4f scale-up (5k / 10k / 50k)** | **After** real-PDF + real-matter lanes — §9.8 |
 
