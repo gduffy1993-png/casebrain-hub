@@ -742,7 +742,7 @@ Until **4a–4c** pass on gold (and agreed local exemplars), **4d UI stays off**
 | 5 | **Supervisor review queue + case handover** | Planned — unsafe marks, serious/provisional, contradictions, human review, missing core before hearing |
 | 6 | **Client explanation mode** | Planned — plain-English solicitor-safe client summary (papers / missing / why not finalised) |
 | 7 | **Plea/credit pressure warning** | Planned — timing/stage pressure only; no plea advice; optional |
-| 8 | **Pre-hearing readiness score** | Planned — amber/red/green from missing core, contradictions, instructions, human review, hearing date |
+| 8 | **Pre-hearing readiness score** | **Slice 1 shipped (local):** flag-gated badge (`?readiness=1` + `?reasoningV2=1`); `lib/criminal/pre-hearing-readiness/README.md` |
 | 9 | **Route comparison** | Planned — identity / role / causation / self-defence / possession vs supply / mitigation with helps/hurts/missing/collapse |
 | 10 | **Real-layout PDF/OCR stress lane** | Planned — private ingest (§9.7 lane B) |
 | 11 | **Audio-to-Bundle Loop** | **Docs only** — §9.6.3 |

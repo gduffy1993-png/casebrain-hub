@@ -10,10 +10,14 @@ import { ControlRoomBattleboardAccordion } from "./control-room/ControlRoomBattl
 import { CaseSummaryCard } from "./control-room/CaseSummaryCard";
 import { ControlRoomCockpit } from "./control-room/ControlRoomCockpit";
 import { ReasoningV2Panel } from "./control-room/ReasoningV2Panel";
+import { PreHearingReadinessBadge } from "./control-room/PreHearingReadinessBadge";
 import { buildReasoningV2ViewModel } from "@/lib/criminal/reasoning-v2/build-reasoning-v2-view-model";
 import { useReasoningV2Enabled } from "@/lib/criminal/reasoning-v2/reasoning-v2-flag";
 import { useClientStressEnabled } from "@/lib/criminal/client-stress-test/client-stress-flag";
+import { buildClientStressResult } from "@/lib/criminal/client-stress-test/build-client-stress-result";
+import { loadClientStressSelection } from "@/lib/criminal/client-stress-test/client-stress-selection-storage";
 import { ClientAccountStressTestPanel } from "./control-room/ClientAccountStressTestPanel";
+import { useReadinessEnabled } from "@/lib/criminal/pre-hearing-readiness/readiness-flag";
 import { CaseWorkflowShell } from "./workflow/CaseWorkflowShell";
 import { buildCaseSummarySnippet } from "@/lib/criminal/build-case-summary-snippet";
 import { formatCaseBundleHealthLabel } from "@/lib/criminal/format-case-bundle-health";
@@ -186,6 +190,7 @@ export function CaseControlRoom({
   const [bundleSource, setBundleSource] = useState<BundleSourceSummary | null>(null);
   const [bundleSourceLoading, setBundleSourceLoading] = useState(true);
   const reasoningV2Enabled = useReasoningV2Enabled();
+  const readinessEnabled = useReadinessEnabled();
   const clientStressEnabled = useClientStressEnabled();
 
   useEffect(() => {
@@ -294,6 +299,34 @@ export function CaseControlRoom({
       matterLabel: caseTitle,
     });
   }, [reasoningV2Enabled, bundleSource, caseTitle]);
+
+  const clientStressForReadiness = useMemo(() => {
+    if (reasoningV2Result?.available !== true) return null;
+    const saved = loadClientStressSelection(caseId);
+    if (!saved?.selectedOptions?.length) return null;
+    const outcome = buildClientStressResult(reasoningV2Result, saved);
+    return outcome.available ? outcome : null;
+  }, [caseId, reasoningV2Result]);
+
+  const readinessBundleMeta = useMemo(
+    () =>
+      bundleSource
+        ? {
+            documentCount: bundleSource.documentCount,
+            combinedTextLength: bundleSource.combinedTextLength,
+          }
+        : null,
+    [bundleSource],
+  );
+
+  const readinessHearingMeta = useMemo(
+    () => ({
+      hearingDateIso:
+        bundleSource?.caseMetadata?.nextHearingIso ?? snapshot?.caseMeta?.hearingNextAt ?? null,
+      stage: bundleSource?.header?.stage ?? snapshot?.caseMeta?.caseStage ?? null,
+    }),
+    [bundleSource, snapshot],
+  );
 
   const headerMeta = useMemo(
     () =>
@@ -717,6 +750,16 @@ export function CaseControlRoom({
                 />
               ) : undefined
             }
+          />
+          <PreHearingReadinessBadge
+            reasoningV2Enabled={reasoningV2Enabled}
+            readinessEnabled={readinessEnabled}
+            reasoningResult={reasoningV2Result}
+            clientStressResult={clientStressForReadiness}
+            bundleMeta={readinessBundleMeta}
+            hearingMeta={readinessHearingMeta}
+            workflowProfileHint={bundleSource?.header?.primaryEvalHook ?? null}
+            loading={bundleSourceLoading}
           />
           {reasoningV2Enabled ? (
             <ReasoningV2Panel

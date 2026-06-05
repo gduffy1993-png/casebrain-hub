@@ -55,8 +55,12 @@ import {
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import { usePilotDemoSession } from "@/components/criminal/workflow/usePilotDemoSession";
 import { WarRoomReasoningBridge } from "@/components/criminal/control-room/WarRoomReasoningBridge";
+import { PreHearingReadinessBadge } from "@/components/criminal/control-room/PreHearingReadinessBadge";
 import { buildReasoningV2ViewModel } from "@/lib/criminal/reasoning-v2/build-reasoning-v2-view-model";
 import { useReasoningV2Enabled } from "@/lib/criminal/reasoning-v2/reasoning-v2-flag";
+import { useReadinessEnabled } from "@/lib/criminal/pre-hearing-readiness/readiness-flag";
+import { buildClientStressResult } from "@/lib/criminal/client-stress-test/build-client-stress-result";
+import { loadClientStressSelection } from "@/lib/criminal/client-stress-test/client-stress-selection-storage";
 
 const ABOVE_FOLD_LIST_CAP = 5;
 
@@ -368,6 +372,7 @@ export function HearingWarRoom({
   const caseTitle = pilotHeader?.displayTitle ?? pilotHeader?.title ?? caseTitleBase;
   const allegation = pilotHeader?.allegation ?? allegationBase;
   const reasoningV2Enabled = useReasoningV2Enabled();
+  const readinessEnabled = useReadinessEnabled();
   const reasoningV2Result = useMemo(() => {
     if (!reasoningV2Enabled) return null;
     return buildReasoningV2ViewModel({
@@ -377,6 +382,14 @@ export function HearingWarRoom({
       matterLabel: caseTitle,
     });
   }, [reasoningV2Enabled, bundleSource, caseTitle]);
+
+  const clientStressForReadiness = useMemo(() => {
+    if (reasoningV2Result?.available !== true) return null;
+    const saved = loadClientStressSelection(caseId);
+    if (!saved?.selectedOptions?.length) return null;
+    const outcome = buildClientStressResult(reasoningV2Result, saved);
+    return outcome.available ? outcome : null;
+  }, [caseId, reasoningV2Result]);
   const workflowContext = useMemo(
     () => ({
       caseTitle,
@@ -621,6 +634,28 @@ export function HearingWarRoom({
                 Provisional · conditional on served material · solicitor review required
               </p>
             </section>
+
+            <PreHearingReadinessBadge
+              compact
+              reasoningV2Enabled={reasoningV2Enabled}
+              readinessEnabled={readinessEnabled}
+              reasoningResult={reasoningV2Result}
+              clientStressResult={clientStressForReadiness}
+              bundleMeta={
+                bundleSource
+                  ? {
+                      documentCount: bundleSource.documentCount,
+                      combinedTextLength: bundleSource.combinedTextLength,
+                    }
+                  : null
+              }
+              hearingMeta={{
+                hearingDateIso,
+                stage,
+              }}
+              workflowProfileHint={pilotHeader?.profile ?? null}
+              loading={bundleLoading}
+            />
 
             {reasoningV2Enabled && reasoningV2Result?.available ? (
               <WarRoomReasoningBridge
