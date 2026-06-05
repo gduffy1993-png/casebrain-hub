@@ -977,6 +977,70 @@ Recipes combine weighted draws across:
 - Do **not** skip **4c** or gold **7** because “we have 50k scenarios.”
 - Do **not** let factory replace solicitor review on real matters.
 
+### 9.8.9 Scale-run method (planned runner — docs only)
+
+**Do not build, run, or materialise 50k in this phase.** This subsection records the long-term scaling route so engineers do not default to “50k PDFs” or “50k/50k pass” later.
+
+**Fast safe method = chunked manifest/text run with summary-only reports, not 50k PDFs.**
+
+| Rule | Design |
+|------|--------|
+| **What 50k means** | **50k manifest/text scenarios** (IDs + truth keys + optional rendered bundle text in **gitignored cache**), **not** 50k committed or generated PDFs |
+| **PDFs** | **Sampled later only** for OCR/layout stress (e.g. ≤0.5–1% of corpus); never required for strategy fidelity scoring |
+| **Execution** | Run in **chunks** (e.g. 500–1000 cases per batch); resume-friendly; no single monolithic job |
+| **Reports (default)** | **Summary-only** — fingerprint rollup, by-split counts, unsafe-rate, top weak/fail fingerprints |
+| **Heavy artifacts** | **Weak/fail cases only** — per-case detail JSON/Markdown retained for investigation, not every pass case |
+| **Per-case reports** | **No** full per-case reports for 50k unless explicitly requested (`--full-case-reports` future flag) |
+| **Holdout** | **Remains frozen** — never merged into discovery mid-loop; milestone report only |
+| **Fixes** | **No `caseId` hacks** in application or eval code — shared recipe / lens / generator fixes only |
+| **Success goal** | **Fingerprint collapse + safety**, not vanity **1000/1000** or **50k/50k** pass rates |
+
+**Staged path (mandatory before 50k):**
+
+1. **Benchmark 1k** — measure runtime, fingerprint baseline, storage per chunk (current **4e** lane)  
+2. **5k** — manifest scale + chunked discovery runs  
+3. **10k** — chunk + summary-only discipline proven  
+4. **50k** — long-term private stress capacity only after 10k runbook is stable  
+
+**Proposed future runner flags (not implemented until approved):**
+
+```txt
+npx tsx scripts/strategy-corpus.ts --count 5000 --split discovery
+  --chunk-size 500          # or 1000
+  --summary-only            # default on for large counts
+  --weak-fail-only-artifacts
+  # --workers N             # optional later if safe and deterministic
+```
+
+| Flag | Purpose |
+|------|---------|
+| `--count 5000` / `10000` / `50000` | Target scenario count (manifest-first) |
+| `--chunk-size 500` or `1000` | Batch size per eval pass |
+| `--summary-only` | Emit rollup JSON/MD only; skip per-pass case trees |
+| `--weak-fail-only-artifacts` | Write detailed artifacts only for non-pass cases |
+| `--workers` (later) | Parallel chunks only if reproducible and storage-safe |
+
+**Rough runtime method:**
+
+1. Time a full **1k** text run on target hardware (wall clock, disk written).  
+2. Estimate **50k** as **~1k runtime × 50** if single-threaded and similarly IO-bound.  
+3. If parallel workers are added later, discount CPU time but **not** fingerprint rollup merge cost or disk caps.  
+4. Abort or down-scope if a chunk exceeds agreed storage budget (see below).
+
+**Storage warnings:**
+
+- Do **not** write huge artifact trees under `artifacts/` for large counts.  
+- Do **not** render PDFs by default.  
+- Use **gitignored cache only** (`artifacts/casebrain-auditor/cache/strategy-corpus/` or equivalent) for rendered text bodies.  
+- Cap retained per-case JSON; TTL or prune pass-case artifacts after rollup.  
+- Commit **schemas, recipes, thresholds, gold 7** — never 50k bodies or run output.
+
+**Ask / answer (for future operators):**
+
+- *“How do we run 50k safely?”* → Chunked **manifest/text** eval with **summary-only** reports; PDF sample separate and tiny.  
+- *“Is 50k/50k the goal?”* → **No** — reduce top fingerprints and unsafe wording; holdout is a blind gate, not a tuning set.  
+- *“Can we skip 1k?”* → **No** — 1k is the benchmark for runtime, storage, and evaluator stability.
+
 ### 9.8.8 Success metrics (factory era)
 
 Prioritise:
