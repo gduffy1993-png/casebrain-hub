@@ -11,6 +11,7 @@ import { CaseSummaryCard } from "./control-room/CaseSummaryCard";
 import { ControlRoomCockpit } from "./control-room/ControlRoomCockpit";
 import { ReasoningV2Panel } from "./control-room/ReasoningV2Panel";
 import { PreHearingReadinessBadge } from "./control-room/PreHearingReadinessBadge";
+import { EvidenceChangeDetectorPanel } from "./control-room/EvidenceChangeDetectorPanel";
 import { buildReasoningV2ViewModel } from "@/lib/criminal/reasoning-v2/build-reasoning-v2-view-model";
 import { useReasoningV2Enabled } from "@/lib/criminal/reasoning-v2/reasoning-v2-flag";
 import { useClientStressEnabled } from "@/lib/criminal/client-stress-test/client-stress-flag";
@@ -18,6 +19,7 @@ import { buildClientStressResult } from "@/lib/criminal/client-stress-test/build
 import { loadClientStressSelection } from "@/lib/criminal/client-stress-test/client-stress-selection-storage";
 import { ClientAccountStressTestPanel } from "./control-room/ClientAccountStressTestPanel";
 import { useReadinessEnabled } from "@/lib/criminal/pre-hearing-readiness/readiness-flag";
+import { useEvidenceChangesEnabled } from "@/lib/criminal/evidence-change-detector/evidence-change-flag";
 import { CaseWorkflowShell } from "./workflow/CaseWorkflowShell";
 import { buildCaseSummarySnippet } from "@/lib/criminal/build-case-summary-snippet";
 import { formatCaseBundleHealthLabel } from "@/lib/criminal/format-case-bundle-health";
@@ -191,6 +193,7 @@ export function CaseControlRoom({
   const [bundleSourceLoading, setBundleSourceLoading] = useState(true);
   const reasoningV2Enabled = useReasoningV2Enabled();
   const readinessEnabled = useReadinessEnabled();
+  const evidenceChangesEnabled = useEvidenceChangesEnabled();
   const clientStressEnabled = useClientStressEnabled();
 
   useEffect(() => {
@@ -759,6 +762,19 @@ export function CaseControlRoom({
             bundleMeta={readinessBundleMeta}
             hearingMeta={readinessHearingMeta}
             workflowProfileHint={bundleSource?.header?.primaryEvalHook ?? null}
+            loading={bundleSourceLoading}
+          />
+          <EvidenceChangeDetectorPanel
+            caseId={caseId}
+            reasoningV2Enabled={reasoningV2Enabled}
+            evidenceChangesEnabled={evidenceChangesEnabled}
+            reasoningResult={reasoningV2Result}
+            clientStressResult={clientStressForReadiness}
+            readinessInput={{
+              bundleMeta: readinessBundleMeta,
+              hearingMeta: readinessHearingMeta,
+              workflowProfileHint: bundleSource?.header?.primaryEvalHook ?? null,
+            }}
             loading={bundleSourceLoading}
           />
           {reasoningV2Enabled ? (

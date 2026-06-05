@@ -56,9 +56,11 @@ import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import { usePilotDemoSession } from "@/components/criminal/workflow/usePilotDemoSession";
 import { WarRoomReasoningBridge } from "@/components/criminal/control-room/WarRoomReasoningBridge";
 import { PreHearingReadinessBadge } from "@/components/criminal/control-room/PreHearingReadinessBadge";
+import { EvidenceChangeDetectorPanel } from "@/components/criminal/control-room/EvidenceChangeDetectorPanel";
 import { buildReasoningV2ViewModel } from "@/lib/criminal/reasoning-v2/build-reasoning-v2-view-model";
 import { useReasoningV2Enabled } from "@/lib/criminal/reasoning-v2/reasoning-v2-flag";
 import { useReadinessEnabled } from "@/lib/criminal/pre-hearing-readiness/readiness-flag";
+import { useEvidenceChangesEnabled } from "@/lib/criminal/evidence-change-detector/evidence-change-flag";
 import { buildClientStressResult } from "@/lib/criminal/client-stress-test/build-client-stress-result";
 import { loadClientStressSelection } from "@/lib/criminal/client-stress-test/client-stress-selection-storage";
 
@@ -373,6 +375,7 @@ export function HearingWarRoom({
   const allegation = pilotHeader?.allegation ?? allegationBase;
   const reasoningV2Enabled = useReasoningV2Enabled();
   const readinessEnabled = useReadinessEnabled();
+  const evidenceChangesEnabled = useEvidenceChangesEnabled();
   const reasoningV2Result = useMemo(() => {
     if (!reasoningV2Enabled) return null;
     return buildReasoningV2ViewModel({
@@ -654,6 +657,26 @@ export function HearingWarRoom({
                 stage,
               }}
               workflowProfileHint={pilotHeader?.profile ?? null}
+              loading={bundleLoading}
+            />
+
+            <EvidenceChangeDetectorPanel
+              compact
+              caseId={caseId}
+              reasoningV2Enabled={reasoningV2Enabled}
+              evidenceChangesEnabled={evidenceChangesEnabled}
+              reasoningResult={reasoningV2Result}
+              clientStressResult={clientStressForReadiness}
+              readinessInput={{
+                bundleMeta: bundleSource
+                  ? {
+                      documentCount: bundleSource.documentCount,
+                      combinedTextLength: bundleSource.combinedTextLength,
+                    }
+                  : null,
+                hearingMeta: { hearingDateIso, stage },
+                workflowProfileHint: pilotHeader?.profile ?? null,
+              }}
               loading={bundleLoading}
             />
 
