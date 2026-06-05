@@ -12,6 +12,7 @@ import { ControlRoomCockpit } from "./control-room/ControlRoomCockpit";
 import { ReasoningV2Panel } from "./control-room/ReasoningV2Panel";
 import { PreHearingReadinessBadge } from "./control-room/PreHearingReadinessBadge";
 import { EvidenceChangeDetectorPanel } from "./control-room/EvidenceChangeDetectorPanel";
+import { SolicitorExportBuilderPanel } from "./control-room/SolicitorExportBuilderPanel";
 import { buildReasoningV2ViewModel } from "@/lib/criminal/reasoning-v2/build-reasoning-v2-view-model";
 import { useReasoningV2Enabled } from "@/lib/criminal/reasoning-v2/reasoning-v2-flag";
 import { useClientStressEnabled } from "@/lib/criminal/client-stress-test/client-stress-flag";
@@ -20,6 +21,7 @@ import { loadClientStressSelection } from "@/lib/criminal/client-stress-test/cli
 import { ClientAccountStressTestPanel } from "./control-room/ClientAccountStressTestPanel";
 import { useReadinessEnabled } from "@/lib/criminal/pre-hearing-readiness/readiness-flag";
 import { useEvidenceChangesEnabled } from "@/lib/criminal/evidence-change-detector/evidence-change-flag";
+import { useExportsEnabled } from "@/lib/criminal/disclosure-export/export-flag";
 import { CaseWorkflowShell } from "./workflow/CaseWorkflowShell";
 import { buildCaseSummarySnippet } from "@/lib/criminal/build-case-summary-snippet";
 import { formatCaseBundleHealthLabel } from "@/lib/criminal/format-case-bundle-health";
@@ -194,6 +196,7 @@ export function CaseControlRoom({
   const reasoningV2Enabled = useReasoningV2Enabled();
   const readinessEnabled = useReadinessEnabled();
   const evidenceChangesEnabled = useEvidenceChangesEnabled();
+  const exportsEnabled = useExportsEnabled();
   const clientStressEnabled = useClientStressEnabled();
 
   useEffect(() => {
@@ -768,6 +771,23 @@ export function CaseControlRoom({
             caseId={caseId}
             reasoningV2Enabled={reasoningV2Enabled}
             evidenceChangesEnabled={evidenceChangesEnabled}
+            reasoningResult={reasoningV2Result}
+            clientStressResult={clientStressForReadiness}
+            readinessInput={{
+              bundleMeta: readinessBundleMeta,
+              hearingMeta: readinessHearingMeta,
+              workflowProfileHint: bundleSource?.header?.primaryEvalHook ?? null,
+            }}
+            loading={bundleSourceLoading}
+          />
+          <SolicitorExportBuilderPanel
+            caseId={caseId}
+            caseLabel={caseTitleDisplay}
+            clientLabel={clientLabel}
+            stage={readinessHearingMeta.stage}
+            hearingDateIso={readinessHearingMeta.hearingDateIso}
+            reasoningV2Enabled={reasoningV2Enabled}
+            exportsEnabled={exportsEnabled}
             reasoningResult={reasoningV2Result}
             clientStressResult={clientStressForReadiness}
             readinessInput={{
