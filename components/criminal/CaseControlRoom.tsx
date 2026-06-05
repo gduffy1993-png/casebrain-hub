@@ -9,6 +9,9 @@ import { ControlRoomAssistantDock } from "./control-room/ControlRoomAssistant";
 import { ControlRoomBattleboardAccordion } from "./control-room/ControlRoomBattleboardAccordion";
 import { CaseSummaryCard } from "./control-room/CaseSummaryCard";
 import { ControlRoomCockpit } from "./control-room/ControlRoomCockpit";
+import { ReasoningV2Panel } from "./control-room/ReasoningV2Panel";
+import { buildReasoningV2ViewModel } from "@/lib/criminal/reasoning-v2/build-reasoning-v2-view-model";
+import { useReasoningV2Enabled } from "@/lib/criminal/reasoning-v2/reasoning-v2-flag";
 import { CaseWorkflowShell } from "./workflow/CaseWorkflowShell";
 import { buildCaseSummarySnippet } from "@/lib/criminal/build-case-summary-snippet";
 import { formatCaseBundleHealthLabel } from "@/lib/criminal/format-case-bundle-health";
@@ -179,6 +182,8 @@ export function CaseControlRoom({
   const [battleboard, setBattleboard] = useState<BattleboardOutput | null>(null);
   const [battleboardLoading, setBattleboardLoading] = useState(true);
   const [bundleSource, setBundleSource] = useState<BundleSourceSummary | null>(null);
+  const [bundleSourceLoading, setBundleSourceLoading] = useState(true);
+  const reasoningV2Enabled = useReasoningV2Enabled();
 
   useEffect(() => {
     let cancelled = false;
@@ -223,6 +228,7 @@ export function CaseControlRoom({
 
   useEffect(() => {
     let cancelled = false;
+    setBundleSourceLoading(true);
     fetch(`/api/criminal/${caseId}/bundle-source`, { cache: "no-store", credentials: "include" })
       .then((r) => r.json())
       .then((res) => {
@@ -254,7 +260,10 @@ export function CaseControlRoom({
             : undefined,
         });
       })
-      .catch(() => {});
+      .catch(() => {})
+      .finally(() => {
+        if (!cancelled) setBundleSourceLoading(false);
+      });
     return () => {
       cancelled = true;
     };
@@ -272,6 +281,16 @@ export function CaseControlRoom({
   }, [defencePlan, battleboard]);
 
   const caseTitle = snapshot?.caseMeta?.title?.trim() || "Criminal case";
+
+  const reasoningV2Result = useMemo(() => {
+    if (!reasoningV2Enabled) return null;
+    return buildReasoningV2ViewModel({
+      frontMatterScan: bundleSource?.frontMatterScan,
+      snippets: bundleSource?.snippets,
+      combinedTextLength: bundleSource?.combinedTextLength,
+      matterLabel: caseTitle,
+    });
+  }, [reasoningV2Enabled, bundleSource, caseTitle]);
 
   const headerMeta = useMemo(
     () =>
@@ -341,6 +360,14 @@ export function CaseControlRoom({
   const filteredBattleboard = useMemo(
     () => filterBattleboardForWorkflowPilot(battleboard, workflowContext),
     [battleboard, workflowContext],
+  );
+
+  const existingBattleboardRoute = useMemo(
+    () =>
+      filteredBattleboard?.primary_route?.title ||
+      battleboard?.primary_route?.title ||
+      null,
+    [filteredBattleboard, battleboard],
   );
 
   const chaseItemsAll = useMemo(
@@ -688,6 +715,13 @@ export function CaseControlRoom({
               ) : undefined
             }
           />
+          {reasoningV2Enabled ? (
+            <ReasoningV2Panel
+              result={reasoningV2Result}
+              loading={bundleSourceLoading}
+              existingBattleboardRoute={existingBattleboardRoute}
+            />
+          ) : null}
           </CaseWorkflowShell>
         )}
 

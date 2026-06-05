@@ -318,6 +318,22 @@ function scoreScreenFields(
         fieldFail(runId, pack, manifest, screen, "MEDIUM", "strategy.weak_next_actions", String(actions.length), "≥3 next actions.", col, false),
       );
     }
+    const reasoningV2 = p.reasoningV2Panel as { lintIssues?: string[] } | undefined;
+    if (reasoningV2?.lintIssues?.length) {
+      issues.push(
+        fieldFail(
+          runId,
+          pack,
+          manifest,
+          screen,
+          "HIGH",
+          "wording.reasoning_v2_internal_leak",
+          reasoningV2.lintIssues.join("; "),
+          "No internal/eval/corpus text in Reasoning V2 panel when flag is on.",
+          col,
+        ),
+      );
+    }
   }
 
   if (screen === "hearing_war_room") {

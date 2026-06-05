@@ -717,11 +717,80 @@ statement, officer MG11, BWV and photographs. Do not state final location as fac
 | **4a** | **Proof Map / Evidence Dependency Graph** — evaluator, gold expects, artifact reports |
 | **4b** | **Battleboard** — strategy view of Proof Map + expects |
 | **4c** | **War Room** — hearing-action view of Proof Map + expects |
-| **4d** | **Product UI** (Control Room, Disclosure Chase, Supervisor, Client) — **last** |
+| **4d** | **Product UI** (Control Room, Disclosure Chase, Supervisor, Client) — **last** — **slice 1–2 shipped:** read-only Reasoning panel + War Room bridge behind `?reasoningV2=1` / `localStorage: casebrain:reasoningV2=true`; route-difference notice; empty-state reasons; auditor probe |
 | **4e** | **Strategy corpus expansion** — first **1k** scored fictional corpus + holdout packs (§9.7) — **after 4c** |
 | **4f** | **Synthetic Criminal Bundle Factory** — generator architecture to **50k** variants; staged materialisation only (§9.8) |
 
 Until **4a–4c** pass on gold (and agreed local exemplars), **4d UI stays off**. Until **4e** design is locked and **4c** is green, **do not** mass-generate bundles or tune on holdout. **50k is long-term private stress capacity — not a near-term deliverable.**
+
+### 9.6.1 Phase 4d — product UI bridge (current)
+
+**Status:** **4d slice 2 shipped — PR-ready** — Reasoning V2 panel hardened for pilot review (route consistency notice, empty-state reasons, sanitizer lint, War Room bridge focus, optional auditor probe). Flag remains **default OFF**.
+
+**Enable (pilot/dev only):** `?reasoningV2=1` or `localStorage: casebrain:reasoningV2=true`.
+
+### 9.6.2 Product layers after 4d UI bridge (planned — do not build yet)
+
+Order after **4d UI bridge** is green in pilot:
+
+1. **Solicitor feedback marking loop** — mark reasoning sections helpful / wrong / needs review; feeds eval without client text in repo.
+2. **Client Account Stress-Test** — safe client-facing summary stress lane (provisional wording gates).
+3. **New Evidence Change Detector** — diff served material vs last reasoning snapshot; flag route impact.
+4. **Real-layout PDF/OCR stress lane** — private ingest (§9.7 lane B); not blocking 4d.
+5. **Audio-to-Bundle Loop** — see §9.6.3; **docs-only future lane — do not build yet**.
+6. **Export pack generator** — solicitor-safe hearing/disclosure export from same spine (no duplicate reasoning).
+7. **Supervisor QA view** — read-only oversight of route + disclosure chase + human-review flags.
+8. **Security / audit trail** — who viewed/changed strategy position; reasoning panel access log.
+9. **Offence element map expansion** — richer proof points per family; still source-backed.
+10. **Phase 4f scale-up** — corpus factory to 5k / 10k / 50k **after** product layers 1–8 are stable.
+
+### 9.6.3 Audio-to-Bundle Loop (planned — do not build yet)
+
+**Status:** **Roadmap only.** No product UI, transcription APIs, DB/schema changes, or audio files in repo until this lane is explicitly scoped and gated.
+
+**Principle:** Audio must **never** become a free-standing “AI heard it so it is true” feature. It feeds the **same source-backed spine** as text bundles:
+
+`audio transcript → source-backed issue → contradiction → Proof Map → Battleboard → War Room → solicitor review`
+
+**Future ingestion sources (examples):**
+
+| Source type | Examples |
+|-------------|----------|
+| Emergency / dispatch | 999 calls, CAD audio |
+| Police material | BWV audio, interview recordings, custody audio |
+| Messaging | WhatsApp voice notes |
+| Defence-side | Client voice notes (instructions / account — provisional only) |
+
+**Future structured output (per clip or segment):**
+
+- Transcript (provisional until solicitor review)
+- Speaker split (where reliable)
+- Source label (999 / BWV / interview / custody / messaging / client note)
+- Timeline events (time-coded where available)
+- Admissions / denials (tagged provisional)
+- Contradictions vs other served material
+- Interview fairness / PACE issues (flag only — not legal advice)
+- Missing source material (what audio references but is not on file)
+- Proof-map links (which proof points affected)
+- Battleboard impact (route pressure / helping / hurting — conditional)
+- War Room safe hearing line + do-not-overstate warning
+
+**Cross-source conflict example (target behaviour):**
+
+If **999 audio** says X, **MG5** says Y, and **BWV** says Z, CaseBrain should flag:
+
+- **Source conflict** — what differs, on which papers/clips
+- **Why it matters** — which element or proof point is in play
+- **What proof point it affects** — link to Proof Map id internally; product shows label only
+- **What to chase** — disclosure / continuity / enhanced transcript / original recording
+- **What not to overstate** — do not treat any single clip as agreed fact; solicitor review required
+
+**Non-negotiables:**
+
+- No “proves innocence”, “Crown collapses”, “guaranteed”, or outcome predictions from audio alone.
+- Transcripts are **provisional** until reviewed; human-review flag when clip quality, speaker ID, or cross-source conflict is unresolved.
+- Audio ingest is a **private stress lane** (like PDF/OCR lane B) until eval gates exist — no client audio in git.
+- Product UI for audio playback/transcription is **out of scope** until 4d Reasoning bridge is stable in pilot.
 
 ---
 

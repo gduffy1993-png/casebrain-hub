@@ -54,6 +54,9 @@ import {
 } from "@/lib/criminal/pilot-workflow";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import { usePilotDemoSession } from "@/components/criminal/workflow/usePilotDemoSession";
+import { WarRoomReasoningBridge } from "@/components/criminal/control-room/WarRoomReasoningBridge";
+import { buildReasoningV2ViewModel } from "@/lib/criminal/reasoning-v2/build-reasoning-v2-view-model";
+import { useReasoningV2Enabled } from "@/lib/criminal/reasoning-v2/reasoning-v2-flag";
 
 const ABOVE_FOLD_LIST_CAP = 5;
 
@@ -80,6 +83,11 @@ type BundleSourceSummary = {
   frontMatterScan?: string | null;
   header?: { shortTitle: string | null; stage: string | null; accused?: string | null };
   caseMetadata?: ExtractedBundleCaseMetadata | null;
+  snippets?: {
+    mg5?: string | null;
+    mg6?: string | null;
+    exhibits?: string | null;
+  };
 };
 
 export type HearingWarRoomProps = {
@@ -304,6 +312,13 @@ export function HearingWarRoom({
               }
             : undefined,
           caseMetadata: d.caseMetadata ?? null,
+          snippets: d.snippets
+            ? {
+                mg5: d.snippets.mg5 ?? null,
+                mg6: d.snippets.mg6 ?? null,
+                exhibits: d.snippets.exhibits ?? null,
+              }
+            : undefined,
         });
       })
       .catch(() => {})
@@ -352,6 +367,16 @@ export function HearingWarRoom({
   );
   const caseTitle = pilotHeader?.displayTitle ?? pilotHeader?.title ?? caseTitleBase;
   const allegation = pilotHeader?.allegation ?? allegationBase;
+  const reasoningV2Enabled = useReasoningV2Enabled();
+  const reasoningV2Result = useMemo(() => {
+    if (!reasoningV2Enabled) return null;
+    return buildReasoningV2ViewModel({
+      frontMatterScan: bundleSource?.frontMatterScan,
+      snippets: bundleSource?.snippets,
+      combinedTextLength: bundleSource?.combinedTextLength,
+      matterLabel: caseTitle,
+    });
+  }, [reasoningV2Enabled, bundleSource, caseTitle]);
   const workflowContext = useMemo(
     () => ({
       caseTitle,
@@ -596,6 +621,10 @@ export function HearingWarRoom({
                 Provisional · conditional on served material · solicitor review required
               </p>
             </section>
+
+            {reasoningV2Enabled && reasoningV2Result?.available ? (
+              <WarRoomReasoningBridge warRoom={reasoningV2Result.warRoom} />
+            ) : null}
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               <BriefListCard
