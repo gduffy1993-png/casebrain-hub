@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { Scale, ShieldAlert } from "lucide-react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { ChevronDown, ChevronUp, Scale, ShieldAlert } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { workflowCard, workflowMuted, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
@@ -16,6 +16,8 @@ import {
   CLIENT_ACCOUNT_OPTIONS,
   CLIENT_STRESS_NOTE_MAX_CHARS,
   type ClientAccountOption,
+  type ClientInstructionChecklistItem,
+  type DoNotConcedeGuardItem,
 } from "@/lib/criminal/client-stress-test/client-stress-types";
 import type { ReasoningV2Result, ReasoningV2ViewModel } from "@/lib/criminal/reasoning-v2/reasoning-v2-types";
 import { REASONING_V2_UNAVAILABLE_MESSAGE } from "@/lib/criminal/reasoning-v2/reasoning-v2-types";
@@ -27,6 +29,131 @@ export type ClientAccountStressTestPanelProps = {
   reasoningV2Enabled: boolean;
   reasoningResult: ReasoningV2Result | null;
 };
+
+function CollapsibleBlock({
+  title,
+  defaultOpen = true,
+  children,
+}: {
+  title: string;
+  defaultOpen?: boolean;
+  children: ReactNode;
+}) {
+  const [open, setOpen] = useState(defaultOpen);
+  return (
+    <div className="min-w-0 border-t border-slate-100 pt-2 first:border-t-0 first:pt-0">
+      <button
+        type="button"
+        className="flex w-full items-center justify-between gap-2 text-left"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+      >
+        <p className={workflowSectionTitle}>{title}</p>
+        {open ? (
+          <ChevronUp className="h-3.5 w-3.5 text-slate-500 shrink-0" />
+        ) : (
+          <ChevronDown className="h-3.5 w-3.5 text-slate-500 shrink-0" />
+        )}
+      </button>
+      {open ? <div className="mt-1.5 min-w-0">{children}</div> : null}
+    </div>
+  );
+}
+
+function ExpandableChecklist({
+  items,
+  previewCount = 4,
+}: {
+  items: ClientInstructionChecklistItem[];
+  previewCount?: number;
+}) {
+  const [expanded, setExpanded] = useState(false);
+  if (!items.length) {
+    return <p className={`text-xs ${workflowMuted}`}>None flagged on current papers.</p>;
+  }
+  const shown = expanded ? items : items.slice(0, previewCount);
+  const hidden = items.length - previewCount;
+
+  return (
+    <div className="min-w-0 space-y-2">
+      {shown.map((item, i) => (
+        <div
+          key={`${i}-${item.questionText.slice(0, 32)}`}
+          className="rounded-md border border-slate-100 bg-slate-50/60 px-2.5 py-2 text-xs text-slate-800"
+        >
+          <p className="font-medium break-words">{item.questionText}</p>
+          <p className={`mt-1 ${workflowMuted} break-words`}>{item.whyItMatters}</p>
+          {item.provisional ? (
+            <Badge variant="secondary" size="sm" className="mt-1.5 text-[10px] bg-amber-50 text-amber-900">
+              Provisional — thin source
+            </Badge>
+          ) : null}
+        </div>
+      ))}
+      {items.length > previewCount ? (
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
+          className="h-7 px-1 text-[11px] text-violet-800"
+          onClick={() => setExpanded((v) => !v)}
+        >
+          {expanded ? "Show less" : `Show ${hidden} more`}
+        </Button>
+      ) : null}
+    </div>
+  );
+}
+
+function ExpandableGuards({
+  items,
+  previewCount = 4,
+}: {
+  items: DoNotConcedeGuardItem[];
+  previewCount?: number;
+}) {
+  const [expanded, setExpanded] = useState(false);
+  if (!items.length) {
+    return <p className={`text-xs ${workflowMuted}`}>None flagged on current papers.</p>;
+  }
+  const shown = expanded ? items : items.slice(0, previewCount);
+  const hidden = items.length - previewCount;
+
+  return (
+    <div className="min-w-0 space-y-2">
+      {shown.map((g, i) => (
+        <div
+          key={`${i}-${g.concessionRiskLabel}`}
+          className="rounded-md border border-amber-100 bg-amber-50/40 px-2.5 py-2 text-xs text-slate-800"
+        >
+          <p className="font-medium text-amber-950 break-words">{g.concessionRiskLabel}</p>
+          <p className="mt-1 break-words">{g.whyNotToConcedeYet}</p>
+          <p className={`mt-1 ${workflowMuted} break-words`}>{g.sourceOrMissingBasis}</p>
+          <p className="mt-1 text-violet-900 break-words">
+            <span className="font-medium">Safe wording: </span>
+            {g.safeWordingAlternative}
+          </p>
+          {g.solicitorReviewRequired ? (
+            <Badge variant="secondary" size="sm" className="mt-1.5 text-[10px] bg-amber-50 text-amber-900">
+              Solicitor review before conceding
+            </Badge>
+          ) : null}
+        </div>
+      ))}
+      {items.length > previewCount ? (
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
+          className="h-7 px-1 text-[11px] text-violet-800"
+          onClick={() => setExpanded((v) => !v)}
+        >
+          {expanded ? "Show less" : `Show ${hidden} more`}
+        </Button>
+      ) : null}
+    </div>
+  );
+}
 
 function Section({ title, items }: { title: string; items: string[] }) {
   if (!items.length) {
@@ -215,14 +342,16 @@ export function ClientAccountStressTestPanel({
                   items={stressOutcome.missingBeforeAssessment}
                 />
                 <Section title="5. Source conflicts" items={stressOutcome.sourceConflicts} />
+                <CollapsibleBlock title="Questions to take from client" defaultOpen>
+                  <ExpandableChecklist items={stressOutcome.clientInstructionChecklist} />
+                </CollapsibleBlock>
+                <CollapsibleBlock title="Do not concede yet" defaultOpen>
+                  <ExpandableGuards items={stressOutcome.doNotConcedeGuards} />
+                </CollapsibleBlock>
+                <Section title="6. What would change the route" items={stressOutcome.whatWouldChangeRoute} />
+                <Section title="7. What not to overstate" items={stressOutcome.whatNotToOverstate} />
                 <Section
-                  title="6. Questions for client instructions"
-                  items={stressOutcome.clientInstructionQuestions}
-                />
-                <Section title="7. What would change the route" items={stressOutcome.whatWouldChangeRoute} />
-                <Section title="8. What not to overstate" items={stressOutcome.whatNotToOverstate} />
-                <Section
-                  title="9. Solicitor review"
+                  title="8. Solicitor review"
                   items={[
                     stressOutcome.solicitorReviewRequired
                       ? "Yes — review before relying on account vs papers comparison."

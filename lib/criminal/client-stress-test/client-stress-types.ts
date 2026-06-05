@@ -1,4 +1,11 @@
-/** Client Account Stress-Test — slice 1 (local only, no DB). */
+/** Client Account Stress-Test — slices 1–2 (local only, no DB). */
+
+import type {
+  ClientInstructionChecklistItem,
+  DoNotConcedeGuardItem,
+} from "./client-stress-slice2-types";
+
+export type { ClientInstructionChecklistItem, DoNotConcedeGuardItem, ReasoningCategory } from "./client-stress-slice2-types";
 
 export type ClientAccountOption =
   | "denies_presence"
@@ -42,7 +49,12 @@ export type ClientStressResult = {
   underminesAccount: string[];
   missingBeforeAssessment: string[];
   sourceConflicts: string[];
+  /** Slice 1 string list — mirrors checklist question text for tests/compat. */
   clientInstructionQuestions: string[];
+  /** Slice 2 — structured questions for client instructions. */
+  clientInstructionChecklist: ClientInstructionChecklistItem[];
+  /** Slice 2 — do-not-concede before hearing/export. */
+  doNotConcedeGuards: DoNotConcedeGuardItem[];
   whatWouldChangeRoute: string[];
   whatNotToOverstate: string[];
   solicitorReviewRequired: boolean;

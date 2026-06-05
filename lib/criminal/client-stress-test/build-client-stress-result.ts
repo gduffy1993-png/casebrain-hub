@@ -1,5 +1,10 @@
 import type { ReasoningV2ViewModel } from "@/lib/criminal/reasoning-v2/reasoning-v2-types";
 import { sanitizeClientStressLine } from "./client-stress-sanitize";
+import {
+  buildClientInstructionChecklist,
+  buildDoNotConcedeGuards,
+  slice2ContextFromReasoning,
+} from "./build-client-stress-slice2";
 import type {
   ClientAccountOption,
   ClientStressInput,
@@ -308,6 +313,11 @@ function stressForOptions(
     solicitorReviewReasons.length > 0 ||
     missing.length >= 2;
 
+  const slice2Ctx = slice2ContextFromReasoning(reasoning, opts);
+  const clientInstructionChecklist = buildClientInstructionChecklist(slice2Ctx);
+  const doNotConcedeGuards = buildDoNotConcedeGuards(slice2Ctx);
+  const checklistQuestions = clientInstructionChecklist.map((c) => c.questionText);
+
   return {
     available: true,
     accountSummary: buildAccountSummary(input),
@@ -315,7 +325,9 @@ function stressForOptions(
     underminesAccount: dedupe(undermines, 8),
     missingBeforeAssessment: dedupe(missingLines, 8),
     sourceConflicts: dedupe(conflicts, 6),
-    clientInstructionQuestions: dedupe(questions, 10),
+    clientInstructionQuestions: dedupe([...questions, ...checklistQuestions], 12),
+    clientInstructionChecklist,
+    doNotConcedeGuards,
     whatWouldChangeRoute,
     whatNotToOverstate,
     solicitorReviewRequired,
