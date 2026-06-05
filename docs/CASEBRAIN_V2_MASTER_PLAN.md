@@ -740,15 +740,17 @@ Until **4a–4c** pass on gold (and agreed local exemplars), **4d UI stays off**
 | 3 | **New Evidence Change Detector** | **Slice 1 shipped (local):** snapshot compare (`?evidenceChanges=1` + `?reasoningV2=1`); `lib/criminal/evidence-change-detector/README.md` |
 | 4 | **Disclosure letter / export builder** | **Slices 1–2 shipped (local):** disclosure chase + hearing prep + **case handover summary** (`?exports=1` + `?reasoningV2=1`); `lib/criminal/disclosure-export/README.md` |
 | 5 | **Supervisor review queue + case handover** | **Slice 1 shipped (local):** per-case Supervisor QA panel (`?supervisor=1` + `?reasoningV2=1`); `lib/criminal/supervisor-qa/README.md` |
-| 6 | **Client explanation mode** | Planned — plain-English solicitor-safe client summary (papers / missing / why not finalised) |
+| 6 | **Client explanation mode** | **Slice 1 shipped (local):** plain-English draft (`?clientExplain=1` + `?reasoningV2=1`); `lib/criminal/client-explanation/README.md` |
 | 7 | **Plea/credit pressure warning** | Planned — timing/stage pressure only; no plea advice; optional |
 | 8 | **Pre-hearing readiness score** | **Slice 1 shipped (local):** flag-gated badge (`?readiness=1` + `?reasoningV2=1`); `lib/criminal/pre-hearing-readiness/README.md` |
 | 9 | **Route comparison** | Planned — identity / role / causation / self-defence / possession vs supply / mitigation with helps/hurts/missing/collapse |
 | 10 | **Real-layout PDF/OCR stress lane** | Planned — private ingest (§9.7 lane B) |
 | 11 | **Audio-to-Bundle Loop** | **Docs only** — §9.6.3 |
-| 12 | **Phase 4f scale-up (5k / 10k / 50k)** | **After** workflows 1–9 are stable — §9.8 |
+| 12 | **Phase 4f scale-up (5k / 10k / 50k)** | **After** real-PDF + real-matter lanes — §9.8 |
 
-**Do not build yet:** NECD slice 2+ (auto-snapshot on upload), export slice 3+ (PDF download), supervisor multi-case queue (slice 2), client explanation (6), plea warning (7), route comparison (9), PDF/OCR (10), audio (11), mass corpus (12).
+**Stress-test order (agreed — not 50k real PDFs):** (1) small real-layout PDF/OCR lane, (2) 10–20 anonymised real-matter auditor pack when available, (3) staged manifest/text scale 5k → 10k → 50k addressable scenarios, (4) PDF/OCR on **samples** only, (5) goal = fingerprint collapse + workflow safety, not vanity throughput.
+
+**Do not build yet:** NECD slice 2+ (auto-snapshot on upload), export slice 3+ (PDF download), supervisor multi-case queue (slice 2), client explanation slice 2 (export type), plea warning (7), route comparison (9), PDF/OCR (10), audio (11), mass corpus (12).
 
 ### 9.6.3 Audio-to-Bundle Loop (planned — do not build yet)
 
