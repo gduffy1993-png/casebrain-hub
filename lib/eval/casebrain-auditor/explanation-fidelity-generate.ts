@@ -369,6 +369,77 @@ function detectContradictions(text: string, lower: string): ContradictionBlock[]
     });
   }
 
+  out.push(...detectStructuredContradictionBlocks(text));
+
+  return dedupeContradictions(out);
+}
+
+function dedupeContradictions(blocks: ContradictionBlock[]): ContradictionBlock[] {
+  const seen = new Set<string>();
+  return blocks.filter((b) => {
+    const key = b.issue.toLowerCase().slice(0, 80);
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+/** Parse standard structured contradiction sections (corpus factory + gold-compatible). */
+function detectStructuredContradictionBlocks(text: string): ContradictionBlock[] {
+  const out: ContradictionBlock[] = [];
+
+  const sectionBody =
+    text.match(/=== SECTION: CONTRADICTIONS ===([\s\S]*?)(?:\n=== SECTION:|$)/i)?.[1] ?? "";
+  const chunks = sectionBody.split(/## CONTRADICTION — /i).slice(1);
+
+  for (const chunk of chunks) {
+    const issue = chunk.split("\n")[0]?.trim();
+    if (!issue) continue;
+    const sourceAM = chunk.match(/\*\*Source A[^*]*\*\*:\s*(.+)/i);
+    const sourceBM = chunk.match(/\*\*Source B[^*]*\*\*:\s*(.+)/i);
+    const basisM = chunk.match(/\*\*Source basis:\*\*\s*(.+)/i);
+    out.push({
+      issue,
+      sourceSection: chunk.match(/\*\*Source section:\*\*\s*(.+)/i)?.[1]?.trim() ?? "Bundle contradictions section",
+      sourceBasis:
+        basisM?.[1]?.trim() ??
+        [sourceAM?.[1], sourceBM?.[1]].filter(Boolean).join(" vs ") ??
+        "Structured contradiction block on bundle — sources conflict.",
+      status: "conflicting",
+      whyItMatters:
+        "Conflicting accounts or documents on the bundle prevent safely treating the point as agreed — route and hearing position remain provisional.",
+      safeNextAction:
+        "Ask Crown to reconcile sources on file; chase missing material; do not concede the disputed point until reconciled.",
+      confidenceTag: /solicitor review|needs review/i.test(chunk) ? "needs_solicitor_review" : "provisional",
+      doNotOverstate: "Do not merge conflicting sources into one agreed fact on current papers.",
+      sourceA: sourceAM?.[1]?.trim() ?? "Source A on bundle",
+      sourceB: sourceBM?.[1]?.trim() ?? "Source B on bundle",
+      reconciliationStatus: "conflicting",
+    });
+  }
+
+  for (const match of text.matchAll(/## Contradiction flag:\s*(.+)/gi)) {
+    const issue = match[1]?.trim();
+    if (!issue) continue;
+    const after = text.slice(match.index ?? 0, (match.index ?? 0) + 400);
+    const lineA = after.match(/-\s*(.+?):\s*partial account/i)?.[1]?.trim();
+    const lineB = after.match(/-\s*(.+?):\s*conflicting/i)?.[1]?.trim();
+    out.push({
+      issue,
+      sourceSection: "MG5 / bundle",
+      sourceBasis: `${lineA ?? "Source A"} conflicts with ${lineB ?? "Source B"} on served papers.`,
+      status: "conflicting",
+      whyItMatters:
+        "Unresolved contradiction affects whether Crown can safely rely on linked proof points before plea or hearing.",
+      safeNextAction: "Record conflict on file; chase reconciliation material; take instructions.",
+      confidenceTag: "provisional",
+      doNotOverstate: "Do not treat conflicting accounts as reconciled without served material.",
+      sourceA: lineA ?? "First account on bundle",
+      sourceB: lineB ?? "Conflicting account on bundle",
+      reconciliationStatus: "conflicting",
+    });
+  }
+
   return out;
 }
 

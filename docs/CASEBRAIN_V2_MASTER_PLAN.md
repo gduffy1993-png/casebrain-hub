@@ -727,7 +727,7 @@ Until **4a–4c** pass on gold (and agreed local exemplars), **4d UI stays off**
 
 ## 9.7 Strategy corpus expansion + holdout stress pack (Phase 4e — planned)
 
-**Status:** **Plan only** — document now; **implement after Phase 4c War Room evaluator** merges. This is the **first production run** of the **Synthetic Criminal Bundle Factory** (§9.8) at **1,000 cases** — not a throwaway dataset.
+**Status:** **4e-slice-3 shipped** — holdout milestone reporting, anti-tautology checks, trap tests, threshold baseline. See `docs/strategy-corpus/README.md`.
 
 **Goal:** Train and test **pattern survival** across unseen bundles — not memorise individual PDFs or bundle IDs.
 
@@ -784,18 +784,15 @@ Include deliberate variation (not one “perfect” bundle shape):
 - Do **not** use the corpus to **memorise** outputs (no answer-key matching per PDF filename).
 - Do **not** start mass PDF generation **before** 4c War Room evaluator exists (strategy spine must be scoreable end-to-end).
 
-### 9.7.6 Gates and commands (future — scaffold TBD)
-
-Planned packs under `docs/bundle-fidelity-set/` (structure TBD): `corpus-discovery/`, `corpus-validation/`, `corpus-holdout/` — truth keys in repo; bundle/PDF bodies gitignored or generated in CI sandbox.
-
-Example future commands (not implemented yet):
+### 9.7.6 Gates and commands
 
 ```powershell
-npx tsx scripts/strategy-corpus-fidelity.ts --pack discovery --blind
-npx tsx scripts/strategy-corpus-fidelity.ts --pack holdout --blind  # release only
+npx tsx scripts/strategy-corpus.ts --count 50 --split discovery --canary
+npx tsx scripts/strategy-corpus.ts --count 1000 --split all
+npx tsx scripts/strategy-corpus.test.ts
 ```
 
-Reports: `artifacts/casebrain-auditor/latest/strategy-corpus/` (gitignored).
+Reports: `artifacts/casebrain-auditor/latest/strategy-corpus/` (gitignored). Generated bodies: `artifacts/casebrain-auditor/cache/strategy-corpus/` (gitignored).
 
 ### 9.7.7 Relationship to Phase 12 and §9.8
 

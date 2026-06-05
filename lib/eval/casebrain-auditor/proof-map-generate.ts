@@ -16,13 +16,23 @@ function detectLens(charge: string, bundleText: string): ProofMapOffenceLens {
   if (/dangerous driving|careless driving|road traffic|motoring|s\.?\s*2\s+rta/i.test(c + t)) {
     return "motoring";
   }
-  if (/pervert.*course of justice|common law.*procedural/i.test(c)) return "generic_provisional";
+  if (/pervert.*course of justice|witness intimidation|intimidat.*witness|s\.?\s*51/i.test(c)) {
+    return "generic_provisional";
+  }
+  if (/serious offence|provisional charge wording|unclear offence|pending review/i.test(c)) {
+    return "generic_provisional";
+  }
   if (/section\s*20|section\s*18|gbh|wounding|oapa/i.test(c)) return "violence_gbh";
   if (/fraud|false representation/i.test(c)) return "fraud";
   if (/pwits|intent to supply|class a/i.test(c)) return "pwits";
   if (/robbery|s\.?\s*8/i.test(c)) return "robbery_id";
-  if (/generic provisional|human review/i.test(t)) return "generic_provisional";
-  return "unknown";
+  if (/generic provisional|human review|provisional charge|serious caution/i.test(t)) {
+    return "generic_provisional";
+  }
+  if (/fictional test bundle|synthetic criminal bundle factory/i.test(t)) {
+    return "generic_provisional";
+  }
+  return "generic_provisional";
 }
 
 function snippet(line: string, max = 220): string {
@@ -96,17 +106,35 @@ function motoringProofPoints(charge: string, metaBasis: string): ProofMapProofPo
 }
 
 function genericProvisionalProofPoints(charge: string, metaBasis: string): ProofMapProofPoint[] {
+  const lower = charge.toLowerCase();
+  const actLabel = /witness intimidation/i.test(lower)
+    ? "Intimidation act / witness pressure"
+    : /serious offence|provisional charge/i.test(lower)
+      ? "Conduct / act basis (provisional charge elements)"
+      : "Act tending to pervert / impede justice";
+
   return [
     {
       id: "pp-act-tending",
-      label: "Act tending to pervert / impede justice",
+      label: actLabel,
       crownMustProve:
-        "Crown must prove an act tending and intended to pervert the course of justice — sketch only; verify elements with solicitor.",
+        "Crown must prove the act element of the charge — sketch only; verify particulars with solicitor on served papers.",
       confidenceTag: "provisional",
       humanReviewRequired: true,
       sourceSection: "Charge sheet / MG5",
       sourceBasis: metaBasis || charge,
       doNotOverstate: "Do not map to fraud/PWITS/violence families on background text alone.",
+    },
+    {
+      id: "pp-identity-participation",
+      label: "Identity / participation",
+      crownMustProve:
+        "Crown must prove the defendant participated in the conduct — identification/participation remains provisional on thin papers.",
+      confidenceTag: "provisional",
+      humanReviewRequired: true,
+      sourceSection: "MG5 / witness material",
+      sourceBasis: metaBasis || "Participation/account on bundle — verify attribution on served material.",
+      doNotOverstate: "Do not treat partial MG11 or summaries as final participation proof.",
     },
     {
       id: "pp-intention-knowledge",
@@ -116,7 +144,7 @@ function genericProvisionalProofPoints(charge: string, metaBasis: string): Proof
       confidenceTag: "needs_solicitor_review",
       humanReviewRequired: true,
       sourceSection: "MG5",
-      sourceBasis: "MG5 alleges witness contact; phone/message export not served on current papers.",
+      sourceBasis: "MG5 alleges conduct context; interview/message export may be outstanding on current papers.",
       doNotOverstate: "Do not state intent is proved from MG11 summary alone.",
     },
     {
@@ -132,12 +160,22 @@ function genericProvisionalProofPoints(charge: string, metaBasis: string): Proof
     {
       id: "pp-disclosure-fair-trial",
       label: "Disclosure completeness",
-      crownMustProve: "N/A — chase phone download, interview, unused material before fixing route.",
+      crownMustProve: "N/A — chase core source material, interview, and unused schedule before fixing route.",
       confidenceTag: "provisional",
       humanReviewRequired: true,
       sourceSection: "MG6 / outstanding list",
       sourceBasis: "Outstanding: phone/message download, interview, unused schedule draft.",
       doNotOverstate: "Do not concede evidential strength while core exports are outstanding.",
+    },
+    {
+      id: "pp-source-material-review",
+      label: "Source material / human review gate",
+      crownMustProve: "N/A — serious/provisional offence mapping requires solicitor review before fixing strategy.",
+      confidenceTag: "needs_solicitor_review",
+      humanReviewRequired: true,
+      sourceSection: "Bundle / charge",
+      sourceBasis: charge || "Provisional or serious offence on papers",
+      doNotOverstate: "Do not finalise offence-specific routes until charge family and served material are confirmed.",
     },
   ];
 }
@@ -646,31 +684,6 @@ function robberyIdProofPoints(charge: string, metaBasis: string, bundleText: str
   ];
 }
 
-function unknownProofPoints(charge: string): ProofMapProofPoint[] {
-  return [
-    {
-      id: "pp-charge-elements",
-      label: "Charge elements (generic)",
-      crownMustProve: "Crown must prove charge elements — **needs solicitor review** for offence family mapping.",
-      confidenceTag: "needs_solicitor_review",
-      humanReviewRequired: true,
-      sourceSection: "Charge sheet",
-      sourceBasis: charge || "Charge wording on bundle",
-      doNotOverstate: "Do not apply offence-specific routes until charge family is confirmed.",
-    },
-    {
-      id: "pp-disclosure-fair-trial",
-      label: "Disclosure completeness",
-      crownMustProve: "N/A — map missing material from Phase 3.5 explanation blocks.",
-      confidenceTag: "provisional",
-      humanReviewRequired: true,
-      sourceSection: "Bundle",
-      sourceBasis: "See explanation-fidelity missing material and MG6 rows.",
-      doNotOverstate: "Generic provisional map only — human review required.",
-    },
-  ];
-}
-
 function proofPointsForLens(
   lens: ProofMapOffenceLens,
   charge: string,
@@ -691,7 +704,7 @@ function proofPointsForLens(
     case "robbery_id":
       return robberyIdProofPoints(charge, metaBasis, bundleText);
     default:
-      return unknownProofPoints(charge);
+      return genericProvisionalProofPoints(charge, metaBasis);
   }
 }
 
@@ -860,10 +873,16 @@ function mapIssueToProofPoints(issue: string, lens: ProofMapOffenceLens): string
     return ["pp-disclosure-fair-trial"];
   }
   if (lens === "generic_provisional") {
-    if (/phone|message|interview|mg11|unused|mg6/.test(i)) {
-      return ["pp-witness-messaging", "pp-intention-knowledge", "pp-disclosure-fair-trial"];
+    if (/phone|message|device|handset|subscriber|attribution/.test(i)) {
+      return ["pp-witness-messaging", "pp-intention-knowledge", "pp-identity-participation", "pp-disclosure-fair-trial"];
     }
-    return ["pp-disclosure-fair-trial"];
+    if (/witness|identification|participation|intimidation/.test(i)) {
+      return ["pp-witness-messaging", "pp-identity-participation", "pp-act-tending", "pp-disclosure-fair-trial"];
+    }
+    if (/timing|date|charge|wording|contradiction|conflict/.test(i)) {
+      return ["pp-act-tending", "pp-intention-knowledge", "pp-disclosure-fair-trial"];
+    }
+    return ["pp-act-tending", "pp-disclosure-fair-trial", "pp-source-material-review"];
   }
   if (lens === "violence_gbh") {
     return violenceProofPointIdsForIssue(issue);
@@ -877,7 +896,7 @@ function mapIssueToProofPoints(issue: string, lens: ProofMapOffenceLens): string
   if (lens === "robbery_id") {
     return robberyProofPointIdsForIssue(issue);
   }
-  return ["pp-charge-elements", "pp-disclosure-fair-trial"];
+  return ["pp-act-tending", "pp-disclosure-fair-trial", "pp-source-material-review"];
 }
 
 function linkTypeForBlock(block: ExplanationBlock): ProofMapLinkType {
@@ -929,7 +948,14 @@ function linksFromContradiction(block: ContradictionBlock, lens: ProofMapOffence
       case "motoring":
         return ["pp-collision-causation", "pp-driver-identification"];
       case "generic_provisional":
-        return ["pp-witness-messaging", "pp-intention-knowledge"];
+        return [
+          "pp-act-tending",
+          "pp-identity-participation",
+          "pp-intention-knowledge",
+          "pp-witness-messaging",
+          "pp-disclosure-fair-trial",
+          "pp-source-material-review",
+        ];
       case "violence_gbh":
         return [
           "pp-causation",
@@ -964,7 +990,12 @@ function linksFromContradiction(block: ContradictionBlock, lens: ProofMapOffence
           "pp-force-threat",
         ];
       default:
-        return ["pp-charge-elements", "pp-disclosure-fair-trial"];
+        return [
+          "pp-act-tending",
+          "pp-identity-participation",
+          "pp-disclosure-fair-trial",
+          "pp-source-material-review",
+        ];
     }
   })();
 
@@ -1018,12 +1049,44 @@ export function generateProofMap(
   const proofPoints = proofPointsForLens(lens, charge, metaBasis, bundleText);
 
   const humanReviewReasons: string[] = [];
-  if (lens === "unknown") humanReviewReasons.push("Offence lens unmapped — generic proof map only.");
+  if (lens === "unknown") {
+    humanReviewReasons.push("Offence lens unmapped — generic provisional proof map only; solicitor review required.");
+  }
   if (proofPoints.some((p) => p.humanReviewRequired)) {
     humanReviewReasons.push("One or more proof points flagged for human review.");
   }
   if (lens === "generic_provisional") {
     humanReviewReasons.push("Generic provisional offence — verify family mapping with solicitor.");
+  }
+  if (
+    lens === "violence_gbh" &&
+    (isS18OrIntentCharge(charge) || bundleMentionsSelfDefence(bundleText))
+  ) {
+    humanReviewReasons.push(
+      "Serious violence charge or self-defence pattern — solicitor review before fixing hearing position.",
+    );
+  }
+  if (
+    lens === "violence_gbh" &&
+    /outstanding|not yet served|provisional/i.test(bundleText) &&
+    (explanation.find((s) => s.key === "contradictions")?.contradictions.length ?? 0) > 0
+  ) {
+    humanReviewReasons.push(
+      "Violence case with unresolved contradictions and outstanding material — solicitor review required.",
+    );
+  }
+  if (
+    lens === "violence_gbh" &&
+    /outstanding|not yet served|provisional/i.test(bundleText)
+  ) {
+    humanReviewReasons.push(
+      "Violence case with outstanding material on papers — solicitor review before fixing hearing position.",
+    );
+  }
+  if (/pwits|intent to supply/i.test(charge) && /outstanding|not yet served/i.test(bundleText)) {
+    humanReviewReasons.push(
+      "PWITS case with outstanding phone/lab/BWV material — solicitor review before fixing hearing position.",
+    );
   }
 
   const links: ProofMapLink[] = [];
