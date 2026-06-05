@@ -49,8 +49,8 @@ function main(): void {
   console.log("  Output cache: artifacts/casebrain-auditor/cache/strategy-corpus/ (gitignored)");
   console.log("");
 
-  const summary = runStrategyCorpus({ count, split, canary, materialisationMode: "text-rendered" });
-  const outDir = writeStrategyCorpusReport(summary);
+  const { summary, manifests } = runStrategyCorpus({ count, split, canary, materialisationMode: "text-rendered" });
+  const outDir = writeStrategyCorpusReport(summary, undefined, { manifests });
 
   console.log("Split assignment (full corpus):");
   console.log(`  Discovery: ${summary.splitCounts.discovery}`);

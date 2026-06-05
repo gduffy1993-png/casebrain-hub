@@ -3,6 +3,7 @@ import { generateBattleboardView, lintBattleboardViewResult } from "./battleboar
 import { generateExplanationFidelity } from "./explanation-fidelity-generate";
 import { generateProofMap } from "./proof-map-generate";
 import { generateWarRoomView, lintWarRoomViewResult } from "./war-room-view-generate";
+import { evaluateAntiTautology } from "./strategy-corpus-anti-tautology";
 import type { CorpusCaseScore, CorpusScoreCheck, StrategyCorpusManifest } from "./strategy-corpus-types";
 import { FORBIDDEN_CORPUS_PHRASES } from "./strategy-corpus-types";
 
@@ -203,6 +204,13 @@ export function scoreCorpusCase(
   if (forbidden.length) {
     failures.push(`forbidden phrasing: ${forbidden.join(", ")}`);
     fingerprints.push("fp:forbidden-phrase");
+  }
+
+  const antiTautology = evaluateAntiTautology(manifest.caseId, label, bundleText);
+  checks.push(...antiTautology.checks);
+  for (const f of antiTautology.failures) {
+    failures.push(f);
+    fingerprints.push("fp:anti-tautology");
   }
 
   const failCount = checks.filter((c) => !c.pass).length;

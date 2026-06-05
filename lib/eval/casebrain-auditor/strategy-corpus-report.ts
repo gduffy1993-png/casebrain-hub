@@ -1,7 +1,17 @@
 import fs from "node:fs";
 import path from "node:path";
 import type { StrategyCorpusSummary } from "./strategy-corpus-types";
+import {
+  buildHoldoutMilestoneReport,
+  holdoutMilestoneMarkdown,
+} from "./strategy-corpus-holdout-milestone";
 import { holdoutSummaryFrom, strategyCorpusReportDir } from "./strategy-corpus-run";
+import {
+  evaluateThresholdBaseline,
+  thresholdBaselineDocument,
+} from "./strategy-corpus-thresholds";
+import type { HoldoutMilestoneReport } from "./strategy-corpus-holdout-milestone";
+import type { StrategyCorpusManifest } from "./strategy-corpus-types";
 
 function weakFailCsv(summary: StrategyCorpusSummary): string {
   const header = "caseId,seed,split,offenceFamily,recipeId,overall,failures,fingerprints";
@@ -74,7 +84,11 @@ function summaryMarkdown(summary: StrategyCorpusSummary): string {
   return lines.join("\n");
 }
 
-export function writeStrategyCorpusReport(summary: StrategyCorpusSummary, outDir?: string): string {
+export function writeStrategyCorpusReport(
+  summary: StrategyCorpusSummary,
+  outDir?: string,
+  options?: { manifests?: StrategyCorpusManifest[] },
+): string {
   const dir = outDir ?? strategyCorpusReportDir();
   fs.mkdirSync(dir, { recursive: true });
 
@@ -82,6 +96,13 @@ export function writeStrategyCorpusReport(summary: StrategyCorpusSummary, outDir
   fs.writeFileSync(path.join(dir, "SUMMARY.md"), summaryMarkdown(summary), "utf8");
   fs.writeFileSync(path.join(dir, "fingerprint-rollup.md"), fingerprintMarkdown(summary), "utf8");
   fs.writeFileSync(path.join(dir, "weak-fail-cases.csv"), weakFailCsv(summary), "utf8");
+
+  fs.writeFileSync(path.join(dir, "threshold-baseline.md"), thresholdBaselineDocument(), "utf8");
+  fs.writeFileSync(
+    path.join(dir, "threshold-baseline.json"),
+    JSON.stringify(evaluateThresholdBaseline(), null, 2),
+    "utf8",
+  );
 
   const holdout = holdoutSummaryFrom(summary);
   fs.writeFileSync(
@@ -99,6 +120,24 @@ export function writeStrategyCorpusReport(summary: StrategyCorpusSummary, outDir
     ),
     "utf8",
   );
+
+  let milestone: HoldoutMilestoneReport | null = null;
+  if (options?.manifests?.length) {
+    milestone = buildHoldoutMilestoneReport({
+      generatedAt: summary.generatedAt,
+      phase: summary.phase,
+      splitCounts: summary.splitCounts,
+      results: summary.results,
+      manifests: options.manifests,
+    });
+    fs.writeFileSync(path.join(dir, "holdout-milestone.json"), JSON.stringify(milestone, null, 2), "utf8");
+    fs.writeFileSync(path.join(dir, "HOLDOUT-MILESTONE.md"), holdoutMilestoneMarkdown(milestone), "utf8");
+    fs.writeFileSync(
+      path.join(dir, "by-split.json"),
+      JSON.stringify(milestone.splits, null, 2),
+      "utf8",
+    );
+  }
 
   fs.writeFileSync(
     path.join(dir, "by-family.json"),

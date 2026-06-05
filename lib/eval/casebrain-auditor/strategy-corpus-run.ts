@@ -63,7 +63,10 @@ export type RunStrategyCorpusOptions = {
   writeCache?: boolean;
 };
 
-export function runStrategyCorpus(options: RunStrategyCorpusOptions): StrategyCorpusSummary {
+export function runStrategyCorpus(options: RunStrategyCorpusOptions): {
+  summary: StrategyCorpusSummary;
+  manifests: StrategyCorpusManifest[];
+} {
   const {
     count,
     split,
@@ -104,23 +107,26 @@ export function runStrategyCorpus(options: RunStrategyCorpusOptions): StrategyCo
   const failed = results.filter((r) => r.overall === "fail").length;
 
   return {
-    generatedAt: new Date().toISOString(),
-    phase: STRATEGY_CORPUS_PHASE,
-    generatorVersion: STRATEGY_CORPUS_GENERATOR_VERSION,
-    count,
-    splitFilter: split,
-    canary,
-    materialisationMode,
-    splitCounts: countSplits(allManifestsForSplitCounts),
-    scored: results.length,
-    passed,
-    weak,
-    failed,
-    holdoutFrozen: true,
-    topFingerprints: rollupFingerprints(results),
-    byFamily: summarizeByFamily(results),
-    byFailureMode: summarizeByTags(results),
-    results,
+    summary: {
+      generatedAt: new Date().toISOString(),
+      phase: STRATEGY_CORPUS_PHASE,
+      generatorVersion: STRATEGY_CORPUS_GENERATOR_VERSION,
+      count,
+      splitFilter: split,
+      canary,
+      materialisationMode,
+      splitCounts: countSplits(allManifestsForSplitCounts),
+      scored: results.length,
+      passed,
+      weak,
+      failed,
+      holdoutFrozen: true,
+      topFingerprints: rollupFingerprints(results),
+      byFamily: summarizeByFamily(results),
+      byFailureMode: summarizeByTags(results),
+      results,
+    },
+    manifests,
   };
 }
 

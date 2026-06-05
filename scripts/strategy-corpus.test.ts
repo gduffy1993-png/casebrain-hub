@@ -10,6 +10,10 @@ import {
 import { generateManifestBatch } from "@/lib/eval/casebrain-auditor/strategy-corpus-manifest";
 import { runStrategyCorpus } from "@/lib/eval/casebrain-auditor/strategy-corpus-run";
 import {
+  buildHoldoutMilestoneReport,
+} from "@/lib/eval/casebrain-auditor/strategy-corpus-holdout-milestone";
+import { evaluateAllCorpusTraps } from "@/lib/eval/casebrain-auditor/strategy-corpus-traps";
+import {
   FAILURE_MODE_TAGS,
   OFFENCE_FAMILIES,
 } from "@/lib/eval/casebrain-auditor/strategy-corpus-types";
@@ -55,7 +59,7 @@ assert.ok(holdout.length > 0);
 assert.ok(holdout.every((m) => m.splitFrozen && !m.tuneAllowed), "holdout must be frozen");
 
 // Canary run succeeds
-const canary = runStrategyCorpus({
+const { summary: canary } = runStrategyCorpus({
   count: 50,
   split: "discovery",
   canary: true,
@@ -63,5 +67,29 @@ const canary = runStrategyCorpus({
 });
 assert.equal(canary.scored, 50);
 assert.ok(canary.passed + canary.weak + canary.failed === 50);
+
+// Negative traps — stack must stay safe on temptation bundles
+for (const trap of evaluateAllCorpusTraps()) {
+  assert.ok(trap.pass, `trap ${trap.trapId}: ${trap.failures.join("; ")}`);
+}
+
+// Holdout milestone shape on 1000 assignment
+const full = runStrategyCorpus({ count: 1000, split: "all", writeCache: false });
+const milestone = buildHoldoutMilestoneReport({
+  generatedAt: full.summary.generatedAt,
+  phase: full.summary.phase,
+  splitCounts: full.summary.splitCounts,
+  results: full.summary.results,
+  manifests: full.manifests,
+});
+assert.equal(milestone.holdout.count, 150);
+assert.equal(milestone.holdout.expectedCount, 150);
+assert.equal(milestone.holdout.splitFrozen, true);
+assert.equal(milestone.holdout.tuneAllowed, false);
+assert.equal(milestone.holdoutTunedDuringDevelopment, false);
+assert.equal(milestone.holdoutSpecificLogicUsed, false);
+assert.ok(
+  full.manifests.filter((m) => m.split === "holdout").every((m) => m.splitFrozen && !m.tuneAllowed),
+);
 
 console.log("strategy-corpus.test.ts: ok");

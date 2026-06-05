@@ -16,6 +16,10 @@ bundle text / manifest
   → score / fingerprint / summary
 ```
 
+## Important: synthetic alignment ≠ real-world accuracy
+
+A **1000/1000** corpus pass rate means the **factory renderer** and **evaluators** agree on **fictional** case patterns. It does **not** guarantee real-world hearing outcomes, client matter accuracy, or PDF/OCR stress performance. Gold **7** bundles and pilot/production gates remain the primary ship checks.
+
 ## Commands
 
 ```powershell
@@ -26,6 +30,7 @@ npx tsx scripts/strategy-corpus.ts --count 50 --split discovery --canary
 npx tsx scripts/strategy-corpus.ts --count 1000 --split all
 
 npx tsx scripts/strategy-corpus.test.ts
+npx tsx scripts/strategy-corpus-traps.test.ts
 ```
 
 ## Output (gitignored)
@@ -33,7 +38,18 @@ npx tsx scripts/strategy-corpus.test.ts
 | Path | Contents |
 |------|----------|
 | `artifacts/casebrain-auditor/cache/strategy-corpus/` | Generated manifests + bundle text |
-| `artifacts/casebrain-auditor/latest/strategy-corpus/` | Reports: summary.json, SUMMARY.md, fingerprint-rollup.md, weak-fail-cases.csv, holdout-summary.json |
+| `artifacts/casebrain-auditor/latest/strategy-corpus/` | Reports (see below) |
+
+### Report files
+
+| File | Purpose |
+|------|---------|
+| `summary.json` / `SUMMARY.md` | Full run summary |
+| `holdout-milestone.json` / `HOLDOUT-MILESTONE.md` | Discovery / validation / holdout split milestone (holdout not tuned) |
+| `threshold-baseline.json` / `threshold-baseline.md` | Release thresholds — not 1000/1000 forever |
+| `by-split.json` | Per-split pass/weak/fail |
+| `fingerprint-rollup.md` | Shared failure fingerprints |
+| `weak-fail-cases.csv` | Non-pass cases |
 
 ## Split (1000 cases)
 
@@ -41,13 +57,33 @@ npx tsx scripts/strategy-corpus.test.ts
 |------|------:|-----|
 | Discovery | 700 | Fingerprint mining; shared fixes |
 | Validation | 150 | Shared threshold tuning only |
-| Holdout | 150 | **Frozen** — scored but not tuned against |
+| Holdout | 150 | **Frozen** — milestone report only; not tuned against |
+
+## Release thresholds (slice 3)
+
+- No forbidden phrases in stack output
+- Safe War Room wording (provisional hearing lines)
+- Human review on serious/provisional families
+- Gold 7/7 (proof-map, battleboard, war-room, bundle, explanation)
+- Corpus pass rate **threshold-based** (default discovery ≥ 85%, fail ≤ 5%) — **not** perfect-score required
+
+## Anti-tautology (slice 3)
+
+Scoring inspects **generated** Proof Map / Battleboard / War Room outputs:
+
+- Text-rendered bundle required (not manifest-only stub)
+- Proof-map links reference valid `proofPointId`s
+- Battleboard and War Room items carry linked `proofPointId`s
+- Stack output derived from bundle pipeline (not manifest fields alone)
+
+## Negative trap tests
+
+`scripts/strategy-corpus-traps.test.ts` runs five deterministic trap bundles that **fail CI** if generators regress into unsafe invention (CCTV reliance without footage, final admissions from summaries, missing do-not-overstate, etc.).
 
 ## Anti-overfitting
 
 - No per-`caseId` hacks in repo
 - No tuning on holdout during development
-- No 1000/1000 pass target — fix **shared fingerprints**
 - Do not commit generated corpus bodies
 
 ## Recipe families
@@ -59,10 +95,6 @@ npx tsx scripts/strategy-corpus.test.ts
 - violence_gbh_s18
 - generic_provisional
 
-See `lib/eval/casebrain-auditor/strategy-corpus-recipes.ts` for failure-mode tag compatibility.
-
 ## Generator version
 
-`4e-v1.0.0` (slice 2) — see `STRATEGY_CORPUS_GENERATOR_VERSION` and `STRATEGY_CORPUS_PHASE` in `strategy-corpus-types.ts`.
-
-Slice 2 shared fixes: structured contradiction sections, generic provisional lens/proof points, violence/PWITS human-review propagation.
+`4e-v1.0.0` — phase `4e-slice-3` in `strategy-corpus-types.ts`.

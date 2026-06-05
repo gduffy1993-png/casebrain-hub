@@ -727,7 +727,7 @@ Until **4a–4c** pass on gold (and agreed local exemplars), **4d UI stays off**
 
 ## 9.7 Strategy corpus expansion + holdout stress pack (Phase 4e — planned)
 
-**Status:** **4e-slice-2 shipped** — fingerprint fixes for contradiction detection, generic provisional lens/proof points, and human-review propagation. See `docs/strategy-corpus/README.md`.
+**Status:** **4e-slice-3 shipped** — holdout milestone reporting, anti-tautology checks, trap tests, threshold baseline. See `docs/strategy-corpus/README.md`.
 
 **Goal:** Train and test **pattern survival** across unseen bundles — not memorise individual PDFs or bundle IDs.
 
