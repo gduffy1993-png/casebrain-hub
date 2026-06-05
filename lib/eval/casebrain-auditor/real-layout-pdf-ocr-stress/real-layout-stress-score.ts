@@ -7,6 +7,7 @@ import { generateExplanationFidelity } from "../explanation-fidelity-generate";
 import { generateProofMap } from "../proof-map-generate";
 import { generateWarRoomView } from "../war-room-view-generate";
 import { FORBIDDEN_CORPUS_PHRASES } from "../strategy-corpus-types";
+import { applyTrapScoring } from "./real-layout-stress-trap-score";
 import type {
   RealLayoutStressSampleManifest,
   RealLayoutStressSampleResult,
@@ -63,18 +64,27 @@ export function scoreStressSample(
   const fingerprints: string[] = [...manifest.layoutTags.map((t) => `layout:${t}`)];
 
   const chars = extractedText.length;
+  const thinThreshold = manifest.trapProfile?.thinScannedUnsafe ? 600 : 400;
+
   pushCheck(
     checks,
     failures,
     fingerprints,
     "extract_text",
-    chars >= 400,
+    chars >= thinThreshold,
     `${chars} char(s) extracted`,
-    chars < 400 ? "extract: text too thin or empty" : undefined,
-    chars < 400 ? "fp:extract-empty" : undefined,
+    chars < thinThreshold ? "extract: text too thin or empty" : undefined,
+    chars < thinThreshold ? "fp:extract-empty" : undefined,
   );
 
   const meta = extractBundleCaseMetadata(extractedText);
+  const metadataStatus: RealLayoutStressSampleResult["metadataStatus"] =
+    chars < thinThreshold
+      ? "thin"
+      : !meta.defendantName && !meta.offenceWording
+        ? "needs_review"
+        : "ok";
+
   const defendantOk =
     Boolean(meta.defendantName) &&
     extractedText.toLowerCase().includes(manifest.expectedDefendant.toLowerCase().split(" ")[0]!);
@@ -111,14 +121,17 @@ export function scoreStressSample(
   );
 
   const missingHits = detectMissingHits(extractedText, manifest.expectedMissingMaterial);
-  const missingOk = missingHits.length >= Math.min(1, manifest.expectedMissingMaterial.length);
+  const missingOk =
+    manifest.trapProfile?.indexListsMissingOnly
+      ? missingHits.length > 0 || /index:.*outstanding/i.test(extractedText)
+      : missingHits.length >= Math.min(1, manifest.expectedMissingMaterial.length);
   pushCheck(
     checks,
     failures,
     fingerprints,
     "missing_material",
     missingOk,
-    missingHits.join("; ") || "none",
+    missingHits.join("; ") || (manifest.trapProfile?.indexListsMissingOnly ? "index-only" : "none"),
     !missingOk ? "missing: expected outstanding material not surfaced" : undefined,
     !missingOk ? "fp:missing-material-miss" : undefined,
   );
@@ -135,108 +148,134 @@ export function scoreStressSample(
     docTypes.length < 2 ? "fp:doc-types-thin" : undefined,
   );
 
-  const explanation = generateExplanationFidelity(extractedText);
-  const explanationIssues = explanation.reduce(
-    (n, s) => n + s.blocks.length + s.contradictions.length,
-    0,
-  );
-  pushCheck(
-    checks,
-    failures,
-    fingerprints,
-    "explanation_chain",
-    explanationIssues > 0,
-    `${explanationIssues} explanation issue(s)`,
-    explanationIssues === 0 ? "explanation: no issues from extracted text" : undefined,
-    explanationIssues === 0 ? "fp:explanation-empty" : undefined,
-  );
+  let spineRan = false;
+  let reasoningAvailable = false;
+  let reasoningBlob = "";
 
-  const label = `Layout stress ${manifest.sampleId}`;
-  const proofMap = generateProofMap(manifest.sampleId, label, extractedText);
-  pushCheck(
-    checks,
-    failures,
-    fingerprints,
-    "proof_map",
-    proofMap.proofPoints.length >= 2,
-    `${proofMap.proofPoints.length} proof point(s)`,
-    proofMap.proofPoints.length < 2 ? "proof map: thin on extracted text" : undefined,
-    proofMap.proofPoints.length < 2 ? "fp:proof-map-thin" : undefined,
-  );
-
-  const battleboard = generateBattleboardView(proofMap, extractedText);
-  pushCheck(
-    checks,
-    failures,
-    fingerprints,
-    "battleboard",
-    Boolean(battleboard.primaryRoute?.trim()),
-    battleboard.primaryRoute || "none",
-    !battleboard.primaryRoute?.trim() ? "battleboard: no primary route" : undefined,
-    !battleboard.primaryRoute?.trim() ? "fp:battleboard-empty" : undefined,
-  );
-
-  const warRoom = generateWarRoomView(proofMap);
-  const warRoomBlob = JSON.stringify(warRoom);
-  const warRoomLint = lintForbidden(warRoomBlob);
-  pushCheck(
-    checks,
-    failures,
-    fingerprints,
-    "war_room_safe",
-    warRoomLint.length === 0,
-    warRoomLint.length ? warRoomLint.join("; ") : "no forbidden phrases / paths",
-    warRoomLint.length ? `war room lint: ${warRoomLint.join("; ")}` : undefined,
-    warRoomLint.length ? "fp:unsafe-wording" : undefined,
-  );
-
-  const reasoning = buildReasoningV2FromBundleText(extractedText, label);
-  if (reasoning.available) {
-    const reasoningBlob = JSON.stringify({
-      charge: reasoning.charge,
-      primaryRoute: reasoning.primaryRoute,
-      safeNextAction: reasoning.safeNextAction,
-      doNotOverstateWarning: reasoning.doNotOverstateWarning,
-    });
-    const lintIssues = lintClientExplanationOutput(reasoningBlob);
-    pushCheck(
-      checks,
-      failures,
-      fingerprints,
-      "reasoning_v2_safe",
-      lintIssues.length === 0,
-      lintIssues.length ? lintIssues.join("; ") : "reasoning labels safe",
-      lintIssues.length ? `reasoning lint: ${lintIssues.join("; ")}` : undefined,
-      lintIssues.length ? "fp:reasoning-unsafe" : undefined,
+  if (chars >= 200 && metadataStatus !== "thin") {
+    const explanation = generateExplanationFidelity(extractedText);
+    const explanationIssues = explanation.reduce(
+      (n, s) => n + s.blocks.length + s.contradictions.length,
+      0,
     );
     pushCheck(
       checks,
       failures,
       fingerprints,
-      "reasoning_v2_available",
-      true,
-      "reasoning spine available on extracted text",
+      "explanation_chain",
+      explanationIssues > 0 || chars < thinThreshold,
+      `${explanationIssues} explanation issue(s)`,
+      explanationIssues === 0 && chars >= thinThreshold
+        ? "explanation: no issues from extracted text"
+        : undefined,
+      explanationIssues === 0 && chars >= thinThreshold ? "fp:explanation-empty" : undefined,
     );
+
+    const label = `Layout stress ${manifest.sampleId}`;
+    const proofMap = generateProofMap(manifest.sampleId, label, extractedText);
+    spineRan = proofMap.proofPoints.length > 0;
+
+    pushCheck(
+      checks,
+      failures,
+      fingerprints,
+      "proof_map",
+      proofMap.proofPoints.length >= 2 || chars < thinThreshold,
+      `${proofMap.proofPoints.length} proof point(s)`,
+      proofMap.proofPoints.length < 2 && chars >= thinThreshold
+        ? "proof map: thin on extracted text"
+        : undefined,
+      proofMap.proofPoints.length < 2 && chars >= thinThreshold ? "fp:proof-map-thin" : undefined,
+    );
+
+    const battleboard = generateBattleboardView(proofMap, extractedText);
+    pushCheck(
+      checks,
+      failures,
+      fingerprints,
+      "battleboard",
+      Boolean(battleboard.primaryRoute?.trim()) || chars < thinThreshold,
+      battleboard.primaryRoute || "none",
+      !battleboard.primaryRoute?.trim() && chars >= thinThreshold
+        ? "battleboard: no primary route"
+        : undefined,
+      !battleboard.primaryRoute?.trim() && chars >= thinThreshold ? "fp:battleboard-empty" : undefined,
+    );
+
+    const warRoom = generateWarRoomView(proofMap);
+    const warRoomBlob = JSON.stringify(warRoom);
+    const warRoomLint = lintForbidden(warRoomBlob);
+    pushCheck(
+      checks,
+      failures,
+      fingerprints,
+      "war_room_safe",
+      warRoomLint.length === 0,
+      warRoomLint.length ? warRoomLint.join("; ") : "no forbidden phrases / paths",
+      warRoomLint.length ? `war room lint: ${warRoomLint.join("; ")}` : undefined,
+      warRoomLint.length ? "fp:unsafe-wording" : undefined,
+    );
+
+    const reasoning = buildReasoningV2FromBundleText(extractedText, label);
+    reasoningAvailable = reasoning.available;
+    if (reasoning.available) {
+      reasoningBlob = JSON.stringify({
+        charge: reasoning.charge,
+        primaryRoute: reasoning.primaryRoute,
+        safeNextAction: reasoning.safeNextAction,
+        doNotOverstateWarning: reasoning.doNotOverstateWarning,
+        missingMaterial: reasoning.missingMaterial.map((m) => m.label),
+      });
+      const lintIssues = lintClientExplanationOutput(reasoningBlob);
+      pushCheck(
+        checks,
+        failures,
+        fingerprints,
+        "reasoning_v2_safe",
+        lintIssues.length === 0,
+        lintIssues.length ? lintIssues.join("; ") : "reasoning labels safe",
+        lintIssues.length ? `reasoning lint: ${lintIssues.join("; ")}` : undefined,
+        lintIssues.length ? "fp:reasoning-unsafe" : undefined,
+      );
+      pushCheck(
+        checks,
+        failures,
+        fingerprints,
+        "reasoning_v2_available",
+        true,
+        "reasoning spine available on extracted text",
+      );
+    } else {
+      pushCheck(
+        checks,
+        failures,
+        fingerprints,
+        "reasoning_v2_available",
+        false,
+        reasoning.reason ?? "unavailable",
+        chars >= thinThreshold ? "reasoning: unavailable on extracted text" : undefined,
+        chars >= thinThreshold ? "fp:reasoning-unavailable" : undefined,
+      );
+    }
   } else {
+    pushCheck(checks, failures, fingerprints, "spine_blocked", true, "thin extract — spine safely skipped");
     pushCheck(
       checks,
       failures,
       fingerprints,
       "reasoning_v2_available",
       false,
-      reasoning.reason ?? "unavailable",
-      "reasoning: unavailable on extracted text",
-      "fp:reasoning-unavailable",
+      "blocked — thin/scanned extract",
     );
   }
 
   const hardFail = failures.some((f) =>
-    /extract:|defendant|charge not|unsafe|artifact|local_path/i.test(f),
+    /unsafe|artifact|local_path/i.test(f),
   );
   const hasWeak = failures.length > 0 && !hardFail;
-  const overall = hardFail ? "fail" : hasWeak ? "weak" : "pass";
+  let overall: RealLayoutStressSampleResult["overall"] = hardFail ? "fail" : hasWeak ? "weak" : "pass";
 
-  return {
+  const base: RealLayoutStressSampleResult = {
     sampleId: manifest.sampleId,
     seed: manifest.seed,
     offenceFamily: manifest.offenceFamily,
@@ -247,5 +286,9 @@ export function scoreStressSample(
     checks,
     failures,
     fingerprints: [...new Set(fingerprints)],
+    spineRan,
+    metadataStatus,
   };
+
+  return applyTrapScoring(manifest, extractedText, base, reasoningAvailable, reasoningBlob);
 }

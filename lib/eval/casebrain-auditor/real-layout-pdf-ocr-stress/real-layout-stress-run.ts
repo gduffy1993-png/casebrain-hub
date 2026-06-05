@@ -5,7 +5,7 @@ import { scoreStressSample } from "./real-layout-stress-score";
 import type { RealLayoutStressSummary } from "./real-layout-stress-types";
 import {
   REAL_LAYOUT_STRESS_GENERATOR_VERSION,
-  REAL_LAYOUT_STRESS_MAX_SLICE1,
+  REAL_LAYOUT_STRESS_MAX_SLICE2,
 } from "./real-layout-stress-types";
 
 function rollupFingerprints(
@@ -13,10 +13,8 @@ function rollupFingerprints(
 ): Array<{ fingerprint: string; count: number }> {
   const counts = new Map<string, number>();
   for (const r of results) {
-    if (r.overall === "pass") continue;
     for (const fp of r.fingerprints) {
-      if (!fp.startsWith("layout:") && !fp.startsWith("fp:")) continue;
-      if (fp.startsWith("layout:")) continue;
+      if (!fp.startsWith("fp:")) continue;
       counts.set(fp, (counts.get(fp) ?? 0) + 1);
     }
   }
@@ -51,11 +49,28 @@ function byLayoutTag(results: RealLayoutStressSummary["results"]) {
     .sort((a, b) => a.layoutTag.localeCompare(b.layoutTag));
 }
 
+function percentile(sorted: number[], p: number): number {
+  if (!sorted.length) return 0;
+  const idx = Math.floor((sorted.length - 1) * p);
+  return sorted[idx]!;
+}
+
+function extractDistribution(results: RealLayoutStressSummary["results"]) {
+  const chars = results.map((r) => r.extractChars).sort((a, b) => a - b);
+  return {
+    min: chars[0] ?? 0,
+    max: chars[chars.length - 1] ?? 0,
+    median: percentile(chars, 0.5),
+    p25: percentile(chars, 0.25),
+    p75: percentile(chars, 0.75),
+  };
+}
+
 export async function runRealLayoutPdfOcrStress(options: {
   count: number;
   canary?: boolean;
 }): Promise<RealLayoutStressSummary> {
-  const count = Math.min(Math.max(1, options.count), REAL_LAYOUT_STRESS_MAX_SLICE1);
+  const count = Math.min(Math.max(1, options.count), REAL_LAYOUT_STRESS_MAX_SLICE2);
   const manifests = listRealLayoutStressRecipes(count);
   const results = [];
 
@@ -76,10 +91,21 @@ export async function runRealLayoutPdfOcrStress(options: {
   const weak = results.filter((r) => r.overall === "weak").length;
   const failed = results.filter((r) => r.overall === "fail").length;
 
+  const deliberateTraps = results
+    .filter((r) => r.trapOutcome?.expectedTier?.startsWith("deliberate"))
+    .map((r) => ({
+      sampleId: r.sampleId,
+      tier: r.trapOutcome!.expectedTier!,
+      overall: r.overall,
+      expectedFingerprints: r.trapOutcome!.expectedFingerprints,
+      actualFingerprints: r.trapOutcome!.actualFingerprints,
+      trapMatched: r.trapOutcome!.trapMatched,
+    }));
+
   return {
     generatedAt: new Date().toISOString(),
     generatorVersion: REAL_LAYOUT_STRESS_GENERATOR_VERSION,
-    phase: "rlpdf-slice-1",
+    phase: "rlpdf-slice-2",
     count,
     canary: Boolean(options.canary),
     scored: results.length,
@@ -91,5 +117,7 @@ export async function runRealLayoutPdfOcrStress(options: {
     topFingerprints: rollupFingerprints(results),
     byFamily: byFamily(results),
     byLayoutTag: byLayoutTag(results),
+    extractCharDistribution: extractDistribution(results),
+    deliberateTraps,
   };
 }

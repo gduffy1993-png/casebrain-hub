@@ -1,10 +1,15 @@
 import type { RealLayoutStressSampleManifest } from "./real-layout-stress-types";
+import { applySlice2HardPatterns } from "./real-layout-stress-content-slice2";
 
 export type StressBundlePage = {
   pageId: string;
   title: string;
   body: string;
   markers: string[];
+  rotate?: boolean;
+  blank?: boolean;
+  repeatHeader?: string;
+  repeatFooter?: string;
 };
 
 function applyOcrNoise(text: string): string {
@@ -357,7 +362,7 @@ export function buildStressBundlePages(m: RealLayoutStressSampleManifest): Stres
     });
   }
 
-  return pages;
+  return applySlice2HardPatterns(m, pages);
 }
 
 export function pagesToFixtureText(pages: StressBundlePage[]): string {
