@@ -729,20 +729,26 @@ Until **4a–4c** pass on gold (and agreed local exemplars), **4d UI stays off**
 
 **Enable (pilot/dev only):** `?reasoningV2=1` or `localStorage: casebrain:reasoningV2=true`.
 
-### 9.6.2 Product layers after 4d UI bridge (planned — do not build yet)
+### 9.6.2 Product layers after 4d UI bridge (agreed order — build in sequence)
 
-Order after **4d UI bridge** is green in pilot:
+**Principle:** Each layer extends the same spine — Reasoning V2 → Proof Map → Battleboard → War Room — without duplicate reasoning or random features.
 
-1. **Solicitor feedback marking loop** — **slice 1 shipped (local):** mark Reasoning V2 useful / missed issue / too vague / unsafe / needs review / good enough for hearing prep; `localStorage` capture only — see `lib/criminal/reasoning-v2/feedback/README.md`.
-2. **Client Account Stress-Test** — safe client-facing summary stress lane (provisional wording gates).
-3. **New Evidence Change Detector** — diff served material vs last reasoning snapshot; flag route impact.
-4. **Real-layout PDF/OCR stress lane** — private ingest (§9.7 lane B); not blocking 4d.
-5. **Audio-to-Bundle Loop** — see §9.6.3; **docs-only future lane — do not build yet**.
-6. **Export pack generator** — solicitor-safe hearing/disclosure export from same spine (no duplicate reasoning).
-7. **Supervisor QA view** — read-only oversight of route + disclosure chase + human-review flags.
-8. **Security / audit trail** — who viewed/changed strategy position; reasoning panel access log.
-9. **Offence element map expansion** — richer proof points per family; still source-backed.
-10. **Phase 4f scale-up** — corpus factory to 5k / 10k / 50k **after** product layers 1–8 are stable.
+| # | Layer | Status |
+|---|--------|--------|
+| 1 | **Solicitor feedback marking loop** | **Shipped (local)** — `lib/criminal/reasoning-v2/feedback/README.md` |
+| 2 | **Client Account Stress-Test** | **Slice 1–2 shipped (local):** account compare + **Client Instructions Checklist** + **Do-not-concede Guard**; `?clientStress=1` + `?reasoningV2=1`; `lib/criminal/client-stress-test/README.md` |
+| 3 | **New Evidence Change Detector** | Planned — diff uploads vs last snapshot; served-item closure; route impact |
+| 4 | **Disclosure letter / export builder** | Planned — chase drafts from missing material (CCTV master, CAD, BWV, interview, MG6, lab, continuity) |
+| 5 | **Supervisor review queue + case handover** | Planned — unsafe marks, serious/provisional, contradictions, human review, missing core before hearing |
+| 6 | **Client explanation mode** | Planned — plain-English solicitor-safe client summary (papers / missing / why not finalised) |
+| 7 | **Plea/credit pressure warning** | Planned — timing/stage pressure only; no plea advice; optional |
+| 8 | **Pre-hearing readiness score** | Planned — amber/red/green from missing core, contradictions, instructions, human review, hearing date |
+| 9 | **Route comparison** | Planned — identity / role / causation / self-defence / possession vs supply / mitigation with helps/hurts/missing/collapse |
+| 10 | **Real-layout PDF/OCR stress lane** | Planned — private ingest (§9.7 lane B) |
+| 11 | **Audio-to-Bundle Loop** | **Docs only** — §9.6.3 |
+| 12 | **Phase 4f scale-up (5k / 10k / 50k)** | **After** workflows 1–9 are stable — §9.8 |
+
+**Do not build yet:** NECD (3), disclosure/export (4), supervisor/handover (5), client explanation (6), plea warning (7), readiness score (8), route comparison (9), PDF/OCR (10), audio (11), mass corpus (12).
 
 ### 9.6.3 Audio-to-Bundle Loop (planned — do not build yet)
 

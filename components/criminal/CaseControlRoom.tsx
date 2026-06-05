@@ -12,6 +12,8 @@ import { ControlRoomCockpit } from "./control-room/ControlRoomCockpit";
 import { ReasoningV2Panel } from "./control-room/ReasoningV2Panel";
 import { buildReasoningV2ViewModel } from "@/lib/criminal/reasoning-v2/build-reasoning-v2-view-model";
 import { useReasoningV2Enabled } from "@/lib/criminal/reasoning-v2/reasoning-v2-flag";
+import { useClientStressEnabled } from "@/lib/criminal/client-stress-test/client-stress-flag";
+import { ClientAccountStressTestPanel } from "./control-room/ClientAccountStressTestPanel";
 import { CaseWorkflowShell } from "./workflow/CaseWorkflowShell";
 import { buildCaseSummarySnippet } from "@/lib/criminal/build-case-summary-snippet";
 import { formatCaseBundleHealthLabel } from "@/lib/criminal/format-case-bundle-health";
@@ -184,6 +186,7 @@ export function CaseControlRoom({
   const [bundleSource, setBundleSource] = useState<BundleSourceSummary | null>(null);
   const [bundleSourceLoading, setBundleSourceLoading] = useState(true);
   const reasoningV2Enabled = useReasoningV2Enabled();
+  const clientStressEnabled = useClientStressEnabled();
 
   useEffect(() => {
     let cancelled = false;
@@ -724,6 +727,12 @@ export function CaseControlRoom({
               existingBattleboardRoute={existingBattleboardRoute}
             />
           ) : null}
+          <ClientAccountStressTestPanel
+            caseId={caseId}
+            clientStressEnabled={clientStressEnabled}
+            reasoningV2Enabled={reasoningV2Enabled}
+            reasoningResult={reasoningV2Result}
+          />
           </CaseWorkflowShell>
         )}
 
