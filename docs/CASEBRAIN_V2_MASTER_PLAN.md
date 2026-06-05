@@ -733,7 +733,7 @@ Until **4a–4c** pass on gold (and agreed local exemplars), **4d UI stays off**
 
 Order after **4d UI bridge** is green in pilot:
 
-1. **Solicitor feedback marking loop** — mark reasoning sections helpful / wrong / needs review; feeds eval without client text in repo.
+1. **Solicitor feedback marking loop** — **slice 1 shipped (local):** mark Reasoning V2 useful / missed issue / too vague / unsafe / needs review / good enough for hearing prep; `localStorage` capture only — see `lib/criminal/reasoning-v2/feedback/README.md`.
 2. **Client Account Stress-Test** — safe client-facing summary stress lane (provisional wording gates).
 3. **New Evidence Change Detector** — diff served material vs last reasoning snapshot; flag route impact.
 4. **Real-layout PDF/OCR stress lane** — private ingest (§9.7 lane B); not blocking 4d.

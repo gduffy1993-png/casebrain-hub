@@ -623,7 +623,16 @@ export function HearingWarRoom({
             </section>
 
             {reasoningV2Enabled && reasoningV2Result?.available ? (
-              <WarRoomReasoningBridge warRoom={reasoningV2Result.warRoom} />
+              <WarRoomReasoningBridge
+                caseId={caseId}
+                reasoningV2Enabled={reasoningV2Enabled}
+                routeLabel={
+                  reasoningV2Result.primaryRoute ||
+                  battleboard?.primary_route?.title ||
+                  null
+                }
+                warRoom={reasoningV2Result.warRoom}
+              />
             ) : null}
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">

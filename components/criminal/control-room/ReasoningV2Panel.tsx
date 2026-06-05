@@ -24,8 +24,11 @@ import {
   REASONING_V2_SOURCE_BASIS_MAX,
   truncateSourceBasis,
 } from "./reasoningV2Ui";
+import { ReasoningFeedbackCard } from "./ReasoningFeedbackCard";
 
 export type ReasoningV2PanelProps = {
+  caseId: string;
+  reasoningV2Enabled: boolean;
   result: ReasoningV2Result | null;
   loading?: boolean;
   existingBattleboardRoute?: string | null;
@@ -142,7 +145,13 @@ function DisclosurePriorityList({
   );
 }
 
-export function ReasoningV2Panel({ result, loading, existingBattleboardRoute }: ReasoningV2PanelProps) {
+export function ReasoningV2Panel({
+  caseId,
+  reasoningV2Enabled,
+  result,
+  loading,
+  existingBattleboardRoute,
+}: ReasoningV2PanelProps) {
   const [open, setOpen] = useState(true);
 
   const routeDiffers =
@@ -153,6 +162,7 @@ export function ReasoningV2Panel({ result, loading, existingBattleboardRoute }: 
     (result?.available && result.humanReviewRequired) || Boolean(routeDiffers);
 
   return (
+    <>
     <section
       className={workflowCard}
       aria-label="Source-backed reasoning"
@@ -316,5 +326,15 @@ export function ReasoningV2Panel({ result, loading, existingBattleboardRoute }: 
         </div>
       ) : null}
     </section>
+    {result?.available ? (
+      <ReasoningFeedbackCard
+        caseId={caseId}
+        surface="control-room-reasoning"
+        routeLabel={result.primaryRoute}
+        humanReviewRequired={result.humanReviewRequired || Boolean(routeDiffers)}
+        reasoningV2Enabled={reasoningV2Enabled}
+      />
+    ) : null}
+    </>
   );
 }
