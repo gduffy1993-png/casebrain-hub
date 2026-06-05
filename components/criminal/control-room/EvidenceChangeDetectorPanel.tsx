@@ -13,6 +13,7 @@ import {
   saveEvidenceChangeSnapshot,
 } from "@/lib/criminal/evidence-change-detector/evidence-change-snapshot-storage";
 import type { PreHearingReadinessInput } from "@/lib/criminal/pre-hearing-readiness/readiness-types";
+import type { BuildEvidenceSourceStateInput } from "@/lib/criminal/evidence-change-detector/build-evidence-source-state";
 import type { ClientStressResult } from "@/lib/criminal/client-stress-test/client-stress-types";
 import type { ReasoningV2Result } from "@/lib/criminal/reasoning-v2/reasoning-v2-types";
 import { REASONING_V2_UNAVAILABLE_MESSAGE } from "@/lib/criminal/reasoning-v2/reasoning-v2-types";
@@ -26,6 +27,7 @@ export type EvidenceChangeDetectorPanelProps = {
   reasoningResult: ReasoningV2Result | null;
   clientStressResult?: ClientStressResult | null;
   readinessInput?: PreHearingReadinessInput | null;
+  sourceStateInput?: BuildEvidenceSourceStateInput | null;
   loading?: boolean;
 };
 
@@ -51,6 +53,7 @@ export function EvidenceChangeDetectorPanel({
   reasoningResult,
   clientStressResult = null,
   readinessInput = null,
+  sourceStateInput = null,
   loading = false,
 }: EvidenceChangeDetectorPanelProps) {
   const [expanded, setExpanded] = useState(false);
@@ -77,8 +80,9 @@ export function EvidenceChangeDetectorPanel({
       reasoning: reasoningResult,
       clientStress: clientStressResult,
       readinessInput: readinessInput ?? undefined,
+      sourceStateInput: sourceStateInput ?? undefined,
     });
-  }, [hasReasoning, reasoningResult, clientStressResult, readinessInput]);
+  }, [hasReasoning, reasoningResult, clientStressResult, readinessInput, sourceStateInput]);
 
   const comparison = useMemo(() => {
     if (!currentSnapshot) return null;
@@ -176,7 +180,7 @@ export function EvidenceChangeDetectorPanel({
 
         <div className="flex flex-wrap gap-2">
           <Button type="button" size="sm" className="h-8 text-xs" onClick={onSaveSnapshot}>
-            Save current snapshot
+            {comparison.hasPreviousSnapshot ? "Update snapshot after review" : "Save current snapshot"}
           </Button>
           {comparison.hasPreviousSnapshot ? (
             <Button
@@ -190,6 +194,14 @@ export function EvidenceChangeDetectorPanel({
             </Button>
           ) : null}
         </div>
+
+        {comparison.sourceMaterialChanged ? (
+          <div className="rounded-md border border-indigo-200 bg-indigo-50/70 px-3 py-2">
+            <p className="text-xs font-medium text-indigo-950 break-words">
+              Source material appears to have changed — compare before relying on the previous position.
+            </p>
+          </div>
+        ) : null}
 
         {comparison.solicitorReviewRequired ? (
           <div className="rounded-md border border-amber-200 bg-amber-50/80 px-3 py-2 flex gap-2">
@@ -221,6 +233,7 @@ export function EvidenceChangeDetectorPanel({
 
         {expanded ? (
           <div className="space-y-3 pt-1 border-t border-slate-100">
+            <DetailBlock title="Source state changes" items={comparison.sourceStateChanges} />
             <DetailBlock title="Closed missing items" items={comparison.closedMissingItems} />
             <DetailBlock title="New missing items" items={comparison.newMissingItems} />
             <DetailBlock title="Contradictions" items={comparison.newOrChangedContradictions} />

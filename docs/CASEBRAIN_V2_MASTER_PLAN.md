@@ -737,7 +737,7 @@ Until **4a–4c** pass on gold (and agreed local exemplars), **4d UI stays off**
 |---|--------|--------|
 | 1 | **Solicitor feedback marking loop** | **Shipped (local)** — `lib/criminal/reasoning-v2/feedback/README.md` |
 | 2 | **Client Account Stress-Test** | **Slice 1–2 shipped (local):** account compare + **Client Instructions Checklist** + **Do-not-concede Guard**; `?clientStress=1` + `?reasoningV2=1`; `lib/criminal/client-stress-test/README.md` |
-| 3 | **New Evidence Change Detector** | **Slice 1 shipped (local):** snapshot compare (`?evidenceChanges=1` + `?reasoningV2=1`); `lib/criminal/evidence-change-detector/README.md` |
+| 3 | **New Evidence Change Detector** | **Slice 2 shipped (local):** upload/text-change-aware source metadata + compare prompt (`?evidenceChanges=1` + `?reasoningV2=1`); `lib/criminal/evidence-change-detector/README.md` |
 | 4 | **Disclosure letter / export builder** | **Slices 1–2 shipped (local):** disclosure chase + hearing prep + **case handover summary** (`?exports=1` + `?reasoningV2=1`); `lib/criminal/disclosure-export/README.md` |
 | 5 | **Supervisor review queue + case handover** | **Slice 1 shipped (local):** per-case Supervisor QA panel (`?supervisor=1` + `?reasoningV2=1`); `lib/criminal/supervisor-qa/README.md` |
 | 6 | **Client explanation mode** | **Slice 1 shipped (local):** plain-English draft (`?clientExplain=1` + `?reasoningV2=1`); `lib/criminal/client-explanation/README.md` |
@@ -751,7 +751,7 @@ Until **4a–4c** pass on gold (and agreed local exemplars), **4d UI stays off**
 
 **Stress-test order (agreed — not 50k real PDFs):** (1) **sampled** real-layout PDF/OCR lane (25 → 50 → 100 → 250) — §9.6.4, (2) 10–20 anonymised real-matter auditor pack when available, (3) staged **manifest/text** scale 5k → 10k → 50k addressable scenarios — §9.8, (4) goal = fingerprint collapse + workflow safety, not vanity throughput or 50k binary PDFs.
 
-**Do not build yet:** NECD slice 2+ (auto-snapshot on upload), export slice 3+ (PDF download), supervisor multi-case queue (slice 2), client explanation slice 2 (export type), plea warning (7), route comparison (9), PDF/OCR slice 3+ (100+ / production ingest), audio (11), mass corpus (12).
+**Do not build yet:** NECD slice 3+ (DB persistence / production upload hook), export slice 3+ (PDF download), supervisor multi-case queue (slice 2), client explanation slice 2 (export type), plea warning (7), route comparison (9), PDF/OCR slice 3+ (100+ / production ingest), audio (11), mass corpus (12).
 
 ### 9.6.3 Audio-to-Bundle Loop (planned — do not build yet)
 

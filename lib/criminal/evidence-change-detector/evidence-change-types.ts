@@ -1,5 +1,14 @@
 import type { PreHearingReadinessLevel } from "@/lib/criminal/pre-hearing-readiness/readiness-types";
 
+/** Safe source-state metadata — no raw text, paths, or file names. */
+export type EvidenceChangeSourceState = {
+  documentCount: number;
+  combinedTextLength: number;
+  sourceSnippetCount: number;
+  bundleAvailabilityReason: string;
+  matterUpdatedMarker: string | null;
+};
+
 /** Safe metadata snapshot — no source text, paths, or proof IDs. */
 
 export type EvidenceChangeSnapshot = {
@@ -15,6 +24,8 @@ export type EvidenceChangeSnapshot = {
   safeNextAction: string;
   warRoomHearingLine: string;
   timestamp: string;
+  /** Slice 2 — upload/text-change-aware source metadata. */
+  sourceState?: EvidenceChangeSourceState;
 };
 
 export type EvidenceChangeCompareResult = {
@@ -31,6 +42,10 @@ export type EvidenceChangeCompareResult = {
   doNotConcedeChanges: string[];
   warRoomHearingLineUpdate: string | null;
   solicitorReviewRequired: boolean;
+  /** Slice 2 — source upload/text metadata delta. */
+  sourceMaterialChanged: boolean;
+  sourceStateChanges: string[];
+  supervisorElevationLabel: string | null;
   /** Top lines for compact UI preview. */
   topChanges: string[];
 };

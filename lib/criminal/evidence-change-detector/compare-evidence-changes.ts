@@ -4,6 +4,7 @@ import type {
   EvidenceChangeCompareOutcome,
   EvidenceChangeCompareResult,
   EvidenceChangeSnapshot,
+  EvidenceChangeSourceState,
 } from "./evidence-change-types";
 
 function normKey(label: string): string {
@@ -44,6 +45,19 @@ function readinessLabel(level: PreHearingReadinessLevel): string {
   }
 }
 
+const READINESS_RANK: Record<PreHearingReadinessLevel, number> = {
+  green: 0,
+  amber: 1,
+  red: 2,
+};
+
+function readinessWorsened(
+  previous: PreHearingReadinessLevel,
+  current: PreHearingReadinessLevel,
+): boolean {
+  return READINESS_RANK[current] > READINESS_RANK[previous];
+}
+
 function dedupe(lines: string[], cap = 10): string[] {
   const seen = new Set<string>();
   const out: string[] = [];
@@ -57,6 +71,59 @@ function dedupe(lines: string[], cap = 10): string[] {
     if (out.length >= cap) break;
   }
   return out;
+}
+
+function compareSourceState(
+  previous: EvidenceChangeSourceState | undefined,
+  current: EvidenceChangeSourceState | undefined,
+): string[] {
+  if (!previous || !current) return [];
+
+  const changes: string[] = [];
+
+  if (previous.documentCount !== current.documentCount) {
+    changes.push(
+      sanitizeEvidenceChangeLine(
+        `Document count on file changed (${previous.documentCount} → ${current.documentCount}).`,
+      ),
+    );
+  }
+
+  if (previous.combinedTextLength !== current.combinedTextLength) {
+    changes.push(
+      sanitizeEvidenceChangeLine(
+        `Combined source text length changed (${previous.combinedTextLength.toLocaleString()} → ${current.combinedTextLength.toLocaleString()} chars).`,
+      ),
+    );
+  }
+
+  if (previous.sourceSnippetCount !== current.sourceSnippetCount) {
+    changes.push(
+      sanitizeEvidenceChangeLine(
+        `Source snippet count changed (${previous.sourceSnippetCount} → ${current.sourceSnippetCount}).`,
+      ),
+    );
+  }
+
+  if (previous.bundleAvailabilityReason !== current.bundleAvailabilityReason) {
+    changes.push(
+      sanitizeEvidenceChangeLine(
+        "Bundle availability on file changed — review served material before relying.",
+      ),
+    );
+  }
+
+  const prevMarker = previous.matterUpdatedMarker ?? "";
+  const currMarker = current.matterUpdatedMarker ?? "";
+  if (prevMarker !== currMarker && (prevMarker || currMarker)) {
+    changes.push(
+      sanitizeEvidenceChangeLine(
+        "Matter update marker changed — new or revised documents may be on file.",
+      ),
+    );
+  }
+
+  return dedupe(changes, 6);
 }
 
 const EMPTY_RESULT = (
@@ -76,6 +143,9 @@ const EMPTY_RESULT = (
   doNotConcedeChanges: [],
   warRoomHearingLineUpdate: null,
   solicitorReviewRequired: false,
+  sourceMaterialChanged: false,
+  sourceStateChanges: [],
+  supervisorElevationLabel: null,
   topChanges: [],
 });
 
@@ -95,6 +165,9 @@ export function compareEvidenceChanges(
       ),
     );
   }
+
+  const sourceStateChanges = compareSourceState(previous.sourceState, current.sourceState);
+  const sourceMaterialChanged = sourceStateChanges.length > 0;
 
   const closedMissingItems = dedupe(
     removed(previous.missingMaterialLabels, current.missingMaterialLabels).map(
@@ -141,6 +214,11 @@ export function compareEvidenceChanges(
       ),
     );
   }
+  if (readinessWorsened(previous.readinessLevel, current.readinessLevel)) {
+    readinessImpact.push(
+      sanitizeEvidenceChangeLine("Readiness changed — solicitor review required before relying."),
+    );
+  }
 
   const disclosureChaseUpdates = dedupe(
     changed(previous.disclosureChaseLabels, current.disclosureChaseLabels).map((l) =>
@@ -148,21 +226,21 @@ export function compareEvidenceChanges(
         (n) => normKey(n) === normKey(l),
       )
         ? `New disclosure chase priority: ${l}`
-        : `Disclosure chase priority removed or changed: ${l}`,
+        : `Disclosure chase should be reviewed: ${l}`,
     ),
     6,
   );
 
   const clientInstructionUpdates = dedupe(
-    changed(previous.clientInstructionLabels, current.clientInstructionLabels).map((l) =>
-      `Client instruction gap updated: ${l}`,
+    changed(previous.clientInstructionLabels, current.clientInstructionLabels).map(
+      (l) => `Client instruction gap updated: ${l}`,
     ),
     6,
   );
 
   const doNotConcedeChanges = dedupe(
-    changed(previous.doNotConcedeLabels, current.doNotConcedeLabels).map((l) =>
-      `Do-not-concede risk updated: ${l}`,
+    changed(previous.doNotConcedeLabels, current.doNotConcedeLabels).map(
+      (l) => `Do-not-concede risk updated: ${l}`,
     ),
     6,
   );
@@ -184,18 +262,45 @@ export function compareEvidenceChanges(
   const humanReviewChanged =
     previous.humanReviewRequired !== current.humanReviewRequired && current.humanReviewRequired;
 
+  const paperStateChangeCount =
+    closedMissingItems.length +
+    newMissingItems.length +
+    newOrChangedContradictions.length +
+    routeImpact.length +
+    readinessImpact.length +
+    disclosureChaseUpdates.length +
+    clientInstructionUpdates.length +
+    doNotConcedeChanges.length +
+    proofPressureUpdates.length +
+    (warRoomHearingLineUpdate ? 1 : 0);
+
   const solicitorReviewRequired =
     humanReviewChanged ||
     newOrChangedContradictions.length > 0 ||
     newMissingItems.length > 0 ||
     routeImpact.length > 0 ||
     readinessImpact.length > 0 ||
+    readinessWorsened(previous.readinessLevel, current.readinessLevel) ||
     doNotConcedeChanges.length > 0 ||
     warRoomHearingLineUpdate !== null ||
+    sourceMaterialChanged ||
     current.humanReviewRequired;
+
+  const supervisorElevationLabel =
+    sourceMaterialChanged || solicitorReviewRequired
+      ? sanitizeEvidenceChangeLine("Supervisor review suggested because material changed")
+      : null;
 
   const topChanges = dedupe(
     [
+      ...(sourceMaterialChanged
+        ? [
+            sanitizeEvidenceChangeLine(
+              "Source material appears to have changed — compare before relying on the previous position.",
+            ),
+          ]
+        : []),
+      ...sourceStateChanges,
       ...closedMissingItems,
       ...newMissingItems,
       ...newOrChangedContradictions,
@@ -208,15 +313,20 @@ export function compareEvidenceChanges(
     8,
   );
 
-  const changeCount = topChanges.length;
-  const changeSummary =
-    changeCount === 0
-      ? sanitizeEvidenceChangeLine(
-          "No material label changes since last saved snapshot — still subject to solicitor review.",
-        )
-      : sanitizeEvidenceChangeLine(
-          `${changeCount} paper-state change(s) since last saved snapshot — solicitor review recommended before finalising hearing position.`,
-        );
+  let changeSummary: string;
+  if (sourceMaterialChanged) {
+    changeSummary = sanitizeEvidenceChangeLine(
+      "Source material appears to have changed — compare before relying on the previous position.",
+    );
+  } else if (paperStateChangeCount === 0) {
+    changeSummary = sanitizeEvidenceChangeLine(
+      "No obvious material change since last saved snapshot — still subject to solicitor review.",
+    );
+  } else {
+    changeSummary = sanitizeEvidenceChangeLine(
+      `${topChanges.length} paper-state change(s) since last saved snapshot — solicitor review recommended before finalising hearing position.`,
+    );
+  }
 
   return {
     available: true,
@@ -232,6 +342,9 @@ export function compareEvidenceChanges(
     doNotConcedeChanges,
     warRoomHearingLineUpdate,
     solicitorReviewRequired,
+    sourceMaterialChanged,
+    sourceStateChanges,
+    supervisorElevationLabel,
     topChanges,
   };
 }

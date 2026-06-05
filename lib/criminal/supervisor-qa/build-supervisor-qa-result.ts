@@ -185,6 +185,10 @@ export function buildSupervisorQAResult(
     reasons.push("Evidence changes since last snapshot may affect route or readiness.");
     severity += 2;
   }
+  if (evidenceChanges?.supervisorElevationLabel) {
+    reasons.push(evidenceChanges.supervisorElevationLabel);
+    severity += 2;
+  }
   if (hasUnsafeFeedback) {
     reasons.push("Unsafe / overconfident feedback marked on Reasoning V2.");
     severity += 3;
