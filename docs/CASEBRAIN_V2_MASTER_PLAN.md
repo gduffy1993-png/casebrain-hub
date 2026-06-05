@@ -717,7 +717,7 @@ statement, officer MG11, BWV and photographs. Do not state final location as fac
 | **4a** | **Proof Map / Evidence Dependency Graph** — evaluator, gold expects, artifact reports |
 | **4b** | **Battleboard** — strategy view of Proof Map + expects |
 | **4c** | **War Room** — hearing-action view of Proof Map + expects |
-| **4d** | **Product UI** (Control Room, Disclosure Chase, Supervisor, Client) — **last** |
+| **4d** | **Product UI** (Control Room, Disclosure Chase, Supervisor, Client) — **last** — **slice 1 shipped:** read-only Reasoning panel behind `?reasoningV2=1` / `localStorage: casebrain:reasoningV2=true` |
 | **4e** | **Strategy corpus expansion** — first **1k** scored fictional corpus + holdout packs (§9.7) — **after 4c** |
 | **4f** | **Synthetic Criminal Bundle Factory** — generator architecture to **50k** variants; staged materialisation only (§9.8) |
 
