@@ -1,6 +1,6 @@
 # Real-layout PDF/OCR Stress Lane — plan (docs only)
 
-**Status:** **Slice 1 shipped (eval-only)** — `lib/eval/casebrain-auditor/real-layout-pdf-ocr-stress/README.md`; 25 fictional PDF samples max; gitignored output.
+**Status:** **Slice 2 shipped (eval-only)** — `lib/eval/casebrain-auditor/real-layout-pdf-ocr-stress/README.md`; 50 fictional PDF samples max; deliberate weak/fail traps; gitignored output.
 
 **Purpose:** Prove CaseBrain can handle **real-layout bundle mess** (Crown/solicitor-style PDF shapes, OCR noise, bad indexes, partial disclosure) — not only clean generated bundle text.
 

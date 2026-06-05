@@ -3,6 +3,8 @@ import type {
   RealLayoutStressLayoutTag,
   RealLayoutStressSampleManifest,
 } from "./real-layout-stress-types";
+import { SLICE2_RECIPES } from "./real-layout-stress-recipes-slice2";
+import { REAL_LAYOUT_STRESS_MAX_SLICE2 } from "./real-layout-stress-types";
 
 type RecipeSeed = Omit<RealLayoutStressSampleManifest, "fictional">;
 
@@ -365,24 +367,30 @@ const BASE: RecipeSeed[] = [
   },
 ];
 
+const ALL_RECIPES: RecipeSeed[] = [...BASE, ...SLICE2_RECIPES];
+
 export function listRealLayoutStressRecipes(count: number): RealLayoutStressSampleManifest[] {
-  const capped = Math.min(Math.max(1, count), BASE.length);
-  return BASE.slice(0, capped).map((r) => ({ ...r, fictional: true as const }));
+  const capped = Math.min(Math.max(1, count), REAL_LAYOUT_STRESS_MAX_SLICE2);
+  return ALL_RECIPES.slice(0, capped).map((r) => ({ ...r, fictional: true as const }));
 }
 
 export function recipeBySampleId(sampleId: string): RealLayoutStressSampleManifest | null {
-  const hit = BASE.find((r) => r.sampleId === sampleId);
+  const hit = ALL_RECIPES.find((r) => r.sampleId === sampleId);
   return hit ? { ...hit, fictional: true } : null;
 }
 
-export function allLayoutTagsInRecipes(count = BASE.length): RealLayoutStressLayoutTag[] {
+export function allLayoutTagsInRecipes(count = ALL_RECIPES.length): RealLayoutStressLayoutTag[] {
   const tags = new Set<RealLayoutStressLayoutTag>();
-  for (const r of BASE.slice(0, count)) {
+  for (const r of ALL_RECIPES.slice(0, count)) {
     for (const t of r.layoutTags) tags.add(t);
   }
   return [...tags];
 }
 
-export function offenceFamiliesInRecipes(count = BASE.length): RealLayoutOffenceFamily[] {
-  return [...new Set(BASE.slice(0, count).map((r) => r.offenceFamily))];
+export function offenceFamiliesInRecipes(count = ALL_RECIPES.length): RealLayoutOffenceFamily[] {
+  return [...new Set(ALL_RECIPES.slice(0, count).map((r) => r.offenceFamily))];
+}
+
+export function deliberateTrapRecipes(count = ALL_RECIPES.length): RealLayoutStressSampleManifest[] {
+  return listRealLayoutStressRecipes(count).filter((r) => r.trapProfile?.tier.startsWith("deliberate"));
 }
