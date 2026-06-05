@@ -737,7 +737,7 @@ Until **4a–4c** pass on gold (and agreed local exemplars), **4d UI stays off**
 |---|--------|--------|
 | 1 | **Solicitor feedback marking loop** | **Shipped (local)** — `lib/criminal/reasoning-v2/feedback/README.md` |
 | 2 | **Client Account Stress-Test** | **Slice 1–2 shipped (local):** account compare + **Client Instructions Checklist** + **Do-not-concede Guard**; `?clientStress=1` + `?reasoningV2=1`; `lib/criminal/client-stress-test/README.md` |
-| 3 | **New Evidence Change Detector** | Planned — diff uploads vs last snapshot; served-item closure; route impact |
+| 3 | **New Evidence Change Detector** | **Slice 1 shipped (local):** snapshot compare (`?evidenceChanges=1` + `?reasoningV2=1`); `lib/criminal/evidence-change-detector/README.md` |
 | 4 | **Disclosure letter / export builder** | Planned — chase drafts from missing material (CCTV master, CAD, BWV, interview, MG6, lab, continuity) |
 | 5 | **Supervisor review queue + case handover** | Planned — unsafe marks, serious/provisional, contradictions, human review, missing core before hearing |
 | 6 | **Client explanation mode** | Planned — plain-English solicitor-safe client summary (papers / missing / why not finalised) |
@@ -748,7 +748,7 @@ Until **4a–4c** pass on gold (and agreed local exemplars), **4d UI stays off**
 | 11 | **Audio-to-Bundle Loop** | **Docs only** — §9.6.3 |
 | 12 | **Phase 4f scale-up (5k / 10k / 50k)** | **After** workflows 1–9 are stable — §9.8 |
 
-**Do not build yet:** NECD (3), disclosure/export (4), supervisor/handover (5), client explanation (6), plea warning (7), readiness score (8), route comparison (9), PDF/OCR (10), audio (11), mass corpus (12).
+**Do not build yet:** NECD slice 2+ (auto-snapshot on upload), disclosure/export (4), supervisor/handover (5), client explanation (6), plea warning (7), route comparison (9), PDF/OCR (10), audio (11), mass corpus (12).
 
 ### 9.6.3 Audio-to-Bundle Loop (planned — do not build yet)
 
