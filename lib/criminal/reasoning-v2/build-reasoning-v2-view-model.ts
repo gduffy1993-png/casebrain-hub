@@ -3,6 +3,10 @@ import type { BattleboardViewEvidenceItem } from "@/lib/eval/casebrain-auditor/b
 import { generateProofMap } from "@/lib/eval/casebrain-auditor/proof-map-generate";
 import { generateWarRoomView } from "@/lib/eval/casebrain-auditor/war-room-view-generate";
 import {
+  assessBundleAvailability,
+  type BundleAvailabilityInput,
+} from "./bundle-availability";
+import {
   REASONING_V2_MIN_BUNDLE_CHARS,
   assembleBundleTextForReasoning,
   type BundleTextInput,
@@ -20,7 +24,7 @@ import type {
   ReasoningV2ViewModel,
 } from "./reasoning-v2-types";
 
-export type BuildReasoningV2Input = BundleTextInput & {
+export type BuildReasoningV2Input = BundleAvailabilityInput & {
   matterLabel?: string;
 };
 
@@ -133,8 +137,11 @@ export function buildReasoningV2FromBundleText(
 }
 
 export function buildReasoningV2ViewModel(input: BuildReasoningV2Input): ReasoningV2Result {
-  const bundleText = assembleBundleTextForReasoning(input);
-  return buildReasoningV2FromBundleText(bundleText, input.matterLabel ?? "Current matter");
+  const assessment = assessBundleAvailability(input);
+  if (assessment.unavailableReason) {
+    return { available: false, reason: assessment.unavailableReason };
+  }
+  return buildReasoningV2FromBundleText(assessment.bundleText, input.matterLabel ?? "Current matter");
 }
 
 export { confidenceLabel };

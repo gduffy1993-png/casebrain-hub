@@ -1,12 +1,26 @@
 import type { ExplanationConfidenceTag } from "@/lib/eval/casebrain-auditor/explanation-fidelity-types";
 
-const FORBIDDEN_UI_PHRASES = [
+export const FORBIDDEN_UI_PHRASES = [
   "this wins",
   "crown collapses",
   "crown cannot prove",
   "proves innocence",
   "guaranteed",
   "case fails",
+] as const;
+
+const INTERNAL_LEAK_PATTERNS = [
+  /\bpp-[a-z0-9-]+\b/i,
+  /artifacts\/[^\s"'<>]+/i,
+  /[A-Za-z]:\\[^\s"'<>]+\.(pdf|txt|json)/i,
+  /\b(bundle|pack|corpus|eval|artifact)[-_][a-z0-9-]+\b/i,
+  /\bproof map\b/i,
+  /\beval pack\b/i,
+  /\bgold pack\b/i,
+  /\bstrategy-fidelity\b/i,
+  /\bviolence_gbh\b/i,
+  /\bgeneric_provisional\b/i,
+  /\bdata-testid\b/i,
 ] as const;
 
 const INTERNAL_REASON_PREFIXES = [
@@ -16,14 +30,29 @@ const INTERNAL_REASON_PREFIXES = [
   "forbidden phrasing in war room",
 ] as const;
 
+export function lintReasoningV2PublicText(text: string): string[] {
+  const issues: string[] = [];
+  const lower = text.toLowerCase();
+  for (const phrase of FORBIDDEN_UI_PHRASES) {
+    if (lower.includes(phrase)) issues.push(`forbidden phrase: ${phrase}`);
+  }
+  for (const re of INTERNAL_LEAK_PATTERNS) {
+    const m = text.match(re);
+    if (m) issues.push(`internal leak: ${m[0]}`);
+  }
+  return issues;
+}
+
 export function sanitizeReasoningPublicText(text: string | null | undefined): string {
   if (!text?.trim()) return "";
   let out = text
     .replace(/\(proof map:\s*[^)]+\)/gi, "")
     .replace(/\bpp-[a-z0-9-]+\b/gi, "")
-    .replace(/\b(bundle|pack|corpus|eval|artifact)[-_]?[a-z0-9-]+\b/gi, "")
+    .replace(/\b(bundle|pack|corpus|eval|artifact)[-_][a-z0-9-]+\b/gi, "")
+    .replace(/\b(violence_gbh|generic_provisional|robbery_id|pwits|motoring)\b/gi, "")
     .replace(/artifacts\/[^\s"'<>]+/gi, "")
     .replace(/[A-Za-z]:\\[^\s"'<>]+\.(pdf|txt|json)/gi, "")
+    .replace(/\bproof map\b/gi, "source papers")
     .replace(/\s{2,}/g, " ")
     .trim();
 

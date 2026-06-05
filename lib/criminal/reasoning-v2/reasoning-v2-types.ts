@@ -58,8 +58,13 @@ export type ReasoningV2ViewModel = {
 };
 
 export type ReasoningV2Result =
-  | { available: false; reason: "no_bundle_text" | "insufficient_source" }
+  | { available: false; reason: ReasoningV2UnavailableReason }
   | ReasoningV2ViewModel;
+
+export type ReasoningV2UnavailableReason =
+  | "no_bundle_text"
+  | "no_source_snippets"
+  | "insufficient_source";
 
 export const REASONING_V2_UNAVAILABLE_MESSAGE =
   "Source-backed reasoning is not available for this matter yet.";

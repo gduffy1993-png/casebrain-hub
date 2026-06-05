@@ -717,11 +717,31 @@ statement, officer MG11, BWV and photographs. Do not state final location as fac
 | **4a** | **Proof Map / Evidence Dependency Graph** — evaluator, gold expects, artifact reports |
 | **4b** | **Battleboard** — strategy view of Proof Map + expects |
 | **4c** | **War Room** — hearing-action view of Proof Map + expects |
-| **4d** | **Product UI** (Control Room, Disclosure Chase, Supervisor, Client) — **last** — **slice 1 shipped:** read-only Reasoning panel behind `?reasoningV2=1` / `localStorage: casebrain:reasoningV2=true` |
+| **4d** | **Product UI** (Control Room, Disclosure Chase, Supervisor, Client) — **last** — **slice 1–2 shipped:** read-only Reasoning panel + War Room bridge behind `?reasoningV2=1` / `localStorage: casebrain:reasoningV2=true`; route-difference notice; empty-state reasons; auditor probe |
 | **4e** | **Strategy corpus expansion** — first **1k** scored fictional corpus + holdout packs (§9.7) — **after 4c** |
 | **4f** | **Synthetic Criminal Bundle Factory** — generator architecture to **50k** variants; staged materialisation only (§9.8) |
 
 Until **4a–4c** pass on gold (and agreed local exemplars), **4d UI stays off**. Until **4e** design is locked and **4c** is green, **do not** mass-generate bundles or tune on holdout. **50k is long-term private stress capacity — not a near-term deliverable.**
+
+### 9.6.1 Phase 4d — product UI bridge (current)
+
+**Status:** **4d slice 2 shipped** — Reasoning V2 panel hardened for pilot review (route consistency notice, empty-state reasons, sanitizer lint, War Room bridge focus, optional auditor probe). Flag remains **default OFF**.
+
+**Enable (pilot/dev only):** `?reasoningV2=1` or `localStorage: casebrain:reasoningV2=true`.
+
+### 9.6.2 Product layers after 4d UI bridge (planned — do not build yet)
+
+Order after **4d UI bridge** is green in pilot:
+
+1. **Solicitor feedback marking loop** — mark reasoning sections helpful / wrong / needs review; feeds eval without client text in repo.
+2. **Client Account Stress-Test** — safe client-facing summary stress lane (provisional wording gates).
+3. **New Evidence Change Detector** — diff served material vs last reasoning snapshot; flag route impact.
+4. **Export pack generator** — solicitor-safe hearing/disclosure export from same spine (no duplicate reasoning).
+5. **Supervisor QA view** — read-only oversight of route + disclosure chase + human-review flags.
+6. **Security / audit trail** — who viewed/changed strategy position; reasoning panel access log.
+7. **Real-layout PDF/OCR stress lane** — private ingest (§9.7 lane B); not blocking 4d.
+8. **Offence element map expansion** — richer proof points per family; still source-backed.
+9. **Phase 4f scale-up** — corpus factory to 5k / 10k / 50k **after** product layers 1–6 are stable.
 
 ---
 

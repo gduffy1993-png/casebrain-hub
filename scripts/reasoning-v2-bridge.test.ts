@@ -4,10 +4,34 @@
  */
 import assert from "node:assert/strict";
 import { loadGoldPack, readBundleText } from "../lib/eval/casebrain-auditor/bundle-fidelity-pack";
+import { probeReasoningV2Surface } from "../lib/eval/casebrain-auditor/reasoning-v2-auditor-probe";
+import { PILOT_3_TRUTH_MANIFESTS } from "../lib/eval/casebrain-auditor/truth-manifests";
+import { assessBundleAvailability, reasoningV2UnavailableDetail } from "../lib/criminal/reasoning-v2/bundle-availability";
 import { buildReasoningV2FromBundleText } from "../lib/criminal/reasoning-v2/build-reasoning-v2-view-model";
-import { sanitizeReasoningPublicText } from "../lib/criminal/reasoning-v2/sanitize-reasoning-text";
+import {
+  reasoningRouteDiffersFromBattleboard,
+  REASONING_ROUTE_DIFFERS_NOTICE,
+} from "../lib/criminal/reasoning-v2/route-consistency";
+import {
+  lintReasoningV2PublicText,
+  sanitizeReasoningPublicText,
+} from "../lib/criminal/reasoning-v2/sanitize-reasoning-text";
 
 const FORBIDDEN = ["this wins", "crown collapses", "proves innocence", "guaranteed", "artifacts/"];
+
+assert.equal(
+  reasoningRouteDiffersFromBattleboard("Fraud / account-control route", "Identification / participation pressure"),
+  true,
+);
+assert.equal(
+  reasoningRouteDiffersFromBattleboard("Fraud / account-control / dishonesty pressure", "Fraud / account-control"),
+  false,
+);
+assert.ok(REASONING_ROUTE_DIFFERS_NOTICE.includes("Solicitor review"));
+
+const empty = assessBundleAvailability({ frontMatterScan: null, snippets: undefined, combinedTextLength: 0 });
+assert.equal(empty.unavailableReason, "no_bundle_text");
+assert.ok(reasoningV2UnavailableDetail("no_source_snippets").includes("MG5"));
 
 let passed = 0;
 for (const entry of loadGoldPack()) {
@@ -36,11 +60,21 @@ for (const entry of loadGoldPack()) {
     assert.ok(!blob.includes(phrase), `${id}: forbidden phrase "${phrase}" in UI model`);
   }
 
-  const sanitized = sanitizeReasoningPublicText("Ask court (proof map: Identification of offender).");
-  assert.ok(!sanitized.toLowerCase().includes("proof map"), "sanitizer should strip proof map parenthetical");
+  const lint = lintReasoningV2PublicText(blob);
+  assert.equal(lint.length, 0, `${id}: lint issues: ${lint.join("; ")}`);
 
   passed++;
 }
 
 assert.equal(passed, 7, "expected 7 runnable gold bundles");
-console.log("reasoning-v2-bridge.test.ts: ok (7/7)");
+
+for (const manifest of PILOT_3_TRUTH_MANIFESTS) {
+  const probe = probeReasoningV2Surface(manifest);
+  assert.equal(probe.panelTestId, "reasoning-v2-panel");
+  assert.equal(probe.lintIssues.length, 0, `${manifest.caseId}: auditor probe lint`);
+}
+
+const sanitized = sanitizeReasoningPublicText("Ask court (proof map: Identification of offender).");
+assert.ok(!sanitized.toLowerCase().includes("proof map"), "sanitizer should strip proof map parenthetical");
+
+console.log("reasoning-v2-bridge.test.ts: ok (7/7 + pilot probe)");

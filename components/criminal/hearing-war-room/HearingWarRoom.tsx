@@ -373,6 +373,7 @@ export function HearingWarRoom({
     return buildReasoningV2ViewModel({
       frontMatterScan: bundleSource?.frontMatterScan,
       snippets: bundleSource?.snippets,
+      combinedTextLength: bundleSource?.combinedTextLength,
       matterLabel: caseTitle,
     });
   }, [reasoningV2Enabled, bundleSource, caseTitle]);

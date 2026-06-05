@@ -287,6 +287,7 @@ export function CaseControlRoom({
     return buildReasoningV2ViewModel({
       frontMatterScan: bundleSource?.frontMatterScan,
       snippets: bundleSource?.snippets,
+      combinedTextLength: bundleSource?.combinedTextLength,
       matterLabel: caseTitle,
     });
   }, [reasoningV2Enabled, bundleSource, caseTitle]);
@@ -359,6 +360,14 @@ export function CaseControlRoom({
   const filteredBattleboard = useMemo(
     () => filterBattleboardForWorkflowPilot(battleboard, workflowContext),
     [battleboard, workflowContext],
+  );
+
+  const existingBattleboardRoute = useMemo(
+    () =>
+      filteredBattleboard?.primary_route?.title ||
+      battleboard?.primary_route?.title ||
+      null,
+    [filteredBattleboard, battleboard],
   );
 
   const chaseItemsAll = useMemo(
@@ -710,6 +719,7 @@ export function CaseControlRoom({
             <ReasoningV2Panel
               result={reasoningV2Result}
               loading={bundleSourceLoading}
+              existingBattleboardRoute={existingBattleboardRoute}
             />
           ) : null}
           </CaseWorkflowShell>

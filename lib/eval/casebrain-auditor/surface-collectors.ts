@@ -27,6 +27,10 @@ import {
   isPilotDemoUploadDisabled,
   PILOT_COURT_TODAY_ANCHOR,
 } from "@/lib/pilot-mode";
+import {
+  flattenReasoningV2ProbeForAudit,
+  probeReasoningV2Surface,
+} from "./reasoning-v2-auditor-probe";
 import type {
   AuditorScreen,
   CaseTruthManifest,
@@ -175,6 +179,7 @@ export function collectCaseSurfaces(
   try {
     const primaryRoute = workflowPrimaryRouteTitle(ctx);
     const nextActions = workflowTopNextActions(ctx) ?? [];
+    const reasoningV2Probe = probeReasoningV2Surface(manifest);
     screens.push(
       screen(
         "control_room",
@@ -197,6 +202,8 @@ export function collectCaseSurfaces(
             { max: 4 },
           ),
           nextActions: nextActions.slice(0, 3),
+          reasoningV2Panel: reasoningV2Probe,
+          reasoningV2PanelText: flattenReasoningV2ProbeForAudit(reasoningV2Probe),
         },
         primaryRoute ? "collected" : "partial",
         "live-builder",
