@@ -98,3 +98,15 @@ Scoring inspects **generated** Proof Map / Battleboard / War Room outputs:
 ## Generator version
 
 `4e-v1.0.0` — phase `4e-slice-3` in `strategy-corpus-types.ts`.
+
+## Future 50k scale-run (docs only — do not run)
+
+**Fast safe method = chunked manifest/text run with summary-only reports, not 50k PDFs.**
+
+- **50k** = manifest + truth-key + **text** scenarios in **gitignored cache**, not 50k PDFs in repo or on disk by default.  
+- **PDFs:** sampled later (OCR/layout stress), not part of the default 50k milestone.  
+- **Runs:** staged **1k → 5k → 10k → 50k**; chunked (`--chunk-size` 500–1000); **summary-only** reports by default; **weak/fail-only** detailed artifacts.  
+- **Goal:** fingerprint collapse + safety — **not** 50k/50k pass; holdout **frozen**; **no caseId hacks**.  
+- **Runtime:** benchmark 1k wall time; estimate 50k ≈ **1k × 50** unless parallelised (with merge/storage caps).  
+
+Full design: [CASEBRAIN_V2_MASTER_PLAN.md §9.8.9](../CASEBRAIN_V2_MASTER_PLAN.md#989-scale-run-method-planned-runner--docs-only). **Do not implement or run 50k until that section’s gates are met.**

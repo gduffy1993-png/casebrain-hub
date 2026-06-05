@@ -717,6 +717,8 @@ export function CaseControlRoom({
           />
           {reasoningV2Enabled ? (
             <ReasoningV2Panel
+              caseId={caseId}
+              reasoningV2Enabled={reasoningV2Enabled}
               result={reasoningV2Result}
               loading={bundleSourceLoading}
               existingBattleboardRoute={existingBattleboardRoute}

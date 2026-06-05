@@ -5,15 +5,25 @@ import { Badge } from "@/components/ui/badge";
 import { workflowCard, workflowMuted, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
 import type { ReasoningV2WarRoomSection } from "@/lib/criminal/reasoning-v2/reasoning-v2-types";
 import { ExpandableStringList, REASONING_V2_SOURCE_BASIS_MAX, truncateSourceBasis } from "./reasoningV2Ui";
+import { ReasoningFeedbackCard } from "./ReasoningFeedbackCard";
 
 export type WarRoomReasoningBridgeProps = {
+  caseId: string;
+  reasoningV2Enabled: boolean;
+  routeLabel: string | null;
   warRoom: ReasoningV2WarRoomSection | null;
 };
 
-export function WarRoomReasoningBridge({ warRoom }: WarRoomReasoningBridgeProps) {
+export function WarRoomReasoningBridge({
+  caseId,
+  reasoningV2Enabled,
+  routeLabel,
+  warRoom,
+}: WarRoomReasoningBridgeProps) {
   if (!warRoom) return null;
 
   return (
+    <>
     <section
       className={`${workflowCard} border-indigo-100/80`}
       aria-label="Hearing reasoning bridge"
@@ -76,5 +86,13 @@ export function WarRoomReasoningBridge({ warRoom }: WarRoomReasoningBridgeProps)
         </div>
       </div>
     </section>
+    <ReasoningFeedbackCard
+      caseId={caseId}
+      surface="war-room-reasoning"
+      routeLabel={routeLabel}
+      humanReviewRequired={warRoom.solicitorReviewRequired}
+      reasoningV2Enabled={reasoningV2Enabled}
+    />
+    </>
   );
 }
