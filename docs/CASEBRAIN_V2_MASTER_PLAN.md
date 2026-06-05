@@ -744,13 +744,13 @@ Until **4a–4c** pass on gold (and agreed local exemplars), **4d UI stays off**
 | 7 | **Plea/credit pressure warning** | Planned — timing/stage pressure only; no plea advice; optional |
 | 8 | **Pre-hearing readiness score** | **Slice 1 shipped (local):** flag-gated badge (`?readiness=1` + `?reasoningV2=1`); `lib/criminal/pre-hearing-readiness/README.md` |
 | 9 | **Route comparison** | Planned — identity / role / causation / self-defence / possession vs supply / mitigation with helps/hurts/missing/collapse |
-| 10 | **Real-layout PDF/OCR stress lane** | **Planned (docs)** — sampled fictional PDFs from scored scenarios; `docs/REAL_LAYOUT_PDF_OCR_STRESS_LANE.md` |
+| 10 | **Real-layout PDF/OCR stress lane** | **Slice 1 shipped (eval):** 25 fictional PDF samples, gitignored; `lib/eval/casebrain-auditor/real-layout-pdf-ocr-stress/README.md` |
 | 11 | **Audio-to-Bundle Loop** | **Docs only** — §9.6.3 |
 | 12 | **Phase 4f scale-up (5k / 10k / 50k)** | **After** real-PDF + real-matter lanes — §9.8 |
 
 **Stress-test order (agreed — not 50k real PDFs):** (1) **sampled** real-layout PDF/OCR lane (25 → 50 → 100 → 250) — §9.6.4, (2) 10–20 anonymised real-matter auditor pack when available, (3) staged **manifest/text** scale 5k → 10k → 50k addressable scenarios — §9.8, (4) goal = fingerprint collapse + workflow safety, not vanity throughput or 50k binary PDFs.
 
-**Do not build yet:** NECD slice 2+ (auto-snapshot on upload), export slice 3+ (PDF download), supervisor multi-case queue (slice 2), client explanation slice 2 (export type), plea warning (7), route comparison (9), PDF/OCR lane code (10 — plan only), audio (11), mass corpus (12).
+**Do not build yet:** NECD slice 2+ (auto-snapshot on upload), export slice 3+ (PDF download), supervisor multi-case queue (slice 2), client explanation slice 2 (export type), plea warning (7), route comparison (9), PDF/OCR slice 2+ (50+ samples / production ingest), audio (11), mass corpus (12).
 
 ### 9.6.3 Audio-to-Bundle Loop (planned — do not build yet)
 
@@ -802,7 +802,7 @@ If **999 audio** says X, **MG5** says Y, and **BWV** says Z, CaseBrain should fl
 
 ### 9.6.4 Real-layout PDF/OCR stress lane (planned — do not build yet)
 
-**Status:** **Docs only.** Full plan: `docs/REAL_LAYOUT_PDF_OCR_STRESS_LANE.md`.
+**Status:** **Slice 1 shipped (eval-only).** Full plan: `docs/REAL_LAYOUT_PDF_OCR_STRESS_LANE.md`; runner: `scripts/real-layout-pdf-ocr-stress.ts`.
 
 **Clarification:** We are **not** doing 50,000 real PDFs. **50k** = manifest/text scenario stress (§9.8). The PDF/OCR lane is a **separate sampled lane**: realistic fictional Crown/solicitor-style PDF bundles from scored scenarios → extract/OCR → reasoning spine eval.
 
