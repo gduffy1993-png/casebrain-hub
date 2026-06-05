@@ -1,11 +1,12 @@
 /**
- * Disclosure / Export Builder — slice 1.
+ * Disclosure / Export Builder — slices 1–2.
  * Run: npx tsx scripts/disclosure-export-builder.test.ts
  */
 import assert from "node:assert/strict";
 import { loadGoldPack, readBundleText } from "../lib/eval/casebrain-auditor/bundle-fidelity-pack";
 import { buildReasoningV2FromBundleText } from "../lib/criminal/reasoning-v2/build-reasoning-v2-view-model";
 import { buildClientStressResult } from "../lib/criminal/client-stress-test/build-client-stress-result";
+import { buildCaseHandoverSummary } from "../lib/criminal/disclosure-export/build-case-handover-summary";
 import { buildDisclosureChaseDraft } from "../lib/criminal/disclosure-export/build-disclosure-chase-draft";
 import { buildHearingPrepNote } from "../lib/criminal/disclosure-export/build-hearing-prep-note";
 import { buildSolicitorExport } from "../lib/criminal/disclosure-export/build-solicitor-export";
@@ -87,6 +88,34 @@ const viaBuilder = buildSolicitorExport("hearing_prep", reasoning, ctx, {
 });
 assert.equal(viaBuilder.exportType, "hearing_prep");
 assert.ok(viaBuilder.fullText.includes("Solicitor review"));
+
+const handover = buildCaseHandoverSummary(reasoning, ctx, {
+  clientStress: stress.available ? stress : null,
+  readinessInput: {
+    bundleMeta: { documentCount: 3, combinedTextLength: 4000, thinBundleHint: true },
+    hearingMeta: { hearingDateIso: ctx.hearingDateIso, stage: ctx.stage },
+  },
+});
+assert.equal(handover.exportType, "case_handover");
+assert.ok(handover.provisionalRoute.length > 5, "route included");
+assert.ok(handover.missingMaterial.length >= 1, "missing material");
+assert.ok(
+  handover.doNotConcedePoints.length >= 1 || handover.readinessBlockers.length >= 0,
+  "do-not-concede or readiness",
+);
+assert.ok(/Review before hearing|Not ready|Ready for solicitor review/i.test(handover.readinessLevel));
+assert.ok(handover.fullText.match(/handover|DRAFT FOR SOLICITOR REVIEW/i));
+assert.ok(!handover.fullText.match(/this wins|crown collapses|safe to advise plea|proves innocence/i));
+assertNoLint(handover, "case handover");
+
+const handoverViaBuilder = buildSolicitorExport("case_handover", reasoning, ctx, {
+  clientStress: stress.available ? stress : null,
+  readinessInput: {
+    bundleMeta: { documentCount: 3, combinedTextLength: 4000, thinBundleHint: true },
+    hearingMeta: { hearingDateIso: ctx.hearingDateIso, stage: ctx.stage },
+  },
+});
+assert.equal(handoverViaBuilder.exportType, "case_handover");
 
 assert.ok(!JSON.stringify(chase).includes("artifacts/"));
 assert.ok(!/\bpp-[a-z0-9-]+/.test(JSON.stringify(prep)));

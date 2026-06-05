@@ -738,7 +738,7 @@ Until **4a–4c** pass on gold (and agreed local exemplars), **4d UI stays off**
 | 1 | **Solicitor feedback marking loop** | **Shipped (local)** — `lib/criminal/reasoning-v2/feedback/README.md` |
 | 2 | **Client Account Stress-Test** | **Slice 1–2 shipped (local):** account compare + **Client Instructions Checklist** + **Do-not-concede Guard**; `?clientStress=1` + `?reasoningV2=1`; `lib/criminal/client-stress-test/README.md` |
 | 3 | **New Evidence Change Detector** | **Slice 1 shipped (local):** snapshot compare (`?evidenceChanges=1` + `?reasoningV2=1`); `lib/criminal/evidence-change-detector/README.md` |
-| 4 | **Disclosure letter / export builder** | **Slice 1 shipped (local):** disclosure chase + hearing prep drafts (`?exports=1` + `?reasoningV2=1`); `lib/criminal/disclosure-export/README.md` |
+| 4 | **Disclosure letter / export builder** | **Slices 1–2 shipped (local):** disclosure chase + hearing prep + **case handover summary** (`?exports=1` + `?reasoningV2=1`); `lib/criminal/disclosure-export/README.md` |
 | 5 | **Supervisor review queue + case handover** | Planned — unsafe marks, serious/provisional, contradictions, human review, missing core before hearing |
 | 6 | **Client explanation mode** | Planned — plain-English solicitor-safe client summary (papers / missing / why not finalised) |
 | 7 | **Plea/credit pressure warning** | Planned — timing/stage pressure only; no plea advice; optional |
@@ -748,7 +748,7 @@ Until **4a–4c** pass on gold (and agreed local exemplars), **4d UI stays off**
 | 11 | **Audio-to-Bundle Loop** | **Docs only** — §9.6.3 |
 | 12 | **Phase 4f scale-up (5k / 10k / 50k)** | **After** workflows 1–9 are stable — §9.8 |
 
-**Do not build yet:** NECD slice 2+ (auto-snapshot on upload), export slice 2+ (handover PDF), supervisor/handover (5), client explanation (6), plea warning (7), route comparison (9), PDF/OCR (10), audio (11), mass corpus (12).
+**Do not build yet:** NECD slice 2+ (auto-snapshot on upload), export slice 3+ (PDF download), supervisor queue (5), client explanation (6), plea warning (7), route comparison (9), PDF/OCR (10), audio (11), mass corpus (12).
 
 ### 9.6.3 Audio-to-Bundle Loop (planned — do not build yet)
 

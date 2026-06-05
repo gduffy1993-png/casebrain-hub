@@ -34,6 +34,7 @@ export type SolicitorExportBuilderPanelProps = {
 const EXPORT_OPTIONS: { value: SolicitorExportType; label: string }[] = [
   { value: "disclosure_chase", label: "Disclosure chase" },
   { value: "hearing_prep", label: "Hearing prep note" },
+  { value: "case_handover", label: "Case handover" },
 ];
 
 export function SolicitorExportBuilderPanel({

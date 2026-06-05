@@ -1,9 +1,6 @@
-/** Disclosure / Export Builder — slice 1 (client-side drafts only, no DB). */
+/** Disclosure / Export Builder — slices 1–2 (client-side drafts only, no DB). */
 
-export type SolicitorExportType = "disclosure_chase" | "hearing_prep";
-
-/** Planned slice 2 — not generated in slice 1 UI. */
-export type SolicitorExportTypePlanned = "case_handover";
+export type SolicitorExportType = "disclosure_chase" | "hearing_prep" | "case_handover";
 
 export type DisclosureChaseDraftItem = {
   materialLabel: string;
@@ -39,7 +36,31 @@ export type HearingPrepNote = {
   fullText: string;
 };
 
-export type SolicitorExportResult = DisclosureChaseDraft | HearingPrepNote;
+export type CaseHandoverSummary = {
+  exportType: "case_handover";
+  heading: string;
+  matterLabel: string;
+  clientLabel: string | null;
+  chargeLabel: string | null;
+  provisionalRoute: string;
+  safePositionHearingLine: string;
+  servedMaterialLabels: string[];
+  missingMaterial: string[];
+  disclosureChasePriorities: string[];
+  contradictions: string[];
+  clientAccountPoints: string[];
+  clientInstructionGaps: string[];
+  doNotConcedePoints: string[];
+  readinessLevel: string;
+  readinessBlockers: string[];
+  evidenceChangesSummary: string | null;
+  nextAction: string;
+  solicitorReviewRequired: boolean;
+  solicitorReviewFooter: string;
+  fullText: string;
+};
+
+export type SolicitorExportResult = DisclosureChaseDraft | HearingPrepNote | CaseHandoverSummary;
 
 export type SolicitorExportContext = {
   caseLabel: string;
