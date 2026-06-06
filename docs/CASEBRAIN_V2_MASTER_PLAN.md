@@ -746,12 +746,13 @@ Until **4a–4c** pass on gold (and agreed local exemplars), **4d UI stays off**
 | 9 | **Route comparison** | Planned — identity / role / causation / self-defence / possession vs supply / mitigation with helps/hurts/missing/collapse |
 | 10 | **Real-layout PDF/OCR stress lane** | **Slice 2 shipped (eval):** 50 fictional PDF samples + deliberate traps, gitignored; `lib/eval/casebrain-auditor/real-layout-pdf-ocr-stress/README.md` |
 | 10b | **Real-matter auditor lane** | **Slice 1 shipped (eval):** gitignored `local-real-matters/` + discovery/strict-truth runner; `docs/real-matter-auditor/README.md` |
+| 10c | **Persistence / sign-off** | **Slice 1 proposal (docs):** safe metadata tables + RLS sketch — `docs/PERSISTENCE_SIGNOFF_PROPOSAL.md` |
 | 11 | **Audio-to-Bundle Loop** | **Docs only** — §9.6.3 |
 | 12 | **Phase 4f scale-up (5k / 10k / 50k)** | **After** real-PDF + real-matter lanes — §9.8 |
 
 **Stress-test order (agreed — not 50k real PDFs):** (1) **sampled** real-layout PDF/OCR lane (25 → 50 → 100 → 250) — §9.6.4, (2) 10–20 anonymised real-matter auditor pack when available, (3) staged **manifest/text** scale 5k → 10k → 50k addressable scenarios — §9.8, (4) goal = fingerprint collapse + workflow safety, not vanity throughput or 50k binary PDFs.
 
-**Do not build yet:** NECD slice 3+ (DB persistence / production upload hook), export slice 3+ (PDF download), supervisor multi-case queue (slice 2), client explanation slice 2 (export type), plea warning (7), route comparison (9), PDF/OCR slice 3+ (100+ / production ingest), audio (11), mass corpus (12).
+**Do not build yet:** Persistence slice 2+ (DB migration/API — pending proposal approval), NECD slice 3+ (production upload hook), export slice 3+ (PDF download), supervisor multi-case queue (slice 2), client explanation slice 2 (export type), plea warning (7), route comparison (9), PDF/OCR slice 3+ (100+ / production ingest), audio (11), mass corpus (12).
 
 ### 9.6.3 Audio-to-Bundle Loop (planned — do not build yet)
 
