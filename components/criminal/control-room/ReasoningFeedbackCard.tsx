@@ -4,8 +4,9 @@ import { useState } from "react";
 import { CheckCircle2, MessageSquarePlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { workflowCard, workflowMuted, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
+import { useReasoningFeedbackPersistenceEnabled } from "@/lib/criminal/persistence/persistence-flag";
 import { shouldShowReasoningFeedback } from "@/lib/criminal/reasoning-v2/feedback/reasoning-feedback-flag";
-import { saveReasoningFeedbackLocal } from "@/lib/criminal/reasoning-v2/feedback/reasoning-feedback-storage";
+import { saveReasoningFeedback } from "@/lib/criminal/reasoning-v2/feedback/reasoning-feedback-storage";
 import {
   REASONING_FEEDBACK_NOTE_MAX_CHARS,
   REASONING_FEEDBACK_OPTIONS,
@@ -31,30 +32,38 @@ export function ReasoningFeedbackCard({
   const [selected, setSelected] = useState<ReasoningFeedbackOption | null>(null);
   const [note, setNote] = useState("");
   const [saved, setSaved] = useState(false);
+  const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const persistenceEnabled = useReasoningFeedbackPersistenceEnabled();
 
   if (!shouldShowReasoningFeedback(reasoningV2Enabled)) return null;
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     if (!selected) {
       setError("Select a feedback option.");
       return;
     }
     setError(null);
+    setSaving(true);
     try {
-      saveReasoningFeedbackLocal({
-        caseId,
-        surface,
-        feedbackOption: selected,
-        note: note.trim() || null,
-        routeLabel,
-        humanReviewRequired,
-      });
+      await saveReasoningFeedback(
+        {
+          caseId,
+          surface,
+          feedbackOption: selected,
+          note: note.trim() || null,
+          routeLabel,
+          humanReviewRequired,
+        },
+        { persistenceEnabled },
+      );
       setSaved(true);
       setNote("");
       setSelected(null);
     } catch {
       setError("Could not save feedback — check note for disallowed content.");
+    } finally {
+      setSaving(false);
     }
   };
 
@@ -116,8 +125,14 @@ export function ReasoningFeedbackCard({
 
         {error ? <p className="text-[11px] text-red-700">{error}</p> : null}
 
-        <Button type="button" size="sm" className="h-8 text-xs" onClick={onSubmit} disabled={!selected}>
-          Save feedback
+        <Button
+          type="button"
+          size="sm"
+          className="h-8 text-xs"
+          onClick={() => void onSubmit()}
+          disabled={!selected || saving}
+        >
+          {saving ? "Saving…" : "Save feedback"}
         </Button>
       </div>
     </section>
