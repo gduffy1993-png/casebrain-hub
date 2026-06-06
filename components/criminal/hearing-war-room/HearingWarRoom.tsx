@@ -670,6 +670,19 @@ export function HearingWarRoom({
               evidenceChangesEnabled={evidenceChangesEnabled}
               reasoningResult={reasoningV2Result}
               clientStressResult={clientStressForReadiness}
+              sourceStateInput={
+                bundleSource
+                  ? {
+                      documentCount: bundleSource.documentCount,
+                      combinedTextLength: bundleSource.combinedTextLength,
+                      snippets: bundleSource.snippets,
+                      documentRows: bundleSource.documentRows?.map((r) => ({
+                        updatedAt: r.updatedAt,
+                      })),
+                      frontMatterScan: bundleSource.frontMatterScan,
+                    }
+                  : null
+              }
               readinessInput={{
                 bundleMeta: bundleSource
                   ? {

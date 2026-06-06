@@ -1,6 +1,10 @@
 const FORBIDDEN_PHRASES = [
   "defence now wins",
   "defense now wins",
+  "defence stronger",
+  "defense stronger",
+  "defence weaker",
+  "defense weaker",
   "crown case collapses",
   "crown collapses",
   "evidence proves innocence",

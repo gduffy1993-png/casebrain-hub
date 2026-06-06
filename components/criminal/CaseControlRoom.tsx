@@ -12,6 +12,10 @@ import { ControlRoomCockpit } from "./control-room/ControlRoomCockpit";
 import { ReasoningV2Panel } from "./control-room/ReasoningV2Panel";
 import { PreHearingReadinessBadge } from "./control-room/PreHearingReadinessBadge";
 import { EvidenceChangeDetectorPanel } from "./control-room/EvidenceChangeDetectorPanel";
+import { EvidenceChangeMaterialBadge } from "./control-room/EvidenceChangeMaterialBadge";
+import { buildEvidenceChangeSnapshot } from "@/lib/criminal/evidence-change-detector/build-evidence-change-snapshot";
+import { compareEvidenceChanges } from "@/lib/criminal/evidence-change-detector/compare-evidence-changes";
+import { loadEvidenceChangeSnapshot } from "@/lib/criminal/evidence-change-detector/evidence-change-snapshot-storage";
 import { SolicitorExportBuilderPanel } from "./control-room/SolicitorExportBuilderPanel";
 import { SupervisorQAPanel } from "./control-room/SupervisorQAPanel";
 import { ClientExplanationPanel } from "./control-room/ClientExplanationPanel";
@@ -339,6 +343,45 @@ export function CaseControlRoom({
     }),
     [bundleSource, snapshot],
   );
+
+  const evidenceSourceStateInput = useMemo(
+    () =>
+      bundleSource
+        ? {
+            documentCount: bundleSource.documentCount,
+            combinedTextLength: bundleSource.combinedTextLength,
+            snippets: bundleSource.snippets,
+            documentRows: bundleSource.documentRows?.map((r) => ({ updatedAt: r.updatedAt })),
+            frontMatterScan: bundleSource.frontMatterScan,
+          }
+        : null,
+    [bundleSource],
+  );
+
+  const evidenceChangeComparison = useMemo(() => {
+    if (reasoningV2Result?.available !== true) return null;
+    const current = buildEvidenceChangeSnapshot({
+      reasoning: reasoningV2Result,
+      clientStress: clientStressForReadiness,
+      readinessInput: {
+        bundleMeta: readinessBundleMeta,
+        hearingMeta: readinessHearingMeta,
+        workflowProfileHint: bundleSource?.header?.primaryEvalHook ?? null,
+      },
+      sourceStateInput: evidenceSourceStateInput ?? undefined,
+    });
+    const previous = loadEvidenceChangeSnapshot(caseId);
+    const outcome = compareEvidenceChanges(previous, current);
+    return outcome.available ? outcome : null;
+  }, [
+    reasoningV2Result,
+    clientStressForReadiness,
+    readinessBundleMeta,
+    readinessHearingMeta,
+    bundleSource?.header?.primaryEvalHook,
+    evidenceSourceStateInput,
+    caseId,
+  ]);
 
   const headerMeta = useMemo(
     () =>
@@ -789,12 +832,18 @@ export function CaseControlRoom({
             workflowProfileHint={bundleSource?.header?.primaryEvalHook ?? null}
             loading={bundleSourceLoading}
           />
+          <EvidenceChangeMaterialBadge
+            comparison={evidenceChangeComparison}
+            evidenceChangesEnabled={evidenceChangesEnabled}
+            reasoningV2Enabled={reasoningV2Enabled}
+          />
           <EvidenceChangeDetectorPanel
             caseId={caseId}
             reasoningV2Enabled={reasoningV2Enabled}
             evidenceChangesEnabled={evidenceChangesEnabled}
             reasoningResult={reasoningV2Result}
             clientStressResult={clientStressForReadiness}
+            sourceStateInput={evidenceSourceStateInput}
             readinessInput={{
               bundleMeta: readinessBundleMeta,
               hearingMeta: readinessHearingMeta,

@@ -2,6 +2,10 @@ import type { ClientStressResult } from "@/lib/criminal/client-stress-test/clien
 import { buildPreHearingReadiness } from "@/lib/criminal/pre-hearing-readiness/build-pre-hearing-readiness";
 import type { PreHearingReadinessInput } from "@/lib/criminal/pre-hearing-readiness/readiness-types";
 import type { ReasoningV2ViewModel } from "@/lib/criminal/reasoning-v2/reasoning-v2-types";
+import {
+  buildEvidenceSourceState,
+  type BuildEvidenceSourceStateInput,
+} from "./build-evidence-source-state";
 import { sanitizeEvidenceChangeLabel } from "./evidence-change-sanitize";
 import type { EvidenceChangeSnapshot } from "./evidence-change-types";
 
@@ -28,11 +32,13 @@ export type BuildSnapshotParams = {
   reasoning: ReasoningV2ViewModel;
   clientStress?: ClientStressResult | null;
   readinessInput?: PreHearingReadinessInput;
+  sourceStateInput?: BuildEvidenceSourceStateInput | null;
   timestamp?: string;
 };
 
 export function buildEvidenceChangeSnapshot(params: BuildSnapshotParams): EvidenceChangeSnapshot {
-  const { reasoning, clientStress = null, readinessInput = {}, timestamp } = params;
+  const { reasoning, clientStress = null, readinessInput = {}, sourceStateInput = null, timestamp } =
+    params;
   const readiness = buildPreHearingReadiness(reasoning, clientStress, readinessInput);
   const readinessLevel = readiness.available ? readiness.level : "amber";
 
@@ -72,5 +78,6 @@ export function buildEvidenceChangeSnapshot(params: BuildSnapshotParams): Eviden
       reasoning.warRoom.safeHearingLine || "Safe hearing wording not recorded on current papers.",
     ),
     timestamp: timestamp ?? new Date().toISOString(),
+    sourceState: sourceStateInput ? buildEvidenceSourceState(sourceStateInput) : undefined,
   };
 }

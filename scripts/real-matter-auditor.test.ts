@@ -46,8 +46,10 @@ async function runAsyncTests(): Promise<void> {
     pack: "local",
     mode: "discovery",
   });
-  assert.equal(summary.matterCount, listLocalRealMatters().length);
-  assert.equal(summary.scored, 0);
+  const matters = listLocalRealMatters();
+  const discoveryExpected = matters.filter((m) => !m.holdout).length;
+  assert.equal(summary.matterCount, matters.length);
+  assert.equal(summary.scored, discoveryExpected);
   assert.ok(fs.existsSync(reportDir));
 
   const safeJson = JSON.stringify(toSafeSummaryJson(summary));
@@ -59,7 +61,8 @@ async function runAsyncTests(): Promise<void> {
     pack: "local",
     mode: "strict-truth",
   });
-  assert.equal(strict.summary.scored, 0);
+  const strictExpected = matters.filter((m) => m.hasHumanTruth).length;
+  assert.equal(strict.summary.scored, strictExpected);
 }
 
 runAsyncTests()
