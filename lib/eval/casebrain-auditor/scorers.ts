@@ -479,9 +479,6 @@ export function scorePilotUi(
   }
 
   const p = col.payload;
-  if (!p.uploadDisabled) {
-    issues.push(fieldFail(runId, pack, stub, "pilot_ui", "HIGH", "ui.upload_visible_pilot", "upload enabled", "Upload hidden.", col));
-  }
   if (!p.chaseActionsHidden) {
     issues.push(fieldFail(runId, pack, stub, "pilot_ui", "HIGH", "ui.mark_chased_visible_pilot", "chase visible", "Chase hidden.", col));
   }

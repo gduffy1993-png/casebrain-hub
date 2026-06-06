@@ -25,6 +25,7 @@ import { PiValuationHelper } from "@/components/pi/PiValuationHelper";
 // Sidebar utility tools still imported below
 import { HousingQuantumCalculator } from "@/components/housing/HousingQuantumCalculator";
 import { CriminalCaseView } from "@/components/criminal/CriminalCaseView";
+import { isValidCaseId } from "@/components/criminal/criminalCaseNavigation";
 import { CriminalCasePageLayout } from "@/components/criminal/CriminalCasePageLayout";
 import { CaseWorkspaceLayout } from "@/components/cases/CaseWorkspaceLayout";
 import { normalizePracticeArea } from "@/lib/types/casebrain";
@@ -110,6 +111,9 @@ type CasePageParams = {
 
 export default async function CaseDetailPage({ params }: CasePageParams) {
   const caseId = params.caseId;
+  if (!isValidCaseId(caseId)) {
+    notFound();
+  }
   const { orgId } = await requireAuthContext();
   const supabase = getSupabaseAdminClient();
 

@@ -8,6 +8,7 @@ export const CRIMINAL_PILOT_NAV_HREFS = [
   "/cases",
   "/upload",
   "/search",
+  "/bin",
   "/settings",
 ] as const;
 
@@ -200,37 +201,74 @@ export function filterPilotVisibleCases<
   return cases.filter((c) => !isEvalOrStressTestCase(c));
 }
 
-/** Cases page — pilot users see only demo-ready matters; admin retains full list. */
+/** Non-admin pilot: hide eval/stress packs and internal QA titles — keep real org cases. */
+export function filterCasesForNonAdminPilot<T extends PilotCaseFilterRow>(cases: T[]): T[] {
+  return filterPilotVisibleCases(cases).filter((c) => !isInternalPilotTestCaseTitle(c.title));
+}
+
+export type PilotCaseFilterDiagnostics = {
+  pilotMode: boolean;
+  internalAdmin: boolean;
+  rawCount: number;
+  visibleCount: number;
+  hiddenEvalOrStress: number;
+  hiddenInternalTest: number;
+  /** Legacy pilot-ready filter count — for dev comparison only. */
+  hiddenLegacyPilotReady: number;
+};
+
+/** Dev-console diagnostics — no client PII. */
+export function summarizePilotCaseFilter(
+  cases: PilotCaseFilterRow[],
+  userId?: string | null,
+): PilotCaseFilterDiagnostics {
+  const pilotMode = isCriminalPilotMode();
+  const internalAdmin = shouldShowInternalDevTools(userId);
+  const afterEval = filterPilotVisibleCases(cases);
+  const visible = filterCasesForPilotUser(cases, userId);
+  const legacyReady = cases.filter(isPilotReadyCase);
+  return {
+    pilotMode,
+    internalAdmin,
+    rawCount: cases.length,
+    visibleCount: visible.length,
+    hiddenEvalOrStress: cases.length - afterEval.length,
+    hiddenInternalTest: afterEval.length - filterCasesForNonAdminPilot(cases).length,
+    hiddenLegacyPilotReady: cases.length - legacyReady.length,
+  };
+}
+
+/** Cases page — pilot users see org cases minus eval clutter; admin retains full list. */
 export function filterCasesForPilotUser<T extends PilotCaseFilterRow>(
   cases: T[],
   userId?: string | null,
 ): T[] {
   if (!isCriminalPilotMode()) return cases;
   if (shouldShowInternalDevTools(userId)) return cases;
-  return cases.filter(isPilotReadyCase);
+  return filterCasesForNonAdminPilot(cases);
 }
 
-/** Court Today / dashboard list — same pilot-ready filter for non-admin users. */
+/** Court Today — same eval/internal hide; do not require demo-ready metadata. */
 export function filterCourtTodayCasesForPilotUser<
   T extends PilotCaseFilterRow,
 >(cases: T[], userId?: string | null): T[] {
   if (!isCriminalPilotMode()) return cases.filter((c) => !isEvalOrStressTestCase(c));
   if (shouldShowInternalDevTools(userId)) return cases.filter((c) => !isEvalOrStressTestCase(c));
-  return cases.filter(isPilotReadyCase);
+  return filterCasesForNonAdminPilot(cases);
 }
 
 export function getPostLoginPath(): string {
   return isCriminalPilotMode() ? "/court-today" : "/dashboard";
 }
 
-/** Non-admin pilot demo: uploads hidden in UI only (backend unchanged). */
-export function isPilotDemoUploadDisabled(userId?: string | null): boolean {
-  return isCriminalPilotMode() && !isInternalAdminUser(userId);
+/** Upload remains available for criminal solicitors in pilot mode. */
+export function isPilotDemoUploadDisabled(_userId?: string | null): boolean {
+  return false;
 }
 
 /** Non-admin pilot demo: hide Disclosure Chase mark chased/received (local state UI only). */
 export function isPilotDemoChaseActionsDisabled(userId?: string | null): boolean {
-  return isPilotDemoUploadDisabled(userId);
+  return isCriminalPilotMode() && !isInternalAdminUser(userId);
 }
 
 export const PILOT_DEMO_UPLOAD_NOTICE =

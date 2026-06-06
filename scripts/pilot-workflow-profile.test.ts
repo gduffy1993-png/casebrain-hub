@@ -58,7 +58,9 @@ assert.equal(
   "documents",
 );
 
-assert.ok(buildCaseWorkflowTabHref("case-1", "documents").includes("tab=documents"));
+assert.ok(
+  buildCaseWorkflowTabHref("aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee", "documents").includes("tab=documents"),
+);
 
 // --- Profile detection ---
 

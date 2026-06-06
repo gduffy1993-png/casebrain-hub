@@ -2,7 +2,26 @@ import { normalizePracticeArea } from "@/lib/types/casebrain";
 
 export const CONTROL_ROOM_STORAGE_KEY = "casebrain:caseControlRoom";
 
-const INVALID_CASE_IDS = new Set(["", "{id}", "undefined", "null"]);
+const INVALID_CASE_IDS = new Set([
+  "",
+  "{id}",
+  "undefined",
+  "null",
+  "CASE_ID",
+  "case_id",
+  "[CASE_ID]",
+  "YOUR_CASE_ID",
+  "OPTIONAL_CASE_ID",
+]);
+
+const UUID_RE =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+export function isValidCaseId(caseId: string | null | undefined): boolean {
+  const id = caseId?.trim();
+  if (!id || INVALID_CASE_IDS.has(id)) return false;
+  return UUID_RE.test(id);
+}
 
 export function isCriminalPracticeArea(area?: string | null): boolean {
   return normalizePracticeArea(area) === "criminal";
@@ -10,21 +29,21 @@ export function isCriminalPracticeArea(area?: string | null): boolean {
 
 export function buildControlRoomCaseHref(caseId: string): string {
   const id = caseId.trim();
-  if (!id || INVALID_CASE_IDS.has(id)) return "/cases";
+  if (!isValidCaseId(id)) return "/cases";
   return `/cases/${id}?tab=strategy&controlRoom=1`;
 }
 
 /** Classic three-column workspace (no Control Room cockpit). */
 export function buildClassicCaseHref(caseId: string, tab = "strategy"): string {
   const id = caseId.trim();
-  if (!id || INVALID_CASE_IDS.has(id)) return "/cases";
+  if (!isValidCaseId(id)) return "/cases";
   return `/cases/${id}?tab=${tab}`;
 }
 
 export function resolveCaseEntryHref(caseId: string, practiceArea?: string | null): string {
   if (isCriminalPracticeArea(practiceArea)) return buildControlRoomCaseHref(caseId);
   const id = caseId.trim();
-  if (!id || INVALID_CASE_IDS.has(id)) return "/cases";
+  if (!isValidCaseId(id)) return "/cases";
   return `/cases/${id}`;
 }
 
@@ -80,7 +99,7 @@ export type CaseWorkflowTabId =
 
 export function buildCaseWorkflowTabHref(caseId: string, tab: CaseWorkflowTabId): string {
   const id = caseId.trim();
-  if (!id || INVALID_CASE_IDS.has(id)) return "/cases";
+  if (!isValidCaseId(id)) return "/cases";
   switch (tab) {
     case "control-room":
       return buildControlRoomCaseHref(id);

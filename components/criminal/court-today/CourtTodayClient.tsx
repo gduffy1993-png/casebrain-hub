@@ -26,6 +26,7 @@ import {
   isCriminalPilotMode,
   shouldShowInternalDevTools,
   shouldUsePilotCourtTodayAnchor,
+  summarizePilotCaseFilter,
 } from "@/lib/pilot-mode";
 
 const SCHEDULE_BUCKETS: Exclude<HearingBucket, "no_hearing">[] = [
@@ -168,22 +169,23 @@ export function CourtTodayClient() {
           null;
         setPilotUserId(uid);
         setShowInternalDevTools(shouldShowInternalDevTools(uid));
-        const list = Array.isArray(data.cases)
-          ? filterCourtTodayCasesForPilotUser(
-              (data.cases as CourtCasesApiRow[])
-                .map((row) => {
-                  const id = resolveCourtCaseId(row);
-                  return id ? { ...row, id } : null;
-                })
-                .filter((row): row is CourtCasesApiRow => row != null)
-                .map((row) => ({
-                  ...row,
-                  alleged_offence:
-                    row.offence_label && row.offence_label !== "—" ? row.offence_label : null,
-                })),
-              uid,
-            )
+        const rawList = Array.isArray(data.cases)
+          ? (data.cases as CourtCasesApiRow[])
+              .map((row) => {
+                const id = resolveCourtCaseId(row);
+                return id ? { ...row, id } : null;
+              })
+              .filter((row): row is CourtCasesApiRow => row != null)
+              .map((row) => ({
+                ...row,
+                alleged_offence:
+                  row.offence_label && row.offence_label !== "—" ? row.offence_label : null,
+              }))
           : [];
+        const list = filterCourtTodayCasesForPilotUser(rawList, uid);
+        if (process.env.NODE_ENV === "development") {
+          console.info("[CourtToday] pilot case visibility", summarizePilotCaseFilter(rawList, uid));
+        }
         setRows(list);
         setStatusLine("Building diary from saved hearing dates…");
       })
@@ -405,14 +407,10 @@ export function CourtTodayClient() {
         </Card>
       ) : rows.length === 0 ? (
         <Card className="p-8 text-center border-slate-200 bg-white shadow-sm">
-          <p className="text-base font-medium text-slate-800">
-            {pilotMode
-              ? "No pilot matters are ready yet."
-              : "No criminal matters on record yet."}
-          </p>
+          <p className="text-base font-medium text-slate-800">No criminal matters on record yet.</p>
           <p className="text-sm text-slate-600 mt-2 max-w-md mx-auto">
             {pilotMode
-              ? "Upload the prepared pilot bundles to create the demo matters."
+              ? "Upload a defence bundle to begin, or open a saved matter from Cases."
               : "Upload a defence bundle to begin the court-prep workflow."}
           </p>
           <Link
@@ -428,8 +426,7 @@ export function CourtTodayClient() {
             No listed hearings found from saved case data yet.
           </p>
           <p className="text-sm text-slate-600 mt-2 max-w-lg mx-auto">
-            Open a pilot matter from Cases or upload a prepared bundle to review the court-prep
-            workflow.
+            Open a matter from Cases or upload a bundle to review the court-prep workflow.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 mt-5">
             <Link
