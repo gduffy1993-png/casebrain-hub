@@ -1,6 +1,7 @@
 import {
   buildClassicCaseHref,
   buildControlRoomCaseHref,
+  isValidCaseId,
 } from "@/components/criminal/criminalCaseNavigation";
 import { collectChaseItems } from "@/components/criminal/control-room/chaseItems";
 import { buildDisclosureChaseHref as buildDisclosureChaseTabHref } from "@/components/criminal/disclosure-chase/disclosureChaseLinks";
@@ -25,7 +26,6 @@ import type {
 const NO_HEARING_LABEL = "No hearing date safely detected";
 const NEEDS_REVIEW_LABEL = "Needs hearing review";
 
-const INVALID_CASE_IDS = new Set(["", "{id}", "undefined", "null"]);
 const PILOT_BAD_ALLEGATION_RE =
   /\b(sheet|indictment|primary allegation|not safely extracted|check charge sheet)\b/i;
 
@@ -35,8 +35,7 @@ export { buildControlRoomCaseHref as buildCaseControlRoomHref, buildClassicCaseH
 export function resolveCourtCaseId(row: CourtCasesApiRow & { case_id?: string | null }): string {
   const raw = row.id ?? row.case_id;
   const id = typeof raw === "string" ? raw.trim() : raw != null ? String(raw).trim() : "";
-  if (INVALID_CASE_IDS.has(id)) return "";
-  return id;
+  return isValidCaseId(id) ? id : "";
 }
 
 export function buildDisclosureChaseHref(caseId: string): string {

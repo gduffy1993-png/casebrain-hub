@@ -14,7 +14,7 @@ import { BulkArchiveCasesButton } from "@/components/cases/BulkArchiveCasesButto
 import { CasesPageClient } from "@/components/cases/CasesPageClient";
 import { resolveCaseEntryHref } from "@/components/criminal/criminalCaseNavigation";
 import { CurrentPersonaBadge } from "@/components/layout/CurrentPersonaBadge";
-import { filterCasesForPilotUser, isCriminalPilotMode, shouldShowInternalDevTools } from "@/lib/pilot-mode";
+import { filterCasesForPilotUser, isCriminalPilotMode, shouldShowInternalDevTools, summarizePilotCaseFilter } from "@/lib/pilot-mode";
 
 type CasesPageProps = {
   searchParams: { practiceArea?: string; role?: string };
@@ -126,9 +126,7 @@ export default async function CasesPage({ searchParams }: CasesPageProps) {
     }
   }
 
-  const cases = sortCasesForDisplay(
-    filterCasesForPilotUser(
-      casesRaw.map((c) => {
+  const mappedCases = casesRaw.map((c) => {
         const criminal = criminalByCase.get(c.id);
         return {
           ...c,
@@ -140,10 +138,13 @@ export default async function CasesPage({ searchParams }: CasesPageProps) {
           offence_override: criminal?.offence_override ?? null,
           charge_offences: chargeOffencesByCase.get(c.id) ?? null,
         };
-      }),
-      userId,
-    ),
-  );
+      });
+
+  const cases = sortCasesForDisplay(filterCasesForPilotUser(mappedCases, userId));
+
+  if (process.env.NODE_ENV === "development") {
+    console.info("[CasesPage] pilot case visibility", summarizePilotCaseFilter(mappedCases, userId));
+  }
 
   return (
     <div className="space-y-6">
@@ -308,9 +309,10 @@ function EmptyState({
   if (pilotMode) {
     return (
       <div className="flex flex-col items-center justify-center gap-3 rounded-3xl border border-dashed border-slate-200 bg-white p-16 text-center">
-        <h2 className="text-lg font-semibold text-slate-900">No pilot matters are ready yet.</h2>
+        <h2 className="text-lg font-semibold text-slate-900">No criminal matters yet.</h2>
         <p className="max-w-md text-sm text-slate-600">
-          Upload the prepared pilot bundles to create the demo matters.
+          Upload a disclosure pack or bundle to create a matter, or open an existing case once it
+          appears here.
         </p>
         <Link
           href="/upload"
