@@ -1,4 +1,4 @@
-/** Solicitor feedback on Reasoning V2 — slice 1 local capture; DB-ready shape for slice 2. */
+/** Solicitor feedback on Reasoning V2 — local capture with optional DB persistence. */
 
 export type ReasoningFeedbackSurface = "control-room-reasoning" | "war-room-reasoning";
 
