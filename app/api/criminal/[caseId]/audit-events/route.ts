@@ -1,22 +1,20 @@
 /**
- * POST /api/criminal/[caseId]/export-review
- * GET /api/criminal/[caseId]/export-review
+ * POST /api/criminal/[caseId]/audit-events
+ * GET /api/criminal/[caseId]/audit-events
  *
- * Safe metadata persistence for export review — no export bodies.
+ * Append-only safe metadata audit trail for review workflow actions.
  */
 
 import { NextRequest, NextResponse } from "next/server";
 import { requireAuthContextApi } from "@/lib/auth-api";
 import {
-  mapExportReviewRowToRecord,
-  recordToInsertPayload,
-  validateExportReviewPostBody,
-  buildExportReviewRecord,
-  type ExportReviewPostBody,
-  type ExportReviewRow,
-} from "@/lib/criminal/disclosure-export/export-review-validate";
-import { auditInputFromExportReview } from "@/lib/criminal/persistence/case-review-audit/case-review-audit-integrations";
-import { writeCaseReviewAuditEvent } from "@/lib/criminal/persistence/case-review-audit/write-case-review-audit-event";
+  buildCaseReviewAuditEventRecord,
+  mapCaseReviewAuditRowToRecord,
+  recordToAuditInsertPayload,
+  validateCaseReviewAuditPostBody,
+  type CaseReviewAuditPostBody,
+  type CaseReviewAuditRow,
+} from "@/lib/criminal/persistence/case-review-audit/case-review-audit-validate";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 
 type RouteParams = { params: Promise<{ caseId: string }> };
@@ -56,49 +54,47 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       return NextResponse.json({ ok: false, error: caseCheck.error }, { status: caseCheck.status });
     }
 
-    let body: ExportReviewPostBody = {};
+    let body: CaseReviewAuditPostBody = {};
     try {
-      body = (await request.json()) as ExportReviewPostBody;
+      body = (await request.json()) as CaseReviewAuditPostBody;
     } catch {
       return NextResponse.json({ ok: false, error: "Invalid JSON body" }, { status: 400 });
     }
 
-    const validated = validateExportReviewPostBody(body, caseId);
+    const validated = validateCaseReviewAuditPostBody(body, caseId);
     if (!validated.ok) {
       return NextResponse.json({ ok: false, error: validated.error }, { status: 400 });
     }
 
-    const record = buildExportReviewRecord(validated.input);
+    const record = buildCaseReviewAuditEventRecord({
+      ...validated.input,
+      orgId,
+      actorId: userId,
+    });
     const supabase = getSupabaseAdminClient();
-    const insertPayload = recordToInsertPayload(record, caseId, orgId, userId);
+    const insertPayload = recordToAuditInsertPayload(record, caseId, orgId, userId);
 
     const { data, error: insertError } = await supabase
-      .from("export_reviews")
+      .from("case_review_audit_events")
       .insert(insertPayload)
       .select()
       .single();
 
     if (insertError) {
-      console.error(`[export_reviews][insert] caseId=${caseId}`, {
+      console.error(`[case_review_audit_events][insert] caseId=${caseId}`, {
         code: insertError.code,
         message: insertError.message,
       });
       return NextResponse.json(
-        { ok: false, error: insertError.message || "Failed to save export review" },
+        { ok: false, error: insertError.message || "Failed to save audit event" },
         { status: 500 },
       );
     }
 
-    const saved = mapExportReviewRowToRecord(data as ExportReviewRow);
-    void writeCaseReviewAuditEvent(
-      auditInputFromExportReview(
-        { caseId, orgId, actorId: userId, relatedRecordId: saved.id },
-        saved,
-      ),
-    );
-    return NextResponse.json({ ok: true, record: saved });
+    const saved = mapCaseReviewAuditRowToRecord(data as CaseReviewAuditRow);
+    return NextResponse.json({ ok: true, event: saved });
   } catch (error) {
-    console.error("[export-review] POST error:", error);
+    console.error("[audit-events] POST error:", error);
     return NextResponse.json({ ok: false, error: "Internal server error" }, { status: 500 });
   }
 }
@@ -117,24 +113,25 @@ export async function GET(_request: NextRequest, { params }: RouteParams) {
 
     const supabase = getSupabaseAdminClient();
     const { data, error: fetchError } = await supabase
-      .from("export_reviews")
+      .from("case_review_audit_events")
       .select("*")
       .eq("case_id", caseId)
       .eq("org_id", orgId)
-      .order("created_at", { ascending: true });
+      .order("created_at", { ascending: false })
+      .limit(100);
 
     if (fetchError) {
-      console.error("[export_reviews][select] caseId=", caseId, fetchError);
+      console.error("[case_review_audit_events][select] caseId=", caseId, fetchError);
       return NextResponse.json(
-        { ok: false, error: "Failed to fetch export reviews" },
+        { ok: false, error: "Failed to fetch audit events" },
         { status: 500 },
       );
     }
 
-    const records = ((data ?? []) as ExportReviewRow[]).map(mapExportReviewRowToRecord);
-    return NextResponse.json({ ok: true, records });
+    const events = ((data ?? []) as CaseReviewAuditRow[]).map(mapCaseReviewAuditRowToRecord);
+    return NextResponse.json({ ok: true, events });
   } catch (error) {
-    console.error("[export-review] GET error:", error);
+    console.error("[audit-events] GET error:", error);
     return NextResponse.json({ ok: false, error: "Internal server error" }, { status: 500 });
   }
 }
