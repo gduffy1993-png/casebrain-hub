@@ -3,6 +3,8 @@
  * Run: npx tsx scripts/disclosure-export-builder.test.ts
  */
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { loadGoldPack, readBundleText } from "../lib/eval/casebrain-auditor/bundle-fidelity-pack";
 import { buildReasoningV2FromBundleText } from "../lib/criminal/reasoning-v2/build-reasoning-v2-view-model";
 import { buildClientStressResult } from "../lib/criminal/client-stress-test/build-client-stress-result";
@@ -14,7 +16,21 @@ import {
   isExportsEnabled,
   shouldShowSolicitorExportBuilder,
 } from "../lib/criminal/disclosure-export/export-flag";
+import { buildExportReviewHash } from "../lib/criminal/disclosure-export/export-review-hash";
+import {
+  exportReviewRecordContainsForbiddenContent,
+  sanitizeExportReviewNote,
+} from "../lib/criminal/disclosure-export/export-review-sanitize";
+import { saveExportReview } from "../lib/criminal/disclosure-export/export-review-storage";
+import {
+  buildExportReviewRecord,
+  validateExportReviewPostBody,
+} from "../lib/criminal/disclosure-export/export-review-validate";
 import { lintExportOutput } from "../lib/criminal/disclosure-export/export-sanitize";
+import {
+  isExportReviewPersistenceEnabled,
+  isPersistenceEnabled,
+} from "../lib/criminal/persistence/persistence-flag";
 
 function assertNoLint(obj: object, label: string) {
   const issues = lintExportOutput(JSON.stringify(obj));
@@ -120,4 +136,117 @@ assert.equal(handoverViaBuilder.exportType, "case_handover");
 assert.ok(!JSON.stringify(chase).includes("artifacts/"));
 assert.ok(!/\bpp-[a-z0-9-]+/.test(JSON.stringify(prep)));
 
-console.log("disclosure-export-builder.test.ts: ok");
+async function runSlice4ExportReviewTests() {
+  const params = (q: Record<string, string | null>) => ({
+    get: (key: string) => q[key] ?? null,
+  });
+
+  assert.equal(isPersistenceEnabled(params({ persistence: "0" }), true), false);
+  assert.equal(isExportReviewPersistenceEnabled(true, false), true);
+  assert.equal(isExportReviewPersistenceEnabled(false, false), false);
+  assert.equal(isExportReviewPersistenceEnabled(true, true), false);
+
+  assert.equal(sanitizeExportReviewNote("See artifacts/casebrain-auditor/run/foo"), null);
+  assert.equal(
+    sanitizeExportReviewNote("Spot-checked chase draft before send"),
+    "Spot-checked chase draft before send",
+  );
+
+  const exportHash = await buildExportReviewHash(chase.fullText);
+  assert.ok(exportHash && /^[a-f0-9]{64}$/.test(exportHash), "sha256 hex hash");
+
+  const validReview = validateExportReviewPostBody(
+    {
+      exportType: "disclosure_chase",
+      reviewStatus: "copied",
+      routeLabel: reasoning.primaryRoute,
+      readinessLevel: "amber",
+      humanReviewRequired: false,
+      solicitorReviewRequired: true,
+      exportHash,
+    },
+    "case-abc",
+  );
+  assert.equal(validReview.ok, true);
+  if (!validReview.ok) throw new Error("validReview");
+
+  const rejectedBody = validateExportReviewPostBody(
+    {
+      exportType: "hearing_prep",
+      reviewStatus: "generated",
+      fullText: chase.fullText,
+    },
+    "case-abc",
+  );
+  assert.equal(rejectedBody.ok, false, "rejects full export body in POST");
+
+  const rejectedProof = validateExportReviewPostBody(
+    {
+      exportType: "case_handover",
+      reviewStatus: "generated",
+      routeLabel: "pp-gold-pack route",
+    },
+    "case-abc",
+  );
+  assert.equal(rejectedProof.ok, false, "rejects proof IDs in route label");
+
+  const record = buildExportReviewRecord({
+    caseId: "case-abc",
+    exportType: "disclosure_chase",
+    reviewStatus: "generated",
+    routeLabel: reasoning.primaryRoute,
+    readinessLevel: "amber",
+    exportHash,
+    solicitorReviewRequired: true,
+  });
+  assert.equal(
+    exportReviewRecordContainsForbiddenContent(record as unknown as Record<string, unknown>),
+    false,
+  );
+  assert.ok(!JSON.stringify(record).includes(chase.fullText.slice(0, 40)), "no export body in record");
+  assert.ok(record.exportHash === exportHash.toLowerCase());
+
+  const off = await saveExportReview(
+    {
+      caseId: "case-local",
+      exportType: "hearing_prep",
+      reviewStatus: "generated",
+      routeLabel: "Dispute identification",
+      exportHash,
+    },
+    { persistenceEnabled: false },
+  );
+  assert.equal(off.persisted, false, "persistence off skips DB path");
+  assert.ok(off.record, "record built without DB");
+
+  const on = await saveExportReview(
+    {
+      caseId: "case-local",
+      exportType: "hearing_prep",
+      reviewStatus: "copied",
+      routeLabel: "Dispute identification",
+      exportHash,
+    },
+    { persistenceEnabled: true },
+  );
+  assert.equal(on.persisted, false, "DB failure falls back without throwing");
+}
+
+async function main() {
+  await runSlice4ExportReviewTests();
+
+  const migrationSql = readFileSync(
+    join(process.cwd(), "supabase/migrations/20260604120000_export_reviews.sql"),
+    "utf8",
+  );
+  assert.ok(migrationSql.includes("ENABLE ROW LEVEL SECURITY"), "migration enables RLS");
+  assert.ok(migrationSql.includes("export_reviews"), "export_reviews table exists");
+  assert.ok(migrationSql.includes("FOR SELECT"), "SELECT policy defined");
+  assert.ok(migrationSql.includes("FOR INSERT"), "INSERT policy defined");
+  assert.ok(!migrationSql.includes("FOR UPDATE"), "no UPDATE policy");
+  assert.ok(!migrationSql.includes("FOR DELETE"), "no DELETE policy");
+
+  console.log("disclosure-export-builder.test.ts: ok");
+}
+
+main();
