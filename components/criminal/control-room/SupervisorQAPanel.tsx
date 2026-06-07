@@ -1,12 +1,21 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { ChevronDown, ChevronUp, Shield } from "lucide-react";
+import { CheckCircle2, ChevronDown, ChevronUp, Shield } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { workflowCard, workflowMuted, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
+import { useSupervisorSignoffPersistenceEnabled } from "@/lib/criminal/persistence/persistence-flag";
+import { buildPreHearingReadiness } from "@/lib/criminal/pre-hearing-readiness/build-pre-hearing-readiness";
 import { buildSupervisorQAResult } from "@/lib/criminal/supervisor-qa/build-supervisor-qa-result";
 import { shouldShowSupervisorQAPanel } from "@/lib/criminal/supervisor-qa/supervisor-qa-flag";
 import type { SupervisorReviewStatus } from "@/lib/criminal/supervisor-qa/supervisor-qa-types";
+import type { SupervisorSignoffStatus } from "@/lib/criminal/supervisor-qa/supervisor-signoff-types";
+import { SUPERVISOR_SIGNOFF_NOTE_MAX_CHARS } from "@/lib/criminal/supervisor-qa/supervisor-signoff-types";
+import {
+  getLatestSupervisorSignoffForCase,
+  saveSupervisorSignoff,
+} from "@/lib/criminal/supervisor-qa/supervisor-signoff-storage";
 import { compareEvidenceChanges } from "@/lib/criminal/evidence-change-detector/compare-evidence-changes";
 import { buildEvidenceChangeSnapshot } from "@/lib/criminal/evidence-change-detector/build-evidence-change-snapshot";
 import { loadEvidenceChangeSnapshot } from "@/lib/criminal/evidence-change-detector/evidence-change-snapshot-storage";
@@ -36,6 +45,19 @@ const STATUS_STYLES: Record<SupervisorReviewStatus, string> = {
   required: "bg-rose-50 text-rose-950 border-rose-200",
 };
 
+function signoffStatusLabel(status: SupervisorSignoffStatus): string {
+  switch (status) {
+    case "reviewed":
+      return "Reviewed";
+    case "escalated":
+      return "Escalated";
+    case "no_issue":
+      return "No obvious issue";
+    default:
+      return status;
+  }
+}
+
 function DetailBlock({ title, items }: { title: string; items: string[] }) {
   if (!items.length) return null;
   return (
@@ -60,12 +82,37 @@ export function SupervisorQAPanel({
 }: SupervisorQAPanelProps) {
   const [expanded, setExpanded] = useState(false);
   const [feedbackTick, setFeedbackTick] = useState(0);
+  const [signoffNote, setSignoffNote] = useState("");
+  const [signoffSaving, setSignoffSaving] = useState(false);
+  const [signoffSaved, setSignoffSaved] = useState(false);
+  const [signoffError, setSignoffError] = useState<string | null>(null);
+  const [signoffTick, setSignoffTick] = useState(0);
+  const persistenceEnabled = useSupervisorSignoffPersistenceEnabled();
 
   const hasReasoning = reasoningResult?.available === true;
 
   useEffect(() => {
     setFeedbackTick((t) => t + 1);
+    setSignoffNote("");
+    setSignoffSaved(false);
+    setSignoffError(null);
+    setSignoffTick((t) => t + 1);
   }, [caseId]);
+
+  const readinessLevel = useMemo(() => {
+    if (!hasReasoning || !readinessInput) return null;
+    const readiness = buildPreHearingReadiness(
+      reasoningResult,
+      clientStressResult,
+      readinessInput,
+    );
+    return readiness.available ? readiness.level : null;
+  }, [hasReasoning, reasoningResult, clientStressResult, readinessInput]);
+
+  const latestSignoff = useMemo(() => {
+    void signoffTick;
+    return getLatestSupervisorSignoffForCase(caseId);
+  }, [caseId, signoffTick]);
 
   const visible = shouldShowSupervisorQAPanel(
     reasoningV2Enabled,
@@ -111,6 +158,34 @@ export function SupervisorQAPanel({
     workflowProfileHint,
     exportsEnabled,
   ]);
+
+  async function submitSignoff(status: SupervisorSignoffStatus) {
+    if (!qa?.available) return;
+    setSignoffError(null);
+    setSignoffSaving(true);
+    try {
+      await saveSupervisorSignoff(
+        {
+          caseId,
+          status,
+          qaStatus: qa.status,
+          reasonLabels: qa.reasonsForReview,
+          readinessLevel,
+          humanReviewRequired: qa.status === "required",
+          evidenceChangeStatus: qa.evidenceChangeStatus,
+          note: signoffNote.trim() || null,
+        },
+        { persistenceEnabled },
+      );
+      setSignoffSaved(true);
+      setSignoffNote("");
+      setSignoffTick((t) => t + 1);
+    } catch {
+      setSignoffError("Could not save sign-off — check note for disallowed content.");
+    } finally {
+      setSignoffSaving(false);
+    }
+  }
 
   if (!reasoningV2Enabled || !supervisorEnabled) return null;
 
@@ -222,6 +297,87 @@ export function SupervisorQAPanel({
               <p className={workflowSectionTitle}>Handover / export</p>
               <p className="text-xs text-slate-800 mt-1 break-words">{qa.exportReminder}</p>
             </div>
+          </div>
+        ) : null}
+
+        {persistenceEnabled ? (
+          <div className="pt-3 mt-1 border-t border-slate-100 space-y-3">
+            <p className={workflowSectionTitle}>Supervisor sign-off</p>
+            <p className={`text-[11px] ${workflowMuted}`}>
+              Record a review action for this matter — metadata only, not legal advice.
+            </p>
+
+            {latestSignoff ? (
+              <p className="text-xs text-slate-700">
+                Last recorded:{" "}
+                <span className="font-medium">{signoffStatusLabel(latestSignoff.status)}</span>
+                {latestSignoff.reviewedAt
+                  ? ` · ${new Date(latestSignoff.reviewedAt).toLocaleString("en-GB", {
+                      dateStyle: "medium",
+                      timeStyle: "short",
+                    })}`
+                  : null}
+              </p>
+            ) : null}
+
+            {signoffSaved ? (
+              <p className="text-xs text-emerald-800 flex items-center gap-1.5">
+                <CheckCircle2 className="h-4 w-4 shrink-0" />
+                Sign-off saved for review
+              </p>
+            ) : null}
+
+            <div>
+              <label htmlFor={`${caseId}-supervisor-signoff-note`} className={workflowSectionTitle}>
+                Optional note (short)
+              </label>
+              <textarea
+                id={`${caseId}-supervisor-signoff-note`}
+                value={signoffNote}
+                onChange={(e) => {
+                  setSignoffNote(e.target.value.slice(0, SUPERVISOR_SIGNOFF_NOTE_MAX_CHARS));
+                  setSignoffSaved(false);
+                }}
+                rows={2}
+                placeholder="Brief note for review record — not case papers"
+                className="mt-1 w-full rounded-md border border-slate-200 bg-white px-2.5 py-2 text-xs text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-indigo-400 resize-y min-h-[2.5rem]"
+              />
+            </div>
+
+            <div className="flex flex-wrap gap-1.5">
+              <Button
+                type="button"
+                size="sm"
+                variant="outline"
+                className="h-8 text-[11px]"
+                disabled={signoffSaving}
+                onClick={() => void submitSignoff("reviewed")}
+              >
+                Mark reviewed
+              </Button>
+              <Button
+                type="button"
+                size="sm"
+                variant="outline"
+                className="h-8 text-[11px]"
+                disabled={signoffSaving}
+                onClick={() => void submitSignoff("escalated")}
+              >
+                Escalate
+              </Button>
+              <Button
+                type="button"
+                size="sm"
+                variant="outline"
+                className="h-8 text-[11px]"
+                disabled={signoffSaving}
+                onClick={() => void submitSignoff("no_issue")}
+              >
+                No obvious issue
+              </Button>
+            </div>
+
+            {signoffError ? <p className="text-[11px] text-red-700">{signoffError}</p> : null}
           </div>
         ) : null}
       </div>
