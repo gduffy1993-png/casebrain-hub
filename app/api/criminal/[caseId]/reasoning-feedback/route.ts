@@ -14,6 +14,8 @@ import {
   type ReasoningFeedbackPostBody,
   type ReasoningFeedbackRow,
 } from "@/lib/criminal/reasoning-v2/feedback/reasoning-feedback-validate";
+import { auditInputFromReasoningFeedback } from "@/lib/criminal/persistence/case-review-audit/case-review-audit-integrations";
+import { writeCaseReviewAuditEvent } from "@/lib/criminal/persistence/case-review-audit/write-case-review-audit-event";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 
 type RouteParams = { params: Promise<{ caseId: string }> };
@@ -99,6 +101,12 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     }
 
     const saved = mapReasoningFeedbackRowToRecord(data as ReasoningFeedbackRow);
+    void writeCaseReviewAuditEvent(
+      auditInputFromReasoningFeedback(
+        { caseId, orgId, actorId: userId, relatedRecordId: saved.id },
+        saved,
+      ),
+    );
     return NextResponse.json({ ok: true, record: saved });
   } catch (error) {
     console.error("[reasoning-feedback] POST error:", error);

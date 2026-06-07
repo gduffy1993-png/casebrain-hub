@@ -8,6 +8,7 @@ export const REASONING_FEEDBACK_PERSISTENCE_STORAGE_KEY = "casebrain:persistence
 export const SUPERVISOR_SIGNOFF_PERSISTENCE_STORAGE_KEY = "casebrain:persistence:signoffs";
 export const EVIDENCE_CHANGE_SNAPSHOT_PERSISTENCE_STORAGE_KEY = "casebrain:persistence:snapshots";
 export const EXPORT_REVIEW_PERSISTENCE_STORAGE_KEY = "casebrain:persistence:exports";
+export const CASE_REVIEW_AUDIT_PERSISTENCE_STORAGE_KEY = "casebrain:persistence:audit";
 
 export function readPersistenceFromStorage(): boolean {
   if (typeof window === "undefined") return false;
@@ -115,6 +116,25 @@ export function isExportReviewPersistenceEnabled(
   return !exportKillSwitchOff;
 }
 
+export function readCaseReviewAuditPersistenceFromStorage(): boolean {
+  if (typeof window === "undefined") return true;
+  try {
+    const v = window.localStorage.getItem(CASE_REVIEW_AUDIT_PERSISTENCE_STORAGE_KEY);
+    if (v === "false") return false;
+    return true;
+  } catch {
+    return true;
+  }
+}
+
+export function isCaseReviewAuditPersistenceEnabled(
+  persistenceEnabled: boolean,
+  auditKillSwitchOff = false,
+): boolean {
+  if (!persistenceEnabled) return false;
+  return !auditKillSwitchOff;
+}
+
 export function usePersistenceEnabled(): boolean {
   const searchParams = useSearchParams();
   const [storageEnabled, setStorageEnabled] = useState(false);
@@ -188,5 +208,19 @@ export function useExportReviewPersistenceEnabled(): boolean {
   return useMemo(
     () => isExportReviewPersistenceEnabled(persistenceEnabled, !exportEnabled),
     [persistenceEnabled, exportEnabled],
+  );
+}
+
+export function useCaseReviewAuditPersistenceEnabled(): boolean {
+  const persistenceEnabled = usePersistenceEnabled();
+  const [auditEnabled, setAuditEnabled] = useState(true);
+
+  useEffect(() => {
+    setAuditEnabled(readCaseReviewAuditPersistenceFromStorage());
+  }, []);
+
+  return useMemo(
+    () => isCaseReviewAuditPersistenceEnabled(persistenceEnabled, !auditEnabled),
+    [persistenceEnabled, auditEnabled],
   );
 }

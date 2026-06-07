@@ -14,6 +14,8 @@ import {
   type EvidenceChangeSnapshotPostBody,
   type EvidenceChangeSnapshotRow,
 } from "@/lib/criminal/evidence-change-detector/evidence-change-snapshot-validate";
+import { auditInputFromEvidenceSnapshot } from "@/lib/criminal/persistence/case-review-audit/case-review-audit-integrations";
+import { writeCaseReviewAuditEvent } from "@/lib/criminal/persistence/case-review-audit/write-case-review-audit-event";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 
 type RouteParams = { params: Promise<{ caseId: string }> };
@@ -92,6 +94,12 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     }
 
     const saved = mapEvidenceChangeSnapshotRowToSnapshot(data as EvidenceChangeSnapshotRow);
+    void writeCaseReviewAuditEvent(
+      auditInputFromEvidenceSnapshot(
+        { caseId, orgId, actorId: userId, relatedRecordId: (data as EvidenceChangeSnapshotRow).id },
+        saved,
+      ),
+    );
     return NextResponse.json({ ok: true, snapshot: saved });
   } catch (error) {
     console.error("[evidence-change-snapshot] POST error:", error);
