@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 export const PERSISTENCE_STORAGE_KEY = "casebrain:persistence";
 export const REASONING_FEEDBACK_PERSISTENCE_STORAGE_KEY = "casebrain:persistence:feedback";
 export const SUPERVISOR_SIGNOFF_PERSISTENCE_STORAGE_KEY = "casebrain:persistence:signoffs";
+export const EVIDENCE_CHANGE_SNAPSHOT_PERSISTENCE_STORAGE_KEY = "casebrain:persistence:snapshots";
 
 export function readPersistenceFromStorage(): boolean {
   if (typeof window === "undefined") return false;
@@ -75,6 +76,25 @@ export function isSupervisorSignoffPersistenceEnabled(
   return !signoffKillSwitchOff;
 }
 
+export function readEvidenceChangeSnapshotPersistenceFromStorage(): boolean {
+  if (typeof window === "undefined") return true;
+  try {
+    const v = window.localStorage.getItem(EVIDENCE_CHANGE_SNAPSHOT_PERSISTENCE_STORAGE_KEY);
+    if (v === "false") return false;
+    return true;
+  } catch {
+    return true;
+  }
+}
+
+export function isEvidenceChangeSnapshotPersistenceEnabled(
+  persistenceEnabled: boolean,
+  snapshotKillSwitchOff = false,
+): boolean {
+  if (!persistenceEnabled) return false;
+  return !snapshotKillSwitchOff;
+}
+
 export function usePersistenceEnabled(): boolean {
   const searchParams = useSearchParams();
   const [storageEnabled, setStorageEnabled] = useState(false);
@@ -120,5 +140,19 @@ export function useSupervisorSignoffPersistenceEnabled(): boolean {
   return useMemo(
     () => isSupervisorSignoffPersistenceEnabled(persistenceEnabled, !signoffEnabled),
     [persistenceEnabled, signoffEnabled],
+  );
+}
+
+export function useEvidenceChangeSnapshotPersistenceEnabled(): boolean {
+  const persistenceEnabled = usePersistenceEnabled();
+  const [snapshotEnabled, setSnapshotEnabled] = useState(true);
+
+  useEffect(() => {
+    setSnapshotEnabled(readEvidenceChangeSnapshotPersistenceFromStorage());
+  }, []);
+
+  return useMemo(
+    () => isEvidenceChangeSnapshotPersistenceEnabled(persistenceEnabled, !snapshotEnabled),
+    [persistenceEnabled, snapshotEnabled],
   );
 }

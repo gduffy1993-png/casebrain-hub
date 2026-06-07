@@ -3,6 +3,8 @@
  * Run: npx tsx scripts/evidence-change-detector.test.ts
  */
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { buildEvidenceChangeSnapshot } from "../lib/criminal/evidence-change-detector/build-evidence-change-snapshot";
 import { buildEvidenceSourceState } from "../lib/criminal/evidence-change-detector/build-evidence-source-state";
 import { compareEvidenceChanges } from "../lib/criminal/evidence-change-detector/compare-evidence-changes";
@@ -14,7 +16,13 @@ import {
   lintEvidenceChangeOutput,
   snapshotBlobContainsForbiddenContent,
 } from "../lib/criminal/evidence-change-detector/evidence-change-sanitize";
+import { validateEvidenceChangeSnapshotPostBody } from "../lib/criminal/evidence-change-detector/evidence-change-snapshot-validate";
+import { saveEvidenceChangeSnapshotAsync } from "../lib/criminal/evidence-change-detector/evidence-change-snapshot-storage";
 import type { EvidenceChangeSnapshot } from "../lib/criminal/evidence-change-detector/evidence-change-types";
+import {
+  isEvidenceChangeSnapshotPersistenceEnabled,
+  isPersistenceEnabled,
+} from "../lib/criminal/persistence/persistence-flag";
 import type { ReasoningV2ViewModel } from "../lib/criminal/reasoning-v2/reasoning-v2-types";
 
 function baseReasoning(overrides: Partial<ReasoningV2ViewModel> = {}): ReasoningV2ViewModel {
@@ -247,4 +255,93 @@ assert.ok(
   "forbidden outcome phrases sanitized",
 );
 
-console.log("evidence-change-detector.test.ts: ok");
+// --- Slice 3: persistence validation + flag gating ---
+const params = (q: Record<string, string | null>) => ({
+  get: (key: string) => q[key] ?? null,
+});
+
+assert.equal(isPersistenceEnabled(params({ persistence: "0" }), true), false);
+assert.equal(isEvidenceChangeSnapshotPersistenceEnabled(true, false), true);
+assert.equal(isEvidenceChangeSnapshotPersistenceEnabled(false, false), false);
+assert.equal(isEvidenceChangeSnapshotPersistenceEnabled(true, true), false);
+
+const validPost = validateEvidenceChangeSnapshotPostBody(
+  {
+    routeLabel: current.routeLabel,
+    readinessLevel: current.readinessLevel,
+    humanReviewRequired: current.humanReviewRequired,
+    missingMaterialLabels: current.missingMaterialLabels,
+    contradictionLabels: current.contradictionLabels,
+    proofPressureLabels: current.proofPressureLabels,
+    disclosureChaseLabels: current.disclosureChaseLabels,
+    doNotConcedeLabels: current.doNotConcedeLabels,
+    clientInstructionLabels: current.clientInstructionLabels,
+    safeNextAction: current.safeNextAction,
+    warRoomHearingLine: current.warRoomHearingLine,
+    sourceState: current.sourceState,
+  },
+  "case-abc",
+);
+assert.equal(validPost.ok, true);
+
+const rejectedPath = validateEvidenceChangeSnapshotPostBody(
+  {
+    routeLabel: "artifacts/casebrain-auditor/run/foo",
+    readinessLevel: "amber",
+  },
+  "case-abc",
+);
+assert.equal(rejectedPath.ok, false, "sanitizer rejects artifact path in route label");
+
+const rejectedProof = validateEvidenceChangeSnapshotPostBody(
+  {
+    routeLabel: "Dispute identification",
+    readinessLevel: "amber",
+    missingMaterialLabels: ["pp-gold-pack route"],
+  },
+  "case-abc",
+);
+assert.equal(rejectedProof.ok, false, "API validation rejects proof IDs in labels");
+
+const rejectedLocalPath = validateEvidenceChangeSnapshotPostBody(
+  {
+    routeLabel: "Dispute identification",
+    readinessLevel: "green",
+    safeNextAction: "C:\\Users\\secret\\bundle.pdf",
+  },
+  "case-abc",
+);
+assert.equal(rejectedLocalPath.ok, false, "API validation rejects local paths");
+
+async function testPersistenceStorage() {
+  const asyncOff = await saveEvidenceChangeSnapshotAsync("case-local-off", current, {
+    persistenceEnabled: false,
+  });
+  assert.equal(asyncOff.persisted, false, "persistence off skips DB path");
+  assert.equal(asyncOff.ok, false, "no window localStorage in node — ok false expected");
+
+  const asyncOn = await saveEvidenceChangeSnapshotAsync("case-local-on", current, {
+    persistenceEnabled: true,
+  });
+  assert.equal(asyncOn.persisted, false, "DB failure falls back without throwing");
+}
+
+async function main() {
+  await testPersistenceStorage();
+
+  const migrationSql = readFileSync(
+    join(process.cwd(), "supabase/migrations/20260603120000_evidence_change_snapshots.sql"),
+    "utf8",
+  );
+  assert.ok(migrationSql.includes("ENABLE ROW LEVEL SECURITY"), "migration enables RLS");
+  assert.ok(migrationSql.includes("CREATE POLICY"), "migration defines RLS policies");
+  assert.ok(migrationSql.includes("evidence_change_snapshots"), "evidence_change_snapshots table exists");
+  assert.ok(migrationSql.includes("FOR SELECT"), "SELECT policy defined");
+  assert.ok(migrationSql.includes("FOR INSERT"), "INSERT policy defined");
+  assert.ok(!migrationSql.includes("FOR UPDATE"), "no UPDATE policy");
+  assert.ok(!migrationSql.includes("FOR DELETE"), "no DELETE policy");
+
+  console.log("evidence-change-detector.test.ts: ok");
+}
+
+main();
