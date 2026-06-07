@@ -9,9 +9,11 @@ import { buildEvidenceChangeSnapshot } from "@/lib/criminal/evidence-change-dete
 import { compareEvidenceChanges } from "@/lib/criminal/evidence-change-detector/compare-evidence-changes";
 import { shouldShowEvidenceChangeDetector } from "@/lib/criminal/evidence-change-detector/evidence-change-flag";
 import {
-  loadEvidenceChangeSnapshot,
-  saveEvidenceChangeSnapshot,
+  loadEvidenceChangeSnapshotForCompare,
+  saveEvidenceChangeSnapshotAsync,
 } from "@/lib/criminal/evidence-change-detector/evidence-change-snapshot-storage";
+import type { EvidenceChangeSnapshot } from "@/lib/criminal/evidence-change-detector/evidence-change-types";
+import { useEvidenceChangeSnapshotPersistenceEnabled } from "@/lib/criminal/persistence/persistence-flag";
 import type { PreHearingReadinessInput } from "@/lib/criminal/pre-hearing-readiness/readiness-types";
 import type { BuildEvidenceSourceStateInput } from "@/lib/criminal/evidence-change-detector/build-evidence-source-state";
 import type { ClientStressResult } from "@/lib/criminal/client-stress-test/client-stress-types";
@@ -56,8 +58,13 @@ export function EvidenceChangeDetectorPanel({
   sourceStateInput = null,
   loading = false,
 }: EvidenceChangeDetectorPanelProps) {
+  const snapshotPersistenceEnabled = useEvidenceChangeSnapshotPersistenceEnabled();
   const [expanded, setExpanded] = useState(false);
+  const [previousSnapshot, setPreviousSnapshot] = useState<EvidenceChangeSnapshot | null>(null);
+  const [snapshotLoaded, setSnapshotLoaded] = useState(false);
   const [savedAt, setSavedAt] = useState<string | null>(null);
+  const [saveConfirm, setSaveConfirm] = useState<string | null>(null);
+  const [saving, setSaving] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
 
   const hasReasoning = reasoningResult?.available === true;
@@ -68,11 +75,20 @@ export function EvidenceChangeDetectorPanel({
     hasReasoning,
   );
 
-  useEffect(() => {
+  const reloadPreviousSnapshot = useCallback(async () => {
     if (!visible) return;
-    const prev = loadEvidenceChangeSnapshot(caseId);
+    setSnapshotLoaded(false);
+    const prev = await loadEvidenceChangeSnapshotForCompare(caseId, {
+      persistenceEnabled: snapshotPersistenceEnabled,
+    });
+    setPreviousSnapshot(prev);
     setSavedAt(prev?.timestamp ?? null);
-  }, [visible, caseId, refreshKey]);
+    setSnapshotLoaded(true);
+  }, [visible, caseId, snapshotPersistenceEnabled]);
+
+  useEffect(() => {
+    void reloadPreviousSnapshot();
+  }, [reloadPreviousSnapshot, refreshKey]);
 
   const currentSnapshot = useMemo(() => {
     if (!hasReasoning) return null;
@@ -85,18 +101,28 @@ export function EvidenceChangeDetectorPanel({
   }, [hasReasoning, reasoningResult, clientStressResult, readinessInput, sourceStateInput]);
 
   const comparison = useMemo(() => {
-    if (!currentSnapshot) return null;
-    const previous = loadEvidenceChangeSnapshot(caseId);
-    return compareEvidenceChanges(previous, currentSnapshot);
-  }, [currentSnapshot, caseId, refreshKey]);
+    if (!currentSnapshot || !snapshotLoaded) return null;
+    return compareEvidenceChanges(previousSnapshot, currentSnapshot);
+  }, [currentSnapshot, previousSnapshot, snapshotLoaded]);
 
-  const onSaveSnapshot = useCallback(() => {
-    if (!currentSnapshot) return;
-    if (saveEvidenceChangeSnapshot(caseId, currentSnapshot)) {
-      setSavedAt(currentSnapshot.timestamp);
-      setRefreshKey((k) => k + 1);
+  const onSaveSnapshot = useCallback(async () => {
+    if (!currentSnapshot || saving) return;
+    setSaving(true);
+    setSaveConfirm(null);
+    try {
+      const result = await saveEvidenceChangeSnapshotAsync(caseId, currentSnapshot, {
+        persistenceEnabled: snapshotPersistenceEnabled,
+      });
+      if (result.ok && result.snapshot) {
+        setPreviousSnapshot(result.snapshot);
+        setSavedAt(result.snapshot.timestamp);
+        setSaveConfirm("Snapshot saved for review");
+        setRefreshKey((k) => k + 1);
+      }
+    } finally {
+      setSaving(false);
     }
-  }, [caseId, currentSnapshot]);
+  }, [caseId, currentSnapshot, saving, snapshotPersistenceEnabled]);
 
   if (!reasoningV2Enabled || !evidenceChangesEnabled) return null;
 
@@ -158,7 +184,7 @@ export function EvidenceChangeDetectorPanel({
         <div className="min-w-0 flex-1">
           <h2 className="text-sm font-semibold text-slate-900">Evidence changes since last review</h2>
           <p className={`text-[11px] ${workflowMuted}`}>
-            Compares saved snapshot to current papers state — not prediction or legal advice.
+            Compare before relying on previous position — not prediction or legal advice.
           </p>
         </div>
         {comparison.solicitorReviewRequired ? (
@@ -178,9 +204,25 @@ export function EvidenceChangeDetectorPanel({
           <p className={`text-[11px] ${workflowMuted}`}>No saved snapshot for this matter yet.</p>
         )}
 
+        {saveConfirm ? (
+          <p className="text-[11px] text-indigo-900" data-testid="evidence-change-save-confirm">
+            {saveConfirm}
+          </p>
+        ) : null}
+
         <div className="flex flex-wrap gap-2">
-          <Button type="button" size="sm" className="h-8 text-xs" onClick={onSaveSnapshot}>
-            {comparison.hasPreviousSnapshot ? "Update snapshot after review" : "Save current snapshot"}
+          <Button
+            type="button"
+            size="sm"
+            className="h-8 text-xs"
+            onClick={() => void onSaveSnapshot()}
+            disabled={saving}
+          >
+            {saving
+              ? "Saving…"
+              : comparison.hasPreviousSnapshot
+                ? "Update snapshot after review"
+                : "Save current snapshot"}
           </Button>
           {comparison.hasPreviousSnapshot ? (
             <Button
@@ -198,7 +240,7 @@ export function EvidenceChangeDetectorPanel({
         {comparison.sourceMaterialChanged ? (
           <div className="rounded-md border border-indigo-200 bg-indigo-50/70 px-3 py-2">
             <p className="text-xs font-medium text-indigo-950 break-words">
-              Source material appears to have changed — compare before relying on the previous position.
+              Source material appears to have changed — compare before relying on previous position.
             </p>
           </div>
         ) : null}
