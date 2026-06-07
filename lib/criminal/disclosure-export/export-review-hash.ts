@@ -1,25 +1,28 @@
-import { createHash } from "node:crypto";
+/** SHA-256 hex digest of export draft text — hash only, never store body. Browser-safe (Web Crypto). */
 
-/** SHA-256 hex digest of export draft text — hash only, never store body. */
-export function computeExportHashSync(text: string): string {
-  return createHash("sha256").update(text, "utf8").digest("hex");
+function normalizeExportHashInput(input: string): string {
+  return String(input ?? "").replace(/\r\n/g, "\n").trim();
 }
 
+export async function buildExportReviewHash(input: string): Promise<string | null> {
+  const normalized = normalizeExportHashInput(input);
+  if (!normalized) return null;
+
+  const subtle = globalThis.crypto?.subtle;
+  if (!subtle) return null;
+
+  try {
+    const data = new TextEncoder().encode(normalized);
+    const digest = await subtle.digest("SHA-256", data);
+    return Array.from(new Uint8Array(digest))
+      .map((b) => b.toString(16).padStart(2, "0"))
+      .join("");
+  } catch {
+    return null;
+  }
+}
+
+/** Alias kept for existing panel callers. */
 export async function computeExportHash(text: string): Promise<string | null> {
-  if (!text) return null;
-  if (typeof window !== "undefined" && window.crypto?.subtle) {
-    try {
-      const enc = new TextEncoder().encode(text);
-      const digest = await window.crypto.subtle.digest("SHA-256", enc);
-      return Array.from(new Uint8Array(digest))
-        .map((b) => b.toString(16).padStart(2, "0"))
-        .join("");
-    } catch {
-      /* fall through */
-    }
-  }
-  if (typeof process !== "undefined") {
-    return computeExportHashSync(text);
-  }
-  return null;
+  return buildExportReviewHash(text);
 }
