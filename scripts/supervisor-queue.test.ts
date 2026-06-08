@@ -17,15 +17,29 @@ import {
 import { isSupervisorQueuePageEnabled } from "../lib/criminal/supervisor-queue/supervisor-queue-flag";
 
 const CASE_ID = "11111111-1111-4111-8111-111111111111";
+const EXAMPLE_CASE_ID = "295d9bee-d14a-461a-aa7b-91872b868e99";
 
 assert.equal(sanitizeSupervisorQueueLabel("artifacts/casebrain-auditor/run/foo"), null);
 assert.equal(sanitizeSupervisorQueueLabel("R v Example — supervisor review"), "R v Example — supervisor review");
 
 const href = buildSupervisorQueueCaseHref(CASE_ID);
-assert.ok(href.startsWith(`/cases/${CASE_ID}?`), "open case href uses uuid");
-assert.ok(href.includes("supervisor=1"), "supervisor flag in href");
-assert.ok(href.includes("persistence=1"), "persistence flag in href");
-assert.equal(buildSupervisorQueueCaseHref("not-a-uuid"), "/cases");
+assert.ok(href, "valid case id yields href");
+assert.ok(href!.startsWith(`/cases/${CASE_ID}?tab=strategy`), "open case href uses uuid and strategy tab");
+assert.ok(href!.includes("controlRoom=1"), "controlRoom flag in href");
+assert.ok(href!.includes("reasoningV2=1"), "reasoningV2 flag in href");
+assert.ok(href!.includes("supervisor=1"), "supervisor flag in href");
+assert.ok(href!.includes("evidenceChanges=1"), "evidenceChanges flag in href");
+assert.ok(href!.includes("exports=1"), "exports flag in href");
+assert.ok(href!.includes("persistence=1"), "persistence flag in href");
+assert.equal(buildSupervisorQueueCaseHref("not-a-uuid"), null);
+assert.equal(buildSupervisorQueueCaseHref(""), null);
+
+const exampleHref = buildSupervisorQueueCaseHref(EXAMPLE_CASE_ID);
+assert.equal(
+  exampleHref,
+  `/cases/${EXAMPLE_CASE_ID}?tab=strategy&controlRoom=1&reasoningV2=1&supervisor=1&evidenceChanges=1&exports=1&persistence=1`,
+  "example open case href shape",
+);
 
 assert.equal(isSupervisorQueuePageEnabled(true, false), true);
 assert.equal(isSupervisorQueuePageEnabled(false, true), true);
@@ -50,6 +64,7 @@ const escalated = buildSupervisorQueueRow(
 );
 assert.ok(escalated);
 assert.ok(escalated!.buckets.includes("escalated"));
+assert.equal(escalated!.openCaseHref, href);
 assert.equal(supervisorQueueRowIsSafe(escalated as unknown as Record<string, unknown>), true);
 
 const redSnapshot = buildSupervisorQueueRow(
