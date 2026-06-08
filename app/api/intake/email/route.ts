@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@clerk/nextjs/server";
+import { requireAuthContext } from "@/lib/auth-supabase";
 import { handleEmailIntake } from "@/lib/email-intake";
 import type { EmailIntakePayload } from "@/lib/types/casebrain";
 
@@ -9,15 +9,18 @@ const API_KEY_HEADER = "x-casebrain-api-key";
 /**
  * Validate the request has proper authentication
  * Supports either:
- * 1. Clerk session auth (for internal use)
+ * 1. Supabase session auth (for internal use)
  * 2. API key auth (for external email gateways)
  */
 async function validateAuth(request: NextRequest): Promise<{ orgId: string; userId: string } | null> {
-  // First try Clerk auth
-  const { orgId, userId } = await auth();
-  
-  if (orgId && userId) {
-    return { orgId, userId };
+  // First try Supabase auth
+  try {
+    const { orgId, userId } = await requireAuthContext();
+    if (orgId && userId) {
+      return { orgId, userId };
+    }
+  } catch {
+    // Continue to API key fallback
   }
 
   // Fall back to API key auth

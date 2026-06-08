@@ -10,3 +10,17 @@ pnpm-debug.log*
 dist
 out
 .DS_Store
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
+# CaseBrain Auditor generated reports (never commit case snippets / review data)
+artifacts/casebrain-auditor/
+
+# Local bundle fidelity — real PDFs, client truth keys, pasted bundle text (never commit)
+artifacts/bundle-fidelity-local/
+
+# Supabase CLI temp
+supabase/.temp/
+
+.vercel
+.env*.local

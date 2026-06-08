@@ -31,6 +31,8 @@ import { housingPack } from "./housing";
 import { piPack } from "./pi";
 import { clinicalNegPack } from "./clinicalNeg";
 import { familyPack } from "./family";
+import { criminalPack } from "./criminal";
+import { filterEvidenceForPracticeArea } from "@/lib/strategic/practice-area-filters";
 
 // =============================================================================
 // Pack Registry
@@ -45,6 +47,7 @@ export const PACKS: PackRegistry = {
   personal_injury: piPack,
   clinical_negligence: clinicalNegPack,
   family: familyPack,
+  criminal: criminalPack,
 };
 
 // =============================================================================
@@ -119,10 +122,17 @@ export function getEvidenceChecklist(practiceArea?: PracticeArea | string | null
         combined.set(req.id, req);
       }
       
-      return Array.from(combined.values());
+      const merged = Array.from(combined.values());
+      if (pack.id === "criminal") {
+        return filterEvidenceForPracticeArea(merged, "criminal", { context: "packs/getEvidenceChecklist(merged)" });
+      }
+      return merged;
     }
   }
   
+  if (pack.id === "criminal") {
+    return filterEvidenceForPracticeArea(pack.evidenceChecklist, "criminal", { context: "packs/getEvidenceChecklist(pack)" });
+  }
   return pack.evidenceChecklist;
 }
 
@@ -157,10 +167,26 @@ export function getRiskRules(practiceArea?: PracticeArea | string | null): PackR
         combined.set(rule.id, rule);
       }
       
-      return Array.from(combined.values());
+      const merged = Array.from(combined.values());
+      if (pack.id === "criminal") {
+        // Also strip civil-only risk rules (limitation/Part 36/PAP/etc)
+        return filterEvidenceForPracticeArea(
+          merged.filter((r) => r.category !== "limitation"),
+          "criminal",
+          { context: "packs/getRiskRules(merged)" },
+        );
+      }
+      return merged;
     }
   }
   
+  if (pack.id === "criminal") {
+    return filterEvidenceForPracticeArea(
+      pack.riskRules.filter((r) => r.category !== "limitation"),
+      "criminal",
+      { context: "packs/getRiskRules(pack)" },
+    );
+  }
   return pack.riskRules;
 }
 
@@ -234,10 +260,17 @@ export function getComplianceItems(practiceArea?: PracticeArea | string | null):
         combined.set(item.id, item);
       }
       
-      return Array.from(combined.values());
+      const merged = Array.from(combined.values());
+      if (pack.id === "criminal") {
+        return filterEvidenceForPracticeArea(merged, "criminal", { context: "packs/getComplianceItems(merged)" });
+      }
+      return merged;
     }
   }
   
+  if (pack.id === "criminal") {
+    return filterEvidenceForPracticeArea(pack.complianceItems, "criminal", { context: "packs/getComplianceItems(pack)" });
+  }
   return pack.complianceItems;
 }
 
@@ -533,6 +566,12 @@ function normalizePracticeAreaForPack(area: string): PackId {
     return "family";
   }
   
+  // Criminal
+  if (lower.includes("criminal") || lower.includes("defense") || lower.includes("prosecution") ||
+      lower.includes("charge") || lower.includes("offence") || lower.includes("bail")) {
+    return "criminal";
+  }
+  
   return "other_litigation";
 }
 
@@ -573,6 +612,7 @@ export { housingPack } from "./housing";
 export { piPack } from "./pi";
 export { clinicalNegPack } from "./clinicalNeg";
 export { familyPack } from "./family";
+export { criminalPack } from "./criminal";
 
 // =============================================================================
 // Type Exports (including firm override types)

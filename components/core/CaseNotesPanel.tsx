@@ -9,9 +9,13 @@ import type { CaseNote } from "@/lib/types/casebrain";
 type CaseNotesPanelProps = {
   caseId: string;
   initialNotes?: CaseNote[];
+  /** Override card title (e.g. "Solicitor notes" in criminal flow) */
+  title?: string;
+  /** Override card description */
+  description?: string;
 };
 
-export function CaseNotesPanel({ caseId, initialNotes = [] }: CaseNotesPanelProps) {
+export function CaseNotesPanel({ caseId, initialNotes = [], title: titleProp, description: descriptionProp }: CaseNotesPanelProps) {
   const [notes, setNotes] = useState<CaseNote[]>(initialNotes);
   const [newNote, setNewNote] = useState("");
   const [isPending, startTransition] = useTransition();
@@ -83,8 +87,8 @@ export function CaseNotesPanel({ caseId, initialNotes = [] }: CaseNotesPanelProp
 
   return (
     <Card
-      title="Case Notes"
-      description="Add notes and observations to this case."
+      title={titleProp ?? "Case Notes"}
+      description={descriptionProp ?? "Add notes and observations to this case."}
       action={
         <span className="rounded-full bg-accent/10 px-2 py-0.5 text-xs font-medium text-accent/60">
           {notes.length} note{notes.length !== 1 ? "s" : ""}

@@ -1,8 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import useSWR from "swr";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { User, UserPlus } from "lucide-react";
 import type { Task } from "@/types";
 
 async function fetcher(url: string) {
@@ -14,12 +17,22 @@ async function fetcher(url: string) {
   return (await response.json()) as { tasks: Task[] };
 }
 
+async function fetchMembers() {
+  const response = await fetch("/api/team/members");
+  if (!response.ok) return [];
+  const data = await response.json();
+  return data.members || [];
+}
+
 export function TaskList() {
   const { data, error, isLoading, mutate } = useSWR("/api/tasks", fetcher, {
     refreshInterval: 60_000,
   });
-
+  const { data: membersData } = useSWR("/api/team/members", fetchMembers);
+  
   const tasks = data?.tasks ?? [];
+  const members = membersData || [];
+  const [assigningTaskId, setAssigningTaskId] = useState<string | null>(null);
 
   const markComplete = async (taskId: string) => {
     await fetch(`/api/tasks/${taskId}`, {
@@ -28,6 +41,22 @@ export function TaskList() {
       body: JSON.stringify({ status: "completed" }),
     });
     void mutate();
+  };
+  
+  const assignTask = async (taskId: string, userId: string) => {
+    setAssigningTaskId(taskId);
+    try {
+      await fetch(`/api/tasks/${taskId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ assignedTo: userId }),
+      });
+      void mutate();
+    } catch (error) {
+      console.error("Failed to assign task:", error);
+    } finally {
+      setAssigningTaskId(null);
+    }
   };
 
   if (isLoading) {
@@ -58,8 +87,24 @@ export function TaskList() {
           className="rounded-2xl border border-primary/10 bg-surface-muted/60 p-4"
         >
           <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-semibold text-accent">{task.title}</p>
+            <div className="flex-1">
+              <div className="flex items-center gap-2">
+                <p className="text-sm font-semibold text-accent">{task.title}</p>
+                {(task as any).assigned_to && (
+                  <Badge variant="outline" size="sm">
+                    <User className="mr-1 h-3 w-3" />
+                    Assigned
+                  </Badge>
+                )}
+                {(task as any).priority && (task as any).priority !== "medium" && (
+                  <Badge 
+                    variant={(task as any).priority === "urgent" ? "danger" : (task as any).priority === "high" ? "warning" : "outline"} 
+                    size="sm"
+                  >
+                    {(task as any).priority}
+                  </Badge>
+                )}
+              </div>
               {task.description ? (
                 <p className="mt-1 text-xs text-accent/60">{task.description}</p>
               ) : null}
@@ -75,6 +120,21 @@ export function TaskList() {
                 >
                   Download calendar invite
                 </Link>
+                {members.length > 0 && (
+                  <select
+                    value={(task as any).assigned_to || ""}
+                    onChange={(e) => assignTask(task.id, e.target.value)}
+                    disabled={assigningTaskId === task.id}
+                    className="rounded-full border border-primary/30 px-3 py-1 bg-transparent text-primary text-xs focus:outline-none focus:ring-2 focus:ring-primary/40 disabled:opacity-50"
+                  >
+                    <option value="">Assign to...</option>
+                    {members.map((member: { id: string; email: string }) => (
+                      <option key={member.id} value={member.id}>
+                        {member.email}
+                      </option>
+                    ))}
+                  </select>
+                )}
               </div>
             </div>
             {task.status !== "completed" ? (

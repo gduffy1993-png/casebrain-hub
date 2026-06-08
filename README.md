@@ -24,6 +24,9 @@ CaseBrain Hub is a production-ready AI paralegal workspace for law firms. Upload
    ```bash
    cp .env.example .env.local
    # Then edit .env.local with your actual values
+   # 
+   # For debug endpoints (optional):
+   # DEBUG_TOKEN=your-secret-token-here  # Set this locally and on Vercel for /api/debug/* routes
    ```
 
 3. Start Supabase locally
@@ -98,3 +101,13 @@ CaseBrain Hub is a production-ready AI paralegal workspace for law firms. Upload
 - Clerk organizations map to `org_id` in Supabase
 - Single-tenant mode: uses `solo-{userId}` as `org_id` if no Clerk org
 - All queries must filter by `org_id` for security
+
+### Development Mode: Skip Phone Verification
+
+For local development/testing, you can skip phone verification by adding this to your `.env.local`:
+
+```
+SKIP_PHONE_VERIFICATION=true
+```
+
+**Note:** This should NEVER be set in production. Phone verification is required for the paywall system to prevent abuse.

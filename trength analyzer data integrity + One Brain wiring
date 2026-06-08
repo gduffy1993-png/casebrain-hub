@@ -1,0 +1,83 @@
+[1mdiff --git a/app/api/criminal/[caseId]/aggressive-defense/route.ts b/app/api/criminal/[caseId]/aggressive-defense/route.ts[m
+[1mindex 285980c..b145efb 100644[m
+[1m--- a/app/api/criminal/[caseId]/aggressive-defense/route.ts[m
+[1m+++ b/app/api/criminal/[caseId]/aggressive-defense/route.ts[m
+[36m@@ -171,10 +171,10 @@[m [mexport async function GET(request: NextRequest, { params }: RouteParams) {[m
+       }[m
+     }[m
+ [m
+[31m-    // Add evidence strength warnings to analysis[m
+[31m-    analysis.evidenceStrengthWarnings = evidenceStrength.warnings;[m
+[31m-    analysis.evidenceStrength = evidenceStrength.overallStrength;[m
+[31m-    analysis.realisticOutcome = evidenceStrength.calibration.realisticOutcome;[m
+[32m+[m[32m    // Add evidence strength warnings to analysis (extend type)[m
+[32m+[m[32m    (analysis as any).evidenceStrengthWarnings = evidenceStrength.warnings;[m
+[32m+[m[32m    (analysis as any).evidenceStrength = evidenceStrength.overallStrength;[m
+[32m+[m[32m    (analysis as any).realisticOutcome = evidenceStrength.calibration.realisticOutcome;[m
+ [m
+     if (!gate.show) {[m
+       return NextResponse.json({[m
+[1mdiff --git a/components/criminal/AggressiveDefensePanel.tsx b/components/criminal/AggressiveDefensePanel.tsx[m
+[1mindex c8daa52..c019667 100644[m
+[1m--- a/components/criminal/AggressiveDefensePanel.tsx[m
+[1m+++ b/components/criminal/AggressiveDefensePanel.tsx[m
+[36m@@ -168,16 +168,42 @@[m [mexport function AggressiveDefensePanel({ caseId }: AggressiveDefensePanelProps)[m
+   };[m
+ [m
+   return ([m
+[31m-    <Card className="p-6 space-y-6">[m
+[31m-      <div className="flex items-center justify-between">[m
+[31m-        <div className="flex items-center gap-2">[m
+[31m-          <Target className="h-5 w-5 text-foreground" />[m
+[31m-          <h3 className="text-lg font-semibold text-foreground">Aggressive Defense Analysis</h3>[m
+[32m+[m[32m    <>[m
+[32m+[m[32m      {/* Evidence Strength Warnings */}[m
+[32m+[m[32m      {analysis?.evidenceStrengthWarnings && analysis.evidenceStrengthWarnings.length > 0 && ([m
+[32m+[m[32m        <div className="mb-4 p-4 bg-amber-500/10 border border-amber-500/30 rounded-lg">[m
+[32m+[m[32m          <div className="flex items-center gap-2 mb-2">[m
+[32m+[m[32m            <AlertTriangle className="h-4 w-4 text-amber-400" />[m
+[32m+[m[32m            <span className="font-semibold">Professional Judgment Warnings</span>[m
+[32m+[m[32m          </div>[m
+[32m+[m[32m          <ul className="space-y-1">[m
+[32m+[m[32m            {analysis.evidenceStrengthWarnings.map((warning, idx) => ([m
+[32m+[m[32m              <li key={idx} className="text-sm flex items-start gap-2">[m
+[32m+[m[32m                <span className="text-amber-400">•</span>[m
+[32m+[m[32m                <span>{warning}</span>[m
+[32m+[m[32m              </li>[m
+[32m+[m[32m            ))}[m
+[32m+[m[32m          </ul>[m
+[32m+[m[32m          {analysis.realisticOutcome && ([m
+[32m+[m[32m            <div className="mt-2 pt-2 border-t border-amber-500/20">[m
+[32m+[m[32m              <p className="text-sm text-muted-foreground">[m
+[32m+[m[32m                <strong>Realistic Outcome:</strong> {analysis.realisticOutcome}[m
+[32m+[m[32m              </p>[m
+[32m+[m[32m            </div>[m
+[32m+[m[32m          )}[m
+[32m+[m[32m        </div>[m
+[32m+[m[32m      )}[m
+[32m+[m[41m      [m
+[32m+[m[32m      <Card className="p-6 space-y-6">[m
+[32m+[m[32m        <div className="flex items-center justify-between">[m
+[32m+[m[32m          <div className="flex items-center gap-2">[m
+[32m+[m[32m            <Target className="h-5 w-5 text-foreground" />[m
+[32m+[m[32m            <h3 className="text-lg font-semibold text-foreground">Aggressive Defense Analysis</h3>[m
+[32m+[m[32m          </div>[m
+[32m+[m[32m          <Badge className="border-border bg-muted/30 text-foreground">[m
+[32m+[m[32m            {analysis.overallWinProbability === null ? "Win Probability: N/A" : `${analysis.overallWinProbability}% Win Probability`}[m
+[32m+[m[32m          </Badge>[m
+         </div>[m
+[31m-        <Badge className="border-border bg-muted/30 text-foreground">[m
+[31m-          {analysis.overallWinProbability === null ? "Win Probability: N/A" : `${analysis.overallWinProbability}% Win Probability`}[m
+[31m-        </Badge>[m
+[31m-      </div>[m
+ [m
+       {suppression?.reason && ([m
+         <div className="text-xs text-muted-foreground">[m
+[36m@@ -399,6 +425,7 @@[m [mexport function AggressiveDefensePanel({ caseId }: AggressiveDefensePanelProps)[m
+         </div>[m
+       )}[m
+     </Card>[m
+[32m+[m[32m    </>[m
+   );[m
+ }[m
+ [m

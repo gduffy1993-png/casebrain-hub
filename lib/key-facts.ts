@@ -12,29 +12,516 @@ import type {
   KeyFactsStage,
   KeyFactsFundingType,
   KeyFactsKeyDate,
+  KeyFactsBundleSummarySection,
   RiskFlag,
   LimitationInfo,
 } from "./types/casebrain";
+import { normalizePracticeArea, type PracticeArea } from "./types/casebrain";
+import { getOrBuildLayeredSummary } from "@/lib/layered-summary/engine";
+import { createDbLayeredSummaryCache } from "@/lib/layered-summary/cache-db";
+import { resolvePracticeAreaFromSignals } from "@/lib/strategic/practice-area-filters";
 
 /**
  * Build a key facts summary for a case
+ * 
+ * @param caseId - Case ID
+ * @param orgId - Org ID (from context.orgScope.orgIdResolved)
+ * @param caseDataOverride - Optional case data from buildCaseContext (avoids re-querying)
  */
 export async function buildKeyFactsSummary(
   caseId: string,
   orgId: string,
+  caseDataOverride?: { id: string; title?: string | null; summary?: string | null; practice_area?: string | null; status?: string | null; created_at?: string; org_id?: string | null },
 ): Promise<KeyFactsSummary> {
   const supabase = getSupabaseAdminClient();
 
-  // 1. Fetch base case record
-  const { data: caseData } = await supabase
-    .from("cases")
-    .select("id, title, summary, practice_area, status, created_at")
-    .eq("id", caseId)
-    .eq("org_id", orgId)
-    .single();
-
+  // 1. Use case data from context if provided (avoids org_id mismatch issues)
+  let caseData = caseDataOverride;
+  
   if (!caseData) {
-    throw new Error("Case not found");
+    // Fallback: Fetch base case record (only if not provided)
+    // Use the case's actual org_id if available, otherwise try orgId parameter
+    let { data: fetchedCase, error: caseError } = await supabase
+      .from("cases")
+      .select("id, title, summary, practice_area, created_at, org_id")
+      .eq("id", caseId)
+      .maybeSingle();
+
+    if (caseError) {
+      console.error("[key-facts] Case lookup failed:", {
+        caseId,
+        orgId,
+        message: caseError.message,
+        code: (caseError as any).code,
+      });
+      throw new Error("Case lookup failed");
+    }
+
+    if (!fetchedCase) {
+      throw new Error("Case not found");
+    }
+
+    caseData = fetchedCase;
+  }
+
+  // Use the case's actual org_id for queries (more reliable than orgId parameter)
+  // This avoids org_id mismatch issues when orgIdResolved is externalRef but case.org_id is UUID (or vice versa)
+  const effectiveOrgId = caseData.org_id || orgId;
+  
+  let normalizedPracticeArea: PracticeArea = normalizePracticeArea(caseData.practice_area);
+
+  // Runtime assert/repair: if criminal signals exist but stored practice_area is other/null,
+  // force criminal for downstream logic (and safely persist for stability if it's unset/other).
+  if (normalizedPracticeArea !== "criminal") {
+    let hasCriminalSignals = false;
+    try {
+      const [{ data: criminalCaseRow }, { data: chargeRow }, { data: docs }] = await Promise.all([
+        supabase
+          .from("criminal_cases")
+          .select("id")
+          .eq("id", caseId)
+          .eq("org_id", effectiveOrgId)
+          .maybeSingle(),
+        supabase
+          .from("criminal_charges")
+          .select("id")
+          .eq("case_id", caseId)
+          .eq("org_id", effectiveOrgId)
+          .limit(1)
+          .maybeSingle(),
+        supabase
+          .from("documents")
+          .select("name")
+          .eq("case_id", caseId)
+          .eq("org_id", effectiveOrgId)
+          .order("created_at", { ascending: false })
+          .limit(10),
+      ]);
+      const looksCriminal = (docs ?? []).some((d: any) =>
+        /(?:\bPACE\b|\bCPIA\b|\bMG6\b|\bMG\s*6\b|\bMG5\b|\bCPS\b|\bcustody\b|\binterview\b|\bcharge\b|\bindictment\b|\bCrown Court\b|\bMagistrates'? Court\b)/i.test(
+          String(d?.name ?? ""),
+        ),
+      );
+      hasCriminalSignals = Boolean(criminalCaseRow?.id || (chargeRow as any)?.id || looksCriminal);
+    } catch {
+      // ignore
+    }
+
+    const resolved = resolvePracticeAreaFromSignals({
+      storedPracticeArea: caseData.practice_area,
+      hasCriminalSignals,
+      context: "key-facts/buildKeyFactsSummary",
+    });
+
+    if (resolved === "criminal") {
+      normalizedPracticeArea = "criminal" as PracticeArea;
+
+      // Safe persistence: only overwrite when unset/other.
+      try {
+        const storedNormalized = caseData.practice_area ? normalizePracticeArea(caseData.practice_area) : null;
+        if (!storedNormalized || storedNormalized === "other_litigation") {
+          await supabase
+            .from("cases")
+            .update({ practice_area: "criminal" } as any)
+            .eq("id", caseId)
+            .eq("org_id", effectiveOrgId);
+        }
+      } catch {
+        // ignore
+      }
+    }
+  }
+
+  // =============================================================================
+  // Criminal: build key facts from persisted criminal tables (deterministic, never-throw)
+  // =============================================================================
+  if (normalizedPracticeArea === "criminal") {
+    try {
+      // Use case's actual org_id for queries (avoids mismatch when orgIdResolved != case.org_id)
+      // Tenant isolation: always filter by case.org_id (effectiveOrgId), never by orgIdResolved
+      const { data: documents } = await supabase
+        .from("documents")
+        .select("id, name, created_at, extracted_json, raw_text")
+        .eq("case_id", caseId)
+        .eq("org_id", effectiveOrgId)
+        .order("created_at", { ascending: false })
+        .limit(50);
+
+      const { data: criminalCase } = await supabase
+        .from("criminal_cases")
+        .select("defendant_name, court_name, next_hearing_date, next_hearing_type, next_bail_review, bail_status")
+        .eq("id", caseId)
+        .eq("org_id", effectiveOrgId)
+        .maybeSingle();
+
+      const { data: charges } = await supabase
+        .from("criminal_charges")
+        .select("offence, section, charge_date, status")
+        .eq("case_id", caseId)
+        .eq("org_id", effectiveOrgId)
+        .order("charge_date", { ascending: false })
+        .limit(5);
+
+      const { data: hearings } = await supabase
+        .from("criminal_hearings")
+        .select("hearing_date, hearing_type, court_name, outcome")
+        .eq("case_id", caseId)
+        .eq("org_id", effectiveOrgId)
+        .order("hearing_date", { ascending: true })
+        .limit(20);
+
+      const now = new Date();
+      const nextHearing =
+        (criminalCase?.next_hearing_date as string | null) ??
+        (hearings ?? []).find((h: any) => new Date(h.hearing_date).getTime() >= now.getTime())?.hearing_date ??
+        null;
+
+      const keyDates: KeyFactsKeyDate[] = [];
+      if (caseData.created_at) {
+        keyDates.push({
+          label: "Instructions",
+          date: caseData.created_at,
+          isPast: new Date(caseData.created_at) < now,
+        });
+      }
+      if (nextHearing) {
+        keyDates.push({
+          label: "Next Hearing",
+          date: nextHearing,
+          isPast: false,
+          isUrgent: new Date(nextHearing).getTime() - now.getTime() <= 14 * 24 * 60 * 60 * 1000,
+        });
+      }
+      if (criminalCase?.next_bail_review) {
+        keyDates.push({
+          label: "Bail Review",
+          date: criminalCase.next_bail_review,
+          isPast: new Date(criminalCase.next_bail_review) < now,
+          isUrgent: new Date(criminalCase.next_bail_review).getTime() - now.getTime() <= 7 * 24 * 60 * 60 * 1000,
+        });
+      }
+
+      // If charges table is empty, try extracting from raw_text (same approach as Evidence Strength Analyzer)
+      let extractedCharges = charges;
+      if ((!charges || charges.length === 0) && documents && documents.length > 0) {
+        // Combine all raw_text from documents
+        let combinedText = "";
+        for (const doc of documents) {
+          const rawText = (doc as any).raw_text;
+          if (rawText && typeof rawText === "string" && rawText.length > 0) {
+            combinedText += " " + rawText;
+          }
+        }
+
+        if (combinedText.length > 500) {
+          try {
+            const { extractCriminalCaseMeta } = await import("@/lib/criminal/structured-extractor");
+            const meta = extractCriminalCaseMeta({
+              text: combinedText,
+              documentName: "Combined Bundle",
+              now: new Date(),
+            });
+
+            if (meta.charges && meta.charges.length > 0) {
+              extractedCharges = meta.charges.map((c) => ({
+                id: `extracted-${c.count}`,
+                offence: c.offence,
+                section: c.statute,
+                charge_date: c.chargeDate,
+                location: c.location,
+                value: null,
+                details: null,
+                status: c.status,
+              }));
+            }
+          } catch (extractError) {
+            console.warn("[key-facts][criminal] Failed to extract charges from raw_text:", extractError);
+          }
+        }
+      }
+
+      const primaryIssues: string[] = [];
+      const topCharge = (extractedCharges ?? [])[0];
+      if (topCharge?.offence) {
+        primaryIssues.push(`Charge: ${topCharge.offence}${topCharge.section ? ` (${topCharge.section})` : ""}`);
+      }
+      if (criminalCase?.bail_status) {
+        primaryIssues.push(`Bail status: ${String(criminalCase.bail_status).replace(/_/g, " ")}`);
+      }
+      if ((extractedCharges ?? []).length === 0) {
+        primaryIssues.push("Charges not yet captured (upload MG forms / charge sheet)");
+      }
+
+      const claimType = "Criminal Defence";
+      const opponentName = "CPS / Prosecution";
+
+      const bundleSummarySections = buildBundleSummarySections(
+        normalizedPracticeArea,
+        documents ?? [],
+        caseData.summary ?? undefined,
+      );
+
+      // Optional layered summary (best-effort; cached)
+      let layeredSummary: KeyFactsSummary["layeredSummary"] = null;
+      try {
+        const { data: latestVersionRows } = await supabase
+          .from("case_analysis_versions")
+          .select("version_number, missing_evidence")
+          .eq("case_id", caseId)
+          .eq("org_id", effectiveOrgId)
+          .order("version_number", { ascending: false })
+          .limit(1);
+
+        const latestVersion = latestVersionRows?.[0] ?? null;
+        const latestAnalysisVersion = typeof latestVersion?.version_number === "number" ? latestVersion.version_number : null;
+        const versionMissingEvidence = Array.isArray(latestVersion?.missing_evidence) ? latestVersion?.missing_evidence : [];
+
+        const { data: latestBundleRows } = await supabase
+          .from("case_bundles")
+          .select("total_pages")
+          .eq("case_id", caseId)
+          .eq("org_id", effectiveOrgId)
+          .order("created_at", { ascending: false })
+          .limit(1);
+        const totalPages = typeof latestBundleRows?.[0]?.total_pages === "number" ? latestBundleRows?.[0]?.total_pages : undefined;
+
+        layeredSummary = await getOrBuildLayeredSummary({
+          caseId,
+          orgId,
+          practiceArea: normalizedPracticeArea,
+          documents: (documents ?? []).map((d: any) => ({
+            id: d.id,
+            name: d.name,
+            extracted_json: d.extracted_json,
+            created_at: d.created_at,
+          })),
+          totalPages,
+          latestAnalysisVersion,
+          keyDates,
+          mainRisks: [],
+          versionMissingEvidence,
+          cache: createDbLayeredSummaryCache(),
+        });
+      } catch (err) {
+        console.warn("[key-facts][layered-summary][criminal] non-fatal:", err);
+        layeredSummary = null;
+      }
+
+      // Enhanced extraction: use structured extractor to get comprehensive criminal facts
+      let defendantName = criminalCase?.defendant_name;
+      let extractedMeta: Awaited<ReturnType<typeof import("@/lib/criminal/structured-extractor").extractCriminalCaseMeta>> | null = null;
+      
+      if (documents && documents.length > 0) {
+        let combinedText = "";
+        for (const doc of documents) {
+          const rawText = (doc as any).raw_text;
+          if (rawText && typeof rawText === "string" && rawText.length > 0) {
+            combinedText += " " + rawText;
+          }
+        }
+
+        if (combinedText.length > 500) {
+          try {
+            const { extractCriminalCaseMeta } = await import("@/lib/criminal/structured-extractor");
+            extractedMeta = extractCriminalCaseMeta({
+              text: combinedText,
+              documentName: "Combined Bundle",
+              now: new Date(),
+            });
+
+            if (extractedMeta.defendantName && !defendantName) {
+              defendantName = extractedMeta.defendantName;
+            }
+          } catch (extractError) {
+            console.warn("[key-facts][criminal] Failed to extract meta from raw_text:", extractError);
+          }
+        }
+      }
+
+      // Build structured primaryIssues from extracted facts (facts-first, never invent)
+      const structuredIssues: string[] = [];
+      
+      // Charge information
+      if (topCharge?.offence) {
+        structuredIssues.push(`Charge: ${topCharge.offence}${topCharge.section ? ` (${topCharge.section})` : ""}`);
+      }
+      
+      // Offence details from extractor
+      if (extractedMeta?.charges && extractedMeta.charges.length > 0) {
+        const firstCharge = extractedMeta.charges[0];
+        if (firstCharge.dateOfOffence) {
+          structuredIssues.push(`Offence date: ${firstCharge.dateOfOffence}`);
+        }
+        if (firstCharge.location) {
+          structuredIssues.push(`Location: ${firstCharge.location}`);
+        }
+      }
+      
+      // Court and complainant
+      const courtName = criminalCase?.court_name ?? extractedMeta?.hearings?.[0]?.court ?? undefined;
+      if (courtName) {
+        structuredIssues.push(`Court: ${courtName}`);
+      }
+      
+      // Key evidence bullets (only if present in text)
+      const evidenceBullets: string[] = [];
+      if (documents && documents.length > 0) {
+        const combinedTextLower = (documents as any[])
+          .map((d: any) => (d.raw_text || "").toLowerCase())
+          .join(" ");
+        
+        // CCTV + facial recognition
+        if (combinedTextLower.includes("cctv") || combinedTextLower.includes("facial recognition")) {
+          const frMatch = combinedTextLower.match(/facial recognition[^\n]{0,100}(\d{1,3})%/i);
+          const confidence = frMatch ? frMatch[1] : null;
+          evidenceBullets.push(confidence 
+            ? `CCTV + facial recognition: Automated extraction confidence (low): 0.${confidence.padStart(2, '0')} — requires verification from documents.`
+            : "CCTV + facial recognition evidence present");
+        }
+        
+        // Witness IDs
+        if (combinedTextLower.includes("witness") && (combinedTextLower.includes("identification") || combinedTextLower.includes("id"))) {
+          evidenceBullets.push("Witness identification evidence present");
+        }
+        
+        // Medical evidence
+        if (combinedTextLower.includes("medical") || combinedTextLower.includes("injury") || combinedTextLower.includes("fracture")) {
+          evidenceBullets.push("Medical evidence present");
+        }
+        
+        // Forensic evidence (pipe, fingerprints)
+        if (combinedTextLower.includes("fingerprint") || combinedTextLower.includes("forensic")) {
+          evidenceBullets.push("Forensic evidence present");
+        }
+        if (combinedTextLower.includes("pipe") || combinedTextLower.includes("weapon")) {
+          evidenceBullets.push("Weapon recovered");
+        }
+        
+        // Interview stance
+        if (combinedTextLower.includes("no comment") || combinedTextLower.includes("no-comment")) {
+          evidenceBullets.push("Interview stance: No comment");
+        }
+        
+        // PACE compliance
+        if (extractedMeta?.pace) {
+          const pace = extractedMeta.pace;
+          if (pace.status === "ok") {
+            evidenceBullets.push("PACE compliance: OK");
+          } else if (pace.breachesDetected && pace.breachesDetected.length > 0) {
+            evidenceBullets.push(`PACE issues: ${pace.breachesDetected.join(", ")}`);
+          }
+        }
+        
+        // Custody/remand status
+        if (criminalCase?.bail_status) {
+          const bailStatus = String(criminalCase.bail_status).replace(/_/g, " ");
+          evidenceBullets.push(`Bail status: ${bailStatus}`);
+        }
+        if (extractedMeta?.bail?.status === "remanded") {
+          evidenceBullets.push("Status: Remanded in custody");
+        }
+      }
+      
+      // Disclosure gaps (only if extractor found them)
+      const disclosureGaps: string[] = [];
+      if (extractedMeta?.disclosure) {
+        const disc = extractedMeta.disclosure;
+        if (disc.missingItems && disc.missingItems.length > 0) {
+          disclosureGaps.push(...disc.missingItems.slice(0, 8));
+        }
+      } else if (documents && documents.length > 0) {
+        // Fallback: check for common disclosure gap mentions in text
+        const combinedTextLower = (documents as any[])
+          .map((d: any) => (d.raw_text || "").toLowerCase())
+          .join(" ");
+        
+        const commonGaps = [
+          { pattern: /full.*cctv|unedited.*cctv|complete.*cctv/i, label: "Full unedited CCTV footage" },
+          { pattern: /phone.*data|mobile.*data|call.*data/i, label: "Phone data" },
+          { pattern: /forensic.*methodology|full.*forensic/i, label: "Full forensic methodology" },
+          { pattern: /pnb|pocket.*note.*book/i, label: "PNB entries" },
+          { pattern: /search.*inventory|inventory.*search/i, label: "Search inventory" },
+          { pattern: /medical.*records|full.*medical/i, label: "Full medical records" },
+        ];
+        
+        for (const gap of commonGaps) {
+          if (gap.pattern.test(combinedTextLower) && !disclosureGaps.includes(gap.label)) {
+            disclosureGaps.push(gap.label);
+          }
+        }
+      }
+      
+      // Combine structured issues (max 8-16 bullets total)
+      const allIssues = [
+        ...structuredIssues,
+        ...evidenceBullets.slice(0, 6),
+        ...(disclosureGaps.length > 0 ? [`Disclosure gaps: ${disclosureGaps.slice(0, 5).join(", ")}`] : []),
+      ].slice(0, 16);
+
+      // V2: Structured key facts only (no narrative). Narrative stays in Summary / bundleSummarySections.
+      const keyFactsV2 = await import("@/lib/criminal/key-facts-v2");
+      const structuredKeyFacts =
+        extractedMeta != null
+          ? keyFactsV2.buildCriminalStructuredKeyFacts(
+              extractedMeta,
+              documents && documents.length > 0 ? (documents[0] as any).name ?? "Combined Bundle" : "Combined Bundle",
+            )
+          : null;
+      const solicitorBuckets =
+        extractedMeta != null
+          ? keyFactsV2.buildCriminalSolicitorBuckets(extractedMeta, bundleSummarySections)
+          : null;
+
+      return {
+        caseId,
+        practiceArea: normalizedPracticeArea,
+        clientName: defendantName ?? undefined,
+        opponentName,
+        courtName: courtName,
+        claimType,
+        causeOfAction: topCharge?.offence ?? undefined,
+        stage: "other",
+        fundingType: "unknown",
+        approxValue: undefined,
+        headlineSummary: caseData.summary ?? undefined,
+        whatClientWants: "Defend allegations and manage risk (disclosure-first).",
+        keyDates,
+        mainRisks: [],
+        primaryIssues: allIssues.length > 0 ? allIssues : primaryIssues.slice(0, 5),
+        nextStepsBrief: nextHearing ? `Prepare for next hearing (${new Date(nextHearing).toISOString().slice(0, 10)}). Stabilise disclosure/continuity before committing positions.` : "Stabilise disclosure/continuity (MG6, custody, interview recording, CCTV/BWV/999).",
+        bundleSummarySections,
+        layeredSummary,
+        structuredKeyFacts: structuredKeyFacts ?? undefined,
+        solicitorBuckets: solicitorBuckets ?? undefined,
+      };
+    } catch (err) {
+      // Absolute safety: never throw for key facts
+      console.error("[buildKeyFactsSummary][criminal] fallback:", err);
+      return {
+        caseId,
+        practiceArea: normalizedPracticeArea,
+        clientName: undefined,
+        opponentName: "CPS / Prosecution",
+        courtName: undefined,
+        claimType: "Criminal Defence",
+        causeOfAction: undefined,
+        stage: "other",
+        fundingType: "unknown",
+        approxValue: undefined,
+        headlineSummary: caseData.summary ?? undefined,
+        whatClientWants: undefined,
+        keyDates: caseData.created_at
+          ? [{ label: "Instructions", date: caseData.created_at, isPast: true }]
+          : [],
+        structuredKeyFacts: undefined,
+        solicitorBuckets: undefined,
+        mainRisks: [],
+        primaryIssues: ["Key facts not yet available (run extraction / upload charge sheet, MG forms, court listing)."],
+        nextStepsBrief: "Upload core criminal bundle docs (charge sheet, MG5/MG6, custody record, interview, listing).",
+        bundleSummarySections: [],
+        layeredSummary: null,
+      };
+    }
   }
 
   // 2. Fetch PI case data if applicable
@@ -49,8 +536,8 @@ export async function buildKeyFactsSummary(
     .from("housing_cases")
     .select("*")
     .eq("id", caseId)
-    .eq("org_id", orgId)
     .maybeSingle();
+    // Don't filter by org_id - case already found via scoped lookup
 
   // 4. Fetch risk flags
   const { data: riskFlags } = await supabase
@@ -107,8 +594,66 @@ export async function buildKeyFactsSummary(
   // Extract primary issues from documents
   const primaryIssues = extractPrimaryIssues(documents ?? []);
 
+  const bundleSummarySections = buildBundleSummarySections(
+    normalizedPracticeArea,
+    documents ?? [],
+    caseData.summary ?? undefined,
+  );
+
+  // Optional layered summary (best-effort; cached)
+  let layeredSummary: KeyFactsSummary["layeredSummary"] = null;
+  try {
+    const { data: latestVersionRows } = await supabase
+      .from("case_analysis_versions")
+      .select("version_number, missing_evidence")
+      .eq("case_id", caseId)
+      .eq("org_id", effectiveOrgId)
+      .order("version_number", { ascending: false })
+      .limit(1);
+
+    const latestVersion = latestVersionRows?.[0] ?? null;
+    const latestAnalysisVersion = typeof latestVersion?.version_number === "number" ? latestVersion.version_number : null;
+    const versionMissingEvidence = Array.isArray(latestVersion?.missing_evidence) ? latestVersion?.missing_evidence : [];
+
+    const { data: latestBundleRows } = await supabase
+      .from("case_bundles")
+      .select("total_pages")
+      .eq("case_id", caseId)
+      .eq("org_id", effectiveOrgId)
+      .order("created_at", { ascending: false })
+      .limit(1);
+    const totalPages = typeof latestBundleRows?.[0]?.total_pages === "number" ? latestBundleRows?.[0]?.total_pages : undefined;
+
+    layeredSummary = await getOrBuildLayeredSummary({
+      caseId,
+      orgId,
+      practiceArea: normalizedPracticeArea,
+      documents: (documents ?? []).map((d: any) => ({
+        id: d.id,
+        name: d.name,
+        type: d.type,
+        extracted_json: d.extracted_json,
+        created_at: d.created_at,
+      })),
+      totalPages,
+      latestAnalysisVersion,
+      keyDates,
+      mainRisks,
+      versionMissingEvidence,
+      cache: createDbLayeredSummaryCache(),
+    });
+  } catch (err) {
+    console.warn("[key-facts][layered-summary] non-fatal:", err);
+    layeredSummary = null;
+  }
+
   // Get next step brief
-  const nextStepsBrief = await getNextStepBrief(caseId, caseData, riskFlags ?? [], documents ?? []);
+  const nextStepsBrief = await getNextStepBrief(
+    caseId,
+    { practice_area: normalizedPracticeArea },
+    riskFlags ?? [],
+    documents ?? [],
+  );
 
   // Get client objectives from available data
   const whatClientWants = getClientObjectives(caseData, caseNotes ?? [], piCase);
@@ -117,13 +662,14 @@ export async function buildKeyFactsSummary(
   const approxValue = getApproxValue(piCase, housingCase);
 
   // Determine claim type
-  const claimType = getClaimType(caseData.practice_area, piCase, housingCase);
+  const claimType = getClaimType(normalizedPracticeArea, piCase, housingCase);
 
   // Get opponent name
   const opponentName = getOpponentName(piCase, housingCase);
 
   return {
     caseId,
+    practiceArea: normalizedPracticeArea,
     clientName: piCase?.claimant_name ?? housingCase?.tenant_name ?? undefined,
     opponentName,
     courtName: piCase?.court_name ?? undefined,
@@ -138,6 +684,8 @@ export async function buildKeyFactsSummary(
     mainRisks,
     primaryIssues,
     nextStepsBrief,
+    bundleSummarySections,
+    layeredSummary,
   };
 }
 
@@ -145,8 +693,152 @@ export async function buildKeyFactsSummary(
 // Helper Functions
 // =============================================================================
 
+function buildBundleSummarySections(
+  practiceArea: string,
+  documents: Array<{ name?: string | null; created_at?: string; extracted_json?: unknown }>,
+  caseSummary?: string,
+): KeyFactsBundleSummarySection[] {
+  const sections = getBundleSummarySectionConfigs(practiceArea);
+  if (sections.length === 0) return [];
+
+  const maxSentencesPerSection = 5;
+  const maxCharsPerSection = 900;
+
+  // Oldest first gives a more chronological narrative
+  const docs = documents.slice().reverse();
+
+  const pickedBySection: Record<string, string[]> = {};
+  for (const s of sections) pickedBySection[s.title] = [];
+
+  const seenGlobal = new Set<string>();
+
+  for (const doc of docs) {
+    const extracted = doc.extracted_json && typeof doc.extracted_json === "object"
+      ? (doc.extracted_json as any)
+      : null;
+    const summaryText = typeof extracted?.summary === "string" ? extracted.summary : "";
+    const text = [doc.name ?? "", summaryText].filter(Boolean).join(". ");
+    if (!text) continue;
+
+    const sentences = splitIntoSentences(text);
+    for (const sentence of sentences) {
+      const s = sentence.trim();
+      if (s.length < 25) continue;
+      if (s.length > 260) continue;
+
+      const normalized = normalizeSentence(s);
+      if (!normalized || seenGlobal.has(normalized)) continue;
+
+      for (const section of sections) {
+        if (pickedBySection[section.title].length >= maxSentencesPerSection) continue;
+        if (containsAnyKeyword(normalized, section.keywords)) {
+          pickedBySection[section.title].push(s);
+          seenGlobal.add(normalized);
+          break;
+        }
+      }
+    }
+
+    // Early stop if all sections are filled
+    if (sections.every(sec => pickedBySection[sec.title].length >= maxSentencesPerSection)) {
+      break;
+    }
+  }
+
+  const out: KeyFactsBundleSummarySection[] = [];
+
+  // Optional: include case summary as first section if it exists and is non-trivial
+  if (caseSummary && caseSummary.trim().length >= 40) {
+    out.push({
+      title: "Overview",
+      body: caseSummary.trim(),
+    });
+  }
+
+  for (const section of sections) {
+    const sentences = pickedBySection[section.title];
+    if (!sentences || sentences.length === 0) continue;
+    const body = truncateToChars(sentences.join(" "), maxCharsPerSection);
+    out.push({ title: section.title, body });
+  }
+
+  return out;
+}
+
+function getBundleSummarySectionConfigs(practiceArea: string): Array<{ title: string; keywords: string[] }> {
+  switch (practiceArea) {
+    case "clinical_negligence":
+      return [
+        { title: "Hospital / Trust", keywords: ["nhs", "hospital", "trust", "a&e", "ward", "consultant", "clinic", "radiology"] },
+        { title: "Presentation & Timeline", keywords: ["present", "attend", "admit", "discharg", "delay", "refer", "follow-up", "timeline"] },
+        { title: "Injury / Outcome", keywords: ["injury", "deterior", "surgery", "operation", "infection", "stroke", "death", "amputation", "fracture"] },
+        { title: "Imaging / Tests", keywords: ["x-ray", "xray", "ct", "mri", "scan", "imaging", "radiology", "report", "addendum", "discrepanc"] },
+        { title: "Consent / Pathway", keywords: ["consent", "guideline", "pathway", "protocol", "policy"] },
+      ];
+    case "personal_injury":
+      return [
+        { title: "Accident / Mechanism", keywords: ["accident", "collision", "rta", "rtc", "slip", "trip", "fall", "impact", "junction", "speed"] },
+        { title: "Where it happened", keywords: ["location", "road", "street", "junction", "roundabout", "site", "workplace", "premises"] },
+        { title: "Injuries", keywords: ["injury", "fracture", "sprain", "whiplash", "pain", "bruise", "laceration", "strain"] },
+        { title: "Treatment", keywords: ["a&e", "hospital", "gp", "physio", "x-ray", "xray", "ct", "mri", "operation", "surgery", "discharge"] },
+        { title: "Liability / Evidence", keywords: ["liability", "fault", "neglig", "admission", "deny", "insurer", "cctv", "witness", "photos"] },
+      ];
+    case "housing_disrepair":
+      return [
+        { title: "Property / Landlord", keywords: ["landlord", "property", "flat", "house", "council", "housing association", "tenancy"] },
+        { title: "Damp / Mould / Ingress", keywords: ["damp", "mould", "mold", "leak", "water ingress", "condensation"] },
+        { title: "Health impact", keywords: ["asthma", "cough", "breath", "child", "eczema", "gp", "hospital"] },
+        { title: "Complaints / Inspections / Works", keywords: ["complaint", "inspection", "survey", "works order", "repair", "contractor", "visit"] },
+      ];
+    case "criminal":
+      return [
+        { title: "Allegations / Charges", keywords: ["charge", "charged", "offence", "offense", "allegation", "assault", "robbery", "wound", "knife", "strangl", "gbh", "abh"] },
+        { title: "Court / Hearings", keywords: ["court", "hearing", "listing", "crown", "magistrates", "plea", "trial", "sentencing", "cmh"] },
+        { title: "Bail / Custody", keywords: ["bail", "remand", "custody", "curfew", "conditions", "police bail", "released"] },
+        { title: "PACE / Interview / Disclosure", keywords: ["pace", "interview", "caution", "solicitor", "mg6", "disclosure", "unused material", "cctv", "bwv", "999", "cad", "continuity"] },
+      ];
+    case "family":
+      return [
+        { title: "Parties / Children", keywords: ["child", "children", "mother", "mum", "father", "dad", "school", "social worker"] },
+        { title: "Safeguarding", keywords: ["safeguard", "risk", "domestic", "abuse", "harm", "police"] },
+        { title: "Orders / Court", keywords: ["order", "c100", "fl401", "fact finding", "cafcass", "hearing", "court"] },
+      ];
+    default:
+      return [
+        { title: "Core facts", keywords: ["summary", "facts", "background", "issue", "dispute"] },
+        { title: "Key events", keywords: ["date", "timeline", "occur", "happen", "event"] },
+        { title: "Evidence", keywords: ["document", "evidence", "report", "statement", "photo"] },
+      ];
+  }
+}
+
+function splitIntoSentences(text: string): string[] {
+  const cleaned = text.replace(/\s+/g, " ").trim();
+  if (!cleaned) return [];
+  // Simple, TS-target-safe sentence split (no lookbehind)
+  return cleaned.split(/[.!?]\s+/g).map(s => s.trim()).filter(Boolean);
+}
+
+function normalizeSentence(s: string): string {
+  return s.toLowerCase().replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
+}
+
+function containsAnyKeyword(normalizedSentence: string, keywords: string[]): boolean {
+  for (const kw of keywords) {
+    if (!kw) continue;
+    if (normalizedSentence.includes(kw)) return true;
+  }
+  return false;
+}
+
+function truncateToChars(text: string, maxChars: number): string {
+  const t = text.trim();
+  if (t.length <= maxChars) return t;
+  return `${t.slice(0, Math.max(0, maxChars - 1)).trim()}…`;
+}
+
 function determineStage(
-  caseData: { status?: string; practice_area?: string },
+  caseData: { status?: string | null; practice_area?: string | null },
   piCase: { stage?: string } | null,
   housingCase: { stage?: string } | null,
 ): KeyFactsStage {
@@ -195,7 +887,7 @@ function determineFundingType(
 }
 
 function buildKeyDates(
-  caseData: { created_at: string },
+  caseData: { created_at?: string },
   piCase: { 
     incident_date?: string; 
     instructions_date?: string;
@@ -213,11 +905,13 @@ function buildKeyDates(
 
   // Instructions/first contact date
   const instructionsDate = piCase?.instructions_date ?? caseData.created_at;
-  dates.push({
-    label: "Instructions",
-    date: instructionsDate,
-    isPast: new Date(instructionsDate) < now,
-  });
+  if (instructionsDate) {
+    dates.push({
+      label: "Instructions",
+      date: instructionsDate,
+      isPast: new Date(instructionsDate) < now,
+    });
+  }
 
   // Incident date
   if (piCase?.incident_date) {
@@ -360,34 +1054,55 @@ async function getNextStepBrief(
   riskFlags: Array<{ severity: string; flag_type: string; description: string; resolved: boolean }>,
   documents: Array<{ name: string; type?: string }>,
 ): Promise<string | undefined> {
-  const convertedRiskFlags = riskFlags.map(rf => ({
-    id: rf.flag_type,
-    caseId,
-    severity: rf.severity.toUpperCase() as "LOW" | "MEDIUM" | "HIGH" | "CRITICAL",
-    type: rf.flag_type as RiskFlag["type"],
-    code: rf.flag_type.toUpperCase(),
-    title: rf.flag_type.replace(/_/g, " "),
-    message: rf.description,
-    source: "risk_detection",
-    status: rf.resolved ? "resolved" as const : "outstanding" as const,
-    createdAt: new Date().toISOString(),
-  }));
+  try {
+    const convertedRiskFlags = riskFlags.map((rf, idx) => {
+      const rawType =
+        typeof rf.flag_type === "string" && rf.flag_type.trim().length > 0
+          ? rf.flag_type.trim()
+          : `unknown_${idx}`;
+      const rawSeverity = typeof rf.severity === "string" ? rf.severity : "MEDIUM";
+      const severityUpper = rawSeverity.toUpperCase();
+      const severity =
+        severityUpper === "LOW" ||
+        severityUpper === "MEDIUM" ||
+        severityUpper === "HIGH" ||
+        severityUpper === "CRITICAL"
+          ? (severityUpper as "LOW" | "MEDIUM" | "HIGH" | "CRITICAL")
+          : ("MEDIUM" as const);
 
-  const nextStep = calculateNextStep({
-    caseId,
-    practiceArea: caseData.practice_area ?? "general",
-    riskFlags: convertedRiskFlags,
-    missingEvidence: [],
-    pendingChasers: [],
-    hasRecentAttendanceNote: true,
-    daysSinceLastUpdate: 7,
-  });
+      return {
+        id: rawType,
+        caseId,
+        severity,
+        type: rawType as RiskFlag["type"],
+        code: rawType.toUpperCase(),
+        title: rawType.replace(/_/g, " "),
+        message: typeof rf.description === "string" ? rf.description : "",
+        source: "risk_detection",
+        status: rf.resolved ? ("resolved" as const) : ("outstanding" as const),
+        createdAt: new Date().toISOString(),
+      };
+    });
 
-  return nextStep?.title;
+    const nextStep = calculateNextStep({
+      caseId,
+      practiceArea: caseData.practice_area ?? "other_litigation",
+      riskFlags: convertedRiskFlags,
+      missingEvidence: [],
+      pendingChasers: [],
+      hasRecentAttendanceNote: true,
+      daysSinceLastUpdate: 7,
+    });
+
+    return nextStep?.title;
+  } catch (err) {
+    console.warn("[key-facts] next step generation failed (non-fatal):", err);
+    return undefined;
+  }
 }
 
 function getClientObjectives(
-  caseData: { summary?: string; title: string },
+  caseData: { summary?: string | null; title?: string | null },
   caseNotes: Array<{ body: string; is_attendance: boolean }>,
   piCase: { client_objectives?: string } | null,
 ): string | undefined {
@@ -443,9 +1158,10 @@ function getClaimType(
   if (housingCase?.claim_type) return housingCase.claim_type;
   
   // Fall back to practice area
-  if (practiceArea === "pi") return "Personal Injury";
+  if (practiceArea === "pi" || practiceArea === "personal_injury") return "Personal Injury";
   if (practiceArea === "clinical_negligence") return "Clinical Negligence";
   if (practiceArea === "housing_disrepair") return "Housing Disrepair";
+  if (practiceArea === "criminal") return "Criminal Defence";
   
   return undefined;
 }

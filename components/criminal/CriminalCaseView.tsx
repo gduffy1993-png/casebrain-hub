@@ -1,0 +1,1518 @@
+"use client";
+
+import { useState, useEffect, useRef } from "react";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import { Card } from "@/components/ui/card";
+import { ErrorBoundary } from "@/components/ui/error-boundary";
+import { FoldSection } from "@/components/ui/fold-section";
+// Legacy panels - only used in collapsed "Additional Tools" section
+import { PACEComplianceChecker } from "./PACEComplianceChecker";
+import { CourtHearingsPanel } from "./CourtHearingsPanel";
+import { ClientAdvicePanel } from "./ClientAdvicePanel";
+import { SentencingMitigationPanel } from "./SentencingMitigationPanel";
+import type { CasePhase } from "./CasePhaseSelector";
+import { StrategyCommitmentPanel, type StrategyCommitment } from "./StrategyCommitmentPanel";
+import { Phase2StrategyPlanPanel } from "./Phase2StrategyPlanPanel";
+import { AnalysisGateBanner, type AnalysisGateBannerProps } from "@/components/AnalysisGateBanner";
+import { Scale, Shield, Loader2, FileText, Target, AlertCircle, Upload } from "lucide-react";
+// Phase 2 components
+import { sortCasesForDisplay } from "@/lib/case-list-sort";
+import { buildCaseSnapshot, type CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
+import { buildEvidenceContext, buildTimelineContext } from "@/lib/criminal/evidence-context";
+import { CaseStatusStrip } from "./CaseStatusStrip";
+import { CriminalCaseAtAGlanceBar } from "./CriminalCaseAtAGlanceBar";
+import { CaseEvidenceColumn } from "./CaseEvidenceColumn";
+import { CaseStrategyColumn } from "./CaseStrategyColumn";
+import { EvidenceSelectorModal } from "@/components/cases/EvidenceSelectorModal";
+import { AddEvidenceModal } from "./AddEvidenceModal";
+import { useToast } from "@/components/Toast";
+import { Button } from "@/components/ui/button";
+import { CaseSummaryPanel } from "@/components/cases/CaseSummaryPanel";
+import { CaseKeyFactsPanel } from "@/components/cases/KeyFactsPanel";
+import { ChargesPanel } from "./ChargesPanel";
+import { RecordPositionModal } from "./RecordPositionModal";
+import { CaseReviewConfirm } from "./CaseReviewConfirm";
+import { REVIEW_STAGE_OPTIONS } from "@/lib/criminal/review-confirm-ui";
+import { BackToTop } from "@/components/ui/back-to-top";
+import { CaseTabs, type TabItem } from "@/components/ui/tabs";
+import { DisclosureTrackerTable } from "./DisclosureTrackerTable";
+import { DisclosureChasersPanel } from "./DisclosureChasersPanel";
+import { DisclosurePressureDashboard } from "./DisclosurePressureDashboard";
+import { ClientInstructionsRecorder } from "./ClientInstructionsRecorder";
+import { PoliceStationTab } from "./PoliceStationTab";
+import { PleaRecordCard } from "./PleaRecordCard";
+import { FirstDisclosureRequestCard } from "./FirstDisclosureRequestCard";
+import { CaseOverviewHeader } from "./CaseOverviewHeader";
+import { CaseTimelinePanel } from "./CaseTimelinePanel";
+import { StrategyOverviewSubTab } from "./StrategyOverviewSubTab";
+import { StrategyDoctrineSubTab } from "./StrategyDoctrineSubTab";
+import { StrategyExportButton } from "./StrategyExportButton";
+import { DefencePlanBox } from "./DefencePlanBox";
+import { StrategyBattleboard } from "./StrategyBattleboard";
+import { CaseControlRoom } from "./CaseControlRoom";
+import { usePilotDemoSession } from "@/components/criminal/workflow/usePilotDemoSession";
+import { PilotDocumentsView } from "@/components/criminal/workflow/PilotDocumentsView";
+import { isCriminalPilotMode } from "@/lib/pilot-mode";
+import { CASE_FILES_HASH } from "@/components/criminal/workflow/focusCaseDocuments";
+import {
+  appendControlRoomParams,
+  buildControlRoomCaseHref,
+  persistControlRoomPreference,
+  resolveControlRoomFromSearchParams,
+  shouldRedirectToControlRoom,
+} from "./criminalCaseNavigation";
+import { HearingWarRoom } from "./hearing-war-room/HearingWarRoom";
+import { DisclosureChase } from "./disclosure-chase/DisclosureChase";
+import { StrategyTimelineSection } from "./StrategyTimelineSection";
+import { VerdictRatingBlock } from "./VerdictRatingBlock";
+import { BundleSourcePanels } from "./BundleSourcePanels";
+import { WorkflowSafetyLine } from "./workflow/WorkflowSafetyLine";
+
+/** Tab ids for criminal case page. URL ?tab= must be one of these. Order: primary then secondary. */
+const CRIMINAL_CASE_TAB_IDS = [
+  "summary",
+  "charges",
+  "strategy",
+  "disclosure",
+  "next-steps",
+  "hearings",
+  "hearing-war-room",
+  "disclosure-chase",
+  "documents",
+  "timeline",
+  "client-instructions",
+  "sentencing",
+  "key-facts",
+  "safety-procedural",
+  "additional-tools",
+  "police-station",
+] as const;
+
+/** Tab order: primary (Summary, Charges, Strategy, Disclosure, Next steps, Hearings, Timeline, Client) then secondary (Sentencing, Key facts, Safety, Additional tools, Police station). */
+const CRIMINAL_CASE_TABS: TabItem[] = [
+  { id: "summary", label: "Summary" },
+  { id: "charges", label: "Charges" },
+  { id: "strategy", label: "Strategy" },
+  { id: "disclosure", label: "Disclosure" },
+  { id: "next-steps", label: "Next steps" },
+  { id: "hearings", label: "Hearings" },
+  { id: "hearing-war-room", label: "Hearing War Room" },
+  { id: "disclosure-chase", label: "Disclosure Chase" },
+  { id: "timeline", label: "Timeline" },
+  { id: "client-instructions", label: "Client & instructions" },
+  { id: "sentencing", label: "Sentencing" },
+  { id: "key-facts", label: "Key facts" },
+  { id: "safety-procedural", label: "Safety & procedural" },
+  { id: "additional-tools", label: "Additional tools" },
+  { id: "police-station", label: "Police station" },
+];
+
+const DEFAULT_TAB = "summary";
+
+type CriminalCaseViewProps = {
+  caseId: string;
+};
+
+export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+  const { push: showToast } = useToast();
+  /** Survives AddEvidenceModal delayed onSuccess (upload toast + 1.5s) so bundle-replace vs default is correct. */
+  const addEvidenceIntentRef = useRef<"default" | "bundle-replace">("default");
+  const [bundleReplaceExtracting, setBundleReplaceExtracting] = useState(false);
+  const [caseNavLoading, setCaseNavLoading] = useState(false);
+  const [caseNavError, setCaseNavError] = useState<string | null>(null);
+  const [caseNavList, setCaseNavList] = useState<Array<{ id: string; title: string }>>([]);
+  
+  // Hydration guard: prevent ErrorBoundary fallback from showing during initial mount
+  const [mounted, setMounted] = useState(false);
+  
+  // Phase 2: Snapshot state
+  const [snapshot, setSnapshot] = useState<CaseSnapshot | null>(null);
+  const [snapshotLoading, setSnapshotLoading] = useState(true);
+  const [snapshotError, setSnapshotError] = useState<string | null>(null);
+  const [showAddDocuments, setShowAddDocuments] = useState(false); // For analysis document selection
+  const [showAddEvidenceUpload, setShowAddEvidenceUpload] = useState(false); // For uploading new evidence
+
+  const [gateBanner, setGateBanner] = useState<{
+    banner: AnalysisGateBannerProps["banner"];
+    diagnostics?: AnalysisGateBannerProps["diagnostics"];
+  } | null>(null);
+  const [isDisclosureFirstMode, setIsDisclosureFirstMode] = useState<boolean>(false);
+  const [currentPhase, setCurrentPhase] = useState<CasePhase>(1);
+  const [committedStrategy, setCommittedStrategy] = useState<StrategyCommitment | null>(null);
+  const [isStrategyCommitted, setIsStrategyCommitted] = useState(false);
+  /** When Strategy tab panel has a defence plan, this is the display strategy (e.g. Act Denial) so at-a-glance/matrix/snapshot stay in sync. */
+  const [displayStrategy, setDisplayStrategy] = useState<{ displayLabel: string; displayCategory: "fight_charge" | "charge_reduction" | "outcome_management" } | null>(null);
+  /** Defence Plan from Evidence column (single source for Strategy tab box). Cleared when commitment cleared. */
+  const [defencePlan, setDefencePlan] = useState<import("@/lib/criminal/strategy-output").DefenceStrategyPlan | null>(null);
+  const [hasSavedPosition, setHasSavedPosition] = useState(false);
+  const [isPositionModalOpen, setIsPositionModalOpen] = useState(false);
+  /** When user clicks "Edit" on AI suggestion – prefill Record Position modal with this text; cleared on modal close. */
+  const [pendingPositionText, setPendingPositionText] = useState<string | null>(null);
+  const [savedPosition, setSavedPosition] = useState<{ id: string; position_text: string; created_at: string; phase: number } | null>(null);
+  const [panelData, setPanelData] = useState<{
+    bail: { hasData: boolean };
+    sentencing: { hasData: boolean };
+    hearings: { hasData: boolean };
+    pace: { hasData: boolean };
+  }>({
+    bail: { hasData: false },
+    sentencing: { hasData: false },
+    hearings: { hasData: false },
+    pace: { hasData: false },
+  });
+  /** From strategy-analysis API (StrategyCommitmentPanel reports when mounted). Used to gate phase selector and Disclosure Timeline banner. */
+  const [effectiveProceduralSafety, setEffectiveProceduralSafety] = useState<{ status: string; explanation?: string; outstandingItems?: string[] } | null>(null);
+  /** For Case Readiness Gate: client instructions record present */
+  const [hasClientInstructions, setHasClientInstructions] = useState(false);
+  /** Matter state for default tab (at_station → police-station, charged etc → strategy) */
+  const [matterState, setMatterState] = useState<string | null>(null);
+  /** Matter closed (post-disposal) – show banner when set */
+  const [matterClosed, setMatterClosed] = useState<{ at: string; reason: string | null } | null>(null);
+  /** Strategy tab sub-view: overview | doctrine | full */
+  const [strategySubTab, setStrategySubTab] = useState<"overview" | "doctrine" | "full">("full");
+  /** null = loading; false = show Review & Confirm gate; true = full workspace */
+  const [reviewConfirmed, setReviewConfirmed] = useState<boolean | null>(null);
+  /** Case Control Room: default on; classic workspace via Control Room button sets preference false. */
+  const [useControlRoom, setUseControlRoom] = useState(true);
+  const { uploadDisabled: pilotUploadDisabled, recordPositionDisabled: pilotRecordPositionHidden } =
+    usePilotDemoSession();
+  const openUploadEvidence = pilotUploadDisabled
+    ? undefined
+    : () => {
+        addEvidenceIntentRef.current = "default";
+        setShowAddEvidenceUpload(true);
+      };
+  const openRecordPosition = pilotRecordPositionHidden
+    ? undefined
+    : () => {
+        setPendingPositionText(null);
+        setIsPositionModalOpen(true);
+      };
+
+  useEffect(() => {
+    const active = resolveControlRoomFromSearchParams(searchParams);
+    setUseControlRoom(active);
+    if (searchParams.get("controlRoom") === "1") {
+      persistControlRoomPreference(true);
+    }
+  }, [searchParams]);
+
+  useEffect(() => {
+    if (!isCriminalPilotMode() || reviewConfirmed !== true) return;
+    if (searchParams.get("tab") === "documents") return;
+    if (typeof window === "undefined" || window.location.hash !== CASE_FILES_HASH) return;
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("tab", "documents");
+    params.set("controlRoom", "1");
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+  }, [reviewConfirmed, searchParams, pathname, router]);
+
+  useEffect(() => {
+    if (reviewConfirmed !== true) return;
+    if (!shouldRedirectToControlRoom(searchParams)) return;
+    const params = appendControlRoomParams(new URLSearchParams(searchParams.toString()), {
+      defaultTab: "strategy",
+    });
+    const query = params.toString();
+    if (query === searchParams.toString()) return;
+    router.replace(`${pathname}?${query}`, { scroll: false });
+  }, [reviewConfirmed, searchParams, pathname, router]);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const first = await fetch(`/api/criminal/${caseId}/phase1-detect`, { credentials: "include" }).then((r) =>
+          r.json(),
+        );
+        if (cancelled) return;
+        if (first.ok && first.data?.reviewConfirmedAt) {
+          setReviewConfirmed(true);
+          return;
+        }
+        await fetch(`/api/criminal/${caseId}/phase1-detect`, { method: "POST", credentials: "include" });
+        const get = await fetch(`/api/criminal/${caseId}/phase1-detect`, { credentials: "include" }).then((r) =>
+          r.json(),
+        );
+        if (cancelled) return;
+        if (!get.ok || !get.data) {
+          setReviewConfirmed(false);
+          return;
+        }
+        const d = get.data as {
+          offenceCode?: string | null;
+          offenceLabel?: string | null;
+          stance?: string | null;
+          stage?: string | null;
+          defencePlanDraft?: string | null;
+          reviewConfirmedAt?: string | null;
+        };
+        if (d.reviewConfirmedAt) {
+          setReviewConfirmed(true);
+          return;
+        }
+        const body = {
+          offenceCode: d.offenceCode?.trim() || "unknown",
+          offenceLabel: d.offenceLabel?.trim() || "Unknown offence — set below",
+          stance: d.stance?.trim() || "Put to proof",
+          stage: d.stage?.trim() || REVIEW_STAGE_OPTIONS[1],
+          defencePlanText: typeof d.defencePlanDraft === "string" ? d.defencePlanDraft : "",
+        };
+        const rc = await fetch(`/api/criminal/${caseId}/review-confirm`, {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        });
+        const rj = await rc.json().catch(() => ({}));
+        if (cancelled) return;
+        if (rc.ok && rj.ok) {
+          setReviewConfirmed(true);
+          buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error);
+          persistControlRoomPreference(true);
+          router.replace(buildControlRoomCaseHref(caseId), { scroll: false });
+          return;
+        }
+        setReviewConfirmed(false);
+      } catch {
+        if (!cancelled) setReviewConfirmed(false);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [caseId, router]);
+
+  // Mark as mounted after hydration
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Fetch client instructions for readiness gate
+  useEffect(() => {
+    if (!caseId) return;
+    let cancelled = false;
+    fetch(`/api/criminal/${caseId}/client-instructions`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (!cancelled && data?.ok) setHasClientInstructions(!!data.data);
+      })
+      .catch(() => { if (!cancelled) setHasClientInstructions(false); });
+    return () => { cancelled = true; };
+  }, [caseId]);
+
+  // Fetch matter state for default tab
+  useEffect(() => {
+    if (!caseId) return;
+    let cancelled = false;
+    fetch(`/api/criminal/${caseId}/matter`, { credentials: "include" })
+      .then((res) => res.json())
+      .then((data) => {
+        if (!cancelled) {
+          if (data.matterState != null) setMatterState(data.matterState);
+          if (data.matterClosedAt) setMatterClosed({ at: data.matterClosedAt, reason: data.matterClosedReason ?? null });
+          else setMatterClosed(null);
+        }
+      })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, [caseId]);
+
+  // Case navigator list for quick previous/next traversal during training/review
+  useEffect(() => {
+    let cancelled = false;
+    async function loadCaseNavigator() {
+      setCaseNavLoading(true);
+      setCaseNavError(null);
+      try {
+        const response = await fetch("/api/cases", { credentials: "include", cache: "no-store" });
+        const data = (await response.json().catch(() => ({}))) as {
+          cases?: Array<{
+            id: string;
+            title?: string | null;
+            updated_at?: string | null;
+            created_at?: string | null;
+            eval_pack_id?: string | null;
+            eval_case_no?: number | null;
+            next_hearing_date?: string | null;
+          }>;
+        };
+        if (!response.ok) throw new Error("Failed to load cases");
+        const rows = Array.isArray(data.cases) ? data.cases : [];
+        const sorted = sortCasesForDisplay(rows);
+        if (!cancelled) setCaseNavList(sorted.map((c) => ({ id: c.id, title: c.title || "Untitled Case" })));
+      } catch (e) {
+        if (!cancelled) {
+          setCaseNavError(e instanceof Error ? e.message : "Failed to load cases");
+          setCaseNavList([]);
+        }
+      } finally {
+        if (!cancelled) setCaseNavLoading(false);
+      }
+    }
+    loadCaseNavigator();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  // Phase 2: Build snapshot on mount
+  useEffect(() => {
+    async function loadSnapshot() {
+      setSnapshotLoading(true);
+      setSnapshotError(null);
+      try {
+        const snap = await buildCaseSnapshot(caseId);
+        setSnapshot(snap);
+        // Update committed strategy from snapshot (strategy commitment, not position)
+        if (snap.decisionLog.currentPosition) {
+          setIsStrategyCommitted(true);
+          setCommittedStrategy({
+            primary: snap.decisionLog.currentPosition.position as any,
+            secondary: snap.decisionLog.history
+              .filter(h => h.position !== snap.decisionLog.currentPosition?.position)
+              .map(h => h.position as any),
+          });
+        } else {
+          setIsStrategyCommitted(false);
+        }
+      } catch (error) {
+        console.error("[CriminalCaseView] Failed to load snapshot:", error);
+        setSnapshotError(error instanceof Error ? error.message : "Failed to load case data");
+        // Fail-safe: still allow page to render
+        setSnapshot(null);
+      } finally {
+        setSnapshotLoading(false);
+      }
+    }
+    loadSnapshot();
+  }, [caseId]);
+
+  // Canonical phase rule: Phase 2 when a recorded defence position exists (not strategy commitment).
+  // On mount/refresh, fetch position and set phase so Phase 2 persists after refresh.
+  useEffect(() => {
+    if (!caseId) return;
+    let cancelled = false;
+    async function loadPosition() {
+      try {
+        const response = await fetch(`/api/criminal/${caseId}/position`, { credentials: "include" });
+        if (cancelled) return;
+        if (response.ok) {
+          const data = await response.json();
+          if (data.ok && (data.data || data.position)) {
+            setSavedPosition(data.data || data.position);
+            setHasSavedPosition(true);
+            setCurrentPhase(2);
+          } else {
+            setSavedPosition(null);
+            setHasSavedPosition(false);
+            setCurrentPhase(1);
+          }
+        } else {
+          setSavedPosition(null);
+          setHasSavedPosition(false);
+          setCurrentPhase(1);
+        }
+      } catch (error) {
+        if (!cancelled) {
+          console.error("[CriminalCaseView] Failed to load position:", error);
+          setSavedPosition(null);
+          setHasSavedPosition(false);
+          setCurrentPhase(1);
+        }
+      }
+    }
+    loadPosition();
+    return () => { cancelled = true; };
+  }, [caseId]);
+
+  // Check if analysis is gated and determine mode (using snapshot data when available)
+  useEffect(() => {
+    if (!snapshot) return; // Wait for snapshot
+    
+    // RULE: Only show "Insufficient text extracted" banner if:
+    // 1. Analysis mode is preview/none AND
+    // 2. Strategy outputs CANNOT be shown (avoid contradictory states)
+    const shouldShowGateBanner = 
+      (snapshot.analysis.mode === "preview" || snapshot.analysis.mode === "none") &&
+      !snapshot.analysis.canShowStrategyOutputs;
+    
+    if (shouldShowGateBanner) {
+      // Use thin pack message if preview is available
+      const message = snapshot.analysis.canShowStrategyPreview && !snapshot.analysis.canShowStrategyFull
+        ? "Thin pack: limited outputs. Add documents for full strategy routes."
+        : "Not enough extractable text to generate reliable analysis. Upload text-based PDFs or run OCR, then re-analyse.";
+      
+            setGateBanner({
+        banner: {
+                severity: "warning",
+                title: "Insufficient text extracted",
+          message,
+              },
+            });
+            setIsDisclosureFirstMode(true);
+          } else {
+            setGateBanner(null);
+      // Check if mode is DISCLOSURE-FIRST from strategy data (for UI hints only; phase is from position)
+      const primary = snapshot.strategy.primary;
+      const mode = primary === "fight_charge" && snapshot.strategy.hasRenderableData 
+        ? "OTHER" 
+        : "DISCLOSURE-FIRST";
+            setIsDisclosureFirstMode(mode === "DISCLOSURE-FIRST");
+      // Phase is NOT set from snapshot; it is set from GET /position on mount and onPositionChange.
+    }
+  }, [snapshot]);
+
+  // Handle query param actions (idempotent - only runs once per param)
+  useEffect(() => {
+    const action = searchParams.get("action");
+    if (!action) return;
+
+    // Handle reanalyse action
+    if (action === "reanalyse") {
+      // Clear param immediately to prevent re-trigger on refresh
+      const newSearchParams = new URLSearchParams(searchParams.toString());
+      newSearchParams.delete("action");
+      router.replace(`/cases/${caseId}${newSearchParams.toString() ? `?${newSearchParams.toString()}` : ""}`, { scroll: false });
+
+      // Trigger reanalyse
+      async function triggerReanalyse() {
+        try {
+          console.log(`[CriminalCaseView] Starting re-run analysis for case ${caseId} (query param)`);
+          const res = await fetch(`/api/cases/${caseId}/analysis/rerun`, {
+            method: "POST",
+            credentials: "include",
+          });
+
+          if (!res.ok) {
+            const errorData = await res.json().catch(() => ({ error: "Failed to re-run analysis" }));
+            const errorMessage = errorData.error || `Failed to re-run analysis (${res.status})`;
+            console.error(`[CriminalCaseView] Re-run failed: ${res.status}`, errorData);
+            throw new Error(errorMessage);
+          }
+
+          const data = await res.json();
+          console.log(`[CriminalCaseView] Re-run successful: version ${data.version_number}`, data);
+          
+          // Wait a moment for the version to be fully written, then refresh
+          setTimeout(() => {
+            router.refresh();
+            // Also trigger client-side refetch of dependent endpoints
+            if (typeof window !== "undefined") {
+              window.dispatchEvent(new CustomEvent("analysis-rerun-complete", { detail: { versionNumber: data.version_number } }));
+            }
+          }, 750);
+        } catch (error) {
+          console.error(`[CriminalCaseView] Failed to re-run analysis for case ${caseId}:`, error);
+          // Show user-friendly error
+          if (typeof window !== "undefined") {
+            window.dispatchEvent(new CustomEvent("analysis-rerun-error", { 
+              detail: { error: error instanceof Error ? error.message : "Failed to re-run analysis" } 
+            }));
+          }
+        }
+      }
+      triggerReanalyse();
+      return;
+    }
+
+    // Handle add-documents action
+    if (action === "add-documents") {
+      // Clear param immediately to prevent re-trigger on refresh
+      const newSearchParams = new URLSearchParams(searchParams.toString());
+      newSearchParams.delete("action");
+      router.replace(`/cases/${caseId}${newSearchParams.toString() ? `?${newSearchParams.toString()}` : ""}`, { scroll: false });
+
+      // Open add documents UI
+      setShowAddDocuments(true);
+      return;
+    }
+  }, [searchParams, caseId, router]);
+  
+  // Check panel data (for phase gating only - not for rendering)
+  useEffect(() => {
+    async function checkPanelData() {
+      // Minimal check for phase gating - panels themselves will fetch their own data
+      try {
+        const [bailRes, sentencingRes, hearingsRes, paceRes] = await Promise.all([
+          fetch(`/api/criminal/${caseId}/bail-application`).catch(() => null),
+          fetch(`/api/criminal/${caseId}/sentencing-mitigation`).catch(() => null),
+          fetch(`/api/criminal/${caseId}/hearings`).catch(() => null),
+          fetch(`/api/criminal/${caseId}/pace`).catch(() => null),
+        ]);
+        
+        const bailData = bailRes?.ok ? await bailRes.json().catch(() => null) : null;
+        const sentencingData = sentencingRes?.ok ? await sentencingRes.json().catch(() => null) : null;
+        const hearingsData = hearingsRes?.ok ? await hearingsRes.json().catch(() => null) : null;
+        const paceData = paceRes?.ok ? await paceRes.json().catch(() => null) : null;
+        
+        setPanelData({
+          bail: { hasData: !!(bailData?.data || (bailData?.grounds?.length ?? 0) >= 1) },
+          sentencing: { hasData: !!(sentencingData?.data || (sentencingData?.personalMitigation?.length ?? 0) >= 1) },
+          hearings: { hasData: !!((hearingsData?.hearings?.length ?? 0) >= 1) },
+          pace: { hasData: !!(paceData?.data || paceData?.paceStatus) },
+        });
+      } catch {
+        // Silently fail - panel data check is optional
+      }
+    }
+    
+    checkPanelData();
+  }, [caseId]);
+
+  // Determine if we have extracted data (independent of analysis mode)
+  // These checks are extraction-based only, NOT analysis-based
+  const hasExtractedSummary = snapshot?.caseMeta?.title && snapshot.caseMeta.title !== "Untitled Case";
+  const hasExtractedFacts = (snapshot?.evidence?.documents?.length ?? 0) >= 1;
+  const hasCharges = (snapshot?.charges?.length ?? 0) >= 1;
+  const hasReadLayerData = hasExtractedSummary || hasExtractedFacts || hasCharges;
+
+  const policeStationTabAllowed =
+    matterState === "at_station" || matterState === "bailed" || matterState === "rui";
+
+  const criminalTabsVisible = CRIMINAL_CASE_TABS.filter(
+    (t) => t.id !== "police-station" || policeStationTabAllowed,
+  );
+
+  // Tab from URL ?tab=; default from matter state or Summary
+  const tabFromUrl = searchParams.get("tab");
+  const defaultTabByState =
+    matterState === "at_station"
+      ? "police-station"
+      : matterState === "charged" || matterState === "before_first_hearing" || matterState === "before_ptph" || matterState === "before_trial" || matterState === "trial"
+        ? "strategy"
+        : DEFAULT_TAB;
+  const rawTab =
+    tabFromUrl && CRIMINAL_CASE_TAB_IDS.includes(tabFromUrl as (typeof CRIMINAL_CASE_TAB_IDS)[number])
+      ? tabFromUrl
+      : defaultTabByState;
+  const activeTab =
+    rawTab === "police-station" && !policeStationTabAllowed
+      ? DEFAULT_TAB
+      : rawTab;
+
+  const currentCaseIndex = caseNavList.findIndex((c) => c.id === caseId);
+  const evalCaseRegex = /NS-CPS-2026-04\d{2}/i;
+  const evalCases = caseNavList.filter((c) => evalCaseRegex.test(c.title)).slice(0, 40);
+  const evalCaseIndex = evalCases.findIndex((c) => c.id === caseId);
+  const navCases = evalCaseIndex >= 0 ? evalCases : caseNavList;
+  const navCaseIndex = navCases.findIndex((c) => c.id === caseId);
+  const prevCase =
+    navCaseIndex > 0
+      ? navCases[navCaseIndex - 1]
+      : navCaseIndex === -1 && navCases.length > 0
+        ? navCases[navCases.length - 1]
+        : null;
+  const nextCase =
+    navCaseIndex >= 0 && navCaseIndex < navCases.length - 1
+      ? navCases[navCaseIndex + 1]
+      : navCaseIndex === -1 && navCases.length > 0
+        ? navCases[0]
+        : null;
+
+  const navigateToCase = (
+    targetCaseId: string,
+    options?: { forceTab?: "strategy" | "summary" | "charges" | "disclosure" | "hearings" | "client-instructions" | "police-station"; preserveQuery?: boolean }
+  ) => {
+    if (!targetCaseId || targetCaseId === caseId) return;
+    const preserveQuery = options?.preserveQuery ?? true;
+    let params = preserveQuery ? new URLSearchParams(searchParams.toString()) : new URLSearchParams();
+    if (options?.forceTab) {
+      params.set("tab", options.forceTab);
+    }
+    params = appendControlRoomParams(params, { defaultTab: "strategy" });
+    const query = params.toString();
+    router.push(query ? `/cases/${targetCaseId}?${query}` : buildControlRoomCaseHref(targetCaseId), {
+      scroll: false,
+    });
+  };
+
+  const setTab = (tabId: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    if (tabId === activeTab) {
+      params.delete("tab");
+    } else {
+      params.set("tab", tabId);
+    }
+    const query = params.toString();
+    router.replace(query ? `${pathname}?${query}` : pathname, { scroll: false });
+  };
+
+  if (reviewConfirmed === null) {
+    return (
+      <div className="flex min-h-[40vh] flex-col items-center justify-center gap-3">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        <p className="text-sm text-muted-foreground">Loading workspace…</p>
+      </div>
+    );
+  }
+
+  if (!reviewConfirmed) {
+    return (
+      <CaseReviewConfirm
+        caseId={caseId}
+        onConfirmed={() => {
+          setReviewConfirmed(true);
+          setCurrentPhase(3);
+          setIsStrategyCommitted(true);
+          buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error);
+          persistControlRoomPreference(true);
+          router.replace(buildControlRoomCaseHref(caseId), { scroll: false });
+        }}
+      />
+    );
+  }
+
+  const p = 3 as CasePhase;
+  const showSentencingTools = true;
+  const showCourtHearings = true;
+  const showPACE = true;
+
+  const controlRoomSharedModals = (
+    <>
+      <RecordPositionModal
+        caseId={caseId}
+        charges={snapshot?.charges?.map((c) => ({ offence: c.offence, section: c.section ?? null })) ?? []}
+        isOpen={isPositionModalOpen}
+        onClose={() => {
+          setIsPositionModalOpen(false);
+          setPendingPositionText(null);
+        }}
+        onSuccess={async () => {
+          try {
+            const response = await fetch(`/api/criminal/${caseId}/position`, {
+              credentials: "include",
+            });
+            if (response.ok) {
+              const data = await response.json();
+              if (data.ok && (data.data || data.position)) {
+                setSavedPosition(data.data || data.position);
+                setHasSavedPosition(true);
+                setCurrentPhase(2);
+              } else {
+                setSavedPosition(null);
+                setHasSavedPosition(false);
+                setCurrentPhase(1);
+              }
+            }
+          } catch (error) {
+            console.error("[CriminalCaseView] Failed to refetch position:", error);
+          }
+          router.refresh();
+        }}
+        initialText={pendingPositionText ?? savedPosition?.position_text ?? ""}
+        currentPhase={p}
+        onPhase2Request={() => setCurrentPhase(2)}
+        onAutoAdvanceToPhase2={() => setCurrentPhase(2)}
+        showPhase2CTA={false}
+      />
+      {showAddEvidenceUpload && (
+        <AddEvidenceModal
+          caseId={caseId}
+          caseTitle={snapshot?.caseMeta?.title ?? undefined}
+          isOpen={showAddEvidenceUpload}
+          onClose={() => setShowAddEvidenceUpload(false)}
+          onSuccess={async () => {
+            setShowAddEvidenceUpload(false);
+            try {
+              const newSnapshot = await buildCaseSnapshot(caseId);
+              setSnapshot(newSnapshot);
+            } catch (error) {
+              console.error("Failed to reload snapshot:", error);
+            }
+            router.refresh();
+          }}
+        />
+      )}
+    </>
+  );
+
+  const hearingWarRoomSharedProps = {
+    caseId,
+    snapshot,
+    snapshotLoading,
+    hasSavedPosition,
+    savedPosition,
+    defencePlan,
+    displayStrategy,
+    committedStrategy,
+    matterState,
+    effectiveProceduralSafety,
+    evidenceSummary: snapshot
+      ? buildEvidenceContext(snapshot, effectiveProceduralSafety?.outstandingItems)
+      : undefined,
+    timelineSummary: snapshot ? buildTimelineContext(snapshot) : undefined,
+    onRecordPosition: openRecordPosition,
+    onUploadEvidence: openUploadEvidence,
+  };
+
+  const disclosureChaseSharedProps = {
+    caseId,
+    snapshot,
+    snapshotLoading,
+    hasSavedPosition,
+    savedPosition,
+    matterState,
+    effectiveProceduralSafety,
+  };
+
+  if (activeTab === "documents" && isCriminalPilotMode()) {
+    return (
+      <div className="space-y-4">
+        <WorkflowSafetyLine />
+        {matterClosed && (
+          <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-center">
+            <p className="text-xs text-foreground">
+              <strong>Matter closed</strong>
+              {matterClosed.at && ` (${new Date(matterClosed.at).toLocaleDateString("en-GB")})`}
+              {matterClosed.reason ? ` – ${matterClosed.reason}` : ""}.
+            </p>
+          </div>
+        )}
+        <PilotDocumentsView
+          caseId={caseId}
+          snapshot={snapshot}
+          pilotUploadDisabled={pilotUploadDisabled}
+          pilotRecordPositionHidden={pilotRecordPositionHidden}
+        />
+        {controlRoomSharedModals}
+        <BackToTop />
+      </div>
+    );
+  }
+
+  if (activeTab === "disclosure-chase") {
+    return (
+      <div className="space-y-4">
+        <WorkflowSafetyLine />
+        {matterClosed && (
+          <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-center">
+            <p className="text-xs text-foreground">
+              <strong>Matter closed</strong>
+              {matterClosed.at && ` (${new Date(matterClosed.at).toLocaleDateString("en-GB")})`}
+              {matterClosed.reason ? ` – ${matterClosed.reason}` : ""}.
+            </p>
+          </div>
+        )}
+        <DisclosureChase {...disclosureChaseSharedProps} controlRoomMode={useControlRoom} />
+        {controlRoomSharedModals}
+        <BackToTop />
+      </div>
+    );
+  }
+
+  if (activeTab === "hearing-war-room") {
+    return (
+      <div className="space-y-4">
+        <WorkflowSafetyLine />
+        {matterClosed && (
+          <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-center">
+            <p className="text-xs text-foreground">
+              <strong>Matter closed</strong>
+              {matterClosed.at && ` (${new Date(matterClosed.at).toLocaleDateString("en-GB")})`}
+              {matterClosed.reason ? ` – ${matterClosed.reason}` : ""}.
+            </p>
+          </div>
+        )}
+        <HearingWarRoom {...hearingWarRoomSharedProps} controlRoomMode={useControlRoom} />
+        {controlRoomSharedModals}
+        <BackToTop />
+      </div>
+    );
+  }
+
+  if (useControlRoom) {
+    return (
+      <div className="space-y-4">
+        <WorkflowSafetyLine />
+        {matterClosed && (
+          <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-center">
+            <p className="text-xs text-foreground">
+              <strong>Matter closed</strong>
+              {matterClosed.at && ` (${new Date(matterClosed.at).toLocaleDateString("en-GB")})`}
+              {matterClosed.reason ? ` – ${matterClosed.reason}` : ""}.
+            </p>
+          </div>
+        )}
+        <CaseControlRoom
+          caseId={caseId}
+          snapshot={snapshot}
+          snapshotLoading={snapshotLoading}
+          savedPosition={savedPosition}
+          hasSavedPosition={hasSavedPosition}
+          defencePlan={defencePlan}
+          displayStrategy={displayStrategy}
+          committedStrategy={committedStrategy}
+          matterState={matterState}
+          effectiveProceduralSafety={effectiveProceduralSafety}
+          evidenceSummary={
+            snapshot ? buildEvidenceContext(snapshot, effectiveProceduralSafety?.outstandingItems) : undefined
+          }
+          timelineSummary={snapshot ? buildTimelineContext(snapshot) : undefined}
+          onRecordPosition={openRecordPosition}
+          onUploadEvidence={openUploadEvidence}
+        />
+        {controlRoomSharedModals}
+        <BackToTop />
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-6">
+      {/* No-hallucination guarantee – visible trust line */}
+      <div className="rounded-lg border border-border/80 bg-muted/30 px-3 py-2 text-center">
+        <p className="text-xs text-muted-foreground">
+          All outputs are evidence-linked. No predictions. No legal advice. Solicitor-controlled.
+        </p>
+      </div>
+
+      {/* Post-disposal: matter closed banner */}
+      {matterClosed && (
+        <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-center">
+          <p className="text-xs text-foreground">
+            <strong>Matter closed</strong>
+            {matterClosed.at && ` (${new Date(matterClosed.at).toLocaleDateString("en-GB")})`}
+            {matterClosed.reason ? ` – ${matterClosed.reason}` : ""}. You can archive from the case list (⋯ on the case card) or Settings.
+          </p>
+        </div>
+      )}
+
+      {/* Phase 2: Case Overview – Snapshot + Quick Actions (first thing solicitor sees) */}
+      <CaseOverviewHeader
+        caseId={caseId}
+        snapshot={snapshot ?? null}
+        snapshotLoading={snapshotLoading}
+        isStrategyCommitted={isStrategyCommitted}
+        onUploadEvidence={openUploadEvidence}
+        onAddClientInstructions={() => setTab("client-instructions")}
+        onAddHearing={() => setTab("hearings")}
+        onGenerateLetter={() => setTab("disclosure")}
+        onAddNote={() => {
+          setTab("client-instructions");
+        }}
+        onSnapshotRefresh={() => buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error)}
+        defencePlan={defencePlan}
+        hasSavedPosition={hasSavedPosition}
+        isUnsafe={effectiveProceduralSafety?.status === "UNSAFE_TO_PROCEED" || effectiveProceduralSafety?.status === "CONDITIONALLY_UNSAFE"}
+        onNavigateToStrategy={() => {
+          setTab("strategy");
+        }}
+        onNavigateToSafety={() => {
+          setTab("safety-procedural");
+          setTimeout(() => document.getElementById("section-safety")?.scrollIntoView({ behavior: "smooth" }), 150);
+        }}
+      />
+
+      <Card className="border-border/80 p-3 shadow-sm">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="text-xs text-muted-foreground">
+            {caseNavLoading ? (
+              "Loading case navigator..."
+            ) : caseNavError ? (
+              "Case navigator unavailable."
+            ) : navCaseIndex >= 0 ? (
+              <>Case {navCaseIndex + 1} of {navCases.length}</>
+            ) : (
+              <>Case navigator ready ({caseNavList.length} loaded)</>
+            )}
+          </div>
+          <div className="flex flex-wrap items-center gap-2">
+            <Button
+              type="button"
+              size="sm"
+              variant="outline"
+              disabled={!prevCase || caseNavLoading}
+              onClick={() => prevCase && navigateToCase(prevCase.id)}
+            >
+              Previous case
+            </Button>
+            <Button
+              type="button"
+              size="sm"
+              variant="outline"
+              disabled={!nextCase || caseNavLoading}
+              onClick={() => nextCase && navigateToCase(nextCase.id)}
+            >
+              Next case
+            </Button>
+          </div>
+        </div>
+        {/* TODO: Later hide eval tools (Golden Sweep, bulk runner) behind dev/admin/debug. */}
+        {evalCases.length > 0 && (
+          <div className="mt-3 border-t border-border/60 pt-3">
+            <div className="mb-2 flex items-center justify-between gap-2">
+              <p className="text-xs font-medium text-foreground">Eval mode: NS-CPS 0401-0440 quick jump</p>
+              <p className="text-[11px] text-muted-foreground">
+                {evalCaseIndex >= 0 ? `Eval case ${evalCaseIndex + 1} of ${evalCases.length}` : `${evalCases.length} eval cases`}
+              </p>
+            </div>
+            <div className="max-w-full overflow-x-auto">
+              <div className="flex min-w-max items-center gap-1.5 pb-1">
+                {evalCases.map((c, i) => {
+                  const isActive = c.id === caseId;
+                  return (
+                    <button
+                      key={c.id}
+                      type="button"
+                      onClick={() => navigateToCase(c.id)}
+                      className={`rounded-md border px-2.5 py-1 text-xs font-medium transition-colors ${
+                        isActive
+                          ? "border-primary bg-primary text-primary-foreground"
+                          : "border-border bg-background text-foreground hover:bg-muted/50"
+                      }`}
+                      title={c.title}
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        )}
+      </Card>
+
+      {/* TOP: Status strip + at-a-glance + Jump to – so Jump to is at the top for easy section access */}
+      {/* Phase 2: Case Status Strip */}
+      {snapshotLoading ? (
+        <Card className="p-4">
+          <div className="flex items-center gap-2 text-muted-foreground">
+            <Loader2 className="h-4 w-4 animate-spin" />
+            <span className="text-sm">Loading case status...</span>
+          </div>
+        </Card>
+      ) : snapshotError ? (
+        <Card className="p-4">
+          <div className="text-sm text-muted-foreground">
+            Case status will appear once analysis is run.
+          </div>
+        </Card>
+      ) : snapshot ? (
+        <FoldSection title="Case status" defaultOpen={true}>
+          <CaseStatusStrip snapshot={snapshot} displayStrategyCategory={displayStrategy?.displayCategory} />
+        </FoldSection>
+      ) : null}
+
+      {/* Safety & disclosure at a glance + sticky Jump to nav – right under status strip */}
+      <CriminalCaseAtAGlanceBar
+        caseId={caseId}
+        snapshot={snapshot ?? null}
+        snapshotLoading={snapshotLoading}
+        primaryStrategyLabel={displayStrategy?.displayLabel ?? (committedStrategy?.primary ? String(committedStrategy.primary).replace(/_/g, " ") : snapshot?.decisionLog?.currentPosition?.position ?? null)}
+      />
+
+      {/* Tabbed case content – URL ?tab= controls active tab; default Summary */}
+      <CaseTabs
+        activeTab={activeTab}
+        tabs={criminalTabsVisible}
+        onTabChange={setTab}
+      >
+        {activeTab === "key-facts" && (
+          <ErrorBoundary fallback={<Card className="p-4"><p className="text-sm text-muted-foreground">Key facts will appear once documents are processed.</p></Card>}>
+            <CaseKeyFactsPanel caseId={caseId} />
+          </ErrorBoundary>
+        )}
+
+        {activeTab === "summary" && (
+          <ErrorBoundary fallback={<Card className="p-4"><p className="text-sm text-muted-foreground">Summary will appear once documents are processed.</p></Card>}>
+            <CaseSummaryPanel
+              caseId={caseId}
+              caseTitle={snapshot?.caseMeta?.title ?? "Untitled Case"}
+              practiceArea="criminal"
+              summary={null}
+            />
+          </ErrorBoundary>
+        )}
+
+        {activeTab === "charges" && (
+          <ErrorBoundary fallback={<p className="text-sm text-muted-foreground">Charges will appear once documents are processed.</p>}>
+            <ChargesPanel caseId={caseId} />
+          </ErrorBoundary>
+        )}
+
+        {activeTab === "strategy" && (
+          <div className="space-y-6">
+            <div className="rounded-lg border border-border/60 bg-muted/20 px-4 py-3 text-sm text-muted-foreground">
+              Case workspace is unlocked. Offence, stance, stage, and strategy were set on <strong>Review & confirm</strong>.
+              Record client position from Strategy or Client & instructions when needed.
+            </div>
+            {gateBanner && (
+              <FoldSection title="Analysis required" defaultOpen={false}>
+                <AnalysisGateBanner
+                  banner={gateBanner.banner}
+                  diagnostics={gateBanner.diagnostics}
+                  showHowToFix={true}
+                  onRunAnalysis={async () => {
+                    try {
+                      const res = await fetch(`/api/cases/${caseId}/analysis/rerun`, { method: "POST", credentials: "include" });
+                      if (!res.ok) {
+                        const errorData = await res.json().catch(() => ({ error: "Failed to re-run analysis" }));
+                        throw new Error(errorData.error || `Failed (${res.status})`);
+                      }
+                      const data = await res.json();
+                      setTimeout(() => {
+                        router.refresh();
+                        if (typeof window !== "undefined") window.dispatchEvent(new CustomEvent("analysis-rerun-complete", { detail: { versionNumber: data.version_number, caseId } }));
+                      }, 750);
+                    } catch (err) {
+                      alert(err instanceof Error ? err.message : "Failed to re-run analysis.");
+                    }
+                  }}
+                  onAddDocuments={() => { window.location.href = `/cases/${caseId}?action=add-documents`; }}
+                  primaryAction={snapshot?.analysis.canShowStrategyPreview && !snapshot?.analysis.canShowStrategyFull ? "addDocuments" : "runAnalysis"}
+                />
+              </FoldSection>
+            )}
+
+            {/* Strategy sub-tabs: Overview | Legal doctrine | Full output */}
+            <div className="flex flex-wrap gap-1 border-b border-border pb-2">
+              {(["overview", "doctrine", "full"] as const).map((tab) => (
+                <button
+                  key={tab}
+                  type="button"
+                  onClick={() => setStrategySubTab(tab)}
+                  className={`px-3 py-2 text-sm font-medium rounded-t transition-colors ${
+                    strategySubTab === tab
+                      ? "bg-muted text-foreground border-b-2 border-primary -mb-0.5"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                  }`}
+                >
+                  {tab === "overview" ? "Overview" : tab === "doctrine" ? "Legal doctrine" : "Full output"}
+                </button>
+              ))}
+            </div>
+
+            <div className="mb-6">
+              <StrategyBattleboard caseId={caseId} />
+            </div>
+
+            <BundleSourcePanels caseId={caseId} />
+
+            {strategySubTab === "overview" && (
+              <StrategyOverviewSubTab
+                caseId={caseId}
+                onOpenFullOutput={() => setStrategySubTab("full")}
+              />
+            )}
+
+            {strategySubTab === "doctrine" && (
+              <StrategyDoctrineSubTab onOpenFullOutput={() => setStrategySubTab("full")} />
+            )}
+
+            {strategySubTab === "full" && (
+              <>
+            {searchParams.get("debug") === "1" && (
+              <Card className="p-4 bg-amber-500/5 border-amber-500/20">
+                <h3 className="text-sm font-semibold text-foreground mb-2">DEBUG: Strategy visibility</h3>
+                <pre className="text-xs text-muted-foreground whitespace-pre-wrap font-mono">
+                  {JSON.stringify({ workspacePhase: p, hasSavedPosition, snapshotExists: !!snapshot }, null, 2)}
+                </pre>
+              </Card>
+            )}
+            {snapshotLoading ? (
+              <Card className="p-6"><div className="flex items-center gap-2 text-muted-foreground"><Loader2 className="h-4 w-4 animate-spin" /><span className="text-sm">Loading case data...</span></div></Card>
+            ) : snapshotError ? (
+              <Card className="p-6"><div className="text-sm text-muted-foreground">Case data will appear once analysis is run.</div></Card>
+            ) : snapshot?.resolvedOffence?.source === "unknown" ? (
+              <Card className="p-6 border-amber-500/30 bg-amber-500/5">
+                <p className="text-sm font-medium text-foreground">Add charge sheet / evidence for offence-specific strategy</p>
+                <p className="text-xs text-muted-foreground mt-2">Upload a charge sheet or add the alleged offence in Police station so we can tailor strategy to this case.</p>
+              </Card>
+            ) : snapshot ? (
+              <>
+              {(effectiveProceduralSafety?.status === "UNSAFE_TO_PROCEED" || effectiveProceduralSafety?.status === "CONDITIONALLY_UNSAFE") && (
+                <Card className="mb-6 border-amber-500/30 bg-amber-500/5 p-4">
+                  <p className="text-sm font-semibold text-foreground">Primary safety blocker</p>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    {effectiveProceduralSafety?.outstandingItems?.length ?? 0} disclosure blocker
+                    {(effectiveProceduralSafety?.outstandingItems?.length ?? 0) === 1 ? "" : "s"} currently prevent safe progression.
+                    Resolve these first, then re-check strategy outputs.
+                  </p>
+                  {(effectiveProceduralSafety?.outstandingItems?.length ?? 0) > 0 && (
+                    <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-foreground">
+                      {(effectiveProceduralSafety?.outstandingItems ?? []).slice(0, 3).map((item, i) => (
+                        <li key={`${item}-${i}`}>{item}</li>
+                      ))}
+                    </ul>
+                  )}
+                </Card>
+              )}
+              {/* Strategy at a glance – aligned with committed strategy when set; full discipline in Evidence/Strategy columns below */}
+              <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
+                <span className="text-sm font-medium text-muted-foreground">Strategy summary</span>
+                <StrategyExportButton caseId={caseId} caseTitle={snapshot?.caseMeta?.title ?? undefined} variant="outline" size="sm" />
+              </div>
+              <p className="text-xs text-muted-foreground mb-3">
+                Summary of your strategy and key levers. Full Defence Plan is in the box below; commitment and Safety are in the Evidence column.
+              </p>
+              <Card className="p-4 mb-6 border-primary/20 bg-primary/5">
+                <h3 className="text-sm font-semibold text-foreground mb-3">Strategy at a glance</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+                  <div>
+                    <p className="text-xs text-muted-foreground">Recorded position (DB)</p>
+                    <p className="font-medium text-foreground line-clamp-2">
+                      {savedPosition?.position_text?.trim() ? savedPosition.position_text.split(/[.!?]/)[0].trim() + (savedPosition.position_text.includes(".") ? "." : "") : "—"}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground">Committed strategy</p>
+                    <p className="font-medium text-foreground">
+                      {displayStrategy?.displayLabel ?? (committedStrategy?.primary ? String(committedStrategy.primary).replace(/_/g, " ") : "—")}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground">Offence</p>
+                    <p className="font-medium text-foreground">{snapshot.resolvedOffence?.label ?? "—"}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground">Next hearing</p>
+                    <p className="font-medium text-foreground">
+                      {snapshot.caseMeta?.hearingNextAt
+                        ? `${snapshot.caseMeta?.hearingNextType ?? "Hearing"} ${new Date(snapshot.caseMeta.hearingNextAt).toLocaleDateString("en-GB")}`
+                        : "—"}
+                    </p>
+                  </div>
+                </div>
+                <p className="text-[11px] text-muted-foreground mt-3 pt-2 border-t border-border/50">
+                  Full Defence Plan is in the box below. Strategy Commitment and Safety are in the Evidence column.
+                </p>
+                <div className="mt-2 pt-2 border-t border-border/50">
+                  <VerdictRatingBlock caseId={caseId} target="strategy" />
+                </div>
+              </Card>
+
+              <div className="mb-6">
+                <StrategyTimelineSection
+                  strategyInOneLine={defencePlan?.strategy_in_one_line ?? undefined}
+                  next72Hours={defencePlan?.next_72_hours ?? []}
+                  waitingFor={effectiveProceduralSafety?.outstandingItems ?? []}
+                  risksPivotsShort={defencePlan?.risks_pivots_short ?? []}
+                />
+              </div>
+
+              <div className="mb-6">
+                <DefencePlanBox
+                  caseId={caseId}
+                  plan={defencePlan}
+                  offenceType={snapshot?.resolvedOffence?.offenceType}
+                  currentPhase={p}
+                  evidenceSummary={snapshot ? buildEvidenceContext(snapshot, effectiveProceduralSafety?.outstandingItems) : undefined}
+                  timelineSummary={snapshot ? buildTimelineContext(snapshot) : undefined}
+                  evalCases={evalCases}
+                  allCases={caseNavList}
+                  caseNav={{
+                    label:
+                      navCaseIndex >= 0
+                        ? `Case ${navCaseIndex + 1} of ${navCases.length}`
+                        : caseNavList.length > 0
+                          ? `${caseNavList.length} cases loaded`
+                          : null,
+                    canGoPrev: !!prevCase,
+                    canGoNext: !!nextCase,
+                    onGoPrev: prevCase ? () => navigateToCase(prevCase.id, { forceTab: "strategy", preserveQuery: false }) : undefined,
+                    onGoNext: nextCase ? () => navigateToCase(nextCase.id, { forceTab: "strategy", preserveQuery: false }) : undefined,
+                  }}
+                />
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <FoldSection title="Evidence" defaultOpen={false} keepMountedWhenClosed={true}>
+                  <ErrorBoundary fallback={mounted ? <div className="text-sm text-muted-foreground">Analysis will deepen as further disclosure is received.</div> : null}>
+                    <CaseEvidenceColumn caseId={caseId} snapshot={snapshot} onAddDocument={() => setShowAddDocuments(true)} onAddEvidenceUpload={openUploadEvidence} currentPhase={p} savedPosition={savedPosition} onCommitmentChange={(c) => { if (c) { setCommittedStrategy(c); setIsStrategyCommitted(true); buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error); } else { setCommittedStrategy(null); setIsStrategyCommitted(false); setDisplayStrategy(null); setDefencePlan(null); } }} committedStrategy={committedStrategy} onDisplayStrategyUpdate={setDisplayStrategy} onProceduralSafetyChange={setEffectiveProceduralSafety} onDefencePlanUpdate={setDefencePlan} hasClientInstructions={hasClientInstructions} onClientInstructionsSaved={() => setHasClientInstructions(true)} />
+                  </ErrorBoundary>
+                </FoldSection>
+                <FoldSection title="Strategy" defaultOpen={false}>
+                  <ErrorBoundary fallback={<div className="text-sm text-muted-foreground">Run analysis to populate this section.</div>}>
+                    <CaseStrategyColumn caseId={caseId} snapshot={snapshot} currentPhase={p} onPositionChange={(has) => { setHasSavedPosition(has); setCurrentPhase(has ? 2 : 1); }} savedPosition={savedPosition} onRecordPosition={() => { setPendingPositionText(null); setIsPositionModalOpen(true); }} onUsePositionSuggestion={async (text, opts) => { try { const res = await fetch(`/api/criminal/${caseId}/position`, { method: "POST", headers: { "Content-Type": "application/json" }, credentials: "include", body: JSON.stringify({ position_text: text.trim(), phase: 2, ...(opts?.fromAiSuggestion && { source: "ai_suggested" }) }) }); if (!res.ok) throw new Error("Failed to save position"); const data = await res.json(); if (data.ok && (data.data || data.position)) { setSavedPosition(data.data || data.position); setHasSavedPosition(true); setCurrentPhase(2); setPendingPositionText(null); } } catch (e) { console.error(e); } }} onEditPositionSuggestion={(text) => { setPendingPositionText(text); setIsPositionModalOpen(true); }} onCommitmentChange={(c) => { if (c) { setCommittedStrategy(c); setIsStrategyCommitted(true); buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error); } else { setCommittedStrategy(null); setIsStrategyCommitted(false); } }} />
+                  </ErrorBoundary>
+                </FoldSection>
+              </div>
+              </>
+            ) : (
+              <Card className="p-6"><div className="text-sm text-muted-foreground">Case data will appear once analysis is run.</div></Card>
+            )}
+              </>
+            )}
+          </div>
+        )}
+
+        {activeTab === "disclosure" && (
+          <div id="section-disclosure" className="space-y-6">
+            <Card className="border-border/80 p-4 shadow-sm">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <p className="text-sm font-medium text-foreground">Replace bundle PDF</p>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    Upload a new or corrected PDF for this case (same upload flow as elsewhere). After upload, the newest file is
+                    re-extracted so Strategy bundle source text matches the file.
+                  </p>
+                </div>
+                {openUploadEvidence && (
+                  <Button
+                    type="button"
+                    variant="outline"
+                    className="shrink-0 gap-2"
+                    disabled={bundleReplaceExtracting || showAddEvidenceUpload}
+                    onClick={() => {
+                      addEvidenceIntentRef.current = "bundle-replace";
+                      setShowAddEvidenceUpload(true);
+                    }}
+                  >
+                    {bundleReplaceExtracting ? (
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                    ) : (
+                      <Upload className="h-4 w-4" />
+                    )}
+                    Replace bundle PDF
+                  </Button>
+                )}
+              </div>
+            </Card>
+            {snapshot ? (
+              <>
+                <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Disclosure pressure temporarily unavailable.</div></Card>}>
+                  <DisclosurePressureDashboard caseId={caseId} />
+                </ErrorBoundary>
+                <FirstDisclosureRequestCard caseId={caseId} />
+                <DisclosureTrackerTable items={snapshot.evidence.disclosureItems} />
+                <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Disclosure chase list temporarily unavailable.</div></Card>}>
+                  <DisclosureChasersPanel caseId={caseId} />
+                </ErrorBoundary>
+              </>
+            ) : (
+              <>
+                <ErrorBoundary fallback={null}>
+                  <DisclosurePressureDashboard caseId={caseId} />
+                </ErrorBoundary>
+                <FirstDisclosureRequestCard caseId={caseId} />
+                <Card className="p-4">
+                  <p className="text-sm text-muted-foreground">Run analysis to see disclosure tracker and chasers.</p>
+                </Card>
+              </>
+            )}
+          </div>
+        )}
+
+        {activeTab === "next-steps" && (
+          <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Strategy plan will appear once analysis is run.</div>}>
+            <Phase2StrategyPlanPanel caseId={caseId} offenceType={snapshot?.resolvedOffence?.offenceType} />
+          </ErrorBoundary>
+        )}
+
+        {activeTab === "hearings" && (
+          <div className="space-y-6">
+            <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Court hearings unavailable.</div>}>
+              <CourtHearingsPanel caseId={caseId} currentPhase={p} />
+            </ErrorBoundary>
+            <PleaRecordCard caseId={caseId} />
+            <FoldSection title="Trial date alerts" defaultOpen={false}>
+              <p className="p-3 text-xs text-muted-foreground">
+                When a trial date is set, diarise reminders (e.g. 4 weeks, 2 weeks, 1 week, day before) so prep is not missed.
+              </p>
+            </FoldSection>
+            <FoldSection title="Trial prep checklist" defaultOpen={false}>
+              <div className="p-3">
+                <p className="text-xs text-muted-foreground mb-2">Use before trial so nothing is missed.</p>
+                <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside">
+                  <li>Witness list and order of evidence</li>
+                  <li>Exhibits bundled and indexed</li>
+                  <li>Key points / cross-examination outline</li>
+                  <li>Defence case statement and disclosure</li>
+                  <li>Legal aid / funding confirmed</li>
+                </ul>
+              </div>
+            </FoldSection>
+          </div>
+        )}
+
+        {activeTab === "timeline" && (
+          <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Timeline unavailable.</div></Card>}>
+            <CaseTimelinePanel caseId={caseId} snapshot={snapshot ?? null} />
+          </ErrorBoundary>
+        )}
+
+        {activeTab === "sentencing" && (
+          <div className="space-y-6">
+            <Card className="p-4 border-primary/20 bg-primary/5">
+              <p className="text-xs text-muted-foreground mb-3">
+                When phase = sentencing or guilty plea: mitigation, PSR, and sentencing guidelines. Use Strategy tab for outcome management.
+              </p>
+            </Card>
+            {showSentencingTools && (
+              <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Sentencing mitigation will appear once analysis is run.</div></Card>}>
+                <SentencingMitigationPanel caseId={caseId} />
+              </ErrorBoundary>
+            )}
+            <FoldSection title="Sentencing checklist" defaultOpen={false}>
+              <div className="p-3 space-y-2 text-sm text-muted-foreground">
+                <p className="font-medium text-foreground">Use before sentence:</p>
+                <ul className="list-disc list-inside space-y-1">
+                  <li>Mitigation bundle and key points</li>
+                  <li>PSR (if ordered) – read and respond</li>
+                  <li>Sentencing guidelines (category, range, aggravating/mitigating)</li>
+                  <li>Client instructions on basis of plea and personal circumstances</li>
+                  <li>Legal aid / funding confirmed</li>
+                </ul>
+              </div>
+            </FoldSection>
+          </div>
+        )}
+
+        {activeTab === "client-instructions" && (
+          <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Client instructions recorder temporarily unavailable.</div></Card>}>
+            <ClientInstructionsRecorder caseId={caseId} onSaved={() => setHasClientInstructions(true)} />
+          </ErrorBoundary>
+        )}
+
+        {activeTab === "safety-procedural" && (
+          <Card className="p-6">
+            <p className="text-sm text-muted-foreground">Safety & procedural – coming soon. Procedural safety and critical disclosure checks will appear here.</p>
+          </Card>
+        )}
+
+        {activeTab === "additional-tools" && (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {showPACE && <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">PACE compliance will appear once analysis is run.</div></Card>}><PACEComplianceChecker caseId={caseId} /></ErrorBoundary>}
+            {showCourtHearings && <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Court hearings will appear once analysis is run.</div></Card>}><CourtHearingsPanel caseId={caseId} currentPhase={p} /></ErrorBoundary>}
+            <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Client advice will appear once analysis is run.</div></Card>}><ClientAdvicePanel caseId={caseId} /></ErrorBoundary>
+          </div>
+        )}
+
+        {activeTab === "police-station" && (
+          <PoliceStationTab
+            caseId={caseId}
+            onAddEvidenceUpload={openUploadEvidence}
+          />
+        )}
+      </CaseTabs>
+
+      {/* Evidence Selector Modal (for analysis document selection) */}
+      {showAddDocuments && (
+        <EvidenceSelectorModal
+          caseId={caseId}
+          onClose={() => setShowAddDocuments(false)}
+          onSuccess={() => {
+            setShowAddDocuments(false);
+            // Reload snapshot to reflect new documents
+            buildCaseSnapshot(caseId).then(setSnapshot).catch(console.error);
+            router.refresh();
+          }}
+          onUploadMoreEvidence={
+            openUploadEvidence
+              ? () => {
+                  setShowAddDocuments(false);
+                  addEvidenceIntentRef.current = "default";
+                  setShowAddEvidenceUpload(true);
+                }
+              : undefined
+          }
+        />
+      )}
+
+      {/* Add Evidence Modal (Upload) */}
+      {showAddEvidenceUpload && (
+        <AddEvidenceModal
+          caseId={caseId}
+          caseTitle={snapshot?.caseMeta?.title || undefined}
+          isOpen={showAddEvidenceUpload}
+          onClose={() => {
+            setShowAddEvidenceUpload(false);
+            addEvidenceIntentRef.current = "default";
+          }}
+          onSuccess={async (payload) => {
+            setShowAddEvidenceUpload(false);
+            const intent = addEvidenceIntentRef.current;
+            addEvidenceIntentRef.current = "default";
+
+            const ids = payload?.documentIds ?? [];
+            const latestId = ids.length > 0 ? ids[ids.length - 1] : undefined;
+
+            if (intent === "bundle-replace" && latestId) {
+              setBundleReplaceExtracting(true);
+              try {
+                const res = await fetch("/api/extract", {
+                  method: "POST",
+                  credentials: "include",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ documentId: latestId }),
+                });
+                const json = (await res.json()) as { error?: string; suggestion?: string; success?: boolean };
+                if (!res.ok || !json.success) {
+                  const msg = json.error ?? "Re-extract failed";
+                  showToast(json.suggestion ? `${msg} — ${json.suggestion}` : msg, "error");
+                } else {
+                  showToast("New bundle PDF extracted — text refreshed from storage.", "success");
+                  if (typeof window !== "undefined") {
+                    window.dispatchEvent(new CustomEvent("analysis-rerun-complete", { detail: { caseId } }));
+                  }
+                }
+              } catch (e) {
+                showToast(e instanceof Error ? e.message : "Re-extract failed", "error");
+              } finally {
+                setBundleReplaceExtracting(false);
+              }
+            }
+
+            try {
+              const newSnapshot = await buildCaseSnapshot(caseId);
+              setSnapshot(newSnapshot);
+            } catch (error) {
+              console.error("Failed to reload snapshot:", error);
+            }
+            router.refresh();
+          }}
+        />
+      )}
+
+      {/* Record Position Modal - Unified for all "Record position" buttons */}
+      <RecordPositionModal
+        caseId={caseId}
+        charges={snapshot?.charges?.map((c) => ({ offence: c.offence, section: c.section ?? null })) ?? []}
+        isOpen={isPositionModalOpen}
+        onClose={() => {
+          setIsPositionModalOpen(false);
+          setPendingPositionText(null);
+        }}
+        onSuccess={async () => {
+          // Refetch position after save; phase 2 persists from position existence
+          try {
+            const response = await fetch(`/api/criminal/${caseId}/position`, {
+              credentials: "include",
+            });
+            if (response.ok) {
+              const data = await response.json();
+              if (data.ok && (data.data || data.position)) {
+                setSavedPosition(data.data || data.position);
+                setHasSavedPosition(true);
+                setCurrentPhase(2);
+              } else {
+                setSavedPosition(null);
+                setHasSavedPosition(false);
+                setCurrentPhase(1);
+              }
+            }
+          } catch (error) {
+            console.error("[CriminalCaseView] Failed to refetch position:", error);
+          }
+          router.refresh();
+        }}
+        initialText={pendingPositionText ?? savedPosition?.position_text ?? ""}
+        currentPhase={p}
+        onPhase2Request={() => {
+          setCurrentPhase(2);
+        }}
+        onAutoAdvanceToPhase2={() => {
+          setCurrentPhase(2);
+        }}
+        showPhase2CTA={false}
+      />
+
+      <BackToTop />
+    </div>
+  );
+}
+

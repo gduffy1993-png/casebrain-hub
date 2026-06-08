@@ -6,6 +6,8 @@ import { getSupabaseAdminClient } from "@/lib/supabase";
 import { extractCaseFacts, summariseDocument } from "@/lib/ai";
 import { redact } from "@/lib/redact";
 import { env } from "@/lib/env";
+import { extractCriminalCaseMeta, persistCriminalCaseMeta } from "@/lib/criminal/structured-extractor";
+import { normalizePracticeArea } from "@/lib/types/casebrain";
 
 export const runtime = "nodejs";
 
@@ -29,7 +31,7 @@ export async function POST(request: Request) {
   const { data: document, error: docError } = await supabase
     .from("documents")
     .select(
-      "id, case_id, name, storage_url, type, cases!inner(id, org_id)",
+      "id, case_id, name, storage_url, type, cases!inner(id, org_id, practice_area)",
     )
     .eq("id", documentId)
     .eq("cases.org_id", orgId)
@@ -120,6 +122,8 @@ export async function POST(request: Request) {
   const { error: updateError } = await supabase
     .from("documents")
     .update({
+      raw_text: redactedText,
+      extracted_text: redactedText,
       extracted_json: enrichedExtraction,
       redaction_map: redactionMap,
     })
@@ -130,6 +134,56 @@ export async function POST(request: Request) {
       { error: "Failed to update document extraction" },
       { status: 500 },
     );
+  }
+
+  // Criminal structured extraction (deterministic): run after text extraction and document update
+  try {
+    const storedPracticeAreaRaw = (document as any)?.cases?.practice_area ?? null;
+    let normalizedPracticeArea = normalizePracticeArea(storedPracticeAreaRaw);
+
+    // If practice area is missing/other but the content looks criminal, safely repair + run extractor.
+    const looksCriminal =
+      /(?:\bPACE\b|\bCPIA\b|\bMG6\b|\bMG\s*6\b|\bMG5\b|\bCPS\b|\bcustody\b|\binterview\b|\bcharge\b|\bindictment\b|\bCrown Court\b|\bMagistrates'? Court\b)/i.test(
+        `${document.name}\n${redactedText}`,
+      );
+
+    if (
+      looksCriminal &&
+      normalizedPracticeArea !== "criminal" &&
+      (!storedPracticeAreaRaw || normalizedPracticeArea === "other_litigation")
+    ) {
+      console.error("[extract] Criminal signals detected but case practice_area is not criminal. Repairing.", {
+        caseId: document.case_id,
+        storedPracticeAreaRaw,
+      });
+      try {
+        await supabase
+          .from("cases")
+          .update({ practice_area: "criminal" } as any)
+          .eq("id", document.case_id)
+          .eq("org_id", orgId);
+        normalizedPracticeArea = "criminal";
+      } catch {
+        // ignore
+      }
+    }
+
+    if (normalizedPracticeArea === "criminal") {
+      const meta = extractCriminalCaseMeta({
+        text: redactedText,
+        documentName: document.name,
+      });
+      await persistCriminalCaseMeta({
+        supabase,
+        caseId: document.case_id,
+        orgId,
+        meta,
+        sourceDocumentId: document.id,
+        sourceDocumentName: document.name,
+      });
+    }
+  } catch (criminalExtractError) {
+    console.error("[extract] Criminal structured extractor failed (non-fatal):", criminalExtractError);
   }
 
   return NextResponse.json({ success: true, extracted, summary });

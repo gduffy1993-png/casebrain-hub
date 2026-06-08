@@ -47,6 +47,7 @@ export type PracticeArea =
   | "personal_injury"
   | "clinical_negligence"
   | "family"
+  | "criminal"
   | "other_litigation";
 
 /**
@@ -57,6 +58,7 @@ export const PRACTICE_AREA_LABELS: Record<PracticeArea, string> = {
   personal_injury: "Personal Injury",
   clinical_negligence: "Clinical Negligence",
   family: "Family",
+  criminal: "Criminal Law",
   other_litigation: "Other Litigation",
 };
 
@@ -90,6 +92,11 @@ export const PRACTICE_AREA_OPTIONS: Array<{
     description: "Breach/causation/quantum, experts, date of knowledge, complex costs.",
   },
   {
+    value: "criminal",
+    label: "Criminal Defence Solicitor",
+    description: "Defence work, PACE compliance, evidence analysis, and court preparation.",
+  },
+  {
     value: "other_litigation",
     label: "General Litigation Solicitor",
     description: "Anything else not covered above.",
@@ -117,6 +124,11 @@ export function normalizePracticeArea(area?: string | null): PracticeArea {
   // Family
   if (lower.includes("family") || lower.includes("child") || lower.includes("divorce") ||
       lower.includes("matrimonial") || lower.includes("financial_remedy")) return "family";
+
+  // Criminal
+  if (lower.includes("criminal") || lower.includes("defence") || lower.includes("defense") ||
+      lower.includes("cps") || lower.includes("pace") || lower.includes("custody") ||
+      lower.includes("interview") || lower.includes("disclosure")) return "criminal";
   
   return "other_litigation";
 }
@@ -234,7 +246,7 @@ export type EvidenceCategory =
   | "HOUSING"
   | "PROCEDURE";
 
-export type EvidenceStatus = "MISSING" | "REQUESTED" | "RECEIVED";
+export type EvidenceStatus = "MISSING" | "REQUESTED" | "RECEIVED" | "UNKNOWN" | "UNASSESSED";
 
 export type MissingEvidenceItem = {
   id: string;
@@ -825,7 +837,6 @@ export type CasePackMeta = {
   clientName?: string;
   opponentName?: string;
   practiceArea: string;
-  status: string;
   generatedAt: string;
   generatedByUserId: string;
   sections: CasePackSection[];
@@ -916,8 +927,60 @@ export type KeyFactsKeyDate = {
   isUrgent?: boolean;
 };
 
+export type KeyFactsBundleSummarySection = {
+  title: string;
+  body: string;
+};
+
+/** V2: Single fact with source and confidence (narrative stays in Summary; only discrete facts here). */
+export type StructuredKeyFact = {
+  text: string;
+  category: KeyFactCategory;
+  source: string;
+  confidence: "high" | "medium" | "low";
+};
+
+/** V2: Categories for key facts hierarchy (solicitor-grade). */
+export type KeyFactCategory =
+  | "people"
+  | "places"
+  | "times"
+  | "evidence"
+  | "disclosure"
+  | "risks"
+  | "statements"
+  | "cctvRefs"
+  | "forensicRefs"
+  | "charge";
+
+/** V2: Key facts grouped by category; feeds Summary, Safety, Strategy. Narrative stays in Summary tab. */
+export type KeyFactsV2Hierarchy = {
+  people: StructuredKeyFact[];
+  places: StructuredKeyFact[];
+  times: StructuredKeyFact[];
+  evidence: StructuredKeyFact[];
+  disclosure: StructuredKeyFact[];
+  risks: StructuredKeyFact[];
+  statements: StructuredKeyFact[];
+  cctvRefs: StructuredKeyFact[];
+  forensicRefs: StructuredKeyFact[];
+  charge: StructuredKeyFact[];
+};
+
+/** V2: Solicitor buckets for Summary tab (prosecution / defence / disputed / agreed / unknowns / missing disclosure / risks). */
+export type SolicitorBuckets = {
+  prosecutionCase: string[];
+  defenceCase: string[];
+  disputedIssues: string[];
+  agreedFacts: string[];
+  unknowns: string[];
+  missingDisclosure: string[];
+  risks: string[];
+};
+
 export type KeyFactsSummary = {
   caseId: string;
+  practiceArea?: PracticeArea;
   clientName?: string;
   opponentName?: string;
   courtName?: string;
@@ -932,6 +995,12 @@ export type KeyFactsSummary = {
   mainRisks: string[];
   primaryIssues: string[];
   nextStepsBrief?: string;
+  bundleSummarySections?: KeyFactsBundleSummarySection[];
+  layeredSummary?: import("@/lib/layered-summary/types").LayeredSummary | null;
+  /** V2: Structured facts only (no narrative). When present, prefer for Key Facts display. */
+  structuredKeyFacts?: KeyFactsV2Hierarchy | null;
+  /** V2: Solicitor buckets for Summary tab (prosecution, defence, disputed, agreed, unknowns, missing disclosure, risks). */
+  solicitorBuckets?: SolicitorBuckets | null;
 };
 
 // =============================================================================
@@ -1050,6 +1119,17 @@ export type HearingPrepPack = {
   generatedAt: string;
   generatedByUserId: string;
   sections: HearingPrepSection[];
+};
+
+/** D2: Structured criminal hearing prep (what to say, ask, challenge, request; disclosure to push; risks; fallbacks). */
+export type CriminalHearingPrepStructured = {
+  whatToSay: string[];
+  whatToAsk: string[];
+  whatToChallenge: string[];
+  whatToRequest: string[];
+  disclosureToPush: string[];
+  risksToFlag: string[];
+  fallbacks: string[];
 };
 
 // =============================================================================

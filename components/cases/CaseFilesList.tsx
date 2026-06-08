@@ -9,6 +9,10 @@ type Document = {
   id: string;
   name: string;
   created_at: string;
+  type?: string | null;
+  extractionStatus?: "full" | "summary_only" | "no_text";
+  extractionMessage?: string;
+  extractionCharCount?: number;
 };
 
 interface CaseFilesListProps {
@@ -92,13 +96,31 @@ export function CaseFilesList({ documents }: CaseFilesListProps) {
               <p className="text-xs text-accent/50">
                 Uploaded{" "}
                 {new Date(doc.created_at).toLocaleDateString("en-GB")}
+                {doc.extractionCharCount != null && doc.extractionStatus === "full" && (
+                  <> · {doc.extractionCharCount.toLocaleString()} chars</>
+                )}
               </p>
+              {doc.extractionMessage && (
+                <p
+                  className={`text-xs mt-1 ${
+                    doc.extractionStatus === "no_text"
+                      ? "text-amber-600 dark:text-amber-500"
+                      : doc.extractionStatus === "summary_only"
+                        ? "text-amber-600/90 dark:text-amber-500/90"
+                        : "text-muted-foreground"
+                  }`}
+                  title={doc.extractionMessage}
+                >
+                  {doc.extractionMessage}
+                </p>
+              )}
             </div>
             <div className="flex items-center gap-2 ml-3">
               <Button
                 variant="secondary"
                 size="sm"
                 className="gap-2"
+                data-testid="case-file-view-button"
                 onClick={() => handleView(doc.id, doc.name)}
                 disabled={isOpening}
               >

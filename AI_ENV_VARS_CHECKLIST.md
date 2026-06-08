@@ -16,6 +16,7 @@
 | `CASEBRAIN_INTAKE_API_KEY` | (none) | API key for email intake authentication (external integrations) | Email intake, Outlook intake |
 | `CASEBRAIN_DEFAULT_ORG_ID` | (none) | Default organization ID for API key auth | Email intake, Outlook intake |
 | `CASEBRAIN_SYSTEM_USER_ID` | `system` or `outlook-addon` | System user ID for API key auth | Email intake, Outlook intake |
+| `USE_AI_STRATEGY_SUGGESTIONS` | (unset/false) | When `true`, enables AI strategy suggestion (Option 3). Leave unset or false until ready. | `/api/criminal/strategy-suggest` (Phase 2) |
 
 ## Routes/Panels That Depend on AI
 

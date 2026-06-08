@@ -34,6 +34,14 @@ export class ErrorBoundary extends Component<
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    console.error("ERROR_BOUNDARY_CAUGHT_MESSAGE:", (error as any)?.message);
+    console.error("ERROR_BOUNDARY_CAUGHT_NAME:", (error as any)?.name);
+    console.error("ERROR_BOUNDARY_CAUGHT_STACK:\n" + ((error as any)?.stack || "<no stack>"));
+    console.error("ERROR_BOUNDARY_CAUGHT_COMPONENT_STACK:\n" + (errorInfo?.componentStack || "<no componentStack>"));
+    console.error("❌ ERROR BOUNDARY CAUGHT");
+    console.error(error);
+    console.error(error?.stack);
+    console.error(errorInfo);
     console.error("[ErrorBoundary] Caught error:", error, errorInfo);
     this.props.onError?.(error, errorInfo);
   }

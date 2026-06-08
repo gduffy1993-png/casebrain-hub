@@ -2,6 +2,20 @@
   "name": "casebrain-hub",
   "version": "0.1.0",
   "private": true,
+  "main": "electron/main.js",
+  "build": {
+    "appId": "com.casebrain.app",
+    "productName": "CaseBrain",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "electron/**/*"
+    ],
+    "extraMetadata": {
+      "main": "electron/main.js"
+    }
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -17,28 +31,51 @@
     "worker:briefings": "ts-node scripts/worker-briefings.ts",
     "worker:inbox": "ts-node scripts/worker-inbox.ts",
     "worker:tasks": "ts-node scripts/worker-tasks.ts",
-    "worker:pi-risk": "ts-node scripts/worker-pi-risk.ts"
+    "worker:pi-risk": "ts-node scripts/worker-pi-risk.ts",
+    "generate-test-pdf": "node scripts/generate-test-pdf.js",
+    "generate:fictional-pdfs": "node scripts/generate-fictional-case-pdfs.cjs",
+    "generate:fictional-golden-sources": "node scripts/generate-fictional-golden-10-sources.cjs",
+    "generate:fictional-golden-pdfs": "node scripts/generate-fictional-golden-pdfs.cjs",
+    "generate:fictional-kitchen-pdf": "node scripts/generate-fictional-golden-pdfs.cjs docs/fictional-kitchen-sink",
+    "generate:fictional-supabase-verify-pdf": "node scripts/generate-fictional-golden-pdfs.cjs docs/fictional-supabase-verify",
+    "generate:fictional-golden": "npm run generate:fictional-golden-sources && npm run generate:fictional-golden-pdfs",
+    "generate:fictional-sources:0406-0435": "node scripts/generate-fictional-case-sources-0406-0435.cjs",
+    "eval:defence-chat": "node scripts/run-eval.cjs",
+    "eval:defence-chat:mts": "tsx scripts/run-eval.mts",
+    "eval:defence-chat:watch": "tsx scripts/run-eval.mts --watch",
+    "eval:score": "tsx scripts/score-eval.mts",
+    "eval:dataset": "tsx scripts/run-eval.mts && tsx scripts/score-eval.mts",
+    "electron": "electron .",
+    "desktop": "concurrently \"npm run dev\" \"wait-on http://localhost:3000 && electron .\"",
+    "desktop:standalone": "electron .",
+    "desktop:build": "electron-builder",
+    "desktop:build:win": "electron-builder --win",
+    "desktop:build:mac": "electron-builder --mac"
   },
   "dependencies": {
     "@clerk/nextjs": "^5.7.4",
     "@clerk/themes": "^2.1.2",
+    "@stripe/stripe-js": "^4.10.0",
     "@supabase/ssr": "^0.5.1",
     "@supabase/supabase-js": "^2.48.0",
-    "clsx": "^2.1.1",
     "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
-    "docx": "^8.5.0",
-    "lru-cache": "^11.1.0",
     "diff": "^7.0.0",
+    "docx": "^8.5.0",
     "iconv-lite": "^0.6.3",
-    "mammoth": "^1.7.0",
+    "jszip": "^3.10.1",
+    "lru-cache": "^11.1.0",
     "lucide-react": "^0.460.0",
+    "mammoth": "^1.7.0",
     "next": "14.2.15",
     "openai": "^4.56.1",
-    "pdf-parse": "^1.1.1",
+    "pdf-lib": "^1.17.1",
+    "pdf-parse": "^1.1.4",
     "pdfkit": "^0.15.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
+    "stripe": "^14.25.0",
     "uuid": "^9.0.1",
     "zod": "^3.23.8",
     "zustand": "^4.5.5"
@@ -52,12 +89,18 @@
     "@types/uuid": "^9.0.7",
     "autoprefixer": "^10.4.19",
     "concurrently": "^8.2.2",
+    "electron": "^33.0.0",
+    "electron-builder": "^24.13.3",
     "eslint": "8.57.0",
     "eslint-config-next": "14.2.15",
+    "marked": "^17.0.1",
     "postcss": "^8.4.47",
+    "puppeteer": "^24.34.0",
     "tailwindcss": "^3.4.15",
     "ts-node": "^10.9.2",
+    "tsx": "^4.19.2",
     "typescript": "^5.6.3",
-    "vitest": "^2.1.0"
+    "vitest": "^2.1.0",
+    "wait-on": "^8.0.1"
   }
 }

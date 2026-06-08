@@ -5,6 +5,8 @@ import type { PracticeArea } from "@/lib/types/casebrain";
  */
 export function getDashboardTitle(practiceArea: PracticeArea): string {
   switch (practiceArea) {
+    case "criminal":
+      return "Criminal cases";
     case "housing_disrepair":
       return "Housing Disrepair Dashboard";
     case "personal_injury":

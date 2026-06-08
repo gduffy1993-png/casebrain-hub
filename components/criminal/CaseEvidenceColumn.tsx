@@ -1,0 +1,90 @@
+"use client";
+
+import { Card } from "@/components/ui/card";
+import { StrategyCommitmentPanel, type StrategyCommitment } from "./StrategyCommitmentPanel";
+import { CaseNotesPanel } from "@/components/core/CaseNotesPanel";
+import { ErrorBoundary } from "@/components/ui/error-boundary";
+import type { CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
+
+type SavedPosition = {
+  id: string;
+  position_text: string;
+  phase: number;
+  created_at: string;
+};
+
+type CaseEvidenceColumnProps = {
+  caseId: string;
+  snapshot: CaseSnapshot;
+  onAddDocument?: () => void; // For analysis document selection
+  onAddEvidenceUpload?: () => void; // For uploading new evidence
+  currentPhase?: number;
+  savedPosition?: SavedPosition | null;
+  onCommitmentChange?: (commitment: StrategyCommitment | null) => void;
+  /** When set, panel mounts so it can report display strategy even before phase 2 (fixes Strategy at a glance / matrix on load). */
+  committedStrategy?: StrategyCommitment | null;
+  /** When committed and plan exists, panel reports display strategy so at-a-glance/matrix/snapshot stay in sync. */
+  onDisplayStrategyUpdate?: (payload: { displayLabel: string; displayCategory: "fight_charge" | "charge_reduction" | "outcome_management" } | null) => void;
+  /** Single source: strategy-analysis API. Used to gate phase selector when UNSAFE. */
+  onProceduralSafetyChange?: (safety: { status: string; explanation?: string; outstandingItems?: string[] } | null) => void;
+  /** When Defence Plan is built (committed strategy), report it so Strategy tab can show the plan box. */
+  onDefencePlanUpdate?: (plan: import("@/lib/criminal/strategy-output").DefenceStrategyPlan | null) => void;
+  /** When true, Case Readiness Gate shows "Client instructions recorded" */
+  hasClientInstructions?: boolean;
+  /** Called when client instructions are saved (to refresh readiness gate) */
+  onClientInstructionsSaved?: () => void;
+};
+
+export function CaseEvidenceColumn({ caseId, snapshot, onAddDocument, onAddEvidenceUpload, currentPhase = 1, savedPosition, onCommitmentChange, committedStrategy, onDisplayStrategyUpdate, onProceduralSafetyChange, onDefencePlanUpdate, hasClientInstructions, onClientInstructionsSaved }: CaseEvidenceColumnProps) {
+  return (
+    <div className="space-y-6">
+      {/* Current Defence Position - Read-Only Display (Phase 2+ only) */}
+      {currentPhase >= 2 && savedPosition && (
+        <Card className="p-6">
+          <div className="space-y-4">
+            <div className="flex items-start justify-between">
+              <div>
+                <h3 className="text-sm font-semibold text-foreground mb-1">Current Defence Position</h3>
+                <p className="text-xs text-muted-foreground">
+                  Recorded on {new Date(savedPosition.created_at).toLocaleDateString()} (Phase {savedPosition.phase})
+                </p>
+              </div>
+            </div>
+            <div className="p-4 rounded-lg border border-border/50 bg-muted/10">
+              <p className="text-sm text-foreground whitespace-pre-wrap">{savedPosition.position_text}</p>
+            </div>
+            <p className="text-xs text-muted-foreground italic">
+              This is the currently recorded defence position. To amend it, use "Record Current Position" in the Strategy column.
+            </p>
+          </div>
+        </Card>
+      )}
+
+      {/* Strategy Commitment Panel - mount when phase 2+ or when committed (so display strategy is reported for at-a-glance/matrix on load) */}
+      {(currentPhase >= 2 || committedStrategy) && onCommitmentChange && (
+        <ErrorBoundary fallback={<div className="text-sm text-muted-foreground p-4">Strategy commitment will appear once analysis is run.</div>}>
+          <StrategyCommitmentPanel 
+            caseId={caseId}
+            onCommitmentChange={onCommitmentChange}
+            savedPosition={savedPosition}
+            onProceduralSafetyChange={onProceduralSafetyChange}
+            onDisplayStrategyUpdate={onDisplayStrategyUpdate}
+            onDefencePlanUpdate={onDefencePlanUpdate}
+            hasClientInstructions={hasClientInstructions}
+          />
+        </ErrorBoundary>
+      )}
+
+      {/* Solicitor notes – case-level notes in Evidence column */}
+      <div id="section-solicitor-notes" className="scroll-mt-24">
+        <ErrorBoundary fallback={<Card className="p-4"><div className="text-sm text-muted-foreground">Solicitor notes temporarily unavailable.</div></Card>}>
+          <CaseNotesPanel caseId={caseId} title="Solicitor notes" description="Case-level notes for this matter." />
+        </ErrorBoundary>
+      </div>
+
+      {/* Client instructions & Disclosure live in their own tabs (Client & instructions, Disclosure). No duplicate here. */}
+      {/* Missing Evidence: not shown in criminal Evidence column; disclosure gaps and "What we're waiting on" are in Strategy / Declared Dependencies. */}
+    </div>
+  );
+}
+

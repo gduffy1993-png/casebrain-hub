@@ -1,0 +1,178 @@
+"use client";
+
+import { Badge } from "@/components/ui/badge";
+import { Calendar, FileText, AlertCircle, CheckCircle2, Clock } from "lucide-react";
+import type { CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
+import { isCriminalPilotMode } from "@/lib/pilot-mode";
+import { pilotStrategyBasisDisplay, shouldSuppressPilotStrategyBasisReason } from "@/lib/criminal/pilot-workflow";
+
+type CaseStatusStripProps = {
+  snapshot: CaseSnapshot;
+  /** When set (from Defence Plan), Position badge reflects this so it matches Strategy (e.g. Fight for Act Denial). */
+  displayStrategyCategory?: "fight_charge" | "charge_reduction" | "outcome_management" | null;
+};
+
+export function CaseStatusStrip({ snapshot, displayStrategyCategory }: CaseStatusStripProps) {
+  const pilotMode = isCriminalPilotMode();
+  // Derive disclosure status conservatively
+  const missingCount = snapshot.evidence.missingEvidence.filter(
+    (item) => item.status === "MISSING" || item.status === "UNASSESSED"
+  ).length;
+  const docCount = snapshot.analysis.docCount || 0;
+  const bundleScore = snapshot.analysis.completenessScore;
+  const bundleTier = snapshot.analysis.capabilityTier;
+  
+  let disclosureStatus: "Thin" | "Partial" | "Good" = "Thin";
+  let disclosureColor = "bg-amber-500/10 text-amber-600 border-amber-500/30";
+  
+  if (docCount >= 3 && missingCount === 0) {
+    disclosureStatus = "Good";
+    disclosureColor = "bg-green-500/10 text-green-600 border-green-500/30";
+  } else if (docCount >= 2 || missingCount < 3) {
+    disclosureStatus = "Partial";
+    disclosureColor = "bg-blue-500/10 text-blue-600 border-blue-500/30";
+  }
+
+  // Bundle tier display (Phase A): show doc count when available so it's concrete (e.g. "Thin (3 docs)")
+  const bundleLabel = bundleTier === "full" ? "Full" : bundleTier === "partial" ? "Partial" : "Thin";
+  const bundleDetail =
+    docCount !== undefined && docCount >= 0
+      ? `${docCount} doc${docCount !== 1 ? "s" : ""}`
+      : bundleScore >= 0
+        ? String(bundleScore)
+        : null;
+  const bundleBadgeText = bundleDetail ? `${bundleLabel} (${bundleDetail})` : bundleLabel;
+  const bundleColor =
+    bundleTier === "full"
+      ? "bg-green-500/10 text-green-600 border-green-500/30"
+      : bundleTier === "partial"
+        ? "bg-amber-500/10 text-amber-600 border-amber-500/30"
+        : "bg-blue-500/10 text-blue-600 border-blue-500/30";
+
+  // Analysis status
+  // RULE: Show "Gated (thin pack)" when canShowStrategyOutputs is false AND extraction is thin
+  // Only show "Not run" when truly no analysis version exists AND no strategy data
+  let analysisStatus: string;
+  let analysisColor: string;
+  
+  if (snapshot.analysis.canShowStrategyOutputs) {
+    // Strategy outputs can be shown - use mode
+    analysisStatus = snapshot.analysis.mode === "complete" ? "Complete" : "Preview";
+    analysisColor = snapshot.analysis.mode === "complete"
+      ? "bg-green-500/10 text-green-600 border-green-500/30"
+      : "bg-amber-500/10 text-amber-600 border-amber-500/30";
+  } else if (!snapshot.analysis.hasVersion && !snapshot.strategy.hasRenderableData) {
+    // Truly not run - no version and no strategy data
+    analysisStatus = "Not run";
+    analysisColor = "bg-muted/20 text-muted-foreground border-border/50";
+  } else {
+    // Gated (thin pack) - has version or strategy data but extraction is thin
+    analysisStatus = "Gated (thin pack)";
+    analysisColor = "bg-amber-500/10 text-amber-600 border-amber-500/30";
+  }
+
+  // Current position: prefer display strategy category when set so Position matches Strategy (e.g. Act Denial → Fight)
+  const positionLabel = displayStrategyCategory
+    ? (displayStrategyCategory === "fight_charge" ? "Fight" : displayStrategyCategory === "charge_reduction" ? "Reduce" : "Mitigate")
+    : snapshot.decisionLog.currentPosition
+      ? snapshot.decisionLog.currentPosition.position === "fight_charge"
+        ? "Fight"
+        : snapshot.decisionLog.currentPosition.position === "charge_reduction"
+        ? "Reduce"
+        : "Mitigate"
+      : "Not recorded";
+
+  // Format dates
+  const formatDate = (dateStr: string | null) => {
+    if (!dateStr) return null;
+    try {
+      const date = new Date(dateStr);
+      return date.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+    } catch {
+      return null;
+    }
+  };
+
+  const caseMeta = snapshot?.caseMeta;
+  const lastUpdated = formatDate(caseMeta?.lastUpdatedAt ?? null);
+  const nextHearingDate = formatDate(caseMeta?.hearingNextAt ?? null);
+  const nextHearingType = caseMeta?.hearingNextType?.trim() || null;
+  const nextHearing = nextHearingDate
+    ? nextHearingType
+      ? `${nextHearingType} ${nextHearingDate}`
+      : nextHearingDate
+    : null;
+
+  return (
+    <div className="flex flex-wrap items-center gap-4 p-4 rounded-lg border border-border/50 bg-muted/10">
+      {/* Next Hearing – first for solicitor workflow */}
+      <div className="flex items-center gap-2">
+        <Calendar className="h-4 w-4 text-muted-foreground" />
+        <span className="text-xs text-muted-foreground">Next:</span>
+        <span className="text-xs font-semibold text-foreground">
+          {nextHearing || "Not set"}
+        </span>
+      </div>
+
+      {/* Bundle Completeness (Phase A): show tier + doc count (e.g. Thin (3 docs)) */}
+      <div className="flex items-center gap-2">
+        <FileText className="h-4 w-4 text-muted-foreground" />
+        <span className="text-xs text-muted-foreground">Bundle:</span>
+        <span title={bundleDetail ? `Completeness score: ${bundleScore}` : undefined}>
+          <Badge className={`text-xs border ${bundleColor}`}>
+            {bundleBadgeText}
+          </Badge>
+        </span>
+      </div>
+
+      {/* Disclosure Status */}
+      <div className="flex items-center gap-2">
+        <FileText className="h-4 w-4 text-muted-foreground" />
+        <span className="text-xs text-muted-foreground">Disclosure:</span>
+        <Badge className={`text-xs border ${disclosureColor}`}>
+          {disclosureStatus}
+        </Badge>
+      </div>
+
+      {/* Analysis Status */}
+      <div className="flex items-center gap-2">
+        <CheckCircle2 className="h-4 w-4 text-muted-foreground" />
+        <span className="text-xs text-muted-foreground">Analysis:</span>
+        <Badge className={`text-xs border ${analysisColor}`}>
+          {analysisStatus}
+        </Badge>
+      </div>
+
+      {/* Strategy basis – what the strategy is based on */}
+      {snapshot?.analysis?.strategyBasisLabel && (
+        <div className="flex items-center gap-2" title={snapshot.analysis.strategyBasisReason ?? undefined}>
+          <FileText className="h-4 w-4 text-muted-foreground" />
+          <span className="text-xs text-muted-foreground">Basis:</span>
+          <span className="text-xs font-medium text-foreground max-w-[200px] truncate" title={snapshot.analysis.strategyBasisLabel}>
+            {pilotStrategyBasisDisplay(snapshot.analysis.strategyBasisLabel) ??
+              snapshot.analysis.strategyBasisLabel}
+          </span>
+        </div>
+      )}
+
+      {/* Last Updated */}
+      {lastUpdated && (
+        <div className="flex items-center gap-2">
+          <Clock className="h-4 w-4 text-muted-foreground" />
+          <span className="text-xs text-muted-foreground">Updated:</span>
+          <span className="text-xs font-medium text-foreground">{lastUpdated}</span>
+        </div>
+      )}
+
+      {/* Current Position */}
+      <div className="flex items-center gap-2">
+        <AlertCircle className="h-4 w-4 text-muted-foreground" />
+        <span className="text-xs text-muted-foreground">Position:</span>
+        <Badge variant="outline" className="text-xs">
+          {positionLabel}
+        </Badge>
+      </div>
+    </div>
+  );
+}
+

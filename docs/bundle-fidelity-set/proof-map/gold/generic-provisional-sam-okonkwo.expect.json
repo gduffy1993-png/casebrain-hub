@@ -1,0 +1,14 @@
+{
+  "bundleId": "generic-provisional-sam-okonkwo",
+  "offenceLens": "generic_provisional",
+  "proofPointIds": [
+    "pp-act-tending",
+    "pp-intention-knowledge",
+    "pp-witness-messaging",
+    "pp-disclosure-fair-trial"
+  ],
+  "minLinks": 5,
+  "requiredLinkTypes": ["missing", "disclosure_chase"],
+  "requiredMissingIssues": ["phone", "interview"],
+  "humanReviewRequired": true
+}

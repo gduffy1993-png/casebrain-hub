@@ -1,0 +1,1438 @@
+"use client";
+
+/**
+ * Single "Defence Plan" box – one source of truth for how we're fighting this case.
+ * All content is from the committed strategy plan only (no DB position mixed in).
+ * Renders narrative, attack order, how we're running it, key plan sections, and chat (Phase 3).
+ * Chat history is persisted per case in localStorage so it survives refresh.
+ * D4: Chat UX – auto-scroll, bubbles, typing indicator, sticky input, collapsible plan, command shortcuts.
+ */
+
+import { Fragment, useState, useEffect, useRef, useMemo } from "react";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ChevronDown, ChevronUp, Send, Loader2, Check, Pencil, X } from "lucide-react";
+import type { DefenceStrategyPlan } from "@/lib/criminal/strategy-output";
+import { LawSliceSuggestions } from "./LawSliceSuggestions";
+import { VerdictRatingBlock } from "./VerdictRatingBlock";
+import {
+  buildEvalSummaryStats,
+  isEvalWeakAnswer,
+} from "@/lib/eval-run-metadata";
+import {
+  GOLDEN_SWEEP_QUESTIONS,
+  buildGoldenSweepRegressionMeta,
+  summarizeEvalRowsByQuestion,
+} from "@/lib/eval-golden-sweep";
+import { type EvalMetaV1 } from "@/lib/eval-observability";
+import {
+  buildBulkEvalPresentCtx,
+  bulkEvalBuildAugmentedRows,
+  bulkEvalPreviewShort,
+  bulkEvalQualityFinal,
+  bulkEvalResolvedFinalIssue,
+  bulkEvalRunLabel,
+  bulkEvalSweepSummary,
+  type BulkEvalPresentCtx,
+} from "@/lib/bulk-eval-result-present";
+import { sortCasesForEvalScan } from "@/lib/eval-case-sort";
+import { buildDefencePlanDebugBundleV1, downloadJsonObject } from "@/lib/debug-bundle";
+import { createClient } from "@/lib/supabase/browser";
+import { isCriminalPilotMode, shouldShowInternalDevTools } from "@/lib/pilot-mode";
+
+const DEV_CASE_PICKER_ENABLED =
+  /^(1|true|yes|on)$/i.test((process.env.NEXT_PUBLIC_DEV_CASE_PICKER ?? "").trim()) ||
+  process.env.NODE_ENV !== "production";
+const BULK_EVAL_RUNNER_ENABLED = true;
+
+/** Stable string id for bulk-eval maps and manual selection (JSON ids may be number or string). */
+function normalizeEvalCaseId(raw: unknown): string {
+  if (raw == null) return "";
+  return String(raw).trim();
+}
+
+const CHAT_COMMAND_PROMPTS: Record<string, string> = {
+  "/disclosure": "What disclosure should I be pushing in this case and what are the CPIA duties?",
+  "/timeline": "What are the key dates and next steps in this case?",
+  "/plan": "Summarise our defence plan and the main angles we're running.",
+  "/propose": "__PROPOSE__", // special: triggers propose-summary API and proposal card
+};
+
+const CHAT_STORAGE_KEY_PREFIX = "casebrain:defence-plan-chat:";
+const MAX_CHAT_HISTORY_MESSAGES = 80;
+
+/** Bulk-eval hits full defence-plan-chat (DB + law + LLM). 80s often aborted before the server finished → "signal is aborted without reason". */
+const BULK_EVAL_FETCH_TIMEOUT_MS = 150_000;
+
+function formatBulkEvalFetchError(e: unknown, timeoutMs: number): string {
+  if (typeof DOMException !== "undefined" && e instanceof DOMException && e.name === "AbortError") {
+    return `Timed out after ${Math.round(timeoutMs / 1000)}s (browser limit).`;
+  }
+  if (e instanceof Error) {
+    if (e.name === "AbortError" || /signal is aborted|aborted without reason/i.test(e.message)) {
+      return `Timed out after ${Math.round(timeoutMs / 1000)}s (browser limit).`;
+    }
+    return e.message;
+  }
+  return "Unknown error";
+}
+
+type DefencePlanBoxProps = {
+  caseId: string;
+  /** Plan from StrategyCommitmentPanel (built from committed strategy + coordinator). Null when not committed or not yet loaded. */
+  plan: DefenceStrategyPlan | null;
+  /** For Phase 5 law slice suggestions (offence-specific) */
+  offenceType?: string | null;
+  /** For Phase 5 law slice suggestions (phase 2 vs 3) */
+  currentPhase?: number;
+  /** For Phase 5 evidence-aware chat: short summary of evidence/disclosure so answers are case-specific */
+  evidenceSummary?: string | null;
+  /** For Phase 5 timeline reasoning: key dates and next hearing so chat can reason over timeline */
+  timelineSummary?: string | null;
+  /** Quick case navigation controls for eval/training flow */
+  caseNav?: {
+    label?: string | null;
+    canGoPrev: boolean;
+    canGoNext: boolean;
+    onGoPrev?: () => void;
+    onGoNext?: () => void;
+  };
+  /** Optional eval case list for bulk question runs (e.g. NS-CPS 0401-0440). */
+  evalCases?: Array<{ id: string; title: string }>;
+  /** Full case list for bulk runs (preferred when available). */
+  allCases?: Array<{ id: string; title: string }>;
+};
+
+type ChatMessage = { role: "user" | "assistant"; content: string };
+
+type PendingProposal = { caseTheoryLine?: string; agreedSummaryDetailed?: string };
+
+function section(title: string, children: React.ReactNode) {
+  return (
+    <div className="mb-4 last:mb-0">
+      <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1.5">{title}</p>
+      <div className="text-sm text-foreground">{children}</div>
+    </div>
+  );
+}
+
+function buildPlanSummary(plan: DefenceStrategyPlan): string {
+  const parts: string[] = [];
+  if (plan.strategy_stance) parts.push(`Stance: ${plan.strategy_stance === "fight_to_win" ? "Going for a win" : "Damage limitation"}.`);
+  if (plan.strategy_in_one_line) parts.push(plan.strategy_in_one_line);
+  if (plan.case_theory_one_go) parts.push("Case theory: " + plan.case_theory_one_go);
+  if (plan.attack_sequence) parts.push(plan.attack_sequence);
+  if (plan.posture) parts.push(plan.posture);
+  if (plan.primary_route?.label) parts.push(`Primary route: ${plan.primary_route.label}`);
+  if (plan.prosecution_still_must_prove?.length) parts.push("Prosecution must prove: " + plan.prosecution_still_must_prove.join("; "));
+  if (plan.defence_angles?.length) parts.push("Defence angles: " + plan.defence_angles.slice(0, 3).join("; "));
+  if (plan.winning_angles?.length) parts.push("Winning angles: " + plan.winning_angles.slice(0, 3).join("; "));
+  if (plan.offence_leverage_angles?.length) parts.push("Offence leverage: " + plan.offence_leverage_angles.join("; "));
+  if (plan.disclosure_weapon_steps?.length) parts.push("Disclosure as weapon: " + plan.disclosure_weapon_steps.join(" "));
+  if (plan.risks_pivots_short?.length) parts.push("If things change: " + plan.risks_pivots_short.join("; "));
+  if (plan.no_case_line) parts.push(plan.no_case_line);
+  return parts.join("\n");
+}
+
+/** Compressed plan for chat only: high-leverage sections, capped length so the model has room to complete answers. */
+const MAX_PLAN_FOR_CHAT = 1200;
+function buildPlanSummaryForChat(plan: DefenceStrategyPlan): string {
+  const parts: string[] = [];
+  if (plan.strategy_stance) parts.push(`Stance: ${plan.strategy_stance === "fight_to_win" ? "Going for a win" : "Damage limitation"}.`);
+  if (plan.case_theory_one_go) parts.push(plan.case_theory_one_go);
+  if (plan.strategy_in_one_line) parts.push(plan.strategy_in_one_line);
+  if (plan.prosecution_still_must_prove?.length) parts.push("Prosecution must prove: " + plan.prosecution_still_must_prove.slice(0, 3).join("; "));
+  if (plan.offence_leverage_angles?.length) parts.push("Offence leverage: " + plan.offence_leverage_angles.join("; "));
+  if (plan.disclosure_weapon_steps?.length) parts.push("Disclosure as weapon: " + plan.disclosure_weapon_steps.join(" "));
+  if (plan.no_case_line) parts.push(plan.no_case_line);
+  const out = parts.join("\n");
+  return out.length > MAX_PLAN_FOR_CHAT ? out.slice(0, MAX_PLAN_FOR_CHAT - 3) + "…" : out;
+}
+
+function loadChatFromStorage(caseId: string): ChatMessage[] {
+  if (typeof window === "undefined" || !caseId) return [];
+  try {
+    const raw = localStorage.getItem(`${CHAT_STORAGE_KEY_PREFIX}${caseId}`);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+    const messages = parsed.filter((m): m is ChatMessage => m && typeof m.role === "string" && typeof m.content === "string" && (m.role === "user" || m.role === "assistant"));
+    return messages.slice(-MAX_CHAT_HISTORY_MESSAGES);
+  } catch {
+    return [];
+  }
+}
+
+function saveChatToStorage(caseId: string, messages: ChatMessage[]) {
+  if (typeof window === "undefined" || !caseId) return;
+  try {
+    if (messages.length === 0) localStorage.removeItem(`${CHAT_STORAGE_KEY_PREFIX}${caseId}`);
+    else localStorage.setItem(`${CHAT_STORAGE_KEY_PREFIX}${caseId}`, JSON.stringify(messages.slice(-MAX_CHAT_HISTORY_MESSAGES)));
+  } catch {
+    // ignore quota / private mode
+  }
+}
+
+export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, evidenceSummary, timelineSummary, caseNav, evalCases = [], allCases = [] }: DefencePlanBoxProps) {
+  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
+  const [chatLoaded, setChatLoaded] = useState(false);
+  const [chatInput, setChatInput] = useState("");
+  const [chatLoading, setChatLoading] = useState(false);
+  const [planSectionOpen, setPlanSectionOpen] = useState(false);
+  const [pendingProposal, setPendingProposal] = useState<PendingProposal | null>(null);
+  const [editingProposal, setEditingProposal] = useState<PendingProposal | null>(null);
+  const [proposalSaving, setProposalSaving] = useState(false);
+  const [evalInput, setEvalInput] = useState("");
+  const [evalScope, setEvalScope] = useState<"current" | "5" | "10" | "20" | "all" | "manual">("all");
+  const [manualCaseIds, setManualCaseIds] = useState<string[]>([]);
+  const [evalRunning, setEvalRunning] = useState(false);
+  const [evalProgress, setEvalProgress] = useState<{
+    done: number;
+    total: number;
+    questionIndex?: number;
+    questionTotal?: number;
+    caseIndex?: number;
+    caseTotal?: number;
+    elapsedMs?: number;
+    etaMs?: number | null;
+  }>({ done: 0, total: 0 });
+  /** After a run completes; drives labels + JSON export. */
+  const [evalSweepMode, setEvalSweepMode] = useState<"manual" | "golden_10" | null>(null);
+  const [evalGroupByQuestion, setEvalGroupByQuestion] = useState(false);
+  type EvalSweepRowState = {
+    caseId: string;
+    caseTitle: string;
+    questionNo: number;
+    question: string;
+    answer: string;
+    error?: string;
+    duration_ms: number;
+    route_tag: string | null;
+    weak: boolean;
+    http_status: number;
+    ok: boolean;
+    eval_meta?: EvalMetaV1 | null;
+  };
+  const [evalRows, setEvalRows] = useState<EvalSweepRowState[]>([]);
+  const [evalCopyMessage, setEvalCopyMessage] = useState<string | null>(null);
+  const [evalExpandedRowKey, setEvalExpandedRowKey] = useState<string | null>(null);
+  const [forceCasePicker, setForceCasePicker] = useState(false);
+  const [forceBulkEvalRunner, setForceBulkEvalRunner] = useState(false);
+  const [devToolsUserId, setDevToolsUserId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      setDevToolsUserId(user?.id ?? null);
+    });
+  }, []);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  /** Scroll only this panel — scrollIntoView on the sentinel scrolls the whole page. */
+  const messagesScrollRef = useRef<HTMLDivElement>(null);
+  const initialChatScrollDoneRef = useRef(false);
+
+  // Load persisted chat for this case on mount (client-only to avoid hydration mismatch)
+  useEffect(() => {
+    if (!caseId) return;
+    initialChatScrollDoneRef.current = false;
+    setChatMessages(loadChatFromStorage(caseId));
+    setChatLoaded(true);
+  }, [caseId]);
+
+  // Persist chat whenever messages change (after initial load)
+  useEffect(() => {
+    if (!caseId || !chatLoaded) return;
+    saveChatToStorage(caseId, chatMessages);
+  }, [caseId, chatLoaded, chatMessages]);
+
+  useEffect(() => {
+    const el = messagesScrollRef.current;
+    if (el) {
+      const isInitialScroll = !initialChatScrollDoneRef.current;
+      el.scrollTo({ top: el.scrollHeight, behavior: isInitialScroll ? "auto" : "smooth" });
+      if (isInitialScroll) initialChatScrollDoneRef.current = true;
+    }
+  }, [chatMessages, chatLoading]);
+
+  // Runtime escape hatch: lets us enable manual picker if env injection is missing in deployed builds.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const queryEnabled = /^(1|true|yes|on)$/i.test((params.get("casePicker") ?? "").trim());
+      const storedEnabled = /^(1|true|yes|on)$/i.test((localStorage.getItem("casebrain:devCasePicker") ?? "").trim());
+      if (queryEnabled) localStorage.setItem("casebrain:devCasePicker", "true");
+      setForceCasePicker(queryEnabled || storedEnabled);
+    } catch {
+      // non-fatal
+    }
+  }, []);
+
+  // Runtime escape hatch for bulk eval runner visibility (helpful in deployed builds).
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const queryEnabled = /^(1|true|yes|on)$/i.test((params.get("bulkEval") ?? "").trim());
+      const storedEnabled = /^(1|true|yes|on)$/i.test((localStorage.getItem("casebrain:bulkEvalRunner") ?? "").trim());
+      if (queryEnabled) localStorage.setItem("casebrain:bulkEvalRunner", "true");
+      setForceBulkEvalRunner(queryEnabled || storedEnabled);
+    } catch {
+      // non-fatal
+    }
+  }, []);
+
+  const internalDevTools = shouldShowInternalDevTools(devToolsUserId);
+  const showCasePicker =
+    internalDevTools && (DEV_CASE_PICKER_ENABLED || forceCasePicker) && !isCriminalPilotMode();
+  const showBulkEvalRunner =
+    internalDevTools && (BULK_EVAL_RUNNER_ENABLED || forceBulkEvalRunner) && !isCriminalPilotMode();
+
+  const resolveMessage = (raw: string): string => {
+    const trimmed = raw.trim().toLowerCase();
+    return CHAT_COMMAND_PROMPTS[trimmed] ?? CHAT_COMMAND_PROMPTS[Object.keys(CHAT_COMMAND_PROMPTS).find((k) => trimmed.startsWith(k)) ?? ""] ?? raw.trim();
+  };
+
+  const runProposeFlow = async () => {
+    if (!plan || !caseId) return;
+    setChatInput("");
+    setChatMessages((prev) => [...prev, { role: "user", content: "Propose summary & case theory" }]);
+    setChatLoading(true);
+    setPendingProposal(null);
+    try {
+      const res = await fetch(`/api/criminal/${caseId}/propose-summary`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          planSummary: buildPlanSummaryForChat(plan),
+          evidenceSummary: evidenceSummary?.slice(0, 1200) ?? "",
+          timelineSummary: timelineSummary?.slice(0, 500) ?? "",
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (data.ok && typeof data.reply === "string") {
+        setChatMessages((prev) => [...prev, { role: "assistant", content: data.reply }]);
+        if (data.proposal && (data.proposal.caseTheoryLine || data.proposal.agreedSummaryDetailed)) {
+          setPendingProposal(data.proposal);
+        }
+      } else {
+        setChatMessages((prev) => [...prev, { role: "assistant", content: "Could not generate proposal. Try again." }]);
+      }
+    } catch {
+      setChatMessages((prev) => [...prev, { role: "assistant", content: "Something went wrong. Try again." }]);
+    } finally {
+      setChatLoading(false);
+    }
+  };
+
+  const parseEvalQuestions = (): string[] => {
+    return evalInput
+      .split(/\r?\n/)
+      .map((q) => q.trim())
+      .filter((q) => q.length > 0)
+      .slice(0, 10);
+  };
+
+  const runnerCases = useMemo((): Array<{ id: string; title: string }> => {
+    const base = allCases.length > 0 ? allCases : evalCases;
+    if (base.length === 0) {
+      const id = normalizeEvalCaseId(caseId);
+      return id ? [{ id, title: "Current case" }] : [];
+    }
+    return sortCasesForEvalScan(base)
+      .map((c) => {
+        const id = normalizeEvalCaseId(c.id);
+        if (!id) return null;
+        const title = typeof c.title === "string" && c.title.trim() ? c.title.trim() : "Untitled Case";
+        return { id, title };
+      })
+      .filter((c): c is { id: string; title: string } => c != null);
+  }, [allCases, evalCases, caseId]);
+
+  const selectedEvalCases = (): Array<{ id: string; title: string }> => {
+    if (evalScope === "manual") {
+      const byId = new Map(runnerCases.map((c) => [c.id, c] as const));
+      return manualCaseIds
+        .map((id) => byId.get(normalizeEvalCaseId(id)))
+        .filter((c): c is { id: string; title: string } => Boolean(c));
+    }
+    const currentId = normalizeEvalCaseId(caseId);
+    if (evalScope === "current") return currentId ? [{ id: currentId, title: "Current case" }] : [];
+    if (evalScope === "5") return runnerCases.slice(0, 5);
+    if (evalScope === "10") return runnerCases.slice(0, 10);
+    if (evalScope === "20") return runnerCases.slice(0, 20);
+    return runnerCases;
+  };
+
+  type EvalSweepRow = {
+    caseId: string;
+    caseTitle: string;
+    questionNo: number;
+    question: string;
+    answer: string;
+    error?: string;
+    duration_ms: number;
+    route_tag: string | null;
+    weak: boolean;
+    http_status: number;
+    ok: boolean;
+    eval_meta?: EvalMetaV1 | null;
+  };
+
+  type EvalSweepOpts = {
+    apiSource: "defence_box" | "defence_box_golden";
+    sweepMode: "manual" | "golden_10";
+  };
+
+  const executeEvalSweep = async (questions: string[], opts: EvalSweepOpts) => {
+    const runCases = selectedEvalCases();
+    if (questions.length === 0 || runCases.length === 0 || evalRunning) return;
+    const total = questions.length * runCases.length;
+    const sweepStartedAt = Date.now();
+    setEvalRunning(true);
+    setEvalRows([]);
+    setEvalExpandedRowKey(null);
+    setEvalSweepMode(opts.sweepMode);
+    setEvalProgress({
+      done: 0,
+      total,
+      questionIndex: 1,
+      questionTotal: questions.length,
+      caseIndex: 1,
+      caseTotal: runCases.length,
+      elapsedMs: 0,
+      etaMs: null,
+    });
+
+    const rows: EvalSweepRow[] = [];
+    let done = 0;
+    const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+    const jitter = (baseMs: number) => baseMs + Math.floor(Math.random() * 250);
+    const askCaseWithRetry = async (
+      targetCaseId: string,
+      question: string
+    ): Promise<{
+      answer: string;
+      error?: string;
+      duration_ms: number;
+      route_tag: string | null;
+      http_status: number;
+      ok: boolean;
+      eval_meta: EvalMetaV1 | null;
+    }> => {
+      const maxAttempts = 3;
+      for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+        const started = Date.now();
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), BULK_EVAL_FETCH_TIMEOUT_MS);
+        try {
+          const res = await fetch(`/api/criminal/${targetCaseId}/defence-plan-chat`, {
+            method: "POST",
+            credentials: "include",
+            headers: {
+              "Content-Type": "application/json",
+              "x-eval-mode": "1",
+              "x-fast-eval": "1",
+            },
+            body: JSON.stringify({ message: question }),
+            signal: controller.signal,
+          });
+          const duration_ms = Date.now() - started;
+          const route_tag = res.headers.get("x-casebrain-route")?.trim() || null;
+          const data = (await res.json().catch(() => ({}))) as {
+            ok?: boolean;
+            reply?: string;
+            error?: string;
+            eval_meta?: EvalMetaV1;
+          };
+          const em = data.eval_meta && data.eval_meta.v === 1 ? data.eval_meta : null;
+          if (res.ok && data.ok && typeof data.reply === "string" && data.reply.trim().length > 0) {
+            clearTimeout(timeoutId);
+            return { answer: data.reply, duration_ms, route_tag, http_status: res.status, ok: true, eval_meta: em };
+          }
+          const errText = data.error ?? `HTTP ${res.status}`;
+          if (attempt === maxAttempts) {
+            clearTimeout(timeoutId);
+            return {
+              answer: "",
+              error: errText,
+              duration_ms,
+              route_tag,
+              http_status: res.status,
+              ok: false,
+              eval_meta: null,
+            };
+          }
+        } catch (e) {
+          const duration_ms = Date.now() - started;
+          if (attempt === maxAttempts) {
+            clearTimeout(timeoutId);
+            return {
+              answer: "",
+              error: formatBulkEvalFetchError(e, BULK_EVAL_FETCH_TIMEOUT_MS),
+              duration_ms,
+              route_tag: null,
+              http_status: 0,
+              ok: false,
+              eval_meta: null,
+            };
+          }
+        } finally {
+          clearTimeout(timeoutId);
+        }
+        await sleep(jitter(attempt * 1000));
+      }
+      return {
+        answer: "",
+        error: "Unable to get a response",
+        duration_ms: 0,
+        route_tag: null,
+        http_status: 0,
+        ok: false,
+        eval_meta: null,
+      };
+    };
+
+    try {
+      for (let qIdx = 0; qIdx < questions.length; qIdx += 1) {
+        const question = questions[qIdx]!;
+        for (let cIdx = 0; cIdx < runCases.length; cIdx += 1) {
+          const c = runCases[cIdx]!;
+          const { answer, error, duration_ms, route_tag, http_status, ok, eval_meta } = await askCaseWithRetry(
+            c.id,
+            question
+          );
+          const combined = answer || error || "";
+          const qn = qIdx + 1;
+          rows.push({
+            caseId: c.id,
+            caseTitle: c.title,
+            questionNo: qn,
+            question,
+            answer,
+            ...(error ? { error } : {}),
+            duration_ms,
+            route_tag,
+            http_status,
+            ok,
+            weak: isEvalWeakAnswer(combined, { route_tag }),
+            eval_meta,
+          });
+          done += 1;
+          const elapsedMs = Date.now() - sweepStartedAt;
+          let etaMs: number | null = null;
+          if (done > 0 && done < total) {
+            etaMs = ((total - done) / done) * elapsedMs;
+          }
+          setEvalProgress({
+            done,
+            total,
+            questionIndex: qIdx + 1,
+            questionTotal: questions.length,
+            caseIndex: cIdx + 1,
+            caseTotal: runCases.length,
+            elapsedMs,
+            etaMs,
+          });
+          setEvalRows([...rows]);
+          await sleep(error ? jitter(1_500) : jitter(450));
+        }
+        if (qIdx < questions.length - 1) await sleep(jitter(1_100));
+      }
+
+      if (rows.length > 0) {
+        try {
+          const aggregateStats = buildEvalSummaryStats(
+            rows.map((r) => ({
+              ok: r.ok,
+              weak: r.weak,
+              answer: r.answer || r.error || "",
+              duration_ms: r.duration_ms,
+              route_tag: r.route_tag,
+              question_no: r.questionNo,
+            })),
+            questions
+          );
+          const { rows_augmented, final_summary } = bulkEvalBuildAugmentedRows(rows, opts.sweepMode);
+          const summary_stats = {
+            ...aggregateStats,
+            sweep_mode: opts.sweepMode,
+            per_question: summarizeEvalRowsByQuestion(rows, questions),
+            final_quality_summary: { ...final_summary, main_issue: final_summary.mainIssue },
+            ...(opts.sweepMode === "golden_10" ? buildGoldenSweepRegressionMeta() : {}),
+          };
+          const saveRes = await fetch("/api/eval-sweeps", {
+            method: "POST",
+            credentials: "include",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              source: opts.apiSource,
+              questions,
+              summary_stats,
+              rows: rows_augmented.map((r) => ({
+                case_id: r.caseId,
+                case_title: r.caseTitle,
+                question_no: r.questionNo,
+                question: r.question,
+                answer: r.answer,
+                error: r.error ?? null,
+                duration_ms: r.duration_ms,
+                weak: r.weak,
+                http_status: r.http_status,
+                route_tag: r.route_tag,
+                row_meta:
+                  r.eval_meta && typeof r.eval_meta === "object"
+                    ? {
+                        ...(r.eval_meta as Record<string, unknown>),
+                        ui_final_quality: r.final_quality,
+                        ui_final_issue: r.final_issue,
+                        ui_final_collapse_rule: r.final_collapse_rule,
+                      }
+                    : {
+                        ui_final_quality: r.final_quality,
+                        ui_final_issue: r.final_issue,
+                        ui_final_collapse_rule: r.final_collapse_rule,
+                      },
+              })),
+            }),
+          });
+          const j = (await saveRes.json().catch(() => ({}))) as { ok?: boolean; runId?: string };
+          if (saveRes.ok && j.runId) {
+            setEvalCopyMessage(`Saved to workspace (${String(j.runId).slice(0, 8)}…). Copy results still works.`);
+          }
+        } catch {
+          // non-fatal
+        }
+      }
+      setEvalSweepMode(opts.sweepMode === "golden_10" ? "golden_10" : "manual");
+      if (opts.sweepMode === "golden_10") setEvalGroupByQuestion(true);
+    } finally {
+      setEvalRunning(false);
+    }
+  };
+
+  const runEvalAcrossCases = async () => {
+    const questions = parseEvalQuestions();
+    await executeEvalSweep(questions, { apiSource: "defence_box", sweepMode: "manual" });
+  };
+
+  const runGoldenSweepTen = async () => {
+    await executeEvalSweep([...GOLDEN_SWEEP_QUESTIONS], {
+      apiSource: "defence_box_golden",
+      sweepMode: "golden_10",
+    });
+  };
+
+  const formatSweepEta = (ms: number | null | undefined) => {
+    if (ms == null || !Number.isFinite(ms) || ms < 500) return "—";
+    const sec = Math.round(ms / 1000);
+    if (sec < 90) return `~${sec}s`;
+    const m = Math.floor(sec / 60);
+    const s = sec % 60;
+    return `~${m}m ${s}s`;
+  };
+
+  const evalRowsGrouped = useMemo(() => {
+    const m = new Map<number, EvalSweepRowState[]>();
+    for (const r of evalRows) {
+      const arr = m.get(r.questionNo) ?? [];
+      arr.push(r);
+      m.set(r.questionNo, arr);
+    }
+    return [...m.entries()].sort((a, b) => a[0] - b[0]);
+  }, [evalRows]);
+
+  const bulkEvalCtx: BulkEvalPresentCtx = useMemo(
+    () => buildBulkEvalPresentCtx(evalRows, evalSweepMode),
+    [evalRows, evalSweepMode]
+  );
+
+  const evalSweepSummary = useMemo(
+    () => bulkEvalSweepSummary(evalRows, bulkEvalCtx),
+    [evalRows, bulkEvalCtx]
+  );
+
+  const downloadFullDebugBundle = () => {
+    const payload = buildDefencePlanDebugBundleV1({
+      caseId,
+      plan,
+      offenceType,
+      currentPhase,
+      evidenceSummary,
+      timelineSummary,
+      caseNavLabel: caseNav?.label ?? null,
+      evalCasesCount: evalCases.length,
+      allCasesCount: allCases.length,
+      chatMessages,
+      evalRows: evalRows.map((r) => ({
+        caseId: r.caseId,
+        caseTitle: r.caseTitle,
+        questionNo: r.questionNo,
+        question: r.question,
+        answer: r.answer,
+        error: r.error,
+        duration_ms: r.duration_ms,
+        route_tag: r.route_tag,
+        weak: r.weak,
+        http_status: r.http_status,
+        ok: r.ok,
+        eval_meta: r.eval_meta ?? undefined,
+      })),
+      evalSweepMode,
+      evalProgress: {
+        done: evalProgress.done,
+        total: evalProgress.total,
+        questionIndex: evalProgress.questionIndex,
+        questionTotal: evalProgress.questionTotal,
+        caseIndex: evalProgress.caseIndex,
+        caseTotal: evalProgress.caseTotal,
+      },
+      bulkEvalRequestHeaders: {
+        "Content-Type": "application/json",
+        "x-eval-mode": "1",
+        "x-fast-eval": "1",
+      },
+      bulkEvalFetchTimeoutMs: BULK_EVAL_FETCH_TIMEOUT_MS,
+    });
+    downloadJsonObject("casebrain-debug-bundle", payload);
+  };
+
+  const downloadEvalSweepJson = () => {
+    if (evalRows.length === 0) return;
+    const questionsOrdered = evalRowsGrouped.map(([, rs]) => rs[0]?.question ?? "").filter(Boolean);
+    const aggregateStats = buildEvalSummaryStats(
+      evalRows.map((r) => ({
+        ok: r.ok,
+        weak: r.weak,
+        answer: r.answer || r.error || "",
+        duration_ms: r.duration_ms,
+        route_tag: r.route_tag,
+      })),
+      questionsOrdered
+    );
+    const { final_summary, rows_augmented } = bulkEvalBuildAugmentedRows(evalRows, evalSweepMode);
+    const payload = {
+      exported_at: new Date().toISOString(),
+      sweep_mode: evalSweepMode,
+      questions: questionsOrdered,
+      row_count: evalRows.length,
+      summary_stats: {
+        ...aggregateStats,
+        per_question: summarizeEvalRowsByQuestion(evalRows, questionsOrdered),
+        final_quality_summary: { ...final_summary, main_issue: final_summary.mainIssue },
+        ...(evalSweepMode === "golden_10" ? buildGoldenSweepRegressionMeta() : {}),
+      },
+      rows: rows_augmented,
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `eval-sweep-${evalSweepMode ?? "manual"}-${new Date().toISOString().replace(/[:.]/g, "-")}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const copyEvalRows = async () => {
+    if (evalRows.length === 0) return;
+    const { rows_augmented } = bulkEvalBuildAugmentedRows(evalRows, evalSweepMode);
+    const header = [
+      "case_id",
+      "case_title",
+      "question_no",
+      "question",
+      "answer",
+      "error",
+      "duration_ms",
+      "route_tag",
+      "weak",
+      "http_status",
+      "final_quality",
+      "final_issue",
+      "final_collapse_rule",
+    ].join("\t");
+    const body = rows_augmented
+      .map((r) =>
+        [
+          r.caseId,
+          r.caseTitle.replace(/\t/g, " "),
+          String(r.questionNo),
+          r.question.replace(/\t/g, " "),
+          (r.answer || "").replace(/\t/g, " ").replace(/\r?\n/g, " \\n "),
+          (r.error || "").replace(/\t/g, " "),
+          String(r.duration_ms ?? ""),
+          (r.route_tag ?? "").replace(/\t/g, " "),
+          r.weak ? "1" : "0",
+          String(r.http_status ?? ""),
+          r.final_quality,
+          (r.final_issue || "").replace(/\t/g, " "),
+          (r.final_collapse_rule ?? "").replace(/\t/g, " "),
+        ].join("\t"),
+      )
+      .join("\n");
+    const payload = `${header}\n${body}`;
+    try {
+      if (typeof navigator !== "undefined" && navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(payload);
+        setEvalCopyMessage("Copied full results to clipboard.");
+      } else {
+        throw new Error("Clipboard API unavailable");
+      }
+    } catch {
+      try {
+        if (typeof document === "undefined") throw new Error("No document available");
+        const ta = document.createElement("textarea");
+        ta.value = payload;
+        ta.setAttribute("readonly", "true");
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        ta.style.pointerEvents = "none";
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        const copied = document.execCommand("copy");
+        document.body.removeChild(ta);
+        if (!copied) throw new Error("execCommand copy failed");
+        setEvalCopyMessage("Copied full results to clipboard.");
+      } catch {
+        setEvalCopyMessage("Copy blocked by browser. Select rows and copy manually.");
+      }
+    }
+    setTimeout(() => setEvalCopyMessage(null), 3000);
+  };
+
+  const renderCaseNavAndEvalRunner = () => (
+    <>
+      {caseNav && (caseNav.canGoPrev || caseNav.canGoNext || caseNav.label) && (
+        <div className="mb-3 rounded-md border border-border/60 bg-muted/20 p-2.5">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <p className="text-[11px] text-muted-foreground">{caseNav.label ?? "Case navigation"}</p>
+            <div className="flex items-center gap-2">
+              <Button
+                type="button"
+                size="sm"
+                variant="outline"
+                disabled={!caseNav.canGoPrev}
+                onClick={caseNav.onGoPrev}
+              >
+                Previous case
+              </Button>
+              <Button
+                type="button"
+                size="sm"
+                variant="outline"
+                disabled={!caseNav.canGoNext}
+                onClick={caseNav.onGoNext}
+              >
+                Next case
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+      {showBulkEvalRunner && runnerCases.length > 0 && (
+        <div className="mb-3 rounded-md border border-border/60 bg-muted/20 p-2.5">
+          <p className="text-[11px] font-medium text-foreground">Bulk eval runner (ask same question(s) across selected cases)</p>
+          <p className="mt-1 text-[11px] text-muted-foreground">
+            Enter up to 10 questions (one per line). Runner runs <strong>question-by-question</strong> (Q1 across all selected cases, then Q2, …) — not case-first.
+          </p>
+          <textarea
+            value={evalInput}
+            onChange={(e) => setEvalInput(e.target.value)}
+            placeholder={"1) What is the case in one sentence?\n2) What disclosure is missing?\n... (up to 10 lines)"}
+            className="mt-2 h-28 w-full rounded-md border border-border bg-background px-2 py-2 text-xs text-foreground outline-none focus:ring-2 focus:ring-primary/30"
+            disabled={evalRunning}
+          />
+          <div className="mt-2 flex flex-wrap items-center gap-2">
+            <select
+              className="h-8 rounded-md border border-border bg-background px-2 text-xs text-foreground"
+              value={evalScope}
+              onChange={(e) => setEvalScope(e.target.value as "current" | "5" | "10" | "20" | "all" | "manual")}
+              disabled={evalRunning}
+            >
+              <option value="current">Current case only</option>
+              <option value="5">First 5 cases</option>
+              <option value="10">First 10 cases</option>
+              <option value="20">First 20 cases</option>
+              <option value="all">All loaded cases</option>
+              {showCasePicker && <option value="manual">Manual case pick (dev/test)</option>}
+            </select>
+            <Button type="button" size="sm" onClick={runEvalAcrossCases} disabled={evalRunning || parseEvalQuestions().length === 0}>
+              {evalRunning ? "Running..." : `Run custom (${selectedEvalCases().length} case${selectedEvalCases().length === 1 ? "" : "s"})`}
+            </Button>
+            <Button
+              type="button"
+              size="sm"
+              variant="secondary"
+              onClick={() => void runGoldenSweepTen()}
+              disabled={evalRunning || selectedEvalCases().length === 0}
+              title="Canonical 10 questions × selected cases; one saved sweep"
+            >
+              {evalRunning ? "Running..." : `Golden sweep 10×${selectedEvalCases().length}`}
+            </Button>
+            <Button type="button" size="sm" variant="outline" onClick={copyEvalRows} disabled={evalRows.length === 0}>
+              Copy TSV
+            </Button>
+            <Button type="button" size="sm" variant="outline" onClick={downloadEvalSweepJson} disabled={evalRows.length === 0}>
+              Download JSON
+            </Button>
+            <Button
+              type="button"
+              size="sm"
+              variant="secondary"
+              onClick={downloadFullDebugBundle}
+              title="One file: case, URL, plan, chat, eval rows, browser + build info (no passwords)"
+            >
+              Debug bundle
+            </Button>
+            <Button
+              type="button"
+              size="sm"
+              variant="ghost"
+              onClick={() => {
+                setEvalRows([]);
+                setEvalProgress({ done: 0, total: 0 });
+                setEvalSweepMode(null);
+                setEvalExpandedRowKey(null);
+              }}
+              disabled={evalRunning || evalRows.length === 0}
+            >
+              Clear
+            </Button>
+            <label className="flex items-center gap-1.5 text-[11px] text-muted-foreground cursor-pointer">
+              <input
+                type="checkbox"
+                checked={evalGroupByQuestion}
+                onChange={(e) => setEvalGroupByQuestion(e.target.checked)}
+                disabled={evalRunning}
+              />
+              Group by question
+            </label>
+            <span className="text-[11px] text-muted-foreground">
+              {evalProgress.total > 0 ? (
+                <>
+                  Q{evalProgress.questionIndex ?? "?"}/{evalProgress.questionTotal ?? "?"} — Case {evalProgress.caseIndex ?? "?"}/{evalProgress.caseTotal ?? "?"} ·{" "}
+                  {evalProgress.done}/{evalProgress.total}
+                  {evalRunning && evalProgress.elapsedMs != null ? (
+                    <>
+                      {" "}
+                      · {Math.round(evalProgress.elapsedMs / 1000)}s · ETA {formatSweepEta(evalProgress.etaMs)}
+                    </>
+                  ) : null}
+                </>
+              ) : (
+                <>Idle</>
+              )}
+            </span>
+            {evalCopyMessage && (
+              <span className="text-[11px] text-muted-foreground">{evalCopyMessage}</span>
+            )}
+          </div>
+          {showCasePicker && evalScope === "manual" && (
+            <div className="mt-2 rounded border border-border/60 bg-background p-2">
+              <p className="text-[11px] font-medium text-foreground">Choose exact cases ({manualCaseIds.length} selected)</p>
+              <div className="mt-1 max-h-36 overflow-auto space-y-1">
+                {runnerCases.map((c) => {
+                  const checked = manualCaseIds.includes(c.id);
+                  return (
+                    <label key={c.id} className="flex items-center gap-2 text-[11px] text-foreground">
+                      <input
+                        type="checkbox"
+                        checked={checked}
+                        disabled={evalRunning}
+                        onChange={(e) => {
+                          setManualCaseIds((prev) =>
+                            e.target.checked
+                              ? prev.includes(c.id)
+                                ? prev
+                                : [...prev, c.id]
+                              : prev.filter((id) => id !== c.id)
+                          );
+                        }}
+                      />
+                      <span className="truncate">{c.title}</span>
+                    </label>
+                  );
+                })}
+              </div>
+              <div className="mt-2 flex gap-2">
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="outline"
+                  disabled={evalRunning}
+                  onClick={() => setManualCaseIds([...new Set(runnerCases.map((c) => c.id))])}
+                >
+                  Select all loaded
+                </Button>
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="ghost"
+                  disabled={evalRunning || manualCaseIds.length === 0}
+                  onClick={() => setManualCaseIds([])}
+                >
+                  Clear selection
+                </Button>
+              </div>
+            </div>
+          )}
+          {evalRows.length > 0 && (
+            <div className="mt-2 space-y-2">
+              <div className="rounded-md border border-border/70 bg-muted/25 px-3 py-2 text-[11px] text-foreground">
+                <p className="font-semibold text-foreground">
+                  {evalSweepMode === "golden_10" ? "Golden sweep result" : "Bulk eval result"}
+                </p>
+                <ul className="mt-1.5 list-none space-y-0.5 text-muted-foreground">
+                  <li>
+                    <span className="text-foreground/80">Total:</span> {evalSweepSummary.total}
+                  </li>
+                  <li>
+                    <span className="text-emerald-700 dark:text-emerald-400">Pass:</span> {evalSweepSummary.pass}
+                  </li>
+                  <li>
+                    <span className="text-amber-700 dark:text-amber-400">Weak:</span> {evalSweepSummary.weak}
+                  </li>
+                  <li>
+                    <span className="text-red-700 dark:text-red-400">Fail:</span> {evalSweepSummary.fail}
+                  </li>
+                  <li>
+                    <span className="text-orange-700 dark:text-orange-400">Timeout / error:</span> {evalSweepSummary.timeoutError}
+                  </li>
+                  <li className="pt-1 text-foreground">
+                    <span className="font-medium text-muted-foreground">Main issue:</span> {evalSweepSummary.mainIssue}
+                  </li>
+                </ul>
+              </div>
+              <div className="max-h-[min(28rem,70vh)] overflow-auto rounded border border-border/60 bg-background p-2">
+                <table className="w-full text-[11px]">
+                  <thead>
+                    <tr className="text-left text-muted-foreground">
+                      <th className="pr-2">Case</th>
+                      <th className="pr-2">Q#</th>
+                      <th className="pr-2">Route</th>
+                      <th className="pr-2">Run</th>
+                      <th className="pr-2">Quality</th>
+                      <th className="pr-2">Issue</th>
+                      <th className="pr-2">Preview</th>
+                      <th className="w-24" />
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {evalRows.slice(-120).map((r, idx) => {
+                      const rowKey = `${r.caseId}-${r.questionNo}-${idx}`;
+                      const runL = bulkEvalRunLabel(r);
+                      const qual = bulkEvalQualityFinal(r, bulkEvalCtx);
+                      const issue = bulkEvalResolvedFinalIssue(r, bulkEvalCtx);
+                      const previewSource = r.error ?? r.answer;
+                      const expanded = evalExpandedRowKey === rowKey;
+                      const runCls =
+                        runL === "ok"
+                          ? "text-emerald-600 dark:text-emerald-400"
+                          : runL === "timeout"
+                            ? "text-orange-600 dark:text-orange-400"
+                            : runL === "skipped"
+                              ? "text-muted-foreground"
+                              : "text-red-600 dark:text-red-400";
+                      const qualCls =
+                        qual === "pass"
+                          ? "text-emerald-600 dark:text-emerald-400"
+                          : qual === "weak"
+                            ? "text-amber-600 dark:text-amber-400"
+                            : qual === "fail"
+                              ? "text-red-600 dark:text-red-400"
+                              : "text-orange-600 dark:text-orange-400";
+                      return (
+                        <Fragment key={rowKey}>
+                          <tr className="border-t border-border/40 align-top">
+                            <td className="pr-2 py-1 text-foreground max-w-[120px] truncate" title={r.caseTitle}>
+                              {r.caseTitle}
+                            </td>
+                            <td className="pr-2 py-1 text-foreground">{r.questionNo}</td>
+                            <td
+                              className="pr-2 py-1 font-mono text-[10px] text-muted-foreground max-w-[100px] truncate"
+                              title={r.route_tag ?? ""}
+                            >
+                              {r.route_tag ?? "—"}
+                            </td>
+                            <td className={`pr-2 py-1 font-medium capitalize ${runCls}`}>{runL}</td>
+                            <td className={`pr-2 py-1 font-medium capitalize ${qualCls}`}>{qual}</td>
+                            <td className="pr-2 py-1 text-muted-foreground max-w-[120px] truncate" title={issue}>
+                              {issue}
+                            </td>
+                            <td className="py-1 text-muted-foreground max-w-[200px] break-words leading-snug">
+                              {bulkEvalPreviewShort(previewSource)}
+                            </td>
+                            <td className="py-1 align-top">
+                              <Button
+                                type="button"
+                                variant="ghost"
+                                size="sm"
+                                className="h-7 px-1.5 text-[10px] text-primary"
+                                onClick={() => setEvalExpandedRowKey(expanded ? null : rowKey)}
+                              >
+                                {expanded ? "Hide" : "View full"}
+                              </Button>
+                            </td>
+                          </tr>
+                          {expanded ? (
+                            <tr className="bg-muted/30">
+                              <td colSpan={8} className="px-2 py-2 text-[11px] text-foreground">
+                                <p className="text-[10px] font-medium text-muted-foreground">Full answer / error</p>
+                                <pre className="mt-1 max-h-64 overflow-auto whitespace-pre-wrap break-words font-sans text-[11px]">
+                                  {previewSource || "—"}
+                                </pre>
+                              </td>
+                            </tr>
+                          ) : null}
+                        </Fragment>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+          {evalGroupByQuestion && evalRowsGrouped.length > 0 && (
+            <div className="mt-2 max-h-56 space-y-1 overflow-auto rounded border border-border/60 bg-muted/10 p-2">
+              <p className="text-[11px] font-medium text-foreground">Grouped by question</p>
+              {evalRowsGrouped.map(([qn, rs]) => {
+                let passN = 0;
+                let weakN = 0;
+                let failN = 0;
+                for (const row of rs) {
+                  const q = bulkEvalQualityFinal(row, bulkEvalCtx);
+                  if (q === "pass") passN += 1;
+                  else if (q === "weak") weakN += 1;
+                  else failN += 1;
+                }
+                const routes = rs.reduce<Record<string, number>>((acc, r) => {
+                  const t = r.route_tag ?? "unknown";
+                  acc[t] = (acc[t] ?? 0) + 1;
+                  return acc;
+                }, {});
+                const routeSummary = Object.entries(routes)
+                  .map(([k, v]) => `${k}:${v}`)
+                  .join(" · ");
+                return (
+                  <details key={qn} className="rounded border border-border/50 bg-background px-2 py-1">
+                    <summary className="cursor-pointer text-[11px] text-foreground">
+                      Q{qn} — Pass: {passN} · Weak: {weakN} · Fail: {failN}
+                      {routeSummary ? ` · ${routeSummary.length > 120 ? `${routeSummary.slice(0, 117)}…` : routeSummary}` : ""}
+                    </summary>
+                    <p className="mt-1 text-[10px] leading-snug text-muted-foreground">{rs[0]?.question ?? ""}</p>
+                  </details>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      )}
+    </>
+  );
+
+  const handleAcceptProposal = async () => {
+    if (!pendingProposal || !caseId || proposalSaving) return;
+    setProposalSaving(true);
+    try {
+      const res = await fetch(`/api/criminal/${caseId}/agreed-summary`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          caseTheoryLine: pendingProposal.caseTheoryLine ?? null,
+          agreedSummaryDetailed: pendingProposal.agreedSummaryDetailed ?? null,
+        }),
+      });
+      if (res.ok) setPendingProposal(null);
+    } finally {
+      setProposalSaving(false);
+    }
+  };
+
+  const handleSendChat = async () => {
+    const raw = chatInput.trim();
+    if (!raw || !plan || !caseId) return;
+    const resolved = resolveMessage(raw);
+    if (resolved === "__PROPOSE__" || raw.toLowerCase().trim().startsWith("/propose")) {
+      runProposeFlow();
+      return;
+    }
+    const msg = resolved;
+    setChatInput("");
+    setChatMessages((prev) => [...prev, { role: "user", content: msg }]);
+    setChatLoading(true);
+    try {
+      const res = await fetch(`/api/criminal/${caseId}/defence-plan-chat`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          message: msg,
+          planSummary: buildPlanSummaryForChat(plan),
+          evidenceSummary: evidenceSummary?.slice(0, 1200) ?? "",
+          timelineSummary: timelineSummary?.slice(0, 500) ?? "",
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (data.ok && typeof data.reply === "string") {
+        setChatMessages((prev) => [...prev, { role: "assistant", content: data.reply }]);
+      } else {
+        setChatMessages((prev) => [...prev, { role: "assistant", content: "Sorry, I couldn’t get a response. Try again." }]);
+      }
+    } catch {
+      setChatMessages((prev) => [...prev, { role: "assistant", content: "Something went wrong. Try again." }]);
+    } finally {
+      setChatLoading(false);
+    }
+  };
+
+  if (!plan) {
+    return (
+      <Card className="p-6 border-2 border-primary/20 bg-primary/5">
+        <h3 className="text-sm font-semibold text-foreground mb-2">Defence Plan</h3>
+        {renderCaseNavAndEvalRunner()}
+        <p className="text-sm text-muted-foreground">
+          Commit to a strategy in the Evidence column to see your Defence Plan here. This box shows how we're fighting the case from one source only.
+        </p>
+      </Card>
+    );
+  }
+
+  const isFightToWin = plan.strategy_stance === "fight_to_win";
+
+  return (
+    <Card className="p-6 border-2 border-primary/25 bg-primary/5">
+      <h3 className="text-sm font-semibold text-foreground mb-1">Defence Plan</h3>
+      <div className="flex flex-wrap items-center gap-2 mb-2">
+        {plan.strategy_stance && (
+          <span
+            className={`inline-block rounded-full px-2 py-0.5 text-[11px] font-semibold ${
+              isFightToWin
+                ? "bg-green-500/20 text-green-700 dark:text-green-400 border border-green-500/30"
+                : "bg-amber-500/20 text-amber-700 dark:text-amber-400 border border-amber-500/30"
+            }`}
+          >
+            {isFightToWin ? "Going for a win" : "Damage limitation"}
+          </span>
+        )}
+      </div>
+      <button
+        type="button"
+        onClick={() => setPlanSectionOpen((o) => !o)}
+        className="flex items-center gap-2 w-full text-left py-2 text-xs font-semibold text-muted-foreground hover:text-foreground border-y border-border/50"
+      >
+        {planSectionOpen ? <ChevronUp className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />}
+        Plan details
+      </button>
+      {planSectionOpen && (
+      <>
+      {plan.winning_angles?.length > 0 && (
+        <div className="mb-4 rounded-lg border border-primary/20 bg-primary/10 p-3">
+          <p className="text-xs font-semibold text-foreground uppercase tracking-wide mb-1.5">Winning angles</p>
+          <ul className="text-sm text-foreground space-y-0.5 list-disc pl-4">
+            {plan.winning_angles.slice(0, 5).map((a, i) => (
+              <li key={i}>{a}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {plan.case_theory_one_go && (
+        <div className="mb-4 rounded-lg border border-primary/20 bg-primary/5 p-3">
+          <p className="text-xs font-semibold text-foreground uppercase tracking-wide mb-1.5">Case theory</p>
+          <p className="text-sm text-foreground">{plan.case_theory_one_go}</p>
+        </div>
+      )}
+      {plan.offence_leverage_angles?.length > 0 && (
+        <div className="mb-4 rounded-lg border border-amber-500/20 bg-amber-500/5 p-3">
+          <p className="text-xs font-semibold text-foreground uppercase tracking-wide mb-1.5">Offence leverage</p>
+          <ul className="text-sm text-foreground space-y-0.5 list-disc pl-4">
+            {plan.offence_leverage_angles.map((a, i) => (
+              <li key={i}>{a}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {plan.disclosure_weapon_steps?.length > 0 && (
+        <div className="mb-4 rounded-lg border border-amber-500/20 bg-amber-500/5 p-3">
+          <p className="text-xs font-semibold text-foreground uppercase tracking-wide mb-1.5">Disclosure as weapon</p>
+          <ol className="text-sm text-foreground space-y-0.5 list-decimal pl-4">
+            {plan.disclosure_weapon_steps.map((s, i) => (
+              <li key={i}>{s}</li>
+            ))}
+          </ol>
+        </div>
+      )}
+      {plan.risks_pivots_short?.length > 0 && (
+        <div className="mb-4 rounded-lg border border-border/50 bg-muted/30 p-3">
+          <p className="text-xs font-semibold text-foreground uppercase tracking-wide mb-1.5">If things change</p>
+          <ul className="text-sm text-foreground space-y-0.5 list-disc pl-4">
+            {plan.risks_pivots_short.map((r, i) => (
+              <li key={i}>{r}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+      <div className="space-y-4">
+        {plan.strategy_in_one_line && section("How we're running it", <p className="font-medium">{plan.strategy_in_one_line}</p>)}
+        {plan.attack_sequence && section("Attack order", <p className="whitespace-pre-wrap">{plan.attack_sequence}</p>)}
+        {plan.prosecution_still_must_prove?.length > 0 && section("What prosecution still has to prove", <ul className="list-disc pl-4 space-y-0.5">{plan.prosecution_still_must_prove.map((b, i) => <li key={i}>{b}</li>)}</ul>)}
+        {plan.posture && section("Defence position (plan)", <p>{plan.posture}</p>)}
+        {plan.primary_route && section("Primary route", <><p className="font-medium">{plan.primary_route.label}</p>{plan.primary_route.rationale?.length > 0 && <ul className="list-disc pl-4 mt-1 space-y-0.5">{plan.primary_route.rationale.slice(0, 4).map((r, i) => <li key={i}>{r}</li>)}</ul>}</>)}
+        {plan.defence_angles?.length > 0 && section("Key defence angles", <ul className="list-disc pl-4 space-y-0.5">{plan.defence_angles.slice(0, 6).map((a, i) => <li key={i}>{a}</li>)}</ul>)}
+        {plan.order_to_challenge?.length > 0 && section("Order to challenge evidence", <ul className="list-disc pl-4 space-y-0.5">{plan.order_to_challenge.map((b, i) => <li key={i}>{b}</li>)}</ul>)}
+        {plan.witness_attack_plan?.length > 0 && section("Witness attack plan", <ul className="list-disc pl-4 space-y-0.5">{plan.witness_attack_plan.map((b, i) => <li key={i}>{b}</li>)}</ul>)}
+        {plan.disclosure_leverage_line && section("Disclosure leverage", <p>{plan.disclosure_leverage_line}</p>)}
+        {plan.cross_examination_themes?.length > 0 && section("Cross-examination themes", <ul className="list-disc pl-4 space-y-0.5">{plan.cross_examination_themes.slice(0, 4).map((t, i) => <li key={i}>{t}</li>)}</ul>)}
+        {plan.risks_if_we_fight?.length > 0 && section("Trial risks", <ul className="list-disc pl-4 space-y-0.5">{plan.risks_if_we_fight.slice(0, 4).map((r, i) => <li key={i}>{r}</li>)}</ul>)}
+        {plan.defence_counters?.length > 0 && section("Defence counters", <ul className="space-y-1">{plan.defence_counters.slice(0, 3).map((c, i) => <li key={i}><span className="font-medium">{c.point}:</span> {c.safe_wording}</li>)}</ul>)}
+      </div>
+      </>
+      )}
+
+      <div className="mt-6 pt-4 border-t border-border/50 flex flex-col min-h-0">
+        {renderCaseNavAndEvalRunner()}
+        <LawSliceSuggestions offenceType={offenceType} currentPhase={currentPhase} hasPlan={true} />
+        <div className="mb-2 flex flex-wrap items-center gap-2">
+          <Button type="button" size="sm" variant="outline" onClick={downloadFullDebugBundle}>
+            Download debug bundle
+          </Button>
+          <span className="text-[10px] text-muted-foreground max-w-[14rem] leading-tight">
+            One JSON: this page, case, plan, chat, golden questions, eval results, device — no secrets.
+          </span>
+        </div>
+        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1">Ask about this plan</p>
+        <div className="rounded border border-border/50 bg-muted/20 px-2 py-1.5 mb-2 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] text-muted-foreground">
+          <span>Context:</span>
+          <span>Plan</span>
+          {evidenceSummary && <span>· Evidence</span>}
+          {timelineSummary && <span>· Timeline</span>}
+        </div>
+        <Button type="button" variant="outline" size="sm" className="mb-2 self-start text-xs" onClick={runProposeFlow} disabled={chatLoading}>
+          Propose summary & case theory
+        </Button>
+        {pendingProposal && (pendingProposal.caseTheoryLine || pendingProposal.agreedSummaryDetailed) && (
+          <div className="mb-3 rounded-lg border-2 border-primary/30 bg-primary/5 p-3">
+            <p className="text-xs font-semibold text-foreground mb-2">Proposed (Agree / Edit / Reject)</p>
+            {pendingProposal.caseTheoryLine && (
+              <p className="text-sm font-medium text-foreground mb-1">{pendingProposal.caseTheoryLine}</p>
+            )}
+            {pendingProposal.agreedSummaryDetailed && (
+              <p className="text-sm text-foreground whitespace-pre-wrap">{pendingProposal.agreedSummaryDetailed}</p>
+            )}
+            <div className="mt-3 flex flex-wrap gap-2">
+              <Button type="button" size="sm" onClick={handleAcceptProposal} disabled={proposalSaving}>
+                <Check className="h-3.5 w-3.5 mr-1" />
+                {proposalSaving ? "Saving…" : "Agree"}
+              </Button>
+              <Button type="button" size="sm" variant="outline" onClick={() => setEditingProposal({ ...pendingProposal })}>
+                <Pencil className="h-3.5 w-3.5 mr-1" />
+                Edit
+              </Button>
+              <Button type="button" size="sm" variant="ghost" onClick={() => setPendingProposal(null)}>
+                <X className="h-3.5 w-3.5 mr-1" />
+                Reject
+              </Button>
+            </div>
+          </div>
+        )}
+        {editingProposal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+            <Card className="w-full max-w-lg max-h-[90vh] overflow-hidden flex flex-col">
+              <div className="p-3 border-b border-border font-medium text-sm">Edit proposal</div>
+              <div className="p-3 overflow-y-auto flex-1 space-y-3">
+                <div>
+                  <label className="text-xs font-medium text-muted-foreground block mb-1">Case theory line</label>
+                  <textarea
+                    className="w-full rounded border border-border bg-background px-2 py-1.5 text-sm min-h-[60px]"
+                    value={editingProposal.caseTheoryLine ?? ""}
+                    onChange={(e) => setEditingProposal((p) => (p ? { ...p, caseTheoryLine: e.target.value } : null))}
+                    placeholder="One sentence"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs font-medium text-muted-foreground block mb-1">Agreed summary (detailed)</label>
+                  <textarea
+                    className="w-full rounded border border-border bg-background px-2 py-1.5 text-sm min-h-[120px]"
+                    value={editingProposal.agreedSummaryDetailed ?? ""}
+                    onChange={(e) => setEditingProposal((p) => (p ? { ...p, agreedSummaryDetailed: e.target.value } : null))}
+                    placeholder="2–3 paragraphs"
+                  />
+                </div>
+              </div>
+              <div className="p-3 border-t border-border flex gap-2">
+                <Button
+                  size="sm"
+                  onClick={async () => {
+                    if (!editingProposal || !caseId || proposalSaving) return;
+                    setProposalSaving(true);
+                    try {
+                      const res = await fetch(`/api/criminal/${caseId}/agreed-summary`, {
+                        method: "PATCH",
+                        headers: { "Content-Type": "application/json" },
+                        credentials: "include",
+                        body: JSON.stringify({
+                          caseTheoryLine: editingProposal.caseTheoryLine?.trim() || null,
+                          agreedSummaryDetailed: editingProposal.agreedSummaryDetailed?.trim() || null,
+                        }),
+                      });
+                      if (res.ok) {
+                        setPendingProposal(null);
+                        setEditingProposal(null);
+                      }
+                    } finally {
+                      setProposalSaving(false);
+                    }
+                  }}
+                  disabled={proposalSaving}
+                >
+                  {proposalSaving ? "Saving…" : "Save"}
+                </Button>
+                <Button size="sm" variant="outline" onClick={() => setEditingProposal(null)}>Cancel</Button>
+              </div>
+            </Card>
+          </div>
+        )}
+        <div className="flex flex-col">
+          <div
+            ref={messagesScrollRef}
+            className="min-h-[80px] max-h-64 overflow-y-auto overflow-x-hidden space-y-2 mb-3 pr-1 overscroll-contain"
+          >
+            {chatMessages.map((m, i) => (
+              <div
+                key={i}
+                className={`rounded-2xl px-3 py-2 text-sm max-w-[90%] ${m.role === "user" ? "ml-auto bg-primary text-primary-foreground rounded-br-md" : "mr-auto bg-muted/60 text-foreground rounded-bl-md"}`}
+              >
+                <p className="whitespace-pre-wrap">{m.content}</p>
+              </div>
+            ))}
+            {chatLoading && (
+              <div className="mr-auto rounded-2xl rounded-bl-md px-3 py-2 bg-muted/60 text-muted-foreground text-sm flex items-center gap-1.5">
+                <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                <span>Thinking…</span>
+              </div>
+            )}
+          </div>
+          <div className="flex gap-2 flex-shrink-0">
+            <input
+              type="text"
+              value={chatInput}
+              onChange={(e) => setChatInput(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && handleSendChat()}
+              placeholder="Ask or /disclosure, /timeline, /plan, /propose"
+              className="flex-1 rounded-full border border-border bg-background px-4 py-2 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
+              disabled={chatLoading}
+            />
+            <Button type="button" size="sm" className="rounded-full shrink-0" onClick={handleSendChat} disabled={chatLoading || !chatInput.trim()}>
+              {chatLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
+            </Button>
+          </div>
+          <div className="mt-2 pt-2 border-t border-border/50">
+            <VerdictRatingBlock caseId={caseId} target="chat" />
+          </div>
+        </div>
+      </div>
+    </Card>
+  );
+}

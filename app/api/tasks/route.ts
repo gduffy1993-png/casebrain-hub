@@ -56,7 +56,7 @@ export async function GET() {
   const supabase = getSupabaseAdminClient();
   const { data, error } = await supabase
     .from("tasks")
-    .select("id, title, description, due_at, status, case_id, created_at, updated_at")
+    .select("id, title, description, due_at, status, case_id, assigned_to, priority, created_at, updated_at")
     .eq("org_id", orgId)
     .order("due_at", { ascending: true })
     .limit(50);

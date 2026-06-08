@@ -49,7 +49,7 @@ export async function buildCasePack(
   // 1. Fetch case core details
   const { data: caseData } = await supabase
     .from("cases")
-    .select("id, title, summary, practice_area, status, created_at, updated_at")
+    .select("id, title, summary, practice_area, created_at, updated_at")
     .eq("id", caseId)
     .eq("org_id", orgId)
     .single();
@@ -142,7 +142,6 @@ export async function buildCasePack(
     caseId,
     caseTitle: caseData.title,
     practiceArea: caseData.practice_area ?? "General",
-    status: caseData.status ?? "Active",
     generatedAt: new Date().toISOString(),
     generatedByUserId: userId,
     sections: sections.filter(s => !s.isEmpty),

@@ -1,0 +1,250 @@
+
+> casebrain-hub@0.1.0 build
+> next build
+
+  Ôû▓ Next.js 14.2.15
+  - Environments: .env.local
+
+   Creating an optimized production build ...
+   Using tsconfig file: ./tsconfig.json
+   Using tsconfig file: ./tsconfig.json
+   Using tsconfig file: ./tsconfig.json
+ Ô£ô Compiled successfully
+   Skipping linting
+   Checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/85) ...
+   Generating static pages (21/85) 
+   Generating static pages (42/85) 
+   Generating static pages (63/85) 
+ Ô£ô Generating static pages (85/85)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                              Size     First Load JS
+Ôöî ãÆ /                                                    6.01 kB         142 kB
+Ôö£ ãÆ /_not-found                                          166 B          87.6 kB
+Ôö£ ãÆ /admin/org-plan                                      5.14 kB         114 kB
+Ôö£ ãÆ /analytics                                           166 B          87.6 kB
+Ôö£ ãÆ /api/admin/inject-content                            0 B                0 B
+Ôö£ ãÆ /api/admin/organisations                             0 B                0 B
+Ôö£ ãÆ /api/admin/reset-usage                               0 B                0 B
+Ôö£ ãÆ /api/awaab/[caseId]                                  0 B                0 B
+Ôö£ ãÆ /api/awaab/check/[caseId]                            0 B                0 B
+Ôö£ ãÆ /api/billing/invoices                                0 B                0 B
+Ôö£ ãÆ /api/billing/invoices/[invoiceId]                    0 B                0 B
+Ôö£ ãÆ /api/briefing                                        0 B                0 B
+Ôö£ ãÆ /api/builder/jobs                                    0 B                0 B
+Ôö£ ãÆ /api/bundle                                          0 B                0 B
+Ôö£ ãÆ /api/bundle/[caseId]                                 0 B                0 B
+Ôö£ ãÆ /api/bundle/scan/[caseId]                            0 B                0 B
+Ôö£ ãÆ /api/calendar/cases/[caseId]                         0 B                0 B
+Ôö£ ãÆ /api/case-profitability/[caseId]                     0 B                0 B
+Ôö£ ãÆ /api/case-similarity/[caseId]                        0 B                0 B
+Ôö£ ãÆ /api/cases                                           0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/analysis/partner-brief           0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/analysis/rebuild                 0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/analysis/version/latest          0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/archive                          0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/audio                            0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/bundle                           0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/bundle/contradictions            0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/bundle/issues                    0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/bundle/overview                  0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/bundle/process                   0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/bundle/search                    0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/bundle/timeline                  0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/bundle/toc                       0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/case-pack                        0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/client-update                    0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/complaint-risk                   0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/correspondence                   0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/deadlines                        0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/documents                        0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/documents/[documentId]/redflags  0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/hearing-prep                     0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/housing/damp-mould               0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/housing/health-symptoms          0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/housing/urgency                  0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/insights                         0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/instructions                     0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/key-facts                        0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/notes                            0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/opponent                         0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/outcome-insights                 0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/overview-pdf                     0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/permanent-delete                 0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/practice-area                    0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/protocol-checklist               0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/re-extract                       0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/restore                          0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/search                           0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/similar                          0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/summary                          0 B                0 B
+Ôö£ ãÆ /api/cases/[caseId]/supervisor-review                0 B                0 B
+Ôö£ ãÆ /api/checklists/limitation/[caseId]                  0 B                0 B
+Ôö£ ãÆ /api/client-expectations/[caseId]/timeline           0 B                0 B
+Ôö£ ãÆ /api/client-expectations/[caseId]/update             0 B                0 B
+Ôö£ ãÆ /api/communication/cases/[caseId]                    0 B                0 B
+Ôö£ ãÆ /api/conflicts/check                                 0 B                0 B
+Ôö£ ãÆ /api/criminal/[caseId]/aggressive-defense            0 B                0 B
+Ôö£ ãÆ /api/criminal/[caseId]/bail                          0 B                0 B
+Ôö£ ãÆ /api/criminal/[caseId]/charges                       0 B                0 B
+Ôö£ ãÆ /api/criminal/[caseId]/client-advice                 0 B                0 B
+Ôö£ ãÆ /api/criminal/[caseId]/disclosure                    0 B                0 B
+Ôö£ ãÆ /api/criminal/[caseId]/evidence-analysis             0 B                0 B
+Ôö£ ãÆ /api/criminal/[caseId]/hearings                      0 B                0 B
+Ôö£ ãÆ /api/criminal/[caseId]/letters/draft                 0 B                0 B
+Ôö£ ãÆ /api/criminal/[caseId]/loopholes                     0 B                0 B
+Ôö£ ãÆ /api/criminal/[caseId]/pace                          0 B                0 B
+Ôö£ ãÆ /api/criminal/[caseId]/probability                   0 B                0 B
+Ôö£ ãÆ /api/criminal/[caseId]/process                       0 B                0 B
+Ôö£ ãÆ /api/criminal/[caseId]/strategies                    0 B                0 B
+Ôö£ ãÆ /api/dashboard                                       0 B                0 B
+Ôö£ ãÆ /api/deadline                                        0 B                0 B
+Ôö£ ãÆ /api/debug/documents                                 0 B                0 B
+Ôö£ ãÆ /api/disclosure/[caseId]                             0 B                0 B
+Ôö£ ãÆ /api/documents/[documentId]/versions                 0 B                0 B
+Ôö£ ãÆ /api/documents/versions/[versionId]/restore          0 B                0 B
+Ôö£ ãÆ /api/draft/[caseId]                                  0 B                0 B
+Ôö£ ãÆ /api/email/cases/[caseId]                            0 B                0 B
+Ôö£ ãÆ /api/email/send                                      0 B                0 B
+Ôö£ ãÆ /api/esignature/cases/[caseId]                       0 B                0 B
+Ôö£ ãÆ /api/extract                                         0 B                0 B
+Ôö£ ãÆ /api/family/[caseId]/aggressive-defense              0 B                0 B
+Ôö£ ãÆ /api/files/[fileId]/view                             0 B                0 B
+Ôö£ ãÆ /api/guidance/[caseId]                               0 B                0 B
+Ôö£ ãÆ /api/handover/[caseId]                               0 B                0 B
+Ôö£ ãÆ /api/housing/[caseId]/aggressive-defense             0 B                0 B
+Ôö£ ãÆ /api/housing/awaabs-monitor/[caseId]                 0 B                0 B
+Ôö£ ãÆ /api/housing/compliance/[caseId]                     0 B                0 B
+Ôö£ ãÆ /api/housing/deadlines/[caseId]                      0 B                0 B
+Ôö£ ãÆ /api/housing/intake                                  0 B                0 B
+Ôö£ ãÆ /api/housing/intake-summary/[caseId]                 0 B                0 B
+Ôö£ ãÆ /api/housing/letters/preview                         0 B                0 B
+Ôö£ ãÆ /api/housing/priority/[caseId]                       0 B                0 B
+Ôö£ ãÆ /api/housing/quantum/[caseId]                        0 B                0 B
+Ôö£ ãÆ /api/housing/schedule/[caseId]                       0 B                0 B
+Ôö£ ãÆ /api/housing/supervision-pack/[caseId]               0 B                0 B
+Ôö£ ãÆ /api/housing/timeline/[caseId]                       0 B                0 B
+Ôö£ ãÆ /api/inbox/import                                    0 B                0 B
+Ôö£ ãÆ /api/intake/attach                                   0 B                0 B
+Ôö£ ãÆ /api/intake/create-case                              0 B                0 B
+Ôö£ ãÆ /api/intake/documents                                0 B                0 B
+Ôö£ ãÆ /api/intake/email                                    0 B                0 B
+Ôö£ ãÆ /api/intake/outlook                                  0 B                0 B
+Ôö£ ãÆ /api/knowledge/query                                 0 B                0 B
+Ôö£ ãÆ /api/letter                                          0 B                0 B
+Ôö£ ãÆ /api/notifications/slack                             0 B                0 B
+Ôö£ ãÆ /api/opponent-behavior/[opponentName]                0 B                0 B
+Ôö£ ãÆ /api/paywall/status                                  0 B                0 B
+Ôö£ ãÆ /api/pi-report                                       0 B                0 B
+Ôö£ ãÆ /api/pi/[caseId]/aggressive-defense                  0 B                0 B
+Ôö£ ãÆ /api/pi/case-pack/[caseId]                           0 B                0 B
+Ôö£ ãÆ /api/pi/cases/[caseId]/disbursements                 0 B                0 B
+Ôö£ ãÆ /api/pi/cases/[caseId]/hearings                      0 B                0 B
+Ôö£ ãÆ /api/pi/cases/[caseId]/medical-reports               0 B                0 B
+Ôö£ ãÆ /api/pi/cases/[caseId]/offers                        0 B                0 B
+Ôö£ ãÆ /api/pi/cases/[caseId]/oic-medco                     0 B                0 B
+Ôö£ ãÆ /api/pi/cases/[caseId]/preview-letter                0 B                0 B
+Ôö£ ãÆ /api/pi/cases/[caseId]/stage                         0 B                0 B
+Ôö£ ãÆ /api/pi/dashboard                                    0 B                0 B
+Ôö£ ãÆ /api/pi/disbursements/[disbursementId]               0 B                0 B
+Ôö£ ãÆ /api/pi/hearings/[hearingId]                         0 B                0 B
+Ôö£ ãÆ /api/pi/intake                                       0 B                0 B
+Ôö£ ãÆ /api/pi/letter-templates                             0 B                0 B
+Ôö£ ãÆ /api/pi/letter-templates/[templateId]                0 B                0 B
+Ôö£ ãÆ /api/pi/medical-reports/[reportId]                   0 B                0 B
+Ôö£ ãÆ /api/pi/offers/[offerId]                             0 B                0 B
+Ôö£ ãÆ /api/playbooks                                       0 B                0 B
+Ôö£ ãÆ /api/playbooks/run                                   0 B                0 B
+Ôö£ ãÆ /api/portal/session                                  0 B                0 B
+Ôö£ ãÆ /api/redact                                          0 B                0 B
+Ôö£ ãÆ /api/reports/custom                                  0 B                0 B
+Ôö£ ãÆ /api/reports/custom/[reportId]/execute               0 B                0 B
+Ôö£ ãÆ /api/risk-flags                                      0 B                0 B
+Ôö£ ãÆ /api/risk-flags/[flagId]                             0 B                0 B
+Ôö£ ãÆ /api/settings/firm                                   0 B                0 B
+Ôö£ ãÆ /api/settings/notifications                          0 B                0 B
+Ôö£ ãÆ /api/settlement/[caseId]/calculate                   0 B                0 B
+Ôö£ ãÆ /api/settlement/calculate                            0 B                0 B
+Ôö£ ãÆ /api/sms/send                                        0 B                0 B
+Ôö£ ãÆ /api/strategic/[caseId]/behavior                     0 B                0 B
+Ôö£ ãÆ /api/strategic/[caseId]/cpr-compliance               0 B                0 B
+Ôö£ ãÆ /api/strategic/[caseId]/leverage                     0 B                0 B
+Ôö£ ãÆ /api/strategic/[caseId]/momentum                     0 B                0 B
+Ôö£ ãÆ /api/strategic/[caseId]/move-sequence                0 B                0 B
+Ôö£ ãÆ /api/strategic/[caseId]/overview                     0 B                0 B
+Ôö£ ãÆ /api/strategic/[caseId]/scenarios                    0 B                0 B
+Ôö£ ãÆ /api/strategic/[caseId]/strategies                   0 B                0 B
+Ôö£ ãÆ /api/strategic/[caseId]/time-pressure                0 B                0 B
+Ôö£ ãÆ /api/strategic/[caseId]/vulnerabilities              0 B                0 B
+Ôö£ ãÆ /api/strategic/[caseId]/weak-spots                   0 B                0 B
+Ôö£ ãÆ /api/supervision/[caseId]                            0 B                0 B
+Ôö£ ãÆ /api/supervision/generate/[caseId]                   0 B                0 B
+Ôö£ ãÆ /api/tasks                                           0 B                0 B
+Ôö£ ãÆ /api/tasks/[taskId]                                  0 B                0 B
+Ôö£ ãÆ /api/tasks/[taskId]/calendar                         0 B                0 B
+Ôö£ ãÆ /api/team/members                                    0 B                0 B
+Ôö£ ãÆ /api/time/entries                                    0 B                0 B
+Ôö£ ãÆ /api/time/timer/active                               0 B                0 B
+Ôö£ ãÆ /api/time/timer/start                                0 B                0 B
+Ôö£ ãÆ /api/time/timer/stop                                 0 B                0 B
+Ôö£ ãÆ /api/trust/accounts                                  0 B                0 B
+Ôö£ ãÆ /api/trust/client-money                              0 B                0 B
+Ôö£ ãÆ /api/upgrade/placeholder                             0 B                0 B
+Ôö£ ãÆ /api/upload                                          0 B                0 B
+Ôö£ ãÆ /api/user/me                                         0 B                0 B
+Ôö£ ãÆ /api/wip-recovery/summary                            0 B                0 B
+Ôö£ ãÆ /bin                                                 5.63 kB        93.1 kB
+Ôö£ ãÆ /briefing                                            5 kB           92.5 kB
+Ôö£ ãÆ /builder                                             5.32 kB        97.9 kB
+Ôö£ ãÆ /cases                                               3.07 kB         101 kB
+Ôö£ ãÆ /cases/[caseId]                                      105 kB          199 kB
+Ôö£ ãÆ /cases/[caseId]/letters/[letterId]                   3.47 kB        90.9 kB
+Ôö£ ãÆ /cases/[caseId]/letters/new                          6.33 kB        93.8 kB
+Ôö£ ãÆ /cases/new/housing                                   5.12 kB        96.5 kB
+Ôö£ ãÆ /cases/new/pi                                        6.77 kB         120 kB
+Ôö£ ãÆ /compliance                                          211 B          94.5 kB
+Ôö£ ãÆ /cookies                                             211 B          94.5 kB
+Ôö£ ãÆ /dashboard                                           4.23 kB         124 kB
+Ôö£ ãÆ /documents                                           166 B          87.6 kB
+Ôö£ ãÆ /documents/[id]                                      1.5 kB         95.8 kB
+Ôö£ ãÆ /dpa                                                 211 B          94.5 kB
+Ôö£ ãÆ /housing-dashboard                                   166 B          87.6 kB
+Ôö£ ãÆ /inbox                                               166 B          87.6 kB
+Ôö£ ãÆ /intake                                              5.77 kB        93.2 kB
+Ôö£ ãÆ /knowledge                                           166 B          87.6 kB
+Ôö£ Ôùï /manifest.webmanifest                                0 B                0 B
+Ôö£ ãÆ /pi-dashboard                                        211 B          94.5 kB
+Ôö£ ãÆ /pi-report                                           211 B          94.5 kB
+Ôö£ ãÆ /portal/[token]                                      166 B          87.6 kB
+Ôö£ ãÆ /pricing                                             3.19 kB        97.5 kB
+Ôö£ ãÆ /privacy                                             211 B          94.5 kB
+Ôö£ ãÆ /risk                                                5.01 kB        97.6 kB
+Ôö£ ãÆ /search                                              211 B          94.5 kB
+Ôö£ ãÆ /security                                            211 B          94.5 kB
+Ôö£ ãÆ /settings                                            5.3 kB         92.8 kB
+Ôö£ ãÆ /sign-in/[[...sign-in]]                              2 kB            117 kB
+Ôö£ ãÆ /sign-up/[[...sign-up]]                              2 kB            117 kB
+Ôö£ Ôùï /sitemap.xml                                         0 B                0 B
+Ôö£ ãÆ /tasks                                               3.79 kB         103 kB
+Ôö£ ãÆ /team                                                211 B          94.5 kB
+Ôö£ ãÆ /templates                                           1.5 kB         95.8 kB
+Ôö£ ãÆ /templates/pi                                        6.93 kB        94.4 kB
+Ôö£ ãÆ /terms                                               211 B          94.5 kB
+Ôö£ ãÆ /upgrade                                             7.2 kB         94.7 kB
+Ôö£ ãÆ /upload                                              11.4 kB         121 kB
+Ôö£ ãÆ /user/[[...user-profile]]                            5.71 kB         122 kB
+Ôöö ãÆ /wip-recovery                                        5.09 kB        99.4 kB
++ First Load JS shared by all                            87.5 kB
+  Ôö£ chunks/2117-dd8cd5001ee95efc.js                      31.8 kB
+  Ôö£ chunks/fd9d1056-3f74361d9b6ac699.js                  53.6 kB
+  Ôöö other shared chunks (total)                          2.07 kB
+
+
+ãÆ Middleware                                             61 kB
+
+Ôùï  (Static)   prerendered as static content
+ãÆ  (Dynamic)  server-rendered on demand
+

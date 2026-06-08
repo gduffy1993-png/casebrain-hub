@@ -1,0 +1,12 @@
+{
+  "bundleId": "gbh-pike-jordan-pike",
+  "offenceLens": "violence_gbh",
+  "safeHearingLineContains": ["provisional", "contradiction"],
+  "minCourtRecordRequests": 5,
+  "minDisclosureTimetableRequests": 5,
+  "minProsecutionResponsePoints": 3,
+  "minDoNotConcede": 3,
+  "requiredProofPointIdsReferenced": ["pp-disclosure-fair-trial", "pp-cctv-bwv-999-cad"],
+  "requiredCourtRecordContains": ["unresolved"],
+  "solicitorReviewRequired": true
+}

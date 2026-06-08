@@ -1,5 +1,9 @@
 import type { MissingEvidenceItem, EvidenceRequirement, Severity, PracticeArea } from "./types/casebrain";
 import { getEvidenceChecklist, type PackEvidenceRequirement } from "./packs";
+import { frameMissingEvidenceExplanation } from "./confidenceFraming";
+import { filterEvidenceForPracticeArea } from "./strategic/practice-area-filters";
+import { dedupeMissingEvidence } from "./strategic/deduplication";
+import { shouldShowEvidenceItem } from "./strategic/practice-area-viability";
 
 /**
  * Legacy evidence requirements - kept for backwards compatibility
@@ -189,10 +193,15 @@ export function findMissingEvidence(
   caseId: string,
   caseType: string,
   existingDocuments: Array<{ name: string; type?: string; extracted_json?: unknown }>,
+  bundleText?: string, // Optional bundle text for evidence trigger gating
 ): MissingEvidenceItem[] {
   // Get requirements from the pack system (preferred) with fallback to legacy
   const normalizedType = mapCaseType(caseType);
-  const packRequirements = getRequirementsFromPack(normalizedType);
+  const packRequirements = filterEvidenceForPracticeArea(
+    getRequirementsFromPack(normalizedType),
+    normalizedType,
+    { context: "missing-evidence/requirements" },
+  );
   
   // Use pack requirements if available, otherwise fall back to legacy
   const requirements = packRequirements.length > 0 
@@ -204,16 +213,24 @@ export function findMissingEvidence(
   // Check which requirements are met
   const missingItems: MissingEvidenceItem[] = [];
 
+  // Build bundle text if not provided
+  const bundleTextForGating = bundleText || existingDocuments.map((d) => d.name || "").join(" ");
+
   for (const req of requirements) {
     const isPresent = checkEvidencePresent(req, existingDocuments);
 
     if (!isPresent) {
+      // Evidence trigger gating: only show evidence if triggers exist in bundle
+      if (!shouldShowEvidenceItem(req.label, bundleTextForGating)) {
+        continue; // Skip this evidence item - no triggers found
+      }
+
       missingItems.push({
         id: `missing-${caseId}-${req.id}`,
         caseId,
         category: req.category,
         label: req.label,
-        reason: req.description,
+        reason: frameMissingEvidenceExplanation(req.description),
         priority: req.priority as Severity,
         status: "MISSING",
         suggestedAction: getSuggestedAction(req),
@@ -221,9 +238,15 @@ export function findMissingEvidence(
     }
   }
 
+  // Hard strip + log if any civil-only leakage into criminal
+  const cleaned = filterEvidenceForPracticeArea(missingItems, normalizedType, { context: "missing-evidence/missingItems" });
+
+  // Deduplicate by label
+  const deduplicated = dedupeMissingEvidence(cleaned);
+
   // Group by category and sort by priority within each category
   const priorityOrder: Severity[] = ["CRITICAL", "HIGH", "MEDIUM", "LOW"];
-  missingItems.sort((a, b) => {
+  deduplicated.sort((a, b) => {
     // First sort by priority
     const priorityDiff = priorityOrder.indexOf(a.priority) - priorityOrder.indexOf(b.priority);
     if (priorityDiff !== 0) return priorityDiff;
@@ -232,7 +255,7 @@ export function findMissingEvidence(
     return categoryOrder.indexOf(a.category) - categoryOrder.indexOf(b.category);
   });
 
-  return missingItems;
+  return deduplicated;
 }
 
 /**
@@ -344,6 +367,20 @@ function mapCaseType(practiceArea: string): string {
   if (lower.includes("family") || lower.includes("child") || lower.includes("divorce") ||
       lower.includes("matrimonial")) {
     return "family";
+  }
+
+  // Criminal
+  if (
+    lower.includes("criminal") ||
+    lower.includes("defence") ||
+    lower.includes("defense") ||
+    lower.includes("cps") ||
+    lower.includes("pace") ||
+    lower.includes("custody") ||
+    lower.includes("interview") ||
+    lower.includes("disclosure")
+  ) {
+    return "criminal";
   }
   
   return "other_litigation";

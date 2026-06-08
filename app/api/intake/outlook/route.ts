@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@clerk/nextjs/server";
+import { requireAuthContext } from "@/lib/auth-supabase";
 import { handleEmailIntake, normalizeOutlookPayload } from "@/lib/email-intake";
 import type { OutlookIntakePayload } from "@/lib/types/casebrain";
 
@@ -11,16 +11,19 @@ const OUTLOOK_ADDON_HEADER = "x-outlook-addon-version";
  * Validate Outlook add-in authentication
  * 
  * Supports:
- * 1. Clerk session auth (if user is also logged into CaseBrain web)
+ * 1. Supabase session auth (if user is also logged into CaseBrain web)
  * 2. API key auth (for standalone Outlook add-in use)
  * 3. Future: JWT/OAuth token from Outlook identity
  */
 async function validateOutlookAuth(request: NextRequest): Promise<{ orgId: string; userId: string } | null> {
-  // First try Clerk auth (for users with active web session)
-  const { orgId, userId } = await auth();
-  
-  if (orgId && userId) {
-    return { orgId, userId };
+  // First try Supabase auth (for users with active web session)
+  try {
+    const { orgId, userId } = await requireAuthContext();
+    if (orgId && userId) {
+      return { orgId, userId };
+    }
+  } catch {
+    // Continue to API key fallback
   }
 
   // Fall back to API key auth

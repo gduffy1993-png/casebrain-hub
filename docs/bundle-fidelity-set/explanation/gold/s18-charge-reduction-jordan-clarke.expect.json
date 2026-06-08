@@ -1,0 +1,39 @@
+{
+  "bundleId": "s18-charge-reduction-jordan-clarke",
+  "missingMaterial": [
+    {
+      "issueContains": "Phone Data",
+      "status": "outstanding",
+      "sourceBasisContains": ["PENDING", "Phone"],
+      "doNotOverstateRequired": true
+    },
+    {
+      "issueContains": "MG6C",
+      "status": "outstanding",
+      "sourceBasisContains": ["incomplete", "MG6C"],
+      "doNotOverstateRequired": true
+    },
+    {
+      "issueContains": "continuity",
+      "status": "outstanding",
+      "sourceBasisContains": ["continuity", "pending"],
+      "doNotOverstateRequired": true
+    }
+  ],
+  "custodyInterview": [
+    {
+      "issueContains": "no comment",
+      "status": "served",
+      "sourceBasisContains": ["No comment", "PACE"],
+      "doNotOverstateRequired": false
+    }
+  ],
+  "disclosureDependencies": [
+    {
+      "issueContains": "MG6",
+      "status": "outstanding",
+      "sourceBasisContains": ["MG6C", "outstanding"],
+      "doNotOverstateRequired": true
+    }
+  ]
+}

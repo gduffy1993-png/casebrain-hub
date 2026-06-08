@@ -28,20 +28,44 @@ export function InsightsPanel({
   const [insights, setInsights] = useState<CaseInsights | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [banner, setBanner] = useState<{
+    severity: "warning" | "info" | "error";
+    title?: string;
+    message: string;
+  } | null>(null);
+  const [diagnostics, setDiagnostics] = useState<{
+    docCount: number;
+    rawCharsTotal: number;
+    jsonCharsTotal: number;
+    avgRawCharsPerDoc: number;
+    suspectedScanned: boolean;
+  } | null>(null);
 
   useEffect(() => {
     async function fetchInsights() {
       try {
         setIsLoading(true);
         setError(null);
+        console.log("[InsightsPanel] Fetching insights for case:", caseId);
+        
         const res = await fetch(`/api/cases/${caseId}/insights`);
+        
+        console.log("[InsightsPanel] Response status:", res.status, res.statusText);
         
         // Try to parse even if not ok - API always returns fallback insights
         let data: CaseInsights | { error?: string } | null = null;
         try {
           data = await res.json();
+          console.log("[InsightsPanel] Parsed response:", {
+            hasData: !!data,
+            hasSummary: !!(data && typeof data === "object" && "summary" in data),
+            hasRag: !!(data && typeof data === "object" && "rag" in data),
+            hasBriefing: !!(data && typeof data === "object" && "briefing" in data),
+            hasError: !!(data && typeof data === "object" && "error" in data),
+          });
         } catch (parseErr) {
           console.error("[InsightsPanel] Failed to parse response:", parseErr);
+          console.error("[InsightsPanel] Response text:", await res.text().catch(() => "Unable to read response"));
           // Create minimal fallback if parsing fails
           data = {
             summary: {
@@ -73,8 +97,25 @@ export function InsightsPanel({
           } as CaseInsights;
         }
         
+        // Extract banner and diagnostics if present
+        if (data && typeof data === "object") {
+          if ("banner" in data && data.banner) {
+            setBanner(data.banner as { severity: "warning" | "info" | "error"; title?: string; message: string });
+          }
+          if ("diagnostics" in data && data.diagnostics) {
+            setDiagnostics(data.diagnostics as {
+              docCount: number;
+              rawCharsTotal: number;
+              jsonCharsTotal: number;
+              avgRawCharsPerDoc: number;
+              suspectedScanned: boolean;
+            });
+          }
+        }
+        
         // If we got valid CaseInsights data, use it (even if status wasn't 200)
         if (data && typeof data === "object" && "summary" in data && "rag" in data) {
+          console.log("[InsightsPanel] Using valid insights data");
           setInsights(data as CaseInsights);
           setError(null); // Clear any previous error
           return;
@@ -82,9 +123,18 @@ export function InsightsPanel({
         
         // If we have partial data, use it
         if (data && typeof data === "object" && "summary" in data) {
+          console.log("[InsightsPanel] Using partial insights data (missing RAG)");
           setInsights(data as CaseInsights);
           setError(null);
           return;
+        }
+        
+        // Check for error in response
+        if (data && typeof data === "object" && "error" in data) {
+          console.error("[InsightsPanel] API returned error:", (data as { error?: string }).error);
+          setError((data as { error?: string }).error || "Failed to load insights");
+        } else {
+          console.warn("[InsightsPanel] Unexpected response format:", data);
         }
         
         // Last resort: create minimal fallback
@@ -103,7 +153,7 @@ export function InsightsPanel({
             scores: [],
           },
           briefing: {
-            overview: "AI insights generation is temporarily unavailable. Basic case data is shown below.",
+            overview: "Case insights are being generated from your case data. Please wait a moment.",
             keyStrengths: [],
             keyRisks: [],
             urgentActions: [],
@@ -118,12 +168,15 @@ export function InsightsPanel({
         });
         setError(null);
       } catch (err) {
-        console.error("[InsightsPanel] Error:", err);
+        console.error("[InsightsPanel] Fetch error:", err);
+        console.error("[InsightsPanel] Error type:", err instanceof Error ? err.constructor.name : typeof err);
+        console.error("[InsightsPanel] Error message:", err instanceof Error ? err.message : String(err));
+        console.error("[InsightsPanel] Error stack:", err instanceof Error ? err.stack : "No stack trace");
         // Even on error, show a minimal fallback instead of error state
         setInsights({
           summary: {
             headline: "Case insights",
-            oneLiner: "AI insights temporarily unavailable.",
+            oneLiner: "Loading case insights...",
             stageLabel: null,
             practiceArea: null,
             clientName: null,
@@ -135,7 +188,7 @@ export function InsightsPanel({
             scores: [],
           },
           briefing: {
-            overview: "AI insights generation is temporarily unavailable. Basic case data is shown below.",
+            overview: "Case insights are being generated from your case data. Please wait a moment.",
             keyStrengths: [],
             keyRisks: [],
             urgentActions: [],
@@ -185,7 +238,7 @@ export function InsightsPanel({
         <CardContent>
           <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 p-3">
             <p className="text-xs text-amber-400">
-              Insights temporarily unavailable. Basic case data is still shown below.
+              Unable to load insights. Please refresh the page or try again later.
             </p>
           </div>
         </CardContent>
@@ -236,6 +289,52 @@ export function InsightsPanel({
         </p>
       </CardHeader>
       <CardContent className="space-y-4">
+        {/* Banner for scanned PDFs or other warnings */}
+        {banner && (
+          <div
+            className={`rounded-xl border p-4 ${
+              banner.severity === "warning"
+                ? "border-amber-500/30 bg-amber-500/10"
+                : banner.severity === "error"
+                  ? "border-red-500/30 bg-red-500/10"
+                  : "border-blue-500/30 bg-blue-500/10"
+            }`}
+          >
+            <div className="flex items-start gap-2">
+              <AlertTriangle
+                className={`h-5 w-5 ${
+                  banner.severity === "warning"
+                    ? "text-amber-400"
+                    : banner.severity === "error"
+                      ? "text-red-400"
+                      : "text-blue-400"
+                }`}
+              />
+              <div className="flex-1">
+                {banner.title && (
+                  <p
+                    className={`font-medium text-sm ${
+                      banner.severity === "warning"
+                        ? "text-amber-300"
+                        : banner.severity === "error"
+                          ? "text-red-300"
+                          : "text-blue-300"
+                    }`}
+                  >
+                    {banner.title}
+                  </p>
+                )}
+                <p className="mt-1 text-xs text-white/80">{banner.message}</p>
+                {diagnostics && (
+                  <p className="mt-2 text-[10px] text-white/60">
+                    Docs: {diagnostics.docCount} • Extracted text: {diagnostics.rawCharsTotal.toLocaleString()} chars • Extracted data: {diagnostics.jsonCharsTotal.toLocaleString()} chars
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+        
         {/* Row 1: Snapshot + Overall RAG */}
         <div className="grid gap-4 md:grid-cols-2">
           {/* Snapshot */}

@@ -1,0 +1,10 @@
+{
+  "bundleId": "pilot-3-marcus-vale",
+  "offenceLens": "fraud",
+  "safeHearingLineContains": ["provisional", "papers"],
+  "minCourtRecordRequests": 4,
+  "minDisclosureTimetableRequests": 4,
+  "requiredProofPointIdsReferenced": ["pp-bank-source-material", "pp-disclosure-fair-trial"],
+  "requiredCourtRecordContains": ["bank"],
+  "solicitorReviewRequired": false
+}

@@ -276,7 +276,7 @@ export async function generateSupervisionPack(
     recommendedActions,
     outstandingTasks: handoverPack.taskList,
     disclaimer:
-      "This supervision pack is generated from extracted evidence and case data. It is procedural guidance only and does not constitute legal advice. All facts, dates, and recommendations should be verified independently by a qualified legal professional.",
+      "This supervision pack is generated from extracted evidence and case data. It is procedural guidance only and not legal advice. All facts, dates, and recommendations should be verified independently by a qualified legal professional.",
   };
 }
 

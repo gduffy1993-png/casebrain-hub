@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/Toast";
 import { ArrowRight, ArrowLeft } from "lucide-react";
+import { IntakeConflictCheck } from "@/components/intake/IntakeConflictCheck";
 
 type HousingIntakeWizardProps = {
   userId: string;
@@ -32,6 +33,7 @@ type FormData = {
 export function HousingIntakeWizard({ userId, orgId }: HousingIntakeWizardProps) {
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [hasConflictBlock, setHasConflictBlock] = useState(false);
   const router = useRouter();
   const pushToast = useToast((state) => state.push);
 
@@ -49,7 +51,7 @@ export function HousingIntakeWizard({ userId, orgId }: HousingIntakeWizardProps)
 
   const handleSubmit = useCallback(async () => {
     if (!formData.caseTitle || !formData.tenantName || !formData.propertyAddress) {
-      pushToast("Please complete all required fields.");
+      pushToast("Please complete all required fields.", "error");
       return;
     }
 
@@ -67,7 +69,7 @@ export function HousingIntakeWizard({ userId, orgId }: HousingIntakeWizardProps)
       }
 
       const data = await response.json();
-      pushToast("Housing disrepair case created successfully.");
+      pushToast("Housing disrepair case created successfully.", "success");
       router.push(`/cases/${data.caseId}`);
     } catch (error) {
       pushToast(
@@ -229,6 +231,20 @@ export function HousingIntakeWizard({ userId, orgId }: HousingIntakeWizardProps)
 
         {step === 3 && (
           <div className="space-y-4">
+            {/* Conflict Check */}
+            {(formData.tenantName || formData.landlordName) && (
+              <div className="mb-6">
+                <IntakeConflictCheck
+                  orgId={orgId}
+                  clientName={formData.tenantName}
+                  opponentName={formData.landlordName}
+                  onConflictCheckComplete={(hasConflicts) => {
+                    setHasConflictBlock(hasConflicts);
+                  }}
+                />
+              </div>
+            )}
+            
             <h2 className="text-lg font-semibold text-accent">Property Defects</h2>
             <p className="text-sm text-accent/60">
               Add the main defects reported. You can add more after case creation.

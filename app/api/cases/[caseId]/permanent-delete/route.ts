@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAuthContext } from "@/lib/auth";
 import { getSupabaseAdminClient } from "@/lib/supabase";
+import { permanentlyDeleteCaseData } from "@/lib/cases/permanently-delete-case-data";
 
 type RouteParams = {
   params: { caseId: string };
@@ -34,49 +35,7 @@ export async function DELETE(request: NextRequest, { params }: RouteParams) {
       );
     }
 
-    // Delete related records first (cascade doesn't always work perfectly)
-    // Delete in order of dependencies
-    
-    // Delete letters
-    await supabase.from("letters").delete().eq("case_id", caseId);
-    
-    // Delete documents
-    await supabase.from("documents").delete().eq("case_id", caseId);
-    
-    // Delete tasks
-    await supabase.from("tasks").delete().eq("case_id", caseId);
-    
-    // Delete risk flags
-    await supabase.from("risk_flags").delete().eq("case_id", caseId);
-    
-    // Delete deadlines
-    await supabase.from("deadlines").delete().eq("case_id", caseId);
-    
-    // Delete case notes
-    await supabase.from("case_notes").delete().eq("case_id", caseId);
-    
-    // Delete PI-specific data if exists
-    await supabase.from("pi_cases").delete().eq("id", caseId);
-    await supabase.from("pi_medical_reports").delete().eq("case_id", caseId);
-    await supabase.from("pi_offers").delete().eq("case_id", caseId);
-    await supabase.from("pi_hearings").delete().eq("case_id", caseId);
-    await supabase.from("pi_disbursements").delete().eq("case_id", caseId);
-    
-    // Delete Housing-specific data if exists
-    await supabase.from("housing_cases").delete().eq("id", caseId);
-    await supabase.from("housing_defects").delete().eq("case_id", caseId);
-    await supabase.from("housing_timeline").delete().eq("case_id", caseId);
-    await supabase.from("housing_landlord_responses").delete().eq("case_id", caseId);
-
-    // Finally, delete the case itself
-    const { error: deleteError } = await supabase
-      .from("cases")
-      .delete()
-      .eq("id", caseId);
-
-    if (deleteError) {
-      throw deleteError;
-    }
+    await permanentlyDeleteCaseData(supabase, caseId);
 
     // Log the permanent deletion
     await supabase.from("audit_log").insert({

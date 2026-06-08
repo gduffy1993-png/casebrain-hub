@@ -1,0 +1,10 @@
+{
+  "bundleId": "pilot-3-kian-doyle",
+  "offenceLens": "pwits",
+  "safeHearingLineContains": ["provisional", "Solicitor review"],
+  "minCourtRecordRequests": 4,
+  "minDisclosureTimetableRequests": 4,
+  "requiredProofPointIdsReferenced": ["pp-phone-attribution-messages", "pp-disclosure-fair-trial"],
+  "requiredCourtRecordContains": ["phone"],
+  "solicitorReviewRequired": true
+}

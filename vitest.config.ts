@@ -11,6 +11,8 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "."),
+      // Next.js "server-only" throws in plain Node. In tests, we treat it as a no-op.
+      "server-only": path.resolve(__dirname, "test/stubs/server-only.ts"),
     },
   },
 });

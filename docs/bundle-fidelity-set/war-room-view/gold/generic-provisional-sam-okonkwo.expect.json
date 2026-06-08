@@ -1,0 +1,9 @@
+{
+  "bundleId": "generic-provisional-sam-okonkwo",
+  "offenceLens": "generic_provisional",
+  "safeHearingLineContains": ["provisional", "Solicitor review"],
+  "minCourtRecordRequests": 2,
+  "minDisclosureTimetableRequests": 2,
+  "requiredProofPointIdsReferenced": ["pp-disclosure-fair-trial"],
+  "solicitorReviewRequired": true
+}

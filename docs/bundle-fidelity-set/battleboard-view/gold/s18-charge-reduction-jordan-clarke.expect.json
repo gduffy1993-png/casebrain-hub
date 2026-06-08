@@ -1,0 +1,10 @@
+{
+  "bundleId": "s18-charge-reduction-jordan-clarke",
+  "offenceLens": "violence_gbh",
+  "primaryRouteContains": ["Violence", "injury"],
+  "requiredProofPointsAttacked": ["pp-intent-really-serious-harm", "pp-disclosure-fair-trial"],
+  "minMissingItems": 2,
+  "requiredMissingContains": ["Phone Data", "MG6C"],
+  "minDisclosureChasePriorities": 1,
+  "humanReviewRequired": true
+}

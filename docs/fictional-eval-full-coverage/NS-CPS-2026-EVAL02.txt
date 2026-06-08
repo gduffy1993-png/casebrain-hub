@@ -1,0 +1,102 @@
+===============================================================================
+NORTHSHIRE CPS / POLICE — FICTIONAL BUNDLE (TEST DATA ONLY)
+===============================================================================
+Reference: NS-CPS-2026-EVAL02
+Short title: Fraud card misuse + drug drive + careless (eval coverage)
+Accused: TAYLOR BRYCE (DOB 11/02/1991)
+Other party / key witness: MORGAN LEE (DOB 30/07/1988)
+Second witness named (fiction): OFFICER DC PATEL (statement extract referenced in index only — not full statement in excerpt)
+Stage: First appearance | Messiness: Messy
+Primary eval hook: MG5 transaction total vs MG11 card terminal roll
+===============================================================================
+
+NOTE: This is fictional training data. It is not legal advice and not a real disclosure bundle.
+
+=== SECTION: COVER_INDEX ===
+
+INDEX (fictional)
+
+Document                                              | Note
+------------------------------------------------------|------------------------------
+Charge sheet extract                                  | Below — two main count tags
+MG5 — Case summary                                    | Draft narrative
+MG6(a) — Schedule of initial disclosure              | Served vs outstanding
+MG11 — Key witness statement                          | Terminal / ANPR lines
+CCTV / 999 / CAD / BWV                               | Extract notes
+Interview summary                                     | Roadside + messages
+Disclosure chase note                                 | Fictional email / letter
+Exhibit list                                          | Verbatim EX- refs
+
+=== SECTION: CHARGE ===
+
+CHARGE SHEET — EXTRACT (FICTION)
+Defendant: TAYLOR BRYCE
+Offence(s) as tag (fiction): (1) Fraud by false representation — card terminal misuse (£1,240.50 vs £1,198.20 reconciliation issue). (2) Drug driving — cannabis metabolite over prescribed limit (fictional summary). (3) Driving without due care — ANPR-linked manner of driving (fictional).
+Plea: Not guilty (fictional) on all counts.
+Co-defendants, separate counts on face of extract (fiction): none / not in excerpt (single defendant; multiple counts on one extract).
+
+=== SECTION: MG5 ===
+
+MG5 — CASE SUMMARY (DRAFT)
+Allegation (fiction): The Crown say the defendant misused a card terminal to obtain a wrongful credit of £1,240.50 while MG11 terminal roll excerpt shows £1,198.20; drove with cannabis metabolite over limit; and drove without due care following ANPR trigger at Northshire A-road.
+The defence account (fiction): denies fraud sum relied on; disputes drug-drive procedure window; disputes precise mechanics (e.g. push vs punch, or intent vs recklessness) where those stock lines appear in the template paragraph.
+Grounds for dispute / friction (fiction): MG5 transaction total vs MG11 card terminal roll; roadside oral fluid timing vs lab receipt time on MG6 note.
+CCTV / tech: at least one timing, continuity, or extraction issue appears in the schedule; dashcam partial served.
+
+=== SECTION: MG6 ===
+
+MG6(a) — SCHEDULE OF INITIAL DISCLOSURE (FICTION)
+Category                        | Served (initial)                        | Awaiting / Retained / Note
+--------------------------------|------------------------------------------|----------------------------------------
+MG5 case summary                | yes (draft)                             | final after reconciliation
+MG11 key witness                | yes (possibly draft)                    | signed copy if draft
+CCTV / footage list             | yes (partial / served)                  | continuity statement / engineer note
+999 calls                       | served (extract)                        | full master audio outstanding
+CAD / dispatch                  | partial print served                    | fuller narrative attachment
+Forensics / medical             | strategy note served                    | lab report / GP records
+Continuity / chain              | draft or unsigned                       | corrected continuity to be provided
+ANPR / telematics               | ANPR hit log extract served             | full telematics download from hire vehicle awaited
+Roadside / intox procedure      | MGDD procedural form served (fiction)   | full custody suite CCTV segment awaited (listed only here as awaited item)
+Phones / downloads              | messages PDF partial served             | full device imaging continuity awaited
+Example “tension” note (fiction): MG5 transaction total vs MG11 card terminal roll.
+
+=== SECTION: MG11 ===
+
+MG11 — KEY WITNESS STATEMENT (EXTRACT)
+Status marker (fiction): draft statement (signature block pending).
+I describe what I saw / heard as best as I can. I am aware that some timing and detail may be uncertain.
+I mention that CCTV and/or 999 material exists but that the version served might be incomplete or extracted.
+Terminal roll (fiction): I refer to the card terminal roll line £1,198.20 for the shift in question — Crown MG5 narrative uses £1,240.50; bundle text flags reconciliation dispute only.
+
+=== SECTION: CCTV_999_CAD ===
+
+CCTV / 999 / CAD / BWV — EXTRACTS (FICTION)
+CCTV note: dashcam partial served; continuity issues flagged (draft / unsigned).
+999 note: partial extract served; full master awaited or flagged for reconciliation.
+CAD note: dispatch line present; fuller log or narrative attachment listed on MG6.
+
+=== SECTION: DISCLOSURE ===
+
+DISCLOSURE CHASE — EXTRACT (FICTION)
+Email: “Please confirm outstanding items so we can update the MG5 narrative and reconcile the schedule before next hearing.”
+
+=== SECTION: INTERVIEW ===
+
+INTERVIEW SUMMARY — IR-EVAL02 (FICTIONAL EXTRACT)
+Caution given. Defendant gives partial account: denies core allegation or claims alternative explanation.
+No comment on certain technical matters; requests full disclosure of the CCTV/999 scope.
+Roadside (fiction): summary records oral fluid procedure and “no comment on lab chain timing”; requests disclosure of full lab pack and ANPR calibration log.
+
+=== SECTION: EXHIBITS ===
+
+EXHIBIT LIST (FICTION)
+EX-CCTV-EVAL02 (served)
+EX-999-TXT (extract; served)
+EX-CAD-809902 (partial print)
+EX-ANPR-EVAL02 (hit log extract)
+EX-MGDD-FORM (fictional roadside form)
+EX-MG6-EMAIL (chase)
+
+===============================================================================
+END OF FILE — NS-CPS-2026-EVAL02
+===============================================================================

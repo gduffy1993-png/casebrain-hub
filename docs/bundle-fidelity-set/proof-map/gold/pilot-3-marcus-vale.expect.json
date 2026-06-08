@@ -1,0 +1,16 @@
+{
+  "bundleId": "pilot-3-marcus-vale",
+  "offenceLens": "fraud",
+  "proofPointIds": [
+    "pp-dishonest-representation",
+    "pp-account-control",
+    "pp-transaction-trail",
+    "pp-bank-source-material",
+    "pp-device-account-attribution",
+    "pp-disclosure-fair-trial"
+  ],
+  "minLinks": 15,
+  "requiredLinkTypes": ["missing", "disclosure_chase"],
+  "requiredMissingIssues": ["bank export", "mailbox"],
+  "humanReviewRequired": false
+}

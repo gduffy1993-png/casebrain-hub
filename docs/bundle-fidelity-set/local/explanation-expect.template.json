@@ -1,0 +1,79 @@
+{
+  "bundleId": "local-000-example",
+  "fictional": false,
+  "label": "Local case — copy to gitignored case folder only",
+  "notes": "Copy to artifacts/bundle-fidelity-local/cases/<case-id>/explanation-expect.json — never commit real client expects.",
+  "missingMaterial": [
+    {
+      "issueContains": "CCTV",
+      "status": "partial",
+      "sourceBasisContains": ["stills", "master"],
+      "doNotOverstateRequired": true
+    },
+    {
+      "issueContains": "999 audio",
+      "status": "outstanding",
+      "sourceBasisContains": ["999", "outstanding"],
+      "doNotOverstateRequired": true
+    },
+    {
+      "issueContains": "CAD incident log",
+      "status": "outstanding",
+      "sourceBasisContains": ["CAD", "outstanding"],
+      "doNotOverstateRequired": true
+    },
+    {
+      "issueContains": "BWV",
+      "status": "outstanding",
+      "sourceBasisContains": ["BWV", "outstanding"],
+      "doNotOverstateRequired": true
+    },
+    {
+      "issueContains": "expert/medical/forensic",
+      "status": "outstanding",
+      "sourceBasisContains": ["expert", "outstanding"],
+      "doNotOverstateRequired": true
+    },
+    {
+      "issueContains": "interview audio",
+      "status": "outstanding",
+      "sourceBasisContains": ["interview", "outstanding"],
+      "doNotOverstateRequired": true
+    },
+    {
+      "issueContains": "Custody CCTV",
+      "status": "outstanding",
+      "sourceBasisContains": ["Custody", "outstanding"],
+      "doNotOverstateRequired": true
+    }
+  ],
+  "contradictions": [
+    {
+      "issueContains": "timing",
+      "reconciliationStatus": "conflicting",
+      "sourceBasisContains": ["CAD", "witness"]
+    }
+  ],
+  "custodyInterview": [
+    {
+      "issueContains": "pre-interview",
+      "status": "outstanding",
+      "sourceBasisContains": ["pre-interview", "incomplete"],
+      "doNotOverstateRequired": true
+    },
+    {
+      "issueContains": "no comment",
+      "status": "served",
+      "sourceBasisContains": ["no comment"],
+      "doNotOverstateRequired": false
+    }
+  ],
+  "disclosureDependencies": [
+    {
+      "issueContains": "MG6",
+      "status": "outstanding",
+      "sourceBasisContains": ["MG6", "outstanding"],
+      "doNotOverstateRequired": true
+    }
+  ]
+}

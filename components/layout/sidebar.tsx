@@ -10,7 +10,9 @@ import type { PracticeArea } from "@/lib/types/casebrain";
 import {
   AlertTriangle,
   BarChart2,
+  Building2,
   CalendarClock,
+  Gavel,
   CheckSquare,
   Code,
   GitBranch,
@@ -33,7 +35,16 @@ import {
   UserCheck,
   GraduationCap,
 } from "lucide-react";
+import { WhatsAppButton } from "@/components/support/WhatsAppButton";
 import type { ReactNode } from "react";
+import { Fragment } from "react";
+import { createClient } from "@/lib/supabase/browser";
+import {
+  CRIMINAL_PILOT_NAV_HREFS,
+  isCriminalPilotMode,
+  isPilotDemoUploadDisabled,
+  shouldShowInternalDevTools,
+} from "@/lib/pilot-mode";
 
 type NavItem = {
   label: string;
@@ -44,6 +55,7 @@ type NavItem = {
   hasRoleFilter?: boolean;
   practiceArea?: string;
   usePracticeAreaRoles?: boolean; // If true, show practice-area-specific roles instead of general roles
+  hideFromNav?: boolean; // Criminal-first: hidden from sidebar for now (per plan)
 };
 
 type SolicitorRole = 
@@ -57,6 +69,7 @@ type SolicitorRole =
   | "housing_solicitor"
   | "pi_solicitor"
   | "clinical_neg_solicitor"
+  | "criminal_solicitor"
   | "general_litigation_solicitor";
 
 type RoleOption = {
@@ -90,13 +103,27 @@ const PRACTICE_AREA_ROLE_OPTIONS: RoleOption[] = [
   { value: "housing_solicitor", label: "Housing Solicitor", icon: <Home className="h-3 w-3" />, practiceArea: "housing_disrepair" },
   { value: "pi_solicitor", label: "PI Solicitor", icon: <BriefcaseMedical className="h-3 w-3" />, practiceArea: "personal_injury" },
   { value: "clinical_neg_solicitor", label: "Clinical Neg Solicitor", icon: <BriefcaseMedical className="h-3 w-3" />, practiceArea: "clinical_negligence" },
+  { value: "criminal_solicitor", label: "Criminal Defence Solicitor", icon: <Shield className="h-3 w-3" />, practiceArea: "criminal" },
   { value: "general_litigation_solicitor", label: "General Litigation Solicitor", icon: <FileText className="h-3 w-3" />, practiceArea: "other_litigation" },
 ];
+
+/** Pilot / criminal-first: Cases submenu shows only list + criminal defence (set NEXT_PUBLIC_SIDEBAR_ALL_PRACTICE_AREAS=true to restore full list). */
+const showAllPracticeAreasInCasesNav = process.env.NEXT_PUBLIC_SIDEBAR_ALL_PRACTICE_AREAS === "true";
+const CASES_SIDEBAR_ROLE_OPTIONS: RoleOption[] = showAllPracticeAreasInCasesNav
+  ? PRACTICE_AREA_ROLE_OPTIONS
+  : PRACTICE_AREA_ROLE_OPTIONS.filter((r) => r.value === "all" || r.value === "criminal_solicitor");
 
 const labsEnabled = process.env.NEXT_PUBLIC_ENABLE_LABS === "true";
 
 const NAV_ITEMS: NavItem[] = [
+  { label: "Court Today", href: "/court-today", icon: <Gavel className="h-4 w-4" /> },
+  {
+    label: "Supervisor Queue",
+    href: "/supervisor-queue",
+    icon: <Shield className="h-4 w-4" />,
+  },
   { label: "Dashboard", href: "/dashboard", icon: <Home className="h-4 w-4" /> },
+  { label: "Police station", href: "/police-station", icon: <Building2 className="h-4 w-4" /> },
   // Compliance and Team tabs hidden for v1 pilot - code preserved but not shown in nav
   // { 
   //   label: "Compliance", 
@@ -137,7 +164,7 @@ const NAV_ITEMS: NavItem[] = [
     label: "Analytics",
     href: "/analytics",
     icon: <BarChart2 className="h-4 w-4" />,
-    labsOnly: true,
+    hideFromNav: true,
   },
   {
     label: "Builder",
@@ -177,6 +204,7 @@ const NAV_ITEMS: NavItem[] = [
     label: "Templates",
     href: "/templates",
     icon: <FileText className="h-4 w-4" />,
+    hideFromNav: true,
   },
   {
     label: "Documents",
@@ -188,6 +216,20 @@ const NAV_ITEMS: NavItem[] = [
     label: "Search",
     href: "/search",
     icon: <Search className="h-4 w-4" />,
+  },
+  {
+    label: "Golden Sweep",
+    href: "/eval",
+    icon: <BarChart2 className="h-4 w-4" />,
+    hideFromNav: true,
+    labsOnly: true,
+  },
+  {
+    label: "Battleboard Sweep",
+    href: "/battleboard-sweep",
+    icon: <BarChart2 className="h-4 w-4" />,
+    hideFromNav: true,
+    labsOnly: true,
   },
   {
     label: "Bin",
@@ -208,6 +250,14 @@ function SidebarContent() {
   const { setSeniority } = useSeniority();
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
   const [selectedRoles, setSelectedRoles] = useState<Record<string, SolicitorRole>>({});
+  const [userId, setUserId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      setUserId(user?.id ?? null);
+    });
+  }, []);
 
   // Load selected roles from localStorage
   useEffect(() => {
@@ -226,17 +276,20 @@ function SidebarContent() {
     const newRoles = { ...selectedRoles, [itemKey]: role };
     setSelectedRoles(newRoles);
     localStorage.setItem("sidebar_selected_roles", JSON.stringify(newRoles));
-    
-    // Update URL if on cases page
-    if (pathname?.startsWith("/cases")) {
-      const currentUrl = window.location.href;
-      const url = new URL(currentUrl);
+
+    // Only sync URL on the cases list. On /cases/[caseId] (or nested routes), the role row's
+    // onClick navigates to /cases?... — if we push here first we stay on the case page and
+    // Criminal Defense appears to "do nothing".
+    const onCasesList =
+      pathname === "/cases" || pathname === "/cases/";
+    if (onCasesList) {
+      const url = new URL(window.location.href);
       if (role === "all") {
         url.searchParams.delete("role");
       } else {
         url.searchParams.set("role", role);
       }
-      router.push(url.pathname + url.search);
+      router.push(`${url.pathname}${url.search}`);
     }
   };
 
@@ -250,12 +303,20 @@ function SidebarContent() {
     setExpandedItems(newExpanded);
   };
 
-  const visibleItems = NAV_ITEMS.filter(
-    (item) => !item.labsOnly || labsEnabled,
-  );
+  const pilotNavActive = isCriminalPilotMode() && !shouldShowInternalDevTools(userId);
+  const pilotNavSet = new Set<string>(CRIMINAL_PILOT_NAV_HREFS);
+
+  const pilotUploadHidden = pilotNavActive && isPilotDemoUploadDisabled(userId);
+
+  const visibleItems = NAV_ITEMS.filter((item) => {
+    if (item.hideFromNav) return false;
+    if (pilotUploadHidden && item.href === "/upload") return false;
+    if (pilotNavActive && !pilotNavSet.has(item.href)) return false;
+    return !item.labsOnly || labsEnabled || shouldShowInternalDevTools(userId);
+  });
 
   return (
-    <aside className="flex h-full w-64 flex-col border-r border-white/10 bg-surface/50 backdrop-blur-xl">
+    <aside className="flex h-full w-64 flex-col border-r border-slate-800 bg-slate-900 text-slate-100">
       {/* Logo Section */}
       <div className="flex items-center gap-3 px-6 py-6">
         <div className="relative">
@@ -266,9 +327,9 @@ function SidebarContent() {
           <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary to-secondary opacity-50 blur-xl" />
         </div>
         <div>
-          <p className="text-base font-bold text-accent">CaseBrain</p>
-          <p className="text-[10px] uppercase tracking-widest text-primary font-semibold">
-            Intelligent Legal Workspace
+          <p className="text-base font-bold text-white">CaseBrain</p>
+          <p className="text-[10px] uppercase tracking-widest text-slate-400 font-semibold">
+            Criminal defence workflow
           </p>
         </div>
       </div>
@@ -276,6 +337,14 @@ function SidebarContent() {
       {/* Navigation */}
       <nav className="flex-1 space-y-1 px-3 overflow-y-auto">
         {visibleItems.map((item) => {
+          const sectionLabel =
+            item.href === "/court-today"
+              ? "Court diary"
+              : item.href === "/cases"
+                ? "Case work"
+                : item.href === "/dashboard"
+                  ? "Workspace"
+                  : null;
           const isActive =
             pathname === item.href || pathname?.startsWith(`${item.href}/`);
           const itemKey = item.href;
@@ -284,7 +353,13 @@ function SidebarContent() {
 
           if (item.hasRoleFilter) {
             return (
-              <div key={item.href} className="space-y-1">
+              <Fragment key={item.href}>
+                {sectionLabel && (
+                  <p className="px-3 pt-3 pb-1 text-[10px] font-semibold uppercase tracking-wider text-slate-500 first:pt-1">
+                    {sectionLabel}
+                  </p>
+                )}
+              <div className="space-y-1">
                 <div className="flex items-center gap-1">
                   <button
                     onClick={() => toggleExpanded(itemKey)}
@@ -341,8 +416,8 @@ function SidebarContent() {
                 </div>
                 
                 {isExpanded && (() => {
-                  const roleOptions = item.usePracticeAreaRoles 
-                    ? PRACTICE_AREA_ROLE_OPTIONS 
+                  const roleOptions = item.usePracticeAreaRoles
+                    ? CASES_SIDEBAR_ROLE_OPTIONS
                     : GENERAL_ROLE_OPTIONS;
                   
                   return (
@@ -408,12 +483,18 @@ function SidebarContent() {
                   );
                 })()}
               </div>
+              </Fragment>
             );
           }
 
           return (
+            <Fragment key={item.href}>
+              {sectionLabel && (
+                <p className="px-3 pt-3 pb-1 text-[10px] font-semibold uppercase tracking-wider text-slate-500 first:pt-1">
+                  {sectionLabel}
+                </p>
+              )}
             <Link
-              key={item.href}
               href={item.href}
               className={clsx(
                 "group flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-200",
@@ -440,21 +521,31 @@ function SidebarContent() {
                 <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
               )}
             </Link>
+            </Fragment>
           );
         })}
       </nav>
 
       {/* Footer */}
-      <div className="border-t border-white/10 px-4 py-4">
-        <div className="rounded-xl bg-gradient-to-r from-primary/10 to-secondary/10 p-4">
-          <p className="text-xs font-medium text-accent-soft">
-            CaseBrain Hub © {new Date().getFullYear()}
-          </p>
-          <p className="mt-1 text-[10px] text-accent-muted">
-            All actions are logged for audit compliance.
+      {pilotNavActive ? (
+        <div className="border-t border-white/10 px-4 py-4">
+          <p className="text-[10px] text-slate-500 leading-relaxed">
+            CaseBrain · Criminal defence pilot
           </p>
         </div>
-      </div>
+      ) : (
+        <div className="border-t border-white/10 px-4 py-4 space-y-3">
+          <WhatsAppButton />
+          <div className="rounded-xl bg-gradient-to-r from-primary/10 to-secondary/10 p-4">
+            <p className="text-xs font-medium text-accent-soft">
+              CaseBrain Hub © {new Date().getFullYear()}
+            </p>
+            <p className="mt-1 text-[10px] text-accent-muted">
+              All actions are logged for audit compliance.
+            </p>
+          </div>
+        </div>
+      )}
     </aside>
   );
 }
@@ -462,7 +553,7 @@ function SidebarContent() {
 export function Sidebar() {
   return (
     <Suspense fallback={
-      <aside className="flex h-full w-64 flex-col border-r border-white/10 bg-surface/50 backdrop-blur-xl">
+      <aside className="flex h-full w-64 flex-col border-r border-slate-800 bg-slate-900 text-slate-100">
         <div className="flex items-center gap-3 px-6 py-6">
           <div className="h-11 w-11 rounded-xl bg-surface-muted animate-pulse" />
           <div className="space-y-2">

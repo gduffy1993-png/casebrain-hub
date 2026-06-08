@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { requireAuthContext } from "@/lib/auth";
 import { getSupabaseAdminClient } from "@/lib/supabase";
+import { getTrialStatus } from "@/lib/paywall/trialLimits";
+import { trialLimit402Body } from "@/lib/paywall/trialLimit402";
 
 export const runtime = "nodejs";
 
@@ -17,6 +19,21 @@ export async function POST(request: Request) {
   }
 
   const supabase = getSupabaseAdminClient();
+
+  // Enforce trial limits: block creating a new case if at case limit or trial expired
+  const trialStatus = await getTrialStatus({
+    supabase,
+    orgId,
+    userId,
+    email: null,
+  });
+  if (trialStatus.isBlocked) {
+    const reason = trialStatus.reason ?? "TRIAL_EXPIRED";
+    return NextResponse.json(
+      trialLimit402Body(reason, trialStatus),
+      { status: 402 },
+    );
+  }
 
   const { data: document } = await supabase
     .from("documents")
@@ -53,6 +70,12 @@ export async function POST(request: Request) {
     practiceArea = "pi";
   } else if (docNameLower.includes("clinical") || docNameLower.includes("negligence") || docNameLower.includes("medical")) {
     practiceArea = "clinical_negligence";
+  } else if (
+    docNameLower.includes("mg5") || docNameLower.includes("disclosure") || docNameLower.includes("charge") ||
+    docNameLower.includes("custody") || docNameLower.includes("bundle") || docNameLower.includes("cctv") ||
+    docNameLower.includes("custody record") || docNameLower.includes("police") || docNameLower.includes("criminal")
+  ) {
+    practiceArea = "criminal";
   }
 
   const { data: newCase, error: caseError } = await supabase
@@ -85,6 +108,18 @@ export async function POST(request: Request) {
       { error: "Failed to attach document to case" },
       { status: 500 },
     );
+  }
+
+  // Ensure criminal cases have a criminal_cases row (for list, offence, next hearing)
+  if (practiceArea === "criminal") {
+    try {
+      await supabase.from("criminal_cases").upsert(
+        { id: newCase.id, org_id: orgId },
+        { onConflict: "id" }
+      );
+    } catch {
+      // Non-fatal
+    }
   }
 
   return NextResponse.json({ caseId: newCase.id });

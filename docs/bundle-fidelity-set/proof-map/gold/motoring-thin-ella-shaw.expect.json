@@ -1,0 +1,14 @@
+{
+  "bundleId": "motoring-thin-ella-shaw",
+  "offenceLens": "motoring",
+  "proofPointIds": [
+    "pp-driving-standard",
+    "pp-driver-identification",
+    "pp-collision-causation",
+    "pp-disclosure-fair-trial"
+  ],
+  "minLinks": 6,
+  "requiredLinkTypes": ["missing", "disclosure_chase"],
+  "requiredMissingIssues": ["Dashcam", "Collision expert"],
+  "humanReviewRequired": false
+}

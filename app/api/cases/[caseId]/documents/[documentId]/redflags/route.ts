@@ -71,7 +71,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     const supabase = getSupabaseAdminClient();
     const { data: doc } = await supabase
       .from("documents")
-      .select("id, name, case_id, extracted_text, extracted_json")
+      .select("id, name, case_id, extracted_text, extracted_json, raw_text")
       .eq("id", documentId)
       .eq("case_id", caseId)
       .single();
@@ -91,6 +91,13 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     } else if (doc.extracted_json && typeof doc.extracted_json === "object") {
       const extracted = doc.extracted_json as { text?: string; summary?: string };
       documentText = extracted.text ?? extracted.summary ?? "";
+    }
+    if (
+      (!documentText || documentText.length < 50) &&
+      typeof doc.raw_text === "string" &&
+      doc.raw_text.length >= 50
+    ) {
+      documentText = doc.raw_text;
     }
 
     if (!documentText || documentText.length < 50) {

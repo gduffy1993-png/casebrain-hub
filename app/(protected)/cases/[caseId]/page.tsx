@@ -17,34 +17,30 @@ import type {
 } from "@/types";
 import { ConditionalPortalShare } from "@/components/cases/ConditionalPortalShare";
 import { CaseTypeSelector } from "@/components/cases/CaseTypeSelector";
-import { PiCaseOverview } from "@/components/pi/PiCaseOverview";
+import { LettersPanel } from "@/components/cases/LettersPanel";
+// Legacy role-specific panel imports removed - now handled by CaseWorkspaceLayout
+// Sidebar utility tools still imported below
 import { PiValuationHelper } from "@/components/pi/PiValuationHelper";
-import { PiLetterPreview } from "@/components/pi/PiLetterPreview";
-import { PiProtocolTimeline } from "@/components/pi/PiProtocolTimeline";
-import { OicMedcoPanel } from "@/components/pi/OicMedcoPanel";
-import { HousingCaseOverview } from "@/components/housing/HousingCaseOverview";
-import { HousingCompliancePanel } from "@/components/housing/HousingCompliancePanel";
-import { HousingTimelineBuilder } from "@/components/housing/HousingTimelineBuilder";
+// Legacy role-specific panel imports removed - now handled by CaseWorkspaceLayout
+// Sidebar utility tools still imported below
 import { HousingQuantumCalculator } from "@/components/housing/HousingQuantumCalculator";
-import { HousingDeadlineTracker } from "@/components/housing/HousingDeadlineTracker";
-import { ScheduleOfDisrepairPanel } from "@/components/housing/ScheduleOfDisrepairPanel";
-import { BundleCheckerPanel } from "@/components/housing/BundleCheckerPanel";
-import { HousingHazardPanel } from "@/components/housing/HousingHazardPanel";
-import { HousingAnalysisSection } from "@/components/housing/HousingAnalysisSection";
-import { PICaseDetailsSection } from "@/components/pi/PICaseDetailsSection";
-import { SupervisionPackPanel } from "@/components/housing/SupervisionPackPanel";
+import { CriminalCaseView } from "@/components/criminal/CriminalCaseView";
+import { isValidCaseId } from "@/components/criminal/criminalCaseNavigation";
+import { CriminalCasePageLayout } from "@/components/criminal/CriminalCasePageLayout";
+import { CaseWorkspaceLayout } from "@/components/cases/CaseWorkspaceLayout";
+import { normalizePracticeArea } from "@/lib/types/casebrain";
 import { LitigationGuidancePanel } from "@/components/core/LitigationGuidancePanel";
 import { RiskAlertsPanel } from "@/components/core/RiskAlertsPanel";
 import { KeyIssuesPanel } from "@/components/core/KeyIssuesPanel";
 import { buildKeyIssues } from "@/lib/key-issues";
 import { InCaseSearchBox } from "@/components/core/InCaseSearchBox";
 import { MissingEvidencePanel } from "@/components/core/MissingEvidencePanel";
+// TODO: Re-implement when components are restored
+// import { EvidenceTrackerPanel } from "@/components/evidence/EvidenceTrackerPanel";
+// import { AuditTrailPanel } from "@/components/audit/AuditTrailPanel";
 import { CaseHeatmapPanel } from "@/components/core/CaseHeatmapPanel";
 import { CaseNotesPanel } from "@/components/core/CaseNotesPanel";
 import { NextStepPanel } from "@/components/core/NextStepPanel";
-import { AudioCallsPanel } from "@/components/cases/AudioCallsPanel";
-import { ClientUpdatePanel } from "@/components/cases/ClientUpdatePanel";
-import { OpponentRadarPanel } from "@/components/cases/OpponentRadarPanel";
 import { BundlePhaseAPanel } from "@/components/cases/BundlePhaseAPanel";
 import { BundleNavigatorFullPanel } from "@/components/cases/BundleNavigatorFullPanel";
 import { findMissingEvidence } from "@/lib/missing-evidence";
@@ -52,24 +48,62 @@ import { computeCaseHeatmap } from "@/lib/heatmap";
 import { calculateLimitation } from "@/lib/core/limitation";
 import { calculateNextStep, calculateAllNextSteps, calculateChaserAlerts } from "@/lib/next-step";
 import type { RiskFlag, LimitationInfo, PracticeArea, RiskStatus } from "@/lib/types/casebrain";
+import { resolvePracticeAreaFromSignals } from "@/lib/strategic/practice-area-filters";
 import { Badge } from "@/components/ui/badge";
 import { CaseArchiveButton } from "@/components/cases/CaseArchiveButton";
 import { CasePackExportButton, CasePackExportPanel } from "@/components/cases/CasePackExportButton";
 import { CaseOverviewExportButton } from "@/components/cases/CaseOverviewExportButton";
 import { DocumentMapPanel } from "@/components/cases/DocumentMapPanel";
 import { CaseKeyFactsPanel } from "@/components/cases/KeyFactsPanel";
-import { CorrespondenceTimelinePanel } from "@/components/cases/CorrespondenceTimelinePanel";
 import { InstructionsToCounselPanel } from "@/components/cases/InstructionsToCounselPanel";
 import { SupervisorReviewPanel } from "@/components/cases/SupervisorReviewPanel";
-import { InsightsPanel } from "@/components/cases/InsightsPanel";
 import { DeadlineManagementPanel } from "@/components/core/DeadlineManagementPanel";
+import { DeadlineCalendarWrapper } from "@/components/calendar/DeadlineCalendarWrapper";
+import { TimeTracker } from "@/components/billing/TimeTracker";
+import { InvoiceList } from "@/components/billing/InvoiceList";
+import { CaseEmailsPanel } from "@/components/email/CaseEmailsPanel";
+import { EmailComposer } from "@/components/email/EmailComposer";
+import { CommunicationHistoryPanel } from "@/components/communication/CommunicationHistoryPanel";
+import { ESignaturePanel } from "@/components/esignature/ESignaturePanel";
+import { CalendarEventsPanel } from "@/components/calendar/CalendarEventsPanel";
+import { SMSPanel } from "@/components/sms/SMSPanel";
+import { DocumentVersionsPanel } from "@/components/documents/DocumentVersionsPanel";
+import { CustomReportsPanel } from "@/components/reporting/CustomReportsPanel";
+import { ClientMoneyPanel } from "@/components/trust/ClientMoneyPanel";
+import { ProfitabilityCard } from "@/components/case-profitability/ProfitabilityCard";
+import { SettlementCalculatorPanel } from "@/components/settlement/SettlementCalculatorPanel";
+import { ClientTimelinePanel } from "@/components/client-expectations/ClientTimelinePanel";
+import { OpponentProfileCard } from "@/components/opponent-behavior/OpponentProfileCard";
+import { SettlementCalculator } from "@/components/calculators/SettlementCalculator";
+import { PreActionProtocolChecklist } from "@/components/protocol/PreActionProtocolChecklist";
 import { CollapsibleSection } from "@/components/ui/collapsible-section";
-import { Lightbulb, FileText, Mail, MessageSquare, History, AlertCircle, Search, Target, ListChecks, Users, TrendingUp, FolderOpen, Shield, Home, Calculator } from "lucide-react";
+import { FileText, Mail, AlertCircle, Search, Target, ListChecks, TrendingUp, FolderOpen, Shield, Home, Calculator, DollarSign, MessageSquare, Phone, Calendar, History, FileCheck, BarChart3, CreditCard, Clock, FileQuestion, BookOpen, Bomb, Skull, Zap, MousePointerClick, Play, CheckCircle, Scale } from "lucide-react";
 import { PracticeAreaSelector } from "@/components/cases/PracticeAreaSelector";
 import { CasePageClient } from "@/components/cases/CasePageClient";
 import { CaseSummaryPanel } from "@/components/cases/CaseSummaryPanel";
 import { ErrorBoundary } from "@/components/ui/error-boundary";
 import { CaseFilesList } from "@/components/cases/CaseFilesList";
+import { StrategicIntelligenceSection } from "@/components/strategic/StrategicIntelligenceSection";
+import { WitnessAnalysisPanel } from "@/components/cases/WitnessAnalysisPanel";
+import { TimelineExploiterPanel } from "@/components/cases/TimelineExploiterPanel";
+import { PrecedentsPanel } from "@/components/cases/PrecedentsPanel";
+import { NuclearOptionsPanel } from "@/components/cases/NuclearOptionsPanel";
+import { CaseDestroyerPanel } from "@/components/cases/CaseDestroyerPanel";
+import { ChainReactionPanel } from "@/components/cases/ChainReactionPanel";
+import { TechnicalitiesPanel } from "@/components/cases/TechnicalitiesPanel";
+import { ProsecutionTrapsPanel } from "@/components/cases/ProsecutionTrapsPanel";
+import { MultiAngleDevastationPanel } from "@/components/cases/MultiAngleDevastationPanel";
+import { TacticalCommandCenter } from "@/components/cases/TacticalCommandCenter";
+import { NextMovePanel } from "@/components/cases/NextMovePanel";
+import { CourtReadinessPanel } from "@/components/cases/CourtReadinessPanel";
+import { ClientCommunicationPanel } from "@/components/cases/ClientCommunicationPanel";
+import { EvidenceStrengthPanel } from "@/components/cases/EvidenceStrengthPanel";
+import { CasePageClientWithActions } from "@/components/cases/CasePageClientWithActions";
+import { AnalysisDeltaPanelWrapper } from "@/components/cases/AnalysisDeltaPanelWrapper";
+import { EvidenceStrategyHeader } from "@/components/cases/EvidenceStrategyHeader";
+import { WhatChangedPanel } from "@/components/cases/WhatChangedPanel";
+import { NewEvidenceBanner } from "@/components/cases/NewEvidenceBanner";
+import { Plus } from "lucide-react";
 
 type CasePageParams = {
   params: { caseId: string };
@@ -77,26 +111,27 @@ type CasePageParams = {
 
 export default async function CaseDetailPage({ params }: CasePageParams) {
   const caseId = params.caseId;
+  if (!isValidCaseId(caseId)) {
+    notFound();
+  }
   const { orgId } = await requireAuthContext();
   const supabase = getSupabaseAdminClient();
 
   /**
    * ROOT CAUSE OF PAGE CRASHES:
    * 1. Database errors were being thrown (line 89 threw caseError)
-   * 2. InsightsPanel accessed nested properties without null checks (summary.headline when summary could be null)
-   * 3. No error boundaries around heavy panels - one panel failure crashed the entire page
+   * 2. No error boundaries around heavy panels - one panel failure crashed the entire page
    * 
    * FIXES APPLIED:
    * - Return friendly error page instead of throwing on DB errors
-   * - Added ErrorBoundary wrappers around all heavy panels (Insights, Health, MissingEvidence, etc.)
-   * - Made InsightsPanel defensive with optional chaining and safe defaults
-   * - CaseSummaryPanel always renders even if insights fetch fails
+   * - Added ErrorBoundary wrappers around all heavy panels (Health, MissingEvidence, etc.)
+   * - CaseSummaryPanel always renders even if data fetch fails
    */
   
   // SAFETY: Always fetch case record safely - never throw on error
   const { data: caseRecord, error: caseError } = await supabase
     .from("cases")
-    .select("id, title, summary, extracted_summary, timeline, org_id, practice_area")
+    .select("id, title, summary, extracted_summary, timeline, org_id, practice_area, latest_analysis_version, analysis_stale")
     .eq("id", caseId)
     .eq("org_id", orgId)
     .maybeSingle();
@@ -123,41 +158,104 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
     notFound();
   }
 
-  const [
-    { data: documents },
-    { data: letters },
-    { data: riskFlags },
-    { data: deadlines },
-  ] = await Promise.all([
-    supabase
-      .from("documents")
-      .select("id, name, type, uploaded_by, created_at, extracted_json")
-      .eq("case_id", caseId)
-      .eq("org_id", orgId)
-      .order("created_at", { ascending: false }),
-    supabase
-      .from("letters")
-      .select("id, template_id, version, body, updated_at, created_by")
-      .eq("case_id", caseId)
-      .eq("org_id", orgId) // Multi-tenant isolation: ensure letters belong to this org
-      .order("version", { ascending: false }),
-    supabase
-      .from("risk_flags")
-      .select("id, flag_type, severity, description, detected_at, resolved, resolved_at")
-      .eq("case_id", caseId)
-      .eq("org_id", orgId) // Multi-tenant isolation: ensure risk flags belong to this org
-      .order("detected_at", { ascending: false }),
-    supabase
-      .from("deadlines")
-      .select("id, title, due_date")
-      .eq("case_id", caseId)
-      .eq("org_id", orgId) // Multi-tenant isolation: ensure deadlines belong to this org
-      .order("due_date", { ascending: true }),
-  ]);
+  // SAFETY: Wrap all database queries in try-catch to prevent crashes
+  let documents: any[] = [];
+  let letters: any[] = [];
+  let riskFlags: any[] = [];
+  let deadlines: any[] = [];
 
+  try {
+    const [
+      documentsResult,
+      lettersResult,
+      riskFlagsResult,
+      deadlinesResult,
+    ] = await Promise.all([
+      supabase
+        .from("documents")
+        .select("id, name, type, uploaded_by, created_at, extracted_json, raw_text")
+        .eq("case_id", caseId)
+        .eq("org_id", orgId)
+        .order("created_at", { ascending: false }),
+      supabase
+        .from("letters")
+        .select("id, template_id, version, body, updated_at, created_by")
+        .eq("case_id", caseId)
+        .eq("org_id", orgId) // Multi-tenant isolation: ensure letters belong to this org
+        .order("version", { ascending: false }),
+      supabase
+        .from("risk_flags")
+        .select("id, flag_type, severity, description, detected_at, resolved, resolved_at")
+        .eq("case_id", caseId)
+        .eq("org_id", orgId) // Multi-tenant isolation: ensure risk flags belong to this org
+        .order("detected_at", { ascending: false }),
+      supabase
+        .from("deadlines")
+        .select("id, title, due_date")
+        .eq("case_id", caseId)
+        .eq("org_id", orgId) // Multi-tenant isolation: ensure deadlines belong to this org
+        .order("due_date", { ascending: true }),
+    ]);
+
+    documents = documentsResult.data ?? [];
+    letters = lettersResult.data ?? [];
+    riskFlags = riskFlagsResult.data ?? [];
+    deadlines = deadlinesResult.data ?? [];
+
+    // Log errors but don't crash
+    if (documentsResult.error) {
+      console.error("[CaseDetailPage] Error fetching documents:", documentsResult.error);
+    }
+    if (lettersResult.error) {
+      console.error("[CaseDetailPage] Error fetching letters:", lettersResult.error);
+    }
+    if (riskFlagsResult.error) {
+      console.error("[CaseDetailPage] Error fetching risk flags:", riskFlagsResult.error);
+    }
+    if (deadlinesResult.error) {
+      console.error("[CaseDetailPage] Error fetching deadlines:", deadlinesResult.error);
+    }
+  } catch (error) {
+    // SAFETY: If Promise.all fails, log but continue with empty arrays
+    console.error("[CaseDetailPage] Error fetching case data:", error);
+    // Continue with empty arrays - page will render with missing data rather than crash
+  }
+
+  let normalizedPracticeAreaValue = normalizePracticeArea(caseRecord.practice_area);
+
+  // Runtime assert: if criminal tables exist but cases.practice_area is other/null, treat as criminal for UI.
+  if (normalizedPracticeAreaValue !== "criminal") {
+    try {
+      const { data: criminalCaseRow } = await supabase
+        .from("criminal_cases")
+        .select("id")
+        .eq("id", caseId)
+        .eq("org_id", orgId)
+        .maybeSingle();
+      const looksCriminal =
+        (documents ?? []).some((d: any) =>
+          /(?:\bPACE\b|\bCPIA\b|\bMG6\b|\bMG\s*6\b|\bMG5\b|\bCPS\b|\bcustody\b|\binterview\b|\bcharge\b|\bindictment\b|\bCrown Court\b|\bMagistrates'? Court\b)/i.test(
+            `${String(d?.name ?? "")} ${String(d?.type ?? "")}`,
+          ),
+        ) || false;
+      const hasCriminalSignals = Boolean(criminalCaseRow?.id || looksCriminal);
+      const resolved = resolvePracticeAreaFromSignals({
+        storedPracticeArea: caseRecord.practice_area,
+        hasCriminalSignals,
+        context: "case-page/render",
+      });
+      if (resolved === "criminal") {
+        normalizedPracticeAreaValue = "criminal";
+      }
+    } catch {
+      // ignore
+    }
+  }
   const isPiCase =
-    caseRecord.practice_area === "pi" || caseRecord.practice_area === "clinical_negligence";
-  const isHousingCase = caseRecord.practice_area === "housing_disrepair";
+    caseRecord.practice_area === "pi" || normalizedPracticeAreaValue === "personal_injury" || normalizedPracticeAreaValue === "clinical_negligence";
+  const isHousingCase = normalizedPracticeAreaValue === "housing_disrepair";
+  const isCriminalCase = normalizedPracticeAreaValue === "criminal";
+  const isFamilyCase = normalizedPracticeAreaValue === "family";
 
   let piCase: PiCaseRecord | null = null;
   let piMedicalReports: PiMedicalReport[] = [];
@@ -176,35 +274,58 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
   }> = [];
 
   if (isPiCase) {
-    const [
-      { data: piCaseRecord },
-      { data: medicalReports },
-      { data: offers },
-      { data: hearings },
-      { data: disbursements },
-    ] = await Promise.all([
-      supabase.from("pi_cases").select("*").eq("id", caseId).eq("org_id", orgId).maybeSingle(), // Multi-tenant isolation
-      supabase.from("pi_medical_reports").select("*").eq("case_id", caseId).eq("org_id", orgId),
-      supabase.from("pi_offers").select("*").eq("case_id", caseId).eq("org_id", orgId),
-      supabase.from("pi_hearings").select("*").eq("case_id", caseId).eq("org_id", orgId),
-      supabase.from("pi_disbursements").select("*").eq("case_id", caseId).eq("org_id", orgId),
-    ]);
+    try {
+      const [
+        piCaseResult,
+        medicalReportsResult,
+        offersResult,
+        hearingsResult,
+        disbursementsResult,
+      ] = await Promise.all([
+        supabase.from("pi_cases").select("*").eq("id", caseId).eq("org_id", orgId).maybeSingle(), // Multi-tenant isolation
+        supabase.from("pi_medical_reports").select("*").eq("case_id", caseId).eq("org_id", orgId),
+        supabase.from("pi_offers").select("*").eq("case_id", caseId).eq("org_id", orgId),
+        supabase.from("pi_hearings").select("*").eq("case_id", caseId).eq("org_id", orgId),
+        supabase.from("pi_disbursements").select("*").eq("case_id", caseId).eq("org_id", orgId),
+      ]);
 
-    piCase = piCaseRecord ?? null;
-    piMedicalReports = medicalReports ?? [];
-    piOffers = offers ?? [];
-    piHearings = hearings ?? [];
-    piDisbursements = disbursements ?? [];
+      piCase = piCaseResult.data ?? null;
+      piMedicalReports = medicalReportsResult.data ?? [];
+      piOffers = offersResult.data ?? [];
+      piHearings = hearingsResult.data ?? [];
+      piDisbursements = disbursementsResult.data ?? [];
+
+      // Log errors but don't crash
+      if (piCaseResult.error) {
+        console.error("[CaseDetailPage] Error fetching PI case:", piCaseResult.error);
+      }
+      if (medicalReportsResult.error) {
+        console.error("[CaseDetailPage] Error fetching medical reports:", medicalReportsResult.error);
+      }
+      if (offersResult.error) {
+        console.error("[CaseDetailPage] Error fetching offers:", offersResult.error);
+      }
+      if (hearingsResult.error) {
+        console.error("[CaseDetailPage] Error fetching hearings:", hearingsResult.error);
+      }
+      if (disbursementsResult.error) {
+        console.error("[CaseDetailPage] Error fetching disbursements:", disbursementsResult.error);
+      }
+    } catch (error) {
+      console.error("[CaseDetailPage] Error fetching PI case data:", error);
+      // Continue with null/empty values - page will render with missing data
+    }
   }
 
   if (isHousingCase) {
-    const [
-      { data: housingCaseRecord },
-      { data: defects },
-      complianceData,
-    ] = await Promise.all([
-      supabase.from("housing_cases").select("*").eq("id", caseId).eq("org_id", orgId).maybeSingle(),
-      supabase.from("housing_defects").select("*").eq("case_id", caseId).eq("org_id", orgId),
+    try {
+      const [
+        housingCaseResult,
+        defectsResult,
+        complianceData,
+      ] = await Promise.all([
+        supabase.from("housing_cases").select("*").eq("id", caseId).eq("org_id", orgId).maybeSingle(),
+        supabase.from("housing_defects").select("*").eq("case_id", caseId).eq("org_id", orgId),
       // Call compliance checks directly instead of HTTP to avoid auth issues
       (async () => {
         try {
@@ -279,9 +400,21 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
       })(),
     ]);
 
-    housingCase = housingCaseRecord ?? null;
-    housingDefects = defects ?? [];
-    complianceChecks = complianceData?.checks ?? [];
+      housingCase = housingCaseResult.data ?? null;
+      housingDefects = defectsResult.data ?? [];
+      complianceChecks = complianceData?.checks ?? [];
+
+      // Log errors but don't crash
+      if (housingCaseResult.error) {
+        console.error("[CaseDetailPage] Error fetching housing case:", housingCaseResult.error);
+      }
+      if (defectsResult.error) {
+        console.error("[CaseDetailPage] Error fetching housing defects:", defectsResult.error);
+      }
+    } catch (error) {
+      console.error("[CaseDetailPage] Error fetching housing case data:", error);
+      // Continue with null/empty values - page will render with missing data
+    }
   }
 
   // Extract all facts from documents for Awaab detection
@@ -295,12 +428,13 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
   const timeline =
     extractedFacts
       .flatMap((f) => f.timeline ?? [])
-      .sort((a, b) => a.date.localeCompare(b.date)) ?? [];
+      .filter((item) => item.date != null) // Filter out null dates
+      .sort((a, b) => (a.date || "").localeCompare(b.date || "")) ?? [];
 
   // Extract key issues from documents
   const rawKeyIssues = documents
-    ?.flatMap((doc) => {
-      const extracted = doc.extracted_json as ExtractedCaseFacts | null;
+      ?.flatMap((doc) => {
+        const extracted = doc.extracted_json as ExtractedCaseFacts | null;
       return extracted?.keyIssues ?? [];
     })
     .filter((issue, index, arr) => arr.indexOf(issue) === index) ?? [];
@@ -313,46 +447,49 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
       return extracted?.dates ?? [];
     })
     .find((d) => d.label.toLowerCase().includes("incident") || d.label.toLowerCase().includes("accident"));
-  
-  // Map to standardized practice area for limitation calculation
-  const normalizedPracticeArea = caseRecord.practice_area === "housing_disrepair" 
-    ? "housing_disrepair" 
-    : caseRecord.practice_area === "personal_injury" || caseRecord.practice_area === "pi"
-      ? "personal_injury" 
-      : caseRecord.practice_area === "clinical_negligence" 
-        ? "clinical_negligence"
-        : caseRecord.practice_area === "family"
-          ? "family"
-          : "other_litigation";
-  
-  // Legacy mapping for limitation calculation (which still uses old types internally)
-  const limitationPracticeAreaLegacy = normalizedPracticeArea === "housing_disrepair"
-    ? "housing"
-    : normalizedPracticeArea === "personal_injury"
-      ? "pi_rta"
-      : normalizedPracticeArea === "clinical_negligence"
-        ? "clin_neg"
-        : "other";
-  
-  const limitationResult = firstDate 
-    ? calculateLimitation({ 
-        incidentDate: firstDate.isoDate, 
-        practiceArea: limitationPracticeAreaLegacy as "housing" | "pi_rta" | "pi_general" | "clin_neg" | "other"
-      }) 
-    : null;
 
-  const limitationInfo: LimitationInfo | undefined = limitationResult ? {
-    caseId,
-    causeOfAction: normalizedPracticeArea === "housing_disrepair" ? "Breach of contract (housing disrepair)" : "Personal injury",
-    primaryLimitationDate: limitationResult.limitationDate ?? "",
-    daysRemaining: limitationResult.daysRemaining ?? 0,
-    isExpired: limitationResult.isExpired,
-    severity: limitationResult.severity.toUpperCase() as "LOW" | "MEDIUM" | "HIGH" | "CRITICAL",
-    practiceArea: normalizedPracticeArea as import("@/lib/types/casebrain").PracticeArea,
-    hasMinor: limitationResult.isMinor,
-  } : undefined;
+  // Criminal: do NOT run civil limitation logic (prevents "issue proceedings/standstill" leakage)
+  const limitationInfo: LimitationInfo | undefined = (() => {
+    if (isCriminalCase) return undefined;
+    if (!firstDate) return undefined;
 
-  // Find missing evidence
+    // Legacy mapping for limitation calculation (which still uses old types internally)
+    const limitationPracticeAreaLegacy =
+      normalizedPracticeAreaValue === "housing_disrepair"
+        ? "housing"
+        : normalizedPracticeAreaValue === "personal_injury"
+          ? "pi_rta"
+          : normalizedPracticeAreaValue === "clinical_negligence"
+            ? "clin_neg"
+            : "other";
+
+    const limitationResult = calculateLimitation({
+      incidentDate: firstDate.isoDate,
+      practiceArea: limitationPracticeAreaLegacy as "housing" | "pi_rta" | "pi_general" | "clin_neg" | "other",
+    });
+
+    if (!limitationResult) return undefined;
+
+    return {
+      caseId,
+      causeOfAction:
+        normalizedPracticeAreaValue === "housing_disrepair"
+          ? "Breach of contract (housing disrepair)"
+          : normalizedPracticeAreaValue === "clinical_negligence"
+            ? "Clinical negligence"
+            : "Personal injury",
+      primaryLimitationDate: limitationResult.limitationDate ?? "",
+      daysRemaining: limitationResult.daysRemaining ?? 0,
+      isExpired: limitationResult.isExpired,
+      severity: limitationResult.severity.toUpperCase() as "LOW" | "MEDIUM" | "HIGH" | "CRITICAL",
+      practiceArea: normalizedPracticeAreaValue as import("@/lib/types/casebrain").PracticeArea,
+      hasMinor: limitationResult.isMinor,
+    };
+  })();
+
+  // TODO: legacy missing evidence – replaced by case_analysis_versions
+  // Missing evidence is now sourced from case_analysis_versions.missing_evidence
+  // This is kept for backward compatibility but MissingEvidencePanel will fetch from versions
   const docsForEvidence = (documents ?? []).map((d) => ({
     name: d.name,
     type: d.type ?? undefined,
@@ -363,6 +500,50 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
     caseRecord.practice_area ?? "general",
     docsForEvidence,
   );
+
+  // Seed evidence items from missing evidence (idempotent)
+  // TODO: Re-implement when seedFromMissingEvidence is restored
+  // This runs on every page load but won't create duplicates due to unique constraint
+  // try {
+  //   const { seedEvidenceItemsFromMissingEvidence } = await import("@/lib/evidence/seedFromMissingEvidence");
+  //   if (missingEvidence.length > 0) {
+  //     await seedEvidenceItemsFromMissingEvidence(caseId, orgId, missingEvidence);
+  //   }
+  // } catch (error) {
+  //   console.warn("[case-page] Failed to seed evidence items:", error);
+  //   // Don't fail the page if seeding fails
+  // }
+
+  // TODO: Re-implement when EvidenceTrackerPanel is restored
+  // Fetch evidence items for the tracker panel
+  // const { data: evidenceItemsData } = await supabase
+  //   .from("evidence_items")
+  //   .select("*")
+  //   .eq("case_id", caseId)
+  //   .eq("org_id", orgId)
+  //   .order("created_at", { ascending: false });
+
+  // Transform to EvidenceItem type
+  const evidenceItems: any[] = []; // Temporarily empty array
+  // const evidenceItems = (evidenceItemsData ?? []).map((row) => ({
+  //   id: row.id,
+  //   caseId: row.case_id,
+  //   orgId: row.org_id,
+  //   practiceArea: row.practice_area,
+  //   title: row.title,
+  //   category: row.category,
+  //   source: row.source,
+  //   whyNeeded: row.why_needed,
+  //   status: row.status as "outstanding" | "requested" | "received" | "escalated" | "no_longer_needed",
+  //   requestedAt: row.requested_at,
+  //   lastChasedAt: row.last_chased_at,
+  //   escalatedAt: row.escalated_at,
+  //   receivedAt: row.received_at,
+  //   dueAt: row.due_at,
+  //   meta: (row.meta as Record<string, unknown>) || {},
+  //   createdAt: row.created_at,
+  //   updatedAt: row.updated_at,
+  // }));
 
   // Fetch deadlines ONCE for all uses (risk score, alerts, next steps) - BEFORE risk alerts
   // Call directly instead of HTTP to avoid auth issues
@@ -810,74 +991,67 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
   };
   const practiceAreaLabel = PRACTICE_AREA_LABEL_MAP[caseRecord.practice_area ?? ""] ?? "General";
 
+  const caseFileDocuments = (documents ?? []).map(
+    (d: { id: string; name: string; created_at: string; raw_text?: string | null }) => {
+      const rawText = d.raw_text;
+      const hasText = typeof rawText === "string" && rawText.trim().length > 50;
+      return {
+        id: d.id,
+        name: d.name,
+        created_at: d.created_at,
+        type: (d as { type?: string | null }).type ?? null,
+        extractionStatus: hasText ? ("full" as const) : ("no_text" as const),
+        extractionMessage: hasText ? undefined : "This file may be image-only; we couldn't extract text.",
+      };
+    },
+  );
+
+  if (isCriminalCase) {
+    return (
+      <CriminalCasePageLayout documents={caseFileDocuments}>
+        <CasePageClient
+          casePracticeArea={caseRecord.practice_area as PracticeArea | null | undefined}
+        />
+        <ErrorBoundary
+          fallback={
+            <div className="p-4">
+              <p className="text-sm text-accent/60">Unable to load criminal case view right now.</p>
+            </div>
+          }
+        >
+          <CriminalCaseView caseId={caseId} />
+        </ErrorBoundary>
+      </CriminalCasePageLayout>
+    );
+  }
+
   return (
     <div className="grid gap-6 xl:grid-cols-[360px_1fr_320px]">
       <aside className="space-y-4">
         <Card title="Case Files">
-          <CaseFilesList
-            documents={(documents ?? []).map((d) => ({
-              id: d.id,
-              name: d.name,
-              created_at: d.created_at,
-            }))}
-          />
+          <CaseFilesList documents={caseFileDocuments} />
         </Card>
 
-        <Card
-          title="Letters"
-          action={
-            <Link href={`/cases/${caseId}/letters/new`}>
-              <Button size="sm" variant="primary" className="gap-2">
-                <ClipboardEdit className="h-4 w-4" />
-                Draft Letter
-              </Button>
-            </Link>
-          }
-        >
-          <ul className="space-y-3">
-            {(letters ?? []).map((letter) => (
-              <li
-                key={letter.id}
-                className="rounded-2xl border bg-surface-muted/70 p-3 text-sm"
-              >
-                <div className="flex items-center justify-between">
-                  <p className="font-medium text-accent">
-                    Template {letter.template_id}
-                  </p>
-                  <span className="text-xs text-accent/50">
-                    v{letter.version}
-                  </span>
-                </div>
-                <p className="mt-2 line-clamp-2 text-accent/60">
-                  {letter.body.slice(0, 120)}…
-                </p>
-                <Link
-                  href={`/cases/${caseId}/letters/${letter.id}`}
-                  className="mt-3 inline-flex text-xs font-semibold text-primary hover:underline"
-                >
-                  View version & diff
-                </Link>
-              </li>
-            ))}
-            {!letters?.length && (
-              <p className="text-sm text-accent/60">
-                No letters drafted yet. Generate a letter using extracted facts.
-              </p>
-            )}
-          </ul>
-        </Card>
+        {!isCriminalCase && (
+          <LettersPanel
+            caseId={caseId}
+            letters={letters ?? []}
+            practiceArea={caseRecord.practice_area ?? undefined}
+          />
+        )}
       </aside>
 
       <main className="space-y-4">
         <CasePageClient casePracticeArea={caseRecord.practice_area as PracticeArea | null | undefined} />
         
-        {/* Case Summary Panel */}
-        <CollapsibleSection
-          title="Case Summary"
-          description="AI-generated solicitor-style case summary"
-          defaultOpen={true}
-          icon={<FileText className="h-4 w-4 text-blue-400" />}
-        >
+        {/* Case Summary Panel - Hidden for criminal cases (Phase 2 layout replaces this) */}
+        {!isCriminalCase && (
+          <CollapsibleSection
+            title="Case Summary"
+            description="AI-generated solicitor-style case summary"
+            defaultOpen={true}
+            icon={<FileText className="h-4 w-4 text-blue-400" />}
+          >
           <ErrorBoundary
             fallback={
               <div className="p-4">
@@ -896,128 +1070,57 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
             />
           </ErrorBoundary>
         </CollapsibleSection>
+        )}
 
-        {/* Action Bar Card - Export, Archive, etc. */}
-        <Card
-          title={
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <span>Actions</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CaseOverviewExportButton caseId={caseId} caseTitle={caseRecord.title ?? undefined} />
-                <CasePackExportButton caseId={caseId} />
-                <CaseArchiveButton caseId={caseId} caseTitle={caseRecord.title} />
-              </div>
-            </div>
-          }
-        >
-          <div className="space-y-3">
-            <div>
-              <PracticeAreaSelector
-                caseId={caseId}
-                currentPracticeArea={(caseRecord.practice_area ?? "other_litigation") as PracticeArea}
-              />
-            </div>
-            {labsEnabled && (
-              <>
-                <div>
-                  <ConditionalPortalShare caseId={caseId} />
+        {/* Action bar: non-criminal only — criminal workspace handles strategy/disclosure; role is always criminal. */}
+        {!isCriminalCase && (
+          <Card
+            title={
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <span>Actions</span>
                 </div>
-                <div>
-                  <CaseTypeSelector caseId={caseId} initialValue={caseRecord.practice_area ?? "general"} />
+                <div className="flex items-center gap-2">
+                  <CasePageClientWithActions
+                    caseId={caseId}
+                    caseTitle={caseRecord.title ?? "Untitled Case"}
+                    analysisStale={caseRecord.analysis_stale ?? false}
+                    latestDelta={null} // Will be fetched client-side if needed
+                  />
+                  <CaseOverviewExportButton caseId={caseId} caseTitle={caseRecord.title ?? undefined} />
+                  <CasePackExportButton caseId={caseId} />
+                  <CaseArchiveButton caseId={caseId} caseTitle={caseRecord.title} />
                 </div>
-              </>
-            )}
-          </div>
-        </Card>
-
-        {/* Key Facts Panel - Case Overview */}
-        <CollapsibleSection
-          title="Key Facts"
-          description="Parties, dates, amounts, and case overview"
-          defaultOpen={true}
-          icon={<Target className="h-4 w-4 text-blue-400" />}
-        >
-          <ErrorBoundary
-            fallback={
-              <div className="p-4">
-                <p className="text-sm text-accent/60">Unable to load key facts panel right now. Core case data is still shown above.</p>
               </div>
             }
           >
-            <CaseKeyFactsPanel caseId={caseId} />
-          </ErrorBoundary>
-        </CollapsibleSection>
-
-        {/* Next Step Panel - Priority Action */}
-        <CollapsibleSection
-          title="Next Steps"
-          description="Priority actions and recommended next steps"
-          defaultOpen={true}
-          icon={<TrendingUp className="h-4 w-4 text-green-400" />}
-        >
-          <ErrorBoundary
-            fallback={
-              <div className="p-4">
-                <p className="text-sm text-accent/60">Unable to load next steps panel right now.</p>
+            <div className="space-y-3">
+              <div>
+                <PracticeAreaSelector
+                  caseId={caseId}
+                  currentPracticeArea={(caseRecord.practice_area ?? "other_litigation") as PracticeArea}
+                />
               </div>
-            }
-          >
-            <NextStepPanel caseId={caseId} nextStep={nextStep} allSteps={allNextSteps} />
-          </ErrorBoundary>
-        </CollapsibleSection>
+              {labsEnabled && (
+                <>
+                  <div>
+                    <ConditionalPortalShare caseId={caseId} />
+                  </div>
+                  <div>
+                    <CaseTypeSelector caseId={caseId} initialValue={caseRecord.practice_area ?? "general"} />
+                  </div>
+                </>
+              )}
+            </div>
+          </Card>
+        )}
 
-        {/* Client Update Generator - Collapsible */}
-        <CollapsibleSection
-          title="Client Update Generator"
-          description="Generate professional email updates for your client"
-          defaultOpen={false}
-          icon={<Mail className="h-4 w-4 text-green-400" />}
-        >
-          <ErrorBoundary
-            fallback={
-              <div className="text-sm text-accent/60 p-4">Unable to load client update panel right now.</div>
-            }
-          >
-            <ClientUpdatePanel caseId={caseId} />
-          </ErrorBoundary>
-        </CollapsibleSection>
+        {/* Legacy overview panels removed - now handled by CaseWorkspaceLayout */}
 
-        {/* Opponent Activity Radar */}
-        <CollapsibleSection
-          title="Opponent Activity"
-          description="Track opponent communications and actions"
-          defaultOpen={false}
-          icon={<Users className="h-4 w-4 text-orange-400" />}
-        >
-          <ErrorBoundary
-            fallback={
-              <div className="text-sm text-accent/60 p-4">Unable to load opponent activity panel right now.</div>
-            }
-          >
-            <OpponentRadarPanel caseId={caseId} />
-          </ErrorBoundary>
-        </CollapsibleSection>
 
-        {/* Correspondence Timeline */}
-        <CollapsibleSection
-          title="Correspondence Timeline"
-          description="Chronological record of all case correspondence"
-          defaultOpen={false}
-          icon={<History className="h-4 w-4 text-purple-400" />}
-        >
-          <ErrorBoundary
-            fallback={
-              <div className="text-sm text-accent/60 p-4">Unable to load correspondence timeline right now.</div>
-            }
-          >
-            <CorrespondenceTimelinePanel caseId={caseId} />
-          </ErrorBoundary>
-        </CollapsibleSection>
-
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
         {/* Instructions to Counsel - Collapsible */}
-        <CollapsibleSection
+        {/* <CollapsibleSection
           title="Instructions to Counsel"
           description="Generate comprehensive instructions to counsel document"
           defaultOpen={false}
@@ -1062,50 +1165,13 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
             }}
           />
           </ErrorBoundary>
-        </CollapsibleSection>
+        </CollapsibleSection> */}
 
-        {/* Insights - Collapsible */}
-        <CollapsibleSection
-          title="Insights"
-          description="AI-generated case insights and analysis"
-          defaultOpen={false}
-          icon={<Lightbulb className="h-4 w-4 text-amber-400" />}
-        >
-          <ErrorBoundary
-            fallback={
-              <div className="p-4">
-                <p className="text-sm text-accent/60">
-                  Insights temporarily unavailable. Core case data is still shown above.
-                </p>
-              </div>
-            }
-          >
-            <InsightsPanel caseId={caseId} />
-          </ErrorBoundary>
-        </CollapsibleSection>
+        {/* Legacy overview panels removed - now handled by CaseWorkspaceLayout */}
 
-        {/* Key Issues Panel */}
-        {keyIssues.length > 0 && (
-          <CollapsibleSection
-            title="Key Issues"
-            description="Main legal and factual issues in dispute"
-            defaultOpen={true}
-            icon={<AlertCircle className="h-4 w-4 text-red-400" />}
-          >
-            <ErrorBoundary
-              fallback={
-                <div className="p-4">
-                  <p className="text-sm text-accent/60">Unable to load key issues panel right now.</p>
-                </div>
-              }
-            >
-              <KeyIssuesPanel issues={keyIssues} />
-            </ErrorBoundary>
-          </CollapsibleSection>
-        )}
-
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
         {/* In-Case Search */}
-        <CollapsibleSection
+        {/* <CollapsibleSection
           title="Search Case"
           description="Search across all case documents and data"
           defaultOpen={false}
@@ -1120,219 +1186,80 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
           >
             <InCaseSearchBox caseId={caseId} />
           </ErrorBoundary>
-        </CollapsibleSection>
+        </CollapsibleSection> */}
 
-        {/* Missing Evidence Panel */}
-        <CollapsibleSection
-          title="Missing Evidence"
-          description="Evidence gaps and items to request"
-          defaultOpen={false}
-          icon={<ListChecks className="h-4 w-4 text-amber-400" />}
+        {/* Legacy overview panels removed - now handled by CaseWorkspaceLayout */}
+
+        {/* TODO: re-enable after wiring to versions / new APIs */}
+        {/* Evidence Tracker Section - Commented out as it's not wired to case_analysis_versions yet */}
+        {/* <CollapsibleSection
+          title="Evidence Tracker"
+          description="Track evidence items, status, and chase dates"
+          defaultOpen={true}
+          icon={<ListChecks className="h-4 w-4 text-cyan-400" />}
         >
           <ErrorBoundary
             fallback={
               <div className="p-4">
-                <p className="text-sm text-accent/60">Unable to load missing evidence panel right now.</p>
+                <p className="text-sm text-accent/60">Unable to load evidence tracker right now.</p>
               </div>
             }
           >
-            <MissingEvidencePanel caseId={caseId} items={missingEvidence} />
+            <div className="p-4 text-sm text-accent/60">Evidence tracker temporarily unavailable.</div>
           </ErrorBoundary>
-        </CollapsibleSection>
+        </CollapsibleSection> */}
 
-        {/* Documents Section - Consolidated */}
-        <CollapsibleSection
-          title="Documents & Bundle"
-          description="Document map, bundle navigator, and audio calls"
+        {/* Legacy overview panels removed - now handled by CaseWorkspaceLayout */}
+
+        {/* TODO: re-enable after wiring to versions / new APIs */}
+        {/* Audit Trail Section - Commented out as it's not wired yet */}
+        {/* <CollapsibleSection
+          title="Audit Trail"
+          description="Complete history of case events and changes"
           defaultOpen={false}
-          icon={<FileText className="h-4 w-4 text-purple-400" />}
+          icon={<History className="h-4 w-4 text-purple-400" />}
         >
-          <div className="space-y-4">
-            <ErrorBoundary
-              fallback={
-                <div className="text-sm text-accent/60 p-4">Unable to load document map right now.</div>
-              }
-            >
-              <DocumentMapPanel
-                documents={(documents ?? []).map((d) => ({
-                  id: d.id,
-                  name: d.name,
-                  type: d.type ?? undefined,
-                  created_at: d.created_at,
-                }))}
-                practiceArea={caseRecord.practice_area}
-              />
-            </ErrorBoundary>
-
-            <ErrorBoundary
-              fallback={
-                <div className="text-sm text-accent/60 p-4">Unable to load bundle navigator right now.</div>
-              }
-            >
-              <BundlePhaseAPanel caseId={caseId} />
-            </ErrorBoundary>
-
-            <ErrorBoundary
-              fallback={
-                <div className="text-sm text-accent/60 p-4">Unable to load audio calls panel right now.</div>
-              }
-            >
-              <AudioCallsPanel caseId={caseId} />
-            </ErrorBoundary>
-          </div>
-        </CollapsibleSection>
-
-        {isHousingCase && housingCase ? (
-          <>
-            <CollapsibleSection
-              title="Housing Case Overview"
-              description="Case summary, defects, and key housing information"
-              defaultOpen={true}
-              icon={<Home className="h-4 w-4 text-blue-400" />}
-            >
-              <ErrorBoundary
-                fallback={
-                  <div className="p-4">
-                    <p className="text-sm text-accent/60">Unable to load housing case overview right now.</p>
-                  </div>
-                }
-              >
-                <HousingCaseOverview
-                  caseId={caseId}
-                  housingCase={housingCase}
-                  defects={housingDefects}
-                />
-              </ErrorBoundary>
-            </CollapsibleSection>
-            {/* Consolidated Housing Analysis Section */}
-            <ErrorBoundary
-              fallback={
-                <div className="p-4">
-                  <p className="text-sm text-accent/60">Unable to load housing analysis section right now.</p>
-                </div>
-              }
-            >
-              <HousingAnalysisSection caseId={caseId} defaultOpen={true} />
-            </ErrorBoundary>
-            {/* Other housing panels - keep but make collapsible */}
-            <CollapsibleSection
-              title="Bundle Checker"
-              description="Verify bundle completeness and compliance"
-              defaultOpen={false}
-              icon={<Shield className="h-4 w-4 text-green-400" />}
-            >
-              <ErrorBoundary
-                fallback={
-                  <div className="text-sm text-accent/60 p-4">Unable to load bundle checker right now.</div>
-                }
-              >
-                <BundleCheckerPanel caseId={caseId} />
-              </ErrorBoundary>
-            </CollapsibleSection>
-            <CollapsibleSection
-              title="Housing Hazards"
-              description="Category 1 and 2 hazard assessment"
-              defaultOpen={false}
-              icon={<AlertCircle className="h-4 w-4 text-red-400" />}
-            >
-              <ErrorBoundary
-                fallback={
-                  <div className="text-sm text-accent/60 p-4">Unable to load hazard panel right now.</div>
-                }
-              >
-                <HousingHazardPanel
-                  caseTitle={caseRecord.title ?? ""}
-                  documents={(documents ?? []).map((d) => ({
-                    name: d.name,
-                    type: d.type ?? undefined,
-                  }))}
-                  landlordType={housingCase?.landlord_type as "social" | "private" | "unknown" | undefined}
-                  firstComplaintDate={housingCase?.first_report_date ?? undefined}
-                />
-              </ErrorBoundary>
-            </CollapsibleSection>
-            <CollapsibleSection
-              title="Housing Compliance & Tools"
-              description="Supervision pack, compliance checks, deadline tracker, timeline builder, schedule of disrepair"
-              defaultOpen={false}
-              icon={<FileText className="h-4 w-4 text-blue-400" />}
-            >
-              <div className="space-y-4">
-                <SupervisionPackPanel caseId={caseId} />
-                <HousingCompliancePanel
-                  housingCase={housingCase}
-                  complianceChecks={complianceChecks}
-                />
-                <HousingDeadlineTracker caseId={caseId} />
-                <HousingTimelineBuilder caseId={caseId} />
-                <ScheduleOfDisrepairPanel caseId={caseId} />
+          <ErrorBoundary
+            fallback={
+              <div className="p-4">
+                <p className="text-sm text-accent/60">Unable to load audit trail right now.</p>
               </div>
-            </CollapsibleSection>
-          </>
-        ) : null}
+            }
+          >
+            <div className="p-4 text-sm text-accent/60">Audit trail temporarily unavailable.</div>
+          </ErrorBoundary>
+        </CollapsibleSection> */}
 
-        {isPiCase && piCase ? (
-          <>
-            {labsEnabled && (
-              <>
-                <CollapsibleSection
-                  title="PI Case Overview"
-                  description="Case summary and key PI information"
-                  defaultOpen={true}
-                  icon={<FileText className="h-4 w-4 text-blue-400" />}
-                >
-                  <PiCaseOverview caseId={caseId} caseType={caseCaseType(caseRecord.practice_area)} piCase={piCase} />
-                </CollapsibleSection>
-                <CollapsibleSection
-                  title="Letter Preview"
-                  description="Preview and generate case letters"
-                  defaultOpen={false}
-                  icon={<Mail className="h-4 w-4 text-green-400" />}
-                >
-                  <PiLetterPreview
-                    caseId={caseId}
-                    caseTitle={caseRecord.title}
-                    practiceArea={caseRecord.practice_area ?? "general"}
-                  />
-                </CollapsibleSection>
-                <CollapsibleSection
-                  title="OIC & MedCo"
-                  description="OIC portal and MedCo compliance"
-                  defaultOpen={false}
-                  icon={<Shield className="h-4 w-4 text-purple-400" />}
-                >
-                  <OicMedcoPanel caseId={caseId} piCase={piCase} />
-                </CollapsibleSection>
-              </>
-            )}
+        {/* Legacy overview and strategy panels removed - now handled by CaseWorkspaceLayout with lens-based discipline stack */}
+
+        {/* Criminal Case View - Completely Different Layout */}
+        {isCriminalCase ? (
+          <ErrorBoundary
+            fallback={
+              <div className="p-4">
+                <p className="text-sm text-accent/60">Unable to load criminal case view right now.</p>
+              </div>
+            }
+          >
+            <CriminalCaseView caseId={caseId} />
+          </ErrorBoundary>
+        ) : (
             <ErrorBoundary
               fallback={
                 <div className="p-4">
-                  <p className="text-sm text-accent/60">Unable to load PI case details right now.</p>
+                <p className="text-sm text-accent/60">Unable to load case workspace right now.</p>
                 </div>
               }
             >
-              <PICaseDetailsSection
-                caseId={caseId}
-                reports={piMedicalReports}
-                offers={piOffers}
-                hearings={piHearings}
-                disbursements={piDisbursements}
-                defaultOpen={true}
-              />
-            </ErrorBoundary>
-          </>
-        ) : null}
+            <CaseWorkspaceLayout
+          caseId={caseId} 
+              practiceArea={normalizedPracticeAreaValue}
+              hasStrategyData={false}
+            />
+          </ErrorBoundary>
+        )}
 
-        {/* Case Pack PDF Export Panel */}
-        <CollapsibleSection
-          title="Export Case Pack"
-          description="Generate comprehensive PDF case pack"
-          defaultOpen={false}
-          icon={<FolderOpen className="h-4 w-4 text-purple-400" />}
-        >
-          <CasePackExportPanel caseId={caseId} />
-        </CollapsibleSection>
+        {/* Legacy panels removed - non-criminal cases now render ONLY CaseWorkspaceLayout with lens-based discipline stack */}
       </main>
 
       <aside className="space-y-4">
@@ -1355,21 +1282,23 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
           <PiValuationHelper piCase={piCase} disbursements={piDisbursements} />
         ) : null}
 
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
         {/* Case Health Heatmap */}
-        <ErrorBoundary
+        {/* <ErrorBoundary
           fallback={
             <Card className="bg-surface/50 border-white/10 backdrop-blur-sm">
               <div className="p-4">
                 <p className="text-sm text-accent/60">Unable to load case health heatmap right now.</p>
-              </div>
-            </Card>
+                    </div>
+        </Card>
           }
         >
           <CaseHeatmapPanel heatmap={caseHeatmap} />
-        </ErrorBoundary>
+        </ErrorBoundary> */}
 
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
         {/* Case Notes */}
-        <ErrorBoundary
+        {/* <ErrorBoundary
           fallback={
             <Card title="Case Notes">
               <p className="text-sm text-accent/60">Unable to load case notes right now.</p>
@@ -1377,36 +1306,133 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
           }
         >
           <CaseNotesPanel caseId={caseId} />
-        </ErrorBoundary>
+        </ErrorBoundary> */}
 
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
         {/* Supervisor Review */}
-        <ErrorBoundary
+        {/* <ErrorBoundary
           fallback={
             <Card title="Supervisor Review">
               <p className="text-sm text-accent/60">Unable to load supervisor review right now.</p>
-            </Card>
+        </Card>
           }
         >
           <SupervisorReviewPanel caseId={caseId} caseName={caseRecord.title ?? undefined} />
-        </ErrorBoundary>
+        </ErrorBoundary> */}
 
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
         {/* Deadline Management */}
-        <ErrorBoundary
+        {/* <ErrorBoundary
           fallback={
             <Card title="Deadlines">
               <p className="text-sm text-accent/60">Failed to load deadlines</p>
             </Card>
           }
         >
-          <DeadlineManagementPanel caseId={caseId} />
-        </ErrorBoundary>
+          <div className="space-y-4">
+            <DeadlineManagementPanel caseId={caseId} />
+            <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Calendar unavailable</div>}>
+              <DeadlineCalendarWrapper caseId={caseId} />
+            </ErrorBoundary>
+          </div>
+        </ErrorBoundary> */}
 
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
+        {/* Time Tracker */}
+        {/* <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Time tracker unavailable</div>}>
+          <TimeTracker caseId={caseId} />
+        </ErrorBoundary> */}
+
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
+        {/* Billing & Invoices */}
+        {/* <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Billing unavailable</div>}>
+          <InvoiceList caseId={caseId} />
+        </ErrorBoundary> */}
+
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
+        {/* Email Integration */}
+        {/* <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Email unavailable</div>}>
+          <CaseEmailsPanel caseId={caseId} />
+        </ErrorBoundary> */}
+
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
+        {/* Communication History */}
+        {/* <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Communication history unavailable</div>}>
+          <CommunicationHistoryPanel caseId={caseId} />
+        </ErrorBoundary> */}
+
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
+        {/* SMS/WhatsApp */}
+        {/* <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">SMS/WhatsApp unavailable</div>}>
+          <SMSPanel caseId={caseId} />
+        </ErrorBoundary> */}
+
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
+        {/* E-Signature */}
+        {/* <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">E-signature unavailable</div>}>
+          <ESignaturePanel caseId={caseId} />
+        </ErrorBoundary> */}
+
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
+        {/* Calendar Events */}
+        {/* <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Calendar unavailable</div>}>
+          <CalendarEventsPanel caseId={caseId} />
+        </ErrorBoundary> */}
+
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
+        {/* Document Version Control */}
+        {/* {documents && documents.length > 0 && (
+          <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Document versions unavailable</div>}>
+            <DocumentVersionsPanel documentId={documents[0].id} />
+          </ErrorBoundary>
+        )} */}
+
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
+        {/* Custom Reports */}
+        {/* <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Reports unavailable</div>}>
+          <CustomReportsPanel caseId={caseId} />
+        </ErrorBoundary> */}
+
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
+        {/* Trust Accounting (UK-specific) */}
+        {/* <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Trust accounting unavailable</div>}>
+          <ClientMoneyPanel caseId={caseId} />
+        </ErrorBoundary> */}
+
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
+        {/* Case Profitability */}
+        {/* <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Profitability unavailable</div>}>
+          <ProfitabilityCard caseId={caseId} />
+        </ErrorBoundary> */}
+
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
+        {/* Settlement Calculator */}
+        {/* <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Settlement calculator unavailable</div>}>
+          <SettlementCalculatorPanel caseId={caseId} />
+        </ErrorBoundary> */}
+
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
+        {/* Client Timeline */}
+        {/* <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Client timeline unavailable</div>}>
+          <ClientTimelinePanel caseId={caseId} currentStage={piCase?.stage || housingCase?.stage} />
+        </ErrorBoundary> */}
+
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
+        {/* Pre-Action Protocol Checklist */}
+        {/* <ErrorBoundary fallback={<div className="text-sm text-accent/60 p-4">Protocol checklist unavailable</div>}>
+          <PreActionProtocolChecklist 
+            caseId={caseId} 
+            practiceArea={caseRecord.practice_area ?? "other_litigation"} 
+          />
+        </ErrorBoundary> */}
+
+        {/* TODO: hidden for ship – re-enable when data + integrations are production-ready */}
         {/* Risk Alerts - Using the proper RiskAlertsPanel component (removed duplicate card) */}
-        <ErrorBoundary
+        {/* <ErrorBoundary
           fallback={
             <Card title="Risk Alerts">
               <p className="text-sm text-accent/60">Unable to load risk alerts right now.</p>
-            </Card>
+        </Card>
           }
         >
           {(() => {
@@ -1423,7 +1449,7 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
             });
             return <RiskAlertsPanel caseId={caseId} riskAlerts={riskAlertsForPanel} />;
           })()}
-        </ErrorBoundary>
+        </ErrorBoundary> */}
       </aside>
     </div>
   );

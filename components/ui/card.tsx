@@ -79,9 +79,9 @@ export function Card({
   animate = true,
 }: CardProps) {
   const variantStyles = {
-    default: "bg-surface/80 backdrop-blur-xl border border-white/10",
+    default: "bg-card backdrop-blur-xl border border-border shadow-xl shadow-black/40",
     glass: "glass-card",
-    gradient: "gradient-border bg-surface",
+    gradient: "gradient-border bg-card",
   };
 
   return (
@@ -124,7 +124,7 @@ type StatCardProps = {
 
 export function StatCard({ label, value, change, trend, icon }: StatCardProps) {
   return (
-    <div className="group relative overflow-hidden rounded-2xl bg-surface/80 backdrop-blur-xl border border-white/10 p-6 transition-all duration-300 hover:shadow-card-hover hover:border-primary/30">
+    <div className="group relative overflow-hidden rounded-2xl bg-card backdrop-blur-xl border border-border shadow-xl shadow-black/40 p-6 transition-all duration-300 hover:shadow-card-hover hover:border-primary/30">
       {/* Glow effect on hover */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
       
@@ -169,7 +169,7 @@ type FeatureCardProps = {
 
 export function FeatureCard({ title, description, icon }: FeatureCardProps) {
   return (
-    <div className="group relative overflow-hidden rounded-2xl bg-surface/80 backdrop-blur-xl border border-white/10 p-6 transition-all duration-300 hover:shadow-card-hover hover:border-primary/30 hover:-translate-y-1">
+    <div className="group relative overflow-hidden rounded-2xl bg-card backdrop-blur-xl border border-border shadow-xl shadow-black/40 p-6 transition-all duration-300 hover:shadow-card-hover hover:border-primary/30 hover:-translate-y-1">
       {/* Gradient overlay on hover */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity" />
       

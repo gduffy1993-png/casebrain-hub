@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { createClient } from "@/lib/supabase/browser";
 import { CheckCircle, Loader2 } from "lucide-react";
 import { clsx } from "clsx";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useToast } from "@/components/Toast";
+import { IntakeConflictCheck } from "@/components/intake/IntakeConflictCheck";
 
 type FormState = {
   caseTitle: string;
@@ -43,9 +45,29 @@ type Step = 0 | 1 | 2;
 export function PiIntakeWizard() {
   const router = useRouter();
   const pushToast = useToast((state) => state.push);
+  const [orgId, setOrgId] = useState<string>("unknown");
   const [formState, setFormState] = useState<FormState>(INITIAL_STATE);
+  
+  useEffect(() => {
+    const loadOrg = async () => {
+      try {
+        const res = await fetch("/api/user/me");
+        if (res.ok) {
+          const data = await res.json();
+          if (data.orgId) {
+            setOrgId(data.orgId);
+          }
+        }
+      } catch {
+        // Ignore
+      }
+    };
+    
+    loadOrg();
+  }, []);
   const [step, setStep] = useState<Step>(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [hasConflictBlock, setHasConflictBlock] = useState(false);
   const [result, setResult] = useState<{
     caseId: string;
     limitationDate: string | null;
@@ -70,6 +92,11 @@ export function PiIntakeWizard() {
   };
 
   const handleSubmit = async () => {
+    if (hasConflictBlock) {
+      pushToast("Cannot create case: Direct conflicts detected. Please resolve conflicts first.");
+      return;
+    }
+    
     setIsSubmitting(true);
     setResult(null);
 
@@ -255,6 +282,20 @@ export function PiIntakeWizard() {
           title="Review and create"
           description="Confirm the details below and create the case. Limitation helper is indicative only."
         >
+          {/* Conflict Check */}
+          {(formState.caseTitle || formState.opponent) && (
+            <div className="mb-6">
+              <IntakeConflictCheck
+                orgId={orgId}
+                clientName={formState.caseTitle.split(" - ")[0] || formState.caseTitle}
+                opponentName={formState.opponent}
+                onConflictCheckComplete={(hasConflicts) => {
+                  setHasConflictBlock(hasConflicts);
+                }}
+              />
+            </div>
+          )}
+          
           <div className="space-y-4 text-sm text-accent/70">
             <ReviewRow label="Case title" value={formState.caseTitle} />
             <ReviewRow

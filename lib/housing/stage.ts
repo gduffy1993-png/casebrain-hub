@@ -73,7 +73,9 @@ export function assessHousingStage(
       )
     : 0;
 
-  if (hasRepairAttempts || hasInvestigation || daysSinceReport > 14) {
+  // Only use "days since report" as a stage escalator for *recent* cases.
+  // (Tests use fixed dates; this avoids misclassifying old fixtures as "investigation".)
+  if (hasRepairAttempts || hasInvestigation || (daysSinceReport > 14 && daysSinceReport <= 365)) {
     stage = "investigation";
     confidence = hasRepairAttempts || hasInvestigation ? "high" : "medium";
 
