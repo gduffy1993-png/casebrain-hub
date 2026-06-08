@@ -6,6 +6,7 @@
 export const CRIMINAL_PILOT_NAV_HREFS = [
   "/court-today",
   "/cases",
+  "/supervisor-queue",
   "/upload",
   "/search",
   "/bin",
