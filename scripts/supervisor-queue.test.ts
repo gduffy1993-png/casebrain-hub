@@ -3,11 +3,16 @@
  * Run: npx tsx scripts/supervisor-queue.test.ts
  */
 import assert from "node:assert/strict";
+import { loadGoldPack, readBundleText } from "../lib/eval/casebrain-auditor/bundle-fidelity-pack";
 import {
   buildSupervisorQueueRow,
   buildSupervisorQueueRows,
   filterSupervisorQueueRows,
 } from "../lib/criminal/supervisor-queue/build-supervisor-queue";
+import { buildComputedSupervisorQueueBundle } from "../lib/criminal/supervisor-queue/build-computed-supervisor-queue-bundle";
+import {
+  mergeSupervisorQueuePersistenceBundles,
+} from "../lib/criminal/supervisor-queue/merge-supervisor-queue-bundles";
 import {
   buildSupervisorQueueCaseHref,
   isValidSupervisorQueueOpenCaseHref,
@@ -248,5 +253,65 @@ const safeBlob = JSON.stringify(escalated);
 assert.equal(lintSupervisorQueueOutput(safeBlob).length, 0);
 assert.ok(!safeBlob.includes("fullText"));
 assert.ok(!safeBlob.includes("artifacts/"));
+
+const generic = loadGoldPack().find((e) => e.truthKey.bundleId === "generic-provisional-sam-okonkwo");
+assert.ok(generic?.bundleTextPaths.length, "generic provisional gold pack");
+const genericText = readBundleText(generic!.bundleTextPaths);
+const computedCaseId = "2964506f-b6df-4194-afec-52fad0aa84e6";
+const computedMeta = {
+  caseId: computedCaseId,
+  title: "R v Tara Coleman",
+  hearingDate: "2026-06-10T09:00:00.000Z",
+};
+const computedDocs = [
+  {
+    id: "doc-1",
+    name: "bundle.txt",
+    updated_at: "2026-06-01T10:00:00.000Z",
+    raw_text: genericText,
+    extracted_text: null,
+    extracted_json: null,
+  },
+];
+const computedBundle = buildComputedSupervisorQueueBundle(computedMeta, computedDocs, {
+  now: new Date("2026-06-01T12:00:00.000Z"),
+});
+assert.ok(computedBundle, "computed bundle from case papers");
+assert.equal(computedBundle!.signoff?.qaStatus, "required", "computed QA required");
+assert.equal(computedBundle!.snapshot?.readinessLevel, "red", "computed red readiness");
+
+const computedOnlyRow = buildSupervisorQueueRow(
+  computedMeta,
+  mergeSupervisorQueuePersistenceBundles(null, computedBundle),
+  new Date("2026-06-01T12:00:00.000Z"),
+);
+assert.ok(computedOnlyRow, "computed-only case appears in queue");
+assert.ok(
+  computedOnlyRow!.buckets.includes("review_required"),
+  "computed review required bucket",
+);
+assert.ok(
+  computedOnlyRow!.buckets.includes("hearing_soon_red"),
+  "computed red readiness bucket",
+);
+assert.equal(
+  computedOnlyRow!.openCaseHref,
+  `/cases/${computedCaseId}?tab=strategy&controlRoom=1`,
+  "computed row open case href",
+);
+const redFiltered = filterSupervisorQueueRows([computedOnlyRow!], "red_readiness");
+assert.equal(redFiltered.length, 1, "red readiness filter includes computed case");
+
+const invalidComputedRow = buildSupervisorQueueRow(
+  { caseId: "CASE_ID", title: "Invalid placeholder", hearingDate: null },
+  mergeSupervisorQueuePersistenceBundles(null, computedBundle),
+);
+assert.ok(invalidComputedRow);
+assert.equal(invalidComputedRow!.openCaseHref, null, "invalid case id has no href");
+assert.equal(
+  resolveSupervisorQueueOpenCaseHref(invalidComputedRow!),
+  null,
+  "invalid placeholder shows unavailable link",
+);
 
 console.log("supervisor-queue.test.ts: ok");

@@ -243,7 +243,7 @@ function AssistantChat({
           onChange={(e) => setInput(e.target.value)}
           rows={2}
           placeholder="Ask about this case…"
-          className="flex-1 text-sm rounded-md border border-border/60 bg-background px-2.5 py-1.5 resize-none focus:outline-none focus:ring-1 focus:ring-primary/40"
+          className="flex-1 text-sm rounded-md border border-slate-300 bg-white text-slate-900 caret-slate-900 placeholder:text-slate-500 px-2.5 py-1.5 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 disabled:opacity-60"
         />
         <Button type="submit" size="sm" disabled={sending || !input.trim()} className="self-end shrink-0">
           <Send className="h-4 w-4" />
