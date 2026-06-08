@@ -34,7 +34,7 @@ async function main() {
 assert.equal(isPersistenceEnabled(params({ persistence: "1" }), false), true, "persistence=1 enables");
 assert.equal(isPersistenceEnabled(params({ persistence: "0" }), true), false, "persistence=0 disables");
 assert.equal(isPersistenceEnabled(params({}), true), true, "storage enables when query unset");
-assert.equal(isPersistenceEnabled(params({}), false), false, "persistence off = current behaviour");
+assert.equal(isPersistenceEnabled(params({}), false, { defaultOn: false }), false, "persistence off when not pilot default");
 assert.equal(
   isReasoningFeedbackPersistenceEnabled(true, true),
   false,

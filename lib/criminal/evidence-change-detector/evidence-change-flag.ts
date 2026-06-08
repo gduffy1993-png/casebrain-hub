@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { resolveCriminalWorkflowFlag } from "@/lib/criminal/workflow/criminal-workflow-flag-defaults";
 
 export const EVIDENCE_CHANGES_STORAGE_KEY = "casebrain:evidenceChanges";
 
@@ -24,15 +25,13 @@ export function writeEvidenceChangesToStorage(enabled: boolean): void {
   }
 }
 
-/** Requires reasoningV2=1 and evidenceChanges=1. Default OFF. */
+/** Requires reasoningV2=1 and evidenceChanges=1. ON by default in criminal pilot mode. */
 export function isEvidenceChangesEnabled(
   searchParams: { get: (key: string) => string | null } | null,
   storageEnabled = false,
+  options?: { defaultOn?: boolean },
 ): boolean {
-  const q = searchParams?.get("evidenceChanges");
-  if (q === "1" || q === "true") return true;
-  if (q === "0" || q === "false") return false;
-  return storageEnabled;
+  return resolveCriminalWorkflowFlag(searchParams, "evidenceChanges", storageEnabled, options);
 }
 
 export function useEvidenceChangesEnabled(): boolean {

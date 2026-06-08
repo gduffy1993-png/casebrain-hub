@@ -1,21 +1,16 @@
-const UUID_RE =
-  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+import { buildControlRoomCaseHref, isValidCaseId } from "@/components/criminal/criminalCaseNavigation";
 
-function isValidCaseId(caseId: string): boolean {
-  return UUID_RE.test(caseId.trim());
+/** Clean Control Room entry — workflow flags default ON in criminal pilot mode. */
+export function buildSupervisorQueueCaseHref(caseId: string | null | undefined): string | null {
+  const id = caseId?.trim();
+  if (!id || !isValidCaseId(id)) return null;
+  return buildControlRoomCaseHref(id);
 }
 
-export function buildSupervisorQueueCaseHref(caseId: string): string {
-  const id = caseId.trim();
-  if (!isValidCaseId(id)) return "/cases";
-  const params = new URLSearchParams({
-    tab: "strategy",
-    controlRoom: "1",
-    reasoningV2: "1",
-    supervisor: "1",
-    evidenceChanges: "1",
-    exports: "1",
-    persistence: "1",
-  });
-  return `/cases/${id}?${params.toString()}`;
+export function isSupervisorQueueOpenCaseHref(
+  href: string | null | undefined,
+  caseId: string | null | undefined,
+): href is string {
+  const expected = buildSupervisorQueueCaseHref(caseId);
+  return Boolean(expected && href === expected);
 }

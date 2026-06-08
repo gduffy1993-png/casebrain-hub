@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { workflowMuted, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
+import { buildSupervisorQueueCaseHref } from "@/lib/criminal/supervisor-queue/supervisor-queue-links";
 import { useSupervisorQueuePageEnabled } from "@/lib/criminal/supervisor-queue/supervisor-queue-flag";
 import type {
   SupervisorQueueFilter,
@@ -91,9 +92,8 @@ export function SupervisorQueueClient() {
           <div>
             <h2 className="text-sm font-semibold text-slate-900">Supervisor queue unavailable</h2>
             <p className={`text-xs ${workflowMuted} mt-1`}>
-              Enable supervisor or persistence review mode with{" "}
-              <code className="text-[11px]">?supervisor=1</code> or{" "}
-              <code className="text-[11px]">?persistence=1</code> on a case, then return here.
+              Supervisor review is not enabled for this session. Contact your administrator if you
+              need access.
             </p>
           </div>
         </div>
@@ -143,7 +143,9 @@ export function SupervisorQueueClient() {
         </Card>
       ) : (
         <ul className="space-y-3">
-          {rows.map((row) => (
+          {rows.map((row) => {
+            const openCaseHref = buildSupervisorQueueCaseHref(row.caseId);
+            return (
             <li key={row.caseId}>
               <Card className="p-4 min-w-0" data-testid="supervisor-queue-row">
                 <div className="flex flex-wrap items-start gap-2 justify-between">
@@ -214,16 +216,29 @@ export function SupervisorQueueClient() {
                 )}
 
                 <div className="mt-3">
-                  <Link href={row.openCaseHref}>
-                    <Button type="button" size="sm" className="h-8 text-xs gap-1">
-                      Open case
-                      <ChevronRight className="h-3.5 w-3.5" />
+                  {openCaseHref ? (
+                    <Link href={openCaseHref}>
+                      <Button type="button" size="sm" className="h-8 text-xs gap-1">
+                        Open case
+                        <ChevronRight className="h-3.5 w-3.5" />
+                      </Button>
+                    </Link>
+                  ) : (
+                    <Button
+                      type="button"
+                      size="sm"
+                      className="h-8 text-xs gap-1"
+                      disabled
+                      aria-disabled
+                    >
+                      Case link unavailable
                     </Button>
-                  </Link>
+                  )}
                 </div>
               </Card>
             </li>
-          ))}
+            );
+          })}
         </ul>
       )}
     </div>

@@ -32,7 +32,7 @@ export type SupervisorQueueRow = {
   suggestedAction: string;
   buckets: SupervisorQueueBucket[];
   priority: number;
-  openCaseHref: string;
+  openCaseHref: string | null;
 };
 
 export const SUPERVISOR_QUEUE_FILTER_BUCKETS: Record<
