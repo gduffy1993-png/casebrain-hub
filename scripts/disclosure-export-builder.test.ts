@@ -37,7 +37,7 @@ function assertNoLint(obj: object, label: string) {
   assert.ok(!issues.length, `${label}: ${issues.join("; ")}`);
 }
 
-assert.equal(isExportsEnabled({ get: () => null }, false), false);
+assert.equal(isExportsEnabled({ get: () => null }, false, { defaultOn: false }), false);
 assert.equal(isExportsEnabled({ get: () => "1" }, false), true);
 assert.equal(shouldShowSolicitorExportBuilder(false, true, true), false, "needs reasoningV2");
 assert.equal(shouldShowSolicitorExportBuilder(true, false, true), false, "needs exports");

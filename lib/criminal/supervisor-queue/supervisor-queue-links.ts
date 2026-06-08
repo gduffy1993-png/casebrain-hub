@@ -1,21 +1,10 @@
-import { isValidCaseId } from "@/components/criminal/criminalCaseNavigation";
+import { buildControlRoomCaseHref, isValidCaseId } from "@/components/criminal/criminalCaseNavigation";
 
-export const SUPERVISOR_QUEUE_OPEN_CASE_QUERY =
-  "tab=strategy&controlRoom=1&reasoningV2=1&supervisor=1&evidenceChanges=1&exports=1&persistence=1";
-
+/** Clean Control Room entry — workflow flags default ON in criminal pilot mode. */
 export function buildSupervisorQueueCaseHref(caseId: string | null | undefined): string | null {
   const id = caseId?.trim();
   if (!id || !isValidCaseId(id)) return null;
-  const params = new URLSearchParams({
-    tab: "strategy",
-    controlRoom: "1",
-    reasoningV2: "1",
-    supervisor: "1",
-    evidenceChanges: "1",
-    exports: "1",
-    persistence: "1",
-  });
-  return `/cases/${id}?${params.toString()}`;
+  return buildControlRoomCaseHref(id);
 }
 
 export function isSupervisorQueueOpenCaseHref(

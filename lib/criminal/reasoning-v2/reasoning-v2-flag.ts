@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { resolveCriminalWorkflowFlag } from "@/lib/criminal/workflow/criminal-workflow-flag-defaults";
 
 export const REASONING_V2_STORAGE_KEY = "casebrain:reasoningV2";
 
@@ -24,15 +25,13 @@ export function writeReasoningV2ToStorage(enabled: boolean): void {
   }
 }
 
-/** Query param wins when set; otherwise localStorage. Default OFF. */
+/** Query param wins; else localStorage; else ON in criminal pilot mode. */
 export function isReasoningV2Enabled(
   searchParams: { get: (key: string) => string | null } | null,
   storageEnabled = false,
+  options?: { defaultOn?: boolean },
 ): boolean {
-  const q = searchParams?.get("reasoningV2");
-  if (q === "1" || q === "true") return true;
-  if (q === "0" || q === "false") return false;
-  return storageEnabled;
+  return resolveCriminalWorkflowFlag(searchParams, "reasoningV2", storageEnabled, options);
 }
 
 export function useReasoningV2Enabled(): boolean {

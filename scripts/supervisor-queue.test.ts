@@ -24,20 +24,15 @@ assert.equal(sanitizeSupervisorQueueLabel("R v Example — supervisor review"), 
 
 const href = buildSupervisorQueueCaseHref(CASE_ID);
 assert.ok(href, "valid case id yields href");
-assert.ok(href!.startsWith(`/cases/${CASE_ID}?tab=strategy`), "open case href uses uuid and strategy tab");
-assert.ok(href!.includes("controlRoom=1"), "controlRoom flag in href");
-assert.ok(href!.includes("reasoningV2=1"), "reasoningV2 flag in href");
-assert.ok(href!.includes("supervisor=1"), "supervisor flag in href");
-assert.ok(href!.includes("evidenceChanges=1"), "evidenceChanges flag in href");
-assert.ok(href!.includes("exports=1"), "exports flag in href");
-assert.ok(href!.includes("persistence=1"), "persistence flag in href");
+assert.equal(href, `/cases/${CASE_ID}?tab=strategy&controlRoom=1`, "clean control room open case href");
+assert.ok(!href!.includes("reasoningV2="), "workflow flags omitted when pilot defaults apply");
 assert.equal(buildSupervisorQueueCaseHref("not-a-uuid"), null);
 assert.equal(buildSupervisorQueueCaseHref(""), null);
 
 const exampleHref = buildSupervisorQueueCaseHref(EXAMPLE_CASE_ID);
 assert.equal(
   exampleHref,
-  `/cases/${EXAMPLE_CASE_ID}?tab=strategy&controlRoom=1&reasoningV2=1&supervisor=1&evidenceChanges=1&exports=1&persistence=1`,
+  `/cases/${EXAMPLE_CASE_ID}?tab=strategy&controlRoom=1`,
   "example open case href shape",
 );
 

@@ -92,9 +92,8 @@ export function SupervisorQueueClient() {
           <div>
             <h2 className="text-sm font-semibold text-slate-900">Supervisor queue unavailable</h2>
             <p className={`text-xs ${workflowMuted} mt-1`}>
-              Enable supervisor or persistence review mode with{" "}
-              <code className="text-[11px]">?supervisor=1</code> or{" "}
-              <code className="text-[11px]">?persistence=1</code> on a case, then return here.
+              Supervisor review is not enabled for this session. Contact your administrator if you
+              need access.
             </p>
           </div>
         </div>
