@@ -145,9 +145,9 @@ export function buildSupervisorQueueRow(
   }
 
   if (level === "red" || snapshot?.humanReviewRequired) {
-    if (isHearingSoon(meta.hearingDate, nowMs) && level === "red") {
+    if (level === "red") {
       buckets.push("hearing_soon_red");
-    } else if (level === "red") {
+    } else if (snapshot?.humanReviewRequired && signoff?.qaStatus !== "none") {
       buckets.push("hearing_soon_red");
     }
   }

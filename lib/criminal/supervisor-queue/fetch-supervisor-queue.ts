@@ -1,5 +1,8 @@
 import { buildComputedSupervisorQueueBundle } from "@/lib/criminal/supervisor-queue/build-computed-supervisor-queue-bundle";
 import {
+  resolveSupervisorQueueComputedCaseIds,
+} from "@/lib/criminal/supervisor-queue/criminal-queue-case-eligibility";
+import {
   buildSupervisorQueueRows,
   filterSupervisorQueueRows,
   latestByCaseId,
@@ -12,10 +15,7 @@ import {
   supervisorQueuePersistenceBundleHasSignals,
 } from "@/lib/criminal/supervisor-queue/merge-supervisor-queue-bundles";
 import { filterCasesForPilotUser } from "@/lib/pilot-mode";
-import {
-  buildSupervisorQueueCaseHref,
-  resolveSupervisorQueueOpenCaseHref,
-} from "@/lib/criminal/supervisor-queue/supervisor-queue-links";
+import { resolveSupervisorQueueOpenCaseHref } from "@/lib/criminal/supervisor-queue/supervisor-queue-links";
 import {
   lintSupervisorQueueOutput,
   sanitizeSupervisorQueueLabelArray,
@@ -155,12 +155,17 @@ export async function fetchSupervisorQueueForOrg(
     hearingDate: hearingByCase.get(c.id) ?? null,
   }));
 
+  const computedCaseIds = resolveSupervisorQueueComputedCaseIds(
+    visibleCases,
+    criminalCaseIds,
+  );
+
   const docsByCase = new Map<string, Array<Record<string, unknown>>>();
-  if (criminalCaseIds.size) {
+  if (computedCaseIds.length) {
     const { data: docRows } = await supabase
       .from("documents")
       .select("case_id, id, name, updated_at, raw_text, extracted_text, extracted_json")
-      .in("case_id", [...criminalCaseIds]);
+      .in("case_id", computedCaseIds);
 
     for (const doc of docRows ?? []) {
       const list = docsByCase.get(doc.case_id) ?? [];
@@ -168,6 +173,8 @@ export async function fetchSupervisorQueueForOrg(
       docsByCase.set(doc.case_id, list);
     }
   }
+
+  const computedCaseIdSet = new Set(computedCaseIds);
 
   const persistenceByCase = new Map<string, SupervisorQueuePersistenceBundle>();
   const now = new Date();
@@ -229,7 +236,7 @@ export async function fetchSupervisorQueueForOrg(
   }
 
   for (const meta of caseMetas) {
-    if (!criminalCaseIds.has(meta.caseId)) continue;
+    if (!computedCaseIdSet.has(meta.caseId)) continue;
     const docs = docsByCase.get(meta.caseId) ?? [];
     if (!docs.length) continue;
 
