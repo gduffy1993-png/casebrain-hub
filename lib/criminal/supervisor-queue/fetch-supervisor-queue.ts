@@ -6,7 +6,10 @@ import {
   type SupervisorQueueCaseMeta,
   type SupervisorQueuePersistenceBundle,
 } from "@/lib/criminal/supervisor-queue/build-supervisor-queue";
-import { buildSupervisorQueueCaseHref } from "@/lib/criminal/supervisor-queue/supervisor-queue-links";
+import {
+  buildSupervisorQueueCaseHref,
+  resolveSupervisorQueueOpenCaseHref,
+} from "@/lib/criminal/supervisor-queue/supervisor-queue-links";
 import {
   lintSupervisorQueueOutput,
   sanitizeSupervisorQueueLabelArray,
@@ -39,7 +42,7 @@ function sanitizeRow(row: SupervisorQueueRow): SupervisorQueueRow | null {
   const safe = {
     ...row,
     reviewReasonLabels: sanitizeSupervisorQueueLabelArray(row.reviewReasonLabels),
-    openCaseHref: buildSupervisorQueueCaseHref(row.caseId),
+    openCaseHref: resolveSupervisorQueueOpenCaseHref(row),
   };
   if (!supervisorQueueRowIsSafe(safe as unknown as Record<string, unknown>)) return null;
   if (lintSupervisorQueueOutput(JSON.stringify(safe)).length) return null;

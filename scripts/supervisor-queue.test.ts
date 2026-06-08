@@ -8,7 +8,11 @@ import {
   buildSupervisorQueueRows,
   filterSupervisorQueueRows,
 } from "../lib/criminal/supervisor-queue/build-supervisor-queue";
-import { buildSupervisorQueueCaseHref } from "../lib/criminal/supervisor-queue/supervisor-queue-links";
+import {
+  buildSupervisorQueueCaseHref,
+  isValidSupervisorQueueOpenCaseHref,
+  resolveSupervisorQueueOpenCaseHref,
+} from "../lib/criminal/supervisor-queue/supervisor-queue-links";
 import {
   lintSupervisorQueueOutput,
   sanitizeSupervisorQueueLabel,
@@ -36,6 +40,34 @@ assert.equal(
   "example open case href shape",
 );
 
+assert.equal(isValidSupervisorQueueOpenCaseHref("/cases"), false, "list fallback rejected");
+assert.equal(isValidSupervisorQueueOpenCaseHref("/cases/CASE_ID?tab=strategy"), false, "placeholder rejected");
+assert.equal(
+  isValidSupervisorQueueOpenCaseHref(
+    "/cases%2Fcriminal%2FCASE_ID%3Ftab=strategy",
+    EXAMPLE_CASE_ID,
+  ),
+  false,
+  "encoded path rejected",
+);
+assert.equal(
+  resolveSupervisorQueueOpenCaseHref({
+    caseId: EXAMPLE_CASE_ID,
+    openCaseHref: "/cases",
+  }),
+  `/cases/${EXAMPLE_CASE_ID}?tab=strategy&controlRoom=1`,
+  "valid caseId wins over /cases openCaseHref fallback",
+);
+assert.equal(
+  resolveSupervisorQueueOpenCaseHref({
+    caseId: EXAMPLE_CASE_ID,
+    openCaseHref: exampleHref,
+  }),
+  exampleHref,
+  "uses API openCaseHref when valid",
+);
+assert.equal(resolveSupervisorQueueOpenCaseHref({ caseId: "CASE_ID", openCaseHref: "/cases" }), null);
+
 assert.equal(isSupervisorQueuePageEnabled(true, false), true);
 assert.equal(isSupervisorQueuePageEnabled(false, true), true);
 assert.equal(isSupervisorQueuePageEnabled(false, false), false);
@@ -59,7 +91,10 @@ const escalated = buildSupervisorQueueRow(
 );
 assert.ok(escalated);
 assert.ok(escalated!.buckets.includes("escalated"));
-assert.equal(escalated!.openCaseHref, href);
+assert.equal(escalated!.caseId, CASE_ID, "API row includes caseId");
+assert.equal(escalated!.openCaseHref, href, "API row includes openCaseHref");
+assert.notEqual(escalated!.openCaseHref, "/cases", "valid row never points to list");
+assert.equal(resolveSupervisorQueueOpenCaseHref(escalated!), href);
 assert.equal(supervisorQueueRowIsSafe(escalated as unknown as Record<string, unknown>), true);
 
 const redSnapshot = buildSupervisorQueueRow(
