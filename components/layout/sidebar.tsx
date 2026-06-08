@@ -117,6 +117,11 @@ const labsEnabled = process.env.NEXT_PUBLIC_ENABLE_LABS === "true";
 
 const NAV_ITEMS: NavItem[] = [
   { label: "Court Today", href: "/court-today", icon: <Gavel className="h-4 w-4" /> },
+  {
+    label: "Supervisor Queue",
+    href: "/supervisor-queue",
+    icon: <Shield className="h-4 w-4" />,
+  },
   { label: "Dashboard", href: "/dashboard", icon: <Home className="h-4 w-4" /> },
   { label: "Police station", href: "/police-station", icon: <Building2 className="h-4 w-4" /> },
   // Compliance and Team tabs hidden for v1 pilot - code preserved but not shown in nav
