@@ -2,12 +2,13 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { AlertCircle, ChevronRight, Shield } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { workflowMuted, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
-import { buildSupervisorQueueCaseHref } from "@/lib/criminal/supervisor-queue/supervisor-queue-links";
+import { resolveSupervisorQueueOpenCaseHref } from "@/lib/criminal/supervisor-queue/supervisor-queue-links";
 import { useSupervisorQueuePageEnabled } from "@/lib/criminal/supervisor-queue/supervisor-queue-flag";
 import type {
   SupervisorQueueFilter,
@@ -47,6 +48,7 @@ function formatWhen(iso: string): string {
 }
 
 export function SupervisorQueueClient() {
+  const router = useRouter();
   const enabled = useSupervisorQueuePageEnabled();
   const [filter, setFilter] = useState<SupervisorQueueFilter>("all");
   const [rows, setRows] = useState<SupervisorQueueRow[]>([]);
@@ -144,7 +146,7 @@ export function SupervisorQueueClient() {
       ) : (
         <ul className="space-y-3">
           {rows.map((row) => {
-            const openCaseHref = buildSupervisorQueueCaseHref(row.caseId);
+            const openCaseHref = resolveSupervisorQueueOpenCaseHref(row);
             return (
             <li key={row.caseId}>
               <Card className="p-4 min-w-0" data-testid="supervisor-queue-row">
@@ -217,12 +219,15 @@ export function SupervisorQueueClient() {
 
                 <div className="mt-3">
                   {openCaseHref ? (
-                    <Link href={openCaseHref}>
-                      <Button type="button" size="sm" className="h-8 text-xs gap-1">
-                        Open case
-                        <ChevronRight className="h-3.5 w-3.5" />
-                      </Button>
-                    </Link>
+                    <Button
+                      type="button"
+                      size="sm"
+                      className="h-8 text-xs gap-1"
+                      onClick={() => router.push(openCaseHref)}
+                    >
+                      View case
+                      <ChevronRight className="h-3.5 w-3.5" />
+                    </Button>
                   ) : (
                     <Button
                       type="button"
