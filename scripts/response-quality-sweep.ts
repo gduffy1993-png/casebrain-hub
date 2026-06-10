@@ -3,7 +3,6 @@
  * Run: npx tsx scripts/response-quality-sweep.ts
  * Wide: npx tsx scripts/response-quality-sweep.ts --wide
  */
-import dotenv from "dotenv";
 import fs from "node:fs";
 import path from "node:path";
 import { createClient } from "@supabase/supabase-js";
@@ -21,7 +20,29 @@ import { buildHearingWarRoomBrief } from "../components/criminal/hearing-war-roo
 import { buildDisclosureChaseBrief } from "../components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import { FORBIDDEN_WAR_ROOM_PHRASES } from "../lib/eval/casebrain-auditor/war-room-view-types";
 
-dotenv.config({ path: path.resolve(__dirname, "../.env.local") });
+function loadLocalEnv(): void {
+  for (const name of [".env.local", ".env"]) {
+    const envPath = path.join(process.cwd(), name);
+    if (!fs.existsSync(envPath)) continue;
+    for (const line of fs.readFileSync(envPath, "utf8").split(/\r?\n/)) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith("#")) continue;
+      const eq = trimmed.indexOf("=");
+      if (eq <= 0) continue;
+      const key = trimmed.slice(0, eq).trim();
+      let val = trimmed.slice(eq + 1).trim();
+      if (
+        (val.startsWith('"') && val.endsWith('"')) ||
+        (val.startsWith("'") && val.endsWith("'"))
+      ) {
+        val = val.slice(1, -1);
+      }
+      if (process.env[key] === undefined) process.env[key] = val;
+    }
+  }
+}
+
+loadLocalEnv();
 
 const WIDE = process.argv.includes("--wide");
 const EVAL_ORG = "11f3d373-a6d0-4a58-ac72-59b5365dc367";
@@ -88,6 +109,12 @@ function hedgeDensity(text: string): number {
 }
 
 async function main() {
+  if (process.argv.includes("--help") || process.argv.includes("-h")) {
+    console.log(`Usage:
+  npx tsx scripts/response-quality-sweep.ts        # 120-case sample
+  npx tsx scripts/response-quality-sweep.ts --wide # all non-archived eval-org cases`);
+    return;
+  }
   const s = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!, { auth: { persistSession: false } });
 
   // ----- sample: previous 100 + 20 targeted top-ups -----
