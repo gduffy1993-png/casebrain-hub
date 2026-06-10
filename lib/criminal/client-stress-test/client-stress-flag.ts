@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { resolveCriminalWorkflowFlag } from "@/lib/criminal/workflow/criminal-workflow-flag-defaults";
 
 export const CLIENT_STRESS_STORAGE_KEY = "casebrain:clientStress";
 
@@ -24,14 +25,13 @@ export function writeClientStressToStorage(enabled: boolean): void {
   }
 }
 
+/** ON by default in criminal pilot mode when reasoningV2 is active. */
 export function isClientStressEnabled(
   searchParams: { get: (key: string) => string | null } | null,
   storageEnabled = false,
+  options?: { defaultOn?: boolean },
 ): boolean {
-  const q = searchParams?.get("clientStress");
-  if (q === "1" || q === "true") return true;
-  if (q === "0" || q === "false") return false;
-  return storageEnabled;
+  return resolveCriminalWorkflowFlag(searchParams, "clientStress", storageEnabled, options);
 }
 
 export function useClientStressEnabled(): boolean {

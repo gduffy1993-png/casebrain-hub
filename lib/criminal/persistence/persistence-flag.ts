@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { resolveCriminalWorkflowFlag } from "@/lib/criminal/workflow/criminal-workflow-flag-defaults";
 
 export const PERSISTENCE_STORAGE_KEY = "casebrain:persistence";
 export const REASONING_FEEDBACK_PERSISTENCE_STORAGE_KEY = "casebrain:persistence:feedback";
@@ -40,15 +41,13 @@ export function readReasoningFeedbackPersistenceFromStorage(): boolean {
   }
 }
 
-/** Query param wins when set; otherwise localStorage. Default OFF. */
+/** Query param wins; else localStorage; else ON in criminal pilot mode. */
 export function isPersistenceEnabled(
   searchParams: { get: (key: string) => string | null } | null,
   storageEnabled = false,
+  options?: { defaultOn?: boolean },
 ): boolean {
-  const q = searchParams?.get("persistence");
-  if (q === "1" || q === "true") return true;
-  if (q === "0" || q === "false") return false;
-  return storageEnabled;
+  return resolveCriminalWorkflowFlag(searchParams, "persistence", storageEnabled, options);
 }
 
 export function isReasoningFeedbackPersistenceEnabled(

@@ -58,6 +58,7 @@ import {
   prioritizeWorkflowItems,
   showPilotRouteDetailPanel,
 } from "@/lib/criminal/pilot-workflow";
+import { safeSolicitorCaseTitle } from "@/lib/criminal/dev-ref-scrub";
 import type { DocumentRowMeta } from "@/lib/bundle/parse-bundle-display";
 import { RiskColumn } from "./control-room/GlanceGrid";
 import { buildClassicCaseHref, clearControlRoomPreference } from "./criminalCaseNavigation";
@@ -417,7 +418,9 @@ export function CaseControlRoom({
       }),
     [caseTitle, allegationBase, clientLabel, battleboard?.primary_route?.title, bundleSource?.frontMatterScan],
   );
-  const caseTitleDisplay = pilotOverrides?.displayTitle ?? pilotOverrides?.title ?? caseTitle;
+  const caseTitleDisplay = safeSolicitorCaseTitle(
+    pilotOverrides?.displayTitle ?? pilotOverrides?.title ?? caseTitle,
+  );
   const allegation = pilotOverrides?.allegation ?? allegationBase;
 
   const workflowContext = useMemo(

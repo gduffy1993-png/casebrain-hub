@@ -3,12 +3,21 @@
  * Run: npx tsx scripts/supervisor-queue.test.ts
  */
 import assert from "node:assert/strict";
+import { loadGoldPack, readBundleText } from "../lib/eval/casebrain-auditor/bundle-fidelity-pack";
 import {
   buildSupervisorQueueRow,
   buildSupervisorQueueRows,
   filterSupervisorQueueRows,
 } from "../lib/criminal/supervisor-queue/build-supervisor-queue";
-import { buildSupervisorQueueCaseHref } from "../lib/criminal/supervisor-queue/supervisor-queue-links";
+import { buildComputedSupervisorQueueBundle } from "../lib/criminal/supervisor-queue/build-computed-supervisor-queue-bundle";
+import {
+  mergeSupervisorQueuePersistenceBundles,
+} from "../lib/criminal/supervisor-queue/merge-supervisor-queue-bundles";
+import {
+  buildSupervisorQueueCaseHref,
+  isValidSupervisorQueueOpenCaseHref,
+  resolveSupervisorQueueOpenCaseHref,
+} from "../lib/criminal/supervisor-queue/supervisor-queue-links";
 import {
   lintSupervisorQueueOutput,
   sanitizeSupervisorQueueLabel,
@@ -22,24 +31,147 @@ const EXAMPLE_CASE_ID = "295d9bee-d14a-461a-aa7b-91872b868e99";
 assert.equal(sanitizeSupervisorQueueLabel("artifacts/casebrain-auditor/run/foo"), null);
 assert.equal(sanitizeSupervisorQueueLabel("R v Example — supervisor review"), "R v Example — supervisor review");
 
+const EVAL_PACK_DEV_ROUTES = ["eval-pack-gold", "bundle-stress-1", "pp-gold-1"] as const;
+const PILOT_DEV_LABEL_PATTERN = /\b(eval|bundle|pack|pp)-(?:gold|stress|[a-z0-9-]+)/i;
+
+function buildEvalPackRoutePersistenceBundle(route: string) {
+  return {
+    signoff: null,
+    snapshot: {
+      readinessLevel: "red",
+      humanReviewRequired: true,
+      routeLabel: route,
+      createdAt: "2026-06-02T10:00:00.000Z",
+    },
+    feedback: {
+      feedbackOption: "unsafe_overconfident",
+      routeLabel: route,
+      createdAt: "2026-06-03T10:00:00.000Z",
+    },
+    exportReview: {
+      exportType: "disclosure_chase",
+      reviewStatus: "needs_review",
+      solicitorReviewRequired: true,
+      routeLabel: route,
+      createdAt: "2026-06-04T10:00:00.000Z",
+    },
+    auditEvents: [
+      {
+        eventType: "export_marked_needs_review",
+        safeLabel: route,
+        createdAt: "2026-06-04T10:00:00.000Z",
+      },
+    ],
+  };
+}
+
+function collectPilotQueueUiLabels(
+  row: NonNullable<ReturnType<typeof buildSupervisorQueueRow>>,
+): string[] {
+  return [
+    row.caseLabel,
+    row.materialChangeLabel,
+    row.unsafeFeedbackLabel,
+    row.suggestedAction,
+    ...row.reviewReasonLabels,
+  ].filter((label): label is string => typeof label === "string" && label.length > 0);
+}
+
+function assertPilotQueueRowLabelsSafe(
+  row: NonNullable<ReturnType<typeof buildSupervisorQueueRow>>,
+  context: string,
+): void {
+  assert.equal(
+    supervisorQueueRowIsSafe(row as unknown as Record<string, unknown>),
+    true,
+    `${context}: row passes supervisorQueueRowIsSafe`,
+  );
+  assert.equal(lintSupervisorQueueOutput(JSON.stringify(row)).length, 0, `${context}: lint clean`);
+  for (const label of collectPilotQueueUiLabels(row)) {
+    assert.equal(sanitizeSupervisorQueueLabel(label), label, `${context}: UI label already sanitized`);
+    assert.ok(!PILOT_DEV_LABEL_PATTERN.test(label), `${context}: no eval/dev pack label in UI: ${label}`);
+  }
+}
+
+for (const route of EVAL_PACK_DEV_ROUTES) {
+  assert.equal(sanitizeSupervisorQueueLabel(route), null, `${route} stripped by sanitize`);
+  const evalPackRow = buildSupervisorQueueRow(
+    { caseId: EXAMPLE_CASE_ID, title: "R v Example Client", hearingDate: null },
+    buildEvalPackRoutePersistenceBundle(route),
+  );
+  assert.ok(evalPackRow, `${route}: queue row still built`);
+  assert.equal(evalPackRow!.unsafeFeedbackLabel, "unsafe overconfident", `${route}: feedback route fallback`);
+  assertPilotQueueRowLabelsSafe(evalPackRow!, route);
+}
+
+assert.equal(sanitizeSupervisorQueueLabel("Dispute identification"), "Dispute identification");
+const disputeRouteRow = buildSupervisorQueueRow(
+  { caseId: EXAMPLE_CASE_ID, title: "R v Example Client", hearingDate: null },
+  {
+    signoff: null,
+    snapshot: null,
+    feedback: {
+      feedbackOption: "unsafe_overconfident",
+      routeLabel: "Dispute identification",
+      createdAt: "2026-06-03T10:00:00.000Z",
+    },
+    exportReview: null,
+    auditEvents: [],
+  },
+);
+assert.ok(disputeRouteRow);
+assert.equal(disputeRouteRow!.unsafeFeedbackLabel, "Dispute identification");
+assertPilotQueueRowLabelsSafe(disputeRouteRow!, "Dispute identification");
+
+const evalPackTitleRow = buildSupervisorQueueRow(
+  { caseId: EXAMPLE_CASE_ID, title: "R v Eval-Pack Demo", hearingDate: null },
+  buildEvalPackRoutePersistenceBundle("eval-pack-gold"),
+);
+assert.ok(evalPackTitleRow);
+assert.equal(evalPackTitleRow!.caseLabel, "Matter — review required", "eval-pack title replaced with safe fallback");
+assertPilotQueueRowLabelsSafe(evalPackTitleRow!, "eval-pack title");
+
 const href = buildSupervisorQueueCaseHref(CASE_ID);
 assert.ok(href, "valid case id yields href");
-assert.ok(href!.startsWith(`/cases/${CASE_ID}?tab=strategy`), "open case href uses uuid and strategy tab");
-assert.ok(href!.includes("controlRoom=1"), "controlRoom flag in href");
-assert.ok(href!.includes("reasoningV2=1"), "reasoningV2 flag in href");
-assert.ok(href!.includes("supervisor=1"), "supervisor flag in href");
-assert.ok(href!.includes("evidenceChanges=1"), "evidenceChanges flag in href");
-assert.ok(href!.includes("exports=1"), "exports flag in href");
-assert.ok(href!.includes("persistence=1"), "persistence flag in href");
+assert.equal(href, `/cases/${CASE_ID}?tab=strategy&controlRoom=1`, "clean control room open case href");
+assert.ok(!href!.includes("reasoningV2="), "workflow flags omitted when pilot defaults apply");
 assert.equal(buildSupervisorQueueCaseHref("not-a-uuid"), null);
 assert.equal(buildSupervisorQueueCaseHref(""), null);
 
 const exampleHref = buildSupervisorQueueCaseHref(EXAMPLE_CASE_ID);
 assert.equal(
   exampleHref,
-  `/cases/${EXAMPLE_CASE_ID}?tab=strategy&controlRoom=1&reasoningV2=1&supervisor=1&evidenceChanges=1&exports=1&persistence=1`,
+  `/cases/${EXAMPLE_CASE_ID}?tab=strategy&controlRoom=1`,
   "example open case href shape",
 );
+
+assert.equal(isValidSupervisorQueueOpenCaseHref("/cases"), false, "list fallback rejected");
+assert.equal(isValidSupervisorQueueOpenCaseHref("/cases/CASE_ID?tab=strategy"), false, "placeholder rejected");
+assert.equal(
+  isValidSupervisorQueueOpenCaseHref(
+    "/cases%2Fcriminal%2FCASE_ID%3Ftab=strategy",
+    EXAMPLE_CASE_ID,
+  ),
+  false,
+  "encoded path rejected",
+);
+assert.equal(
+  resolveSupervisorQueueOpenCaseHref({
+    caseId: EXAMPLE_CASE_ID,
+    openCaseHref: "/cases",
+  }),
+  `/cases/${EXAMPLE_CASE_ID}?tab=strategy&controlRoom=1`,
+  "valid caseId wins over /cases openCaseHref fallback",
+);
+assert.equal(
+  resolveSupervisorQueueOpenCaseHref({
+    caseId: EXAMPLE_CASE_ID,
+    openCaseHref: exampleHref,
+  }),
+  exampleHref,
+  "uses API openCaseHref when valid",
+);
+assert.equal(resolveSupervisorQueueOpenCaseHref({ caseId: "CASE_ID", openCaseHref: "/cases" }), null);
 
 assert.equal(isSupervisorQueuePageEnabled(true, false), true);
 assert.equal(isSupervisorQueuePageEnabled(false, true), true);
@@ -64,7 +196,10 @@ const escalated = buildSupervisorQueueRow(
 );
 assert.ok(escalated);
 assert.ok(escalated!.buckets.includes("escalated"));
-assert.equal(escalated!.openCaseHref, href);
+assert.equal(escalated!.caseId, CASE_ID, "API row includes caseId");
+assert.equal(escalated!.openCaseHref, href, "API row includes openCaseHref");
+assert.notEqual(escalated!.openCaseHref, "/cases", "valid row never points to list");
+assert.equal(resolveSupervisorQueueOpenCaseHref(escalated!), href);
 assert.equal(supervisorQueueRowIsSafe(escalated as unknown as Record<string, unknown>), true);
 
 const redSnapshot = buildSupervisorQueueRow(
@@ -218,5 +353,65 @@ const safeBlob = JSON.stringify(escalated);
 assert.equal(lintSupervisorQueueOutput(safeBlob).length, 0);
 assert.ok(!safeBlob.includes("fullText"));
 assert.ok(!safeBlob.includes("artifacts/"));
+
+const generic = loadGoldPack().find((e) => e.truthKey.bundleId === "generic-provisional-sam-okonkwo");
+assert.ok(generic?.bundleTextPaths.length, "generic provisional gold pack");
+const genericText = readBundleText(generic!.bundleTextPaths);
+const computedCaseId = "2964506f-b6df-4194-afec-52fad0aa84e6";
+const computedMeta = {
+  caseId: computedCaseId,
+  title: "R v Tara Coleman",
+  hearingDate: "2026-06-10T09:00:00.000Z",
+};
+const computedDocs = [
+  {
+    id: "doc-1",
+    name: "bundle.txt",
+    updated_at: "2026-06-01T10:00:00.000Z",
+    raw_text: genericText,
+    extracted_text: null,
+    extracted_json: null,
+  },
+];
+const computedBundle = buildComputedSupervisorQueueBundle(computedMeta, computedDocs, {
+  now: new Date("2026-06-01T12:00:00.000Z"),
+});
+assert.ok(computedBundle, "computed bundle from case papers");
+assert.equal(computedBundle!.signoff?.qaStatus, "required", "computed QA required");
+assert.equal(computedBundle!.snapshot?.readinessLevel, "red", "computed red readiness");
+
+const computedOnlyRow = buildSupervisorQueueRow(
+  computedMeta,
+  mergeSupervisorQueuePersistenceBundles(null, computedBundle),
+  new Date("2026-06-01T12:00:00.000Z"),
+);
+assert.ok(computedOnlyRow, "computed-only case appears in queue");
+assert.ok(
+  computedOnlyRow!.buckets.includes("review_required"),
+  "computed review required bucket",
+);
+assert.ok(
+  computedOnlyRow!.buckets.includes("hearing_soon_red"),
+  "computed red readiness bucket",
+);
+assert.equal(
+  computedOnlyRow!.openCaseHref,
+  `/cases/${computedCaseId}?tab=strategy&controlRoom=1`,
+  "computed row open case href",
+);
+const redFiltered = filterSupervisorQueueRows([computedOnlyRow!], "red_readiness");
+assert.equal(redFiltered.length, 1, "red readiness filter includes computed case");
+
+const invalidComputedRow = buildSupervisorQueueRow(
+  { caseId: "CASE_ID", title: "Invalid placeholder", hearingDate: null },
+  mergeSupervisorQueuePersistenceBundles(null, computedBundle),
+);
+assert.ok(invalidComputedRow);
+assert.equal(invalidComputedRow!.openCaseHref, null, "invalid case id has no href");
+assert.equal(
+  resolveSupervisorQueueOpenCaseHref(invalidComputedRow!),
+  null,
+  "invalid placeholder shows unavailable link",
+);
 
 console.log("supervisor-queue.test.ts: ok");

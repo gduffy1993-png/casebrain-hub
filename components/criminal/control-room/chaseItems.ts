@@ -1,4 +1,6 @@
 import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
+import { gateMaterialLines } from "@/lib/criminal/chase-source-gate";
+import { scrubDevRefs } from "@/lib/criminal/dev-ref-scrub";
 
 const CHASE_LINE_RE =
   /\b(chase|outstanding|not\s+served|awaiting|cctv|bwv|999|interview\s+recording|custody|mg6|disclosure|source\s+material|cad|continuity)\b/i;
@@ -20,12 +22,13 @@ export function collectChaseItems(input: {
   snapshotMissing?: { label: string; status: string }[];
   proceduralOutstanding?: string[];
   battleboard?: BattleboardOutput | null;
+  bundleText?: string | null;
 }): string[] {
   const seen = new Set<string>();
   const out: string[] = [];
 
   const push = (raw: string | null | undefined) => {
-    const s = normalizeChaseLabel(raw ?? "");
+    const s = scrubDevRefs(normalizeChaseLabel(raw ?? ""));
     if (!s || seen.has(s)) return;
     seen.add(s);
     out.push(s);
@@ -47,7 +50,7 @@ export function collectChaseItems(input: {
     }
   }
 
-  return out;
+  return input.bundleText?.trim() ? gateMaterialLines(out, input.bundleText) : out;
 }
 
 export function formatMissingEvidenceStrip(chaseItems: string[]): { label: string; warn: boolean } {

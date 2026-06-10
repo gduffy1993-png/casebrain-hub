@@ -1,4 +1,7 @@
-import { filterCasesForPilotUser } from "@/lib/pilot-mode";
+import { buildComputedSupervisorQueueBundle } from "@/lib/criminal/supervisor-queue/build-computed-supervisor-queue-bundle";
+import {
+  resolveSupervisorQueueComputedCaseIds,
+} from "@/lib/criminal/supervisor-queue/criminal-queue-case-eligibility";
 import {
   buildSupervisorQueueRows,
   filterSupervisorQueueRows,
@@ -6,7 +9,13 @@ import {
   type SupervisorQueueCaseMeta,
   type SupervisorQueuePersistenceBundle,
 } from "@/lib/criminal/supervisor-queue/build-supervisor-queue";
-import { buildSupervisorQueueCaseHref } from "@/lib/criminal/supervisor-queue/supervisor-queue-links";
+import {
+  emptySupervisorQueuePersistenceBundle,
+  mergeSupervisorQueuePersistenceBundles,
+  supervisorQueuePersistenceBundleHasSignals,
+} from "@/lib/criminal/supervisor-queue/merge-supervisor-queue-bundles";
+import { filterCasesForPilotUser } from "@/lib/pilot-mode";
+import { resolveSupervisorQueueOpenCaseHref } from "@/lib/criminal/supervisor-queue/supervisor-queue-links";
 import {
   lintSupervisorQueueOutput,
   sanitizeSupervisorQueueLabelArray,
@@ -39,7 +48,7 @@ function sanitizeRow(row: SupervisorQueueRow): SupervisorQueueRow | null {
   const safe = {
     ...row,
     reviewReasonLabels: sanitizeSupervisorQueueLabelArray(row.reviewReasonLabels),
-    openCaseHref: buildSupervisorQueueCaseHref(row.caseId),
+    openCaseHref: resolveSupervisorQueueOpenCaseHref(row),
   };
   if (!supervisorQueueRowIsSafe(safe as unknown as Record<string, unknown>)) return null;
   if (lintSupervisorQueueOutput(JSON.stringify(safe)).length) return null;
@@ -74,8 +83,10 @@ export async function fetchSupervisorQueueForOrg(
     .in("case_id", caseIds);
 
   const hearingByCase = new Map<string, string | null>();
+  const criminalCaseIds = new Set<string>();
   for (const row of criminalRows ?? []) {
     hearingByCase.set(row.case_id, row.next_hearing_date ?? null);
+    criminalCaseIds.add(row.case_id);
   }
 
   const [
@@ -144,7 +155,29 @@ export async function fetchSupervisorQueueForOrg(
     hearingDate: hearingByCase.get(c.id) ?? null,
   }));
 
+  const computedCaseIds = resolveSupervisorQueueComputedCaseIds(
+    visibleCases,
+    criminalCaseIds,
+  );
+
+  const docsByCase = new Map<string, Array<Record<string, unknown>>>();
+  if (computedCaseIds.length) {
+    const { data: docRows } = await supabase
+      .from("documents")
+      .select("case_id, id, name, updated_at, raw_text, extracted_text, extracted_json")
+      .in("case_id", computedCaseIds);
+
+    for (const doc of docRows ?? []) {
+      const list = docsByCase.get(doc.case_id) ?? [];
+      list.push(doc);
+      docsByCase.set(doc.case_id, list);
+    }
+  }
+
+  const computedCaseIdSet = new Set(computedCaseIds);
+
   const persistenceByCase = new Map<string, SupervisorQueuePersistenceBundle>();
+  const now = new Date();
 
   for (const caseId of caseIds) {
     const signoffRow = signoffByCase.get(caseId);
@@ -197,16 +230,29 @@ export async function fetchSupervisorQueueForOrg(
       })),
     };
 
-    const hasData =
-      bundle.signoff ||
-      bundle.snapshot ||
-      bundle.feedback ||
-      bundle.exportReview ||
-      bundle.auditEvents.length;
-    if (hasData) persistenceByCase.set(caseId, bundle);
+    if (supervisorQueuePersistenceBundleHasSignals(bundle)) {
+      persistenceByCase.set(caseId, bundle);
+    }
   }
 
-  const built = buildSupervisorQueueRows(caseMetas, persistenceByCase, { limit: 50 });
+  for (const meta of caseMetas) {
+    if (!computedCaseIdSet.has(meta.caseId)) continue;
+    const docs = docsByCase.get(meta.caseId) ?? [];
+    if (!docs.length) continue;
+
+    const computed = buildComputedSupervisorQueueBundle(meta, docs, { now });
+    if (!computed) continue;
+
+    const merged = mergeSupervisorQueuePersistenceBundles(
+      persistenceByCase.get(meta.caseId) ?? emptySupervisorQueuePersistenceBundle(),
+      computed,
+    );
+    if (supervisorQueuePersistenceBundleHasSignals(merged)) {
+      persistenceByCase.set(meta.caseId, merged);
+    }
+  }
+
+  const built = buildSupervisorQueueRows(caseMetas, persistenceByCase, { limit: 50, now });
   const filtered = filterSupervisorQueueRows(built, filter);
   const rows = filtered
     .map(sanitizeRow)

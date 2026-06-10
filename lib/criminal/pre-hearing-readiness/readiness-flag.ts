@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { resolveCriminalWorkflowFlag } from "@/lib/criminal/workflow/criminal-workflow-flag-defaults";
 
 export const READINESS_STORAGE_KEY = "casebrain:readiness";
 
@@ -24,15 +25,13 @@ export function writeReadinessToStorage(enabled: boolean): void {
   }
 }
 
-/** Requires reasoningV2=1 and readiness=1 (or storage). Default OFF. */
+/** Requires reasoningV2=1 and readiness=1. ON by default in criminal pilot mode. */
 export function isReadinessEnabled(
   searchParams: { get: (key: string) => string | null } | null,
   storageEnabled = false,
+  options?: { defaultOn?: boolean },
 ): boolean {
-  const q = searchParams?.get("readiness");
-  if (q === "1" || q === "true") return true;
-  if (q === "0" || q === "false") return false;
-  return storageEnabled;
+  return resolveCriminalWorkflowFlag(searchParams, "readiness", storageEnabled, options);
 }
 
 export function useReadinessEnabled(): boolean {

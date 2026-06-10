@@ -1,4 +1,6 @@
 import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
+import { gateMaterialLines } from "@/lib/criminal/chase-source-gate";
+import { scrubDevRefs } from "@/lib/criminal/dev-ref-scrub";
 
 export const SUGGESTED_PROMPTS = [
   "What would CPS argue?",
@@ -62,7 +64,7 @@ const CANONICAL_MG6_CHASE = [
 
 /** Strip eval/test/fiction markers from solicitor-facing text. */
 export function sanitizeSolicitorText(text: string): string {
-  return text
+  return scrubDevRefs(text)
     .replace(/\s*\(fiction\)/gi, "")
     .replace(/\bfiction\s*:/gi, "")
     .replace(/\bfictional\b/gi, "")
@@ -352,11 +354,11 @@ function buildOrderedMg6ChaseItems(derived: DerivedFileContext): string[] {
     }
   }
 
-  return uniqueLines(items, CANONICAL_MG6_CHASE.length);
+  return gateMaterialLines(uniqueLines(items, CANONICAL_MG6_CHASE.length), derived.fileText);
 }
 
 function buildDisclosureChaseLetter(ctx: ControlRoomAssistantContext, derived: DerivedFileContext): string {
-  const items = buildOrderedMg6ChaseItems(derived);
+  const items = gateMaterialLines(buildOrderedMg6ChaseItems(derived), derived.fileText);
 
   if (!items.length) {
     return [
@@ -391,29 +393,36 @@ function buildDisclosureChaseLetter(ctx: ControlRoomAssistantContext, derived: D
 
 function buildEvidenceChaseAnswer(ctx: ControlRoomAssistantContext, derived: DerivedFileContext): string {
   const mg6Items = buildOrderedMg6ChaseItems(derived);
-  const fromParsed =
+  const rawParsed =
     mg6Items.length > 0
       ? mg6Items
       : derived.mg6Outstanding.map((m) => sanitizeSolicitorText(m.replace(/^[^:]+:\s*/, "").trim() || m));
+  const fromParsed = gateMaterialLines(rawParsed, derived.fileText);
 
   if (!fromParsed.length) {
-    const missingOnly = uniqueLines(
-      ctx.missingEvidence.map((m) => sanitizeSolicitorText(m)).filter(Boolean),
-      6,
+    const missingOnly = gateMaterialLines(
+      uniqueLines(
+        ctx.missingEvidence.map((m) => sanitizeSolicitorText(m)).filter(Boolean),
+        6,
+      ),
+      derived.fileText,
     );
     if (!missingOnly.length) return "";
     return `Priority disclosure/source material to chase:\n\n${bulletBlock(missingOnly)}`;
   }
 
-  const extras = uniqueLines(
-    ctx.missingEvidence
-      .map((m) => sanitizeSolicitorText(m))
-      .filter((m) => {
-        if (!m) return false;
-        const ml = m.toLowerCase();
-        return !fromParsed.some((i) => i.toLowerCase().includes(ml.slice(0, Math.min(14, ml.length))));
-      }),
-    2,
+  const extras = gateMaterialLines(
+    uniqueLines(
+      ctx.missingEvidence
+        .map((m) => sanitizeSolicitorText(m))
+        .filter((m) => {
+          if (!m) return false;
+          const ml = m.toLowerCase();
+          return !fromParsed.some((i) => i.toLowerCase().includes(ml.slice(0, Math.min(14, ml.length))));
+        }),
+      2,
+    ),
+    derived.fileText,
   );
 
   let body = `Priority disclosure/source material to chase:\n\n${bulletBlock(fromParsed)}`;

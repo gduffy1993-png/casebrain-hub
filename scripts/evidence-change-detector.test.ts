@@ -61,7 +61,7 @@ function assertNoLint(obj: object, label: string) {
   assert.ok(!issues.length, `${label}: ${issues.join("; ")}`);
 }
 
-assert.equal(isEvidenceChangesEnabled({ get: () => null }, false), false);
+assert.equal(isEvidenceChangesEnabled({ get: () => null }, false, { defaultOn: false }), false);
 assert.equal(isEvidenceChangesEnabled({ get: () => "1" }, false), true);
 assert.equal(shouldShowEvidenceChangeDetector(false, true, true), false, "needs reasoningV2");
 assert.equal(shouldShowEvidenceChangeDetector(true, false, true), false, "needs evidenceChanges");

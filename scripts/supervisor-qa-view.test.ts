@@ -19,7 +19,7 @@ function assertNoLint(obj: object, label: string) {
   assert.ok(!issues.length, `${label}: ${issues.join("; ")}`);
 }
 
-assert.equal(isSupervisorQAEnabled({ get: () => null }, false), false);
+assert.equal(isSupervisorQAEnabled({ get: () => null }, false, { defaultOn: false }), false);
 assert.equal(isSupervisorQAEnabled({ get: () => "1" }, false), true);
 assert.equal(shouldShowSupervisorQAPanel(false, true, true), false, "needs reasoningV2");
 assert.equal(shouldShowSupervisorQAPanel(true, false, true), false, "needs supervisor");

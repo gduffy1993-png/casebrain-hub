@@ -33,7 +33,10 @@ export function PaywallModal({
   // NUCLEAR NUCLEAR NUCLEAR: HARDCODED OWNER CHECK - NEVER RENDER FOR OWNER
   const [user, setUser] = useState<{ id: string; email?: string } | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  
+  // Rules of Hooks: must be called unconditionally, before any early return,
+  // otherwise the hook count changes between renders and React crashes.
+  const { isOwner, bypassActive } = usePaywallStatus();
+
   useEffect(() => {
     const loadUser = async () => {
       const supabase = createClient();
@@ -73,7 +76,6 @@ export function PaywallModal({
   }
   
   // Also check paywall status as backup
-  const { isOwner, bypassActive } = usePaywallStatus();
   if (isOwner || bypassActive) {
     console.log("[PaywallModal] ✅ Owner detected via status - NOT rendering modal");
     if (onClose) {
