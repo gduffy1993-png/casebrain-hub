@@ -65,7 +65,7 @@ assert.equal(isValidCaseId("CASE_ID"), false);
 assert.equal(buildSupervisorQueueCaseHref("CASE_ID"), null);
 
 // --- Nav visibility for pilot non-admin ---
-const nonAdminId = "9df92f69-4b0b-4f2b-816a-a41a9853ec2";
+const nonAdminId = "9df92f69-4b0b-4f2b-816a-a041a9853ec2";
 assert.equal(shouldShowInternalDevTools(nonAdminId), false);
 assert.ok(CRIMINAL_PILOT_NAV_HREFS.includes("/court-today"));
 assert.ok(CRIMINAL_PILOT_NAV_HREFS.includes("/cases"));

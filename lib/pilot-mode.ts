@@ -33,12 +33,30 @@ export function shouldShowInternalDevTools(userId?: string | null): boolean {
   return isInternalAdminUser(userId);
 }
 
-/** Fixed Court Today diary anchor for non-admin pilot (local calendar: 1 June 2026). */
+/** sam.pilot demo account — locked demo diary and demo-only display rules. */
+const DEFAULT_PILOT_DEMO_USER_IDS = ["9df92f69-4b0b-4f2b-816a-a041a9853ec2"];
+
+/** Locked demo accounts (frozen diary, demo wording). Extend via NEXT_PUBLIC_PILOT_DEMO_USER_IDS. */
+export function getPilotDemoUserIds(): string[] {
+  const extra = (process.env.NEXT_PUBLIC_PILOT_DEMO_USER_IDS ?? "")
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
+  return [...new Set([...DEFAULT_PILOT_DEMO_USER_IDS, ...extra])];
+}
+
+/** Demo accounts get the frozen diary + demo dressing; real users get the live product. */
+export function isPilotDemoUser(userId?: string | null): boolean {
+  if (!userId) return false;
+  return getPilotDemoUserIds().includes(userId);
+}
+
+/** Fixed Court Today diary anchor for demo accounts (local calendar: 1 June 2026). */
 export const PILOT_COURT_TODAY_ANCHOR = new Date(2026, 5, 1);
 
-/** Non-admin pilot Court Today uses a stable demo “today” instead of the real clock. */
+/** Only locked demo accounts use the stable demo “today”; everyone else gets the real clock. */
 export function shouldUsePilotCourtTodayAnchor(userId?: string | null): boolean {
-  return isCriminalPilotMode() && !shouldShowInternalDevTools(userId);
+  return isCriminalPilotMode() && isPilotDemoUser(userId);
 }
 
 export function getPilotCourtTodayNow(userId?: string | null): Date {
@@ -246,7 +264,9 @@ export function filterCasesForPilotUser<T extends PilotCaseFilterRow>(
 ): T[] {
   if (!isCriminalPilotMode()) return cases;
   if (shouldShowInternalDevTools(userId)) return cases;
-  return filterCasesForNonAdminPilot(cases);
+  if (isPilotDemoUser(userId)) return filterCasesForNonAdminPilot(cases);
+  // Real (non-demo) users: hide eval/stress clutter only — never hide their own matters.
+  return filterPilotVisibleCases(cases);
 }
 
 /** Court Today — same eval/internal hide; do not require demo-ready metadata. */
@@ -255,7 +275,8 @@ export function filterCourtTodayCasesForPilotUser<
 >(cases: T[], userId?: string | null): T[] {
   if (!isCriminalPilotMode()) return cases.filter((c) => !isEvalOrStressTestCase(c));
   if (shouldShowInternalDevTools(userId)) return cases.filter((c) => !isEvalOrStressTestCase(c));
-  return filterCasesForNonAdminPilot(cases);
+  if (isPilotDemoUser(userId)) return filterCasesForNonAdminPilot(cases);
+  return filterPilotVisibleCases(cases);
 }
 
 export function getPostLoginPath(): string {

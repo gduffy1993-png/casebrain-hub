@@ -14,7 +14,7 @@ import { BulkArchiveCasesButton } from "@/components/cases/BulkArchiveCasesButto
 import { CasesPageClient } from "@/components/cases/CasesPageClient";
 import { resolveCaseEntryHref } from "@/components/criminal/criminalCaseNavigation";
 import { CurrentPersonaBadge } from "@/components/layout/CurrentPersonaBadge";
-import { filterCasesForPilotUser, isCriminalPilotMode, shouldShowInternalDevTools, summarizePilotCaseFilter } from "@/lib/pilot-mode";
+import { filterCasesForPilotUser, isCriminalPilotMode, isPilotDemoUser, shouldShowInternalDevTools, summarizePilotCaseFilter } from "@/lib/pilot-mode";
 
 type CasesPageProps = {
   searchParams: { practiceArea?: string; role?: string };
@@ -153,7 +153,7 @@ export default async function CasesPage({ searchParams }: CasesPageProps) {
         <div>
           <h1 className="text-2xl font-semibold text-accent">Cases</h1>
           <p className="text-sm text-accent/60">
-            {pilotMode && !showInternalTools
+            {pilotMode && isPilotDemoUser(userId)
               ? "Pilot criminal defence matters with bundle-derived metadata on file."
               : selectedPracticeArea !== "all" && selectedRole
                 ? `Filtered to ${PRACTICE_AREA_FILTERS.find((f) => f.value === selectedPracticeArea)?.label ?? selectedPracticeArea} cases (${selectedRole})`
@@ -173,7 +173,7 @@ export default async function CasesPage({ searchParams }: CasesPageProps) {
           <BulkArchiveCasesButton
             caseIds={cases.map((c) => c.id)}
             visibleCount={cases.length}
-            hidden={pilotMode && !showInternalTools}
+            hidden={pilotMode && isPilotDemoUser(userId)}
           />
           {process.env.NEXT_PUBLIC_ENABLE_LABS === "true" && (
           <div className="flex gap-2">
@@ -208,7 +208,7 @@ export default async function CasesPage({ searchParams }: CasesPageProps) {
                         <div className="flex-1">
                           <p className="text-sm font-semibold text-accent">{caseItem.title}</p>
                           <p className="mt-2 line-clamp-3 text-sm text-accent/60">
-                            {caseItem.summary ?? "Awaiting summary"}
+                            {caseSummaryDisplay(caseItem)}
                           </p>
                         </div>
                         <PracticeBadge practiceArea={caseItem.practice_area} />
@@ -246,6 +246,19 @@ export default async function CasesPage({ searchParams }: CasesPageProps) {
   );
 }
 
+/** Card line under the title — never show the raw “Awaiting summary” placeholder. */
+function caseSummaryDisplay(caseItem: {
+  summary?: string | null;
+  alleged_offence?: string | null;
+  defendant_name?: string | null;
+}): string {
+  const summary = caseItem.summary?.trim() ?? "";
+  if (summary && !/^awaiting summary\.?$/i.test(summary)) return summary;
+  const offence = caseItem.alleged_offence?.trim();
+  if (offence) return offence;
+  return "Open the matter for the case summary and defence routes.";
+}
+
 function FilterToolbar({
   selected,
   filters,
@@ -269,7 +282,7 @@ function FilterToolbar({
               "rounded-full border px-4 py-2 text-sm font-medium transition",
               isActive
                 ? "border-primary bg-primary/10 text-primary"
-                : "border-primary/10 text-accent/60 hover:border-primary/40",
+                : "border-slate-300 text-slate-600 hover:border-primary/60 hover:text-primary",
             )}
           >
             {filter.label}

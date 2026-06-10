@@ -1,6 +1,6 @@
 import type { CaseTruthManifest } from "./types";
 
-export const PILOT_DEMO_USER_ID = "9df92f69-4b0b-4f2b-816a-a41a9853ec2";
+export const PILOT_DEMO_USER_ID = "9df92f69-4b0b-4f2b-816a-a041a9853ec2";
 
 export const PILOT_COURT_TODAY_ANCHOR_HEADER = /Monday,\s*1 June 2026/i;
 export const EXPECTED_PILOT_COURT_TODAY_CASE_COUNT = 3;

@@ -15,7 +15,7 @@ type TopbarProps = {
 export function Topbar({ onQuickUpload }: TopbarProps) {
   const pilotMode = isCriminalPilotMode();
   const [user, setUser] = useState<{ id?: string; email?: string; fullName?: string } | null>(null);
-  const [orgName, setOrgName] = useState<string>("Organisation");
+  const [orgName, setOrgName] = useState<string>("Workspace");
   const router = useRouter();
 
   useEffect(() => {
@@ -36,8 +36,11 @@ export function Topbar({ onQuickUpload }: TopbarProps) {
           const res = await fetch("/api/user/me");
           if (res.ok) {
             const data = await res.json();
-            if (data.database?.org_id) {
-              setOrgName("Organisation");
+            const name =
+              (data.organisation?.name as string | undefined) ??
+              (data.database?.org_name as string | undefined);
+            if (name?.trim() && !name.includes("@") && !/^solo-user/i.test(name)) {
+              setOrgName(name.trim());
             }
           }
         } catch {
@@ -62,7 +65,7 @@ export function Topbar({ onQuickUpload }: TopbarProps) {
           {orgName}
         </span>
         <span className="text-sm font-semibold text-slate-900 truncate">
-          {user?.fullName ?? user?.email ?? "User"}
+          {user?.fullName ?? user?.email ?? ""}
         </span>
       </div>
 
