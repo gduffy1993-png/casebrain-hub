@@ -15,10 +15,17 @@ export async function GET() {
       .eq("id", userId)
       .maybeSingle();
 
+    const { data: org } = await supabase
+      .from("organisations")
+      .select("id, name")
+      .eq("id", orgId)
+      .maybeSingle();
+
     return NextResponse.json({
       userId,
       orgId,
       role,
+      organisation: org ? { id: org.id, name: org.name } : null,
       user: {
         id: user?.id,
         fullName: user?.fullName,

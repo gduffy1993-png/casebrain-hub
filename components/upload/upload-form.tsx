@@ -636,7 +636,7 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
         Drop documents or click to browse
       </p>
       <p className="text-sm text-accent/60">
-        Accepts PDF, DOCX, and TXT. Files are encrypted in Supabase Storage.
+        Accepts PDF, DOCX, and TXT. Files are stored encrypted and scoped to your organisation.
       </p>
 
       <div className="mx-auto w-full max-w-md space-y-6 text-left">
@@ -754,7 +754,7 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
                 <span>
                   <span className="font-medium">Up to 20 cases (boxes)</span> — one file per case by default, or
                   several per slot. Use <strong>Fill slots from one pick</strong> below to map many files to boxes in
-                  one go (training batches).
+                  one go.
                 </span>
               </label>
             </div>
@@ -785,12 +785,12 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
             onChange={(event) => setCaseTitle(event.target.value)}
             placeholder={
               uploadMode === "zip_by_folder"
-                ? "e.g. Fictional batch (defaults to Import if empty)"
+                ? "e.g. January intake (defaults to Import if empty)"
                 : uploadMode === "one_case_per_file"
-                  ? "e.g. Eval batch"
+                  ? "e.g. Batch Jan"
                   : uploadMode === "multi_slot"
-                    ? "e.g. Fictional eval (leave empty to use only slot names)"
-                    : "e.g. Matthews v Northbound Transport Ltd"
+                    ? "e.g. January intake (leave empty to use only slot names)"
+                    : "e.g. R v Smith"
             }
             className="mt-2 w-full rounded-2xl border border-primary/20 bg-surface px-4 py-3 text-sm text-accent shadow-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/40"
           />
