@@ -4,6 +4,8 @@
  */
 
 import { repairDisplayWordSpacing } from "@/lib/criminal/display-text";
+import { scrubDevRefs } from "@/lib/criminal/dev-ref-scrub";
+import { gateChaseLines } from "@/lib/criminal/chase-source-gate";
 
 export type BattleboardRouteStatus = "viable" | "conditional" | "blocked";
 
@@ -441,7 +443,7 @@ function compactOneLine(s: string): string {
 }
 
 function stripDisplayPrefixes(s: string): string {
-  return compactOneLine(s).replace(DISPLAY_PREFIX_RES, "");
+  return scrubDevRefs(compactOneLine(s).replace(DISPLAY_PREFIX_RES, ""));
 }
 
 function countUsefulWords(s: string): number {
@@ -820,7 +822,7 @@ function uniqueSafe(lines: string[], max: number): string[] {
   const seen = new Set<string>();
   const out: string[] = [];
   for (const raw of lines) {
-    const c = compactOneLine(raw);
+    const c = stripDisplayPrefixes(raw);
     if (!c || !isSafePhrase(c) || seen.has(c)) continue;
     seen.add(c);
     out.push(c);
@@ -2339,7 +2341,18 @@ export function buildStrategyBattleboard(input: StrategyBattleboardInput): Battl
 
   let solicitor_safe_summary: string;
   if (positionContext.notice) {
-    solicitor_safe_summary = positionContext.notice;
+    // Lead with case-specific pressure so the visible headline is never identical
+    // across matters (dup sweep checks the first ~120 chars of this summary).
+    if (primary_route) {
+      solicitor_safe_summary = `Defence position not safely recorded. Current pressure: ${primary_route.title} (${primary_route.status}) — take/record instructions before relying on strategy.`;
+      const topRisk = sanitizeDisplayLine(primary_route.collapse_risks?.[0] ?? "");
+      if (topRisk) solicitor_safe_summary += ` Key risk: ${topRisk}`;
+    } else if (bundleThin) {
+      solicitor_safe_summary =
+        "Defence position not safely recorded. Bundle text is thin on the system record — no route anchored yet; take/record instructions before relying on strategy.";
+    } else {
+      solicitor_safe_summary = `${positionContext.notice} Review routes below before fixing hearing strategy.`;
+    }
   } else if (bundleThin) {
     solicitor_safe_summary =
       "Bundle text is thin on the system record — routes below are provisional and need solicitor review. Do not overstate at hearing until source material is served.";
@@ -2366,7 +2379,13 @@ export function buildStrategyBattleboard(input: StrategyBattleboardInput): Battl
         )
       : GLOBAL_COLLAPSE;
 
-  const sanitizedRoutes = routes.map(sanitizeRoute);
+  // Chase source gate: templated "chase X" moves must be backed by the bundle —
+  // dropped when the family is never mentioned, replaced with confirm-none
+  // wording when the file explicitly says the material does not exist.
+  const sanitizedRoutes = routes.map(sanitizeRoute).map((r) => ({
+    ...r,
+    next_moves: gateChaseLines(r.next_moves, bundleText),
+  }));
   const sanitizedPrimary = sanitizedRoutes[0];
   const summaryLine = sanitizeDisplayLine(solicitor_safe_summary);
 
@@ -2410,7 +2429,7 @@ export function buildStrategyBattleboard(input: StrategyBattleboardInput): Battl
     primary_route: sanitizedPrimary,
     routes: sanitizedRoutes,
     global_collapse_risks: sanitizeStringList(globalRisks, 8),
-    urgent_next_moves: sanitizeStringList(urgent_next_moves, 6),
+    urgent_next_moves: sanitizeStringList(gateChaseLines(urgent_next_moves, bundleText), 6),
     diagnostics: {
       corpus_markers: corpusMarkers,
       safeguards_signal_count: safScore,

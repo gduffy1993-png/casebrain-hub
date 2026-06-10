@@ -31,6 +31,106 @@ const EXAMPLE_CASE_ID = "295d9bee-d14a-461a-aa7b-91872b868e99";
 assert.equal(sanitizeSupervisorQueueLabel("artifacts/casebrain-auditor/run/foo"), null);
 assert.equal(sanitizeSupervisorQueueLabel("R v Example — supervisor review"), "R v Example — supervisor review");
 
+const EVAL_PACK_DEV_ROUTES = ["eval-pack-gold", "bundle-stress-1", "pp-gold-1"] as const;
+const PILOT_DEV_LABEL_PATTERN = /\b(eval|bundle|pack|pp)-(?:gold|stress|[a-z0-9-]+)/i;
+
+function buildEvalPackRoutePersistenceBundle(route: string) {
+  return {
+    signoff: null,
+    snapshot: {
+      readinessLevel: "red",
+      humanReviewRequired: true,
+      routeLabel: route,
+      createdAt: "2026-06-02T10:00:00.000Z",
+    },
+    feedback: {
+      feedbackOption: "unsafe_overconfident",
+      routeLabel: route,
+      createdAt: "2026-06-03T10:00:00.000Z",
+    },
+    exportReview: {
+      exportType: "disclosure_chase",
+      reviewStatus: "needs_review",
+      solicitorReviewRequired: true,
+      routeLabel: route,
+      createdAt: "2026-06-04T10:00:00.000Z",
+    },
+    auditEvents: [
+      {
+        eventType: "export_marked_needs_review",
+        safeLabel: route,
+        createdAt: "2026-06-04T10:00:00.000Z",
+      },
+    ],
+  };
+}
+
+function collectPilotQueueUiLabels(
+  row: NonNullable<ReturnType<typeof buildSupervisorQueueRow>>,
+): string[] {
+  return [
+    row.caseLabel,
+    row.materialChangeLabel,
+    row.unsafeFeedbackLabel,
+    row.suggestedAction,
+    ...row.reviewReasonLabels,
+  ].filter((label): label is string => typeof label === "string" && label.length > 0);
+}
+
+function assertPilotQueueRowLabelsSafe(
+  row: NonNullable<ReturnType<typeof buildSupervisorQueueRow>>,
+  context: string,
+): void {
+  assert.equal(
+    supervisorQueueRowIsSafe(row as unknown as Record<string, unknown>),
+    true,
+    `${context}: row passes supervisorQueueRowIsSafe`,
+  );
+  assert.equal(lintSupervisorQueueOutput(JSON.stringify(row)).length, 0, `${context}: lint clean`);
+  for (const label of collectPilotQueueUiLabels(row)) {
+    assert.equal(sanitizeSupervisorQueueLabel(label), label, `${context}: UI label already sanitized`);
+    assert.ok(!PILOT_DEV_LABEL_PATTERN.test(label), `${context}: no eval/dev pack label in UI: ${label}`);
+  }
+}
+
+for (const route of EVAL_PACK_DEV_ROUTES) {
+  assert.equal(sanitizeSupervisorQueueLabel(route), null, `${route} stripped by sanitize`);
+  const evalPackRow = buildSupervisorQueueRow(
+    { caseId: EXAMPLE_CASE_ID, title: "R v Example Client", hearingDate: null },
+    buildEvalPackRoutePersistenceBundle(route),
+  );
+  assert.ok(evalPackRow, `${route}: queue row still built`);
+  assert.equal(evalPackRow!.unsafeFeedbackLabel, "unsafe overconfident", `${route}: feedback route fallback`);
+  assertPilotQueueRowLabelsSafe(evalPackRow!, route);
+}
+
+assert.equal(sanitizeSupervisorQueueLabel("Dispute identification"), "Dispute identification");
+const disputeRouteRow = buildSupervisorQueueRow(
+  { caseId: EXAMPLE_CASE_ID, title: "R v Example Client", hearingDate: null },
+  {
+    signoff: null,
+    snapshot: null,
+    feedback: {
+      feedbackOption: "unsafe_overconfident",
+      routeLabel: "Dispute identification",
+      createdAt: "2026-06-03T10:00:00.000Z",
+    },
+    exportReview: null,
+    auditEvents: [],
+  },
+);
+assert.ok(disputeRouteRow);
+assert.equal(disputeRouteRow!.unsafeFeedbackLabel, "Dispute identification");
+assertPilotQueueRowLabelsSafe(disputeRouteRow!, "Dispute identification");
+
+const evalPackTitleRow = buildSupervisorQueueRow(
+  { caseId: EXAMPLE_CASE_ID, title: "R v Eval-Pack Demo", hearingDate: null },
+  buildEvalPackRoutePersistenceBundle("eval-pack-gold"),
+);
+assert.ok(evalPackTitleRow);
+assert.equal(evalPackTitleRow!.caseLabel, "Matter — review required", "eval-pack title replaced with safe fallback");
+assertPilotQueueRowLabelsSafe(evalPackTitleRow!, "eval-pack title");
+
 const href = buildSupervisorQueueCaseHref(CASE_ID);
 assert.ok(href, "valid case id yields href");
 assert.equal(href, `/cases/${CASE_ID}?tab=strategy&controlRoom=1`, "clean control room open case href");

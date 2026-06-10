@@ -52,6 +52,7 @@ import {
   workflowHeaderOverrides,
   workflowPrimaryRouteTitle,
 } from "@/lib/criminal/pilot-workflow";
+import { safeSolicitorCaseTitle } from "@/lib/criminal/dev-ref-scrub";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import { usePilotDemoSession } from "@/components/criminal/workflow/usePilotDemoSession";
 import { WarRoomReasoningBridge } from "@/components/criminal/control-room/WarRoomReasoningBridge";
@@ -373,7 +374,9 @@ export function HearingWarRoom({
       }),
     [caseTitleBase, allegationBase, clientLabel, battleboard?.primary_route?.title, bundleSource?.frontMatterScan],
   );
-  const caseTitle = pilotHeader?.displayTitle ?? pilotHeader?.title ?? caseTitleBase;
+  const caseTitle = safeSolicitorCaseTitle(
+    pilotHeader?.displayTitle ?? pilotHeader?.title ?? caseTitleBase,
+  );
   const allegation = pilotHeader?.allegation ?? allegationBase;
   const reasoningV2Enabled = useReasoningV2Enabled();
   const readinessEnabled = useReadinessEnabled();

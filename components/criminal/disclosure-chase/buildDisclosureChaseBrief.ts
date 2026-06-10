@@ -15,6 +15,14 @@ import {
   workflowDisclosureWhyItMatters,
 } from "@/lib/criminal/pilot-workflow";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
+import {
+  confirmNoneLine,
+  familiesInText,
+  familyDisplayName,
+  familySupport,
+  gateProseAgainstSource,
+  type ChaseGateFamily,
+} from "@/lib/criminal/chase-source-gate";
 
 const FORBIDDEN_RE =
   /\b(this wins|case collapses|crowns?\s+will\s+lose|crown\s+case\s+collapses|guaranteed|will\s+be\s+acquitted)\b/i;
@@ -501,6 +509,89 @@ function groupAndMergeLabels(
   return items;
 }
 
+/** Disclosure family → chase-source-gate family. "other"/exhibits can't be gated. */
+const GATE_FAMILY_MAP: Partial<Record<ChaseFamilyId, ChaseGateFamily>> = {
+  cctv_master: "cctv",
+  cctv_continuity: "cctv",
+  cad_999: "cad_999",
+  bwv: "bwv",
+  interview: "interview",
+  mg6_unused: "mg6_unused",
+  medical_expert: "medical",
+};
+
+function confirmNoneDisclosureItem(
+  item: DisclosureChaseItem,
+  gateFamily: ChaseGateFamily,
+): DisclosureChaseItem {
+  const name = familyDisplayName(gateFamily);
+  return {
+    ...item,
+    label: `${item.label} — file indicates none exists`,
+    baseStatus: "Not safely confirmed",
+    whyItMatters: confirmNoneLine(gateFamily),
+    draftChaseWording: `The file indicates no ${name} is available. Please confirm in writing that none exists and that no related logs or exports are held.`,
+    courtLine: `${COURT_RECORD_PREFIX} that the file indicates no ${name} exists; the defence position is reserved accordingly.`,
+  };
+}
+
+function gateFamiliesForItem(item: DisclosureChaseItem): ChaseGateFamily[] {
+  const mapped = GATE_FAMILY_MAP[item.familyId];
+  if (mapped) return [mapped];
+  const probe = `${item.label} ${item.draftChaseWording} ${item.whyItMatters}`;
+  return familiesInText(probe);
+}
+
+/**
+ * Chase source gate: drop family items the bundle never mentions; convert
+ * explicitly-negated families into confirm-none items instead of chases.
+ * Applies to generic merged items AND workflow profile-pack labels.
+ * No bundle text available → cannot gate, keep items as-is.
+ */
+function gateItemsAgainstSource(
+  items: DisclosureChaseItem[],
+  bundleText: string | null | undefined,
+): DisclosureChaseItem[] {
+  if (!bundleText?.trim()) return items;
+  const out: DisclosureChaseItem[] = [];
+  for (const item of items) {
+    const families = gateFamiliesForItem(item);
+    if (!families.length) {
+      out.push(item);
+      continue;
+    }
+    let drop = false;
+    let replaced: DisclosureChaseItem | null = null;
+    for (const gateFamily of families) {
+      const support = familySupport(gateFamily, bundleText);
+      if (support === "absent") {
+        drop = true;
+        break;
+      }
+      if (support === "negated") {
+        replaced = confirmNoneDisclosureItem(item, gateFamily);
+        break;
+      }
+    }
+    if (drop) continue;
+    const kept = replaced ?? item;
+    out.push(finalizeGatedDisclosureItem(kept, bundleText));
+  }
+  return out;
+}
+
+function finalizeGatedDisclosureItem(
+  item: DisclosureChaseItem,
+  bundleText: string,
+): DisclosureChaseItem {
+  return {
+    ...item,
+    whyItMatters: gateProseAgainstSource(item.whyItMatters, bundleText),
+    draftChaseWording: gateProseAgainstSource(item.draftChaseWording, bundleText),
+    courtLine: gateProseAgainstSource(item.courtLine, bundleText),
+  };
+}
+
 function slugFromLabels(labels: string[]): string {
   return labels[0]
     ?.toLowerCase()
@@ -590,16 +681,21 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   let additionalItems: DisclosureChaseItem[];
 
   if (profileLabels && profile !== "generic") {
-    primaryItems = buildWorkflowProfileDisclosureItems(
-      profileLabels,
-      input.battleboard,
-      deadline,
-      profile,
+    items = gateItemsAgainstSource(
+      buildWorkflowProfileDisclosureItems(
+        profileLabels,
+        input.battleboard,
+        deadline,
+        profile,
+      ),
+      input.bundleText,
     );
-    additionalItems = [];
-    items = primaryItems;
+    ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
   } else {
-    items = groupAndMergeLabels(chaseLabels, input.battleboard, deadline);
+    items = gateItemsAgainstSource(
+      groupAndMergeLabels(chaseLabels, input.battleboard, deadline),
+      input.bundleText,
+    );
     ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
   }
 
@@ -643,12 +739,18 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
     safeCourtLine: (() => {
       const profileLine =
         isCriminalPilotMode() ? workflowDisclosureCaseWideLine(workflowContext) : null;
-      if (profileLine) return pilotCleanupVisibleText(profileLine);
-      const raw = resolveSafeCourtLine(input.battleboard);
-      if (!isCriminalPilotMode()) return raw;
-      return pilotCleanupVisibleText(
+      let raw = profileLine ?? resolveSafeCourtLine(input.battleboard);
+      if (!isCriminalPilotMode()) {
+        return input.bundleText?.trim()
+          ? gateProseAgainstSource(raw, input.bundleText)
+          : raw;
+      }
+      raw = pilotCleanupVisibleText(
         sanitizePilotVisibleLine(raw, workflowContext) ?? raw,
       );
+      return input.bundleText?.trim()
+        ? gateProseAgainstSource(raw, input.bundleText)
+        : raw;
     })(),
     items,
     primaryItems,
