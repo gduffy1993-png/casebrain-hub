@@ -83,7 +83,7 @@ export function sanitizePublicDisplayLine(text: string | null | undefined): stri
     .replace(/^[-•]\s*/gm, "")
     .replace(/^Title\s*[-—–]\s*/i, "")
     .replace(/\s{2,}/g, " ")
-    .replace(/^[—–-]+\s*/g, "")
+    .replace(/^[—–-|]+\s*/g, "")
     .trim();
 }
 

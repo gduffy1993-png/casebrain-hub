@@ -4,6 +4,8 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Download, Loader2 } from "lucide-react";
 import { useToast } from "@/components/Toast";
+import { sanitizePublicDisplayLine } from "@/lib/criminal/dev-ref-scrub";
+import { isCriminalPilotMode } from "@/lib/pilot-mode";
 
 type Document = {
   id: string;
@@ -25,9 +27,16 @@ interface CaseFilesListProps {
  * Displays a list of case documents with View buttons.
  * Handles opening files in new tabs via signed URLs.
  */
+function pilotDisplayDocumentName(name: string): string {
+  const scrubbed = sanitizePublicDisplayLine(name.replace(/_/g, " ").replace(/\.pdf$/i, ""));
+  if (!scrubbed) return "Case bundle document";
+  return scrubbed.endsWith(".pdf") ? scrubbed : `${scrubbed}.pdf`;
+}
+
 export function CaseFilesList({ documents }: CaseFilesListProps) {
   const [openingFileId, setOpeningFileId] = useState<string | null>(null);
   const { push: showToast } = useToast();
+  const pilotMode = isCriminalPilotMode();
 
   const handleView = async (fileId: string, fileName: string) => {
     console.log("VIEW CLICK", { fileId, fileName });
@@ -92,7 +101,9 @@ export function CaseFilesList({ documents }: CaseFilesListProps) {
             className="flex items-center justify-between rounded-2xl border bg-surface-muted/70 px-3 py-3 text-sm"
           >
             <div className="flex-1 min-w-0">
-              <p className="font-medium text-accent truncate">{doc.name}</p>
+              <p className="font-medium text-accent truncate">
+                {pilotMode ? pilotDisplayDocumentName(doc.name) : doc.name}
+              </p>
               <p className="text-xs text-accent/50">
                 Uploaded{" "}
                 {new Date(doc.created_at).toLocaleDateString("en-GB")}
