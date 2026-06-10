@@ -43,6 +43,7 @@ import {
   pilotDisplayMetadataNote,
   workflowHeaderOverrides,
 } from "@/lib/criminal/pilot-workflow";
+import { safeSolicitorCaseTitle } from "@/lib/criminal/dev-ref-scrub";
 import {
   clearLegacyDisclosureChaseStorage,
   isCriminalPilotMode,
@@ -513,7 +514,9 @@ export function DisclosureChase({
       }),
     [titleBase, allegationBase, clientLabel, battleboard?.primary_route?.title, bundleSource?.frontMatterScan],
   );
-  const caseTitle = pilotHeader?.displayTitle ?? pilotHeader?.title ?? titleBase;
+  const caseTitle = safeSolicitorCaseTitle(
+    pilotHeader?.displayTitle ?? pilotHeader?.title ?? titleBase,
+  );
   const allegation = pilotHeader?.allegation ?? allegationBase;
   const workflowContext = useMemo(
     () => ({
