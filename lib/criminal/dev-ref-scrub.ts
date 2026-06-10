@@ -9,8 +9,9 @@
 const DEV_REF_FRAGMENT_PATTERNS: RegExp[] = [
   // "listed in bundle reference CB-XXXX" → "listed in bundle"
   /\s*reference\s+CB-[A-Za-z0-9-]+\b/gi,
-  // bare internal case codes: CB-INJECT-2026-0001, CB-AA-MESSY-0014, CB-Z-500-ROB-0009
-  /\bCB-[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*\b/g,
+  // bare internal case codes (incl. glued bundle titles like TitleCB-THIN-2026-0011)
+  /(?:\b|(?<=[A-Za-z]))CB-[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*/g,
+  /\bTitle\s*CB-[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*/gi,
   // pack/case headers: "Pack R — Case 01 —"
   /\bPack\s+[A-Z]{1,2}\s*[—–-]\s*Case\s*\d+\s*[—–-]?\s*/gi,
   // eval artefact ids aligned with the supervisor queue sanitizer policy
@@ -46,4 +47,64 @@ export function safeSolicitorCaseTitle(raw: string | null | undefined): string {
   const scrubbed = scrubDevRefs(t).replace(/^[—–-]+\s*/g, "").trim();
   if (!scrubbed || containsDevRef(scrubbed)) return "Criminal matter — review required";
   return scrubbed;
+}
+
+/** Extra scrub for user-visible quoted source lines (sourceBasis, chase anchors). */
+const PUBLIC_DISPLAY_SCRUB_PATTERNS: RegExp[] = [
+  /\b(?:gold|stress|fixture|eval)(?:\s+|-)?(?:pack|bundle|case|org|manifest)?\b/gi,
+  /\bfrom\s+pilot\s+workflow\b/gi,
+  /\bnot\s+served\s+on\s+this\s+export\b/gi,
+  /\boutstanding\s+on\s+export\b/gi,
+  /\bpilot-\d+\s+export\b/gi,
+  /\bdisclosure\s+chase\s*\([^)]*\)/gi,
+  /\|\s*pilot\s+bundle\s*\|/gi,
+  /\bpilot\s+bundle\b/gi,
+  /#+\s*[^\n]*/g,
+  /\*\*[^*]+\*\*/g,
+  /FICTIONAL TEST BUNDLE[^.\n]*/gi,
+  /fictional\s+test\s+bundle[^.\n]*/gi,
+];
+
+const PUBLIC_DISPLAY_UNSAFE_PATTERNS: RegExp[] = [
+  /(?:\b|(?<=[A-Za-z]))CB-[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*/i,
+  /\bPack\s+[A-Z]{1,2}\s*[—–-]\s*Case\s*\d+/i,
+  /\b(?:gold|stress|fixture)\s+(?:pack|bundle|case)\b/i,
+  /\beval[- ]?pack\b/i,
+  /\bbundle[- ]?stress\b/i,
+  /\bpilot\s+bundle\b/i,
+];
+
+/** Scrub dev/eval labels from a quoted source line shown in product UI. */
+export function sanitizePublicDisplayLine(text: string | null | undefined): string {
+  if (!text?.trim()) return "";
+  let t = scrubDevRefs(text);
+  for (const re of PUBLIC_DISPLAY_SCRUB_PATTERNS) t = t.replace(re, " ");
+  return t
+    .replace(/^[-•]\s*/gm, "")
+    .replace(/^Title\s*[-—–]\s*/i, "")
+    .replace(/\s{2,}/g, " ")
+    .replace(/^[—–-]+\s*/g, "")
+    .trim();
+}
+
+/** True when a display line is safe to show solicitors (no internal eval/dev labels). */
+export function isSafePublicDisplayLine(text: string | null | undefined): boolean {
+  const s = sanitizePublicDisplayLine(text);
+  if (!s || s.length < 4) return false;
+  if (containsDevRef(s)) return false;
+  return !PUBLIC_DISPLAY_UNSAFE_PATTERNS.some((re) => {
+    re.lastIndex = 0;
+    return re.test(s);
+  });
+}
+
+/** Detect internal labels in product-visible proof-map / chase text (pre- or post-scrub). */
+export function containsPublicDevLabel(text: string): boolean {
+  const raw = text?.trim() ?? "";
+  if (!raw) return false;
+  if (containsDevRef(raw)) return true;
+  return PUBLIC_DISPLAY_UNSAFE_PATTERNS.some((re) => {
+    re.lastIndex = 0;
+    return re.test(raw);
+  });
 }
