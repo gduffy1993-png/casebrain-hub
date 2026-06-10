@@ -4,8 +4,10 @@
  */
 
 import type { CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
+import { sanitizePublicDisplayLine } from "@/lib/criminal/dev-ref-scrub";
 import type { ExtractedBundleCaseMetadata, MetadataFieldSource } from "@/lib/criminal/extract-bundle-case-metadata";
 import { parseUkHearingDateTime } from "@/lib/criminal/extract-bundle-case-metadata";
+import { isCriminalPilotMode } from "@/lib/pilot-mode";
 
 export type BundleSourceHeaderInput = {
   shortTitle?: string | null;
@@ -346,6 +348,10 @@ export function sanitizeHeaderAllegation(raw: string): string {
     l.includes("not safely extracted")
   ) {
     return NOT_EXTRACTED_OFFENCE;
+  }
+  if (isCriminalPilotMode()) {
+    const scrubbed = sanitizePublicDisplayLine(t);
+    if (scrubbed) return scrubbed;
   }
   return t;
 }

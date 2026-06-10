@@ -10,6 +10,7 @@ import { ControlRoomBattleboardAccordion } from "./control-room/ControlRoomBattl
 import { CaseSummaryCard } from "./control-room/CaseSummaryCard";
 import { ControlRoomCockpit } from "./control-room/ControlRoomCockpit";
 import { ReasoningV2Panel } from "./control-room/ReasoningV2Panel";
+import { ProofMapPanel } from "./control-room/ProofMapPanel";
 import { PreHearingReadinessBadge } from "./control-room/PreHearingReadinessBadge";
 import { EvidenceChangeDetectorPanel } from "./control-room/EvidenceChangeDetectorPanel";
 import { EvidenceChangeMaterialBadge } from "./control-room/EvidenceChangeMaterialBadge";
@@ -21,6 +22,8 @@ import { SupervisorQAPanel } from "./control-room/SupervisorQAPanel";
 import { ClientExplanationPanel } from "./control-room/ClientExplanationPanel";
 import { buildReasoningV2ViewModel } from "@/lib/criminal/reasoning-v2/build-reasoning-v2-view-model";
 import { useReasoningV2Enabled } from "@/lib/criminal/reasoning-v2/reasoning-v2-flag";
+import { buildProductProofMap } from "@/lib/criminal/proof-map/build-product-proof-map";
+import { useProofMapEnabled } from "@/lib/criminal/proof-map/proof-map-flag";
 import { useClientStressEnabled } from "@/lib/criminal/client-stress-test/client-stress-flag";
 import { buildClientStressResult } from "@/lib/criminal/client-stress-test/build-client-stress-result";
 import { loadClientStressSelection } from "@/lib/criminal/client-stress-test/client-stress-selection-storage";
@@ -203,6 +206,7 @@ export function CaseControlRoom({
   const [bundleSource, setBundleSource] = useState<BundleSourceSummary | null>(null);
   const [bundleSourceLoading, setBundleSourceLoading] = useState(true);
   const reasoningV2Enabled = useReasoningV2Enabled();
+  const proofMapEnabled = useProofMapEnabled();
   const readinessEnabled = useReadinessEnabled();
   const evidenceChangesEnabled = useEvidenceChangesEnabled();
   const exportsEnabled = useExportsEnabled();
@@ -422,6 +426,18 @@ export function CaseControlRoom({
     pilotOverrides?.displayTitle ?? pilotOverrides?.title ?? caseTitle,
   );
   const allegation = pilotOverrides?.allegation ?? allegationBase;
+
+  const proofMapResult = useMemo(() => {
+    if (!proofMapEnabled) return null;
+    return buildProductProofMap({
+      frontMatterScan: bundleSource?.frontMatterScan,
+      snippets: bundleSource?.snippets,
+      combinedTextLength: bundleSource?.combinedTextLength,
+      matterLabel: caseTitleDisplay,
+      allegation,
+      workflowProfileHint: pilotOverrides?.profile ?? bundleSource?.header?.primaryEvalHook ?? null,
+    });
+  }, [proofMapEnabled, bundleSource, caseTitleDisplay, allegation, pilotOverrides?.profile, bundleSource?.header?.primaryEvalHook]);
 
   const workflowContext = useMemo(
     () => ({
@@ -760,6 +776,11 @@ export function CaseControlRoom({
             pilotRecordPositionHidden={pilotRecordPositionHidden}
           >
           <CaseSummaryCard summary={caseSummary} loading={snapshotLoading} />
+          <ProofMapPanel
+            result={proofMapResult}
+            loading={bundleSourceLoading}
+            proofMapEnabled={proofMapEnabled}
+          />
           <SupervisorQAPanel
             compact
             caseId={caseId}

@@ -13,8 +13,13 @@ import {
   confirmNoneLine,
 } from "../lib/criminal/chase-source-gate";
 import { workflowDisclosureCaseWideLine } from "../lib/criminal/pilot-workflow";
-import { safeSolicitorCaseTitle } from "../lib/criminal/dev-ref-scrub";
-import { scrubDevRefs, containsDevRef } from "../lib/criminal/dev-ref-scrub";
+import {
+  safeSolicitorCaseTitle,
+  scrubDevRefs,
+  containsDevRef,
+  sanitizePublicDisplayLine,
+  isSafePublicDisplayLine,
+} from "../lib/criminal/dev-ref-scrub";
 import { buildStrategyBattleboard } from "../lib/criminal/strategy-battleboard";
 import { buildDisclosureChaseBrief } from "../components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 
@@ -232,6 +237,21 @@ assert.equal(
   safeSolicitorCaseTitle("Pack R — Case 01 — CB-INJECT-2026-0001 - Robbery"),
   "Robbery",
   "poisoned case title header becomes safe display text",
+);
+
+assert.equal(
+  sanitizePublicDisplayLine("Pack F — Case 11 — CB-THIN-2026-0011 gold pack stress fixture"),
+  "",
+  "public source line strips eval pack labels",
+);
+assert.ok(
+  isSafePublicDisplayLine("MG5: Fraud by false representation — defendant named on charge sheet"),
+  "ordinary MG5 anchor remains visible",
+);
+assert.equal(
+  sanitizePublicDisplayLine("TitleCB-THIN-2026-0011 - Section 20 GBH - Hannah Morris"),
+  "Section 20 GBH - Hannah Morris",
+  "glued TitleCB- eval ref is stripped from visible charge line",
 );
 
 // ---------- gateProseAgainstSource on workflow case-wide lines ----------
