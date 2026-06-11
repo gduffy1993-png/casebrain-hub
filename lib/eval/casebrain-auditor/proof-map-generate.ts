@@ -1,3 +1,11 @@
+import {
+  buildBundleTruthLedger,
+  isAdminGuidanceLine,
+  isOffenceFamilyBlocked,
+  ledgerUsesSourceMaterialOnlyProofMap,
+  proofMapLensFromLedger,
+} from "@/lib/criminal/bundle-truth-ledger";
+import type { BundleTruthLedger } from "@/lib/criminal/bundle-truth-types";
 import { extractBundleCaseMetadata } from "@/lib/criminal/extract-bundle-case-metadata";
 import { generateExplanationFidelity } from "./explanation-fidelity-generate";
 import type { ExplanationBlock, ContradictionBlock } from "./explanation-fidelity-types";
@@ -42,6 +50,7 @@ function snippet(line: string, max = 220): string {
 
 function findBasisSnippet(bundleText: string, patterns: RegExp[], fallback: string): string {
   for (const line of bundleText.split("\n")) {
+    if (isAdminGuidanceLine(line)) continue;
     if (patterns.some((p) => p.test(line))) return snippet(line);
   }
   return fallback;
@@ -105,15 +114,65 @@ function motoringProofPoints(charge: string, metaBasis: string): ProofMapProofPo
   ];
 }
 
-function genericProvisionalProofPoints(charge: string, metaBasis: string): ProofMapProofPoint[] {
+/** Source-material readiness only — no unrelated offence templates. */
+function sourceMaterialReadinessProofPoints(charge: string, metaBasis: string): ProofMapProofPoint[] {
+  return [
+    {
+      id: "pp-source-readiness",
+      label: "Source material readiness",
+      crownMustProve:
+        "N/A — offence family not safely locked on current papers; map source-material gaps before fixing strategy.",
+      confidenceTag: "needs_solicitor_review",
+      humanReviewRequired: true,
+      sourceSection: "Bundle / MG6",
+      sourceBasis: metaBasis || charge || "Bundle on file — verify charge family with solicitor.",
+      doNotOverstate: "Do not apply offence-specific proof elements until charge family is confirmed on served papers.",
+    },
+    {
+      id: "pp-disclosure-fair-trial",
+      label: "Disclosure completeness",
+      crownMustProve: "N/A — chase core source material and unused schedule before fixing route.",
+      confidenceTag: "provisional",
+      humanReviewRequired: true,
+      sourceSection: "MG6 / outstanding list",
+      sourceBasis: "Outstanding or draft material on papers — verify service status with solicitor.",
+      doNotOverstate: "Do not concede evidential strength while core exports are outstanding or draft.",
+    },
+    {
+      id: "pp-human-review-gate",
+      label: "Human review gate",
+      crownMustProve: "N/A — provisional bundle mapping requires solicitor review before hearing position.",
+      confidenceTag: "needs_solicitor_review",
+      humanReviewRequired: true,
+      sourceSection: "Bundle / charge",
+      sourceBasis: charge || "Charge or offence family unclear on papers",
+      doNotOverstate: "Do not finalise offence-specific routes until charge family and served material are confirmed.",
+    },
+  ];
+}
+
+function genericProvisionalProofPoints(
+  charge: string,
+  metaBasis: string,
+  ledger?: BundleTruthLedger,
+): ProofMapProofPoint[] {
+  if (ledger && ledgerUsesSourceMaterialOnlyProofMap(ledger)) {
+    return sourceMaterialReadinessProofPoints(charge, metaBasis);
+  }
+  if (ledger && isOffenceFamilyBlocked("perverting_justice", ledger)) {
+    return sourceMaterialReadinessProofPoints(charge, metaBasis);
+  }
+
   const lower = charge.toLowerCase();
   const actLabel = /witness intimidation/i.test(lower)
     ? "Intimidation act / witness pressure"
-    : /serious offence|provisional charge/i.test(lower)
-      ? "Conduct / act basis (provisional charge elements)"
-      : "Act tending to pervert / impede justice";
+    : /pervert|course of justice/i.test(lower)
+      ? "Act tending to pervert / impede justice"
+      : /serious offence|provisional charge/i.test(lower)
+        ? "Conduct / act basis (provisional charge elements)"
+        : "Act tending to pervert / impede justice";
 
-  return [
+  const points: ProofMapProofPoint[] = [
     {
       id: "pp-act-tending",
       label: actLabel,
@@ -178,6 +237,11 @@ function genericProvisionalProofPoints(charge: string, metaBasis: string): Proof
       doNotOverstate: "Do not finalise offence-specific routes until charge family and served material are confirmed.",
     },
   ];
+
+  if (ledger && isOffenceFamilyBlocked("fraud", ledger)) {
+    return points.filter((p) => p.id !== "pp-witness-messaging");
+  }
+  return points;
 }
 
 function violenceProofPoints(charge: string, metaBasis: string, bundleText: string): ProofMapProofPoint[] {
@@ -689,12 +753,13 @@ function proofPointsForLens(
   charge: string,
   metaBasis: string,
   bundleText: string,
+  ledger?: BundleTruthLedger,
 ): ProofMapProofPoint[] {
   switch (lens) {
     case "motoring":
       return motoringProofPoints(charge, metaBasis);
     case "generic_provisional":
-      return genericProvisionalProofPoints(charge, metaBasis);
+      return genericProvisionalProofPoints(charge, metaBasis, ledger);
     case "violence_gbh":
       return violenceProofPoints(charge, metaBasis, bundleText);
     case "fraud":
@@ -704,7 +769,7 @@ function proofPointsForLens(
     case "robbery_id":
       return robberyIdProofPoints(charge, metaBasis, bundleText);
     default:
-      return genericProvisionalProofPoints(charge, metaBasis);
+      return genericProvisionalProofPoints(charge, metaBasis, ledger);
   }
 }
 
@@ -1041,12 +1106,20 @@ export function generateProofMap(
   label: string,
   bundleText: string,
 ): Omit<ProofMapCaseResult, "overall" | "skipped" | "skipReason" | "scaffoldNote"> {
+  const ledger = buildBundleTruthLedger({ bundleText });
   const meta = extractBundleCaseMetadata(bundleText);
-  const charge = meta.offenceWording ?? meta.offenceDisplay ?? "Charge unclear on papers";
-  const metaBasis = [meta.offenceWording, meta.defendantName].filter(Boolean).join(" — ");
-  const lens = detectLens(charge, bundleText);
+  const chargeFromLedger = ledger.charge.wording;
+  const charge =
+    chargeFromLedger ??
+    meta.offenceWording ??
+    meta.offenceDisplay ??
+    (ledger.offenceFamily.family !== "unknown"
+      ? "Charge wording provisional — offence family on papers"
+      : "Charge unclear on papers");
+  const metaBasis = [chargeFromLedger ?? meta.offenceWording, meta.defendantName].filter(Boolean).join(" — ");
+  const lens = proofMapLensFromLedger(ledger);
   const explanation = generateExplanationFidelity(bundleText);
-  const proofPoints = proofPointsForLens(lens, charge, metaBasis, bundleText);
+  const proofPoints = proofPointsForLens(lens, charge, metaBasis, bundleText, ledger);
 
   const humanReviewReasons: string[] = [];
   if (lens === "unknown") {

@@ -103,8 +103,10 @@ export function buildCaseWorkflowTabHref(caseId: string, tab: CaseWorkflowTabId)
   switch (tab) {
     case "control-room":
       return buildControlRoomCaseHref(id);
-    case "battleboard":
-      return `${buildControlRoomCaseHref(id)}#full-battleboard`;
+    case "battleboard": {
+      const p = new URLSearchParams({ tab: "battleboard", controlRoom: "1" });
+      return `/cases/${id}?${p.toString()}`;
+    }
     case "hearing-war-room": {
       const p = new URLSearchParams({ tab: "hearing-war-room", controlRoom: "1" });
       return `/cases/${id}?${p.toString()}`;

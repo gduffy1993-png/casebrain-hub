@@ -298,7 +298,9 @@ export function formatOffenceDisplayFromBundle(raw: string): string {
 
   const hasS20 = /\bsection\s*20\b|\bs\.?\s*20\b/i.test(t);
   if (hasS20 && /\bunlawful wounding\b|\bgbh\b|\bgrievous bodily harm\b/i.test(t)) {
-    if (/unlawful wounding/i.test(t)) return t.replace(/\s+/g, " ").trim();
+    let normalized = t.replace(/\s+/g, " ").trim();
+    normalized = normalized.replace(/^section\s*(\d+)/i, "Section $1");
+    if (/unlawful wounding/i.test(normalized)) return normalized;
     return "Unlawful wounding / GBH, s.20 OAPA 1861";
   }
 
@@ -311,6 +313,65 @@ function isSpuriousChargeLabelValue(value: string): boolean {
   if (/^charge\s*sheet$/i.test(t) || t === "sheet") return true;
   if (/^count\s*\d+$/i.test(t)) return true;
   return false;
+}
+
+/** Stop charge/allegation capture before defence position, custody, MG6, etc. */
+function trimChargeAllegationBoundary(raw: string): string {
+  let t = raw.replace(/\s+/g, " ").trim();
+  const pipeIdx = t.indexOf("|");
+  if (pipeIdx > 12) t = t.slice(0, pipeIdx).trim();
+
+  const semiMatch = t.match(/^([^;]{12,}?);\s*(?:custody|remand|bail|defence|mg6|hearing|stage|court)/i);
+  if (semiMatch?.[1]) t = semiMatch[1].trim();
+
+  const dotMatch = t.match(
+    /^(.+?)\.\s+(?:defence position|defence case|defence position not|client instructions|custody|remand|bail|mg6|next hearing|hearing date|stage:|court:|particulars|count\s+\d)/i,
+  );
+  if (dotMatch?.[1] && dotMatch[1].length >= 12) t = dotMatch[1].trim();
+
+  return t.replace(/\.\s*$/, "").trim();
+}
+
+function extractLabeledChargeOrAllegation(scan: string, label: "Charge" | "Allegation"): string | null {
+  const escaped = label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const patterns = [
+    new RegExp(`\\b${escaped}\\s*:\\s*([^\\n|]{8,220})`, "i"),
+    new RegExp(`^${escaped}:\\s*(.+)$`, "im"),
+  ];
+  for (const re of patterns) {
+    const m = scan.match(re);
+    if (!m?.[1]) continue;
+    const v = cleanLineValue(trimChargeAllegationBoundary(m[1]));
+    if (v && !isSpuriousChargeLabelValue(v)) return v;
+  }
+  return null;
+}
+
+/** Merge charge + allegation lines into one safe header display. */
+export function composeOffenceDisplayFromParts(
+  chargeRaw: string | null | undefined,
+  allegationRaw: string | null | undefined,
+): string | null {
+  const chargeClean = chargeRaw ? cleanLineValue(trimChargeAllegationBoundary(chargeRaw)) : null;
+  const allegationClean = allegationRaw ? cleanLineValue(trimChargeAllegationBoundary(allegationRaw)) : null;
+  if (!chargeClean && !allegationClean) return null;
+
+  const allegationFmt = allegationClean ? formatOffenceDisplayFromBundle(allegationClean) : null;
+  const chargeFmt = chargeClean ? formatOffenceDisplayFromBundle(chargeClean) : null;
+  if (!allegationFmt) return chargeFmt;
+  if (!chargeFmt) return allegationFmt;
+
+  const mechMatch = chargeClean?.match(/\s[-–—]\s*(.+)$/i);
+  if (mechMatch?.[1]) {
+    const mech = cleanLineValue(trimChargeAllegationBoundary(mechMatch[1]));
+    if (mech && !allegationFmt.toLowerCase().includes(mech.slice(0, 10).toLowerCase())) {
+      return `${allegationFmt} — ${mech}`;
+    }
+  }
+
+  if (/\bdefence position\b|\bcustody\b|\bmg6\b/i.test(chargeFmt)) return allegationFmt;
+  if (chargeFmt.length > allegationFmt.length + 24) return allegationFmt;
+  return allegationFmt.length >= 12 ? allegationFmt : chargeFmt;
 }
 
 function extractOffenceFromChargeBlock(block: string): string | null {
@@ -329,9 +390,25 @@ function extractOffenceFromChargeBlock(block: string): string | null {
         if (v) return v;
       }
     }
+    if (/^charge\s*:/i.test(line)) {
+      const v = cleanLineValue(line.replace(/^charge\s*:\s*/i, ""));
+      if (v && !isSpuriousChargeLabelValue(v) && v.length >= 8) return v;
+    }
     if (/^offence\s*[:]/i.test(line)) {
       const v = cleanLineValue(line.replace(/^offence\s*[:]\s*/i, ""));
       if (v && !isSpuriousChargeLabelValue(v)) return v;
+    }
+    if (/^allegation\s*:/i.test(line)) {
+      const v = cleanLineValue(line.replace(/^allegation\s*:\s*/i, ""));
+      if (v && !isSpuriousChargeLabelValue(v) && v.length >= 8) return v;
+    }
+    if (
+      /section\s*20\b.*unlawful\s+wounding|unlawful\s+wounding.*section\s*20|\bs\.?\s*20\b.*unlawful\s+wounding/i.test(
+        line,
+      ) &&
+      line.length >= 16
+    ) {
+      return cleanLineValue(line);
     }
     const countLine = line.match(/^count\s*\d+\s*[:\\-]?\s*(.+)$/i);
     if (countLine?.[1]) {
@@ -385,7 +462,7 @@ function normalizeChargeOffence(raw: string): string | null {
     if (m2?.[1]) return formatOffenceDisplayFromBundle(m2[1]);
     if (/murder/i.test(inner)) return formatOffenceDisplayFromBundle(inner.split(/[.|]/)[0] ?? inner);
   }
-  return cleanLineValue(t);
+  return cleanLineValue(trimChargeAllegationBoundary(t));
 }
 
 function extractOffenceWording(scan: string, fullText: string): { wording: string | null; source: MetadataFieldSource } {
@@ -395,13 +472,24 @@ function extractOffenceWording(scan: string, fullText: string): { wording: strin
   if (chargeBlock) {
     const fromCharge = extractOffenceFromChargeBlock(chargeBlock);
     if (fromCharge) {
-      return { wording: formatOffenceDisplayFromBundle(fromCharge), source: "extracted_charge_fallback" };
+      const trimmed = trimChargeAllegationBoundary(fromCharge);
+      return { wording: formatOffenceDisplayFromBundle(trimmed), source: "extracted_charge_fallback" };
     }
+  }
+
+  const inlineCharge = extractLabeledChargeOrAllegation(scan, "Charge");
+  const inlineAllegation = extractLabeledChargeOrAllegation(scan, "Allegation");
+  const composed = composeOffenceDisplayFromParts(inlineCharge, inlineAllegation);
+  if (composed) {
+    return {
+      wording: composed,
+      source: inlineCharge ? "extracted_charge_fallback" : "extracted_cover_fallback",
+    };
   }
 
   const chargeLabelLine = scan.match(/^Charge:\s*(.+)$/im);
   if (chargeLabelLine?.[1]) {
-    const v = cleanLineValue(chargeLabelLine[1]);
+    const v = cleanLineValue(trimChargeAllegationBoundary(chargeLabelLine[1]));
     if (v && !isSpuriousChargeLabelValue(v)) {
       return { wording: formatOffenceDisplayFromBundle(v), source: "extracted_cover_fallback" };
     }
