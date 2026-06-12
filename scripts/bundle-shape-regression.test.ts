@@ -1,0 +1,71 @@
+/**
+ * Bundle shape regression — varied criminal bundle layouts.
+ * Run: npx tsx scripts/bundle-shape-regression.test.ts
+ */
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import path from "node:path";
+import { buildCaseSummarySnippet } from "../lib/criminal/build-case-summary-snippet";
+import {
+  buildMetadataScan,
+  extractBundleCaseMetadata,
+} from "../lib/criminal/extract-bundle-case-metadata";
+
+const ROOT = path.join(__dirname, "..");
+
+const CORRECTED_INDICTMENT = `
+Charge: OLD VERSION
+Corrected indictment: Assault occasioning actual bodily harm, section 47 OAPA 1861
+Particulars: On a date in 2026 at or near Westbridge Parade, Priya Vale struck Eli Rook.
+`.trim();
+
+const metaCorrected = extractBundleCaseMetadata(CORRECTED_INDICTMENT);
+assert.match(metaCorrected.offenceDisplay ?? "", /abh|actual bodily harm|section\s*47/i);
+assert.doesNotMatch(metaCorrected.offenceDisplay ?? "", /OLD VERSION/i);
+
+const theftPath = path.join(ROOT, "docs/fictional-bundle-theft/FICTIONAL_THEFT_BUNDLE_COPY_PASTE.txt");
+const theftMeta = extractBundleCaseMetadata(fs.readFileSync(theftPath, "utf8"));
+assert.equal(theftMeta.defendantName, "Ashleigh Merritt");
+assert.match(theftMeta.offenceDisplay ?? "", /theft/i);
+assert.match(theftMeta.nextHearingRaw ?? "", /14 May 2024/i);
+
+const pikePath = path.join(ROOT, "docs/fictional-bundle-gbh/FICTIONAL_GBH_BUNDLE_COPY_PASTE.txt");
+const pikeMeta = extractBundleCaseMetadata(fs.readFileSync(pikePath, "utf8"));
+assert.equal(pikeMeta.defendantName, "Jordan Pike");
+assert.equal(pikeMeta.complainant, "Casey Webb");
+assert.match(pikeMeta.offenceDisplay ?? "", /section\s*20|gbh/i);
+assert.doesNotMatch(buildMetadataScan(fs.readFileSync(pikePath, "utf8")), /"offence_label"/);
+
+const pilotShapes: Array<{ file: string; defendant: string; offence: RegExp }> = [
+  {
+    file: "docs/bundle-fidelity-set/gold/pilot-3/kian-doyle/snapshot.md",
+    defendant: "Kian Doyle",
+    offence: /possession with intent to supply|class\s*a/i,
+  },
+  {
+    file: "docs/bundle-fidelity-set/gold/pilot-3/leon-marsh/snapshot.md",
+    defendant: "Leon Marsh",
+    offence: /robbery/i,
+  },
+  {
+    file: "docs/bundle-fidelity-set/gold/pilot-3/marcus-vale/snapshot.md",
+    defendant: "Marcus Vale",
+    offence: /fraud|false representation/i,
+  },
+];
+
+for (const shape of pilotShapes) {
+  const meta = extractBundleCaseMetadata(fs.readFileSync(path.join(ROOT, shape.file), "utf8"));
+  assert.equal(meta.defendantName, shape.defendant, shape.file);
+  assert.match(meta.offenceWording ?? meta.offenceDisplay ?? "", shape.offence, shape.file);
+}
+
+const summary = buildCaseSummarySnippet({
+  clientLabel: "Jordan Pike",
+  allegation: "Section 20 unlawful wounding",
+  complainant: "Casey Webb",
+});
+assert.match(summary, /Jordan Pike is accused of Section 20 unlawful wounding against Casey Webb/i);
+assert.doesNotMatch(summary, /Statement|swung first/i);
+
+console.log("bundle-shape-regression.test.ts: ok");
