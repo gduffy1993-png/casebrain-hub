@@ -483,6 +483,17 @@ export function formatOffenceDisplayFromBundle(raw: string): string {
     return "Theft, contrary to s.1 Theft Act 1968";
   }
 
+  const hasS18 = /\bsection\s*18\b|\bs\.?\s*18\b/i.test(t);
+  if (
+    (hasS18 || /\bwounding with intent\b/i.test(t)) &&
+    /\bgrievous bodily harm\b|\bwounding with intent\b/i.test(t)
+  ) {
+    return "Wounding with intent to cause grievous bodily harm, s.18 OAPA 1861";
+  }
+  if (/\bwounding with intent\b/i.test(t)) {
+    return "Wounding with intent to cause grievous bodily harm, s.18 OAPA 1861";
+  }
+
   return t.length > 140 ? `${t.slice(0, 137)}…` : t;
 }
 
@@ -643,7 +654,17 @@ function extractOffenceFromChargeBlock(block: string): string | null {
     }
     const countLine = line.match(/^count\s*\d+\s*[:\\-]?\s*(.+)$/i);
     if (countLine?.[1]) {
-      const v = cleanLineValue(countLine[1]);
+      let captured = countLine[1].trim();
+      if (
+        /\bwounding with intent\b/i.test(captured) &&
+        !/\bgrievous bodily harm\b|\bbodily harm\b/i.test(captured)
+      ) {
+        const next = lines[i + 1];
+        if (next && /\bbodily harm\b/i.test(next)) {
+          captured = `${captured} ${next.trim()}`;
+        }
+      }
+      const v = cleanLineValue(captured);
       if (v && v.length >= 16) return v;
     }
     if (/contrary to common law/i.test(line) && /\b(pervert|murder|manslaughter)\b/i.test(line)) {
@@ -819,10 +840,21 @@ function extractNextHearing(scan: string): {
     extractLabeledValue(scan, [
       "Next hearing",
       "Next Hearing",
+      "First Hearing",
+      "First hearing",
+      "First appearance",
       "Hearing date",
       "Listed",
       "Date of hearing",
-    ]) ?? extractInlineLabeled(scan, ["Next hearing", "Next Hearing", "Hearing date"]) ?? null;
+    ]) ??
+    extractInlineLabeled(scan, [
+      "Next hearing",
+      "Next Hearing",
+      "First Hearing",
+      "First hearing",
+      "Hearing date",
+    ]) ??
+    null;
 
   if (!nextHearingRaw) {
     const weekdayLine = scan.match(

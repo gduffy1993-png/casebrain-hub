@@ -321,6 +321,12 @@ export function resolveWorkflowProfileFromSignals(context: WorkflowProfileContex
   if (forced !== "generic") return forced;
 
   const allegationText = [context.allegation, context.caseTitle].filter(Boolean).join("; ");
+  if (
+    /\b(theft|shoplifting)\b/i.test(allegationText) &&
+    !/\b(robbery|snatch|mugging|assault|gbh|wounding|violence)\b/i.test(allegationText)
+  ) {
+    return "generic";
+  }
   const provisional = resolveProvisionalWorkflowFromOffence(allegationText);
   if (provisional) return provisional;
 

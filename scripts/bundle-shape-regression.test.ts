@@ -68,4 +68,23 @@ const summary = buildCaseSummarySnippet({
 assert.match(summary, /Jordan Pike is accused of Section 20 unlawful wounding against Casey Webb/i);
 assert.doesNotMatch(summary, /Statement|swung first/i);
 
+const pattersonPath = path.join(ROOT, "test-documents/crown-court-bundle.md");
+const pattersonMeta = extractBundleCaseMetadata(fs.readFileSync(pattersonPath, "utf8"));
+assert.equal(pattersonMeta.defendantName, "James Patterson");
+assert.match(
+  pattersonMeta.offenceDisplay ?? "",
+  /wounding with intent.*grievous bodily harm|s\.?\s*18/i,
+);
+assert.doesNotMatch(pattersonMeta.offenceDisplay ?? "", /GRIEVOUS\.?\s*$/i);
+assert.match(pattersonMeta.nextHearingRaw ?? "", /22\/11\/2023|22 Nov 2023/i);
+assert.equal(pattersonMeta.court, "Crown Court at Manchester");
+
+const pattersonSummary = buildCaseSummarySnippet({
+  clientLabel: "James Patterson",
+  allegation: pattersonMeta.offenceDisplay ?? "",
+  bundleCombinedText: fs.readFileSync(pattersonPath, "utf8"),
+  battleboard: null,
+});
+assert.doesNotMatch(pattersonSummary, /✅|Appropriate adult not required/i);
+
 console.log("bundle-shape-regression.test.ts: ok");

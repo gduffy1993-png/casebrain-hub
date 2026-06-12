@@ -40,6 +40,13 @@ function notExtracted(label: string): boolean {
   return /not safely extracted/i.test(label);
 }
 
+function looksLikePaceComplianceTickLine(text: string): boolean {
+  const t = text.trim();
+  if (!t) return false;
+  if (/^[\s✅✓•\-–—]+/.test(t) && /\b(not required|complied with)\b/i.test(t)) return true;
+  return /\bappropriate adult\b/i.test(t) && /\bnot required\b/i.test(t);
+}
+
 const MISSING_MATERIAL_MARKERS = [
   "full CCTV",
   "CAD/999",
@@ -197,9 +204,13 @@ export function buildCaseSummarySnippet(input: {
   const route = input.battleboard?.primary_route;
   const pressureLabel = input.primaryPressureRouteLabel?.trim();
   const pilot = Boolean(input.pilotMode);
-  if (pressureLabel) {
+  if (pressureLabel && !looksLikePaceComplianceTickLine(pressureLabel)) {
     lines.push(`Key pressure route (conditional): ${cleanSnippet(pressureLabel, 120, pilot)}`);
-  } else if (route?.why_it_helps?.[0] && !looksLikePilotBundleReferenceLine(route.why_it_helps[0])) {
+  } else if (
+    route?.why_it_helps?.[0] &&
+    !looksLikePilotBundleReferenceLine(route.why_it_helps[0]) &&
+    !looksLikePaceComplianceTickLine(route.why_it_helps[0])
+  ) {
     const routeLine =
       pilot && input.workflowContext
         ? sanitizePilotVisibleLine(route.why_it_helps[0], input.workflowContext) ??

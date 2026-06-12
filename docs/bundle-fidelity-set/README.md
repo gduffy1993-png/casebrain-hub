@@ -2,17 +2,19 @@
 
 Gold bundles with **truth keys** prove CaseBrain **reads** bundle text correctly before we tune answer style or UI.
 
-## Repo gold set (7)
+## Repo gold set (9)
 
 | # | Bundle ID | Location | Status |
 |---|-----------|----------|--------|
-| 1 | `pilot-3-marcus-vale` | `gold/pilot-3/marcus-vale/` | **Runnable** — manifest snapshot (not full demo text) |
+| 1 | `pilot-3-marcus-vale` | `gold/pilot-3/marcus-vale/` | **Runnable** — manifest snapshot |
 | 2 | `pilot-3-kian-doyle` | `gold/pilot-3/kian-doyle/` | **Runnable** — manifest snapshot |
 | 3 | `pilot-3-leon-marsh` | `gold/pilot-3/leon-marsh/` | **Runnable** — manifest snapshot |
-| 4 | `s18-charge-reduction-jordan-clarke` | `gold/s18-charge-reduction/truth-key.json` | **Runnable** — `test_bundles/s18_charge_reduction_bundle_v1/` |
-| 5 | `gbh-pike-jordan-pike` | `gold/gbh-pike/truth-key.json` | **Runnable** — `docs/fictional-bundle-gbh/FICTIONAL_GBH_BUNDLE_COPY_PASTE.txt` |
-| 6 | `motoring-thin-ella-shaw` | `gold/motoring-thin/` | **Runnable** — markdown bundle + truth key |
-| 7 | `generic-provisional-sam-okonkwo` | `gold/generic-provisional/` | **Runnable** — markdown bundle + truth key |
+| 4 | `s18-charge-reduction-jordan-clarke` | `gold/s18-charge-reduction/truth-key.json` | **Runnable** |
+| 5 | `gbh-pike-jordan-pike` | `gold/gbh-pike/truth-key.json` | **Runnable** |
+| 6 | `motoring-thin-ella-shaw` | `gold/motoring-thin/` | **Runnable** |
+| 7 | `generic-provisional-sam-okonkwo` | `gold/generic-provisional/` | **Runnable** |
+| 8 | `crown-court-patterson` | `gold/crown-court-patterson/` | **Runnable** — cold-start crown court s18 |
+| 9 | `fictional-theft-ashleigh-merritt` | `gold/fictional-theft/` | **Runnable** — theft + Listed hearing |
 
 ## Purpose per bundle
 
@@ -71,9 +73,8 @@ Report: `artifacts/casebrain-auditor/latest/bundle-fidelity/local/`
 
 ```powershell
 npx tsc --noEmit
+npx tsx scripts/bundle-shape-regression.test.ts
+npx tsx scripts/case-routine-gate.ts
+npx tsx scripts/gold-7-qa-pack-gate.ts
 npx tsx scripts/corpus-playback-checks.test.ts
-npx tsx scripts/provisional-offence-policy.test.ts
-$env:NEXT_PUBLIC_CRIMINAL_PILOT_MODE="true"
-npx tsx scripts/casebrain-auditor.ts --pack pilot-3 --user-role pilot-non-admin
-npx tsx scripts/casebrain-auditor-overnight.ts production-pass
 ```

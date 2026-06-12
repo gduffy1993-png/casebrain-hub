@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "demoBarMinPass": 8,
+  "shapes": [
+    {
+      "id": "gbh-pike-jordan-pike",
+      "label": "R v Pike — s20 GBH messy disclosure",
+      "truthKey": "docs/bundle-fidelity-set/gold/gbh-pike/truth-key.json",
+      "offenceFamily": "violence_domestic_assault",
+      "requiredFields": ["defendant", "charge", "complainant"]
+    },
+    {
+      "id": "s18-charge-reduction-jordan-clarke",
+      "label": "Jordan Clarke — s18 charge reduction",
+      "truthKey": "docs/bundle-fidelity-set/gold/s18-charge-reduction/truth-key.json",
+      "offenceFamily": "violence_domestic_assault",
+      "requiredFields": ["defendant", "charge"]
+    },
+    {
+      "id": "crown-court-patterson",
+      "label": "R v James Patterson — crown court s18 bundle",
+      "truthKey": "docs/bundle-fidelity-set/gold/crown-court-patterson/truth-key.json",
+      "offenceFamily": "generic_serious_violence_provisional",
+      "requiredFields": ["defendant", "charge", "court", "hearing"]
+    },
+    {
+      "id": "motoring-thin-ella-shaw",
+      "label": "R v Ella Shaw — motoring thin",
+      "truthKey": "docs/bundle-fidelity-set/gold/motoring-thin/truth-key.json",
+      "offenceFamily": "generic_motoring_provisional",
+      "requiredFields": ["defendant", "charge", "hearing"]
+    },
+    {
+      "id": "generic-provisional-sam-okonkwo",
+      "label": "R v Sam Okonkwo — generic provisional",
+      "truthKey": "docs/bundle-fidelity-set/gold/generic-provisional/truth-key.json",
+      "offenceFamily": "generic_provisional",
+      "requiredFields": ["defendant", "charge"]
+    },
+    {
+      "id": "pilot-3-marcus-vale",
+      "label": "R v Marcus Vale — fraud",
+      "truthKey": "docs/bundle-fidelity-set/gold/pilot-3/marcus-vale/truth-key.json",
+      "offenceFamily": "fraud_account_control",
+      "requiredFields": ["defendant", "charge"],
+      "linkedOnly": true
+    },
+    {
+      "id": "pilot-3-kian-doyle",
+      "label": "R v Kian Doyle — PWITS",
+      "truthKey": "docs/bundle-fidelity-set/gold/pilot-3/kian-doyle/truth-key.json",
+      "offenceFamily": "pwits_phone_attribution",
+      "requiredFields": ["defendant", "charge"],
+      "linkedOnly": true
+    },
+    {
+      "id": "pilot-3-leon-marsh",
+      "label": "R v Leon Marsh — robbery ID",
+      "truthKey": "docs/bundle-fidelity-set/gold/pilot-3/leon-marsh/truth-key.json",
+      "offenceFamily": "robbery_identification",
+      "requiredFields": ["defendant", "charge"],
+      "linkedOnly": true
+    },
+    {
+      "id": "fictional-theft-ashleigh-merritt",
+      "label": "R v Ashleigh Merritt — theft",
+      "truthKey": "docs/bundle-fidelity-set/gold/fictional-theft/truth-key.json",
+      "offenceFamily": "generic",
+      "requiredFields": ["defendant", "charge", "hearing"]
+    }
+  ]
+}
