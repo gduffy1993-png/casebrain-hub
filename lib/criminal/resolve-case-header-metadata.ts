@@ -7,6 +7,12 @@ import type { CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
 import { sanitizePublicDisplayLine } from "@/lib/criminal/dev-ref-scrub";
 import type { ExtractedBundleCaseMetadata, MetadataFieldSource } from "@/lib/criminal/extract-bundle-case-metadata";
 import { parseUkHearingDateTime } from "@/lib/criminal/extract-bundle-case-metadata";
+import {
+  buildBundleTruthLedger,
+  formatHearingDisplayFromLedger,
+  ledgerChargeDisplay,
+} from "@/lib/criminal/bundle-truth-ledger";
+import type { BundleTruthLedger } from "@/lib/criminal/bundle-truth-types";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
 
 export type BundleSourceHeaderInput = {
@@ -128,7 +134,13 @@ function resolveAllegation(
   matter: MatterHeaderInput,
   bundle: BundleCaseMetadataInput,
   header: BundleSourceHeaderInput | null | undefined,
+  truthLedger?: BundleTruthLedger | null,
 ): { label: string; source: MetadataFieldSource } {
+  const ledgerCharge = truthLedger ? ledgerChargeDisplay(truthLedger) : null;
+  if (ledgerCharge?.trim()) {
+    return { label: ledgerCharge.trim(), source: truthLedger?.charge.sourceAnchor ? "extracted_charge_fallback" : bundle?.offenceSource ?? "extracted_charge_fallback" };
+  }
+
   if (bundle?.offenceDisplay?.trim()) {
     return { label: bundle.offenceDisplay.trim(), source: bundle.offenceSource };
   }
@@ -221,7 +233,18 @@ function formatHearingFromIso(iso: string, hearingType: string | null | undefine
 function resolveNextHearing(
   snapshot: CaseSnapshot | null,
   bundle: BundleCaseMetadataInput,
+  truthLedger?: BundleTruthLedger | null,
 ): { label: string; source: MetadataFieldSource } {
+  if (truthLedger) {
+    const fromLedger = formatHearingDisplayFromLedger(
+      truthLedger,
+      snapshot?.caseMeta?.hearingNextType,
+    );
+    if (fromLedger) {
+      return { label: fromLedger, source: truthLedger.hearing.sourceAnchor ? "extracted_procedural_fallback" : bundle?.nextHearingSource ?? "extracted_procedural_fallback" };
+    }
+  }
+
   if (bundle?.nextHearingRaw?.trim()) {
     const parsed = parseUkHearingDateTime(bundle.nextHearingRaw);
     const type = snapshot?.caseMeta?.hearingNextType?.trim();
@@ -269,15 +292,25 @@ export function resolveCaseHeaderMetadata(input: {
   bundleMetadata?: BundleCaseMetadataInput;
   bundleHeader?: BundleSourceHeaderInput | null;
   matterState?: string | null;
+  bundleText?: string | null;
+  truthLedger?: BundleTruthLedger | null;
 }): CaseHeaderMetadata {
-  const { snapshot, matter, bundleMetadata, bundleHeader, matterState } = input;
+  const { snapshot, matter, bundleMetadata, bundleHeader, matterState, bundleText, truthLedger: ledgerInput } = input;
 
-  const client = resolveClientLabel(matter ?? null, bundleMetadata, bundleHeader);
-  const allegation = resolveAllegation(snapshot, matter ?? null, bundleMetadata, bundleHeader);
+  const truthLedger =
+    ledgerInput ??
+    (bundleText?.trim() ? buildBundleTruthLedger({ bundleText, parsedHeader: bundleHeader ?? undefined }) : null);
+
+  const client =
+    truthLedger?.defendant.defendant && looksLikePersonName(truthLedger.defendant.defendant)
+      ? { label: truthLedger.defendant.defendant, source: "extracted_cover_fallback" as MetadataFieldSource }
+      : resolveClientLabel(matter ?? null, bundleMetadata, bundleHeader);
+  const allegation = resolveAllegation(snapshot, matter ?? null, bundleMetadata, bundleHeader, truthLedger);
   const stage = resolveStage(snapshot, matter ?? null, bundleMetadata, bundleHeader, matterState);
-  const nextHearing = resolveNextHearing(snapshot, bundleMetadata);
+  const nextHearing = resolveNextHearing(snapshot, bundleMetadata, truthLedger);
 
   const court =
+    truthLedger?.court?.trim() ??
     bundleMetadata?.court?.trim() ??
     null;
   const courtSource = bundleMetadata?.courtSource ?? "unavailable";

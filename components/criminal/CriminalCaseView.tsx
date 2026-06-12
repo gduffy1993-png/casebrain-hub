@@ -81,6 +81,7 @@ const CRIMINAL_CASE_TAB_IDS = [
   "documents",
   "timeline",
   "client-instructions",
+  "battleboard",
   "sentencing",
   "key-facts",
   "safety-procedural",
@@ -818,6 +819,82 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
           </div>
         )}
         <HearingWarRoom {...hearingWarRoomSharedProps} controlRoomMode={useControlRoom} />
+        {controlRoomSharedModals}
+        <BackToTop />
+      </div>
+    );
+  }
+
+  if (useControlRoom && activeTab === "client-instructions") {
+    return (
+      <div className="space-y-4">
+        <WorkflowSafetyLine />
+        {matterClosed && (
+          <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-center">
+            <p className="text-xs text-foreground">
+              <strong>Matter closed</strong>
+              {matterClosed.at && ` (${new Date(matterClosed.at).toLocaleDateString("en-GB")})`}
+              {matterClosed.reason ? ` – ${matterClosed.reason}` : ""}.
+            </p>
+          </div>
+        )}
+        <CaseControlRoom
+          caseId={caseId}
+          snapshot={snapshot}
+          snapshotLoading={snapshotLoading}
+          savedPosition={savedPosition}
+          hasSavedPosition={hasSavedPosition}
+          defencePlan={defencePlan}
+          displayStrategy={displayStrategy}
+          committedStrategy={committedStrategy}
+          matterState={matterState}
+          effectiveProceduralSafety={effectiveProceduralSafety}
+          evidenceSummary={
+            snapshot ? buildEvidenceContext(snapshot, effectiveProceduralSafety?.outstandingItems) : undefined
+          }
+          timelineSummary={snapshot ? buildTimelineContext(snapshot) : undefined}
+          onRecordPosition={openRecordPosition}
+          onUploadEvidence={openUploadEvidence}
+          surface="position"
+        />
+        {controlRoomSharedModals}
+        <BackToTop />
+      </div>
+    );
+  }
+
+  if (useControlRoom && activeTab === "battleboard") {
+    return (
+      <div className="space-y-4">
+        <WorkflowSafetyLine />
+        {matterClosed && (
+          <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-center">
+            <p className="text-xs text-foreground">
+              <strong>Matter closed</strong>
+              {matterClosed.at && ` (${new Date(matterClosed.at).toLocaleDateString("en-GB")})`}
+              {matterClosed.reason ? ` – ${matterClosed.reason}` : ""}.
+            </p>
+          </div>
+        )}
+        <CaseControlRoom
+          caseId={caseId}
+          snapshot={snapshot}
+          snapshotLoading={snapshotLoading}
+          savedPosition={savedPosition}
+          hasSavedPosition={hasSavedPosition}
+          defencePlan={defencePlan}
+          displayStrategy={displayStrategy}
+          committedStrategy={committedStrategy}
+          matterState={matterState}
+          effectiveProceduralSafety={effectiveProceduralSafety}
+          evidenceSummary={
+            snapshot ? buildEvidenceContext(snapshot, effectiveProceduralSafety?.outstandingItems) : undefined
+          }
+          timelineSummary={snapshot ? buildTimelineContext(snapshot) : undefined}
+          onRecordPosition={openRecordPosition}
+          onUploadEvidence={openUploadEvidence}
+          surface="battleboard"
+        />
         {controlRoomSharedModals}
         <BackToTop />
       </div>

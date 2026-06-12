@@ -16,6 +16,15 @@ import {
 } from "@/lib/criminal/pilot-workflow";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import {
+  buildBundleTruthLedger,
+  formatDisplayLabelCasing,
+  guardSolicitorLine,
+  isAdminGuidanceLine,
+  ledgerAnchorForChaseFamily,
+  ledgerMaterialsNeedingChase,
+} from "@/lib/criminal/bundle-truth-ledger";
+import type { BundleTruthLedger } from "@/lib/criminal/bundle-truth-types";
+import {
   confirmNoneLine,
   familiesInText,
   familyDisplayName,
@@ -188,10 +197,12 @@ export type BuildDisclosureChaseBriefInput = {
 };
 
 function normalizeRawLabel(raw: string): string {
-  return raw
-    .replace(/^chase[:\s]*/i, "")
-    .replace(/^outstanding[:\s]*/i, "")
-    .trim();
+  return formatDisplayLabelCasing(
+    raw
+      .replace(/^chase[:\s]*/i, "")
+      .replace(/^outstanding[:\s]*/i, "")
+      .trim(),
+  );
 }
 
 function classifyFamily(text: string): ChaseFamilyId {
@@ -376,23 +387,42 @@ function findLinkedRoute(
   return battleboard.primary_route?.title ?? null;
 }
 
+const LEDGER_ANCHOR_FAMILIES = new Set<ChaseFamilyId>([
+  "cctv_master",
+  "cctv_continuity",
+  "cad_999",
+  "bwv",
+  "interview",
+  "mg6_unused",
+  "medical_expert",
+  "exhibit_provenance",
+]);
+
 function findEvidenceAnchor(
   familyId: ChaseFamilyId,
   mergedFrom: string[],
   battleboard: BattleboardOutput | null,
+  ledger: BundleTruthLedger | null,
 ): string | null {
+  if (ledger) {
+    const fromLedger = ledgerAnchorForChaseFamily(familyId, ledger);
+    if (fromLedger && !isAdminGuidanceLine(fromLedger)) return fromLedger;
+    if (LEDGER_ANCHOR_FAMILIES.has(familyId)) return null;
+  }
+
   if (!battleboard) return null;
   const needles = mergedFrom.map((m) => m.toLowerCase());
   for (const route of battleboard.routes) {
     for (const a of route.evidence_anchors ?? []) {
+      if (isAdminGuidanceLine(a)) continue;
       const al = a.toLowerCase();
       if (needles.some((n) => n.length > 4 && (al.includes(n.slice(0, 12)) || n.includes(al.slice(0, 12))))) {
-        return a;
+        return formatDisplayLabelCasing(a);
       }
     }
   }
   const primary = battleboard.primary_route?.evidence_anchors?.[0];
-  if (primary) return primary;
+  if (primary && !isAdminGuidanceLine(primary)) return formatDisplayLabelCasing(primary);
   return null;
 }
 
@@ -414,6 +444,7 @@ function groupAndMergeLabels(
   rawLabels: string[],
   battleboard: BattleboardOutput | null,
   deadline: DeadlineContext,
+  ledger: BundleTruthLedger | null,
 ): DisclosureChaseItem[] {
   const groups = new Map<ChaseFamilyId, string[]>();
 
@@ -451,7 +482,7 @@ function groupAndMergeLabels(
       baseStatus,
       urgency: deadline.urgency,
       deadlineLabel: deadline.sharedLabel,
-      evidenceAnchor: findEvidenceAnchor(fam.id, mergedFrom, battleboard),
+      evidenceAnchor: findEvidenceAnchor(fam.id, mergedFrom, battleboard, ledger),
       linkedRoute: findLinkedRoute(fam.id, battleboard),
       draftChaseWording: draftChaseWording(label, mergedFrom),
       courtLine: toCourtLine(label),
@@ -472,7 +503,7 @@ function groupAndMergeLabels(
       baseStatus: "Not safely confirmed",
       urgency: deadline.urgency,
       deadlineLabel: deadline.sharedLabel,
-      evidenceAnchor: findEvidenceAnchor("other", mergedFrom, battleboard),
+      evidenceAnchor: findEvidenceAnchor("other", mergedFrom, battleboard, ledger),
       linkedRoute: battleboard?.primary_route?.title ?? null,
       draftChaseWording: draftChaseWording(label, mergedFrom),
       courtLine: toCourtLine(label),
@@ -492,7 +523,7 @@ function groupAndMergeLabels(
       baseStatus: deadline.baseStatus,
       urgency: deadline.urgency,
       deadlineLabel: deadline.sharedLabel,
-      evidenceAnchor: findEvidenceAnchor("other", mergedFrom, battleboard),
+      evidenceAnchor: findEvidenceAnchor("other", mergedFrom, battleboard, ledger),
       linkedRoute: null,
       draftChaseWording: draftChaseWording(label, mergedFrom),
       courtLine: toCourtLine(label),
@@ -626,12 +657,14 @@ function buildWorkflowProfileDisclosureItems(
   battleboard: BattleboardOutput | null,
   deadline: DeadlineContext,
   profile: Exclude<ReturnType<typeof resolveWorkflowProfile>, "generic">,
+  ledger: BundleTruthLedger | null,
 ): DisclosureChaseItem[] {
   return labels.map((label, idx) => {
     const normalized = normalizeWorkflowPilotLabel(label);
+    const familyId = classifyFamily(normalized);
     return {
       id: `workflow-chase-${profile}-${idx}`,
-      familyId: "other" as const,
+      familyId,
       label: normalized,
       whyItMatters: workflowDisclosureWhyItMatters(normalized, profile),
       source: "Crown / disclosure officer (confirm on file)",
@@ -639,9 +672,13 @@ function buildWorkflowProfileDisclosureItems(
       urgency: deadline.urgency,
       deadlineLabel: deadline.sharedLabel,
       evidenceAnchor: (() => {
+        const fromLedger = ledger
+          ? findEvidenceAnchor(familyId, [normalized], battleboard, ledger)
+          : null;
+        if (fromLedger) return fromLedger;
         const raw = battleboard?.primary_route?.evidence_anchors?.[0] ?? null;
-        if (!raw || isMalformedPilotEvidenceAnchor(raw)) return null;
-        return raw;
+        if (!raw || isMalformedPilotEvidenceAnchor(raw) || isAdminGuidanceLine(raw)) return null;
+        return formatDisplayLabelCasing(raw);
       })(),
       linkedRoute: battleboard?.primary_route?.title ?? null,
       draftChaseWording: formatPilotDraftChaseWording(normalized),
@@ -651,7 +688,59 @@ function buildWorkflowProfileDisclosureItems(
   });
 }
 
+function mergeLedgerDisclosureItems(
+  items: DisclosureChaseItem[],
+  ledger: BundleTruthLedger,
+  deadline: ReturnType<typeof resolveDeadlineContext>,
+): DisclosureChaseItem[] {
+  const labelSeen = new Set(items.map((i) => i.label.toLowerCase()));
+  const merged = [...items];
+
+  for (const m of ledgerMaterialsNeedingChase(ledger)) {
+    const key = m.displayLine.toLowerCase();
+    if (labelSeen.has(key)) continue;
+    labelSeen.add(key);
+
+    const baseStatus: ChaseItemStatus =
+      m.status === "outstanding" || m.status === "absent" ? "Outstanding" : "Not safely confirmed";
+
+    merged.push({
+      id: `ledger-material-${m.id}`,
+      familyId: classifyFamily(m.displayLine),
+      label: formatDisplayLabelCasing(m.displayLine),
+      whyItMatters: `Papers mark this material as ${m.status} — chase or confirm status before fixing hearing position.`,
+      source: "MG6/MG6C disclosure schedule",
+      baseStatus,
+      urgency: deadline.urgency,
+      deadlineLabel: deadline.sharedLabel,
+      evidenceAnchor: (() => {
+        const display = formatDisplayLabelCasing(m.displayLine);
+        if (!isAdminGuidanceLine(display)) return display;
+        const excerpt = m.sourceAnchor.excerpt;
+        if (!excerpt || isAdminGuidanceLine(excerpt)) return null;
+        return formatDisplayLabelCasing(excerpt);
+      })(),
+      linkedRoute: null,
+      draftChaseWording: `Please provide ${m.label} or confirm in writing why it is not available.`,
+      courtLine: `${COURT_RECORD_PREFIX} that ${m.label} remains ${m.status} on the current papers.`,
+      mergedFrom: [m.displayLine],
+    });
+  }
+
+  merged.sort((a, b) => {
+    const pa = CHASE_FAMILIES.find((f) => f.id === a.familyId)?.priority ?? 99;
+    const pb = CHASE_FAMILIES.find((f) => f.id === b.familyId)?.priority ?? 99;
+    return pa - pb;
+  });
+
+  return merged;
+}
+
 export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput): DisclosureChaseBrief {
+  const ledger = input.bundleText?.trim()
+    ? buildBundleTruthLedger({ bundleText: input.bundleText })
+    : null;
+
   const workflowContext = {
     caseTitle: input.caseTitle,
     allegation: input.allegation,
@@ -687,17 +776,36 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
         input.battleboard,
         deadline,
         profile,
+        ledger,
       ),
       input.bundleText,
     );
     ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
   } else {
     items = gateItemsAgainstSource(
-      groupAndMergeLabels(chaseLabels, input.battleboard, deadline),
+      groupAndMergeLabels(chaseLabels, input.battleboard, deadline, ledger),
       input.bundleText,
     );
     ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
   }
+
+  if (ledger && ledgerMaterialsNeedingChase(ledger).length > 0) {
+    items = mergeLedgerDisclosureItems(items, ledger, deadline);
+    ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
+  }
+
+  const guardCtx = { ledger, bundleText: input.bundleText ?? null };
+  items = items
+    .filter((item) => !isAdminGuidanceLine(item.label) && !isAdminGuidanceLine(item.evidenceAnchor ?? ""))
+    .map((item) => ({
+      ...item,
+      label: formatDisplayLabelCasing(item.label),
+      evidenceAnchor: item.evidenceAnchor
+        ? guardSolicitorLine(item.evidenceAnchor, guardCtx) ??
+          (isAdminGuidanceLine(item.evidenceAnchor) ? null : formatDisplayLabelCasing(item.evidenceAnchor))
+        : item.evidenceAnchor,
+    }));
+  ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
 
   const linkedRoutes = [
     ...new Set(items.map((i) => i.linkedRoute).filter((r): r is string => Boolean(r?.trim()))),
@@ -718,8 +826,8 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   };
 
   const disclosureSummary =
-    profileLabels && profile !== "generic"
-      ? `${primaryItems.length} priority chase items — provisional`
+    primaryItems.length > 0
+      ? `${primaryItems.length} priority chase item${primaryItems.length === 1 ? "" : "s"} — provisional`
       : items.length === 0
         ? "No source-material chase items safely detected"
         : items.length === 1

@@ -19,6 +19,15 @@ import {
   pilotPositionDisplayLabel,
 } from "@/lib/criminal/pilot-workflow";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
+import {
+  buildBundleTruthLedger,
+  formatDisplayLabelCasing,
+  guardSolicitorLines,
+  sanitizeTextAgainstForbiddenClaims,
+  textViolatesForbiddenClaims,
+  isBlockedBattleboardTemplateLine,
+} from "@/lib/criminal/bundle-truth-ledger";
+import type { BundleTruthLedger } from "@/lib/criminal/bundle-truth-types";
 
 const FORBIDDEN_RE =
   /\b(this wins|case collapses|crowns?\s+will\s+lose|crown\s+case\s+collapses|guaranteed|will\s+be\s+acquitted|plead\s+guilty|plead\s+not\s+guilty)\b/i;
@@ -91,11 +100,13 @@ function uniqueLines(items: string[], max: number): string[] {
 }
 
 function toCourtRecordAsk(item: string): string {
-  const t = item.trim();
+  const t = formatDisplayLabelCasing(item.trim());
   if (!t) return "";
-  if (/^ask the court/i.test(t)) return t;
+  if (/^ask the court/i.test(t)) return formatDisplayLabelCasing(t);
   const label = t.replace(/^chase[:\s]*/i, "").replace(/^outstanding[:\s]*/i, "");
-  return `${COURT_RECORD_PREFIX} that ${label.charAt(0).toLowerCase()}${label.slice(1)} remains outstanding and should be disclosed on a timetable.`;
+  return formatDisplayLabelCasing(
+    `${COURT_RECORD_PREFIX} that ${label.charAt(0).toLowerCase()}${label.slice(1)} remains outstanding and should be disclosed on a timetable.`,
+  );
 }
 
 function splitSentences(text: string): string[] {
@@ -219,7 +230,71 @@ export function buildChaseItemsForHearing(input: {
   return collectChaseItems(input);
 }
 
+function lineBlockedByLedger(raw: string, ledger: BundleTruthLedger, bundleText?: string | null): boolean {
+  if (isBlockedBattleboardTemplateLine(raw, ledger, bundleText)) return true;
+  if (textViolatesForbiddenClaims(raw, ledger)) return true;
+  const lower = raw.toLowerCase();
+  if (ledger.forbiddenClaims.some((f) => f.id.startsWith("forbid-cctv")) && /cctv may confirm|served cctv may confirm/i.test(lower)) {
+    return true;
+  }
+  if (ledger.forbiddenClaims.some((f) => f.id.startsWith("forbid-medical")) && /medical.*(?:proves|consistent|final)/i.test(lower)) {
+    return true;
+  }
+  if (ledger.forbiddenClaims.some((f) => f.id.startsWith("forbid-witness") || f.id.startsWith("forbid-mg11")) && /mg11.*(?:served|consistent|final)/i.test(lower)) {
+    return true;
+  }
+  return false;
+}
+
+function applyLedgerForbiddenGuards(
+  brief: HearingWarRoomBrief,
+  ledger: BundleTruthLedger | null,
+  bundleText?: string | null,
+): HearingWarRoomBrief {
+  if (!ledger) return brief;
+
+  const guardLines = (lines: string[], max: number) =>
+    uniqueLines(
+      lines
+        .map((raw) => {
+          if (lineBlockedByLedger(raw, ledger, bundleText)) return null;
+          const cleaned = sanitizeTextAgainstForbiddenClaims(raw, ledger);
+          return sanitizeLine(cleaned);
+        })
+        .filter((l): l is string => Boolean(l)),
+      max,
+    );
+
+  const forbiddenDoNot = ledger.forbiddenClaims.map(
+    (fc) => `Do not state "${fc.phrase}" — ${fc.reason}`,
+  );
+
+  const safePosition = guardLines([brief.safePositionToday], 1)[0] ?? brief.safePositionToday;
+
+  return {
+    ...brief,
+    safePositionToday: safePosition,
+    sayThis: guardLines(brief.sayThis, brief.sayThis.length),
+    doNotOverstate: uniqueLines(
+      [...guardSolicitorLines(brief.doNotOverstate, { ledger, bundleText }, 6), ...forbiddenDoNot],
+      8,
+    ),
+    askCourtToRecord: guardSolicitorLines(
+      brief.askCourtToRecord,
+      { ledger, bundleText },
+      brief.askCourtToRecord.length,
+    ),
+    nextHearingMoves: guardLines(brief.nextHearingMoves, brief.nextHearingMoves.length),
+    collapseRisks: guardLines(brief.collapseRisks, brief.collapseRisks.length),
+    evidenceAnchors: guardSolicitorLines(brief.evidenceAnchors, { ledger, bundleText }, brief.evidenceAnchors.length),
+  };
+}
+
 export function buildHearingWarRoomBrief(input: BuildHearingWarRoomBriefInput): HearingWarRoomBrief {
+  const ledger = input.bundleText?.trim()
+    ? buildBundleTruthLedger({ bundleText: input.bundleText })
+    : null;
+
   const bb = input.battleboard;
   const route = bb?.primary_route;
   const workflowContext = {
@@ -400,21 +475,25 @@ export function buildHearingWarRoomBrief(input: BuildHearingWarRoomBriefInput): 
     draftWording,
   };
 
-  if (!isCriminalPilotMode()) return brief;
+  if (!isCriminalPilotMode()) return applyLedgerForbiddenGuards(brief, ledger, input.bundleText);
 
-  return {
-    ...brief,
-    safePositionToday: pilotCleanupVisibleText(brief.safePositionToday),
-    sayThis: pilotFinalizeBriefLines(brief.sayThis),
-    doNotOverstate: pilotFinalizeBriefLines(brief.doNotOverstate),
-    askCourtToRecord: pilotFinalizeBriefLines(brief.askCourtToRecord),
-    instructionsNeeded: pilotFinalizeBriefLines(brief.instructionsNeeded),
-    nextHearingMoves: pilotFinalizeBriefLines(brief.nextHearingMoves),
-    collapseRisks: pilotFinalizeBriefLines(brief.collapseRisks),
-    draftWording: {
-      disclosureTimetable: pilotCleanupVisibleText(brief.draftWording.disclosureTimetable),
-      adjournment: pilotCleanupVisibleText(brief.draftWording.adjournment),
-      clientExplanation: pilotCleanupVisibleText(brief.draftWording.clientExplanation),
+  return applyLedgerForbiddenGuards(
+    {
+      ...brief,
+      safePositionToday: pilotCleanupVisibleText(brief.safePositionToday),
+      sayThis: pilotFinalizeBriefLines(brief.sayThis),
+      doNotOverstate: pilotFinalizeBriefLines(brief.doNotOverstate),
+      askCourtToRecord: pilotFinalizeBriefLines(brief.askCourtToRecord),
+      instructionsNeeded: pilotFinalizeBriefLines(brief.instructionsNeeded),
+      nextHearingMoves: pilotFinalizeBriefLines(brief.nextHearingMoves),
+      collapseRisks: pilotFinalizeBriefLines(brief.collapseRisks),
+      draftWording: {
+        disclosureTimetable: pilotCleanupVisibleText(brief.draftWording.disclosureTimetable),
+        adjournment: pilotCleanupVisibleText(brief.draftWording.adjournment),
+        clientExplanation: pilotCleanupVisibleText(brief.draftWording.clientExplanation),
+      },
     },
-  };
+    ledger,
+    input.bundleText,
+  );
 }
