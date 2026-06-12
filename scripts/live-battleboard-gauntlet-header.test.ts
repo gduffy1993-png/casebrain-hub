@@ -8,6 +8,7 @@ import {
   extractBundleCaseMetadata,
   isGluedHearingCourtOffenceLabel,
   repairGluedOffenceLabel,
+  sanitizeComplainantName,
 } from "../lib/criminal/extract-bundle-case-metadata";
 import {
   buildBundleTruthLedger,
@@ -76,6 +77,23 @@ assert.match(summaryWithFalseComplainant, /Owen Flint is accused of Section 20 u
 assert.doesNotMatch(summaryWithFalseComplainant, /against swung first|\. MG\./i);
 
 assert.equal(meta.complainant, "Ben Cray");
+
+assert.equal(sanitizeComplainantName("Ben Cray Statement"), "Ben Cray");
+assert.equal(sanitizeComplainantName("Ben Cray Witness Statement"), "Ben Cray");
+assert.equal(sanitizeComplainantName("Ben Cray Draft Unsigned"), "Ben Cray");
+assert.equal(sanitizeComplainantName("John Statement"), "John Statement");
+
+const summaryWithStatementTail = buildCaseSummarySnippet({
+  clientLabel: "Owen Flint",
+  allegation: "Section 20 unlawful wounding",
+  complainant: "Ben Cray Statement",
+  bundleCombinedText: GAUNTLET_BUNDLE,
+});
+assert.match(
+  summaryWithStatementTail,
+  /Owen Flint is accused of Section 20 unlawful wounding against Ben Cray\./i,
+);
+assert.doesNotMatch(summaryWithStatementTail, /against Ben Cray Statement/i);
 
 const ledger = buildBundleTruthLedger({ bundleText: GAUNTLET_BUNDLE });
 const mockRoute: BattleboardRoute = {

@@ -145,9 +145,36 @@ function trimPersonCapture(raw: string): string {
   return t;
 }
 
+/** Strip MG11/document-role tokens glued onto person-name captures (keep real surnames). */
+function stripPersonNameDocumentRoleTail(words: string[]): string[] {
+  let w = [...words];
+  for (let i = 0; i < 4 && w.length > 0; i++) {
+    if (
+      w.length >= 2 &&
+      /^witness$/i.test(w[w.length - 2]!) &&
+      /^statement$/i.test(w[w.length - 1]!)
+    ) {
+      w = w.slice(0, -2);
+      continue;
+    }
+    const last = w[w.length - 1]!.toLowerCase();
+    if (/^(?:mg11|draft|unsigned|final|not)$/i.test(last)) {
+      w = w.slice(0, -1);
+      continue;
+    }
+    if ((last === "statement" || last === "witness") && w.length >= 3) {
+      w = w.slice(0, -1);
+      continue;
+    }
+    break;
+  }
+  return w;
+}
+
 /** Reject label tokens, fragments, and non name-like captures. */
 function sanitizePersonName(value: string): string | null {
-  const t = trimPersonCapture(value);
+  const trimmed = trimPersonCapture(value);
+  const t = stripPersonNameDocumentRoleTail(trimmed.split(/\s+/).filter(Boolean)).join(" ");
   if (!t || t.length < 3 || t.length > 60) return null;
   if (/^(?:defendant|accused|client|complainant|victim|name|unknown|n\/a|not\s+safely)/i.test(t)) {
     return null;
