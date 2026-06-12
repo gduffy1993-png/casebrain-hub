@@ -1,5 +1,9 @@
 import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
-import { buildMetadataScan } from "@/lib/criminal/extract-bundle-case-metadata";
+import {
+  buildMetadataScan,
+  isGluedHearingCourtOffenceLabel,
+  repairGluedOffenceLabel,
+} from "@/lib/criminal/extract-bundle-case-metadata";
 import {
   cleanupPilotVisiblePunctuation,
   looksLikePilotBundleReferenceLine,
@@ -134,8 +138,11 @@ export function buildCaseSummarySnippet(input: {
   pilotMode?: boolean;
   workflowContext?: WorkflowProfileContext | null;
 }): string {
-  const client = input.clientLabel.trim();
-  const allegation = input.allegation.trim();
+  const client = input.clientLabel.trim().replace(/\.$/, "");
+  let allegation = input.allegation.trim();
+  if (isGluedHearingCourtOffenceLabel(allegation)) {
+    allegation = repairGluedOffenceLabel(allegation) ?? "";
+  }
   const hasClient = client.length >= 2 && !notExtracted(client);
   const hasAllegation = allegation.length >= 8 && !notExtracted(allegation);
 

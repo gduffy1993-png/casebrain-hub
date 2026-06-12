@@ -8,6 +8,7 @@ import {
   formatOffenceDisplayFromBundle,
   parseUkHearingDateTime,
 } from "@/lib/criminal/extract-bundle-case-metadata";
+import type { BattleboardOutput, BattleboardRoute } from "@/lib/criminal/strategy-battleboard";
 import {
   buildForbiddenClaimsForMaterials,
   estimateOcrConfidence,
@@ -401,8 +402,8 @@ export function isBlockedBattleboardTemplateLine(
   const t = bundleText ?? "";
   const lower = line.toLowerCase();
 
-  // Generic battleboard collapse template — never surface as solicitor-facing risk.
-  if (/^mg11 is consistent and served\.?$/i.test(line.trim())) return true;
+  // Generic battleboard template — never surface as solicitor-facing risk.
+  if (/\bmg11 is consistent and served\b/i.test(lower)) return true;
 
   if (/\bfull cctv confirms|\bcctv confirms|\bcctv proves\b/i.test(lower)) {
     return materialNotSafelyServed(ledger, /\bcctv|footage|video\b/i);
@@ -521,6 +522,45 @@ export function filterTemplateSafeLines(
   max = lines.length,
 ): string[] {
   return guardSolicitorLines(lines, { ledger, bundleText }, max);
+}
+
+function guardBattleboardRoute(
+  route: BattleboardRoute,
+  ctx: TruthSurfaceGuardContext,
+): BattleboardRoute {
+  return {
+    ...route,
+    why_it_helps: guardSolicitorLines(route.why_it_helps, ctx),
+    what_hurts_us: guardSolicitorLines(route.what_hurts_us, ctx),
+    evidence_anchors: guardSolicitorLines(route.evidence_anchors, ctx),
+    collapse_risks: guardSolicitorLines(route.collapse_risks, ctx),
+    next_moves: guardSolicitorLines(route.next_moves, ctx),
+    hearing_line: guardSolicitorLine(route.hearing_line, ctx) ?? "",
+    safety_note: guardSolicitorLine(route.safety_note, ctx) ?? "",
+  };
+}
+
+/** Apply the same solicitor-surface guards used by QA export to live Battleboard output. */
+export function guardBattleboardOutput(
+  battleboard: BattleboardOutput,
+  ctx: TruthSurfaceGuardContext,
+): BattleboardOutput {
+  const routes = battleboard.routes.map((route) => guardBattleboardRoute(route, ctx));
+  const primary = battleboard.primary_route
+    ? guardBattleboardRoute(battleboard.primary_route, ctx)
+    : undefined;
+  return {
+    ...battleboard,
+    solicitor_safe_summary:
+      guardSolicitorLine(battleboard.solicitor_safe_summary, ctx) ?? battleboard.solicitor_safe_summary,
+    position_notice: battleboard.position_notice
+      ? guardSolicitorLine(battleboard.position_notice, ctx) ?? undefined
+      : battleboard.position_notice,
+    primary_route: primary,
+    routes,
+    global_collapse_risks: guardSolicitorLines(battleboard.global_collapse_risks, ctx),
+    urgent_next_moves: guardSolicitorLines(battleboard.urgent_next_moves, ctx),
+  };
 }
 
 export function buildBundleTruthLedger(input: BuildBundleTruthLedgerInput): BundleTruthLedger {

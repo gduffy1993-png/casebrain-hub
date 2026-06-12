@@ -9,6 +9,7 @@ import { buildCaseContext } from "@/lib/case-context";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { combineCaseDocumentsText } from "@/lib/bundle/bundle-document-text";
 import { computeDisclosureState } from "@/lib/criminal/disclosure-state";
+import { buildBundleTruthLedger, guardBattleboardOutput } from "@/lib/criminal/bundle-truth-ledger";
 import { buildStrategyBattleboard } from "@/lib/criminal/strategy-battleboard";
 
 export const runtime = "nodejs";
@@ -131,7 +132,7 @@ export async function GET(_request: Request, { params }: RouteParams) {
     const positionText =
       typeof positionRow?.position_text === "string" ? positionRow.position_text.trim() : "";
 
-    const battleboard = buildStrategyBattleboard({
+    const rawBattleboard = buildStrategyBattleboard({
       case_id: caseId,
       bundle_text,
       offence_label,
@@ -150,6 +151,14 @@ export async function GET(_request: Request, { params }: RouteParams) {
         typeof criminalCase?.interview_stance === "string" ? criminalCase.interview_stance : null,
       strategy_summary_lines: caseTitle ? [`Case title: ${caseTitle}`] : [],
       outstanding_disclosure,
+    });
+
+    const ledger = bundle_text.trim()
+      ? buildBundleTruthLedger({ bundleText: bundle_text })
+      : null;
+    const battleboard = guardBattleboardOutput(rawBattleboard, {
+      ledger,
+      bundleText: bundle_text,
     });
 
     return NextResponse.json({ ok: true, data: battleboard });
