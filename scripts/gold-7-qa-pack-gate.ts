@@ -16,6 +16,7 @@ import { buildStrategyBattleboard } from "../lib/criminal/strategy-battleboard";
 import {
   loadGoldPack,
   readBundleText,
+  type BundleFidelityGoldEntry,
 } from "../lib/eval/casebrain-auditor/bundle-fidelity-pack";
 import type { BundleFidelityTruthKey } from "../lib/eval/casebrain-auditor/bundle-fidelity-types";
 import { runBundleFidelityCheck } from "../lib/eval/casebrain-auditor/bundle-fidelity-run";
@@ -64,10 +65,7 @@ function defendantInPack(truth: BundleFidelityTruthKey, md: string): boolean {
   return names.some((n) => n.length >= 3 && body.includes(n));
 }
 
-function runCase(entry: {
-  truthKey: BundleFidelityTruthKey;
-  bundleTextPaths: string[];
-}): GateResult {
+function runCase(entry: BundleFidelityGoldEntry): GateResult {
   const truth = entry.truthKey;
   if (!entry.bundleTextPaths.length) {
     return {
