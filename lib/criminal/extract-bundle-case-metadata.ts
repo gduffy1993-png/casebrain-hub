@@ -315,6 +315,44 @@ function isSpuriousChargeLabelValue(value: string): boolean {
   return false;
 }
 
+/** MG5-style incident narrative — not a charge-sheet offence label. */
+function isNarrativeAllegationValue(value: string): boolean {
+  const t = value.trim();
+  if (!t || t.length < 16) return false;
+  if (/^(?:at\s+~?\d|on\s+\d{1,2}\s+(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\w*\s+\d{4}\b|outside\s+)/i.test(t)) {
+    return true;
+  }
+  if (/\bdefendant allegedly\b/i.test(t) && !/\b(contrary to|section\s*\d+)\b/i.test(t)) return true;
+  if (
+    t.length > 72 &&
+    !/\b(contrary to|section\s*\d+|common law|wounding with intent|pervert|dangerous driving)\b/i.test(t)
+  ) {
+    return true;
+  }
+  return false;
+}
+
+function extractChargeSheetAllegation(scan: string, fullText: string): string | null {
+  for (const src of [scan, fullText]) {
+    const normalized = normalizeMetadataScanText(src);
+    const section = normalized.match(
+      /\bAllegation\b\s*\n+\s*Count\s*\d+\s*[:\\-]\s*([^\n]{8,220})/i,
+    );
+    if (section?.[1]) {
+      const v = cleanLineValue(trimChargeAllegationBoundary(section[1]));
+      if (v && !isNarrativeAllegationValue(v) && !isSpuriousChargeLabelValue(v)) return v;
+    }
+    const countLine = normalized.match(
+      /\bCount\s*1\s*[:\\-]\s*([^\n]{8,220}(?:section|contrary|oapa|act|common law)[^\n]{0,80})/i,
+    );
+    if (countLine?.[1]) {
+      const v = cleanLineValue(trimChargeAllegationBoundary(countLine[1]));
+      if (v && !isNarrativeAllegationValue(v) && !isSpuriousChargeLabelValue(v)) return v;
+    }
+  }
+  return null;
+}
+
 /** Stop charge/allegation capture before defence position, custody, MG6, etc. */
 function trimChargeAllegationBoundary(raw: string): string {
   let t = raw.replace(/\s+/g, " ").trim();
@@ -375,7 +413,10 @@ export function composeOffenceDisplayFromParts(
 }
 
 function extractOffenceFromChargeBlock(block: string): string | null {
-  const lines = block.split(/\n/).map((l) => l.trim()).filter(Boolean);
+  const lines = block
+    .split(/\n/)
+    .map((l) => normalizeMetadataScanText(l.trim()))
+    .filter(Boolean);
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i]!;
     if (/^statement of offence/i.test(line)) {
@@ -477,10 +518,27 @@ function extractOffenceWording(scan: string, fullText: string): { wording: strin
     }
   }
 
+  const fromScanCharge =
+    extractOffenceFromChargeBlock(scan) ??
+    extractOffenceFromChargeBlock(normalizeMetadataScanText(fullText));
+  if (fromScanCharge && !isNarrativeAllegationValue(fromScanCharge)) {
+    const trimmed = trimChargeAllegationBoundary(fromScanCharge);
+    return { wording: formatOffenceDisplayFromBundle(trimmed), source: "extracted_charge_fallback" };
+  }
+
+  const chargeSheetAllegation = extractChargeSheetAllegation(scan, fullText);
+  if (chargeSheetAllegation) {
+    return {
+      wording: formatOffenceDisplayFromBundle(chargeSheetAllegation),
+      source: "extracted_charge_fallback",
+    };
+  }
+
   const inlineCharge = extractLabeledChargeOrAllegation(scan, "Charge");
-  const inlineAllegation = extractLabeledChargeOrAllegation(scan, "Allegation");
+  let inlineAllegation = extractLabeledChargeOrAllegation(scan, "Allegation");
+  if (inlineAllegation && isNarrativeAllegationValue(inlineAllegation)) inlineAllegation = null;
   const composed = composeOffenceDisplayFromParts(inlineCharge, inlineAllegation);
-  if (composed) {
+  if (composed && !isNarrativeAllegationValue(composed)) {
     return {
       wording: composed,
       source: inlineCharge ? "extracted_charge_fallback" : "extracted_cover_fallback",
@@ -532,11 +590,6 @@ function extractOffenceWording(scan: string, fullText: string): { wording: strin
   const murderStandalone = scan.match(/\b(Murder,?\s+contrary to common law)\b/i);
   if (murderStandalone?.[1]) {
     return { wording: "Murder, contrary to common law", source: "extracted_charge_fallback" };
-  }
-
-  const fromScanCharge = extractOffenceFromChargeBlock(scan);
-  if (fromScanCharge) {
-    return { wording: formatOffenceDisplayFromBundle(fromScanCharge), source: "extracted_charge_fallback" };
   }
 
   return { wording: null, source: "unavailable" };

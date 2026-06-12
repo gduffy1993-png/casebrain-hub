@@ -401,6 +401,9 @@ export function isBlockedBattleboardTemplateLine(
   const t = bundleText ?? "";
   const lower = line.toLowerCase();
 
+  // Generic battleboard collapse template — never surface as solicitor-facing risk.
+  if (/^mg11 is consistent and served\.?$/i.test(line.trim())) return true;
+
   if (/\bfull cctv confirms|\bcctv confirms|\bcctv proves\b/i.test(lower)) {
     return materialNotSafelyServed(ledger, /\bcctv|footage|video\b/i);
   }
