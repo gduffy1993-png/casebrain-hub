@@ -10,6 +10,7 @@ import {
   isGluedHearingCourtOffenceLabel,
   parseUkHearingDateTime,
   repairGluedOffenceLabel,
+  sanitizeComplainantName,
 } from "@/lib/criminal/extract-bundle-case-metadata";
 import {
   buildBundleTruthLedger,
@@ -319,7 +320,7 @@ export function resolveCaseHeaderMetadata(input: {
     null;
   const courtSource = bundleMetadata?.courtSource ?? "unavailable";
 
-  const complainant = bundleMetadata?.complainant?.trim() ?? null;
+  const complainant = sanitizeComplainantName(bundleMetadata?.complainant);
 
   const bailStatus =
     bundleMetadata?.bailStatus?.trim() ??

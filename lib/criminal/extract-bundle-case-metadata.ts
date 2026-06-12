@@ -158,7 +158,7 @@ function sanitizePersonName(value: string): string | null {
   const labelWords =
     /^(?:defendant|accused|client|complainant|victim|name|the|and|or|dob|doi|mr|mrs|ms|dr)$/i;
   const verbWords =
-    /^(?:contacted|communicated|alleged|denied|admitted|is|was|has|had|that|which|against|contrary|witness|victim|complainant)$/i;
+    /^(?:contacted|communicated|alleged|denied|admitted|is|was|has|had|that|which|against|contrary|witness|victim|complainant|swung|states|alleges|reports|identified|during|struggle|bottle|injury|first)$/i;
   if (words.some((w) => labelWords.test(w) || verbWords.test(w))) return null;
   if (!words.every((w) => /^[A-Za-z][A-Za-z'’.\-]{1,}$/.test(w))) return null;
   if (words.length >= 3 && /\b(was|is|has|had|that|which|against|contrary)\b/i.test(t)) return null;
@@ -198,7 +198,30 @@ function extractDefendantName(scan: string): string | null {
   return null;
 }
 
+/** Strip scan/OCR junk glued onto offence labels (gauntlet bundles). */
+export function stripGluedOffenceJunk(value: string): string {
+  return value
+    .trim()
+    .replace(/\bagainst swung first\b.*$/i, "")
+    .replace(/\.\s*MG\.?\s*$/i, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+export function sanitizeComplainantName(value: string | null | undefined): string | null {
+  if (!value?.trim()) return null;
+  return sanitizePersonName(value.trim());
+}
+
 function extractComplainantName(scan: string): string | null {
+  const mg11 = scan.match(
+    /\bMG11\b[^\n]{0,120}\bComplainant\b\s*[-–]\s*([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,2})/i,
+  );
+  if (mg11?.[1]) {
+    const v = sanitizePersonName(mg11[1]);
+    if (v) return v;
+  }
+
   const colon =
     extractLabeledValue(scan, ["Complainant", "Victim", "Other party / key witness", "Key witness"]) ??
     null;
@@ -208,8 +231,8 @@ function extractComplainantName(scan: string): string | null {
   }
 
   const tablePatterns: RegExp[] = [
-    new RegExp(`\\bComplainant\\s*:?\\s*${PERSON_NAME_CAPTURE}`, "i"),
-    new RegExp(`\\bVictim\\s*:?\\s*${PERSON_NAME_CAPTURE}`, "i"),
+    new RegExp(`\\bComplainant\\s*:\\s*${PERSON_NAME_CAPTURE}`, "i"),
+    new RegExp(`\\bVictim\\s*:\\s*${PERSON_NAME_CAPTURE}`, "i"),
   ];
 
   for (const re of tablePatterns) {
@@ -297,25 +320,27 @@ export function repairGluedOffenceLabel(value: string): string | null {
 
   const allegationTail = t.match(/\bAllegation:\s*(.+)$/i)?.[1];
   if (allegationTail) {
-    const stripped = allegationTail
-      .replace(/\bagainst swung first\b.*$/i, "")
-      .replace(/\.\s*MG\.?\s*$/i, "")
-      .trim();
+    const stripped = stripGluedOffenceJunk(allegationTail);
     const v = cleanLineValue(stripped);
     if (v && v.length >= 8 && !isGluedHearingCourtOffenceLabel(v)) {
       return formatOffenceDisplayFromBundle(v);
     }
   }
 
-  const s20 = t.match(/\b((?:section|s\.?)\s*20\s+unlawful\s+wounding[^.]{0,60})/i)?.[1];
+  const s20 = t.match(/\b((?:section|s\.?)\s*20\s+unlawful\s+wounding)/i)?.[1];
   if (s20) {
-    const v = cleanLineValue(s20);
+    const v = cleanLineValue(stripGluedOffenceJunk(s20));
     if (v) return formatOffenceDisplayFromBundle(v);
   }
 
   if (/\bunlawful\s+wounding\b/i.test(t) && /\b(?:section|s\.?)\s*20\b/i.test(t)) {
-    const inner = t.match(/\b((?:section|s\.?)\s*20\s+unlawful\s+wounding[^.]{0,80})/i)?.[1];
-    if (inner) return formatOffenceDisplayFromBundle(cleanLineValue(inner)!);
+    const inner = t.match(/\b((?:section|s\.?)\s*20\s+unlawful\s+wounding)/i)?.[1];
+    if (inner) return formatOffenceDisplayFromBundle(cleanLineValue(stripGluedOffenceJunk(inner))!);
+  }
+
+  const strippedOnly = stripGluedOffenceJunk(t);
+  if (strippedOnly && strippedOnly.length >= 8 && !isGluedHearingCourtOffenceLabel(strippedOnly)) {
+    return formatOffenceDisplayFromBundle(strippedOnly);
   }
 
   return null;
@@ -855,8 +880,8 @@ export function extractBundleCaseMetadata(
   if (defendantName) defendantName = sanitizePersonName(defendantName) ?? defendantName;
   const defendantSource: MetadataFieldSource = defendantName ? "extracted_cover_fallback" : "unavailable";
 
-  let complainant = extractComplainantName(scan) ?? parsedHeader?.otherParty?.trim() ?? null;
-  if (complainant) complainant = sanitizePersonName(complainant) ?? complainant;
+  let complainant =
+    extractComplainantName(scan) ?? sanitizeComplainantName(parsedHeader?.otherParty) ?? null;
   const complainantSource: MetadataFieldSource = complainant ? "extracted_cover_fallback" : "unavailable";
 
   const court = extractCourt(scan);

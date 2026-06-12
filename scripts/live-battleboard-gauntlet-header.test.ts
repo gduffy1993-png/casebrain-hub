@@ -64,7 +64,18 @@ const summary = buildCaseSummarySnippet({
   bundleCombinedText: GAUNTLET_BUNDLE,
 });
 assert.match(summary, /Owen Flint is accused of section 20 unlawful wounding/i);
-assert.doesNotMatch(summary, /2026 at 12:00|against swung first/i);
+assert.doesNotMatch(summary, /2026 at 12:00|against swung first|\. MG\./i);
+
+const summaryWithFalseComplainant = buildCaseSummarySnippet({
+  clientLabel: "Owen Flint",
+  allegation: "Section 20 unlawful wounding",
+  complainant: "swung first. MG.",
+  bundleCombinedText: GAUNTLET_BUNDLE,
+});
+assert.match(summaryWithFalseComplainant, /Owen Flint is accused of Section 20 unlawful wounding/i);
+assert.doesNotMatch(summaryWithFalseComplainant, /against swung first|\. MG\./i);
+
+assert.equal(meta.complainant, "Ben Cray");
 
 const ledger = buildBundleTruthLedger({ bundleText: GAUNTLET_BUNDLE });
 const mockRoute: BattleboardRoute = {
