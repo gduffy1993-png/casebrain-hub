@@ -7,6 +7,7 @@ import { collectChaseItems } from "@/components/criminal/control-room/chaseItems
 import { buildDisclosureChaseHref as buildDisclosureChaseTabHref } from "@/components/criminal/disclosure-chase/disclosureChaseLinks";
 import { buildHearingWarRoomHref } from "@/components/criminal/hearing-war-room/hearingWarRoomLinks";
 import type { CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
+import { parseUkHearingDateTime } from "@/lib/criminal/extract-bundle-case-metadata";
 import {
   resolveCaseHeaderMetadata,
   sanitizeHeaderAllegation,
@@ -188,6 +189,16 @@ function resolveCourtHeader(row: CourtCasesApiRow, enrichment: CourtTodayEnrichm
   });
 }
 
+function resolveExtractedHearingIso(enrichment: CourtTodayEnrichment): string | null {
+  const meta = enrichment.bundleMetadata;
+  if (!meta) return null;
+  if (meta.nextHearingIso) return meta.nextHearingIso;
+  if (meta.nextHearingRaw) {
+    return parseUkHearingDateTime(meta.nextHearingRaw)?.iso ?? null;
+  }
+  return null;
+}
+
 /** Structured DB hearing first, then extracted bundle ISO — no guessing. */
 export function resolveCourtHearingDate(
   row: CourtCasesApiRow,
@@ -195,7 +206,7 @@ export function resolveCourtHearingDate(
 ): Date | null {
   const fromDb = parseHearingDate(row.next_hearing_date);
   if (fromDb) return fromDb;
-  const iso = enrichment.bundleMetadata?.nextHearingIso;
+  const iso = resolveExtractedHearingIso(enrichment);
   if (iso) return parseHearingDate(iso);
   return null;
 }

@@ -3,6 +3,8 @@ import {
   buildMetadataScan,
   isGluedHearingCourtOffenceLabel,
   repairGluedOffenceLabel,
+  sanitizeComplainantName,
+  stripGluedOffenceJunk,
 } from "@/lib/criminal/extract-bundle-case-metadata";
 import {
   cleanupPilotVisiblePunctuation,
@@ -139,9 +141,11 @@ export function buildCaseSummarySnippet(input: {
   workflowContext?: WorkflowProfileContext | null;
 }): string {
   const client = input.clientLabel.trim().replace(/\.$/, "");
-  let allegation = input.allegation.trim();
+  let allegation = stripGluedOffenceJunk(input.allegation.trim());
   if (isGluedHearingCourtOffenceLabel(allegation)) {
-    allegation = repairGluedOffenceLabel(allegation) ?? "";
+    allegation = repairGluedOffenceLabel(allegation) ?? stripGluedOffenceJunk(allegation);
+  } else {
+    allegation = stripGluedOffenceJunk(allegation);
   }
   const hasClient = client.length >= 2 && !notExtracted(client);
   const hasAllegation = allegation.length >= 8 && !notExtracted(allegation);
@@ -156,10 +160,9 @@ export function buildCaseSummarySnippet(input: {
   if (pilotLead) {
     lines.push(`${pilotLead} The summary remains conditional on served material.`);
   } else if (hasClient && hasAllegation) {
+    const complainantName = sanitizeComplainantName(input.complainant);
     const complainant =
-      input.complainant?.trim() && !notExtracted(input.complainant)
-        ? ` against ${input.complainant.trim()}`
-        : "";
+      complainantName && !notExtracted(complainantName) ? ` against ${complainantName}` : "";
     lines.push(
       `${client} is accused of ${allegation.replace(/\.$/, "")}${complainant}. The summary remains conditional on served material.`,
     );
