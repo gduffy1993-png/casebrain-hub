@@ -25,6 +25,7 @@ const HIGH_VALUE_SECTIONS = [
   "HEARING",
   "HEARING_NOTE",
   "MG5",
+  "CUSTODY",
 ] as const;
 
 export type MetadataFieldSource =
@@ -113,13 +114,38 @@ function extractSectionBlock(full: string, sectionNames: string[], maxLen = SECT
   return null;
 }
 
+/** Remove ingestion JSON banner blocks from eval/gold paste bundles. */
+function stripIngestionMetadataBlock(text: string): string {
+  const marker = /CASEBRAIN_BUNDLE_METADATA/i;
+  const idx = text.search(marker);
+  if (idx < 0) return text;
+  const braceStart = text.indexOf("{", idx);
+  if (braceStart < 0) return text;
+  let depth = 0;
+  let end = braceStart;
+  for (let i = braceStart; i < text.length; i++) {
+    if (text[i] === "{") depth++;
+    else if (text[i] === "}") {
+      depth--;
+      if (depth === 0) {
+        end = i + 1;
+        break;
+      }
+    }
+  }
+  let start = idx;
+  while (start > 0 && /[=\s\n\r]/.test(text[start - 1]!)) start--;
+  return `${text.slice(0, start)}${text.slice(end)}`.replace(/^\s*={3,}\s*$/gm, "").trim();
+}
+
 /** Highest-value text for metadata: front pages + cover/charge/hearing sections. */
 export function buildMetadataScan(fullText: string): string {
   if (!fullText?.trim()) return "";
-  const parts: string[] = [fullText.slice(0, FRONT_MATTER_CHARS)];
+  const cleaned = stripIngestionMetadataBlock(fullText);
+  const parts: string[] = [cleaned.slice(0, FRONT_MATTER_CHARS)];
   const front = parts[0]!;
   for (const section of HIGH_VALUE_SECTIONS) {
-    const block = extractSectionBlock(fullText, [section]);
+    const block = extractSectionBlock(cleaned, [section]);
     if (block && block.length >= 24) {
       const anchor = block.slice(0, Math.min(120, block.length));
       if (!front.includes(anchor)) parts.push(block);
@@ -135,8 +161,21 @@ const PERSON_CAPTURE_STOP =
 const PERSON_NAME_TOKEN = `[A-Za-z][A-Za-z'’.\-]+`;
 const PERSON_NAME_CAPTURE = `(${PERSON_NAME_TOKEN}(?:\\s+${PERSON_NAME_TOKEN}){0,3})`;
 
+function normalizeCapturedPersonTokens(raw: string): string {
+  return raw
+    .split(/\s+/)
+    .filter(Boolean)
+    .map((w) => {
+      if (/^[A-Z]{2,}$/.test(w) && w.length <= 24) {
+        return w.charAt(0) + w.slice(1).toLowerCase();
+      }
+      return w;
+    })
+    .join(" ");
+}
+
 function trimPersonCapture(raw: string): string {
-  let t = raw.replace(/^\|+|\|+$/g, "").replace(/\s+/g, " ").trim();
+  let t = normalizeCapturedPersonTokens(raw.replace(/^\|+|\|+$/g, "").replace(/\s+/g, " ").trim());
   const stop = t.search(PERSON_CAPTURE_STOP);
   if (stop >= 0) t = t.slice(0, stop).trim();
   t = t.replace(/\|.+$/, "").trim();
@@ -240,7 +279,36 @@ export function sanitizeComplainantName(value: string | null | undefined): strin
   return sanitizePersonName(value.trim());
 }
 
+function extractComplainantFromParticulars(scan: string): string | null {
+  const harm = scan.match(
+    /\b(?:inflicted|caused|unlawfully and maliciously inflicted)\s+(?:grievous bodily harm|gbh|actual bodily harm|abh)\s+on\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,2})\b/i,
+  );
+  if (harm?.[1]) {
+    const v = sanitizePersonName(harm[1]);
+    if (v) return v;
+  }
+  const stole = scan.match(
+    /\bstole\s+goods[^.\n]{0,120}?\bproperty of\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,2})\b/i,
+  );
+  if (stole?.[1]) {
+    const v = sanitizePersonName(stole[1]);
+    if (v) return v;
+  }
+  return null;
+}
+
 function extractComplainantName(scan: string): string | null {
+  const colon =
+    extractLabeledValue(scan, ["Complainant", "Victim", "Other party / key witness", "Key witness"]) ??
+    null;
+  if (colon) {
+    const v = sanitizePersonName(colon);
+    if (v) return v;
+  }
+
+  const particulars = extractComplainantFromParticulars(scan);
+  if (particulars) return particulars;
+
   const mg11 = scan.match(
     /\bMG11\b[^\n]{0,120}\bComplainant\b\s*[-–]\s*([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,2})/i,
   );
@@ -248,12 +316,11 @@ function extractComplainantName(scan: string): string | null {
     const v = sanitizePersonName(mg11[1]);
     if (v) return v;
   }
-
-  const colon =
-    extractLabeledValue(scan, ["Complainant", "Victim", "Other party / key witness", "Key witness"]) ??
-    null;
-  if (colon) {
-    const v = sanitizePersonName(colon);
+  const mg11Witness = scan.match(
+    /\bMG11\b[^\n]{0,80}(?:Witness statement|WITNESS STATEMENT)\s*[-–—]\s*(?!PC\b)([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,2})/i,
+  );
+  if (mg11Witness?.[1]) {
+    const v = sanitizePersonName(mg11Witness[1]);
     if (v) return v;
   }
 
@@ -403,7 +470,28 @@ export function formatOffenceDisplayFromBundle(raw: string): string {
     return "Unlawful wounding / GBH, s.20 OAPA 1861";
   }
 
+  if (/\bfraud by false representation\b/i.test(t)) {
+    return "Fraud by false representation, s.2 Fraud Act 2006";
+  }
+  if (/\bpossession with intent to supply\b/i.test(t) && /\bclass\s*a\b/i.test(t)) {
+    return "Possession with intent to supply Class A controlled drugs";
+  }
+  if (/\brobbery\b/i.test(t) && /theft act 1968\s*s\.?\s*8/i.test(t)) {
+    return "Robbery, Theft Act 1968 s.8";
+  }
+  if (/\btheft\b/i.test(t) && /theft act 1968/i.test(t)) {
+    return "Theft, contrary to s.1 Theft Act 1968";
+  }
+
   return t.length > 140 ? `${t.slice(0, 137)}…` : t;
+}
+
+function extractCorrectedIndictmentWording(scan: string): string | null {
+  const m = scan.match(/\b(?:Corrected indictment|Latest indictment)\s*:\s*([^\n]{8,220})/i);
+  if (!m?.[1]) return null;
+  const v = cleanLineValue(trimChargeAllegationBoundary(m[1]));
+  if (!v || isSpuriousChargeLabelValue(v) || /OLD VERSION/i.test(v)) return null;
+  return v;
 }
 
 function isSpuriousChargeLabelValue(value: string): boolean {
@@ -512,6 +600,9 @@ export function composeOffenceDisplayFromParts(
 }
 
 function extractOffenceFromChargeBlock(block: string): string | null {
+  const corrected = extractCorrectedIndictmentWording(block);
+  if (corrected) return corrected;
+
   const lines = block
     .split(/\n/)
     .map((l) => normalizeMetadataScanText(l.trim()))
@@ -606,6 +697,16 @@ function normalizeChargeOffence(raw: string): string | null {
 }
 
 function extractOffenceWording(scan: string, fullText: string): { wording: string | null; source: MetadataFieldSource } {
+  const corrected =
+    extractCorrectedIndictmentWording(scan) ??
+    extractCorrectedIndictmentWording(normalizeMetadataScanText(fullText));
+  if (corrected && !isNarrativeAllegationValue(corrected)) {
+    return {
+      wording: formatOffenceDisplayFromBundle(corrected),
+      source: "extracted_charge_fallback",
+    };
+  }
+
   const chargeBlockRaw =
     extractSectionBlock(fullText, ["CHARGE", "CHARGE_SHEET", "CHARGES", "INDICTMENT"]) ?? null;
   const chargeBlock = chargeBlockRaw ? normalizeMetadataScanText(chargeBlockRaw) : null;
@@ -735,6 +836,13 @@ function extractNextHearing(scan: string): {
       /\bNext hearing\s+(\d{1,2}\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4}(?:\s+at\s+\d{1,2}:\d{2})?)/i,
     );
     if (inlineDate?.[1]) nextHearingRaw = cleanLineValue(inlineDate[1]);
+  }
+
+  if (!nextHearingRaw) {
+    const listed = scan.match(
+      /\bListed\s*:\s*(\d{1,2}\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4}(?:\s+at\s+\d{1,2}:\d{2})?(?:\s+[-–—]\s*[^.\n]{0,80})?)/i,
+    );
+    if (listed?.[1]) nextHearingRaw = cleanLineValue(listed[1]);
   }
 
   if (!nextHearingRaw) {

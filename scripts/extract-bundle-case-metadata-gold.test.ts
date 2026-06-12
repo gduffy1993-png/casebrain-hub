@@ -43,7 +43,8 @@ assert.match(s18Meta.offenceWording ?? "", /wounding with intent/i);
 
 const pikePath = path.join(ROOT, "docs/fictional-bundle-gbh/FICTIONAL_GBH_BUNDLE_COPY_PASTE.txt");
 const pikeMeta = extractBundleCaseMetadata(fs.readFileSync(pikePath, "utf8"));
-assert.match((pikeMeta.defendantName ?? "").toLowerCase(), /jordan\s+pike/);
+assert.equal(pikeMeta.defendantName, "Jordan Pike");
+assert.equal(pikeMeta.complainant, "Casey Webb");
 assert.match(pikeMeta.offenceWording ?? "", /section\s*20|gbh/i);
 
 const marcus = fs.readFileSync(

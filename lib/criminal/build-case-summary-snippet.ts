@@ -70,14 +70,20 @@ function buildFrontMatterSummaryLines(
   const hasClient = client.length >= 2 && !notExtracted(client);
 
   if (hasClient && hasMurder) {
-    const vale = /\bMarcus Vale\b/i.test(scan);
-    const stabbed = scan.match(/\b(?:fatally )?stabbed\b[^.\n]{0,100}/i);
-    const eastgate = /\bEastgate(?:\s+Estate)?\b/i.test(scan);
-    if (vale || stabbed || eastgate) {
+    const victimNamed = scan.match(
+      /\b(?:death|murder)\s+of\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,2})\b/i,
+    );
+    const stabbed = scan.match(
+      /\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,2})\s+was\s+(?:fatally\s+)?stabbed\b/i,
+    );
+    const location = scan.match(/\bnear\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,3})\b/i);
+    if (victimNamed || stabbed) {
       let line = `${client} is charged with murder`;
-      if (vale && stabbed) line += " after Marcus Vale was fatally stabbed";
-      else if (vale) line += " following the death of Marcus Vale";
-      if (eastgate) line += " near Eastgate Estate";
+      if (stabbed?.[1]) line += ` after ${stabbed[1]} was fatally stabbed`;
+      else if (victimNamed?.[1]) line += ` following the death of ${victimNamed[1]}`;
+      if (location?.[1] && !/crown court|magistrates/i.test(location[1])) {
+        line += ` near ${location[1]}`;
+      }
       line += ". Summary conditional on served material.";
       lines.push(line);
     }
