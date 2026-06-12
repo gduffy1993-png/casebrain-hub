@@ -536,9 +536,23 @@ function isEvalBoilerplate(s: string): boolean {
   return EVAL_BOILERPLATE_RES.some((re) => re.test(s));
 }
 
+function isPaceComplianceTickLine(s: string): boolean {
+  const t = compactOneLine(s);
+  if (!t) return false;
+  if (/^[\s✅✓•\-–—]+/.test(t) && /\b(not required|complied with|given at appropriate|present throughout)\b/i.test(t)) {
+    return true;
+  }
+  if (/\bappropriate adult\b/i.test(t) && /\bnot required\b/i.test(t)) return true;
+  if (/\bPACE\s+Codes?\s+of\s+Practice\s+complied\b/i.test(t)) return true;
+  if (/\bRights and entitlements given\b/i.test(t)) return true;
+  if (/\bInterview audio and video recorded\b/i.test(t)) return true;
+  return false;
+}
+
 function isBattleboardArtefact(s: string): boolean {
   const t = compactOneLine(s);
   if (!t) return true;
+  if (isPaceComplianceTickLine(t)) return true;
   if (isEvalBoilerplate(t)) return true;
   if (isSectionHeadingLine(t)) return true;
   if (isWeakFragmentLine(t)) return true;
@@ -912,8 +926,15 @@ function bundleHas(bundleText: string, patterns: RegExp[]): boolean {
 /** Count how many safeguard signal patterns hit the bundle (for ranking, not predictions). */
 export function safeguardsSignalScore(bundleText: string): number {
   let n = 0;
-  for (const p of SAFEGUARDS_SIGNAL_PATTERNS) {
-    if (p.test(bundleText)) n += 1;
+  for (const raw of bundleText.split(/\r?\n/)) {
+    const line = raw.trim();
+    if (line.length < 6 || isPaceComplianceTickLine(line)) continue;
+    for (const p of SAFEGUARDS_SIGNAL_PATTERNS) {
+      if (p.test(line)) {
+        n += 1;
+        break;
+      }
+    }
   }
   return n;
 }
@@ -1499,9 +1520,9 @@ const ROUTE_SPECS: RouteSpec[] = [
       "Clear injury mechanism matching the Crown account.",
     ],
     collapseRisks: [
-      "Medical evidence supports Crown causation if proved.",
-      "Missing expert/source report returns against the defence route.",
-      "Complainant injury account is consistent across MG11 and medical material.",
+      "Medical evidence may support Crown causation if proved on served papers.",
+      "Missing expert/source report may return against the defence route.",
+      "Complainant injury account may appear consistent across MG11 and medical material if proved.",
     ],
     nextMoves: [
       "Chase medical/expert/source reports listed on MG6.",
