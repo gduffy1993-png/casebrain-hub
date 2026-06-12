@@ -6,7 +6,11 @@
 import type { CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
 import { sanitizePublicDisplayLine } from "@/lib/criminal/dev-ref-scrub";
 import type { ExtractedBundleCaseMetadata, MetadataFieldSource } from "@/lib/criminal/extract-bundle-case-metadata";
-import { parseUkHearingDateTime } from "@/lib/criminal/extract-bundle-case-metadata";
+import {
+  isGluedHearingCourtOffenceLabel,
+  parseUkHearingDateTime,
+  repairGluedOffenceLabel,
+} from "@/lib/criminal/extract-bundle-case-metadata";
 import {
   buildBundleTruthLedger,
   formatHearingDisplayFromLedger,
@@ -355,6 +359,7 @@ export function resolveCaseHeaderMetadata(input: {
 export function sanitizeHeaderClient(label: string): string {
   const t = label
     .trim()
+    .replace(/\.$/, "")
     .replace(/\bPrimary allegation\b.*$/i, "")
     .replace(/\bPrimary\b.*$/i, "")
     .replace(/\b(sheet\s*\/\s*indictment|indictment|extract)\b.*$/i, "")
@@ -366,11 +371,16 @@ export function sanitizeHeaderClient(label: string): string {
 }
 
 export function sanitizeHeaderAllegation(raw: string): string {
-  const t = raw
+  let t = raw
     .trim()
     .replace(/^(?:primary allegation)\s*/i, "")
     .replace(/\b(sheet\s*\/\s*indictment|indictment|extract)\b.*$/i, "")
     .trim();
+  if (isGluedHearingCourtOffenceLabel(t)) {
+    const repaired = repairGluedOffenceLabel(t);
+    if (repaired) t = repaired;
+    else return NOT_EXTRACTED_OFFENCE;
+  }
   if (!t) return NOT_EXTRACTED_OFFENCE;
   const l = t.toLowerCase();
   if (

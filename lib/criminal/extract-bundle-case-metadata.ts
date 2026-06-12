@@ -279,9 +279,56 @@ export function parseUkHearingDateTime(raw: string): { iso: string | null; displ
   return null;
 }
 
+/** Hearing/court line glued into offence label (messy scan bundles). */
+export function isGluedHearingCourtOffenceLabel(value: string): boolean {
+  const t = value.trim();
+  if (!t || t.length < 12) return false;
+  if (/^\d{4}\s+at\s+\d{1,2}:\d{2}\s+at\s+/i.test(t)) return true;
+  if (/\bCrown Court\b/i.test(t) && /\bAllegation:\s*/i.test(t) && /\d{4}\s+at\s+/i.test(t)) return true;
+  if (/\bagainst swung first\b/i.test(t)) return true;
+  if (/\.\s*MG\.?\s*$/i.test(t)) return true;
+  return false;
+}
+
+/** Pull charge wording out of glued hearing/court/offence lines. */
+export function repairGluedOffenceLabel(value: string): string | null {
+  const t = value.trim();
+  if (!t) return null;
+
+  const allegationTail = t.match(/\bAllegation:\s*(.+)$/i)?.[1];
+  if (allegationTail) {
+    const stripped = allegationTail
+      .replace(/\bagainst swung first\b.*$/i, "")
+      .replace(/\.\s*MG\.?\s*$/i, "")
+      .trim();
+    const v = cleanLineValue(stripped);
+    if (v && v.length >= 8 && !isGluedHearingCourtOffenceLabel(v)) {
+      return formatOffenceDisplayFromBundle(v);
+    }
+  }
+
+  const s20 = t.match(/\b((?:section|s\.?)\s*20\s+unlawful\s+wounding[^.]{0,60})/i)?.[1];
+  if (s20) {
+    const v = cleanLineValue(s20);
+    if (v) return formatOffenceDisplayFromBundle(v);
+  }
+
+  if (/\bunlawful\s+wounding\b/i.test(t) && /\b(?:section|s\.?)\s*20\b/i.test(t)) {
+    const inner = t.match(/\b((?:section|s\.?)\s*20\s+unlawful\s+wounding[^.]{0,80})/i)?.[1];
+    if (inner) return formatOffenceDisplayFromBundle(cleanLineValue(inner)!);
+  }
+
+  return null;
+}
+
 export function formatOffenceDisplayFromBundle(raw: string): string {
-  const t = raw.trim();
+  let t = raw.trim();
   if (!t) return t;
+
+  if (isGluedHearingCourtOffenceLabel(t)) {
+    const repaired = repairGluedOffenceLabel(t);
+    if (repaired) return repaired;
+  }
 
   if (/\bmurder\b/i.test(t) && /contrary to common law/i.test(t)) {
     return "Murder, contrary to common law";
