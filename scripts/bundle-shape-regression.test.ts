@@ -113,4 +113,17 @@ const g431BbText = JSON.stringify(g431Bb);
 assert.doesNotMatch(g431BbText, /CAD\/999 timing supports Crown sequence/i);
 assert.doesNotMatch(g431BbText, /Primary eval hook/i);
 
+const publicStyleGlue = `
+DefendantRyan Thomas HaleDOB14/03/1998
+CourtNorthbridge Magistrates CourtHearing16 June 2026 at 10:00
+OffenceRobbery, contrary to section 8 Theft Act 1968
+Hearing date and time16 June 2026 at 10:00
+`.trim();
+const psMeta = extractBundleCaseMetadata(publicStyleGlue);
+assert.equal(psMeta.defendantName, "Ryan Thomas Hale");
+assert.match(psMeta.offenceDisplay ?? "", /robbery/i);
+assert.doesNotMatch(psMeta.offenceDisplay ?? "", /^Theft, contrary to s\.1/i);
+assert.match(psMeta.nextHearingRaw ?? "", /16 June 2026/i);
+assert.match(psMeta.court ?? "", /Northbridge Magistrates/i);
+
 console.log("bundle-shape-regression.test.ts: ok");

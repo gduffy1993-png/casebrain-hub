@@ -175,7 +175,12 @@ function normalizeCapturedPersonTokens(raw: string): string {
 }
 
 function trimPersonCapture(raw: string): string {
-  let t = normalizeCapturedPersonTokens(raw.replace(/^\|+|\|+$/g, "").replace(/\s+/g, " ").trim());
+  let t = raw.replace(/^\|+|\|+$/g, "").replace(/\s+/g, " ").trim();
+  t = t.replace(/([A-Za-z])DOB(?=\d|\b)/i, "$1");
+  t = t.replace(/\bDOB\b.*$/i, "").trim();
+  t = t.replace(/\bMatter reference\b.*$/i, "").trim();
+  t = t.replace(/\bURN[A-Z0-9]+\b.*$/i, "").trim();
+  t = normalizeCapturedPersonTokens(t);
   const stop = t.search(PERSON_CAPTURE_STOP);
   if (stop >= 0) t = t.slice(0, stop).trim();
   t = t.replace(/\|.+$/, "").trim();
@@ -479,11 +484,17 @@ export function formatOffenceDisplayFromBundle(raw: string): string {
   if (/\bpossession with intent to supply\b/i.test(t) && /\bclass\s*a\b/i.test(t)) {
     return "Possession with intent to supply Class A controlled drugs";
   }
-  if (/\brobbery\b/i.test(t) && /theft act 1968\s*s\.?\s*8/i.test(t)) {
-    return "Robbery, Theft Act 1968 s.8";
+  if (/\brobbery\b/i.test(t) && /theft act 1968/i.test(t)) {
+    return "Robbery, contrary to s.8 Theft Act 1968";
   }
-  if (/\btheft\b/i.test(t) && /theft act 1968/i.test(t)) {
+  if (/\btheft\b/i.test(t) && /theft act 1968/i.test(t) && !/\brobbery\b/i.test(t)) {
     return "Theft, contrary to s.1 Theft Act 1968";
+  }
+  if (/\bdangerous driving\b/i.test(t) && /road traffic|rta/i.test(t)) {
+    return "Dangerous driving, contrary to section 2 Road Traffic Act 1988";
+  }
+  if (/\baffray\b/i.test(t) && /public order/i.test(t)) {
+    return t.replace(/\s+/g, " ").trim();
   }
 
   const hasS18 = /\bsection\s*18\b|\bs\.?\s*18\b/i.test(t);
@@ -841,18 +852,43 @@ function extractOffenceWording(scan: string, fullText: string): { wording: strin
 }
 
 function extractCourt(scan: string): string | null {
+  const scrubGluedCourt = (value: string): string =>
+    value
+      .replace(/Hearing\s*\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|January|February|March|April|May|June|July|August|September|October|November|December)[a-z]*\s+\d{4}.*$/i, "")
+      .replace(/\bHearing\b.*$/i, "")
+      .trim();
+
   const labeled =
     extractLabeledValue(scan, ["Court", "Venue", "Crown Court", "Magistrates"]) ??
     extractInlineLabeled(scan, ["Court", "Venue"]);
-  if (labeled && /crown court|magistrates/i.test(labeled)) return labeled;
+  if (labeled && /crown court|magistrates/i.test(labeled)) {
+    const v = cleanLineValue(labeled);
+    if (v) return scrubGluedCourt(v);
+  }
 
-  const inline = scan.match(/\bCourt\s+([A-Z][a-z]+(?:\s+[A-Za-z]+)*\s+Crown Court)\b/i);
-  if (inline?.[1]) return cleanLineValue(inline[1]);
+  const inline = scan.match(/\bCourt\s+([A-Z][a-z]+(?:\s+[A-Za-z]+)*\s+(?:Crown Court|Magistrates(?:\s+Court)?))/i);
+  if (inline?.[1]) {
+    const v = cleanLineValue(inline[1]);
+    if (v) return scrubGluedCourt(v);
+  }
+
+  const gluedMag = scan.match(/\bCourt([A-Z][a-z]+(?:\s+[A-Za-z]+)*\s+Magistrates(?:\s+Court)?)/i);
+  if (gluedMag?.[1]) {
+    const v = cleanLineValue(gluedMag[1]);
+    if (v) return scrubGluedCourt(v);
+  }
 
   const courtLine = scan.match(/\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*\s+Crown Court)\b/);
-  if (courtLine?.[1]) return cleanLineValue(courtLine[1]);
+  if (courtLine?.[1]) {
+    const v = cleanLineValue(courtLine[1]);
+    if (v) return v;
+  }
 
-  return labeled ? cleanLineValue(labeled) : null;
+  if (labeled) {
+    const v = cleanLineValue(labeled);
+    if (v) return scrubGluedCourt(v);
+  }
+  return null;
 }
 
 function extractNextHearing(scan: string): {
@@ -879,6 +915,20 @@ function extractNextHearing(scan: string): {
       "Hearing date",
     ]) ??
     null;
+
+  if (!nextHearingRaw) {
+    const gluedHearing = scan.match(
+      /\bHearing(?:\s+date\s+and\s+time|\s+date|\s+time)?\s*(\d{1,2}\s+(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+\d{4}(?:\s+at\s+\d{1,2}:\d{2})?)/i,
+    );
+    if (gluedHearing?.[1]) nextHearingRaw = cleanLineValue(gluedHearing[1]);
+  }
+
+  if (!nextHearingRaw) {
+    const courtHearingGlued = scan.match(
+      /\bCourtHearing(\d{1,2}\s+(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+\d{4}(?:\s+at\s+\d{1,2}:\d{2})?)/i,
+    );
+    if (courtHearingGlued?.[1]) nextHearingRaw = cleanLineValue(courtHearingGlued[1]);
+  }
 
   if (!nextHearingRaw) {
     const weekdayLine = scan.match(
