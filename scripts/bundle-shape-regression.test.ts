@@ -10,6 +10,11 @@ import {
   buildMetadataScan,
   extractBundleCaseMetadata,
 } from "../lib/criminal/extract-bundle-case-metadata";
+import {
+  buildBundleTruthLedger,
+  guardBattleboardOutput,
+} from "../lib/criminal/bundle-truth-ledger";
+import { buildStrategyBattleboard } from "../lib/criminal/strategy-battleboard";
 
 const ROOT = path.join(__dirname, "..");
 
@@ -86,5 +91,26 @@ const pattersonSummary = buildCaseSummarySnippet({
   battleboard: null,
 });
 assert.doesNotMatch(pattersonSummary, /✅|Appropriate adult not required/i);
+
+const golden0431 = fs.readFileSync(
+  path.join(ROOT, "docs/fictional-cases-40/NS-CPS-2026-0431.txt"),
+  "utf8",
+);
+const g431Meta = extractBundleCaseMetadata(golden0431);
+assert.match(g431Meta.offenceDisplay ?? "", /theft person \(snatch\)/i);
+assert.doesNotMatch(g431Meta.offenceDisplay ?? "", /\(s\)\s*as\s*tag:/i);
+
+const brokenOffenceTag = "Offence(s) as tag: Drug driving (fictional charge drafting for test data).";
+const brokenOcrTag = "(s) as tag: Fraud retail refund (fictional charge drafting for test data).";
+assert.match(extractBundleCaseMetadata(`=== CHARGE ===\n${brokenOffenceTag}`).offenceDisplay ?? "", /drug driving/i);
+assert.match(extractBundleCaseMetadata(`=== CHARGE ===\n${brokenOcrTag}`).offenceDisplay ?? "", /fraud retail refund/i);
+
+const g431Bb = guardBattleboardOutput(
+  buildStrategyBattleboard({ case_id: "g431", bundle_text: golden0431, offence_label: g431Meta.offenceDisplay }),
+  { ledger: buildBundleTruthLedger({ bundleText: golden0431 }), bundleText: golden0431 },
+);
+const g431BbText = JSON.stringify(g431Bb);
+assert.doesNotMatch(g431BbText, /CAD\/999 timing supports Crown sequence/i);
+assert.doesNotMatch(g431BbText, /Primary eval hook/i);
 
 console.log("bundle-shape-regression.test.ts: ok");

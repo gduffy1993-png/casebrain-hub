@@ -353,7 +353,9 @@ export function isAdminGuidanceLine(line: string): boolean {
     /\bscanned continuation\b/i.test(l) ||
     /\bpage note\s*\d+\b/i.test(l) ||
     /\badministrative continuation text\b/i.test(l) ||
-    /\bthis page contains administrative\b/i.test(l)
+    /\bthis page contains administrative\b/i.test(l) ||
+    /\bprimary eval hook\b/i.test(l) ||
+    /\bfictional training data\b/i.test(l)
   );
 }
 
