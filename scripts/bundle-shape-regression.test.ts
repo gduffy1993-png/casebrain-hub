@@ -135,4 +135,31 @@ const burgMeta = extractBundleCaseMetadata(burglaryNotTheft);
 assert.match(burgMeta.offenceDisplay ?? "", /burglary/i);
 assert.doesNotMatch(burgMeta.offenceDisplay ?? "", /^Theft, contrary to s\.1/i);
 
+const v4PublicStyle = `
+Matter refDefendantCourt / hearing
+CB-TB-001Ryan Thomas HaleCourt: Northbridge Magistrates' Court | Hearing: 16 June
+2026 at 10:00
+Next hearing16 June 2026 at 10:00
+NoteNo alternative current hearing date appears in the served listing notice.
+`.trim();
+const v4Meta = extractBundleCaseMetadata(v4PublicStyle);
+assert.match(v4Meta.nextHearingRaw ?? "", /16 June 2026 at 10:00/i);
+assert.doesNotMatch(v4Meta.nextHearingRaw ?? "", /appears in the served listing/i);
+assert.match(v4Meta.court ?? "", /Northbridge Magistrates/i);
+
+const v4CrownGlue = `
+CourtCrown CourtHearing at PrestonNext hearing04 July 2026at10:30
+CourtCrown Court at PrestonCase refCB-TB-031
+`.trim();
+const v4CrownMeta = extractBundleCaseMetadata(v4CrownGlue);
+assert.equal(v4CrownMeta.court, "Crown Court at Preston");
+assert.match(v4CrownMeta.nextHearingRaw ?? "", /04 July 2026 at 10:30/i);
+
+const v4Pwits = `
+ChargePossession of cocaine with intent to supply,
+contrary to section 5(3) Misuse of Drugs Act 1971
+`.trim();
+const v4PwitsMeta = extractBundleCaseMetadata(v4Pwits);
+assert.match(v4PwitsMeta.offenceDisplay ?? "", /intent to supply|cocaine/i);
+
 console.log("bundle-shape-regression.test.ts: ok");

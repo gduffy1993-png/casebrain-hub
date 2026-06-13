@@ -410,7 +410,11 @@ export function isBlockedBattleboardTemplateLine(
   if (/\bmg11 is consistent and served\b/i.test(lower)) return true;
 
   if (/\bfull cctv confirms|\bcctv confirms|\bcctv proves\b/i.test(lower)) {
-    return materialNotSafelyServed(ledger, /\bcctv|footage|video\b/i);
+    if (materialNotSafelyServed(ledger, /\bcctv|footage|video\b/i)) return true;
+    if (/\bfull cctv confirms crown timing\b/i.test(lower)) return true;
+    if (bundleMentionsPattern(t, /\b(?:no|not)\s+cctv\b|\bcctv\b[^.\n]{0,40}(?:outstanding|not served|partial|missing)\b/i)) {
+      return true;
+    }
   }
   if (/mg11 is consistent|mg11.*\b(served|final|consistent)\b/i.test(lower)) {
     return materialNotSafelyServed(ledger, /mg11|witness\s+statement|complainant/i);
