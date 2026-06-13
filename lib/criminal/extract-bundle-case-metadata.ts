@@ -444,6 +444,9 @@ export function formatOffenceDisplayFromBundle(raw: string): string {
   let t = raw.trim();
   if (!t) return t;
 
+  const asTag = normalizeOffenceAsTagLine(t);
+  if (asTag) t = asTag;
+
   if (isGluedHearingCourtOffenceLabel(t)) {
     const repaired = repairGluedOffenceLabel(t);
     if (repaired) return repaired;
@@ -495,6 +498,21 @@ export function formatOffenceDisplayFromBundle(raw: string): string {
   }
 
   return t.length > 140 ? `${t.slice(0, 137)}…` : t;
+}
+
+/** Golden-10 / fictional charge sheets: "Offence(s) as tag: …" or OCR-broken "(s) as tag: …". */
+export function normalizeOffenceAsTagLine(raw: string): string | null {
+  const m = raw.match(/(?:offence\s*)?\(?s\)?\s*as\s*tag\s*:\s*(.+)/i);
+  if (!m?.[1]) return null;
+  let tag = cleanLineValue(trimChargeAllegationBoundary(m[1]));
+  if (!tag) return null;
+  tag = tag.replace(/\s*\(fictional charge drafting[^)]*\)/gi, "").trim();
+  tag = tag.replace(/\s*\(fictional[^)]*\)/gi, "").trim();
+  return tag.length >= 4 ? tag : null;
+}
+
+function isProvisionalOffenceTagWording(value: string): boolean {
+  return /^\(s\)\s*as\s*tag:/i.test(value.trim()) || /\bfictional charge drafting\b/i.test(value);
 }
 
 function extractCorrectedIndictmentWording(scan: string): string | null {
@@ -637,8 +655,14 @@ function extractOffenceFromChargeBlock(block: string): string | null {
       if (v && !isSpuriousChargeLabelValue(v) && v.length >= 8) return v;
     }
     if (/^offence\s*[:]/i.test(line)) {
+      const asTag = normalizeOffenceAsTagLine(line);
+      if (asTag) return asTag;
       const v = cleanLineValue(line.replace(/^offence\s*[:]\s*/i, ""));
       if (v && !isSpuriousChargeLabelValue(v)) return v;
+    }
+    if (/^(?:offence\s*)?\(?s\)?\s*as\s*tag\s*:/i.test(line)) {
+      const asTag = normalizeOffenceAsTagLine(line);
+      if (asTag) return asTag;
     }
     if (/^allegation\s*:/i.test(line)) {
       const v = cleanLineValue(line.replace(/^allegation\s*:\s*/i, ""));
@@ -1067,6 +1091,20 @@ export function extractBundleCaseMetadata(
       offenceWording = short;
       offenceSource = "extracted_cover_fallback";
     }
+  }
+
+  if (
+    parsedHeader?.shortTitle?.trim() &&
+    offenceWording &&
+    isProvisionalOffenceTagWording(offenceWording)
+  ) {
+    offenceWording = parsedHeader.shortTitle.trim();
+    offenceSource = "extracted_cover_fallback";
+  }
+
+  if (!offenceWording && parsedHeader?.shortTitle?.trim()) {
+    offenceWording = parsedHeader.shortTitle.trim();
+    offenceSource = "extracted_cover_fallback";
   }
 
   const offenceDisplay = offenceWording ? formatOffenceDisplayFromBundle(offenceWording) : null;

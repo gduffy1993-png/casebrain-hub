@@ -161,6 +161,7 @@ const EVAL_BOILERPLATE_RES: RegExp[] = [
   /^Short\s+title:/i,
   /^Stage:/i,
   /^Messiness:/i,
+  /\bprimary eval hook\b/i,
 ];
 
 /** Strong evidence / disclosure anchors — keep even when the line is short */
@@ -1205,12 +1206,12 @@ const ROUTE_SPECS: RouteSpec[] = [
       "Creates pressure if proved only after master/source times are compared — provisional until then.",
     ],
     defaultHurts: [
-      "CAD/999 timing that supports the Crown sequence on served material.",
+      "CAD/999 timing may affect Crown sequence if proved on served material.",
       "Client account that conflicts with served source times.",
     ],
     collapseRisks: [
       "Full CCTV confirms Crown timing.",
-      "CAD/999 timing supports the Crown sequence on served material.",
+      "CAD/999 timing may affect Crown sequence if proved on served material.",
       "Receipt/phone records undermine the defence timing account.",
     ],
     nextMoves: [
@@ -2136,7 +2137,7 @@ const GLOBAL_COLLAPSE = uniqueSafe(
   [
     "Full CCTV confirms Crown timing.",
     "MG11 is consistent and served.",
-    "CAD/999 timing supports Crown sequence.",
+    "CAD/999 timing may affect Crown sequence if proved on served material.",
     "Client account conflicts with served source material.",
     "Missing expert/source report comes back against defence.",
     "Interview admission narrows the defence route.",
