@@ -10,6 +10,7 @@ import { ControlRoomBattleboardAccordion } from "./control-room/ControlRoomBattl
 import { CaseSummaryCard } from "./control-room/CaseSummaryCard";
 import { ControlRoomCockpit } from "./control-room/ControlRoomCockpit";
 import { ReasoningV2Panel } from "./control-room/ReasoningV2Panel";
+import { ProofMapPanel } from "./control-room/ProofMapPanel";
 import { PreHearingReadinessBadge } from "./control-room/PreHearingReadinessBadge";
 import { EvidenceChangeDetectorPanel } from "./control-room/EvidenceChangeDetectorPanel";
 import { EvidenceChangeMaterialBadge } from "./control-room/EvidenceChangeMaterialBadge";
@@ -21,6 +22,8 @@ import { SupervisorQAPanel } from "./control-room/SupervisorQAPanel";
 import { ClientExplanationPanel } from "./control-room/ClientExplanationPanel";
 import { buildReasoningV2ViewModel } from "@/lib/criminal/reasoning-v2/build-reasoning-v2-view-model";
 import { useReasoningV2Enabled } from "@/lib/criminal/reasoning-v2/reasoning-v2-flag";
+import { buildProductProofMap } from "@/lib/criminal/proof-map/build-product-proof-map";
+import { useProofMapEnabled } from "@/lib/criminal/proof-map/proof-map-flag";
 import { useClientStressEnabled } from "@/lib/criminal/client-stress-test/client-stress-flag";
 import { buildClientStressResult } from "@/lib/criminal/client-stress-test/build-client-stress-result";
 import { loadClientStressSelection } from "@/lib/criminal/client-stress-test/client-stress-selection-storage";
@@ -72,10 +75,16 @@ import type { StrategyCommitment } from "./StrategyCommitmentPanel";
 import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
 import type { ExtractedBundleCaseMetadata } from "@/lib/criminal/extract-bundle-case-metadata";
 import {
+  buildBundleTruthLedger,
+  filterTemplateSafeLines,
+} from "@/lib/criminal/bundle-truth-ledger";
+import type { BundleTruthLedger } from "@/lib/criminal/bundle-truth-types";
+import {
   resolveCaseHeaderMetadata,
   sanitizeHeaderAllegation,
   sanitizeHeaderClient,
 } from "@/lib/criminal/resolve-case-header-metadata";
+import { ClientInstructionsRecorder } from "./ClientInstructionsRecorder";
 
 type SavedPosition = {
   position_text: string;
@@ -104,6 +113,8 @@ export type CaseControlRoomProps = {
   timelineSummary?: string;
   onRecordPosition?: () => void;
   onUploadEvidence?: () => void;
+  /** Control Room sub-surface when opened via workflow tabs. */
+  surface?: "default" | "battleboard" | "position";
 };
 
 type MatterSummary = {
@@ -195,6 +206,7 @@ export function CaseControlRoom({
   timelineSummary,
   onRecordPosition,
   onUploadEvidence,
+  surface = "default",
 }: CaseControlRoomProps) {
   const router = useRouter();
   const [matter, setMatter] = useState<MatterSummary | null>(null);
@@ -203,6 +215,7 @@ export function CaseControlRoom({
   const [bundleSource, setBundleSource] = useState<BundleSourceSummary | null>(null);
   const [bundleSourceLoading, setBundleSourceLoading] = useState(true);
   const reasoningV2Enabled = useReasoningV2Enabled();
+  const proofMapEnabled = useProofMapEnabled();
   const readinessEnabled = useReadinessEnabled();
   const evidenceChangesEnabled = useEvidenceChangesEnabled();
   const exportsEnabled = useExportsEnabled();
@@ -384,6 +397,15 @@ export function CaseControlRoom({
     caseId,
   ]);
 
+  const truthLedger = useMemo((): BundleTruthLedger | null => {
+    const text = bundleSource?.frontMatterScan;
+    if (!text?.trim()) return null;
+    return buildBundleTruthLedger({
+      bundleText: text,
+      parsedHeader: bundleSource?.header ?? undefined,
+    });
+  }, [bundleSource]);
+
   const headerMeta = useMemo(
     () =>
       resolveCaseHeaderMetadata({
@@ -400,8 +422,10 @@ export function CaseControlRoom({
         bundleMetadata: bundleSource?.caseMetadata,
         bundleHeader: bundleSource?.header,
         matterState,
+        bundleText: bundleSource?.frontMatterScan ?? null,
+        truthLedger,
       }),
-    [snapshot, matter, bundleSource, matterState],
+    [snapshot, matter, bundleSource, matterState, truthLedger],
   );
 
   const clientLabelBase = sanitizeHeaderClient(headerMeta.clientLabel);
@@ -422,6 +446,18 @@ export function CaseControlRoom({
     pilotOverrides?.displayTitle ?? pilotOverrides?.title ?? caseTitle,
   );
   const allegation = pilotOverrides?.allegation ?? allegationBase;
+
+  const proofMapResult = useMemo(() => {
+    if (!proofMapEnabled) return null;
+    return buildProductProofMap({
+      frontMatterScan: bundleSource?.frontMatterScan,
+      snippets: bundleSource?.snippets,
+      combinedTextLength: bundleSource?.combinedTextLength,
+      matterLabel: caseTitleDisplay,
+      allegation,
+      workflowProfileHint: pilotOverrides?.profile ?? bundleSource?.header?.primaryEvalHook ?? null,
+    });
+  }, [proofMapEnabled, bundleSource, caseTitleDisplay, allegation, pilotOverrides?.profile, bundleSource?.header?.primaryEvalHook]);
 
   const workflowContext = useMemo(
     () => ({
@@ -626,18 +662,8 @@ export function CaseControlRoom({
     return stripRepeatedPositionNotice(items, positionNoticeOnce).slice(0, 8);
   }, [hasSavedPosition, chaseItems, battleboard, defencePlan, positionNoticeOnce, workflowContext]);
 
-  const { evidentialRisks, proceduralRisks, strategicRisks } = useMemo(
-    () =>
-      deriveRiskColumns(
-        filteredBattleboard,
-        defencePlan,
-        snapshot,
-        effectiveProceduralSafety,
-        chaseItems,
-        positionNoticeOnce,
-        workflowContext,
-      ),
-    [
+  const { evidentialRisks, proceduralRisks, strategicRisks } = useMemo(() => {
+    const cols = deriveRiskColumns(
       filteredBattleboard,
       defencePlan,
       snapshot,
@@ -645,8 +671,24 @@ export function CaseControlRoom({
       chaseItems,
       positionNoticeOnce,
       workflowContext,
-    ],
-  );
+    );
+    const bundleText = bundleSource?.frontMatterScan ?? null;
+    return {
+      evidentialRisks: filterTemplateSafeLines(cols.evidentialRisks, truthLedger, bundleText, 5),
+      proceduralRisks: filterTemplateSafeLines(cols.proceduralRisks, truthLedger, bundleText, 5),
+      strategicRisks: filterTemplateSafeLines(cols.strategicRisks, truthLedger, bundleText, 5),
+    };
+  }, [
+    filteredBattleboard,
+    defencePlan,
+    snapshot,
+    effectiveProceduralSafety,
+    chaseItems,
+    positionNoticeOnce,
+    workflowContext,
+    truthLedger,
+    bundleSource?.frontMatterScan,
+  ]);
 
   const strategyBasisNotice = useMemo(() => {
     const label = snapshot?.analysis.strategyBasisLabel?.trim();
@@ -667,41 +709,52 @@ export function CaseControlRoom({
         useFallbacks: false,
       }),
     );
-    if (fromRoute.length) return fromRoute;
-    const fromPlan = filterStaleOffenceWording(
-      filterWorkflowPilotLines(
-        [...(defencePlan?.prosecution_pressure ?? []), ...(defencePlan?.winning_angles ?? [])],
-        workflowContext,
-        { max: 3, useFallbacks: false },
-      ),
+    const filtered = filterTemplateSafeLines(
+      fromRoute.length
+        ? fromRoute
+        : filterStaleOffenceWording(
+            filterWorkflowPilotLines(
+              [...(defencePlan?.prosecution_pressure ?? []), ...(defencePlan?.winning_angles ?? [])],
+              workflowContext,
+              { max: 3, useFallbacks: false },
+            ),
+          ),
+      truthLedger,
+      bundleSource?.frontMatterScan ?? null,
+      3,
     );
-    if (fromPlan.length) return fromPlan.slice(0, 3);
+    if (filtered.length) return filtered;
     return [
       "Outstanding source material may limit how Crown can prove its case — conditional on what is served.",
     ];
-  }, [battleboard, defencePlan, workflowContext]);
+  }, [battleboard, defencePlan, workflowContext, truthLedger, bundleSource?.frontMatterScan]);
 
   const defenceRisks = useMemo(() => {
-    const items = stripRepeatedPositionNotice(
-      filterWorkflowPilotLines(
-        uniqueStrings(
-          filterStaleOffenceWording([
-            ...(filteredBattleboard?.primary_route?.collapse_risks ?? []),
-            ...(filteredBattleboard?.global_collapse_risks ?? []),
-            ...(defencePlan?.risks_if_we_fight ?? []),
-            ...(defencePlan?.risks_pivots_short ?? []),
-          ]),
+    const items = filterTemplateSafeLines(
+      stripRepeatedPositionNotice(
+        filterWorkflowPilotLines(
+          uniqueStrings(
+            filterStaleOffenceWording([
+              ...(filteredBattleboard?.primary_route?.collapse_risks ?? []),
+              ...(filteredBattleboard?.global_collapse_risks ?? []),
+              ...(defencePlan?.risks_if_we_fight ?? []),
+              ...(defencePlan?.risks_pivots_short ?? []),
+            ]),
+          ),
+          workflowContext,
+          { max: 4 },
         ),
-        workflowContext,
-        { max: 4 },
+        positionNoticeOnce,
       ),
-      positionNoticeOnce,
+      truthLedger,
+      bundleSource?.frontMatterScan ?? null,
+      2,
     );
-    if (items.length) return items.slice(0, 2);
+    if (items.length) return items;
     return [
       "Assumed position may conflict with interview or served evidence — solicitor review required.",
     ];
-  }, [filteredBattleboard, defencePlan, positionNoticeOnce, workflowContext]);
+  }, [filteredBattleboard, defencePlan, positionNoticeOnce, workflowContext, truthLedger, bundleSource?.frontMatterScan]);
 
   const bundlePositionNote = pilotMode ? pilotBundlePositionNote(workflowContext) : null;
 
@@ -742,6 +795,130 @@ export function CaseControlRoom({
     router.replace(buildClassicCaseHref(caseId));
   };
 
+  const riskOverviewSection = (
+    <DashboardCard
+      title="Risk & weakness overview"
+      icon={<AlertTriangle className="h-4 w-4 text-amber-600 shrink-0" />}
+      bodyClassName="py-2"
+      className="border-slate-200 bg-white"
+    >
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+        <RiskColumn title="Evidential" items={evidentialRisks} />
+        <RiskColumn title="Procedural / disclosure" items={proceduralRisks} />
+        <RiskColumn title="Strategic" items={strategicRisks} />
+      </div>
+    </DashboardCard>
+  );
+
+  const battleboardSectionNode =
+    showPilotRouteDetailPanel() ? (
+      <ControlRoomBattleboardAccordion
+        caseId={caseId}
+        battleboard={filteredBattleboard}
+        battleboardLoading={battleboardLoading}
+        variant={surface === "battleboard" ? "full" : "preview"}
+        riskOverviewSection={surface === "battleboard" ? riskOverviewSection : undefined}
+      />
+    ) : null;
+
+  const workflowShellProps = {
+    caseId,
+    documents: workflowDocuments,
+    onRecordPosition: pilotRecordPositionHidden ? undefined : onRecordPosition,
+    onUploadEvidence: pilotUploadDisabled ? undefined : onUploadEvidence,
+    pilotUploadDisabled,
+    pilotRecordPositionHidden,
+  };
+
+  if (surface === "battleboard") {
+    return (
+      <div className="min-h-0 pb-20 xl:pb-4 text-slate-900" data-testid="case-control-room-battleboard">
+        <div className="xl:mr-[min(360px,26vw)] xl:pr-3 max-w-[1400px]">
+          {snapshotLoading ? (
+            <Card className="p-8 flex items-center justify-center gap-2 text-slate-600 border-slate-200 bg-white">
+              <Loader2 className="h-5 w-5 animate-spin text-blue-700" />
+              Loading case data…
+            </Card>
+          ) : (
+            <CaseWorkflowShell {...workflowShellProps}>
+              {battleboardSectionNode ?? (
+                <Card className="p-6 border-slate-200 bg-white text-sm text-slate-600">
+                  Battleboard routes not available on this layout.
+                </Card>
+              )}
+            </CaseWorkflowShell>
+          )}
+        </div>
+        <ControlRoomAssistantDock
+          caseId={caseId}
+          planSummary={planSummary}
+          evidenceSummary={evidenceSummary}
+          timelineSummary={timelineSummary}
+          assistantContext={{
+            battleboard,
+            allegation,
+            stage,
+            positionNotice: positionNoticeOnce,
+            missingEvidence: chaseItemsAll,
+            bundleHeader: bundleSource?.header ?? null,
+            bundleSnippets: bundleSource?.snippets ?? null,
+            fileTextHints: evidenceSummary?.slice(0, 2500),
+            primaryRouteTitle: bestRouteTitle,
+          }}
+        />
+      </div>
+    );
+  }
+
+  if (surface === "position") {
+    return (
+      <div className="min-h-0 pb-20 xl:pb-4 text-slate-900" data-testid="case-control-room-position">
+        <div className="xl:mr-[min(360px,26vw)] xl:pr-3 max-w-[1400px]">
+          {snapshotLoading ? (
+            <Card className="p-8 flex items-center justify-center gap-2 text-slate-600 border-slate-200 bg-white">
+              <Loader2 className="h-5 w-5 animate-spin text-blue-700" />
+              Loading case data…
+            </Card>
+          ) : (
+            <CaseWorkflowShell {...workflowShellProps}>
+              <DashboardCard
+                title="Position & notes"
+                bodyClassName="py-3 space-y-2"
+                className="border-slate-200 bg-white"
+              >
+                <p className="text-xs text-slate-500">Current position on file</p>
+                <p className="text-sm font-medium text-slate-900">{positionLabel}</p>
+                {positionNoticeOnce ? (
+                  <p className="text-xs text-amber-800 bg-amber-50 border border-amber-200 rounded-md px-2.5 py-2">
+                    {positionNoticeOnce}
+                  </p>
+                ) : null}
+              </DashboardCard>
+              <ClientInstructionsRecorder caseId={caseId} />
+            </CaseWorkflowShell>
+          )}
+        </div>
+        <ControlRoomAssistantDock
+          caseId={caseId}
+          planSummary={planSummary}
+          evidenceSummary={evidenceSummary}
+          timelineSummary={timelineSummary}
+          assistantContext={{
+            battleboard,
+            allegation,
+            stage,
+            positionNotice: positionNoticeOnce,
+            missingEvidence: chaseItemsAll,
+            bundleHeader: bundleSource?.header ?? null,
+            bundleSnippets: bundleSource?.snippets ?? null,
+            fileTextHints: evidenceSummary?.slice(0, 2500),
+            primaryRouteTitle: bestRouteTitle,
+          }}
+        />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-0 pb-20 xl:pb-4 text-slate-900" data-testid="case-control-room">
       <div className="xl:mr-[min(360px,26vw)] xl:pr-3 max-w-[1400px]">
@@ -760,6 +937,11 @@ export function CaseControlRoom({
             pilotRecordPositionHidden={pilotRecordPositionHidden}
           >
           <CaseSummaryCard summary={caseSummary} loading={snapshotLoading} />
+          <ProofMapPanel
+            result={proofMapResult}
+            loading={bundleSourceLoading}
+            proofMapEnabled={proofMapEnabled}
+          />
           <SupervisorQAPanel
             compact
             caseId={caseId}
@@ -801,29 +983,7 @@ export function CaseControlRoom({
             hideClassicWorkspace={isCriminalPilotMode()}
             metadataNote={pilotDisplayMetadataNote(metadataNote)}
             bundlePositionNote={bundlePositionNote}
-            battleboardSection={
-              showPilotRouteDetailPanel() ? (
-                <ControlRoomBattleboardAccordion
-                  caseId={caseId}
-                  battleboard={filteredBattleboard}
-                  battleboardLoading={battleboardLoading}
-                  riskOverviewSection={
-                    <DashboardCard
-                      title="Risk & weakness overview"
-                      icon={<AlertTriangle className="h-4 w-4 text-amber-600 shrink-0" />}
-                      bodyClassName="py-2"
-                      className="border-slate-200 bg-white"
-                    >
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                        <RiskColumn title="Evidential" items={evidentialRisks} />
-                        <RiskColumn title="Procedural / disclosure" items={proceduralRisks} />
-                        <RiskColumn title="Strategic" items={strategicRisks} />
-                      </div>
-                    </DashboardCard>
-                  }
-                />
-              ) : undefined
-            }
+            battleboardSection={battleboardSectionNode ?? undefined}
           />
           <PreHearingReadinessBadge
             reasoningV2Enabled={reasoningV2Enabled}

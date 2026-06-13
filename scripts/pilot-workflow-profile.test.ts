@@ -489,11 +489,11 @@ assert.ok(
   ).some((a) => /Count\s*2.*criminal property/i.test(a)),
 );
 
-assert.ok(shouldUsePilotCourtTodayAnchor("9df92f69-4b0b-4f2b-816a-a41a9853ec2"));
+assert.ok(shouldUsePilotCourtTodayAnchor("9df92f69-4b0b-4f2b-816a-a041a9853ec2"));
 
 const prevAdminId = process.env.NEXT_PUBLIC_ADMIN_USER_ID;
-process.env.NEXT_PUBLIC_ADMIN_USER_ID = "63ccc8dc-842e-49b5-9aa9-dcff855eb10";
-assert.ok(!shouldUsePilotCourtTodayAnchor("63ccc8dc-842e-49b5-9aa9-dcff855eb10"));
+process.env.NEXT_PUBLIC_ADMIN_USER_ID = "63ccc8dc-842e-49b5-9aa9-dcff8f55eb10";
+assert.ok(!shouldUsePilotCourtTodayAnchor("63ccc8dc-842e-49b5-9aa9-dcff8f55eb10"));
 if (prevAdminId === undefined) delete process.env.NEXT_PUBLIC_ADMIN_USER_ID;
 else process.env.NEXT_PUBLIC_ADMIN_USER_ID = prevAdminId;
 

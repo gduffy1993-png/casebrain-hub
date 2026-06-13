@@ -1,5 +1,11 @@
 import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
-import { buildMetadataScan } from "@/lib/criminal/extract-bundle-case-metadata";
+import {
+  buildMetadataScan,
+  isGluedHearingCourtOffenceLabel,
+  repairGluedOffenceLabel,
+  sanitizeComplainantName,
+  stripGluedOffenceJunk,
+} from "@/lib/criminal/extract-bundle-case-metadata";
 import {
   cleanupPilotVisiblePunctuation,
   looksLikePilotBundleReferenceLine,
@@ -34,6 +40,13 @@ function notExtracted(label: string): boolean {
   return /not safely extracted/i.test(label);
 }
 
+function looksLikePaceComplianceTickLine(text: string): boolean {
+  const t = text.trim();
+  if (!t) return false;
+  if (/^[\s✅✓•\-–—]+/.test(t) && /\b(not required|complied with)\b/i.test(t)) return true;
+  return /\bappropriate adult\b/i.test(t) && /\bnot required\b/i.test(t);
+}
+
 const MISSING_MATERIAL_MARKERS = [
   "full CCTV",
   "CAD/999",
@@ -64,14 +77,20 @@ function buildFrontMatterSummaryLines(
   const hasClient = client.length >= 2 && !notExtracted(client);
 
   if (hasClient && hasMurder) {
-    const vale = /\bMarcus Vale\b/i.test(scan);
-    const stabbed = scan.match(/\b(?:fatally )?stabbed\b[^.\n]{0,100}/i);
-    const eastgate = /\bEastgate(?:\s+Estate)?\b/i.test(scan);
-    if (vale || stabbed || eastgate) {
+    const victimNamed = scan.match(
+      /\b(?:death|murder)\s+of\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,2})\b/i,
+    );
+    const stabbed = scan.match(
+      /\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,2})\s+was\s+(?:fatally\s+)?stabbed\b/i,
+    );
+    const location = scan.match(/\bnear\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,3})\b/i);
+    if (victimNamed || stabbed) {
       let line = `${client} is charged with murder`;
-      if (vale && stabbed) line += " after Marcus Vale was fatally stabbed";
-      else if (vale) line += " following the death of Marcus Vale";
-      if (eastgate) line += " near Eastgate Estate";
+      if (stabbed?.[1]) line += ` after ${stabbed[1]} was fatally stabbed`;
+      else if (victimNamed?.[1]) line += ` following the death of ${victimNamed[1]}`;
+      if (location?.[1] && !/crown court|magistrates/i.test(location[1])) {
+        line += ` near ${location[1]}`;
+      }
       line += ". Summary conditional on served material.";
       lines.push(line);
     }
@@ -134,8 +153,13 @@ export function buildCaseSummarySnippet(input: {
   pilotMode?: boolean;
   workflowContext?: WorkflowProfileContext | null;
 }): string {
-  const client = input.clientLabel.trim();
-  const allegation = input.allegation.trim();
+  const client = input.clientLabel.trim().replace(/\.$/, "");
+  let allegation = stripGluedOffenceJunk(input.allegation.trim());
+  if (isGluedHearingCourtOffenceLabel(allegation)) {
+    allegation = repairGluedOffenceLabel(allegation) ?? stripGluedOffenceJunk(allegation);
+  } else {
+    allegation = stripGluedOffenceJunk(allegation);
+  }
   const hasClient = client.length >= 2 && !notExtracted(client);
   const hasAllegation = allegation.length >= 8 && !notExtracted(allegation);
 
@@ -149,10 +173,9 @@ export function buildCaseSummarySnippet(input: {
   if (pilotLead) {
     lines.push(`${pilotLead} The summary remains conditional on served material.`);
   } else if (hasClient && hasAllegation) {
+    const complainantName = sanitizeComplainantName(input.complainant);
     const complainant =
-      input.complainant?.trim() && !notExtracted(input.complainant)
-        ? ` against ${input.complainant.trim()}`
-        : "";
+      complainantName && !notExtracted(complainantName) ? ` against ${complainantName}` : "";
     lines.push(
       `${client} is accused of ${allegation.replace(/\.$/, "")}${complainant}. The summary remains conditional on served material.`,
     );
@@ -181,9 +204,13 @@ export function buildCaseSummarySnippet(input: {
   const route = input.battleboard?.primary_route;
   const pressureLabel = input.primaryPressureRouteLabel?.trim();
   const pilot = Boolean(input.pilotMode);
-  if (pressureLabel) {
+  if (pressureLabel && !looksLikePaceComplianceTickLine(pressureLabel)) {
     lines.push(`Key pressure route (conditional): ${cleanSnippet(pressureLabel, 120, pilot)}`);
-  } else if (route?.why_it_helps?.[0] && !looksLikePilotBundleReferenceLine(route.why_it_helps[0])) {
+  } else if (
+    route?.why_it_helps?.[0] &&
+    !looksLikePilotBundleReferenceLine(route.why_it_helps[0]) &&
+    !looksLikePaceComplianceTickLine(route.why_it_helps[0])
+  ) {
     const routeLine =
       pilot && input.workflowContext
         ? sanitizePilotVisibleLine(route.why_it_helps[0], input.workflowContext) ??

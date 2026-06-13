@@ -24,6 +24,7 @@ import {
   formatPilotCourtTodayHeader,
   getPilotCourtTodayNow,
   isCriminalPilotMode,
+  isPilotDemoUser,
   shouldShowInternalDevTools,
   shouldUsePilotCourtTodayAnchor,
   summarizePilotCaseFilter,
@@ -236,7 +237,7 @@ export function CourtTodayClient() {
 
     const pilotMode = isCriminalPilotMode();
     const candidates =
-      pilotMode && !showInternalDevTools
+      pilotMode && isPilotDemoUser(pilotUserId)
         ? rows.filter((r) => !hasStructuredHearingDate(r))
         : pickRecentNoDateCandidates(rows, RECENT_NO_DATE_ENRICH_LIMIT);
     if (candidates.length === 0) {
@@ -266,7 +267,7 @@ export function CourtTodayClient() {
     return () => {
       cancelled = true;
     };
-  }, [loading, rows, showInternalDevTools]);
+  }, [loading, rows, pilotUserId, showInternalDevTools]);
 
   const scheduledIdsKey = useMemo(
     () => scheduledCaseIdsFromBuckets(displayBuckets, 48).join(","),
@@ -317,6 +318,7 @@ export function CourtTodayClient() {
   }, [loading, rows.length, enrichmentByCase.size, stats]);
 
   const pilotMode = isCriminalPilotMode();
+  const pilotDemo = pilotMode && isPilotDemoUser(pilotUserId);
   const pilotNonAdmin = pilotMode && !showInternalDevTools;
   const pilotMissingEvidenceItems = useMemo(
     () => scheduledMatters.reduce((sum, brief) => sum + brief.chaseItems.length, 0),
@@ -325,9 +327,8 @@ export function CourtTodayClient() {
   const pilotEmpty = pilotMode && !loading && rows.length === 0;
   const scheduledEmpty =
     !loading && stats.today === 0 && stats.tomorrow === 0 && stats.thisWeek === 0;
-  /** Non-admin pilot: no hearings scheduled — hide review counts and diary shells. */
-  const pilotHideReviewClutter =
-    pilotMode && !showInternalDevTools && scheduledEmpty;
+  /** Demo accounts only: no hearings scheduled — hide review counts and diary shells. */
+  const pilotHideReviewClutter = pilotDemo && scheduledEmpty;
 
   return (
     <div className="space-y-5 max-w-[1600px]" data-testid="court-today">
@@ -337,15 +338,12 @@ export function CourtTodayClient() {
             <Scale className="h-6 w-6 text-blue-700" />
             <h1 className="text-2xl font-semibold text-slate-900">Court Today</h1>
           </div>
-          {pilotMode ? (
+          {pilotDemo ? (
             <>
               <p className="text-sm text-slate-700 mt-1.5 font-medium">
                 Pilot criminal defence matters
               </p>
               <p className="text-xs text-slate-500 mt-1">{todayLabel}</p>
-              <p className="text-xs text-slate-500 mt-1 max-w-2xl">
-                Evidence-linked · Conditional · Solicitor review required
-              </p>
             </>
           ) : (
             <>
@@ -377,11 +375,8 @@ export function CourtTodayClient() {
             tone="warning"
           />
           <StatPill label="Ready for court" value={stats.ready} tone="success" />
-          {!pilotMode && (
+          {!pilotDemo && stats.review > 0 && (
             <StatPill label="Needs hearing review" value={stats.review} tone="muted" />
-          )}
-          {pilotMode && !pilotNonAdmin && stats.review > 0 && (
-            <StatPill label="Needs review" value={stats.review} tone="muted" compact />
           )}
         </div>
       )}
@@ -451,9 +446,9 @@ export function CourtTodayClient() {
                 No listed hearings found from saved case data yet.
               </p>
               <p className="text-sm text-slate-600 mt-2 max-w-lg mx-auto">
-                {pilotMode
+                {pilotDemo
                   ? "Open a pilot matter from Cases or upload a prepared bundle to review the court-prep workflow."
-                  : "Upload or open a matter to review the court-prep workflow."}
+                  : "Upload or open a matter to review the court-prep workflow. Matters without a confirmed hearing date appear under date review below."}
               </p>
               <div className="flex flex-wrap items-center justify-center gap-4 mt-5">
                 <Link
@@ -481,7 +476,7 @@ export function CourtTodayClient() {
               pilotMode={pilotMode}
             />
           ))}
-          {displayBuckets.no_hearing.length > 0 && (!pilotMode || showInternalDevTools) && (
+          {displayBuckets.no_hearing.length > 0 && !pilotDemo && (
             <CourtTodayReviewSection
               items={displayBuckets.no_hearing}
               onEnrichCaseIds={enrichCaseIds}

@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { buildCaseWorkflowTabHref } from "@/components/criminal/criminalCaseNavigation";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
 
+import { ExportCaseQaPackButton } from "./ExportCaseQaPackButton";
+
 export type CaseWorkflowCompactActionsProps = {
   caseId: string;
   onRecordPosition?: () => void;
@@ -56,6 +58,7 @@ export function CaseWorkflowCompactActions({
             </Button>
           </Link>
         ))}
+      <ExportCaseQaPackButton caseId={caseId} />
     </div>
   );
 }

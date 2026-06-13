@@ -59,14 +59,14 @@ export function TrialStatusBanner() {
       : `${casesUsed}/${casesLimit} cases · ${docsUsed}/${docsLimit} docs`;
 
   return (
-    <div className="flex items-center justify-between gap-4 border-b border-amber-500/20 bg-amber-500/5 px-6 py-2 text-sm">
-      <span className="text-amber-200/90">
+    <div className="flex items-center justify-between gap-4 border-b border-amber-200 bg-amber-50 px-6 py-2 text-sm">
+      <span className="text-amber-900">
         Trial: {label}
       </span>
       <button
         type="button"
         onClick={() => router.push("/upgrade")}
-        className="inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 font-medium text-amber-200 hover:bg-amber-500/15 hover:text-amber-100"
+        className="inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 font-medium text-amber-900 hover:bg-amber-100"
       >
         <Zap className="h-4 w-4" />
         Upgrade

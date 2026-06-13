@@ -1,3 +1,4 @@
+import { parseUkHearingDateTime } from "@/lib/criminal/extract-bundle-case-metadata";
 import { buildCourtCaseBrief, resolveCourtCaseId, type BuildCourtCaseBriefOpts } from "./courtCaseBrief";
 import type { CourtCaseBrief, CourtCasesApiRow, CourtTodayEnrichment, HearingBucket } from "./types";
 import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
@@ -30,7 +31,10 @@ export function mergeRowsWithExtractedHearings(
   return rows.map((row) => {
     const id = resolveCourtCaseId(row);
     if (hasStructuredHearingDate(row)) return row;
-    const iso = enrichment.get(id)?.bundleMetadata?.nextHearingIso;
+    const meta = enrichment.get(id)?.bundleMetadata;
+    const iso =
+      meta?.nextHearingIso ??
+      (meta?.nextHearingRaw ? parseUkHearingDateTime(meta.nextHearingRaw)?.iso ?? null : null);
     if (!iso) return row;
     return { ...row, next_hearing_date: iso };
   });
@@ -110,5 +114,8 @@ export function enrichmentMayChangeBucket(
   enrichment: CourtTodayEnrichment,
 ): boolean {
   if (hasStructuredHearingDate(row)) return false;
-  return Boolean(enrichment.bundleMetadata?.nextHearingIso);
+  const meta = enrichment.bundleMetadata;
+  if (!meta) return false;
+  if (meta.nextHearingIso) return true;
+  return Boolean(meta.nextHearingRaw && parseUkHearingDateTime(meta.nextHearingRaw)?.iso);
 }

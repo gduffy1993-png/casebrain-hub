@@ -3,11 +3,14 @@
  * Run: npx tsx scripts/response-quality-sweep.ts
  * Wide: npx tsx scripts/response-quality-sweep.ts --wide
  */
-import dotenv from "dotenv";
 import fs from "node:fs";
 import path from "node:path";
 import { createClient } from "@supabase/supabase-js";
-import { containsDevRef } from "../lib/criminal/dev-ref-scrub";
+import {
+  containsDevRef,
+  containsPublicDevLabel,
+  safeSolicitorCaseTitle,
+} from "../lib/criminal/dev-ref-scrub";
 import { buildStrategyBattleboard, type BattleboardOutput } from "../lib/criminal/strategy-battleboard";
 import { buildComputedSupervisorQueueBundle } from "../lib/criminal/supervisor-queue/build-computed-supervisor-queue-bundle";
 import { buildSupervisorQueueRow } from "../lib/criminal/supervisor-queue/build-supervisor-queue";
@@ -20,8 +23,37 @@ import { collectChaseItems } from "../components/criminal/control-room/chaseItem
 import { buildHearingWarRoomBrief } from "../components/criminal/hearing-war-room/buildHearingWarRoomBrief";
 import { buildDisclosureChaseBrief } from "../components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import { FORBIDDEN_WAR_ROOM_PHRASES } from "../lib/eval/casebrain-auditor/war-room-view-types";
+import {
+  buildProductProofMap,
+  isStrongConfidence,
+  isSubstantiveSourceBasis,
+  lintProductProofMapResult,
+} from "../lib/criminal/proof-map/build-product-proof-map";
+import type { ProductProofMapResult } from "../lib/criminal/proof-map/product-proof-map-types";
 
-dotenv.config({ path: path.resolve(__dirname, "../.env.local") });
+function loadLocalEnv(): void {
+  for (const name of [".env.local", ".env"]) {
+    const envPath = path.join(process.cwd(), name);
+    if (!fs.existsSync(envPath)) continue;
+    for (const line of fs.readFileSync(envPath, "utf8").split(/\r?\n/)) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith("#")) continue;
+      const eq = trimmed.indexOf("=");
+      if (eq <= 0) continue;
+      const key = trimmed.slice(0, eq).trim();
+      let val = trimmed.slice(eq + 1).trim();
+      if (
+        (val.startsWith('"') && val.endsWith('"')) ||
+        (val.startsWith("'") && val.endsWith("'"))
+      ) {
+        val = val.slice(1, -1);
+      }
+      if (process.env[key] === undefined) process.env[key] = val;
+    }
+  }
+}
+
+loadLocalEnv();
 
 const WIDE = process.argv.includes("--wide");
 const EVAL_ORG = "11f3d373-a6d0-4a58-ac72-59b5365dc367";
@@ -88,6 +120,12 @@ function hedgeDensity(text: string): number {
 }
 
 async function main() {
+  if (process.argv.includes("--help") || process.argv.includes("-h")) {
+    console.log(`Usage:
+  npx tsx scripts/response-quality-sweep.ts        # 120-case sample
+  npx tsx scripts/response-quality-sweep.ts --wide # all non-archived eval-org cases`);
+    return;
+  }
   const s = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!, { auth: { persistSession: false } });
 
   // ----- sample: previous 100 + 20 targeted top-ups -----
@@ -329,6 +367,83 @@ async function main() {
     scoreSurface("war_room", warText || null, { isCourt: true });
     if (warBrief && !(warBrief.doNotOverstate ?? []).length) fp("war_room_no_overstate_guard");
 
+    // ----- product proof map (Control Room Phase 2 v1) -----
+    let proofMapResult: ProductProofMapResult | null = null;
+    try {
+      proofMapResult = buildProductProofMap({
+        frontMatterScan: bundleText,
+        combinedTextLength: fullText.length,
+        matterLabel: safeSolicitorCaseTitle(c.title),
+      });
+    } catch {
+      fp("proof_map_crash");
+    }
+
+    if (proofMapResult) {
+      if (!proofMapResult.available) {
+        out.surfaces["proof_map"] = {
+          score: fullText.length < 2000 ? "PASS" : "REVIEW",
+          notes: [`tier:D`, proofMapResult.message],
+        };
+        if (fullText.length >= 2000) fp("proof_map_missing_fallback");
+      } else {
+        const pmText = [
+          proofMapResult.charge,
+          proofMapResult.tierLabel,
+          proofMapResult.offenceLensLabel,
+          ...proofMapResult.humanReviewReasons,
+          ...proofMapResult.proofPoints.flatMap((p) => [
+            p.label,
+            p.crownMustProve,
+            p.sourceBasis ?? "",
+            p.doNotOverstate ?? "",
+          ]),
+          ...proofMapResult.supportsLinks.flatMap((l) => [l.label, l.disclosureChase ?? ""]),
+          ...proofMapResult.missingLinks.flatMap((l) => [l.label, l.disclosureChase ?? ""]),
+          ...proofMapResult.disclosureChaseLinks.flatMap((l) => [l.label, l.disclosureChase ?? ""]),
+        ].join("\n");
+        scoreSurface("proof_map", pmText, { isStatus: true });
+        out.surfaces["proof_map"].notes.unshift(`tier:${proofMapResult.tier}`);
+        out.surfaces["proof_map"].notes.push(`lens:${proofMapResult.offenceLensLabel}`);
+
+        for (const p of proofMapResult.proofPoints) {
+          if (isStrongConfidence(p.confidence) && !isSubstantiveSourceBasis(p.sourceBasis)) {
+            fp("proof_point_no_source");
+            out.surfaces["proof_map"].score = "BLOCKER";
+            out.surfaces["proof_map"].notes.push(`strong point ${p.id} without sourceBasis`);
+          }
+        }
+
+        for (const issue of lintProductProofMapResult(proofMapResult, bundleText)) {
+          if (issue.includes("forbidden phrase")) fp("proof_map_forbidden_phrase");
+          if (issue.includes("negated material")) fp("proof_map_over_chase");
+          if (issue.includes("dev/eval")) fp("proof_map_dev_title_leak");
+          if (issue.includes("without substantive sourceBasis")) fp("proof_point_no_source");
+        }
+
+        const pmVisibleLines = pmText.split("\n").filter(Boolean);
+        if (pmVisibleLines.some((line) => DEV_TITLE.test(line) || containsPublicDevLabel(line))) {
+          fp("proof_map_dev_title_leak");
+        }
+        if (CERTAINTY.test(pmText)) fp("proof_map_fake_certainty");
+
+        for (const link of [...proofMapResult.disclosureChaseLinks, ...proofMapResult.missingLinks]) {
+          const chaseProbe = [link.label, link.disclosureChase ?? ""].join(" ");
+          for (const famKey of Object.keys(NEGATED)) {
+            if (srcNegates(famKey) && SYN[famKey].test(chaseProbe) && !CONFIRM_NONE.test(chaseProbe)) {
+              fp("proof_map_over_chase");
+              if (RANK[out.surfaces["proof_map"].score] < RANK.REVIEW) {
+                out.surfaces["proof_map"].score = "REVIEW";
+              }
+              out.surfaces["proof_map"].notes.push(`proof map chases negated ${famKey}`);
+            }
+          }
+        }
+      }
+    } else {
+      out.surfaces["proof_map"] = { score: "WEAK", notes: ["proof map builder returned null"] };
+    }
+
     // ----- disclosure chase (real brief) -----
     if (dcBrief) {
       const dcText = [
@@ -428,8 +543,26 @@ async function main() {
   }
 
   fs.writeFileSync(path.join(OUT_DIR, "results.json"), JSON.stringify(results, null, 2));
+  const proofMapCoverage = { tierA: 0, tierB: 0, tierC: 0, tierD: 0, familyLens: {} as Record<string, number> };
+  for (const r of results) {
+    const tierNote = r.surfaces.proof_map?.notes?.find((n) => n.startsWith("tier:"));
+    const lensNote = r.surfaces.proof_map?.notes?.find((n) => n.startsWith("lens:"));
+    if (tierNote) {
+      const tier = tierNote.slice(5) as "A" | "B" | "C" | "D";
+      if (tier === "A") proofMapCoverage.tierA++;
+      else if (tier === "B") proofMapCoverage.tierB++;
+      else if (tier === "C") proofMapCoverage.tierC++;
+      else proofMapCoverage.tierD++;
+    }
+    if (lensNote) {
+      const lens = lensNote.slice(5);
+      proofMapCoverage.familyLens[lens] = (proofMapCoverage.familyLens[lens] ?? 0) + 1;
+    }
+  }
+
   fs.writeFileSync(path.join(OUT_DIR, "summary.json"), JSON.stringify({
     sampled: results.length, counts, surfCounts, fingerprints: fps,
+    proofMapCoverage,
     anchors: { total: anchorsTotal, verbatim: anchorsVerbatim },
     nonDeterministic: nonDet, slowCases: slow, avgHedge,
     duplicateSummaryTemplates: dupeTemplates.map(([k, n]) => ({ count: n, snippet: k.slice(0, 90) })),

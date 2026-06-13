@@ -4,8 +4,21 @@
  */
 
 import type { CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
+import { sanitizePublicDisplayLine } from "@/lib/criminal/dev-ref-scrub";
 import type { ExtractedBundleCaseMetadata, MetadataFieldSource } from "@/lib/criminal/extract-bundle-case-metadata";
-import { parseUkHearingDateTime } from "@/lib/criminal/extract-bundle-case-metadata";
+import {
+  isGluedHearingCourtOffenceLabel,
+  parseUkHearingDateTime,
+  repairGluedOffenceLabel,
+  sanitizeComplainantName,
+} from "@/lib/criminal/extract-bundle-case-metadata";
+import {
+  buildBundleTruthLedger,
+  formatHearingDisplayFromLedger,
+  ledgerChargeDisplay,
+} from "@/lib/criminal/bundle-truth-ledger";
+import type { BundleTruthLedger } from "@/lib/criminal/bundle-truth-types";
+import { isCriminalPilotMode } from "@/lib/pilot-mode";
 
 export type BundleSourceHeaderInput = {
   shortTitle?: string | null;
@@ -126,7 +139,13 @@ function resolveAllegation(
   matter: MatterHeaderInput,
   bundle: BundleCaseMetadataInput,
   header: BundleSourceHeaderInput | null | undefined,
+  truthLedger?: BundleTruthLedger | null,
 ): { label: string; source: MetadataFieldSource } {
+  const ledgerCharge = truthLedger ? ledgerChargeDisplay(truthLedger) : null;
+  if (ledgerCharge?.trim()) {
+    return { label: ledgerCharge.trim(), source: truthLedger?.charge.sourceAnchor ? "extracted_charge_fallback" : bundle?.offenceSource ?? "extracted_charge_fallback" };
+  }
+
   if (bundle?.offenceDisplay?.trim()) {
     return { label: bundle.offenceDisplay.trim(), source: bundle.offenceSource };
   }
@@ -219,7 +238,18 @@ function formatHearingFromIso(iso: string, hearingType: string | null | undefine
 function resolveNextHearing(
   snapshot: CaseSnapshot | null,
   bundle: BundleCaseMetadataInput,
+  truthLedger?: BundleTruthLedger | null,
 ): { label: string; source: MetadataFieldSource } {
+  if (truthLedger) {
+    const fromLedger = formatHearingDisplayFromLedger(
+      truthLedger,
+      snapshot?.caseMeta?.hearingNextType,
+    );
+    if (fromLedger) {
+      return { label: fromLedger, source: truthLedger.hearing.sourceAnchor ? "extracted_procedural_fallback" : bundle?.nextHearingSource ?? "extracted_procedural_fallback" };
+    }
+  }
+
   if (bundle?.nextHearingRaw?.trim()) {
     const parsed = parseUkHearingDateTime(bundle.nextHearingRaw);
     const type = snapshot?.caseMeta?.hearingNextType?.trim();
@@ -267,20 +297,30 @@ export function resolveCaseHeaderMetadata(input: {
   bundleMetadata?: BundleCaseMetadataInput;
   bundleHeader?: BundleSourceHeaderInput | null;
   matterState?: string | null;
+  bundleText?: string | null;
+  truthLedger?: BundleTruthLedger | null;
 }): CaseHeaderMetadata {
-  const { snapshot, matter, bundleMetadata, bundleHeader, matterState } = input;
+  const { snapshot, matter, bundleMetadata, bundleHeader, matterState, bundleText, truthLedger: ledgerInput } = input;
 
-  const client = resolveClientLabel(matter ?? null, bundleMetadata, bundleHeader);
-  const allegation = resolveAllegation(snapshot, matter ?? null, bundleMetadata, bundleHeader);
+  const truthLedger =
+    ledgerInput ??
+    (bundleText?.trim() ? buildBundleTruthLedger({ bundleText, parsedHeader: bundleHeader ?? undefined }) : null);
+
+  const client =
+    truthLedger?.defendant.defendant && looksLikePersonName(truthLedger.defendant.defendant)
+      ? { label: truthLedger.defendant.defendant, source: "extracted_cover_fallback" as MetadataFieldSource }
+      : resolveClientLabel(matter ?? null, bundleMetadata, bundleHeader);
+  const allegation = resolveAllegation(snapshot, matter ?? null, bundleMetadata, bundleHeader, truthLedger);
   const stage = resolveStage(snapshot, matter ?? null, bundleMetadata, bundleHeader, matterState);
-  const nextHearing = resolveNextHearing(snapshot, bundleMetadata);
+  const nextHearing = resolveNextHearing(snapshot, bundleMetadata, truthLedger);
 
   const court =
+    truthLedger?.court?.trim() ??
     bundleMetadata?.court?.trim() ??
     null;
   const courtSource = bundleMetadata?.courtSource ?? "unavailable";
 
-  const complainant = bundleMetadata?.complainant?.trim() ?? null;
+  const complainant = sanitizeComplainantName(bundleMetadata?.complainant);
 
   const bailStatus =
     bundleMetadata?.bailStatus?.trim() ??
@@ -320,6 +360,7 @@ export function resolveCaseHeaderMetadata(input: {
 export function sanitizeHeaderClient(label: string): string {
   const t = label
     .trim()
+    .replace(/\.$/, "")
     .replace(/\bPrimary allegation\b.*$/i, "")
     .replace(/\bPrimary\b.*$/i, "")
     .replace(/\b(sheet\s*\/\s*indictment|indictment|extract)\b.*$/i, "")
@@ -331,11 +372,16 @@ export function sanitizeHeaderClient(label: string): string {
 }
 
 export function sanitizeHeaderAllegation(raw: string): string {
-  const t = raw
+  let t = raw
     .trim()
     .replace(/^(?:primary allegation)\s*/i, "")
     .replace(/\b(sheet\s*\/\s*indictment|indictment|extract)\b.*$/i, "")
     .trim();
+  if (isGluedHearingCourtOffenceLabel(t)) {
+    const repaired = repairGluedOffenceLabel(t);
+    if (repaired) t = repaired;
+    else return NOT_EXTRACTED_OFFENCE;
+  }
   if (!t) return NOT_EXTRACTED_OFFENCE;
   const l = t.toLowerCase();
   if (
@@ -346,6 +392,10 @@ export function sanitizeHeaderAllegation(raw: string): string {
     l.includes("not safely extracted")
   ) {
     return NOT_EXTRACTED_OFFENCE;
+  }
+  if (isCriminalPilotMode()) {
+    const scrubbed = sanitizePublicDisplayLine(t);
+    if (scrubbed) return scrubbed;
   }
   return t;
 }

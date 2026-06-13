@@ -102,6 +102,7 @@ export function inferAuditorFamilyFromOffence(offence: string | null | undefined
   }
   if (/\b(pwit|pwits|supply|class a|class b|drug| cocaine| heroin| cannabis)\b/.test(t)) return "pwits_phone_attribution";
   if (/\b(robbery|snatch|mugging)\b/.test(t)) return "robbery_identification";
+  if (/\b(theft|shoplifting|handling)\b/.test(t)) return null;
   if (/\b(assault|gbh|abh|violence|affray|domestic|s\.18|s\.20|s\.47|oapa)\b/.test(t)) return "violence_domestic_assault";
   if (/\b(arson|criminal damage|fire)\b/.test(t) && !isMotoringOffenceText(t)) return "violence_domestic_assault";
   if (/\b(reckless|endanger)\b/.test(t) && !isMotoringOffenceText(t)) return "violence_domestic_assault";
@@ -112,7 +113,6 @@ export function inferAuditorFamilyFromOffence(offence: string | null | undefined
     return "violence_domestic_assault";
   }
   if (/\b(burglary|burglar|dwelling)\b/.test(t)) return "violence_domestic_assault";
-  if (/\b(theft|shoplifting|handling)\b/.test(t)) return "robbery_identification";
   if (/\b(harassment|stalking|malicious communications|controlling|coercive)\b/.test(t)) {
     return "violence_domestic_assault";
   }

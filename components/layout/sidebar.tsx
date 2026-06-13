@@ -530,7 +530,7 @@ function SidebarContent() {
       {pilotNavActive ? (
         <div className="border-t border-white/10 px-4 py-4">
           <p className="text-[10px] text-slate-500 leading-relaxed">
-            CaseBrain · Criminal defence pilot
+            CaseBrain · Criminal Defence Workflow © {new Date().getFullYear()}
           </p>
         </div>
       ) : (
