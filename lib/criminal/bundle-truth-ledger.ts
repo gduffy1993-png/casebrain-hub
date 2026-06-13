@@ -295,7 +295,9 @@ export function formatHearingDisplayFromLedger(
 
   const display = h.timeLiteral ? `${datePart} at ${h.timeLiteral}` : datePart;
   const type = (hearingType ?? h.hearingType)?.trim();
-  return type ? `${type} · ${display}` : display;
+  const safeType =
+    type && !/stage not recorded|not safely extracted|no hearing date/i.test(type) ? type : null;
+  return safeType ? `${safeType} · ${display}` : display;
 }
 
 export function ledgerChargeDisplay(ledger: BundleTruthLedger): string | null {

@@ -180,6 +180,8 @@ function trimPersonCapture(raw: string): string {
   t = t.replace(/\bDOB\b.*$/i, "").trim();
   t = t.replace(/\bMatter reference\b.*$/i, "").trim();
   t = t.replace(/\bURN[A-Z0-9]+\b.*$/i, "").trim();
+  t = t.replace(/\bPrimary\b.*$/i, "").trim();
+  t = t.replace(/([a-z])([A-Z])/g, "$1 $2");
   t = normalizeCapturedPersonTokens(t);
   const stop = t.search(PERSON_CAPTURE_STOP);
   if (stop >= 0) t = t.slice(0, stop).trim();
@@ -202,7 +204,7 @@ function stripPersonNameDocumentRoleTail(words: string[]): string[] {
       continue;
     }
     const last = w[w.length - 1]!.toLowerCase();
-    if (/^(?:mg11|draft|unsigned|final|not)$/i.test(last)) {
+    if (/^(?:mg11|draft|unsigned|final|not|primary)$/i.test(last)) {
       w = w.slice(0, -1);
       continue;
     }
@@ -481,13 +483,32 @@ export function formatOffenceDisplayFromBundle(raw: string): string {
   if (/\bfraud by false representation\b/i.test(t)) {
     return "Fraud by false representation, s.2 Fraud Act 2006";
   }
+  if (/\bhandling stolen goods\b/i.test(t) && /theft act 1968/i.test(t)) {
+    return "Handling stolen goods, contrary to s.22 Theft Act 1968";
+  }
   if (/\bpossession with intent to supply\b/i.test(t) && /\bclass\s*a\b/i.test(t)) {
     return "Possession with intent to supply Class A controlled drugs";
+  }
+  if (/\bpossession of a controlled drug\b/i.test(t) && /\bintent to supply\b/i.test(t)) {
+    return t.replace(/\s+/g, " ").trim();
+  }
+  if (/\baggravated burglary\b/i.test(t) && /theft act 1968/i.test(t)) {
+    return "Aggravated burglary, contrary to s.10 Theft Act 1968";
+  }
+  if (/\bburglary\b/i.test(t) && /theft act 1968/i.test(t)) {
+    const normalized = t.replace(/\s+/g, " ").trim();
+    if (normalized.length <= 180) return normalized;
+    return "Burglary, contrary to s.9 Theft Act 1968";
   }
   if (/\brobbery\b/i.test(t) && /theft act 1968/i.test(t)) {
     return "Robbery, contrary to s.8 Theft Act 1968";
   }
-  if (/\btheft\b/i.test(t) && /theft act 1968/i.test(t) && !/\brobbery\b/i.test(t)) {
+  if (
+    /\btheft\b/i.test(t) &&
+    /theft act 1968/i.test(t) &&
+    !/\brobbery\b/i.test(t) &&
+    !/\bburglary\b/i.test(t)
+  ) {
     return "Theft, contrary to s.1 Theft Act 1968";
   }
   if (/\bdangerous driving\b/i.test(t) && /road traffic|rta/i.test(t)) {
@@ -856,7 +877,23 @@ function extractCourt(scan: string): string | null {
     value
       .replace(/Hearing\s*\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|January|February|March|April|May|June|July|August|September|October|November|December)[a-z]*\s+\d{4}.*$/i, "")
       .replace(/\bHearing\b.*$/i, "")
+      .replace(/\bMatter ref\b.*$/i, "")
+      .replace(/\bProsecution Authority\b.*$/i, "")
       .trim();
+
+  const crownAt = scan.match(/\bCrown Court at [A-Z][A-Za-z]+(?:\s+[A-Z][A-Za-z]+)*/i);
+  if (crownAt?.[0]) {
+    const v = cleanLineValue(crownAt[0]);
+    if (v) return scrubGluedCourt(v);
+  }
+
+  const magLine = scan.match(
+    /\b([A-Z][A-Za-z]+(?:\s+[A-Z][A-Za-z]+)*\s+Magistrates(?:'|\u2019)?\s*Court)\b/i,
+  );
+  if (magLine?.[1]) {
+    const v = cleanLineValue(magLine[1]);
+    if (v) return scrubGluedCourt(v);
+  }
 
   const labeled =
     extractLabeledValue(scan, ["Court", "Venue", "Crown Court", "Magistrates"]) ??
@@ -869,7 +906,9 @@ function extractCourt(scan: string): string | null {
   const inline = scan.match(/\bCourt\s+([A-Z][a-z]+(?:\s+[A-Za-z]+)*\s+(?:Crown Court|Magistrates(?:\s+Court)?))/i);
   if (inline?.[1]) {
     const v = cleanLineValue(inline[1]);
-    if (v) return scrubGluedCourt(v);
+    if (v && !/^[A-Z][a-z]+(?:\s+[A-Z][a-z]+){1,3}\s+Crown Court$/i.test(v)) {
+      return scrubGluedCourt(v);
+    }
   }
 
   const gluedMag = scan.match(/\bCourt([A-Z][a-z]+(?:\s+[A-Za-z]+)*\s+Magistrates(?:\s+Court)?)/i);
@@ -881,7 +920,7 @@ function extractCourt(scan: string): string | null {
   const courtLine = scan.match(/\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*\s+Crown Court)\b/);
   if (courtLine?.[1]) {
     const v = cleanLineValue(courtLine[1]);
-    if (v) return v;
+    if (v && !/^[A-Z][a-z]+(?:\s+[A-Z][a-z]+){1,3}\s+Crown Court$/i.test(v)) return v;
   }
 
   if (labeled) {
@@ -928,6 +967,31 @@ function extractNextHearing(scan: string): {
       /\bCourtHearing(\d{1,2}\s+(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+\d{4}(?:\s+at\s+\d{1,2}:\d{2})?)/i,
     );
     if (courtHearingGlued?.[1]) nextHearingRaw = cleanLineValue(courtHearingGlued[1]);
+  }
+
+  if (!nextHearingRaw) {
+    const courtHearingCompact = scan.match(
+      /\bCourtHearing[A-Za-z'’]*?(\d{1,2})(January|February|March|April|May|June|July|August|September|October|November|December)(\d{4})at(\d{1,2}:\d{2})/i,
+    );
+    if (courtHearingCompact) {
+      nextHearingRaw = cleanLineValue(
+        `${courtHearingCompact[1]} ${courtHearingCompact[2]} ${courtHearingCompact[3]} at ${courtHearingCompact[4]}`,
+      );
+    }
+  }
+
+  if (!nextHearingRaw) {
+    const currentListing = scan.match(
+      /\bCurrent listing\s*(\d{1,2}\s+(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+\d{4}(?:\s+at\s+\d{1,2}:\d{2})?)/i,
+    );
+    if (currentListing?.[1]) nextHearingRaw = cleanLineValue(currentListing[1]);
+  }
+
+  if (!nextHearingRaw) {
+    const hearingInline = scan.match(
+      /\bHearing(\d{1,2}\s+(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+\d{4}(?:\s+at\s+\d{1,2}:\d{2})?)/i,
+    );
+    if (hearingInline?.[1]) nextHearingRaw = cleanLineValue(hearingInline[1]);
   }
 
   if (!nextHearingRaw) {
