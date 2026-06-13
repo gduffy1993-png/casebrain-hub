@@ -170,8 +170,8 @@ function defaultDoNotOverstate(profile: WorkflowProfile): string[] {
   }
   return [
     "Assumed position may conflict with interview or served evidence.",
-    "Served CCTV may confirm Crown identification account once disclosed.",
-    "999/CAD timing may support the Crown sequence once served.",
+    "Identification remains conditional on served CCTV once disclosed and reviewed.",
+    "Timing sequence remains conditional on served CAD/999 material once disclosed.",
     "Do not commit to final trial strategy until served material and instructions are reviewed.",
   ];
 }

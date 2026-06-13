@@ -126,4 +126,13 @@ assert.doesNotMatch(psMeta.offenceDisplay ?? "", /^Theft, contrary to s\.1/i);
 assert.match(psMeta.nextHearingRaw ?? "", /16 June 2026/i);
 assert.match(psMeta.court ?? "", /Northbridge Magistrates/i);
 
+const burglaryNotTheft = `
+Charge sheet
+Defendant: Vincent Mark Coates
+Burglary, contrary to section 9(1)(b) Theft Act 1968
+`.trim();
+const burgMeta = extractBundleCaseMetadata(burglaryNotTheft);
+assert.match(burgMeta.offenceDisplay ?? "", /burglary/i);
+assert.doesNotMatch(burgMeta.offenceDisplay ?? "", /^Theft, contrary to s\.1/i);
+
 console.log("bundle-shape-regression.test.ts: ok");
