@@ -24,6 +24,12 @@ export function repairGluedMg6StatusText(line: string): string {
   s = s.replace(/\b(outstanding)([A-Z][A-Za-z]*)/gi, "$1 — $2");
   s = s.replace(/\b(unsigned)([A-Z][A-Za-z]*)/gi, "$1 — $2");
   s = s.replace(/\b(draft)([A-Z][A-Za-z]*)/gi, "$1 — $2");
+  s = s.replace(/\bCourtHearing(\d{1,2})/gi, "Court hearing $1");
+  s = s.replace(/\bnotice of CourtHearing/gi, "notice of court hearing");
+  s = s.replace(
+    /\bCourtHearing(\d{1,2}\s+(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+\d{4})/gi,
+    "Court hearing $1",
+  );
   return compact(s);
 }
 

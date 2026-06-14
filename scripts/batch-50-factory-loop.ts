@@ -154,6 +154,10 @@ function offenceMatchesTracker(tracker: TrackerRow, got: string): boolean {
   }
   const g = got.toLowerCase();
   const family = tracker.offence_family.toLowerCase();
+  const expected = tracker.correct_offence_wording.toLowerCase();
+  if (expected && g === expected) return true;
+  if (expected.length >= 16 && g.includes(expected.slice(0, Math.min(24, expected.length)))) return true;
+  if (g === family && !/section|contrary|s\.?\s*\d|act 19/i.test(g)) return false;
   if (family.includes("pwit") || family.includes("supply")) {
     if (/intent to supply|concerned in the supply|pwits/i.test(g)) return true;
   }
