@@ -506,6 +506,13 @@ export function formatOffenceDisplayFromBundle(raw: string): string {
   if (
     /\btheft\b/i.test(t) &&
     /theft act 1968/i.test(t) &&
+    /;\s*(?:possession|bladed article)/i.test(t)
+  ) {
+    return t.replace(/\s+/g, " ").trim();
+  }
+  if (
+    /\btheft\b/i.test(t) &&
+    /theft act 1968/i.test(t) &&
     !/\brobbery\b/i.test(t) &&
     !/\bburglary\b/i.test(t)
   ) {
@@ -549,10 +556,44 @@ function isProvisionalOffenceTagWording(value: string): boolean {
 
 function extractCorrectedIndictmentWording(scan: string): string | null {
   const m = scan.match(/\b(?:Corrected indictment|Latest indictment)\s*:\s*([^\n]{8,220})/i);
-  if (!m?.[1]) return null;
-  const v = cleanLineValue(trimChargeAllegationBoundary(m[1]));
-  if (!v || isSpuriousChargeLabelValue(v) || /OLD VERSION/i.test(v)) return null;
-  return v;
+  if (m?.[1]) {
+    const v = cleanLineValue(trimChargeAllegationBoundary(m[1]));
+    if (v && !isSpuriousChargeLabelValue(v) && !/OLD VERSION/i.test(v) && !/^Corrected indictment\s+s\.?\s*(18|20)$/i.test(v)) {
+      return v;
+    }
+  }
+
+  if (/\bCorrected indictment\s+s\.?\s*(18|20)\b/i.test(scan)) {
+    const flat = scan.replace(/\s*\n\s*/g, " ");
+    const full = flat.match(
+      /\b((?:Unlawful wounding|Wounding with intent)[^.\n]{0,160}contrary to section\s*(18|20)[^.\n]{0,120})/i,
+    );
+    if (full?.[1]) return cleanLineValue(full[1]);
+    const partial = flat.match(
+      /\b((?:Unlawful )?wounding,\s*contrary to section\s*(18|20)[^.\n]{0,120})/i,
+    );
+    if (partial?.[1]) {
+      const v = partial[1].trim();
+      return cleanLineValue(/^wounding,/i.test(v) ? v.replace(/^wounding,/i, "Unlawful wounding,") : v);
+    }
+  }
+
+  return null;
+}
+
+function isTrackerCategoryOffenceLabel(value: string): boolean {
+  const t = value.trim();
+  if (!t || t.length < 8) return true;
+  if (/\b(contrary to|section\s*\d|s\.?\s*\d+\s*\(|common law|act 19|misuse of drugs)\b/i.test(t)) {
+    return false;
+  }
+  if (/disclosure-heavy|pub incident|wording|multi-def|count-specific violence|money laundering$/i.test(t)) {
+    return true;
+  }
+  if (/^corrected indictment\s+s\.?\s*(18|20)$/i.test(t)) return true;
+  if (/^mixed counts$/i.test(t)) return true;
+  if (/^gbh disclosure-heavy$/i.test(t)) return true;
+  return false;
 }
 
 function isSpuriousChargeLabelValue(value: string): boolean {
@@ -560,6 +601,7 @@ function isSpuriousChargeLabelValue(value: string): boolean {
   if (!t || t.length < 8) return true;
   if (/^charge\s*sheet$/i.test(t) || t === "sheet") return true;
   if (/^count\s*\d+$/i.test(t)) return true;
+  if (isTrackerCategoryOffenceLabel(value)) return true;
   return false;
 }
 
@@ -622,7 +664,12 @@ function trimChargeAllegationBoundary(raw: string): string {
   const contraryIdx = t.search(/\bcontrary to section\b/i);
   if (contraryIdx > 0) {
     const second = t.slice(contraryIdx + 1).search(/\bcontrary to section\b/i);
-    if (second >= 0) t = t.slice(0, contraryIdx + 1 + second).trim();
+    if (second >= 0) {
+      const throughSecond = t.slice(contraryIdx, contraryIdx + 1 + second);
+      if (!/;\s*(?:possession|having|use of|assault|bladed article)/i.test(throughSecond)) {
+        t = t.slice(0, contraryIdx + 1 + second).trim();
+      }
+    }
   }
 
   return t.replace(/\.\s*$/, "").trim();
@@ -671,14 +718,30 @@ export function composeOffenceDisplayFromParts(
   return allegationFmt.length >= 12 ? allegationFmt : chargeFmt;
 }
 
+function extractParticularsCommittedOffence(block: string): string | null {
+  const section = block.match(/Particulars of offence([\s\S]{0,420}?)(?=\n\n|MG5|\nCB-TB|\nURN)/i);
+  if (!section?.[1]) return null;
+  const flat = section[1].replace(/\s*\n\s*/g, " ");
+  const m = flat.match(
+    /committed the offence of\s+((?:Doing an\s+)?(?:Unlawful\s+)?[^.]{8,220}?contrary to (?:section\s*\d+|common law)[^.]{0,120})/i,
+  );
+  if (!m?.[1]) return null;
+  const v = cleanLineValue(trimChargeAllegationBoundary(m[1]));
+  if (v && v.length >= 16 && !isSpuriousChargeLabelValue(v)) return v;
+  return null;
+}
+
 function extractOffenceFromChargeBlock(block: string): string | null {
   const corrected = extractCorrectedIndictmentWording(block);
   if (corrected) return corrected;
 
+  const fromParticulars = extractParticularsCommittedOffence(block);
+  if (fromParticulars) return fromParticulars;
+
   const statementGlued = block.match(/\bStatement of offence\s*([^\n]{16,220})/i);
   if (statementGlued?.[1]) {
     const v = cleanLineValue(trimChargeAllegationBoundary(statementGlued[1]));
-    if (v && v.length >= 16) return v;
+    if (v && v.length >= 16 && !isSpuriousChargeLabelValue(v)) return v;
   }
 
   const pwitsGlued = block.match(
@@ -706,14 +769,18 @@ function extractOffenceFromChargeBlock(block: string): string | null {
     const line = lines[i]!;
     if (/^statement of offence/i.test(line)) {
       const same = line.replace(/^statement of offence\s*:?\s*/i, "").trim();
-      if (same.length >= 16) {
+      if (same.length >= 16 && !isSpuriousChargeLabelValue(same)) {
         const v = cleanLineValue(same);
         if (v) return v;
       }
-      const next = lines[i + 1];
-      if (next && next.length >= 16) {
-        const v = cleanLineValue(next);
-        if (v) return v;
+      for (let j = i + 1; j < Math.min(lines.length, i + 4); j++) {
+        const next = lines[j]!;
+        if (/contrary to section/i.test(next)) {
+          const v = cleanLineValue(trimChargeAllegationBoundary(next));
+          if (v && v.length >= 16) return v;
+        }
+        const merged = cleanLineValue(trimChargeAllegationBoundary(`${same} ${next}`));
+        if (merged && /contrary to section/i.test(merged) && merged.length >= 16) return merged;
       }
     }
     if (/^charge\s*:/i.test(line)) {
@@ -792,10 +859,41 @@ function extractOffenceFromChargeBlock(block: string): string | null {
       return cleanLineValue(line);
     }
   }
+
+  const particularsViolence = block.match(
+    /Particulars of offence[^.\n]{0,160}?Unlawful\s*(?:\n\s*)?wounding,\s*contrary to section\s*20[^.\n]{0,120}/i,
+  );
+  if (particularsViolence?.[0]) {
+    const v = cleanLineValue(
+      trimChargeAllegationBoundary(
+        particularsViolence[0]
+          .replace(/^Particulars of offence[^U]{0,120}?Unlawful\s*/i, "Unlawful ")
+          .replace(/\s*\n\s*/g, " "),
+      ),
+    );
+    if (v && v.length >= 16) return v;
+  }
+
+  const particularsMixed = block.match(
+    /Particulars of offence[\s\S]{0,240}?(Theft,?\s*(?:\n\s*)?contrary to section\s*1[^;]{0,80};\s*(?:possession of a )?bladed article[^.\n]{0,120})/i,
+  );
+  if (particularsMixed?.[1]) {
+    const v = cleanLineValue(trimChargeAllegationBoundary(particularsMixed[1].replace(/\s*\n\s*/g, " ")));
+    if (v && v.length >= 24) return v;
+  }
+
   const multi = block.match(
     /(?:count\s*\d+\s*[:\\-]?\s*)?([^\n]{16,200}contrary to (?:section\s*\d+|common law)[^\n]{0,120})/i,
   );
   if (multi?.[1]) return cleanLineValue(multi[1]);
+
+  const gluedStatement = block.match(
+    /Statement of offence\s*(Mixed counts|Theft[^.\n]{12,200}contrary to section[^.\n]{8,120})/i,
+  );
+  if (gluedStatement?.[1] && !/^mixed counts$/i.test(gluedStatement[1].trim())) {
+    const v = cleanLineValue(trimChargeAllegationBoundary(gluedStatement[1]));
+    if (v && v.length >= 16) return v;
+  }
   const wounding = block.match(
     /\b(Wounding with intent[^\n]{10,120}(?:OAPA|Offences Against the Person Act)[^\n]{0,40})/i,
   );
@@ -827,6 +925,26 @@ function extractOffenceWording(scan: string, fullText: string): { wording: strin
   if (corrected && !isNarrativeAllegationValue(corrected)) {
     return {
       wording: formatOffenceDisplayFromBundle(corrected),
+      source: "extracted_charge_fallback",
+    };
+  }
+
+  const statutoryViolence = scan.match(
+    /\b((?:Unlawful wounding|Wounding with intent)[^.\n]{0,160}contrary to section\s*(18|20)[^.\n]{0,120})/i,
+  );
+  if (statutoryViolence?.[1]) {
+    return {
+      wording: formatOffenceDisplayFromBundle(cleanLineValue(statutoryViolence[1])!),
+      source: "extracted_charge_fallback",
+    };
+  }
+
+  const moneyLaundering = scan.match(
+    /\b((?:Entering into|Becoming concerned)[^.\n]{0,160}money laundering[^.\n]{0,80}contrary to section\s*328[^.\n]{0,80})/i,
+  );
+  if (moneyLaundering?.[1]) {
+    return {
+      wording: formatOffenceDisplayFromBundle(cleanLineValue(moneyLaundering[1])!),
       source: "extracted_charge_fallback",
     };
   }
@@ -925,7 +1043,7 @@ const MONTH_NAME =
 function isPlausibleCourtValue(value: string | null | undefined): boolean {
   if (!value) return false;
   const v = value.trim();
-  if (v.length < 8) return false;
+  if (v.length < 8 || /^court$/i.test(v)) return false;
   return /(?:magistrates(?:\s+court)?|crown court|youth court)/i.test(v);
 }
 
@@ -953,13 +1071,29 @@ function isJunkHearingValue(raw: string | null | undefined): boolean {
 function extractCourt(scan: string): string | null {
   const scrubGluedCourt = (value: string): string =>
     value
+      .replace(/^CourtHearing/i, "")
+      .replace(/^Hearing/i, "")
       .replace(/Hearing\s*\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|January|February|March|April|May|June|July|August|September|October|November|December)[a-z]*\s+\d{4}.*$/i, "")
-      .replace(/\b(?:Next|Case|Hearing|Stage|Bundle|Matter)\b.*$/i, "")
-      .replace(/\bHearing\b.*$/i, "")
+      .replace(/\s+\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|January|February|March|April|May|June|July|August|September|October|November|December)[a-z]*\s+\d{4}(?:\s+at\s+\d{1,2}:\d{2})?\s*$/i, "")
+      .replace(/\b(?:Next|Case|Stage|Bundle|Matter)\b.*$/i, "")
       .replace(/\bMatter ref\b.*$/i, "")
       .replace(/\bProsecution Authority\b.*$/i, "")
       .replace(/\bCase ref\b.*$/i, "")
       .trim();
+
+  const courtHearingVenue = scan.match(
+    /\bCourtHearing([A-Z][A-Za-z'’]+(?:\s+[A-Za-z'’]+)*\s+Magistrates(?:'|\u2019)?\s*Court)/i,
+  );
+  if (courtHearingVenue?.[1]) {
+    const v = cleanLineValue(courtHearingVenue[1]);
+    if (v && isPlausibleCourtValue(v)) return scrubGluedCourt(v);
+  }
+
+  const courtHearingCrown = scan.match(/\bCourtHearing(Crown Court at [A-Za-z'’\s]+?)(?=\s+\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|January|February|March|April|May|June|July|August|September|October|November|December))/i);
+  if (courtHearingCrown?.[1]) {
+    const v = cleanLineValue(courtHearingCrown[1]);
+    if (v && isPlausibleCourtValue(v)) return scrubGluedCourt(v);
+  }
 
   const crownGlued = scan.match(
     /Crown Court(?:Hearing)?\s+at\s+([A-Z][A-Za-z]+(?:\s+[A-Z][A-Za-z]+)*)/i,
@@ -979,8 +1113,8 @@ function extractCourt(scan: string): string | null {
     /\b([A-Z][A-Za-z]+(?:\s+[A-Z][A-Za-z]+)*\s+Magistrates(?:'|\u2019)?\s*Court)\b/i,
   );
   if (magLine?.[1]) {
-    const v = cleanLineValue(magLine[1]);
-    if (v) return scrubGluedCourt(v);
+    const v = cleanLineValue(magLine[1].replace(/^CourtHearing/i, "").replace(/^Hearing/i, ""));
+    if (v && isPlausibleCourtValue(v)) return scrubGluedCourt(v);
   }
 
   const labeled =
@@ -1016,6 +1150,14 @@ function extractCourt(scan: string): string | null {
     if (v && isPlausibleCourtValue(v)) return scrubGluedCourt(v);
   }
   return null;
+}
+
+function cleanExtractedHearingRaw(raw: string | null): string | null {
+  if (!raw || isJunkHearingValue(raw)) return null;
+  return raw
+    .replace(/\s+\b(?:Defendant|Accused|Client)\b\s*[:\-].*$/i, "")
+    .replace(/\s+\bCourt\b\s*[:\-].*$/i, "")
+    .trim();
 }
 
 function extractNextHearing(scan: string): {
@@ -1081,6 +1223,16 @@ function extractNextHearing(scan: string): {
       ),
     );
     if (gluedHearing?.[1]) tryHearing(gluedHearing[1]);
+  }
+
+  if (!nextHearingRaw) {
+    const courtHearingVenueDate = hearingScan.match(
+      new RegExp(
+        `\\bCourtHearing[A-Za-z'’\\s]+?(?:Magistrates(?:'|\u2019)?\\s*Court|Crown Court(?:\\s+at\\s+[A-Za-z'’\\s]+)?)\\s+(\\d{1,2}\\s+${MONTH_NAME}[a-z]*\\s+\\d{4}(?:\\s+at\\s+\\d{1,2}:\\d{2})?)`,
+        "i",
+      ),
+    );
+    if (courtHearingVenueDate?.[1]) tryHearing(courtHearingVenueDate[1]);
   }
 
   if (!nextHearingRaw) {
@@ -1163,27 +1315,18 @@ function extractNextHearing(scan: string): {
     }
   }
 
-  if (nextHearingRaw && isJunkHearingValue(nextHearingRaw)) {
-    nextHearingRaw = null;
-  }
-
-  if (nextHearingRaw) {
-    nextHearingRaw = nextHearingRaw
-      .replace(/\s+\b(?:Defendant|Accused|Client)\b\s*[:\-].*$/i, "")
-      .replace(/\s+\bCourt\b\s*[:\-].*$/i, "")
-      .trim();
-  }
+  const hearingRawCleaned = cleanExtractedHearingRaw(nextHearingRaw);
 
   let nextHearingIso: string | null = null;
-  if (nextHearingRaw) {
-    const parsed = parseUkHearingDateTime(nextHearingRaw);
+  if (hearingRawCleaned) {
+    const parsed = parseUkHearingDateTime(hearingRawCleaned);
     if (parsed?.iso) nextHearingIso = parsed.iso;
   }
 
   return {
-    raw: nextHearingRaw,
+    raw: hearingRawCleaned,
     iso: nextHearingIso,
-    source: nextHearingRaw ? "extracted_procedural_fallback" : "unavailable",
+    source: hearingRawCleaned ? "extracted_procedural_fallback" : "unavailable",
   };
 }
 

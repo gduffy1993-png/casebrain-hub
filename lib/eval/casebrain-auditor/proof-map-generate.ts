@@ -32,7 +32,7 @@ function detectLens(charge: string, bundleText: string): ProofMapOffenceLens {
   }
   if (/section\s*20|section\s*18|gbh|wounding|oapa/i.test(c)) return "violence_gbh";
   if (/fraud|false representation/i.test(c)) return "fraud";
-  if (/pwits|intent to supply|class a/i.test(c)) return "pwits";
+  if (/pwits|intent to supply|concerned in the supply|section\s*5\s*\(\s*3\s*\)/i.test(c)) return "pwits";
   if (/robbery|s\.?\s*8/i.test(c)) return "robbery_id";
   if (/generic provisional|human review|provisional charge|serious caution/i.test(t)) {
     return "generic_provisional";

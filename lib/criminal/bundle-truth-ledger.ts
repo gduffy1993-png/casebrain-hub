@@ -97,7 +97,13 @@ function detectFamilyInText(text: string): BundleOffenceFamily | null {
   if (/\brobbery\b/.test(b)) return "robbery";
   if (/\bburglary\b/.test(b)) return "burglary";
   if (/\btheft\b|steal|shoplift/i.test(b)) return "theft";
-  if (/\bpwits\b|intent\s+to\s+supply|controlled\s+drug/i.test(b)) return "pwits";
+  if (
+    /section\s*5\s*\(\s*2\s*\)|possession of a controlled drug[^.\n]{0,160}section\s*5\s*\(\s*2/i.test(b) &&
+    !/intent\s+to\s+supply|section\s*5\s*\(\s*3/i.test(b)
+  ) {
+    return "possession";
+  }
+  if (/\bpwits\b|intent\s+to\s+supply|section\s*5\s*\(\s*3\s*\)/i.test(b)) return "pwits";
   if (/\bfraud\b|false\s+representation/i.test(b)) return "fraud";
   if (/dangerous\s+driving|careless\s+driving|drink[-\s]?drive|road\s+traffic/i.test(b)) return "driving";
   if (/affray|violent\s+disorder|public\s+order/i.test(b)) return "public_order";
@@ -224,8 +230,9 @@ export function proofMapLensFromLedger(ledger: BundleTruthLedger): ProofMapOffen
     case "fraud":
       return "fraud";
     case "pwits":
-    case "possession":
       return "pwits";
+    case "possession":
+      return "generic_provisional";
     case "robbery":
       return "robbery_id";
     case "driving":

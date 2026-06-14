@@ -162,4 +162,25 @@ contrary to section 5(3) Misuse of Drugs Act 1971
 const v4PwitsMeta = extractBundleCaseMetadata(v4Pwits);
 assert.match(v4PwitsMeta.offenceDisplay ?? "", /intent to supply|cocaine/i);
 
+const correctedS20 = `
+Statement of offenceCorrected indictment s20
+wounding, contrary to section 20 Offences against the Person Act 1861.
+`.trim();
+assert.match(extractBundleCaseMetadata(correctedS20).offenceDisplay ?? "", /unlawful wounding|section 20/i);
+
+const mixedCounts = `
+Particulars of offenceOn 29 May 2026 at Canal Yard theft is alleged as Theft,
+contrary to section 1 Theft Act 1968; possession of a bladed article, contrary to section 139 Criminal Justice Act 1988
+`.trim();
+assert.match(extractBundleCaseMetadata(mixedCounts).offenceDisplay ?? "", /theft/i);
+assert.match(extractBundleCaseMetadata(mixedCounts).offenceDisplay ?? "", /bladed article/i);
+
+const courtHearingMag = `
+DefendantExample ClientDOB22/11/1986 CourtHearingHillford Magistrates' Court 08 July 2026 at 10:15
+`.trim();
+const courtHearingMagMeta = extractBundleCaseMetadata(courtHearingMag);
+assert.match(courtHearingMagMeta.court ?? "", /Hillford Magistrates/i);
+assert.doesNotMatch(courtHearingMagMeta.court ?? "", /^Court$/i);
+assert.match(courtHearingMagMeta.nextHearingRaw ?? "", /08 July 2026/i);
+
 console.log("bundle-shape-regression.test.ts: ok");

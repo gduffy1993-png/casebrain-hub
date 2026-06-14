@@ -5,6 +5,7 @@ export function repairDisplayWordSpacing(text: string): string {
   t = t.replace(/([a-z])\.([A-Z])/g, "$1. $2");
   // Direct jam: logMay → log. May
   t = t.replace(/\blogMay\b/gi, "log. May");
+  t = t.replace(/\bCourtHearing/gi, "Court\x00HEARING\x00");
   // camelCase joins: exportLog → export Log
   t = t.replace(/([a-z])([A-Z][a-z])/g, "$1 $2");
   // Jammed modal verbs after nouns: logmay → log may
@@ -16,5 +17,5 @@ export function repairDisplayWordSpacing(text: string): string {
   t = t.replace(/\bexport log\s+May\b/gi, "export log. May");
   t = t.replace(/\blog\s+May\b/gi, "log. May");
   t = t.replace(/\s+/g, " ").trim();
-  return t;
+  return t.replace(/\bCourt\x00HEARING\x00\b/gi, "CourtHearing");
 }
