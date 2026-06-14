@@ -351,6 +351,30 @@ export function parseUkHearingDateTime(raw: string): { iso: string | null; displ
   const t = raw.trim();
   if (!t) return null;
 
+  const isoMatch = t.match(/^(\d{4})-(\d{2})-(\d{2})(?:[T\s]+(\d{1,2}):(\d{2}))?/);
+  if (isoMatch) {
+    const year = parseInt(isoMatch[1], 10);
+    const month = parseInt(isoMatch[2], 10) - 1;
+    const day = parseInt(isoMatch[3], 10);
+    const hour = isoMatch[4] != null ? parseInt(isoMatch[4], 10) : 10;
+    const minute = isoMatch[5] != null ? parseInt(isoMatch[5], 10) : 0;
+    const d = new Date(year, month, day, hour, minute, 0, 0);
+    if (Number.isNaN(d.getTime())) return null;
+    const datePart = d.toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    });
+    const timePart =
+      isoMatch[4] != null
+        ? d.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit", hour12: false })
+        : null;
+    return {
+      iso: d.toISOString(),
+      display: timePart ? `${datePart} at ${timePart}` : datePart,
+    };
+  }
+
   const atMatch = t.match(
     /(\d{1,2})\s+(January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)\s+(\d{4})(?:\s+(?:at\s+)?(\d{1,2}):(\d{2}))?/i,
   );
@@ -570,7 +594,11 @@ function extractCorrectedIndictmentWording(scan: string): string | null {
   }
 
   if (/\bCorrected indictment\s+s\.?\s*(18|20)\b/i.test(scan)) {
-    const flat = scan.replace(/\s*\n\s*/g, " ");
+    const anchor =
+      scan.match(/\bCorrected indictment[\s\S]{0,600}/i)?.[0] ??
+      scan.match(/\bStatement of offence\s*Corrected indictment[\s\S]{0,600}/i)?.[0];
+    if (!anchor) return null;
+    const flat = anchor.replace(/\s*\n\s*/g, " ");
     const full = flat.match(
       /\b((?:Unlawful wounding|Wounding with intent)[^.\n]{0,160}contrary to section\s*(18|20)[^.\n]{0,120})/i,
     );
@@ -668,6 +696,7 @@ function trimChargeAllegationBoundary(raw: string): string {
   t = t
     .replace(/\s+\d{1,2}\s+(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+\d{4}(?:\s+at\s+\d{1,2}:\d{2})?\s*$/i, "")
     .replace(/\s+and\s+\d{1,2}\s+(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+\d{4}.*$/i, "")
+    .replace(/\bParticulars\b.*$/i, "")
     .trim();
   const contraryIdx = t.search(/\bcontrary to section\b/i);
   if (contraryIdx > 0) {
@@ -739,12 +768,56 @@ function extractParticularsCommittedOffence(block: string): string | null {
   return null;
 }
 
+function tryExtractGluedChargeFromChunk(chunk: string): string | null {
+  const patterns = [
+    /^([A-Za-z][^\n]{0,240}?contrary to[^.\n]{0,160}?Act \d{4})/i,
+    /^([A-Za-z][^\n]{0,240}?,\s*contrary to common law)/i,
+  ];
+  for (const re of patterns) {
+    const m = chunk.match(re);
+    if (!m?.[1]) continue;
+    const v = cleanLineValue(trimChargeAllegationBoundary(m[1]));
+    if (v && v.length >= 16 && !isSpuriousChargeLabelValue(v)) return v;
+  }
+  return null;
+}
+
+function extractGluedStatementOfOffence(text: string): string | null {
+  const matches = [...text.matchAll(/\bStatement of offence\s*/gi)];
+  const entries: Array<{ idx: number; charge: string }> = [];
+  for (const m of matches) {
+    const start = (m.index ?? 0) + m[0].length;
+    const lineEnd = text.indexOf("\n", start);
+    const rawLine = text.slice(start, lineEnd === -1 ? start + 280 : lineEnd);
+    let charge = tryExtractGluedChargeFromChunk(rawLine);
+    if (!charge) {
+      const merged = text.slice(start, start + 360).replace(/\s*\n\s*/g, " ");
+      charge = tryExtractGluedChargeFromChunk(merged);
+    }
+    if (charge) entries.push({ idx: m.index ?? 0, charge });
+  }
+  if (entries.length === 1) return entries[0]!.charge;
+  if (entries.length >= 2) {
+    const countOneIdx = text.search(/\bCount\s*1\b/i);
+    if (countOneIdx >= 0) {
+      for (let i = entries.length - 1; i >= 0; i--) {
+        if (entries[i]!.idx >= countOneIdx) return entries[i]!.charge;
+      }
+    }
+    return entries[entries.length - 1]!.charge;
+  }
+  return null;
+}
+
 function extractOffenceFromChargeBlock(block: string): string | null {
   const corrected = extractCorrectedIndictmentWording(block);
   if (corrected) return corrected;
 
   const fromParticulars = extractParticularsCommittedOffence(block);
   if (fromParticulars) return fromParticulars;
+
+  const fromGluedStatement = extractGluedStatementOfOffence(block);
+  if (fromGluedStatement) return fromGluedStatement;
 
   const mainChargePwits = block.match(
     /\bMain charge\s*(Possession with intent to supply[\s\S]{0,220}?section\s*5\s*\(\s*3\s*\)\s*of\s+the\s+Misuse of Drugs Act 1971)/i,
@@ -937,14 +1010,50 @@ function normalizeChargeOffence(raw: string): string | null {
 }
 
 function extractOffenceWording(scan: string, fullText: string): { wording: string | null; source: MetadataFieldSource } {
+  const normalizedFull = normalizeMetadataScanText(fullText);
+
+  const correctedLabeled =
+    scan.match(/\b(?:Corrected indictment|Latest indictment)\s*:\s*([^\n]{8,220})/i) ??
+    normalizedFull.match(/\b(?:Corrected indictment|Latest indictment)\s*:\s*([^\n]{8,220})/i);
+  if (correctedLabeled?.[1]) {
+    const v = cleanLineValue(trimChargeAllegationBoundary(correctedLabeled[1]));
+    if (v && !isSpuriousChargeLabelValue(v) && !/OLD VERSION/i.test(v) && !isNarrativeAllegationValue(v)) {
+      return {
+        wording: formatOffenceDisplayFromBundle(v),
+        source: "extracted_charge_fallback",
+      };
+    }
+  }
+
+  const gluedStatementOffence =
+    extractGluedStatementOfOffence(scan) ?? extractGluedStatementOfOffence(normalizedFull);
+  if (gluedStatementOffence && !isNarrativeAllegationValue(gluedStatementOffence)) {
+    return {
+      wording: formatOffenceDisplayFromBundle(gluedStatementOffence),
+      source: "extracted_charge_fallback",
+    };
+  }
+
   const corrected =
-    extractCorrectedIndictmentWording(scan) ??
-    extractCorrectedIndictmentWording(normalizeMetadataScanText(fullText));
+    extractCorrectedIndictmentWording(scan) ?? extractCorrectedIndictmentWording(normalizedFull);
   if (corrected && !isNarrativeAllegationValue(corrected)) {
     return {
       wording: formatOffenceDisplayFromBundle(corrected),
       source: "extracted_charge_fallback",
     };
+  }
+
+  const pwitsClassA = scan.match(
+    /\b(Possession of a controlled drug(?: of Class [AB])? with intent to supply[\s\S]{0,220}?section\s*5\s*\(\s*3\s*\)\s*of\s+the\s+Misuse of Drugs Act 1971)/i,
+  );
+  if (pwitsClassA?.[1]) {
+    const v = cleanLineValue(trimChargeAllegationBoundary(pwitsClassA[1].replace(/\s*\n\s*/g, " ")));
+    if (v && !isSpuriousChargeLabelValue(v)) {
+      return {
+        wording: formatOffenceDisplayFromBundle(v),
+        source: "extracted_charge_fallback",
+      };
+    }
   }
 
   const statutoryViolence = scan.match(

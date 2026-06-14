@@ -9,6 +9,7 @@ import { buildCaseSummarySnippet } from "../lib/criminal/build-case-summary-snip
 import {
   buildMetadataScan,
   extractBundleCaseMetadata,
+  parseUkHearingDateTime,
 } from "../lib/criminal/extract-bundle-case-metadata";
 import {
   buildBundleTruthLedger,
@@ -239,5 +240,24 @@ Document index
 const mainChargePwitsMeta = extractBundleCaseMetadata(mainChargePwitsGlue);
 assert.match(mainChargePwitsMeta.offenceDisplay ?? "", /intent to supply|cocaine/i);
 assert.match(mainChargePwitsMeta.offenceDisplay ?? "", /section 5\(3\)|Misuse of Drugs Act/i);
+
+const statementOfOffenceAffrayGlue = `
+Statement of offenceAffray, contrary to section 3 of the Public Order Act 1986
+Wounding with intent, contrary to section 18 of the Offences Against the Person Act 1861
+`.trim();
+const affrayGlueMeta = extractBundleCaseMetadata(statementOfOffenceAffrayGlue);
+assert.match(affrayGlueMeta.offenceDisplay ?? "", /affray/i);
+assert.doesNotMatch(affrayGlueMeta.offenceDisplay ?? "", /s\.?18|wounding with intent/i);
+
+const coDefendantSooDrift = `
+Statement of offenceWounding with intent, contrary to section 18 of the Offences Against the Person Act 1861
+Statement of offenceAffray, contrary to section 3 of the Public Order Act 1986
+`.trim();
+const coDefDriftMeta = extractBundleCaseMetadata(coDefendantSooDrift);
+assert.match(coDefDriftMeta.offenceDisplay ?? "", /affray/i);
+
+const isoHearing = parseUkHearingDateTime("2026-06-22 09:15");
+const ukHearing = parseUkHearingDateTime("22 Jun 2026 at 09:15");
+assert.ok(isoHearing?.iso && ukHearing?.iso && isoHearing.iso.slice(0, 16) === ukHearing.iso.slice(0, 16));
 
 console.log("bundle-shape-regression.test.ts: ok");
