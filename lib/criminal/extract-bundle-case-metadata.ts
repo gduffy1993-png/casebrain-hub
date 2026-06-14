@@ -1058,14 +1058,36 @@ function normalizeGluedHearingScan(scan: string): string {
       "$1 at $2",
     )
     .replace(/\bNext hearing(?=\d)/gi, "Next hearing ")
-    .replace(/\bHearing(?=\d{1,2}(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec))/gi, "Hearing ");
+    .replace(/\bHearing(?=\d{1,2}(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec))/gi, "Hearing ")
+    .replace(
+      /( at [A-Za-z'’]+?)(\d{1,2}\s+(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec))/gi,
+      "$1 $2",
+    );
+}
+
+const HEARING_DATE_PATTERN =
+  /\d{1,2}\s+(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)\b|\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4}|\b(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\s+\d{1,2}\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\b/i;
+
+function hasUkHearingDatePattern(raw: string): boolean {
+  return HEARING_DATE_PATTERN.test(raw);
 }
 
 function isJunkHearingValue(raw: string | null | undefined): boolean {
   if (!raw?.trim()) return true;
-  return /appears in the served listing|no alternative current hearing|not safely extracted|listing notice only/i.test(
-    raw,
-  );
+  if (
+    /appears in the served listing|no alternative current hearing|not safely extracted|listing notice only/i.test(
+      raw,
+    )
+  ) {
+    return true;
+  }
+  const t = raw.trim();
+  if (/^Court\s+Crown$/i.test(t)) return true;
+  if (/^(?:Court\s+)?Crown(?:\s+Court)?(?:\s+at\s+[A-Za-z'']+)?$/i.test(t)) return true;
+  if (!hasUkHearingDatePattern(t) && /(?:Crown Court|Magistrates(?:'|\u2019)?\s*Court|\bCourt\b)/i.test(t)) {
+    return true;
+  }
+  return false;
 }
 
 function extractCourt(scan: string): string | null {
@@ -1170,7 +1192,14 @@ function extractNextHearing(scan: string): {
 
   const tryHearing = (candidate: string | null | undefined): void => {
     const v = candidate ? cleanLineValue(candidate) : null;
-    if (v && !isJunkHearingValue(v)) nextHearingRaw = v;
+    if (!v || isJunkHearingValue(v)) return;
+    const vHasDate = hasUkHearingDatePattern(v);
+    if (nextHearingRaw) {
+      const curHasDate = hasUkHearingDatePattern(nextHearingRaw);
+      if (curHasDate && !vHasDate) return;
+      if (!curHasDate && !vHasDate) return;
+    }
+    nextHearingRaw = v;
   };
 
   const nextHearingGlued = hearingScan.match(
@@ -1207,8 +1236,6 @@ function extractNextHearing(scan: string): {
         extractInlineLabeled(hearingScan, [
           "Next hearing",
           "Next Hearing",
-          "First Hearing",
-          "First hearing",
           "Hearing date and time",
           "Hearing date",
         ]),
@@ -1228,7 +1255,7 @@ function extractNextHearing(scan: string): {
   if (!nextHearingRaw) {
     const courtHearingVenueDate = hearingScan.match(
       new RegExp(
-        `\\bCourtHearing[A-Za-z'’\\s]+?(?:Magistrates(?:'|\u2019)?\\s*Court|Crown Court(?:\\s+at\\s+[A-Za-z'’\\s]+)?)\\s+(\\d{1,2}\\s+${MONTH_NAME}[a-z]*\\s+\\d{4}(?:\\s+at\\s+\\d{1,2}:\\d{2})?)`,
+        `\\bCourtHearing(?:Crown Court(?:\\s+at\\s+[A-Za-z'’\\s]+)?|[A-Z][A-Za-z'’\\s]+Magistrates(?:'|\u2019)?\\s*Court)\\s*(\\d{1,2}\\s+${MONTH_NAME}[a-z]*\\s+\\d{4}(?:\\s+at\\s+\\d{1,2}:\\d{2})?)`,
         "i",
       ),
     );

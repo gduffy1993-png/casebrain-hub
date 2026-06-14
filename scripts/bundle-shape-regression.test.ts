@@ -183,4 +183,21 @@ assert.match(courtHearingMagMeta.court ?? "", /Hillford Magistrates/i);
 assert.doesNotMatch(courtHearingMagMeta.court ?? "", /^Court$/i);
 assert.match(courtHearingMagMeta.nextHearingRaw ?? "", /08 July 2026/i);
 
+const stageFirstHearingGlue = `
+DefendantHannah ShawDOB28/01/1991
+Address[redacted address]CourtCrown Court at Manchester
+Hearing02 September 2026 at 11:30StageCrown Court first hearing
+SummaryThis bundle is listed for a Crown Court first hearing at Crown Court at Manchester.
+`.trim();
+const stageFirstHearingMeta = extractBundleCaseMetadata(stageFirstHearingGlue);
+assert.match(stageFirstHearingMeta.nextHearingRaw ?? "", /02 September 2026 at 11:30/i);
+assert.doesNotMatch(stageFirstHearingMeta.nextHearingRaw ?? "", /Court Crown/i);
+
+const courtHearingGluedDate = `
+DefendantGrace CoatesDOB20/08/1992 CourtHearingCrown Court at Preston31 July 2026 at 10:30
+`.trim();
+const courtHearingGluedDateMeta = extractBundleCaseMetadata(courtHearingGluedDate);
+assert.match(courtHearingGluedDateMeta.nextHearingRaw ?? "", /31 July 2026 at 10:30/i);
+assert.match(courtHearingGluedDateMeta.court ?? "", /Crown Court at Preston/i);
+
 console.log("bundle-shape-regression.test.ts: ok");
