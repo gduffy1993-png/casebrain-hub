@@ -200,4 +200,25 @@ const courtHearingGluedDateMeta = extractBundleCaseMetadata(courtHearingGluedDat
 assert.match(courtHearingGluedDateMeta.nextHearingRaw ?? "", /31 July 2026 at 10:30/i);
 assert.match(courtHearingGluedDateMeta.court ?? "", /Crown Court at Preston/i);
 
+const v5HearingLabel = `
+DefendantIsaac Shaw
+Court: Crown Court at Manchester
+Hearing: 27August 2026 14:00
+Stage: IDPC
+`.trim();
+const v5HearingMeta = extractBundleCaseMetadata(v5HearingLabel);
+assert.match(v5HearingMeta.nextHearingRaw ?? "", /27 August 2026 14:00/i);
+
+const v5HearingColon = `
+DefendantExample Client
+Court: Northchester Crown Court
+Hearing: 17 July 2026 10:30
+`.trim();
+assert.match(extractBundleCaseMetadata(v5HearingColon).nextHearingRaw ?? "", /17 July 2026 10:30/i);
+
+const v5Affray = `
+Charge contrary to section 3 Public Order Act 1986
+`.trim();
+assert.match(extractBundleCaseMetadata(v5Affray).offenceDisplay ?? "", /affray/i);
+
 console.log("bundle-shape-regression.test.ts: ok");
