@@ -266,6 +266,24 @@ assert.ok(!filteredTemplates.some((l) => /cad\/999 timing may affect/i.test(l)))
 assert.equal(formatDisplayLabelCasing("cCTV Full Window"), "CCTV full window");
 assert.equal(formatDisplayLabelCasing("interview Recording outstanding"), "Interview recording outstanding");
 
+const absentWitnessPackFixture = `
+MG6 disclosure schedule
+No full witness pack, CCTV export, interview transcript or continuity material is contained in the papers supplied with this bundle.
+`.trim();
+const ledgerAbsentPack = buildBundleTruthLedger({ bundleText: absentWitnessPackFixture });
+assert.ok(
+  ledgerAbsentPack.forbiddenClaims.some((f) => /full cctv confirms|cctv confirms|cctv proves/i.test(f.phrase)),
+  "absence boilerplate should forbid CCTV confirms/proves wording",
+);
+assert.equal(
+  guardSolicitorLine("Full CCTV confirms the complainant's account of who was present.", {
+    ledger: ledgerAbsentPack,
+    bundleText: absentWitnessPackFixture,
+  }),
+  null,
+  "absence boilerplate bundle should block Full CCTV confirms lines",
+);
+
 // ---------- Wave 1.1 truth-surface guard ----------
 const guardCtxA = { ledger: ledgerA, bundleText: FIXTURE_A };
 

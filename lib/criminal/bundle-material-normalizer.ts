@@ -72,10 +72,14 @@ function isLikelyMaterialLine(line: string): boolean {
   );
 }
 
+const ABSENT_ON_PAPERS_RE =
+  /\bno\s+full\s+witness\s+pack\b|\bnot\s+contained\s+in\s+the\s+papers\b|\bis\s+not\s+contained\b/i;
+
 function hasNegativeOrLimitingSignal(line: string): boolean {
   if (NEVER_IN_SERVED_RE.test(line)) return true;
   if (DRAFT_STATUS_RE.test(line)) return true;
   if (OUTSTANDING_STATUS_RE.test(line)) return true;
+  if (ABSENT_ON_PAPERS_RE.test(line)) return true;
   if (/\bnot\b/i.test(line) && POSITIVE_SERVED_RE.test(line)) return true;
   return false;
 }
@@ -93,6 +97,7 @@ export function classifyMaterialStatus(line: string): MaterialStatus | null {
   if (UNSIGNED_RE.test(l)) return "unsigned";
   if (DRAFT_STATUS_RE.test(l)) return "draft";
   if (OUTSTANDING_STATUS_RE.test(l)) return "outstanding";
+  if (ABSENT_ON_PAPERS_RE.test(l)) return "absent";
   if (/\babsent\b/i.test(l)) return "absent";
   if (/\bpartial\b/i.test(l)) return "partial";
   if (isCleanPositiveServedLine(l)) return "served";
