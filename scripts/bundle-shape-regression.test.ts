@@ -231,4 +231,13 @@ const indictmentParticularsMeta = extractBundleCaseMetadata(indictmentParticular
 assert.match(indictmentParticularsMeta.offenceDisplay ?? "", /robbery/i);
 assert.doesNotMatch(indictmentParticularsMeta.offenceDisplay ?? "", /^\.?\s*Particulars are/i);
 
+const mainChargePwitsGlue = `
+Main chargePossession with intent to supply cocaine, a controlled drug of Class A, contrary to
+section 5(3) of the Misuse of Drugs Act 1971
+Document index
+`.trim();
+const mainChargePwitsMeta = extractBundleCaseMetadata(mainChargePwitsGlue);
+assert.match(mainChargePwitsMeta.offenceDisplay ?? "", /intent to supply|cocaine/i);
+assert.match(mainChargePwitsMeta.offenceDisplay ?? "", /section 5\(3\)|Misuse of Drugs Act/i);
+
 console.log("bundle-shape-regression.test.ts: ok");

@@ -487,6 +487,9 @@ export function formatOffenceDisplayFromBundle(raw: string): string {
     return "Handling stolen goods, contrary to s.22 Theft Act 1968";
   }
   if (/\bpossession with intent to supply\b/i.test(t) && /\bclass\s*a\b/i.test(t)) {
+    if (/section\s*5\s*\(\s*3\s*\)/i.test(t) && /misuse of drugs act/i.test(t)) {
+      return t.replace(/\s+/g, " ").trim();
+    }
     return "Possession with intent to supply Class A controlled drugs";
   }
   if (/\bpossession of a controlled drug\b/i.test(t) && /\bintent to supply\b/i.test(t)) {
@@ -743,6 +746,14 @@ function extractOffenceFromChargeBlock(block: string): string | null {
   const fromParticulars = extractParticularsCommittedOffence(block);
   if (fromParticulars) return fromParticulars;
 
+  const mainChargePwits = block.match(
+    /\bMain charge\s*(Possession with intent to supply[\s\S]{0,220}?section\s*5\s*\(\s*3\s*\)\s*of\s+the\s+Misuse of Drugs Act 1971)/i,
+  );
+  if (mainChargePwits?.[1]) {
+    const v = cleanLineValue(trimChargeAllegationBoundary(mainChargePwits[1].replace(/\s*\n\s*/g, " ")));
+    if (v && !isSpuriousChargeLabelValue(v)) return v;
+  }
+
   const statementGlued = block.match(
     /\bStatement of offence\s*(?::\s*|\n+\s*)((?:[^\n]{16,220}))/i,
   );
@@ -954,6 +965,19 @@ function extractOffenceWording(scan: string, fullText: string): { wording: strin
       wording: formatOffenceDisplayFromBundle(cleanLineValue(moneyLaundering[1])!),
       source: "extracted_charge_fallback",
     };
+  }
+
+  const pwitsSplit = scan.match(
+    /\b(Possession with intent to supply[\s\S]{0,220}?section\s*5\s*\(\s*3\s*\)\s*of\s+the\s+Misuse of Drugs Act 1971)/i,
+  );
+  if (pwitsSplit?.[1]) {
+    const v = cleanLineValue(trimChargeAllegationBoundary(pwitsSplit[1].replace(/\s*\n\s*/g, " ")));
+    if (v && !isSpuriousChargeLabelValue(v)) {
+      return {
+        wording: formatOffenceDisplayFromBundle(v),
+        source: "extracted_charge_fallback",
+      };
+    }
   }
 
   const chargeBlockRaw =
