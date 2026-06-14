@@ -221,4 +221,14 @@ Charge contrary to section 3 Public Order Act 1986
 `.trim();
 assert.match(extractBundleCaseMetadata(v5Affray).offenceDisplay ?? "", /affray/i);
 
+const indictmentParticularsBoilerplate = `
+Count 1 - Statement of offence
+Robbery, contrary to section 8 of the Theft Act 1968
+at Moor Lane unlawfully did the act particularised in the statement of offence. Particulars are
+to be read with the witness statements and served exhibits.
+`.trim();
+const indictmentParticularsMeta = extractBundleCaseMetadata(indictmentParticularsBoilerplate);
+assert.match(indictmentParticularsMeta.offenceDisplay ?? "", /robbery/i);
+assert.doesNotMatch(indictmentParticularsMeta.offenceDisplay ?? "", /^\.?\s*Particulars are/i);
+
 console.log("bundle-shape-regression.test.ts: ok");

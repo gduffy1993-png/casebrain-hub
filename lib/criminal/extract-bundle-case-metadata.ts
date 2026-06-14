@@ -604,6 +604,8 @@ function isSpuriousChargeLabelValue(value: string): boolean {
   if (!t || t.length < 8) return true;
   if (/^charge\s*sheet$/i.test(t) || t === "sheet") return true;
   if (/^count\s*\d+$/i.test(t)) return true;
+  if (/^[\.\s]*particulars\b/i.test(t)) return true;
+  if (/particulars are\b/i.test(t) && !/\bcontrary to\b/i.test(t)) return true;
   if (isTrackerCategoryOffenceLabel(value)) return true;
   return false;
 }
@@ -741,10 +743,12 @@ function extractOffenceFromChargeBlock(block: string): string | null {
   const fromParticulars = extractParticularsCommittedOffence(block);
   if (fromParticulars) return fromParticulars;
 
-  const statementGlued = block.match(/\bStatement of offence\s*([^\n]{16,220})/i);
+  const statementGlued = block.match(
+    /\bStatement of offence\s*(?::\s*|\n+\s*)((?:[^\n]{16,220}))/i,
+  );
   if (statementGlued?.[1]) {
     const v = cleanLineValue(trimChargeAllegationBoundary(statementGlued[1]));
-    if (v && v.length >= 16 && !isSpuriousChargeLabelValue(v)) return v;
+    if (v && v.length >= 16 && !isSpuriousChargeLabelValue(v) && /\bcontrary to\b/i.test(v)) return v;
   }
 
   const pwitsGlued = block.match(
