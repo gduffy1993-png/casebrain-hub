@@ -44,9 +44,10 @@ const VIOLENCE_FAMILIES: BundleOffenceFamily[] = [
 export function extractLiteralHearingTime(raw: string | null | undefined): string | null {
   const t = raw?.trim();
   if (!t) return null;
-  const match = t.match(/\b(?:at\s+)?([01]?\d|2[0-3]):([0-5]\d)\b/i);
+  const match = t.match(/(?:\bat\s+)?(\d{1,2}:\d{2})(?!\d)/i);
   if (!match) return null;
-  return `${match[1]!.padStart(2, "0")}:${match[2]!}`;
+  const [hour, minute] = match[1]!.split(":");
+  return `${hour!.padStart(2, "0")}:${minute!}`;
 }
 
 function sliceWindow(text: string, centerRe: RegExp, before: number, after: number): string {

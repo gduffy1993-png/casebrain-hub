@@ -140,12 +140,13 @@ function firstName(s: string | null): string {
 }
 
 function offenceKeyToken(family: string, wording: string): string | null {
-  const src = `${family} ${wording}`.toLowerCase();
   if (/unclear|provisional|wording unclear/i.test(wording)) return null;
-  const m = src.match(
-    /\b(robbery|burglary|theft|fraud|affray|wounding|assault|drugs|possession|pwits|motoring|dangerous|harassment|stalking|weapon|handling|pervert|conspiracy|damage|affray|coercive|intimidat|bladed|poaca|criminal property|emergency worker)\b/,
-  );
-  return m?.[1] ?? null;
+  const tokenRe =
+    /\b(robbery|burglary|theft|fraud|affray|wounding|assault|drugs|possession|pwits|motoring|dangerous|harassment|stalking|weapon|handling|pervert|conspiracy|damage|coercive|intimidat|bladed|poaca|criminal property|emergency worker)\b/;
+  const fromWording = wording.toLowerCase().match(tokenRe);
+  if (fromWording?.[1]) return fromWording[1];
+  const fromFamily = family.toLowerCase().match(tokenRe);
+  return fromFamily?.[1] ?? null;
 }
 
 function offenceMatchesTracker(tracker: TrackerRow, got: string): boolean {
@@ -163,6 +164,8 @@ function offenceMatchesTracker(tracker: TrackerRow, got: string): boolean {
   }
   const key = offenceKeyToken(tracker.offence_family, tracker.correct_offence_wording);
   if (!key) return got.trim().length > 0 || tracker.expected_status !== "pass";
+  const expectedTheftCharge = /\btheft,?\s+contrary to section\s*1\b/i.test(tracker.correct_offence_wording);
+  if (key === "robbery" && expectedTheftCharge && /\btheft,\s+contrary to s\.?1\b/i.test(got)) return true;
   if (key === "robbery" && /\btheft, contrary to s\.?1\b/i.test(got)) return false;
   if (key === "theft" && family.includes("theft") && /\brobbery\b/i.test(g)) {
     return false;
@@ -221,7 +224,8 @@ function checkMustNotSay(tracker: TrackerRow, text: string): string[] {
   );
   for (const { label, re, blobNeedle } of MUST_NOT_PATTERNS) {
     if (!blobNeedle.test(blob)) continue;
-    if (label === "theft_when_robbery" && !/robbery/i.test(tracker.offence_family)) continue;
+    if (label === "theft_when_robbery" && !/robbery/i.test(tracker.correct_offence_wording)) continue;
+    if (label === "theft_when_robbery" && /\btheft,?\s+contrary to section\s*1\b/i.test(tracker.correct_offence_wording)) continue;
     if (label === "invented_supply" && isLegitimateSupplyCharge) continue;
     if (label === "cctv_proves") {
       if (textHasUnsafeLine(text, re)) issues.push(`must_not_say:${label}`);
@@ -229,7 +233,8 @@ function checkMustNotSay(tracker: TrackerRow, text: string): string[] {
     }
     if (re.test(text)) issues.push(`must_not_say:${label}`);
   }
-  if (/robbery/i.test(tracker.offence_family) && /\bTheft, contrary to s\.?1 Theft Act 1968\b/i.test(text)) {
+  const expectedTheftCharge = /\btheft,?\s+contrary to section\s*1\b/i.test(tracker.correct_offence_wording);
+  if (/robbery/i.test(tracker.offence_family) && !expectedTheftCharge && /\bTheft, contrary to s\.?1 Theft Act 1968\b/i.test(text)) {
     issues.push("must_not_say:robbery_as_theft");
   }
   return issues;

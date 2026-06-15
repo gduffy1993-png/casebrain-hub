@@ -222,9 +222,10 @@ function sanitizePersonName(value: string): string | null {
   const trimmed = trimPersonCapture(value);
   const t = stripPersonNameDocumentRoleTail(trimmed.split(/\s+/).filter(Boolean)).join(" ");
   if (!t || t.length < 3 || t.length > 60) return null;
-  if (/^(?:defendant|accused|client|complainant|victim|name|unknown|n\/a|not\s+safely)/i.test(t)) {
+  if (/^(?:defendant|accused|client|complainant|victim|name|unknown|n\/a|not\s+safely|appears|in)$/i.test(t)) {
     return null;
   }
+  if (/^appears\s+in\b/i.test(t)) return null;
   if (/not\s+safely\s+extracted/i.test(t)) return null;
   const words = t.split(/\s+/).filter(Boolean);
   if (words.length < 1 || words.length > 4) return null;
@@ -407,6 +408,26 @@ export function parseUkHearingDateTime(raw: string): { iso: string | null; displ
       iso: d.toISOString(),
       display: timePart ? `${datePart} at ${timePart}` : datePart,
     };
+  }
+
+  const slashWithTime = t.match(/\b(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2,4})\s+(\d{1,2}):(\d{2})\b/);
+  if (slashWithTime) {
+    const day = parseInt(slashWithTime[1], 10);
+    const month = parseInt(slashWithTime[2], 10) - 1;
+    let year = parseInt(slashWithTime[3], 10);
+    if (year < 100) year += 2000;
+    const hour = parseInt(slashWithTime[4], 10);
+    const minute = parseInt(slashWithTime[5], 10);
+    const dt = new Date(year, month, day, hour, minute, 0, 0);
+    if (!Number.isNaN(dt.getTime())) {
+      const datePart = dt.toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+      });
+      const timePart = dt.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit", hour12: false });
+      return { iso: dt.toISOString(), display: `${datePart} at ${timePart}` };
+    }
   }
 
   const slashMatch = t.match(/(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2,4})/);
@@ -634,6 +655,7 @@ function isSpuriousChargeLabelValue(value: string): boolean {
   const t = value.trim().toLowerCase();
   if (!t || t.length < 8) return true;
   if (/^charge\s*sheet$/i.test(t) || t === "sheet") return true;
+  if (/^statement of offence$/i.test(t)) return true;
   if (/^count\s*\d+$/i.test(t)) return true;
   if (/^[\.\s]*particulars\b/i.test(t)) return true;
   if (/particulars are\b/i.test(t) && !/\bcontrary to\b/i.test(t)) return true;
@@ -783,6 +805,14 @@ function tryExtractGluedChargeFromChunk(chunk: string): string | null {
 }
 
 function extractGluedStatementOfOffence(text: string): string | null {
+  const countOnePervert = text.match(
+    /\bCount\s*1[\s\S]{0,120}?Statement of offence[\s\S]{0,120}?(Doing an act tending and intended to pervert[\s\S]{0,180}?public justice)/i,
+  );
+  if (countOnePervert?.[1]) {
+    const v = cleanLineValue(trimChargeAllegationBoundary(countOnePervert[1].replace(/\s*\n\s*/g, " ")));
+    if (v && v.length >= 16 && !isSpuriousChargeLabelValue(v)) return v;
+  }
+
   const matches = [...text.matchAll(/\bStatement of offence\s*/gi)];
   const entries: Array<{ idx: number; charge: string }> = [];
   for (const m of matches) {
@@ -809,9 +839,27 @@ function extractGluedStatementOfOffence(text: string): string | null {
   return null;
 }
 
+function extractCompoundOffenceSummary(text: string): string | null {
+  const patterns = [
+    /\b(Burglary,\s*theft\s+and\s+possession of a bladed article)\b/i,
+    /\b(Unlawful wounding\s+and\s+affray)\b/i,
+    /\b(Doing an act tending and intended to pervert[^.\n]{0,160}?(?:public justice|course of public justice))/i,
+  ];
+  for (const re of patterns) {
+    const m = text.match(re);
+    if (!m?.[1]) continue;
+    const v = cleanLineValue(trimChargeAllegationBoundary(m[1].replace(/\s*\n\s*/g, " ")));
+    if (v && v.length >= 12 && !isSpuriousChargeLabelValue(v)) return v;
+  }
+  return null;
+}
+
 function extractOffenceFromChargeBlock(block: string): string | null {
   const corrected = extractCorrectedIndictmentWording(block);
   if (corrected) return corrected;
+
+  const compound = extractCompoundOffenceSummary(block);
+  if (compound) return compound;
 
   const fromParticulars = extractParticularsCommittedOffence(block);
   if (fromParticulars) return fromParticulars;
@@ -1012,6 +1060,15 @@ function normalizeChargeOffence(raw: string): string | null {
 function extractOffenceWording(scan: string, fullText: string): { wording: string | null; source: MetadataFieldSource } {
   const normalizedFull = normalizeMetadataScanText(fullText);
 
+  const compound =
+    extractCompoundOffenceSummary(scan) ?? extractCompoundOffenceSummary(normalizedFull);
+  if (compound && !isNarrativeAllegationValue(compound)) {
+    return {
+      wording: formatOffenceDisplayFromBundle(compound),
+      source: "extracted_charge_fallback",
+    };
+  }
+
   const correctedLabeled =
     scan.match(/\b(?:Corrected indictment|Latest indictment)\s*:\s*([^\n]{8,220})/i) ??
     normalizedFull.match(/\b(?:Corrected indictment|Latest indictment)\s*:\s*([^\n]{8,220})/i);
@@ -1204,6 +1261,14 @@ function normalizeGluedHearingScan(scan: string): string {
       /( at [A-Za-z'’]+?)(\d{1,2}\s+(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec))/gi,
       "$1 $2",
     )
+    .replace(/(\d{1,2}\/\d{1,2}\/\d{2,4})(\d{1,2}:\d{2})/gi, "$1 $2")
+    .replace(/(\d{4})at(\d{1,2}:\d{2})/gi, "$1 at $2")
+    .replace(/\bCourtHearing:?/gi, "CourtHearing ")
+    .replace(/CrownCourtat([A-Za-z]+)/gi, "Crown Court at $1 ")
+    .replace(/MagistratesCourtHearing/gi, "Magistrates Court Hearing ")
+    .replace(/CourtHearingHearing/gi, "CourtHearing ")
+    .replace(/\bCourtHearing\s+Hearing/gi, "CourtHearing ")
+    .replace(/([A-Za-z])Magistrates(?:'|\u2019)?\s*Court/gi, "$1 Magistrates' Court")
     .replace(
       /(\d{1,2})(January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec)/gi,
       "$1 $2",
@@ -1220,16 +1285,17 @@ function hasUkHearingDatePattern(raw: string): boolean {
 function isJunkHearingValue(raw: string | null | undefined): boolean {
   if (!raw?.trim()) return true;
   if (
-    /appears in the served listing|no alternative current hearing|not safely extracted|listing notice only/i.test(
+    /appears in the served listing|no alternative current hearing|not safely extracted|listing notice only|if the material is required|dates appear|listing notice is the current|glue pattern in cover|noticeCB-TB-|\/\s*p\.\d+/i.test(
       raw,
     )
   ) {
     return true;
   }
+  if (/^\.\s/.test(raw.trim())) return true;
   const t = raw.trim();
   if (/^Court\s+Crown$/i.test(t)) return true;
   if (/^(?:Court\s+)?Crown(?:\s+Court)?(?:\s+at\s+[A-Za-z'']+)?$/i.test(t)) return true;
-  if (!hasUkHearingDatePattern(t) && /(?:Crown Court|Magistrates(?:'|\u2019)?\s*Court|\bCourt\b)/i.test(t)) {
+  if (!hasUkHearingDatePattern(t) && /(?:Crown Court|Magistrates(?:'|\u2019)?(?:\s*Court)?|\bCourt\b)/i.test(t)) {
     return true;
   }
   return false;
@@ -1319,9 +1385,58 @@ function extractCourt(scan: string): string | null {
   return null;
 }
 
+function extractHearingDateFragment(raw: string): string | null {
+  const slashWithTime = raw.match(/\b(\d{1,2}\/\d{1,2}\/\d{2,4}\s+\d{1,2}:\d{2})/);
+  if (slashWithTime?.[1]) return slashWithTime[1].trim();
+  const monthRe = new RegExp(
+    `(\\d{1,2}\\s+(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\\s+\\d{4}(?:\\s+(?:at\\s+)?\\d{1,2}:\\d{2})?)`,
+    "i",
+  );
+  const monthMatch = raw.match(monthRe);
+  if (monthMatch?.[1]) return monthMatch[1].trim();
+  const slashMatch = raw.match(/\b(\d{1,2}\/\d{1,2}\/\d{2,4}(?:\s+\d{1,2}:\d{2})?)\b/);
+  if (slashMatch?.[1]) return slashMatch[1].trim();
+  const isoMatch = raw.match(/\b(\d{4}-\d{2}-\d{2}(?:\s+\d{1,2}:\d{2})?)\b/);
+  if (isoMatch?.[1]) return isoMatch[1].trim();
+  return null;
+}
+
+function findBestContextualHearingDate(scan: string): string | null {
+  const hearingScan = normalizeGluedHearingScan(scan);
+  const candidates: Array<{ date: string; score: number }> = [];
+  const add = (raw: string | null | undefined, score: number): void => {
+    const date = cleanExtractedHearingRaw(raw ? cleanLineValue(raw) : null);
+    if (!date || isJunkHearingValue(date)) return;
+    candidates.push({ date, score });
+  };
+
+  const month = MONTH_NAME;
+  const time = HEARING_TIME_SUFFIX;
+  const patterns: Array<{ re: RegExp; score: number }> = [
+    { re: new RegExp(`\\bNext hearing\\s*[:.]?\\s*(\\d{1,2}\\s+${month}[a-z]*\\s+\\d{4}${time})`, "gi"), score: 100 },
+    { re: new RegExp(`\\bCourtHearing[^\\n|]{0,100}?(\\d{1,2}\\s+${month}[a-z]*\\s+\\d{4}${time})`, "gi"), score: 95 },
+    { re: /\bCourt\s*\/\s*Hearing\s*:[^\n|]{0,100}?(\d{1,2}\/\d{1,2}\/\d{2,4}\s+\d{1,2}:\d{2})/gi, score: 95 },
+    { re: /\bHearing\s*(\d{1,2}\/\d{1,2}\/\d{2,4}\s+\d{1,2}:\d{2})/gi, score: 90 },
+    { re: new RegExp(`\\bHearing\\s*[:.]?\\s*(\\d{1,2}\\s+${month}[a-z]*\\s+\\d{4}${time})`, "gi"), score: 85 },
+    { re: new RegExp(`\\bCurrent listing\\s*(\\d{1,2}\\s+${month}[a-z]*\\s+\\d{4}${time})`, "gi"), score: 80 },
+  ];
+
+  for (const text of [scan, hearingScan]) {
+    for (const { re, score } of patterns) {
+      for (const m of text.matchAll(re)) add(m[1], score);
+    }
+  }
+
+  if (candidates.length === 0) return extractHearingDateFragment(hearingScan);
+  candidates.sort((a, b) => b.score - a.score);
+  return candidates[0]!.date;
+}
+
 function cleanExtractedHearingRaw(raw: string | null): string | null {
-  if (!raw || isJunkHearingValue(raw)) return null;
-  return raw
+  if (!raw) return null;
+  const fragment = extractHearingDateFragment(raw) ?? raw.trim();
+  if (isJunkHearingValue(fragment)) return null;
+  return fragment
     .replace(/\s+\b(?:Defendant|Accused|Client)\b\s*[:\-].*$/i, "")
     .replace(/\s+\bCourt\b\s*[:\-].*$/i, "")
     .trim();
@@ -1336,16 +1451,34 @@ function extractNextHearing(scan: string): {
   let nextHearingRaw: string | null = null;
 
   const tryHearing = (candidate: string | null | undefined): void => {
-    const v = candidate ? cleanLineValue(candidate) : null;
+    const v = cleanExtractedHearingRaw(candidate ? cleanLineValue(candidate) : null);
     if (!v || isJunkHearingValue(v)) return;
     const vHasDate = hasUkHearingDatePattern(v);
     if (nextHearingRaw) {
       const curHasDate = hasUkHearingDatePattern(nextHearingRaw);
       if (curHasDate && !vHasDate) return;
       if (!curHasDate && !vHasDate) return;
+      if (!curHasDate && vHasDate) {
+        nextHearingRaw = v;
+        return;
+      }
     }
     nextHearingRaw = v;
   };
+
+  const gluedCourtHearingDate = (text: string): void => {
+    const crown = text.match(
+      /CourtHearing:?CrownCourtat([A-Za-z]+)Hearing(\d{1,2})(January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec)(\d{4})at(\d{1,2}:\d{2})/i,
+    );
+    if (crown) tryHearing(`${crown[2]} ${crown[3]} ${crown[4]} at ${crown[5]}`);
+
+    const mag = text.match(
+      /CourtHearing:?[A-Za-z'’]*MagistratesCourtHearing(\d{1,2})(January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec)(\d{4})at(\d{1,2}:\d{2})/i,
+    );
+    if (mag) tryHearing(`${mag[1]} ${mag[2]} ${mag[3]} at ${mag[4]}`);
+  };
+  gluedCourtHearingDate(scan);
+  if (!nextHearingRaw) gluedCourtHearingDate(hearingScan);
 
   const nextHearingGlued = hearingScan.match(
     new RegExp(
@@ -1354,6 +1487,43 @@ function extractNextHearing(scan: string): {
     ),
   );
   if (nextHearingGlued?.[1]) tryHearing(nextHearingGlued[1]);
+
+  if (!nextHearingRaw) {
+    const courtSlashHearing = hearingScan.match(
+      /\bCourt\s*\/\s*Hearing\s*:\s*[^|\n]{0,120}?(\d{1,2}\/\d{1,2}\/\d{2,4}\s+\d{1,2}:\d{2})/i,
+    );
+    if (courtSlashHearing?.[1]) tryHearing(courtSlashHearing[1]);
+  }
+
+  if (!nextHearingRaw) {
+    const hearingSlashGlued = hearingScan.match(
+      /\bHearing\s*(\d{1,2}\/\d{1,2}\/\d{2,4}\s+\d{1,2}:\d{2})/i,
+    );
+    if (hearingSlashGlued?.[1]) tryHearing(hearingSlashGlued[1]);
+  }
+  if (!nextHearingRaw) {
+    const hearingSlashGluedRaw = scan.match(
+      /\bHearing(\d{1,2}\/\d{1,2}\/\d{2,4}\s+\d{1,2}:\d{2})/i,
+    );
+    if (hearingSlashGluedRaw?.[1]) tryHearing(hearingSlashGluedRaw[1]);
+  }
+
+  if (!nextHearingRaw) {
+    const courtHearingMagSlash = hearingScan.match(
+      /\bCourtHearing[A-Za-z'’\s]+Magistrates(?:'|\u2019)?\s*Court[^|\n]{0,40}?(\d{1,2}\/\d{1,2}\/\d{2,4}\s+\d{1,2}:\d{2})/i,
+    );
+    if (courtHearingMagSlash?.[1]) tryHearing(courtHearingMagSlash[1]);
+  }
+
+  if (!nextHearingRaw) {
+    const courtHearingVenueHearingDate = hearingScan.match(
+      new RegExp(
+        `\\bCourtHearing[A-Za-z'’\\s]+Magistrates(?:'|\u2019)?\\s*Court\\s+Hearing\\s*(\\d{1,2}\\s+${MONTH_NAME}[a-z]*\\s+\\d{4}${HEARING_TIME_SUFFIX})`,
+        "i",
+      ),
+    );
+    if (courtHearingVenueHearingDate?.[1]) tryHearing(courtHearingVenueHearingDate[1]);
+  }
 
   if (!nextHearingRaw) {
     const pipeHearing = hearingScan.match(
@@ -1383,7 +1553,6 @@ function extractNextHearing(scan: string): {
         "First Hearing",
         "First hearing",
         "First appearance",
-        "Hearing",
         "Hearing date and time",
         "Hearing date",
         "Listed",
@@ -1392,7 +1561,6 @@ function extractNextHearing(scan: string): {
         extractInlineLabeled(hearingScan, [
           "Next hearing",
           "Next Hearing",
-          "Hearing",
           "Hearing date and time",
           "Hearing date",
         ]),
@@ -1497,6 +1665,17 @@ function extractNextHearing(scan: string): {
       );
       if (dateIn?.[1]) tryHearing(dateIn[1]);
     }
+  }
+
+  if (!nextHearingRaw || !hasUkHearingDatePattern(nextHearingRaw)) {
+    tryHearing(
+      extractLabeledValue(hearingScan, ["Hearing"]) ??
+        extractInlineLabeled(hearingScan, ["Hearing"]),
+    );
+  }
+
+  if (!nextHearingRaw || !hasUkHearingDatePattern(nextHearingRaw)) {
+    tryHearing(findBestContextualHearingDate(scan));
   }
 
   const hearingRawCleaned = cleanExtractedHearingRaw(nextHearingRaw);
