@@ -260,4 +260,43 @@ const isoHearing = parseUkHearingDateTime("2026-06-22 09:15");
 const ukHearing = parseUkHearingDateTime("22 Jun 2026 at 09:15");
 assert.ok(isoHearing?.iso && ukHearing?.iso && isoHearing.iso.slice(0, 16) === ukHearing.iso.slice(0, 16));
 
+const v5CourtSlashHearing = `
+Court / Hearing: Riverton Magistrates' Court 11/08/2026 10:30
+Stage: Plea
+`.trim();
+assert.match(extractBundleCaseMetadata(v5CourtSlashHearing).nextHearingRaw ?? "", /11\/08\/2026 10:30/i);
+
+const v5NorthbridgeGlued = `
+CourtHearing:NorthbridgeMagistratesCourtHearing22August2026at11:15
+Defendant Example Client
+`.trim();
+assert.match(extractBundleCaseMetadata(v5NorthbridgeGlued).nextHearingRaw ?? "", /22 August 2026 at 11:15/i);
+
+const v5CrownCourtGlued = `
+CourtHearing:CrownCourtatHillfordHearing28July2026at14:00
+Stage Crown Court first hearing
+Defendant Example Client
+`.trim();
+assert.match(extractBundleCaseMetadata(v5CrownCourtGlued).nextHearingRaw ?? "", /28 July 2026 at 14:00/i);
+
+const v5PervertCourse = `
+Count 1 - Statement of offence
+Doing an act tending and intended to pervert the course of public justice
+`.trim();
+assert.match(extractBundleCaseMetadata(v5PervertCourse).offenceDisplay ?? "", /pervert the course of public justice/i);
+
+const v5CompoundBurglary = `
+Burglary, theft and possession of a bladed article
+`.trim();
+assert.match(extractBundleCaseMetadata(v5CompoundBurglary).offenceDisplay ?? "", /Burglary, theft and possession/i);
+
+const v5SlashHearingGlue = `
+Defendant Example Client
+Hearing02/08/2026 14:00
+Stage Plea
+`.trim();
+assert.match(extractBundleCaseMetadata(v5SlashHearingGlue).nextHearingRaw ?? "", /02\/08\/2026 14:00/i);
+
+assert.match(parseUkHearingDateTime("11/08/2026 10:30")?.display ?? "", /11 Aug 2026 at 10:30/i);
+
 console.log("bundle-shape-regression.test.ts: ok");
