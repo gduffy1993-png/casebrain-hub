@@ -55,11 +55,11 @@ const { buildCaseWorkflowTabHref } =
 
 assert.equal(
   resolveCaseWorkflowActiveTab({ get: (k) => (k === "tab" ? "documents" : null) }, "", true),
-  "documents",
+  "file",
 );
 
 assert.ok(
-  buildCaseWorkflowTabHref("aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee", "documents").includes("tab=documents"),
+  buildCaseWorkflowTabHref("aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee", "documents").includes("tab=file"),
 );
 
 // --- Profile detection ---

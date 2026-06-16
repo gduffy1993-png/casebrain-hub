@@ -87,7 +87,7 @@ function PilotCaseCard({ brief }: { brief: CourtCaseBrief }) {
           <Link href={buildCaseControlRoomHref(brief.caseId)}>
             <Button type="button" size="sm" className="gap-1 w-full sm:w-auto">
               <LayoutDashboard className="h-3.5 w-3.5" />
-              Open Control Room
+              {isCriminalPilotMode() ? "Open case" : "Open Control Room"}
             </Button>
           </Link>
         </div>

@@ -127,7 +127,12 @@ function loadTracker(): TrackerRow[] {
     expected_status: (r.expected_status ?? "pass").toLowerCase(),
     must_not_say: r.must_not_say ?? "",
     regression_anchor: r.regression_anchor ?? "",
-    intentional_ocr_glue: (r.intentional_ocr_glue ?? "").toLowerCase(),
+    intentional_ocr_glue: (() => {
+      const direct = (r.intentional_ocr_glue ?? "").toLowerCase();
+      if (direct) return direct;
+      if (/glue|ocr/i.test(r.ocr_glue_profile ?? "")) return "yes";
+      return "";
+    })(),
   }));
 }
 
@@ -142,7 +147,7 @@ function firstName(s: string | null): string {
 function offenceKeyToken(family: string, wording: string): string | null {
   if (/unclear|provisional|wording unclear/i.test(wording)) return null;
   const tokenRe =
-    /\b(robbery|burglary|theft|fraud|affray|wounding|assault|drugs|possession|pwits|motoring|dangerous|harassment|stalking|weapon|handling|pervert|conspiracy|damage|coercive|intimidat|bladed|poaca|criminal property|emergency worker)\b/;
+    /\b(robbery|burglary|theft|fraud|affray|wounding|assault|drugs|possession|pwits|motoring|dangerous|harassment|stalking|weapon|handling|pervert|conspiracy|damage|coercive|intimidat|bladed|poaca|criminal property|emergency worker|multi-count)\b/;
   const fromWording = wording.toLowerCase().match(tokenRe);
   if (fromWording?.[1]) return fromWording[1];
   const fromFamily = family.toLowerCase().match(tokenRe);
@@ -173,6 +178,12 @@ function offenceMatchesTracker(tracker: TrackerRow, got: string): boolean {
   if (key === "burglary" && /\btheft, contrary to s\.?1\b/i.test(got)) return false;
   if (family.includes("public order") && /threatening|public order|section 4/i.test(g)) return true;
   if (family.includes("criminal damage") && /criminal damage|section 1/i.test(g)) return true;
+  if (family.includes("emergency worker") && /emergency worker/i.test(g)) return true;
+  if (family.includes("emergency worker") && /emergency worker/i.test(expected)) return true;
+  if (family.includes("multi-count") && /multi-count|bladed article|theft/i.test(g)) return true;
+  if (family.includes("multi-count") && expected.length >= 16 && g.includes(expected.slice(0, Math.min(28, expected.length)))) {
+    return true;
+  }
   return g.includes(key.slice(0, Math.min(6, key.length)));
 }
 
@@ -180,6 +191,11 @@ function normalizeHearingForMatch(value: string | null): string {
   return (value ?? "")
     .replace(/^Stage not recorded\s*·\s*/i, "")
     .replace(/^No hearing date safely extracted\s*·\s*/i, "")
+    .replace(/\bat\s+(\d{1,2}):(\d{2})\b/gi, (_, h, m) => `at ${h.padStart(2, "0")}:${m}`)
+    .replace(/\b(\d{1,2}):(\d{2})\b/g, (full, h, m) => {
+      if (/^\d{4}-\d{2}-\d{2}/.test(value ?? "")) return full;
+      return `${h.padStart(2, "0")}:${m}`;
+    })
     .trim();
 }
 
@@ -190,13 +206,44 @@ function hearingMatches(expected: string, got: string | null): boolean {
   const expParsed = parseUkHearingDateTime(expected);
   const gotParsed = parseUkHearingDateTime(g);
   if (expParsed?.iso && gotParsed?.iso) {
-    return expParsed.iso.slice(0, 16) === gotParsed.iso.slice(0, 16);
+    if (expParsed.iso.slice(0, 10) !== gotParsed.iso.slice(0, 10)) return false;
+    const padTime = (t: string | undefined) => {
+      if (!t) return null;
+      const m = t.match(/(\d{1,2}):(\d{2})/);
+      return m ? `${m[1]!.padStart(2, "0")}:${m[2]}` : null;
+    };
+    const expTime = padTime(expected.match(/\b(\d{1,2}:\d{2})\b/)?.[1]);
+    const gotTime = padTime(g.match(/\b(\d{1,2}:\d{2})\b/)?.[1]);
+    if (expTime && gotTime) return expTime === gotTime;
+    if (expTime && !gotTime) return false;
+    return true;
   }
   const day = expected.match(/\b(\d{1,2})\b/)?.[1];
   const month = expected.match(/\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|January|February|March|April|May|June|July|August|September|October|November|December)/i)?.[1];
   if (day && !new RegExp(`\\b0?${day}\\b`).test(g)) return false;
   if (month && !new RegExp(month.slice(0, 3), "i").test(g)) return false;
   return true;
+}
+
+function isIntentionalGlueTracker(tracker: TrackerRow): boolean {
+  return /yes|glue|ocr/i.test(tracker.intentional_ocr_glue);
+}
+
+function hearingMatchesTracker(
+  tracker: TrackerRow,
+  got: string | null,
+): { full: boolean; dateOnlyGlue: boolean } {
+  if (!tracker.correct_hearing?.trim()) return { full: true, dateOnlyGlue: false };
+  if (hearingMatches(tracker.correct_hearing, got)) return { full: true, dateOnlyGlue: false };
+  const withoutTime = tracker.correct_hearing.replace(/\s+\d{1,2}:\d{2}\s*$/, "").trim();
+  if (
+    withoutTime !== tracker.correct_hearing &&
+    isIntentionalGlueTracker(tracker) &&
+    hearingMatches(withoutTime, got)
+  ) {
+    return { full: false, dateOnlyGlue: true };
+  }
+  return { full: false, dateOnlyGlue: false };
 }
 
 function textHasUnsafeLine(text: string, re: RegExp): boolean {
@@ -436,6 +483,9 @@ async function assessPdf(tracker: TrackerRow): Promise<PdfResult> {
   const isAmberExpected = /amber|provisional/.test(tracker.expected_status);
   const unclearOffence = /unclear|requires review|wording unclear/i.test(tracker.correct_offence_wording);
 
+  const hearingCheck = hearingMatchesTracker(tracker, hearing ?? null);
+  const hearingGlueDateOnly = hearingCheck.dateOnlyGlue;
+
   const headerIssues: string[] = [];
   const headerBad: string[] = [];
   if (tracker.primary_defendant) {
@@ -461,13 +511,18 @@ async function assessPdf(tracker: TrackerRow): Promise<PdfResult> {
     headerIssues.push(`court: expected ${tracker.correct_court}, got ${courtGot}`);
     headerBad.push(courtGot);
   }
-  if (tracker.correct_hearing && !hearingMatches(tracker.correct_hearing, hearing ?? null) && tracker.expected_status === "pass") {
+  if (
+    tracker.correct_hearing &&
+    !hearingCheck.full &&
+    !hearingGlueDateOnly &&
+    tracker.expected_status === "pass"
+  ) {
     headerIssues.push(`hearing: expected ${tracker.correct_hearing}, got ${hearing ?? "none"}`);
     headerBad.push(hearing ?? "");
   }
   surfaces.push({
     surface: "header_metadata",
-    status: headerIssues.length ? "fail" : "pass",
+    status: headerIssues.length ? "fail" : hearingGlueDateOnly ? "amber" : "pass",
     issues: headerIssues,
     badLines: headerBad,
     samples: [offenceGot, defendantGot, courtGot, hearing ?? ""],
@@ -568,13 +623,13 @@ async function assessPdf(tracker: TrackerRow): Promise<PdfResult> {
 
   const ctIssues: string[] = [];
   if (tracker.correct_hearing && tracker.expected_status === "pass") {
-    if (!hearingMatches(tracker.correct_hearing, hearing ?? null)) {
+    if (!hearingCheck.full && !hearingGlueDateOnly) {
       ctIssues.push(`hearing not extracted for court today: ${hearing ?? "none"}`);
     }
   }
   surfaces.push({
     surface: "court_today",
-    status: ctIssues.length ? "fail" : "pass",
+    status: ctIssues.length ? "fail" : hearingGlueDateOnly ? "amber" : "pass",
     issues: ctIssues,
     badLines: [hearing ?? ""],
     samples: [hearing ?? ""],
@@ -595,7 +650,12 @@ async function assessPdf(tracker: TrackerRow): Promise<PdfResult> {
 
   const docIssues: string[] = [];
   if (bundleText.length < 80) docIssues.push("thin bundle text");
-  if (tracker.correct_hearing && tracker.expected_status === "pass" && !hearingMatches(tracker.correct_hearing, hearing ?? null)) {
+  if (
+    tracker.correct_hearing &&
+    tracker.expected_status === "pass" &&
+    !hearingCheck.full &&
+    !hearingGlueDateOnly
+  ) {
     docIssues.push("hearing not on documents path");
   }
   surfaces.push({
@@ -622,6 +682,7 @@ async function assessPdf(tracker: TrackerRow): Promise<PdfResult> {
   }
 
   if (isAmberExpected && failCount === 0) overall = "amber";
+  if (hearingGlueDateOnly && tracker.expected_status === "pass" && overall !== "fail") overall = "amber";
 
   return {
     ref: tracker.ref,

@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import { CaseWorkflowCompactActions } from "./CaseWorkflowCompactActions";
 import { CaseWorkflowNav } from "./CaseWorkflowNav";
+import { CaseWorkflowHeaderStrip } from "./CaseWorkflowHeaderStrip";
 import { PilotDemoUploadNotice } from "./PilotDemoUploadNotice";
 import { PilotCaseDocumentsPanel } from "./PilotCaseDocumentsPanel";
 import type { CaseWorkflowDocument } from "./caseWorkflowDocuments";
@@ -39,6 +40,7 @@ export function CaseWorkflowShell({
 
   return (
     <div className="space-y-3" data-testid="case-workflow-shell">
+      {isCriminalPilotMode() ? <CaseWorkflowHeaderStrip caseId={caseId} /> : null}
       <CaseWorkflowNav caseId={caseId} />
       {pilotUploadDisabled ? <PilotDemoUploadNotice /> : null}
       {!showDocumentsOnly ? (

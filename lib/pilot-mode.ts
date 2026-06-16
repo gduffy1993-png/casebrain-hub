@@ -9,7 +9,6 @@ export const CRIMINAL_PILOT_NAV_HREFS = [
   "/supervisor-queue",
   "/upload",
   "/search",
-  "/bin",
   "/settings",
 ] as const;
 

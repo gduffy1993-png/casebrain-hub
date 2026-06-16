@@ -1,0 +1,49 @@
+"use client";
+
+import { useMemo } from "react";
+import type { CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
+import { CaseWorkflowShell } from "./CaseWorkflowShell";
+import { PilotCaseDocumentsPanel } from "./PilotCaseDocumentsPanel";
+import { mapSnapshotToWorkflowDocuments } from "./caseWorkflowDocuments";
+import { HearingOutcomeNote } from "./HearingOutcomeNote";
+import { ClientVsPapersPanel } from "./ClientVsPapersPanel";
+import { PilotDeadlinesPanel } from "./PilotDeadlinesPanel";
+import { ClientInstructionsRecorder } from "../ClientInstructionsRecorder";
+
+export type CaseFileZoneProps = {
+  caseId: string;
+  snapshot: CaseSnapshot | null;
+  pilotUploadDisabled?: boolean;
+  pilotRecordPositionHidden?: boolean;
+};
+
+/** Pilot File zone — documents + file note workflow (brains unchanged). */
+export function CaseFileZone({
+  caseId,
+  snapshot,
+  pilotUploadDisabled = false,
+  pilotRecordPositionHidden = false,
+}: CaseFileZoneProps) {
+  const documents = useMemo(() => mapSnapshotToWorkflowDocuments(snapshot), [snapshot]);
+
+  return (
+    <div className="min-h-0 pb-8 text-slate-900" data-testid="case-file-zone">
+      <CaseWorkflowShell
+        caseId={caseId}
+        documents={documents}
+        pilotUploadDisabled={pilotUploadDisabled}
+        pilotRecordPositionHidden={pilotRecordPositionHidden}
+      >
+        <div className="space-y-3">
+          <PilotCaseDocumentsPanel documents={documents} />
+          <HearingOutcomeNote caseId={caseId} />
+          <ClientVsPapersPanel caseId={caseId} />
+          {!pilotRecordPositionHidden ? (
+            <ClientInstructionsRecorder caseId={caseId} />
+          ) : null}
+          <PilotDeadlinesPanel caseId={caseId} />
+        </div>
+      </CaseWorkflowShell>
+    </div>
+  );
+}

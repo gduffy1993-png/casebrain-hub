@@ -842,6 +842,7 @@ function extractGluedStatementOfOffence(text: string): string | null {
 function extractCompoundOffenceSummary(text: string): string | null {
   const patterns = [
     /\b(Burglary,\s*theft\s+and\s+possession of a bladed article)\b/i,
+    /\b(Theft and possession of a bladed article(?:\s+on a multi-count indictment)?)\b/i,
     /\b(Unlawful wounding\s+and\s+affray)\b/i,
     /\b(Doing an act tending and intended to pervert[^.\n]{0,160}?(?:public justice|course of public justice))/i,
   ];
@@ -1121,6 +1122,49 @@ function extractOffenceWording(scan: string, fullText: string): { wording: strin
       wording: formatOffenceDisplayFromBundle(cleanLineValue(statutoryViolence[1])!),
       source: "extracted_charge_fallback",
     };
+  }
+
+  const emergencyWorker = scan.match(
+    /\b(Assault by beating of an emergency worker[^.\n]{0,120}contrary to section\s*1[^.\n]{0,120}Assaults on Emergency Workers[^.\n]{0,80})/i,
+  );
+  if (emergencyWorker?.[1]) {
+    const v = cleanLineValue(trimChargeAllegationBoundary(emergencyWorker[1].replace(/\s*\n\s*/g, " ")));
+    if (v && !isSpuriousChargeLabelValue(v)) {
+      return {
+        wording: formatOffenceDisplayFromBundle(v),
+        source: "extracted_charge_fallback",
+      };
+    }
+  }
+
+  const emergencyWorkerLoose =
+    scan.match(
+      /\b((?:Assault[^.\n]{0,48}emergency worker)[^.\n]{0,200}contrary to section\s*1[^.\n]{0,120})/i,
+    ) ??
+    normalizedFull.match(
+      /\b((?:Assault[^.\n]{0,48}emergency worker)[^.\n]{0,200}contrary to section\s*1[^.\n]{0,120})/i,
+    );
+  if (emergencyWorkerLoose?.[1]) {
+    const v = cleanLineValue(trimChargeAllegationBoundary(emergencyWorkerLoose[1].replace(/\s*\n\s*/g, " ")));
+    if (v && !isSpuriousChargeLabelValue(v) && /Assaults on Emergency Workers|Emergency Workers \(Offences\) Act/i.test(scan + normalizedFull)) {
+      return {
+        wording: formatOffenceDisplayFromBundle(v),
+        source: "extracted_charge_fallback",
+      };
+    }
+  }
+
+  const emergencyActOnly = scan.match(
+    /([^\n]{12,180}contrary to section\s*1 of the Assaults on Emergency Workers \(Offences\) Act 2018)/i,
+  );
+  if (emergencyActOnly?.[1]) {
+    const v = cleanLineValue(trimChargeAllegationBoundary(emergencyActOnly[1].replace(/\s*\n\s*/g, " ")));
+    if (v && /emergency worker/i.test(v) && !isSpuriousChargeLabelValue(v)) {
+      return {
+        wording: formatOffenceDisplayFromBundle(v),
+        source: "extracted_charge_fallback",
+      };
+    }
   }
 
   const moneyLaundering = scan.match(
@@ -1454,13 +1498,22 @@ function extractNextHearing(scan: string): {
     const v = cleanExtractedHearingRaw(candidate ? cleanLineValue(candidate) : null);
     if (!v || isJunkHearingValue(v)) return;
     const vHasDate = hasUkHearingDatePattern(v);
+    const vHasTime = /\d{1,2}:\d{2}/.test(v);
     if (nextHearingRaw) {
       const curHasDate = hasUkHearingDatePattern(nextHearingRaw);
+      const curHasTime = /\d{1,2}:\d{2}/.test(nextHearingRaw);
       if (curHasDate && !vHasDate) return;
       if (!curHasDate && !vHasDate) return;
       if (!curHasDate && vHasDate) {
         nextHearingRaw = v;
         return;
+      }
+      if (curHasDate && vHasDate) {
+        if (!curHasTime && vHasTime) {
+          nextHearingRaw = v;
+          return;
+        }
+        if (curHasTime && !vHasTime) return;
       }
     }
     nextHearingRaw = v;
@@ -1678,7 +1731,50 @@ function extractNextHearing(scan: string): {
     tryHearing(findBestContextualHearingDate(scan));
   }
 
-  const hearingRawCleaned = cleanExtractedHearingRaw(nextHearingRaw);
+  let hearingRawCleaned = cleanExtractedHearingRaw(nextHearingRaw);
+  if (hearingRawCleaned && !/\d{1,2}:\d{2}/.test(hearingRawCleaned)) {
+    const dateParts = hearingRawCleaned.match(
+      /(\d{1,2})\s+(January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+(\d{4})/i,
+    );
+    if (dateParts) {
+      const monthPattern = dateParts[2]!.replace(/[.*+?^${}()|[\]\\]/g, "");
+      const withTime = scan.match(
+        new RegExp(
+          `\\b0?${dateParts[1]}\\s+${monthPattern}[a-z]*\\s+${dateParts[3]}\\s+(?:at\\s+)?(\\d{1,2}:\\d{2})`,
+          "i",
+        ),
+      );
+      if (withTime?.[1]) {
+        hearingRawCleaned = `${dateParts[1]} ${dateParts[2]} ${dateParts[3]} at ${withTime[1]}`;
+      } else {
+        const windowMatch = scan.match(
+          new RegExp(
+            `\\b0?${dateParts[1]}\\s+${monthPattern}[a-z]*\\s+${dateParts[3]}[\\s\\S]{0,180}?(?:at\\s+|Time\\s*:\\s*|Hearing\\s*time\\s*:\\s*)?(\\d{1,2}:\\d{2})`,
+            "i",
+          ),
+        );
+        if (windowMatch?.[1]) {
+          hearingRawCleaned = `${dateParts[1]} ${dateParts[2]} ${dateParts[3]} at ${windowMatch[1]}`;
+        } else {
+          const timeLabel = scan.match(/\b(?:Hearing\s*time|Listed\s*time|Time)\s*:?\s*(\d{1,2}:\d{2})\b/i);
+          if (timeLabel?.[1]) {
+            hearingRawCleaned = `${dateParts[1]} ${dateParts[2]} ${dateParts[3]} at ${timeLabel[1]}`;
+          } else {
+            const dateIdx = scan.search(
+              new RegExp(`\\b0?${dateParts[1]}\\s+${monthPattern}[a-z]*\\s+${dateParts[3]}\\b`, "i"),
+            );
+            if (dateIdx >= 0) {
+              const window = scan.slice(dateIdx, dateIdx + 420);
+              const timeNear = window.match(/\b(\d{1,2}:\d{2})\b/);
+              if (timeNear?.[1]) {
+                hearingRawCleaned = `${dateParts[1]} ${dateParts[2]} ${dateParts[3]} at ${timeNear[1]}`;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 
   let nextHearingIso: string | null = null;
   if (hearingRawCleaned) {

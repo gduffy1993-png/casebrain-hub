@@ -1,4 +1,11 @@
 import { normalizePracticeArea } from "@/lib/types/casebrain";
+import {
+  buildCaseZoneHref,
+  buildDefaultCriminalCaseHref,
+  getDefaultCriminalCaseTab,
+  type CaseWorkflowZoneId,
+  usePilotZoneLayout,
+} from "@/lib/criminal/case-workflow-zones";
 
 export const CONTROL_ROOM_STORAGE_KEY = "casebrain:caseControlRoom";
 
@@ -28,9 +35,7 @@ export function isCriminalPracticeArea(area?: string | null): boolean {
 }
 
 export function buildControlRoomCaseHref(caseId: string): string {
-  const id = caseId.trim();
-  if (!isValidCaseId(id)) return "/cases";
-  return `/cases/${id}?tab=strategy&controlRoom=1`;
+  return buildDefaultCriminalCaseHref(caseId);
 }
 
 /** Classic three-column workspace (no Control Room cockpit). */
@@ -90,6 +95,7 @@ export function shouldRedirectToControlRoom(searchParams: {
 }
 
 export type CaseWorkflowTabId =
+  | CaseWorkflowZoneId
   | "control-room"
   | "battleboard"
   | "hearing-war-room"
@@ -97,17 +103,27 @@ export type CaseWorkflowTabId =
   | "documents"
   | "position";
 
+export { type CaseWorkflowZoneId, buildCaseZoneHref } from "@/lib/criminal/case-workflow-zones";
+
 export function buildCaseWorkflowTabHref(caseId: string, tab: CaseWorkflowTabId): string {
   const id = caseId.trim();
   if (!isValidCaseId(id)) return "/cases";
+  const pilotZones = usePilotZoneLayout();
   switch (tab) {
+    case "today":
+      return buildCaseZoneHref(id, "today");
+    case "papers":
+      return buildCaseZoneHref(id, "papers");
+    case "file":
+      return buildCaseZoneHref(id, "file");
     case "control-room":
-      return buildControlRoomCaseHref(id);
+      return pilotZones ? buildCaseZoneHref(id, "papers") : buildDefaultCriminalCaseHref(id);
     case "battleboard": {
       const p = new URLSearchParams({ tab: "battleboard", controlRoom: "1" });
       return `/cases/${id}?${p.toString()}`;
     }
     case "hearing-war-room": {
+      if (pilotZones) return buildCaseZoneHref(id, "today");
       const p = new URLSearchParams({ tab: "hearing-war-room", controlRoom: "1" });
       return `/cases/${id}?${p.toString()}`;
     }
@@ -116,6 +132,7 @@ export function buildCaseWorkflowTabHref(caseId: string, tab: CaseWorkflowTabId)
       return `/cases/${id}?${p.toString()}`;
     }
     case "documents": {
+      if (pilotZones) return buildCaseZoneHref(id, "file");
       const p = new URLSearchParams({ tab: "documents", controlRoom: "1" });
       return `/cases/${id}?${p.toString()}`;
     }
@@ -135,6 +152,8 @@ export function appendControlRoomParams(
   next.set("controlRoom", "1");
   if (!next.get("tab") && options?.defaultTab) {
     next.set("tab", options.defaultTab);
+  } else if (!next.get("tab")) {
+    next.set("tab", getDefaultCriminalCaseTab());
   }
   return next;
 }
