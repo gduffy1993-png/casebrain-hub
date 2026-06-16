@@ -8,7 +8,7 @@ import {
   resolveCaseHeaderMetadata,
   sanitizeHeaderAllegation,
 } from "@/lib/criminal/resolve-case-header-metadata";
-import { sanitizePilotVisibleLine } from "@/lib/criminal/pilot-workflow";
+import { sanitizePilotVisibleLine, type WorkflowProfileContext } from "@/lib/criminal/pilot-workflow";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
 
 type ClientRecord = {
@@ -66,6 +66,7 @@ export function ClientVsPapersPanel({ caseId }: { caseId: string }) {
     !clientText.toLowerCase().includes(papersLine.slice(0, 20).toLowerCase());
 
   const pilot = isCriminalPilotMode();
+  const pilotLineContext: WorkflowProfileContext = { allegation: papersLine, caseTitle: papersLine };
 
   return (
     <Card className={`${workflowCard} p-4 border-slate-200 bg-white`} data-testid="client-vs-papers">
@@ -80,14 +81,14 @@ export function ClientVsPapersPanel({ caseId }: { caseId: string }) {
           <div className="rounded-md border border-slate-200 bg-slate-50/80 p-3">
             <p className="text-xs font-semibold text-slate-600 mb-1">Prosecution papers</p>
             <p className="text-slate-800 leading-relaxed">
-              {pilot ? sanitizePilotVisibleLine(papersLine) : papersLine}
+              {pilot ? sanitizePilotVisibleLine(papersLine, pilotLineContext) ?? papersLine : papersLine}
             </p>
           </div>
           <div className="rounded-md border border-slate-200 bg-slate-50/80 p-3">
             <p className="text-xs font-semibold text-slate-600 mb-1">Client instructions</p>
             {clientText ? (
               <p className="text-slate-800 leading-relaxed whitespace-pre-wrap">
-                {pilot ? sanitizePilotVisibleLine(clientText) : clientText}
+                {pilot ? sanitizePilotVisibleLine(clientText, pilotLineContext) ?? clientText : clientText}
               </p>
             ) : (
               <p className="text-slate-500 text-xs">No client instructions recorded yet.</p>

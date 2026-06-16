@@ -57,7 +57,7 @@ async function main() {
       row.ref,
       defOk ? "def-ok" : `def-fail got=${gotName}`,
       courtOk ? "court-ok" : `court-fail got=${meta.court}`,
-      `hearing=${meta.nextHearingDisplay ?? meta.hearingIso ?? "?"}`,
+      `hearing=${meta.nextHearingIso ?? meta.nextHearingRaw ?? "?"}`,
     );
     if (!defOk) fail++;
   }

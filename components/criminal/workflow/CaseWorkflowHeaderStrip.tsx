@@ -7,16 +7,11 @@ import {
   sanitizeHeaderAllegation,
   sanitizeHeaderClient,
 } from "@/lib/criminal/resolve-case-header-metadata";
+import type { ParsedBundleHeader } from "@/lib/bundle/parse-bundle-display";
+import type { ExtractedBundleCaseMetadata } from "@/lib/criminal/extract-bundle-case-metadata";
 import { workflowCard } from "./workflowUi";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import { cleanPilotHeaderClient, cleanPilotCourtHeaderCell, cleanPilotHearingHeaderCell } from "@/lib/criminal/pilot-workflow";
-
-type BundleHeader = {
-  defendant?: string | null;
-  offence?: string | null;
-  court?: string | null;
-  hearing?: string | null;
-};
 
 type StripState = {
   client: string;
@@ -50,8 +45,8 @@ export function CaseWorkflowHeaderStrip({ caseId }: { caseId: string }) {
         const json = (await bundleRes.json()) as {
           ok?: boolean;
           data?: {
-            header?: BundleHeader | null;
-            caseMetadata?: Record<string, string | null> | null;
+            header?: ParsedBundleHeader | null;
+            caseMetadata?: ExtractedBundleCaseMetadata | null;
             documentCount?: number;
           };
         };
