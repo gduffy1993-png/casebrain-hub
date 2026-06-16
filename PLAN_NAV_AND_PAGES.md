@@ -2,6 +2,8 @@
 
 **Status:** Planning only. No code until we agree.
 
+**Superseded by:** `docs/CRIMINAL_PILOT_MASTER_PLAN.md` (layout zones + merged roadmap). Keep this file for historical nav notes.
+
 **Context:** Some routes throw server errors (/intake, /search). Dashboard is empty. Analytics shows N/A and 0s. OWNER DEBUG bar is visible. You want to focus on criminal, hide other solicitor roles for now, and decide what each area is for and how it should look. The current pages (dashboard, intake, search, etc.) weren’t right – they error or are empty – so we’re redefining how they should look and work from scratch for criminal-only.
 
 **Decisions (locked in for this plan):**

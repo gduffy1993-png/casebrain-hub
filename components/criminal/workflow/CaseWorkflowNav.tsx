@@ -6,11 +6,16 @@ import {
   buildCaseWorkflowTabHref,
   type CaseWorkflowTabId,
 } from "@/components/criminal/criminalCaseNavigation";
+import {
+  PILOT_ZONE_TAB_IDS,
+  pilotZoneNavLabel,
+  type CaseWorkflowZoneId,
+} from "@/lib/criminal/case-workflow-zones";
 import { workflowCard } from "./workflowUi";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import { useCaseWorkflowActiveTab } from "./useCaseWorkflowActiveTab";
 
-const TABS: { id: CaseWorkflowTabId; label: string }[] = [
+const LEGACY_TABS: { id: CaseWorkflowTabId; label: string }[] = [
   { id: "control-room", label: "Control Room" },
   { id: "battleboard", label: "Battleboard" },
   { id: "hearing-war-room", label: "Hearing War Room" },
@@ -23,14 +28,13 @@ export function CaseWorkflowNav({ caseId }: { caseId: string }) {
   const pathname = usePathname();
   const pilotMode = isCriminalPilotMode();
   const active = useCaseWorkflowActiveTab();
-  const pilotEmphasis = new Set<CaseWorkflowTabId>([
-    "hearing-war-room",
-    "disclosure-chase",
-    "documents",
-  ]);
-  const visibleTabs = pilotMode
-    ? TABS.filter((t) => t.id !== "position" && t.id !== "battleboard")
-    : TABS;
+
+  const visibleTabs: { id: CaseWorkflowTabId; label: string }[] = pilotMode
+    ? PILOT_ZONE_TAB_IDS.map((id: CaseWorkflowZoneId) => ({
+        id,
+        label: pilotZoneNavLabel(id),
+      }))
+    : LEGACY_TABS.filter((t) => t.id !== "position" && t.id !== "battleboard");
 
   return (
     <nav
@@ -41,18 +45,15 @@ export function CaseWorkflowNav({ caseId }: { caseId: string }) {
       {visibleTabs.map((t) => {
         const href = buildCaseWorkflowTabHref(caseId, t.id);
         const isActive = active === t.id;
-        const emphasized = pilotMode && pilotEmphasis.has(t.id);
         return (
           <Link
             key={t.id}
             href={href}
-            scroll={t.id === "documents" ? false : undefined}
+            scroll={t.id === "file" || t.id === "documents" ? false : undefined}
             className={
               isActive
                 ? "rounded-md px-3 py-1.5 text-xs font-semibold bg-blue-700 text-white shadow-sm"
-                : emphasized
-                  ? "rounded-md px-3 py-1.5 text-xs font-semibold text-slate-800 border border-slate-200 bg-white hover:border-blue-300 hover:bg-blue-50/60"
-                  : "rounded-md px-3 py-1.5 text-xs font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                : "rounded-md px-3 py-1.5 text-xs font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 border border-transparent hover:border-slate-200"
             }
             aria-current={isActive ? "page" : undefined}
             prefetch={pathname.startsWith("/cases/")}

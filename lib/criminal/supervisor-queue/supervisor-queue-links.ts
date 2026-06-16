@@ -1,9 +1,9 @@
-import { isValidCaseId } from "@/components/criminal/criminalCaseNavigation";
+import { buildControlRoomCaseHref, isValidCaseId } from "@/components/criminal/criminalCaseNavigation";
 
 const LIST_FALLBACK_HREFS = new Set(["/cases", "/cases/"]);
 
 export function supervisorQueueOpenCasePath(caseId: string): string {
-  return `/cases/${caseId}?tab=strategy&controlRoom=1`;
+  return buildControlRoomCaseHref(caseId);
 }
 
 /** Build case workspace href — never returns the /cases list fallback. */

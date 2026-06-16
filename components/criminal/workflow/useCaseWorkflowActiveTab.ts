@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import type { CaseWorkflowTabId } from "@/components/criminal/criminalCaseNavigation";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
+import { resolvePilotWorkflowZone } from "@/lib/criminal/case-workflow-zones";
 import { CASE_FILES_HASH } from "./focusCaseDocuments";
 
 export function resolveCaseWorkflowActiveTab(
@@ -11,16 +12,21 @@ export function resolveCaseWorkflowActiveTab(
   hash: string,
   pilotMode: boolean,
 ): CaseWorkflowTabId {
-  if (hash === "#full-battleboard") return pilotMode ? "control-room" : "battleboard";
+  if (pilotMode) {
+    const zone = resolvePilotWorkflowZone(searchParams.get("tab"), hash);
+    return zone;
+  }
+
+  if (hash === "#full-battleboard") return "battleboard";
 
   const tab = searchParams.get("tab");
   if (tab === "documents") return "documents";
   if (tab === "hearing-war-room") return "hearing-war-room";
   if (tab === "disclosure-chase") return "disclosure-chase";
-  if (tab === "client-instructions") return pilotMode ? "control-room" : "position";
-  if (tab === "battleboard" && !pilotMode) return "battleboard";
+  if (tab === "client-instructions") return "position";
+  if (tab === "battleboard") return "battleboard";
 
-  if (pilotMode && hash === CASE_FILES_HASH) return "documents";
+  if (hash === CASE_FILES_HASH) return "documents";
 
   return "control-room";
 }
@@ -41,7 +47,9 @@ export function useCaseWorkflowActiveTab(): CaseWorkflowTabId {
   return resolveCaseWorkflowActiveTab(searchParams, hash, pilotMode);
 }
 
-/** Pilot Documents tab (`?tab=documents` on control-room case URL). */
+/** Pilot File zone (`?tab=file` or legacy `?tab=documents`). */
 export function usePilotDocumentsTabActive(): boolean {
-  return isCriminalPilotMode() && useCaseWorkflowActiveTab() === "documents";
+  if (!isCriminalPilotMode()) return false;
+  const active = useCaseWorkflowActiveTab();
+  return active === "file";
 }

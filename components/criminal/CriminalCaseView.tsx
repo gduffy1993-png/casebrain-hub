@@ -52,6 +52,7 @@ import { StrategyBattleboard } from "./StrategyBattleboard";
 import { CaseControlRoom } from "./CaseControlRoom";
 import { usePilotDemoSession } from "@/components/criminal/workflow/usePilotDemoSession";
 import { PilotDocumentsView } from "@/components/criminal/workflow/PilotDocumentsView";
+import { CaseFileZone } from "@/components/criminal/workflow/CaseFileZone";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import { CASE_FILES_HASH } from "@/components/criminal/workflow/focusCaseDocuments";
 import {
@@ -61,6 +62,7 @@ import {
   resolveControlRoomFromSearchParams,
   shouldRedirectToControlRoom,
 } from "./criminalCaseNavigation";
+import { getDefaultCriminalCaseTab, normalizeCriminalCaseTabFromUrl } from "@/lib/criminal/case-workflow-zones";
 import { HearingWarRoom } from "./hearing-war-room/HearingWarRoom";
 import { DisclosureChase } from "./disclosure-chase/DisclosureChase";
 import { StrategyTimelineSection } from "./StrategyTimelineSection";
@@ -79,6 +81,9 @@ const CRIMINAL_CASE_TAB_IDS = [
   "hearing-war-room",
   "disclosure-chase",
   "documents",
+  "today",
+  "papers",
+  "file",
   "timeline",
   "client-instructions",
   "battleboard",
@@ -203,10 +208,10 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
 
   useEffect(() => {
     if (!isCriminalPilotMode() || reviewConfirmed !== true) return;
-    if (searchParams.get("tab") === "documents") return;
+    if (searchParams.get("tab") === "documents" || searchParams.get("tab") === "file") return;
     if (typeof window === "undefined" || window.location.hash !== CASE_FILES_HASH) return;
     const params = new URLSearchParams(searchParams.toString());
-    params.set("tab", "documents");
+    params.set("tab", isCriminalPilotMode() ? "file" : "documents");
     params.set("controlRoom", "1");
     router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   }, [reviewConfirmed, searchParams, pathname, router]);
@@ -215,7 +220,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
     if (reviewConfirmed !== true) return;
     if (!shouldRedirectToControlRoom(searchParams)) return;
     const params = appendControlRoomParams(new URLSearchParams(searchParams.toString()), {
-      defaultTab: "strategy",
+      defaultTab: getDefaultCriminalCaseTab(),
     });
     const query = params.toString();
     if (query === searchParams.toString()) return;
@@ -584,11 +589,16 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
     matterState === "at_station"
       ? "police-station"
       : matterState === "charged" || matterState === "before_first_hearing" || matterState === "before_ptph" || matterState === "before_trial" || matterState === "trial"
-        ? "strategy"
-        : DEFAULT_TAB;
+        ? isCriminalPilotMode()
+          ? "today"
+          : "strategy"
+        : isCriminalPilotMode()
+          ? "today"
+          : DEFAULT_TAB;
+  const normalizedTab = normalizeCriminalCaseTabFromUrl(tabFromUrl);
   const rawTab =
     tabFromUrl && CRIMINAL_CASE_TAB_IDS.includes(tabFromUrl as (typeof CRIMINAL_CASE_TAB_IDS)[number])
-      ? tabFromUrl
+      ? normalizedTab || tabFromUrl
       : defaultTabByState;
   const activeTab =
     rawTab === "police-station" && !policeStationTabAllowed
@@ -624,7 +634,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
     if (options?.forceTab) {
       params.set("tab", options.forceTab);
     }
-    params = appendControlRoomParams(params, { defaultTab: "strategy" });
+    params = appendControlRoomParams(params, { defaultTab: getDefaultCriminalCaseTab() });
     const query = params.toString();
     router.push(query ? `/cases/${targetCaseId}?${query}` : buildControlRoomCaseHref(targetCaseId), {
       scroll: false,
@@ -760,7 +770,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
     effectiveProceduralSafety,
   };
 
-  if (activeTab === "documents" && isCriminalPilotMode()) {
+  if ((activeTab === "documents" || activeTab === "file") && isCriminalPilotMode()) {
     return (
       <div className="space-y-4">
         <WorkflowSafetyLine />
@@ -773,7 +783,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
             </p>
           </div>
         )}
-        <PilotDocumentsView
+        <CaseFileZone
           caseId={caseId}
           snapshot={snapshot}
           pilotUploadDisabled={pilotUploadDisabled}
@@ -805,7 +815,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
     );
   }
 
-  if (activeTab === "hearing-war-room") {
+  if (activeTab === "hearing-war-room" || activeTab === "today") {
     return (
       <div className="space-y-4">
         <WorkflowSafetyLine />
@@ -901,7 +911,14 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
     );
   }
 
-  if (useControlRoom) {
+  if (
+    useControlRoom &&
+    activeTab !== "disclosure-chase" &&
+    activeTab !== "today" &&
+    activeTab !== "hearing-war-room" &&
+    activeTab !== "file" &&
+    activeTab !== "documents"
+  ) {
     return (
       <div className="space-y-4">
         <WorkflowSafetyLine />

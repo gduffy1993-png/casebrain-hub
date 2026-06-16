@@ -345,6 +345,14 @@ export function CourtTodayClient() {
               </p>
               <p className="text-xs text-slate-500 mt-1">{todayLabel}</p>
             </>
+          ) : pilotMode ? (
+            <>
+              <p className="text-sm text-slate-600 mt-1">{todayLabel}</p>
+              <p className="text-xs text-slate-500 mt-0.5 max-w-2xl">
+                Court-day command centre — open a matter for today&apos;s hearing prep, papers review,
+                and disclosure chase. Provisional display · solicitor review required.
+              </p>
+            </>
           ) : (
             <>
               <p className="text-sm text-slate-600 mt-1">{todayLabel}</p>

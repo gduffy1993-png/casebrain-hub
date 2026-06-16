@@ -356,6 +356,7 @@ export function HearingWarRoom({
           : null,
         bundleMetadata: bundleSource?.caseMetadata,
         bundleHeader: bundleSource?.header,
+        bundleText: bundleSource?.frontMatterScan ?? null,
         matterState,
       }),
     [snapshot, matter, bundleSource, matterState],
