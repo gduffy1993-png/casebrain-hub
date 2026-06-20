@@ -30,6 +30,42 @@ function sectionPlain(s: MatterBriefSection): string {
   return lines.join("\n");
 }
 
+function chaseOpportunityBullets(chase: DisclosureChaseBrief): string[] {
+  const fromPrimary = chase.primaryItems
+    .slice(0, 6)
+    .map((item) => {
+      const why = item.whyItMatters?.trim();
+      if (why && !/^chase:/i.test(why)) {
+        return why.match(/^opportunity/i) ? why : `Opportunity: ${why}`;
+      }
+      const label = item.label?.trim();
+      if (!label) return "";
+      if (/medical|injury|causation/i.test(label)) {
+        return `Causation / injury challenge: ${label} outstanding on file.`;
+      }
+      if (/cctv|bwv|999|cad|timeline|audio/i.test(label)) {
+        return `Sequence / coverage challenge: ${label} outstanding on file.`;
+      }
+      if (/receipt|cardholder|bank|loss|continuity/i.test(label)) {
+        return `Attribution / continuity challenge: ${label} outstanding on file.`;
+      }
+      return `Disclosure leverage: ${label} outstanding on file.`;
+    })
+    .filter(Boolean);
+
+  return dedupePilotLines(fromPrimary).slice(0, 8);
+}
+
+function topChaseBullets(chase: DisclosureChaseBrief, labels: string[]): string[] {
+  const top = chase.primaryItems.slice(0, 3).map((item, i) => {
+    const why = item.whyItMatters?.trim();
+    const core = item.label?.trim() || labels[i] || "Outstanding item";
+    return why ? `${core} — ${why}` : core;
+  });
+  if (top.length >= 3) return top;
+  return labels.slice(0, 3).map((l, i) => top[i] ?? l);
+}
+
 /** Assemble Matter Brief from existing War Room + Chase briefs — no new reasoning. */
 export function buildMatterBrief(input: {
   warRoom: HearingWarRoomBrief;
@@ -37,6 +73,7 @@ export function buildMatterBrief(input: {
   primaryRouteTitle?: string | null;
 }): MatterBrief {
   const { warRoom, chase } = input;
+  const contradictions = warRoom.bundleContradictions ?? [];
   const primaryRoute =
     input.primaryRouteTitle?.trim() ||
     chase.linkedRoutes[0]?.trim() ||
@@ -52,6 +89,7 @@ export function buildMatterBrief(input: {
   const caseTheory = trimParagraph([
     "The defence case remains provisional pending disclosure.",
     primaryRoute ? `Primary route on file: ${primaryRoute}.` : null,
+    ...contradictions.map((c) => c.theoryLine),
     warRoom.safePositionToday,
     chaseLabels.length
       ? `Outstanding material includes: ${chaseLabels.slice(0, 3).join("; ")}.`
@@ -59,33 +97,38 @@ export function buildMatterBrief(input: {
   ]);
 
   const risksToDefence = dedupePilotLines([
+    ...contradictions.map((c) => c.riskLine),
     ...warRoom.doNotOverstate,
     ...warRoom.collapseRisks,
     ...chaseLabels,
-  ]).slice(0, 8);
+  ]).slice(0, 10);
 
   const risksToProsecution = dedupePilotLines([
-    ...warRoom.nextHearingMoves.filter((m) => /outstanding|missing|not served|continuity|reconcile/i.test(m)),
+    ...warRoom.nextHearingMoves.filter((m) => /outstanding|missing|not served|continuity|reconcile|differs|unclear|challenge/i.test(m)),
     ...chase.primaryItems.map((i) => i.whyItMatters).filter(Boolean),
   ]).slice(0, 6);
 
   const opportunities = dedupePilotLines([
-    ...chaseLabels.map((l) => `Chase: ${l}`),
-    ...warRoom.nextHearingMoves,
-    ...warRoom.evidenceAnchors.slice(0, 4),
+    ...contradictions.map((c) => c.opportunityLine),
+    ...chaseOpportunityBullets(chase),
+    ...warRoom.evidenceAnchors.slice(0, 4).map((a) =>
+      /^opportunity/i.test(a) ? a : `Evidence anchor: ${a}`,
+    ),
   ]).slice(0, 10);
 
   const ptphBullets = dedupePilotLines([
     warRoom.safePositionToday,
+    ...contradictions.map((c) => c.theoryLine),
     ...warRoom.askCourtToRecord,
     ...chaseLabels.map((l) => `Outstanding: ${l}`),
     "The defence cannot confirm final issues until disclosure is complete.",
-  ]).slice(0, 10);
+  ]).slice(0, 12);
 
   const clientParagraph =
     warRoom.draftWording.clientExplanation?.trim() ||
     trimParagraph([
       "We are still reviewing the papers.",
+      contradictions[0]?.theoryLine,
       warRoom.safePositionToday,
       chaseLabels.length ? "Some evidence is still outstanding." : null,
     ]);
@@ -122,7 +165,7 @@ export function buildMatterBrief(input: {
       paragraph: chase.disclosureSummary?.trim() || undefined,
       bullets:
         chaseLabels.length > 0
-          ? chaseLabels.slice(0, 3)
+          ? topChaseBullets(chase, chaseLabels)
           : ["No priority chase items on file yet."],
     },
     {

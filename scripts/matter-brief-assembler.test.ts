@@ -62,7 +62,19 @@ const chase: DisclosureChaseBrief = {
 };
 
 const brief = buildMatterBrief({
-  warRoom,
+  warRoom: {
+    ...warRoom,
+    bundleContradictions: [
+      {
+        type: "loss_figure",
+        sources: ["MG5", "MG11"],
+        values: ["1,280.40", "1,084.90"],
+        theoryLine: "The papers differ on the loss figure (£1,280.40 vs £1,084.90).",
+        riskLine: "Loss figure differs between served documents.",
+        opportunityLine: "Opportunity to challenge loss figure reconciliation.",
+      },
+    ],
+  },
   chase,
   primaryRouteTitle: "Fraud / account-control / dishonesty pressure",
 });
@@ -70,6 +82,13 @@ const brief = buildMatterBrief({
 assert.equal(brief.sections.length, 6);
 assert.ok(brief.plainText.includes("Provisional case theory"));
 assert.ok(brief.plainText.includes("Itemised till receipts"));
+assert.ok(brief.plainText.includes("1,280.40"));
 assert.ok(brief.sections.some((s) => s.id === "client" && s.paragraph?.includes("reviewing the papers")));
+assert.ok(
+  brief.sections.some(
+    (s) => s.id === "opportunities" && s.bullets?.some((b) => /^Opportunity:|^Causation|^Attribution|^Disclosure leverage:/i.test(b)),
+  ),
+  "opportunities framed not dumped",
+);
 
 console.log("matter-brief-assembler.test.ts: ok");

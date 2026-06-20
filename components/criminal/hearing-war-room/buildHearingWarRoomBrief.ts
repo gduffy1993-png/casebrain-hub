@@ -28,6 +28,10 @@ import {
   isBlockedBattleboardTemplateLine,
 } from "@/lib/criminal/bundle-truth-ledger";
 import type { BundleTruthLedger } from "@/lib/criminal/bundle-truth-types";
+import {
+  extractBundleContradictions,
+  type BundleContradiction,
+} from "@/lib/criminal/extract-bundle-contradictions";
 
 const FORBIDDEN_RE =
   /\b(this wins|case collapses|crowns?\s+will\s+lose|crown\s+case\s+collapses|guaranteed|will\s+be\s+acquitted|plead\s+guilty|plead\s+not\s+guilty)\b/i;
@@ -52,6 +56,8 @@ export type HearingWarRoomBrief = {
   nextHearingMoves: string[];
   evidenceAnchors: string[];
   collapseRisks: string[];
+  /** Document-pair inconsistencies — additive; empty when bundle does not support them. */
+  bundleContradictions?: BundleContradiction[];
   draftWording: {
     disclosureTimetable: string;
     adjournment: string;
@@ -287,6 +293,33 @@ function applyLedgerForbiddenGuards(
     nextHearingMoves: guardLines(brief.nextHearingMoves, brief.nextHearingMoves.length),
     collapseRisks: guardLines(brief.collapseRisks, brief.collapseRisks.length),
     evidenceAnchors: guardSolicitorLines(brief.evidenceAnchors, { ledger, bundleText }, brief.evidenceAnchors.length),
+    bundleContradictions: brief.bundleContradictions?.map((c) => ({
+      ...c,
+      theoryLine: guardLines([c.theoryLine], 1)[0] ?? c.theoryLine,
+      riskLine: guardLines([c.riskLine], 1)[0] ?? c.riskLine,
+      opportunityLine: guardLines([c.opportunityLine], 1)[0] ?? c.opportunityLine,
+    })),
+  };
+}
+
+function enrichBriefWithContradictions(
+  brief: HearingWarRoomBrief,
+  bundleText?: string | null,
+): HearingWarRoomBrief {
+  const contradictions = extractBundleContradictions(bundleText);
+  if (contradictions.length === 0) return brief;
+
+  return {
+    ...brief,
+    bundleContradictions: contradictions,
+    collapseRisks: uniqueLines(
+      [...contradictions.map((c) => c.riskLine), ...brief.collapseRisks],
+      Math.max(brief.collapseRisks.length + contradictions.length, 8),
+    ),
+    nextHearingMoves: uniqueLines(
+      [...contradictions.map((c) => c.opportunityLine), ...brief.nextHearingMoves],
+      Math.max(brief.nextHearingMoves.length + contradictions.length, 8),
+    ),
   };
 }
 
@@ -475,24 +508,29 @@ export function buildHearingWarRoomBrief(input: BuildHearingWarRoomBriefInput): 
     draftWording,
   };
 
-  if (!isCriminalPilotMode()) return applyLedgerForbiddenGuards(brief, ledger, input.bundleText);
+  if (!isCriminalPilotMode()) {
+    return applyLedgerForbiddenGuards(enrichBriefWithContradictions(brief, input.bundleText), ledger, input.bundleText);
+  }
 
   return applyLedgerForbiddenGuards(
-    {
-      ...brief,
-      safePositionToday: pilotCleanupVisibleText(brief.safePositionToday),
-      sayThis: pilotFinalizeBriefLines(brief.sayThis),
-      doNotOverstate: pilotFinalizeBriefLines(brief.doNotOverstate),
-      askCourtToRecord: pilotFinalizeBriefLines(brief.askCourtToRecord),
-      instructionsNeeded: pilotFinalizeBriefLines(brief.instructionsNeeded),
-      nextHearingMoves: pilotFinalizeBriefLines(brief.nextHearingMoves),
-      collapseRisks: pilotFinalizeBriefLines(brief.collapseRisks),
-      draftWording: {
-        disclosureTimetable: pilotCleanupVisibleText(brief.draftWording.disclosureTimetable),
-        adjournment: pilotCleanupVisibleText(brief.draftWording.adjournment),
-        clientExplanation: pilotCleanupVisibleText(brief.draftWording.clientExplanation),
+    enrichBriefWithContradictions(
+      {
+        ...brief,
+        safePositionToday: pilotCleanupVisibleText(brief.safePositionToday),
+        sayThis: pilotFinalizeBriefLines(brief.sayThis),
+        doNotOverstate: pilotFinalizeBriefLines(brief.doNotOverstate),
+        askCourtToRecord: pilotFinalizeBriefLines(brief.askCourtToRecord),
+        instructionsNeeded: pilotFinalizeBriefLines(brief.instructionsNeeded),
+        nextHearingMoves: pilotFinalizeBriefLines(brief.nextHearingMoves),
+        collapseRisks: pilotFinalizeBriefLines(brief.collapseRisks),
+        draftWording: {
+          disclosureTimetable: pilotCleanupVisibleText(brief.draftWording.disclosureTimetable),
+          adjournment: pilotCleanupVisibleText(brief.draftWording.adjournment),
+          clientExplanation: pilotCleanupVisibleText(brief.draftWording.clientExplanation),
+        },
       },
-    },
+      input.bundleText,
+    ),
     ledger,
     input.bundleText,
   );
