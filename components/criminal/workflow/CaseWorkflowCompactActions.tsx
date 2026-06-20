@@ -58,7 +58,7 @@ export function CaseWorkflowCompactActions({
             </Button>
           </Link>
         ))}
-      <ExportCaseQaPackButton caseId={caseId} />
+      {!isCriminalPilotMode() ? <ExportCaseQaPackButton caseId={caseId} /> : null}
     </div>
   );
 }

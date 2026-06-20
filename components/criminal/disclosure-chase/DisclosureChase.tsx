@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { workflowCard, workflowMuted, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
+import { workflowCard, workflowMuted, workflowPilotCard, workflowPilotKpiCell, workflowPilotKpiStrip, workflowPilotSurfaceCard, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
 import type { CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
 import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
 import {
@@ -84,6 +84,8 @@ export type DisclosureChaseProps = {
   matterState: string | null;
   effectiveProceduralSafety: { status: string; outstandingItems?: string[] } | null;
   controlRoomMode?: boolean;
+  /** Parent already mounted CaseWorkflowShell (pilot Chase tab). */
+  embedInShell?: boolean;
 };
 
 const FILTER_TABS: { id: ChaseFilterBucket; label: string }[] = [
@@ -130,7 +132,35 @@ function deriveBundleHealth(
   });
 }
 
-function CounterTile({ label, value, tone }: { label: string; value: number; tone?: string }) {
+function CounterTile({
+  label,
+  value,
+  tone,
+  pilotEmbed,
+}: {
+  label: string;
+  value: number;
+  tone?: string;
+  pilotEmbed?: boolean;
+}) {
+  if (pilotEmbed) {
+    const pilotTone =
+      tone?.includes("red")
+        ? "text-rose-400"
+        : tone?.includes("amber")
+          ? "text-amber-400"
+          : tone?.includes("blue")
+            ? "text-blue-400"
+            : tone?.includes("emerald")
+              ? "text-emerald-400"
+              : "text-slate-100";
+    return (
+      <div className={workflowPilotKpiCell}>
+        <p className={workflowSectionTitle}>{label}</p>
+        <p className={`text-lg font-semibold mt-1 tabular-nums ${pilotTone}`}>{value}</p>
+      </div>
+    );
+  }
   return (
     <div className="bg-white px-3 py-2.5 rounded-lg border border-slate-200">
       <p className={workflowSectionTitle}>{label}</p>
@@ -156,6 +186,7 @@ function ChaseItemCard({
   onMarkChased,
   onMarkReceived,
   hideChaseStateActions = false,
+  pilotEmbed = false,
 }: {
   item: DisclosureChaseItem;
   status: ChaseItemStatus;
@@ -164,8 +195,14 @@ function ChaseItemCard({
   onMarkChased: () => void;
   onMarkReceived: () => void;
   hideChaseStateActions?: boolean;
+  pilotEmbed?: boolean;
 }) {
   const [copied, setCopied] = useState<"chase" | "court" | null>(null);
+  const cardClass = pilotEmbed ? workflowPilotCard : workflowCard;
+  const titleClass = pilotEmbed ? "text-sm font-semibold text-slate-100" : "text-sm font-semibold text-slate-900";
+  const bodyClass = pilotEmbed ? "text-xs text-slate-400" : "text-xs text-slate-600";
+  const labelClass = pilotEmbed ? "text-slate-500" : "text-slate-500";
+  const valueClass = pilotEmbed ? "text-slate-200 font-medium" : "text-slate-800 font-medium";
 
   const handleCopy = async (kind: "chase" | "court") => {
     const ok = await copyText(kind === "chase" ? item.draftChaseWording : item.courtLine);
@@ -177,18 +214,18 @@ function ChaseItemCard({
 
   return (
     <article
-      className={`${workflowCard} cursor-pointer transition-shadow ${
-        selected ? "ring-2 ring-blue-400 shadow-md" : "hover:shadow-sm"
+      className={`${cardClass} cursor-pointer transition-shadow ${
+        selected ? "ring-2 ring-violet-500/60 shadow-md" : "hover:shadow-sm"
       }`}
       onClick={onSelect}
       onKeyDown={(e) => e.key === "Enter" && onSelect()}
       role="button"
       tabIndex={0}
     >
-      <div className="px-4 py-3 border-b border-slate-100 flex flex-wrap items-start justify-between gap-2">
+      <div className={`px-4 py-3 border-b ${pilotEmbed ? "border-slate-700/60" : "border-slate-100"} flex flex-wrap items-start justify-between gap-2`}>
         <div className="min-w-0">
-          <h3 className="text-sm font-semibold text-slate-900">{item.label}</h3>
-          <p className="text-xs text-slate-600 mt-1 line-clamp-2">{item.whyItMatters}</p>
+          <h3 className={titleClass}>{item.label}</h3>
+          <p className={`${bodyClass} mt-1 line-clamp-2`}>{item.whyItMatters}</p>
         </div>
         <Badge variant={statusBadgeVariant(status)} size="sm">
           {status}
@@ -196,12 +233,12 @@ function ChaseItemCard({
       </div>
       <dl className="px-4 py-2 grid grid-cols-2 gap-x-3 gap-y-1 text-xs">
         <div>
-          <dt className="text-slate-500">Source</dt>
-          <dd className="text-slate-800 font-medium">{item.source}</dd>
+          <dt className={labelClass}>Source</dt>
+          <dd className={valueClass}>{item.source}</dd>
         </div>
         <div>
-          <dt className="text-slate-500">Deadline</dt>
-          <dd className="text-slate-800 font-medium">{item.deadlineLabel}</dd>
+          <dt className={labelClass}>Deadline</dt>
+          <dd className={valueClass}>{item.deadlineLabel}</dd>
         </div>
       </dl>
       <div className="px-4 pb-3 flex flex-wrap gap-1.5" onClick={(e) => e.stopPropagation()}>
@@ -247,6 +284,7 @@ function DetailPanel({
   onMarkChased,
   onMarkReceived,
   hideChaseStateActions = false,
+  pilotEmbed = false,
 }: {
   item: DisclosureChaseItem;
   status: ChaseItemStatus;
@@ -254,16 +292,23 @@ function DetailPanel({
   onMarkChased: () => void;
   onMarkReceived: () => void;
   hideChaseStateActions?: boolean;
+  pilotEmbed?: boolean;
 }) {
+  const shell = pilotEmbed ? workflowPilotSurfaceCard : workflowCard;
+  const titleClass = pilotEmbed ? "text-sm font-semibold text-slate-100" : "text-sm font-semibold text-slate-900";
+  const bodyClass = pilotEmbed ? "text-sm text-slate-300" : "text-sm text-slate-800";
+  const labelClass = pilotEmbed ? "text-slate-500" : "text-slate-500";
   return (
-    <aside className={`${workflowCard} sticky top-4`}>
-      <header className="px-4 py-3 border-b border-slate-100 bg-slate-50/80">
-        <h2 className="text-sm font-semibold text-slate-900">{item.label}</h2>
+    <aside className={`${shell} sticky top-4`}>
+      <header
+        className={`px-4 py-3 border-b ${pilotEmbed ? "border-slate-700/60 bg-slate-900/80" : "border-slate-100 bg-slate-50/80"}`}
+      >
+        <h2 className={titleClass}>{item.label}</h2>
         <Badge variant={statusBadgeVariant(status)} size="sm" className="mt-2">
           {status}
         </Badge>
       </header>
-      <div className="p-4 space-y-4 text-sm text-slate-800">
+      <div className={`p-4 space-y-4 ${bodyClass}`}>
         <div>
           <p className={workflowSectionTitle}>Why it matters</p>
           <p className="mt-1 leading-relaxed">{item.whyItMatters}</p>
@@ -304,13 +349,21 @@ function DetailPanel({
         )}
         <div>
           <p className={workflowSectionTitle}>Draft chase wording</p>
-          <p className="mt-1 text-xs leading-relaxed italic border-l-2 border-slate-200 pl-2">
+          <p
+            className={`mt-1 text-xs leading-relaxed italic border-l-2 pl-2 ${
+              pilotEmbed ? "border-slate-600 text-slate-400" : "border-slate-200"
+            }`}
+          >
             {item.draftChaseWording}
           </p>
         </div>
         <div>
           <p className={workflowSectionTitle}>Court line</p>
-          <p className="mt-1 text-xs leading-relaxed italic border-l-2 border-blue-200 pl-2">
+          <p
+            className={`mt-1 text-xs leading-relaxed italic border-l-2 pl-2 ${
+              pilotEmbed ? "border-blue-700/60 text-slate-400" : "border-blue-200"
+            }`}
+          >
             {item.courtLine}
           </p>
         </div>
@@ -325,7 +378,7 @@ function DetailPanel({
             </Button>
           </div>
         ) : null}
-        <p className="text-[10px] text-slate-500 border-t border-slate-100 pt-3">
+        <p className={`text-[10px] border-t pt-3 ${pilotEmbed ? "text-slate-500 border-slate-700/60" : "text-slate-500 border-slate-100"}`}>
           Case-wide court line (provisional): {brief.safeCourtLine}
         </p>
       </div>
@@ -342,6 +395,7 @@ export function DisclosureChase({
   matterState,
   effectiveProceduralSafety,
   controlRoomMode,
+  embedInShell = false,
 }: DisclosureChaseProps) {
   const [matter, setMatter] = useState<MatterSummary | null>(null);
   const [battleboard, setBattleboard] = useState<BattleboardOutput | null>(null);
@@ -630,15 +684,12 @@ export function DisclosureChase({
   }, [filteredItems, selectedId]);
 
   const loading = snapshotLoading || battleboardLoading || bundleLoading;
+  const pilotEmbed = embedInShell && pilotMode;
+  const loadingCardClass = pilotEmbed ? workflowPilotCard : workflowCard;
 
-  return (
-    <div className="min-h-0 pb-8 text-slate-900" data-testid="disclosure-chase">
-      <div className="max-w-[1400px] space-y-4">
-        <CaseWorkflowShell
-          caseId={caseId}
-          pilotUploadDisabled={pilotUploadDisabled}
-          pilotRecordPositionHidden={pilotUploadDisabled}
-        >
+  const chaseBody = (
+    <>
+        {!pilotEmbed ? (
         <header className={`${workflowCard} overflow-hidden`}>
           <div className="px-4 py-3 border-b border-slate-100 bg-gradient-to-r from-violet-50/80 to-white flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div className="min-w-0">
@@ -688,23 +739,29 @@ export function DisclosureChase({
             <p className="px-4 py-2 text-[10px] text-slate-400 border-t border-slate-100">{metadataNote}</p>
           ) : null}
         </header>
+        ) : (
+          <p className={`${workflowSectionTitle} px-1`}>
+            Disclosure chase · {loading ? "…" : `${counters.total} on file`}
+          </p>
+        )}
 
         {loading ? (
-          <div className={`${workflowCard} p-8 flex items-center justify-center gap-2 text-slate-600`}>
+          <div className={`${loadingCardClass} p-8 flex items-center justify-center gap-2 ${pilotEmbed ? "text-slate-400" : "text-slate-600"}`}>
             <Loader2 className="h-5 w-5 animate-spin text-violet-700" />
             Loading disclosure chase tracker…
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
-              <CounterTile label="Total" value={counters.total} />
-              <CounterTile label="Overdue" value={counters.overdue} tone="text-red-800" />
-              <CounterTile label="Due soon" value={counters.dueSoon} tone="text-amber-800" />
-              <CounterTile label="Chased" value={counters.chased} tone="text-blue-800" />
-              <CounterTile label="Received" value={counters.received} tone="text-emerald-800" />
-              <CounterTile label="Not started" value={counters.notStarted} />
+            <div className={pilotEmbed ? workflowPilotKpiStrip : "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2"}>
+              <CounterTile pilotEmbed={pilotEmbed} label="Total" value={counters.total} />
+              <CounterTile pilotEmbed={pilotEmbed} label="Overdue" value={counters.overdue} tone="text-red-800" />
+              <CounterTile pilotEmbed={pilotEmbed} label="Due soon" value={counters.dueSoon} tone="text-amber-800" />
+              <CounterTile pilotEmbed={pilotEmbed} label="Chased" value={counters.chased} tone="text-blue-800" />
+              <CounterTile pilotEmbed={pilotEmbed} label="Received" value={counters.received} tone="text-emerald-800" />
+              <CounterTile pilotEmbed={pilotEmbed} label="Not started" value={counters.notStarted} />
             </div>
 
+            {!pilotEmbed ? (
             <section className={`${workflowCard} p-3 border-violet-200/40 bg-violet-50/20`}>
               <p className={`${workflowSectionTitle} flex items-center gap-1 text-violet-900/80`}>
                 <MessageSquareQuote className="h-3.5 w-3.5" />
@@ -712,6 +769,7 @@ export function DisclosureChase({
               </p>
               <p className="mt-2 text-sm text-slate-800 leading-relaxed">{brief.safeCourtLine}</p>
             </section>
+            ) : null}
 
             <div className="flex flex-wrap gap-1.5">
               {FILTER_TABS.map((tab) => (
@@ -721,8 +779,12 @@ export function DisclosureChase({
                   onClick={() => setFilter(tab.id)}
                   className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
                     filter === tab.id
-                      ? "bg-violet-700 text-white border-violet-700"
-                      : "bg-white text-slate-700 border-slate-200 hover:bg-slate-50"
+                      ? pilotEmbed
+                        ? "bg-violet-600 text-white border-violet-600"
+                        : "bg-violet-700 text-white border-violet-700"
+                      : pilotEmbed
+                        ? "bg-slate-900/70 text-slate-300 border-slate-600 hover:bg-slate-800"
+                        : "bg-white text-slate-700 border-slate-200 hover:bg-slate-50"
                   }`}
                 >
                   {tab.label}
@@ -758,24 +820,25 @@ export function DisclosureChase({
                       onMarkChased={() => markChased(item.id)}
                       onMarkReceived={() => markReceived(item.id)}
                       hideChaseStateActions={pilotChaseActionsHidden}
+                      pilotEmbed={pilotEmbed}
                     />
                   ))}
                   {filteredAdditional.length > 0 && (
-                    <div className={`${workflowCard} overflow-hidden`}>
+                    <div className={`${pilotEmbed ? workflowPilotCard : workflowCard} overflow-hidden`}>
                       <button
                         type="button"
-                        className="w-full px-4 py-3 text-left flex items-center justify-between gap-2 hover:bg-slate-50/80"
+                        className={`w-full px-4 py-3 text-left flex items-center justify-between gap-2 ${pilotEmbed ? "hover:bg-slate-800/50" : "hover:bg-slate-50/80"}`}
                         onClick={() => setShowAdditional((v) => !v)}
                       >
-                        <span className="text-sm font-medium text-slate-900">
+                        <span className={`text-sm font-medium ${pilotEmbed ? "text-slate-100" : "text-slate-900"}`}>
                           Additional source-material issues ({filteredAdditional.length})
                         </span>
-                        <span className="text-xs text-violet-700 font-medium">
+                        <span className="text-xs text-violet-400 font-medium">
                           {showAdditional ? "Hide" : "Show"}
                         </span>
                       </button>
                       {showAdditional && (
-                        <div className="border-t border-slate-100 p-3 space-y-3 bg-slate-50/40">
+                        <div className={`border-t ${pilotEmbed ? "border-slate-700/60 p-3 space-y-3" : "border-slate-100 p-3 space-y-3 bg-slate-50/40"}`}>
                           {filteredAdditional.map((item) => (
                             <ChaseItemCard
                               key={item.id}
@@ -786,6 +849,7 @@ export function DisclosureChase({
                               onMarkChased={() => markChased(item.id)}
                               onMarkReceived={() => markReceived(item.id)}
                               hideChaseStateActions={pilotChaseActionsHidden}
+                              pilotEmbed={pilotEmbed}
                             />
                           ))}
                         </div>
@@ -801,6 +865,7 @@ export function DisclosureChase({
                     onMarkChased={() => markChased(selectedItem.id)}
                     onMarkReceived={() => markReceived(selectedItem.id)}
                     hideChaseStateActions={pilotChaseActionsHidden}
+                    pilotEmbed={pilotEmbed}
                   />
                 )}
               </div>
@@ -813,7 +878,23 @@ export function DisclosureChase({
             </p>
           </>
         )}
-        </CaseWorkflowShell>
+    </>
+  );
+
+  return (
+    <div className={pilotEmbed ? "space-y-3" : "min-h-0 pb-8 text-slate-900"} data-testid="disclosure-chase">
+      <div className={pilotEmbed ? "" : "max-w-[1400px] space-y-4"}>
+        {embedInShell ? (
+          chaseBody
+        ) : (
+          <CaseWorkflowShell
+            caseId={caseId}
+            pilotUploadDisabled={pilotUploadDisabled}
+            pilotRecordPositionHidden={pilotUploadDisabled}
+          >
+            {chaseBody}
+          </CaseWorkflowShell>
+        )}
       </div>
     </div>
   );

@@ -69,6 +69,9 @@ import { StrategyTimelineSection } from "./StrategyTimelineSection";
 import { VerdictRatingBlock } from "./VerdictRatingBlock";
 import { BundleSourcePanels } from "./BundleSourcePanels";
 import { WorkflowSafetyLine } from "./workflow/WorkflowSafetyLine";
+import { CaseWorkflowShell } from "./workflow/CaseWorkflowShell";
+import { PilotPapersView } from "./workflow/PilotPapersView";
+import { PilotSummaryView } from "./workflow/PilotSummaryView";
 
 /** Tab ids for criminal case page. URL ?tab= must be one of these. Order: primary then secondary. */
 const CRIMINAL_CASE_TAB_IDS = [
@@ -773,7 +776,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   if ((activeTab === "documents" || activeTab === "file") && isCriminalPilotMode()) {
     return (
       <div className="space-y-4">
-        <WorkflowSafetyLine />
+        {!isCriminalPilotMode() ? <WorkflowSafetyLine /> : null}
         {matterClosed && (
           <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-center">
             <p className="text-xs text-foreground">
@@ -796,9 +799,12 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   }
 
   if (activeTab === "disclosure-chase") {
+    const chaseBody = (
+      <DisclosureChase {...disclosureChaseSharedProps} controlRoomMode={useControlRoom} embedInShell={isCriminalPilotMode()} />
+    );
     return (
       <div className="space-y-4">
-        <WorkflowSafetyLine />
+        {!isCriminalPilotMode() ? <WorkflowSafetyLine /> : null}
         {matterClosed && (
           <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-center">
             <p className="text-xs text-foreground">
@@ -808,7 +814,19 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
             </p>
           </div>
         )}
-        <DisclosureChase {...disclosureChaseSharedProps} controlRoomMode={useControlRoom} />
+        {isCriminalPilotMode() ? (
+          <CaseWorkflowShell
+            caseId={caseId}
+            onRecordPosition={pilotRecordPositionHidden ? undefined : openRecordPosition}
+            onUploadEvidence={pilotUploadDisabled ? undefined : openUploadEvidence}
+            pilotUploadDisabled={pilotUploadDisabled}
+            pilotRecordPositionHidden={pilotRecordPositionHidden}
+          >
+            {chaseBody}
+          </CaseWorkflowShell>
+        ) : (
+          chaseBody
+        )}
         {controlRoomSharedModals}
         <BackToTop />
       </div>
@@ -818,7 +836,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   if (activeTab === "hearing-war-room" || activeTab === "today") {
     return (
       <div className="space-y-4">
-        <WorkflowSafetyLine />
+        {!isCriminalPilotMode() ? <WorkflowSafetyLine /> : null}
         {matterClosed && (
           <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-center">
             <p className="text-xs text-foreground">
@@ -835,10 +853,48 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
     );
   }
 
+  if (isCriminalPilotMode() && activeTab === "summary") {
+    return (
+      <div className="space-y-4">
+        {matterClosed && (
+          <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-center">
+            <p className="text-xs text-foreground">
+              <strong>Matter closed</strong>
+              {matterClosed.at && ` (${new Date(matterClosed.at).toLocaleDateString("en-GB")})`}
+              {matterClosed.reason ? ` – ${matterClosed.reason}` : ""}.
+            </p>
+          </div>
+        )}
+        <CaseWorkflowShell
+          caseId={caseId}
+          onRecordPosition={pilotRecordPositionHidden ? undefined : openRecordPosition}
+          onUploadEvidence={pilotUploadDisabled ? undefined : openUploadEvidence}
+          pilotUploadDisabled={pilotUploadDisabled}
+          pilotRecordPositionHidden={pilotRecordPositionHidden}
+        >
+          <ErrorBoundary
+            fallback={
+              <Card className="p-4">
+                <p className="text-sm text-muted-foreground">Summary will appear once documents are processed.</p>
+              </Card>
+            }
+          >
+            <PilotSummaryView
+              caseId={caseId}
+              caseTitle={snapshot?.caseMeta?.title ?? "Untitled Case"}
+            />
+          </ErrorBoundary>
+        </CaseWorkflowShell>
+        {controlRoomSharedModals}
+        <BackToTop />
+      </div>
+    );
+  }
+
   if (useControlRoom && activeTab === "client-instructions") {
     return (
       <div className="space-y-4">
-        <WorkflowSafetyLine />
+        {!isCriminalPilotMode() ? <WorkflowSafetyLine /> : null}
         {matterClosed && (
           <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-center">
             <p className="text-xs text-foreground">
@@ -876,7 +932,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   if (useControlRoom && activeTab === "battleboard") {
     return (
       <div className="space-y-4">
-        <WorkflowSafetyLine />
+        {!isCriminalPilotMode() ? <WorkflowSafetyLine /> : null}
         {matterClosed && (
           <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-center">
             <p className="text-xs text-foreground">
@@ -917,11 +973,35 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
     activeTab !== "today" &&
     activeTab !== "hearing-war-room" &&
     activeTab !== "file" &&
-    activeTab !== "documents"
+    activeTab !== "documents" &&
+    activeTab !== "summary"
   ) {
+    const controlRoomProps = {
+      caseId,
+      snapshot,
+      snapshotLoading,
+      savedPosition,
+      hasSavedPosition,
+      defencePlan,
+      displayStrategy,
+      committedStrategy,
+      matterState,
+      effectiveProceduralSafety,
+      evidenceSummary: snapshot
+        ? buildEvidenceContext(snapshot, effectiveProceduralSafety?.outstandingItems)
+        : undefined,
+      timelineSummary: snapshot ? buildTimelineContext(snapshot) : undefined,
+      onRecordPosition: openRecordPosition,
+      onUploadEvidence: openUploadEvidence,
+    };
+    const papersBody = isCriminalPilotMode() ? (
+      <PilotPapersView {...controlRoomProps} />
+    ) : (
+      <CaseControlRoom {...controlRoomProps} />
+    );
     return (
       <div className="space-y-4">
-        <WorkflowSafetyLine />
+        {!isCriminalPilotMode() ? <WorkflowSafetyLine /> : null}
         {matterClosed && (
           <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-center">
             <p className="text-xs text-foreground">
@@ -931,24 +1011,19 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
             </p>
           </div>
         )}
-        <CaseControlRoom
-          caseId={caseId}
-          snapshot={snapshot}
-          snapshotLoading={snapshotLoading}
-          savedPosition={savedPosition}
-          hasSavedPosition={hasSavedPosition}
-          defencePlan={defencePlan}
-          displayStrategy={displayStrategy}
-          committedStrategy={committedStrategy}
-          matterState={matterState}
-          effectiveProceduralSafety={effectiveProceduralSafety}
-          evidenceSummary={
-            snapshot ? buildEvidenceContext(snapshot, effectiveProceduralSafety?.outstandingItems) : undefined
-          }
-          timelineSummary={snapshot ? buildTimelineContext(snapshot) : undefined}
-          onRecordPosition={openRecordPosition}
-          onUploadEvidence={openUploadEvidence}
-        />
+        {isCriminalPilotMode() ? (
+          <CaseWorkflowShell
+            caseId={caseId}
+            onRecordPosition={pilotRecordPositionHidden ? undefined : openRecordPosition}
+            onUploadEvidence={pilotUploadDisabled ? undefined : openUploadEvidence}
+            pilotUploadDisabled={pilotUploadDisabled}
+            pilotRecordPositionHidden={pilotRecordPositionHidden}
+          >
+            {papersBody}
+          </CaseWorkflowShell>
+        ) : (
+          papersBody
+        )}
         {controlRoomSharedModals}
         <BackToTop />
       </div>

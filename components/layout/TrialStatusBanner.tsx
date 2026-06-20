@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Zap } from "lucide-react";
+import { isCriminalPilotMode } from "@/lib/pilot-mode";
 
 type TrialStatusResponse = {
   isBlocked: boolean;
@@ -17,6 +18,7 @@ type TrialStatusResponse = {
 
 export function TrialStatusBanner() {
   const router = useRouter();
+  const pilotMode = isCriminalPilotMode();
   const [status, setStatus] = useState<TrialStatusResponse | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -58,11 +60,25 @@ export function TrialStatusBanner() {
       ? `${daysLeft}d left · ${casesUsed}/${casesLimit} cases · ${docsUsed}/${docsLimit} docs`
       : `${casesUsed}/${casesLimit} cases · ${docsUsed}/${docsLimit} docs`;
 
+  if (pilotMode) {
+    return (
+      <div className="flex items-center justify-between gap-3 border-b border-slate-800/80 bg-slate-950/90 px-6 py-1.5 text-xs">
+        <span className="text-slate-500 truncate">Trial: {label}</span>
+        <button
+          type="button"
+          onClick={() => router.push("/upgrade")}
+          className="inline-flex shrink-0 items-center gap-1 rounded px-2 py-0.5 font-medium text-slate-400 hover:text-slate-200 hover:bg-slate-800/80"
+        >
+          <Zap className="h-3 w-3" />
+          Upgrade
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div className="flex items-center justify-between gap-4 border-b border-amber-200 bg-amber-50 px-6 py-2 text-sm">
-      <span className="text-amber-900">
-        Trial: {label}
-      </span>
+      <span className="text-amber-900">Trial: {label}</span>
       <button
         type="button"
         onClick={() => router.push("/upgrade")}

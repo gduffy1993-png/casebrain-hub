@@ -60,6 +60,7 @@ import { PreHearingReadinessBadge } from "@/components/criminal/control-room/Pre
 import { EvidenceChangeDetectorPanel } from "@/components/criminal/control-room/EvidenceChangeDetectorPanel";
 import { SolicitorExportBuilderPanel } from "@/components/criminal/control-room/SolicitorExportBuilderPanel";
 import { buildReasoningV2ViewModel } from "@/lib/criminal/reasoning-v2/build-reasoning-v2-view-model";
+import { PilotTodayDashboard, type PilotTodayDashboardView } from "@/components/criminal/workflow/PilotTodayDashboard";
 import { useReasoningV2Enabled } from "@/lib/criminal/reasoning-v2/reasoning-v2-flag";
 import { useReadinessEnabled } from "@/lib/criminal/pre-hearing-readiness/readiness-flag";
 import { useEvidenceChangesEnabled } from "@/lib/criminal/evidence-change-detector/evidence-change-flag";
@@ -118,6 +119,10 @@ export type HearingWarRoomProps = {
   controlRoomMode?: boolean;
   onRecordPosition?: () => void;
   onUploadEvidence?: () => void;
+  /** Parent mounted CaseWorkflowShell (Court Today desk or case page). */
+  embedInShell?: boolean;
+  /** Court Today desk charge line — snapshot/strip UI fallback only. */
+  deskChargeLine?: string | null;
 };
 
 function formatGbDate(dateStr: string | null | undefined): string | null {
@@ -236,6 +241,42 @@ function DraftBlock({ title, text }: { title: string; text: string }) {
   );
 }
 
+function PilotWarRoomMoreDetail({ brief }: { brief: HearingWarRoomBrief }) {
+  return (
+    <section className={workflowCard}>
+      <header className="px-4 py-2.5 border-b border-slate-100 flex items-center gap-2 bg-slate-50/80">
+        <ShieldAlert className="h-4 w-4 text-slate-600" />
+        <h2 className="text-sm font-semibold text-slate-900">More detail</h2>
+      </header>
+      <div className="p-4 space-y-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <BriefListCard title="Say this" icon={<Mic className="h-4 w-4 text-blue-700" />} items={brief.sayThis} tone="court" />
+          <BriefListCard title="Do not overstate" icon={<Ban className="h-4 w-4 text-amber-700" />} items={brief.doNotOverstate} tone="warn" />
+        </div>
+        {brief.collapseRisks.length > 0 ? (
+          <div>
+            <p className={`${workflowSectionTitle} flex items-center gap-1 text-amber-800/90`}>
+              <AlertTriangle className="h-3.5 w-3.5" />
+              Collapse risks (review — do not state as outcomes)
+            </p>
+            <ul className="mt-2 text-sm text-slate-800 list-disc pl-4 space-y-1">
+              {brief.collapseRisks.map((r, i) => (
+                <li key={i}>{r}</li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+        <div className="space-y-3">
+          <p className={workflowSectionTitle}>Draft wording blocks</p>
+          <DraftBlock title="Disclosure timetable request" text={brief.draftWording.disclosureTimetable} />
+          <DraftBlock title="Adjournment / provisional position" text={brief.draftWording.adjournment} />
+          <DraftBlock title="Client explanation (plain language)" text={brief.draftWording.clientExplanation} />
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function HearingWarRoom({
   caseId,
   snapshot,
@@ -252,6 +293,8 @@ export function HearingWarRoom({
   controlRoomMode,
   onRecordPosition,
   onUploadEvidence,
+  embedInShell = false,
+  deskChargeLine,
 }: HearingWarRoomProps) {
   const [matter, setMatter] = useState<MatterSummary | null>(null);
   const [battleboard, setBattleboard] = useState<BattleboardOutput | null>(null);
@@ -553,16 +596,86 @@ export function HearingWarRoom({
   const controlRoomHref = buildControlRoomHref(caseId);
   const headerLoading = snapshotLoading || bundleLoading;
 
+  const pilotTodayView = useMemo((): PilotTodayDashboardView | null => {
+    if (!pilotMode || loading) return null;
+    return {
+      caseSummary: {
+        clientLabel,
+        allegation,
+        court: courtDisplay,
+        hearing: headerLoading ? "…" : hearingDisplay,
+        stage: headerLoading ? "…" : stage,
+        bundleHealth: brief.bundleHealth,
+      },
+      readiness: brief.readiness,
+      positionStatus: brief.positionStatus,
+      safeCourtLine: brief.safePositionToday,
+      sayThis: brief.sayThis,
+      doNotOverstate: brief.doNotOverstate,
+      askCourtToRecord: brief.askCourtToRecord,
+      collapseRisks: brief.collapseRisks,
+      nextHearingMoves: brief.nextHearingMoves,
+      chaseItems: chaseItemsAll,
+      documentCount: Math.max(bundleSource?.documentCount ?? 0, snapshot?.analysis.docCount ?? 0),
+    };
+  }, [
+    pilotMode,
+    loading,
+    clientLabel,
+    allegation,
+    courtDisplay,
+    headerLoading,
+    hearingDisplay,
+    stage,
+    brief,
+    chaseItemsAll,
+    bundleSource,
+    snapshot,
+  ]);
+
+  if (embedInShell && pilotMode) {
+    return (
+      <div className="min-h-0" data-testid="hearing-war-room">
+        {loading || !pilotTodayView ? (
+          <div className={`${workflowCard} p-8 flex items-center justify-center gap-2 text-slate-600`}>
+            <Loader2 className="h-5 w-5 animate-spin text-blue-700" />
+            Loading matter dashboard…
+          </div>
+        ) : (
+          <PilotTodayDashboard
+            caseId={caseId}
+            view={pilotTodayView}
+            deskChargeLine={deskChargeLine}
+            moreDetail={
+              <>
+                <BriefListCard
+                  title="Ask court to record"
+                  icon={<Scale className="h-4 w-4 text-blue-700" />}
+                  items={brief.askCourtToRecord}
+                  tone="court"
+                  previewCount={3}
+                />
+                <PilotWarRoomMoreDetail brief={brief} />
+              </>
+            }
+          />
+        )}
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-0 pb-20 xl:pb-4 text-slate-900" data-testid="hearing-war-room">
-      <div className="xl:mr-[min(360px,26vw)] xl:pr-3 max-w-[1400px] space-y-4">
+      <div className={pilotMode ? "max-w-[1400px] space-y-4" : "xl:mr-[min(360px,26vw)] xl:pr-3 max-w-[1400px] space-y-4"}>
         <CaseWorkflowShell
           caseId={caseId}
+          safeCourtLine={pilotMode && !loading ? brief.safePositionToday : undefined}
           onRecordPosition={pilotRecordPositionHidden ? undefined : onRecordPosition}
           onUploadEvidence={pilotUploadDisabled ? undefined : onUploadEvidence}
           pilotUploadDisabled={pilotUploadDisabled}
           pilotRecordPositionHidden={pilotRecordPositionHidden}
         >
+        {!pilotMode ? (
         <header className={`${workflowCard} overflow-hidden`}>
           <div className="px-4 py-3 border-b border-slate-100 bg-gradient-to-r from-blue-50/80 to-white flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div className="min-w-0">
@@ -573,12 +686,14 @@ export function HearingWarRoom({
                   Court prep
                 </Badge>
               </div>
-              <p className="mt-1 text-sm font-medium text-slate-800">{caseTitle}</p>
-              {!pilotHeader && (
-                <p className={`text-xs ${workflowMuted} mt-0.5`}>
-                  {clientLabel} · {allegation}
-                </p>
-              )}
+              <>
+                <p className="mt-1 text-sm font-medium text-slate-800">{caseTitle}</p>
+                {!pilotHeader && (
+                  <p className={`text-xs ${workflowMuted} mt-0.5`}>
+                    {clientLabel} · {allegation}
+                  </p>
+                )}
+              </>
             </div>
             {controlRoomMode ? null : (
               <div className="flex flex-wrap gap-2 shrink-0">
@@ -624,8 +739,33 @@ export function HearingWarRoom({
             <p className="px-4 py-2 text-[10px] text-slate-400 border-t border-slate-100">{metadataNote}</p>
           ) : null}
         </header>
+        ) : null}
 
-        {loading ? (
+        {pilotMode ? (
+          loading || !pilotTodayView ? (
+            <div className={`${workflowCard} p-8 flex items-center justify-center gap-2 text-slate-600`}>
+              <Loader2 className="h-5 w-5 animate-spin text-blue-700" />
+              Loading matter dashboard…
+            </div>
+          ) : (
+            <PilotTodayDashboard
+              caseId={caseId}
+              view={pilotTodayView}
+              moreDetail={
+                <>
+                  <BriefListCard
+                    title="Ask court to record"
+                    icon={<Scale className="h-4 w-4 text-blue-700" />}
+                    items={brief.askCourtToRecord}
+                    tone="court"
+                    previewCount={3}
+                  />
+                  <PilotWarRoomMoreDetail brief={brief} />
+                </>
+              }
+            />
+          )
+        ) : loading ? (
           <div className={`${workflowCard} p-8 flex items-center justify-center gap-2 text-slate-600`}>
             <Loader2 className="h-5 w-5 animate-spin text-blue-700" />
             Loading court-prep brief…
@@ -839,6 +979,7 @@ export function HearingWarRoom({
         </CaseWorkflowShell>
       </div>
 
+      {pilotMode ? null : (
       <HearingWarRoomAssistant
         caseId={caseId}
         planSummary={planSummary}
@@ -846,6 +987,7 @@ export function HearingWarRoom({
         timelineSummary={timelineSummary}
         assistantContext={assistantContext}
       />
+      )}
     </div>
   );
 }

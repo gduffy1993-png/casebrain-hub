@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { AlertTriangle, Loader2 } from "lucide-react";
+import { AlertTriangle, ChevronDown, ChevronUp, Loader2 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { DashboardCard } from "./control-room/DashboardCard";
 import { ControlRoomAssistantDock } from "./control-room/ControlRoomAssistant";
@@ -34,6 +34,8 @@ import { useExportsEnabled } from "@/lib/criminal/disclosure-export/export-flag"
 import { useSupervisorQAEnabled } from "@/lib/criminal/supervisor-qa/supervisor-qa-flag";
 import { useClientExplainEnabled } from "@/lib/criminal/client-explanation/client-explanation-flag";
 import { CaseWorkflowShell } from "./workflow/CaseWorkflowShell";
+import { isThickPilotBundle } from "./workflow/workflowPilotDisplay";
+import { pilotPapersDeepScope, workflowPilotCard, workflowSectionTitle } from "./workflow/workflowUi";
 import { buildCaseSummarySnippet } from "@/lib/criminal/build-case-summary-snippet";
 import { formatCaseBundleHealthLabel } from "@/lib/criminal/format-case-bundle-health";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
@@ -114,7 +116,9 @@ export type CaseControlRoomProps = {
   onRecordPosition?: () => void;
   onUploadEvidence?: () => void;
   /** Control Room sub-surface when opened via workflow tabs. */
-  surface?: "default" | "battleboard" | "position";
+  surface?: "default" | "battleboard" | "position" | "papers";
+  /** Parent already mounted CaseWorkflowShell (pilot Papers tab). */
+  embedInShell?: boolean;
 };
 
 type MatterSummary = {
@@ -207,8 +211,10 @@ export function CaseControlRoom({
   onRecordPosition,
   onUploadEvidence,
   surface = "default",
+  embedInShell = false,
 }: CaseControlRoomProps) {
   const router = useRouter();
+  const [papersDeepOpen, setPapersDeepOpen] = useState(false);
   const [matter, setMatter] = useState<MatterSummary | null>(null);
   const [battleboard, setBattleboard] = useState<BattleboardOutput | null>(null);
   const [battleboardLoading, setBattleboardLoading] = useState(true);
@@ -830,6 +836,16 @@ export function CaseControlRoom({
     pilotRecordPositionHidden,
   };
 
+  const pilotDocCount = bundleSource?.documentCount ?? snapshot?.analysis.docCount ?? 0;
+  const pilotTextLen = bundleSource?.combinedTextLength ?? 0;
+  const thickPilotBundle = isThickPilotBundle(pilotDocCount, pilotTextLen);
+
+  useEffect(() => {
+    if (surface === "papers") {
+      setPapersDeepOpen(thickPilotBundle);
+    }
+  }, [surface, thickPilotBundle]);
+
   if (surface === "battleboard") {
     return (
       <div className="min-h-0 pb-20 xl:pb-4 text-slate-900" data-testid="case-control-room-battleboard">
@@ -919,23 +935,200 @@ export function CaseControlRoom({
     );
   }
 
-  return (
-    <div className="min-h-0 pb-20 xl:pb-4 text-slate-900" data-testid="case-control-room">
-      <div className="xl:mr-[min(360px,26vw)] xl:pr-3 max-w-[1400px]">
-        {snapshotLoading ? (
-          <Card className="p-8 flex items-center justify-center gap-2 text-slate-600 border-slate-200 bg-white">
-            <Loader2 className="h-5 w-5 animate-spin text-blue-700" />
-            Loading case data…
-          </Card>
-        ) : (
-          <CaseWorkflowShell
+  if (surface === "papers") {
+    const papersLoader = (
+      <div className={`${workflowPilotCard} p-8 flex items-center justify-center gap-2 text-slate-400`}>
+        <Loader2 className="h-5 w-5 animate-spin text-blue-400" />
+        Loading papers…
+      </div>
+    );
+
+    const primaryPanels = (
+      <>
+        <ControlRoomCockpit
+          caseId={caseId}
+          caseTitle={caseTitleDisplay}
+          clientLabel={clientLabel}
+          courtLabel={courtLabelDisplay}
+          allegation={pilotOverrides ? "" : allegation}
+          stage={stage}
+          bundleLabel={bundleLabel}
+          positionLabel={positionLabel}
+          nextHearing={hearingLabelDisplay}
+          disclosureLabel={disclosureLabel}
+          bestRouteTitle={bestRouteTitle}
+          routeStatus={battleboard?.primary_route?.status ?? null}
+          prosecutionWeakness={prosecutionWeakness}
+          defenceRisks={defenceRisks}
+          immediateActions={immediateActions}
+          strategyBasisNotice={strategyBasisNotice}
+          positionNotice={positionNoticeOnce}
+          riskLabel={riskLabel}
+          safeCourtLine={safeCourtLine}
+          loading={snapshotLoading}
+          onExitClassic={exitClassic}
+          hideClassicWorkspace={isCriminalPilotMode()}
+          metadataNote={pilotDisplayMetadataNote(metadataNote)}
+          bundlePositionNote={bundlePositionNote}
+          battleboardSection={battleboardSectionNode ?? undefined}
+          pilotDark
+        />
+        {thickPilotBundle ? (
+          <PreHearingReadinessBadge
+            reasoningV2Enabled={reasoningV2Enabled}
+            readinessEnabled={readinessEnabled}
+            reasoningResult={reasoningV2Result}
+            clientStressResult={clientStressForReadiness}
+            bundleMeta={readinessBundleMeta}
+            hearingMeta={readinessHearingMeta}
+            workflowProfileHint={bundleSource?.header?.primaryEvalHook ?? null}
+            loading={bundleSourceLoading}
+          />
+        ) : null}
+      </>
+    );
+
+    const deepPanels = (
+      <>
+        <ProofMapPanel
+          result={proofMapResult}
+          loading={bundleSourceLoading}
+          proofMapEnabled={proofMapEnabled}
+        />
+        <EvidenceChangeMaterialBadge
+          comparison={evidenceChangeComparison}
+          evidenceChangesEnabled={evidenceChangesEnabled}
+          reasoningV2Enabled={reasoningV2Enabled}
+        />
+        <EvidenceChangeDetectorPanel
+          caseId={caseId}
+          reasoningV2Enabled={reasoningV2Enabled}
+          evidenceChangesEnabled={evidenceChangesEnabled}
+          reasoningResult={reasoningV2Result}
+          clientStressResult={clientStressForReadiness}
+          sourceStateInput={evidenceSourceStateInput}
+          readinessInput={{
+            bundleMeta: readinessBundleMeta,
+            hearingMeta: readinessHearingMeta,
+            workflowProfileHint: bundleSource?.header?.primaryEvalHook ?? null,
+          }}
+          loading={bundleSourceLoading}
+        />
+        <SolicitorExportBuilderPanel
+          caseId={caseId}
+          caseLabel={caseTitleDisplay}
+          clientLabel={clientLabel}
+          stage={readinessHearingMeta.stage}
+          hearingDateIso={readinessHearingMeta.hearingDateIso}
+          reasoningV2Enabled={reasoningV2Enabled}
+          exportsEnabled={exportsEnabled}
+          reasoningResult={reasoningV2Result}
+          clientStressResult={clientStressForReadiness}
+          readinessInput={{
+            bundleMeta: readinessBundleMeta,
+            hearingMeta: readinessHearingMeta,
+            workflowProfileHint: bundleSource?.header?.primaryEvalHook ?? null,
+          }}
+          loading={bundleSourceLoading}
+        />
+        <SupervisorQAPanel
+          caseId={caseId}
+          reasoningV2Enabled={reasoningV2Enabled}
+          supervisorEnabled={supervisorEnabled}
+          exportsEnabled={exportsEnabled}
+          reasoningResult={reasoningV2Result}
+          clientStressResult={clientStressForReadiness}
+          readinessInput={{
+            bundleMeta: readinessBundleMeta,
+            hearingMeta: readinessHearingMeta,
+            workflowProfileHint: bundleSource?.header?.primaryEvalHook ?? null,
+          }}
+          workflowProfileHint={bundleSource?.header?.primaryEvalHook ?? null}
+          loading={bundleSourceLoading}
+        />
+        <ClientExplanationPanel
+          caseId={caseId}
+          caseLabel={caseTitleDisplay}
+          clientLabel={clientLabel}
+          stage={readinessHearingMeta.stage}
+          hearingDateIso={readinessHearingMeta.hearingDateIso}
+          reasoningV2Enabled={reasoningV2Enabled}
+          clientExplainEnabled={clientExplainEnabled}
+          reasoningResult={reasoningV2Result}
+          clientStressResult={clientStressForReadiness}
+          readinessInput={{
+            bundleMeta: readinessBundleMeta,
+            hearingMeta: readinessHearingMeta,
+            workflowProfileHint: bundleSource?.header?.primaryEvalHook ?? null,
+          }}
+          loading={bundleSourceLoading}
+        />
+        {reasoningV2Enabled ? (
+          <ReasoningV2Panel
             caseId={caseId}
-            documents={workflowDocuments}
-            onRecordPosition={pilotRecordPositionHidden ? undefined : onRecordPosition}
-            onUploadEvidence={pilotUploadDisabled ? undefined : onUploadEvidence}
-            pilotUploadDisabled={pilotUploadDisabled}
-            pilotRecordPositionHidden={pilotRecordPositionHidden}
-          >
+            reasoningV2Enabled={reasoningV2Enabled}
+            result={reasoningV2Result}
+            loading={bundleSourceLoading}
+            existingBattleboardRoute={existingBattleboardRoute}
+          />
+        ) : null}
+        <ClientAccountStressTestPanel
+          caseId={caseId}
+          clientStressEnabled={clientStressEnabled}
+          reasoningV2Enabled={reasoningV2Enabled}
+          reasoningResult={reasoningV2Result}
+        />
+      </>
+    );
+
+    return (
+      <div className="min-h-0 max-w-[1400px]" data-testid="pilot-papers-view">
+        {snapshotLoading ? (
+          papersLoader
+        ) : (
+          <div className="space-y-3">
+            {primaryPanels}
+            <div className={`${workflowPilotCard} px-4 py-3`}>
+              <button
+                type="button"
+                className="w-full flex items-center justify-between gap-2 text-left"
+                onClick={() => setPapersDeepOpen((v) => !v)}
+              >
+                <div>
+                  <p className={workflowSectionTitle}>
+                    {thickPilotBundle ? "Full papers workspace" : "More papers detail"}
+                  </p>
+                  <p className="text-xs text-slate-400 mt-1">
+                    {thickPilotBundle
+                      ? "Proof map, readiness, exports, and supervisor tools — scroll inside this section."
+                      : "Proof map, readiness checks, and additional control-room panels."}
+                  </p>
+                </div>
+                {papersDeepOpen ? (
+                  <ChevronUp className="h-4 w-4 text-slate-400 shrink-0" />
+                ) : (
+                  <ChevronDown className="h-4 w-4 text-slate-400 shrink-0" />
+                )}
+              </button>
+              {papersDeepOpen ? (
+                <div
+                  className={`mt-3 border-t border-slate-700/60 pt-3 max-h-[min(70vh,900px)] overflow-y-auto space-y-3 ${pilotPapersDeepScope}`}
+                >
+                  {deepPanels}
+                </div>
+              ) : null}
+            </div>
+            <p className="text-[10px] text-center text-slate-500 pb-1">
+              Evidence-linked · conditional · provisional where stated · solicitor review required
+            </p>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  const defaultRoomPanels = (
+    <>
           <CaseSummaryCard summary={caseSummary} loading={snapshotLoading} />
           <ProofMapPanel
             result={proofMapResult}
@@ -1078,6 +1271,29 @@ export function CaseControlRoom({
             reasoningV2Enabled={reasoningV2Enabled}
             reasoningResult={reasoningV2Result}
           />
+    </>
+  );
+
+  return (
+    <div className="min-h-0 pb-20 xl:pb-4 text-slate-900" data-testid="case-control-room">
+      <div className={embedInShell ? "max-w-[1400px]" : "xl:mr-[min(360px,26vw)] xl:pr-3 max-w-[1400px]"}>
+        {snapshotLoading ? (
+          <Card className="p-8 flex items-center justify-center gap-2 text-slate-600 border-slate-200 bg-white">
+            <Loader2 className="h-5 w-5 animate-spin text-blue-700" />
+            Loading case data…
+          </Card>
+        ) : embedInShell ? (
+          defaultRoomPanels
+        ) : (
+          <CaseWorkflowShell
+            caseId={caseId}
+            documents={workflowDocuments}
+            onRecordPosition={pilotRecordPositionHidden ? undefined : onRecordPosition}
+            onUploadEvidence={pilotUploadDisabled ? undefined : onUploadEvidence}
+            pilotUploadDisabled={pilotUploadDisabled}
+            pilotRecordPositionHidden={pilotRecordPositionHidden}
+          >
+          {defaultRoomPanels}
           </CaseWorkflowShell>
         )}
 
@@ -1086,6 +1302,7 @@ export function CaseControlRoom({
         </p>
       </div>
 
+      {!embedInShell ? (
       <ControlRoomAssistantDock
         caseId={caseId}
         planSummary={planSummary}
@@ -1103,6 +1320,7 @@ export function CaseControlRoom({
           primaryRouteTitle: bestRouteTitle,
         }}
       />
+      ) : null}
     </div>
   );
 }

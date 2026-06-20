@@ -12,6 +12,7 @@ import {
   workflowTrHover,
 } from "@/components/criminal/workflow/workflowUi";
 import { CourtTodayReadinessBadge } from "./CourtTodayReadinessBadge";
+import { buildDefaultCriminalCaseHref } from "@/lib/criminal/case-workflow-zones";
 import { buildCaseControlRoomHref } from "./courtCaseBrief";
 import type { CourtCaseBrief } from "./types";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
@@ -70,9 +71,9 @@ function CourtTodayRow({ brief, pilotMode }: { brief: CourtCaseBrief; pilotMode?
           <ChaseCell brief={brief} />
         </td>
         <td className={`${workflowTd} whitespace-nowrap`}>
-          <Link href={buildCaseControlRoomHref(brief.caseId)}>
+          <Link href={buildDefaultCriminalCaseHref(brief.caseId)}>
             <Button type="button" size="sm" className="h-7 text-xs">
-              Open Control Room
+              Open matter
             </Button>
           </Link>
         </td>
@@ -195,9 +196,9 @@ function CourtTodayMobileRow({
           <CourtTodayReadinessBadge readiness={brief.readiness} pilotMode />
         </div>
         <p className="text-xs text-slate-600">{brief.stage}</p>
-        <Link href={buildCaseControlRoomHref(brief.caseId)} className="block">
+        <Link href={buildDefaultCriminalCaseHref(brief.caseId)} className="block">
           <Button type="button" size="sm" className="w-full h-8">
-            Open Control Room
+            Open matter
           </Button>
         </Link>
       </div>

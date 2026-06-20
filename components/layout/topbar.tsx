@@ -59,12 +59,22 @@ export function Topbar({ onQuickUpload }: TopbarProps) {
   };
 
   return (
-    <header className="sticky top-0 z-20 flex h-16 items-center justify-between border-b border-slate-200 bg-white px-6">
+    <header
+      className={`sticky top-0 z-20 flex h-16 items-center justify-between border-b px-6 ${
+        pilotMode
+          ? "border-slate-800 bg-slate-950/95 backdrop-blur-sm text-slate-100"
+          : "border-slate-200 bg-white"
+      }`}
+    >
       <div className="flex flex-col min-w-0 pr-4">
-        <span className="text-[11px] uppercase tracking-wide text-slate-500 truncate">
+        <span
+          className={`text-[11px] uppercase tracking-wide truncate ${
+            pilotMode ? "text-slate-500" : "text-slate-500"
+          }`}
+        >
           {orgName}
         </span>
-        <span className="text-sm font-semibold text-slate-900 truncate">
+        <span className={`text-sm font-semibold truncate ${pilotMode ? "text-slate-100" : "text-slate-900"}`}>
           {user?.fullName ?? user?.email ?? ""}
         </span>
       </div>
@@ -74,7 +84,11 @@ export function Topbar({ onQuickUpload }: TopbarProps) {
         <Button
           variant={pilotMode ? "ghost" : "secondary"}
           size="sm"
-          className={pilotMode ? "gap-1.5 px-2 text-slate-700" : "gap-2"}
+          className={
+            pilotMode
+              ? "gap-1.5 px-2 text-slate-300 hover:text-slate-100 hover:bg-slate-800/80"
+              : "gap-2"
+          }
           onClick={() => router.push("/search")}
           aria-label="Search"
         >
@@ -125,7 +139,7 @@ export function Topbar({ onQuickUpload }: TopbarProps) {
             variant="ghost"
             size="sm"
             onClick={handleSignOut}
-            className="text-slate-700 hover:text-slate-900"
+            className={pilotMode ? "text-slate-300 hover:text-slate-100" : "text-slate-700 hover:text-slate-900"}
           >
             Sign Out
           </Button>

@@ -104,6 +104,28 @@ export function scheduledCaseIdsFromBuckets(
     .slice(0, cap);
 }
 
+/** Desk sidebar — all org matters except those already listed under Today. */
+export function buildAllCasesDeskBriefs(
+  buckets: Record<HearingBucket, CourtCaseBrief[]>,
+  todaySectionBriefs: CourtCaseBrief[],
+): CourtCaseBrief[] {
+  const exclude = new Set(todaySectionBriefs.map((b) => b.caseId));
+  const seen = new Set<string>();
+  const out: CourtCaseBrief[] = [];
+  for (const brief of [
+    ...buckets.today,
+    ...buckets.tomorrow,
+    ...buckets.this_week,
+    ...buckets.no_hearing,
+  ]) {
+    if (exclude.has(brief.caseId) || seen.has(brief.caseId)) continue;
+    seen.add(brief.caseId);
+    out.push(brief);
+  }
+  out.sort((a, b) => a.clientLabel.localeCompare(b.clientLabel, undefined, { sensitivity: "base" }));
+  return out;
+}
+
 /** Whether bundle enrichment could change bucket (no structured date yet). */
 export function rowNeedsBundleHearingEnrichment(row: CourtCasesApiRow): boolean {
   return !hasStructuredHearingDate(row);

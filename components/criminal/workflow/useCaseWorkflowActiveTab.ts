@@ -13,8 +13,10 @@ export function resolveCaseWorkflowActiveTab(
   pilotMode: boolean,
 ): CaseWorkflowTabId {
   if (pilotMode) {
-    const zone = resolvePilotWorkflowZone(searchParams.get("tab"), hash);
-    return zone;
+    const tab = searchParams.get("tab");
+    if (tab === "disclosure-chase") return "disclosure-chase";
+    if (tab === "summary") return "summary";
+    return resolvePilotWorkflowZone(tab, hash);
   }
 
   if (hash === "#full-battleboard") return "battleboard";

@@ -2,18 +2,19 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  buildCaseWorkflowTabHref,
-  type CaseWorkflowTabId,
-} from "@/components/criminal/criminalCaseNavigation";
-import {
-  PILOT_ZONE_TAB_IDS,
-  pilotZoneNavLabel,
-  type CaseWorkflowZoneId,
-} from "@/lib/criminal/case-workflow-zones";
-import { workflowCard } from "./workflowUi";
+import type { CaseWorkflowTabId } from "@/components/criminal/criminalCaseNavigation";
+import { workflowCard, workflowPilotCard, workflowPilotNavActive, workflowPilotNavIdle } from "./workflowUi";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import { useCaseWorkflowActiveTab } from "./useCaseWorkflowActiveTab";
+import { usePilotMatterTabHref } from "./pilotDeskNavContext";
+
+const PILOT_TABS: { id: CaseWorkflowTabId; label: string }[] = [
+  { id: "today", label: "Today" },
+  { id: "papers", label: "Papers" },
+  { id: "summary", label: "Summary" },
+  { id: "disclosure-chase", label: "Chase" },
+  { id: "file", label: "File" },
+];
 
 const LEGACY_TABS: { id: CaseWorkflowTabId; label: string }[] = [
   { id: "control-room", label: "Control Room" },
@@ -28,35 +29,27 @@ export function CaseWorkflowNav({ caseId }: { caseId: string }) {
   const pathname = usePathname();
   const pilotMode = isCriminalPilotMode();
   const active = useCaseWorkflowActiveTab();
+  const buildTabHref = usePilotMatterTabHref();
 
-  const visibleTabs: { id: CaseWorkflowTabId; label: string }[] = pilotMode
-    ? PILOT_ZONE_TAB_IDS.map((id: CaseWorkflowZoneId) => ({
-        id,
-        label: pilotZoneNavLabel(id),
-      }))
-    : LEGACY_TABS.filter((t) => t.id !== "position" && t.id !== "battleboard");
+  const visibleTabs = pilotMode ? PILOT_TABS : LEGACY_TABS.filter((t) => t.id !== "position" && t.id !== "battleboard");
 
   return (
     <nav
-      className={`${workflowCard} px-2 py-2 flex flex-wrap gap-1`}
+      className={`${pilotMode ? workflowPilotCard : workflowCard} px-2 py-2 flex flex-wrap gap-1 ${pilotMode ? "border-slate-700/70" : "border-slate-200"}`}
       aria-label="Case workflow"
       data-testid="case-workflow-nav"
     >
       {visibleTabs.map((t) => {
-        const href = buildCaseWorkflowTabHref(caseId, t.id);
+        const href = buildTabHref(caseId, t.id);
         const isActive = active === t.id;
         return (
           <Link
             key={t.id}
             href={href}
             scroll={t.id === "file" || t.id === "documents" ? false : undefined}
-            className={
-              isActive
-                ? "rounded-md px-3 py-1.5 text-xs font-semibold bg-blue-700 text-white shadow-sm"
-                : "rounded-md px-3 py-1.5 text-xs font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 border border-transparent hover:border-slate-200"
-            }
+            className={isActive ? workflowPilotNavActive : workflowPilotNavIdle}
             aria-current={isActive ? "page" : undefined}
-            prefetch={pathname.startsWith("/cases/")}
+            prefetch={pathname.startsWith("/cases/") || pathname.startsWith("/court-today")}
           >
             {t.label}
           </Link>

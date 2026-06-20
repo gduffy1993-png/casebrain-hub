@@ -1,0 +1,233 @@
+"use client";
+
+import { useState, type ReactNode } from "react";
+import Link from "next/link";
+import {
+  AlertTriangle,
+  Ban,
+  FileText,
+  FolderOpen,
+  Gavel,
+  Scale,
+} from "lucide-react";
+import { usePilotMatterTabHref } from "./pilotDeskNavContext";
+import {
+  workflowMuted,
+  workflowPilotCockpitCard,
+  workflowPilotKpiCell,
+  workflowPilotKpiStrip,
+  workflowSectionTitle,
+} from "./workflowUi";
+import {
+  dedupePilotLines,
+  displayPilotSnapshotPosition,
+  resolvePilotChargeDisplay,
+  pilotListCap,
+} from "./workflowPilotDisplay";
+
+function CockpitCard({
+  title,
+  icon,
+  accentClass = "",
+  children,
+}: {
+  title: string;
+  icon: ReactNode;
+  accentClass?: string;
+  children: ReactNode;
+}) {
+  return (
+    <article className={`${workflowPilotCockpitCard} ${accentClass} flex flex-col min-h-[11rem]`}>
+      <h3 className={`${workflowSectionTitle} flex items-center gap-1.5 text-slate-500`}>
+        {icon}
+        {title}
+      </h3>
+      <div className="mt-2.5 flex-1 min-w-0 text-sm text-slate-200 leading-relaxed">{children}</div>
+    </article>
+  );
+}
+
+function BulletList({
+  items,
+  emptyLabel,
+}: {
+  items: string[];
+  emptyLabel?: string;
+}) {
+  if (!items.length) {
+    return <p className="text-xs text-slate-500">{emptyLabel ?? "Nothing on file for this section yet."}</p>;
+  }
+  return (
+    <ul className="list-disc pl-4 space-y-1.5 text-xs text-slate-300">
+      {items.map((item, i) => (
+        <li key={i} className="line-clamp-3">
+          {item}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+/** Layout-only view model — values must come from existing CaseBrain brief/header data. */
+export type PilotTodayDashboardView = {
+  caseSummary: {
+    clientLabel: string;
+    allegation: string;
+    court: string;
+    hearing: string;
+    stage: string;
+    bundleHealth: string;
+  };
+  readiness: string;
+  positionStatus: string;
+  safeCourtLine: string;
+  sayThis: string[];
+  doNotOverstate: string[];
+  askCourtToRecord: string[];
+  collapseRisks: string[];
+  nextHearingMoves: string[];
+  chaseItems: string[];
+  documentCount: number;
+};
+
+export type PilotTodayDashboardProps = {
+  caseId: string;
+  view: PilotTodayDashboardView;
+  deskChargeLine?: string | null;
+  moreDetail?: ReactNode;
+};
+
+/** Criminal pilot Today tab — 4 KPI tiles + 6-card cockpit grid; layout only. */
+export function PilotTodayDashboard({ caseId, view, deskChargeLine, moreDetail }: PilotTodayDashboardProps) {
+  const [moreOpen, setMoreOpen] = useState(false);
+  const buildTabHref = usePilotMatterTabHref();
+  const chaseHref = buildTabHref(caseId, "disclosure-chase");
+  const fileHref = buildTabHref(caseId, "file");
+  const papersHref = buildTabHref(caseId, "papers");
+
+  const listCap = pilotListCap(view.documentCount);
+  const keyRiskRaw = view.collapseRisks[0] ?? "—";
+  const sayThisItems = dedupePilotLines(view.sayThis, view.safeCourtLine).slice(0, listCap);
+  const doNotItems = dedupePilotLines(view.doNotOverstate, keyRiskRaw).slice(0, listCap);
+  const chaseItems = dedupePilotLines(view.chaseItems).slice(0, listCap);
+  const askCourtItems = dedupePilotLines(view.askCourtToRecord, view.safeCourtLine).slice(0, listCap);
+  const nextMoves = dedupePilotLines(view.nextHearingMoves).slice(0, 3);
+
+  const keyRisk = keyRiskRaw;
+  const topIssue = chaseItems[0] ?? view.collapseRisks[1] ?? "—";
+  const nextStep = nextMoves[0] ?? "—";
+  const allegationDisplay = resolvePilotChargeDisplay(view.caseSummary.allegation, deskChargeLine);
+  const positionDisplay = displayPilotSnapshotPosition(view.positionStatus, view.readiness);
+
+  return (
+    <div className="space-y-3" data-testid="pilot-today-dashboard">
+      <div className={workflowPilotKpiStrip}>
+        {[
+          { label: "Readiness", value: view.readiness },
+          { label: "Key risk", value: keyRisk },
+          { label: "Top issue", value: topIssue },
+          { label: "Next step", value: nextStep },
+        ].map((tile) => (
+          <div key={tile.label} className={workflowPilotKpiCell}>
+            <p className={workflowSectionTitle}>{tile.label}</p>
+            <p className="text-xs font-semibold text-slate-100 mt-1 line-clamp-2 leading-snug">{tile.value}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+        <CockpitCard
+          title="Before court"
+          icon={<Gavel className="h-3.5 w-3.5 text-emerald-400" />}
+          accentClass="border-emerald-700/50"
+        >
+          <BulletList
+            items={askCourtItems}
+            emptyLabel="No ask-court lines on the current brief."
+          />
+          {nextMoves.length ? (
+            <div className="mt-3 border-t border-slate-700/60 pt-2">
+              <p className={`text-[10px] ${workflowMuted} mb-1.5`}>Next steps</p>
+              <BulletList items={nextMoves} />
+            </div>
+          ) : null}
+        </CockpitCard>
+
+        <CockpitCard
+          title="Our read"
+          icon={<Scale className="h-3.5 w-3.5 text-blue-400" />}
+          accentClass="border-blue-700/50"
+        >
+          {sayThisItems.length ? (
+            <BulletList items={sayThisItems} emptyLabel="No solicitor lines on the current brief." />
+          ) : (
+            <p className="text-xs text-slate-500">Safe line is in the strip above — add say-this lines from the brief.</p>
+          )}
+        </CockpitCard>
+
+        <CockpitCard
+          title="What's missing"
+          icon={<AlertTriangle className="h-3.5 w-3.5 text-amber-400" />}
+          accentClass="border-amber-700/50"
+        >
+          <BulletList items={chaseItems} emptyLabel="No chase items on the current brief." />
+          <Link
+            href={chaseHref}
+            className="mt-3 inline-flex text-xs font-semibold text-amber-300 hover:text-amber-100"
+          >
+            Open Chase ({view.chaseItems.length}) →
+          </Link>
+        </CockpitCard>
+
+        <CockpitCard
+          title="Don't say"
+          icon={<Ban className="h-3.5 w-3.5 text-rose-400" />}
+          accentClass="border-rose-700/50"
+        >
+          <BulletList
+            items={doNotItems}
+            emptyLabel="No do-not-overstate lines on the current brief."
+          />
+        </CockpitCard>
+
+        <CockpitCard
+          title="Papers snapshot"
+          icon={<FileText className="h-3.5 w-3.5 text-slate-400" />}
+        >
+          <p className="text-xs font-medium text-slate-100 line-clamp-2">{allegationDisplay}</p>
+          <p className="mt-2 text-xs text-slate-400">{view.caseSummary.bundleHealth}</p>
+          <p className="mt-1 text-xs text-slate-400">Position: {positionDisplay}</p>
+          <Link href={papersHref} className="mt-3 inline-flex text-xs font-semibold text-blue-300 hover:text-blue-100">
+            Open Papers →
+          </Link>
+        </CockpitCard>
+
+        <CockpitCard
+          title="File / source"
+          icon={<FolderOpen className="h-3.5 w-3.5 text-slate-400" />}
+        >
+          <p className="text-xs text-slate-200">
+            {view.documentCount} file{view.documentCount === 1 ? "" : "s"} on record
+          </p>
+          <p className="mt-1 text-xs text-slate-400">{view.caseSummary.stage}</p>
+          <Link href={fileHref} className="mt-3 inline-flex text-xs font-semibold text-blue-300 hover:text-blue-100">
+            Open File →
+          </Link>
+        </CockpitCard>
+      </div>
+
+      {moreDetail ? (
+        <>
+          <button
+            type="button"
+            className="text-xs font-medium text-slate-400 hover:text-slate-200 px-1"
+            onClick={() => setMoreOpen((v) => !v)}
+          >
+            {moreOpen ? "Hide more detail" : "More detail (War Room drafts, ask court, risks)"}
+          </button>
+          {moreOpen ? <div className="pt-1">{moreDetail}</div> : null}
+        </>
+      ) : null}
+    </div>
+  );
+}

@@ -4,13 +4,15 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { Loader2, Scale } from "lucide-react";
 import { Card } from "@/components/ui/card";
-import { workflowCard } from "@/components/criminal/workflow/workflowUi";
+import { workflowCard, workflowPilotShell } from "@/components/criminal/workflow/workflowUi";
 import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
 import { CourtTodayReviewSection } from "./CourtTodayReviewSection";
+import { CourtTodayPilotSplit } from "./CourtTodayPilotSplit";
 import { CourtTodayDiarySection } from "./CourtTodayDiarySection";
 import { resolveCourtCaseId } from "./courtCaseBrief";
 import {
   buildCourtTodayBuckets,
+  buildAllCasesDeskBriefs,
   countBuckets,
   hasStructuredHearingDate,
   pickRecentNoDateCandidates,
@@ -231,6 +233,24 @@ export function CourtTodayClient() {
     [displayBuckets],
   );
 
+  const todaySectionBriefs = useMemo(
+    () => (displayBuckets.today.length ? displayBuckets.today : displayBuckets.tomorrow),
+    [displayBuckets.today, displayBuckets.tomorrow],
+  );
+
+  const allCaseDeskBriefs = useMemo(
+    () => buildAllCasesDeskBriefs(displayBuckets, todaySectionBriefs),
+    [displayBuckets, todaySectionBriefs],
+  );
+
+  const pilotDeskEligible = useMemo(
+    () =>
+      displayBuckets.today.length > 0 ||
+      displayBuckets.tomorrow.length > 0 ||
+      allCaseDeskBriefs.length > 0,
+    [displayBuckets.today.length, displayBuckets.tomorrow.length, allCaseDeskBriefs.length],
+  );
+
   /** Background: enrich no-date matters without scanning the full historical caseload. */
   useEffect(() => {
     if (loading || rows.length === 0) return;
@@ -330,30 +350,37 @@ export function CourtTodayClient() {
   /** Demo accounts only: no hearings scheduled — hide review counts and diary shells. */
   const pilotHideReviewClutter = pilotDemo && scheduledEmpty;
 
+  const pilotDashboardShell =
+    pilotMode && pilotDeskEligible;
+
   return (
-    <div className="space-y-5 max-w-[1600px]" data-testid="court-today">
+    <div
+      className={`${pilotDashboardShell ? `${workflowPilotShell} space-y-5` : "space-y-5"} max-w-[1600px]`}
+      data-testid="court-today"
+    >
       <header className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <div className="flex items-center gap-2">
-            <Scale className="h-6 w-6 text-blue-700" />
-            <h1 className="text-2xl font-semibold text-slate-900">Court Today</h1>
+            <Scale className={`h-6 w-6 ${pilotDashboardShell ? "text-blue-400" : "text-blue-700"}`} />
+            <div>
+              <h1
+                className={`${pilotDashboardShell ? "text-xl" : "text-2xl"} font-semibold ${pilotDashboardShell ? "text-slate-50" : "text-slate-900"}`}
+              >
+                Court Today
+              </h1>
+              {pilotDashboardShell ? (
+                <p className="text-xs text-slate-500 mt-0.5">{todayLabel}</p>
+              ) : null}
+            </div>
           </div>
-          {pilotDemo ? (
+          {pilotMode && !pilotDashboardShell ? (
             <>
-              <p className="text-sm text-slate-700 mt-1.5 font-medium">
-                Pilot criminal defence matters
+              <p className="text-sm mt-1.5 font-medium text-slate-700">
+                Criminal defence court-day dashboard
               </p>
-              <p className="text-xs text-slate-500 mt-1">{todayLabel}</p>
+              <p className="text-xs mt-1 text-slate-500">{todayLabel}</p>
             </>
-          ) : pilotMode ? (
-            <>
-              <p className="text-sm text-slate-600 mt-1">{todayLabel}</p>
-              <p className="text-xs text-slate-500 mt-0.5 max-w-2xl">
-                Court-day command centre — open a matter for today&apos;s hearing prep, papers review,
-                and disclosure chase. Provisional display · solicitor review required.
-              </p>
-            </>
-          ) : (
+          ) : !pilotMode ? (
             <>
               <p className="text-sm text-slate-600 mt-1">{todayLabel}</p>
               <p className="text-xs text-slate-500 mt-0.5 max-w-2xl">
@@ -361,7 +388,7 @@ export function CourtTodayClient() {
                 chase, and hearing prep. Provisional display · solicitor review required.
               </p>
             </>
-          )}
+          ) : null}
         </div>
         {!pilotMode && (
           <Link
@@ -373,7 +400,9 @@ export function CourtTodayClient() {
         )}
       </header>
 
-      {!pilotEmpty && !pilotHideReviewClutter && (
+      {!pilotEmpty &&
+        !pilotHideReviewClutter &&
+        !(pilotMode && pilotDeskEligible) && (
         <div className="flex flex-wrap gap-2">
           <StatPill label="Hearings today" value={stats.today} />
           <StatPill label="Matters at risk" value={stats.red} tone="danger" />
@@ -446,6 +475,18 @@ export function CourtTodayClient() {
             </Link>
           </div>
         </Card>
+      ) : pilotMode && pilotDeskEligible ? (
+        <CourtTodayPilotSplit
+          todayItems={displayBuckets.today}
+          tomorrowItems={displayBuckets.tomorrow}
+          allCaseItems={allCaseDeskBriefs}
+          stats={{
+            today: stats.today,
+            red: stats.red,
+            missingItems: pilotMissingEvidenceItems,
+            ready: stats.ready,
+          }}
+        />
       ) : (
         <div className="space-y-4">
           {scheduledEmpty && (

@@ -35,6 +35,7 @@ export function isCriminalPracticeArea(area?: string | null): boolean {
 }
 
 export function buildControlRoomCaseHref(caseId: string): string {
+  if (usePilotZoneLayout()) return buildCourtTodayDeskHref(caseId, "today");
   return buildDefaultCriminalCaseHref(caseId);
 }
 
@@ -96,6 +97,7 @@ export function shouldRedirectToControlRoom(searchParams: {
 
 export type CaseWorkflowTabId =
   | CaseWorkflowZoneId
+  | "summary"
   | "control-room"
   | "battleboard"
   | "hearing-war-room"
@@ -104,6 +106,37 @@ export type CaseWorkflowTabId =
   | "position";
 
 export { type CaseWorkflowZoneId, buildCaseZoneHref } from "@/lib/criminal/case-workflow-zones";
+
+/** Pic 5 desk — full matter workspace on Court Today without leaving the page. */
+export function buildCourtTodayDeskHref(caseId: string, tab: CaseWorkflowTabId = "today"): string {
+  const id = caseId.trim();
+  if (!isValidCaseId(id)) return "/court-today";
+  const p = new URLSearchParams();
+  p.set("case", id);
+  switch (tab) {
+    case "today":
+    case "hearing-war-room":
+      p.set("tab", "today");
+      break;
+    case "papers":
+    case "control-room":
+      p.set("tab", "papers");
+      break;
+    case "summary":
+      p.set("tab", "summary");
+      break;
+    case "disclosure-chase":
+      p.set("tab", "disclosure-chase");
+      break;
+    case "file":
+    case "documents":
+      p.set("tab", "file");
+      break;
+    default:
+      p.set("tab", "today");
+  }
+  return `/court-today?${p.toString()}`;
+}
 
 export function buildCaseWorkflowTabHref(caseId: string, tab: CaseWorkflowTabId): string {
   const id = caseId.trim();
@@ -116,6 +149,10 @@ export function buildCaseWorkflowTabHref(caseId: string, tab: CaseWorkflowTabId)
       return buildCaseZoneHref(id, "papers");
     case "file":
       return buildCaseZoneHref(id, "file");
+    case "summary": {
+      const p = new URLSearchParams({ tab: "summary", controlRoom: "1" });
+      return `/cases/${id}?${p.toString()}`;
+    }
     case "control-room":
       return pilotZones ? buildCaseZoneHref(id, "papers") : buildDefaultCriminalCaseHref(id);
     case "battleboard": {

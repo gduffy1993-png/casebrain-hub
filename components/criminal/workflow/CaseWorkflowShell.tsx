@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
+import { workflowPilotMatterChrome } from "./workflowUi";
 import { CaseWorkflowCompactActions } from "./CaseWorkflowCompactActions";
 import { CaseWorkflowNav } from "./CaseWorkflowNav";
 import { CaseWorkflowHeaderStrip } from "./CaseWorkflowHeaderStrip";
@@ -20,6 +21,10 @@ export type CaseWorkflowShellProps = {
   pilotRecordPositionHidden?: boolean;
   /** Pilot Documents tab: tabs + notice + files panel only. */
   documentsOnly?: boolean;
+  /** Pilot 60-second strip — safe court line from existing brief (Today tab). */
+  safeCourtLine?: string | null;
+  /** Court Today desk list charge — strip UI fallback only. */
+  deskChargeLine?: string | null;
 };
 
 /** Single workflow chrome: tabs + compact actions (no duplicate route buttons). */
@@ -32,15 +37,24 @@ export function CaseWorkflowShell({
   pilotUploadDisabled = false,
   pilotRecordPositionHidden = false,
   documentsOnly = false,
+  safeCourtLine,
+  deskChargeLine,
 }: CaseWorkflowShellProps) {
+  const pilotMode = isCriminalPilotMode();
   const allowUpload = Boolean(onUploadEvidence) && !pilotUploadDisabled;
   const pilotDocumentsTab = usePilotDocumentsTabActive();
   const showDocumentsOnly =
-    documentsOnly || (isCriminalPilotMode() && pilotDocumentsTab);
+    documentsOnly || (pilotMode && pilotDocumentsTab);
 
   return (
-    <div className="space-y-3" data-testid="case-workflow-shell">
-      {isCriminalPilotMode() ? <CaseWorkflowHeaderStrip caseId={caseId} /> : null}
+    <div className={pilotMode ? workflowPilotMatterChrome : "space-y-3"} data-testid="case-workflow-shell">
+      {pilotMode ? (
+        <CaseWorkflowHeaderStrip
+          caseId={caseId}
+          safeCourtLine={safeCourtLine}
+          deskChargeLine={deskChargeLine}
+        />
+      ) : null}
       <CaseWorkflowNav caseId={caseId} />
       {pilotUploadDisabled ? <PilotDemoUploadNotice /> : null}
       {!showDocumentsOnly ? (
@@ -53,7 +67,7 @@ export function CaseWorkflowShell({
         />
       ) : null}
       {showDocumentsOnly ? (
-        <PilotCaseDocumentsPanel documents={documents} />
+        <PilotCaseDocumentsPanel documents={documents} pilotDark={pilotMode} />
       ) : (
         children
       )}
