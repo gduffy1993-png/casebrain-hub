@@ -112,6 +112,7 @@ assert.equal(empty.length, 0, "No contradictions on thin text");
 process.env.NEXT_PUBLIC_BUNDLE_CONTRADICTION_SURFACING = "false";
 process.env.NEXT_PUBLIC_BUNDLE_SEQUENCE_SURFACING = "false";
 process.env.NEXT_PUBLIC_BUNDLE_SCOPE_SURFACING = "false";
+process.env.NEXT_PUBLIC_BUNDLE_STRENGTH_SURFACING = "false";
 assert.equal(isBundleContradictionSurfacingEnabled(), false);
 const warOff = buildHearingWarRoomBrief({
   caseId: "kill",
@@ -132,6 +133,7 @@ assert.equal(warOff.bundleContradictions?.length ?? 0, 0, "Kill switch disables 
 delete process.env.NEXT_PUBLIC_BUNDLE_CONTRADICTION_SURFACING;
 delete process.env.NEXT_PUBLIC_BUNDLE_SEQUENCE_SURFACING;
 delete process.env.NEXT_PUBLIC_BUNDLE_SCOPE_SURFACING;
+delete process.env.NEXT_PUBLIC_BUNDLE_STRENGTH_SURFACING;
 
 const neilContradictions = extractBundleContradictions(NEIL_BUNDLE);
 const chaseStub: DisclosureChaseBrief = {

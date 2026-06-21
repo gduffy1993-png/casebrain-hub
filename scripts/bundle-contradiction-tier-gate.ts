@@ -14,6 +14,8 @@ import { extractSequenceContradictions } from "../lib/criminal/extract-sequence-
 import { isBundleSequenceSurfacingEnabled } from "../lib/criminal/bundle-sequence-surfacing";
 import { extractScopeContradictions } from "../lib/criminal/extract-scope-contradictions";
 import { isBundleScopeSurfacingEnabled } from "../lib/criminal/bundle-scope-surfacing";
+import { extractStrengthContradictions } from "../lib/criminal/extract-strength-contradictions";
+import { isBundleStrengthSurfacingEnabled } from "../lib/criminal/bundle-strength-surfacing";
 import { buildHearingWarRoomBrief } from "../components/criminal/hearing-war-room/buildHearingWarRoomBrief";
 import { buildDisclosureChaseBrief } from "../components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import { buildMatterBrief } from "../components/criminal/workflow/buildMatterBrief";
@@ -101,6 +103,8 @@ const TIER_A: CaseExpect[] = [
       "sequence_timeline",
       "scope_multi_vs_single",
       "scope_indictment_count",
+      "strength_serious_vs_minor",
+      "strength_force_vs_cctv",
     ],
   },
 ];
@@ -153,6 +157,33 @@ const TIER_A_SCOPE: CaseExpect[] = [
   },
 ];
 
+const ABH_STRENGTH_SERIOUS_MINOR = `
+=== SECTION: CHARGE ===
+Count 1: Assault occasioning actual bodily harm contrary to section 47 OAPA 1967.
+
+=== SECTION: MG5 ===
+MG5 case summary
+The defendant struck the complainant with a mug causing significant injury requiring hospital treatment and stitches.
+
+=== SECTION: MG11 ===
+MG11 – Hannah Lee
+I had a small cut above my eyebrow. Bleeding was controlled at scene. No stitches were required and I did not attend hospital.
+`.padStart(220, " ");
+
+const TIER_A_STRENGTH: CaseExpect[] = [
+  {
+    id: "abh-serious-vs-minor",
+    label: "ABH — serious harm alleged vs minor injury on MG11",
+    text: ABH_STRENGTH_SERIOUS_MINOR,
+    mustInclude: ["strength_serious_vs_minor"],
+    mustExclude: ["strength_force_vs_cctv"],
+    assembly: {
+      theoryMust: [/injury strength|serious harm|minor/i],
+      theoryMustNot: [/REQ-/i],
+    },
+  },
+];
+
 function extractViaProdPath(text: string): ReturnType<typeof extractBundleContradictions> {
   const payload = buildBundleSourcePayload([
     { id: "gate", name: "bundle.txt", extracted_text: text },
@@ -184,6 +215,17 @@ function extractScopeViaProdPath(text: string): ReturnType<typeof extractScopeCo
     snippets: payload.snippets,
   });
   return extractScopeContradictions(assembled);
+}
+
+function extractStrengthViaProdPath(text: string): ReturnType<typeof extractStrengthContradictions> {
+  const payload = buildBundleSourcePayload([
+    { id: "gate", name: "bundle.txt", extracted_text: text },
+  ]);
+  const assembled = assembleBundleTextForContradictions({
+    frontMatterScan: payload.frontMatterScan,
+    snippets: payload.snippets,
+  });
+  return extractStrengthContradictions(assembled);
 }
 
 function runAssemblyGate(
@@ -327,6 +369,36 @@ function scoreTierAScope(): { pass: number; fail: number; results: unknown[] } {
   return { pass, fail, results };
 }
 
+function scoreTierAStrength(): { pass: number; fail: number; results: unknown[] } {
+  const results: unknown[] = [];
+  let pass = 0;
+  let fail = 0;
+
+  if (!isBundleStrengthSurfacingEnabled()) {
+    results.push({ tier: "A-strength", id: "module-disabled", skipped: true, ok: true });
+    return { pass: 1, fail: 0, results };
+  }
+
+  for (const c of TIER_A_STRENGTH) {
+    const types = extractStrengthViaProdPath(c.text).map((x) => x.type);
+    const issues: string[] = [];
+    for (const m of c.mustInclude) {
+      if (!types.includes(m)) issues.push(`missing ${m}`);
+    }
+    for (const x of c.mustExclude) {
+      if (types.includes(x)) issues.push(`unexpected ${x}`);
+    }
+    issues.push(...runAssemblyGate(c, extractStrengthContradictions(c.text)));
+
+    const ok = issues.length === 0;
+    if (ok) pass++;
+    else fail++;
+    results.push({ tier: "A-strength", id: c.id, label: c.label, types, ok, issues });
+  }
+
+  return { pass, fail, results };
+}
+
 function scoreTierB(): { pass: number; fail: number; results: unknown[] } {
   const results: unknown[] = [];
   let pass = 0;
@@ -348,6 +420,7 @@ function scoreTierB(): { pass: number; fail: number; results: unknown[] } {
     const types = extractViaProdPath(text).map((x) => x.type);
     const seqTypes = extractSequenceViaProdPath(text).map((x) => x.type);
     const scopeTypes = extractScopeViaProdPath(text).map((x) => x.type);
+    const strengthTypes = extractStrengthViaProdPath(text).map((x) => x.type);
     const expectEmpty = goldNoContra.includes(id);
     const issues: string[] = [];
     if (expectEmpty && types.length > 0) {
@@ -358,6 +431,9 @@ function scoreTierB(): { pass: number; fail: number; results: unknown[] } {
     }
     if (expectEmpty && scopeTypes.length > 0) {
       issues.push(`false positive scope: ${scopeTypes.join(", ")}`);
+    }
+    if (expectEmpty && strengthTypes.length > 0) {
+      issues.push(`false positive strength: ${strengthTypes.join(", ")}`);
     }
     const ok = issues.length === 0;
     if (ok) pass++;
@@ -397,21 +473,34 @@ function main() {
   const tierA = scoreTierA();
   const tierASeq = scoreTierASequence();
   const tierAScope = scoreTierAScope();
+  const tierAStrength = scoreTierAStrength();
   const tierB = scoreTierB();
-  const totalPass = tierA.pass + tierASeq.pass + tierAScope.pass + tierB.pass;
-  const totalFail = tierA.fail + tierASeq.fail + tierAScope.fail + tierB.fail;
+  const totalPass = tierA.pass + tierASeq.pass + tierAScope.pass + tierAStrength.pass + tierB.pass;
+  const totalFail = tierA.fail + tierASeq.fail + tierAScope.fail + tierAStrength.fail + tierB.fail;
   const overall = totalFail === 0 ? "PASS" : "FAIL";
 
   const report = {
     generatedAt: new Date().toISOString(),
-    phase: "2c-scope-module-gate",
-    modules: ["bundle-contradictions-v1-frozen", "bundle-sequence-v1", "bundle-scope-v1"],
+    phase: "2d-strength-module-gate",
+    modules: [
+      "bundle-contradictions-v1-frozen",
+      "bundle-sequence-v1",
+      "bundle-scope-v1",
+      "bundle-strength-v1",
+    ],
     overall,
     tierA: { pass: tierA.pass, fail: tierA.fail },
     tierASequence: { pass: tierASeq.pass, fail: tierASeq.fail },
     tierAScope: { pass: tierAScope.pass, fail: tierAScope.fail },
+    tierAStrength: { pass: tierAStrength.pass, fail: tierAStrength.fail },
     tierB: { pass: tierB.pass, fail: tierB.fail },
-    results: [...tierA.results, ...tierASeq.results, ...tierAScope.results, ...tierB.results],
+    results: [
+      ...tierA.results,
+      ...tierASeq.results,
+      ...tierAScope.results,
+      ...tierAStrength.results,
+      ...tierB.results,
+    ],
   };
 
   fs.mkdirSync(OUT_DIR, { recursive: true });
@@ -422,6 +511,7 @@ function main() {
   console.log(`Tier A: ${tierA.pass} pass / ${tierA.fail} fail`);
   console.log(`Tier A sequence: ${tierASeq.pass} pass / ${tierASeq.fail} fail`);
   console.log(`Tier A scope: ${tierAScope.pass} pass / ${tierAScope.fail} fail`);
+  console.log(`Tier A strength: ${tierAStrength.pass} pass / ${tierAStrength.fail} fail`);
   console.log(`Tier B: ${tierB.pass} pass / ${tierB.fail} fail`);
   console.log(`Report: ${outPath}`);
 

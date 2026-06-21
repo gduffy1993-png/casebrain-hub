@@ -11,7 +11,9 @@ export type BundleContradictionType =
   | "sequence_order"
   | "sequence_timeline"
   | "scope_multi_vs_single"
-  | "scope_indictment_count";
+  | "scope_indictment_count"
+  | "strength_serious_vs_minor"
+  | "strength_force_vs_cctv";
 
 export type BundleContradiction = {
   type: BundleContradictionType;

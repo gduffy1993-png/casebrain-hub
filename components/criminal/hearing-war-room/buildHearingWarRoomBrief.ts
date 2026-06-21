@@ -35,6 +35,7 @@ import { extractAllBundleContradictions } from "@/lib/criminal/merge-bundle-cont
 import { isBundleContradictionSurfacingEnabled } from "@/lib/criminal/bundle-contradiction-surfacing";
 import { isBundleSequenceSurfacingEnabled } from "@/lib/criminal/bundle-sequence-surfacing";
 import { isBundleScopeSurfacingEnabled } from "@/lib/criminal/bundle-scope-surfacing";
+import { isBundleStrengthSurfacingEnabled } from "@/lib/criminal/bundle-strength-surfacing";
 
 const FORBIDDEN_RE =
   /\b(this wins|case collapses|crowns?\s+will\s+lose|crown\s+case\s+collapses|guaranteed|will\s+be\s+acquitted|plead\s+guilty|plead\s+not\s+guilty)\b/i;
@@ -309,7 +310,14 @@ function enrichBriefWithContradictions(
   brief: HearingWarRoomBrief,
   bundleText?: string | null,
 ): HearingWarRoomBrief {
-  if (!isBundleContradictionSurfacingEnabled() && !isBundleSequenceSurfacingEnabled() && !isBundleScopeSurfacingEnabled()) return brief;
+  if (
+    !isBundleContradictionSurfacingEnabled() &&
+    !isBundleSequenceSurfacingEnabled() &&
+    !isBundleScopeSurfacingEnabled() &&
+    !isBundleStrengthSurfacingEnabled()
+  ) {
+    return brief;
+  }
 
   const contradictions = extractAllBundleContradictions(bundleText);
   if (contradictions.length === 0) return brief;
