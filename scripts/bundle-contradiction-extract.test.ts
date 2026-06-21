@@ -8,6 +8,8 @@ import { isBundleContradictionSurfacingEnabled } from "../lib/criminal/bundle-co
 import { buildHearingWarRoomBrief } from "../components/criminal/hearing-war-room/buildHearingWarRoomBrief";
 import { buildMatterBrief } from "../components/criminal/workflow/buildMatterBrief";
 import type { DisclosureChaseBrief } from "../components/criminal/disclosure-chase/buildDisclosureChaseBrief";
+import { buildBundleSourcePayload } from "../lib/bundle/parse-bundle-display";
+import { assembleBundleTextForContradictions } from "../lib/criminal/reasoning-v2/assemble-bundle-text";
 
 const PAIGE_BUNDLE = `
 === SECTION: MG5 ===
@@ -75,6 +77,30 @@ I felt something hit my face and I was bleeding in the hallway.
 const paigeFlat = extractBundleContradictions(PAIGE_FLAT_PROD);
 assert.ok(paigeFlat.some((c) => c.type === "location"), "Paige flat prod: location");
 assert.ok(paigeFlat.some((c) => c.type === "first_contact"), "Paige flat prod: first contact");
+
+assert.ok(paigeFlat.some((c) => c.type === "first_contact"), "Paige flat prod: first contact");
+
+/** Prod-shaped: MG5/MG11 after frontMatterScan window — bundle-source assemble path. */
+const PAIGE_LATE_FLAT = `${"x".repeat(81_000)}
+MG5 case summary
+Both parties were struggling in the kitchen during the argument.
+Ms Thornton says Ms Lee threw the mug first.
+
+MG11 witness statement — Hannah Lee
+I did not throw anything at her.
+I felt something hit my face and I was bleeding in the hallway.
+`;
+const paigePayload = buildBundleSourcePayload([
+  { id: "1", name: "paige.pdf", extracted_text: PAIGE_LATE_FLAT },
+]);
+const paigeAssembled = assembleBundleTextForContradictions({
+  frontMatterScan: paigePayload.frontMatterScan,
+  snippets: paigePayload.snippets,
+});
+assert.equal(extractBundleContradictions(paigePayload.frontMatterScan).length, 0, "Paige late flat: scan alone empty");
+const paigeLate = extractBundleContradictions(paigeAssembled);
+assert.ok(paigeLate.some((c) => c.type === "location"), "Paige late flat: location via assemble");
+assert.ok(paigeLate.some((c) => c.type === "first_contact"), "Paige late flat: first contact via assemble");
 
 const neil = extractBundleContradictions(NEIL_BUNDLE);
 assert.ok(neil.some((c) => c.type === "loss_figure"), "Neil: loss figure");

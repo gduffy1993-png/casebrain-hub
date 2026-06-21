@@ -25,6 +25,10 @@ const HIGH_VALUE_SECTIONS = [
   "HEARING",
   "HEARING_NOTE",
   "MG5",
+  "MG11",
+  "MG11S",
+  "WITNESS",
+  "WITNESS_STATEMENT",
   "CUSTODY",
 ] as const;
 

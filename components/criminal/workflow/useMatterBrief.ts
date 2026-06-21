@@ -26,6 +26,7 @@ import {
 } from "@/components/criminal/hearing-war-room/buildHearingWarRoomBrief";
 import { buildDisclosureChaseBrief } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import { buildMatterBrief, type MatterBrief } from "./buildMatterBrief";
+import { assembleBundleTextForContradictions } from "@/lib/criminal/reasoning-v2/assemble-bundle-text";
 
 type MatterSummary = {
   clientInitials: string | null;
@@ -40,6 +41,12 @@ type BundleSourceSummary = {
   combinedTextLength: number;
   documentRows?: DocumentRowMeta[];
   frontMatterScan?: string | null;
+  snippets?: {
+    mg5?: string | null;
+    mg6?: string | null;
+    mg11?: string | null;
+    exhibits?: string | null;
+  };
   header?: { shortTitle: string | null; stage: string | null; accused?: string | null };
   caseMetadata?: ExtractedBundleCaseMetadata | null;
 };
@@ -124,6 +131,7 @@ export function useMatterBrief(caseId: string) {
           combinedTextLength: d.combinedTextLength ?? 0,
           documentRows: Array.isArray(d.documentRows) ? d.documentRows : undefined,
           frontMatterScan: d.frontMatterScan ?? null,
+          snippets: d.snippets ?? undefined,
           header: d.header,
           caseMetadata: d.caseMetadata ?? null,
         });
@@ -216,6 +224,11 @@ export function useMatterBrief(caseId: string) {
     const hearingStatus = headerMeta.nextHearing?.trim() || "Hearing not on file";
     const bundleHealth = deriveBundleHealth(snapshot, bundleSource, battleboard);
 
+    const bundleTextForBrief = assembleBundleTextForContradictions({
+      frontMatterScan: bundleSource?.frontMatterScan ?? null,
+      snippets: bundleSource?.snippets,
+    });
+
     const workflowContext = {
       caseTitle,
       allegation,
@@ -277,7 +290,7 @@ export function useMatterBrief(caseId: string) {
       hasSavedPosition,
       chaseItems: chaseItemsAll,
       proceduralOutstanding: undefined,
-      bundleText: bundleSource?.frontMatterScan ?? null,
+      bundleText: bundleTextForBrief || bundleSource?.frontMatterScan || null,
       profileHint: pilotHeader?.profile ?? null,
     });
 
@@ -293,7 +306,7 @@ export function useMatterBrief(caseId: string) {
       positionStatus,
       battleboard,
       snapshotMissing: snapshot?.evidence.missingEvidence,
-      bundleText: bundleSource?.frontMatterScan ?? null,
+      bundleText: bundleTextForBrief || bundleSource?.frontMatterScan || null,
       profileHint: pilotHeader?.profile ?? null,
     });
 

@@ -73,12 +73,48 @@ function extractBetweenSectionMarkers(full: string, sectionLabel: string): strin
 export type BundleSnippets = {
   mg5: string | null;
   mg6: string | null;
+  mg11: string | null;
   exhibits: string | null;
 };
 
+function extractMg5Snippet(full: string): string | null {
+  const section = extractBetweenSectionMarkers(full, "MG5");
+  if (section) return section;
+
+  const mg5Header = full.match(/\bMG5\b[\s\S]{0,8000}?(?=\n===\s*SECTION:|\nMG11\b|\nwitness statement|$)/i);
+  if (mg5Header?.[0]?.trim()) {
+    const body = mg5Header[0].trim();
+    return body.length > SNIPPET_MAX ? `${body.slice(0, SNIPPET_MAX)}\n\n[… truncated …]` : body;
+  }
+
+  const summary = full.match(/MG5 case summary[\s\S]{0,6000}?(?=\nMG11\b|\nwitness statement|\n===\s*SECTION:|$)/i);
+  if (summary?.[0]?.trim()) {
+    const body = summary[0].trim();
+    return body.length > SNIPPET_MAX ? `${body.slice(0, SNIPPET_MAX)}\n\n[… truncated …]` : body;
+  }
+
+  return null;
+}
+
+function extractMg11Snippet(full: string): string | null {
+  const section = extractBetweenSectionMarkers(full, "MG11");
+  if (section) return section;
+
+  const mg11Header = full.match(
+    /(?:===\s*SECTION:\s*MG11[^\n]*===|MG11\s*[–\-]\s*[^\n]+|MG11\s+witness statement[^\n]*)([\s\S]{0,8000}?)(?=\n===\s*SECTION:|\nMG11\s*[–\-]|\nMG5\b|$)/i,
+  );
+  if (mg11Header?.[0]?.trim()) {
+    const body = mg11Header[0].trim();
+    return body.length > SNIPPET_MAX ? `${body.slice(0, SNIPPET_MAX)}\n\n[… truncated …]` : body;
+  }
+
+  return null;
+}
+
 export function extractBundleSnippets(full: string): BundleSnippets {
-  const mg5 = extractBetweenSectionMarkers(full, "MG5") ?? null;
+  const mg5 = extractMg5Snippet(full);
   const mg6 = extractBetweenSectionMarkers(full, "MG6") ?? null;
+  const mg11 = extractMg11Snippet(full);
   let exhibits =
     extractBetweenSectionMarkers(full, "EXHIBITS") ??
     extractBetweenSectionMarkers(full, "EXHIBIT") ??
@@ -87,7 +123,7 @@ export function extractBundleSnippets(full: string): BundleSnippets {
     const exBlock = full.match(/EXHIBIT LIST[^\n]*\n[\s\S]{0,6000}/i);
     if (exBlock) exhibits = exBlock[0].trim().slice(0, SNIPPET_MAX);
   }
-  return { mg5, mg6, exhibits };
+  return { mg5, mg6, mg11, exhibits };
 }
 
 export type BundleHealth = {
