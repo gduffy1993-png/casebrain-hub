@@ -12,11 +12,30 @@ export function isSummaryLeakageLine(line: string): boolean {
   const t = line.trim();
   if (!t) return true;
   if (/^ask the court to record/i.test(t)) return true;
+  if (/ask court to record/i.test(t)) return true;
   if (/appears outstanding|remains outstanding on the current papers/i.test(t)) return true;
   if (/^chase[:\s]/i.test(t)) return true;
+  if (/chase or confirm status|papers mark this material as unclear/i.test(t)) return true;
   if (/^outstanding:\s/i.test(t)) return true;
   if (/^record position|^seek timetable|^avoid committing/i.test(t)) return true;
   if (/\bREQ-[A-Z0-9-]+\b/i.test(t)) return true;
+  return false;
+}
+
+export function isOpportunityShapedLine(line: string): boolean {
+  return /^opportunity to\b/i.test(line.trim());
+}
+
+export function isEvidenceAnchorLeakage(line: string): boolean {
+  return /^evidence anchor:/i.test(line.trim()) || /\bthis extract is included for sequence\b/i.test(line);
+}
+
+export function isTheoryBoilerplateNoise(sentence: string): boolean {
+  const t = sentence.trim();
+  if (/^continuity and (full )?coverage are required before/i.test(t)) return true;
+  if (/^continuity and reconciliation are required before/i.test(t)) return true;
+  if (/cctv stills are limited to two dates/i.test(t)) return true;
+  if (/^cctv served covers only two dates/i.test(t) && /charge window spans/i.test(t)) return false; // keep one CCTV contradiction sentence
   return false;
 }
 
@@ -24,6 +43,7 @@ export function sanitizeSummaryLine(line: string): string | null {
   const cleaned = stripReqAndInternalCodes(line);
   if (!cleaned || cleaned.length < 12) return null;
   if (isSummaryLeakageLine(cleaned)) return null;
+  if (isEvidenceAnchorLeakage(cleaned)) return null;
   return cleaned;
 }
 
@@ -35,7 +55,7 @@ function normalizeForDedupe(text: string): string {
     .trim();
 }
 
-function similarityRatio(a: string, b: string): number {
+export function similarityRatio(a: string, b: string): number {
   const wa = new Set(normalizeForDedupe(a).split(" ").filter((w) => w.length > 3));
   const wb = new Set(normalizeForDedupe(b).split(" ").filter((w) => w.length > 3));
   if (wa.size === 0 || wb.size === 0) return 0;
@@ -56,6 +76,24 @@ export function dedupeSimilarSummaryLines(lines: string[], max: number): string[
     if (out.length >= max) break;
   }
   return out;
+}
+
+export function dedupeTheorySentences(parts: (string | null | undefined)[]): string {
+  const sentences: string[] = [];
+  for (const part of parts) {
+    if (!part?.trim()) continue;
+    const chunks = part
+      .split(/(?<=[.!?])\s+/)
+      .map((s) => stripReqAndInternalCodes(s))
+      .filter((s) => s.length > 8);
+    for (const s of chunks) {
+      if (isTheoryBoilerplateNoise(s)) continue;
+      const dup = sentences.some((existing) => similarityRatio(existing, s) >= 0.72);
+      if (dup) continue;
+      sentences.push(s);
+    }
+  }
+  return sentences.join(" ").trim();
 }
 
 export function firstSafeSentence(text: string): string {

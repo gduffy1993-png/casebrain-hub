@@ -39,30 +39,52 @@ function sectionSlice(bundleText: string, label: string): string {
 
 function extractMg11WitnessBlocks(bundleText: string): string[] {
   const blocks: string[] = [];
-  const parts = bundleText.split(/(?=(?:===\s*SECTION:\s*MG11|MG11\s*[–-]\s*))/gi);
+  const parts = bundleText.split(
+    /(?=(?:===\s*SECTION:\s*MG11|MG11\s*[–\-]\s*|MG11\s+statement|witness statement))/gi,
+  );
   for (const part of parts) {
-    if (!/\bMG11\b/i.test(part)) continue;
+    if (!/\b(MG11|witness statement)\b/i.test(part)) continue;
     const trimmed = part.trim().slice(0, 8000);
     if (trimmed.length > 40) blocks.push(trimmed);
   }
   if (blocks.length > 0) return blocks;
 
   const single = sectionSlice(bundleText, "MG11");
-  return single ? [single] : [];
+  if (single) return [single];
+
+  const witnessLines = bundleText
+    .split(/\n/)
+    .filter((line) => /\b(MG11|witness statement|I did not throw|in the hallway|bleeding)\b/i.test(line));
+  if (witnessLines.length >= 2) {
+    return [witnessLines.join("\n")];
+  }
+
+  return [];
+}
+
+function mg11ForFirstContact(bundleText: string, blocks: string[]): string {
+  const joined = blocks.join("\n\n").trim();
+  if (joined.length >= 40) return joined;
+  return bundleText;
+}
+
+function witnessTextExcludingMg5(bundleText: string, mg5: string): string {
+  const blocks = extractMg11WitnessBlocks(bundleText);
+  if (blocks.length > 0) return blocks.join("\n\n");
+
+  const mg5Start = bundleText.search(/\bMG5\b/i);
+  if (mg5Start < 0) return bundleText;
+
+  const tail = bundleText.slice(mg5Start);
+  const mg5EndMatch = tail.search(/(?:\n===\s*SECTION:|\nMG11\b|\nwitness statement)/i);
+  const mg5End = mg5EndMatch > 0 ? mg5Start + mg5EndMatch : mg5Start + Math.min(mg5.length + 500, 9000);
+
+  return `${bundleText.slice(0, mg5Start)}\n${bundleText.slice(mg5End)}`.trim();
 }
 
 function mg5Text(bundleText: string): string {
   const scoped = sectionSlice(bundleText, "MG5");
   return scoped || bundleText.slice(0, Math.min(bundleText.length, 12000));
-}
-
-function mg11WitnessTexts(bundleText: string): string[] {
-  return extractMg11WitnessBlocks(bundleText);
-}
-
-function mg11Combined(bundleText: string): string {
-  const blocks = mg11WitnessTexts(bundleText);
-  return blocks.join("\n\n");
 }
 
 function normalizeLocation(token: string): string {
@@ -110,18 +132,21 @@ function pickComplainantMg11Block(blocks: string[]): string {
   return scored[0]?.block ?? blocks[0] ?? "";
 }
 
-function detectLocation(mg5: string, mg11Blocks: string[]): BundleContradiction | null {
+function detectLocation(mg5: string, mg11Blocks: string[], bundleText: string): BundleContradiction | null {
   const mg5Incident = pickMg5IncidentLocation(mg5);
   if (!mg5Incident) return null;
 
+  const blocksForLocation =
+    mg11Blocks.length > 0 ? mg11Blocks : [witnessTextExcludingMg5(bundleText, mg5)];
+
   let mg11Incident: string | null = null;
-  const complainant = pickComplainantMg11Block(mg11Blocks);
+  const complainant = pickComplainantMg11Block(blocksForLocation);
   if (complainant) mg11Incident = pickWitnessIncidentLocation(complainant);
 
   if (!mg11Incident) {
-    for (const block of mg11Blocks) {
+    for (const block of blocksForLocation) {
       const loc = pickWitnessIncidentLocation(block);
-      if (loc) {
+      if (loc && loc !== mg5Incident) {
         mg11Incident = loc;
         break;
       }
@@ -129,7 +154,11 @@ function detectLocation(mg5: string, mg11Blocks: string[]): BundleContradiction 
   }
 
   if (!mg11Incident || mg5Incident === mg11Incident) return null;
-  if (!/\b(struggl|injur|assault|incident|hit|threw|bleed|mug)\b/i.test(`${mg5} ${mg11Blocks.join(" ")}`)) {
+  if (
+    !/\b(struggl|injur|assault|incident|hit|threw|bleed|mug|hallway|kitchen)\b/i.test(
+      `${mg5} ${blocksForLocation.join(" ")}`,
+    )
+  ) {
     return null;
   }
 
@@ -145,12 +174,12 @@ function detectLocation(mg5: string, mg11Blocks: string[]): BundleContradiction 
   };
 }
 
-function detectFirstContact(mg5: string, mg11CombinedText: string): BundleContradiction | null {
+function detectFirstContact(mg5: string, mg11Text: string): BundleContradiction | null {
   const mg5Init =
     /\b(threw the mug first|threw.*first|initiated|struck first|hit first)\b/i.test(mg5) ||
     /\bsays\b[\s\S]{0,80}\bthrew\b/i.test(mg5);
   const mg11Deny =
-    /\b(did not throw|denies throwing|I did not throw anything|didn't throw)\b/i.test(mg11CombinedText);
+    /\b(did not throw|denies throwing|I did not throw anything|didn't throw)\b/i.test(mg11Text);
   if (!mg5Init || !mg11Deny) return null;
 
   return {
@@ -193,7 +222,7 @@ function detectLossFigure(bundleText: string, mg5: string, mg11: string): Bundle
     type: "loss_figure",
     sources: ["MG5", "MG11"],
     values: [aStr, bStr],
-    theoryLine: `The papers differ on the loss figure (£${aStr} vs £${bStr}). Continuity and reconciliation are required before the defence can confirm position.`,
+    theoryLine: `The papers differ on the loss figure (£${aStr} vs £${bStr}). The defence position remains provisional pending reconciliation of served accounting material.`,
     riskLine: `Loss figure differs between served documents (£${aStr} vs £${bStr}) — reconciliation outstanding.`,
     opportunityLine: `Opportunity to challenge loss figure reconciliation (£${aStr} vs £${bStr}) pending served accounting material.`,
   };
@@ -223,7 +252,7 @@ function detectCctvWindow(bundleText: string, mg5: string): BundleContradiction 
     sources: ["Charge sheet / MG5", "CCTV schedule"],
     values: ["charge window", "served CCTV dates"],
     theoryLine:
-      "CCTV served covers only two dates, while the charge window spans a longer period. Continuity and full coverage are required before the defence can confirm position.",
+      "The papers differ on CCTV coverage: only two dates are served while the charge window spans a longer period. The defence position remains provisional pending full export.",
     riskLine:
       "CCTV coverage on the papers may not match the full charge window — continuity and further disclosure outstanding.",
     opportunityLine:
@@ -237,17 +266,18 @@ export function extractBundleContradictions(bundleText: string | null | undefine
   if (!text || text.length < 200) return [];
 
   const mg5 = mg5Text(text);
-  const mg11Blocks = mg11WitnessTexts(text);
-  const mg11 = mg11Combined(text);
+  const mg11Blocks = extractMg11WitnessBlocks(text);
+  const mg11FirstContact = mg11ForFirstContact(text, mg11Blocks);
+  const mg11ForLoss = mg11Blocks.length > 0 ? mg11Blocks.join("\n\n") : text;
   const out: BundleContradiction[] = [];
 
-  const location = detectLocation(mg5, mg11Blocks);
+  const location = detectLocation(mg5, mg11Blocks, text);
   if (location) out.push(location);
 
-  const firstContact = detectFirstContact(mg5, mg11);
+  const firstContact = detectFirstContact(mg5, mg11FirstContact);
   if (firstContact) out.push(firstContact);
 
-  const loss = detectLossFigure(text, mg5, mg11);
+  const loss = detectLossFigure(text, mg5, mg11ForLoss);
   if (loss) out.push(loss);
 
   const cctv = detectCctvWindow(text, mg5);

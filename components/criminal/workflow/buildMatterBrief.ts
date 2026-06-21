@@ -3,7 +3,10 @@ import type { HearingWarRoomBrief } from "@/components/criminal/hearing-war-room
 import { dedupePilotLines } from "./workflowPilotDisplay";
 import {
   dedupeSimilarSummaryLines,
+  dedupeTheorySentences,
   firstSafeSentence,
+  isOpportunityShapedLine,
+  similarityRatio,
   stripReqAndInternalCodes,
 } from "./matterBriefAssembly";
 
@@ -16,21 +19,9 @@ export type MatterBriefSection = {
 
 export type MatterBrief = {
   sections: MatterBriefSection[];
-  /** Court-day line lives on Today — pointer only. */
   courtDayNote: string;
   plainText: string;
 };
-
-function trimParagraph(parts: (string | null | undefined)[]): string {
-  return stripReqAndInternalCodes(
-    parts
-      .map((p) => p?.trim())
-      .filter(Boolean)
-      .join(" ")
-      .replace(/\s+/g, " ")
-      .trim(),
-  );
-}
 
 function sectionPlain(s: MatterBriefSection): string {
   const lines = [s.title, s.paragraph ?? "", ...(s.bullets?.map((b) => `• ${b}`) ?? [])].filter(Boolean);
@@ -39,12 +30,12 @@ function sectionPlain(s: MatterBriefSection): string {
 
 function shapedOpportunityFromChase(chase: DisclosureChaseBrief): string[] {
   return chase.primaryItems
-    .slice(0, 5)
+    .slice(0, 4)
     .map((item) => {
       const label = stripReqAndInternalCodes(item.label ?? "");
       const why = item.whyItMatters?.trim();
       if (!label) return "";
-      if (why && !/appears outstanding|ask the court/i.test(why)) {
+      if (why && !/appears outstanding|ask the court|chase or confirm|papers mark this material/i.test(why)) {
         const w = stripReqAndInternalCodes(why);
         if (/causation|injury|medical/i.test(`${label} ${w}`)) {
           return `Causation / injury leverage: ${w}`;
@@ -56,15 +47,6 @@ function shapedOpportunityFromChase(chase: DisclosureChaseBrief): string[] {
           return `Sequence / coverage leverage: ${w}`;
         }
         return `Disclosure leverage: ${w}`;
-      }
-      if (/medical|injury|causation/i.test(label)) {
-        return `Causation / injury challenge pending served medical material.`;
-      }
-      if (/cctv|bwv|999|cad|timeline|audio/i.test(label)) {
-        return `Sequence / coverage challenge pending served footage or CAD material.`;
-      }
-      if (/receipt|cardholder|bank|loss|continuity/i.test(label)) {
-        return `Attribution / continuity challenge pending served accounting material.`;
       }
       return "";
     })
@@ -81,6 +63,18 @@ function topChaseBullets(chase: DisclosureChaseBrief, labels: string[]): string[
   return labels.slice(0, 3).map((l, i) => top[i] ?? stripReqAndInternalCodes(l));
 }
 
+function safeLineForTheory(safePosition: string, contradictions: HearingWarRoomBrief["bundleContradictions"]): string | null {
+  const line = firstSafeSentence(safePosition);
+  if (!line) return null;
+  const hasCctv = contradictions?.some((c) => c.type === "cctv_window");
+  if (hasCctv && /\bcctv\b/i.test(line) && /\btwo dates\b|\blimited\b/i.test(line)) {
+    return null;
+  }
+  const dup = contradictions?.some((c) => similarityRatio(c.theoryLine, line) >= 0.55);
+  if (dup) return null;
+  return line;
+}
+
 /** Assemble Matter Brief from existing War Room + Chase briefs — no new reasoning. */
 export function buildMatterBrief(input: {
   warRoom: HearingWarRoomBrief;
@@ -89,6 +83,7 @@ export function buildMatterBrief(input: {
 }): MatterBrief {
   const { warRoom, chase } = input;
   const contradictions = warRoom.bundleContradictions ?? [];
+  const opportunityLines = new Set(contradictions.map((c) => c.opportunityLine));
   const primaryRoute =
     input.primaryRouteTitle?.trim() ||
     chase.linkedRoutes[0]?.trim() ||
@@ -101,9 +96,9 @@ export function buildMatterBrief(input: {
     ].filter(Boolean),
   ).slice(0, 8);
 
-  const safeLine = firstSafeSentence(warRoom.safePositionToday);
+  const safeLine = safeLineForTheory(warRoom.safePositionToday, contradictions);
 
-  const caseTheory = trimParagraph([
+  const caseTheory = dedupeTheorySentences([
     "The defence case remains provisional pending disclosure.",
     primaryRoute ? `Primary route on file: ${primaryRoute}.` : null,
     ...contradictions.map((c) => c.theoryLine),
@@ -112,8 +107,13 @@ export function buildMatterBrief(input: {
 
   const prosecutionRisks = dedupeSimilarSummaryLines(
     [
-      ...contradictions.map((c) => `Prosecution papers differ on ${c.type.replace(/_/g, " ")} — reconciliation outstanding.`),
-      ...warRoom.collapseRisks.filter((r) => /prosecution|crown|pressure|gap|missing|not served|reconcile|differs/i.test(r)),
+      ...contradictions.map((c) => c.riskLine),
+      ...warRoom.collapseRisks.filter(
+        (r) =>
+          !isOpportunityShapedLine(r) &&
+          !opportunityLines.has(r) &&
+          /prosecution|crown|pressure|gap|missing|not served|reconcile|differs/i.test(r),
+      ),
     ],
     4,
   );
@@ -122,28 +122,25 @@ export function buildMatterBrief(input: {
     [
       ...contradictions.map((c) => c.riskLine),
       ...warRoom.doNotOverstate,
-      ...warRoom.collapseRisks,
+      ...warRoom.collapseRisks.filter((r) => !isOpportunityShapedLine(r) && !opportunityLines.has(r)),
     ],
     6,
   );
 
   const opportunities = dedupeSimilarSummaryLines(
-    [
-      ...contradictions.map((c) => c.opportunityLine),
-      ...shapedOpportunityFromChase(chase),
-    ],
+    [...contradictions.map((c) => c.opportunityLine), ...shapedOpportunityFromChase(chase)],
     8,
   );
 
   const ptphBullets = dedupePilotLines([
-    safeLine,
+    safeLine ?? firstSafeSentence(warRoom.safePositionToday),
     ...warRoom.askCourtToRecord.slice(0, 6),
     "The defence cannot confirm final issues until disclosure is complete.",
   ]).slice(0, 10);
 
   const clientParagraph =
     warRoom.draftWording.clientExplanation?.trim() ||
-    trimParagraph([
+    dedupeTheorySentences([
       "We are still reviewing the papers.",
       contradictions[0]?.theoryLine,
       safeLine,
@@ -166,7 +163,9 @@ export function buildMatterBrief(input: {
         ...(defenceRisks.length
           ? [`Defence risks: ${defenceRisks[0]}`, ...defenceRisks.slice(1, 5)]
           : ["Defence risks: confirm missing material and client instructions."]),
-      ].slice(0, 10),
+      ]
+        .filter((b) => !isOpportunityShapedLine(b.replace(/^[^:]+:\s*/, "")))
+        .slice(0, 10),
     },
     {
       id: "opportunities",

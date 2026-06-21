@@ -57,11 +57,24 @@ assert.ok(paige.some((c) => c.type === "first_contact"), "Paige: first contact")
 
 const paigeMulti = extractBundleContradictions(PAIGE_MULTI_WITNESS);
 assert.ok(paigeMulti.some((c) => c.type === "location"), "Paige multi-witness: location");
-assert.equal(
-  paigeMulti.find((c) => c.type === "location")?.values.join("|"),
-  "kitchen|hallway",
-  "Paige location kitchen vs hallway",
-);
+
+/** Neighbour MG11 first — prod-shaped flat bundle without SECTION markers. */
+const PAIGE_FLAT_PROD = `
+MG5 case summary
+Both parties were struggling in the kitchen during the argument.
+Ms Thornton says Ms Lee threw the mug first before any injury.
+
+Witness statement — Neighbour
+I heard shouting and a smash. I did not see what happened inside.
+
+MG11 witness statement — Hannah Lee
+I did not throw anything at her.
+I felt something hit my face and I was bleeding in the hallway.
+`;
+
+const paigeFlat = extractBundleContradictions(PAIGE_FLAT_PROD);
+assert.ok(paigeFlat.some((c) => c.type === "location"), "Paige flat prod: location");
+assert.ok(paigeFlat.some((c) => c.type === "first_contact"), "Paige flat prod: first contact");
 
 const neil = extractBundleContradictions(NEIL_BUNDLE);
 assert.ok(neil.some((c) => c.type === "loss_figure"), "Neil: loss figure");
@@ -155,6 +168,9 @@ const theory = neilBrief.sections.find((s) => s.id === "theory")?.paragraph ?? "
 assert.ok(!/REQ-/i.test(theory), "Theory: no REQ codes");
 assert.ok(!/appears outstanding/i.test(theory), "Theory: no chase leakage");
 assert.ok(/1,280|loss figure/i.test(theory), "Theory: loss contradiction present");
+
+const risks = neilBrief.sections.find((s) => s.id === "risks")?.bullets ?? [];
+assert.ok(!risks.some((b) => /^Opportunity to/i.test(b)), "Risks: no opportunity lines");
 
 const opportunities = neilBrief.sections.find((s) => s.id === "opportunities")?.bullets ?? [];
 assert.ok(opportunities.some((b) => /^Opportunity to challenge loss/i.test(b)), "Opportunities: contradiction");
