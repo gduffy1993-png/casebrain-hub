@@ -12,6 +12,8 @@ import {
 } from "../lib/criminal/extract-bundle-contradictions";
 import { extractSequenceContradictions } from "../lib/criminal/extract-sequence-contradictions";
 import { isBundleSequenceSurfacingEnabled } from "../lib/criminal/bundle-sequence-surfacing";
+import { extractScopeContradictions } from "../lib/criminal/extract-scope-contradictions";
+import { isBundleScopeSurfacingEnabled } from "../lib/criminal/bundle-scope-surfacing";
 import { buildHearingWarRoomBrief } from "../components/criminal/hearing-war-room/buildHearingWarRoomBrief";
 import { buildDisclosureChaseBrief } from "../components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import { buildMatterBrief } from "../components/criminal/workflow/buildMatterBrief";
@@ -90,7 +92,16 @@ const TIER_A: CaseExpect[] = [
     label: "Thin bundle — no contradictions",
     text: "Cover sheet only. Stage: PTPH. No MG5 body yet.",
     mustInclude: [],
-    mustExclude: ["location", "first_contact", "loss_figure", "cctv_window", "sequence_order", "sequence_timeline"],
+    mustExclude: [
+      "location",
+      "first_contact",
+      "loss_figure",
+      "cctv_window",
+      "sequence_order",
+      "sequence_timeline",
+      "scope_multi_vs_single",
+      "scope_indictment_count",
+    ],
   },
 ];
 
@@ -118,6 +129,30 @@ const TIER_A_SEQUENCE: CaseExpect[] = [
   },
 ];
 
+const FRAUD_SCOPE_MULTI = `
+=== SECTION: CHARGE ===
+Between 01 March 2026 and 30 April 2026 the defendant made multiple fraudulent refunds.
+
+=== SECTION: MG5 ===
+MG5 case summary
+This relates to one refund transaction on 15 March 2026 at the store.
+MG5 total alleged loss is 1,280.40 for the charge period.
+`.padStart(220, " ");
+
+const TIER_A_SCOPE: CaseExpect[] = [
+  {
+    id: "fraud-multi-vs-single",
+    label: "Fraud — multiple alleged vs single episode MG5",
+    text: FRAUD_SCOPE_MULTI,
+    mustInclude: ["scope_multi_vs_single"],
+    mustExclude: ["scope_indictment_count"],
+    assembly: {
+      theoryMust: [/scope|multiple|single episode/i],
+      theoryMustNot: [/REQ-/i],
+    },
+  },
+];
+
 function extractViaProdPath(text: string): ReturnType<typeof extractBundleContradictions> {
   const payload = buildBundleSourcePayload([
     { id: "gate", name: "bundle.txt", extracted_text: text },
@@ -138,6 +173,17 @@ function extractSequenceViaProdPath(text: string): ReturnType<typeof extractSequ
     snippets: payload.snippets,
   });
   return extractSequenceContradictions(assembled);
+}
+
+function extractScopeViaProdPath(text: string): ReturnType<typeof extractScopeContradictions> {
+  const payload = buildBundleSourcePayload([
+    { id: "gate", name: "bundle.txt", extracted_text: text },
+  ]);
+  const assembled = assembleBundleTextForContradictions({
+    frontMatterScan: payload.frontMatterScan,
+    snippets: payload.snippets,
+  });
+  return extractScopeContradictions(assembled);
 }
 
 function runAssemblyGate(
@@ -251,6 +297,36 @@ function scoreTierASequence(): { pass: number; fail: number; results: unknown[] 
   return { pass, fail, results };
 }
 
+function scoreTierAScope(): { pass: number; fail: number; results: unknown[] } {
+  const results: unknown[] = [];
+  let pass = 0;
+  let fail = 0;
+
+  if (!isBundleScopeSurfacingEnabled()) {
+    results.push({ tier: "A-scope", id: "module-disabled", skipped: true, ok: true });
+    return { pass: 1, fail: 0, results };
+  }
+
+  for (const c of TIER_A_SCOPE) {
+    const types = extractScopeViaProdPath(c.text).map((x) => x.type);
+    const issues: string[] = [];
+    for (const m of c.mustInclude) {
+      if (!types.includes(m)) issues.push(`missing ${m}`);
+    }
+    for (const x of c.mustExclude) {
+      if (types.includes(x)) issues.push(`unexpected ${x}`);
+    }
+    issues.push(...runAssemblyGate(c, extractScopeContradictions(c.text)));
+
+    const ok = issues.length === 0;
+    if (ok) pass++;
+    else fail++;
+    results.push({ tier: "A-scope", id: c.id, label: c.label, types, ok, issues });
+  }
+
+  return { pass, fail, results };
+}
+
 function scoreTierB(): { pass: number; fail: number; results: unknown[] } {
   const results: unknown[] = [];
   let pass = 0;
@@ -271,6 +347,7 @@ function scoreTierB(): { pass: number; fail: number; results: unknown[] } {
     const text = readBundleText(entry.bundleTextPaths);
     const types = extractViaProdPath(text).map((x) => x.type);
     const seqTypes = extractSequenceViaProdPath(text).map((x) => x.type);
+    const scopeTypes = extractScopeViaProdPath(text).map((x) => x.type);
     const expectEmpty = goldNoContra.includes(id);
     const issues: string[] = [];
     if (expectEmpty && types.length > 0) {
@@ -278,6 +355,9 @@ function scoreTierB(): { pass: number; fail: number; results: unknown[] } {
     }
     if (expectEmpty && seqTypes.length > 0) {
       issues.push(`false positive sequence: ${seqTypes.join(", ")}`);
+    }
+    if (expectEmpty && scopeTypes.length > 0) {
+      issues.push(`false positive scope: ${scopeTypes.join(", ")}`);
     }
     const ok = issues.length === 0;
     if (ok) pass++;
@@ -316,20 +396,22 @@ function scoreTierB(): { pass: number; fail: number; results: unknown[] } {
 function main() {
   const tierA = scoreTierA();
   const tierASeq = scoreTierASequence();
+  const tierAScope = scoreTierAScope();
   const tierB = scoreTierB();
-  const totalPass = tierA.pass + tierASeq.pass + tierB.pass;
-  const totalFail = tierA.fail + tierASeq.fail + tierB.fail;
+  const totalPass = tierA.pass + tierASeq.pass + tierAScope.pass + tierB.pass;
+  const totalFail = tierA.fail + tierASeq.fail + tierAScope.fail + tierB.fail;
   const overall = totalFail === 0 ? "PASS" : "FAIL";
 
   const report = {
     generatedAt: new Date().toISOString(),
-    phase: "2b-sequence-module-gate",
-    modules: ["bundle-contradictions-v1-frozen", "bundle-sequence-v1"],
+    phase: "2c-scope-module-gate",
+    modules: ["bundle-contradictions-v1-frozen", "bundle-sequence-v1", "bundle-scope-v1"],
     overall,
     tierA: { pass: tierA.pass, fail: tierA.fail },
     tierASequence: { pass: tierASeq.pass, fail: tierASeq.fail },
+    tierAScope: { pass: tierAScope.pass, fail: tierAScope.fail },
     tierB: { pass: tierB.pass, fail: tierB.fail },
-    results: [...tierA.results, ...tierASeq.results, ...tierB.results],
+    results: [...tierA.results, ...tierASeq.results, ...tierAScope.results, ...tierB.results],
   };
 
   fs.mkdirSync(OUT_DIR, { recursive: true });
@@ -339,6 +421,7 @@ function main() {
   console.log(`bundle-contradiction-tier-gate: ${overall}`);
   console.log(`Tier A: ${tierA.pass} pass / ${tierA.fail} fail`);
   console.log(`Tier A sequence: ${tierASeq.pass} pass / ${tierASeq.fail} fail`);
+  console.log(`Tier A scope: ${tierAScope.pass} pass / ${tierAScope.fail} fail`);
   console.log(`Tier B: ${tierB.pass} pass / ${tierB.fail} fail`);
   console.log(`Report: ${outPath}`);
 

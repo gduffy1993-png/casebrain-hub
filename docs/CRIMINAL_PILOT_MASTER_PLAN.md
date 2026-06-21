@@ -81,7 +81,7 @@ Six sections assembled from existing brains + contradiction layer (no new reason
 |---|--------|---------|
 | 1 | **Bundle contradictions** | **FROZEN v1** — location, first contact, loss figure, CCTV window |
 | 2 | **Sequence engine** | **LIVE v1** — initiation vs retreat; charge-window vs single-incident timeline |
-| 3 | **Scope contradictions** | Charge period vs evidence window, “multiple” vs “one” |
+| 3 | **Scope contradictions** | **LIVE v1** — charge period vs evidence window, “multiple” vs “one”, count scope |
 | 4 | **Strength contradictions** | Severity vs injury vs CCTV behaviour |
 | 5 | **Multi-incident reasoning** | Multiple dates, complainants, events |
 | 6 | **Cross-evidence triangulation** | MG11 vs CCTV vs CAD vs BWV vs 999 |
@@ -101,7 +101,7 @@ Report: `artifacts/casebrain-qa/contradiction-tier-gate/report.json`
 
 | Tier | Cases |
 |------|--------|
-| **A** | Paige sectioned, Neil fraud, thin empty |
+| **A** | Paige sectioned, Neil fraud, thin empty; sequence (Paige); scope (fraud multi vs single) |
 | **B** | Gold no-false-positive (Ella, Sam, Ashleigh) + 80 thin corpus manifests |
 
 ### Final eval (one run when stack complete)

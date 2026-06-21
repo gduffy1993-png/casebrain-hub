@@ -9,7 +9,9 @@ export type BundleContradictionType =
   | "loss_figure"
   | "cctv_window"
   | "sequence_order"
-  | "sequence_timeline";
+  | "sequence_timeline"
+  | "scope_multi_vs_single"
+  | "scope_indictment_count";
 
 export type BundleContradiction = {
   type: BundleContradictionType;

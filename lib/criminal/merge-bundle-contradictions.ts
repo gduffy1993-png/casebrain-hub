@@ -9,8 +9,10 @@ import {
 import { isBundleContradictionSurfacingEnabled } from "./bundle-contradiction-surfacing";
 import { extractSequenceContradictions } from "./extract-sequence-contradictions";
 import { isBundleSequenceSurfacingEnabled } from "./bundle-sequence-surfacing";
+import { extractScopeContradictions } from "./extract-scope-contradictions";
+import { isBundleScopeSurfacingEnabled } from "./bundle-scope-surfacing";
 
-/** Bundle + sequence modules — respects per-module kill switches. */
+/** Bundle + additive modules — respects per-module kill switches. */
 export function extractAllBundleContradictions(
   bundleText: string | null | undefined,
 ): BundleContradiction[] {
@@ -20,6 +22,9 @@ export function extractAllBundleContradictions(
   }
   if (isBundleSequenceSurfacingEnabled()) {
     out.push(...extractSequenceContradictions(bundleText));
+  }
+  if (isBundleScopeSurfacingEnabled()) {
+    out.push(...extractScopeContradictions(bundleText));
   }
 
   const seen = new Set<BundleContradictionType>();
