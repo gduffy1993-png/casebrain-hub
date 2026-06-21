@@ -13,6 +13,8 @@ import { extractScopeContradictions } from "./extract-scope-contradictions";
 import { isBundleScopeSurfacingEnabled } from "./bundle-scope-surfacing";
 import { extractStrengthContradictions } from "./extract-strength-contradictions";
 import { isBundleStrengthSurfacingEnabled } from "./bundle-strength-surfacing";
+import { extractMultiIncidentContradictions } from "./extract-multi-incident-contradictions";
+import { isBundleMultiIncidentSurfacingEnabled } from "./bundle-multi-incident-surfacing";
 
 /** Bundle + additive modules — respects per-module kill switches. */
 export function extractAllBundleContradictions(
@@ -30,6 +32,9 @@ export function extractAllBundleContradictions(
   }
   if (isBundleStrengthSurfacingEnabled()) {
     out.push(...extractStrengthContradictions(bundleText));
+  }
+  if (isBundleMultiIncidentSurfacingEnabled()) {
+    out.push(...extractMultiIncidentContradictions(bundleText));
   }
 
   const seen = new Set<BundleContradictionType>();

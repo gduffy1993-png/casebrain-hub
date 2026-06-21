@@ -16,6 +16,8 @@ import { extractScopeContradictions } from "../lib/criminal/extract-scope-contra
 import { isBundleScopeSurfacingEnabled } from "../lib/criminal/bundle-scope-surfacing";
 import { extractStrengthContradictions } from "../lib/criminal/extract-strength-contradictions";
 import { isBundleStrengthSurfacingEnabled } from "../lib/criminal/bundle-strength-surfacing";
+import { extractMultiIncidentContradictions } from "../lib/criminal/extract-multi-incident-contradictions";
+import { isBundleMultiIncidentSurfacingEnabled } from "../lib/criminal/bundle-multi-incident-surfacing";
 import { buildHearingWarRoomBrief } from "../components/criminal/hearing-war-room/buildHearingWarRoomBrief";
 import { buildDisclosureChaseBrief } from "../components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import { buildMatterBrief } from "../components/criminal/workflow/buildMatterBrief";
@@ -105,6 +107,8 @@ const TIER_A: CaseExpect[] = [
       "scope_indictment_count",
       "strength_serious_vs_minor",
       "strength_force_vs_cctv",
+      "multi_incident_dates",
+      "multi_incident_complainants",
     ],
   },
 ];
@@ -184,6 +188,30 @@ const TIER_A_STRENGTH: CaseExpect[] = [
   },
 ];
 
+const DOMESTIC_MULTI_DATES = `
+=== SECTION: CHARGE ===
+Count 1: On 5 January 2026 at 22 Mill Lane the defendant assaulted Ms Hannah Lee.
+Count 2: On 18 January 2026 at 22 Mill Lane the defendant assaulted Ms Hannah Lee.
+
+=== SECTION: MG5 ===
+MG5 case summary
+The incident on 5 January 2026 arose during a domestic assault in the kitchen at 22 Mill Lane.
+`.padStart(220, " ");
+
+const TIER_A_MULTI: CaseExpect[] = [
+  {
+    id: "domestic-multi-dates",
+    label: "Domestic — multiple charge dates vs single-episode MG5",
+    text: DOMESTIC_MULTI_DATES,
+    mustInclude: ["multi_incident_dates"],
+    mustExclude: ["multi_incident_complainants"],
+    assembly: {
+      theoryMust: [/incident count|multiple incident|single incident/i],
+      theoryMustNot: [/REQ-/i],
+    },
+  },
+];
+
 function extractViaProdPath(text: string): ReturnType<typeof extractBundleContradictions> {
   const payload = buildBundleSourcePayload([
     { id: "gate", name: "bundle.txt", extracted_text: text },
@@ -226,6 +254,19 @@ function extractStrengthViaProdPath(text: string): ReturnType<typeof extractStre
     snippets: payload.snippets,
   });
   return extractStrengthContradictions(assembled);
+}
+
+function extractMultiIncidentViaProdPath(
+  text: string,
+): ReturnType<typeof extractMultiIncidentContradictions> {
+  const payload = buildBundleSourcePayload([
+    { id: "gate", name: "bundle.txt", extracted_text: text },
+  ]);
+  const assembled = assembleBundleTextForContradictions({
+    frontMatterScan: payload.frontMatterScan,
+    snippets: payload.snippets,
+  });
+  return extractMultiIncidentContradictions(assembled);
 }
 
 function runAssemblyGate(
@@ -399,6 +440,36 @@ function scoreTierAStrength(): { pass: number; fail: number; results: unknown[] 
   return { pass, fail, results };
 }
 
+function scoreTierAMulti(): { pass: number; fail: number; results: unknown[] } {
+  const results: unknown[] = [];
+  let pass = 0;
+  let fail = 0;
+
+  if (!isBundleMultiIncidentSurfacingEnabled()) {
+    results.push({ tier: "A-multi", id: "module-disabled", skipped: true, ok: true });
+    return { pass: 1, fail: 0, results };
+  }
+
+  for (const c of TIER_A_MULTI) {
+    const types = extractMultiIncidentViaProdPath(c.text).map((x) => x.type);
+    const issues: string[] = [];
+    for (const m of c.mustInclude) {
+      if (!types.includes(m)) issues.push(`missing ${m}`);
+    }
+    for (const x of c.mustExclude) {
+      if (types.includes(x)) issues.push(`unexpected ${x}`);
+    }
+    issues.push(...runAssemblyGate(c, extractMultiIncidentContradictions(c.text)));
+
+    const ok = issues.length === 0;
+    if (ok) pass++;
+    else fail++;
+    results.push({ tier: "A-multi", id: c.id, label: c.label, types, ok, issues });
+  }
+
+  return { pass, fail, results };
+}
+
 function scoreTierB(): { pass: number; fail: number; results: unknown[] } {
   const results: unknown[] = [];
   let pass = 0;
@@ -421,6 +492,7 @@ function scoreTierB(): { pass: number; fail: number; results: unknown[] } {
     const seqTypes = extractSequenceViaProdPath(text).map((x) => x.type);
     const scopeTypes = extractScopeViaProdPath(text).map((x) => x.type);
     const strengthTypes = extractStrengthViaProdPath(text).map((x) => x.type);
+    const multiTypes = extractMultiIncidentViaProdPath(text).map((x) => x.type);
     const expectEmpty = goldNoContra.includes(id);
     const issues: string[] = [];
     if (expectEmpty && types.length > 0) {
@@ -434,6 +506,9 @@ function scoreTierB(): { pass: number; fail: number; results: unknown[] } {
     }
     if (expectEmpty && strengthTypes.length > 0) {
       issues.push(`false positive strength: ${strengthTypes.join(", ")}`);
+    }
+    if (expectEmpty && multiTypes.length > 0) {
+      issues.push(`false positive multi-incident: ${multiTypes.join(", ")}`);
     }
     const ok = issues.length === 0;
     if (ok) pass++;
@@ -474,31 +549,37 @@ function main() {
   const tierASeq = scoreTierASequence();
   const tierAScope = scoreTierAScope();
   const tierAStrength = scoreTierAStrength();
+  const tierAMulti = scoreTierAMulti();
   const tierB = scoreTierB();
-  const totalPass = tierA.pass + tierASeq.pass + tierAScope.pass + tierAStrength.pass + tierB.pass;
-  const totalFail = tierA.fail + tierASeq.fail + tierAScope.fail + tierAStrength.fail + tierB.fail;
+  const totalPass =
+    tierA.pass + tierASeq.pass + tierAScope.pass + tierAStrength.pass + tierAMulti.pass + tierB.pass;
+  const totalFail =
+    tierA.fail + tierASeq.fail + tierAScope.fail + tierAStrength.fail + tierAMulti.fail + tierB.fail;
   const overall = totalFail === 0 ? "PASS" : "FAIL";
 
   const report = {
     generatedAt: new Date().toISOString(),
-    phase: "2d-strength-module-gate",
+    phase: "2e-multi-incident-module-gate",
     modules: [
       "bundle-contradictions-v1-frozen",
       "bundle-sequence-v1",
       "bundle-scope-v1",
       "bundle-strength-v1",
+      "bundle-multi-incident-v1",
     ],
     overall,
     tierA: { pass: tierA.pass, fail: tierA.fail },
     tierASequence: { pass: tierASeq.pass, fail: tierASeq.fail },
     tierAScope: { pass: tierAScope.pass, fail: tierAScope.fail },
     tierAStrength: { pass: tierAStrength.pass, fail: tierAStrength.fail },
+    tierAMultiIncident: { pass: tierAMulti.pass, fail: tierAMulti.fail },
     tierB: { pass: tierB.pass, fail: tierB.fail },
     results: [
       ...tierA.results,
       ...tierASeq.results,
       ...tierAScope.results,
       ...tierAStrength.results,
+      ...tierAMulti.results,
       ...tierB.results,
     ],
   };
@@ -512,6 +593,7 @@ function main() {
   console.log(`Tier A sequence: ${tierASeq.pass} pass / ${tierASeq.fail} fail`);
   console.log(`Tier A scope: ${tierAScope.pass} pass / ${tierAScope.fail} fail`);
   console.log(`Tier A strength: ${tierAStrength.pass} pass / ${tierAStrength.fail} fail`);
+  console.log(`Tier A multi-incident: ${tierAMulti.pass} pass / ${tierAMulti.fail} fail`);
   console.log(`Tier B: ${tierB.pass} pass / ${tierB.fail} fail`);
   console.log(`Report: ${outPath}`);
 

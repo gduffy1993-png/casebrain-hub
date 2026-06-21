@@ -13,7 +13,9 @@ export type BundleContradictionType =
   | "scope_multi_vs_single"
   | "scope_indictment_count"
   | "strength_serious_vs_minor"
-  | "strength_force_vs_cctv";
+  | "strength_force_vs_cctv"
+  | "multi_incident_dates"
+  | "multi_incident_complainants";
 
 export type BundleContradiction = {
   type: BundleContradictionType;

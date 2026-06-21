@@ -1,10 +1,18 @@
 # Criminal pilot — master plan (merged)
 
-**Status:** Layers 1–3 shipped. **Phase 1.5 closed** (Paige + Neil Summary PASS on prod). **Contradiction v1 frozen.** Phase 2 Tier A/B gate added.
+**Status:** Layers 1–3 shipped. **Modules 1–5 LIVE** on prod. **Next:** Module 6 (triangulation) → Module 7 (client-safe).
 
 ## Principle
 
 **Same information, simpler shell.** Extraction, chase briefs, control room reasoning, and factory rules are not modified by layout work.
+
+**Three parallel tracks (don’t block module ship on polish or offence depth):**
+
+| Track | Goal | When |
+|-------|------|------|
+| **A — Module stack** | Finish contradiction modules 5–7 → one 2,200 eval | Now → ~weeks |
+| **B — Offence depth** | Family → offence-specific packs where pilots need them | After Module 7, driven by real uploads |
+| **C — Commercial** | 3–5 firms, structured QA, UX hardening | Overlap once Module 5+6 in prod |
 
 ## Layer 1 — Paper trust
 
@@ -43,12 +51,27 @@
 | Deadline diary | File tab — `PilotDeadlinesPanel` |
 | Funding/bail/safeguard header | Matter API on strip |
 
-## Layer 4 — Pilot hardening (next)
+## Layer 4 — Pilot hardening (parallel, not blocking modules)
 
-- Browser cold-start on S1 upload
-- No tracker/demo leakage QA
-- Paywall/trial clarity
-- Real redacted matters (with consent, after synthetic pilot)
+| Item | Status | Notes |
+|------|--------|-------|
+| Browser cold-start on S1 upload | ⏳ | `scripts/.tmp-cold-start-gauntlet.ts` |
+| No tracker/demo leakage QA | ⏳ | Co-pilot + prod spot-check |
+| Paywall/trial clarity | ⏳ | Banner + upload gate copy |
+| Real redacted matters (consent) | Later | After synthetic pilot stable |
+| Prod smoke probes | ✅ | Paige + Neil via Supabase pipeline scripts |
+
+### UX & reliability polish (ruthless but scoped)
+
+Ship modules first; polish in passes:
+
+| Area | Must-have before firms | Nice-to-have |
+|------|------------------------|--------------|
+| Loading / empty / error states | ✅ | — |
+| Court Today + case shell hierarchy | ✅ | Mobile pass |
+| Bundle parse fallback + MG6/snippet assembly | ✅ | Worker-thread PDF parse |
+| Forbidden-claim / provisional language | ✅ | Extra sanitisation rules |
+| Kill switches per module | ✅ Done | — |
 
 ## Layer 5 — Intelligence superpower stack (additive, eval-gated)
 
@@ -83,13 +106,23 @@ Six sections assembled from existing brains + contradiction layer (no new reason
 | 2 | **Sequence engine** | **LIVE v1** — initiation vs retreat; charge-window vs single-incident timeline |
 | 3 | **Scope contradictions** | **LIVE v1** — charge period vs evidence window, “multiple” vs “one”, count scope |
 | 4 | **Strength contradictions** | **LIVE v1** — serious harm alleged vs minor injury; force/weapon vs limited CCTV |
-| 5 | **Multi-incident reasoning** | Multiple dates, complainants, events |
-| 6 | **Cross-evidence triangulation** | MG11 vs CCTV vs CAD vs BWV vs 999 |
-| 7 | **Client-safe explanation engine** | Plain-English contradiction packaging (Section 6) |
+| 5 | **Multi-incident reasoning** | **LIVE v1** — multiple charge dates vs single-episode MG5; multiple complainants vs single served narrative |
+| 6 | **Cross-evidence triangulation** | ⏳ MG11 vs CCTV vs CAD vs BWV vs 999 |
+| 7 | **Client-safe explanation engine** | ⏳ Dedicated Section 6 module (assembler exists today) |
 
 Each module: `extract-*` → enrich War Room → `buildMatterBrief` routes lines to Theory / Risks / Opportunities. Env kill switch per module.
 
-### Phase 2 gate (contradiction v1)
+**Kill switches (prod):**
+
+| Env var | Module |
+|---------|--------|
+| `NEXT_PUBLIC_BUNDLE_CONTRADICTION_SURFACING` | v1 frozen |
+| `NEXT_PUBLIC_BUNDLE_SEQUENCE_SURFACING` | 2 |
+| `NEXT_PUBLIC_BUNDLE_SCOPE_SURFACING` | 3 |
+| `NEXT_PUBLIC_BUNDLE_STRENGTH_SURFACING` | 4 |
+| `NEXT_PUBLIC_BUNDLE_MULTI_INCIDENT_SURFACING` | 5 |
+
+### Phase 2 gate (all modules)
 
 ```powershell
 npx tsx scripts/bundle-contradiction-tier-gate.ts
@@ -101,12 +134,79 @@ Report: `artifacts/casebrain-qa/contradiction-tier-gate/report.json`
 
 | Tier | Cases |
 |------|--------|
-| **A** | Paige sectioned, Neil fraud, thin empty; sequence (Paige); scope (fraud multi vs single); strength (ABH serious vs minor) |
+| **A** | Paige sectioned, Neil fraud, thin empty; sequence (Paige); scope (fraud); strength (ABH); multi-incident (domestic dates) |
 | **B** | Gold no-false-positive (Ella, Sam, Ashleigh) + 80 thin corpus manifests |
 
 ### Final eval (one run when stack complete)
 
 Single 2,200-case factory pass checks: all contradiction types, sequence, scope, strength, multi-incident, triangulation, offence routing, Matter Brief assembly, safety surfaces, Today / Battleboard / Chase non-regression, kill switches.
+
+## Layer 6 — Offence coverage (family → offence-specific)
+
+**Today:** `pilot-workflow.ts` uses **family profiles** (fraud, violence, motoring, generic) — not full offence-by-offence objects.
+
+**Principle:** Expand from **pilot uploads**, not a blind 30-offence build. Each tranche: profile → disclosure pack → route weights → Tier A gate case → freeze.
+
+### Phase 6A — Already covered (families)
+
+| Profile | Typical matters |
+|---------|-----------------|
+| `violence_domestic_assault` | Paige-type ABH/domestic |
+| `fraud_account_control` | Neil-type fraud |
+| `generic_motoring_provisional` | Ella-type thin motoring |
+| `generic_serious_violence_provisional` | GBH / s.18–s.20 shaped |
+| `pwits_phone_attribution` | Phone / attribution |
+| `robbery_identification` | ID-led robbery |
+
+### Phase 6B — Offence tranches (build when pilot or eval demands)
+
+| Tranche | Offences | Deliverables |
+|---------|----------|--------------|
+| **B1 Violence** | s.47 ABH, s.20 GBH, s.18 GBH, assault by beating | Disclosure pack, theory/risk/opp templates, battleboard route weights, 1 Tier A case each |
+| **B2 Property** | Theft, burglary, robbery (full), criminal damage | Same |
+| **B3 Public order** | s.4, s.4A, s.5, affray, bladed article | Same |
+| **B4 Specialist** | Harassment, stalking, coercive control, sexual (later) | Same — only with consent + redacted pilots |
+
+**Not blocking Module 5.** Start B1 when first firm uploads violence-heavy caseload beyond Paige.
+
+## Layer 7 — Commercial pilot (3–5 firms)
+
+**Goal:** Prove product, not architecture. Architecture is proven in gates; firms prove UX, trust, and daily use.
+
+### Entry bar (start inviting firms when)
+
+- [ ] Modules 5 + 6 live on prod  
+- [ ] Module 7 client-safe shipped  
+- [ ] 2,200-case eval PASS (or explicit waiver for early design partner)  
+- [ ] Layer 4 cold-start + paywall QA PASS  
+
+### Per firm
+
+| Item | Target |
+|------|--------|
+| Firms | 3–5 |
+| Cases per firm | 10–20 (mix of offence families) |
+| Feedback | Weekly structured PASS/FAIL (Summary, Today, Chase, safety) |
+| Kill switch | Any module off within minutes if misbehaves |
+| Success | Solicitor would use output in conference / chase letter without rewrite |
+
+### Co-pilot QA checklist (copy per case)
+
+1. Theory — provisional, contradictions present when papers support, no REQ leakage  
+2. Risks vs opportunities — separated, no chase dump in theory  
+3. Chase — actionable, client-safe wording  
+4. Today — say this / don’t overstate  
+5. **Explicit silence** — if module quiet, confirm papers don’t support a pair (not a bug)  
+
+## Definition of done (commercial v1)
+
+| Criterion | Status |
+|-----------|--------|
+| Modules 1–7 live + gated | 5/7 |
+| 2,200-case eval | ⏳ |
+| 3+ offence tranches (6B) from real demand | ⏳ |
+| 3–5 firms completed pilot | ⏳ |
+| Layer 4 UX/reliability must-haves | Partial |
 
 ## Out of scope
 
