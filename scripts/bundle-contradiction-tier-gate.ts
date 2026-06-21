@@ -20,6 +20,7 @@ import { extractMultiIncidentContradictions } from "../lib/criminal/extract-mult
 import { isBundleMultiIncidentSurfacingEnabled } from "../lib/criminal/bundle-multi-incident-surfacing";
 import { extractTriangulationContradictions } from "../lib/criminal/extract-triangulation-contradictions";
 import { isBundleTriangulationSurfacingEnabled } from "../lib/criminal/bundle-triangulation-surfacing";
+import { isBundleClientSafeSurfacingEnabled } from "../lib/criminal/bundle-client-safe-surfacing";
 import { buildHearingWarRoomBrief } from "../components/criminal/hearing-war-room/buildHearingWarRoomBrief";
 import { buildDisclosureChaseBrief } from "../components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import { buildMatterBrief } from "../components/criminal/workflow/buildMatterBrief";
@@ -544,6 +545,70 @@ function scoreTierATriangulation(): { pass: number; fail: number; results: unkno
   return { pass, fail, results };
 }
 
+function scoreTierAClientSafe(): { pass: number; fail: number; results: unknown[] } {
+  const results: unknown[] = [];
+  let pass = 0;
+  let fail = 0;
+
+  if (!isBundleClientSafeSurfacingEnabled()) {
+    results.push({ tier: "A-client-safe", id: "module-disabled", skipped: true, ok: true });
+    return { pass: 1, fail: 0, results };
+  }
+
+  const text = PAIGE_SECTIONED.padStart(220, " ");
+  const war = buildHearingWarRoomBrief({
+    caseId: "paige-client-safe",
+    caseTitle: "Paige — client-safe",
+    clientLabel: "Paige Thornton",
+    allegation: "ABH",
+    stage: "PTPH",
+    hearingStatus: "TBC",
+    bundleHealth: "Partial",
+    positionStatus: "Provisional",
+    readiness: "Conditional",
+    battleboard: null,
+    hasSavedPosition: false,
+    chaseItems: ["CCTV outstanding"],
+    bundleText: text,
+  });
+  const chase = buildDisclosureChaseBrief({
+    caseId: "paige-client-safe",
+    caseTitle: "Paige — client-safe",
+    clientLabel: "Paige Thornton",
+    allegation: "ABH",
+    stage: "PTPH",
+    hearingStatus: "TBC",
+    hearingDateIso: null,
+    bundleHealth: "Partial",
+    positionStatus: "Provisional",
+    battleboard: null,
+    bundleText: text,
+  });
+  const brief = buildMatterBrief({ warRoom: war, chase });
+  const client = brief.sections.find((s) => s.id === "client")?.paragraph ?? "";
+  const issues: string[] = [];
+  if (!/reviewing the papers/i.test(client)) issues.push("missing provisional client opener");
+  if (/REQ-/i.test(client)) issues.push("REQ in client section");
+  if (!/who approached|different places/i.test(client)) {
+    issues.push("missing plain-English contradiction packaging");
+  }
+  if (/plead guilty|case collapses|guaranteed/i.test(client)) issues.push("forbidden client phrasing");
+
+  const ok = issues.length === 0;
+  if (ok) pass++;
+  else fail++;
+  results.push({
+    tier: "A-client-safe",
+    id: "paige-client-safe",
+    label: "Paige — client-safe Section 6",
+    ok,
+    issues,
+    clientPreview: client.slice(0, 200),
+  });
+
+  return { pass, fail, results };
+}
+
 function scoreTierB(): { pass: number; fail: number; results: unknown[] } {
   const results: unknown[] = [];
   let pass = 0;
@@ -629,6 +694,7 @@ function main() {
   const tierAStrength = scoreTierAStrength();
   const tierAMulti = scoreTierAMulti();
   const tierATriangulation = scoreTierATriangulation();
+  const tierAClientSafe = scoreTierAClientSafe();
   const tierB = scoreTierB();
   const totalPass =
     tierA.pass +
@@ -637,6 +703,7 @@ function main() {
     tierAStrength.pass +
     tierAMulti.pass +
     tierATriangulation.pass +
+    tierAClientSafe.pass +
     tierB.pass;
   const totalFail =
     tierA.fail +
@@ -645,12 +712,13 @@ function main() {
     tierAStrength.fail +
     tierAMulti.fail +
     tierATriangulation.fail +
+    tierAClientSafe.fail +
     tierB.fail;
   const overall = totalFail === 0 ? "PASS" : "FAIL";
 
   const report = {
     generatedAt: new Date().toISOString(),
-    phase: "2f-triangulation-module-gate",
+    phase: "2g-client-safe-module-gate",
     modules: [
       "bundle-contradictions-v1-frozen",
       "bundle-sequence-v1",
@@ -658,6 +726,7 @@ function main() {
       "bundle-strength-v1",
       "bundle-multi-incident-v1",
       "bundle-triangulation-v1",
+      "bundle-client-safe-v1",
     ],
     overall,
     tierA: { pass: tierA.pass, fail: tierA.fail },
@@ -666,6 +735,7 @@ function main() {
     tierAStrength: { pass: tierAStrength.pass, fail: tierAStrength.fail },
     tierAMultiIncident: { pass: tierAMulti.pass, fail: tierAMulti.fail },
     tierATriangulation: { pass: tierATriangulation.pass, fail: tierATriangulation.fail },
+    tierAClientSafe: { pass: tierAClientSafe.pass, fail: tierAClientSafe.fail },
     tierB: { pass: tierB.pass, fail: tierB.fail },
     results: [
       ...tierA.results,
@@ -674,6 +744,7 @@ function main() {
       ...tierAStrength.results,
       ...tierAMulti.results,
       ...tierATriangulation.results,
+      ...tierAClientSafe.results,
       ...tierB.results,
     ],
   };
@@ -689,6 +760,7 @@ function main() {
   console.log(`Tier A strength: ${tierAStrength.pass} pass / ${tierAStrength.fail} fail`);
   console.log(`Tier A multi-incident: ${tierAMulti.pass} pass / ${tierAMulti.fail} fail`);
   console.log(`Tier A triangulation: ${tierATriangulation.pass} pass / ${tierATriangulation.fail} fail`);
+  console.log(`Tier A client-safe: ${tierAClientSafe.pass} pass / ${tierAClientSafe.fail} fail`);
   console.log(`Tier B: ${tierB.pass} pass / ${tierB.fail} fail`);
   console.log(`Report: ${outPath}`);
 

@@ -9,6 +9,8 @@ import {
   similarityRatio,
   stripReqAndInternalCodes,
 } from "./matterBriefAssembly";
+import { buildClientSafeExplanation } from "@/lib/criminal/build-client-safe-explanation";
+import { isBundleClientSafeSurfacingEnabled } from "@/lib/criminal/bundle-client-safe-surfacing";
 
 export type MatterBriefSection = {
   id: string;
@@ -138,14 +140,21 @@ export function buildMatterBrief(input: {
     "The defence cannot confirm final issues until disclosure is complete.",
   ]).slice(0, 10);
 
-  const clientParagraph =
-    warRoom.draftWording.clientExplanation?.trim() ||
-    dedupeTheorySentences([
-      "We are still reviewing the papers.",
-      contradictions[0]?.theoryLine,
-      safeLine,
-      chaseLabels.length ? "Some evidence is still outstanding on the papers." : null,
-    ]);
+  const clientParagraph = isBundleClientSafeSurfacingEnabled()
+    ? buildClientSafeExplanation({
+        clientLabel: warRoom.clientLabel,
+        allegation: warRoom.allegation,
+        contradictions,
+        hasOutstandingDisclosure: chaseLabels.length > 0,
+        fallback: warRoom.draftWording.clientExplanation,
+      })
+    : warRoom.draftWording.clientExplanation?.trim() ||
+      dedupeTheorySentences([
+        "We are still reviewing the papers.",
+        contradictions[0]?.theoryLine,
+        safeLine,
+        chaseLabels.length ? "Some evidence is still outstanding on the papers." : null,
+      ]);
 
   const sections: MatterBriefSection[] = [
     {

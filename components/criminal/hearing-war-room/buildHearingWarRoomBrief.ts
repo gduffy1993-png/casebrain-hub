@@ -38,6 +38,8 @@ import { isBundleScopeSurfacingEnabled } from "@/lib/criminal/bundle-scope-surfa
 import { isBundleStrengthSurfacingEnabled } from "@/lib/criminal/bundle-strength-surfacing";
 import { isBundleMultiIncidentSurfacingEnabled } from "@/lib/criminal/bundle-multi-incident-surfacing";
 import { isBundleTriangulationSurfacingEnabled } from "@/lib/criminal/bundle-triangulation-surfacing";
+import { buildClientSafeExplanation } from "@/lib/criminal/build-client-safe-explanation";
+import { isBundleClientSafeSurfacingEnabled } from "@/lib/criminal/bundle-client-safe-surfacing";
 
 const FORBIDDEN_RE =
   /\b(this wins|case collapses|crowns?\s+will\s+lose|crown\s+case\s+collapses|guaranteed|will\s+be\s+acquitted|plead\s+guilty|plead\s+not\s+guilty)\b/i;
@@ -308,6 +310,24 @@ function applyLedgerForbiddenGuards(
   };
 }
 
+function enrichBriefWithClientSafe(
+  brief: HearingWarRoomBrief,
+  hasOutstandingDisclosure: boolean,
+): HearingWarRoomBrief {
+  if (!isBundleClientSafeSurfacingEnabled()) return brief;
+  const clientExplanation = buildClientSafeExplanation({
+    clientLabel: brief.clientLabel,
+    allegation: brief.allegation,
+    contradictions: brief.bundleContradictions,
+    hasOutstandingDisclosure,
+    fallback: brief.draftWording.clientExplanation,
+  });
+  return {
+    ...brief,
+    draftWording: { ...brief.draftWording, clientExplanation },
+  };
+}
+
 function enrichBriefWithContradictions(
   brief: HearingWarRoomBrief,
   bundleText?: string | null,
@@ -526,27 +546,35 @@ export function buildHearingWarRoomBrief(input: BuildHearingWarRoomBriefInput): 
   };
 
   if (!isCriminalPilotMode()) {
-    return applyLedgerForbiddenGuards(enrichBriefWithContradictions(brief, input.bundleText), ledger, input.bundleText);
+    const enriched = enrichBriefWithContradictions(brief, input.bundleText);
+    return applyLedgerForbiddenGuards(
+      enrichBriefWithClientSafe(enriched, input.chaseItems.length > 0),
+      ledger,
+      input.bundleText,
+    );
   }
 
   return applyLedgerForbiddenGuards(
-    enrichBriefWithContradictions(
-      {
-        ...brief,
-        safePositionToday: pilotCleanupVisibleText(brief.safePositionToday),
-        sayThis: pilotFinalizeBriefLines(brief.sayThis),
-        doNotOverstate: pilotFinalizeBriefLines(brief.doNotOverstate),
-        askCourtToRecord: pilotFinalizeBriefLines(brief.askCourtToRecord),
-        instructionsNeeded: pilotFinalizeBriefLines(brief.instructionsNeeded),
-        nextHearingMoves: pilotFinalizeBriefLines(brief.nextHearingMoves),
-        collapseRisks: pilotFinalizeBriefLines(brief.collapseRisks),
-        draftWording: {
-          disclosureTimetable: pilotCleanupVisibleText(brief.draftWording.disclosureTimetable),
-          adjournment: pilotCleanupVisibleText(brief.draftWording.adjournment),
-          clientExplanation: pilotCleanupVisibleText(brief.draftWording.clientExplanation),
+    enrichBriefWithClientSafe(
+      enrichBriefWithContradictions(
+        {
+          ...brief,
+          safePositionToday: pilotCleanupVisibleText(brief.safePositionToday),
+          sayThis: pilotFinalizeBriefLines(brief.sayThis),
+          doNotOverstate: pilotFinalizeBriefLines(brief.doNotOverstate),
+          askCourtToRecord: pilotFinalizeBriefLines(brief.askCourtToRecord),
+          instructionsNeeded: pilotFinalizeBriefLines(brief.instructionsNeeded),
+          nextHearingMoves: pilotFinalizeBriefLines(brief.nextHearingMoves),
+          collapseRisks: pilotFinalizeBriefLines(brief.collapseRisks),
+          draftWording: {
+            disclosureTimetable: pilotCleanupVisibleText(brief.draftWording.disclosureTimetable),
+            adjournment: pilotCleanupVisibleText(brief.draftWording.adjournment),
+            clientExplanation: pilotCleanupVisibleText(brief.draftWording.clientExplanation),
+          },
         },
-      },
-      input.bundleText,
+        input.bundleText,
+      ),
+      input.chaseItems.length > 0,
     ),
     ledger,
     input.bundleText,
