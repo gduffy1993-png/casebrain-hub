@@ -15,7 +15,10 @@ export type BundleContradictionType =
   | "strength_serious_vs_minor"
   | "strength_force_vs_cctv"
   | "multi_incident_dates"
-  | "multi_incident_complainants";
+  | "multi_incident_complainants"
+  | "triangulation_mg11_cctv"
+  | "triangulation_dispatch_scene"
+  | "triangulation_bwv_account";
 
 export type BundleContradiction = {
   type: BundleContradictionType;

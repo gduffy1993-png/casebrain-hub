@@ -1,6 +1,6 @@
 # Criminal pilot — master plan (merged)
 
-**Status:** Layers 1–3 shipped. **Modules 1–5 LIVE** on prod. **Next:** Module 6 (triangulation) → Module 7 (client-safe).
+**Status:** Layers 1–3 shipped. **Modules 1–6 LIVE** on prod. **Next:** Module 7 (client-safe) → 2,200 eval.
 
 ## Principle
 
@@ -107,7 +107,7 @@ Six sections assembled from existing brains + contradiction layer (no new reason
 | 3 | **Scope contradictions** | **LIVE v1** — charge period vs evidence window, “multiple” vs “one”, count scope |
 | 4 | **Strength contradictions** | **LIVE v1** — serious harm alleged vs minor injury; force/weapon vs limited CCTV |
 | 5 | **Multi-incident reasoning** | **LIVE v1** — multiple charge dates vs single-episode MG5; multiple complainants vs single served narrative |
-| 6 | **Cross-evidence triangulation** | ⏳ MG11 vs CCTV vs CAD vs BWV vs 999 |
+| 6 | **Cross-evidence triangulation** | **LIVE v1** — MG11 vs CCTV; CAD/999 vs scene; BWV vs complainant account |
 | 7 | **Client-safe explanation engine** | ⏳ Dedicated Section 6 module (assembler exists today) |
 
 Each module: `extract-*` → enrich War Room → `buildMatterBrief` routes lines to Theory / Risks / Opportunities. Env kill switch per module.
@@ -121,6 +121,7 @@ Each module: `extract-*` → enrich War Room → `buildMatterBrief` routes lines
 | `NEXT_PUBLIC_BUNDLE_SCOPE_SURFACING` | 3 |
 | `NEXT_PUBLIC_BUNDLE_STRENGTH_SURFACING` | 4 |
 | `NEXT_PUBLIC_BUNDLE_MULTI_INCIDENT_SURFACING` | 5 |
+| `NEXT_PUBLIC_BUNDLE_TRIANGULATION_SURFACING` | 6 |
 
 ### Phase 2 gate (all modules)
 
@@ -134,7 +135,7 @@ Report: `artifacts/casebrain-qa/contradiction-tier-gate/report.json`
 
 | Tier | Cases |
 |------|--------|
-| **A** | Paige sectioned, Neil fraud, thin empty; sequence (Paige); scope (fraud); strength (ABH); multi-incident (domestic dates) |
+| **A** | Paige, Neil, thin; sequence; scope; strength; multi-incident; triangulation (MG11 vs CCTV) |
 | **B** | Gold no-false-positive (Ella, Sam, Ashleigh) + 80 thin corpus manifests |
 
 ### Final eval (one run when stack complete)
@@ -202,7 +203,7 @@ Single 2,200-case factory pass checks: all contradiction types, sequence, scope,
 
 | Criterion | Status |
 |-----------|--------|
-| Modules 1–7 live + gated | 5/7 |
+| Modules 1–7 live + gated | 6/7 |
 | 2,200-case eval | ⏳ |
 | 3+ offence tranches (6B) from real demand | ⏳ |
 | 3–5 firms completed pilot | ⏳ |

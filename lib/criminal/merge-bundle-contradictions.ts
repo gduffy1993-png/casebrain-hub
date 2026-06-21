@@ -15,6 +15,8 @@ import { extractStrengthContradictions } from "./extract-strength-contradictions
 import { isBundleStrengthSurfacingEnabled } from "./bundle-strength-surfacing";
 import { extractMultiIncidentContradictions } from "./extract-multi-incident-contradictions";
 import { isBundleMultiIncidentSurfacingEnabled } from "./bundle-multi-incident-surfacing";
+import { extractTriangulationContradictions } from "./extract-triangulation-contradictions";
+import { isBundleTriangulationSurfacingEnabled } from "./bundle-triangulation-surfacing";
 
 /** Bundle + additive modules — respects per-module kill switches. */
 export function extractAllBundleContradictions(
@@ -35,6 +37,9 @@ export function extractAllBundleContradictions(
   }
   if (isBundleMultiIncidentSurfacingEnabled()) {
     out.push(...extractMultiIncidentContradictions(bundleText));
+  }
+  if (isBundleTriangulationSurfacingEnabled()) {
+    out.push(...extractTriangulationContradictions(bundleText));
   }
 
   const seen = new Set<BundleContradictionType>();

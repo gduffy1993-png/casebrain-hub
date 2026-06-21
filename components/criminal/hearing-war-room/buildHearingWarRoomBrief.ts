@@ -37,6 +37,7 @@ import { isBundleSequenceSurfacingEnabled } from "@/lib/criminal/bundle-sequence
 import { isBundleScopeSurfacingEnabled } from "@/lib/criminal/bundle-scope-surfacing";
 import { isBundleStrengthSurfacingEnabled } from "@/lib/criminal/bundle-strength-surfacing";
 import { isBundleMultiIncidentSurfacingEnabled } from "@/lib/criminal/bundle-multi-incident-surfacing";
+import { isBundleTriangulationSurfacingEnabled } from "@/lib/criminal/bundle-triangulation-surfacing";
 
 const FORBIDDEN_RE =
   /\b(this wins|case collapses|crowns?\s+will\s+lose|crown\s+case\s+collapses|guaranteed|will\s+be\s+acquitted|plead\s+guilty|plead\s+not\s+guilty)\b/i;
@@ -316,7 +317,8 @@ function enrichBriefWithContradictions(
     !isBundleSequenceSurfacingEnabled() &&
     !isBundleScopeSurfacingEnabled() &&
     !isBundleStrengthSurfacingEnabled() &&
-    !isBundleMultiIncidentSurfacingEnabled()
+    !isBundleMultiIncidentSurfacingEnabled() &&
+    !isBundleTriangulationSurfacingEnabled()
   ) {
     return brief;
   }

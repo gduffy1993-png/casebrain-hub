@@ -18,6 +18,8 @@ import { extractStrengthContradictions } from "../lib/criminal/extract-strength-
 import { isBundleStrengthSurfacingEnabled } from "../lib/criminal/bundle-strength-surfacing";
 import { extractMultiIncidentContradictions } from "../lib/criminal/extract-multi-incident-contradictions";
 import { isBundleMultiIncidentSurfacingEnabled } from "../lib/criminal/bundle-multi-incident-surfacing";
+import { extractTriangulationContradictions } from "../lib/criminal/extract-triangulation-contradictions";
+import { isBundleTriangulationSurfacingEnabled } from "../lib/criminal/bundle-triangulation-surfacing";
 import { buildHearingWarRoomBrief } from "../components/criminal/hearing-war-room/buildHearingWarRoomBrief";
 import { buildDisclosureChaseBrief } from "../components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import { buildMatterBrief } from "../components/criminal/workflow/buildMatterBrief";
@@ -109,6 +111,9 @@ const TIER_A: CaseExpect[] = [
       "strength_force_vs_cctv",
       "multi_incident_dates",
       "multi_incident_complainants",
+      "triangulation_mg11_cctv",
+      "triangulation_dispatch_scene",
+      "triangulation_bwv_account",
     ],
   },
 ];
@@ -212,6 +217,32 @@ const TIER_A_MULTI: CaseExpect[] = [
   },
 ];
 
+const TRIANGULATION_MG11_CCTV = `
+=== SECTION: MG5 ===
+MG5 case summary — domestic ABH. Relies on MG11 and partial CCTV.
+
+=== SECTION: MG11 ===
+MG11 – Hannah Lee
+I felt something hit my face. I was bleeding above my eyebrow. I saw the mug on the floor.
+
+=== SECTION: CCTV ===
+CCTV note: partial clip from hallway camera; does not show strike or object contact; no visible injury on footage served.
+`.padStart(220, " ");
+
+const TIER_A_TRIANGULATION: CaseExpect[] = [
+  {
+    id: "domestic-mg11-cctv",
+    label: "Domestic — MG11 injury vs CCTV not showing contact",
+    text: TRIANGULATION_MG11_CCTV,
+    mustInclude: ["triangulation_mg11_cctv"],
+    mustExclude: ["triangulation_dispatch_scene", "triangulation_bwv_account"],
+    assembly: {
+      theoryMust: [/across channels|CCTV|witness/i],
+      theoryMustNot: [/REQ-/i],
+    },
+  },
+];
+
 function extractViaProdPath(text: string): ReturnType<typeof extractBundleContradictions> {
   const payload = buildBundleSourcePayload([
     { id: "gate", name: "bundle.txt", extracted_text: text },
@@ -267,6 +298,19 @@ function extractMultiIncidentViaProdPath(
     snippets: payload.snippets,
   });
   return extractMultiIncidentContradictions(assembled);
+}
+
+function extractTriangulationViaProdPath(
+  text: string,
+): ReturnType<typeof extractTriangulationContradictions> {
+  const payload = buildBundleSourcePayload([
+    { id: "gate", name: "bundle.txt", extracted_text: text },
+  ]);
+  const assembled = assembleBundleTextForContradictions({
+    frontMatterScan: payload.frontMatterScan,
+    snippets: payload.snippets,
+  });
+  return extractTriangulationContradictions(assembled);
 }
 
 function runAssemblyGate(
@@ -470,6 +514,36 @@ function scoreTierAMulti(): { pass: number; fail: number; results: unknown[] } {
   return { pass, fail, results };
 }
 
+function scoreTierATriangulation(): { pass: number; fail: number; results: unknown[] } {
+  const results: unknown[] = [];
+  let pass = 0;
+  let fail = 0;
+
+  if (!isBundleTriangulationSurfacingEnabled()) {
+    results.push({ tier: "A-triangulation", id: "module-disabled", skipped: true, ok: true });
+    return { pass: 1, fail: 0, results };
+  }
+
+  for (const c of TIER_A_TRIANGULATION) {
+    const types = extractTriangulationViaProdPath(c.text).map((x) => x.type);
+    const issues: string[] = [];
+    for (const m of c.mustInclude) {
+      if (!types.includes(m)) issues.push(`missing ${m}`);
+    }
+    for (const x of c.mustExclude) {
+      if (types.includes(x)) issues.push(`unexpected ${x}`);
+    }
+    issues.push(...runAssemblyGate(c, extractTriangulationContradictions(c.text)));
+
+    const ok = issues.length === 0;
+    if (ok) pass++;
+    else fail++;
+    results.push({ tier: "A-triangulation", id: c.id, label: c.label, types, ok, issues });
+  }
+
+  return { pass, fail, results };
+}
+
 function scoreTierB(): { pass: number; fail: number; results: unknown[] } {
   const results: unknown[] = [];
   let pass = 0;
@@ -493,6 +567,7 @@ function scoreTierB(): { pass: number; fail: number; results: unknown[] } {
     const scopeTypes = extractScopeViaProdPath(text).map((x) => x.type);
     const strengthTypes = extractStrengthViaProdPath(text).map((x) => x.type);
     const multiTypes = extractMultiIncidentViaProdPath(text).map((x) => x.type);
+    const triangulationTypes = extractTriangulationViaProdPath(text).map((x) => x.type);
     const expectEmpty = goldNoContra.includes(id);
     const issues: string[] = [];
     if (expectEmpty && types.length > 0) {
@@ -509,6 +584,9 @@ function scoreTierB(): { pass: number; fail: number; results: unknown[] } {
     }
     if (expectEmpty && multiTypes.length > 0) {
       issues.push(`false positive multi-incident: ${multiTypes.join(", ")}`);
+    }
+    if (expectEmpty && triangulationTypes.length > 0) {
+      issues.push(`false positive triangulation: ${triangulationTypes.join(", ")}`);
     }
     const ok = issues.length === 0;
     if (ok) pass++;
@@ -550,22 +628,36 @@ function main() {
   const tierAScope = scoreTierAScope();
   const tierAStrength = scoreTierAStrength();
   const tierAMulti = scoreTierAMulti();
+  const tierATriangulation = scoreTierATriangulation();
   const tierB = scoreTierB();
   const totalPass =
-    tierA.pass + tierASeq.pass + tierAScope.pass + tierAStrength.pass + tierAMulti.pass + tierB.pass;
+    tierA.pass +
+    tierASeq.pass +
+    tierAScope.pass +
+    tierAStrength.pass +
+    tierAMulti.pass +
+    tierATriangulation.pass +
+    tierB.pass;
   const totalFail =
-    tierA.fail + tierASeq.fail + tierAScope.fail + tierAStrength.fail + tierAMulti.fail + tierB.fail;
+    tierA.fail +
+    tierASeq.fail +
+    tierAScope.fail +
+    tierAStrength.fail +
+    tierAMulti.fail +
+    tierATriangulation.fail +
+    tierB.fail;
   const overall = totalFail === 0 ? "PASS" : "FAIL";
 
   const report = {
     generatedAt: new Date().toISOString(),
-    phase: "2e-multi-incident-module-gate",
+    phase: "2f-triangulation-module-gate",
     modules: [
       "bundle-contradictions-v1-frozen",
       "bundle-sequence-v1",
       "bundle-scope-v1",
       "bundle-strength-v1",
       "bundle-multi-incident-v1",
+      "bundle-triangulation-v1",
     ],
     overall,
     tierA: { pass: tierA.pass, fail: tierA.fail },
@@ -573,6 +665,7 @@ function main() {
     tierAScope: { pass: tierAScope.pass, fail: tierAScope.fail },
     tierAStrength: { pass: tierAStrength.pass, fail: tierAStrength.fail },
     tierAMultiIncident: { pass: tierAMulti.pass, fail: tierAMulti.fail },
+    tierATriangulation: { pass: tierATriangulation.pass, fail: tierATriangulation.fail },
     tierB: { pass: tierB.pass, fail: tierB.fail },
     results: [
       ...tierA.results,
@@ -580,6 +673,7 @@ function main() {
       ...tierAScope.results,
       ...tierAStrength.results,
       ...tierAMulti.results,
+      ...tierATriangulation.results,
       ...tierB.results,
     ],
   };
@@ -594,6 +688,7 @@ function main() {
   console.log(`Tier A scope: ${tierAScope.pass} pass / ${tierAScope.fail} fail`);
   console.log(`Tier A strength: ${tierAStrength.pass} pass / ${tierAStrength.fail} fail`);
   console.log(`Tier A multi-incident: ${tierAMulti.pass} pass / ${tierAMulti.fail} fail`);
+  console.log(`Tier A triangulation: ${tierATriangulation.pass} pass / ${tierATriangulation.fail} fail`);
   console.log(`Tier B: ${tierB.pass} pass / ${tierB.fail} fail`);
   console.log(`Report: ${outPath}`);
 
