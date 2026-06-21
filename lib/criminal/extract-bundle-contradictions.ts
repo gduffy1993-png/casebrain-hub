@@ -21,9 +21,7 @@ export type BundleContradiction = {
 const LOCATION_TOKENS =
   /\b(kitchen|hallway|hall way|bedroom|living room|lounge|bathroom|garden|street|doorway)\b/gi;
 
-function snippet(text: string, max = 120): string {
-  return text.replace(/\s+/g, " ").trim().slice(0, max);
-}
+const INCIDENT_LOCATION_RE = /\b(kitchen|hallway|hall way|bedroom|living room|lounge)\b/i;
 
 function sectionSlice(bundleText: string, label: string): string {
   const re = new RegExp(
@@ -34,13 +32,23 @@ function sectionSlice(bundleText: string, label: string): string {
   if (hit?.[1]?.trim()) return hit[1];
   if (/^MG5$/i.test(label) && /\bMG5\b/i.test(bundleText)) {
     const mg5 = bundleText.match(/MG5[\s\S]{0,8000}/i);
-    return mg5?.[0] ?? bundleText;
-  }
-  if (/^MG11$/i.test(label)) {
-    const mg11 = bundleText.match(/MG11[\s\S]*/i);
-    return mg11?.[0] ?? "";
+    return mg5?.[0] ?? "";
   }
   return "";
+}
+
+function extractMg11WitnessBlocks(bundleText: string): string[] {
+  const blocks: string[] = [];
+  const parts = bundleText.split(/(?=(?:===\s*SECTION:\s*MG11|MG11\s*[–-]\s*))/gi);
+  for (const part of parts) {
+    if (!/\bMG11\b/i.test(part)) continue;
+    const trimmed = part.trim().slice(0, 8000);
+    if (trimmed.length > 40) blocks.push(trimmed);
+  }
+  if (blocks.length > 0) return blocks;
+
+  const single = sectionSlice(bundleText, "MG11");
+  return single ? [single] : [];
 }
 
 function mg5Text(bundleText: string): string {
@@ -48,27 +56,82 @@ function mg5Text(bundleText: string): string {
   return scoped || bundleText.slice(0, Math.min(bundleText.length, 12000));
 }
 
-function mg11Text(bundleText: string): string {
-  const scoped = sectionSlice(bundleText, "MG11");
-  return scoped || bundleText;
+function mg11WitnessTexts(bundleText: string): string[] {
+  return extractMg11WitnessBlocks(bundleText);
+}
+
+function mg11Combined(bundleText: string): string {
+  const blocks = mg11WitnessTexts(bundleText);
+  return blocks.join("\n\n");
+}
+
+function normalizeLocation(token: string): string {
+  const t = token.toLowerCase().replace(/\s+/g, " ");
+  return t === "hall way" ? "hallway" : t;
 }
 
 function uniqueLocationTokens(text: string): string[] {
   const found = new Set<string>();
   for (const m of text.matchAll(LOCATION_TOKENS)) {
-    const t = m[1]?.toLowerCase().replace(/\s+/g, " ");
-    if (t) found.add(t === "hall way" ? "hallway" : t);
+    const t = m[1]?.trim();
+    if (t) found.add(normalizeLocation(t));
   }
   return [...found];
 }
 
-function detectLocation(mg5: string, mg11: string): BundleContradiction | null {
-  const mg5Locs = uniqueLocationTokens(mg5);
-  const mg11Locs = uniqueLocationTokens(mg11);
-  const mg5Incident = mg5Locs.find((l) => /kitchen|hallway|bedroom|lounge|living room/i.test(l));
-  const mg11Incident = mg11Locs.find((l) => /kitchen|hallway|bedroom|lounge|living room/i.test(l));
-  if (!mg5Incident || !mg11Incident || mg5Incident === mg11Incident) return null;
-  if (!/\b(struggl|injur|assault|incident|hit|threw|bleed|mug)\b/i.test(`${mg5} ${mg11}`)) return null;
+function pickMg5IncidentLocation(mg5: string): string | null {
+  if (/struggl[\s\S]{0,80}\bkitchen\b|\bin the kitchen\b|\bkitchen\b[\s\S]{0,80}struggl/i.test(mg5)) {
+    return "kitchen";
+  }
+  const locs = uniqueLocationTokens(mg5);
+  return locs.find((l) => INCIDENT_LOCATION_RE.test(l)) ?? null;
+}
+
+function pickWitnessIncidentLocation(block: string): string | null {
+  const injuryCtx = /\b(bleed|bleeding|hit my face|injur|assault|threw|mug)\b/i.test(block);
+  const hallway =
+    /\b(in the hallway|the hallway)\b/i.test(block) ||
+    (/\bhallway\b/i.test(block) && injuryCtx);
+  if (hallway) return "hallway";
+  if (/\bkitchen\b/i.test(block) && injuryCtx) return "kitchen";
+  const locs = uniqueLocationTokens(block);
+  return locs.find((l) => INCIDENT_LOCATION_RE.test(l)) ?? null;
+}
+
+function pickComplainantMg11Block(blocks: string[]): string {
+  const scored = blocks.map((block) => {
+    let score = 0;
+    if (/\b(did not throw|denies throwing|complainant|hannah|victim)\b/i.test(block)) score += 3;
+    if (/\b(bleed|bleeding|hit my face|hallway)\b/i.test(block)) score += 2;
+    if (/\b(neighbour|neighbor|heard shouting|did not see)\b/i.test(block)) score -= 2;
+    return { block, score };
+  });
+  scored.sort((a, b) => b.score - a.score);
+  return scored[0]?.block ?? blocks[0] ?? "";
+}
+
+function detectLocation(mg5: string, mg11Blocks: string[]): BundleContradiction | null {
+  const mg5Incident = pickMg5IncidentLocation(mg5);
+  if (!mg5Incident) return null;
+
+  let mg11Incident: string | null = null;
+  const complainant = pickComplainantMg11Block(mg11Blocks);
+  if (complainant) mg11Incident = pickWitnessIncidentLocation(complainant);
+
+  if (!mg11Incident) {
+    for (const block of mg11Blocks) {
+      const loc = pickWitnessIncidentLocation(block);
+      if (loc) {
+        mg11Incident = loc;
+        break;
+      }
+    }
+  }
+
+  if (!mg11Incident || mg5Incident === mg11Incident) return null;
+  if (!/\b(struggl|injur|assault|incident|hit|threw|bleed|mug)\b/i.test(`${mg5} ${mg11Blocks.join(" ")}`)) {
+    return null;
+  }
 
   const a = mg5Incident;
   const b = mg11Incident;
@@ -82,12 +145,12 @@ function detectLocation(mg5: string, mg11: string): BundleContradiction | null {
   };
 }
 
-function detectFirstContact(mg5: string, mg11: string): BundleContradiction | null {
+function detectFirstContact(mg5: string, mg11CombinedText: string): BundleContradiction | null {
   const mg5Init =
     /\b(threw the mug first|threw.*first|initiated|struck first|hit first)\b/i.test(mg5) ||
     /\bsays\b[\s\S]{0,80}\bthrew\b/i.test(mg5);
   const mg11Deny =
-    /\b(did not throw|denies throwing|I did not throw anything|didn't throw)\b/i.test(mg11);
+    /\b(did not throw|denies throwing|I did not throw anything|didn't throw)\b/i.test(mg11CombinedText);
   if (!mg5Init || !mg11Deny) return null;
 
   return {
@@ -174,10 +237,11 @@ export function extractBundleContradictions(bundleText: string | null | undefine
   if (!text || text.length < 200) return [];
 
   const mg5 = mg5Text(text);
-  const mg11 = mg11Text(text);
+  const mg11Blocks = mg11WitnessTexts(text);
+  const mg11 = mg11Combined(text);
   const out: BundleContradiction[] = [];
 
-  const location = detectLocation(mg5, mg11);
+  const location = detectLocation(mg5, mg11Blocks);
   if (location) out.push(location);
 
   const firstContact = detectFirstContact(mg5, mg11);

@@ -1,6 +1,11 @@
 import type { DisclosureChaseBrief } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import type { HearingWarRoomBrief } from "@/components/criminal/hearing-war-room/buildHearingWarRoomBrief";
 import { dedupePilotLines } from "./workflowPilotDisplay";
+import {
+  dedupeSimilarSummaryLines,
+  firstSafeSentence,
+  stripReqAndInternalCodes,
+} from "./matterBriefAssembly";
 
 export type MatterBriefSection = {
   id: string;
@@ -17,12 +22,14 @@ export type MatterBrief = {
 };
 
 function trimParagraph(parts: (string | null | undefined)[]): string {
-  return parts
-    .map((p) => p?.trim())
-    .filter(Boolean)
-    .join(" ")
-    .replace(/\s+/g, " ")
-    .trim();
+  return stripReqAndInternalCodes(
+    parts
+      .map((p) => p?.trim())
+      .filter(Boolean)
+      .join(" ")
+      .replace(/\s+/g, " ")
+      .trim(),
+  );
 }
 
 function sectionPlain(s: MatterBriefSection): string {
@@ -30,40 +37,48 @@ function sectionPlain(s: MatterBriefSection): string {
   return lines.join("\n");
 }
 
-function chaseOpportunityBullets(chase: DisclosureChaseBrief): string[] {
-  const fromPrimary = chase.primaryItems
-    .slice(0, 6)
+function shapedOpportunityFromChase(chase: DisclosureChaseBrief): string[] {
+  return chase.primaryItems
+    .slice(0, 5)
     .map((item) => {
+      const label = stripReqAndInternalCodes(item.label ?? "");
       const why = item.whyItMatters?.trim();
-      if (why && !/^chase:/i.test(why)) {
-        return why.match(/^opportunity/i) ? why : `Opportunity: ${why}`;
-      }
-      const label = item.label?.trim();
       if (!label) return "";
+      if (why && !/appears outstanding|ask the court/i.test(why)) {
+        const w = stripReqAndInternalCodes(why);
+        if (/causation|injury|medical/i.test(`${label} ${w}`)) {
+          return `Causation / injury leverage: ${w}`;
+        }
+        if (/attribution|dishonesty|cardholder|loss|receipt/i.test(`${label} ${w}`)) {
+          return `Attribution / continuity leverage: ${w}`;
+        }
+        if (/sequence|timeline|999|cad|bwv|cctv/i.test(`${label} ${w}`)) {
+          return `Sequence / coverage leverage: ${w}`;
+        }
+        return `Disclosure leverage: ${w}`;
+      }
       if (/medical|injury|causation/i.test(label)) {
-        return `Causation / injury challenge: ${label} outstanding on file.`;
+        return `Causation / injury challenge pending served medical material.`;
       }
       if (/cctv|bwv|999|cad|timeline|audio/i.test(label)) {
-        return `Sequence / coverage challenge: ${label} outstanding on file.`;
+        return `Sequence / coverage challenge pending served footage or CAD material.`;
       }
       if (/receipt|cardholder|bank|loss|continuity/i.test(label)) {
-        return `Attribution / continuity challenge: ${label} outstanding on file.`;
+        return `Attribution / continuity challenge pending served accounting material.`;
       }
-      return `Disclosure leverage: ${label} outstanding on file.`;
+      return "";
     })
     .filter(Boolean);
-
-  return dedupePilotLines(fromPrimary).slice(0, 8);
 }
 
 function topChaseBullets(chase: DisclosureChaseBrief, labels: string[]): string[] {
   const top = chase.primaryItems.slice(0, 3).map((item, i) => {
     const why = item.whyItMatters?.trim();
-    const core = item.label?.trim() || labels[i] || "Outstanding item";
-    return why ? `${core} — ${why}` : core;
+    const core = stripReqAndInternalCodes(item.label?.trim() || labels[i] || "Outstanding item");
+    return why ? `${core} — ${stripReqAndInternalCodes(why)}` : core;
   });
   if (top.length >= 3) return top;
-  return labels.slice(0, 3).map((l, i) => top[i] ?? l);
+  return labels.slice(0, 3).map((l, i) => top[i] ?? stripReqAndInternalCodes(l));
 }
 
 /** Assemble Matter Brief from existing War Room + Chase briefs — no new reasoning. */
@@ -81,56 +96,58 @@ export function buildMatterBrief(input: {
 
   const chaseLabels = dedupePilotLines(
     [
-      ...chase.primaryItems.map((i) => i.label),
-      ...chase.items.slice(0, 8).map((i) => i.label),
-    ],
+      ...chase.primaryItems.map((i) => stripReqAndInternalCodes(i.label)),
+      ...chase.items.slice(0, 8).map((i) => stripReqAndInternalCodes(i.label)),
+    ].filter(Boolean),
   ).slice(0, 8);
+
+  const safeLine = firstSafeSentence(warRoom.safePositionToday);
 
   const caseTheory = trimParagraph([
     "The defence case remains provisional pending disclosure.",
     primaryRoute ? `Primary route on file: ${primaryRoute}.` : null,
     ...contradictions.map((c) => c.theoryLine),
-    warRoom.safePositionToday,
-    chaseLabels.length
-      ? `Outstanding material includes: ${chaseLabels.slice(0, 3).join("; ")}.`
-      : null,
+    safeLine,
   ]);
 
-  const risksToDefence = dedupePilotLines([
-    ...contradictions.map((c) => c.riskLine),
-    ...warRoom.doNotOverstate,
-    ...warRoom.collapseRisks,
-    ...chaseLabels,
-  ]).slice(0, 10);
+  const prosecutionRisks = dedupeSimilarSummaryLines(
+    [
+      ...contradictions.map((c) => `Prosecution papers differ on ${c.type.replace(/_/g, " ")} — reconciliation outstanding.`),
+      ...warRoom.collapseRisks.filter((r) => /prosecution|crown|pressure|gap|missing|not served|reconcile|differs/i.test(r)),
+    ],
+    4,
+  );
 
-  const risksToProsecution = dedupePilotLines([
-    ...warRoom.nextHearingMoves.filter((m) => /outstanding|missing|not served|continuity|reconcile|differs|unclear|challenge/i.test(m)),
-    ...chase.primaryItems.map((i) => i.whyItMatters).filter(Boolean),
-  ]).slice(0, 6);
+  const defenceRisks = dedupeSimilarSummaryLines(
+    [
+      ...contradictions.map((c) => c.riskLine),
+      ...warRoom.doNotOverstate,
+      ...warRoom.collapseRisks,
+    ],
+    6,
+  );
 
-  const opportunities = dedupePilotLines([
-    ...contradictions.map((c) => c.opportunityLine),
-    ...chaseOpportunityBullets(chase),
-    ...warRoom.evidenceAnchors.slice(0, 4).map((a) =>
-      /^opportunity/i.test(a) ? a : `Evidence anchor: ${a}`,
-    ),
-  ]).slice(0, 10);
+  const opportunities = dedupeSimilarSummaryLines(
+    [
+      ...contradictions.map((c) => c.opportunityLine),
+      ...shapedOpportunityFromChase(chase),
+    ],
+    8,
+  );
 
   const ptphBullets = dedupePilotLines([
-    warRoom.safePositionToday,
-    ...contradictions.map((c) => c.theoryLine),
-    ...warRoom.askCourtToRecord,
-    ...chaseLabels.map((l) => `Outstanding: ${l}`),
+    safeLine,
+    ...warRoom.askCourtToRecord.slice(0, 6),
     "The defence cannot confirm final issues until disclosure is complete.",
-  ]).slice(0, 12);
+  ]).slice(0, 10);
 
   const clientParagraph =
     warRoom.draftWording.clientExplanation?.trim() ||
     trimParagraph([
       "We are still reviewing the papers.",
       contradictions[0]?.theoryLine,
-      warRoom.safePositionToday,
-      chaseLabels.length ? "Some evidence is still outstanding." : null,
+      safeLine,
+      chaseLabels.length ? "Some evidence is still outstanding on the papers." : null,
     ]);
 
   const sections: MatterBriefSection[] = [
@@ -143,11 +160,11 @@ export function buildMatterBrief(input: {
       id: "risks",
       title: "Risks",
       bullets: [
-        ...(risksToProsecution.length
-          ? [`Prosecution pressure / gaps: ${risksToProsecution[0]}`, ...risksToProsecution.slice(1)]
+        ...(prosecutionRisks.length
+          ? [`Prosecution pressure / gaps: ${prosecutionRisks[0]}`, ...prosecutionRisks.slice(1)]
           : ["Prosecution pressure: review served MG5/MG6 before fixing trial theory."]),
-        ...(risksToDefence.length
-          ? [`Defence risks: ${risksToDefence[0]}`, ...risksToDefence.slice(1, 5)]
+        ...(defenceRisks.length
+          ? [`Defence risks: ${defenceRisks[0]}`, ...defenceRisks.slice(1, 5)]
           : ["Defence risks: confirm missing material and client instructions."]),
       ].slice(0, 10),
     },
@@ -157,7 +174,7 @@ export function buildMatterBrief(input: {
       bullets:
         opportunities.length > 0
           ? opportunities
-          : ["Review chase items and primary route once disclosure is complete."],
+          : ["Review disclosure gaps and primary route once disclosure is complete."],
     },
     {
       id: "chase",
