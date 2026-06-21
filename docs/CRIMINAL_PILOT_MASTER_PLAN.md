@@ -80,7 +80,7 @@ Six sections assembled from existing brains + contradiction layer (no new reason
 | # | Module | Detects |
 |---|--------|---------|
 | 1 | **Bundle contradictions** | **FROZEN v1** — location, first contact, loss figure, CCTV window |
-| 2 | **Sequence engine** | Timeline order, travel-time, “who pushed first” |
+| 2 | **Sequence engine** | **LIVE v1** — initiation vs retreat; charge-window vs single-incident timeline |
 | 3 | **Scope contradictions** | Charge period vs evidence window, “multiple” vs “one” |
 | 4 | **Strength contradictions** | Severity vs injury vs CCTV behaviour |
 | 5 | **Multi-incident reasoning** | Multiple dates, complainants, events |

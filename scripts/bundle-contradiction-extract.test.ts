@@ -110,6 +110,7 @@ const empty = extractBundleContradictions("Short bundle with no structured secti
 assert.equal(empty.length, 0, "No contradictions on thin text");
 
 process.env.NEXT_PUBLIC_BUNDLE_CONTRADICTION_SURFACING = "false";
+process.env.NEXT_PUBLIC_BUNDLE_SEQUENCE_SURFACING = "false";
 assert.equal(isBundleContradictionSurfacingEnabled(), false);
 const warOff = buildHearingWarRoomBrief({
   caseId: "kill",
@@ -128,6 +129,7 @@ const warOff = buildHearingWarRoomBrief({
 });
 assert.equal(warOff.bundleContradictions?.length ?? 0, 0, "Kill switch disables War Room enrichment");
 delete process.env.NEXT_PUBLIC_BUNDLE_CONTRADICTION_SURFACING;
+delete process.env.NEXT_PUBLIC_BUNDLE_SEQUENCE_SURFACING;
 
 const neilContradictions = extractBundleContradictions(NEIL_BUNDLE);
 const chaseStub: DisclosureChaseBrief = {

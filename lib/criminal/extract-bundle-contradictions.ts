@@ -7,7 +7,9 @@ export type BundleContradictionType =
   | "location"
   | "first_contact"
   | "loss_figure"
-  | "cctv_window";
+  | "cctv_window"
+  | "sequence_order"
+  | "sequence_timeline";
 
 export type BundleContradiction = {
   type: BundleContradictionType;

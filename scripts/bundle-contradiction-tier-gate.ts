@@ -10,6 +10,8 @@ import {
   extractBundleContradictions,
   type BundleContradictionType,
 } from "../lib/criminal/extract-bundle-contradictions";
+import { extractSequenceContradictions } from "../lib/criminal/extract-sequence-contradictions";
+import { isBundleSequenceSurfacingEnabled } from "../lib/criminal/bundle-sequence-surfacing";
 import { buildHearingWarRoomBrief } from "../components/criminal/hearing-war-room/buildHearingWarRoomBrief";
 import { buildDisclosureChaseBrief } from "../components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import { buildMatterBrief } from "../components/criminal/workflow/buildMatterBrief";
@@ -88,7 +90,31 @@ const TIER_A: CaseExpect[] = [
     label: "Thin bundle — no contradictions",
     text: "Cover sheet only. Stage: PTPH. No MG5 body yet.",
     mustInclude: [],
-    mustExclude: ["location", "first_contact", "loss_figure", "cctv_window"],
+    mustExclude: ["location", "first_contact", "loss_figure", "cctv_window", "sequence_order", "sequence_timeline"],
+  },
+];
+
+const PAIGE_PROD_SEQUENCE = `
+MG5 CASE SUMMARY
+The prosecution case is that during a domestic argument Paige Thornton struck Hannah Lee with a mug.
+Ms Thornton says Ms Lee threw the mug first and that both parties were struggling in the kitchen.
+
+WITNESS STATEMENT
+Paige was shouting at me in the kitchen. I walked away and she followed. I felt something hit my face and saw the mug on the
+floor. I was bleeding above my eyebrow. I did not throw anything at her.
+`.padStart(220, " ");
+
+const TIER_A_SEQUENCE: CaseExpect[] = [
+  {
+    id: "paige-prod-sequence",
+    label: "Paige prod — sequence_order",
+    text: PAIGE_PROD_SEQUENCE,
+    mustInclude: ["sequence_order"],
+    mustExclude: ["sequence_timeline"],
+    assembly: {
+      theoryMust: [/incident sequence|walked away/i],
+      theoryMustNot: [/REQ-/i],
+    },
   },
 ];
 
@@ -101,6 +127,17 @@ function extractViaProdPath(text: string): ReturnType<typeof extractBundleContra
     snippets: payload.snippets,
   });
   return extractBundleContradictions(assembled);
+}
+
+function extractSequenceViaProdPath(text: string): ReturnType<typeof extractSequenceContradictions> {
+  const payload = buildBundleSourcePayload([
+    { id: "gate", name: "bundle.txt", extracted_text: text },
+  ]);
+  const assembled = assembleBundleTextForContradictions({
+    frontMatterScan: payload.frontMatterScan,
+    snippets: payload.snippets,
+  });
+  return extractSequenceContradictions(assembled);
 }
 
 function runAssemblyGate(
@@ -184,6 +221,36 @@ function scoreTierA(): { pass: number; fail: number; results: unknown[] } {
   return { pass, fail, results };
 }
 
+function scoreTierASequence(): { pass: number; fail: number; results: unknown[] } {
+  const results: unknown[] = [];
+  let pass = 0;
+  let fail = 0;
+
+  if (!isBundleSequenceSurfacingEnabled()) {
+    results.push({ tier: "A-seq", id: "module-disabled", skipped: true, ok: true });
+    return { pass: 1, fail: 0, results };
+  }
+
+  for (const c of TIER_A_SEQUENCE) {
+    const types = extractSequenceViaProdPath(c.text).map((x) => x.type);
+    const issues: string[] = [];
+    for (const m of c.mustInclude) {
+      if (!types.includes(m)) issues.push(`missing ${m}`);
+    }
+    for (const x of c.mustExclude) {
+      if (types.includes(x)) issues.push(`unexpected ${x}`);
+    }
+    issues.push(...runAssemblyGate(c, extractSequenceContradictions(c.text)));
+
+    const ok = issues.length === 0;
+    if (ok) pass++;
+    else fail++;
+    results.push({ tier: "A-seq", id: c.id, label: c.label, types, ok, issues });
+  }
+
+  return { pass, fail, results };
+}
+
 function scoreTierB(): { pass: number; fail: number; results: unknown[] } {
   const results: unknown[] = [];
   let pass = 0;
@@ -203,10 +270,14 @@ function scoreTierB(): { pass: number; fail: number; results: unknown[] } {
     }
     const text = readBundleText(entry.bundleTextPaths);
     const types = extractViaProdPath(text).map((x) => x.type);
+    const seqTypes = extractSequenceViaProdPath(text).map((x) => x.type);
     const expectEmpty = goldNoContra.includes(id);
     const issues: string[] = [];
     if (expectEmpty && types.length > 0) {
       issues.push(`false positive contradictions: ${types.join(", ")}`);
+    }
+    if (expectEmpty && seqTypes.length > 0) {
+      issues.push(`false positive sequence: ${seqTypes.join(", ")}`);
     }
     const ok = issues.length === 0;
     if (ok) pass++;
@@ -244,19 +315,21 @@ function scoreTierB(): { pass: number; fail: number; results: unknown[] } {
 
 function main() {
   const tierA = scoreTierA();
+  const tierASeq = scoreTierASequence();
   const tierB = scoreTierB();
-  const totalPass = tierA.pass + tierB.pass;
-  const totalFail = tierA.fail + tierB.fail;
+  const totalPass = tierA.pass + tierASeq.pass + tierB.pass;
+  const totalFail = tierA.fail + tierASeq.fail + tierB.fail;
   const overall = totalFail === 0 ? "PASS" : "FAIL";
 
   const report = {
     generatedAt: new Date().toISOString(),
-    phase: "2-contradiction-v1-gate",
-    module: "bundle-contradictions-v1-frozen",
+    phase: "2b-sequence-module-gate",
+    modules: ["bundle-contradictions-v1-frozen", "bundle-sequence-v1"],
     overall,
     tierA: { pass: tierA.pass, fail: tierA.fail },
+    tierASequence: { pass: tierASeq.pass, fail: tierASeq.fail },
     tierB: { pass: tierB.pass, fail: tierB.fail },
-    results: [...tierA.results, ...tierB.results],
+    results: [...tierA.results, ...tierASeq.results, ...tierB.results],
   };
 
   fs.mkdirSync(OUT_DIR, { recursive: true });
@@ -265,6 +338,7 @@ function main() {
 
   console.log(`bundle-contradiction-tier-gate: ${overall}`);
   console.log(`Tier A: ${tierA.pass} pass / ${tierA.fail} fail`);
+  console.log(`Tier A sequence: ${tierASeq.pass} pass / ${tierASeq.fail} fail`);
   console.log(`Tier B: ${tierB.pass} pass / ${tierB.fail} fail`);
   console.log(`Report: ${outPath}`);
 
