@@ -15,6 +15,16 @@ CREATE INDEX IF NOT EXISTS idx_criminal_law_chunks_source ON criminal_law_chunks
 
 COMMENT ON TABLE criminal_law_chunks IS 'Chunked criminal law (CPIA, PACE, etc.) for retrieval; embeddings via OpenAI ada-002';
 
+ALTER TABLE public.criminal_law_chunks ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS deny_anon_criminal_law_chunks ON public.criminal_law_chunks;
+CREATE POLICY deny_anon_criminal_law_chunks
+  ON public.criminal_law_chunks FOR ALL TO anon USING (false) WITH CHECK (false);
+
+DROP POLICY IF EXISTS deny_authenticated_criminal_law_chunks ON public.criminal_law_chunks;
+CREATE POLICY deny_authenticated_criminal_law_chunks
+  ON public.criminal_law_chunks FOR ALL TO authenticated USING (false) WITH CHECK (false);
+
 -- RPC for vector similarity search (cosine distance)
 CREATE OR REPLACE FUNCTION match_criminal_law_chunks(
   query_embedding vector(1536),
@@ -43,3 +53,6 @@ BEGIN
   LIMIT match_count;
 END;
 $$;
+
+REVOKE ALL ON FUNCTION public.match_criminal_law_chunks(vector, int) FROM PUBLIC;
+GRANT EXECUTE ON FUNCTION public.match_criminal_law_chunks(vector, int) TO service_role;
