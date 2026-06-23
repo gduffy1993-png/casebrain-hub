@@ -317,6 +317,15 @@ function scoreProfile(context: WorkflowProfileContext): Map<WorkflowProfile, num
 
 /** Profile from offence/title signals — used by auditor collector (not gated on pilot UI mode). */
 export function resolveWorkflowProfileFromSignals(context: WorkflowProfileContext): WorkflowProfile {
+  const allegationGuard = [context.allegation, context.caseTitle].filter(Boolean).join(" ");
+  const fullGuard = contextScan(context);
+  if (
+    /\b(harassment|stalking|coercive\s+control)\b/i.test(allegationGuard) &&
+    !/\b(pwits|intent\s+to\s+supply|controlled\s+drug|misuse\s+of\s+drugs|class\s+[abc]\s+drug)\b/i.test(fullGuard)
+  ) {
+    return "generic";
+  }
+
   const forced = resolveProfileFromContext(context);
   if (forced !== "generic") return forced;
 

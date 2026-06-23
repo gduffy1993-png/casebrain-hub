@@ -95,6 +95,9 @@ export function classifyMaterialStatus(line: string): MaterialStatus | null {
   const l = compact(line);
   if (!l || l.length < 8) return null;
   if (UNSIGNED_RE.test(l)) return "unsigned";
+  if (/\b(?:referred\s+to|mentioned|not\s+included|not\s+attached|summary\s+only|extract\s+only)\b/i.test(l)) {
+    return "referred_only";
+  }
   if (DRAFT_STATUS_RE.test(l)) return "draft";
   if (OUTSTANDING_STATUS_RE.test(l)) return "outstanding";
   if (ABSENT_ON_PAPERS_RE.test(l)) return "absent";
@@ -140,7 +143,9 @@ function normaliseDedupeKey(line: string, scheduleRef: string | null): string {
 
 function rowConfidence(status: MaterialStatus, line: string): TruthConfidence {
   if (status === "unclear" || INDEX_NOISE_RE.test(line)) return "low";
-  if (status === "partial" || status === "draft" || status === "unsigned") return "medium";
+  if (status === "partial" || status === "draft" || status === "unsigned" || status === "referred_only") {
+    return "medium";
+  }
   return "high";
 }
 
@@ -229,6 +234,7 @@ export function buildForbiddenClaimsForMaterials(
     s === "outstanding" ||
     s === "draft" ||
     s === "unsigned" ||
+    s === "referred_only" ||
     s === "partial" ||
     s === "unclear";
 

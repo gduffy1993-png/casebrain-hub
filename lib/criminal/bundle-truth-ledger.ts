@@ -58,12 +58,22 @@ function sliceWindow(text: string, centerRe: RegExp, before: number, after: numb
   return text.slice(start, end);
 }
 
+/** Section marker slice — stops at the next === SECTION: so charge zone does not swallow MG5/contradictions. */
+function sliceMarkedSection(text: string, sectionRe: RegExp, maxChars = 8000): string {
+  const m = sectionRe.exec(text);
+  if (m?.index == null) return "";
+  const from = text.slice(m.index);
+  const next = from.search(/\n===\s*SECTION:/i);
+  const body = next > 0 ? from.slice(0, next) : from;
+  return body.length <= maxChars ? body : body.slice(0, maxChars);
+}
+
 function priorityZone(bundleText: string, priority: DocumentPriority): string {
   const n = bundleText.replace(/\r\n/g, "\n");
   switch (priority) {
     case "charge_sheet":
       return (
-        sliceWindow(n, /===\s*SECTION:\s*CHARGE(?:_SHEET)?\s*===/i, 0, 8000) ||
+        sliceMarkedSection(n, /===\s*SECTION:\s*CHARGE(?:_SHEET)?\s*===/i) ||
         sliceWindow(n, /\bcharge\s+sheet\b/i, 120, 6000)
       );
     case "indictment":
@@ -106,7 +116,13 @@ function detectFamilyInText(text: string): BundleOffenceFamily | null {
   }
   if (/\bpwits\b|intent\s+to\s+supply|section\s*5\s*\(\s*3\s*\)/i.test(b)) return "pwits";
   if (/\bfraud\b|false\s+representation/i.test(b)) return "fraud";
-  if (/dangerous\s+driving|careless\s+driving|drink[-\s]?drive|road\s+traffic/i.test(b)) return "driving";
+  if (
+    /dangerous\s+driving|careless\s+driving|due\s+care\s+and\s+attention|without\s+due\s+care|drink[-\s]?drive|road\s+traffic|\brtA\s*1988\s+s\.?\s*[23]\b/i.test(
+      b,
+    )
+  ) {
+    return "driving";
+  }
   if (/affray|violent\s+disorder|public\s+order/i.test(b)) return "public_order";
   if (/harassment|stalking|coercive\s+control/i.test(b)) return "harassment";
   if (/sexual|rape|assault\s+by\s+penetration/i.test(b)) return "sexual";
@@ -647,7 +663,9 @@ export function buildBundleTruthLedger(input: BuildBundleTruthLedgerInput): Bund
     chargeConfidence === "low" ||
     offenceFamily.confidence === "provisional" ||
     offenceFamily.family === "unknown" ||
-    materials.some((m) => m.status === "unclear" || m.status === "draft" || m.status === "unsigned");
+    materials.some((m) =>
+      ["unclear", "draft", "unsigned", "partial", "referred_only"].includes(m.status),
+    );
 
   const anchors: SourceAnchor[] = [];
   if (offenceFamily.sourceAnchor) anchors.push(offenceFamily.sourceAnchor);
@@ -691,6 +709,6 @@ export function buildBundleTruthLedger(input: BuildBundleTruthLedgerInput): Bund
 
 export function ledgerMaterialsNeedingChase(ledger: BundleTruthLedger): NormalisedMaterialRow[] {
   return ledger.materials.filter((m) =>
-    ["outstanding", "absent", "partial", "draft", "unsigned", "unclear"].includes(m.status),
+    ["outstanding", "absent", "partial", "draft", "unsigned", "referred_only", "unclear"].includes(m.status),
   );
 }

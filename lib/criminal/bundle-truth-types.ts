@@ -39,6 +39,7 @@ export type MaterialStatus =
   | "served"
   | "draft"
   | "unsigned"
+  | "referred_only"
   | "outstanding"
   | "absent"
   | "partial"

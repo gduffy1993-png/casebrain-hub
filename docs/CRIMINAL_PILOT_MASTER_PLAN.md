@@ -1,6 +1,8 @@
 # Criminal pilot — master plan (merged)
 
-**Status:** Layers 1–3 shipped. **Modules 1–7 LIVE** on prod. **Intelligence stack complete** — run 2,200 eval when ready.
+**Status:** Layers 1–3 shipped. **Modules 1–7 LIVE** on prod. **2,200 factory PASS** (2026-06-21). **Cold-start S1 PASS** on prod. **Next:** CB-FRESH-001/002 copilot audit → design-partner firm.
+
+**Snapshot:** `docs/CURRENT_STATUS.md` (updated each milestone)
 
 ## Principle
 
@@ -10,7 +12,7 @@
 
 | Track | Goal | When |
 |-------|------|------|
-| **A — Module stack** | Finish contradiction modules 5–7 → one 2,200 eval | Now → ~weeks |
+| **A — Module stack** | Modules 1–7 + 2,200 eval | **Done** — maintain on ship |
 | **B — Offence depth** | Family → offence-specific packs where pilots need them | After Module 7, driven by real uploads |
 | **C — Commercial** | 3–5 firms, structured QA, UX hardening | Overlap once Module 5+6 in prod |
 
@@ -55,8 +57,9 @@
 
 | Item | Status | Notes |
 |------|--------|-------|
-| Browser cold-start on S1 upload | ⏳ | `scripts/.tmp-cold-start-gauntlet.ts` |
-| No tracker/demo leakage QA | ⏳ | Co-pilot + prod spot-check |
+| Browser cold-start on S1 upload | ✅ | `scripts/.tmp-cold-start-gauntlet.ts` — report `artifacts/casebrain-qa/cold-start/` |
+| CB-FRESH-001/002 adversarial bundles | ⏳ | Taylor Brookes + Jordan Hale on cold account — copilot PASS/FAIL audit |
+| No tracker/demo leakage QA | ⏳ | Cold-start clean; per-case copilot on FRESH bundles |
 | Paywall/trial clarity | ⏳ | Banner + upload gate copy |
 | Real redacted matters (consent) | Later | After synthetic pilot stable |
 | Prod smoke probes | ✅ | Paige + Neil via Supabase pipeline scripts |
@@ -141,7 +144,7 @@ Report: `artifacts/casebrain-qa/contradiction-tier-gate/report.json`
 
 ### Final eval (one run when stack complete)
 
-Single 2,200-case factory pass checks: all contradiction types, sequence, scope, strength, multi-incident, triangulation, offence routing, Matter Brief assembly, safety surfaces, Today / Battleboard / Chase non-regression, kill switches.
+**Done 2026-06-21:** 2,200/2,200 pass (`npx tsx scripts/strategy-corpus.ts --count 2200 --split all`). Fixes: proof-map link IDs on provisional maps; charge-zone motoring detection in ledger. Report: `artifacts/casebrain-auditor/latest/strategy-corpus/`.
 
 ## Layer 6 — Offence coverage (family → offence-specific)
 
@@ -177,10 +180,12 @@ Single 2,200-case factory pass checks: all contradiction types, sequence, scope,
 
 ### Entry bar (start inviting firms when)
 
-- [ ] Modules 5 + 6 live on prod  
-- [ ] Module 7 client-safe shipped  
-- [ ] 2,200-case eval PASS (or explicit waiver for early design partner)  
-- [ ] Layer 4 cold-start + paywall QA PASS  
+- [x] Modules 5 + 6 live on prod  
+- [x] Module 7 client-safe shipped  
+- [x] 2,200-case eval PASS  
+- [x] Layer 4 cold-start on S1 PASS  
+- [ ] CB-FRESH-001/002 adversarial audit PASS (attribution + BWV shapes)  
+- [ ] Paywall/trial clarity spot-check  
 
 ### Per firm
 
@@ -205,10 +210,12 @@ Single 2,200-case factory pass checks: all contradiction types, sequence, scope,
 | Criterion | Status |
 |-----------|--------|
 | Modules 1–7 live + gated | **7/7** |
-| 2,200-case eval | ⏳ |
+| 2,200-case eval | **PASS** (2200/2200) |
+| Cold-start prod (S1) | **PASS** |
+| CB-FRESH adversarial audit | **In progress** |
 | 3+ offence tranches (6B) from real demand | ⏳ |
 | 3–5 firms completed pilot | ⏳ |
-| Layer 4 UX/reliability must-haves | Partial |
+| Layer 4 UX/reliability must-haves | Partial (paywall copy ⏳) |
 
 ## Out of scope
 

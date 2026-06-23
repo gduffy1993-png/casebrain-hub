@@ -971,12 +971,33 @@ function linkTypeForBlock(block: ExplanationBlock): ProofMapLinkType {
   return "weakens";
 }
 
+/** Keep links on proof points that exist for this map — source-material-only maps use a smaller id set. */
+function resolveProofPointIdsForMap(requested: string[], validIds: Set<string>): string[] {
+  const ok = [...new Set(requested.filter((id) => validIds.has(id)))];
+  if (ok.length > 0) return ok;
+  const fallbacks = [
+    "pp-disclosure-fair-trial",
+    "pp-source-readiness",
+    "pp-human-review-gate",
+    "pp-source-material-review",
+  ];
+  for (const id of fallbacks) {
+    if (validIds.has(id)) return [id];
+  }
+  const first = [...validIds][0];
+  return first ? [first] : [];
+}
+
 function linksFromExplanationBlock(
   block: ExplanationBlock,
   lens: ProofMapOffenceLens,
+  validProofIds: Set<string>,
   linkTypeOverride?: ProofMapLinkType,
 ): ProofMapLink[] {
-  const proofPointIds = mapIssueToProofPoints(block.issue, lens);
+  const proofPointIds = resolveProofPointIdsForMap(
+    mapIssueToProofPoints(block.issue, lens),
+    validProofIds,
+  );
   const linkType = linkTypeOverride ?? linkTypeForBlock(block);
   return proofPointIds.map((proofPointId) => ({
     proofPointId,
@@ -1007,62 +1028,69 @@ function linksFromExplanationBlock(
   }));
 }
 
-function linksFromContradiction(block: ContradictionBlock, lens: ProofMapOffenceLens): ProofMapLink[] {
-  const proofPointIds = (() => {
-    switch (lens) {
-      case "motoring":
-        return ["pp-collision-causation", "pp-driver-identification"];
-      case "generic_provisional":
-        return [
-          "pp-act-tending",
-          "pp-identity-participation",
-          "pp-intention-knowledge",
-          "pp-witness-messaging",
-          "pp-disclosure-fair-trial",
-          "pp-source-material-review",
-        ];
-      case "violence_gbh":
-        return [
-          "pp-causation",
-          "pp-witness-reliability",
-          "pp-identification-attribution",
-          "pp-unlawful-assault",
-          "pp-cctv-bwv-999-cad",
-        ];
-      case "fraud":
-        return [
-          "pp-dishonest-representation",
-          "pp-transaction-trail",
-          "pp-account-control",
-          "pp-bank-source-material",
-          "pp-device-account-attribution",
-        ];
-      case "pwits":
-        return [
-          "pp-supply-inference",
-          "pp-phone-attribution-messages",
-          "pp-possession",
-          "pp-quantity-packaging",
-          "pp-drugs-lab",
-        ];
-      case "robbery_id":
-        return [
-          "pp-identification-attribution",
-          "pp-complainant-witness",
-          "pp-cctv-bwv-999-cad",
-          "pp-continuity-timing",
-          "pp-taking-property",
-          "pp-force-threat",
-        ];
-      default:
-        return [
-          "pp-act-tending",
-          "pp-identity-participation",
-          "pp-disclosure-fair-trial",
-          "pp-source-material-review",
-        ];
-    }
-  })();
+function linksFromContradiction(
+  block: ContradictionBlock,
+  lens: ProofMapOffenceLens,
+  validProofIds: Set<string>,
+): ProofMapLink[] {
+  const proofPointIds = resolveProofPointIdsForMap(
+    (() => {
+      switch (lens) {
+        case "motoring":
+          return ["pp-collision-causation", "pp-driver-identification"];
+        case "generic_provisional":
+          return [
+            "pp-act-tending",
+            "pp-identity-participation",
+            "pp-intention-knowledge",
+            "pp-witness-messaging",
+            "pp-disclosure-fair-trial",
+            "pp-source-material-review",
+          ];
+        case "violence_gbh":
+          return [
+            "pp-causation",
+            "pp-witness-reliability",
+            "pp-identification-attribution",
+            "pp-unlawful-assault",
+            "pp-cctv-bwv-999-cad",
+          ];
+        case "fraud":
+          return [
+            "pp-dishonest-representation",
+            "pp-transaction-trail",
+            "pp-account-control",
+            "pp-bank-source-material",
+            "pp-device-account-attribution",
+          ];
+        case "pwits":
+          return [
+            "pp-supply-inference",
+            "pp-phone-attribution-messages",
+            "pp-possession",
+            "pp-quantity-packaging",
+            "pp-drugs-lab",
+          ];
+        case "robbery_id":
+          return [
+            "pp-identification-attribution",
+            "pp-complainant-witness",
+            "pp-cctv-bwv-999-cad",
+            "pp-continuity-timing",
+            "pp-taking-property",
+            "pp-force-threat",
+          ];
+        default:
+          return [
+            "pp-act-tending",
+            "pp-identity-participation",
+            "pp-disclosure-fair-trial",
+            "pp-source-material-review",
+          ];
+      }
+    })(),
+    validProofIds,
+  );
 
   const base = proofPointIds.map((proofPointId) => ({
     proofPointId,
@@ -1120,6 +1148,7 @@ export function generateProofMap(
   const lens = proofMapLensFromLedger(ledger);
   const explanation = generateExplanationFidelity(bundleText);
   const proofPoints = proofPointsForLens(lens, charge, metaBasis, bundleText, ledger);
+  const validProofIds = new Set(proofPoints.map((p) => p.id));
 
   const humanReviewReasons: string[] = [];
   if (lens === "unknown") {
@@ -1169,36 +1198,38 @@ export function generateProofMap(
   const custodySection = explanation.find((s) => s.key === "custody-interview");
 
   for (const block of missingSection?.blocks ?? []) {
-    links.push(...linksFromExplanationBlock(block, lens, "missing"));
+    links.push(...linksFromExplanationBlock(block, lens, validProofIds, "missing"));
   }
   for (const block of contraSection?.contradictions ?? []) {
-    links.push(...linksFromContradiction(block, lens));
+    links.push(...linksFromContradiction(block, lens, validProofIds));
   }
   for (const block of disclosureSection?.blocks ?? []) {
-    links.push(...linksFromExplanationBlock(block, lens, "disclosure_chase"));
+    links.push(...linksFromExplanationBlock(block, lens, validProofIds, "disclosure_chase"));
   }
 
   for (const block of custodySection?.blocks ?? []) {
     const linkType =
       block.status === "served" ? ("supports" as const) : ("missing" as const);
-    links.push(...linksFromExplanationBlock(block, lens, linkType));
+    links.push(...linksFromExplanationBlock(block, lens, validProofIds, linkType));
     if ((lens === "violence_gbh" || lens === "robbery_id") && block.status === "served") {
       links.push(
-        ...mapIssueToProofPoints(block.issue, lens).map((proofPointId) => ({
-          ...linksFromExplanationBlock(block, lens, "route_impact" as ProofMapLinkType)[0],
-          proofPointId,
-          linkType: "route_impact" as const,
-          label: `${block.issue} — interview/custody route note`,
-          routeImpact: block.whyItMatters,
-          safeHearingAction: block.safeNextAction,
-        })),
+        ...resolveProofPointIdsForMap(mapIssueToProofPoints(block.issue, lens), validProofIds).map(
+          (proofPointId) => ({
+            ...linksFromExplanationBlock(block, lens, validProofIds, "route_impact" as ProofMapLinkType)[0],
+            proofPointId,
+            linkType: "route_impact" as const,
+            label: `${block.issue} — interview/custody route note`,
+            routeImpact: block.whyItMatters,
+            safeHearingAction: block.safeNextAction,
+          }),
+        ),
       );
     }
   }
 
   for (const block of missingSection?.blocks ?? []) {
     if (block.status === "partial") {
-      links.push(...linksFromExplanationBlock(block, lens, "weakens"));
+      links.push(...linksFromExplanationBlock(block, lens, validProofIds, "weakens"));
     }
   }
 

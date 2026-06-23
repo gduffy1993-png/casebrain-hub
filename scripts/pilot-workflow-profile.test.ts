@@ -79,6 +79,16 @@ assert.equal(
 );
 
 assert.equal(
+  resolveWorkflowProfileFromSignals({
+    caseTitle: "CB-FRESH-001 Taylor Brookes",
+    allegation: "Harassment, contrary to section 2 of the Protection from Harassment Act 1997",
+    routeTitle: "Possession / knowledge / phone-attribution pressure",
+    bundleText: "Complainant MG11 — messages caused alarm and distress; attribution disputed. Phone extraction source download outstanding.",
+  }),
+  "generic",
+);
+
+assert.equal(
   resolveWorkflowProfile({
     caseTitle: "R v Unknown",
     allegation: "Robbery — poor identification",

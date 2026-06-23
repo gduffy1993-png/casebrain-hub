@@ -13,6 +13,7 @@ export type ClientSafeExplanationInput = {
   clientLabel?: string | null;
   allegation?: string | null;
   contradictions?: BundleContradiction[] | null;
+  contradictionActionLines?: string[] | null;
   hasOutstandingDisclosure?: boolean;
   fallback?: string | null;
 };
@@ -75,6 +76,7 @@ export function buildClientSafeExplanation(input: ClientSafeExplanationInput): s
   const contra = input.contradictions ?? [];
   const plainLines = contra
     .map(plainEnglishForContradiction)
+    .concat(input.contradictionActionLines ?? [])
     .filter((line): line is string => Boolean(line?.trim()));
   const uniquePlain = [...new Set(plainLines)].slice(0, 2);
 

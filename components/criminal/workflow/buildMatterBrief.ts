@@ -11,6 +11,9 @@ import {
 } from "./matterBriefAssembly";
 import { buildClientSafeExplanation } from "@/lib/criminal/build-client-safe-explanation";
 import { isBundleClientSafeSurfacingEnabled } from "@/lib/criminal/bundle-client-safe-surfacing";
+import type { CriminalBriefPlan } from "@/lib/criminal/brief-plan";
+import { buildContradictionActions } from "@/lib/criminal/contradiction-actions";
+import { guardMatterBrief, type SourceTruthGuardianReport } from "@/lib/criminal/source-truth-guardian";
 
 export type MatterBriefSection = {
   id: string;
@@ -23,6 +26,7 @@ export type MatterBrief = {
   sections: MatterBriefSection[];
   courtDayNote: string;
   plainText: string;
+  sourceTruthGuardian?: SourceTruthGuardianReport;
 };
 
 function sectionPlain(s: MatterBriefSection): string {
@@ -77,19 +81,39 @@ function safeLineForTheory(safePosition: string, contradictions: HearingWarRoomB
   return line;
 }
 
+function routeMatchesBriefPlan(routeTitle: string | null, briefPlan: CriminalBriefPlan | null): boolean {
+  if (!routeTitle || !briefPlan) return true;
+  const route = routeTitle.toLowerCase();
+  switch (briefPlan.profile) {
+    case "domestic_harassment":
+      return !/\b(pwits|intent to supply|drug|possession\s*\/\s*knowledge|drug\/cash)\b/i.test(routeTitle);
+    case "digital_attribution":
+      return !/\b(drug\/cash|lab continuity|intent to supply|pwits)\b/i.test(routeTitle);
+    case "custody_pace":
+    case "bwv_police_contact":
+      return !/\b(phone-attribution|drug\/cash|intent to supply|pwits)\b/i.test(routeTitle);
+    default:
+      return route.length > 0;
+  }
+}
+
 /** Assemble Matter Brief from existing War Room + Chase briefs — no new reasoning. */
 export function buildMatterBrief(input: {
   warRoom: HearingWarRoomBrief;
   chase: DisclosureChaseBrief;
   primaryRouteTitle?: string | null;
+  briefPlan?: CriminalBriefPlan | null;
 }): MatterBrief {
   const { warRoom, chase } = input;
+  const briefPlan = input.briefPlan ?? null;
   const contradictions = warRoom.bundleContradictions ?? [];
+  const contradictionActions = buildContradictionActions(contradictions);
   const opportunityLines = new Set(contradictions.map((c) => c.opportunityLine));
-  const primaryRoute =
+  const rawPrimaryRoute =
     input.primaryRouteTitle?.trim() ||
     chase.linkedRoutes[0]?.trim() ||
     null;
+  const primaryRoute = routeMatchesBriefPlan(rawPrimaryRoute, briefPlan) ? rawPrimaryRoute : null;
 
   const chaseLabels = dedupePilotLines(
     [
@@ -101,6 +125,8 @@ export function buildMatterBrief(input: {
   const safeLine = safeLineForTheory(warRoom.safePositionToday, contradictions);
 
   const caseTheory = dedupeTheorySentences([
+    briefPlan?.summaryAngle,
+    briefPlan?.mainIssue ? `Main issue: ${briefPlan.mainIssue}` : null,
     "The defence case remains provisional pending disclosure.",
     primaryRoute ? `Primary route on file: ${primaryRoute}.` : null,
     ...contradictions.map((c) => c.theoryLine),
@@ -109,6 +135,7 @@ export function buildMatterBrief(input: {
 
   const prosecutionRisks = dedupeSimilarSummaryLines(
     [
+      ...contradictionActions.map((a) => a.summaryRisk),
       ...contradictions.map((c) => c.riskLine),
       ...warRoom.collapseRisks.filter(
         (r) =>
@@ -122,6 +149,7 @@ export function buildMatterBrief(input: {
 
   const defenceRisks = dedupeSimilarSummaryLines(
     [
+      ...contradictionActions.map((a) => a.summaryRisk),
       ...contradictions.map((c) => c.riskLine),
       ...warRoom.doNotOverstate,
       ...warRoom.collapseRisks.filter((r) => !isOpportunityShapedLine(r) && !opportunityLines.has(r)),
@@ -130,7 +158,12 @@ export function buildMatterBrief(input: {
   );
 
   const opportunities = dedupeSimilarSummaryLines(
-    [...contradictions.map((c) => c.opportunityLine), ...shapedOpportunityFromChase(chase)],
+    [
+      ...(briefPlan?.requiredOutputItems.summary ?? []),
+      ...contradictionActions.map((a) => a.todayCourtLine),
+      ...contradictions.map((c) => c.opportunityLine),
+      ...shapedOpportunityFromChase(chase),
+    ],
     8,
   );
 
@@ -145,6 +178,7 @@ export function buildMatterBrief(input: {
         clientLabel: warRoom.clientLabel,
         allegation: warRoom.allegation,
         contradictions,
+        contradictionActionLines: contradictionActions.map((a) => a.clientSafeLine),
         hasOutstandingDisclosure: chaseLabels.length > 0,
         fallback: warRoom.draftWording.clientExplanation,
       })
@@ -166,6 +200,13 @@ export function buildMatterBrief(input: {
       id: "risks",
       title: "Risks",
       bullets: [
+        ...(briefPlan?.forbiddenTopics
+          .slice(0, 3)
+          .map((topic) => {
+            const trimmed = topic.trim();
+            if (/^do not /i.test(trimmed)) return trimmed.endsWith(".") ? trimmed : `${trimmed}.`;
+            return `Do not import ${trimmed} unless the papers support it.`;
+          }) ?? []),
         ...(prosecutionRisks.length
           ? [`Prosecution pressure / gaps: ${prosecutionRisks[0]}`, ...prosecutionRisks.slice(1)]
           : ["Prosecution pressure: review served MG5/MG6 before fixing trial theory."]),
@@ -211,5 +252,7 @@ export function buildMatterBrief(input: {
 
   const plainText = [...sections.map(sectionPlain), courtDayNote].join("\n\n");
 
-  return { sections, courtDayNote, plainText };
+  return guardMatterBrief({ sections, courtDayNote, plainText }, {
+    ledger: warRoom.sourceTruthGuardian?.fingerprint.ledger ?? chase.sourceTruthGuardian?.fingerprint.ledger ?? null,
+  });
 }

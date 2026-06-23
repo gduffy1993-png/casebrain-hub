@@ -27,6 +27,7 @@ import {
 import { buildDisclosureChaseBrief } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import { buildMatterBrief, type MatterBrief } from "./buildMatterBrief";
 import { assembleBundleTextForContradictions } from "@/lib/criminal/reasoning-v2/assemble-bundle-text";
+import { buildCriminalBriefPlan } from "@/lib/criminal/brief-plan";
 
 type MatterSummary = {
   clientInitials: string | null;
@@ -243,6 +244,14 @@ export function useMatterBrief(caseId: string) {
       snapshotMissing: snapshot?.evidence.missingEvidence,
       proceduralOutstanding: undefined,
     });
+    const briefPlan = buildCriminalBriefPlan({
+      bundleText: bundleTextForBrief || bundleSource?.frontMatterScan || null,
+      missingMaterial: [
+        ...chaseItemsAll,
+        ...(snapshot?.evidence.missingEvidence?.map((item) => item.label) ?? []),
+      ],
+      allegation,
+    });
 
     let positionRaw: string;
     if (hasSavedPosition && savedPositionText?.trim()) {
@@ -292,6 +301,7 @@ export function useMatterBrief(caseId: string) {
       proceduralOutstanding: undefined,
       bundleText: bundleTextForBrief || bundleSource?.frontMatterScan || null,
       profileHint: pilotHeader?.profile ?? null,
+      briefPlan,
     });
 
     const chase = buildDisclosureChaseBrief({
@@ -308,11 +318,12 @@ export function useMatterBrief(caseId: string) {
       snapshotMissing: snapshot?.evidence.missingEvidence,
       bundleText: bundleTextForBrief || bundleSource?.frontMatterScan || null,
       profileHint: pilotHeader?.profile ?? null,
+      briefPlan,
     });
 
     const primaryRouteTitle = workflowPrimaryRouteTitle(workflowContext);
 
-    return buildMatterBrief({ warRoom, chase, primaryRouteTitle });
+    return buildMatterBrief({ warRoom, chase, primaryRouteTitle, briefPlan });
   }, [
     snapshotLoading,
     battleboardLoading,

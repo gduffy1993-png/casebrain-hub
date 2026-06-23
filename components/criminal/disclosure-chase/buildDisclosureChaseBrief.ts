@@ -32,6 +32,10 @@ import {
   gateProseAgainstSource,
   type ChaseGateFamily,
 } from "@/lib/criminal/chase-source-gate";
+import { buildCriminalBriefPlan, type CriminalBriefPlan } from "@/lib/criminal/brief-plan";
+import { buildContradictionActions } from "@/lib/criminal/contradiction-actions";
+import { extractAllBundleContradictions } from "@/lib/criminal/merge-bundle-contradictions";
+import { guardDisclosureChaseBrief, type SourceTruthGuardianReport } from "@/lib/criminal/source-truth-guardian";
 
 const FORBIDDEN_RE =
   /\b(this wins|case collapses|crowns?\s+will\s+lose|crown\s+case\s+collapses|guaranteed|will\s+be\s+acquitted)\b/i;
@@ -177,6 +181,7 @@ export type DisclosureChaseBrief = {
   linkedRoutes: string[];
   counters: DisclosureChaseCounters;
   hearingDeadlineNote: string | null;
+  sourceTruthGuardian?: SourceTruthGuardianReport;
 };
 
 export type BuildDisclosureChaseBriefInput = {
@@ -194,6 +199,7 @@ export type BuildDisclosureChaseBriefInput = {
   proceduralOutstanding?: string[];
   bundleText?: string | null;
   profileHint?: import("@/lib/criminal/pilot-workflow").WorkflowProfile | null;
+  briefPlan?: CriminalBriefPlan | null;
 };
 
 function normalizeRawLabel(raw: string): string {
@@ -697,7 +703,9 @@ function mergeLedgerDisclosureItems(
   const merged = [...items];
 
   for (const m of ledgerMaterialsNeedingChase(ledger)) {
-    const key = m.displayLine.toLowerCase();
+    const familyId = classifyFamily(m.displayLine);
+    const canonical = canonicalLedgerMaterial(m.displayLine, familyId);
+    const key = canonical.label.toLowerCase();
     if (labelSeen.has(key)) continue;
     labelSeen.add(key);
 
@@ -706,23 +714,23 @@ function mergeLedgerDisclosureItems(
 
     merged.push({
       id: `ledger-material-${m.id}`,
-      familyId: classifyFamily(m.displayLine),
-      label: formatDisplayLabelCasing(m.displayLine),
-      whyItMatters: `Papers mark this material as ${m.status} — chase or confirm status before fixing hearing position.`,
+      familyId,
+      label: canonical.label,
+      whyItMatters: canonical.whyItMatters ?? `Papers mark this material as ${m.status} — chase or confirm status before fixing hearing position.`,
       source: "MG6/MG6C disclosure schedule",
       baseStatus,
       urgency: deadline.urgency,
       deadlineLabel: deadline.sharedLabel,
       evidenceAnchor: (() => {
-        const display = formatDisplayLabelCasing(m.displayLine);
+        const display = canonical.anchor ?? formatDisplayLabelCasing(m.displayLine);
         if (!isAdminGuidanceLine(display)) return display;
         const excerpt = m.sourceAnchor.excerpt;
         if (!excerpt || isAdminGuidanceLine(excerpt)) return null;
         return formatDisplayLabelCasing(excerpt);
       })(),
       linkedRoute: null,
-      draftChaseWording: `Please provide ${m.label} or confirm in writing why it is not available.`,
-      courtLine: `${COURT_RECORD_PREFIX} that ${m.label} remains ${m.status} on the current papers.`,
+      draftChaseWording: canonical.draftChaseWording ?? `Please provide ${canonical.label.toLowerCase()} or confirm in writing why it is not available.`,
+      courtLine: `${COURT_RECORD_PREFIX} that ${canonical.label.charAt(0).toLowerCase()}${canonical.label.slice(1)} remains ${m.status} on the current papers.`,
       mergedFrom: [m.displayLine],
     });
   }
@@ -736,10 +744,95 @@ function mergeLedgerDisclosureItems(
   return merged;
 }
 
+function canonicalLedgerMaterial(
+  displayLine: string,
+  familyId: ChaseFamilyId,
+): {
+  label: string;
+  anchor?: string;
+  whyItMatters?: string;
+  draftChaseWording?: string;
+} {
+  if (familyId === "bwv") {
+    return {
+      label: "Body-worn video (BWV)",
+      anchor: "MG6/MG6C schedule — BWV referred to but not fully attached",
+      whyItMatters: "BWV is referred to but not safely served in full — chase the full export and continuity before fixing the hearing position.",
+      draftChaseWording:
+        "Please provide the full BWV export, audit trail, redaction log and continuity/provenance material, or confirm in writing why it is not available.",
+    };
+  }
+  if (familyId === "interview" && /\bcustody|pace|detention|safeguard/i.test(displayLine)) {
+    return {
+      label: "Full custody record / PACE material",
+      anchor: "MG6/MG6C schedule — custody record extract only",
+      whyItMatters: "Custody/PACE material is referred to in limited form — chase the full record before assessing safeguards or interview fairness.",
+      draftChaseWording:
+        "Please provide the full custody record, detention log, risk assessment, safeguards checklist and interview recording/transcript, or confirm why any item is unavailable.",
+    };
+  }
+  return { label: formatDisplayLabelCasing(displayLine) };
+}
+
+function mergeContradictionActionItems(
+  items: DisclosureChaseItem[],
+  input: BuildDisclosureChaseBriefInput,
+  deadline: ReturnType<typeof resolveDeadlineContext>,
+): DisclosureChaseItem[] {
+  const contradictions = extractAllBundleContradictions(input.bundleText);
+  const actions = buildContradictionActions(contradictions);
+  if (actions.length === 0) return items;
+
+  const seen = new Set(items.map((i) => i.label.toLowerCase()));
+  const merged = [...items];
+
+  for (const action of actions) {
+    const label = formatDisplayLabelCasing(action.label);
+    if (seen.has(label.toLowerCase())) continue;
+    seen.add(label.toLowerCase());
+    const familyId = classifyFamily(action.chaseAsk);
+
+    merged.push({
+      id: `contradiction-action-${action.type}`,
+      familyId,
+      label,
+      whyItMatters: action.summaryRisk,
+      source: "Crown / disclosure officer (contradiction reconciliation)",
+      baseStatus: deadline.baseStatus,
+      urgency: deadline.urgency === "low" ? "medium" : deadline.urgency,
+      deadlineLabel: deadline.sharedLabel,
+      evidenceAnchor: action.label,
+      linkedRoute: input.battleboard?.primary_route?.title ?? null,
+      draftChaseWording: action.draftChaseWording,
+      courtLine: `${COURT_RECORD_PREFIX} that ${action.chaseAsk.charAt(0).toLowerCase()}${action.chaseAsk.slice(1)} are needed to reconcile ${action.label.toLowerCase()}.`,
+      mergedFrom: [action.label],
+    });
+  }
+
+  merged.sort((a, b) => {
+    const pa = CHASE_FAMILIES.find((f) => f.id === a.familyId)?.priority ?? 98;
+    const pb = CHASE_FAMILIES.find((f) => f.id === b.familyId)?.priority ?? 98;
+    return pa - pb;
+  });
+
+  return merged;
+}
+
 export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput): DisclosureChaseBrief {
   const ledger = input.bundleText?.trim()
     ? buildBundleTruthLedger({ bundleText: input.bundleText })
     : null;
+  const briefPlan =
+    input.briefPlan ??
+    buildCriminalBriefPlan({
+      bundleText: input.bundleText,
+      ledger,
+      missingMaterial: [
+        ...(input.snapshotMissing?.map((m) => m.label) ?? []),
+        ...(input.proceduralOutstanding ?? []),
+      ],
+      allegation: input.allegation,
+    });
 
   const workflowContext = {
     caseTitle: input.caseTitle,
@@ -758,7 +851,14 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
     battleboard: input.battleboard,
   });
   const chaseLabels = prioritizeWorkflowItems(
-    filterWorkflowItems(chaseLabelsRaw, workflowContext),
+    filterWorkflowItems(
+      [
+        ...briefPlan.requiredOutputItems.chase,
+        ...briefPlan.missingEvidence.map((item) => item.label),
+        ...chaseLabelsRaw,
+      ],
+      workflowContext,
+    ),
     workflowContext,
   );
 
@@ -772,7 +872,11 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   if (profileLabels && profile !== "generic") {
     items = gateItemsAgainstSource(
       buildWorkflowProfileDisclosureItems(
-        profileLabels,
+        [
+          ...briefPlan.requiredOutputItems.chase,
+          ...briefPlan.missingEvidence.map((item) => item.label),
+          ...profileLabels,
+        ],
         input.battleboard,
         deadline,
         profile,
@@ -793,6 +897,9 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
     items = mergeLedgerDisclosureItems(items, ledger, deadline);
     ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
   }
+
+  items = mergeContradictionActionItems(items, input, deadline);
+  ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
 
   const guardCtx = { ledger, bundleText: input.bundleText ?? null };
   items = items
@@ -827,14 +934,14 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
 
   const disclosureSummary =
     primaryItems.length > 0
-      ? `${primaryItems.length} priority chase item${primaryItems.length === 1 ? "" : "s"} — provisional`
+      ? `${primaryItems.length} priority chase item${primaryItems.length === 1 ? "" : "s"} — ${briefPlan.profile.replace(/_/g, " ")}`
       : items.length === 0
         ? "No source-material chase items safely detected"
         : items.length === 1
           ? "1 grouped chase item — provisional"
           : `${items.length} grouped chase items — provisional`;
 
-  return {
+  const brief: DisclosureChaseBrief = {
     caseId: input.caseId,
     caseTitle: input.caseTitle,
     clientLabel: input.clientLabel,
@@ -847,7 +954,7 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
     safeCourtLine: (() => {
       const profileLine =
         isCriminalPilotMode() ? workflowDisclosureCaseWideLine(workflowContext) : null;
-      let raw = profileLine ?? resolveSafeCourtLine(input.battleboard);
+      let raw = profileLine ?? briefPlan.chaseAngle ?? resolveSafeCourtLine(input.battleboard);
       if (!isCriminalPilotMode()) {
         return input.bundleText?.trim()
           ? gateProseAgainstSource(raw, input.bundleText)
@@ -867,6 +974,8 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
     counters,
     hearingDeadlineNote: deadline.hearingDeadlineNote,
   };
+
+  return guardDisclosureChaseBrief(brief, { ledger, bundleText: input.bundleText });
 }
 
 export function computeCounters(
