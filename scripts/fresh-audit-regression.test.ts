@@ -110,12 +110,21 @@ describe("CB-FRESH audit regressions", () => {
       positionStatus: "Not recorded",
       battleboard: null,
       snapshotMissing: [{ label: "Body Worn Video (BWV)", status: "outstanding" }],
+      proceduralOutstanding: [
+        "The defence asks the court to record that full custody and interview records remain outstanding.",
+        "The defence asks the court to record that full custody and interview records remain outstanding.",
+      ],
       bundleText: jordanBundle,
     });
     const labels = chase.items.map((item) => item.label).join("\n");
+    const draftText = chase.items.map((item) => item.draftChaseWording).join("\n");
+    const courtLines = chase.items.map((item) => item.courtLine);
     expect(labels).toMatch(/Body-worn video \(BWV\)/i);
     expect(labels).toMatch(/Full custody record \/ PACE material/i);
+    expect(labels.match(/Full custody record \/ PACE material/gi)?.length).toBe(1);
     expect(labels).not.toMatch(/BWV reference \| 7 \|/i);
     expect(labels).not.toMatch(/I activated BWV/i);
+    expect(draftText).not.toMatch(/Please provide\s+the defence asks the court/i);
+    expect(new Set(courtLines).size).toBe(courtLines.length);
   });
 });

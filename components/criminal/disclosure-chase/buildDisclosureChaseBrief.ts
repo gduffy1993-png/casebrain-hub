@@ -203,12 +203,22 @@ export type BuildDisclosureChaseBriefInput = {
 };
 
 function normalizeRawLabel(raw: string): string {
+  const materialLabel = materialLabelFromCourtLine(raw);
   return formatDisplayLabelCasing(
-    raw
+    materialLabel
       .replace(/^chase[:\s]*/i, "")
       .replace(/^outstanding[:\s]*/i, "")
       .trim(),
   );
+}
+
+function materialLabelFromCourtLine(raw: string): string {
+  const t = raw.trim();
+  const courtMatch = t.match(
+    /^\s*(?:the\s+defence\s+asks\s+the\s+court\s+to\s+record|ask\s+the\s+court\s+to\s+record)\s+that\s+(.+?)(?:\s+(?:remains?|remain|appears?|appear|should|must|is|are)\b|[.;]|$)/i,
+  );
+  if (!courtMatch?.[1]) return t;
+  return courtMatch[1].replace(/^the\s+/i, "").trim();
 }
 
 function classifyFamily(text: string): ChaseFamilyId {
@@ -364,11 +374,12 @@ function toCourtLine(canonicalLabel: string): string {
 }
 
 function draftChaseWording(canonicalLabel: string, mergedFrom: string[]): string {
+  const provision = materialLabelFromCourtLine(canonicalLabel);
   const detail =
     mergedFrom.length > 1
       ? ` (including items noted on file: ${mergedFrom.slice(0, 3).join("; ")}${mergedFrom.length > 3 ? "…" : ""})`
       : "";
-  return `Please provide ${canonicalLabel.toLowerCase()}. This material appears outstanding on the current file and may be relevant to preparation — conditional on what is ultimately served${detail}. Kindly confirm expected service date.`;
+  return `Please provide ${provision.toLowerCase()}. This material appears outstanding on the current file and may be relevant to preparation — conditional on what is ultimately served${detail}. Kindly confirm expected service date.`;
 }
 
 function findLinkedRoute(
@@ -473,7 +484,10 @@ function groupAndMergeLabels(
     groups.delete(fam.id);
 
     const def = fam;
-    const label = def.label;
+    const mergedText = mergedFrom.join("; ");
+    const canonical = canonicalLedgerMaterial(mergedText, fam.id);
+    const echoLabel = canonical.label === formatDisplayLabelCasing(mergedText);
+    const label = echoLabel ? def.label : canonical.label;
     const baseStatus: ChaseItemStatus =
       fam.id === "other" || mergedFrom.some((m) => /not safely|unknown|verify/i.test(m))
         ? "Not safely confirmed"
@@ -483,14 +497,14 @@ function groupAndMergeLabels(
       id: `chase-family-${fam.id}`,
       familyId: fam.id,
       label,
-      whyItMatters: inferWhyItMatters(fam.id, battleboard, mergedFrom),
+      whyItMatters: canonical.whyItMatters ?? inferWhyItMatters(fam.id, battleboard, mergedFrom),
       source: def.source,
       baseStatus,
       urgency: deadline.urgency,
       deadlineLabel: deadline.sharedLabel,
       evidenceAnchor: findEvidenceAnchor(fam.id, mergedFrom, battleboard, ledger),
       linkedRoute: findLinkedRoute(fam.id, battleboard),
-      draftChaseWording: draftChaseWording(label, mergedFrom),
+      draftChaseWording: canonical.draftChaseWording ?? draftChaseWording(label, mergedFrom),
       courtLine: toCourtLine(label),
       mergedFrom,
     });
@@ -648,14 +662,34 @@ function splitPrimaryAdditional(items: DisclosureChaseItem[]): {
   primaryItems: DisclosureChaseItem[];
   additionalItems: DisclosureChaseItem[];
 } {
-  const core = items.filter((i) => i.familyId !== "other");
-  const misc = items.filter((i) => i.familyId === "other");
+  const deduped = dedupeDisclosureItems(items);
+  const core = deduped.filter((i) => i.familyId !== "other");
+  const misc = deduped.filter((i) => i.familyId === "other");
   const primaryItems = core.slice(0, DISCLOSURE_CHASE_PRIMARY_CAP);
   const overflowCore = core.slice(DISCLOSURE_CHASE_PRIMARY_CAP);
   return {
     primaryItems,
     additionalItems: [...overflowCore, ...misc],
   };
+}
+
+function dedupeDisclosureItems(items: DisclosureChaseItem[]): DisclosureChaseItem[] {
+  const byKey = new Map<string, DisclosureChaseItem>();
+  for (const item of items) {
+    const labelKey = item.label.toLowerCase().replace(/\s+/g, " ").trim();
+    const courtKey = item.courtLine.toLowerCase().replace(/\s+/g, " ").trim();
+    const key = labelKey || courtKey;
+    const existing = byKey.get(key);
+    if (!existing) {
+      byKey.set(key, item);
+      continue;
+    }
+    byKey.set(key, {
+      ...existing,
+      mergedFrom: [...new Set([...existing.mergedFrom, ...item.mergedFrom])],
+    });
+  }
+  return [...byKey.values()];
 }
 
 function buildWorkflowProfileDisclosureItems(
@@ -912,6 +946,7 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
           (isAdminGuidanceLine(item.evidenceAnchor) ? null : formatDisplayLabelCasing(item.evidenceAnchor))
         : item.evidenceAnchor,
     }));
+  items = dedupeDisclosureItems(items);
   ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
 
   const linkedRoutes = [
