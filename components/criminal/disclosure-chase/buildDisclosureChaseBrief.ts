@@ -109,7 +109,9 @@ const CHASE_FAMILIES: FamilyDef[] = [
     label: "Interview recording / transcript",
     source: "Custody / police interview unit",
     priority: 5,
-    match: (t) => /\b(interview|transcript|custody\s*record|pace)\b/.test(t) && !/\bmg6\b/.test(t),
+    match: (t) =>
+      /\b(interview|transcript|custody|detention|risk\s*assessment|pace)\b/.test(t) &&
+      !/\bmg6\b/.test(t),
   },
   {
     id: "mg6_unused",
@@ -676,18 +678,14 @@ function splitPrimaryAdditional(items: DisclosureChaseItem[]): {
 function dedupeDisclosureItems(items: DisclosureChaseItem[]): DisclosureChaseItem[] {
   const byKey = new Map<string, DisclosureChaseItem>();
   for (const item of items) {
-    const labelKey = item.label.toLowerCase().replace(/\s+/g, " ").trim();
-    const courtKey = item.courtLine.toLowerCase().replace(/\s+/g, " ").trim();
-    const key = labelKey || courtKey;
+    const normalized = normalizeDisclosureItem(item);
+    const key = disclosureItemDedupeKey(normalized);
     const existing = byKey.get(key);
     if (!existing) {
-      byKey.set(key, item);
+      byKey.set(key, normalized);
       continue;
     }
-    byKey.set(key, {
-      ...existing,
-      mergedFrom: [...new Set([...existing.mergedFrom, ...item.mergedFrom])],
-    });
+    byKey.set(key, mergeDisclosureItems(existing, normalized));
   }
   return [...byKey.values()];
 }
@@ -700,7 +698,7 @@ function buildWorkflowProfileDisclosureItems(
   ledger: BundleTruthLedger | null,
 ): DisclosureChaseItem[] {
   return labels.map((label, idx) => {
-    const normalized = normalizeWorkflowPilotLabel(label);
+    const normalized = normalizeWorkflowPilotLabel(normalizeRawLabel(label));
     const familyId = classifyFamily(normalized);
     return {
       id: `workflow-chase-${profile}-${idx}`,
@@ -725,6 +723,140 @@ function buildWorkflowProfileDisclosureItems(
       courtLine: formatPilotCourtLine(normalized),
       mergedFrom: [normalized],
     };
+  });
+}
+
+function normalizeDisclosureItem(item: DisclosureChaseItem): DisclosureChaseItem {
+  const label = normalizeRawLabel(item.label);
+  const familyId = item.familyId === "other" ? classifyFamily(label) : item.familyId;
+  const canonical = canonicalDisclosureMaterial(label, familyId, item.mergedFrom);
+
+  return {
+    ...item,
+    familyId: canonical.familyId,
+    label: canonical.label,
+    whyItMatters: canonical.whyItMatters ?? item.whyItMatters,
+    draftChaseWording: canonical.draftChaseWording ?? item.draftChaseWording,
+    courtLine: toCourtLine(canonical.label),
+    mergedFrom: [
+      ...new Set(
+        [label, ...item.mergedFrom.map((m) => normalizeRawLabel(m))]
+          .map((m) => m.trim())
+          .filter(Boolean),
+      ),
+    ],
+  };
+}
+
+function safeCanonicalDisclosureLabel(
+  mergedText: string,
+  familyId: ChaseFamilyId,
+  canonicalLabel: string,
+): string {
+  if (familyId === "other") return canonicalLabel;
+  const def = getFamilyDef(familyId);
+  if (/\bMG6C?:?\s*(?:Unused Material Schedule|Disclosure Schedule)\b/i.test(canonicalLabel)) {
+    return def.label;
+  }
+  if (canonicalLabel === formatDisplayLabelCasing(mergedText.trim())) {
+    return def.label;
+  }
+  return canonicalLabel;
+}
+
+function canonicalDisclosureMaterial(
+  label: string,
+  familyId: ChaseFamilyId,
+  mergedFrom: string[],
+): {
+  familyId: ChaseFamilyId;
+  label: string;
+  whyItMatters?: string;
+  draftChaseWording?: string;
+} {
+  const text = [label, ...mergedFrom].join("; ");
+  const resolvedFamily = familyId === "other" ? classifyFamily(text) : familyId;
+  const canonical = canonicalLedgerMaterial(text, resolvedFamily);
+  return {
+    familyId: resolvedFamily,
+    label: safeCanonicalDisclosureLabel(text, resolvedFamily, canonical.label),
+    whyItMatters: canonical.whyItMatters,
+    draftChaseWording: canonical.draftChaseWording,
+  };
+}
+
+function disclosureItemDedupeKey(item: DisclosureChaseItem): string {
+  const canonical = canonicalDisclosureMaterial(item.label, item.familyId, item.mergedFrom);
+  return `${canonical.familyId}:${canonical.label.toLowerCase().replace(/\s+/g, " ").trim()}`;
+}
+
+function mergeDisclosureItems(
+  existing: DisclosureChaseItem,
+  incoming: DisclosureChaseItem,
+): DisclosureChaseItem {
+  const mergedFrom = [...new Set([...existing.mergedFrom, ...incoming.mergedFrom])];
+  const canonical = canonicalDisclosureMaterial(existing.label, existing.familyId, mergedFrom);
+
+  return {
+    ...existing,
+    familyId: canonical.familyId,
+    label: canonical.label,
+    whyItMatters: canonical.whyItMatters ?? existing.whyItMatters ?? incoming.whyItMatters,
+    source: existing.source || incoming.source,
+    baseStatus: mergeStatus(existing.baseStatus, incoming.baseStatus),
+    urgency: mergeUrgency(existing.urgency, incoming.urgency),
+    deadlineLabel: existing.deadlineLabel || incoming.deadlineLabel,
+    evidenceAnchor: existing.evidenceAnchor ?? incoming.evidenceAnchor,
+    linkedRoute: existing.linkedRoute ?? incoming.linkedRoute,
+    draftChaseWording:
+      canonical.draftChaseWording ??
+      preferDraftChaseWording(existing.draftChaseWording, incoming.draftChaseWording),
+    courtLine: toCourtLine(canonical.label),
+    mergedFrom,
+  };
+}
+
+function mergeStatus(a: ChaseItemStatus, b: ChaseItemStatus): ChaseItemStatus {
+  const order: ChaseItemStatus[] = [
+    "Overdue",
+    "Due soon",
+    "Outstanding",
+    "Not safely confirmed",
+    "Chased",
+    "Received",
+  ];
+  return order[Math.min(order.indexOf(a), order.indexOf(b))] ?? a;
+}
+
+function mergeUrgency(
+  a: DisclosureChaseItem["urgency"],
+  b: DisclosureChaseItem["urgency"],
+): DisclosureChaseItem["urgency"] {
+  const order: DisclosureChaseItem["urgency"][] = ["high", "medium", "low"];
+  return order[Math.min(order.indexOf(a), order.indexOf(b))] ?? a;
+}
+
+function preferDraftChaseWording(a: string, b: string): string {
+  const unsafe = /^please provide\s+the defence asks the court/i;
+  if (unsafe.test(a) && !unsafe.test(b)) return b;
+  if (unsafe.test(b) && !unsafe.test(a)) return a;
+  return a.length >= b.length ? a : b;
+}
+
+function collapseDisclosureItemsByFamily(items: DisclosureChaseItem[]): DisclosureChaseItem[] {
+  const byKey = new Map<string, DisclosureChaseItem>();
+
+  for (const rawItem of items) {
+    const item = normalizeDisclosureItem(rawItem);
+    const key = disclosureItemDedupeKey(item);
+    const existing = byKey.get(key);
+    byKey.set(key, existing ? mergeDisclosureItems(existing, item) : item);
+  }
+
+  return [...byKey.values()].sort((a, b) => {
+    const pa = CHASE_FAMILIES.find((f) => f.id === a.familyId)?.priority ?? 99;
+    const pb = CHASE_FAMILIES.find((f) => f.id === b.familyId)?.priority ?? 99;
+    return pa - pb;
   });
 }
 
@@ -935,18 +1067,21 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   items = mergeContradictionActionItems(items, input, deadline);
   ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
 
+  items = collapseDisclosureItemsByFamily(items);
+  ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
+
   const guardCtx = { ledger, bundleText: input.bundleText ?? null };
   items = items
     .filter((item) => !isAdminGuidanceLine(item.label) && !isAdminGuidanceLine(item.evidenceAnchor ?? ""))
     .map((item) => ({
       ...item,
-      label: formatDisplayLabelCasing(item.label),
+      label: formatDisplayLabelCasing(normalizeRawLabel(item.label)),
       evidenceAnchor: item.evidenceAnchor
         ? guardSolicitorLine(item.evidenceAnchor, guardCtx) ??
           (isAdminGuidanceLine(item.evidenceAnchor) ? null : formatDisplayLabelCasing(item.evidenceAnchor))
         : item.evidenceAnchor,
     }));
-  items = dedupeDisclosureItems(items);
+  items = collapseDisclosureItemsByFamily(items);
   ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
 
   const linkedRoutes = [

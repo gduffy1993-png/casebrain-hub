@@ -109,19 +109,31 @@ describe("CB-FRESH audit regressions", () => {
       bundleHealth: "Thin bundle",
       positionStatus: "Not recorded",
       battleboard: null,
-      snapshotMissing: [{ label: "Body Worn Video (BWV)", status: "outstanding" }],
+      snapshotMissing: [
+        { label: "Body Worn Video (BWV)", status: "outstanding" },
+        { label: "Body Worn Video (BWV)", status: "outstanding" },
+        { label: "full custody record", status: "outstanding" },
+        { label: "PACE interview recording", status: "outstanding" },
+      ],
       proceduralOutstanding: [
         "The defence asks the court to record that full custody and interview records remain outstanding.",
         "The defence asks the court to record that full custody and interview records remain outstanding.",
+        "custody risk assessments",
+        "Full custody record, detention log, risk assessment, and Interview recording.",
       ],
       bundleText: jordanBundle,
     });
     const labels = chase.items.map((item) => item.label).join("\n");
+    const primaryLabels = chase.primaryItems.map((item) => item.label).join("\n");
     const draftText = chase.items.map((item) => item.draftChaseWording).join("\n");
     const courtLines = chase.items.map((item) => item.courtLine);
     expect(labels).toMatch(/Body-worn video \(BWV\)/i);
     expect(labels).toMatch(/Full custody record \/ PACE material/i);
+    expect(labels.match(/Body-worn video \(BWV\)/gi)?.length).toBe(1);
     expect(labels.match(/Full custody record \/ PACE material/gi)?.length).toBe(1);
+    expect(labels).not.toMatch(/^the defence asks the court/im);
+    expect(primaryLabels).not.toMatch(/^full custody record$/im);
+    expect(primaryLabels).not.toMatch(/^PACE Interview recording$/im);
     expect(labels).not.toMatch(/BWV reference \| 7 \|/i);
     expect(labels).not.toMatch(/I activated BWV/i);
     expect(draftText).not.toMatch(/Please provide\s+the defence asks the court/i);
