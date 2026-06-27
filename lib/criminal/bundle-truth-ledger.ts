@@ -560,6 +560,9 @@ function guardBattleboardRoute(
   route: BattleboardRoute,
   ctx: TruthSurfaceGuardContext,
 ): BattleboardRoute {
+  if (isWrongFamilyRouteForLedger(route, ctx.ledger)) {
+    return provisionalSourceRoute(route, ctx);
+  }
   return {
     ...route,
     why_it_helps: guardSolicitorLines(route.why_it_helps, ctx),
@@ -569,6 +572,43 @@ function guardBattleboardRoute(
     next_moves: guardSolicitorLines(route.next_moves, ctx),
     hearing_line: guardSolicitorLine(route.hearing_line, ctx) ?? "",
     safety_note: guardSolicitorLine(route.safety_note, ctx) ?? "",
+  };
+}
+
+function isWrongFamilyRouteForLedger(route: BattleboardRoute, ledger: BundleTruthLedger | null | undefined): boolean {
+  const family = ledger?.offenceFamily.family;
+  if (!family || family === "unknown") return false;
+  const title = route.title.toLowerCase();
+  if (family === "perverting_justice") {
+    return /\b(fraud|account-control|pwits|intent to supply|robbery|domestic assault)\b/i.test(title);
+  }
+  return false;
+}
+
+function provisionalSourceRoute(route: BattleboardRoute, ctx: TruthSurfaceGuardContext): BattleboardRoute {
+  const safeNextMoves = guardSolicitorLines(route.next_moves, ctx).filter(
+    (line) => !/\b(fraud|account-control|pwits|intent to supply|robbery)\b/i.test(line),
+  );
+  return {
+    ...route,
+    title: "Provisional source-material pressure",
+    route_type: "disclosure",
+    why_it_helps: [
+      "The offence route remains provisional until the served source material is reviewed against the charge.",
+    ],
+    what_hurts_us: [
+      "Served phone, message, witness or interview material may affect the final advice once reviewed.",
+    ],
+    evidence_anchors: guardSolicitorLines(route.evidence_anchors, ctx).slice(0, 3),
+    collapse_risks: [
+      "Do not import fraud, PWITS, robbery or violence routes unless the served papers support them.",
+    ],
+    next_moves: safeNextMoves.length
+      ? safeNextMoves
+      : ["Chase outstanding source material and keep the hearing position provisional."],
+    hearing_line:
+      "The defence position remains provisional pending served source material and solicitor instructions.",
+    safety_note: "Generic provisional route — no offence-family theory should be imported without bundle support.",
   };
 }
 

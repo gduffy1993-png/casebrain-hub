@@ -22,6 +22,7 @@ import {
 } from "../lib/criminal/bundle-truth-ledger";
 import { lintPartnerScore } from "../lib/criminal/partner-score-lint";
 import { lintSourceTruthSurfaceText } from "../lib/criminal/source-truth-guardian";
+import { lintWeirdness, stripSafetyWarningLines } from "../lib/criminal/weirdness-detector";
 import { resolveCaseHeaderMetadata } from "../lib/criminal/resolve-case-header-metadata";
 import { buildStrategyBattleboard } from "../lib/criminal/strategy-battleboard";
 import {
@@ -58,6 +59,7 @@ type GoldenResult = {
     chaseItems: number;
     primaryChaseItems: number;
     guardianSurvivors: number;
+    weirdnessFindings: number;
   };
 };
 
@@ -157,7 +159,7 @@ function defendantCovered(truth: BundleFidelityTruthKey, outputText: string, bun
 }
 
 function prohibitedFamilyHit(truth: BundleFidelityTruthKey, outputText: string): string | null {
-  const strategySlice = norm(outputText);
+  const strategySlice = norm(stripSafetyWarningLines(outputText));
   for (const family of truth.prohibitedFamilies ?? []) {
     if (family === "drugs_pwits" || family === "pwits_phone_attribution") {
       if (/\b(pwits|intent to supply|drug continuity|drug cash)\b/i.test(strategySlice)) return family;
@@ -181,6 +183,8 @@ function buildGoldenOutput(entry: BundleFidelityGoldEntry): {
   fidelityOverall: string;
   chaseItems: number;
   primaryChaseItems: number;
+  chaseLabels: string[];
+  chaseDrafts: string[];
 } {
   const truth = entry.truthKey;
   const bundleText = readBundleText(entry.bundleTextPaths);
@@ -273,6 +277,8 @@ function buildGoldenOutput(entry: BundleFidelityGoldEntry): {
     fidelityOverall: runBundleFidelityCheck(entry).overall,
     chaseItems: chase.items.length,
     primaryChaseItems: chase.primaryItems.length,
+    chaseLabels: chase.items.map((item) => item.label),
+    chaseDrafts: chase.items.map((item) => item.draftChaseWording),
   };
 }
 
@@ -294,6 +300,16 @@ function runCase(entry: BundleFidelityGoldEntry): GoldenResult {
   const guardianSurvivors = lintSourceTruthSurfaceText({
     text: built.outputText,
     bundleText: built.bundleText,
+  });
+  const weirdness = lintWeirdness({
+    caseId: truth.bundleId,
+    profile: truth.expectedWorkflowProfile,
+    offenceFamily: truth.expectedRouteFamily,
+    allegation: truth.charge,
+    bundleText: built.bundleText,
+    outputText: built.outputText,
+    chaseLabels: built.chaseLabels,
+    chaseDrafts: built.chaseDrafts,
   });
 
   if (built.fidelityOverall === "fail") {
@@ -350,6 +366,16 @@ function runCase(entry: BundleFidelityGoldEntry): GoldenResult {
     }
   }
 
+  for (const finding of weirdness) {
+    addIssue(
+      issues,
+      finding.severity,
+      `weirdness.${finding.kind}`,
+      finding.message,
+      finding.detail ?? finding.suggestedArea,
+    );
+  }
+
   if (built.partnerGrade === "fail") {
     addIssue(issues, "critical", "partner_score_fail", "Partner Score failed.", built.partnerIssues.slice(0, 3).join(" | "));
   } else if (built.partnerGrade === "weak") {
@@ -377,6 +403,7 @@ function runCase(entry: BundleFidelityGoldEntry): GoldenResult {
       chaseItems: built.chaseItems,
       primaryChaseItems: built.primaryChaseItems,
       guardianSurvivors: guardianSurvivors.length,
+      weirdnessFindings: weirdness.length,
     },
   };
 }

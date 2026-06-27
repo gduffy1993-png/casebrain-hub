@@ -223,6 +223,42 @@ function materialLabelFromCourtLine(raw: string): string {
   return courtMatch[1].replace(/^the\s+/i, "").trim();
 }
 
+function isUnsafeOrNonMaterialChaseLine(raw: string): boolean {
+  const t = raw.trim();
+  if (!t) return true;
+  if (FORBIDDEN_RE.test(t)) return true;
+  return /\b(win conditions?|case collapses|prosecution case collapses|crown case collapses|will be acquitted)\b/i.test(t) ||
+    /\brecord what (?:pwits|robbery|fraud|violence) source material remains outstanding\b/i.test(t) ||
+    /\bprepare hearing line\b/i.test(t) ||
+    /^\s*(?:primary strategy|fight charge|charge reduction|defence strategy|skeleton argument)\b/i.test(t) ||
+    /^\s*(?:#{1,6}\s|={2,}\s*section:|\*\*?(?:statement|particulars|bail|witness|status|relevance|timetable)\b|\|?\s*\d+\s*\|)/i.test(t) ||
+    /\b(?:statement|particulars) of offence\b/i.test(t);
+}
+
+function isWrongFamilyChaseLineForPlan(raw: string, profile: CriminalBriefPlan["profile"]): boolean {
+  const t = raw.toLowerCase();
+  if (profile !== "drugs_pwits" && /\b(pwits|intent to supply|drug continuity|drug\/cash|search bwv)\b/i.test(t)) {
+    return true;
+  }
+  if (
+    profile !== "fraud_account" &&
+    /\b(fraud\/account[-\s]?control|account[-\s]?control route|banking schedules, device extraction|account[-\s]?ownership material|bank\/device\/source material)\b/i.test(t)
+  ) {
+    return true;
+  }
+  if (profile !== "robbery_id" && /\b(record what robbery|robbery identification route|robbery id)\b/i.test(t)) {
+    return true;
+  }
+  return false;
+}
+
+function filterSafeChaseLabels(labels: string[], profile: CriminalBriefPlan["profile"]): string[] {
+  return labels.filter((label) => {
+    const normalized = normalizeRawLabel(label);
+    return !isUnsafeOrNonMaterialChaseLine(normalized) && !isWrongFamilyChaseLineForPlan(normalized, profile);
+  });
+}
+
 function classifyFamily(text: string): ChaseFamilyId {
   const t = text.toLowerCase();
   for (const fam of CHASE_FAMILIES) {
@@ -469,7 +505,7 @@ function groupAndMergeLabels(
 
   for (const raw of rawLabels) {
     const norm = normalizeRawLabel(raw);
-    if (!norm || norm.length < 4) continue;
+    if (!norm || norm.length < 4 || isUnsafeOrNonMaterialChaseLine(norm)) continue;
     const familyId = classifyFamily(norm);
     const list = groups.get(familyId) ?? [];
     if (!list.some((x) => x.toLowerCase() === norm.toLowerCase())) {
@@ -730,13 +766,18 @@ function normalizeDisclosureItem(item: DisclosureChaseItem): DisclosureChaseItem
   const label = normalizeRawLabel(item.label);
   const familyId = item.familyId === "other" ? classifyFamily(label) : item.familyId;
   const canonical = canonicalDisclosureMaterial(label, familyId, item.mergedFrom);
+  const draft =
+    canonical.draftChaseWording ??
+    (isUnsafeOrNonMaterialChaseLine(item.draftChaseWording)
+      ? draftChaseWording(canonical.label, item.mergedFrom)
+      : item.draftChaseWording);
 
   return {
     ...item,
     familyId: canonical.familyId,
     label: canonical.label,
     whyItMatters: canonical.whyItMatters ?? item.whyItMatters,
-    draftChaseWording: canonical.draftChaseWording ?? item.draftChaseWording,
+    draftChaseWording: draft,
     courtLine: toCourtLine(canonical.label),
     mergedFrom: [
       ...new Set(
@@ -810,7 +851,14 @@ function mergeDisclosureItems(
     linkedRoute: existing.linkedRoute ?? incoming.linkedRoute,
     draftChaseWording:
       canonical.draftChaseWording ??
-      preferDraftChaseWording(existing.draftChaseWording, incoming.draftChaseWording),
+      preferDraftChaseWording(
+        isUnsafeOrNonMaterialChaseLine(existing.draftChaseWording)
+          ? draftChaseWording(canonical.label, mergedFrom)
+          : existing.draftChaseWording,
+        isUnsafeOrNonMaterialChaseLine(incoming.draftChaseWording)
+          ? draftChaseWording(canonical.label, mergedFrom)
+          : incoming.draftChaseWording,
+      ),
     courtLine: toCourtLine(canonical.label),
     mergedFrom,
   };
@@ -1018,11 +1066,14 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   });
   const chaseLabels = prioritizeWorkflowItems(
     filterWorkflowItems(
-      [
-        ...briefPlan.requiredOutputItems.chase,
-        ...briefPlan.missingEvidence.map((item) => item.label),
-        ...chaseLabelsRaw,
-      ],
+      filterSafeChaseLabels(
+        [
+          ...briefPlan.requiredOutputItems.chase,
+          ...briefPlan.missingEvidence.map((item) => item.label),
+          ...chaseLabelsRaw,
+        ],
+        briefPlan.profile,
+      ),
       workflowContext,
     ),
     workflowContext,
@@ -1038,11 +1089,14 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   if (profileLabels && profile !== "generic") {
     items = gateItemsAgainstSource(
       buildWorkflowProfileDisclosureItems(
-        [
-          ...briefPlan.requiredOutputItems.chase,
-          ...briefPlan.missingEvidence.map((item) => item.label),
-          ...profileLabels,
-        ],
+        filterSafeChaseLabels(
+          [
+            ...briefPlan.requiredOutputItems.chase,
+            ...briefPlan.missingEvidence.map((item) => item.label),
+            ...profileLabels,
+          ],
+          briefPlan.profile,
+        ),
         input.battleboard,
         deadline,
         profile,
@@ -1072,7 +1126,13 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
 
   const guardCtx = { ledger, bundleText: input.bundleText ?? null };
   items = items
-    .filter((item) => !isAdminGuidanceLine(item.label) && !isAdminGuidanceLine(item.evidenceAnchor ?? ""))
+    .filter(
+      (item) =>
+        !isAdminGuidanceLine(item.label) &&
+        !isAdminGuidanceLine(item.evidenceAnchor ?? "") &&
+        !isUnsafeOrNonMaterialChaseLine(item.label) &&
+        !isWrongFamilyChaseLineForPlan(item.label, briefPlan.profile),
+    )
     .map((item) => ({
       ...item,
       label: formatDisplayLabelCasing(normalizeRawLabel(item.label)),

@@ -12,6 +12,12 @@ import { buildCriminalBriefPlan } from "@/lib/criminal/brief-plan";
 import { lintPartnerScore, type PartnerScoreViolationKind } from "@/lib/criminal/partner-score-lint";
 import type { GuardianFlag } from "@/lib/criminal/source-truth-guardian/types";
 import type { SourceTruthCaseProfile } from "@/lib/criminal/source-truth-guardian/types";
+import {
+  lintWeirdness,
+  weirdnessRiskScore,
+  type WeirdnessFinding,
+  type WeirdnessKind,
+} from "@/lib/criminal/weirdness-detector";
 
 function parseArgs(): { count: number; split: StrategyCorpusSplit | "all"; canary: boolean } {
   const argv = process.argv.slice(2);
@@ -90,6 +96,24 @@ function main(): void {
   const partnerViolationByProfile: Record<string, Record<string, number>> = {};
   const partnerViolationByOffence: Record<string, Record<string, number>> = {};
   const partnerViolationByFailureMode: Record<string, Record<string, number>> = {};
+  let weirdnessCritical = 0;
+  let weirdnessPolish = 0;
+  let dangerousWeirdnessCritical = 0;
+  const weirdnessCounts: Record<string, number> = {};
+  const weirdnessByProfile: Record<string, Record<string, number>> = {};
+  const weirdnessByOffence: Record<string, Record<string, number>> = {};
+  const weirdnessBySuggestedArea: Record<string, number> = {};
+  const worstCases: Array<{
+    caseId: string;
+    profile: string;
+    offenceFamily: string;
+    riskScore: number;
+    partnerScore: number;
+    criticalSurvivors: number;
+    weirdnessCritical: number;
+    weirdnessPolish: number;
+    topFindings: Pick<WeirdnessFinding, "kind" | "severity" | "message" | "suggestedArea">[];
+  }> = [];
   const partnerFailureSamples: Array<{
     caseId: string;
     profile: string;
@@ -170,6 +194,33 @@ function main(): void {
     }
     const surfaceText = solicitorSurfaceText(war, chase, matter);
     const survivors = lintSourceTruthSurfaceText({ text: surfaceText, bundleText });
+    const chaseItems = chase.items ?? [];
+    const weirdness = lintWeirdness({
+      caseId: manifest.caseId,
+      profile: briefPlan.profile,
+      offenceFamily: manifest.offenceFamily,
+      allegation: manifest.chargeWording,
+      bundleText,
+      outputText: surfaceText,
+      chaseLabels: chaseItems.map((item) => item.label),
+      chaseDrafts: chaseItems.map((item) => item.draftChaseWording),
+    });
+    const caseWeirdnessCritical = weirdness.filter((w) => w.severity === "critical").length;
+    const caseDangerousWeirdnessCritical = weirdness.filter(
+      (w) => w.severity === "critical" && isDangerousWeirdnessKind(w.kind),
+    ).length;
+    const caseWeirdnessPolish = weirdness.filter((w) => w.severity === "polish").length;
+    weirdnessCritical += caseWeirdnessCritical;
+    dangerousWeirdnessCritical += caseDangerousWeirdnessCritical;
+    weirdnessPolish += caseWeirdnessPolish;
+    for (const finding of weirdness) {
+      bump(weirdnessCounts, finding.kind);
+      bump(weirdnessBySuggestedArea, finding.suggestedArea);
+      weirdnessByProfile[briefPlan.profile] ??= {};
+      bump(weirdnessByProfile[briefPlan.profile]!, finding.kind);
+      weirdnessByOffence[manifest.offenceFamily] ??= {};
+      bump(weirdnessByOffence[manifest.offenceFamily]!, finding.kind);
+    }
     criticalSurvivors += survivors.length;
     const reports = [war.sourceTruthGuardian, chase.sourceTruthGuardian, matter.sourceTruthGuardian].filter(Boolean);
     const profile =
@@ -207,6 +258,30 @@ function main(): void {
         survivorSamples.push({ caseId: manifest.caseId, flags: s.flags, reason: s.reason });
       }
     }
+
+    const riskScore =
+      weirdnessRiskScore(weirdness) +
+      survivors.length * 15 +
+      Math.max(0, 100 - partner.score) +
+      partner.violations.filter((v) => v.severity === "major").length * 4;
+    if (riskScore > 0) {
+      worstCases.push({
+        caseId: manifest.caseId,
+        profile: briefPlan.profile,
+        offenceFamily: manifest.offenceFamily,
+        riskScore,
+        partnerScore: partner.score,
+        criticalSurvivors: survivors.length,
+        weirdnessCritical: caseWeirdnessCritical,
+        weirdnessPolish: caseWeirdnessPolish,
+        topFindings: weirdness.slice(0, 5).map((w) => ({
+          kind: w.kind,
+          severity: w.severity,
+          message: w.message,
+          suggestedArea: w.suggestedArea,
+        })),
+      });
+    }
   }
 
   const topFlags = Object.entries(flagCounts)
@@ -236,6 +311,20 @@ function main(): void {
       .sort(([a], [b]) => a.localeCompare(b))
       .map(([tag, counts]) => ({ tag, counts })),
   };
+  const clusteredWeirdness = {
+    topFindings: Object.entries(weirdnessCounts)
+      .sort((a, b) => b[1] - a[1])
+      .map(([kind, count]) => ({ kind: kind as WeirdnessKind, count })),
+    byProfile: Object.entries(weirdnessByProfile)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([profile, counts]) => ({ profile, counts })),
+    byOffenceFamily: Object.entries(weirdnessByOffence)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([offenceFamily, counts]) => ({ offenceFamily, counts })),
+    suggestedAreas: Object.entries(weirdnessBySuggestedArea)
+      .sort((a, b) => b[1] - a[1])
+      .map(([area, count]) => ({ area, count })),
+  };
 
   const reportDir = join(process.cwd(), "artifacts", "casebrain-qa", "bundle-fidelity-corpus-lint");
   mkdirSync(reportDir, { recursive: true });
@@ -244,6 +333,9 @@ function main(): void {
     generatedAt: new Date().toISOString(),
     cases: manifests.length,
     criticalSurvivors,
+    weirdnessCritical,
+    weirdnessPolish,
+    dangerousWeirdnessCritical,
     criticalBlocked,
     rewritten,
     topFlags,
@@ -260,12 +352,16 @@ function main(): void {
       clusteredViolations: clusteredPartnerViolations,
       samples: partnerFailureSamples,
     },
+    weirdness: clusteredWeirdness,
+    worst50: worstCases.sort((a, b) => b.riskScore - a.riskScore).slice(0, 50),
   };
   writeFileSync(reportPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");
 
   console.log("Bundle fidelity corpus lint:");
   console.log(`  Cases: ${manifests.length}`);
   console.log(`  Critical survivors: ${criticalSurvivors}`);
+  console.log(`  Weirdness: ${weirdnessCritical} critical / ${weirdnessPolish} polish`);
+  console.log(`  Dangerous weirdness critical: ${dangerousWeirdnessCritical}`);
   console.log(`  Critical blocked by guardian: ${criticalBlocked}`);
   console.log(`  Rewritten/softened: ${rewritten}`);
   console.log(
@@ -277,7 +373,16 @@ function main(): void {
     for (const row of topFlags.slice(0, 5)) console.log(`    - ${row.flag}: ${row.count}`);
   }
 
-  if (criticalSurvivors > 0) process.exit(1);
+  if (criticalSurvivors > 0 || dangerousWeirdnessCritical > 0) process.exit(1);
+}
+
+function isDangerousWeirdnessKind(kind: WeirdnessKind): boolean {
+  return (
+    kind === "wrong_family_bleed" ||
+    kind === "unsafe_win_language" ||
+    kind === "court_line_in_chase_draft" ||
+    kind === "referred_only_as_served"
+  );
 }
 
 main();
