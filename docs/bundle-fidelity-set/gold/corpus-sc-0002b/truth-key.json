@@ -1,0 +1,59 @@
+{
+  "bundleId": "sc-0002b",
+  "fictional": true,
+  "label": "R v Morgan Drew — fraud_account_control corpus",
+  "purpose": "H2 golden pack corpus seed 43 (fraud__duplicate_noisy_docs+interview_summary_no_transcript+multi_defendant+phone_device_attribution_dispute)",
+  "defendant": "Morgan Drew",
+  "aliases": [
+    "Drew"
+  ],
+  "charge": "Fraud by false representation, Fraud Act 2006 s.2",
+  "chargeKeywords": [
+    "fraud",
+    "false",
+    "representation",
+    "fraud",
+    "2006"
+  ],
+  "court": null,
+  "hearingDate": null,
+  "stage": "Case management",
+  "documentTypesExpected": [
+    "charge_sheet",
+    "mg5",
+    "mg6"
+  ],
+  "documentTypesForbidden": [],
+  "evidenceSignalsExpected": [
+    "cover / index",
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "mg11 officer",
+    "mg11 witness",
+    "co-defendant mg5",
+    "full bank export / source statements",
+    "device / login audit material",
+    "mailbox export",
+    "phone/device attribution material outstanding"
+  ],
+  "missingMaterialExpected": [
+    "Full bank export / source statements",
+    "Device / login audit material",
+    "Mailbox export",
+    "Phone/device attribution material outstanding",
+    "Interview summary without full transcript",
+    "MG6 schedule incomplete"
+  ],
+  "thinBundleExpected": false,
+  "expectedWorkflowProfile": "fraud_account_control",
+  "expectedRouteFamily": "fraud_account_control",
+  "prohibitedFamilies": [
+    "pwits_phone_attribution",
+    "robbery_identification"
+  ],
+  "expectedProvisionalStatus": true,
+  "humanReviewExpected": false,
+  "linkStatus": "runnable",
+  "notes": "Strategy corpus seed 43 — tags: duplicate_noisy_docs, phone_device_attribution_dispute, multi_defendant, interview_summary_no_transcript, incomplete_mg6"
+}

@@ -1,0 +1,58 @@
+{
+  "bundleId": "sc-00027",
+  "fictional": true,
+  "label": "R v Ella Shaw — robbery_id corpus",
+  "purpose": "H2 golden pack corpus seed 39 (robbery-id__bwv_outstanding+thin_bundle+timing_contradiction)",
+  "defendant": "Ella Shaw",
+  "aliases": [
+    "Shaw"
+  ],
+  "charge": "Robbery — s.8 Theft Act 1968 (alternative count: theft from person)",
+  "chargeKeywords": [
+    "robbery",
+    "theft",
+    "1968",
+    "alternative",
+    "count",
+    "theft"
+  ],
+  "court": null,
+  "hearingDate": null,
+  "stage": "First hearing",
+  "documentTypesExpected": [
+    "charge_sheet",
+    "mg5",
+    "mg6"
+  ],
+  "documentTypesForbidden": [],
+  "evidenceSignalsExpected": [
+    "cover / index",
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "mg11 officer",
+    "mg11 witness",
+    "full cctv master footage",
+    "cctv continuity / export log",
+    "id procedure material",
+    "999 / cad timing material"
+  ],
+  "missingMaterialExpected": [
+    "Full CCTV master footage",
+    "CCTV continuity / export log",
+    "ID procedure material",
+    "999 / CAD timing material",
+    "Body worn video download outstanding"
+  ],
+  "thinBundleExpected": true,
+  "expectedWorkflowProfile": "robbery_identification",
+  "expectedRouteFamily": "robbery_identification",
+  "prohibitedFamilies": [
+    "fraud_account_control",
+    "pwits_phone_attribution"
+  ],
+  "expectedProvisionalStatus": true,
+  "humanReviewExpected": false,
+  "linkStatus": "runnable",
+  "notes": "Strategy corpus seed 39 — tags: thin_bundle, bwv_outstanding, timing_contradiction"
+}

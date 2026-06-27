@@ -1,0 +1,56 @@
+{
+  "bundleId": "sc-00023",
+  "fictional": true,
+  "label": "R v Jamie Patel — generic_provisional corpus",
+  "purpose": "H2 golden pack corpus seed 35 (generic-provisional__custody_pace_limited+thin_bundle)",
+  "defendant": "Jamie Patel",
+  "aliases": [
+    "Patel"
+  ],
+  "charge": "Perverting the course of justice — common law",
+  "chargeKeywords": [
+    "perverting",
+    "course",
+    "justice",
+    "common"
+  ],
+  "court": null,
+  "hearingDate": null,
+  "stage": "First hearing",
+  "documentTypesExpected": [
+    "charge_sheet",
+    "mg5",
+    "mg6"
+  ],
+  "documentTypesForbidden": [],
+  "evidenceSignalsExpected": [
+    "cover / index",
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "mg11 officer",
+    "mg11 witness",
+    "core witness statements",
+    "exhibit continuity",
+    "full disclosure schedule",
+    "custody / pace material limited on export"
+  ],
+  "missingMaterialExpected": [
+    "Core witness statements",
+    "Exhibit continuity",
+    "Full disclosure schedule",
+    "Custody / PACE material limited on export"
+  ],
+  "thinBundleExpected": true,
+  "expectedWorkflowProfile": "generic_provisional",
+  "expectedRouteFamily": null,
+  "prohibitedFamilies": [
+    "fraud_account_control",
+    "pwits_phone_attribution",
+    "robbery_identification"
+  ],
+  "expectedProvisionalStatus": true,
+  "humanReviewExpected": true,
+  "linkStatus": "runnable",
+  "notes": "Strategy corpus seed 35 — tags: thin_bundle, custody_pace_limited"
+}

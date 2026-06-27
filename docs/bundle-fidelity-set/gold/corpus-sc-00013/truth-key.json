@@ -1,0 +1,55 @@
+{
+  "bundleId": "sc-00013",
+  "fictional": true,
+  "label": "R v Morgan Drew — fraud_account_control corpus",
+  "purpose": "H2 golden pack corpus seed 19 (fraud__multi_defendant+thin_bundle)",
+  "defendant": "Morgan Drew",
+  "aliases": [
+    "Drew"
+  ],
+  "charge": "Fraud by abuse of position, Fraud Act 2006 s.4",
+  "chargeKeywords": [
+    "fraud",
+    "abuse",
+    "position",
+    "fraud",
+    "2006"
+  ],
+  "court": null,
+  "hearingDate": null,
+  "stage": "Crown Court",
+  "documentTypesExpected": [
+    "charge_sheet",
+    "mg5",
+    "mg6"
+  ],
+  "documentTypesForbidden": [],
+  "evidenceSignalsExpected": [
+    "cover / index",
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "mg11 officer",
+    "mg11 witness",
+    "co-defendant mg5",
+    "full bank export / source statements",
+    "device / login audit material",
+    "mailbox export"
+  ],
+  "missingMaterialExpected": [
+    "Full bank export / source statements",
+    "Device / login audit material",
+    "Mailbox export"
+  ],
+  "thinBundleExpected": true,
+  "expectedWorkflowProfile": "fraud_account_control",
+  "expectedRouteFamily": "fraud_account_control",
+  "prohibitedFamilies": [
+    "pwits_phone_attribution",
+    "robbery_identification"
+  ],
+  "expectedProvisionalStatus": true,
+  "humanReviewExpected": false,
+  "linkStatus": "runnable",
+  "notes": "Strategy corpus seed 19 — tags: thin_bundle, multi_defendant"
+}

@@ -1,0 +1,55 @@
+{
+  "bundleId": "sc-0000c",
+  "fictional": true,
+  "label": "R v Alex Mercer — motoring corpus",
+  "purpose": "H2 golden pack corpus seed 12 (motoring__duplicate_noisy_docs+identity_dispute+timing_contradiction)",
+  "defendant": "Alex Mercer",
+  "aliases": [
+    "Mercer"
+  ],
+  "charge": "Driving without due care and attention — RTA 1988 s.3",
+  "chargeKeywords": [
+    "driving",
+    "without",
+    "care",
+    "attention",
+    "1988"
+  ],
+  "court": null,
+  "hearingDate": null,
+  "stage": "Magistrates' Court",
+  "documentTypesExpected": [
+    "charge_sheet",
+    "mg5",
+    "mg6"
+  ],
+  "documentTypesForbidden": [],
+  "evidenceSignalsExpected": [
+    "cover / index",
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "mg11 officer",
+    "mg11 witness",
+    "dashcam / cctv master",
+    "full cad log",
+    "collision expert report"
+  ],
+  "missingMaterialExpected": [
+    "Dashcam / CCTV master",
+    "Full CAD log",
+    "Collision expert report"
+  ],
+  "thinBundleExpected": false,
+  "expectedWorkflowProfile": "generic_motoring_provisional",
+  "expectedRouteFamily": null,
+  "prohibitedFamilies": [
+    "fraud_account_control",
+    "pwits_phone_attribution",
+    "violence_domestic_assault"
+  ],
+  "expectedProvisionalStatus": true,
+  "humanReviewExpected": false,
+  "linkStatus": "runnable",
+  "notes": "Strategy corpus seed 12 — tags: duplicate_noisy_docs, timing_contradiction, identity_dispute"
+}

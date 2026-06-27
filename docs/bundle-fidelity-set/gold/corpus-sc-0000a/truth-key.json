@@ -1,0 +1,60 @@
+{
+  "bundleId": "sc-0000a",
+  "fictional": true,
+  "label": "R v Casey Quinn — violence_gbh_s18 corpus",
+  "purpose": "H2 golden pack corpus seed 10 (violence__cad_summary_no_full_cad+cctv_stills_no_master+incomplete_mg6+thin_bundle)",
+  "defendant": "Casey Quinn",
+  "aliases": [
+    "Quinn"
+  ],
+  "charge": "Section 20 grievous bodily harm — OAPA 1861",
+  "chargeKeywords": [
+    "section",
+    "grievous",
+    "bodily",
+    "harm",
+    "oapa",
+    "1861"
+  ],
+  "court": null,
+  "hearingDate": null,
+  "stage": "Crown Court",
+  "documentTypesExpected": [
+    "charge_sheet",
+    "mg5",
+    "mg6"
+  ],
+  "documentTypesForbidden": [],
+  "evidenceSignalsExpected": [
+    "cover / index",
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "mg11 officer",
+    "mg11 witness",
+    "cctv export and continuity",
+    "full 999/cad",
+    "body worn video",
+    "medical / expert report"
+  ],
+  "missingMaterialExpected": [
+    "CCTV export and continuity",
+    "Full 999/CAD",
+    "Body worn video",
+    "Medical / expert report",
+    "CCTV stills without master export log",
+    "CAD summary without full CAD log",
+    "MG6 schedule incomplete"
+  ],
+  "thinBundleExpected": true,
+  "expectedWorkflowProfile": "violence_domestic_assault",
+  "expectedRouteFamily": "violence_domestic_assault",
+  "prohibitedFamilies": [
+    "fraud_account_control",
+    "pwits_phone_attribution"
+  ],
+  "expectedProvisionalStatus": true,
+  "humanReviewExpected": true,
+  "linkStatus": "runnable",
+  "notes": "Strategy corpus seed 10 — tags: thin_bundle, cctv_stills_no_master, cad_summary_no_full_cad, incomplete_mg6, timing_contradiction"
+}

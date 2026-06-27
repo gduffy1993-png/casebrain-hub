@@ -1,0 +1,59 @@
+{
+  "bundleId": "sc-00025",
+  "fictional": true,
+  "label": "R v Jordan Blake — fraud_account_control corpus",
+  "purpose": "H2 golden pack corpus seed 37 (fraud__custody_pace_limited+incomplete_mg6+multi_count+thin_bundle)",
+  "defendant": "Jordan Blake",
+  "aliases": [
+    "Blake"
+  ],
+  "charge": "Fraud by abuse of position, Fraud Act 2006 s.4",
+  "chargeKeywords": [
+    "fraud",
+    "abuse",
+    "position",
+    "fraud",
+    "2006"
+  ],
+  "court": null,
+  "hearingDate": null,
+  "stage": "Case management",
+  "documentTypesExpected": [
+    "charge_sheet",
+    "mg5",
+    "mg6"
+  ],
+  "documentTypesForbidden": [],
+  "evidenceSignalsExpected": [
+    "cover / index",
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "mg11 officer",
+    "mg11 witness",
+    "additional count sheet",
+    "co-defendant mg5",
+    "full bank export / source statements",
+    "device / login audit material",
+    "mailbox export",
+    "mg6 schedule incomplete"
+  ],
+  "missingMaterialExpected": [
+    "Full bank export / source statements",
+    "Device / login audit material",
+    "Mailbox export",
+    "MG6 schedule incomplete",
+    "Custody / PACE material limited on export"
+  ],
+  "thinBundleExpected": true,
+  "expectedWorkflowProfile": "fraud_account_control",
+  "expectedRouteFamily": "fraud_account_control",
+  "prohibitedFamilies": [
+    "pwits_phone_attribution",
+    "robbery_identification"
+  ],
+  "expectedProvisionalStatus": true,
+  "humanReviewExpected": false,
+  "linkStatus": "runnable",
+  "notes": "Strategy corpus seed 37 — tags: thin_bundle, incomplete_mg6, multi_count, custody_pace_limited, multi_defendant"
+}

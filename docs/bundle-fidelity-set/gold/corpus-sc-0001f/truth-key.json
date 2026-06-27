@@ -1,0 +1,58 @@
+{
+  "bundleId": "sc-0001f",
+  "fictional": true,
+  "label": "R v Morgan Drew — fraud_account_control corpus",
+  "purpose": "H2 golden pack corpus seed 31 (fraud__custody_pace_limited+duplicate_noisy_docs+incomplete_mg6+thin_bundle)",
+  "defendant": "Morgan Drew",
+  "aliases": [
+    "Drew"
+  ],
+  "charge": "Fraud by false representation, Fraud Act 2006 s.2",
+  "chargeKeywords": [
+    "fraud",
+    "false",
+    "representation",
+    "fraud",
+    "2006"
+  ],
+  "court": null,
+  "hearingDate": null,
+  "stage": "Case management",
+  "documentTypesExpected": [
+    "charge_sheet",
+    "mg5",
+    "mg6"
+  ],
+  "documentTypesForbidden": [],
+  "evidenceSignalsExpected": [
+    "cover / index",
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "mg11 officer",
+    "mg11 witness",
+    "additional count sheet",
+    "full bank export / source statements",
+    "device / login audit material",
+    "mailbox export",
+    "mg6 schedule incomplete"
+  ],
+  "missingMaterialExpected": [
+    "Full bank export / source statements",
+    "Device / login audit material",
+    "Mailbox export",
+    "MG6 schedule incomplete",
+    "Custody / PACE material limited on export"
+  ],
+  "thinBundleExpected": true,
+  "expectedWorkflowProfile": "fraud_account_control",
+  "expectedRouteFamily": "fraud_account_control",
+  "prohibitedFamilies": [
+    "pwits_phone_attribution",
+    "robbery_identification"
+  ],
+  "expectedProvisionalStatus": true,
+  "humanReviewExpected": false,
+  "linkStatus": "runnable",
+  "notes": "Strategy corpus seed 31 — tags: thin_bundle, incomplete_mg6, custody_pace_limited, duplicate_noisy_docs, multi_count"
+}

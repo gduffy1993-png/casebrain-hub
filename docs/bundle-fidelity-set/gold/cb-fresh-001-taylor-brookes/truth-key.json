@@ -1,0 +1,51 @@
+{
+  "bundleId": "cb-fresh-001-taylor-brookes",
+  "fictional": true,
+  "label": "CB-FRESH-001 Taylor Brookes — harassment / digital",
+  "purpose": "Adversarial QA — attribution harassment; no PWITS/drug/BWV bleed",
+  "defendant": "Taylor Brookes",
+  "aliases": [
+    "Brookes",
+    "Taylor"
+  ],
+  "charge": "Harassment, contrary to section 2 of the Protection from Harassment Act 1997",
+  "chargeKeywords": [
+    "harassment",
+    "protection from harassment",
+    "messages",
+    "whatsapp"
+  ],
+  "court": "Northgate Magistrates' Court",
+  "hearingDate": "2026-01-01",
+  "stage": "PTPH",
+  "documentTypesExpected": [
+    "charge_sheet",
+    "mg5",
+    "mg6"
+  ],
+  "documentTypesForbidden": [],
+  "evidenceSignalsExpected": [
+    "phone",
+    "message",
+    "screenshot",
+    "mg6"
+  ],
+  "missingMaterialExpected": [
+    "phone extraction",
+    "message export",
+    "complainant MG11",
+    "attribution material"
+  ],
+  "thinBundleExpected": true,
+  "expectedWorkflowProfile": "needs_review",
+  "expectedRouteFamily": null,
+  "prohibitedFamilies": [
+    "fraud_account_control",
+    "pwits_phone_attribution",
+    "drugs_pwits"
+  ],
+  "expectedProvisionalStatus": true,
+  "humanReviewExpected": false,
+  "linkStatus": "runnable",
+  "notes": "CB-FRESH adversarial anchor — prod smoke passed post-H1."
+}

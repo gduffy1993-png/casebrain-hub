@@ -1,0 +1,59 @@
+{
+  "bundleId": "sc-00021",
+  "fictional": true,
+  "label": "R v Taylor Brooks — robbery_id corpus",
+  "purpose": "H2 golden pack corpus seed 33 (robbery-id__bwv_outstanding+cctv_stills_no_master+timing_contradiction+weapon_provenance_conflict)",
+  "defendant": "Taylor Brooks",
+  "aliases": [
+    "Brooks"
+  ],
+  "charge": "Robbery — s.8 Theft Act 1968 (alternative count: theft from person)",
+  "chargeKeywords": [
+    "robbery",
+    "theft",
+    "1968",
+    "alternative",
+    "count",
+    "theft"
+  ],
+  "court": null,
+  "hearingDate": null,
+  "stage": "Crown Court",
+  "documentTypesExpected": [
+    "charge_sheet",
+    "mg5",
+    "mg6"
+  ],
+  "documentTypesForbidden": [],
+  "evidenceSignalsExpected": [
+    "cover / index",
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "mg11 officer",
+    "mg11 witness",
+    "full cctv master footage",
+    "cctv continuity / export log",
+    "id procedure material",
+    "999 / cad timing material"
+  ],
+  "missingMaterialExpected": [
+    "Full CCTV master footage",
+    "CCTV continuity / export log",
+    "ID procedure material",
+    "999 / CAD timing material",
+    "Body worn video download outstanding",
+    "CCTV stills without master export log"
+  ],
+  "thinBundleExpected": false,
+  "expectedWorkflowProfile": "robbery_identification",
+  "expectedRouteFamily": "robbery_identification",
+  "prohibitedFamilies": [
+    "fraud_account_control",
+    "pwits_phone_attribution"
+  ],
+  "expectedProvisionalStatus": true,
+  "humanReviewExpected": false,
+  "linkStatus": "runnable",
+  "notes": "Strategy corpus seed 33 — tags: weapon_provenance_conflict, bwv_outstanding, timing_contradiction, cctv_stills_no_master"
+}

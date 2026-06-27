@@ -1,0 +1,58 @@
+{
+  "bundleId": "sc-00016",
+  "fictional": true,
+  "label": "R v Casey Quinn — violence_gbh_s18 corpus",
+  "purpose": "H2 golden pack corpus seed 22 (violence__identity_dispute+incomplete_mg6+partial_cctv+self_defence_pattern)",
+  "defendant": "Casey Quinn",
+  "aliases": [
+    "Quinn"
+  ],
+  "charge": "Wounding with intent / s.18 OAPA 1861",
+  "chargeKeywords": [
+    "wounding",
+    "with",
+    "intent",
+    "oapa",
+    "1861"
+  ],
+  "court": null,
+  "hearingDate": null,
+  "stage": "Crown Court",
+  "documentTypesExpected": [
+    "charge_sheet",
+    "mg5",
+    "mg6"
+  ],
+  "documentTypesForbidden": [],
+  "evidenceSignalsExpected": [
+    "cover / index",
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "mg11 officer",
+    "mg11 witness",
+    "cctv export and continuity",
+    "full 999/cad",
+    "body worn video",
+    "medical / expert report"
+  ],
+  "missingMaterialExpected": [
+    "CCTV export and continuity",
+    "Full 999/CAD",
+    "Body worn video",
+    "Medical / expert report",
+    "CCTV partial extract only",
+    "MG6 schedule incomplete"
+  ],
+  "thinBundleExpected": false,
+  "expectedWorkflowProfile": "violence_domestic_assault",
+  "expectedRouteFamily": "violence_domestic_assault",
+  "prohibitedFamilies": [
+    "fraud_account_control",
+    "pwits_phone_attribution"
+  ],
+  "expectedProvisionalStatus": true,
+  "humanReviewExpected": true,
+  "linkStatus": "runnable",
+  "notes": "Strategy corpus seed 22 — tags: partial_cctv, identity_dispute, incomplete_mg6, self_defence_pattern"
+}

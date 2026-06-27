@@ -36,6 +36,7 @@ import { buildCriminalBriefPlan, type CriminalBriefPlan } from "@/lib/criminal/b
 import { buildContradictionActions } from "@/lib/criminal/contradiction-actions";
 import { extractAllBundleContradictions } from "@/lib/criminal/merge-bundle-contradictions";
 import { guardDisclosureChaseBrief, type SourceTruthGuardianReport } from "@/lib/criminal/source-truth-guardian";
+import { finalizeDisclosureChasePresentation } from "@/lib/criminal/disclosure-chase-finalize";
 
 const FORBIDDEN_RE =
   /\b(this wins|case collapses|crowns?\s+will\s+lose|crown\s+case\s+collapses|guaranteed|will\s+be\s+acquitted)\b/i;
@@ -1142,6 +1143,7 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
         : item.evidenceAnchor,
     }));
   items = collapseDisclosureItemsByFamily(items);
+  items = finalizeDisclosureChasePresentation(items);
   ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
 
   const linkedRoutes = [

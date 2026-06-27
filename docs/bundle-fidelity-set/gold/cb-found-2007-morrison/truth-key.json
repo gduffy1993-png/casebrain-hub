@@ -1,0 +1,44 @@
+{
+  "bundleId": "cb-found-2007-morrison",
+  "fictional": true,
+  "label": "R v Ella Morrison — foundation First appearance",
+  "purpose": "CB-FOUND foundation shape — CB-FOUND-2007_Morrison_M1_DateConflict.txt",
+  "defendant": "Ella Morrison",
+  "aliases": [
+    "Morrison"
+  ],
+  "charge": "Theft, contrary to section 1 of the Theft Act 1968",
+  "chargeKeywords": [
+    "theft",
+    "theft act"
+  ],
+  "court": "Fenwick Magistrates' Court",
+  "hearingDate": "2026-09-19",
+  "stage": "First appearance",
+  "documentTypesExpected": [
+    "charge_sheet",
+    "mg5",
+    "mg6",
+    "mg11"
+  ],
+  "documentTypesForbidden": [],
+  "evidenceSignalsExpected": [
+    "mg11",
+    "mg6"
+  ],
+  "missingMaterialExpected": [
+    "CCTV continuity"
+  ],
+  "thinBundleExpected": false,
+  "expectedWorkflowProfile": "generic",
+  "expectedRouteFamily": null,
+  "prohibitedFamilies": [
+    "fraud_account_control",
+    "pwits_phone_attribution",
+    "robbery_identification"
+  ],
+  "expectedProvisionalStatus": true,
+  "humanReviewExpected": false,
+  "linkStatus": "runnable",
+  "notes": "M1 shape — MG5 vs listing date conflict; listing wins."
+}

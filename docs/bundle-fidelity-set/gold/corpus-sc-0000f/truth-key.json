@@ -1,0 +1,55 @@
+{
+  "bundleId": "sc-0000f",
+  "fictional": true,
+  "label": "R v Ella Shaw — robbery_id corpus",
+  "purpose": "H2 golden pack corpus seed 15 (robbery-id__cctv_stills_no_master+identity_dispute+thin_bundle)",
+  "defendant": "Ella Shaw",
+  "aliases": [
+    "Shaw"
+  ],
+  "charge": "Robbery, Theft Act 1968 s.8",
+  "chargeKeywords": [
+    "robbery",
+    "theft",
+    "1968"
+  ],
+  "court": null,
+  "hearingDate": null,
+  "stage": "Crown Court",
+  "documentTypesExpected": [
+    "charge_sheet",
+    "mg5",
+    "mg6"
+  ],
+  "documentTypesForbidden": [],
+  "evidenceSignalsExpected": [
+    "cover / index",
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "mg11 officer",
+    "mg11 witness",
+    "full cctv master footage",
+    "cctv continuity / export log",
+    "id procedure material",
+    "999 / cad timing material"
+  ],
+  "missingMaterialExpected": [
+    "Full CCTV master footage",
+    "CCTV continuity / export log",
+    "ID procedure material",
+    "999 / CAD timing material",
+    "CCTV stills without master export log"
+  ],
+  "thinBundleExpected": true,
+  "expectedWorkflowProfile": "robbery_identification",
+  "expectedRouteFamily": "robbery_identification",
+  "prohibitedFamilies": [
+    "fraud_account_control",
+    "pwits_phone_attribution"
+  ],
+  "expectedProvisionalStatus": true,
+  "humanReviewExpected": false,
+  "linkStatus": "runnable",
+  "notes": "Strategy corpus seed 15 — tags: thin_bundle, identity_dispute, cctv_stills_no_master"
+}

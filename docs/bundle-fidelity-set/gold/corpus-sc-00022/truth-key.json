@@ -1,0 +1,58 @@
+{
+  "bundleId": "sc-00022",
+  "fictional": true,
+  "label": "R v Casey Quinn — violence_gbh_s18 corpus",
+  "purpose": "H2 golden pack corpus seed 34 (violence__bwv_outstanding+cad_summary_no_full_cad+cctv_stills_no_master+thin_bundle)",
+  "defendant": "Casey Quinn",
+  "aliases": [
+    "Quinn"
+  ],
+  "charge": "Unlawful wounding / GBH, s.20 OAPA 1861",
+  "chargeKeywords": [
+    "unlawful",
+    "wounding",
+    "oapa",
+    "1861"
+  ],
+  "court": null,
+  "hearingDate": null,
+  "stage": "Plea and trial preparation",
+  "documentTypesExpected": [
+    "charge_sheet",
+    "mg5",
+    "mg6"
+  ],
+  "documentTypesForbidden": [],
+  "evidenceSignalsExpected": [
+    "cover / index",
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "mg11 officer",
+    "mg11 witness",
+    "cctv export and continuity",
+    "full 999/cad",
+    "body worn video",
+    "medical / expert report"
+  ],
+  "missingMaterialExpected": [
+    "CCTV export and continuity",
+    "Full 999/CAD",
+    "Body worn video",
+    "Medical / expert report",
+    "CAD summary without full CAD log",
+    "CCTV stills without master export log",
+    "Body worn video download outstanding"
+  ],
+  "thinBundleExpected": true,
+  "expectedWorkflowProfile": "violence_domestic_assault",
+  "expectedRouteFamily": "violence_domestic_assault",
+  "prohibitedFamilies": [
+    "fraud_account_control",
+    "pwits_phone_attribution"
+  ],
+  "expectedProvisionalStatus": true,
+  "humanReviewExpected": true,
+  "linkStatus": "runnable",
+  "notes": "Strategy corpus seed 34 — tags: cad_summary_no_full_cad, cctv_stills_no_master, thin_bundle, bwv_outstanding"
+}

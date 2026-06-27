@@ -1,0 +1,59 @@
+{
+  "bundleId": "sc-0000b",
+  "fictional": true,
+  "label": "R v Jamie Patel — generic_provisional corpus",
+  "purpose": "H2 golden pack corpus seed 11 (generic-provisional__corrected_charge_sheet+custody_pace_limited+missing_mg5+thin_bundle)",
+  "defendant": "Jamie Patel",
+  "aliases": [
+    "Patel"
+  ],
+  "charge": "Witness intimidation — Criminal Justice and Public Order Act 1994 s.51",
+  "chargeKeywords": [
+    "witness",
+    "intimidation",
+    "criminal",
+    "justice",
+    "public",
+    "order"
+  ],
+  "court": null,
+  "hearingDate": null,
+  "stage": "First hearing",
+  "documentTypesExpected": [
+    "charge_sheet",
+    "mg5",
+    "mg6"
+  ],
+  "documentTypesForbidden": [],
+  "evidenceSignalsExpected": [
+    "cover / index",
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "mg11 officer",
+    "mg11 witness",
+    "core witness statements",
+    "exhibit continuity",
+    "full disclosure schedule",
+    "custody / pace material limited on export"
+  ],
+  "missingMaterialExpected": [
+    "Core witness statements",
+    "Exhibit continuity",
+    "Full disclosure schedule",
+    "Custody / PACE material limited on export",
+    "MG5 case summary not served"
+  ],
+  "thinBundleExpected": true,
+  "expectedWorkflowProfile": "generic_provisional",
+  "expectedRouteFamily": null,
+  "prohibitedFamilies": [
+    "fraud_account_control",
+    "pwits_phone_attribution",
+    "robbery_identification"
+  ],
+  "expectedProvisionalStatus": true,
+  "humanReviewExpected": true,
+  "linkStatus": "runnable",
+  "notes": "Strategy corpus seed 11 — tags: custody_pace_limited, corrected_charge_sheet, missing_mg5, thin_bundle"
+}

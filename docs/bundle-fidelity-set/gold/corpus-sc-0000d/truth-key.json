@@ -1,0 +1,57 @@
+{
+  "bundleId": "sc-0000d",
+  "fictional": true,
+  "label": "R v Jordan Blake — fraud_account_control corpus",
+  "purpose": "H2 golden pack corpus seed 13 (fraud__duplicate_noisy_docs+phone_device_attribution_dispute+thin_bundle+timing_contradiction)",
+  "defendant": "Jordan Blake",
+  "aliases": [
+    "Blake"
+  ],
+  "charge": "Fraud by abuse of position, Fraud Act 2006 s.4",
+  "chargeKeywords": [
+    "fraud",
+    "abuse",
+    "position",
+    "fraud",
+    "2006"
+  ],
+  "court": null,
+  "hearingDate": null,
+  "stage": "Case management",
+  "documentTypesExpected": [
+    "charge_sheet",
+    "mg5",
+    "mg6"
+  ],
+  "documentTypesForbidden": [],
+  "evidenceSignalsExpected": [
+    "cover / index",
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "mg11 officer",
+    "mg11 witness",
+    "full bank export / source statements",
+    "device / login audit material",
+    "mailbox export",
+    "phone/device attribution material outstanding"
+  ],
+  "missingMaterialExpected": [
+    "Full bank export / source statements",
+    "Device / login audit material",
+    "Mailbox export",
+    "Phone/device attribution material outstanding",
+    "Custody / PACE material limited on export"
+  ],
+  "thinBundleExpected": true,
+  "expectedWorkflowProfile": "fraud_account_control",
+  "expectedRouteFamily": "fraud_account_control",
+  "prohibitedFamilies": [
+    "pwits_phone_attribution",
+    "robbery_identification"
+  ],
+  "expectedProvisionalStatus": true,
+  "humanReviewExpected": false,
+  "linkStatus": "runnable",
+  "notes": "Strategy corpus seed 13 — tags: thin_bundle, duplicate_noisy_docs, timing_contradiction, phone_device_attribution_dispute, custody_pace_limited"
+}

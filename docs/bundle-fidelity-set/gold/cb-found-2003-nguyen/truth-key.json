@@ -1,0 +1,45 @@
+{
+  "bundleId": "cb-found-2003-nguyen",
+  "fictional": true,
+  "label": "R v Priya Nguyen — foundation First appearance",
+  "purpose": "CB-FOUND foundation shape — CB-FOUND-2003_Nguyen_Assault.txt",
+  "defendant": "Priya Nguyen",
+  "aliases": [
+    "Nguyen"
+  ],
+  "charge": "Common assault, contrary to section 39 of the Criminal Justice Act 1988",
+  "chargeKeywords": [
+    "common assault",
+    "criminal justice act"
+  ],
+  "court": "Brookfield Magistrates' Court",
+  "hearingDate": "2026-09-05",
+  "stage": "First appearance",
+  "documentTypesExpected": [
+    "charge_sheet",
+    "mg5",
+    "mg6",
+    "mg11"
+  ],
+  "documentTypesForbidden": [],
+  "evidenceSignalsExpected": [
+    "mg11",
+    "mg6"
+  ],
+  "missingMaterialExpected": [
+    "BWV clip",
+    "fuller CAD"
+  ],
+  "thinBundleExpected": false,
+  "expectedWorkflowProfile": "violence_domestic_assault",
+  "expectedRouteFamily": "violence_domestic_assault",
+  "prohibitedFamilies": [
+    "fraud_account_control",
+    "pwits_phone_attribution",
+    "robbery_identification"
+  ],
+  "expectedProvisionalStatus": true,
+  "humanReviewExpected": false,
+  "linkStatus": "runnable",
+  "notes": "Bundle Foundation Pack v2 — fictional pilot shape."
+}

@@ -1,0 +1,47 @@
+{
+  "bundleId": "cb-found-2004-clarke",
+  "fictional": true,
+  "label": "R v Daniel Clarke — foundation First appearance",
+  "purpose": "CB-FOUND foundation shape — CB-FOUND-2004_Clarke_DrinkDrive.txt",
+  "defendant": "Daniel Clarke",
+  "aliases": [
+    "Clarke"
+  ],
+  "charge": "Driving a motor vehicle after consuming so much alcohol that the proportion of alcohol in breath exceeded the prescribed limit, contrary to section 5(1)(a) of the Road Traffic Act 1988",
+  "chargeKeywords": [
+    "road traffic act",
+    "breath",
+    "alcohol",
+    "limit"
+  ],
+  "court": "Westvale Magistrates' Court",
+  "hearingDate": "2026-09-12",
+  "stage": "First appearance",
+  "documentTypesExpected": [
+    "charge_sheet",
+    "mg5",
+    "mg6",
+    "mg11"
+  ],
+  "documentTypesForbidden": [],
+  "evidenceSignalsExpected": [
+    "mg11",
+    "mg6"
+  ],
+  "missingMaterialExpected": [
+    "calibration",
+    "analyst material"
+  ],
+  "thinBundleExpected": false,
+  "expectedWorkflowProfile": "generic_motoring_provisional",
+  "expectedRouteFamily": null,
+  "prohibitedFamilies": [
+    "fraud_account_control",
+    "pwits_phone_attribution",
+    "robbery_identification"
+  ],
+  "expectedProvisionalStatus": true,
+  "humanReviewExpected": false,
+  "linkStatus": "runnable",
+  "notes": "Bundle Foundation Pack v2 — fictional pilot shape."
+}

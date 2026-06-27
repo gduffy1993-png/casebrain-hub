@@ -1,0 +1,45 @@
+{
+  "bundleId": "cb-found-2005-okafor",
+  "fictional": true,
+  "label": "R v Amara Okafor — foundation First appearance",
+  "purpose": "CB-FOUND foundation shape — CB-FOUND-2005_Okafor_Drugs.txt",
+  "defendant": "Amara Okafor",
+  "aliases": [
+    "Okafor"
+  ],
+  "charge": "Possession of a controlled drug of Class B, contrary to section 5(2) of the Misuse of Drugs Act 1971",
+  "chargeKeywords": [
+    "possession",
+    "controlled drug",
+    "misuse of drugs"
+  ],
+  "court": "Northgate Magistrates' Court",
+  "hearingDate": "2026-10-03",
+  "stage": "First appearance",
+  "documentTypesExpected": [
+    "charge_sheet",
+    "mg5",
+    "mg6",
+    "mg11"
+  ],
+  "documentTypesForbidden": [],
+  "evidenceSignalsExpected": [
+    "mg11",
+    "mg6"
+  ],
+  "missingMaterialExpected": [
+    "lab analysis",
+    "search record"
+  ],
+  "thinBundleExpected": false,
+  "expectedWorkflowProfile": "generic_provisional",
+  "expectedRouteFamily": null,
+  "prohibitedFamilies": [
+    "fraud_account_control",
+    "robbery_identification"
+  ],
+  "expectedProvisionalStatus": true,
+  "humanReviewExpected": false,
+  "linkStatus": "runnable",
+  "notes": "Bundle Foundation Pack v2 — fictional pilot shape."
+}
