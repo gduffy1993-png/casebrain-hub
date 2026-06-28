@@ -14,6 +14,7 @@ import { isBundleClientSafeSurfacingEnabled } from "@/lib/criminal/bundle-client
 import type { CriminalBriefPlan } from "@/lib/criminal/brief-plan";
 import { buildContradictionActions } from "@/lib/criminal/contradiction-actions";
 import { guardMatterBrief, type SourceTruthGuardianReport } from "@/lib/criminal/source-truth-guardian";
+import { dedupePilotCourtRecordLines } from "@/lib/criminal/pilot-matter-display-polish";
 
 export type MatterBriefSection = {
   id: string;
@@ -167,11 +168,13 @@ export function buildMatterBrief(input: {
     8,
   );
 
-  const ptphBullets = dedupePilotLines([
-    safeLine ?? firstSafeSentence(warRoom.safePositionToday),
-    ...warRoom.askCourtToRecord.slice(0, 6),
-    "The defence cannot confirm final issues until disclosure is complete.",
-  ]).slice(0, 10);
+  const ptphBullets = dedupePilotCourtRecordLines(
+    dedupePilotLines([
+      safeLine ?? firstSafeSentence(warRoom.safePositionToday),
+      ...warRoom.askCourtToRecord.slice(0, 6),
+      "The defence cannot confirm final issues until disclosure is complete.",
+    ]),
+  ).slice(0, 10);
 
   const clientParagraph = isBundleClientSafeSurfacingEnabled()
     ? buildClientSafeExplanation({

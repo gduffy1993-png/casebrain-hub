@@ -125,7 +125,36 @@ function familyLabelForId(familyId: ChaseFamilyId): string {
   }
 }
 
-function cleanDraftWording(label: string): string {
+function buildOverflowDraftWording(mergedFrom: string[]): string {
+  const humanized = dedupeByNorm(
+    mergedFrom.map((m) => humanizeChaseFragmentLabel(m)).filter(Boolean),
+  ).filter(
+    (h) =>
+      h !== "Additional source-material on file" &&
+      !/^additional source-material issues/i.test(h),
+  );
+
+  const suffix = " or confirm in writing why it is not available.";
+
+  if (humanized.length === 0) {
+    return `Please provide the outstanding source material identified on the disclosure schedule, including any MG6/MG11/source items referred to but not served${suffix}`;
+  }
+
+  if (humanized.length <= 5) {
+    const list = humanized
+      .map((h) => (h.charAt(0).toLowerCase() + h.slice(1)).replace(/\.$/, ""))
+      .join(", ");
+    return `Please provide the outstanding source material identified on the disclosure schedule, including ${list}${suffix}`;
+  }
+
+  return `Please provide the outstanding source material identified on the disclosure schedule, including subscriber/account data, message exports, call logs, and any MG11/source material referred to but not served${suffix}`;
+}
+
+function cleanDraftWording(label: string, mergedFrom: string[] = []): string {
+  if (/^additional source-material issues \(\d+ on file\)$/i.test(label)) {
+    return buildOverflowDraftWording(mergedFrom);
+  }
+
   const provision = humanizeChaseFragmentLabel(label);
   const core = provision || "the outstanding source material";
   return `Please provide ${core.charAt(0).toLowerCase()}${core.slice(1)} or confirm in writing why it is not available.`;
@@ -189,7 +218,10 @@ function finalizeOneItem(item: DisclosureChaseItem): DisclosureChaseItem {
     label,
     mergedFrom: mergedHumanized.length ? mergedHumanized : [label],
     whyItMatters: sanitizeWhyItMatters(item.whyItMatters, mergedHumanized.length),
-    draftChaseWording: cleanDraftWording(label),
+    draftChaseWording: cleanDraftWording(
+      label,
+      mergedHumanized.length ? mergedHumanized : item.mergedFrom,
+    ),
     courtLine: cleanCourtLine(label),
     evidenceAnchor,
   };
@@ -215,7 +247,7 @@ function mergeFinalizedItems(a: DisclosureChaseItem, b: DisclosureChaseItem): Di
     whyItMatters: sanitizeWhyItMatters(a.whyItMatters ?? b.whyItMatters ?? "", mergedFrom.length),
     baseStatus: a.baseStatus === "Overdue" || b.baseStatus === "Overdue" ? "Overdue" : a.baseStatus,
     urgency: a.urgency === "high" || b.urgency === "high" ? "high" : a.urgency,
-    draftChaseWording: cleanDraftWording(label),
+    draftChaseWording: cleanDraftWording(label, mergedFrom),
     courtLine: cleanCourtLine(label),
     evidenceAnchor: a.evidenceAnchor ?? b.evidenceAnchor,
     linkedRoute: a.linkedRoute ?? b.linkedRoute,
@@ -260,7 +292,7 @@ function collapseFinalizedItemsByFamilyId(items: DisclosureChaseItem[]): Disclos
     out.push({
       ...merged,
       label: familyLabel,
-      draftChaseWording: cleanDraftWording(familyLabel),
+      draftChaseWording: cleanDraftWording(familyLabel, merged.mergedFrom),
       courtLine: cleanCourtLine(familyLabel),
     });
   }

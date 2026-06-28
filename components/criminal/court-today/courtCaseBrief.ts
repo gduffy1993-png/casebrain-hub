@@ -323,6 +323,16 @@ function cleanPilotCourtLabel(raw: string): string {
   return t;
 }
 
+/** Hide extraction-failure shells from Court Today — not real listed matters. */
+export function isCourtTodayExtractionJunk(brief: CourtCaseBrief): boolean {
+  if (!isCriminalPilotMode()) return false;
+  const client = brief.clientLabel.trim();
+  const allegation = brief.allegation.trim();
+  if (!/not safely extracted/i.test(client)) return false;
+  if (/not safely extracted/i.test(allegation) || !allegation) return true;
+  return PILOT_BAD_ALLEGATION_RE.test(allegation);
+}
+
 export type BuildCourtCaseBriefOpts = {
   /** Override “today” for hearing buckets (non-admin pilot Court Today anchor). */
   bucketNow?: Date;

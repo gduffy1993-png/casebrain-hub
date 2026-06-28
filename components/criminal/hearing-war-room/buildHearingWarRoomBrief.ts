@@ -43,6 +43,11 @@ import { isBundleClientSafeSurfacingEnabled } from "@/lib/criminal/bundle-client
 import { buildCriminalBriefPlan, type CriminalBriefPlan } from "@/lib/criminal/brief-plan";
 import { buildContradictionActions } from "@/lib/criminal/contradiction-actions";
 import { guardHearingWarRoomBrief, type SourceTruthGuardianReport } from "@/lib/criminal/source-truth-guardian";
+import {
+  humanizeChaseFragmentLabel,
+  isRawChaseFragmentLabel,
+} from "@/lib/criminal/disclosure-chase-finalize";
+import { dedupePilotCourtRecordLines } from "@/lib/criminal/pilot-matter-display-polish";
 
 const FORBIDDEN_RE =
   /\b(this wins|case collapses|crowns?\s+will\s+lose|crown\s+case\s+collapses|guaranteed|will\s+be\s+acquitted|plead\s+guilty|plead\s+not\s+guilty)\b/i;
@@ -119,12 +124,23 @@ function uniqueLines(items: string[], max: number): string[] {
 }
 
 function toCourtRecordAsk(item: string): string {
-  const t = formatDisplayLabelCasing(item.trim());
-  if (!t) return "";
-  if (/^ask the court/i.test(t)) return formatDisplayLabelCasing(t);
-  const label = t.replace(/^chase[:\s]*/i, "").replace(/^outstanding[:\s]*/i, "");
-  return formatDisplayLabelCasing(
-    `${COURT_RECORD_PREFIX} that ${label.charAt(0).toLowerCase()}${label.slice(1)} remains outstanding and should be disclosed on a timetable.`,
+  const t = item.trim();
+  if (!t || /^please provide/i.test(t)) return "";
+  if (/^ask the court/i.test(t)) {
+    return dedupePilotCourtRecordLines([formatDisplayLabelCasing(t)])[0] ?? "";
+  }
+
+  let label = humanizeChaseFragmentLabel(
+    t.replace(/^chase[:\s]*/i, "").replace(/^outstanding[:\s]*/i, ""),
+  );
+  if (!label || isRawChaseFragmentLabel(label)) return "";
+
+  return (
+    dedupePilotCourtRecordLines([
+      formatDisplayLabelCasing(
+        `${COURT_RECORD_PREFIX} that ${label.charAt(0).toLowerCase()}${label.slice(1)} remains outstanding and should be disclosed on a timetable.`,
+      ),
+    ])[0] ?? ""
   );
 }
 
@@ -481,7 +497,7 @@ export function buildHearingWarRoomBrief(input: BuildHearingWarRoomBriefInput): 
           8,
         );
 
-  const askCourtToRecord =
+  const askCourtToRecord = dedupePilotCourtRecordLines(
     profile !== "generic" && profileAsks?.length
       ? uniqueLines(profileAsks, 5)
       : uniqueLines(
@@ -494,7 +510,8 @@ export function buildHearingWarRoomBrief(input: BuildHearingWarRoomBriefInput): 
               .map(toCourtRecordAsk),
           ],
           8,
-        );
+        ),
+  );
 
   const rawPositionNotice = bb?.position_notice?.trim() ?? "";
   const positionNoticeForInstructions =

@@ -1,5 +1,5 @@
 import { parseUkHearingDateTime } from "@/lib/criminal/extract-bundle-case-metadata";
-import { buildCourtCaseBrief, resolveCourtCaseId, type BuildCourtCaseBriefOpts } from "./courtCaseBrief";
+import { buildCourtCaseBrief, isCourtTodayExtractionJunk, resolveCourtCaseId, type BuildCourtCaseBriefOpts } from "./courtCaseBrief";
 import type { CourtCaseBrief, CourtCasesApiRow, CourtTodayEnrichment, HearingBucket } from "./types";
 import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
 
@@ -75,6 +75,7 @@ export function buildCourtTodayBuckets(
       },
       opts,
     );
+    if (isCourtTodayExtractionJunk(brief)) continue;
     groups[brief.hearingBucket].push(brief);
   }
 

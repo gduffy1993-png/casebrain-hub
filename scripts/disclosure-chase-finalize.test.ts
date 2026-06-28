@@ -65,4 +65,26 @@ assert.equal(
   "raw_fragment_label should clear after finalize",
 );
 
+const overflowBucket = finalizeDisclosureChasePresentation([
+  {
+    ...sampleItem("MG6C/003 — Subscriber data — outstanding.", "other"),
+    mergedFrom: [
+      "MG6C/003 — Subscriber data — outstanding.",
+      "Screenshot pack (served) | 5 |",
+      "Phone extraction source material",
+      "Complainant MG11 statement",
+      "message exports",
+    ],
+    label: "Additional source-material issues (11 on file)",
+  },
+]);
+
+assert.ok(overflowBucket.length >= 1);
+const overflowDraft = overflowBucket.find((i) =>
+  /additional source-material issues/i.test(i.label),
+)?.draftChaseWording;
+assert.ok(overflowDraft, "expected overflow bucket draft");
+assert.match(overflowDraft!, /Please provide the outstanding source material identified on the disclosure schedule/i);
+assert.doesNotMatch(overflowDraft!, /additional source-material issues \(11 on file\)/i);
+
 console.log("disclosure-chase-finalize.test.ts: all assertions passed");
