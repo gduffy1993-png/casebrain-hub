@@ -243,8 +243,8 @@ Must support / test broad profiles: harassment, AEW/BWV, custody/PACE, violence 
 
 | # | Work |
 |---|------|
-| 1 | Apply trust feedback DB migration (`20260628120000_trust_feedback.sql`) |
-| 2 | Export/copy gate — Chase, Summary, court note, gap list |
+| 1 | Apply trust feedback DB migration (`20260628120000_trust_feedback.sql`) | ✅ |
+| 2 | Export/copy gate — `scripts/h4-export-copy-gate.ts` (golden 102) | ✅ |
 | 3 | Fresh-account smoke every deploy |
 | 4 | Account/permission smoke |
 | 5 | Simulator manifest v1 — **30 cases** |
