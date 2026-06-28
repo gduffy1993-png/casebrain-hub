@@ -12,6 +12,20 @@ function normKey(text: string): string {
 }
 
 /** H2 P2 — flatten nested court-record prefixes and raw MG6 fragments in Today/Summary lines. */
+function normalizeClunkyCourtCore(core: string): string | null {
+  const c = core.trim().replace(/\.$/, "");
+  if (/^prepare hearing line on outstanding disclosure|^hearing line on outstanding disclosure/i.test(c)) {
+    return "outstanding disclosure should be timetabled and the defence position remains provisional pending service";
+  }
+  if (/^ask for full mg11\/source material/i.test(c)) {
+    return "full MG11/source material and unused schedule detail remain outstanding and should be disclosed on a timetable";
+  }
+  if (/^chase attribution material/i.test(c)) {
+    return "attribution material, phone ownership, vehicle ownership, and role evidence remain outstanding and should be disclosed on a timetable";
+  }
+  return null;
+}
+
 export function sanitizePilotCourtRecordLine(line: string): string | null {
   let t = line.trim();
   if (!t) return null;
@@ -22,7 +36,6 @@ export function sanitizePilotCourtRecordLine(line: string): string | null {
       "Ask the court to record that ",
     )
     .replace(/^Ask the court to record that ask for /i, "Ask the court to record that ")
-    .replace(/^Ask the court to record that prepare /i, "Ask the court to record that ")
     .replace(/\bremains outstanding and should be disclosed on a timetable\.?\s*$/i, "")
     .trim();
 
@@ -50,9 +63,24 @@ export function sanitizePilotCourtRecordLine(line: string): string | null {
 
   if (COURT_RECORD_RE.test(t) && !/\bremains outstanding\b/i.test(t)) {
     const core = t.replace(COURT_RECORD_RE, "").trim();
+    const normalized = normalizeClunkyCourtCore(core);
+    if (normalized) {
+      return formatDisplayLabelCasing(
+        `Ask the court to record that ${normalized}.`,
+      );
+    }
     if (core) {
       return formatDisplayLabelCasing(
         `Ask the court to record that ${core.charAt(0).toLowerCase()}${core.slice(1)} remains outstanding and should be disclosed on a timetable.`,
+      );
+    }
+  }
+
+  if (!COURT_RECORD_RE.test(t)) {
+    const normalized = normalizeClunkyCourtCore(t);
+    if (normalized) {
+      return formatDisplayLabelCasing(
+        `Ask the court to record that ${normalized}.`,
       );
     }
   }

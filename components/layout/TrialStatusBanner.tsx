@@ -55,7 +55,7 @@ export function TrialStatusBanner() {
   const trialEnded = status.isBlocked && status.reason === "TRIAL_EXPIRED";
 
   const label = trialEnded
-    ? "Trial ended"
+    ? "Trial ended — upgrade to upload more cases"
     : daysLeft != null
       ? `${daysLeft}d left · ${casesUsed}/${casesLimit} cases · ${docsUsed}/${docsLimit} docs`
       : `${casesUsed}/${casesLimit} cases · ${docsUsed}/${docsLimit} docs`;

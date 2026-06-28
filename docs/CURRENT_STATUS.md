@@ -1,6 +1,6 @@
 # CaseBrain criminal pilot — where we are
 
-**Updated:** 2026-06-21  
+**Updated:** 2026-06-28  
 **Prod:** [https://www.casebrain.co.uk](https://www.casebrain.co.uk)
 
 ## Done (engineering sign-off)
@@ -12,51 +12,39 @@
 | Case routine gate | 9/9 PASS |
 | Strategy corpus factory | **2,200 / 2,200 PASS** |
 | Cold-start (new account → S1 upload) | PASS — `artifacts/casebrain-qa/cold-start/` |
-| Original brains | Unchanged — add-ons only (proof-map links, ledger charge zone) |
+| Golden pack (H2) | **50/50 READY** |
+| **CB-FRESH-001/002** adversarial audit | **PASS WITH MINOR WARNINGS** (Codex Layer 7, post-P2 deploy `857b503`) |
+| H2 P1 chase finalization + H2 P2/P3 display polish | Shipped prod |
+| Paywall/trial clarity (pilot) | Banner + upload page trial limits copy |
+| Original brains | Unchanged — add-ons only |
 
-## In progress (real product truth)
+## Design-partner ready (not mass rollout)
 
 | Item | Notes |
 |------|--------|
-| **CB-FRESH-001** Taylor Brookes — digital attribution / intimidation | Uploaded on cold account; copilot audit Summary / Today / Chase |
-| **CB-FRESH-002** Jordan Hale — custody / BWV conflict | Same |
-| Copilot browser audit | Tab-by-tab or paste/screenshot; checklist in master plan Layer 7 |
+| Taylor Brookes / Jordan Hale | Solicitor-gate signed; use with review before sending Chase |
+| First design-partner firm | **Next** — 5–10 cases, weekly PASS/FAIL checklist |
+| 3–5 firms | After first partner goes well |
 
-## Cold QA account (prod)
-
-Credentials: `artifacts/casebrain-qa/cold-start/latest-account.json` (gitignored path — local only)
-
-- Not sam.pilot demo — real calendar, empty caseload until upload
-- Provision script: `npx tsx scripts/.tmp-provision-cold-user.ts`
-
-## Not proven yet (need firm or FRESH PASS)
+## Not proven yet
 
 - “Works on every messy real firm PDF”
-- “Solicitor uses output as-is in conference / chase letter”
+- “Solicitor uses output with zero edit on every case”
 - Offence depth tranches (6B) — wait for pilot demand
 
-## Next steps (order)
+## QA accounts (prod, local artifacts)
 
-1. Finish **copilot PASS/FAIL** on CB-FRESH-001 + 002  
-2. Fix anything **dangerous** (overstatement, missing chase, wrong attribution)  
-3. **One design-partner firm** — 5–10 cases, weekly checklist  
-4. Then 3–5 firms if first goes well  
+- Cold-start: `artifacts/casebrain-qa/cold-start/latest-account.json`
+- CB-FRESH audit: `artifacts/casebrain-qa/cb-fresh-audit/latest-account.json`
 
 ## Key scripts
 
 ```powershell
-npx tsx scripts/bundle-contradiction-tier-gate.ts
-npx tsx scripts/case-routine-gate.ts
-npx tsx scripts/strategy-corpus.ts --count 2200 --split all
+npx tsx scripts/golden-case-pack-gate.ts --pack gold --min-runnable 50 --max-polish-rate 1
+npx tsx scripts/.tmp-cb-fresh-audit.ts
 npx tsx scripts/.tmp-cold-start-gauntlet.ts
-npx tsx scripts/.tmp-provision-cold-user.ts
+npx tsx scripts/disclosure-chase-finalize.test.ts
+npx tsx scripts/pilot-matter-display-polish.test.ts
 ```
-
-## Architecture truth (for copilot / partners)
-
-- **No training** on bundles — global TypeScript engines on any upload  
-- **Paige / Neil** = QA anchors only  
-- **Factory 2,200** = scale/regression, not “every real case works”  
-- **Silence** when papers thin = correct behaviour  
 
 Full plan: `docs/CRIMINAL_PILOT_MASTER_PLAN.md`

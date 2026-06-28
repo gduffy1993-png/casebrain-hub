@@ -125,6 +125,23 @@ function familyLabelForId(familyId: ChaseFamilyId): string {
   }
 }
 
+function humanOverflowCardLabel(mergedFrom: string[]): string {
+  const humanized = dedupeByNorm(
+    mergedFrom.map((m) => humanizeChaseFragmentLabel(m)).filter(Boolean),
+  ).filter(
+    (h) =>
+      h !== "Additional source-material on file" &&
+      !/^additional source-material issues/i.test(h),
+  );
+
+  if (humanized.length === 0) return "Outstanding source material on disclosure schedule";
+  if (humanized.length === 1) return humanized[0]!;
+  if (humanized.length === 2) return `${humanized[0]} / ${humanized[1]}`;
+  const summary = humanized.slice(0, 4).join(", ");
+  if (summary.length <= 72) return `Outstanding source material (${summary})`;
+  return "Outstanding source material on disclosure schedule";
+}
+
 function buildOverflowDraftWording(mergedFrom: string[]): string {
   const humanized = dedupeByNorm(
     mergedFrom.map((m) => humanizeChaseFragmentLabel(m)).filter(Boolean),
@@ -151,7 +168,11 @@ function buildOverflowDraftWording(mergedFrom: string[]): string {
 }
 
 function cleanDraftWording(label: string, mergedFrom: string[] = []): string {
-  if (/^additional source-material issues \(\d+ on file\)$/i.test(label)) {
+  if (
+    /^additional source-material issues \(\d+ on file\)$/i.test(label) ||
+    /^outstanding source material on disclosure schedule$/i.test(label) ||
+    /^outstanding source material \(/i.test(label)
+  ) {
     return buildOverflowDraftWording(mergedFrom);
   }
 
@@ -204,7 +225,7 @@ function finalizeOneItem(item: DisclosureChaseItem): DisclosureChaseItem {
         ? familyLabelForId(item.familyId)
         : mergedHumanized.length === 1
           ? mergedHumanized[0]!
-          : `Additional source-material issues (${mergedHumanized.length || 1} on file)`;
+          : humanOverflowCardLabel(mergedHumanized.length ? mergedHumanized : item.mergedFrom);
   }
 
   let evidenceAnchor = item.evidenceAnchor;
@@ -213,15 +234,18 @@ function finalizeOneItem(item: DisclosureChaseItem): DisclosureChaseItem {
     if (isRawChaseFragmentLabel(evidenceAnchor)) evidenceAnchor = null;
   }
 
+  if (/^additional source-material issues \(\d+ on file\)$/i.test(label)) {
+    label = humanOverflowCardLabel(mergedHumanized.length ? mergedHumanized : item.mergedFrom);
+  }
+
+  const mergedForDraft = mergedHumanized.length ? mergedHumanized : item.mergedFrom;
+
   return {
     ...item,
     label,
     mergedFrom: mergedHumanized.length ? mergedHumanized : [label],
     whyItMatters: sanitizeWhyItMatters(item.whyItMatters, mergedHumanized.length),
-    draftChaseWording: cleanDraftWording(
-      label,
-      mergedHumanized.length ? mergedHumanized : item.mergedFrom,
-    ),
+    draftChaseWording: cleanDraftWording(label, mergedForDraft),
     courtLine: cleanCourtLine(label),
     evidenceAnchor,
   };
@@ -235,7 +259,7 @@ function mergeFinalizedItems(a: DisclosureChaseItem, b: DisclosureChaseItem): Di
   const mergedFrom = dedupeByNorm([...a.mergedFrom, ...b.mergedFrom]).slice(0, 12);
   const label =
     a.familyId === "other" || b.familyId === "other"
-      ? `Additional source-material issues (${mergedFrom.length} on file)`
+      ? humanOverflowCardLabel(mergedFrom)
       : a.label.length <= b.label.length
         ? a.label
         : b.label;

@@ -5,11 +5,11 @@ import {
 } from "../lib/criminal/pilot-matter-display-polish";
 
 const nested = sanitizePilotCourtRecordLine(
-  "Ask the court to record that ask for full MG11/source material and unused schedule detail. remains outstanding and should be disclosed on a timetable.",
+  "Ask the court to record that prepare hearing line on outstanding disclosure; set a timetable. remains outstanding and should be disclosed on a timetable.",
 );
 assert.ok(nested);
-assert.doesNotMatch(nested!, /ask for full MG11.*ask the court/i);
-assert.doesNotMatch(nested!, /ask the court to record that ask/i);
+assert.match(nested!, /outstanding disclosure should be timetabled/i);
+assert.doesNotMatch(nested!, /prepare hearing line on outstanding disclosure/i);
 
 const rawMg6 = sanitizePilotCourtRecordLine(
   "Ask the court to record that mG6C/003 — Subscriber data — outstanding. remains outstanding and should be disclosed on a timetable.",

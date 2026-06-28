@@ -1,6 +1,6 @@
 # Criminal pilot — master plan (merged)
 
-**Status:** Layers 1–3 shipped. **Modules 1–7 LIVE** on prod. **2,200 factory PASS** (2026-06-21). **Cold-start S1 PASS** on prod. **Next:** CB-FRESH-001/002 copilot audit → design-partner firm.
+**Status:** Layers 1–3 shipped. **Modules 1–7 LIVE** on prod. **2,200 factory PASS**. **Cold-start S1 PASS**. **CB-FRESH adversarial PASS WITH MINOR WARNINGS** (Codex Layer 7, 2026-06-28). **Next:** first design-partner firm.
 
 **Snapshot:** `docs/CURRENT_STATUS.md` (updated each milestone)
 
@@ -58,9 +58,9 @@
 | Item | Status | Notes |
 |------|--------|-------|
 | Browser cold-start on S1 upload | ✅ | `scripts/.tmp-cold-start-gauntlet.ts` — report `artifacts/casebrain-qa/cold-start/` |
-| CB-FRESH-001/002 adversarial bundles | ⏳ | Taylor Brookes + Jordan Hale on cold account — copilot PASS/FAIL audit |
-| No tracker/demo leakage QA | ⏳ | Cold-start clean; per-case copilot on FRESH bundles |
-| Paywall/trial clarity | ⏳ | Banner + upload gate copy |
+| CB-FRESH-001/002 adversarial bundles | ✅ | Taylor/Jordan — Codex Layer 7 PASS WITH MINOR WARNINGS post-P2 |
+| No tracker/demo leakage QA | ✅ | Cold-start clean; CB-FRESH prod audit clean |
+| Paywall/trial clarity | ✅ | Pilot banner + upload trial limits notice |
 | Real redacted matters (consent) | Later | After synthetic pilot stable |
 | Prod smoke probes | ✅ | Paige + Neil via Supabase pipeline scripts |
 
@@ -184,8 +184,8 @@ Report: `artifacts/casebrain-qa/contradiction-tier-gate/report.json`
 - [x] Module 7 client-safe shipped  
 - [x] 2,200-case eval PASS  
 - [x] Layer 4 cold-start on S1 PASS  
-- [ ] CB-FRESH-001/002 adversarial audit PASS (attribution + BWV shapes)  
-- [ ] Paywall/trial clarity spot-check  
+- [x] CB-FRESH-001/002 adversarial audit PASS (attribution + BWV shapes)  
+- [x] Paywall/trial clarity spot-check  
 
 ### Per firm
 
@@ -212,10 +212,10 @@ Report: `artifacts/casebrain-qa/contradiction-tier-gate/report.json`
 | Modules 1–7 live + gated | **7/7** |
 | 2,200-case eval | **PASS** (2200/2200) |
 | Cold-start prod (S1) | **PASS** |
-| CB-FRESH adversarial audit | **In progress** |
+| CB-FRESH adversarial audit | **PASS WITH MINOR WARNINGS** (design-partner ready) |
 | 3+ offence tranches (6B) from real demand | ⏳ |
 | 3–5 firms completed pilot | ⏳ |
-| Layer 4 UX/reliability must-haves | Partial (paywall copy ⏳) |
+| Layer 4 UX/reliability must-haves | **Done** (paywall copy ✅) |
 
 ## Out of scope
 

@@ -13,6 +13,7 @@ export default async function UploadPage({ searchParams }: UploadPageProps) {
   const params = await searchParams;
   const caseId = params.caseId;
   const showPilotUploadNotice = isCriminalPilotMode() && isPilotDemoUser(user.userId);
+  const showPilotTrialNotice = isCriminalPilotMode() && !showPilotUploadNotice;
 
   return (
     <div className="space-y-8">
@@ -35,6 +36,18 @@ export default async function UploadPage({ searchParams }: UploadPageProps) {
             Please upload only fictional, redacted, or test case papers for this pilot. Do not
             upload live client-identifiable material unless a pilot/data agreement is in place. All
             outputs are provisional and require solicitor review.
+          </p>
+        </section>
+      ) : showPilotTrialNotice ? (
+        <section
+          aria-label="Pilot trial limits"
+          className="rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4"
+        >
+          <h2 className="text-sm font-semibold text-slate-900">Trial limits</h2>
+          <p className="mt-2 text-sm text-slate-700">
+            Trial accounts can upload up to <strong>2 cases</strong> and <strong>10 documents</strong>.
+            The banner shows your remaining allowance. Upgrade when you need more capacity — outputs
+            stay provisional and require solicitor review.
           </p>
         </section>
       ) : (
