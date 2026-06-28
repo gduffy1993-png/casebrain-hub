@@ -7,9 +7,15 @@
   "sourceRef": "test_bundles/s18_charge_reduction_bundle_v1",
   "linkStatus": "runnable",
   "defendant": "Jordan Clarke",
-  "aliases": ["Clarke"],
+  "aliases": [
+    "Clarke"
+  ],
   "charge": "Wounding with intent contrary to section 18 Offences Against the Person Act 1861",
-  "chargeKeywords": ["wounding with intent", "s18", "oapa"],
+  "chargeKeywords": [
+    "wounding with intent",
+    "s18",
+    "oapa"
+  ],
   "court": "Fictional Crown Court for Testing",
   "hearingDate": null,
   "stage": "Crown Court",
@@ -25,13 +31,47 @@
     "index"
   ],
   "documentTypesForbidden": [],
-  "evidenceSignalsExpected": ["cctv", "mg11", "medical", "forensic", "interview"],
-  "missingMaterialExpected": ["mg6 incomplete", "cctv continuity", "full cctv export"],
+  "evidenceSignalsExpected": [
+    "cctv",
+    "mg11",
+    "medical",
+    "forensic",
+    "interview"
+  ],
+  "missingMaterialExpected": [
+    "mg6 incomplete",
+    "cctv continuity",
+    "full cctv export"
+  ],
   "thinBundleExpected": false,
   "expectedWorkflowProfile": "violence_domestic_assault",
   "expectedRouteFamily": "violence_domestic_assault",
-  "prohibitedFamilies": ["fraud_account_control", "pwits_phone_attribution"],
+  "prohibitedFamilies": [
+    "fraud_account_control",
+    "pwits_phone_attribution"
+  ],
   "expectedProvisionalStatus": false,
   "humanReviewExpected": false,
-  "notes": "Incident date 12 August 2024. See test_bundles/s18_charge_reduction_bundle_v1/00_README.md."
+  "notes": "Incident date 12 August 2024. See test_bundles/s18_charge_reduction_bundle_v1/00_README.md.",
+  "truthKeyVersion": "h2-v1",
+  "offenceFamily": "violence_domestic_assault",
+  "mainIssueExpected": "Complainant account, injury/causation, and participation",
+  "mustNotSayExpected": [
+    "Do not import fraud account control unless the papers support it.",
+    "Do not import pwits phone attribution unless the papers support it."
+  ],
+  "expectedChaseItems": [
+    "mg6 incomplete",
+    "cctv continuity",
+    "full cctv export"
+  ],
+  "expectedSummaryRisk": "Provisional pending served material and solicitor review",
+  "servedEvidenceExpected": [
+    "mg11"
+  ],
+  "referredOnlyEvidenceExpected": [
+    "mg6 incomplete",
+    "cctv continuity",
+    "full cctv export"
+  ]
 }

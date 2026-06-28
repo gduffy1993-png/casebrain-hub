@@ -56,5 +56,31 @@
   "expectedProvisionalStatus": true,
   "humanReviewExpected": true,
   "linkStatus": "runnable",
-  "notes": "Strategy corpus seed 38 — tags: lab_continuity_gap, bwv_outstanding, identity_dispute, incomplete_mg6"
+  "notes": "Strategy corpus seed 38 — tags: lab_continuity_gap, bwv_outstanding, identity_dispute, incomplete_mg6",
+  "truthKeyVersion": "h2-v1",
+  "offenceFamily": "pwits_phone",
+  "mainIssueExpected": "Phone attribution, extraction, and possession linkage",
+  "referredOnlyEvidenceExpected": [
+    "Full phone extraction",
+    "Phone attribution / ownership material",
+    "Search BWV export",
+    "Drug lab continuity note",
+    "Lab continuity / chain note outstanding",
+    "Body worn video download outstanding",
+    "MG6 schedule incomplete",
+    "MG5 narrative"
+  ],
+  "mustNotSayExpected": [
+    "Do not import fraud account control unless the papers support it.",
+    "Do not import robbery identification unless the papers support it."
+  ],
+  "expectedChaseItems": [
+    "Full phone extraction",
+    "Phone attribution / ownership material",
+    "Search BWV export",
+    "Drug lab continuity note",
+    "Lab continuity / chain note outstanding",
+    "Body worn video download outstanding"
+  ],
+  "expectedSummaryRisk": "Provisional pending served material and solicitor review"
 }

@@ -57,5 +57,31 @@
   "expectedProvisionalStatus": true,
   "humanReviewExpected": true,
   "linkStatus": "runnable",
-  "notes": "Strategy corpus seed 44 — tags: thin_bundle, multi_count, incomplete_mg6, identity_dispute, interview_summary_no_transcript, lab_continuity_gap"
+  "notes": "Strategy corpus seed 44 — tags: thin_bundle, multi_count, incomplete_mg6, identity_dispute, interview_summary_no_transcript, lab_continuity_gap",
+  "truthKeyVersion": "h2-v1",
+  "offenceFamily": "pwits_phone",
+  "mainIssueExpected": "Phone attribution, extraction, and possession linkage",
+  "referredOnlyEvidenceExpected": [
+    "Full phone extraction",
+    "Phone attribution / ownership material",
+    "Search BWV export",
+    "Drug lab continuity note",
+    "MG6 schedule incomplete",
+    "Interview summary without full transcript",
+    "Lab continuity / chain note outstanding",
+    "MG5 narrative"
+  ],
+  "mustNotSayExpected": [
+    "Do not import fraud account control unless the papers support it.",
+    "Do not import robbery identification unless the papers support it."
+  ],
+  "expectedChaseItems": [
+    "Full phone extraction",
+    "Phone attribution / ownership material",
+    "Search BWV export",
+    "Drug lab continuity note",
+    "MG6 schedule incomplete",
+    "Interview summary without full transcript"
+  ],
+  "expectedSummaryRisk": "Thin bundle — provisional strategy only until disclosure complete"
 }

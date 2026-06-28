@@ -41,6 +41,19 @@ type LintReport = {
   worst50: WorstCase[];
 };
 
+function classifyPattern(kind: string): "dangerous" | "polish" | "gate_noise" {
+  const k = kind.toLowerCase();
+  if (
+    /wrong_family|unsafe_win|court_line_in_chase|prohibited_family|bwv.*fact|guardian|source_truth/.test(k)
+  ) {
+    return "dangerous";
+  }
+  if (/duplicate_chase|raw_fragment|partner_score|needs_review|metadata|weak/.test(k)) {
+    return "polish";
+  }
+  return "gate_noise";
+}
+
 function main(): void {
   if (!fs.existsSync(LINT_REPORT)) {
     console.error(`Missing lint report: ${LINT_REPORT}`);
@@ -55,9 +68,17 @@ function main(): void {
     rank: index + 1,
     pattern: row.kind,
     count: row.count,
-    severity: row.kind.includes("duplicate") || row.kind.includes("raw_fragment") ? "polish" : "review",
+    classification: classifyPattern(row.kind),
+    severity: classifyPattern(row.kind) === "dangerous" ? "dangerous" : classifyPattern(row.kind) === "polish" ? "polish" : "gate_noise",
     action: patternAction(row.kind),
-    h2Priority: index === 0 ? "P1 — repeated embarrassing pattern" : index < 3 ? "P2" : "P3",
+    h2Priority:
+      classifyPattern(row.kind) === "dangerous"
+        ? "STOP — dangerous"
+        : index === 0
+          ? "P1 — repeated embarrassing pattern"
+          : index < 3
+            ? "P2"
+            : "P3",
   }));
 
   const areaQueue = report.weirdness.suggestedAreas.map((row, index) => ({
@@ -96,12 +117,14 @@ function main(): void {
     dangerousWeirdnessCritical: report.dangerousWeirdnessCritical,
     partnerScoreAverage: report.partnerScore.averageScore,
     goldenPack: {
-      target: 30,
-      runnable: 30,
-      fail: 0,
-      polish: 30,
-      gate: "PASS — npx tsx scripts/golden-case-pack-gate.ts --pack gold --min-runnable 30",
-      note: "Corpus seeds exclude pilot hero names (Marcus/Kian/Leon) to avoid profile collision.",
+      target: 75,
+      runnable: null,
+      note: "Run grow-golden-pack.ts --target 75 then golden-case-pack-gate",
+    },
+    patternClassification: {
+      dangerous: patternQueue.filter((p) => p.classification === "dangerous").length,
+      polish: patternQueue.filter((p) => p.classification === "polish").length,
+      gateNoise: patternQueue.filter((p) => p.classification === "gate_noise").length,
     },
     stopRule: {
       level1DangerousCritical: report.dangerousWeirdnessCritical,
@@ -141,7 +164,7 @@ function main(): void {
       "metadata classifier needs_review on thin bundles",
     ],
     smokeAnchors: ["cb-fresh-001-taylor-brookes", "cb-fresh-002-jordan-hale"],
-    goldPackTarget: 50,
+    goldPackTarget: 75,
   };
 
   fs.writeFileSync(path.join(OUT_DIR, "queue.json"), `${JSON.stringify(queue, null, 2)}\n`, "utf8");
@@ -163,12 +186,13 @@ function main(): void {
     `- Partner Score avg: **${report.partnerScore.averageScore}**`,
     `- Worst50 dangerous samples: **${dangerousCount} / 50**`,
     "",
-    "## Pattern queue (fix repeated only)",
+    "## Pattern queue (dangerous / polish / gate noise)",
     "",
-    "| Rank | Pattern | Count | Priority | Action |",
-    "|------|---------|-------|----------|--------|",
+    "| Rank | Pattern | Count | Class | Priority | Action |",
+    "|------|---------|-------|-------|----------|--------|",
     ...patternQueue.map(
-      (p) => `| ${p.rank} | ${p.pattern} | ${p.count} | ${p.h2Priority} | ${p.action} |`,
+      (p) =>
+        `| ${p.rank} | ${p.pattern} | ${p.count} | ${p.classification} | ${p.h2Priority} | ${p.action} |`,
     ),
     "",
     "## Suggested areas",
@@ -183,7 +207,8 @@ function main(): void {
     "",
     "## Golden pack growth",
     "",
-    "Run `npx tsx scripts/seed-golden-pack-growth.ts` then gate at `--min-runnable 30`.",
+    "Run `npx tsx scripts/grow-golden-pack.ts --target 75` then gate at `--min-runnable 75`.",
+    "Run `npx tsx scripts/h2-confidence-report.ts --run-gate --target 75` for combined status.",
     "",
   ].join("\n");
 

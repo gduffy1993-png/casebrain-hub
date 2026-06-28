@@ -56,5 +56,31 @@
   "expectedProvisionalStatus": true,
   "humanReviewExpected": true,
   "linkStatus": "runnable",
-  "notes": "Strategy corpus seed 10 — tags: thin_bundle, cctv_stills_no_master, cad_summary_no_full_cad, incomplete_mg6, timing_contradiction"
+  "notes": "Strategy corpus seed 10 — tags: thin_bundle, cctv_stills_no_master, cad_summary_no_full_cad, incomplete_mg6, timing_contradiction",
+  "truthKeyVersion": "h2-v1",
+  "offenceFamily": "violence_gbh_s18",
+  "mainIssueExpected": "Complainant account, injury/causation, and participation",
+  "referredOnlyEvidenceExpected": [
+    "CCTV export and continuity",
+    "Full 999/CAD",
+    "Body worn video",
+    "Medical / expert report",
+    "CCTV stills without master export log",
+    "CAD summary without full CAD log",
+    "MG6 schedule incomplete",
+    "MG5 narrative"
+  ],
+  "mustNotSayExpected": [
+    "Do not import fraud account control unless the papers support it.",
+    "Do not import pwits phone attribution unless the papers support it."
+  ],
+  "expectedChaseItems": [
+    "CCTV export and continuity",
+    "Full 999/CAD",
+    "Body worn video",
+    "Medical / expert report",
+    "CCTV stills without master export log",
+    "CAD summary without full CAD log"
+  ],
+  "expectedSummaryRisk": "Thin bundle — provisional strategy only until disclosure complete"
 }

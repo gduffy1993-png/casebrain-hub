@@ -56,5 +56,30 @@
   "expectedProvisionalStatus": true,
   "humanReviewExpected": true,
   "linkStatus": "runnable",
-  "notes": "Strategy corpus seed 20 — tags: phone_device_attribution_dispute, multi_count, identity_dispute, custody_pace_limited, thin_bundle"
+  "notes": "Strategy corpus seed 20 — tags: phone_device_attribution_dispute, multi_count, identity_dispute, custody_pace_limited, thin_bundle",
+  "truthKeyVersion": "h2-v1",
+  "offenceFamily": "pwits_phone",
+  "mainIssueExpected": "Phone attribution, extraction, and possession linkage",
+  "referredOnlyEvidenceExpected": [
+    "Full phone extraction",
+    "Phone attribution / ownership material",
+    "Search BWV export",
+    "Drug lab continuity note",
+    "Phone/device attribution material outstanding",
+    "Custody / PACE material limited on export",
+    "MG5 narrative"
+  ],
+  "mustNotSayExpected": [
+    "Do not import fraud account control unless the papers support it.",
+    "Do not import robbery identification unless the papers support it."
+  ],
+  "expectedChaseItems": [
+    "Full phone extraction",
+    "Phone attribution / ownership material",
+    "Search BWV export",
+    "Drug lab continuity note",
+    "Phone/device attribution material outstanding",
+    "Custody / PACE material limited on export"
+  ],
+  "expectedSummaryRisk": "Thin bundle — provisional strategy only until disclosure complete"
 }

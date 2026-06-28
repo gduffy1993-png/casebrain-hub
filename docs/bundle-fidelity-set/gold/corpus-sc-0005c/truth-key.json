@@ -1,0 +1,84 @@
+{
+  "bundleId": "sc-0005c",
+  "fictional": true,
+  "label": "R v Riley Chen — pwits_phone corpus",
+  "purpose": "H2 golden pack corpus seed 92 (pwits__identity_dispute+lab_continuity_gap+phone_device_attribution_dispute+thin_bundle)",
+  "defendant": "Riley Chen",
+  "aliases": [
+    "Chen"
+  ],
+  "charge": "Possession of a controlled drug with intent to supply — Misuse of Drugs Act 1971 s.5(3)",
+  "chargeKeywords": [
+    "possession",
+    "controlled",
+    "drug",
+    "with",
+    "intent",
+    "supply"
+  ],
+  "court": null,
+  "hearingDate": null,
+  "stage": "Plea and trial preparation",
+  "documentTypesExpected": [
+    "charge_sheet",
+    "mg5",
+    "mg6"
+  ],
+  "documentTypesForbidden": [],
+  "evidenceSignalsExpected": [
+    "cover / index",
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "mg11 officer",
+    "mg11 witness",
+    "full phone extraction",
+    "phone attribution / ownership material",
+    "search bwv export",
+    "drug lab continuity note"
+  ],
+  "missingMaterialExpected": [
+    "Full phone extraction",
+    "Phone attribution / ownership material",
+    "Search BWV export",
+    "Drug lab continuity note",
+    "Phone/device attribution material outstanding",
+    "Lab continuity / chain note outstanding"
+  ],
+  "thinBundleExpected": true,
+  "expectedWorkflowProfile": "pwits_phone_attribution",
+  "expectedRouteFamily": "pwits_phone_attribution",
+  "prohibitedFamilies": [
+    "fraud_account_control",
+    "robbery_identification"
+  ],
+  "expectedProvisionalStatus": true,
+  "humanReviewExpected": false,
+  "linkStatus": "runnable",
+  "notes": "Strategy corpus seed 92 — tags: thin_bundle, identity_dispute, phone_device_attribution_dispute, lab_continuity_gap",
+  "truthKeyVersion": "h2-v1",
+  "offenceFamily": "pwits_phone",
+  "mainIssueExpected": "Phone attribution, extraction, and possession linkage",
+  "referredOnlyEvidenceExpected": [
+    "Full phone extraction",
+    "Phone attribution / ownership material",
+    "Search BWV export",
+    "Drug lab continuity note",
+    "Phone/device attribution material outstanding",
+    "Lab continuity / chain note outstanding",
+    "MG5 narrative"
+  ],
+  "mustNotSayExpected": [
+    "Do not import fraud account control unless the papers support it.",
+    "Do not import robbery identification unless the papers support it."
+  ],
+  "expectedChaseItems": [
+    "Full phone extraction",
+    "Phone attribution / ownership material",
+    "Search BWV export",
+    "Drug lab continuity note",
+    "Phone/device attribution material outstanding",
+    "Lab continuity / chain note outstanding"
+  ],
+  "expectedSummaryRisk": "Thin bundle — provisional strategy only until disclosure complete"
+}

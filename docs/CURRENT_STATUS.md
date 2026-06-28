@@ -3,48 +3,56 @@
 **Updated:** 2026-06-28  
 **Prod:** [https://www.casebrain.co.uk](https://www.casebrain.co.uk)
 
-## Done (engineering sign-off)
+**Decision:** No design-partner trial yet. Finish H2 → H3 → H4 confidence stack first.
+
+## Done
 
 | Item | Result |
 |------|--------|
-| Modules 1–7 (contradiction stack) | Live on prod; kill switches per module |
-| Tier A/B gate | PASS — Paige, Neil, false-positive corpus |
-| Case routine gate | 9/9 PASS |
-| Strategy corpus factory | **2,200 / 2,200 PASS** |
-| Cold-start (new account → S1 upload) | PASS — `artifacts/casebrain-qa/cold-start/` |
-| Golden pack (H2) | **50/50 READY** |
-| **CB-FRESH-001/002** adversarial audit | **PASS WITH MINOR WARNINGS** (Codex Layer 7, post-P2 deploy `857b503`) |
-| H2 P1 chase finalization + H2 P2/P3 display polish | Shipped prod |
-| Paywall/trial clarity (pilot) | Banner + upload page trial limits copy |
-| Original brains | Unchanged — add-ons only |
+| H1 — weirdness / dangerous bleed hardening | Done |
+| H2 P1 — chase finalization | Prod |
+| H2 P2/P3 — display polish (overflow labels, court lines, Court Today junk) | Prod (`bda9975`) |
+| **H2 Verification** | **Gate PASS** — 102 runnable, **0 fail**, polish-only |
+| Golden pack + truth-key v2 | **100 dirs**, 99% avg coverage, 99/102 at 100% |
+| H2 confidence report | **WARNING** (polish-only — not blocked) |
+| Level 1 corpus | **2,200 / 2,200** — 0 dangerous, worst50 dangerous **0** |
+| Modules 1–7 | Live; kill switches per module |
+| CB-FRESH Taylor + Jordan | Codex Layer 7 **PASS WITH MINOR WARNINGS** |
+| Fresh-user prod smoke | Green |
+| Paywall/trial clarity (pilot) | Banner + upload trial limits |
+| Brain 1 + frozen cores | Untouched |
 
-## Design-partner ready (not mass rollout)
+## Next (engineering) — H3 Trust layer
 
-| Item | Notes |
-|------|--------|
-| Taylor Brookes / Jordan Hale | Solicitor-gate signed; use with review before sending Chase |
-| First design-partner firm | **Next** — 5–10 cases, weekly PASS/FAIL checklist |
-| 3–5 firms | After first partner goes well |
+1. Matter confidence header — safe / provisional / needs review
+2. Source-state badges — served / referred only / missing / provisional
+3. Copy-safe controls — CPS chase vs court line vs client summary
+4. Feedback capture → Bad Output Memory tests
 
-## Not proven yet
+Then **H4 Real-world confidence**, then design-partner firm.
 
-- “Works on every messy real firm PDF”
-- “Solicitor uses output with zero edit on every case”
-- Offence depth tranches (6B) — wait for pilot demand
+## Not started
 
-## QA accounts (prod, local artifacts)
+- H4 — deploy smoke gate, account smoke, export check, red-team bundle pack
+- Design-partner approach (blocked until H2–H4)
 
-- Cold-start: `artifacts/casebrain-qa/cold-start/latest-account.json`
-- CB-FRESH audit: `artifacts/casebrain-qa/cb-fresh-audit/latest-account.json`
+## Known polish (not pilot-blocking)
+
+- `duplicate_chase_label` on all 102 golden cases + 2200 corpus — P2 leftover; optional Codex/output dedupe pass if we want zero polish warnings
+
+## Honest limit
+
+Automated 2,200 scan catches patterns; it cannot certify every line solicitor-perfect. Proof = scan + golden truth keys + worst50 review + (later) solicitor feedback loop.
 
 ## Key scripts
 
 ```powershell
-npx tsx scripts/golden-case-pack-gate.ts --pack gold --min-runnable 50 --max-polish-rate 1
+npx tsx scripts/grow-golden-pack.ts --target 100
+npx tsx scripts/backfill-golden-truth-keys-v2.ts
+npx tsx scripts/golden-case-pack-gate.ts --pack gold --min-runnable 100 --max-polish-rate 1
+npx tsx scripts/h2-confidence-report.ts --run-gate --target 100
+npx tsx scripts/build-h2-review-queue.ts
 npx tsx scripts/.tmp-cb-fresh-audit.ts
-npx tsx scripts/.tmp-cold-start-gauntlet.ts
-npx tsx scripts/disclosure-chase-finalize.test.ts
-npx tsx scripts/pilot-matter-display-polish.test.ts
 ```
 
 Full plan: `docs/CRIMINAL_PILOT_MASTER_PLAN.md`

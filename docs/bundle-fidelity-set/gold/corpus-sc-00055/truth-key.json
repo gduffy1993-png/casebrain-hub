@@ -1,0 +1,74 @@
+{
+  "bundleId": "sc-00055",
+  "fictional": true,
+  "label": "R v Jordan Blake — fraud_account_control corpus",
+  "purpose": "H2 golden pack corpus seed 85 (fraud__multi_defendant+thin_bundle+timing_contradiction)",
+  "defendant": "Jordan Blake",
+  "aliases": [
+    "Blake"
+  ],
+  "charge": "Fraud by abuse of position, Fraud Act 2006 s.4",
+  "chargeKeywords": [
+    "fraud",
+    "abuse",
+    "position",
+    "fraud",
+    "2006"
+  ],
+  "court": null,
+  "hearingDate": null,
+  "stage": "Case management",
+  "documentTypesExpected": [
+    "charge_sheet",
+    "mg5",
+    "mg6"
+  ],
+  "documentTypesForbidden": [],
+  "evidenceSignalsExpected": [
+    "cover / index",
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "mg11 officer",
+    "mg11 witness",
+    "co-defendant mg5",
+    "full bank export / source statements",
+    "device / login audit material",
+    "mailbox export"
+  ],
+  "missingMaterialExpected": [
+    "Full bank export / source statements",
+    "Device / login audit material",
+    "Mailbox export"
+  ],
+  "thinBundleExpected": true,
+  "expectedWorkflowProfile": "fraud_account_control",
+  "expectedRouteFamily": "fraud_account_control",
+  "prohibitedFamilies": [
+    "pwits_phone_attribution",
+    "robbery_identification"
+  ],
+  "expectedProvisionalStatus": true,
+  "humanReviewExpected": false,
+  "linkStatus": "runnable",
+  "notes": "Strategy corpus seed 85 — tags: timing_contradiction, multi_defendant, thin_bundle",
+  "truthKeyVersion": "h2-v1",
+  "offenceFamily": "fraud_account_control",
+  "mainIssueExpected": "Account access, dishonesty, and source bank/device material",
+  "referredOnlyEvidenceExpected": [
+    "Full bank export / source statements",
+    "Device / login audit material",
+    "Mailbox export",
+    "MG5 narrative"
+  ],
+  "mustNotSayExpected": [
+    "Do not import pwits phone attribution unless the papers support it.",
+    "Do not import robbery identification unless the papers support it."
+  ],
+  "expectedChaseItems": [
+    "Full bank export / source statements",
+    "Device / login audit material",
+    "Mailbox export"
+  ],
+  "expectedSummaryRisk": "Thin bundle — provisional strategy only until disclosure complete"
+}

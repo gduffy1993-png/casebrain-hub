@@ -300,7 +300,14 @@ function prohibitedForFamily(family: OffenceFamily): string[] {
 }
 
 const PILOT_HERO_NAMES = new Set(["Marcus Vale", "Kian Doyle", "Leon Marsh"]);
-const EXCLUDED_CORPUS_SEEDS = new Set([23]); // sc-00017 — charge fidelity outlier
+const EXCLUDED_CORPUS_SEEDS = new Set([23, 83, 95]); // charge fidelity outliers (placeholder charge wording)
+
+const PLACEHOLDER_CHARGE_RE =
+  /serious offence|provisional charge wording|unclear offence|pending review/i;
+
+function isPlaceholderCharge(chargeWording: string): boolean {
+  return PLACEHOLDER_CHARGE_RE.test(chargeWording);
+}
 
 function corpusSeeds(count: number): number[] {
   const seeds: number[] = [];
@@ -308,6 +315,7 @@ function corpusSeeds(count: number): number[] {
     if (EXCLUDED_CORPUS_SEEDS.has(seed)) continue;
     const manifest = generateManifestFromSeed(seed, "discovery", "text-rendered");
     if (PILOT_HERO_NAMES.has(manifest.defendantName)) continue;
+    if (isPlaceholderCharge(manifest.chargeWording)) continue;
     seeds.push(seed);
   }
   if (seeds.length < count) throw new Error(`Could only find ${seeds.length} non-pilot corpus seeds`);

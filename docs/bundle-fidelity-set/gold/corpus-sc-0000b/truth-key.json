@@ -55,5 +55,29 @@
   "expectedProvisionalStatus": true,
   "humanReviewExpected": true,
   "linkStatus": "runnable",
-  "notes": "Strategy corpus seed 11 — tags: custody_pace_limited, corrected_charge_sheet, missing_mg5, thin_bundle"
+  "notes": "Strategy corpus seed 11 — tags: custody_pace_limited, corrected_charge_sheet, missing_mg5, thin_bundle",
+  "truthKeyVersion": "h2-v1",
+  "offenceFamily": "generic_provisional",
+  "mainIssueExpected": "Disclosure completeness and source-material pressure",
+  "referredOnlyEvidenceExpected": [
+    "Core witness statements",
+    "Exhibit continuity",
+    "Full disclosure schedule",
+    "Custody / PACE material limited on export",
+    "MG5 case summary not served",
+    "MG5 narrative"
+  ],
+  "mustNotSayExpected": [
+    "Do not import fraud account control unless the papers support it.",
+    "Do not import pwits phone attribution unless the papers support it.",
+    "Do not import robbery identification unless the papers support it."
+  ],
+  "expectedChaseItems": [
+    "Core witness statements",
+    "Exhibit continuity",
+    "Full disclosure schedule",
+    "Custody / PACE material limited on export",
+    "MG5 case summary not served"
+  ],
+  "expectedSummaryRisk": "Thin bundle — provisional strategy only until disclosure complete"
 }

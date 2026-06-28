@@ -1,0 +1,77 @@
+{
+  "bundleId": "sc-0006c",
+  "fictional": true,
+  "label": "R v Alex Mercer — motoring corpus",
+  "purpose": "H2 golden pack corpus seed 108 (motoring__incomplete_mg6+thin_bundle+timing_contradiction)",
+  "defendant": "Alex Mercer",
+  "aliases": [
+    "Mercer"
+  ],
+  "charge": "Careless driving — RTA 1988 s.3",
+  "chargeKeywords": [
+    "careless",
+    "driving",
+    "1988"
+  ],
+  "court": null,
+  "hearingDate": null,
+  "stage": "Plea and trial preparation",
+  "documentTypesExpected": [
+    "charge_sheet",
+    "mg5",
+    "mg6"
+  ],
+  "documentTypesForbidden": [],
+  "evidenceSignalsExpected": [
+    "cover / index",
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "mg11 officer",
+    "mg11 witness",
+    "dashcam / cctv master",
+    "full cad log",
+    "collision expert report",
+    "mg6 schedule incomplete"
+  ],
+  "missingMaterialExpected": [
+    "Dashcam / CCTV master",
+    "Full CAD log",
+    "Collision expert report",
+    "MG6 schedule incomplete"
+  ],
+  "thinBundleExpected": true,
+  "expectedWorkflowProfile": "generic_motoring_provisional",
+  "expectedRouteFamily": null,
+  "prohibitedFamilies": [
+    "fraud_account_control",
+    "pwits_phone_attribution",
+    "violence_domestic_assault"
+  ],
+  "expectedProvisionalStatus": true,
+  "humanReviewExpected": false,
+  "linkStatus": "runnable",
+  "notes": "Strategy corpus seed 108 — tags: timing_contradiction, incomplete_mg6, thin_bundle",
+  "truthKeyVersion": "h2-v1",
+  "offenceFamily": "motoring",
+  "mainIssueExpected": "Procedure, breath/device calibration, and service material",
+  "referredOnlyEvidenceExpected": [
+    "Dashcam / CCTV master",
+    "Full CAD log",
+    "Collision expert report",
+    "MG6 schedule incomplete",
+    "MG5 narrative"
+  ],
+  "mustNotSayExpected": [
+    "Do not import fraud account control unless the papers support it.",
+    "Do not import pwits phone attribution unless the papers support it.",
+    "Do not import violence domestic assault unless the papers support it."
+  ],
+  "expectedChaseItems": [
+    "Dashcam / CCTV master",
+    "Full CAD log",
+    "Collision expert report",
+    "MG6 schedule incomplete"
+  ],
+  "expectedSummaryRisk": "Thin bundle — provisional strategy only until disclosure complete"
+}

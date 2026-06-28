@@ -1,0 +1,86 @@
+{
+  "bundleId": "sc-0006b",
+  "fictional": true,
+  "label": "R v Jamie Patel — generic_provisional corpus",
+  "purpose": "H2 golden pack corpus seed 107 (generic-provisional__corrected_charge_sheet+incomplete_mg6+interview_summary_no_transcript+thin_bundle)",
+  "defendant": "Jamie Patel",
+  "aliases": [
+    "Patel"
+  ],
+  "charge": "Witness intimidation — Criminal Justice and Public Order Act 1994 s.51",
+  "chargeKeywords": [
+    "witness",
+    "intimidation",
+    "criminal",
+    "justice",
+    "public",
+    "order"
+  ],
+  "court": null,
+  "hearingDate": null,
+  "stage": "Magistrates' Court",
+  "documentTypesExpected": [
+    "charge_sheet",
+    "mg5",
+    "mg6"
+  ],
+  "documentTypesForbidden": [],
+  "evidenceSignalsExpected": [
+    "cover / index",
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "mg11 officer",
+    "mg11 witness",
+    "core witness statements",
+    "exhibit continuity",
+    "full disclosure schedule",
+    "interview summary without full transcript"
+  ],
+  "missingMaterialExpected": [
+    "Core witness statements",
+    "Exhibit continuity",
+    "Full disclosure schedule",
+    "Interview summary without full transcript",
+    "MG6 schedule incomplete",
+    "MG5 case summary not served"
+  ],
+  "thinBundleExpected": true,
+  "expectedWorkflowProfile": "generic_provisional",
+  "expectedRouteFamily": null,
+  "prohibitedFamilies": [
+    "fraud_account_control",
+    "pwits_phone_attribution",
+    "robbery_identification"
+  ],
+  "expectedProvisionalStatus": true,
+  "humanReviewExpected": false,
+  "linkStatus": "runnable",
+  "notes": "Strategy corpus seed 107 — tags: interview_summary_no_transcript, corrected_charge_sheet, incomplete_mg6, thin_bundle, missing_mg5",
+  "truthKeyVersion": "h2-v1",
+  "offenceFamily": "generic_provisional",
+  "mainIssueExpected": "Disclosure completeness and source-material pressure",
+  "referredOnlyEvidenceExpected": [
+    "Core witness statements",
+    "Exhibit continuity",
+    "Full disclosure schedule",
+    "Interview summary without full transcript",
+    "MG6 schedule incomplete",
+    "MG5 case summary not served",
+    "MG5 narrative"
+  ],
+  "mustNotSayExpected": [
+    "Do not import fraud account control unless the papers support it.",
+    "Do not import pwits phone attribution unless the papers support it.",
+    "Do not import robbery identification unless the papers support it."
+  ],
+  "expectedChaseItems": [
+    "Core witness statements",
+    "Exhibit continuity",
+    "Full disclosure schedule",
+    "Interview summary without full transcript",
+    "MG6 schedule incomplete",
+    "MG5 case summary not served"
+  ],
+  "expectedSummaryRisk": "Thin bundle — provisional strategy only until disclosure complete"
+}

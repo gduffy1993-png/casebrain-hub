@@ -1,0 +1,80 @@
+{
+  "bundleId": "sc-00047",
+  "fictional": true,
+  "label": "R v Jamie Patel — generic_provisional corpus",
+  "purpose": "H2 golden pack corpus seed 71 (generic-provisional__corrected_charge_sheet+custody_pace_limited+duplicate_noisy_docs+identity_dispute)",
+  "defendant": "Jamie Patel",
+  "aliases": [
+    "Patel"
+  ],
+  "charge": "Witness intimidation — Criminal Justice and Public Order Act 1994 s.51",
+  "chargeKeywords": [
+    "witness",
+    "intimidation",
+    "criminal",
+    "justice",
+    "public",
+    "order"
+  ],
+  "court": null,
+  "hearingDate": null,
+  "stage": "Case management",
+  "documentTypesExpected": [
+    "charge_sheet",
+    "mg5",
+    "mg6"
+  ],
+  "documentTypesForbidden": [],
+  "evidenceSignalsExpected": [
+    "cover / index",
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "mg11 officer",
+    "mg11 witness",
+    "core witness statements",
+    "exhibit continuity",
+    "full disclosure schedule",
+    "custody / pace material limited on export"
+  ],
+  "missingMaterialExpected": [
+    "Core witness statements",
+    "Exhibit continuity",
+    "Full disclosure schedule",
+    "Custody / PACE material limited on export"
+  ],
+  "thinBundleExpected": true,
+  "expectedWorkflowProfile": "generic_provisional",
+  "expectedRouteFamily": null,
+  "prohibitedFamilies": [
+    "fraud_account_control",
+    "pwits_phone_attribution",
+    "robbery_identification"
+  ],
+  "expectedProvisionalStatus": true,
+  "humanReviewExpected": false,
+  "linkStatus": "runnable",
+  "notes": "Strategy corpus seed 71 — tags: identity_dispute, custody_pace_limited, duplicate_noisy_docs, corrected_charge_sheet, thin_bundle",
+  "truthKeyVersion": "h2-v1",
+  "offenceFamily": "generic_provisional",
+  "mainIssueExpected": "Disclosure completeness and source-material pressure",
+  "referredOnlyEvidenceExpected": [
+    "Core witness statements",
+    "Exhibit continuity",
+    "Full disclosure schedule",
+    "Custody / PACE material limited on export",
+    "MG5 narrative"
+  ],
+  "mustNotSayExpected": [
+    "Do not import fraud account control unless the papers support it.",
+    "Do not import pwits phone attribution unless the papers support it.",
+    "Do not import robbery identification unless the papers support it."
+  ],
+  "expectedChaseItems": [
+    "Core witness statements",
+    "Exhibit continuity",
+    "Full disclosure schedule",
+    "Custody / PACE material limited on export"
+  ],
+  "expectedSummaryRisk": "Thin bundle — provisional strategy only until disclosure complete"
+}

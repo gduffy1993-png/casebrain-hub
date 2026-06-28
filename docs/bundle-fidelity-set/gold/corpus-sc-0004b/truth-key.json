@@ -1,0 +1,78 @@
+{
+  "bundleId": "sc-0004b",
+  "fictional": true,
+  "label": "R v Ella Shaw — robbery_id corpus",
+  "purpose": "H2 golden pack corpus seed 75 (robbery-id__partial_cctv+thin_bundle+timing_contradiction)",
+  "defendant": "Ella Shaw",
+  "aliases": [
+    "Shaw"
+  ],
+  "charge": "Robbery, Theft Act 1968 s.8",
+  "chargeKeywords": [
+    "robbery",
+    "theft",
+    "1968"
+  ],
+  "court": null,
+  "hearingDate": null,
+  "stage": "First hearing",
+  "documentTypesExpected": [
+    "charge_sheet",
+    "mg5",
+    "mg6"
+  ],
+  "documentTypesForbidden": [],
+  "evidenceSignalsExpected": [
+    "cover / index",
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "mg11 officer",
+    "mg11 witness",
+    "full cctv master footage",
+    "cctv continuity / export log",
+    "id procedure material",
+    "999 / cad timing material"
+  ],
+  "missingMaterialExpected": [
+    "Full CCTV master footage",
+    "CCTV continuity / export log",
+    "ID procedure material",
+    "999 / CAD timing material",
+    "CCTV partial extract only"
+  ],
+  "thinBundleExpected": true,
+  "expectedWorkflowProfile": "robbery_identification",
+  "expectedRouteFamily": "robbery_identification",
+  "prohibitedFamilies": [
+    "fraud_account_control",
+    "pwits_phone_attribution"
+  ],
+  "expectedProvisionalStatus": true,
+  "humanReviewExpected": false,
+  "linkStatus": "runnable",
+  "notes": "Strategy corpus seed 75 — tags: thin_bundle, partial_cctv, timing_contradiction",
+  "truthKeyVersion": "h2-v1",
+  "offenceFamily": "robbery_id",
+  "mainIssueExpected": "Identification, CCTV/CAD timing, and complainant account",
+  "referredOnlyEvidenceExpected": [
+    "Full CCTV master footage",
+    "CCTV continuity / export log",
+    "ID procedure material",
+    "999 / CAD timing material",
+    "CCTV partial extract only",
+    "MG5 narrative"
+  ],
+  "mustNotSayExpected": [
+    "Do not import fraud account control unless the papers support it.",
+    "Do not import pwits phone attribution unless the papers support it."
+  ],
+  "expectedChaseItems": [
+    "Full CCTV master footage",
+    "CCTV continuity / export log",
+    "ID procedure material",
+    "999 / CAD timing material",
+    "CCTV partial extract only"
+  ],
+  "expectedSummaryRisk": "Thin bundle — provisional strategy only until disclosure complete"
+}

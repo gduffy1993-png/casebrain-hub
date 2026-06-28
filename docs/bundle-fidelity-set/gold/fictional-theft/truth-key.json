@@ -7,21 +7,50 @@
   "sourceRef": "docs/fictional-bundle-theft/FICTIONAL_THEFT_BUNDLE_COPY_PASTE.txt",
   "linkStatus": "runnable",
   "defendant": "Ashleigh Merritt",
-  "aliases": ["Merritt"],
+  "aliases": [
+    "Merritt"
+  ],
   "charge": "Theft, contrary to s.1 Theft Act 1968",
-  "chargeKeywords": ["theft", "theft act"],
+  "chargeKeywords": [
+    "theft",
+    "theft act"
+  ],
   "court": null,
   "hearingDate": "2024-05-14",
   "stage": null,
-  "documentTypesExpected": ["charge_sheet", "mg5"],
+  "documentTypesExpected": [
+    "charge_sheet",
+    "mg5"
+  ],
   "documentTypesForbidden": [],
   "evidenceSignalsExpected": [],
   "missingMaterialExpected": [],
   "thinBundleExpected": false,
   "expectedWorkflowProfile": "generic",
   "expectedRouteFamily": null,
-  "prohibitedFamilies": ["fraud_account_control", "pwits_phone_attribution"],
+  "prohibitedFamilies": [
+    "fraud_account_control",
+    "pwits_phone_attribution"
+  ],
   "expectedProvisionalStatus": false,
   "humanReviewExpected": false,
-  "notes": "Theft shape — must not map to fraud/PWITS/robbery."
+  "notes": "Theft shape — must not map to fraud/PWITS/robbery.",
+  "truthKeyVersion": "h2-v1",
+  "offenceFamily": "generic",
+  "mainIssueExpected": "Disclosure completeness and source-material pressure",
+  "mustNotSayExpected": [
+    "Do not import fraud account control unless the papers support it.",
+    "Do not import pwits phone attribution unless the papers support it."
+  ],
+  "expectedChaseItems": [
+    "Retail CCTV continuity"
+  ],
+  "expectedSummaryRisk": "Provisional pending served material and solicitor review",
+  "referredOnlyEvidenceExpected": [
+    "CCTV / continuity material if referred"
+  ],
+  "servedEvidenceExpected": [
+    "charge_sheet",
+    "mg5"
+  ]
 }

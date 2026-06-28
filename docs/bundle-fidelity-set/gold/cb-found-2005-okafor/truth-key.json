@@ -41,5 +41,25 @@
   "expectedProvisionalStatus": true,
   "humanReviewExpected": false,
   "linkStatus": "runnable",
-  "notes": "Bundle Foundation Pack v2 — fictional pilot shape."
+  "notes": "Bundle Foundation Pack v2 — fictional pilot shape.",
+  "truthKeyVersion": "h2-v1",
+  "offenceFamily": "generic_provisional",
+  "mainIssueExpected": "Disclosure completeness and source-material pressure",
+  "mustNotSayExpected": [
+    "Do not import fraud account control unless the papers support it.",
+    "Do not import robbery identification unless the papers support it."
+  ],
+  "expectedChaseItems": [
+    "lab analysis",
+    "search record"
+  ],
+  "expectedSummaryRisk": "Provisional pending served material and solicitor review",
+  "servedEvidenceExpected": [
+    "mg11",
+    "mg6"
+  ],
+  "referredOnlyEvidenceExpected": [
+    "lab analysis",
+    "search record"
+  ]
 }

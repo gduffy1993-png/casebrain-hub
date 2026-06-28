@@ -54,5 +54,31 @@
   "expectedProvisionalStatus": true,
   "humanReviewExpected": false,
   "linkStatus": "runnable",
-  "notes": "Strategy corpus seed 3 — tags: bwv_outstanding, partial_cctv, cad_summary_no_full_cad, multi_defendant"
+  "notes": "Strategy corpus seed 3 — tags: bwv_outstanding, partial_cctv, cad_summary_no_full_cad, multi_defendant",
+  "truthKeyVersion": "h2-v1",
+  "offenceFamily": "robbery_id",
+  "mainIssueExpected": "Identification, CCTV/CAD timing, and complainant account",
+  "referredOnlyEvidenceExpected": [
+    "Full CCTV master footage",
+    "CCTV continuity / export log",
+    "ID procedure material",
+    "999 / CAD timing material",
+    "Body worn video download outstanding",
+    "CCTV partial extract only",
+    "CAD summary without full CAD log",
+    "MG5 narrative"
+  ],
+  "mustNotSayExpected": [
+    "Do not import fraud account control unless the papers support it.",
+    "Do not import pwits phone attribution unless the papers support it."
+  ],
+  "expectedChaseItems": [
+    "Full CCTV master footage",
+    "CCTV continuity / export log",
+    "ID procedure material",
+    "999 / CAD timing material",
+    "Body worn video download outstanding",
+    "CCTV partial extract only"
+  ],
+  "expectedSummaryRisk": "Provisional pending served material and solicitor review"
 }

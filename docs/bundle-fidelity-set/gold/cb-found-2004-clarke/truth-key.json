@@ -43,5 +43,26 @@
   "expectedProvisionalStatus": true,
   "humanReviewExpected": false,
   "linkStatus": "runnable",
-  "notes": "Bundle Foundation Pack v2 — fictional pilot shape."
+  "notes": "Bundle Foundation Pack v2 — fictional pilot shape.",
+  "truthKeyVersion": "h2-v1",
+  "offenceFamily": "generic_motoring_provisional",
+  "mainIssueExpected": "Procedure, breath/device calibration, and service material",
+  "mustNotSayExpected": [
+    "Do not import fraud account control unless the papers support it.",
+    "Do not import pwits phone attribution unless the papers support it.",
+    "Do not import robbery identification unless the papers support it."
+  ],
+  "expectedChaseItems": [
+    "calibration",
+    "analyst material"
+  ],
+  "expectedSummaryRisk": "Provisional pending served material and solicitor review",
+  "servedEvidenceExpected": [
+    "mg11",
+    "mg6"
+  ],
+  "referredOnlyEvidenceExpected": [
+    "calibration",
+    "analyst material"
+  ]
 }

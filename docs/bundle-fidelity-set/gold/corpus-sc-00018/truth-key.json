@@ -49,5 +49,25 @@
   "expectedProvisionalStatus": true,
   "humanReviewExpected": false,
   "linkStatus": "runnable",
-  "notes": "Strategy corpus seed 24 — tags: thin_bundle, causation_dispute, identity_dispute, duplicate_noisy_docs"
+  "notes": "Strategy corpus seed 24 — tags: thin_bundle, causation_dispute, identity_dispute, duplicate_noisy_docs",
+  "truthKeyVersion": "h2-v1",
+  "offenceFamily": "motoring",
+  "mainIssueExpected": "Procedure, breath/device calibration, and service material",
+  "referredOnlyEvidenceExpected": [
+    "Dashcam / CCTV master",
+    "Full CAD log",
+    "Collision expert report",
+    "MG5 narrative"
+  ],
+  "mustNotSayExpected": [
+    "Do not import fraud account control unless the papers support it.",
+    "Do not import pwits phone attribution unless the papers support it.",
+    "Do not import violence domestic assault unless the papers support it."
+  ],
+  "expectedChaseItems": [
+    "Dashcam / CCTV master",
+    "Full CAD log",
+    "Collision expert report"
+  ],
+  "expectedSummaryRisk": "Thin bundle — provisional strategy only until disclosure complete"
 }

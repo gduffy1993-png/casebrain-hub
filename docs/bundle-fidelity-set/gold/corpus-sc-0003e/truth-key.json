@@ -1,0 +1,88 @@
+{
+  "bundleId": "sc-0003e",
+  "fictional": true,
+  "label": "R v Sam Okonkwo — pwits_phone corpus",
+  "purpose": "H2 golden pack corpus seed 62 (pwits__bwv_outstanding+custody_pace_limited+incomplete_mg6+interview_summary_no_transcript)",
+  "defendant": "Sam Okonkwo",
+  "aliases": [
+    "Okonkwo"
+  ],
+  "charge": "Possession of a controlled drug with intent to supply — Misuse of Drugs Act 1971 s.5(3)",
+  "chargeKeywords": [
+    "possession",
+    "controlled",
+    "drug",
+    "with",
+    "intent",
+    "supply"
+  ],
+  "court": null,
+  "hearingDate": null,
+  "stage": "Magistrates' Court committal",
+  "documentTypesExpected": [
+    "charge_sheet",
+    "mg5",
+    "mg6"
+  ],
+  "documentTypesForbidden": [],
+  "evidenceSignalsExpected": [
+    "cover / index",
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "mg11 officer",
+    "mg11 witness",
+    "full phone extraction",
+    "phone attribution / ownership material",
+    "search bwv export",
+    "drug lab continuity note"
+  ],
+  "missingMaterialExpected": [
+    "Full phone extraction",
+    "Phone attribution / ownership material",
+    "Search BWV export",
+    "Drug lab continuity note",
+    "Custody / PACE material limited on export",
+    "Interview summary without full transcript",
+    "MG6 schedule incomplete",
+    "Body worn video download outstanding"
+  ],
+  "thinBundleExpected": false,
+  "expectedWorkflowProfile": "pwits_phone_attribution",
+  "expectedRouteFamily": "pwits_phone_attribution",
+  "prohibitedFamilies": [
+    "fraud_account_control",
+    "robbery_identification"
+  ],
+  "expectedProvisionalStatus": true,
+  "humanReviewExpected": false,
+  "linkStatus": "runnable",
+  "notes": "Strategy corpus seed 62 — tags: custody_pace_limited, interview_summary_no_transcript, incomplete_mg6, bwv_outstanding",
+  "truthKeyVersion": "h2-v1",
+  "offenceFamily": "pwits_phone",
+  "mainIssueExpected": "Phone attribution, extraction, and possession linkage",
+  "referredOnlyEvidenceExpected": [
+    "Full phone extraction",
+    "Phone attribution / ownership material",
+    "Search BWV export",
+    "Drug lab continuity note",
+    "Custody / PACE material limited on export",
+    "Interview summary without full transcript",
+    "MG6 schedule incomplete",
+    "Body worn video download outstanding",
+    "MG5 narrative"
+  ],
+  "mustNotSayExpected": [
+    "Do not import fraud account control unless the papers support it.",
+    "Do not import robbery identification unless the papers support it."
+  ],
+  "expectedChaseItems": [
+    "Full phone extraction",
+    "Phone attribution / ownership material",
+    "Search BWV export",
+    "Drug lab continuity note",
+    "Custody / PACE material limited on export",
+    "Interview summary without full transcript"
+  ],
+  "expectedSummaryRisk": "Provisional pending served material and solicitor review"
+}

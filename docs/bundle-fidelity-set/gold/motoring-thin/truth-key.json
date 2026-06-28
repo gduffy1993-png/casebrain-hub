@@ -4,15 +4,30 @@
   "label": "R v Ella Shaw — motoring thin",
   "purpose": "Motoring provisional extraction on thin initial disclosure",
   "defendant": "Ella Shaw",
-  "aliases": ["Shaw"],
+  "aliases": [
+    "Shaw"
+  ],
   "charge": "Dangerous driving contrary to section 2 Road Traffic Act 1988",
-  "chargeKeywords": ["dangerous driving", "road traffic act", "section 2"],
+  "chargeKeywords": [
+    "dangerous driving",
+    "road traffic act",
+    "section 2"
+  ],
   "court": "Northvale Magistrates' Court",
   "hearingDate": "2024-09-18",
   "stage": "Magistrates — first hearing",
-  "documentTypesExpected": ["charge_sheet", "mg5", "index"],
+  "documentTypesExpected": [
+    "charge_sheet",
+    "mg5",
+    "index"
+  ],
   "documentTypesForbidden": [],
-  "evidenceSignalsExpected": ["anpr", "dashcam", "cad", "999"],
+  "evidenceSignalsExpected": [
+    "anpr",
+    "dashcam",
+    "cad",
+    "999"
+  ],
   "missingMaterialExpected": [
     "dashcam",
     "cctv export",
@@ -31,5 +46,29 @@
   ],
   "expectedProvisionalStatus": true,
   "humanReviewExpected": false,
-  "notes": "Motoring must not map to violence despite collision wording."
+  "notes": "Motoring must not map to violence despite collision wording.",
+  "truthKeyVersion": "h2-v1",
+  "offenceFamily": "generic_motoring_provisional",
+  "mainIssueExpected": "Procedure, breath/device calibration, and service material",
+  "mustNotSayExpected": [
+    "Do not import fraud account control unless the papers support it.",
+    "Do not import pwits phone attribution unless the papers support it.",
+    "Do not import robbery identification unless the papers support it.",
+    "Do not import violence domestic assault unless the papers support it."
+  ],
+  "expectedChaseItems": [
+    "dashcam",
+    "cctv export",
+    "collision expert",
+    "full cad",
+    "999 log"
+  ],
+  "expectedSummaryRisk": "Thin bundle — provisional strategy only until disclosure complete",
+  "servedEvidenceExpected": [],
+  "referredOnlyEvidenceExpected": [
+    "dashcam",
+    "cctv export",
+    "collision expert",
+    "full cad"
+  ]
 }

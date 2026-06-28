@@ -1,0 +1,81 @@
+{
+  "bundleId": "sc-00037",
+  "fictional": true,
+  "label": "R v Morgan Drew — fraud_account_control corpus",
+  "purpose": "H2 golden pack corpus seed 55 (fraud__custody_pace_limited+incomplete_mg6+multi_count)",
+  "defendant": "Morgan Drew",
+  "aliases": [
+    "Drew"
+  ],
+  "charge": "Fraud by abuse of position, Fraud Act 2006 s.4",
+  "chargeKeywords": [
+    "fraud",
+    "abuse",
+    "position",
+    "fraud",
+    "2006"
+  ],
+  "court": null,
+  "hearingDate": null,
+  "stage": "Plea and trial preparation",
+  "documentTypesExpected": [
+    "charge_sheet",
+    "mg5",
+    "mg6"
+  ],
+  "documentTypesForbidden": [],
+  "evidenceSignalsExpected": [
+    "cover / index",
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "mg11 officer",
+    "mg11 witness",
+    "additional count sheet",
+    "full bank export / source statements",
+    "device / login audit material",
+    "mailbox export",
+    "mg6 schedule incomplete"
+  ],
+  "missingMaterialExpected": [
+    "Full bank export / source statements",
+    "Device / login audit material",
+    "Mailbox export",
+    "MG6 schedule incomplete",
+    "Custody / PACE material limited on export"
+  ],
+  "thinBundleExpected": false,
+  "expectedWorkflowProfile": "fraud_account_control",
+  "expectedRouteFamily": "fraud_account_control",
+  "prohibitedFamilies": [
+    "pwits_phone_attribution",
+    "robbery_identification"
+  ],
+  "expectedProvisionalStatus": true,
+  "humanReviewExpected": false,
+  "linkStatus": "runnable",
+  "notes": "Strategy corpus seed 55 — tags: incomplete_mg6, custody_pace_limited, multi_count",
+  "truthKeyVersion": "h2-v1",
+  "offenceFamily": "fraud_account_control",
+  "mainIssueExpected": "Account access, dishonesty, and source bank/device material",
+  "referredOnlyEvidenceExpected": [
+    "Full bank export / source statements",
+    "Device / login audit material",
+    "Mailbox export",
+    "MG6 schedule incomplete",
+    "Custody / PACE material limited on export",
+    "MG5 narrative"
+  ],
+  "mustNotSayExpected": [
+    "Do not import pwits phone attribution unless the papers support it.",
+    "Do not import robbery identification unless the papers support it."
+  ],
+  "expectedChaseItems": [
+    "Full bank export / source statements",
+    "Device / login audit material",
+    "Mailbox export",
+    "MG6 schedule incomplete",
+    "Custody / PACE material limited on export"
+  ],
+  "expectedSummaryRisk": "Provisional pending served material and solicitor review"
+}

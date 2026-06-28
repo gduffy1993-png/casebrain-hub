@@ -47,5 +47,26 @@
   "expectedProvisionalStatus": true,
   "humanReviewExpected": false,
   "linkStatus": "runnable",
-  "notes": "CB-FRESH adversarial anchor — family-level chase collapse."
+  "notes": "CB-FRESH adversarial anchor — family-level chase collapse.",
+  "truthKeyVersion": "h2-v1",
+  "offenceFamily": "assault_emergency_worker",
+  "mainIssueExpected": "BWV coverage, custody/PACE safeguards, and complainant account",
+  "mustNotSayExpected": [
+    "Do not import drugs continuity unless the papers support it.",
+    "Do not import ABE unless the papers support it."
+  ],
+  "expectedChaseItems": [
+    "Body-worn video (BWV)",
+    "Interview recording / transcript",
+    "Complainant MG11"
+  ],
+  "expectedSummaryRisk": "Thin bundle — provisional strategy only until disclosure complete",
+  "referredOnlyEvidenceExpected": [
+    "body-worn video (BWV)",
+    "custody record / PACE material"
+  ],
+  "servedEvidenceExpected": [
+    "mg11",
+    "mg6"
+  ]
 }

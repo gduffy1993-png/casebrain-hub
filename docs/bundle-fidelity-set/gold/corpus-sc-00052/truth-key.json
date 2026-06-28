@@ -1,0 +1,85 @@
+{
+  "bundleId": "sc-00052",
+  "fictional": true,
+  "label": "R v Casey Quinn — violence_gbh_s18 corpus",
+  "purpose": "H2 golden pack corpus seed 82 (violence__999_summary_no_audio+lab_continuity_gap+partial_cctv+thin_bundle)",
+  "defendant": "Casey Quinn",
+  "aliases": [
+    "Quinn"
+  ],
+  "charge": "Unlawful wounding / GBH, s.20 OAPA 1861",
+  "chargeKeywords": [
+    "unlawful",
+    "wounding",
+    "oapa",
+    "1861"
+  ],
+  "court": null,
+  "hearingDate": null,
+  "stage": "Plea and trial preparation",
+  "documentTypesExpected": [
+    "charge_sheet",
+    "mg5",
+    "mg6"
+  ],
+  "documentTypesForbidden": [],
+  "evidenceSignalsExpected": [
+    "cover / index",
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "mg11 officer",
+    "mg11 witness",
+    "additional count sheet",
+    "cctv export and continuity",
+    "full 999/cad",
+    "body worn video",
+    "medical / expert report"
+  ],
+  "missingMaterialExpected": [
+    "CCTV export and continuity",
+    "Full 999/CAD",
+    "Body worn video",
+    "Medical / expert report",
+    "999 summary without audio recording",
+    "CCTV partial extract only",
+    "Lab continuity / chain note outstanding"
+  ],
+  "thinBundleExpected": true,
+  "expectedWorkflowProfile": "violence_domestic_assault",
+  "expectedRouteFamily": "violence_domestic_assault",
+  "prohibitedFamilies": [
+    "fraud_account_control",
+    "pwits_phone_attribution"
+  ],
+  "expectedProvisionalStatus": true,
+  "humanReviewExpected": false,
+  "linkStatus": "runnable",
+  "notes": "Strategy corpus seed 82 — tags: thin_bundle, 999_summary_no_audio, partial_cctv, lab_continuity_gap, multi_count",
+  "truthKeyVersion": "h2-v1",
+  "offenceFamily": "violence_gbh_s18",
+  "mainIssueExpected": "Complainant account, injury/causation, and participation",
+  "referredOnlyEvidenceExpected": [
+    "CCTV export and continuity",
+    "Full 999/CAD",
+    "Body worn video",
+    "Medical / expert report",
+    "999 summary without audio recording",
+    "CCTV partial extract only",
+    "Lab continuity / chain note outstanding",
+    "MG5 narrative"
+  ],
+  "mustNotSayExpected": [
+    "Do not import fraud account control unless the papers support it.",
+    "Do not import pwits phone attribution unless the papers support it."
+  ],
+  "expectedChaseItems": [
+    "CCTV export and continuity",
+    "Full 999/CAD",
+    "Body worn video",
+    "Medical / expert report",
+    "999 summary without audio recording",
+    "CCTV partial extract only"
+  ],
+  "expectedSummaryRisk": "Thin bundle — provisional strategy only until disclosure complete"
+}

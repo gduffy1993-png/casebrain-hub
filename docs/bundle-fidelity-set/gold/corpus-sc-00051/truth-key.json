@@ -1,0 +1,82 @@
+{
+  "bundleId": "sc-00051",
+  "fictional": true,
+  "label": "R v Taylor Brooks — robbery_id corpus",
+  "purpose": "H2 golden pack corpus seed 81 (robbery-id__bwv_outstanding+cctv_stills_no_master+identity_dispute+timing_contradiction)",
+  "defendant": "Taylor Brooks",
+  "aliases": [
+    "Brooks"
+  ],
+  "charge": "Robbery, Theft Act 1968 s.8",
+  "chargeKeywords": [
+    "robbery",
+    "theft",
+    "1968"
+  ],
+  "court": null,
+  "hearingDate": null,
+  "stage": "Plea and trial preparation",
+  "documentTypesExpected": [
+    "charge_sheet",
+    "mg5",
+    "mg6"
+  ],
+  "documentTypesForbidden": [],
+  "evidenceSignalsExpected": [
+    "cover / index",
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "mg11 officer",
+    "mg11 witness",
+    "co-defendant mg5",
+    "full cctv master footage",
+    "cctv continuity / export log",
+    "id procedure material",
+    "999 / cad timing material"
+  ],
+  "missingMaterialExpected": [
+    "Full CCTV master footage",
+    "CCTV continuity / export log",
+    "ID procedure material",
+    "999 / CAD timing material",
+    "CCTV stills without master export log",
+    "Body worn video download outstanding"
+  ],
+  "thinBundleExpected": false,
+  "expectedWorkflowProfile": "robbery_identification",
+  "expectedRouteFamily": "robbery_identification",
+  "prohibitedFamilies": [
+    "fraud_account_control",
+    "pwits_phone_attribution"
+  ],
+  "expectedProvisionalStatus": true,
+  "humanReviewExpected": false,
+  "linkStatus": "runnable",
+  "notes": "Strategy corpus seed 81 — tags: identity_dispute, cctv_stills_no_master, timing_contradiction, bwv_outstanding, multi_defendant",
+  "truthKeyVersion": "h2-v1",
+  "offenceFamily": "robbery_id",
+  "mainIssueExpected": "Identification, CCTV/CAD timing, and complainant account",
+  "referredOnlyEvidenceExpected": [
+    "Full CCTV master footage",
+    "CCTV continuity / export log",
+    "ID procedure material",
+    "999 / CAD timing material",
+    "CCTV stills without master export log",
+    "Body worn video download outstanding",
+    "MG5 narrative"
+  ],
+  "mustNotSayExpected": [
+    "Do not import fraud account control unless the papers support it.",
+    "Do not import pwits phone attribution unless the papers support it."
+  ],
+  "expectedChaseItems": [
+    "Full CCTV master footage",
+    "CCTV continuity / export log",
+    "ID procedure material",
+    "999 / CAD timing material",
+    "CCTV stills without master export log",
+    "Body worn video download outstanding"
+  ],
+  "expectedSummaryRisk": "Provisional pending served material and solicitor review"
+}

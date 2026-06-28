@@ -53,5 +53,26 @@
   "expectedProvisionalStatus": true,
   "humanReviewExpected": false,
   "linkStatus": "runnable",
-  "notes": "Strategy corpus seed 25 — tags: timing_contradiction, duplicate_noisy_docs, incomplete_mg6, multi_count"
+  "notes": "Strategy corpus seed 25 — tags: timing_contradiction, duplicate_noisy_docs, incomplete_mg6, multi_count",
+  "truthKeyVersion": "h2-v1",
+  "offenceFamily": "fraud_account_control",
+  "mainIssueExpected": "Account access, dishonesty, and source bank/device material",
+  "referredOnlyEvidenceExpected": [
+    "Full bank export / source statements",
+    "Device / login audit material",
+    "Mailbox export",
+    "MG6 schedule incomplete",
+    "MG5 narrative"
+  ],
+  "mustNotSayExpected": [
+    "Do not import pwits phone attribution unless the papers support it.",
+    "Do not import robbery identification unless the papers support it."
+  ],
+  "expectedChaseItems": [
+    "Full bank export / source statements",
+    "Device / login audit material",
+    "Mailbox export",
+    "MG6 schedule incomplete"
+  ],
+  "expectedSummaryRisk": "Provisional pending served material and solicitor review"
 }

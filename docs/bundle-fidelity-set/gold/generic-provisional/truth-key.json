@@ -4,15 +4,32 @@
   "label": "R v Sam Okonkwo — perverting the course of justice",
   "purpose": "Generic provisional route; human review; no wrong-family auto mapping",
   "defendant": "Sam Okonkwo",
-  "aliases": ["Okonkwo"],
+  "aliases": [
+    "Okonkwo"
+  ],
   "charge": "Doing an act tending and intended to pervert the course of justice",
-  "chargeKeywords": ["pervert", "course of justice", "common law"],
+  "chargeKeywords": [
+    "pervert",
+    "course of justice",
+    "common law"
+  ],
   "court": "Eastmere Crown Court",
   "hearingDate": "2024-10-22",
   "stage": "Crown Court — PTPH",
-  "documentTypesExpected": ["charge_sheet", "mg5", "mg11", "mg6", "index"],
+  "documentTypesExpected": [
+    "charge_sheet",
+    "mg5",
+    "mg11",
+    "mg6",
+    "index"
+  ],
   "documentTypesForbidden": [],
-  "evidenceSignalsExpected": ["mg11", "mg6", "phone", "message"],
+  "evidenceSignalsExpected": [
+    "mg11",
+    "mg6",
+    "phone",
+    "message"
+  ],
   "missingMaterialExpected": [
     "phone download",
     "message export",
@@ -30,5 +47,31 @@
   ],
   "expectedProvisionalStatus": true,
   "humanReviewExpected": true,
-  "notes": "Background mentions fraud enquiry — must not route as fraud_account_control on charge alone."
+  "notes": "Background mentions fraud enquiry — must not route as fraud_account_control on charge alone.",
+  "truthKeyVersion": "h2-v1",
+  "offenceFamily": "generic_provisional",
+  "mainIssueExpected": "Disclosure completeness and source-material pressure",
+  "mustNotSayExpected": [
+    "Do not import fraud account control unless the papers support it.",
+    "Do not import pwits phone attribution unless the papers support it.",
+    "Do not import robbery identification unless the papers support it.",
+    "Do not import violence domestic assault unless the papers support it."
+  ],
+  "expectedChaseItems": [
+    "phone download",
+    "message export",
+    "defendant interview",
+    "unused material"
+  ],
+  "expectedSummaryRisk": "Thin bundle — provisional strategy only until disclosure complete",
+  "servedEvidenceExpected": [
+    "mg11",
+    "mg6"
+  ],
+  "referredOnlyEvidenceExpected": [
+    "phone download",
+    "message export",
+    "defendant interview",
+    "unused material"
+  ]
 }

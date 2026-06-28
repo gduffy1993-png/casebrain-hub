@@ -1,6 +1,8 @@
 # Criminal pilot — master plan (merged)
 
-**Status:** Layers 1–3 shipped. **Modules 1–7 LIVE** on prod. **2,200 factory PASS**. **Cold-start S1 PASS**. **CB-FRESH adversarial PASS WITH MINOR WARNINGS** (Codex Layer 7, 2026-06-28). **Next:** first design-partner firm.
+**Status:** Layers 1–3 shipped. **Modules 1–7 LIVE** on prod. **2,200 factory PASS**. **Cold-start S1 PASS**. **CB-FRESH Layer 7 PASS WITH MINOR WARNINGS** (2026-06-28). **H1 + H2 P1/P2/P3 display polish done.** **H2 Verification gate PASS (102 runnable, 0 fail, WARNING polish-only).** **Next: H3 Trust layer — no design-partner trial yet.**
+
+**Decision (Ged, 2026-06-28):** Finish the proof layer before any firm sees the product. Protect first impression; do not waste firm time on avoidable polish.
 
 **Snapshot:** `docs/CURRENT_STATUS.md` (updated each milestone)
 
@@ -174,9 +176,54 @@ Report: `artifacts/casebrain-qa/contradiction-tier-gate/report.json`
 
 **Not blocking Module 5.** Start B1 when first firm uploads violence-heavy caseload beyond Paige.
 
-## Layer 7 — Commercial pilot (3–5 firms)
+## Layer 7 — Confidence stack (H2 / H3 / H4)
 
-**Goal:** Prove product, not architecture. Architecture is proven in gates; firms prove UX, trust, and daily use.
+**Goal:** Confidence by layers — not “solicitor-perfect on every line by automation alone.”
+
+**Limit (honest):** Level 1 2,200 scan catches red flags and repeated patterns. It cannot certify every case line-by-line. Proper proof = **2,200 auto-scan + golden truth-key pack + worst50 human review + solicitor feedback loop** (after controlled pilot).
+
+**Frozen:** Brain 1, battleboard core, chase core, Guardian, offence routing — presentation, trust UI, and verification only.
+
+### H2 — Golden + review queue ✅ (gate PASS — WARNING polish-only)
+
+| # | Work | Target | Status |
+|---|------|--------|--------|
+| 1 | Golden pack growth | 50 → 75 → 100 | ✅ 102 runnable |
+| 2 | Truth keys on golden cases | H2 v2 schema + backfill | ✅ 99% avg coverage |
+| 3 | Review queue | worst50 classify dangerous / polish / gate noise | ✅ 0 dangerous in worst50 |
+| 4 | Confidence report | ready / warning / blocked | ✅ **WARNING** (0 fail, polish-only) |
+
+### H3 — Trust layer
+
+| # | Work |
+|---|------|
+| 1 | Matter confidence header — safe / provisional / needs review; main issue; evidence coverage; next action; do-not-rely-yet reason |
+| 2 | Source-state badges — served / referred only / missing / provisional / needs review |
+| 3 | Copy-safe controls — Copy CPS chase / court line / client-safe summary (no court wording in CPS chase) |
+| 4 | Feedback capture — flag wrong / unclear / unsafe → Bad Output Memory tests |
+
+### H4 — Real-world confidence
+
+| # | Work |
+|---|------|
+| 1 | Fresh-account smoke every deploy — new user, upload, Today/Chase/Summary, no dangerous output |
+| 2 | Account/permission smoke — signup, firm, matter, upload, delete/archive, invited user if supported |
+| 3 | Export quality — copied/downloaded Chase and Summary stay clean outside app |
+| 4 | Red-team bad bundle pack — scanned PDFs, missing MG6, weird indexes, mixed offences, wrong names, referred-only BWV, duplicates, thin evidence |
+| 5 | **100-case confidence run** before wider pilot — Level 1 2200 green, golden 100 no dangerous fails, worst50 no repeated dangerous clusters, fresh-user smoke green |
+
+### H4 gate → then commercial pilot
+
+Only after H2 + H3 + H4 gates:
+
+- One controlled design-partner firm  
+- Supervised use  
+- 10–20 matters  
+- Weekly structured feedback (Today / Chase / Summary / safety)
+
+## Layer 8 — Commercial pilot (3–5 firms)
+
+**Goal:** Prove daily use and UX trust in real firms — after confidence stack.
 
 ### Entry bar (start inviting firms when)
 
@@ -186,6 +233,12 @@ Report: `artifacts/casebrain-qa/contradiction-tier-gate/report.json`
 - [x] Layer 4 cold-start on S1 PASS  
 - [x] CB-FRESH-001/002 adversarial audit PASS (attribution + BWV shapes)  
 - [x] Paywall/trial clarity spot-check  
+- [x] **H2 Verification** — golden 100, truth-key coverage report, worst50 discipline  
+- [ ] **H3 Trust layer** — confidence header, source badges, copy-safe, feedback memory
+- [ ] **H3 Trust layer** — confidence header, badges, copy-safe, feedback capture  
+- [ ] **H4 Real-world confidence** — deploy smoke, account smoke, export check, red-team pack, 100-case run  
+
+**No design-partner trial until Layer 8 entry bar is met.**
 
 ### Per firm
 
@@ -212,8 +265,13 @@ Report: `artifacts/casebrain-qa/contradiction-tier-gate/report.json`
 | Modules 1–7 live + gated | **7/7** |
 | 2,200-case eval | **PASS** (2200/2200) |
 | Cold-start prod (S1) | **PASS** |
-| CB-FRESH adversarial audit | **PASS WITH MINOR WARNINGS** (design-partner ready) |
+| CB-FRESH adversarial audit | **PASS WITH MINOR WARNINGS** (safe; proof layer incomplete) |
+| H2 Verification (golden + truth keys + worst50) | ✅ **PASS** (WARNING polish-only) |
+| H3 Trust layer | ⏳ **NEXT** |
+| H3 Trust layer | ⏳ |
+| H4 Real-world confidence (100-case run) | ⏳ |
 | 3+ offence tranches (6B) from real demand | ⏳ |
+| Design-partner firm (1) | ⏳ After H2–H4 |
 | 3–5 firms completed pilot | ⏳ |
 | Layer 4 UX/reliability must-haves | **Done** (paywall copy ✅) |
 

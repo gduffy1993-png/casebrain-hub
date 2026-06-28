@@ -55,5 +55,30 @@
   "expectedProvisionalStatus": true,
   "humanReviewExpected": true,
   "linkStatus": "runnable",
-  "notes": "Strategy corpus seed 8 — tags: incomplete_mg6, phone_device_attribution_dispute"
+  "notes": "Strategy corpus seed 8 — tags: incomplete_mg6, phone_device_attribution_dispute",
+  "truthKeyVersion": "h2-v1",
+  "offenceFamily": "pwits_phone",
+  "mainIssueExpected": "Phone attribution, extraction, and possession linkage",
+  "referredOnlyEvidenceExpected": [
+    "Full phone extraction",
+    "Phone attribution / ownership material",
+    "Search BWV export",
+    "Drug lab continuity note",
+    "MG6 schedule incomplete",
+    "Phone/device attribution material outstanding",
+    "MG5 narrative"
+  ],
+  "mustNotSayExpected": [
+    "Do not import fraud account control unless the papers support it.",
+    "Do not import robbery identification unless the papers support it."
+  ],
+  "expectedChaseItems": [
+    "Full phone extraction",
+    "Phone attribution / ownership material",
+    "Search BWV export",
+    "Drug lab continuity note",
+    "MG6 schedule incomplete",
+    "Phone/device attribution material outstanding"
+  ],
+  "expectedSummaryRisk": "Provisional pending served material and solicitor review"
 }

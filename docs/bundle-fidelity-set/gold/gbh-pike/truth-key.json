@@ -7,15 +7,34 @@
   "sourceRef": "docs/fictional-bundle-gbh/FICTIONAL_GBH_BUNDLE_COPY_PASTE.txt",
   "linkStatus": "runnable",
   "defendant": "Jordan Pike",
-  "aliases": ["Pike"],
+  "aliases": [
+    "Pike"
+  ],
   "charge": "Section 20 OAPA 1861 — Grievous Bodily Harm",
-  "chargeKeywords": ["section 20", "gbh", "oapa"],
+  "chargeKeywords": [
+    "section 20",
+    "gbh",
+    "oapa"
+  ],
   "court": null,
   "hearingDate": null,
   "stage": "Crown Court",
-  "documentTypesExpected": ["charge_sheet", "mg5", "mg6", "mg11", "custody", "index"],
+  "documentTypesExpected": [
+    "charge_sheet",
+    "mg5",
+    "mg6",
+    "mg11",
+    "custody",
+    "index"
+  ],
   "documentTypesForbidden": [],
-  "evidenceSignalsExpected": ["mg11", "mg5", "999", "cad", "cctv"],
+  "evidenceSignalsExpected": [
+    "mg11",
+    "mg5",
+    "999",
+    "cad",
+    "cctv"
+  ],
   "missingMaterialExpected": [
     "cctv continuity",
     "full cctv export",
@@ -27,8 +46,37 @@
   "thinBundleExpected": false,
   "expectedWorkflowProfile": "violence_domestic_assault",
   "expectedRouteFamily": "violence_domestic_assault",
-  "prohibitedFamilies": ["fraud_account_control", "pwits_phone_attribution"],
+  "prohibitedFamilies": [
+    "fraud_account_control",
+    "pwits_phone_attribution"
+  ],
   "expectedProvisionalStatus": false,
   "humanReviewExpected": false,
-  "notes": "Charge date 14 March vs MG5 15 March tension is intentional. Metadata block at top of copy-paste file."
+  "notes": "Charge date 14 March vs MG5 15 March tension is intentional. Metadata block at top of copy-paste file.",
+  "truthKeyVersion": "h2-v1",
+  "offenceFamily": "violence_domestic_assault",
+  "mainIssueExpected": "Complainant account, injury/causation, and participation",
+  "mustNotSayExpected": [
+    "Do not import fraud account control unless the papers support it.",
+    "Do not import pwits phone attribution unless the papers support it."
+  ],
+  "expectedChaseItems": [
+    "cctv continuity",
+    "full cctv export",
+    "medical records",
+    "999 full",
+    "bwv",
+    "forensic report"
+  ],
+  "expectedSummaryRisk": "Provisional pending served material and solicitor review",
+  "servedEvidenceExpected": [
+    "mg11",
+    "mg5"
+  ],
+  "referredOnlyEvidenceExpected": [
+    "cctv continuity",
+    "full cctv export",
+    "medical records",
+    "999 full"
+  ]
 }

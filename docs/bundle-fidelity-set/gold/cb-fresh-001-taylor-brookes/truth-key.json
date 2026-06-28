@@ -47,5 +47,28 @@
   "expectedProvisionalStatus": true,
   "humanReviewExpected": false,
   "linkStatus": "runnable",
-  "notes": "CB-FRESH adversarial anchor — prod smoke passed post-H1."
+  "notes": "CB-FRESH adversarial anchor — prod smoke passed post-H1.",
+  "truthKeyVersion": "h2-v1",
+  "offenceFamily": "harassment_digital",
+  "mainIssueExpected": "Relationship context, attribution, and message/account source material",
+  "mustNotSayExpected": [
+    "Do not import BWV unless the papers support it.",
+    "Do not import custody safeguards unless the papers support it.",
+    "Do not import drugs continuity unless the papers support it."
+  ],
+  "expectedChaseItems": [
+    "Phone extraction source material",
+    "Message export / screenshot pack",
+    "Complainant MG11",
+    "Subscriber / account data"
+  ],
+  "expectedSummaryRisk": "Thin bundle — provisional strategy only until disclosure complete",
+  "referredOnlyEvidenceExpected": [
+    "phone extraction",
+    "message export",
+    "complainant MG11"
+  ],
+  "servedEvidenceExpected": [
+    "mg6"
+  ]
 }

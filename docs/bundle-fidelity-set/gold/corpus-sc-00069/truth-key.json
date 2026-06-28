@@ -1,0 +1,81 @@
+{
+  "bundleId": "sc-00069",
+  "fictional": true,
+  "label": "R v Taylor Brooks — robbery_id corpus",
+  "purpose": "H2 golden pack corpus seed 105 (robbery-id__cctv_stills_no_master+thin_bundle)",
+  "defendant": "Taylor Brooks",
+  "aliases": [
+    "Brooks"
+  ],
+  "charge": "Robbery — s.8 Theft Act 1968 (alternative count: theft from person)",
+  "chargeKeywords": [
+    "robbery",
+    "theft",
+    "1968",
+    "alternative",
+    "count",
+    "theft"
+  ],
+  "court": null,
+  "hearingDate": null,
+  "stage": "Plea and trial preparation",
+  "documentTypesExpected": [
+    "charge_sheet",
+    "mg5",
+    "mg6"
+  ],
+  "documentTypesForbidden": [],
+  "evidenceSignalsExpected": [
+    "cover / index",
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "mg11 officer",
+    "mg11 witness",
+    "full cctv master footage",
+    "cctv continuity / export log",
+    "id procedure material",
+    "999 / cad timing material"
+  ],
+  "missingMaterialExpected": [
+    "Full CCTV master footage",
+    "CCTV continuity / export log",
+    "ID procedure material",
+    "999 / CAD timing material",
+    "CCTV stills without master export log"
+  ],
+  "thinBundleExpected": true,
+  "expectedWorkflowProfile": "robbery_identification",
+  "expectedRouteFamily": "robbery_identification",
+  "prohibitedFamilies": [
+    "fraud_account_control",
+    "pwits_phone_attribution"
+  ],
+  "expectedProvisionalStatus": true,
+  "humanReviewExpected": false,
+  "linkStatus": "runnable",
+  "notes": "Strategy corpus seed 105 — tags: cctv_stills_no_master, thin_bundle",
+  "truthKeyVersion": "h2-v1",
+  "offenceFamily": "robbery_id",
+  "mainIssueExpected": "Identification, CCTV/CAD timing, and complainant account",
+  "referredOnlyEvidenceExpected": [
+    "Full CCTV master footage",
+    "CCTV continuity / export log",
+    "ID procedure material",
+    "999 / CAD timing material",
+    "CCTV stills without master export log",
+    "MG5 narrative"
+  ],
+  "mustNotSayExpected": [
+    "Do not import fraud account control unless the papers support it.",
+    "Do not import pwits phone attribution unless the papers support it."
+  ],
+  "expectedChaseItems": [
+    "Full CCTV master footage",
+    "CCTV continuity / export log",
+    "ID procedure material",
+    "999 / CAD timing material",
+    "CCTV stills without master export log"
+  ],
+  "expectedSummaryRisk": "Thin bundle — provisional strategy only until disclosure complete"
+}
