@@ -6,6 +6,7 @@ import { ChevronDown, ChevronUp, Copy, ExternalLink, Loader2 } from "lucide-reac
 import { CaseSummaryPanel } from "@/components/cases/CaseSummaryPanel";
 import { Button } from "@/components/ui/button";
 import { DontSaySafetyBox } from "@/components/criminal/trust/DontSaySafetyBox";
+import { TrustFeedbackPanel } from "@/components/criminal/trust/TrustFeedbackPanel";
 import {
   MatterConfidenceHeader,
   TrustSectionChrome,
@@ -221,6 +222,16 @@ export function PilotSummaryView({
           className="border-slate-700/70 bg-slate-900/40"
         />
       ) : null}
+
+      <TrustFeedbackPanel
+        caseId={caseId}
+        tab="summary"
+        defaultContext={{
+          contextLabel: "Matter brief",
+          sourceState: "provisional",
+          sendability: matterConfidence?.summarySendability ?? "provisional_check_source",
+        }}
+      />
     </div>
   );
 }

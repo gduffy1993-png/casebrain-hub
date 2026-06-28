@@ -27,6 +27,7 @@ import {
 } from "./buildDisclosureChaseBrief";
 import { CaseWorkflowShell } from "@/components/criminal/workflow/CaseWorkflowShell";
 import { SourceStateBadge } from "@/components/criminal/trust/SourceStateBadge";
+import { TrustFeedbackPanel } from "@/components/criminal/trust/TrustFeedbackPanel";
 import { buildCopySafeResult, inferChaseItemSourceState } from "@/lib/criminal/trust/copy-safe";
 import { SENDABILITY_DISPLAY } from "@/lib/criminal/matter-confidence/matter-confidence-types";
 import type { ExtractedBundleCaseMetadata } from "@/lib/criminal/extract-bundle-case-metadata";
@@ -709,6 +710,28 @@ export function DisclosureChase({
 
   const selectedItem = brief.items.find((i) => i.id === selectedId) ?? filteredItems[0] ?? null;
 
+  const chaseFeedbackContext = useMemo(() => {
+    if (!selectedItem) {
+      return {
+        contextLabel: "Disclosure chase",
+        sendability: "provisional_check_source" as const,
+        sourceState: "missing" as const,
+      };
+    }
+    const sourceState = inferChaseItemSourceState(selectedItem);
+    const chaseCopy = buildCopySafeResult({
+      text: selectedItem.draftChaseWording ?? selectedItem.label,
+      kind: "cps_chase",
+      sourceState,
+    });
+    return {
+      contextLabel: selectedItem.label,
+      lineSnippet: selectedItem.whyItMatters ?? selectedItem.label,
+      sourceState,
+      sendability: chaseCopy.sendability,
+    };
+  }, [selectedItem]);
+
   useEffect(() => {
     if (filteredItems.length && !filteredItems.some((i) => i.id === selectedId)) {
       setSelectedId(filteredItems[0]!.id);
@@ -908,6 +931,14 @@ export function DisclosureChase({
                 ? "Provisional · appears outstanding on file · solicitor review"
                 : "Provisional · appears outstanding on file · solicitor review · Mark chased/received stored locally only"}
             </p>
+
+            {pilotEmbed ? (
+              <TrustFeedbackPanel
+                caseId={caseId}
+                tab="chase"
+                defaultContext={chaseFeedbackContext}
+              />
+            ) : null}
           </>
         )}
     </>

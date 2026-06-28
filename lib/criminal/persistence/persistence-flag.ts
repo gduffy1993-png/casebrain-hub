@@ -6,6 +6,7 @@ import { resolveCriminalWorkflowFlag } from "@/lib/criminal/workflow/criminal-wo
 
 export const PERSISTENCE_STORAGE_KEY = "casebrain:persistence";
 export const REASONING_FEEDBACK_PERSISTENCE_STORAGE_KEY = "casebrain:persistence:feedback";
+export const TRUST_FEEDBACK_PERSISTENCE_STORAGE_KEY = "casebrain:persistence:trustFeedback";
 export const SUPERVISOR_SIGNOFF_PERSISTENCE_STORAGE_KEY = "casebrain:persistence:signoffs";
 export const EVIDENCE_CHANGE_SNAPSHOT_PERSISTENCE_STORAGE_KEY = "casebrain:persistence:snapshots";
 export const EXPORT_REVIEW_PERSISTENCE_STORAGE_KEY = "casebrain:persistence:exports";
@@ -51,6 +52,25 @@ export function isPersistenceEnabled(
 }
 
 export function isReasoningFeedbackPersistenceEnabled(
+  persistenceEnabled: boolean,
+  feedbackKillSwitchOff = false,
+): boolean {
+  if (!persistenceEnabled) return false;
+  return !feedbackKillSwitchOff;
+}
+
+export function readTrustFeedbackPersistenceFromStorage(): boolean {
+  if (typeof window === "undefined") return true;
+  try {
+    const v = window.localStorage.getItem(TRUST_FEEDBACK_PERSISTENCE_STORAGE_KEY);
+    if (v === "false") return false;
+    return true;
+  } catch {
+    return true;
+  }
+}
+
+export function isTrustFeedbackPersistenceEnabled(
   persistenceEnabled: boolean,
   feedbackKillSwitchOff = false,
 ): boolean {
@@ -164,6 +184,20 @@ export function useReasoningFeedbackPersistenceEnabled(): boolean {
 
   return useMemo(
     () => isReasoningFeedbackPersistenceEnabled(persistenceEnabled, !feedbackEnabled),
+    [persistenceEnabled, feedbackEnabled],
+  );
+}
+
+export function useTrustFeedbackPersistenceEnabled(): boolean {
+  const persistenceEnabled = usePersistenceEnabled();
+  const [feedbackEnabled, setFeedbackEnabled] = useState(true);
+
+  useEffect(() => {
+    setFeedbackEnabled(readTrustFeedbackPersistenceFromStorage());
+  }, []);
+
+  return useMemo(
+    () => isTrustFeedbackPersistenceEnabled(persistenceEnabled, !feedbackEnabled),
     [persistenceEnabled, feedbackEnabled],
   );
 }

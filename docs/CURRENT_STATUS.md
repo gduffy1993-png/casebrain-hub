@@ -14,10 +14,16 @@
 | H1 — safety / weirdness | Done — 2,200 clean |
 | H2 — display polish + verification | Done — golden 102, 0 fail |
 | Modules 1–7 | Live |
-| H3 chunk 1 | Prod (`895a905`) — Layer 7 PASS WITH WARNINGS |
+| H3 chunk 1 | Prod (`895a905`) |
+| H3 chunk 2 | Prod (`f3703a2`) — 0 confusing, scale gate PASS |
 | Brain 1 + frozen cores | Untouched |
 
-## H3 chunk 2 (local — deploying)
+## H3 chunk 3 (local — in progress)
+
+- Trust feedback on Today / Chase / Summary
+- Spec: `lib/criminal/trust/feedback/README.md`
+
+## H3 scale report (chunk 2 prod, 2026-06-28)
 
 - Full header fields (evidence coverage, sendability labels)
 - Today/Summary badges + Don’t Say box + client-safe copy
@@ -38,11 +44,11 @@ Sendability on golden chase items: **547/547 provisional_check_source** (none fa
 
 ## Still to do in H3
 
-Feedback capture (chunk 3).
+None — chunk 3 completes H3 foundation (feedback capture).
 
 ## Next
 
-Deploy chunk 2 → fresh-user smoke → Codex Layer 7 optional sanity read.
+Commit/deploy chunk 3 → scale gates → fresh-user smoke.
 
 ## Key scripts
 
@@ -51,5 +57,6 @@ npx tsx scripts/h3-golden-trust-gate.ts
 npx tsx scripts/golden-case-pack-gate.ts --pack gold --min-runnable 100 --max-polish-rate 1
 npx tsx scripts/build-h2-review-queue.ts
 npx tsx scripts/h2-confidence-report.ts --run-gate --target 100
+npx tsx scripts/trust-feedback.test.ts
 npx tsx scripts/.tmp-cb-fresh-audit.ts   # deploy smoke only
 ```

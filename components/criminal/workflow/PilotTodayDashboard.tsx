@@ -10,6 +10,7 @@ import {
   Scale,
 } from "lucide-react";
 import { DontSaySafetyBox } from "@/components/criminal/trust/DontSaySafetyBox";
+import { TrustFeedbackPanel } from "@/components/criminal/trust/TrustFeedbackPanel";
 import { TrustSectionChrome } from "@/components/criminal/trust/MatterConfidenceHeader";
 import { usePilotMatterTabHref } from "./pilotDeskNavContext";
 import {
@@ -229,6 +230,17 @@ export function PilotTodayDashboard({ caseId, view, deskChargeLine, moreDetail }
           {moreOpen ? <div className="pt-1">{moreDetail}</div> : null}
         </>
       ) : null}
+
+      <TrustFeedbackPanel
+        caseId={caseId}
+        tab="today"
+        defaultContext={{
+          contextLabel: "Today tab",
+          lineSnippet: view.safeCourtLine !== "—" ? view.safeCourtLine : null,
+          sourceState: "needs_review",
+          sendability: "provisional_check_source",
+        }}
+      />
     </div>
   );
 }
