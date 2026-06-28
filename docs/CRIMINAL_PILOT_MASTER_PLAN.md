@@ -205,7 +205,7 @@ Guardian, Brief Plan, playbooks, Partner Score, Weirdness Detector, anchor fixes
 | CB-FRESH Taylor/Jordan | Layer 7 PASS WITH MINOR WARNINGS |
 | Known polish | `duplicate_chase_label` — not pilot-blocking |
 
-### H3 — Trust layer ⏳ **chunk 3 in progress**
+### H3 — Trust layer ✅ **complete**
 
 Answer the solicitor’s five trust questions on-screen:
 
@@ -224,9 +224,7 @@ Answer the solicitor’s five trust questions on-screen:
 | 3 | Copy-safe controls | ✅ chunk 1 prod |
 | 4 | Sendability labels | ✅ chunk 2 prod |
 | 5 | Don’t Say / unsafe box | ✅ chunk 2 prod |
-| 6 | Feedback capture foundation → Bad Output Memory | ⏳ chunk 3 local |
-
-**H3 chunk 3:** trust feedback on Today/Chase/Summary — wrong/unclear/unsafe/useful/missing issue/bad source; org-scoped DB records; does not alter Brain output live. Spec: `lib/criminal/trust/feedback/README.md`.
+| 6 | Feedback capture foundation → Bad Output Memory | ✅ chunk 3 prod (`4735efa`) |
 
 ### Coverage principle (all phases)
 
@@ -239,7 +237,7 @@ Do not claim CaseBrain certifies every criminal case perfectly.
 
 Must support / test broad profiles: harassment, AEW/BWV, custody/PACE, violence s18/s20, drugs/PWITS, motoring/SJP, fraud, robbery/ID, sexual/ABE (caution), perverting justice, mixed family, thin bundle, referred-only, multi-defendant, OCR-poor, large bundle.
 
-### H4 — Real-world confidence
+### H4 — Real-world confidence ⏳ **NEXT**
 
 | # | Work |
 |---|------|

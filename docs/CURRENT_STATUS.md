@@ -16,12 +16,17 @@
 | Modules 1–7 | Live |
 | H3 chunk 1 | Prod (`895a905`) |
 | H3 chunk 2 | Prod (`f3703a2`) — 0 confusing, scale gate PASS |
+| H3 chunk 3 | Prod (`4735efa`) — trust feedback foundation |
 | Brain 1 + frozen cores | Untouched |
 
-## H3 chunk 3 (local — in progress)
+## H3 chunk 3 (prod)
 
-- Trust feedback on Today / Chase / Summary
+- Trust feedback on Today / Chase / Summary — `Mark this output` panel
+- Kinds: wrong · unclear · unsafe · useful · missing issue · bad source
+- Org-scoped DB + localStorage fallback; does **not** alter Brain output live
 - Spec: `lib/criminal/trust/feedback/README.md`
+
+## H3 complete — next: H4
 
 ## H3 scale report (chunk 2 prod, 2026-06-28)
 
@@ -42,13 +47,9 @@
 
 Sendability on golden chase items: **547/547 provisional_check_source** (none falsely “safe to send”).
 
-## Still to do in H3
-
-None — chunk 3 completes H3 foundation (feedback capture).
-
 ## Next
 
-Commit/deploy chunk 3 → scale gates → fresh-user smoke.
+H4 real-world confidence (deploy smoke, export, red-team pack).
 
 ## Key scripts
 
