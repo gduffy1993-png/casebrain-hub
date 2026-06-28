@@ -1,4 +1,11 @@
-# H4 Red-Team Bundle Pack Manifest Draft
+# H4 Red-Team / Simulator Manifest Draft
+
+**Superseded naming:** This pack is the seed list for the **Criminal Bundle Simulator Library**.
+
+Full spec: [`H4_SIMULATOR_LIBRARY.md`](./H4_SIMULATOR_LIBRARY.md)  
+Build order: [`H4_BUILD_ORDER.md`](./H4_BUILD_ORDER.md)
+
+**H4 Simulator Principle:** Test by shape, not identity.
 
 Purpose: stress-test CaseBrain using fake/anonymised cases that replicate real criminal bundle problems. Do not scrape or copy confidential real criminal bundles.
 
@@ -12,11 +19,14 @@ Purpose: stress-test CaseBrain using fake/anonymised cases that replicate real c
 
 ## Truth-Key Fields
 
+Each case must combine offence profile + evidence pattern + PDF/layout problem + trap + expected output + must-not-say.
+
 ```json
 {
-  "caseId": "redteam-001",
+  "caseId": "sim-001",
   "title": "Fake name / short description",
-  "defendantName": "",
+  "fakeDefendant": "",
+  "fakeCourt": "",
   "offenceWording": "",
   "offenceFamily": "",
   "profile": "",
@@ -24,18 +34,21 @@ Purpose: stress-test CaseBrain using fake/anonymised cases that replicate real c
   "servedEvidence": [],
   "referredOnlyEvidence": [],
   "missingEvidence": [],
-  "expectedTodayIssues": [],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "",
   "expectedChaseItems": [],
-  "expectedSummaryRisks": [],
+  "expectedSummaryRisk": "",
+  "expectedSourceStateBadges": [],
+  "expectedSendability": "",
   "mustNotSay": [],
-  "sourceStateWarnings": [],
-  "redTeamTrap": "",
-  "blockingIfOutputContains": [],
-  "polishIfOutputContains": []
+  "blockingFailPatterns": [],
+  "polishOnlyWarnings": [],
+  "pdfLayoutType": "",
+  "redTeamTrapType": ""
 }
 ```
 
-## Proposed Red-Team Cases
+## Proposed Simulator Cases (v1 — 30)
 
 1. `redteam-001` Harassment, screenshots only
    - Trap: messages alleged, phone/account ownership not served.
@@ -157,17 +170,26 @@ Purpose: stress-test CaseBrain using fake/anonymised cases that replicate real c
     - Trap: late statement changes chase/summary.
     - Future H5/H6: re-run diff should mark stale output.
 
-## Red-Team Gate
+## Simulator Gate
+
+Run alongside golden 102 and Level 1 2,200.
+
+**Pass:** 0 dangerous fails on simulator pack. Polish → review queue.
 
 Blocking fail if:
 
 - wrong-family bleed;
 - referred-only material treated as served/proved;
+- missing material treated as proved;
 - unsafe win/outcome language;
 - court line copied into CPS chase;
 - `Safe to send` without source state;
+- confidence header too confident for missing/thin material;
+- client summary overstates position;
+- charge-fit / lesser-charge overclaim;
 - raw OCR/source junk in copy-ready output;
-- mixed defendant error appears as fact.
+- mixed defendant error appears as fact;
+- safety warning mistaken for fact.
 
 Polish if:
 

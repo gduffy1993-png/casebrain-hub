@@ -239,22 +239,29 @@ Must support / test broad profiles: harassment, AEW/BWV, custody/PACE, violence 
 
 ### H4 — Real-world confidence ⏳ **NEXT**
 
+**Principle:** Test by shape, not identity — **Criminal Bundle Simulator Library** (fake/anonymised bundles; no real personal data; no Brain edits).
+
 | # | Work |
 |---|------|
-| 1 | Fresh-account smoke every deploy |
-| 2 | Account/permission smoke |
-| 3 | Export quality — Chase, Summary, court note, gap list clean outside app |
-| 4 | **Red-team bundle pack** (see below) |
-| 5 | Final confidence run before wider pilot |
+| 1 | Apply trust feedback DB migration (`20260628120000_trust_feedback.sql`) |
+| 2 | Export/copy gate — Chase, Summary, court note, gap list |
+| 3 | Fresh-account smoke every deploy |
+| 4 | Account/permission smoke |
+| 5 | Simulator manifest v1 — **30 cases** |
+| 6 | Simulator pack v1 — generate + run 30 fake bundles |
+| 7 | Expand simulator: **30 → 75 → 150+** |
+| 8 | Worst50 + simulator failures → Bad Output Memory |
 
-**Red-team replication (H4):**
+**Docs:** `docs/h4/H4_SIMULATOR_LIBRARY.md` · `docs/h4/H4_BUILD_ORDER.md` · `docs/h4/H4_RED_TEAM_MANIFEST_DRAFT.md`
 
-- **Do not** scrape/copy real confidential bundles from the internet
-- Replicate real-world **problems** using fake/anonymised cases only
-- Sources: 2,200 replica corpus, synthetic bundles, public procedure structure, anonymised bundles with permission
-- Cover: poor OCR, missing MG6/MG11, weird indexes, duplicate MG11, mixed defendants, wrong names, referred-only BWV, custody mentioned not served, thin bundle, placeholder metadata, conflicting dates
-- Each case: truth key (defendant, offence, served/referred/missing, expected Chase, must-not-say)
-- Gate: **0 dangerous fails**; wrong-family bleed, referred-as-served, court-in-CPS-chase = **blocking**
+**Each simulator case combines:** offence profile · evidence pattern · PDF/layout problem · legal/safety trap · truth key · expected Today/Chase/Summary · must-not-say / blocking rules.
+
+**Simulator gate (with golden 102 + Level 1 2,200):**
+
+- **0 dangerous fails** on simulator pack; polish → review queue
+- **Blocking:** wrong-family bleed · referred-as-served · missing-as-proved · unsafe win language · court-in-CPS-chase · safe-to-send-without-source-state · raw OCR in sendable copy · multi-defendant confusion as fact
+
+**Do not:** scrape real bundles · use confidential client data · touch Brain 1 / frozen cores
 
 ### H5 — Top-tier solicitor workstation
 
@@ -296,7 +303,7 @@ Do not start until H3/H4/H5 core complete. Makes CaseBrain sticky and firm-speci
 **No firm until:**
 
 - H3 complete  
-- H4 complete enough (account/export/red-team)  
+- H4 complete enough (export/copy + simulator pack v1)  
 - H5 core workstation started or scoped  
 - Golden 100+ no dangerous fails  
 - Level 1 2,200 no dangerous critical  
@@ -322,7 +329,7 @@ Then: one controlled firm, supervised, 10–20 matters, weekly structured feedba
 - [x] Paywall/trial clarity spot-check  
 - [x] **H2 Verification** — golden 100, truth-key coverage, worst50 discipline  
 - [ ] **H3 Trust layer** — confidence header, badges, copy-safe, feedback (chunk 1 in progress)  
-- [ ] **H4 Real-world confidence** — deploy smoke, export, red-team pack  
+- [ ] **H4 Real-world confidence** — export/copy gate, simulator library v1 (30 cases)  
 - [ ] **H5 Workstation** — prioritised slices (trace → hearing mode → export pack…)  
 - [ ] **H6 Power features** — after H5 substantial  
 
