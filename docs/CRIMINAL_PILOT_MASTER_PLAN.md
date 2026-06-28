@@ -205,7 +205,7 @@ Guardian, Brief Plan, playbooks, Partner Score, Weirdness Detector, anchor fixes
 | CB-FRESH Taylor/Jordan | Layer 7 PASS WITH MINOR WARNINGS |
 | Known polish | `duplicate_chase_label` — not pilot-blocking |
 
-### H3 — Trust layer ⏳ **NEXT**
+### H3 — Trust layer ⏳ **chunk 3 in progress**
 
 Answer the solicitor’s five trust questions on-screen:
 
@@ -217,16 +217,16 @@ Answer the solicitor’s five trust questions on-screen:
 
 **H3 hard rule:** If a line cannot show source state, it cannot be marked safe to send.
 
-| # | Work |
-|---|------|
-| 1 | Matter confidence header — SAFE / PROVISIONAL / NEEDS REVIEW / BLOCKED; main issue; next action; do-not-rely reason |
-| 2 | Source-state badges — SERVED / REFERRED ONLY / MISSING / NOT SAFELY CONFIRMED / PROVISIONAL / NEEDS REVIEW |
-| 3 | Copy-safe controls — Copy CPS chase / court line / client summary (never mix court into CPS) |
-| 4 | Sendability labels — Safe to send / Needs solicitor review / Blocked / Provisional |
-| 5 | Don’t Say / unsafe box on Today/Summary |
-| 6 | Feedback capture foundation → Bad Output Memory |
+| # | Work | Status |
+|---|------|--------|
+| 1 | Matter confidence header | ✅ chunk 1 prod |
+| 2 | Source-state badges + badge cap | ✅ chunk 2 prod |
+| 3 | Copy-safe controls | ✅ chunk 1 prod |
+| 4 | Sendability labels | ✅ chunk 2 prod |
+| 5 | Don’t Say / unsafe box | ✅ chunk 2 prod |
+| 6 | Feedback capture foundation → Bad Output Memory | ⏳ chunk 3 local |
 
-**H3 chunk 1 (started):** confidence header, source badges, copy-safe CPS/court on Chase tab.
+**H3 chunk 3:** trust feedback on Today/Chase/Summary — wrong/unclear/unsafe/useful/missing issue/bad source; org-scoped DB records; does not alter Brain output live. Spec: `lib/criminal/trust/feedback/README.md`.
 
 ### Coverage principle (all phases)
 
@@ -260,16 +260,22 @@ Must support / test broad profiles: harassment, AEW/BWV, custody/PACE, violence 
 
 ### H5 — Top-tier solicitor workstation
 
+**Do not build until H3 and H4 core gates are substantially complete.**
+
 **Build in priority order** (not all at once):
 
 1. Evidence Trace View  
-2. 20-Minute Hearing Mode  
-3. Export Pack  
-4. Versioned Output  
-5. Feedback Console  
-6. Audit Log  
-7. Re-run Diff  
-8. Confidence Dashboard  
+2. **Defence Decision Board** *(locked future — spec: `docs/h5/H5_DECISION_SUPPORT.md`)*  
+3. **Advice Change Radar** *(locked future — pairs with Decision Board; same spec)*  
+4. 20-Minute Hearing Mode  
+5. Export Pack  
+6. Versioned Output  
+7. Feedback Console  
+8. Audit Log  
+9. Re-run Diff  
+10. Confidence Dashboard  
+
+**Decision support (items 2–3):** solicitor-safe strategic options and “what would change the advice” when new evidence arrives — source-linked, provisional, no outcome prediction. After trace view; before/alongside hearing mode; feeds hearing mode and disclosure timetable builder.
 
 Also scoped: line-level claim tags, sendability gate, disclosure timetable builder, Bad Output Memory v2, firm admin, no-send watermark.
 
