@@ -240,11 +240,11 @@ function cbFoundSpecs(): SeedSpec[] {
       thinBundleExpected: false,
       expectedWorkflowProfile: row.profile,
       expectedRouteFamily: row.profile === "violence_domestic_assault" ? "violence_domestic_assault" : null,
-      prohibitedFamilies: [...(row.prohibited ?? DEFAULT_PROHIBITED)],
+      prohibitedFamilies: "prohibited" in row ? [...row.prohibited] : [...DEFAULT_PROHIBITED],
       expectedProvisionalStatus: true,
       humanReviewExpected: false,
       linkStatus: "runnable",
-      notes: row.notes ?? "Bundle Foundation Pack v2 — fictional pilot shape.",
+      notes: "notes" in row ? row.notes : "Bundle Foundation Pack v2 — fictional pilot shape.",
     } satisfies BundleFidelityTruthKey,
     bundleText: readSource(CB_FOUND_SRC, row.source),
   }));
@@ -265,7 +265,7 @@ function routeFamilyForOffence(family: OffenceFamily): string | null {
   }
 }
 
-function profileForFamily(family: OffenceFamily): string | null {
+function profileForFamily(family: OffenceFamily): string {
   switch (family) {
     case "motoring":
       return "generic_motoring_provisional";
