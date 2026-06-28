@@ -1,8 +1,12 @@
 # Criminal pilot — master plan (merged)
 
-**Status:** Layers 1–3 shipped. **Modules 1–7 LIVE** on prod. **2,200 factory PASS**. **Cold-start S1 PASS**. **CB-FRESH Layer 7 PASS WITH MINOR WARNINGS** (2026-06-28). **H1 + H2 P1/P2/P3 display polish done.** **H2 Verification gate PASS (102 runnable, 0 fail, WARNING polish-only).** **Next: H3 Trust layer — no design-partner trial yet.**
+**Status:** Layers 1–3 shipped. **Modules 1–7 LIVE** on prod. **2,200 factory PASS**. **H1 + H2 done.** **H3 Trust layer in progress.** **No design-partner trial yet.**
 
-**Decision (Ged, 2026-06-28):** Finish the proof layer before any firm sees the product. Protect first impression; do not waste firm time on avoidable polish.
+**Decision (Ged):** Finish proof → trust → real-world → workstation → then firm. Do not rewrite Brain 1. Frozen cores unless dangerous and no other route.
+
+**Cursor / Codex split:** Cursor builds, commits, deploys, gates, prod smoke. Codex specs, Layer 7 reads, red-team manifests, export matrices — parallel, no same-file Brain edits.
+
+**Plan lock:** No further expansion unless a real solicitor exposes a new requirement.
 
 **Snapshot:** `docs/CURRENT_STATUS.md` (updated each milestone)
 
@@ -176,54 +180,133 @@ Report: `artifacts/casebrain-qa/contradiction-tier-gate/report.json`
 
 **Not blocking Module 5.** Start B1 when first firm uploads violence-heavy caseload beyond Paige.
 
-## Layer 7 — Confidence stack (H2 / H3 / H4)
+## Layer 7 — Confidence stack (H1–H6)
 
 **Goal:** Confidence by layers — not “solicitor-perfect on every line by automation alone.”
 
-**Limit (honest):** Level 1 2,200 scan catches red flags and repeated patterns. It cannot certify every case line-by-line. Proper proof = **2,200 auto-scan + golden truth-key pack + worst50 human review + solicitor feedback loop** (after controlled pilot).
+**Limit (honest):** Level 1 2,200 scan catches red flags and repeated patterns. It cannot certify every case line-by-line. Proper proof = **2,200 auto-scan + golden truth-key pack + worst50 human review + solicitor feedback loop**.
 
 **Frozen:** Brain 1, battleboard core, chase core, Guardian, offence routing — presentation, trust UI, and verification only.
 
-### H2 — Golden + review queue ✅ (gate PASS — WARNING polish-only)
+**Preferred changes:** reports, tests, truth keys, finalisation, UI trust, copy/export controls, feedback, audit.
 
-| # | Work | Target | Status |
-|---|------|--------|--------|
-| 1 | Golden pack growth | 50 → 75 → 100 | ✅ 102 runnable |
-| 2 | Truth keys on golden cases | H2 v2 schema + backfill | ✅ 99% avg coverage |
-| 3 | Review queue | worst50 classify dangerous / polish / gate noise | ✅ 0 dangerous in worst50 |
-| 4 | Confidence report | ready / warning / blocked | ✅ **WARNING** (0 fail, polish-only) |
+### H1 — Safety / weirdness ✅
 
-### H3 — Trust layer
+Guardian, Brief Plan, playbooks, Partner Score, Weirdness Detector, anchor fixes. Level 1: **2,200 / 2,200**, 0 dangerous.
+
+### H2 — Display polish + verification ✅
+
+| Track | Status |
+|-------|--------|
+| P1 chase finalisation | Prod |
+| P2/P3 display polish | Prod |
+| Golden 102 runnable, 0 fail | Gate PASS |
+| Truth-key v2 | ~99% coverage |
+| CB-FRESH Taylor/Jordan | Layer 7 PASS WITH MINOR WARNINGS |
+| Known polish | `duplicate_chase_label` — not pilot-blocking |
+
+### H3 — Trust layer ⏳ **NEXT**
+
+Answer the solicitor’s five trust questions on-screen:
+
+1. Where did this come from?
+2. Is it served or only mentioned?
+3. Can I send this Chase wording?
+4. Will this embarrass me in court?
+5. Can I rely on this quickly before a hearing?
+
+**H3 hard rule:** If a line cannot show source state, it cannot be marked safe to send.
 
 | # | Work |
 |---|------|
-| 1 | Matter confidence header — safe / provisional / needs review; main issue; evidence coverage; next action; do-not-rely-yet reason |
-| 2 | Source-state badges — served / referred only / missing / provisional / needs review |
-| 3 | Copy-safe controls — Copy CPS chase / court line / client-safe summary (no court wording in CPS chase) |
-| 4 | Feedback capture — flag wrong / unclear / unsafe → Bad Output Memory tests |
+| 1 | Matter confidence header — SAFE / PROVISIONAL / NEEDS REVIEW / BLOCKED; main issue; next action; do-not-rely reason |
+| 2 | Source-state badges — SERVED / REFERRED ONLY / MISSING / NOT SAFELY CONFIRMED / PROVISIONAL / NEEDS REVIEW |
+| 3 | Copy-safe controls — Copy CPS chase / court line / client summary (never mix court into CPS) |
+| 4 | Sendability labels — Safe to send / Needs solicitor review / Blocked / Provisional |
+| 5 | Don’t Say / unsafe box on Today/Summary |
+| 6 | Feedback capture foundation → Bad Output Memory |
+
+**H3 chunk 1 (started):** confidence header, source badges, copy-safe CPS/court on Chase tab.
+
+### Coverage principle (all phases)
+
+Do not claim CaseBrain certifies every criminal case perfectly.
+
+- Common types → useful Today / Chase / Summary
+- Thin, messy, unusual, expert-heavy → PROVISIONAL / NEEDS REVIEW / BLOCKED FROM SENDABLE
+- “I don’t know safely yet” is valid output
+- Wider coverage via **safe fallback**, not fake certainty
+
+Must support / test broad profiles: harassment, AEW/BWV, custody/PACE, violence s18/s20, drugs/PWITS, motoring/SJP, fraud, robbery/ID, sexual/ABE (caution), perverting justice, mixed family, thin bundle, referred-only, multi-defendant, OCR-poor, large bundle.
 
 ### H4 — Real-world confidence
 
 | # | Work |
 |---|------|
-| 1 | Fresh-account smoke every deploy — new user, upload, Today/Chase/Summary, no dangerous output |
-| 2 | Account/permission smoke — signup, firm, matter, upload, delete/archive, invited user if supported |
-| 3 | Export quality — copied/downloaded Chase and Summary stay clean outside app |
-| 4 | Red-team bad bundle pack — scanned PDFs, missing MG6, weird indexes, mixed offences, wrong names, referred-only BWV, duplicates, thin evidence |
-| 5 | **100-case confidence run** before wider pilot — Level 1 2200 green, golden 100 no dangerous fails, worst50 no repeated dangerous clusters, fresh-user smoke green |
+| 1 | Fresh-account smoke every deploy |
+| 2 | Account/permission smoke |
+| 3 | Export quality — Chase, Summary, court note, gap list clean outside app |
+| 4 | **Red-team bundle pack** (see below) |
+| 5 | Final confidence run before wider pilot |
 
-### H4 gate → then commercial pilot
+**Red-team replication (H4):**
 
-Only after H2 + H3 + H4 gates:
+- **Do not** scrape/copy real confidential bundles from the internet
+- Replicate real-world **problems** using fake/anonymised cases only
+- Sources: 2,200 replica corpus, synthetic bundles, public procedure structure, anonymised bundles with permission
+- Cover: poor OCR, missing MG6/MG11, weird indexes, duplicate MG11, mixed defendants, wrong names, referred-only BWV, custody mentioned not served, thin bundle, placeholder metadata, conflicting dates
+- Each case: truth key (defendant, offence, served/referred/missing, expected Chase, must-not-say)
+- Gate: **0 dangerous fails**; wrong-family bleed, referred-as-served, court-in-CPS-chase = **blocking**
 
-- One controlled design-partner firm  
-- Supervised use  
-- 10–20 matters  
-- Weekly structured feedback (Today / Chase / Summary / safety)
+### H5 — Top-tier solicitor workstation
+
+**Build in priority order** (not all at once):
+
+1. Evidence Trace View  
+2. 20-Minute Hearing Mode  
+3. Export Pack  
+4. Versioned Output  
+5. Feedback Console  
+6. Audit Log  
+7. Re-run Diff  
+8. Confidence Dashboard  
+
+Also scoped: line-level claim tags, sendability gate, disclosure timetable builder, Bad Output Memory v2, firm admin, no-send watermark.
+
+### H6 — Later power features (after H5 substantial)
+
+Do not start until H3/H4/H5 core complete. Makes CaseBrain sticky and firm-specific:
+
+1. Solicitor mode editing (accept/edit/reject/lock wording)  
+2. Firm style memory (tone — never override Guardian)  
+3. CPS / opponent response tracker  
+4. Hearing outcome tracker  
+5. New evidence re-analysis  
+6. Solicitor-approved template library  
+7. Billing / time-saved proof  
+
+**H6 acceptance:** Does not weaken safety; all memory editable/auditable; versioning intact.
+
+### Design-partner gate (Layer 8)
+
+**No firm until:**
+
+- H3 complete  
+- H4 complete enough (account/export/red-team)  
+- H5 core workstation started or scoped  
+- Golden 100+ no dangerous fails  
+- Level 1 2,200 no dangerous critical  
+- Worst50 no repeated dangerous cluster  
+- Fresh-user smoke green  
+- Export/copy checks green  
+- Trust labels/source states visible  
+- Feedback capture working  
+
+Then: one controlled firm, supervised, 10–20 matters, weekly structured feedback.
 
 ## Layer 8 — Commercial pilot (3–5 firms)
 
-**Goal:** Prove daily use and UX trust in real firms — after confidence stack.
+**Goal:** Prove daily use and UX trust in real firms — after H3–H6 gates where applicable.
 
 ### Entry bar (start inviting firms when)
 
@@ -233,12 +316,13 @@ Only after H2 + H3 + H4 gates:
 - [x] Layer 4 cold-start on S1 PASS  
 - [x] CB-FRESH-001/002 adversarial audit PASS (attribution + BWV shapes)  
 - [x] Paywall/trial clarity spot-check  
-- [x] **H2 Verification** — golden 100, truth-key coverage report, worst50 discipline  
-- [ ] **H3 Trust layer** — confidence header, source badges, copy-safe, feedback memory
-- [ ] **H3 Trust layer** — confidence header, badges, copy-safe, feedback capture  
-- [ ] **H4 Real-world confidence** — deploy smoke, account smoke, export check, red-team pack, 100-case run  
+- [x] **H2 Verification** — golden 100, truth-key coverage, worst50 discipline  
+- [ ] **H3 Trust layer** — confidence header, badges, copy-safe, feedback (chunk 1 in progress)  
+- [ ] **H4 Real-world confidence** — deploy smoke, export, red-team pack  
+- [ ] **H5 Workstation** — prioritised slices (trace → hearing mode → export pack…)  
+- [ ] **H6 Power features** — after H5 substantial  
 
-**No design-partner trial until Layer 8 entry bar is met.**
+**No design-partner trial until Layer 8 design-partner gate is met.**
 
 ### Per firm
 
@@ -266,12 +350,12 @@ Only after H2 + H3 + H4 gates:
 | 2,200-case eval | **PASS** (2200/2200) |
 | Cold-start prod (S1) | **PASS** |
 | CB-FRESH adversarial audit | **PASS WITH MINOR WARNINGS** (safe; proof layer incomplete) |
-| H2 Verification (golden + truth keys + worst50) | ✅ **PASS** (WARNING polish-only) |
-| H3 Trust layer | ⏳ **NEXT** |
-| H3 Trust layer | ⏳ |
-| H4 Real-world confidence (100-case run) | ⏳ |
-| 3+ offence tranches (6B) from real demand | ⏳ |
-| Design-partner firm (1) | ⏳ After H2–H4 |
+| H2 Verification | ✅ PASS (WARNING polish-only) |
+| H3 Trust layer | ⏳ **IN PROGRESS** (chunk 1) |
+| H4 Real-world confidence | ⏳ |
+| H5 Workstation | ⏳ |
+| H6 Power features | ⏳ Later |
+| Design-partner firm (1) | ⏳ After H3–H5 gates |
 | 3–5 firms completed pilot | ⏳ |
 | Layer 4 UX/reliability must-haves | **Done** (paywall copy ✅) |
 

@@ -18,6 +18,8 @@ import {
   displayPilotStripHearing,
   resolvePilotChargeDisplay,
 } from "./workflowPilotDisplay";
+import { buildMatterConfidence } from "@/lib/criminal/matter-confidence/build-matter-confidence";
+import { MatterConfidenceHeader } from "@/components/criminal/trust/MatterConfidenceHeader";
 
 type StripState = {
   client: string;
@@ -25,6 +27,8 @@ type StripState = {
   court: string;
   hearing: string;
   health: "ready" | "thin" | "unknown";
+  documentCount: number;
+  combinedTextLength: number;
   bail: string | null;
   funding: string | null;
   safeguard: string | null;
@@ -64,6 +68,7 @@ export function CaseWorkflowHeaderStrip({
             header?: ParsedBundleHeader | null;
             caseMetadata?: ExtractedBundleCaseMetadata | null;
             documentCount?: number;
+            combinedTextLength?: number;
           };
         };
         const matter = await matterRes.json().catch(() => ({}));
@@ -96,6 +101,8 @@ export function CaseWorkflowHeaderStrip({
           court: pilot ? displayPilotStripCourt(courtClean) || courtClean : courtClean || "Court not on papers",
           hearing: pilot ? displayPilotStripHearing(hearingClean) || hearingClean : hearingClean || "Hearing not on papers",
           health: healthFromDocCount(json.data.documentCount ?? 0),
+          documentCount: json.data.documentCount ?? 0,
+          combinedTextLength: json.data.combinedTextLength ?? 0,
           bail: typeof matter?.bailOutcome === "string" ? matter.bailOutcome : null,
           funding: typeof matter?.station?.representationType === "string" ? matter.station.representationType : null,
           safeguard: safeguards.length ? safeguards.join(" · ") : null,
@@ -131,6 +138,14 @@ export function CaseWorkflowHeaderStrip({
 
   const safeLineText = safeCourtLine?.trim() || "Safe position loads on the Today tab.";
   const safeLineClamped = safeLineText.length > 100;
+
+  const matterConfidence = buildMatterConfidence({
+    documentCount: strip.documentCount,
+    combinedTextLength: strip.combinedTextLength,
+    bundleHealth: strip.health,
+    genericProvisional: /provisional|not ready|check papers|thin bundle/i.test(readinessLine ?? ""),
+    missingMaterialCount: strip.health === "thin" ? 2 : 0,
+  });
 
   if (pilot) {
     return (
@@ -186,6 +201,7 @@ export function CaseWorkflowHeaderStrip({
             {readinessLine ? <p className="text-[11px] text-amber-400/90 mt-1 line-clamp-1">{readinessLine}</p> : null}
           </div>
         </div>
+        <MatterConfidenceHeader confidence={matterConfidence} compact />
       </div>
     );
   }

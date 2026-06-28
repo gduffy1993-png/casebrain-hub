@@ -26,6 +26,8 @@ import {
   type DisclosureChaseItem,
 } from "./buildDisclosureChaseBrief";
 import { CaseWorkflowShell } from "@/components/criminal/workflow/CaseWorkflowShell";
+import { SourceStateBadge } from "@/components/criminal/trust/SourceStateBadge";
+import { buildCopySafeResult, inferChaseItemSourceState } from "@/lib/criminal/trust/copy-safe";
 import type { ExtractedBundleCaseMetadata } from "@/lib/criminal/extract-bundle-case-metadata";
 import { formatCaseBundleHealthLabel } from "@/lib/criminal/format-case-bundle-health";
 import type { DocumentRowMeta } from "@/lib/bundle/parse-bundle-display";
@@ -204,8 +206,29 @@ function ChaseItemCard({
   const labelClass = pilotEmbed ? "text-slate-500" : "text-slate-500";
   const valueClass = pilotEmbed ? "text-slate-200 font-medium" : "text-slate-800 font-medium";
 
+  const itemSourceState = inferChaseItemSourceState({
+    label: item.label,
+    source: item.source,
+    baseStatus: item.baseStatus,
+    evidenceAnchor: item.evidenceAnchor,
+  });
+  const cpsCopy = buildCopySafeResult({
+    text: item.draftChaseWording,
+    kind: "cps_chase",
+    sourceState: itemSourceState,
+    sourceLabel: item.source,
+  });
+  const courtCopy = buildCopySafeResult({
+    text: item.courtLine,
+    kind: "court_line",
+    sourceState: itemSourceState,
+    sourceLabel: item.source,
+  });
+
   const handleCopy = async (kind: "chase" | "court") => {
-    const ok = await copyText(kind === "chase" ? item.draftChaseWording : item.courtLine);
+    const safe = kind === "chase" ? cpsCopy : courtCopy;
+    if (!safe.canCopy) return;
+    const ok = await copyText(safe.textForClipboard);
     if (ok) {
       setCopied(kind);
       window.setTimeout(() => setCopied(null), 2000);
@@ -230,6 +253,7 @@ function ChaseItemCard({
         <Badge variant={statusBadgeVariant(status)} size="sm">
           {status}
         </Badge>
+        <SourceStateBadge state={itemSourceState} />
       </div>
       <dl className="px-4 py-2 grid grid-cols-2 gap-x-3 gap-y-1 text-xs">
         <div>
@@ -257,20 +281,22 @@ function ChaseItemCard({
           size="sm"
           variant="ghost"
           className="h-7 text-xs gap-1"
+          disabled={!cpsCopy.canCopy}
           onClick={() => void handleCopy("chase")}
         >
           <Copy className="h-3 w-3" />
-          {copied === "chase" ? "Copied" : "Chase wording"}
+          {copied === "chase" ? "Copied" : "Copy CPS chase"}
         </Button>
         <Button
           type="button"
           size="sm"
           variant="ghost"
           className="h-7 text-xs gap-1"
+          disabled={!courtCopy.canCopy}
           onClick={() => void handleCopy("court")}
         >
           <Copy className="h-3 w-3" />
-          {copied === "court" ? "Copied" : "Court line"}
+          {copied === "court" ? "Copied" : "Copy court line"}
         </Button>
       </div>
     </article>
