@@ -23,22 +23,22 @@
 - CB-FRESH smoke **9/9 PASS**
 - Golden 102 H3 trust gate: **0 blocking / 0 confusing**
 - Feedback panels live on Today / Chase / Summary
-- Pending ops: Supabase migration `20260628120000_trust_feedback.sql`
+- Trust feedback DB migration applied (`20260628120000_trust_feedback.sql`)
 
-## H4 — Real-World Confidence ⏳ **NEXT**
+## H4 — Real-World Confidence ⏳ **in progress**
 
 **Criminal Bundle Simulator Library** — fake/anonymised bundles; test by shape, not identity.
 
-| Step | Work |
-|------|------|
-| 1 | Apply trust feedback DB migration |
-| 2 | Export/copy gate |
-| 3 | Fresh-account smoke (ongoing) |
-| 4 | Account/permission smoke |
-| 5 | Simulator manifest v1 — 30 cases |
-| 6 | Simulator pack v1 — run 30 fake bundles |
-| 7 | Expand 30 → 75 → 150+ |
-| 8 | Worst50 + simulator → Bad Output Memory |
+| Step | Work | Status |
+|------|------|--------|
+| 1 | Trust feedback DB migration | ✅ Applied + verified |
+| 2 | Export/copy gate | ✅ Golden 102 — 0 blocking |
+| 3 | Fresh-account smoke (ongoing) | ✅ |
+| 4 | Account/permission smoke | — |
+| 5 | Simulator manifest v1 — 30 cases | — |
+| 6 | Simulator pack v1 | — |
+| 7 | Expand 30 → 75 → 150+ | — |
+| 8 | Worst50 + simulator → Bad Output Memory | — |
 
 **Docs:** `docs/h4/H4_SIMULATOR_LIBRARY.md` · `docs/h4/H4_BUILD_ORDER.md`
 
@@ -46,8 +46,9 @@
 
 ```powershell
 npx tsx scripts/h3-golden-trust-gate.ts
+npx tsx scripts/h4-export-copy-gate.ts
+npx tsx scripts/trust-feedback-persistence-verify.ts
 npx tsx scripts/golden-case-pack-gate.ts --pack gold --min-runnable 100 --max-polish-rate 1
-npx tsx scripts/build-h2-review-queue.ts
 npx tsx scripts/trust-feedback.test.ts
 npx tsx scripts/.tmp-cb-fresh-audit.ts   # deploy smoke only
 ```
