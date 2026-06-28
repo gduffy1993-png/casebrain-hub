@@ -241,16 +241,16 @@ Must support / test broad profiles: harassment, AEW/BWV, custody/PACE, violence 
 
 **Principle:** Test by shape, not identity — **Criminal Bundle Simulator Library** (fake/anonymised bundles; no real personal data; no Brain edits).
 
-| # | Work |
-|---|------|
+| # | Work | Status |
+|---|------|--------|
 | 1 | Apply trust feedback DB migration (`20260628120000_trust_feedback.sql`) | ✅ |
 | 2 | Export/copy gate — `scripts/h4-export-copy-gate.ts` (golden 102) | ✅ |
-| 3 | Fresh-account smoke every deploy |
-| 4 | Account/permission smoke |
-| 5 | Simulator manifest v1 — **30 cases** |
-| 6 | Simulator pack v1 — generate + run 30 fake bundles |
-| 7 | Expand simulator: **30 → 75 → 150+** |
-| 8 | Worst50 + simulator failures → Bad Output Memory |
+| 3 | Fresh-account smoke every deploy | ✅ ongoing |
+| 4 | Account/permission smoke | — |
+| 5 | Simulator manifest v1 — **30 cases** | — |
+| 6 | Simulator pack v1 — generate + run 30 fake bundles | — |
+| 7 | Expand simulator: **30 → 75 → 150+** | — |
+| 8 | Worst50 + simulator failures → Bad Output Memory | — |
 
 **Docs:** `docs/h4/H4_SIMULATOR_LIBRARY.md` · `docs/h4/H4_BUILD_ORDER.md` · `docs/h4/H4_RED_TEAM_MANIFEST_DRAFT.md`
 
