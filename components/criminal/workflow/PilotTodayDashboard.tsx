@@ -4,12 +4,13 @@ import { useState, type ReactNode } from "react";
 import Link from "next/link";
 import {
   AlertTriangle,
-  Ban,
   FileText,
   FolderOpen,
   Gavel,
   Scale,
 } from "lucide-react";
+import { DontSaySafetyBox } from "@/components/criminal/trust/DontSaySafetyBox";
+import { TrustSectionChrome } from "@/components/criminal/trust/MatterConfidenceHeader";
 import { usePilotMatterTabHref } from "./pilotDeskNavContext";
 import {
   workflowMuted,
@@ -141,6 +142,7 @@ export function PilotTodayDashboard({ caseId, view, deskChargeLine, moreDetail }
           icon={<Gavel className="h-3.5 w-3.5 text-emerald-400" />}
           accentClass="border-emerald-700/50"
         >
+          <TrustSectionChrome title="Court lines" sourceState="needs_review" />
           <BulletList
             items={askCourtItems}
             emptyLabel="No ask-court lines on the current brief."
@@ -158,6 +160,7 @@ export function PilotTodayDashboard({ caseId, view, deskChargeLine, moreDetail }
           icon={<Scale className="h-3.5 w-3.5 text-blue-400" />}
           accentClass="border-blue-700/50"
         >
+          <TrustSectionChrome title="Solicitor lines" sourceState="provisional" />
           {sayThisItems.length ? (
             <BulletList items={sayThisItems} emptyLabel="No solicitor lines on the current brief." />
           ) : (
@@ -170,6 +173,7 @@ export function PilotTodayDashboard({ caseId, view, deskChargeLine, moreDetail }
           icon={<AlertTriangle className="h-3.5 w-3.5 text-amber-400" />}
           accentClass="border-amber-700/50"
         >
+          <TrustSectionChrome title="Outstanding material" sourceState="missing" />
           <BulletList items={chaseItems} emptyLabel="No chase items on the current brief." />
           <Link
             href={chaseHref}
@@ -181,13 +185,10 @@ export function PilotTodayDashboard({ caseId, view, deskChargeLine, moreDetail }
 
         <CockpitCard
           title="Don't say"
-          icon={<Ban className="h-3.5 w-3.5 text-rose-400" />}
+          icon={<AlertTriangle className="h-3.5 w-3.5 text-rose-400" />}
           accentClass="border-rose-700/50"
         >
-          <BulletList
-            items={doNotItems}
-            emptyLabel="No do-not-overstate lines on the current brief."
-          />
+          <DontSaySafetyBox items={doNotItems} compact />
         </CockpitCard>
 
         <CockpitCard

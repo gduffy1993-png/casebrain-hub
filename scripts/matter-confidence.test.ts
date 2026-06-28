@@ -1,6 +1,6 @@
 #!/usr/bin/env npx tsx
 import assert from "node:assert/strict";
-import { buildMatterConfidence } from "../lib/criminal/matter-confidence/build-matter-confidence";
+import { buildMatterConfidence, prioritizeSourceBadges } from "../lib/criminal/matter-confidence/build-matter-confidence";
 import { buildCopySafeResult, inferChaseItemSourceState } from "../lib/criminal/trust/copy-safe";
 
 assert.equal(
@@ -21,6 +21,25 @@ assert.equal(
   }).level,
   "needs_review",
 );
+
+const full = buildMatterConfidence({
+  documentCount: 3,
+  bundleHealth: "thin",
+  missingMaterialCount: 2,
+  hasSafeCourtLine: true,
+});
+assert.equal(full.evidenceCoverage, "thin");
+assert.equal(full.chaseSendability, "provisional_check_source");
+assert.equal(full.safeCourtLineStatus, "needs_review");
+
+const capped = prioritizeSourceBadges(
+  ["provisional", "missing", "referred_only", "needs_review"],
+  3,
+);
+assert.equal(capped.visible.length, 3);
+assert.equal(capped.overflow.length, 1);
+assert.deepEqual(capped.visible, ["needs_review", "missing", "referred_only"]);
+assert.equal(capped.overflow[0], "provisional");
 
 const blockedCopy = buildCopySafeResult({
   text: "Please provide CCTV.",

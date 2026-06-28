@@ -28,6 +28,7 @@ import {
 import { CaseWorkflowShell } from "@/components/criminal/workflow/CaseWorkflowShell";
 import { SourceStateBadge } from "@/components/criminal/trust/SourceStateBadge";
 import { buildCopySafeResult, inferChaseItemSourceState } from "@/lib/criminal/trust/copy-safe";
+import { SENDABILITY_DISPLAY } from "@/lib/criminal/matter-confidence/matter-confidence-types";
 import type { ExtractedBundleCaseMetadata } from "@/lib/criminal/extract-bundle-case-metadata";
 import { formatCaseBundleHealthLabel } from "@/lib/criminal/format-case-bundle-health";
 import type { DocumentRowMeta } from "@/lib/bundle/parse-bundle-display";
@@ -287,6 +288,11 @@ function ChaseItemCard({
           <Copy className="h-3 w-3" />
           {copied === "chase" ? "Copied" : "Copy CPS chase"}
         </Button>
+        {!cpsCopy.canCopy && cpsCopy.blockedReason ? (
+          <span className="text-[10px] text-amber-400/90 w-full">{cpsCopy.blockedReason}</span>
+        ) : (
+          <span className="text-[10px] text-slate-500 w-full">{SENDABILITY_DISPLAY[cpsCopy.sendability]}</span>
+        )}
         <Button
           type="button"
           size="sm"

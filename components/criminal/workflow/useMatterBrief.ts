@@ -28,6 +28,14 @@ import { buildDisclosureChaseBrief } from "@/components/criminal/disclosure-chas
 import { buildMatterBrief, type MatterBrief } from "./buildMatterBrief";
 import { assembleBundleTextForContradictions } from "@/lib/criminal/reasoning-v2/assemble-bundle-text";
 import { buildCriminalBriefPlan } from "@/lib/criminal/brief-plan";
+import { buildMatterConfidence } from "@/lib/criminal/matter-confidence/build-matter-confidence";
+import type { MatterConfidenceResult } from "@/lib/criminal/matter-confidence/matter-confidence-types";
+
+function bundleHealthTier(label: string, docCount: number): "ready" | "thin" | "unknown" {
+  if (docCount === 0) return "unknown";
+  if (/thin|provisional|limited|check papers|not ready/i.test(label)) return "thin";
+  return "ready";
+}
 
 type MatterSummary = {
   clientInitials: string | null;
@@ -187,7 +195,7 @@ export function useMatterBrief(caseId: string) {
     };
   }, [caseId]);
 
-  const matterBrief = useMemo((): MatterBrief | null => {
+  const pilotMatter = useMemo(() => {
     if (snapshotLoading || battleboardLoading || bundleLoading) return null;
 
     const caseTitleBase = snapshot?.caseMeta?.title?.trim() || "Criminal case";
@@ -323,7 +331,25 @@ export function useMatterBrief(caseId: string) {
 
     const primaryRouteTitle = workflowPrimaryRouteTitle(workflowContext);
 
-    return buildMatterBrief({ warRoom, chase, primaryRouteTitle, briefPlan });
+    const matterBrief = buildMatterBrief({ warRoom, chase, primaryRouteTitle, briefPlan });
+    const documentCount = Math.max(
+      snapshot?.analysis.docCount ?? 0,
+      bundleSource?.documentCount ?? 0,
+    );
+    const matterConfidence = buildMatterConfidence({
+      documentCount,
+      combinedTextLength: bundleSource?.combinedTextLength,
+      bundleHealth: bundleHealthTier(bundleHealth, documentCount),
+      missingMaterialCount: chaseItemsAll.length,
+      genericProvisional: /provisional|thin|generic/i.test(`${bundleHealth} ${pilotHeader?.profile ?? ""}`),
+      hasSafeCourtLine: Boolean(warRoom.safePositionToday?.trim()),
+    });
+
+    return {
+      matterBrief,
+      matterConfidence,
+      doNotOverstate: warRoom.doNotOverstate,
+    };
   }, [
     snapshotLoading,
     battleboardLoading,
@@ -340,7 +366,9 @@ export function useMatterBrief(caseId: string) {
 
   return {
     loading: snapshotLoading || battleboardLoading || bundleLoading,
-    matterBrief,
+    matterBrief: pilotMatter?.matterBrief ?? null,
+    matterConfidence: pilotMatter?.matterConfidence ?? null,
+    doNotOverstate: pilotMatter?.doNotOverstate ?? [],
     caseTitle: snapshot?.caseMeta?.title?.trim() || "Criminal case",
   };
 }

@@ -145,6 +145,7 @@ export function CaseWorkflowHeaderStrip({
     bundleHealth: strip.health,
     genericProvisional: /provisional|not ready|check papers|thin bundle/i.test(readinessLine ?? ""),
     missingMaterialCount: strip.health === "thin" ? 2 : 0,
+    hasSafeCourtLine: Boolean(safeCourtLine?.trim()),
   });
 
   if (pilot) {
