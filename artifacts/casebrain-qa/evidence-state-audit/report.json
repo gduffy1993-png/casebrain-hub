@@ -1,0 +1,260 @@
+{
+  "disclaimer": "Controlled audit harness run — not solicitor-reviewed real-world audit.",
+  "generatedAt": "2026-06-29T15:53:31.197Z",
+  "harnessVersion": "evidence-state-audit-v1",
+  "fixtureIds": [
+    "proof-pack-01"
+  ],
+  "metrics": {
+    "totalCases": 1,
+    "totalEvidenceItems": 7,
+    "matchedItems": 1,
+    "unmatchedItems": 6,
+    "falseServedCount": 0,
+    "falseServedRate": 0,
+    "referredOnlyAccuracy": 1,
+    "missingAccuracy": 0,
+    "incompleteAccuracy": 0,
+    "notSafelyConfirmedAccuracy": 0,
+    "unsafeRelianceCount": 0,
+    "unsafeRelianceRate": 0,
+    "wrongDefendantBleedCount": 1,
+    "wrongDefendantBleedRate": 0.14285714285714285,
+    "wrongFamilyBleedCount": 0,
+    "wrongFamilyBleedRate": null,
+    "chaseAccuracy": 0.25,
+    "overCautiousCount": 0,
+    "overCautiousRate": 0,
+    "courtNoteSafetyRate": null,
+    "clientSummarySafetyRate": null
+  },
+  "blockingFailures": [
+    {
+      "code": "wrong_defendant_bleed",
+      "severity": "blocking",
+      "caseId": "proof-pack-01",
+      "truthItem": "Co-defendant Lee Marsh interview",
+      "message": "Co-defendant / other-defendant material matched to client workflow"
+    }
+  ],
+  "warnings": [
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "proof-pack-01",
+      "truthItem": "Complainant MG11 (signed)",
+      "message": "No CaseBrain prediction matched truth item \"Complainant MG11 (signed)\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "proof-pack-01",
+      "truthItem": "Exhibit / bundle index",
+      "message": "No CaseBrain prediction matched truth item \"Exhibit / bundle index\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "proof-pack-01",
+      "truthItem": "Phone screenshots (partial)",
+      "message": "No CaseBrain prediction matched truth item \"Phone screenshots (partial)\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "proof-pack-01",
+      "truthItem": "Custody / PACE record",
+      "message": "No CaseBrain prediction matched truth item \"Custody / PACE record\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "proof-pack-01",
+      "truthItem": "MG5 attribution inference",
+      "message": "No CaseBrain prediction matched truth item \"MG5 attribution inference\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "proof-pack-01",
+      "truthItem": "Co-defendant Lee Marsh interview",
+      "message": "No CaseBrain prediction matched truth item \"Co-defendant Lee Marsh interview\""
+    }
+  ],
+  "cases": [
+    {
+      "caseId": "proof-pack-01",
+      "title": "Proof Pack 01 — mixed evidence states (fictional)",
+      "fixtureKind": "proof_pack",
+      "itemComparisons": [
+        {
+          "truthItem": "Complainant MG11 (signed)",
+          "truthState": "served",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        },
+        {
+          "truthItem": "Exhibit / bundle index",
+          "truthState": "served",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        },
+        {
+          "truthItem": "Phone screenshots (partial)",
+          "truthState": "incomplete",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        },
+        {
+          "truthItem": "Body-worn video",
+          "truthState": "referred_only",
+          "predictedLabel": "Body-worn video (BWV)",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "Custody / PACE record",
+          "truthState": "missing",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        },
+        {
+          "truthItem": "MG5 attribution inference",
+          "truthState": "inferred_only",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        },
+        {
+          "truthItem": "Co-defendant Lee Marsh interview",
+          "truthState": "other_defendant_only",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": true,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match",
+            "wrong_defendant_bleed"
+          ]
+        }
+      ],
+      "blockingFailures": [
+        {
+          "code": "wrong_defendant_bleed",
+          "severity": "blocking",
+          "caseId": "proof-pack-01",
+          "truthItem": "Co-defendant Lee Marsh interview",
+          "message": "Co-defendant / other-defendant material matched to client workflow"
+        }
+      ],
+      "warnings": [
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "proof-pack-01",
+          "truthItem": "Complainant MG11 (signed)",
+          "message": "No CaseBrain prediction matched truth item \"Complainant MG11 (signed)\""
+        },
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "proof-pack-01",
+          "truthItem": "Exhibit / bundle index",
+          "message": "No CaseBrain prediction matched truth item \"Exhibit / bundle index\""
+        },
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "proof-pack-01",
+          "truthItem": "Phone screenshots (partial)",
+          "message": "No CaseBrain prediction matched truth item \"Phone screenshots (partial)\""
+        },
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "proof-pack-01",
+          "truthItem": "Custody / PACE record",
+          "message": "No CaseBrain prediction matched truth item \"Custody / PACE record\""
+        },
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "proof-pack-01",
+          "truthItem": "MG5 attribution inference",
+          "message": "No CaseBrain prediction matched truth item \"MG5 attribution inference\""
+        },
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "proof-pack-01",
+          "truthItem": "Co-defendant Lee Marsh interview",
+          "message": "No CaseBrain prediction matched truth item \"Co-defendant Lee Marsh interview\""
+        }
+      ],
+      "metrics": {
+        "evidenceItemCount": 7,
+        "matchedItems": 1,
+        "unmatchedItems": 6,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 0,
+        "incompleteAccuracy": 0,
+        "notSafelyConfirmedAccuracy": 0,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 1,
+        "wrongDefendantBleedRate": 0.14285714285714285,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0.25,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    }
+  ]
+}
