@@ -1,0 +1,55 @@
+{
+  "caseId": "sim-103",
+  "title": "Historic sexual — third-party hearsay rotated",
+  "offenceFamily": "sexual",
+  "offenceWording": "Sexual assault (historic)",
+  "profile": "historic_sexual_third_party",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "third-party hearsay summary",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "complainant ABE",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "primary complainant account",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "ABE",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "complainant MG11/ABE",
+    "third-party statement originals",
+    "medical"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "third-party proves assault",
+    "hearsay confirms account"
+  ],
+  "blockingFailPatterns": [
+    "third-party proves",
+    "hearsay confirms",
+    "assault proved",
+    "we win",
+    "case collapses"
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "caseId": "sim-085",
+  "title": "Drug conspiracy — corrected indictment pages",
+  "offenceFamily": "drugs_conspiracy",
+  "offenceWording": "Conspiracy to supply Class A drugs (amended indictment)",
+  "profile": "multi_defendant_conspiracy",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "amended indictment",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "old count pages",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "telecom data",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "per-defendant map",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "count linkage schedule",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "which counts remain live",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "amended indictment clarity",
+    "per-defendant exhibit map",
+    "telecom downloads"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "conspiracy role proved",
+    "co-defendant supply for this defendant"
+  ],
+  "blockingFailPatterns": [
+    "conspiracy role proved",
+    "co-defendant supply proved",
+    "leading role proved",
+    "we win",
+    "case collapses"
+  ]
+}

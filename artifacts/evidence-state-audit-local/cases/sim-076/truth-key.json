@@ -1,0 +1,81 @@
+{
+  "caseId": "sim-076",
+  "title": "EncroChat handle dispute — rotated scanned export",
+  "offenceFamily": "drugs_conspiracy",
+  "offenceWording": "Conspiracy to supply Class A drugs",
+  "profile": "encro_encrypted_comms",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "partial EncroChat screenshots",
+      "correct_evidence_state": "incomplete",
+      "chase_needed": true,
+      "safe_to_rely_on": true,
+      "evidence_type": "encro",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "rotated scan pages",
+      "correct_evidence_state": "incomplete",
+      "chase_needed": true,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full platform extraction",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "handle mapping certificate",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "encro",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "device continuity",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "co-defendant chat map",
+      "correct_evidence_state": "other_defendant_only",
+      "chase_needed": false,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "co_defendant_only"
+    },
+    {
+      "evidence_item": "shared thread messages",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "handle-to-user mapping",
+    "full EncroChat extraction",
+    "co-defendant segregation",
+    "continuity certificate"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "handle is defendant",
+    "encro proves supply"
+  ],
+  "blockingFailPatterns": [
+    "handle is defendant",
+    "encro messages prove",
+    "attribution confirmed",
+    "co-defendant chat proves",
+    "we win",
+    "case collapses"
+  ]
+}

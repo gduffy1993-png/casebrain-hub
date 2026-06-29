@@ -1,0 +1,55 @@
+{
+  "caseId": "sim-081",
+  "title": "Phone attribution — cellsite summary only",
+  "offenceFamily": "drugs_pwits",
+  "offenceWording": "Possession with intent to supply Class A drugs",
+  "profile": "digital_attribution",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "cellsite summary table",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full cellsite dump",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "subscriber data",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "handset extraction",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "cellsite raw data",
+    "subscriber records",
+    "handset download"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "cellsite proves defendant at address",
+    "phone proves supply"
+  ],
+  "blockingFailPatterns": [
+    "cellsite proves",
+    "phone proves supply",
+    "handset proved defendant",
+    "we win",
+    "case collapses"
+  ]
+}

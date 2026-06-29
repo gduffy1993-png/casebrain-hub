@@ -1,0 +1,63 @@
+{
+  "caseId": "sim-087",
+  "title": "County lines — vulnerability marker OCR scan",
+  "offenceFamily": "drugs_pwits",
+  "offenceWording": "Being concerned in the supply of Class A drugs",
+  "profile": "county_lines_vulnerability",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "arrest summary with marker",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "safeguarding referral",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "NRM outcome",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "line attribution",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "exploitation vs choice",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "NRM/safeguarding notes",
+    "line attribution",
+    "role evidence"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "defendant was exploited",
+    "vulnerability proves defence"
+  ],
+  "blockingFailPatterns": [
+    "was exploited",
+    "vulnerability proves",
+    "exploitation proved",
+    "we win",
+    "case collapses"
+  ]
+}

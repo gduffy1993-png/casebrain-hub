@@ -1,0 +1,57 @@
+{
+  "caseId": "sim-105",
+  "title": "Robbery ID — VIPER missing skewed bundle",
+  "offenceFamily": "robbery_id",
+  "offenceWording": "Robbery",
+  "profile": "cctv_heavy_robbery",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "CCTV stills",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "cctv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "VIPER",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "VIPER procedure",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full CCTV",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "cctv",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "VIPER pack",
+    "ID procedure notes",
+    "CCTV master"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "VIPER confirms ID",
+    "CCTV identification proved"
+  ],
+  "blockingFailPatterns": [
+    "VIPER confirms",
+    "CCTV identification proved",
+    "identification proved",
+    "we win",
+    "case collapses"
+  ]
+}

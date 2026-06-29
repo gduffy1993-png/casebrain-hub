@@ -1,0 +1,57 @@
+{
+  "caseId": "sim-089",
+  "title": "County lines — duplicate message pages",
+  "offenceFamily": "drugs_pwits",
+  "offenceWording": "Being concerned in the supply of Class A drugs",
+  "profile": "county_lines",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "duplicate screenshot sets",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "handset download",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "source export",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "line map",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "full message export",
+    "line attribution",
+    "cellsite"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "screenshots prove line holder",
+    "duplicate pages prove continuity"
+  ],
+  "blockingFailPatterns": [
+    "screenshots prove line",
+    "duplicate pages prove",
+    "line holder proved",
+    "we win",
+    "case collapses"
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "caseId": "sim-083",
+  "title": "Encro + phone overlap — attribution disputed",
+  "offenceFamily": "drugs_conspiracy",
+  "offenceWording": "Conspiracy to supply Class A drugs",
+  "profile": "encro_encrypted_comms",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "Encro partial",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "encro",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "phone screenshots",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "phone UFED",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "Encro export",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "encro",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "attribution certificate",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "per-device map",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "same user on Encro and handset",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "encro",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "Encro handle map",
+    "phone download",
+    "cross-attribution schedule"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "Encro and phone prove same user as fact",
+    "dual attribution confirmed"
+  ],
+  "blockingFailPatterns": [
+    "dual attribution confirmed",
+    "Encro and phone prove",
+    "handle is defendant",
+    "we win",
+    "case collapses"
+  ]
+}

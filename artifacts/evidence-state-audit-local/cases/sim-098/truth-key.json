@@ -1,0 +1,59 @@
+{
+  "caseId": "sim-098",
+  "title": "Assault — BWV referred index-only listing",
+  "offenceFamily": "violence_assault",
+  "offenceWording": "Assault on emergency worker",
+  "profile": "police_contact_bwv_custody",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5 officer account",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV full export",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV download",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "custody record",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "custody_pace",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "full BWV export",
+    "custody record",
+    "MG11"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "BWV shows assault",
+    "officer account proves contact"
+  ],
+  "blockingFailPatterns": [
+    "BWV shows",
+    "officer account proves",
+    "assault proved on BWV",
+    "we win",
+    "case collapses"
+  ]
+}

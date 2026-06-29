@@ -1,0 +1,74 @@
+{
+  "caseId": "sim-093",
+  "title": "Joint enterprise — duplicate conflicting MG11",
+  "offenceFamily": "violence_assault",
+  "offenceWording": "S18 wounding with intent",
+  "profile": "joint_enterprise_assault",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "two MG11 versions",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "partial BWV",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full BWV",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "signed final MG11",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "medical",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "which MG11 is final",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "signed MG11 versions",
+    "BWV full export",
+    "medical report"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "joint enterprise proved",
+    "MG11 proves intent"
+  ],
+  "blockingFailPatterns": [
+    "joint enterprise proved",
+    "MG11 proves intent",
+    "intent proved as fact",
+    "we win",
+    "case collapses"
+  ]
+}

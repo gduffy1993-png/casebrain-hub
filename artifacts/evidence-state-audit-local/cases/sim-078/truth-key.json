@@ -1,0 +1,64 @@
+{
+  "caseId": "sim-078",
+  "title": "EncroChat — mixed defendants in one PDF",
+  "offenceFamily": "drugs_conspiracy",
+  "offenceWording": "Conspiracy to supply Class A drugs with co-defendants",
+  "profile": "encro_encrypted_comms",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "mixed defendant message excerpts",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "co-defendant schedules",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "per-defendant exhibit map",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "handle mapping",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "encro",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "co-defendant NIGHTHAWK thread",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "per-defendant message map",
+    "handle attribution",
+    "full extraction"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "co-defendant messages prove this defendant",
+    "leading role proved"
+  ],
+  "blockingFailPatterns": [
+    "co-defendant supply proved",
+    "leading role proved",
+    "principal supplier",
+    "we win",
+    "case collapses"
+  ]
+}

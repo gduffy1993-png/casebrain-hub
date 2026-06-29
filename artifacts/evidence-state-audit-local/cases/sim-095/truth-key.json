@@ -1,0 +1,62 @@
+{
+  "caseId": "sim-095",
+  "title": "Violence — corrected charge s20 to s18",
+  "offenceFamily": "violence_assault",
+  "offenceWording": "S18 wounding with intent (amended from s20)",
+  "profile": "charge_fit_intent",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "amended charge sheet",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "old s20 wording",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "medical",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "medical",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "intent material",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "medical report",
+    "intent evidence",
+    "witness accounts"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "s18 intent proved",
+    "charge-fit resolved"
+  ],
+  "blockingFailPatterns": [
+    "s18 intent proved",
+    "charge-fit resolved",
+    "intent established",
+    "we win",
+    "case collapses"
+  ]
+}

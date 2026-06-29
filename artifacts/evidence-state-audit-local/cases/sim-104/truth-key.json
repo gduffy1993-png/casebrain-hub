@@ -1,0 +1,63 @@
+{
+  "caseId": "sim-104",
+  "title": "Sexual — mixed offences PDF bleed",
+  "offenceFamily": "sexual",
+  "offenceWording": "Sexual assault",
+  "profile": "historic_sexual",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "sexual MG5",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "unrelated fraud index",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "ABE",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "ABE",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "medical",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "ABE/first account",
+    "medical",
+    "disclosure schedule"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "fraud route on sexual matter",
+    "PWITS route on sexual matter"
+  ],
+  "blockingFailPatterns": [
+    "fraud account-control route",
+    "PWITS route",
+    "wrong family route as final",
+    "we win",
+    "case collapses"
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "caseId": "sim-090",
+  "title": "Conspiracy PWITS — two-column schedule OCR",
+  "offenceFamily": "drugs_conspiracy",
+  "offenceWording": "Conspiracy to supply Class A drugs",
+  "profile": "drugs_conspiracy_multi_def",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "two-column exhibit schedule",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "group chat export",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "per-defendant segregation",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "telecom raw",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "per-defendant exhibit map",
+    "telecom downloads",
+    "lab report"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "group chat proves this defendant's role",
+    "co-defendant supply proved"
+  ],
+  "blockingFailPatterns": [
+    "co-defendant supply proved",
+    "group chat proves role",
+    "conspiracy role established",
+    "we win",
+    "case collapses"
+  ]
+}

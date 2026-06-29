@@ -1,0 +1,57 @@
+{
+  "caseId": "sim-099",
+  "title": "Public order — group conduct bleed OCR",
+  "offenceFamily": "public_order",
+  "offenceWording": "Violent disorder",
+  "profile": "multi_participant_public_order",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "OCR group summary",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV clips",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "per-defendant conduct map",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full BWV",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "individual conduct evidence",
+    "BWV per defendant",
+    "witness segregation"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "defendant participated in violence as fact",
+    "group conduct proves individual guilt"
+  ],
+  "blockingFailPatterns": [
+    "defendant participated as fact",
+    "group conduct proves",
+    "violent disorder proved for defendant",
+    "we win",
+    "case collapses"
+  ]
+}

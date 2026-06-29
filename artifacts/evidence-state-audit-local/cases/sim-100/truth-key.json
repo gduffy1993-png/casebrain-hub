@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-100",
+  "title": "Robbery — CCTV pages out of order",
+  "offenceFamily": "robbery_id",
+  "offenceWording": "Robbery",
+  "profile": "cctv_heavy_robbery",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "out-of-order CCTV clips",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "cctv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "master timeline",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full window export",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "continuity",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "full CCTV timeline",
+    "continuity statement",
+    "ID procedure"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "CCTV timeline proves sequence",
+    "clip shows complete robbery"
+  ],
+  "blockingFailPatterns": [
+    "CCTV timeline proves",
+    "clip shows complete",
+    "CCTV shows robbery",
+    "we win",
+    "case collapses"
+  ]
+}

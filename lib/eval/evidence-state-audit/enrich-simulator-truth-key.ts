@@ -347,10 +347,11 @@ const CASE_CURATIONS: Record<string, CaseCuration> = {
   "sim-046": {
     overrides: [
       {
-        match: "partial phone",
+        match: "CCTV stills",
         correct_evidence_state: "incomplete",
-        evidence_type: "digital",
+        evidence_type: "cctv",
         chase_needed: true,
+        must_not_say: ["CCTV identifies"],
       },
     ],
   },
@@ -418,7 +419,37 @@ const CASE_CURATIONS: Record<string, CaseCuration> = {
       },
     ],
   },
+  "sim-076": {
+    overrides: [
+      {
+        match: "partial EncroChat screenshots",
+        correct_evidence_state: "incomplete",
+        evidence_type: "encro",
+        chase_needed: true,
+      },
+      {
+        match: "rotated scan pages",
+        correct_evidence_state: "incomplete",
+        chase_needed: true,
+      },
+      {
+        match: "shared thread",
+        correct_evidence_state: "not_safely_confirmed",
+        chase_needed: true,
+      },
+      {
+        match: "co-defendant chat",
+        correct_evidence_state: "other_defendant_only",
+        defendant_relevance: "co_defendant_only",
+        chase_needed: false,
+      },
+    ],
+  },
 };
+
+function simIdRange(from: number, to: number): string[] {
+  return Array.from({ length: to - from + 1 }, (_, i) => `sim-${String(from + i).padStart(3, "0")}`);
+}
 
 function applyOverrides(items: TruthKeyEvidenceItem[], overrides: ItemOverride[] | undefined): TruthKeyEvidenceItem[] {
   if (!overrides?.length) return items;
@@ -522,4 +553,6 @@ export const AUDIT_SIMULATOR_CASE_IDS = [
   "sim-056",
   "sim-057",
   "sim-060",
+  // batch 4–6 → 60 cases (simulator v3)
+  ...simIdRange(76, 105),
 ] as const;

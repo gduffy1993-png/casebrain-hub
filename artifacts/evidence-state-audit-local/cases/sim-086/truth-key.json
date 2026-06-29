@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-086",
+  "title": "Telecom conspiracy — summary without raw data",
+  "offenceFamily": "drugs_conspiracy",
+  "offenceWording": "Conspiracy to supply Class A drugs",
+  "profile": "telecoms_conspiracy",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "telecom analyst summary",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "raw call data",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "subscriber download",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "cellsite dump",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "subscriber records",
+    "call data download",
+    "cellsite raw"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "telecom summary proves conspiracy",
+    "call pattern proves supply"
+  ],
+  "blockingFailPatterns": [
+    "telecom summary proves",
+    "call pattern proves supply",
+    "conspiracy proved from summary",
+    "we win",
+    "case collapses"
+  ]
+}

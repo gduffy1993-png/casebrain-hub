@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-094",
+  "title": "S18 — medical referred only rotated scan",
+  "offenceFamily": "violence_assault",
+  "offenceWording": "S18 wounding with intent",
+  "profile": "medical_evidence_gap",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5 injury summary",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "medical report",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "medical report",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "imaging",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "full medical report",
+    "imaging",
+    "BWV"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "medical proves s18 intent",
+    "injury grade proved"
+  ],
+  "blockingFailPatterns": [
+    "medical proves s18",
+    "injury grade proved",
+    "intent proved",
+    "we win",
+    "case collapses"
+  ]
+}

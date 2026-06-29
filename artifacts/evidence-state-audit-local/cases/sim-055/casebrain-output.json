@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-29T16:19:58.853Z",
+  "generatedAt": "2026-06-29T16:39:24.227Z",
   "caseId": "sim-055",
   "source": "CaseBrain H5 presentation builders (no Brain 1 mutation)",
   "matterConfidence": {
@@ -66,9 +66,9 @@
     },
     {
       "label": "Served material | 5+ | MG5; officer MG11; custody summary extract",
-      "existence": "served",
+      "existence": "incomplete",
       "reliability": "needs_review",
-      "note": "Served on bundle — brief plan ledger."
+      "note": "Partial media on bundle — not full export; treat as incomplete for audit."
     },
     {
       "label": "MG6C/OFF — officer MG11 — served on bundle.",
@@ -78,9 +78,9 @@
     },
     {
       "label": "Served on bundle: MG5; officer MG11; custody summary extract.",
-      "existence": "served",
+      "existence": "incomplete",
       "reliability": "needs_review",
-      "note": "Served on bundle — brief plan ledger."
+      "note": "Partial media on bundle — not full export; treat as incomplete for audit."
     },
     {
       "label": "Statement of Offence:",
@@ -233,9 +233,9 @@
     "blockedReason": null
   },
   "exportVersion": {
-    "exportId": "exp-sim-055-20260629161958",
+    "exportId": "exp-sim-055-20260629163924",
     "caseId": "sim-055",
-    "generatedAt": "2026-06-29T16:19:58.853Z",
+    "generatedAt": "2026-06-29T16:39:24.227Z",
     "exportType": "h5_export_pack_v1",
     "bundleVersionLabel": "overview-export@2026-06-29",
     "appVersion": "evidence-state-audit-snapshot",

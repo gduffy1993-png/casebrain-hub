@@ -1,0 +1,57 @@
+{
+  "caseId": "sim-097",
+  "title": "Robbery — CCTV stills rotated poor quality",
+  "offenceFamily": "robbery_id",
+  "offenceWording": "Robbery",
+  "profile": "cctv_heavy_robbery",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "rotated CCTV stills",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "cctv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "master footage",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full CCTV",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "cctv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "ID procedure",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "master CCTV window",
+    "VIPER/ID procedure",
+    "continuity"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "CCTV identifies defendant",
+    "stills prove robbery"
+  ],
+  "blockingFailPatterns": [
+    "CCTV identifies defendant",
+    "CCTV shows robbery",
+    "stills prove identification",
+    "we win",
+    "case collapses"
+  ]
+}

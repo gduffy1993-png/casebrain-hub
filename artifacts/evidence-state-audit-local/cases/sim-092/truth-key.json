@@ -1,0 +1,67 @@
+{
+  "caseId": "sim-092",
+  "title": "Multi-hand assault — skewed BWV stills",
+  "offenceFamily": "violence_assault",
+  "offenceWording": "Unlawful wounding / s20 GBH",
+  "profile": "multi_handed_assault",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "skewed BWV stills",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full BWV",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full BWV window",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG11 accounts",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "who struck",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "full BWV export",
+    "witness statements",
+    "medical report"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "participation proved",
+    "defendant struck as fact"
+  ],
+  "blockingFailPatterns": [
+    "participation proved",
+    "defendant struck",
+    "BWV shows strike",
+    "we win",
+    "case collapses"
+  ]
+}

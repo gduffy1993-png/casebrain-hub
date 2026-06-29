@@ -1,0 +1,63 @@
+{
+  "caseId": "sim-084",
+  "title": "County lines — bad OCR line labels",
+  "offenceFamily": "drugs_pwits",
+  "offenceWording": "Being concerned in the supply of Class A drugs",
+  "profile": "county_lines",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "OCR-broken message pages",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "cellsite summary",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "line holder evidence",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full cellsite",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "runner vs holder",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "line attribution",
+    "cellsite data",
+    "role evidence"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "line holder proved",
+    "runner role confirmed"
+  ],
+  "blockingFailPatterns": [
+    "line holder proved",
+    "runner role confirmed",
+    "supply role established",
+    "we win",
+    "case collapses"
+  ]
+}

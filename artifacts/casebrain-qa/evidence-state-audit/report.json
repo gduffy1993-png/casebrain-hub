@@ -1,49 +1,89 @@
 {
   "disclaimer": "Controlled audit harness run — not solicitor-reviewed real-world audit.",
-  "generatedAt": "2026-06-29T16:36:33.167Z",
+  "generatedAt": "2026-06-29T16:39:51.924Z",
   "harnessVersion": "evidence-state-audit-v1",
   "fixtureIds": [
     "proof-pack-01",
     "sim-038",
     "sim-039",
+    "sim-040",
     "sim-041",
     "sim-042",
+    "sim-043",
     "sim-044",
     "sim-045",
+    "sim-046",
+    "sim-047",
     "sim-048",
     "sim-049",
     "sim-050",
+    "sim-051",
+    "sim-052",
+    "sim-053",
     "sim-054",
     "sim-055",
+    "sim-056",
+    "sim-057",
     "sim-058",
     "sim-059",
+    "sim-060",
     "sim-061",
     "sim-062",
     "sim-063",
     "sim-066",
     "sim-067",
-    "sim-069"
+    "sim-069",
+    "sim-076",
+    "sim-077",
+    "sim-078",
+    "sim-079",
+    "sim-080",
+    "sim-081",
+    "sim-082",
+    "sim-083",
+    "sim-084",
+    "sim-085",
+    "sim-086",
+    "sim-087",
+    "sim-088",
+    "sim-089",
+    "sim-090",
+    "sim-091",
+    "sim-092",
+    "sim-093",
+    "sim-094",
+    "sim-095",
+    "sim-096",
+    "sim-097",
+    "sim-098",
+    "sim-099",
+    "sim-100",
+    "sim-101",
+    "sim-102",
+    "sim-103",
+    "sim-104",
+    "sim-105"
   ],
   "metrics": {
-    "totalCases": 20,
-    "totalEvidenceItems": 221,
-    "matchedItems": 186,
-    "unmatchedItems": 35,
+    "totalCases": 60,
+    "totalEvidenceItems": 471,
+    "matchedItems": 395,
+    "unmatchedItems": 76,
     "falseServedCount": 0,
     "falseServedRate": 0,
     "referredOnlyAccuracy": 1,
-    "missingAccuracy": 0.9683257918552036,
-    "incompleteAccuracy": 0.7534246575342466,
-    "notSafelyConfirmedAccuracy": 0,
+    "missingAccuracy": 0.9851380042462845,
+    "incompleteAccuracy": 0.8021978021978022,
+    "notSafelyConfirmedAccuracy": 0.013054830287206266,
     "unsafeRelianceCount": 0,
     "unsafeRelianceRate": 0,
-    "wrongDefendantBleedCount": 3,
-    "wrongDefendantBleedRate": 0.013574660633484163,
+    "wrongDefendantBleedCount": 4,
+    "wrongDefendantBleedRate": 0.008492569002123142,
     "wrongFamilyBleedCount": 0,
     "wrongFamilyBleedRate": null,
-    "chaseAccuracy": 0.13501939237233354,
-    "overCautiousCount": 0,
-    "overCautiousRate": 0,
+    "chaseAccuracy": 0.11029386984800997,
+    "overCautiousCount": 1,
+    "overCautiousRate": 0.0021231422505307855,
     "courtNoteSafetyRate": null,
     "clientSummarySafetyRate": null
   },
@@ -67,6 +107,13 @@
       "severity": "blocking",
       "caseId": "sim-045",
       "truthItem": "co-defendant interview records",
+      "message": "Co-defendant / other-defendant material matched to client workflow"
+    },
+    {
+      "code": "wrong_defendant_bleed",
+      "severity": "blocking",
+      "caseId": "sim-076",
+      "truthItem": "co-defendant chat map",
       "message": "Co-defendant / other-defendant material matched to client workflow"
     }
   ],
@@ -115,6 +162,12 @@
     },
     {
       "code": "unmatched_truth_item",
+      "caseId": "sim-040",
+      "truthItem": "whether the defendant controlled the line or was merely present",
+      "message": "No CaseBrain prediction matched truth item \"whether the defendant controlled the line or was merely present\""
+    },
+    {
+      "code": "unmatched_truth_item",
       "caseId": "sim-041",
       "truthItem": "whether exploitation is evidenced or only mentioned",
       "message": "No CaseBrain prediction matched truth item \"whether exploitation is evidenced or only mentioned\""
@@ -124,6 +177,30 @@
       "caseId": "sim-042",
       "truthItem": "which exhibits relate to Omar rather than co-defendants",
       "message": "No CaseBrain prediction matched truth item \"which exhibits relate to Omar rather than co-defendants\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-043",
+      "truthItem": "MG5",
+      "message": "No CaseBrain prediction matched truth item \"MG5\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-043",
+      "truthItem": "analyst summary",
+      "message": "No CaseBrain prediction matched truth item \"analyst summary\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-043",
+      "truthItem": "one call schedule extract",
+      "message": "No CaseBrain prediction matched truth item \"one call schedule extract\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-043",
+      "truthItem": "whether contact frequency proves supply or ordinary association",
+      "message": "No CaseBrain prediction matched truth item \"whether contact frequency proves supply or ordinary association\""
     },
     {
       "code": "unmatched_truth_item",
@@ -148,6 +225,24 @@
       "caseId": "sim-050",
       "truthItem": "whether messages are complete, attributed, or taken out of context",
       "message": "No CaseBrain prediction matched truth item \"whether messages are complete, attributed, or taken out of context\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-051",
+      "truthItem": "whether files were viewed, stored, cached, or attributable to the defendant",
+      "message": "No CaseBrain prediction matched truth item \"whether files were viewed, stored, cached, or attributable to the defendant\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-052",
+      "truthItem": "whether injuries meet ABH threshold",
+      "message": "No CaseBrain prediction matched truth item \"whether injuries meet ABH threshold\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-053",
+      "truthItem": "whether specific intent can be supported on the served papers",
+      "message": "No CaseBrain prediction matched truth item \"whether specific intent can be supported on the served papers\""
     },
     {
       "code": "unmatched_truth_item",
@@ -181,6 +276,12 @@
     },
     {
       "code": "unmatched_truth_item",
+      "caseId": "sim-057",
+      "truthItem": "whether item is the stolen property and whether Aimee knew",
+      "message": "No CaseBrain prediction matched truth item \"whether item is the stolen property and whether Aimee knew\""
+    },
+    {
+      "code": "unmatched_truth_item",
       "caseId": "sim-058",
       "truthItem": "whether possession was for theft or innocent work/use",
       "message": "No CaseBrain prediction matched truth item \"whether possession was for theft or innocent work/use\""
@@ -208,6 +309,30 @@
       "caseId": "sim-059",
       "truthItem": "whether procedure and device checks are proved",
       "message": "No CaseBrain prediction matched truth item \"whether procedure and device checks are proved\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-060",
+      "truthItem": "MG5",
+      "message": "No CaseBrain prediction matched truth item \"MG5\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-060",
+      "truthItem": "custody extract",
+      "message": "No CaseBrain prediction matched truth item \"custody extract\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-060",
+      "truthItem": "charge sheet",
+      "message": "No CaseBrain prediction matched truth item \"charge sheet\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-060",
+      "truthItem": "whether sample chain and result are admissibly proved",
+      "message": "No CaseBrain prediction matched truth item \"whether sample chain and result are admissibly proved\""
     },
     {
       "code": "unmatched_truth_item",
@@ -280,6 +405,174 @@
       "caseId": "sim-069",
       "truthItem": "pattern, attribution, and context",
       "message": "No CaseBrain prediction matched truth item \"pattern, attribution, and context\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-076",
+      "truthItem": "shared thread messages",
+      "message": "No CaseBrain prediction matched truth item \"shared thread messages\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-078",
+      "truthItem": "mixed defendant message excerpts",
+      "message": "No CaseBrain prediction matched truth item \"mixed defendant message excerpts\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-078",
+      "truthItem": "co-defendant NIGHTHAWK thread",
+      "message": "No CaseBrain prediction matched truth item \"co-defendant NIGHTHAWK thread\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-079",
+      "truthItem": "MG5 summary reference to Encro",
+      "message": "No CaseBrain prediction matched truth item \"MG5 summary reference to Encro\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-080",
+      "truthItem": "duplicate screenshot pages",
+      "message": "No CaseBrain prediction matched truth item \"duplicate screenshot pages\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-081",
+      "truthItem": "cellsite summary table",
+      "message": "No CaseBrain prediction matched truth item \"cellsite summary table\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-082",
+      "truthItem": "skewed scan digital summary",
+      "message": "No CaseBrain prediction matched truth item \"skewed scan digital summary\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-083",
+      "truthItem": "same user on Encro and handset",
+      "message": "No CaseBrain prediction matched truth item \"same user on Encro and handset\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-084",
+      "truthItem": "OCR-broken message pages",
+      "message": "No CaseBrain prediction matched truth item \"OCR-broken message pages\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-085",
+      "truthItem": "old count pages",
+      "message": "No CaseBrain prediction matched truth item \"old count pages\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-085",
+      "truthItem": "which counts remain live",
+      "message": "No CaseBrain prediction matched truth item \"which counts remain live\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-086",
+      "truthItem": "telecom analyst summary",
+      "message": "No CaseBrain prediction matched truth item \"telecom analyst summary\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-087",
+      "truthItem": "arrest summary with marker",
+      "message": "No CaseBrain prediction matched truth item \"arrest summary with marker\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-087",
+      "truthItem": "exploitation vs choice",
+      "message": "No CaseBrain prediction matched truth item \"exploitation vs choice\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-088",
+      "truthItem": "MG6C header only",
+      "message": "No CaseBrain prediction matched truth item \"MG6C header only\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-089",
+      "truthItem": "duplicate screenshot sets",
+      "message": "No CaseBrain prediction matched truth item \"duplicate screenshot sets\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-090",
+      "truthItem": "two-column exhibit schedule",
+      "message": "No CaseBrain prediction matched truth item \"two-column exhibit schedule\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-091",
+      "truthItem": "skewed analyst summary",
+      "message": "No CaseBrain prediction matched truth item \"skewed analyst summary\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-092",
+      "truthItem": "who struck",
+      "message": "No CaseBrain prediction matched truth item \"who struck\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-094",
+      "truthItem": "MG5 injury summary",
+      "message": "No CaseBrain prediction matched truth item \"MG5 injury summary\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-095",
+      "truthItem": "amended charge sheet",
+      "message": "No CaseBrain prediction matched truth item \"amended charge sheet\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-095",
+      "truthItem": "old s20 wording",
+      "message": "No CaseBrain prediction matched truth item \"old s20 wording\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-098",
+      "truthItem": "MG5 officer account",
+      "message": "No CaseBrain prediction matched truth item \"MG5 officer account\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-099",
+      "truthItem": "OCR group summary",
+      "message": "No CaseBrain prediction matched truth item \"OCR group summary\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-101",
+      "truthItem": "OCR MG5 summary",
+      "message": "No CaseBrain prediction matched truth item \"OCR MG5 summary\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-103",
+      "truthItem": "third-party hearsay summary",
+      "message": "No CaseBrain prediction matched truth item \"third-party hearsay summary\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-104",
+      "truthItem": "sexual MG5",
+      "message": "No CaseBrain prediction matched truth item \"sexual MG5\""
+    },
+    {
+      "code": "unmatched_truth_item",
+      "caseId": "sim-104",
+      "truthItem": "unrelated fraud index",
+      "message": "No CaseBrain prediction matched truth item \"unrelated fraud index\""
     }
   ],
   "cases": [
@@ -822,6 +1115,189 @@
       }
     },
     {
+      "caseId": "sim-040",
+      "title": "County lines cellsite and travel gaps",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "MG5",
+          "truthState": "served",
+          "predictedLabel": "Served material | 5+ | MG5; arrest circumstances; drug seizure statement",
+          "predictedState": "served",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "arrest circumstances",
+          "truthState": "served",
+          "predictedLabel": "Served material | 5+ | MG5; arrest circumstances; drug seizure statement",
+          "predictedState": "served",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "drug seizure statement",
+          "truthState": "served",
+          "predictedLabel": "Served material | 5+ | MG5; arrest circumstances; drug seizure statement",
+          "predictedState": "served",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "cellsite schedule",
+          "truthState": "referred_only",
+          "predictedLabel": "MG6C/CEL — cellsite schedule — referred on MG6 — export not served.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "phone download",
+          "truthState": "referred_only",
+          "predictedLabel": "MG6C/PHO — phone download — referred on MG6 — export not served.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "line attribution note",
+          "truthState": "referred_only",
+          "predictedLabel": "MG6C/LIN — line attribution note — referred on MG6 — export not served.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "cellsite map",
+          "truthState": "missing",
+          "predictedLabel": "MG6C/CEL — cellsite map — outstanding — not on bundle.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "train/bus ticket evidence",
+          "truthState": "missing",
+          "predictedLabel": "MG6C/TRA — train/bus ticket evidence — outstanding — not on bundle.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "full phone extraction",
+          "truthState": "missing",
+          "predictedLabel": "MG6C/FUL — full phone extraction — outstanding — not on bundle.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "county line call data",
+          "truthState": "missing",
+          "predictedLabel": "MG6C/COU — county line call data — outstanding — not on bundle.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "whether the defendant controlled the line or was merely present",
+          "truthState": "not_safely_confirmed",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-040",
+          "truthItem": "whether the defendant controlled the line or was merely present",
+          "message": "No CaseBrain prediction matched truth item \"whether the defendant controlled the line or was merely present\""
+        }
+      ],
+      "metrics": {
+        "evidenceItemCount": 11,
+        "matchedItems": 10,
+        "unmatchedItems": 1,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": 0,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
       "caseId": "sim-041",
       "title": "County lines vulnerability and modern slavery marker",
       "fixtureKind": "internal",
@@ -1215,6 +1691,213 @@
       }
     },
     {
+      "caseId": "sim-043",
+      "title": "Drug conspiracy telecoms download missing but summary confident",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "MG5",
+          "truthState": "served",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        },
+        {
+          "truthItem": "analyst summary",
+          "truthState": "served",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        },
+        {
+          "truthItem": "one call schedule extract",
+          "truthState": "served",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        },
+        {
+          "truthItem": "full call data",
+          "truthState": "referred_only",
+          "predictedLabel": "MG6C/FUL — full call data — referred on MG6 — export not served.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "download report",
+          "truthState": "referred_only",
+          "predictedLabel": "MG6C/DOW — download report — referred on MG6 — export not served.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "cellsite analysis",
+          "truthState": "referred_only",
+          "predictedLabel": "MG6C/CEL — cellsite analysis — referred on MG6 — export not served.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "raw call data",
+          "truthState": "missing",
+          "predictedLabel": "raw call data",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "download search terms",
+          "truthState": "missing",
+          "predictedLabel": "download search terms",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "cellsite maps",
+          "truthState": "missing",
+          "predictedLabel": "MG6C/CEL — cellsite maps — outstanding — not on bundle.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "analyst working notes",
+          "truthState": "missing",
+          "predictedLabel": "MG6C/ANA — analyst working notes — outstanding — not on bundle.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "whether contact frequency proves supply or ordinary association",
+          "truthState": "not_safely_confirmed",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-043",
+          "truthItem": "MG5",
+          "message": "No CaseBrain prediction matched truth item \"MG5\""
+        },
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-043",
+          "truthItem": "analyst summary",
+          "message": "No CaseBrain prediction matched truth item \"analyst summary\""
+        },
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-043",
+          "truthItem": "one call schedule extract",
+          "message": "No CaseBrain prediction matched truth item \"one call schedule extract\""
+        },
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-043",
+          "truthItem": "whether contact frequency proves supply or ordinary association",
+          "message": "No CaseBrain prediction matched truth item \"whether contact frequency proves supply or ordinary association\""
+        }
+      ],
+      "metrics": {
+        "evidenceItemCount": 11,
+        "matchedItems": 7,
+        "unmatchedItems": 4,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": 0,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
       "caseId": "sim-044",
       "title": "Multi-handed assault presence versus participation",
       "fixtureKind": "internal",
@@ -1584,6 +2267,354 @@
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
         "chaseAccuracy": 0.14285714285714285,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-046",
+      "title": "Robbery CCTV stills only and poor-quality identification",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "MG5",
+          "truthState": "served",
+          "predictedLabel": "Served material | 5+ | MG5; complainant MG11; CCTV stills",
+          "predictedState": "served",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "complainant MG11",
+          "truthState": "served",
+          "predictedLabel": "Served material | 5+ | MG5; complainant MG11; CCTV stills",
+          "predictedState": "served",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "CCTV stills",
+          "truthState": "incomplete",
+          "predictedLabel": "CCTV stills should not be described as the full footage or as confirming identity.",
+          "predictedState": "incomplete",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "full CCTV",
+          "truthState": "referred_only",
+          "predictedLabel": "MG6C/FUL — full CCTV — referred on MG6 — export not served.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "CCTV continuity statement",
+          "truthState": "referred_only",
+          "predictedLabel": "MG6C/CCT — CCTV continuity statement — referred on MG6 — export not served.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "ID procedure record",
+          "truthState": "referred_only",
+          "predictedLabel": "MG6C/ID — ID procedure record — referred on MG6 — export not served.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "full CCTV export",
+          "truthState": "missing",
+          "predictedLabel": "full CCTV export",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "image-quality note",
+          "truthState": "missing",
+          "predictedLabel": "image-quality note",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "ID procedure record",
+          "truthState": "missing",
+          "predictedLabel": "MG6C/ID — ID procedure record — referred on MG6 — export not served.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "time-window footage",
+          "truthState": "missing",
+          "predictedLabel": "MG6C/TIM — time-window footage — outstanding — not on bundle.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "whether stills fairly represent the footage",
+          "truthState": "not_safely_confirmed",
+          "predictedLabel": "Uncertain on papers: whether stills fairly represent the footage.",
+          "predictedState": "incomplete",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [],
+      "metrics": {
+        "evidenceItemCount": 11,
+        "matchedItems": 11,
+        "unmatchedItems": 0,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": 1,
+        "notSafelyConfirmedAccuracy": 0,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0.2,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-047",
+      "title": "Robbery full time-window CCTV missing",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "MG5",
+          "truthState": "served",
+          "predictedLabel": "Served material | 5+ | MG5; short CCTV clip description; victim statement",
+          "predictedState": "incomplete",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "short CCTV clip description",
+          "truthState": "served",
+          "predictedLabel": "Served material | 5+ | MG5; short CCTV clip description; victim statement",
+          "predictedState": "incomplete",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "victim statement",
+          "truthState": "served",
+          "predictedLabel": "MG6C/VIC — victim statement — served on bundle.",
+          "predictedState": "served",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "full premises CCTV",
+          "truthState": "referred_only",
+          "predictedLabel": "MG6C/FUL — full premises CCTV — referred on MG6 — export not served.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "street CCTV",
+          "truthState": "referred_only",
+          "predictedLabel": "MG6C/STR — street CCTV — referred on MG6 — export not served.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "CAD/999 call",
+          "truthState": "referred_only",
+          "predictedLabel": "MG6C/CAD — CAD/999 call — referred on MG6 — export not served.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "full CCTV time-window",
+          "truthState": "missing",
+          "predictedLabel": "full CCTV time-window",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "approach/departure footage",
+          "truthState": "missing",
+          "predictedLabel": "approach/departure footage",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "continuity logs",
+          "truthState": "missing",
+          "predictedLabel": "MG6C/CON — continuity logs — outstanding — not on bundle.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "999 audio",
+          "truthState": "missing",
+          "predictedLabel": "CAD / 999 audio / control-room material",
+          "predictedState": "provisional",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "whether wider footage undermines identification or timing",
+          "truthState": "not_safely_confirmed",
+          "predictedLabel": "Uncertain on papers: whether wider footage undermines identification or timing.",
+          "predictedState": "incomplete",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [],
+      "metrics": {
+        "evidenceItemCount": 11,
+        "matchedItems": 11,
+        "unmatchedItems": 0,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": 0,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0.2222222222222222,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
@@ -2131,6 +3162,568 @@
       }
     },
     {
+      "caseId": "sim-051",
+      "title": "Phone extraction continuity and search terms unclear",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "MG5",
+          "truthState": "served",
+          "predictedLabel": "Served material | 5+ | MG5; digital summary table; seizure statement",
+          "predictedState": "served",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "digital summary table",
+          "truthState": "served",
+          "predictedLabel": "Served material | 5+ | MG5; digital summary table; seizure statement",
+          "predictedState": "served",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "seizure statement",
+          "truthState": "served",
+          "predictedLabel": "Served material | 5+ | MG5; digital summary table; seizure statement",
+          "predictedState": "served",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "full extraction report",
+          "truthState": "referred_only",
+          "predictedLabel": "full extraction report",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "forensic image hash",
+          "truthState": "referred_only",
+          "predictedLabel": "MG6C/FOR — forensic image hash — referred on MG6 — export not served.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "search terms",
+          "truthState": "referred_only",
+          "predictedLabel": "MG6C/SEA — search terms — referred on MG6 — export not served.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "full extraction report",
+          "truthState": "missing",
+          "predictedLabel": "full extraction report",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "hash values",
+          "truthState": "missing",
+          "predictedLabel": "MG6C/HAS — hash values — outstanding — not on bundle.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "forensic methodology",
+          "truthState": "missing",
+          "predictedLabel": "MG6C/FOR — forensic methodology — outstanding — not on bundle.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "search scope",
+          "truthState": "missing",
+          "predictedLabel": "MG6C/SEA — search scope — outstanding — not on bundle.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "device-user attribution",
+          "truthState": "missing",
+          "predictedLabel": "MG6C/DEV — device-user attribution — outstanding — not on bundle.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "whether files were viewed, stored, cached, or attributable to the defendant",
+          "truthState": "not_safely_confirmed",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-051",
+          "truthItem": "whether files were viewed, stored, cached, or attributable to the defendant",
+          "message": "No CaseBrain prediction matched truth item \"whether files were viewed, stored, cached, or attributable to the defendant\""
+        }
+      ],
+      "metrics": {
+        "evidenceItemCount": 12,
+        "matchedItems": 11,
+        "unmatchedItems": 1,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": 0,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-052",
+      "title": "ABH medical evidence referred only",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "MG5",
+          "truthState": "served",
+          "predictedLabel": "Served material | 5+ | MG5; complainant statement; photos index",
+          "predictedState": "served",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "complainant statement",
+          "truthState": "served",
+          "predictedLabel": "Served material | 5+ | MG5; complainant statement; photos index",
+          "predictedState": "served",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "photos index",
+          "truthState": "served",
+          "predictedLabel": "Served material | 5+ | MG5; complainant statement; photos index",
+          "predictedState": "served",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "medical notes",
+          "truthState": "referred_only",
+          "predictedLabel": "MG6C/MED — medical notes — referred on MG6 — export not served.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "injury photographs",
+          "truthState": "referred_only",
+          "predictedLabel": "MG6C/INJ — injury photographs — referred on MG6 — export not served.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "doctor statement",
+          "truthState": "referred_only",
+          "predictedLabel": "MG6C/DOC — doctor statement — referred on MG6 — export not served.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "medical records",
+          "truthState": "missing",
+          "predictedLabel": "medical records",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "photographs",
+          "truthState": "missing",
+          "predictedLabel": "photographs",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "doctor statement",
+          "truthState": "missing",
+          "predictedLabel": "MG6C/DOC — doctor statement — referred on MG6 — export not served.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "injury continuity",
+          "truthState": "missing",
+          "predictedLabel": "MG6C/INJ — injury continuity — outstanding — not on bundle.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "whether injuries meet ABH threshold",
+          "truthState": "not_safely_confirmed",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-052",
+          "truthItem": "whether injuries meet ABH threshold",
+          "message": "No CaseBrain prediction matched truth item \"whether injuries meet ABH threshold\""
+        }
+      ],
+      "metrics": {
+        "evidenceItemCount": 11,
+        "matchedItems": 10,
+        "unmatchedItems": 1,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": 0,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-053",
+      "title": "Section 18 versus section 20 intent trap",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "MG5",
+          "truthState": "served",
+          "predictedLabel": "Served material | 5+ | MG5; victim MG11; charge sheet",
+          "predictedState": "served",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "victim MG11",
+          "truthState": "served",
+          "predictedLabel": "Served material | 5+ | MG5; victim MG11; charge sheet",
+          "predictedState": "served",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "charge sheet",
+          "truthState": "served",
+          "predictedLabel": "Served material | 5+ | MG5; victim MG11; charge sheet",
+          "predictedState": "served",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "medical report",
+          "truthState": "referred_only",
+          "predictedLabel": "medical report",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "CCTV",
+          "truthState": "referred_only",
+          "predictedLabel": "CCTV",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "999 call",
+          "truthState": "referred_only",
+          "predictedLabel": "MG6C/999 — 999 call — referred on MG6 — export not served.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "medical report",
+          "truthState": "missing",
+          "predictedLabel": "medical report",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "CCTV",
+          "truthState": "missing",
+          "predictedLabel": "CCTV",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "intent-specific evidence",
+          "truthState": "missing",
+          "predictedLabel": "MG6C/INT — intent-specific evidence — outstanding — not on bundle.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "weapon/source continuity",
+          "truthState": "missing",
+          "predictedLabel": "MG6C/WEA — weapon/source continuity — outstanding — not on bundle.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "whether specific intent can be supported on the served papers",
+          "truthState": "not_safely_confirmed",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-053",
+          "truthItem": "whether specific intent can be supported on the served papers",
+          "message": "No CaseBrain prediction matched truth item \"whether specific intent can be supported on the served papers\""
+        }
+      ],
+      "metrics": {
+        "evidenceItemCount": 11,
+        "matchedItems": 10,
+        "unmatchedItems": 1,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": 0,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0.2222222222222222,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
       "caseId": "sim-054",
       "title": "Affray or violent disorder mixed participants",
       "fixtureKind": "internal",
@@ -2534,6 +4127,363 @@
       }
     },
     {
+      "caseId": "sim-056",
+      "title": "Burglary forensic fingerprint referred only",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "MG5",
+          "truthState": "served",
+          "predictedLabel": "Served material | 5+ | MG5; victim statement; scene officer statement",
+          "predictedState": "served",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "victim statement",
+          "truthState": "served",
+          "predictedLabel": "Served material | 5+ | MG5; victim statement; scene officer statement",
+          "predictedState": "served",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "scene officer statement",
+          "truthState": "served",
+          "predictedLabel": "Served material | 5+ | MG5; victim statement; scene officer statement",
+          "predictedState": "served",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "fingerprint report",
+          "truthState": "referred_only",
+          "predictedLabel": "fingerprint report",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "forensic continuity",
+          "truthState": "referred_only",
+          "predictedLabel": "MG6C/FOR — forensic continuity — referred on MG6 — export not served.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "CCTV",
+          "truthState": "referred_only",
+          "predictedLabel": "CCTV Continuity / provenance",
+          "predictedState": "provisional",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "fingerprint report",
+          "truthState": "missing",
+          "predictedLabel": "fingerprint report",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "continuity records",
+          "truthState": "missing",
+          "predictedLabel": "continuity records",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "scene photographs",
+          "truthState": "missing",
+          "predictedLabel": "MG6C/SCE — scene photographs — outstanding — not on bundle.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "CCTV",
+          "truthState": "missing",
+          "predictedLabel": "CCTV Continuity / provenance",
+          "predictedState": "provisional",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "whether any forensic evidence links Harvey to entry or only presence",
+          "truthState": "not_safely_confirmed",
+          "predictedLabel": "Uncertain on papers: whether any forensic evidence links Harvey to entry or only presence.",
+          "predictedState": "incomplete",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [],
+      "metrics": {
+        "evidenceItemCount": 11,
+        "matchedItems": 11,
+        "unmatchedItems": 0,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": 0,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0.16666666666666666,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-057",
+      "title": "Handling stolen goods property continuity gap",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "MG5",
+          "truthState": "served",
+          "predictedLabel": "Served material | 5+ | MG5; owner statement; seizure note",
+          "predictedState": "served",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "owner statement",
+          "truthState": "served",
+          "predictedLabel": "Served material | 5+ | MG5; owner statement; seizure note",
+          "predictedState": "served",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "seizure note",
+          "truthState": "served",
+          "predictedLabel": "Served material | 5+ | MG5; owner statement; seizure note",
+          "predictedState": "served",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "property register",
+          "truthState": "referred_only",
+          "predictedLabel": "MG6C/PRO — property register — referred on MG6 — export not served.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "CCTV",
+          "truthState": "referred_only",
+          "predictedLabel": "CCTV",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "forensic report",
+          "truthState": "referred_only",
+          "predictedLabel": "MG6C/FOR — forensic report — referred on MG6 — export not served.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "property continuity log",
+          "truthState": "missing",
+          "predictedLabel": "property continuity log",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "CCTV",
+          "truthState": "missing",
+          "predictedLabel": "CCTV",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "valuation/proof of theft",
+          "truthState": "missing",
+          "predictedLabel": "MG6C/VAL — valuation/proof of theft — outstanding — not on bundle.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "knowledge evidence",
+          "truthState": "missing",
+          "predictedLabel": "MG6C/KNO — knowledge evidence — outstanding — not on bundle.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "whether item is the stolen property and whether Aimee knew",
+          "truthState": "not_safely_confirmed",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-057",
+          "truthItem": "whether item is the stolen property and whether Aimee knew",
+          "message": "No CaseBrain prediction matched truth item \"whether item is the stolen property and whether Aimee knew\""
+        }
+      ],
+      "metrics": {
+        "evidenceItemCount": 11,
+        "matchedItems": 10,
+        "unmatchedItems": 1,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": 0,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0.125,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
       "caseId": "sim-058",
       "title": "Going equipped tool possession and lawful purpose trap",
       "fixtureKind": "internal",
@@ -2930,6 +4880,213 @@
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
         "chaseAccuracy": 0.3333333333333333,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-060",
+      "title": "Drug driving lab and toxicology chain missing",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "MG5",
+          "truthState": "served",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        },
+        {
+          "truthItem": "custody extract",
+          "truthState": "served",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        },
+        {
+          "truthItem": "charge sheet",
+          "truthState": "served",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        },
+        {
+          "truthItem": "toxicology certificate",
+          "truthState": "referred_only",
+          "predictedLabel": "MG6C/TOX — toxicology certificate — referred on MG6 — export not served.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "blood continuity",
+          "truthState": "referred_only",
+          "predictedLabel": "MG6C/BLO — blood continuity — referred on MG6 — export not served.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "MGDD procedure form",
+          "truthState": "referred_only",
+          "predictedLabel": "MG6C/MGD — MGDD procedure form — referred on MG6 — export not served.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "toxicology certificate",
+          "truthState": "missing",
+          "predictedLabel": "MG6C/TOX — toxicology certificate — referred on MG6 — export not served.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "sample continuity",
+          "truthState": "missing",
+          "predictedLabel": "MG6C/SAM — sample continuity — outstanding — not on bundle.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "MGDD form",
+          "truthState": "missing",
+          "predictedLabel": "MG6C/MGD — MGDD form — outstanding — not on bundle.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "lab method/accreditation",
+          "truthState": "missing",
+          "predictedLabel": "MG6C/LAB — lab method/accreditation — outstanding — not on bundle.",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "whether sample chain and result are admissibly proved",
+          "truthState": "not_safely_confirmed",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-060",
+          "truthItem": "MG5",
+          "message": "No CaseBrain prediction matched truth item \"MG5\""
+        },
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-060",
+          "truthItem": "custody extract",
+          "message": "No CaseBrain prediction matched truth item \"custody extract\""
+        },
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-060",
+          "truthItem": "charge sheet",
+          "message": "No CaseBrain prediction matched truth item \"charge sheet\""
+        },
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-060",
+          "truthItem": "whether sample chain and result are admissibly proved",
+          "message": "No CaseBrain prediction matched truth item \"whether sample chain and result are admissibly proved\""
+        }
+      ],
+      "metrics": {
+        "evidenceItemCount": 11,
+        "matchedItems": 7,
+        "unmatchedItems": 4,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": 0,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
@@ -4095,6 +6252,3004 @@
         "missingAccuracy": 1,
         "incompleteAccuracy": 1,
         "notSafelyConfirmedAccuracy": 0,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-076",
+      "title": "EncroChat handle dispute — rotated scanned export",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "partial EncroChat screenshots",
+          "truthState": "incomplete",
+          "predictedLabel": "Served material | 5+ | partial EncroChat screenshots; rotated scan pages",
+          "predictedState": "incomplete",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "rotated scan pages",
+          "truthState": "incomplete",
+          "predictedLabel": "Served material | 5+ | partial EncroChat screenshots; rotated scan pages",
+          "predictedState": "incomplete",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "full platform extraction",
+          "truthState": "referred_only",
+          "predictedLabel": "full platform extraction",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "handle mapping certificate",
+          "truthState": "missing",
+          "predictedLabel": "handle mapping certificate",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "device continuity",
+          "truthState": "missing",
+          "predictedLabel": "device continuity",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "co-defendant chat map",
+          "truthState": "other_defendant_only",
+          "predictedLabel": "co-defendant chat map",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": true,
+          "unsafeReliance": false,
+          "notes": [
+            "wrong_defendant_bleed"
+          ]
+        },
+        {
+          "truthItem": "shared thread messages",
+          "truthState": "not_safely_confirmed",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        }
+      ],
+      "blockingFailures": [
+        {
+          "code": "wrong_defendant_bleed",
+          "severity": "blocking",
+          "caseId": "sim-076",
+          "truthItem": "co-defendant chat map",
+          "message": "Co-defendant / other-defendant material matched to client workflow"
+        }
+      ],
+      "warnings": [
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-076",
+          "truthItem": "shared thread messages",
+          "message": "No CaseBrain prediction matched truth item \"shared thread messages\""
+        }
+      ],
+      "metrics": {
+        "evidenceItemCount": 7,
+        "matchedItems": 6,
+        "unmatchedItems": 1,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": 1,
+        "notSafelyConfirmedAccuracy": 0,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 1,
+        "wrongDefendantBleedRate": 0.14285714285714285,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-077",
+      "title": "EncroChat — bad OCR broken handle labels",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "OCR-broken message screenshots",
+          "truthState": "served",
+          "predictedLabel": "Served material | 5+ | OCR-broken message screenshots",
+          "predictedState": "incomplete",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "platform export",
+          "truthState": "referred_only",
+          "predictedLabel": "platform export",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "authenticated extraction",
+          "truthState": "missing",
+          "predictedLabel": "authenticated extraction",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "handle mapping",
+          "truthState": "missing",
+          "predictedLabel": "handle mapping",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [],
+      "metrics": {
+        "evidenceItemCount": 4,
+        "matchedItems": 4,
+        "unmatchedItems": 0,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": null,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-078",
+      "title": "EncroChat — mixed defendants in one PDF",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "mixed defendant message excerpts",
+          "truthState": "served",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        },
+        {
+          "truthItem": "co-defendant schedules",
+          "truthState": "referred_only",
+          "predictedLabel": "co-defendant schedules",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "per-defendant exhibit map",
+          "truthState": "missing",
+          "predictedLabel": "per-defendant exhibit map",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "handle mapping",
+          "truthState": "missing",
+          "predictedLabel": "handle mapping",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "co-defendant NIGHTHAWK thread",
+          "truthState": "not_safely_confirmed",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-078",
+          "truthItem": "mixed defendant message excerpts",
+          "message": "No CaseBrain prediction matched truth item \"mixed defendant message excerpts\""
+        },
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-078",
+          "truthItem": "co-defendant NIGHTHAWK thread",
+          "message": "No CaseBrain prediction matched truth item \"co-defendant NIGHTHAWK thread\""
+        }
+      ],
+      "metrics": {
+        "evidenceItemCount": 5,
+        "matchedItems": 3,
+        "unmatchedItems": 2,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": 0,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-079",
+      "title": "EncroChat — index-only listing without export",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "MG5 summary reference to Encro",
+          "truthState": "served",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        },
+        {
+          "truthItem": "EncroChat platform export",
+          "truthState": "referred_only",
+          "predictedLabel": "EncroChat platform export",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "full extraction",
+          "truthState": "missing",
+          "predictedLabel": "full extraction",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "handle-to-user certificate",
+          "truthState": "missing",
+          "predictedLabel": "handle-to-user certificate",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-079",
+          "truthItem": "MG5 summary reference to Encro",
+          "message": "No CaseBrain prediction matched truth item \"MG5 summary reference to Encro\""
+        }
+      ],
+      "metrics": {
+        "evidenceItemCount": 4,
+        "matchedItems": 3,
+        "unmatchedItems": 1,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": null,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-080",
+      "title": "Phone download — duplicate rotated pages",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "duplicate screenshot pages",
+          "truthState": "served",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        },
+        {
+          "truthItem": "partial handset notes",
+          "truthState": "served",
+          "predictedLabel": "MG6C/PAR — partial handset notes — served on bundle.",
+          "predictedState": "incomplete",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "UFED extraction",
+          "truthState": "referred_only",
+          "predictedLabel": "UFED extraction",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "full download",
+          "truthState": "missing",
+          "predictedLabel": "full download",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "search scope schedule",
+          "truthState": "missing",
+          "predictedLabel": "search scope schedule",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "continuity",
+          "truthState": "missing",
+          "predictedLabel": "continuity",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-080",
+          "truthItem": "duplicate screenshot pages",
+          "message": "No CaseBrain prediction matched truth item \"duplicate screenshot pages\""
+        }
+      ],
+      "metrics": {
+        "evidenceItemCount": 6,
+        "matchedItems": 5,
+        "unmatchedItems": 1,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": null,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-081",
+      "title": "Phone attribution — cellsite summary only",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "cellsite summary table",
+          "truthState": "served",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        },
+        {
+          "truthItem": "full cellsite dump",
+          "truthState": "referred_only",
+          "predictedLabel": "full cellsite dump",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "subscriber data",
+          "truthState": "missing",
+          "predictedLabel": "subscriber data",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "handset extraction",
+          "truthState": "missing",
+          "predictedLabel": "handset extraction",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-081",
+          "truthItem": "cellsite summary table",
+          "message": "No CaseBrain prediction matched truth item \"cellsite summary table\""
+        }
+      ],
+      "metrics": {
+        "evidenceItemCount": 4,
+        "matchedItems": 3,
+        "unmatchedItems": 1,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": null,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-082",
+      "title": "Phone scope — search terms schedule missing",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "skewed scan digital summary",
+          "truthState": "served",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        },
+        {
+          "truthItem": "full handset download",
+          "truthState": "referred_only",
+          "predictedLabel": "full handset download",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "search terms",
+          "truthState": "missing",
+          "predictedLabel": "search terms",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "extraction continuity",
+          "truthState": "missing",
+          "predictedLabel": "extraction continuity",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-082",
+          "truthItem": "skewed scan digital summary",
+          "message": "No CaseBrain prediction matched truth item \"skewed scan digital summary\""
+        }
+      ],
+      "metrics": {
+        "evidenceItemCount": 4,
+        "matchedItems": 3,
+        "unmatchedItems": 1,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": null,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-083",
+      "title": "Encro + phone overlap — attribution disputed",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "Encro partial",
+          "truthState": "served",
+          "predictedLabel": "Served material | 5+ | Encro partial; phone screenshots",
+          "predictedState": "incomplete",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "phone screenshots",
+          "truthState": "served",
+          "predictedLabel": "Served material | 5+ | Encro partial; phone screenshots",
+          "predictedState": "incomplete",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "phone UFED",
+          "truthState": "referred_only",
+          "predictedLabel": "phone UFED",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "Encro export",
+          "truthState": "referred_only",
+          "predictedLabel": "Encro export",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "attribution certificate",
+          "truthState": "missing",
+          "predictedLabel": "attribution certificate",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "per-device map",
+          "truthState": "missing",
+          "predictedLabel": "per-device map",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "same user on Encro and handset",
+          "truthState": "not_safely_confirmed",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-083",
+          "truthItem": "same user on Encro and handset",
+          "message": "No CaseBrain prediction matched truth item \"same user on Encro and handset\""
+        }
+      ],
+      "metrics": {
+        "evidenceItemCount": 7,
+        "matchedItems": 6,
+        "unmatchedItems": 1,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": 0,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-084",
+      "title": "County lines — bad OCR line labels",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "OCR-broken message pages",
+          "truthState": "served",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        },
+        {
+          "truthItem": "cellsite summary",
+          "truthState": "referred_only",
+          "predictedLabel": "cellsite summary",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "line holder evidence",
+          "truthState": "missing",
+          "predictedLabel": "line holder evidence",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "full cellsite",
+          "truthState": "missing",
+          "predictedLabel": "full cellsite",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "runner vs holder",
+          "truthState": "not_safely_confirmed",
+          "predictedLabel": "line holder evidence",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "fuzzy_match:0.45"
+          ]
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-084",
+          "truthItem": "OCR-broken message pages",
+          "message": "No CaseBrain prediction matched truth item \"OCR-broken message pages\""
+        }
+      ],
+      "metrics": {
+        "evidenceItemCount": 5,
+        "matchedItems": 4,
+        "unmatchedItems": 1,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": 1,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-085",
+      "title": "Drug conspiracy — corrected indictment pages",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "amended indictment",
+          "truthState": "served",
+          "predictedLabel": "amended indictment clarity",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": true,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "over_cautious"
+          ]
+        },
+        {
+          "truthItem": "old count pages",
+          "truthState": "served",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        },
+        {
+          "truthItem": "telecom data",
+          "truthState": "referred_only",
+          "predictedLabel": "telecom data",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "per-defendant map",
+          "truthState": "missing",
+          "predictedLabel": "per-defendant map",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "count linkage schedule",
+          "truthState": "missing",
+          "predictedLabel": "count linkage schedule",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "which counts remain live",
+          "truthState": "not_safely_confirmed",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-085",
+          "truthItem": "old count pages",
+          "message": "No CaseBrain prediction matched truth item \"old count pages\""
+        },
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-085",
+          "truthItem": "which counts remain live",
+          "message": "No CaseBrain prediction matched truth item \"which counts remain live\""
+        }
+      ],
+      "metrics": {
+        "evidenceItemCount": 6,
+        "matchedItems": 4,
+        "unmatchedItems": 2,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": 0,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0,
+        "overCautiousCount": 1,
+        "overCautiousRate": 0.16666666666666666,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-086",
+      "title": "Telecom conspiracy — summary without raw data",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "telecom analyst summary",
+          "truthState": "served",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        },
+        {
+          "truthItem": "raw call data",
+          "truthState": "referred_only",
+          "predictedLabel": "raw call data",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "subscriber download",
+          "truthState": "missing",
+          "predictedLabel": "subscriber download",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "cellsite dump",
+          "truthState": "missing",
+          "predictedLabel": "cellsite dump",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-086",
+          "truthItem": "telecom analyst summary",
+          "message": "No CaseBrain prediction matched truth item \"telecom analyst summary\""
+        }
+      ],
+      "metrics": {
+        "evidenceItemCount": 4,
+        "matchedItems": 3,
+        "unmatchedItems": 1,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": null,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-087",
+      "title": "County lines — vulnerability marker OCR scan",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "arrest summary with marker",
+          "truthState": "served",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        },
+        {
+          "truthItem": "safeguarding referral",
+          "truthState": "referred_only",
+          "predictedLabel": "safeguarding referral",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "NRM outcome",
+          "truthState": "missing",
+          "predictedLabel": "NRM outcome",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "line attribution",
+          "truthState": "missing",
+          "predictedLabel": "line attribution",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "exploitation vs choice",
+          "truthState": "not_safely_confirmed",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-087",
+          "truthItem": "arrest summary with marker",
+          "message": "No CaseBrain prediction matched truth item \"arrest summary with marker\""
+        },
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-087",
+          "truthItem": "exploitation vs choice",
+          "message": "No CaseBrain prediction matched truth item \"exploitation vs choice\""
+        }
+      ],
+      "metrics": {
+        "evidenceItemCount": 5,
+        "matchedItems": 3,
+        "unmatchedItems": 2,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": 0,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-088",
+      "title": "Conspiracy — missing MG6 schedule detail",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "MG6C header only",
+          "truthState": "served",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        },
+        {
+          "truthItem": "lab summary",
+          "truthState": "referred_only",
+          "predictedLabel": "lab summary",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "detailed MG6 lines",
+          "truthState": "missing",
+          "predictedLabel": "detailed MG6 lines",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "per-defendant exhibits",
+          "truthState": "missing",
+          "predictedLabel": "per-defendant exhibits",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-088",
+          "truthItem": "MG6C header only",
+          "message": "No CaseBrain prediction matched truth item \"MG6C header only\""
+        }
+      ],
+      "metrics": {
+        "evidenceItemCount": 4,
+        "matchedItems": 3,
+        "unmatchedItems": 1,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": null,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-089",
+      "title": "County lines — duplicate message pages",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "duplicate screenshot sets",
+          "truthState": "served",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        },
+        {
+          "truthItem": "handset download",
+          "truthState": "referred_only",
+          "predictedLabel": "handset download",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "source export",
+          "truthState": "missing",
+          "predictedLabel": "source export",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "line map",
+          "truthState": "missing",
+          "predictedLabel": "line map",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-089",
+          "truthItem": "duplicate screenshot sets",
+          "message": "No CaseBrain prediction matched truth item \"duplicate screenshot sets\""
+        }
+      ],
+      "metrics": {
+        "evidenceItemCount": 4,
+        "matchedItems": 3,
+        "unmatchedItems": 1,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": null,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-090",
+      "title": "Conspiracy PWITS — two-column schedule OCR",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "two-column exhibit schedule",
+          "truthState": "served",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        },
+        {
+          "truthItem": "group chat export",
+          "truthState": "referred_only",
+          "predictedLabel": "group chat export",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "per-defendant segregation",
+          "truthState": "missing",
+          "predictedLabel": "per-defendant segregation",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "telecom raw",
+          "truthState": "missing",
+          "predictedLabel": "telecom raw",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-090",
+          "truthItem": "two-column exhibit schedule",
+          "message": "No CaseBrain prediction matched truth item \"two-column exhibit schedule\""
+        }
+      ],
+      "metrics": {
+        "evidenceItemCount": 4,
+        "matchedItems": 3,
+        "unmatchedItems": 1,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": null,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-091",
+      "title": "Telecom conspiracy — skewed large bundle",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "skewed analyst summary",
+          "truthState": "served",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        },
+        {
+          "truthItem": "telecom dump",
+          "truthState": "referred_only",
+          "predictedLabel": "telecom dump",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "raw data download",
+          "truthState": "missing",
+          "predictedLabel": "raw data download",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "continuity",
+          "truthState": "missing",
+          "predictedLabel": "continuity",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-091",
+          "truthItem": "skewed analyst summary",
+          "message": "No CaseBrain prediction matched truth item \"skewed analyst summary\""
+        }
+      ],
+      "metrics": {
+        "evidenceItemCount": 4,
+        "matchedItems": 3,
+        "unmatchedItems": 1,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": null,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-092",
+      "title": "Multi-hand assault — skewed BWV stills",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "skewed BWV stills",
+          "truthState": "served",
+          "predictedLabel": "Served material | 5+ | skewed BWV stills",
+          "predictedState": "served",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "full BWV",
+          "truthState": "referred_only",
+          "predictedLabel": "full BWV",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "full BWV window",
+          "truthState": "missing",
+          "predictedLabel": "full BWV window",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "MG11 accounts",
+          "truthState": "missing",
+          "predictedLabel": "MG11 accounts",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "who struck",
+          "truthState": "not_safely_confirmed",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-092",
+          "truthItem": "who struck",
+          "message": "No CaseBrain prediction matched truth item \"who struck\""
+        }
+      ],
+      "metrics": {
+        "evidenceItemCount": 5,
+        "matchedItems": 4,
+        "unmatchedItems": 1,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": 0,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-093",
+      "title": "Joint enterprise — duplicate conflicting MG11",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "two MG11 versions",
+          "truthState": "served",
+          "predictedLabel": "MG6C/TWO — two MG11 versions — served on bundle.",
+          "predictedState": "served",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "partial BWV",
+          "truthState": "served",
+          "predictedLabel": "Served material | 5+ | two MG11 versions; partial BWV",
+          "predictedState": "incomplete",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "full BWV",
+          "truthState": "referred_only",
+          "predictedLabel": "full BWV",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "signed final MG11",
+          "truthState": "missing",
+          "predictedLabel": "signed final MG11",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "medical",
+          "truthState": "missing",
+          "predictedLabel": "medical",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "which MG11 is final",
+          "truthState": "not_safely_confirmed",
+          "predictedLabel": "Uncertain on papers: which MG11 is final.",
+          "predictedState": "incomplete",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [],
+      "metrics": {
+        "evidenceItemCount": 6,
+        "matchedItems": 6,
+        "unmatchedItems": 0,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": 0,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0.2857142857142857,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-094",
+      "title": "S18 — medical referred only rotated scan",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "MG5 injury summary",
+          "truthState": "served",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        },
+        {
+          "truthItem": "medical report",
+          "truthState": "referred_only",
+          "predictedLabel": "medical report",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "medical report",
+          "truthState": "missing",
+          "predictedLabel": "medical report",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "imaging",
+          "truthState": "missing",
+          "predictedLabel": "imaging",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-094",
+          "truthItem": "MG5 injury summary",
+          "message": "No CaseBrain prediction matched truth item \"MG5 injury summary\""
+        }
+      ],
+      "metrics": {
+        "evidenceItemCount": 4,
+        "matchedItems": 3,
+        "unmatchedItems": 1,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": null,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0.25,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-095",
+      "title": "Violence — corrected charge s20 to s18",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "amended charge sheet",
+          "truthState": "served",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        },
+        {
+          "truthItem": "old s20 wording",
+          "truthState": "served",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        },
+        {
+          "truthItem": "medical",
+          "truthState": "referred_only",
+          "predictedLabel": "medical",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "medical",
+          "truthState": "missing",
+          "predictedLabel": "medical",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "intent material",
+          "truthState": "missing",
+          "predictedLabel": "intent material",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-095",
+          "truthItem": "amended charge sheet",
+          "message": "No CaseBrain prediction matched truth item \"amended charge sheet\""
+        },
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-095",
+          "truthItem": "old s20 wording",
+          "message": "No CaseBrain prediction matched truth item \"old s20 wording\""
+        }
+      ],
+      "metrics": {
+        "evidenceItemCount": 5,
+        "matchedItems": 3,
+        "unmatchedItems": 2,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": null,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0.4,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-096",
+      "title": "Multi-defendant — wrong name OCR confusion",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "OCR witness summary",
+          "truthState": "served",
+          "predictedLabel": "Served material | 5+ | OCR witness summary",
+          "predictedState": "served",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "BWV",
+          "truthState": "referred_only",
+          "predictedLabel": "BWV",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "clear ID accounts",
+          "truthState": "missing",
+          "predictedLabel": "clear ID accounts",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "BWV export",
+          "truthState": "missing",
+          "predictedLabel": "BWV export",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "which male witness means",
+          "truthState": "not_safely_confirmed",
+          "predictedLabel": "Uncertain on papers: which male witness means.",
+          "predictedState": "incomplete",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [],
+      "metrics": {
+        "evidenceItemCount": 5,
+        "matchedItems": 5,
+        "unmatchedItems": 0,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": 0,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0.14285714285714285,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-097",
+      "title": "Robbery — CCTV stills rotated poor quality",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "rotated CCTV stills",
+          "truthState": "served",
+          "predictedLabel": "Served material | 5+ | rotated CCTV stills",
+          "predictedState": "served",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "master footage",
+          "truthState": "referred_only",
+          "predictedLabel": "master footage",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "full CCTV",
+          "truthState": "missing",
+          "predictedLabel": "full CCTV",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "ID procedure",
+          "truthState": "missing",
+          "predictedLabel": "ID procedure",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [],
+      "metrics": {
+        "evidenceItemCount": 4,
+        "matchedItems": 4,
+        "unmatchedItems": 0,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": null,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0.5,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-098",
+      "title": "Assault — BWV referred index-only listing",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "MG5 officer account",
+          "truthState": "served",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        },
+        {
+          "truthItem": "BWV full export",
+          "truthState": "referred_only",
+          "predictedLabel": "BWV full export",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "BWV download",
+          "truthState": "missing",
+          "predictedLabel": "BWV download",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "custody record",
+          "truthState": "missing",
+          "predictedLabel": "custody record",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-098",
+          "truthItem": "MG5 officer account",
+          "message": "No CaseBrain prediction matched truth item \"MG5 officer account\""
+        }
+      ],
+      "metrics": {
+        "evidenceItemCount": 4,
+        "matchedItems": 3,
+        "unmatchedItems": 1,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": null,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0.2,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-099",
+      "title": "Public order — group conduct bleed OCR",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "OCR group summary",
+          "truthState": "served",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        },
+        {
+          "truthItem": "BWV clips",
+          "truthState": "referred_only",
+          "predictedLabel": "BWV clips",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "per-defendant conduct map",
+          "truthState": "missing",
+          "predictedLabel": "per-defendant conduct map",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "full BWV",
+          "truthState": "missing",
+          "predictedLabel": "full BWV",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-099",
+          "truthItem": "OCR group summary",
+          "message": "No CaseBrain prediction matched truth item \"OCR group summary\""
+        }
+      ],
+      "metrics": {
+        "evidenceItemCount": 4,
+        "matchedItems": 3,
+        "unmatchedItems": 1,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": null,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-100",
+      "title": "Robbery — CCTV pages out of order",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "out-of-order CCTV clips",
+          "truthState": "served",
+          "predictedLabel": "Served material | 5+ | out-of-order CCTV clips",
+          "predictedState": "incomplete",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "master timeline",
+          "truthState": "referred_only",
+          "predictedLabel": "master timeline",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "full window export",
+          "truthState": "missing",
+          "predictedLabel": "full window export",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "continuity",
+          "truthState": "missing",
+          "predictedLabel": "continuity",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [],
+      "metrics": {
+        "evidenceItemCount": 4,
+        "matchedItems": 4,
+        "unmatchedItems": 0,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": null,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0.16666666666666666,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-101",
+      "title": "Historic sexual — bad OCR MG5 summary",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "OCR MG5 summary",
+          "truthState": "served",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        },
+        {
+          "truthItem": "ABE interview",
+          "truthState": "referred_only",
+          "predictedLabel": "ABE interview",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "ABE recording",
+          "truthState": "missing",
+          "predictedLabel": "ABE recording",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "MG11 first account",
+          "truthState": "missing",
+          "predictedLabel": "MG11 first account",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-101",
+          "truthItem": "OCR MG5 summary",
+          "message": "No CaseBrain prediction matched truth item \"OCR MG5 summary\""
+        }
+      ],
+      "metrics": {
+        "evidenceItemCount": 4,
+        "matchedItems": 3,
+        "unmatchedItems": 1,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": null,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0.16666666666666666,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-102",
+      "title": "Sexual — ABE index-only bundle",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "MG5 summary only",
+          "truthState": "served",
+          "predictedLabel": "Served material | 5+ | MG5 summary only",
+          "predictedState": "incomplete",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "ABE interview",
+          "truthState": "referred_only",
+          "predictedLabel": "ABE interview",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "ABE recording",
+          "truthState": "missing",
+          "predictedLabel": "ABE recording",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "transcript",
+          "truthState": "missing",
+          "predictedLabel": "transcript",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [],
+      "metrics": {
+        "evidenceItemCount": 4,
+        "matchedItems": 4,
+        "unmatchedItems": 0,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": null,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0.25,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-103",
+      "title": "Historic sexual — third-party hearsay rotated",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "third-party hearsay summary",
+          "truthState": "served",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        },
+        {
+          "truthItem": "complainant ABE",
+          "truthState": "referred_only",
+          "predictedLabel": "complainant ABE",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "primary complainant account",
+          "truthState": "missing",
+          "predictedLabel": "primary complainant account",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "ABE",
+          "truthState": "missing",
+          "predictedLabel": "ABE",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-103",
+          "truthItem": "third-party hearsay summary",
+          "message": "No CaseBrain prediction matched truth item \"third-party hearsay summary\""
+        }
+      ],
+      "metrics": {
+        "evidenceItemCount": 4,
+        "matchedItems": 3,
+        "unmatchedItems": 1,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": null,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-104",
+      "title": "Sexual — mixed offences PDF bleed",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "sexual MG5",
+          "truthState": "served",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        },
+        {
+          "truthItem": "unrelated fraud index",
+          "truthState": "served",
+          "predictedLabel": null,
+          "predictedState": null,
+          "matched": false,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": false,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": [
+            "no_prediction_match"
+          ]
+        },
+        {
+          "truthItem": "ABE",
+          "truthState": "referred_only",
+          "predictedLabel": "ABE",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "ABE",
+          "truthState": "missing",
+          "predictedLabel": "ABE",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "medical",
+          "truthState": "missing",
+          "predictedLabel": "medical",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-104",
+          "truthItem": "sexual MG5",
+          "message": "No CaseBrain prediction matched truth item \"sexual MG5\""
+        },
+        {
+          "code": "unmatched_truth_item",
+          "caseId": "sim-104",
+          "truthItem": "unrelated fraud index",
+          "message": "No CaseBrain prediction matched truth item \"unrelated fraud index\""
+        }
+      ],
+      "metrics": {
+        "evidenceItemCount": 5,
+        "matchedItems": 3,
+        "unmatchedItems": 2,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": null,
+        "unsafeRelianceCount": 0,
+        "unsafeRelianceRate": 0,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
+        "wrongFamilyBleedCount": 0,
+        "wrongFamilyBleedRate": null,
+        "chaseAccuracy": 0.25,
+        "overCautiousCount": 0,
+        "overCautiousRate": 0,
+        "courtNoteSafetyRate": null,
+        "clientSummarySafetyRate": null
+      }
+    },
+    {
+      "caseId": "sim-105",
+      "title": "Robbery ID — VIPER missing skewed bundle",
+      "fixtureKind": "internal",
+      "itemComparisons": [
+        {
+          "truthItem": "CCTV stills",
+          "truthState": "served",
+          "predictedLabel": "Served material | 5+ | CCTV stills",
+          "predictedState": "served",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "VIPER",
+          "truthState": "referred_only",
+          "predictedLabel": "VIPER",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "VIPER procedure",
+          "truthState": "missing",
+          "predictedLabel": "VIPER procedure",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        },
+        {
+          "truthItem": "full CCTV",
+          "truthState": "missing",
+          "predictedLabel": "full CCTV",
+          "predictedState": "missing",
+          "matched": true,
+          "falseServed": false,
+          "overCautious": false,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
+          "unsafeReliance": false,
+          "notes": []
+        }
+      ],
+      "blockingFailures": [],
+      "warnings": [],
+      "metrics": {
+        "evidenceItemCount": 4,
+        "matchedItems": 4,
+        "unmatchedItems": 0,
+        "falseServedCount": 0,
+        "falseServedRate": 0,
+        "referredOnlyAccuracy": 1,
+        "missingAccuracy": 1,
+        "incompleteAccuracy": null,
+        "notSafelyConfirmedAccuracy": null,
         "unsafeRelianceCount": 0,
         "unsafeRelianceRate": 0,
         "wrongDefendantBleedCount": 0,

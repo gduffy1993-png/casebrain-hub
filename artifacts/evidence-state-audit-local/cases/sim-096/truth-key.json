@@ -1,0 +1,65 @@
+{
+  "caseId": "sim-096",
+  "title": "Multi-defendant — wrong name OCR confusion",
+  "offenceFamily": "violence_assault",
+  "offenceWording": "Assault occasioning actual bodily harm",
+  "profile": "multi_handed_assault",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "OCR witness summary",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "clear ID accounts",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV export",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "which male witness means",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "witness ID clarity",
+    "BWV full export",
+    "VIPER if applicable"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "defendant identified as striker",
+    "OCR name proves ID"
+  ],
+  "blockingFailPatterns": [
+    "defendant identified as striker",
+    "OCR name proves",
+    "identification proved",
+    "we win",
+    "case collapses"
+  ]
+}
