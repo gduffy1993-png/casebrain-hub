@@ -1,0 +1,97 @@
+/**
+ * Evidence-State Accuracy Audit — unit tests (controlled fixtures only).
+ * Run: npx tsx scripts/evidence-state-audit.test.ts
+ */
+import assert from "node:assert/strict";
+
+import { compareTruthItem } from "../lib/eval/evidence-state-audit/compare";
+import { isFalseServed, statesMatchForAccuracy } from "../lib/eval/evidence-state-audit/normalize";
+import { parseTruthKeyJson } from "../lib/eval/evidence-state-audit/truth-key-parse";
+import { adaptCaseBrainOutput } from "../lib/eval/evidence-state-audit/output-adapter";
+import { PROOF_PACK_FIXTURE, loadFixture } from "../lib/eval/evidence-state-audit/fixtures";
+import type { CaseBrainAuditOutput, TruthKeyEvidenceItem } from "../lib/eval/evidence-state-audit/types";
+
+function syntheticOutput(rows: CaseBrainAuditOutput["fiveAnswersEvidenceRows"]): CaseBrainAuditOutput {
+  return adaptCaseBrainOutput({
+    caseId: "synthetic",
+    fiveAnswersEvidenceRows: rows,
+    evidenceStates: [],
+    warningsAndGaps: { chaseItems: [] },
+  });
+}
+
+function item(
+  label: string,
+  state: TruthKeyEvidenceItem["correct_evidence_state"],
+  extra: Partial<TruthKeyEvidenceItem> = {},
+): TruthKeyEvidenceItem {
+  return { evidence_item: label, correct_evidence_state: state, ...extra };
+}
+
+// false-served detection
+assert.equal(isFalseServed("referred_only", "served"), true);
+assert.equal(isFalseServed("missing", "served"), true);
+assert.equal(isFalseServed("served", "served"), false);
+assert.equal(isFalseServed("referred_only", "missing"), false);
+
+const falseServedCompare = compareTruthItem(
+  item("Body-worn video", "referred_only"),
+  syntheticOutput([{ label: "Body-worn video (BWV)", existence: "served", reliability: "strong" }]),
+);
+assert.equal(falseServedCompare.falseServed, true);
+assert.equal(falseServedCompare.stateAccurate, false);
+
+// referred-only match (over-cautious missing is acceptable)
+const referredOk = compareTruthItem(
+  item("Body-worn video", "referred_only"),
+  syntheticOutput([{ label: "Body-worn video", existence: "missing", reliability: "needs_review" }]),
+);
+assert.equal(referredOk.falseServed, false);
+assert.equal(referredOk.stateAccurate, true);
+
+// missing match
+const missingOk = compareTruthItem(
+  item("Custody / PACE record", "missing"),
+  syntheticOutput([{ label: "Custody record", existence: "missing", reliability: "needs_review" }]),
+);
+assert.equal(missingOk.falseServed, false);
+assert.equal(missingOk.stateAccurate, true);
+
+// incomplete match
+const incompleteOk = compareTruthItem(
+  item("Phone screenshots (partial)", "incomplete"),
+  syntheticOutput([{ label: "Phone screenshots", existence: "incomplete", reliability: "needs_review" }]),
+);
+assert.equal(incompleteOk.falseServed, false);
+assert.equal(incompleteOk.stateAccurate, true);
+
+// wrong-defendant bleed
+const bleed = compareTruthItem(
+  item("Co-defendant Lee Marsh interview", "other_defendant_only", {
+    defendant_relevance: "co_defendant_only",
+    evidence_type: "interview",
+  }),
+  syntheticOutput([
+    { label: "Interview recording / transcript", existence: "missing", reliability: "needs_review" },
+  ]),
+);
+assert.equal(bleed.wrongDefendantBleed, true);
+
+assert.equal(statesMatchForAccuracy("inferred_only", "provisional"), true);
+
+// proof-pack fixture loads and runs without throw
+const { truthKey, output } = loadFixture(PROOF_PACK_FIXTURE);
+assert.equal(truthKey.caseId, "proof-pack-01");
+assert.ok(truthKey.evidenceItems.length >= 5);
+assert.equal(output.caseId, "proof-pack-01");
+
+const v2 = parseTruthKeyJson({
+  caseId: "sim-test",
+  servedEvidence: ["MG5"],
+  referredOnlyEvidence: ["BWV"],
+  missingEvidence: ["PACE record"],
+});
+assert.equal(v2.evidenceItems.length, 3);
+assert.equal(v2.evidenceItems.find((i) => i.evidence_item === "BWV")?.correct_evidence_state, "referred_only");
+
+console.log("evidence-state-audit.test.ts: ok");
