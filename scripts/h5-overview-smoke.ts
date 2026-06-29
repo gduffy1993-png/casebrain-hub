@@ -378,6 +378,17 @@ async function main(): Promise<void> {
       }
     }
 
+    if (await desktop.getByTestId("rerun-diff-panel").isVisible().catch(() => false)) {
+      steps.push({ id: "rerun_diff_visible", status: "pass" });
+    } else {
+      const body = await desktop.locator("body").innerText();
+      if (/re-run diff|no earlier version available yet/i.test(body)) {
+        steps.push({ id: "rerun_diff_visible", status: "pass", detail: "content without testid" });
+      } else {
+        steps.push({ id: "rerun_diff_visible", status: "warn", detail: "Re-run Diff not on Overview" });
+      }
+    }
+
     if (await desktop.getByTestId("hearing-mode-panel").isVisible().catch(() => false)) {
       steps.push({ id: "hearing_mode_visible", status: "pass" });
     } else {

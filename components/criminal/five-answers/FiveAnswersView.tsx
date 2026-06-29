@@ -15,6 +15,7 @@ import { DefenceDecisionBoard } from "@/components/criminal/decision-board/Defen
 import { AdviceChangeRadarPanel } from "@/components/criminal/advice-change-radar/AdviceChangeRadarPanel";
 import { HearingModePanel } from "@/components/criminal/hearing-mode/HearingModePanel";
 import { ExportPackPanel } from "@/components/criminal/export-pack/ExportPackPanel";
+import { RerunDiffPanel } from "@/components/criminal/re-run-diff/RerunDiffPanel";
 import { H5FeedbackFlag } from "@/components/criminal/feedback-console/H5FeedbackFlag";
 import { evidenceExistenceLabel, evidenceReliabilityLabel } from "@/lib/criminal/five-answers/evidence-trace";
 import { useMatterBrief } from "@/components/criminal/workflow/useMatterBrief";
@@ -374,6 +375,17 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
           matterConfidence={matterConfidence}
           primaryRouteTitle={primaryRouteTitle}
           bundleMeta={bundleMeta}
+        />
+      ) : null}
+
+      {warRoom && chase ? (
+        <RerunDiffPanel
+          caseId={caseId}
+          view={view}
+          chase={chase}
+          matterConfidence={matterConfidence}
+          documentCount={bundleMeta?.documentCount ?? 0}
+          exportPack={exportPack}
         />
       ) : null}
     </div>
