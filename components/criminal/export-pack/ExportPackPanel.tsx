@@ -108,8 +108,6 @@ export function ExportPackPanel({ model, caseId }: { model: ExportPackModel; cas
         <span className="text-amber-400/90">Solicitor review required</span>
       </div>
 
-      </div>
-
       <div className="grid gap-3 sm:grid-cols-2">
         {COPY_SECTIONS.map((id) => {
           const section = model.sections.find((s) => s.id === id);
