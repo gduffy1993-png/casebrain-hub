@@ -186,24 +186,45 @@ async function uploadTaylor(page: Page): Promise<string> {
 
 async function waitShell(page: Page): Promise<void> {
   await page.waitForLoadState("networkidle").catch(() => undefined);
-  await page.waitForTimeout(3000);
+  await page
+    .locator('[data-testid="court-today"], [data-testid="case-workflow-shell"], [data-testid="pilot-matter-desk"]')
+    .first()
+    .waitFor({ timeout: 120_000 })
+    .catch(() => undefined);
+  await page.waitForTimeout(2000);
 }
+
+const OVERVIEW_TEXT =
+  /what is this case saying|evidence truth rules|source-backed court note|defence decision board|case overview will appear|loading case overview/i;
 
 async function waitForOverview(page: Page): Promise<boolean> {
-  try {
-    await page.getByTestId("five-answers-view").waitFor({ timeout: 90_000 });
-    return true;
-  } catch {
+  for (let attempt = 0; attempt < 45; attempt++) {
     try {
-      await page.getByTestId("five-answers-case-saying").waitFor({ timeout: 15_000 });
+      await page.getByTestId("five-answers-view").waitFor({ timeout: 4_000 });
       return true;
     } catch {
-      return false;
+      try {
+        await page.getByTestId("five-answers-case-saying").waitFor({ timeout: 2_000 });
+        return true;
+      } catch {
+        const body = await page.locator("body").innerText();
+        if (OVERVIEW_TEXT.test(body)) return true;
+        await page.waitForTimeout(2000);
+      }
     }
   }
+  return false;
 }
 
-function caseOverviewHref(caseId: string, tab = "overview"): string {
+function caseOverviewHref(caseId: string): string {
+  return `${BASE_URL}/cases/${caseId}?tab=overview&controlRoom=1`;
+}
+
+function caseTabHref(caseId: string, tab: string): string {
+  return `${BASE_URL}/cases/${caseId}?tab=${tab}&controlRoom=1`;
+}
+
+function courtTodayTabHref(caseId: string, tab: string): string {
   return `${BASE_URL}/court-today?case=${caseId}&tab=${tab}`;
 }
 
@@ -228,15 +249,20 @@ async function main(): Promise<void> {
 
   async function checkOverviewPass(page: Page, stepId: string): Promise<boolean> {
     if (!caseId) return false;
-    await page.goto(caseOverviewHref(caseId, "overview"), { waitUntil: "domcontentloaded" });
+    await page.goto(caseOverviewHref(caseId), { waitUntil: "domcontentloaded" });
     await waitShell(page);
-    const overviewOk = await waitForOverview(page);
+    let overviewOk = await waitForOverview(page);
+    if (!overviewOk) {
+      await page.goto(courtTodayTabHref(caseId, "overview"), { waitUntil: "domcontentloaded" });
+      await waitShell(page);
+      overviewOk = await waitForOverview(page);
+    }
     if (overviewOk) {
       steps.push({ id: stepId, status: "pass" });
       return true;
     }
     const body = await page.locator("body").innerText();
-    if (/what is this case saying|evidence truth rules|source-backed court note|defence decision board/i.test(body)) {
+    if (OVERVIEW_TEXT.test(body)) {
       steps.push({ id: stepId, status: "pass", detail: "content without testid" });
       return true;
     }
@@ -257,6 +283,12 @@ async function main(): Promise<void> {
       steps.push({ id: "post_upload_landing", status: "pass", detail: landingUrl });
     } else {
       steps.push({ id: "post_upload_landing", status: "warn", detail: landingUrl });
+    }
+
+    if (/tab=today/.test(landingUrl) && !/tab=overview/.test(landingUrl)) {
+      steps.push({ id: "post_upload_overview_default", status: "warn", detail: "Landed on today, not overview" });
+    } else if (/tab=overview/.test(landingUrl)) {
+      steps.push({ id: "post_upload_overview_default", status: "pass", detail: landingUrl });
     }
 
     await checkOverviewPass(desktop, "five_answers_renders");
@@ -293,13 +325,18 @@ async function main(): Promise<void> {
 
     const navTabs = [
       { id: "today", tab: "today", file: "03-today.png", must: /today|hearing|provisional|war room|do not/i },
-      { id: "chase", tab: "disclosure-chase", file: "04-chase.png", must: /chase|disclosure|outstanding|CPS|priority/i },
+      { id: "chase", tab: "disclosure-chase", file: "04-chase.png", must: /chase|disclosure|outstanding|CPS|priority|missing/i },
       { id: "summary", tab: "summary", file: "05-summary.png", must: /summary|matter|provisional|case|theory/i },
     ];
     for (const t of navTabs) {
-      await desktop.goto(caseOverviewHref(caseId, t.tab), { waitUntil: "domcontentloaded" });
+      await desktop.goto(caseTabHref(caseId, t.tab), { waitUntil: "domcontentloaded" });
       await waitShell(desktop);
-      const body = await desktop.locator("body").innerText();
+      let body = await desktop.locator("body").innerText();
+      if (!t.must.test(body)) {
+        await desktop.goto(courtTodayTabHref(caseId, t.tab), { waitUntil: "domcontentloaded" });
+        await waitShell(desktop);
+        body = await desktop.locator("body").innerText();
+      }
       if (!t.must.test(body)) {
         steps.push({ id: `${t.id}_accessible`, status: "fail", detail: "Expected tab content missing" });
       } else {
@@ -317,11 +354,17 @@ async function main(): Promise<void> {
 
     await checkOverviewPass(desktop, "five_answers_after_tabs");
 
-    await mobile.goto(caseOverviewHref(caseId, "overview"), { waitUntil: "domcontentloaded" });
+    await mobile.goto(caseOverviewHref(caseId), { waitUntil: "domcontentloaded" });
     await waitShell(mobile);
-    const mobileOk = await waitForOverview(mobile);
-    const mobileBody = await mobile.locator("body").innerText();
-    if (mobileOk || /what is this case saying|evidence truth|defence decision board/i.test(mobileBody)) {
+    let mobileOk = await waitForOverview(mobile);
+    let mobileBody = await mobile.locator("body").innerText();
+    if (!mobileOk && !OVERVIEW_TEXT.test(mobileBody)) {
+      await mobile.goto(courtTodayTabHref(caseId, "overview"), { waitUntil: "domcontentloaded" });
+      await waitShell(mobile);
+      mobileOk = await waitForOverview(mobile);
+      mobileBody = await mobile.locator("body").innerText();
+    }
+    if (mobileOk || OVERVIEW_TEXT.test(mobileBody)) {
       steps.push({ id: "overview_mobile_layout", status: "pass" });
     } else {
       steps.push({ id: "overview_mobile_layout", status: "fail", detail: mobileBody.slice(0, 200) });

@@ -132,13 +132,13 @@ export function CourtTodayPilotSplit({
   );
 
   useEffect(() => {
-    if (!selectableBriefs.length) {
-      setSelectedId(null);
+    const urlCase = searchParams.get("case");
+    if (isValidCaseId(urlCase)) {
+      setSelectedId(urlCase);
       return;
     }
-    const urlCase = searchParams.get("case");
-    if (isValidCaseId(urlCase) && selectableBriefs.some((b) => b.caseId === urlCase)) {
-      setSelectedId(urlCase);
+    if (!selectableBriefs.length) {
+      setSelectedId(null);
       return;
     }
     const fallback = selectableBriefs[0]!.caseId;
