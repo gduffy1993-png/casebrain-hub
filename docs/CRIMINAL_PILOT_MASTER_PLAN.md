@@ -294,11 +294,26 @@ Must support / test broad profiles: harassment, AEW/BWV, custody/PACE, violence 
 
 Also scoped: line-level claim tags, sendability gate, disclosure timetable builder, Bad Output Memory v2, firm admin, no-send watermark.
 
-**H5 chunk status (2026-06-29):** chunks 1–4 live on prod (Five Answers, Evidence Trace, Decision Board, Advice Change Radar). Remaining H5 slices: Hearing Mode, Export Pack, Versioned Output, Feedback Console, Audit Log, Re-run Diff, Confidence Dashboard — see `docs/h5/H5_PRIORITY_REFERENCE.md`.
+**H5 workstation status (2026-06-29):** **Complete** — all ten slices live on prod.
 
-### Evidence-State Accuracy Audit (proof layer — spec only)
+| Slice | Status |
+|-------|--------|
+| Five Answers + Evidence Trace | ✅ prod |
+| Defence Decision Board + Advice Change Radar | ✅ prod |
+| 20-Minute Hearing Mode | ✅ prod |
+| Export Pack | ✅ prod |
+| Feedback Console | ✅ prod |
+| Audit Log (read-only) | ✅ prod |
+| Re-run Diff | ✅ prod |
+| Confidence Dashboard | ✅ prod |
 
-**Status:** Planned — **not yet run** on unseen real-world bundles.  
+**Prod smoke:** `scripts/h5-overview-smoke.ts` → **20 pass / 1 warn / 0 fail** (`1687a52`).
+
+**Next:** Evidence-State Accuracy Audit Harness (controlled fixtures — not real-world solicitor audit).
+
+### Evidence-State Accuracy Audit (proof layer — harness build)
+
+**Status:** Spec locked; **harness build in progress** (2026-06-29). Not a solicitor-reviewed real-world audit.  
 **Spec:** `docs/audit/EVIDENCE_STATE_ACCURACY_AUDIT.md`
 
 **Placement:**
@@ -313,7 +328,7 @@ Also scoped: line-level claim tags, sendability gate, disclosure timetable build
 
 **Do not claim** industry-level evidence-state accuracy on unseen real-world bundles until this audit completes. Controlled gates (2,200 corpus, golden 102, simulator 150, Bad Output Memory, export/copy, prod smoke) are a **separate** proof layer.
 
-**Do not build** audit product UI or harness until Ged explicitly says start. Docs/spec only for now.
+**Harness:** `lib/eval/evidence-state-audit/` — truth-key comparison on simulator/proof fixtures only until internal pack reaches 30+ cases.
 
 ### H6 — Later power features (after H5 substantial)
 
@@ -335,8 +350,8 @@ Do not start until H3/H4/H5 core complete. Makes CaseBrain sticky and firm-speci
 
 - H3 complete  
 - H4 complete enough (export/copy + simulator pack v1)  
-- H5 core workstation complete (chunks 1–4 minimum; remaining slices per priority ref)  
-- **Evidence-State Accuracy Audit** — at least stage 1 (internal 30–50 unseen bundles) with acceptable false-served rate; see `docs/audit/EVIDENCE_STATE_ACCURACY_AUDIT.md`  
+- H5 workstation complete (all ten slices)  
+- **Evidence-State Accuracy Audit** — harness on controlled fixtures; stage 1 internal pack (30–50 unseen bundles) when truth keys exist; see `docs/audit/EVIDENCE_STATE_ACCURACY_AUDIT.md`  
 - Golden 100+ no dangerous fails  
 - Level 1 2,200 no dangerous critical  
 - Worst50 no repeated dangerous cluster  
@@ -364,8 +379,9 @@ Then: one controlled firm, supervised, 10–20 matters, weekly structured feedba
 - [x] **H2 Verification** — golden 100, truth-key coverage, worst50 discipline  
 - [ ] **H3 Trust layer** — confidence header, badges, copy-safe, feedback (chunk 1 in progress)  
 - [ ] **H4 Real-world confidence** — export/copy gate, simulator library v1 (30 cases)  
-- [ ] **H5 Workstation** — prioritised slices (trace → hearing mode → export pack…)  
-- [ ] **H6 Power features** — after H5 substantial  
+- [x] **H5 Workstation** — all ten slices live (`1687a52`)  
+- [ ] **Evidence-State Accuracy Audit Harness** — controlled fixtures; internal 30–50 pack prep  
+- [ ] **H6 Power features** — after audit harness baseline  
 
 **No design-partner trial until Layer 8 design-partner gate is met.**
 
@@ -398,10 +414,10 @@ Then: one controlled firm, supervised, 10–20 matters, weekly structured feedba
 | H2 Verification | ✅ PASS (WARNING polish-only) |
 | H3 Trust layer | ✅ complete |
 | H4 Real-world confidence | ✅ complete |
-| H5 Workstation | ⏳ chunks 1–4 live; remaining slices |
-| Evidence-State Accuracy Audit | ⏳ **planned — not run** |
+| H5 Workstation | ✅ **complete** — 20/1/0 prod smoke |
+| Evidence-State Accuracy Audit | ⏳ **harness build** — not real-world audit |
 | H6 Power features | ⏳ Later |
-| Design-partner firm (1) | ⏳ After H5 + audit stage 1 |
+| Design-partner firm (1) | ⏳ After audit harness + internal stage 1 |
 | 3–5 firms completed pilot | ⏳ |
 | Layer 4 UX/reliability must-haves | **Done** (paywall copy ✅) |
 
