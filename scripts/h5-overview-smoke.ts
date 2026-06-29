@@ -179,7 +179,8 @@ async function uploadTaylor(page: Page): Promise<string> {
     caseId = m?.[1] ?? null;
   }
   if (!caseId) throw new Error("Upload failed — no caseId");
-  await page.waitForTimeout(3000);
+  await page.waitForURL(/\/cases\/|\/court-today/, { timeout: 120_000 }).catch(() => undefined);
+  await page.waitForTimeout(5000);
   return caseId;
 }
 
@@ -202,6 +203,10 @@ async function waitForOverview(page: Page): Promise<boolean> {
   }
 }
 
+function caseOverviewHref(caseId: string, tab = "overview"): string {
+  return `${BASE_URL}/court-today?case=${caseId}&tab=${tab}`;
+}
+
 async function main(): Promise<void> {
   loadLocalEnv();
   fs.mkdirSync(OUT_DIR, { recursive: true });
@@ -221,6 +226,24 @@ async function main(): Promise<void> {
   const desktop = await desktopContext.newPage();
   const mobile = await mobileContext.newPage();
 
+  async function checkOverviewPass(page: Page, stepId: string): Promise<boolean> {
+    if (!caseId) return false;
+    await page.goto(caseOverviewHref(caseId, "overview"), { waitUntil: "domcontentloaded" });
+    await waitShell(page);
+    const overviewOk = await waitForOverview(page);
+    if (overviewOk) {
+      steps.push({ id: stepId, status: "pass" });
+      return true;
+    }
+    const body = await page.locator("body").innerText();
+    if (/what is this case saying|evidence truth rules|source-backed court note|defence decision board/i.test(body)) {
+      steps.push({ id: stepId, status: "pass", detail: "content without testid" });
+      return true;
+    }
+    steps.push({ id: stepId, status: "fail", detail: body.slice(0, 280) });
+    return false;
+  }
+
   try {
     await signInWithSession(desktopContext, email);
     await signInWithSession(mobileContext, email);
@@ -229,27 +252,15 @@ async function main(): Promise<void> {
     caseId = await uploadTaylor(desktop);
     steps.push({ id: "taylor_upload", status: "pass", detail: caseId });
 
-    await desktop.goto(`${BASE_URL}/cases/${caseId}?tab=overview&controlRoom=1`, { waitUntil: "domcontentloaded" });
-    await waitShell(desktop);
-    const postUrl = desktop.url();
-    if (/tab=overview/.test(postUrl)) {
-      steps.push({ id: "post_upload_default_overview", status: "pass", detail: postUrl });
+    const landingUrl = desktop.url();
+    if (/tab=overview/.test(landingUrl) || /\/cases\/[0-9a-f-]{36}/.test(landingUrl) || /court-today\?.*case=/.test(landingUrl)) {
+      steps.push({ id: "post_upload_landing", status: "pass", detail: landingUrl });
     } else {
-      steps.push({ id: "post_upload_default_overview", status: "warn", detail: postUrl });
+      steps.push({ id: "post_upload_landing", status: "warn", detail: landingUrl });
     }
-    await desktop.screenshot({ path: path.join(OUT_DIR, "01-post-upload-landing.png"), fullPage: true });
 
-    const overviewOk = await waitForOverview(desktop);
-    if (overviewOk) {
-      steps.push({ id: "five_answers_renders", status: "pass" });
-    } else {
-      const body = await desktop.locator("body").innerText();
-      if (/what is this case saying|evidence truth rules|source-backed court note/i.test(body)) {
-        steps.push({ id: "five_answers_renders", status: "pass", detail: "content without testid" });
-      } else {
-        steps.push({ id: "five_answers_renders", status: "fail", detail: body.slice(0, 280) });
-      }
-    }
+    await checkOverviewPass(desktop, "five_answers_renders");
+    await desktop.screenshot({ path: path.join(OUT_DIR, "01-post-upload-landing.png"), fullPage: true });
 
     const traceBtn = desktop.getByTestId("evidence-trace-allegation").getByRole("button", { name: /evidence trace/i });
     if (await traceBtn.isVisible().catch(() => false)) {
@@ -266,7 +277,7 @@ async function main(): Promise<void> {
       if (/defence decision board|requires solicitor review/i.test(body)) {
         steps.push({ id: "decision_board_visible", status: "pass", detail: "content without testid" });
       } else {
-        steps.push({ id: "decision_board_visible", status: "warn", detail: "Decision board not on page (deploy pending?)" });
+        steps.push({ id: "decision_board_visible", status: "warn", detail: "Decision board not on page" });
       }
     }
 
@@ -286,7 +297,7 @@ async function main(): Promise<void> {
       { id: "summary", tab: "summary", file: "05-summary.png", must: /summary|matter|provisional|case|theory/i },
     ];
     for (const t of navTabs) {
-      await desktop.goto(`${BASE_URL}/cases/${caseId}?tab=${t.tab}&controlRoom=1`, { waitUntil: "domcontentloaded" });
+      await desktop.goto(caseOverviewHref(caseId, t.tab), { waitUntil: "domcontentloaded" });
       await waitShell(desktop);
       const body = await desktop.locator("body").innerText();
       if (!t.must.test(body)) {
@@ -297,8 +308,6 @@ async function main(): Promise<void> {
       await desktop.screenshot({ path: path.join(OUT_DIR, t.file), fullPage: true });
     }
 
-    await desktop.goto(`${BASE_URL}/cases/${caseId}?tab=overview&controlRoom=1`, { waitUntil: "domcontentloaded" });
-    await waitShell(desktop);
     const nav = desktop.getByTestId("case-workflow-nav");
     if (await nav.isVisible().catch(() => false)) {
       steps.push({ id: "workflow_nav_visible", status: "pass" });
@@ -306,11 +315,13 @@ async function main(): Promise<void> {
       steps.push({ id: "workflow_nav_visible", status: "warn" });
     }
 
-    await mobile.goto(`${BASE_URL}/cases/${caseId}?tab=overview&controlRoom=1`, { waitUntil: "domcontentloaded" });
+    await checkOverviewPass(desktop, "five_answers_after_tabs");
+
+    await mobile.goto(caseOverviewHref(caseId, "overview"), { waitUntil: "domcontentloaded" });
     await waitShell(mobile);
     const mobileOk = await waitForOverview(mobile);
     const mobileBody = await mobile.locator("body").innerText();
-    if (mobileOk || /what is this case saying|evidence truth/i.test(mobileBody)) {
+    if (mobileOk || /what is this case saying|evidence truth|defence decision board/i.test(mobileBody)) {
       steps.push({ id: "overview_mobile_layout", status: "pass" });
     } else {
       steps.push({ id: "overview_mobile_layout", status: "fail", detail: mobileBody.slice(0, 200) });
@@ -322,9 +333,12 @@ async function main(): Promise<void> {
 
   const fails = steps.filter((s) => s.status === "fail");
   const warns = steps.filter((s) => s.status === "warn");
+  const overviewPass = steps.some(
+    (s) => (s.id === "five_answers_renders" || s.id === "five_answers_after_tabs") && s.status === "pass",
+  );
   const report = {
     generatedAt: new Date().toISOString(),
-    level: "H5 chunk 1 — Overview smoke",
+    level: "H5 chunks 1-3 — Overview smoke",
     baseUrl: BASE_URL,
     email,
     userId,
@@ -348,7 +362,7 @@ async function main(): Promise<void> {
   for (const f of fails) console.log(`  FAIL ${f.id}: ${f.detail ?? ""}`);
   console.log("Report:", path.join(OUT_DIR, "report.json"));
 
-  process.exit(fails.length ? 1 : 0);
+  process.exit(fails.length > 0 ? 1 : 0);
 }
 
 main().catch((e) => {

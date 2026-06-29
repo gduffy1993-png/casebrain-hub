@@ -143,25 +143,23 @@ export function CourtTodayPilotSplit({
     }
     const fallback = selectableBriefs[0]!.caseId;
     setSelectedId(fallback);
-    router.replace(buildCourtTodayDeskHref(fallback, "today"), { scroll: false });
+    router.replace(buildCourtTodayDeskHref(fallback, "overview"), { scroll: false });
   }, [selectableBriefs, searchParams, router]);
 
   const selectCase = useCallback(
     (caseId: string) => {
       setSelectedId(caseId);
       const tab = searchParams.get("tab");
-      router.replace(
-        buildCourtTodayDeskHref(
-          caseId,
-          tab === "papers" ||
-            tab === "summary" ||
-            tab === "disclosure-chase" ||
-            tab === "file"
-            ? tab
-            : "today",
-        ),
-        { scroll: false },
-      );
+      const deskTab =
+        tab === "overview" ||
+        tab === "today" ||
+        tab === "papers" ||
+        tab === "summary" ||
+        tab === "disclosure-chase" ||
+        tab === "file"
+          ? tab
+          : "overview";
+      router.replace(buildCourtTodayDeskHref(caseId, deskTab), { scroll: false });
     },
     [router, searchParams],
   );
