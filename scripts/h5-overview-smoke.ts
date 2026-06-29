@@ -378,6 +378,17 @@ async function main(): Promise<void> {
       }
     }
 
+    if (await desktop.getByTestId("confidence-dashboard").isVisible().catch(() => false)) {
+      steps.push({ id: "confidence_dashboard_visible", status: "pass" });
+    } else {
+      const body = await desktop.locator("body").innerText();
+      if (/confidence dashboard|review-confidence view/i.test(body)) {
+        steps.push({ id: "confidence_dashboard_visible", status: "pass", detail: "content without testid" });
+      } else {
+        steps.push({ id: "confidence_dashboard_visible", status: "warn", detail: "Confidence Dashboard not on Overview" });
+      }
+    }
+
     const rerunPanel = desktop.getByTestId("rerun-diff-panel");
     await rerunPanel.scrollIntoViewIfNeeded({ timeout: 15_000 }).catch(() => undefined);
     if (await rerunPanel.isVisible().catch(() => false)) {

@@ -16,6 +16,7 @@ import { AdviceChangeRadarPanel } from "@/components/criminal/advice-change-rada
 import { HearingModePanel } from "@/components/criminal/hearing-mode/HearingModePanel";
 import { ExportPackPanel } from "@/components/criminal/export-pack/ExportPackPanel";
 import { RerunDiffPanel } from "@/components/criminal/re-run-diff/RerunDiffPanel";
+import { ConfidenceDashboardPanel } from "@/components/criminal/confidence-dashboard/ConfidenceDashboardPanel";
 import { H5FeedbackFlag } from "@/components/criminal/feedback-console/H5FeedbackFlag";
 import { evidenceExistenceLabel, evidenceReliabilityLabel } from "@/lib/criminal/five-answers/evidence-trace";
 import { useMatterBrief } from "@/components/criminal/workflow/useMatterBrief";
@@ -187,6 +188,21 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
   return (
     <div className="space-y-3" data-testid="five-answers-view">
       {matterConfidence ? <MatterConfidenceHeader confidence={matterConfidence} /> : null}
+
+      {warRoom && chase ? (
+        <ConfidenceDashboardPanel
+          caseId={caseId}
+          view={view}
+          chase={chase}
+          briefPlan={briefPlan}
+          warRoom={warRoom}
+          matterConfidence={matterConfidence}
+          exportPack={exportPack}
+          documentCount={bundleMeta?.documentCount ?? 0}
+          bundleMeta={bundleMeta}
+          primaryRouteTitle={primaryRouteTitle}
+        />
+      ) : null}
 
       <div className="flex justify-end">
         <H5FeedbackFlag
