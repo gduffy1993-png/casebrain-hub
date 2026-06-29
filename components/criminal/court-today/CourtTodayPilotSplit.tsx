@@ -167,6 +167,8 @@ export function CourtTodayPilotSplit({
   const selected =
     selectableBriefs.find((b) => b.caseId === selectedId) ?? selectableBriefs[0] ?? null;
 
+  const deskCaseId = selectedId ?? selected?.caseId ?? null;
+
   return (
     <div
       className="flex flex-col md:flex-row md:items-stretch gap-0 rounded-xl border border-slate-700/70 bg-slate-950/50 min-h-[min(calc(100vh-10rem),920px)] overflow-hidden"
@@ -222,11 +224,11 @@ export function CourtTodayPilotSplit({
           <DeskKpiRow stats={stats} />
         </div>
         <div className="flex-1 min-h-0 overflow-y-auto p-2 md:p-3">
-          {selected ? (
+          {deskCaseId ? (
             <PilotMatterDesk
-              caseId={selected.caseId}
-              deskSafeCourtLine={selected.safeCourtLine}
-              deskChargeLine={selected.allegation}
+              caseId={deskCaseId}
+              deskSafeCourtLine={selected?.safeCourtLine}
+              deskChargeLine={selected?.allegation}
             />
           ) : (
             <div className="rounded-lg border border-slate-700/70 bg-slate-900/60 p-8 text-center text-sm text-slate-400">

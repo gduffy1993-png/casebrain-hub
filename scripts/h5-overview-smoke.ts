@@ -85,7 +85,8 @@ async function ensureUser(email: string): Promise<string> {
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !serviceKey) throw new Error("Missing NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY");
   const admin = createClient(url, serviceKey, { auth: { persistSession: false } });
-  const existing = await findUserByEmail(admin, email);
+  const freshSmokeAccount = /@casebrain\.qa\.smoke$/i.test(email) && !process.env.H5_SMOKE_EMAIL;
+  const existing = freshSmokeAccount ? null : await findUserByEmail(admin, email);
   let userId: string;
   if (existing) {
     userId = existing.id;
@@ -185,22 +186,23 @@ async function uploadTaylor(page: Page): Promise<string> {
 }
 
 async function waitShell(page: Page): Promise<void> {
-  await page.waitForLoadState("networkidle").catch(() => undefined);
+  await page.waitForLoadState("domcontentloaded").catch(() => undefined);
   await page
-    .locator('[data-testid="court-today"], [data-testid="case-workflow-shell"], [data-testid="pilot-matter-desk"]')
+    .locator(
+      '[data-testid="pilot-matter-desk"], [data-testid="case-workflow-shell"], [data-testid="court-today-pilot-split"]',
+    )
     .first()
-    .waitFor({ timeout: 120_000 })
-    .catch(() => undefined);
-  await page.waitForTimeout(2000);
+    .waitFor({ timeout: 180_000 });
+  await page.waitForTimeout(1500);
 }
 
 const OVERVIEW_TEXT =
   /what is this case saying|evidence truth rules|source-backed court note|defence decision board|case overview will appear|loading case overview/i;
 
 async function waitForOverview(page: Page): Promise<boolean> {
-  for (let attempt = 0; attempt < 45; attempt++) {
+  for (let attempt = 0; attempt < 30; attempt++) {
     try {
-      await page.getByTestId("five-answers-view").waitFor({ timeout: 4_000 });
+      await page.getByTestId("five-answers-view").waitFor({ timeout: 3_000 });
       return true;
     } catch {
       try {
@@ -209,7 +211,7 @@ async function waitForOverview(page: Page): Promise<boolean> {
       } catch {
         const body = await page.locator("body").innerText();
         if (OVERVIEW_TEXT.test(body)) return true;
-        await page.waitForTimeout(2000);
+        await page.waitForTimeout(1500);
       }
     }
   }
@@ -240,7 +242,9 @@ async function main(): Promise<void> {
   console.log(`H5 Overview smoke → ${BASE_URL}`);
   console.log(`Account: ${email}`);
 
+  console.log("Provisioning account…");
   const userId = await ensureUser(email);
+  console.log("Launching browser…");
   const browser = await chromium.launch({ headless: HEADLESS });
   const desktopContext = await browser.newContext({ viewport: { width: 1440, height: 900 } });
   const mobileContext = await browser.newContext({ viewport: { width: 390, height: 844 } });
@@ -275,6 +279,7 @@ async function main(): Promise<void> {
     await signInWithSession(mobileContext, email);
     steps.push({ id: "sign_in", status: "pass" });
 
+    console.log("Uploading Taylor bundle…");
     caseId = await uploadTaylor(desktop);
     steps.push({ id: "taylor_upload", status: "pass", detail: caseId });
 
