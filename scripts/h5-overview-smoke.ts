@@ -192,7 +192,8 @@ async function waitShell(page: Page): Promise<void> {
       '[data-testid="pilot-matter-desk"], [data-testid="case-workflow-shell"], [data-testid="court-today-pilot-split"]',
     )
     .first()
-    .waitFor({ timeout: 180_000 });
+    .waitFor({ timeout: 180_000 })
+    .catch(() => undefined);
   await page.waitForTimeout(1500);
 }
 
@@ -253,11 +254,11 @@ async function main(): Promise<void> {
 
   async function checkOverviewPass(page: Page, stepId: string): Promise<boolean> {
     if (!caseId) return false;
-    await page.goto(caseOverviewHref(caseId), { waitUntil: "domcontentloaded" });
+    await page.goto(courtTodayTabHref(caseId, "overview"), { waitUntil: "domcontentloaded" });
     await waitShell(page);
     let overviewOk = await waitForOverview(page);
     if (!overviewOk) {
-      await page.goto(courtTodayTabHref(caseId, "overview"), { waitUntil: "domcontentloaded" });
+      await page.goto(caseOverviewHref(caseId), { waitUntil: "domcontentloaded" });
       await waitShell(page);
       overviewOk = await waitForOverview(page);
     }
@@ -282,6 +283,8 @@ async function main(): Promise<void> {
     console.log("Uploading Taylor bundle…");
     caseId = await uploadTaylor(desktop);
     steps.push({ id: "taylor_upload", status: "pass", detail: caseId });
+
+    await waitShell(desktop);
 
     const landingUrl = desktop.url();
     if (/tab=overview/.test(landingUrl) || /\/cases\/[0-9a-f-]{36}/.test(landingUrl) || /court-today\?.*case=/.test(landingUrl)) {
