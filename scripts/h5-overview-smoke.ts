@@ -3,6 +3,8 @@
  * H5 Overview smoke — fresh account, Taylor upload, Overview default + tab walkthrough.
  * Run: npx tsx scripts/h5-overview-smoke.ts
  * Env: H5_SMOKE_BASE_URL (default http://localhost:3000), CB_FRESH_HEADLESS=0 for headed
+ *      H5_SMOKE_CASE_ID — skip upload, use existing case
+ *      H5_SMOKE_SKIP_UPLOAD=1 — same as providing H5_SMOKE_CASE_ID
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -17,6 +19,11 @@ const OUT_DIR = path.join(ROOT, "artifacts", "casebrain-qa", "h5-overview-smoke"
 const BASE_URL = (process.env.H5_SMOKE_BASE_URL ?? "http://localhost:3000").replace(/\/$/, "");
 const PASSWORD = process.env.SMOKE_PASSWORD ?? "ProdSmokeOnly!Jun2026";
 const HEADLESS = process.env.CB_FRESH_HEADLESS !== "0";
+const SKIP_UPLOAD = process.env.H5_SMOKE_SKIP_UPLOAD === "1" || Boolean(process.env.H5_SMOKE_CASE_ID?.trim());
+const PRESET_CASE_ID = process.env.H5_SMOKE_CASE_ID?.trim() || null;
+const UPLOAD_API_TIMEOUT_MS = Number(process.env.H5_SMOKE_UPLOAD_TIMEOUT_MS ?? "120000");
+const SHELL_TIMEOUT_MS = Number(process.env.H5_SMOKE_SHELL_TIMEOUT_MS ?? "45000");
+const OVERVIEW_ATTEMPTS = Number(process.env.H5_SMOKE_OVERVIEW_ATTEMPTS ?? "12");
 
 const TAYLOR = {
   sourceFile: "CB-FRESH-001_Taylor_Brookes.txt",
@@ -159,63 +166,91 @@ async function signInWithSession(context: BrowserContext, email: string): Promis
   ]);
 }
 
+async function shot(page: Page, name: string): Promise<void> {
+  await page.screenshot({ path: path.join(OUT_DIR, name), fullPage: true }).catch(() => undefined);
+}
+
 async function uploadTaylor(page: Page): Promise<string> {
   const pdfPath = path.join(PDF_DIR, TAYLOR.pdfFile);
+  console.log("  → opening upload page…");
   await page.goto(`${BASE_URL}/upload`, { waitUntil: "domcontentloaded" });
-  await page.getByText(/drop documents|new upload/i).first().waitFor({ timeout: 60_000 });
+  await page.getByText(/drop documents|new upload/i).first().waitFor({ timeout: 30_000 });
   await page.locator("select").first().selectOption("criminal");
   await page.locator('input[type="file"]').setInputFiles(pdfPath);
   await page.getByPlaceholder(/R v Smith/i).fill(TAYLOR.caseTitle);
+  console.log(`  → posting bundle to /api/upload (timeout ${UPLOAD_API_TIMEOUT_MS}ms)…`);
   const uploadResponse = page.waitForResponse(
     (r) => r.url().includes("/api/upload") && r.status() === 201,
-    { timeout: 180_000 },
+    { timeout: UPLOAD_API_TIMEOUT_MS },
   );
   await page.getByRole("button", { name: /upload and extract/i }).click();
   const uploadRes = await uploadResponse;
   const uploadJson = (await uploadRes.json()) as { caseId?: string; case_id?: string; id?: string };
   let caseId = uploadJson.caseId ?? uploadJson.case_id ?? uploadJson.id ?? null;
   if (!caseId) {
-    await page.waitForURL(/\/cases\/[0-9a-f-]{36}/i, { timeout: 120_000 }).catch(() => undefined);
+    await page.waitForURL(/\/cases\/[0-9a-f-]{36}/i, { timeout: 30_000 }).catch(() => undefined);
     const m = page.url().match(/\/cases\/([0-9a-f-]{36})/i);
     caseId = m?.[1] ?? null;
   }
-  if (!caseId) throw new Error("Upload failed — no caseId");
-  await page.waitForURL(/\/cases\/|\/court-today/, { timeout: 120_000 }).catch(() => undefined);
-  await page.waitForTimeout(5000);
+  if (!caseId) {
+    await shot(page, "fail-upload-no-caseid.png");
+    throw new Error("Upload failed — no caseId");
+  }
+  console.log(`  → upload ok (caseId=${caseId}), waiting for redirect…`);
+  const redirectDeadline = Date.now() + 45_000;
+  while (Date.now() < redirectDeadline) {
+    const url = page.url();
+    if (/\/cases\/[0-9a-f-]{36}/i.test(url) || /court-today\?.*case=/i.test(url)) break;
+    await page.waitForTimeout(500);
+  }
+  const landingUrl = page.url();
+  console.log(`  → landed ${landingUrl}`);
+  if (!/\/cases\/[0-9a-f-]{36}.*tab=overview/i.test(landingUrl)) {
+    await shot(page, "warn-upload-landing-not-overview.png");
+    console.log("  ⚠ expected /cases/{id}?tab=overview&controlRoom=1");
+  }
   return caseId;
 }
 
-async function waitShell(page: Page): Promise<void> {
+async function waitShell(page: Page, label: string): Promise<void> {
+  console.log(`  → waitShell: ${label}`);
   await page.waitForLoadState("domcontentloaded").catch(() => undefined);
-  await page
+  const ok = await page
     .locator(
       '[data-testid="pilot-matter-desk"], [data-testid="case-workflow-shell"], [data-testid="court-today-pilot-split"]',
     )
     .first()
-    .waitFor({ timeout: 180_000 })
-    .catch(() => undefined);
-  await page.waitForTimeout(1500);
+    .waitFor({ timeout: SHELL_TIMEOUT_MS })
+    .then(() => true)
+    .catch(() => false);
+  if (!ok) {
+    await shot(page, `fail-shell-${label.replace(/\s+/g, "-")}.png`);
+    console.log(`  ⚠ shell not visible after ${SHELL_TIMEOUT_MS}ms (${label})`);
+  }
+  await page.waitForTimeout(500);
 }
 
 const OVERVIEW_TEXT =
   /what is this case saying|evidence truth rules|source-backed court note|defence decision board|case overview will appear|loading case overview/i;
 
-async function waitForOverview(page: Page): Promise<boolean> {
-  for (let attempt = 0; attempt < 30; attempt++) {
+async function waitForOverview(page: Page, label: string): Promise<boolean> {
+  console.log(`  → waitForOverview: ${label}`);
+  for (let attempt = 0; attempt < OVERVIEW_ATTEMPTS; attempt++) {
     try {
-      await page.getByTestId("five-answers-view").waitFor({ timeout: 3_000 });
+      await page.getByTestId("five-answers-view").waitFor({ timeout: 2_000 });
       return true;
     } catch {
       try {
-        await page.getByTestId("five-answers-case-saying").waitFor({ timeout: 2_000 });
+        await page.getByTestId("five-answers-case-saying").waitFor({ timeout: 1_500 });
         return true;
       } catch {
         const body = await page.locator("body").innerText();
         if (OVERVIEW_TEXT.test(body)) return true;
-        await page.waitForTimeout(1500);
+        await page.waitForTimeout(1_000);
       }
     }
   }
+  await shot(page, `fail-overview-${label.replace(/\s+/g, "-")}.png`);
   return false;
 }
 
@@ -254,13 +289,15 @@ async function main(): Promise<void> {
 
   async function checkOverviewPass(page: Page, stepId: string): Promise<boolean> {
     if (!caseId) return false;
+    console.log(`[${stepId}] navigate → cases overview`);
     await page.goto(caseOverviewHref(caseId), { waitUntil: "domcontentloaded" });
-    await waitShell(page);
-    let overviewOk = await waitForOverview(page);
+    await waitShell(page, stepId);
+    let overviewOk = await waitForOverview(page, stepId);
     if (!overviewOk) {
+      console.log(`[${stepId}] fallback → court-today overview`);
       await page.goto(courtTodayTabHref(caseId, "overview"), { waitUntil: "domcontentloaded" });
-      await waitShell(page);
-      overviewOk = await waitForOverview(page);
+      await waitShell(page, `${stepId}-court-today`);
+      overviewOk = await waitForOverview(page, `${stepId}-court-today`);
     }
     if (overviewOk) {
       steps.push({ id: stepId, status: "pass" });
@@ -280,25 +317,32 @@ async function main(): Promise<void> {
     await signInWithSession(mobileContext, email);
     steps.push({ id: "sign_in", status: "pass" });
 
-    console.log("Uploading Taylor bundle…");
-    caseId = await uploadTaylor(desktop);
-    steps.push({ id: "taylor_upload", status: "pass", detail: caseId });
-
-    await waitShell(desktop);
-
-    const landingUrl = desktop.url();
-    if (/tab=overview/.test(landingUrl) || /\/cases\/[0-9a-f-]{36}/.test(landingUrl) || /court-today\?.*case=/.test(landingUrl)) {
-      steps.push({ id: "post_upload_landing", status: "pass", detail: landingUrl });
+    if (SKIP_UPLOAD && PRESET_CASE_ID) {
+      caseId = PRESET_CASE_ID;
+      console.log(`Skipping upload — using H5_SMOKE_CASE_ID=${caseId}`);
+      steps.push({ id: "taylor_upload", status: "pass", detail: `skipped:${caseId}` });
     } else {
-      steps.push({ id: "post_upload_landing", status: "warn", detail: landingUrl });
+      console.log("Uploading Taylor bundle…");
+      caseId = await uploadTaylor(desktop);
+      steps.push({ id: "taylor_upload", status: "pass", detail: caseId });
+      await waitShell(desktop, "post-upload");
+
+      const landingUrl = desktop.url();
+      if (/\/cases\/[0-9a-f-]{36}.*tab=overview/i.test(landingUrl)) {
+        steps.push({ id: "post_upload_landing", status: "pass", detail: landingUrl });
+        steps.push({ id: "post_upload_overview_default", status: "pass", detail: landingUrl });
+      } else if (/\/cases\/[0-9a-f-]{36}/i.test(landingUrl)) {
+        steps.push({ id: "post_upload_landing", status: "warn", detail: landingUrl });
+        steps.push({ id: "post_upload_overview_default", status: "warn", detail: "On /cases but not tab=overview" });
+      } else if (/court-today\?.*case=/i.test(landingUrl)) {
+        steps.push({ id: "post_upload_landing", status: "fail", detail: landingUrl });
+        steps.push({ id: "post_upload_overview_default", status: "fail", detail: `Expected /cases overview, got ${landingUrl}` });
+      } else {
+        steps.push({ id: "post_upload_landing", status: "warn", detail: landingUrl });
+      }
     }
 
-    if (/tab=today/.test(landingUrl) && !/tab=overview/.test(landingUrl)) {
-      steps.push({ id: "post_upload_overview_default", status: "warn", detail: "Landed on today, not overview" });
-    } else if (/tab=overview/.test(landingUrl)) {
-      steps.push({ id: "post_upload_overview_default", status: "pass", detail: landingUrl });
-    }
-
+    console.log("[five_answers_renders] checking overview…");
     await checkOverviewPass(desktop, "five_answers_renders");
     await desktop.screenshot({ path: path.join(OUT_DIR, "01-post-upload-landing.png"), fullPage: true });
 
@@ -338,11 +382,11 @@ async function main(): Promise<void> {
     ];
     for (const t of navTabs) {
       await desktop.goto(caseTabHref(caseId, t.tab), { waitUntil: "domcontentloaded" });
-      await waitShell(desktop);
+      await waitShell(desktop, `tab-${t.id}`);
       let body = await desktop.locator("body").innerText();
       if (!t.must.test(body)) {
         await desktop.goto(courtTodayTabHref(caseId, t.tab), { waitUntil: "domcontentloaded" });
-        await waitShell(desktop);
+        await waitShell(desktop, `tab-${t.id}-court-today`);
         body = await desktop.locator("body").innerText();
       }
       if (!t.must.test(body)) {
@@ -362,14 +406,15 @@ async function main(): Promise<void> {
 
     await checkOverviewPass(desktop, "five_answers_after_tabs");
 
+    console.log("[overview_mobile_layout] checking mobile…");
     await mobile.goto(caseOverviewHref(caseId), { waitUntil: "domcontentloaded" });
-    await waitShell(mobile);
-    let mobileOk = await waitForOverview(mobile);
+    await waitShell(mobile, "mobile-overview");
+    let mobileOk = await waitForOverview(mobile, "mobile");
     let mobileBody = await mobile.locator("body").innerText();
     if (!mobileOk && !OVERVIEW_TEXT.test(mobileBody)) {
       await mobile.goto(courtTodayTabHref(caseId, "overview"), { waitUntil: "domcontentloaded" });
-      await waitShell(mobile);
-      mobileOk = await waitForOverview(mobile);
+      await waitShell(mobile, "mobile-overview-court-today");
+      mobileOk = await waitForOverview(mobile, "mobile-court-today");
       mobileBody = await mobile.locator("body").innerText();
     }
     if (mobileOk || OVERVIEW_TEXT.test(mobileBody)) {

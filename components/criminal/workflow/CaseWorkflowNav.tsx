@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import type { CaseWorkflowTabId } from "@/components/criminal/criminalCaseNavigation";
 import { workflowCard, workflowPilotCard, workflowPilotNavActive, workflowPilotNavIdle } from "./workflowUi";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
@@ -28,6 +28,7 @@ const LEGACY_TABS: { id: CaseWorkflowTabId; label: string }[] = [
 
 export function CaseWorkflowNav({ caseId }: { caseId: string }) {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const pilotMode = isCriminalPilotMode();
   const active = useCaseWorkflowActiveTab();
   const buildTabHref = usePilotMatterTabHref();
@@ -39,6 +40,9 @@ export function CaseWorkflowNav({ caseId }: { caseId: string }) {
       className={`${pilotMode ? workflowPilotCard : workflowCard} px-2 py-2 flex flex-wrap gap-1 ${pilotMode ? "border-slate-700/70" : "border-slate-200"}`}
       aria-label="Case workflow"
       data-testid="case-workflow-nav"
+      data-pilot-mode={pilotMode ? "true" : "false"}
+      data-active-tab={active}
+      data-url-tab={searchParams.get("tab") ?? ""}
     >
       {visibleTabs.map((t) => {
         const href = buildTabHref(caseId, t.id);
