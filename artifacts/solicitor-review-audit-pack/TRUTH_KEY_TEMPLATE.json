@@ -1,0 +1,49 @@
+{
+  "_meta": {
+    "disclaimer": "Solicitor-reviewed audit preparation template. Audit has not yet run. Controlled/synthetic audit exists separately.",
+    "audit_case_id": "REPLACE_case_id",
+    "bundle_type": "anonymised_pdf | anonymised_text | fictional_training",
+    "offence_family": "REPLACE_offence_family",
+    "case_shape": "e.g. thin_SJP | crown_disclosure | multi_defendant | historic_sexual",
+    "pdf_layout_type": "e.g. native_text | poor_ocr | rotated_scan | index_only | mixed_defendants",
+    "reviewer_name_or_role": "REPLACE_or_redact",
+    "review_date": "YYYY-MM-DD",
+    "anonymisation_confirmed": false,
+    "controlled_audit_note": "Separate 253-case controlled audit is not a substitute for this review."
+  },
+  "case_overview": {
+    "defendant_label": "ANON_DEF_001",
+    "offence_wording": "REPLACE",
+    "stage": "e.g. FAP | PTPH | trial",
+    "main_issue_for_review": "One sentence — what disclosure/evidence pressure matters most"
+  },
+  "evidence_items": [
+    {
+      "evidence_item_id": "ev-001",
+      "evidence_item_label": "REPLACE human-readable label",
+      "evidence_type": "mg11 | mg5 | mg6c | bwv | cctv | custody_pace | interview | phone_digital | encro | forensic_medical | id | exhibit_index | other",
+      "source_reference": "e.g. MG11 p.12 | MG6C/BWV line 4 | Index item 7",
+      "page_anchor": "optional page or bundle location",
+      "defendant_relevance": "primary_defendant | co_defendant_only | complainant_witness | other | unclear",
+      "evidence_state": "served | referred_only | missing | incomplete | not_safely_confirmed | inferred_only | other_defendant_only",
+      "reliability_note": "Optional — unsigned, OCR, conflict, partial",
+      "chase_needed": true,
+      "expected_chase_item": "Optional short chase label if chase_needed",
+      "safe_to_rely_on": false,
+      "safe_to_send": false,
+      "must_not_say": ["Optional phrases that must not be stated as fact from this item"],
+      "source_hierarchy_note": "Optional — e.g. MG5 summary only; MG11 not served",
+      "reviewer_confidence": "high | medium | low | disputed",
+      "reviewer_notes": "Free text"
+    }
+  ],
+  "global_chase_items": ["Cross-item chase labels not tied to one row"],
+  "do_not_overstate_global": ["Case-level warnings for any output surface"],
+  "blocking_concerns": ["Optional — e.g. false attribution risk, co-def bleed, safe line without source"],
+  "reviewer_signoff": {
+    "completed": false,
+    "questions_for_casebrain_team": [],
+    "duplicate_of_another_bundle": false,
+    "duplicate_notes": ""
+  }
+}
