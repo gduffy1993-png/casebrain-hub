@@ -378,6 +378,23 @@ async function main(): Promise<void> {
       }
     }
 
+    if (await desktop.getByTestId("evidence-truth-map-panel").isVisible().catch(() => false)) {
+      steps.push({ id: "evidence_truth_map_visible", status: "pass" });
+    } else {
+      const body = await desktop.locator("body").innerText();
+      if (/evidence truth map/i.test(body)) {
+        steps.push({ id: "evidence_truth_map_visible", status: "pass", detail: "content without testid" });
+      } else {
+        steps.push({ id: "evidence_truth_map_visible", status: "warn", detail: "Evidence Truth Map not on Overview" });
+      }
+    }
+
+    const advanced = desktop.getByTestId("overview-advanced-panel");
+    if (await advanced.isVisible().catch(() => false)) {
+      await advanced.locator("button").first().click().catch(() => undefined);
+      await desktop.waitForTimeout(400);
+    }
+
     if (await desktop.getByTestId("confidence-dashboard").isVisible().catch(() => false)) {
       steps.push({ id: "confidence_dashboard_visible", status: "pass" });
     } else {
@@ -406,7 +423,7 @@ async function main(): Promise<void> {
       steps.push({ id: "hearing_mode_visible", status: "pass" });
     } else {
       const body = await desktop.locator("body").innerText();
-      if (/20-minute hearing mode|case in one minute/i.test(body)) {
+      if (/court prep|20-minute hearing mode|case in one minute/i.test(body)) {
         steps.push({ id: "hearing_mode_visible", status: "pass", detail: "content without testid" });
       } else {
         steps.push({ id: "hearing_mode_visible", status: "fail", detail: "Hearing Mode not on Overview" });

@@ -354,6 +354,8 @@ export function useMatterBrief(caseId: string) {
       chase,
       allegation,
       clientLabel,
+      courtLabel: headerMeta.court?.trim() || null,
+      hearingLabel: headerMeta.nextHearing?.trim() || hearingStatus,
       briefPlan,
       primaryRouteTitle,
       bundleMeta: bundleSource
@@ -389,6 +391,8 @@ export function useMatterBrief(caseId: string) {
     chase: pilotMatter?.chase ?? null,
     allegation: pilotMatter?.allegation ?? null,
     clientLabel: pilotMatter?.clientLabel ?? null,
+    courtLabel: pilotMatter?.courtLabel ?? null,
+    hearingLabel: pilotMatter?.hearingLabel ?? null,
     briefPlan: pilotMatter?.briefPlan ?? null,
     primaryRouteTitle: pilotMatter?.primaryRouteTitle ?? null,
     bundleMeta: pilotMatter?.bundleMeta ?? null,

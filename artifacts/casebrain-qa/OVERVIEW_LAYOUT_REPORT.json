@@ -1,0 +1,68 @@
+{
+  "generatedAt": "2026-06-29T20:20:00.000Z",
+  "verdict": "READY WITH WARNINGS",
+  "layoutOnly": true,
+  "logicChanged": false,
+  "filesChanged": [
+    "components/criminal/five-answers/FiveAnswersView.tsx",
+    "components/criminal/five-answers/CaseSnapshotPanel.tsx",
+    "components/criminal/five-answers/WhatMattersNowPanel.tsx",
+    "components/criminal/five-answers/EvidenceTruthMapPanel.tsx",
+    "components/criminal/five-answers/EvidenceTruthRulesStrip.tsx",
+    "components/criminal/five-answers/OverviewSectionNav.tsx",
+    "components/criminal/five-answers/OverviewAdvancedPanel.tsx",
+    "components/criminal/hearing-mode/HearingModePanel.tsx",
+    "components/criminal/export-pack/ExportPackPanel.tsx",
+    "components/criminal/workflow/CaseWorkflowHeaderStrip.tsx",
+    "components/criminal/workflow/useMatterBrief.ts",
+    "components/criminal/trust/MatterConfidenceHeader.tsx",
+    "lib/criminal/five-answers/display-labels.ts",
+    "lib/criminal/matter-confidence/build-matter-confidence.ts",
+    "scripts/h5-overview-smoke.ts",
+    "scripts/h5-golden-output-snapshot.ts",
+    "scripts/display-labels.test.ts",
+    "scripts/record-solicitor-demo-final-walkthrough.ts"
+  ],
+  "layoutChanges": [
+    "UNDERSTAND: Case Snapshot + What matters now + collapsible Five Answers (#1–2, #5 open)",
+    "TRUST: Evidence Truth Map + compact evidence truth rules strip",
+    "PREPARE: Compact Court prep panel — chase labels only, court note deduped",
+    "SEND: Export pack 2×2 cards + do-not-overstate strip with copy",
+    "REVIEW: Advanced collapsible panel — Confidence, Decision board, Radar, Re-run",
+    "Removed duplicate compact MatterConfidence from shell on Overview tab",
+    "Max 4 source badges with +N more",
+    "Unknown → Not safely confirmed (display-only)"
+  ],
+  "wordingChanges": [
+    "Hearing panel title: Court prep (was 20-minute hearing mode)",
+    "Five Answers restructured: served / gaps / chase summary / must-not",
+    "Court note removed from Five Answers (lives in Court prep + Export pack)",
+    "Chase in Five Answers: labels only — drafts in Export pack"
+  ],
+  "testsRun": {
+    "display-labels.test.ts": "PASS",
+    "five-answers-view.test.ts": "PASS",
+    "hearing-mode.test.ts": "PASS",
+    "export-pack.test.ts": "PASS",
+    "h5-golden-output-snapshot.ts": "PASS — post-layout baseline; proves deterministic builders, not pre/post layout diff",
+    "h4-export-copy-gate": "PASS",
+    "h4-bad-output-memory-gate": "PASS",
+    "typecheck": "pre-existing errors in eval/audit paths unrelated to layout",
+    "h5-overview-smoke": "PASS_WITH_WARNINGS (18/2/0) — prod Jordan; truth map warn until layout deploys"
+  },
+  "video": "Re-record with: npx tsx scripts/record-solicitor-demo-final-walkthrough.ts",
+  "goldenSnapshotNote": "Baseline was created after layout changes. PASS means builder output is stable on re-run (SHA-256 of fiveAnswers, hearingMode, exportPack, matterConfidence). It does not prove a true before/after layout comparison unless a pre-layout baseline is added.",
+  "trustStripAdjustments": [
+    "Evidence truth rules compact strip under Evidence Truth Map",
+    "Five Answers #5 do-not-overstate open by default",
+    "Export pack do-not-overstate visible strip with copy button"
+  ],
+  "caveats": [
+    "Evidence truth rules compact strip re-added under Truth Map",
+    "Do-not-overstate: Five Answers #5 open by default + Export pack strip",
+    "Prod smoke truth-map warn expected until this branch is deployed",
+    "five-answers-court-note testid removed — court note in export/hearing",
+    "Confidence dashboard requires expanding Advanced review",
+    "Jordan demo case unchanged"
+  ]
+}

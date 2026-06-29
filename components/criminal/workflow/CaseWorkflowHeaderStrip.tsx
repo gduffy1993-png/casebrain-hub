@@ -21,6 +21,7 @@ import {
 import { buildMatterConfidence } from "@/lib/criminal/matter-confidence/build-matter-confidence";
 import { SOURCE_BACKED_COURT_NOTE_LABEL } from "@/lib/criminal/trust/firm-facing-labels";
 import { MatterConfidenceHeader } from "@/components/criminal/trust/MatterConfidenceHeader";
+import { useCaseWorkflowActiveTab } from "./useCaseWorkflowActiveTab";
 
 type StripState = {
   client: string;
@@ -54,6 +55,8 @@ export function CaseWorkflowHeaderStrip({
   const [strip, setStrip] = useState<StripState | null>(null);
   const [safeLineExpanded, setSafeLineExpanded] = useState(false);
   const pilot = isCriminalPilotMode();
+  const activeTab = useCaseWorkflowActiveTab();
+  const hideTrustDup = activeTab === "overview";
 
   useEffect(() => {
     let cancelled = false;
@@ -204,7 +207,7 @@ export function CaseWorkflowHeaderStrip({
             {readinessLine ? <p className="text-[11px] text-amber-400/90 mt-1 line-clamp-1">{readinessLine}</p> : null}
           </div>
         </div>
-        <MatterConfidenceHeader confidence={matterConfidence} compact />
+        {!hideTrustDup ? <MatterConfidenceHeader confidence={matterConfidence} compact /> : null}
       </div>
     );
   }

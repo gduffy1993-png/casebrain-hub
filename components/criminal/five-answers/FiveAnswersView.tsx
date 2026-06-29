@@ -1,12 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { Copy, ExternalLink, Loader2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ChevronDown, ChevronRight, ExternalLink, Loader2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { DontSaySafetyBox } from "@/components/criminal/trust/DontSaySafetyBox";
-import { MatterConfidenceHeader } from "@/components/criminal/trust/MatterConfidenceHeader";
-import { SOURCE_BACKED_COURT_NOTE_LABEL } from "@/lib/criminal/trust/firm-facing-labels";
 import { buildFiveAnswersView } from "@/lib/criminal/five-answers/build-five-answers-view";
 import { buildDecisionBoard } from "@/lib/criminal/decision-board/build-decision-board";
 import { buildHearingMode } from "@/lib/criminal/hearing-mode";
@@ -18,22 +15,18 @@ import { ExportPackPanel } from "@/components/criminal/export-pack/ExportPackPan
 import { RerunDiffPanel } from "@/components/criminal/re-run-diff/RerunDiffPanel";
 import { ConfidenceDashboardPanel } from "@/components/criminal/confidence-dashboard/ConfidenceDashboardPanel";
 import { H5FeedbackFlag } from "@/components/criminal/feedback-console/H5FeedbackFlag";
-import { evidenceExistenceLabel, evidenceReliabilityLabel } from "@/lib/criminal/five-answers/evidence-trace";
+import { displayExistenceLabel } from "@/lib/criminal/five-answers/display-labels";
 import { useMatterBrief } from "@/components/criminal/workflow/useMatterBrief";
 import { usePilotMatterTabHref } from "@/components/criminal/workflow/pilotDeskNavContext";
 import { workflowPilotCard, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
 import { EvidenceTracePanel } from "./EvidenceTracePanel";
-import type { EvidenceTraceRow, EvidenceTraceSection } from "@/lib/criminal/five-answers/types";
+import { CaseSnapshotPanel } from "./CaseSnapshotPanel";
+import { WhatMattersNowPanel } from "./WhatMattersNowPanel";
+import { EvidenceTruthMapPanel } from "./EvidenceTruthMapPanel";
+import { OverviewSectionNav } from "./OverviewSectionNav";
+import { OverviewAdvancedPanel } from "./OverviewAdvancedPanel";
+import type { EvidenceTraceRow, EvidenceTraceSection, FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
 import { useMemo, useState, type ReactNode } from "react";
-
-function TraceBadge({ label, tone }: { label: string; tone: "existence" | "reliability" }) {
-  const variant = tone === "existence" ? "secondary" : "outline";
-  return (
-    <Badge variant={variant} size="sm" className="text-[10px] font-medium">
-      {label}
-    </Badge>
-  );
-}
 
 function AnswerCard({
   number,
@@ -43,6 +36,7 @@ function AnswerCard({
   traceSection,
   traceRows,
   headerAction,
+  defaultOpen = true,
 }: {
   number: number;
   title: string;
@@ -51,22 +45,57 @@ function AnswerCard({
   traceSection?: EvidenceTraceSection;
   traceRows?: EvidenceTraceRow[];
   headerAction?: ReactNode;
+  defaultOpen?: boolean;
 }) {
+  const [open, setOpen] = useState(defaultOpen);
+
   return (
-    <section className={`${workflowPilotCard} px-4 py-3 space-y-2`} data-testid={testId}>
-      <div className="flex items-center gap-2">
-        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500/20 text-[11px] font-bold text-blue-300">
+    <section className={`${workflowPilotCard} px-4 py-2 space-y-0`} data-testid={testId}>
+      <button
+        type="button"
+        className="w-full flex items-center gap-2 py-1.5 text-left"
+        aria-expanded={open}
+        onClick={() => setOpen((v) => !v)}
+      >
+        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-500/20 text-[11px] font-bold text-blue-300">
           {number}
         </span>
         <h2 className={`${workflowSectionTitle} flex-1 min-w-0`}>{title}</h2>
         {headerAction}
-      </div>
-      {children}
-      {traceSection && traceRows?.length ? (
-        <EvidenceTracePanel section={traceSection} rows={traceRows} />
+        {open ? (
+          <ChevronDown className="h-4 w-4 text-slate-500 shrink-0" />
+        ) : (
+          <ChevronRight className="h-4 w-4 text-slate-500 shrink-0" />
+        )}
+      </button>
+      {open ? (
+        <div className="pb-3 space-y-2">
+          {children}
+          {traceSection && traceRows?.length ? (
+            <EvidenceTracePanel section={traceSection} rows={traceRows} />
+          ) : null}
+        </div>
       ) : null}
     </section>
   );
+}
+
+function servedRows(rows: FiveAnswersEvidenceRow[]) {
+  return rows.filter((r) => r.existence === "served");
+}
+
+function gapRows(rows: FiveAnswersEvidenceRow[]) {
+  return rows.filter((r) =>
+    ["referred_only", "missing", "unknown", "not_safely_confirmed"].includes(r.existence),
+  );
+}
+
+function servedSummaryText(rows: FiveAnswersEvidenceRow[], bundleThin: boolean): string {
+  const served = servedRows(rows);
+  if (served.length === 0 || bundleThin) {
+    return "Limited papers are available. The bundle is thin — do not rely on material that is not served and reviewed.";
+  }
+  return `${served.length} served item(s) on file — still requires solicitor review before reliance.`;
 }
 
 export function FiveAnswersView({ caseId }: { caseId: string }) {
@@ -77,12 +106,14 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
     warRoom,
     chase,
     allegation,
+    clientLabel,
+    courtLabel,
+    hearingLabel,
     briefPlan,
     primaryRouteTitle,
     bundleMeta,
   } = useMatterBrief(caseId);
   const buildTabHref = usePilotMatterTabHref();
-  const [copied, setCopied] = useState(false);
 
   const view = useMemo(() => {
     if (!warRoom || !chase) return null;
@@ -157,69 +188,169 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
     primaryRouteTitle,
   ]);
 
-  const copyCourtNote = async () => {
-    if (!view?.courtNote.canCopy) return;
-    try {
-      await navigator.clipboard.writeText(view.courtNote.text);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch {
-      /* ignore */
-    }
-  };
+  const bundleThin = (bundleMeta?.documentCount ?? 0) <= 1;
 
   if (loading && !view) {
     return (
       <div className={`${workflowPilotCard} p-8 flex items-center justify-center gap-2 text-slate-400`}>
         <Loader2 className="h-5 w-5 animate-spin text-blue-400" />
-        Loading case overview…
+        <span className="text-sm">Loading case overview…</span>
       </div>
     );
   }
 
-  if (!view) {
+  if (!view || !matterConfidence || !chase) {
     return (
-      <div className={`${workflowPilotCard} p-6 text-sm text-slate-400`}>
-        Case overview will appear once documents are processed.
+      <div className={`${workflowPilotCard} p-6 text-sm text-slate-400 space-y-2`}>
+        <p>Case overview will appear once documents are processed.</p>
+        <p className="text-xs text-slate-500">Not safely confirmed — solicitor review required.</p>
       </div>
     );
   }
+
+  const served = servedRows(view.evidenceState.rows);
+  const gaps = gapRows(view.evidenceState.rows);
+  const topChase = view.chase.slice(0, 5).map((c) => c.label);
+  const topWarning = view.mustNotOverstate[0] ?? null;
 
   return (
     <div className="space-y-3" data-testid="five-answers-view">
-      {matterConfidence ? <MatterConfidenceHeader confidence={matterConfidence} /> : null}
+      <OverviewSectionNav />
 
-      {warRoom && chase ? (
-        <ConfidenceDashboardPanel
-          caseId={caseId}
-          view={view}
-          chase={chase}
-          briefPlan={briefPlan}
-          warRoom={warRoom}
-          matterConfidence={matterConfidence}
-          exportPack={exportPack}
-          documentCount={bundleMeta?.documentCount ?? 0}
-          bundleMeta={bundleMeta}
-          primaryRouteTitle={primaryRouteTitle}
+      <div id="overview-understand" className="space-y-3 scroll-mt-4">
+        <CaseSnapshotPanel
+          clientLabel={clientLabel}
+          allegation={allegation}
+          courtLine={courtLabel}
+          hearingLine={hearingLabel ?? chase.hearingStatus}
+          confidence={matterConfidence}
         />
-      ) : null}
 
-      <div className="flex justify-end">
-        <H5FeedbackFlag
-          caseId={caseId}
-          surface="five_answers"
-          section="overview"
-          sendability={matterConfidence?.summarySendability ?? null}
+        <WhatMattersNowPanel
+          confidence={matterConfidence}
+          servedSummary={servedSummaryText(view.evidenceState.rows, bundleThin)}
+          topChaseLabels={topChase}
+          topWarning={topWarning}
         />
+
+        <div className="space-y-2">
+          <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-500 px-1">
+            Five answers
+          </p>
+
+          <AnswerCard
+            number={1}
+            title="What is this case saying?"
+            testId="five-answers-case-saying"
+            traceSection="allegation"
+            traceRows={view.evidenceTrace.bySection.allegation}
+            defaultOpen
+          >
+            <p className="text-sm text-slate-200 leading-relaxed line-clamp-5">{view.caseSaying.mainIssue}</p>
+          </AnswerCard>
+
+          <AnswerCard
+            number={2}
+            title="What is actually served?"
+            testId="five-answers-evidence-state"
+            traceSection="key_evidence"
+            traceRows={view.evidenceTrace.bySection.key_evidence}
+            headerAction={
+              <H5FeedbackFlag
+                caseId={caseId}
+                surface="evidence_trace"
+                section="key_evidence"
+                sendability={matterConfidence.chaseSendability ?? null}
+              />
+            }
+            defaultOpen
+          >
+            {served.length ? (
+              <ul className="space-y-1.5 text-sm text-slate-300">
+                {served.map((row, i) => (
+                  <li key={i}>{row.label}</li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-sm text-slate-400">
+                Limited papers only — nothing safely confirmed as fully served for reliance.
+              </p>
+            )}
+          </AnswerCard>
+
+          <AnswerCard
+            number={3}
+            title="What is referred only / missing / not safely confirmed?"
+            testId="five-answers-evidence-gaps"
+            traceSection="missing_referred"
+            traceRows={view.evidenceTrace.bySection.missing_referred}
+            defaultOpen={false}
+          >
+            {gaps.length ? (
+              <ul className="space-y-2">
+                {gaps.slice(0, 6).map((row, i) => (
+                  <li key={i} className="text-sm text-slate-300 flex flex-wrap items-center gap-2">
+                    <span>{row.label}</span>
+                    <Badge variant="secondary" size="sm" className="text-[9px]">
+                      {displayExistenceLabel(row.existence)}
+                    </Badge>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-sm text-slate-400">No key gaps listed — still check papers before reliance.</p>
+            )}
+          </AnswerCard>
+
+          <AnswerCard
+            number={4}
+            title="What do I chase?"
+            testId="five-answers-chase"
+            traceSection="chase"
+            traceRows={view.evidenceTrace.bySection.chase}
+            defaultOpen={false}
+          >
+            {topChase.length ? (
+              <ul className="space-y-1 text-sm text-slate-300 list-disc pl-4">
+                {topChase.map((label, i) => (
+                  <li key={i}>{label}</li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-sm text-slate-400">No chase items yet — check Papers / Chase tabs.</p>
+            )}
+            <Link
+              href={buildTabHref(caseId, "disclosure-chase")}
+              className="inline-flex items-center gap-1 text-[11px] text-blue-400 hover:text-blue-300 mt-1"
+            >
+              CPS chase drafts in Export pack <ExternalLink className="h-3 w-3" />
+            </Link>
+          </AnswerCard>
+
+          <AnswerCard
+            number={5}
+            title="What must I not overstate?"
+            testId="five-answers-must-not"
+            traceSection="do_not_overstate"
+            traceRows={view.evidenceTrace.bySection.do_not_overstate}
+            defaultOpen
+          >
+            <DontSaySafetyBox items={view.mustNotOverstate.slice(0, 5)} compact />
+          </AnswerCard>
+        </div>
+
+        <div className="flex justify-end">
+          <H5FeedbackFlag
+            caseId={caseId}
+            surface="five_answers"
+            section="overview"
+            sendability={matterConfidence.summarySendability ?? null}
+          />
+        </div>
       </div>
 
-      <div className={`${workflowPilotCard} px-4 py-2.5 border-blue-500/20 bg-blue-950/20`}>
-        <p className="text-[10px] font-semibold uppercase tracking-wider text-blue-300/90">Evidence truth rules</p>
-        <ul className="mt-1 flex flex-wrap gap-x-3 gap-y-0.5 text-[11px] text-slate-400">
-          {view.evidenceState.hardRules.map((rule) => (
-            <li key={rule}>{rule}</li>
-          ))}
-        </ul>
+      <div id="overview-trust" className="scroll-mt-4">
+        <EvidenceTruthMapPanel rows={view.evidenceState.rows} />
       </div>
 
       {hearingMode ? (
@@ -233,177 +364,50 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
 
       {exportPack ? <ExportPackPanel model={exportPack} caseId={caseId} /> : null}
 
-      <AnswerCard
-        number={1}
-        title="What is this case saying?"
-        testId="five-answers-case-saying"
-        traceSection="allegation"
-        traceRows={view.evidenceTrace.bySection.allegation}
-      >
-        <p className="text-sm font-medium text-slate-100">{view.caseSaying.allegation}</p>
-        <p className="text-sm text-slate-300 leading-relaxed">{view.caseSaying.mainIssue}</p>
-        <p className="text-xs text-blue-300/90">
-          <span className="font-semibold text-blue-200">Next: </span>
-          {view.caseSaying.nextAction}
-        </p>
-      </AnswerCard>
+      <div id="overview-review" className="scroll-mt-4 space-y-3">
+        <OverviewAdvancedPanel>
+          {warRoom && chase ? (
+            <ConfidenceDashboardPanel
+              caseId={caseId}
+              view={view}
+              chase={chase}
+              briefPlan={briefPlan}
+              warRoom={warRoom}
+              matterConfidence={matterConfidence}
+              exportPack={exportPack}
+              documentCount={bundleMeta?.documentCount ?? 0}
+              bundleMeta={bundleMeta}
+              primaryRouteTitle={primaryRouteTitle}
+            />
+          ) : null}
+          {decisionBoard ? <DefenceDecisionBoard model={decisionBoard} caseId={caseId} /> : null}
+          {warRoom && chase && briefPlan ? (
+            <AdviceChangeRadarPanel
+              caseId={caseId}
+              warRoom={warRoom}
+              chase={chase}
+              briefPlan={briefPlan}
+              matterConfidence={matterConfidence}
+              primaryRouteTitle={primaryRouteTitle}
+              bundleMeta={bundleMeta}
+            />
+          ) : null}
+          {warRoom && chase ? (
+            <RerunDiffPanel
+              caseId={caseId}
+              view={view}
+              chase={chase}
+              matterConfidence={matterConfidence}
+              documentCount={bundleMeta?.documentCount ?? 0}
+              exportPack={exportPack}
+            />
+          ) : null}
+        </OverviewAdvancedPanel>
+      </div>
 
-      <AnswerCard
-        number={2}
-        title="What is served / referred only / missing?"
-        testId="five-answers-evidence-state"
-        traceSection="key_evidence"
-        headerAction={
-          <H5FeedbackFlag
-            caseId={caseId}
-            surface="evidence_trace"
-            section="key_evidence"
-            sendability={matterConfidence?.chaseSendability ?? null}
-          />
-        }
-        traceRows={[
-          ...view.evidenceTrace.bySection.key_evidence,
-          ...view.evidenceTrace.bySection.missing_referred,
-        ]}
-      >
-        {view.evidenceState.rows.length ? (
-          <ul className="space-y-2">
-            {view.evidenceState.rows.map((row, i) => (
-              <li key={i} className="text-xs text-slate-300 border-b border-slate-800/80 pb-2 last:border-0">
-                <p className="font-medium text-slate-200 line-clamp-2">{row.label}</p>
-                <div className="flex flex-wrap gap-1.5 mt-1">
-                  <TraceBadge label={evidenceExistenceLabel(row.existence)} tone="existence" />
-                  <TraceBadge label={evidenceReliabilityLabel(row.reliability)} tone="reliability" />
-                </div>
-                {row.note ? <p className="text-[11px] text-slate-500 mt-1">{row.note}</p> : null}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="text-xs text-slate-500">Open Chase for material families once papers load.</p>
-        )}
-        {view.contradictions.length ? (
-          <div className="mt-3 pt-2 border-t border-slate-800/80">
-            <p className="text-[10px] font-semibold uppercase tracking-wider text-amber-400/80 mb-1.5">
-              Paper conflicts (existing detection)
-            </p>
-            <ul className="space-y-1 text-xs text-slate-400">
-              {view.contradictions.map((c, i) => (
-                <li key={i}>
-                  <span className="font-medium text-amber-300/90">{c.label}: </span>
-                  {c.summary}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : null}
-        <Link
-          href={buildTabHref(caseId, "disclosure-chase")}
-          className="inline-flex items-center gap-1 text-[11px] text-blue-400 hover:text-blue-300 mt-2"
-        >
-          Full chase list <ExternalLink className="h-3 w-3" />
-        </Link>
-      </AnswerCard>
-
-      <AnswerCard
-        number={3}
-        title="What must I not overstate?"
-        testId="five-answers-must-not"
-        traceSection="do_not_overstate"
-        traceRows={view.evidenceTrace.bySection.do_not_overstate}
-      >
-        <DontSaySafetyBox items={view.mustNotOverstate} compact />
-        <Link
-          href={buildTabHref(caseId, "today")}
-          className="inline-flex items-center gap-1 text-[11px] text-blue-400 hover:text-blue-300 mt-2"
-        >
-          Today tab — full warnings <ExternalLink className="h-3 w-3" />
-        </Link>
-      </AnswerCard>
-
-      <AnswerCard
-        number={4}
-        title="What do I chase?"
-        testId="five-answers-chase"
-        traceSection="chase"
-        traceRows={view.evidenceTrace.bySection.chase}
-      >
-        {view.chase.length ? (
-          <ul className="space-y-2">
-            {view.chase.map((row, i) => (
-              <li key={i} className="text-xs border-b border-slate-800/80 pb-2 last:border-0">
-                <p className="font-medium text-slate-200">{row.label}</p>
-                <p className="text-slate-500 mt-0.5 line-clamp-2">{row.copySuggestion}</p>
-                <p className="text-[10px] text-slate-500 mt-1">{row.sendabilityLabel}</p>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="text-xs text-slate-500">No chase items yet — check Papers / Chase tabs.</p>
-        )}
-        <Link
-          href={buildTabHref(caseId, "disclosure-chase")}
-          className="inline-flex items-center gap-1 text-[11px] text-blue-400 hover:text-blue-300"
-        >
-          CPS chase copy <ExternalLink className="h-3 w-3" />
-        </Link>
-      </AnswerCard>
-
-      <AnswerCard
-        number={5}
-        title={`What ${SOURCE_BACKED_COURT_NOTE_LABEL.toLowerCase()} can a solicitor review?`}
-        testId="five-answers-court-note"
-        traceSection="court_note"
-        traceRows={view.evidenceTrace.bySection.court_note}
-      >
-        <p className="text-xs text-slate-500 mb-1">{view.courtNote.sendabilityLabel}</p>
-        <p className="text-sm text-slate-300 leading-relaxed italic">{view.courtNote.text}</p>
-        <div className="flex flex-wrap items-center gap-2 mt-2">
-          <Button
-            type="button"
-            size="sm"
-            variant="outline"
-            className="h-8 text-xs"
-            disabled={!view.courtNote.canCopy}
-            onClick={() => void copyCourtNote()}
-          >
-            <Copy className="h-3.5 w-3.5 mr-1" />
-            {copied ? "Copied" : view.courtNote.copySuggestionLabel}
-          </Button>
-          <Link
-            href={buildTabHref(caseId, "today")}
-            className="text-[11px] text-blue-400 hover:text-blue-300"
-          >
-            Today tab
-          </Link>
-        </div>
-        <p className="text-[10px] text-slate-600 mt-2">{view.courtNote.footer}</p>
-      </AnswerCard>
-
-      {decisionBoard ? <DefenceDecisionBoard model={decisionBoard} caseId={caseId} /> : null}
-
-      {warRoom && chase && briefPlan ? (
-        <AdviceChangeRadarPanel
-          caseId={caseId}
-          warRoom={warRoom}
-          chase={chase}
-          briefPlan={briefPlan}
-          matterConfidence={matterConfidence}
-          primaryRouteTitle={primaryRouteTitle}
-          bundleMeta={bundleMeta}
-        />
-      ) : null}
-
-      {warRoom && chase ? (
-        <RerunDiffPanel
-          caseId={caseId}
-          view={view}
-          chase={chase}
-          matterConfidence={matterConfidence}
-          documentCount={bundleMeta?.documentCount ?? 0}
-          exportPack={exportPack}
-        />
-      ) : null}
+      <p className="text-[10px] text-center text-slate-600 pb-1">
+        Evidence-linked · conditional · provisional where stated · solicitor review required
+      </p>
     </div>
   );
 }

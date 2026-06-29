@@ -89,8 +89,8 @@ export function MatterConfidenceHeader({
   confidence: MatterConfidenceResult;
   compact?: boolean;
 }) {
-  const visible = confidence.sourceBadgesVisible ?? confidence.sourceBadges.slice(0, 3);
-  const overflow = confidence.sourceBadgesOverflow ?? confidence.sourceBadges.slice(3);
+  const visible = confidence.sourceBadgesVisible ?? confidence.sourceBadges.slice(0, 4);
+  const overflow = confidence.sourceBadgesOverflow ?? confidence.sourceBadges.slice(4);
 
   if (compact) {
     return (

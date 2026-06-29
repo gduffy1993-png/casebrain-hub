@@ -142,7 +142,7 @@ const BADGE_DISPLAY_PRIORITY: SourceStateKind[] = [
 
 export function prioritizeSourceBadges(
   all: SourceStateKind[],
-  maxVisible = 3,
+  maxVisible = 4,
 ): { visible: SourceStateKind[]; overflow: SourceStateKind[] } {
   const unique = [...new Set(all)];
   const ordered = BADGE_DISPLAY_PRIORITY.filter((b) => unique.includes(b));

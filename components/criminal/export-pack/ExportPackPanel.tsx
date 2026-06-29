@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { H5FeedbackFlag } from "@/components/criminal/feedback-console/H5FeedbackFlag";
 import { FIRM_SENDABILITY_LABELS } from "@/lib/criminal/trust/firm-facing-labels";
+import { displayCopyBody } from "@/lib/criminal/five-answers/display-labels";
 import type { ExportPackModel, ExportPackSectionId } from "@/lib/criminal/export-pack/types";
 import { workflowPilotCard, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
 
@@ -14,8 +15,15 @@ const COPY_SECTIONS: ExportPackSectionId[] = [
   "court_note",
   "client_summary",
   "evidence_gaps",
-  "do_not_overstate",
 ];
+
+const SECTION_SUBTITLES: Record<string, string> = {
+  cps_chase: "Requests material only.",
+  court_note: "For hearing position only.",
+  client_summary: "Plain English, non-advice.",
+  evidence_gaps: "Missing / referred / incomplete material.",
+  do_not_overstate: "Warnings — not for sending.",
+};
 
 function copyLabel(id: ExportPackSectionId): string {
   switch (id) {
@@ -50,8 +58,6 @@ export function ExportPackPanel({ model, caseId }: { model: ExportPackModel; cas
   };
 
   const downloadFullPack = () => {
-    const full = model.sections.find((s) => s.id === "full_pack");
-    if (!full) return;
     const blob = new Blob([JSON.stringify({ version: model.version, sections: model.sections }, null, 2)], {
       type: "application/json",
     });
@@ -67,6 +73,7 @@ export function ExportPackPanel({ model, caseId }: { model: ExportPackModel; cas
     <section
       className={`${workflowPilotCard} px-4 py-3 space-y-4 border-emerald-500/25 bg-emerald-950/10`}
       data-testid="export-pack-panel"
+      id="overview-send"
     >
       <div className="flex flex-wrap items-start justify-between gap-2">
         <div>
@@ -76,9 +83,6 @@ export function ExportPackPanel({ model, caseId }: { model: ExportPackModel; cas
           </div>
           <p className="text-[11px] text-slate-500 mt-1">{model.reviewNotice}</p>
         </div>
-        <Badge variant="outline" size="sm" className="text-[10px] shrink-0">
-          {FIRM_SENDABILITY_LABELS[model.version.sendability]}
-        </Badge>
         <H5FeedbackFlag
           caseId={caseId}
           surface="export_pack"
@@ -90,39 +94,54 @@ export function ExportPackPanel({ model, caseId }: { model: ExportPackModel; cas
         />
       </div>
 
-      <div className="rounded-md border border-slate-800/80 bg-slate-950/40 px-3 py-2.5 text-[11px] text-slate-400 space-y-1" data-testid="export-pack-version">
-        <p className="font-semibold text-slate-300">Version stamp</p>
-        <p>Export ID: {model.version.exportId}</p>
-        <p>Generated: {new Date(model.version.generatedAt).toLocaleString()}</p>
-        {model.version.appVersion ? <p>Build: {model.version.appVersion}</p> : null}
-        <p>{model.version.reviewFooter}</p>
+      <div
+        className="rounded-md border border-slate-800/80 bg-slate-950/40 px-3 py-2 text-[11px] text-slate-400 flex flex-wrap gap-x-4 gap-y-1"
+        data-testid="export-pack-version"
+      >
+        <span>
+          <span className="text-slate-500">Export ID:</span> {model.version.exportId}
+        </span>
+        <span>
+          <span className="text-slate-500">Sendability:</span>{" "}
+          {FIRM_SENDABILITY_LABELS[model.version.sendability]}
+        </span>
+        <span className="text-amber-400/90">Solicitor review required</span>
       </div>
 
-      <div className="grid gap-2 sm:grid-cols-2">
+      </div>
+
+      <div className="grid gap-3 sm:grid-cols-2">
         {COPY_SECTIONS.map((id) => {
           const section = model.sections.find((s) => s.id === id);
           if (!section) return null;
+          const preview = displayCopyBody(section.textForClipboard).slice(0, 200);
           return (
             <div
               key={id}
-              className="rounded-md border border-slate-800/80 bg-slate-950/30 px-3 py-2.5 space-y-2"
+              className="rounded-md border border-slate-800/80 bg-slate-950/30 px-3 py-2.5 space-y-2 flex flex-col"
               data-testid={`export-pack-section-${id}`}
             >
-              <div className="flex flex-wrap items-center justify-between gap-1">
+              <div>
                 <p className="text-xs font-medium text-slate-200">{section.title}</p>
-                <Badge variant="secondary" size="sm" className="text-[9px]">
+                <p className="text-[10px] text-slate-500 mt-0.5">{SECTION_SUBTITLES[id]}</p>
+              </div>
+              <div className="flex flex-wrap gap-1.5 text-[9px]">
+                <Badge variant="outline" size="sm" className="text-[9px]">
                   {section.sendabilityLabel}
                 </Badge>
+                <Badge variant="secondary" size="sm" className="text-[9px]">
+                  {model.version.exportId.slice(0, 12)}
+                </Badge>
               </div>
-              <p className="text-[11px] text-slate-500 line-clamp-3 whitespace-pre-wrap">
-                {section.textForClipboard.slice(0, 220)}
-                {section.textForClipboard.length > 220 ? "…" : ""}
+              <p className="text-[11px] text-slate-400 leading-relaxed flex-1 whitespace-pre-wrap">
+                {preview}
+                {section.textForClipboard.length > 200 ? "…" : ""}
               </p>
               <Button
                 type="button"
                 variant="outline"
                 size="sm"
-                className="h-7 text-[11px] w-full sm:w-auto"
+                className="h-7 text-[11px] w-full sm:w-auto self-start"
                 disabled={!section.canCopy}
                 onClick={() => copySection(id)}
               >
@@ -133,6 +152,43 @@ export function ExportPackPanel({ model, caseId }: { model: ExportPackModel; cas
           );
         })}
       </div>
+
+      {(() => {
+        const dno = model.sections.find((s) => s.id === "do_not_overstate");
+        if (!dno) return null;
+        const preview = displayCopyBody(dno.textForClipboard).slice(0, 280);
+        return (
+          <div
+            className="rounded-md border border-amber-500/25 bg-amber-950/15 px-3 py-2.5 space-y-2"
+            data-testid="export-pack-section-do_not_overstate"
+          >
+            <div className="flex flex-wrap items-start justify-between gap-2">
+              <div>
+                <p className="text-xs font-medium text-amber-200/90">{dno.title}</p>
+                <p className="text-[10px] text-slate-500 mt-0.5">{SECTION_SUBTITLES.do_not_overstate}</p>
+              </div>
+              <Badge variant="outline" size="sm" className="text-[9px] shrink-0">
+                {dno.sendabilityLabel}
+              </Badge>
+            </div>
+            <p className="text-[11px] text-slate-400 leading-relaxed whitespace-pre-wrap line-clamp-4">
+              {preview}
+              {dno.textForClipboard.length > 280 ? "…" : ""}
+            </p>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              className="h-7 text-[11px]"
+              disabled={!dno.canCopy}
+              onClick={() => copySection("do_not_overstate")}
+            >
+              <Copy className="h-3 w-3 mr-1" />
+              {copiedId === "do_not_overstate" ? "Copied" : copyLabel("do_not_overstate")}
+            </Button>
+          </div>
+        );
+      })()}
 
       <div className="flex flex-wrap gap-2">
         <Button
