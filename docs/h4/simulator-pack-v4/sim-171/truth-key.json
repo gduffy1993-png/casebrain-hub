@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-171",
+  "title": "Phone download indexed not served — duplicate pages",
+  "fakeDefendant": "Ursula Arch",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Conspiracy to supply Class A drugs",
+  "offenceFamily": "drugs_conspiracy",
+  "profile": "index_listed_not_served",
+  "mainIssue": "Index references UFED download; only screenshot annex served.",
+  "servedEvidence": [
+    "screenshot annex (folio 171 — Arch)",
+    "MG5 supplementary note (folio 171 — Arch)"
+  ],
+  "referredOnlyEvidence": [
+    "UFED download per index — Ursula Arch"
+  ],
+  "missingEvidence": [
+    "UFED download — Ursula Arch",
+    "search scope — Ursula Arch",
+    "banking schedule annex B (Arch / folio 171)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Phone download indexed not served — chase full UFED export.",
+  "expectedChaseItems": [
+    "UFED download — Ursula Arch",
+    "search scope schedule — Ursula Arch",
+    "continuity — Ursula Arch",
+    "MG6 line 12 handset export — Arch"
+  ],
+  "expectedSummaryRisk": "Provisional — index phone absent on duplicate pages papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "download served because indexed",
+    "screenshots are full download"
+  ],
+  "blockingFailPatterns": [
+    "download served because indexed",
+    "screenshots are full download",
+    "phone proves attribution",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — duplicate_pages"
+  ],
+  "pdfLayoutType": "duplicate_pages",
+  "redTeamTrapType": "index_phone_absent",
+  "bundleStatus": "generated"
+}

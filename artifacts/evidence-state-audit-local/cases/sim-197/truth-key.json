@@ -1,0 +1,79 @@
+{
+  "caseId": "sim-197",
+  "title": "Breach — order service unclear — two column schedule",
+  "offenceFamily": "harassment",
+  "offenceWording": "Stalking involving fear of violence",
+  "profile": "order_breach_service",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "order copy (folio 197 — Alden)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 197 — Alden)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "service affidavit — Vesper Alden",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "proof of service — Vesper Alden",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "breach particulars — Vesper Alden",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "weapons seizure photograph set (Alden / folio 197)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "whether defendant served",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "proof of service — Vesper Alden",
+    "order terms — Vesper Alden",
+    "breach timeline — Vesper Alden",
+    "toxicology blood tube log — Alden"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "order served as fact",
+    "breach proved"
+  ],
+  "blockingFailPatterns": [
+    "order served as fact",
+    "breach proved",
+    "service confirmed",
+    "we win",
+    "case collapses"
+  ]
+}

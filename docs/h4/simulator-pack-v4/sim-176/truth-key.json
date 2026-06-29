@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-176",
+  "title": "Interview summary not full recording — thin sjp scan",
+  "fakeDefendant": "Zachary Firth",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Controlling or coercive behaviour",
+  "offenceFamily": "domestic",
+  "profile": "partial_vs_full_evidence",
+  "mainIssue": "Summary of interview served; recording and transcript absent.",
+  "servedEvidence": [
+    "interview summary (folio 176 — Firth)",
+    "MG5 supplementary note (folio 176 — Firth)"
+  ],
+  "referredOnlyEvidence": [
+    "interview recording — Zachary Firth"
+  ],
+  "missingEvidence": [
+    "recording — Zachary Firth",
+    "transcript — Zachary Firth",
+    "toxicology blood tube log (Firth / folio 176)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Interview summary partial — chase recording before reliance.",
+  "expectedChaseItems": [
+    "interview recording — Zachary Firth",
+    "transcript — Zachary Firth",
+    "PACE forms — Zachary Firth",
+    "message platform export hash — Firth"
+  ],
+  "expectedSummaryRisk": "Provisional — partial interview summary on thin sjp scan papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "summary proves admission",
+    "interview confirms account"
+  ],
+  "blockingFailPatterns": [
+    "summary proves admission",
+    "interview confirms account",
+    "admission reliable",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — thin_sjp_scan"
+  ],
+  "pdfLayoutType": "thin_sjp_scan",
+  "redTeamTrapType": "partial_interview_summary",
+  "bundleStatus": "generated"
+}

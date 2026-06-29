@@ -1,0 +1,73 @@
+{
+  "caseId": "sim-188",
+  "title": "Court note sendability risk — blank pages metadata",
+  "offenceFamily": "aew_police_contact",
+  "offenceWording": "Assault on emergency worker",
+  "profile": "export_surface_safety",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "thin MG5 (folio 188 — Rafe)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 188 — Rafe)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "medical — Linden Rafe",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "medical — Linden Rafe",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG11 — Linden Rafe",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "firearm classification worksheet (Rafe / folio 188)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "medical report — Linden Rafe",
+    "MG11 — Linden Rafe",
+    "BWV if relevant — Linden Rafe",
+    "scene forensic sweep log — Rafe"
+  ],
+  "expectedSendability": "needs_solicitor_review",
+  "mustNotSayGlobal": [
+    "safe to send",
+    "bundle supports court note"
+  ],
+  "blockingFailPatterns": [
+    "safe to send",
+    "bundle supports court note",
+    "case summary confirms",
+    "we win",
+    "case collapses"
+  ]
+}

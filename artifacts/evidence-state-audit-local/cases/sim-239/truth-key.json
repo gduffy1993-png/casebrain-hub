@@ -1,0 +1,84 @@
+{
+  "caseId": "sim-239",
+  "title": "CPS chase must not overstate served — blank pages metadata",
+  "offenceFamily": "fraud_account",
+  "offenceWording": "Fraud by false representation",
+  "profile": "export_surface_safety",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5 summary (folio 239 — Ridge)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 239 — Ridge)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "CCTV — Luna Ridge",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "cctv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV — Luna Ridge",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "CCTV export — Luna Ridge",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "cctv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV export — Luna Ridge",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "scene forensic sweep log (Ridge / folio 239)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "CCTV export — Luna Ridge",
+    "BWV export — Luna Ridge",
+    "MG11 — Luna Ridge",
+    "vehicle ANPR download — Ridge"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "CCTV shows",
+    "BWV shows",
+    "material confirms offence"
+  ],
+  "blockingFailPatterns": [
+    "CCTV shows",
+    "BWV shows",
+    "material confirms offence",
+    "we win",
+    "case collapses"
+  ]
+}

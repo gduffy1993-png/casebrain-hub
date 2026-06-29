@@ -1,0 +1,73 @@
+{
+  "caseId": "sim-270",
+  "title": "Available on request not served — late addendum scan",
+  "offenceFamily": "drugs_pwits",
+  "offenceWording": "Possession with intent to supply Class A drugs",
+  "profile": "disclosure_schedule_trap",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG6 note available on request (folio 270 — Wren)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 270 — Wren)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV on request — Romy Wren",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV export — Romy Wren",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "continuity — Romy Wren",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "lab submission chain (Wren / folio 270)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "BWV export — Romy Wren",
+    "disclosure confirmation — Romy Wren",
+    "continuity — Romy Wren",
+    "medical imaging disc — Wren"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "BWV served because listed",
+    "available on request equals served"
+  ],
+  "blockingFailPatterns": [
+    "BWV served because listed",
+    "available on request equals served",
+    "BWV shows",
+    "we win",
+    "case collapses"
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "caseId": "sim-317",
+  "title": "Vulnerable witness — special measures not served — rotated scan",
+  "offenceFamily": "fraud_account",
+  "offenceWording": "Fraud by false representation",
+  "profile": "youth_vulnerability_custody",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5 vulnerability marker (folio 317 — Tidal)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 317 — Tidal)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "ABE interview — Maren Tidal",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "interview",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "ABE recording — Maren Tidal",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "special measures application — Maren Tidal",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "scene photograph log (Tidal / folio 317)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "ABE recording — Maren Tidal",
+    "special measures docs — Maren Tidal",
+    "MG11 first account — Maren Tidal",
+    "defendant interview part 2 — Tidal"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "ABE confirms account",
+    "vulnerability proves offence"
+  ],
+  "blockingFailPatterns": [
+    "ABE confirms",
+    "vulnerability proves offence",
+    "account confirmed as fact",
+    "we win",
+    "case collapses"
+  ]
+}

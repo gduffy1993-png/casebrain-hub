@@ -1,0 +1,73 @@
+{
+  "caseId": "sim-179",
+  "title": "Subscriber vs phone user — missing mg6 schedule",
+  "offenceFamily": "motoring",
+  "offenceWording": "Drive motor vehicle with excess alcohol",
+  "profile": "wrong_person_entity",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "subscriber record summary (folio 179 — Ivy)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 179 — Ivy)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "handset download — Corinne Ivy",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "usage attribution — Corinne Ivy",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "handset download — Corinne Ivy",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "message platform export hash (Ivy / folio 179)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "handset download — Corinne Ivy",
+    "usage attribution — Corinne Ivy",
+    "cellsite if relevant — Corinne Ivy",
+    "county lines line attribution chart — Ivy"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "subscriber is defendant",
+    "account holder proves user"
+  ],
+  "blockingFailPatterns": [
+    "subscriber is defendant",
+    "account holder proves user",
+    "phone proves defendant sent",
+    "we win",
+    "case collapses"
+  ]
+}

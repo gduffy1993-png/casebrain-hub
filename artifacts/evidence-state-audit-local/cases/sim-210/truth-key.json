@@ -1,0 +1,80 @@
+{
+  "caseId": "sim-210",
+  "title": "Disclosure date confused with offence date — skewed scan",
+  "offenceFamily": "drugs_conspiracy",
+  "offenceWording": "Conspiracy to supply Class A drugs",
+  "profile": "date_time_conflict",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "late disclosure cover sheet (folio 210 — Noll)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 210 — Noll)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "original MG5 — Ingrid Noll",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "charge sheet clarity — Ingrid Noll",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "offence date particulars — Ingrid Noll",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "interpreter attendance note (Noll / folio 210)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "correct offence window",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "charge sheet — Ingrid Noll",
+    "offence date particulars — Ingrid Noll",
+    "MG5 clarification — Ingrid Noll",
+    "phone billing record match — Noll"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "disclosure date is offence date",
+    "particulars proved from cover sheet"
+  ],
+  "blockingFailPatterns": [
+    "disclosure date is offence date",
+    "particulars proved from cover",
+    "offence date confirmed",
+    "we win",
+    "case collapses"
+  ]
+}

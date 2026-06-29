@@ -1,0 +1,80 @@
+{
+  "caseId": "sim-220",
+  "title": "Summary still uses old charge — blank pages metadata",
+  "offenceFamily": "weapons",
+  "offenceWording": "Possession of a bladed article",
+  "profile": "changed_corrected_charge",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5 with old s20 wording (folio 220 — Yew)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "amended s18 charge (folio 220 — Yew)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 220 — Yew)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "medical report — Stellan Yew",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "updated MG5 — Stellan Yew",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "medical for intent — Stellan Yew",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "amended charge linkage schedule (Yew / folio 220)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "updated MG5 — Stellan Yew",
+    "medical report — Stellan Yew",
+    "intent material — Stellan Yew",
+    "disclosure officer certification — Yew"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "s18 intent proved",
+    "old s20 summary controls"
+  ],
+  "blockingFailPatterns": [
+    "s18 intent proved",
+    "old s20 summary controls",
+    "intent established as fact",
+    "we win",
+    "case collapses"
+  ]
+}

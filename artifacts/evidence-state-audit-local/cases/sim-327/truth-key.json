@@ -1,0 +1,74 @@
+{
+  "caseId": "sim-327",
+  "title": "Phone download indexed not served — image only scan",
+  "offenceFamily": "encro_encrypted_comms",
+  "offenceWording": "Conspiracy to supply Class A drugs (encrypted comms)",
+  "profile": "index_listed_not_served",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "screenshot annex (folio 327 — Dapple)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 327 — Dapple)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "UFED download per index — Winslow Dapple",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "UFED download — Winslow Dapple",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "search scope — Winslow Dapple",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "third-party disclosure gateway (Dapple / folio 327)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "UFED download — Winslow Dapple",
+    "search scope schedule — Winslow Dapple",
+    "continuity — Winslow Dapple",
+    "NRM referral outcome letter — Dapple"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "download served because indexed",
+    "screenshots are full download"
+  ],
+  "blockingFailPatterns": [
+    "download served because indexed",
+    "screenshots are full download",
+    "phone proves attribution",
+    "we win",
+    "case collapses"
+  ]
+}

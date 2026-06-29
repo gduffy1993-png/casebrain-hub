@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-193",
+  "title": "Co-defendant phone data bleed — large messy rotated",
+  "fakeDefendant": "Rowan Wex",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Being concerned in the supply of Class A drugs",
+  "offenceFamily": "drugs_supply",
+  "profile": "wrong_person_entity",
+  "mainIssue": "Co-defendant handset data on bundle without segregation map.",
+  "servedEvidence": [
+    "mixed handset summary (folio 193 — Wex)",
+    "MG5 supplementary note (folio 193 — Wex)"
+  ],
+  "referredOnlyEvidence": [
+    "co-defendant download — Rowan Wex"
+  ],
+  "missingEvidence": [
+    "per-defendant segregation — Rowan Wex",
+    "attribution map — Rowan Wex",
+    "fraud transaction mapping sheet (Wex / folio 193)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Co-defendant phone bleed — chase per-defendant digital map.",
+  "expectedChaseItems": [
+    "per-defendant digital map — Rowan Wex",
+    "handset downloads — Rowan Wex",
+    "subscriber records — Rowan Wex",
+    "interpreter attendance note — Wex"
+  ],
+  "expectedSummaryRisk": "Provisional — co def phone data on large messy rotated papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "co-defendant phone proves this defendant",
+    "shared device proves user"
+  ],
+  "blockingFailPatterns": [
+    "co-defendant phone proves",
+    "shared device proves user",
+    "attribution to defendant",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — large_messy_rotated"
+  ],
+  "pdfLayoutType": "large_messy_rotated",
+  "redTeamTrapType": "co_def_phone_data",
+  "bundleStatus": "generated"
+}

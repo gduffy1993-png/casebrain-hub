@@ -22,6 +22,7 @@ const SIM_PACKS = [
   "simulator-pack-v1.1",
   "simulator-pack-v2",
   "simulator-pack-v3",
+  "simulator-pack-v4",
 ] as const;
 
 function resolveSimDir(caseId: string): string {

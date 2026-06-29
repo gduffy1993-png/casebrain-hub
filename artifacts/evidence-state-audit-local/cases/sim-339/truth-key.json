@@ -1,0 +1,79 @@
+{
+  "caseId": "sim-339",
+  "title": "Possession/control inferred — mixed defendants rotated",
+  "offenceFamily": "public_order",
+  "offenceWording": "Violent disorder",
+  "profile": "inference_as_fact",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "seizure notes (folio 339 — Parch)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 339 — Parch)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "forensic report — Indie Parch",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "forensic report — Indie Parch",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "fingerprints/DNA — Indie Parch",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "order service affidavit (Parch / folio 339)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "who had control",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "forensic report — Indie Parch",
+    "continuity — Indie Parch",
+    "occupancy evidence — Indie Parch",
+    "expert instruction letter — Parch"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "defendant possessed drugs",
+    "control proved as fact"
+  ],
+  "blockingFailPatterns": [
+    "defendant possessed drugs",
+    "control proved as fact",
+    "possession proved",
+    "we win",
+    "case collapses"
+  ]
+}

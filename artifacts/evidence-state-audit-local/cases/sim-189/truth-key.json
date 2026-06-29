@@ -1,0 +1,73 @@
+{
+  "caseId": "sim-189",
+  "title": "Client summary inference risk — custody extract missing",
+  "offenceFamily": "perverting_justice",
+  "offenceWording": "Perverting the course of justice",
+  "profile": "export_surface_safety",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5 narrative (folio 189 — Sedge)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 189 — Sedge)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "digital export — Mira Sedge",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "handset download — Mira Sedge",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "attribution — Mira Sedge",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "domestic chronology spreadsheet (Sedge / folio 189)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "handset download — Mira Sedge",
+    "attribution proof — Mira Sedge",
+    "MG11 — Mira Sedge",
+    "harassment platform preservation notice — Sedge"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "you are shown on CCTV",
+    "messages prove you sent"
+  ],
+  "blockingFailPatterns": [
+    "you are shown on CCTV",
+    "messages prove you sent",
+    "proved as fact in summary",
+    "we win",
+    "case collapses"
+  ]
+}

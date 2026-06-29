@@ -1,0 +1,75 @@
+{
+  "caseId": "sim-383",
+  "title": "Custody extract not full record — conflicting mg11 duplicate",
+  "offenceFamily": "digital_attribution",
+  "offenceWording": "Possession of indecent images — attribution disputed",
+  "profile": "partial_vs_full_evidence",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "custody booking fragment (folio 383 — Isle)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "custody_pace",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 383 — Isle)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full custody record — Bex Isle",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "custody_pace",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full custody record — Bex Isle",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "custody_pace",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "PACE forms — Bex Isle",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "custody_pace",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "unused material sensitivity review (Isle / folio 383)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "full custody record — Bex Isle",
+    "PACE review — Bex Isle",
+    "interview recording — Bex Isle",
+    "firearm classification worksheet — Isle"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "PACE complied as fact",
+    "custody proves safeguards"
+  ],
+  "blockingFailPatterns": [
+    "PACE complied as fact",
+    "custody proves safeguards",
+    "safeguards followed",
+    "we win",
+    "case collapses"
+  ]
+}

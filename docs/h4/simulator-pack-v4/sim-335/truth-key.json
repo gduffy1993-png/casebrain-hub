@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-335",
+  "title": "Subscriber vs phone user — thin sjp scan",
+  "fakeDefendant": "Eira Loom",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Sexual assault (historic)",
+  "offenceFamily": "sexual",
+  "profile": "wrong_person_entity",
+  "mainIssue": "Account held by associate; user attribution to defendant not established.",
+  "servedEvidence": [
+    "subscriber record summary (folio 335 — Loom)",
+    "MG5 supplementary note (folio 335 — Loom)"
+  ],
+  "referredOnlyEvidence": [
+    "handset download — Eira Loom"
+  ],
+  "missingEvidence": [
+    "usage attribution — Eira Loom",
+    "handset download — Eira Loom",
+    "co-defendant segregation map (Loom / folio 335)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Subscriber not user — chase handset usage and attribution evidence.",
+  "expectedChaseItems": [
+    "handset download — Eira Loom",
+    "usage attribution — Eira Loom",
+    "cellsite if relevant — Eira Loom",
+    "ABE room recording index — Loom"
+  ],
+  "expectedSummaryRisk": "Provisional — subscriber vs user on thin sjp scan papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "subscriber is defendant",
+    "account holder proves user"
+  ],
+  "blockingFailPatterns": [
+    "subscriber is defendant",
+    "account holder proves user",
+    "phone proves defendant sent",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — thin_sjp_scan"
+  ],
+  "pdfLayoutType": "thin_sjp_scan",
+  "redTeamTrapType": "subscriber_vs_user",
+  "bundleStatus": "generated"
+}

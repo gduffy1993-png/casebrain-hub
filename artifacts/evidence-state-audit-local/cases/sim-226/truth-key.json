@@ -1,0 +1,75 @@
+{
+  "caseId": "sim-226",
+  "title": "BWV transcript not full video — huge bundle partial",
+  "offenceFamily": "digital_attribution",
+  "offenceWording": "Possession of indecent images — attribution disputed",
+  "profile": "partial_vs_full_evidence",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "BWV transcript extract (folio 226 — Elm)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 226 — Elm)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full BWV video — Yuri Elm",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV video export — Yuri Elm",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "continuity — Yuri Elm",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "encro handle mapping annex (Elm / folio 226)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "encro",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "BWV video export — Yuri Elm",
+    "continuity — Yuri Elm",
+    "custody record — Yuri Elm",
+    "cellsite raw data dump — Elm"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "transcript proves contact",
+    "BWV shows assault"
+  ],
+  "blockingFailPatterns": [
+    "transcript proves contact",
+    "BWV shows assault",
+    "BWV shows",
+    "we win",
+    "case collapses"
+  ]
+}

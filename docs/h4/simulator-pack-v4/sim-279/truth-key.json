@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-279",
+  "title": "Custody extract not full record — duplicate pages",
+  "fakeDefendant": "Alden Grit",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Possession of a bladed article",
+  "offenceFamily": "weapons",
+  "profile": "partial_vs_full_evidence",
+  "mainIssue": "Booking sheet fragment served; full custody/PACE record missing.",
+  "servedEvidence": [
+    "custody booking fragment (folio 279 — Grit)",
+    "MG5 supplementary note (folio 279 — Grit)"
+  ],
+  "referredOnlyEvidence": [
+    "full custody record — Alden Grit"
+  ],
+  "missingEvidence": [
+    "full custody record — Alden Grit",
+    "PACE forms — Alden Grit",
+    "banking schedule annex B (Grit / folio 279)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Custody extract partial — chase full custody and interview recording.",
+  "expectedChaseItems": [
+    "full custody record — Alden Grit",
+    "PACE review — Alden Grit",
+    "interview recording — Alden Grit",
+    "MG6 line 12 handset export — Grit"
+  ],
+  "expectedSummaryRisk": "Provisional — partial custody extract on duplicate pages papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "PACE complied as fact",
+    "custody proves safeguards"
+  ],
+  "blockingFailPatterns": [
+    "PACE complied as fact",
+    "custody proves safeguards",
+    "safeguards followed",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — duplicate_pages"
+  ],
+  "pdfLayoutType": "duplicate_pages",
+  "redTeamTrapType": "partial_custody_extract",
+  "bundleStatus": "generated"
+}

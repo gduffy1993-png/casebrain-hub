@@ -1,0 +1,74 @@
+{
+  "caseId": "sim-313",
+  "title": "Phone metadata date vs statement date — conflicting mg11 duplicate",
+  "offenceFamily": "domestic",
+  "offenceWording": "Controlling or coercive behaviour",
+  "profile": "date_time_conflict",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "message screenshot pages (folio 313 — Prowl)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 313 — Prowl)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "handset download — Ilan Prowl",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full message export — Ilan Prowl",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "metadata verification — Ilan Prowl",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "PACE custody review form (Prowl / folio 313)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "custody_pace",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "handset download — Ilan Prowl",
+    "message metadata log — Ilan Prowl",
+    "MG11 clarification — Ilan Prowl",
+    "lab submission chain — Prowl"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "message date proved",
+    "screenshot metadata confirms offence"
+  ],
+  "blockingFailPatterns": [
+    "message date proved",
+    "metadata confirms offence",
+    "messages prove conduct",
+    "we win",
+    "case collapses"
+  ]
+}

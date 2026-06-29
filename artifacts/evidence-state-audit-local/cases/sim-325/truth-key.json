@@ -1,0 +1,73 @@
+{
+  "caseId": "sim-325",
+  "title": "Index lists BWV — file absent — index only bwv",
+  "offenceFamily": "aew_police_contact",
+  "offenceWording": "Assault on emergency worker",
+  "profile": "index_listed_not_served",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "bundle index (folio 325 — Briar)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 325 — Briar)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV per index — Una Briar",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV file — Una Briar",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "continuity — Una Briar",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "medical imaging disc (Briar / folio 325)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "BWV export — Una Briar",
+    "index correction — Una Briar",
+    "continuity statement — Una Briar",
+    "late addendum item list — Briar"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "BWV on bundle as fact",
+    "index proves served"
+  ],
+  "blockingFailPatterns": [
+    "BWV on bundle",
+    "index proves served",
+    "BWV shows",
+    "we win",
+    "case collapses"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-313",
+  "title": "Phone metadata date vs statement date — conflicting mg11 duplicate",
+  "fakeDefendant": "Ilan Prowl",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Controlling or coercive behaviour",
+  "offenceFamily": "domestic",
+  "profile": "date_time_conflict",
+  "mainIssue": "Message screenshot metadata dated 12/03/2025; MG11 references messages on 12/03/2026.",
+  "servedEvidence": [
+    "message screenshot pages (folio 313 — Prowl)",
+    "MG5 supplementary note (folio 313 — Prowl)"
+  ],
+  "referredOnlyEvidence": [
+    "handset download — Ilan Prowl"
+  ],
+  "missingEvidence": [
+    "full message export — Ilan Prowl",
+    "metadata verification — Ilan Prowl",
+    "PACE custody review form (Prowl / folio 313)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Phone metadata vs statement date conflict — chase source export.",
+  "expectedChaseItems": [
+    "handset download — Ilan Prowl",
+    "message metadata log — Ilan Prowl",
+    "MG11 clarification — Ilan Prowl",
+    "lab submission chain — Prowl"
+  ],
+  "expectedSummaryRisk": "Provisional — date time phone metadata on conflicting mg11 duplicate papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "message date proved",
+    "screenshot metadata confirms offence"
+  ],
+  "blockingFailPatterns": [
+    "message date proved",
+    "metadata confirms offence",
+    "messages prove conduct",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — conflicting_mg11_duplicate"
+  ],
+  "pdfLayoutType": "conflicting_mg11_duplicate",
+  "redTeamTrapType": "date_time_phone_metadata",
+  "bundleStatus": "generated"
+}

@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-166",
+  "title": "Available on request not served — corrected indictment",
+  "fakeDefendant": "Piers Unit",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Offence per charge sheet",
+  "offenceFamily": "mixed_unclear",
+  "profile": "disclosure_schedule_trap",
+  "mainIssue": "BWV marked available on request — not treated as served disclosure.",
+  "servedEvidence": [
+    "MG6 note available on request (folio 166 — Unit)",
+    "MG5 supplementary note (folio 166 — Unit)"
+  ],
+  "referredOnlyEvidence": [
+    "BWV on request — Piers Unit"
+  ],
+  "missingEvidence": [
+    "BWV export — Piers Unit",
+    "continuity — Piers Unit",
+    "amended charge linkage schedule (Unit / folio 166)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Available on request is not served — chase BWV export.",
+  "expectedChaseItems": [
+    "BWV export — Piers Unit",
+    "disclosure confirmation — Piers Unit",
+    "continuity — Piers Unit",
+    "disclosure officer certification — Unit"
+  ],
+  "expectedSummaryRisk": "Provisional — available on request not served on corrected indictment papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "BWV served because listed",
+    "available on request equals served"
+  ],
+  "blockingFailPatterns": [
+    "BWV served because listed",
+    "available on request equals served",
+    "BWV shows",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — corrected_indictment"
+  ],
+  "pdfLayoutType": "corrected_indictment",
+  "redTeamTrapType": "available_on_request_not_served",
+  "bundleStatus": "generated"
+}

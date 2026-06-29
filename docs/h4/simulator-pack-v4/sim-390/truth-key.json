@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-390",
+  "title": "Attribution inferred as fact — very thin sjp",
+  "fakeDefendant": "Ivy Pike",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "S18 wounding with intent",
+  "offenceFamily": "violence_assault",
+  "profile": "inference_as_fact",
+  "mainIssue": "MG5 infers sender identity from phone proximity — not primary proof.",
+  "servedEvidence": [
+    "MG5 attribution inference (folio 390 — Pike)",
+    "MG5 supplementary note (folio 390 — Pike)"
+  ],
+  "referredOnlyEvidence": [
+    "handset download — Ivy Pike"
+  ],
+  "missingEvidence": [
+    "subscriber data — Ivy Pike",
+    "message export — Ivy Pike",
+    "custody risk triage form (Pike / folio 390)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Attribution inference only — chase subscriber/download before sender claims.",
+  "expectedChaseItems": [
+    "handset download — Ivy Pike",
+    "subscriber records — Ivy Pike",
+    "attribution certificate — Ivy Pike",
+    "forensic toolkit continuity — Pike"
+  ],
+  "expectedSummaryRisk": "Provisional — inference attribution on very thin sjp papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "sender is defendant as fact",
+    "proximity proves attribution"
+  ],
+  "blockingFailPatterns": [
+    "sender is defendant as fact",
+    "proximity proves attribution",
+    "attribution confirmed",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — very_thin_sjp"
+  ],
+  "pdfLayoutType": "very_thin_sjp",
+  "redTeamTrapType": "inference_attribution",
+  "bundleStatus": "generated"
+}

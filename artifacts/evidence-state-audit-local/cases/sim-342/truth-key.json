@@ -1,0 +1,73 @@
+{
+  "caseId": "sim-342",
+  "title": "Sender identity inferred from content — bad ocr scan",
+  "offenceFamily": "custody_pace",
+  "offenceWording": "Theft",
+  "profile": "inference_as_fact",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "message content screenshots (folio 342 — Sedge)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 342 — Sedge)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "platform export — Lyle Sedge",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "platform export — Lyle Sedge",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "subscriber proof — Lyle Sedge",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "CCTV master timeline index (Sedge / folio 342)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "cctv",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "platform export — Lyle Sedge",
+    "subscriber records — Lyle Sedge",
+    "account attribution — Lyle Sedge",
+    "perverting course email preservation — Sedge"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "defendant sent messages as fact",
+    "content proves sender"
+  ],
+  "blockingFailPatterns": [
+    "defendant sent messages as fact",
+    "content proves sender",
+    "sender proved",
+    "we win",
+    "case collapses"
+  ]
+}

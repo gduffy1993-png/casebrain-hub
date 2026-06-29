@@ -1,0 +1,74 @@
+{
+  "caseId": "sim-316",
+  "title": "Interpreter mentioned — record missing — thin sjp scan",
+  "offenceFamily": "motoring",
+  "offenceWording": "Drive motor vehicle with excess alcohol",
+  "profile": "youth_vulnerability_custody",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5 reference to interpreter (folio 316 — Sylvan)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 316 — Sylvan)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "interview recording — Leda Sylvan",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "interview",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "interpreter certification — Leda Sylvan",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "interview recording — Leda Sylvan",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "interview",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG6 line 12 handset export (Sylvan / folio 316)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "interpreter certification — Leda Sylvan",
+    "interview recording — Leda Sylvan",
+    "PACE review — Leda Sylvan",
+    "order service affidavit — Sylvan"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "interpreter attended as fact",
+    "interview fairly conducted"
+  ],
+  "blockingFailPatterns": [
+    "interpreter attended as fact",
+    "interview fairly conducted",
+    "PACE complied",
+    "we win",
+    "case collapses"
+  ]
+}

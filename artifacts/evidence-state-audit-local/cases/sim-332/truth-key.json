@@ -1,0 +1,74 @@
+{
+  "caseId": "sim-332",
+  "title": "Interview summary not full recording — missing mg6 schedule",
+  "offenceFamily": "robbery_id",
+  "offenceWording": "Robbery",
+  "profile": "partial_vs_full_evidence",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "interview summary (folio 332 — Irks)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "interview",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 332 — Irks)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "interview recording — Boden Irks",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "interview",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "recording — Boden Irks",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "transcript — Boden Irks",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "vehicle ANPR download (Irks / folio 332)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "interview recording — Boden Irks",
+    "transcript — Boden Irks",
+    "PACE forms — Boden Irks",
+    "redacted unused gateway application — Irks"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "summary proves admission",
+    "interview confirms account"
+  ],
+  "blockingFailPatterns": [
+    "summary proves admission",
+    "interview confirms account",
+    "admission reliable",
+    "we win",
+    "case collapses"
+  ]
+}

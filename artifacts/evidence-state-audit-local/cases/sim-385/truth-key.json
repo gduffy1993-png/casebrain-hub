@@ -1,0 +1,72 @@
+{
+  "caseId": "sim-385",
+  "title": "Medical summary not full record — huge bundle partial",
+  "offenceFamily": "perverting_justice",
+  "offenceWording": "Perverting the course of justice",
+  "profile": "partial_vs_full_evidence",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5 injury summary (folio 385 — Kite)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 385 — Kite)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "medical report — Dot Kite",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "medical report — Dot Kite",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "imaging — Dot Kite",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "forensic toolkit continuity (Kite / folio 385)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "medical report — Dot Kite",
+    "imaging — Dot Kite",
+    "expert if applicable — Dot Kite",
+    "motoring calibration trace — Kite"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "medical proves s18 intent",
+    "injury grade proved"
+  ],
+  "blockingFailPatterns": [
+    "medical proves s18",
+    "injury grade proved",
+    "intent proved",
+    "we win",
+    "case collapses"
+  ]
+}

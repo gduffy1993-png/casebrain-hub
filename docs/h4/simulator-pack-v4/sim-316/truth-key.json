@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-316",
+  "title": "Interpreter mentioned — record missing — thin sjp scan",
+  "fakeDefendant": "Leda Sylvan",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Drive motor vehicle with excess alcohol",
+  "offenceFamily": "motoring",
+  "profile": "youth_vulnerability_custody",
+  "mainIssue": "MG5 notes interpreter used; interpreter certification and recording not served.",
+  "servedEvidence": [
+    "MG5 reference to interpreter (folio 316 — Sylvan)",
+    "MG5 supplementary note (folio 316 — Sylvan)"
+  ],
+  "referredOnlyEvidence": [
+    "interview recording — Leda Sylvan"
+  ],
+  "missingEvidence": [
+    "interpreter certification — Leda Sylvan",
+    "interview recording — Leda Sylvan",
+    "MG6 line 12 handset export (Sylvan / folio 316)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Interpreter record missing — chase certification and interview recording.",
+  "expectedChaseItems": [
+    "interpreter certification — Leda Sylvan",
+    "interview recording — Leda Sylvan",
+    "PACE review — Leda Sylvan",
+    "order service affidavit — Sylvan"
+  ],
+  "expectedSummaryRisk": "Provisional — youth interpreter missing on thin sjp scan papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "interpreter attended as fact",
+    "interview fairly conducted"
+  ],
+  "blockingFailPatterns": [
+    "interpreter attended as fact",
+    "interview fairly conducted",
+    "PACE complied",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — thin_sjp_scan"
+  ],
+  "pdfLayoutType": "thin_sjp_scan",
+  "redTeamTrapType": "youth_interpreter_missing",
+  "bundleStatus": "generated"
+}

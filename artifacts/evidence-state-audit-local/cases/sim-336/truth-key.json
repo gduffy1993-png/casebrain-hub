@@ -1,0 +1,81 @@
+{
+  "caseId": "sim-336",
+  "title": "Vehicle owner vs driver — rotated scan",
+  "offenceFamily": "motoring",
+  "offenceWording": "Drive motor vehicle with excess alcohol",
+  "profile": "wrong_person_entity",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "DVLA keeper printout (folio 336 — Mire)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 336 — Mire)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "ANPR/CCTV — Fintan Mire",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "cctv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "driver identification — Fintan Mire",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "insurance policy — Fintan Mire",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "custody risk triage form (Mire / folio 336)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "custody_pace",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "who drove vehicle",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "driver ID evidence — Fintan Mire",
+    "ANPR/CCTV — Fintan Mire",
+    "insurance records — Fintan Mire",
+    "forensic toolkit continuity — Mire"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "defendant was driver as fact",
+    "keeper proves driver"
+  ],
+  "blockingFailPatterns": [
+    "defendant was driver as fact",
+    "keeper proves driver",
+    "driver identification proved",
+    "we win",
+    "case collapses"
+  ]
+}

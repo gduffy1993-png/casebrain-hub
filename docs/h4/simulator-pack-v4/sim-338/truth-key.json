@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-338",
+  "title": "Attribution inferred as fact — corrected indictment",
+  "fakeDefendant": "Hale Orr",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Possession of a bladed article",
+  "offenceFamily": "weapons",
+  "profile": "inference_as_fact",
+  "mainIssue": "MG5 infers sender identity from phone proximity — not primary proof.",
+  "servedEvidence": [
+    "MG5 attribution inference (folio 338 — Orr)",
+    "MG5 supplementary note (folio 338 — Orr)"
+  ],
+  "referredOnlyEvidence": [
+    "handset download — Hale Orr"
+  ],
+  "missingEvidence": [
+    "subscriber data — Hale Orr",
+    "message export — Hale Orr",
+    "toxicology blood tube log (Orr / folio 338)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Attribution inference only — chase subscriber/download before sender claims.",
+  "expectedChaseItems": [
+    "handset download — Hale Orr",
+    "subscriber records — Hale Orr",
+    "attribution certificate — Hale Orr",
+    "message platform export hash — Orr"
+  ],
+  "expectedSummaryRisk": "Provisional — inference attribution on corrected indictment papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "sender is defendant as fact",
+    "proximity proves attribution"
+  ],
+  "blockingFailPatterns": [
+    "sender is defendant as fact",
+    "proximity proves attribution",
+    "attribution confirmed",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — corrected_indictment"
+  ],
+  "pdfLayoutType": "corrected_indictment",
+  "redTeamTrapType": "inference_attribution",
+  "bundleStatus": "generated"
+}

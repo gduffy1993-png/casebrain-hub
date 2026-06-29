@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-162",
+  "title": "Custody risk assessment missing — late addendum scan",
+  "fakeDefendant": "Lennox Quay",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Violent disorder",
+  "offenceFamily": "public_order",
+  "profile": "youth_vulnerability_custody",
+  "mainIssue": "Custody risk assessment and mental health triage referred only.",
+  "servedEvidence": [
+    "custody booking sheet (folio 162 — Quay)",
+    "MG5 supplementary note (folio 162 — Quay)"
+  ],
+  "referredOnlyEvidence": [
+    "risk assessment — Lennox Quay"
+  ],
+  "missingEvidence": [
+    "custody risk assessment — Lennox Quay",
+    "mental health triage — Lennox Quay",
+    "lab submission chain (Quay / folio 162)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Custody risk material missing — chase triage and PACE review.",
+  "expectedChaseItems": [
+    "risk assessment — Lennox Quay",
+    "MH triage — Lennox Quay",
+    "PACE forms — Lennox Quay",
+    "medical imaging disc — Quay"
+  ],
+  "expectedSummaryRisk": "Provisional — custody risk missing on late addendum scan papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "safeguards complied",
+    "fitness to detain proved"
+  ],
+  "blockingFailPatterns": [
+    "safeguards complied",
+    "fitness to detain proved",
+    "PACE complied as fact",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — late_addendum_scan"
+  ],
+  "pdfLayoutType": "late_addendum_scan",
+  "redTeamTrapType": "custody_risk_missing",
+  "bundleStatus": "generated"
+}

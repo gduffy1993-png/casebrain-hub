@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-280",
+  "title": "Interview summary not full recording — skewed scan",
+  "fakeDefendant": "Blythe Haven",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Violent disorder",
+  "offenceFamily": "public_order",
+  "profile": "partial_vs_full_evidence",
+  "mainIssue": "Summary of interview served; recording and transcript absent.",
+  "servedEvidence": [
+    "interview summary (folio 280 — Haven)",
+    "MG5 supplementary note (folio 280 — Haven)"
+  ],
+  "referredOnlyEvidence": [
+    "interview recording — Blythe Haven"
+  ],
+  "missingEvidence": [
+    "recording — Blythe Haven",
+    "transcript — Blythe Haven",
+    "encro handle mapping annex (Haven / folio 280)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Interview summary partial — chase recording before reliance.",
+  "expectedChaseItems": [
+    "interview recording — Blythe Haven",
+    "transcript — Blythe Haven",
+    "PACE forms — Blythe Haven",
+    "cellsite raw data dump — Haven"
+  ],
+  "expectedSummaryRisk": "Provisional — partial interview summary on skewed scan papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "summary proves admission",
+    "interview confirms account"
+  ],
+  "blockingFailPatterns": [
+    "summary proves admission",
+    "interview confirms account",
+    "admission reliable",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — skewed_scan"
+  ],
+  "pdfLayoutType": "skewed_scan",
+  "redTeamTrapType": "partial_interview_summary",
+  "bundleStatus": "generated"
+}

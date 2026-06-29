@@ -1,0 +1,72 @@
+{
+  "caseId": "sim-236",
+  "title": "Knowledge/intent inferred from presence — corrected indictment",
+  "offenceFamily": "harassment",
+  "offenceWording": "Stalking involving fear of violence",
+  "profile": "inference_as_fact",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "search summary (folio 236 — Oaken)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 236 — Oaken)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "lab report — Idris Oaken",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "lab report — Idris Oaken",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "dealing evidence — Idris Oaken",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "defendant interview part 2 (Oaken / folio 236)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "interview",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "lab report — Idris Oaken",
+    "dealing evidence — Idris Oaken",
+    "occupancy/knowledge proof — Idris Oaken",
+    "scene photograph log — Oaken"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "intent to supply proved",
+    "knowledge proved from presence"
+  ],
+  "blockingFailPatterns": [
+    "intent to supply proved",
+    "knowledge proved from presence",
+    "PWITS proved",
+    "we win",
+    "case collapses"
+  ]
+}

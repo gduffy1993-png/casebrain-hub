@@ -1,0 +1,58 @@
+{
+  "caseId": "sim-282",
+  "title": "Same surname co-defendants — very thin sjp",
+  "fakeDefendant": "Daphne Jura",
+  "fakeCourt": "Northgate Youth Court",
+  "offenceWording": "Theft (youth)",
+  "offenceFamily": "youth",
+  "profile": "wrong_person_entity",
+  "mainIssue": "Co-defendants Patel/Patel — phone subscriber data not mapped per defendant.",
+  "servedEvidence": [
+    "mixed subscriber summary (folio 282 — Jura)",
+    "MG5 supplementary note (folio 282 — Jura)"
+  ],
+  "referredOnlyEvidence": [
+    "telecom download — Daphne Jura"
+  ],
+  "missingEvidence": [
+    "per-defendant map — Daphne Jura",
+    "subscriber records — Daphne Jura",
+    "custody risk triage form (Jura / folio 282)"
+  ],
+  "uncertainEvidence": [
+    "which Patel holds line"
+  ],
+  "expectedTodayIssue": "Same surname confusion — chase per-defendant attribution map.",
+  "expectedChaseItems": [
+    "per-defendant map — Daphne Jura",
+    "subscriber records — Daphne Jura",
+    "handset attribution — Daphne Jura",
+    "forensic toolkit continuity — Jura"
+  ],
+  "expectedSummaryRisk": "Provisional — same surname defendants on very thin sjp papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "subscriber proves this defendant",
+    "same surname proves identity"
+  ],
+  "blockingFailPatterns": [
+    "subscriber proves this defendant",
+    "same surname proves identity",
+    "phone proves attribution",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — very_thin_sjp"
+  ],
+  "pdfLayoutType": "very_thin_sjp",
+  "redTeamTrapType": "same_surname_defendants",
+  "bundleStatus": "generated"
+}

@@ -1,0 +1,75 @@
+{
+  "caseId": "sim-279",
+  "title": "Custody extract not full record — duplicate pages",
+  "offenceFamily": "weapons",
+  "offenceWording": "Possession of a bladed article",
+  "profile": "partial_vs_full_evidence",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "custody booking fragment (folio 279 — Grit)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "custody_pace",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 279 — Grit)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full custody record — Alden Grit",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "custody_pace",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full custody record — Alden Grit",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "custody_pace",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "PACE forms — Alden Grit",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "custody_pace",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "banking schedule annex B (Grit / folio 279)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "full custody record — Alden Grit",
+    "PACE review — Alden Grit",
+    "interview recording — Alden Grit",
+    "MG6 line 12 handset export — Grit"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "PACE complied as fact",
+    "custody proves safeguards"
+  ],
+  "blockingFailPatterns": [
+    "PACE complied as fact",
+    "custody proves safeguards",
+    "safeguards followed",
+    "we win",
+    "case collapses"
+  ]
+}

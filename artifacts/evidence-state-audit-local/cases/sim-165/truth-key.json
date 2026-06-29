@@ -1,0 +1,71 @@
+{
+  "caseId": "sim-165",
+  "title": "Redacted unused item relied on in summary — two column schedule",
+  "offenceFamily": "custody_pace",
+  "offenceWording": "Theft",
+  "profile": "disclosure_schedule_trap",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "redacted unused extract (folio 165 — Tren)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 165 — Tren)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full unused material — Opal Tren",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "unredacted unused — Opal Tren",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "primary witness account — Opal Tren",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "third-party disclosure gateway (Tren / folio 165)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "unredacted unused — Opal Tren",
+    "primary MG11 — Opal Tren",
+    "MG6 clarification — Opal Tren",
+    "NRM referral outcome letter — Tren"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "redacted extract proves account",
+    "unused material supports prosecution"
+  ],
+  "blockingFailPatterns": [
+    "redacted extract proves",
+    "unused material supports prosecution",
+    "account proved from redacted",
+    "we win",
+    "case collapses"
+  ]
+}

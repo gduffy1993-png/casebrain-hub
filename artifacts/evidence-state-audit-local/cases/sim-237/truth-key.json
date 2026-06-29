@@ -1,0 +1,71 @@
+{
+  "caseId": "sim-237",
+  "title": "Conspiracy role inferred — mixed defendants rotated",
+  "offenceFamily": "sexual",
+  "offenceWording": "Sexual assault (historic)",
+  "profile": "inference_as_fact",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "group chat excerpts (folio 237 — Pike)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 237 — Pike)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full chat export — Juno Pike",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "role map — Juno Pike",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "telecom data — Juno Pike",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "disclosure officer certification (Pike / folio 237)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "per-defendant role map — Juno Pike",
+    "telecom downloads — Juno Pike",
+    "handset extraction — Juno Pike",
+    "subscriber account verification — Pike"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "leading role proved",
+    "conspiracy role established"
+  ],
+  "blockingFailPatterns": [
+    "leading role proved",
+    "conspiracy role established",
+    "conspiracy proved for defendant",
+    "we win",
+    "case collapses"
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "caseId": "sim-309",
+  "title": "Interview summary vs prosecution summary — blank pages metadata",
+  "fakeDefendant": "Ewan Latch",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Possession with intent to supply Class A drugs",
+  "offenceFamily": "drugs_pwits",
+  "profile": "source_hierarchy_conflict",
+  "mainIssue": "Prosecution summary quotes admission; interview recording/transcript not served.",
+  "servedEvidence": [
+    "prosecution interview summary (folio 309 — Latch)",
+    "MG5 supplementary note (folio 309 — Latch)"
+  ],
+  "referredOnlyEvidence": [
+    "interview recording — Ewan Latch"
+  ],
+  "missingEvidence": [
+    "interview recording — Ewan Latch",
+    "transcript — Ewan Latch",
+    "PACE forms — Ewan Latch",
+    "historic ABE support notes (Latch / folio 309)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Interview summary only — chase recording before admission reliance.",
+  "expectedChaseItems": [
+    "interview recording — Ewan Latch",
+    "transcript — Ewan Latch",
+    "PACE review — Ewan Latch",
+    "public order clip segregation — Latch"
+  ],
+  "expectedSummaryRisk": "Provisional — source hierarchy interview summary on blank pages metadata papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "interview proves admission",
+    "summary confirms admission"
+  ],
+  "blockingFailPatterns": [
+    "interview proves admission",
+    "summary confirms admission",
+    "admission reliable",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — blank_pages_metadata"
+  ],
+  "pdfLayoutType": "blank_pages_metadata",
+  "redTeamTrapType": "source_hierarchy_interview_summary",
+  "bundleStatus": "generated"
+}

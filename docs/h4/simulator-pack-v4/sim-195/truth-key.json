@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-195",
+  "title": "Drug supply role inferred — thin sjp scan",
+  "fakeDefendant": "Thane Yor",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Robbery",
+  "offenceFamily": "robbery_id",
+  "profile": "inference_as_fact",
+  "mainIssue": "Cash and scales present — supply role inference not established.",
+  "servedEvidence": [
+    "search notes (folio 195 — Yor)",
+    "MG5 supplementary note (folio 195 — Yor)"
+  ],
+  "referredOnlyEvidence": [
+    "lab report — Thane Yor"
+  ],
+  "missingEvidence": [
+    "lab report — Thane Yor",
+    "dealing evidence — Thane Yor",
+    "conspiracy role assessment (Yor / folio 195)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Supply role inference — chase dealing evidence and attribution.",
+  "expectedChaseItems": [
+    "lab report — Thane Yor",
+    "phone attribution — Thane Yor",
+    "dealing evidence — Thane Yor",
+    "amended charge linkage schedule — Yor"
+  ],
+  "expectedSummaryRisk": "Provisional — drug supply role inference on thin sjp scan papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "supply role proved",
+    "dealing established as fact"
+  ],
+  "blockingFailPatterns": [
+    "supply role proved",
+    "dealing established as fact",
+    "PWITS proved",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — thin_sjp_scan"
+  ],
+  "pdfLayoutType": "thin_sjp_scan",
+  "redTeamTrapType": "drug_supply_role_inference",
+  "bundleStatus": "generated"
+}

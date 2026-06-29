@@ -1,0 +1,55 @@
+{
+  "caseId": "sim-255",
+  "title": "MG5 summary conflicts with MG11 account — index only bwv",
+  "fakeDefendant": "Bram Hearth",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Stalking involving fear of violence",
+  "offenceFamily": "harassment",
+  "profile": "source_hierarchy_conflict",
+  "mainIssue": "MG5 states assault at 22:15; signed MG11 states 23:40 — primary MG11 should outrank summary.",
+  "servedEvidence": [
+    "MG5 officer summary (folio 255 — Hearth)",
+    "MG5 supplementary note (folio 255 — Hearth)"
+  ],
+  "referredOnlyEvidence": [
+    "signed MG11 — Bram Hearth"
+  ],
+  "missingEvidence": [
+    "signed MG11 final version — Bram Hearth",
+    "historic ABE support notes (Hearth / folio 255)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Source hierarchy conflict — chase signed MG11 before relying on MG5 timeline.",
+  "expectedChaseItems": [
+    "signed MG11 — Bram Hearth",
+    "MG5 clarification — Bram Hearth",
+    "BWV timestamp — Bram Hearth",
+    "public order clip segregation — Hearth"
+  ],
+  "expectedSummaryRisk": "Provisional — source hierarchy mg5 mg11 on index only bwv papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "MG5 timeline proves assault time",
+    "summary outranks MG11"
+  ],
+  "blockingFailPatterns": [
+    "MG5 timeline proves",
+    "summary outranks MG11",
+    "assault time proved from MG5",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — index_only_bwv"
+  ],
+  "pdfLayoutType": "index_only_bwv",
+  "redTeamTrapType": "source_hierarchy_mg5_mg11",
+  "bundleStatus": "generated"
+}

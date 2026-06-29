@@ -1,0 +1,79 @@
+{
+  "caseId": "sim-320",
+  "title": "MG6D sensitive/non-sensitive confusion — very thin sjp",
+  "offenceFamily": "breach_order",
+  "offenceWording": "Breach of non-molestation order",
+  "profile": "disclosure_schedule_trap",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG6C and MG6D schedules (folio 320 — Wisp)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 320 — Wisp)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "sensitive material gateway — Perrin Wisp",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "sensitivity review — Perrin Wisp",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "gateway application — Perrin Wisp",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "VIPER pack completeness (Wisp / folio 320)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "whether material is unused or sensitive",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "sensitivity classification — Perrin Wisp",
+    "gateway application — Perrin Wisp",
+    "unused material access — Perrin Wisp",
+    "weapons seizure photograph set — Wisp"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "sensitive material fully disclosed",
+    "unused material covered"
+  ],
+  "blockingFailPatterns": [
+    "sensitive material fully disclosed",
+    "unused material covered",
+    "disclosure complete",
+    "we win",
+    "case collapses"
+  ]
+}

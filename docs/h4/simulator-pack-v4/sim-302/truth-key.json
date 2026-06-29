@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-302",
+  "title": "Motoring SJP thin bundle — late addendum scan",
+  "fakeDefendant": "Ximena Eyre",
+  "fakeCourt": "Northgate Youth Court",
+  "offenceWording": "Theft (youth)",
+  "offenceFamily": "youth",
+  "profile": "drink_drive_procedure",
+  "mainIssue": "Single-page SJP notice — calibration and device record missing.",
+  "servedEvidence": [
+    "SJP notice (folio 302 — Eyre)",
+    "MG5 supplementary note (folio 302 — Eyre)"
+  ],
+  "referredOnlyEvidence": [
+    "calibration certificate — Ximena Eyre"
+  ],
+  "missingEvidence": [
+    "calibration — Ximena Eyre",
+    "device record — Ximena Eyre",
+    "county lines line attribution chart (Eyre / folio 302)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Thin motoring — procedural chase only.",
+  "expectedChaseItems": [
+    "calibration certificate — Ximena Eyre",
+    "device record — Ximena Eyre",
+    "notice of intended prosecution — Ximena Eyre",
+    "search BWV continuity — Eyre"
+  ],
+  "expectedSummaryRisk": "Provisional — motoring sjp thin on late addendum scan papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "speed proved",
+    "device reliable as fact"
+  ],
+  "blockingFailPatterns": [
+    "speed proved",
+    "device reliable as fact",
+    "offence proved",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — late_addendum_scan"
+  ],
+  "pdfLayoutType": "late_addendum_scan",
+  "redTeamTrapType": "motoring_sjp_thin",
+  "bundleStatus": "generated"
+}

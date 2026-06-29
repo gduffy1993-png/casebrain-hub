@@ -1,0 +1,79 @@
+{
+  "caseId": "sim-167",
+  "title": "Old charge family in bundle — mixed defendants rotated",
+  "offenceFamily": "digital_attribution",
+  "offenceWording": "Possession of indecent images — attribution disputed",
+  "profile": "changed_corrected_charge",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "amended indictment (folio 167 — Vale)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "old fraud count pages (folio 167 — Vale)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 167 — Vale)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "original MG5 — Quinna Vale",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "count linkage schedule — Quinna Vale",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "amended particulars — Quinna Vale",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "unused material sensitivity review (Vale / folio 167)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "amended indictment clarity — Quinna Vale",
+    "live count schedule — Quinna Vale",
+    "MG5 update — Quinna Vale",
+    "firearm classification worksheet — Vale"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "old fraud theory applies",
+    "amended charge proves new offence"
+  ],
+  "blockingFailPatterns": [
+    "old fraud theory applies",
+    "amended charge proves",
+    "offence proved from old pages",
+    "we win",
+    "case collapses"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-379",
+  "title": "Phone download indexed not served — blank pages metadata",
+  "fakeDefendant": "Xan Elm",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Breach of non-molestation order",
+  "offenceFamily": "breach_order",
+  "profile": "index_listed_not_served",
+  "mainIssue": "Index references UFED download; only screenshot annex served.",
+  "servedEvidence": [
+    "screenshot annex (folio 379 — Elm)",
+    "MG5 supplementary note (folio 379 — Elm)"
+  ],
+  "referredOnlyEvidence": [
+    "UFED download per index — Xan Elm"
+  ],
+  "missingEvidence": [
+    "UFED download — Xan Elm",
+    "search scope — Xan Elm",
+    "medical imaging disc (Elm / folio 379)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Phone download indexed not served — chase full UFED export.",
+  "expectedChaseItems": [
+    "UFED download — Xan Elm",
+    "search scope schedule — Xan Elm",
+    "continuity — Xan Elm",
+    "late addendum item list — Elm"
+  ],
+  "expectedSummaryRisk": "Provisional — index phone absent on blank pages metadata papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "download served because indexed",
+    "screenshots are full download"
+  ],
+  "blockingFailPatterns": [
+    "download served because indexed",
+    "screenshots are full download",
+    "phone proves attribution",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — blank_pages_metadata"
+  ],
+  "pdfLayoutType": "blank_pages_metadata",
+  "redTeamTrapType": "index_phone_absent",
+  "bundleStatus": "generated"
+}

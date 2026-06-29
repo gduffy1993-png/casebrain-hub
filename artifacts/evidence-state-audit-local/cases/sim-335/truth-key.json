@@ -1,0 +1,73 @@
+{
+  "caseId": "sim-335",
+  "title": "Subscriber vs phone user — thin sjp scan",
+  "offenceFamily": "sexual",
+  "offenceWording": "Sexual assault (historic)",
+  "profile": "wrong_person_entity",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "subscriber record summary (folio 335 — Loom)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 335 — Loom)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "handset download — Eira Loom",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "usage attribution — Eira Loom",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "handset download — Eira Loom",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "co-defendant segregation map (Loom / folio 335)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "handset download — Eira Loom",
+    "usage attribution — Eira Loom",
+    "cellsite if relevant — Eira Loom",
+    "ABE room recording index — Loom"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "subscriber is defendant",
+    "account holder proves user"
+  ],
+  "blockingFailPatterns": [
+    "subscriber is defendant",
+    "account holder proves user",
+    "phone proves defendant sent",
+    "we win",
+    "case collapses"
+  ]
+}

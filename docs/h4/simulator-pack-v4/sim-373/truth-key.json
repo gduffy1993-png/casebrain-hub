@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-373",
+  "title": "Redacted unused item relied on in summary — bwv screenshots only",
+  "fakeDefendant": "Ria Yew",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Stalking involving fear of violence",
+  "offenceFamily": "harassment",
+  "profile": "disclosure_schedule_trap",
+  "mainIssue": "MG5 relies on redacted unused MG6 item — primary unused material not served.",
+  "servedEvidence": [
+    "redacted unused extract (folio 373 — Yew)",
+    "MG5 supplementary note (folio 373 — Yew)"
+  ],
+  "referredOnlyEvidence": [
+    "full unused material — Ria Yew"
+  ],
+  "missingEvidence": [
+    "unredacted unused — Ria Yew",
+    "primary witness account — Ria Yew",
+    "appropriate adult sign-in sheet (Yew / folio 373)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Redacted unused relied on — chase unredacted unused or primary source.",
+  "expectedChaseItems": [
+    "unredacted unused — Ria Yew",
+    "primary MG11 — Ria Yew",
+    "MG6 clarification — Ria Yew",
+    "robbery ID parade notes — Yew"
+  ],
+  "expectedSummaryRisk": "Provisional — redacted unused relied on on bwv screenshots only papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "redacted extract proves account",
+    "unused material supports prosecution"
+  ],
+  "blockingFailPatterns": [
+    "redacted extract proves",
+    "unused material supports prosecution",
+    "account proved from redacted",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — bwv_screenshots_only"
+  ],
+  "pdfLayoutType": "bwv_screenshots_only",
+  "redTeamTrapType": "redacted_unused_relied_on",
+  "bundleStatus": "generated"
+}

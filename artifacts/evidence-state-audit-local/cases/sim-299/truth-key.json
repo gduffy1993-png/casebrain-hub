@@ -1,0 +1,71 @@
+{
+  "caseId": "sim-299",
+  "title": "Drug supply role inferred — skewed scan",
+  "offenceFamily": "weapons",
+  "offenceWording": "Possession of a bladed article",
+  "profile": "inference_as_fact",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "search notes (folio 299 — Bly)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 299 — Bly)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "lab report — Uriah Bly",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "lab report — Uriah Bly",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "dealing evidence — Uriah Bly",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "youth court safeguarding plan (Bly / folio 299)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "lab report — Uriah Bly",
+    "phone attribution — Uriah Bly",
+    "dealing evidence — Uriah Bly",
+    "mixed bundle defendant index — Bly"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "supply role proved",
+    "dealing established as fact"
+  ],
+  "blockingFailPatterns": [
+    "supply role proved",
+    "dealing established as fact",
+    "PWITS proved",
+    "we win",
+    "case collapses"
+  ]
+}

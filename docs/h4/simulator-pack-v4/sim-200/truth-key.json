@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-200",
+  "title": "ABE partial transcript only — late addendum scan",
+  "fakeDefendant": "Yorick Dray",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Fraud by false representation",
+  "offenceFamily": "fraud_account",
+  "profile": "historic_sexual",
+  "mainIssue": "ABE transcript fragment served; recording not served.",
+  "servedEvidence": [
+    "ABE transcript fragment (folio 200 — Dray)",
+    "MG5 supplementary note (folio 200 — Dray)"
+  ],
+  "referredOnlyEvidence": [
+    "ABE recording — Yorick Dray"
+  ],
+  "missingEvidence": [
+    "ABE recording — Yorick Dray",
+    "full transcript — Yorick Dray",
+    "mixed bundle defendant index (Dray / folio 200)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "ABE partial — chase full recording before account summary.",
+  "expectedChaseItems": [
+    "ABE recording — Yorick Dray",
+    "full transcript — Yorick Dray",
+    "supporting medical — Yorick Dray",
+    "youth court safeguarding plan — Dray"
+  ],
+  "expectedSummaryRisk": "Provisional — sexual abe partial on late addendum scan papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "ABE confirms account",
+    "transcript proves assault"
+  ],
+  "blockingFailPatterns": [
+    "ABE confirms",
+    "transcript proves assault",
+    "account confirmed",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — late_addendum_scan"
+  ],
+  "pdfLayoutType": "late_addendum_scan",
+  "redTeamTrapType": "sexual_abe_partial",
+  "bundleStatus": "generated"
+}

@@ -1,0 +1,74 @@
+{
+  "caseId": "sim-161",
+  "title": "Vulnerable witness — special measures not served — very thin sjp",
+  "offenceFamily": "weapons",
+  "offenceWording": "Possession of a bladed article",
+  "profile": "youth_vulnerability_custody",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5 vulnerability marker (folio 161 — Poole)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 161 — Poole)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "ABE interview — Keira Poole",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "interview",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "ABE recording — Keira Poole",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "special measures application — Keira Poole",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "search BWV continuity (Poole / folio 161)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "ABE recording — Keira Poole",
+    "special measures docs — Keira Poole",
+    "MG11 first account — Keira Poole",
+    "VIPER pack completeness — Poole"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "ABE confirms account",
+    "vulnerability proves offence"
+  ],
+  "blockingFailPatterns": [
+    "ABE confirms",
+    "vulnerability proves offence",
+    "account confirmed as fact",
+    "we win",
+    "case collapses"
+  ]
+}

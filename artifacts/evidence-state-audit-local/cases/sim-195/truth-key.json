@@ -1,0 +1,71 @@
+{
+  "caseId": "sim-195",
+  "title": "Drug supply role inferred — thin sjp scan",
+  "offenceFamily": "robbery_id",
+  "offenceWording": "Robbery",
+  "profile": "inference_as_fact",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "search notes (folio 195 — Yor)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 195 — Yor)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "lab report — Thane Yor",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "lab report — Thane Yor",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "dealing evidence — Thane Yor",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "conspiracy role assessment (Yor / folio 195)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "lab report — Thane Yor",
+    "phone attribution — Thane Yor",
+    "dealing evidence — Thane Yor",
+    "amended charge linkage schedule — Yor"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "supply role proved",
+    "dealing established as fact"
+  ],
+  "blockingFailPatterns": [
+    "supply role proved",
+    "dealing established as fact",
+    "PWITS proved",
+    "we win",
+    "case collapses"
+  ]
+}

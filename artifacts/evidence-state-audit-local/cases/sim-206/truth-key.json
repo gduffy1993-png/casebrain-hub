@@ -1,0 +1,74 @@
+{
+  "caseId": "sim-206",
+  "title": "Schedule lists material not on bundle — large messy rotated",
+  "offenceFamily": "digital_attribution",
+  "offenceWording": "Possession of indecent images — attribution disputed",
+  "profile": "source_hierarchy_conflict",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG6C schedule page (folio 206 — Jolt)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 206 — Jolt)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV full export — Emrys Jolt",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV download — Emrys Jolt",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "continuity statement — Emrys Jolt",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "exhibit CE/02 continuity (Jolt / folio 206)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "BWV full export — Emrys Jolt",
+    "schedule correction — Emrys Jolt",
+    "continuity — Emrys Jolt",
+    "unused material sensitivity review — Jolt"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "BWV served as fact",
+    "schedule proves material on bundle"
+  ],
+  "blockingFailPatterns": [
+    "BWV served as fact",
+    "schedule proves material",
+    "BWV shows",
+    "we win",
+    "case collapses"
+  ]
+}

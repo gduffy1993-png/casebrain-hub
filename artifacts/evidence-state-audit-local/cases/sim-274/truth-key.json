@@ -1,0 +1,73 @@
+{
+  "caseId": "sim-274",
+  "title": "CCTV on index — exhibit missing — index only bwv",
+  "offenceFamily": "domestic",
+  "offenceWording": "Controlling or coercive behaviour",
+  "profile": "index_listed_not_served",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "exhibit list (folio 274 — Blunt)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 274 — Blunt)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "CCTV CE/01 — Vera Blunt",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "cctv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "CCTV export — Vera Blunt",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "cctv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "continuity — Vera Blunt",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "amended charge linkage schedule (Blunt / folio 274)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "CCTV master footage — Vera Blunt",
+    "continuity — Vera Blunt",
+    "ID procedure — Vera Blunt",
+    "disclosure officer certification — Blunt"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "CCTV identifies defendant",
+    "exhibit list proves footage served"
+  ],
+  "blockingFailPatterns": [
+    "CCTV identifies defendant",
+    "exhibit list proves footage",
+    "CCTV shows",
+    "we win",
+    "case collapses"
+  ]
+}

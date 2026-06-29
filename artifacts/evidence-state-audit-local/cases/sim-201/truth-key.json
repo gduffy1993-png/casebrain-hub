@@ -1,0 +1,71 @@
+{
+  "caseId": "sim-201",
+  "title": "Weapon forensic index-only — bwv screenshots only",
+  "offenceFamily": "weapons",
+  "offenceWording": "Possession of a bladed article",
+  "profile": "bladed_article",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "index forensic reference (folio 201 — Evers)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 201 — Evers)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "forensic report — Zinnia Evers",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "forensic report — Zinnia Evers",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "continuity — Zinnia Evers",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "historic ABE support notes (Evers / folio 201)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "forensic report — Zinnia Evers",
+    "continuity — Zinnia Evers",
+    "search footage — Zinnia Evers",
+    "public order clip segregation — Evers"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "forensic proves weapon",
+    "report confirms blade"
+  ],
+  "blockingFailPatterns": [
+    "forensic proves weapon",
+    "report confirms blade",
+    "weapon analysis confirms",
+    "we win",
+    "case collapses"
+  ]
+}

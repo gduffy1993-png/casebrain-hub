@@ -1,0 +1,58 @@
+{
+  "caseId": "sim-178",
+  "title": "Same surname co-defendants — two column schedule",
+  "fakeDefendant": "Blaine Holt",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Sexual assault (historic)",
+  "offenceFamily": "sexual",
+  "profile": "wrong_person_entity",
+  "mainIssue": "Co-defendants Patel/Patel — phone subscriber data not mapped per defendant.",
+  "servedEvidence": [
+    "mixed subscriber summary (folio 178 — Holt)",
+    "MG5 supplementary note (folio 178 — Holt)"
+  ],
+  "referredOnlyEvidence": [
+    "telecom download — Blaine Holt"
+  ],
+  "missingEvidence": [
+    "per-defendant map — Blaine Holt",
+    "subscriber records — Blaine Holt",
+    "NRM referral outcome letter (Holt / folio 178)"
+  ],
+  "uncertainEvidence": [
+    "which Patel holds line"
+  ],
+  "expectedTodayIssue": "Same surname confusion — chase per-defendant attribution map.",
+  "expectedChaseItems": [
+    "per-defendant map — Blaine Holt",
+    "subscriber records — Blaine Holt",
+    "handset attribution — Blaine Holt",
+    "domestic chronology spreadsheet — Holt"
+  ],
+  "expectedSummaryRisk": "Provisional — same surname defendants on two column schedule papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "subscriber proves this defendant",
+    "same surname proves identity"
+  ],
+  "blockingFailPatterns": [
+    "subscriber proves this defendant",
+    "same surname proves identity",
+    "phone proves attribution",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — two_column_schedule"
+  ],
+  "pdfLayoutType": "two_column_schedule",
+  "redTeamTrapType": "same_surname_defendants",
+  "bundleStatus": "generated"
+}

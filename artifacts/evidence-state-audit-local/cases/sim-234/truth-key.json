@@ -1,0 +1,74 @@
+{
+  "caseId": "sim-234",
+  "title": "Attribution inferred as fact — bad ocr scan",
+  "offenceFamily": "robbery_id",
+  "offenceWording": "Robbery",
+  "profile": "inference_as_fact",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5 attribution inference (folio 234 — Moss)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 234 — Moss)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "handset download — Galen Moss",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "subscriber data — Galen Moss",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "message export — Galen Moss",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "CCTV master timeline index (Moss / folio 234)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "cctv",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "handset download — Galen Moss",
+    "subscriber records — Galen Moss",
+    "attribution certificate — Galen Moss",
+    "perverting course email preservation — Moss"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "sender is defendant as fact",
+    "proximity proves attribution"
+  ],
+  "blockingFailPatterns": [
+    "sender is defendant as fact",
+    "proximity proves attribution",
+    "attribution confirmed",
+    "we win",
+    "case collapses"
+  ]
+}

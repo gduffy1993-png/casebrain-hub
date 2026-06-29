@@ -1,0 +1,57 @@
+{
+  "caseId": "sim-347",
+  "title": "Huge bundle — partial index only — blank pages metadata",
+  "fakeDefendant": "Quin Xan",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Conspiracy to supply Class A drugs (encrypted comms)",
+  "offenceFamily": "encro_encrypted_comms",
+  "profile": "large_messy_bundle",
+  "mainIssue": "Large bundle with partial index; defendant exhibit map missing.",
+  "servedEvidence": [
+    "partial index (folio 347 — Xan)",
+    "subset exhibits (folio 347 — Xan)",
+    "MG5 supplementary note (folio 347 — Xan)"
+  ],
+  "referredOnlyEvidence": [
+    "multiple exports — Quin Xan"
+  ],
+  "missingEvidence": [
+    "defendant exhibit map — Quin Xan",
+    "complete index — Quin Xan",
+    "scene forensic sweep log (Xan / folio 347)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Huge bundle needs review — chase defendant map before reliance.",
+  "expectedChaseItems": [
+    "defendant exhibit map — Quin Xan",
+    "complete index — Quin Xan",
+    "key exports — Quin Xan",
+    "vehicle ANPR download — Xan"
+  ],
+  "expectedSummaryRisk": "Provisional — huge bundle partial index on blank pages metadata papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "needs_solicitor_review",
+  "mustNotSay": [
+    "bundle complete",
+    "safe to send"
+  ],
+  "blockingFailPatterns": [
+    "bundle complete",
+    "safe to send",
+    "case summary confirms",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — blank_pages_metadata"
+  ],
+  "pdfLayoutType": "blank_pages_metadata",
+  "redTeamTrapType": "huge_bundle_partial_index",
+  "bundleStatus": "generated"
+}

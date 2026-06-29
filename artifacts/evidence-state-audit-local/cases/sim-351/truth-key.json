@@ -1,0 +1,71 @@
+{
+  "caseId": "sim-351",
+  "title": "Drug supply role inferred — missing mg6 schedule",
+  "offenceFamily": "violence_assault",
+  "offenceWording": "S18 wounding with intent",
+  "profile": "inference_as_fact",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "search notes (folio 351 — Brine)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 351 — Brine)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "lab report — Uma Brine",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "lab report — Uma Brine",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "dealing evidence — Uma Brine",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "domestic chronology spreadsheet (Brine / folio 351)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "lab report — Uma Brine",
+    "phone attribution — Uma Brine",
+    "dealing evidence — Uma Brine",
+    "harassment platform preservation notice — Brine"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "supply role proved",
+    "dealing established as fact"
+  ],
+  "blockingFailPatterns": [
+    "supply role proved",
+    "dealing established as fact",
+    "PWITS proved",
+    "we win",
+    "case collapses"
+  ]
+}

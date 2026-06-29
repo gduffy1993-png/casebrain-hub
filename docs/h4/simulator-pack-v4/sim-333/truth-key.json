@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-333",
+  "title": "Medical summary not full record — large messy rotated",
+  "fakeDefendant": "Cleo Jasp",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Controlling or coercive behaviour",
+  "offenceFamily": "domestic",
+  "profile": "partial_vs_full_evidence",
+  "mainIssue": "MG5 injury summary served; medical report and imaging referred only.",
+  "servedEvidence": [
+    "MG5 injury summary (folio 333 — Jasp)",
+    "MG5 supplementary note (folio 333 — Jasp)"
+  ],
+  "referredOnlyEvidence": [
+    "medical report — Cleo Jasp"
+  ],
+  "missingEvidence": [
+    "medical report — Cleo Jasp",
+    "imaging — Cleo Jasp",
+    "banking schedule annex B (Jasp / folio 333)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Medical summary partial — chase full report before injury grade claims.",
+  "expectedChaseItems": [
+    "medical report — Cleo Jasp",
+    "imaging — Cleo Jasp",
+    "expert if applicable — Cleo Jasp",
+    "MG6 line 12 handset export — Jasp"
+  ],
+  "expectedSummaryRisk": "Provisional — partial medical summary on large messy rotated papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "medical proves s18 intent",
+    "injury grade proved"
+  ],
+  "blockingFailPatterns": [
+    "medical proves s18",
+    "injury grade proved",
+    "intent proved",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — large_messy_rotated"
+  ],
+  "pdfLayoutType": "large_messy_rotated",
+  "redTeamTrapType": "partial_medical_summary",
+  "bundleStatus": "generated"
+}

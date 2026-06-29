@@ -1,0 +1,72 @@
+{
+  "caseId": "sim-355",
+  "title": "Account control inferred — rotated scan",
+  "offenceFamily": "sexual",
+  "offenceWording": "Sexual assault (historic)",
+  "profile": "money_laundering_bank_records",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "transaction summary (folio 355 — Flint)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 355 — Flint)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "bank download — Yael Flint",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "bank export — Yael Flint",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "device/ownership proof — Yael Flint",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "fraud transaction mapping sheet (Flint / folio 355)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "bank download — Yael Flint",
+    "ownership evidence — Yael Flint",
+    "device records — Yael Flint",
+    "interpreter attendance note — Flint"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "account control proved",
+    "defendant authorised transactions"
+  ],
+  "blockingFailPatterns": [
+    "account control proved",
+    "defendant authorised transactions",
+    "fraud proved",
+    "we win",
+    "case collapses"
+  ]
+}

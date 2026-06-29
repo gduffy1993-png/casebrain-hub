@@ -1,0 +1,74 @@
+{
+  "caseId": "sim-263",
+  "title": "Youth defendant — AA record missing — large messy rotated",
+  "offenceFamily": "custody_pace",
+  "offenceWording": "Theft",
+  "profile": "youth_vulnerability_custody",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "youth interview summary (folio 263 — Plum)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "interview",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 263 — Plum)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "interview recording — Jareth Plum",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "interview",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "appropriate adult record — Jareth Plum",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "custody record — Jareth Plum",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "custody_pace",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "scene photograph log (Plum / folio 263)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "AA attendance record — Jareth Plum",
+    "custody record — Jareth Plum",
+    "interview recording — Jareth Plum",
+    "defendant interview part 2 — Plum"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "AA attended as fact",
+    "interview reliable"
+  ],
+  "blockingFailPatterns": [
+    "AA attended",
+    "interview reliable",
+    "admission is reliable",
+    "we win",
+    "case collapses"
+  ]
+}

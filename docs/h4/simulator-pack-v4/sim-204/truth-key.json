@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-204",
+  "title": "Officer summary vs primary exhibit — index only bwv",
+  "fakeDefendant": "Caspian Hale",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Theft",
+  "offenceFamily": "custody_pace",
+  "profile": "source_hierarchy_conflict",
+  "mainIssue": "Officer MG5 summary describes knife recovery; exhibit continuity log missing and MG11 differs on location.",
+  "servedEvidence": [
+    "officer MG5 narrative (folio 204 — Hale)",
+    "MG5 supplementary note (folio 204 — Hale)"
+  ],
+  "referredOnlyEvidence": [
+    "exhibit continuity log — Caspian Hale"
+  ],
+  "missingEvidence": [
+    "continuity log — Caspian Hale",
+    "seizure photographs — Caspian Hale",
+    "image-only scan text layer (Hale / folio 204)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Officer summary not primary — chase exhibit continuity and witness MG11.",
+  "expectedChaseItems": [
+    "exhibit continuity — Caspian Hale",
+    "seizure photographs — Caspian Hale",
+    "witness MG11 — Caspian Hale",
+    "appropriate adult sign-in sheet — Hale"
+  ],
+  "expectedSummaryRisk": "Provisional — source hierarchy officer exhibit on index only bwv papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "officer summary proves knife location",
+    "exhibit proved from summary"
+  ],
+  "blockingFailPatterns": [
+    "officer summary proves knife",
+    "exhibit proved from summary",
+    "knife location proved",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — index_only_bwv"
+  ],
+  "pdfLayoutType": "index_only_bwv",
+  "redTeamTrapType": "source_hierarchy_officer_exhibit",
+  "bundleStatus": "generated"
+}

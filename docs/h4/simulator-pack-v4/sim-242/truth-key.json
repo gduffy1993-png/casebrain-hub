@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-242",
+  "title": "Late disclosure addendum — index only bwv",
+  "fakeDefendant": "Oren Ulric",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Breach of non-molestation order",
+  "offenceFamily": "breach_order",
+  "profile": "disclosure_schedule_trap",
+  "mainIssue": "Late addendum adds BWV reference; prior exports still missing.",
+  "servedEvidence": [
+    "late disclosure letter (folio 242 — Ulric)",
+    "MG5 supplementary note (folio 242 — Ulric)"
+  ],
+  "referredOnlyEvidence": [
+    "BWV addendum — Oren Ulric"
+  ],
+  "missingEvidence": [
+    "BWV export — Oren Ulric",
+    "prior missing MG11 — Oren Ulric",
+    "firearm classification worksheet (Ulric / folio 242)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Late addendum — chase substantive exports not just cover sheet.",
+  "expectedChaseItems": [
+    "BWV export — Oren Ulric",
+    "missing MG11 — Oren Ulric",
+    "addendum item list — Oren Ulric",
+    "scene forensic sweep log — Ulric"
+  ],
+  "expectedSummaryRisk": "Provisional — late disclosure addendum on index only bwv papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "late addendum cures disclosure",
+    "BWV now served as fact"
+  ],
+  "blockingFailPatterns": [
+    "late addendum cures disclosure",
+    "BWV now served",
+    "disclosure complete",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — index_only_bwv"
+  ],
+  "pdfLayoutType": "index_only_bwv",
+  "redTeamTrapType": "late_disclosure_addendum",
+  "bundleStatus": "generated"
+}

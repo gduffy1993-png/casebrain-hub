@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-288",
+  "title": "Knowledge/intent inferred from presence — mixed defendants rotated",
+  "fakeDefendant": "Juniper Quell",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Conspiracy to supply Class A drugs (encrypted comms)",
+  "offenceFamily": "encro_encrypted_comms",
+  "profile": "inference_as_fact",
+  "mainIssue": "Defendant present at address where drugs found — knowledge/intent not proved.",
+  "servedEvidence": [
+    "search summary (folio 288 — Quell)",
+    "MG5 supplementary note (folio 288 — Quell)"
+  ],
+  "referredOnlyEvidence": [
+    "lab report — Juniper Quell"
+  ],
+  "missingEvidence": [
+    "lab report — Juniper Quell",
+    "dealing evidence — Juniper Quell",
+    "CCTV master timeline index (Quell / folio 288)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Intent inference from presence — chase dealing evidence beyond presence.",
+  "expectedChaseItems": [
+    "lab report — Juniper Quell",
+    "dealing evidence — Juniper Quell",
+    "occupancy/knowledge proof — Juniper Quell",
+    "perverting course email preservation — Quell"
+  ],
+  "expectedSummaryRisk": "Provisional — inference knowledge intent on mixed defendants rotated papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "intent to supply proved",
+    "knowledge proved from presence"
+  ],
+  "blockingFailPatterns": [
+    "intent to supply proved",
+    "knowledge proved from presence",
+    "PWITS proved",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — mixed_defendants_rotated"
+  ],
+  "pdfLayoutType": "mixed_defendants_rotated",
+  "redTeamTrapType": "inference_knowledge_intent",
+  "bundleStatus": "generated"
+}

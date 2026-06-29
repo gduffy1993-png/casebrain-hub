@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-312",
+  "title": "BWV timestamp vs alleged incident — index only bwv",
+  "fakeDefendant": "Hester Oriel",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Robbery",
+  "offenceFamily": "robbery_id",
+  "profile": "date_time_conflict",
+  "mainIssue": "BWV metadata shows 14:22; MG5 alleges assault at 19:05 same date.",
+  "servedEvidence": [
+    "BWV clip metadata page (folio 312 — Oriel)",
+    "MG5 supplementary note (folio 312 — Oriel)"
+  ],
+  "referredOnlyEvidence": [
+    "full BWV export — Hester Oriel"
+  ],
+  "missingEvidence": [
+    "full BWV window — Hester Oriel",
+    "MG11 time account — Hester Oriel",
+    "image-only scan text layer (Oriel / folio 312)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "BWV timestamp mismatch — chase full BWV window and MG11.",
+  "expectedChaseItems": [
+    "full BWV export — Hester Oriel",
+    "MG11 time account — Hester Oriel",
+    "metadata verification — Hester Oriel",
+    "appropriate adult sign-in sheet — Oriel"
+  ],
+  "expectedSummaryRisk": "Provisional — date time bwv incident on index only bwv papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "BWV proves incident time",
+    "timestamp confirms assault"
+  ],
+  "blockingFailPatterns": [
+    "BWV proves incident time",
+    "timestamp confirms assault",
+    "BWV shows assault",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — index_only_bwv"
+  ],
+  "pdfLayoutType": "index_only_bwv",
+  "redTeamTrapType": "date_time_bwv_incident",
+  "bundleStatus": "generated"
+}

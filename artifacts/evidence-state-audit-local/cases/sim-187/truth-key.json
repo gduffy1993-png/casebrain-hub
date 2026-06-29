@@ -1,0 +1,85 @@
+{
+  "caseId": "sim-187",
+  "title": "CPS chase must not overstate served — image only scan",
+  "offenceFamily": "digital_attribution",
+  "offenceWording": "Possession of indecent images — attribution disputed",
+  "profile": "export_surface_safety",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5 summary (folio 187 — Quill)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 187 — Quill)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "CCTV — Kyla Quill",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "cctv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV — Kyla Quill",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "CCTV export — Kyla Quill",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "cctv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV export — Kyla Quill",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "phone billing record match (Quill / folio 187)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "CCTV export — Kyla Quill",
+    "BWV export — Kyla Quill",
+    "MG11 — Kyla Quill",
+    "CCTV master timeline index — Quill"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "CCTV shows",
+    "BWV shows",
+    "material confirms offence"
+  ],
+  "blockingFailPatterns": [
+    "CCTV shows",
+    "BWV shows",
+    "material confirms offence",
+    "we win",
+    "case collapses"
+  ]
+}

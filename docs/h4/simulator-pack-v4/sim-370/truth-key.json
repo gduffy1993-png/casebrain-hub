@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-370",
+  "title": "Custody risk assessment missing — missing mg6 schedule",
+  "fakeDefendant": "Nia Vane",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "S18 wounding with intent",
+  "offenceFamily": "violence_assault",
+  "profile": "youth_vulnerability_custody",
+  "mainIssue": "Custody risk assessment and mental health triage referred only.",
+  "servedEvidence": [
+    "custody booking sheet (folio 370 — Vane)",
+    "MG5 supplementary note (folio 370 — Vane)"
+  ],
+  "referredOnlyEvidence": [
+    "risk assessment — Nia Vane"
+  ],
+  "missingEvidence": [
+    "custody risk assessment — Nia Vane",
+    "mental health triage — Nia Vane",
+    "MG6 line 12 handset export (Vane / folio 370)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Custody risk material missing — chase triage and PACE review.",
+  "expectedChaseItems": [
+    "risk assessment — Nia Vane",
+    "MH triage — Nia Vane",
+    "PACE forms — Nia Vane",
+    "order service affidavit — Vane"
+  ],
+  "expectedSummaryRisk": "Provisional — custody risk missing on missing mg6 schedule papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "safeguards complied",
+    "fitness to detain proved"
+  ],
+  "blockingFailPatterns": [
+    "safeguards complied",
+    "fitness to detain proved",
+    "PACE complied as fact",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — missing_mg6_schedule"
+  ],
+  "pdfLayoutType": "missing_mg6_schedule",
+  "redTeamTrapType": "custody_risk_missing",
+  "bundleStatus": "generated"
+}

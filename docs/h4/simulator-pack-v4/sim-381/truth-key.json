@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-381",
+  "title": "Screenshots not full download — duplicate pages",
+  "fakeDefendant": "Zia Grove",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Theft",
+  "offenceFamily": "custody_pace",
+  "profile": "partial_vs_full_evidence",
+  "mainIssue": "Handset screenshots served without UFED scope or continuity.",
+  "servedEvidence": [
+    "handset screenshots (folio 381 — Grove)",
+    "MG5 supplementary note (folio 381 — Grove)"
+  ],
+  "referredOnlyEvidence": [
+    "UFED extraction — Zia Grove"
+  ],
+  "missingEvidence": [
+    "full download — Zia Grove",
+    "search terms schedule — Zia Grove",
+    "third-party disclosure gateway (Grove / folio 381)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Screenshots partial — chase full download and search terms.",
+  "expectedChaseItems": [
+    "UFED download — Zia Grove",
+    "search terms — Zia Grove",
+    "continuity certificate — Zia Grove",
+    "NRM referral outcome letter — Grove"
+  ],
+  "expectedSummaryRisk": "Provisional — partial phone screenshots on duplicate pages papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "screenshots prove all messages",
+    "download scope complete"
+  ],
+  "blockingFailPatterns": [
+    "screenshots prove all messages",
+    "download scope complete",
+    "phone proves supply",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — duplicate_pages"
+  ],
+  "pdfLayoutType": "duplicate_pages",
+  "redTeamTrapType": "partial_phone_screenshots",
+  "bundleStatus": "generated"
+}

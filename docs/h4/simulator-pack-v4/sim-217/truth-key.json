@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-217",
+  "title": "Redacted unused item relied on in summary — corrected indictment",
+  "fakeDefendant": "Petra Vane",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Sexual assault (historic)",
+  "offenceFamily": "sexual",
+  "profile": "disclosure_schedule_trap",
+  "mainIssue": "MG5 relies on redacted unused MG6 item — primary unused material not served.",
+  "servedEvidence": [
+    "redacted unused extract (folio 217 — Vane)",
+    "MG5 supplementary note (folio 217 — Vane)"
+  ],
+  "referredOnlyEvidence": [
+    "full unused material — Petra Vane"
+  ],
+  "missingEvidence": [
+    "unredacted unused — Petra Vane",
+    "primary witness account — Petra Vane",
+    "medical imaging disc (Vane / folio 217)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Redacted unused relied on — chase unredacted unused or primary source.",
+  "expectedChaseItems": [
+    "unredacted unused — Petra Vane",
+    "primary MG11 — Petra Vane",
+    "MG6 clarification — Petra Vane",
+    "late addendum item list — Vane"
+  ],
+  "expectedSummaryRisk": "Provisional — redacted unused relied on on corrected indictment papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "redacted extract proves account",
+    "unused material supports prosecution"
+  ],
+  "blockingFailPatterns": [
+    "redacted extract proves",
+    "unused material supports prosecution",
+    "account proved from redacted",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — corrected_indictment"
+  ],
+  "pdfLayoutType": "corrected_indictment",
+  "redTeamTrapType": "redacted_unused_relied_on",
+  "bundleStatus": "generated"
+}

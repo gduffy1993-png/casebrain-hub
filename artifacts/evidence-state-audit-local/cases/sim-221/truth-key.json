@@ -1,0 +1,73 @@
+{
+  "caseId": "sim-221",
+  "title": "Index lists BWV — file absent — bad ocr scan",
+  "offenceFamily": "public_order",
+  "offenceWording": "Violent disorder",
+  "profile": "index_listed_not_served",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "bundle index (folio 221 — Zale)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 221 — Zale)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV per index — Tamsin Zale",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV file — Tamsin Zale",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "continuity — Tamsin Zale",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "unused material sensitivity review (Zale / folio 221)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "BWV export — Tamsin Zale",
+    "index correction — Tamsin Zale",
+    "continuity statement — Tamsin Zale",
+    "firearm classification worksheet — Zale"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "BWV on bundle as fact",
+    "index proves served"
+  ],
+  "blockingFailPatterns": [
+    "BWV on bundle",
+    "index proves served",
+    "BWV shows",
+    "we win",
+    "case collapses"
+  ]
+}

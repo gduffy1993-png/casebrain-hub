@@ -1,0 +1,74 @@
+{
+  "caseId": "sim-310",
+  "title": "Schedule lists material not on bundle — custody extract missing",
+  "offenceFamily": "drugs_supply",
+  "offenceWording": "Being concerned in the supply of Class A drugs",
+  "profile": "source_hierarchy_conflict",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG6C schedule page (folio 310 — Mantis)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 310 — Mantis)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV full export — Fleur Mantis",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV download — Fleur Mantis",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "continuity statement — Fleur Mantis",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "sensitive material schedule MG6D (Mantis / folio 310)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "BWV full export — Fleur Mantis",
+    "schedule correction — Fleur Mantis",
+    "continuity — Fleur Mantis",
+    "historic ABE support notes — Mantis"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "BWV served as fact",
+    "schedule proves material on bundle"
+  ],
+  "blockingFailPatterns": [
+    "BWV served as fact",
+    "schedule proves material",
+    "BWV shows",
+    "we win",
+    "case collapses"
+  ]
+}

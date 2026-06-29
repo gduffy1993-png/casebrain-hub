@@ -1,0 +1,71 @@
+{
+  "caseId": "sim-184",
+  "title": "Knowledge/intent inferred from presence — pages out of order",
+  "offenceFamily": "youth",
+  "offenceWording": "Theft (youth)",
+  "profile": "inference_as_fact",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "search summary (folio 184 — Nye)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 184 — Nye)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "lab report — Holden Nye",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "lab report — Holden Nye",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "dealing evidence — Holden Nye",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "expert instruction letter (Nye / folio 184)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "lab report — Holden Nye",
+    "dealing evidence — Holden Nye",
+    "occupancy/knowledge proof — Holden Nye",
+    "third-party disclosure gateway — Nye"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "intent to supply proved",
+    "knowledge proved from presence"
+  ],
+  "blockingFailPatterns": [
+    "intent to supply proved",
+    "knowledge proved from presence",
+    "PWITS proved",
+    "we win",
+    "case collapses"
+  ]
+}

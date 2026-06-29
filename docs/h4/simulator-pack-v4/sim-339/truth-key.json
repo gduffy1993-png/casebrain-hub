@@ -1,0 +1,58 @@
+{
+  "caseId": "sim-339",
+  "title": "Possession/control inferred — mixed defendants rotated",
+  "fakeDefendant": "Indie Parch",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Violent disorder",
+  "offenceFamily": "public_order",
+  "profile": "inference_as_fact",
+  "mainIssue": "Drugs found in shared vehicle — defendant possession/control not established.",
+  "servedEvidence": [
+    "seizure notes (folio 339 — Parch)",
+    "MG5 supplementary note (folio 339 — Parch)"
+  ],
+  "referredOnlyEvidence": [
+    "forensic report — Indie Parch"
+  ],
+  "missingEvidence": [
+    "forensic report — Indie Parch",
+    "fingerprints/DNA — Indie Parch",
+    "order service affidavit (Parch / folio 339)"
+  ],
+  "uncertainEvidence": [
+    "who had control"
+  ],
+  "expectedTodayIssue": "Possession inference — chase forensic linkage and defendant association.",
+  "expectedChaseItems": [
+    "forensic report — Indie Parch",
+    "continuity — Indie Parch",
+    "occupancy evidence — Indie Parch",
+    "expert instruction letter — Parch"
+  ],
+  "expectedSummaryRisk": "Provisional — inference possession control on mixed defendants rotated papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "defendant possessed drugs",
+    "control proved as fact"
+  ],
+  "blockingFailPatterns": [
+    "defendant possessed drugs",
+    "control proved as fact",
+    "possession proved",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — mixed_defendants_rotated"
+  ],
+  "pdfLayoutType": "mixed_defendants_rotated",
+  "redTeamTrapType": "inference_possession_control",
+  "bundleStatus": "generated"
+}

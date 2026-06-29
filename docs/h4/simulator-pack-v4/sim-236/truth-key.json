@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-236",
+  "title": "Knowledge/intent inferred from presence — corrected indictment",
+  "fakeDefendant": "Idris Oaken",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Stalking involving fear of violence",
+  "offenceFamily": "harassment",
+  "profile": "inference_as_fact",
+  "mainIssue": "Defendant present at address where drugs found — knowledge/intent not proved.",
+  "servedEvidence": [
+    "search summary (folio 236 — Oaken)",
+    "MG5 supplementary note (folio 236 — Oaken)"
+  ],
+  "referredOnlyEvidence": [
+    "lab report — Idris Oaken"
+  ],
+  "missingEvidence": [
+    "lab report — Idris Oaken",
+    "dealing evidence — Idris Oaken",
+    "defendant interview part 2 (Oaken / folio 236)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Intent inference from presence — chase dealing evidence beyond presence.",
+  "expectedChaseItems": [
+    "lab report — Idris Oaken",
+    "dealing evidence — Idris Oaken",
+    "occupancy/knowledge proof — Idris Oaken",
+    "scene photograph log — Oaken"
+  ],
+  "expectedSummaryRisk": "Provisional — inference knowledge intent on corrected indictment papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "intent to supply proved",
+    "knowledge proved from presence"
+  ],
+  "blockingFailPatterns": [
+    "intent to supply proved",
+    "knowledge proved from presence",
+    "PWITS proved",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — corrected_indictment"
+  ],
+  "pdfLayoutType": "corrected_indictment",
+  "redTeamTrapType": "inference_knowledge_intent",
+  "bundleStatus": "generated"
+}

@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-374",
+  "title": "Available on request not served — bad ocr scan",
+  "fakeDefendant": "Sam Zale",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Sexual assault (historic)",
+  "offenceFamily": "sexual",
+  "profile": "disclosure_schedule_trap",
+  "mainIssue": "BWV marked available on request — not treated as served disclosure.",
+  "servedEvidence": [
+    "MG6 note available on request (folio 374 — Zale)",
+    "MG5 supplementary note (folio 374 — Zale)"
+  ],
+  "referredOnlyEvidence": [
+    "BWV on request — Sam Zale"
+  ],
+  "missingEvidence": [
+    "BWV export — Sam Zale",
+    "continuity — Sam Zale",
+    "VIPER pack completeness (Zale / folio 374)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Available on request is not served — chase BWV export.",
+  "expectedChaseItems": [
+    "BWV export — Sam Zale",
+    "disclosure confirmation — Sam Zale",
+    "continuity — Sam Zale",
+    "weapons seizure photograph set — Zale"
+  ],
+  "expectedSummaryRisk": "Provisional — available on request not served on bad ocr scan papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "BWV served because listed",
+    "available on request equals served"
+  ],
+  "blockingFailPatterns": [
+    "BWV served because listed",
+    "available on request equals served",
+    "BWV shows",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — bad_ocr_scan"
+  ],
+  "pdfLayoutType": "bad_ocr_scan",
+  "redTeamTrapType": "available_on_request_not_served",
+  "bundleStatus": "generated"
+}

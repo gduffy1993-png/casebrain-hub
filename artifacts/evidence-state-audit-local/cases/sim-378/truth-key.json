@@ -1,0 +1,73 @@
+{
+  "caseId": "sim-378",
+  "title": "CCTV on index — exhibit missing — image only scan",
+  "offenceFamily": "public_order",
+  "offenceWording": "Violent disorder",
+  "profile": "index_listed_not_served",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "exhibit list (folio 378 — Dune)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 378 — Dune)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "CCTV CE/01 — Wren Dune",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "cctv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "CCTV export — Wren Dune",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "cctv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "continuity — Wren Dune",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "lab submission chain (Dune / folio 378)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "CCTV master footage — Wren Dune",
+    "continuity — Wren Dune",
+    "ID procedure — Wren Dune",
+    "medical imaging disc — Dune"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "CCTV identifies defendant",
+    "exhibit list proves footage served"
+  ],
+  "blockingFailPatterns": [
+    "CCTV identifies defendant",
+    "exhibit list proves footage",
+    "CCTV shows",
+    "we win",
+    "case collapses"
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "caseId": "sim-371",
+  "title": "MG6C item listed but not served — very thin sjp",
+  "offenceFamily": "robbery_id",
+  "offenceWording": "Robbery",
+  "profile": "disclosure_schedule_trap",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG6C schedule (folio 371 — Wisp)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 371 — Wisp)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "handset download per MG6C line 14 — Omar Wisp",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "handset download — Omar Wisp",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "extraction certificate — Omar Wisp",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "scene photograph log (Wisp / folio 371)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "handset download — Omar Wisp",
+    "MG6C line 14 material — Omar Wisp",
+    "extraction certificate — Omar Wisp",
+    "defendant interview part 2 — Wisp"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "MG6C item served as fact",
+    "download on bundle"
+  ],
+  "blockingFailPatterns": [
+    "MG6C item served",
+    "download on bundle",
+    "digital evidence proved",
+    "we win",
+    "case collapses"
+  ]
+}

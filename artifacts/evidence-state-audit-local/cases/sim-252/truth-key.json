@@ -1,0 +1,71 @@
+{
+  "caseId": "sim-252",
+  "title": "ABE partial transcript only — bwv screenshots only",
+  "offenceFamily": "drugs_supply",
+  "offenceWording": "Being concerned in the supply of Class A drugs",
+  "profile": "historic_sexual",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "ABE transcript fragment (folio 252 — Eclat)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 252 — Eclat)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "ABE recording — Yasmin Eclat",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "ABE recording — Yasmin Eclat",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full transcript — Yasmin Eclat",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "motoring calibration trace (Eclat / folio 252)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "ABE recording — Yasmin Eclat",
+    "full transcript — Yasmin Eclat",
+    "supporting medical — Yasmin Eclat",
+    "witness B statement clarification — Eclat"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "ABE confirms account",
+    "transcript proves assault"
+  ],
+  "blockingFailPatterns": [
+    "ABE confirms",
+    "transcript proves assault",
+    "account confirmed",
+    "we win",
+    "case collapses"
+  ]
+}

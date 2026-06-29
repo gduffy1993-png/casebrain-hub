@@ -1,0 +1,73 @@
+{
+  "caseId": "sim-157",
+  "title": "Phone metadata date vs statement date — thin sjp scan",
+  "offenceFamily": "harassment",
+  "offenceWording": "Stalking involving fear of violence",
+  "profile": "date_time_conflict",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "message screenshot pages (folio 157 — Lyle)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 157 — Lyle)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "handset download — Gemma Lyle",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full message export — Gemma Lyle",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "metadata verification — Gemma Lyle",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "appropriate adult sign-in sheet (Lyle / folio 157)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "handset download — Gemma Lyle",
+    "message metadata log — Gemma Lyle",
+    "MG11 clarification — Gemma Lyle",
+    "robbery ID parade notes — Lyle"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "message date proved",
+    "screenshot metadata confirms offence"
+  ],
+  "blockingFailPatterns": [
+    "message date proved",
+    "metadata confirms offence",
+    "messages prove conduct",
+    "we win",
+    "case collapses"
+  ]
+}

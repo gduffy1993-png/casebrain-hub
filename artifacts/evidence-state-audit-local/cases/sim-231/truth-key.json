@@ -1,0 +1,73 @@
+{
+  "caseId": "sim-231",
+  "title": "Subscriber vs phone user — very thin sjp",
+  "offenceFamily": "drugs_pwits",
+  "offenceWording": "Possession with intent to supply Class A drugs",
+  "profile": "wrong_person_entity",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "subscriber record summary (folio 231 — Joss)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 231 — Joss)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "handset download — Delphine Joss",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "usage attribution — Delphine Joss",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "handset download — Delphine Joss",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "order service affidavit (Joss / folio 231)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "handset download — Delphine Joss",
+    "usage attribution — Delphine Joss",
+    "cellsite if relevant — Delphine Joss",
+    "expert instruction letter — Joss"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "subscriber is defendant",
+    "account holder proves user"
+  ],
+  "blockingFailPatterns": [
+    "subscriber is defendant",
+    "account holder proves user",
+    "phone proves defendant sent",
+    "we win",
+    "case collapses"
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "caseId": "sim-269",
+  "title": "Redacted unused item relied on in summary — mixed defendants rotated",
+  "offenceFamily": "drugs_conspiracy",
+  "offenceWording": "Conspiracy to supply Class A drugs",
+  "profile": "disclosure_schedule_trap",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "redacted unused extract (folio 269 — Vox)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 269 — Vox)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full unused material — Phineas Vox",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "unredacted unused — Phineas Vox",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "primary witness account — Phineas Vox",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "search BWV continuity (Vox / folio 269)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "unredacted unused — Phineas Vox",
+    "primary MG11 — Phineas Vox",
+    "MG6 clarification — Phineas Vox",
+    "VIPER pack completeness — Vox"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "redacted extract proves account",
+    "unused material supports prosecution"
+  ],
+  "blockingFailPatterns": [
+    "redacted extract proves",
+    "unused material supports prosecution",
+    "account proved from redacted",
+    "we win",
+    "case collapses"
+  ]
+}

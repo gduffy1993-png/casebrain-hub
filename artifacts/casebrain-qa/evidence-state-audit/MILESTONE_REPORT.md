@@ -9,7 +9,8 @@ Generated after expansion pass on master (post `226b569` co-def/chase cleanup co
 | Commit | Description |
 |--------|-------------|
 | `226b569` | `test(audit): segregate co-def material and improve chase evidence mapping` — 60-case cleanup |
-| _(pending)_ | Expansion infrastructure + 253-case inventory seed |
+| Expansion commit | `test(audit): expand controlled audit to 253-case inventory ceiling` |
+| `test(audit): expand controlled evidence-state audit to 500 cases` | v4 simulator `sim-151..397` (+247 cases) |
 
 ## Milestone summary
 
@@ -19,20 +20,22 @@ Generated after expansion pass on master (post `226b569` co-def/chase cleanup co
 | **100** (target) | 151 sim | 858 | 0 | 0 | 87.2% | 142 |
 | **200** (target) | 151 sim + 49+ gold | — | 0 | 0 | — | — |
 | **253** (inventory ceiling) | 151 sim + 102 gold | 2,010 | 0 | 0 | 86.9% | 406 |
-| **500** (target) | **BLOCKED** | — | — | — | — | — |
+| **500** | 397 sim + 102 gold + 1 proof | 3,549 | 0 | 0 | 83.8% | 792 |
+
+See [EXPANSION_MILESTONE_REPORT.md](./EXPANSION_MILESTONE_REPORT.md) for v4 expansion detail (`sim-151..397`).
 
 `proof-pack-01` remains a separate fixture when present under `content/casebrain-proof/`.
 
-## 500-case hard stop
+## 500-case milestone (v4 expansion)
 
-**Cannot reach 500 without Ged approval and new bundle generation.**
+**Reached 500 runnable cases** via H4 simulator v4 (`sim-151..397`, +247 cases).
 
-Existing runnable inventory:
-- 150 H4 simulator cases (v1 + v1.1 + v2 + v3)
+Inventory at 500:
+- 397 H4 simulator cases (v1–v4)
 - 102 bundle-fidelity gold cases
 - 1 proof-pack fixture
 
-**Maximum ≈ 253 unique runnable audit folders** with current material. No new synthetic bundles were invented in this pass.
+Gold `sc-*` duplicate pairs (25) remain — see diversity report; do not count as unique coverage.
 
 ## Safety gates (253-case run)
 
@@ -74,6 +77,6 @@ See [COVERAGE_CHECKLIST.md](./COVERAGE_CHECKLIST.md).
 |-----------|---------|
 | **100** | **Continue** — clean safety gates |
 | **200** | **Continue** — clean safety gates at 253 ceiling |
-| **500** | **Stop** — requires new bundle/truth-key authoring; do not inflate with near-duplicate gold corpus rows |
+| **500** | **Stop at 500** — v4 expansion complete; enrich gold truth keys before claiming >475 unique coverage |
 
 Do **not** claim solicitor-reviewed or real-world proof.

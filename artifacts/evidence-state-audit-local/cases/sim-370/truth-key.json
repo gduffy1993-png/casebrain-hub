@@ -1,0 +1,73 @@
+{
+  "caseId": "sim-370",
+  "title": "Custody risk assessment missing — missing mg6 schedule",
+  "offenceFamily": "violence_assault",
+  "offenceWording": "S18 wounding with intent",
+  "profile": "youth_vulnerability_custody",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "custody booking sheet (folio 370 — Vane)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "custody_pace",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 370 — Vane)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "risk assessment — Nia Vane",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "custody risk assessment — Nia Vane",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "custody_pace",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "mental health triage — Nia Vane",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG6 line 12 handset export (Vane / folio 370)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "risk assessment — Nia Vane",
+    "MH triage — Nia Vane",
+    "PACE forms — Nia Vane",
+    "order service affidavit — Vane"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "safeguards complied",
+    "fitness to detain proved"
+  ],
+  "blockingFailPatterns": [
+    "safeguards complied",
+    "fitness to detain proved",
+    "PACE complied as fact",
+    "we win",
+    "case collapses"
+  ]
+}

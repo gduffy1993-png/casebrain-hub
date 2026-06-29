@@ -1,0 +1,84 @@
+{
+  "caseId": "sim-291",
+  "title": "CPS chase must not overstate served — bad ocr scan",
+  "offenceFamily": "drugs_supply",
+  "offenceWording": "Being concerned in the supply of Class A drugs",
+  "profile": "export_surface_safety",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5 summary (folio 291 — Tangent)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 291 — Tangent)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "CCTV — Milo Tangent",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "cctv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV — Milo Tangent",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "CCTV export — Milo Tangent",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "cctv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV export — Milo Tangent",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "disclosure officer certification (Tangent / folio 291)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "CCTV export — Milo Tangent",
+    "BWV export — Milo Tangent",
+    "MG11 — Milo Tangent",
+    "subscriber account verification — Tangent"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "CCTV shows",
+    "BWV shows",
+    "material confirms offence"
+  ],
+  "blockingFailPatterns": [
+    "CCTV shows",
+    "BWV shows",
+    "material confirms offence",
+    "we win",
+    "case collapses"
+  ]
+}

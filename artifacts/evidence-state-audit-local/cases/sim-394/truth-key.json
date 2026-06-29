@@ -1,0 +1,72 @@
+{
+  "caseId": "sim-394",
+  "title": "Sender identity inferred from content — pages out of order",
+  "offenceFamily": "sexual",
+  "offenceWording": "Sexual assault (historic)",
+  "profile": "inference_as_fact",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "message content screenshots (folio 394 — Tabor)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 394 — Tabor)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "platform export — Max Tabor",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "platform export — Max Tabor",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "subscriber proof — Max Tabor",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "NRM referral outcome letter (Tabor / folio 394)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "platform export — Max Tabor",
+    "subscriber records — Max Tabor",
+    "account attribution — Max Tabor",
+    "domestic chronology spreadsheet — Tabor"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "defendant sent messages as fact",
+    "content proves sender"
+  ],
+  "blockingFailPatterns": [
+    "defendant sent messages as fact",
+    "content proves sender",
+    "sender proved",
+    "we win",
+    "case collapses"
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "caseId": "sim-308",
+  "title": "Officer summary vs primary exhibit — image only scan",
+  "offenceFamily": "drugs_conspiracy",
+  "offenceWording": "Conspiracy to supply Class A drugs",
+  "profile": "source_hierarchy_conflict",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "officer MG5 narrative (folio 308 — Kestrel)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 308 — Kestrel)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "exhibit continuity log — Dinah Kestrel",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "continuity log — Dinah Kestrel",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "seizure photographs — Dinah Kestrel",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "mixed bundle defendant index (Kestrel / folio 308)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "exhibit continuity — Dinah Kestrel",
+    "seizure photographs — Dinah Kestrel",
+    "witness MG11 — Dinah Kestrel",
+    "youth court safeguarding plan — Kestrel"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "officer summary proves knife location",
+    "exhibit proved from summary"
+  ],
+  "blockingFailPatterns": [
+    "officer summary proves knife",
+    "exhibit proved from summary",
+    "knife location proved",
+    "we win",
+    "case collapses"
+  ]
+}

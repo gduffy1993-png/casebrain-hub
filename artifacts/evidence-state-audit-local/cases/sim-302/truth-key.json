@@ -1,0 +1,71 @@
+{
+  "caseId": "sim-302",
+  "title": "Motoring SJP thin bundle — late addendum scan",
+  "offenceFamily": "youth",
+  "offenceWording": "Theft (youth)",
+  "profile": "drink_drive_procedure",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "SJP notice (folio 302 — Eyre)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 302 — Eyre)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "calibration certificate — Ximena Eyre",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "calibration — Ximena Eyre",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "device record — Ximena Eyre",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "county lines line attribution chart (Eyre / folio 302)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "calibration certificate — Ximena Eyre",
+    "device record — Ximena Eyre",
+    "notice of intended prosecution — Ximena Eyre",
+    "search BWV continuity — Eyre"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "speed proved",
+    "device reliable as fact"
+  ],
+  "blockingFailPatterns": [
+    "speed proved",
+    "device reliable as fact",
+    "offence proved",
+    "we win",
+    "case collapses"
+  ]
+}

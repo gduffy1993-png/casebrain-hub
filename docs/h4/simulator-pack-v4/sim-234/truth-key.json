@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-234",
+  "title": "Attribution inferred as fact — bad ocr scan",
+  "fakeDefendant": "Galen Moss",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Robbery",
+  "offenceFamily": "robbery_id",
+  "profile": "inference_as_fact",
+  "mainIssue": "MG5 infers sender identity from phone proximity — not primary proof.",
+  "servedEvidence": [
+    "MG5 attribution inference (folio 234 — Moss)",
+    "MG5 supplementary note (folio 234 — Moss)"
+  ],
+  "referredOnlyEvidence": [
+    "handset download — Galen Moss"
+  ],
+  "missingEvidence": [
+    "subscriber data — Galen Moss",
+    "message export — Galen Moss",
+    "CCTV master timeline index (Moss / folio 234)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Attribution inference only — chase subscriber/download before sender claims.",
+  "expectedChaseItems": [
+    "handset download — Galen Moss",
+    "subscriber records — Galen Moss",
+    "attribution certificate — Galen Moss",
+    "perverting course email preservation — Moss"
+  ],
+  "expectedSummaryRisk": "Provisional — inference attribution on bad ocr scan papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "sender is defendant as fact",
+    "proximity proves attribution"
+  ],
+  "blockingFailPatterns": [
+    "sender is defendant as fact",
+    "proximity proves attribution",
+    "attribution confirmed",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — bad_ocr_scan"
+  ],
+  "pdfLayoutType": "bad_ocr_scan",
+  "redTeamTrapType": "inference_attribution",
+  "bundleStatus": "generated"
+}

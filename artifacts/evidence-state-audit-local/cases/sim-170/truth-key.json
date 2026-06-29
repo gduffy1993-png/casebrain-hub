@@ -1,0 +1,74 @@
+{
+  "caseId": "sim-170",
+  "title": "CCTV on index — exhibit missing — custody extract missing",
+  "offenceFamily": "encro_encrypted_comms",
+  "offenceWording": "Conspiracy to supply Class A drugs (encrypted comms)",
+  "profile": "index_listed_not_served",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "exhibit list (folio 170 — Zell)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 170 — Zell)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "CCTV CE/01 — Tobin Zell",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "cctv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "CCTV export — Tobin Zell",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "cctv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "continuity — Tobin Zell",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "vehicle ANPR download (Zell / folio 170)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "CCTV master footage — Tobin Zell",
+    "continuity — Tobin Zell",
+    "ID procedure — Tobin Zell",
+    "redacted unused gateway application — Zell"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "CCTV identifies defendant",
+    "exhibit list proves footage served"
+  ],
+  "blockingFailPatterns": [
+    "CCTV identifies defendant",
+    "exhibit list proves footage",
+    "CCTV shows",
+    "we win",
+    "case collapses"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-209",
+  "title": "Phone metadata date vs statement date — duplicate pages",
+  "fakeDefendant": "Haven Mire",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Conspiracy to supply Class A drugs (encrypted comms)",
+  "offenceFamily": "encro_encrypted_comms",
+  "profile": "date_time_conflict",
+  "mainIssue": "Message screenshot metadata dated 12/03/2025; MG11 references messages on 12/03/2026.",
+  "servedEvidence": [
+    "message screenshot pages (folio 209 — Mire)",
+    "MG5 supplementary note (folio 209 — Mire)"
+  ],
+  "referredOnlyEvidence": [
+    "handset download — Haven Mire"
+  ],
+  "missingEvidence": [
+    "full message export — Haven Mire",
+    "metadata verification — Haven Mire",
+    "scene photograph log (Mire / folio 209)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Phone metadata vs statement date conflict — chase source export.",
+  "expectedChaseItems": [
+    "handset download — Haven Mire",
+    "message metadata log — Haven Mire",
+    "MG11 clarification — Haven Mire",
+    "defendant interview part 2 — Mire"
+  ],
+  "expectedSummaryRisk": "Provisional — date time phone metadata on duplicate pages papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "message date proved",
+    "screenshot metadata confirms offence"
+  ],
+  "blockingFailPatterns": [
+    "message date proved",
+    "metadata confirms offence",
+    "messages prove conduct",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — duplicate_pages"
+  ],
+  "pdfLayoutType": "duplicate_pages",
+  "redTeamTrapType": "date_time_phone_metadata",
+  "bundleStatus": "generated"
+}

@@ -1,0 +1,74 @@
+{
+  "caseId": "sim-215",
+  "title": "MG6C item listed but not served — rotated scan",
+  "offenceFamily": "domestic",
+  "offenceWording": "Controlling or coercive behaviour",
+  "profile": "disclosure_schedule_trap",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG6C schedule (folio 215 — Slate)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 215 — Slate)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "handset download per MG6C line 14 — Nerida Slate",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "handset download — Nerida Slate",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "extraction certificate — Nerida Slate",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "search BWV continuity (Slate / folio 215)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "handset download — Nerida Slate",
+    "MG6C line 14 material — Nerida Slate",
+    "extraction certificate — Nerida Slate",
+    "VIPER pack completeness — Slate"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "MG6C item served as fact",
+    "download on bundle"
+  ],
+  "blockingFailPatterns": [
+    "MG6C item served",
+    "download on bundle",
+    "digital evidence proved",
+    "we win",
+    "case collapses"
+  ]
+}

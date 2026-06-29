@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-275",
+  "title": "Phone download indexed not served — conflicting mg11 duplicate",
+  "fakeDefendant": "Willa Crest",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Stalking involving fear of violence",
+  "offenceFamily": "harassment",
+  "profile": "index_listed_not_served",
+  "mainIssue": "Index references UFED download; only screenshot annex served.",
+  "servedEvidence": [
+    "screenshot annex (folio 275 — Crest)",
+    "MG5 supplementary note (folio 275 — Crest)"
+  ],
+  "referredOnlyEvidence": [
+    "UFED download per index — Willa Crest"
+  ],
+  "missingEvidence": [
+    "UFED download — Willa Crest",
+    "search scope — Willa Crest",
+    "unused material sensitivity review (Crest / folio 275)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Phone download indexed not served — chase full UFED export.",
+  "expectedChaseItems": [
+    "UFED download — Willa Crest",
+    "search scope schedule — Willa Crest",
+    "continuity — Willa Crest",
+    "firearm classification worksheet — Crest"
+  ],
+  "expectedSummaryRisk": "Provisional — index phone absent on conflicting mg11 duplicate papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "download served because indexed",
+    "screenshots are full download"
+  ],
+  "blockingFailPatterns": [
+    "download served because indexed",
+    "screenshots are full download",
+    "phone proves attribution",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — conflicting_mg11_duplicate"
+  ],
+  "pdfLayoutType": "conflicting_mg11_duplicate",
+  "redTeamTrapType": "index_phone_absent",
+  "bundleStatus": "generated"
+}

@@ -1,0 +1,71 @@
+{
+  "caseId": "sim-300",
+  "title": "County lines — exploitation inferred — missing mg6 schedule",
+  "offenceFamily": "public_order",
+  "offenceWording": "Violent disorder",
+  "profile": "county_lines_vulnerability",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "safeguarding flag note (folio 300 — Cade)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 300 — Cade)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "NRM referral — Vesna Cade",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "NRM outcome — Vesna Cade",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "line attribution — Vesna Cade",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "robbery ID parade notes (Cade / folio 300)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "NRM outcome — Vesna Cade",
+    "line attribution — Vesna Cade",
+    "role evidence — Vesna Cade",
+    "PACE custody review form — Cade"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "was exploited as fact",
+    "runner role confirmed"
+  ],
+  "blockingFailPatterns": [
+    "was exploited",
+    "runner role confirmed",
+    "exploitation proved",
+    "we win",
+    "case collapses"
+  ]
+}

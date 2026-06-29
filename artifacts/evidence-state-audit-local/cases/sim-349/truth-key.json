@@ -1,0 +1,73 @@
+{
+  "caseId": "sim-349",
+  "title": "Co-defendant phone data bleed — duplicate pages",
+  "offenceFamily": "drugs_pwits",
+  "offenceWording": "Possession with intent to supply Class A drugs",
+  "profile": "wrong_person_entity",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "mixed handset summary (folio 349 — Zep)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 349 — Zep)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "co-defendant download — Sia Zep",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "per-defendant segregation — Sia Zep",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "attribution map — Sia Zep",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "phone billing record match (Zep / folio 349)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "per-defendant digital map — Sia Zep",
+    "handset downloads — Sia Zep",
+    "subscriber records — Sia Zep",
+    "CCTV master timeline index — Zep"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "co-defendant phone proves this defendant",
+    "shared device proves user"
+  ],
+  "blockingFailPatterns": [
+    "co-defendant phone proves",
+    "shared device proves user",
+    "attribution to defendant",
+    "we win",
+    "case collapses"
+  ]
+}

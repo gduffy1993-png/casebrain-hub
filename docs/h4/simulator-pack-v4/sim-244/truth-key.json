@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-244",
+  "title": "Image-only scan — no searchable text — large messy rotated",
+  "fakeDefendant": "Quincy Wold",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Theft",
+  "offenceFamily": "custody_pace",
+  "profile": "partial_vs_full_evidence",
+  "mainIssue": "MG6 and statements image-only scans — OCR unreliable for schedules.",
+  "servedEvidence": [
+    "image-only scanned pages (folio 244 — Wold)",
+    "MG5 supplementary note (folio 244 — Wold)"
+  ],
+  "referredOnlyEvidence": [
+    "text-searchable versions — Quincy Wold"
+  ],
+  "missingEvidence": [
+    "searchable MG6 — Quincy Wold",
+    "searchable statements — Quincy Wold",
+    "harassment platform preservation notice (Wold / folio 244)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Image-only scan — chase text-searchable versions and exports.",
+  "expectedChaseItems": [
+    "text-searchable MG6 — Quincy Wold",
+    "searchable statements — Quincy Wold",
+    "key exports — Quincy Wold",
+    "conspiracy role assessment — Wold"
+  ],
+  "expectedSummaryRisk": "Provisional — image only scan on large messy rotated papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "OCR text proves schedule",
+    "scan proves content"
+  ],
+  "blockingFailPatterns": [
+    "OCR text proves schedule",
+    "scan proves content",
+    "schedule complete as read",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — large_messy_rotated"
+  ],
+  "pdfLayoutType": "large_messy_rotated",
+  "redTeamTrapType": "image_only_scan",
+  "bundleStatus": "generated"
+}

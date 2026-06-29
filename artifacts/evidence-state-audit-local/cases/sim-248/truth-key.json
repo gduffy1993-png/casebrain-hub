@@ -1,0 +1,71 @@
+{
+  "caseId": "sim-248",
+  "title": "County lines — exploitation inferred — two column schedule",
+  "offenceFamily": "perverting_justice",
+  "offenceWording": "Perverting the course of justice",
+  "profile": "county_lines_vulnerability",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "safeguarding flag note (folio 248 — Acre)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 248 — Acre)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "NRM referral — Urban Acre",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "NRM outcome — Urban Acre",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "line attribution — Urban Acre",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "county lines line attribution chart (Acre / folio 248)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "NRM outcome — Urban Acre",
+    "line attribution — Urban Acre",
+    "role evidence — Urban Acre",
+    "search BWV continuity — Acre"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "was exploited as fact",
+    "runner role confirmed"
+  ],
+  "blockingFailPatterns": [
+    "was exploited",
+    "runner role confirmed",
+    "exploitation proved",
+    "we win",
+    "case collapses"
+  ]
+}

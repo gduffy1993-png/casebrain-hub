@@ -1,0 +1,71 @@
+{
+  "caseId": "sim-247",
+  "title": "Drug supply role inferred — rotated scan",
+  "offenceFamily": "aew_police_contact",
+  "offenceWording": "Assault on emergency worker",
+  "profile": "inference_as_fact",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "search notes (folio 247 — Zeph)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 247 — Zeph)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "lab report — Tilda Zeph",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "lab report — Tilda Zeph",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "dealing evidence — Tilda Zeph",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "fraud transaction mapping sheet (Zeph / folio 247)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "lab report — Tilda Zeph",
+    "phone attribution — Tilda Zeph",
+    "dealing evidence — Tilda Zeph",
+    "interpreter attendance note — Zeph"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "supply role proved",
+    "dealing established as fact"
+  ],
+  "blockingFailPatterns": [
+    "supply role proved",
+    "dealing established as fact",
+    "PWITS proved",
+    "we win",
+    "case collapses"
+  ]
+}

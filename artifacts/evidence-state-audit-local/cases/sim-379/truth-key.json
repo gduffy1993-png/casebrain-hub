@@ -1,0 +1,74 @@
+{
+  "caseId": "sim-379",
+  "title": "Phone download indexed not served — blank pages metadata",
+  "offenceFamily": "breach_order",
+  "offenceWording": "Breach of non-molestation order",
+  "profile": "index_listed_not_served",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "screenshot annex (folio 379 — Elm)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 379 — Elm)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "UFED download per index — Xan Elm",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "UFED download — Xan Elm",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "search scope — Xan Elm",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "medical imaging disc (Elm / folio 379)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "UFED download — Xan Elm",
+    "search scope schedule — Xan Elm",
+    "continuity — Xan Elm",
+    "late addendum item list — Elm"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "download served because indexed",
+    "screenshots are full download"
+  ],
+  "blockingFailPatterns": [
+    "download served because indexed",
+    "screenshots are full download",
+    "phone proves attribution",
+    "we win",
+    "case collapses"
+  ]
+}

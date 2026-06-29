@@ -1,0 +1,72 @@
+{
+  "caseId": "sim-204",
+  "title": "Officer summary vs primary exhibit — index only bwv",
+  "offenceFamily": "custody_pace",
+  "offenceWording": "Theft",
+  "profile": "source_hierarchy_conflict",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "officer MG5 narrative (folio 204 — Hale)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 204 — Hale)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "exhibit continuity log — Caspian Hale",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "continuity log — Caspian Hale",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "seizure photographs — Caspian Hale",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "image-only scan text layer (Hale / folio 204)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "exhibit continuity — Caspian Hale",
+    "seizure photographs — Caspian Hale",
+    "witness MG11 — Caspian Hale",
+    "appropriate adult sign-in sheet — Hale"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "officer summary proves knife location",
+    "exhibit proved from summary"
+  ],
+  "blockingFailPatterns": [
+    "officer summary proves knife",
+    "exhibit proved from summary",
+    "knife location proved",
+    "we win",
+    "case collapses"
+  ]
+}

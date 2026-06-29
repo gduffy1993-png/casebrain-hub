@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-251",
+  "title": "Account control inferred — late addendum scan",
+  "fakeDefendant": "Xena Drift",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Possession with intent to supply Class A drugs",
+  "offenceFamily": "drugs_pwits",
+  "profile": "money_laundering_bank_records",
+  "mainIssue": "Transactions listed — account control by defendant not proved.",
+  "servedEvidence": [
+    "transaction summary (folio 251 — Drift)",
+    "MG5 supplementary note (folio 251 — Drift)"
+  ],
+  "referredOnlyEvidence": [
+    "bank download — Xena Drift"
+  ],
+  "missingEvidence": [
+    "bank export — Xena Drift",
+    "device/ownership proof — Xena Drift",
+    "weapons seizure photograph set (Drift / folio 251)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Account control inference — chase banking schedules and device records.",
+  "expectedChaseItems": [
+    "bank download — Xena Drift",
+    "ownership evidence — Xena Drift",
+    "device records — Xena Drift",
+    "toxicology blood tube log — Drift"
+  ],
+  "expectedSummaryRisk": "Provisional — fraud account control inference on late addendum scan papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "account control proved",
+    "defendant authorised transactions"
+  ],
+  "blockingFailPatterns": [
+    "account control proved",
+    "defendant authorised transactions",
+    "fraud proved",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — late_addendum_scan"
+  ],
+  "pdfLayoutType": "late_addendum_scan",
+  "redTeamTrapType": "fraud_account_control_inference",
+  "bundleStatus": "generated"
+}

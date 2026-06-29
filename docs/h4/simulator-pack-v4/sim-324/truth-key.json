@@ -1,0 +1,57 @@
+{
+  "caseId": "sim-324",
+  "title": "Summary still uses old charge — pages out of order",
+  "fakeDefendant": "Torin Alder",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Possession of indecent images — attribution disputed",
+  "offenceFamily": "digital_attribution",
+  "profile": "changed_corrected_charge",
+  "mainIssue": "MG5 summary still describes s20 GBH; amended charge is s18.",
+  "servedEvidence": [
+    "MG5 with old s20 wording (folio 324 — Alder)",
+    "amended s18 charge (folio 324 — Alder)",
+    "MG5 supplementary note (folio 324 — Alder)"
+  ],
+  "referredOnlyEvidence": [
+    "medical report — Torin Alder"
+  ],
+  "missingEvidence": [
+    "updated MG5 — Torin Alder",
+    "medical for intent — Torin Alder",
+    "lab submission chain (Alder / folio 324)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Summary uses old charge — chase updated MG5 and medical for s18.",
+  "expectedChaseItems": [
+    "updated MG5 — Torin Alder",
+    "medical report — Torin Alder",
+    "intent material — Torin Alder",
+    "medical imaging disc — Alder"
+  ],
+  "expectedSummaryRisk": "Provisional — summary old charge on pages out of order papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "s18 intent proved",
+    "old s20 summary controls"
+  ],
+  "blockingFailPatterns": [
+    "s18 intent proved",
+    "old s20 summary controls",
+    "intent established as fact",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — pages_out_of_order"
+  ],
+  "pdfLayoutType": "pages_out_of_order",
+  "redTeamTrapType": "summary_old_charge",
+  "bundleStatus": "generated"
+}

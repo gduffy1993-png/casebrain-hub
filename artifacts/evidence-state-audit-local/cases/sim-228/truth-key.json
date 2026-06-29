@@ -1,0 +1,74 @@
+{
+  "caseId": "sim-228",
+  "title": "Interview summary not full recording — duplicate pages",
+  "offenceFamily": "perverting_justice",
+  "offenceWording": "Perverting the course of justice",
+  "profile": "partial_vs_full_evidence",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "interview summary (folio 228 — Grove)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "interview",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 228 — Grove)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "interview recording — Ansel Grove",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "interview",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "recording — Ansel Grove",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "transcript — Ansel Grove",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "custody risk triage form (Grove / folio 228)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "custody_pace",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "interview recording — Ansel Grove",
+    "transcript — Ansel Grove",
+    "PACE forms — Ansel Grove",
+    "forensic toolkit continuity — Grove"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "summary proves admission",
+    "interview confirms account"
+  ],
+  "blockingFailPatterns": [
+    "summary proves admission",
+    "interview confirms account",
+    "admission reliable",
+    "we win",
+    "case collapses"
+  ]
+}

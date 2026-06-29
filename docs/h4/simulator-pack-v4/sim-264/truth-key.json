@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-264",
+  "title": "Interpreter mentioned — record missing — huge bundle partial",
+  "fakeDefendant": "Kaelis Quoin",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Offence per charge sheet",
+  "offenceFamily": "mixed_unclear",
+  "profile": "youth_vulnerability_custody",
+  "mainIssue": "MG5 notes interpreter used; interpreter certification and recording not served.",
+  "servedEvidence": [
+    "MG5 reference to interpreter (folio 264 — Quoin)",
+    "MG5 supplementary note (folio 264 — Quoin)"
+  ],
+  "referredOnlyEvidence": [
+    "interview recording — Kaelis Quoin"
+  ],
+  "missingEvidence": [
+    "interpreter certification — Kaelis Quoin",
+    "interview recording — Kaelis Quoin",
+    "interpreter attendance note (Quoin / folio 264)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Interpreter record missing — chase certification and interview recording.",
+  "expectedChaseItems": [
+    "interpreter certification — Kaelis Quoin",
+    "interview recording — Kaelis Quoin",
+    "PACE review — Kaelis Quoin",
+    "phone billing record match — Quoin"
+  ],
+  "expectedSummaryRisk": "Provisional — youth interpreter missing on huge bundle partial papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "interpreter attended as fact",
+    "interview fairly conducted"
+  ],
+  "blockingFailPatterns": [
+    "interpreter attended as fact",
+    "interview fairly conducted",
+    "PACE complied",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — huge_bundle_partial"
+  ],
+  "pdfLayoutType": "huge_bundle_partial",
+  "redTeamTrapType": "youth_interpreter_missing",
+  "bundleStatus": "generated"
+}

@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-328",
+  "title": "CCTV stills not full CCTV — blank pages metadata",
+  "fakeDefendant": "Xyla Ember",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Conspiracy to supply Class A drugs",
+  "offenceFamily": "drugs_conspiracy",
+  "profile": "partial_vs_full_evidence",
+  "mainIssue": "Grainy stills served — master timeline and continuity missing.",
+  "servedEvidence": [
+    "CCTV still images (folio 328 — Ember)",
+    "MG5 supplementary note (folio 328 — Ember)"
+  ],
+  "referredOnlyEvidence": [
+    "master CCTV timeline — Xyla Ember"
+  ],
+  "missingEvidence": [
+    "master footage — Xyla Ember",
+    "continuity — Xyla Ember",
+    "amended charge linkage schedule (Ember / folio 328)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "CCTV stills only — chase master footage full window.",
+  "expectedChaseItems": [
+    "master CCTV — Xyla Ember",
+    "full time window — Xyla Ember",
+    "continuity — Xyla Ember",
+    "disclosure officer certification — Ember"
+  ],
+  "expectedSummaryRisk": "Provisional — partial cctv stills on blank pages metadata papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "CCTV stills prove ID",
+    "stills are full CCTV"
+  ],
+  "blockingFailPatterns": [
+    "CCTV stills prove ID",
+    "stills are full CCTV",
+    "CCTV shows robbery",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — blank_pages_metadata"
+  ],
+  "pdfLayoutType": "blank_pages_metadata",
+  "redTeamTrapType": "partial_cctv_stills",
+  "bundleStatus": "generated"
+}

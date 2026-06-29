@@ -1,0 +1,74 @@
+{
+  "caseId": "sim-154",
+  "title": "Schedule lists material not on bundle — conflicting mg11 duplicate",
+  "offenceFamily": "violence_assault",
+  "offenceWording": "S18 wounding with intent",
+  "profile": "source_hierarchy_conflict",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG6C schedule page (folio 154 — Ince)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 154 — Ince)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV full export — Damon Ince",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV download — Damon Ince",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "continuity statement — Damon Ince",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG6 line 12 handset export (Ince / folio 154)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "BWV full export — Damon Ince",
+    "schedule correction — Damon Ince",
+    "continuity — Damon Ince",
+    "order service affidavit — Ince"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "BWV served as fact",
+    "schedule proves material on bundle"
+  ],
+  "blockingFailPatterns": [
+    "BWV served as fact",
+    "schedule proves material",
+    "BWV shows",
+    "we win",
+    "case collapses"
+  ]
+}

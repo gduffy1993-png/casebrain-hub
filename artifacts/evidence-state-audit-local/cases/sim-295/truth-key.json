@@ -1,0 +1,79 @@
+{
+  "caseId": "sim-295",
+  "title": "Huge bundle — partial index only — large messy rotated",
+  "offenceFamily": "harassment",
+  "offenceWording": "Stalking involving fear of violence",
+  "profile": "large_messy_bundle",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "partial index (folio 295 — Xylem)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "subset exhibits (folio 295 — Xylem)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 295 — Xylem)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "multiple exports — Quade Xylem",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "defendant exhibit map — Quade Xylem",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "complete index — Quade Xylem",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "phone billing record match (Xylem / folio 295)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "defendant exhibit map — Quade Xylem",
+    "complete index — Quade Xylem",
+    "key exports — Quade Xylem",
+    "CCTV master timeline index — Xylem"
+  ],
+  "expectedSendability": "needs_solicitor_review",
+  "mustNotSayGlobal": [
+    "bundle complete",
+    "safe to send"
+  ],
+  "blockingFailPatterns": [
+    "bundle complete",
+    "safe to send",
+    "case summary confirms",
+    "we win",
+    "case collapses"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-192",
+  "title": "Image-only scan — no searchable text — missing mg6 schedule",
+  "fakeDefendant": "Paxton Vail",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Possession with intent to supply Class A drugs",
+  "offenceFamily": "drugs_pwits",
+  "profile": "partial_vs_full_evidence",
+  "mainIssue": "MG6 and statements image-only scans — OCR unreliable for schedules.",
+  "servedEvidence": [
+    "image-only scanned pages (folio 192 — Vail)",
+    "MG5 supplementary note (folio 192 — Vail)"
+  ],
+  "referredOnlyEvidence": [
+    "text-searchable versions — Paxton Vail"
+  ],
+  "missingEvidence": [
+    "searchable MG6 — Paxton Vail",
+    "searchable statements — Paxton Vail",
+    "robbery ID parade notes (Vail / folio 192)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Image-only scan — chase text-searchable versions and exports.",
+  "expectedChaseItems": [
+    "text-searchable MG6 — Paxton Vail",
+    "searchable statements — Paxton Vail",
+    "key exports — Paxton Vail",
+    "PACE custody review form — Vail"
+  ],
+  "expectedSummaryRisk": "Provisional — image only scan on missing mg6 schedule papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "OCR text proves schedule",
+    "scan proves content"
+  ],
+  "blockingFailPatterns": [
+    "OCR text proves schedule",
+    "scan proves content",
+    "schedule complete as read",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — missing_mg6_schedule"
+  ],
+  "pdfLayoutType": "missing_mg6_schedule",
+  "redTeamTrapType": "image_only_scan",
+  "bundleStatus": "generated"
+}

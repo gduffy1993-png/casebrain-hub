@@ -1,0 +1,57 @@
+{
+  "caseId": "sim-220",
+  "title": "Summary still uses old charge — blank pages metadata",
+  "fakeDefendant": "Stellan Yew",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Possession of a bladed article",
+  "offenceFamily": "weapons",
+  "profile": "changed_corrected_charge",
+  "mainIssue": "MG5 summary still describes s20 GBH; amended charge is s18.",
+  "servedEvidence": [
+    "MG5 with old s20 wording (folio 220 — Yew)",
+    "amended s18 charge (folio 220 — Yew)",
+    "MG5 supplementary note (folio 220 — Yew)"
+  ],
+  "referredOnlyEvidence": [
+    "medical report — Stellan Yew"
+  ],
+  "missingEvidence": [
+    "updated MG5 — Stellan Yew",
+    "medical for intent — Stellan Yew",
+    "amended charge linkage schedule (Yew / folio 220)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Summary uses old charge — chase updated MG5 and medical for s18.",
+  "expectedChaseItems": [
+    "updated MG5 — Stellan Yew",
+    "medical report — Stellan Yew",
+    "intent material — Stellan Yew",
+    "disclosure officer certification — Yew"
+  ],
+  "expectedSummaryRisk": "Provisional — summary old charge on blank pages metadata papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "s18 intent proved",
+    "old s20 summary controls"
+  ],
+  "blockingFailPatterns": [
+    "s18 intent proved",
+    "old s20 summary controls",
+    "intent established as fact",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — blank_pages_metadata"
+  ],
+  "pdfLayoutType": "blank_pages_metadata",
+  "redTeamTrapType": "summary_old_charge",
+  "bundleStatus": "generated"
+}

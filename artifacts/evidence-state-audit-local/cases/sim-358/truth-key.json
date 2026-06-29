@@ -1,0 +1,73 @@
+{
+  "caseId": "sim-358",
+  "title": "Public order individual conduct bleed — mixed defendants rotated",
+  "offenceFamily": "weapons",
+  "offenceWording": "Possession of a bladed article",
+  "profile": "multi_participant_public_order",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "group conduct summary (folio 358 — Inks)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 358 — Inks)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV clips — Bria Inks",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "per-defendant conduct map — Bria Inks",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full BWV — Bria Inks",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "public order clip segregation (Inks / folio 358)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "per-defendant conduct map — Bria Inks",
+    "BWV clips — Bria Inks",
+    "witness segregation — Bria Inks",
+    "banking schedule annex B — Inks"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "defendant participated as fact",
+    "group proves individual guilt"
+  ],
+  "blockingFailPatterns": [
+    "defendant participated as fact",
+    "group proves individual guilt",
+    "violent disorder proved",
+    "we win",
+    "case collapses"
+  ]
+}

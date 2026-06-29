@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-392",
+  "title": "Knowledge/intent inferred from presence — bwv screenshots only",
+  "fakeDefendant": "Kit Ridge",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Controlling or coercive behaviour",
+  "offenceFamily": "domestic",
+  "profile": "inference_as_fact",
+  "mainIssue": "Defendant present at address where drugs found — knowledge/intent not proved.",
+  "servedEvidence": [
+    "search summary (folio 392 — Ridge)",
+    "MG5 supplementary note (folio 392 — Ridge)"
+  ],
+  "referredOnlyEvidence": [
+    "lab report — Kit Ridge"
+  ],
+  "missingEvidence": [
+    "lab report — Kit Ridge",
+    "dealing evidence — Kit Ridge",
+    "toxicology blood tube log (Ridge / folio 392)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Intent inference from presence — chase dealing evidence beyond presence.",
+  "expectedChaseItems": [
+    "lab report — Kit Ridge",
+    "dealing evidence — Kit Ridge",
+    "occupancy/knowledge proof — Kit Ridge",
+    "message platform export hash — Ridge"
+  ],
+  "expectedSummaryRisk": "Provisional — inference knowledge intent on bwv screenshots only papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "intent to supply proved",
+    "knowledge proved from presence"
+  ],
+  "blockingFailPatterns": [
+    "intent to supply proved",
+    "knowledge proved from presence",
+    "PWITS proved",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — bwv_screenshots_only"
+  ],
+  "pdfLayoutType": "bwv_screenshots_only",
+  "redTeamTrapType": "inference_knowledge_intent",
+  "bundleStatus": "generated"
+}

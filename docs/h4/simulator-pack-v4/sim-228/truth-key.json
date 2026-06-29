@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-228",
+  "title": "Interview summary not full recording — duplicate pages",
+  "fakeDefendant": "Ansel Grove",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Perverting the course of justice",
+  "offenceFamily": "perverting_justice",
+  "profile": "partial_vs_full_evidence",
+  "mainIssue": "Summary of interview served; recording and transcript absent.",
+  "servedEvidence": [
+    "interview summary (folio 228 — Grove)",
+    "MG5 supplementary note (folio 228 — Grove)"
+  ],
+  "referredOnlyEvidence": [
+    "interview recording — Ansel Grove"
+  ],
+  "missingEvidence": [
+    "recording — Ansel Grove",
+    "transcript — Ansel Grove",
+    "custody risk triage form (Grove / folio 228)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Interview summary partial — chase recording before reliance.",
+  "expectedChaseItems": [
+    "interview recording — Ansel Grove",
+    "transcript — Ansel Grove",
+    "PACE forms — Ansel Grove",
+    "forensic toolkit continuity — Grove"
+  ],
+  "expectedSummaryRisk": "Provisional — partial interview summary on duplicate pages papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "summary proves admission",
+    "interview confirms account"
+  ],
+  "blockingFailPatterns": [
+    "summary proves admission",
+    "interview confirms account",
+    "admission reliable",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — duplicate_pages"
+  ],
+  "pdfLayoutType": "duplicate_pages",
+  "redTeamTrapType": "partial_interview_summary",
+  "bundleStatus": "generated"
+}

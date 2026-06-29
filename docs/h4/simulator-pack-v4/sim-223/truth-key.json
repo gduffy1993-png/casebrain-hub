@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-223",
+  "title": "Phone download indexed not served — index only bwv",
+  "fakeDefendant": "Veda Brook",
+  "fakeCourt": "Northgate Youth Court",
+  "offenceWording": "Theft (youth)",
+  "offenceFamily": "youth",
+  "profile": "index_listed_not_served",
+  "mainIssue": "Index references UFED download; only screenshot annex served.",
+  "servedEvidence": [
+    "screenshot annex (folio 223 — Brook)",
+    "MG5 supplementary note (folio 223 — Brook)"
+  ],
+  "referredOnlyEvidence": [
+    "UFED download per index — Veda Brook"
+  ],
+  "missingEvidence": [
+    "UFED download — Veda Brook",
+    "search scope — Veda Brook",
+    "forensic toolkit continuity (Brook / folio 223)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Phone download indexed not served — chase full UFED export.",
+  "expectedChaseItems": [
+    "UFED download — Veda Brook",
+    "search scope schedule — Veda Brook",
+    "continuity — Veda Brook",
+    "motoring calibration trace — Brook"
+  ],
+  "expectedSummaryRisk": "Provisional — index phone absent on index only bwv papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "download served because indexed",
+    "screenshots are full download"
+  ],
+  "blockingFailPatterns": [
+    "download served because indexed",
+    "screenshots are full download",
+    "phone proves attribution",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — index_only_bwv"
+  ],
+  "pdfLayoutType": "index_only_bwv",
+  "redTeamTrapType": "index_phone_absent",
+  "bundleStatus": "generated"
+}

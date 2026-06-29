@@ -1,0 +1,68 @@
+{
+  "caseId": "sim-151",
+  "title": "MG5 summary conflicts with MG11 account — bad ocr scan",
+  "offenceFamily": "drugs_conspiracy",
+  "offenceWording": "Conspiracy to supply Class A drugs",
+  "profile": "source_hierarchy_conflict",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5 officer summary (folio 151 — Crisp)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 151 — Crisp)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "signed MG11 — Alba Crisp",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "signed MG11 final version — Alba Crisp",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "PACE custody review form (Crisp / folio 151)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "custody_pace",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "signed MG11 — Alba Crisp",
+    "MG5 clarification — Alba Crisp",
+    "BWV timestamp — Alba Crisp",
+    "lab submission chain — Crisp"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "MG5 timeline proves assault time",
+    "summary outranks MG11"
+  ],
+  "blockingFailPatterns": [
+    "MG5 timeline proves",
+    "summary outranks MG11",
+    "assault time proved from MG5",
+    "we win",
+    "case collapses"
+  ]
+}

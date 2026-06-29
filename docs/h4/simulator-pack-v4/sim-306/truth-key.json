@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-306",
+  "title": "Public order individual conduct bleed — corrected indictment",
+  "fakeDefendant": "Bronte Isle",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Assault on emergency worker",
+  "offenceFamily": "aew_police_contact",
+  "profile": "multi_participant_public_order",
+  "mainIssue": "Group disorder summary — individual defendant conduct not mapped.",
+  "servedEvidence": [
+    "group conduct summary (folio 306 — Isle)",
+    "MG5 supplementary note (folio 306 — Isle)"
+  ],
+  "referredOnlyEvidence": [
+    "BWV clips — Bronte Isle"
+  ],
+  "missingEvidence": [
+    "per-defendant conduct map — Bronte Isle",
+    "full BWV — Bronte Isle",
+    "motoring calibration trace (Isle / folio 306)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Group disorder — chase per-defendant conduct evidence.",
+  "expectedChaseItems": [
+    "per-defendant conduct map — Bronte Isle",
+    "BWV clips — Bronte Isle",
+    "witness segregation — Bronte Isle",
+    "witness B statement clarification — Isle"
+  ],
+  "expectedSummaryRisk": "Provisional — public order individual bleed on corrected indictment papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "defendant participated as fact",
+    "group proves individual guilt"
+  ],
+  "blockingFailPatterns": [
+    "defendant participated as fact",
+    "group proves individual guilt",
+    "violent disorder proved",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — corrected_indictment"
+  ],
+  "pdfLayoutType": "corrected_indictment",
+  "redTeamTrapType": "public_order_individual_bleed",
+  "bundleStatus": "generated"
+}

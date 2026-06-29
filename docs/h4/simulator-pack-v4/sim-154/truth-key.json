@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-154",
+  "title": "Schedule lists material not on bundle — conflicting mg11 duplicate",
+  "fakeDefendant": "Damon Ince",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "S18 wounding with intent",
+  "offenceFamily": "violence_assault",
+  "profile": "source_hierarchy_conflict",
+  "mainIssue": "MG6C schedule lists BWV as served; bundle body contains index reference only.",
+  "servedEvidence": [
+    "MG6C schedule page (folio 154 — Ince)",
+    "MG5 supplementary note (folio 154 — Ince)"
+  ],
+  "referredOnlyEvidence": [
+    "BWV full export — Damon Ince"
+  ],
+  "missingEvidence": [
+    "BWV download — Damon Ince",
+    "continuity statement — Damon Ince",
+    "MG6 line 12 handset export (Ince / folio 154)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Schedule vs bundle mismatch — chase actual BWV export.",
+  "expectedChaseItems": [
+    "BWV full export — Damon Ince",
+    "schedule correction — Damon Ince",
+    "continuity — Damon Ince",
+    "order service affidavit — Ince"
+  ],
+  "expectedSummaryRisk": "Provisional — source hierarchy schedule served on conflicting mg11 duplicate papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "BWV served as fact",
+    "schedule proves material on bundle"
+  ],
+  "blockingFailPatterns": [
+    "BWV served as fact",
+    "schedule proves material",
+    "BWV shows",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — conflicting_mg11_duplicate"
+  ],
+  "pdfLayoutType": "conflicting_mg11_duplicate",
+  "redTeamTrapType": "source_hierarchy_schedule_served",
+  "bundleStatus": "generated"
+}

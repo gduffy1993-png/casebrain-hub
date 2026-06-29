@@ -569,6 +569,8 @@ const AUDIT_SIMULATOR_CASE_IDS_RAW = [
   // batch 8 → 150 simulator cases (v1 + v1.1 + v3 tail)
   ...simIdRange(1, 37),
   ...simIdRange(137, 150),
+  // batch 9–19 → 397 simulator cases (v4 controlled audit expansion)
+  ...simIdRange(151, 397),
 ];
 
 export const AUDIT_SIMULATOR_CASE_IDS = [...new Set(AUDIT_SIMULATOR_CASE_IDS_RAW)] as readonly string[];

@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-179",
+  "title": "Subscriber vs phone user — missing mg6 schedule",
+  "fakeDefendant": "Corinne Ivy",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Drive motor vehicle with excess alcohol",
+  "offenceFamily": "motoring",
+  "profile": "wrong_person_entity",
+  "mainIssue": "Account held by associate; user attribution to defendant not established.",
+  "servedEvidence": [
+    "subscriber record summary (folio 179 — Ivy)",
+    "MG5 supplementary note (folio 179 — Ivy)"
+  ],
+  "referredOnlyEvidence": [
+    "handset download — Corinne Ivy"
+  ],
+  "missingEvidence": [
+    "usage attribution — Corinne Ivy",
+    "handset download — Corinne Ivy",
+    "message platform export hash (Ivy / folio 179)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Subscriber not user — chase handset usage and attribution evidence.",
+  "expectedChaseItems": [
+    "handset download — Corinne Ivy",
+    "usage attribution — Corinne Ivy",
+    "cellsite if relevant — Corinne Ivy",
+    "county lines line attribution chart — Ivy"
+  ],
+  "expectedSummaryRisk": "Provisional — subscriber vs user on missing mg6 schedule papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "subscriber is defendant",
+    "account holder proves user"
+  ],
+  "blockingFailPatterns": [
+    "subscriber is defendant",
+    "account holder proves user",
+    "phone proves defendant sent",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — missing_mg6_schedule"
+  ],
+  "pdfLayoutType": "missing_mg6_schedule",
+  "redTeamTrapType": "subscriber_vs_user",
+  "bundleStatus": "generated"
+}

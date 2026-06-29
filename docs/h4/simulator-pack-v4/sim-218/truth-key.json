@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-218",
+  "title": "Available on request not served — mixed defendants rotated",
+  "fakeDefendant": "Quillon Wisp",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Drive motor vehicle with excess alcohol",
+  "offenceFamily": "motoring",
+  "profile": "disclosure_schedule_trap",
+  "mainIssue": "BWV marked available on request — not treated as served disclosure.",
+  "servedEvidence": [
+    "MG6 note available on request (folio 218 — Wisp)",
+    "MG5 supplementary note (folio 218 — Wisp)"
+  ],
+  "referredOnlyEvidence": [
+    "BWV on request — Quillon Wisp"
+  ],
+  "missingEvidence": [
+    "BWV export — Quillon Wisp",
+    "continuity — Quillon Wisp",
+    "ABE room recording index (Wisp / folio 218)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Available on request is not served — chase BWV export.",
+  "expectedChaseItems": [
+    "BWV export — Quillon Wisp",
+    "disclosure confirmation — Quillon Wisp",
+    "continuity — Quillon Wisp",
+    "co-defendant segregation map — Wisp"
+  ],
+  "expectedSummaryRisk": "Provisional — available on request not served on mixed defendants rotated papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "BWV served because listed",
+    "available on request equals served"
+  ],
+  "blockingFailPatterns": [
+    "BWV served because listed",
+    "available on request equals served",
+    "BWV shows",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — mixed_defendants_rotated"
+  ],
+  "pdfLayoutType": "mixed_defendants_rotated",
+  "redTeamTrapType": "available_on_request_not_served",
+  "bundleStatus": "generated"
+}

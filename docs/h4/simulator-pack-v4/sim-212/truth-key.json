@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-212",
+  "title": "Interpreter mentioned — record missing — very thin sjp",
+  "fakeDefendant": "Kestrel Penn",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Being concerned in the supply of Class A drugs",
+  "offenceFamily": "drugs_supply",
+  "profile": "youth_vulnerability_custody",
+  "mainIssue": "MG5 notes interpreter used; interpreter certification and recording not served.",
+  "servedEvidence": [
+    "MG5 reference to interpreter (folio 212 — Penn)",
+    "MG5 supplementary note (folio 212 — Penn)"
+  ],
+  "referredOnlyEvidence": [
+    "interview recording — Kestrel Penn"
+  ],
+  "missingEvidence": [
+    "interpreter certification — Kestrel Penn",
+    "interview recording — Kestrel Penn",
+    "VIPER pack completeness (Penn / folio 212)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Interpreter record missing — chase certification and interview recording.",
+  "expectedChaseItems": [
+    "interpreter certification — Kestrel Penn",
+    "interview recording — Kestrel Penn",
+    "PACE review — Kestrel Penn",
+    "weapons seizure photograph set — Penn"
+  ],
+  "expectedSummaryRisk": "Provisional — youth interpreter missing on very thin sjp papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "interpreter attended as fact",
+    "interview fairly conducted"
+  ],
+  "blockingFailPatterns": [
+    "interpreter attended as fact",
+    "interview fairly conducted",
+    "PACE complied",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — very_thin_sjp"
+  ],
+  "pdfLayoutType": "very_thin_sjp",
+  "redTeamTrapType": "youth_interpreter_missing",
+  "bundleStatus": "generated"
+}

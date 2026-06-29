@@ -1,0 +1,71 @@
+{
+  "caseId": "sim-217",
+  "title": "Redacted unused item relied on in summary — corrected indictment",
+  "offenceFamily": "sexual",
+  "offenceWording": "Sexual assault (historic)",
+  "profile": "disclosure_schedule_trap",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "redacted unused extract (folio 217 — Vane)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 217 — Vane)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full unused material — Petra Vane",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "unredacted unused — Petra Vane",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "primary witness account — Petra Vane",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "medical imaging disc (Vane / folio 217)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "unredacted unused — Petra Vane",
+    "primary MG11 — Petra Vane",
+    "MG6 clarification — Petra Vane",
+    "late addendum item list — Vane"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "redacted extract proves account",
+    "unused material supports prosecution"
+  ],
+  "blockingFailPatterns": [
+    "redacted extract proves",
+    "unused material supports prosecution",
+    "account proved from redacted",
+    "we win",
+    "case collapses"
+  ]
+}

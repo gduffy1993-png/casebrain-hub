@@ -1,0 +1,58 @@
+{
+  "caseId": "sim-210",
+  "title": "Disclosure date confused with offence date — skewed scan",
+  "fakeDefendant": "Ingrid Noll",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Conspiracy to supply Class A drugs",
+  "offenceFamily": "drugs_conspiracy",
+  "profile": "date_time_conflict",
+  "mainIssue": "Late disclosure cover sheet dated service day only; offence particulars reference different month.",
+  "servedEvidence": [
+    "late disclosure cover sheet (folio 210 — Noll)",
+    "MG5 supplementary note (folio 210 — Noll)"
+  ],
+  "referredOnlyEvidence": [
+    "original MG5 — Ingrid Noll"
+  ],
+  "missingEvidence": [
+    "charge sheet clarity — Ingrid Noll",
+    "offence date particulars — Ingrid Noll",
+    "interpreter attendance note (Noll / folio 210)"
+  ],
+  "uncertainEvidence": [
+    "correct offence window"
+  ],
+  "expectedTodayIssue": "Disclosure date not offence date — confirm particulars from charge sheet.",
+  "expectedChaseItems": [
+    "charge sheet — Ingrid Noll",
+    "offence date particulars — Ingrid Noll",
+    "MG5 clarification — Ingrid Noll",
+    "phone billing record match — Noll"
+  ],
+  "expectedSummaryRisk": "Provisional — date time disclosure offence on skewed scan papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "disclosure date is offence date",
+    "particulars proved from cover sheet"
+  ],
+  "blockingFailPatterns": [
+    "disclosure date is offence date",
+    "particulars proved from cover",
+    "offence date confirmed",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — skewed_scan"
+  ],
+  "pdfLayoutType": "skewed_scan",
+  "redTeamTrapType": "date_time_disclosure_offence",
+  "bundleStatus": "generated"
+}

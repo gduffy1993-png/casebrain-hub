@@ -1,0 +1,72 @@
+{
+  "caseId": "sim-281",
+  "title": "Medical summary not full record — missing mg6 schedule",
+  "offenceFamily": "breach_order",
+  "offenceWording": "Breach of non-molestation order",
+  "profile": "partial_vs_full_evidence",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5 injury summary (folio 281 — Irid)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 281 — Irid)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "medical report — Cullen Irid",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "medical report — Cullen Irid",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "imaging — Cullen Irid",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "co-defendant segregation map (Irid / folio 281)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "medical report — Cullen Irid",
+    "imaging — Cullen Irid",
+    "expert if applicable — Cullen Irid",
+    "ABE room recording index — Irid"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "medical proves s18 intent",
+    "injury grade proved"
+  ],
+  "blockingFailPatterns": [
+    "medical proves s18",
+    "injury grade proved",
+    "intent proved",
+    "we win",
+    "case collapses"
+  ]
+}

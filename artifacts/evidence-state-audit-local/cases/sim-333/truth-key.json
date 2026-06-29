@@ -1,0 +1,72 @@
+{
+  "caseId": "sim-333",
+  "title": "Medical summary not full record — large messy rotated",
+  "offenceFamily": "domestic",
+  "offenceWording": "Controlling or coercive behaviour",
+  "profile": "partial_vs_full_evidence",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5 injury summary (folio 333 — Jasp)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 333 — Jasp)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "medical report — Cleo Jasp",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "medical report — Cleo Jasp",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "imaging — Cleo Jasp",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "banking schedule annex B (Jasp / folio 333)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "medical report — Cleo Jasp",
+    "imaging — Cleo Jasp",
+    "expert if applicable — Cleo Jasp",
+    "MG6 line 12 handset export — Jasp"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "medical proves s18 intent",
+    "injury grade proved"
+  ],
+  "blockingFailPatterns": [
+    "medical proves s18",
+    "injury grade proved",
+    "intent proved",
+    "we win",
+    "case collapses"
+  ]
+}

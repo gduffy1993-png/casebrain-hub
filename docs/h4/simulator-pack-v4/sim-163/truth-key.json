@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-163",
+  "title": "MG6C item listed but not served — bwv screenshots only",
+  "fakeDefendant": "Maeve Rook",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Breach of non-molestation order",
+  "offenceFamily": "breach_order",
+  "profile": "disclosure_schedule_trap",
+  "mainIssue": "MG6C line 14 lists handset download — file not on bundle.",
+  "servedEvidence": [
+    "MG6C schedule (folio 163 — Rook)",
+    "MG5 supplementary note (folio 163 — Rook)"
+  ],
+  "referredOnlyEvidence": [
+    "handset download per MG6C line 14 — Maeve Rook"
+  ],
+  "missingEvidence": [
+    "handset download — Maeve Rook",
+    "extraction certificate — Maeve Rook",
+    "medical imaging disc (Rook / folio 163)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "MG6C listed-not-served — chase handset download listed on schedule.",
+  "expectedChaseItems": [
+    "handset download — Maeve Rook",
+    "MG6C line 14 material — Maeve Rook",
+    "extraction certificate — Maeve Rook",
+    "late addendum item list — Rook"
+  ],
+  "expectedSummaryRisk": "Provisional — mg6c listed not served on bwv screenshots only papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "MG6C item served as fact",
+    "download on bundle"
+  ],
+  "blockingFailPatterns": [
+    "MG6C item served",
+    "download on bundle",
+    "digital evidence proved",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — bwv_screenshots_only"
+  ],
+  "pdfLayoutType": "bwv_screenshots_only",
+  "redTeamTrapType": "mg6c_listed_not_served",
+  "bundleStatus": "generated"
+}

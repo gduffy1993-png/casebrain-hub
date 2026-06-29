@@ -1,0 +1,58 @@
+{
+  "caseId": "sim-164",
+  "title": "MG6D sensitive/non-sensitive confusion — bad ocr scan",
+  "fakeDefendant": "Nolan Spade",
+  "fakeCourt": "Northgate Youth Court",
+  "offenceWording": "Theft (youth)",
+  "offenceFamily": "youth",
+  "profile": "disclosure_schedule_trap",
+  "mainIssue": "Material marked sensitive on MG6D but same item summarised as unused on MG6C.",
+  "servedEvidence": [
+    "MG6C and MG6D schedules (folio 164 — Spade)",
+    "MG5 supplementary note (folio 164 — Spade)"
+  ],
+  "referredOnlyEvidence": [
+    "sensitive material gateway — Nolan Spade"
+  ],
+  "missingEvidence": [
+    "sensitivity review — Nolan Spade",
+    "gateway application — Nolan Spade",
+    "ABE room recording index (Spade / folio 164)"
+  ],
+  "uncertainEvidence": [
+    "whether material is unused or sensitive"
+  ],
+  "expectedTodayIssue": "MG6D/MG6C confusion — chase sensitivity classification and actual access.",
+  "expectedChaseItems": [
+    "sensitivity classification — Nolan Spade",
+    "gateway application — Nolan Spade",
+    "unused material access — Nolan Spade",
+    "co-defendant segregation map — Spade"
+  ],
+  "expectedSummaryRisk": "Provisional — mg6d sensitive confusion on bad ocr scan papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "sensitive material fully disclosed",
+    "unused material covered"
+  ],
+  "blockingFailPatterns": [
+    "sensitive material fully disclosed",
+    "unused material covered",
+    "disclosure complete",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — bad_ocr_scan"
+  ],
+  "pdfLayoutType": "bad_ocr_scan",
+  "redTeamTrapType": "mg6d_sensitive_confusion",
+  "bundleStatus": "generated"
+}

@@ -1,0 +1,73 @@
+{
+  "caseId": "sim-214",
+  "title": "Custody risk assessment missing — thin sjp scan",
+  "offenceFamily": "robbery_id",
+  "offenceWording": "Robbery",
+  "profile": "youth_vulnerability_custody",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "custody booking sheet (folio 214 — Rune)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "custody_pace",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 214 — Rune)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "risk assessment — Merrick Rune",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "custody risk assessment — Merrick Rune",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "custody_pace",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "mental health triage — Merrick Rune",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "subscriber account verification (Rune / folio 214)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "risk assessment — Merrick Rune",
+    "MH triage — Merrick Rune",
+    "PACE forms — Merrick Rune",
+    "second MG11 draft clarification — Rune"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "safeguards complied",
+    "fitness to detain proved"
+  ],
+  "blockingFailPatterns": [
+    "safeguards complied",
+    "fitness to detain proved",
+    "PACE complied as fact",
+    "we win",
+    "case collapses"
+  ]
+}

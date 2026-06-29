@@ -1,0 +1,78 @@
+{
+  "caseId": "sim-347",
+  "title": "Huge bundle — partial index only — blank pages metadata",
+  "offenceFamily": "encro_encrypted_comms",
+  "offenceWording": "Conspiracy to supply Class A drugs (encrypted comms)",
+  "profile": "large_messy_bundle",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "partial index (folio 347 — Xan)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "subset exhibits (folio 347 — Xan)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 347 — Xan)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "multiple exports — Quin Xan",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "defendant exhibit map — Quin Xan",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "complete index — Quin Xan",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "scene forensic sweep log (Xan / folio 347)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "defendant exhibit map — Quin Xan",
+    "complete index — Quin Xan",
+    "key exports — Quin Xan",
+    "vehicle ANPR download — Xan"
+  ],
+  "expectedSendability": "needs_solicitor_review",
+  "mustNotSayGlobal": [
+    "bundle complete",
+    "safe to send"
+  ],
+  "blockingFailPatterns": [
+    "bundle complete",
+    "safe to send",
+    "case summary confirms",
+    "we win",
+    "case collapses"
+  ]
+}

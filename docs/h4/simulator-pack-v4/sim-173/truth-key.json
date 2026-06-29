@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-173",
+  "title": "Screenshots not full download — conflicting mg11 duplicate",
+  "fakeDefendant": "Willa Crane",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Being concerned in the supply of Class A drugs",
+  "offenceFamily": "drugs_supply",
+  "profile": "partial_vs_full_evidence",
+  "mainIssue": "Handset screenshots served without UFED scope or continuity.",
+  "servedEvidence": [
+    "handset screenshots (folio 173 — Crane)",
+    "MG5 supplementary note (folio 173 — Crane)"
+  ],
+  "referredOnlyEvidence": [
+    "UFED extraction — Willa Crane"
+  ],
+  "missingEvidence": [
+    "full download — Willa Crane",
+    "search terms schedule — Willa Crane",
+    "co-defendant segregation map (Crane / folio 173)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Screenshots partial — chase full download and search terms.",
+  "expectedChaseItems": [
+    "UFED download — Willa Crane",
+    "search terms — Willa Crane",
+    "continuity certificate — Willa Crane",
+    "ABE room recording index — Crane"
+  ],
+  "expectedSummaryRisk": "Provisional — partial phone screenshots on conflicting mg11 duplicate papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "screenshots prove all messages",
+    "download scope complete"
+  ],
+  "blockingFailPatterns": [
+    "screenshots prove all messages",
+    "download scope complete",
+    "phone proves supply",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — conflicting_mg11_duplicate"
+  ],
+  "pdfLayoutType": "conflicting_mg11_duplicate",
+  "redTeamTrapType": "partial_phone_screenshots",
+  "bundleStatus": "generated"
+}

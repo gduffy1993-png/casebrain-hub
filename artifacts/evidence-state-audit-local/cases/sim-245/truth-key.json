@@ -1,0 +1,72 @@
+{
+  "caseId": "sim-245",
+  "title": "Co-defendant phone data bleed — huge bundle partial",
+  "offenceFamily": "mixed_unclear",
+  "offenceWording": "Offence per charge sheet",
+  "profile": "wrong_person_entity",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "mixed handset summary (folio 245 — Xenon)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 245 — Xenon)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "co-defendant download — Rhea Xenon",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "per-defendant segregation — Rhea Xenon",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "attribution map — Rhea Xenon",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "youth court safeguarding plan (Xenon / folio 245)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "per-defendant digital map — Rhea Xenon",
+    "handset downloads — Rhea Xenon",
+    "subscriber records — Rhea Xenon",
+    "mixed bundle defendant index — Xenon"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "co-defendant phone proves this defendant",
+    "shared device proves user"
+  ],
+  "blockingFailPatterns": [
+    "co-defendant phone proves",
+    "shared device proves user",
+    "attribution to defendant",
+    "we win",
+    "case collapses"
+  ]
+}

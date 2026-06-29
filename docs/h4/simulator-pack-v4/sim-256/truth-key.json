@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-256",
+  "title": "Officer summary vs primary exhibit — mixed defendants rotated",
+  "fakeDefendant": "Coraline Ink",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Sexual assault (historic)",
+  "offenceFamily": "sexual",
+  "profile": "source_hierarchy_conflict",
+  "mainIssue": "Officer MG5 summary describes knife recovery; exhibit continuity log missing and MG11 differs on location.",
+  "servedEvidence": [
+    "officer MG5 narrative (folio 256 — Ink)",
+    "MG5 supplementary note (folio 256 — Ink)"
+  ],
+  "referredOnlyEvidence": [
+    "exhibit continuity log — Coraline Ink"
+  ],
+  "missingEvidence": [
+    "continuity log — Coraline Ink",
+    "seizure photographs — Coraline Ink",
+    "sensitive material schedule MG6D (Ink / folio 256)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Officer summary not primary — chase exhibit continuity and witness MG11.",
+  "expectedChaseItems": [
+    "exhibit continuity — Coraline Ink",
+    "seizure photographs — Coraline Ink",
+    "witness MG11 — Coraline Ink",
+    "historic ABE support notes — Ink"
+  ],
+  "expectedSummaryRisk": "Provisional — source hierarchy officer exhibit on mixed defendants rotated papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "officer summary proves knife location",
+    "exhibit proved from summary"
+  ],
+  "blockingFailPatterns": [
+    "officer summary proves knife",
+    "exhibit proved from summary",
+    "knife location proved",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — mixed_defendants_rotated"
+  ],
+  "pdfLayoutType": "mixed_defendants_rotated",
+  "redTeamTrapType": "source_hierarchy_officer_exhibit",
+  "bundleStatus": "generated"
+}

@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-364",
+  "title": "BWV timestamp vs alleged incident — conflicting mg11 duplicate",
+  "fakeDefendant": "Hana Opal",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Assault on emergency worker",
+  "offenceFamily": "aew_police_contact",
+  "profile": "date_time_conflict",
+  "mainIssue": "BWV metadata shows 14:22; MG5 alleges assault at 19:05 same date.",
+  "servedEvidence": [
+    "BWV clip metadata page (folio 364 — Opal)",
+    "MG5 supplementary note (folio 364 — Opal)"
+  ],
+  "referredOnlyEvidence": [
+    "full BWV export — Hana Opal"
+  ],
+  "missingEvidence": [
+    "full BWV window — Hana Opal",
+    "MG11 time account — Hana Opal",
+    "sensitive material schedule MG6D (Opal / folio 364)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "BWV timestamp mismatch — chase full BWV window and MG11.",
+  "expectedChaseItems": [
+    "full BWV export — Hana Opal",
+    "MG11 time account — Hana Opal",
+    "metadata verification — Hana Opal",
+    "historic ABE support notes — Opal"
+  ],
+  "expectedSummaryRisk": "Provisional — date time bwv incident on conflicting mg11 duplicate papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "BWV proves incident time",
+    "timestamp confirms assault"
+  ],
+  "blockingFailPatterns": [
+    "BWV proves incident time",
+    "timestamp confirms assault",
+    "BWV shows assault",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — conflicting_mg11_duplicate"
+  ],
+  "pdfLayoutType": "conflicting_mg11_duplicate",
+  "redTeamTrapType": "date_time_bwv_incident",
+  "bundleStatus": "generated"
+}

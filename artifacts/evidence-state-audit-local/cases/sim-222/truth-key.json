@@ -1,0 +1,73 @@
+{
+  "caseId": "sim-222",
+  "title": "CCTV on index — exhibit missing — pages out of order",
+  "offenceFamily": "breach_order",
+  "offenceWording": "Breach of non-molestation order",
+  "profile": "index_listed_not_served",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "exhibit list (folio 222 — Ash)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 222 — Ash)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "CCTV CE/01 — Ulric Ash",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "cctv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "CCTV export — Ulric Ash",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "cctv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "continuity — Ulric Ash",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "late addendum item list (Ash / folio 222)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "CCTV master footage — Ulric Ash",
+    "continuity — Ulric Ash",
+    "ID procedure — Ulric Ash",
+    "fraud transaction mapping sheet — Ash"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "CCTV identifies defendant",
+    "exhibit list proves footage served"
+  ],
+  "blockingFailPatterns": [
+    "CCTV identifies defendant",
+    "exhibit list proves footage",
+    "CCTV shows",
+    "we win",
+    "case collapses"
+  ]
+}

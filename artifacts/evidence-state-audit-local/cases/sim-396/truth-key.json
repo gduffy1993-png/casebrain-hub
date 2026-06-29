@@ -1,0 +1,74 @@
+{
+  "caseId": "sim-396",
+  "title": "Court note sendability risk — mixed defendants rotated",
+  "offenceFamily": "fraud_account",
+  "offenceWording": "Fraud by false representation",
+  "profile": "export_surface_safety",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "thin MG5 (folio 396 — Vale)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 396 — Vale)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "medical — Ola Vale",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "medical — Ola Vale",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG11 — Ola Vale",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "CCTV master timeline index (Vale / folio 396)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "cctv",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "medical report — Ola Vale",
+    "MG11 — Ola Vale",
+    "BWV if relevant — Ola Vale",
+    "perverting course email preservation — Vale"
+  ],
+  "expectedSendability": "needs_solicitor_review",
+  "mustNotSayGlobal": [
+    "safe to send",
+    "bundle supports court note"
+  ],
+  "blockingFailPatterns": [
+    "safe to send",
+    "bundle supports court note",
+    "case summary confirms",
+    "we win",
+    "case collapses"
+  ]
+}

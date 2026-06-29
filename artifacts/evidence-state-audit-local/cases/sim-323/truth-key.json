@@ -1,0 +1,80 @@
+{
+  "caseId": "sim-323",
+  "title": "Old charge family in bundle — bad ocr scan",
+  "offenceFamily": "mixed_unclear",
+  "offenceWording": "Offence per charge sheet",
+  "profile": "changed_corrected_charge",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "amended indictment (folio 323 — Zephyr)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "old fraud count pages (folio 323 — Zephyr)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 323 — Zephyr)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "original MG5 — Suri Zephyr",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "count linkage schedule — Suri Zephyr",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "amended particulars — Suri Zephyr",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "search BWV continuity (Zephyr / folio 323)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "amended indictment clarity — Suri Zephyr",
+    "live count schedule — Suri Zephyr",
+    "MG5 update — Suri Zephyr",
+    "VIPER pack completeness — Zephyr"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "old fraud theory applies",
+    "amended charge proves new offence"
+  ],
+  "blockingFailPatterns": [
+    "old fraud theory applies",
+    "amended charge proves",
+    "offence proved from old pages",
+    "we win",
+    "case collapses"
+  ]
+}

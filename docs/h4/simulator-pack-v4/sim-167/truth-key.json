@@ -1,0 +1,57 @@
+{
+  "caseId": "sim-167",
+  "title": "Old charge family in bundle — mixed defendants rotated",
+  "fakeDefendant": "Quinna Vale",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Possession of indecent images — attribution disputed",
+  "offenceFamily": "digital_attribution",
+  "profile": "changed_corrected_charge",
+  "mainIssue": "Amended indictment changes offence family; old fraud count pages remain in bundle.",
+  "servedEvidence": [
+    "amended indictment (folio 167 — Vale)",
+    "old fraud count pages (folio 167 — Vale)",
+    "MG5 supplementary note (folio 167 — Vale)"
+  ],
+  "referredOnlyEvidence": [
+    "original MG5 — Quinna Vale"
+  ],
+  "missingEvidence": [
+    "count linkage schedule — Quinna Vale",
+    "amended particulars — Quinna Vale",
+    "unused material sensitivity review (Vale / folio 167)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Corrected charge — confirm live counts; do not import old offence theory.",
+  "expectedChaseItems": [
+    "amended indictment clarity — Quinna Vale",
+    "live count schedule — Quinna Vale",
+    "MG5 update — Quinna Vale",
+    "firearm classification worksheet — Vale"
+  ],
+  "expectedSummaryRisk": "Provisional — corrected charge old family on mixed defendants rotated papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "old fraud theory applies",
+    "amended charge proves new offence"
+  ],
+  "blockingFailPatterns": [
+    "old fraud theory applies",
+    "amended charge proves",
+    "offence proved from old pages",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — mixed_defendants_rotated"
+  ],
+  "pdfLayoutType": "mixed_defendants_rotated",
+  "redTeamTrapType": "corrected_charge_old_family",
+  "bundleStatus": "generated"
+}

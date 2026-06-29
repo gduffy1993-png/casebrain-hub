@@ -1,0 +1,72 @@
+{
+  "caseId": "sim-348",
+  "title": "Image-only scan — no searchable text — custody extract missing",
+  "offenceFamily": "drugs_conspiracy",
+  "offenceWording": "Conspiracy to supply Class A drugs",
+  "profile": "partial_vs_full_evidence",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "image-only scanned pages (folio 348 — Yor)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 348 — Yor)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "text-searchable versions — Rafe Yor",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "searchable MG6 — Rafe Yor",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "searchable statements — Rafe Yor",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "digital extraction scope annex (Yor / folio 348)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "text-searchable MG6 — Rafe Yor",
+    "searchable statements — Rafe Yor",
+    "key exports — Rafe Yor",
+    "breath procedure MGDDB copy — Yor"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "OCR text proves schedule",
+    "scan proves content"
+  ],
+  "blockingFailPatterns": [
+    "OCR text proves schedule",
+    "scan proves content",
+    "schedule complete as read",
+    "we win",
+    "case collapses"
+  ]
+}

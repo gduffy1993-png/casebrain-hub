@@ -1,0 +1,71 @@
+{
+  "caseId": "sim-253",
+  "title": "Weapon forensic index-only — bad ocr scan",
+  "offenceFamily": "violence_assault",
+  "offenceWording": "S18 wounding with intent",
+  "profile": "bladed_article",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "index forensic reference (folio 253 — Fallow)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 253 — Fallow)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "forensic report — Zeb Fallow",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "forensic report — Zeb Fallow",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "continuity — Zeb Fallow",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "perverting course email preservation (Fallow / folio 253)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "forensic report — Zeb Fallow",
+    "continuity — Zeb Fallow",
+    "search footage — Zeb Fallow",
+    "digital extraction scope annex — Fallow"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "forensic proves weapon",
+    "report confirms blade"
+  ],
+  "blockingFailPatterns": [
+    "forensic proves weapon",
+    "report confirms blade",
+    "weapon analysis confirms",
+    "we win",
+    "case collapses"
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "caseId": "sim-353",
+  "title": "Breach — order service unclear — late addendum scan",
+  "fakeDefendant": "Wes Dray",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Controlling or coercive behaviour",
+  "offenceFamily": "domestic",
+  "profile": "order_breach_service",
+  "mainIssue": "Non-molestation order copy served; proof of service missing.",
+  "servedEvidence": [
+    "order copy (folio 353 — Dray)",
+    "MG5 supplementary note (folio 353 — Dray)"
+  ],
+  "referredOnlyEvidence": [
+    "service affidavit — Wes Dray"
+  ],
+  "missingEvidence": [
+    "proof of service — Wes Dray",
+    "breach particulars — Wes Dray",
+    "youth court safeguarding plan (Dray / folio 353)"
+  ],
+  "uncertainEvidence": [
+    "whether defendant served"
+  ],
+  "expectedTodayIssue": "Breach elements — chase service proof and breach particulars.",
+  "expectedChaseItems": [
+    "proof of service — Wes Dray",
+    "order terms — Wes Dray",
+    "breach timeline — Wes Dray",
+    "mixed bundle defendant index — Dray"
+  ],
+  "expectedSummaryRisk": "Provisional — breach order service unclear on late addendum scan papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "order served as fact",
+    "breach proved"
+  ],
+  "blockingFailPatterns": [
+    "order served as fact",
+    "breach proved",
+    "service confirmed",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — late_addendum_scan"
+  ],
+  "pdfLayoutType": "late_addendum_scan",
+  "redTeamTrapType": "breach_order_service_unclear",
+  "bundleStatus": "generated"
+}

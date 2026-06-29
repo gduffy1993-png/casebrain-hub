@@ -1,0 +1,72 @@
+{
+  "caseId": "sim-303",
+  "title": "Account control inferred — bwv screenshots only",
+  "offenceFamily": "custody_pace",
+  "offenceWording": "Theft",
+  "profile": "money_laundering_bank_records",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "transaction summary (folio 303 — Fjord)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 303 — Fjord)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "bank download — Yannick Fjord",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "bank export — Yannick Fjord",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "device/ownership proof — Yannick Fjord",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "conspiracy role assessment (Fjord / folio 303)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "bank download — Yannick Fjord",
+    "ownership evidence — Yannick Fjord",
+    "device records — Yannick Fjord",
+    "amended charge linkage schedule — Fjord"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "account control proved",
+    "defendant authorised transactions"
+  ],
+  "blockingFailPatterns": [
+    "account control proved",
+    "defendant authorised transactions",
+    "fraud proved",
+    "we win",
+    "case collapses"
+  ]
+}

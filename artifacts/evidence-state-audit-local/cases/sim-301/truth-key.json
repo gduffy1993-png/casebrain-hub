@@ -1,0 +1,79 @@
+{
+  "caseId": "sim-301",
+  "title": "Breach — order service unclear — very thin sjp",
+  "offenceFamily": "breach_order",
+  "offenceWording": "Breach of non-molestation order",
+  "profile": "order_breach_service",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "order copy (folio 301 — Dorn)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 301 — Dorn)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "service affidavit — Willa Dorn",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "proof of service — Willa Dorn",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "breach particulars — Willa Dorn",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "fraud transaction mapping sheet (Dorn / folio 301)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "whether defendant served",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "proof of service — Willa Dorn",
+    "order terms — Willa Dorn",
+    "breach timeline — Willa Dorn",
+    "interpreter attendance note — Dorn"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "order served as fact",
+    "breach proved"
+  ],
+  "blockingFailPatterns": [
+    "order served as fact",
+    "breach proved",
+    "service confirmed",
+    "we win",
+    "case collapses"
+  ]
+}

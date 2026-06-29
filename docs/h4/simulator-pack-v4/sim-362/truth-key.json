@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-362",
+  "title": "Schedule lists material not on bundle — pages out of order",
+  "fakeDefendant": "Fern Mire",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Offence per charge sheet",
+  "offenceFamily": "mixed_unclear",
+  "profile": "source_hierarchy_conflict",
+  "mainIssue": "MG6C schedule lists BWV as served; bundle body contains index reference only.",
+  "servedEvidence": [
+    "MG6C schedule page (folio 362 — Mire)",
+    "MG5 supplementary note (folio 362 — Mire)"
+  ],
+  "referredOnlyEvidence": [
+    "BWV full export — Fern Mire"
+  ],
+  "missingEvidence": [
+    "BWV download — Fern Mire",
+    "continuity statement — Fern Mire",
+    "mixed bundle defendant index (Mire / folio 362)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Schedule vs bundle mismatch — chase actual BWV export.",
+  "expectedChaseItems": [
+    "BWV full export — Fern Mire",
+    "schedule correction — Fern Mire",
+    "continuity — Fern Mire",
+    "youth court safeguarding plan — Mire"
+  ],
+  "expectedSummaryRisk": "Provisional — source hierarchy schedule served on pages out of order papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "BWV served as fact",
+    "schedule proves material on bundle"
+  ],
+  "blockingFailPatterns": [
+    "BWV served as fact",
+    "schedule proves material",
+    "BWV shows",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — pages_out_of_order"
+  ],
+  "pdfLayoutType": "pages_out_of_order",
+  "redTeamTrapType": "source_hierarchy_schedule_served",
+  "bundleStatus": "generated"
+}

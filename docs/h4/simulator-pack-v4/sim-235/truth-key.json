@@ -1,0 +1,58 @@
+{
+  "caseId": "sim-235",
+  "title": "Possession/control inferred — two column schedule",
+  "fakeDefendant": "Helena Nave",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Controlling or coercive behaviour",
+  "offenceFamily": "domestic",
+  "profile": "inference_as_fact",
+  "mainIssue": "Drugs found in shared vehicle — defendant possession/control not established.",
+  "servedEvidence": [
+    "seizure notes (folio 235 — Nave)",
+    "MG5 supplementary note (folio 235 — Nave)"
+  ],
+  "referredOnlyEvidence": [
+    "forensic report — Helena Nave"
+  ],
+  "missingEvidence": [
+    "forensic report — Helena Nave",
+    "fingerprints/DNA — Helena Nave",
+    "witness B statement clarification (Nave / folio 235)"
+  ],
+  "uncertainEvidence": [
+    "who had control"
+  ],
+  "expectedTodayIssue": "Possession inference — chase forensic linkage and defendant association.",
+  "expectedChaseItems": [
+    "forensic report — Helena Nave",
+    "continuity — Helena Nave",
+    "occupancy evidence — Helena Nave",
+    "image-only scan text layer — Nave"
+  ],
+  "expectedSummaryRisk": "Provisional — inference possession control on two column schedule papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "defendant possessed drugs",
+    "control proved as fact"
+  ],
+  "blockingFailPatterns": [
+    "defendant possessed drugs",
+    "control proved as fact",
+    "possession proved",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — two_column_schedule"
+  ],
+  "pdfLayoutType": "two_column_schedule",
+  "redTeamTrapType": "inference_possession_control",
+  "bundleStatus": "generated"
+}

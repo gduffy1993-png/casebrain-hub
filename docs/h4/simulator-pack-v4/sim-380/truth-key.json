@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-380",
+  "title": "CCTV stills not full CCTV — custody extract missing",
+  "fakeDefendant": "Yuri Fennec",
+  "fakeCourt": "Northgate Youth Court",
+  "offenceWording": "Theft (youth)",
+  "offenceFamily": "youth",
+  "profile": "partial_vs_full_evidence",
+  "mainIssue": "Grainy stills served — master timeline and continuity missing.",
+  "servedEvidence": [
+    "CCTV still images (folio 380 — Fennec)",
+    "MG5 supplementary note (folio 380 — Fennec)"
+  ],
+  "referredOnlyEvidence": [
+    "master CCTV timeline — Yuri Fennec"
+  ],
+  "missingEvidence": [
+    "master footage — Yuri Fennec",
+    "continuity — Yuri Fennec",
+    "ABE room recording index (Fennec / folio 380)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "CCTV stills only — chase master footage full window.",
+  "expectedChaseItems": [
+    "master CCTV — Yuri Fennec",
+    "full time window — Yuri Fennec",
+    "continuity — Yuri Fennec",
+    "co-defendant segregation map — Fennec"
+  ],
+  "expectedSummaryRisk": "Provisional — partial cctv stills on custody extract missing papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "CCTV stills prove ID",
+    "stills are full CCTV"
+  ],
+  "blockingFailPatterns": [
+    "CCTV stills prove ID",
+    "stills are full CCTV",
+    "CCTV shows robbery",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — custody_extract_missing"
+  ],
+  "pdfLayoutType": "custody_extract_missing",
+  "redTeamTrapType": "partial_cctv_stills",
+  "bundleStatus": "generated"
+}

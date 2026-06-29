@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-393",
+  "title": "Conspiracy role inferred — bad ocr scan",
+  "fakeDefendant": "Lou Silt",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Stalking involving fear of violence",
+  "offenceFamily": "harassment",
+  "profile": "inference_as_fact",
+  "mainIssue": "Group chat membership served — leading role inference not established.",
+  "servedEvidence": [
+    "group chat excerpts (folio 393 — Silt)",
+    "MG5 supplementary note (folio 393 — Silt)"
+  ],
+  "referredOnlyEvidence": [
+    "full chat export — Lou Silt"
+  ],
+  "missingEvidence": [
+    "role map — Lou Silt",
+    "telecom data — Lou Silt",
+    "order service affidavit (Silt / folio 393)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Conspiracy role inference — chase per-defendant role map.",
+  "expectedChaseItems": [
+    "per-defendant role map — Lou Silt",
+    "telecom downloads — Lou Silt",
+    "handset extraction — Lou Silt",
+    "expert instruction letter — Silt"
+  ],
+  "expectedSummaryRisk": "Provisional — inference conspiracy role on bad ocr scan papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "leading role proved",
+    "conspiracy role established"
+  ],
+  "blockingFailPatterns": [
+    "leading role proved",
+    "conspiracy role established",
+    "conspiracy proved for defendant",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — bad_ocr_scan"
+  ],
+  "pdfLayoutType": "bad_ocr_scan",
+  "redTeamTrapType": "inference_conspiracy_role",
+  "bundleStatus": "generated"
+}

@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-269",
+  "title": "Redacted unused item relied on in summary — mixed defendants rotated",
+  "fakeDefendant": "Phineas Vox",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Conspiracy to supply Class A drugs",
+  "offenceFamily": "drugs_conspiracy",
+  "profile": "disclosure_schedule_trap",
+  "mainIssue": "MG5 relies on redacted unused MG6 item — primary unused material not served.",
+  "servedEvidence": [
+    "redacted unused extract (folio 269 — Vox)",
+    "MG5 supplementary note (folio 269 — Vox)"
+  ],
+  "referredOnlyEvidence": [
+    "full unused material — Phineas Vox"
+  ],
+  "missingEvidence": [
+    "unredacted unused — Phineas Vox",
+    "primary witness account — Phineas Vox",
+    "search BWV continuity (Vox / folio 269)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Redacted unused relied on — chase unredacted unused or primary source.",
+  "expectedChaseItems": [
+    "unredacted unused — Phineas Vox",
+    "primary MG11 — Phineas Vox",
+    "MG6 clarification — Phineas Vox",
+    "VIPER pack completeness — Vox"
+  ],
+  "expectedSummaryRisk": "Provisional — redacted unused relied on on mixed defendants rotated papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "redacted extract proves account",
+    "unused material supports prosecution"
+  ],
+  "blockingFailPatterns": [
+    "redacted extract proves",
+    "unused material supports prosecution",
+    "account proved from redacted",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — mixed_defendants_rotated"
+  ],
+  "pdfLayoutType": "mixed_defendants_rotated",
+  "redTeamTrapType": "redacted_unused_relied_on",
+  "bundleStatus": "generated"
+}

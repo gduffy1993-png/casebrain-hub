@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-231",
+  "title": "Subscriber vs phone user — very thin sjp",
+  "fakeDefendant": "Delphine Joss",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Possession with intent to supply Class A drugs",
+  "offenceFamily": "drugs_pwits",
+  "profile": "wrong_person_entity",
+  "mainIssue": "Account held by associate; user attribution to defendant not established.",
+  "servedEvidence": [
+    "subscriber record summary (folio 231 — Joss)",
+    "MG5 supplementary note (folio 231 — Joss)"
+  ],
+  "referredOnlyEvidence": [
+    "handset download — Delphine Joss"
+  ],
+  "missingEvidence": [
+    "usage attribution — Delphine Joss",
+    "handset download — Delphine Joss",
+    "order service affidavit (Joss / folio 231)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Subscriber not user — chase handset usage and attribution evidence.",
+  "expectedChaseItems": [
+    "handset download — Delphine Joss",
+    "usage attribution — Delphine Joss",
+    "cellsite if relevant — Delphine Joss",
+    "expert instruction letter — Joss"
+  ],
+  "expectedSummaryRisk": "Provisional — subscriber vs user on very thin sjp papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "subscriber is defendant",
+    "account holder proves user"
+  ],
+  "blockingFailPatterns": [
+    "subscriber is defendant",
+    "account holder proves user",
+    "phone proves defendant sent",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — very_thin_sjp"
+  ],
+  "pdfLayoutType": "very_thin_sjp",
+  "redTeamTrapType": "subscriber_vs_user",
+  "bundleStatus": "generated"
+}

@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-165",
+  "title": "Redacted unused item relied on in summary — two column schedule",
+  "fakeDefendant": "Opal Tren",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Theft",
+  "offenceFamily": "custody_pace",
+  "profile": "disclosure_schedule_trap",
+  "mainIssue": "MG5 relies on redacted unused MG6 item — primary unused material not served.",
+  "servedEvidence": [
+    "redacted unused extract (folio 165 — Tren)",
+    "MG5 supplementary note (folio 165 — Tren)"
+  ],
+  "referredOnlyEvidence": [
+    "full unused material — Opal Tren"
+  ],
+  "missingEvidence": [
+    "unredacted unused — Opal Tren",
+    "primary witness account — Opal Tren",
+    "third-party disclosure gateway (Tren / folio 165)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Redacted unused relied on — chase unredacted unused or primary source.",
+  "expectedChaseItems": [
+    "unredacted unused — Opal Tren",
+    "primary MG11 — Opal Tren",
+    "MG6 clarification — Opal Tren",
+    "NRM referral outcome letter — Tren"
+  ],
+  "expectedSummaryRisk": "Provisional — redacted unused relied on on two column schedule papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "redacted extract proves account",
+    "unused material supports prosecution"
+  ],
+  "blockingFailPatterns": [
+    "redacted extract proves",
+    "unused material supports prosecution",
+    "account proved from redacted",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — two_column_schedule"
+  ],
+  "pdfLayoutType": "two_column_schedule",
+  "redTeamTrapType": "redacted_unused_relied_on",
+  "bundleStatus": "generated"
+}

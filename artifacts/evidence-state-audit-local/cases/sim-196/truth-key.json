@@ -1,0 +1,71 @@
+{
+  "caseId": "sim-196",
+  "title": "County lines — exploitation inferred — rotated scan",
+  "offenceFamily": "domestic",
+  "offenceWording": "Controlling or coercive behaviour",
+  "profile": "county_lines_vulnerability",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "safeguarding flag note (folio 196 — Zep)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 196 — Zep)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "NRM referral — Una Zep",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "NRM outcome — Una Zep",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "line attribution — Una Zep",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "public order clip segregation (Zep / folio 196)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "NRM outcome — Una Zep",
+    "line attribution — Una Zep",
+    "role evidence — Una Zep",
+    "banking schedule annex B — Zep"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "was exploited as fact",
+    "runner role confirmed"
+  ],
+  "blockingFailPatterns": [
+    "was exploited",
+    "runner role confirmed",
+    "exploitation proved",
+    "we win",
+    "case collapses"
+  ]
+}

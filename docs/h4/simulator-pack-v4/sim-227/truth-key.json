@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-227",
+  "title": "Custody extract not full record — thin sjp scan",
+  "fakeDefendant": "Zola Fennec",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Assault on emergency worker",
+  "offenceFamily": "aew_police_contact",
+  "profile": "partial_vs_full_evidence",
+  "mainIssue": "Booking sheet fragment served; full custody/PACE record missing.",
+  "servedEvidence": [
+    "custody booking fragment (folio 227 — Fennec)",
+    "MG5 supplementary note (folio 227 — Fennec)"
+  ],
+  "referredOnlyEvidence": [
+    "full custody record — Zola Fennec"
+  ],
+  "missingEvidence": [
+    "full custody record — Zola Fennec",
+    "PACE forms — Zola Fennec",
+    "co-defendant segregation map (Fennec / folio 227)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Custody extract partial — chase full custody and interview recording.",
+  "expectedChaseItems": [
+    "full custody record — Zola Fennec",
+    "PACE review — Zola Fennec",
+    "interview recording — Zola Fennec",
+    "ABE room recording index — Fennec"
+  ],
+  "expectedSummaryRisk": "Provisional — partial custody extract on thin sjp scan papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "PACE complied as fact",
+    "custody proves safeguards"
+  ],
+  "blockingFailPatterns": [
+    "PACE complied as fact",
+    "custody proves safeguards",
+    "safeguards followed",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — thin_sjp_scan"
+  ],
+  "pdfLayoutType": "thin_sjp_scan",
+  "redTeamTrapType": "partial_custody_extract",
+  "bundleStatus": "generated"
+}

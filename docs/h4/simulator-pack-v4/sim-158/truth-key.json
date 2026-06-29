@@ -1,0 +1,58 @@
+{
+  "caseId": "sim-158",
+  "title": "Disclosure date confused with offence date — duplicate pages",
+  "fakeDefendant": "Harlan Moon",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Sexual assault (historic)",
+  "offenceFamily": "sexual",
+  "profile": "date_time_conflict",
+  "mainIssue": "Late disclosure cover sheet dated service day only; offence particulars reference different month.",
+  "servedEvidence": [
+    "late disclosure cover sheet (folio 158 — Moon)",
+    "MG5 supplementary note (folio 158 — Moon)"
+  ],
+  "referredOnlyEvidence": [
+    "original MG5 — Harlan Moon"
+  ],
+  "missingEvidence": [
+    "charge sheet clarity — Harlan Moon",
+    "offence date particulars — Harlan Moon",
+    "VIPER pack completeness (Moon / folio 158)"
+  ],
+  "uncertainEvidence": [
+    "correct offence window"
+  ],
+  "expectedTodayIssue": "Disclosure date not offence date — confirm particulars from charge sheet.",
+  "expectedChaseItems": [
+    "charge sheet — Harlan Moon",
+    "offence date particulars — Harlan Moon",
+    "MG5 clarification — Harlan Moon",
+    "weapons seizure photograph set — Moon"
+  ],
+  "expectedSummaryRisk": "Provisional — date time disclosure offence on duplicate pages papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "disclosure date is offence date",
+    "particulars proved from cover sheet"
+  ],
+  "blockingFailPatterns": [
+    "disclosure date is offence date",
+    "particulars proved from cover",
+    "offence date confirmed",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — duplicate_pages"
+  ],
+  "pdfLayoutType": "duplicate_pages",
+  "redTeamTrapType": "date_time_disclosure_offence",
+  "bundleStatus": "generated"
+}

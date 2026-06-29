@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-198",
+  "title": "Motoring SJP thin bundle — corrected indictment",
+  "fakeDefendant": "Wyatt Brine",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Sexual assault (historic)",
+  "offenceFamily": "sexual",
+  "profile": "drink_drive_procedure",
+  "mainIssue": "Single-page SJP notice — calibration and device record missing.",
+  "servedEvidence": [
+    "SJP notice (folio 198 — Brine)",
+    "MG5 supplementary note (folio 198 — Brine)"
+  ],
+  "referredOnlyEvidence": [
+    "calibration certificate — Wyatt Brine"
+  ],
+  "missingEvidence": [
+    "calibration — Wyatt Brine",
+    "device record — Wyatt Brine",
+    "motoring calibration trace (Brine / folio 198)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Thin motoring — procedural chase only.",
+  "expectedChaseItems": [
+    "calibration certificate — Wyatt Brine",
+    "device record — Wyatt Brine",
+    "notice of intended prosecution — Wyatt Brine",
+    "witness B statement clarification — Brine"
+  ],
+  "expectedSummaryRisk": "Provisional — motoring sjp thin on corrected indictment papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "speed proved",
+    "device reliable as fact"
+  ],
+  "blockingFailPatterns": [
+    "speed proved",
+    "device reliable as fact",
+    "offence proved",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — corrected_indictment"
+  ],
+  "pdfLayoutType": "corrected_indictment",
+  "redTeamTrapType": "motoring_sjp_thin",
+  "bundleStatus": "generated"
+}

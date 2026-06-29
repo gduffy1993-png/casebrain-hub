@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-354",
+  "title": "Motoring SJP thin bundle — thin sjp scan",
+  "fakeDefendant": "Xia Evers",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Stalking involving fear of violence",
+  "offenceFamily": "harassment",
+  "profile": "drink_drive_procedure",
+  "mainIssue": "Single-page SJP notice — calibration and device record missing.",
+  "servedEvidence": [
+    "SJP notice (folio 354 — Evers)",
+    "MG5 supplementary note (folio 354 — Evers)"
+  ],
+  "referredOnlyEvidence": [
+    "calibration certificate — Xia Evers"
+  ],
+  "missingEvidence": [
+    "calibration — Xia Evers",
+    "device record — Xia Evers",
+    "robbery ID parade notes (Evers / folio 354)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Thin motoring — procedural chase only.",
+  "expectedChaseItems": [
+    "calibration certificate — Xia Evers",
+    "device record — Xia Evers",
+    "notice of intended prosecution — Xia Evers",
+    "PACE custody review form — Evers"
+  ],
+  "expectedSummaryRisk": "Provisional — motoring sjp thin on thin sjp scan papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "speed proved",
+    "device reliable as fact"
+  ],
+  "blockingFailPatterns": [
+    "speed proved",
+    "device reliable as fact",
+    "offence proved",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — thin_sjp_scan"
+  ],
+  "pdfLayoutType": "thin_sjp_scan",
+  "redTeamTrapType": "motoring_sjp_thin",
+  "bundleStatus": "generated"
+}

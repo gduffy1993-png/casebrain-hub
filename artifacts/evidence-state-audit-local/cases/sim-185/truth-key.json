@@ -1,0 +1,71 @@
+{
+  "caseId": "sim-185",
+  "title": "Conspiracy role inferred — index only bwv",
+  "offenceFamily": "custody_pace",
+  "offenceWording": "Theft",
+  "profile": "inference_as_fact",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "group chat excerpts (folio 185 — Orr)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 185 — Orr)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full chat export — Isolde Orr",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "role map — Isolde Orr",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "telecom data — Isolde Orr",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "scene forensic sweep log (Orr / folio 185)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "per-defendant role map — Isolde Orr",
+    "telecom downloads — Isolde Orr",
+    "handset extraction — Isolde Orr",
+    "vehicle ANPR download — Orr"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "leading role proved",
+    "conspiracy role established"
+  ],
+  "blockingFailPatterns": [
+    "leading role proved",
+    "conspiracy role established",
+    "conspiracy proved for defendant",
+    "we win",
+    "case collapses"
+  ]
+}

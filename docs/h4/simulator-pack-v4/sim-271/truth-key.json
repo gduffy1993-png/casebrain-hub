@@ -1,0 +1,57 @@
+{
+  "caseId": "sim-271",
+  "title": "Old charge family in bundle — bwv screenshots only",
+  "fakeDefendant": "Soren Yule",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Being concerned in the supply of Class A drugs",
+  "offenceFamily": "drugs_supply",
+  "profile": "changed_corrected_charge",
+  "mainIssue": "Amended indictment changes offence family; old fraud count pages remain in bundle.",
+  "servedEvidence": [
+    "amended indictment (folio 271 — Yule)",
+    "old fraud count pages (folio 271 — Yule)",
+    "MG5 supplementary note (folio 271 — Yule)"
+  ],
+  "referredOnlyEvidence": [
+    "original MG5 — Soren Yule"
+  ],
+  "missingEvidence": [
+    "count linkage schedule — Soren Yule",
+    "amended particulars — Soren Yule",
+    "medical imaging disc (Yule / folio 271)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Corrected charge — confirm live counts; do not import old offence theory.",
+  "expectedChaseItems": [
+    "amended indictment clarity — Soren Yule",
+    "live count schedule — Soren Yule",
+    "MG5 update — Soren Yule",
+    "late addendum item list — Yule"
+  ],
+  "expectedSummaryRisk": "Provisional — corrected charge old family on bwv screenshots only papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "old fraud theory applies",
+    "amended charge proves new offence"
+  ],
+  "blockingFailPatterns": [
+    "old fraud theory applies",
+    "amended charge proves",
+    "offence proved from old pages",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — bwv_screenshots_only"
+  ],
+  "pdfLayoutType": "bwv_screenshots_only",
+  "redTeamTrapType": "corrected_charge_old_family",
+  "bundleStatus": "generated"
+}

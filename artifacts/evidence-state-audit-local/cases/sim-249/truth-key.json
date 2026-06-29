@@ -1,0 +1,79 @@
+{
+  "caseId": "sim-249",
+  "title": "Breach — order service unclear — missing mg6 schedule",
+  "offenceFamily": "encro_encrypted_comms",
+  "offenceWording": "Conspiracy to supply Class A drugs (encrypted comms)",
+  "profile": "order_breach_service",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "order copy (folio 249 — Bex)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 249 — Bex)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "service affidavit — Violet Bex",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "proof of service — Violet Bex",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "breach particulars — Violet Bex",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "conspiracy role assessment (Bex / folio 249)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "whether defendant served",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "proof of service — Violet Bex",
+    "order terms — Violet Bex",
+    "breach timeline — Violet Bex",
+    "amended charge linkage schedule — Bex"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "order served as fact",
+    "breach proved"
+  ],
+  "blockingFailPatterns": [
+    "order served as fact",
+    "breach proved",
+    "service confirmed",
+    "we win",
+    "case collapses"
+  ]
+}

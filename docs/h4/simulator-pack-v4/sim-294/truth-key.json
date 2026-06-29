@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-294",
+  "title": "Late disclosure addendum — conflicting mg11 duplicate",
+  "fakeDefendant": "Paloma Wight",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Controlling or coercive behaviour",
+  "offenceFamily": "domestic",
+  "profile": "disclosure_schedule_trap",
+  "mainIssue": "Late addendum adds BWV reference; prior exports still missing.",
+  "servedEvidence": [
+    "late disclosure letter (folio 294 — Wight)",
+    "MG5 supplementary note (folio 294 — Wight)"
+  ],
+  "referredOnlyEvidence": [
+    "BWV addendum — Paloma Wight"
+  ],
+  "missingEvidence": [
+    "BWV export — Paloma Wight",
+    "prior missing MG11 — Paloma Wight",
+    "digital extraction scope annex (Wight / folio 294)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Late addendum — chase substantive exports not just cover sheet.",
+  "expectedChaseItems": [
+    "BWV export — Paloma Wight",
+    "missing MG11 — Paloma Wight",
+    "addendum item list — Paloma Wight",
+    "breath procedure MGDDB copy — Wight"
+  ],
+  "expectedSummaryRisk": "Provisional — late disclosure addendum on conflicting mg11 duplicate papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "late addendum cures disclosure",
+    "BWV now served as fact"
+  ],
+  "blockingFailPatterns": [
+    "late addendum cures disclosure",
+    "BWV now served",
+    "disclosure complete",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — conflicting_mg11_duplicate"
+  ],
+  "pdfLayoutType": "conflicting_mg11_duplicate",
+  "redTeamTrapType": "late_disclosure_addendum",
+  "bundleStatus": "generated"
+}

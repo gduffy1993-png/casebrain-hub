@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-186",
+  "title": "Sender identity inferred from content — mixed defendants rotated",
+  "fakeDefendant": "Jude Parch",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Offence per charge sheet",
+  "offenceFamily": "mixed_unclear",
+  "profile": "inference_as_fact",
+  "mainIssue": "Message content suggests sender; platform attribution not served.",
+  "servedEvidence": [
+    "message content screenshots (folio 186 — Parch)",
+    "MG5 supplementary note (folio 186 — Parch)"
+  ],
+  "referredOnlyEvidence": [
+    "platform export — Jude Parch"
+  ],
+  "missingEvidence": [
+    "platform export — Jude Parch",
+    "subscriber proof — Jude Parch",
+    "digital extraction scope annex (Parch / folio 186)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Sender identity inference — chase platform export and subscriber data.",
+  "expectedChaseItems": [
+    "platform export — Jude Parch",
+    "subscriber records — Jude Parch",
+    "account attribution — Jude Parch",
+    "breath procedure MGDDB copy — Parch"
+  ],
+  "expectedSummaryRisk": "Provisional — inference sender identity on mixed defendants rotated papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "defendant sent messages as fact",
+    "content proves sender"
+  ],
+  "blockingFailPatterns": [
+    "defendant sent messages as fact",
+    "content proves sender",
+    "sender proved",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — mixed_defendants_rotated"
+  ],
+  "pdfLayoutType": "mixed_defendants_rotated",
+  "redTeamTrapType": "inference_sender_identity",
+  "bundleStatus": "generated"
+}

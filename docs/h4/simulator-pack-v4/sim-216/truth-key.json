@@ -1,0 +1,58 @@
+{
+  "caseId": "sim-216",
+  "title": "MG6D sensitive/non-sensitive confusion — two column schedule",
+  "fakeDefendant": "Orson Tusk",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Stalking involving fear of violence",
+  "offenceFamily": "harassment",
+  "profile": "disclosure_schedule_trap",
+  "mainIssue": "Material marked sensitive on MG6D but same item summarised as unused on MG6C.",
+  "servedEvidence": [
+    "MG6C and MG6D schedules (folio 216 — Tusk)",
+    "MG5 supplementary note (folio 216 — Tusk)"
+  ],
+  "referredOnlyEvidence": [
+    "sensitive material gateway — Orson Tusk"
+  ],
+  "missingEvidence": [
+    "sensitivity review — Orson Tusk",
+    "gateway application — Orson Tusk",
+    "lab submission chain (Tusk / folio 216)"
+  ],
+  "uncertainEvidence": [
+    "whether material is unused or sensitive"
+  ],
+  "expectedTodayIssue": "MG6D/MG6C confusion — chase sensitivity classification and actual access.",
+  "expectedChaseItems": [
+    "sensitivity classification — Orson Tusk",
+    "gateway application — Orson Tusk",
+    "unused material access — Orson Tusk",
+    "medical imaging disc — Tusk"
+  ],
+  "expectedSummaryRisk": "Provisional — mg6d sensitive confusion on two column schedule papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "sensitive material fully disclosed",
+    "unused material covered"
+  ],
+  "blockingFailPatterns": [
+    "sensitive material fully disclosed",
+    "unused material covered",
+    "disclosure complete",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — two_column_schedule"
+  ],
+  "pdfLayoutType": "two_column_schedule",
+  "redTeamTrapType": "mg6d_sensitive_confusion",
+  "bundleStatus": "generated"
+}

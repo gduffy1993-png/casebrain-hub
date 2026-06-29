@@ -1,0 +1,57 @@
+{
+  "caseId": "sim-272",
+  "title": "Summary still uses old charge — bad ocr scan",
+  "fakeDefendant": "Tessara Zinn",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "S18 wounding with intent",
+  "offenceFamily": "violence_assault",
+  "profile": "changed_corrected_charge",
+  "mainIssue": "MG5 summary still describes s20 GBH; amended charge is s18.",
+  "servedEvidence": [
+    "MG5 with old s20 wording (folio 272 — Zinn)",
+    "amended s18 charge (folio 272 — Zinn)",
+    "MG5 supplementary note (folio 272 — Zinn)"
+  ],
+  "referredOnlyEvidence": [
+    "medical report — Tessara Zinn"
+  ],
+  "missingEvidence": [
+    "updated MG5 — Tessara Zinn",
+    "medical for intent — Tessara Zinn",
+    "ABE room recording index (Zinn / folio 272)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Summary uses old charge — chase updated MG5 and medical for s18.",
+  "expectedChaseItems": [
+    "updated MG5 — Tessara Zinn",
+    "medical report — Tessara Zinn",
+    "intent material — Tessara Zinn",
+    "co-defendant segregation map — Zinn"
+  ],
+  "expectedSummaryRisk": "Provisional — summary old charge on bad ocr scan papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "s18 intent proved",
+    "old s20 summary controls"
+  ],
+  "blockingFailPatterns": [
+    "s18 intent proved",
+    "old s20 summary controls",
+    "intent established as fact",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — bad_ocr_scan"
+  ],
+  "pdfLayoutType": "bad_ocr_scan",
+  "redTeamTrapType": "summary_old_charge",
+  "bundleStatus": "generated"
+}

@@ -1,0 +1,58 @@
+{
+  "caseId": "sim-249",
+  "title": "Breach — order service unclear — missing mg6 schedule",
+  "fakeDefendant": "Violet Bex",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Conspiracy to supply Class A drugs (encrypted comms)",
+  "offenceFamily": "encro_encrypted_comms",
+  "profile": "order_breach_service",
+  "mainIssue": "Non-molestation order copy served; proof of service missing.",
+  "servedEvidence": [
+    "order copy (folio 249 — Bex)",
+    "MG5 supplementary note (folio 249 — Bex)"
+  ],
+  "referredOnlyEvidence": [
+    "service affidavit — Violet Bex"
+  ],
+  "missingEvidence": [
+    "proof of service — Violet Bex",
+    "breach particulars — Violet Bex",
+    "conspiracy role assessment (Bex / folio 249)"
+  ],
+  "uncertainEvidence": [
+    "whether defendant served"
+  ],
+  "expectedTodayIssue": "Breach elements — chase service proof and breach particulars.",
+  "expectedChaseItems": [
+    "proof of service — Violet Bex",
+    "order terms — Violet Bex",
+    "breach timeline — Violet Bex",
+    "amended charge linkage schedule — Bex"
+  ],
+  "expectedSummaryRisk": "Provisional — breach order service unclear on missing mg6 schedule papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "order served as fact",
+    "breach proved"
+  ],
+  "blockingFailPatterns": [
+    "order served as fact",
+    "breach proved",
+    "service confirmed",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — missing_mg6_schedule"
+  ],
+  "pdfLayoutType": "missing_mg6_schedule",
+  "redTeamTrapType": "breach_order_service_unclear",
+  "bundleStatus": "generated"
+}

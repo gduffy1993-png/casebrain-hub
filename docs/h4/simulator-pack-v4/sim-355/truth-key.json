@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-355",
+  "title": "Account control inferred — rotated scan",
+  "fakeDefendant": "Yael Flint",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Sexual assault (historic)",
+  "offenceFamily": "sexual",
+  "profile": "money_laundering_bank_records",
+  "mainIssue": "Transactions listed — account control by defendant not proved.",
+  "servedEvidence": [
+    "transaction summary (folio 355 — Flint)",
+    "MG5 supplementary note (folio 355 — Flint)"
+  ],
+  "referredOnlyEvidence": [
+    "bank download — Yael Flint"
+  ],
+  "missingEvidence": [
+    "bank export — Yael Flint",
+    "device/ownership proof — Yael Flint",
+    "fraud transaction mapping sheet (Flint / folio 355)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Account control inference — chase banking schedules and device records.",
+  "expectedChaseItems": [
+    "bank download — Yael Flint",
+    "ownership evidence — Yael Flint",
+    "device records — Yael Flint",
+    "interpreter attendance note — Flint"
+  ],
+  "expectedSummaryRisk": "Provisional — fraud account control inference on rotated scan papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "account control proved",
+    "defendant authorised transactions"
+  ],
+  "blockingFailPatterns": [
+    "account control proved",
+    "defendant authorised transactions",
+    "fraud proved",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — rotated_scan"
+  ],
+  "pdfLayoutType": "rotated_scan",
+  "redTeamTrapType": "fraud_account_control_inference",
+  "bundleStatus": "generated"
+}

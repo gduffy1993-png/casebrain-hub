@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-360",
+  "title": "Officer summary vs primary exhibit — blank pages metadata",
+  "fakeDefendant": "Demi Kest",
+  "fakeCourt": "Northgate Youth Court",
+  "offenceWording": "Theft (youth)",
+  "offenceFamily": "youth",
+  "profile": "source_hierarchy_conflict",
+  "mainIssue": "Officer MG5 summary describes knife recovery; exhibit continuity log missing and MG11 differs on location.",
+  "servedEvidence": [
+    "officer MG5 narrative (folio 360 — Kest)",
+    "MG5 supplementary note (folio 360 — Kest)"
+  ],
+  "referredOnlyEvidence": [
+    "exhibit continuity log — Demi Kest"
+  ],
+  "missingEvidence": [
+    "continuity log — Demi Kest",
+    "seizure photographs — Demi Kest",
+    "motoring calibration trace (Kest / folio 360)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Officer summary not primary — chase exhibit continuity and witness MG11.",
+  "expectedChaseItems": [
+    "exhibit continuity — Demi Kest",
+    "seizure photographs — Demi Kest",
+    "witness MG11 — Demi Kest",
+    "witness B statement clarification — Kest"
+  ],
+  "expectedSummaryRisk": "Provisional — source hierarchy officer exhibit on blank pages metadata papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "officer summary proves knife location",
+    "exhibit proved from summary"
+  ],
+  "blockingFailPatterns": [
+    "officer summary proves knife",
+    "exhibit proved from summary",
+    "knife location proved",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — blank_pages_metadata"
+  ],
+  "pdfLayoutType": "blank_pages_metadata",
+  "redTeamTrapType": "source_hierarchy_officer_exhibit",
+  "bundleStatus": "generated"
+}

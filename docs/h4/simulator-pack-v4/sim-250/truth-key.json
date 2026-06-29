@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-250",
+  "title": "Motoring SJP thin bundle — very thin sjp",
+  "fakeDefendant": "Wade Cleft",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Conspiracy to supply Class A drugs",
+  "offenceFamily": "drugs_conspiracy",
+  "profile": "drink_drive_procedure",
+  "mainIssue": "Single-page SJP notice — calibration and device record missing.",
+  "servedEvidence": [
+    "SJP notice (folio 250 — Cleft)",
+    "MG5 supplementary note (folio 250 — Cleft)"
+  ],
+  "referredOnlyEvidence": [
+    "calibration certificate — Wade Cleft"
+  ],
+  "missingEvidence": [
+    "calibration — Wade Cleft",
+    "device record — Wade Cleft",
+    "public order clip segregation (Cleft / folio 250)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Thin motoring — procedural chase only.",
+  "expectedChaseItems": [
+    "calibration certificate — Wade Cleft",
+    "device record — Wade Cleft",
+    "notice of intended prosecution — Wade Cleft",
+    "banking schedule annex B — Cleft"
+  ],
+  "expectedSummaryRisk": "Provisional — motoring sjp thin on very thin sjp papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "speed proved",
+    "device reliable as fact"
+  ],
+  "blockingFailPatterns": [
+    "speed proved",
+    "device reliable as fact",
+    "offence proved",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — very_thin_sjp"
+  ],
+  "pdfLayoutType": "very_thin_sjp",
+  "redTeamTrapType": "motoring_sjp_thin",
+  "bundleStatus": "generated"
+}

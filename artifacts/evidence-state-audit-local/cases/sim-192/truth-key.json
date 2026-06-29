@@ -1,0 +1,72 @@
+{
+  "caseId": "sim-192",
+  "title": "Image-only scan — no searchable text — missing mg6 schedule",
+  "offenceFamily": "drugs_pwits",
+  "offenceWording": "Possession with intent to supply Class A drugs",
+  "profile": "partial_vs_full_evidence",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "image-only scanned pages (folio 192 — Vail)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 192 — Vail)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "text-searchable versions — Paxton Vail",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "searchable MG6 — Paxton Vail",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "searchable statements — Paxton Vail",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "robbery ID parade notes (Vail / folio 192)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "text-searchable MG6 — Paxton Vail",
+    "searchable statements — Paxton Vail",
+    "key exports — Paxton Vail",
+    "PACE custody review form — Vail"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "OCR text proves schedule",
+    "scan proves content"
+  ],
+  "blockingFailPatterns": [
+    "OCR text proves schedule",
+    "scan proves content",
+    "schedule complete as read",
+    "we win",
+    "case collapses"
+  ]
+}

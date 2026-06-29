@@ -1,0 +1,73 @@
+{
+  "caseId": "sim-273",
+  "title": "Index lists BWV — file absent — pages out of order",
+  "offenceFamily": "robbery_id",
+  "offenceWording": "Robbery",
+  "profile": "index_listed_not_served",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "bundle index (folio 273 — Arbor)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 273 — Arbor)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV per index — Ulysses Arbor",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV file — Ulysses Arbor",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "continuity — Ulysses Arbor",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "third-party disclosure gateway (Arbor / folio 273)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "BWV export — Ulysses Arbor",
+    "index correction — Ulysses Arbor",
+    "continuity statement — Ulysses Arbor",
+    "NRM referral outcome letter — Arbor"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "BWV on bundle as fact",
+    "index proves served"
+  ],
+  "blockingFailPatterns": [
+    "BWV on bundle",
+    "index proves served",
+    "BWV shows",
+    "we win",
+    "case collapses"
+  ]
+}

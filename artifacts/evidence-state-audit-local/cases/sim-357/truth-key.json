@@ -1,0 +1,71 @@
+{
+  "caseId": "sim-357",
+  "title": "Weapon forensic index-only — corrected indictment",
+  "offenceFamily": "fraud_account",
+  "offenceWording": "Fraud by false representation",
+  "profile": "bladed_article",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "index forensic reference (folio 357 — Hale)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 357 — Hale)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "forensic report — Asa Hale",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "forensic report — Asa Hale",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "continuity — Asa Hale",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "conspiracy role assessment (Hale / folio 357)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "forensic report — Asa Hale",
+    "continuity — Asa Hale",
+    "search footage — Asa Hale",
+    "amended charge linkage schedule — Hale"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "forensic proves weapon",
+    "report confirms blade"
+  ],
+  "blockingFailPatterns": [
+    "forensic proves weapon",
+    "report confirms blade",
+    "weapon analysis confirms",
+    "we win",
+    "case collapses"
+  ]
+}

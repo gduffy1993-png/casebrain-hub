@@ -1,0 +1,74 @@
+{
+  "caseId": "sim-224",
+  "title": "CCTV stills not full CCTV — conflicting mg11 duplicate",
+  "offenceFamily": "custody_pace",
+  "offenceWording": "Theft",
+  "profile": "partial_vs_full_evidence",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "CCTV still images (folio 224 — Calder)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "cctv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 224 — Calder)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "master CCTV timeline — Wynn Calder",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "cctv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "master footage — Wynn Calder",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "continuity — Wynn Calder",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "vehicle ANPR download (Calder / folio 224)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "master CCTV — Wynn Calder",
+    "full time window — Wynn Calder",
+    "continuity — Wynn Calder",
+    "redacted unused gateway application — Calder"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "CCTV stills prove ID",
+    "stills are full CCTV"
+  ],
+  "blockingFailPatterns": [
+    "CCTV stills prove ID",
+    "stills are full CCTV",
+    "CCTV shows robbery",
+    "we win",
+    "case collapses"
+  ]
+}

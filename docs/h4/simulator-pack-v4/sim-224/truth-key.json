@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-224",
+  "title": "CCTV stills not full CCTV — conflicting mg11 duplicate",
+  "fakeDefendant": "Wynn Calder",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Theft",
+  "offenceFamily": "custody_pace",
+  "profile": "partial_vs_full_evidence",
+  "mainIssue": "Grainy stills served — master timeline and continuity missing.",
+  "servedEvidence": [
+    "CCTV still images (folio 224 — Calder)",
+    "MG5 supplementary note (folio 224 — Calder)"
+  ],
+  "referredOnlyEvidence": [
+    "master CCTV timeline — Wynn Calder"
+  ],
+  "missingEvidence": [
+    "master footage — Wynn Calder",
+    "continuity — Wynn Calder",
+    "vehicle ANPR download (Calder / folio 224)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "CCTV stills only — chase master footage full window.",
+  "expectedChaseItems": [
+    "master CCTV — Wynn Calder",
+    "full time window — Wynn Calder",
+    "continuity — Wynn Calder",
+    "redacted unused gateway application — Calder"
+  ],
+  "expectedSummaryRisk": "Provisional — partial cctv stills on conflicting mg11 duplicate papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "CCTV stills prove ID",
+    "stills are full CCTV"
+  ],
+  "blockingFailPatterns": [
+    "CCTV stills prove ID",
+    "stills are full CCTV",
+    "CCTV shows robbery",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — conflicting_mg11_duplicate"
+  ],
+  "pdfLayoutType": "conflicting_mg11_duplicate",
+  "redTeamTrapType": "partial_cctv_stills",
+  "bundleStatus": "generated"
+}

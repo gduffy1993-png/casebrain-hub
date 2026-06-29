@@ -1,0 +1,67 @@
+{
+  "caseId": "sim-255",
+  "title": "MG5 summary conflicts with MG11 account — index only bwv",
+  "offenceFamily": "harassment",
+  "offenceWording": "Stalking involving fear of violence",
+  "profile": "source_hierarchy_conflict",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5 officer summary (folio 255 — Hearth)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 255 — Hearth)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "signed MG11 — Bram Hearth",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "signed MG11 final version — Bram Hearth",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "historic ABE support notes (Hearth / folio 255)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "signed MG11 — Bram Hearth",
+    "MG5 clarification — Bram Hearth",
+    "BWV timestamp — Bram Hearth",
+    "public order clip segregation — Hearth"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "MG5 timeline proves assault time",
+    "summary outranks MG11"
+  ],
+  "blockingFailPatterns": [
+    "MG5 timeline proves",
+    "summary outranks MG11",
+    "assault time proved from MG5",
+    "we win",
+    "case collapses"
+  ]
+}

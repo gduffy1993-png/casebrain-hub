@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-371",
+  "title": "MG6C item listed but not served — very thin sjp",
+  "fakeDefendant": "Omar Wisp",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Robbery",
+  "offenceFamily": "robbery_id",
+  "profile": "disclosure_schedule_trap",
+  "mainIssue": "MG6C line 14 lists handset download — file not on bundle.",
+  "servedEvidence": [
+    "MG6C schedule (folio 371 — Wisp)",
+    "MG5 supplementary note (folio 371 — Wisp)"
+  ],
+  "referredOnlyEvidence": [
+    "handset download per MG6C line 14 — Omar Wisp"
+  ],
+  "missingEvidence": [
+    "handset download — Omar Wisp",
+    "extraction certificate — Omar Wisp",
+    "scene photograph log (Wisp / folio 371)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "MG6C listed-not-served — chase handset download listed on schedule.",
+  "expectedChaseItems": [
+    "handset download — Omar Wisp",
+    "MG6C line 14 material — Omar Wisp",
+    "extraction certificate — Omar Wisp",
+    "defendant interview part 2 — Wisp"
+  ],
+  "expectedSummaryRisk": "Provisional — mg6c listed not served on very thin sjp papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "MG6C item served as fact",
+    "download on bundle"
+  ],
+  "blockingFailPatterns": [
+    "MG6C item served",
+    "download on bundle",
+    "digital evidence proved",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — very_thin_sjp"
+  ],
+  "pdfLayoutType": "very_thin_sjp",
+  "redTeamTrapType": "mg6c_listed_not_served",
+  "bundleStatus": "generated"
+}

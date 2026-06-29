@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-283",
+  "title": "Subscriber vs phone user — late addendum scan",
+  "fakeDefendant": "Elias Kova",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Theft",
+  "offenceFamily": "custody_pace",
+  "profile": "wrong_person_entity",
+  "mainIssue": "Account held by associate; user attribution to defendant not established.",
+  "servedEvidence": [
+    "subscriber record summary (folio 283 — Kova)",
+    "MG5 supplementary note (folio 283 — Kova)"
+  ],
+  "referredOnlyEvidence": [
+    "handset download — Elias Kova"
+  ],
+  "missingEvidence": [
+    "usage attribution — Elias Kova",
+    "handset download — Elias Kova",
+    "breath procedure MGDDB copy (Kova / folio 283)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Subscriber not user — chase handset usage and attribution evidence.",
+  "expectedChaseItems": [
+    "handset download — Elias Kova",
+    "usage attribution — Elias Kova",
+    "cellsite if relevant — Elias Kova",
+    "custody risk triage form — Kova"
+  ],
+  "expectedSummaryRisk": "Provisional — subscriber vs user on late addendum scan papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "subscriber is defendant",
+    "account holder proves user"
+  ],
+  "blockingFailPatterns": [
+    "subscriber is defendant",
+    "account holder proves user",
+    "phone proves defendant sent",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — late_addendum_scan"
+  ],
+  "pdfLayoutType": "late_addendum_scan",
+  "redTeamTrapType": "subscriber_vs_user",
+  "bundleStatus": "generated"
+}

@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-322",
+  "title": "Available on request not served — bwv screenshots only",
+  "fakeDefendant": "Roscoe Yarrow",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Theft",
+  "offenceFamily": "custody_pace",
+  "profile": "disclosure_schedule_trap",
+  "mainIssue": "BWV marked available on request — not treated as served disclosure.",
+  "servedEvidence": [
+    "MG6 note available on request (folio 322 — Yarrow)",
+    "MG5 supplementary note (folio 322 — Yarrow)"
+  ],
+  "referredOnlyEvidence": [
+    "BWV on request — Roscoe Yarrow"
+  ],
+  "missingEvidence": [
+    "BWV export — Roscoe Yarrow",
+    "continuity — Roscoe Yarrow",
+    "subscriber account verification (Yarrow / folio 322)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Available on request is not served — chase BWV export.",
+  "expectedChaseItems": [
+    "BWV export — Roscoe Yarrow",
+    "disclosure confirmation — Roscoe Yarrow",
+    "continuity — Roscoe Yarrow",
+    "second MG11 draft clarification — Yarrow"
+  ],
+  "expectedSummaryRisk": "Provisional — available on request not served on bwv screenshots only papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "BWV served because listed",
+    "available on request equals served"
+  ],
+  "blockingFailPatterns": [
+    "BWV served because listed",
+    "available on request equals served",
+    "BWV shows",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — bwv_screenshots_only"
+  ],
+  "pdfLayoutType": "bwv_screenshots_only",
+  "redTeamTrapType": "available_on_request_not_served",
+  "bundleStatus": "generated"
+}

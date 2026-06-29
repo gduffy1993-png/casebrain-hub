@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-369",
+  "title": "Vulnerable witness — special measures not served — skewed scan",
+  "fakeDefendant": "Mack Tusk",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Being concerned in the supply of Class A drugs",
+  "offenceFamily": "drugs_supply",
+  "profile": "youth_vulnerability_custody",
+  "mainIssue": "Complainant marked vulnerable; ABE/special measures material referred only.",
+  "servedEvidence": [
+    "MG5 vulnerability marker (folio 369 — Tusk)",
+    "MG5 supplementary note (folio 369 — Tusk)"
+  ],
+  "referredOnlyEvidence": [
+    "ABE interview — Mack Tusk"
+  ],
+  "missingEvidence": [
+    "ABE recording — Mack Tusk",
+    "special measures application — Mack Tusk",
+    "second MG11 draft clarification (Tusk / folio 369)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Vulnerable witness — chase ABE and special measures documentation.",
+  "expectedChaseItems": [
+    "ABE recording — Mack Tusk",
+    "special measures docs — Mack Tusk",
+    "MG11 first account — Mack Tusk",
+    "encro handle mapping annex — Tusk"
+  ],
+  "expectedSummaryRisk": "Provisional — vulnerable witness marker on skewed scan papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "ABE confirms account",
+    "vulnerability proves offence"
+  ],
+  "blockingFailPatterns": [
+    "ABE confirms",
+    "vulnerability proves offence",
+    "account confirmed as fact",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — skewed_scan"
+  ],
+  "pdfLayoutType": "skewed_scan",
+  "redTeamTrapType": "vulnerable_witness_marker",
+  "bundleStatus": "generated"
+}

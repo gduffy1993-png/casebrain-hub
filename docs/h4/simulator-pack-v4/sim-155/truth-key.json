@@ -1,0 +1,58 @@
+{
+  "caseId": "sim-155",
+  "title": "Custody time conflicts with MG11 — large messy rotated",
+  "fakeDefendant": "Eliza Judd",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Robbery",
+  "offenceFamily": "robbery_id",
+  "profile": "date_time_conflict",
+  "mainIssue": "Custody record shows arrest 02:10; complainant MG11 states incident 23:50 prior day.",
+  "servedEvidence": [
+    "partial custody extract (folio 155 — Judd)",
+    "MG5 supplementary note (folio 155 — Judd)"
+  ],
+  "referredOnlyEvidence": [
+    "full custody record — Eliza Judd"
+  ],
+  "missingEvidence": [
+    "full custody record — Eliza Judd",
+    "MG11 signed — Eliza Judd",
+    "scene photograph log (Judd / folio 155)"
+  ],
+  "uncertainEvidence": [
+    "incident vs arrest timeline"
+  ],
+  "expectedTodayIssue": "Date/time conflict — chase custody record and MG11 alignment.",
+  "expectedChaseItems": [
+    "full custody record — Eliza Judd",
+    "signed MG11 — Eliza Judd",
+    "timeline reconciliation — Eliza Judd",
+    "defendant interview part 2 — Judd"
+  ],
+  "expectedSummaryRisk": "Provisional — date time custody mg11 on large messy rotated papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "custody time proves offence time",
+    "timeline aligned as fact"
+  ],
+  "blockingFailPatterns": [
+    "custody time proves offence",
+    "timeline aligned as fact",
+    "incident time proved",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — large_messy_rotated"
+  ],
+  "pdfLayoutType": "large_messy_rotated",
+  "redTeamTrapType": "date_time_custody_mg11",
+  "bundleStatus": "generated"
+}

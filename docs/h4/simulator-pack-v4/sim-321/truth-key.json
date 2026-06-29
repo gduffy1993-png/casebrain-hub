@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-321",
+  "title": "Redacted unused item relied on in summary — late addendum scan",
+  "fakeDefendant": "Quenby Xanthe",
+  "fakeCourt": "Northgate Youth Court",
+  "offenceWording": "Theft (youth)",
+  "offenceFamily": "youth",
+  "profile": "disclosure_schedule_trap",
+  "mainIssue": "MG5 relies on redacted unused MG6 item — primary unused material not served.",
+  "servedEvidence": [
+    "redacted unused extract (folio 321 — Xanthe)",
+    "MG5 supplementary note (folio 321 — Xanthe)"
+  ],
+  "referredOnlyEvidence": [
+    "full unused material — Quenby Xanthe"
+  ],
+  "missingEvidence": [
+    "unredacted unused — Quenby Xanthe",
+    "primary witness account — Quenby Xanthe",
+    "cellsite raw data dump (Xanthe / folio 321)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Redacted unused relied on — chase unredacted unused or primary source.",
+  "expectedChaseItems": [
+    "unredacted unused — Quenby Xanthe",
+    "primary MG11 — Quenby Xanthe",
+    "MG6 clarification — Quenby Xanthe",
+    "sensitive material schedule MG6D — Xanthe"
+  ],
+  "expectedSummaryRisk": "Provisional — redacted unused relied on on late addendum scan papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "redacted extract proves account",
+    "unused material supports prosecution"
+  ],
+  "blockingFailPatterns": [
+    "redacted extract proves",
+    "unused material supports prosecution",
+    "account proved from redacted",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — late_addendum_scan"
+  ],
+  "pdfLayoutType": "late_addendum_scan",
+  "redTeamTrapType": "redacted_unused_relied_on",
+  "bundleStatus": "generated"
+}

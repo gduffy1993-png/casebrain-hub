@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-169",
+  "title": "Index lists BWV — file absent — blank pages metadata",
+  "fakeDefendant": "Sable Yates",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Perverting the course of justice",
+  "offenceFamily": "perverting_justice",
+  "profile": "index_listed_not_served",
+  "mainIssue": "Bundle index lists BWV exhibit; no BWV file in bundle body.",
+  "servedEvidence": [
+    "bundle index (folio 169 — Yates)",
+    "MG5 supplementary note (folio 169 — Yates)"
+  ],
+  "referredOnlyEvidence": [
+    "BWV per index — Sable Yates"
+  ],
+  "missingEvidence": [
+    "BWV file — Sable Yates",
+    "continuity — Sable Yates",
+    "forensic toolkit continuity (Yates / folio 169)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Index-listed BWV absent — chase export before officer account reliance.",
+  "expectedChaseItems": [
+    "BWV export — Sable Yates",
+    "index correction — Sable Yates",
+    "continuity statement — Sable Yates",
+    "motoring calibration trace — Yates"
+  ],
+  "expectedSummaryRisk": "Provisional — index bwv absent on blank pages metadata papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "BWV on bundle as fact",
+    "index proves served"
+  ],
+  "blockingFailPatterns": [
+    "BWV on bundle",
+    "index proves served",
+    "BWV shows",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — blank_pages_metadata"
+  ],
+  "pdfLayoutType": "blank_pages_metadata",
+  "redTeamTrapType": "index_bwv_absent",
+  "bundleStatus": "generated"
+}

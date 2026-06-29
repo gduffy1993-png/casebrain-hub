@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-175",
+  "title": "Custody extract not full record — huge bundle partial",
+  "fakeDefendant": "Yvette Eli",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Robbery",
+  "offenceFamily": "robbery_id",
+  "profile": "partial_vs_full_evidence",
+  "mainIssue": "Booking sheet fragment served; full custody/PACE record missing.",
+  "servedEvidence": [
+    "custody booking fragment (folio 175 — Eli)",
+    "MG5 supplementary note (folio 175 — Eli)"
+  ],
+  "referredOnlyEvidence": [
+    "full custody record — Yvette Eli"
+  ],
+  "missingEvidence": [
+    "full custody record — Yvette Eli",
+    "PACE forms — Yvette Eli",
+    "breath procedure MGDDB copy (Eli / folio 175)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Custody extract partial — chase full custody and interview recording.",
+  "expectedChaseItems": [
+    "full custody record — Yvette Eli",
+    "PACE review — Yvette Eli",
+    "interview recording — Yvette Eli",
+    "custody risk triage form — Eli"
+  ],
+  "expectedSummaryRisk": "Provisional — partial custody extract on huge bundle partial papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "PACE complied as fact",
+    "custody proves safeguards"
+  ],
+  "blockingFailPatterns": [
+    "PACE complied as fact",
+    "custody proves safeguards",
+    "safeguards followed",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — huge_bundle_partial"
+  ],
+  "pdfLayoutType": "huge_bundle_partial",
+  "redTeamTrapType": "partial_custody_extract",
+  "bundleStatus": "generated"
+}

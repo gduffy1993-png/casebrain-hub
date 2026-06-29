@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-383",
+  "title": "Custody extract not full record — conflicting mg11 duplicate",
+  "fakeDefendant": "Bex Isle",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Possession of indecent images — attribution disputed",
+  "offenceFamily": "digital_attribution",
+  "profile": "partial_vs_full_evidence",
+  "mainIssue": "Booking sheet fragment served; full custody/PACE record missing.",
+  "servedEvidence": [
+    "custody booking fragment (folio 383 — Isle)",
+    "MG5 supplementary note (folio 383 — Isle)"
+  ],
+  "referredOnlyEvidence": [
+    "full custody record — Bex Isle"
+  ],
+  "missingEvidence": [
+    "full custody record — Bex Isle",
+    "PACE forms — Bex Isle",
+    "unused material sensitivity review (Isle / folio 383)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Custody extract partial — chase full custody and interview recording.",
+  "expectedChaseItems": [
+    "full custody record — Bex Isle",
+    "PACE review — Bex Isle",
+    "interview recording — Bex Isle",
+    "firearm classification worksheet — Isle"
+  ],
+  "expectedSummaryRisk": "Provisional — partial custody extract on conflicting mg11 duplicate papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "PACE complied as fact",
+    "custody proves safeguards"
+  ],
+  "blockingFailPatterns": [
+    "PACE complied as fact",
+    "custody proves safeguards",
+    "safeguards followed",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — conflicting_mg11_duplicate"
+  ],
+  "pdfLayoutType": "conflicting_mg11_duplicate",
+  "redTeamTrapType": "partial_custody_extract",
+  "bundleStatus": "generated"
+}

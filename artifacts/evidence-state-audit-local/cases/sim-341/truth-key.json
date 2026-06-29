@@ -1,0 +1,71 @@
+{
+  "caseId": "sim-341",
+  "title": "Conspiracy role inferred — bwv screenshots only",
+  "offenceFamily": "youth",
+  "offenceWording": "Theft (youth)",
+  "profile": "inference_as_fact",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "group chat excerpts (folio 341 — Rafe)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 341 — Rafe)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full chat export — Kira Rafe",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "role map — Kira Rafe",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "telecom data — Kira Rafe",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "message platform export hash (Rafe / folio 341)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "per-defendant role map — Kira Rafe",
+    "telecom downloads — Kira Rafe",
+    "handset extraction — Kira Rafe",
+    "county lines line attribution chart — Rafe"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "leading role proved",
+    "conspiracy role established"
+  ],
+  "blockingFailPatterns": [
+    "leading role proved",
+    "conspiracy role established",
+    "conspiracy proved for defendant",
+    "we win",
+    "case collapses"
+  ]
+}

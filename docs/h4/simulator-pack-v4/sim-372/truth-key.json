@@ -1,0 +1,58 @@
+{
+  "caseId": "sim-372",
+  "title": "MG6D sensitive/non-sensitive confusion — late addendum scan",
+  "fakeDefendant": "Paz Xebec",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Controlling or coercive behaviour",
+  "offenceFamily": "domestic",
+  "profile": "disclosure_schedule_trap",
+  "mainIssue": "Material marked sensitive on MG6D but same item summarised as unused on MG6C.",
+  "servedEvidence": [
+    "MG6C and MG6D schedules (folio 372 — Xebec)",
+    "MG5 supplementary note (folio 372 — Xebec)"
+  ],
+  "referredOnlyEvidence": [
+    "sensitive material gateway — Paz Xebec"
+  ],
+  "missingEvidence": [
+    "sensitivity review — Paz Xebec",
+    "gateway application — Paz Xebec",
+    "interpreter attendance note (Xebec / folio 372)"
+  ],
+  "uncertainEvidence": [
+    "whether material is unused or sensitive"
+  ],
+  "expectedTodayIssue": "MG6D/MG6C confusion — chase sensitivity classification and actual access.",
+  "expectedChaseItems": [
+    "sensitivity classification — Paz Xebec",
+    "gateway application — Paz Xebec",
+    "unused material access — Paz Xebec",
+    "phone billing record match — Xebec"
+  ],
+  "expectedSummaryRisk": "Provisional — mg6d sensitive confusion on late addendum scan papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "sensitive material fully disclosed",
+    "unused material covered"
+  ],
+  "blockingFailPatterns": [
+    "sensitive material fully disclosed",
+    "unused material covered",
+    "disclosure complete",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — late_addendum_scan"
+  ],
+  "pdfLayoutType": "late_addendum_scan",
+  "redTeamTrapType": "mg6d_sensitive_confusion",
+  "bundleStatus": "generated"
+}

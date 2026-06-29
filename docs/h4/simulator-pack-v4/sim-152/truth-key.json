@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-152",
+  "title": "Officer summary vs primary exhibit — pages out of order",
+  "fakeDefendant": "Brock Fenn",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Possession with intent to supply Class A drugs",
+  "offenceFamily": "drugs_pwits",
+  "profile": "source_hierarchy_conflict",
+  "mainIssue": "Officer MG5 summary describes knife recovery; exhibit continuity log missing and MG11 differs on location.",
+  "servedEvidence": [
+    "officer MG5 narrative (folio 152 — Fenn)",
+    "MG5 supplementary note (folio 152 — Fenn)"
+  ],
+  "referredOnlyEvidence": [
+    "exhibit continuity log — Brock Fenn"
+  ],
+  "missingEvidence": [
+    "continuity log — Brock Fenn",
+    "seizure photographs — Brock Fenn",
+    "exhibit CE/02 continuity (Fenn / folio 152)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Officer summary not primary — chase exhibit continuity and witness MG11.",
+  "expectedChaseItems": [
+    "exhibit continuity — Brock Fenn",
+    "seizure photographs — Brock Fenn",
+    "witness MG11 — Brock Fenn",
+    "unused material sensitivity review — Fenn"
+  ],
+  "expectedSummaryRisk": "Provisional — source hierarchy officer exhibit on pages out of order papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "officer summary proves knife location",
+    "exhibit proved from summary"
+  ],
+  "blockingFailPatterns": [
+    "officer summary proves knife",
+    "exhibit proved from summary",
+    "knife location proved",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — pages_out_of_order"
+  ],
+  "pdfLayoutType": "pages_out_of_order",
+  "redTeamTrapType": "source_hierarchy_officer_exhibit",
+  "bundleStatus": "generated"
+}

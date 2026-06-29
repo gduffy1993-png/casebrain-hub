@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-201",
+  "title": "Weapon forensic index-only — bwv screenshots only",
+  "fakeDefendant": "Zinnia Evers",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Possession of a bladed article",
+  "offenceFamily": "weapons",
+  "profile": "bladed_article",
+  "mainIssue": "Forensic report on index; report body not served.",
+  "servedEvidence": [
+    "index forensic reference (folio 201 — Evers)",
+    "MG5 supplementary note (folio 201 — Evers)"
+  ],
+  "referredOnlyEvidence": [
+    "forensic report — Zinnia Evers"
+  ],
+  "missingEvidence": [
+    "forensic report — Zinnia Evers",
+    "continuity — Zinnia Evers",
+    "historic ABE support notes (Evers / folio 201)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Forensic index-only — chase report before weapon conclusions.",
+  "expectedChaseItems": [
+    "forensic report — Zinnia Evers",
+    "continuity — Zinnia Evers",
+    "search footage — Zinnia Evers",
+    "public order clip segregation — Evers"
+  ],
+  "expectedSummaryRisk": "Provisional — weapons forensic index only on bwv screenshots only papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "forensic proves weapon",
+    "report confirms blade"
+  ],
+  "blockingFailPatterns": [
+    "forensic proves weapon",
+    "report confirms blade",
+    "weapon analysis confirms",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — bwv_screenshots_only"
+  ],
+  "pdfLayoutType": "bwv_screenshots_only",
+  "redTeamTrapType": "weapons_forensic_index_only",
+  "bundleStatus": "generated"
+}

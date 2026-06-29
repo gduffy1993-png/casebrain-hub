@@ -1,0 +1,57 @@
+{
+  "caseId": "sim-257",
+  "title": "Interview summary vs prosecution summary — image only scan",
+  "fakeDefendant": "Dorian Jest",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Drive motor vehicle with excess alcohol",
+  "offenceFamily": "motoring",
+  "profile": "source_hierarchy_conflict",
+  "mainIssue": "Prosecution summary quotes admission; interview recording/transcript not served.",
+  "servedEvidence": [
+    "prosecution interview summary (folio 257 — Jest)",
+    "MG5 supplementary note (folio 257 — Jest)"
+  ],
+  "referredOnlyEvidence": [
+    "interview recording — Dorian Jest"
+  ],
+  "missingEvidence": [
+    "interview recording — Dorian Jest",
+    "transcript — Dorian Jest",
+    "PACE forms — Dorian Jest",
+    "redacted unused gateway application (Jest / folio 257)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Interview summary only — chase recording before admission reliance.",
+  "expectedChaseItems": [
+    "interview recording — Dorian Jest",
+    "transcript — Dorian Jest",
+    "PACE review — Dorian Jest",
+    "exhibit CE/02 continuity — Jest"
+  ],
+  "expectedSummaryRisk": "Provisional — source hierarchy interview summary on image only scan papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "interview proves admission",
+    "summary confirms admission"
+  ],
+  "blockingFailPatterns": [
+    "interview proves admission",
+    "summary confirms admission",
+    "admission reliable",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — image_only_scan"
+  ],
+  "pdfLayoutType": "image_only_scan",
+  "redTeamTrapType": "source_hierarchy_interview_summary",
+  "bundleStatus": "generated"
+}

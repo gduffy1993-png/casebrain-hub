@@ -77,6 +77,7 @@ export function fingerprintAuditCase(
     path.join(caseDir, "bundle-text.md"),
     path.join(caseDir, "..", "..", "..", "docs", "h4", "simulator-pack-v2", caseId, "bundle-text.md"),
     path.join(caseDir, "..", "..", "..", "docs", "h4", "simulator-pack-v3", caseId, "bundle-text.md"),
+    path.join(caseDir, "..", "..", "..", "docs", "h4", "simulator-pack-v4", caseId, "bundle-text.md"),
   ];
   let bundleText = "";
   for (const p of bundleCandidates) {

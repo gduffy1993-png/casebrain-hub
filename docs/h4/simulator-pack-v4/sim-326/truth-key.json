@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-326",
+  "title": "CCTV on index — exhibit missing — mixed defendants rotated",
+  "fakeDefendant": "Viggo Cleft",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Perverting the course of justice",
+  "offenceFamily": "perverting_justice",
+  "profile": "index_listed_not_served",
+  "mainIssue": "Exhibit CE/01 CCTV listed; media file not exported.",
+  "servedEvidence": [
+    "exhibit list (folio 326 — Cleft)",
+    "MG5 supplementary note (folio 326 — Cleft)"
+  ],
+  "referredOnlyEvidence": [
+    "CCTV CE/01 — Viggo Cleft"
+  ],
+  "missingEvidence": [
+    "CCTV export — Viggo Cleft",
+    "continuity — Viggo Cleft",
+    "ABE room recording index (Cleft / folio 326)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "CCTV index-only — chase master footage and continuity.",
+  "expectedChaseItems": [
+    "CCTV master footage — Viggo Cleft",
+    "continuity — Viggo Cleft",
+    "ID procedure — Viggo Cleft",
+    "co-defendant segregation map — Cleft"
+  ],
+  "expectedSummaryRisk": "Provisional — index cctv absent on mixed defendants rotated papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "CCTV identifies defendant",
+    "exhibit list proves footage served"
+  ],
+  "blockingFailPatterns": [
+    "CCTV identifies defendant",
+    "exhibit list proves footage",
+    "CCTV shows",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — mixed_defendants_rotated"
+  ],
+  "pdfLayoutType": "mixed_defendants_rotated",
+  "redTeamTrapType": "index_cctv_absent",
+  "bundleStatus": "generated"
+}

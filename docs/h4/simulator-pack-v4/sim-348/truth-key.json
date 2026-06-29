@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-348",
+  "title": "Image-only scan — no searchable text — custody extract missing",
+  "fakeDefendant": "Rafe Yor",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Conspiracy to supply Class A drugs",
+  "offenceFamily": "drugs_conspiracy",
+  "profile": "partial_vs_full_evidence",
+  "mainIssue": "MG6 and statements image-only scans — OCR unreliable for schedules.",
+  "servedEvidence": [
+    "image-only scanned pages (folio 348 — Yor)",
+    "MG5 supplementary note (folio 348 — Yor)"
+  ],
+  "referredOnlyEvidence": [
+    "text-searchable versions — Rafe Yor"
+  ],
+  "missingEvidence": [
+    "searchable MG6 — Rafe Yor",
+    "searchable statements — Rafe Yor",
+    "digital extraction scope annex (Yor / folio 348)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Image-only scan — chase text-searchable versions and exports.",
+  "expectedChaseItems": [
+    "text-searchable MG6 — Rafe Yor",
+    "searchable statements — Rafe Yor",
+    "key exports — Rafe Yor",
+    "breath procedure MGDDB copy — Yor"
+  ],
+  "expectedSummaryRisk": "Provisional — image only scan on custody extract missing papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "OCR text proves schedule",
+    "scan proves content"
+  ],
+  "blockingFailPatterns": [
+    "OCR text proves schedule",
+    "scan proves content",
+    "schedule complete as read",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — custody_extract_missing"
+  ],
+  "pdfLayoutType": "custody_extract_missing",
+  "redTeamTrapType": "image_only_scan",
+  "bundleStatus": "generated"
+}

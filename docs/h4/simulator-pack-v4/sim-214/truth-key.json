@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-214",
+  "title": "Custody risk assessment missing — thin sjp scan",
+  "fakeDefendant": "Merrick Rune",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Robbery",
+  "offenceFamily": "robbery_id",
+  "profile": "youth_vulnerability_custody",
+  "mainIssue": "Custody risk assessment and mental health triage referred only.",
+  "servedEvidence": [
+    "custody booking sheet (folio 214 — Rune)",
+    "MG5 supplementary note (folio 214 — Rune)"
+  ],
+  "referredOnlyEvidence": [
+    "risk assessment — Merrick Rune"
+  ],
+  "missingEvidence": [
+    "custody risk assessment — Merrick Rune",
+    "mental health triage — Merrick Rune",
+    "subscriber account verification (Rune / folio 214)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Custody risk material missing — chase triage and PACE review.",
+  "expectedChaseItems": [
+    "risk assessment — Merrick Rune",
+    "MH triage — Merrick Rune",
+    "PACE forms — Merrick Rune",
+    "second MG11 draft clarification — Rune"
+  ],
+  "expectedSummaryRisk": "Provisional — custody risk missing on thin sjp scan papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "safeguards complied",
+    "fitness to detain proved"
+  ],
+  "blockingFailPatterns": [
+    "safeguards complied",
+    "fitness to detain proved",
+    "PACE complied as fact",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — thin_sjp_scan"
+  ],
+  "pdfLayoutType": "thin_sjp_scan",
+  "redTeamTrapType": "custody_risk_missing",
+  "bundleStatus": "generated"
+}

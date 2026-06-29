@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-310",
+  "title": "Schedule lists material not on bundle — custody extract missing",
+  "fakeDefendant": "Fleur Mantis",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Being concerned in the supply of Class A drugs",
+  "offenceFamily": "drugs_supply",
+  "profile": "source_hierarchy_conflict",
+  "mainIssue": "MG6C schedule lists BWV as served; bundle body contains index reference only.",
+  "servedEvidence": [
+    "MG6C schedule page (folio 310 — Mantis)",
+    "MG5 supplementary note (folio 310 — Mantis)"
+  ],
+  "referredOnlyEvidence": [
+    "BWV full export — Fleur Mantis"
+  ],
+  "missingEvidence": [
+    "BWV download — Fleur Mantis",
+    "continuity statement — Fleur Mantis",
+    "sensitive material schedule MG6D (Mantis / folio 310)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Schedule vs bundle mismatch — chase actual BWV export.",
+  "expectedChaseItems": [
+    "BWV full export — Fleur Mantis",
+    "schedule correction — Fleur Mantis",
+    "continuity — Fleur Mantis",
+    "historic ABE support notes — Mantis"
+  ],
+  "expectedSummaryRisk": "Provisional — source hierarchy schedule served on custody extract missing papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "BWV served as fact",
+    "schedule proves material on bundle"
+  ],
+  "blockingFailPatterns": [
+    "BWV served as fact",
+    "schedule proves material",
+    "BWV shows",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — custody_extract_missing"
+  ],
+  "pdfLayoutType": "custody_extract_missing",
+  "redTeamTrapType": "source_hierarchy_schedule_served",
+  "bundleStatus": "generated"
+}

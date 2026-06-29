@@ -1,0 +1,57 @@
+{
+  "caseId": "sim-243",
+  "title": "Huge bundle — partial index only — conflicting mg11 duplicate",
+  "fakeDefendant": "Piper Vale",
+  "fakeCourt": "Northgate Youth Court",
+  "offenceWording": "Theft (youth)",
+  "offenceFamily": "youth",
+  "profile": "large_messy_bundle",
+  "mainIssue": "Large bundle with partial index; defendant exhibit map missing.",
+  "servedEvidence": [
+    "partial index (folio 243 — Vale)",
+    "subset exhibits (folio 243 — Vale)",
+    "MG5 supplementary note (folio 243 — Vale)"
+  ],
+  "referredOnlyEvidence": [
+    "multiple exports — Piper Vale"
+  ],
+  "missingEvidence": [
+    "defendant exhibit map — Piper Vale",
+    "complete index — Piper Vale",
+    "domestic chronology spreadsheet (Vale / folio 243)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Huge bundle needs review — chase defendant map before reliance.",
+  "expectedChaseItems": [
+    "defendant exhibit map — Piper Vale",
+    "complete index — Piper Vale",
+    "key exports — Piper Vale",
+    "harassment platform preservation notice — Vale"
+  ],
+  "expectedSummaryRisk": "Provisional — huge bundle partial index on conflicting mg11 duplicate papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "needs_solicitor_review",
+  "mustNotSay": [
+    "bundle complete",
+    "safe to send"
+  ],
+  "blockingFailPatterns": [
+    "bundle complete",
+    "safe to send",
+    "case summary confirms",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — conflicting_mg11_duplicate"
+  ],
+  "pdfLayoutType": "conflicting_mg11_duplicate",
+  "redTeamTrapType": "huge_bundle_partial_index",
+  "bundleStatus": "generated"
+}

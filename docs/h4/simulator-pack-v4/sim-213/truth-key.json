@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-213",
+  "title": "Vulnerable witness — special measures not served — late addendum scan",
+  "fakeDefendant": "Liora Quench",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "S18 wounding with intent",
+  "offenceFamily": "violence_assault",
+  "profile": "youth_vulnerability_custody",
+  "mainIssue": "Complainant marked vulnerable; ABE/special measures material referred only.",
+  "servedEvidence": [
+    "MG5 vulnerability marker (folio 213 — Quench)",
+    "MG5 supplementary note (folio 213 — Quench)"
+  ],
+  "referredOnlyEvidence": [
+    "ABE interview — Liora Quench"
+  ],
+  "missingEvidence": [
+    "ABE recording — Liora Quench",
+    "special measures application — Liora Quench",
+    "cellsite raw data dump (Quench / folio 213)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Vulnerable witness — chase ABE and special measures documentation.",
+  "expectedChaseItems": [
+    "ABE recording — Liora Quench",
+    "special measures docs — Liora Quench",
+    "MG11 first account — Liora Quench",
+    "sensitive material schedule MG6D — Quench"
+  ],
+  "expectedSummaryRisk": "Provisional — vulnerable witness marker on late addendum scan papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "ABE confirms account",
+    "vulnerability proves offence"
+  ],
+  "blockingFailPatterns": [
+    "ABE confirms",
+    "vulnerability proves offence",
+    "account confirmed as fact",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — late_addendum_scan"
+  ],
+  "pdfLayoutType": "late_addendum_scan",
+  "redTeamTrapType": "vulnerable_witness_marker",
+  "bundleStatus": "generated"
+}

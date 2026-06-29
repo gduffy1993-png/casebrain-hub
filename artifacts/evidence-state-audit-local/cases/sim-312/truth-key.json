@@ -1,0 +1,75 @@
+{
+  "caseId": "sim-312",
+  "title": "BWV timestamp vs alleged incident — index only bwv",
+  "offenceFamily": "robbery_id",
+  "offenceWording": "Robbery",
+  "profile": "date_time_conflict",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "BWV clip metadata page (folio 312 — Oriel)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 312 — Oriel)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full BWV export — Hester Oriel",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full BWV window — Hester Oriel",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG11 time account — Hester Oriel",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "image-only scan text layer (Oriel / folio 312)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "full BWV export — Hester Oriel",
+    "MG11 time account — Hester Oriel",
+    "metadata verification — Hester Oriel",
+    "appropriate adult sign-in sheet — Oriel"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "BWV proves incident time",
+    "timestamp confirms assault"
+  ],
+  "blockingFailPatterns": [
+    "BWV proves incident time",
+    "timestamp confirms assault",
+    "BWV shows assault",
+    "we win",
+    "case collapses"
+  ]
+}

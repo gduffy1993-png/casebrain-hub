@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-237",
+  "title": "Conspiracy role inferred — mixed defendants rotated",
+  "fakeDefendant": "Juno Pike",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Sexual assault (historic)",
+  "offenceFamily": "sexual",
+  "profile": "inference_as_fact",
+  "mainIssue": "Group chat membership served — leading role inference not established.",
+  "servedEvidence": [
+    "group chat excerpts (folio 237 — Pike)",
+    "MG5 supplementary note (folio 237 — Pike)"
+  ],
+  "referredOnlyEvidence": [
+    "full chat export — Juno Pike"
+  ],
+  "missingEvidence": [
+    "role map — Juno Pike",
+    "telecom data — Juno Pike",
+    "disclosure officer certification (Pike / folio 237)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Conspiracy role inference — chase per-defendant role map.",
+  "expectedChaseItems": [
+    "per-defendant role map — Juno Pike",
+    "telecom downloads — Juno Pike",
+    "handset extraction — Juno Pike",
+    "subscriber account verification — Pike"
+  ],
+  "expectedSummaryRisk": "Provisional — inference conspiracy role on mixed defendants rotated papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "leading role proved",
+    "conspiracy role established"
+  ],
+  "blockingFailPatterns": [
+    "leading role proved",
+    "conspiracy role established",
+    "conspiracy proved for defendant",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — mixed_defendants_rotated"
+  ],
+  "pdfLayoutType": "mixed_defendants_rotated",
+  "redTeamTrapType": "inference_conspiracy_role",
+  "bundleStatus": "generated"
+}

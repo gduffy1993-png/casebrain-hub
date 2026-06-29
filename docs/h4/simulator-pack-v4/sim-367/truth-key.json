@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-367",
+  "title": "Youth defendant — AA record missing — thin sjp scan",
+  "fakeDefendant": "Kian Rune",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Conspiracy to supply Class A drugs",
+  "offenceFamily": "drugs_conspiracy",
+  "profile": "youth_vulnerability_custody",
+  "mainIssue": "Youth defendant — appropriate adult attendance not documented on served papers.",
+  "servedEvidence": [
+    "youth interview summary (folio 367 — Rune)",
+    "MG5 supplementary note (folio 367 — Rune)"
+  ],
+  "referredOnlyEvidence": [
+    "interview recording — Kian Rune"
+  ],
+  "missingEvidence": [
+    "appropriate adult record — Kian Rune",
+    "custody record — Kian Rune",
+    "PACE custody review form (Rune / folio 367)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Youth interview — chase AA record and custody before admission reliance.",
+  "expectedChaseItems": [
+    "AA attendance record — Kian Rune",
+    "custody record — Kian Rune",
+    "interview recording — Kian Rune",
+    "lab submission chain — Rune"
+  ],
+  "expectedSummaryRisk": "Provisional — youth aa missing on thin sjp scan papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "AA attended as fact",
+    "interview reliable"
+  ],
+  "blockingFailPatterns": [
+    "AA attended",
+    "interview reliable",
+    "admission is reliable",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — thin_sjp_scan"
+  ],
+  "pdfLayoutType": "thin_sjp_scan",
+  "redTeamTrapType": "youth_aa_missing",
+  "bundleStatus": "generated"
+}

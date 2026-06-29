@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-160",
+  "title": "Interpreter mentioned — record missing — missing mg6 schedule",
+  "fakeDefendant": "Jasper Odom",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Fraud by false representation",
+  "offenceFamily": "fraud_account",
+  "profile": "youth_vulnerability_custody",
+  "mainIssue": "MG5 notes interpreter used; interpreter certification and recording not served.",
+  "servedEvidence": [
+    "MG5 reference to interpreter (folio 160 — Odom)",
+    "MG5 supplementary note (folio 160 — Odom)"
+  ],
+  "referredOnlyEvidence": [
+    "interview recording — Jasper Odom"
+  ],
+  "missingEvidence": [
+    "interpreter certification — Jasper Odom",
+    "interview recording — Jasper Odom",
+    "subscriber account verification (Odom / folio 160)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Interpreter record missing — chase certification and interview recording.",
+  "expectedChaseItems": [
+    "interpreter certification — Jasper Odom",
+    "interview recording — Jasper Odom",
+    "PACE review — Jasper Odom",
+    "second MG11 draft clarification — Odom"
+  ],
+  "expectedSummaryRisk": "Provisional — youth interpreter missing on missing mg6 schedule papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "interpreter attended as fact",
+    "interview fairly conducted"
+  ],
+  "blockingFailPatterns": [
+    "interpreter attended as fact",
+    "interview fairly conducted",
+    "PACE complied",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — missing_mg6_schedule"
+  ],
+  "pdfLayoutType": "missing_mg6_schedule",
+  "redTeamTrapType": "youth_interpreter_missing",
+  "bundleStatus": "generated"
+}

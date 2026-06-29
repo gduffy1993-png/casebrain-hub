@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-346",
+  "title": "Late disclosure addendum — large messy rotated",
+  "fakeDefendant": "Pia Wex",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Perverting the course of justice",
+  "offenceFamily": "perverting_justice",
+  "profile": "disclosure_schedule_trap",
+  "mainIssue": "Late addendum adds BWV reference; prior exports still missing.",
+  "servedEvidence": [
+    "late disclosure letter (folio 346 — Wex)",
+    "MG5 supplementary note (folio 346 — Wex)"
+  ],
+  "referredOnlyEvidence": [
+    "BWV addendum — Pia Wex"
+  ],
+  "missingEvidence": [
+    "BWV export — Pia Wex",
+    "prior missing MG11 — Pia Wex",
+    "expert instruction letter (Wex / folio 346)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Late addendum — chase substantive exports not just cover sheet.",
+  "expectedChaseItems": [
+    "BWV export — Pia Wex",
+    "missing MG11 — Pia Wex",
+    "addendum item list — Pia Wex",
+    "third-party disclosure gateway — Wex"
+  ],
+  "expectedSummaryRisk": "Provisional — late disclosure addendum on large messy rotated papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "late addendum cures disclosure",
+    "BWV now served as fact"
+  ],
+  "blockingFailPatterns": [
+    "late addendum cures disclosure",
+    "BWV now served",
+    "disclosure complete",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — large_messy_rotated"
+  ],
+  "pdfLayoutType": "large_messy_rotated",
+  "redTeamTrapType": "late_disclosure_addendum",
+  "bundleStatus": "generated"
+}

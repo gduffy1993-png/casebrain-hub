@@ -1,0 +1,73 @@
+{
+  "caseId": "sim-381",
+  "title": "Screenshots not full download — duplicate pages",
+  "offenceFamily": "custody_pace",
+  "offenceWording": "Theft",
+  "profile": "partial_vs_full_evidence",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "handset screenshots (folio 381 — Grove)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 381 — Grove)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "UFED extraction — Zia Grove",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full download — Zia Grove",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "search terms schedule — Zia Grove",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "third-party disclosure gateway (Grove / folio 381)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "UFED download — Zia Grove",
+    "search terms — Zia Grove",
+    "continuity certificate — Zia Grove",
+    "NRM referral outcome letter — Grove"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "screenshots prove all messages",
+    "download scope complete"
+  ],
+  "blockingFailPatterns": [
+    "screenshots prove all messages",
+    "download scope complete",
+    "phone proves supply",
+    "we win",
+    "case collapses"
+  ]
+}

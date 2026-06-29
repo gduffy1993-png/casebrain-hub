@@ -1,0 +1,58 @@
+{
+  "caseId": "sim-180",
+  "title": "Vehicle owner vs driver — very thin sjp",
+  "fakeDefendant": "Declan Jute",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Fraud by false representation",
+  "offenceFamily": "fraud_account",
+  "profile": "wrong_person_entity",
+  "mainIssue": "Vehicle registered to third party; driver identity not established on papers.",
+  "servedEvidence": [
+    "DVLA keeper printout (folio 180 — Jute)",
+    "MG5 supplementary note (folio 180 — Jute)"
+  ],
+  "referredOnlyEvidence": [
+    "ANPR/CCTV — Declan Jute"
+  ],
+  "missingEvidence": [
+    "driver identification — Declan Jute",
+    "insurance policy — Declan Jute",
+    "CCTV master timeline index (Jute / folio 180)"
+  ],
+  "uncertainEvidence": [
+    "who drove vehicle"
+  ],
+  "expectedTodayIssue": "Owner not driver — chase driver identification and insurance.",
+  "expectedChaseItems": [
+    "driver ID evidence — Declan Jute",
+    "ANPR/CCTV — Declan Jute",
+    "insurance records — Declan Jute",
+    "perverting course email preservation — Jute"
+  ],
+  "expectedSummaryRisk": "Provisional — vehicle owner vs driver on very thin sjp papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "defendant was driver as fact",
+    "keeper proves driver"
+  ],
+  "blockingFailPatterns": [
+    "defendant was driver as fact",
+    "keeper proves driver",
+    "driver identification proved",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — very_thin_sjp"
+  ],
+  "pdfLayoutType": "very_thin_sjp",
+  "redTeamTrapType": "vehicle_owner_vs_driver",
+  "bundleStatus": "generated"
+}

@@ -1,0 +1,78 @@
+{
+  "caseId": "sim-243",
+  "title": "Huge bundle — partial index only — conflicting mg11 duplicate",
+  "offenceFamily": "youth",
+  "offenceWording": "Theft (youth)",
+  "profile": "large_messy_bundle",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "partial index (folio 243 — Vale)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "subset exhibits (folio 243 — Vale)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 243 — Vale)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "multiple exports — Piper Vale",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "defendant exhibit map — Piper Vale",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "complete index — Piper Vale",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "domestic chronology spreadsheet (Vale / folio 243)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "defendant exhibit map — Piper Vale",
+    "complete index — Piper Vale",
+    "key exports — Piper Vale",
+    "harassment platform preservation notice — Vale"
+  ],
+  "expectedSendability": "needs_solicitor_review",
+  "mustNotSayGlobal": [
+    "bundle complete",
+    "safe to send"
+  ],
+  "blockingFailPatterns": [
+    "bundle complete",
+    "safe to send",
+    "case summary confirms",
+    "we win",
+    "case collapses"
+  ]
+}

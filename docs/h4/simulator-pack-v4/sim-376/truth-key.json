@@ -1,0 +1,57 @@
+{
+  "caseId": "sim-376",
+  "title": "Summary still uses old charge — corrected indictment",
+  "fakeDefendant": "Ugo Brook",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Fraud by false representation",
+  "offenceFamily": "fraud_account",
+  "profile": "changed_corrected_charge",
+  "mainIssue": "MG5 summary still describes s20 GBH; amended charge is s18.",
+  "servedEvidence": [
+    "MG5 with old s20 wording (folio 376 — Brook)",
+    "amended s18 charge (folio 376 — Brook)",
+    "MG5 supplementary note (folio 376 — Brook)"
+  ],
+  "referredOnlyEvidence": [
+    "medical report — Ugo Brook"
+  ],
+  "missingEvidence": [
+    "updated MG5 — Ugo Brook",
+    "medical for intent — Ugo Brook",
+    "subscriber account verification (Brook / folio 376)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Summary uses old charge — chase updated MG5 and medical for s18.",
+  "expectedChaseItems": [
+    "updated MG5 — Ugo Brook",
+    "medical report — Ugo Brook",
+    "intent material — Ugo Brook",
+    "second MG11 draft clarification — Brook"
+  ],
+  "expectedSummaryRisk": "Provisional — summary old charge on corrected indictment papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "s18 intent proved",
+    "old s20 summary controls"
+  ],
+  "blockingFailPatterns": [
+    "s18 intent proved",
+    "old s20 summary controls",
+    "intent established as fact",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — corrected_indictment"
+  ],
+  "pdfLayoutType": "corrected_indictment",
+  "redTeamTrapType": "summary_old_charge",
+  "bundleStatus": "generated"
+}

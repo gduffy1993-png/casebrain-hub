@@ -1,0 +1,67 @@
+{
+  "caseId": "sim-203",
+  "title": "MG5 summary conflicts with MG11 account — pages out of order",
+  "offenceFamily": "youth",
+  "offenceWording": "Theft (youth)",
+  "profile": "source_hierarchy_conflict",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5 officer summary (folio 203 — Goss)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 203 — Goss)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "signed MG11 — Briar Goss",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "signed MG11 final version — Briar Goss",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "redacted unused gateway application (Goss / folio 203)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "signed MG11 — Briar Goss",
+    "MG5 clarification — Briar Goss",
+    "BWV timestamp — Briar Goss",
+    "exhibit CE/02 continuity — Goss"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "MG5 timeline proves assault time",
+    "summary outranks MG11"
+  ],
+  "blockingFailPatterns": [
+    "MG5 timeline proves",
+    "summary outranks MG11",
+    "assault time proved from MG5",
+    "we win",
+    "case collapses"
+  ]
+}

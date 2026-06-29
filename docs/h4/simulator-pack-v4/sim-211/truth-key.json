@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-211",
+  "title": "Youth defendant — AA record missing — missing mg6 schedule",
+  "fakeDefendant": "Jovan Opal",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Possession with intent to supply Class A drugs",
+  "offenceFamily": "drugs_pwits",
+  "profile": "youth_vulnerability_custody",
+  "mainIssue": "Youth defendant — appropriate adult attendance not documented on served papers.",
+  "servedEvidence": [
+    "youth interview summary (folio 211 — Opal)",
+    "MG5 supplementary note (folio 211 — Opal)"
+  ],
+  "referredOnlyEvidence": [
+    "interview recording — Jovan Opal"
+  ],
+  "missingEvidence": [
+    "appropriate adult record — Jovan Opal",
+    "custody record — Jovan Opal",
+    "appropriate adult sign-in sheet (Opal / folio 211)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Youth interview — chase AA record and custody before admission reliance.",
+  "expectedChaseItems": [
+    "AA attendance record — Jovan Opal",
+    "custody record — Jovan Opal",
+    "interview recording — Jovan Opal",
+    "robbery ID parade notes — Opal"
+  ],
+  "expectedSummaryRisk": "Provisional — youth aa missing on missing mg6 schedule papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "AA attended as fact",
+    "interview reliable"
+  ],
+  "blockingFailPatterns": [
+    "AA attended",
+    "interview reliable",
+    "admission is reliable",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — missing_mg6_schedule"
+  ],
+  "pdfLayoutType": "missing_mg6_schedule",
+  "redTeamTrapType": "youth_aa_missing",
+  "bundleStatus": "generated"
+}

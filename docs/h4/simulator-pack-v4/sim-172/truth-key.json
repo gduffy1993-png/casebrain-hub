@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-172",
+  "title": "CCTV stills not full CCTV — index only bwv",
+  "fakeDefendant": "Vance Birch",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Possession with intent to supply Class A drugs",
+  "offenceFamily": "drugs_pwits",
+  "profile": "partial_vs_full_evidence",
+  "mainIssue": "Grainy stills served — master timeline and continuity missing.",
+  "servedEvidence": [
+    "CCTV still images (folio 172 — Birch)",
+    "MG5 supplementary note (folio 172 — Birch)"
+  ],
+  "referredOnlyEvidence": [
+    "master CCTV timeline — Vance Birch"
+  ],
+  "missingEvidence": [
+    "master footage — Vance Birch",
+    "continuity — Vance Birch",
+    "encro handle mapping annex (Birch / folio 172)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "CCTV stills only — chase master footage full window.",
+  "expectedChaseItems": [
+    "master CCTV — Vance Birch",
+    "full time window — Vance Birch",
+    "continuity — Vance Birch",
+    "cellsite raw data dump — Birch"
+  ],
+  "expectedSummaryRisk": "Provisional — partial cctv stills on index only bwv papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "CCTV stills prove ID",
+    "stills are full CCTV"
+  ],
+  "blockingFailPatterns": [
+    "CCTV stills prove ID",
+    "stills are full CCTV",
+    "CCTV shows robbery",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — index_only_bwv"
+  ],
+  "pdfLayoutType": "index_only_bwv",
+  "redTeamTrapType": "partial_cctv_stills",
+  "bundleStatus": "generated"
+}

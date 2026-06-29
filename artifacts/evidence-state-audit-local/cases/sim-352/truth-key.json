@@ -1,0 +1,71 @@
+{
+  "caseId": "sim-352",
+  "title": "County lines — exploitation inferred — very thin sjp",
+  "offenceFamily": "robbery_id",
+  "offenceWording": "Robbery",
+  "profile": "county_lines_vulnerability",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "safeguarding flag note (folio 352 — Coven)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 352 — Coven)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "NRM referral — Vera Coven",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "NRM outcome — Vera Coven",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "line attribution — Vera Coven",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "harassment platform preservation notice (Coven / folio 352)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "NRM outcome — Vera Coven",
+    "line attribution — Vera Coven",
+    "role evidence — Vera Coven",
+    "conspiracy role assessment — Coven"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "was exploited as fact",
+    "runner role confirmed"
+  ],
+  "blockingFailPatterns": [
+    "was exploited",
+    "runner role confirmed",
+    "exploitation proved",
+    "we win",
+    "case collapses"
+  ]
+}

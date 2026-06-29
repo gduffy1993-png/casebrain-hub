@@ -1,0 +1,55 @@
+{
+  "caseId": "sim-151",
+  "title": "MG5 summary conflicts with MG11 account — bad ocr scan",
+  "fakeDefendant": "Alba Crisp",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Conspiracy to supply Class A drugs",
+  "offenceFamily": "drugs_conspiracy",
+  "profile": "source_hierarchy_conflict",
+  "mainIssue": "MG5 states assault at 22:15; signed MG11 states 23:40 — primary MG11 should outrank summary.",
+  "servedEvidence": [
+    "MG5 officer summary (folio 151 — Crisp)",
+    "MG5 supplementary note (folio 151 — Crisp)"
+  ],
+  "referredOnlyEvidence": [
+    "signed MG11 — Alba Crisp"
+  ],
+  "missingEvidence": [
+    "signed MG11 final version — Alba Crisp",
+    "PACE custody review form (Crisp / folio 151)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Source hierarchy conflict — chase signed MG11 before relying on MG5 timeline.",
+  "expectedChaseItems": [
+    "signed MG11 — Alba Crisp",
+    "MG5 clarification — Alba Crisp",
+    "BWV timestamp — Alba Crisp",
+    "lab submission chain — Crisp"
+  ],
+  "expectedSummaryRisk": "Provisional — source hierarchy mg5 mg11 on bad ocr scan papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "MG5 timeline proves assault time",
+    "summary outranks MG11"
+  ],
+  "blockingFailPatterns": [
+    "MG5 timeline proves",
+    "summary outranks MG11",
+    "assault time proved from MG5",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — bad_ocr_scan"
+  ],
+  "pdfLayoutType": "bad_ocr_scan",
+  "redTeamTrapType": "source_hierarchy_mg5_mg11",
+  "bundleStatus": "generated"
+}

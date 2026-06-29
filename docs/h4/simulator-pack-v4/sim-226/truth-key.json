@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-226",
+  "title": "BWV transcript not full video — huge bundle partial",
+  "fakeDefendant": "Yuri Elm",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Possession of indecent images — attribution disputed",
+  "offenceFamily": "digital_attribution",
+  "profile": "partial_vs_full_evidence",
+  "mainIssue": "Officer transcript served; full BWV video not on bundle.",
+  "servedEvidence": [
+    "BWV transcript extract (folio 226 — Elm)",
+    "MG5 supplementary note (folio 226 — Elm)"
+  ],
+  "referredOnlyEvidence": [
+    "full BWV video — Yuri Elm"
+  ],
+  "missingEvidence": [
+    "BWV video export — Yuri Elm",
+    "continuity — Yuri Elm",
+    "encro handle mapping annex (Elm / folio 226)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "BWV transcript partial — chase full video export.",
+  "expectedChaseItems": [
+    "BWV video export — Yuri Elm",
+    "continuity — Yuri Elm",
+    "custody record — Yuri Elm",
+    "cellsite raw data dump — Elm"
+  ],
+  "expectedSummaryRisk": "Provisional — partial bwv transcript on huge bundle partial papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "transcript proves contact",
+    "BWV shows assault"
+  ],
+  "blockingFailPatterns": [
+    "transcript proves contact",
+    "BWV shows assault",
+    "BWV shows",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — huge_bundle_partial"
+  ],
+  "pdfLayoutType": "huge_bundle_partial",
+  "redTeamTrapType": "partial_bwv_transcript",
+  "bundleStatus": "generated"
+}

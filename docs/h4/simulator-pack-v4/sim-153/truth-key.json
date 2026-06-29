@@ -1,0 +1,57 @@
+{
+  "caseId": "sim-153",
+  "title": "Interview summary vs prosecution summary — index only bwv",
+  "fakeDefendant": "Celia Grant",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Being concerned in the supply of Class A drugs",
+  "offenceFamily": "drugs_supply",
+  "profile": "source_hierarchy_conflict",
+  "mainIssue": "Prosecution summary quotes admission; interview recording/transcript not served.",
+  "servedEvidence": [
+    "prosecution interview summary (folio 153 — Grant)",
+    "MG5 supplementary note (folio 153 — Grant)"
+  ],
+  "referredOnlyEvidence": [
+    "interview recording — Celia Grant"
+  ],
+  "missingEvidence": [
+    "interview recording — Celia Grant",
+    "transcript — Celia Grant",
+    "PACE forms — Celia Grant",
+    "second MG11 draft clarification (Grant / folio 153)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Interview summary only — chase recording before admission reliance.",
+  "expectedChaseItems": [
+    "interview recording — Celia Grant",
+    "transcript — Celia Grant",
+    "PACE review — Celia Grant",
+    "encro handle mapping annex — Grant"
+  ],
+  "expectedSummaryRisk": "Provisional — source hierarchy interview summary on index only bwv papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "interview proves admission",
+    "summary confirms admission"
+  ],
+  "blockingFailPatterns": [
+    "interview proves admission",
+    "summary confirms admission",
+    "admission reliable",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — index_only_bwv"
+  ],
+  "pdfLayoutType": "index_only_bwv",
+  "redTeamTrapType": "source_hierarchy_interview_summary",
+  "bundleStatus": "generated"
+}

@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-389",
+  "title": "Encro handle vs defendant — missing mg6 schedule",
+  "fakeDefendant": "Hux Oaken",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Being concerned in the supply of Class A drugs",
+  "offenceFamily": "drugs_supply",
+  "profile": "wrong_person_entity",
+  "mainIssue": "Handle SHADOW-22 on thread; mapping certificate to defendant not served.",
+  "servedEvidence": [
+    "Encro message extracts (folio 389 — Oaken)",
+    "MG5 supplementary note (folio 389 — Oaken)"
+  ],
+  "referredOnlyEvidence": [
+    "platform extraction — Hux Oaken"
+  ],
+  "missingEvidence": [
+    "handle mapping certificate — Hux Oaken",
+    "continuity — Hux Oaken",
+    "co-defendant segregation map (Oaken / folio 389)"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Encro handle not defendant — chase handle mapping before attribution.",
+  "expectedChaseItems": [
+    "handle mapping — Hux Oaken",
+    "full extraction — Hux Oaken",
+    "continuity — Hux Oaken",
+    "ABE room recording index — Oaken"
+  ],
+  "expectedSummaryRisk": "Provisional — encro handle not defendant on missing mg6 schedule papers",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review",
+    "served",
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "handle is defendant",
+    "Encro proves supply"
+  ],
+  "blockingFailPatterns": [
+    "handle is defendant",
+    "Encro proves supply",
+    "attribution confirmed",
+    "we win",
+    "case collapses"
+  ],
+  "polishOnlyWarnings": [
+    "v4 audit expansion — missing_mg6_schedule"
+  ],
+  "pdfLayoutType": "missing_mg6_schedule",
+  "redTeamTrapType": "encro_handle_not_defendant",
+  "bundleStatus": "generated"
+}

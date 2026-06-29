@@ -1,0 +1,71 @@
+{
+  "caseId": "sim-304",
+  "title": "ABE partial transcript only — bad ocr scan",
+  "offenceFamily": "mixed_unclear",
+  "offenceWording": "Offence per charge sheet",
+  "profile": "historic_sexual",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "ABE transcript fragment (folio 304 — Gorse)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 supplementary note (folio 304 — Gorse)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "ABE recording — Zelda Gorse",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "ABE recording — Zelda Gorse",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full transcript — Zelda Gorse",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "public order clip segregation (Gorse / folio 304)",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "ABE recording — Zelda Gorse",
+    "full transcript — Zelda Gorse",
+    "supporting medical — Zelda Gorse",
+    "banking schedule annex B — Gorse"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "ABE confirms account",
+    "transcript proves assault"
+  ],
+  "blockingFailPatterns": [
+    "ABE confirms",
+    "transcript proves assault",
+    "account confirmed",
+    "we win",
+    "case collapses"
+  ]
+}
