@@ -355,6 +355,16 @@ export function useMatterBrief(caseId: string) {
       allegation,
       clientLabel,
       briefPlan,
+      primaryRouteTitle,
+      bundleMeta: bundleSource
+        ? {
+            documentCount: Math.max(snapshot?.analysis.docCount ?? 0, bundleSource.documentCount ?? 0),
+            combinedTextLength: bundleSource.combinedTextLength ?? 0,
+            documentRows: bundleSource.documentRows,
+            snippets: bundleSource.snippets,
+            frontMatterScan: bundleSource.frontMatterScan,
+          }
+        : null,
     };
   }, [
     snapshotLoading,
@@ -380,6 +390,8 @@ export function useMatterBrief(caseId: string) {
     allegation: pilotMatter?.allegation ?? null,
     clientLabel: pilotMatter?.clientLabel ?? null,
     briefPlan: pilotMatter?.briefPlan ?? null,
+    primaryRouteTitle: pilotMatter?.primaryRouteTitle ?? null,
+    bundleMeta: pilotMatter?.bundleMeta ?? null,
     caseTitle: snapshot?.caseMeta?.title?.trim() || "Criminal case",
   };
 }

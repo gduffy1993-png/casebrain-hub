@@ -10,6 +10,7 @@ import { SOURCE_BACKED_COURT_NOTE_LABEL } from "@/lib/criminal/trust/firm-facing
 import { buildFiveAnswersView } from "@/lib/criminal/five-answers/build-five-answers-view";
 import { buildDecisionBoard } from "@/lib/criminal/decision-board/build-decision-board";
 import { DefenceDecisionBoard } from "@/components/criminal/decision-board/DefenceDecisionBoard";
+import { AdviceChangeRadarPanel } from "@/components/criminal/advice-change-radar/AdviceChangeRadarPanel";
 import { evidenceExistenceLabel, evidenceReliabilityLabel } from "@/lib/criminal/five-answers/evidence-trace";
 import { useMatterBrief } from "@/components/criminal/workflow/useMatterBrief";
 import { usePilotMatterTabHref } from "@/components/criminal/workflow/pilotDeskNavContext";
@@ -59,7 +60,17 @@ function AnswerCard({
 }
 
 export function FiveAnswersView({ caseId }: { caseId: string }) {
-  const { loading, matterConfidence, doNotOverstate, warRoom, chase, allegation, briefPlan } = useMatterBrief(caseId);
+  const {
+    loading,
+    matterConfidence,
+    doNotOverstate,
+    warRoom,
+    chase,
+    allegation,
+    briefPlan,
+    primaryRouteTitle,
+    bundleMeta,
+  } = useMatterBrief(caseId);
   const buildTabHref = usePilotMatterTabHref();
   const [copied, setCopied] = useState(false);
 
@@ -266,6 +277,18 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
       </AnswerCard>
 
       {decisionBoard ? <DefenceDecisionBoard model={decisionBoard} /> : null}
+
+      {warRoom && chase && briefPlan ? (
+        <AdviceChangeRadarPanel
+          caseId={caseId}
+          warRoom={warRoom}
+          chase={chase}
+          briefPlan={briefPlan}
+          matterConfidence={matterConfidence}
+          primaryRouteTitle={primaryRouteTitle}
+          bundleMeta={bundleMeta}
+        />
+      ) : null}
     </div>
   );
 }

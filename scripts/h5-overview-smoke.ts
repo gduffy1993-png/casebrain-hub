@@ -354,6 +354,8 @@ async function main(): Promise<void> {
       steps.push({ id: "evidence_trace_visible", status: "warn", detail: "Trace panel not found" });
     }
 
+    const overviewBody = await desktop.locator("body").innerText();
+
     if (await desktop.getByTestId("defence-decision-board").isVisible().catch(() => false)) {
       steps.push({ id: "decision_board_visible", status: "pass" });
     } else {
@@ -365,8 +367,24 @@ async function main(): Promise<void> {
       }
     }
 
+    if (await desktop.getByTestId("advice-change-radar").isVisible().catch(() => false)) {
+      steps.push({ id: "advice_change_radar_visible", status: "pass" });
+    } else {
+      const body = await desktop.locator("body").innerText();
+      if (/advice change radar|review needed because/i.test(body)) {
+        steps.push({ id: "advice_change_radar_visible", status: "pass", detail: "content without testid" });
+      } else {
+        steps.push({ id: "advice_change_radar_visible", status: "warn", detail: "Advice radar not on page" });
+      }
+    }
+
+    if (/change your advice/i.test(overviewBody)) {
+      steps.push({ id: "radar_no_command_language", status: "fail", detail: "Command-style advice language on overview" });
+    } else {
+      steps.push({ id: "radar_no_command_language", status: "pass" });
+    }
+
     const dangerous = /\bBWV\s+(?:shows|confirms|proves)\b|\bdrug\s+continuity\b|\bsafeguards\s+were\s+followed\b/i;
-    const overviewBody = await desktop.locator("body").innerText();
     if (dangerous.test(overviewBody)) {
       steps.push({ id: "no_dangerous_patterns", status: "fail", detail: "Dangerous pattern on overview" });
     } else {

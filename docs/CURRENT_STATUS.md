@@ -1,7 +1,19 @@
 # CaseBrain criminal pilot — where we are
 
 **Updated:** 2026-06-29  
-**Prod:** [https://www.casebrain.co.uk](https://www.casebrain.co.uk) — **master promoted** (H3/H4 trust-feedback live)
+**Prod:** [https://www.casebrain.co.uk](https://www.casebrain.co.uk) — **`master` branch** (`9a4046a`) · H5 chunks 1–3 live · prod smoke **14/14 PASS**
+
+### Production deploy alignment (ops)
+
+| Setting | Value |
+|---------|--------|
+| GitHub default branch | `master` |
+| Vercel production branch | **`master`** (was `main` — fixed 2026-06-29) |
+| `main` branch | Stale / diverged (~61 commits behind `master`) — **do not ship from `main`** |
+| Custom domain auto-assign | On |
+
+**Symptom before fix:** green Vercel checks on `master` only built **Preview**; `www.casebrain.co.uk` stayed on old `main` or manual CLI deploys.  
+**Verify after any prod push:** `vercel inspect www.casebrain.co.uk` → `meta.githubCommitRef` = `master`, SHA matches `git rev-parse master`.
 
 **Decision:** No design-partner trial yet. H3 ✅ · H4 ✅ → **H5 Five Answers** → H6 → then firm.
 
@@ -46,7 +58,7 @@
 
 **Scale gates (latest):** simulator 150 **0 blocking** · Bad Output Memory **PASS** · export/copy golden 102 **PASS** · golden trust **PASS**
 
-**Next: H5 chunk 1** — Five Answers / Evidence Truth View (default Overview tab) · `docs/h5/H5_FIVE_ANSWERS_FRONT_DOOR.md`
+**Next: H5 chunk 5+** — 20-Minute Hearing Mode · Export Pack · see `docs/h5/H5_PRIORITY_REFERENCE.md`
 
 ### H5 chunk 1 — Five Answers front door ✅
 
@@ -78,6 +90,25 @@
 | Hard wording guard (no win/collapse language) | ✅ |
 | `scripts/decision-board.test.ts` | ✅ |
 
+### H5 chunk 4 — Advice Change Radar ✅
+
+| Item | Status |
+|------|--------|
+| `buildAdviceChangeRadar` — material change + watch points from snapshot compare | ✅ |
+| `buildMatterEvidenceSnapshot` — matter-brief baseline without reasoning-v2 | ✅ |
+| `AdviceChangeRadarPanel` on Overview (below Decision Board) | ✅ |
+| Hard wording guard (review needed because… — no command language) | ✅ |
+| `scripts/advice-change-radar.test.ts` | ✅ |
+
+### H5 chunks 1–3 — prod acceptance ✅
+
+| Item | Status |
+|------|--------|
+| Fresh upload → Overview (`?tab=overview&controlRoom=1`) | ✅ prod |
+| Five Answers + Evidence Trace + Decision Board on Overview | ✅ prod |
+| `scripts/h5-overview-smoke.ts` vs `www.casebrain.co.uk` | ✅ **14/14 PASS** (2026-06-29) |
+| H5 chunk 4 — Advice Change Radar | ✅ built — pending prod deploy |
+
 ## Key scripts
 
 ```powershell
@@ -100,6 +131,8 @@ npx tsx scripts/h4-simulator-pack-v3-generate.ts
 npx tsx scripts/h4-bad-output-memory-gate.ts
 npx tsx scripts/five-answers-view.test.ts
 npx tsx scripts/evidence-trace.test.ts
+npx tsx scripts/decision-board.test.ts
+npx tsx scripts/advice-change-radar.test.ts
 npx tsx scripts/h5-five-answers-artifact.ts
 npx tsx scripts/h5-overview-smoke.ts   # local preview / prod after deploy
 npx tsx scripts/bad-output-memory.test.ts
