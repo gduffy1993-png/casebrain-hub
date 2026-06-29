@@ -30,6 +30,7 @@ import { assembleBundleTextForContradictions } from "@/lib/criminal/reasoning-v2
 import { buildCriminalBriefPlan } from "@/lib/criminal/brief-plan";
 import { buildMatterConfidence } from "@/lib/criminal/matter-confidence/build-matter-confidence";
 import type { MatterConfidenceResult } from "@/lib/criminal/matter-confidence/matter-confidence-types";
+import type { CriminalBriefPlan } from "@/lib/criminal/brief-plan/types";
 
 function bundleHealthTier(label: string, docCount: number): "ready" | "thin" | "unknown" {
   if (docCount === 0) return "unknown";
@@ -349,6 +350,11 @@ export function useMatterBrief(caseId: string) {
       matterBrief,
       matterConfidence,
       doNotOverstate: warRoom.doNotOverstate,
+      warRoom,
+      chase,
+      allegation,
+      clientLabel,
+      briefPlan,
     };
   }, [
     snapshotLoading,
@@ -369,6 +375,11 @@ export function useMatterBrief(caseId: string) {
     matterBrief: pilotMatter?.matterBrief ?? null,
     matterConfidence: pilotMatter?.matterConfidence ?? null,
     doNotOverstate: pilotMatter?.doNotOverstate ?? [],
+    warRoom: pilotMatter?.warRoom ?? null,
+    chase: pilotMatter?.chase ?? null,
+    allegation: pilotMatter?.allegation ?? null,
+    clientLabel: pilotMatter?.clientLabel ?? null,
+    briefPlan: pilotMatter?.briefPlan ?? null,
     caseTitle: snapshot?.caseMeta?.title?.trim() || "Criminal case",
   };
 }

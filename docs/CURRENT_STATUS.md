@@ -3,7 +3,7 @@
 **Updated:** 2026-06-29  
 **Prod:** [https://www.casebrain.co.uk](https://www.casebrain.co.uk) — **master promoted** (H3/H4 trust-feedback live)
 
-**Decision:** No design-partner trial yet. H3 ✅ → **H4** → H5 → H6 → then firm.
+**Decision:** No design-partner trial yet. H3 ✅ · H4 ✅ → **H5 Five Answers** → H6 → then firm.
 
 **Scale gates (primary):** golden 102 + Level 1 2,200 + worst50 + simulator pack (when live). **Taylor/Jordan:** fresh-user deploy smoke only.
 
@@ -25,7 +25,7 @@
 - Feedback panels live on Today / Chase / Summary
 - Trust feedback DB migration applied (`20260628120000_trust_feedback.sql`)
 
-## H4 — Real-World Confidence ⏳ **in progress**
+## H4 — Real-World Confidence ✅ **complete**
 
 **Criminal Bundle Simulator Library** — fake/anonymised bundles; test by shape, not identity.
 
@@ -39,15 +39,44 @@
 | 6 | Simulator pack v1 | ✅ gate 0 blocking |
 | 6b | v1.1 serious-case supplement | ✅ accepted — 7 cases, gate 0 blocking |
 | 7 | Expand 37 → 75 → 150+ | ✅ v2 ingested — combined gate 0 blocking |
-| 8 | Worst50 + simulator → Bad Output Memory | — |
+| 8 | Worst50 + simulator → Bad Output Memory | ✅ 23 blocking rules · gate PASS |
+| 9 | Expand simulator **75 → 150** | ✅ combined gate 0 blocking |
 
-**Simulator library:** **75 cases** (v1 30 + v1.1 7 + v2 38) · combined gate **0 blocking** · warnings = chase-label / Today phrasing drift
+**Simulator library:** **150 cases** (v1 30 + v1.1 7 + v2 38 + v3 75) · combined gate **0 blocking** · warnings = chase-label / Today phrasing drift
 
-**Scale gates (latest):** export/copy golden 102 **PASS** (0 blocking) · account/permission prod **0 fail**
+**Scale gates (latest):** simulator 150 **0 blocking** · Bad Output Memory **PASS** · export/copy golden 102 **PASS** · golden trust **PASS**
 
-**Backlog (not started):** UI five-answers simplification — `docs/backlog/UI_SIMPLIFICATION_FIVE_ANSWERS.md` (Ged must choose chunk)
+**Next: H5 chunk 1** — Five Answers / Evidence Truth View (default Overview tab) · `docs/h5/H5_FIVE_ANSWERS_FRONT_DOOR.md`
 
-**Docs:** `docs/h4/H4_SIMULATOR_LIBRARY.md` · `docs/h4/H4_BUILD_ORDER.md`
+### H5 chunk 1 — Five Answers front door ✅
+
+| Item | Status |
+|------|--------|
+| `buildFiveAnswersView` + evidence two-axis trace | ✅ |
+| `FiveAnswersView` — 5 answers, hard rules, contradiction surface | ✅ |
+| Pilot default tab → **Overview** (`?tab=overview`) | ✅ |
+| Today / Chase / Summary / Papers unchanged underneath | ✅ |
+| Overview smoke | `scripts/h5-overview-smoke.ts` |
+| Layer 7 artifact | `scripts/h5-five-answers-artifact.ts` |
+
+### H5 chunk 2 — Evidence Trace proper ✅
+
+| Item | Status |
+|------|--------|
+| `buildEvidenceTrace` — allegation, evidence, missing/referred, DNO, chase, court note | ✅ |
+| Expandable trace panel per Five Answers card | ✅ |
+| Both axes + inference / critical / not-usable labels | ✅ |
+| Contradictions as trace warnings (existing detection only) | ✅ |
+| Overview preview smoke | `scripts/h5-overview-smoke.ts` — 9/9 PASS (local) |
+
+### H5 chunk 3 — Defence Decision Board ✅
+
+| Item | Status |
+|------|--------|
+| `buildDecisionBoard` — source gaps + contradictions → review options | ✅ |
+| `DefenceDecisionBoard` on Overview (below Five Answers) | ✅ |
+| Hard wording guard (no win/collapse language) | ✅ |
+| `scripts/decision-board.test.ts` | ✅ |
 
 ## Key scripts
 
@@ -66,6 +95,14 @@ npx tsx scripts/build-simulator-manifest-v2.ts
 npx tsx scripts/h4-simulator-pack-v2-generate.ts
 npx tsx scripts/h4-simulator-pack-v2-gate.ts
 npx tsx scripts/h4-simulator-combined-gate.ts
+npx tsx scripts/build-simulator-manifest-v3.ts
+npx tsx scripts/h4-simulator-pack-v3-generate.ts
+npx tsx scripts/h4-bad-output-memory-gate.ts
+npx tsx scripts/five-answers-view.test.ts
+npx tsx scripts/evidence-trace.test.ts
+npx tsx scripts/h5-five-answers-artifact.ts
+npx tsx scripts/h5-overview-smoke.ts   # local preview / prod after deploy
+npx tsx scripts/bad-output-memory.test.ts
 npx tsx scripts/trust-feedback-persistence-verify.ts
 npx tsx scripts/golden-case-pack-gate.ts --pack gold --min-runnable 100 --max-polish-rate 1
 npx tsx scripts/trust-feedback.test.ts

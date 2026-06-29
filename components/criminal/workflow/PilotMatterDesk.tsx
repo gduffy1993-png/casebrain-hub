@@ -22,6 +22,7 @@ import { usePilotDemoSession } from "./usePilotDemoSession";
 import { buildCourtTodayDeskHref } from "@/components/criminal/criminalCaseNavigation";
 import { workflowPilotCard } from "./workflowUi";
 import { mapSnapshotToWorkflowDocuments } from "./caseWorkflowDocuments";
+import { FiveAnswersView } from "@/components/criminal/five-answers/FiveAnswersView";
 
 export type PilotMatterDeskProps = {
   caseId: string;
@@ -233,6 +234,8 @@ export function PilotMatterDesk({ caseId, deskSafeCourtLine, deskChargeLine }: P
     }
 
     switch (activeTab) {
+      case "overview":
+        return <FiveAnswersView caseId={caseId} />;
       case "today":
       case "hearing-war-room":
         return <HearingWarRoom {...hearingWarRoomSharedProps} />;
@@ -257,7 +260,7 @@ export function PilotMatterDesk({ caseId, deskSafeCourtLine, deskChargeLine }: P
       case "documents":
         return null;
       default:
-        return <HearingWarRoom {...hearingWarRoomSharedProps} />;
+        return <FiveAnswersView caseId={caseId} />;
     }
   })();
 

@@ -72,9 +72,11 @@ import { WorkflowSafetyLine } from "./workflow/WorkflowSafetyLine";
 import { CaseWorkflowShell } from "./workflow/CaseWorkflowShell";
 import { PilotPapersView } from "./workflow/PilotPapersView";
 import { PilotSummaryView } from "./workflow/PilotSummaryView";
+import { FiveAnswersView } from "./five-answers/FiveAnswersView";
 
 /** Tab ids for criminal case page. URL ?tab= must be one of these. Order: primary then secondary. */
 const CRIMINAL_CASE_TAB_IDS = [
+  "overview",
   "summary",
   "charges",
   "strategy",
@@ -591,18 +593,20 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   const defaultTabByState =
     matterState === "at_station"
       ? "police-station"
-      : matterState === "charged" || matterState === "before_first_hearing" || matterState === "before_ptph" || matterState === "before_trial" || matterState === "trial"
-        ? isCriminalPilotMode()
-          ? "today"
-          : "strategy"
-        : isCriminalPilotMode()
-          ? "today"
+      : isCriminalPilotMode()
+        ? getDefaultCriminalCaseTab()
+        : matterState === "charged" || matterState === "before_first_hearing" || matterState === "before_ptph" || matterState === "before_trial" || matterState === "trial"
+          ? "strategy"
           : DEFAULT_TAB;
   const normalizedTab = normalizeCriminalCaseTabFromUrl(tabFromUrl);
-  const rawTab =
-    tabFromUrl && CRIMINAL_CASE_TAB_IDS.includes(tabFromUrl as (typeof CRIMINAL_CASE_TAB_IDS)[number])
-      ? normalizedTab || tabFromUrl
-      : defaultTabByState;
+  const rawTab = (() => {
+    if (!tabFromUrl) return defaultTabByState;
+    if (isCriminalPilotMode()) return normalizedTab || tabFromUrl;
+    if (CRIMINAL_CASE_TAB_IDS.includes(tabFromUrl as (typeof CRIMINAL_CASE_TAB_IDS)[number])) {
+      return normalizedTab || tabFromUrl;
+    }
+    return defaultTabByState;
+  })();
   const activeTab =
     rawTab === "police-station" && !policeStationTabAllowed
       ? DEFAULT_TAB
@@ -798,6 +802,33 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
     );
   }
 
+  if (isCriminalPilotMode() && activeTab === "overview") {
+    return (
+      <div className="space-y-4">
+        {matterClosed && (
+          <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-center">
+            <p className="text-xs text-foreground">
+              <strong>Matter closed</strong>
+              {matterClosed.at && ` (${new Date(matterClosed.at).toLocaleDateString("en-GB")})`}
+              {matterClosed.reason ? ` – ${matterClosed.reason}` : ""}.
+            </p>
+          </div>
+        )}
+        <CaseWorkflowShell
+          caseId={caseId}
+          onRecordPosition={pilotRecordPositionHidden ? undefined : openRecordPosition}
+          onUploadEvidence={pilotUploadDisabled ? undefined : openUploadEvidence}
+          pilotUploadDisabled={pilotUploadDisabled}
+          pilotRecordPositionHidden={pilotRecordPositionHidden}
+        >
+          <FiveAnswersView caseId={caseId} />
+        </CaseWorkflowShell>
+        {controlRoomSharedModals}
+        <BackToTop />
+      </div>
+    );
+  }
+
   if (activeTab === "disclosure-chase") {
     const chaseBody = (
       <DisclosureChase {...disclosureChaseSharedProps} controlRoomMode={useControlRoom} embedInShell={isCriminalPilotMode()} />
@@ -969,6 +1000,7 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
 
   if (
     useControlRoom &&
+    activeTab !== "overview" &&
     activeTab !== "disclosure-chase" &&
     activeTab !== "today" &&
     activeTab !== "hearing-war-room" &&

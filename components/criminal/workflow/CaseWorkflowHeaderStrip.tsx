@@ -19,6 +19,7 @@ import {
   resolvePilotChargeDisplay,
 } from "./workflowPilotDisplay";
 import { buildMatterConfidence } from "@/lib/criminal/matter-confidence/build-matter-confidence";
+import { SOURCE_BACKED_COURT_NOTE_LABEL } from "@/lib/criminal/trust/firm-facing-labels";
 import { MatterConfidenceHeader } from "@/components/criminal/trust/MatterConfidenceHeader";
 
 type StripState = {
@@ -136,7 +137,8 @@ export function CaseWorkflowHeaderStrip({
         ? "Check papers before relying on any strategy lines."
         : null;
 
-  const safeLineText = safeCourtLine?.trim() || "Safe position loads on the Today tab.";
+  const safeLineText =
+    safeCourtLine?.trim() || `${SOURCE_BACKED_COURT_NOTE_LABEL} loads on the Overview tab.`;
   const safeLineClamped = safeLineText.length > 100;
 
   const matterConfidence = buildMatterConfidence({
@@ -182,7 +184,7 @@ export function CaseWorkflowHeaderStrip({
             ) : null}
           </div>
           <div className="min-w-0 lg:border-l lg:border-slate-700/70 lg:pl-3">
-            <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Safe line</p>
+            <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">{SOURCE_BACKED_COURT_NOTE_LABEL}</p>
             <p
               className={`text-xs text-slate-300 mt-0.5 italic leading-snug ${
                 safeLineExpanded ? "" : "line-clamp-2"

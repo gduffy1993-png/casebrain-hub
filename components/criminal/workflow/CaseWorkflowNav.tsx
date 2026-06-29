@@ -9,6 +9,7 @@ import { useCaseWorkflowActiveTab } from "./useCaseWorkflowActiveTab";
 import { usePilotMatterTabHref } from "./pilotDeskNavContext";
 
 const PILOT_TABS: { id: CaseWorkflowTabId; label: string }[] = [
+  { id: "overview", label: "Overview" },
   { id: "today", label: "Today" },
   { id: "papers", label: "Papers" },
   { id: "summary", label: "Summary" },

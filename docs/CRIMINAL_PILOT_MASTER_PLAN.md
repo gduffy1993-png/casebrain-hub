@@ -253,7 +253,10 @@ Must support / test broad profiles: harassment, AEW/BWV, custody/PACE, violence 
 | 6 | Simulator pack v1 | ✅ |
 | 6b | v1.1 serious supplement (+7) | ✅ accepted |
 | 7 | Expand simulator **37 → 75** | ✅ combined gate 0 blocking |
-| 8 | Worst50 + simulator → Bad Output Memory | — |
+| 8 | Worst50 + simulator → Bad Output Memory | ✅ |
+| 9 | Simulator **75 → 150** | ✅ combined gate 0 blocking |
+
+**H5 starts after simulator 150 green** — see `docs/h5/H5_FIVE_ANSWERS_FRONT_DOOR.md`
 
 **Docs:** `docs/h4/H4_SIMULATOR_LIBRARY.md` · `docs/h4/H4_BUILD_ORDER.md` · `docs/h4/H4_SIMULATOR_V2_PLAN.md`
 

@@ -14,6 +14,7 @@ export function resolveCaseWorkflowActiveTab(
 ): CaseWorkflowTabId {
   if (pilotMode) {
     const tab = searchParams.get("tab");
+    if (tab === "overview") return "overview";
     if (tab === "disclosure-chase") return "disclosure-chase";
     if (tab === "summary") return "summary";
     return resolvePilotWorkflowZone(tab, hash);

@@ -35,7 +35,6 @@ export function isCriminalPracticeArea(area?: string | null): boolean {
 }
 
 export function buildControlRoomCaseHref(caseId: string): string {
-  if (usePilotZoneLayout()) return buildCourtTodayDeskHref(caseId, "today");
   return buildDefaultCriminalCaseHref(caseId);
 }
 
@@ -108,12 +107,15 @@ export type CaseWorkflowTabId =
 export { type CaseWorkflowZoneId, buildCaseZoneHref } from "@/lib/criminal/case-workflow-zones";
 
 /** Pic 5 desk — full matter workspace on Court Today without leaving the page. */
-export function buildCourtTodayDeskHref(caseId: string, tab: CaseWorkflowTabId = "today"): string {
+export function buildCourtTodayDeskHref(caseId: string, tab: CaseWorkflowTabId = "overview"): string {
   const id = caseId.trim();
   if (!isValidCaseId(id)) return "/court-today";
   const p = new URLSearchParams();
   p.set("case", id);
   switch (tab) {
+    case "overview":
+      p.set("tab", "overview");
+      break;
     case "today":
     case "hearing-war-room":
       p.set("tab", "today");
@@ -133,7 +135,7 @@ export function buildCourtTodayDeskHref(caseId: string, tab: CaseWorkflowTabId =
       p.set("tab", "file");
       break;
     default:
-      p.set("tab", "today");
+      p.set("tab", "overview");
   }
   return `/court-today?${p.toString()}`;
 }
@@ -143,6 +145,8 @@ export function buildCaseWorkflowTabHref(caseId: string, tab: CaseWorkflowTabId)
   if (!isValidCaseId(id)) return "/cases";
   const pilotZones = usePilotZoneLayout();
   switch (tab) {
+    case "overview":
+      return buildCaseZoneHref(id, "overview");
     case "today":
       return buildCaseZoneHref(id, "today");
     case "papers":

@@ -9,6 +9,7 @@ import {
   type MatterConfidenceResult,
   type SourceStateKind,
 } from "@/lib/criminal/matter-confidence/matter-confidence-types";
+import { SOURCE_BACKED_COURT_NOTE_LABEL } from "@/lib/criminal/trust/firm-facing-labels";
 import { SourceStateBadge, sourceStateBadgeLabel } from "./SourceStateBadge";
 
 const LEVEL_VARIANTS: Record<
@@ -29,7 +30,7 @@ function ReadinessGrid({ confidence }: { confidence: MatterConfidenceResult }) {
         {EVIDENCE_COVERAGE_DISPLAY[confidence.evidenceCoverage]}
       </span>
       <span>
-        <span className="text-slate-500">Safe court line:</span>{" "}
+        <span className="text-slate-500">{SOURCE_BACKED_COURT_NOTE_LABEL}:</span>{" "}
         {SAFE_COURT_LINE_DISPLAY[confidence.safeCourtLineStatus]}
       </span>
       <span>

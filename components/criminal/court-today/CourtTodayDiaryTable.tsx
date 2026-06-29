@@ -33,11 +33,11 @@ function SafeLineButton({ brief }: { brief: CourtCaseBrief }) {
     <div className="relative">
       <Button type="button" size="sm" variant="outline" className="h-7 text-xs" onClick={() => setOpen((v) => !v)}>
         <MessageSquare className="h-3 w-3 mr-1" />
-        Safe line
+        Court note
       </Button>
       {open && (
         <div className="absolute right-0 top-full z-20 mt-1 w-72 rounded-md border border-slate-200 bg-white p-2.5 text-xs text-slate-700 shadow-lg">
-          <p className="font-semibold text-slate-900 mb-1">Safe court line (provisional)</p>
+          <p className="font-semibold text-slate-900 mb-1">Source-backed court note (solicitor review)</p>
           <p className="leading-relaxed">{brief.safeCourtLine}</p>
         </div>
       )}

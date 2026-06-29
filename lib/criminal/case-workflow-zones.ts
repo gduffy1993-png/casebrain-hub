@@ -4,7 +4,7 @@
  */
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
 
-export type CaseWorkflowZoneId = "today" | "papers" | "file";
+export type CaseWorkflowZoneId = "overview" | "today" | "papers" | "file";
 
 const UUID_RE =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -15,7 +15,7 @@ function validCaseId(caseId: string): boolean {
 }
 
 /** Primary pilot nav ids (Today / Papers / File). */
-export const PILOT_ZONE_TAB_IDS: CaseWorkflowZoneId[] = ["today", "papers", "file"];
+export const PILOT_ZONE_TAB_IDS: CaseWorkflowZoneId[] = ["overview", "today", "papers", "file"];
 
 export function usePilotZoneLayout(): boolean {
   return isCriminalPilotMode();
@@ -30,14 +30,14 @@ export function buildCaseZoneHref(caseId: string, zone: CaseWorkflowZoneId): str
 
 /** Default criminal case entry (Court Today, upload landing, supervisor queue). */
 export function buildDefaultCriminalCaseHref(caseId: string): string {
-  if (usePilotZoneLayout()) return buildCaseZoneHref(caseId, "today");
+  if (usePilotZoneLayout()) return buildCaseZoneHref(caseId, "overview");
   const id = caseId.trim();
   if (!validCaseId(id)) return "/cases";
   return `/cases/${id}?tab=strategy&controlRoom=1`;
 }
 
 export function getDefaultCriminalCaseTab(): string {
-  return usePilotZoneLayout() ? "today" : "strategy";
+  return usePilotZoneLayout() ? "overview" : "strategy";
 }
 
 /**
@@ -49,7 +49,8 @@ export function normalizeCriminalCaseTabFromUrl(tab: string | null | undefined):
   if (!usePilotZoneLayout()) {
     return raw;
   }
-  if (!raw) return "today";
+  if (!raw) return "overview";
+  if (raw === "overview") return "overview";
   if (raw === "today" || raw === "hearing-war-room") return "today";
   if (raw === "file" || raw === "documents") return "file";
   if (raw === "papers" || raw === "strategy" || raw === "control-room") return "papers";
@@ -63,6 +64,7 @@ export function resolvePilotWorkflowZone(
 ): CaseWorkflowZoneId {
   if (hash === "#case-files") return "file";
   const normalized = normalizeCriminalCaseTabFromUrl(tab);
+  if (normalized === "overview") return "overview";
   if (normalized === "today") return "today";
   if (normalized === "file") return "file";
   if (normalized === "disclosure-chase") return "papers";
@@ -71,6 +73,8 @@ export function resolvePilotWorkflowZone(
 
 export function pilotZoneNavLabel(zone: CaseWorkflowZoneId): string {
   switch (zone) {
+    case "overview":
+      return "Overview";
     case "today":
       return "Today";
     case "papers":
