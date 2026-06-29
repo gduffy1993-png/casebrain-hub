@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-034",
+  "title": "Multi-handed assault — participation unclear",
+  "fakeDefendant": "Lee Patterson",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Violent disorder, contrary to section 2(1) of the Public Order Act 1986",
+  "offenceFamily": "violence_multi_hand",
+  "profile": "multi_handed_assault",
+  "mainIssue": "Participation vs presence unclear — joint enterprise overclaim risk",
+  "servedEvidence": [
+    "BWV stills",
+    "partial CCTV stills"
+  ],
+  "referredOnlyEvidence": [
+    "full BWV export",
+    "CCTV master footage"
+  ],
+  "missingEvidence": [
+    "ID procedure material",
+    "participation/association evidence"
+  ],
+  "uncertainEvidence": [
+    "conflicting witness accounts",
+    "second male participation"
+  ],
+  "expectedTodayIssue": "Participation not safely proved — presence is not participation",
+  "expectedChaseItems": [
+    "full BWV",
+    "CCTV master",
+    "ID procedure",
+    "participation evidence"
+  ],
+  "expectedSummaryRisk": "Provisional — multi-handed participation unresolved",
+  "expectedSourceStateBadges": [
+    "referred_only",
+    "missing",
+    "needs_review"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "joint enterprise proved",
+    "defendant participated as fact",
+    "presence proves guilt",
+    "BWV shows assault by defendant"
+  ],
+  "blockingFailPatterns": [
+    "joint enterprise proved",
+    "participation proved",
+    "BWV shows assault",
+    "CCTV confirms identification"
+  ],
+  "polishOnlyWarnings": [],
+  "pdfLayoutType": "clean_digital",
+  "redTeamTrapType": "multi_hand_participation",
+  "bundleStatus": "manifest_only"
+}

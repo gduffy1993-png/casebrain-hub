@@ -37,7 +37,8 @@
 | 4 | Account/permission smoke | ✅ master preview — 25 pass / 0 fail |
 | 5 | Simulator manifest v1 — 30 cases | ✅ `docs/h4/simulator-manifest.v1.json` |
 | 6 | Simulator pack v1 | ✅ 30 cases — gate 0 blocking |
-| 7 | Expand 30 → 75 → 150+ | — |
+| 6b | v1.1 serious-case supplement | ✅ +7 (`sim-031`..`037`) |
+| 7 | Expand 37 → 75 → 150+ | — |
 | 8 | Worst50 + simulator → Bad Output Memory | — |
 
 **Docs:** `docs/h4/H4_SIMULATOR_LIBRARY.md` · `docs/h4/H4_BUILD_ORDER.md`
@@ -52,6 +53,9 @@ npx tsx scripts/build-simulator-manifest-v1.ts
 npx tsx scripts/simulator-manifest-v1.test.ts
 npx tsx scripts/h4-simulator-pack-v1-generate.ts
 npx tsx scripts/h4-simulator-pack-v1-gate.ts
+npx tsx scripts/build-simulator-manifest-v1.1.ts
+npx tsx scripts/h4-simulator-pack-v1.1-generate.ts
+npx tsx scripts/h4-simulator-pack-v1.1-gate.ts
 npx tsx scripts/trust-feedback-persistence-verify.ts
 npx tsx scripts/golden-case-pack-gate.ts --pack gold --min-runnable 100 --max-polish-rate 1
 npx tsx scripts/trust-feedback.test.ts

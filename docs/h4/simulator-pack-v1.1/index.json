@@ -1,0 +1,15 @@
+{
+  "version": "simulator-pack-v1.1",
+  "supplementOf": "simulator-pack-v1",
+  "generatedAt": "2026-06-29T00:48:51.452Z",
+  "caseCount": 7,
+  "caseIds": [
+    "sim-031",
+    "sim-032",
+    "sim-033",
+    "sim-034",
+    "sim-035",
+    "sim-036",
+    "sim-037"
+  ]
+}

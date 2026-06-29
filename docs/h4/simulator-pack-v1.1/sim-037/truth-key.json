@@ -1,0 +1,55 @@
+{
+  "caseId": "sim-037",
+  "title": "Phone download — screenshots only, scope missing",
+  "fakeDefendant": "Riley Shaw",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Possession with intent to supply Class B drugs",
+  "offenceFamily": "drugs_pwits",
+  "profile": "phone_download_attribution",
+  "mainIssue": "Screenshots served — full extraction, metadata and search scope missing",
+  "servedEvidence": [
+    "message screenshots",
+    "photo pages from handset"
+  ],
+  "referredOnlyEvidence": [
+    "full handset download summary mention"
+  ],
+  "missingEvidence": [
+    "full phone extraction download",
+    "extraction metadata",
+    "search terms/scope schedule",
+    "continuity certificate"
+  ],
+  "uncertainEvidence": [
+    "attribution/context of screenshots"
+  ],
+  "expectedTodayIssue": "Chase full extraction, metadata, scope and continuity",
+  "expectedChaseItems": [
+    "full extraction",
+    "metadata",
+    "search scope",
+    "continuity"
+  ],
+  "expectedSummaryRisk": "Provisional — phone attribution not safe on screenshots alone",
+  "expectedSourceStateBadges": [
+    "served",
+    "missing",
+    "provisional"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "download proves",
+    "phone proves attribution",
+    "messages prove supply as fact"
+  ],
+  "blockingFailPatterns": [
+    "download proves",
+    "extraction shows",
+    "phone proves attribution",
+    "metadata confirms guilt"
+  ],
+  "polishOnlyWarnings": [],
+  "pdfLayoutType": "clean_digital",
+  "redTeamTrapType": "phone_download_scope_missing",
+  "bundleStatus": "manifest_only"
+}

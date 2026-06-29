@@ -16,7 +16,8 @@
 | 4 | Account/permission smoke | ✅ `scripts/h4-account-permission-smoke.ts` — master preview 25 pass / 0 fail |
 | 5 | **Criminal Bundle Simulator Library** — manifest v1 (30 cases) | ✅ `docs/h4/simulator-manifest.v1.json` |
 | 6 | Simulator pack v1 — generate + run 30 fake bundles | ✅ `scripts/h4-simulator-pack-v1-generate.ts` · gate 0 blocking |
-| 7 | Expand simulator: 30 → 75 → 150+ | Later |
+| 6b | **v1.1 serious-case supplement (+7)** | `sim-031`..`037` — EncroChat, county lines, conspiracy, multi-hand, CCTV robbery, historic sexual, phone download |
+| 7 | Expand simulator: 37 → 75 → 150+ | Later |
 | 8 | Worst50 + simulator failures → Bad Output Memory | Later |
 
 ### Step 1 verification
@@ -54,6 +55,20 @@ npx tsx scripts/h4-simulator-pack-v1-gate.ts
 ```
 
 Pack: `docs/h4/simulator-pack-v1/` · Report: `artifacts/casebrain-qa/h4-simulator-pack-v1/simulator-pack-report.json`
+
+### Step 6b v1.1 supplement (+7)
+
+```powershell
+npx tsx scripts/build-simulator-manifest-v1.1.ts
+npx tsx scripts/simulator-manifest-v1.1.test.ts
+npx tsx scripts/h4-simulator-pack-v1.1-generate.ts
+npx tsx scripts/h4-simulator-pack-v1.1-gate.ts
+```
+
+Manifest: `docs/h4/simulator-manifest.v1.1.json` · Pack: `docs/h4/simulator-pack-v1.1/`  
+Report: `artifacts/casebrain-qa/h4-simulator-pack-v1.1/simulator-pack-report.json`
+
+v1 (30) stays locked — supplement is additive only. v2 expands to 75 with layout variants.
 
 ### Step 2 gate
 

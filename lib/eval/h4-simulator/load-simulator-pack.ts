@@ -1,11 +1,12 @@
 /**
- * Load H4 simulator pack v1 cases from disk.
+ * Load H4 simulator packs from disk (v1 locked + v1.1 supplement).
  */
 import fs from "node:fs";
 import path from "node:path";
-import type { SimulatorManifestCase } from "./manifest-v1-cases";
+import type { SimulatorManifestCase } from "./manifest-types";
 
 export const SIMULATOR_PACK_V1_ROOT = path.join(process.cwd(), "docs", "h4", "simulator-pack-v1");
+export const SIMULATOR_PACK_V1_1_ROOT = path.join(process.cwd(), "docs", "h4", "simulator-pack-v1.1");
 
 export type SimulatorPackEntry = {
   manifest: SimulatorManifestCase;
@@ -13,8 +14,10 @@ export type SimulatorPackEntry = {
   bundleText: string;
 };
 
-export function loadSimulatorPackV1(): SimulatorPackEntry[] {
-  const manifestPath = path.join(process.cwd(), "docs", "h4", "simulator-manifest.v1.json");
+function loadPackFromManifest(
+  manifestPath: string,
+  packRoot: string,
+): SimulatorPackEntry[] {
   if (!fs.existsSync(manifestPath)) {
     throw new Error(`Missing manifest: ${manifestPath}`);
   }
@@ -23,7 +26,7 @@ export function loadSimulatorPackV1(): SimulatorPackEntry[] {
   };
 
   return manifest.cases.map((entry) => {
-    const caseDir = path.join(SIMULATOR_PACK_V1_ROOT, entry.caseId);
+    const caseDir = path.join(packRoot, entry.caseId);
     const bundleTextPath = path.join(caseDir, "bundle-text.md");
     if (!fs.existsSync(bundleTextPath)) {
       throw new Error(`Missing bundle text: ${bundleTextPath}`);
@@ -36,6 +39,20 @@ export function loadSimulatorPackV1(): SimulatorPackEntry[] {
   });
 }
 
-export function simulatorPackCaseDir(caseId: string): string {
-  return path.join(SIMULATOR_PACK_V1_ROOT, caseId);
+export function loadSimulatorPackV1(): SimulatorPackEntry[] {
+  return loadPackFromManifest(
+    path.join(process.cwd(), "docs", "h4", "simulator-manifest.v1.json"),
+    SIMULATOR_PACK_V1_ROOT,
+  );
+}
+
+export function loadSimulatorPackV1_1(): SimulatorPackEntry[] {
+  return loadPackFromManifest(
+    path.join(process.cwd(), "docs", "h4", "simulator-manifest.v1.1.json"),
+    SIMULATOR_PACK_V1_1_ROOT,
+  );
+}
+
+export function simulatorPackCaseDir(caseId: string, supplement = false): string {
+  return path.join(supplement ? SIMULATOR_PACK_V1_1_ROOT : SIMULATOR_PACK_V1_ROOT, caseId);
 }

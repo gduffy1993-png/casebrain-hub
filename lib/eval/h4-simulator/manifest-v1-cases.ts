@@ -1,33 +1,11 @@
 /**
  * H4 Criminal Bundle Simulator Library — manifest v1 seed cases (30).
  * Used by scripts/build-simulator-manifest-v1.ts — no bundle text here.
+ * v1 locked — serious-case supplement is manifest-v1.1-cases.ts (+7).
  */
+import { buildManifestCase, type SimulatorManifestCase } from "./manifest-types";
 
-export type SimulatorManifestCase = {
-  caseId: string;
-  title: string;
-  fakeDefendant: string;
-  fakeCourt: string;
-  offenceWording: string;
-  offenceFamily: string;
-  profile: string;
-  mainIssue: string;
-  servedEvidence: string[];
-  referredOnlyEvidence: string[];
-  missingEvidence: string[];
-  uncertainEvidence: string[];
-  expectedTodayIssue: string;
-  expectedChaseItems: string[];
-  expectedSummaryRisk: string;
-  expectedSourceStateBadges: string[];
-  expectedSendability: string;
-  mustNotSay: string[];
-  blockingFailPatterns: string[];
-  polishOnlyWarnings: string[];
-  pdfLayoutType: string;
-  redTeamTrapType: string;
-  bundleStatus: "manifest_only";
-};
+export type { SimulatorManifestCase };
 
 function c(
   id: string,
@@ -39,37 +17,16 @@ function c(
   pdf: string,
   opts: Partial<SimulatorManifestCase> = {},
 ): SimulatorManifestCase {
-  const n = id.replace("sim-", "");
-  return {
+  return buildManifestCase({
     caseId: id,
     title,
-    fakeDefendant: opts.fakeDefendant ?? `Defendant ${n}`,
-    fakeCourt: opts.fakeCourt ?? "Northgate Magistrates' Court",
-    offenceWording: opts.offenceWording ?? title,
-    offenceFamily: family,
     profile,
+    offenceFamily: family,
     mainIssue,
-    servedEvidence: opts.servedEvidence ?? [],
-    referredOnlyEvidence: opts.referredOnlyEvidence ?? [],
-    missingEvidence: opts.missingEvidence ?? [],
-    uncertainEvidence: opts.uncertainEvidence ?? [],
-    expectedTodayIssue: opts.expectedTodayIssue ?? mainIssue,
-    expectedChaseItems: opts.expectedChaseItems ?? [],
-    expectedSummaryRisk: opts.expectedSummaryRisk ?? "Provisional pending disclosure",
-    expectedSourceStateBadges: opts.expectedSourceStateBadges ?? ["missing", "provisional"],
-    expectedSendability: opts.expectedSendability ?? "provisional_check_source",
-    mustNotSay: opts.mustNotSay ?? [],
-    blockingFailPatterns: opts.blockingFailPatterns ?? [
-      "we win",
-      "case collapses",
-      "BWV shows",
-      "ask the court to record",
-    ],
-    polishOnlyWarnings: opts.polishOnlyWarnings ?? [],
-    pdfLayoutType: pdf,
     redTeamTrapType: trap,
-    bundleStatus: "manifest_only",
-  };
+    pdfLayoutType: pdf,
+    ...opts,
+  });
 }
 
 export const SIMULATOR_MANIFEST_V1_CASES: SimulatorManifestCase[] = [

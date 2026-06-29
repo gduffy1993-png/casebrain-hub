@@ -1,7 +1,7 @@
 /**
  * Render fictional H4 simulator bundle text from manifest case entry.
  */
-import type { SimulatorManifestCase } from "./manifest-v1-cases";
+import type { SimulatorManifestCase } from "./manifest-types";
 
 function urn(caseId: string): string {
   const n = caseId.replace("sim-", "").padStart(3, "0");
@@ -78,6 +78,69 @@ function trapSection(entry: SimulatorManifestCase): string {
         "Metadata offence field: TBC / unknown offence placeholder",
         "",
       ].join("\n");
+    case "encro_handle_attribution":
+      return [
+        "=== SECTION: ENCROCHAT ===",
+        "",
+        "Encrypted comms platform — partial message extracts served.",
+        "Handle NIGHTHAWK-14 referenced — handle-to-user mapping NOT served.",
+        "Co-defendant J. Rivers messages appear on shared thread — attribution segregated.",
+        "Full platform extraction and continuity certificate outstanding.",
+        "",
+      ].join("\n");
+    case "county_lines_role_unclear":
+      return [
+        "=== SECTION: COUNTY_LINES ===",
+        "",
+        "Phone line attribution unclear — runner vs line holder not established.",
+        "Cellsite/travel data referred only. Cash/drug continuity missing.",
+        "Safeguarding note: possible exploitation/modern slavery marker — needs review only.",
+        "",
+      ].join("\n");
+    case "conspiracy_codef_bleed":
+      return [
+        "=== SECTION: CO_DEFENDANTS ===",
+        "",
+        "Indictment: Samira Khan, A. Okonkwo, T. Wright (co-defendants).",
+        "Group chat messages served — supply chain inference risk across defendants.",
+        "Per-defendant exhibit map and telecom downloads outstanding.",
+        "",
+      ].join("\n");
+    case "multi_hand_participation":
+      return [
+        "=== SECTION: MULTI_HAND ===",
+        "",
+        "Multiple males at scene — participation vs presence disputed.",
+        "Witness A: defendant present. Witness B: cannot identify participant.",
+        "Joint enterprise must not be assumed on papers served.",
+        "",
+      ].join("\n");
+    case "robbery_cctv_stills_only":
+      return [
+        "=== SECTION: CCTV_STILLS ===",
+        "",
+        "CCTV stills served — grainy/poor quality captures only.",
+        "Master footage full time window NOT served. VIPER/ID procedure missing.",
+        "",
+      ].join("\n");
+    case "sexual_historic_abe":
+      return [
+        "=== SECTION: HISTORIC_SEXUAL ===",
+        "",
+        "Historic allegation — significant delay noted in MG5.",
+        "ABE interview referred only — recording not served.",
+        "First complainant account/MG11 outstanding. Third-party records mentioned only.",
+        "",
+      ].join("\n");
+    case "phone_download_scope_missing":
+      return [
+        "=== SECTION: PHONE_DOWNLOAD ===",
+        "",
+        "Screenshots served from handset — full UFED/download not on bundle.",
+        "Extraction metadata, search terms and scope schedule outstanding.",
+        "Continuity certificate missing.",
+        "",
+      ].join("\n");
     default:
       return "";
   }
@@ -143,9 +206,11 @@ export function renderSimulatorBundleText(entry: SimulatorManifestCase): string 
     "",
     "=== SECTION: MG11 ===",
     "",
-    entry.referredOnlyEvidence.some((e) => /mg11|statement|complainant/i.test(e))
-      ? "MG11 — COMPLAINANT STATEMENT (draft unsigned)\n\nAccount provisional — not final signed statement."
-      : "MG11 — COMPLAINANT STATEMENT\n\nWitness account on file — attribution and context require review.",
+    entry.profile.startsWith("sexual") || entry.offenceFamily === "sexual"
+      ? "MG11 — COMPLAINANT (not served — first account outstanding)\n\nHistoric context noted — do not treat summary as served statement."
+      : entry.referredOnlyEvidence.some((e) => /mg11|statement|complainant/i.test(e))
+        ? "MG11 — COMPLAINANT STATEMENT (draft unsigned)\n\nAccount provisional — not final signed statement."
+        : "MG11 — COMPLAINANT/WITNESS STATEMENT\n\nWitness account on file — attribution and context require review.",
     "",
     trapSection(entry),
     "=== SECTION: LISTING ===",
