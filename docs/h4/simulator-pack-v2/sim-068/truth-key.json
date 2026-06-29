@@ -1,0 +1,61 @@
+{
+  "caseId": "sim-068",
+  "title": "Imitation firearm forensic/source report missing",
+  "fakeDefendant": "Mollie Wren",
+  "fakeCourt": "Lyndale Crown Court",
+  "offenceWording": "Possession of an imitation firearm with intent to cause fear of violence",
+  "offenceFamily": "weapons",
+  "profile": "firearm_imitation",
+  "mainIssue": "The bundle refers to an imitation firearm and fear/intent, but forensic/source material is missing.",
+  "servedEvidence": [
+    "MG5",
+    "complainant statement",
+    "item photograph"
+  ],
+  "referredOnlyEvidence": [
+    "firearms officer report",
+    "CCTV",
+    "999 call"
+  ],
+  "missingEvidence": [
+    "firearms/imitation report",
+    "CCTV",
+    "999 audio",
+    "item continuity",
+    "intent/source context"
+  ],
+  "uncertainEvidence": [
+    "whether item meets definition and whether intent is evidenced"
+  ],
+  "expectedTodayIssue": "Chase item classification and incident media; keep intent provisional.",
+  "expectedChaseItems": [
+    "firearms/imitation report",
+    "CCTV/999 audio",
+    "item continuity",
+    "intent/source context"
+  ],
+  "expectedSummaryRisk": "Do not say the item was an imitation firearm or intent is proved without source material.",
+  "expectedSourceStateBadges": [
+    "served",
+    "referred_only",
+    "missing",
+    "needs_review"
+  ],
+  "expectedSendability": "needs_solicitor_review",
+  "mustNotSay": [
+    "imitation firearm proved",
+    "Mollie intended fear",
+    "report confirms"
+  ],
+  "blockingFailPatterns": [
+    "imitation firearm proved",
+    "intended to cause fear proved",
+    "firearm report confirms guilt"
+  ],
+  "polishOnlyWarnings": [
+    "serious weapons language should be cautious"
+  ],
+  "pdfLayoutType": "image_heavy_with_missing_report",
+  "redTeamTrapType": "classification_as_fact",
+  "bundleStatus": "generated"
+}

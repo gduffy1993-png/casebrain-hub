@@ -237,22 +237,25 @@ Do not claim CaseBrain certifies every criminal case perfectly.
 
 Must support / test broad profiles: harassment, AEW/BWV, custody/PACE, violence s18/s20, drugs/PWITS, motoring/SJP, fraud, robbery/ID, sexual/ABE (caution), perverting justice, mixed family, thin bundle, referred-only, multi-defendant, OCR-poor, large bundle.
 
-### H4 — Real-world confidence ⏳ **NEXT**
+### H4 — Real-world confidence ⏳ **in progress**
 
 **Principle:** Test by shape, not identity — **Criminal Bundle Simulator Library** (fake/anonymised bundles; no real personal data; no Brain edits).
 
+**Simulator:** v1 locked (30) + v1.1 (7) + v2 (38) = **75 cases**, combined gate **0 blocking**.
+
 | # | Work | Status |
 |---|------|--------|
-| 1 | Apply trust feedback DB migration (`20260628120000_trust_feedback.sql`) | ✅ |
-| 2 | Export/copy gate — `scripts/h4-export-copy-gate.ts` (golden 102) | ✅ |
+| 1 | Apply trust feedback DB migration | ✅ |
+| 2 | Export/copy gate (golden 102) | ✅ prod green |
 | 3 | Fresh-account smoke every deploy | ✅ ongoing |
-| 4 | Account/permission smoke | — |
-| 5 | Simulator manifest v1 — **30 cases** | — |
-| 6 | Simulator pack v1 — generate + run 30 fake bundles | — |
-| 7 | Expand simulator: **30 → 75 → 150+** | — |
-| 8 | Worst50 + simulator failures → Bad Output Memory | — |
+| 4 | Account/permission smoke | ✅ prod 0 fail |
+| 5 | Simulator manifest v1 — 30 cases | ✅ locked |
+| 6 | Simulator pack v1 | ✅ |
+| 6b | v1.1 serious supplement (+7) | ✅ accepted |
+| 7 | Expand simulator **37 → 75** | ✅ combined gate 0 blocking |
+| 8 | Worst50 + simulator → Bad Output Memory | — |
 
-**Docs:** `docs/h4/H4_SIMULATOR_LIBRARY.md` · `docs/h4/H4_BUILD_ORDER.md` · `docs/h4/H4_RED_TEAM_MANIFEST_DRAFT.md`
+**Docs:** `docs/h4/H4_SIMULATOR_LIBRARY.md` · `docs/h4/H4_BUILD_ORDER.md` · `docs/h4/H4_SIMULATOR_V2_PLAN.md`
 
 **Each simulator case combines:** offence profile · evidence pattern · PDF/layout problem · legal/safety trap · truth key · expected Today/Chase/Summary · must-not-say / blocking rules.
 
@@ -262,6 +265,10 @@ Must support / test broad profiles: harassment, AEW/BWV, custody/PACE, violence 
 - **Blocking:** wrong-family bleed · referred-as-served · missing-as-proved · unsafe win language · court-in-CPS-chase · safe-to-send-without-source-state · raw OCR in sendable copy · multi-defendant confusion as fact
 
 **Do not:** scrape real bundles · use confidential client data · touch Brain 1 / frozen cores
+
+### Presentation backlog (not H4 — Ged chooses)
+
+**Five-answers UI simplification** — same power, lower mental load: Bundle Review · Court Prep · CPS Chase · Matter Brief · Source Map · Documents. Spec: `docs/backlog/UI_SIMPLIFICATION_FIVE_ANSWERS.md` — **do not start until Ged names it.**
 
 ### H5 — Top-tier solicitor workstation
 

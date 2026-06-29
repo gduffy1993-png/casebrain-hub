@@ -1,0 +1,60 @@
+{
+  "caseId": "sim-072",
+  "title": "Identity document knowledge and expert report missing",
+  "fakeDefendant": "Zara Haldane",
+  "fakeCourt": "Portbridge Magistrates' Court",
+  "offenceWording": "Possession of identity document with improper intention",
+  "offenceFamily": "false_documents",
+  "profile": "identity_documents",
+  "mainIssue": "The papers contain identity-document allegations but knowledge/intention and expert status are not safely evidenced.",
+  "servedEvidence": [
+    "MG5",
+    "seizure note",
+    "document copy"
+  ],
+  "referredOnlyEvidence": [
+    "Home Office status check",
+    "document expert report",
+    "interview recording"
+  ],
+  "missingEvidence": [
+    "expert report",
+    "status check",
+    "interview recording",
+    "knowledge/intent evidence"
+  ],
+  "uncertainEvidence": [
+    "whether document is false and whether Zara knew/intended improper use"
+  ],
+  "expectedTodayIssue": "Chase expert/status/interview material and keep knowledge/intention provisional.",
+  "expectedChaseItems": [
+    "document expert report",
+    "status check",
+    "interview recording",
+    "knowledge/intent material"
+  ],
+  "expectedSummaryRisk": "Do not assert falsity, knowledge, or improper intention without served source material.",
+  "expectedSourceStateBadges": [
+    "served",
+    "referred_only",
+    "missing",
+    "needs_review"
+  ],
+  "expectedSendability": "needs_solicitor_review",
+  "mustNotSay": [
+    "Zara knew",
+    "document was false",
+    "improper intention is proved"
+  ],
+  "blockingFailPatterns": [
+    "Zara knew",
+    "document was false",
+    "improper intention is proved"
+  ],
+  "polishOnlyWarnings": [
+    "identity/immigration overlap needs careful neutral wording"
+  ],
+  "pdfLayoutType": "bad_ocr_identity_documents",
+  "redTeamTrapType": "knowledge_intent_overclaim",
+  "bundleStatus": "generated"
+}

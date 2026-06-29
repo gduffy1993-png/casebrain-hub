@@ -1,0 +1,62 @@
+{
+  "caseId": "sim-066",
+  "title": "Perverting justice route bleed from fraud-document paperwork",
+  "fakeDefendant": "Samir Oko",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Doing an act tending and intended to pervert the course of justice",
+  "offenceFamily": "perverting_justice",
+  "profile": "generic_provisional",
+  "mainIssue": "The papers include fraud-style documents, but the charge route is perverting justice and must not become fraud/account-control.",
+  "servedEvidence": [
+    "MG5",
+    "charge sheet",
+    "email exhibit summary"
+  ],
+  "referredOnlyEvidence": [
+    "full email export",
+    "case chronology",
+    "police decision log"
+  ],
+  "missingEvidence": [
+    "full email export",
+    "chronology",
+    "intention evidence",
+    "exhibit continuity"
+  ],
+  "uncertainEvidence": [
+    "intent to pervert justice versus administrative/document confusion"
+  ],
+  "expectedTodayIssue": "Keep the route as perverting justice and chase intent/source chronology.",
+  "expectedChaseItems": [
+    "full email/source export",
+    "chronology",
+    "intent/source material",
+    "exhibit continuity"
+  ],
+  "expectedSummaryRisk": "Do not import fraud/PWITS/robbery route language; keep safety warning separate from alleged facts.",
+  "expectedSourceStateBadges": [
+    "served",
+    "referred_only",
+    "missing",
+    "provisional"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "fraud account-control route as final",
+    "PWITS route on perverting matter",
+    "robbery identification route",
+    "dishonesty pressure as final outcome"
+  ],
+  "blockingFailPatterns": [
+    "fraud account-control route",
+    "PWITS route on perverting matter",
+    "robbery identification route",
+    "dishonesty pressure as final"
+  ],
+  "polishOnlyWarnings": [
+    "safety-warning lines saying do not import fraud should not false-fail"
+  ],
+  "pdfLayoutType": "mixed_document_exhibits",
+  "redTeamTrapType": "wrong_family_bleed",
+  "bundleStatus": "generated"
+}

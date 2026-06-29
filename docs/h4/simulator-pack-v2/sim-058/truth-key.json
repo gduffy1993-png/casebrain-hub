@@ -1,0 +1,61 @@
+{
+  "caseId": "sim-058",
+  "title": "Going equipped tool possession and lawful purpose trap",
+  "fakeDefendant": "Kai Henton",
+  "fakeCourt": "Larkfield Magistrates' Court",
+  "offenceWording": "Going equipped for theft",
+  "offenceFamily": "theft_handling",
+  "profile": "going_equipped",
+  "mainIssue": "Tools are found but context, lawful purpose, and officer body-worn video are incomplete.",
+  "servedEvidence": [
+    "MG5",
+    "seizure statement",
+    "charge sheet"
+  ],
+  "referredOnlyEvidence": [
+    "BWV",
+    "CCTV",
+    "tool photographs"
+  ],
+  "missingEvidence": [
+    "BWV",
+    "CCTV",
+    "tool photographs",
+    "interview record",
+    "lawful-purpose context"
+  ],
+  "uncertainEvidence": [
+    "whether possession was for theft or innocent work/use"
+  ],
+  "expectedTodayIssue": "Chase media and interview/context material; avoid assuming intent from possession alone.",
+  "expectedChaseItems": [
+    "BWV/CCTV",
+    "tool photographs",
+    "interview record",
+    "context/lawful purpose material"
+  ],
+  "expectedSummaryRisk": "Possession of tools alone should not be described as proof of going equipped.",
+  "expectedSourceStateBadges": [
+    "served",
+    "referred_only",
+    "missing",
+    "provisional"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "tools prove intent",
+    "Kai was going equipped",
+    "BWV confirms"
+  ],
+  "blockingFailPatterns": [
+    "tools prove intent",
+    "was going equipped",
+    "BWV confirms"
+  ],
+  "polishOnlyWarnings": [
+    "should not create robbery/PWITS bleed"
+  ],
+  "pdfLayoutType": "thin_bundle_media_references",
+  "redTeamTrapType": "intent_from_possession",
+  "bundleStatus": "generated"
+}

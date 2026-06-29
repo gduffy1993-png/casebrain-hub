@@ -1,0 +1,60 @@
+{
+  "caseId": "sim-067",
+  "title": "Bladed article reasonable excuse and location continuity",
+  "fakeDefendant": "Connor Frey",
+  "fakeCourt": "Hartwell Magistrates' Court",
+  "offenceWording": "Possession of a bladed article in a public place",
+  "offenceFamily": "weapons",
+  "profile": "bladed_article",
+  "mainIssue": "The bundle lacks clear location, lawful authority/reasonable excuse context, and seizure continuity.",
+  "servedEvidence": [
+    "MG5",
+    "seizure statement",
+    "charge sheet"
+  ],
+  "referredOnlyEvidence": [
+    "BWV",
+    "CCTV",
+    "knife photographs"
+  ],
+  "missingEvidence": [
+    "BWV/CCTV",
+    "location plan",
+    "photographs/measurements",
+    "interview/reasonable excuse account"
+  ],
+  "uncertainEvidence": [
+    "public place, possession, and reasonable excuse"
+  ],
+  "expectedTodayIssue": "Chase location, media, exhibit and interview context before treating the weapons allegation as proved.",
+  "expectedChaseItems": [
+    "BWV/CCTV",
+    "location plan",
+    "knife photographs/measurements",
+    "interview/reasonable excuse material"
+  ],
+  "expectedSummaryRisk": "Do not state unlawful possession without source-backed public-place and context evidence.",
+  "expectedSourceStateBadges": [
+    "served",
+    "referred_only",
+    "missing",
+    "provisional"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "Connor unlawfully possessed",
+    "knife was in public place",
+    "no reasonable excuse"
+  ],
+  "blockingFailPatterns": [
+    "unlawfully possessed",
+    "public place proved",
+    "no reasonable excuse"
+  ],
+  "polishOnlyWarnings": [
+    "should avoid overlong CPS chase from many exhibit items"
+  ],
+  "pdfLayoutType": "photo_index_missing_media",
+  "redTeamTrapType": "legal_element_as_fact",
+  "bundleStatus": "generated"
+}

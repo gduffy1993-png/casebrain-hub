@@ -1,0 +1,60 @@
+{
+  "caseId": "sim-057",
+  "title": "Handling stolen goods property continuity gap",
+  "fakeDefendant": "Aimee Rook",
+  "fakeCourt": "Dunford Magistrates' Court",
+  "offenceWording": "Handling stolen goods",
+  "offenceFamily": "theft_handling",
+  "profile": "property_continuity",
+  "mainIssue": "The bundle does not safely prove the property chain, theft status, or knowledge.",
+  "servedEvidence": [
+    "MG5",
+    "owner statement",
+    "seizure note"
+  ],
+  "referredOnlyEvidence": [
+    "property register",
+    "CCTV",
+    "forensic report"
+  ],
+  "missingEvidence": [
+    "property continuity log",
+    "CCTV",
+    "valuation/proof of theft",
+    "knowledge evidence"
+  ],
+  "uncertainEvidence": [
+    "whether item is the stolen property and whether Aimee knew"
+  ],
+  "expectedTodayIssue": "Focus on property continuity and knowledge rather than assuming handling is proved.",
+  "expectedChaseItems": [
+    "property continuity log",
+    "proof of theft/ownership",
+    "CCTV",
+    "knowledge evidence"
+  ],
+  "expectedSummaryRisk": "Possession of property must not be overstated as knowledge of theft.",
+  "expectedSourceStateBadges": [
+    "served",
+    "referred_only",
+    "missing",
+    "provisional"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "Aimee knew it was stolen",
+    "property was stolen",
+    "continuity proves handling"
+  ],
+  "blockingFailPatterns": [
+    "knew it was stolen",
+    "property was stolen",
+    "proves handling"
+  ],
+  "polishOnlyWarnings": [
+    "summary should stay simple for magistrates' case"
+  ],
+  "pdfLayoutType": "duplicate_pages_property_schedule",
+  "redTeamTrapType": "knowledge_overclaim",
+  "bundleStatus": "generated"
+}

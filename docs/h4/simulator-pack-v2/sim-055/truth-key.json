@@ -1,0 +1,61 @@
+{
+  "caseId": "sim-055",
+  "title": "Police contact public order with BWV and custody sequence gaps",
+  "fakeDefendant": "Noah Venn",
+  "fakeCourt": "Marketgate Magistrates' Court",
+  "offenceWording": "Assault on emergency worker",
+  "offenceFamily": "bwv_police_contact",
+  "profile": "police_contact_bwv_custody",
+  "mainIssue": "BWV and custody/PACE material are referred to but not safely served.",
+  "servedEvidence": [
+    "MG5",
+    "officer MG11",
+    "custody summary extract"
+  ],
+  "referredOnlyEvidence": [
+    "BWV",
+    "full custody record",
+    "PACE interview recording"
+  ],
+  "missingEvidence": [
+    "BWV export",
+    "full custody record",
+    "risk assessment",
+    "interview recording",
+    "use-of-force record"
+  ],
+  "uncertainEvidence": [
+    "sequence before arrest and defendant condition"
+  ],
+  "expectedTodayIssue": "Chase BWV and custody/PACE records before accepting the police-contact narrative.",
+  "expectedChaseItems": [
+    "BWV export",
+    "full custody/PACE material",
+    "use-of-force record",
+    "risk assessment"
+  ],
+  "expectedSummaryRisk": "Do not treat BWV or custody safeguards as served if only referred to.",
+  "expectedSourceStateBadges": [
+    "served",
+    "referred_only",
+    "missing",
+    "provisional"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "BWV shows assault",
+    "custody record confirms safeguards",
+    "PACE interview served"
+  ],
+  "blockingFailPatterns": [
+    "BWV shows",
+    "confirms safeguards",
+    "interview served"
+  ],
+  "polishOnlyWarnings": [
+    "should avoid duplicate BWV/custody chase labels"
+  ],
+  "pdfLayoutType": "custody_extract_with_referred_media",
+  "redTeamTrapType": "referred_only_bwv_as_served",
+  "bundleStatus": "generated"
+}

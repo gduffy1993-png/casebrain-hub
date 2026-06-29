@@ -7,6 +7,7 @@ import type { SimulatorManifestCase } from "./manifest-types";
 
 export const SIMULATOR_PACK_V1_ROOT = path.join(process.cwd(), "docs", "h4", "simulator-pack-v1");
 export const SIMULATOR_PACK_V1_1_ROOT = path.join(process.cwd(), "docs", "h4", "simulator-pack-v1.1");
+export const SIMULATOR_PACK_V2_ROOT = path.join(process.cwd(), "docs", "h4", "simulator-pack-v2");
 
 export type SimulatorPackEntry = {
   manifest: SimulatorManifestCase;
@@ -53,6 +54,19 @@ export function loadSimulatorPackV1_1(): SimulatorPackEntry[] {
   );
 }
 
-export function simulatorPackCaseDir(caseId: string, supplement = false): string {
-  return path.join(supplement ? SIMULATOR_PACK_V1_1_ROOT : SIMULATOR_PACK_V1_ROOT, caseId);
+export function loadSimulatorPackV2(): SimulatorPackEntry[] {
+  return loadPackFromManifest(
+    path.join(process.cwd(), "docs", "h4", "simulator-manifest.v2.json"),
+    SIMULATOR_PACK_V2_ROOT,
+  );
+}
+
+export function loadSimulatorPackAll(): SimulatorPackEntry[] {
+  return [...loadSimulatorPackV1(), ...loadSimulatorPackV1_1(), ...loadSimulatorPackV2()];
+}
+
+export function simulatorPackCaseDir(caseId: string, pack: "v1" | "v1.1" | "v2" = "v1"): string {
+  const root =
+    pack === "v2" ? SIMULATOR_PACK_V2_ROOT : pack === "v1.1" ? SIMULATOR_PACK_V1_1_ROOT : SIMULATOR_PACK_V1_ROOT;
+  return path.join(root, caseId);
 }

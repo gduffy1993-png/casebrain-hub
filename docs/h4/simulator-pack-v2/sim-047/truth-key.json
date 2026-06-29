@@ -1,0 +1,60 @@
+{
+  "caseId": "sim-047",
+  "title": "Robbery full time-window CCTV missing",
+  "fakeDefendant": "Darren Quill",
+  "fakeCourt": "Kingswell Crown Court",
+  "offenceWording": "Robbery",
+  "offenceFamily": "robbery_id",
+  "profile": "cctv_heavy_robbery",
+  "mainIssue": "The papers rely on a short clip and do not serve the wider approach/departure footage.",
+  "servedEvidence": [
+    "MG5",
+    "short CCTV clip description",
+    "victim statement"
+  ],
+  "referredOnlyEvidence": [
+    "full premises CCTV",
+    "street CCTV",
+    "CAD/999 call"
+  ],
+  "missingEvidence": [
+    "full CCTV time-window",
+    "approach/departure footage",
+    "continuity logs",
+    "999 audio"
+  ],
+  "uncertainEvidence": [
+    "whether wider footage undermines identification or timing"
+  ],
+  "expectedTodayIssue": "Seek full time-window media and avoid treating the selected clip as the complete incident record.",
+  "expectedChaseItems": [
+    "full premises and street CCTV",
+    "approach/departure footage",
+    "continuity logs",
+    "999 audio"
+  ],
+  "expectedSummaryRisk": "A selected clip is not the whole timeline.",
+  "expectedSourceStateBadges": [
+    "served",
+    "referred_only",
+    "missing",
+    "provisional"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "full CCTV served",
+    "clip proves the robbery",
+    "timeline is complete"
+  ],
+  "blockingFailPatterns": [
+    "full CCTV served",
+    "clip proves",
+    "timeline is complete"
+  ],
+  "polishOnlyWarnings": [
+    "avoid too many CCTV sub-items in Chase"
+  ],
+  "pdfLayoutType": "index_only_with_media_references",
+  "redTeamTrapType": "selected_clip_as_complete_timeline",
+  "bundleStatus": "generated"
+}

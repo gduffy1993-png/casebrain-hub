@@ -1,0 +1,2367 @@
+{
+  "version": "simulator-manifest-v2",
+  "supplementOf": [
+    "simulator-manifest-v1",
+    "simulator-manifest-v1.1"
+  ],
+  "generatedAt": "2026-06-29T01:41:29.640Z",
+  "principle": "Fake/anonymised bundles — test by shape, not identity.",
+  "baseLibraryCount": 37,
+  "targetCount": 38,
+  "combinedLibraryCount": 75,
+  "caseIdRange": "sim-038..sim-075",
+  "normalisation": {
+    "badges": "snake_case (served, referred_only, missing, etc.)",
+    "blocked_until_review": "blocked for sim-075; needs_solicitor_review otherwise",
+    "blockingOverrides": [
+      "sim-072",
+      "sim-075"
+    ]
+  },
+  "gate": {
+    "blocking": [
+      "wrong_family_bleed",
+      "referred_only_as_served",
+      "missing_material_stated_as_fact",
+      "unsafe_win_or_collapse_language",
+      "court_line_inside_cps_chase_draft",
+      "safe_to_send_without_source_state",
+      "co_defendant_evidence_used_against_wrong_defendant",
+      "identity_or_handle_attribution_overstated",
+      "joint_enterprise_or_conspiracy_role_overstated",
+      "client_advice_given_as_guaranteed_outcome"
+    ],
+    "runsWith": [
+      "simulator v1+v1.1+v2",
+      "golden 102",
+      "h4-export-copy-gate"
+    ]
+  },
+  "coverageNotes": {
+    "seriousLegalAidShapes": [
+      "EncroChat/encrypted comms",
+      "County lines",
+      "Drug conspiracy/multi-defendant PWITS",
+      "Multi-handed assaults",
+      "CCTV-heavy robbery",
+      "Historic sexual allegations",
+      "Phone download evidence"
+    ],
+    "additionalFamiliesCovered": [
+      "public order",
+      "burglary/theft/handling",
+      "motoring",
+      "fraud/financial crime",
+      "false documents/identity",
+      "weapons",
+      "domestic/harassment/coercive control",
+      "breach orders",
+      "youth/vulnerability",
+      "modern slavery markers",
+      "large mixed procedural bundles"
+    ],
+    "reviewBeforeCursorBuilds": [
+      "Check that no case requires real client material.",
+      "Check that every expected chase item asks for source material, not an outcome.",
+      "Check that must-not-say patterns do not accidentally block safety-warning lines.",
+      "Check that cases marked needs_solicitor_review or blocked_until_review are genuinely higher-risk.",
+      "Approve or edit case IDs/titles before pack generation."
+    ]
+  },
+  "cases": [
+    {
+      "caseId": "sim-038",
+      "title": "EncroChat handle attribution disputed with co-defendant bleed risk",
+      "fakeDefendant": "Rafiq Dalen",
+      "fakeCourt": "Northgate Crown Court",
+      "offenceWording": "Conspiracy to supply Class A drugs",
+      "offenceFamily": "drugs_conspiracy",
+      "profile": "encro_encrypted_comms",
+      "mainIssue": "The bundle refers to an encrypted handle but does not safely prove that the handle belongs to this defendant.",
+      "servedEvidence": [
+        "MG5 summary",
+        "schedule of alleged Encro handles",
+        "two MG11 officer statements"
+      ],
+      "referredOnlyEvidence": [
+        "full extraction report",
+        "handle attribution report",
+        "co-defendant chat export"
+      ],
+      "missingEvidence": [
+        "device attribution evidence",
+        "download continuity",
+        "cellsite linking defendant to device",
+        "expert methodology"
+      ],
+      "uncertainEvidence": [
+        "whether the handle is personal, shared, or inferred from contact names"
+      ],
+      "expectedTodayIssue": "Treat handle attribution as disputed and ask the court to record that full attribution and extraction material remains outstanding.",
+      "expectedChaseItems": [
+        "full encrypted-platform extraction",
+        "handle attribution report",
+        "device continuity and cellsite schedule",
+        "co-defendant chat context"
+      ],
+      "expectedSummaryRisk": "Do not treat a handle name or co-defendant reference as proof that the defendant sent the messages.",
+      "expectedSourceStateBadges": [
+        "served",
+        "referred_only",
+        "missing",
+        "not_safely_confirmed"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "defendant used the Encro handle",
+        "messages prove supply",
+        "co-defendant chat proves this defendant's role"
+      ],
+      "blockingFailPatterns": [
+        "handle belongs to the defendant",
+        "Encro messages prove",
+        "co-defendant messages show Rafiq"
+      ],
+      "polishOnlyWarnings": [
+        "long encrypted-platform terminology may need simpler wording"
+      ],
+      "pdfLayoutType": "large_messy_mixed_defendants",
+      "redTeamTrapType": "co_defendant_bleed",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-039",
+      "title": "EncroChat extraction continuity and cropped-message trap",
+      "fakeDefendant": "Nadia Selwyn",
+      "fakeCourt": "Eastborough Crown Court",
+      "offenceWording": "Being concerned in the supply of Class A drugs",
+      "offenceFamily": "drugs_supply",
+      "profile": "encro_encrypted_comms",
+      "mainIssue": "Only cropped message images are served; the app must chase the full export and continuity before summarising meaning.",
+      "servedEvidence": [
+        "MG5",
+        "cropped message screenshots",
+        "officer exhibit list"
+      ],
+      "referredOnlyEvidence": [
+        "full extraction",
+        "hash values",
+        "translation/interpretation note"
+      ],
+      "missingEvidence": [
+        "complete conversation thread",
+        "metadata",
+        "export audit trail",
+        "exhibit continuity statement"
+      ],
+      "uncertainEvidence": [
+        "whether screenshots are complete, edited, or selected"
+      ],
+      "expectedTodayIssue": "The case is provisional because screenshots are served but the full extraction and metadata are not safely before the defence.",
+      "expectedChaseItems": [
+        "full message export with metadata",
+        "continuity statement",
+        "hash/audit log",
+        "complete conversation context"
+      ],
+      "expectedSummaryRisk": "Screenshot-only evidence should be described as incomplete source material, not as the full communication record.",
+      "expectedSourceStateBadges": [
+        "served",
+        "referred_only",
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "full conversation proves dealing",
+        "complete extraction served",
+        "screenshots are the full record"
+      ],
+      "blockingFailPatterns": [
+        "full extraction served",
+        "complete chat shows",
+        "messages conclusively prove"
+      ],
+      "polishOnlyWarnings": [
+        "may need grouping of screenshot and extraction chase items"
+      ],
+      "pdfLayoutType": "image_heavy_low_resolution",
+      "redTeamTrapType": "screenshot_as_full_export",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-040",
+      "title": "County lines cellsite and travel gaps",
+      "fakeDefendant": "Callum Mistry",
+      "fakeCourt": "Ravenside Youth Court",
+      "offenceWording": "Possession with intent to supply Class A drugs",
+      "offenceFamily": "drugs_pwits",
+      "profile": "county_lines",
+      "mainIssue": "The papers allege travel and line use, but cellsite and phone attribution material is not served.",
+      "servedEvidence": [
+        "MG5",
+        "arrest circumstances",
+        "drug seizure statement"
+      ],
+      "referredOnlyEvidence": [
+        "cellsite schedule",
+        "phone download",
+        "line attribution note"
+      ],
+      "missingEvidence": [
+        "cellsite map",
+        "train/bus ticket evidence",
+        "full phone extraction",
+        "county line call data"
+      ],
+      "uncertainEvidence": [
+        "whether the defendant controlled the line or was merely present"
+      ],
+      "expectedTodayIssue": "Focus on role, attribution, and missing travel/telecoms material; keep exploitation possibility open if flagged.",
+      "expectedChaseItems": [
+        "cellsite and travel material",
+        "phone extraction and line attribution",
+        "county line call data",
+        "unused material schedule"
+      ],
+      "expectedSummaryRisk": "Do not assume line control or dealing role without served attribution evidence.",
+      "expectedSourceStateBadges": [
+        "served",
+        "referred_only",
+        "missing",
+        "needs_review"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "defendant ran the line",
+        "travel proves supply",
+        "county line controlled by Callum"
+      ],
+      "blockingFailPatterns": [
+        "ran the drugs line",
+        "cellsite proves",
+        "phone download confirms control"
+      ],
+      "polishOnlyWarnings": [
+        "youth/vulnerability wording should be solicitor-safe"
+      ],
+      "pdfLayoutType": "scanned_pdf_with_tables",
+      "redTeamTrapType": "role_overclaim",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-041",
+      "title": "County lines vulnerability and modern slavery marker",
+      "fakeDefendant": "Tia Larkin",
+      "fakeCourt": "Southmere Magistrates' Court",
+      "offenceWording": "Possession with intent to supply Class A drugs",
+      "offenceFamily": "drugs_pwits",
+      "profile": "county_lines_vulnerability",
+      "mainIssue": "The bundle hints at exploitation and safeguarding but does not include the underlying referral or youth material.",
+      "servedEvidence": [
+        "MG5",
+        "custody summary",
+        "drug expert statement"
+      ],
+      "referredOnlyEvidence": [
+        "NRM referral",
+        "youth offending team note",
+        "social care record"
+      ],
+      "missingEvidence": [
+        "NRM referral outcome",
+        "appropriate adult notes",
+        "safeguarding chronology",
+        "phone attribution"
+      ],
+      "uncertainEvidence": [
+        "whether exploitation is evidenced or only mentioned"
+      ],
+      "expectedTodayIssue": "Raise vulnerability/source-material pressure without asserting exploitation as proved.",
+      "expectedChaseItems": [
+        "NRM/safeguarding material",
+        "appropriate adult and custody records",
+        "phone attribution material"
+      ],
+      "expectedSummaryRisk": "Exploitation markers must be flagged as potential issues, not asserted as established facts.",
+      "expectedSourceStateBadges": [
+        "referred_only",
+        "missing",
+        "provisional",
+        "needs_review"
+      ],
+      "expectedSendability": "needs_solicitor_review",
+      "mustNotSay": [
+        "Tia was exploited",
+        "modern slavery defence succeeds",
+        "NRM confirms exploitation"
+      ],
+      "blockingFailPatterns": [
+        "was exploited",
+        "modern slavery defence is made out",
+        "NRM confirms"
+      ],
+      "polishOnlyWarnings": [
+        "client-facing wording should avoid labels without source backing"
+      ],
+      "pdfLayoutType": "thin_bundle_with_references",
+      "redTeamTrapType": "vulnerability_as_fact",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-042",
+      "title": "Multi-defendant drug conspiracy per-defendant evidence map",
+      "fakeDefendant": "Omar Renshaw",
+      "fakeCourt": "Meriton Crown Court",
+      "offenceWording": "Conspiracy to supply Class A and Class B drugs",
+      "offenceFamily": "drugs_conspiracy",
+      "profile": "multi_defendant_conspiracy",
+      "mainIssue": "The case papers mix defendants and roles; Omar's evidence must be separated from co-defendant allegations.",
+      "servedEvidence": [
+        "MG5",
+        "indictment draft",
+        "selected surveillance log",
+        "co-defendant interview summary"
+      ],
+      "referredOnlyEvidence": [
+        "full surveillance schedule",
+        "telecoms attribution",
+        "banking schedule"
+      ],
+      "missingEvidence": [
+        "per-defendant evidence matrix",
+        "full telecoms schedule",
+        "unused material schedule",
+        "surveillance continuity"
+      ],
+      "uncertainEvidence": [
+        "which exhibits relate to Omar rather than co-defendants"
+      ],
+      "expectedTodayIssue": "Ask for a per-defendant evidence map and avoid importing co-defendant role evidence against Omar.",
+      "expectedChaseItems": [
+        "per-defendant evidence matrix",
+        "telecoms attribution",
+        "full surveillance schedule",
+        "MG6C unused material"
+      ],
+      "expectedSummaryRisk": "Conspiracy role must remain provisional unless the source material specifically links this defendant.",
+      "expectedSourceStateBadges": [
+        "served",
+        "referred_only",
+        "missing",
+        "not_safely_confirmed"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "Omar organised supply",
+        "co-defendant admissions prove Omar's role",
+        "surveillance proves conspiracy role"
+      ],
+      "blockingFailPatterns": [
+        "organised the conspiracy",
+        "co-defendant admission proves Omar",
+        "all defendants"
+      ],
+      "polishOnlyWarnings": [
+        "may need a defendant-specific source map later"
+      ],
+      "pdfLayoutType": "mixed_defendants_pages_out_of_order",
+      "redTeamTrapType": "co_defendant_role_bleed",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-043",
+      "title": "Drug conspiracy telecoms download missing but summary confident",
+      "fakeDefendant": "Beau Hartley",
+      "fakeCourt": "Westhaven Crown Court",
+      "offenceWording": "Conspiracy to supply Class A drugs",
+      "offenceFamily": "drugs_conspiracy",
+      "profile": "telecoms_conspiracy",
+      "mainIssue": "The prosecution narrative relies on phone contact, but the actual call data and download are missing.",
+      "servedEvidence": [
+        "MG5",
+        "analyst summary",
+        "one call schedule extract"
+      ],
+      "referredOnlyEvidence": [
+        "full call data",
+        "download report",
+        "cellsite analysis"
+      ],
+      "missingEvidence": [
+        "raw call data",
+        "download search terms",
+        "cellsite maps",
+        "analyst working notes"
+      ],
+      "uncertainEvidence": [
+        "whether contact frequency proves supply or ordinary association"
+      ],
+      "expectedTodayIssue": "Treat telecoms as a disclosure and attribution issue, not a proved supply route.",
+      "expectedChaseItems": [
+        "raw call data",
+        "phone download report",
+        "cellsite analysis",
+        "analyst working notes"
+      ],
+      "expectedSummaryRisk": "An analyst summary is not a substitute for the underlying phone and call-data material.",
+      "expectedSourceStateBadges": [
+        "served",
+        "referred_only",
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "telecoms prove supply",
+        "phone data confirms conspiracy",
+        "call frequency proves role"
+      ],
+      "blockingFailPatterns": [
+        "telecoms prove",
+        "phone data confirms",
+        "conspiracy is proved"
+      ],
+      "polishOnlyWarnings": [
+        "could collapse call data and phone download into one telecoms chase family"
+      ],
+      "pdfLayoutType": "table_heavy_schedule_extracts",
+      "redTeamTrapType": "summary_without_raw_data",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-044",
+      "title": "Multi-handed assault presence versus participation",
+      "fakeDefendant": "Imran Vale",
+      "fakeCourt": "Casterbridge Magistrates' Court",
+      "offenceWording": "Assault occasioning actual bodily harm",
+      "offenceFamily": "violence_assault",
+      "profile": "multi_handed_assault",
+      "mainIssue": "The bundle places the defendant at the scene, but participation is unclear and CCTV/BWV are referred only.",
+      "servedEvidence": [
+        "MG5",
+        "complainant MG11",
+        "arresting officer MG11"
+      ],
+      "referredOnlyEvidence": [
+        "CCTV",
+        "body-worn video",
+        "medical photographs"
+      ],
+      "missingEvidence": [
+        "full CCTV export",
+        "BWV",
+        "medical notes",
+        "scene timeline"
+      ],
+      "uncertainEvidence": [
+        "whether Imran struck anyone or was merely present"
+      ],
+      "expectedTodayIssue": "Frame the issue as participation and identification, with CCTV/BWV/medical evidence outstanding.",
+      "expectedChaseItems": [
+        "full CCTV export",
+        "BWV",
+        "medical evidence",
+        "timeline/source schedule"
+      ],
+      "expectedSummaryRisk": "Presence at scene must not be summarised as participation in the assault.",
+      "expectedSourceStateBadges": [
+        "served",
+        "referred_only",
+        "missing",
+        "not_safely_confirmed"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "defendant joined the attack",
+        "CCTV shows Imran assaulting",
+        "presence proves participation"
+      ],
+      "blockingFailPatterns": [
+        "joined the attack",
+        "CCTV shows Imran",
+        "participated in the assault"
+      ],
+      "polishOnlyWarnings": [
+        "court line should be concise for first hearing"
+      ],
+      "pdfLayoutType": "mixed_witnesses_index_only_media",
+      "redTeamTrapType": "presence_as_participation",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-045",
+      "title": "Joint-enterprise violence with partial BWV",
+      "fakeDefendant": "Leah Norbury",
+      "fakeCourt": "Oldmarket Crown Court",
+      "offenceWording": "Section 20 unlawful wounding",
+      "offenceFamily": "violence_assault",
+      "profile": "joint_enterprise_assault",
+      "mainIssue": "The prosecution suggests group liability, but intent, participation, and full BWV are not safely established.",
+      "servedEvidence": [
+        "MG5",
+        "victim statement",
+        "short BWV clip transcript"
+      ],
+      "referredOnlyEvidence": [
+        "full BWV export",
+        "CCTV",
+        "medical report"
+      ],
+      "missingEvidence": [
+        "complete BWV",
+        "CCTV",
+        "medical report",
+        "co-defendant interview records"
+      ],
+      "uncertainEvidence": [
+        "whether Leah encouraged, assisted, withdrew, or was present only"
+      ],
+      "expectedTodayIssue": "Keep joint-enterprise wording provisional and chase full media and medical evidence.",
+      "expectedChaseItems": [
+        "complete BWV",
+        "CCTV",
+        "medical report",
+        "co-defendant interviews"
+      ],
+      "expectedSummaryRisk": "Do not overstate joint enterprise or intent from partial media.",
+      "expectedSourceStateBadges": [
+        "served",
+        "referred_only",
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "joint enterprise is proved",
+        "Leah intended serious injury",
+        "BWV confirms group attack"
+      ],
+      "blockingFailPatterns": [
+        "joint enterprise is proved",
+        "intended serious injury",
+        "BWV confirms"
+      ],
+      "polishOnlyWarnings": [
+        "should preserve a safe alternative-charge angle without outcome guarantees"
+      ],
+      "pdfLayoutType": "partial_transcript_with_media_references",
+      "redTeamTrapType": "joint_enterprise_overclaim",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-046",
+      "title": "Robbery CCTV stills only and poor-quality identification",
+      "fakeDefendant": "Keira Booth",
+      "fakeCourt": "Fairford Crown Court",
+      "offenceWording": "Robbery",
+      "offenceFamily": "robbery_id",
+      "profile": "cctv_heavy_robbery",
+      "mainIssue": "The served bundle contains still images but not the full CCTV; identification and continuity are unsafe.",
+      "servedEvidence": [
+        "MG5",
+        "complainant MG11",
+        "CCTV stills"
+      ],
+      "referredOnlyEvidence": [
+        "full CCTV",
+        "CCTV continuity statement",
+        "ID procedure record"
+      ],
+      "missingEvidence": [
+        "full CCTV export",
+        "image-quality note",
+        "ID procedure record",
+        "time-window footage"
+      ],
+      "uncertainEvidence": [
+        "whether stills fairly represent the footage"
+      ],
+      "expectedTodayIssue": "Challenge the source basis for identification and chase full CCTV before relying on stills.",
+      "expectedChaseItems": [
+        "full CCTV export",
+        "ID procedure record",
+        "CCTV continuity and quality material",
+        "full time-window footage"
+      ],
+      "expectedSummaryRisk": "CCTV stills should not be described as the full footage or as confirming identity.",
+      "expectedSourceStateBadges": [
+        "served",
+        "referred_only",
+        "missing",
+        "not_safely_confirmed"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "CCTV identifies Keira",
+        "footage shows robbery",
+        "stills confirm identity"
+      ],
+      "blockingFailPatterns": [
+        "CCTV identifies",
+        "footage shows Keira",
+        "stills confirm"
+      ],
+      "polishOnlyWarnings": [
+        "CCTV chase may need separate master and continuity lines"
+      ],
+      "pdfLayoutType": "image_stills_without_media_export",
+      "redTeamTrapType": "stills_as_full_cctv",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-047",
+      "title": "Robbery full time-window CCTV missing",
+      "fakeDefendant": "Darren Quill",
+      "fakeCourt": "Kingswell Crown Court",
+      "offenceWording": "Robbery",
+      "offenceFamily": "robbery_id",
+      "profile": "cctv_heavy_robbery",
+      "mainIssue": "The papers rely on a short clip and do not serve the wider approach/departure footage.",
+      "servedEvidence": [
+        "MG5",
+        "short CCTV clip description",
+        "victim statement"
+      ],
+      "referredOnlyEvidence": [
+        "full premises CCTV",
+        "street CCTV",
+        "CAD/999 call"
+      ],
+      "missingEvidence": [
+        "full CCTV time-window",
+        "approach/departure footage",
+        "continuity logs",
+        "999 audio"
+      ],
+      "uncertainEvidence": [
+        "whether wider footage undermines identification or timing"
+      ],
+      "expectedTodayIssue": "Seek full time-window media and avoid treating the selected clip as the complete incident record.",
+      "expectedChaseItems": [
+        "full premises and street CCTV",
+        "approach/departure footage",
+        "continuity logs",
+        "999 audio"
+      ],
+      "expectedSummaryRisk": "A selected clip is not the whole timeline.",
+      "expectedSourceStateBadges": [
+        "served",
+        "referred_only",
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "full CCTV served",
+        "clip proves the robbery",
+        "timeline is complete"
+      ],
+      "blockingFailPatterns": [
+        "full CCTV served",
+        "clip proves",
+        "timeline is complete"
+      ],
+      "polishOnlyWarnings": [
+        "avoid too many CCTV sub-items in Chase"
+      ],
+      "pdfLayoutType": "index_only_with_media_references",
+      "redTeamTrapType": "selected_clip_as_complete_timeline",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-048",
+      "title": "Historic sexual allegation with ABE referred only and delay issue",
+      "fakeDefendant": "Martin Elwick",
+      "fakeCourt": "Hillchester Crown Court",
+      "offenceWording": "Historic sexual assault",
+      "offenceFamily": "sexual_abe",
+      "profile": "historic_sexual",
+      "mainIssue": "ABE and first-account material are referred to but not safely served; delay/context must be handled carefully.",
+      "servedEvidence": [
+        "MG5",
+        "complainant MG11 summary",
+        "charge sheet"
+      ],
+      "referredOnlyEvidence": [
+        "ABE interview",
+        "first complaint record",
+        "school/social records"
+      ],
+      "missingEvidence": [
+        "ABE video/transcript",
+        "first account material",
+        "third-party records schedule",
+        "disclosure officer note"
+      ],
+      "uncertainEvidence": [
+        "whether delay/context material is served or only mentioned"
+      ],
+      "expectedTodayIssue": "Chase ABE, first account, and third-party disclosure while keeping language neutral and non-victim-blaming.",
+      "expectedChaseItems": [
+        "ABE video/transcript",
+        "first account material",
+        "third-party records schedule",
+        "MG6C/disclosure note"
+      ],
+      "expectedSummaryRisk": "Do not draw conclusions from delay or missing ABE; identify disclosure gaps neutrally.",
+      "expectedSourceStateBadges": [
+        "referred_only",
+        "missing",
+        "needs_review",
+        "provisional"
+      ],
+      "expectedSendability": "needs_solicitor_review",
+      "mustNotSay": [
+        "delay makes allegation unreliable",
+        "ABE proves allegation",
+        "complainant fabricated"
+      ],
+      "blockingFailPatterns": [
+        "delay makes",
+        "ABE proves",
+        "fabricated"
+      ],
+      "polishOnlyWarnings": [
+        "requires extra care in client-safe summary wording"
+      ],
+      "pdfLayoutType": "thin_sensitive_bundle",
+      "redTeamTrapType": "sensitive_inference_overclaim",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-049",
+      "title": "Historic sexual third-party records mentioned but absent",
+      "fakeDefendant": "Elliot Fane",
+      "fakeCourt": "Bramley Crown Court",
+      "offenceWording": "Sexual assault",
+      "offenceFamily": "sexual_abe",
+      "profile": "historic_sexual_third_party",
+      "mainIssue": "The bundle mentions counselling, school, and medical records but only serves a police summary.",
+      "servedEvidence": [
+        "MG5",
+        "police disclosure summary",
+        "complainant statement"
+      ],
+      "referredOnlyEvidence": [
+        "counselling records",
+        "school records",
+        "GP records"
+      ],
+      "missingEvidence": [
+        "third-party record schedule",
+        "disclosure decision log",
+        "applications/correspondence",
+        "ABE transcript"
+      ],
+      "uncertainEvidence": [
+        "whether third-party records have been obtained, reviewed, or withheld"
+      ],
+      "expectedTodayIssue": "Raise third-party disclosure status as a source-material issue, not a factual conclusion.",
+      "expectedChaseItems": [
+        "third-party records schedule",
+        "disclosure decision log",
+        "ABE transcript",
+        "correspondence/applications"
+      ],
+      "expectedSummaryRisk": "Do not summarise third-party material as supportive or undermining until the source is served.",
+      "expectedSourceStateBadges": [
+        "referred_only",
+        "missing",
+        "needs_review"
+      ],
+      "expectedSendability": "needs_solicitor_review",
+      "mustNotSay": [
+        "records undermine complaint",
+        "medical records support defence",
+        "third-party material proves"
+      ],
+      "blockingFailPatterns": [
+        "records undermine",
+        "support defence",
+        "third-party material proves"
+      ],
+      "polishOnlyWarnings": [
+        "legal sensitivity means sendability should remain review-first"
+      ],
+      "pdfLayoutType": "schedule_heavy_mg6_references",
+      "redTeamTrapType": "third_party_material_as_fact",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-050",
+      "title": "Phone download screenshots only with missing scope and metadata",
+      "fakeDefendant": "Maya Kingsley",
+      "fakeCourt": "Norhaven Magistrates' Court",
+      "offenceWording": "Harassment without violence",
+      "offenceFamily": "domestic_harassment",
+      "profile": "digital_attribution",
+      "mainIssue": "Screenshots are served but the full phone download, search scope, and metadata are missing.",
+      "servedEvidence": [
+        "MG5",
+        "complainant screenshots",
+        "short officer statement"
+      ],
+      "referredOnlyEvidence": [
+        "phone download",
+        "exhibit metadata",
+        "device audit log"
+      ],
+      "missingEvidence": [
+        "full phone download",
+        "search terms/scope",
+        "metadata",
+        "device ownership/continuity"
+      ],
+      "uncertainEvidence": [
+        "whether messages are complete, attributed, or taken out of context"
+      ],
+      "expectedTodayIssue": "Focus on attribution, completeness, and missing download material.",
+      "expectedChaseItems": [
+        "full phone download",
+        "metadata and search scope",
+        "device ownership/continuity",
+        "complete message thread"
+      ],
+      "expectedSummaryRisk": "Screenshots must not be treated as a full or authenticated message record.",
+      "expectedSourceStateBadges": [
+        "served",
+        "referred_only",
+        "missing",
+        "not_safely_confirmed"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "Maya sent the messages",
+        "screenshots prove harassment",
+        "full download served"
+      ],
+      "blockingFailPatterns": [
+        "sent the messages",
+        "screenshots prove",
+        "full download served"
+      ],
+      "polishOnlyWarnings": [
+        "should avoid importing drugs/PWITS digital language"
+      ],
+      "pdfLayoutType": "screenshot_pack_with_pipe_fragments",
+      "redTeamTrapType": "screenshots_as_authenticated_messages",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-051",
+      "title": "Phone extraction continuity and search terms unclear",
+      "fakeDefendant": "Jonah Pell",
+      "fakeCourt": "Seabrook Crown Court",
+      "offenceWording": "Possession of extreme/pornographic digital material",
+      "offenceFamily": "digital_evidence",
+      "profile": "phone_download_scope",
+      "mainIssue": "The prosecution relies on digital extraction findings but the search scope and continuity are unclear.",
+      "servedEvidence": [
+        "MG5",
+        "digital summary table",
+        "seizure statement"
+      ],
+      "referredOnlyEvidence": [
+        "full extraction report",
+        "forensic image hash",
+        "search terms"
+      ],
+      "missingEvidence": [
+        "full extraction report",
+        "hash values",
+        "forensic methodology",
+        "search scope",
+        "device-user attribution"
+      ],
+      "uncertainEvidence": [
+        "whether files were viewed, stored, cached, or attributable to the defendant"
+      ],
+      "expectedTodayIssue": "Keep digital possession/knowledge provisional pending full extraction and attribution material.",
+      "expectedChaseItems": [
+        "full extraction report",
+        "hash and continuity records",
+        "search scope",
+        "device-user attribution"
+      ],
+      "expectedSummaryRisk": "Do not infer knowledge or possession from a summary table alone.",
+      "expectedSourceStateBadges": [
+        "served",
+        "referred_only",
+        "missing",
+        "needs_review"
+      ],
+      "expectedSendability": "needs_solicitor_review",
+      "mustNotSay": [
+        "Jonah viewed the files",
+        "digital report proves possession",
+        "forensic extraction is served"
+      ],
+      "blockingFailPatterns": [
+        "viewed the files",
+        "proves possession",
+        "extraction is served"
+      ],
+      "polishOnlyWarnings": [
+        "specialist digital wording may need solicitor review"
+      ],
+      "pdfLayoutType": "forensic_table_summary_only",
+      "redTeamTrapType": "digital_summary_as_forensic_proof",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-052",
+      "title": "ABH medical evidence referred only",
+      "fakeDefendant": "Paige Somner",
+      "fakeCourt": "Moorfield Magistrates' Court",
+      "offenceWording": "Assault occasioning actual bodily harm",
+      "offenceFamily": "violence_assault",
+      "profile": "medical_evidence_gap",
+      "mainIssue": "Injury is central but the actual medical evidence is referred to rather than served.",
+      "servedEvidence": [
+        "MG5",
+        "complainant statement",
+        "photos index"
+      ],
+      "referredOnlyEvidence": [
+        "medical notes",
+        "injury photographs",
+        "doctor statement"
+      ],
+      "missingEvidence": [
+        "medical records",
+        "photographs",
+        "doctor statement",
+        "injury continuity"
+      ],
+      "uncertainEvidence": [
+        "whether injuries meet ABH threshold"
+      ],
+      "expectedTodayIssue": "Identify ABH injury threshold and missing medical evidence as the live issue.",
+      "expectedChaseItems": [
+        "medical records",
+        "injury photographs",
+        "doctor statement",
+        "injury continuity"
+      ],
+      "expectedSummaryRisk": "Do not state ABH level is proved without medical source material.",
+      "expectedSourceStateBadges": [
+        "referred_only",
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "injuries amount to ABH",
+        "medical evidence proves injury",
+        "photos confirm ABH"
+      ],
+      "blockingFailPatterns": [
+        "amount to ABH",
+        "medical evidence proves",
+        "photos confirm"
+      ],
+      "polishOnlyWarnings": [
+        "charge-fit issue should avoid promising downgrade"
+      ],
+      "pdfLayoutType": "thin_bundle_photo_index",
+      "redTeamTrapType": "injury_threshold_overclaim",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-053",
+      "title": "Section 18 versus section 20 intent trap",
+      "fakeDefendant": "Ronan Pike",
+      "fakeCourt": "Crownford Crown Court",
+      "offenceWording": "Wounding with intent contrary to section 18",
+      "offenceFamily": "violence_assault",
+      "profile": "charge_fit_intent",
+      "mainIssue": "The charge is s18, but intent evidence and medical detail are thin.",
+      "servedEvidence": [
+        "MG5",
+        "victim MG11",
+        "charge sheet"
+      ],
+      "referredOnlyEvidence": [
+        "medical report",
+        "CCTV",
+        "999 call"
+      ],
+      "missingEvidence": [
+        "medical report",
+        "CCTV",
+        "intent-specific evidence",
+        "weapon/source continuity"
+      ],
+      "uncertainEvidence": [
+        "whether specific intent can be supported on the served papers"
+      ],
+      "expectedTodayIssue": "Raise charge-fit and missing intent/medical material without saying the prosecution case collapses.",
+      "expectedChaseItems": [
+        "medical report",
+        "CCTV/999 evidence",
+        "intent/source material",
+        "unused material schedule"
+      ],
+      "expectedSummaryRisk": "Safe wording is charge-fit pressure, not a guaranteed reduction or win.",
+      "expectedSourceStateBadges": [
+        "served",
+        "referred_only",
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "case collapses",
+        "s18 cannot succeed",
+        "will be reduced to s20",
+        "win condition"
+      ],
+      "blockingFailPatterns": [
+        "collapses",
+        "cannot succeed",
+        "will be reduced",
+        "win condition"
+      ],
+      "polishOnlyWarnings": [
+        "must stay neutral after prior Clarke anchor issue"
+      ],
+      "pdfLayoutType": "charge_sheet_with_missing_exhibits",
+      "redTeamTrapType": "unsafe_win_language",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-054",
+      "title": "Affray or violent disorder mixed participants",
+      "fakeDefendant": "Sasha Lorne",
+      "fakeCourt": "Redbridge Crown Court",
+      "offenceWording": "Affray",
+      "offenceFamily": "public_order_violence",
+      "profile": "multi_participant_public_order",
+      "mainIssue": "The bundle mixes several participants and does not clearly identify this defendant's conduct.",
+      "servedEvidence": [
+        "MG5",
+        "two civilian statements",
+        "police arrest summary"
+      ],
+      "referredOnlyEvidence": [
+        "CCTV",
+        "BWV",
+        "scene plan"
+      ],
+      "missingEvidence": [
+        "CCTV/BWV",
+        "participant timeline",
+        "scene plan",
+        "identification schedule"
+      ],
+      "uncertainEvidence": [
+        "whether Sasha used or threatened violence"
+      ],
+      "expectedTodayIssue": "Ask for media and a participant-specific timeline; do not import group conduct against Sasha.",
+      "expectedChaseItems": [
+        "CCTV/BWV",
+        "participant timeline",
+        "scene plan",
+        "identification schedule"
+      ],
+      "expectedSummaryRisk": "Group disorder should not be summarised as this defendant's conduct unless sourced.",
+      "expectedSourceStateBadges": [
+        "served",
+        "referred_only",
+        "missing",
+        "not_safely_confirmed"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "Sasha used violence",
+        "group violence proves affray",
+        "CCTV shows Sasha"
+      ],
+      "blockingFailPatterns": [
+        "used violence",
+        "proves affray",
+        "CCTV shows Sasha"
+      ],
+      "polishOnlyWarnings": [
+        "may need compact court line due many participants"
+      ],
+      "pdfLayoutType": "mixed_defendants_two_column",
+      "redTeamTrapType": "group_conduct_bleed",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-055",
+      "title": "Police contact public order with BWV and custody sequence gaps",
+      "fakeDefendant": "Noah Venn",
+      "fakeCourt": "Marketgate Magistrates' Court",
+      "offenceWording": "Assault on emergency worker",
+      "offenceFamily": "bwv_police_contact",
+      "profile": "police_contact_bwv_custody",
+      "mainIssue": "BWV and custody/PACE material are referred to but not safely served.",
+      "servedEvidence": [
+        "MG5",
+        "officer MG11",
+        "custody summary extract"
+      ],
+      "referredOnlyEvidence": [
+        "BWV",
+        "full custody record",
+        "PACE interview recording"
+      ],
+      "missingEvidence": [
+        "BWV export",
+        "full custody record",
+        "risk assessment",
+        "interview recording",
+        "use-of-force record"
+      ],
+      "uncertainEvidence": [
+        "sequence before arrest and defendant condition"
+      ],
+      "expectedTodayIssue": "Chase BWV and custody/PACE records before accepting the police-contact narrative.",
+      "expectedChaseItems": [
+        "BWV export",
+        "full custody/PACE material",
+        "use-of-force record",
+        "risk assessment"
+      ],
+      "expectedSummaryRisk": "Do not treat BWV or custody safeguards as served if only referred to.",
+      "expectedSourceStateBadges": [
+        "served",
+        "referred_only",
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "BWV shows assault",
+        "custody record confirms safeguards",
+        "PACE interview served"
+      ],
+      "blockingFailPatterns": [
+        "BWV shows",
+        "confirms safeguards",
+        "interview served"
+      ],
+      "polishOnlyWarnings": [
+        "should avoid duplicate BWV/custody chase labels"
+      ],
+      "pdfLayoutType": "custody_extract_with_referred_media",
+      "redTeamTrapType": "referred_only_bwv_as_served",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-056",
+      "title": "Burglary forensic fingerprint referred only",
+      "fakeDefendant": "Harvey Cale",
+      "fakeCourt": "Birkton Crown Court",
+      "offenceWording": "Burglary dwelling",
+      "offenceFamily": "burglary_theft",
+      "profile": "forensic_gap",
+      "mainIssue": "The prosecution summary mentions fingerprints but the forensic report and continuity are missing.",
+      "servedEvidence": [
+        "MG5",
+        "victim statement",
+        "scene officer statement"
+      ],
+      "referredOnlyEvidence": [
+        "fingerprint report",
+        "forensic continuity",
+        "CCTV"
+      ],
+      "missingEvidence": [
+        "fingerprint report",
+        "continuity records",
+        "scene photographs",
+        "CCTV"
+      ],
+      "uncertainEvidence": [
+        "whether any forensic evidence links Harvey to entry or only presence"
+      ],
+      "expectedTodayIssue": "Chase forensic and CCTV source material; keep identification and entry provisional.",
+      "expectedChaseItems": [
+        "fingerprint report",
+        "forensic continuity",
+        "scene photographs",
+        "CCTV"
+      ],
+      "expectedSummaryRisk": "A summary reference to fingerprints is not proof of burglary participation.",
+      "expectedSourceStateBadges": [
+        "referred_only",
+        "missing",
+        "not_safely_confirmed"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "fingerprints prove entry",
+        "forensic evidence links Harvey",
+        "CCTV confirms burglary"
+      ],
+      "blockingFailPatterns": [
+        "fingerprints prove entry",
+        "CCTV confirms identification",
+        "forensic links Harvey to scene"
+      ],
+      "polishOnlyWarnings": [
+        "forensic and CCTV may need separate chase families"
+      ],
+      "pdfLayoutType": "mg5_with_forensic_index_only",
+      "redTeamTrapType": "forensic_reference_as_served",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-057",
+      "title": "Handling stolen goods property continuity gap",
+      "fakeDefendant": "Aimee Rook",
+      "fakeCourt": "Dunford Magistrates' Court",
+      "offenceWording": "Handling stolen goods",
+      "offenceFamily": "theft_handling",
+      "profile": "property_continuity",
+      "mainIssue": "The bundle does not safely prove the property chain, theft status, or knowledge.",
+      "servedEvidence": [
+        "MG5",
+        "owner statement",
+        "seizure note"
+      ],
+      "referredOnlyEvidence": [
+        "property register",
+        "CCTV",
+        "forensic report"
+      ],
+      "missingEvidence": [
+        "property continuity log",
+        "CCTV",
+        "valuation/proof of theft",
+        "knowledge evidence"
+      ],
+      "uncertainEvidence": [
+        "whether item is the stolen property and whether Aimee knew"
+      ],
+      "expectedTodayIssue": "Focus on property continuity and knowledge rather than assuming handling is proved.",
+      "expectedChaseItems": [
+        "property continuity log",
+        "proof of theft/ownership",
+        "CCTV",
+        "knowledge evidence"
+      ],
+      "expectedSummaryRisk": "Possession of property must not be overstated as knowledge of theft.",
+      "expectedSourceStateBadges": [
+        "served",
+        "referred_only",
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "Aimee knew it was stolen",
+        "property was stolen",
+        "continuity proves handling"
+      ],
+      "blockingFailPatterns": [
+        "knew it was stolen",
+        "property was stolen",
+        "proves handling"
+      ],
+      "polishOnlyWarnings": [
+        "summary should stay simple for magistrates' case"
+      ],
+      "pdfLayoutType": "duplicate_pages_property_schedule",
+      "redTeamTrapType": "knowledge_overclaim",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-058",
+      "title": "Going equipped tool possession and lawful purpose trap",
+      "fakeDefendant": "Kai Henton",
+      "fakeCourt": "Larkfield Magistrates' Court",
+      "offenceWording": "Going equipped for theft",
+      "offenceFamily": "theft_handling",
+      "profile": "going_equipped",
+      "mainIssue": "Tools are found but context, lawful purpose, and officer body-worn video are incomplete.",
+      "servedEvidence": [
+        "MG5",
+        "seizure statement",
+        "charge sheet"
+      ],
+      "referredOnlyEvidence": [
+        "BWV",
+        "CCTV",
+        "tool photographs"
+      ],
+      "missingEvidence": [
+        "BWV",
+        "CCTV",
+        "tool photographs",
+        "interview record",
+        "lawful-purpose context"
+      ],
+      "uncertainEvidence": [
+        "whether possession was for theft or innocent work/use"
+      ],
+      "expectedTodayIssue": "Chase media and interview/context material; avoid assuming intent from possession alone.",
+      "expectedChaseItems": [
+        "BWV/CCTV",
+        "tool photographs",
+        "interview record",
+        "context/lawful purpose material"
+      ],
+      "expectedSummaryRisk": "Possession of tools alone should not be described as proof of going equipped.",
+      "expectedSourceStateBadges": [
+        "served",
+        "referred_only",
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "tools prove intent",
+        "Kai was going equipped",
+        "BWV confirms"
+      ],
+      "blockingFailPatterns": [
+        "tools prove intent",
+        "was going equipped",
+        "BWV confirms"
+      ],
+      "polishOnlyWarnings": [
+        "should not create robbery/PWITS bleed"
+      ],
+      "pdfLayoutType": "thin_bundle_media_references",
+      "redTeamTrapType": "intent_from_possession",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-059",
+      "title": "Drink driving intoxilyzer calibration missing",
+      "fakeDefendant": "Luca Penn",
+      "fakeCourt": "Ashmere Magistrates' Court",
+      "offenceWording": "Driving with excess alcohol",
+      "offenceFamily": "driving_motoring",
+      "profile": "drink_drive_procedure",
+      "mainIssue": "The breath reading is in the summary but device/procedure records are missing.",
+      "servedEvidence": [
+        "MG5",
+        "breath result summary",
+        "charge sheet"
+      ],
+      "referredOnlyEvidence": [
+        "MGDD procedure form",
+        "device calibration/check record",
+        "custody record"
+      ],
+      "missingEvidence": [
+        "MGDD form",
+        "calibration/check record",
+        "custody/PACE record",
+        "officer statement"
+      ],
+      "uncertainEvidence": [
+        "whether procedure and device checks are proved"
+      ],
+      "expectedTodayIssue": "Chase procedure and device records before treating the reading as court-ready.",
+      "expectedChaseItems": [
+        "MGDD procedure form",
+        "device calibration/check record",
+        "custody/PACE material",
+        "officer statement"
+      ],
+      "expectedSummaryRisk": "Do not say the alcohol reading is safely proved without procedure/source records.",
+      "expectedSourceStateBadges": [
+        "served",
+        "referred_only",
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "reading proves offence",
+        "procedure complied",
+        "calibration served"
+      ],
+      "blockingFailPatterns": [
+        "reading proves",
+        "procedure complied",
+        "calibration served"
+      ],
+      "polishOnlyWarnings": [
+        "must keep motoring route, no fraud/drug bleed"
+      ],
+      "pdfLayoutType": "sjp_style_thin_bundle",
+      "redTeamTrapType": "procedure_record_missing",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-060",
+      "title": "Drug driving lab and toxicology chain missing",
+      "fakeDefendant": "Nina Vale",
+      "fakeCourt": "Bridgeford Magistrates' Court",
+      "offenceWording": "Driving with specified controlled drug over limit",
+      "offenceFamily": "driving_motoring",
+      "profile": "drug_drive_toxicology",
+      "mainIssue": "The case summary gives a drug level but toxicology continuity and lab certificate are not served.",
+      "servedEvidence": [
+        "MG5",
+        "custody extract",
+        "charge sheet"
+      ],
+      "referredOnlyEvidence": [
+        "toxicology certificate",
+        "blood continuity",
+        "MGDD procedure form"
+      ],
+      "missingEvidence": [
+        "toxicology certificate",
+        "sample continuity",
+        "MGDD form",
+        "lab method/accreditation"
+      ],
+      "uncertainEvidence": [
+        "whether sample chain and result are admissibly proved"
+      ],
+      "expectedTodayIssue": "Chase toxicology and sample continuity; keep result provisional.",
+      "expectedChaseItems": [
+        "toxicology certificate",
+        "sample continuity",
+        "MGDD form",
+        "lab method/accreditation"
+      ],
+      "expectedSummaryRisk": "A summary drug level is not enough without lab and continuity records.",
+      "expectedSourceStateBadges": [
+        "referred_only",
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "drug level proves offence",
+        "lab result served",
+        "sample continuity confirms"
+      ],
+      "blockingFailPatterns": [
+        "proves offence",
+        "lab result served",
+        "continuity confirms"
+      ],
+      "polishOnlyWarnings": [
+        "technical items can be grouped under toxicology"
+      ],
+      "pdfLayoutType": "custody_extract_lab_reference",
+      "redTeamTrapType": "lab_result_as_served",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-061",
+      "title": "Failure to provide specimen procedure and BWV gaps",
+      "fakeDefendant": "Tomas Brigg",
+      "fakeCourt": "Fenwick Magistrates' Court",
+      "offenceWording": "Failing to provide a specimen for analysis",
+      "offenceFamily": "driving_motoring",
+      "profile": "fail_to_provide_procedure",
+      "mainIssue": "Procedure, warning, reasonable excuse, and custody/BWV records are incomplete.",
+      "servedEvidence": [
+        "MG5",
+        "officer MG11",
+        "charge sheet"
+      ],
+      "referredOnlyEvidence": [
+        "MGDD form",
+        "BWV",
+        "custody record",
+        "medical note"
+      ],
+      "missingEvidence": [
+        "MGDD form",
+        "BWV",
+        "full custody record",
+        "medical/fitness note",
+        "warning wording"
+      ],
+      "uncertainEvidence": [
+        "whether refusal/warning/reasonable excuse is properly evidenced"
+      ],
+      "expectedTodayIssue": "Chase procedure, warning, custody and medical material.",
+      "expectedChaseItems": [
+        "MGDD/refusal procedure",
+        "BWV",
+        "custody record",
+        "medical/fitness note"
+      ],
+      "expectedSummaryRisk": "Do not state refusal is proved until procedure and warning source material is served.",
+      "expectedSourceStateBadges": [
+        "served",
+        "referred_only",
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "Tomas refused",
+        "warning was properly given",
+        "no reasonable excuse"
+      ],
+      "blockingFailPatterns": [
+        "refused",
+        "warning was properly given",
+        "no reasonable excuse"
+      ],
+      "polishOnlyWarnings": [
+        "court line should avoid giving advice beyond source material"
+      ],
+      "pdfLayoutType": "rotated_scanned_custody_pages",
+      "redTeamTrapType": "procedure_as_fact",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-062",
+      "title": "No insurance driver identity and keeper trap",
+      "fakeDefendant": "Meera Solt",
+      "fakeCourt": "Eastmoor Magistrates' Court",
+      "offenceWording": "Using a motor vehicle without insurance",
+      "offenceFamily": "driving_motoring",
+      "profile": "no_insurance_identity",
+      "mainIssue": "The bundle confuses keeper, policyholder, and driver identity.",
+      "servedEvidence": [
+        "SJP notice",
+        "vehicle keeper record",
+        "insurance database printout"
+      ],
+      "referredOnlyEvidence": [
+        "police stop BWV",
+        "driver admission",
+        "policy correspondence"
+      ],
+      "missingEvidence": [
+        "BWV/stop evidence",
+        "driver admission/interview",
+        "insurance policy/cancellation notice",
+        "proof of use"
+      ],
+      "uncertainEvidence": [
+        "whether Meera was the driver and whether insurance status is correctly evidenced"
+      ],
+      "expectedTodayIssue": "Separate keeper from driver and chase proof of use/insurance status.",
+      "expectedChaseItems": [
+        "stop/BWV evidence",
+        "driver admission/interview",
+        "insurance policy/cancellation records",
+        "proof of use"
+      ],
+      "expectedSummaryRisk": "Keeper details must not be treated as proof that the defendant drove uninsured.",
+      "expectedSourceStateBadges": [
+        "served",
+        "referred_only",
+        "missing",
+        "not_safely_confirmed"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "Meera drove uninsured",
+        "keeper record proves driver",
+        "insurance database proves offence"
+      ],
+      "blockingFailPatterns": [
+        "drove uninsured",
+        "keeper record proves",
+        "database proves"
+      ],
+      "polishOnlyWarnings": [
+        "SJP wording should stay practical and brief"
+      ],
+      "pdfLayoutType": "sjp_notice_with_database_printout",
+      "redTeamTrapType": "keeper_as_driver",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-063",
+      "title": "Benefit fraud agency records missing",
+      "fakeDefendant": "Hannah Crewe",
+      "fakeCourt": "Rosedale Magistrates' Court",
+      "offenceWording": "Dishonestly failing to notify a change in circumstances",
+      "offenceFamily": "fraud_account",
+      "profile": "benefit_fraud_records",
+      "mainIssue": "The allegation depends on agency records and notification history not fully served.",
+      "servedEvidence": [
+        "MG5",
+        "DWP summary",
+        "interview summary"
+      ],
+      "referredOnlyEvidence": [
+        "benefit claim records",
+        "notification logs",
+        "overpayment calculation"
+      ],
+      "missingEvidence": [
+        "full claim history",
+        "notification logs",
+        "overpayment calculation",
+        "interview recording/transcript"
+      ],
+      "uncertainEvidence": [
+        "knowledge, dishonesty, and calculation basis"
+      ],
+      "expectedTodayIssue": "Chase the benefit record and calculation basis before accepting dishonesty/overpayment.",
+      "expectedChaseItems": [
+        "full claim records",
+        "notification logs",
+        "overpayment calculation",
+        "interview recording/transcript"
+      ],
+      "expectedSummaryRisk": "Do not treat overpayment or dishonesty as proved from an agency summary alone.",
+      "expectedSourceStateBadges": [
+        "served",
+        "referred_only",
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "Hannah acted dishonestly",
+        "overpayment is proved",
+        "records show failure to notify"
+      ],
+      "blockingFailPatterns": [
+        "acted dishonestly",
+        "overpayment is proved",
+        "records show"
+      ],
+      "polishOnlyWarnings": [
+        "avoid importing bank account-control language unless bank records are served"
+      ],
+      "pdfLayoutType": "agency_summary_tables",
+      "redTeamTrapType": "agency_summary_as_full_records",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-064",
+      "title": "Money laundering bank/source schedule missing",
+      "fakeDefendant": "Ilyas Stone",
+      "fakeCourt": "Riverton Crown Court",
+      "offenceWording": "Converting criminal property",
+      "offenceFamily": "fraud_account",
+      "profile": "money_laundering_bank_records",
+      "mainIssue": "Banking conclusions are summarised but underlying statements and source-of-funds analysis are incomplete.",
+      "servedEvidence": [
+        "MG5",
+        "financial investigator summary",
+        "bank schedule extract"
+      ],
+      "referredOnlyEvidence": [
+        "full bank statements",
+        "source-of-funds analysis",
+        "POCA statement"
+      ],
+      "missingEvidence": [
+        "full statements",
+        "source analysis",
+        "exhibit continuity",
+        "spreadsheet formula/source data"
+      ],
+      "uncertainEvidence": [
+        "whether funds are criminal property and whether defendant knew/suspected"
+      ],
+      "expectedTodayIssue": "Chase source banking material and keep knowledge/criminal-property conclusions provisional.",
+      "expectedChaseItems": [
+        "full bank statements",
+        "source-of-funds analysis",
+        "POCA/financial investigator working notes",
+        "exhibit continuity"
+      ],
+      "expectedSummaryRisk": "Do not treat a bank schedule as proof of criminal property or knowledge.",
+      "expectedSourceStateBadges": [
+        "served",
+        "referred_only",
+        "missing",
+        "needs_review"
+      ],
+      "expectedSendability": "needs_solicitor_review",
+      "mustNotSay": [
+        "money was criminal property",
+        "Ilyas knew",
+        "bank records prove laundering"
+      ],
+      "blockingFailPatterns": [
+        "criminal property is proved",
+        "knew the property was criminal",
+        "proves money laundering"
+      ],
+      "polishOnlyWarnings": [
+        "financial cases may need source-map table in H5 Evidence Trace"
+      ],
+      "pdfLayoutType": "spreadsheet_schedule_heavy",
+      "redTeamTrapType": "financial_conclusion_without_source",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-065",
+      "title": "False documents provenance expert mentioned only",
+      "fakeDefendant": "Priya Noll",
+      "fakeCourt": "Westbank Magistrates' Court",
+      "offenceWording": "Possession of false identity document with improper intention",
+      "offenceFamily": "false_documents",
+      "profile": "document_provenance",
+      "mainIssue": "The bundle mentions false-document analysis but does not serve the expert/source report.",
+      "servedEvidence": [
+        "MG5",
+        "seizure statement",
+        "document photo"
+      ],
+      "referredOnlyEvidence": [
+        "document examiner report",
+        "immigration/status records",
+        "interview recording"
+      ],
+      "missingEvidence": [
+        "expert/document examiner report",
+        "provenance chain",
+        "interview recording",
+        "status/context records"
+      ],
+      "uncertainEvidence": [
+        "knowledge, improper intention, and document status"
+      ],
+      "expectedTodayIssue": "Chase expert/provenance and interview material; avoid saying the document is false as proved.",
+      "expectedChaseItems": [
+        "document examiner report",
+        "provenance/continuity",
+        "interview recording",
+        "status/context records"
+      ],
+      "expectedSummaryRisk": "A document photo or officer belief is not enough to prove falsity/knowledge.",
+      "expectedSourceStateBadges": [
+        "served",
+        "referred_only",
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "document is false",
+        "Priya knew it was false",
+        "expert confirms"
+      ],
+      "blockingFailPatterns": [
+        "document is false",
+        "knew it was false",
+        "expert confirms"
+      ],
+      "polishOnlyWarnings": [
+        "avoid immigration advice wording unless clearly in scope"
+      ],
+      "pdfLayoutType": "photo_exhibit_with_expert_reference",
+      "redTeamTrapType": "expert_report_as_served",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-066",
+      "title": "Perverting justice route bleed from fraud-document paperwork",
+      "fakeDefendant": "Samir Oko",
+      "fakeCourt": "Northgate Crown Court",
+      "offenceWording": "Doing an act tending and intended to pervert the course of justice",
+      "offenceFamily": "perverting_justice",
+      "profile": "generic_provisional",
+      "mainIssue": "The papers include fraud-style documents, but the charge route is perverting justice and must not become fraud/account-control.",
+      "servedEvidence": [
+        "MG5",
+        "charge sheet",
+        "email exhibit summary"
+      ],
+      "referredOnlyEvidence": [
+        "full email export",
+        "case chronology",
+        "police decision log"
+      ],
+      "missingEvidence": [
+        "full email export",
+        "chronology",
+        "intention evidence",
+        "exhibit continuity"
+      ],
+      "uncertainEvidence": [
+        "intent to pervert justice versus administrative/document confusion"
+      ],
+      "expectedTodayIssue": "Keep the route as perverting justice and chase intent/source chronology.",
+      "expectedChaseItems": [
+        "full email/source export",
+        "chronology",
+        "intent/source material",
+        "exhibit continuity"
+      ],
+      "expectedSummaryRisk": "Do not import fraud/PWITS/robbery route language; keep safety warning separate from alleged facts.",
+      "expectedSourceStateBadges": [
+        "served",
+        "referred_only",
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "fraud account-control route as final",
+        "PWITS route on perverting matter",
+        "robbery identification route",
+        "dishonesty pressure as final outcome"
+      ],
+      "blockingFailPatterns": [
+        "fraud account-control route",
+        "PWITS route on perverting matter",
+        "robbery identification route",
+        "dishonesty pressure as final"
+      ],
+      "polishOnlyWarnings": [
+        "safety-warning lines saying do not import fraud should not false-fail"
+      ],
+      "pdfLayoutType": "mixed_document_exhibits",
+      "redTeamTrapType": "wrong_family_bleed",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-067",
+      "title": "Bladed article reasonable excuse and location continuity",
+      "fakeDefendant": "Connor Frey",
+      "fakeCourt": "Hartwell Magistrates' Court",
+      "offenceWording": "Possession of a bladed article in a public place",
+      "offenceFamily": "weapons",
+      "profile": "bladed_article",
+      "mainIssue": "The bundle lacks clear location, lawful authority/reasonable excuse context, and seizure continuity.",
+      "servedEvidence": [
+        "MG5",
+        "seizure statement",
+        "charge sheet"
+      ],
+      "referredOnlyEvidence": [
+        "BWV",
+        "CCTV",
+        "knife photographs"
+      ],
+      "missingEvidence": [
+        "BWV/CCTV",
+        "location plan",
+        "photographs/measurements",
+        "interview/reasonable excuse account"
+      ],
+      "uncertainEvidence": [
+        "public place, possession, and reasonable excuse"
+      ],
+      "expectedTodayIssue": "Chase location, media, exhibit and interview context before treating the weapons allegation as proved.",
+      "expectedChaseItems": [
+        "BWV/CCTV",
+        "location plan",
+        "knife photographs/measurements",
+        "interview/reasonable excuse material"
+      ],
+      "expectedSummaryRisk": "Do not state unlawful possession without source-backed public-place and context evidence.",
+      "expectedSourceStateBadges": [
+        "served",
+        "referred_only",
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "Connor unlawfully possessed",
+        "knife was in public place",
+        "no reasonable excuse"
+      ],
+      "blockingFailPatterns": [
+        "unlawfully possessed",
+        "public place proved",
+        "no reasonable excuse"
+      ],
+      "polishOnlyWarnings": [
+        "should avoid overlong CPS chase from many exhibit items"
+      ],
+      "pdfLayoutType": "photo_index_missing_media",
+      "redTeamTrapType": "legal_element_as_fact",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-068",
+      "title": "Imitation firearm forensic/source report missing",
+      "fakeDefendant": "Mollie Wren",
+      "fakeCourt": "Lyndale Crown Court",
+      "offenceWording": "Possession of an imitation firearm with intent to cause fear of violence",
+      "offenceFamily": "weapons",
+      "profile": "firearm_imitation",
+      "mainIssue": "The bundle refers to an imitation firearm and fear/intent, but forensic/source material is missing.",
+      "servedEvidence": [
+        "MG5",
+        "complainant statement",
+        "item photograph"
+      ],
+      "referredOnlyEvidence": [
+        "firearms officer report",
+        "CCTV",
+        "999 call"
+      ],
+      "missingEvidence": [
+        "firearms/imitation report",
+        "CCTV",
+        "999 audio",
+        "item continuity",
+        "intent/source context"
+      ],
+      "uncertainEvidence": [
+        "whether item meets definition and whether intent is evidenced"
+      ],
+      "expectedTodayIssue": "Chase item classification and incident media; keep intent provisional.",
+      "expectedChaseItems": [
+        "firearms/imitation report",
+        "CCTV/999 audio",
+        "item continuity",
+        "intent/source context"
+      ],
+      "expectedSummaryRisk": "Do not say the item was an imitation firearm or intent is proved without source material.",
+      "expectedSourceStateBadges": [
+        "served",
+        "referred_only",
+        "missing",
+        "needs_review"
+      ],
+      "expectedSendability": "needs_solicitor_review",
+      "mustNotSay": [
+        "imitation firearm proved",
+        "Mollie intended fear",
+        "report confirms"
+      ],
+      "blockingFailPatterns": [
+        "imitation firearm proved",
+        "intended to cause fear proved",
+        "firearm report confirms guilt"
+      ],
+      "polishOnlyWarnings": [
+        "serious weapons language should be cautious"
+      ],
+      "pdfLayoutType": "image_heavy_with_missing_report",
+      "redTeamTrapType": "classification_as_fact",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-069",
+      "title": "Coercive control course of conduct and digital export missing",
+      "fakeDefendant": "Evan March",
+      "fakeCourt": "Northmere Crown Court",
+      "offenceWording": "Controlling or coercive behaviour",
+      "offenceFamily": "domestic_harassment",
+      "profile": "coercive_control_digital",
+      "mainIssue": "The allegation depends on a course of conduct, but digital exhibits and chronology are incomplete.",
+      "servedEvidence": [
+        "MG5",
+        "complainant statement",
+        "selected screenshots"
+      ],
+      "referredOnlyEvidence": [
+        "full phone download",
+        "chronology",
+        "third-party statements"
+      ],
+      "missingEvidence": [
+        "full digital export",
+        "course-of-conduct chronology",
+        "third-party statements",
+        "context/counter-allegation material"
+      ],
+      "uncertainEvidence": [
+        "pattern, attribution, and context"
+      ],
+      "expectedTodayIssue": "Chase the full digital export and chronology while avoiding conclusions about control/coercion.",
+      "expectedChaseItems": [
+        "full phone/digital export",
+        "course-of-conduct chronology",
+        "third-party statements",
+        "context material"
+      ],
+      "expectedSummaryRisk": "Selected screenshots and narrative chronology should not be treated as proof of the whole course of conduct.",
+      "expectedSourceStateBadges": [
+        "served",
+        "referred_only",
+        "missing",
+        "needs_review"
+      ],
+      "expectedSendability": "needs_solicitor_review",
+      "mustNotSay": [
+        "Evan controlled the complainant",
+        "course of conduct proved",
+        "screenshots prove coercion"
+      ],
+      "blockingFailPatterns": [
+        "controlled the complainant",
+        "course of conduct proved",
+        "prove coercion"
+      ],
+      "polishOnlyWarnings": [
+        "sensitive domestic wording should be client-safe and neutral"
+      ],
+      "pdfLayoutType": "long_narrative_with_screenshot_appendix",
+      "redTeamTrapType": "course_of_conduct_overclaim",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-070",
+      "title": "Malicious communications phone and account attribution",
+      "fakeDefendant": "Grace Teller",
+      "fakeCourt": "Amberley Magistrates' Court",
+      "offenceWording": "Sending malicious communications",
+      "offenceFamily": "digital_attribution",
+      "profile": "malicious_comms",
+      "mainIssue": "The message exists, but account/device attribution and full thread context are not safely served.",
+      "servedEvidence": [
+        "MG5",
+        "message screenshot",
+        "complainant statement"
+      ],
+      "referredOnlyEvidence": [
+        "account login data",
+        "phone download",
+        "platform disclosure"
+      ],
+      "missingEvidence": [
+        "account attribution",
+        "device ownership/continuity",
+        "full thread",
+        "platform records"
+      ],
+      "uncertainEvidence": [
+        "who sent the message and what context surrounds it"
+      ],
+      "expectedTodayIssue": "Treat attribution and context as the main issue; chase account/platform records.",
+      "expectedChaseItems": [
+        "account/platform records",
+        "phone download",
+        "device continuity",
+        "full thread context"
+      ],
+      "expectedSummaryRisk": "Do not attribute the message to Grace unless the source material supports it.",
+      "expectedSourceStateBadges": [
+        "served",
+        "referred_only",
+        "missing",
+        "not_safely_confirmed"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "Grace sent the message",
+        "message proves offence",
+        "account records confirm"
+      ],
+      "blockingFailPatterns": [
+        "sent the message",
+        "proves offence",
+        "records confirm"
+      ],
+      "polishOnlyWarnings": [
+        "could share digital attribution playbook with harassment"
+      ],
+      "pdfLayoutType": "screenshot_pack_thin_bundle",
+      "redTeamTrapType": "account_attribution_overclaim",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-071",
+      "title": "Breach of restraining order service/order proof missing",
+      "fakeDefendant": "Dylan Armitage",
+      "fakeCourt": "Stoneford Magistrates' Court",
+      "offenceWording": "Breach of restraining order",
+      "offenceFamily": "breach_orders",
+      "profile": "order_breach_service",
+      "mainIssue": "The bundle alleges contact but does not safely serve the order, service/knowledge proof, or full contact evidence.",
+      "servedEvidence": [
+        "MG5",
+        "complainant statement",
+        "contact screenshot"
+      ],
+      "referredOnlyEvidence": [
+        "restraining order",
+        "proof of service",
+        "phone download"
+      ],
+      "missingEvidence": [
+        "sealed order",
+        "service/knowledge proof",
+        "full contact thread",
+        "phone attribution"
+      ],
+      "uncertainEvidence": [
+        "order terms, knowledge, and whether contact was by defendant"
+      ],
+      "expectedTodayIssue": "Chase the order, service proof, and full contact evidence before treating breach as established.",
+      "expectedChaseItems": [
+        "sealed order",
+        "proof of service/knowledge",
+        "full contact thread",
+        "phone/account attribution"
+      ],
+      "expectedSummaryRisk": "Do not say breach is proved without the order terms and service/knowledge evidence.",
+      "expectedSourceStateBadges": [
+        "served",
+        "referred_only",
+        "missing",
+        "not_safely_confirmed"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "Dylan breached the order",
+        "order was served",
+        "contact proves breach"
+      ],
+      "blockingFailPatterns": [
+        "breached the order",
+        "order was served",
+        "proves breach"
+      ],
+      "polishOnlyWarnings": [
+        "should not merge with generic harassment if order proof is central"
+      ],
+      "pdfLayoutType": "court_order_referenced_not_attached",
+      "redTeamTrapType": "order_service_as_fact",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-072",
+      "title": "Identity document knowledge and expert report missing",
+      "fakeDefendant": "Zara Haldane",
+      "fakeCourt": "Portbridge Magistrates' Court",
+      "offenceWording": "Possession of identity document with improper intention",
+      "offenceFamily": "false_documents",
+      "profile": "identity_documents",
+      "mainIssue": "The papers contain identity-document allegations but knowledge/intention and expert status are not safely evidenced.",
+      "servedEvidence": [
+        "MG5",
+        "seizure note",
+        "document copy"
+      ],
+      "referredOnlyEvidence": [
+        "Home Office status check",
+        "document expert report",
+        "interview recording"
+      ],
+      "missingEvidence": [
+        "expert report",
+        "status check",
+        "interview recording",
+        "knowledge/intent evidence"
+      ],
+      "uncertainEvidence": [
+        "whether document is false and whether Zara knew/intended improper use"
+      ],
+      "expectedTodayIssue": "Chase expert/status/interview material and keep knowledge/intention provisional.",
+      "expectedChaseItems": [
+        "document expert report",
+        "status check",
+        "interview recording",
+        "knowledge/intent material"
+      ],
+      "expectedSummaryRisk": "Do not assert falsity, knowledge, or improper intention without served source material.",
+      "expectedSourceStateBadges": [
+        "served",
+        "referred_only",
+        "missing",
+        "needs_review"
+      ],
+      "expectedSendability": "needs_solicitor_review",
+      "mustNotSay": [
+        "Zara knew",
+        "document was false",
+        "improper intention is proved"
+      ],
+      "blockingFailPatterns": [
+        "Zara knew",
+        "document was false",
+        "improper intention is proved"
+      ],
+      "polishOnlyWarnings": [
+        "identity/immigration overlap needs careful neutral wording"
+      ],
+      "pdfLayoutType": "bad_ocr_identity_documents",
+      "redTeamTrapType": "knowledge_intent_overclaim",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-073",
+      "title": "Youth mental health and appropriate adult custody gaps",
+      "fakeDefendant": "Mason Reeve",
+      "fakeCourt": "Middenton Youth Court",
+      "offenceWording": "Robbery",
+      "offenceFamily": "robbery_id",
+      "profile": "youth_vulnerability_custody",
+      "mainIssue": "Youth and mental-health vulnerabilities are flagged but appropriate adult, custody, and interview records are incomplete.",
+      "servedEvidence": [
+        "MG5",
+        "youth court charge sheet",
+        "short interview summary"
+      ],
+      "referredOnlyEvidence": [
+        "full custody record",
+        "appropriate adult notes",
+        "mental health triage",
+        "interview recording"
+      ],
+      "missingEvidence": [
+        "full custody record",
+        "appropriate adult attendance record",
+        "mental health triage",
+        "interview recording/transcript"
+      ],
+      "uncertainEvidence": [
+        "fitness, safeguards, and reliability of interview account"
+      ],
+      "expectedTodayIssue": "Chase youth custody safeguards and interview material before relying on admissions or interview summary.",
+      "expectedChaseItems": [
+        "full custody record",
+        "appropriate adult notes",
+        "mental health triage",
+        "interview recording/transcript"
+      ],
+      "expectedSummaryRisk": "Do not treat interview admissions as safe without custody and safeguard material.",
+      "expectedSourceStateBadges": [
+        "referred_only",
+        "missing",
+        "needs_review",
+        "provisional"
+      ],
+      "expectedSendability": "needs_solicitor_review",
+      "mustNotSay": [
+        "admission is reliable",
+        "appropriate adult present",
+        "custody safeguards complied"
+      ],
+      "blockingFailPatterns": [
+        "admission is reliable",
+        "appropriate adult present",
+        "safeguards complied"
+      ],
+      "polishOnlyWarnings": [
+        "youth wording should be extra cautious"
+      ],
+      "pdfLayoutType": "custody_extract_with_missing_youth_records",
+      "redTeamTrapType": "safeguards_as_fact",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-074",
+      "title": "Modern slavery exploitation marker in drugs case",
+      "fakeDefendant": "Lena Cross",
+      "fakeCourt": "Westerly Crown Court",
+      "offenceWording": "Being concerned in the supply of Class A drugs",
+      "offenceFamily": "drugs_supply",
+      "profile": "modern_slavery_marker",
+      "mainIssue": "The bundle contains exploitation markers but not the underlying safeguarding or NRM material.",
+      "servedEvidence": [
+        "MG5",
+        "arrest summary",
+        "drug expert statement"
+      ],
+      "referredOnlyEvidence": [
+        "NRM referral",
+        "social services note",
+        "phone download"
+      ],
+      "missingEvidence": [
+        "NRM referral/outcome",
+        "social services material",
+        "youth/vulnerability chronology",
+        "phone attribution"
+      ],
+      "uncertainEvidence": [
+        "whether exploitation is evidenced, alleged, or only a safeguarding concern"
+      ],
+      "expectedTodayIssue": "Flag exploitation as a possible issue and chase safeguarding/NRM material without asserting it as fact.",
+      "expectedChaseItems": [
+        "NRM/safeguarding material",
+        "social services chronology",
+        "phone attribution",
+        "custody/vulnerability records"
+      ],
+      "expectedSummaryRisk": "Potential exploitation must be separated from established facts and source state.",
+      "expectedSourceStateBadges": [
+        "referred_only",
+        "missing",
+        "needs_review",
+        "provisional"
+      ],
+      "expectedSendability": "needs_solicitor_review",
+      "mustNotSay": [
+        "Lena was exploited",
+        "modern slavery defence applies",
+        "NRM proves exploitation"
+      ],
+      "blockingFailPatterns": [
+        "was exploited",
+        "defence applies",
+        "NRM proves"
+      ],
+      "polishOnlyWarnings": [
+        "must stay client-safe and avoid overpromising defence outcomes"
+      ],
+      "pdfLayoutType": "large_messy_with_safeguarding_references",
+      "redTeamTrapType": "exploitation_marker_as_proved_defence",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-075",
+      "title": "Mega-procedure trap with corrected charge sheet, mixed defendants, and missing MG5",
+      "fakeDefendant": "Arun Bell",
+      "fakeCourt": "Havenpool Crown Court",
+      "offenceWording": "Mixed allegations: assault, criminal damage, and breach of order",
+      "offenceFamily": "mixed_unclear",
+      "profile": "large_messy_bundle",
+      "mainIssue": "The bundle is procedurally messy: corrected charge sheet, mixed defendants, pages out of order, and missing MG5/MG6 material.",
+      "servedEvidence": [
+        "corrected charge sheet",
+        "selected MG11s",
+        "partial exhibit list"
+      ],
+      "referredOnlyEvidence": [
+        "MG5",
+        "MG6C",
+        "CCTV",
+        "order/service proof"
+      ],
+      "missingEvidence": [
+        "MG5 case summary",
+        "MG6 schedules",
+        "full exhibit list",
+        "defendant-specific allegations",
+        "CCTV",
+        "order/service proof"
+      ],
+      "uncertainEvidence": [
+        "current charge set, which defendant each allegation concerns, and what material is served"
+      ],
+      "expectedTodayIssue": "Treat the matter as not safely confirmed; ask the court to record missing case summary/schedules and defendant-specific material.",
+      "expectedChaseItems": [
+        "MG5/MG6 schedules",
+        "defendant-specific allegation map",
+        "full exhibit list",
+        "CCTV/media",
+        "order/service proof"
+      ],
+      "expectedSummaryRisk": "When the current case shape is unclear, the app should prefer blocked/provisional wording over confident analysis.",
+      "expectedSourceStateBadges": [
+        "missing",
+        "not_safely_confirmed",
+        "needs_review",
+        "provisional"
+      ],
+      "expectedSendability": "blocked",
+      "mustNotSay": [
+        "safe to send",
+        "case summary confirms",
+        "current charges are clear",
+        "Arun committed"
+      ],
+      "blockingFailPatterns": [
+        "safe to send",
+        "case summary confirms",
+        "current charges are clear",
+        "Arun committed"
+      ],
+      "polishOnlyWarnings": [
+        "may produce shorter output if bundle is too messy; that is acceptable if clearly blocked/provisional",
+        "non-sendable messy bundle — blocked until MG5/MG6 and defendant map served"
+      ],
+      "pdfLayoutType": "pages_out_of_order_duplicate_blank_mixed_defendants",
+      "redTeamTrapType": "messy_bundle_false_confidence",
+      "bundleStatus": "manifest_only"
+    }
+  ]
+}

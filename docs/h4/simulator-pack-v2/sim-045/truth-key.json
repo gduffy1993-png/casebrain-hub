@@ -1,0 +1,60 @@
+{
+  "caseId": "sim-045",
+  "title": "Joint-enterprise violence with partial BWV",
+  "fakeDefendant": "Leah Norbury",
+  "fakeCourt": "Oldmarket Crown Court",
+  "offenceWording": "Section 20 unlawful wounding",
+  "offenceFamily": "violence_assault",
+  "profile": "joint_enterprise_assault",
+  "mainIssue": "The prosecution suggests group liability, but intent, participation, and full BWV are not safely established.",
+  "servedEvidence": [
+    "MG5",
+    "victim statement",
+    "short BWV clip transcript"
+  ],
+  "referredOnlyEvidence": [
+    "full BWV export",
+    "CCTV",
+    "medical report"
+  ],
+  "missingEvidence": [
+    "complete BWV",
+    "CCTV",
+    "medical report",
+    "co-defendant interview records"
+  ],
+  "uncertainEvidence": [
+    "whether Leah encouraged, assisted, withdrew, or was present only"
+  ],
+  "expectedTodayIssue": "Keep joint-enterprise wording provisional and chase full media and medical evidence.",
+  "expectedChaseItems": [
+    "complete BWV",
+    "CCTV",
+    "medical report",
+    "co-defendant interviews"
+  ],
+  "expectedSummaryRisk": "Do not overstate joint enterprise or intent from partial media.",
+  "expectedSourceStateBadges": [
+    "served",
+    "referred_only",
+    "missing",
+    "provisional"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "joint enterprise is proved",
+    "Leah intended serious injury",
+    "BWV confirms group attack"
+  ],
+  "blockingFailPatterns": [
+    "joint enterprise is proved",
+    "intended serious injury",
+    "BWV confirms"
+  ],
+  "polishOnlyWarnings": [
+    "should preserve a safe alternative-charge angle without outcome guarantees"
+  ],
+  "pdfLayoutType": "partial_transcript_with_media_references",
+  "redTeamTrapType": "joint_enterprise_overclaim",
+  "bundleStatus": "generated"
+}

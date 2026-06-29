@@ -1,0 +1,67 @@
+{
+  "caseId": "sim-075",
+  "title": "Mega-procedure trap with corrected charge sheet, mixed defendants, and missing MG5",
+  "fakeDefendant": "Arun Bell",
+  "fakeCourt": "Havenpool Crown Court",
+  "offenceWording": "Mixed allegations: assault, criminal damage, and breach of order",
+  "offenceFamily": "mixed_unclear",
+  "profile": "large_messy_bundle",
+  "mainIssue": "The bundle is procedurally messy: corrected charge sheet, mixed defendants, pages out of order, and missing MG5/MG6 material.",
+  "servedEvidence": [
+    "corrected charge sheet",
+    "selected MG11s",
+    "partial exhibit list"
+  ],
+  "referredOnlyEvidence": [
+    "MG5",
+    "MG6C",
+    "CCTV",
+    "order/service proof"
+  ],
+  "missingEvidence": [
+    "MG5 case summary",
+    "MG6 schedules",
+    "full exhibit list",
+    "defendant-specific allegations",
+    "CCTV",
+    "order/service proof"
+  ],
+  "uncertainEvidence": [
+    "current charge set, which defendant each allegation concerns, and what material is served"
+  ],
+  "expectedTodayIssue": "Treat the matter as not safely confirmed; ask the court to record missing case summary/schedules and defendant-specific material.",
+  "expectedChaseItems": [
+    "MG5/MG6 schedules",
+    "defendant-specific allegation map",
+    "full exhibit list",
+    "CCTV/media",
+    "order/service proof"
+  ],
+  "expectedSummaryRisk": "When the current case shape is unclear, the app should prefer blocked/provisional wording over confident analysis.",
+  "expectedSourceStateBadges": [
+    "missing",
+    "not_safely_confirmed",
+    "needs_review",
+    "provisional"
+  ],
+  "expectedSendability": "blocked",
+  "mustNotSay": [
+    "safe to send",
+    "case summary confirms",
+    "current charges are clear",
+    "Arun committed"
+  ],
+  "blockingFailPatterns": [
+    "safe to send",
+    "case summary confirms",
+    "current charges are clear",
+    "Arun committed"
+  ],
+  "polishOnlyWarnings": [
+    "may produce shorter output if bundle is too messy; that is acceptable if clearly blocked/provisional",
+    "non-sendable messy bundle — blocked until MG5/MG6 and defendant map served"
+  ],
+  "pdfLayoutType": "pages_out_of_order_duplicate_blank_mixed_defendants",
+  "redTeamTrapType": "messy_bundle_false_confidence",
+  "bundleStatus": "generated"
+}

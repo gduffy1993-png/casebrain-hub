@@ -1,0 +1,62 @@
+{
+  "caseId": "sim-061",
+  "title": "Failure to provide specimen procedure and BWV gaps",
+  "fakeDefendant": "Tomas Brigg",
+  "fakeCourt": "Fenwick Magistrates' Court",
+  "offenceWording": "Failing to provide a specimen for analysis",
+  "offenceFamily": "driving_motoring",
+  "profile": "fail_to_provide_procedure",
+  "mainIssue": "Procedure, warning, reasonable excuse, and custody/BWV records are incomplete.",
+  "servedEvidence": [
+    "MG5",
+    "officer MG11",
+    "charge sheet"
+  ],
+  "referredOnlyEvidence": [
+    "MGDD form",
+    "BWV",
+    "custody record",
+    "medical note"
+  ],
+  "missingEvidence": [
+    "MGDD form",
+    "BWV",
+    "full custody record",
+    "medical/fitness note",
+    "warning wording"
+  ],
+  "uncertainEvidence": [
+    "whether refusal/warning/reasonable excuse is properly evidenced"
+  ],
+  "expectedTodayIssue": "Chase procedure, warning, custody and medical material.",
+  "expectedChaseItems": [
+    "MGDD/refusal procedure",
+    "BWV",
+    "custody record",
+    "medical/fitness note"
+  ],
+  "expectedSummaryRisk": "Do not state refusal is proved until procedure and warning source material is served.",
+  "expectedSourceStateBadges": [
+    "served",
+    "referred_only",
+    "missing",
+    "provisional"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "Tomas refused",
+    "warning was properly given",
+    "no reasonable excuse"
+  ],
+  "blockingFailPatterns": [
+    "refused",
+    "warning was properly given",
+    "no reasonable excuse"
+  ],
+  "polishOnlyWarnings": [
+    "court line should avoid giving advice beyond source material"
+  ],
+  "pdfLayoutType": "rotated_scanned_custody_pages",
+  "redTeamTrapType": "procedure_as_fact",
+  "bundleStatus": "generated"
+}

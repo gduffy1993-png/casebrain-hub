@@ -1,0 +1,59 @@
+{
+  "caseId": "sim-060",
+  "title": "Drug driving lab and toxicology chain missing",
+  "fakeDefendant": "Nina Vale",
+  "fakeCourt": "Bridgeford Magistrates' Court",
+  "offenceWording": "Driving with specified controlled drug over limit",
+  "offenceFamily": "driving_motoring",
+  "profile": "drug_drive_toxicology",
+  "mainIssue": "The case summary gives a drug level but toxicology continuity and lab certificate are not served.",
+  "servedEvidence": [
+    "MG5",
+    "custody extract",
+    "charge sheet"
+  ],
+  "referredOnlyEvidence": [
+    "toxicology certificate",
+    "blood continuity",
+    "MGDD procedure form"
+  ],
+  "missingEvidence": [
+    "toxicology certificate",
+    "sample continuity",
+    "MGDD form",
+    "lab method/accreditation"
+  ],
+  "uncertainEvidence": [
+    "whether sample chain and result are admissibly proved"
+  ],
+  "expectedTodayIssue": "Chase toxicology and sample continuity; keep result provisional.",
+  "expectedChaseItems": [
+    "toxicology certificate",
+    "sample continuity",
+    "MGDD form",
+    "lab method/accreditation"
+  ],
+  "expectedSummaryRisk": "A summary drug level is not enough without lab and continuity records.",
+  "expectedSourceStateBadges": [
+    "referred_only",
+    "missing",
+    "provisional"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "drug level proves offence",
+    "lab result served",
+    "sample continuity confirms"
+  ],
+  "blockingFailPatterns": [
+    "proves offence",
+    "lab result served",
+    "continuity confirms"
+  ],
+  "polishOnlyWarnings": [
+    "technical items can be grouped under toxicology"
+  ],
+  "pdfLayoutType": "custody_extract_lab_reference",
+  "redTeamTrapType": "lab_result_as_served",
+  "bundleStatus": "generated"
+}

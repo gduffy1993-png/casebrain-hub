@@ -1,0 +1,61 @@
+{
+  "caseId": "sim-051",
+  "title": "Phone extraction continuity and search terms unclear",
+  "fakeDefendant": "Jonah Pell",
+  "fakeCourt": "Seabrook Crown Court",
+  "offenceWording": "Possession of extreme/pornographic digital material",
+  "offenceFamily": "digital_evidence",
+  "profile": "phone_download_scope",
+  "mainIssue": "The prosecution relies on digital extraction findings but the search scope and continuity are unclear.",
+  "servedEvidence": [
+    "MG5",
+    "digital summary table",
+    "seizure statement"
+  ],
+  "referredOnlyEvidence": [
+    "full extraction report",
+    "forensic image hash",
+    "search terms"
+  ],
+  "missingEvidence": [
+    "full extraction report",
+    "hash values",
+    "forensic methodology",
+    "search scope",
+    "device-user attribution"
+  ],
+  "uncertainEvidence": [
+    "whether files were viewed, stored, cached, or attributable to the defendant"
+  ],
+  "expectedTodayIssue": "Keep digital possession/knowledge provisional pending full extraction and attribution material.",
+  "expectedChaseItems": [
+    "full extraction report",
+    "hash and continuity records",
+    "search scope",
+    "device-user attribution"
+  ],
+  "expectedSummaryRisk": "Do not infer knowledge or possession from a summary table alone.",
+  "expectedSourceStateBadges": [
+    "served",
+    "referred_only",
+    "missing",
+    "needs_review"
+  ],
+  "expectedSendability": "needs_solicitor_review",
+  "mustNotSay": [
+    "Jonah viewed the files",
+    "digital report proves possession",
+    "forensic extraction is served"
+  ],
+  "blockingFailPatterns": [
+    "viewed the files",
+    "proves possession",
+    "extraction is served"
+  ],
+  "polishOnlyWarnings": [
+    "specialist digital wording may need solicitor review"
+  ],
+  "pdfLayoutType": "forensic_table_summary_only",
+  "redTeamTrapType": "digital_summary_as_forensic_proof",
+  "bundleStatus": "generated"
+}

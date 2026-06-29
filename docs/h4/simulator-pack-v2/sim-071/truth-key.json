@@ -1,0 +1,60 @@
+{
+  "caseId": "sim-071",
+  "title": "Breach of restraining order service/order proof missing",
+  "fakeDefendant": "Dylan Armitage",
+  "fakeCourt": "Stoneford Magistrates' Court",
+  "offenceWording": "Breach of restraining order",
+  "offenceFamily": "breach_orders",
+  "profile": "order_breach_service",
+  "mainIssue": "The bundle alleges contact but does not safely serve the order, service/knowledge proof, or full contact evidence.",
+  "servedEvidence": [
+    "MG5",
+    "complainant statement",
+    "contact screenshot"
+  ],
+  "referredOnlyEvidence": [
+    "restraining order",
+    "proof of service",
+    "phone download"
+  ],
+  "missingEvidence": [
+    "sealed order",
+    "service/knowledge proof",
+    "full contact thread",
+    "phone attribution"
+  ],
+  "uncertainEvidence": [
+    "order terms, knowledge, and whether contact was by defendant"
+  ],
+  "expectedTodayIssue": "Chase the order, service proof, and full contact evidence before treating breach as established.",
+  "expectedChaseItems": [
+    "sealed order",
+    "proof of service/knowledge",
+    "full contact thread",
+    "phone/account attribution"
+  ],
+  "expectedSummaryRisk": "Do not say breach is proved without the order terms and service/knowledge evidence.",
+  "expectedSourceStateBadges": [
+    "served",
+    "referred_only",
+    "missing",
+    "not_safely_confirmed"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "Dylan breached the order",
+    "order was served",
+    "contact proves breach"
+  ],
+  "blockingFailPatterns": [
+    "breached the order",
+    "order was served",
+    "proves breach"
+  ],
+  "polishOnlyWarnings": [
+    "should not merge with generic harassment if order proof is central"
+  ],
+  "pdfLayoutType": "court_order_referenced_not_attached",
+  "redTeamTrapType": "order_service_as_fact",
+  "bundleStatus": "generated"
+}

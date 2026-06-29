@@ -1,0 +1,60 @@
+{
+  "caseId": "sim-062",
+  "title": "No insurance driver identity and keeper trap",
+  "fakeDefendant": "Meera Solt",
+  "fakeCourt": "Eastmoor Magistrates' Court",
+  "offenceWording": "Using a motor vehicle without insurance",
+  "offenceFamily": "driving_motoring",
+  "profile": "no_insurance_identity",
+  "mainIssue": "The bundle confuses keeper, policyholder, and driver identity.",
+  "servedEvidence": [
+    "SJP notice",
+    "vehicle keeper record",
+    "insurance database printout"
+  ],
+  "referredOnlyEvidence": [
+    "police stop BWV",
+    "driver admission",
+    "policy correspondence"
+  ],
+  "missingEvidence": [
+    "BWV/stop evidence",
+    "driver admission/interview",
+    "insurance policy/cancellation notice",
+    "proof of use"
+  ],
+  "uncertainEvidence": [
+    "whether Meera was the driver and whether insurance status is correctly evidenced"
+  ],
+  "expectedTodayIssue": "Separate keeper from driver and chase proof of use/insurance status.",
+  "expectedChaseItems": [
+    "stop/BWV evidence",
+    "driver admission/interview",
+    "insurance policy/cancellation records",
+    "proof of use"
+  ],
+  "expectedSummaryRisk": "Keeper details must not be treated as proof that the defendant drove uninsured.",
+  "expectedSourceStateBadges": [
+    "served",
+    "referred_only",
+    "missing",
+    "not_safely_confirmed"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "Meera drove uninsured",
+    "keeper record proves driver",
+    "insurance database proves offence"
+  ],
+  "blockingFailPatterns": [
+    "drove uninsured",
+    "keeper record proves",
+    "database proves"
+  ],
+  "polishOnlyWarnings": [
+    "SJP wording should stay practical and brief"
+  ],
+  "pdfLayoutType": "sjp_notice_with_database_printout",
+  "redTeamTrapType": "keeper_as_driver",
+  "bundleStatus": "generated"
+}

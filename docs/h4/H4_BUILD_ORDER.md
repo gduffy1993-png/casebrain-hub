@@ -13,11 +13,11 @@
 | 1 | Apply trust feedback DB migration (`20260628120000_trust_feedback.sql`) | ✅ Applied + verified |
 | 2 | Export/copy gate — Chase, Summary, court note, gap list | ✅ `scripts/h4-export-copy-gate.ts` — golden 102 PASS |
 | 3 | Fresh-account smoke every deploy (CB-FRESH) | ✅ ongoing |
-| 4 | Account/permission smoke | ✅ `scripts/h4-account-permission-smoke.ts` — master preview 25 pass / 0 fail |
-| 5 | **Criminal Bundle Simulator Library** — manifest v1 (30 cases) | ✅ `docs/h4/simulator-manifest.v1.json` |
-| 6 | Simulator pack v1 — generate + run 30 fake bundles | ✅ `scripts/h4-simulator-pack-v1-generate.ts` · gate 0 blocking |
-| 6b | **v1.1 serious-case supplement (+7)** | `sim-031`..`037` — EncroChat, county lines, conspiracy, multi-hand, CCTV robbery, historic sexual, phone download |
-| 7 | Expand simulator: 37 → 75 → 150+ | Later |
+| 4 | Account/permission smoke | ✅ prod 25 pass / 0 fail (2026-06-29) |
+| 5 | **Criminal Bundle Simulator Library** — manifest v1 (30 cases) | ✅ locked |
+| 6 | Simulator pack v1 — generate + run 30 fake bundles | ✅ gate 0 blocking |
+| 6b | **v1.1 serious-case supplement (+7)** | ✅ accepted — gate 0 blocking |
+| 7 | Expand simulator: **37 → 75** | ✅ combined gate 0 blocking |
 | 8 | Worst50 + simulator failures → Bad Output Memory | Later |
 
 ### Step 1 verification
@@ -36,7 +36,20 @@ npx tsx scripts/h4-account-permission-smoke.ts
 
 Report: `artifacts/casebrain-qa/h4-account-permission/report.json`
 
-**Note:** Production (`www.casebrain.co.uk`) is on `main` (factory line) — trust-feedback route lives on `master`. Isolation checks pass on prod; feedback API/panels require master preview until prod promote.
+**Prod (2026-06-29):** trust-feedback route live (401 unauthenticated). Smoke **25 pass / 0 fail / 2 warn** — Today-tab feedback panel timing on fresh upload; Chase/Summary panels + API isolation OK.
+
+### Step 7 v2 pack (75 combined)
+
+```powershell
+npx tsx scripts/build-simulator-manifest-v2.ts
+npx tsx scripts/simulator-manifest-v2.test.ts
+npx tsx scripts/h4-simulator-pack-v2-generate.ts
+npx tsx scripts/h4-simulator-pack-v2-gate.ts
+npx tsx scripts/h4-simulator-combined-gate.ts
+```
+
+Manifest: `docs/h4/simulator-manifest.v2.json` · Pack: `docs/h4/simulator-pack-v2/`  
+Combined report: `artifacts/casebrain-qa/h4-simulator-combined/simulator-combined-report.json`
 
 ### Step 5 manifest
 
@@ -98,3 +111,5 @@ Taylor/Jordan = deploy smoke only, not primary proof.
 - `docs/h4/H4_SIMULATOR_LIBRARY.md` — simulator principle, coverage matrices, truth key, gates
 - `docs/h4/H4_RED_TEAM_MANIFEST_DRAFT.md` — 30-case v1 seed list
 - `docs/h4/H4_EXPORT_COPY_TEST_MATRIX.md` — export/copy checks
+- `docs/h4/H4_SIMULATOR_V2_PLAN.md` — v2 expansion 37 → 75 (draft)
+- `docs/backlog/UI_SIMPLIFICATION_FIVE_ANSWERS.md` — presentation backlog (**not started**)

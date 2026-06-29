@@ -142,8 +142,32 @@ function trapSection(entry: SimulatorManifestCase): string {
         "",
       ].join("\n");
     default:
-      return "";
+      return genericTrapSection(entry);
   }
+}
+
+function genericTrapSection(entry: SimulatorManifestCase): string {
+  const lines = [
+    `=== SECTION: TRAP_${entry.redTeamTrapType.toUpperCase().replace(/[^A-Z0-9]+/g, "_")} ===`,
+    "",
+    `Profile: ${entry.profile}`,
+    `Trap: ${entry.redTeamTrapType}`,
+    entry.mainIssue,
+    "",
+  ];
+  if (entry.servedEvidence.length) {
+    lines.push(`Served on bundle: ${entry.servedEvidence.join("; ")}.`, "");
+  }
+  if (entry.referredOnlyEvidence.length) {
+    lines.push(`Referred only: ${entry.referredOnlyEvidence.join("; ")}.`, "");
+  }
+  if (entry.missingEvidence.length) {
+    lines.push(`Outstanding: ${entry.missingEvidence.join("; ")}.`, "");
+  }
+  if (entry.uncertainEvidence.length) {
+    lines.push(`Uncertain: ${entry.uncertainEvidence.join("; ")}.`, "");
+  }
+  return lines.join("\n");
 }
 
 export function renderSimulatorBundleText(entry: SimulatorManifestCase): string {

@@ -1,0 +1,59 @@
+{
+  "caseId": "sim-056",
+  "title": "Burglary forensic fingerprint referred only",
+  "fakeDefendant": "Harvey Cale",
+  "fakeCourt": "Birkton Crown Court",
+  "offenceWording": "Burglary dwelling",
+  "offenceFamily": "burglary_theft",
+  "profile": "forensic_gap",
+  "mainIssue": "The prosecution summary mentions fingerprints but the forensic report and continuity are missing.",
+  "servedEvidence": [
+    "MG5",
+    "victim statement",
+    "scene officer statement"
+  ],
+  "referredOnlyEvidence": [
+    "fingerprint report",
+    "forensic continuity",
+    "CCTV"
+  ],
+  "missingEvidence": [
+    "fingerprint report",
+    "continuity records",
+    "scene photographs",
+    "CCTV"
+  ],
+  "uncertainEvidence": [
+    "whether any forensic evidence links Harvey to entry or only presence"
+  ],
+  "expectedTodayIssue": "Chase forensic and CCTV source material; keep identification and entry provisional.",
+  "expectedChaseItems": [
+    "fingerprint report",
+    "forensic continuity",
+    "scene photographs",
+    "CCTV"
+  ],
+  "expectedSummaryRisk": "A summary reference to fingerprints is not proof of burglary participation.",
+  "expectedSourceStateBadges": [
+    "referred_only",
+    "missing",
+    "not_safely_confirmed"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "fingerprints prove entry",
+    "forensic evidence links Harvey",
+    "CCTV confirms burglary"
+  ],
+  "blockingFailPatterns": [
+    "fingerprints prove entry",
+    "CCTV confirms identification",
+    "forensic links Harvey to scene"
+  ],
+  "polishOnlyWarnings": [
+    "forensic and CCTV may need separate chase families"
+  ],
+  "pdfLayoutType": "mg5_with_forensic_index_only",
+  "redTeamTrapType": "forensic_reference_as_served",
+  "bundleStatus": "generated"
+}

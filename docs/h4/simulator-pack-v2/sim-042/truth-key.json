@@ -1,0 +1,61 @@
+{
+  "caseId": "sim-042",
+  "title": "Multi-defendant drug conspiracy per-defendant evidence map",
+  "fakeDefendant": "Omar Renshaw",
+  "fakeCourt": "Meriton Crown Court",
+  "offenceWording": "Conspiracy to supply Class A and Class B drugs",
+  "offenceFamily": "drugs_conspiracy",
+  "profile": "multi_defendant_conspiracy",
+  "mainIssue": "The case papers mix defendants and roles; Omar's evidence must be separated from co-defendant allegations.",
+  "servedEvidence": [
+    "MG5",
+    "indictment draft",
+    "selected surveillance log",
+    "co-defendant interview summary"
+  ],
+  "referredOnlyEvidence": [
+    "full surveillance schedule",
+    "telecoms attribution",
+    "banking schedule"
+  ],
+  "missingEvidence": [
+    "per-defendant evidence matrix",
+    "full telecoms schedule",
+    "unused material schedule",
+    "surveillance continuity"
+  ],
+  "uncertainEvidence": [
+    "which exhibits relate to Omar rather than co-defendants"
+  ],
+  "expectedTodayIssue": "Ask for a per-defendant evidence map and avoid importing co-defendant role evidence against Omar.",
+  "expectedChaseItems": [
+    "per-defendant evidence matrix",
+    "telecoms attribution",
+    "full surveillance schedule",
+    "MG6C unused material"
+  ],
+  "expectedSummaryRisk": "Conspiracy role must remain provisional unless the source material specifically links this defendant.",
+  "expectedSourceStateBadges": [
+    "served",
+    "referred_only",
+    "missing",
+    "not_safely_confirmed"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "Omar organised supply",
+    "co-defendant admissions prove Omar's role",
+    "surveillance proves conspiracy role"
+  ],
+  "blockingFailPatterns": [
+    "organised the conspiracy",
+    "co-defendant admission proves Omar",
+    "all defendants"
+  ],
+  "polishOnlyWarnings": [
+    "may need a defendant-specific source map later"
+  ],
+  "pdfLayoutType": "mixed_defendants_pages_out_of_order",
+  "redTeamTrapType": "co_defendant_role_bleed",
+  "bundleStatus": "generated"
+}

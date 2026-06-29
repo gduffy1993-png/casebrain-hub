@@ -1,0 +1,60 @@
+{
+  "caseId": "sim-039",
+  "title": "EncroChat extraction continuity and cropped-message trap",
+  "fakeDefendant": "Nadia Selwyn",
+  "fakeCourt": "Eastborough Crown Court",
+  "offenceWording": "Being concerned in the supply of Class A drugs",
+  "offenceFamily": "drugs_supply",
+  "profile": "encro_encrypted_comms",
+  "mainIssue": "Only cropped message images are served; the app must chase the full export and continuity before summarising meaning.",
+  "servedEvidence": [
+    "MG5",
+    "cropped message screenshots",
+    "officer exhibit list"
+  ],
+  "referredOnlyEvidence": [
+    "full extraction",
+    "hash values",
+    "translation/interpretation note"
+  ],
+  "missingEvidence": [
+    "complete conversation thread",
+    "metadata",
+    "export audit trail",
+    "exhibit continuity statement"
+  ],
+  "uncertainEvidence": [
+    "whether screenshots are complete, edited, or selected"
+  ],
+  "expectedTodayIssue": "The case is provisional because screenshots are served but the full extraction and metadata are not safely before the defence.",
+  "expectedChaseItems": [
+    "full message export with metadata",
+    "continuity statement",
+    "hash/audit log",
+    "complete conversation context"
+  ],
+  "expectedSummaryRisk": "Screenshot-only evidence should be described as incomplete source material, not as the full communication record.",
+  "expectedSourceStateBadges": [
+    "served",
+    "referred_only",
+    "missing",
+    "provisional"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "full conversation proves dealing",
+    "complete extraction served",
+    "screenshots are the full record"
+  ],
+  "blockingFailPatterns": [
+    "full extraction served",
+    "complete chat shows",
+    "messages conclusively prove"
+  ],
+  "polishOnlyWarnings": [
+    "may need grouping of screenshot and extraction chase items"
+  ],
+  "pdfLayoutType": "image_heavy_low_resolution",
+  "redTeamTrapType": "screenshot_as_full_export",
+  "bundleStatus": "generated"
+}

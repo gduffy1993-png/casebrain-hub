@@ -1,0 +1,60 @@
+{
+  "caseId": "sim-038",
+  "title": "EncroChat handle attribution disputed with co-defendant bleed risk",
+  "fakeDefendant": "Rafiq Dalen",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Conspiracy to supply Class A drugs",
+  "offenceFamily": "drugs_conspiracy",
+  "profile": "encro_encrypted_comms",
+  "mainIssue": "The bundle refers to an encrypted handle but does not safely prove that the handle belongs to this defendant.",
+  "servedEvidence": [
+    "MG5 summary",
+    "schedule of alleged Encro handles",
+    "two MG11 officer statements"
+  ],
+  "referredOnlyEvidence": [
+    "full extraction report",
+    "handle attribution report",
+    "co-defendant chat export"
+  ],
+  "missingEvidence": [
+    "device attribution evidence",
+    "download continuity",
+    "cellsite linking defendant to device",
+    "expert methodology"
+  ],
+  "uncertainEvidence": [
+    "whether the handle is personal, shared, or inferred from contact names"
+  ],
+  "expectedTodayIssue": "Treat handle attribution as disputed and ask the court to record that full attribution and extraction material remains outstanding.",
+  "expectedChaseItems": [
+    "full encrypted-platform extraction",
+    "handle attribution report",
+    "device continuity and cellsite schedule",
+    "co-defendant chat context"
+  ],
+  "expectedSummaryRisk": "Do not treat a handle name or co-defendant reference as proof that the defendant sent the messages.",
+  "expectedSourceStateBadges": [
+    "served",
+    "referred_only",
+    "missing",
+    "not_safely_confirmed"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "defendant used the Encro handle",
+    "messages prove supply",
+    "co-defendant chat proves this defendant's role"
+  ],
+  "blockingFailPatterns": [
+    "handle belongs to the defendant",
+    "Encro messages prove",
+    "co-defendant messages show Rafiq"
+  ],
+  "polishOnlyWarnings": [
+    "long encrypted-platform terminology may need simpler wording"
+  ],
+  "pdfLayoutType": "large_messy_mixed_defendants",
+  "redTeamTrapType": "co_defendant_bleed",
+  "bundleStatus": "generated"
+}

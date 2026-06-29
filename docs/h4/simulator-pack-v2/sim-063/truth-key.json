@@ -1,0 +1,60 @@
+{
+  "caseId": "sim-063",
+  "title": "Benefit fraud agency records missing",
+  "fakeDefendant": "Hannah Crewe",
+  "fakeCourt": "Rosedale Magistrates' Court",
+  "offenceWording": "Dishonestly failing to notify a change in circumstances",
+  "offenceFamily": "fraud_account",
+  "profile": "benefit_fraud_records",
+  "mainIssue": "The allegation depends on agency records and notification history not fully served.",
+  "servedEvidence": [
+    "MG5",
+    "DWP summary",
+    "interview summary"
+  ],
+  "referredOnlyEvidence": [
+    "benefit claim records",
+    "notification logs",
+    "overpayment calculation"
+  ],
+  "missingEvidence": [
+    "full claim history",
+    "notification logs",
+    "overpayment calculation",
+    "interview recording/transcript"
+  ],
+  "uncertainEvidence": [
+    "knowledge, dishonesty, and calculation basis"
+  ],
+  "expectedTodayIssue": "Chase the benefit record and calculation basis before accepting dishonesty/overpayment.",
+  "expectedChaseItems": [
+    "full claim records",
+    "notification logs",
+    "overpayment calculation",
+    "interview recording/transcript"
+  ],
+  "expectedSummaryRisk": "Do not treat overpayment or dishonesty as proved from an agency summary alone.",
+  "expectedSourceStateBadges": [
+    "served",
+    "referred_only",
+    "missing",
+    "provisional"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "Hannah acted dishonestly",
+    "overpayment is proved",
+    "records show failure to notify"
+  ],
+  "blockingFailPatterns": [
+    "acted dishonestly",
+    "overpayment is proved",
+    "records show"
+  ],
+  "polishOnlyWarnings": [
+    "avoid importing bank account-control language unless bank records are served"
+  ],
+  "pdfLayoutType": "agency_summary_tables",
+  "redTeamTrapType": "agency_summary_as_full_records",
+  "bundleStatus": "generated"
+}
