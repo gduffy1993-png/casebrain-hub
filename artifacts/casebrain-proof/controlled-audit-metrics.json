@@ -1,0 +1,29 @@
+{
+  "disclaimer": "Controlled/synthetic audit only — not solicitor-reviewed real-world audit.",
+  "generatedAt": "2026-06-29T17:04:17.196Z",
+  "inventoryCeiling": 253,
+  "expansionTo500": "blocked_requires_new_bundles_and_approval",
+  "metrics": {
+    "runnableCases": 253,
+    "evidenceItems": 2010,
+    "matchedItems": 1604,
+    "unmatchedItems": 406,
+    "falseServedCount": 0,
+    "falseServedRate": 0,
+    "blockingFailures": 0,
+    "chaseAccuracy": 0.869,
+    "wrongDefendantBleedCount": 0,
+    "unsafeRelianceCount": 0,
+    "warnings": 406
+  },
+  "sources": {
+    "simulatorCases": 150,
+    "goldenCases": 102,
+    "proofPackCases": 1
+  },
+  "diversity": {
+    "duplicatePairsReported": 25,
+    "bannedPhraseHits": 0
+  },
+  "nextStep": "solicitor_reviewed_audit_30_to_50_cases"
+}
