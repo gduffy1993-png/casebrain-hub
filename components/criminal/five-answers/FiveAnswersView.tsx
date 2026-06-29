@@ -9,8 +9,10 @@ import { MatterConfidenceHeader } from "@/components/criminal/trust/MatterConfid
 import { SOURCE_BACKED_COURT_NOTE_LABEL } from "@/lib/criminal/trust/firm-facing-labels";
 import { buildFiveAnswersView } from "@/lib/criminal/five-answers/build-five-answers-view";
 import { buildDecisionBoard } from "@/lib/criminal/decision-board/build-decision-board";
+import { buildHearingMode } from "@/lib/criminal/hearing-mode";
 import { DefenceDecisionBoard } from "@/components/criminal/decision-board/DefenceDecisionBoard";
 import { AdviceChangeRadarPanel } from "@/components/criminal/advice-change-radar/AdviceChangeRadarPanel";
+import { HearingModePanel } from "@/components/criminal/hearing-mode/HearingModePanel";
 import { evidenceExistenceLabel, evidenceReliabilityLabel } from "@/lib/criminal/five-answers/evidence-trace";
 import { useMatterBrief } from "@/components/criminal/workflow/useMatterBrief";
 import { usePilotMatterTabHref } from "@/components/criminal/workflow/pilotDeskNavContext";
@@ -96,6 +98,29 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
     });
   }, [briefPlan, warRoom, chase, matterConfidence, doNotOverstate]);
 
+  const hearingMode = useMemo(() => {
+    if (!briefPlan || !warRoom || !chase) return null;
+    return buildHearingMode({
+      allegation: allegation ?? "",
+      briefPlan,
+      warRoom,
+      chase,
+      matterConfidence,
+      doNotOverstate,
+      primaryRouteTitle,
+      documentCount: bundleMeta?.documentCount ?? 0,
+    });
+  }, [
+    briefPlan,
+    warRoom,
+    chase,
+    allegation,
+    matterConfidence,
+    doNotOverstate,
+    primaryRouteTitle,
+    bundleMeta?.documentCount,
+  ]);
+
   const copyCourtNote = async () => {
     if (!view?.courtNote.canCopy) return;
     try {
@@ -136,6 +161,14 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
           ))}
         </ul>
       </div>
+
+      {hearingMode ? (
+        <HearingModePanel
+          model={hearingMode}
+          todayHref={buildTabHref(caseId, "today")}
+          chaseHref={buildTabHref(caseId, "disclosure-chase")}
+        />
+      ) : null}
 
       <AnswerCard
         number={1}

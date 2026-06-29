@@ -378,6 +378,17 @@ async function main(): Promise<void> {
       }
     }
 
+    if (await desktop.getByTestId("hearing-mode-panel").isVisible().catch(() => false)) {
+      steps.push({ id: "hearing_mode_visible", status: "pass" });
+    } else {
+      const body = await desktop.locator("body").innerText();
+      if (/20-minute hearing mode|case in one minute/i.test(body)) {
+        steps.push({ id: "hearing_mode_visible", status: "pass", detail: "content without testid" });
+      } else {
+        steps.push({ id: "hearing_mode_visible", status: "fail", detail: "Hearing Mode not on Overview" });
+      }
+    }
+
     if (/change your advice/i.test(overviewBody)) {
       steps.push({ id: "radar_no_command_language", status: "fail", detail: "Command-style advice language on overview" });
     } else {
