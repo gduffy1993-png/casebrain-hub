@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-29T16:39:24.852Z",
+  "generatedAt": "2026-06-29T16:50:37.046Z",
   "caseId": "sim-042",
   "source": "CaseBrain H5 presentation builders (no Brain 1 mutation)",
   "matterConfidence": {
@@ -24,7 +24,7 @@
       "sendability": null,
       "baseStatus": "Not safely confirmed",
       "source": "Custody / police interview unit",
-      "evidenceAnchor": "Served material | 5+ | MG5; indictment draft; selected surveillance log; co-defendant interview summary"
+      "evidenceAnchor": "Served material | 5+ | MG5; indictment draft; selected surveillance log"
     },
     {
       "label": "MG6 / unused schedule clarification",
@@ -65,13 +65,13 @@
       "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position."
     },
     {
-      "label": "MG6C/CO — — co-defendant interview summary — served on bundle.",
-      "existence": "incomplete",
+      "label": "MG6C/CO — co-defendant-only — — co-defendant interview summary — not this defendant — served on bundle.",
+      "existence": "other_defendant_only",
       "reliability": "needs_review",
-      "note": "Partial media on bundle — not full export; treat as incomplete for audit."
+      "note": "Co-defendant-only material (— co-defendant interview summary) — do not import to this defendant's case theory, client summary, or CPS chase."
     },
     {
-      "label": "Served material | 5+ | MG5; indictment draft; selected surveillance log; co-defendant interview summary",
+      "label": "Served material | 5+ | MG5; indictment draft; selected surveillance log",
       "existence": "incomplete",
       "reliability": "needs_review",
       "note": "Partial media on bundle — not full export; treat as incomplete for audit."
@@ -107,7 +107,7 @@
       "note": "Served on bundle — brief plan ledger."
     },
     {
-      "label": "Served on bundle: MG5; indictment draft; selected surveillance log; co-defendant interview summary.",
+      "label": "Served on bundle: MG5; indictment draft; selected surveillance log",
       "existence": "incomplete",
       "reliability": "needs_review",
       "note": "Partial media on bundle — not full export; treat as incomplete for audit."
@@ -181,7 +181,8 @@
       "Do not import phone extraction/metadata unless the papers support it.",
       "Do not rely on drug continuity unless lab/continuity material is served.",
       "Do not state \"interview confirms\" — Interview material is not fully served",
-      "Do not state \"CAD/999 timing supports\" — CAD/999 material is not safely on file as served"
+      "Do not state \"CAD/999 timing supports\" — CAD/999 material is not safely on file as served",
+      "Do not import co-defendant material (MG6C/CO — co-defendant-only — — co-defendant interview summary — not this defendant — served on bundle.) to this defendant's case theory."
     ],
     "hardRules": [
       "Served does not mean reliable.",
@@ -215,9 +216,9 @@
     "blockedReason": null
   },
   "exportVersion": {
-    "exportId": "exp-sim-042-20260629163924",
+    "exportId": "exp-sim-042-20260629165037",
     "caseId": "sim-042",
-    "generatedAt": "2026-06-29T16:39:24.852Z",
+    "generatedAt": "2026-06-29T16:50:37.046Z",
     "exportType": "h5_export_pack_v1",
     "bundleVersionLabel": "overview-export@2026-06-29",
     "appVersion": "evidence-state-audit-snapshot",

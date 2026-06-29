@@ -1,5 +1,6 @@
-import { chaseAccuracy, compareCase } from "./compare";
+import { chaseAccuracyDetail, compareCase } from "./compare";
 import { detectBlockingFailures } from "./blocking";
+import { isServedItemNotSurfacedInH5 } from "./served-surface";
 import type {
   AuditMetrics,
   AuditRunResult,
@@ -61,16 +62,28 @@ export function auditSingleCase(
   fixtureKind: CaseAuditResult["fixtureKind"] = "proof_pack",
 ): CaseAuditResult {
   const itemComparisons = compareCase(truthKey, output);
-  const chase = chaseAccuracy(truthKey, output);
+  const chaseDetail = chaseAccuracyDetail(truthKey, output);
+  const chase = chaseDetail.rate;
   const blockingFailures = detectBlockingFailures(truthKey, output, itemComparisons);
   const warnings = itemComparisons
     .filter((c) => !c.matched)
-    .map((c) => ({
-      code: "unmatched_truth_item",
-      caseId: truthKey.caseId,
-      truthItem: c.truthItem,
-      message: `No CaseBrain prediction matched truth item "${c.truthItem}"`,
-    }));
+    .map((c) => {
+      const truthItem = truthKey.evidenceItems.find((i) => i.evidence_item === c.truthItem);
+      if (truthItem && isServedItemNotSurfacedInH5(truthItem, c.matched, output)) {
+        return {
+          code: "served_item_not_surfaced_in_h5",
+          caseId: truthKey.caseId,
+          truthItem: c.truthItem,
+          message: `Served item "${c.truthItem}" has ledger/source anchor in H5 output but no dedicated chase row (chase-first product)`,
+        };
+      }
+      return {
+        code: "unmatched_truth_item",
+        caseId: truthKey.caseId,
+        truthItem: c.truthItem,
+        message: `No CaseBrain prediction matched truth item "${c.truthItem}"`,
+      };
+    });
 
   return {
     caseId: truthKey.caseId,
@@ -80,6 +93,7 @@ export function auditSingleCase(
     blockingFailures,
     warnings,
     metrics: caseMetrics(itemComparisons, chase),
+    chaseDetail,
   };
 }
 

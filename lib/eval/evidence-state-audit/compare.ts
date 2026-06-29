@@ -1,8 +1,11 @@
+import { collectChaseSurfaceLabels, matchExpectedChaseItem } from "./chase-mapping";
 import { listPredictions } from "./output-adapter";
 import {
   defendantRelevanceMatchBonus,
   isWrongDefendantBleedMatch,
+  predictionTouchesCoDefendant,
 } from "./defendant-relevance";
+import { isCoDefBlendedIntoClientSurface } from "./co-def-segregation";
 import {
   isFalseServed,
   isOverCautious,
@@ -58,6 +61,23 @@ function isWrongDefendantBleed(
   return isWrongDefendantBleedMatch(item, predictedLabel, source, matched);
 }
 
+function anyWrongDefendantBleedInOutput(
+  item: TruthKeyEvidenceItem,
+  predictions: AdaptedPrediction[],
+): boolean {
+  for (const p of predictions) {
+    const labelScore = labelMatchScore(item.evidence_item, p.label);
+    if (isWrongDefendantBleedMatch(item, p.label, p.source, labelScore >= 0.45)) return true;
+    if (
+      isCoDefBlendedIntoClientSurface(p.label, p.source) &&
+      predictionTouchesCoDefendant(item, p.label, p.source)
+    ) {
+      return true;
+    }
+  }
+  return false;
+}
+
 function isUnsafeReliance(
   item: TruthKeyEvidenceItem,
   predictedSendability: string | null | undefined,
@@ -88,12 +108,9 @@ export function compareTruthItem(
   const falseServed = isFalseServed(item.correct_evidence_state, predictedState);
   const overCautious = isOverCautious(item.correct_evidence_state, predictedState);
   const stateAccurate = statesMatchForAccuracy(item.correct_evidence_state, predictedState);
-  const wrongDefendantBleed = isWrongDefendantBleed(
-    item,
-    matched,
-    prediction?.label ?? null,
-    prediction?.source,
-  );
+  const wrongDefendantBleed =
+    anyWrongDefendantBleedInOutput(item, predictions) ||
+    isWrongDefendantBleed(item, matched, prediction?.label ?? null, prediction?.source);
   const unsafeReliance = isUnsafeReliance(
     item,
     prediction?.sendability,
@@ -128,24 +145,66 @@ export function compareCase(
   return truthKey.evidenceItems.map((item) => compareTruthItem(item, output, predictions));
 }
 
-export function chaseAccuracy(
+export type ChaseAccuracyDetail = {
+  rate: number | null;
+  expectedCount: number;
+  matchedCount: number;
+  unmatchedNotSurfaced: number;
+  unmatchedWrongChase: number;
+  unmatchedNoCandidate: number;
+};
+
+export function chaseAccuracyDetail(
   truthKey: EvidenceStateTruthKey,
   output: CaseBrainAuditOutput,
-): number | null {
+): ChaseAccuracyDetail {
   const expected = [
     ...(truthKey.expectedChaseItems ?? []),
     ...truthKey.evidenceItems.filter((i) => i.chase_needed).map((i) => i.evidence_item),
   ];
   const uniqueExpected = [...new Set(expected.map((e) => e.trim()).filter(Boolean))];
-  if (uniqueExpected.length === 0) return null;
-
-  const chaseLabels = (output.warningsAndGaps?.chaseItems ?? []).map((c) => c.label);
-  let hits = 0;
-  for (const exp of uniqueExpected) {
-    const hit = chaseLabels.some((label) => labelMatchScore(exp, label) >= 0.45);
-    if (hit) hits += 1;
+  if (uniqueExpected.length === 0) {
+    return {
+      rate: null,
+      expectedCount: 0,
+      matchedCount: 0,
+      unmatchedNotSurfaced: 0,
+      unmatchedWrongChase: 0,
+      unmatchedNoCandidate: 0,
+    };
   }
-  return hits / uniqueExpected.length;
+
+  const candidateLabels = collectChaseSurfaceLabels(output);
+  let matchedCount = 0;
+  let unmatchedNotSurfaced = 0;
+  let unmatchedWrongChase = 0;
+  let unmatchedNoCandidate = 0;
+
+  for (const exp of uniqueExpected) {
+    const result = matchExpectedChaseItem(exp, candidateLabels);
+    if (result.matched) {
+      matchedCount += 1;
+      continue;
+    }
+    if (result.reason === "no_candidate") unmatchedNoCandidate += 1;
+    else unmatchedWrongChase += 1;
+  }
+
+  return {
+    rate: matchedCount / uniqueExpected.length,
+    expectedCount: uniqueExpected.length,
+    matchedCount,
+    unmatchedNotSurfaced,
+    unmatchedWrongChase,
+    unmatchedNoCandidate,
+  };
+}
+
+export function chaseAccuracy(
+  truthKey: EvidenceStateTruthKey,
+  output: CaseBrainAuditOutput,
+): number | null {
+  return chaseAccuracyDetail(truthKey, output).rate;
 }
 
 export function filterByTruthState(

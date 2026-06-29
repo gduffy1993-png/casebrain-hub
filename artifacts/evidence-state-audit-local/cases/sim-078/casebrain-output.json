@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-29T16:39:28.971Z",
+  "generatedAt": "2026-06-29T16:50:41.030Z",
   "caseId": "sim-078",
   "source": "CaseBrain H5 presentation builders (no Brain 1 mutation)",
   "matterConfidence": {
@@ -74,10 +74,10 @@
       "note": "Served on bundle — brief plan ledger."
     },
     {
-      "label": "MG6C/CO — — co-defendant schedules — referred on MG6 — export not served.",
-      "existence": "missing",
+      "label": "MG6C/CO — co-defendant-only — — co-defendant schedules — not this defendant — referred on MG6 — export not served.",
+      "existence": "other_defendant_only",
       "reliability": "needs_review",
-      "note": "Outstanding on bundle — brief plan ledger."
+      "note": "Co-defendant-only material (— co-defendant schedules) — do not import to this defendant's case theory, client summary, or CPS chase."
     },
     {
       "label": "MG6C/PER — per-defendant exhibit map — outstanding — not on bundle.",
@@ -110,10 +110,10 @@
       "note": "Outstanding on bundle — brief plan ledger."
     },
     {
-      "label": "co-defendant schedules",
-      "existence": "missing",
+      "label": "Co-defendant-only — co-defendant schedules — not this defendant",
+      "existence": "other_defendant_only",
       "reliability": "needs_review",
-      "note": "Outstanding on bundle — brief plan ledger."
+      "note": "Co-defendant-only material (co-defendant schedules) — do not import to this defendant's case theory, client summary, or CPS chase."
     },
     {
       "label": "per-defendant message map",
@@ -141,7 +141,9 @@
       "Do not import ABE unless the papers support it.",
       "Do not say metadata proves attribution unless full extraction is served.",
       "Assumed position may conflict with interview or served evidence.",
-      "Do not state \"CAD/999 timing supports\" — CAD/999 material is not safely on file as served"
+      "Do not state \"CAD/999 timing supports\" — CAD/999 material is not safely on file as served",
+      "Do not import co-defendant material (MG6C/CO — co-defendant-only — — co-defendant schedules — not this defendant — referred on MG6 — export not served.) to this defendant's case theory.",
+      "Do not import co-defendant material (Co-defendant-only — co-defendant schedules — not this defendant) to this defendant's case theory."
     ],
     "hardRules": [
       "Served does not mean reliable.",
@@ -170,9 +172,9 @@
     "blockedReason": null
   },
   "exportVersion": {
-    "exportId": "exp-sim-078-20260629163928",
+    "exportId": "exp-sim-078-20260629165041",
     "caseId": "sim-078",
-    "generatedAt": "2026-06-29T16:39:28.971Z",
+    "generatedAt": "2026-06-29T16:50:41.030Z",
     "exportType": "h5_export_pack_v1",
     "bundleVersionLabel": "overview-export@2026-06-29",
     "appVersion": "evidence-state-audit-snapshot",

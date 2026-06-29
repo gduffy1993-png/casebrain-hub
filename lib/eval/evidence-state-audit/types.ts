@@ -60,6 +60,7 @@ export type PredictedEvidenceState =
   | "incomplete"
   | "not_safely_confirmed"
   | "inferred_only"
+  | "other_defendant_only"
   | "provisional"
   | "unknown"
   | "unmatched";
@@ -195,6 +196,7 @@ export type CaseAuditResult = {
   itemComparisons: ItemComparison[];
   blockingFailures: BlockingFailure[];
   warnings: AuditWarning[];
+  chaseDetail?: import("./chase-mapping").ChaseAccuracyDetail;
   metrics: Omit<
     AuditMetrics,
     "totalCases" | "totalEvidenceItems" | "matchedItems" | "unmatchedItems"

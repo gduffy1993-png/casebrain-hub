@@ -5,6 +5,7 @@
 import assert from "node:assert/strict";
 
 import { compareTruthItem } from "../lib/eval/evidence-state-audit/compare";
+import { isProperlySegregatedCoDefPrediction } from "../lib/eval/evidence-state-audit/co-def-segregation";
 import { isWrongDefendantBleedMatch } from "../lib/eval/evidence-state-audit/defendant-relevance";
 import { isFalseServed, statesMatchForAccuracy } from "../lib/eval/evidence-state-audit/normalize";
 import { isPartialMediaLedgerLabel } from "../lib/eval/evidence-state-audit/partial-media";
@@ -36,7 +37,41 @@ assert.equal(isFalseServed("missing", "served"), true);
 assert.equal(isFalseServed("served", "served"), false);
 assert.equal(isFalseServed("other_defendant_only", "served"), false);
 
-// co-def served row is bleed, not false-served
+// co-def MG6C/CO row with explicit segregation is tracked, not client bleed
+const coDefSegregated = compareTruthItem(
+  item("Co-defendant Lee Marsh interview", "other_defendant_only", {
+    defendant_relevance: "co_defendant_only",
+    evidence_type: "interview",
+  }),
+  syntheticOutput([
+    {
+      label: "MG6C/CO — co-defendant-only — co-defendant interview summary — not this defendant — served on bundle.",
+      existence: "other_defendant_only",
+      reliability: "needs_review",
+    },
+  ]),
+);
+assert.equal(coDefSegregated.falseServed, false);
+assert.equal(coDefSegregated.wrongDefendantBleed, false);
+assert.equal(coDefSegregated.stateAccurate, true);
+
+// co-def in aggregate served line is still bleed
+const coDefAggregateBleed = compareTruthItem(
+  item("Co-defendant Lee Marsh interview", "other_defendant_only", {
+    defendant_relevance: "co_defendant_only",
+    evidence_type: "interview",
+  }),
+  syntheticOutput([
+    {
+      label: "Served on bundle: MG5; co-defendant interview summary.",
+      existence: "served",
+      reliability: "needs_review",
+    },
+  ]),
+);
+assert.equal(coDefAggregateBleed.wrongDefendantBleed, true);
+
+// non-segregated co-def attribution to client workflow still bleeds
 const coDefServed = compareTruthItem(
   item("Co-defendant Lee Marsh interview", "other_defendant_only", {
     defendant_relevance: "co_defendant_only",
@@ -44,7 +79,7 @@ const coDefServed = compareTruthItem(
   }),
   syntheticOutput([
     {
-      label: "MG6C/CO — co-defendant interview summary — served on bundle.",
+      label: "Co-defendant Lee Marsh interview transcript — served on bundle.",
       existence: "served",
       reliability: "needs_review",
     },
@@ -52,6 +87,10 @@ const coDefServed = compareTruthItem(
 );
 assert.equal(coDefServed.falseServed, false);
 assert.equal(coDefServed.wrongDefendantBleed, true);
+assert.equal(
+  isProperlySegregatedCoDefPrediction("MG6C/CO — co-defendant chat export — referred on MG6 — export not served."),
+  true,
+);
 
 const falseServedCompare = compareTruthItem(
   item("Body-worn video", "referred_only"),

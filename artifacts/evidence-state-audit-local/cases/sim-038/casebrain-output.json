@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-29T16:39:22.303Z",
+  "generatedAt": "2026-06-29T16:50:34.808Z",
   "caseId": "sim-038",
   "source": "CaseBrain H5 presentation builders (no Brain 1 mutation)",
   "matterConfidence": {
@@ -119,10 +119,10 @@
       "note": "Outstanding on bundle — brief plan ledger."
     },
     {
-      "label": "MG6C/CO — — co-defendant chat export — referred on MG6 — export not served.",
-      "existence": "missing",
+      "label": "MG6C/CO — co-defendant-only — — co-defendant chat export — not this defendant — referred on MG6 — export not served.",
+      "existence": "other_defendant_only",
       "reliability": "needs_review",
-      "note": "Outstanding on bundle — brief plan ledger."
+      "note": "Co-defendant-only material (— co-defendant chat export) — do not import to this defendant's case theory, client summary, or CPS chase."
     },
     {
       "label": "MG6C/DEV — device attribution evidence — outstanding — not on bundle.",
@@ -173,7 +173,8 @@
       "Do not import custody safeguards unless the papers support it.",
       "Do not import ABE unless the papers support it.",
       "Assumed position may conflict with interview or served evidence.",
-      "Do not state \"CAD/999 timing supports\" — CAD/999 material is not safely on file as served"
+      "Do not state \"CAD/999 timing supports\" — CAD/999 material is not safely on file as served",
+      "Do not import co-defendant material (MG6C/CO — co-defendant-only — — co-defendant chat export — not this defendant — referred on MG6 — export not served.) to this defendant's case theory."
     ],
     "hardRules": [
       "Served does not mean reliable.",
@@ -207,9 +208,9 @@
     "blockedReason": null
   },
   "exportVersion": {
-    "exportId": "exp-sim-038-20260629163922",
+    "exportId": "exp-sim-038-20260629165034",
     "caseId": "sim-038",
-    "generatedAt": "2026-06-29T16:39:22.303Z",
+    "generatedAt": "2026-06-29T16:50:34.808Z",
     "exportType": "h5_export_pack_v1",
     "bundleVersionLabel": "overview-export@2026-06-29",
     "appVersion": "evidence-state-audit-snapshot",

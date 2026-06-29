@@ -11,6 +11,13 @@ import { evidenceExistenceLabel } from "@/lib/criminal/five-answers/evidence-tra
 import { mapSourceStateToExistence } from "@/lib/criminal/five-answers/types";
 import { normalizeLabel } from "./normalize";
 import {
+  coDefendantSegregationNote,
+  isAggregateClientWorkflowLabel,
+  isCoDefendantMaterialLabel,
+  relabelCoDefendantLedgerRow,
+  stripCoDefendantFromAggregateLabel,
+} from "./co-def-segregation";
+import {
   inferLedgerRowExistence,
   isPartialMediaLedgerLabel,
   partialMediaNote,
@@ -136,10 +143,25 @@ export function buildCasebrainAuditSnapshot(input: BuildAuditSnapshotInput): Cas
     };
   });
 
-  const fiveAnswersEvidenceRows = mergeBriefPlanEvidenceRows(five.evidenceState.rows, briefPlan);
+  const fiveAnswersEvidenceRows = segregateCoDefendantEvidenceRows(
+    mergeBriefPlanEvidenceRows(five.evidenceState.rows, briefPlan),
+  );
+
+  const sanitizedEvidenceStates = inferredStates.map((row) => ({
+    ...row,
+    evidenceAnchor: sanitizeCoDefAnchor(row.evidenceAnchor),
+  }));
+
+  const sanitizedChaseItems = five.chase
+    .filter((c) => !isCoDefendantMaterialLabel(c.label) && !isCoDefendantMaterialLabel(c.copySuggestion ?? ""))
+    .map((c) => ({
+      label: c.label,
+      sendabilityLabel: c.sendabilityLabel,
+      copySuggestion: c.copySuggestion,
+    }));
 
   const truthKeyComparison = truthKey?.evidenceItems.map((truth) => {
-    const match = inferredStates.find(
+    const match = sanitizedEvidenceStates.find(
       (s) =>
         normalizeLabel(truth.evidence_item).includes(normalizeLabel(s.label).slice(0, 8)) ||
         normalizeLabel(s.label).includes(normalizeLabel(truth.evidence_item).slice(0, 8)),
@@ -170,16 +192,17 @@ export function buildCasebrainAuditSnapshot(input: BuildAuditSnapshotInput): Cas
       safeCourtLineStatus: matterConfidence.safeCourtLineStatus,
       doNotRelyYetReason: matterConfidence.doNotRelyYetReason,
     },
-    evidenceStates: inferredStates,
+    evidenceStates: sanitizedEvidenceStates,
     fiveAnswersEvidenceRows,
     warningsAndGaps: {
-      doNotOverstate: five.mustNotOverstate,
+      doNotOverstate: [
+        ...five.mustNotOverstate,
+        ...fiveAnswersEvidenceRows
+          .filter((r) => r.existence === "other_defendant_only")
+          .map((r) => `Do not import co-defendant material (${r.label}) to this defendant's case theory.`),
+      ],
       hardRules: five.evidenceState.hardRules,
-      chaseItems: five.chase.map((c) => ({
-        label: c.label,
-        sendabilityLabel: c.sendabilityLabel,
-        copySuggestion: c.copySuggestion,
-      })),
+      chaseItems: sanitizedChaseItems,
     },
     courtNote: {
       text: five.courtNote.text,
@@ -243,4 +266,44 @@ function mergeBriefPlanEvidenceRows(fiveRows: FiveRow[], briefPlan: ReturnType<t
   for (const item of briefPlan.missingEvidence) upsertLedger(item.label, "missing");
 
   return [...byKey.values()];
+}
+
+function sanitizeCoDefAnchor(anchor: string | null | undefined): string | null {
+  if (!anchor?.trim()) return anchor ?? null;
+  if (!isCoDefendantMaterialLabel(anchor)) return anchor;
+  const cleaned = stripCoDefendantFromAggregateLabel(anchor);
+  return cleaned;
+}
+
+function segregateCoDefendantEvidenceRows(rows: FiveRow[]): FiveRow[] {
+  const out: FiveRow[] = [];
+
+  for (const row of rows) {
+    if (isCoDefendantMaterialLabel(row.label) && !isAggregateClientWorkflowLabel(row.label)) {
+      out.push({
+        label: relabelCoDefendantLedgerRow(row.label),
+        existence: "other_defendant_only",
+        reliability: "needs_review",
+        note: coDefendantSegregationNote(row.label),
+      });
+      continue;
+    }
+
+    if (isAggregateClientWorkflowLabel(row.label)) {
+      const cleaned = stripCoDefendantFromAggregateLabel(row.label);
+      if (cleaned) {
+        out.push({
+          ...row,
+          label: cleaned,
+          note: row.note ?? "Served on bundle — brief plan ledger (co-defendant lines excluded).",
+        });
+      }
+      continue;
+    }
+
+    if (isCoDefendantMaterialLabel(row.label)) continue;
+    out.push(row);
+  }
+
+  return out;
 }

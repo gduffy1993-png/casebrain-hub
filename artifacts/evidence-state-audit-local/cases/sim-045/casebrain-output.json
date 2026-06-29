@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-29T16:39:23.762Z",
+  "generatedAt": "2026-06-29T16:50:36.079Z",
   "caseId": "sim-045",
   "source": "CaseBrain H5 presentation builders (no Brain 1 mutation)",
   "matterConfidence": {
@@ -218,16 +218,16 @@
       "note": "Outstanding on bundle — brief plan ledger."
     },
     {
-      "label": "MG6C/CO — — co-defendant interview records — outstanding — not on bundle.",
-      "existence": "missing",
+      "label": "MG6C/CO — co-defendant-only — — co-defendant interview records — not this defendant — outstanding — not on bundle.",
+      "existence": "other_defendant_only",
       "reliability": "needs_review",
-      "note": "Outstanding on bundle — brief plan ledger."
+      "note": "Co-defendant-only material (— co-defendant interview records) — do not import to this defendant's case theory, client summary, or CPS chase."
     },
     {
-      "label": "Outstanding: complete BWV; CCTV; medical report; co-defendant interview records.",
-      "existence": "missing",
+      "label": "Co-defendant-only — Outstanding: complete BWV; CCTV; medical report; co-defendant interview records. — not this defendant",
+      "existence": "other_defendant_only",
       "reliability": "needs_review",
-      "note": "Outstanding on bundle — brief plan ledger."
+      "note": "Co-defendant-only material (Outstanding: complete BWV; CCTV; medical report; co-defendant intervi…) — do not import to this defendant's case theory, client summary, or CPS chase."
     },
     {
       "label": "complete BWV",
@@ -251,7 +251,9 @@
       "Do not say BWV shows or confirms events unless the clip is served.",
       "Do not state \"CCTV confirms\" — CCTV is not fully served on papers",
       "Do not state \"CCTV proves\" — CCTV is not fully served on papers",
-      "Do not state \"Full CCTV confirms\" — CCTV is not fully served on papers"
+      "Do not state \"Full CCTV confirms\" — CCTV is not fully served on papers",
+      "Do not import co-defendant material (MG6C/CO — co-defendant-only — — co-defendant interview records — not this defendant — outstanding — not on bundle.) to this defendant's case theory.",
+      "Do not import co-defendant material (Co-defendant-only — Outstanding: complete BWV; CCTV; medical report; co-defendant interview records. — not this defendant) to this defendant's case theory."
     ],
     "hardRules": [
       "Served does not mean reliable.",
@@ -295,9 +297,9 @@
     "blockedReason": null
   },
   "exportVersion": {
-    "exportId": "exp-sim-045-20260629163923",
+    "exportId": "exp-sim-045-20260629165036",
     "caseId": "sim-045",
-    "generatedAt": "2026-06-29T16:39:23.762Z",
+    "generatedAt": "2026-06-29T16:50:36.079Z",
     "exportType": "h5_export_pack_v1",
     "bundleVersionLabel": "overview-export@2026-06-29",
     "appVersion": "evidence-state-audit-snapshot",

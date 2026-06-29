@@ -15,6 +15,11 @@ console.log(`Evidence items: ${result.metrics.totalEvidenceItems}`);
 console.log(`False-served: ${result.metrics.falseServedCount} (${(result.metrics.falseServedRate * 100).toFixed(1)}%)`);
 console.log(`Blocking failures: ${result.blockingFailures.length}`);
 console.log(`Warnings: ${result.warnings.length}`);
+console.log(`Chase accuracy: ${((result.metrics.chaseAccuracy ?? 0) * 100).toFixed(1)}%`);
+const chaseExpected = result.cases.reduce((n, c) => n + (c.chaseDetail?.expectedCount ?? 0), 0);
+const chaseMatched = result.cases.reduce((n, c) => n + (c.chaseDetail?.matchedCount ?? 0), 0);
+const chaseNoCandidate = result.cases.reduce((n, c) => n + (c.chaseDetail?.unmatchedNoCandidate ?? 0), 0);
+console.log(`Chase mapping: ${chaseMatched}/${chaseExpected} matched; ${chaseNoCandidate} not surfaced on H5 chase surfaces`);
 console.log(`Wrote ${jsonPath}`);
 console.log(`Wrote ${mdPath}`);
 

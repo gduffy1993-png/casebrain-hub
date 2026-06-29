@@ -1,6 +1,6 @@
 {
   "disclaimer": "Controlled audit harness run — not solicitor-reviewed real-world audit.",
-  "generatedAt": "2026-06-29T16:39:51.924Z",
+  "generatedAt": "2026-06-29T16:50:52.360Z",
   "harnessVersion": "evidence-state-audit-v1",
   "fixtureIds": [
     "proof-pack-01",
@@ -71,52 +71,23 @@
     "unmatchedItems": 76,
     "falseServedCount": 0,
     "falseServedRate": 0,
-    "referredOnlyAccuracy": 1,
+    "referredOnlyAccuracy": 0.9893842887473461,
     "missingAccuracy": 0.9851380042462845,
     "incompleteAccuracy": 0.8021978021978022,
     "notSafelyConfirmedAccuracy": 0.013054830287206266,
     "unsafeRelianceCount": 0,
     "unsafeRelianceRate": 0,
-    "wrongDefendantBleedCount": 4,
-    "wrongDefendantBleedRate": 0.008492569002123142,
+    "wrongDefendantBleedCount": 0,
+    "wrongDefendantBleedRate": 0,
     "wrongFamilyBleedCount": 0,
     "wrongFamilyBleedRate": null,
-    "chaseAccuracy": 0.11029386984800997,
+    "chaseAccuracy": 0.8465325250357099,
     "overCautiousCount": 1,
     "overCautiousRate": 0.0021231422505307855,
     "courtNoteSafetyRate": null,
     "clientSummarySafetyRate": null
   },
-  "blockingFailures": [
-    {
-      "code": "wrong_defendant_bleed",
-      "severity": "blocking",
-      "caseId": "sim-038",
-      "truthItem": "co-defendant chat export",
-      "message": "Co-defendant / other-defendant material matched to client workflow"
-    },
-    {
-      "code": "wrong_defendant_bleed",
-      "severity": "blocking",
-      "caseId": "sim-042",
-      "truthItem": "co-defendant interview summary",
-      "message": "Co-defendant / other-defendant material matched to client workflow"
-    },
-    {
-      "code": "wrong_defendant_bleed",
-      "severity": "blocking",
-      "caseId": "sim-045",
-      "truthItem": "co-defendant interview records",
-      "message": "Co-defendant / other-defendant material matched to client workflow"
-    },
-    {
-      "code": "wrong_defendant_bleed",
-      "severity": "blocking",
-      "caseId": "sim-076",
-      "truthItem": "co-defendant chat map",
-      "message": "Co-defendant / other-defendant material matched to client workflow"
-    }
-  ],
+  "blockingFailures": [],
   "warnings": [
     {
       "code": "unmatched_truth_item",
@@ -299,10 +270,10 @@
       "message": "No CaseBrain prediction matched truth item \"breath result summary\""
     },
     {
-      "code": "unmatched_truth_item",
+      "code": "served_item_not_surfaced_in_h5",
       "caseId": "sim-059",
       "truthItem": "charge sheet",
-      "message": "No CaseBrain prediction matched truth item \"charge sheet\""
+      "message": "Served item \"charge sheet\" has ledger/source anchor in H5 output but no dedicated chase row (chase-first product)"
     },
     {
       "code": "unmatched_truth_item",
@@ -323,10 +294,10 @@
       "message": "No CaseBrain prediction matched truth item \"custody extract\""
     },
     {
-      "code": "unmatched_truth_item",
+      "code": "served_item_not_surfaced_in_h5",
       "caseId": "sim-060",
       "truthItem": "charge sheet",
-      "message": "No CaseBrain prediction matched truth item \"charge sheet\""
+      "message": "Served item \"charge sheet\" has ledger/source anchor in H5 output but no dedicated chase row (chase-first product)"
     },
     {
       "code": "unmatched_truth_item",
@@ -377,10 +348,10 @@
       "message": "No CaseBrain prediction matched truth item \"MG5\""
     },
     {
-      "code": "unmatched_truth_item",
+      "code": "served_item_not_surfaced_in_h5",
       "caseId": "sim-066",
       "truthItem": "charge sheet",
-      "message": "No CaseBrain prediction matched truth item \"charge sheet\""
+      "message": "Served item \"charge sheet\" has ledger/source anchor in H5 output but no dedicated chase row (chase-first product)"
     },
     {
       "code": "unmatched_truth_item",
@@ -527,10 +498,10 @@
       "message": "No CaseBrain prediction matched truth item \"MG5 injury summary\""
     },
     {
-      "code": "unmatched_truth_item",
+      "code": "served_item_not_surfaced_in_h5",
       "caseId": "sim-095",
       "truthItem": "amended charge sheet",
-      "message": "No CaseBrain prediction matched truth item \"amended charge sheet\""
+      "message": "Served item \"amended charge sheet\" has ledger/source anchor in H5 output but no dedicated chase row (chase-first product)"
     },
     {
       "code": "unmatched_truth_item",
@@ -740,11 +711,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0.25,
+        "chaseAccuracy": 0.5,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.5,
+        "expectedCount": 4,
+        "matchedCount": 2,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 2
       }
     },
     {
@@ -820,17 +799,15 @@
         {
           "truthItem": "co-defendant chat export",
           "truthState": "other_defendant_only",
-          "predictedLabel": "MG6C/CO — — co-defendant chat export — referred on MG6 — export not served.",
-          "predictedState": "missing",
+          "predictedLabel": "MG6C/CO — co-defendant-only — — co-defendant chat export — not this defendant — referred on MG6 — export not served.",
+          "predictedState": "other_defendant_only",
           "matched": true,
           "falseServed": false,
           "overCautious": false,
-          "stateAccurate": false,
-          "wrongDefendantBleed": true,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
           "unsafeReliance": false,
-          "notes": [
-            "wrong_defendant_bleed"
-          ]
+          "notes": []
         },
         {
           "truthItem": "device attribution evidence",
@@ -900,15 +877,7 @@
           ]
         }
       ],
-      "blockingFailures": [
-        {
-          "code": "wrong_defendant_bleed",
-          "severity": "blocking",
-          "caseId": "sim-038",
-          "truthItem": "co-defendant chat export",
-          "message": "Co-defendant / other-defendant material matched to client workflow"
-        }
-      ],
+      "blockingFailures": [],
       "warnings": [
         {
           "code": "unmatched_truth_item",
@@ -929,15 +898,23 @@
         "notSafelyConfirmedAccuracy": 0,
         "unsafeRelianceCount": 0,
         "unsafeRelianceRate": 0,
-        "wrongDefendantBleedCount": 1,
-        "wrongDefendantBleedRate": 0.09090909090909091,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0,
+        "chaseAccuracy": 0.8,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.8,
+        "expectedCount": 10,
+        "matchedCount": 8,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 2
       }
     },
     {
@@ -1107,11 +1084,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0,
+        "chaseAccuracy": 0.8461538461538461,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.8461538461538461,
+        "expectedCount": 13,
+        "matchedCount": 11,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 2
       }
     },
     {
@@ -1290,11 +1275,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0,
+        "chaseAccuracy": 0.7272727272727273,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.7272727272727273,
+        "expectedCount": 11,
+        "matchedCount": 8,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 3
       }
     },
     {
@@ -1473,11 +1466,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0,
+        "chaseAccuracy": 0.7272727272727273,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.7272727272727273,
+        "expectedCount": 11,
+        "matchedCount": 8,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 3
       }
     },
     {
@@ -1488,7 +1489,7 @@
         {
           "truthItem": "MG5",
           "truthState": "served",
-          "predictedLabel": "Served material | 5+ | MG5; indictment draft; selected surveillance log; co-defendant interview summary",
+          "predictedLabel": "Served material | 5+ | MG5; indictment draft; selected surveillance log",
           "predictedState": "incomplete",
           "matched": true,
           "falseServed": false,
@@ -1496,14 +1497,12 @@
           "stateAccurate": false,
           "wrongDefendantBleed": false,
           "unsafeReliance": false,
-          "notes": [
-            "fuzzy_match:0.60"
-          ]
+          "notes": []
         },
         {
           "truthItem": "indictment draft",
           "truthState": "served",
-          "predictedLabel": "MG6C/IND — indictment draft — served on bundle.",
+          "predictedLabel": "Served material | 5+ | MG5; indictment draft; selected surveillance log",
           "predictedState": "incomplete",
           "matched": true,
           "falseServed": false,
@@ -1516,7 +1515,7 @@
         {
           "truthItem": "selected surveillance log",
           "truthState": "served",
-          "predictedLabel": "Served material | 5+ | MG5; indictment draft; selected surveillance log; co-defendant interview summary",
+          "predictedLabel": "Served material | 5+ | MG5; indictment draft; selected surveillance log",
           "predictedState": "incomplete",
           "matched": true,
           "falseServed": false,
@@ -1524,24 +1523,20 @@
           "stateAccurate": false,
           "wrongDefendantBleed": false,
           "unsafeReliance": false,
-          "notes": [
-            "fuzzy_match:0.75"
-          ]
+          "notes": []
         },
         {
           "truthItem": "co-defendant interview summary",
           "truthState": "other_defendant_only",
-          "predictedLabel": "MG6C/CO — — co-defendant interview summary — served on bundle.",
-          "predictedState": "incomplete",
+          "predictedLabel": "MG6C/CO — co-defendant-only — — co-defendant interview summary — not this defendant — served on bundle.",
+          "predictedState": "other_defendant_only",
           "matched": true,
           "falseServed": false,
           "overCautious": false,
-          "stateAccurate": false,
-          "wrongDefendantBleed": true,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
           "unsafeReliance": false,
-          "notes": [
-            "wrong_defendant_bleed"
-          ]
+          "notes": []
         },
         {
           "truthItem": "full surveillance schedule",
@@ -1650,15 +1645,7 @@
           ]
         }
       ],
-      "blockingFailures": [
-        {
-          "code": "wrong_defendant_bleed",
-          "severity": "blocking",
-          "caseId": "sim-042",
-          "truthItem": "co-defendant interview summary",
-          "message": "Co-defendant / other-defendant material matched to client workflow"
-        }
-      ],
+      "blockingFailures": [],
       "warnings": [
         {
           "code": "unmatched_truth_item",
@@ -1679,15 +1666,23 @@
         "notSafelyConfirmedAccuracy": 0,
         "unsafeRelianceCount": 0,
         "unsafeRelianceRate": 0,
-        "wrongDefendantBleedCount": 1,
-        "wrongDefendantBleedRate": 0.08333333333333333,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0,
+        "chaseAccuracy": 0.8888888888888888,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.8888888888888888,
+        "expectedCount": 9,
+        "matchedCount": 8,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 1
       }
     },
     {
@@ -1890,11 +1885,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0,
+        "chaseAccuracy": 0.8888888888888888,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.8888888888888888,
+        "expectedCount": 9,
+        "matchedCount": 8,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 1
       }
     },
     {
@@ -2073,11 +2076,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0.3,
+        "chaseAccuracy": 0.8,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.8,
+        "expectedCount": 10,
+        "matchedCount": 8,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 2
       }
     },
     {
@@ -2205,17 +2216,15 @@
         {
           "truthItem": "co-defendant interview records",
           "truthState": "other_defendant_only",
-          "predictedLabel": "MG6C/CO — — co-defendant interview records — outstanding — not on bundle.",
-          "predictedState": "missing",
+          "predictedLabel": "MG6C/CO — co-defendant-only — — co-defendant interview records — not this defendant — outstanding — not on bundle.",
+          "predictedState": "other_defendant_only",
           "matched": true,
           "falseServed": false,
           "overCautious": false,
-          "stateAccurate": false,
-          "wrongDefendantBleed": true,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
           "unsafeReliance": false,
-          "notes": [
-            "wrong_defendant_bleed"
-          ]
+          "notes": []
         },
         {
           "truthItem": "whether Leah encouraged, assisted, withdrew, or was present only",
@@ -2233,15 +2242,7 @@
           ]
         }
       ],
-      "blockingFailures": [
-        {
-          "code": "wrong_defendant_bleed",
-          "severity": "blocking",
-          "caseId": "sim-045",
-          "truthItem": "co-defendant interview records",
-          "message": "Co-defendant / other-defendant material matched to client workflow"
-        }
-      ],
+      "blockingFailures": [],
       "warnings": [
         {
           "code": "unmatched_truth_item",
@@ -2262,15 +2263,23 @@
         "notSafelyConfirmedAccuracy": 0,
         "unsafeRelianceCount": 0,
         "unsafeRelianceRate": 0,
-        "wrongDefendantBleedCount": 1,
-        "wrongDefendantBleedRate": 0.09090909090909091,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0.14285714285714285,
+        "chaseAccuracy": 0.7142857142857143,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.7142857142857143,
+        "expectedCount": 7,
+        "matchedCount": 5,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 2
       }
     },
     {
@@ -2440,11 +2449,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0.2,
+        "chaseAccuracy": 0.9,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.9,
+        "expectedCount": 10,
+        "matchedCount": 9,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 1
       }
     },
     {
@@ -2614,11 +2631,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0.2222222222222222,
+        "chaseAccuracy": 1,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 1,
+        "expectedCount": 9,
+        "matchedCount": 9,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 0
       }
     },
     {
@@ -2788,11 +2813,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0,
+        "chaseAccuracy": 1,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 1,
+        "expectedCount": 9,
+        "matchedCount": 9,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 0
       }
     },
     {
@@ -2971,11 +3004,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0,
+        "chaseAccuracy": 0.7,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.7,
+        "expectedCount": 10,
+        "matchedCount": 7,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 3
       }
     },
     {
@@ -3154,11 +3195,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0,
+        "chaseAccuracy": 0.8181818181818182,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.8181818181818182,
+        "expectedCount": 11,
+        "matchedCount": 9,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 2
       }
     },
     {
@@ -3350,11 +3399,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0,
+        "chaseAccuracy": 0.8888888888888888,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.8888888888888888,
+        "expectedCount": 9,
+        "matchedCount": 8,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 1
       }
     },
     {
@@ -3533,11 +3590,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0,
+        "chaseAccuracy": 0.8571428571428571,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.8571428571428571,
+        "expectedCount": 7,
+        "matchedCount": 6,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 1
       }
     },
     {
@@ -3716,11 +3781,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0.2222222222222222,
+        "chaseAccuracy": 0.6666666666666666,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.6666666666666666,
+        "expectedCount": 9,
+        "matchedCount": 6,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 3
       }
     },
     {
@@ -3923,11 +3996,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0.2857142857142857,
+        "chaseAccuracy": 0.8571428571428571,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.8571428571428571,
+        "expectedCount": 7,
+        "matchedCount": 6,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 1
       }
     },
     {
@@ -4119,11 +4200,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0.3333333333333333,
+        "chaseAccuracy": 0.8888888888888888,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.8888888888888888,
+        "expectedCount": 9,
+        "matchedCount": 8,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 1
       }
     },
     {
@@ -4293,11 +4382,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0.16666666666666666,
+        "chaseAccuracy": 1,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 1,
+        "expectedCount": 6,
+        "matchedCount": 6,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 0
       }
     },
     {
@@ -4476,11 +4573,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0.125,
+        "chaseAccuracy": 0.75,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.75,
+        "expectedCount": 8,
+        "matchedCount": 6,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 2
       }
     },
     {
@@ -4672,11 +4777,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0.375,
+        "chaseAccuracy": 0.75,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.75,
+        "expectedCount": 8,
+        "matchedCount": 6,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 2
       }
     },
     {
@@ -4851,10 +4964,10 @@
           "message": "No CaseBrain prediction matched truth item \"breath result summary\""
         },
         {
-          "code": "unmatched_truth_item",
+          "code": "served_item_not_surfaced_in_h5",
           "caseId": "sim-059",
           "truthItem": "charge sheet",
-          "message": "No CaseBrain prediction matched truth item \"charge sheet\""
+          "message": "Served item \"charge sheet\" has ledger/source anchor in H5 output but no dedicated chase row (chase-first product)"
         },
         {
           "code": "unmatched_truth_item",
@@ -4879,11 +4992,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0.3333333333333333,
+        "chaseAccuracy": 1,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 1,
+        "expectedCount": 9,
+        "matchedCount": 9,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 0
       }
     },
     {
@@ -5058,10 +5179,10 @@
           "message": "No CaseBrain prediction matched truth item \"custody extract\""
         },
         {
-          "code": "unmatched_truth_item",
+          "code": "served_item_not_surfaced_in_h5",
           "caseId": "sim-060",
           "truthItem": "charge sheet",
-          "message": "No CaseBrain prediction matched truth item \"charge sheet\""
+          "message": "Served item \"charge sheet\" has ledger/source anchor in H5 output but no dedicated chase row (chase-first product)"
         },
         {
           "code": "unmatched_truth_item",
@@ -5086,11 +5207,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0,
+        "chaseAccuracy": 0.8571428571428571,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.8571428571428571,
+        "expectedCount": 7,
+        "matchedCount": 6,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 1
       }
     },
     {
@@ -5295,11 +5424,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0.3333333333333333,
+        "chaseAccuracy": 0.7777777777777778,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.7777777777777778,
+        "expectedCount": 9,
+        "matchedCount": 7,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 2
       }
     },
     {
@@ -5502,11 +5639,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0,
+        "chaseAccuracy": 0.8,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.8,
+        "expectedCount": 10,
+        "matchedCount": 8,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 2
       }
     },
     {
@@ -5685,11 +5830,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0.125,
+        "chaseAccuracy": 0.75,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.75,
+        "expectedCount": 8,
+        "matchedCount": 6,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 2
       }
     },
     {
@@ -5858,10 +6011,10 @@
           "message": "No CaseBrain prediction matched truth item \"MG5\""
         },
         {
-          "code": "unmatched_truth_item",
+          "code": "served_item_not_surfaced_in_h5",
           "caseId": "sim-066",
           "truthItem": "charge sheet",
-          "message": "No CaseBrain prediction matched truth item \"charge sheet\""
+          "message": "Served item \"charge sheet\" has ledger/source anchor in H5 output but no dedicated chase row (chase-first product)"
         },
         {
           "code": "unmatched_truth_item",
@@ -5892,11 +6045,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0,
+        "chaseAccuracy": 0.7,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.7,
+        "expectedCount": 10,
+        "matchedCount": 7,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 3
       }
     },
     {
@@ -6075,11 +6236,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0.2,
+        "chaseAccuracy": 0.7,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.7,
+        "expectedCount": 10,
+        "matchedCount": 7,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 3
       }
     },
     {
@@ -6258,11 +6427,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0,
+        "chaseAccuracy": 0.8,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.8,
+        "expectedCount": 10,
+        "matchedCount": 8,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 2
       }
     },
     {
@@ -6338,17 +6515,15 @@
         {
           "truthItem": "co-defendant chat map",
           "truthState": "other_defendant_only",
-          "predictedLabel": "co-defendant chat map",
-          "predictedState": "missing",
+          "predictedLabel": "MG6C/CO — co-defendant-only — — co-defendant chat map — not this defendant — outstanding — not on bundle.",
+          "predictedState": "other_defendant_only",
           "matched": true,
           "falseServed": false,
           "overCautious": false,
-          "stateAccurate": false,
-          "wrongDefendantBleed": true,
+          "stateAccurate": true,
+          "wrongDefendantBleed": false,
           "unsafeReliance": false,
-          "notes": [
-            "wrong_defendant_bleed"
-          ]
+          "notes": []
         },
         {
           "truthItem": "shared thread messages",
@@ -6366,15 +6541,7 @@
           ]
         }
       ],
-      "blockingFailures": [
-        {
-          "code": "wrong_defendant_bleed",
-          "severity": "blocking",
-          "caseId": "sim-076",
-          "truthItem": "co-defendant chat map",
-          "message": "Co-defendant / other-defendant material matched to client workflow"
-        }
-      ],
+      "blockingFailures": [],
       "warnings": [
         {
           "code": "unmatched_truth_item",
@@ -6395,15 +6562,23 @@
         "notSafelyConfirmedAccuracy": 0,
         "unsafeRelianceCount": 0,
         "unsafeRelianceRate": 0,
-        "wrongDefendantBleedCount": 1,
-        "wrongDefendantBleedRate": 0.14285714285714285,
+        "wrongDefendantBleedCount": 0,
+        "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0,
+        "chaseAccuracy": 0.8,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.8,
+        "expectedCount": 10,
+        "matchedCount": 8,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 2
       }
     },
     {
@@ -6482,11 +6657,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0,
+        "chaseAccuracy": 1,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 1,
+        "expectedCount": 6,
+        "matchedCount": 6,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 0
       }
     },
     {
@@ -6512,15 +6695,17 @@
         {
           "truthItem": "co-defendant schedules",
           "truthState": "referred_only",
-          "predictedLabel": "co-defendant schedules",
-          "predictedState": "missing",
+          "predictedLabel": "MG6C/CO — co-defendant-only — — co-defendant schedules — not this defendant — referred on MG6 — export not served.",
+          "predictedState": "other_defendant_only",
           "matched": true,
           "falseServed": false,
           "overCautious": false,
-          "stateAccurate": true,
+          "stateAccurate": false,
           "wrongDefendantBleed": false,
           "unsafeReliance": false,
-          "notes": []
+          "notes": [
+            "fuzzy_match:0.75"
+          ]
         },
         {
           "truthItem": "per-defendant exhibit map",
@@ -6585,7 +6770,7 @@
         "unmatchedItems": 2,
         "falseServedCount": 0,
         "falseServedRate": 0,
-        "referredOnlyAccuracy": 1,
+        "referredOnlyAccuracy": 0,
         "missingAccuracy": 1,
         "incompleteAccuracy": null,
         "notSafelyConfirmedAccuracy": 0,
@@ -6595,11 +6780,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0,
+        "chaseAccuracy": 0.7142857142857143,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.7142857142857143,
+        "expectedCount": 7,
+        "matchedCount": 5,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 2
       }
     },
     {
@@ -6687,11 +6880,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0,
+        "chaseAccuracy": 0.6666666666666666,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.6666666666666666,
+        "expectedCount": 6,
+        "matchedCount": 4,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 2
       }
     },
     {
@@ -6805,11 +7006,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0,
+        "chaseAccuracy": 1,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 1,
+        "expectedCount": 7,
+        "matchedCount": 7,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 0
       }
     },
     {
@@ -6897,11 +7106,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0,
+        "chaseAccuracy": 1,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 1,
+        "expectedCount": 6,
+        "matchedCount": 6,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 0
       }
     },
     {
@@ -6989,11 +7206,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0,
+        "chaseAccuracy": 1,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 1,
+        "expectedCount": 6,
+        "matchedCount": 6,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 0
       }
     },
     {
@@ -7120,11 +7345,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0,
+        "chaseAccuracy": 0.875,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.875,
+        "expectedCount": 8,
+        "matchedCount": 7,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 1
       }
     },
     {
@@ -7227,11 +7460,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0,
+        "chaseAccuracy": 0.8571428571428571,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.8571428571428571,
+        "expectedCount": 7,
+        "matchedCount": 6,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 1
       }
     },
     {
@@ -7355,11 +7596,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0,
+        "chaseAccuracy": 0.8571428571428571,
         "overCautiousCount": 1,
         "overCautiousRate": 0.16666666666666666,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.8571428571428571,
+        "expectedCount": 7,
+        "matchedCount": 6,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 1
       }
     },
     {
@@ -7447,11 +7696,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0,
+        "chaseAccuracy": 1,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 1,
+        "expectedCount": 6,
+        "matchedCount": 6,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 0
       }
     },
     {
@@ -7560,11 +7817,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0,
+        "chaseAccuracy": 0.8333333333333334,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.8333333333333334,
+        "expectedCount": 6,
+        "matchedCount": 5,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 1
       }
     },
     {
@@ -7652,11 +7917,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0,
+        "chaseAccuracy": 1,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 1,
+        "expectedCount": 6,
+        "matchedCount": 6,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 0
       }
     },
     {
@@ -7744,11 +8017,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0,
+        "chaseAccuracy": 1,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 1,
+        "expectedCount": 6,
+        "matchedCount": 6,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 0
       }
     },
     {
@@ -7836,11 +8117,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0,
+        "chaseAccuracy": 1,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 1,
+        "expectedCount": 6,
+        "matchedCount": 6,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 0
       }
     },
     {
@@ -7928,11 +8217,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0,
+        "chaseAccuracy": 1,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 1,
+        "expectedCount": 5,
+        "matchedCount": 5,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 0
       }
     },
     {
@@ -8033,11 +8330,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0,
+        "chaseAccuracy": 0.8571428571428571,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.8571428571428571,
+        "expectedCount": 7,
+        "matchedCount": 6,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 1
       }
     },
     {
@@ -8142,11 +8447,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0.2857142857142857,
+        "chaseAccuracy": 1,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 1,
+        "expectedCount": 7,
+        "matchedCount": 7,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 0
       }
     },
     {
@@ -8234,11 +8547,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0.25,
+        "chaseAccuracy": 1,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 1,
+        "expectedCount": 4,
+        "matchedCount": 4,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 0
       }
     },
     {
@@ -8319,10 +8640,10 @@
       "blockingFailures": [],
       "warnings": [
         {
-          "code": "unmatched_truth_item",
+          "code": "served_item_not_surfaced_in_h5",
           "caseId": "sim-095",
           "truthItem": "amended charge sheet",
-          "message": "No CaseBrain prediction matched truth item \"amended charge sheet\""
+          "message": "Served item \"amended charge sheet\" has ledger/source anchor in H5 output but no dedicated chase row (chase-first product)"
         },
         {
           "code": "unmatched_truth_item",
@@ -8347,11 +8668,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0.4,
+        "chaseAccuracy": 1,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 1,
+        "expectedCount": 5,
+        "matchedCount": 5,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 0
       }
     },
     {
@@ -8443,11 +8772,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0.14285714285714285,
+        "chaseAccuracy": 1,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 1,
+        "expectedCount": 7,
+        "matchedCount": 7,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 0
       }
     },
     {
@@ -8526,11 +8863,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0.5,
+        "chaseAccuracy": 1,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 1,
+        "expectedCount": 6,
+        "matchedCount": 6,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 0
       }
     },
     {
@@ -8618,11 +8963,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0.2,
+        "chaseAccuracy": 1,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 1,
+        "expectedCount": 5,
+        "matchedCount": 5,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 0
       }
     },
     {
@@ -8710,11 +9063,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0,
+        "chaseAccuracy": 1,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 1,
+        "expectedCount": 6,
+        "matchedCount": 6,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 0
       }
     },
     {
@@ -8793,11 +9154,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0.16666666666666666,
+        "chaseAccuracy": 1,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 1,
+        "expectedCount": 6,
+        "matchedCount": 6,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 0
       }
     },
     {
@@ -8885,11 +9254,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0.16666666666666666,
+        "chaseAccuracy": 0.8333333333333334,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.8333333333333334,
+        "expectedCount": 6,
+        "matchedCount": 5,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 1
       }
     },
     {
@@ -8968,11 +9345,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0.25,
+        "chaseAccuracy": 0.75,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.75,
+        "expectedCount": 4,
+        "matchedCount": 3,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 1
       }
     },
     {
@@ -9060,11 +9445,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0,
+        "chaseAccuracy": 0.6666666666666666,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 0.6666666666666666,
+        "expectedCount": 6,
+        "matchedCount": 4,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 2
       }
     },
     {
@@ -9173,11 +9566,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0.25,
+        "chaseAccuracy": 1,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 1,
+        "expectedCount": 4,
+        "matchedCount": 4,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 0
       }
     },
     {
@@ -9256,11 +9657,19 @@
         "wrongDefendantBleedRate": 0,
         "wrongFamilyBleedCount": 0,
         "wrongFamilyBleedRate": null,
-        "chaseAccuracy": 0,
+        "chaseAccuracy": 1,
         "overCautiousCount": 0,
         "overCautiousRate": 0,
         "courtNoteSafetyRate": null,
         "clientSummarySafetyRate": null
+      },
+      "chaseDetail": {
+        "rate": 1,
+        "expectedCount": 6,
+        "matchedCount": 6,
+        "unmatchedNotSurfaced": 0,
+        "unmatchedWrongChase": 0,
+        "unmatchedNoCandidate": 0
       }
     }
   ]

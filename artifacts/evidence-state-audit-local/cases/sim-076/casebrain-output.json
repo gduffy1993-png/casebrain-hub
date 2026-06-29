@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-29T16:39:28.594Z",
+  "generatedAt": "2026-06-29T16:50:40.670Z",
   "caseId": "sim-076",
   "source": "CaseBrain H5 presentation builders (no Brain 1 mutation)",
   "matterConfidence": {
@@ -110,16 +110,16 @@
       "note": "Outstanding on bundle — brief plan ledger."
     },
     {
-      "label": "MG6C/CO — — co-defendant chat map — outstanding — not on bundle.",
-      "existence": "missing",
+      "label": "MG6C/CO — co-defendant-only — — co-defendant chat map — not this defendant — outstanding — not on bundle.",
+      "existence": "other_defendant_only",
       "reliability": "needs_review",
-      "note": "Outstanding on bundle — brief plan ledger."
+      "note": "Co-defendant-only material (— co-defendant chat map) — do not import to this defendant's case theory, client summary, or CPS chase."
     },
     {
-      "label": "Outstanding: handle mapping certificate; device continuity; co-defendant chat map.",
-      "existence": "missing",
+      "label": "Co-defendant-only — Outstanding: handle mapping certificate; device continuity; co-defendant chat map. — not this defendant",
+      "existence": "other_defendant_only",
       "reliability": "needs_review",
-      "note": "Outstanding on bundle — brief plan ledger."
+      "note": "Co-defendant-only material (Outstanding: handle mapping certificate; device continuity; co-defend…) — do not import to this defendant's case theory, client summary, or CPS chase."
     },
     {
       "label": "handle mapping certificate",
@@ -134,10 +134,10 @@
       "note": "Outstanding on bundle — brief plan ledger."
     },
     {
-      "label": "co-defendant chat map",
-      "existence": "missing",
+      "label": "Co-defendant-only — co-defendant chat map — not this defendant",
+      "existence": "other_defendant_only",
       "reliability": "needs_review",
-      "note": "Outstanding on bundle — brief plan ledger."
+      "note": "Co-defendant-only material (co-defendant chat map) — do not import to this defendant's case theory, client summary, or CPS chase."
     },
     {
       "label": "full platform extraction",
@@ -158,7 +158,10 @@
       "Do not import custody safeguards unless the papers support it.",
       "Do not import ABE unless the papers support it.",
       "Assumed position may conflict with interview or served evidence.",
-      "Do not state \"CAD/999 timing supports\" — CAD/999 material is not safely on file as served"
+      "Do not state \"CAD/999 timing supports\" — CAD/999 material is not safely on file as served",
+      "Do not import co-defendant material (MG6C/CO — co-defendant-only — — co-defendant chat map — not this defendant — outstanding — not on bundle.) to this defendant's case theory.",
+      "Do not import co-defendant material (Co-defendant-only — Outstanding: handle mapping certificate; device continuity; co-defendant chat map. — not this defendant) to this defendant's case theory.",
+      "Do not import co-defendant material (Co-defendant-only — co-defendant chat map — not this defendant) to this defendant's case theory."
     ],
     "hardRules": [
       "Served does not mean reliable.",
@@ -187,9 +190,9 @@
     "blockedReason": null
   },
   "exportVersion": {
-    "exportId": "exp-sim-076-20260629163928",
+    "exportId": "exp-sim-076-20260629165040",
     "caseId": "sim-076",
-    "generatedAt": "2026-06-29T16:39:28.594Z",
+    "generatedAt": "2026-06-29T16:50:40.670Z",
     "exportType": "h5_export_pack_v1",
     "bundleVersionLabel": "overview-export@2026-06-29",
     "appVersion": "evidence-state-audit-snapshot",

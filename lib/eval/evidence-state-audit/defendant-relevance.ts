@@ -1,3 +1,8 @@
+import {
+  isCoDefBlendedIntoClientSurface,
+  isCoDefendantMaterialLabel,
+  isProperlySegregatedCoDefPrediction,
+} from "./co-def-segregation";
 import { labelMatchScore, normalizeLabel } from "./normalize";
 import type { TruthKeyEvidenceItem } from "./types";
 
@@ -68,6 +73,9 @@ export function defendantRelevanceMatchBonus(
     return 0;
   }
 
+  const segregatedBonus = defendantRelevanceStateBonus(truthItem, predictionLabel, source);
+  if (segregatedBonus !== 0) return segregatedBonus;
+
   if (predictionTouchesCoDefendant(truthItem, predictionLabel, source)) return 0.35;
   if (isGenericEvidenceLabel(predictionLabel)) return -0.4;
 
@@ -86,8 +94,26 @@ export function isWrongDefendantBleedMatch(
   if (!truthItemIsCoDefendantOnly(truthItem)) return false;
   if (!predictionLabel || !matched) return false;
 
-  if (predictionTouchesCoDefendant(truthItem, predictionLabel, source)) return true;
+  if (isProperlySegregatedCoDefPrediction(predictionLabel, source)) return false;
   if (isGenericEvidenceLabel(predictionLabel)) return false;
 
+  if (isCoDefBlendedIntoClientSurface(predictionLabel, source)) return true;
+
+  if (predictionTouchesCoDefendant(truthItem, predictionLabel, source)) {
+    return !isProperlySegregatedCoDefPrediction(predictionLabel, source);
+  }
+
   return labelMatchScore(truthItem.evidence_item, predictionLabel) >= 0.82;
+}
+
+export function defendantRelevanceStateBonus(
+  truthItem: TruthKeyEvidenceItem,
+  predictionLabel: string,
+  source?: string | null,
+): number {
+  if (!truthItemIsCoDefendantOnly(truthItem)) return 0;
+  if (isProperlySegregatedCoDefPrediction(predictionLabel, source)) return 0.5;
+  if (isCoDefBlendedIntoClientSurface(predictionLabel, source)) return -0.45;
+  if (isCoDefendantMaterialLabel(predictionLabel)) return 0.35;
+  return 0;
 }

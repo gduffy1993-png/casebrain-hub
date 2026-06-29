@@ -72,6 +72,13 @@ export function renderAuditMarkdown(result: AuditRunResult): string {
     `| Blocking failures | ${result.blockingFailures.length} |`,
     `| Warnings | ${result.warnings.length} |`,
     "",
+    "### Chase mapping breakdown",
+    "",
+    `- Expected chase items (all cases): ${result.cases.reduce((n, c) => n + (c.chaseDetail?.expectedCount ?? 0), 0)}`,
+    `- Matched via label/family mapping: ${result.cases.reduce((n, c) => n + (c.chaseDetail?.matchedCount ?? 0), 0)}`,
+    `- Unmatched — no chase candidate on surface: ${result.cases.reduce((n, c) => n + (c.chaseDetail?.unmatchedNoCandidate ?? 0), 0)}`,
+    `- Unmatched — surfaced but wrong/missing family: ${result.cases.reduce((n, c) => n + (c.chaseDetail?.unmatchedWrongChase ?? 0), 0)}`,
+    "",
     "## Blocking failures",
     "",
   ];

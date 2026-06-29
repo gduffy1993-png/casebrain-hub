@@ -63,6 +63,10 @@ export function mapExistenceToPredicted(
     case "inferred_only":
     case "inferred":
       return "inferred_only";
+    case "other_defendant_only":
+    case "other defendant only":
+    case "co_defendant_only":
+      return "other_defendant_only";
     case "provisional":
       return "provisional";
     case "unknown":
@@ -154,7 +158,7 @@ export function statesMatchForAccuracy(
   }
 
   if (truthState === "other_defendant_only") {
-    return predictedState === "unmatched";
+    return predictedState === "other_defendant_only" || predictedState === "unmatched";
   }
 
   return false;

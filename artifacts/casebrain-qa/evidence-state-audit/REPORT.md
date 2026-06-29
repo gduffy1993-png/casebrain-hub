@@ -2,7 +2,7 @@
 
 > **Controlled audit harness run — not solicitor-reviewed real-world audit.**
 
-- Generated: 2026-06-29T16:39:51.924Z
+- Generated: 2026-06-29T16:50:52.360Z
 - Harness: evidence-state-audit-v1
 - Fixtures: proof-pack-01, sim-038, sim-039, sim-040, sim-041, sim-042, sim-043, sim-044, sim-045, sim-046, sim-047, sim-048, sim-049, sim-050, sim-051, sim-052, sim-053, sim-054, sim-055, sim-056, sim-057, sim-058, sim-059, sim-060, sim-061, sim-062, sim-063, sim-066, sim-067, sim-069, sim-076, sim-077, sim-078, sim-079, sim-080, sim-081, sim-082, sim-083, sim-084, sim-085, sim-086, sim-087, sim-088, sim-089, sim-090, sim-091, sim-092, sim-093, sim-094, sim-095, sim-096, sim-097, sim-098, sim-099, sim-100, sim-101, sim-102, sim-103, sim-104, sim-105
 
@@ -16,25 +16,29 @@
 | Unmatched items | 76 |
 | False-served count | 0 |
 | False-served rate | 0.0% |
-| Referred-only accuracy | 100.0% |
+| Referred-only accuracy | 98.9% |
 | Missing accuracy | 98.5% |
 | Incomplete accuracy | 80.2% |
 | Not-safely-confirmed accuracy | 1.3% |
 | Unsafe reliance count | 0 |
 | Unsafe reliance rate | 0.0% |
-| Wrong-defendant bleed count | 4 |
-| Wrong-defendant bleed rate | 0.8% |
-| Chase accuracy | 11.0% |
+| Wrong-defendant bleed count | 0 |
+| Wrong-defendant bleed rate | 0.0% |
+| Chase accuracy | 84.7% |
 | Over-cautious rate | 0.2% |
-| Blocking failures | 4 |
+| Blocking failures | 0 |
 | Warnings | 76 |
+
+### Chase mapping breakdown
+
+- Expected chase items (all cases): 453
+- Matched via label/family mapping: 388
+- Unmatched — no chase candidate on surface: 65
+- Unmatched — surfaced but wrong/missing family: 0
 
 ## Blocking failures
 
-- **wrong_defendant_bleed** (sim-038 · co-defendant chat export): Co-defendant / other-defendant material matched to client workflow
-- **wrong_defendant_bleed** (sim-042 · co-defendant interview summary): Co-defendant / other-defendant material matched to client workflow
-- **wrong_defendant_bleed** (sim-045 · co-defendant interview records): Co-defendant / other-defendant material matched to client workflow
-- **wrong_defendant_bleed** (sim-076 · co-defendant chat map): Co-defendant / other-defendant material matched to client workflow
+_None detected on this controlled run._
 
 ## Warnings
 
@@ -68,11 +72,11 @@
 - **unmatched_truth_item** (sim-058 · whether possession was for theft or innocent work/use): No CaseBrain prediction matched truth item "whether possession was for theft or innocent work/use"
 - **unmatched_truth_item** (sim-059 · MG5): No CaseBrain prediction matched truth item "MG5"
 - **unmatched_truth_item** (sim-059 · breath result summary): No CaseBrain prediction matched truth item "breath result summary"
-- **unmatched_truth_item** (sim-059 · charge sheet): No CaseBrain prediction matched truth item "charge sheet"
+- **served_item_not_surfaced_in_h5** (sim-059 · charge sheet): Served item "charge sheet" has ledger/source anchor in H5 output but no dedicated chase row (chase-first product)
 - **unmatched_truth_item** (sim-059 · whether procedure and device checks are proved): No CaseBrain prediction matched truth item "whether procedure and device checks are proved"
 - **unmatched_truth_item** (sim-060 · MG5): No CaseBrain prediction matched truth item "MG5"
 - **unmatched_truth_item** (sim-060 · custody extract): No CaseBrain prediction matched truth item "custody extract"
-- **unmatched_truth_item** (sim-060 · charge sheet): No CaseBrain prediction matched truth item "charge sheet"
+- **served_item_not_surfaced_in_h5** (sim-060 · charge sheet): Served item "charge sheet" has ledger/source anchor in H5 output but no dedicated chase row (chase-first product)
 - **unmatched_truth_item** (sim-060 · whether sample chain and result are admissibly proved): No CaseBrain prediction matched truth item "whether sample chain and result are admissibly proved"
 - **unmatched_truth_item** (sim-061 · whether refusal/warning/reasonable excuse is properly evidenced): No CaseBrain prediction matched truth item "whether refusal/warning/reasonable excuse is properly evidenced"
 - **unmatched_truth_item** (sim-062 · SJP notice): No CaseBrain prediction matched truth item "SJP notice"
@@ -81,7 +85,7 @@
 - **unmatched_truth_item** (sim-062 · whether Meera was the driver and whether insurance status is correctly evidenced): No CaseBrain prediction matched truth item "whether Meera was the driver and whether insurance status is correctly evidenced"
 - **unmatched_truth_item** (sim-063 · knowledge, dishonesty, and calculation basis): No CaseBrain prediction matched truth item "knowledge, dishonesty, and calculation basis"
 - **unmatched_truth_item** (sim-066 · MG5): No CaseBrain prediction matched truth item "MG5"
-- **unmatched_truth_item** (sim-066 · charge sheet): No CaseBrain prediction matched truth item "charge sheet"
+- **served_item_not_surfaced_in_h5** (sim-066 · charge sheet): Served item "charge sheet" has ledger/source anchor in H5 output but no dedicated chase row (chase-first product)
 - **unmatched_truth_item** (sim-066 · email exhibit summary): No CaseBrain prediction matched truth item "email exhibit summary"
 - **unmatched_truth_item** (sim-066 · intent to pervert justice versus administrative/document confusion): No CaseBrain prediction matched truth item "intent to pervert justice versus administrative/document confusion"
 - **unmatched_truth_item** (sim-067 · public place, possession, and reasonable excuse): No CaseBrain prediction matched truth item "public place, possession, and reasonable excuse"
@@ -108,7 +112,7 @@
 
 ### sim-038 — EncroChat handle attribution disputed with co-defendant bleed risk
 
-- Items: 11 · matched 10 · false-served 0 · blocking 1
+- Items: 11 · matched 10 · false-served 0 · blocking 0
 
 | Truth item | Truth | Predicted | Match | Flags |
 |---|---|---|---|---|
@@ -117,7 +121,7 @@
 | two MG11 officer statements | served | served | yes | — |
 | full extraction report | referred_only | missing | yes | — |
 | handle attribution report | referred_only | missing | yes | — |
-| co-defendant chat export | other_defendant_only | missing | no | wrong_defendant_bleed |
+| co-defendant chat export | other_defendant_only | other_defendant_only | yes | — |
 | device attribution evidence | missing | missing | yes | — |
 | download continuity | missing | missing | yes | — |
 | cellsite linking defendant to device | missing | missing | yes | — |
@@ -180,14 +184,14 @@
 
 ### sim-042 — Multi-defendant drug conspiracy per-defendant evidence map
 
-- Items: 12 · matched 11 · false-served 0 · blocking 1
+- Items: 12 · matched 11 · false-served 0 · blocking 0
 
 | Truth item | Truth | Predicted | Match | Flags |
 |---|---|---|---|---|
-| MG5 | served | incomplete | no | fuzzy_match:0.60 |
+| MG5 | served | incomplete | no | — |
 | indictment draft | served | incomplete | no | — |
-| selected surveillance log | served | incomplete | no | fuzzy_match:0.75 |
-| co-defendant interview summary | other_defendant_only | incomplete | no | wrong_defendant_bleed |
+| selected surveillance log | served | incomplete | no | — |
+| co-defendant interview summary | other_defendant_only | other_defendant_only | yes | — |
 | full surveillance schedule | referred_only | missing | yes | — |
 | telecoms attribution | referred_only | missing | yes | — |
 | banking schedule | referred_only | missing | yes | — |
@@ -235,7 +239,7 @@
 
 ### sim-045 — Joint-enterprise violence with partial BWV
 
-- Items: 11 · matched 10 · false-served 0 · blocking 1
+- Items: 11 · matched 10 · false-served 0 · blocking 0
 
 | Truth item | Truth | Predicted | Match | Flags |
 |---|---|---|---|---|
@@ -248,7 +252,7 @@
 | complete BWV | missing | missing | yes | — |
 | CCTV | missing | missing | yes | — |
 | medical report | missing | missing | yes | — |
-| co-defendant interview records | other_defendant_only | missing | no | wrong_defendant_bleed |
+| co-defendant interview records | other_defendant_only | other_defendant_only | yes | — |
 | whether Leah encouraged, assisted, withdrew, or was present only | inferred_only | — | no | no_prediction_match |
 
 ### sim-046 — Robbery CCTV stills only and poor-quality identification
@@ -636,7 +640,7 @@
 
 ### sim-076 — EncroChat handle dispute — rotated scanned export
 
-- Items: 7 · matched 6 · false-served 0 · blocking 1
+- Items: 7 · matched 6 · false-served 0 · blocking 0
 
 | Truth item | Truth | Predicted | Match | Flags |
 |---|---|---|---|---|
@@ -645,7 +649,7 @@
 | full platform extraction | referred_only | missing | yes | — |
 | handle mapping certificate | missing | missing | yes | — |
 | device continuity | missing | missing | yes | — |
-| co-defendant chat map | other_defendant_only | missing | no | wrong_defendant_bleed |
+| co-defendant chat map | other_defendant_only | other_defendant_only | yes | — |
 | shared thread messages | not_safely_confirmed | — | no | no_prediction_match |
 
 ### sim-077 — EncroChat — bad OCR broken handle labels
@@ -666,7 +670,7 @@
 | Truth item | Truth | Predicted | Match | Flags |
 |---|---|---|---|---|
 | mixed defendant message excerpts | served | — | no | no_prediction_match |
-| co-defendant schedules | referred_only | missing | yes | — |
+| co-defendant schedules | referred_only | other_defendant_only | no | fuzzy_match:0.75 |
 | per-defendant exhibit map | missing | missing | yes | — |
 | handle mapping | missing | missing | yes | — |
 | co-defendant NIGHTHAWK thread | not_safely_confirmed | — | no | no_prediction_match |
