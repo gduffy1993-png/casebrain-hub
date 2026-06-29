@@ -10,9 +10,11 @@ import { SOURCE_BACKED_COURT_NOTE_LABEL } from "@/lib/criminal/trust/firm-facing
 import { buildFiveAnswersView } from "@/lib/criminal/five-answers/build-five-answers-view";
 import { buildDecisionBoard } from "@/lib/criminal/decision-board/build-decision-board";
 import { buildHearingMode } from "@/lib/criminal/hearing-mode";
+import { buildExportPack } from "@/lib/criminal/export-pack";
 import { DefenceDecisionBoard } from "@/components/criminal/decision-board/DefenceDecisionBoard";
 import { AdviceChangeRadarPanel } from "@/components/criminal/advice-change-radar/AdviceChangeRadarPanel";
 import { HearingModePanel } from "@/components/criminal/hearing-mode/HearingModePanel";
+import { ExportPackPanel } from "@/components/criminal/export-pack/ExportPackPanel";
 import { evidenceExistenceLabel, evidenceReliabilityLabel } from "@/lib/criminal/five-answers/evidence-trace";
 import { useMatterBrief } from "@/components/criminal/workflow/useMatterBrief";
 import { usePilotMatterTabHref } from "@/components/criminal/workflow/pilotDeskNavContext";
@@ -121,6 +123,34 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
     bundleMeta?.documentCount,
   ]);
 
+  const exportPack = useMemo(() => {
+    if (!warRoom || !chase) return null;
+    const appVersion =
+      typeof process !== "undefined" && process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA
+        ? process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA.slice(0, 12)
+        : null;
+    return buildExportPack({
+      caseId,
+      allegation: allegation ?? "",
+      warRoom,
+      chase,
+      briefPlan,
+      matterConfidence,
+      doNotOverstate,
+      primaryRouteTitle,
+      appVersion,
+    });
+  }, [
+    caseId,
+    warRoom,
+    chase,
+    allegation,
+    briefPlan,
+    matterConfidence,
+    doNotOverstate,
+    primaryRouteTitle,
+  ]);
+
   const copyCourtNote = async () => {
     if (!view?.courtNote.canCopy) return;
     try {
@@ -169,6 +199,8 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
           chaseHref={buildTabHref(caseId, "disclosure-chase")}
         />
       ) : null}
+
+      {exportPack ? <ExportPackPanel model={exportPack} /> : null}
 
       <AnswerCard
         number={1}

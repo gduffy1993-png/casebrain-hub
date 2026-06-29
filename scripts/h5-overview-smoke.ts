@@ -389,6 +389,17 @@ async function main(): Promise<void> {
       }
     }
 
+    if (await desktop.getByTestId("export-pack-panel").isVisible().catch(() => false)) {
+      steps.push({ id: "export_pack_visible", status: "pass" });
+    } else {
+      const body = await desktop.locator("body").innerText();
+      if (/export pack|copy cps chase|version stamp/i.test(body)) {
+        steps.push({ id: "export_pack_visible", status: "pass", detail: "content without testid" });
+      } else {
+        steps.push({ id: "export_pack_visible", status: "fail", detail: "Export Pack not on Overview" });
+      }
+    }
+
     if (/change your advice/i.test(overviewBody)) {
       steps.push({ id: "radar_no_command_language", status: "fail", detail: "Command-style advice language on overview" });
     } else {
