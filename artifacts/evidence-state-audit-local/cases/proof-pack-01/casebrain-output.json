@@ -1,0 +1,229 @@
+{
+  "generatedAt": "2026-06-29T13:26:34.086Z",
+  "caseId": "proof-pack-01",
+  "source": "CaseBrain H5 presentation builders (no Brain 1 mutation)",
+  "builders": [
+    "buildBundleTruthLedger",
+    "buildCriminalBriefPlan",
+    "buildStrategyBattleboard",
+    "buildDisclosureChaseBrief",
+    "buildHearingWarRoomBrief",
+    "buildMatterConfidence",
+    "buildFiveAnswersView",
+    "buildExportPack",
+    "inferChaseItemSourceState"
+  ],
+  "matterConfidence": {
+    "level": "needs_review",
+    "label": "Needs review before relying",
+    "sourceBadges": [
+      "provisional",
+      "missing",
+      "referred_only",
+      "needs_review"
+    ],
+    "chaseSendability": "needs_solicitor_review",
+    "summarySendability": "needs_solicitor_review",
+    "safeCourtLineStatus": "needs_review",
+    "doNotRelyYetReason": "Human review or material gaps flagged on current papers."
+  },
+  "evidenceStates": [
+    {
+      "label": "CCTV full window / master footage",
+      "inferredSourceState": "missing",
+      "existenceLabel": "Missing",
+      "sendability": null,
+      "baseStatus": "Outstanding",
+      "source": "MG6/MG6C disclosure schedule",
+      "evidenceAnchor": "| EX-04 | Body-worn video | — | referred on MG6 — export not served |"
+    },
+    {
+      "label": "Body-worn video (BWV)",
+      "inferredSourceState": "missing",
+      "existenceLabel": "Missing",
+      "sendability": null,
+      "baseStatus": "Not safely confirmed",
+      "source": "Police / officer body-worn video",
+      "evidenceAnchor": "| EX-04 | Body-worn video | — | referred on MG6 — export not served |"
+    },
+    {
+      "label": "Interview recording / transcript",
+      "inferredSourceState": "missing",
+      "existenceLabel": "Missing",
+      "sendability": null,
+      "baseStatus": "Not safely confirmed",
+      "source": "Custody / police interview unit",
+      "evidenceAnchor": "| EX-05 | Custody / PACE record | — | outstanding — not on bundle |"
+    },
+    {
+      "label": "MG6 / unused schedule clarification",
+      "inferredSourceState": "missing",
+      "existenceLabel": "Missing",
+      "sendability": null,
+      "baseStatus": "Not safely confirmed",
+      "source": "CPS / disclosure officer",
+      "evidenceAnchor": "| EX-04 | Body-worn video | — | referred on MG6 — export not served |"
+    },
+    {
+      "label": "Exhibit mapping / provenance",
+      "inferredSourceState": "provisional",
+      "existenceLabel": "Unknown",
+      "sendability": null,
+      "baseStatus": "Not safely confirmed",
+      "source": "Crown / disclosure officer",
+      "evidenceAnchor": null
+    }
+  ],
+  "fiveAnswersEvidenceRows": [
+    {
+      "label": "CCTV full window / master footage",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position. — still chase if disclosure-relevant."
+    },
+    {
+      "label": "Body-worn video (BWV)",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position. — still chase if disclosure-relevant."
+    },
+    {
+      "label": "Interview recording / transcript",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position. — still chase if disclosure-relevant."
+    },
+    {
+      "label": "MG6 / unused schedule clarification",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position. — still chase if disclosure-relevant."
+    },
+    {
+      "label": "Exhibit mapping / provenance",
+      "existence": "unknown",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position."
+    }
+  ],
+  "warningsAndGaps": {
+    "doNotOverstate": [
+      "Do not import drugs continuity unless the papers support it.",
+      "Do not import ABE unless the papers support it.",
+      "Assumed position may conflict with interview or served evidence.",
+      "Crown can tie each item to this defendant and count on served material.",
+      "Do not state \"CCTV confirms\" — CCTV is not fully served on papers",
+      "Do not state \"CCTV proves\" — CCTV is not fully served on papers",
+      "Do not state \"Full CCTV confirms\" — CCTV is not fully served on papers"
+    ],
+    "hardRules": [
+      "Served does not mean reliable.",
+      "Missing does not mean irrelevant.",
+      "Referred only does not mean usable.",
+      "Inference must be labelled as inference.",
+      "No line is sendable just because a source exists."
+    ],
+    "chaseItems": [
+      {
+        "label": "CCTV full window / master footage",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide cCTV full window / master footage or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: missing. Source: MG6/MG6C disclosure schedule. Solicitor review required before sending.]"
+      },
+      {
+        "label": "Body-worn video (BWV)",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide body-worn video (BWV) or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: missing. Source: Police / officer body-worn video. Solicitor review required before sending.]"
+      },
+      {
+        "label": "Interview recording / transcript",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide interview recording / transcript or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: missing. Source: Custody / police interview unit. Solicitor review required before sending.]"
+      },
+      {
+        "label": "MG6 / unused schedule clarification",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide mG6 / unused schedule clarification or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: missing. Source: CPS / disclosure officer. Solicitor review required before sending.]"
+      },
+      {
+        "label": "Exhibit mapping / provenance",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide exhibit mapping / provenance or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: provisional. Source: Crown / disclosure officer. Solicitor review required before sending.]"
+      }
+    ]
+  },
+  "courtNote": {
+    "text": "The defence asks the court to record that full custody and interview records remain outstanding.\n\n[CaseBrain — court line copy. Evidence state: needs review. Confirm before addressing the court.]",
+    "sendabilityLabel": "Solicitor review required",
+    "canCopy": true,
+    "blockedReason": null
+  },
+  "exportVersion": {
+    "exportId": "exp-proof-pa-20260629132634",
+    "caseId": "proof-pack-01",
+    "generatedAt": "2026-06-29T13:26:34.086Z",
+    "exportType": "h5_export_pack_v1",
+    "bundleVersionLabel": "overview-export@2026-06-29",
+    "appVersion": "proof-pack-generator",
+    "sourceStatesIncluded": [
+      "provisional",
+      "missing",
+      "referred_only",
+      "needs_review"
+    ],
+    "sendability": "needs_solicitor_review",
+    "warningCount": 7,
+    "blockedReason": null,
+    "reviewFooter": "Solicitor review required before sending to CPS, court, or client."
+  },
+  "truthKeyComparison": [
+    {
+      "truthItem": "Complainant MG11 (signed)",
+      "truthState": "served",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "Exhibit / bundle index",
+      "truthState": "served",
+      "casebrainLabel": "Exhibit mapping / provenance",
+      "casebrainState": "provisional",
+      "aligned": false
+    },
+    {
+      "truthItem": "Phone screenshots (partial)",
+      "truthState": "incomplete",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "Body-worn video",
+      "truthState": "referred_only",
+      "casebrainLabel": "Body-worn video (BWV)",
+      "casebrainState": "missing",
+      "aligned": false
+    },
+    {
+      "truthItem": "Custody / PACE record",
+      "truthState": "missing",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "MG5 attribution inference",
+      "truthState": "inferred_only",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "Co-defendant Lee Marsh interview",
+      "truthState": "other_defendant_only",
+      "casebrainLabel": "Interview recording / transcript",
+      "casebrainState": "missing",
+      "aligned": false
+    }
+  ]
+}

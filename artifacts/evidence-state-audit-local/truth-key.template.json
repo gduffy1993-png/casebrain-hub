@@ -1,0 +1,30 @@
+{
+  "caseId": "audit-case-template",
+  "title": "Template — replace with fictional/anonymised title",
+  "offenceFamily": "public_order",
+  "bundleStatus": "synthetic_or_anonymised",
+  "evidenceItems": [
+    {
+      "evidence_item": "Body-worn video",
+      "evidence_type": "bwv",
+      "correct_evidence_state": "referred_only",
+      "defendant_relevance": "primary_defendant",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "must_not_say": ["BWV shows", "BWV confirms"]
+    },
+    {
+      "evidence_item": "Custody / PACE record",
+      "evidence_type": "custody_pace",
+      "correct_evidence_state": "missing",
+      "defendant_relevance": "primary_defendant",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "must_not_say": ["PACE safeguards were followed"]
+    }
+  ],
+  "expectedChaseItems": ["Body-worn video", "Custody / PACE record"],
+  "expectedSendability": "needs_solicitor_review",
+  "mustNotSayGlobal": ["BWV shows", "case collapses", "guaranteed"],
+  "blockingFailPatterns": ["BWV shows", "we win"]
+}

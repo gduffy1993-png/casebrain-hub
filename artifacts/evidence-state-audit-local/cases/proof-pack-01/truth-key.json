@@ -1,0 +1,154 @@
+{
+  "caseId": "proof-pack-01",
+  "title": "Proof Pack 01 — mixed evidence states (fictional)",
+  "fakeDefendant": "Alex Quinn",
+  "fakeCourt": "Northgate Crown Court",
+  "offenceWording": "Section 4 Public Order Act 1986 — threatening behaviour",
+  "profile": "digital_attribution",
+  "mainIssue": "Attribution and served vs referred phone/BWV material on messy disclosure",
+  "bundleStatus": "synthetic_public_safe",
+  "evidenceItems": [
+    {
+      "evidence_item": "Complainant MG11 (signed)",
+      "evidence_type": "witness_statement",
+      "correct_evidence_state": "served",
+      "source_page_anchor": "MG11 pp.4-7",
+      "defendant_relevance": "primary_defendant",
+      "chase_needed": false,
+      "safe_to_rely_on": false,
+      "must_not_say": [
+        "MG11 proves guilt",
+        "statement confirms every factual detail without review"
+      ],
+      "expected_handling": {
+        "chase": "none — served but still review for inconsistencies",
+        "court": "may reference served statement with source anchor",
+        "client": "plain English — complainant account served, not confirmed by you"
+      }
+    },
+    {
+      "evidence_item": "Exhibit / bundle index",
+      "evidence_type": "index",
+      "correct_evidence_state": "served",
+      "source_page_anchor": "Index p.8",
+      "defendant_relevance": "primary_defendant",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "must_not_say": [
+        "index proves substance served"
+      ],
+      "expected_handling": {
+        "chase": "use index to chase missing exports",
+        "court": "may ask court to note schedule gaps",
+        "client": "explain some items listed but not yet received"
+      }
+    },
+    {
+      "evidence_item": "Phone screenshots (partial)",
+      "evidence_type": "digital_screenshot",
+      "correct_evidence_state": "incomplete",
+      "source_page_anchor": "Phone export pp.9-11",
+      "defendant_relevance": "primary_defendant",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "must_not_say": [
+        "phone extraction shows",
+        "messages prove attribution"
+      ],
+      "expected_handling": {
+        "chase": "Please provide full UFED extraction, metadata, and search scope",
+        "court": "do not treat screenshots as complete download",
+        "client": "only partial phone material received — more may be outstanding"
+      }
+    },
+    {
+      "evidence_item": "Body-worn video",
+      "evidence_type": "bwv",
+      "correct_evidence_state": "referred_only",
+      "source_page_anchor": "MG6C/BWV",
+      "defendant_relevance": "primary_defendant",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "must_not_say": [
+        "BWV shows",
+        "BWV confirms",
+        "officer account supported by video"
+      ],
+      "expected_handling": {
+        "chase": "Please provide full BWV export with continuity",
+        "court": "may ask court to record BWV not served",
+        "client": "video mentioned but not provided — cannot rely on it yet"
+      }
+    },
+    {
+      "evidence_item": "Custody / PACE record",
+      "evidence_type": "custody_pace",
+      "correct_evidence_state": "missing",
+      "source_page_anchor": "MG6C/CUS — outstanding",
+      "defendant_relevance": "primary_defendant",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "must_not_say": [
+        "PACE safeguards were followed",
+        "custody confirms"
+      ],
+      "expected_handling": {
+        "chase": "Please provide full custody record and PACE review",
+        "court": "may ask court to record missing custody material",
+        "client": "custody papers not yet received"
+      }
+    },
+    {
+      "evidence_item": "MG5 attribution inference",
+      "evidence_type": "inference_from_summary",
+      "correct_evidence_state": "inferred_only",
+      "source_page_anchor": "MG5 headline summary",
+      "defendant_relevance": "primary_defendant",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "must_not_say": [
+        "MG5 proves",
+        "papers confirm attribution"
+      ],
+      "expected_handling": {
+        "chase": "chase underlying phone/BWV before relying on MG5 summary",
+        "court": "treat as prosecution theory not proof",
+        "client": "prosecution summary only — evidence still being chased"
+      }
+    },
+    {
+      "evidence_item": "Co-defendant Lee Marsh interview",
+      "evidence_type": "interview",
+      "correct_evidence_state": "other_defendant_only",
+      "source_page_anchor": "Interview pp.14-16 — Lee Marsh",
+      "defendant_relevance": "co_defendant_only",
+      "chase_needed": false,
+      "safe_to_rely_on": false,
+      "must_not_say": [
+        "co-defendant denial proves Alex Quinn acted",
+        "bleed co-defendant account to client defendant"
+      ],
+      "expected_handling": {
+        "chase": "do not chase as Alex Quinn material unless linked on papers",
+        "court": "segregate defendants — no bleed",
+        "client": "separate defendant material — do not discuss as Alex's account"
+      }
+    }
+  ],
+  "expectedSendability": "needs_solicitor_review",
+  "mustNotSayGlobal": [
+    "BWV shows",
+    "case collapses",
+    "guaranteed",
+    "safe to send without review",
+    "phone extraction proves"
+  ],
+  "blockingFailPatterns": [
+    "BWV shows",
+    "BWV confirms",
+    "PACE safeguards were followed",
+    "phone extraction shows",
+    "case collapses",
+    "we win"
+  ]
+}
