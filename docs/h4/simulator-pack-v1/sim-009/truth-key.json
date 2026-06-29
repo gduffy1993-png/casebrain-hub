@@ -1,0 +1,32 @@
+{
+  "caseId": "sim-009",
+  "title": "Possession — PWITS index bleed",
+  "fakeDefendant": "Defendant 009",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Possession — PWITS index bleed",
+  "offenceFamily": "drugs",
+  "profile": "drugs_possession",
+  "mainIssue": "Avoid PWITS route bleed",
+  "servedEvidence": [],
+  "referredOnlyEvidence": [],
+  "missingEvidence": [],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Avoid PWITS route bleed",
+  "expectedChaseItems": [],
+  "expectedSummaryRisk": "Provisional pending disclosure",
+  "expectedSourceStateBadges": [
+    "missing",
+    "provisional"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "supply chain proved"
+  ],
+  "blockingFailPatterns": [
+    "PWITS pressure without charge support"
+  ],
+  "polishOnlyWarnings": [],
+  "pdfLayoutType": "index_only",
+  "redTeamTrapType": "wrong_family_pwits_bleed",
+  "bundleStatus": "manifest_only"
+}

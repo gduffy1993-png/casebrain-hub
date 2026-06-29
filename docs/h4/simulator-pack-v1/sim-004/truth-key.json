@@ -1,0 +1,41 @@
+{
+  "caseId": "sim-004",
+  "title": "AEW — custody/PACE missing",
+  "fakeDefendant": "Defendant 004",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "AEW — custody/PACE missing",
+  "offenceFamily": "violence_aew",
+  "profile": "custody_pace",
+  "mainIssue": "PACE safeguards cannot be final",
+  "servedEvidence": [],
+  "referredOnlyEvidence": [
+    "custody mention"
+  ],
+  "missingEvidence": [
+    "full custody record",
+    "interview recording"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "PACE safeguards cannot be final",
+  "expectedChaseItems": [
+    "custody record",
+    "interview recording/transcript"
+  ],
+  "expectedSummaryRisk": "Provisional pending disclosure",
+  "expectedSourceStateBadges": [
+    "missing",
+    "provisional"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "BWV shows",
+    "ask the court to record"
+  ],
+  "polishOnlyWarnings": [],
+  "pdfLayoutType": "scanned_pdf",
+  "redTeamTrapType": "custody_record_missing",
+  "bundleStatus": "manifest_only"
+}

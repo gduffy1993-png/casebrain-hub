@@ -1,0 +1,30 @@
+{
+  "caseId": "sim-011",
+  "title": "Perverting justice — fraud bleed",
+  "fakeDefendant": "Defendant 011",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Perverting justice — fraud bleed",
+  "offenceFamily": "perverting",
+  "profile": "perverting_justice",
+  "mainIssue": "Route must stay provisional",
+  "servedEvidence": [],
+  "referredOnlyEvidence": [],
+  "missingEvidence": [],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Route must stay provisional",
+  "expectedChaseItems": [],
+  "expectedSummaryRisk": "Provisional pending disclosure",
+  "expectedSourceStateBadges": [
+    "missing",
+    "provisional"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [],
+  "blockingFailPatterns": [
+    "fraud account-control route as final"
+  ],
+  "polishOnlyWarnings": [],
+  "pdfLayoutType": "mixed_offences",
+  "redTeamTrapType": "fraud_route_bleed",
+  "bundleStatus": "manifest_only"
+}

@@ -1,0 +1,37 @@
+{
+  "caseId": "sim-020",
+  "title": "Duplicate conflicting MG11s",
+  "fakeDefendant": "Defendant 020",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Duplicate conflicting MG11s",
+  "offenceFamily": "violence_domestic",
+  "profile": "violence_domestic",
+  "mainIssue": "Inconsistent accounts",
+  "servedEvidence": [],
+  "referredOnlyEvidence": [],
+  "missingEvidence": [],
+  "uncertainEvidence": [
+    "two MG11 versions"
+  ],
+  "expectedTodayIssue": "Inconsistent accounts",
+  "expectedChaseItems": [],
+  "expectedSummaryRisk": "Provisional pending disclosure",
+  "expectedSourceStateBadges": [
+    "missing",
+    "provisional"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "MG11 proves account as final fact"
+  ],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "BWV shows",
+    "ask the court to record"
+  ],
+  "polishOnlyWarnings": [],
+  "pdfLayoutType": "duplicate_pages",
+  "redTeamTrapType": "duplicate_mg11",
+  "bundleStatus": "manifest_only"
+}

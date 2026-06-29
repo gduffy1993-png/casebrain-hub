@@ -1,0 +1,33 @@
+{
+  "caseId": "sim-014",
+  "title": "Motoring SJP thin bundle",
+  "fakeDefendant": "Defendant 014",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Motoring SJP thin bundle",
+  "offenceFamily": "motoring",
+  "profile": "motoring_sjp",
+  "mainIssue": "Thin bundle — cautious output",
+  "servedEvidence": [],
+  "referredOnlyEvidence": [],
+  "missingEvidence": [],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Thin bundle — cautious output",
+  "expectedChaseItems": [],
+  "expectedSummaryRisk": "Early-stage — missing evidence",
+  "expectedSourceStateBadges": [
+    "missing",
+    "provisional"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "BWV shows",
+    "ask the court to record"
+  ],
+  "polishOnlyWarnings": [],
+  "pdfLayoutType": "very_thin",
+  "redTeamTrapType": "thin_bundle",
+  "bundleStatus": "manifest_only"
+}

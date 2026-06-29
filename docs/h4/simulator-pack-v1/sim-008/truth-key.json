@@ -1,0 +1,40 @@
+{
+  "caseId": "sim-008",
+  "title": "PWITS — missing continuity",
+  "fakeDefendant": "Defendant 008",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "PWITS — missing continuity",
+  "offenceFamily": "drugs",
+  "profile": "drugs_pwits",
+  "mainIssue": "Continuity/lab missing",
+  "servedEvidence": [],
+  "referredOnlyEvidence": [],
+  "missingEvidence": [
+    "continuity",
+    "lab report",
+    "exhibit list"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Continuity/lab missing",
+  "expectedChaseItems": [
+    "continuity",
+    "lab analysis"
+  ],
+  "expectedSummaryRisk": "Provisional pending disclosure",
+  "expectedSourceStateBadges": [
+    "missing",
+    "provisional"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "BWV shows",
+    "ask the court to record"
+  ],
+  "polishOnlyWarnings": [],
+  "pdfLayoutType": "schedule_heavy",
+  "redTeamTrapType": "drug_continuity_missing",
+  "bundleStatus": "manifest_only"
+}

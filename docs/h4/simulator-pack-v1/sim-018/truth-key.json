@@ -1,0 +1,31 @@
+{
+  "caseId": "sim-018",
+  "title": "OCR-poor scanned MG6",
+  "fakeDefendant": "Defendant 018",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "OCR-poor scanned MG6",
+  "offenceFamily": "generic",
+  "profile": "generic_provisional",
+  "mainIssue": "No raw OCR in sendable copy",
+  "servedEvidence": [],
+  "referredOnlyEvidence": [],
+  "missingEvidence": [],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "No raw OCR in sendable copy",
+  "expectedChaseItems": [],
+  "expectedSummaryRisk": "Provisional pending disclosure",
+  "expectedSourceStateBadges": [
+    "missing",
+    "provisional"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [],
+  "blockingFailPatterns": [
+    "=== SECTION:",
+    "pipe fragments in CPS copy"
+  ],
+  "polishOnlyWarnings": [],
+  "pdfLayoutType": "bad_ocr",
+  "redTeamTrapType": "ocr_poor_mg6",
+  "bundleStatus": "manifest_only"
+}

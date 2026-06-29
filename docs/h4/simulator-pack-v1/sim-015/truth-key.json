@@ -1,0 +1,30 @@
+{
+  "caseId": "sim-015",
+  "title": "Motoring — fraud word bleed",
+  "fakeDefendant": "Defendant 015",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Motoring — fraud word bleed",
+  "offenceFamily": "motoring",
+  "profile": "motoring_sjp",
+  "mainIssue": "No fraud family bleed",
+  "servedEvidence": [],
+  "referredOnlyEvidence": [],
+  "missingEvidence": [],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "No fraud family bleed",
+  "expectedChaseItems": [],
+  "expectedSummaryRisk": "Provisional pending disclosure",
+  "expectedSourceStateBadges": [
+    "missing",
+    "provisional"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [],
+  "blockingFailPatterns": [
+    "fraud account-control"
+  ],
+  "polishOnlyWarnings": [],
+  "pdfLayoutType": "clean_digital",
+  "redTeamTrapType": "false_fraud_bleed",
+  "bundleStatus": "manifest_only"
+}

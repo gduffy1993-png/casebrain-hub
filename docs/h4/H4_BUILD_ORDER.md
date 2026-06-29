@@ -15,7 +15,7 @@
 | 3 | Fresh-account smoke every deploy (CB-FRESH) | ✅ ongoing |
 | 4 | Account/permission smoke | ✅ `scripts/h4-account-permission-smoke.ts` — master preview 25 pass / 0 fail |
 | 5 | **Criminal Bundle Simulator Library** — manifest v1 (30 cases) | ✅ `docs/h4/simulator-manifest.v1.json` |
-| 6 | Simulator pack v1 — generate + run 30 fake bundles | Not started |
+| 6 | Simulator pack v1 — generate + run 30 fake bundles | ✅ `scripts/h4-simulator-pack-v1-generate.ts` · gate 0 blocking |
 | 7 | Expand simulator: 30 → 75 → 150+ | Later |
 | 8 | Worst50 + simulator failures → Bad Output Memory | Later |
 
@@ -45,6 +45,15 @@ npx tsx scripts/simulator-manifest-v1.test.ts
 ```
 
 Manifest: `docs/h4/simulator-manifest.v1.json`
+
+### Step 6 pack
+
+```powershell
+npx tsx scripts/h4-simulator-pack-v1-generate.ts
+npx tsx scripts/h4-simulator-pack-v1-gate.ts
+```
+
+Pack: `docs/h4/simulator-pack-v1/` · Report: `artifacts/casebrain-qa/h4-simulator-pack-v1/simulator-pack-report.json`
 
 ### Step 2 gate
 

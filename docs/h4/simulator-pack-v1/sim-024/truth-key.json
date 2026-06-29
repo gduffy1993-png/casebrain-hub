@@ -1,0 +1,38 @@
+{
+  "caseId": "sim-024",
+  "title": "Missing MG6 — chase still needed",
+  "fakeDefendant": "Defendant 024",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Missing MG6 — chase still needed",
+  "offenceFamily": "generic",
+  "profile": "generic_provisional",
+  "mainIssue": "Chase MG6/unused schedule",
+  "servedEvidence": [],
+  "referredOnlyEvidence": [],
+  "missingEvidence": [
+    "MG6",
+    "unused schedule detail"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Chase MG6/unused schedule",
+  "expectedChaseItems": [
+    "MG6/unused schedule clarification"
+  ],
+  "expectedSummaryRisk": "Provisional pending disclosure",
+  "expectedSourceStateBadges": [
+    "missing",
+    "provisional"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "BWV shows",
+    "ask the court to record"
+  ],
+  "polishOnlyWarnings": [],
+  "pdfLayoutType": "clean_digital",
+  "redTeamTrapType": "mg6_missing",
+  "bundleStatus": "manifest_only"
+}

@@ -1,0 +1,35 @@
+{
+  "caseId": "sim-013",
+  "title": "Robbery — mixed defendant names",
+  "fakeDefendant": "Defendant 013",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Robbery — mixed defendant names",
+  "offenceFamily": "robbery",
+  "profile": "robbery_id",
+  "mainIssue": "Identity caution",
+  "servedEvidence": [],
+  "referredOnlyEvidence": [],
+  "missingEvidence": [],
+  "uncertainEvidence": [
+    "witness names conflict"
+  ],
+  "expectedTodayIssue": "Identity caution",
+  "expectedChaseItems": [],
+  "expectedSummaryRisk": "Provisional pending disclosure",
+  "expectedSourceStateBadges": [
+    "needs_review",
+    "not_safely_confirmed"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "BWV shows",
+    "ask the court to record"
+  ],
+  "polishOnlyWarnings": [],
+  "pdfLayoutType": "mixed_defendants",
+  "redTeamTrapType": "multi_defendant_names",
+  "bundleStatus": "manifest_only"
+}

@@ -1,0 +1,39 @@
+{
+  "caseId": "sim-003",
+  "title": "AEW — BWV referred only",
+  "fakeDefendant": "Defendant 003",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "AEW — BWV referred only",
+  "offenceFamily": "violence_aew",
+  "profile": "aew_bwv",
+  "mainIssue": "BWV not safely served",
+  "servedEvidence": [],
+  "referredOnlyEvidence": [
+    "BWV"
+  ],
+  "missingEvidence": [],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "BWV not safely served",
+  "expectedChaseItems": [
+    "body-worn video full export"
+  ],
+  "expectedSummaryRisk": "Provisional pending disclosure",
+  "expectedSourceStateBadges": [
+    "missing",
+    "provisional"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "BWV shows assault"
+  ],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "BWV shows",
+    "ask the court to record"
+  ],
+  "polishOnlyWarnings": [],
+  "pdfLayoutType": "clean_digital",
+  "redTeamTrapType": "bwv_referred_only",
+  "bundleStatus": "manifest_only"
+}

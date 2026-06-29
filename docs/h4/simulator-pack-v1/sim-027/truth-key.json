@@ -1,0 +1,33 @@
+{
+  "caseId": "sim-027",
+  "title": "Large complex fraud",
+  "fakeDefendant": "Defendant 027",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Large complex fraud",
+  "offenceFamily": "fraud",
+  "profile": "fraud_account_control",
+  "mainIssue": "Needs review — not overconfident",
+  "servedEvidence": [],
+  "referredOnlyEvidence": [],
+  "missingEvidence": [],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Needs review — not overconfident",
+  "expectedChaseItems": [],
+  "expectedSummaryRisk": "Provisional pending disclosure",
+  "expectedSourceStateBadges": [
+    "needs_review",
+    "provisional"
+  ],
+  "expectedSendability": "needs_solicitor_review",
+  "mustNotSay": [],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "BWV shows",
+    "ask the court to record"
+  ],
+  "polishOnlyWarnings": [],
+  "pdfLayoutType": "large_messy",
+  "redTeamTrapType": "large_complex_bundle",
+  "bundleStatus": "manifest_only"
+}

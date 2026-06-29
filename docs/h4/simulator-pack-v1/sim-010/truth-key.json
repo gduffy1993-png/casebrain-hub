@@ -1,0 +1,39 @@
+{
+  "caseId": "sim-010",
+  "title": "Fraud — bank schedule absent",
+  "fakeDefendant": "Defendant 010",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Fraud — bank schedule absent",
+  "offenceFamily": "fraud",
+  "profile": "fraud_account_control",
+  "mainIssue": "Account control not proved",
+  "servedEvidence": [],
+  "referredOnlyEvidence": [],
+  "missingEvidence": [
+    "bank schedules",
+    "device extraction"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Account control not proved",
+  "expectedChaseItems": [
+    "account ownership",
+    "bank schedules"
+  ],
+  "expectedSummaryRisk": "Provisional pending disclosure",
+  "expectedSourceStateBadges": [
+    "missing",
+    "provisional"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "BWV shows",
+    "ask the court to record"
+  ],
+  "polishOnlyWarnings": [],
+  "pdfLayoutType": "tables",
+  "redTeamTrapType": "bank_schedule_missing",
+  "bundleStatus": "manifest_only"
+}

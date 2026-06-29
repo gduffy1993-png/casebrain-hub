@@ -1,0 +1,38 @@
+{
+  "caseId": "sim-012",
+  "title": "Robbery — CCTV missing",
+  "fakeDefendant": "Defendant 012",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Robbery — CCTV missing",
+  "offenceFamily": "robbery",
+  "profile": "robbery_id",
+  "mainIssue": "ID/CCTV gap",
+  "servedEvidence": [],
+  "referredOnlyEvidence": [
+    "CCTV"
+  ],
+  "missingEvidence": [],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "ID/CCTV gap",
+  "expectedChaseItems": [
+    "CCTV full window",
+    "ID procedure material"
+  ],
+  "expectedSummaryRisk": "Provisional pending disclosure",
+  "expectedSourceStateBadges": [
+    "missing",
+    "provisional"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "BWV shows",
+    "ask the court to record"
+  ],
+  "polishOnlyWarnings": [],
+  "pdfLayoutType": "clean_digital",
+  "redTeamTrapType": "cctv_referred_only",
+  "bundleStatus": "manifest_only"
+}

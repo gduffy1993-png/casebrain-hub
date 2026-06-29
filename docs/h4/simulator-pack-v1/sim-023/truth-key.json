@@ -1,0 +1,33 @@
+{
+  "caseId": "sim-023",
+  "title": "Police jargon only",
+  "fakeDefendant": "Defendant 023",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Police jargon only",
+  "offenceFamily": "generic",
+  "profile": "generic_provisional",
+  "mainIssue": "Profile unclear/provisional",
+  "servedEvidence": [],
+  "referredOnlyEvidence": [],
+  "missingEvidence": [],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Profile unclear/provisional",
+  "expectedChaseItems": [],
+  "expectedSummaryRisk": "Provisional pending disclosure",
+  "expectedSourceStateBadges": [
+    "provisional",
+    "needs_review"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "BWV shows",
+    "ask the court to record"
+  ],
+  "polishOnlyWarnings": [],
+  "pdfLayoutType": "bad_ocr",
+  "redTeamTrapType": "jargon_only",
+  "bundleStatus": "manifest_only"
+}

@@ -1,0 +1,37 @@
+{
+  "caseId": "sim-028",
+  "title": "Expert report mentioned only",
+  "fakeDefendant": "Defendant 028",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Expert report mentioned only",
+  "offenceFamily": "generic",
+  "profile": "generic_provisional",
+  "mainIssue": "Chase expert report",
+  "servedEvidence": [],
+  "referredOnlyEvidence": [
+    "expert report"
+  ],
+  "missingEvidence": [],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Chase expert report",
+  "expectedChaseItems": [],
+  "expectedSummaryRisk": "Provisional pending disclosure",
+  "expectedSourceStateBadges": [
+    "missing",
+    "provisional"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "expert confirms"
+  ],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "BWV shows",
+    "ask the court to record"
+  ],
+  "polishOnlyWarnings": [],
+  "pdfLayoutType": "schedule_heavy",
+  "redTeamTrapType": "expert_mentioned_only",
+  "bundleStatus": "manifest_only"
+}

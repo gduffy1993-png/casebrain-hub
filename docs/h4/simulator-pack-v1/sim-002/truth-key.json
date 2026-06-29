@@ -1,0 +1,37 @@
+{
+  "caseId": "sim-002",
+  "title": "Harassment — wrong second male",
+  "fakeDefendant": "Defendant 002",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Harassment — wrong second male",
+  "offenceFamily": "harassment",
+  "profile": "harassment_digital_attribution",
+  "mainIssue": "Attribution unclear",
+  "servedEvidence": [],
+  "referredOnlyEvidence": [],
+  "missingEvidence": [],
+  "uncertainEvidence": [
+    "second male mentioned"
+  ],
+  "expectedTodayIssue": "Attribution unclear",
+  "expectedChaseItems": [
+    "subscriber/account data"
+  ],
+  "expectedSummaryRisk": "Provisional pending disclosure",
+  "expectedSourceStateBadges": [
+    "missing",
+    "provisional"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "BWV shows",
+    "ask the court to record"
+  ],
+  "polishOnlyWarnings": [],
+  "pdfLayoutType": "clean_digital",
+  "redTeamTrapType": "wrong_second_male",
+  "bundleStatus": "manifest_only"
+}

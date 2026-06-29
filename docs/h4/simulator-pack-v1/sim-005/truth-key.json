@@ -1,0 +1,37 @@
+{
+  "caseId": "sim-005",
+  "title": "Domestic assault — unsigned MG11",
+  "fakeDefendant": "Defendant 005",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Domestic assault — unsigned MG11",
+  "offenceFamily": "violence_domestic",
+  "profile": "violence_domestic",
+  "mainIssue": "Complainant account not final",
+  "servedEvidence": [],
+  "referredOnlyEvidence": [
+    "MG11 draft"
+  ],
+  "missingEvidence": [],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Complainant account not final",
+  "expectedChaseItems": [],
+  "expectedSummaryRisk": "Provisional pending disclosure",
+  "expectedSourceStateBadges": [
+    "missing",
+    "provisional"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "final witness statement proves injury"
+  ],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "BWV shows",
+    "ask the court to record"
+  ],
+  "polishOnlyWarnings": [],
+  "pdfLayoutType": "clean_digital",
+  "redTeamTrapType": "mg11_unsigned",
+  "bundleStatus": "manifest_only"
+}

@@ -1,0 +1,42 @@
+{
+  "caseId": "sim-001",
+  "title": "Harassment — screenshots only",
+  "fakeDefendant": "Defendant 001",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Harassment — screenshots only",
+  "offenceFamily": "harassment",
+  "profile": "harassment_digital_attribution",
+  "mainIssue": "Attribution not safely proved",
+  "servedEvidence": [],
+  "referredOnlyEvidence": [],
+  "missingEvidence": [
+    "subscriber data",
+    "message export",
+    "call logs"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Attribution not safely proved",
+  "expectedChaseItems": [
+    "phone/subscriber data",
+    "message export"
+  ],
+  "expectedSummaryRisk": "Provisional pending disclosure",
+  "expectedSourceStateBadges": [
+    "missing",
+    "provisional"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "defendant sent messages as fact"
+  ],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "BWV shows",
+    "ask the court to record"
+  ],
+  "polishOnlyWarnings": [],
+  "pdfLayoutType": "clean_digital",
+  "redTeamTrapType": "messages_without_account_data",
+  "bundleStatus": "manifest_only"
+}

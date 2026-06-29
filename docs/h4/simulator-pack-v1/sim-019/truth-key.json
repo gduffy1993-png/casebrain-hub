@@ -1,0 +1,35 @@
+{
+  "caseId": "sim-019",
+  "title": "Weird index only",
+  "fakeDefendant": "Defendant 019",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Weird index only",
+  "offenceFamily": "generic",
+  "profile": "generic_provisional",
+  "mainIssue": "Referred-only index trap",
+  "servedEvidence": [],
+  "referredOnlyEvidence": [
+    "indexed material"
+  ],
+  "missingEvidence": [],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Referred-only index trap",
+  "expectedChaseItems": [],
+  "expectedSummaryRisk": "Provisional pending disclosure",
+  "expectedSourceStateBadges": [
+    "referred_only",
+    "missing"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "BWV shows",
+    "ask the court to record"
+  ],
+  "polishOnlyWarnings": [],
+  "pdfLayoutType": "index_only",
+  "redTeamTrapType": "index_only_bundle",
+  "bundleStatus": "manifest_only"
+}

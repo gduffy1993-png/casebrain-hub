@@ -1,0 +1,31 @@
+{
+  "caseId": "sim-022",
+  "title": "Mixed offences in one PDF",
+  "fakeDefendant": "Defendant 022",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Mixed offences in one PDF",
+  "offenceFamily": "mixed",
+  "profile": "mixed_family",
+  "mainIssue": "No wrong-family bleed",
+  "servedEvidence": [],
+  "referredOnlyEvidence": [],
+  "missingEvidence": [],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "No wrong-family bleed",
+  "expectedChaseItems": [],
+  "expectedSummaryRisk": "Provisional pending disclosure",
+  "expectedSourceStateBadges": [
+    "missing",
+    "provisional"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [],
+  "blockingFailPatterns": [
+    "drug continuity on harassment matter",
+    "fraud route on violence-only charge"
+  ],
+  "polishOnlyWarnings": [],
+  "pdfLayoutType": "mixed_offences",
+  "redTeamTrapType": "mixed_offences_pdf",
+  "bundleStatus": "manifest_only"
+}

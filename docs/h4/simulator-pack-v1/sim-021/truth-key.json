@@ -1,0 +1,35 @@
+{
+  "caseId": "sim-021",
+  "title": "Conflicting hearing dates",
+  "fakeDefendant": "Defendant 021",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Conflicting hearing dates",
+  "offenceFamily": "generic",
+  "profile": "generic_provisional",
+  "mainIssue": "Date review required",
+  "servedEvidence": [],
+  "referredOnlyEvidence": [],
+  "missingEvidence": [],
+  "uncertainEvidence": [
+    "hearing date conflict"
+  ],
+  "expectedTodayIssue": "Date review — hearing date needs confirmation",
+  "expectedChaseItems": [],
+  "expectedSummaryRisk": "Provisional pending disclosure",
+  "expectedSourceStateBadges": [
+    "missing",
+    "provisional"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "BWV shows",
+    "ask the court to record"
+  ],
+  "polishOnlyWarnings": [],
+  "pdfLayoutType": "clean_digital",
+  "redTeamTrapType": "conflicting_dates",
+  "bundleStatus": "manifest_only"
+}

@@ -1,0 +1,38 @@
+{
+  "caseId": "sim-016",
+  "title": "Sexual — ABE referred only",
+  "fakeDefendant": "Defendant 016",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Sexual — ABE referred only",
+  "offenceFamily": "sexual",
+  "profile": "sexual_abe",
+  "mainIssue": "Strict caution — ABE absent",
+  "servedEvidence": [],
+  "referredOnlyEvidence": [
+    "ABE interview"
+  ],
+  "missingEvidence": [],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Strict caution — ABE absent",
+  "expectedChaseItems": [],
+  "expectedSummaryRisk": "Provisional pending disclosure",
+  "expectedSourceStateBadges": [
+    "referred_only",
+    "needs_review"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "ABE confirms",
+    "interview proves"
+  ],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "BWV shows",
+    "ask the court to record"
+  ],
+  "polishOnlyWarnings": [],
+  "pdfLayoutType": "clean_digital",
+  "redTeamTrapType": "abe_referred_only",
+  "bundleStatus": "manifest_only"
+}

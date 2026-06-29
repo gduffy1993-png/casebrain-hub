@@ -1,0 +1,39 @@
+{
+  "caseId": "sim-025",
+  "title": "BWV stills only",
+  "fakeDefendant": "Defendant 025",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "BWV stills only",
+  "offenceFamily": "violence_aew",
+  "profile": "aew_bwv",
+  "mainIssue": "Chase full BWV export",
+  "servedEvidence": [
+    "BWV stills/screenshots"
+  ],
+  "referredOnlyEvidence": [],
+  "missingEvidence": [
+    "full BWV export"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Chase full BWV export",
+  "expectedChaseItems": [],
+  "expectedSummaryRisk": "Provisional pending disclosure",
+  "expectedSourceStateBadges": [
+    "missing",
+    "provisional"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [
+    "full BWV served"
+  ],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "BWV shows",
+    "ask the court to record"
+  ],
+  "polishOnlyWarnings": [],
+  "pdfLayoutType": "clean_digital",
+  "redTeamTrapType": "bwv_stills_only",
+  "bundleStatus": "manifest_only"
+}

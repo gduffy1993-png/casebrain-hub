@@ -36,7 +36,7 @@
 | 3 | Fresh-account smoke (ongoing) | ✅ |
 | 4 | Account/permission smoke | ✅ master preview — 25 pass / 0 fail |
 | 5 | Simulator manifest v1 — 30 cases | ✅ `docs/h4/simulator-manifest.v1.json` |
-| 6 | Simulator pack v1 | — |
+| 6 | Simulator pack v1 | ✅ 30 cases — gate 0 blocking |
 | 7 | Expand 30 → 75 → 150+ | — |
 | 8 | Worst50 + simulator → Bad Output Memory | — |
 
@@ -50,6 +50,8 @@ npx tsx scripts/h4-export-copy-gate.ts
 npx tsx scripts/h4-account-permission-smoke.ts
 npx tsx scripts/build-simulator-manifest-v1.ts
 npx tsx scripts/simulator-manifest-v1.test.ts
+npx tsx scripts/h4-simulator-pack-v1-generate.ts
+npx tsx scripts/h4-simulator-pack-v1-gate.ts
 npx tsx scripts/trust-feedback-persistence-verify.ts
 npx tsx scripts/golden-case-pack-gate.ts --pack gold --min-runnable 100 --max-polish-rate 1
 npx tsx scripts/trust-feedback.test.ts

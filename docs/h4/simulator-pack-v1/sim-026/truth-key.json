@@ -1,0 +1,38 @@
+{
+  "caseId": "sim-026",
+  "title": "Custody extract only",
+  "fakeDefendant": "Defendant 026",
+  "fakeCourt": "Northgate Magistrates' Court",
+  "offenceWording": "Custody extract only",
+  "offenceFamily": "violence_aew",
+  "profile": "custody_pace",
+  "mainIssue": "Full custody/PACE still outstanding",
+  "servedEvidence": [
+    "custody extract"
+  ],
+  "referredOnlyEvidence": [],
+  "missingEvidence": [
+    "full custody log",
+    "interview recording"
+  ],
+  "uncertainEvidence": [],
+  "expectedTodayIssue": "Full custody/PACE still outstanding",
+  "expectedChaseItems": [],
+  "expectedSummaryRisk": "Provisional pending disclosure",
+  "expectedSourceStateBadges": [
+    "missing",
+    "provisional"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSay": [],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "BWV shows",
+    "ask the court to record"
+  ],
+  "polishOnlyWarnings": [],
+  "pdfLayoutType": "scanned_pdf",
+  "redTeamTrapType": "custody_extract_only",
+  "bundleStatus": "manifest_only"
+}
