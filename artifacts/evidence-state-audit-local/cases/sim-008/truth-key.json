@@ -1,0 +1,43 @@
+{
+  "caseId": "sim-008",
+  "title": "PWITS — missing continuity",
+  "offenceFamily": "drugs",
+  "offenceWording": "PWITS — missing continuity",
+  "profile": "drugs_pwits",
+  "bundleStatus": "manifest_only",
+  "evidenceItems": [
+    {
+      "evidence_item": "continuity",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "lab report",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "exhibit list",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "continuity",
+    "lab analysis"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "BWV shows",
+    "ask the court to record"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-113",
+  "title": "Harassment — wrong second account attribution",
+  "offenceFamily": "harassment",
+  "offenceWording": "Harassment",
+  "profile": "malicious_comms",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "message screenshots",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "platform export",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "subscriber proof",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "attribution certificate",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "subscriber records",
+    "platform export",
+    "IP/login data"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "account belongs to defendant as fact",
+    "sender proved"
+  ],
+  "blockingFailPatterns": [
+    "account belongs to defendant",
+    "sender proved",
+    "attribution confirmed",
+    "we win",
+    "case collapses"
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "caseId": "sim-119",
+  "title": "Drink drive — procedure record missing OCR",
+  "offenceFamily": "motoring",
+  "offenceWording": "Drive motor vehicle with excess alcohol",
+  "profile": "drink_drive_procedure",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "OCR procedure summary",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MGDDB",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MGDDB printout",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "procedure record",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "MGDDB printout",
+    "breath procedure record",
+    "calibration"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "procedure complied as fact",
+    "breath reading proved"
+  ],
+  "blockingFailPatterns": [
+    "procedure complied",
+    "breath reading proved",
+    "MGDDB confirms excess",
+    "we win",
+    "case collapses"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "caseId": "sim-014",
+  "title": "Motoring SJP thin bundle",
+  "offenceFamily": "motoring",
+  "offenceWording": "Motoring SJP thin bundle",
+  "profile": "motoring_sjp",
+  "bundleStatus": "manifest_only",
+  "evidenceItems": [],
+  "expectedChaseItems": [],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "BWV shows",
+    "ask the court to record"
+  ]
+}

@@ -1,0 +1,275 @@
+{
+  "generatedAt": "2026-06-29T17:02:02.672Z",
+  "caseId": "sim-033",
+  "source": "CaseBrain H5 presentation builders (no Brain 1 mutation)",
+  "matterConfidence": {
+    "level": "needs_review",
+    "label": "Needs review before relying",
+    "sourceBadges": [
+      "provisional",
+      "missing",
+      "referred_only",
+      "needs_review"
+    ],
+    "chaseSendability": "needs_solicitor_review",
+    "summarySendability": "needs_solicitor_review",
+    "safeCourtLineStatus": "needs_review",
+    "doNotRelyYetReason": "Human review or material gaps flagged on current papers."
+  },
+  "evidenceStates": [
+    {
+      "label": "MG6 / unused schedule clarification",
+      "inferredSourceState": "provisional",
+      "existenceLabel": "Unknown",
+      "sendability": null,
+      "baseStatus": "Outstanding",
+      "source": "CPS / disclosure officer",
+      "evidenceAnchor": "Additional source-material on file"
+    },
+    {
+      "label": "Exhibit mapping / provenance",
+      "inferredSourceState": "missing",
+      "existenceLabel": "Missing",
+      "sendability": null,
+      "baseStatus": "Outstanding",
+      "source": "Crown / disclosure officer",
+      "evidenceAnchor": "Served material | 5+ | message excerpts relating to Samira Khan only; partial exhibit list"
+    }
+  ],
+  "fiveAnswersEvidenceRows": [
+    {
+      "label": "MG6 / unused schedule clarification",
+      "existence": "unknown",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position."
+    },
+    {
+      "label": "Exhibit mapping / provenance",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position. — still chase if disclosure-relevant."
+    },
+    {
+      "label": "Served material | 5+ | message excerpts relating to Samira Khan only; partial exhibit list",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Partial media on bundle — not full export; treat as incomplete for audit."
+    },
+    {
+      "label": "Statement of Offence:",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG6C/PAR — partial exhibit list — served on bundle.",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "=== SECTION: MG11 ===",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG11 — COMPLAINANT/WITNESS STATEMENT",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "Witness account on file — attribution and context require review.",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG6C/TEL — telecom source downloads — referred on MG6 — export not served.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG6C/LAB — lab analysis summary — referred on MG6 — export not served.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG6C/PER — per-defendant exhibit map — outstanding — not on bundle.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG6C/CON — continuity for each co-defendant — not this defendant — outstanding — not on bundle.",
+      "existence": "other_defendant_only",
+      "reliability": "needs_review",
+      "note": "Co-defendant-only material (continuity for each co-defendant) — do not import to this defendant's case theory, client summary, or CPS chase."
+    },
+    {
+      "label": "MG6C/TEL — telecom/subscriber downloads — outstanding — not on bundle.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG6C/FUL — full lab report — outstanding — not on bundle.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "Per-defendant exhibit map and telecom downloads outstanding.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "per-defendant exhibit map",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "Co-defendant-only — continuity for each co-defendant — not this defendant",
+      "existence": "other_defendant_only",
+      "reliability": "needs_review",
+      "note": "Co-defendant-only material (continuity for each co-defendant) — do not import to this defendant's case theory, client summary, or CPS chase."
+    },
+    {
+      "label": "telecom/subscriber downloads",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    }
+  ],
+  "warningsAndGaps": {
+    "doNotOverstate": [
+      "Do not import BWV unless the papers support it.",
+      "Do not import custody safeguards unless the papers support it.",
+      "Do not import ABE unless the papers support it.",
+      "Assumed position may conflict with interview or served evidence.",
+      "Do not state \"CAD/999 timing supports\" — CAD/999 material is not safely on file as served",
+      "Do not import co-defendant material (MG6C/CON — continuity for each co-defendant — not this defendant — outstanding — not on bundle.) to this defendant's case theory.",
+      "Do not import co-defendant material (Co-defendant-only — continuity for each co-defendant — not this defendant) to this defendant's case theory."
+    ],
+    "hardRules": [
+      "Served does not mean reliable.",
+      "Missing does not mean irrelevant.",
+      "Referred only does not mean usable.",
+      "Inference must be labelled as inference.",
+      "No line is sendable just because a source exists."
+    ],
+    "chaseItems": [
+      {
+        "label": "MG6 / unused schedule clarification",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide mG6 / unused schedule clarification or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: provisional. Source: CPS / disclosure officer. Solicitor review required before sending.]"
+      },
+      {
+        "label": "Exhibit mapping / provenance",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide exhibit mapping / provenance or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: missing. Source: Crown / disclosure officer. Solicitor review required before sending.]"
+      }
+    ]
+  },
+  "courtNote": {
+    "text": "The defence asks the court to record that the full extraction/source material remains outstanding.\n\n[CaseBrain — court line copy. Evidence state: needs review. Confirm before addressing the court.]",
+    "sendabilityLabel": "Solicitor review required",
+    "canCopy": true,
+    "blockedReason": null
+  },
+  "exportVersion": {
+    "exportId": "exp-sim-033-20260629170202",
+    "caseId": "sim-033",
+    "generatedAt": "2026-06-29T17:02:02.672Z",
+    "exportType": "h5_export_pack_v1",
+    "bundleVersionLabel": "overview-export@2026-06-29",
+    "appVersion": "evidence-state-audit-snapshot",
+    "sourceStatesIncluded": [
+      "provisional",
+      "missing",
+      "referred_only",
+      "needs_review"
+    ],
+    "sendability": "needs_solicitor_review",
+    "warningCount": 5,
+    "blockedReason": null,
+    "reviewFooter": "Solicitor review required before sending to CPS, court, or client."
+  },
+  "truthKeyComparison": [
+    {
+      "truthItem": "message excerpts relating to Samira Khan only",
+      "truthState": "served",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "partial exhibit list",
+      "truthState": "served",
+      "casebrainLabel": "Exhibit mapping / provenance",
+      "casebrainState": "missing",
+      "aligned": false
+    },
+    {
+      "truthItem": "telecom source downloads",
+      "truthState": "referred_only",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "lab analysis summary",
+      "truthState": "referred_only",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "per-defendant exhibit map",
+      "truthState": "missing",
+      "casebrainLabel": "Exhibit mapping / provenance",
+      "casebrainState": "missing",
+      "aligned": true
+    },
+    {
+      "truthItem": "continuity for each co-defendant",
+      "truthState": "missing",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "telecom/subscriber downloads",
+      "truthState": "missing",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "full lab report",
+      "truthState": "missing",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "supply chain inferred from group chat",
+      "truthState": "not_safely_confirmed",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "co-defendant A message attribution",
+      "truthState": "not_safely_confirmed",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    }
+  ]
+}

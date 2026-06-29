@@ -1,0 +1,59 @@
+{
+  "caseId": "sim-145",
+  "title": "AEW — BWV index-only with custody extract",
+  "offenceFamily": "aew_police_contact",
+  "offenceWording": "Assault on emergency worker",
+  "profile": "police_contact_bwv_custody",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "custody extract fragment",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "custody_pace",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV full export",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV download",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full custody",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "custody_pace",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "full BWV",
+    "full custody record",
+    "PACE material"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "BWV shows contact",
+    "custody proves safeguards"
+  ],
+  "blockingFailPatterns": [
+    "BWV shows",
+    "custody proves safeguards",
+    "assault proved",
+    "we win",
+    "case collapses"
+  ]
+}

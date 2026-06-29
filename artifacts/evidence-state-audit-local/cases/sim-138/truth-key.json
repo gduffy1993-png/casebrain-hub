@@ -1,0 +1,70 @@
+{
+  "caseId": "sim-138",
+  "title": "Corrected indictment — conflicting hearing dates",
+  "offenceFamily": "mixed_unclear",
+  "offenceWording": "Offence per amended indictment",
+  "profile": "generic_provisional",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "amended indictment",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "conflicting listing notices",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "court listing",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "confirmed listing",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "count linkage",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "correct hearing date",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "amended indictment",
+    "listing confirmation",
+    "MG6"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "hearing date confirmed as fact",
+    "charges final without review"
+  ],
+  "blockingFailPatterns": [
+    "hearing date confirmed",
+    "charges final without",
+    "indictment confirms guilt",
+    "we win",
+    "case collapses"
+  ]
+}

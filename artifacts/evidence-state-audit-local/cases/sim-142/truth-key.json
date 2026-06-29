@@ -1,0 +1,55 @@
+{
+  "caseId": "sim-142",
+  "title": "Perverting justice — fraud paperwork bleed OCR",
+  "offenceFamily": "perverting_justice",
+  "offenceWording": "Perverting the course of justice",
+  "profile": "generic_provisional",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "OCR fraud-style exhibits",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "email export",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "chronology",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "intent evidence",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "email/source export",
+    "chronology",
+    "intent material"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "fraud account-control route as final",
+    "PWITS route on perverting matter"
+  ],
+  "blockingFailPatterns": [
+    "fraud account-control route",
+    "PWITS route on perverting",
+    "dishonesty pressure as final",
+    "we win",
+    "case collapses"
+  ]
+}

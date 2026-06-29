@@ -1,0 +1,134 @@
+{
+  "caseId": "sim-075",
+  "title": "Mega-procedure trap with corrected charge sheet, mixed defendants, and missing MG5",
+  "offenceFamily": "mixed_unclear",
+  "offenceWording": "Mixed allegations: assault, criminal damage, and breach of order",
+  "profile": "large_messy_bundle",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "corrected charge sheet",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "selected MG11s",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "partial exhibit list",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG6C",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "CCTV",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "cctv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "order/service proof",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 case summary",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG6 schedules",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full exhibit list",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "defendant-specific allegations",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "CCTV",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "cctv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "order/service proof",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "current charge set, which defendant each allegation concerns, and what material is served",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "MG5/MG6 schedules",
+    "defendant-specific allegation map",
+    "full exhibit list",
+    "CCTV/media",
+    "order/service proof"
+  ],
+  "expectedSendability": "blocked",
+  "mustNotSayGlobal": [
+    "safe to send",
+    "case summary confirms",
+    "current charges are clear",
+    "Arun committed"
+  ],
+  "blockingFailPatterns": [
+    "safe to send",
+    "case summary confirms",
+    "current charges are clear",
+    "Arun committed"
+  ]
+}

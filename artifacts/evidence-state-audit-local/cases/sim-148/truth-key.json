@@ -1,0 +1,58 @@
+{
+  "caseId": "sim-148",
+  "title": "Search BWV — screenshot stills duplicate",
+  "offenceFamily": "drugs_pwits",
+  "offenceWording": "PWITS / search evidence",
+  "profile": "drugs_pwits",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "search BWV stills",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full search BWV",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV export",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "lab",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "search BWV export",
+    "continuity",
+    "lab report"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "search BWV shows drugs",
+    "stills prove search"
+  ],
+  "blockingFailPatterns": [
+    "search BWV shows",
+    "stills prove search",
+    "BWV shows drugs",
+    "we win",
+    "case collapses"
+  ]
+}

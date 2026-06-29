@@ -1,0 +1,62 @@
+{
+  "caseId": "sim-123",
+  "title": "Motoring — corrected charge duplicate pages",
+  "offenceFamily": "motoring",
+  "offenceWording": "Careless driving (amended from speeding)",
+  "profile": "drink_drive_procedure",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "amended charge",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "duplicate old pages",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "device record",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "live count linkage",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "procedure record",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "amended charge clarity",
+    "procedure records",
+    "calibration"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "careless driving proved",
+    "speeding still live as fact"
+  ],
+  "blockingFailPatterns": [
+    "careless driving proved",
+    "offence proved as fact",
+    "procedure complied",
+    "we win",
+    "case collapses"
+  ]
+}

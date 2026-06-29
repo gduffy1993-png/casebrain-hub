@@ -1,0 +1,66 @@
+{
+  "caseId": "sim-140",
+  "title": "Duplicate MG11 — conflicting accounts",
+  "offenceFamily": "domestic",
+  "offenceWording": "Assault (domestic)",
+  "profile": "domestic_harassment",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "two conflicting MG11 drafts",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "signed final MG11",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "clarification",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "which account is current",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "signed MG11 versions",
+    "witness clarification",
+    "BWV"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "MG11 proves assault",
+    "accounts consistent as fact"
+  ],
+  "blockingFailPatterns": [
+    "MG11 proves assault",
+    "accounts consistent",
+    "assault proved",
+    "we win",
+    "case collapses"
+  ]
+}

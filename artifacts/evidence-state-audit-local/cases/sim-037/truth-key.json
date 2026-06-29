@@ -1,0 +1,88 @@
+{
+  "caseId": "sim-037",
+  "title": "Phone download — screenshots only, scope missing",
+  "offenceFamily": "drugs_pwits",
+  "offenceWording": "Possession with intent to supply Class B drugs",
+  "profile": "phone_download_attribution",
+  "bundleStatus": "manifest_only",
+  "evidenceItems": [
+    {
+      "evidence_item": "message screenshots",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "photo pages from handset",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full handset download summary mention",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full phone extraction download",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "extraction metadata",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "search terms/scope schedule",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "continuity certificate",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "attribution/context of screenshots",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "full extraction",
+    "metadata",
+    "search scope",
+    "continuity"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "download proves",
+    "phone proves attribution",
+    "messages prove supply as fact"
+  ],
+  "blockingFailPatterns": [
+    "download proves",
+    "extraction shows",
+    "phone proves attribution",
+    "metadata confirms guilt"
+  ]
+}

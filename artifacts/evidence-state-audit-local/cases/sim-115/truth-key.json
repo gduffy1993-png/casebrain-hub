@@ -1,0 +1,55 @@
+{
+  "caseId": "sim-115",
+  "title": "Imitation firearm — bad OCR classification",
+  "offenceFamily": "weapons",
+  "offenceWording": "Possession of an imitation firearm",
+  "profile": "firearm_imitation",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "OCR expert summary",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "ballistics/expert report",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "expert report",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "continuity",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "expert classification report",
+    "scene photos",
+    "continuity"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "imitation firearm proved",
+    "intended to cause fear proved"
+  ],
+  "blockingFailPatterns": [
+    "imitation firearm proved",
+    "intended to cause fear proved",
+    "firearm report confirms",
+    "we win",
+    "case collapses"
+  ]
+}

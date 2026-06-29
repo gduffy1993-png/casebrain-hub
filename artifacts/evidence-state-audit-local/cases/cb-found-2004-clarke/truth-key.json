@@ -1,0 +1,62 @@
+{
+  "caseId": "cb-found-2004-clarke",
+  "title": "R v Daniel Clarke — foundation First appearance",
+  "offenceFamily": "generic_motoring_provisional",
+  "offenceWording": "Driving a motor vehicle after consuming so much alcohol that the proportion of alcohol in breath exceeded the prescribed limit, contrary to section 5(1)(a) of the Road Traffic Act 1988",
+  "profile": "generic_motoring_provisional",
+  "bundleStatus": "gold_pack",
+  "evidenceItems": [
+    {
+      "evidence_item": "mg11",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "mg6",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "calibration",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "analyst material",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "charge sheet",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "mg5",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    }
+  ],
+  "expectedChaseItems": [
+    "calibration",
+    "analyst material"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "Do not import fraud account control unless the papers support it.",
+    "Do not import pwits phone attribution unless the papers support it.",
+    "Do not import robbery identification unless the papers support it."
+  ],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "guaranteed",
+    "safe to send"
+  ]
+}

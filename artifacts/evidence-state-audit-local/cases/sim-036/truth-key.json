@@ -1,0 +1,90 @@
+{
+  "caseId": "sim-036",
+  "title": "Historic sexual — ABE referred, delay context",
+  "offenceFamily": "sexual",
+  "offenceWording": "Sexual assault — historic allegation (indictment)",
+  "profile": "sexual_historic",
+  "bundleStatus": "manifest_only",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5 summary only",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "ABE interview recording",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "interview",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "third-party school/medical records mention",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "first complainant account/MG11",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "third-party records",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "delay/context material",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "historic delay context",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "complainant first account timing",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "ABE interview",
+    "first complainant account",
+    "third-party records",
+    "delay context"
+  ],
+  "expectedSendability": "needs_solicitor_review",
+  "mustNotSayGlobal": [
+    "ABE confirms",
+    "interview proves",
+    "complainant account final",
+    "offence proved on papers"
+  ],
+  "blockingFailPatterns": [
+    "ABE confirms",
+    "interview proves",
+    "complainant proves",
+    "account establishes guilt"
+  ]
+}

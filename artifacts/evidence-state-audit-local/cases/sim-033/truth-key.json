@@ -1,0 +1,102 @@
+{
+  "caseId": "sim-033",
+  "title": "Multi-defendant drug conspiracy PWITS",
+  "offenceFamily": "drugs_conspiracy",
+  "offenceWording": "Conspiracy to supply Class A drugs with co-defendants (indictment)",
+  "profile": "drugs_conspiracy_multi_def",
+  "bundleStatus": "manifest_only",
+  "evidenceItems": [
+    {
+      "evidence_item": "message excerpts relating to Samira Khan only",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "partial exhibit list",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "telecom source downloads",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "lab analysis summary",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "per-defendant exhibit map",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "continuity for each co-defendant",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "telecom/subscriber downloads",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full lab report",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "supply chain inferred from group chat",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "co-defendant A message attribution",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "per-defendant exhibit map",
+    "telecom downloads",
+    "lab/continuity",
+    "co-defendant segregation"
+  ],
+  "expectedSendability": "needs_solicitor_review",
+  "mustNotSayGlobal": [
+    "conspiracy role proved",
+    "co-defendant supply proved for this defendant",
+    "supply chain proved from messages alone"
+  ],
+  "blockingFailPatterns": [
+    "co-defendant supply proved for this defendant",
+    "conspiracy role established",
+    "leading role proved",
+    "principal supplier"
+  ]
+}

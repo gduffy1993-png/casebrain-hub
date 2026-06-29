@@ -1,0 +1,37 @@
+{
+  "caseId": "sim-025",
+  "title": "BWV stills only",
+  "offenceFamily": "violence_aew",
+  "offenceWording": "BWV stills only",
+  "profile": "aew_bwv",
+  "bundleStatus": "manifest_only",
+  "evidenceItems": [
+    {
+      "evidence_item": "BWV stills/screenshots",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full BWV export",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "full BWV served"
+  ],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "BWV shows",
+    "ask the court to record"
+  ]
+}

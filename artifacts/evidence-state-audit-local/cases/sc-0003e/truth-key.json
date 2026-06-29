@@ -1,0 +1,113 @@
+{
+  "caseId": "sc-0003e",
+  "title": "R v Sam Okonkwo — pwits_phone corpus",
+  "offenceFamily": "pwits_phone",
+  "offenceWording": "Possession of a controlled drug with intent to supply — Misuse of Drugs Act 1971 s.5(3)",
+  "profile": "pwits_phone_attribution",
+  "bundleStatus": "gold_pack",
+  "evidenceItems": [
+    {
+      "evidence_item": "Full phone extraction",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "Phone attribution / ownership material",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "Search BWV export",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "Drug lab continuity note",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "Custody / PACE material limited on export",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "Interview summary without full transcript",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "MG6 schedule incomplete",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "Body worn video download outstanding",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "MG5 narrative",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "cover / index",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "charge sheet",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "mg11 officer",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "mg11 witness",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "charge sheet",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    }
+  ],
+  "expectedChaseItems": [
+    "Full phone extraction",
+    "Phone attribution / ownership material",
+    "Search BWV export",
+    "Drug lab continuity note",
+    "Custody / PACE material limited on export",
+    "Interview summary without full transcript"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "Do not import fraud account control unless the papers support it.",
+    "Do not import robbery identification unless the papers support it."
+  ],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "guaranteed",
+    "safe to send"
+  ]
+}

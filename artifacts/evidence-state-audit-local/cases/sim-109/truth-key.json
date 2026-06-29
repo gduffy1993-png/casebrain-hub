@@ -1,0 +1,63 @@
+{
+  "caseId": "sim-109",
+  "title": "Breach non-molestation — service unclear",
+  "offenceFamily": "breach_order",
+  "offenceWording": "Breach of non-molestation order",
+  "profile": "order_breach_service",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "order copy (scan)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "service affidavit",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "proof of service",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "breach timeline",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "whether defendant served personally",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "order service proof",
+    "order terms",
+    "breach particulars"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "order served as fact",
+    "breach proved"
+  ],
+  "blockingFailPatterns": [
+    "order served as fact",
+    "breach proved",
+    "service confirmed",
+    "we win",
+    "case collapses"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "caseId": "pilot-3-marcus-vale",
+  "title": "R v Marcus Vale — fraud hero",
+  "offenceFamily": "fraud_account_control",
+  "offenceWording": "Fraud by false representation",
+  "profile": "fraud_account_control",
+  "bundleStatus": "gold_pack",
+  "evidenceItems": [
+    {
+      "evidence_item": "charge sheet",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    }
+  ],
+  "expectedChaseItems": [],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "Do not import pwits phone attribution unless the papers support it.",
+    "Do not import robbery identification unless the papers support it."
+  ],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "guaranteed",
+    "safe to send"
+  ]
+}

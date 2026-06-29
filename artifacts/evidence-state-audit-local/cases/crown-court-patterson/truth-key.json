@@ -1,0 +1,69 @@
+{
+  "caseId": "crown-court-patterson",
+  "title": "R v James Patterson — crown court s18 bundle",
+  "offenceFamily": "violence_domestic_assault",
+  "offenceWording": "Wounding with intent to cause grievous bodily harm, s.18 OAPA 1861",
+  "profile": "violence_domestic_assault",
+  "bundleStatus": "gold_pack",
+  "evidenceItems": [
+    {
+      "evidence_item": "mg11",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "cctv",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "999",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "medical",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "interview",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "charge sheet",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "custody",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    }
+  ],
+  "expectedChaseItems": [
+    "cctv",
+    "999",
+    "medical",
+    "interview"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "Do not import fraud account control unless the papers support it.",
+    "Do not import pwits phone attribution unless the papers support it."
+  ],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "guaranteed",
+    "safe to send"
+  ]
+}

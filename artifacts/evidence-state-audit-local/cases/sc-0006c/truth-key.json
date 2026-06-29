@@ -1,0 +1,88 @@
+{
+  "caseId": "sc-0006c",
+  "title": "R v Alex Mercer — motoring corpus",
+  "offenceFamily": "motoring",
+  "offenceWording": "Careless driving — RTA 1988 s.3",
+  "profile": "generic_motoring_provisional",
+  "bundleStatus": "gold_pack",
+  "evidenceItems": [
+    {
+      "evidence_item": "Dashcam / CCTV master",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "Full CAD log",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "Collision expert report",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "MG6 schedule incomplete",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "MG5 narrative",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "cover / index",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "charge sheet",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "mg11 officer",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "mg11 witness",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "charge sheet",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    }
+  ],
+  "expectedChaseItems": [
+    "Dashcam / CCTV master",
+    "Full CAD log",
+    "Collision expert report",
+    "MG6 schedule incomplete"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "Do not import fraud account control unless the papers support it.",
+    "Do not import pwits phone attribution unless the papers support it.",
+    "Do not import violence domestic assault unless the papers support it."
+  ],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "guaranteed",
+    "safe to send"
+  ]
+}

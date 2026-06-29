@@ -1,0 +1,239 @@
+{
+  "generatedAt": "2026-06-29T17:02:00.151Z",
+  "caseId": "sim-012",
+  "source": "CaseBrain H5 presentation builders (no Brain 1 mutation)",
+  "matterConfidence": {
+    "level": "needs_review",
+    "label": "Needs review before relying",
+    "sourceBadges": [
+      "provisional",
+      "missing",
+      "referred_only",
+      "needs_review"
+    ],
+    "chaseSendability": "needs_solicitor_review",
+    "summarySendability": "needs_solicitor_review",
+    "safeCourtLineStatus": "needs_review",
+    "doNotRelyYetReason": "Human review or material gaps flagged on current papers."
+  },
+  "evidenceStates": [
+    {
+      "label": "CCTV Continuity / provenance",
+      "inferredSourceState": "missing",
+      "existenceLabel": "Missing",
+      "sendability": null,
+      "baseStatus": "Not safely confirmed",
+      "source": "Police / CCTV unit",
+      "evidenceAnchor": "Robbery — CCTV missing"
+    },
+    {
+      "label": "CCTV full window / master footage",
+      "inferredSourceState": "missing",
+      "existenceLabel": "Missing",
+      "sendability": null,
+      "baseStatus": "Outstanding",
+      "source": "Police / CCTV unit",
+      "evidenceAnchor": "Robbery — CCTV missing"
+    },
+    {
+      "label": "MG6 / unused schedule clarification",
+      "inferredSourceState": "provisional",
+      "existenceLabel": "Unknown",
+      "sendability": null,
+      "baseStatus": "Not safely confirmed",
+      "source": "CPS / disclosure officer",
+      "evidenceAnchor": null
+    }
+  ],
+  "fiveAnswersEvidenceRows": [
+    {
+      "label": "CCTV Continuity / provenance",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position. — still chase if disclosure-relevant."
+    },
+    {
+      "label": "CCTV full window / master footage",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position. — still chase if disclosure-relevant."
+    },
+    {
+      "label": "MG6 / unused schedule clarification",
+      "existence": "unknown",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position."
+    },
+    {
+      "label": "Statement of Offence:",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "Robbery — CCTV missing",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "ID/CCTV gap",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "=== SECTION: MG11 ===",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG11 — COMPLAINANT STATEMENT",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "Witness account on file — attribution and context require review.",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "Main issue: ID/CCTV gap",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "Provisional pending disclosure",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG6C/CCT — CCTV — referred on MG6 — export not served.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG6C/CCT — CCTV full window — outstanding — not on bundle.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG6C/ID — ID procedure material — outstanding — not on bundle.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "CCTV",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "CCTV full window",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "ID procedure material",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "CCTV master",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "ID procedure",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "complainant MG11",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    }
+  ],
+  "warningsAndGaps": {
+    "doNotOverstate": [
+      "Do not import BWV unless the papers support it.",
+      "Do not import custody safeguards unless the papers support it.",
+      "Do not import drugs continuity unless the papers support it.",
+      "Do not import ABE unless the papers support it.",
+      "Do not import phone extraction/metadata unless the papers support it.",
+      "Do not state \"CCTV confirms\" — CCTV is not fully served on papers",
+      "Do not state \"CCTV proves\" — CCTV is not fully served on papers",
+      "Do not state \"Full CCTV confirms\" — CCTV is not fully served on papers"
+    ],
+    "hardRules": [
+      "Served does not mean reliable.",
+      "Missing does not mean irrelevant.",
+      "Referred only does not mean usable.",
+      "Inference must be labelled as inference.",
+      "No line is sendable just because a source exists."
+    ],
+    "chaseItems": [
+      {
+        "label": "CCTV Continuity / provenance",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide cCTV Continuity / provenance or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: missing. Source: Police / CCTV unit. Solicitor review required before sending.]"
+      },
+      {
+        "label": "CCTV full window / master footage",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide cCTV full window / master footage or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: missing. Source: Police / CCTV unit. Solicitor review required before sending.]"
+      },
+      {
+        "label": "MG6 / unused schedule clarification",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide mG6 / unused schedule clarification or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: provisional. Source: CPS / disclosure officer. Solicitor review required before sending.]"
+      }
+    ]
+  },
+  "courtNote": {
+    "text": "The defence asks the court to record outstanding CCTV, ID procedure and witness source material.\n\n[CaseBrain — court line copy. Evidence state: needs review. Confirm before addressing the court.]",
+    "sendabilityLabel": "Solicitor review required",
+    "canCopy": true,
+    "blockedReason": null
+  },
+  "exportVersion": {
+    "exportId": "exp-sim-012-20260629170200",
+    "caseId": "sim-012",
+    "generatedAt": "2026-06-29T17:02:00.151Z",
+    "exportType": "h5_export_pack_v1",
+    "bundleVersionLabel": "overview-export@2026-06-29",
+    "appVersion": "evidence-state-audit-snapshot",
+    "sourceStatesIncluded": [
+      "provisional",
+      "missing",
+      "referred_only",
+      "needs_review"
+    ],
+    "sendability": "needs_solicitor_review",
+    "warningCount": 8,
+    "blockedReason": null,
+    "reviewFooter": "Solicitor review required before sending to CPS, court, or client."
+  },
+  "truthKeyComparison": [
+    {
+      "truthItem": "CCTV",
+      "truthState": "referred_only",
+      "casebrainLabel": "CCTV Continuity / provenance",
+      "casebrainState": "missing",
+      "aligned": false
+    }
+  ]
+}

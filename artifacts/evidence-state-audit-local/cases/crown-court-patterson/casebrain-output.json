@@ -1,0 +1,344 @@
+{
+  "generatedAt": "2026-06-29T17:03:39.445Z",
+  "caseId": "crown-court-patterson",
+  "source": "CaseBrain H5 presentation builders (no Brain 1 mutation)",
+  "matterConfidence": {
+    "level": "needs_review",
+    "label": "Needs review before relying",
+    "sourceBadges": [
+      "provisional",
+      "missing",
+      "referred_only",
+      "needs_review"
+    ],
+    "chaseSendability": "needs_solicitor_review",
+    "summarySendability": "needs_solicitor_review",
+    "safeCourtLineStatus": "needs_review",
+    "doNotRelyYetReason": "Human review or material gaps flagged on current papers."
+  },
+  "evidenceStates": [
+    {
+      "label": "CCTV Continuity / provenance",
+      "inferredSourceState": "provisional",
+      "existenceLabel": "Unknown",
+      "sendability": null,
+      "baseStatus": "Not safely confirmed",
+      "source": "Police / CCTV unit",
+      "evidenceAnchor": "| 14/11/2023 | 19:42 | CCTV footage shows individual matching defendant's description loitering near Market Street junction |"
+    },
+    {
+      "label": "CCTV full window / master footage",
+      "inferredSourceState": "provisional",
+      "existenceLabel": "Unknown",
+      "sendability": null,
+      "baseStatus": "Not safely confirmed",
+      "source": "MG6/MG6C disclosure schedule",
+      "evidenceAnchor": "| 14/11/2023 | 19:42 | CCTV footage shows individual matching defendant's description loitering near Market Street junction |"
+    },
+    {
+      "label": "CAD / 999 audio / control-room material",
+      "inferredSourceState": "provisional",
+      "existenceLabel": "Unknown",
+      "sendability": null,
+      "baseStatus": "Not safely confirmed",
+      "source": "MG6/MG6C disclosure schedule",
+      "evidenceAnchor": "| 14/11/2023 | 19:47 | Sarah Mitchell calls 999 from nearby shop |"
+    },
+    {
+      "label": "Interview recording / transcript",
+      "inferredSourceState": "provisional",
+      "existenceLabel": "Unknown",
+      "sendability": null,
+      "baseStatus": "Not safely confirmed",
+      "source": "Custody / police interview unit",
+      "evidenceAnchor": "| 18/11/2023 | 15:00 | Interview under caution at Longsight Police Station |"
+    },
+    {
+      "label": "Medical / expert source report",
+      "inferredSourceState": "referred_only",
+      "existenceLabel": "Referred only",
+      "sendability": null,
+      "baseStatus": "Not safely confirmed",
+      "source": "CPS / expert source (confirm on file)",
+      "evidenceAnchor": "| 14/11/2023 | 20:30 | Medical examination conducted by Dr. Priya Sharma |"
+    },
+    {
+      "label": "Exhibit mapping / provenance",
+      "inferredSourceState": "provisional",
+      "existenceLabel": "Unknown",
+      "sendability": null,
+      "baseStatus": "Not safely confirmed",
+      "source": "Crown / disclosure officer",
+      "evidenceAnchor": null
+    },
+    {
+      "label": "Outstanding source material on disclosure schedule",
+      "inferredSourceState": "missing",
+      "existenceLabel": "Missing",
+      "sendability": null,
+      "baseStatus": "Not safely confirmed",
+      "source": "Crown / disclosure officer (confirm on file)",
+      "evidenceAnchor": "| 14:45 | Medical examination conducted (fit for interview) |"
+    }
+  ],
+  "fiveAnswersEvidenceRows": [
+    {
+      "label": "CCTV Continuity / provenance",
+      "existence": "unknown",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position."
+    },
+    {
+      "label": "CCTV full window / master footage",
+      "existence": "unknown",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position."
+    },
+    {
+      "label": "CAD / 999 audio / control-room material",
+      "existence": "unknown",
+      "reliability": "needs_review",
+      "note": "Papers mark this material as unclear — chase or confirm status before fixing hearing position."
+    },
+    {
+      "label": "Interview recording / transcript",
+      "existence": "unknown",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position."
+    },
+    {
+      "label": "Medical / expert source report",
+      "existence": "referred_only",
+      "reliability": "weak",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position. — referred only, not usable as proof."
+    },
+    {
+      "label": "Exhibit mapping / provenance",
+      "existence": "unknown",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position."
+    },
+    {
+      "label": "Outstanding source material on disclosure schedule",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position. — still chase if disclosure-relevant."
+    },
+    {
+      "label": "> I also spoke to a witness, Michael Chen, who provided a statement confirming he had observed the attack and saw the assailant striking the complainant multiple times with a metal object.",
+      "existence": "served",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "*[Defendant provided \"no comment\" responses to all questions throughout the interview. No alibi provided, no explanation given for presence at scene, no admission or denial of involvement, no explanation for fingerprints on weapon.]**",
+      "existence": "served",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "*Status:** Prosecution has only provided edited clips (approximately 2 minutes total). Defence requires full footage to establish:",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Partial media on bundle — not full export; treat as incomplete for audit."
+    },
+    {
+      "label": "*Status:** Only initial medical report provided. No indication whether other experts (e.g., pathologist, weapons expert) have been consulted.",
+      "existence": "served",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "Defendant provided \"no comment\" interview, failing to provide any account or alibi",
+      "existence": "served",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "| 14/11/2023 | 19:42 | CCTV footage shows individual matching defendant's description loitering near Market Street junction |",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "| 14/11/2023 | 19:46 | Witness Michael Chen observes incident from 15 metres away |",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "| 14/11/2023 | 19:47 | Sarah Mitchell calls 999 from nearby shop |",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "| 14/11/2023 | 20:30 | Medical examination conducted by Dr. Priya Sharma |",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "| 15/11/2023 | 10:00 | Forensic examination of scene conducted |",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "| 18/11/2023 | 15:00 | Interview under caution at Longsight Police Station |",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "## WITNESS STATEMENTS",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "### WITNESS 1: SARAH MITCHELL (Complainant)",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "full custody record",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "PACE interview recording",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "custody risk assessments",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    }
+  ],
+  "warningsAndGaps": {
+    "doNotOverstate": [
+      "Do not import BWV unless the papers support it.",
+      "Do not import drugs continuity unless the papers support it.",
+      "Do not import ABE unless the papers support it.",
+      "Do not import phone extraction/metadata unless the papers support it.",
+      "Do not state \"CCTV confirms\" — CCTV is not fully served on papers",
+      "Do not state \"CCTV proves\" — CCTV is not fully served on papers",
+      "Do not state \"Full CCTV confirms\" — CCTV is not fully served on papers"
+    ],
+    "hardRules": [
+      "Served does not mean reliable.",
+      "Missing does not mean irrelevant.",
+      "Referred only does not mean usable.",
+      "Inference must be labelled as inference.",
+      "No line is sendable just because a source exists."
+    ],
+    "chaseItems": [
+      {
+        "label": "CCTV Continuity / provenance",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide cCTV Continuity / provenance or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: provisional. Source: Police / CCTV unit. Solicitor review required before sending.]"
+      },
+      {
+        "label": "CCTV full window / master footage",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide cCTV full window / master footage or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: provisional. Source: MG6/MG6C disclosure schedule. Solicitor review required before sending.]"
+      },
+      {
+        "label": "CAD / 999 audio / control-room material",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide cAD / 999 audio / control-room material or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: provisional. Source: MG6/MG6C disclosure schedule. Solicitor review required before sending.]"
+      },
+      {
+        "label": "Interview recording / transcript",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide interview recording / transcript or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: provisional. Source: Custody / police interview unit. Solicitor review required before sending.]"
+      },
+      {
+        "label": "Medical / expert source report",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide medical / expert source report or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: referred only. Source: CPS / expert source (confirm on file). Solicitor review required before sending.]"
+      }
+    ]
+  },
+  "courtNote": {
+    "text": "The defence asks the court to record that full custody and interview records remain outstanding.\n\n[CaseBrain — court line copy. Evidence state: needs review. Confirm before addressing the court.]",
+    "sendabilityLabel": "Solicitor review required",
+    "canCopy": true,
+    "blockedReason": null
+  },
+  "exportVersion": {
+    "exportId": "exp-crown-co-20260629170339",
+    "caseId": "crown-court-patterson",
+    "generatedAt": "2026-06-29T17:03:39.445Z",
+    "exportType": "h5_export_pack_v1",
+    "bundleVersionLabel": "overview-export@2026-06-29",
+    "appVersion": "evidence-state-audit-snapshot",
+    "sourceStatesIncluded": [
+      "provisional",
+      "missing",
+      "referred_only",
+      "needs_review"
+    ],
+    "sendability": "needs_solicitor_review",
+    "warningCount": 7,
+    "blockedReason": null,
+    "reviewFooter": "Solicitor review required before sending to CPS, court, or client."
+  },
+  "truthKeyComparison": [
+    {
+      "truthItem": "mg11",
+      "truthState": "served",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "cctv",
+      "truthState": "referred_only",
+      "casebrainLabel": "CCTV Continuity / provenance",
+      "casebrainState": "provisional",
+      "aligned": false
+    },
+    {
+      "truthItem": "999",
+      "truthState": "referred_only",
+      "casebrainLabel": "CAD / 999 audio / control-room material",
+      "casebrainState": "provisional",
+      "aligned": false
+    },
+    {
+      "truthItem": "medical",
+      "truthState": "referred_only",
+      "casebrainLabel": "Medical / expert source report",
+      "casebrainState": "referred_only",
+      "aligned": true
+    },
+    {
+      "truthItem": "interview",
+      "truthState": "served",
+      "casebrainLabel": "Interview recording / transcript",
+      "casebrainState": "provisional",
+      "aligned": false
+    },
+    {
+      "truthItem": "charge sheet",
+      "truthState": "served",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "custody",
+      "truthState": "served",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    }
+  ]
+}

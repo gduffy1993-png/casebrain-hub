@@ -1,0 +1,58 @@
+{
+  "caseId": "sim-141",
+  "title": "AEW — custody PACE missing skewed scan",
+  "offenceFamily": "aew_police_contact",
+  "offenceWording": "Assault on emergency worker",
+  "profile": "police_contact_bwv_custody",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "skewed officer account",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "custody record",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "custody_pace",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV export",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "custody record",
+    "PACE review",
+    "full BWV"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "safeguards were followed",
+    "BWV shows assault"
+  ],
+  "blockingFailPatterns": [
+    "safeguards were followed",
+    "BWV shows",
+    "PACE complied as fact",
+    "we win",
+    "case collapses"
+  ]
+}

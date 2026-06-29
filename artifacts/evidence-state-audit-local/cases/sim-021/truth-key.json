@@ -1,0 +1,27 @@
+{
+  "caseId": "sim-021",
+  "title": "Conflicting hearing dates",
+  "offenceFamily": "generic",
+  "offenceWording": "Conflicting hearing dates",
+  "profile": "generic_provisional",
+  "bundleStatus": "manifest_only",
+  "evidenceItems": [
+    {
+      "evidence_item": "hearing date conflict",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "BWV shows",
+    "ask the court to record"
+  ]
+}

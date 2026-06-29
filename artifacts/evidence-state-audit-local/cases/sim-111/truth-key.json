@@ -1,0 +1,59 @@
+{
+  "caseId": "sim-111",
+  "title": "Domestic — BWV screenshot stills only",
+  "offenceFamily": "domestic",
+  "offenceWording": "Common assault (domestic)",
+  "profile": "domestic_harassment",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "BWV screenshot stills",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full BWV",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV download",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "signed MG11",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "full BWV export",
+    "MG11",
+    "custody if relevant"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "BWV shows assault",
+    "stills prove contact"
+  ],
+  "blockingFailPatterns": [
+    "BWV shows",
+    "stills prove",
+    "assault on BWV",
+    "we win",
+    "case collapses"
+  ]
+}

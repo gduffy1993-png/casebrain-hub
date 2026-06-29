@@ -17,7 +17,12 @@ import type { SimulatorV2TruthKey } from "../lib/eval/evidence-state-audit/types
 
 const ROOT = process.cwd();
 const OUT_ROOT = path.join(ROOT, "artifacts", "evidence-state-audit-local", "cases");
-const SIM_PACKS = ["simulator-pack-v2", "simulator-pack-v3"] as const;
+const SIM_PACKS = [
+  "simulator-pack-v1",
+  "simulator-pack-v1.1",
+  "simulator-pack-v2",
+  "simulator-pack-v3",
+] as const;
 
 function resolveSimDir(caseId: string): string {
   for (const pack of SIM_PACKS) {
@@ -78,6 +83,7 @@ function seedCase(caseId: string): void {
   fs.mkdirSync(outDir, { recursive: true });
   fs.writeFileSync(path.join(outDir, "truth-key.json"), `${JSON.stringify(truthKey, null, 2)}\n`, "utf8");
   fs.writeFileSync(path.join(outDir, "casebrain-output.json"), `${JSON.stringify(output, null, 2)}\n`, "utf8");
+  fs.writeFileSync(path.join(outDir, "bundle-text.md"), bundleText, "utf8");
 
   console.log(`  seeded ${caseId} (${truthKey.evidenceItems.length} truth items)`);
 }

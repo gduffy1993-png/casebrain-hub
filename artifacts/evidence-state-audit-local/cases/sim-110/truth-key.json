@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-110",
+  "title": "Stalking — mixed harassment/family bleed",
+  "offenceFamily": "harassment",
+  "offenceWording": "Stalking involving fear of violence",
+  "profile": "malicious_comms",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5 stalking summary",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "message export",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "source messages",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "attribution",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "message export",
+    "account attribution",
+    "fear evidence"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "PWITS route on stalking matter",
+    "fraud route on stalking matter"
+  ],
+  "blockingFailPatterns": [
+    "PWITS route",
+    "fraud account-control route",
+    "wrong family route",
+    "we win",
+    "case collapses"
+  ]
+}

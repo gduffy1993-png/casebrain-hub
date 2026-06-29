@@ -1,0 +1,59 @@
+{
+  "caseId": "sim-106",
+  "title": "Domestic assault — unsigned MG11 rotated",
+  "offenceFamily": "domestic",
+  "offenceWording": "Assault by beating (domestic)",
+  "profile": "domestic_harassment",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "unsigned MG11 draft",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "signed MG11",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full BWV",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "signed MG11",
+    "BWV",
+    "previous incident history"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "MG11 proves assault",
+    "complainant account final"
+  ],
+  "blockingFailPatterns": [
+    "MG11 proves assault",
+    "MG11 confirms",
+    "account final as fact",
+    "we win",
+    "case collapses"
+  ]
+}

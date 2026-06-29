@@ -1,0 +1,57 @@
+{
+  "caseId": "sim-132",
+  "title": "Vulnerability — mental health triage index-only",
+  "offenceFamily": "youth",
+  "offenceWording": "Assault (youth)",
+  "profile": "youth_vulnerability_custody",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5 reference to MH",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MH triage",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "triage record",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "custody record",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "custody_pace",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "mental health triage",
+    "custody record",
+    "interview recording"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "fitness to interview proved",
+    "reliable interview"
+  ],
+  "blockingFailPatterns": [
+    "fitness to interview proved",
+    "reliable interview",
+    "safeguards complied",
+    "we win",
+    "case collapses"
+  ]
+}

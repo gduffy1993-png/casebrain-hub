@@ -1,0 +1,28 @@
+{
+  "caseId": "sim-006",
+  "title": "s18 — medical referred only",
+  "offenceFamily": "violence_s18",
+  "offenceWording": "s18 — medical referred only",
+  "profile": "violence_s18",
+  "bundleStatus": "manifest_only",
+  "evidenceItems": [
+    {
+      "evidence_item": "medical evidence",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "GBH fully proved"
+  ],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "BWV shows",
+    "ask the court to record"
+  ]
+}

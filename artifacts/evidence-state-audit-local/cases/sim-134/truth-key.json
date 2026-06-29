@@ -1,0 +1,55 @@
+{
+  "caseId": "sim-134",
+  "title": "Modern slavery marker — duplicate safeguarding pages",
+  "offenceFamily": "drugs_supply",
+  "offenceWording": "Being concerned in supply of Class A drugs",
+  "profile": "modern_slavery_marker",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "duplicate safeguarding notes",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "NRM referral",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "NRM outcome",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "chronology",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "NRM referral/outcome",
+    "safeguarding chronology",
+    "phone attribution"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "was exploited as fact",
+    "NRM proves exploitation"
+  ],
+  "blockingFailPatterns": [
+    "was exploited",
+    "NRM proves",
+    "exploitation proved",
+    "we win",
+    "case collapses"
+  ]
+}

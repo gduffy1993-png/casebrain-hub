@@ -1,0 +1,55 @@
+{
+  "caseId": "sim-126",
+  "title": "False documents — rotated provenance scan",
+  "offenceFamily": "fraud_documents",
+  "offenceWording": "Possession of false identity documents",
+  "profile": "document_provenance",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "rotated document scans",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "expert report",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "provenance report",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "continuity",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "document provenance",
+    "expert examination",
+    "custody continuity"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "document proved false as fact",
+    "knew document was false"
+  ],
+  "blockingFailPatterns": [
+    "document was false",
+    "knew document was false",
+    "improper intention is proved",
+    "we win",
+    "case collapses"
+  ]
+}

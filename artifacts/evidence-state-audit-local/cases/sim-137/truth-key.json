@@ -1,0 +1,64 @@
+{
+  "caseId": "sim-137",
+  "title": "Blank pages noise — placeholder metadata",
+  "offenceFamily": "mixed_unclear",
+  "offenceWording": "Offence per charge sheet (metadata unclear)",
+  "profile": "generic_provisional",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "blank pages",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "placeholder filename metadata",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "core statements",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG5 detail",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "schedules",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "charge sheet",
+    "MG5",
+    "MG6 schedule"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "metadata offence proves charge",
+    "placeholder confirms offence"
+  ],
+  "blockingFailPatterns": [
+    "metadata offence proves",
+    "placeholder confirms",
+    "offence proved from metadata",
+    "we win",
+    "case collapses"
+  ]
+}

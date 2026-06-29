@@ -1,0 +1,61 @@
+{
+  "caseId": "cb-found-2005-okafor",
+  "title": "R v Amara Okafor — foundation First appearance",
+  "offenceFamily": "generic_provisional",
+  "offenceWording": "Possession of a controlled drug of Class B, contrary to section 5(2) of the Misuse of Drugs Act 1971",
+  "profile": "generic_provisional",
+  "bundleStatus": "gold_pack",
+  "evidenceItems": [
+    {
+      "evidence_item": "mg11",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "mg6",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "lab analysis",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "search record",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "charge sheet",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "mg5",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    }
+  ],
+  "expectedChaseItems": [
+    "lab analysis",
+    "search record"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "Do not import fraud account control unless the papers support it.",
+    "Do not import robbery identification unless the papers support it."
+  ],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "guaranteed",
+    "safe to send"
+  ]
+}

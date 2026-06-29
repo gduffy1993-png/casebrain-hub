@@ -1,0 +1,28 @@
+{
+  "caseId": "pilot-3-leon-marsh",
+  "title": "R v Leon Marsh — robbery / ID hero",
+  "offenceFamily": "robbery_identification",
+  "offenceWording": "Robbery, Theft Act 1968 s.8",
+  "profile": "robbery_identification",
+  "bundleStatus": "gold_pack",
+  "evidenceItems": [
+    {
+      "evidence_item": "charge sheet",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    }
+  ],
+  "expectedChaseItems": [],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "Do not import fraud account control unless the papers support it.",
+    "Do not import pwits phone attribution unless the papers support it."
+  ],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "guaranteed",
+    "safe to send"
+  ]
+}

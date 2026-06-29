@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-125",
+  "title": "Money laundering — two-column account schedule",
+  "offenceFamily": "fraud_account",
+  "offenceWording": "Concealing criminal property",
+  "profile": "money_laundering_bank_records",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "two-column account table",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "bank download",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full bank export",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "mapping schedule",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "full banking schedules",
+    "transaction mapping",
+    "knowledge evidence"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "criminal property proved",
+    "knew property was criminal"
+  ],
+  "blockingFailPatterns": [
+    "criminal property is proved",
+    "knew the property was criminal",
+    "proves money laundering",
+    "we win",
+    "case collapses"
+  ]
+}

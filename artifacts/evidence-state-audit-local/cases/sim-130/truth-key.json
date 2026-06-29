@@ -1,0 +1,58 @@
+{
+  "caseId": "sim-130",
+  "title": "Youth custody — bad OCR safeguard notes",
+  "offenceFamily": "youth",
+  "offenceWording": "Theft (youth)",
+  "profile": "youth_vulnerability_custody",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "OCR custody summary",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "custody_pace",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "interview recording",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "interview",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "custody record",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "custody_pace",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "AA attendance",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "full custody record",
+    "appropriate adult notes",
+    "interview recording"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "appropriate adult present",
+    "safeguards complied"
+  ],
+  "blockingFailPatterns": [
+    "appropriate adult present",
+    "safeguards complied",
+    "admission is reliable",
+    "we win",
+    "case collapses"
+  ]
+}

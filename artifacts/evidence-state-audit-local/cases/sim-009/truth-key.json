@@ -1,0 +1,17 @@
+{
+  "caseId": "sim-009",
+  "title": "Possession — PWITS index bleed",
+  "offenceFamily": "drugs",
+  "offenceWording": "Possession — PWITS index bleed",
+  "profile": "drugs_possession",
+  "bundleStatus": "manifest_only",
+  "evidenceItems": [],
+  "expectedChaseItems": [],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "supply chain proved"
+  ],
+  "blockingFailPatterns": [
+    "PWITS pressure without charge support"
+  ]
+}

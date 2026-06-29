@@ -1,0 +1,27 @@
+{
+  "caseId": "sim-029",
+  "title": "Bad metadata placeholder charge",
+  "offenceFamily": "generic",
+  "offenceWording": "Bad metadata placeholder charge",
+  "profile": "generic_provisional",
+  "bundleStatus": "manifest_only",
+  "evidenceItems": [
+    {
+      "evidence_item": "placeholder offence in metadata",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "BWV shows",
+    "ask the court to record"
+  ]
+}

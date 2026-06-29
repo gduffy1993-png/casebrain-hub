@@ -1,0 +1,15 @@
+{
+  "caseId": "sim-015",
+  "title": "Motoring — fraud word bleed",
+  "offenceFamily": "motoring",
+  "offenceWording": "Motoring — fraud word bleed",
+  "profile": "motoring_sjp",
+  "bundleStatus": "manifest_only",
+  "evidenceItems": [],
+  "expectedChaseItems": [],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [],
+  "blockingFailPatterns": [
+    "fraud account-control"
+  ]
+}

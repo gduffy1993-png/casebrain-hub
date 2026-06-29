@@ -1,0 +1,63 @@
+{
+  "caseId": "sim-122",
+  "title": "No insurance — keeper vs driver confusion",
+  "offenceFamily": "motoring",
+  "offenceWording": "No insurance / identity issues",
+  "profile": "no_insurance_identity",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "two-column vehicle schedule",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "insurance database",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "driver proof",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "insurance policy",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "keeper vs driver",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "driver attribution",
+    "insurance records",
+    "DVLA keeper data"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "defendant was driver as fact",
+    "no insurance proved without records"
+  ],
+  "blockingFailPatterns": [
+    "defendant was driver as fact",
+    "no insurance proved",
+    "keeper proves driver",
+    "we win",
+    "case collapses"
+  ]
+}

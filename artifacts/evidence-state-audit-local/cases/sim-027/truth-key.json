@@ -1,0 +1,18 @@
+{
+  "caseId": "sim-027",
+  "title": "Large complex fraud",
+  "offenceFamily": "fraud",
+  "offenceWording": "Large complex fraud",
+  "profile": "fraud_account_control",
+  "bundleStatus": "manifest_only",
+  "evidenceItems": [],
+  "expectedChaseItems": [],
+  "expectedSendability": "needs_solicitor_review",
+  "mustNotSayGlobal": [],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "BWV shows",
+    "ask the court to record"
+  ]
+}

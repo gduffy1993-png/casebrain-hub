@@ -1,0 +1,29 @@
+{
+  "caseId": "sim-002",
+  "title": "Harassment — wrong second male",
+  "offenceFamily": "harassment",
+  "offenceWording": "Harassment — wrong second male",
+  "profile": "harassment_digital_attribution",
+  "bundleStatus": "manifest_only",
+  "evidenceItems": [
+    {
+      "evidence_item": "second male mentioned",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "subscriber/account data"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "BWV shows",
+    "ask the court to record"
+  ]
+}

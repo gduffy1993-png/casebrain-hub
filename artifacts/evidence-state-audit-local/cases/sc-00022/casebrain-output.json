@@ -1,0 +1,405 @@
+{
+  "generatedAt": "2026-06-29T17:03:16.660Z",
+  "caseId": "sc-00022",
+  "source": "CaseBrain H5 presentation builders (no Brain 1 mutation)",
+  "matterConfidence": {
+    "level": "needs_review",
+    "label": "Needs review before relying",
+    "sourceBadges": [
+      "provisional",
+      "missing",
+      "referred_only",
+      "needs_review"
+    ],
+    "chaseSendability": "needs_solicitor_review",
+    "summarySendability": "needs_solicitor_review",
+    "safeCourtLineStatus": "needs_review",
+    "doNotRelyYetReason": "Human review or material gaps flagged on current papers."
+  },
+  "evidenceStates": [
+    {
+      "label": "CCTV Continuity / provenance",
+      "inferredSourceState": "missing",
+      "existenceLabel": "Missing",
+      "sendability": null,
+      "baseStatus": "Outstanding",
+      "source": "Police / CCTV unit",
+      "evidenceAnchor": "Prosecution summary on current papers remains provisional. Core identification, attribution, and continuity material may be outstanding."
+    },
+    {
+      "label": "CCTV full window / master footage",
+      "inferredSourceState": "missing",
+      "existenceLabel": "Missing",
+      "sendability": null,
+      "baseStatus": "Outstanding",
+      "source": "Police / CCTV unit",
+      "evidenceAnchor": "CCTV footage is being arranged/held by OIC; MG6 lists export/continuity as outstanding or not yet served."
+    },
+    {
+      "label": "CAD / 999 audio / control-room material",
+      "inferredSourceState": "missing",
+      "existenceLabel": "Missing",
+      "sendability": null,
+      "baseStatus": "Outstanding",
+      "source": "Police control room",
+      "evidenceAnchor": "Partial CAD extract attached — 00:24 dispatch reference; full CAD log retained/outstanding."
+    },
+    {
+      "label": "Body-worn video (BWV)",
+      "inferredSourceState": "missing",
+      "existenceLabel": "Missing",
+      "sendability": null,
+      "baseStatus": "Not safely confirmed",
+      "source": "Police / officer body-worn video",
+      "evidenceAnchor": "Body worn video — outstanding"
+    },
+    {
+      "label": "MG6 / unused schedule clarification",
+      "inferredSourceState": "missing",
+      "existenceLabel": "Missing",
+      "sendability": null,
+      "baseStatus": "Not safely confirmed",
+      "source": "CPS / disclosure officer",
+      "evidenceAnchor": "CCTV footage is being arranged/held by OIC; MG6 lists export/continuity as outstanding or not yet served."
+    },
+    {
+      "label": "Medical / expert source report",
+      "inferredSourceState": "missing",
+      "existenceLabel": "Missing",
+      "sendability": null,
+      "baseStatus": "Outstanding",
+      "source": "CPS / expert source (confirm on file)",
+      "evidenceAnchor": "Medical / expert report — outstanding"
+    },
+    {
+      "label": "Exhibit mapping / provenance",
+      "inferredSourceState": "missing",
+      "existenceLabel": "Missing",
+      "sendability": null,
+      "baseStatus": "Outstanding",
+      "source": "Crown / disclosure officer",
+      "evidenceAnchor": "Prosecution summary on current papers remains provisional. Core identification, attribution, and continuity material may be outstanding."
+    }
+  ],
+  "fiveAnswersEvidenceRows": [
+    {
+      "label": "CCTV Continuity / provenance",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position. — still chase if disclosure-relevant."
+    },
+    {
+      "label": "CCTV full window / master footage",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position. — still chase if disclosure-relevant."
+    },
+    {
+      "label": "CAD / 999 audio / control-room material",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position. — still chase if disclosure-relevant."
+    },
+    {
+      "label": "Body-worn video (BWV)",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position. — still chase if disclosure-relevant."
+    },
+    {
+      "label": "MG6 / unused schedule clarification",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position. — still chase if disclosure-relevant."
+    },
+    {
+      "label": "Medical / expert source report",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position. — still chase if disclosure-relevant."
+    },
+    {
+      "label": "Exhibit mapping / provenance",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position. — still chase if disclosure-relevant."
+    },
+    {
+      "label": "5. **MG11 officer** — partial on export",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "Partial CAD extract attached — 00:24 dispatch reference; full CAD log retained/outstanding.",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "## CONTRADICTION — sequence timing — CAD extract vs officer attendance",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "*Source section:** Charge sheet / MG5 / witness material",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "*Source A (Partial CAD extract):** Particulars date: 14 March 2024 (charge sheet)",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "*Source B (Officer MG11):** MG5 narrative: evening of 15 March 2024",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "3. MG5 (partial)",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "5. MG11 officer (partial)",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "Prosecution summary on current papers remains provisional. Core identification, attribution, and continuity material may be outstanding.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "CCTV footage is being arranged/held by OIC; MG6 lists export/continuity as outstanding or not yet served.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "## Disclosure chase (outstanding on export)",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "CCTV export and continuity — outstanding",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "Full 999/CAD — outstanding",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "Body worn video — outstanding",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "Medical / expert report — outstanding",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "CAD summary without full CAD log — outstanding",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "CCTV stills without master export log — outstanding",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "Body worn video download outstanding — outstanding",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    }
+  ],
+  "warningsAndGaps": {
+    "doNotOverstate": [
+      "Do not import custody safeguards unless the papers support it.",
+      "Do not import drugs continuity unless the papers support it.",
+      "Do not import ABE unless the papers support it.",
+      "Assumed position may conflict with interview or served evidence.",
+      "Do not state \"CCTV confirms\" — CCTV is not fully served on papers",
+      "Do not state \"CCTV proves\" — CCTV is not fully served on papers",
+      "Do not state \"Full CCTV confirms\" — CCTV is not fully served on papers"
+    ],
+    "hardRules": [
+      "Served does not mean reliable.",
+      "Missing does not mean irrelevant.",
+      "Referred only does not mean usable.",
+      "Inference must be labelled as inference.",
+      "No line is sendable just because a source exists."
+    ],
+    "chaseItems": [
+      {
+        "label": "CCTV Continuity / provenance",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide cCTV Continuity / provenance or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: missing. Source: Police / CCTV unit. Solicitor review required before sending.]"
+      },
+      {
+        "label": "CCTV full window / master footage",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide cCTV full window / master footage or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: missing. Source: Police / CCTV unit. Solicitor review required before sending.]"
+      },
+      {
+        "label": "CAD / 999 audio / control-room material",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide cAD / 999 audio / control-room material or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: missing. Source: Police control room. Solicitor review required before sending.]"
+      },
+      {
+        "label": "Body-worn video (BWV)",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide body-worn video (BWV) or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: missing. Source: Police / officer body-worn video. Solicitor review required before sending.]"
+      },
+      {
+        "label": "MG6 / unused schedule clarification",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide mG6 / unused schedule clarification or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: missing. Source: CPS / disclosure officer. Solicitor review required before sending.]"
+      }
+    ]
+  },
+  "courtNote": {
+    "text": "The defence asks the court to record that full BWV and continuity material should be served.\n\n[CaseBrain — court line copy. Evidence state: needs review. Confirm before addressing the court.]",
+    "sendabilityLabel": "Solicitor review required",
+    "canCopy": true,
+    "blockedReason": null
+  },
+  "exportVersion": {
+    "exportId": "exp-sc-00022-20260629170316",
+    "caseId": "sc-00022",
+    "generatedAt": "2026-06-29T17:03:16.660Z",
+    "exportType": "h5_export_pack_v1",
+    "bundleVersionLabel": "overview-export@2026-06-29",
+    "appVersion": "evidence-state-audit-snapshot",
+    "sourceStatesIncluded": [
+      "provisional",
+      "missing",
+      "referred_only",
+      "needs_review"
+    ],
+    "sendability": "needs_solicitor_review",
+    "warningCount": 7,
+    "blockedReason": null,
+    "reviewFooter": "Solicitor review required before sending to CPS, court, or client."
+  },
+  "truthKeyComparison": [
+    {
+      "truthItem": "CCTV export and continuity",
+      "truthState": "referred_only",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "Full 999/CAD",
+      "truthState": "referred_only",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "Body worn video",
+      "truthState": "referred_only",
+      "casebrainLabel": "Body-worn video (BWV)",
+      "casebrainState": "missing",
+      "aligned": false
+    },
+    {
+      "truthItem": "Medical / expert report",
+      "truthState": "referred_only",
+      "casebrainLabel": "Medical / expert source report",
+      "casebrainState": "missing",
+      "aligned": false
+    },
+    {
+      "truthItem": "CAD summary without full CAD log",
+      "truthState": "referred_only",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "CCTV stills without master export log",
+      "truthState": "referred_only",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "Body worn video download outstanding",
+      "truthState": "referred_only",
+      "casebrainLabel": "Body-worn video (BWV)",
+      "casebrainState": "missing",
+      "aligned": false
+    },
+    {
+      "truthItem": "MG5 narrative",
+      "truthState": "referred_only",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "cover / index",
+      "truthState": "served",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "charge sheet",
+      "truthState": "served",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "mg6",
+      "truthState": "served",
+      "casebrainLabel": "MG6 / unused schedule clarification",
+      "casebrainState": "missing",
+      "aligned": false
+    },
+    {
+      "truthItem": "mg11 officer",
+      "truthState": "served",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "mg11 witness",
+      "truthState": "served",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "charge sheet",
+      "truthState": "served",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "caseId": "sim-139",
+  "title": "Missing MG6C detail — vague unused schedule",
+  "offenceFamily": "mixed_unclear",
+  "offenceWording": "Offence per charge sheet",
+  "profile": "generic_provisional",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG6C header page",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "unused material",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "line-by-line MG6",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "material descriptions",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "itemised MG6 lines",
+    "unused material descriptions",
+    "export links"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "disclosure complete",
+    "unused material listed in full"
+  ],
+  "blockingFailPatterns": [
+    "disclosure complete",
+    "unused material listed in full",
+    "schedule proves completeness",
+    "we win",
+    "case collapses"
+  ]
+}

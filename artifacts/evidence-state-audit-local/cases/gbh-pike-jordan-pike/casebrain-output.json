@@ -1,0 +1,434 @@
+{
+  "generatedAt": "2026-06-29T17:03:42.195Z",
+  "caseId": "gbh-pike-jordan-pike",
+  "source": "CaseBrain H5 presentation builders (no Brain 1 mutation)",
+  "matterConfidence": {
+    "level": "needs_review",
+    "label": "Needs review before relying",
+    "sourceBadges": [
+      "provisional",
+      "missing",
+      "referred_only",
+      "needs_review"
+    ],
+    "chaseSendability": "needs_solicitor_review",
+    "summarySendability": "needs_solicitor_review",
+    "safeCourtLineStatus": "needs_review",
+    "doNotRelyYetReason": "Human review or material gaps flagged on current papers."
+  },
+  "evidenceStates": [
+    {
+      "label": "CCTV Continuity / provenance",
+      "inferredSourceState": "provisional",
+      "existenceLabel": "Unknown",
+      "sendability": null,
+      "baseStatus": "Outstanding",
+      "source": "Police / CCTV unit",
+      "evidenceAnchor": "\"CCTV requested not in bundle\","
+    },
+    {
+      "label": "CCTV full window / master footage",
+      "inferredSourceState": "provisional",
+      "existenceLabel": "Unknown",
+      "sendability": null,
+      "baseStatus": "Outstanding",
+      "source": "Police / CCTV unit",
+      "evidenceAnchor": "\"CCTV requested not in bundle\","
+    },
+    {
+      "label": "CAD / 999 audio / control-room material",
+      "inferredSourceState": "missing",
+      "existenceLabel": "Missing",
+      "sendability": null,
+      "baseStatus": "Outstanding",
+      "source": "Police control room",
+      "evidenceAnchor": "\"partial 999 transcript only\""
+    },
+    {
+      "label": "Interview recording / transcript",
+      "inferredSourceState": "missing",
+      "existenceLabel": "Missing",
+      "sendability": null,
+      "baseStatus": "Not safely confirmed",
+      "source": "Custody / police interview unit",
+      "evidenceAnchor": "\"partial 999 transcript only\""
+    },
+    {
+      "label": "MG6 / unused schedule clarification",
+      "inferredSourceState": "missing",
+      "existenceLabel": "Missing",
+      "sendability": null,
+      "baseStatus": "Outstanding",
+      "source": "CPS / disclosure officer",
+      "evidenceAnchor": "\"Tests MG5 vs MG6 vs CCTV list tension (footage 'held' vs not served).\","
+    },
+    {
+      "label": "Medical / expert source report",
+      "inferredSourceState": "missing",
+      "existenceLabel": "Missing",
+      "sendability": null,
+      "baseStatus": "Outstanding",
+      "source": "CPS / expert source (confirm on file)",
+      "evidenceAnchor": "\"medical records requested not served\","
+    },
+    {
+      "label": "Exhibit mapping / provenance",
+      "inferredSourceState": "provisional",
+      "existenceLabel": "Unknown",
+      "sendability": null,
+      "baseStatus": "Not safely confirmed",
+      "source": "Crown / disclosure officer",
+      "evidenceAnchor": "Exhibit reference: CCTV-001"
+    }
+  ],
+  "fiveAnswersEvidenceRows": [
+    {
+      "label": "CCTV Continuity / provenance",
+      "existence": "unknown",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position."
+    },
+    {
+      "label": "CCTV full window / master footage",
+      "existence": "unknown",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position."
+    },
+    {
+      "label": "CAD / 999 audio / control-room material",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position. — still chase if disclosure-relevant."
+    },
+    {
+      "label": "Interview recording / transcript",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position. — still chase if disclosure-relevant."
+    },
+    {
+      "label": "MG6 / unused schedule clarification",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position. — still chase if disclosure-relevant."
+    },
+    {
+      "label": "Medical / expert source report",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position. — still chase if disclosure-relevant."
+    },
+    {
+      "label": "Exhibit mapping / provenance",
+      "existence": "unknown",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position."
+    },
+    {
+      "label": "Identification and sequence; CCTV if served.",
+      "existence": "served",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "Interview record (NS-IR-2024-0315-001) Served 20 March 2024",
+      "existence": "served",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG11 — Witness statement — Morgan Drew Served 20 March 2024",
+      "existence": "served",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG11 — Witness statement — Samir Patel Served 20 March 2024",
+      "existence": "served",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG11 — Witness statement — PC Robin Vale Served 20 March 2024",
+      "existence": "served",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "Scene photos Retained Taken at scene 00:35; to be disclosed with continuity note.",
+      "existence": "served",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "\"friend witness\",",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "\"CCTV requested not in bundle\",",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "\"partial 999 transcript only\"",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "\"PC Vale attendance time 00:30; CAD fragment shows 00:24 dispatch\"",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "\"CCTV continuity statement notes clock drift vs shop stated times.\"",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG11 — Witness statement — Morgan Drew 13",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG11 — Witness statement — Samir Patel 17",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG11 — Witness statement — PC Robin Vale 21",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "\"Tests MG5 vs MG6 vs CCTV list tension (footage 'held' vs not served).\",",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "\"forensic report awaited\",",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "\"medical records requested not served\",",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "\"MG5 para 3 suggests footage secured/hold; MG6(a) and CCTV list: footage awaiting service.\",",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "\"MG5 evidence checklist consistent with outstanding BWV/999/CAD; align chat with MG6 rows.\",",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "\"Do not invent that medical records are served — MG6 says requested / not served.\",",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "\"Do not invent CCTV in hand — list says requested, continuity outstanding.\",",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "4. Forensic samples were taken from the scene, including from the kerb area. The forensic report is awaited; laboratory turnaround extended due to backlogs (update as of 18 March 2024). This may assist with contact issues and the position of the victim at impact, subject to limitations of environmental staining.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "6. Medical evidence: The victim was conveyed to Northshire General Hospital. Hospital records and a medical report have been requested from the treating team. Not yet served. The prosecution will rely on this to prove the injury and its seriousness (GBH).",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "7. Scene photos: Scene photographs were taken by the first attending officer at 00:35. They show the pavement, kerb, and blood. Retained by the force. To be disclosed as part of initial disclosure. Scene photos list to follow.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    }
+  ],
+  "warningsAndGaps": {
+    "doNotOverstate": [
+      "Do not import drugs continuity unless the papers support it.",
+      "Do not import ABE unless the papers support it.",
+      "Assumed position may conflict with interview or served evidence.",
+      "Medical evidence may support Crown causation if proved on served papers.",
+      "Do not state \"CCTV confirms\" — CCTV is not fully served on papers",
+      "Do not state \"CCTV proves\" — CCTV is not fully served on papers",
+      "Do not state \"Full CCTV confirms\" — CCTV is not fully served on papers"
+    ],
+    "hardRules": [
+      "Served does not mean reliable.",
+      "Missing does not mean irrelevant.",
+      "Referred only does not mean usable.",
+      "Inference must be labelled as inference.",
+      "No line is sendable just because a source exists."
+    ],
+    "chaseItems": [
+      {
+        "label": "CCTV Continuity / provenance",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide cCTV Continuity / provenance or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: provisional. Source: Police / CCTV unit. Solicitor review required before sending.]"
+      },
+      {
+        "label": "CCTV full window / master footage",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide cCTV full window / master footage or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: provisional. Source: Police / CCTV unit. Solicitor review required before sending.]"
+      },
+      {
+        "label": "CAD / 999 audio / control-room material",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide cAD / 999 audio / control-room material or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: missing. Source: Police control room. Solicitor review required before sending.]"
+      },
+      {
+        "label": "Interview recording / transcript",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide interview recording / transcript or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: missing. Source: Custody / police interview unit. Solicitor review required before sending.]"
+      },
+      {
+        "label": "MG6 / unused schedule clarification",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide mG6 / unused schedule clarification or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: missing. Source: CPS / disclosure officer. Solicitor review required before sending.]"
+      }
+    ]
+  },
+  "courtNote": {
+    "text": "The defence asks the court to record that full custody and interview records remain outstanding.\n\n[CaseBrain — court line copy. Evidence state: needs review. Confirm before addressing the court.]",
+    "sendabilityLabel": "Solicitor review required",
+    "canCopy": true,
+    "blockedReason": null
+  },
+  "exportVersion": {
+    "exportId": "exp-gbh-pike-20260629170342",
+    "caseId": "gbh-pike-jordan-pike",
+    "generatedAt": "2026-06-29T17:03:42.195Z",
+    "exportType": "h5_export_pack_v1",
+    "bundleVersionLabel": "overview-export@2026-06-29",
+    "appVersion": "evidence-state-audit-snapshot",
+    "sourceStatesIncluded": [
+      "provisional",
+      "missing",
+      "referred_only",
+      "needs_review"
+    ],
+    "sendability": "needs_solicitor_review",
+    "warningCount": 7,
+    "blockedReason": null,
+    "reviewFooter": "Solicitor review required before sending to CPS, court, or client."
+  },
+  "truthKeyComparison": [
+    {
+      "truthItem": "mg11",
+      "truthState": "served",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "mg5",
+      "truthState": "served",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "cctv continuity",
+      "truthState": "referred_only",
+      "casebrainLabel": "CCTV Continuity / provenance",
+      "casebrainState": "provisional",
+      "aligned": false
+    },
+    {
+      "truthItem": "full cctv export",
+      "truthState": "referred_only",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "medical records",
+      "truthState": "referred_only",
+      "casebrainLabel": "Medical / expert source report",
+      "casebrainState": "missing",
+      "aligned": false
+    },
+    {
+      "truthItem": "999 full",
+      "truthState": "referred_only",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "bwv",
+      "truthState": "missing",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "forensic report",
+      "truthState": "missing",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "cad",
+      "truthState": "served",
+      "casebrainLabel": "CAD / 999 audio / control-room material",
+      "casebrainState": "missing",
+      "aligned": false
+    },
+    {
+      "truthItem": "charge sheet",
+      "truthState": "served",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "mg6",
+      "truthState": "served",
+      "casebrainLabel": "MG6 / unused schedule clarification",
+      "casebrainState": "missing",
+      "aligned": false
+    },
+    {
+      "truthItem": "custody",
+      "truthState": "served",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "index",
+      "truthState": "served",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    }
+  ]
+}

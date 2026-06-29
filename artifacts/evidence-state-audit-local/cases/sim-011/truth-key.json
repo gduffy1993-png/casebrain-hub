@@ -1,0 +1,15 @@
+{
+  "caseId": "sim-011",
+  "title": "Perverting justice — fraud bleed",
+  "offenceFamily": "perverting",
+  "offenceWording": "Perverting justice — fraud bleed",
+  "profile": "perverting_justice",
+  "bundleStatus": "manifest_only",
+  "evidenceItems": [],
+  "expectedChaseItems": [],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [],
+  "blockingFailPatterns": [
+    "fraud account-control route as final"
+  ]
+}

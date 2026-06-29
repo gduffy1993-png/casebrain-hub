@@ -1,0 +1,55 @@
+{
+  "caseId": "sim-121",
+  "title": "Fail to provide — skewed procedure bundle",
+  "offenceFamily": "motoring",
+  "offenceWording": "Fail to provide specimen for analysis",
+  "profile": "fail_to_provide_procedure",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "skewed officer summary",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "procedure recording",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full procedure record",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "warning proof",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "procedure record",
+    "statutory warning",
+    "custody notes"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "failure proved",
+    "statutory procedure complied"
+  ],
+  "blockingFailPatterns": [
+    "failure proved",
+    "procedure complied as fact",
+    "specimen refusal proved",
+    "we win",
+    "case collapses"
+  ]
+}

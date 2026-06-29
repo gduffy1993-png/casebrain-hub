@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-29T16:50:36.079Z",
+  "generatedAt": "2026-06-29T17:01:42.012Z",
   "caseId": "sim-045",
   "source": "CaseBrain H5 presentation builders (no Brain 1 mutation)",
   "matterConfidence": {
@@ -218,7 +218,7 @@
       "note": "Outstanding on bundle — brief plan ledger."
     },
     {
-      "label": "MG6C/CO — co-defendant-only — — co-defendant interview records — not this defendant — outstanding — not on bundle.",
+      "label": "MG6C/CO — co-defendant-only — co-defendant interview records — not this defendant — outstanding — not on bundle.",
       "existence": "other_defendant_only",
       "reliability": "needs_review",
       "note": "Co-defendant-only material (— co-defendant interview records) — do not import to this defendant's case theory, client summary, or CPS chase."
@@ -252,7 +252,7 @@
       "Do not state \"CCTV confirms\" — CCTV is not fully served on papers",
       "Do not state \"CCTV proves\" — CCTV is not fully served on papers",
       "Do not state \"Full CCTV confirms\" — CCTV is not fully served on papers",
-      "Do not import co-defendant material (MG6C/CO — co-defendant-only — — co-defendant interview records — not this defendant — outstanding — not on bundle.) to this defendant's case theory.",
+      "Do not import co-defendant material (MG6C/CO — co-defendant-only — co-defendant interview records — not this defendant — outstanding — not on bundle.) to this defendant's case theory.",
       "Do not import co-defendant material (Co-defendant-only — Outstanding: complete BWV; CCTV; medical report; co-defendant interview records. — not this defendant) to this defendant's case theory."
     ],
     "hardRules": [
@@ -297,9 +297,9 @@
     "blockedReason": null
   },
   "exportVersion": {
-    "exportId": "exp-sim-045-20260629165036",
+    "exportId": "exp-sim-045-20260629170142",
     "caseId": "sim-045",
-    "generatedAt": "2026-06-29T16:50:36.079Z",
+    "generatedAt": "2026-06-29T17:01:42.012Z",
     "exportType": "h5_export_pack_v1",
     "bundleVersionLabel": "overview-export@2026-06-29",
     "appVersion": "evidence-state-audit-snapshot",

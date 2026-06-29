@@ -1,0 +1,55 @@
+{
+  "caseId": "sim-144",
+  "title": "PWITS — continuity rotated duplicate pages",
+  "offenceFamily": "drugs_pwits",
+  "offenceWording": "PWITS cocaine",
+  "profile": "drugs_pwits",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "duplicate seizure pages",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "lab",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "lab",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "dealing evidence",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "lab report",
+    "dealing evidence",
+    "phone attribution"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "intent to supply proved",
+    "possession proves dealing"
+  ],
+  "blockingFailPatterns": [
+    "intent to supply proved",
+    "possession proves dealing",
+    "PWITS proved as fact",
+    "we win",
+    "case collapses"
+  ]
+}

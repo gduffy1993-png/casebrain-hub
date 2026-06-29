@@ -1,0 +1,63 @@
+{
+  "caseId": "sim-135",
+  "title": "Large messy bundle — rotated duplicate exhibits",
+  "offenceFamily": "mixed_unclear",
+  "offenceWording": "Mixed offences on large bundle",
+  "profile": "large_messy_bundle",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "partial exhibit subsets",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "duplicate pages",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "multiple exports",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "exhibit map",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "complete schedules",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "defendant/exhibit map",
+    "MG6 detail",
+    "key exports"
+  ],
+  "expectedSendability": "needs_solicitor_review",
+  "mustNotSayGlobal": [
+    "bundle complete as fact",
+    "safe to send",
+    "case summary confirms"
+  ],
+  "blockingFailPatterns": [
+    "safe to send",
+    "bundle complete",
+    "case summary confirms",
+    "we win",
+    "case collapses"
+  ]
+}

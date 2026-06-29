@@ -1,0 +1,96 @@
+{
+  "caseId": "sim-031",
+  "title": "EncroChat — handle attribution disputed",
+  "offenceFamily": "drugs_conspiracy",
+  "offenceWording": "Conspiracy to supply Class A drugs, contrary to section 4(3)(a) of the Misuse of Drugs Act 1971",
+  "profile": "encrochat_encrypted_comms",
+  "bundleStatus": "manifest_only",
+  "evidenceItems": [
+    {
+      "evidence_item": "EncroChat message extracts (partial)",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "encro",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "screenshot pages from platform export",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full encrypted platform extraction",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "handle-to-user mapping certificate",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "encro",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "device/user attribution certificate",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "extraction continuity log",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "co-defendant chat segregation schedule",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "co-defendant messages on shared thread",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "handle nickname overlap",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "encro",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "handle-to-user mapping",
+    "full EncroChat extraction",
+    "device continuity",
+    "co-defendant chat segregation"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "handle is the defendant",
+    "defendant sent encro messages as fact",
+    "co-defendant chat proves role"
+  ],
+  "blockingFailPatterns": [
+    "handle is defendant",
+    "encro messages prove",
+    "co-defendant chat proves role",
+    "attribution confirmed"
+  ]
+}

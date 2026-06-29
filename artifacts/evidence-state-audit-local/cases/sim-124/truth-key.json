@@ -1,0 +1,57 @@
+{
+  "caseId": "sim-124",
+  "title": "Benefit fraud — duplicate bank statement pages",
+  "offenceFamily": "fraud_account",
+  "offenceWording": "Fraud by false representation (benefit)",
+  "profile": "benefit_fraud_records",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "duplicate statement pages",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "DWP file",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full bank download",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "DWP decision records",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "full bank statements",
+    "DWP records",
+    "account schedules"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "fraud proved from summary",
+    "DWP records confirm dishonesty"
+  ],
+  "blockingFailPatterns": [
+    "fraud proved from summary",
+    "DWP records confirm",
+    "dishonesty proved",
+    "we win",
+    "case collapses"
+  ]
+}

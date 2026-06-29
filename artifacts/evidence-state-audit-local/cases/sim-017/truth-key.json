@@ -1,0 +1,20 @@
+{
+  "caseId": "sim-017",
+  "title": "Youth/vulnerability marker",
+  "offenceFamily": "generic",
+  "offenceWording": "Youth/vulnerability marker",
+  "profile": "youth_vulnerability",
+  "bundleStatus": "manifest_only",
+  "evidenceItems": [],
+  "expectedChaseItems": [],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "legal advice on fitness"
+  ],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "BWV shows",
+    "ask the court to record"
+  ]
+}

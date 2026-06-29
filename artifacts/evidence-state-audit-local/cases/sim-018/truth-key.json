@@ -1,0 +1,16 @@
+{
+  "caseId": "sim-018",
+  "title": "OCR-poor scanned MG6",
+  "offenceFamily": "generic",
+  "offenceWording": "OCR-poor scanned MG6",
+  "profile": "generic_provisional",
+  "bundleStatus": "manifest_only",
+  "evidenceItems": [],
+  "expectedChaseItems": [],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [],
+  "blockingFailPatterns": [
+    "=== SECTION:",
+    "pipe fragments in CPS copy"
+  ]
+}

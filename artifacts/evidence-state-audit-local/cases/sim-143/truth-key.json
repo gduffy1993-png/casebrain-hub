@@ -1,0 +1,55 @@
+{
+  "caseId": "sim-143",
+  "title": "PWITS — lab report missing bad OCR",
+  "offenceFamily": "drugs_pwits",
+  "offenceWording": "Possession with intent to supply Class A drugs",
+  "profile": "drugs_pwits",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "OCR seizure notes",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "lab analysis",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "lab report",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "continuity",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "lab report",
+    "continuity",
+    "search footage"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "lab proves intent to supply",
+    "drug weight proved"
+  ],
+  "blockingFailPatterns": [
+    "lab proves intent",
+    "drug weight proved",
+    "continuity proved as fact",
+    "we win",
+    "case collapses"
+  ]
+}

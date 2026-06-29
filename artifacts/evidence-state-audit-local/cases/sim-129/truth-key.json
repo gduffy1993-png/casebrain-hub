@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-129",
+  "title": "Expert report — index-only financial case",
+  "offenceFamily": "fraud_account",
+  "offenceWording": "Fraud by abuse of position",
+  "profile": "document_provenance",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5 financial summary",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "expert report",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "expert report",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "transaction source",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "expert report",
+    "source transactions",
+    "continuity"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "expert proves fraud",
+    "report confirms dishonesty"
+  ],
+  "blockingFailPatterns": [
+    "expert proves fraud",
+    "report confirms dishonesty",
+    "expert report confirms",
+    "we win",
+    "case collapses"
+  ]
+}

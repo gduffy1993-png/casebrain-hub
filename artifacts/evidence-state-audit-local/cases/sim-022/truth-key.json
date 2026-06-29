@@ -1,0 +1,16 @@
+{
+  "caseId": "sim-022",
+  "title": "Mixed offences in one PDF",
+  "offenceFamily": "mixed",
+  "offenceWording": "Mixed offences in one PDF",
+  "profile": "mixed_family",
+  "bundleStatus": "manifest_only",
+  "evidenceItems": [],
+  "expectedChaseItems": [],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [],
+  "blockingFailPatterns": [
+    "drug continuity on harassment matter",
+    "fraud route on violence-only charge"
+  ]
+}

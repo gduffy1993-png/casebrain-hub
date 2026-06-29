@@ -1,0 +1,58 @@
+{
+  "caseId": "sim-131",
+  "title": "Youth — appropriate adult missing rotated",
+  "offenceFamily": "youth",
+  "offenceWording": "Burglary (youth)",
+  "profile": "youth_vulnerability_custody",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "rotated interview summary",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "interview",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "interview recording",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "interview",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "AA record",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "custody record",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "custody_pace",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "appropriate adult record",
+    "custody record",
+    "interview transcript"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "AA attended as fact",
+    "interview reliable"
+  ],
+  "blockingFailPatterns": [
+    "AA attended",
+    "interview reliable",
+    "admission is reliable",
+    "we win",
+    "case collapses"
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-29T16:50:40.670Z",
+  "generatedAt": "2026-06-29T17:01:47.776Z",
   "caseId": "sim-076",
   "source": "CaseBrain H5 presentation builders (no Brain 1 mutation)",
   "matterConfidence": {
@@ -110,7 +110,7 @@
       "note": "Outstanding on bundle — brief plan ledger."
     },
     {
-      "label": "MG6C/CO — co-defendant-only — — co-defendant chat map — not this defendant — outstanding — not on bundle.",
+      "label": "MG6C/CO — co-defendant-only — co-defendant chat map — not this defendant — outstanding — not on bundle.",
       "existence": "other_defendant_only",
       "reliability": "needs_review",
       "note": "Co-defendant-only material (— co-defendant chat map) — do not import to this defendant's case theory, client summary, or CPS chase."
@@ -159,7 +159,7 @@
       "Do not import ABE unless the papers support it.",
       "Assumed position may conflict with interview or served evidence.",
       "Do not state \"CAD/999 timing supports\" — CAD/999 material is not safely on file as served",
-      "Do not import co-defendant material (MG6C/CO — co-defendant-only — — co-defendant chat map — not this defendant — outstanding — not on bundle.) to this defendant's case theory.",
+      "Do not import co-defendant material (MG6C/CO — co-defendant-only — co-defendant chat map — not this defendant — outstanding — not on bundle.) to this defendant's case theory.",
       "Do not import co-defendant material (Co-defendant-only — Outstanding: handle mapping certificate; device continuity; co-defendant chat map. — not this defendant) to this defendant's case theory.",
       "Do not import co-defendant material (Co-defendant-only — co-defendant chat map — not this defendant) to this defendant's case theory."
     ],
@@ -190,9 +190,9 @@
     "blockedReason": null
   },
   "exportVersion": {
-    "exportId": "exp-sim-076-20260629165040",
+    "exportId": "exp-sim-076-20260629170147",
     "caseId": "sim-076",
-    "generatedAt": "2026-06-29T16:50:40.670Z",
+    "generatedAt": "2026-06-29T17:01:47.776Z",
     "exportType": "h5_export_pack_v1",
     "bundleVersionLabel": "overview-export@2026-06-29",
     "appVersion": "evidence-state-audit-snapshot",

@@ -1,0 +1,57 @@
+{
+  "caseId": "sim-114",
+  "title": "Bladed article — skewed stop/search scan",
+  "offenceFamily": "weapons",
+  "offenceWording": "Possession of a bladed article",
+  "profile": "bladed_article",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "skewed search notes",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "search BWV",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV export",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "continuity",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "search BWV",
+    "continuity",
+    "witness accounts"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "blade intended for use proved",
+    "possession intent proved"
+  ],
+  "blockingFailPatterns": [
+    "blade intended for use proved",
+    "possession intent proved",
+    "article proves guilt",
+    "we win",
+    "case collapses"
+  ]
+}

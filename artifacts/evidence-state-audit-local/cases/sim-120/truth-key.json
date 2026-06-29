@@ -1,0 +1,55 @@
+{
+  "caseId": "sim-120",
+  "title": "Drug drive — toxicology rotated pages",
+  "offenceFamily": "motoring",
+  "offenceWording": "Drive whilst unfit through drugs",
+  "profile": "drug_drive_toxicology",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "rotated lab summary",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full lab report",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "lab report",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "blood procedure",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "lab toxicology report",
+    "blood procedure",
+    "calibration"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "toxicology proves unfit",
+    "lab confirms drugs"
+  ],
+  "blockingFailPatterns": [
+    "toxicology proves unfit",
+    "lab confirms drugs",
+    "unfit proved",
+    "we win",
+    "case collapses"
+  ]
+}

@@ -520,7 +520,7 @@ export function enrichSimulatorTruthKey(raw: SimulatorV2TruthKey): EvidenceState
   };
 }
 
-export const AUDIT_SIMULATOR_CASE_IDS = [
+const AUDIT_SIMULATOR_CASE_IDS_RAW = [
   // batch 1
   "sim-038",
   "sim-039",
@@ -555,4 +555,20 @@ export const AUDIT_SIMULATOR_CASE_IDS = [
   "sim-060",
   // batch 4–6 → 60 cases (simulator v3)
   ...simIdRange(76, 105),
-] as const;
+  // batch 7 → 100 cases (v2 gaps + v3 domestic/weapons/motoring)
+  "sim-064",
+  "sim-065",
+  "sim-068",
+  "sim-070",
+  "sim-071",
+  "sim-072",
+  "sim-073",
+  "sim-074",
+  "sim-075",
+  ...simIdRange(106, 136),
+  // batch 8 → 150 simulator cases (v1 + v1.1 + v3 tail)
+  ...simIdRange(1, 37),
+  ...simIdRange(137, 150),
+];
+
+export const AUDIT_SIMULATOR_CASE_IDS = [...new Set(AUDIT_SIMULATOR_CASE_IDS_RAW)] as readonly string[];

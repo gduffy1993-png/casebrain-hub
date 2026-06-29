@@ -1,0 +1,55 @@
+{
+  "caseId": "sim-116",
+  "title": "Public order — rotated clip bundle",
+  "offenceFamily": "public_order",
+  "offenceWording": "Affray",
+  "profile": "multi_participant_public_order",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "rotated video clips",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full clip set",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "conduct map",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full clips",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "per-defendant clip map",
+    "witness statements",
+    "BWV"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "defendant affray conduct proved",
+    "group violence proves individual guilt"
+  ],
+  "blockingFailPatterns": [
+    "defendant affray conduct proved",
+    "group violence proves",
+    "affray proved for defendant",
+    "we win",
+    "case collapses"
+  ]
+}

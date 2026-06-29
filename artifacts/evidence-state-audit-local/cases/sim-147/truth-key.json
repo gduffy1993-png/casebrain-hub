@@ -1,0 +1,63 @@
+{
+  "caseId": "sim-147",
+  "title": "Drugs — very thin placeholder bundle",
+  "offenceFamily": "drugs_pwits",
+  "offenceWording": "Possession of Class B drugs",
+  "profile": "drugs_pwits",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "thin MG5 note",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "lab",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "lab",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "continuity",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "search material",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "lab analysis",
+    "search continuity",
+    "MG6 schedule"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "drugs proved as analysed",
+    "thin bundle supports PWITS"
+  ],
+  "blockingFailPatterns": [
+    "drugs proved as analysed",
+    "intent to supply proved",
+    "thin bundle complete",
+    "we win",
+    "case collapses"
+  ]
+}

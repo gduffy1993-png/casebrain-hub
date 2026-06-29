@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-117",
+  "title": "Offensive weapon — index-only listing",
+  "offenceFamily": "weapons",
+  "offenceWording": "Possession of offensive weapon",
+  "profile": "bladed_article",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5 reference to weapon",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "forensic report",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "forensic report",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "continuity",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "forensic report",
+    "continuity",
+    "search footage"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "forensic proves weapon",
+    "weapon analysis confirms"
+  ],
+  "blockingFailPatterns": [
+    "forensic proves weapon",
+    "weapon analysis confirms",
+    "report confirms guilt",
+    "we win",
+    "case collapses"
+  ]
+}

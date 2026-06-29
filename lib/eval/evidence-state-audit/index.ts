@@ -8,4 +8,6 @@ export * from "./scoring";
 export * from "./fixtures";
 export * from "./build-audit-snapshot";
 export * from "./enrich-simulator-truth-key";
+export * from "./convert-gold-truth-key";
+export * from "./diversity";
 export { runEvidenceStateAudit, writeAuditArtifacts, renderAuditMarkdown } from "./report";

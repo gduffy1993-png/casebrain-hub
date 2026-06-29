@@ -1,0 +1,42 @@
+{
+  "caseId": "fictional-theft-ashleigh-merritt",
+  "title": "R v Ashleigh Merritt — theft",
+  "offenceFamily": "generic",
+  "offenceWording": "Theft, contrary to s.1 Theft Act 1968",
+  "profile": "generic",
+  "bundleStatus": "gold_pack",
+  "evidenceItems": [
+    {
+      "evidence_item": "charge_sheet",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "mg5",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "CCTV / continuity material if referred",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    }
+  ],
+  "expectedChaseItems": [
+    "Retail CCTV continuity"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "Do not import fraud account control unless the papers support it.",
+    "Do not import pwits phone attribution unless the papers support it."
+  ],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "guaranteed",
+    "safe to send"
+  ]
+}

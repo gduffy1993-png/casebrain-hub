@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-29T16:50:42.944Z",
+  "generatedAt": "2026-06-29T17:01:50.115Z",
   "caseId": "sim-091",
   "source": "CaseBrain H5 presentation builders (no Brain 1 mutation)",
   "matterConfidence": {
@@ -169,9 +169,9 @@
     "blockedReason": null
   },
   "exportVersion": {
-    "exportId": "exp-sim-091-20260629165042",
+    "exportId": "exp-sim-091-20260629170150",
     "caseId": "sim-091",
-    "generatedAt": "2026-06-29T16:50:42.944Z",
+    "generatedAt": "2026-06-29T17:01:50.115Z",
     "exportType": "h5_export_pack_v1",
     "bundleVersionLabel": "overview-export@2026-06-29",
     "appVersion": "evidence-state-audit-snapshot",

@@ -1,0 +1,30 @@
+{
+  "caseId": "sim-012",
+  "title": "Robbery — CCTV missing",
+  "offenceFamily": "robbery",
+  "offenceWording": "Robbery — CCTV missing",
+  "profile": "robbery_id",
+  "bundleStatus": "manifest_only",
+  "evidenceItems": [
+    {
+      "evidence_item": "CCTV",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "cctv",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "CCTV full window",
+    "ID procedure material"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "BWV shows",
+    "ask the court to record"
+  ]
+}

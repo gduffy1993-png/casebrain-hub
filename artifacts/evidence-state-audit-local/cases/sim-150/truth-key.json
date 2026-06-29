@@ -1,0 +1,76 @@
+{
+  "caseId": "sim-150",
+  "title": "Index-only bundle — referred material trap",
+  "offenceFamily": "mixed_unclear",
+  "offenceWording": "Offence per charge sheet only",
+  "profile": "generic_provisional",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "bundle index pages only",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG11",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "custody",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "custody_pace",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "medical",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "all substantive exports",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "BWV export",
+    "MG11 statements",
+    "custody record",
+    "expert reports"
+  ],
+  "expectedSendability": "blocked",
+  "mustNotSayGlobal": [
+    "material served as fact",
+    "bundle supports safe send",
+    "safe to send"
+  ],
+  "blockingFailPatterns": [
+    "safe to send",
+    "material served as fact",
+    "bundle supports safe send",
+    "BWV shows",
+    "MG11 confirms",
+    "we win",
+    "case collapses"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-108",
+  "title": "Harassment — screenshot duplicate pages",
+  "offenceFamily": "harassment",
+  "offenceWording": "Harassment without violence",
+  "profile": "malicious_comms",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "duplicate screenshots",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "platform export",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "source export",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "account data",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "message platform export",
+    "subscriber/account data",
+    "attribution"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "screenshots prove sender",
+    "account belongs to defendant"
+  ],
+  "blockingFailPatterns": [
+    "screenshots prove sender",
+    "account belongs to defendant",
+    "harassment proved by screenshots",
+    "we win",
+    "case collapses"
+  ]
+}

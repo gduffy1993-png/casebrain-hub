@@ -1,0 +1,55 @@
+{
+  "caseId": "sim-128",
+  "title": "Fraud — mixed defendants financial PDF",
+  "offenceFamily": "fraud_account",
+  "offenceWording": "Fraud (multi-defendant)",
+  "profile": "benefit_fraud_records",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "mixed defendant account summary",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "bank data",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "per-defendant map",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full bank export",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "per-defendant transaction map",
+    "bank downloads",
+    "device records"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "co-defendant fraud proves this defendant",
+    "joint account proves guilt"
+  ],
+  "blockingFailPatterns": [
+    "co-defendant fraud proves",
+    "joint account proves guilt",
+    "fraud proved for defendant",
+    "we win",
+    "case collapses"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "caseId": "pilot-3-kian-doyle",
+  "title": "R v Kian Doyle — PWITS hero",
+  "offenceFamily": "pwits_phone_attribution",
+  "offenceWording": "Possession with intent to supply Class A controlled drugs",
+  "profile": "pwits_phone_attribution",
+  "bundleStatus": "gold_pack",
+  "evidenceItems": [
+    {
+      "evidence_item": "charge sheet",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    }
+  ],
+  "expectedChaseItems": [],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "Do not import fraud account control unless the papers support it.",
+    "Do not import robbery identification unless the papers support it."
+  ],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "guaranteed",
+    "safe to send"
+  ]
+}

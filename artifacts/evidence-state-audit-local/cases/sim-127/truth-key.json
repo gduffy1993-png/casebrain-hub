@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-127",
+  "title": "Account control — OCR poor bank schedules",
+  "offenceFamily": "fraud_account",
+  "offenceWording": "Fraud by false representation (account control)",
+  "profile": "money_laundering_bank_records",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "OCR bank schedule fragments",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full bank download",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "bank export",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "device extraction",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "banking schedules",
+    "device extraction",
+    "ownership evidence"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "account control proved",
+    "ownership established as fact"
+  ],
+  "blockingFailPatterns": [
+    "account control proved",
+    "ownership established",
+    "banking proves fraud",
+    "we win",
+    "case collapses"
+  ]
+}

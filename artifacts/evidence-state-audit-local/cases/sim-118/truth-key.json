@@ -1,0 +1,56 @@
+{
+  "caseId": "sim-118",
+  "title": "Motoring SJP — very thin OCR scan",
+  "offenceFamily": "motoring",
+  "offenceWording": "Speeding (SJP)",
+  "profile": "drink_drive_procedure",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "single-page SJP notice",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "calibration",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "calibration cert",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "device download",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "calibration certificate",
+    "notice of intended prosecution",
+    "device record"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "fraud account-control route",
+    "PWITS route on motoring"
+  ],
+  "blockingFailPatterns": [
+    "fraud account-control",
+    "PWITS route",
+    "intent to supply",
+    "we win",
+    "case collapses"
+  ]
+}

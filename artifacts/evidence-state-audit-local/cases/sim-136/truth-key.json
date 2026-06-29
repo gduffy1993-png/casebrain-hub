@@ -1,0 +1,55 @@
+{
+  "caseId": "sim-136",
+  "title": "Pages out of order — mixed offences",
+  "offenceFamily": "mixed_unclear",
+  "offenceWording": "Unclear primary offence on mixed PDF",
+  "profile": "generic_provisional",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "out-of-order mixed pages",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full schedules",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "ordered charge papers",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MG6 detail",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "charge clarity",
+    "MG6 schedule",
+    "primary offence papers"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "fraud route as final on non-fraud",
+    "PWITS route as final"
+  ],
+  "blockingFailPatterns": [
+    "fraud account-control route as final",
+    "PWITS route on",
+    "wrong family route",
+    "we win",
+    "case collapses"
+  ]
+}

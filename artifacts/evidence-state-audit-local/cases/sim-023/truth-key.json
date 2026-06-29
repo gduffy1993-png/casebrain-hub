@@ -1,0 +1,18 @@
+{
+  "caseId": "sim-023",
+  "title": "Police jargon only",
+  "offenceFamily": "generic",
+  "offenceWording": "Police jargon only",
+  "profile": "generic_provisional",
+  "bundleStatus": "manifest_only",
+  "evidenceItems": [],
+  "expectedChaseItems": [],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [],
+  "blockingFailPatterns": [
+    "we win",
+    "case collapses",
+    "BWV shows",
+    "ask the court to record"
+  ]
+}

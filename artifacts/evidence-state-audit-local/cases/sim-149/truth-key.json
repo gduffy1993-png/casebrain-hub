@@ -1,0 +1,62 @@
+{
+  "caseId": "sim-149",
+  "title": "PWITS — corrected charge possession to PWITS",
+  "offenceFamily": "drugs_pwits",
+  "offenceWording": "Possession with intent to supply (amended)",
+  "profile": "drugs_pwits",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "amended charge",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "old possession wording",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "lab",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "intent material",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "lab",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "intent evidence",
+    "lab report",
+    "dealing material"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "intent proved from possession",
+    "amended charge proves PWITS"
+  ],
+  "blockingFailPatterns": [
+    "intent proved from possession",
+    "amended charge proves",
+    "PWITS proved as fact",
+    "we win",
+    "case collapses"
+  ]
+}
