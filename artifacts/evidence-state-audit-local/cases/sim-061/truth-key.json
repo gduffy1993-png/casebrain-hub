@@ -1,0 +1,129 @@
+{
+  "caseId": "sim-061",
+  "title": "Failure to provide specimen procedure and BWV gaps",
+  "offenceFamily": "driving_motoring",
+  "offenceWording": "Failing to provide a specimen for analysis",
+  "profile": "fail_to_provide_procedure",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "officer MG11",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "charge sheet",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MGDD form",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "custody record",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "custody_pace",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "medical note",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "MGDD form",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full custody record",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "custody_pace",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "medical/fitness note",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "warning wording",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "whether refusal/warning/reasonable excuse is properly evidenced",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant",
+      "must_not_say": [
+        "refused",
+        "warning was properly given"
+      ]
+    }
+  ],
+  "expectedChaseItems": [
+    "MGDD/refusal procedure",
+    "BWV",
+    "custody record",
+    "medical/fitness note"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "Tomas refused",
+    "warning was properly given",
+    "no reasonable excuse"
+  ],
+  "blockingFailPatterns": [
+    "refused",
+    "warning was properly given",
+    "no reasonable excuse"
+  ]
+}

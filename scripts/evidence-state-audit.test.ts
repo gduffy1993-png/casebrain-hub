@@ -5,7 +5,9 @@
 import assert from "node:assert/strict";
 
 import { compareTruthItem } from "../lib/eval/evidence-state-audit/compare";
+import { isWrongDefendantBleedMatch } from "../lib/eval/evidence-state-audit/defendant-relevance";
 import { isFalseServed, statesMatchForAccuracy } from "../lib/eval/evidence-state-audit/normalize";
+import { isPartialMediaLedgerLabel } from "../lib/eval/evidence-state-audit/partial-media";
 import { parseTruthKeyJson } from "../lib/eval/evidence-state-audit/truth-key-parse";
 import { adaptCaseBrainOutput } from "../lib/eval/evidence-state-audit/output-adapter";
 import { PROOF_PACK_FIXTURE, loadFixture } from "../lib/eval/evidence-state-audit/fixtures";
@@ -65,8 +67,8 @@ const incompleteOk = compareTruthItem(
 assert.equal(incompleteOk.falseServed, false);
 assert.equal(incompleteOk.stateAccurate, true);
 
-// wrong-defendant bleed
-const bleed = compareTruthItem(
+// wrong-defendant bleed — generic interview must NOT match co-def-only truth
+const genericInterviewNoBleed = compareTruthItem(
   item("Co-defendant Lee Marsh interview", "other_defendant_only", {
     defendant_relevance: "co_defendant_only",
     evidence_type: "interview",
@@ -75,7 +77,50 @@ const bleed = compareTruthItem(
     { label: "Interview recording / transcript", existence: "missing", reliability: "needs_review" },
   ]),
 );
-assert.equal(bleed.wrongDefendantBleed, true);
+assert.equal(genericInterviewNoBleed.wrongDefendantBleed, false);
+
+// explicit co-defendant label in output should still bleed
+const explicitCoDefBleed = compareTruthItem(
+  item("Co-defendant Lee Marsh interview", "other_defendant_only", {
+    defendant_relevance: "co_defendant_only",
+    evidence_type: "interview",
+  }),
+  syntheticOutput([
+    {
+      label: "Co-defendant Lee Marsh interview transcript",
+      existence: "missing",
+      reliability: "needs_review",
+    },
+  ]),
+);
+assert.equal(explicitCoDefBleed.wrongDefendantBleed, true);
+
+// partial BWV clip is incomplete, not false-served
+const partialBwvOk = compareTruthItem(
+  item("short BWV clip transcript", "incomplete", { evidence_type: "bwv" }),
+  syntheticOutput([
+    {
+      label: "MG6C/SHO — short BWV clip transcript — served on bundle.",
+      existence: "incomplete",
+      reliability: "needs_review",
+    },
+  ]),
+);
+assert.equal(partialBwvOk.falseServed, false);
+assert.equal(partialBwvOk.stateAccurate, true);
+
+assert.equal(isPartialMediaLedgerLabel("short BWV clip transcript"), true);
+assert.equal(
+  isWrongDefendantBleedMatch(
+    item("Co-defendant Lee Marsh interview", "other_defendant_only", {
+      defendant_relevance: "co_defendant_only",
+    }),
+    "Interview recording / transcript",
+    null,
+    true,
+  ),
+  false,
+);
 
 assert.equal(statesMatchForAccuracy("inferred_only", "provisional"), true);
 

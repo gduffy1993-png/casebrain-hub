@@ -1,0 +1,112 @@
+{
+  "caseId": "sim-039",
+  "title": "EncroChat extraction continuity and cropped-message trap",
+  "offenceFamily": "drugs_supply",
+  "offenceWording": "Being concerned in the supply of Class A drugs",
+  "profile": "encro_encrypted_comms",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "cropped message screenshots",
+      "correct_evidence_state": "incomplete",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital_screenshot",
+      "defendant_relevance": "primary_defendant",
+      "must_not_say": [
+        "screenshots are the full record",
+        "complete chat shows"
+      ]
+    },
+    {
+      "evidence_item": "officer exhibit list",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full extraction",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "hash values",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "translation/interpretation note",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "complete conversation thread",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "metadata",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "export audit trail",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "exhibit continuity statement",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "whether screenshots are complete, edited, or selected",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "full message export with metadata",
+    "continuity statement",
+    "hash/audit log",
+    "complete conversation context"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "full conversation proves dealing",
+    "complete extraction served",
+    "screenshots are the full record"
+  ],
+  "blockingFailPatterns": [
+    "full extraction served",
+    "complete chat shows",
+    "messages conclusively prove"
+  ]
+}

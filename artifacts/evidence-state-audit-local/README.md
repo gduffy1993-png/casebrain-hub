@@ -7,11 +7,22 @@ This folder holds truth keys and paired `casebrain-output.json` files for the Ev
 
 ## Runnable cases today
 
-| Case ID | Truth key | CaseBrain output | Notes |
-|---------|-----------|------------------|-------|
-| `proof-pack-01` | `cases/proof-pack-01/truth-key.json` | `cases/proof-pack-01/casebrain-output.json` | Synthetic public-safe proof pack |
+**Count:** 10 runnable cases (target **30** for batch audit stage).
 
-**Count:** 1 runnable case (need **30+** before Stage 5 batch audit).
+| Case ID | Trap focus | Truth items |
+|---------|------------|-------------|
+| `proof-pack-01` | BWV referred, partial phone, co-def bleed | 7 |
+| `sim-038` | Encro handle + co-defendant bleed | 11 |
+| `sim-039` | Cropped screenshots / incomplete export | 11 |
+| `sim-041` | County lines / safeguarding referred | 11 |
+| `sim-044` | Presence vs participation | 11 |
+| `sim-045` | Joint enterprise + partial BWV | 11 |
+| `sim-050` | Screenshots without full download | 11 |
+| `sim-055` | Referred-only BWV as served | 12 |
+| `sim-058` | Going equipped / intent inference | 12 |
+| `sim-061` | FTP specimen procedure gaps | 13 |
+
+Seed more: `npx tsx scripts/seed-evidence-state-audit-cases.ts` (simulator v2 only).
 
 ## Add a case
 

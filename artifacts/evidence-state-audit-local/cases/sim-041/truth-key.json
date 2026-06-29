@@ -1,0 +1,109 @@
+{
+  "caseId": "sim-041",
+  "title": "County lines vulnerability and modern slavery marker",
+  "offenceFamily": "drugs_pwits",
+  "offenceWording": "Possession with intent to supply Class A drugs",
+  "profile": "county_lines_vulnerability",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "custody summary",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "custody_pace",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "drug expert statement",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "NRM referral",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "youth offending team note",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "social care record",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "NRM referral outcome",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "safeguarding",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "appropriate adult notes",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "safeguarding chronology",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "phone attribution",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "whether exploitation is evidenced or only mentioned",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "NRM/safeguarding material",
+    "appropriate adult and custody records",
+    "phone attribution material"
+  ],
+  "expectedSendability": "needs_solicitor_review",
+  "mustNotSayGlobal": [
+    "Tia was exploited",
+    "modern slavery defence succeeds",
+    "NRM confirms exploitation"
+  ],
+  "blockingFailPatterns": [
+    "was exploited",
+    "modern slavery defence is made out",
+    "NRM confirms"
+  ]
+}

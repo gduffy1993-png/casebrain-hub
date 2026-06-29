@@ -21,9 +21,22 @@ function pushPatternFailures(
   text: string,
   patterns: string[],
 ): void {
-  const lower = text.toLowerCase();
-  for (const pattern of patterns) {
-    if (lower.includes(pattern.toLowerCase())) {
+  for (const line of text.split("\n")) {
+    const trimmed = line.trim();
+    if (!trimmed) continue;
+    const lower = trimmed.toLowerCase();
+    const isProhibitionLine =
+      lower.includes("do not ") ||
+      lower.includes("don't ") ||
+      lower.includes("must not ") ||
+      lower.includes("do not state") ||
+      lower.includes("do not say") ||
+      lower.includes("do not treat") ||
+      lower.includes("do not import");
+
+    for (const pattern of patterns) {
+      if (!lower.includes(pattern.toLowerCase())) continue;
+      if (isProhibitionLine) continue;
       failures.push({
         code: "blocking_pattern_in_output",
         severity: "blocking",

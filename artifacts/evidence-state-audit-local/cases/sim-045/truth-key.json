@@ -1,0 +1,120 @@
+{
+  "caseId": "sim-045",
+  "title": "Joint-enterprise violence with partial BWV",
+  "offenceFamily": "violence_assault",
+  "offenceWording": "Section 20 unlawful wounding",
+  "profile": "joint_enterprise_assault",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "victim statement",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "short BWV clip transcript",
+      "correct_evidence_state": "incomplete",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant",
+      "must_not_say": [
+        "BWV confirms group attack"
+      ]
+    },
+    {
+      "evidence_item": "full BWV export",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "CCTV",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "cctv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "medical report",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "complete BWV",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "CCTV",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "cctv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "medical report",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "co-defendant interview records",
+      "correct_evidence_state": "other_defendant_only",
+      "chase_needed": false,
+      "safe_to_rely_on": false,
+      "evidence_type": "interview",
+      "defendant_relevance": "co_defendant_only"
+    },
+    {
+      "evidence_item": "whether Leah encouraged, assisted, withdrew, or was present only",
+      "correct_evidence_state": "inferred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant",
+      "must_not_say": [
+        "joint enterprise is proved",
+        "intended serious injury"
+      ]
+    }
+  ],
+  "expectedChaseItems": [
+    "complete BWV",
+    "CCTV",
+    "medical report",
+    "co-defendant interviews"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "joint enterprise is proved",
+    "Leah intended serious injury",
+    "BWV confirms group attack"
+  ],
+  "blockingFailPatterns": [
+    "joint enterprise is proved",
+    "intended serious injury",
+    "BWV confirms"
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "caseId": "sim-058",
+  "title": "Going equipped tool possession and lawful purpose trap",
+  "offenceFamily": "theft_handling",
+  "offenceWording": "Going equipped for theft",
+  "profile": "going_equipped",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "seizure statement",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "charge sheet",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "CCTV",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "cctv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "tool photographs",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "photographs",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "CCTV",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "cctv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "tool photographs",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "photographs",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "interview record",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "interview",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "lawful-purpose context",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "whether possession was for theft or innocent work/use",
+      "correct_evidence_state": "inferred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant",
+      "must_not_say": [
+        "tools prove intent",
+        "was going equipped"
+      ]
+    }
+  ],
+  "expectedChaseItems": [
+    "BWV/CCTV",
+    "tool photographs",
+    "interview record",
+    "context/lawful purpose material"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "tools prove intent",
+    "Kai was going equipped",
+    "BWV confirms"
+  ],
+  "blockingFailPatterns": [
+    "tools prove intent",
+    "was going equipped",
+    "BWV confirms"
+  ]
+}

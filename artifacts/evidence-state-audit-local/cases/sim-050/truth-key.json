@@ -1,0 +1,114 @@
+{
+  "caseId": "sim-050",
+  "title": "Phone download screenshots only with missing scope and metadata",
+  "offenceFamily": "domestic_harassment",
+  "offenceWording": "Harassment without violence",
+  "profile": "digital_attribution",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "complainant screenshots",
+      "correct_evidence_state": "incomplete",
+      "chase_needed": true,
+      "safe_to_rely_on": true,
+      "evidence_type": "digital_screenshot",
+      "defendant_relevance": "primary_defendant",
+      "must_not_say": [
+        "screenshots prove harassment",
+        "full download served"
+      ]
+    },
+    {
+      "evidence_item": "short officer statement",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "phone download",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "exhibit metadata",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "device audit log",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full phone download",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "search terms/scope",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "metadata",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "device ownership/continuity",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "whether messages are complete, attributed, or taken out of context",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "full phone download",
+    "metadata and search scope",
+    "device ownership/continuity",
+    "complete message thread"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "Maya sent the messages",
+    "screenshots prove harassment",
+    "full download served"
+  ],
+  "blockingFailPatterns": [
+    "sent the messages",
+    "screenshots prove",
+    "full download served"
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "caseId": "sim-055",
+  "title": "Police contact public order with BWV and custody sequence gaps",
+  "offenceFamily": "bwv_police_contact",
+  "offenceWording": "Assault on emergency worker",
+  "profile": "police_contact_bwv_custody",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "officer MG11",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "custody summary extract",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "custody_pace",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full custody record",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "custody_pace",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "PACE interview recording",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "custody_pace",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV export",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant",
+      "must_not_say": [
+        "BWV shows assault"
+      ]
+    },
+    {
+      "evidence_item": "full custody record",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "custody_pace",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "risk assessment",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "interview recording",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "interview",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "use-of-force record",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "sequence before arrest and defendant condition",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "BWV export",
+    "full custody/PACE material",
+    "use-of-force record",
+    "risk assessment"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "BWV shows assault",
+    "custody record confirms safeguards",
+    "PACE interview served"
+  ],
+  "blockingFailPatterns": [
+    "BWV shows",
+    "confirms safeguards",
+    "interview served"
+  ]
+}

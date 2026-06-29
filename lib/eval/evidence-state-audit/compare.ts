@@ -1,4 +1,8 @@
-import { findBestPrediction, listPredictions } from "./output-adapter";
+import { listPredictions } from "./output-adapter";
+import {
+  defendantRelevanceMatchBonus,
+  isWrongDefendantBleedMatch,
+} from "./defendant-relevance";
 import {
   isFalseServed,
   isOverCautious,
@@ -15,24 +19,33 @@ import type {
   TruthKeyEvidenceItem,
 } from "./types";
 
+function findBestPredictionForTruth(
+  truthItem: TruthKeyEvidenceItem,
+  predictions: AdaptedPrediction[],
+): { prediction: AdaptedPrediction | null; score: number } {
+  let best: AdaptedPrediction | null = null;
+  let bestScore = 0;
+  for (const p of predictions) {
+    const labelScore = labelMatchScore(truthItem.evidence_item, p.label);
+    const stateBonus = statesMatchForAccuracy(truthItem.correct_evidence_state, p.predictedState) ? 0.2 : 0;
+    const relevanceBonus = defendantRelevanceMatchBonus(truthItem, p.label, p.source);
+    const score = labelScore + stateBonus + relevanceBonus;
+    if (score > bestScore) {
+      bestScore = score;
+      best = p;
+    }
+  }
+  if (bestScore < 0.45) return { prediction: null, score: bestScore };
+  return { prediction: best, score: bestScore };
+}
+
 function isWrongDefendantBleed(
   item: TruthKeyEvidenceItem,
-  predictions: AdaptedPrediction[],
   matched: boolean,
   predictedLabel: string | null,
+  source?: string | null,
 ): boolean {
-  if (item.correct_evidence_state !== "other_defendant_only") return false;
-  if (matched && predictedLabel) return true;
-
-  const truthNorm = item.evidence_item.toLowerCase();
-  const type = (item.evidence_type ?? "").toLowerCase();
-  for (const p of predictions) {
-    const label = p.label.toLowerCase();
-    if (type && label.includes(type)) return true;
-    if (truthNorm.includes("interview") && label.includes("interview")) return true;
-    if (truthNorm.includes("co-defendant") && label.includes("interview")) return true;
-  }
-  return false;
+  return isWrongDefendantBleedMatch(item, predictedLabel, source, matched);
 }
 
 function isUnsafeReliance(
@@ -54,7 +67,7 @@ export function compareTruthItem(
   output: CaseBrainAuditOutput,
   predictions = listPredictions(output),
 ): ItemComparison {
-  const { prediction, score } = findBestPrediction(item.evidence_item, predictions);
+  const { prediction, score } = findBestPredictionForTruth(item, predictions);
   const predictedState = prediction?.predictedState ?? null;
   const matched = prediction !== null && score >= 0.45;
   const notes: string[] = [];
@@ -67,9 +80,9 @@ export function compareTruthItem(
   const stateAccurate = statesMatchForAccuracy(item.correct_evidence_state, predictedState);
   const wrongDefendantBleed = isWrongDefendantBleed(
     item,
-    predictions,
     matched,
     prediction?.label ?? null,
+    prediction?.source,
   );
   const unsafeReliance = isUnsafeReliance(
     item,

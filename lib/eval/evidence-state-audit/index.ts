@@ -6,4 +6,6 @@ export * from "./compare";
 export * from "./blocking";
 export * from "./scoring";
 export * from "./fixtures";
+export * from "./build-audit-snapshot";
+export * from "./enrich-simulator-truth-key";
 export { runEvidenceStateAudit, writeAuditArtifacts, renderAuditMarkdown } from "./report";

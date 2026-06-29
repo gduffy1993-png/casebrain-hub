@@ -1,0 +1,119 @@
+{
+  "caseId": "sim-044",
+  "title": "Multi-handed assault presence versus participation",
+  "offenceFamily": "violence_assault",
+  "offenceWording": "Assault occasioning actual bodily harm",
+  "profile": "multi_handed_assault",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "complainant MG11",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "arresting officer MG11",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "CCTV",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "cctv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "body-worn video",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant",
+      "must_not_say": [
+        "BWV shows Imran assaulting"
+      ]
+    },
+    {
+      "evidence_item": "medical photographs",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full CCTV export",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "cctv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "medical notes",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "scene timeline",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "whether Imran struck anyone or was merely present",
+      "correct_evidence_state": "inferred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_from_summary",
+      "defendant_relevance": "primary_defendant",
+      "must_not_say": [
+        "presence proves participation",
+        "joined the attack"
+      ]
+    }
+  ],
+  "expectedChaseItems": [
+    "full CCTV export",
+    "BWV",
+    "medical evidence",
+    "timeline/source schedule"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "defendant joined the attack",
+    "CCTV shows Imran assaulting",
+    "presence proves participation"
+  ],
+  "blockingFailPatterns": [
+    "joined the attack",
+    "CCTV shows Imran",
+    "participated in the assault"
+  ]
+}

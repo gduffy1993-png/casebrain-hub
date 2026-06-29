@@ -1,0 +1,115 @@
+{
+  "caseId": "sim-038",
+  "title": "EncroChat handle attribution disputed with co-defendant bleed risk",
+  "offenceFamily": "drugs_conspiracy",
+  "offenceWording": "Conspiracy to supply Class A drugs",
+  "profile": "encro_encrypted_comms",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5 summary",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "schedule of alleged Encro handles",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "encro",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "two MG11 officer statements",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full extraction report",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "handle attribution report",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "encro",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "co-defendant chat export",
+      "correct_evidence_state": "other_defendant_only",
+      "chase_needed": false,
+      "safe_to_rely_on": false,
+      "evidence_type": "encro_chat",
+      "defendant_relevance": "co_defendant_only",
+      "must_not_say": [
+        "co-defendant messages show Rafiq",
+        "bleed co-defendant chat to client"
+      ]
+    },
+    {
+      "evidence_item": "device attribution evidence",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "download continuity",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "cellsite linking defendant to device",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "expert methodology",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "whether the handle is personal, shared, or inferred from contact names",
+      "correct_evidence_state": "inferred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_from_summary",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "full encrypted-platform extraction",
+    "handle attribution report",
+    "device continuity and cellsite schedule",
+    "co-defendant chat context"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "defendant used the Encro handle",
+    "messages prove supply",
+    "co-defendant chat proves this defendant's role"
+  ],
+  "blockingFailPatterns": [
+    "handle belongs to the defendant",
+    "Encro messages prove",
+    "co-defendant messages show Rafiq"
+  ]
+}
