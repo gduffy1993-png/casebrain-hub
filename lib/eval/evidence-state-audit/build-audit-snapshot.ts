@@ -70,6 +70,7 @@ export function buildCasebrainAuditSnapshot(input: BuildAuditSnapshotInput): Cas
     allegation,
     stage: "PTPH",
     hearingStatus: "Listed",
+    hearingDateIso: null,
     bundleHealth: "thin",
     positionStatus: "Provisional",
     battleboard,

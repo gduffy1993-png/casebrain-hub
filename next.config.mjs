@@ -18,7 +18,7 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   typescript: {
-    tsconfigPath: "./tsconfig.json",
+    tsconfigPath: "./tsconfig.build.json",
   },
   reactStrictMode: true,
   productionBrowserSourceMaps: true,
