@@ -378,7 +378,9 @@ async function main(): Promise<void> {
       }
     }
 
-    if (await desktop.getByTestId("rerun-diff-panel").isVisible().catch(() => false)) {
+    const rerunPanel = desktop.getByTestId("rerun-diff-panel");
+    await rerunPanel.scrollIntoViewIfNeeded({ timeout: 15_000 }).catch(() => undefined);
+    if (await rerunPanel.isVisible().catch(() => false)) {
       steps.push({ id: "rerun_diff_visible", status: "pass" });
     } else {
       const body = await desktop.locator("body").innerText();
