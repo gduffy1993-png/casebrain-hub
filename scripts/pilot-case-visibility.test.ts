@@ -80,7 +80,7 @@ assert.equal(isValidCaseId("aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"), true);
 assert.equal(buildControlRoomCaseHref("CASE_ID"), "/cases");
 assert.equal(
   buildControlRoomCaseHref("aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"),
-  "/cases/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee?tab=today&controlRoom=1",
+  "/cases/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee?tab=overview&controlRoom=1",
 );
 
 console.log("pilot-case-visibility.test.ts: ok");

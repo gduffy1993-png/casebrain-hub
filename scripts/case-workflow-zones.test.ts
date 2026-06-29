@@ -22,9 +22,9 @@ const { buildCaseWorkflowTabHref, buildControlRoomCaseHref } =
 
 const CASE_ID = "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee";
 
-assert.equal(getDefaultCriminalCaseTab(), "today");
-assert.equal(buildDefaultCriminalCaseHref(CASE_ID), `/cases/${CASE_ID}?tab=today&controlRoom=1`);
-assert.equal(buildControlRoomCaseHref(CASE_ID), `/cases/${CASE_ID}?tab=today&controlRoom=1`);
+assert.equal(getDefaultCriminalCaseTab(), "overview");
+assert.equal(buildDefaultCriminalCaseHref(CASE_ID), `/cases/${CASE_ID}?tab=overview&controlRoom=1`);
+assert.equal(buildControlRoomCaseHref(CASE_ID), `/cases/${CASE_ID}?tab=overview&controlRoom=1`);
 assert.equal(buildCaseZoneHref(CASE_ID, "papers"), `/cases/${CASE_ID}?tab=papers&controlRoom=1`);
 
 assert.equal(normalizeCriminalCaseTabFromUrl("strategy"), "papers");

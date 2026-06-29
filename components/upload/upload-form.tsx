@@ -18,8 +18,7 @@ import {
   mergePdfFilesToSingleFile,
 } from "@/lib/client/merge-pdfs";
 import { EVAL_PACK_IDS, EVAL_PACK_LABELS } from "@/lib/eval-packs";
-import { buildControlRoomCaseHref, buildCourtTodayDeskHref, isCriminalPracticeArea } from "@/components/criminal/criminalCaseNavigation";
-import { isCriminalPilotMode } from "@/lib/pilot-mode";
+import { buildControlRoomCaseHref, isCriminalPracticeArea } from "@/components/criminal/criminalCaseNavigation";
 
 const ACCEPTED_TYPES = [
   "application/pdf",
@@ -555,9 +554,7 @@ export function UploadForm({ caseId: propCaseId }: UploadFormProps = {}) {
 
       const caseHref = (id: string) => {
         if (!isCriminalPracticeArea(practiceArea)) return `/cases/${id}`;
-        return isCriminalPilotMode()
-          ? buildCourtTodayDeskHref(id, "overview")
-          : buildControlRoomCaseHref(id);
+        return buildControlRoomCaseHref(id);
       };
 
       if (uploadedCaseIds && uploadedCaseIds.length > 1) {

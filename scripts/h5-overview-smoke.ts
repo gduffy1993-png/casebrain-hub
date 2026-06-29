@@ -254,11 +254,11 @@ async function main(): Promise<void> {
 
   async function checkOverviewPass(page: Page, stepId: string): Promise<boolean> {
     if (!caseId) return false;
-    await page.goto(courtTodayTabHref(caseId, "overview"), { waitUntil: "domcontentloaded" });
+    await page.goto(caseOverviewHref(caseId), { waitUntil: "domcontentloaded" });
     await waitShell(page);
     let overviewOk = await waitForOverview(page);
     if (!overviewOk) {
-      await page.goto(caseOverviewHref(caseId), { waitUntil: "domcontentloaded" });
+      await page.goto(courtTodayTabHref(caseId, "overview"), { waitUntil: "domcontentloaded" });
       await waitShell(page);
       overviewOk = await waitForOverview(page);
     }

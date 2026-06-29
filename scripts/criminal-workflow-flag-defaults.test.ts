@@ -58,7 +58,7 @@ assert.equal(isPersistenceEnabled(params({ persistence: "1" }), false, off), tru
 // --- Clean deep links ---
 const openHref = buildSupervisorQueueCaseHref(CASE_ID);
 assert.equal(openHref, buildControlRoomCaseHref(CASE_ID));
-assert.equal(openHref, `/cases/${CASE_ID}?tab=today&controlRoom=1`);
+assert.equal(openHref, `/cases/${CASE_ID}?tab=overview&controlRoom=1`);
 assert.ok(!openHref?.includes("reasoningV2="), "no redundant reasoningV2 in href");
 assert.ok(!openHref?.includes("%2F"), "no encoded path segments");
 assert.equal(isValidCaseId("CASE_ID"), false);
