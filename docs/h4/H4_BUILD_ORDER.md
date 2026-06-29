@@ -13,8 +13,8 @@
 | 1 | Apply trust feedback DB migration (`20260628120000_trust_feedback.sql`) | ✅ Applied + verified |
 | 2 | Export/copy gate — Chase, Summary, court note, gap list | ✅ `scripts/h4-export-copy-gate.ts` — golden 102 PASS |
 | 3 | Fresh-account smoke every deploy (CB-FRESH) | ✅ ongoing |
-| 4 | Account/permission smoke | Not started |
-| 5 | **Criminal Bundle Simulator Library** — manifest v1 (30 cases) | Spec: `H4_SIMULATOR_LIBRARY.md` |
+| 4 | Account/permission smoke | ✅ `scripts/h4-account-permission-smoke.ts` — master preview 25 pass / 0 fail |
+| 5 | **Criminal Bundle Simulator Library** — manifest v1 (30 cases) | ✅ `docs/h4/simulator-manifest.v1.json` |
 | 6 | Simulator pack v1 — generate + run 30 fake bundles | Not started |
 | 7 | Expand simulator: 30 → 75 → 150+ | Later |
 | 8 | Worst50 + simulator failures → Bad Output Memory | Later |
@@ -25,6 +25,26 @@
 npx tsx scripts/apply-trust-feedback-migration.ts   # if re-applying on new env
 npx tsx scripts/trust-feedback-persistence-verify.ts
 ```
+
+### Step 4 smoke
+
+```powershell
+npx tsx scripts/h4-account-permission-smoke.ts
+# master preview (H3/H4 routes): set H4_SMOKE_BASE_URL to latest Vercel preview URL
+```
+
+Report: `artifacts/casebrain-qa/h4-account-permission/report.json`
+
+**Note:** Production (`www.casebrain.co.uk`) is on `main` (factory line) — trust-feedback route lives on `master`. Isolation checks pass on prod; feedback API/panels require master preview until prod promote.
+
+### Step 5 manifest
+
+```powershell
+npx tsx scripts/build-simulator-manifest-v1.ts
+npx tsx scripts/simulator-manifest-v1.test.ts
+```
+
+Manifest: `docs/h4/simulator-manifest.v1.json`
 
 ### Step 2 gate
 

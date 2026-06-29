@@ -1,0 +1,1100 @@
+{
+  "version": "simulator-manifest-v1",
+  "generatedAt": "2026-06-28T23:42:38.674Z",
+  "principle": "Test by shape, not identity — fake/anonymised bundles only.",
+  "targetCount": 30,
+  "expansionPath": [
+    "30",
+    "75",
+    "150+"
+  ],
+  "gate": {
+    "blocking": [
+      "wrong-family bleed",
+      "referred-as-served",
+      "missing-as-proved",
+      "unsafe win language",
+      "court-in-CPS-chase",
+      "safe-to-send-without-source-state"
+    ],
+    "runsWith": [
+      "golden 102",
+      "Level 1 2200",
+      "h4-export-copy-gate"
+    ]
+  },
+  "cases": [
+    {
+      "caseId": "sim-001",
+      "title": "Harassment — screenshots only",
+      "fakeDefendant": "Defendant 001",
+      "fakeCourt": "Northgate Magistrates' Court",
+      "offenceWording": "Harassment — screenshots only",
+      "offenceFamily": "harassment",
+      "profile": "harassment_digital_attribution",
+      "mainIssue": "Attribution not safely proved",
+      "servedEvidence": [],
+      "referredOnlyEvidence": [],
+      "missingEvidence": [
+        "subscriber data",
+        "message export",
+        "call logs"
+      ],
+      "uncertainEvidence": [],
+      "expectedTodayIssue": "Attribution not safely proved",
+      "expectedChaseItems": [
+        "phone/subscriber data",
+        "message export"
+      ],
+      "expectedSummaryRisk": "Provisional pending disclosure",
+      "expectedSourceStateBadges": [
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "defendant sent messages as fact"
+      ],
+      "blockingFailPatterns": [
+        "we win",
+        "case collapses",
+        "BWV shows",
+        "ask the court to record"
+      ],
+      "polishOnlyWarnings": [],
+      "pdfLayoutType": "clean_digital",
+      "redTeamTrapType": "messages_without_account_data",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-002",
+      "title": "Harassment — wrong second male",
+      "fakeDefendant": "Defendant 002",
+      "fakeCourt": "Northgate Magistrates' Court",
+      "offenceWording": "Harassment — wrong second male",
+      "offenceFamily": "harassment",
+      "profile": "harassment_digital_attribution",
+      "mainIssue": "Attribution unclear",
+      "servedEvidence": [],
+      "referredOnlyEvidence": [],
+      "missingEvidence": [],
+      "uncertainEvidence": [
+        "second male mentioned"
+      ],
+      "expectedTodayIssue": "Attribution unclear",
+      "expectedChaseItems": [
+        "subscriber/account data"
+      ],
+      "expectedSummaryRisk": "Provisional pending disclosure",
+      "expectedSourceStateBadges": [
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [],
+      "blockingFailPatterns": [
+        "we win",
+        "case collapses",
+        "BWV shows",
+        "ask the court to record"
+      ],
+      "polishOnlyWarnings": [],
+      "pdfLayoutType": "clean_digital",
+      "redTeamTrapType": "wrong_second_male",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-003",
+      "title": "AEW — BWV referred only",
+      "fakeDefendant": "Defendant 003",
+      "fakeCourt": "Northgate Magistrates' Court",
+      "offenceWording": "AEW — BWV referred only",
+      "offenceFamily": "violence_aew",
+      "profile": "aew_bwv",
+      "mainIssue": "BWV not safely served",
+      "servedEvidence": [],
+      "referredOnlyEvidence": [
+        "BWV"
+      ],
+      "missingEvidence": [],
+      "uncertainEvidence": [],
+      "expectedTodayIssue": "BWV not safely served",
+      "expectedChaseItems": [
+        "body-worn video full export"
+      ],
+      "expectedSummaryRisk": "Provisional pending disclosure",
+      "expectedSourceStateBadges": [
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "BWV shows assault"
+      ],
+      "blockingFailPatterns": [
+        "we win",
+        "case collapses",
+        "BWV shows",
+        "ask the court to record"
+      ],
+      "polishOnlyWarnings": [],
+      "pdfLayoutType": "clean_digital",
+      "redTeamTrapType": "bwv_referred_only",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-004",
+      "title": "AEW — custody/PACE missing",
+      "fakeDefendant": "Defendant 004",
+      "fakeCourt": "Northgate Magistrates' Court",
+      "offenceWording": "AEW — custody/PACE missing",
+      "offenceFamily": "violence_aew",
+      "profile": "custody_pace",
+      "mainIssue": "PACE safeguards cannot be final",
+      "servedEvidence": [],
+      "referredOnlyEvidence": [
+        "custody mention"
+      ],
+      "missingEvidence": [
+        "full custody record",
+        "interview recording"
+      ],
+      "uncertainEvidence": [],
+      "expectedTodayIssue": "PACE safeguards cannot be final",
+      "expectedChaseItems": [
+        "custody record",
+        "interview recording/transcript"
+      ],
+      "expectedSummaryRisk": "Provisional pending disclosure",
+      "expectedSourceStateBadges": [
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [],
+      "blockingFailPatterns": [
+        "we win",
+        "case collapses",
+        "BWV shows",
+        "ask the court to record"
+      ],
+      "polishOnlyWarnings": [],
+      "pdfLayoutType": "scanned_pdf",
+      "redTeamTrapType": "custody_record_missing",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-005",
+      "title": "Domestic assault — unsigned MG11",
+      "fakeDefendant": "Defendant 005",
+      "fakeCourt": "Northgate Magistrates' Court",
+      "offenceWording": "Domestic assault — unsigned MG11",
+      "offenceFamily": "violence_domestic",
+      "profile": "violence_domestic",
+      "mainIssue": "Complainant account not final",
+      "servedEvidence": [],
+      "referredOnlyEvidence": [
+        "MG11 draft"
+      ],
+      "missingEvidence": [],
+      "uncertainEvidence": [],
+      "expectedTodayIssue": "Complainant account not final",
+      "expectedChaseItems": [],
+      "expectedSummaryRisk": "Provisional pending disclosure",
+      "expectedSourceStateBadges": [
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "final witness statement proves injury"
+      ],
+      "blockingFailPatterns": [
+        "we win",
+        "case collapses",
+        "BWV shows",
+        "ask the court to record"
+      ],
+      "polishOnlyWarnings": [],
+      "pdfLayoutType": "clean_digital",
+      "redTeamTrapType": "mg11_unsigned",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-006",
+      "title": "s18 — medical referred only",
+      "fakeDefendant": "Defendant 006",
+      "fakeCourt": "Northgate Magistrates' Court",
+      "offenceWording": "s18 — medical referred only",
+      "offenceFamily": "violence_s18",
+      "profile": "violence_s18",
+      "mainIssue": "Injury severity not proved on papers",
+      "servedEvidence": [],
+      "referredOnlyEvidence": [
+        "medical evidence"
+      ],
+      "missingEvidence": [],
+      "uncertainEvidence": [],
+      "expectedTodayIssue": "Injury severity not proved on papers",
+      "expectedChaseItems": [],
+      "expectedSummaryRisk": "Provisional pending disclosure",
+      "expectedSourceStateBadges": [
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "GBH fully proved"
+      ],
+      "blockingFailPatterns": [
+        "we win",
+        "case collapses",
+        "BWV shows",
+        "ask the court to record"
+      ],
+      "polishOnlyWarnings": [],
+      "pdfLayoutType": "clean_digital",
+      "redTeamTrapType": "medical_referred_only",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-007",
+      "title": "s20 — unsafe win wording trap",
+      "fakeDefendant": "Defendant 007",
+      "fakeCourt": "Northgate Magistrates' Court",
+      "offenceWording": "s20 — unsafe win wording trap",
+      "offenceFamily": "violence_s20",
+      "profile": "violence_s20",
+      "mainIssue": "Charge-fit needs review",
+      "servedEvidence": [],
+      "referredOnlyEvidence": [],
+      "missingEvidence": [],
+      "uncertainEvidence": [],
+      "expectedTodayIssue": "Charge-fit needs review",
+      "expectedChaseItems": [],
+      "expectedSummaryRisk": "Provisional pending disclosure",
+      "expectedSourceStateBadges": [
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [],
+      "blockingFailPatterns": [
+        "case collapses",
+        "guaranteed reduction",
+        "charge will be dropped"
+      ],
+      "polishOnlyWarnings": [],
+      "pdfLayoutType": "clean_digital",
+      "redTeamTrapType": "unsafe_win_language",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-008",
+      "title": "PWITS — missing continuity",
+      "fakeDefendant": "Defendant 008",
+      "fakeCourt": "Northgate Magistrates' Court",
+      "offenceWording": "PWITS — missing continuity",
+      "offenceFamily": "drugs",
+      "profile": "drugs_pwits",
+      "mainIssue": "Continuity/lab missing",
+      "servedEvidence": [],
+      "referredOnlyEvidence": [],
+      "missingEvidence": [
+        "continuity",
+        "lab report",
+        "exhibit list"
+      ],
+      "uncertainEvidence": [],
+      "expectedTodayIssue": "Continuity/lab missing",
+      "expectedChaseItems": [
+        "continuity",
+        "lab analysis"
+      ],
+      "expectedSummaryRisk": "Provisional pending disclosure",
+      "expectedSourceStateBadges": [
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [],
+      "blockingFailPatterns": [
+        "we win",
+        "case collapses",
+        "BWV shows",
+        "ask the court to record"
+      ],
+      "polishOnlyWarnings": [],
+      "pdfLayoutType": "schedule_heavy",
+      "redTeamTrapType": "drug_continuity_missing",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-009",
+      "title": "Possession — PWITS index bleed",
+      "fakeDefendant": "Defendant 009",
+      "fakeCourt": "Northgate Magistrates' Court",
+      "offenceWording": "Possession — PWITS index bleed",
+      "offenceFamily": "drugs",
+      "profile": "drugs_possession",
+      "mainIssue": "Avoid PWITS route bleed",
+      "servedEvidence": [],
+      "referredOnlyEvidence": [],
+      "missingEvidence": [],
+      "uncertainEvidence": [],
+      "expectedTodayIssue": "Avoid PWITS route bleed",
+      "expectedChaseItems": [],
+      "expectedSummaryRisk": "Provisional pending disclosure",
+      "expectedSourceStateBadges": [
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "supply chain proved"
+      ],
+      "blockingFailPatterns": [
+        "PWITS pressure without charge support"
+      ],
+      "polishOnlyWarnings": [],
+      "pdfLayoutType": "index_only",
+      "redTeamTrapType": "wrong_family_pwits_bleed",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-010",
+      "title": "Fraud — bank schedule absent",
+      "fakeDefendant": "Defendant 010",
+      "fakeCourt": "Northgate Magistrates' Court",
+      "offenceWording": "Fraud — bank schedule absent",
+      "offenceFamily": "fraud",
+      "profile": "fraud_account_control",
+      "mainIssue": "Account control not proved",
+      "servedEvidence": [],
+      "referredOnlyEvidence": [],
+      "missingEvidence": [
+        "bank schedules",
+        "device extraction"
+      ],
+      "uncertainEvidence": [],
+      "expectedTodayIssue": "Account control not proved",
+      "expectedChaseItems": [
+        "account ownership",
+        "bank schedules"
+      ],
+      "expectedSummaryRisk": "Provisional pending disclosure",
+      "expectedSourceStateBadges": [
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [],
+      "blockingFailPatterns": [
+        "we win",
+        "case collapses",
+        "BWV shows",
+        "ask the court to record"
+      ],
+      "polishOnlyWarnings": [],
+      "pdfLayoutType": "tables",
+      "redTeamTrapType": "bank_schedule_missing",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-011",
+      "title": "Perverting justice — fraud bleed",
+      "fakeDefendant": "Defendant 011",
+      "fakeCourt": "Northgate Magistrates' Court",
+      "offenceWording": "Perverting justice — fraud bleed",
+      "offenceFamily": "perverting",
+      "profile": "perverting_justice",
+      "mainIssue": "Route must stay provisional",
+      "servedEvidence": [],
+      "referredOnlyEvidence": [],
+      "missingEvidence": [],
+      "uncertainEvidence": [],
+      "expectedTodayIssue": "Route must stay provisional",
+      "expectedChaseItems": [],
+      "expectedSummaryRisk": "Provisional pending disclosure",
+      "expectedSourceStateBadges": [
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [],
+      "blockingFailPatterns": [
+        "fraud account-control route as final"
+      ],
+      "polishOnlyWarnings": [],
+      "pdfLayoutType": "mixed_offences",
+      "redTeamTrapType": "fraud_route_bleed",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-012",
+      "title": "Robbery — CCTV missing",
+      "fakeDefendant": "Defendant 012",
+      "fakeCourt": "Northgate Magistrates' Court",
+      "offenceWording": "Robbery — CCTV missing",
+      "offenceFamily": "robbery",
+      "profile": "robbery_id",
+      "mainIssue": "ID/CCTV gap",
+      "servedEvidence": [],
+      "referredOnlyEvidence": [
+        "CCTV"
+      ],
+      "missingEvidence": [],
+      "uncertainEvidence": [],
+      "expectedTodayIssue": "ID/CCTV gap",
+      "expectedChaseItems": [
+        "CCTV full window",
+        "ID procedure material"
+      ],
+      "expectedSummaryRisk": "Provisional pending disclosure",
+      "expectedSourceStateBadges": [
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [],
+      "blockingFailPatterns": [
+        "we win",
+        "case collapses",
+        "BWV shows",
+        "ask the court to record"
+      ],
+      "polishOnlyWarnings": [],
+      "pdfLayoutType": "clean_digital",
+      "redTeamTrapType": "cctv_referred_only",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-013",
+      "title": "Robbery — mixed defendant names",
+      "fakeDefendant": "Defendant 013",
+      "fakeCourt": "Northgate Magistrates' Court",
+      "offenceWording": "Robbery — mixed defendant names",
+      "offenceFamily": "robbery",
+      "profile": "robbery_id",
+      "mainIssue": "Identity caution",
+      "servedEvidence": [],
+      "referredOnlyEvidence": [],
+      "missingEvidence": [],
+      "uncertainEvidence": [
+        "witness names conflict"
+      ],
+      "expectedTodayIssue": "Identity caution",
+      "expectedChaseItems": [],
+      "expectedSummaryRisk": "Provisional pending disclosure",
+      "expectedSourceStateBadges": [
+        "needs_review",
+        "not_safely_confirmed"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [],
+      "blockingFailPatterns": [
+        "we win",
+        "case collapses",
+        "BWV shows",
+        "ask the court to record"
+      ],
+      "polishOnlyWarnings": [],
+      "pdfLayoutType": "mixed_defendants",
+      "redTeamTrapType": "multi_defendant_names",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-014",
+      "title": "Motoring SJP thin bundle",
+      "fakeDefendant": "Defendant 014",
+      "fakeCourt": "Northgate Magistrates' Court",
+      "offenceWording": "Motoring SJP thin bundle",
+      "offenceFamily": "motoring",
+      "profile": "motoring_sjp",
+      "mainIssue": "Thin bundle — cautious output",
+      "servedEvidence": [],
+      "referredOnlyEvidence": [],
+      "missingEvidence": [],
+      "uncertainEvidence": [],
+      "expectedTodayIssue": "Thin bundle — cautious output",
+      "expectedChaseItems": [],
+      "expectedSummaryRisk": "Early-stage — missing evidence",
+      "expectedSourceStateBadges": [
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [],
+      "blockingFailPatterns": [
+        "we win",
+        "case collapses",
+        "BWV shows",
+        "ask the court to record"
+      ],
+      "polishOnlyWarnings": [],
+      "pdfLayoutType": "very_thin",
+      "redTeamTrapType": "thin_bundle",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-015",
+      "title": "Motoring — fraud word bleed",
+      "fakeDefendant": "Defendant 015",
+      "fakeCourt": "Northgate Magistrates' Court",
+      "offenceWording": "Motoring — fraud word bleed",
+      "offenceFamily": "motoring",
+      "profile": "motoring_sjp",
+      "mainIssue": "No fraud family bleed",
+      "servedEvidence": [],
+      "referredOnlyEvidence": [],
+      "missingEvidence": [],
+      "uncertainEvidence": [],
+      "expectedTodayIssue": "No fraud family bleed",
+      "expectedChaseItems": [],
+      "expectedSummaryRisk": "Provisional pending disclosure",
+      "expectedSourceStateBadges": [
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [],
+      "blockingFailPatterns": [
+        "fraud account-control"
+      ],
+      "polishOnlyWarnings": [],
+      "pdfLayoutType": "clean_digital",
+      "redTeamTrapType": "false_fraud_bleed",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-016",
+      "title": "Sexual — ABE referred only",
+      "fakeDefendant": "Defendant 016",
+      "fakeCourt": "Northgate Magistrates' Court",
+      "offenceWording": "Sexual — ABE referred only",
+      "offenceFamily": "sexual",
+      "profile": "sexual_abe",
+      "mainIssue": "Strict caution — ABE absent",
+      "servedEvidence": [],
+      "referredOnlyEvidence": [
+        "ABE interview"
+      ],
+      "missingEvidence": [],
+      "uncertainEvidence": [],
+      "expectedTodayIssue": "Strict caution — ABE absent",
+      "expectedChaseItems": [],
+      "expectedSummaryRisk": "Provisional pending disclosure",
+      "expectedSourceStateBadges": [
+        "referred_only",
+        "needs_review"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "ABE confirms",
+        "interview proves"
+      ],
+      "blockingFailPatterns": [
+        "we win",
+        "case collapses",
+        "BWV shows",
+        "ask the court to record"
+      ],
+      "polishOnlyWarnings": [],
+      "pdfLayoutType": "clean_digital",
+      "redTeamTrapType": "abe_referred_only",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-017",
+      "title": "Youth/vulnerability marker",
+      "fakeDefendant": "Defendant 017",
+      "fakeCourt": "Northgate Magistrates' Court",
+      "offenceWording": "Youth/vulnerability marker",
+      "offenceFamily": "generic",
+      "profile": "youth_vulnerability",
+      "mainIssue": "Safeguarding needs review",
+      "servedEvidence": [],
+      "referredOnlyEvidence": [],
+      "missingEvidence": [],
+      "uncertainEvidence": [],
+      "expectedTodayIssue": "Safeguarding needs review",
+      "expectedChaseItems": [],
+      "expectedSummaryRisk": "Provisional pending disclosure",
+      "expectedSourceStateBadges": [
+        "needs_review",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "legal advice on fitness"
+      ],
+      "blockingFailPatterns": [
+        "we win",
+        "case collapses",
+        "BWV shows",
+        "ask the court to record"
+      ],
+      "polishOnlyWarnings": [],
+      "pdfLayoutType": "scanned_pdf",
+      "redTeamTrapType": "vulnerability_hint",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-018",
+      "title": "OCR-poor scanned MG6",
+      "fakeDefendant": "Defendant 018",
+      "fakeCourt": "Northgate Magistrates' Court",
+      "offenceWording": "OCR-poor scanned MG6",
+      "offenceFamily": "generic",
+      "profile": "generic_provisional",
+      "mainIssue": "No raw OCR in sendable copy",
+      "servedEvidence": [],
+      "referredOnlyEvidence": [],
+      "missingEvidence": [],
+      "uncertainEvidence": [],
+      "expectedTodayIssue": "No raw OCR in sendable copy",
+      "expectedChaseItems": [],
+      "expectedSummaryRisk": "Provisional pending disclosure",
+      "expectedSourceStateBadges": [
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [],
+      "blockingFailPatterns": [
+        "=== SECTION:",
+        "pipe fragments in CPS copy"
+      ],
+      "polishOnlyWarnings": [],
+      "pdfLayoutType": "bad_ocr",
+      "redTeamTrapType": "ocr_poor_mg6",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-019",
+      "title": "Weird index only",
+      "fakeDefendant": "Defendant 019",
+      "fakeCourt": "Northgate Magistrates' Court",
+      "offenceWording": "Weird index only",
+      "offenceFamily": "generic",
+      "profile": "generic_provisional",
+      "mainIssue": "Referred-only index trap",
+      "servedEvidence": [],
+      "referredOnlyEvidence": [
+        "indexed material"
+      ],
+      "missingEvidence": [],
+      "uncertainEvidence": [],
+      "expectedTodayIssue": "Referred-only index trap",
+      "expectedChaseItems": [],
+      "expectedSummaryRisk": "Provisional pending disclosure",
+      "expectedSourceStateBadges": [
+        "referred_only",
+        "missing"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [],
+      "blockingFailPatterns": [
+        "we win",
+        "case collapses",
+        "BWV shows",
+        "ask the court to record"
+      ],
+      "polishOnlyWarnings": [],
+      "pdfLayoutType": "index_only",
+      "redTeamTrapType": "index_only_bundle",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-020",
+      "title": "Duplicate conflicting MG11s",
+      "fakeDefendant": "Defendant 020",
+      "fakeCourt": "Northgate Magistrates' Court",
+      "offenceWording": "Duplicate conflicting MG11s",
+      "offenceFamily": "violence_domestic",
+      "profile": "violence_domestic",
+      "mainIssue": "Inconsistent accounts",
+      "servedEvidence": [],
+      "referredOnlyEvidence": [],
+      "missingEvidence": [],
+      "uncertainEvidence": [
+        "two MG11 versions"
+      ],
+      "expectedTodayIssue": "Inconsistent accounts",
+      "expectedChaseItems": [],
+      "expectedSummaryRisk": "Provisional pending disclosure",
+      "expectedSourceStateBadges": [
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "MG11 proves account as final fact"
+      ],
+      "blockingFailPatterns": [
+        "we win",
+        "case collapses",
+        "BWV shows",
+        "ask the court to record"
+      ],
+      "polishOnlyWarnings": [],
+      "pdfLayoutType": "duplicate_pages",
+      "redTeamTrapType": "duplicate_mg11",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-021",
+      "title": "Conflicting hearing dates",
+      "fakeDefendant": "Defendant 021",
+      "fakeCourt": "Northgate Magistrates' Court",
+      "offenceWording": "Conflicting hearing dates",
+      "offenceFamily": "generic",
+      "profile": "generic_provisional",
+      "mainIssue": "Date review required",
+      "servedEvidence": [],
+      "referredOnlyEvidence": [],
+      "missingEvidence": [],
+      "uncertainEvidence": [
+        "hearing date conflict"
+      ],
+      "expectedTodayIssue": "Date review — hearing date needs confirmation",
+      "expectedChaseItems": [],
+      "expectedSummaryRisk": "Provisional pending disclosure",
+      "expectedSourceStateBadges": [
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [],
+      "blockingFailPatterns": [
+        "we win",
+        "case collapses",
+        "BWV shows",
+        "ask the court to record"
+      ],
+      "polishOnlyWarnings": [],
+      "pdfLayoutType": "clean_digital",
+      "redTeamTrapType": "conflicting_dates",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-022",
+      "title": "Mixed offences in one PDF",
+      "fakeDefendant": "Defendant 022",
+      "fakeCourt": "Northgate Magistrates' Court",
+      "offenceWording": "Mixed offences in one PDF",
+      "offenceFamily": "mixed",
+      "profile": "mixed_family",
+      "mainIssue": "No wrong-family bleed",
+      "servedEvidence": [],
+      "referredOnlyEvidence": [],
+      "missingEvidence": [],
+      "uncertainEvidence": [],
+      "expectedTodayIssue": "No wrong-family bleed",
+      "expectedChaseItems": [],
+      "expectedSummaryRisk": "Provisional pending disclosure",
+      "expectedSourceStateBadges": [
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [],
+      "blockingFailPatterns": [
+        "drug continuity on harassment matter",
+        "fraud route on violence-only charge"
+      ],
+      "polishOnlyWarnings": [],
+      "pdfLayoutType": "mixed_offences",
+      "redTeamTrapType": "mixed_offences_pdf",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-023",
+      "title": "Police jargon only",
+      "fakeDefendant": "Defendant 023",
+      "fakeCourt": "Northgate Magistrates' Court",
+      "offenceWording": "Police jargon only",
+      "offenceFamily": "generic",
+      "profile": "generic_provisional",
+      "mainIssue": "Profile unclear/provisional",
+      "servedEvidence": [],
+      "referredOnlyEvidence": [],
+      "missingEvidence": [],
+      "uncertainEvidence": [],
+      "expectedTodayIssue": "Profile unclear/provisional",
+      "expectedChaseItems": [],
+      "expectedSummaryRisk": "Provisional pending disclosure",
+      "expectedSourceStateBadges": [
+        "provisional",
+        "needs_review"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [],
+      "blockingFailPatterns": [
+        "we win",
+        "case collapses",
+        "BWV shows",
+        "ask the court to record"
+      ],
+      "polishOnlyWarnings": [],
+      "pdfLayoutType": "bad_ocr",
+      "redTeamTrapType": "jargon_only",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-024",
+      "title": "Missing MG6 — chase still needed",
+      "fakeDefendant": "Defendant 024",
+      "fakeCourt": "Northgate Magistrates' Court",
+      "offenceWording": "Missing MG6 — chase still needed",
+      "offenceFamily": "generic",
+      "profile": "generic_provisional",
+      "mainIssue": "Chase MG6/unused schedule",
+      "servedEvidence": [],
+      "referredOnlyEvidence": [],
+      "missingEvidence": [
+        "MG6",
+        "unused schedule detail"
+      ],
+      "uncertainEvidence": [],
+      "expectedTodayIssue": "Chase MG6/unused schedule",
+      "expectedChaseItems": [
+        "MG6/unused schedule clarification"
+      ],
+      "expectedSummaryRisk": "Provisional pending disclosure",
+      "expectedSourceStateBadges": [
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [],
+      "blockingFailPatterns": [
+        "we win",
+        "case collapses",
+        "BWV shows",
+        "ask the court to record"
+      ],
+      "polishOnlyWarnings": [],
+      "pdfLayoutType": "clean_digital",
+      "redTeamTrapType": "mg6_missing",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-025",
+      "title": "BWV stills only",
+      "fakeDefendant": "Defendant 025",
+      "fakeCourt": "Northgate Magistrates' Court",
+      "offenceWording": "BWV stills only",
+      "offenceFamily": "violence_aew",
+      "profile": "aew_bwv",
+      "mainIssue": "Chase full BWV export",
+      "servedEvidence": [
+        "BWV stills/screenshots"
+      ],
+      "referredOnlyEvidence": [],
+      "missingEvidence": [
+        "full BWV export"
+      ],
+      "uncertainEvidence": [],
+      "expectedTodayIssue": "Chase full BWV export",
+      "expectedChaseItems": [],
+      "expectedSummaryRisk": "Provisional pending disclosure",
+      "expectedSourceStateBadges": [
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "full BWV served"
+      ],
+      "blockingFailPatterns": [
+        "we win",
+        "case collapses",
+        "BWV shows",
+        "ask the court to record"
+      ],
+      "polishOnlyWarnings": [],
+      "pdfLayoutType": "clean_digital",
+      "redTeamTrapType": "bwv_stills_only",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-026",
+      "title": "Custody extract only",
+      "fakeDefendant": "Defendant 026",
+      "fakeCourt": "Northgate Magistrates' Court",
+      "offenceWording": "Custody extract only",
+      "offenceFamily": "violence_aew",
+      "profile": "custody_pace",
+      "mainIssue": "Full custody/PACE still outstanding",
+      "servedEvidence": [
+        "custody extract"
+      ],
+      "referredOnlyEvidence": [],
+      "missingEvidence": [
+        "full custody log",
+        "interview recording"
+      ],
+      "uncertainEvidence": [],
+      "expectedTodayIssue": "Full custody/PACE still outstanding",
+      "expectedChaseItems": [],
+      "expectedSummaryRisk": "Provisional pending disclosure",
+      "expectedSourceStateBadges": [
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [],
+      "blockingFailPatterns": [
+        "we win",
+        "case collapses",
+        "BWV shows",
+        "ask the court to record"
+      ],
+      "polishOnlyWarnings": [],
+      "pdfLayoutType": "scanned_pdf",
+      "redTeamTrapType": "custody_extract_only",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-027",
+      "title": "Large complex fraud",
+      "fakeDefendant": "Defendant 027",
+      "fakeCourt": "Northgate Magistrates' Court",
+      "offenceWording": "Large complex fraud",
+      "offenceFamily": "fraud",
+      "profile": "fraud_account_control",
+      "mainIssue": "Needs review — not overconfident",
+      "servedEvidence": [],
+      "referredOnlyEvidence": [],
+      "missingEvidence": [],
+      "uncertainEvidence": [],
+      "expectedTodayIssue": "Needs review — not overconfident",
+      "expectedChaseItems": [],
+      "expectedSummaryRisk": "Provisional pending disclosure",
+      "expectedSourceStateBadges": [
+        "needs_review",
+        "provisional"
+      ],
+      "expectedSendability": "needs_solicitor_review",
+      "mustNotSay": [],
+      "blockingFailPatterns": [
+        "we win",
+        "case collapses",
+        "BWV shows",
+        "ask the court to record"
+      ],
+      "polishOnlyWarnings": [],
+      "pdfLayoutType": "large_messy",
+      "redTeamTrapType": "large_complex_bundle",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-028",
+      "title": "Expert report mentioned only",
+      "fakeDefendant": "Defendant 028",
+      "fakeCourt": "Northgate Magistrates' Court",
+      "offenceWording": "Expert report mentioned only",
+      "offenceFamily": "generic",
+      "profile": "generic_provisional",
+      "mainIssue": "Chase expert report",
+      "servedEvidence": [],
+      "referredOnlyEvidence": [
+        "expert report"
+      ],
+      "missingEvidence": [],
+      "uncertainEvidence": [],
+      "expectedTodayIssue": "Chase expert report",
+      "expectedChaseItems": [],
+      "expectedSummaryRisk": "Provisional pending disclosure",
+      "expectedSourceStateBadges": [
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [
+        "expert confirms"
+      ],
+      "blockingFailPatterns": [
+        "we win",
+        "case collapses",
+        "BWV shows",
+        "ask the court to record"
+      ],
+      "polishOnlyWarnings": [],
+      "pdfLayoutType": "schedule_heavy",
+      "redTeamTrapType": "expert_mentioned_only",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-029",
+      "title": "Bad metadata placeholder charge",
+      "fakeDefendant": "Defendant 029",
+      "fakeCourt": "Northgate Magistrates' Court",
+      "offenceWording": "Bad metadata placeholder charge",
+      "offenceFamily": "generic",
+      "profile": "generic_provisional",
+      "mainIssue": "Metadata must not override charge",
+      "servedEvidence": [],
+      "referredOnlyEvidence": [],
+      "missingEvidence": [],
+      "uncertainEvidence": [
+        "placeholder offence in metadata"
+      ],
+      "expectedTodayIssue": "Metadata must not override charge",
+      "expectedChaseItems": [],
+      "expectedSummaryRisk": "Provisional pending disclosure",
+      "expectedSourceStateBadges": [
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [],
+      "blockingFailPatterns": [
+        "we win",
+        "case collapses",
+        "BWV shows",
+        "ask the court to record"
+      ],
+      "polishOnlyWarnings": [],
+      "pdfLayoutType": "placeholder_metadata",
+      "redTeamTrapType": "placeholder_metadata",
+      "bundleStatus": "manifest_only"
+    },
+    {
+      "caseId": "sim-030",
+      "title": "Late evidence re-run (future)",
+      "fakeDefendant": "Defendant 030",
+      "fakeCourt": "Northgate Magistrates' Court",
+      "offenceWording": "Late evidence re-run (future)",
+      "offenceFamily": "generic",
+      "profile": "generic_provisional",
+      "mainIssue": "Output may stale after upload",
+      "servedEvidence": [],
+      "referredOnlyEvidence": [],
+      "missingEvidence": [],
+      "uncertainEvidence": [],
+      "expectedTodayIssue": "Output may stale after upload",
+      "expectedChaseItems": [],
+      "expectedSummaryRisk": "Provisional — may change when new evidence uploaded",
+      "expectedSourceStateBadges": [
+        "missing",
+        "provisional"
+      ],
+      "expectedSendability": "provisional_check_source",
+      "mustNotSay": [],
+      "blockingFailPatterns": [
+        "we win",
+        "case collapses",
+        "BWV shows",
+        "ask the court to record"
+      ],
+      "polishOnlyWarnings": [
+        "stale output until re-run diff (H5/H6)"
+      ],
+      "pdfLayoutType": "clean_digital",
+      "redTeamTrapType": "late_evidence_rerun",
+      "bundleStatus": "manifest_only"
+    }
+  ]
+}
