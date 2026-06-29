@@ -10,7 +10,7 @@ import fs from "node:fs";
 import path from "node:path";
 import puppeteer from "puppeteer";
 import { chromium, type BrowserContext, type Page } from "@playwright/test";
-import { createClient } from "@supabase/supabase-js";
+import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
 const ROOT = process.cwd();
 const OUT_DIR = path.join(ROOT, "artifacts", "casebrain-qa", "h4-account-permission");
@@ -85,7 +85,7 @@ async function ensureUploadPdfs(): Promise<void> {
   await ensurePdf(SRC_B, PDF_B);
 }
 
-async function findUserByEmail(admin: ReturnType<typeof createClient>, email: string) {
+async function findUserByEmail(admin: SupabaseClient, email: string) {
   for (let page = 1; page <= 10; page++) {
     const { data, error } = await admin.auth.admin.listUsers({ page, perPage: 200 });
     if (error) throw error;
@@ -96,7 +96,7 @@ async function findUserByEmail(admin: ReturnType<typeof createClient>, email: st
   return null;
 }
 
-async function provisionAccount(label: string, stamp: number): Promise<Omit<Account, "caseId">> {
+async function provisionAccount(label: string, stamp: number): Promise<Account> {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !serviceKey) throw new Error("Missing Supabase env");
