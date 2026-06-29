@@ -1,0 +1,109 @@
+{
+  "caseId": "sim-066",
+  "title": "Perverting justice route bleed from fraud-document paperwork",
+  "offenceFamily": "perverting_justice",
+  "offenceWording": "Doing an act tending and intended to pervert the course of justice",
+  "profile": "generic_provisional",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "charge sheet",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "email exhibit summary",
+      "correct_evidence_state": "incomplete",
+      "chase_needed": true,
+      "safe_to_rely_on": true,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full email export",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "case chronology",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "police decision log",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full email export",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "chronology",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "intention evidence",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "exhibit continuity",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "intent to pervert justice versus administrative/document confusion",
+      "correct_evidence_state": "inferred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "full email/source export",
+    "chronology",
+    "intent/source material",
+    "exhibit continuity"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "fraud account-control route as final",
+    "PWITS route on perverting matter",
+    "robbery identification route",
+    "dishonesty pressure as final outcome"
+  ],
+  "blockingFailPatterns": [
+    "fraud account-control route",
+    "PWITS route on perverting matter",
+    "robbery identification route",
+    "dishonesty pressure as final"
+  ]
+}

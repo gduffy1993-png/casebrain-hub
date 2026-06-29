@@ -1,0 +1,115 @@
+{
+  "caseId": "sim-069",
+  "title": "Coercive control course of conduct and digital export missing",
+  "offenceFamily": "domestic_harassment",
+  "offenceWording": "Controlling or coercive behaviour",
+  "profile": "coercive_control_digital",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "complainant statement",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "selected screenshots",
+      "correct_evidence_state": "incomplete",
+      "chase_needed": true,
+      "safe_to_rely_on": true,
+      "evidence_type": "digital_screenshot",
+      "defendant_relevance": "primary_defendant",
+      "must_not_say": [
+        "screenshots prove coercion",
+        "course of conduct proved"
+      ]
+    },
+    {
+      "evidence_item": "full phone download",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "digital",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "chronology",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "third-party statements",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full digital export",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "course-of-conduct chronology",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "third-party statements",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "context/counter-allegation material",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "pattern, attribution, and context",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "full phone/digital export",
+    "course-of-conduct chronology",
+    "third-party statements",
+    "context material"
+  ],
+  "expectedSendability": "needs_solicitor_review",
+  "mustNotSayGlobal": [
+    "Evan controlled the complainant",
+    "course of conduct proved",
+    "screenshots prove coercion"
+  ],
+  "blockingFailPatterns": [
+    "controlled the complainant",
+    "course of conduct proved",
+    "prove coercion"
+  ]
+}

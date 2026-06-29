@@ -1,0 +1,333 @@
+{
+  "generatedAt": "2026-06-29T16:36:24.087Z",
+  "caseId": "sim-048",
+  "source": "CaseBrain H5 presentation builders (no Brain 1 mutation)",
+  "matterConfidence": {
+    "level": "needs_review",
+    "label": "Needs review before relying",
+    "sourceBadges": [
+      "provisional",
+      "missing",
+      "referred_only",
+      "needs_review"
+    ],
+    "chaseSendability": "needs_solicitor_review",
+    "summarySendability": "needs_solicitor_review",
+    "safeCourtLineStatus": "needs_review",
+    "doNotRelyYetReason": "Human review or material gaps flagged on current papers."
+  },
+  "evidenceStates": [
+    {
+      "label": "CCTV full window / master footage",
+      "inferredSourceState": "provisional",
+      "existenceLabel": "Unknown",
+      "sendability": null,
+      "baseStatus": "Outstanding",
+      "source": "MG6/MG6C disclosure schedule",
+      "evidenceAnchor": null
+    },
+    {
+      "label": "Interview recording / transcript",
+      "inferredSourceState": "provisional",
+      "existenceLabel": "Unknown",
+      "sendability": null,
+      "baseStatus": "Not safely confirmed",
+      "source": "Custody / police interview unit",
+      "evidenceAnchor": null
+    },
+    {
+      "label": "MG6 / unused schedule clarification",
+      "inferredSourceState": "provisional",
+      "existenceLabel": "Unknown",
+      "sendability": null,
+      "baseStatus": "Outstanding",
+      "source": "CPS / disclosure officer",
+      "evidenceAnchor": null
+    }
+  ],
+  "fiveAnswersEvidenceRows": [
+    {
+      "label": "CCTV full window / master footage",
+      "existence": "unknown",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position."
+    },
+    {
+      "label": "Interview recording / transcript",
+      "existence": "unknown",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position."
+    },
+    {
+      "label": "MG6 / unused schedule clarification",
+      "existence": "unknown",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position."
+    },
+    {
+      "label": "Served material | 5+ | MG5; complainant MG11 summary; charge sheet",
+      "existence": "served",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG6C/COM — complainant MG11 summary — served on bundle.",
+      "existence": "served",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "Served on bundle: MG5; complainant MG11 summary; charge sheet.",
+      "existence": "served",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "Statement of Offence:",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "ABE and first-account material are referred to but not safely served; delay/context must be handled carefully.",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "Uncertain on papers: whether delay/context material is served or only mentioned.",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "=== SECTION: MG11 ===",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG11 — COMPLAINANT/WITNESS STATEMENT",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "Witness account on file — attribution and context require review.",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "Referred only: ABE interview; first complaint record; school/social records.",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "Uncertain: whether delay/context material is served or only mentioned.",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG6C/ABE — ABE interview — referred on MG6 — export not served.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG6C/FIR — first complaint record — referred on MG6 — export not served.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG6C/SCH — school/social records — referred on MG6 — export not served.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG6C/ABE — ABE video/transcript — outstanding — not on bundle.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG6C/FIR — first account material — outstanding — not on bundle.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG6C/THI — third-party records schedule — outstanding — not on bundle.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG6C/DIS — disclosure officer note — outstanding — not on bundle.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "Outstanding: ABE video/transcript; first account material; third-party records schedule; disclosure officer note.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "ABE video/transcript",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "first account material",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    }
+  ],
+  "warningsAndGaps": {
+    "doNotOverstate": [
+      "Do not import BWV unless the papers support it.",
+      "Do not import custody safeguards unless the papers support it.",
+      "Do not import drugs continuity unless the papers support it.",
+      "Do not import phone extraction/metadata unless the papers support it.",
+      "Do not summarise ABE as fact unless the served record is reviewed.",
+      "Do not state \"CCTV confirms\" — CCTV is not fully served on papers",
+      "Do not state \"CCTV proves\" — CCTV is not fully served on papers",
+      "Do not state \"Full CCTV confirms\" — CCTV is not fully served on papers"
+    ],
+    "hardRules": [
+      "Served does not mean reliable.",
+      "Missing does not mean irrelevant.",
+      "Referred only does not mean usable.",
+      "Inference must be labelled as inference.",
+      "No line is sendable just because a source exists."
+    ],
+    "chaseItems": [
+      {
+        "label": "CCTV full window / master footage",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide cCTV full window / master footage or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: provisional. Source: MG6/MG6C disclosure schedule. Solicitor review required before sending.]"
+      },
+      {
+        "label": "Interview recording / transcript",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide interview recording / transcript or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: provisional. Source: Custody / police interview unit. Solicitor review required before sending.]"
+      },
+      {
+        "label": "MG6 / unused schedule clarification",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide mG6 / unused schedule clarification or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: provisional. Source: CPS / disclosure officer. Solicitor review required before sending.]"
+      }
+    ]
+  },
+  "courtNote": {
+    "text": "The defence asks the court to record outstanding ABE/source and disclosure material.\n\n[CaseBrain — court line copy. Evidence state: needs review. Confirm before addressing the court.]",
+    "sendabilityLabel": "Solicitor review required",
+    "canCopy": true,
+    "blockedReason": null
+  },
+  "exportVersion": {
+    "exportId": "exp-sim-048-20260629163624",
+    "caseId": "sim-048",
+    "generatedAt": "2026-06-29T16:36:24.087Z",
+    "exportType": "h5_export_pack_v1",
+    "bundleVersionLabel": "overview-export@2026-06-29",
+    "appVersion": "evidence-state-audit-snapshot",
+    "sourceStatesIncluded": [
+      "provisional",
+      "missing",
+      "referred_only",
+      "needs_review"
+    ],
+    "sendability": "needs_solicitor_review",
+    "warningCount": 8,
+    "blockedReason": null,
+    "reviewFooter": "Solicitor review required before sending to CPS, court, or client."
+  },
+  "truthKeyComparison": [
+    {
+      "truthItem": "MG5",
+      "truthState": "served",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "complainant MG11 summary",
+      "truthState": "served",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "charge sheet",
+      "truthState": "served",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "ABE interview",
+      "truthState": "referred_only",
+      "casebrainLabel": "Interview recording / transcript",
+      "casebrainState": "provisional",
+      "aligned": false
+    },
+    {
+      "truthItem": "first complaint record",
+      "truthState": "referred_only",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "school/social records",
+      "truthState": "referred_only",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "ABE video/transcript",
+      "truthState": "missing",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "first account material",
+      "truthState": "missing",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "third-party records schedule",
+      "truthState": "missing",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "disclosure officer note",
+      "truthState": "missing",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "whether delay/context material is served or only mentioned",
+      "truthState": "not_safely_confirmed",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    }
+  ]
+}

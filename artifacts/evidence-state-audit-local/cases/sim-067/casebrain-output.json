@@ -1,0 +1,381 @@
+{
+  "generatedAt": "2026-06-29T16:36:25.487Z",
+  "caseId": "sim-067",
+  "source": "CaseBrain H5 presentation builders (no Brain 1 mutation)",
+  "matterConfidence": {
+    "level": "needs_review",
+    "label": "Needs review before relying",
+    "sourceBadges": [
+      "provisional",
+      "missing",
+      "referred_only",
+      "needs_review"
+    ],
+    "chaseSendability": "needs_solicitor_review",
+    "summarySendability": "needs_solicitor_review",
+    "safeCourtLineStatus": "needs_review",
+    "doNotRelyYetReason": "Human review or material gaps flagged on current papers."
+  },
+  "evidenceStates": [
+    {
+      "label": "CCTV Continuity / provenance",
+      "inferredSourceState": "provisional",
+      "existenceLabel": "Unknown",
+      "sendability": null,
+      "baseStatus": "Not safely confirmed",
+      "source": "Police / CCTV unit",
+      "evidenceAnchor": "The bundle lacks clear location, lawful authority/reasonable excuse context, and seizure continuity."
+    },
+    {
+      "label": "CCTV full window / master footage",
+      "inferredSourceState": "provisional",
+      "existenceLabel": "Unknown",
+      "sendability": null,
+      "baseStatus": "Outstanding",
+      "source": "Police / CCTV unit",
+      "evidenceAnchor": null
+    },
+    {
+      "label": "Body-worn video (BWV)",
+      "inferredSourceState": "provisional",
+      "existenceLabel": "Unknown",
+      "sendability": null,
+      "baseStatus": "Not safely confirmed",
+      "source": "Police / officer body-worn video",
+      "evidenceAnchor": null
+    },
+    {
+      "label": "Interview recording / transcript",
+      "inferredSourceState": "provisional",
+      "existenceLabel": "Unknown",
+      "sendability": null,
+      "baseStatus": "Outstanding",
+      "source": "Custody / police interview unit",
+      "evidenceAnchor": "Additional source-material on file"
+    },
+    {
+      "label": "MG6 / unused schedule clarification",
+      "inferredSourceState": "provisional",
+      "existenceLabel": "Unknown",
+      "sendability": null,
+      "baseStatus": "Outstanding",
+      "source": "CPS / disclosure officer",
+      "evidenceAnchor": null
+    },
+    {
+      "label": "Exhibit mapping / provenance",
+      "inferredSourceState": "provisional",
+      "existenceLabel": "Unknown",
+      "sendability": null,
+      "baseStatus": "Not safely confirmed",
+      "source": "Crown / disclosure officer",
+      "evidenceAnchor": "The bundle lacks clear location, lawful authority/reasonable excuse context, and seizure continuity."
+    }
+  ],
+  "fiveAnswersEvidenceRows": [
+    {
+      "label": "CCTV Continuity / provenance",
+      "existence": "unknown",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position."
+    },
+    {
+      "label": "CCTV full window / master footage",
+      "existence": "unknown",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position."
+    },
+    {
+      "label": "Body-worn video (BWV)",
+      "existence": "unknown",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position."
+    },
+    {
+      "label": "Interview recording / transcript",
+      "existence": "unknown",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position."
+    },
+    {
+      "label": "MG6 / unused schedule clarification",
+      "existence": "unknown",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position."
+    },
+    {
+      "label": "Exhibit mapping / provenance",
+      "existence": "unknown",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position."
+    },
+    {
+      "label": "Served material | 5+ | MG5; seizure statement; charge sheet",
+      "existence": "served",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG6C/SEI — seizure statement — served on bundle.",
+      "existence": "served",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "Served on bundle: MG5; seizure statement; charge sheet.",
+      "existence": "served",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "Statement of Offence:",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "The bundle lacks clear location, lawful authority/reasonable excuse context, and seizure continuity.",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "=== SECTION: MG11 ===",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG11 — COMPLAINANT/WITNESS STATEMENT",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "Witness account on file — attribution and context require review.",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "Referred only: BWV; CCTV; knife photographs.",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "Main issue: The bundle lacks clear location, lawful authority/reasonable excuse context, and seizure continuity.",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG6C/BWV — BWV — referred on MG6 — export not served.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG6C/CCT — CCTV — referred on MG6 — export not served.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG6C/KNI — knife photographs — referred on MG6 — export not served.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG6C/BWV — BWV/CCTV — outstanding — not on bundle.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG6C/LOC — location plan — outstanding — not on bundle.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG6C/PHO — photographs/measurements — outstanding — not on bundle.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG6C/INT — interview/reasonable excuse account — outstanding — not on bundle.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "Outstanding: BWV/CCTV; location plan; photographs/measurements; interview/reasonable excuse account.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "BWV/CCTV",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "location plan",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    }
+  ],
+  "warningsAndGaps": {
+    "doNotOverstate": [
+      "Do not import custody safeguards unless the papers support it.",
+      "Do not import drugs continuity unless the papers support it.",
+      "Do not import ABE unless the papers support it.",
+      "Do not import phone extraction/metadata unless the papers support it.",
+      "Do not state \"CCTV confirms\" — CCTV is not fully served on papers",
+      "Do not state \"CCTV proves\" — CCTV is not fully served on papers",
+      "Do not state \"Full CCTV confirms\" — CCTV is not fully served on papers"
+    ],
+    "hardRules": [
+      "Served does not mean reliable.",
+      "Missing does not mean irrelevant.",
+      "Referred only does not mean usable.",
+      "Inference must be labelled as inference.",
+      "No line is sendable just because a source exists."
+    ],
+    "chaseItems": [
+      {
+        "label": "CCTV Continuity / provenance",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide cCTV Continuity / provenance or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: provisional. Source: Police / CCTV unit. Solicitor review required before sending.]"
+      },
+      {
+        "label": "CCTV full window / master footage",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide cCTV full window / master footage or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: provisional. Source: Police / CCTV unit. Solicitor review required before sending.]"
+      },
+      {
+        "label": "Body-worn video (BWV)",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide body-worn video (BWV) or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: provisional. Source: Police / officer body-worn video. Solicitor review required before sending.]"
+      },
+      {
+        "label": "Interview recording / transcript",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide interview recording / transcript or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: provisional. Source: Custody / police interview unit. Solicitor review required before sending.]"
+      },
+      {
+        "label": "MG6 / unused schedule clarification",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide mG6 / unused schedule clarification or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: provisional. Source: CPS / disclosure officer. Solicitor review required before sending.]"
+      }
+    ]
+  },
+  "courtNote": {
+    "text": "The defence asks the court to record that full BWV and continuity material should be served.\n\n[CaseBrain — court line copy. Evidence state: needs review. Confirm before addressing the court.]",
+    "sendabilityLabel": "Solicitor review required",
+    "canCopy": true,
+    "blockedReason": null
+  },
+  "exportVersion": {
+    "exportId": "exp-sim-067-20260629163625",
+    "caseId": "sim-067",
+    "generatedAt": "2026-06-29T16:36:25.487Z",
+    "exportType": "h5_export_pack_v1",
+    "bundleVersionLabel": "overview-export@2026-06-29",
+    "appVersion": "evidence-state-audit-snapshot",
+    "sourceStatesIncluded": [
+      "provisional",
+      "missing",
+      "referred_only",
+      "needs_review"
+    ],
+    "sendability": "needs_solicitor_review",
+    "warningCount": 7,
+    "blockedReason": null,
+    "reviewFooter": "Solicitor review required before sending to CPS, court, or client."
+  },
+  "truthKeyComparison": [
+    {
+      "truthItem": "MG5",
+      "truthState": "served",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "seizure statement",
+      "truthState": "served",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "charge sheet",
+      "truthState": "served",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "BWV",
+      "truthState": "referred_only",
+      "casebrainLabel": "Body-worn video (BWV)",
+      "casebrainState": "provisional",
+      "aligned": false
+    },
+    {
+      "truthItem": "CCTV",
+      "truthState": "referred_only",
+      "casebrainLabel": "CCTV Continuity / provenance",
+      "casebrainState": "provisional",
+      "aligned": false
+    },
+    {
+      "truthItem": "knife photographs",
+      "truthState": "referred_only",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "BWV/CCTV",
+      "truthState": "missing",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "location plan",
+      "truthState": "missing",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "photographs/measurements",
+      "truthState": "missing",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "interview/reasonable excuse account",
+      "truthState": "missing",
+      "casebrainLabel": "Interview recording / transcript",
+      "casebrainState": "provisional",
+      "aligned": false
+    },
+    {
+      "truthItem": "public place, possession, and reasonable excuse",
+      "truthState": "not_safely_confirmed",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    }
+  ]
+}

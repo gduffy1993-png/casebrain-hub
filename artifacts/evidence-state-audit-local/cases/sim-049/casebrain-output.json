@@ -1,0 +1,327 @@
+{
+  "generatedAt": "2026-06-29T16:36:24.298Z",
+  "caseId": "sim-049",
+  "source": "CaseBrain H5 presentation builders (no Brain 1 mutation)",
+  "matterConfidence": {
+    "level": "needs_review",
+    "label": "Needs review before relying",
+    "sourceBadges": [
+      "provisional",
+      "missing",
+      "referred_only",
+      "needs_review"
+    ],
+    "chaseSendability": "needs_solicitor_review",
+    "summarySendability": "needs_solicitor_review",
+    "safeCourtLineStatus": "needs_review",
+    "doNotRelyYetReason": "Human review or material gaps flagged on current papers."
+  },
+  "evidenceStates": [
+    {
+      "label": "Interview recording / transcript",
+      "inferredSourceState": "provisional",
+      "existenceLabel": "Unknown",
+      "sendability": null,
+      "baseStatus": "Outstanding",
+      "source": "MG6/MG6C disclosure schedule",
+      "evidenceAnchor": null
+    },
+    {
+      "label": "MG6 / unused schedule clarification",
+      "inferredSourceState": "provisional",
+      "existenceLabel": "Unknown",
+      "sendability": null,
+      "baseStatus": "Outstanding",
+      "source": "CPS / disclosure officer",
+      "evidenceAnchor": null
+    },
+    {
+      "label": "Medical / expert source report",
+      "inferredSourceState": "provisional",
+      "existenceLabel": "Unknown",
+      "sendability": null,
+      "baseStatus": "Not safely confirmed",
+      "source": "MG6/MG6C disclosure schedule",
+      "evidenceAnchor": "The bundle mentions counselling, school, and medical records but only serves a police summary."
+    }
+  ],
+  "fiveAnswersEvidenceRows": [
+    {
+      "label": "Interview recording / transcript",
+      "existence": "unknown",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position."
+    },
+    {
+      "label": "MG6 / unused schedule clarification",
+      "existence": "unknown",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position."
+    },
+    {
+      "label": "Medical / expert source report",
+      "existence": "unknown",
+      "reliability": "needs_review",
+      "note": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position."
+    },
+    {
+      "label": "Served material | 5+ | MG5; police disclosure summary; complainant statement",
+      "existence": "served",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG6C/COM — complainant statement — served on bundle.",
+      "existence": "served",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "Served on bundle: MG5; police disclosure summary; complainant statement.",
+      "existence": "served",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "Statement of Offence:",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "The bundle mentions counselling, school, and medical records but only serves a police summary.",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "=== SECTION: MG11 ===",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG11 — COMPLAINANT/WITNESS STATEMENT",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "Witness account on file — attribution and context require review.",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "Main issue: The bundle mentions counselling, school, and medical records but only serves a police summary.",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "Must not say: records undermine complaint | medical records support defence | third-party material proves",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "note": "Served on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG6C/COU — counselling records — referred on MG6 — export not served.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG6C/SCH — school records — referred on MG6 — export not served.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG6C/GP — GP records — referred on MG6 — export not served.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG6C/THI — third-party record schedule — outstanding — not on bundle.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG6C/DIS — disclosure decision log — outstanding — not on bundle.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG6C/APP — applications/correspondence — outstanding — not on bundle.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "MG6C/ABE — ABE transcript — outstanding — not on bundle.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "Outstanding: third-party record schedule; disclosure decision log; applications/correspondence; ABE transcript.",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "third-party record schedule",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    },
+    {
+      "label": "disclosure decision log",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "Outstanding on bundle — brief plan ledger."
+    }
+  ],
+  "warningsAndGaps": {
+    "doNotOverstate": [
+      "Do not import BWV unless the papers support it.",
+      "Do not import custody safeguards unless the papers support it.",
+      "Do not import drugs continuity unless the papers support it.",
+      "Do not import phone extraction/metadata unless the papers support it.",
+      "Do not summarise ABE as fact unless the served record is reviewed.",
+      "Do not state \"final medical report\" — Medical material is absent, draft, or outstanding",
+      "Do not state \"medical report proves\" — Medical material is absent, draft, or outstanding",
+      "Do not state \"medical is consistent\" — Medical material is absent, draft, or outstanding"
+    ],
+    "hardRules": [
+      "Served does not mean reliable.",
+      "Missing does not mean irrelevant.",
+      "Referred only does not mean usable.",
+      "Inference must be labelled as inference.",
+      "No line is sendable just because a source exists."
+    ],
+    "chaseItems": [
+      {
+        "label": "Interview recording / transcript",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide interview recording / transcript or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: provisional. Source: MG6/MG6C disclosure schedule. Solicitor review required before sending.]"
+      },
+      {
+        "label": "MG6 / unused schedule clarification",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide mG6 / unused schedule clarification or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: provisional. Source: CPS / disclosure officer. Solicitor review required before sending.]"
+      },
+      {
+        "label": "Medical / expert source report",
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide medical / expert source report or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: provisional. Source: MG6/MG6C disclosure schedule. Solicitor review required before sending.]"
+      }
+    ]
+  },
+  "courtNote": {
+    "text": "The defence asks the court to record outstanding ABE/source and disclosure material.\n\n[CaseBrain — court line copy. Evidence state: needs review. Confirm before addressing the court.]",
+    "sendabilityLabel": "Solicitor review required",
+    "canCopy": true,
+    "blockedReason": null
+  },
+  "exportVersion": {
+    "exportId": "exp-sim-049-20260629163624",
+    "caseId": "sim-049",
+    "generatedAt": "2026-06-29T16:36:24.298Z",
+    "exportType": "h5_export_pack_v1",
+    "bundleVersionLabel": "overview-export@2026-06-29",
+    "appVersion": "evidence-state-audit-snapshot",
+    "sourceStatesIncluded": [
+      "provisional",
+      "missing",
+      "referred_only",
+      "needs_review"
+    ],
+    "sendability": "needs_solicitor_review",
+    "warningCount": 8,
+    "blockedReason": null,
+    "reviewFooter": "Solicitor review required before sending to CPS, court, or client."
+  },
+  "truthKeyComparison": [
+    {
+      "truthItem": "MG5",
+      "truthState": "served",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "police disclosure summary",
+      "truthState": "served",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "complainant statement",
+      "truthState": "served",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "counselling records",
+      "truthState": "referred_only",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "school records",
+      "truthState": "referred_only",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "GP records",
+      "truthState": "referred_only",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "third-party record schedule",
+      "truthState": "missing",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "disclosure decision log",
+      "truthState": "missing",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "applications/correspondence",
+      "truthState": "missing",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "ABE transcript",
+      "truthState": "missing",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    },
+    {
+      "truthItem": "whether third-party records have been obtained, reviewed, or withheld",
+      "truthState": "not_safely_confirmed",
+      "casebrainLabel": null,
+      "casebrainState": "not_matched_in_chase_items",
+      "aligned": null
+    }
+  ]
+}

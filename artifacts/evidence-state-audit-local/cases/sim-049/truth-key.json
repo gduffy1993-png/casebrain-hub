@@ -1,0 +1,107 @@
+{
+  "caseId": "sim-049",
+  "title": "Historic sexual third-party records mentioned but absent",
+  "offenceFamily": "sexual_abe",
+  "offenceWording": "Sexual assault",
+  "profile": "historic_sexual_third_party",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "police disclosure summary",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "complainant statement",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "counselling records",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "school records",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "GP records",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "third-party record schedule",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "disclosure decision log",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "applications/correspondence",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "ABE transcript",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "whether third-party records have been obtained, reviewed, or withheld",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "third-party records schedule",
+    "disclosure decision log",
+    "ABE transcript",
+    "correspondence/applications"
+  ],
+  "expectedSendability": "needs_solicitor_review",
+  "mustNotSayGlobal": [
+    "records undermine complaint",
+    "medical records support defence",
+    "third-party material proves"
+  ],
+  "blockingFailPatterns": [
+    "records undermine",
+    "support defence",
+    "third-party material proves"
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "caseId": "sim-042",
+  "title": "Multi-defendant drug conspiracy per-defendant evidence map",
+  "offenceFamily": "drugs_conspiracy",
+  "offenceWording": "Conspiracy to supply Class A and Class B drugs",
+  "profile": "multi_defendant_conspiracy",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "indictment draft",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "selected surveillance log",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "co-defendant interview summary",
+      "correct_evidence_state": "other_defendant_only",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "interview",
+      "defendant_relevance": "co_defendant_only"
+    },
+    {
+      "evidence_item": "full surveillance schedule",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "telecoms attribution",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "banking schedule",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "per-defendant evidence matrix",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "full telecoms schedule",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "unused material schedule",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "surveillance continuity",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "which exhibits relate to Omar rather than co-defendants",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "per-defendant evidence matrix",
+    "telecoms attribution",
+    "full surveillance schedule",
+    "MG6C unused material"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "Omar organised supply",
+    "co-defendant admissions prove Omar's role",
+    "surveillance proves conspiracy role"
+  ],
+  "blockingFailPatterns": [
+    "organised the conspiracy",
+    "co-defendant admission proves Omar",
+    "all defendants"
+  ]
+}

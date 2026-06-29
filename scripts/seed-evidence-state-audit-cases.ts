@@ -17,7 +17,15 @@ import type { SimulatorV2TruthKey } from "../lib/eval/evidence-state-audit/types
 
 const ROOT = process.cwd();
 const OUT_ROOT = path.join(ROOT, "artifacts", "evidence-state-audit-local", "cases");
-const SIM_ROOT = path.join(ROOT, "docs", "h4", "simulator-pack-v2");
+const SIM_PACKS = ["simulator-pack-v2", "simulator-pack-v3"] as const;
+
+function resolveSimDir(caseId: string): string {
+  for (const pack of SIM_PACKS) {
+    const dir = path.join(ROOT, "docs", "h4", pack, caseId);
+    if (fs.existsSync(path.join(dir, "bundle-text.md"))) return dir;
+  }
+  throw new Error(`Missing simulator bundle for ${caseId}`);
+}
 
 function offenceLabel(family: string | undefined): string {
   switch (family) {
@@ -39,7 +47,7 @@ function offenceLabel(family: string | undefined): string {
 }
 
 function seedCase(caseId: string): void {
-  const simDir = path.join(SIM_ROOT, caseId);
+  const simDir = resolveSimDir(caseId);
   const bundlePath = path.join(simDir, "bundle-text.md");
   const truthPath = path.join(simDir, "truth-key.json");
   if (!fs.existsSync(bundlePath) || !fs.existsSync(truthPath)) {
@@ -75,7 +83,7 @@ function seedCase(caseId: string): void {
 }
 
 function main(): void {
-  console.log("Seeding controlled evidence-state audit cases (simulator v2)…");
+  console.log("Seeding controlled evidence-state audit cases (simulator v2/v3)…");
   for (const caseId of AUDIT_SIMULATOR_CASE_IDS) {
     seedCase(caseId);
   }

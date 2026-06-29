@@ -86,6 +86,8 @@ export function isFalseServed(
 ): boolean {
   if (predictedState === null) return false;
   if (truthState === "served") return false;
+  // Co-defendant-only lines are tracked via wrong_defendant_bleed, not false-served.
+  if (truthState === "other_defendant_only") return false;
   return isServedLikePredicted(predictedState);
 }
 

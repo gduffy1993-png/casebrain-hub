@@ -178,6 +178,246 @@ const CASE_CURATIONS: Record<string, CaseCuration> = {
       },
     ],
   },
+  "sim-042": {
+    overrides: [
+      {
+        match: "co-defendant interview summary",
+        correct_evidence_state: "other_defendant_only",
+        defendant_relevance: "co_defendant_only",
+        evidence_type: "interview",
+        chase_needed: false,
+      },
+      {
+        match: "which exhibits relate",
+        correct_evidence_state: "not_safely_confirmed",
+        chase_needed: true,
+      },
+    ],
+  },
+  "sim-048": {
+    overrides: [
+      {
+        match: "ABE interview",
+        correct_evidence_state: "referred_only",
+        evidence_type: "abe",
+        chase_needed: true,
+        must_not_say: ["ABE proves allegation"],
+      },
+      {
+        match: "whether delay",
+        correct_evidence_state: "not_safely_confirmed",
+        chase_needed: true,
+      },
+    ],
+  },
+  "sim-049": {
+    overrides: [
+      {
+        match: "whether third-party",
+        correct_evidence_state: "not_safely_confirmed",
+        chase_needed: true,
+      },
+      {
+        match: "ABE transcript",
+        correct_evidence_state: "missing",
+        chase_needed: true,
+      },
+    ],
+  },
+  "sim-054": {
+    overrides: [
+      {
+        match: "whether Sasha",
+        correct_evidence_state: "inferred_only",
+        must_not_say: ["Sasha used violence", "CCTV shows Sasha"],
+      },
+      {
+        match: "body-worn",
+        correct_evidence_state: "referred_only",
+        evidence_type: "bwv",
+        chase_needed: true,
+      },
+    ],
+  },
+  "sim-059": {
+    overrides: [
+      {
+        match: "whether procedure",
+        correct_evidence_state: "not_safely_confirmed",
+        chase_needed: true,
+        must_not_say: ["procedure complied", "reading proves offence"],
+      },
+      {
+        match: "custody/PACE",
+        correct_evidence_state: "missing",
+        evidence_type: "custody_pace",
+        chase_needed: true,
+      },
+    ],
+  },
+  "sim-062": {
+    overrides: [
+      {
+        match: "whether Meera was the driver",
+        correct_evidence_state: "inferred_only",
+        must_not_say: ["Meera drove uninsured", "keeper record proves driver"],
+      },
+      {
+        match: "police stop BWV",
+        correct_evidence_state: "referred_only",
+        evidence_type: "bwv",
+        chase_needed: true,
+      },
+    ],
+  },
+  "sim-063": {
+    overrides: [
+      {
+        match: "knowledge, dishonesty",
+        correct_evidence_state: "inferred_only",
+        must_not_say: ["acted dishonestly", "overpayment is proved"],
+      },
+      {
+        match: "interview summary",
+        correct_evidence_state: "incomplete",
+        evidence_type: "interview",
+        chase_needed: true,
+      },
+    ],
+  },
+  "sim-066": {
+    overrides: [
+      {
+        match: "intent to pervert",
+        correct_evidence_state: "inferred_only",
+        chase_needed: true,
+      },
+      {
+        match: "email exhibit summary",
+        correct_evidence_state: "incomplete",
+        evidence_type: "digital",
+        chase_needed: true,
+      },
+    ],
+  },
+  "sim-067": {
+    overrides: [
+      {
+        match: "public place, possession",
+        correct_evidence_state: "not_safely_confirmed",
+        chase_needed: true,
+        must_not_say: ["unlawfully possessed", "no reasonable excuse"],
+      },
+    ],
+  },
+  "sim-069": {
+    overrides: [
+      {
+        match: "selected screenshots",
+        correct_evidence_state: "incomplete",
+        evidence_type: "digital_screenshot",
+        chase_needed: true,
+        must_not_say: ["screenshots prove coercion", "course of conduct proved"],
+      },
+      {
+        match: "pattern, attribution",
+        correct_evidence_state: "not_safely_confirmed",
+        chase_needed: true,
+      },
+    ],
+  },
+  "sim-040": {
+    overrides: [
+      {
+        match: "whether identification",
+        correct_evidence_state: "inferred_only",
+        chase_needed: true,
+      },
+    ],
+  },
+  "sim-043": {
+    overrides: [
+      {
+        match: "whether the defendant",
+        correct_evidence_state: "not_safely_confirmed",
+        chase_needed: true,
+      },
+    ],
+  },
+  "sim-046": {
+    overrides: [
+      {
+        match: "partial phone",
+        correct_evidence_state: "incomplete",
+        evidence_type: "digital",
+        chase_needed: true,
+      },
+    ],
+  },
+  "sim-047": {
+    overrides: [
+      {
+        match: "CCTV still",
+        correct_evidence_state: "incomplete",
+        evidence_type: "cctv",
+        chase_needed: true,
+      },
+    ],
+  },
+  "sim-051": {
+    overrides: [
+      {
+        match: "whether the stop",
+        correct_evidence_state: "not_safely_confirmed",
+        chase_needed: true,
+      },
+    ],
+  },
+  "sim-052": {
+    overrides: [
+      {
+        match: "co-defendant",
+        correct_evidence_state: "other_defendant_only",
+        defendant_relevance: "co_defendant_only",
+      },
+    ],
+  },
+  "sim-053": {
+    overrides: [
+      {
+        match: "cellsite",
+        correct_evidence_state: "referred_only",
+        chase_needed: true,
+      },
+    ],
+  },
+  "sim-056": {
+    overrides: [
+      {
+        match: "whether continuity",
+        correct_evidence_state: "not_safely_confirmed",
+        chase_needed: true,
+      },
+    ],
+  },
+  "sim-057": {
+    overrides: [
+      {
+        match: "ABE",
+        correct_evidence_state: "referred_only",
+        chase_needed: true,
+      },
+    ],
+  },
+  "sim-060": {
+    overrides: [
+      {
+        match: "whether forensic",
+        correct_evidence_state: "inferred_only",
+        chase_needed: true,
+      },
+    ],
+  },
 };
 
 function applyOverrides(items: TruthKeyEvidenceItem[], overrides: ItemOverride[] | undefined): TruthKeyEvidenceItem[] {
@@ -250,6 +490,7 @@ export function enrichSimulatorTruthKey(raw: SimulatorV2TruthKey): EvidenceState
 }
 
 export const AUDIT_SIMULATOR_CASE_IDS = [
+  // batch 1
   "sim-038",
   "sim-039",
   "sim-041",
@@ -259,4 +500,26 @@ export const AUDIT_SIMULATOR_CASE_IDS = [
   "sim-055",
   "sim-058",
   "sim-061",
+  // batch 2 → 20 cases (+ proof-pack-01)
+  "sim-042",
+  "sim-048",
+  "sim-049",
+  "sim-054",
+  "sim-059",
+  "sim-062",
+  "sim-063",
+  "sim-066",
+  "sim-067",
+  "sim-069",
+  // batch 3 → 30 cases
+  "sim-040",
+  "sim-043",
+  "sim-046",
+  "sim-047",
+  "sim-051",
+  "sim-052",
+  "sim-053",
+  "sim-056",
+  "sim-057",
+  "sim-060",
 ] as const;

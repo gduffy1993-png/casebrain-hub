@@ -1,0 +1,115 @@
+{
+  "caseId": "sim-067",
+  "title": "Bladed article reasonable excuse and location continuity",
+  "offenceFamily": "weapons",
+  "offenceWording": "Possession of a bladed article in a public place",
+  "profile": "bladed_article",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "seizure statement",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "charge sheet",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "CCTV",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "cctv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "knife photographs",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "BWV/CCTV",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "bwv",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "location plan",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "photographs/measurements",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "interview/reasonable excuse account",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "interview",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "public place, possession, and reasonable excuse",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant",
+      "must_not_say": [
+        "unlawfully possessed",
+        "no reasonable excuse"
+      ]
+    }
+  ],
+  "expectedChaseItems": [
+    "BWV/CCTV",
+    "location plan",
+    "knife photographs/measurements",
+    "interview/reasonable excuse material"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "Connor unlawfully possessed",
+    "knife was in public place",
+    "no reasonable excuse"
+  ],
+  "blockingFailPatterns": [
+    "unlawfully possessed",
+    "public place proved",
+    "no reasonable excuse"
+  ]
+}

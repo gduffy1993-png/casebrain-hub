@@ -10,6 +10,7 @@ import {
   labelMatchScore,
   statesMatchForAccuracy,
 } from "./normalize";
+import { isAggregateLedgerLabel } from "./partial-media";
 import type {
   AdaptedPrediction,
   CaseBrainAuditOutput,
@@ -29,7 +30,16 @@ function findBestPredictionForTruth(
     const labelScore = labelMatchScore(truthItem.evidence_item, p.label);
     const stateBonus = statesMatchForAccuracy(truthItem.correct_evidence_state, p.predictedState) ? 0.2 : 0;
     const relevanceBonus = defendantRelevanceMatchBonus(truthItem, p.label, p.source);
-    const score = labelScore + stateBonus + relevanceBonus;
+    const aggregatePenalty =
+      isAggregateLedgerLabel(p.label) && !p.label.toLowerCase().includes(truthItem.evidence_item.toLowerCase())
+        ? -0.3
+        : 0;
+    const exactContainBonus =
+      p.label.toLowerCase().includes(truthItem.evidence_item.toLowerCase()) &&
+      truthItem.evidence_item.length >= 8
+        ? 0.15
+        : 0;
+    const score = labelScore + stateBonus + relevanceBonus + aggregatePenalty + exactContainBonus;
     if (score > bestScore) {
       bestScore = score;
       best = p;

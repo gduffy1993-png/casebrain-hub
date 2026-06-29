@@ -34,7 +34,24 @@ function item(
 assert.equal(isFalseServed("referred_only", "served"), true);
 assert.equal(isFalseServed("missing", "served"), true);
 assert.equal(isFalseServed("served", "served"), false);
-assert.equal(isFalseServed("referred_only", "missing"), false);
+assert.equal(isFalseServed("other_defendant_only", "served"), false);
+
+// co-def served row is bleed, not false-served
+const coDefServed = compareTruthItem(
+  item("Co-defendant Lee Marsh interview", "other_defendant_only", {
+    defendant_relevance: "co_defendant_only",
+    evidence_type: "interview",
+  }),
+  syntheticOutput([
+    {
+      label: "MG6C/CO — co-defendant interview summary — served on bundle.",
+      existence: "served",
+      reliability: "needs_review",
+    },
+  ]),
+);
+assert.equal(coDefServed.falseServed, false);
+assert.equal(coDefServed.wrongDefendantBleed, true);
 
 const falseServedCompare = compareTruthItem(
   item("Body-worn video", "referred_only"),

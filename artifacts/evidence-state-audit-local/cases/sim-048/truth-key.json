@@ -1,0 +1,111 @@
+{
+  "caseId": "sim-048",
+  "title": "Historic sexual allegation with ABE referred only and delay issue",
+  "offenceFamily": "sexual_abe",
+  "offenceWording": "Historic sexual assault",
+  "profile": "historic_sexual",
+  "bundleStatus": "generated",
+  "evidenceItems": [
+    {
+      "evidence_item": "MG5",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "mg5",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "complainant MG11 summary",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "evidence_type": "witness_statement",
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "charge sheet",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "ABE interview",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "abe",
+      "defendant_relevance": "primary_defendant",
+      "must_not_say": [
+        "ABE proves allegation"
+      ]
+    },
+    {
+      "evidence_item": "first complaint record",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "school/social records",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "ABE video/transcript",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "first account material",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "third-party records schedule",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "disclosure officer note",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "defendant_relevance": "primary_defendant"
+    },
+    {
+      "evidence_item": "whether delay/context material is served or only mentioned",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "evidence_type": "inference_boundary",
+      "defendant_relevance": "primary_defendant"
+    }
+  ],
+  "expectedChaseItems": [
+    "ABE video/transcript",
+    "first account material",
+    "third-party records schedule",
+    "MG6C/disclosure note"
+  ],
+  "expectedSendability": "needs_solicitor_review",
+  "mustNotSayGlobal": [
+    "delay makes allegation unreliable",
+    "ABE proves allegation",
+    "complainant fabricated"
+  ],
+  "blockingFailPatterns": [
+    "delay makes",
+    "ABE proves",
+    "fabricated"
+  ]
+}
