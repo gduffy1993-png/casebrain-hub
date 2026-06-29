@@ -294,6 +294,27 @@ Must support / test broad profiles: harassment, AEW/BWV, custody/PACE, violence 
 
 Also scoped: line-level claim tags, sendability gate, disclosure timetable builder, Bad Output Memory v2, firm admin, no-send watermark.
 
+**H5 chunk status (2026-06-29):** chunks 1–4 live on prod (Five Answers, Evidence Trace, Decision Board, Advice Change Radar). Remaining H5 slices: Hearing Mode, Export Pack, Versioned Output, Feedback Console, Audit Log, Re-run Diff, Confidence Dashboard — see `docs/h5/H5_PRIORITY_REFERENCE.md`.
+
+### Evidence-State Accuracy Audit (proof layer — spec only)
+
+**Status:** Planned — **not yet run** on unseen real-world bundles.  
+**Spec:** `docs/audit/EVIDENCE_STATE_ACCURACY_AUDIT.md`
+
+**Placement:**
+
+- After H5 workstation core is complete
+- Before wider rollout to **3–5 firms**
+- May begin internally (30–50 anonymised/unseen bundles) before design-partner scale
+
+**Core metric:** **false-served rate** — CaseBrain marks evidence served/usable/safe when truth key says referred_only, missing, incomplete, not_safely_confirmed, inferred_only, other_defendant_only, or not in bundle.
+
+**Target:** near-zero false-served (dangerous failure mode). False-missing / over-cautious is safer and tracked separately.
+
+**Do not claim** industry-level evidence-state accuracy on unseen real-world bundles until this audit completes. Controlled gates (2,200 corpus, golden 102, simulator 150, Bad Output Memory, export/copy, prod smoke) are a **separate** proof layer.
+
+**Do not build** audit product UI or harness until Ged explicitly says start. Docs/spec only for now.
+
 ### H6 — Later power features (after H5 substantial)
 
 Do not start until H3/H4/H5 core complete. Makes CaseBrain sticky and firm-specific:
@@ -314,7 +335,8 @@ Do not start until H3/H4/H5 core complete. Makes CaseBrain sticky and firm-speci
 
 - H3 complete  
 - H4 complete enough (export/copy + simulator pack v1)  
-- H5 core workstation started or scoped  
+- H5 core workstation complete (chunks 1–4 minimum; remaining slices per priority ref)  
+- **Evidence-State Accuracy Audit** — at least stage 1 (internal 30–50 unseen bundles) with acceptable false-served rate; see `docs/audit/EVIDENCE_STATE_ACCURACY_AUDIT.md`  
 - Golden 100+ no dangerous fails  
 - Level 1 2,200 no dangerous critical  
 - Worst50 no repeated dangerous cluster  
@@ -322,6 +344,8 @@ Do not start until H3/H4/H5 core complete. Makes CaseBrain sticky and firm-speci
 - Export/copy checks green  
 - Trust labels/source states visible  
 - Feedback capture working  
+
+**Do not claim** near-zero false-served on unseen real-world bundles until the audit has been run.
 
 Then: one controlled firm, supervised, 10–20 matters, weekly structured feedback.
 
@@ -372,11 +396,12 @@ Then: one controlled firm, supervised, 10–20 matters, weekly structured feedba
 | Cold-start prod (S1) | **PASS** |
 | CB-FRESH adversarial audit | **PASS WITH MINOR WARNINGS** (safe; proof layer incomplete) |
 | H2 Verification | ✅ PASS (WARNING polish-only) |
-| H3 Trust layer | ⏳ **IN PROGRESS** (chunk 1) |
-| H4 Real-world confidence | ⏳ |
-| H5 Workstation | ⏳ |
+| H3 Trust layer | ✅ complete |
+| H4 Real-world confidence | ✅ complete |
+| H5 Workstation | ⏳ chunks 1–4 live; remaining slices |
+| Evidence-State Accuracy Audit | ⏳ **planned — not run** |
 | H6 Power features | ⏳ Later |
-| Design-partner firm (1) | ⏳ After H3–H5 gates |
+| Design-partner firm (1) | ⏳ After H5 + audit stage 1 |
 | 3–5 firms completed pilot | ⏳ |
 | Layer 4 UX/reliability must-haves | **Done** (paywall copy ✅) |
 

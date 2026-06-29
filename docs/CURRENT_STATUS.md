@@ -1,7 +1,9 @@
 # CaseBrain criminal pilot — where we are
 
 **Updated:** 2026-06-29  
-**Prod:** [https://www.casebrain.co.uk](https://www.casebrain.co.uk) — **`master` branch** (`9a4046a`) · H5 chunks 1–3 live · prod smoke **14/14 PASS**
+**Prod:** [https://www.casebrain.co.uk](https://www.casebrain.co.uk) — **`master`** (`a862aee`) · H5 chunks 1–4 live · prod smoke **16/16 PASS**
+
+**Claims discipline:** Controlled gates below are green on **known** corpora (2,200, golden 102, simulator 150, Bad Output Memory, export/copy, deploy smoke). **Do not claim** near-zero false-served or industry-level evidence-state accuracy on **unseen real-world bundles** until the Evidence-State Accuracy Audit has been run — see `docs/audit/EVIDENCE_STATE_ACCURACY_AUDIT.md`.
 
 ### Production deploy alignment (ops)
 
@@ -15,9 +17,9 @@
 **Symptom before fix:** green Vercel checks on `master` only built **Preview**; `www.casebrain.co.uk` stayed on old `main` or manual CLI deploys.  
 **Verify after any prod push:** `vercel inspect www.casebrain.co.uk` → `meta.githubCommitRef` = `master`, SHA matches `git rev-parse master`.
 
-**Decision:** No design-partner trial yet. H3 ✅ · H4 ✅ → **H5 Five Answers** → H6 → then firm.
+**Decision:** No design-partner trial yet. H3 ✅ · H4 ✅ · H5 chunks 1–4 ✅ → remaining H5 slices → **Evidence-State Accuracy Audit** → firm rollout.
 
-**Scale gates (primary):** golden 102 + Level 1 2,200 + worst50 + simulator pack (when live). **Taylor/Jordan:** fresh-user deploy smoke only.
+**Scale gates (controlled proof — not a substitute for unseen-bundle audit):** golden 102 + Level 1 2,200 + worst50 + simulator 150 + Bad Output Memory + export/copy + prod smoke. **Taylor/Jordan:** fresh-user deploy smoke only.
 
 ## Done
 
@@ -57,8 +59,6 @@
 **Simulator library:** **150 cases** (v1 30 + v1.1 7 + v2 38 + v3 75) · combined gate **0 blocking** · warnings = chase-label / Today phrasing drift
 
 **Scale gates (latest):** simulator 150 **0 blocking** · Bad Output Memory **PASS** · export/copy golden 102 **PASS** · golden trust **PASS**
-
-**Next: H5 chunk 5+** — 20-Minute Hearing Mode · Export Pack · see `docs/h5/H5_PRIORITY_REFERENCE.md`
 
 ### H5 chunk 1 — Five Answers front door ✅
 
@@ -100,14 +100,29 @@
 | Hard wording guard (review needed because… — no command language) | ✅ |
 | `scripts/advice-change-radar.test.ts` | ✅ |
 
-### H5 chunks 1–3 — prod acceptance ✅
+### H5 chunks 1–4 — prod acceptance ✅
 
 | Item | Status |
 |------|--------|
 | Fresh upload → Overview (`?tab=overview&controlRoom=1`) | ✅ prod |
-| Five Answers + Evidence Trace + Decision Board on Overview | ✅ prod |
-| `scripts/h5-overview-smoke.ts` vs `www.casebrain.co.uk` | ✅ **14/14 PASS** (2026-06-29) |
-| H5 chunk 4 — Advice Change Radar | ✅ built — pending prod deploy |
+| Five Answers + Evidence Trace + Decision Board + Advice Change Radar | ✅ prod |
+| `scripts/h5-overview-smoke.ts` vs `www.casebrain.co.uk` | ✅ **16/16 PASS** (2026-06-29, `a862aee`) |
+
+**Next H5 slices:** 20-Minute Hearing Mode · Export Pack · see `docs/h5/H5_PRIORITY_REFERENCE.md`
+
+## Evidence-State Accuracy Audit — planned ⏳
+
+**Status:** Spec locked — **not yet run.** No product UI / harness until Ged says start.
+
+| Item | Status |
+|------|--------|
+| Spec | `docs/audit/EVIDENCE_STATE_ACCURACY_AUDIT.md` |
+| Core metric | False-served rate (dangerous failure mode) |
+| Stage 1 target | 30–50 unseen/anonymised bundles |
+| Placement | After H5 core complete · before 3–5 firm rollout |
+| Near-zero false-served on real unseen bundles | **Not claimed** — audit not run |
+
+**Controlled proof (separate):** 2,200 corpus · golden 102 · simulator 150 · Bad Output Memory · export/copy · prod smoke — green on controlled sets only.
 
 ## Key scripts
 
