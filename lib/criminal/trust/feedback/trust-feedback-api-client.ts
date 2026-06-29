@@ -18,6 +18,10 @@ export async function postTrustFeedbackToApi(
         note: input.note,
         timestamp: input.timestamp,
         outputVersion: input.outputVersion,
+        section: input.section,
+        severity: input.severity,
+        exportId: input.exportId,
+        exportType: input.exportType,
       }),
     });
 

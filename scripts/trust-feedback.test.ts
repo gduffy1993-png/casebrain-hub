@@ -52,6 +52,8 @@ assert.equal(record.feedbackKind, "unsafe");
 assert.equal(record.sourceState, "not_safely_confirmed");
 assert.equal(record.sendability, "provisional_check_source");
 assert.equal(record.outputVersion, "test-v1");
+assert.equal(record.section, null);
+assert.equal(record.severity, "blocking");
 assert.ok(isBadOutputCandidateKind("unsafe"));
 assert.ok(!isBadOutputCandidateKind("useful"));
 
@@ -87,6 +89,18 @@ const summary = summarizeTrustFeedback([
 ]);
 assert.equal(summary.total, 2);
 assert.equal(summary.badOutputCandidates, 1);
+
+const acceptedH5 = validateTrustFeedbackPostBody(
+  {
+    tab: "export_pack",
+    feedbackKind: "missing_evidence",
+    section: "evidence_gaps",
+    exportId: "exp-test-1",
+    severity: "warning",
+  },
+  "case-abc",
+);
+assert.equal(acceptedH5.ok, true);
 
 const invalidTab = validateTrustFeedbackPostBody({ tab: "papers", feedbackKind: "wrong" }, "case-abc");
 assert.equal(invalidTab.ok, false, "invalid tab rejected");

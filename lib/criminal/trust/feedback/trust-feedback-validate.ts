@@ -9,14 +9,35 @@ import type {
   BuildTrustFeedbackInput,
   TrustFeedbackKind,
   TrustFeedbackRecord,
+  TrustFeedbackSeverity,
   TrustFeedbackTab,
 } from "./trust-feedback-types";
 import { TRUST_FEEDBACK_KINDS } from "./trust-feedback-types";
 import type { SendabilityLevel, SourceStateKind } from "@/lib/criminal/matter-confidence/matter-confidence-types";
 
-const TABS: ReadonlySet<TrustFeedbackTab> = new Set(["today", "chase", "summary"]);
+const TABS: ReadonlySet<TrustFeedbackTab> = new Set([
+  "today",
+  "chase",
+  "summary",
+  "five_answers",
+  "hearing_mode",
+  "export_pack",
+  "evidence_trace",
+  "decision_board",
+  "advice_change_radar",
+]);
 
-const KINDS: ReadonlySet<TrustFeedbackKind> = new Set(TRUST_FEEDBACK_KINDS.map((k) => k.value));
+const KINDS: ReadonlySet<TrustFeedbackKind> = new Set([
+  ...TRUST_FEEDBACK_KINDS.map((k) => k.value),
+  "missing_evidence",
+  "overstated",
+  "needs_rewrite",
+  "good_for_court",
+  "good_for_cps_chase",
+  "good_for_client_explanation",
+]);
+
+const SEVERITIES: ReadonlySet<TrustFeedbackSeverity> = new Set(["polish", "warning", "blocking"]);
 
 const SOURCE_STATES: ReadonlySet<SourceStateKind> = new Set([
   "served",
@@ -44,6 +65,10 @@ export type TrustFeedbackPostBody = {
   note?: unknown;
   timestamp?: unknown;
   outputVersion?: unknown;
+  section?: unknown;
+  severity?: unknown;
+  exportId?: unknown;
+  exportType?: unknown;
 };
 
 function parseOptionalSourceState(raw: unknown): SourceStateKind | null {
@@ -56,6 +81,12 @@ function parseOptionalSendability(raw: unknown): SendabilityLevel | null {
   if (raw === undefined || raw === null || raw === "") return null;
   if (typeof raw !== "string" || !SENDABILITY.has(raw as SendabilityLevel)) return null;
   return raw as SendabilityLevel;
+}
+
+function parseOptionalSeverity(raw: unknown): TrustFeedbackSeverity | null {
+  if (raw === undefined || raw === null || raw === "") return null;
+  if (typeof raw !== "string" || !SEVERITIES.has(raw as TrustFeedbackSeverity)) return null;
+  return raw as TrustFeedbackSeverity;
 }
 
 export function validateTrustFeedbackPostBody(
@@ -77,7 +108,7 @@ export function validateTrustFeedbackPostBody(
     return { ok: false, error: "Invalid feedback kind" };
   }
 
-  for (const field of ["note", "lineSnippet", "contextLabel"] as const) {
+  for (const field of ["note", "lineSnippet", "contextLabel", "section", "exportId", "exportType"] as const) {
     const val = body[field];
     if (val !== undefined && val !== null && typeof val !== "string") {
       return { ok: false, error: `${field} must be a string` };
@@ -91,6 +122,12 @@ export function validateTrustFeedbackPostBody(
   const contextLabel = sanitizeTrustFeedbackContextLabel(
     typeof body.contextLabel === "string" ? body.contextLabel : null,
   );
+  const section =
+    typeof body.section === "string" ? body.section.trim().slice(0, 120) || null : null;
+  const exportId =
+    typeof body.exportId === "string" ? body.exportId.trim().slice(0, 80) || null : null;
+  const exportType =
+    typeof body.exportType === "string" ? body.exportType.trim().slice(0, 64) || null : null;
 
   if (typeof body.note === "string" && body.note.trim() && note === null) {
     return { ok: false, error: "Note rejected — disallowed content" };
@@ -112,6 +149,8 @@ export function validateTrustFeedbackPostBody(
     return { ok: false, error: "Invalid sendability" };
   }
 
+  const severity = parseOptionalSeverity(body.severity);
+
   const input: BuildTrustFeedbackInput = {
     caseId: trimmedCaseId,
     tab: tab as TrustFeedbackTab,
@@ -123,6 +162,10 @@ export function validateTrustFeedbackPostBody(
     note,
     timestamp: typeof body.timestamp === "string" ? body.timestamp : undefined,
     outputVersion: typeof body.outputVersion === "string" ? body.outputVersion.slice(0, 64) : undefined,
+    section,
+    severity: severity ?? undefined,
+    exportId,
+    exportType,
   };
 
   const record = buildTrustFeedbackRecord(input);
@@ -147,6 +190,10 @@ export type TrustFeedbackRow = {
   note: string | null;
   output_version: string | null;
   created_at: string;
+  severity: TrustFeedbackSeverity | null;
+  section: string | null;
+  export_id: string | null;
+  export_type: string | null;
 };
 
 export function mapTrustFeedbackRowToRecord(row: TrustFeedbackRow): TrustFeedbackRecord {
@@ -162,5 +209,9 @@ export function mapTrustFeedbackRowToRecord(row: TrustFeedbackRow): TrustFeedbac
     note: row.note,
     timestamp: row.created_at,
     outputVersion: row.output_version ?? "unknown",
+    section: row.section ?? null,
+    severity: row.severity ?? null,
+    exportId: row.export_id ?? null,
+    exportType: row.export_type ?? null,
   };
 }

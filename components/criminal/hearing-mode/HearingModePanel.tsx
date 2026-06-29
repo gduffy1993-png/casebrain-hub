@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Clock, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { DontSaySafetyBox } from "@/components/criminal/trust/DontSaySafetyBox";
+import { H5FeedbackFlag } from "@/components/criminal/feedback-console/H5FeedbackFlag";
 import { SOURCE_BACKED_COURT_NOTE_LABEL } from "@/lib/criminal/trust/firm-facing-labels";
 import type { HearingModeModel } from "@/lib/criminal/hearing-mode/types";
 import { workflowPilotCard, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
@@ -12,10 +13,12 @@ export function HearingModePanel({
   model,
   todayHref,
   chaseHref,
+  caseId,
 }: {
   model: HearingModeModel;
   todayHref: string;
   chaseHref: string;
+  caseId: string;
 }) {
   const { caseInOneMinute: c } = model;
 
@@ -35,6 +38,12 @@ export function HearingModePanel({
         <Badge variant="outline" size="sm" className="text-[10px] shrink-0">
           {c.confidenceLabel}
         </Badge>
+        <H5FeedbackFlag
+          caseId={caseId}
+          surface="hearing_mode"
+          section="overview"
+          lineSnippet={model.safeCourtLine.text.slice(0, 120)}
+        />
       </div>
 
       <div className="space-y-2" data-testid="hearing-mode-case-minute">

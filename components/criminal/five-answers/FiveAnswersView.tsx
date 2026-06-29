@@ -15,6 +15,7 @@ import { DefenceDecisionBoard } from "@/components/criminal/decision-board/Defen
 import { AdviceChangeRadarPanel } from "@/components/criminal/advice-change-radar/AdviceChangeRadarPanel";
 import { HearingModePanel } from "@/components/criminal/hearing-mode/HearingModePanel";
 import { ExportPackPanel } from "@/components/criminal/export-pack/ExportPackPanel";
+import { H5FeedbackFlag } from "@/components/criminal/feedback-console/H5FeedbackFlag";
 import { evidenceExistenceLabel, evidenceReliabilityLabel } from "@/lib/criminal/five-answers/evidence-trace";
 import { useMatterBrief } from "@/components/criminal/workflow/useMatterBrief";
 import { usePilotMatterTabHref } from "@/components/criminal/workflow/pilotDeskNavContext";
@@ -39,6 +40,7 @@ function AnswerCard({
   testId,
   traceSection,
   traceRows,
+  headerAction,
 }: {
   number: number;
   title: string;
@@ -46,6 +48,7 @@ function AnswerCard({
   testId: string;
   traceSection?: EvidenceTraceSection;
   traceRows?: EvidenceTraceRow[];
+  headerAction?: ReactNode;
 }) {
   return (
     <section className={`${workflowPilotCard} px-4 py-3 space-y-2`} data-testid={testId}>
@@ -53,7 +56,8 @@ function AnswerCard({
         <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500/20 text-[11px] font-bold text-blue-300">
           {number}
         </span>
-        <h2 className={workflowSectionTitle}>{title}</h2>
+        <h2 className={`${workflowSectionTitle} flex-1 min-w-0`}>{title}</h2>
+        {headerAction}
       </div>
       {children}
       {traceSection && traceRows?.length ? (
@@ -183,6 +187,15 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
     <div className="space-y-3" data-testid="five-answers-view">
       {matterConfidence ? <MatterConfidenceHeader confidence={matterConfidence} /> : null}
 
+      <div className="flex justify-end">
+        <H5FeedbackFlag
+          caseId={caseId}
+          surface="five_answers"
+          section="overview"
+          sendability={matterConfidence?.summarySendability ?? null}
+        />
+      </div>
+
       <div className={`${workflowPilotCard} px-4 py-2.5 border-blue-500/20 bg-blue-950/20`}>
         <p className="text-[10px] font-semibold uppercase tracking-wider text-blue-300/90">Evidence truth rules</p>
         <ul className="mt-1 flex flex-wrap gap-x-3 gap-y-0.5 text-[11px] text-slate-400">
@@ -195,12 +208,13 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
       {hearingMode ? (
         <HearingModePanel
           model={hearingMode}
+          caseId={caseId}
           todayHref={buildTabHref(caseId, "today")}
           chaseHref={buildTabHref(caseId, "disclosure-chase")}
         />
       ) : null}
 
-      {exportPack ? <ExportPackPanel model={exportPack} /> : null}
+      {exportPack ? <ExportPackPanel model={exportPack} caseId={caseId} /> : null}
 
       <AnswerCard
         number={1}
@@ -222,6 +236,14 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
         title="What is served / referred only / missing?"
         testId="five-answers-evidence-state"
         traceSection="key_evidence"
+        headerAction={
+          <H5FeedbackFlag
+            caseId={caseId}
+            surface="evidence_trace"
+            section="key_evidence"
+            sendability={matterConfidence?.chaseSendability ?? null}
+          />
+        }
         traceRows={[
           ...view.evidenceTrace.bySection.key_evidence,
           ...view.evidenceTrace.bySection.missing_referred,
@@ -341,7 +363,7 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
         <p className="text-[10px] text-slate-600 mt-2">{view.courtNote.footer}</p>
       </AnswerCard>
 
-      {decisionBoard ? <DefenceDecisionBoard model={decisionBoard} /> : null}
+      {decisionBoard ? <DefenceDecisionBoard model={decisionBoard} caseId={caseId} /> : null}
 
       {warRoom && chase && briefPlan ? (
         <AdviceChangeRadarPanel

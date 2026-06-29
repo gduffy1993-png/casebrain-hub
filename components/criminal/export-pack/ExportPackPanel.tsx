@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Copy, Download, Package } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { H5FeedbackFlag } from "@/components/criminal/feedback-console/H5FeedbackFlag";
 import { FIRM_SENDABILITY_LABELS } from "@/lib/criminal/trust/firm-facing-labels";
 import type { ExportPackModel, ExportPackSectionId } from "@/lib/criminal/export-pack/types";
 import { workflowPilotCard, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
@@ -33,7 +34,7 @@ function copyLabel(id: ExportPackSectionId): string {
   }
 }
 
-export function ExportPackPanel({ model }: { model: ExportPackModel }) {
+export function ExportPackPanel({ model, caseId }: { model: ExportPackModel; caseId: string }) {
   const [copiedId, setCopiedId] = useState<ExportPackSectionId | "full_pack" | null>(null);
 
   const copySection = async (id: ExportPackSectionId | "full_pack") => {
@@ -78,6 +79,15 @@ export function ExportPackPanel({ model }: { model: ExportPackModel }) {
         <Badge variant="outline" size="sm" className="text-[10px] shrink-0">
           {FIRM_SENDABILITY_LABELS[model.version.sendability]}
         </Badge>
+        <H5FeedbackFlag
+          caseId={caseId}
+          surface="export_pack"
+          section="full_pack"
+          exportId={model.version.exportId}
+          exportType={model.version.exportType}
+          outputVersion={model.version.appVersion ?? model.version.bundleVersionLabel}
+          sendability={model.version.sendability}
+        />
       </div>
 
       <div className="rounded-md border border-slate-800/80 bg-slate-950/40 px-3 py-2.5 text-[11px] text-slate-400 space-y-1" data-testid="export-pack-version">

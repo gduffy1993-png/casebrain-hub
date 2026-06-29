@@ -49,5 +49,13 @@ export function trustFeedbackRecordContainsForbiddenContent(record: Record<strin
 }
 
 export function isBadOutputCandidateKind(kind: string): boolean {
-  return kind === "wrong" || kind === "unsafe" || kind === "bad_source" || kind === "missing_issue";
+  return (
+    kind === "wrong" ||
+    kind === "unsafe" ||
+    kind === "bad_source" ||
+    kind === "missing_issue" ||
+    kind === "missing_evidence" ||
+    kind === "overstated" ||
+    kind === "needs_rewrite"
+  );
 }

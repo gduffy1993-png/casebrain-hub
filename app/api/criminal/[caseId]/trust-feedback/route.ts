@@ -81,6 +81,10 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       note: record.note,
       output_version: record.outputVersion,
       created_at: record.timestamp,
+      severity: record.severity,
+      section: record.section,
+      export_id: record.exportId,
+      export_type: record.exportType,
     };
 
     const { data, error: insertError } = await supabase

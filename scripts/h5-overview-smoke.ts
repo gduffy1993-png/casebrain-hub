@@ -400,6 +400,19 @@ async function main(): Promise<void> {
       }
     }
 
+    if (await desktop.getByTestId("h5-feedback-flag-five_answers").isVisible().catch(() => false)) {
+      steps.push({ id: "feedback_console_visible", status: "pass" });
+    } else {
+      const body = await desktop.locator("body").innerText();
+      if (/\bflag\b/i.test(body) && /product review only|does not change live output/i.test(body) === false) {
+        steps.push({ id: "feedback_console_visible", status: "warn", detail: "Flag control not found by testid" });
+      } else if (await desktop.getByTestId("h5-feedback-flag-export_pack").isVisible().catch(() => false)) {
+        steps.push({ id: "feedback_console_visible", status: "pass", detail: "export_pack flag" });
+      } else {
+        steps.push({ id: "feedback_console_visible", status: "warn", detail: "H5 feedback flag not visible" });
+      }
+    }
+
     if (/change your advice/i.test(overviewBody)) {
       steps.push({ id: "radar_no_command_language", status: "fail", detail: "Command-style advice language on overview" });
     } else {

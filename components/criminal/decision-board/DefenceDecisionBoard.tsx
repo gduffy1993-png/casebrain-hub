@@ -1,18 +1,22 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
+import { H5FeedbackFlag } from "@/components/criminal/feedback-console/H5FeedbackFlag";
 import { evidenceExistenceLabel, evidenceReliabilityLabel } from "@/lib/criminal/five-answers/evidence-trace";
 import type { DecisionBoardModel } from "@/lib/criminal/decision-board/types";
 import { workflowPilotCard, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
 
-export function DefenceDecisionBoard({ model }: { model: DecisionBoardModel }) {
+export function DefenceDecisionBoard({ model, caseId }: { model: DecisionBoardModel; caseId: string }) {
   if (!model.options.length) return null;
 
   return (
     <section className={`${workflowPilotCard} px-4 py-3 space-y-3`} data-testid="defence-decision-board">
-      <div>
-        <h2 className={workflowSectionTitle}>Defence decision board</h2>
-        <p className="text-[11px] text-slate-500 mt-1">{model.reviewNotice}</p>
+      <div className="flex flex-wrap items-start justify-between gap-2">
+        <div>
+          <h2 className={workflowSectionTitle}>Defence decision board</h2>
+          <p className="text-[11px] text-slate-500 mt-1">{model.reviewNotice}</p>
+        </div>
+        <H5FeedbackFlag caseId={caseId} surface="decision_board" section="options" />
       </div>
       <ul className="space-y-3">
         {model.options.map((opt) => (

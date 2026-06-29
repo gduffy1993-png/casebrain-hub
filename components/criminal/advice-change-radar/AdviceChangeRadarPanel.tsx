@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { H5FeedbackFlag } from "@/components/criminal/feedback-console/H5FeedbackFlag";
 import {
   buildAdviceChangeRadar,
   buildMatterEvidenceSnapshot,
@@ -143,6 +144,7 @@ export function AdviceChangeRadarPanel({
         >
           {saving ? "Saving…" : model.hasBaseline ? "Refresh baseline" : "Save papers baseline"}
         </Button>
+        <H5FeedbackFlag caseId={caseId} surface="advice_change_radar" section="items" />
       </div>
       {saveNote ? <p className="text-[11px] text-emerald-400/90">{saveNote}</p> : null}
       {!model.hasBaseline ? (

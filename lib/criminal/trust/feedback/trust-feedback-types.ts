@@ -1,8 +1,17 @@
-/** H3 chunk 3 — solicitor trust feedback on Today / Chase / Summary (metadata only). */
+/** H3/H5 — solicitor trust feedback (metadata only; does not alter live output). */
 
 import type { SendabilityLevel, SourceStateKind } from "@/lib/criminal/matter-confidence/matter-confidence-types";
 
-export type TrustFeedbackTab = "today" | "chase" | "summary";
+export type TrustFeedbackTab =
+  | "today"
+  | "chase"
+  | "summary"
+  | "five_answers"
+  | "hearing_mode"
+  | "export_pack"
+  | "evidence_trace"
+  | "decision_board"
+  | "advice_change_radar";
 
 export type TrustFeedbackKind =
   | "wrong"
@@ -10,7 +19,15 @@ export type TrustFeedbackKind =
   | "unsafe"
   | "useful"
   | "missing_issue"
-  | "bad_source";
+  | "bad_source"
+  | "missing_evidence"
+  | "overstated"
+  | "needs_rewrite"
+  | "good_for_court"
+  | "good_for_cps_chase"
+  | "good_for_client_explanation";
+
+export type TrustFeedbackSeverity = "polish" | "warning" | "blocking";
 
 export const TRUST_FEEDBACK_KINDS: ReadonlyArray<{ value: TrustFeedbackKind; label: string }> = [
   { value: "wrong", label: "Wrong" },
@@ -27,6 +44,9 @@ export const BAD_OUTPUT_CANDIDATE_KINDS: ReadonlySet<TrustFeedbackKind> = new Se
   "unsafe",
   "bad_source",
   "missing_issue",
+  "missing_evidence",
+  "overstated",
+  "needs_rewrite",
 ]);
 
 export type TrustFeedbackRecord = {
@@ -42,6 +62,10 @@ export type TrustFeedbackRecord = {
   note: string | null;
   timestamp: string;
   outputVersion: string;
+  section: string | null;
+  severity: TrustFeedbackSeverity | null;
+  exportId: string | null;
+  exportType: string | null;
 };
 
 export type BuildTrustFeedbackInput = {
@@ -55,10 +79,14 @@ export type BuildTrustFeedbackInput = {
   note?: string | null;
   timestamp?: string;
   outputVersion?: string;
+  section?: string | null;
+  severity?: TrustFeedbackSeverity | null;
+  exportId?: string | null;
+  exportType?: string | null;
 };
 
 export const TRUST_FEEDBACK_STORAGE_KEY = "casebrain:trustFeedback:v1";
-export const TRUST_FEEDBACK_SCHEMA_VERSION = "trust-feedback-v1";
+export const TRUST_FEEDBACK_SCHEMA_VERSION = "trust-feedback-v2";
 export const TRUST_FEEDBACK_NOTE_MAX_CHARS = 400;
 export const TRUST_FEEDBACK_SNIPPET_MAX_CHARS = 280;
 export const TRUST_FEEDBACK_CONTEXT_MAX_CHARS = 240;

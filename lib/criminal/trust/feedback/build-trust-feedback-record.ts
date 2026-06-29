@@ -3,6 +3,7 @@ import {
   sanitizeTrustFeedbackNote,
   sanitizeTrustFeedbackSnippet,
 } from "./trust-feedback-sanitize";
+import { inferFeedbackSeverity } from "@/lib/criminal/feedback-console/infer-feedback-severity";
 import type { BuildTrustFeedbackInput, TrustFeedbackRecord } from "./trust-feedback-types";
 import { TRUST_FEEDBACK_SCHEMA_VERSION } from "./trust-feedback-types";
 
@@ -29,5 +30,9 @@ export function buildTrustFeedbackRecord(input: BuildTrustFeedbackInput): TrustF
     note: sanitizeTrustFeedbackNote(input.note),
     timestamp: input.timestamp ?? new Date().toISOString(),
     outputVersion: input.outputVersion ?? resolveTrustFeedbackOutputVersion(),
+    section: input.section?.trim().slice(0, 120) || null,
+    severity: input.severity ?? inferFeedbackSeverity(input.feedbackKind),
+    exportId: input.exportId?.trim().slice(0, 80) || null,
+    exportType: input.exportType?.trim().slice(0, 64) || null,
   };
 }
