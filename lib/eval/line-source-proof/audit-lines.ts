@@ -10,12 +10,15 @@ import {
   bundleHasFullAbeRecording,
   bundleHasFullPhoneDownload,
   bundleHasMasterCctvServed,
+  bundleMentionsPhoneOrExtraction,
   claimsAbeFullyServed,
   claimsEncroProves,
   claimsFullPhoneServed,
+  claimsGenericExtractionOutstanding,
   claimsHandleIsDefendant,
   claimsStillsAsFullCctvProof,
   isCoDefendantSafetyLine,
+  isMisplacedFamilyChaseLine,
   treatsOtherDefendantAsThisEvidence,
 } from "./case-shape-anchors";
 import { resolveHumanEvidenceLabel } from "./present-labels";
@@ -387,6 +390,9 @@ function buildGedReviewReasons(
   }
   if (source.reviewReason === "bundle_does_not_mention_cctv") reasons.push("bundle_does_not_mention_cctv");
   if (source.reviewReason === "bundle_does_not_mention_cad") reasons.push("bundle_does_not_mention_cad");
+  if (source.reviewReason === "bundle_does_not_mention_phone_extraction") {
+    reasons.push("bundle_does_not_mention_phone_extraction");
+  }
   if (source.reviewReason === "full_extraction_overclaim") reasons.push("full_extraction_overclaim");
   if (source.reviewReason === "handle_attribution_overclaim") reasons.push("handle_attribution_overclaim");
   if (source.reviewReason === "encro_overclaim") reasons.push("encro_overclaim");
@@ -421,6 +427,29 @@ export function auditLine(draft: DraftLine, models: H5CaseModels): LineSourcePro
       adjacentMismatch: false,
       evidenceItemInSnippet: false,
       reviewReason: "full_extraction_overclaim",
+    };
+  }
+
+  if (claimsGenericExtractionOutstanding(draft.outputLine) && (!source.sourceSnippet || source.adjacentMismatch)) {
+    source = {
+      ...source,
+      sourceSnippet: null,
+      sourceStrength: "no_anchor",
+      adjacentMismatch: false,
+      evidenceItemInSnippet: false,
+      reviewReason: "bundle_does_not_mention_phone_extraction",
+    };
+  } else if (
+    claimsGenericExtractionOutstanding(draft.outputLine) &&
+    !bundleMentionsPhoneOrExtraction(models.bundleText)
+  ) {
+    source = {
+      ...source,
+      sourceSnippet: null,
+      sourceStrength: "no_anchor",
+      adjacentMismatch: false,
+      evidenceItemInSnippet: false,
+      reviewReason: "bundle_does_not_mention_phone_extraction",
     };
   }
 
@@ -703,6 +732,9 @@ function buildWhyLimited(
   if (source.reviewReason === "bundle_does_not_mention_cad") {
     return "Bundle has no CAD/999 reference — output should not assume served timing material.";
   }
+  if (source.reviewReason === "bundle_does_not_mention_phone_extraction") {
+    return "Bundle has no phone/extraction material — generic extraction chase line is misplaced on this file.";
+  }
   if (source.reviewReason === "full_extraction_overclaim") {
     return "Only summary/partial phone material on bundle — full download must not be treated as served.";
   }
@@ -893,8 +925,15 @@ function scoreVerdict(
 
   if (blocked || bomBlocked || support === "blocked") return "FAIL";
   if (support === "unsupported") return "FAIL";
-  if (source.reviewReason === "bundle_does_not_mention_cctv") return "FAIL";
-  if (source.reviewReason === "bundle_does_not_mention_cad") return "FAIL";
+  if (source.reviewReason === "bundle_does_not_mention_cctv") {
+    if (isMisplacedFamilyChaseLine(draft.outputLine, draft.lineCategory)) return "WARNING";
+    return "FAIL";
+  }
+  if (source.reviewReason === "bundle_does_not_mention_cad") {
+    if (isMisplacedFamilyChaseLine(draft.outputLine, draft.lineCategory)) return "WARNING";
+    return "FAIL";
+  }
+  if (source.reviewReason === "bundle_does_not_mention_phone_extraction") return "WARNING";
   if (source.reviewReason === "full_extraction_overclaim") return "FAIL";
   if (source.reviewReason === "handle_attribution_overclaim") return "FAIL";
   if (source.reviewReason === "encro_overclaim") return "FAIL";

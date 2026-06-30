@@ -62,6 +62,13 @@ function cleanText(input: string): string {
     .trim();
 }
 
+function humanizeReviewLine(text: string): string {
+  return cleanText(text)
+    .replace(/^Unknown\s*[—–-]\s*/i, "")
+    .replace(/\bneeds_review\b/gi, "needs solicitor review")
+    .replace(/\bunknown\b/gi, "not confirmed");
+}
+
 function shortenClean(input: string, max = 170): string {
   const text = cleanText(input)
     .replace(/\s*…\s*$/g, "")
@@ -325,8 +332,13 @@ function blockedReason(s: SuppressedCandidateLedgerEntry): string {
 
 function quoteSuppressed(text: string): string {
   const cleaned = cleanText(text);
-  const m = cleaned.match(/do not state ["“]([^"”]+)["”]/i);
-  return shortenClean(m?.[1] ?? cleaned, 110);
+  const m = cleaned.match(/do not (?:state|say)\s+["“]([^"”]+)["”]/i);
+  if (m?.[1]) return shortenClean(m[1], 110);
+  if (/^do not say\b/i.test(cleaned)) {
+    return shortenClean(cleaned.replace(/^do not say\s+/i, "Avoid claiming "), 110);
+  }
+  const m2 = cleaned.match(/do not state ["“]([^"”]+)["”]/i);
+  return shortenClean(m2?.[1] ?? cleaned, 110);
 }
 
 function isMaterialOverclaim(text: string): boolean {
@@ -485,11 +497,12 @@ function pickReview(report: LineSourceProofReport): SolicitorProofPacketItem[] {
   const out: SolicitorProofPacketItem[] = [];
 
   const add = (text: string, reason: string) => {
-    const cleaned = cleanText(text.replace(/^[^:]{1,40}:\s*/, ""));
+    const cleaned = humanizeReviewLine(text.replace(/^[^:]{1,40}:\s*/, ""));
     if (!isPacketUseful(cleaned)) return;
     if (PACKET_INTERNAL_LINE_RE.test(cleaned)) return;
     if (isClippedCourtWording(cleaned)) return;
     if (/^disclosure completeness|^chase outstanding disclosure|^missing\s*[—-]/i.test(cleaned)) return;
+    if (DEV_NOTE_RE.test(cleaned) || DEV_NOTE_RE.test(reason)) return;
     if (!isSolicitorGradeReviewReason(reason)) return;
     const topic = topicKey(cleaned);
     if (seenTopics.has(topic)) return;

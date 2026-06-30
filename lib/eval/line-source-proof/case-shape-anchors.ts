@@ -70,6 +70,39 @@ export function bundleHasFullPhoneDownload(bundleText: string): boolean {
   return /\bfull (phone )?(download|extraction)\b.*\bserved\b|\bufed\b.*\bserved\b/i.test(bundleText);
 }
 
+/** Cautious court/chase line — outstanding extraction, not a served claim. */
+export function claimsGenericExtractionOutstanding(outputLine: string): boolean {
+  return /full extraction\/source material remains outstanding|full (phone )?(download|extraction).{0,40}outstanding/i.test(
+    outputLine,
+  );
+}
+
+export function bundleMentionsPhoneOrExtraction(bundleText: string): boolean {
+  if (
+    /\bmg6c\/(pho|ufe|pla|mul|001|mes|sub)|phone extraction|ufed\b|phone download|message export|subscriber|screenshot\b/i.test(
+      bundleText,
+    )
+  ) {
+    return true;
+  }
+  return /\bphone\b.{0,40}\b(extraction|download|export)\b/i.test(bundleText);
+}
+
+/** Generic chase/court/export line — not a served proof claim. */
+export function isMisplacedFamilyChaseLine(outputLine: string, lineCategory?: string): boolean {
+  if (!lineCategory || !["chase_request", "court_note", "export_line", "evidence_state"].includes(lineCategory)) {
+    return false;
+  }
+  if (claimsGenericExtractionOutstanding(outputLine)) return true;
+  const lower = outputLine.toLowerCase();
+  const cautious =
+    /please provide|outstanding|continuity|provenance|appears outstanding|confirm in writing|unknown|needs review|\[provisional\]|:\s*unknown/i.test(
+      outputLine,
+    );
+  const notOverclaim = !/\b(bwv|cctv|cad) (shows|proves|confirms)\b/i.test(lower);
+  return cautious && notOverclaim;
+}
+
 export function isCoDefendantSafetyLine(outputLine: string): boolean {
   return (
     /co-defendant bleed|another defendant's material|keep this client|do not import another defendant/i.test(

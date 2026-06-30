@@ -1,6 +1,7 @@
 import type { LineCategory, LineSourceStrength } from "./types";
 import {
   detectPhoneSubtopic,
+  isMisplacedFamilyChaseLine,
   preferredMg6ScheduleId,
 } from "./case-shape-anchors";
 
@@ -607,6 +608,17 @@ export function inferSupportFromEvidenceState(
 ): import("./types").LineSupportStatus {
   if (lineCategory === "safety_warning") {
     return "supported";
+  }
+
+  if (source.reviewReason === "bundle_does_not_mention_phone_extraction") {
+    return "source_unavailable";
+  }
+
+  if (
+    (source.reviewReason === "bundle_does_not_mention_cctv" || source.reviewReason === "bundle_does_not_mention_cad") &&
+    isMisplacedFamilyChaseLine(outputLine, lineCategory)
+  ) {
+    return "source_unavailable";
   }
 
   if (source.adjacentMismatch || source.reviewReason === "bundle_does_not_mention_cctv" || source.reviewReason === "bundle_does_not_mention_cad") {

@@ -395,9 +395,13 @@ export function writePackSummary(options: {
   );
 
   if (targetCount >= 100) {
+    const indexTitle =
+      targetCount >= 500
+        ? "Five-hundred-case solicitor proof packet index"
+        : "Hundred-case solicitor proof packet index";
     fs.writeFileSync(
       path.join(PROOF_OUT_DIR, "SOLICITOR-PROOF-INDEX.md"),
-      renderSolicitorProofIndex(rows, "Hundred-case solicitor proof packet index"),
+      renderSolicitorProofIndex(rows, indexTitle),
     );
     fs.writeFileSync(
       path.join(PROOF_OUT_DIR, "SOLICITOR-PROOF-INDEX.json"),

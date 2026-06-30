@@ -9,6 +9,7 @@ import {
   hasShapeAnchor,
   hasSubscriberOutstandingAnchor,
   isCoDefendantSafetyLine,
+  isMisplacedFamilyChaseLine,
 } from "./case-shape-anchors";
 import type {
   LineCategory,
@@ -175,6 +176,14 @@ export function isPositiveSourceBackedFinding(input: TierInput): boolean {
 }
 
 function isBlockingReviewReason(input: TierInput): boolean {
+  if (
+    (input.source.reviewReason === "bundle_does_not_mention_cctv" ||
+      input.source.reviewReason === "bundle_does_not_mention_cad" ||
+      input.source.reviewReason === "bundle_does_not_mention_phone_extraction") &&
+    isMisplacedFamilyChaseLine(input.outputLine, input.lineCategory)
+  ) {
+    return false;
+  }
   const reasons = [
     input.source.reviewReason,
     ...input.gedReviewReasons,
