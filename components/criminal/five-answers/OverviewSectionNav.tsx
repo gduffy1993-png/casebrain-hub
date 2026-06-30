@@ -2,7 +2,7 @@
 
 const SECTIONS = [
   { id: "overview-understand", label: "Understand" },
-  { id: "overview-trust", label: "Truth map" },
+  { id: "overview-trust", label: "Truth + proof" },
   { id: "overview-prepare", label: "Court prep" },
   { id: "overview-send", label: "Exports" },
   { id: "overview-review", label: "Review" },

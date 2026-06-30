@@ -25,6 +25,7 @@ import { WhatMattersNowPanel } from "./WhatMattersNowPanel";
 import { EvidenceTruthMapPanel } from "./EvidenceTruthMapPanel";
 import { OverviewSectionNav } from "./OverviewSectionNav";
 import { OverviewAdvancedPanel } from "./OverviewAdvancedPanel";
+import { ProofPacketPreviewPanel } from "./ProofPacketPreviewPanel";
 import type { EvidenceTraceRow, EvidenceTraceSection, FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
 import { useMemo, useState, type ReactNode } from "react";
 
@@ -233,6 +234,12 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
           topWarning={topWarning}
         />
 
+        <div id="overview-trust" className="space-y-3 scroll-mt-4">
+          <EvidenceTruthMapPanel rows={view.evidenceState.rows} />
+
+          <ProofPacketPreviewPanel rows={view.evidenceState.rows} warnings={view.mustNotOverstate} />
+        </div>
+
         <div className="space-y-2">
           <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-500 px-1">
             Five answers
@@ -349,20 +356,22 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
         </div>
       </div>
 
-      <div id="overview-trust" className="scroll-mt-4">
-        <EvidenceTruthMapPanel rows={view.evidenceState.rows} />
-      </div>
-
       {hearingMode ? (
-        <HearingModePanel
-          model={hearingMode}
-          caseId={caseId}
-          todayHref={buildTabHref(caseId, "today")}
-          chaseHref={buildTabHref(caseId, "disclosure-chase")}
-        />
+        <div id="overview-prepare" className="scroll-mt-4">
+          <HearingModePanel
+            model={hearingMode}
+            caseId={caseId}
+            todayHref={buildTabHref(caseId, "today")}
+            chaseHref={buildTabHref(caseId, "disclosure-chase")}
+          />
+        </div>
       ) : null}
 
-      {exportPack ? <ExportPackPanel model={exportPack} caseId={caseId} /> : null}
+      {exportPack ? (
+        <div id="overview-send" className="scroll-mt-4">
+          <ExportPackPanel model={exportPack} caseId={caseId} />
+        </div>
+      ) : null}
 
       <div id="overview-review" className="scroll-mt-4 space-y-3">
         <OverviewAdvancedPanel>
