@@ -6,6 +6,7 @@ import { FIRM_SENDABILITY_LABELS } from "@/lib/criminal/trust/firm-facing-labels
 import { surfaceContradictions } from "./contradiction-surface";
 import { evidenceRowFromSourceState, FIVE_ANSWERS_HARD_RULES } from "./evidence-trace";
 import { buildEvidenceTrace } from "./build-evidence-trace";
+import { expandTruthMapRowsForDisplay } from "./expand-truth-map-rows";
 import type { FiveAnswersChaseRow, FiveAnswersViewModel } from "./types";
 import { mapSourceStateToExistence } from "./types";
 
@@ -25,7 +26,7 @@ function nextActionFromConfidence(confidence: MatterConfidenceResult | null): st
 export function buildFiveAnswersView(input: BuildFiveAnswersViewInput): FiveAnswersViewModel {
   const { allegation, warRoom, chase, matterConfidence, doNotOverstate } = input;
 
-  const evidenceRows = chase.primaryItems.slice(0, 8).map((item) => {
+  const rawEvidenceRows = chase.primaryItems.slice(0, 8).map((item) => {
     const state = inferChaseItemSourceState({
       label: item.label,
       source: item.source,
@@ -40,6 +41,13 @@ export function buildFiveAnswersView(input: BuildFiveAnswersViewInput): FiveAnsw
       row.note = row.note ? `${row.note} — referred only, not usable as proof.` : "Referred only — not usable as proof.";
     }
     return row;
+  });
+
+  const evidenceRows = expandTruthMapRowsForDisplay({
+    rows: rawEvidenceRows,
+    chase,
+    allegation,
+    doNotOverstate,
   });
 
   const chaseRows: FiveAnswersChaseRow[] = chase.primaryItems.slice(0, 5).map((item) => {

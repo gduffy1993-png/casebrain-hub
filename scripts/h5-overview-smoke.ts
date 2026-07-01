@@ -382,6 +382,12 @@ async function main(): Promise<void> {
 
     if (await desktop.getByTestId("evidence-truth-map-panel").isVisible().catch(() => false)) {
       steps.push({ id: "evidence_truth_map_visible", status: "pass" });
+      const mapBody = await desktop.getByTestId("evidence-truth-map-panel").innerText();
+      if (/screenshot|message pack/i.test(mapBody) && /\bserved\b/i.test(mapBody)) {
+        steps.push({ id: "truth_map_screenshot_served", status: "pass" });
+      } else {
+        steps.push({ id: "truth_map_screenshot_served", status: "warn", detail: "Screenshot served row not visible" });
+      }
     } else {
       await desktop.getByTestId("evidence-truth-map-panel").scrollIntoViewIfNeeded({ timeout: 15_000 }).catch(() => undefined);
       if (await desktop.getByTestId("evidence-truth-map-panel").isVisible().catch(() => false)) {
@@ -390,6 +396,11 @@ async function main(): Promise<void> {
       const body = await desktop.locator("body").innerText();
       if (/evidence truth map/i.test(body)) {
         steps.push({ id: "evidence_truth_map_visible", status: "pass", detail: "content without testid" });
+        if (/screenshot|message pack/i.test(body) && /\bserved\b/i.test(body)) {
+          steps.push({ id: "truth_map_screenshot_served", status: "pass" });
+        } else {
+          steps.push({ id: "truth_map_screenshot_served", status: "warn", detail: "Screenshot served row not visible" });
+        }
       } else {
         steps.push({ id: "evidence_truth_map_visible", status: "fail", detail: "Evidence Truth Map not on Overview" });
       }
@@ -398,6 +409,16 @@ async function main(): Promise<void> {
 
     if (await desktop.getByTestId("proof-packet-preview-panel").isVisible().catch(() => false)) {
       steps.push({ id: "proof_packet_preview_visible", status: "pass" });
+      const proofBody = await desktop.getByTestId("proof-packet-preview-panel").innerText();
+      if (/screenshot|message pack/i.test(proofBody) && /served on file/i.test(proofBody)) {
+        steps.push({ id: "proof_packet_screenshot_served", status: "pass" });
+      } else {
+        steps.push({
+          id: "proof_packet_screenshot_served",
+          status: "warn",
+          detail: "Screenshot served not in got-right preview",
+        });
+      }
       const underTruthMap = await desktop.evaluate(() => {
         const map = document.querySelector('[data-testid="evidence-truth-map-panel"]');
         const proof = document.querySelector('[data-testid="proof-packet-preview-panel"]');
