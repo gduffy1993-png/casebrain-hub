@@ -385,7 +385,34 @@ async function main(): Promise<void> {
       if (/evidence truth map/i.test(body)) {
         steps.push({ id: "evidence_truth_map_visible", status: "pass", detail: "content without testid" });
       } else {
-        steps.push({ id: "evidence_truth_map_visible", status: "warn", detail: "Evidence Truth Map not on Overview" });
+        steps.push({ id: "evidence_truth_map_visible", status: "fail", detail: "Evidence Truth Map not on Overview" });
+      }
+    }
+
+    if (await desktop.getByTestId("proof-packet-preview-panel").isVisible().catch(() => false)) {
+      steps.push({ id: "proof_packet_preview_visible", status: "pass" });
+      const underTruthMap = await desktop.evaluate(() => {
+        const map = document.querySelector('[data-testid="evidence-truth-map-panel"]');
+        const proof = document.querySelector('[data-testid="proof-packet-preview-panel"]');
+        if (!map || !proof) return false;
+        const follows = Boolean(map.compareDocumentPosition(proof) & Node.DOCUMENT_POSITION_FOLLOWING);
+        const mapRect = map.getBoundingClientRect();
+        const proofRect = proof.getBoundingClientRect();
+        return follows && mapRect.bottom <= proofRect.top + 8;
+      });
+      steps.push({
+        id: "proof_packet_under_truth_map",
+        status: underTruthMap ? "pass" : "fail",
+        detail: underTruthMap ? undefined : "Proof Packet Preview not directly under Truth Map",
+      });
+    } else {
+      const body = await desktop.locator("body").innerText();
+      if (/proof packet preview/i.test(body)) {
+        steps.push({ id: "proof_packet_preview_visible", status: "pass", detail: "content without testid" });
+        steps.push({ id: "proof_packet_under_truth_map", status: "warn", detail: "text present but testid missing" });
+      } else {
+        steps.push({ id: "proof_packet_preview_visible", status: "fail", detail: "Proof Packet Preview not on Overview" });
+        steps.push({ id: "proof_packet_under_truth_map", status: "fail", detail: "Proof Packet Preview missing" });
       }
     }
 
@@ -516,6 +543,50 @@ async function main(): Promise<void> {
     } else {
       steps.push({ id: "overview_mobile_layout", status: "fail", detail: mobileBody.slice(0, 200) });
     }
+
+    const mobileOverlap = await mobile.evaluate(() => {
+      const vw = window.innerWidth;
+      const panelIds = [
+        "overview-section-nav",
+        "case-snapshot-panel",
+        "evidence-truth-map-panel",
+        "proof-packet-preview-panel",
+        "five-answers-case-saying",
+      ];
+      const rects = panelIds
+        .map((id) => {
+          const el = document.querySelector(`[data-testid="${id}"]`);
+          if (!el) return null;
+          const r = el.getBoundingClientRect();
+          if (r.height < 4 || r.width < 4) return null;
+          return { id, top: r.top, bottom: r.bottom, left: r.left, right: r.right };
+        })
+        .filter((r): r is NonNullable<typeof r> => r !== null);
+
+      for (const r of rects) {
+        if (r.left < -4 || r.right > vw + 4) return `${r.id} overflows viewport (${Math.round(r.right)}px > ${vw}px)`;
+      }
+
+      for (let i = 0; i < rects.length; i++) {
+        for (let j = i + 1; j < rects.length; j++) {
+          const a = rects[i];
+          const b = rects[j];
+          const hOverlap = a.left < b.right - 8 && b.left < a.right - 8;
+          const vOverlap = a.top < b.bottom - 8 && b.top < a.bottom - 8;
+          if (hOverlap && vOverlap) {
+            const overlapPx = Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top);
+            if (overlapPx > 24) return `${a.id} overlaps ${b.id} by ${Math.round(overlapPx)}px`;
+          }
+        }
+      }
+      return null;
+    });
+    if (mobileOverlap) {
+      steps.push({ id: "overview_mobile_no_overlap", status: "fail", detail: mobileOverlap });
+    } else {
+      steps.push({ id: "overview_mobile_no_overlap", status: "pass" });
+    }
+
     await mobile.screenshot({ path: path.join(OUT_DIR, "06-overview-mobile.png"), fullPage: true });
   } finally {
     await browser.close();
