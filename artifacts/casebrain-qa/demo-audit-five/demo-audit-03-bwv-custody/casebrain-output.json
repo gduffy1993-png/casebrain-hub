@@ -1,0 +1,67 @@
+{
+  "caseId": "demo-audit-03-bwv-custody",
+  "clientLabel": "Casey Fry",
+  "allegation": "Assault an emergency worker, contrary to section 1 of the Assaults on Emergency Workers (Offences) Act 2018",
+  "bundleTextLength": 3784,
+  "chaseItemCount": 5,
+  "truthMapRowCount": 7,
+  "proofSummary": {
+    "totalMeaningfulLines": 141,
+    "pass": 69,
+    "warning": 72,
+    "fail": 0,
+    "excluded": 0,
+    "byCategory": {
+      "evidence_claim": 1,
+      "strategic_review": 41,
+      "confidence_status": 4,
+      "evidence_state": 25,
+      "safety_warning": 27,
+      "chase_request": 18,
+      "court_note": 3,
+      "client_summary": 1,
+      "contradiction_or_risk": 3,
+      "export_line": 18
+    },
+    "bySupport": {
+      "partially_supported": 31,
+      "source_unavailable": 33,
+      "referred_only": 19,
+      "supported": 30,
+      "missing": 28
+    },
+    "positiveCorrect": 70,
+    "gedReviewCount": 72,
+    "blockingReview": 0,
+    "unsupportedOutput": 0,
+    "sourceReviewWarnings": 33,
+    "solicitorCaution": 39,
+    "cleanSourceBacked": 35,
+    "genericSafetyGuards": 34,
+    "byTier": {
+      "blocking_review": 0,
+      "source_review": 33,
+      "solicitor_caution": 39,
+      "clean_source_backed": 35,
+      "generic_safety_guard": 34
+    },
+    "proofChainCoverage": {
+      "pdfAndTextSupportOutput": 74,
+      "textSupportsButPdfUnchecked": 26,
+      "pdfAvailableButTextMismatch": 0,
+      "sourceUnavailable": 41,
+      "outputUnsupported": 0,
+      "originalPdfAvailable": true,
+      "caseProofMode": "pdf_and_text"
+    }
+  },
+  "proofChainCoverage": {
+    "pdfAndTextSupportOutput": 74,
+    "textSupportsButPdfUnchecked": 26,
+    "pdfAvailableButTextMismatch": 0,
+    "sourceUnavailable": 41,
+    "outputUnsupported": 0,
+    "originalPdfAvailable": true,
+    "caseProofMode": "pdf_and_text"
+  }
+}

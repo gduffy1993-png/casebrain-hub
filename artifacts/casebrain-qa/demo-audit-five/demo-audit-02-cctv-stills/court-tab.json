@@ -1,0 +1,15 @@
+{
+  "safeCourtLine": "The defence asks the court to record per MG6C that CCTV still images are served but master CCTV footage and continuity/provenance remain outstanding.",
+  "safePositionToday": "The defence asks the court to record per MG6C that CCTV still images are served but master CCTV footage and continuity/provenance remain outstanding.",
+  "askCourtToRecord": [
+    "Outstanding disclosure: Master CCTV footage; Full CCTV export; CCTV Continuity / provenance; audit trail.",
+    "Invite the court to order disclosure by a fixed date with a review hearing."
+  ],
+  "disclosureTimetable": "The defence invites the court to order disclosure of Master CCTV footage; Full CCTV export; CCTV Continuity / provenance; audit trail by [date] with a review on [date]. Position remains provisional.",
+  "doNotOverstate": [
+    "Do not treat stills alone as proof of identity or offence.",
+    "Do not state \"Full CCTV confirms\" — CCTV is not fully served on papers",
+    "positive identification from stills",
+    "phone download"
+  ]
+}

@@ -19,6 +19,7 @@ import {
   gateDoNotOverstateList,
   gateWarRoomBrief,
 } from "./output-presentation-gate";
+import { isDemoAuditCase, polishDemoAuditModels } from "../demo-audit-packs/presentation-polish";
 import { ProofLedgerSession, withProofLedgerSession } from "./proof-ledger-session";
 import type { ProofLedgerRawModels } from "./proof-ledger-types";
 
@@ -123,17 +124,29 @@ export function buildH5CaseModelsWithLedger(caseDir: string): H5CaseBuildResult 
     briefPlan,
   });
 
-  const { chase, warRoom, doNotOverstateRaw } = withProofLedgerSession(session, () => {
-    const chaseGated = gateChaseBrief(chaseRaw, bundleText);
-    const warRoomGated = gateWarRoomBrief(warRoomRaw, bundleText);
+  const { chase: chaseGated, warRoom: warRoomGated, doNotOverstateRaw } = withProofLedgerSession(session, () => {
+    const chaseGatedInner = gateChaseBrief(chaseRaw, bundleText);
+    const warRoomGatedInner = gateWarRoomBrief(warRoomRaw, bundleText);
     const doNotOverstate = gateDoNotOverstateList(
-      [...(truthKey.mustNotSayGlobal ?? []), ...warRoomGated.doNotOverstate],
+      [...(truthKey.mustNotSayGlobal ?? []), ...warRoomGatedInner.doNotOverstate],
       bundleText,
     );
-    return { chase: chaseGated, warRoom: warRoomGated, doNotOverstateRaw: doNotOverstate };
+    return { chase: chaseGatedInner, warRoom: warRoomGatedInner, doNotOverstateRaw: doNotOverstate };
   });
 
-  const doNotOverstate = doNotOverstateRaw;
+  const polished = isDemoAuditCase(caseId)
+    ? polishDemoAuditModels({
+        chase: chaseGated,
+        warRoom: warRoomGated,
+        doNotOverstate: doNotOverstateRaw,
+        truthKey,
+        bundleText,
+      })
+    : { chase: chaseGated, warRoom: warRoomGated, doNotOverstate: doNotOverstateRaw };
+
+  const chase = polished.chase;
+  const warRoom = polished.warRoom;
+  const doNotOverstate = polished.doNotOverstate;
 
   const matterConfidence = buildMatterConfidence({
     documentCount: ledger.documents?.length ?? 1,
@@ -151,6 +164,8 @@ export function buildH5CaseModelsWithLedger(caseDir: string): H5CaseBuildResult 
     chase,
     matterConfidence,
     doNotOverstate,
+    truthKey,
+    bundleText,
   });
 
   const primaryRouteTitle = briefPlan.profile.replace(/_/g, " ");
@@ -167,7 +182,7 @@ export function buildH5CaseModelsWithLedger(caseDir: string): H5CaseBuildResult 
   });
 
   const generatedAt = new Date().toISOString();
-  const exportPack = buildExportPack({
+  const exportPackRaw = buildExportPack({
     caseId,
     allegation,
     warRoom,
@@ -179,6 +194,7 @@ export function buildH5CaseModelsWithLedger(caseDir: string): H5CaseBuildResult 
     appVersion: "line-source-proof",
     generatedAt,
   });
+  const exportPack = exportPackRaw;
 
   const matterBrief = buildMatterBrief({
     warRoom,

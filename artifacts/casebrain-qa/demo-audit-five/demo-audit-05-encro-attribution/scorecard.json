@@ -1,0 +1,79 @@
+{
+  "caseId": "demo-audit-05-encro-attribution",
+  "caseName": "DA-05 Liam Craft — Encro / county-lines attribution gap",
+  "shape": "Message extracts served / handle attribution not proved / platform extraction missing",
+  "pdfPages": 9,
+  "keyServedItems": [
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "message extracts"
+  ],
+  "keyMissingReferred": [
+    "platform/source extraction (referred_only)",
+    "handle attribution report (missing)",
+    "subscriber/account data (missing)",
+    "device continuity (missing)",
+    "co-defendant material (missing)",
+    "full download/export (missing)",
+    "handle/phone attribution (not_safely_confirmed)"
+  ],
+  "truthMapResult": [
+    {
+      "label": "Encro message extracts LC/MSG/01",
+      "existence": "served",
+      "note": "Served on bundle per MG6C/ENC/01."
+    },
+    {
+      "label": "Platform / source extraction",
+      "existence": "referred_only"
+    },
+    {
+      "label": "Handle attribution report",
+      "existence": "missing",
+      "note": "Outstanding per MG6C — handle attribution report not on bundle."
+    },
+    {
+      "label": "Subscriber / account data",
+      "existence": "missing",
+      "note": "Outstanding per MG6C — subscriber/account data not on bundle."
+    },
+    {
+      "label": "Device continuity",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    },
+    {
+      "label": "co-defendant material",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    }
+  ],
+  "proofPacketVerdict": "PASS WITH WARNINGS",
+  "failLineCount": 0,
+  "unsupportedLinesCount": 0,
+  "wrongFamilyWarningsCount": 0,
+  "proofLedgerWrongFamilyInternal": 0,
+  "blockedFalseServedGuardsCount": 13,
+  "pageBackedOutputLinesCount": 59,
+  "vagueChaseLabelsCount": 0,
+  "genericLabelCount": 0,
+  "caseFacingWrongFamilyCount": 0,
+  "readyForDemoReview": true,
+  "readyBlockers": [],
+  "filesCreated": [
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-05-encro-attribution\\bundle.pdf",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-05-encro-attribution\\bundle-text.md",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-05-encro-attribution\\pdf-extraction-meta.json",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-05-encro-attribution\\truth-key.json",
+    "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-05-encro-attribution\\line-by-line-proof.md",
+    "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-05-encro-attribution\\SOLICITOR-PROOF-PACKET.md",
+    "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-05-encro-attribution\\overview-truth-map.json",
+    "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-05-encro-attribution\\court-tab.json",
+    "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-05-encro-attribution\\cps-chase.json",
+    "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-05-encro-attribution\\client-summary.json",
+    "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-05-encro-attribution\\file-source-view.json",
+    "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-05-encro-attribution\\casebrain-output.json",
+    "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-05-encro-attribution\\scorecard.json"
+  ]
+}

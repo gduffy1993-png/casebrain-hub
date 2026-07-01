@@ -188,10 +188,17 @@ export async function buildPdfBackedCaseArtifacts(
   caseDir: string,
   caseId: string,
   canonicalBundleText: string,
-  pdfFileName = "bundle.pdf",
+  pdfFileNameOrOptions: string | { pdfFileName?: string; splitPages?: (bundleText: string) => PdfPageRecord[] } = "bundle.pdf",
 ): Promise<PdfBackedCaseArtifacts> {
+  const pdfFileName =
+    typeof pdfFileNameOrOptions === "string" ? pdfFileNameOrOptions : (pdfFileNameOrOptions.pdfFileName ?? "bundle.pdf");
+  const splitPages =
+    typeof pdfFileNameOrOptions === "string"
+      ? splitCanonicalBundleToPdfPages
+      : (pdfFileNameOrOptions.splitPages ?? splitCanonicalBundleToPdfPages);
+
   fs.mkdirSync(caseDir, { recursive: true });
-  const pageRecords = splitCanonicalBundleToPdfPages(canonicalBundleText);
+  const pageRecords = splitPages(canonicalBundleText);
   const pdfPath = path.join(caseDir, pdfFileName);
   await writeControlledBundlePdf(pageRecords, pdfPath);
 

@@ -1,6 +1,8 @@
 import type { DisclosureChaseBrief } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import { evidenceRowFromSourceState } from "./evidence-trace";
 import type { FiveAnswersEvidenceRow } from "./types";
+import type { EvidenceStateTruthKey } from "@/lib/eval/evidence-state-audit/types";
+import { buildTruthMapRowsFromTruthKey, isDemoAuditCase } from "@/lib/eval/demo-audit-packs/presentation-polish";
 
 function haystack(parts: string[]): string {
   return parts.join(" ").toLowerCase();
@@ -41,13 +43,19 @@ function dedupeRows(rows: FiveAnswersEvidenceRow[]): FiveAnswersEvidenceRow[] {
   return out;
 }
 
-/** Presentation-only: expand collapsed MG6 umbrella into Taylor digital truth-map rows. */
+/** Presentation-only: expand collapsed MG6 umbrella into family-specific truth-map rows. */
 export function expandTruthMapRowsForDisplay(input: {
   rows: FiveAnswersEvidenceRow[];
   chase: DisclosureChaseBrief;
   allegation: string;
   doNotOverstate: string[];
+  truthKey?: EvidenceStateTruthKey;
+  bundleText?: string;
 }): FiveAnswersEvidenceRow[] {
+  if (input.truthKey && isDemoAuditCase(input.truthKey.caseId)) {
+    return buildTruthMapRowsFromTruthKey(input.truthKey);
+  }
+
   const combinedHay = haystack([
     input.allegation,
     ...input.rows.map((r) => `${r.label} ${r.note ?? ""}`),

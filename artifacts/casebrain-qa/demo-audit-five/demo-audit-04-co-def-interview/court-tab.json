@@ -1,0 +1,17 @@
+{
+  "safeCourtLine": "The defence asks the court to record per MG6C that co-defendant interview material is segregated and target defendant interview summary/audio remain outstanding.",
+  "safePositionToday": "The defence asks the court to record per MG6C that co-defendant interview material is segregated and target defendant interview summary/audio remain outstanding.",
+  "askCourtToRecord": [
+    "Outstanding disclosure: Target defendant interview summary; Target defendant interview audio; Target defendant interview transcript; Co-defendant attribution / continuity.",
+    "Invite the court to order disclosure by a fixed date with a review hearing."
+  ],
+  "disclosureTimetable": "The defence invites the court to order disclosure of Target defendant interview summary; Target defendant interview audio; Target defendant interview transcript; Co-defendant attribution / continuity by [date] with a review on [date]. Position remains provisional.",
+  "doNotOverstate": [
+    "Do not import co-defendant interview into the target defendant account.",
+    "Do not state \"interview confirms\" — Interview material is not fully served",
+    "Morgan Reid admitted",
+    "defendant's interview shows",
+    "import co-defendant interview",
+    "phone extraction"
+  ]
+}

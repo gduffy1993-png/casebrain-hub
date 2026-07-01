@@ -1,0 +1,41 @@
+{
+  "primaryItems": [
+    {
+      "label": "Full phone download",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide Full phone download (see MG6C/004) or confirm in writing why it is not available.",
+      "whyItMatters": "Full source download needed before attribution can be safely assessed."
+    },
+    {
+      "label": "Subscriber / account data",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide Subscriber / account data (see MG6C/003) or confirm in writing why it is not available.",
+      "whyItMatters": "Subscriber/account data needed per MG6C."
+    },
+    {
+      "label": "Full message export",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide Full message export (see MG6C/001) or confirm in writing why it is not available.",
+      "whyItMatters": "Outstanding digital disclosure for harassment case."
+    },
+    {
+      "label": "Call logs",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide Call logs (see MG6C/005) or confirm in writing why it is not available.",
+      "whyItMatters": "Outstanding digital disclosure for harassment case."
+    },
+    {
+      "label": "Final signed MG11",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available.",
+      "whyItMatters": "Final signed complainant statement outstanding."
+    },
+    {
+      "label": "MG6C clarification on unused material",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide MG6C clarification on unused material (see MG6C) or confirm in writing why it is not available.",
+      "whyItMatters": "Outstanding digital disclosure for harassment case."
+    }
+  ],
+  "safeCourtLine": "The defence asks the court to record per MG6C that screenshot/message material is served but full phone download, subscriber/account data, and final MG11 remain outstanding."
+}

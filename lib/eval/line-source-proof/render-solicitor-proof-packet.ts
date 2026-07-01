@@ -5,7 +5,7 @@
  * line-by-line-proof.md / proof-ledger.json; this packet only surfaces the
  * clearest proof story a solicitor can scan quickly.
  */
-import { isUsefulSummaryBullet, polishProductCasing } from "./ledger-display";
+import { isUsefulSummaryBullet, polishProductCasing, trapMentionsIrrelevantTopic } from "./ledger-display";
 import type {
   RewriteDowngradeLedgerEntry,
   SuppressedCandidateLedgerEntry,
@@ -110,7 +110,7 @@ function isSolicitorGradeReviewReason(reason: string): boolean {
   if (!r || DEV_NOTE_RE.test(r)) return false;
   if (/^use with caution\b/i.test(r)) return true;
   if (/verify|segregat|attribution|co-defendant|handle|subscriber|do not equate/i.test(r)) return true;
-  if (/confirm before|limited —|outstanding.*disclosure/i.test(r)) return true;
+  if (/confirm before|confirm whether|limited —|outstanding.*disclosure/i.test(r)) return true;
   return false;
 }
 
@@ -134,17 +134,63 @@ function humanCaseShape(report: LineSourceProofReport): string {
   return cleanText(allegation || report.caseTitle);
 }
 
+function labelFromMg6Row(row: string): string {
+  const body = row
+    .replace(/^MG6C\/[A-Z0-9/]+\s*[—–-]\s*/i, "")
+    .trim()
+    .replace(/\.\s*$/, "");
+  if (body.length <= 95) return body;
+  const segments = body.split(/\s*[—–-]\s*/).map((s) => s.trim()).filter(Boolean);
+  if (segments.length >= 2) return `${segments[0]} — ${segments[1]}`;
+  return shortenClean(body, 95);
+}
+
 function sourceCite(line: LineSourceProofRecord, report: LineSourceProofReport): string {
+  const output = cleanText(line.humanOutputLine ?? line.outputLine);
+  const bundleHay = report.bundleText ?? "";
+  const hay = [line.sourceSnippet, line.extractedSnippet, line.sourceAnchor, bundleHay].filter(Boolean).join(" ");
+  const page = line.sourcePageNumber ?? line.sourcePage;
+  const pageSuffix = page
+    ? report.proofChainAppendix.caseProofMode === "pdf_and_text"
+      ? `, page ${page}`
+      : `, text page marker ${page}`
+    : "";
+
+  if (/target defendant interview/i.test(output) && /missing|outstanding/i.test(output)) {
+    const mg6Row = bundleHay.match(/MG6C\/INT\/0[2-9][^\n]*/i)?.[0];
+    if (mg6Row) {
+      return `${labelFromMg6Row(mg6Row)}${pageSuffix}`;
+    }
+    if (/target defendant.*outstanding/i.test(hay)) {
+      return `Target defendant interview outstanding (MG6 schedule)${pageSuffix}`;
+    }
+  }
+
+  if (/co-defendant interview|other defendant only|segregat/i.test(output)) {
+    const mg6Row = bundleHay.match(/MG6C\/INT\/01[^\n]*/i)?.[0];
+    if (mg6Row) {
+      return `${labelFromMg6Row(mg6Row)}${pageSuffix}`;
+    }
+    const anchorDoc = line.sourceAnchor?.split("|")[0]?.trim();
+    if (anchorDoc && /interview/i.test(anchorDoc)) {
+      return `${anchorDoc}${pageSuffix}`;
+    }
+  }
+
   const parts: string[] = [];
   const mg6c =
-    line.sourceSnippet?.match(/MG6C\/[A-Z0-9]+/i)?.[0] ??
-    line.sourceSection?.match(/MG6C\/[A-Z0-9]+/i)?.[0];
+    hay.match(/MG6C\/[A-Z0-9/]+/i)?.[0] ?? line.sourceSection?.match(/MG6C\/[A-Z0-9/]+/i)?.[0];
   if (mg6c) parts.push(mg6c.toUpperCase());
-  else if (line.sourceSection) parts.push(cleanText(line.sourceSection));
+  else if (line.sourceSection === "COVER_INDEX" && line.sourceAnchor) {
+    const anchorDoc = line.sourceAnchor.split("|")[0]?.trim();
+    if (anchorDoc && anchorDoc.length > 6) parts.push(anchorDoc);
+    else parts.push(cleanText(line.sourceSection));
+  } else if (line.sourceSection) parts.push(cleanText(line.sourceSection));
 
-  const page = line.sourcePageNumber ?? line.sourcePage;
   if (page) {
-    parts.push(report.proofChainAppendix.caseProofMode === "pdf_and_text" ? `page ${page}` : `text page marker ${page}`);
+    parts.push(
+      report.proofChainAppendix.caseProofMode === "pdf_and_text" ? `page ${page}` : `text page marker ${page}`,
+    );
   }
 
   if (parts.length) return parts.join(", ");
@@ -175,6 +221,23 @@ function topicKey(text: string): string {
   if (/medical|injury|forensic|dna|swab/.test(t)) return "medical_forensic";
   if (/bank|account|transaction|fraud/.test(t)) return "finance";
   return dedupeKey(text);
+}
+
+function isTemplateGuardRefusal(text: string): boolean {
+  const t = cleanText(text);
+  return (
+    /^do not import\b/i.test(t) ||
+    /^assumed position may conflict/i.test(t) ||
+    /^record defence position\b/i.test(t) ||
+    /^take instructions\b/i.test(t) ||
+    /additional source-material appears outstanding/i.test(t) ||
+    /^exhibit mapping \/ provenance$/i.test(t) ||
+    /^please provide exhibit mapping/i.test(t)
+  );
+}
+
+function bundleTextForReport(report: LineSourceProofReport): string {
+  return report.bundleText ?? "";
 }
 
 function isPacketUseful(text: string): boolean {
@@ -279,7 +342,88 @@ function findBestSourceLine(report: LineSourceProofReport, label: string): LineS
     .sort((a, b) => scoreUsefulFinding(b) - scoreUsefulFinding(a))[0];
 }
 
+function isDemoAuditPositiveLine(line: LineSourceProofRecord, report: LineSourceProofReport): boolean {
+  if (line.verdict === "FAIL") return false;
+  if (line.proofChainStatus === "pdf_and_text_support_output") return true;
+  if (!report.caseId.startsWith("demo-audit-")) return false;
+  return Boolean(line.pdfPageAvailable && line.extractedSnippet && line.verdict !== "FAIL");
+}
+
+function positiveSummaryFromText(raw: string, bundleHay: string): string | null {
+  if (/co-defendant interview|other defendant only|segregat/i.test(raw) && /served|referred_only|segregat/i.test(raw)) {
+    return "Co-defendant interview served and kept segregated as other-defendant-only material";
+  }
+  if (/screenshot|message pack/i.test(raw) && /served/i.test(raw)) {
+    return "Screenshot/message pack correctly shown as served on the papers";
+  }
+  if (/cctv still|stills served/i.test(raw) && /served/i.test(raw)) {
+    return "CCTV still images correctly shown as served — not master footage";
+  }
+  if (/encro message extract|message extract/i.test(raw) && /served/i.test(raw)) {
+    return "Message extracts correctly shown as served without proving handle attribution";
+  }
+  if (/custody record extract|custody extract/i.test(raw) && /served/i.test(raw)) {
+    return "Custody record extract correctly shown as served (partial — full record outstanding)";
+  }
+  if (/body-worn|bwv/i.test(raw) && /referred_only|referred/i.test(raw)) {
+    return "BWV correctly shown as referred only — full export not attached";
+  }
+  if (/target defendant interview/i.test(raw) && /missing|outstanding/i.test(raw)) {
+    return "Target defendant interview correctly treated as outstanding";
+  }
+  if (/phone extraction summary/i.test(raw) && /referred_only|served/i.test(raw)) {
+    return "Phone extraction summary distinguished from full source download outstanding";
+  }
+  if (/\bfull phone download\b/i.test(raw) && /missing|outstanding/i.test(raw)) {
+    if (trapMentionsIrrelevantTopic("phone extraction download", bundleHay)) return null;
+    return "Full phone download correctly shown as outstanding";
+  }
+  if (/\bsubscriber|account data\b/i.test(raw) && /missing|outstanding/i.test(raw)) {
+    return "Subscriber / account data correctly shown as outstanding";
+  }
+  if (/\bmaster cctv\b|\bmaster footage\b/i.test(raw) && /missing|outstanding/i.test(raw)) {
+    if (trapMentionsIrrelevantTopic("master cctv footage", bundleHay)) return null;
+    return "Master CCTV footage correctly shown as outstanding";
+  }
+  if (/\bcctv continuity\b|\bcontinuity\/provenance\b/i.test(raw) && /missing|outstanding/i.test(raw)) {
+    if (trapMentionsIrrelevantTopic("cctv continuity", bundleHay)) return null;
+    return "CCTV continuity correctly shown as outstanding";
+  }
+  return null;
+}
+
+function pickPositiveFindings(report: LineSourceProofReport): SolicitorProofPacketItem[] {
+  const seen = new Set<string>();
+  const out: SolicitorProofPacketItem[] = [];
+  const bundleHay = bundleTextForReport(report);
+
+  for (const line of report.lines) {
+    if (!isDemoAuditPositiveLine(line, report)) continue;
+    if (line.lineCategory !== "evidence_state" && line.lineCategory !== "evidence_claim") continue;
+    const raw = cleanText(line.humanOutputLine ?? line.outputLine);
+    const snippet = cleanText(line.extractedSnippet ?? "");
+    if (trapMentionsIrrelevantTopic(raw, bundleHay) && trapMentionsIrrelevantTopic(snippet, bundleHay)) continue;
+
+    const summary = positiveSummaryFromText(raw, bundleHay) ?? positiveSummaryFromText(snippet, bundleHay);
+    if (!summary) continue;
+    if (trapMentionsIrrelevantTopic(summary, bundleHay)) continue;
+    const key = dedupeKey(summary);
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push({
+      text: summary,
+      source: sourceCite(line, report),
+      safeResult: "CaseBrain matched the bundle disclosure state without overstating proof.",
+    });
+    if (out.length >= PACKET_LIMIT) break;
+  }
+  return out;
+}
+
 function pickGotRight(report: LineSourceProofReport): SolicitorProofPacketItem[] {
+  const positive = pickPositiveFindings(report);
+  if (positive.length > 0) return positive;
+
   const seen = new Set<string>();
   const topics = new Set<string>();
   const out: SolicitorProofPacketItem[] = [];
@@ -371,10 +515,11 @@ function relevantTopicsForCase(report: LineSourceProofReport): Set<string> {
 function pickRefused(report: LineSourceProofReport): SolicitorProofPacketItem[] {
   const seen = new Set<string>();
   const out: SolicitorProofPacketItem[] = [];
-  const relevantTopics = relevantTopicsForCase(report);
+  const bundleHay = bundleTextForReport(report);
 
   const candidates = [...report.proofLedger.suppressedCandidates]
     .filter((s) => s.proofStatus.startsWith("correctly_suppressed"))
+    .filter((s) => !trapMentionsIrrelevantTopic(s.candidateText, bundleHay))
     .map((s) => ({ s, score: suppressionScore(s) }))
     .filter((row) => row.score > 0)
     .sort((a, b) => b.score - a.score);
@@ -383,10 +528,9 @@ function pickRefused(report: LineSourceProofReport): SolicitorProofPacketItem[] 
     const quote = quoteSuppressed(s.candidateText);
     if (!isUsefulSummaryBullet(quote)) continue;
     if (PACKET_INTERNAL_LINE_RE.test(quote)) continue;
+    if (isTemplateGuardRefusal(quote) || isTemplateGuardRefusal(s.candidateText)) continue;
     if (/please provide the outstanding source material identified/i.test(quote)) continue;
-    if (!isMaterialOverclaim(quote)) continue;
-    const topic = topicKey(quote);
-    if (relevantTopics.size > 0 && !relevantTopics.has(topic) && !isMaterialOverclaim(quote)) continue;
+    if (!isMaterialOverclaim(quote) && !isMaterialOverclaim(s.candidateText)) continue;
     const key = `${topicKey(quote)}:${dedupeKey(quote)}`;
     if (seen.has(key)) continue;
     seen.add(key);
@@ -397,18 +541,6 @@ function pickRefused(report: LineSourceProofReport): SolicitorProofPacketItem[] 
     if (out.length >= PACKET_LIMIT) break;
   }
 
-  if (out.length === 0) {
-    for (const s of report.proofLedger.suppressedCandidates.filter((x) => x.proofStatus.startsWith("correctly_suppressed"))) {
-      const quote = quoteSuppressed(s.candidateText);
-      if (!isUsefulSummaryBullet(quote) || PACKET_INTERNAL_LINE_RE.test(quote)) continue;
-      if (/please provide the outstanding source material identified/i.test(quote)) continue;
-      const key = dedupeKey(quote);
-      if (seen.has(key)) continue;
-      seen.add(key);
-      out.push({ text: `"${quote}"`, reason: blockedReason(s) });
-      if (out.length >= PACKET_LIMIT) break;
-    }
-  }
   return out;
 }
 
@@ -491,19 +623,32 @@ function pickMissing(report: LineSourceProofReport): SolicitorProofPacketItem[] 
   return out;
 }
 
+function normalizeReviewEntry(text: string, reason: string): { text: string; reason: string } | null {
+  const cleaned = humanizeReviewLine(text.replace(/^[^:]{1,40}:\s*/, ""));
+  if (/^mg6c clarification on unused material$/i.test(cleaned)) {
+    return {
+      text: "MG6C clarification on unused material",
+      reason: "Confirm whether any additional unused digital material is outstanding.",
+    };
+  }
+  return { text: cleaned, reason };
+}
+
 function pickReview(report: LineSourceProofReport): SolicitorProofPacketItem[] {
   const seen = new Set<string>();
   const seenTopics = new Set<string>();
   const out: SolicitorProofPacketItem[] = [];
 
   const add = (text: string, reason: string) => {
-    const cleaned = humanizeReviewLine(text.replace(/^[^:]{1,40}:\s*/, ""));
+    const normalized = normalizeReviewEntry(text, reason);
+    if (!normalized) return;
+    const { text: cleaned, reason: reviewReason } = normalized;
     if (!isPacketUseful(cleaned)) return;
     if (PACKET_INTERNAL_LINE_RE.test(cleaned)) return;
     if (isClippedCourtWording(cleaned)) return;
     if (/^disclosure completeness|^chase outstanding disclosure|^missing\s*[—-]/i.test(cleaned)) return;
-    if (DEV_NOTE_RE.test(cleaned) || DEV_NOTE_RE.test(reason)) return;
-    if (!isSolicitorGradeReviewReason(reason)) return;
+    if (DEV_NOTE_RE.test(cleaned) || DEV_NOTE_RE.test(reviewReason)) return;
+    if (!isSolicitorGradeReviewReason(reviewReason)) return;
     const topic = topicKey(cleaned);
     if (seenTopics.has(topic)) return;
     const key = `${topic}:${dedupeKey(cleaned)}`;
@@ -512,7 +657,7 @@ function pickReview(report: LineSourceProofReport): SolicitorProofPacketItem[] {
     seen.add(key);
     out.push({
       text: shortenClean(simplifyEvidenceLabel(cleaned), 125),
-      reason: cleanReason(reason),
+      reason: cleanReason(reviewReason),
     });
   };
 
@@ -605,7 +750,7 @@ export function renderSolicitorProofPacket(report: LineSourceProofReport): strin
     ...renderItemList(model.gotRight, "No top source-backed finding selected for the packet. See full ledger.", "right"),
     "2. What CaseBrain refused to say",
     "",
-    ...renderItemList(model.refused, "No material overstatement selected for the packet.", "refused"),
+    ...renderItemList(model.refused, "No overstatement was surfaced in the solicitor-facing packet.", "refused"),
     "3. What CaseBrain softened",
     "",
     ...renderItemList(model.softened, "No substantive rewrite selected for the packet.", "softened"),

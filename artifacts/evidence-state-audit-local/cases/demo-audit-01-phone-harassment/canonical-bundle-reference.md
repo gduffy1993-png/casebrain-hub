@@ -1,0 +1,140 @@
+RESTRICTED — PROSECUTION DISCLOSURE BUNDLE
+
+URN: 26/DA/001
+Defendant: Riley Moss
+Court: Northgate Magistrates' Court
+
+=== SECTION: COVER_INDEX ===
+
+INDEX
+
+Document | Pages | Note
+Charge sheet | 1 |
+MG5 case summary | 2-3 |
+MG6C disclosure schedule | 4 |
+MG11 complainant statement (draft unsigned) | 5-6 |
+Screenshot and message pack | 7-8 |
+Exhibit list | 9 |
+Police note — attribution | 10 |
+Court listing | 11 |
+
+=== SECTION: CHARGE ===
+
+R v Riley Moss
+
+Statement of Offence:
+Harassment, contrary to section 2 of the Protection from Harassment Act 1997.
+
+Particulars of Offence:
+Between 3 January 2026 and 14 March 2026 at Northgate sent messages to Emma Holt by electronic communication, namely WhatsApp and SMS, which amounted to a course of conduct which amounted to harassment of Emma Holt and which the defendant knew or ought to have known amounted to harassment.
+
+=== SECTION: MG5 ===
+
+MG05 — OFFENCE REPORT
+
+URN: 26/DA/001
+Anticipated Plea: Not Guilty
+Officer in case: DC Patel 4521
+
+Headline Summary
+The prosecution relies on a served screenshot and message pack, a phone extraction summary, and complainant account. Full phone download, subscriber data, and final signed MG11 are outstanding. Attribution is asserted in police papers but not fully proved on current disclosure.
+
+Chronological summary
+03/01/2026 — Complainant reports repeated messages from an unknown number.
+15/01/2026 — Complainant provides screenshots to police; pack copied to exhibit RM/01.
+22/01/2026 — Handset seized from defendant; extraction summary prepared by Digital Forensics Unit.
+04/02/2026 — MG6C updated. Full source download and subscriber/account data marked outstanding.
+14/03/2026 — Last message screenshot in served pack dated 12/03/2026.
+
+What the key witnesses say
+Emma Holt (complainant, draft MG11) — messages caused alarm and distress; cannot confirm who operated the handset without full download and subscriber data.
+
+Evidence on file (served)
+Charge sheet; MG5; MG6C schedule; draft complainant MG11; screenshot/message pack (RM/01); exhibit list; police attribution note.
+
+Evidence referred or outstanding
+Full phone download/source export; subscriber/account data; full message export; call logs; device-level extraction metadata; final signed MG11; MG6C clarification on unused material; additional unused material schedule lines.
+
+Prosecution position on current papers
+Screenshots show message content and dates. Attribution to Riley Moss is asserted by investigating officer but requires subscriber data and full download before the defence can safely accept sender identity.
+
+=== SECTION: MG6 ===
+
+MG6C — UNUSED MATERIAL SCHEDULE
+
+MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).
+MG6C/002 — Screenshot and message pack RM/01 — served on bundle.
+MG6C/003 — Subscriber/account data — outstanding — not on bundle.
+MG6C/004 — Full phone download / source export — outstanding — not on bundle.
+MG6C/005 — Call logs — outstanding — not on bundle.
+MG6C/006 — Device metadata export — referred on MG6 — not attached.
+MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.
+MG6C/008 — Additional unused material — clarification sought.
+
+=== SECTION: MG11 ===
+
+MG11 — COMPLAINANT STATEMENT (draft unsigned)
+
+I am Emma Holt, date of birth 14/07/1991, of 22 Alder Lane, Northgate.
+
+1. Between January and March 2026 I received many messages on WhatsApp and SMS from a number I did not recognise. The messages were persistent and caused me alarm and distress.
+
+2. I saved screenshots of representative messages. These are exhibited as RM/01 and are on the prosecution bundle. I can describe the content: repeated contact, late-night messages, and threats to attend my address.
+
+3. Police told me a phone was seized from Riley Moss. I have not seen the full phone download. I cannot say who typed each message without that material and subscriber/account records.
+
+4. I am willing to sign a final statement when I have reviewed the full digital disclosure.
+
+Statement not yet signed — final MG11 outstanding.
+
+=== SECTION: SCREENSHOTS ===
+
+EXHIBIT RM/01 — SCREENSHOT AND MESSAGE PACK (served)
+
+Pack reference: DFU/RM/2026/014
+Device: Samsung handset seized 22/01/2026
+Note: Screenshots served. Full extraction source file not attached.
+
+--- Screenshot 1 (WhatsApp, 08/01/2026 23:14) ---
+From: +44 7700 900142
+"I know where you work"
+
+--- Screenshot 2 (WhatsApp, 15/01/2026 00:02) ---
+From: +44 7700 900142
+"Answer me"
+
+--- Screenshot 3 (SMS, 12/03/2026 21:47) ---
+From: +44 7700 900142
+"See you soon"
+
+--- Extraction summary (served summary only) ---
+DFU summary: partial extraction completed. Message threads partially exported. Full download .ufd file referred on MG6C/004 — not attached to this bundle.
+Subscriber identity: not on bundle (MG6C/003 outstanding).
+Call log export: outstanding (MG6C/005).
+
+Attribution note in pack: number +44 7700 900142 appears in seized handset summary; subscriber/account proof not served.
+
+=== SECTION: EXHIBIT_LIST ===
+
+EXHIBIT LIST — R v Riley Moss (26/DA/001)
+
+RM/01 — Screenshot and message pack — SERVED — pages 7-8
+RM/02 — Phone extraction summary — SERVED (summary only) — referred MG6C/001
+RM/03 — Draft complainant MG11 — SERVED (unsigned) — pages 5-6
+RM/04 — Subscriber/account data — NOT SERVED — outstanding MG6C/003
+RM/05 — Full phone download — NOT SERVED — outstanding MG6C/004
+RM/06 — Call logs — NOT SERVED — outstanding MG6C/005
+
+=== SECTION: POLICE_NOTE ===
+
+POLICE NOTE — DIGITAL ATTRIBUTION (DC Patel 4521)
+
+The investigating officer records that the seized handset is linked to Riley Moss by arrest and property continuity. The screenshot pack RM/01 is served. A DFU extraction summary is on file.
+
+Attribution of sender identity for +44 7700 900142 is asserted in this note but is NOT fully proved on current papers: subscriber/account data and full phone download are outstanding. The defence should not treat screenshots alone as proof that Riley Moss sent each message without served attribution material.
+
+Final signed MG11 and MG6C clarification on unused material remain outstanding.
+
+=== SECTION: LISTING ===
+
+PTPH listed — 18 August 2026, 10:00, Northgate Magistrates' Court, Court 3.

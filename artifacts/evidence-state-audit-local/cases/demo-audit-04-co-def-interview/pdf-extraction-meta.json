@@ -1,0 +1,56 @@
+{
+  "caseId": "demo-audit-04-co-def-interview",
+  "pdfFileName": "bundle.pdf",
+  "pdfPath": "artifacts/evidence-state-audit-local/cases/demo-audit-04-co-def-interview/bundle.pdf",
+  "extractedAt": "2026-07-01T10:42:46.665Z",
+  "pageCount": 8,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "label": "Cover and charge",
+      "text": "RESTRICTED — PROSECUTION DISCLOSURE BUNDLE  URN: 26/DA/004 Defendant: Morgan Reid Court: Northgate Crown Court === SECTION: COVER_INDEX === INDEX  Document | Pages | Note Charge sheet | 1 | MG5 case summary | 2-3 | MG6C disclosure schedule | 4 | Officer statement | 5 | Co-defendant interview summary (Tara Vale) | 6 | Exhibit list | 7 | Court listing | 8 | === SECTION: CHARGE === R v Morgan Reid  Statement of Offence: Burglary in a dwelling, contrary to section 9(1)(b) of the Theft Act 1968.  Particulars of Offence: On 5 January 2026 at 14 Oakwood Drive, Northgate, entered as a trespasser and stole jewellery and cash.  Co-defendant: Tara Vale (separate attribution — see MG6C)"
+    },
+    {
+      "pageNumber": 2,
+      "label": "MG5 (1/2)",
+      "text": "=== SECTION: MG5 === MG05 — OFFENCE REPORT URN: 26/DA/004 Anticipated Plea: Not Guilty Officer in case: DCI Brooks 1182 Headline Summary Co-defendant Tara Vale interview summary is served. Target defendant Morgan Reid interview summary,  transcript, and audio are outstanding. Co-defendant material must not be imported into Morgan Reid's account  without segregation. Chronological summary 05/01/2026 — Dwelling burglary reported; forensics at scene. 12/01/2026 — Tara Vale arrested; interviewed; summary prepared."
+    },
+    {
+      "pageNumber": 3,
+      "label": "MG5 (2/2)",
+      "text": "=== SECTION: MG5 === 20/01/2026 — Morgan Reid arrested; interview not completed / summary not on bundle. 28/01/2026 — MG6C updated: co-def interview served; target defendant interview outstanding. What the key witnesses say DCI Brooks — property located; linkage issues between defendants. Tara Vale (co-defendant interview summary only) — refers to unknown male; not Morgan Reid's account. Evidence on file (served) Charge sheet; MG5; MG6C; officer statement; co-defendant Tara Vale interview summary; exhibit list. Evidence referred or outstanding (Morgan Reid — target defendant) Target defendant interview summary; interview transcript; interview audio; interview exhibit for Morgan Reid;  co-defendant attribution/continuity material for safe segregation."
+    },
+    {
+      "pageNumber": 4,
+      "label": "MG6C schedule",
+      "text": "=== SECTION: MG6 === MG6C — UNUSED MATERIAL SCHEDULE  MG6C/INT/01 — Co-defendant Tara Vale interview summary — served on bundle (other defendant). MG6C/INT/02 — Morgan Reid interview summary — outstanding — not on bundle. MG6C/INT/03 — Morgan Reid interview audio — outstanding. MG6C/INT/04 — Morgan Reid interview transcript — outstanding. MG6C/INT/05 — Morgan Reid interview exhibit — outstanding. MG6C/CO/01 — Co-defendant attribution/continuity pack — outstanding. MG6C/OFF/01 — Officer statement — served."
+    },
+    {
+      "pageNumber": 5,
+      "label": "Officer statement",
+      "text": "=== SECTION: OFFICER_STMT === OFFICER STATEMENT — DCI Brooks 1182  1. On 5 January 2026 a dwelling burglary was reported at 14 Oakwood Drive.  2. Tara Vale was arrested on 12 January 2026 and interviewed. An interview summary is served as exhibit TV/ INT/01. That material relates to Tara Vale only.  3. Morgan Reid was arrested on 20 January 2026. Morgan Reid's interview summary, audio, and transcript are  NOT on this bundle.  4. The defence for Morgan Reid must not treat Tara Vale's interview as Morgan Reid's account. Target  defendant source material remains outstanding."
+    },
+    {
+      "pageNumber": 6,
+      "label": "Co-defendant interview summary",
+      "text": "=== SECTION: CO_DEF_INTERVIEW === EXHIBIT TV/INT/01 — CO-DEFENDANT INTERVIEW SUMMARY (Tara Vale only)  Defendant: Tara Vale (co-defendant — NOT Morgan Reid) Interview date: 13/01/2026 Summary author: DC Shaw 3390  Summary extracts: - Tara Vale denies entering the dwelling. - Refers to an unknown male who asked her to wait in a vehicle. - Does not name Morgan Reid in served summary. - Attribution to Morgan Reid not established in this document.  WARNING ON FOLIO: This interview summary relates to co-defendant Tara Vale only. It is served for  disclosure management. It must be segregated from Morgan Reid's account. Morgan Reid interview material  outstanding (MG6C/INT/02 to INT/05)."
+    },
+    {
+      "pageNumber": 7,
+      "label": "Exhibit list",
+      "text": "=== SECTION: EXHIBIT_LIST === EXHIBIT LIST — R v Morgan Reid (26/DA/004)  TV/INT/01 — Co-defendant Tara Vale interview summary — SERVED (other defendant) — page 6 MR/INT/01 — Morgan Reid interview summary — NOT SERVED — outstanding MR/INT/02 — Morgan Reid interview audio — NOT SERVED — outstanding MR/INT/03 — Morgan Reid interview transcript — NOT SERVED — outstanding MR/INT/04 — Morgan Reid interview exhibit — NOT SERVED — outstanding CO/01 — Co-defendant attribution/continuity — NOT SERVED — outstanding"
+    },
+    {
+      "pageNumber": 8,
+      "label": "Listing",
+      "text": "=== SECTION: LISTING === PTPH listed — 6 October 2026, 10:30, Northgate Crown Court, Court 4."
+    }
+  ],
+  "fullText": "\n\nRESTRICTED — PROSECUTION DISCLOSURE BUNDLE  URN: 26/DA/004 Defendant: Morgan Reid Court: Northgate Crown Court === SECTION: COVER_INDEX === INDEX  Document | Pages | Note Charge sheet | 1 | MG5 case summary | 2-3 | MG6C disclosure schedule | 4 | Officer statement | 5 | Co-defendant interview summary (Tara Vale) | 6 | Exhibit list | 7 | Court listing | 8 | === SECTION: CHARGE === R v Morgan Reid  Statement of Offence: Burglary in a dwelling, contrary to section 9(1)(b) of the Theft Act 1968.  Particulars of Offence: On 5 January 2026 at 14 Oakwood Drive, Northgate, entered as a trespasser and stole jewellery and cash.  Co-defendant: Tara Vale (separate attribution — see MG6C)\n\n=== SECTION: MG5 === MG05 — OFFENCE REPORT URN: 26/DA/004 Anticipated Plea: Not Guilty Officer in case: DCI Brooks 1182 Headline Summary Co-defendant Tara Vale interview summary is served. Target defendant Morgan Reid interview summary,  transcript, and audio are outstanding. Co-defendant material must not be imported into Morgan Reid's account  without segregation. Chronological summary 05/01/2026 — Dwelling burglary reported; forensics at scene. 12/01/2026 — Tara Vale arrested; interviewed; summary prepared.\n\n=== SECTION: MG5 === 20/01/2026 — Morgan Reid arrested; interview not completed / summary not on bundle. 28/01/2026 — MG6C updated: co-def interview served; target defendant interview outstanding. What the key witnesses say DCI Brooks — property located; linkage issues between defendants. Tara Vale (co-defendant interview summary only) — refers to unknown male; not Morgan Reid's account. Evidence on file (served) Charge sheet; MG5; MG6C; officer statement; co-defendant Tara Vale interview summary; exhibit list. Evidence referred or outstanding (Morgan Reid — target defendant) Target defendant interview summary; interview transcript; interview audio; interview exhibit for Morgan Reid;  co-defendant attribution/continuity material for safe segregation.\n\n=== SECTION: MG6 === MG6C — UNUSED MATERIAL SCHEDULE  MG6C/INT/01 — Co-defendant Tara Vale interview summary — served on bundle (other defendant). MG6C/INT/02 — Morgan Reid interview summary — outstanding — not on bundle. MG6C/INT/03 — Morgan Reid interview audio — outstanding. MG6C/INT/04 — Morgan Reid interview transcript — outstanding. MG6C/INT/05 — Morgan Reid interview exhibit — outstanding. MG6C/CO/01 — Co-defendant attribution/continuity pack — outstanding. MG6C/OFF/01 — Officer statement — served.\n\n=== SECTION: OFFICER_STMT === OFFICER STATEMENT — DCI Brooks 1182  1. On 5 January 2026 a dwelling burglary was reported at 14 Oakwood Drive.  2. Tara Vale was arrested on 12 January 2026 and interviewed. An interview summary is served as exhibit TV/ INT/01. That material relates to Tara Vale only.  3. Morgan Reid was arrested on 20 January 2026. Morgan Reid's interview summary, audio, and transcript are  NOT on this bundle.  4. The defence for Morgan Reid must not treat Tara Vale's interview as Morgan Reid's account. Target  defendant source material remains outstanding.\n\n=== SECTION: CO_DEF_INTERVIEW === EXHIBIT TV/INT/01 — CO-DEFENDANT INTERVIEW SUMMARY (Tara Vale only)  Defendant: Tara Vale (co-defendant — NOT Morgan Reid) Interview date: 13/01/2026 Summary author: DC Shaw 3390  Summary extracts: - Tara Vale denies entering the dwelling. - Refers to an unknown male who asked her to wait in a vehicle. - Does not name Morgan Reid in served summary. - Attribution to Morgan Reid not established in this document.  WARNING ON FOLIO: This interview summary relates to co-defendant Tara Vale only. It is served for  disclosure management. It must be segregated from Morgan Reid's account. Morgan Reid interview material  outstanding (MG6C/INT/02 to INT/05).\n\n=== SECTION: EXHIBIT_LIST === EXHIBIT LIST — R v Morgan Reid (26/DA/004)  TV/INT/01 — Co-defendant Tara Vale interview summary — SERVED (other defendant) — page 6 MR/INT/01 — Morgan Reid interview summary — NOT SERVED — outstanding MR/INT/02 — Morgan Reid interview audio — NOT SERVED — outstanding MR/INT/03 — Morgan Reid interview transcript — NOT SERVED — outstanding MR/INT/04 — Morgan Reid interview exhibit — NOT SERVED — outstanding CO/01 — Co-defendant attribution/continuity — NOT SERVED — outstanding\n\n=== SECTION: LISTING === PTPH listed — 6 October 2026, 10:30, Northgate Crown Court, Court 4.",
+  "extractionWarnings": [],
+  "canonicalComparison": {
+    "similarityRatio": 1,
+    "differsFromCanonical": false,
+    "note": "PDF extraction closely matches canonical bundle-text."
+  }
+}

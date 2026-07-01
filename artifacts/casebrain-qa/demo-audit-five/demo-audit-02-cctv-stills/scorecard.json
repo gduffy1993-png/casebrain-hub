@@ -1,0 +1,77 @@
+{
+  "caseId": "demo-audit-02-cctv-stills",
+  "caseName": "DA-02 Devon Walsh — CCTV stills served / master footage missing",
+  "shape": "CCTV stills served / master export and continuity outstanding",
+  "pdfPages": 9,
+  "keyServedItems": [
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "CCTV still images"
+  ],
+  "keyMissingReferred": [
+    "master CCTV footage (missing)",
+    "full CCTV export (referred_only)",
+    "continuity/provenance (missing)",
+    "audit trail (missing)",
+    "recognition/ID basis (missing)"
+  ],
+  "truthMapResult": [
+    {
+      "label": "CCTV still images",
+      "existence": "served",
+      "note": "Stills served — not equivalent to master footage or continuity proof."
+    },
+    {
+      "label": "Full CCTV export",
+      "existence": "referred_only"
+    },
+    {
+      "label": "Master CCTV footage",
+      "existence": "missing",
+      "note": "Outstanding — stills alone do not replace master footage."
+    },
+    {
+      "label": "CCTV continuity / provenance",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    },
+    {
+      "label": "audit trail",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    },
+    {
+      "label": "recognition/ID basis",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    }
+  ],
+  "proofPacketVerdict": "PASS WITH WARNINGS",
+  "failLineCount": 0,
+  "unsupportedLinesCount": 0,
+  "wrongFamilyWarningsCount": 0,
+  "proofLedgerWrongFamilyInternal": 0,
+  "blockedFalseServedGuardsCount": 15,
+  "pageBackedOutputLinesCount": 55,
+  "vagueChaseLabelsCount": 0,
+  "genericLabelCount": 0,
+  "caseFacingWrongFamilyCount": 0,
+  "readyForDemoReview": true,
+  "readyBlockers": [],
+  "filesCreated": [
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-02-cctv-stills\\bundle.pdf",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-02-cctv-stills\\bundle-text.md",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-02-cctv-stills\\pdf-extraction-meta.json",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-02-cctv-stills\\truth-key.json",
+    "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-02-cctv-stills\\line-by-line-proof.md",
+    "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-02-cctv-stills\\SOLICITOR-PROOF-PACKET.md",
+    "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-02-cctv-stills\\overview-truth-map.json",
+    "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-02-cctv-stills\\court-tab.json",
+    "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-02-cctv-stills\\cps-chase.json",
+    "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-02-cctv-stills\\client-summary.json",
+    "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-02-cctv-stills\\file-source-view.json",
+    "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-02-cctv-stills\\casebrain-output.json",
+    "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-02-cctv-stills\\scorecard.json"
+  ]
+}

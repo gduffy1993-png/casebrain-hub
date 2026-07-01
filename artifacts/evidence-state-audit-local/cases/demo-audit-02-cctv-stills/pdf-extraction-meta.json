@@ -1,0 +1,61 @@
+{
+  "caseId": "demo-audit-02-cctv-stills",
+  "pdfFileName": "bundle.pdf",
+  "pdfPath": "artifacts/evidence-state-audit-local/cases/demo-audit-02-cctv-stills/bundle.pdf",
+  "extractedAt": "2026-07-01T10:42:45.101Z",
+  "pageCount": 9,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "label": "Cover and charge",
+      "text": "RESTRICTED — PROSECUTION DISCLOSURE BUNDLE  URN: 26/DA/002 Defendant: Devon Walsh Court: Riverside Magistrates' Court === SECTION: COVER_INDEX === INDEX  Document | Pages | Note Charge sheet | 1 | MG5 case summary | 2-3 | MG6C disclosure schedule | 4 | Officer MG11 | 5 | CCTV still images | 6-7 | Exhibit list | 8 | Court listing | 9 | === SECTION: CHARGE === R v Devon Walsh  Statement of Offence: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968.  Particulars of Offence: On 9 February 2026 at Riverside stole goods to the value of £340 belonging to Riverside Retail Ltd."
+    },
+    {
+      "pageNumber": 2,
+      "label": "MG5 (1/2)",
+      "text": "=== SECTION: MG5 === MG05 — OFFENCE REPORT URN: 26/DA/002 Anticipated Plea: Not Guilty Officer in case: PC Ng 8834 Headline Summary CCTV still images are served showing a person in the store aisle. Master CCTV footage, full export, continuity,  and audit trail are outstanding or referred only. Identification from stills alone is not safely confirmed on  current papers. Chronological summary 09/02/2026 14:22 — Offence reported at Riverside Retail Ltd. 09/02/2026 — Store security preserves partial stills from camera 4 (menswear aisle). 11/02/2026 — Stills printed and served as exhibit DW/CCTV/01. 12/02/2026 — MG6C records master footage and continuity as outstanding."
+    },
+    {
+      "pageNumber": 3,
+      "label": "MG5 (2/2)",
+      "text": "=== SECTION: MG5 === What the key witnesses say PC Ng — attended store; viewed stills; does not rely on stills alone for positive ID in MG11. Store manager — goods missing; provides invoice. Evidence on file (served) Charge sheet; MG5; MG6C; officer MG11; CCTV still images DW/CCTV/01; exhibit list. Evidence referred or outstanding Master CCTV footage; full CCTV export; continuity/provenance statement; audit trail/source file; recognition/ ID basis if relied upon. Prosecution position on current papers Stills show a person in relevant aisle near time window. Master timeline not served. Defence cannot safely say  CCTV proves identity or offence without master footage and continuity."
+    },
+    {
+      "pageNumber": 4,
+      "label": "MG6C schedule",
+      "text": "=== SECTION: MG6 === MG6C — UNUSED MATERIAL SCHEDULE  MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle. MG6C/CCTV/02 — Master CCTV footage camera 4 — outstanding — not on bundle. MG6C/CCTV/03 — Full CCTV export (native format) — referred on MG6 — export not attached. MG6C/CCTV/04 — Continuity and provenance statement — outstanding. MG6C/CCTV/05 — Audit trail / source file hash record — outstanding. MG6C/CCTV/06 — Recognition basis / ID procedure — outstanding if relied upon."
+    },
+    {
+      "pageNumber": 5,
+      "label": "Officer MG11",
+      "text": "=== SECTION: MG11 === MG11 — OFFICER STATEMENT (PC Ng 8834)  1. On 9 February 2026 I attended Riverside Retail Ltd following a report of shop theft.  2. I was shown CCTV still images from camera 4 (menswear aisle). Stills are exhibited as DW/CCTV/01 and  are served on this bundle.  3. The stills show a male in dark jacket near the relevant aisle. Image quality is limited. I have not been served  master footage or a full export.  4. I cannot confirm continuity of the stills to master recording without the outstanding provenance material.  Positive identification of Devon Walsh from stills alone is not relied upon in this statement."
+    },
+    {
+      "pageNumber": 6,
+      "label": "CCTV stills (1/2)",
+      "text": "=== SECTION: CCTV_STILLS === EXHIBIT DW/CCTV/01 — CCTV STILL IMAGES (served) Source: Riverside Retail Ltd — Camera 4 (menswear aisle) Date: 09/02/2026 Time window: 14:18 — 14:26 Still 1 — wide aisle shot — figure in dark jacket approaching display."
+    },
+    {
+      "pageNumber": 7,
+      "label": "CCTV stills (2/2)",
+      "text": "=== SECTION: CCTV_STILLS === Still 2 — mid-aisle — figure with bag at display. Still 3 — exit direction — partial profile, image grainy. Note on folio: These are still images extracted by store security. Master CCTV footage and native export are  NOT attached. Continuity to master recording outstanding (MG6C/CCTV/04). Do not treat stills as equivalent to master footage. Audit trail not served."
+    },
+    {
+      "pageNumber": 8,
+      "label": "Exhibit list",
+      "text": "=== SECTION: EXHIBIT_LIST === EXHIBIT LIST — R v Devon Walsh (26/DA/002)  DW/CCTV/01 — CCTV still images — SERVED — pages 6-7 DW/CCTV/02 — Master CCTV footage — NOT SERVED — outstanding MG6C/CCTV/02 DW/CCTV/03 — Full CCTV export — REFERRED ONLY — MG6C/CCTV/03 DW/CCTV/04 — Continuity/provenance — NOT SERVED — outstanding DW/CCTV/05 — Audit trail — NOT SERVED — outstanding"
+    },
+    {
+      "pageNumber": 9,
+      "label": "Listing",
+      "text": "=== SECTION: LISTING === PTPH listed — 2 September 2026, 14:00, Riverside Magistrates' Court, Court 2."
+    }
+  ],
+  "fullText": "\n\nRESTRICTED — PROSECUTION DISCLOSURE BUNDLE  URN: 26/DA/002 Defendant: Devon Walsh Court: Riverside Magistrates' Court === SECTION: COVER_INDEX === INDEX  Document | Pages | Note Charge sheet | 1 | MG5 case summary | 2-3 | MG6C disclosure schedule | 4 | Officer MG11 | 5 | CCTV still images | 6-7 | Exhibit list | 8 | Court listing | 9 | === SECTION: CHARGE === R v Devon Walsh  Statement of Offence: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968.  Particulars of Offence: On 9 February 2026 at Riverside stole goods to the value of £340 belonging to Riverside Retail Ltd.\n\n=== SECTION: MG5 === MG05 — OFFENCE REPORT URN: 26/DA/002 Anticipated Plea: Not Guilty Officer in case: PC Ng 8834 Headline Summary CCTV still images are served showing a person in the store aisle. Master CCTV footage, full export, continuity,  and audit trail are outstanding or referred only. Identification from stills alone is not safely confirmed on  current papers. Chronological summary 09/02/2026 14:22 — Offence reported at Riverside Retail Ltd. 09/02/2026 — Store security preserves partial stills from camera 4 (menswear aisle). 11/02/2026 — Stills printed and served as exhibit DW/CCTV/01. 12/02/2026 — MG6C records master footage and continuity as outstanding.\n\n=== SECTION: MG5 === What the key witnesses say PC Ng — attended store; viewed stills; does not rely on stills alone for positive ID in MG11. Store manager — goods missing; provides invoice. Evidence on file (served) Charge sheet; MG5; MG6C; officer MG11; CCTV still images DW/CCTV/01; exhibit list. Evidence referred or outstanding Master CCTV footage; full CCTV export; continuity/provenance statement; audit trail/source file; recognition/ ID basis if relied upon. Prosecution position on current papers Stills show a person in relevant aisle near time window. Master timeline not served. Defence cannot safely say  CCTV proves identity or offence without master footage and continuity.\n\n=== SECTION: MG6 === MG6C — UNUSED MATERIAL SCHEDULE  MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle. MG6C/CCTV/02 — Master CCTV footage camera 4 — outstanding — not on bundle. MG6C/CCTV/03 — Full CCTV export (native format) — referred on MG6 — export not attached. MG6C/CCTV/04 — Continuity and provenance statement — outstanding. MG6C/CCTV/05 — Audit trail / source file hash record — outstanding. MG6C/CCTV/06 — Recognition basis / ID procedure — outstanding if relied upon.\n\n=== SECTION: MG11 === MG11 — OFFICER STATEMENT (PC Ng 8834)  1. On 9 February 2026 I attended Riverside Retail Ltd following a report of shop theft.  2. I was shown CCTV still images from camera 4 (menswear aisle). Stills are exhibited as DW/CCTV/01 and  are served on this bundle.  3. The stills show a male in dark jacket near the relevant aisle. Image quality is limited. I have not been served  master footage or a full export.  4. I cannot confirm continuity of the stills to master recording without the outstanding provenance material.  Positive identification of Devon Walsh from stills alone is not relied upon in this statement.\n\n=== SECTION: CCTV_STILLS === EXHIBIT DW/CCTV/01 — CCTV STILL IMAGES (served) Source: Riverside Retail Ltd — Camera 4 (menswear aisle) Date: 09/02/2026 Time window: 14:18 — 14:26 Still 1 — wide aisle shot — figure in dark jacket approaching display.\n\n=== SECTION: CCTV_STILLS === Still 2 — mid-aisle — figure with bag at display. Still 3 — exit direction — partial profile, image grainy. Note on folio: These are still images extracted by store security. Master CCTV footage and native export are  NOT attached. Continuity to master recording outstanding (MG6C/CCTV/04). Do not treat stills as equivalent to master footage. Audit trail not served.\n\n=== SECTION: EXHIBIT_LIST === EXHIBIT LIST — R v Devon Walsh (26/DA/002)  DW/CCTV/01 — CCTV still images — SERVED — pages 6-7 DW/CCTV/02 — Master CCTV footage — NOT SERVED — outstanding MG6C/CCTV/02 DW/CCTV/03 — Full CCTV export — REFERRED ONLY — MG6C/CCTV/03 DW/CCTV/04 — Continuity/provenance — NOT SERVED — outstanding DW/CCTV/05 — Audit trail — NOT SERVED — outstanding\n\n=== SECTION: LISTING === PTPH listed — 2 September 2026, 14:00, Riverside Magistrates' Court, Court 2.",
+  "extractionWarnings": [],
+  "canonicalComparison": {
+    "similarityRatio": 0.9946524064171123,
+    "differsFromCanonical": false,
+    "note": "PDF extraction closely matches canonical bundle-text."
+  }
+}

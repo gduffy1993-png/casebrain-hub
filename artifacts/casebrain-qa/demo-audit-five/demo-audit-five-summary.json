@@ -1,0 +1,396 @@
+[
+  {
+    "caseId": "demo-audit-01-phone-harassment",
+    "caseName": "DA-01 Riley Moss — phone harassment / screenshots served",
+    "shape": "Phone screenshots served / extraction summary / full download missing",
+    "pdfPages": 11,
+    "keyServedItems": [
+      "charge sheet",
+      "mg5",
+      "mg6",
+      "screenshot and message pack",
+      "phone extraction summary"
+    ],
+    "keyMissingReferred": [
+      "full phone download (missing)",
+      "subscriber/account data (missing)",
+      "full message export (missing)",
+      "call logs (missing)",
+      "device metadata (referred_only)",
+      "complainant MG11 (incomplete)",
+      "attribution material (not_safely_confirmed)"
+    ],
+    "truthMapResult": [
+      {
+        "label": "Screenshot / message pack",
+        "existence": "served",
+        "note": "Served on papers — not full phone download or attribution proof."
+      },
+      {
+        "label": "Phone extraction summary",
+        "existence": "served"
+      },
+      {
+        "label": "device metadata",
+        "existence": "referred_only"
+      },
+      {
+        "label": "Complainant MG11 (draft)",
+        "existence": "served"
+      },
+      {
+        "label": "Attribution / subscriber material",
+        "existence": "not_safely_confirmed",
+        "note": "Handle mapping to defendant not served on current papers."
+      },
+      {
+        "label": "Full phone download",
+        "existence": "missing",
+        "note": "Outstanding on current disclosure."
+      },
+      {
+        "label": "Subscriber / account data",
+        "existence": "missing",
+        "note": "Outstanding — cannot safely fix sender identity without this material."
+      },
+      {
+        "label": "Full message export",
+        "existence": "missing",
+        "note": "Outstanding on current disclosure."
+      }
+    ],
+    "proofPacketVerdict": "PASS WITH WARNINGS",
+    "failLineCount": 0,
+    "unsupportedLinesCount": 0,
+    "wrongFamilyWarningsCount": 0,
+    "proofLedgerWrongFamilyInternal": 0,
+    "blockedFalseServedGuardsCount": 18,
+    "pageBackedOutputLinesCount": 65,
+    "vagueChaseLabelsCount": 0,
+    "genericLabelCount": 0,
+    "caseFacingWrongFamilyCount": 0,
+    "readyForDemoReview": true,
+    "readyBlockers": [],
+    "filesCreated": [
+      "artifacts\\evidence-state-audit-local\\cases\\demo-audit-01-phone-harassment\\bundle.pdf",
+      "artifacts\\evidence-state-audit-local\\cases\\demo-audit-01-phone-harassment\\bundle-text.md",
+      "artifacts\\evidence-state-audit-local\\cases\\demo-audit-01-phone-harassment\\pdf-extraction-meta.json",
+      "artifacts\\evidence-state-audit-local\\cases\\demo-audit-01-phone-harassment\\truth-key.json",
+      "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-01-phone-harassment\\line-by-line-proof.md",
+      "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-01-phone-harassment\\SOLICITOR-PROOF-PACKET.md",
+      "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-01-phone-harassment\\overview-truth-map.json",
+      "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-01-phone-harassment\\court-tab.json",
+      "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-01-phone-harassment\\cps-chase.json",
+      "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-01-phone-harassment\\client-summary.json",
+      "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-01-phone-harassment\\file-source-view.json",
+      "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-01-phone-harassment\\casebrain-output.json",
+      "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-01-phone-harassment\\scorecard.json"
+    ]
+  },
+  {
+    "caseId": "demo-audit-02-cctv-stills",
+    "caseName": "DA-02 Devon Walsh — CCTV stills served / master footage missing",
+    "shape": "CCTV stills served / master export and continuity outstanding",
+    "pdfPages": 9,
+    "keyServedItems": [
+      "charge sheet",
+      "mg5",
+      "mg6",
+      "CCTV still images"
+    ],
+    "keyMissingReferred": [
+      "master CCTV footage (missing)",
+      "full CCTV export (referred_only)",
+      "continuity/provenance (missing)",
+      "audit trail (missing)",
+      "recognition/ID basis (missing)"
+    ],
+    "truthMapResult": [
+      {
+        "label": "CCTV still images",
+        "existence": "served",
+        "note": "Stills served — not equivalent to master footage or continuity proof."
+      },
+      {
+        "label": "Full CCTV export",
+        "existence": "referred_only"
+      },
+      {
+        "label": "Master CCTV footage",
+        "existence": "missing",
+        "note": "Outstanding — stills alone do not replace master footage."
+      },
+      {
+        "label": "CCTV continuity / provenance",
+        "existence": "missing",
+        "note": "Outstanding on current disclosure."
+      },
+      {
+        "label": "audit trail",
+        "existence": "missing",
+        "note": "Outstanding on current disclosure."
+      },
+      {
+        "label": "recognition/ID basis",
+        "existence": "missing",
+        "note": "Outstanding on current disclosure."
+      }
+    ],
+    "proofPacketVerdict": "PASS WITH WARNINGS",
+    "failLineCount": 0,
+    "unsupportedLinesCount": 0,
+    "wrongFamilyWarningsCount": 0,
+    "proofLedgerWrongFamilyInternal": 0,
+    "blockedFalseServedGuardsCount": 15,
+    "pageBackedOutputLinesCount": 55,
+    "vagueChaseLabelsCount": 0,
+    "genericLabelCount": 0,
+    "caseFacingWrongFamilyCount": 0,
+    "readyForDemoReview": true,
+    "readyBlockers": [],
+    "filesCreated": [
+      "artifacts\\evidence-state-audit-local\\cases\\demo-audit-02-cctv-stills\\bundle.pdf",
+      "artifacts\\evidence-state-audit-local\\cases\\demo-audit-02-cctv-stills\\bundle-text.md",
+      "artifacts\\evidence-state-audit-local\\cases\\demo-audit-02-cctv-stills\\pdf-extraction-meta.json",
+      "artifacts\\evidence-state-audit-local\\cases\\demo-audit-02-cctv-stills\\truth-key.json",
+      "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-02-cctv-stills\\line-by-line-proof.md",
+      "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-02-cctv-stills\\SOLICITOR-PROOF-PACKET.md",
+      "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-02-cctv-stills\\overview-truth-map.json",
+      "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-02-cctv-stills\\court-tab.json",
+      "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-02-cctv-stills\\cps-chase.json",
+      "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-02-cctv-stills\\client-summary.json",
+      "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-02-cctv-stills\\file-source-view.json",
+      "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-02-cctv-stills\\casebrain-output.json",
+      "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-02-cctv-stills\\scorecard.json"
+    ]
+  },
+  {
+    "caseId": "demo-audit-03-bwv-custody",
+    "caseName": "DA-03 Casey Fry — BWV referred / custody extract only",
+    "shape": "BWV referred / custody extract incomplete / interview outstanding",
+    "pdfPages": 7,
+    "keyServedItems": [
+      "charge sheet",
+      "mg5",
+      "mg6"
+    ],
+    "keyMissingReferred": [
+      "officer MG11 (incomplete)",
+      "custody record extract (incomplete)",
+      "body-worn video (referred_only)",
+      "full custody record (missing)",
+      "interview audio (missing)",
+      "interview transcript (missing)",
+      "PACE safeguards detail (missing)"
+    ],
+    "truthMapResult": [
+      {
+        "label": "Body-worn video (BWV)",
+        "existence": "referred_only",
+        "note": "Referred on MG6C — full export not attached."
+      },
+      {
+        "label": "Officer statement",
+        "existence": "served"
+      },
+      {
+        "label": "Custody record extract",
+        "existence": "served",
+        "note": "Extract only — full custody record outstanding."
+      },
+      {
+        "label": "Full custody record",
+        "existence": "missing",
+        "note": "Outstanding on current disclosure."
+      },
+      {
+        "label": "Interview audio",
+        "existence": "missing",
+        "note": "Outstanding on current disclosure."
+      },
+      {
+        "label": "Interview transcript",
+        "existence": "missing",
+        "note": "Outstanding on current disclosure."
+      },
+      {
+        "label": "PACE safeguards detail",
+        "existence": "missing",
+        "note": "Outstanding on current disclosure."
+      }
+    ],
+    "proofPacketVerdict": "PASS WITH WARNINGS",
+    "failLineCount": 0,
+    "unsupportedLinesCount": 0,
+    "wrongFamilyWarningsCount": 0,
+    "proofLedgerWrongFamilyInternal": 0,
+    "blockedFalseServedGuardsCount": 14,
+    "pageBackedOutputLinesCount": 74,
+    "vagueChaseLabelsCount": 0,
+    "genericLabelCount": 0,
+    "caseFacingWrongFamilyCount": 0,
+    "readyForDemoReview": true,
+    "readyBlockers": [],
+    "filesCreated": [
+      "artifacts\\evidence-state-audit-local\\cases\\demo-audit-03-bwv-custody\\bundle.pdf",
+      "artifacts\\evidence-state-audit-local\\cases\\demo-audit-03-bwv-custody\\bundle-text.md",
+      "artifacts\\evidence-state-audit-local\\cases\\demo-audit-03-bwv-custody\\pdf-extraction-meta.json",
+      "artifacts\\evidence-state-audit-local\\cases\\demo-audit-03-bwv-custody\\truth-key.json",
+      "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-03-bwv-custody\\line-by-line-proof.md",
+      "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-03-bwv-custody\\SOLICITOR-PROOF-PACKET.md",
+      "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-03-bwv-custody\\overview-truth-map.json",
+      "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-03-bwv-custody\\court-tab.json",
+      "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-03-bwv-custody\\cps-chase.json",
+      "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-03-bwv-custody\\client-summary.json",
+      "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-03-bwv-custody\\file-source-view.json",
+      "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-03-bwv-custody\\casebrain-output.json",
+      "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-03-bwv-custody\\scorecard.json"
+    ]
+  },
+  {
+    "caseId": "demo-audit-04-co-def-interview",
+    "caseName": "DA-04 Morgan Reid — co-defendant interview served / target interview missing",
+    "shape": "Co-def interview other_defendant_only / target defendant interview outstanding",
+    "pdfPages": 8,
+    "keyServedItems": [
+      "charge sheet",
+      "mg5",
+      "mg6",
+      "officer statement"
+    ],
+    "keyMissingReferred": [
+      "co-defendant Tara Vale interview summary (other_defendant_only)",
+      "Morgan Reid interview summary (missing)",
+      "Morgan Reid interview audio (missing)",
+      "Morgan Reid interview transcript (missing)",
+      "co-defendant attribution/continuity (missing)"
+    ],
+    "truthMapResult": [
+      {
+        "label": "Officer statement",
+        "existence": "served"
+      },
+      {
+        "label": "Co-defendant interview summary",
+        "existence": "referred_only",
+        "note": "Other defendant only — segregate from target defendant account."
+      },
+      {
+        "label": "Target defendant interview summary",
+        "existence": "missing",
+        "note": "Outstanding on current disclosure."
+      },
+      {
+        "label": "Co-defendant attribution / continuity",
+        "existence": "missing",
+        "note": "Outstanding on current disclosure."
+      }
+    ],
+    "proofPacketVerdict": "PASS WITH WARNINGS",
+    "failLineCount": 0,
+    "unsupportedLinesCount": 0,
+    "wrongFamilyWarningsCount": 0,
+    "proofLedgerWrongFamilyInternal": 0,
+    "blockedFalseServedGuardsCount": 0,
+    "pageBackedOutputLinesCount": 42,
+    "vagueChaseLabelsCount": 0,
+    "genericLabelCount": 0,
+    "caseFacingWrongFamilyCount": 0,
+    "readyForDemoReview": true,
+    "readyBlockers": [],
+    "filesCreated": [
+      "artifacts\\evidence-state-audit-local\\cases\\demo-audit-04-co-def-interview\\bundle.pdf",
+      "artifacts\\evidence-state-audit-local\\cases\\demo-audit-04-co-def-interview\\bundle-text.md",
+      "artifacts\\evidence-state-audit-local\\cases\\demo-audit-04-co-def-interview\\pdf-extraction-meta.json",
+      "artifacts\\evidence-state-audit-local\\cases\\demo-audit-04-co-def-interview\\truth-key.json",
+      "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-04-co-def-interview\\line-by-line-proof.md",
+      "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-04-co-def-interview\\SOLICITOR-PROOF-PACKET.md",
+      "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-04-co-def-interview\\overview-truth-map.json",
+      "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-04-co-def-interview\\court-tab.json",
+      "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-04-co-def-interview\\cps-chase.json",
+      "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-04-co-def-interview\\client-summary.json",
+      "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-04-co-def-interview\\file-source-view.json",
+      "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-04-co-def-interview\\casebrain-output.json",
+      "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-04-co-def-interview\\scorecard.json"
+    ]
+  },
+  {
+    "caseId": "demo-audit-05-encro-attribution",
+    "caseName": "DA-05 Liam Craft — Encro / county-lines attribution gap",
+    "shape": "Message extracts served / handle attribution not proved / platform extraction missing",
+    "pdfPages": 9,
+    "keyServedItems": [
+      "charge sheet",
+      "mg5",
+      "mg6",
+      "message extracts"
+    ],
+    "keyMissingReferred": [
+      "platform/source extraction (referred_only)",
+      "handle attribution report (missing)",
+      "subscriber/account data (missing)",
+      "device continuity (missing)",
+      "co-defendant material (missing)",
+      "full download/export (missing)",
+      "handle/phone attribution (not_safely_confirmed)"
+    ],
+    "truthMapResult": [
+      {
+        "label": "Encro message extracts LC/MSG/01",
+        "existence": "served",
+        "note": "Served on bundle per MG6C/ENC/01."
+      },
+      {
+        "label": "Platform / source extraction",
+        "existence": "referred_only"
+      },
+      {
+        "label": "Handle attribution report",
+        "existence": "missing",
+        "note": "Outstanding per MG6C — handle attribution report not on bundle."
+      },
+      {
+        "label": "Subscriber / account data",
+        "existence": "missing",
+        "note": "Outstanding per MG6C — subscriber/account data not on bundle."
+      },
+      {
+        "label": "Device continuity",
+        "existence": "missing",
+        "note": "Outstanding on current disclosure."
+      },
+      {
+        "label": "co-defendant material",
+        "existence": "missing",
+        "note": "Outstanding on current disclosure."
+      }
+    ],
+    "proofPacketVerdict": "PASS WITH WARNINGS",
+    "failLineCount": 0,
+    "unsupportedLinesCount": 0,
+    "wrongFamilyWarningsCount": 0,
+    "proofLedgerWrongFamilyInternal": 0,
+    "blockedFalseServedGuardsCount": 13,
+    "pageBackedOutputLinesCount": 59,
+    "vagueChaseLabelsCount": 0,
+    "genericLabelCount": 0,
+    "caseFacingWrongFamilyCount": 0,
+    "readyForDemoReview": true,
+    "readyBlockers": [],
+    "filesCreated": [
+      "artifacts\\evidence-state-audit-local\\cases\\demo-audit-05-encro-attribution\\bundle.pdf",
+      "artifacts\\evidence-state-audit-local\\cases\\demo-audit-05-encro-attribution\\bundle-text.md",
+      "artifacts\\evidence-state-audit-local\\cases\\demo-audit-05-encro-attribution\\pdf-extraction-meta.json",
+      "artifacts\\evidence-state-audit-local\\cases\\demo-audit-05-encro-attribution\\truth-key.json",
+      "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-05-encro-attribution\\line-by-line-proof.md",
+      "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-05-encro-attribution\\SOLICITOR-PROOF-PACKET.md",
+      "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-05-encro-attribution\\overview-truth-map.json",
+      "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-05-encro-attribution\\court-tab.json",
+      "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-05-encro-attribution\\cps-chase.json",
+      "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-05-encro-attribution\\client-summary.json",
+      "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-05-encro-attribution\\file-source-view.json",
+      "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-05-encro-attribution\\casebrain-output.json",
+      "artifacts\\casebrain-qa\\demo-audit-five\\demo-audit-05-encro-attribution\\scorecard.json"
+    ]
+  }
+]

@@ -64,9 +64,17 @@ export function trapMentionsIrrelevantTopic(trapLine: string, bundleText: string
   if (/\bbwv\b|body[-\s]?worn/i.test(lower) && !bundleMentionsFamily(bundleText, "bwv")) return true;
   if (/\bcad\b|\b999\b/i.test(lower) && !bundleMentionsFamily(bundleText, "cad")) return true;
   if (/drugs continuity/i.test(lower) && !bundleMentionsFamily(bundleText, "drugs")) return true;
-  if (/phone extraction|pwits phone|phone attribution/i.test(lower) && !bundleMentionsFamily(bundleText, "phone")) return true;
+  if (/phone extraction|pwits phone|phone attribution|phone record|receipt\/phone/i.test(lower) && !bundleMentionsFamily(bundleText, "phone")) return true;
   if (/fraud account/i.test(lower) && !/\bfraud\b/i.test(bundleText)) return true;
   if (/custody safeguards/i.test(lower) && !bundleMentionsFamily(bundleText, "custody")) return true;
+  if (/\bcctv\b|stills|footage|master footage/i.test(lower) && !bundleMentionsFamily(bundleText, "cctv")) return true;
+  if (/\bencro\b|handle mapping|platform extraction|county.?lines/i.test(lower) && !bundleMentionsFamily(bundleText, "encro")) {
+    return true;
+  }
+  if (/do not import phone|phone extraction\/metadata/i.test(lower) && !bundleMentionsFamily(bundleText, "phone")) {
+    return true;
+  }
+  if (/cad\/999|control.?room/i.test(lower) && !bundleMentionsFamily(bundleText, "cad")) return true;
   return false;
 }
 

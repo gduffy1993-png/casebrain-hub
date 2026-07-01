@@ -1,0 +1,29 @@
+{
+  "primaryItems": [
+    {
+      "label": "Master CCTV footage",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide Master CCTV footage (see MG6C/CCTV/02) or confirm in writing why it is not available.",
+      "whyItMatters": "Master footage/export needed — stills alone are not the full recording."
+    },
+    {
+      "label": "Full CCTV export",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide Full CCTV export (see MG6C/CCTV/03) or confirm in writing why it is not available.",
+      "whyItMatters": "Master footage/export needed — stills alone are not the full recording."
+    },
+    {
+      "label": "CCTV Continuity / provenance",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide CCTV Continuity / provenance (see MG6C/CCTV/04) or confirm in writing why it is not available.",
+      "whyItMatters": "Continuity to master recording not confirmed on current papers."
+    },
+    {
+      "label": "audit trail",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.",
+      "whyItMatters": "Outstanding on current disclosure — chase before fixing hearing position."
+    }
+  ],
+  "safeCourtLine": "The defence asks the court to record per MG6C that CCTV still images are served but master CCTV footage and continuity/provenance remain outstanding."
+}

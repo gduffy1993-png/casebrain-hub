@@ -1,0 +1,68 @@
+{
+  "caseId": "demo-audit-02-cctv-stills",
+  "clientLabel": "Devon Walsh",
+  "allegation": "Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968",
+  "bundleTextLength": 4282,
+  "chaseItemCount": 4,
+  "truthMapRowCount": 6,
+  "proofSummary": {
+    "totalMeaningfulLines": 133,
+    "pass": 69,
+    "warning": 64,
+    "fail": 0,
+    "excluded": 0,
+    "byCategory": {
+      "evidence_claim": 1,
+      "strategic_review": 44,
+      "confidence_status": 4,
+      "evidence_state": 21,
+      "safety_warning": 23,
+      "chase_request": 15,
+      "court_note": 3,
+      "client_summary": 1,
+      "contradiction_or_risk": 3,
+      "export_line": 18
+    },
+    "bySupport": {
+      "partially_supported": 23,
+      "source_unavailable": 46,
+      "supported": 25,
+      "referred_only": 9,
+      "missing": 28,
+      "unsupported": 2
+    },
+    "positiveCorrect": 70,
+    "gedReviewCount": 64,
+    "blockingReview": 0,
+    "unsupportedOutput": 2,
+    "sourceReviewWarnings": 47,
+    "solicitorCaution": 17,
+    "cleanSourceBacked": 38,
+    "genericSafetyGuards": 31,
+    "byTier": {
+      "blocking_review": 0,
+      "source_review": 47,
+      "solicitor_caution": 17,
+      "clean_source_backed": 38,
+      "generic_safety_guard": 31
+    },
+    "proofChainCoverage": {
+      "pdfAndTextSupportOutput": 55,
+      "textSupportsButPdfUnchecked": 19,
+      "pdfAvailableButTextMismatch": 0,
+      "sourceUnavailable": 59,
+      "outputUnsupported": 0,
+      "originalPdfAvailable": true,
+      "caseProofMode": "pdf_and_text"
+    }
+  },
+  "proofChainCoverage": {
+    "pdfAndTextSupportOutput": 55,
+    "textSupportsButPdfUnchecked": 19,
+    "pdfAvailableButTextMismatch": 0,
+    "sourceUnavailable": 59,
+    "outputUnsupported": 0,
+    "originalPdfAvailable": true,
+    "caseProofMode": "pdf_and_text"
+  }
+}

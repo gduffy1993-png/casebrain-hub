@@ -54,6 +54,7 @@ export function buildLineSourceProof(caseDir: string, outRoot = DEFAULT_OUT_ROOT
     generatedAt: new Date().toISOString(),
     disclaimer: DISCLAIMER,
     bundleSourcePath: bundleRel,
+    bundleText: models.bundleText,
     method:
       "Runs live H5 builders on bundle text, maps each meaningful output line to extracted bundle snippets, records proof-chain status (PDF/page vs text only), and builds solicitor-readable proof ledgers. No Brain 1 mutation.",
     lines,

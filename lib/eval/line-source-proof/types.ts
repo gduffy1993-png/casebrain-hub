@@ -133,6 +133,7 @@ export type LineSourceProofReport = {
   generatedAt: string;
   disclaimer: string;
   bundleSourcePath: string;
+  bundleText?: string;
   method: string;
   lines: LineSourceProofRecord[];
   proofChainAppendix: CaseProofChainAppendix;

@@ -31,6 +31,14 @@ function digitalChaseLabel(hay: string): string | null {
     return "Message export / source device material";
   }
   if (/mg11|complainant|witness statement/i.test(hay)) return "Complainant MG11 / source material";
+  if (/master cctv|cctv full|full window/i.test(hay)) return "Master CCTV footage";
+  if (/continuity|provenance/i.test(hay) && /cctv|stills|camera/i.test(hay)) return "CCTV continuity / provenance";
+  if (/bwv|body[-\s]?worn/i.test(hay)) return "Full BWV export";
+  if (/custody|pace/i.test(hay)) return "Full custody record";
+  if (/interview/.test(hay) && /target|defendant|co-def/i.test(hay)) return "Target defendant interview";
+  if (/handle|attribution report/i.test(hay)) return "Handle attribution report";
+  if (/platform|encro|county/i.test(hay)) return "Platform / source extraction";
+  if (/call log/i.test(hay)) return "Call logs";
   if (/harassment|digital|phone|message/i.test(hay)) return "Outstanding digital disclosure material";
   return null;
 }
@@ -62,7 +70,7 @@ export function displayChaseBulletLine(line: string): string {
   return why ? `${core} — ${why}` : core;
 }
 
-type BundleFamily = "bwv" | "custody" | "drugs";
+type BundleFamily = "bwv" | "custody" | "drugs" | "cctv" | "cad" | "encro" | "abe";
 
 function bundleMentionsFamily(hay: string, family: BundleFamily): boolean {
   switch (family) {
@@ -72,6 +80,14 @@ function bundleMentionsFamily(hay: string, family: BundleFamily): boolean {
       return /custody|pace|detention|appropriate adult|safeguard/i.test(hay);
     case "drugs":
       return /\bdrug\b|pwits|intent to supply|drug continuity|drug\/cash|forensic continuity/i.test(hay);
+    case "cctv":
+      return /\bcctv\b|stills|footage|camera/i.test(hay);
+    case "cad":
+      return /\bcad\b|999|control.?room/i.test(hay);
+    case "encro":
+      return /encro|handle|platform|county.?lines/i.test(hay);
+    case "abe":
+      return /\babe\b|achieving best evidence/i.test(hay);
     default:
       return false;
   }
@@ -86,6 +102,14 @@ function lineMentionsFamily(line: string, family: BundleFamily): boolean {
       return /custody safeguard|pace safeguard|detention safeguard|appropriate adult|custody record/i.test(l);
     case "drugs":
       return /drug continuity|pwits|intent to supply|drug\/cash|drugs continuity/i.test(l);
+    case "cctv":
+      return /\bcctv\b|stills|footage|camera/i.test(l);
+    case "cad":
+      return /\bcad\b|999|control.?room/i.test(l);
+    case "encro":
+      return /encro|handle attribution|platform extraction|county.?lines/i.test(l);
+    case "abe":
+      return /\babe\b|achieving best evidence/i.test(l);
     default:
       return false;
   }
@@ -94,7 +118,7 @@ function lineMentionsFamily(line: string, family: BundleFamily): boolean {
 /** Drop wrong-family do-not-say / risk lines when bundle does not mention that material. */
 export function filterBundleFamilyWarnings(lines: string[], bundleHay: string): string[] {
   const hay = bundleHay.toLowerCase();
-  const families: BundleFamily[] = ["bwv", "custody", "drugs"];
+  const families: BundleFamily[] = ["bwv", "custody", "drugs", "cctv", "cad", "encro", "abe"];
   return lines
     .map((line) => line.trim())
     .filter(Boolean)

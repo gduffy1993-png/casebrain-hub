@@ -1,0 +1,35 @@
+{
+  "primaryItems": [
+    {
+      "label": "Full BWV export",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide Full BWV export (see MG6C/010) or confirm in writing why it is not available.",
+      "whyItMatters": "Full BWV export referred on schedule but not attached."
+    },
+    {
+      "label": "Full custody record",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide Full custody record (see MG6C/011) or confirm in writing why it is not available.",
+      "whyItMatters": "Full custody/PACE material needed beyond the served extract."
+    },
+    {
+      "label": "Interview audio",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide Interview audio (see MG6C/013) or confirm in writing why it is not available.",
+      "whyItMatters": "Outstanding on current disclosure — chase before fixing hearing position."
+    },
+    {
+      "label": "Interview transcript",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide Interview transcript (see MG6C/014) or confirm in writing why it is not available.",
+      "whyItMatters": "Outstanding on current disclosure — chase before fixing hearing position."
+    },
+    {
+      "label": "PACE safeguards detail",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide PACE safeguards detail (see MG6C/015) or confirm in writing why it is not available.",
+      "whyItMatters": "Full custody/PACE material needed beyond the served extract."
+    }
+  ],
+  "safeCourtLine": "The defence asks the court to record per MG6C that custody extract is served, BWV is referred only, and full custody record and interview material remain outstanding."
+}

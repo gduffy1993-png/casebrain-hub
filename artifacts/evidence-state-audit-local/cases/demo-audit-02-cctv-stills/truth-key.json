@@ -1,0 +1,97 @@
+{
+  "caseId": "demo-audit-02-cctv-stills",
+  "title": "DA-02 Devon Walsh — CCTV stills served / master footage missing",
+  "offenceFamily": "theft_retail",
+  "offenceWording": "Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968",
+  "profile": "needs_review",
+  "bundleStatus": "pdf_backed_demo",
+  "proofChainMode": "pdf_backed_controlled",
+  "evidenceItems": [
+    {
+      "evidence_item": "charge sheet",
+      "evidence_type": "charge",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "mg5",
+      "evidence_type": "mg5",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "mg6",
+      "evidence_type": "mg6",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "CCTV still images",
+      "evidence_type": "cctv",
+      "correct_evidence_state": "served",
+      "source_page_anchor": "6",
+      "chase_needed": false,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "master CCTV footage",
+      "evidence_type": "cctv",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "full CCTV export",
+      "evidence_type": "cctv",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "continuity/provenance",
+      "evidence_type": "cctv",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "audit trail",
+      "evidence_type": "cctv",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "recognition/ID basis",
+      "evidence_type": "cctv",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "must_not_say": [
+        "CCTV proves identity",
+        "CCTV proves offence"
+      ]
+    }
+  ],
+  "expectedChaseItems": [
+    "master CCTV footage",
+    "full CCTV export",
+    "continuity/provenance",
+    "audit trail"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "CCTV proves identity",
+    "CCTV proves offence",
+    "positive identification from stills",
+    "phone download",
+    "Encro handle"
+  ],
+  "blockingFailPatterns": [
+    "CCTV proves",
+    "guaranteed identification"
+  ]
+}
