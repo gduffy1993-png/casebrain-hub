@@ -37,6 +37,8 @@ export type EvidenceStateTruthKey = {
   expectedSendability?: string;
   mustNotSayGlobal?: string[];
   blockingFailPatterns?: string[];
+  /** When pdf_backed_controlled, a PDF in the case dir is the primary source and bundle-text is PDF-extracted. */
+  proofChainMode?: "text_only" | "pdf_backed_controlled";
 };
 
 /** Simulator v2 list-style truth key (converted to item-list internally). */
@@ -196,7 +198,7 @@ export type CaseAuditResult = {
   itemComparisons: ItemComparison[];
   blockingFailures: BlockingFailure[];
   warnings: AuditWarning[];
-  chaseDetail?: import("./chase-mapping").ChaseAccuracyDetail;
+  chaseDetail?: import("./compare").ChaseAccuracyDetail;
   metrics: Omit<
     AuditMetrics,
     "totalCases" | "totalEvidenceItems" | "matchedItems" | "unmatchedItems"
