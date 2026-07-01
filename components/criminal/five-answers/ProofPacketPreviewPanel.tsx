@@ -4,13 +4,10 @@ import { FileCheck2 } from "lucide-react";
 import { workflowPilotCard, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
 import { displayExistenceLabel } from "@/lib/criminal/five-answers/display-labels";
 import type { FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
-import { humanizeEvidenceLabel, sanitizeProofLine } from "./evidence-display";
+import { humanizeEvidenceLabel, sanitizeProofLine, buildGotRightPreviewItems } from "./evidence-display";
 
 function gotRightRows(rows: FiveAnswersEvidenceRow[]) {
-  return rows
-    .filter((row) => row.existence === "served")
-    .filter((row) => !/statement of offence|charge sheet/i.test(row.label))
-    .slice(0, 5);
+  return buildGotRightPreviewItems(rows);
 }
 
 function reviewRows(rows: FiveAnswersEvidenceRow[]) {
@@ -61,10 +58,10 @@ export function ProofPacketPreviewPanel({
           </p>
           {gotRight.length ? (
             <ul className="mt-2 space-y-2 text-xs text-slate-200">
-              {gotRight.map((row, i) => (
-                <li key={`${row.label}-${i}`}>
-                  <span className="font-medium">{humanizeEvidenceLabel(row.label, row.existence)}</span>
-                  <span className="text-slate-500"> — {displayExistenceLabel(row.existence)}</span>
+              {gotRight.map((item, i) => (
+                <li key={`${item.label}-${i}`}>
+                  <span className="font-medium">{item.label}</span>
+                  <span className="text-slate-500"> — {item.detail}</span>
                 </li>
               ))}
             </ul>

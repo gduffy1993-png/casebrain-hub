@@ -50,6 +50,19 @@ export function isPilotDemoUser(userId?: string | null): boolean {
   return getPilotDemoUserIds().includes(userId);
 }
 
+/** Loom / QA smoke accounts — hide trial chrome and use full-width matter desk. */
+export function isDemoPresentationEmail(email: string | null | undefined): boolean {
+  if (!email?.trim()) return false;
+  return /@casebrain\.qa\.smoke$/i.test(email.trim()) || /^demo\.loom\./i.test(email.trim());
+}
+
+export function isDemoPresentationUser(
+  userId?: string | null,
+  email?: string | null,
+): boolean {
+  return isPilotDemoUser(userId) || isDemoPresentationEmail(email);
+}
+
 /** Fixed Court Today diary anchor for demo accounts (local calendar: 1 June 2026). */
 export const PILOT_COURT_TODAY_ANCHOR = new Date(2026, 5, 1);
 

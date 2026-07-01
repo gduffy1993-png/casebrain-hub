@@ -1,8 +1,27 @@
 import type { EvidenceExistence } from "@/lib/criminal/five-answers/types";
+import { displayExistenceLabel } from "@/lib/criminal/five-answers/display-labels";
 
 /** UI-only human labels for evidence rows — does not change classification. */
 export function humanizeEvidenceLabel(label: string, existence: EvidenceExistence): string {
   const hay = `${label}`.toLowerCase();
+
+  if (/mg6|unused schedule|schedule clarification/i.test(hay)) {
+    if (existence === "missing" || existence === "referred_only") {
+      return "MG6 unused material — outstanding disclosure";
+    }
+    return "MG6 disclosure schedule on file";
+  }
+
+  if (/screenshot|message pack|whatsapp|sms/i.test(hay)) {
+    if (existence === "served") return "Screenshot / message pack served";
+    if (existence === "missing" || existence === "referred_only") {
+      return "Screenshot / message pack outstanding";
+    }
+  }
+
+  if (/subscriber|attribution|sim\b/i.test(hay) && (existence === "missing" || existence === "referred_only")) {
+    return "Subscriber / attribution data outstanding";
+  }
 
   if (/bwv|body\s*worn|bodycam|body-worn/i.test(hay)) {
     if (existence === "referred_only") return "BWV referred to, not served";
@@ -21,20 +40,26 @@ export function humanizeEvidenceLabel(label: string, existence: EvidenceExistenc
   }
 
   if (/phone|mobile|download|digital|extraction/i.test(hay)) {
+    if (existence === "served") return "Phone extraction summary on file";
     if (existence === "missing" || existence === "referred_only") {
       return "Full phone download outstanding";
     }
   }
 
-  if (/cctv|camera|footage/i.test(hay)) {
+  if (/cctv|stills|camera|footage|master export/i.test(hay)) {
+    if (/stills/i.test(hay) && (existence === "missing" || existence === "referred_only")) {
+      return "CCTV stills without master export log";
+    }
     if (existence === "referred_only") return "CCTV referred to, not served";
     if (existence === "missing") return "CCTV outstanding";
+    if (existence === "served") return "CCTV served";
   }
 
   const stripped = label
     .replace(/\s*[—–-]\s*MG6[^\s]*/gi, "")
     .replace(/^MG6C?\/[A-Z0-9]+\s*[—–-]?\s*/i, "")
-    .replace(/\bunused schedule clarification\b/gi, "")
+    .replace(/\bunused schedule clarification\b/gi, "unused material outstanding")
+    .replace(/\bmg6\s*\/\s*unused schedule clarification\b/gi, "MG6 unused material outstanding")
     .trim();
 
   return stripped.length > 8 ? stripped : label;
@@ -47,4 +72,29 @@ export function sanitizeProofLine(line: string): string {
     .replace(/\bdo not say\b/gi, "Do not overstate:")
     .replace(/\s{2,}/g, " ")
     .trim();
+}
+
+export type GotRightPreviewItem = {
+  label: string;
+  detail: string;
+  priority: number;
+};
+
+/** Positive source-backed findings for proof preview — presentation only. */
+export function buildGotRightPreviewItems(rows: { label: string; existence: EvidenceExistence }[]): GotRightPreviewItem[] {
+  const items: GotRightPreviewItem[] = [];
+  for (const row of rows) {
+    if (/statement of offence|charge sheet/i.test(row.label)) continue;
+    const label = humanizeEvidenceLabel(row.label, row.existence);
+    if (row.existence === "served") {
+      items.push({ label, detail: "Served on file", priority: 0 });
+    } else if (["referred_only", "missing", "not_safely_confirmed", "unknown"].includes(row.existence)) {
+      items.push({
+        label,
+        detail: `Correctly flagged — ${displayExistenceLabel(row.existence).toLowerCase()}`,
+        priority: row.existence === "referred_only" ? 1 : 2,
+      });
+    }
+  }
+  return items.sort((a, b) => a.priority - b.priority).slice(0, 5);
 }

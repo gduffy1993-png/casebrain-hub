@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Zap } from "lucide-react";
-import { isCriminalPilotMode } from "@/lib/pilot-mode";
+import { createClient } from "@/lib/supabase/browser";
+import { isCriminalPilotMode, isDemoPresentationUser } from "@/lib/pilot-mode";
 
 type TrialStatusResponse = {
   isBlocked: boolean;
@@ -21,12 +22,20 @@ export function TrialStatusBanner() {
   const pilotMode = isCriminalPilotMode();
   const [status, setStatus] = useState<TrialStatusResponse | null>(null);
   const [loading, setLoading] = useState(true);
+  const [hideForDemo, setHideForDemo] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
     async function fetchStatus() {
       try {
-        const res = await fetch("/api/trial-status");
+        const supabase = createClient();
+        const [{ data: auth }, res] = await Promise.all([
+          supabase.auth.getUser(),
+          fetch("/api/trial-status"),
+        ]);
+        if (!cancelled && isDemoPresentationUser(auth.user?.id, auth.user?.email)) {
+          setHideForDemo(true);
+        }
         if (!res.ok) return;
         const data = await res.json();
         if (!cancelled) setStatus(data);
@@ -40,7 +49,7 @@ export function TrialStatusBanner() {
     };
   }, []);
 
-  if (loading || !status) return null;
+  if (loading || hideForDemo || !status) return null;
 
   const isPro = status.plan === "pro" || status.plan === "starter";
   const limitIsFinite =

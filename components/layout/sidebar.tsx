@@ -44,6 +44,7 @@ import { createClient } from "@/lib/supabase/browser";
 import {
   CRIMINAL_PILOT_NAV_HREFS,
   isCriminalPilotMode,
+  isDemoPresentationUser,
   isPilotDemoUploadDisabled,
   shouldShowInternalDevTools,
 } from "@/lib/pilot-mode";
@@ -265,11 +266,13 @@ function SidebarContent() {
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
   const [selectedRoles, setSelectedRoles] = useState<Record<string, SolicitorRole>>({});
   const [userId, setUserId] = useState<string | null>(null);
+  const [userEmail, setUserEmail] = useState<string | null>(null);
 
   useEffect(() => {
     const supabase = createClient();
     supabase.auth.getUser().then(({ data: { user } }) => {
       setUserId(user?.id ?? null);
+      setUserEmail(user?.email ?? null);
     });
   }, []);
 
@@ -325,6 +328,12 @@ function SidebarContent() {
   const matterFocus =
     pilotNavActive &&
     (Boolean(pathname?.match(/^\/cases\/[^/]+/)) || pathname?.startsWith("/court-today"));
+
+  const hideForDemoDesk = matterFocus && isDemoPresentationUser(userId, userEmail);
+
+  if (hideForDemoDesk) {
+    return null;
+  }
 
   const visibleItems = NAV_ITEMS.filter((item) => {
     if (item.hideFromNav) return false;

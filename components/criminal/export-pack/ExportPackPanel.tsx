@@ -9,6 +9,7 @@ import { FIRM_SENDABILITY_LABELS } from "@/lib/criminal/trust/firm-facing-labels
 import { displayCopyBody } from "@/lib/criminal/five-answers/display-labels";
 import type { ExportPackModel, ExportPackSectionId } from "@/lib/criminal/export-pack/types";
 import { workflowPilotCard, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
+import { softenPilotReviewCopy } from "@/components/criminal/workflow/pilotReviewCopy";
 
 const COPY_SECTIONS: ExportPackSectionId[] = [
   "cps_chase",
@@ -89,7 +90,7 @@ export function ExportPackPanel({
             <Package className="h-4 w-4 text-emerald-400/90 shrink-0" />
             <h2 className={workflowSectionTitle}>Send / copy outputs</h2>
           </div>
-          <p className="text-[11px] text-slate-500 mt-1">{model.reviewNotice}</p>
+          <p className="text-[11px] text-slate-500 mt-1">{softenPilotReviewCopy(model.reviewNotice)}</p>
         </div>
         <H5FeedbackFlag
           caseId={caseId}

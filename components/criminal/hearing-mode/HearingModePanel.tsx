@@ -8,6 +8,7 @@ import { SOURCE_BACKED_COURT_NOTE_LABEL } from "@/lib/criminal/trust/firm-facing
 import { displayCopyBody } from "@/lib/criminal/five-answers/display-labels";
 import type { HearingModeModel } from "@/lib/criminal/hearing-mode/types";
 import { workflowPilotCard, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
+import { softenPilotReviewCopy } from "@/components/criminal/workflow/pilotReviewCopy";
 
 export function HearingModePanel({
   model,
@@ -37,7 +38,7 @@ export function HearingModePanel({
             <Clock className="h-4 w-4 text-amber-400/90 shrink-0" />
             <h2 className={workflowSectionTitle}>Prepare for court</h2>
           </div>
-          <p className="text-[11px] text-slate-500 mt-1">{model.reviewNotice}</p>
+          <p className="text-[11px] text-slate-500 mt-1">{softenPilotReviewCopy(model.reviewNotice)}</p>
         </div>
         <H5FeedbackFlag
           caseId={caseId}
