@@ -25,6 +25,7 @@ import { EvidenceTruthMapPanel } from "./EvidenceTruthMapPanel";
 import { OverviewAdvancedPanel } from "./OverviewAdvancedPanel";
 import { ProofPacketPreviewPanel } from "./ProofPacketPreviewPanel";
 import { FiveAnswersCompactSection } from "./FiveAnswersCompactSection";
+import { humanizeEvidenceLabel } from "./evidence-display";
 import type { EvidenceTraceRow, EvidenceTraceSection, FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
 import { useMemo, useState, type ReactNode } from "react";
 
@@ -243,7 +244,7 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
       preview: gaps.length
         ? gaps
             .slice(0, 2)
-            .map((r) => `${r.label} (${displayExistenceLabel(r.existence)})`)
+            .map((r) => `${humanizeEvidenceLabel(r.label, r.existence)} (${displayExistenceLabel(r.existence)})`)
             .join("; ")
         : "No key gaps listed.",
       testId: "five-answers-evidence-gaps",
@@ -251,7 +252,12 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
     {
       id: "4",
       title: "Chase",
-      preview: topChase.length ? topChase.slice(0, 2).join("; ") : "Check CPS Chase tab for drafts.",
+      preview: topChase.length
+        ? topChase
+            .slice(0, 2)
+            .map((label) => humanizeEvidenceLabel(label, "missing"))
+            .join("; ")
+        : "Check CPS Chase tab for drafts.",
       testId: "five-answers-chase",
     },
     {
