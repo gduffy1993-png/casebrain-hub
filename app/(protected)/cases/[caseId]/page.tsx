@@ -155,6 +155,39 @@ export default async function CaseDetailPage({ params }: CasePageParams) {
 
   // Handle missing case gracefully
   if (!caseRecord) {
+    const { data: existsElsewhere } = await supabase
+      .from("cases")
+      .select("id, title")
+      .eq("id", caseId)
+      .maybeSingle();
+
+    if (existsElsewhere) {
+      return (
+        <div className="flex items-center justify-center min-h-[420px] px-4">
+          <Card className="max-w-lg w-full">
+            <div className="p-6 space-y-4 text-center">
+              <p className="text-lg font-semibold text-slate-100">This case is in a different workspace</p>
+              <p className="text-sm text-slate-400 leading-relaxed">
+                You are signed in, but this matter belongs to another account — usually the Taylor Loom demo.
+                Sign out, then sign in with the demo credentials before opening this link.
+              </p>
+              <div className="flex flex-wrap justify-center gap-2 pt-2">
+                <Link href="/sign-in">
+                  <Button variant="primary">Sign in as demo account</Button>
+                </Link>
+                <Link href="/cases">
+                  <Button variant="outline">Go to your cases</Button>
+                </Link>
+              </div>
+              <p className="text-[11px] text-slate-500 pt-2">
+                Demo: demo.loom.taylor.1782877263@casebrain.qa.smoke
+              </p>
+            </div>
+          </Card>
+        </div>
+      );
+    }
+
     notFound();
   }
 
