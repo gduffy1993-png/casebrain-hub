@@ -3,6 +3,8 @@
  * Enable with NEXT_PUBLIC_CRIMINAL_PILOT_MODE=true (or 1/yes/on).
  */
 
+import { buildDemoPresentationCaseHref } from "@/lib/criminal/demo-presentation-polish";
+
 export const CRIMINAL_PILOT_NAV_HREFS = [
   "/court-today",
   "/cases",
@@ -291,7 +293,10 @@ export function filterCourtTodayCasesForPilotUser<
   return filterPilotVisibleCases(cases);
 }
 
-export function getPostLoginPath(): string {
+export function getPostLoginPath(options?: { email?: string | null }): string {
+  if (options?.email && isDemoPresentationEmail(options.email)) {
+    return buildDemoPresentationCaseHref();
+  }
   return isCriminalPilotMode() ? "/court-today" : "/dashboard";
 }
 

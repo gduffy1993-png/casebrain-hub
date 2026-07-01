@@ -537,7 +537,7 @@ async function main(): Promise<void> {
     const navTabs = [
       { id: "today", tab: "today", file: "03-today.png", must: /today|hearing|provisional|war room|do not/i },
       { id: "chase", tab: "disclosure-chase", file: "04-chase.png", must: /chase|disclosure|outstanding|CPS|priority|missing/i },
-      { id: "summary", tab: "summary", file: "05-summary.png", must: /summary|matter|provisional|case|theory/i },
+      { id: "summary", tab: "summary", file: "05-summary.png", must: /summary|client|provisional|case|theory/i },
     ];
     for (const t of navTabs) {
       await desktop.goto(caseTabHref(caseId, t.tab), { waitUntil: "domcontentloaded" });
@@ -553,8 +553,52 @@ async function main(): Promise<void> {
       } else {
         steps.push({ id: `${t.id}_accessible`, status: "pass" });
       }
+
+      if (t.id === "today") {
+        const wrongFamily = /do not import bwv|custody safeguard|drug continuity|drugs continuity/i.test(body);
+        steps.push({
+          id: "court_tab_no_wrong_family_warnings",
+          status: wrongFamily ? "fail" : "pass",
+          detail: wrongFamily ? "BWV/custody/drugs warning on Taylor court tab" : undefined,
+        });
+      }
+
+      if (t.id === "chase") {
+        const genericMg6 = /mg6\s*\/\s*unused schedule clarification|mG6\s*\/\s*unused/i.test(body);
+        steps.push({
+          id: "chase_no_generic_mg6_labels",
+          status: genericMg6 ? "fail" : "pass",
+          detail: genericMg6 ? "Generic MG6 label still visible on chase" : undefined,
+        });
+      }
+
+      if (t.id === "summary") {
+        const hasClientSummary = /client-safe|client summary|provisional/i.test(body) && /harassment|Taylor|message|disclosure/i.test(body);
+        steps.push({
+          id: "summary_client_safe_visible",
+          status: hasClientSummary ? "pass" : "warn",
+          detail: hasClientSummary ? undefined : "Client-safe summary not prominent",
+        });
+      }
+
       await desktop.screenshot({ path: path.join(OUT_DIR, t.file), fullPage: true });
     }
+
+    await desktop.goto(caseTabHref(caseId, "file"), { waitUntil: "domcontentloaded" });
+    await waitShell(desktop, "tab-file");
+    const fileBody = await desktop.locator("body").innerText();
+    const viewVisible = await desktop.getByTestId("case-file-view-button").isVisible().catch(() => false);
+    const excerptVisible = await desktop.getByTestId("bundle-source-excerpt").isVisible().catch(() => false);
+    steps.push({
+      id: "file_view_button_visible",
+      status: viewVisible ? "pass" : "fail",
+      detail: viewVisible ? undefined : "File View button missing",
+    });
+    steps.push({
+      id: "file_source_excerpt_visible",
+      status: excerptVisible || /extracted bundle text|Taylor|screenshot/i.test(fileBody) ? "pass" : "warn",
+      detail: excerptVisible ? undefined : "Bundle text excerpt not shown on File tab",
+    });
 
     const nav = desktop.getByTestId("case-workflow-nav");
     if (await nav.isVisible().catch(() => false)) {

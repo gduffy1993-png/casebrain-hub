@@ -97,10 +97,18 @@ export type PilotTodayDashboardProps = {
   view: PilotTodayDashboardView;
   deskChargeLine?: string | null;
   moreDetail?: ReactNode;
+  /** Court tab: hide file/papers cards and emphasise hearing lines. */
+  courtFocused?: boolean;
 };
 
-/** Criminal pilot Today tab — 4 KPI tiles + 6-card cockpit grid; layout only. */
-export function PilotTodayDashboard({ caseId, view, deskChargeLine, moreDetail }: PilotTodayDashboardProps) {
+/** Criminal pilot Today tab — 4 KPI tiles + cockpit grid; layout only. */
+export function PilotTodayDashboard({
+  caseId,
+  view,
+  deskChargeLine,
+  moreDetail,
+  courtFocused = true,
+}: PilotTodayDashboardProps) {
   const [moreOpen, setMoreOpen] = useState(false);
   const buildTabHref = usePilotMatterTabHref();
   const chaseHref = buildTabHref(caseId, "disclosure-chase");
@@ -108,16 +116,18 @@ export function PilotTodayDashboard({ caseId, view, deskChargeLine, moreDetail }
   const papersHref = buildTabHref(caseId, "papers");
 
   const listCap = pilotListCap(view.documentCount);
-  const keyRiskRaw = view.collapseRisks[0] ?? "—";
   const sayThisItems = dedupePilotLines(view.sayThis, view.safeCourtLine).slice(0, listCap);
-  const doNotItems = dedupePilotLines(view.doNotOverstate, keyRiskRaw).slice(0, listCap);
+  const doNotItems = dedupePilotLines(view.doNotOverstate).slice(0, listCap);
   const chaseItems = dedupePilotLines(view.chaseItems).slice(0, listCap);
   const askCourtItems = dedupePilotLines(view.askCourtToRecord, view.safeCourtLine).slice(0, listCap);
   const nextMoves = dedupePilotLines(view.nextHearingMoves).slice(0, 3);
 
-  const keyRisk = keyRiskRaw;
   const topIssue = chaseItems[0] ?? view.collapseRisks[1] ?? "—";
   const nextStep = nextMoves[0] ?? "—";
+  const safeLine =
+    view.safeCourtLine && view.safeCourtLine !== "—"
+      ? view.safeCourtLine.replace(/\s+/g, " ").trim()
+      : "Provisional — review served papers before relying on any line.";
   const allegationDisplay = resolvePilotChargeDisplay(view.caseSummary.allegation, deskChargeLine);
   const positionDisplay = displayPilotSnapshotPosition(view.positionStatus, view.readiness);
 
@@ -126,8 +136,8 @@ export function PilotTodayDashboard({ caseId, view, deskChargeLine, moreDetail }
       <div className={workflowPilotKpiStrip}>
         {[
           { label: "Readiness", value: view.readiness },
-          { label: "Key risk", value: keyRisk },
-          { label: "Top issue", value: topIssue },
+          { label: "Safe court line", value: safeLine },
+          { label: "Top chase", value: topIssue },
           { label: "Next step", value: nextStep },
         ].map((tile) => (
           <div key={tile.label} className={workflowPilotKpiCell}>
@@ -161,12 +171,14 @@ export function PilotTodayDashboard({ caseId, view, deskChargeLine, moreDetail }
           icon={<Scale className="h-3.5 w-3.5 text-blue-400" />}
           accentClass="border-blue-700/50"
         >
-          <TrustSectionChrome title="Solicitor lines" sourceState="provisional" />
+          <TrustSectionChrome title="Source-backed court line" sourceState="provisional" />
+          <p className="text-xs text-slate-200 leading-relaxed line-clamp-5">{safeLine}</p>
           {sayThisItems.length ? (
-            <BulletList items={sayThisItems} emptyLabel="No solicitor lines on the current brief." />
-          ) : (
-            <p className="text-xs text-slate-500">Safe line is in the strip above — add say-this lines from the brief.</p>
-          )}
+            <div className="mt-3 border-t border-slate-700/60 pt-2">
+              <p className={`text-[10px] ${workflowMuted} mb-1.5`}>Say this</p>
+              <BulletList items={sayThisItems} emptyLabel="No solicitor lines on the current brief." />
+            </div>
+          ) : null}
         </CockpitCard>
 
         <CockpitCard
@@ -192,6 +204,8 @@ export function PilotTodayDashboard({ caseId, view, deskChargeLine, moreDetail }
           <DontSaySafetyBox items={doNotItems} compact />
         </CockpitCard>
 
+        {!courtFocused ? (
+          <>
         <CockpitCard
           title="Papers snapshot"
           icon={<FileText className="h-3.5 w-3.5 text-slate-400" />}
@@ -216,6 +230,8 @@ export function PilotTodayDashboard({ caseId, view, deskChargeLine, moreDetail }
             Open File →
           </Link>
         </CockpitCard>
+          </>
+        ) : null}
       </div>
 
       {moreDetail ? (

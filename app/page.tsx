@@ -42,7 +42,7 @@ export default function HomePage() {
       } = await supabase.auth.getUser();
       setIsAuthenticated(!!user);
       if (user) {
-        router.replace(getPostLoginPath());
+        router.replace(getPostLoginPath({ email: user.email }));
       }
     };
     checkAuth();

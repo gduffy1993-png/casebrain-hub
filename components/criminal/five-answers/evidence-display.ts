@@ -88,9 +88,26 @@ export type GotRightPreviewItem = {
 /** Positive source-backed findings for proof preview — presentation only. */
 export function buildGotRightPreviewItems(rows: { label: string; existence: EvidenceExistence }[]): GotRightPreviewItem[] {
   const items: GotRightPreviewItem[] = [];
+  const seen = new Set<string>();
+  const hasFullDownloadMissing = rows.some(
+    (r) => /full phone download/i.test(r.label) && r.existence === "missing",
+  );
+
   for (const row of rows) {
     if (/statement of offence|charge sheet/i.test(row.label)) continue;
+    if (
+      row.existence === "referred_only" &&
+      /phone extraction summary|summary only/i.test(row.label) &&
+      hasFullDownloadMissing
+    ) {
+      continue;
+    }
+
     const label = humanizeEvidenceLabel(row.label, row.existence);
+    const key = label.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+
     if (row.existence === "served") {
       items.push({ label, detail: "Served on file", priority: 0 });
     } else if (["referred_only", "missing", "not_safely_confirmed", "unknown"].includes(row.existence)) {
@@ -101,5 +118,5 @@ export function buildGotRightPreviewItems(rows: { label: string; existence: Evid
       });
     }
   }
-  return items.sort((a, b) => a.priority - b.priority).slice(0, 5);
+  return items.sort((a, b) => a.priority - b.priority).slice(0, 4);
 }

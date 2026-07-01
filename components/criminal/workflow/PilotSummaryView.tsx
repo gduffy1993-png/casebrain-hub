@@ -7,16 +7,13 @@ import { CaseSummaryPanel } from "@/components/cases/CaseSummaryPanel";
 import { Button } from "@/components/ui/button";
 import { DontSaySafetyBox } from "@/components/criminal/trust/DontSaySafetyBox";
 import { TrustFeedbackPanel } from "@/components/criminal/trust/TrustFeedbackPanel";
-import {
-  MatterConfidenceHeader,
-  TrustSectionChrome,
-} from "@/components/criminal/trust/MatterConfidenceHeader";
+import { TrustSectionChrome } from "@/components/criminal/trust/MatterConfidenceHeader";
 import { SourceStateBadge } from "@/components/criminal/trust/SourceStateBadge";
-import { SENDABILITY_DISPLAY } from "@/lib/criminal/matter-confidence/matter-confidence-types";
 import { buildCopySafeResult } from "@/lib/criminal/trust/copy-safe";
 import { usePilotMatterTabHref } from "./pilotDeskNavContext";
 import { useMatterBrief } from "./useMatterBrief";
 import { workflowPilotCard, workflowSectionTitle } from "./workflowUi";
+import { displayChaseBulletLine } from "@/lib/criminal/demo-presentation-polish";
 import { displayPilotStripCharge, displayPilotStripClient } from "./workflowPilotDisplay";
 
 export type PilotSummaryViewProps = {
@@ -31,19 +28,24 @@ function MatterBriefSectionBlock({
   paragraph,
   bullets,
   sourceState = "provisional",
+  polishChaseBullets = false,
 }: {
   title: string;
   paragraph?: string;
   bullets?: string[];
   sourceState?: "provisional" | "needs_review" | "not_safely_confirmed";
+  polishChaseBullets?: boolean;
 }) {
+  const displayBullets = polishChaseBullets
+    ? (bullets ?? []).map((b) => displayChaseBulletLine(b))
+    : bullets;
   return (
     <section className={`${workflowPilotCard} px-4 py-3 space-y-2`}>
       <TrustSectionChrome title={title} sourceState={sourceState} />
       {paragraph ? <p className="text-sm text-slate-300 leading-relaxed">{paragraph}</p> : null}
-      {bullets?.length ? (
+      {displayBullets?.length ? (
         <ul className="list-disc pl-4 space-y-1.5 text-xs text-slate-400">
-          {bullets.map((b, i) => (
+          {displayBullets.map((b, i) => (
             <li key={i} className="leading-relaxed">
               {b}
             </li>
@@ -108,26 +110,26 @@ export function PilotSummaryView({
     }
   };
 
+  const orderedSections = useMemo(() => {
+    if (!matterBrief) return [];
+    const client = matterBrief.sections.find((s) => s.id === "client");
+    const rest = matterBrief.sections.filter((s) => s.id !== "client");
+    return client ? [client, ...rest] : matterBrief.sections;
+  }, [matterBrief]);
+
   return (
     <div className="space-y-3" data-testid="pilot-summary-view">
-      {matterConfidence ? <MatterConfidenceHeader confidence={matterConfidence} /> : null}
-
       <div className={`${workflowPilotCard} px-4 py-3`}>
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-2">
-              <p className={workflowSectionTitle}>Matter brief</p>
+              <p className={workflowSectionTitle}>Client summary</p>
               <SourceStateBadge state="provisional" />
             </div>
             <h2 className="text-base font-semibold text-slate-100 mt-1">{heading}</h2>
             <p className="text-xs text-slate-500 mt-2">
-              Assembled from Today, Papers, and Chase — provisional; solicitor review required.
+              Client-safe explanation — provisional; solicitor review before sending.
             </p>
-            {matterConfidence ? (
-              <p className="text-[10px] text-slate-500 mt-1">
-                Summary copy: {SENDABILITY_DISPLAY[matterConfidence.summarySendability]}
-              </p>
-            ) : null}
           </div>
           <Button
             type="button"
@@ -141,6 +143,9 @@ export function PilotSummaryView({
             {copied === "client" ? "Copied" : "Copy client-safe summary"}
           </Button>
         </div>
+        {!loading && clientSafeText ? (
+          <p className="mt-3 text-sm text-slate-200 leading-relaxed whitespace-pre-wrap">{clientSafeText}</p>
+        ) : null}
       </div>
 
       {!loading && doNotOverstate.length ? (
@@ -154,13 +159,16 @@ export function PilotSummaryView({
         </div>
       ) : matterBrief ? (
         <>
-          {matterBrief.sections.map((section) => (
+          {orderedSections
+            .filter((section) => section.id !== "client")
+            .map((section) => (
             <MatterBriefSectionBlock
               key={section.id}
               title={section.title}
               paragraph={section.paragraph}
               bullets={section.bullets}
               sourceState={section.id === "client" ? "provisional" : "needs_review"}
+              polishChaseBullets={section.id === "chase"}
             />
           ))}
 

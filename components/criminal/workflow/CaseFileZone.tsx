@@ -32,7 +32,7 @@ export function CaseFileZone({
 
   const inner = (
     <div className="space-y-3">
-      <PilotCaseDocumentsPanel documents={documents} pilotDark={pilotMode && embedInShell} />
+      <PilotCaseDocumentsPanel documents={documents} caseId={caseId} pilotDark={pilotMode && embedInShell} />
       {!pilotMode ? (
         <>
           <HearingOutcomeNote caseId={caseId} />

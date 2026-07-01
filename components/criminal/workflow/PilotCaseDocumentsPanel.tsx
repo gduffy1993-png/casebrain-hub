@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { FileText } from "lucide-react";
 import { CaseFilesList } from "@/components/cases/CaseFilesList";
 import { workflowCard, workflowPilotSurfaceCard } from "./workflowUi";
@@ -7,12 +8,38 @@ import type { CaseWorkflowDocument } from "./caseWorkflowDocuments";
 
 export function PilotCaseDocumentsPanel({
   documents,
+  caseId,
   pilotDark = false,
 }: {
   documents: CaseWorkflowDocument[];
+  caseId?: string;
   pilotDark?: boolean;
 }) {
   const shell = pilotDark ? workflowPilotSurfaceCard : workflowCard;
+  const [sourceExcerpt, setSourceExcerpt] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!caseId) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch(`/api/criminal/${caseId}/bundle-source`, { credentials: "include" });
+        const json = (await res.json()) as {
+          ok?: boolean;
+          data?: { frontMatterScan?: string; combinedTextLength?: number };
+        };
+        if (cancelled || !json.ok || !json.data?.frontMatterScan?.trim()) return;
+        const text = json.data.frontMatterScan.trim();
+        setSourceExcerpt(text.length > 2400 ? `${text.slice(0, 2400)}…` : text);
+      } catch {
+        /* non-fatal */
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [caseId]);
+
   return (
     <section
       className={`${shell} overflow-hidden`}
@@ -40,10 +67,29 @@ export function PilotCaseDocumentsPanel({
         </div>
       </header>
       <div
-        className={`px-4 py-4 ${pilotDark ? "bg-slate-950/40" : "bg-slate-50/40"}`}
+        className={`px-4 py-4 space-y-4 ${pilotDark ? "bg-slate-950/40" : "bg-slate-50/40"}`}
         data-testid="case-files-expanded"
       >
         <CaseFilesList documents={documents} />
+        {sourceExcerpt ? (
+          <div
+            className={`rounded-lg border p-3 ${
+              pilotDark ? "border-slate-700/70 bg-slate-900/50" : "border-slate-200 bg-white"
+            }`}
+            data-testid="bundle-source-excerpt"
+          >
+            <p className={`text-[10px] font-semibold uppercase tracking-wider ${pilotDark ? "text-slate-500" : "text-slate-500"}`}>
+              Extracted bundle text (preview)
+            </p>
+            <pre
+              className={`mt-2 max-h-72 overflow-auto whitespace-pre-wrap text-[11px] leading-relaxed ${
+                pilotDark ? "text-slate-300" : "text-slate-700"
+              }`}
+            >
+              {sourceExcerpt}
+            </pre>
+          </div>
+        ) : null}
       </div>
     </section>
   );

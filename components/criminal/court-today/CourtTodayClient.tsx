@@ -6,7 +6,7 @@ import { Loader2, Scale } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { workflowCard, workflowPilotShell } from "@/components/criminal/workflow/workflowUi";
 import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
-import { CourtTodayReviewSection } from "./CourtTodayReviewSection";
+import { DemoPresentationLandingRedirect } from "./DemoPresentationLandingRedirect";
 import { CourtTodayPilotSplit } from "./CourtTodayPilotSplit";
 import { CourtTodayDiarySection } from "./CourtTodayDiarySection";
 import { resolveCourtCaseId } from "./courtCaseBrief";
@@ -358,6 +358,7 @@ export function CourtTodayClient() {
       className={`${pilotDashboardShell ? `${workflowPilotShell} space-y-5` : "space-y-5"} max-w-[1600px]`}
       data-testid="court-today"
     >
+      <DemoPresentationLandingRedirect />
       <header className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <div className="flex items-center gap-2">

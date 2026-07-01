@@ -67,6 +67,10 @@ import { useEvidenceChangesEnabled } from "@/lib/criminal/evidence-change-detect
 import { useExportsEnabled } from "@/lib/criminal/disclosure-export/export-flag";
 import { buildClientStressResult } from "@/lib/criminal/client-stress-test/build-client-stress-result";
 import { loadClientStressSelection } from "@/lib/criminal/client-stress-test/client-stress-selection-storage";
+import {
+  displayChaseBulletLine,
+  filterBundleFamilyWarnings,
+} from "@/lib/criminal/demo-presentation-polish";
 
 const ABOVE_FOLD_LIST_CAP = 5;
 
@@ -596,8 +600,24 @@ export function HearingWarRoom({
   const controlRoomHref = buildControlRoomHref(caseId);
   const headerLoading = snapshotLoading || bundleLoading;
 
+  const bundleContextHay = useMemo(
+    () =>
+      [
+        bundleSource?.frontMatterScan ?? "",
+        bundleSource?.snippets?.mg5 ?? "",
+        bundleSource?.snippets?.mg6 ?? "",
+        bundleSource?.snippets?.exhibits ?? "",
+        allegation,
+        brief.bundleHealth ?? "",
+      ].join(" "),
+    [bundleSource, allegation, brief.bundleHealth],
+  );
+
   const pilotTodayView = useMemo((): PilotTodayDashboardView | null => {
     if (!pilotMode || loading) return null;
+    const filteredDno = filterBundleFamilyWarnings(brief.doNotOverstate, bundleContextHay);
+    const filteredRisks = filterBundleFamilyWarnings(brief.collapseRisks, bundleContextHay);
+    const filteredChase = filterBundleFamilyWarnings(chaseItemsAll, bundleContextHay).map(displayChaseBulletLine);
     return {
       caseSummary: {
         clientLabel,
@@ -611,11 +631,11 @@ export function HearingWarRoom({
       positionStatus: brief.positionStatus,
       safeCourtLine: brief.safePositionToday,
       sayThis: brief.sayThis,
-      doNotOverstate: brief.doNotOverstate,
+      doNotOverstate: filteredDno,
       askCourtToRecord: brief.askCourtToRecord,
-      collapseRisks: brief.collapseRisks,
+      collapseRisks: filteredRisks,
       nextHearingMoves: brief.nextHearingMoves,
-      chaseItems: chaseItemsAll,
+      chaseItems: filteredChase,
       documentCount: Math.max(bundleSource?.documentCount ?? 0, snapshot?.analysis.docCount ?? 0),
     };
   }, [
@@ -631,6 +651,7 @@ export function HearingWarRoom({
     chaseItemsAll,
     bundleSource,
     snapshot,
+    bundleContextHay,
   ]);
 
   if (embedInShell && pilotMode) {

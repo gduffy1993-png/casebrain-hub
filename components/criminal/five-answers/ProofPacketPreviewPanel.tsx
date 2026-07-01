@@ -10,11 +10,19 @@ function gotRightRows(rows: FiveAnswersEvidenceRow[]) {
   return buildGotRightPreviewItems(rows);
 }
 
-function reviewRows(rows: FiveAnswersEvidenceRow[]) {
+function reviewRows(rows: FiveAnswersEvidenceRow[], gotRight: ReturnType<typeof buildGotRightPreviewItems>) {
+  const gotRightKeys = new Set(gotRight.map((g) => g.label.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim()));
   return rows
-    .filter((row) => ["referred_only", "missing", "not_safely_confirmed", "unknown"].includes(row.existence))
+    .filter((row) => ["not_safely_confirmed", "unknown"].includes(row.existence))
     .filter((row) => !/statement of offence|charge sheet/i.test(row.label))
-    .slice(0, 5);
+    .filter((row) => {
+      const key = humanizeEvidenceLabel(row.label, row.existence)
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, " ")
+        .trim();
+      return !gotRightKeys.has(key);
+    })
+    .slice(0, 4);
 }
 
 function refusalLines(warnings: string[]) {
@@ -34,7 +42,7 @@ export function ProofPacketPreviewPanel({
 }) {
   const gotRight = gotRightRows(rows);
   const refused = refusalLines(warnings);
-  const needsReview = reviewRows(rows);
+  const needsReview = reviewRows(rows, gotRight);
 
   return (
     <section

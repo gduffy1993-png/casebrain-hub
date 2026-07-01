@@ -41,7 +41,7 @@ export default function SignUpPage() {
       }
 
       // If session exists, user is automatically signed in
-      router.push(getPostLoginPath());
+      router.push(getPostLoginPath({ email }));
       router.refresh();
     } catch (err) {
       setError("An unexpected error occurred");

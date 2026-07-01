@@ -67,7 +67,7 @@ export function CaseWorkflowShell({
         />
       ) : null}
       {showDocumentsOnly ? (
-        <PilotCaseDocumentsPanel documents={documents} pilotDark={pilotMode} />
+        <PilotCaseDocumentsPanel documents={documents} caseId={caseId} pilotDark={pilotMode} />
       ) : (
         children
       )}

@@ -56,6 +56,7 @@ import {
   pilotDisclosureChaseStorageKey,
   shouldShowInternalDevTools,
 } from "@/lib/pilot-mode";
+import { displayChaseCardLabel } from "@/lib/criminal/demo-presentation-polish";
 import { createClient } from "@/lib/supabase/browser";
 
 const LOCAL_STORAGE_PREFIX = "casebrain:disclosure-chase:";
@@ -208,6 +209,8 @@ function ChaseItemCard({
   const labelClass = pilotEmbed ? "text-slate-500" : "text-slate-500";
   const valueClass = pilotEmbed ? "text-slate-200 font-medium" : "text-slate-800 font-medium";
 
+  const displayLabel = displayChaseCardLabel(item);
+
   const itemSourceState = inferChaseItemSourceState({
     label: item.label,
     source: item.source,
@@ -249,7 +252,7 @@ function ChaseItemCard({
     >
       <div className={`px-4 py-3 border-b ${pilotEmbed ? "border-slate-700/60" : "border-slate-100"} flex flex-wrap items-start justify-between gap-2`}>
         <div className="min-w-0">
-          <h3 className={titleClass}>{item.label}</h3>
+          <h3 className={titleClass}>{displayLabel}</h3>
           <p className={`${bodyClass} mt-1 line-clamp-2`}>{item.whyItMatters}</p>
         </div>
         <Badge variant={statusBadgeVariant(status)} size="sm">
@@ -331,12 +334,13 @@ function DetailPanel({
   const titleClass = pilotEmbed ? "text-sm font-semibold text-slate-100" : "text-sm font-semibold text-slate-900";
   const bodyClass = pilotEmbed ? "text-sm text-slate-300" : "text-sm text-slate-800";
   const labelClass = pilotEmbed ? "text-slate-500" : "text-slate-500";
+  const displayLabel = displayChaseCardLabel(item);
   return (
     <aside className={`${shell} sticky top-4`}>
       <header
         className={`px-4 py-3 border-b ${pilotEmbed ? "border-slate-700/60 bg-slate-900/80" : "border-slate-100 bg-slate-50/80"}`}
       >
-        <h2 className={titleClass}>{item.label}</h2>
+        <h2 className={titleClass}>{displayLabel}</h2>
         <Badge variant={statusBadgeVariant(status)} size="sm" className="mt-2">
           {status}
         </Badge>
