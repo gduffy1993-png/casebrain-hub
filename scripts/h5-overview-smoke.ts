@@ -586,6 +586,8 @@ async function main(): Promise<void> {
 
     await desktop.goto(caseTabHref(caseId, "file"), { waitUntil: "domcontentloaded" });
     await waitShell(desktop, "tab-file");
+    await desktop.getByTestId("pilot-documents-panel").scrollIntoViewIfNeeded({ timeout: 15_000 }).catch(() => undefined);
+    await desktop.waitForTimeout(8000);
     const fileBody = await desktop.locator("body").innerText();
     const viewVisible = await desktop.getByTestId("case-file-view-button").isVisible().catch(() => false);
     const excerptVisible = await desktop.getByTestId("bundle-source-excerpt").isVisible().catch(() => false);

@@ -17,6 +17,29 @@ export function PilotCaseDocumentsPanel({
 }) {
   const shell = pilotDark ? workflowPilotSurfaceCard : workflowCard;
   const [sourceExcerpt, setSourceExcerpt] = useState<string | null>(null);
+  const [resolvedDocs, setResolvedDocs] = useState(documents);
+
+  useEffect(() => {
+    setResolvedDocs(documents);
+  }, [documents]);
+
+  useEffect(() => {
+    if (documents.length > 0 || !caseId) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch(`/api/cases/${caseId}/documents`, { credentials: "include" });
+        const json = (await res.json()) as { documents?: CaseWorkflowDocument[] };
+        if (cancelled || !json.documents?.length) return;
+        setResolvedDocs(json.documents);
+      } catch {
+        /* non-fatal */
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [caseId, documents.length]);
 
   useEffect(() => {
     if (!caseId) return;
@@ -60,9 +83,9 @@ export function PilotCaseDocumentsPanel({
           </h2>
           <p className={`text-[11px] ${pilotDark ? "text-slate-500" : "text-slate-500"}`}>
             Source bundle for this matter.
-            {documents.length === 0
+            {resolvedDocs.length === 0
               ? " No documents on this matter yet."
-              : ` ${documents.length} file${documents.length === 1 ? "" : "s"} — open PDF with View.`}
+              : ` ${resolvedDocs.length} file${resolvedDocs.length === 1 ? "" : "s"} — open PDF with View.`}
           </p>
         </div>
       </header>
@@ -70,7 +93,7 @@ export function PilotCaseDocumentsPanel({
         className={`px-4 py-4 space-y-4 ${pilotDark ? "bg-slate-950/40" : "bg-slate-50/40"}`}
         data-testid="case-files-expanded"
       >
-        <CaseFilesList documents={documents} />
+        <CaseFilesList documents={resolvedDocs} />
         {sourceExcerpt ? (
           <div
             className={`rounded-lg border p-3 ${
