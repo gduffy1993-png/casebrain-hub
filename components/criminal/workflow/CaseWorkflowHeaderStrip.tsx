@@ -22,6 +22,17 @@ import { buildMatterConfidence } from "@/lib/criminal/matter-confidence/build-ma
 import { SOURCE_BACKED_COURT_NOTE_LABEL } from "@/lib/criminal/trust/firm-facing-labels";
 import { MatterConfidenceHeader } from "@/components/criminal/trust/MatterConfidenceHeader";
 import { useCaseWorkflowActiveTab } from "./useCaseWorkflowActiveTab";
+import type { MatterConfidenceResult } from "@/lib/criminal/matter-confidence/matter-confidence-types";
+
+const LEVEL_VARIANTS: Record<
+  MatterConfidenceResult["level"],
+  "success" | "warning" | "secondary" | "danger"
+> = {
+  safe: "success",
+  provisional: "secondary",
+  needs_review: "warning",
+  blocked: "danger",
+};
 
 type StripState = {
   client: string;
@@ -155,58 +166,27 @@ export function CaseWorkflowHeaderStrip({
 
   if (pilot) {
     return (
-      <div className={`${workflowPilotSixtyStrip} px-3 py-2.5`} data-testid="case-workflow-header-strip">
-        <div className="grid gap-2 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)_minmax(0,1.4fr)] lg:items-center">
-          <div className="min-w-0 space-y-0.5">
+      <div className={`${workflowPilotSixtyStrip} px-3 py-2`} data-testid="case-workflow-header-strip">
+        <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-1.5">
+          <div className="min-w-0 flex-1 space-y-0.5">
             <p className="text-sm font-semibold text-slate-50 truncate">{strip.client}</p>
-            <p className="text-xs text-slate-400 line-clamp-2">{strip.charge}</p>
+            <p className="text-xs text-slate-400 line-clamp-1">{strip.charge}</p>
           </div>
-          <div className="flex flex-wrap items-center gap-2 text-xs text-slate-300 min-w-0">
+          <div className="flex flex-wrap items-center gap-2 text-xs text-slate-300 min-w-0 shrink-0">
             <span className="font-medium text-slate-200">{strip.court}</span>
             <span aria-hidden="true" className="text-slate-600">
               ·
             </span>
             <span className="tabular-nums">{strip.hearing}</span>
-            <Badge variant={healthBadge.variant} size="sm">
-              {healthBadge.label}
+            <Badge variant={LEVEL_VARIANTS[matterConfidence.level]} size="sm">
+              {matterConfidence.label}
             </Badge>
-            {strip.bail ? (
-              <Badge variant="secondary" size="sm" className="bg-slate-800 text-slate-200 border-slate-600">
-                Bail: {strip.bail}
-              </Badge>
-            ) : null}
-            {strip.funding ? (
-              <Badge variant="secondary" size="sm" className="bg-slate-800 text-slate-200 border-slate-600">
-                {strip.funding}
-              </Badge>
-            ) : null}
-            {strip.safeguard ? (
-              <Badge variant="warning" size="sm">
-                {strip.safeguard}
-              </Badge>
-            ) : null}
-          </div>
-          <div className="min-w-0 lg:border-l lg:border-slate-700/70 lg:pl-3">
-            <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">{SOURCE_BACKED_COURT_NOTE_LABEL}</p>
-            <p
-              className={`text-xs text-slate-300 mt-0.5 italic leading-snug ${
-                safeLineExpanded ? "" : "line-clamp-2"
-              }`}
-            >
-              {safeLineText}
-            </p>
-            {safeLineClamped ? (
-              <button
-                type="button"
-                className="text-[10px] font-medium text-blue-400/90 hover:text-blue-300 mt-0.5"
-                onClick={() => setSafeLineExpanded((v) => !v)}
-              >
-                {safeLineExpanded ? "Show less" : "Show more"}
-              </button>
-            ) : null}
-            {readinessLine ? <p className="text-[11px] text-amber-400/90 mt-1 line-clamp-1">{readinessLine}</p> : null}
           </div>
         </div>
+        <p className="text-xs text-slate-400 mt-1.5 line-clamp-2">
+          <span className="font-medium text-slate-500">Next: </span>
+          {matterConfidence.nextBestAction}
+        </p>
         {!hideTrustDup ? <MatterConfidenceHeader confidence={matterConfidence} compact /> : null}
       </div>
     );

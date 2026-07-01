@@ -29,6 +29,7 @@ import {
   Search,
   Shield,
   ClipboardList,
+  FileCheck2,
   Users,
   ChevronDown,
   ChevronRight,
@@ -127,6 +128,12 @@ const NAV_ITEMS: NavItem[] = [
     label: "Audit Log",
     href: "/audit-log",
     icon: <ClipboardList className="h-4 w-4" />,
+    labsOnly: true,
+  },
+  {
+    label: "Proof Review",
+    href: "/proof-review",
+    icon: <FileCheck2 className="h-4 w-4" />,
     labsOnly: true,
   },
   { label: "Dashboard", href: "/dashboard", icon: <Home className="h-4 w-4" /> },
@@ -315,6 +322,10 @@ function SidebarContent() {
 
   const pilotUploadHidden = pilotNavActive && isPilotDemoUploadDisabled(userId);
 
+  const matterFocus =
+    pilotNavActive &&
+    (Boolean(pathname?.match(/^\/cases\/[^/]+/)) || pathname?.startsWith("/court-today"));
+
   const visibleItems = NAV_ITEMS.filter((item) => {
     if (item.hideFromNav) return false;
     if (pilotUploadHidden && item.href === "/upload") return false;
@@ -323,22 +334,30 @@ function SidebarContent() {
   });
 
   return (
-    <aside className="flex h-full w-64 flex-col border-r border-slate-800 bg-slate-900 text-slate-100">
+    <aside
+      className={`flex h-full flex-col border-r border-slate-800 bg-slate-900 text-slate-100 transition-[width] ${
+        matterFocus ? "w-[3.75rem]" : "w-64"
+      }`}
+      data-matter-focus={matterFocus ? "true" : "false"}
+    >
       {/* Logo Section */}
-      <div className="flex items-center gap-3 px-6 py-6">
+      <div className={`flex items-center gap-3 py-4 ${matterFocus ? "justify-center px-2" : "px-6 py-6"}`}>
         <div className="relative">
           <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-secondary text-white font-bold shadow-glow-sm">
             CB
           </div>
-          {/* Glow effect */}
-          <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary to-secondary opacity-50 blur-xl" />
+          {!matterFocus ? (
+            <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary to-secondary opacity-50 blur-xl" />
+          ) : null}
         </div>
-        <div>
-          <p className="text-base font-bold text-white">CaseBrain</p>
-          <p className="text-[10px] uppercase tracking-widest text-slate-400 font-semibold">
-            Criminal defence workflow
-          </p>
-        </div>
+        {!matterFocus ? (
+          <div>
+            <p className="text-base font-bold text-white">CaseBrain</p>
+            <p className="text-[10px] uppercase tracking-widest text-slate-400 font-semibold">
+              Criminal defence workflow
+            </p>
+          </div>
+        ) : null}
       </div>
 
       {/* Navigation */}
@@ -496,15 +515,17 @@ function SidebarContent() {
 
           return (
             <Fragment key={item.href}>
-              {sectionLabel && (
+              {sectionLabel && !matterFocus && (
                 <p className="px-3 pt-3 pb-1 text-[10px] font-semibold uppercase tracking-wider text-slate-500 first:pt-1">
                   {sectionLabel}
                 </p>
               )}
             <Link
               href={item.href}
+              title={matterFocus ? item.label : undefined}
               className={clsx(
-                "group flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-200",
+                "group flex items-center rounded-xl text-sm font-medium transition-all duration-200",
+                matterFocus ? "justify-center px-2 py-2.5" : "gap-3 px-4 py-2.5",
                 isActive
                   ? "bg-primary/10 text-primary shadow-sm"
                   : "text-accent-soft hover:text-accent hover:bg-white/5",
@@ -518,15 +539,15 @@ function SidebarContent() {
               >
                 {item.icon}
               </span>
-              <span className="flex-1">{item.label}</span>
-              {item.badge && (
+              {!matterFocus ? <span className="flex-1">{item.label}</span> : null}
+              {!matterFocus && item.badge ? (
                 <span className="rounded-full bg-secondary/20 px-2 py-0.5 text-[10px] font-semibold text-secondary">
                   {item.badge}
                 </span>
-              )}
-              {isActive && (
+              ) : null}
+              {!matterFocus && isActive ? (
                 <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-              )}
+              ) : null}
             </Link>
             </Fragment>
           );
@@ -534,13 +555,13 @@ function SidebarContent() {
       </nav>
 
       {/* Footer */}
-      {pilotNavActive ? (
+      {pilotNavActive && !matterFocus ? (
         <div className="border-t border-white/10 px-4 py-4">
           <p className="text-[10px] text-slate-500 leading-relaxed">
             CaseBrain · Criminal Defence Workflow © {new Date().getFullYear()}
           </p>
         </div>
-      ) : (
+      ) : pilotNavActive && matterFocus ? null : (
         <div className="border-t border-white/10 px-4 py-4 space-y-3">
           <WhatsAppButton />
           <div className="rounded-xl bg-gradient-to-r from-primary/10 to-secondary/10 p-4">

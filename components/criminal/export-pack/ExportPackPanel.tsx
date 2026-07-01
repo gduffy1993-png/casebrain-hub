@@ -42,7 +42,15 @@ function copyLabel(id: ExportPackSectionId): string {
   }
 }
 
-export function ExportPackPanel({ model, caseId }: { model: ExportPackModel; caseId: string }) {
+export function ExportPackPanel({
+  model,
+  caseId,
+  hideDoNotOverstatePreview = false,
+}: {
+  model: ExportPackModel;
+  caseId: string;
+  hideDoNotOverstatePreview?: boolean;
+}) {
   const [copiedId, setCopiedId] = useState<ExportPackSectionId | "full_pack" | null>(null);
 
   const copySection = async (id: ExportPackSectionId | "full_pack") => {
@@ -79,7 +87,7 @@ export function ExportPackPanel({ model, caseId }: { model: ExportPackModel; cas
         <div>
           <div className="flex items-center gap-2">
             <Package className="h-4 w-4 text-emerald-400/90 shrink-0" />
-            <h2 className={workflowSectionTitle}>Export pack</h2>
+            <h2 className={workflowSectionTitle}>Send / copy outputs</h2>
           </div>
           <p className="text-[11px] text-slate-500 mt-1">{model.reviewNotice}</p>
         </div>
@@ -105,7 +113,6 @@ export function ExportPackPanel({ model, caseId }: { model: ExportPackModel; cas
           <span className="text-slate-500">Sendability:</span>{" "}
           {FIRM_SENDABILITY_LABELS[model.version.sendability]}
         </span>
-        <span className="text-amber-400/90">Solicitor review required</span>
       </div>
 
       <div className="grid gap-3 sm:grid-cols-2">
@@ -152,6 +159,7 @@ export function ExportPackPanel({ model, caseId }: { model: ExportPackModel; cas
       </div>
 
       {(() => {
+        if (hideDoNotOverstatePreview) return null;
         const dno = model.sections.find((s) => s.id === "do_not_overstate");
         if (!dno) return null;
         const preview = displayCopyBody(dno.textForClipboard).slice(0, 280);

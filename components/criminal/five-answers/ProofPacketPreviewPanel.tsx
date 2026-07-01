@@ -1,30 +1,31 @@
 "use client";
 
 import { FileCheck2 } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { workflowPilotCard, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
 import { displayExistenceLabel } from "@/lib/criminal/five-answers/display-labels";
 import type { FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
+import { humanizeEvidenceLabel, sanitizeProofLine } from "./evidence-display";
 
-function sourceLabel(row: FiveAnswersEvidenceRow): string {
-  const hay = `${row.label} ${row.note ?? ""}`;
-  const mg = hay.match(/MG6C\/[A-Z0-9]+/i)?.[0];
-  if (mg) return mg.toUpperCase();
-  if (/pdf|page\s+\d+/i.test(hay)) return "Source/page reference available";
-  return "Bundle source state";
+function gotRightRows(rows: FiveAnswersEvidenceRow[]) {
+  return rows
+    .filter((row) => row.existence === "served")
+    .filter((row) => !/statement of offence|charge sheet/i.test(row.label))
+    .slice(0, 5);
 }
 
-function usefulRows(rows: FiveAnswersEvidenceRow[]) {
+function reviewRows(rows: FiveAnswersEvidenceRow[]) {
   return rows
     .filter((row) => ["referred_only", "missing", "not_safely_confirmed", "unknown"].includes(row.existence))
     .filter((row) => !/statement of offence|charge sheet/i.test(row.label))
-    .slice(0, 3);
+    .slice(0, 5);
 }
 
 function refusalLines(warnings: string[]) {
   return warnings
+    .map(sanitizeProofLine)
+    .filter((line) => line.length > 8)
     .filter((line) => !/do not import|template|eval/i.test(line))
-    .slice(0, 2);
+    .slice(0, 5);
 }
 
 export function ProofPacketPreviewPanel({
@@ -34,8 +35,9 @@ export function ProofPacketPreviewPanel({
   rows: FiveAnswersEvidenceRow[];
   warnings: string[];
 }) {
-  const gotRight = usefulRows(rows);
+  const gotRight = gotRightRows(rows);
   const refused = refusalLines(warnings);
+  const needsReview = reviewRows(rows);
 
   return (
     <section
@@ -47,8 +49,7 @@ export function ProofPacketPreviewPanel({
         <div className="min-w-0">
           <h2 className={workflowSectionTitle}>Proof packet preview</h2>
           <p className="mt-0.5 text-[11px] leading-relaxed text-slate-500">
-            Solicitor-facing proof summary: what CaseBrain found, what it refuses to overstate, and what
-            still needs source review.
+            What CaseBrain got right, refused to overstate, and still needs source check.
           </p>
         </div>
       </div>
@@ -59,27 +60,22 @@ export function ProofPacketPreviewPanel({
             Got right
           </p>
           {gotRight.length ? (
-            <ul className="mt-2 space-y-2">
+            <ul className="mt-2 space-y-2 text-xs text-slate-200">
               {gotRight.map((row, i) => (
-                <li key={`${row.label}-${i}`} className="space-y-1 text-xs text-slate-200">
-                  <span className="block font-medium">{row.label}</span>
-                  <span className="flex flex-wrap items-center gap-1.5 text-[10px] text-slate-400">
-                    <Badge variant="secondary" size="sm" className="text-[9px]">
-                      {displayExistenceLabel(row.existence)}
-                    </Badge>
-                    <span>{sourceLabel(row)}</span>
-                  </span>
+                <li key={`${row.label}-${i}`}>
+                  <span className="font-medium">{humanizeEvidenceLabel(row.label, row.existence)}</span>
+                  <span className="text-slate-500"> — {displayExistenceLabel(row.existence)}</span>
                 </li>
               ))}
             </ul>
           ) : (
-            <p className="mt-2 text-xs text-slate-400">No source-state gap selected for the preview.</p>
+            <p className="mt-2 text-xs text-slate-400">No served material confirmed for reliance yet.</p>
           )}
         </div>
 
         <div className="rounded-md border border-slate-800/80 bg-slate-950/35 p-3">
           <p className="text-[10px] font-semibold uppercase tracking-wider text-amber-300">
-            Refuses to overstate
+            Refused to overstate
           </p>
           {refused.length ? (
             <ul className="mt-2 space-y-2 text-xs text-slate-200">
@@ -88,21 +84,26 @@ export function ProofPacketPreviewPanel({
               ))}
             </ul>
           ) : (
-            <p className="mt-2 text-xs text-slate-400">
-              No material overstatement selected for this preview.
-            </p>
+            <p className="mt-2 text-xs text-slate-400">No overstatement warnings on this preview.</p>
           )}
         </div>
 
         <div className="rounded-md border border-slate-800/80 bg-slate-950/35 p-3">
           <p className="text-[10px] font-semibold uppercase tracking-wider text-blue-300">
-            Solicitor review
+            Still needs review
           </p>
-          <ul className="mt-2 space-y-2 text-xs text-slate-200">
-            <li>Check source state before relying on any referred-only or missing item.</li>
-            <li>Use CPS chase, court note, and client summary separately.</li>
-            <li>Full line-source proof packet remains the audit trail.</li>
-          </ul>
+          {needsReview.length ? (
+            <ul className="mt-2 space-y-2 text-xs text-slate-200">
+              {needsReview.map((row, i) => (
+                <li key={`${row.label}-${i}`}>
+                  <span className="font-medium">{humanizeEvidenceLabel(row.label, row.existence)}</span>
+                  <span className="text-slate-500"> — {displayExistenceLabel(row.existence)}</span>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="mt-2 text-xs text-slate-400">No key gaps listed on this preview.</p>
+          )}
         </div>
       </div>
     </section>

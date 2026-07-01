@@ -344,6 +344,8 @@ async function main(): Promise<void> {
 
     console.log("[five_answers_renders] checking overview…");
     await checkOverviewPass(desktop, "five_answers_renders");
+    await desktop.locator("#overview-trust").scrollIntoViewIfNeeded({ timeout: 20_000 }).catch(() => undefined);
+    await desktop.waitForTimeout(400);
     await desktop.screenshot({ path: path.join(OUT_DIR, "01-post-upload-landing.png"), fullPage: true });
 
     const traceBtn = desktop.getByTestId("evidence-trace-allegation").getByRole("button", { name: /evidence trace/i });
@@ -381,11 +383,16 @@ async function main(): Promise<void> {
     if (await desktop.getByTestId("evidence-truth-map-panel").isVisible().catch(() => false)) {
       steps.push({ id: "evidence_truth_map_visible", status: "pass" });
     } else {
+      await desktop.getByTestId("evidence-truth-map-panel").scrollIntoViewIfNeeded({ timeout: 15_000 }).catch(() => undefined);
+      if (await desktop.getByTestId("evidence-truth-map-panel").isVisible().catch(() => false)) {
+        steps.push({ id: "evidence_truth_map_visible", status: "pass", detail: "visible after scroll" });
+      } else {
       const body = await desktop.locator("body").innerText();
       if (/evidence truth map/i.test(body)) {
         steps.push({ id: "evidence_truth_map_visible", status: "pass", detail: "content without testid" });
       } else {
         steps.push({ id: "evidence_truth_map_visible", status: "fail", detail: "Evidence Truth Map not on Overview" });
+      }
       }
     }
 
@@ -449,22 +456,32 @@ async function main(): Promise<void> {
     if (await desktop.getByTestId("hearing-mode-panel").isVisible().catch(() => false)) {
       steps.push({ id: "hearing_mode_visible", status: "pass" });
     } else {
+      await desktop.locator("#overview-prepare").scrollIntoViewIfNeeded({ timeout: 15_000 }).catch(() => undefined);
+      if (await desktop.getByTestId("hearing-mode-panel").isVisible().catch(() => false)) {
+        steps.push({ id: "hearing_mode_visible", status: "pass", detail: "visible after scroll" });
+      } else {
       const body = await desktop.locator("body").innerText();
-      if (/court prep|20-minute hearing mode|case in one minute/i.test(body)) {
+      if (/court prep|prepare for court|20-minute hearing mode|case in one minute/i.test(body)) {
         steps.push({ id: "hearing_mode_visible", status: "pass", detail: "content without testid" });
       } else {
         steps.push({ id: "hearing_mode_visible", status: "fail", detail: "Hearing Mode not on Overview" });
+      }
       }
     }
 
     if (await desktop.getByTestId("export-pack-panel").isVisible().catch(() => false)) {
       steps.push({ id: "export_pack_visible", status: "pass" });
     } else {
+      await desktop.locator("#overview-send").scrollIntoViewIfNeeded({ timeout: 15_000 }).catch(() => undefined);
+      if (await desktop.getByTestId("export-pack-panel").isVisible().catch(() => false)) {
+        steps.push({ id: "export_pack_visible", status: "pass", detail: "visible after scroll" });
+      } else {
       const body = await desktop.locator("body").innerText();
-      if (/export pack|copy cps chase|version stamp/i.test(body)) {
+      if (/export pack|send \/ copy outputs|copy cps chase|version stamp/i.test(body)) {
         steps.push({ id: "export_pack_visible", status: "pass", detail: "content without testid" });
       } else {
         steps.push({ id: "export_pack_visible", status: "fail", detail: "Export Pack not on Overview" });
+      }
       }
     }
 
@@ -547,7 +564,6 @@ async function main(): Promise<void> {
     const mobileOverlap = await mobile.evaluate(() => {
       const vw = window.innerWidth;
       const panelIds = [
-        "overview-section-nav",
         "case-snapshot-panel",
         "evidence-truth-map-panel",
         "proof-packet-preview-panel",

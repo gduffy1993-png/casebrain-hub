@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { Clock, ExternalLink } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { DontSaySafetyBox } from "@/components/criminal/trust/DontSaySafetyBox";
 import { H5FeedbackFlag } from "@/components/criminal/feedback-console/H5FeedbackFlag";
 import { SOURCE_BACKED_COURT_NOTE_LABEL } from "@/lib/criminal/trust/firm-facing-labels";
@@ -15,11 +14,13 @@ export function HearingModePanel({
   todayHref,
   chaseHref,
   caseId,
+  suppressDoNotOverstate = false,
 }: {
   model: HearingModeModel;
   todayHref: string;
   chaseHref: string;
   caseId: string;
+  suppressDoNotOverstate?: boolean;
 }) {
   const { caseInOneMinute: c } = model;
   const courtBody = displayCopyBody(model.safeCourtLine.text, model.safeCourtLine.footer);
@@ -34,13 +35,10 @@ export function HearingModePanel({
         <div>
           <div className="flex items-center gap-2">
             <Clock className="h-4 w-4 text-amber-400/90 shrink-0" />
-            <h2 className={workflowSectionTitle}>Court prep</h2>
+            <h2 className={workflowSectionTitle}>Prepare for court</h2>
           </div>
           <p className="text-[11px] text-slate-500 mt-1">{model.reviewNotice}</p>
         </div>
-        <Badge variant="outline" size="sm" className="text-[10px] shrink-0">
-          Solicitor review required
-        </Badge>
         <H5FeedbackFlag
           caseId={caseId}
           surface="hearing_mode"
@@ -85,7 +83,7 @@ export function HearingModePanel({
         </div>
       ) : null}
 
-      {model.doNotOverstate.length ? (
+      {model.doNotOverstate.length && !suppressDoNotOverstate ? (
         <div data-testid="hearing-mode-do-not-overstate">
           <p className="text-[10px] font-semibold uppercase tracking-wider text-amber-400/80 mb-1.5">
             Do not overstate

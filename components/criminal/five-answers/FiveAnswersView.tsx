@@ -20,12 +20,11 @@ import { useMatterBrief } from "@/components/criminal/workflow/useMatterBrief";
 import { usePilotMatterTabHref } from "@/components/criminal/workflow/pilotDeskNavContext";
 import { workflowPilotCard, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
 import { EvidenceTracePanel } from "./EvidenceTracePanel";
-import { CaseSnapshotPanel } from "./CaseSnapshotPanel";
-import { WhatMattersNowPanel } from "./WhatMattersNowPanel";
+import { CaseCockpitPanel } from "./CaseCockpitPanel";
 import { EvidenceTruthMapPanel } from "./EvidenceTruthMapPanel";
-import { OverviewSectionNav } from "./OverviewSectionNav";
 import { OverviewAdvancedPanel } from "./OverviewAdvancedPanel";
 import { ProofPacketPreviewPanel } from "./ProofPacketPreviewPanel";
+import { FiveAnswersCompactSection } from "./FiveAnswersCompactSection";
 import type { EvidenceTraceRow, EvidenceTraceSection, FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
 import { useMemo, useState, type ReactNode } from "react";
 
@@ -37,7 +36,7 @@ function AnswerCard({
   traceSection,
   traceRows,
   headerAction,
-  defaultOpen = true,
+  defaultOpen = false,
 }: {
   number: number;
   title: string;
@@ -91,12 +90,19 @@ function gapRows(rows: FiveAnswersEvidenceRow[]) {
   );
 }
 
-function servedSummaryText(rows: FiveAnswersEvidenceRow[], bundleThin: boolean): string {
+function sourcePositionText(rows: FiveAnswersEvidenceRow[], bundleThin: boolean): string {
   const served = servedRows(rows);
-  if (served.length === 0 || bundleThin) {
-    return "Limited papers are available. The bundle is thin — do not rely on material that is not served and reviewed.";
+  const gaps = gapRows(rows);
+  if (served.length === 0 && gaps.length === 0) {
+    return bundleThin ? "Thin bundle — limited papers on file." : "Limited papers — source state not confirmed.";
   }
-  return `${served.length} served item(s) on file — still requires solicitor review before reliance.`;
+  if (served.length === 0) {
+    return `${gaps.length} gap(s) flagged — nothing safely served for reliance yet.`;
+  }
+  if (gaps.length === 0) {
+    return `${served.length} served item(s) on file — check before reliance.`;
+  }
+  return `${served.length} served · ${gaps.length} gap(s) flagged — chase before fixing position.`;
 }
 
 export function FiveAnswersView({ caseId }: { caseId: string }) {
@@ -204,7 +210,6 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
     return (
       <div className={`${workflowPilotCard} p-6 text-sm text-slate-400 space-y-2`}>
         <p>Case overview will appear once documents are processed.</p>
-        <p className="text-xs text-slate-500">Not safely confirmed — solicitor review required.</p>
       </div>
     );
   }
@@ -212,39 +217,66 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
   const served = servedRows(view.evidenceState.rows);
   const gaps = gapRows(view.evidenceState.rows);
   const topChase = view.chase.slice(0, 5).map((c) => c.label);
-  const topWarning = view.mustNotOverstate[0] ?? null;
+  const hasWarningsAbove = view.mustNotOverstate.length > 0;
+
+  const answerSummaries = [
+    {
+      id: "1",
+      title: "Case",
+      preview: view.caseSaying.mainIssue,
+      testId: "five-answers-case-saying",
+    },
+    {
+      id: "2",
+      title: "Served",
+      preview: served.length
+        ? served
+            .slice(0, 2)
+            .map((r) => r.label)
+            .join("; ")
+        : "Limited papers — nothing fully served for reliance.",
+      testId: "five-answers-evidence-state",
+    },
+    {
+      id: "3",
+      title: "Gaps",
+      preview: gaps.length
+        ? gaps
+            .slice(0, 2)
+            .map((r) => `${r.label} (${displayExistenceLabel(r.existence)})`)
+            .join("; ")
+        : "No key gaps listed.",
+      testId: "five-answers-evidence-gaps",
+    },
+    {
+      id: "4",
+      title: "Chase",
+      preview: topChase.length ? topChase.slice(0, 2).join("; ") : "Check CPS Chase tab for drafts.",
+      testId: "five-answers-chase",
+    },
+    {
+      id: "5",
+      title: "Do not",
+      preview: view.mustNotOverstate[0] ?? "No overstatement warnings listed.",
+      testId: "five-answers-must-not",
+    },
+  ];
 
   return (
     <div className="space-y-3" data-testid="five-answers-view">
-      <OverviewSectionNav />
-
       <div id="overview-understand" className="space-y-3 scroll-mt-4">
-        <CaseSnapshotPanel
-          clientLabel={clientLabel}
-          allegation={allegation}
-          courtLine={courtLabel}
-          hearingLine={hearingLabel ?? chase.hearingStatus}
-          confidence={matterConfidence}
-        />
-
-        <WhatMattersNowPanel
-          confidence={matterConfidence}
-          servedSummary={servedSummaryText(view.evidenceState.rows, bundleThin)}
-          topChaseLabels={topChase}
-          topWarning={topWarning}
+        <CaseCockpitPanel
+          mainIssue={matterConfidence.mainIssue}
+          sourcePosition={sourcePositionText(view.evidenceState.rows, bundleThin)}
+          nextAction={matterConfidence.nextBestAction}
         />
 
         <div id="overview-trust" className="space-y-3 scroll-mt-4">
           <EvidenceTruthMapPanel rows={view.evidenceState.rows} />
-
           <ProofPacketPreviewPanel rows={view.evidenceState.rows} warnings={view.mustNotOverstate} />
         </div>
 
-        <div className="space-y-2">
-          <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-500 px-1">
-            Five answers
-          </p>
-
+        <FiveAnswersCompactSection summaries={answerSummaries}>
           <AnswerCard
             number={1}
             title="What is this case saying?"
@@ -270,7 +302,6 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
                 sendability={matterConfidence.chaseSendability ?? null}
               />
             }
-            defaultOpen
           >
             {served.length ? (
               <ul className="space-y-1.5 text-sm text-slate-300">
@@ -279,9 +310,7 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
                 ))}
               </ul>
             ) : (
-              <p className="text-sm text-slate-400">
-                Limited papers only — nothing safely confirmed as fully served for reliance.
-              </p>
+              <p className="text-sm text-slate-400">Limited papers only — nothing confirmed as fully served.</p>
             )}
           </AnswerCard>
 
@@ -291,7 +320,6 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
             testId="five-answers-evidence-gaps"
             traceSection="missing_referred"
             traceRows={view.evidenceTrace.bySection.missing_referred}
-            defaultOpen={false}
           >
             {gaps.length ? (
               <ul className="space-y-2">
@@ -315,7 +343,6 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
             testId="five-answers-chase"
             traceSection="chase"
             traceRows={view.evidenceTrace.bySection.chase}
-            defaultOpen={false}
           >
             {topChase.length ? (
               <ul className="space-y-1 text-sm text-slate-300 list-disc pl-4">
@@ -324,13 +351,13 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
                 ))}
               </ul>
             ) : (
-              <p className="text-sm text-slate-400">No chase items yet — check Papers / Chase tabs.</p>
+              <p className="text-sm text-slate-400">No chase items yet — check CPS Chase tab.</p>
             )}
             <Link
               href={buildTabHref(caseId, "disclosure-chase")}
               className="inline-flex items-center gap-1 text-[11px] text-blue-400 hover:text-blue-300 mt-1"
             >
-              CPS chase drafts in Export pack <ExternalLink className="h-3 w-3" />
+              CPS chase drafts in Send / copy outputs <ExternalLink className="h-3 w-3" />
             </Link>
           </AnswerCard>
 
@@ -340,20 +367,10 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
             testId="five-answers-must-not"
             traceSection="do_not_overstate"
             traceRows={view.evidenceTrace.bySection.do_not_overstate}
-            defaultOpen
           >
             <DontSaySafetyBox items={view.mustNotOverstate.slice(0, 5)} compact />
           </AnswerCard>
-        </div>
-
-        <div className="flex justify-end">
-          <H5FeedbackFlag
-            caseId={caseId}
-            surface="five_answers"
-            section="overview"
-            sendability={matterConfidence.summarySendability ?? null}
-          />
-        </div>
+        </FiveAnswersCompactSection>
       </div>
 
       {hearingMode ? (
@@ -363,13 +380,14 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
             caseId={caseId}
             todayHref={buildTabHref(caseId, "today")}
             chaseHref={buildTabHref(caseId, "disclosure-chase")}
+            suppressDoNotOverstate={hasWarningsAbove}
           />
         </div>
       ) : null}
 
       {exportPack ? (
         <div id="overview-send" className="scroll-mt-4">
-          <ExportPackPanel model={exportPack} caseId={caseId} />
+          <ExportPackPanel model={exportPack} caseId={caseId} hideDoNotOverstatePreview={hasWarningsAbove} />
         </div>
       ) : null}
 
@@ -411,12 +429,16 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
               exportPack={exportPack}
             />
           ) : null}
+          <div className="flex justify-end px-3">
+            <H5FeedbackFlag
+              caseId={caseId}
+              surface="five_answers"
+              section="overview"
+              sendability={matterConfidence.summarySendability ?? null}
+            />
+          </div>
         </OverviewAdvancedPanel>
       </div>
-
-      <p className="text-[10px] text-center text-slate-600 pb-1">
-        Evidence-linked · conditional · provisional where stated · solicitor review required
-      </p>
     </div>
   );
 }

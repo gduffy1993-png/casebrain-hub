@@ -3,8 +3,27 @@ import { evidenceExistenceLabel, evidenceReliabilityLabel } from "./evidence-tra
 
 /** UI-only label for primary surfaces — does not change underlying existence enum. */
 export function displayExistenceLabel(existence: EvidenceExistence): string {
+  if (existence === "not_safely_confirmed") return "Incomplete";
   if (existence === "unknown") return "Not safely confirmed";
   return evidenceExistenceLabel(existence);
+}
+
+/** Plain “can rely?” column for truth map — presentation only. */
+export function displayCanRelyLabel(reliability: EvidenceReliability): string {
+  switch (reliability) {
+    case "unsafe":
+    case "inference_only":
+      return "No";
+    case "weak":
+    case "needs_review":
+      return "Check first";
+    case "contested":
+      return "Contested";
+    case "strong":
+      return "Review first";
+    default:
+      return "Check first";
+  }
 }
 
 export function displayRelianceLabel(reliability: EvidenceReliability): string {

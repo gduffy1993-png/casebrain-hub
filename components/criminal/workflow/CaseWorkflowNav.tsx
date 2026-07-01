@@ -8,14 +8,15 @@ import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import { useCaseWorkflowActiveTab } from "./useCaseWorkflowActiveTab";
 import { usePilotMatterTabHref } from "./pilotDeskNavContext";
 
-const PILOT_TABS: { id: CaseWorkflowTabId; label: string }[] = [
+const PILOT_PRIMARY_TABS: { id: CaseWorkflowTabId; label: string }[] = [
   { id: "overview", label: "Overview" },
-  { id: "today", label: "Today" },
+  { id: "today", label: "Court" },
   { id: "papers", label: "Papers" },
-  { id: "summary", label: "Summary" },
-  { id: "disclosure-chase", label: "Chase" },
-  { id: "file", label: "File" },
+  { id: "summary", label: "Client Summary" },
+  { id: "disclosure-chase", label: "CPS Chase" },
 ];
+
+const PILOT_SECONDARY_TABS: { id: CaseWorkflowTabId; label: string }[] = [{ id: "file", label: "File" }];
 
 const LEGACY_TABS: { id: CaseWorkflowTabId; label: string }[] = [
   { id: "control-room", label: "Control Room" },
@@ -33,7 +34,7 @@ export function CaseWorkflowNav({ caseId }: { caseId: string }) {
   const active = useCaseWorkflowActiveTab();
   const buildTabHref = usePilotMatterTabHref();
 
-  const visibleTabs = pilotMode ? PILOT_TABS : LEGACY_TABS.filter((t) => t.id !== "position" && t.id !== "battleboard");
+  const visibleTabs = pilotMode ? [...PILOT_PRIMARY_TABS, ...PILOT_SECONDARY_TABS] : LEGACY_TABS.filter((t) => t.id !== "position" && t.id !== "battleboard");
 
   return (
     <nav
@@ -47,12 +48,15 @@ export function CaseWorkflowNav({ caseId }: { caseId: string }) {
       {visibleTabs.map((t) => {
         const href = buildTabHref(caseId, t.id);
         const isActive = active === t.id;
+        const isSecondary = pilotMode && PILOT_SECONDARY_TABS.some((s) => s.id === t.id);
         return (
           <Link
             key={t.id}
             href={href}
             scroll={t.id === "file" || t.id === "documents" ? false : undefined}
-            className={isActive ? workflowPilotNavActive : workflowPilotNavIdle}
+            className={`${isActive ? workflowPilotNavActive : workflowPilotNavIdle} ${
+              isSecondary ? "opacity-60 hover:opacity-100 text-[10px]" : ""
+            }`}
             aria-current={isActive ? "page" : undefined}
             prefetch={pathname.startsWith("/cases/") || pathname.startsWith("/court-today")}
           >
