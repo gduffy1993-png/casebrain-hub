@@ -40,6 +40,11 @@ export function humanizeEvidenceLabel(label: string, existence: EvidenceExistenc
   }
 
   if (/phone|mobile|download|digital|extraction/i.test(hay)) {
+    if (/summary only|extraction summary|summary on file/i.test(hay)) {
+      if (existence === "referred_only" || existence === "served") {
+        return "Phone extraction summary only on file";
+      }
+    }
     if (existence === "served") return "Phone extraction summary on file";
     if (existence === "missing" || existence === "referred_only") {
       return "Full phone download outstanding";
