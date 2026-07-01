@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/card";
 import { workflowCard, workflowPilotShell } from "@/components/criminal/workflow/workflowUi";
 import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
 import { DemoPresentationLandingRedirect } from "./DemoPresentationLandingRedirect";
+import { CourtTodayReviewSection } from "./CourtTodayReviewSection";
 import { CourtTodayPilotSplit } from "./CourtTodayPilotSplit";
 import { CourtTodayDiarySection } from "./CourtTodayDiarySection";
 import { resolveCourtCaseId } from "./courtCaseBrief";
