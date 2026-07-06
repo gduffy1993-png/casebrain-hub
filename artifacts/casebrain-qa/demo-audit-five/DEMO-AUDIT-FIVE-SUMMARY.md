@@ -50,4 +50,4 @@ Five realistic fictional prosecution bundles with served and outstanding materia
 13. No banned PDF wording — enforced at build.
 14–15. Bundles contain both served and missing material — see key served/missing lists.
 
-Generated: 2026-07-01T10:42:48.034Z
+Generated: 2026-07-06T08:45:35.079Z
