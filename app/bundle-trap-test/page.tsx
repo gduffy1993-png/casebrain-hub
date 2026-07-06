@@ -67,9 +67,12 @@ export default function BundleTrapTestPage() {
             <Link href="/sign-in" className="text-sm text-slate-400 hover:text-white">
               Sign in
             </Link>
-            <Button asChild size="sm" variant="primary">
-              <Link href="/sign-up">Request access</Link>
-            </Button>
+            <Link
+              href="/sign-up"
+              className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-primary to-primary/80 px-3 py-1.5 text-xs font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/30"
+            >
+              Request access
+            </Link>
           </div>
         </div>
       </nav>
