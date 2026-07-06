@@ -1,0 +1,75 @@
+{
+  "caseId": "demo-audit-21-historic-sexual-abe",
+  "caseName": "DA-21 Daniel Pike — historic sexual / ABE missing",
+  "shape": "Draft MG11 served / ABE video referred / transcript missing",
+  "pdfPages": 9,
+  "keyServedItems": [
+    "charge sheet",
+    "mg5",
+    "mg6"
+  ],
+  "keyMissingReferred": [
+    "complainant MG11 (incomplete)",
+    "ABE interview video (referred_only)",
+    "ABE interview transcript (missing)",
+    "third-party counselling notes (missing)",
+    "final signed MG11 (missing)"
+  ],
+  "truthMapResult": [
+    {
+      "label": "ABE interview video",
+      "existence": "referred_only",
+      "note": "Referred on MG6C — ABE video not attached to bundle."
+    },
+    {
+      "label": "Complainant MG11 (draft)",
+      "existence": "served"
+    },
+    {
+      "label": "ABE interview transcript",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    },
+    {
+      "label": "Third-party counselling notes",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    },
+    {
+      "label": "Final signed MG11",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    }
+  ],
+  "proofPacketVerdict": "PASS WITH WARNINGS",
+  "failLineCount": 0,
+  "unsupportedLinesCount": 0,
+  "wrongFamilyWarningsCount": 0,
+  "proofLedgerWrongFamilyInternal": 0,
+  "blockedFalseServedGuardsCount": 1,
+  "pageBackedOutputLinesCount": 34,
+  "vagueChaseLabelsCount": 0,
+  "genericLabelCount": 0,
+  "solicitorFacingBannedCount": 0,
+  "packetDuplicateCount": 0,
+  "packetOffFamilyCount": 0,
+  "packetMainIssueCount": 0,
+  "caseFacingWrongFamilyCount": 0,
+  "readyForDemoReview": true,
+  "readyBlockers": [],
+  "filesCreated": [
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-21-historic-sexual-abe\\bundle.pdf",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-21-historic-sexual-abe\\bundle-text.md",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-21-historic-sexual-abe\\pdf-extraction-meta.json",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-21-historic-sexual-abe\\truth-key.json",
+    "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-21-historic-sexual-abe\\line-by-line-proof.md",
+    "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-21-historic-sexual-abe\\SOLICITOR-PROOF-PACKET.md",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-21-historic-sexual-abe\\overview-truth-map.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-21-historic-sexual-abe\\court-tab.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-21-historic-sexual-abe\\cps-chase.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-21-historic-sexual-abe\\client-summary.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-21-historic-sexual-abe\\file-source-view.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-21-historic-sexual-abe\\casebrain-output.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-21-historic-sexual-abe\\scorecard.json"
+  ]
+}

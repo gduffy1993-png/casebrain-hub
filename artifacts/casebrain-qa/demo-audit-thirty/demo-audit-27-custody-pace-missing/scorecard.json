@@ -1,0 +1,81 @@
+{
+  "caseId": "demo-audit-27-custody-pace-missing",
+  "caseName": "DA-27 Sam Okonkwo — custody PACE material missing",
+  "shape": "Custody extract served / full PACE and BWV outstanding",
+  "pdfPages": 7,
+  "keyServedItems": [
+    "charge sheet",
+    "mg5",
+    "mg6"
+  ],
+  "keyMissingReferred": [
+    "officer MG11 (incomplete)",
+    "custody record extract (incomplete)",
+    "body-worn video (referred_only)",
+    "full custody record (missing)",
+    "interview audio (missing)",
+    "PACE safeguards detail (missing)"
+  ],
+  "truthMapResult": [
+    {
+      "label": "Body-worn video (BWV)",
+      "existence": "referred_only",
+      "note": "Referred on MG6C — full export not attached."
+    },
+    {
+      "label": "Officer statement",
+      "existence": "served"
+    },
+    {
+      "label": "Custody record extract",
+      "existence": "served",
+      "note": "Extract only — full custody record outstanding."
+    },
+    {
+      "label": "Full custody record",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    },
+    {
+      "label": "Interview audio",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    },
+    {
+      "label": "PACE safeguards detail",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    }
+  ],
+  "proofPacketVerdict": "PASS WITH WARNINGS",
+  "failLineCount": 0,
+  "unsupportedLinesCount": 0,
+  "wrongFamilyWarningsCount": 0,
+  "proofLedgerWrongFamilyInternal": 0,
+  "blockedFalseServedGuardsCount": 14,
+  "pageBackedOutputLinesCount": 64,
+  "vagueChaseLabelsCount": 0,
+  "genericLabelCount": 0,
+  "solicitorFacingBannedCount": 0,
+  "packetDuplicateCount": 0,
+  "packetOffFamilyCount": 0,
+  "packetMainIssueCount": 0,
+  "caseFacingWrongFamilyCount": 0,
+  "readyForDemoReview": true,
+  "readyBlockers": [],
+  "filesCreated": [
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-27-custody-pace-missing\\bundle.pdf",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-27-custody-pace-missing\\bundle-text.md",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-27-custody-pace-missing\\pdf-extraction-meta.json",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-27-custody-pace-missing\\truth-key.json",
+    "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-27-custody-pace-missing\\line-by-line-proof.md",
+    "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-27-custody-pace-missing\\SOLICITOR-PROOF-PACKET.md",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-27-custody-pace-missing\\overview-truth-map.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-27-custody-pace-missing\\court-tab.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-27-custody-pace-missing\\cps-chase.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-27-custody-pace-missing\\client-summary.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-27-custody-pace-missing\\file-source-view.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-27-custody-pace-missing\\casebrain-output.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-27-custody-pace-missing\\scorecard.json"
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "caseId": "demo-audit-17-fraud-transaction-export",
+  "caseName": "DA-17 Caleb Moss — fraud / tracing export referred",
+  "shape": "Bank summaries served / beneficiary tracing referred only",
+  "pdfPages": 9,
+  "keyServedItems": [
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "bank statement summaries",
+    "officer statement"
+  ],
+  "keyMissingReferred": [
+    "full transaction export (missing)",
+    "source banking records (missing)",
+    "beneficiary tracing report (referred_only)"
+  ],
+  "truthMapResult": [
+    {
+      "label": "Bank statement summaries",
+      "existence": "served",
+      "note": "Summaries served — not full transaction export or source banking records."
+    },
+    {
+      "label": "Officer statement",
+      "existence": "served"
+    },
+    {
+      "label": "Beneficiary tracing report",
+      "existence": "referred_only"
+    },
+    {
+      "label": "Full transaction export",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    },
+    {
+      "label": "Source banking records",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    }
+  ],
+  "proofPacketVerdict": "PASS WITH WARNINGS",
+  "failLineCount": 0,
+  "unsupportedLinesCount": 0,
+  "wrongFamilyWarningsCount": 0,
+  "proofLedgerWrongFamilyInternal": 0,
+  "blockedFalseServedGuardsCount": 0,
+  "pageBackedOutputLinesCount": 39,
+  "vagueChaseLabelsCount": 0,
+  "genericLabelCount": 0,
+  "solicitorFacingBannedCount": 0,
+  "packetDuplicateCount": 0,
+  "packetOffFamilyCount": 0,
+  "packetMainIssueCount": 0,
+  "caseFacingWrongFamilyCount": 0,
+  "readyForDemoReview": true,
+  "readyBlockers": [],
+  "filesCreated": [
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-17-fraud-transaction-export\\bundle.pdf",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-17-fraud-transaction-export\\bundle-text.md",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-17-fraud-transaction-export\\pdf-extraction-meta.json",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-17-fraud-transaction-export\\truth-key.json",
+    "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-17-fraud-transaction-export\\line-by-line-proof.md",
+    "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-17-fraud-transaction-export\\SOLICITOR-PROOF-PACKET.md",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-17-fraud-transaction-export\\overview-truth-map.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-17-fraud-transaction-export\\court-tab.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-17-fraud-transaction-export\\cps-chase.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-17-fraud-transaction-export\\client-summary.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-17-fraud-transaction-export\\file-source-view.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-17-fraud-transaction-export\\casebrain-output.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-17-fraud-transaction-export\\scorecard.json"
+  ]
+}

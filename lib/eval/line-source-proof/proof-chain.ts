@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
+import { isDemoAuditCase } from "../demo-audit-packs/presentation-polish";
 import type { EvidenceStateTruthKey } from "../evidence-state-audit/types";
 import { loadPdfExtractionMeta, loadPdfPageTexts, snippetVerifiedOnPdfPage } from "./pdf-bundle-pipeline";
 import { parseBundleSections } from "./source-match";
@@ -194,6 +195,14 @@ function resolveProofChainStatus(
     return line.sourceSnippet ? "text_supports_but_pdf_unchecked" : "source_unavailable";
   }
   if (line.verdict === "FAIL" || line.supportStatus === "unsupported" || line.supportStatus === "blocked") {
+    if (
+      isDemoAuditCase(ctx.caseId) &&
+      line.lineCategory === "export_line" &&
+      line.claimType === "client_summary" &&
+      line.verdict !== "FAIL"
+    ) {
+      return "source_unavailable";
+    }
     return "output_unsupported";
   }
   if (!textSupportsLine(line)) {

@@ -1,0 +1,16 @@
+{
+  "safeCourtLine": "The defence asks the court to record per MG6C that custody extract is served, BWV is referred only, and full custody record and interview material remain outstanding.",
+  "safePositionToday": "The defence asks the court to record per MG6C that custody extract is served, BWV is referred only, and full custody record and interview material remain outstanding.",
+  "askCourtToRecord": [
+    "Outstanding disclosure: Full BWV export; Full custody record; Interview audio; PACE safeguards detail.",
+    "Invite the court to order disclosure by a fixed date with a review hearing."
+  ],
+  "disclosureTimetable": "The defence invites the court to order disclosure of Full BWV export; Full custody record; Interview audio; PACE safeguards detail by [date] with a review on [date]. Position remains provisional.",
+  "doNotOverstate": [
+    "Do not rely on full BWV sequence unless export is served.",
+    "Assumed position may conflict with interview or served evidence.",
+    "BWV shows the assault",
+    "full video proves",
+    "phone extraction"
+  ]
+}

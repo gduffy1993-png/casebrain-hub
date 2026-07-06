@@ -238,18 +238,6 @@
     {
       "tier": "solicitor_caution",
       "surface": "hearing_mode / court_prep",
-      "outputLine": "Interview audio: Missing / Needs review — Outstanding on current disclosure — chase before fixing hearing position.",
-      "reason": "Use with caution — Material expected or mentioned but not on bundle."
-    },
-    {
-      "tier": "solicitor_caution",
-      "surface": "hearing_mode / court_prep",
-      "outputLine": "Interview transcript: Missing / Needs review — Outstanding on current disclosure — chase before fixing hearing position.",
-      "reason": "Use with caution — Material expected or mentioned but not on bundle."
-    },
-    {
-      "tier": "solicitor_caution",
-      "surface": "hearing_mode / court_prep",
       "outputLine": "Interview audio: Missing — Please provide Interview audio (see MG6C/013) or confirm in writing why it is not available.",
       "reason": "Use with caution — Material expected or mentioned but not on bundle."
     },
@@ -332,22 +320,10 @@
       "reason": "Use with caution — Custody record extract only — not fully served on current papers."
     },
     {
-      "tier": "source_review",
-      "surface": "summary / opportunities",
-      "outputLine": "Disclosure leverage: Outstanding on current disclosure — chase before fixing hearing position.",
-      "reason": "source_unavailable"
-    },
-    {
       "tier": "solicitor_caution",
       "surface": "summary / chase",
       "outputLine": "Full custody record — Full custody/PACE material needed beyond the served extract.",
       "reason": "Use with caution — Custody record extract only — not fully served on current papers."
-    },
-    {
-      "tier": "solicitor_caution",
-      "surface": "summary / chase",
-      "outputLine": "Interview audio — Outstanding on current disclosure — chase before fixing hearing position.",
-      "reason": "Use with caution — Material expected or mentioned but not on bundle."
     },
     {
       "tier": "source_review",
@@ -484,19 +460,7 @@
     {
       "tier": "source_review",
       "surface": "export_pack / client_summary",
-      "outputLine": "We are reviewing the papers in your case (Assault an emergency worker, contrary to section 1 of the Assaults on Emergency Workers (Offences) Act 2018)",
-      "reason": "generic_source_only, solicitor_review_required"
-    },
-    {
-      "tier": "source_review",
-      "surface": "export_pack / client_summary",
       "outputLine": "[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
-      "reason": "source_unavailable, meaningful_line_without_anchor, solicitor_review_required"
-    },
-    {
-      "tier": "source_review",
-      "surface": "export_pack / client_summary",
-      "outputLine": "Solicitor review required before sending to CPS, court, or client.",
       "reason": "source_unavailable, meaningful_line_without_anchor, solicitor_review_required"
     },
     {
@@ -1234,26 +1198,26 @@
       "plainEnglishExplanation": "Safe and source-backed — Bundle shows material outstanding or not attached: \"MG6C/011 — Custody record — extract only served — full record outsta"
     },
     {
-      "outputLine": "Interview audio: Missing / Needs review — Outstanding on current disclosure — chase before fixing hearing position.",
+      "outputLine": "Interview audio: Missing / Needs review — Full BWV/custody/interview material still outstanding.",
       "surface": "hearing_mode / court_prep",
       "category": "evidence_state",
-      "sourceSnippet": "Officer account and short custody extract are served. Body-worn video is referred on MG6C but not attached. Full custody record, interview audio/transcript, and PACE safeguards detail are outstanding. | Full BWV export; full custody record; interview audio/transcript; PACE safegu",
+      "sourceSnippet": "MG6C/010 — Body-worn video PC Daniels — referred on schedule — full export not attached.",
       "evidenceState": "missing",
       "proofChainStatus": "pdf_and_text_support_output",
-      "verdict": "WARNING",
-      "reviewTier": "solicitor_caution",
-      "plainEnglishExplanation": "Use with caution — Material expected or mentioned but not on bundle."
+      "verdict": "PASS",
+      "reviewTier": "clean_source_backed",
+      "plainEnglishExplanation": "Safe and source-backed — Bundle shows material outstanding or not attached: \"MG6C/010 — Body-worn video PC Daniels — referred on schedule — full "
     },
     {
-      "outputLine": "Interview transcript: Missing / Needs review — Outstanding on current disclosure — chase before fixing hearing position.",
+      "outputLine": "Interview transcript: Missing / Needs review — Full BWV/custody/interview material still outstanding.",
       "surface": "hearing_mode / court_prep",
       "category": "evidence_state",
-      "sourceSnippet": "Officer account and short custody extract are served. Body-worn video is referred on MG6C but not attached. Full custody record, interview audio/transcript, and PACE safeguards detail are outstanding. | Full BWV export; full custody record; interview audio/transcript; PACE safegu",
+      "sourceSnippet": "MG6C/010 — Body-worn video PC Daniels — referred on schedule — full export not attached.",
       "evidenceState": "missing",
       "proofChainStatus": "pdf_and_text_support_output",
-      "verdict": "WARNING",
-      "reviewTier": "solicitor_caution",
-      "plainEnglishExplanation": "Use with caution — Material expected or mentioned but not on bundle."
+      "verdict": "PASS",
+      "reviewTier": "clean_source_backed",
+      "plainEnglishExplanation": "Safe and source-backed — Bundle shows material outstanding or not attached: \"MG6C/010 — Body-worn video PC Daniels — referred on schedule — full "
     },
     {
       "outputLine": "PACE safeguards detail: Missing / Needs review — Full custody/PACE material needed beyond the served extract.",
@@ -1575,15 +1539,15 @@
       "plainEnglishExplanation": "Use with caution — Custody record extract only — not fully served on current papers."
     },
     {
-      "outputLine": "Disclosure leverage: Outstanding on current disclosure — chase before fixing hearing position.",
+      "outputLine": "Sequence / coverage leverage: Full BWV/custody/interview material still outstanding.",
       "surface": "summary / opportunities",
       "category": "strategic_review",
-      "sourceSnippet": null,
+      "sourceSnippet": "MG6C/010 — Body-worn video PC Daniels — referred on schedule — full export not attached.",
       "evidenceState": null,
-      "proofChainStatus": "source_unavailable",
-      "verdict": "WARNING",
-      "reviewTier": "source_review",
-      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "PASS",
+      "reviewTier": "clean_source_backed",
+      "plainEnglishExplanation": "Safe and source-backed — Bundle shows material outstanding or not attached: \"MG6C/010 — Body-worn video PC Daniels — referred on schedule — full "
     },
     {
       "outputLine": "The defence asks the court to record per MG6C that custody extract is served, BWV is referred only, and full custody record and interview material remain outstanding.",
@@ -1619,15 +1583,15 @@
       "plainEnglishExplanation": "Use with caution — Custody record extract only — not fully served on current papers."
     },
     {
-      "outputLine": "Interview audio — Outstanding on current disclosure — chase before fixing hearing position.",
+      "outputLine": "Interview audio — Full BWV/custody/interview material still outstanding.",
       "surface": "summary / chase",
       "category": "strategic_review",
-      "sourceSnippet": "Officer account and short custody extract are served. Body-worn video is referred on MG6C but not attached. Full custody record, interview audio/transcript, and PACE safeguards detail are outstanding. | Full BWV export; full custody record; interview audio/transcript; PACE safegu",
+      "sourceSnippet": "MG6C/010 — Body-worn video PC Daniels — referred on schedule — full export not attached.",
       "evidenceState": null,
       "proofChainStatus": "pdf_and_text_support_output",
-      "verdict": "WARNING",
-      "reviewTier": "solicitor_caution",
-      "plainEnglishExplanation": "Use with caution — Material expected or mentioned but not on bundle."
+      "verdict": "PASS",
+      "reviewTier": "clean_source_backed",
+      "plainEnglishExplanation": "Safe and source-backed — Bundle shows material outstanding or not attached: \"MG6C/010 — Body-worn video PC Daniels — referred on schedule — full "
     },
     {
       "outputLine": "Provisional — for solicitor review before court.",
@@ -1960,15 +1924,15 @@
       "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
     },
     {
-      "outputLine": "We are reviewing the papers in your case (Assault an emergency worker, contrary to section 1 of the Assaults on Emergency Workers (Offences) Act 2018). This is early-stage — nothing is final until we have full disclosure and your instructions. Some evidence is still outstanding on the papers, and we will update you when it is served. We are not saying the case is won or lost — we need the full mat",
+      "outputLine": "We are reviewing the papers in your case (Casey Fry). This is early-stage — nothing is final until we have full disclosure and your instructions. A custody record extract is on the papers, but the full body-worn video export, complete custody record, and interview/PACE material are still outstanding.",
       "surface": "export_pack / client_summary",
       "category": "export_line",
-      "sourceSnippet": "Statement of Offence: | Assault an emergency worker, contrary to section 1 of the Assaults on Emergency Workers (Offences) Act 2018.",
+      "sourceSnippet": "MG6C/010 — Body-worn video PC Daniels — referred on schedule — full export not attached.",
       "evidenceState": null,
-      "proofChainStatus": "text_supports_but_pdf_unchecked",
-      "verdict": "WARNING",
-      "reviewTier": "source_review",
-      "plainEnglishExplanation": "Source gap or weak anchor — Generic MG6/schedule label without line-level served/referred snippet."
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "PASS",
+      "reviewTier": "clean_source_backed",
+      "plainEnglishExplanation": "Safe and source-backed — Bundle shows material outstanding or not attached: \"MG6C/010 — Body-worn video PC Daniels — referred on schedule — full "
     },
     {
       "outputLine": "[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
@@ -1982,18 +1946,7 @@
       "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
     },
     {
-      "outputLine": "Solicitor review required before sending to CPS, court, or client.",
-      "surface": "export_pack / client_summary",
-      "category": "export_line",
-      "sourceSnippet": null,
-      "evidenceState": null,
-      "proofChainStatus": "source_unavailable",
-      "verdict": "WARNING",
-      "reviewTier": "source_review",
-      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
-    },
-    {
-      "outputLine": "• Full BWV export [Referred only / Weak] — Full BWV export referred on schedule but not attached. — referred only, not usable as proof.\n• Full custody record [Missing / Needs review] — Full custody/PACE material needed beyond the served extract.\n• Interview audio [Missing / Needs review] — Outstanding on current disclosure — chase before fixing hearing positio",
+      "outputLine": "• Full BWV export [Referred only / Weak] — Full BWV export referred on schedule but not attached. — referred only, not usable as proof.\n• Full custody record [Missing / Needs review] — Full custody/PACE material needed beyond the served extract.\n• Interview audio [Missing / Needs review] — Full BWV/custody/interview material still outstanding. — still chase if",
       "surface": "export_pack / evidence_gaps",
       "category": "export_line",
       "sourceSnippet": "MG6C/010 — Body-worn video PC Daniels — referred on schedule — full export not attached.",
@@ -2674,22 +2627,22 @@
       "surface": "hearing_mode / court_prep"
     },
     {
-      "originalCandidate": "Interview audio: Missing / Needs review — Outstanding on current disclosure — chase before fixing hearing position. — still chase if disclosure-relevant.",
-      "finalOutput": "Interview audio: Missing / Needs review — Outstanding on current disclosure — chase before fixing hearing position.",
+      "originalCandidate": "Interview audio: Missing / Needs review — Full BWV/custody/interview material still outstanding. — still chase if disclosure-relevant.",
+      "finalOutput": "Interview audio: Missing / Needs review — Full BWV/custody/interview material still outstanding.",
       "changeType": "human_label",
       "reason": "Human-readable label applied for solicitor review.",
-      "sourceSupport": "Officer account and short custody extract are served. Body-worn video is referre",
-      "beforeAfterWording": "Before: Interview audio: Missing / Needs review — Outstanding on current disclosure — chase before fixing he | After: Interview audio: Missing / Needs review — Outstanding on current disclosure — chase before fixing he",
+      "sourceSupport": "MG6C/010 — Body-worn video PC Daniels — referred on schedule — full export not a",
+      "beforeAfterWording": "Before: Interview audio: Missing / Needs review — Full BWV/custody/interview material still outstanding. — s | After: Interview audio: Missing / Needs review — Full BWV/custody/interview material still outstanding.",
       "solicitorFriendlyExplanation": "Output humanised for clarity.",
       "surface": "hearing_mode / court_prep"
     },
     {
-      "originalCandidate": "Interview transcript: Missing / Needs review — Outstanding on current disclosure — chase before fixing hearing position. — still chase if disclosure-relevant.",
-      "finalOutput": "Interview transcript: Missing / Needs review — Outstanding on current disclosure — chase before fixing hearing position.",
+      "originalCandidate": "Interview transcript: Missing / Needs review — Full BWV/custody/interview material still outstanding. — still chase if disclosure-relevant.",
+      "finalOutput": "Interview transcript: Missing / Needs review — Full BWV/custody/interview material still outstanding.",
       "changeType": "human_label",
       "reason": "Human-readable label applied for solicitor review.",
-      "sourceSupport": "Officer account and short custody extract are served. Body-worn video is referre",
-      "beforeAfterWording": "Before: Interview transcript: Missing / Needs review — Outstanding on current disclosure — chase before fixi | After: Interview transcript: Missing / Needs review — Outstanding on current disclosure — chase before fixi",
+      "sourceSupport": "MG6C/010 — Body-worn video PC Daniels — referred on schedule — full export not a",
+      "beforeAfterWording": "Before: Interview transcript: Missing / Needs review — Full BWV/custody/interview material still outstanding | After: Interview transcript: Missing / Needs review — Full BWV/custody/interview material still outstanding",
       "solicitorFriendlyExplanation": "Output humanised for clarity.",
       "surface": "hearing_mode / court_prep"
     },
@@ -2734,8 +2687,8 @@
       "surface": "hearing_mode / court_prep"
     },
     {
-      "originalCandidate": "• Full BWV export [Referred only / Weak] — Full BWV export referred on schedule but not attached. — referred only, not usable as proof.\n• Full custody record [Missing / Needs review] — Full custody/PACE material needed beyond the served extract. — still chase if disclosure-relevant.\n• Interview audio [Missing / Needs review] — Outstanding on current disclosure — chase before fixing hearing positio",
-      "finalOutput": "• Full BWV export [Referred only / Weak] — Full BWV export referred on schedule but not attached. — referred only, not usable as proof.\n• Full custody record [Missing / Needs review] — Full custody/PACE material needed beyond the served extract.\n• Interview audio [Missing / Needs review] — Outstanding on current disclosure — chase before fixing hearing positio",
+      "originalCandidate": "• Full BWV export [Referred only / Weak] — Full BWV export referred on schedule but not attached. — referred only, not usable as proof.\n• Full custody record [Missing / Needs review] — Full custody/PACE material needed beyond the served extract. — still chase if disclosure-relevant.\n• Interview audio [Missing / Needs review] — Full BWV/custody/interview material still outstanding. — still chase if",
+      "finalOutput": "• Full BWV export [Referred only / Weak] — Full BWV export referred on schedule but not attached. — referred only, not usable as proof.\n• Full custody record [Missing / Needs review] — Full custody/PACE material needed beyond the served extract.\n• Interview audio [Missing / Needs review] — Full BWV/custody/interview material still outstanding. — still chase if",
       "changeType": "human_label",
       "reason": "Human-readable label applied for solicitor review.",
       "sourceSupport": "MG6C/010 — Body-worn video PC Daniels — referred on schedule — full export not a",
@@ -3410,21 +3363,21 @@
       "plainEnglishNote": "PDF page and extracted text both support this line."
     },
     {
-      "outputLine": "Interview audio: Missing / Needs review — Outstanding on current disclosure — chase before fixing hearing position.",
+      "outputLine": "Interview audio: Missing / Needs review — Full BWV/custody/interview material still outstanding.",
       "surface": "hearing_mode / court_prep",
       "pdfPageAvailable": true,
-      "extractedSnippet": "Officer account and short custody extract are served. Body-worn video is referred on MG6C but not attached. Full custody record, interview audio/transcript, and PACE safeguards detail are outstanding. | Full BWV export; full custody record; interview audio/transcript; PACE safegu",
-      "pageNumber": "2",
+      "extractedSnippet": "MG6C/010 — Body-worn video PC Daniels — referred on schedule — full export not attached.",
+      "pageNumber": "4",
       "proofChainStatus": "pdf_and_text_support_output",
       "extractionIssue": "page_missing",
       "plainEnglishNote": "PDF page and extracted text both support this line."
     },
     {
-      "outputLine": "Interview transcript: Missing / Needs review — Outstanding on current disclosure — chase before fixing hearing position.",
+      "outputLine": "Interview transcript: Missing / Needs review — Full BWV/custody/interview material still outstanding.",
       "surface": "hearing_mode / court_prep",
       "pdfPageAvailable": true,
-      "extractedSnippet": "Officer account and short custody extract are served. Body-worn video is referred on MG6C but not attached. Full custody record, interview audio/transcript, and PACE safeguards detail are outstanding. | Full BWV export; full custody record; interview audio/transcript; PACE safegu",
-      "pageNumber": "2",
+      "extractedSnippet": "MG6C/010 — Body-worn video PC Daniels — referred on schedule — full export not attached.",
+      "pageNumber": "4",
       "proofChainStatus": "pdf_and_text_support_output",
       "extractionIssue": "page_missing",
       "plainEnglishNote": "PDF page and extracted text both support this line."
@@ -3720,14 +3673,14 @@
       "plainEnglishNote": "PDF page and extracted text both support this line."
     },
     {
-      "outputLine": "Disclosure leverage: Outstanding on current disclosure — chase before fixing hearing position.",
+      "outputLine": "Sequence / coverage leverage: Full BWV/custody/interview material still outstanding.",
       "surface": "summary / opportunities",
-      "pdfPageAvailable": false,
-      "extractedSnippet": null,
-      "pageNumber": null,
-      "proofChainStatus": "source_unavailable",
-      "extractionIssue": "none",
-      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/010 — Body-worn video PC Daniels — referred on schedule — full export not attached.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
     },
     {
       "outputLine": "The defence asks the court to record per MG6C that custody extract is served, BWV is referred only, and full custody record and interview material remain outstanding.",
@@ -3760,11 +3713,11 @@
       "plainEnglishNote": "PDF page and extracted text both support this line."
     },
     {
-      "outputLine": "Interview audio — Outstanding on current disclosure — chase before fixing hearing position.",
+      "outputLine": "Interview audio — Full BWV/custody/interview material still outstanding.",
       "surface": "summary / chase",
       "pdfPageAvailable": true,
-      "extractedSnippet": "Officer account and short custody extract are served. Body-worn video is referred on MG6C but not attached. Full custody record, interview audio/transcript, and PACE safeguards detail are outstanding. | Full BWV export; full custody record; interview audio/transcript; PACE safegu",
-      "pageNumber": "2",
+      "extractedSnippet": "MG6C/010 — Body-worn video PC Daniels — referred on schedule — full export not attached.",
+      "pageNumber": "4",
       "proofChainStatus": "pdf_and_text_support_output",
       "extractionIssue": "page_missing",
       "plainEnglishNote": "PDF page and extracted text both support this line."
@@ -4070,14 +4023,14 @@
       "plainEnglishNote": "No usable source anchor — solicitor must verify."
     },
     {
-      "outputLine": "We are reviewing the papers in your case (Assault an emergency worker, contrary to section 1 of the Assaults on Emergency Workers (Offences) Act 2018). This is early-stage — nothing is final until we have full disclosure and your instructions. Some evidence is still outstanding on the papers, and we will update you when it is served. We are not saying the case is won or lost — we need the full mat",
+      "outputLine": "We are reviewing the papers in your case (Casey Fry). This is early-stage — nothing is final until we have full disclosure and your instructions. A custody record extract is on the papers, but the full body-worn video export, complete custody record, and interview/PACE material are still outstanding.",
       "surface": "export_pack / client_summary",
-      "pdfPageAvailable": false,
-      "extractedSnippet": "Statement of Offence: | Assault an emergency worker, contrary to section 1 of the Assaults on Emergency Workers (Offences) Act 2018.",
-      "pageNumber": null,
-      "proofChainStatus": "text_supports_but_pdf_unchecked",
-      "extractionIssue": "none",
-      "plainEnglishNote": "Text supports line; PDF page not verified in this pass."
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/010 — Body-worn video PC Daniels — referred on schedule — full export not attached.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
     },
     {
       "outputLine": "[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
@@ -4090,17 +4043,7 @@
       "plainEnglishNote": "No usable source anchor — solicitor must verify."
     },
     {
-      "outputLine": "Solicitor review required before sending to CPS, court, or client.",
-      "surface": "export_pack / client_summary",
-      "pdfPageAvailable": false,
-      "extractedSnippet": null,
-      "pageNumber": null,
-      "proofChainStatus": "source_unavailable",
-      "extractionIssue": "none",
-      "plainEnglishNote": "No usable source anchor — solicitor must verify."
-    },
-    {
-      "outputLine": "• Full BWV export [Referred only / Weak] — Full BWV export referred on schedule but not attached. — referred only, not usable as proof.\n• Full custody record [Missing / Needs review] — Full custody/PACE material needed beyond the served extract.\n• Interview audio [Missing / Needs review] — Outstanding on current disclosure — chase before fixing hearing positio",
+      "outputLine": "• Full BWV export [Referred only / Weak] — Full BWV export referred on schedule but not attached. — referred only, not usable as proof.\n• Full custody record [Missing / Needs review] — Full custody/PACE material needed beyond the served extract.\n• Interview audio [Missing / Needs review] — Full BWV/custody/interview material still outstanding. — still chase if",
       "surface": "export_pack / evidence_gaps",
       "pdfPageAvailable": true,
       "extractedSnippet": "MG6C/010 — Body-worn video PC Daniels — referred on schedule — full export not attached.",
@@ -4161,18 +4104,18 @@
     }
   ],
   "counts": {
-    "emittedLines": 141,
+    "emittedLines": 140,
     "suppressedCandidates": 25,
     "rewritesDowngrades": 36,
     "missingExpectedOutputs": 0,
     "sourceConflicts": 0,
     "entityRisks": 0,
     "surfaceSafetyIssues": 0,
-    "positiveCorrect": 70,
-    "cleanSourceBacked": 35,
+    "positiveCorrect": 75,
+    "cleanSourceBacked": 40,
     "possibleFalseSuppressions": 0,
-    "pdfAndTextSupported": 74,
-    "textOnlySupported": 34,
+    "pdfAndTextSupported": 76,
+    "textOnlySupported": 33,
     "emittedUnsupported": 0,
     "suppressedUnsupported": 25,
     "outputUnsupportedAfterGate": 0

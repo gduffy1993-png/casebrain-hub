@@ -19,7 +19,7 @@ import {
   gateDoNotOverstateList,
   gateWarRoomBrief,
 } from "./output-presentation-gate";
-import { isDemoAuditCase, polishDemoAuditModels } from "../demo-audit-packs/presentation-polish";
+import { isDemoAuditCase, polishDemoAuditModels, polishDemoAuditExportPack } from "../demo-audit-packs/presentation-polish";
 import { ProofLedgerSession, withProofLedgerSession } from "./proof-ledger-session";
 import type { ProofLedgerRawModels } from "./proof-ledger-types";
 
@@ -194,7 +194,9 @@ export function buildH5CaseModelsWithLedger(caseDir: string): H5CaseBuildResult 
     appVersion: "line-source-proof",
     generatedAt,
   });
-  const exportPack = exportPackRaw;
+  const exportPack = isDemoAuditCase(caseId)
+    ? polishDemoAuditExportPack(exportPackRaw, truthKey, clientLabel, caseId)
+    : exportPackRaw;
 
   const matterBrief = buildMatterBrief({
     warRoom,

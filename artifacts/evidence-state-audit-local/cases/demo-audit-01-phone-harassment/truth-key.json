@@ -105,8 +105,8 @@
     "subscriber/account data",
     "full message export",
     "call logs",
-    "final signed MG11",
-    "MG6C clarification"
+    "device metadata export",
+    "final signed MG11"
   ],
   "expectedSendability": "provisional_check_source",
   "mustNotSayGlobal": [

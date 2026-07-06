@@ -1,0 +1,15 @@
+{
+  "safeCourtLine": "The defence asks the court to record per MG6C that message extracts are served and handle attribution report and platform extraction remain outstanding.",
+  "safePositionToday": "The defence asks the court to record per MG6C that message extracts are served and handle attribution report and platform extraction remain outstanding.",
+  "askCourtToRecord": [
+    "Outstanding disclosure: Platform / source extraction; Handle attribution report; Subscriber / account data; Device continuity.",
+    "Invite the court to order disclosure by a fixed date with a review hearing."
+  ],
+  "disclosureTimetable": "The defence invites the court to order disclosure of Platform / source extraction; Handle attribution report; Subscriber / account data; Device continuity by [date] with a review on [date]. Position remains provisional.",
+  "doNotOverstate": [
+    "Do not treat handle or phone reference as proof of the defendant role without served attribution.",
+    "Do not rely on drug continuity unless lab/continuity material is served.",
+    "Jayden Cole is the handle",
+    "phone proves role"
+  ]
+}

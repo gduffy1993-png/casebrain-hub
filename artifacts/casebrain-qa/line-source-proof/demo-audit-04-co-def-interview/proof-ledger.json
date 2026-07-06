@@ -651,19 +651,13 @@
     {
       "tier": "source_review",
       "surface": "export_pack / client_summary",
-      "outputLine": "We are reviewing the papers in your case (Burglary in a dwelling, contrary to section 9(1)(b) of the Theft Act 1968). This is early-stage — nothing is",
+      "outputLine": "We are reviewing the papers in your case (Morgan Reid). This is early-stage — nothing is final until we have full disclosure and your instructions. A ",
       "reason": "generic_source_only, solicitor_review_required"
     },
     {
       "tier": "source_review",
       "surface": "export_pack / client_summary",
       "outputLine": "[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
-      "reason": "source_unavailable, meaningful_line_without_anchor, solicitor_review_required"
-    },
-    {
-      "tier": "source_review",
-      "surface": "export_pack / client_summary",
-      "outputLine": "Solicitor review required before sending to CPS, court, or client.",
       "reason": "source_unavailable, meaningful_line_without_anchor, solicitor_review_required"
     },
     {
@@ -2078,29 +2072,18 @@
       "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
     },
     {
-      "outputLine": "We are reviewing the papers in your case (Burglary in a dwelling, contrary to section 9(1)(b) of the Theft Act 1968). This is early-stage — nothing is final until we have full disclosure and your instructions. Some evidence is still outstanding on the papers, and we will update you when it is served. We are not saying the case is won or lost — we need the full material before giving firm advice.",
+      "outputLine": "We are reviewing the papers in your case (Morgan Reid). This is early-stage — nothing is final until we have full disclosure and your instructions. A co-defendant interview summary is on the papers for segregation only. Your interview summary, audio, and transcript are still outstanding and must not be confused with the co-defendant material.",
       "surface": "export_pack / client_summary",
       "category": "export_line",
-      "sourceSnippet": "Statement of Offence: | Burglary in a dwelling, contrary to section 9(1)(b) of the Theft Act 1968.",
+      "sourceSnippet": "Co-defendant interview summary (Tara Vale) | 6 | | Co-defendant Tara Vale interview summary is served. Target defendant Morgan Reid interview summary, transcript, and audio are outstanding. Co-defendant material must not be imported into Morgan Reid's account without segregation.",
       "evidenceState": null,
-      "proofChainStatus": "text_supports_but_pdf_unchecked",
+      "proofChainStatus": "pdf_available_but_text_mismatch",
       "verdict": "WARNING",
       "reviewTier": "source_review",
       "plainEnglishExplanation": "Source gap or weak anchor — Generic MG6/schedule label without line-level served/referred snippet."
     },
     {
       "outputLine": "[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
-      "surface": "export_pack / client_summary",
-      "category": "export_line",
-      "sourceSnippet": null,
-      "evidenceState": null,
-      "proofChainStatus": "source_unavailable",
-      "verdict": "WARNING",
-      "reviewTier": "source_review",
-      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
-    },
-    {
-      "outputLine": "Solicitor review required before sending to CPS, court, or client.",
       "surface": "export_pack / client_summary",
       "category": "export_line",
       "sourceSnippet": null,
@@ -4207,27 +4190,17 @@
       "plainEnglishNote": "No usable source anchor — solicitor must verify."
     },
     {
-      "outputLine": "We are reviewing the papers in your case (Burglary in a dwelling, contrary to section 9(1)(b) of the Theft Act 1968). This is early-stage — nothing is final until we have full disclosure and your instructions. Some evidence is still outstanding on the papers, and we will update you when it is served. We are not saying the case is won or lost — we need the full material before giving firm advice.",
+      "outputLine": "We are reviewing the papers in your case (Morgan Reid). This is early-stage — nothing is final until we have full disclosure and your instructions. A co-defendant interview summary is on the papers for segregation only. Your interview summary, audio, and transcript are still outstanding and must not be confused with the co-defendant material.",
       "surface": "export_pack / client_summary",
-      "pdfPageAvailable": false,
-      "extractedSnippet": "Statement of Offence: | Burglary in a dwelling, contrary to section 9(1)(b) of the Theft Act 1968.",
-      "pageNumber": null,
-      "proofChainStatus": "text_supports_but_pdf_unchecked",
-      "extractionIssue": "none",
-      "plainEnglishNote": "Text supports line; PDF page not verified in this pass."
+      "pdfPageAvailable": true,
+      "extractedSnippet": "Co-defendant interview summary (Tara Vale) | 6 | | Co-defendant Tara Vale interview summary is served. Target defendant Morgan Reid interview summary, transcript, and audio are outstanding. Co-defendant material must not be imported into Morgan Reid's account without segregation.",
+      "pageNumber": "6",
+      "proofChainStatus": "pdf_available_but_text_mismatch",
+      "extractionIssue": "section_mismatch",
+      "plainEnglishNote": "Generic MG6/schedule label without line-level served/referred snippet."
     },
     {
       "outputLine": "[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
-      "surface": "export_pack / client_summary",
-      "pdfPageAvailable": false,
-      "extractedSnippet": null,
-      "pageNumber": null,
-      "proofChainStatus": "source_unavailable",
-      "extractionIssue": "none",
-      "plainEnglishNote": "No usable source anchor — solicitor must verify."
-    },
-    {
-      "outputLine": "Solicitor review required before sending to CPS, court, or client.",
       "surface": "export_pack / client_summary",
       "pdfPageAvailable": false,
       "extractedSnippet": null,
@@ -4298,7 +4271,7 @@
     }
   ],
   "counts": {
-    "emittedLines": 136,
+    "emittedLines": 135,
     "suppressedCandidates": 33,
     "rewritesDowngrades": 34,
     "missingExpectedOutputs": 0,
@@ -4309,7 +4282,7 @@
     "cleanSourceBacked": 0,
     "possibleFalseSuppressions": 0,
     "pdfAndTextSupported": 42,
-    "textOnlySupported": 32,
+    "textOnlySupported": 31,
     "emittedUnsupported": 0,
     "suppressedUnsupported": 33,
     "outputUnsupportedAfterGate": 0

@@ -1,0 +1,74 @@
+{
+  "caseId": "demo-audit-18-motoring-sjp-thin",
+  "caseName": "DA-18 Ella Shaw — motoring SJP thin file",
+  "shape": "SJP thin bundle / device and CCTV export outstanding",
+  "pdfPages": 7,
+  "keyServedItems": [
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "officer MG11",
+    "breath/device procedure summary"
+  ],
+  "keyMissingReferred": [
+    "device calibration certificate (missing)",
+    "full intoxilyser record (missing)",
+    "cctv/dashcam export (referred_only)"
+  ],
+  "truthMapResult": [
+    {
+      "label": "Officer statement",
+      "existence": "served"
+    },
+    {
+      "label": "Breath / device procedure summary",
+      "existence": "served",
+      "note": "Summary served — calibration and full device record outstanding."
+    },
+    {
+      "label": "CCTV / dashcam export",
+      "existence": "referred_only"
+    },
+    {
+      "label": "Device calibration certificate",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    },
+    {
+      "label": "Full intoxilyser record",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    }
+  ],
+  "proofPacketVerdict": "PASS WITH WARNINGS",
+  "failLineCount": 0,
+  "unsupportedLinesCount": 0,
+  "wrongFamilyWarningsCount": 0,
+  "proofLedgerWrongFamilyInternal": 0,
+  "blockedFalseServedGuardsCount": 0,
+  "pageBackedOutputLinesCount": 43,
+  "vagueChaseLabelsCount": 0,
+  "genericLabelCount": 0,
+  "solicitorFacingBannedCount": 0,
+  "packetDuplicateCount": 0,
+  "packetOffFamilyCount": 0,
+  "packetMainIssueCount": 0,
+  "caseFacingWrongFamilyCount": 0,
+  "readyForDemoReview": true,
+  "readyBlockers": [],
+  "filesCreated": [
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-18-motoring-sjp-thin\\bundle.pdf",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-18-motoring-sjp-thin\\bundle-text.md",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-18-motoring-sjp-thin\\pdf-extraction-meta.json",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-18-motoring-sjp-thin\\truth-key.json",
+    "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-18-motoring-sjp-thin\\line-by-line-proof.md",
+    "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-18-motoring-sjp-thin\\SOLICITOR-PROOF-PACKET.md",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-18-motoring-sjp-thin\\overview-truth-map.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-18-motoring-sjp-thin\\court-tab.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-18-motoring-sjp-thin\\cps-chase.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-18-motoring-sjp-thin\\client-summary.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-18-motoring-sjp-thin\\file-source-view.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-18-motoring-sjp-thin\\casebrain-output.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-18-motoring-sjp-thin\\scorecard.json"
+  ]
+}

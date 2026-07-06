@@ -80,7 +80,8 @@
     "master cctv footage",
     "full cctv export",
     "continuity/provenance",
-    "audit trail"
+    "CCTV audit trail / source hash record",
+    "recognition/ID basis"
   ],
   "expectedSendability": "provisional_check_source",
   "mustNotSayGlobal": [

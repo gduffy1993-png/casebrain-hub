@@ -1,0 +1,425 @@
+{
+  "truthMap": [
+    {
+      "label": "Body-worn video (BWV)",
+      "existence": "referred_only",
+      "note": "Referred on MG6C — full export not attached."
+    },
+    {
+      "label": "Officer statement",
+      "existence": "served"
+    },
+    {
+      "label": "Custody record extract",
+      "existence": "served",
+      "note": "Extract only — full custody record outstanding."
+    },
+    {
+      "label": "Full custody record",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    },
+    {
+      "label": "Interview audio",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    },
+    {
+      "label": "PACE safeguards detail",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    }
+  ],
+  "mustNotOverstate": [
+    "Do not rely on full BWV sequence unless export is served.",
+    "BWV shows the assault",
+    "Assumed position may conflict with interview or served evidence.",
+    "full video proves",
+    "phone extraction"
+  ],
+  "evidenceTrace": {
+    "rows": [
+      {
+        "id": "allegation-0",
+        "section": "allegation",
+        "claim": "Assault an emergency worker, contrary to section 1 of the Assaults on Emergency Workers (Offences) Act 2018",
+        "existence": "served",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/010 — Body-worn video PC Daniels 4412 — referred on schedule — full export not attached.",
+        "sourceLabel": "Charge sheet / papers",
+        "inference": false
+      },
+      {
+        "id": "allegation-1",
+        "section": "allegation",
+        "claim": "Disclosure completeness and outstanding source material.",
+        "existence": "not_safely_confirmed",
+        "reliability": "needs_review",
+        "sourceLabel": "Matter confidence",
+        "inference": false,
+        "traceWarning": null
+      },
+      {
+        "id": "missing_referred-0",
+        "section": "missing_referred",
+        "claim": "Full BWV export",
+        "existence": "referred_only",
+        "reliability": "weak",
+        "sourceAnchor": "MG6C/010 — Body-worn video PC Daniels 4412 — referred on schedule — full export not attached.",
+        "sourceLabel": "MG6C schedule",
+        "critical": false,
+        "inference": false,
+        "notUsable": true,
+        "traceWarning": null
+      },
+      {
+        "id": "missing_referred-1",
+        "section": "missing_referred",
+        "claim": "Full custody record",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/011 — Custody record — extract only served — full record outstanding.",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "missing_referred-2",
+        "section": "missing_referred",
+        "claim": "Interview audio",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/013 — Interview audio — outstanding — not on bundle.",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "missing_referred-3",
+        "section": "missing_referred",
+        "claim": "PACE safeguards detail",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/015 — PACE safeguards detail — outstanding.",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "do_not_overstate-0",
+        "section": "do_not_overstate",
+        "claim": "Do not rely on full BWV sequence unless export is served.",
+        "existence": "not_safely_confirmed",
+        "reliability": "unsafe",
+        "sourceLabel": "Guardian / bundle guard",
+        "inference": false,
+        "traceWarning": null
+      },
+      {
+        "id": "do_not_overstate-1",
+        "section": "do_not_overstate",
+        "claim": "BWV shows the assault",
+        "existence": "not_safely_confirmed",
+        "reliability": "unsafe",
+        "sourceLabel": "Guardian / bundle guard",
+        "inference": false,
+        "traceWarning": null
+      },
+      {
+        "id": "do_not_overstate-2",
+        "section": "do_not_overstate",
+        "claim": "Assumed position may conflict with interview or served evidence.",
+        "existence": "not_safely_confirmed",
+        "reliability": "unsafe",
+        "sourceLabel": "Guardian / bundle guard",
+        "inference": false,
+        "traceWarning": null
+      },
+      {
+        "id": "do_not_overstate-3",
+        "section": "do_not_overstate",
+        "claim": "full video proves",
+        "existence": "not_safely_confirmed",
+        "reliability": "unsafe",
+        "sourceLabel": "Guardian / bundle guard",
+        "inference": false,
+        "traceWarning": null
+      },
+      {
+        "id": "do_not_overstate-4",
+        "section": "do_not_overstate",
+        "claim": "phone extraction",
+        "existence": "not_safely_confirmed",
+        "reliability": "unsafe",
+        "sourceLabel": "Guardian / bundle guard",
+        "inference": false,
+        "traceWarning": null
+      },
+      {
+        "id": "chase-0",
+        "section": "chase",
+        "claim": "Please provide Full BWV export (see MG6C/010) or confirm in writing why it is not available.",
+        "existence": "referred_only",
+        "reliability": "weak",
+        "sourceAnchor": "MG6C/010 — Body-worn video PC Daniels 4412 — referred on schedule — full export not attached.",
+        "sourceLabel": "MG6C schedule",
+        "critical": false,
+        "inference": false,
+        "notUsable": true,
+        "traceWarning": null
+      },
+      {
+        "id": "chase-1",
+        "section": "chase",
+        "claim": "Please provide Full custody record (see MG6C/011) or confirm in writing why it is not available.",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/011 — Custody record — extract only served — full record outstanding.",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "chase-2",
+        "section": "chase",
+        "claim": "Please provide Interview audio (see MG6C/013) or confirm in writing why it is not available.",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/013 — Interview audio — outstanding — not on bundle.",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "chase-3",
+        "section": "chase",
+        "claim": "Please provide PACE safeguards detail (see MG6C/015) or confirm in writing why it is not available.",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/015 — PACE safeguards detail — outstanding.",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "court_note-0",
+        "section": "court_note",
+        "claim": "The defence asks the court to record per MG6C that custody extract is served, BWV is referred only, and full custody record and interview material remain outstanding.",
+        "existence": "not_safely_confirmed",
+        "reliability": "needs_review",
+        "sourceLabel": "Disclosure chase brief",
+        "sourceAnchor": "MG6C/010 — Body-worn video PC Daniels 4412 — referred on schedule — full export not attached.",
+        "inference": false
+      }
+    ],
+    "bySection": {
+      "allegation": [
+        {
+          "id": "allegation-0",
+          "section": "allegation",
+          "claim": "Assault an emergency worker, contrary to section 1 of the Assaults on Emergency Workers (Offences) Act 2018",
+          "existence": "served",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/010 — Body-worn video PC Daniels 4412 — referred on schedule — full export not attached.",
+          "sourceLabel": "Charge sheet / papers",
+          "inference": false
+        },
+        {
+          "id": "allegation-1",
+          "section": "allegation",
+          "claim": "Disclosure completeness and outstanding source material.",
+          "existence": "not_safely_confirmed",
+          "reliability": "needs_review",
+          "sourceLabel": "Matter confidence",
+          "inference": false,
+          "traceWarning": null
+        }
+      ],
+      "key_evidence": [],
+      "missing_referred": [
+        {
+          "id": "missing_referred-0",
+          "section": "missing_referred",
+          "claim": "Full BWV export",
+          "existence": "referred_only",
+          "reliability": "weak",
+          "sourceAnchor": "MG6C/010 — Body-worn video PC Daniels 4412 — referred on schedule — full export not attached.",
+          "sourceLabel": "MG6C schedule",
+          "critical": false,
+          "inference": false,
+          "notUsable": true,
+          "traceWarning": null
+        },
+        {
+          "id": "missing_referred-1",
+          "section": "missing_referred",
+          "claim": "Full custody record",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/011 — Custody record — extract only served — full record outstanding.",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        },
+        {
+          "id": "missing_referred-2",
+          "section": "missing_referred",
+          "claim": "Interview audio",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/013 — Interview audio — outstanding — not on bundle.",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        },
+        {
+          "id": "missing_referred-3",
+          "section": "missing_referred",
+          "claim": "PACE safeguards detail",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/015 — PACE safeguards detail — outstanding.",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        }
+      ],
+      "do_not_overstate": [
+        {
+          "id": "do_not_overstate-0",
+          "section": "do_not_overstate",
+          "claim": "Do not rely on full BWV sequence unless export is served.",
+          "existence": "not_safely_confirmed",
+          "reliability": "unsafe",
+          "sourceLabel": "Guardian / bundle guard",
+          "inference": false,
+          "traceWarning": null
+        },
+        {
+          "id": "do_not_overstate-1",
+          "section": "do_not_overstate",
+          "claim": "BWV shows the assault",
+          "existence": "not_safely_confirmed",
+          "reliability": "unsafe",
+          "sourceLabel": "Guardian / bundle guard",
+          "inference": false,
+          "traceWarning": null
+        },
+        {
+          "id": "do_not_overstate-2",
+          "section": "do_not_overstate",
+          "claim": "Assumed position may conflict with interview or served evidence.",
+          "existence": "not_safely_confirmed",
+          "reliability": "unsafe",
+          "sourceLabel": "Guardian / bundle guard",
+          "inference": false,
+          "traceWarning": null
+        },
+        {
+          "id": "do_not_overstate-3",
+          "section": "do_not_overstate",
+          "claim": "full video proves",
+          "existence": "not_safely_confirmed",
+          "reliability": "unsafe",
+          "sourceLabel": "Guardian / bundle guard",
+          "inference": false,
+          "traceWarning": null
+        },
+        {
+          "id": "do_not_overstate-4",
+          "section": "do_not_overstate",
+          "claim": "phone extraction",
+          "existence": "not_safely_confirmed",
+          "reliability": "unsafe",
+          "sourceLabel": "Guardian / bundle guard",
+          "inference": false,
+          "traceWarning": null
+        }
+      ],
+      "chase": [
+        {
+          "id": "chase-0",
+          "section": "chase",
+          "claim": "Please provide Full BWV export (see MG6C/010) or confirm in writing why it is not available.",
+          "existence": "referred_only",
+          "reliability": "weak",
+          "sourceAnchor": "MG6C/010 — Body-worn video PC Daniels 4412 — referred on schedule — full export not attached.",
+          "sourceLabel": "MG6C schedule",
+          "critical": false,
+          "inference": false,
+          "notUsable": true,
+          "traceWarning": null
+        },
+        {
+          "id": "chase-1",
+          "section": "chase",
+          "claim": "Please provide Full custody record (see MG6C/011) or confirm in writing why it is not available.",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/011 — Custody record — extract only served — full record outstanding.",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        },
+        {
+          "id": "chase-2",
+          "section": "chase",
+          "claim": "Please provide Interview audio (see MG6C/013) or confirm in writing why it is not available.",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/013 — Interview audio — outstanding — not on bundle.",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        },
+        {
+          "id": "chase-3",
+          "section": "chase",
+          "claim": "Please provide PACE safeguards detail (see MG6C/015) or confirm in writing why it is not available.",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/015 — PACE safeguards detail — outstanding.",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        }
+      ],
+      "court_note": [
+        {
+          "id": "court_note-0",
+          "section": "court_note",
+          "claim": "The defence asks the court to record per MG6C that custody extract is served, BWV is referred only, and full custody record and interview material remain outstanding.",
+          "existence": "not_safely_confirmed",
+          "reliability": "needs_review",
+          "sourceLabel": "Disclosure chase brief",
+          "sourceAnchor": "MG6C/010 — Body-worn video PC Daniels 4412 — referred on schedule — full export not attached.",
+          "inference": false
+        }
+      ]
+    }
+  }
+}

@@ -14,7 +14,7 @@ import { buildPdfPagesFromLayout } from "../lib/eval/demo-audit-packs/pdf-layout
 import { buildLineSourceProof, writeLineSourceProofArtifacts } from "../lib/eval/line-source-proof/build-report";
 import { buildH5CaseModels } from "../lib/eval/line-source-proof/build-case-models";
 import { buildPdfBackedCaseArtifacts } from "../lib/eval/line-source-proof/pdf-bundle-pipeline";
-import { renderSolicitorProofPacket } from "../lib/eval/line-source-proof/render-solicitor-proof-packet";
+import { renderSolicitorProofPacket, buildSolicitorProofPacketModel, countSolicitorPacketDuplicates, countSolicitorPacketOffFamily, solicitorPacketHasMainIssue } from "../lib/eval/line-source-proof/render-solicitor-proof-packet";
 import type { LineSourceProofReport } from "../lib/eval/line-source-proof/types";
 import type { EvidenceStateTruthKey } from "../lib/eval/evidence-state-audit/types";
 
@@ -23,7 +23,14 @@ const OUT_ROOT = path.join(ROOT, "artifacts", "casebrain-qa", "demo-audit-thirty
 const LINE_PROOF_ROOT = path.join(ROOT, "artifacts", "casebrain-qa", "line-source-proof");
 
 const BANNED_PDF_WORDS = /\b(synthetic|simulator|test bundle|fake bundle|ai generated)\b/i;
-const VAGUE_CHASE_RE = /\bmg6\s*\/\s*unused|mG6\b|schedule clarification\b|exhibit mapping|additional source material/i;
+const VAGUE_CHASE_RE =
+  /\bmg6\s*\/\s*unused|schedule clarification\b|exhibit mapping|additional source material|mg6c?\s*clarification\b/i;
+const SOLICITOR_FACING_BANNED_RE =
+  /please provide mg6c clarification|mg6c clarification on unused|\bUnknown\s*[—–-]\s*|\bsource_unavailable\b/i;
+
+function hasDevStyleMg6(text: string): boolean {
+  return /\bmG6\b/.test(text);
+}
 
 function countCaseFacingWrongFamily(
   models: ReturnType<typeof buildH5CaseModels>,
@@ -54,7 +61,24 @@ function countGenericLabels(models: ReturnType<typeof buildH5CaseModels>): numbe
     ...models.chase.primaryItems.map((i) => i.label),
     ...models.five.evidenceState.rows.map((r) => r.label),
   ].join(" ");
-  return (hay.match(/\bmg6\s*\/\s*unused|\bmG6\b|schedule clarification|exhibit mapping \/ provenance|additional source-material/gi) ?? []).length;
+  return (
+    hay.match(
+      /\bmg6\s*\/\s*unused|schedule clarification|exhibit mapping \/ provenance|additional source-material|mg6c?\s*clarification\b/gi,
+    ) ?? []
+  ).length + (/\bmG6\b/.test(hay) ? 1 : 0);
+}
+
+function countSolicitorFacingBanned(caseOutDir: string): number {
+  const files = ["cps-chase.json", "court-tab.json", "client-summary.json", "SOLICITOR-PROOF-PACKET.md"];
+  let count = 0;
+  for (const file of files) {
+    const full = path.join(caseOutDir, file);
+    if (!fs.existsSync(full)) continue;
+    const text = fs.readFileSync(full, "utf8");
+    count += (text.match(SOLICITOR_FACING_BANNED_RE) ?? []).length;
+    count += hasDevStyleMg6(text) ? 1 : 0;
+  }
+  return count;
 }
 
 type CaseScorecard = {
@@ -74,6 +98,10 @@ type CaseScorecard = {
   pageBackedOutputLinesCount: number;
   vagueChaseLabelsCount: number;
   genericLabelCount: number;
+  solicitorFacingBannedCount: number;
+  packetDuplicateCount: number;
+  packetOffFamilyCount: number;
+  packetMainIssueCount: number;
   caseFacingWrongFamilyCount: number;
   readyForDemoReview: boolean;
   readyBlockers: string[];
@@ -125,6 +153,7 @@ function assessReady(
   truthKey: EvidenceStateTruthKey,
   models: ReturnType<typeof buildH5CaseModels>,
   pdfBanned: boolean,
+  caseOutDir: string,
 ): { ready: boolean; blockers: string[] } {
   const blockers: string[] = [];
   const evidenceRows = models.five.evidenceState.rows;
@@ -137,6 +166,14 @@ function assessReady(
   }
   if (countGenericLabels(models) > 0) blockers.push(`Generic labels in case-facing output: ${countGenericLabels(models)}`);
   if (countVagueChaseLabels(models) > 0) blockers.push(`Vague CPS chase labels: ${countVagueChaseLabels(models)}`);
+  const solicitorBanned = countSolicitorFacingBanned(caseOutDir);
+  if (solicitorBanned > 0) blockers.push(`Banned solicitor-facing wording: ${solicitorBanned}`);
+  const packetModel = buildSolicitorProofPacketModel(report);
+  const packetDupes = countSolicitorPacketDuplicates(packetModel);
+  if (packetDupes > 0) blockers.push(`Duplicate solicitor packet bullets: ${packetDupes}`);
+  const packetOffFamily = countSolicitorPacketOffFamily(packetModel, models.bundleText);
+  if (packetOffFamily > 0) blockers.push(`Off-family review lines in packet: ${packetOffFamily}`);
+  if (solicitorPacketHasMainIssue(packetModel)) blockers.push("Robotic Main issue / clipped strategic line in packet");
   if (report.summary.fail > 0) blockers.push(`Proof FAIL lines: ${report.summary.fail}`);
   const servedRows = evidenceRows.filter((r) =>
     ["served", "referred_only"].includes(r.existence),
@@ -203,7 +240,7 @@ function writeTabSnapshots(
 
   const clientSection = models.exportPack.sections.find((s) => s.id === "client_summary");
   const clientText = isDemoAuditCase(models.caseId)
-    ? demoAuditClientSummaryClipboard(models.truthKey, models.clientLabel, clientSection?.footer)
+    ? demoAuditClientSummaryClipboard(models.truthKey, models.clientLabel, clientSection?.footer, models.caseId)
     : clientSection?.textForClipboard;
   fs.writeFileSync(
     path.join(caseOutDir, "client-summary.json"),
@@ -283,7 +320,12 @@ async function buildOneCase(spec: (typeof DEMO_AUDIT_THIRTY_CASES)[0]): Promise<
     .filter((i) => ["missing", "referred_only", "incomplete", "not_safely_confirmed", "other_defendant_only"].includes(i.correct_evidence_state))
     .map((i) => `${i.evidence_item} (${i.correct_evidence_state})`);
 
-  const { ready, blockers } = assessReady(report, truthKey, models, false);
+  const packetModel = buildSolicitorProofPacketModel(report);
+  const packetDupes = countSolicitorPacketDuplicates(packetModel);
+  const packetOffFamily = countSolicitorPacketOffFamily(packetModel, models.bundleText);
+  const packetMainIssue = solicitorPacketHasMainIssue(packetModel) ? 1 : 0;
+
+  const { ready, blockers } = assessReady(report, truthKey, models, false, caseOutDir);
 
   const scorecard: CaseScorecard = {
     caseId: spec.id,
@@ -302,6 +344,10 @@ async function buildOneCase(spec: (typeof DEMO_AUDIT_THIRTY_CASES)[0]): Promise<
     pageBackedOutputLinesCount: report.summary.proofChainCoverage.pdfAndTextSupportOutput,
     vagueChaseLabelsCount: countVagueChaseLabels(models),
     genericLabelCount: countGenericLabels(models),
+    solicitorFacingBannedCount: countSolicitorFacingBanned(caseOutDir),
+    packetDuplicateCount: packetDupes,
+    packetOffFamilyCount: packetOffFamily,
+    packetMainIssueCount: packetMainIssue,
     caseFacingWrongFamilyCount: countCaseFacingWrongFamily(models, models.bundleText),
     readyForDemoReview: ready,
     readyBlockers: blockers,

@@ -1,0 +1,74 @@
+{
+  "caseId": "demo-audit-19-motoring-breath-specimen",
+  "caseName": "DA-19 Ryan Marsh — breath specimen / calibration missing",
+  "shape": "Breath procedure summary served / calibration and full record missing",
+  "pdfPages": 7,
+  "keyServedItems": [
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "officer MG11",
+    "breath/device procedure summary"
+  ],
+  "keyMissingReferred": [
+    "device calibration certificate (missing)",
+    "full intoxilyser record (missing)",
+    "cctv/dashcam export (referred_only)"
+  ],
+  "truthMapResult": [
+    {
+      "label": "Officer statement",
+      "existence": "served"
+    },
+    {
+      "label": "Breath / device procedure summary",
+      "existence": "served",
+      "note": "Summary served — calibration and full device record outstanding."
+    },
+    {
+      "label": "CCTV / dashcam export",
+      "existence": "referred_only"
+    },
+    {
+      "label": "Device calibration certificate",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    },
+    {
+      "label": "Full intoxilyser record",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    }
+  ],
+  "proofPacketVerdict": "PASS WITH WARNINGS",
+  "failLineCount": 0,
+  "unsupportedLinesCount": 0,
+  "wrongFamilyWarningsCount": 0,
+  "proofLedgerWrongFamilyInternal": 0,
+  "blockedFalseServedGuardsCount": 0,
+  "pageBackedOutputLinesCount": 43,
+  "vagueChaseLabelsCount": 0,
+  "genericLabelCount": 0,
+  "solicitorFacingBannedCount": 0,
+  "packetDuplicateCount": 0,
+  "packetOffFamilyCount": 0,
+  "packetMainIssueCount": 0,
+  "caseFacingWrongFamilyCount": 0,
+  "readyForDemoReview": true,
+  "readyBlockers": [],
+  "filesCreated": [
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-19-motoring-breath-specimen\\bundle.pdf",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-19-motoring-breath-specimen\\bundle-text.md",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-19-motoring-breath-specimen\\pdf-extraction-meta.json",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-19-motoring-breath-specimen\\truth-key.json",
+    "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-19-motoring-breath-specimen\\line-by-line-proof.md",
+    "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-19-motoring-breath-specimen\\SOLICITOR-PROOF-PACKET.md",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-19-motoring-breath-specimen\\overview-truth-map.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-19-motoring-breath-specimen\\court-tab.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-19-motoring-breath-specimen\\cps-chase.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-19-motoring-breath-specimen\\client-summary.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-19-motoring-breath-specimen\\file-source-view.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-19-motoring-breath-specimen\\casebrain-output.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-19-motoring-breath-specimen\\scorecard.json"
+  ]
+}

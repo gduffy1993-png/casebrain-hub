@@ -1,0 +1,29 @@
+{
+  "primaryItems": [
+    {
+      "label": "Platform / source extraction",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide Platform / source extraction (see MG6C/ENC/02) or confirm in writing why it is not available.",
+      "whyItMatters": "Platform/source extraction outstanding or referred on MG6C."
+    },
+    {
+      "label": "Handle attribution report",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide Handle attribution report (see MG6C/ENC/03) or confirm in writing why it is not available.",
+      "whyItMatters": "Handle-to-defendant mapping not served on MG6C."
+    },
+    {
+      "label": "Subscriber / account data",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide Subscriber / account data (see MG6C/ENC/04) or confirm in writing why it is not available.",
+      "whyItMatters": "Subscriber/account data needed per MG6C."
+    },
+    {
+      "label": "Device continuity",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide Device continuity (see MG6C/ENC/05) or confirm in writing why it is not available.",
+      "whyItMatters": "Continuity to master recording not confirmed on current papers."
+    }
+  ],
+  "safeCourtLine": "The defence asks the court to record per MG6C that message extracts are served and handle attribution report and platform extraction remain outstanding."
+}

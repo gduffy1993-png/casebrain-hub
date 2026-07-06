@@ -63,12 +63,20 @@
       "correct_evidence_state": "missing",
       "chase_needed": true,
       "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "appropriate adult continuity",
+      "evidence_type": "yjs",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false
     }
   ],
   "expectedChaseItems": [
     "full YJS pre-sentence report",
     "vulnerability assessment",
-    "youth interview audio"
+    "youth interview audio",
+    "appropriate adult continuity"
   ],
   "expectedSendability": "provisional_check_source",
   "mustNotSayGlobal": [

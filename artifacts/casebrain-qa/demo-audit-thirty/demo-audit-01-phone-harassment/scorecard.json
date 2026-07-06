@@ -1,0 +1,92 @@
+{
+  "caseId": "demo-audit-01-phone-harassment",
+  "caseName": "DA-01 Riley Moss — phone harassment / screenshots served",
+  "shape": "Phone screenshots served / extraction summary / full download missing",
+  "pdfPages": 11,
+  "keyServedItems": [
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "screenshot and message pack",
+    "phone extraction summary"
+  ],
+  "keyMissingReferred": [
+    "full phone download (missing)",
+    "subscriber/account data (missing)",
+    "full message export (missing)",
+    "call logs (missing)",
+    "device metadata (referred_only)",
+    "complainant MG11 (incomplete)",
+    "attribution material (not_safely_confirmed)"
+  ],
+  "truthMapResult": [
+    {
+      "label": "Screenshot / message pack",
+      "existence": "served",
+      "note": "Served on papers — not full phone download or attribution proof."
+    },
+    {
+      "label": "Phone extraction summary",
+      "existence": "served"
+    },
+    {
+      "label": "Device metadata export",
+      "existence": "referred_only"
+    },
+    {
+      "label": "Complainant MG11 (draft)",
+      "existence": "served"
+    },
+    {
+      "label": "Attribution / subscriber material",
+      "existence": "not_safely_confirmed",
+      "note": "Handle mapping to defendant not served on current papers."
+    },
+    {
+      "label": "Full phone download",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    },
+    {
+      "label": "Subscriber / account data",
+      "existence": "missing",
+      "note": "Outstanding — cannot safely fix sender identity without this material."
+    },
+    {
+      "label": "Full message export",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    }
+  ],
+  "proofPacketVerdict": "PASS WITH WARNINGS",
+  "failLineCount": 0,
+  "unsupportedLinesCount": 0,
+  "wrongFamilyWarningsCount": 0,
+  "proofLedgerWrongFamilyInternal": 0,
+  "blockedFalseServedGuardsCount": 21,
+  "pageBackedOutputLinesCount": 64,
+  "vagueChaseLabelsCount": 0,
+  "genericLabelCount": 0,
+  "solicitorFacingBannedCount": 0,
+  "packetDuplicateCount": 0,
+  "packetOffFamilyCount": 0,
+  "packetMainIssueCount": 0,
+  "caseFacingWrongFamilyCount": 0,
+  "readyForDemoReview": true,
+  "readyBlockers": [],
+  "filesCreated": [
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-01-phone-harassment\\bundle.pdf",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-01-phone-harassment\\bundle-text.md",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-01-phone-harassment\\pdf-extraction-meta.json",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-01-phone-harassment\\truth-key.json",
+    "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-01-phone-harassment\\line-by-line-proof.md",
+    "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-01-phone-harassment\\SOLICITOR-PROOF-PACKET.md",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-01-phone-harassment\\overview-truth-map.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-01-phone-harassment\\court-tab.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-01-phone-harassment\\cps-chase.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-01-phone-harassment\\client-summary.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-01-phone-harassment\\file-source-view.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-01-phone-harassment\\casebrain-output.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-01-phone-harassment\\scorecard.json"
+  ]
+}

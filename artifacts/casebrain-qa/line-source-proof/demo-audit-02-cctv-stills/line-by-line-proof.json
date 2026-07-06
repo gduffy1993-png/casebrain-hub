@@ -2,7 +2,7 @@
   "caseId": "demo-audit-02-cctv-stills",
   "caseTitle": "DA-02 Devon Walsh — CCTV stills served / master footage missing",
   "defendant": "Devon Walsh",
-  "generatedAt": "2026-07-01T10:42:45.558Z",
+  "generatedAt": "2026-07-06T23:05:57.898Z",
   "disclaimer": "Controlled/anonymised audit only unless solicitor-reviewed real bundles are used. Do not claim real-world false-served rate or solicitor-reviewed accuracy from controlled data.",
   "bundleSourcePath": "artifacts/evidence-state-audit-local/cases/demo-audit-02-cctv-stills/bundle-text.md",
   "bundleText": "RESTRICTED — PROSECUTION DISCLOSURE BUNDLE\r\n\r\nURN: 26/DA/002\r\nDefendant: Devon Walsh\r\nCourt: Riverside Magistrates' Court\n\n=== SECTION: COVER_INDEX ===\n\nINDEX\r\n\r\nDocument | Pages | Note\r\nCharge sheet | 1 |\r\nMG5 case summary | 2-3 |\r\nMG6C disclosure schedule | 4 |\r\nOfficer MG11 | 5 |\r\nCCTV still images | 6-7 |\r\nExhibit list | 8 |\r\nCourt listing | 9 |\n\n=== SECTION: CHARGE ===\n\nR v Devon Walsh\r\n\r\nStatement of Offence:\r\nTheft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968.\r\n\r\nParticulars of Offence:\r\nOn 9 February 2026 at Riverside stole goods to the value of £340 belonging to Riverside Retail Ltd.\n\n=== SECTION: MG5 ===\n\nMG05 — OFFENCE REPORT\n\nURN: 26/DA/002\nAnticipated Plea: Not Guilty\nOfficer in case: PC Ng 8834\n\nHeadline Summary\nCCTV still images are served showing a person in the store aisle. Master CCTV footage, full export, continuity, and audit trail are outstanding or referred only. Identification from stills alone is not safely confirmed on current papers.\n\nChronological summary\n09/02/2026 14:22 — Offence reported at Riverside Retail Ltd.\n09/02/2026 — Store security preserves partial stills from camera 4 (menswear aisle).\n11/02/2026 — Stills printed and served as exhibit DW/CCTV/01.\n12/02/2026 — MG6C records master footage and continuity as outstanding.\n\n=== SECTION: MG5 ===\n\nWhat the key witnesses say\nPC Ng — attended store; viewed stills; does not rely on stills alone for positive ID in MG11.\nStore manager — goods missing; provides invoice.\n\nEvidence on file (served)\nCharge sheet; MG5; MG6C; officer MG11; CCTV still images DW/CCTV/01; exhibit list.\n\nEvidence referred or outstanding\nMaster CCTV footage; full CCTV export; continuity/provenance statement; audit trail/source file; recognition/ID basis if relied upon.\n\nProsecution position on current papers\nStills show a person in relevant aisle near time window. Master timeline not served. Defence cannot safely say CCTV proves identity or offence without master footage and continuity.\n\n=== SECTION: MG6 ===\n\nMG6C — UNUSED MATERIAL SCHEDULE\r\n\r\nMG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.\r\nMG6C/CCTV/02 — Master CCTV footage camera 4 — outstanding — not on bundle.\r\nMG6C/CCTV/03 — Full CCTV export (native format) — referred on MG6 — export not attached.\r\nMG6C/CCTV/04 — Continuity and provenance statement — outstanding.\r\nMG6C/CCTV/05 — Audit trail / source file hash record — outstanding.\r\nMG6C/CCTV/06 — Recognition basis / ID procedure — outstanding if relied upon.\n\n=== SECTION: MG11 ===\n\nMG11 — OFFICER STATEMENT (PC Ng 8834)\r\n\r\n1. On 9 February 2026 I attended Riverside Retail Ltd following a report of shop theft.\r\n\r\n2. I was shown CCTV still images from camera 4 (menswear aisle). Stills are exhibited as DW/CCTV/01 and are served on this bundle.\r\n\r\n3. The stills show a male in dark jacket near the relevant aisle. Image quality is limited. I have not been served master footage or a full export.\r\n\r\n4. I cannot confirm continuity of the stills to master recording without the outstanding provenance material. Positive identification of Devon Walsh from stills alone is not relied upon in this statement.\n\n=== SECTION: CCTV_STILLS ===\n\nEXHIBIT DW/CCTV/01 — CCTV STILL IMAGES (served)\n\nSource: Riverside Retail Ltd — Camera 4 (menswear aisle)\nDate: 09/02/2026\nTime window: 14:18 — 14:26\n\nStill 1 — wide aisle shot — figure in dark jacket approaching display.\n\n=== SECTION: CCTV_STILLS ===\n\nStill 2 — mid-aisle — figure with bag at display.\nStill 3 — exit direction — partial profile, image grainy.\n\nNote on folio: These are still images extracted by store security. Master CCTV footage and native export are NOT attached. Continuity to master recording outstanding (MG6C/CCTV/04).\n\nDo not treat stills as equivalent to master footage. Audit trail not served.\n\n=== SECTION: EXHIBIT_LIST ===\n\nEXHIBIT LIST — R v Devon Walsh (26/DA/002)\r\n\r\nDW/CCTV/01 — CCTV still images — SERVED — pages 6-7\r\nDW/CCTV/02 — Master CCTV footage — NOT SERVED — outstanding MG6C/CCTV/02\r\nDW/CCTV/03 — Full CCTV export — REFERRED ONLY — MG6C/CCTV/03\r\nDW/CCTV/04 — Continuity/provenance — NOT SERVED — outstanding\r\nDW/CCTV/05 — Audit trail — NOT SERVED — outstanding\n\n=== SECTION: LISTING ===\n\nPTPH listed — 2 September 2026, 14:00, Riverside Magistrates' Court, Court 2.",
@@ -272,52 +272,47 @@
     {
       "id": "line-8",
       "outputSurface": "evidence_truth_map / evidence_trace",
-      "outputLine": "audit trail — missing — Outstanding on current disclosure.",
-      "humanEvidenceLabel": null,
-      "humanOutputLine": "audit trail — missing — Outstanding on current disclosure.",
+      "outputLine": "CCTV audit trail / source hash record — missing — Outstanding on current disclosure.",
+      "humanEvidenceLabel": "CCTV still images served — master footage not on bundle",
+      "humanOutputLine": "CCTV audit trail / source hash record — missing — Outstanding on current disclosure.",
       "lineCategory": "evidence_state",
-      "evidenceItem": "audit trail",
+      "evidenceItem": "CCTV audit trail / source hash record",
       "claimType": "fact",
       "evidenceState": "missing",
       "reliabilityState": "needs_review",
-      "sourceAnchor": null,
+      "sourceAnchor": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
       "sourcePage": null,
-      "sourceSection": null,
-      "sourceSnippet": null,
-      "sourceStrength": "no_anchor",
-      "supportStatus": "source_unavailable",
-      "whyThisSupportsTheLine": "No direct bundle snippet located for this line.",
-      "whyThisIsLimited": "No usable source anchor — solicitor must verify.",
-      "safeWording": "Not safely confirmed on current papers — solicitor review required.",
+      "sourceSection": "MG6",
+      "sourceSnippet": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
+      "sourceStrength": "strong",
+      "supportStatus": "missing",
+      "whyThisSupportsTheLine": "Bundle shows material outstanding or not attached: \"MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.\".",
+      "whyThisIsLimited": "Material expected or mentioned but not on bundle.",
+      "safeWording": "Outstanding on current bundle — chase if disclosure-relevant.",
       "blockedWording": null,
-      "solicitorReviewRequired": true,
-      "usefulnessVerdict": "solicitor_review_required",
-      "verdict": "WARNING",
-      "reviewTier": "source_review",
-      "gedReviewReasons": [
-        "source_unavailable",
-        "evidence_item_not_in_snippet",
-        "meaningful_line_without_anchor",
-        "solicitor_review_required"
-      ],
+      "solicitorReviewRequired": false,
+      "usefulnessVerdict": "correct_and_useful",
+      "verdict": "PASS",
+      "reviewTier": "clean_source_backed",
+      "gedReviewReasons": [],
       "sourceDocumentName": "bundle.pdf",
       "sourceDocumentType": "pdf",
-      "sourcePageNumber": null,
-      "extractedSnippet": null,
-      "pdfPageAvailable": false,
-      "pdfPageEvidencePath": null,
-      "extractionConfidence": "unavailable",
-      "extractionIssue": "label_mismatch",
-      "proofChainStatus": "source_unavailable"
+      "sourcePageNumber": "4",
+      "extractedSnippet": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
+      "pdfPageAvailable": true,
+      "pdfPageEvidencePath": "artifacts/casebrain-qa/line-source-proof/demo-audit-02-cctv-stills/proof-chain-pages/p4.md",
+      "extractionConfidence": "exact",
+      "extractionIssue": "page_missing",
+      "proofChainStatus": "pdf_and_text_support_output"
     },
     {
       "id": "line-9",
       "outputSurface": "evidence_truth_map / evidence_trace",
-      "outputLine": "recognition/ID basis — missing — Outstanding on current disclosure.",
+      "outputLine": "Recognition / ID basis — missing — Outstanding on current disclosure.",
       "humanEvidenceLabel": null,
-      "humanOutputLine": "recognition/ID basis — missing — Outstanding on current disclosure.",
+      "humanOutputLine": "Recognition / ID basis — missing — Outstanding on current disclosure.",
       "lineCategory": "evidence_state",
-      "evidenceItem": "recognition/ID basis",
+      "evidenceItem": "Recognition / ID basis",
       "claimType": "fact",
       "evidenceState": "missing",
       "reliabilityState": "needs_review",
@@ -539,33 +534,33 @@
     {
       "id": "line-15",
       "outputSurface": "evidence_truth_map / evidence_trace",
-      "outputLine": "audit trail: missing / needs_review",
-      "humanEvidenceLabel": null,
-      "humanOutputLine": "audit trail",
+      "outputLine": "CCTV audit trail / source hash record: unknown / needs_review",
+      "humanEvidenceLabel": "CCTV still images served — master footage not on bundle",
+      "humanOutputLine": "CCTV audit trail / source hash record",
       "lineCategory": "evidence_state",
-      "evidenceItem": "audit trail",
+      "evidenceItem": "CCTV audit trail / source hash record",
       "claimType": null,
-      "evidenceState": "missing",
+      "evidenceState": "unknown",
       "reliabilityState": "needs_review",
-      "sourceAnchor": "MG6C/CCTV/05 — Audit trail / source file hash record — outstanding.",
+      "sourceAnchor": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
       "sourcePage": null,
       "sourceSection": "MG6",
-      "sourceSnippet": "MG6C/CCTV/05 — Audit trail / source file hash record — outstanding.",
-      "sourceStrength": "schedule_only",
-      "supportStatus": "missing",
-      "whyThisSupportsTheLine": "Bundle shows material outstanding or not attached: \"MG6C/CCTV/05 — Audit trail / source file hash record — outstanding.\".",
-      "whyThisIsLimited": "Material expected or mentioned but not on bundle.",
-      "safeWording": "Outstanding on current bundle — chase if disclosure-relevant.",
+      "sourceSnippet": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
+      "sourceStrength": "strong",
+      "supportStatus": "partially_supported",
+      "whyThisSupportsTheLine": "Partial bundle support: \"MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.\".",
+      "whyThisIsLimited": "none",
+      "safeWording": null,
       "blockedWording": null,
-      "solicitorReviewRequired": true,
-      "usefulnessVerdict": "safe_but_not_actionable",
-      "verdict": "WARNING",
-      "reviewTier": "solicitor_caution",
+      "solicitorReviewRequired": false,
+      "usefulnessVerdict": "correct_and_useful",
+      "verdict": "PASS",
+      "reviewTier": "clean_source_backed",
       "gedReviewReasons": [],
       "sourceDocumentName": "bundle.pdf",
       "sourceDocumentType": "pdf",
       "sourcePageNumber": "4",
-      "extractedSnippet": "MG6C/CCTV/05 — Audit trail / source file hash record — outstanding.",
+      "extractedSnippet": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
       "pdfPageAvailable": true,
       "pdfPageEvidencePath": "artifacts/casebrain-qa/line-source-proof/demo-audit-02-cctv-stills/proof-chain-pages/p4.md",
       "extractionConfidence": "exact",
@@ -899,23 +894,23 @@
     {
       "id": "line-25",
       "outputSurface": "evidence_truth_map / evidence_trace",
-      "outputLine": "Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.: missing / needs_review",
+      "outputLine": "Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it is not available.: unknown / needs_review",
       "humanEvidenceLabel": "CCTV still images served — master footage not on bundle",
-      "humanOutputLine": "Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.",
+      "humanOutputLine": "Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it is not available.",
       "lineCategory": "evidence_state",
-      "evidenceItem": "Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.",
+      "evidenceItem": "Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it is not available.",
       "claimType": null,
-      "evidenceState": "missing",
+      "evidenceState": "unknown",
       "reliabilityState": "needs_review",
       "sourceAnchor": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
       "sourcePage": null,
       "sourceSection": "MG6",
       "sourceSnippet": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
       "sourceStrength": "strong",
-      "supportStatus": "missing",
-      "whyThisSupportsTheLine": "Bundle shows material outstanding or not attached: \"MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.\".",
-      "whyThisIsLimited": "Material expected or mentioned but not on bundle.",
-      "safeWording": "Outstanding on current bundle — chase if disclosure-relevant.",
+      "supportStatus": "partially_supported",
+      "whyThisSupportsTheLine": "Partial bundle support: \"MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.\".",
+      "whyThisIsLimited": "none",
+      "safeWording": null,
       "blockedWording": null,
       "solicitorReviewRequired": false,
       "usefulnessVerdict": "correct_and_useful",
@@ -1187,33 +1182,33 @@
     {
       "id": "line-33",
       "outputSurface": "chase",
-      "outputLine": "audit trail",
-      "humanEvidenceLabel": null,
-      "humanOutputLine": "audit trail",
+      "outputLine": "CCTV audit trail / source hash record",
+      "humanEvidenceLabel": "CCTV still images served — master footage not on bundle",
+      "humanOutputLine": "CCTV audit trail / source hash record",
       "lineCategory": "chase_request",
-      "evidenceItem": "audit trail",
+      "evidenceItem": "CCTV audit trail / source hash record",
       "claimType": null,
       "evidenceState": "Outstanding",
       "reliabilityState": null,
-      "sourceAnchor": "MG6C/CCTV/05 — Audit trail / source file hash record — outstanding.",
+      "sourceAnchor": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
       "sourcePage": null,
       "sourceSection": "MG6",
-      "sourceSnippet": "MG6C/CCTV/05 — Audit trail / source file hash record — outstanding.",
-      "sourceStrength": "schedule_only",
+      "sourceSnippet": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
+      "sourceStrength": "strong",
       "supportStatus": "partially_supported",
-      "whyThisSupportsTheLine": "Partial bundle support: \"MG6C/CCTV/05 — Audit trail / source file hash record — outstanding.\".",
-      "whyThisIsLimited": "MG6/schedule reference only — export not served.",
+      "whyThisSupportsTheLine": "Partial bundle support: \"MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.\".",
+      "whyThisIsLimited": "none",
       "safeWording": null,
       "blockedWording": null,
       "solicitorReviewRequired": true,
-      "usefulnessVerdict": "correct_but_too_vague",
+      "usefulnessVerdict": "safe_but_not_actionable",
       "verdict": "WARNING",
       "reviewTier": "solicitor_caution",
       "gedReviewReasons": [],
       "sourceDocumentName": "bundle.pdf",
       "sourceDocumentType": "pdf",
       "sourcePageNumber": "4",
-      "extractedSnippet": "MG6C/CCTV/05 — Audit trail / source file hash record — outstanding.",
+      "extractedSnippet": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
       "pdfPageAvailable": true,
       "pdfPageEvidencePath": "artifacts/casebrain-qa/line-source-proof/demo-audit-02-cctv-stills/proof-chain-pages/p4.md",
       "extractionConfidence": "exact",
@@ -1223,11 +1218,11 @@
     {
       "id": "line-34",
       "outputSurface": "chase / CPS",
-      "outputLine": "Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.",
+      "outputLine": "Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it is not available.",
       "humanEvidenceLabel": "CCTV still images served — master footage not on bundle",
-      "humanOutputLine": "Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.",
+      "humanOutputLine": "Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it is not available.",
       "lineCategory": "chase_request",
-      "evidenceItem": "audit trail",
+      "evidenceItem": "CCTV audit trail / source hash record",
       "claimType": null,
       "evidenceState": null,
       "reliabilityState": null,
@@ -1439,22 +1434,22 @@
     {
       "id": "line-40",
       "outputSurface": "five_answers / chase",
-      "outputLine": "Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: missing. Source: MG6C schedule. Solicitor review required before sending.]",
+      "outputLine": "Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: provisional. Source: MG6C schedule. Solicitor review required before sending.]",
       "humanEvidenceLabel": "CCTV still images served — master footage not on bundle",
-      "humanOutputLine": "Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.",
+      "humanOutputLine": "Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it is not available.",
       "lineCategory": "chase_request",
-      "evidenceItem": "audit trail",
+      "evidenceItem": "CCTV audit trail / source hash record",
       "claimType": null,
-      "evidenceState": "missing",
+      "evidenceState": "unknown",
       "reliabilityState": null,
       "sourceAnchor": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
       "sourcePage": null,
       "sourceSection": "MG6",
       "sourceSnippet": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
       "sourceStrength": "strong",
-      "supportStatus": "missing",
-      "whyThisSupportsTheLine": "Bundle shows material outstanding or not attached: \"MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.\".",
-      "whyThisIsLimited": "Material expected or mentioned but not on bundle.",
+      "supportStatus": "partially_supported",
+      "whyThisSupportsTheLine": "Partial bundle support: \"MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.\".",
+      "whyThisIsLimited": "Provisional or solicitor-review sendability.",
       "safeWording": null,
       "blockedWording": null,
       "solicitorReviewRequired": false,
@@ -2095,43 +2090,38 @@
     {
       "id": "line-58",
       "outputSurface": "hearing_mode / court_prep",
-      "outputLine": "audit trail: Missing / Needs review — Outstanding on current disclosure — chase before fixing hearing position. — still chase if disclosure-relevant.",
-      "humanEvidenceLabel": null,
-      "humanOutputLine": "audit trail: Missing / Needs review — Outstanding on current disclosure — chase before fixing hearing position.",
+      "outputLine": "CCTV audit trail / source hash record: Unknown / Needs review — Audit trail needed to link stills to master recording.",
+      "humanEvidenceLabel": "CCTV still images served — master footage not on bundle",
+      "humanOutputLine": "CCTV audit trail / source hash record — Audit trail needed to link stills to master recording.",
       "lineCategory": "evidence_state",
-      "evidenceItem": "audit trail",
+      "evidenceItem": "CCTV audit trail / source hash record",
       "claimType": null,
-      "evidenceState": "missing",
+      "evidenceState": "unknown",
       "reliabilityState": "needs_review",
-      "sourceAnchor": null,
+      "sourceAnchor": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
       "sourcePage": null,
-      "sourceSection": null,
-      "sourceSnippet": null,
-      "sourceStrength": "no_anchor",
-      "supportStatus": "source_unavailable",
-      "whyThisSupportsTheLine": "No direct bundle snippet located for this line.",
-      "whyThisIsLimited": "No usable source anchor — solicitor must verify.",
-      "safeWording": "Not safely confirmed on current papers — solicitor review required.",
+      "sourceSection": "MG6",
+      "sourceSnippet": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
+      "sourceStrength": "strong",
+      "supportStatus": "partially_supported",
+      "whyThisSupportsTheLine": "Partial bundle support: \"MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.\".",
+      "whyThisIsLimited": "none",
+      "safeWording": null,
       "blockedWording": null,
-      "solicitorReviewRequired": true,
-      "usefulnessVerdict": "solicitor_review_required",
-      "verdict": "WARNING",
-      "reviewTier": "source_review",
-      "gedReviewReasons": [
-        "source_unavailable",
-        "evidence_item_not_in_snippet",
-        "meaningful_line_without_anchor",
-        "solicitor_review_required"
-      ],
+      "solicitorReviewRequired": false,
+      "usefulnessVerdict": "correct_and_useful",
+      "verdict": "PASS",
+      "reviewTier": "clean_source_backed",
+      "gedReviewReasons": [],
       "sourceDocumentName": "bundle.pdf",
       "sourceDocumentType": "pdf",
-      "sourcePageNumber": null,
-      "extractedSnippet": null,
-      "pdfPageAvailable": false,
-      "pdfPageEvidencePath": null,
-      "extractionConfidence": "unavailable",
-      "extractionIssue": "label_mismatch",
-      "proofChainStatus": "source_unavailable"
+      "sourcePageNumber": "4",
+      "extractedSnippet": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
+      "pdfPageAvailable": true,
+      "pdfPageEvidencePath": "artifacts/casebrain-qa/line-source-proof/demo-audit-02-cctv-stills/proof-chain-pages/p4.md",
+      "extractionConfidence": "exact",
+      "extractionIssue": "page_missing",
+      "proofChainStatus": "pdf_and_text_support_output"
     },
     {
       "id": "line-59",
@@ -3172,9 +3162,9 @@
     {
       "id": "line-87",
       "outputSurface": "summary / opportunities",
-      "outputLine": "Disclosure leverage: Outstanding on current disclosure — chase before fixing hearing position.",
+      "outputLine": "Sequence / coverage leverage: Audit trail needed to link stills to master recording.",
       "humanEvidenceLabel": null,
-      "humanOutputLine": "Disclosure leverage: Outstanding on current disclosure — chase before fixing hearing position.",
+      "humanOutputLine": "Sequence / coverage leverage: Audit trail needed to link stills to master recording.",
       "lineCategory": "strategic_review",
       "evidenceItem": null,
       "claimType": null,
@@ -3429,9 +3419,9 @@
     {
       "id": "line-94",
       "outputSurface": "summary / ptph",
-      "outputLine": "Outstanding disclosure: Master CCTV footage; Full CCTV export; CCTV Continuity / provenance; audit trail.",
+      "outputLine": "Outstanding disclosure: Master CCTV footage; Full CCTV export; CCTV Continuity / provenance; CCTV audit trail / source hash record.",
       "humanEvidenceLabel": "CCTV still images served — master footage not on bundle",
-      "humanOutputLine": "Outstanding disclosure: Master CCTV footage; Full CCTV export; CCTV Continuity / provenance; audit trail.",
+      "humanOutputLine": "Outstanding disclosure: Master CCTV footage; Full CCTV export; CCTV Continuity / provenance; CCTV audit trail / source hash record.",
       "lineCategory": "strategic_review",
       "evidenceItem": null,
       "claimType": null,
@@ -3924,118 +3914,6 @@
     {
       "id": "line-107",
       "outputSurface": "decision_board",
-      "outputLine": "Disclosure pressure: Outstanding on current disclosure — chase before fixing hearing position.",
-      "humanEvidenceLabel": null,
-      "humanOutputLine": "Disclosure pressure: Outstanding on current disclosure — chase before fixing hearing position.",
-      "lineCategory": "strategic_review",
-      "evidenceItem": null,
-      "claimType": "inference",
-      "evidenceState": null,
-      "reliabilityState": null,
-      "sourceAnchor": null,
-      "sourcePage": null,
-      "sourceSection": null,
-      "sourceSnippet": null,
-      "sourceStrength": "no_anchor",
-      "supportStatus": "source_unavailable",
-      "whyThisSupportsTheLine": "No direct bundle snippet located for this line.",
-      "whyThisIsLimited": "No usable source anchor — solicitor must verify.",
-      "safeWording": null,
-      "blockedWording": null,
-      "solicitorReviewRequired": true,
-      "usefulnessVerdict": "safe_but_not_actionable",
-      "verdict": "WARNING",
-      "reviewTier": "source_review",
-      "gedReviewReasons": [
-        "source_unavailable"
-      ],
-      "sourceDocumentName": "bundle.pdf",
-      "sourceDocumentType": "pdf",
-      "sourcePageNumber": null,
-      "extractedSnippet": null,
-      "pdfPageAvailable": false,
-      "pdfPageEvidencePath": null,
-      "extractionConfidence": "unavailable",
-      "extractionIssue": "none",
-      "proofChainStatus": "source_unavailable"
-    },
-    {
-      "id": "line-108",
-      "outputSurface": "decision_board",
-      "outputLine": "Missing material — still chase if disclosure-relevant.",
-      "humanEvidenceLabel": null,
-      "humanOutputLine": "Missing material",
-      "lineCategory": "strategic_review",
-      "evidenceItem": null,
-      "claimType": null,
-      "evidenceState": null,
-      "reliabilityState": null,
-      "sourceAnchor": null,
-      "sourcePage": null,
-      "sourceSection": null,
-      "sourceSnippet": null,
-      "sourceStrength": "no_anchor",
-      "supportStatus": "source_unavailable",
-      "whyThisSupportsTheLine": "No direct bundle snippet located for this line.",
-      "whyThisIsLimited": "No usable source anchor — solicitor must verify.",
-      "safeWording": null,
-      "blockedWording": null,
-      "solicitorReviewRequired": true,
-      "usefulnessVerdict": "safe_but_not_actionable",
-      "verdict": "WARNING",
-      "reviewTier": "source_review",
-      "gedReviewReasons": [
-        "source_unavailable"
-      ],
-      "sourceDocumentName": "bundle.pdf",
-      "sourceDocumentType": "pdf",
-      "sourcePageNumber": null,
-      "extractedSnippet": null,
-      "pdfPageAvailable": false,
-      "pdfPageEvidencePath": null,
-      "extractionConfidence": "unavailable",
-      "extractionIssue": "none",
-      "proofChainStatus": "source_unavailable"
-    },
-    {
-      "id": "line-109",
-      "outputSurface": "decision_board",
-      "outputLine": "Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.",
-      "humanEvidenceLabel": "CCTV still images served — master footage not on bundle",
-      "humanOutputLine": "Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.",
-      "lineCategory": "strategic_review",
-      "evidenceItem": null,
-      "claimType": null,
-      "evidenceState": null,
-      "reliabilityState": null,
-      "sourceAnchor": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
-      "sourcePage": null,
-      "sourceSection": "MG6",
-      "sourceSnippet": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
-      "sourceStrength": "strong",
-      "supportStatus": "partially_supported",
-      "whyThisSupportsTheLine": "Partial bundle support: \"MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.\".",
-      "whyThisIsLimited": "Strategic review line — not a source-backed fact.",
-      "safeWording": null,
-      "blockedWording": null,
-      "solicitorReviewRequired": false,
-      "usefulnessVerdict": "correct_and_useful",
-      "verdict": "PASS",
-      "reviewTier": "clean_source_backed",
-      "gedReviewReasons": [],
-      "sourceDocumentName": "bundle.pdf",
-      "sourceDocumentType": "pdf",
-      "sourcePageNumber": "4",
-      "extractedSnippet": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
-      "pdfPageAvailable": true,
-      "pdfPageEvidencePath": "artifacts/casebrain-qa/line-source-proof/demo-audit-02-cctv-stills/proof-chain-pages/p4.md",
-      "extractionConfidence": "exact",
-      "extractionIssue": "page_missing",
-      "proofChainStatus": "pdf_and_text_support_output"
-    },
-    {
-      "id": "line-110",
-      "outputSurface": "decision_board",
       "outputLine": "Co-defendant bleed risk: Papers may reference another defendant or account — keep this client's position separate.",
       "humanEvidenceLabel": null,
       "humanOutputLine": "Co-defendant bleed risk: Papers may reference another defendant or account — keep this client's position separate.",
@@ -4070,7 +3948,7 @@
       "proofChainStatus": "source_unavailable"
     },
     {
-      "id": "line-111",
+      "id": "line-108",
       "outputSurface": "decision_board",
       "outputLine": "Source-backed concern — do not import another defendant's material without review.",
       "humanEvidenceLabel": null,
@@ -4106,7 +3984,7 @@
       "proofChainStatus": "source_unavailable"
     },
     {
-      "id": "line-112",
+      "id": "line-109",
       "outputSurface": "decision_board",
       "outputLine": "Check MG6/unused schedules and keep chase limited to this defendant's papers.",
       "humanEvidenceLabel": "CCTV still images served — master footage not on bundle",
@@ -4140,6 +4018,120 @@
       "extractionConfidence": "exact",
       "extractionIssue": "page_missing",
       "proofChainStatus": "pdf_and_text_support_output"
+    },
+    {
+      "id": "line-110",
+      "outputSurface": "decision_board",
+      "outputLine": "Disclosure pressure: Disclosure completeness and outstanding source material.",
+      "humanEvidenceLabel": null,
+      "humanOutputLine": "Disclosure pressure: Disclosure completeness and outstanding source material.",
+      "lineCategory": "strategic_review",
+      "evidenceItem": null,
+      "claimType": "inference",
+      "evidenceState": null,
+      "reliabilityState": null,
+      "sourceAnchor": null,
+      "sourcePage": null,
+      "sourceSection": null,
+      "sourceSnippet": null,
+      "sourceStrength": "no_anchor",
+      "supportStatus": "source_unavailable",
+      "whyThisSupportsTheLine": "No direct bundle snippet located for this line.",
+      "whyThisIsLimited": "No usable source anchor — solicitor must verify.",
+      "safeWording": null,
+      "blockedWording": null,
+      "solicitorReviewRequired": true,
+      "usefulnessVerdict": "safe_but_not_actionable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "gedReviewReasons": [
+        "source_unavailable"
+      ],
+      "sourceDocumentName": "bundle.pdf",
+      "sourceDocumentType": "pdf",
+      "sourcePageNumber": null,
+      "extractedSnippet": null,
+      "pdfPageAvailable": false,
+      "pdfPageEvidencePath": null,
+      "extractionConfidence": "unavailable",
+      "extractionIssue": "none",
+      "proofChainStatus": "source_unavailable"
+    },
+    {
+      "id": "line-111",
+      "outputSurface": "decision_board",
+      "outputLine": "Possible issue — needs evidence before reliance.",
+      "humanEvidenceLabel": null,
+      "humanOutputLine": "Possible issue — needs evidence before reliance.",
+      "lineCategory": "strategic_review",
+      "evidenceItem": null,
+      "claimType": null,
+      "evidenceState": null,
+      "reliabilityState": null,
+      "sourceAnchor": null,
+      "sourcePage": null,
+      "sourceSection": null,
+      "sourceSnippet": null,
+      "sourceStrength": "no_anchor",
+      "supportStatus": "source_unavailable",
+      "whyThisSupportsTheLine": "No direct bundle snippet located for this line.",
+      "whyThisIsLimited": "No usable source anchor — solicitor must verify.",
+      "safeWording": null,
+      "blockedWording": null,
+      "solicitorReviewRequired": true,
+      "usefulnessVerdict": "safe_but_not_actionable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "gedReviewReasons": [
+        "source_unavailable"
+      ],
+      "sourceDocumentName": "bundle.pdf",
+      "sourceDocumentType": "pdf",
+      "sourcePageNumber": null,
+      "extractedSnippet": null,
+      "pdfPageAvailable": false,
+      "pdfPageEvidencePath": null,
+      "extractionConfidence": "unavailable",
+      "extractionIssue": "none",
+      "proofChainStatus": "source_unavailable"
+    },
+    {
+      "id": "line-112",
+      "outputSurface": "decision_board",
+      "outputLine": "Chase outstanding disclosure and record provisional hearing position.",
+      "humanEvidenceLabel": null,
+      "humanOutputLine": "Chase outstanding disclosure and record provisional hearing position.",
+      "lineCategory": "strategic_review",
+      "evidenceItem": null,
+      "claimType": null,
+      "evidenceState": null,
+      "reliabilityState": null,
+      "sourceAnchor": null,
+      "sourcePage": null,
+      "sourceSection": null,
+      "sourceSnippet": null,
+      "sourceStrength": "no_anchor",
+      "supportStatus": "source_unavailable",
+      "whyThisSupportsTheLine": "No direct bundle snippet located for this line.",
+      "whyThisIsLimited": "No usable source anchor — solicitor must verify.",
+      "safeWording": null,
+      "blockedWording": null,
+      "solicitorReviewRequired": true,
+      "usefulnessVerdict": "safe_but_not_actionable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "gedReviewReasons": [
+        "source_unavailable"
+      ],
+      "sourceDocumentName": "bundle.pdf",
+      "sourceDocumentType": "pdf",
+      "sourcePageNumber": null,
+      "extractedSnippet": null,
+      "pdfPageAvailable": false,
+      "pdfPageEvidencePath": null,
+      "extractionConfidence": "unavailable",
+      "extractionIssue": "none",
+      "proofChainStatus": "source_unavailable"
     },
     {
       "id": "line-113",
@@ -4596,41 +4588,38 @@
     {
       "id": "line-125",
       "outputSurface": "export_pack / client_summary",
-      "outputLine": "We are reviewing the papers in your case (Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968). This is early-stage — nothing is final until we have full disclosure and your instructions. Some evidence is still outstanding on the papers, and we will update you when it is served. We are not saying the case is won or lost — we need the full material before giving firm advice.",
-      "humanEvidenceLabel": null,
-      "humanOutputLine": "We are reviewing the papers in your case (Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968). This is early-stage — nothing is final until we have full disclosure and your instructions. Some evidence is still outstanding on the papers, and we will update you when it is served. We are not saying the case is won or lost — we need the full material before giving firm advice.",
+      "outputLine": "We are reviewing the papers in your case (Devon Walsh). This is early-stage — nothing is final until we have full disclosure and your instructions. CCTV still images are on the papers, but the master CCTV footage, full export, continuity/provenance, and audit trail material are still outstanding. Stills alone do not show the full recording.",
+      "humanEvidenceLabel": "CCTV still images served — master footage not on bundle",
+      "humanOutputLine": "We are reviewing the papers in your case (Devon Walsh). This is early-stage — nothing is final until we have full disclosure and your instructions. CCTV still images are on the papers, but the master CCTV footage, full export, continuity/provenance, and audit trail material are still outstanding. Stills alone do not show the full recording.",
       "lineCategory": "export_line",
       "evidenceItem": null,
       "claimType": "client_summary",
       "evidenceState": null,
       "reliabilityState": null,
-      "sourceAnchor": "Statement of Offence:",
+      "sourceAnchor": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
       "sourcePage": null,
-      "sourceSection": null,
-      "sourceSnippet": "Statement of Offence: | Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968.",
-      "sourceStrength": "weak",
-      "supportStatus": "partially_supported",
-      "whyThisSupportsTheLine": "Only generic schedule/index wording found — needs line-level snippet review: \"Statement of Offence: | Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968.\".",
-      "whyThisIsLimited": "Generic MG6/schedule label without line-level served/referred snippet.",
+      "sourceSection": "MG6",
+      "sourceSnippet": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
+      "sourceStrength": "strong",
+      "supportStatus": "missing",
+      "whyThisSupportsTheLine": "Bundle shows material outstanding or not attached: \"MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.\".",
+      "whyThisIsLimited": "Material expected or mentioned but not on bundle.",
       "safeWording": null,
       "blockedWording": null,
-      "solicitorReviewRequired": true,
-      "usefulnessVerdict": "solicitor_review_required",
-      "verdict": "WARNING",
-      "reviewTier": "source_review",
-      "gedReviewReasons": [
-        "generic_source_only",
-        "solicitor_review_required"
-      ],
+      "solicitorReviewRequired": false,
+      "usefulnessVerdict": "correct_and_useful",
+      "verdict": "PASS",
+      "reviewTier": "clean_source_backed",
+      "gedReviewReasons": [],
       "sourceDocumentName": "bundle.pdf",
       "sourceDocumentType": "pdf",
-      "sourcePageNumber": null,
-      "extractedSnippet": "Statement of Offence: | Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968.",
-      "pdfPageAvailable": false,
-      "pdfPageEvidencePath": null,
-      "extractionConfidence": "fuzzy",
-      "extractionIssue": "none",
-      "proofChainStatus": "text_supports_but_pdf_unchecked"
+      "sourcePageNumber": "4",
+      "extractedSnippet": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
+      "pdfPageAvailable": true,
+      "pdfPageEvidencePath": "artifacts/casebrain-qa/line-source-proof/demo-audit-02-cctv-stills/proof-chain-pages/p4.md",
+      "extractionConfidence": "exact",
+      "extractionIssue": "page_missing",
+      "proofChainStatus": "pdf_and_text_support_output"
     },
     {
       "id": "line-126",
@@ -4674,46 +4663,6 @@
     },
     {
       "id": "line-127",
-      "outputSurface": "export_pack / client_summary",
-      "outputLine": "Solicitor review required before sending to CPS, court, or client.",
-      "humanEvidenceLabel": null,
-      "humanOutputLine": "Solicitor review required before sending to CPS, court, or client.",
-      "lineCategory": "export_line",
-      "evidenceItem": null,
-      "claimType": "client_summary",
-      "evidenceState": null,
-      "reliabilityState": null,
-      "sourceAnchor": null,
-      "sourcePage": null,
-      "sourceSection": null,
-      "sourceSnippet": null,
-      "sourceStrength": "no_anchor",
-      "supportStatus": "source_unavailable",
-      "whyThisSupportsTheLine": "No direct bundle snippet located for this line.",
-      "whyThisIsLimited": "No usable source anchor — solicitor must verify.",
-      "safeWording": null,
-      "blockedWording": null,
-      "solicitorReviewRequired": true,
-      "usefulnessVerdict": "solicitor_review_required",
-      "verdict": "WARNING",
-      "reviewTier": "source_review",
-      "gedReviewReasons": [
-        "source_unavailable",
-        "meaningful_line_without_anchor",
-        "solicitor_review_required"
-      ],
-      "sourceDocumentName": "bundle.pdf",
-      "sourceDocumentType": "pdf",
-      "sourcePageNumber": null,
-      "extractedSnippet": null,
-      "pdfPageAvailable": false,
-      "pdfPageEvidencePath": null,
-      "extractionConfidence": "unavailable",
-      "extractionIssue": "none",
-      "proofChainStatus": "source_unavailable"
-    },
-    {
-      "id": "line-128",
       "outputSurface": "export_pack / evidence_gaps",
       "outputLine": "• Master CCTV footage [Missing / Needs review] — Master footage/export needed — stills alone are not the full recording. — still chase if disclosure-relevant.\n• Full CCTV export [Referred only / Weak] — Master footage/export needed — stills alone are not the full recording. — referred only, not usable as proof.\n• CCTV Continuity / provenance [Missing / Needs review] — Continuity to master recordin",
       "humanEvidenceLabel": "CCTV still images served — master footage not on bundle",
@@ -4749,7 +4698,7 @@
       "proofChainStatus": "pdf_and_text_support_output"
     },
     {
-      "id": "line-129",
+      "id": "line-128",
       "outputSurface": "export_pack / evidence_gaps",
       "outputLine": "Solicitor review required before sending to CPS, court, or client.",
       "humanEvidenceLabel": null,
@@ -4789,7 +4738,7 @@
       "proofChainStatus": "source_unavailable"
     },
     {
-      "id": "line-130",
+      "id": "line-129",
       "outputSurface": "export_pack / do_not_overstate",
       "outputLine": "DO NOT OVERSTATE\n(warnings — not allegations)",
       "humanEvidenceLabel": null,
@@ -4825,7 +4774,7 @@
       "proofChainStatus": "source_unavailable"
     },
     {
-      "id": "line-131",
+      "id": "line-130",
       "outputSurface": "export_pack / do_not_overstate",
       "outputLine": "• Do not say: Do not treat stills alone as proof of identity or offence.\n  Why unsafe: Source not confirmed on current papers — solicitor review required.",
       "humanEvidenceLabel": null,
@@ -4861,7 +4810,7 @@
       "proofChainStatus": "text_supports_but_pdf_unchecked"
     },
     {
-      "id": "line-132",
+      "id": "line-131",
       "outputSurface": "export_pack / do_not_overstate",
       "outputLine": "• Do not say: CCTV proves identity\n  Why unsafe: Source not confirmed on current papers — solicitor review required.",
       "humanEvidenceLabel": "CCTV still images served — master footage not on bundle",
@@ -4897,7 +4846,7 @@
       "proofChainStatus": "text_supports_but_pdf_unchecked"
     },
     {
-      "id": "line-133",
+      "id": "line-132",
       "outputSurface": "export_pack / do_not_overstate",
       "outputLine": "• Do not say: CCTV proves offence\n  Why unsafe: Source not confirmed on current papers — solicitor review required.",
       "humanEvidenceLabel": "CCTV still images served — master footage not on bundle",
@@ -4968,15 +4917,15 @@
     ],
     "missingPages": [],
     "ocrWarnings": [],
-    "linesJudgedFromExtractedTextOnly": 78,
+    "linesJudgedFromExtractedTextOnly": 75,
     "linesSourceOutputDisagree": 0,
-    "linesPdfUnchecked": 19,
+    "linesPdfUnchecked": 18,
     "proofChainNote": "PDF-backed proof chain: original PDF in case directory; bundle-text.md extracted from PDF. Page verification uses pdf-extraction-meta.json per-page text."
   },
   "summary": {
-    "totalMeaningfulLines": 133,
-    "pass": 69,
-    "warning": 64,
+    "totalMeaningfulLines": 132,
+    "pass": 72,
+    "warning": 60,
     "fail": 0,
     "excluded": 0,
     "byCategory": {
@@ -4989,36 +4938,36 @@
       "court_note": 3,
       "client_summary": 1,
       "contradiction_or_risk": 3,
-      "export_line": 18
+      "export_line": 17
     },
     "bySupport": {
-      "partially_supported": 23,
-      "source_unavailable": 46,
+      "partially_supported": 25,
+      "source_unavailable": 44,
       "supported": 25,
       "referred_only": 9,
-      "missing": 28,
+      "missing": 27,
       "unsupported": 2
     },
-    "positiveCorrect": 70,
-    "gedReviewCount": 64,
+    "positiveCorrect": 73,
+    "gedReviewCount": 60,
     "blockingReview": 0,
     "unsupportedOutput": 2,
-    "sourceReviewWarnings": 47,
-    "solicitorCaution": 17,
-    "cleanSourceBacked": 38,
+    "sourceReviewWarnings": 44,
+    "solicitorCaution": 16,
+    "cleanSourceBacked": 41,
     "genericSafetyGuards": 31,
     "byTier": {
       "blocking_review": 0,
-      "source_review": 47,
-      "solicitor_caution": 17,
-      "clean_source_backed": 38,
+      "source_review": 44,
+      "solicitor_caution": 16,
+      "clean_source_backed": 41,
       "generic_safety_guard": 31
     },
     "proofChainCoverage": {
-      "pdfAndTextSupportOutput": 55,
-      "textSupportsButPdfUnchecked": 19,
+      "pdfAndTextSupportOutput": 57,
+      "textSupportsButPdfUnchecked": 18,
       "pdfAvailableButTextMismatch": 0,
-      "sourceUnavailable": 59,
+      "sourceUnavailable": 57,
       "outputUnsupported": 0,
       "originalPdfAvailable": true,
       "caseProofMode": "pdf_and_text"
@@ -5040,8 +4989,8 @@
         "Full CCTV export — referred_only",
         "Master CCTV footage — missing — Outstanding — stills alone do not replace master footage.",
         "CCTV continuity / provenance — missing — Outstanding on current disclosure.",
-        "Please provide Master CCTV footage (see MG6C/CCTV/02) or confirm in writing why it is not available.",
-        "Please provide Full CCTV export (see MG6C/CCTV/03) or confirm in writing why it is not available.: referred_only / weak"
+        "CCTV audit trail / source hash record — missing — Outstanding on current disclosure.",
+        "CCTV audit trail / source hash record"
       ],
       "whatCaseBrainRefusedToSay": [
         "CaseBrain refused to say this — compound line gated (Compound/template line dropped — bundle does not mention interview material.). Would have said: \"Assumed position may conflict with interview or served evidence.\".",
@@ -5060,14 +5009,16 @@
         "Master CCTV footage — Output humanised for clarity.",
         "CCTV Continuity / provenance — Output humanised for clarity."
       ],
-      "whatMayBeMissing": [],
+      "whatMayBeMissing": [
+        "recognition/ID basis"
+      ],
       "whatStillNeedsSolicitorReview": [
         "overview / five_answers: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968",
         "overview / five_answers: Disclosure completeness and outstanding source material.",
         "overview / five_answers: Chase outstanding disclosure and record provisional hearing position.",
-        "evidence_truth_map / evidence_trace: audit trail — missing — Outstanding on current disclosure.",
-        "evidence_truth_map / evidence_trace: recognition/ID basis — missing — Outstanding on current disclosure.",
-        "evidence_truth_map / evidence_trace: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968"
+        "evidence_truth_map / evidence_trace: Recognition / ID basis — missing — Outstanding on current disclosure.",
+        "evidence_truth_map / evidence_trace: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968",
+        "evidence_truth_map / evidence_trace: Disclosure completeness and outstanding source material."
       ],
       "keySourceAnchors": [
         "CCTV still images served — master footage not on bundle: MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
@@ -5082,15 +5033,18 @@
           "Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968",
           "Disclosure completeness and outstanding source material.",
           "Chase outstanding disclosure and record provisional hearing position.",
-          "audit trail — missing — Outstanding on current disclosure.",
-          "recognition/ID basis — missing — Outstanding on current disclosure."
+          "Recognition / ID basis — missing — Outstanding on current disclosure.",
+          "Disclosure completeness and outstanding source material."
         ],
         "SOLICITOR CAUTION": [
           "Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968",
           "Master CCTV footage",
           "Full CCTV export: referred_only / weak",
           "CCTV Continuity / provenance",
-          "audit trail"
+          "The defence asks the court to record per MG6C that CCTV still images are served but master CCTV…"
+        ],
+        "Missing expected (source-led)": [
+          "recognition/ID basis"
         ]
       },
       "proofMode": "pdf_backed"
@@ -5117,13 +5071,7 @@
       {
         "tier": "source_review",
         "surface": "evidence_truth_map / evidence_trace",
-        "outputLine": "audit trail — missing — Outstanding on current disclosure.",
-        "reason": "source_unavailable, evidence_item_not_in_snippet, meaningful_line_without_anchor, solicitor_review_required"
-      },
-      {
-        "tier": "source_review",
-        "surface": "evidence_truth_map / evidence_trace",
-        "outputLine": "recognition/ID basis — missing — Outstanding on current disclosure.",
+        "outputLine": "Recognition / ID basis — missing — Outstanding on current disclosure.",
         "reason": "source_unavailable, evidence_item_not_in_snippet, meaningful_line_without_anchor, solicitor_review_required"
       },
       {
@@ -5159,12 +5107,6 @@
       {
         "tier": "solicitor_caution",
         "surface": "evidence_truth_map / evidence_trace",
-        "outputLine": "audit trail",
-        "reason": "Use with caution — Material expected or mentioned but not on bundle."
-      },
-      {
-        "tier": "solicitor_caution",
-        "surface": "evidence_truth_map / evidence_trace",
         "outputLine": "The defence asks the court to record per MG6C that CCTV still images are served but master CCTV footage and continuity/provenance remain outstanding.",
         "reason": "Use with caution — MG6/schedule reference only — export not served."
       },
@@ -5189,8 +5131,8 @@
       {
         "tier": "solicitor_caution",
         "surface": "chase",
-        "outputLine": "audit trail",
-        "reason": "Use with caution — MG6/schedule reference only — export not served."
+        "outputLine": "CCTV audit trail / source hash record",
+        "reason": "Use with caution — none"
       },
       {
         "tier": "source_review",
@@ -5209,12 +5151,6 @@
         "surface": "hearing_mode / court_prep",
         "outputLine": "Chase CPS — Chase outstanding disclosure and record provisional hearing position.",
         "reason": "source_unavailable, meaningful_line_without_anchor, solicitor_review_required"
-      },
-      {
-        "tier": "source_review",
-        "surface": "hearing_mode / court_prep",
-        "outputLine": "audit trail: Missing / Needs review — Outstanding on current disclosure — chase before fixing hearing position.",
-        "reason": "source_unavailable, evidence_item_not_in_snippet, meaningful_line_without_anchor, solicitor_review_required"
       },
       {
         "tier": "source_review",
@@ -5309,7 +5245,7 @@
       {
         "tier": "source_review",
         "surface": "summary / opportunities",
-        "outputLine": "Disclosure leverage: Outstanding on current disclosure — chase before fixing hearing position.",
+        "outputLine": "Sequence / coverage leverage: Audit trail needed to link stills to master recording.",
         "reason": "source_unavailable"
       },
       {
@@ -5405,13 +5341,19 @@
       {
         "tier": "source_review",
         "surface": "decision_board",
-        "outputLine": "Disclosure pressure: Outstanding on current disclosure — chase before fixing hearing position.",
+        "outputLine": "Disclosure pressure: Disclosure completeness and outstanding source material.",
         "reason": "source_unavailable"
       },
       {
         "tier": "source_review",
         "surface": "decision_board",
-        "outputLine": "Missing material",
+        "outputLine": "Possible issue — needs evidence before reliance.",
+        "reason": "source_unavailable"
+      },
+      {
+        "tier": "source_review",
+        "surface": "decision_board",
+        "outputLine": "Chase outstanding disclosure and record provisional hearing position.",
         "reason": "source_unavailable"
       },
       {
@@ -5459,19 +5401,7 @@
       {
         "tier": "source_review",
         "surface": "export_pack / client_summary",
-        "outputLine": "We are reviewing the papers in your case (Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968). This is early-stage — nothing i",
-        "reason": "generic_source_only, solicitor_review_required"
-      },
-      {
-        "tier": "source_review",
-        "surface": "export_pack / client_summary",
         "outputLine": "[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
-        "reason": "source_unavailable, meaningful_line_without_anchor, solicitor_review_required"
-      },
-      {
-        "tier": "source_review",
-        "surface": "export_pack / client_summary",
-        "outputLine": "Solicitor review required before sending to CPS, court, or client.",
         "reason": "source_unavailable, meaningful_line_without_anchor, solicitor_review_required"
       },
       {
@@ -5560,18 +5490,18 @@
         "plainEnglishExplanation": "Safe and source-backed — Bundle shows material outstanding or not attached: \"MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.\"."
       },
       {
-        "outputLine": "audit trail — missing — Outstanding on current disclosure.",
+        "outputLine": "CCTV audit trail / source hash record — missing — Outstanding on current disclosure.",
         "surface": "evidence_truth_map / evidence_trace",
         "category": "evidence_state",
-        "sourceSnippet": null,
+        "sourceSnippet": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
         "evidenceState": "missing",
-        "proofChainStatus": "source_unavailable",
-        "verdict": "WARNING",
-        "reviewTier": "source_review",
-        "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+        "proofChainStatus": "pdf_and_text_support_output",
+        "verdict": "PASS",
+        "reviewTier": "clean_source_backed",
+        "plainEnglishExplanation": "Safe and source-backed — Bundle shows material outstanding or not attached: \"MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.\"."
       },
       {
-        "outputLine": "recognition/ID basis — missing — Outstanding on current disclosure.",
+        "outputLine": "Recognition / ID basis — missing — Outstanding on current disclosure.",
         "surface": "evidence_truth_map / evidence_trace",
         "category": "evidence_state",
         "sourceSnippet": null,
@@ -5637,15 +5567,15 @@
         "plainEnglishExplanation": "Use with caution — Material expected or mentioned but not on bundle."
       },
       {
-        "outputLine": "audit trail",
+        "outputLine": "CCTV audit trail / source hash record",
         "surface": "evidence_truth_map / evidence_trace",
         "category": "evidence_state",
-        "sourceSnippet": "MG6C/CCTV/05 — Audit trail / source file hash record — outstanding.",
-        "evidenceState": "missing",
+        "sourceSnippet": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
+        "evidenceState": "unknown",
         "proofChainStatus": "pdf_and_text_support_output",
-        "verdict": "WARNING",
-        "reviewTier": "solicitor_caution",
-        "plainEnglishExplanation": "Use with caution — Material expected or mentioned but not on bundle."
+        "verdict": "PASS",
+        "reviewTier": "clean_source_backed",
+        "plainEnglishExplanation": "Safe and source-backed — Partial bundle support: \"MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.\"."
       },
       {
         "outputLine": "Do not treat stills alone as proof of identity or offence.",
@@ -5747,15 +5677,15 @@
         "plainEnglishExplanation": "Safe and source-backed — Bundle shows material outstanding or not attached: \"MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.\"."
       },
       {
-        "outputLine": "Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.",
+        "outputLine": "Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it is not available.",
         "surface": "evidence_truth_map / evidence_trace",
         "category": "evidence_state",
         "sourceSnippet": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
-        "evidenceState": "missing",
+        "evidenceState": "unknown",
         "proofChainStatus": "pdf_and_text_support_output",
         "verdict": "PASS",
         "reviewTier": "clean_source_backed",
-        "plainEnglishExplanation": "Safe and source-backed — Bundle shows material outstanding or not attached: \"MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.\"."
+        "plainEnglishExplanation": "Safe and source-backed — Partial bundle support: \"MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.\"."
       },
       {
         "outputLine": "The defence asks the court to record per MG6C that CCTV still images are served but master CCTV footage and continuity/provenance remain outstanding.",
@@ -5835,18 +5765,18 @@
         "plainEnglishExplanation": "Safe and source-backed — Partial bundle support: \"MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.\"."
       },
       {
-        "outputLine": "audit trail",
+        "outputLine": "CCTV audit trail / source hash record",
         "surface": "chase",
         "category": "chase_request",
-        "sourceSnippet": "MG6C/CCTV/05 — Audit trail / source file hash record — outstanding.",
+        "sourceSnippet": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
         "evidenceState": "Outstanding",
         "proofChainStatus": "pdf_and_text_support_output",
         "verdict": "WARNING",
         "reviewTier": "solicitor_caution",
-        "plainEnglishExplanation": "Use with caution — MG6/schedule reference only — export not served."
+        "plainEnglishExplanation": "Use with caution — none"
       },
       {
-        "outputLine": "Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.",
+        "outputLine": "Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it is not available.",
         "surface": "chase / CPS",
         "category": "chase_request",
         "sourceSnippet": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
@@ -5912,15 +5842,15 @@
         "plainEnglishExplanation": "Safe and source-backed — Bundle shows material outstanding or not attached: \"MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.\"."
       },
       {
-        "outputLine": "Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.",
+        "outputLine": "Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it is not available.",
         "surface": "five_answers / chase",
         "category": "chase_request",
         "sourceSnippet": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
-        "evidenceState": "missing",
+        "evidenceState": "unknown",
         "proofChainStatus": "pdf_and_text_support_output",
         "verdict": "PASS",
         "reviewTier": "clean_source_backed",
-        "plainEnglishExplanation": "Safe and source-backed — Bundle shows material outstanding or not attached: \"MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.\"."
+        "plainEnglishExplanation": "Safe and source-backed — Partial bundle support: \"MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.\"."
       },
       {
         "outputLine": "Do not treat stills alone as proof of identity or offence.",
@@ -6110,15 +6040,15 @@
         "plainEnglishExplanation": "Safe and source-backed — Bundle shows material outstanding or not attached: \"MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.\"."
       },
       {
-        "outputLine": "audit trail: Missing / Needs review — Outstanding on current disclosure — chase before fixing hearing position.",
+        "outputLine": "CCTV audit trail / source hash record — Audit trail needed to link stills to master recording.",
         "surface": "hearing_mode / court_prep",
         "category": "evidence_state",
-        "sourceSnippet": null,
-        "evidenceState": "missing",
-        "proofChainStatus": "source_unavailable",
-        "verdict": "WARNING",
-        "reviewTier": "source_review",
-        "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+        "sourceSnippet": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
+        "evidenceState": "unknown",
+        "proofChainStatus": "pdf_and_text_support_output",
+        "verdict": "PASS",
+        "reviewTier": "clean_source_backed",
+        "plainEnglishExplanation": "Safe and source-backed — Partial bundle support: \"MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.\"."
       },
       {
         "outputLine": "Master CCTV footage: Missing — Please provide Master CCTV footage (see MG6C/CCTV/02) or confirm in writing why it is not available.",
@@ -6429,7 +6359,7 @@
         "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
       },
       {
-        "outputLine": "Disclosure leverage: Outstanding on current disclosure — chase before fixing hearing position.",
+        "outputLine": "Sequence / coverage leverage: Audit trail needed to link stills to master recording.",
         "surface": "summary / opportunities",
         "category": "strategic_review",
         "sourceSnippet": null,
@@ -6506,7 +6436,7 @@
         "plainEnglishExplanation": "Safe and source-backed — Bundle shows material outstanding or not attached: \"MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.\"."
       },
       {
-        "outputLine": "Outstanding disclosure: Master CCTV footage; Full CCTV export; CCTV Continuity / provenance; audit trail.",
+        "outputLine": "Outstanding disclosure: Master CCTV footage; Full CCTV export; CCTV Continuity / provenance; CCTV audit trail / source hash record.",
         "surface": "summary / ptph",
         "category": "strategic_review",
         "sourceSnippet": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
@@ -6649,39 +6579,6 @@
         "plainEnglishExplanation": "Safe and source-backed — Partial bundle support: \"MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.\"."
       },
       {
-        "outputLine": "Disclosure pressure: Outstanding on current disclosure — chase before fixing hearing position.",
-        "surface": "decision_board",
-        "category": "strategic_review",
-        "sourceSnippet": null,
-        "evidenceState": null,
-        "proofChainStatus": "source_unavailable",
-        "verdict": "WARNING",
-        "reviewTier": "source_review",
-        "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
-      },
-      {
-        "outputLine": "Missing material",
-        "surface": "decision_board",
-        "category": "strategic_review",
-        "sourceSnippet": null,
-        "evidenceState": null,
-        "proofChainStatus": "source_unavailable",
-        "verdict": "WARNING",
-        "reviewTier": "source_review",
-        "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
-      },
-      {
-        "outputLine": "Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.",
-        "surface": "decision_board",
-        "category": "strategic_review",
-        "sourceSnippet": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
-        "evidenceState": null,
-        "proofChainStatus": "pdf_and_text_support_output",
-        "verdict": "PASS",
-        "reviewTier": "clean_source_backed",
-        "plainEnglishExplanation": "Safe and source-backed — Partial bundle support: \"MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.\"."
-      },
-      {
         "outputLine": "Co-defendant bleed risk: Papers may reference another defendant or account — keep this client's position separate.",
         "surface": "decision_board",
         "category": "safety_warning",
@@ -6713,6 +6610,39 @@
         "verdict": "PASS",
         "reviewTier": "clean_source_backed",
         "plainEnglishExplanation": "Safe and source-backed — Partial bundle support: \"MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.\"."
+      },
+      {
+        "outputLine": "Disclosure pressure: Disclosure completeness and outstanding source material.",
+        "surface": "decision_board",
+        "category": "strategic_review",
+        "sourceSnippet": null,
+        "evidenceState": null,
+        "proofChainStatus": "source_unavailable",
+        "verdict": "WARNING",
+        "reviewTier": "source_review",
+        "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+      },
+      {
+        "outputLine": "Possible issue — needs evidence before reliance.",
+        "surface": "decision_board",
+        "category": "strategic_review",
+        "sourceSnippet": null,
+        "evidenceState": null,
+        "proofChainStatus": "source_unavailable",
+        "verdict": "WARNING",
+        "reviewTier": "source_review",
+        "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+      },
+      {
+        "outputLine": "Chase outstanding disclosure and record provisional hearing position.",
+        "surface": "decision_board",
+        "category": "strategic_review",
+        "sourceSnippet": null,
+        "evidenceState": null,
+        "proofChainStatus": "source_unavailable",
+        "verdict": "WARNING",
+        "reviewTier": "source_review",
+        "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
       },
       {
         "outputLine": "Master CCTV footage — Missing — Review: Review needed because master CCTV footage is missing — position may shift when served material lands",
@@ -6847,29 +6777,18 @@
         "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
       },
       {
-        "outputLine": "We are reviewing the papers in your case (Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968). This is early-stage — nothing is final until we have full disclosure and your instructions. Some evidence is still outstanding on the papers, and we will update you when it is served. We are not saying the case is won or lost — we need the full material before giving firm advice.",
+        "outputLine": "We are reviewing the papers in your case (Devon Walsh). This is early-stage — nothing is final until we have full disclosure and your instructions. CCTV still images are on the papers, but the master CCTV footage, full export, continuity/provenance, and audit trail material are still outstanding. Stills alone do not show the full recording.",
         "surface": "export_pack / client_summary",
         "category": "export_line",
-        "sourceSnippet": "Statement of Offence: | Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968.",
+        "sourceSnippet": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
         "evidenceState": null,
-        "proofChainStatus": "text_supports_but_pdf_unchecked",
-        "verdict": "WARNING",
-        "reviewTier": "source_review",
-        "plainEnglishExplanation": "Source gap or weak anchor — Generic MG6/schedule label without line-level served/referred snippet."
+        "proofChainStatus": "pdf_and_text_support_output",
+        "verdict": "PASS",
+        "reviewTier": "clean_source_backed",
+        "plainEnglishExplanation": "Safe and source-backed — Bundle shows material outstanding or not attached: \"MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.\"."
       },
       {
         "outputLine": "[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
-        "surface": "export_pack / client_summary",
-        "category": "export_line",
-        "sourceSnippet": null,
-        "evidenceState": null,
-        "proofChainStatus": "source_unavailable",
-        "verdict": "WARNING",
-        "reviewTier": "source_review",
-        "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
-      },
-      {
-        "outputLine": "Solicitor review required before sending to CPS, court, or client.",
         "surface": "export_pack / client_summary",
         "category": "export_line",
         "sourceSnippet": null,
@@ -7387,13 +7306,13 @@
         "surface": "evidence_truth_map / evidence_trace"
       },
       {
-        "originalCandidate": "audit trail: missing / needs_review",
-        "finalOutput": "audit trail",
+        "originalCandidate": "CCTV audit trail / source hash record: unknown / needs_review",
+        "finalOutput": "CCTV audit trail / source hash record",
         "changeType": "human_label",
         "reason": "Human-readable label applied for solicitor review.",
-        "sourceSupport": "MG6C/CCTV/05 — Audit trail / source file hash record — outstanding.",
-        "beforeAfterWording": "Before: audit trail: missing / needs_review | After: audit trail",
-        "solicitorFriendlyExplanation": "Output humanised for clarity.",
+        "sourceSupport": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
+        "beforeAfterWording": "Before: CCTV audit trail / source hash record: unknown / needs_review | After: CCTV audit trail / source hash record",
+        "solicitorFriendlyExplanation": "Evidence label: CCTV still images served — master footage not on bundle",
         "surface": "evidence_truth_map / evidence_trace"
       },
       {
@@ -7477,12 +7396,12 @@
         "surface": "evidence_truth_map / evidence_trace"
       },
       {
-        "originalCandidate": "Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.: missing / needs_review",
-        "finalOutput": "Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.",
+        "originalCandidate": "Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it is not available.: unknown / needs_review",
+        "finalOutput": "Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it is not available.",
         "changeType": "human_label",
         "reason": "Human-readable label applied for solicitor review.",
         "sourceSupport": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
-        "beforeAfterWording": "Before: Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.: missin | After: Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.",
+        "beforeAfterWording": "Before: Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it | After: Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it",
         "solicitorFriendlyExplanation": "Evidence label: CCTV still images served — master footage not on bundle",
         "surface": "evidence_truth_map / evidence_trace"
       },
@@ -7537,12 +7456,12 @@
         "surface": "five_answers / chase"
       },
       {
-        "originalCandidate": "Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: missing. Source: MG6C schedule. Solicitor review required before sending.]",
-        "finalOutput": "Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.",
+        "originalCandidate": "Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: provisional. Source: MG6C schedule. Solicitor review required before sending.]",
+        "finalOutput": "Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it is not available.",
         "changeType": "human_label",
         "reason": "Human-readable label applied for solicitor review.",
         "sourceSupport": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
-        "beforeAfterWording": "Before: Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.\n\n[CaseB | After: Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.",
+        "beforeAfterWording": "Before: Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it | After: Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it",
         "solicitorFriendlyExplanation": "Evidence label: CCTV still images served — master footage not on bundle",
         "surface": "five_answers / chase"
       },
@@ -7577,13 +7496,13 @@
         "surface": "hearing_mode / court_prep"
       },
       {
-        "originalCandidate": "audit trail: Missing / Needs review — Outstanding on current disclosure — chase before fixing hearing position. — still chase if disclosure-relevant.",
-        "finalOutput": "audit trail: Missing / Needs review — Outstanding on current disclosure — chase before fixing hearing position.",
+        "originalCandidate": "CCTV audit trail / source hash record: Unknown / Needs review — Audit trail needed to link stills to master recording.",
+        "finalOutput": "CCTV audit trail / source hash record — Audit trail needed to link stills to master recording.",
         "changeType": "human_label",
         "reason": "Human-readable label applied for solicitor review.",
-        "sourceSupport": "audit layer",
-        "beforeAfterWording": "Before: audit trail: Missing / Needs review — Outstanding on current disclosure — chase before fixing hearin | After: audit trail: Missing / Needs review — Outstanding on current disclosure — chase before fixing hearin",
-        "solicitorFriendlyExplanation": "Output humanised for clarity.",
+        "sourceSupport": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
+        "beforeAfterWording": "Before: CCTV audit trail / source hash record: Unknown / Needs review — Audit trail needed to link stills to | After: CCTV audit trail / source hash record — Audit trail needed to link stills to master recording.",
+        "solicitorFriendlyExplanation": "Evidence label: CCTV still images served — master footage not on bundle",
         "surface": "hearing_mode / court_prep"
       },
       {
@@ -7647,7 +7566,15 @@
         "surface": "export_pack / evidence_gaps"
       }
     ],
-    "missingExpectedOutputs": [],
+    "missingExpectedOutputs": [
+      {
+        "expectedItem": "recognition/ID basis",
+        "sourceBasis": "truth-key chase_needed",
+        "reasonMissing": "Truth key marks \"recognition/ID basis\" as chase_needed but no matching chase line found in output.",
+        "severity": "warning",
+        "plainEnglishNote": "Bundle/truth key expects chase on recognition/ID basis — verify whether CaseBrain surfaced it."
+      }
+    ],
     "sourceConflicts": [],
     "entityRisks": [],
     "surfaceSafety": [],
@@ -7723,17 +7650,17 @@
         "plainEnglishNote": "PDF page and extracted text both support this line."
       },
       {
-        "outputLine": "audit trail — missing — Outstanding on current disclosure.",
+        "outputLine": "CCTV audit trail / source hash record — missing — Outstanding on current disclosure.",
         "surface": "evidence_truth_map / evidence_trace",
-        "pdfPageAvailable": false,
-        "extractedSnippet": null,
-        "pageNumber": null,
-        "proofChainStatus": "source_unavailable",
-        "extractionIssue": "label_mismatch",
-        "plainEnglishNote": "No usable source anchor — solicitor must verify."
+        "pdfPageAvailable": true,
+        "extractedSnippet": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
+        "pageNumber": "4",
+        "proofChainStatus": "pdf_and_text_support_output",
+        "extractionIssue": "page_missing",
+        "plainEnglishNote": "PDF page and extracted text both support this line."
       },
       {
-        "outputLine": "recognition/ID basis — missing — Outstanding on current disclosure.",
+        "outputLine": "Recognition / ID basis — missing — Outstanding on current disclosure.",
         "surface": "evidence_truth_map / evidence_trace",
         "pdfPageAvailable": false,
         "extractedSnippet": null,
@@ -7793,10 +7720,10 @@
         "plainEnglishNote": "PDF page and extracted text both support this line."
       },
       {
-        "outputLine": "audit trail",
+        "outputLine": "CCTV audit trail / source hash record",
         "surface": "evidence_truth_map / evidence_trace",
         "pdfPageAvailable": true,
-        "extractedSnippet": "MG6C/CCTV/05 — Audit trail / source file hash record — outstanding.",
+        "extractedSnippet": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
         "pageNumber": "4",
         "proofChainStatus": "pdf_and_text_support_output",
         "extractionIssue": "page_missing",
@@ -7893,7 +7820,7 @@
         "plainEnglishNote": "PDF page and extracted text both support this line."
       },
       {
-        "outputLine": "Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.",
+        "outputLine": "Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it is not available.",
         "surface": "evidence_truth_map / evidence_trace",
         "pdfPageAvailable": true,
         "extractedSnippet": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
@@ -7973,17 +7900,17 @@
         "plainEnglishNote": "PDF page and extracted text both support this line."
       },
       {
-        "outputLine": "audit trail",
+        "outputLine": "CCTV audit trail / source hash record",
         "surface": "chase",
         "pdfPageAvailable": true,
-        "extractedSnippet": "MG6C/CCTV/05 — Audit trail / source file hash record — outstanding.",
+        "extractedSnippet": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
         "pageNumber": "4",
         "proofChainStatus": "pdf_and_text_support_output",
         "extractionIssue": "page_missing",
         "plainEnglishNote": "PDF page and extracted text both support this line."
       },
       {
-        "outputLine": "Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.",
+        "outputLine": "Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it is not available.",
         "surface": "chase / CPS",
         "pdfPageAvailable": true,
         "extractedSnippet": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
@@ -8043,7 +7970,7 @@
         "plainEnglishNote": "PDF page and extracted text both support this line."
       },
       {
-        "outputLine": "Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.",
+        "outputLine": "Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it is not available.",
         "surface": "five_answers / chase",
         "pdfPageAvailable": true,
         "extractedSnippet": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
@@ -8223,14 +8150,14 @@
         "plainEnglishNote": "PDF page and extracted text both support this line."
       },
       {
-        "outputLine": "audit trail: Missing / Needs review — Outstanding on current disclosure — chase before fixing hearing position.",
+        "outputLine": "CCTV audit trail / source hash record — Audit trail needed to link stills to master recording.",
         "surface": "hearing_mode / court_prep",
-        "pdfPageAvailable": false,
-        "extractedSnippet": null,
-        "pageNumber": null,
-        "proofChainStatus": "source_unavailable",
-        "extractionIssue": "label_mismatch",
-        "plainEnglishNote": "No usable source anchor — solicitor must verify."
+        "pdfPageAvailable": true,
+        "extractedSnippet": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
+        "pageNumber": "4",
+        "proofChainStatus": "pdf_and_text_support_output",
+        "extractionIssue": "page_missing",
+        "plainEnglishNote": "PDF page and extracted text both support this line."
       },
       {
         "outputLine": "Master CCTV footage: Missing — Please provide Master CCTV footage (see MG6C/CCTV/02) or confirm in writing why it is not available.",
@@ -8513,7 +8440,7 @@
         "plainEnglishNote": "No usable source anchor — solicitor must verify."
       },
       {
-        "outputLine": "Disclosure leverage: Outstanding on current disclosure — chase before fixing hearing position.",
+        "outputLine": "Sequence / coverage leverage: Audit trail needed to link stills to master recording.",
         "surface": "summary / opportunities",
         "pdfPageAvailable": false,
         "extractedSnippet": null,
@@ -8583,7 +8510,7 @@
         "plainEnglishNote": "PDF page and extracted text both support this line."
       },
       {
-        "outputLine": "Outstanding disclosure: Master CCTV footage; Full CCTV export; CCTV Continuity / provenance; audit trail.",
+        "outputLine": "Outstanding disclosure: Master CCTV footage; Full CCTV export; CCTV Continuity / provenance; CCTV audit trail / source hash record.",
         "surface": "summary / ptph",
         "pdfPageAvailable": true,
         "extractedSnippet": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
@@ -8713,36 +8640,6 @@
         "plainEnglishNote": "PDF page and extracted text both support this line."
       },
       {
-        "outputLine": "Disclosure pressure: Outstanding on current disclosure — chase before fixing hearing position.",
-        "surface": "decision_board",
-        "pdfPageAvailable": false,
-        "extractedSnippet": null,
-        "pageNumber": null,
-        "proofChainStatus": "source_unavailable",
-        "extractionIssue": "none",
-        "plainEnglishNote": "No usable source anchor — solicitor must verify."
-      },
-      {
-        "outputLine": "Missing material",
-        "surface": "decision_board",
-        "pdfPageAvailable": false,
-        "extractedSnippet": null,
-        "pageNumber": null,
-        "proofChainStatus": "source_unavailable",
-        "extractionIssue": "none",
-        "plainEnglishNote": "No usable source anchor — solicitor must verify."
-      },
-      {
-        "outputLine": "Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.",
-        "surface": "decision_board",
-        "pdfPageAvailable": true,
-        "extractedSnippet": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
-        "pageNumber": "4",
-        "proofChainStatus": "pdf_and_text_support_output",
-        "extractionIssue": "page_missing",
-        "plainEnglishNote": "PDF page and extracted text both support this line."
-      },
-      {
         "outputLine": "Co-defendant bleed risk: Papers may reference another defendant or account — keep this client's position separate.",
         "surface": "decision_board",
         "pdfPageAvailable": false,
@@ -8771,6 +8668,36 @@
         "proofChainStatus": "pdf_and_text_support_output",
         "extractionIssue": "page_missing",
         "plainEnglishNote": "PDF page and extracted text both support this line."
+      },
+      {
+        "outputLine": "Disclosure pressure: Disclosure completeness and outstanding source material.",
+        "surface": "decision_board",
+        "pdfPageAvailable": false,
+        "extractedSnippet": null,
+        "pageNumber": null,
+        "proofChainStatus": "source_unavailable",
+        "extractionIssue": "none",
+        "plainEnglishNote": "No usable source anchor — solicitor must verify."
+      },
+      {
+        "outputLine": "Possible issue — needs evidence before reliance.",
+        "surface": "decision_board",
+        "pdfPageAvailable": false,
+        "extractedSnippet": null,
+        "pageNumber": null,
+        "proofChainStatus": "source_unavailable",
+        "extractionIssue": "none",
+        "plainEnglishNote": "No usable source anchor — solicitor must verify."
+      },
+      {
+        "outputLine": "Chase outstanding disclosure and record provisional hearing position.",
+        "surface": "decision_board",
+        "pdfPageAvailable": false,
+        "extractedSnippet": null,
+        "pageNumber": null,
+        "proofChainStatus": "source_unavailable",
+        "extractionIssue": "none",
+        "plainEnglishNote": "No usable source anchor — solicitor must verify."
       },
       {
         "outputLine": "Master CCTV footage — Missing — Review: Review needed because master CCTV footage is missing — position may shift when served material lands",
@@ -8893,27 +8820,17 @@
         "plainEnglishNote": "No usable source anchor — solicitor must verify."
       },
       {
-        "outputLine": "We are reviewing the papers in your case (Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968). This is early-stage — nothing is final until we have full disclosure and your instructions. Some evidence is still outstanding on the papers, and we will update you when it is served. We are not saying the case is won or lost — we need the full material before giving firm advice.",
+        "outputLine": "We are reviewing the papers in your case (Devon Walsh). This is early-stage — nothing is final until we have full disclosure and your instructions. CCTV still images are on the papers, but the master CCTV footage, full export, continuity/provenance, and audit trail material are still outstanding. Stills alone do not show the full recording.",
         "surface": "export_pack / client_summary",
-        "pdfPageAvailable": false,
-        "extractedSnippet": "Statement of Offence: | Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968.",
-        "pageNumber": null,
-        "proofChainStatus": "text_supports_but_pdf_unchecked",
-        "extractionIssue": "none",
-        "plainEnglishNote": "Text supports line; PDF page not verified in this pass."
+        "pdfPageAvailable": true,
+        "extractedSnippet": "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.",
+        "pageNumber": "4",
+        "proofChainStatus": "pdf_and_text_support_output",
+        "extractionIssue": "page_missing",
+        "plainEnglishNote": "PDF page and extracted text both support this line."
       },
       {
         "outputLine": "[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
-        "surface": "export_pack / client_summary",
-        "pdfPageAvailable": false,
-        "extractedSnippet": null,
-        "pageNumber": null,
-        "proofChainStatus": "source_unavailable",
-        "extractionIssue": "none",
-        "plainEnglishNote": "No usable source anchor — solicitor must verify."
-      },
-      {
-        "outputLine": "Solicitor review required before sending to CPS, court, or client.",
         "surface": "export_pack / client_summary",
         "pdfPageAvailable": false,
         "extractedSnippet": null,
@@ -8984,18 +8901,18 @@
       }
     ],
     "counts": {
-      "emittedLines": 133,
+      "emittedLines": 132,
       "suppressedCandidates": 31,
       "rewritesDowngrades": 32,
-      "missingExpectedOutputs": 0,
+      "missingExpectedOutputs": 1,
       "sourceConflicts": 0,
       "entityRisks": 0,
       "surfaceSafetyIssues": 0,
-      "positiveCorrect": 70,
-      "cleanSourceBacked": 38,
+      "positiveCorrect": 73,
+      "cleanSourceBacked": 41,
       "possibleFalseSuppressions": 0,
-      "pdfAndTextSupported": 55,
-      "textOnlySupported": 32,
+      "pdfAndTextSupported": 57,
+      "textOnlySupported": 31,
       "emittedUnsupported": 0,
       "suppressedUnsupported": 31,
       "outputUnsupportedAfterGate": 0

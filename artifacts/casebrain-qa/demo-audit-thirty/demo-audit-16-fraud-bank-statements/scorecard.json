@@ -1,0 +1,74 @@
+{
+  "caseId": "demo-audit-16-fraud-bank-statements",
+  "caseName": "DA-16 Isla Grant — fraud / bank summaries served",
+  "shape": "Bank statement summaries served / full transaction export missing",
+  "pdfPages": 9,
+  "keyServedItems": [
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "bank statement summaries",
+    "officer statement"
+  ],
+  "keyMissingReferred": [
+    "full transaction export (missing)",
+    "source banking records (missing)",
+    "beneficiary tracing report (referred_only)"
+  ],
+  "truthMapResult": [
+    {
+      "label": "Bank statement summaries",
+      "existence": "served",
+      "note": "Summaries served — not full transaction export or source banking records."
+    },
+    {
+      "label": "Officer statement",
+      "existence": "served"
+    },
+    {
+      "label": "Beneficiary tracing report",
+      "existence": "referred_only"
+    },
+    {
+      "label": "Full transaction export",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    },
+    {
+      "label": "Source banking records",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    }
+  ],
+  "proofPacketVerdict": "PASS WITH WARNINGS",
+  "failLineCount": 0,
+  "unsupportedLinesCount": 0,
+  "wrongFamilyWarningsCount": 0,
+  "proofLedgerWrongFamilyInternal": 0,
+  "blockedFalseServedGuardsCount": 0,
+  "pageBackedOutputLinesCount": 39,
+  "vagueChaseLabelsCount": 0,
+  "genericLabelCount": 0,
+  "solicitorFacingBannedCount": 0,
+  "packetDuplicateCount": 0,
+  "packetOffFamilyCount": 0,
+  "packetMainIssueCount": 0,
+  "caseFacingWrongFamilyCount": 0,
+  "readyForDemoReview": true,
+  "readyBlockers": [],
+  "filesCreated": [
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-16-fraud-bank-statements\\bundle.pdf",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-16-fraud-bank-statements\\bundle-text.md",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-16-fraud-bank-statements\\pdf-extraction-meta.json",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-16-fraud-bank-statements\\truth-key.json",
+    "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-16-fraud-bank-statements\\line-by-line-proof.md",
+    "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-16-fraud-bank-statements\\SOLICITOR-PROOF-PACKET.md",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-16-fraud-bank-statements\\overview-truth-map.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-16-fraud-bank-statements\\court-tab.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-16-fraud-bank-statements\\cps-chase.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-16-fraud-bank-statements\\client-summary.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-16-fraud-bank-statements\\file-source-view.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-16-fraud-bank-statements\\casebrain-output.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-16-fraud-bank-statements\\scorecard.json"
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "caseId": "demo-audit-12-multi-def-burglary",
+  "clientLabel": "Harper Knox",
+  "allegation": "Burglary in a dwelling, contrary to section 9(1)(b) of the Theft Act 1968",
+  "bundleTextLength": 2080,
+  "chaseItemCount": 4,
+  "truthMapRowCount": 6,
+  "proofSummary": {
+    "totalMeaningfulLines": 131,
+    "pass": 27,
+    "warning": 104,
+    "fail": 0,
+    "excluded": 0,
+    "byCategory": {
+      "evidence_claim": 1,
+      "strategic_review": 47,
+      "confidence_status": 4,
+      "evidence_state": 21,
+      "safety_warning": 19,
+      "chase_request": 15,
+      "court_note": 3,
+      "client_summary": 1,
+      "contradiction_or_risk": 3,
+      "export_line": 17
+    },
+    "bySupport": {
+      "partially_supported": 32,
+      "source_unavailable": 44,
+      "missing": 35,
+      "supported": 20
+    },
+    "positiveCorrect": 28,
+    "gedReviewCount": 104,
+    "blockingReview": 0,
+    "unsupportedOutput": 0,
+    "sourceReviewWarnings": 62,
+    "solicitorCaution": 42,
+    "cleanSourceBacked": 0,
+    "genericSafetyGuards": 27,
+    "byTier": {
+      "blocking_review": 0,
+      "source_review": 62,
+      "solicitor_caution": 42,
+      "clean_source_backed": 0,
+      "generic_safety_guard": 27
+    },
+    "proofChainCoverage": {
+      "pdfAndTextSupportOutput": 62,
+      "textSupportsButPdfUnchecked": 15,
+      "pdfAvailableButTextMismatch": 0,
+      "sourceUnavailable": 54,
+      "outputUnsupported": 0,
+      "originalPdfAvailable": true,
+      "caseProofMode": "pdf_and_text"
+    }
+  },
+  "proofChainCoverage": {
+    "pdfAndTextSupportOutput": 62,
+    "textSupportsButPdfUnchecked": 15,
+    "pdfAvailableButTextMismatch": 0,
+    "sourceUnavailable": 54,
+    "outputUnsupported": 0,
+    "originalPdfAvailable": true,
+    "caseProofMode": "pdf_and_text"
+  }
+}

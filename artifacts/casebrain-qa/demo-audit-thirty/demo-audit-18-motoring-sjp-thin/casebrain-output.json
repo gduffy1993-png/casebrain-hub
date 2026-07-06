@@ -1,0 +1,67 @@
+{
+  "caseId": "demo-audit-18-motoring-sjp-thin",
+  "clientLabel": "Ella Shaw",
+  "allegation": "Fail to provide driver details, contrary to section 172(2) of the Road Traffic Act 1988",
+  "bundleTextLength": 1870,
+  "chaseItemCount": 3,
+  "truthMapRowCount": 5,
+  "proofSummary": {
+    "totalMeaningfulLines": 117,
+    "pass": 28,
+    "warning": 89,
+    "fail": 0,
+    "excluded": 0,
+    "byCategory": {
+      "evidence_claim": 1,
+      "strategic_review": 42,
+      "confidence_status": 4,
+      "evidence_state": 17,
+      "safety_warning": 17,
+      "chase_request": 12,
+      "court_note": 3,
+      "client_summary": 1,
+      "contradiction_or_risk": 3,
+      "export_line": 17
+    },
+    "bySupport": {
+      "partially_supported": 18,
+      "source_unavailable": 52,
+      "supported": 19,
+      "referred_only": 12,
+      "missing": 16
+    },
+    "positiveCorrect": 28,
+    "gedReviewCount": 89,
+    "blockingReview": 0,
+    "unsupportedOutput": 0,
+    "sourceReviewWarnings": 49,
+    "solicitorCaution": 40,
+    "cleanSourceBacked": 2,
+    "genericSafetyGuards": 26,
+    "byTier": {
+      "blocking_review": 0,
+      "source_review": 49,
+      "solicitor_caution": 40,
+      "clean_source_backed": 2,
+      "generic_safety_guard": 26
+    },
+    "proofChainCoverage": {
+      "pdfAndTextSupportOutput": 43,
+      "textSupportsButPdfUnchecked": 11,
+      "pdfAvailableButTextMismatch": 0,
+      "sourceUnavailable": 63,
+      "outputUnsupported": 0,
+      "originalPdfAvailable": true,
+      "caseProofMode": "pdf_and_text"
+    }
+  },
+  "proofChainCoverage": {
+    "pdfAndTextSupportOutput": 43,
+    "textSupportsButPdfUnchecked": 11,
+    "pdfAvailableButTextMismatch": 0,
+    "sourceUnavailable": 63,
+    "outputUnsupported": 0,
+    "originalPdfAvailable": true,
+    "caseProofMode": "pdf_and_text"
+  }
+}

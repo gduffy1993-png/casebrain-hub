@@ -1,0 +1,68 @@
+{
+  "caseId": "demo-audit-07-phone-ocr-trap",
+  "clientLabel": "Noah Pierce",
+  "allegation": "Harassment, contrary to section 2 of the Protection from Harassment Act 1997",
+  "bundleTextLength": 3921,
+  "chaseItemCount": 6,
+  "truthMapRowCount": 7,
+  "proofSummary": {
+    "totalMeaningfulLines": 145,
+    "pass": 65,
+    "warning": 80,
+    "fail": 0,
+    "excluded": 0,
+    "byCategory": {
+      "evidence_claim": 1,
+      "strategic_review": 40,
+      "confidence_status": 4,
+      "evidence_state": 27,
+      "safety_warning": 29,
+      "chase_request": 20,
+      "court_note": 3,
+      "client_summary": 1,
+      "contradiction_or_risk": 3,
+      "export_line": 17
+    },
+    "bySupport": {
+      "partially_supported": 33,
+      "source_unavailable": 35,
+      "supported": 34,
+      "missing": 40,
+      "referred_only": 2,
+      "incomplete": 1
+    },
+    "positiveCorrect": 66,
+    "gedReviewCount": 80,
+    "blockingReview": 0,
+    "unsupportedOutput": 0,
+    "sourceReviewWarnings": 35,
+    "solicitorCaution": 45,
+    "cleanSourceBacked": 26,
+    "genericSafetyGuards": 39,
+    "byTier": {
+      "blocking_review": 0,
+      "source_review": 35,
+      "solicitor_caution": 45,
+      "clean_source_backed": 26,
+      "generic_safety_guard": 39
+    },
+    "proofChainCoverage": {
+      "pdfAndTextSupportOutput": 62,
+      "textSupportsButPdfUnchecked": 28,
+      "pdfAvailableButTextMismatch": 0,
+      "sourceUnavailable": 55,
+      "outputUnsupported": 0,
+      "originalPdfAvailable": true,
+      "caseProofMode": "pdf_and_text"
+    }
+  },
+  "proofChainCoverage": {
+    "pdfAndTextSupportOutput": 62,
+    "textSupportsButPdfUnchecked": 28,
+    "pdfAvailableButTextMismatch": 0,
+    "sourceUnavailable": 55,
+    "outputUnsupported": 0,
+    "originalPdfAvailable": true,
+    "caseProofMode": "pdf_and_text"
+  }
+}

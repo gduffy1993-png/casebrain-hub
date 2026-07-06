@@ -1,0 +1,81 @@
+{
+  "caseId": "demo-audit-13-co-def-index-trap",
+  "caseName": "DA-13 Finn Doyle — co-def index trap",
+  "shape": "Co-def interview served / index lists target interview pages missing",
+  "pdfPages": 8,
+  "keyServedItems": [
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "officer statement"
+  ],
+  "keyMissingReferred": [
+    "co-defendant Lexi Marsh interview summary (other_defendant_only)",
+    "Finn Doyle interview summary (missing)",
+    "Finn Doyle interview audio (missing)",
+    "Finn Doyle interview transcript (missing)",
+    "co-defendant attribution/continuity (missing)"
+  ],
+  "truthMapResult": [
+    {
+      "label": "Officer statement",
+      "existence": "served"
+    },
+    {
+      "label": "Co-defendant interview summary",
+      "existence": "referred_only",
+      "note": "Other defendant only — segregate from target defendant account."
+    },
+    {
+      "label": "Finn Doyle interview summary",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    },
+    {
+      "label": "Finn Doyle interview audio",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    },
+    {
+      "label": "Finn Doyle interview transcript",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    },
+    {
+      "label": "Co-defendant attribution / continuity",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    }
+  ],
+  "proofPacketVerdict": "PASS WITH WARNINGS",
+  "failLineCount": 0,
+  "unsupportedLinesCount": 0,
+  "wrongFamilyWarningsCount": 0,
+  "proofLedgerWrongFamilyInternal": 0,
+  "blockedFalseServedGuardsCount": 0,
+  "pageBackedOutputLinesCount": 42,
+  "vagueChaseLabelsCount": 0,
+  "genericLabelCount": 0,
+  "solicitorFacingBannedCount": 0,
+  "packetDuplicateCount": 0,
+  "packetOffFamilyCount": 0,
+  "packetMainIssueCount": 0,
+  "caseFacingWrongFamilyCount": 0,
+  "readyForDemoReview": true,
+  "readyBlockers": [],
+  "filesCreated": [
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-13-co-def-index-trap\\bundle.pdf",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-13-co-def-index-trap\\bundle-text.md",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-13-co-def-index-trap\\pdf-extraction-meta.json",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-13-co-def-index-trap\\truth-key.json",
+    "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-13-co-def-index-trap\\line-by-line-proof.md",
+    "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-13-co-def-index-trap\\SOLICITOR-PROOF-PACKET.md",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-13-co-def-index-trap\\overview-truth-map.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-13-co-def-index-trap\\court-tab.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-13-co-def-index-trap\\cps-chase.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-13-co-def-index-trap\\client-summary.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-13-co-def-index-trap\\file-source-view.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-13-co-def-index-trap\\casebrain-output.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-13-co-def-index-trap\\scorecard.json"
+  ]
+}

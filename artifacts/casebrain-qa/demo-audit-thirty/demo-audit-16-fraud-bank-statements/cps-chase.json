@@ -1,0 +1,23 @@
+{
+  "primaryItems": [
+    {
+      "label": "Full transaction export",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide Full transaction export (see MG6C/FRD/02) or confirm in writing why it is not available.",
+      "whyItMatters": "Full transaction export or source banking records outstanding per MG6C."
+    },
+    {
+      "label": "Source banking records",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide Source banking records (see MG6C/FRD/03) or confirm in writing why it is not available.",
+      "whyItMatters": "Full transaction export or source banking records outstanding per MG6C."
+    },
+    {
+      "label": "Beneficiary tracing report",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide Beneficiary tracing report (see MG6C/FRD/04) or confirm in writing why it is not available.",
+      "whyItMatters": "Outstanding on current disclosure — confirm before fixing hearing position."
+    }
+  ],
+  "safeCourtLine": "The defence asks the court to record per MG6C that bank statement summaries are served but full transaction export, source banking records, and tracing material remain outstanding."
+}

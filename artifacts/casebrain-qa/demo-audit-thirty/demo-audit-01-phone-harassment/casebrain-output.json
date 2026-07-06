@@ -1,0 +1,68 @@
+{
+  "caseId": "demo-audit-01-phone-harassment",
+  "clientLabel": "Riley Moss",
+  "allegation": "Harassment, contrary to section 2 of the Protection from Harassment Act 1997",
+  "bundleTextLength": 6276,
+  "chaseItemCount": 6,
+  "truthMapRowCount": 8,
+  "proofSummary": {
+    "totalMeaningfulLines": 143,
+    "pass": 71,
+    "warning": 72,
+    "fail": 0,
+    "excluded": 0,
+    "byCategory": {
+      "evidence_claim": 1,
+      "strategic_review": 40,
+      "confidence_status": 4,
+      "evidence_state": 28,
+      "safety_warning": 26,
+      "chase_request": 20,
+      "court_note": 3,
+      "client_summary": 1,
+      "contradiction_or_risk": 3,
+      "export_line": 17
+    },
+    "bySupport": {
+      "partially_supported": 34,
+      "source_unavailable": 34,
+      "supported": 31,
+      "missing": 41,
+      "referred_only": 2,
+      "incomplete": 1
+    },
+    "positiveCorrect": 72,
+    "gedReviewCount": 72,
+    "blockingReview": 0,
+    "unsupportedOutput": 0,
+    "sourceReviewWarnings": 34,
+    "solicitorCaution": 38,
+    "cleanSourceBacked": 35,
+    "genericSafetyGuards": 36,
+    "byTier": {
+      "blocking_review": 0,
+      "source_review": 34,
+      "solicitor_caution": 38,
+      "clean_source_backed": 35,
+      "generic_safety_guard": 36
+    },
+    "proofChainCoverage": {
+      "pdfAndTextSupportOutput": 64,
+      "textSupportsButPdfUnchecked": 19,
+      "pdfAvailableButTextMismatch": 9,
+      "sourceUnavailable": 51,
+      "outputUnsupported": 0,
+      "originalPdfAvailable": true,
+      "caseProofMode": "pdf_and_text"
+    }
+  },
+  "proofChainCoverage": {
+    "pdfAndTextSupportOutput": 64,
+    "textSupportsButPdfUnchecked": 19,
+    "pdfAvailableButTextMismatch": 9,
+    "sourceUnavailable": 51,
+    "outputUnsupported": 0,
+    "originalPdfAvailable": true,
+    "caseProofMode": "pdf_and_text"
+  }
+}

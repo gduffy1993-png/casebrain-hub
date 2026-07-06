@@ -1,0 +1,69 @@
+{
+  "caseId": "demo-audit-25-charge-bundle-mismatch",
+  "clientLabel": "Jordan Clarke",
+  "allegation": "Being concerned in the supply of a controlled drug of Class A, contrary to section 4(2)(b) of the Misuse of Drugs Act 1971",
+  "bundleTextLength": 3263,
+  "chaseItemCount": 4,
+  "truthMapRowCount": 7,
+  "proofSummary": {
+    "totalMeaningfulLines": 126,
+    "pass": 61,
+    "warning": 65,
+    "fail": 0,
+    "excluded": 0,
+    "byCategory": {
+      "evidence_claim": 1,
+      "strategic_review": 41,
+      "confidence_status": 4,
+      "evidence_state": 22,
+      "safety_warning": 19,
+      "chase_request": 15,
+      "court_note": 3,
+      "client_summary": 1,
+      "contradiction_or_risk": 3,
+      "export_line": 17
+    },
+    "bySupport": {
+      "partially_supported": 19,
+      "source_unavailable": 48,
+      "supported": 21,
+      "referred_only": 11,
+      "missing": 24,
+      "unsupported": 2,
+      "blocked": 1
+    },
+    "positiveCorrect": 62,
+    "gedReviewCount": 65,
+    "blockingReview": 0,
+    "unsupportedOutput": 3,
+    "sourceReviewWarnings": 46,
+    "solicitorCaution": 19,
+    "cleanSourceBacked": 35,
+    "genericSafetyGuards": 26,
+    "byTier": {
+      "blocking_review": 0,
+      "source_review": 46,
+      "solicitor_caution": 19,
+      "clean_source_backed": 35,
+      "generic_safety_guard": 26
+    },
+    "proofChainCoverage": {
+      "pdfAndTextSupportOutput": 54,
+      "textSupportsButPdfUnchecked": 5,
+      "pdfAvailableButTextMismatch": 0,
+      "sourceUnavailable": 67,
+      "outputUnsupported": 0,
+      "originalPdfAvailable": true,
+      "caseProofMode": "pdf_and_text"
+    }
+  },
+  "proofChainCoverage": {
+    "pdfAndTextSupportOutput": 54,
+    "textSupportsButPdfUnchecked": 5,
+    "pdfAvailableButTextMismatch": 0,
+    "sourceUnavailable": 67,
+    "outputUnsupported": 0,
+    "originalPdfAvailable": true,
+    "caseProofMode": "pdf_and_text"
+  }
+}

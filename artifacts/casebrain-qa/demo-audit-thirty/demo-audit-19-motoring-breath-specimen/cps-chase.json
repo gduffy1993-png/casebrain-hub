@@ -1,0 +1,23 @@
+{
+  "primaryItems": [
+    {
+      "label": "Device calibration certificate",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide Device calibration certificate (see MG6C/MOT/02) or confirm in writing why it is not available.",
+      "whyItMatters": "Device calibration and full intoxilyser record needed."
+    },
+    {
+      "label": "Full intoxilyser record",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide Full intoxilyser record (see MG6C/MOT/04) or confirm in writing why it is not available.",
+      "whyItMatters": "Device calibration and full intoxilyser record needed."
+    },
+    {
+      "label": "CCTV / dashcam export",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide CCTV / dashcam export (see MG6C/MOT/05) or confirm in writing why it is not available.",
+      "whyItMatters": "CCTV or dashcam export referred on schedule — not attached."
+    }
+  ],
+  "safeCourtLine": "The defence asks the court to record per MG6C that procedure summary is served but device calibration, full intoxilyser record, and CCTV/dashcam export remain outstanding."
+}

@@ -1,0 +1,29 @@
+{
+  "primaryItems": [
+    {
+      "label": "Target defendant interview summary",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide Target defendant interview summary (see MG6C/INT/02) or confirm in writing why it is not available.",
+      "whyItMatters": "Target defendant interview material outstanding."
+    },
+    {
+      "label": "Target defendant interview audio",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide Target defendant interview audio (see MG6C/INT/03) or confirm in writing why it is not available.",
+      "whyItMatters": "Target defendant interview material outstanding."
+    },
+    {
+      "label": "Target defendant interview transcript",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide Target defendant interview transcript (see MG6C/INT/04) or confirm in writing why it is not available.",
+      "whyItMatters": "Target defendant interview material outstanding."
+    },
+    {
+      "label": "Co-defendant attribution / continuity",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide Co-defendant attribution / continuity (see MG6C/CO/01) or confirm in writing why it is not available.",
+      "whyItMatters": "Continuity to master recording not confirmed on current papers."
+    }
+  ],
+  "safeCourtLine": "The defence asks the court to record per MG6C that co-defendant interview material is segregated and target defendant interview summary/audio remain outstanding."
+}

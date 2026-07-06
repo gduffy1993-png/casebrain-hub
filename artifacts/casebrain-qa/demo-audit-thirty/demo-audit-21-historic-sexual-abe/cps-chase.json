@@ -1,0 +1,29 @@
+{
+  "primaryItems": [
+    {
+      "label": "ABE interview video",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide ABE interview video (see MG6C/SX/02) or confirm in writing why it is not available.",
+      "whyItMatters": "ABE interview video/transcript outstanding or referred only."
+    },
+    {
+      "label": "ABE interview transcript",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide ABE interview transcript (see MG6C/SX/03) or confirm in writing why it is not available.",
+      "whyItMatters": "ABE interview video/transcript outstanding or referred only."
+    },
+    {
+      "label": "Final signed MG11",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide Final signed MG11 (see MG6C/SX/05) or confirm in writing why it is not available.",
+      "whyItMatters": "Final signed complainant statement outstanding."
+    },
+    {
+      "label": "Third-party counselling notes",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide Third-party counselling notes (see MG6C/SX/04) or confirm in writing why it is not available.",
+      "whyItMatters": "Third-party counselling notes outstanding if relied upon."
+    }
+  ],
+  "safeCourtLine": "The defence asks the court to record per MG6C that draft complainant material is served but ABE interview video, transcript, and final signed MG11 remain outstanding."
+}

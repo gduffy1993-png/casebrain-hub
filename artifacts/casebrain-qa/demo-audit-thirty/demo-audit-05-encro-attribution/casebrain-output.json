@@ -1,0 +1,69 @@
+{
+  "caseId": "demo-audit-05-encro-attribution",
+  "clientLabel": "Liam Craft",
+  "allegation": "Being concerned in the supply of a controlled drug of Class A, namely cocaine",
+  "bundleTextLength": 4761,
+  "chaseItemCount": 5,
+  "truthMapRowCount": 6,
+  "proofSummary": {
+    "totalMeaningfulLines": 131,
+    "pass": 63,
+    "warning": 68,
+    "fail": 0,
+    "excluded": 0,
+    "byCategory": {
+      "evidence_claim": 1,
+      "strategic_review": 41,
+      "confidence_status": 4,
+      "evidence_state": 24,
+      "safety_warning": 19,
+      "chase_request": 18,
+      "court_note": 3,
+      "client_summary": 1,
+      "contradiction_or_risk": 3,
+      "export_line": 17
+    },
+    "bySupport": {
+      "source_unavailable": 50,
+      "supported": 20,
+      "referred_only": 11,
+      "missing": 28,
+      "partially_supported": 19,
+      "unsupported": 2,
+      "blocked": 1
+    },
+    "positiveCorrect": 63,
+    "gedReviewCount": 68,
+    "blockingReview": 0,
+    "unsupportedOutput": 3,
+    "sourceReviewWarnings": 46,
+    "solicitorCaution": 22,
+    "cleanSourceBacked": 37,
+    "genericSafetyGuards": 26,
+    "byTier": {
+      "blocking_review": 0,
+      "source_review": 46,
+      "solicitor_caution": 22,
+      "clean_source_backed": 37,
+      "generic_safety_guard": 26
+    },
+    "proofChainCoverage": {
+      "pdfAndTextSupportOutput": 59,
+      "textSupportsButPdfUnchecked": 3,
+      "pdfAvailableButTextMismatch": 0,
+      "sourceUnavailable": 69,
+      "outputUnsupported": 0,
+      "originalPdfAvailable": true,
+      "caseProofMode": "pdf_and_text"
+    }
+  },
+  "proofChainCoverage": {
+    "pdfAndTextSupportOutput": 59,
+    "textSupportsButPdfUnchecked": 3,
+    "pdfAvailableButTextMismatch": 0,
+    "sourceUnavailable": 69,
+    "outputUnsupported": 0,
+    "originalPdfAvailable": true,
+    "caseProofMode": "pdf_and_text"
+  }
+}

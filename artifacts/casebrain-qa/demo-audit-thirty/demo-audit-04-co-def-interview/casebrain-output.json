@@ -1,0 +1,66 @@
+{
+  "caseId": "demo-audit-04-co-def-interview",
+  "clientLabel": "Morgan Reid",
+  "allegation": "Burglary in a dwelling, contrary to section 9(1)(b) of the Theft Act 1968",
+  "bundleTextLength": 4417,
+  "chaseItemCount": 4,
+  "truthMapRowCount": 4,
+  "proofSummary": {
+    "totalMeaningfulLines": 135,
+    "pass": 33,
+    "warning": 102,
+    "fail": 0,
+    "excluded": 0,
+    "byCategory": {
+      "evidence_claim": 1,
+      "strategic_review": 47,
+      "confidence_status": 4,
+      "evidence_state": 19,
+      "safety_warning": 25,
+      "chase_request": 15,
+      "court_note": 3,
+      "client_summary": 1,
+      "contradiction_or_risk": 3,
+      "export_line": 17
+    },
+    "bySupport": {
+      "partially_supported": 30,
+      "source_unavailable": 44,
+      "missing": 35,
+      "supported": 26
+    },
+    "positiveCorrect": 34,
+    "gedReviewCount": 102,
+    "blockingReview": 0,
+    "unsupportedOutput": 0,
+    "sourceReviewWarnings": 60,
+    "solicitorCaution": 42,
+    "cleanSourceBacked": 0,
+    "genericSafetyGuards": 33,
+    "byTier": {
+      "blocking_review": 0,
+      "source_review": 60,
+      "solicitor_caution": 42,
+      "clean_source_backed": 0,
+      "generic_safety_guard": 33
+    },
+    "proofChainCoverage": {
+      "pdfAndTextSupportOutput": 42,
+      "textSupportsButPdfUnchecked": 18,
+      "pdfAvailableButTextMismatch": 18,
+      "sourceUnavailable": 57,
+      "outputUnsupported": 0,
+      "originalPdfAvailable": true,
+      "caseProofMode": "pdf_and_text"
+    }
+  },
+  "proofChainCoverage": {
+    "pdfAndTextSupportOutput": 42,
+    "textSupportsButPdfUnchecked": 18,
+    "pdfAvailableButTextMismatch": 18,
+    "sourceUnavailable": 57,
+    "outputUnsupported": 0,
+    "originalPdfAvailable": true,
+    "caseProofMode": "pdf_and_text"
+  }
+}

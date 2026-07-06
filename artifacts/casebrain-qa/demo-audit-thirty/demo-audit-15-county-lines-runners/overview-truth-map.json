@@ -1,0 +1,429 @@
+{
+  "truthMap": [
+    {
+      "label": "Encro message extracts LC/MSG/01",
+      "existence": "served",
+      "note": "Served on bundle per MG6C/ENC/01."
+    },
+    {
+      "label": "Officer statement",
+      "existence": "served"
+    },
+    {
+      "label": "Platform / source extraction",
+      "existence": "referred_only"
+    },
+    {
+      "label": "Handle attribution report",
+      "existence": "missing",
+      "note": "Outstanding per MG6C — handle attribution report not on bundle."
+    },
+    {
+      "label": "Subscriber / account data",
+      "existence": "missing",
+      "note": "Outstanding per MG6C — subscriber/account data not on bundle."
+    },
+    {
+      "label": "Device continuity",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    },
+    {
+      "label": "co-defendant material",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    }
+  ],
+  "mustNotOverstate": [
+    "Do not treat handle or phone reference as proof of the defendant role without served attribution.",
+    "handle proves defendant",
+    "Jayden Cole is the handle",
+    "phone proves role",
+    "Do not rely on drug continuity unless lab/continuity material is served."
+  ],
+  "evidenceTrace": {
+    "rows": [
+      {
+        "id": "allegation-0",
+        "section": "allegation",
+        "claim": "Being concerned in the supply of a controlled drug of Class A, contrary to section 4(2)(b) of the Misuse of Drugs Act 1971",
+        "existence": "served",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/ENC/02 — Platform/source extraction — referred — export not attached.",
+        "sourceLabel": "Charge sheet / papers",
+        "inference": false
+      },
+      {
+        "id": "allegation-1",
+        "section": "allegation",
+        "claim": "Disclosure completeness and outstanding source material.",
+        "existence": "not_safely_confirmed",
+        "reliability": "needs_review",
+        "sourceLabel": "Matter confidence",
+        "inference": false,
+        "traceWarning": null
+      },
+      {
+        "id": "missing_referred-0",
+        "section": "missing_referred",
+        "claim": "Platform / source extraction",
+        "existence": "referred_only",
+        "reliability": "weak",
+        "sourceAnchor": "MG6C/ENC/02 — Platform/source extraction — referred — export not attached.",
+        "sourceLabel": "MG6C schedule",
+        "critical": false,
+        "inference": false,
+        "notUsable": true,
+        "traceWarning": null
+      },
+      {
+        "id": "missing_referred-1",
+        "section": "missing_referred",
+        "claim": "Handle attribution report",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/ENC/03 — Handle attribution report (RUNNER-19) — outstanding — not on bundle.",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "missing_referred-2",
+        "section": "missing_referred",
+        "claim": "Subscriber / account data",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/ENC/04 — Subscriber/account data — outstanding.",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "missing_referred-3",
+        "section": "missing_referred",
+        "claim": "Device continuity",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/ENC/05 — Device continuity — outstanding.",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "do_not_overstate-0",
+        "section": "do_not_overstate",
+        "claim": "Do not treat handle or phone reference as proof of the defendant role without served attribution.",
+        "existence": "not_safely_confirmed",
+        "reliability": "unsafe",
+        "sourceLabel": "Guardian / bundle guard",
+        "inference": false,
+        "traceWarning": null
+      },
+      {
+        "id": "do_not_overstate-1",
+        "section": "do_not_overstate",
+        "claim": "handle proves defendant",
+        "existence": "not_safely_confirmed",
+        "reliability": "unsafe",
+        "sourceLabel": "Guardian / bundle guard",
+        "inference": false,
+        "traceWarning": null
+      },
+      {
+        "id": "do_not_overstate-2",
+        "section": "do_not_overstate",
+        "claim": "Jayden Cole is the handle",
+        "existence": "not_safely_confirmed",
+        "reliability": "unsafe",
+        "sourceLabel": "Guardian / bundle guard",
+        "inference": false,
+        "traceWarning": null
+      },
+      {
+        "id": "do_not_overstate-3",
+        "section": "do_not_overstate",
+        "claim": "phone proves role",
+        "existence": "not_safely_confirmed",
+        "reliability": "unsafe",
+        "sourceLabel": "Guardian / bundle guard",
+        "inference": false,
+        "traceWarning": null
+      },
+      {
+        "id": "do_not_overstate-4",
+        "section": "do_not_overstate",
+        "claim": "Do not rely on drug continuity unless lab/continuity material is served.",
+        "existence": "not_safely_confirmed",
+        "reliability": "unsafe",
+        "sourceLabel": "Guardian / bundle guard",
+        "inference": false,
+        "traceWarning": null
+      },
+      {
+        "id": "chase-0",
+        "section": "chase",
+        "claim": "Please provide Platform / source extraction (see MG6C/ENC/02) or confirm in writing why it is not available.",
+        "existence": "referred_only",
+        "reliability": "weak",
+        "sourceAnchor": "MG6C/ENC/02 — Platform/source extraction — referred — export not attached.",
+        "sourceLabel": "MG6C schedule",
+        "critical": false,
+        "inference": false,
+        "notUsable": true,
+        "traceWarning": null
+      },
+      {
+        "id": "chase-1",
+        "section": "chase",
+        "claim": "Please provide Handle attribution report (see MG6C/ENC/03) or confirm in writing why it is not available.",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/ENC/03 — Handle attribution report (RUNNER-19) — outstanding — not on bundle.",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "chase-2",
+        "section": "chase",
+        "claim": "Please provide Subscriber / account data (see MG6C/ENC/04) or confirm in writing why it is not available.",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/ENC/04 — Subscriber/account data — outstanding.",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "chase-3",
+        "section": "chase",
+        "claim": "Please provide Device continuity (see MG6C/ENC/05) or confirm in writing why it is not available.",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/ENC/05 — Device continuity — outstanding.",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "court_note-0",
+        "section": "court_note",
+        "claim": "The defence asks the court to record per MG6C that message extracts are served and handle attribution report and platform extraction remain outstanding.",
+        "existence": "not_safely_confirmed",
+        "reliability": "needs_review",
+        "sourceLabel": "Disclosure chase brief",
+        "sourceAnchor": "MG6C/ENC/02 — Platform/source extraction — referred — export not attached.",
+        "inference": false
+      }
+    ],
+    "bySection": {
+      "allegation": [
+        {
+          "id": "allegation-0",
+          "section": "allegation",
+          "claim": "Being concerned in the supply of a controlled drug of Class A, contrary to section 4(2)(b) of the Misuse of Drugs Act 1971",
+          "existence": "served",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/ENC/02 — Platform/source extraction — referred — export not attached.",
+          "sourceLabel": "Charge sheet / papers",
+          "inference": false
+        },
+        {
+          "id": "allegation-1",
+          "section": "allegation",
+          "claim": "Disclosure completeness and outstanding source material.",
+          "existence": "not_safely_confirmed",
+          "reliability": "needs_review",
+          "sourceLabel": "Matter confidence",
+          "inference": false,
+          "traceWarning": null
+        }
+      ],
+      "key_evidence": [],
+      "missing_referred": [
+        {
+          "id": "missing_referred-0",
+          "section": "missing_referred",
+          "claim": "Platform / source extraction",
+          "existence": "referred_only",
+          "reliability": "weak",
+          "sourceAnchor": "MG6C/ENC/02 — Platform/source extraction — referred — export not attached.",
+          "sourceLabel": "MG6C schedule",
+          "critical": false,
+          "inference": false,
+          "notUsable": true,
+          "traceWarning": null
+        },
+        {
+          "id": "missing_referred-1",
+          "section": "missing_referred",
+          "claim": "Handle attribution report",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/ENC/03 — Handle attribution report (RUNNER-19) — outstanding — not on bundle.",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        },
+        {
+          "id": "missing_referred-2",
+          "section": "missing_referred",
+          "claim": "Subscriber / account data",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/ENC/04 — Subscriber/account data — outstanding.",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        },
+        {
+          "id": "missing_referred-3",
+          "section": "missing_referred",
+          "claim": "Device continuity",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/ENC/05 — Device continuity — outstanding.",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        }
+      ],
+      "do_not_overstate": [
+        {
+          "id": "do_not_overstate-0",
+          "section": "do_not_overstate",
+          "claim": "Do not treat handle or phone reference as proof of the defendant role without served attribution.",
+          "existence": "not_safely_confirmed",
+          "reliability": "unsafe",
+          "sourceLabel": "Guardian / bundle guard",
+          "inference": false,
+          "traceWarning": null
+        },
+        {
+          "id": "do_not_overstate-1",
+          "section": "do_not_overstate",
+          "claim": "handle proves defendant",
+          "existence": "not_safely_confirmed",
+          "reliability": "unsafe",
+          "sourceLabel": "Guardian / bundle guard",
+          "inference": false,
+          "traceWarning": null
+        },
+        {
+          "id": "do_not_overstate-2",
+          "section": "do_not_overstate",
+          "claim": "Jayden Cole is the handle",
+          "existence": "not_safely_confirmed",
+          "reliability": "unsafe",
+          "sourceLabel": "Guardian / bundle guard",
+          "inference": false,
+          "traceWarning": null
+        },
+        {
+          "id": "do_not_overstate-3",
+          "section": "do_not_overstate",
+          "claim": "phone proves role",
+          "existence": "not_safely_confirmed",
+          "reliability": "unsafe",
+          "sourceLabel": "Guardian / bundle guard",
+          "inference": false,
+          "traceWarning": null
+        },
+        {
+          "id": "do_not_overstate-4",
+          "section": "do_not_overstate",
+          "claim": "Do not rely on drug continuity unless lab/continuity material is served.",
+          "existence": "not_safely_confirmed",
+          "reliability": "unsafe",
+          "sourceLabel": "Guardian / bundle guard",
+          "inference": false,
+          "traceWarning": null
+        }
+      ],
+      "chase": [
+        {
+          "id": "chase-0",
+          "section": "chase",
+          "claim": "Please provide Platform / source extraction (see MG6C/ENC/02) or confirm in writing why it is not available.",
+          "existence": "referred_only",
+          "reliability": "weak",
+          "sourceAnchor": "MG6C/ENC/02 — Platform/source extraction — referred — export not attached.",
+          "sourceLabel": "MG6C schedule",
+          "critical": false,
+          "inference": false,
+          "notUsable": true,
+          "traceWarning": null
+        },
+        {
+          "id": "chase-1",
+          "section": "chase",
+          "claim": "Please provide Handle attribution report (see MG6C/ENC/03) or confirm in writing why it is not available.",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/ENC/03 — Handle attribution report (RUNNER-19) — outstanding — not on bundle.",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        },
+        {
+          "id": "chase-2",
+          "section": "chase",
+          "claim": "Please provide Subscriber / account data (see MG6C/ENC/04) or confirm in writing why it is not available.",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/ENC/04 — Subscriber/account data — outstanding.",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        },
+        {
+          "id": "chase-3",
+          "section": "chase",
+          "claim": "Please provide Device continuity (see MG6C/ENC/05) or confirm in writing why it is not available.",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/ENC/05 — Device continuity — outstanding.",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        }
+      ],
+      "court_note": [
+        {
+          "id": "court_note-0",
+          "section": "court_note",
+          "claim": "The defence asks the court to record per MG6C that message extracts are served and handle attribution report and platform extraction remain outstanding.",
+          "existence": "not_safely_confirmed",
+          "reliability": "needs_review",
+          "sourceLabel": "Disclosure chase brief",
+          "sourceAnchor": "MG6C/ENC/02 — Platform/source extraction — referred — export not attached.",
+          "inference": false
+        }
+      ]
+    }
+  }
+}

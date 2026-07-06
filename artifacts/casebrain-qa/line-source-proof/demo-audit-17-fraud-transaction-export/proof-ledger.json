@@ -1,0 +1,3465 @@
+{
+  "solicitorSummary": {
+    "verdict": "pass_with_warnings",
+    "caseShape": "needs_review",
+    "whatCaseIsAbout": "Caleb Moss — Fraud by false representation, contrary to section 1 of the Fraud Act 2006",
+    "mainEvidenceGaps": [
+      "full transaction export (missing)",
+      "source banking records (missing)",
+      "beneficiary tracing report (referred only)"
+    ],
+    "whatCaseBrainGotRight": [
+      "No clean source-backed lines flagged — review emitted ledger."
+    ],
+    "whatCaseBrainRefusedToSay": [
+      "CaseBrain refused to say this — compound line gated (Compound/template line dropped — bundle does not mention interview material.). Would have said: \"Assumed position may conflict with interview or served evidence.\".",
+      "CaseBrain refused to say this — compound line gated (Compound/template line dropped — bundle does not mention phone/device material.). Would have said: \"Served banking/device/login material may support Crown dishonesty if proved.\".",
+      "CaseBrain refused to say this — overclaim or unsafe trap removed. Would have said: \"Additional source-material appears outstanding on the current file — solicitor to confirm relevance…\". Overclaim or unsafe wording removed — source does not support the claim.",
+      "CaseBrain refused to say this — compound line gated (Compound/template line dropped — bundle does not mention CAD/999 material, phone/device material.). Would have said: \"Please provide the outstanding source material identified on the disclosure schedule, including…\".",
+      "CaseBrain refused to say this — overclaim or unsafe trap removed. Would have said: \"Ask the court to record that additional source-material on file remains outstanding and should be…\". Overclaim or unsafe wording removed — source does not support the claim.",
+      "CaseBrain refused to say this — overclaim or unsafe trap removed. Would have said: \"Record defence position on file before fixing a hearing line.\". Overclaim or unsafe wording removed — source does not support the claim.",
+      "CaseBrain refused to say this — overclaim or unsafe trap removed. Would have said: \"Defence position not safely recorded yet — position is provisional; take/record instructions before…\". Overclaim or unsafe wording removed — source does not support the claim.",
+      "CaseBrain refused to say this — overclaim or unsafe trap removed. Would have said: \"Take instructions on timing/sequence — do not fix facts without source material.\". Overclaim or unsafe wording removed — source does not support the claim."
+    ],
+    "whatWasRewrittenSafely": [
+      "Dishonesty, account control, and document attribution remain conditional on served bank/financial material. — Position marked provisional until served material is confirmed.",
+      "Fraud by false representation, contrary to section 1 of the Fraud Act 2006 — Output humanised for clarity.",
+      "Chase outstanding disclosure and record provisional hearing position. — Output humanised for clarity.",
+      "Disclosure completeness and outstanding source material. — Output humanised for clarity.",
+      "Full transaction export — Output humanised for clarity."
+    ],
+    "whatMayBeMissing": [],
+    "whatStillNeedsSolicitorReview": [
+      "overview / five_answers: Fraud by false representation, contrary to section 1 of the Fraud Act 2006",
+      "overview / five_answers: Disclosure completeness and outstanding source material.",
+      "overview / five_answers: Chase outstanding disclosure and record provisional hearing position.",
+      "evidence_truth_map / evidence_trace: Bank statement summaries — served — Summaries served — not full transaction export or source banking records.",
+      "evidence_truth_map / evidence_trace: Officer statement — served",
+      "evidence_truth_map / evidence_trace: Beneficiary tracing report — referred_only"
+    ],
+    "keySourceAnchors": [
+      "No clean source anchors flagged — see emitted ledger."
+    ],
+    "groupedWarnings": {
+      "SOURCE REVIEW": [
+        "Fraud by false representation, contrary to section 1 of the Fraud Act 2006",
+        "Disclosure completeness and outstanding source material.",
+        "Chase outstanding disclosure and record provisional hearing position.",
+        "Bank statement summaries — served — Summaries served — not full transaction export or source…",
+        "Officer statement — served"
+      ],
+      "SOLICITOR CAUTION": [
+        "Fraud by false representation, contrary to section 1 of the Fraud Act 2006",
+        "Full transaction export",
+        "Source banking records",
+        "Beneficiary tracing report: referred_only / weak",
+        "Please provide Full transaction export (see MG6C/FRD/02) or confirm in writing why it is not…"
+      ]
+    },
+    "proofMode": "pdf_backed"
+  },
+  "hotReviewQueue": [
+    {
+      "tier": "source_review",
+      "surface": "overview / five_answers",
+      "outputLine": "Fraud by false representation, contrary to section 1 of the Fraud Act 2006",
+      "reason": "generic_source_only, solicitor_review_required"
+    },
+    {
+      "tier": "source_review",
+      "surface": "overview / five_answers",
+      "outputLine": "Disclosure completeness and outstanding source material.",
+      "reason": "source_unavailable"
+    },
+    {
+      "tier": "source_review",
+      "surface": "overview / five_answers",
+      "outputLine": "Chase outstanding disclosure and record provisional hearing position.",
+      "reason": "source_unavailable, meaningful_line_without_anchor, solicitor_review_required"
+    },
+    {
+      "tier": "source_review",
+      "surface": "evidence_truth_map / evidence_trace",
+      "outputLine": "Bank statement summaries — served — Summaries served — not full transaction export or source banking records.",
+      "reason": "source_unavailable, evidence_item_not_in_snippet, meaningful_line_without_anchor, solicitor_review_required"
+    },
+    {
+      "tier": "source_review",
+      "surface": "evidence_truth_map / evidence_trace",
+      "outputLine": "Officer statement — served",
+      "reason": "source_unavailable, evidence_item_not_in_snippet, meaningful_line_without_anchor, solicitor_review_required"
+    },
+    {
+      "tier": "source_review",
+      "surface": "evidence_truth_map / evidence_trace",
+      "outputLine": "Beneficiary tracing report — referred_only",
+      "reason": "source_unavailable, evidence_item_not_in_snippet, meaningful_line_without_anchor, solicitor_review_required"
+    },
+    {
+      "tier": "source_review",
+      "surface": "evidence_truth_map / evidence_trace",
+      "outputLine": "Full transaction export — missing — Outstanding on current disclosure.",
+      "reason": "source_unavailable, evidence_item_not_in_snippet, meaningful_line_without_anchor, solicitor_review_required"
+    },
+    {
+      "tier": "source_review",
+      "surface": "evidence_truth_map / evidence_trace",
+      "outputLine": "Source banking records — missing — Outstanding on current disclosure.",
+      "reason": "source_unavailable, evidence_item_not_in_snippet, meaningful_line_without_anchor, solicitor_review_required"
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "evidence_truth_map / evidence_trace",
+      "outputLine": "Fraud by false representation, contrary to section 1 of the Fraud Act 2006",
+      "reason": "Use with caution — MG6/schedule reference only — export not served."
+    },
+    {
+      "tier": "source_review",
+      "surface": "evidence_truth_map / evidence_trace",
+      "outputLine": "Disclosure completeness and outstanding source material.",
+      "reason": "source_unavailable, evidence_item_not_in_snippet, meaningful_line_without_anchor, solicitor_review_required"
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "evidence_truth_map / evidence_trace",
+      "outputLine": "Full transaction export",
+      "reason": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "evidence_truth_map / evidence_trace",
+      "outputLine": "Source banking records",
+      "reason": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "evidence_truth_map / evidence_trace",
+      "outputLine": "Beneficiary tracing report: referred_only / weak",
+      "reason": "Use with caution — Referred on schedule or in narrative — not safely served as proof."
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "evidence_truth_map / evidence_trace",
+      "outputLine": "Please provide Full transaction export (see MG6C/FRD/02) or confirm in writing why it is not available.",
+      "reason": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "evidence_truth_map / evidence_trace",
+      "outputLine": "Please provide Source banking records (see MG6C/FRD/03) or confirm in writing why it is not available.",
+      "reason": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "evidence_truth_map / evidence_trace",
+      "outputLine": "Please provide Beneficiary tracing report (see MG6C/FRD/04) or confirm in writing why it is not available.: referred_only / weak",
+      "reason": "Use with caution — Referred on schedule or in narrative — not safely served as proof."
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "evidence_truth_map / evidence_trace",
+      "outputLine": "The defence asks the court to record per MG6C that bank statement summaries are served but full transaction export, source banking records, and tracin",
+      "reason": "Use with caution — MG6/schedule reference only — export not served."
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "chase",
+      "outputLine": "Full transaction export",
+      "reason": "Use with caution — MG6/schedule reference only — export not served."
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "chase / CPS",
+      "outputLine": "Please provide Full transaction export (see MG6C/FRD/02) or confirm in writing why it is not available.",
+      "reason": "Use with caution — none"
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "chase",
+      "outputLine": "Source banking records",
+      "reason": "Use with caution — MG6/schedule reference only — export not served."
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "chase / CPS",
+      "outputLine": "Please provide Source banking records (see MG6C/FRD/03) or confirm in writing why it is not available.",
+      "reason": "Use with caution — none"
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "chase",
+      "outputLine": "Beneficiary tracing report",
+      "reason": "Use with caution — MG6/schedule reference only — export not served."
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "chase / CPS",
+      "outputLine": "Please provide Beneficiary tracing report (see MG6C/FRD/04) or confirm in writing why it is not available.",
+      "reason": "Use with caution — none"
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "court_note",
+      "outputLine": "The defence asks the court to record per MG6C that bank statement summaries are served but full transaction export, source banking records, and tracin",
+      "reason": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "five_answers / court_note",
+      "outputLine": "The defence asks the court to record per MG6C that bank statement summaries are served but full transaction export, source banking records, and tracin",
+      "reason": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "five_answers / chase",
+      "outputLine": "Please provide Full transaction export (see MG6C/FRD/02) or confirm in writing why it is not available.",
+      "reason": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "five_answers / chase",
+      "outputLine": "Please provide Source banking records (see MG6C/FRD/03) or confirm in writing why it is not available.",
+      "reason": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "five_answers / chase",
+      "outputLine": "Please provide Beneficiary tracing report (see MG6C/FRD/04) or confirm in writing why it is not available.",
+      "reason": "Use with caution — Referred on schedule or in narrative — not safely served as proof."
+    },
+    {
+      "tier": "source_review",
+      "surface": "hearing_mode / court_prep",
+      "outputLine": "fraud account",
+      "reason": "source_unavailable"
+    },
+    {
+      "tier": "source_review",
+      "surface": "hearing_mode / court_prep",
+      "outputLine": "Main issue: Disclosure completeness and outstanding source material.",
+      "reason": "source_unavailable"
+    },
+    {
+      "tier": "source_review",
+      "surface": "hearing_mode / court_prep",
+      "outputLine": "Chase CPS — Chase outstanding disclosure and record provisional hearing position.",
+      "reason": "source_unavailable, meaningful_line_without_anchor, solicitor_review_required"
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "hearing_mode / court_prep",
+      "outputLine": "Full transaction export: Missing / Needs review — Full transaction export or source banking records outstanding per MG6C.",
+      "reason": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "hearing_mode / court_prep",
+      "outputLine": "Source banking records: Missing / Needs review — Full transaction export or source banking records outstanding per MG6C.",
+      "reason": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "tier": "source_review",
+      "surface": "hearing_mode / court_prep",
+      "outputLine": "Beneficiary tracing report: Referred only / Weak — Outstanding on current disclosure — confirm before fixing hearing position. — referred only, not us",
+      "reason": "source_unavailable, evidence_item_not_in_snippet, meaningful_line_without_anchor, solicitor_review_required"
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "hearing_mode / court_prep",
+      "outputLine": "Full transaction export: Missing — Please provide Full transaction export (see MG6C/FRD/02) or confirm in writing why it is not available.",
+      "reason": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "hearing_mode / court_prep",
+      "outputLine": "Source banking records: Missing — Please provide Source banking records (see MG6C/FRD/03) or confirm in writing why it is not available.",
+      "reason": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "hearing_mode / court_prep",
+      "outputLine": "Beneficiary tracing report: Referred only — Please provide Beneficiary tracing report (see MG6C/FRD/04) or confirm in writing why it is not available.",
+      "reason": "Use with caution — Referred on schedule or in narrative — not safely served as proof."
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "today / summary",
+      "outputLine": "The defence asks the court to record per MG6C that bank statement summaries are served but full transaction export, source banking records, and tracin",
+      "reason": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "tier": "source_review",
+      "surface": "today",
+      "outputLine": "Account control, dishonesty and loss remain provisional pending served bank/device source material.",
+      "reason": "source_unavailable"
+    },
+    {
+      "tier": "source_review",
+      "surface": "today",
+      "outputLine": "Keep the position provisional and source-linked.",
+      "reason": "source_unavailable"
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "today",
+      "outputLine": "Dishonesty, account control, and document attribution remain conditional on served bank/financial material.",
+      "reason": "Use with caution — Strategic review line — not a source-backed fact."
+    },
+    {
+      "tier": "source_review",
+      "surface": "today",
+      "outputLine": "The defence position remains provisional pending served source material and solicitor instructions.",
+      "reason": "source_unavailable"
+    },
+    {
+      "tier": "source_review",
+      "surface": "today",
+      "outputLine": "The court is asked to record outstanding source material and set a disclosure timetable.",
+      "reason": "source_unavailable"
+    },
+    {
+      "tier": "source_review",
+      "surface": "today",
+      "outputLine": "Timing and sequence remain conditional until served source material and continuity records are reviewed.",
+      "reason": "source_unavailable"
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "summary / theory",
+      "outputLine": "The case turns on account control, attribution, dishonesty and reconciliation of loss. The defence case remains provisional pending disclosure. Primar",
+      "reason": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "summary / risks",
+      "outputLine": "Prosecution pressure: review served MG5/MG6 before fixing trial theory.",
+      "reason": "Use with caution — Strategic review line — not a source-backed fact."
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "summary / risks",
+      "outputLine": "Defence risks: Do not treat bank summaries alone as proof of fraud or account attribution.",
+      "reason": "Use with caution — Strategic review line — not a source-backed fact."
+    },
+    {
+      "tier": "source_review",
+      "surface": "summary / risks",
+      "outputLine": "fraud proved from summaries alone",
+      "reason": "source_unavailable"
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "summary / risks",
+      "outputLine": "Witness or document attribution may undermine the defence account if consistent.",
+      "reason": "Use with caution — Strategic review line — not a source-backed fact."
+    },
+    {
+      "tier": "source_review",
+      "surface": "summary / risks",
+      "outputLine": "Outstanding expert/source material may return against the defence route if served.",
+      "reason": "source_unavailable"
+    },
+    {
+      "tier": "source_review",
+      "surface": "summary / risks",
+      "outputLine": "Client account conflicts with served source material.",
+      "reason": "source_unavailable"
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "summary / opportunities",
+      "outputLine": "The case turns on account control, attribution, dishonesty and reconciliation of loss.",
+      "reason": "Use with caution — Strategic review line — not a source-backed fact."
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "summary / opportunities",
+      "outputLine": "Challenge account control, attribution and loss reconciliation.",
+      "reason": "Use with caution — Strategic review line — not a source-backed fact."
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "summary / opportunities",
+      "outputLine": "Disclosure leverage: Full transaction export or source banking records outstanding per MG6C.",
+      "reason": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "tier": "source_review",
+      "surface": "summary / opportunities",
+      "outputLine": "Disclosure leverage: Outstanding on current disclosure — confirm before fixing hearing position.",
+      "reason": "source_unavailable"
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "summary / chase",
+      "outputLine": "The defence asks the court to record per MG6C that bank statement summaries are served but full transaction export, source banking records, and tracin",
+      "reason": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "summary / chase",
+      "outputLine": "Full transaction export — Full transaction export or source banking records outstanding per MG6C.",
+      "reason": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "summary / chase",
+      "outputLine": "Source banking records — Full transaction export or source banking records outstanding per MG6C.",
+      "reason": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "tier": "source_review",
+      "surface": "summary / chase",
+      "outputLine": "Beneficiary tracing report — Outstanding on current disclosure — confirm before fixing hearing position.",
+      "reason": "source_unavailable"
+    },
+    {
+      "tier": "source_review",
+      "surface": "summary / ptph",
+      "outputLine": "Provisional — for solicitor review before court.",
+      "reason": "source_unavailable, solicitor_review_required"
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "summary / ptph",
+      "outputLine": "The defence asks the court to record per MG6C that bank statement summaries are served but full transaction export, source banking records, and tracin",
+      "reason": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "tier": "source_review",
+      "surface": "summary / ptph",
+      "outputLine": "Outstanding disclosure: Full transaction export; Source banking records; Beneficiary tracing report.",
+      "reason": "source_unavailable"
+    },
+    {
+      "tier": "source_review",
+      "surface": "summary / ptph",
+      "outputLine": "Invite the court to order disclosure by a fixed date with a review hearing.",
+      "reason": "source_unavailable"
+    },
+    {
+      "tier": "source_review",
+      "surface": "summary / ptph",
+      "outputLine": "The defence cannot confirm final issues until disclosure is complete.",
+      "reason": "source_unavailable"
+    },
+    {
+      "tier": "source_review",
+      "surface": "summary / client",
+      "outputLine": "We are reviewing the papers in your case (Fraud by false representation, contrary to section 1 of the Fraud Act 2006). This is early-stage — nothing i",
+      "reason": "generic_source_only, solicitor_review_required"
+    },
+    {
+      "tier": "source_review",
+      "surface": "summary / court_day",
+      "outputLine": "Court-day position line is on the Today tab (Before court). This brief mirrors chase and theory only.",
+      "reason": "source_unavailable, meaningful_line_without_anchor, solicitor_review_required"
+    },
+    {
+      "tier": "source_review",
+      "surface": "confidence_dashboard",
+      "outputLine": "Confidence: Needs review before relying — Human review or material gaps flagged on current papers.",
+      "reason": "source_unavailable, meaningful_line_without_anchor, solicitor_review_required"
+    },
+    {
+      "tier": "source_review",
+      "surface": "confidence_dashboard",
+      "outputLine": "Chase sendability: needs_solicitor_review; Summary sendability: needs_solicitor_review",
+      "reason": "source_unavailable, meaningful_line_without_anchor, solicitor_review_required"
+    },
+    {
+      "tier": "source_review",
+      "surface": "decision_board",
+      "outputLine": "Charge-fit issue: Account control, dishonesty, attribution and loss reconciliation.",
+      "reason": "generic_source_only"
+    },
+    {
+      "tier": "source_review",
+      "surface": "decision_board",
+      "outputLine": "Bank/device material may support account control once served.",
+      "reason": "source_unavailable"
+    },
+    {
+      "tier": "source_review",
+      "surface": "decision_board",
+      "outputLine": "Chase outstanding disclosure and record provisional hearing position.",
+      "reason": "source_unavailable"
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "decision_board",
+      "outputLine": "Disclosure pressure: Full transaction export or source banking records outstanding per MG6C.",
+      "reason": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "tier": "source_review",
+      "surface": "decision_board",
+      "outputLine": "Missing material",
+      "reason": "source_unavailable"
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "decision_board",
+      "outputLine": "Please provide Full transaction export (see MG6C/FRD/02) or confirm in writing why it is not available.",
+      "reason": "Use with caution — Strategic review line — not a source-backed fact."
+    },
+    {
+      "tier": "source_review",
+      "surface": "advice_change_radar",
+      "outputLine": "Full transaction export — Missing — Review: Review needed because full transaction export is missing — position may shift when served material lands",
+      "reason": "source_unavailable, meaningful_line_without_anchor, solicitor_review_required"
+    },
+    {
+      "tier": "source_review",
+      "surface": "advice_change_radar",
+      "outputLine": "Source banking records — Missing — Review: Review needed because source banking records is missing — position may shift when served material lands",
+      "reason": "source_unavailable, meaningful_line_without_anchor, solicitor_review_required"
+    },
+    {
+      "tier": "source_review",
+      "surface": "advice_change_radar",
+      "outputLine": "Beneficiary tracing report — Referred only — Review: Review needed because beneficiary tracing report is referred only — position may shift when serve",
+      "reason": "source_unavailable, meaningful_line_without_anchor, solicitor_review_required"
+    },
+    {
+      "tier": "source_review",
+      "surface": "export_pack / cps_chase",
+      "outputLine": "CPS DISCLOSURE CHASE DRAFT\n(not for court — requests material only)",
+      "reason": "source_unavailable, meaningful_line_without_anchor, solicitor_review_required"
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "export_pack / cps_chase",
+      "outputLine": "— Full transaction export [missing]\nPlease provide Full transaction export (see MG6C/FRD/02) or confirm in writing why it is not available.",
+      "reason": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "export_pack / cps_chase",
+      "outputLine": "— Source banking records [missing]\nPlease provide Source banking records (see MG6C/FRD/03) or confirm in writing why it is not available.",
+      "reason": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "export_pack / cps_chase",
+      "outputLine": "— Beneficiary tracing report [referred only]\nPlease provide Beneficiary tracing report (see MG6C/FRD/04) or confirm in writing why it is not available",
+      "reason": "Use with caution — Referred on schedule or in narrative — not safely served as proof."
+    },
+    {
+      "tier": "source_review",
+      "surface": "export_pack / court_note",
+      "outputLine": "COURT NOTE\n(not for CPS chase)",
+      "reason": "source_unavailable, meaningful_line_without_anchor, solicitor_review_required"
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "export_pack / court_note",
+      "outputLine": "The defence asks the court to record per MG6C that bank statement summaries are served but full transaction export, source banking records, and tracin",
+      "reason": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "tier": "source_review",
+      "surface": "export_pack / court_note",
+      "outputLine": "[CaseBrain — court line copy. Evidence state: needs review. Confirm before addressing the court.]",
+      "reason": "source_unavailable, meaningful_line_without_anchor, solicitor_review_required"
+    },
+    {
+      "tier": "source_review",
+      "surface": "export_pack / court_note",
+      "outputLine": "Solicitor review required before sending to CPS, court, or client.",
+      "reason": "source_unavailable, meaningful_line_without_anchor, solicitor_review_required"
+    },
+    {
+      "tier": "source_review",
+      "surface": "export_pack / client_summary",
+      "outputLine": "CLIENT-SAFE SUMMARY\n(not for court or CPS)",
+      "reason": "source_unavailable, meaningful_line_without_anchor, solicitor_review_required"
+    },
+    {
+      "tier": "source_review",
+      "surface": "export_pack / client_summary",
+      "outputLine": "We are reviewing the papers in your case (Caleb Moss). This is early-stage — nothing is final until we have full disclosure and your instructions. Ban",
+      "reason": "source_unavailable, meaningful_line_without_anchor, solicitor_review_required"
+    },
+    {
+      "tier": "source_review",
+      "surface": "export_pack / client_summary",
+      "outputLine": "[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
+      "reason": "source_unavailable, meaningful_line_without_anchor, solicitor_review_required"
+    },
+    {
+      "tier": "solicitor_caution",
+      "surface": "export_pack / evidence_gaps",
+      "outputLine": "• Full transaction export [Missing / Needs review] — Full transaction export or source banking records outstanding per MG6C.\n• Source banking records ",
+      "reason": "Use with caution — Referred on schedule or in narrative — not safely served as proof."
+    },
+    {
+      "tier": "source_review",
+      "surface": "export_pack / evidence_gaps",
+      "outputLine": "Solicitor review required before sending to CPS, court, or client.",
+      "reason": "source_unavailable, meaningful_line_without_anchor, solicitor_review_required"
+    }
+  ],
+  "emittedLines": [
+    {
+      "outputLine": "Fraud by false representation, contrary to section 1 of the Fraud Act 2006",
+      "surface": "overview / five_answers",
+      "category": "evidence_claim",
+      "sourceSnippet": "Statement of Offence: | Fraud by false representation, contrary to section 1 of the Fraud Act 2006.",
+      "evidenceState": null,
+      "proofChainStatus": "text_supports_but_pdf_unchecked",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — Generic MG6/schedule label without line-level served/referred snippet."
+    },
+    {
+      "outputLine": "Disclosure completeness and outstanding source material.",
+      "surface": "overview / five_answers",
+      "category": "strategic_review",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Chase outstanding disclosure and record provisional hearing position.",
+      "surface": "overview / five_answers",
+      "category": "confidence_status",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Bank statement summaries — served — Summaries served — not full transaction export or source banking records.",
+      "surface": "evidence_truth_map / evidence_trace",
+      "category": "evidence_state",
+      "sourceSnippet": null,
+      "evidenceState": "served",
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Officer statement — served",
+      "surface": "evidence_truth_map / evidence_trace",
+      "category": "evidence_state",
+      "sourceSnippet": null,
+      "evidenceState": "served",
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Beneficiary tracing report — referred_only",
+      "surface": "evidence_truth_map / evidence_trace",
+      "category": "evidence_state",
+      "sourceSnippet": null,
+      "evidenceState": "referred_only",
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Full transaction export — missing — Outstanding on current disclosure.",
+      "surface": "evidence_truth_map / evidence_trace",
+      "category": "evidence_state",
+      "sourceSnippet": null,
+      "evidenceState": "missing",
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Source banking records — missing — Outstanding on current disclosure.",
+      "surface": "evidence_truth_map / evidence_trace",
+      "category": "evidence_state",
+      "sourceSnippet": null,
+      "evidenceState": "missing",
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Fraud by false representation, contrary to section 1 of the Fraud Act 2006",
+      "surface": "evidence_truth_map / evidence_trace",
+      "category": "evidence_state",
+      "sourceSnippet": "MG6C/FRD/02 — Full transaction export — outstanding — not on bundle.",
+      "evidenceState": "served",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — MG6/schedule reference only — export not served."
+    },
+    {
+      "outputLine": "Disclosure completeness and outstanding source material.",
+      "surface": "evidence_truth_map / evidence_trace",
+      "category": "evidence_state",
+      "sourceSnippet": null,
+      "evidenceState": "not_safely_confirmed",
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Full transaction export",
+      "surface": "evidence_truth_map / evidence_trace",
+      "category": "evidence_state",
+      "sourceSnippet": "MG6C/FRD/02 — Full transaction export — outstanding — not on bundle.",
+      "evidenceState": "missing",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "outputLine": "Source banking records",
+      "surface": "evidence_truth_map / evidence_trace",
+      "category": "evidence_state",
+      "sourceSnippet": "MG6C/FRD/03 — Source banking records — outstanding.",
+      "evidenceState": "missing",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "outputLine": "Beneficiary tracing report: referred_only / weak",
+      "surface": "evidence_truth_map / evidence_trace",
+      "category": "evidence_state",
+      "sourceSnippet": "MG6C/FRD/04 — Beneficiary tracing report — referred — not attached.",
+      "evidenceState": "referred_only",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Referred on schedule or in narrative — not safely served as proof."
+    },
+    {
+      "outputLine": "Do not treat bank summaries alone as proof of fraud or account attribution.",
+      "surface": "five_answers / do_not_overstate",
+      "category": "safety_warning",
+      "sourceSnippet": "Bank summaries CM/BNK/01 are served. Full transaction export and source records are NOT on bundle. Account attribution to Caleb Moss requires outstanding tracing material.",
+      "evidenceState": "not_safely_confirmed",
+      "proofChainStatus": "text_supports_but_pdf_unchecked",
+      "verdict": "PASS",
+      "reviewTier": "generic_safety_guard",
+      "plainEnglishExplanation": "Generic safety guard — does not assert bundle facts."
+    },
+    {
+      "outputLine": "fraud proved from summaries alone",
+      "surface": "five_answers / do_not_overstate",
+      "category": "safety_warning",
+      "sourceSnippet": null,
+      "evidenceState": "not_safely_confirmed",
+      "proofChainStatus": "source_unavailable",
+      "verdict": "PASS",
+      "reviewTier": "generic_safety_guard",
+      "plainEnglishExplanation": "Generic safety guard — does not assert bundle facts."
+    },
+    {
+      "outputLine": "Please provide Full transaction export (see MG6C/FRD/02) or confirm in writing why it is not available.",
+      "surface": "evidence_truth_map / evidence_trace",
+      "category": "evidence_state",
+      "sourceSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "evidenceState": "missing",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "outputLine": "Please provide Source banking records (see MG6C/FRD/03) or confirm in writing why it is not available.",
+      "surface": "evidence_truth_map / evidence_trace",
+      "category": "evidence_state",
+      "sourceSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "evidenceState": "missing",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "outputLine": "Please provide Beneficiary tracing report (see MG6C/FRD/04) or confirm in writing why it is not available.: referred_only / weak",
+      "surface": "evidence_truth_map / evidence_trace",
+      "category": "evidence_state",
+      "sourceSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "evidenceState": "referred_only",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Referred on schedule or in narrative — not safely served as proof."
+    },
+    {
+      "outputLine": "The defence asks the court to record per MG6C that bank statement summaries are served but full transaction export, source banking records, and tracing material remain outstanding.",
+      "surface": "evidence_truth_map / evidence_trace",
+      "category": "evidence_state",
+      "sourceSnippet": "MG6C/FRD/02 — Full transaction export — outstanding — not on bundle.",
+      "evidenceState": "not_safely_confirmed",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — MG6/schedule reference only — export not served."
+    },
+    {
+      "outputLine": "Full transaction export",
+      "surface": "chase",
+      "category": "chase_request",
+      "sourceSnippet": "MG6C/FRD/02 — Full transaction export — outstanding — not on bundle.",
+      "evidenceState": "Outstanding",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — MG6/schedule reference only — export not served."
+    },
+    {
+      "outputLine": "Please provide Full transaction export (see MG6C/FRD/02) or confirm in writing why it is not available.",
+      "surface": "chase / CPS",
+      "category": "chase_request",
+      "sourceSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "evidenceState": null,
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — none"
+    },
+    {
+      "outputLine": "Source banking records",
+      "surface": "chase",
+      "category": "chase_request",
+      "sourceSnippet": "MG6C/FRD/03 — Source banking records — outstanding.",
+      "evidenceState": "Outstanding",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — MG6/schedule reference only — export not served."
+    },
+    {
+      "outputLine": "Please provide Source banking records (see MG6C/FRD/03) or confirm in writing why it is not available.",
+      "surface": "chase / CPS",
+      "category": "chase_request",
+      "sourceSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "evidenceState": null,
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — none"
+    },
+    {
+      "outputLine": "Beneficiary tracing report",
+      "surface": "chase",
+      "category": "chase_request",
+      "sourceSnippet": "MG6C/FRD/04 — Beneficiary tracing report — referred — not attached.",
+      "evidenceState": "Outstanding",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — MG6/schedule reference only — export not served."
+    },
+    {
+      "outputLine": "Please provide Beneficiary tracing report (see MG6C/FRD/04) or confirm in writing why it is not available.",
+      "surface": "chase / CPS",
+      "category": "chase_request",
+      "sourceSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "evidenceState": null,
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — none"
+    },
+    {
+      "outputLine": "The defence asks the court to record per MG6C that bank statement summaries are served but full transaction export, source banking records, and tracing material remain outstanding.",
+      "surface": "court_note",
+      "category": "court_note",
+      "sourceSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "evidenceState": null,
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "outputLine": "The defence asks the court to record per MG6C that bank statement summaries are served but full transaction export, source banking records, and tracing material remain outstanding.",
+      "surface": "five_answers / court_note",
+      "category": "court_note",
+      "sourceSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "evidenceState": null,
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "outputLine": "Please provide Full transaction export (see MG6C/FRD/02) or confirm in writing why it is not available.",
+      "surface": "five_answers / chase",
+      "category": "chase_request",
+      "sourceSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "evidenceState": "missing",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "outputLine": "Please provide Source banking records (see MG6C/FRD/03) or confirm in writing why it is not available.",
+      "surface": "five_answers / chase",
+      "category": "chase_request",
+      "sourceSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "evidenceState": "missing",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "outputLine": "Please provide Beneficiary tracing report (see MG6C/FRD/04) or confirm in writing why it is not available.",
+      "surface": "five_answers / chase",
+      "category": "chase_request",
+      "sourceSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "evidenceState": "referred_only",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Referred on schedule or in narrative — not safely served as proof."
+    },
+    {
+      "outputLine": "Do not treat bank summaries alone as proof of fraud or account attribution.",
+      "surface": "five_answers / do_not_overstate",
+      "category": "safety_warning",
+      "sourceSnippet": "Bank summaries CM/BNK/01 are served. Full transaction export and source records are NOT on bundle. Account attribution to Caleb Moss requires outstanding tracing material.",
+      "evidenceState": null,
+      "proofChainStatus": "text_supports_but_pdf_unchecked",
+      "verdict": "PASS",
+      "reviewTier": "generic_safety_guard",
+      "plainEnglishExplanation": "Generic safety guard — does not assert bundle facts."
+    },
+    {
+      "outputLine": "fraud proved from summaries alone",
+      "surface": "five_answers / do_not_overstate",
+      "category": "safety_warning",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "PASS",
+      "reviewTier": "generic_safety_guard",
+      "plainEnglishExplanation": "Generic safety guard — does not assert bundle facts."
+    },
+    {
+      "outputLine": "Served does not mean reliable.",
+      "surface": "evidence_truth_rules",
+      "category": "safety_warning",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "PASS",
+      "reviewTier": "generic_safety_guard",
+      "plainEnglishExplanation": "Generic safety guard — does not assert bundle facts."
+    },
+    {
+      "outputLine": "Missing does not mean irrelevant.",
+      "surface": "evidence_truth_rules",
+      "category": "safety_warning",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "PASS",
+      "reviewTier": "generic_safety_guard",
+      "plainEnglishExplanation": "Generic safety guard — does not assert bundle facts."
+    },
+    {
+      "outputLine": "Referred only does not mean usable.",
+      "surface": "evidence_truth_rules",
+      "category": "safety_warning",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "PASS",
+      "reviewTier": "generic_safety_guard",
+      "plainEnglishExplanation": "Generic safety guard — does not assert bundle facts."
+    },
+    {
+      "outputLine": "Inference must be labelled as inference.",
+      "surface": "evidence_truth_rules",
+      "category": "safety_warning",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "PASS",
+      "reviewTier": "generic_safety_guard",
+      "plainEnglishExplanation": "Generic safety guard — does not assert bundle facts."
+    },
+    {
+      "outputLine": "No line is sendable just because a source exists.",
+      "surface": "evidence_truth_rules",
+      "category": "safety_warning",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "PASS",
+      "reviewTier": "generic_safety_guard",
+      "plainEnglishExplanation": "Generic safety guard — does not assert bundle facts."
+    },
+    {
+      "outputLine": "fraud account",
+      "surface": "hearing_mode / court_prep",
+      "category": "strategic_review",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Main issue: Disclosure completeness and outstanding source material.",
+      "surface": "hearing_mode / court_prep",
+      "category": "strategic_review",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Chase CPS — Chase outstanding disclosure and record provisional hearing position.",
+      "surface": "hearing_mode / court_prep",
+      "category": "confidence_status",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Full transaction export: Missing / Needs review — Full transaction export or source banking records outstanding per MG6C.",
+      "surface": "hearing_mode / court_prep",
+      "category": "evidence_state",
+      "sourceSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "evidenceState": "missing",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "outputLine": "Source banking records: Missing / Needs review — Full transaction export or source banking records outstanding per MG6C.",
+      "surface": "hearing_mode / court_prep",
+      "category": "evidence_state",
+      "sourceSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "evidenceState": "missing",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "outputLine": "Beneficiary tracing report: Referred only / Weak — Outstanding on current disclosure — confirm before fixing hearing position. — referred only, not usable as proof.",
+      "surface": "hearing_mode / court_prep",
+      "category": "evidence_state",
+      "sourceSnippet": null,
+      "evidenceState": "referred_only",
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Full transaction export: Missing — Please provide Full transaction export (see MG6C/FRD/02) or confirm in writing why it is not available.",
+      "surface": "hearing_mode / court_prep",
+      "category": "chase_request",
+      "sourceSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "evidenceState": null,
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "outputLine": "Source banking records: Missing — Please provide Source banking records (see MG6C/FRD/03) or confirm in writing why it is not available.",
+      "surface": "hearing_mode / court_prep",
+      "category": "chase_request",
+      "sourceSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "evidenceState": null,
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "outputLine": "Beneficiary tracing report: Referred only — Please provide Beneficiary tracing report (see MG6C/FRD/04) or confirm in writing why it is not available.",
+      "surface": "hearing_mode / court_prep",
+      "category": "chase_request",
+      "sourceSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "evidenceState": null,
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Referred on schedule or in narrative — not safely served as proof."
+    },
+    {
+      "outputLine": "The defence asks the court to record per MG6C that bank statement summaries are served but full transaction export, source banking records, and tracing material remain outstanding.",
+      "surface": "today / summary",
+      "category": "strategic_review",
+      "sourceSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "evidenceState": null,
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "outputLine": "Account control, dishonesty and loss remain provisional pending served bank/device source material.",
+      "surface": "today",
+      "category": "strategic_review",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Keep the position provisional and source-linked.",
+      "surface": "today",
+      "category": "strategic_review",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Dishonesty, account control, and document attribution remain conditional on served bank/financial material.",
+      "surface": "today",
+      "category": "strategic_review",
+      "sourceSnippet": "Bank summaries CM/BNK/01 are served. Full transaction export and source records are NOT on bundle. Account attribution to Caleb Moss requires outstanding tracing material.",
+      "evidenceState": null,
+      "proofChainStatus": "text_supports_but_pdf_unchecked",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Strategic review line — not a source-backed fact."
+    },
+    {
+      "outputLine": "The defence position remains provisional pending served source material and solicitor instructions.",
+      "surface": "today",
+      "category": "strategic_review",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "The court is asked to record outstanding source material and set a disclosure timetable.",
+      "surface": "today",
+      "category": "strategic_review",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Timing and sequence remain conditional until served source material and continuity records are reviewed.",
+      "surface": "today",
+      "category": "strategic_review",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Do not treat bank summaries alone as proof of fraud or account attribution.",
+      "surface": "today / warnings",
+      "category": "safety_warning",
+      "sourceSnippet": "Bank summaries CM/BNK/01 are served. Full transaction export and source records are NOT on bundle. Account attribution to Caleb Moss requires outstanding tracing material.",
+      "evidenceState": null,
+      "proofChainStatus": "text_supports_but_pdf_unchecked",
+      "verdict": "PASS",
+      "reviewTier": "generic_safety_guard",
+      "plainEnglishExplanation": "Generic safety guard — does not assert bundle facts."
+    },
+    {
+      "outputLine": "fraud proved from summaries alone",
+      "surface": "today / warnings",
+      "category": "safety_warning",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "PASS",
+      "reviewTier": "generic_safety_guard",
+      "plainEnglishExplanation": "Generic safety guard — does not assert bundle facts."
+    },
+    {
+      "outputLine": "The case turns on account control, attribution, dishonesty and reconciliation of loss. The defence case remains provisional pending disclosure. Primary route on file: fraud account. The defence asks the court to record per MG6C that bank statement summaries are served but full transaction export, source banking records, and tracing material remain outstanding.",
+      "surface": "summary / theory",
+      "category": "strategic_review",
+      "sourceSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "evidenceState": null,
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "outputLine": "Do not import BWV unless the papers support it.",
+      "surface": "summary / risks",
+      "category": "strategic_review",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "PASS",
+      "reviewTier": "generic_safety_guard",
+      "plainEnglishExplanation": "Generic safety guard — does not assert bundle facts."
+    },
+    {
+      "outputLine": "Do not import custody safeguards unless the papers support it.",
+      "surface": "summary / risks",
+      "category": "strategic_review",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "PASS",
+      "reviewTier": "generic_safety_guard",
+      "plainEnglishExplanation": "Generic safety guard — does not assert bundle facts."
+    },
+    {
+      "outputLine": "Do not import drugs continuity unless the papers support it.",
+      "surface": "summary / risks",
+      "category": "strategic_review",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "PASS",
+      "reviewTier": "generic_safety_guard",
+      "plainEnglishExplanation": "Generic safety guard — does not assert bundle facts."
+    },
+    {
+      "outputLine": "Prosecution pressure: review served MG5/MG6 before fixing trial theory.",
+      "surface": "summary / risks",
+      "category": "strategic_review",
+      "sourceSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "evidenceState": null,
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Strategic review line — not a source-backed fact."
+    },
+    {
+      "outputLine": "Defence risks: Do not treat bank summaries alone as proof of fraud or account attribution.",
+      "surface": "summary / risks",
+      "category": "strategic_review",
+      "sourceSnippet": "Bank summaries CM/BNK/01 are served. Full transaction export and source records are NOT on bundle. Account attribution to Caleb Moss requires outstanding tracing material.",
+      "evidenceState": null,
+      "proofChainStatus": "text_supports_but_pdf_unchecked",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Strategic review line — not a source-backed fact."
+    },
+    {
+      "outputLine": "fraud proved from summaries alone",
+      "surface": "summary / risks",
+      "category": "strategic_review",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Witness or document attribution may undermine the defence account if consistent.",
+      "surface": "summary / risks",
+      "category": "strategic_review",
+      "sourceSnippet": "Bank summaries CM/BNK/01 are served. Full transaction export and source records are NOT on bundle. Account attribution to Caleb Moss requires outstanding tracing material.",
+      "evidenceState": null,
+      "proofChainStatus": "text_supports_but_pdf_unchecked",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Strategic review line — not a source-backed fact."
+    },
+    {
+      "outputLine": "Outstanding expert/source material may return against the defence route if served.",
+      "surface": "summary / risks",
+      "category": "strategic_review",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Client account conflicts with served source material.",
+      "surface": "summary / risks",
+      "category": "strategic_review",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "The case turns on account control, attribution, dishonesty and reconciliation of loss.",
+      "surface": "summary / opportunities",
+      "category": "strategic_review",
+      "sourceSnippet": "Bank summaries CM/BNK/01 are served. Full transaction export and source records are NOT on bundle. Account attribution to Caleb Moss requires outstanding tracing material.",
+      "evidenceState": null,
+      "proofChainStatus": "text_supports_but_pdf_unchecked",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Strategic review line — not a source-backed fact."
+    },
+    {
+      "outputLine": "Challenge account control, attribution and loss reconciliation.",
+      "surface": "summary / opportunities",
+      "category": "strategic_review",
+      "sourceSnippet": "Bank summaries CM/BNK/01 are served. Full transaction export and source records are NOT on bundle. Account attribution to Caleb Moss requires outstanding tracing material.",
+      "evidenceState": null,
+      "proofChainStatus": "text_supports_but_pdf_unchecked",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Strategic review line — not a source-backed fact."
+    },
+    {
+      "outputLine": "Disclosure leverage: Full transaction export or source banking records outstanding per MG6C.",
+      "surface": "summary / opportunities",
+      "category": "strategic_review",
+      "sourceSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "evidenceState": null,
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "outputLine": "Disclosure leverage: Outstanding on current disclosure — confirm before fixing hearing position.",
+      "surface": "summary / opportunities",
+      "category": "strategic_review",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "The defence asks the court to record per MG6C that bank statement summaries are served but full transaction export, source banking records, and tracing material remain outstanding.",
+      "surface": "summary / chase",
+      "category": "strategic_review",
+      "sourceSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "evidenceState": null,
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "outputLine": "Full transaction export — Full transaction export or source banking records outstanding per MG6C.",
+      "surface": "summary / chase",
+      "category": "strategic_review",
+      "sourceSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "evidenceState": null,
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "outputLine": "Source banking records — Full transaction export or source banking records outstanding per MG6C.",
+      "surface": "summary / chase",
+      "category": "strategic_review",
+      "sourceSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "evidenceState": null,
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "outputLine": "Beneficiary tracing report — Outstanding on current disclosure — confirm before fixing hearing position.",
+      "surface": "summary / chase",
+      "category": "strategic_review",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Provisional — for solicitor review before court.",
+      "surface": "summary / ptph",
+      "category": "strategic_review",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "The defence asks the court to record per MG6C that bank statement summaries are served but full transaction export, source banking records, and tracing material remain outstanding.",
+      "surface": "summary / ptph",
+      "category": "strategic_review",
+      "sourceSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "evidenceState": null,
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "outputLine": "Outstanding disclosure: Full transaction export; Source banking records; Beneficiary tracing report.",
+      "surface": "summary / ptph",
+      "category": "strategic_review",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Invite the court to order disclosure by a fixed date with a review hearing.",
+      "surface": "summary / ptph",
+      "category": "strategic_review",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "The defence cannot confirm final issues until disclosure is complete.",
+      "surface": "summary / ptph",
+      "category": "strategic_review",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "We are reviewing the papers in your case (Fraud by false representation, contrary to section 1 of the Fraud Act 2006). This is early-stage — nothing is final until we have full disclosure and your instructions. Some evidence is still outstanding on the papers, and we will update you when it is served. We are not saying the case is won or lost — we need the full material before giving firm advice.",
+      "surface": "summary / client",
+      "category": "client_summary",
+      "sourceSnippet": "Statement of Offence: | Fraud by false representation, contrary to section 1 of the Fraud Act 2006.",
+      "evidenceState": null,
+      "proofChainStatus": "text_supports_but_pdf_unchecked",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — Generic MG6/schedule label without line-level served/referred snippet."
+    },
+    {
+      "outputLine": "Court-day position line is on the Today tab (Before court). This brief mirrors chase and theory only.",
+      "surface": "summary / court_day",
+      "category": "court_note",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Confidence: Needs review before relying — Human review or material gaps flagged on current papers.",
+      "surface": "confidence_dashboard",
+      "category": "confidence_status",
+      "sourceSnippet": null,
+      "evidenceState": "needs_review",
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Chase sendability: needs_solicitor_review; Summary sendability: needs_solicitor_review",
+      "surface": "confidence_dashboard",
+      "category": "confidence_status",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Charge-fit issue: Account control, dishonesty, attribution and loss reconciliation.",
+      "surface": "decision_board",
+      "category": "strategic_review",
+      "sourceSnippet": "Statement of Offence: | Fraud by false representation, contrary to section 1 of the Fraud Act 2006.",
+      "evidenceState": null,
+      "proofChainStatus": "text_supports_but_pdf_unchecked",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — Strategic review line — not a source-backed fact."
+    },
+    {
+      "outputLine": "Bank/device material may support account control once served.",
+      "surface": "decision_board",
+      "category": "strategic_review",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Chase outstanding disclosure and record provisional hearing position.",
+      "surface": "decision_board",
+      "category": "strategic_review",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Disclosure pressure: Full transaction export or source banking records outstanding per MG6C.",
+      "surface": "decision_board",
+      "category": "strategic_review",
+      "sourceSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "evidenceState": null,
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "outputLine": "Missing material",
+      "surface": "decision_board",
+      "category": "strategic_review",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Please provide Full transaction export (see MG6C/FRD/02) or confirm in writing why it is not available.",
+      "surface": "decision_board",
+      "category": "strategic_review",
+      "sourceSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "evidenceState": null,
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Strategic review line — not a source-backed fact."
+    },
+    {
+      "outputLine": "Full transaction export — Missing — Review: Review needed because full transaction export is missing — position may shift when served material lands",
+      "surface": "advice_change_radar",
+      "category": "contradiction_or_risk",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Source banking records — Missing — Review: Review needed because source banking records is missing — position may shift when served material lands",
+      "surface": "advice_change_radar",
+      "category": "contradiction_or_risk",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Beneficiary tracing report — Referred only — Review: Review needed because beneficiary tracing report is referred only — position may shift when served material lands",
+      "surface": "advice_change_radar",
+      "category": "contradiction_or_risk",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "CPS DISCLOSURE CHASE DRAFT\n(not for court — requests material only)",
+      "surface": "export_pack / cps_chase",
+      "category": "export_line",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "— Full transaction export [missing]\nPlease provide Full transaction export (see MG6C/FRD/02) or confirm in writing why it is not available.",
+      "surface": "export_pack / cps_chase",
+      "category": "export_line",
+      "sourceSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "evidenceState": null,
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "outputLine": "— Source banking records [missing]\nPlease provide Source banking records (see MG6C/FRD/03) or confirm in writing why it is not available.",
+      "surface": "export_pack / cps_chase",
+      "category": "export_line",
+      "sourceSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "evidenceState": null,
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "outputLine": "— Beneficiary tracing report [referred only]\nPlease provide Beneficiary tracing report (see MG6C/FRD/04) or confirm in writing why it is not available.",
+      "surface": "export_pack / cps_chase",
+      "category": "export_line",
+      "sourceSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "evidenceState": null,
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Referred on schedule or in narrative — not safely served as proof."
+    },
+    {
+      "outputLine": "COURT NOTE\n(not for CPS chase)",
+      "surface": "export_pack / court_note",
+      "category": "export_line",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "The defence asks the court to record per MG6C that bank statement summaries are served but full transaction export, source banking records, and tracing material remain outstanding.",
+      "surface": "export_pack / court_note",
+      "category": "export_line",
+      "sourceSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "evidenceState": null,
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Material expected or mentioned but not on bundle."
+    },
+    {
+      "outputLine": "[CaseBrain — court line copy. Evidence state: needs review. Confirm before addressing the court.]",
+      "surface": "export_pack / court_note",
+      "category": "export_line",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Solicitor review required before sending to CPS, court, or client.",
+      "surface": "export_pack / court_note",
+      "category": "export_line",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "CLIENT-SAFE SUMMARY\n(not for court or CPS)",
+      "surface": "export_pack / client_summary",
+      "category": "export_line",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "We are reviewing the papers in your case (Caleb Moss). This is early-stage — nothing is final until we have full disclosure and your instructions. Bank statement summaries are on the papers, but the full transaction export, source banking records, and beneficiary tracing material are still outstanding. Summaries alone do not show the full account picture.",
+      "surface": "export_pack / client_summary",
+      "category": "export_line",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
+      "surface": "export_pack / client_summary",
+      "category": "export_line",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "• Full transaction export [Missing / Needs review] — Full transaction export or source banking records outstanding per MG6C.\n• Source banking records [Missing / Needs review] — Full transaction export or source banking records outstanding per MG6C.\n• Beneficiary tracing report [Referred only / Weak] — Outstanding on curren",
+      "surface": "export_pack / evidence_gaps",
+      "category": "export_line",
+      "sourceSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "evidenceState": null,
+      "proofChainStatus": "pdf_and_text_support_output",
+      "verdict": "WARNING",
+      "reviewTier": "solicitor_caution",
+      "plainEnglishExplanation": "Use with caution — Referred on schedule or in narrative — not safely served as proof."
+    },
+    {
+      "outputLine": "Solicitor review required before sending to CPS, court, or client.",
+      "surface": "export_pack / evidence_gaps",
+      "category": "export_line",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "DO NOT OVERSTATE\n(warnings — not allegations)",
+      "surface": "export_pack / do_not_overstate",
+      "category": "export_line",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "PASS",
+      "reviewTier": "generic_safety_guard",
+      "plainEnglishExplanation": "Generic safety guard — does not assert bundle facts."
+    },
+    {
+      "outputLine": "• Do not say: Do not treat bank summaries alone as proof of fraud or account attribution.\n  Why unsafe: Source not confirmed on current papers — solicitor review required.",
+      "surface": "export_pack / do_not_overstate",
+      "category": "export_line",
+      "sourceSnippet": "Bank summaries CM/BNK/01 are served. Full transaction export and source records are NOT on bundle. Account attribution to Caleb Moss requires outstanding tracing material.",
+      "evidenceState": null,
+      "proofChainStatus": "text_supports_but_pdf_unchecked",
+      "verdict": "PASS",
+      "reviewTier": "generic_safety_guard",
+      "plainEnglishExplanation": "Generic safety guard — does not assert bundle facts."
+    },
+    {
+      "outputLine": "• Do not say: fraud proved from summaries alone\n  Why unsafe: Source not confirmed on current papers — solicitor review required.",
+      "surface": "export_pack / do_not_overstate",
+      "category": "export_line",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "PASS",
+      "reviewTier": "generic_safety_guard",
+      "plainEnglishExplanation": "Generic safety guard — does not assert bundle facts."
+    },
+    {
+      "outputLine": "Solicitor review required before sending to CPS, court, or client.",
+      "surface": "export_pack / do_not_overstate",
+      "category": "export_line",
+      "sourceSnippet": null,
+      "evidenceState": null,
+      "proofChainStatus": "source_unavailable",
+      "verdict": "PASS",
+      "reviewTier": "generic_safety_guard",
+      "plainEnglishExplanation": "Generic safety guard — does not assert bundle facts."
+    }
+  ],
+  "suppressedCandidates": [
+    {
+      "candidateText": "Do not import BWV unless the papers support it.",
+      "sourceFamily": "bwv",
+      "surface": "war_room.do_not_overstate",
+      "reasonSuppressed": "Compound/template line dropped — bundle does not mention body-worn video.",
+      "searchedTerms": [
+        "body-worn video"
+      ],
+      "matchedTerms": [
+        "body-worn video:absent"
+      ],
+      "supportingSourceFound": false,
+      "proofStatus": "correctly_suppressed_no_source",
+      "plainEnglishNote": "CaseBrain refused to say this — compound line gated (Compound/template line dropped — bundle does not mention body-worn video.). Would have said: \"Do not import BWV unless the papers support it.\"."
+    },
+    {
+      "candidateText": "Do not import phone extraction/metadata unless the papers support it.",
+      "sourceFamily": "phone",
+      "surface": "war_room.do_not_overstate",
+      "reasonSuppressed": "Compound/template line dropped — bundle does not mention phone/device material.",
+      "searchedTerms": [
+        "phone/device material"
+      ],
+      "matchedTerms": [
+        "phone/device material:absent"
+      ],
+      "supportingSourceFound": false,
+      "proofStatus": "correctly_suppressed_no_source",
+      "plainEnglishNote": "CaseBrain refused to say this — compound line gated (Compound/template line dropped — bundle does not mention phone/device material.). Would have said: \"Do not import phone extraction/metadata unless the papers support it.\"."
+    },
+    {
+      "candidateText": "Do not state \"CAD/999 timing supports\" — CAD/999 material is not safely on file as served",
+      "sourceFamily": "cad_999",
+      "surface": "war_room.do_not_overstate",
+      "reasonSuppressed": "Compound/template line dropped — bundle does not mention CAD/999 material.",
+      "searchedTerms": [
+        "CAD/999 material"
+      ],
+      "matchedTerms": [
+        "CAD/999 material:absent"
+      ],
+      "supportingSourceFound": false,
+      "proofStatus": "correctly_suppressed_no_source",
+      "plainEnglishNote": "CaseBrain refused to say this — compound line gated (Compound/template line dropped — bundle does not mention CAD/999 material.). Would have said: \"Do not state \"CAD/999 timing supports\" — CAD/999 material is not safely on file as served\"."
+    },
+    {
+      "candidateText": "Assumed position may conflict with interview or served evidence.",
+      "sourceFamily": "interview",
+      "surface": "war_room.collapse_risks",
+      "reasonSuppressed": "Compound/template line dropped — bundle does not mention interview material.",
+      "searchedTerms": [
+        "interview material"
+      ],
+      "matchedTerms": [
+        "interview material:absent"
+      ],
+      "supportingSourceFound": false,
+      "proofStatus": "correctly_suppressed_no_source",
+      "plainEnglishNote": "CaseBrain refused to say this — compound line gated (Compound/template line dropped — bundle does not mention interview material.). Would have said: \"Assumed position may conflict with interview or served evidence.\"."
+    },
+    {
+      "candidateText": "Served banking/device/login material may support Crown dishonesty if proved.",
+      "sourceFamily": "compound",
+      "surface": "war_room.collapse_risks",
+      "reasonSuppressed": "Compound/template line dropped — bundle does not mention phone/device material.",
+      "searchedTerms": [
+        "phone/device material",
+        "bank/financial material"
+      ],
+      "matchedTerms": [
+        "phone/device material:absent",
+        "bank/financial material:mentioned"
+      ],
+      "supportingSourceFound": true,
+      "proofStatus": "correctly_suppressed_no_source",
+      "plainEnglishNote": "CaseBrain refused to say this — compound line gated (Compound/template line dropped — bundle does not mention phone/device material.). Would have said: \"Served banking/device/login material may support Crown dishonesty if proved.\"."
+    },
+    {
+      "candidateText": "CAD/999 timing may affect Crown sequence if proved on served material.",
+      "sourceFamily": "cad_999",
+      "surface": "war_room.collapse_risks",
+      "reasonSuppressed": "Compound/template line dropped — bundle does not mention CAD/999 material.",
+      "searchedTerms": [
+        "CAD/999 material"
+      ],
+      "matchedTerms": [
+        "CAD/999 material:absent"
+      ],
+      "supportingSourceFound": false,
+      "proofStatus": "correctly_suppressed_no_source",
+      "plainEnglishNote": "CaseBrain refused to say this — compound line gated (Compound/template line dropped — bundle does not mention CAD/999 material.). Would have said: \"CAD/999 timing may affect Crown sequence if proved on served material.\"."
+    },
+    {
+      "candidateText": "BWV shows",
+      "sourceFamily": "bwv",
+      "surface": "do_not_overstate",
+      "reasonSuppressed": "Compound/template line dropped — bundle does not mention body-worn video.",
+      "searchedTerms": [
+        "body-worn video"
+      ],
+      "matchedTerms": [
+        "body-worn video:absent"
+      ],
+      "supportingSourceFound": false,
+      "proofStatus": "correctly_suppressed_no_source",
+      "plainEnglishNote": "CaseBrain refused to say this — compound line gated (Compound/template line dropped — bundle does not mention body-worn video.). Would have said: \"BWV shows\"."
+    },
+    {
+      "candidateText": "CCTV proves",
+      "sourceFamily": "cctv",
+      "surface": "do_not_overstate",
+      "reasonSuppressed": "Compound/template line dropped — bundle does not mention CCTV.",
+      "searchedTerms": [
+        "CCTV"
+      ],
+      "matchedTerms": [
+        "CCTV:absent"
+      ],
+      "supportingSourceFound": false,
+      "proofStatus": "correctly_suppressed_no_source",
+      "plainEnglishNote": "CaseBrain refused to say this — compound line gated (Compound/template line dropped — bundle does not mention CCTV.). Would have said: \"CCTV proves\"."
+    },
+    {
+      "candidateText": "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position.",
+      "sourceFamily": "cps_chase",
+      "surface": "disclosure_chase.why_it_matters",
+      "reasonSuppressed": "Overclaim or unsafe wording removed — source does not support the claim.",
+      "searchedTerms": [],
+      "matchedTerms": [],
+      "supportingSourceFound": false,
+      "proofStatus": "correctly_suppressed_overclaim",
+      "plainEnglishNote": "CaseBrain refused to say this — overclaim or unsafe trap removed. Would have said: \"Additional source-material appears outstanding on the current file — solicitor to confirm relevance…\". Overclaim or unsafe wording removed — source does not support the claim."
+    },
+    {
+      "candidateText": "Please provide the outstanding source material identified on the disclosure schedule, including subscriber/account data, message exports, call logs, and any MG11/source material referred to but not served or confirm in writing why it is not available.",
+      "sourceFamily": "compound",
+      "surface": "disclosure_chase.cps_chase",
+      "reasonSuppressed": "Compound/template line dropped — bundle does not mention CAD/999 material, phone/device material.",
+      "searchedTerms": [
+        "CAD/999 material",
+        "MG6/unused material",
+        "phone/device material"
+      ],
+      "matchedTerms": [
+        "CAD/999 material:absent",
+        "MG6/unused material:mentioned",
+        "phone/device material:absent"
+      ],
+      "supportingSourceFound": true,
+      "proofStatus": "correctly_suppressed_no_source",
+      "plainEnglishNote": "CaseBrain refused to say this — compound line gated (Compound/template line dropped — bundle does not mention CAD/999 material, phone/device material.). Would have said: \"Please provide the outstanding source material identified on the disclosure schedule, including…\"."
+    },
+    {
+      "candidateText": "Do not import ABE unless the papers support it.",
+      "sourceFamily": "template_safety_guard",
+      "surface": "war_room.do_not_overstate",
+      "reasonSuppressed": "Overclaim or unsafe wording removed — source does not support the claim.",
+      "searchedTerms": [],
+      "matchedTerms": [],
+      "supportingSourceFound": false,
+      "proofStatus": "correctly_suppressed_overclaim",
+      "plainEnglishNote": "CaseBrain refused to say this — overclaim or unsafe trap removed. Would have said: \"Do not import ABE unless the papers support it.\". Overclaim or unsafe wording removed — source does not support the claim."
+    },
+    {
+      "candidateText": "Ask the court to record that additional source-material on file remains outstanding and should be disclosed on a timetable.",
+      "sourceFamily": "court_note",
+      "surface": "war_room.ask_court",
+      "reasonSuppressed": "Overclaim or unsafe wording removed — source does not support the claim.",
+      "searchedTerms": [],
+      "matchedTerms": [],
+      "supportingSourceFound": false,
+      "proofStatus": "correctly_suppressed_overclaim",
+      "plainEnglishNote": "CaseBrain refused to say this — overclaim or unsafe trap removed. Would have said: \"Ask the court to record that additional source-material on file remains outstanding and should be…\". Overclaim or unsafe wording removed — source does not support the claim."
+    },
+    {
+      "candidateText": "Record defence position on file before fixing a hearing line.",
+      "sourceFamily": "generic_strategy",
+      "surface": "war_room.instructions",
+      "reasonSuppressed": "Overclaim or unsafe wording removed — source does not support the claim.",
+      "searchedTerms": [],
+      "matchedTerms": [],
+      "supportingSourceFound": false,
+      "proofStatus": "correctly_suppressed_overclaim",
+      "plainEnglishNote": "CaseBrain refused to say this — overclaim or unsafe trap removed. Would have said: \"Record defence position on file before fixing a hearing line.\". Overclaim or unsafe wording removed — source does not support the claim."
+    },
+    {
+      "candidateText": "Defence position not safely recorded yet — position is provisional; take/record instructions before relying on it.",
+      "sourceFamily": "generic_strategy",
+      "surface": "war_room.instructions",
+      "reasonSuppressed": "Overclaim or unsafe wording removed — source does not support the claim.",
+      "searchedTerms": [],
+      "matchedTerms": [],
+      "supportingSourceFound": false,
+      "proofStatus": "correctly_suppressed_overclaim",
+      "plainEnglishNote": "CaseBrain refused to say this — overclaim or unsafe trap removed. Would have said: \"Defence position not safely recorded yet — position is provisional; take/record instructions before…\". Overclaim or unsafe wording removed — source does not support the claim."
+    },
+    {
+      "candidateText": "Take instructions on timing/sequence — do not fix facts without source material.",
+      "sourceFamily": "generic_strategy",
+      "surface": "war_room.instructions",
+      "reasonSuppressed": "Overclaim or unsafe wording removed — source does not support the claim.",
+      "searchedTerms": [],
+      "matchedTerms": [],
+      "supportingSourceFound": false,
+      "proofStatus": "correctly_suppressed_overclaim",
+      "plainEnglishNote": "CaseBrain refused to say this — overclaim or unsafe trap removed. Would have said: \"Take instructions on timing/sequence — do not fix facts without source material.\". Overclaim or unsafe wording removed — source does not support the claim."
+    },
+    {
+      "candidateText": "Check whether client account conflicts with served evidence before advancing a positive case.",
+      "sourceFamily": "export_wording",
+      "surface": "war_room.instructions",
+      "reasonSuppressed": "Overclaim or unsafe wording removed — source does not support the claim.",
+      "searchedTerms": [],
+      "matchedTerms": [],
+      "supportingSourceFound": false,
+      "proofStatus": "correctly_suppressed_overclaim",
+      "plainEnglishNote": "CaseBrain refused to say this — overclaim or unsafe trap removed. Would have said: \"Check whether client account conflicts with served evidence before advancing a positive case.\". Overclaim or unsafe wording removed — source does not support the claim."
+    },
+    {
+      "candidateText": "Confirm whether any positive defence can safely be advanced today.",
+      "sourceFamily": "export_wording",
+      "surface": "war_room.instructions",
+      "reasonSuppressed": "Overclaim or unsafe wording removed — source does not support the claim.",
+      "searchedTerms": [],
+      "matchedTerms": [],
+      "supportingSourceFound": false,
+      "proofStatus": "correctly_suppressed_overclaim",
+      "plainEnglishNote": "CaseBrain refused to say this — overclaim or unsafe trap removed. Would have said: \"Confirm whether any positive defence can safely be advanced today.\". Overclaim or unsafe wording removed — source does not support the claim."
+    },
+    {
+      "candidateText": "Record position (provisional, source-linked).",
+      "sourceFamily": "generic_strategy",
+      "surface": "war_room.next_moves",
+      "reasonSuppressed": "Overclaim or unsafe wording removed — source does not support the claim.",
+      "searchedTerms": [],
+      "matchedTerms": [],
+      "supportingSourceFound": false,
+      "proofStatus": "correctly_suppressed_overclaim",
+      "plainEnglishNote": "CaseBrain refused to say this — overclaim or unsafe trap removed. Would have said: \"Record position (provisional, source-linked).\". Overclaim or unsafe wording removed — source does not support the claim."
+    },
+    {
+      "candidateText": "Chase outstanding disclosure / source material.",
+      "sourceFamily": "export_wording",
+      "surface": "war_room.next_moves",
+      "reasonSuppressed": "Overclaim or unsafe wording removed — source does not support the claim.",
+      "searchedTerms": [],
+      "matchedTerms": [],
+      "supportingSourceFound": false,
+      "proofStatus": "correctly_suppressed_overclaim",
+      "plainEnglishNote": "CaseBrain refused to say this — overclaim or unsafe trap removed. Would have said: \"Chase outstanding disclosure / source material.\". Overclaim or unsafe wording removed — source does not support the claim."
+    },
+    {
+      "candidateText": "Ask court to record outstanding source material on the order.",
+      "sourceFamily": "export_wording",
+      "surface": "war_room.next_moves",
+      "reasonSuppressed": "Overclaim or unsafe wording removed — source does not support the claim.",
+      "searchedTerms": [],
+      "matchedTerms": [],
+      "supportingSourceFound": false,
+      "proofStatus": "correctly_suppressed_overclaim",
+      "plainEnglishNote": "CaseBrain refused to say this — overclaim or unsafe trap removed. Would have said: \"Ask court to record outstanding source material on the order.\". Overclaim or unsafe wording removed — source does not support the claim."
+    },
+    {
+      "candidateText": "Seek timetable / review date — avoid open-ended adjournment without dates.",
+      "sourceFamily": "export_wording",
+      "surface": "war_room.next_moves",
+      "reasonSuppressed": "Overclaim or unsafe wording removed — source does not support the claim.",
+      "searchedTerms": [],
+      "matchedTerms": [],
+      "supportingSourceFound": false,
+      "proofStatus": "correctly_suppressed_overclaim",
+      "plainEnglishNote": "CaseBrain refused to say this — overclaim or unsafe trap removed. Would have said: \"Seek timetable / review date — avoid open-ended adjournment without dates.\". Overclaim or unsafe wording removed — source does not support the claim."
+    },
+    {
+      "candidateText": "Avoid committing to final trial strategy until served material is reviewed.",
+      "sourceFamily": "export_wording",
+      "surface": "war_room.next_moves",
+      "reasonSuppressed": "Overclaim or unsafe wording removed — source does not support the claim.",
+      "searchedTerms": [],
+      "matchedTerms": [],
+      "supportingSourceFound": false,
+      "proofStatus": "correctly_suppressed_overclaim",
+      "plainEnglishNote": "CaseBrain refused to say this — overclaim or unsafe trap removed. Would have said: \"Avoid committing to final trial strategy until served material is reviewed.\". Overclaim or unsafe wording removed — source does not support the claim."
+    },
+    {
+      "candidateText": "Do not import ABE unless the papers support it.",
+      "sourceFamily": "template_safety_guard",
+      "surface": "do_not_overstate",
+      "reasonSuppressed": "Overclaim or unsafe wording removed — source does not support the claim.",
+      "searchedTerms": [],
+      "matchedTerms": [],
+      "supportingSourceFound": false,
+      "proofStatus": "correctly_suppressed_overclaim",
+      "plainEnglishNote": "CaseBrain refused to say this — overclaim or unsafe trap removed. Would have said: \"Do not import ABE unless the papers support it.\". Overclaim or unsafe wording removed — source does not support the claim."
+    },
+    {
+      "candidateText": "Do not import phone extraction/metadata unless the papers support it.",
+      "sourceFamily": "phone",
+      "surface": "do_not_overstate",
+      "reasonSuppressed": "Compound/template line dropped — bundle does not mention phone/device material.",
+      "searchedTerms": [
+        "phone/device material"
+      ],
+      "matchedTerms": [
+        "phone/device material:absent"
+      ],
+      "supportingSourceFound": false,
+      "proofStatus": "correctly_suppressed_no_source",
+      "plainEnglishNote": "CaseBrain refused to say this — compound line gated (Compound/template line dropped — bundle does not mention phone/device material.). Would have said: \"Do not import phone extraction/metadata unless the papers support it.\"."
+    },
+    {
+      "candidateText": "Do not state \"CAD/999 timing supports\" — CAD/999 material is not safely on file as served",
+      "sourceFamily": "cad_999",
+      "surface": "do_not_overstate",
+      "reasonSuppressed": "Compound/template line dropped — bundle does not mention CAD/999 material.",
+      "searchedTerms": [
+        "CAD/999 material"
+      ],
+      "matchedTerms": [
+        "CAD/999 material:absent"
+      ],
+      "supportingSourceFound": false,
+      "proofStatus": "correctly_suppressed_no_source",
+      "plainEnglishNote": "CaseBrain refused to say this — compound line gated (Compound/template line dropped — bundle does not mention CAD/999 material.). Would have said: \"Do not state \"CAD/999 timing supports\" — CAD/999 material is not safely on file as served\"."
+    }
+  ],
+  "rewritesDowngrades": [
+    {
+      "originalCandidate": "Dishonesty, account control, and document attribution remain conditional on full banking, device, login and witness material.",
+      "finalOutput": "Dishonesty, account control, and document attribution remain conditional on served bank/financial material.",
+      "changeType": "provisional_wording",
+      "reason": "Position marked provisional pending served material.",
+      "surface": "war_room.say_this",
+      "sourceSupport": "bundle presentation gate",
+      "beforeAfterWording": "Before: Dishonesty, account control, and document attribution remain conditional on full banking, device, login and witness… | After: Dishonesty, account control, and document attribution remain conditional on served bank/financial material.",
+      "solicitorFriendlyExplanation": "Position marked provisional until served material is confirmed."
+    },
+    {
+      "originalCandidate": "Allegation: Fraud by false representation, contrary to section 1 of the Fraud Act 2006",
+      "finalOutput": "Fraud by false representation, contrary to section 1 of the Fraud Act 2006",
+      "changeType": "human_label",
+      "reason": "Human-readable label applied for solicitor review.",
+      "sourceSupport": "Statement of Offence: | Fraud by false representation, contrary to section 1 of ",
+      "beforeAfterWording": "Before: Allegation: Fraud by false representation, contrary to section 1 of the Fraud Act 2006 | After: Fraud by false representation, contrary to section 1 of the Fraud Act 2006",
+      "solicitorFriendlyExplanation": "Output humanised for clarity.",
+      "surface": "overview / five_answers"
+    },
+    {
+      "originalCandidate": "Next action: Chase outstanding disclosure and record provisional hearing position.",
+      "finalOutput": "Chase outstanding disclosure and record provisional hearing position.",
+      "changeType": "human_label",
+      "reason": "Human-readable label applied for solicitor review.",
+      "sourceSupport": "audit layer",
+      "beforeAfterWording": "Before: Next action: Chase outstanding disclosure and record provisional hearing position. | After: Chase outstanding disclosure and record provisional hearing position.",
+      "solicitorFriendlyExplanation": "Output humanised for clarity.",
+      "surface": "overview / five_answers"
+    },
+    {
+      "originalCandidate": "Fraud by false representation, contrary to section 1 of the Fraud Act 2006: served / needs_review",
+      "finalOutput": "Fraud by false representation, contrary to section 1 of the Fraud Act 2006",
+      "changeType": "human_label",
+      "reason": "Human-readable label applied for solicitor review.",
+      "sourceSupport": "MG6C/FRD/02 — Full transaction export — outstanding — not on bundle.",
+      "beforeAfterWording": "Before: Fraud by false representation, contrary to section 1 of the Fraud Act 2006: served / needs_review | After: Fraud by false representation, contrary to section 1 of the Fraud Act 2006",
+      "solicitorFriendlyExplanation": "Output humanised for clarity.",
+      "surface": "evidence_truth_map / evidence_trace"
+    },
+    {
+      "originalCandidate": "Disclosure completeness and outstanding source material.: not_safely_confirmed / needs_review",
+      "finalOutput": "Disclosure completeness and outstanding source material.",
+      "changeType": "human_label",
+      "reason": "Human-readable label applied for solicitor review.",
+      "sourceSupport": "audit layer",
+      "beforeAfterWording": "Before: Disclosure completeness and outstanding source material.: not_safely_confirmed / needs_review | After: Disclosure completeness and outstanding source material.",
+      "solicitorFriendlyExplanation": "Output humanised for clarity.",
+      "surface": "evidence_truth_map / evidence_trace"
+    },
+    {
+      "originalCandidate": "Full transaction export: missing / needs_review",
+      "finalOutput": "Full transaction export",
+      "changeType": "human_label",
+      "reason": "Human-readable label applied for solicitor review.",
+      "sourceSupport": "MG6C/FRD/02 — Full transaction export — outstanding — not on bundle.",
+      "beforeAfterWording": "Before: Full transaction export: missing / needs_review | After: Full transaction export",
+      "solicitorFriendlyExplanation": "Output humanised for clarity.",
+      "surface": "evidence_truth_map / evidence_trace"
+    },
+    {
+      "originalCandidate": "Source banking records: missing / needs_review",
+      "finalOutput": "Source banking records",
+      "changeType": "human_label",
+      "reason": "Human-readable label applied for solicitor review.",
+      "sourceSupport": "MG6C/FRD/03 — Source banking records — outstanding.",
+      "beforeAfterWording": "Before: Source banking records: missing / needs_review | After: Source banking records",
+      "solicitorFriendlyExplanation": "Output humanised for clarity.",
+      "surface": "evidence_truth_map / evidence_trace"
+    },
+    {
+      "originalCandidate": "Do not treat bank summaries alone as proof of fraud or account attribution.: not_safely_confirmed / unsafe",
+      "finalOutput": "Do not treat bank summaries alone as proof of fraud or account attribution.",
+      "changeType": "human_label",
+      "reason": "Human-readable label applied for solicitor review.",
+      "sourceSupport": "Bank summaries CM/BNK/01 are served. Full transaction export and source records ",
+      "beforeAfterWording": "Before: Do not treat bank summaries alone as proof of fraud or account attribution.: not_safely_confirmed /  | After: Do not treat bank summaries alone as proof of fraud or account attribution.",
+      "solicitorFriendlyExplanation": "Output humanised for clarity.",
+      "surface": "five_answers / do_not_overstate"
+    },
+    {
+      "originalCandidate": "fraud proved from summaries alone: not_safely_confirmed / unsafe",
+      "finalOutput": "fraud proved from summaries alone",
+      "changeType": "human_label",
+      "reason": "Human-readable label applied for solicitor review.",
+      "sourceSupport": "audit layer",
+      "beforeAfterWording": "Before: fraud proved from summaries alone: not_safely_confirmed / unsafe | After: fraud proved from summaries alone",
+      "solicitorFriendlyExplanation": "Output humanised for clarity.",
+      "surface": "five_answers / do_not_overstate"
+    },
+    {
+      "originalCandidate": "Please provide Full transaction export (see MG6C/FRD/02) or confirm in writing why it is not available.: missing / needs_review",
+      "finalOutput": "Please provide Full transaction export (see MG6C/FRD/02) or confirm in writing why it is not available.",
+      "changeType": "human_label",
+      "reason": "Human-readable label applied for solicitor review.",
+      "sourceSupport": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "beforeAfterWording": "Before: Please provide Full transaction export (see MG6C/FRD/02) or confirm in writing why it is not availab | After: Please provide Full transaction export (see MG6C/FRD/02) or confirm in writing why it is not availab",
+      "solicitorFriendlyExplanation": "Output humanised for clarity.",
+      "surface": "evidence_truth_map / evidence_trace"
+    },
+    {
+      "originalCandidate": "Please provide Source banking records (see MG6C/FRD/03) or confirm in writing why it is not available.: missing / needs_review",
+      "finalOutput": "Please provide Source banking records (see MG6C/FRD/03) or confirm in writing why it is not available.",
+      "changeType": "human_label",
+      "reason": "Human-readable label applied for solicitor review.",
+      "sourceSupport": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "beforeAfterWording": "Before: Please provide Source banking records (see MG6C/FRD/03) or confirm in writing why it is not availabl | After: Please provide Source banking records (see MG6C/FRD/03) or confirm in writing why it is not availabl",
+      "solicitorFriendlyExplanation": "Output humanised for clarity.",
+      "surface": "evidence_truth_map / evidence_trace"
+    },
+    {
+      "originalCandidate": "The defence asks the court to record per MG6C that bank statement summaries are served but full transaction export, source banking records, and tracing material remain outstanding.: not_safely_confirmed / needs_review",
+      "finalOutput": "The defence asks the court to record per MG6C that bank statement summaries are served but full transaction export, source banking records, and tracing material remain outstanding.",
+      "changeType": "human_label",
+      "reason": "Human-readable label applied for solicitor review.",
+      "sourceSupport": "MG6C/FRD/02 — Full transaction export — outstanding — not on bundle.",
+      "beforeAfterWording": "Before: The defence asks the court to record per MG6C that bank statement summaries are served but full tran | After: The defence asks the court to record per MG6C that bank statement summaries are served but full tran",
+      "solicitorFriendlyExplanation": "Output humanised for clarity.",
+      "surface": "evidence_truth_map / evidence_trace"
+    },
+    {
+      "originalCandidate": "The defence asks the court to record per MG6C that bank statement summaries are served but full transaction export, source banking records, and tracing material remain outstanding.\n\n[CaseBrain — court line copy. Evidence state: needs review. Confirm before addressing the court.]",
+      "finalOutput": "The defence asks the court to record per MG6C that bank statement summaries are served but full transaction export, source banking records, and tracing material remain outstanding.",
+      "changeType": "human_label",
+      "reason": "Human-readable label applied for solicitor review.",
+      "sourceSupport": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "beforeAfterWording": "Before: The defence asks the court to record per MG6C that bank statement summaries are served but full tran | After: The defence asks the court to record per MG6C that bank statement summaries are served but full tran",
+      "solicitorFriendlyExplanation": "Output humanised for clarity.",
+      "surface": "five_answers / court_note"
+    },
+    {
+      "originalCandidate": "Please provide Full transaction export (see MG6C/FRD/02) or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: missing. Source: MG6C schedule. Solicitor review required before sending.]",
+      "finalOutput": "Please provide Full transaction export (see MG6C/FRD/02) or confirm in writing why it is not available.",
+      "changeType": "human_label",
+      "reason": "Human-readable label applied for solicitor review.",
+      "sourceSupport": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "beforeAfterWording": "Before: Please provide Full transaction export (see MG6C/FRD/02) or confirm in writing why it is not availab | After: Please provide Full transaction export (see MG6C/FRD/02) or confirm in writing why it is not availab",
+      "solicitorFriendlyExplanation": "Output humanised for clarity.",
+      "surface": "five_answers / chase"
+    },
+    {
+      "originalCandidate": "Please provide Source banking records (see MG6C/FRD/03) or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: missing. Source: MG6C schedule. Solicitor review required before sending.]",
+      "finalOutput": "Please provide Source banking records (see MG6C/FRD/03) or confirm in writing why it is not available.",
+      "changeType": "human_label",
+      "reason": "Human-readable label applied for solicitor review.",
+      "sourceSupport": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "beforeAfterWording": "Before: Please provide Source banking records (see MG6C/FRD/03) or confirm in writing why it is not availabl | After: Please provide Source banking records (see MG6C/FRD/03) or confirm in writing why it is not availabl",
+      "solicitorFriendlyExplanation": "Output humanised for clarity.",
+      "surface": "five_answers / chase"
+    },
+    {
+      "originalCandidate": "Please provide Beneficiary tracing report (see MG6C/FRD/04) or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: referred only. Source: MG6C schedule. Solicitor review required before sending.]",
+      "finalOutput": "Please provide Beneficiary tracing report (see MG6C/FRD/04) or confirm in writing why it is not available.",
+      "changeType": "human_label",
+      "reason": "Human-readable label applied for solicitor review.",
+      "sourceSupport": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "beforeAfterWording": "Before: Please provide Beneficiary tracing report (see MG6C/FRD/04) or confirm in writing why it is not avai | After: Please provide Beneficiary tracing report (see MG6C/FRD/04) or confirm in writing why it is not avai",
+      "solicitorFriendlyExplanation": "Output humanised for clarity.",
+      "surface": "five_answers / chase"
+    },
+    {
+      "originalCandidate": "Next action: Chase CPS — Chase outstanding disclosure and record provisional hearing position.",
+      "finalOutput": "Chase CPS — Chase outstanding disclosure and record provisional hearing position.",
+      "changeType": "human_label",
+      "reason": "Human-readable label applied for solicitor review.",
+      "sourceSupport": "audit layer",
+      "beforeAfterWording": "Before: Next action: Chase CPS — Chase outstanding disclosure and record provisional hearing position. | After: Chase CPS — Chase outstanding disclosure and record provisional hearing position.",
+      "solicitorFriendlyExplanation": "Output humanised for clarity.",
+      "surface": "hearing_mode / court_prep"
+    },
+    {
+      "originalCandidate": "Full transaction export: Missing / Needs review — Full transaction export or source banking records outstanding per MG6C. — still chase if disclosure-relevant.",
+      "finalOutput": "Full transaction export: Missing / Needs review — Full transaction export or source banking records outstanding per MG6C.",
+      "changeType": "human_label",
+      "reason": "Human-readable label applied for solicitor review.",
+      "sourceSupport": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "beforeAfterWording": "Before: Full transaction export: Missing / Needs review — Full transaction export or source banking records  | After: Full transaction export: Missing / Needs review — Full transaction export or source banking records ",
+      "solicitorFriendlyExplanation": "Output humanised for clarity.",
+      "surface": "hearing_mode / court_prep"
+    },
+    {
+      "originalCandidate": "Source banking records: Missing / Needs review — Full transaction export or source banking records outstanding per MG6C. — still chase if disclosure-relevant.",
+      "finalOutput": "Source banking records: Missing / Needs review — Full transaction export or source banking records outstanding per MG6C.",
+      "changeType": "human_label",
+      "reason": "Human-readable label applied for solicitor review.",
+      "sourceSupport": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "beforeAfterWording": "Before: Source banking records: Missing / Needs review — Full transaction export or source banking records o | After: Source banking records: Missing / Needs review — Full transaction export or source banking records o",
+      "solicitorFriendlyExplanation": "Output humanised for clarity.",
+      "surface": "hearing_mode / court_prep"
+    },
+    {
+      "originalCandidate": "Full transaction export: Missing — Please provide Full transaction export (see MG6C/FRD/02) or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: missing. Source: MG6C schedule. Solicitor review required before sending.]",
+      "finalOutput": "Full transaction export: Missing — Please provide Full transaction export (see MG6C/FRD/02) or confirm in writing why it is not available.",
+      "changeType": "human_label",
+      "reason": "Human-readable label applied for solicitor review.",
+      "sourceSupport": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "beforeAfterWording": "Before: Full transaction export: Missing — Please provide Full transaction export (see MG6C/FRD/02) or confi | After: Full transaction export: Missing — Please provide Full transaction export (see MG6C/FRD/02) or confi",
+      "solicitorFriendlyExplanation": "Output humanised for clarity.",
+      "surface": "hearing_mode / court_prep"
+    },
+    {
+      "originalCandidate": "Source banking records: Missing — Please provide Source banking records (see MG6C/FRD/03) or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: missing. Source: MG6C schedule. Solicitor review required before sending.]",
+      "finalOutput": "Source banking records: Missing — Please provide Source banking records (see MG6C/FRD/03) or confirm in writing why it is not available.",
+      "changeType": "human_label",
+      "reason": "Human-readable label applied for solicitor review.",
+      "sourceSupport": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "beforeAfterWording": "Before: Source banking records: Missing — Please provide Source banking records (see MG6C/FRD/03) or confirm | After: Source banking records: Missing — Please provide Source banking records (see MG6C/FRD/03) or confirm",
+      "solicitorFriendlyExplanation": "Output humanised for clarity.",
+      "surface": "hearing_mode / court_prep"
+    },
+    {
+      "originalCandidate": "Beneficiary tracing report: Referred only — Please provide Beneficiary tracing report (see MG6C/FRD/04) or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: referred only. Source: MG6C schedule. Solicitor review required before sending.]",
+      "finalOutput": "Beneficiary tracing report: Referred only — Please provide Beneficiary tracing report (see MG6C/FRD/04) or confirm in writing why it is not available.",
+      "changeType": "human_label",
+      "reason": "Human-readable label applied for solicitor review.",
+      "sourceSupport": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "beforeAfterWording": "Before: Beneficiary tracing report: Referred only — Please provide Beneficiary tracing report (see MG6C/FRD/ | After: Beneficiary tracing report: Referred only — Please provide Beneficiary tracing report (see MG6C/FRD/",
+      "solicitorFriendlyExplanation": "Output humanised for clarity.",
+      "surface": "hearing_mode / court_prep"
+    },
+    {
+      "originalCandidate": "Missing material — still chase if disclosure-relevant.",
+      "finalOutput": "Missing material",
+      "changeType": "human_label",
+      "reason": "Human-readable label applied for solicitor review.",
+      "sourceSupport": "audit layer",
+      "beforeAfterWording": "Before: Missing material — still chase if disclosure-relevant. | After: Missing material",
+      "solicitorFriendlyExplanation": "Output humanised for clarity.",
+      "surface": "decision_board"
+    },
+    {
+      "originalCandidate": "• Full transaction export [Missing / Needs review] — Full transaction export or source banking records outstanding per MG6C. — still chase if disclosure-relevant.\n• Source banking records [Missing / Needs review] — Full transaction export or source banking records outstanding per MG6C. — still chase if disclosure-relevant.\n• Beneficiary tracing report [Referred only / Weak] — Outstanding on curren",
+      "finalOutput": "• Full transaction export [Missing / Needs review] — Full transaction export or source banking records outstanding per MG6C.\n• Source banking records [Missing / Needs review] — Full transaction export or source banking records outstanding per MG6C.\n• Beneficiary tracing report [Referred only / Weak] — Outstanding on curren",
+      "changeType": "human_label",
+      "reason": "Human-readable label applied for solicitor review.",
+      "sourceSupport": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "beforeAfterWording": "Before: • Full transaction export [Missing / Needs review] — Full transaction export or source banking recor | After: • Full transaction export [Missing / Needs review] — Full transaction export or source banking recor",
+      "solicitorFriendlyExplanation": "Output humanised for clarity.",
+      "surface": "export_pack / evidence_gaps"
+    }
+  ],
+  "missingExpectedOutputs": [],
+  "sourceConflicts": [],
+  "entityRisks": [],
+  "surfaceSafety": [],
+  "pdfTextProofChain": [
+    {
+      "outputLine": "Fraud by false representation, contrary to section 1 of the Fraud Act 2006",
+      "surface": "overview / five_answers",
+      "pdfPageAvailable": false,
+      "extractedSnippet": "Statement of Offence: | Fraud by false representation, contrary to section 1 of the Fraud Act 2006.",
+      "pageNumber": null,
+      "proofChainStatus": "text_supports_but_pdf_unchecked",
+      "extractionIssue": "none",
+      "plainEnglishNote": "Text supports line; PDF page not verified in this pass."
+    },
+    {
+      "outputLine": "Disclosure completeness and outstanding source material.",
+      "surface": "overview / five_answers",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Chase outstanding disclosure and record provisional hearing position.",
+      "surface": "overview / five_answers",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Bank statement summaries — served — Summaries served — not full transaction export or source banking records.",
+      "surface": "evidence_truth_map / evidence_trace",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "label_mismatch",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Officer statement — served",
+      "surface": "evidence_truth_map / evidence_trace",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "label_mismatch",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Beneficiary tracing report — referred_only",
+      "surface": "evidence_truth_map / evidence_trace",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "label_mismatch",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Full transaction export — missing — Outstanding on current disclosure.",
+      "surface": "evidence_truth_map / evidence_trace",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "label_mismatch",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Source banking records — missing — Outstanding on current disclosure.",
+      "surface": "evidence_truth_map / evidence_trace",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "label_mismatch",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Fraud by false representation, contrary to section 1 of the Fraud Act 2006",
+      "surface": "evidence_truth_map / evidence_trace",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/02 — Full transaction export — outstanding — not on bundle.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "Disclosure completeness and outstanding source material.",
+      "surface": "evidence_truth_map / evidence_trace",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "label_mismatch",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Full transaction export",
+      "surface": "evidence_truth_map / evidence_trace",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/02 — Full transaction export — outstanding — not on bundle.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "Source banking records",
+      "surface": "evidence_truth_map / evidence_trace",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/03 — Source banking records — outstanding.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "Beneficiary tracing report: referred_only / weak",
+      "surface": "evidence_truth_map / evidence_trace",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/04 — Beneficiary tracing report — referred — not attached.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "Do not treat bank summaries alone as proof of fraud or account attribution.",
+      "surface": "five_answers / do_not_overstate",
+      "pdfPageAvailable": false,
+      "extractedSnippet": "Bank summaries CM/BNK/01 are served. Full transaction export and source records are NOT on bundle. Account attribution to Caleb Moss requires outstanding tracing material.",
+      "pageNumber": null,
+      "proofChainStatus": "text_supports_but_pdf_unchecked",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "Text supports line; PDF page not verified in this pass."
+    },
+    {
+      "outputLine": "fraud proved from summaries alone",
+      "surface": "five_answers / do_not_overstate",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "none"
+    },
+    {
+      "outputLine": "Please provide Full transaction export (see MG6C/FRD/02) or confirm in writing why it is not available.",
+      "surface": "evidence_truth_map / evidence_trace",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "Please provide Source banking records (see MG6C/FRD/03) or confirm in writing why it is not available.",
+      "surface": "evidence_truth_map / evidence_trace",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "Please provide Beneficiary tracing report (see MG6C/FRD/04) or confirm in writing why it is not available.: referred_only / weak",
+      "surface": "evidence_truth_map / evidence_trace",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "The defence asks the court to record per MG6C that bank statement summaries are served but full transaction export, source banking records, and tracing material remain outstanding.",
+      "surface": "evidence_truth_map / evidence_trace",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/02 — Full transaction export — outstanding — not on bundle.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "Full transaction export",
+      "surface": "chase",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/02 — Full transaction export — outstanding — not on bundle.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "Please provide Full transaction export (see MG6C/FRD/02) or confirm in writing why it is not available.",
+      "surface": "chase / CPS",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "Source banking records",
+      "surface": "chase",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/03 — Source banking records — outstanding.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "Please provide Source banking records (see MG6C/FRD/03) or confirm in writing why it is not available.",
+      "surface": "chase / CPS",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "Beneficiary tracing report",
+      "surface": "chase",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/04 — Beneficiary tracing report — referred — not attached.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "Please provide Beneficiary tracing report (see MG6C/FRD/04) or confirm in writing why it is not available.",
+      "surface": "chase / CPS",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "The defence asks the court to record per MG6C that bank statement summaries are served but full transaction export, source banking records, and tracing material remain outstanding.",
+      "surface": "court_note",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "The defence asks the court to record per MG6C that bank statement summaries are served but full transaction export, source banking records, and tracing material remain outstanding.",
+      "surface": "five_answers / court_note",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "Please provide Full transaction export (see MG6C/FRD/02) or confirm in writing why it is not available.",
+      "surface": "five_answers / chase",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "Please provide Source banking records (see MG6C/FRD/03) or confirm in writing why it is not available.",
+      "surface": "five_answers / chase",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "Please provide Beneficiary tracing report (see MG6C/FRD/04) or confirm in writing why it is not available.",
+      "surface": "five_answers / chase",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "Do not treat bank summaries alone as proof of fraud or account attribution.",
+      "surface": "five_answers / do_not_overstate",
+      "pdfPageAvailable": false,
+      "extractedSnippet": "Bank summaries CM/BNK/01 are served. Full transaction export and source records are NOT on bundle. Account attribution to Caleb Moss requires outstanding tracing material.",
+      "pageNumber": null,
+      "proofChainStatus": "text_supports_but_pdf_unchecked",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "Text supports line; PDF page not verified in this pass."
+    },
+    {
+      "outputLine": "fraud proved from summaries alone",
+      "surface": "five_answers / do_not_overstate",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "none"
+    },
+    {
+      "outputLine": "Served does not mean reliable.",
+      "surface": "evidence_truth_rules",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "none"
+    },
+    {
+      "outputLine": "Missing does not mean irrelevant.",
+      "surface": "evidence_truth_rules",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "none"
+    },
+    {
+      "outputLine": "Referred only does not mean usable.",
+      "surface": "evidence_truth_rules",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "none"
+    },
+    {
+      "outputLine": "Inference must be labelled as inference.",
+      "surface": "evidence_truth_rules",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "none"
+    },
+    {
+      "outputLine": "No line is sendable just because a source exists.",
+      "surface": "evidence_truth_rules",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "none"
+    },
+    {
+      "outputLine": "fraud account",
+      "surface": "hearing_mode / court_prep",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Main issue: Disclosure completeness and outstanding source material.",
+      "surface": "hearing_mode / court_prep",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Chase CPS — Chase outstanding disclosure and record provisional hearing position.",
+      "surface": "hearing_mode / court_prep",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Full transaction export: Missing / Needs review — Full transaction export or source banking records outstanding per MG6C.",
+      "surface": "hearing_mode / court_prep",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "Source banking records: Missing / Needs review — Full transaction export or source banking records outstanding per MG6C.",
+      "surface": "hearing_mode / court_prep",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "Beneficiary tracing report: Referred only / Weak — Outstanding on current disclosure — confirm before fixing hearing position. — referred only, not usable as proof.",
+      "surface": "hearing_mode / court_prep",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "label_mismatch",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Full transaction export: Missing — Please provide Full transaction export (see MG6C/FRD/02) or confirm in writing why it is not available.",
+      "surface": "hearing_mode / court_prep",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "Source banking records: Missing — Please provide Source banking records (see MG6C/FRD/03) or confirm in writing why it is not available.",
+      "surface": "hearing_mode / court_prep",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "Beneficiary tracing report: Referred only — Please provide Beneficiary tracing report (see MG6C/FRD/04) or confirm in writing why it is not available.",
+      "surface": "hearing_mode / court_prep",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "The defence asks the court to record per MG6C that bank statement summaries are served but full transaction export, source banking records, and tracing material remain outstanding.",
+      "surface": "today / summary",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "Account control, dishonesty and loss remain provisional pending served bank/device source material.",
+      "surface": "today",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Keep the position provisional and source-linked.",
+      "surface": "today",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Dishonesty, account control, and document attribution remain conditional on served bank/financial material.",
+      "surface": "today",
+      "pdfPageAvailable": false,
+      "extractedSnippet": "Bank summaries CM/BNK/01 are served. Full transaction export and source records are NOT on bundle. Account attribution to Caleb Moss requires outstanding tracing material.",
+      "pageNumber": null,
+      "proofChainStatus": "text_supports_but_pdf_unchecked",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "Text supports line; PDF page not verified in this pass."
+    },
+    {
+      "outputLine": "The defence position remains provisional pending served source material and solicitor instructions.",
+      "surface": "today",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "The court is asked to record outstanding source material and set a disclosure timetable.",
+      "surface": "today",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Timing and sequence remain conditional until served source material and continuity records are reviewed.",
+      "surface": "today",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Do not treat bank summaries alone as proof of fraud or account attribution.",
+      "surface": "today / warnings",
+      "pdfPageAvailable": false,
+      "extractedSnippet": "Bank summaries CM/BNK/01 are served. Full transaction export and source records are NOT on bundle. Account attribution to Caleb Moss requires outstanding tracing material.",
+      "pageNumber": null,
+      "proofChainStatus": "text_supports_but_pdf_unchecked",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "Text supports line; PDF page not verified in this pass."
+    },
+    {
+      "outputLine": "fraud proved from summaries alone",
+      "surface": "today / warnings",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "none"
+    },
+    {
+      "outputLine": "The case turns on account control, attribution, dishonesty and reconciliation of loss. The defence case remains provisional pending disclosure. Primary route on file: fraud account. The defence asks the court to record per MG6C that bank statement summaries are served but full transaction export, source banking records, and tracing material remain outstanding.",
+      "surface": "summary / theory",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "Do not import BWV unless the papers support it.",
+      "surface": "summary / risks",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Do not import custody safeguards unless the papers support it.",
+      "surface": "summary / risks",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Do not import drugs continuity unless the papers support it.",
+      "surface": "summary / risks",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Prosecution pressure: review served MG5/MG6 before fixing trial theory.",
+      "surface": "summary / risks",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "Defence risks: Do not treat bank summaries alone as proof of fraud or account attribution.",
+      "surface": "summary / risks",
+      "pdfPageAvailable": false,
+      "extractedSnippet": "Bank summaries CM/BNK/01 are served. Full transaction export and source records are NOT on bundle. Account attribution to Caleb Moss requires outstanding tracing material.",
+      "pageNumber": null,
+      "proofChainStatus": "text_supports_but_pdf_unchecked",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "Text supports line; PDF page not verified in this pass."
+    },
+    {
+      "outputLine": "fraud proved from summaries alone",
+      "surface": "summary / risks",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Witness or document attribution may undermine the defence account if consistent.",
+      "surface": "summary / risks",
+      "pdfPageAvailable": false,
+      "extractedSnippet": "Bank summaries CM/BNK/01 are served. Full transaction export and source records are NOT on bundle. Account attribution to Caleb Moss requires outstanding tracing material.",
+      "pageNumber": null,
+      "proofChainStatus": "text_supports_but_pdf_unchecked",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "Text supports line; PDF page not verified in this pass."
+    },
+    {
+      "outputLine": "Outstanding expert/source material may return against the defence route if served.",
+      "surface": "summary / risks",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Client account conflicts with served source material.",
+      "surface": "summary / risks",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "The case turns on account control, attribution, dishonesty and reconciliation of loss.",
+      "surface": "summary / opportunities",
+      "pdfPageAvailable": false,
+      "extractedSnippet": "Bank summaries CM/BNK/01 are served. Full transaction export and source records are NOT on bundle. Account attribution to Caleb Moss requires outstanding tracing material.",
+      "pageNumber": null,
+      "proofChainStatus": "text_supports_but_pdf_unchecked",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "Text supports line; PDF page not verified in this pass."
+    },
+    {
+      "outputLine": "Challenge account control, attribution and loss reconciliation.",
+      "surface": "summary / opportunities",
+      "pdfPageAvailable": false,
+      "extractedSnippet": "Bank summaries CM/BNK/01 are served. Full transaction export and source records are NOT on bundle. Account attribution to Caleb Moss requires outstanding tracing material.",
+      "pageNumber": null,
+      "proofChainStatus": "text_supports_but_pdf_unchecked",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "Text supports line; PDF page not verified in this pass."
+    },
+    {
+      "outputLine": "Disclosure leverage: Full transaction export or source banking records outstanding per MG6C.",
+      "surface": "summary / opportunities",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "Disclosure leverage: Outstanding on current disclosure — confirm before fixing hearing position.",
+      "surface": "summary / opportunities",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "The defence asks the court to record per MG6C that bank statement summaries are served but full transaction export, source banking records, and tracing material remain outstanding.",
+      "surface": "summary / chase",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "Full transaction export — Full transaction export or source banking records outstanding per MG6C.",
+      "surface": "summary / chase",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "Source banking records — Full transaction export or source banking records outstanding per MG6C.",
+      "surface": "summary / chase",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "Beneficiary tracing report — Outstanding on current disclosure — confirm before fixing hearing position.",
+      "surface": "summary / chase",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Provisional — for solicitor review before court.",
+      "surface": "summary / ptph",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "The defence asks the court to record per MG6C that bank statement summaries are served but full transaction export, source banking records, and tracing material remain outstanding.",
+      "surface": "summary / ptph",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "Outstanding disclosure: Full transaction export; Source banking records; Beneficiary tracing report.",
+      "surface": "summary / ptph",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Invite the court to order disclosure by a fixed date with a review hearing.",
+      "surface": "summary / ptph",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "The defence cannot confirm final issues until disclosure is complete.",
+      "surface": "summary / ptph",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "We are reviewing the papers in your case (Fraud by false representation, contrary to section 1 of the Fraud Act 2006). This is early-stage — nothing is final until we have full disclosure and your instructions. Some evidence is still outstanding on the papers, and we will update you when it is served. We are not saying the case is won or lost — we need the full material before giving firm advice.",
+      "surface": "summary / client",
+      "pdfPageAvailable": false,
+      "extractedSnippet": "Statement of Offence: | Fraud by false representation, contrary to section 1 of the Fraud Act 2006.",
+      "pageNumber": null,
+      "proofChainStatus": "text_supports_but_pdf_unchecked",
+      "extractionIssue": "none",
+      "plainEnglishNote": "Text supports line; PDF page not verified in this pass."
+    },
+    {
+      "outputLine": "Court-day position line is on the Today tab (Before court). This brief mirrors chase and theory only.",
+      "surface": "summary / court_day",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Confidence: Needs review before relying — Human review or material gaps flagged on current papers.",
+      "surface": "confidence_dashboard",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Chase sendability: needs_solicitor_review; Summary sendability: needs_solicitor_review",
+      "surface": "confidence_dashboard",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Charge-fit issue: Account control, dishonesty, attribution and loss reconciliation.",
+      "surface": "decision_board",
+      "pdfPageAvailable": false,
+      "extractedSnippet": "Statement of Offence: | Fraud by false representation, contrary to section 1 of the Fraud Act 2006.",
+      "pageNumber": null,
+      "proofChainStatus": "text_supports_but_pdf_unchecked",
+      "extractionIssue": "none",
+      "plainEnglishNote": "Text supports line; PDF page not verified in this pass."
+    },
+    {
+      "outputLine": "Bank/device material may support account control once served.",
+      "surface": "decision_board",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Chase outstanding disclosure and record provisional hearing position.",
+      "surface": "decision_board",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Disclosure pressure: Full transaction export or source banking records outstanding per MG6C.",
+      "surface": "decision_board",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "Missing material",
+      "surface": "decision_board",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Please provide Full transaction export (see MG6C/FRD/02) or confirm in writing why it is not available.",
+      "surface": "decision_board",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "Full transaction export — Missing — Review: Review needed because full transaction export is missing — position may shift when served material lands",
+      "surface": "advice_change_radar",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Source banking records — Missing — Review: Review needed because source banking records is missing — position may shift when served material lands",
+      "surface": "advice_change_radar",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Beneficiary tracing report — Referred only — Review: Review needed because beneficiary tracing report is referred only — position may shift when served material lands",
+      "surface": "advice_change_radar",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "CPS DISCLOSURE CHASE DRAFT\n(not for court — requests material only)",
+      "surface": "export_pack / cps_chase",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "— Full transaction export [missing]\nPlease provide Full transaction export (see MG6C/FRD/02) or confirm in writing why it is not available.",
+      "surface": "export_pack / cps_chase",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "— Source banking records [missing]\nPlease provide Source banking records (see MG6C/FRD/03) or confirm in writing why it is not available.",
+      "surface": "export_pack / cps_chase",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "— Beneficiary tracing report [referred only]\nPlease provide Beneficiary tracing report (see MG6C/FRD/04) or confirm in writing why it is not available.",
+      "surface": "export_pack / cps_chase",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "COURT NOTE\n(not for CPS chase)",
+      "surface": "export_pack / court_note",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "The defence asks the court to record per MG6C that bank statement summaries are served but full transaction export, source banking records, and tracing material remain outstanding.",
+      "surface": "export_pack / court_note",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "[CaseBrain — court line copy. Evidence state: needs review. Confirm before addressing the court.]",
+      "surface": "export_pack / court_note",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Solicitor review required before sending to CPS, court, or client.",
+      "surface": "export_pack / court_note",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "CLIENT-SAFE SUMMARY\n(not for court or CPS)",
+      "surface": "export_pack / client_summary",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "We are reviewing the papers in your case (Caleb Moss). This is early-stage — nothing is final until we have full disclosure and your instructions. Bank statement summaries are on the papers, but the full transaction export, source banking records, and beneficiary tracing material are still outstanding. Summaries alone do not show the full account picture.",
+      "surface": "export_pack / client_summary",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
+      "surface": "export_pack / client_summary",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "• Full transaction export [Missing / Needs review] — Full transaction export or source banking records outstanding per MG6C.\n• Source banking records [Missing / Needs review] — Full transaction export or source banking records outstanding per MG6C.\n• Beneficiary tracing report [Referred only / Weak] — Outstanding on curren",
+      "surface": "export_pack / evidence_gaps",
+      "pdfPageAvailable": true,
+      "extractedSnippet": "MG6C/FRD/01 — Bank statement summaries CM/BNK/01 — served on bundle.",
+      "pageNumber": "4",
+      "proofChainStatus": "pdf_and_text_support_output",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "PDF page and extracted text both support this line."
+    },
+    {
+      "outputLine": "Solicitor review required before sending to CPS, court, or client.",
+      "surface": "export_pack / evidence_gaps",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "DO NOT OVERSTATE\n(warnings — not allegations)",
+      "surface": "export_pack / do_not_overstate",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "• Do not say: Do not treat bank summaries alone as proof of fraud or account attribution.\n  Why unsafe: Source not confirmed on current papers — solicitor review required.",
+      "surface": "export_pack / do_not_overstate",
+      "pdfPageAvailable": false,
+      "extractedSnippet": "Bank summaries CM/BNK/01 are served. Full transaction export and source records are NOT on bundle. Account attribution to Caleb Moss requires outstanding tracing material.",
+      "pageNumber": null,
+      "proofChainStatus": "text_supports_but_pdf_unchecked",
+      "extractionIssue": "page_missing",
+      "plainEnglishNote": "Text supports line; PDF page not verified in this pass."
+    },
+    {
+      "outputLine": "• Do not say: fraud proved from summaries alone\n  Why unsafe: Source not confirmed on current papers — solicitor review required.",
+      "surface": "export_pack / do_not_overstate",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    },
+    {
+      "outputLine": "Solicitor review required before sending to CPS, court, or client.",
+      "surface": "export_pack / do_not_overstate",
+      "pdfPageAvailable": false,
+      "extractedSnippet": null,
+      "pageNumber": null,
+      "proofChainStatus": "source_unavailable",
+      "extractionIssue": "none",
+      "plainEnglishNote": "No usable source anchor — solicitor must verify."
+    }
+  ],
+  "counts": {
+    "emittedLines": 108,
+    "suppressedCandidates": 25,
+    "rewritesDowngrades": 24,
+    "missingExpectedOutputs": 0,
+    "sourceConflicts": 0,
+    "entityRisks": 0,
+    "surfaceSafetyIssues": 0,
+    "positiveCorrect": 19,
+    "cleanSourceBacked": 0,
+    "possibleFalseSuppressions": 0,
+    "pdfAndTextSupported": 39,
+    "textOnlySupported": 20,
+    "emittedUnsupported": 0,
+    "suppressedUnsupported": 25,
+    "outputUnsupportedAfterGate": 0
+  }
+}

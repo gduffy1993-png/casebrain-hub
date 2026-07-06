@@ -1,0 +1,81 @@
+{
+  "caseId": "demo-audit-22-youth-interview",
+  "caseName": "DA-22 Kian Doyle — youth court / interview outstanding",
+  "shape": "YJS extract served / youth interview audio missing",
+  "pdfPages": 8,
+  "keyServedItems": [
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "officer statement",
+    "YJS report extract"
+  ],
+  "keyMissingReferred": [
+    "full YJS pre-sentence report (missing)",
+    "vulnerability assessment (missing)",
+    "youth interview audio (missing)",
+    "appropriate adult continuity (missing)"
+  ],
+  "truthMapResult": [
+    {
+      "label": "Officer statement",
+      "existence": "served"
+    },
+    {
+      "label": "YJS report extract",
+      "existence": "served",
+      "note": "Extract served — full YJS PSR outstanding."
+    },
+    {
+      "label": "Full YJS pre-sentence report",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    },
+    {
+      "label": "Vulnerability assessment",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    },
+    {
+      "label": "Youth interview audio",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    },
+    {
+      "label": "Appropriate adult continuity",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    }
+  ],
+  "proofPacketVerdict": "PASS WITH WARNINGS",
+  "failLineCount": 0,
+  "unsupportedLinesCount": 0,
+  "wrongFamilyWarningsCount": 0,
+  "proofLedgerWrongFamilyInternal": 0,
+  "blockedFalseServedGuardsCount": 0,
+  "pageBackedOutputLinesCount": 38,
+  "vagueChaseLabelsCount": 0,
+  "genericLabelCount": 0,
+  "solicitorFacingBannedCount": 0,
+  "packetDuplicateCount": 0,
+  "packetOffFamilyCount": 0,
+  "packetMainIssueCount": 0,
+  "caseFacingWrongFamilyCount": 0,
+  "readyForDemoReview": true,
+  "readyBlockers": [],
+  "filesCreated": [
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-22-youth-interview\\bundle.pdf",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-22-youth-interview\\bundle-text.md",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-22-youth-interview\\pdf-extraction-meta.json",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-22-youth-interview\\truth-key.json",
+    "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-22-youth-interview\\line-by-line-proof.md",
+    "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-22-youth-interview\\SOLICITOR-PROOF-PACKET.md",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-22-youth-interview\\overview-truth-map.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-22-youth-interview\\court-tab.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-22-youth-interview\\cps-chase.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-22-youth-interview\\client-summary.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-22-youth-interview\\file-source-view.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-22-youth-interview\\casebrain-output.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-22-youth-interview\\scorecard.json"
+  ]
+}

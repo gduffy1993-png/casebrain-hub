@@ -81,14 +81,14 @@ Controlled/anonymised audit only unless solicitor-reviewed real bundles are used
 
 ### Proof ledger counts
 
-- Meaningful emitted lines: **136**
-- Warnings on case: **103**
+- Meaningful emitted lines: **135**
+- Warnings on case: **102**
 - Suppressed before display: **33**
 - Softened rewrites: **34**
 - Missing expected (source-led): **0**
 - Clean source-backed: **0**
 - Possible false suppressions: **0**
-- PDF + text supported: **42** | Text-only supported: **32**
+- PDF + text supported: **42** | Text-only supported: **31**
 
 ### Unsupported output (clarified)
 
@@ -392,7 +392,7 @@ _When verdict is PASS, unsupported material is usually correctly suppressed befo
 **Source:** none
 **Why safe / limited:** Generic safety guard — does not assert bundle facts.
 
-_…and 96 more emitted lines (see JSON)._
+_…and 95 more emitted lines (see JSON)._
 
 ## 2. Suppressed candidate ledger
 
@@ -847,7 +847,7 @@ _…and 96 more emitted lines (see JSON)._
 **Note:** none
 
 
-_…and 121 more proof-chain rows (see JSON)._
+_…and 120 more proof-chain rows (see JSON)._
 
 ---
 
@@ -859,25 +859,25 @@ Bundle source: `artifacts/evidence-state-audit-local/cases/demo-audit-04-co-def-
 
 ## Summary
 
-- Meaningful lines audited: **136**
+- Meaningful lines audited: **135**
 - Blocking failures: **0**
 - Unsupported output lines: **0**
-- Source review warnings: **61**
+- Source review warnings: **60**
 - Solicitor caution lines: **42**
 - Clean source-backed lines: **0**
 - Generic safety guards: **33**
 - Positive correct findings: **34**
-- PASS: **33** | WARNING: **103** | FAIL: **0**
-- Lines requiring Ged review (tiered): **103**
+- PASS: **33** | WARNING: **102** | FAIL: **0**
+- Lines requiring Ged review (tiered): **102**
 
 ## Proof chain coverage
 
 - Case proof mode: **pdf_and_text**
 - Original PDF available: **yes**
 - pdf_and_text_support_output: **42**
-- text_supports_but_pdf_unchecked: **19**
-- pdf_available_but_text_mismatch: **17**
-- No source on papers: **58**
+- text_supports_but_pdf_unchecked: **18**
+- pdf_available_but_text_mismatch: **18**
+- No source on papers: **57**
 - Output not supported (emitted): **0**
 - Emitted unsupported (ledger): **0**
 - Suppressed unsupported (ledger): **33**
@@ -886,7 +886,7 @@ PDF-backed proof chain: original PDF in case directory; bundle-text.md extracted
 
 ### Review tiers
 - BLOCKING REVIEW: 0
-- SOURCE REVIEW: 61
+- SOURCE REVIEW: 60
 - SOLICITOR CAUTION: 42
 - CLEAN SOURCE-BACKED: 0
 - GENERIC SAFETY GUARD: 33
@@ -901,11 +901,11 @@ PDF-backed proof chain: original PDF in case directory; bundle-text.md extracted
 - court_note: 3
 - client_summary: 1
 - contradiction_or_risk: 3
-- export_line: 18
+- export_line: 17
 
 ### By support status
 - partially supported: 30
-- Source not available on papers: 45
+- Source not available on papers: 44
 - Missing on bundle: 35
 - Supported by bundle text: 26
 
@@ -917,7 +917,7 @@ Tiered review queue — blocking issues first, then source gaps, then solicitor 
 
 - none
 
-### SOURCE REVIEW (61)
+### SOURCE REVIEW (60)
 
 1. **WARNING** — evidence_claim — overview / five_answers
    - Output: Burglary in a dwelling, contrary to section 9(1)(b) of the Theft Act 1968
@@ -1147,197 +1147,193 @@ Tiered review queue — blocking issues first, then source gaps, then solicitor 
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
 57. **WARNING** — export_line — export_pack / client_summary
-   - Output: We are reviewing the papers in your case (Burglary in a dwelling, contrary to section 9(1)(b) of the Theft Act 1968). Th…
+   - Output: We are reviewing the papers in your case (Morgan Reid). This is early-stage — nothing is final until we have full disclo…
    - Reasons: generic_source_only, solicitor_review_required
-   - Source: Statement of Offence: | Burglary in a dwelling, contrary to section 9(1)(b) of the Theft Act 1968.
+   - Source: Co-defendant interview summary (Tara Vale) | 6 | | Co-defendant Tara Vale interview summary is serve…
 58. **WARNING** — export_line — export_pack / client_summary
    - Output: [CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
-59. **WARNING** — export_line — export_pack / client_summary
-   - Output: Solicitor review required before sending to CPS, court, or client.
-   - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
-   - Source: no source found
-60. **WARNING** — export_line — export_pack / evidence_gaps
+59. **WARNING** — export_line — export_pack / evidence_gaps
    - Output: • Target defendant interview summary [Missing / Needs review] — Target defendant interview material outstanding.
 • Targe…
    - Reasons: generic_source_only, solicitor_review_required
    - Source: Co-defendant interview summary (Tara Vale) | 6 | | Co-defendant Tara Vale interview summary is serve…
-61. **WARNING** — export_line — export_pack / evidence_gaps
+60. **WARNING** — export_line — export_pack / evidence_gaps
    - Output: Solicitor review required before sending to CPS, court, or client.
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
 
 ### SOLICITOR CAUTION (42)
 
-62. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
+61. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
    - Output: Co-defendant attribution / continuity — missing — Outstanding on current disclosure.
    - Reasons: tier classification
    - Source: MG6C/CO/01 — Co-defendant attribution/continuity pack — outstanding.
-63. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
+62. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
    - Output: Burglary in a dwelling, contrary to section 9(1)(b) of the Theft Act 1968
    - Reasons: tier classification
    - Source: MG6C/INT/02 — Morgan Reid interview summary — outstanding — not on bundle.
-64. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
+63. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
    - Output: Target defendant interview summary
    - Reasons: tier classification
    - Source: MG6C/INT/02 — Morgan Reid interview summary — outstanding — not on bundle.
-65. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
+64. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
    - Output: Target defendant interview audio
    - Reasons: tier classification
    - Source: MG6C/INT/03 — Morgan Reid interview audio — outstanding.
-66. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
+65. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
    - Output: Target defendant interview transcript
    - Reasons: tier classification
    - Source: MG6C/INT/04 — Morgan Reid interview transcript — outstanding.
-67. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
+66. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
    - Output: Co-defendant attribution / continuity
    - Reasons: tier classification
    - Source: MG6C/CO/01 — Co-defendant attribution/continuity pack — outstanding.
-68. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
+67. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
    - Output: Please provide Target defendant interview summary (see MG6C/INT/02) or confirm in writing why it is not available.
+   - Reasons: tier classification
+   - Source: MG6C/INT/01 — Co-defendant Tara Vale interview summary — served on bundle (other defendant).
+68. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
+   - Output: Please provide Target defendant interview audio (see MG6C/INT/03) or confirm in writing why it is not available.
    - Reasons: tier classification
    - Source: MG6C/INT/01 — Co-defendant Tara Vale interview summary — served on bundle (other defendant).
 69. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
-   - Output: Please provide Target defendant interview audio (see MG6C/INT/03) or confirm in writing why it is not available.
+   - Output: Please provide Target defendant interview transcript (see MG6C/INT/04) or confirm in writing why it is not available.
    - Reasons: tier classification
    - Source: MG6C/INT/01 — Co-defendant Tara Vale interview summary — served on bundle (other defendant).
 70. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
-   - Output: Please provide Target defendant interview transcript (see MG6C/INT/04) or confirm in writing why it is not available.
-   - Reasons: tier classification
-   - Source: MG6C/INT/01 — Co-defendant Tara Vale interview summary — served on bundle (other defendant).
-71. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
    - Output: Please provide Co-defendant attribution / continuity (see MG6C/CO/01) or confirm in writing why it is not available.
    - Reasons: tier classification
    - Source: MG6C/CO/01 — Co-defendant attribution/continuity pack — outstanding.
-72. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
+71. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
    - Output: The defence asks the court to record per MG6C that co-defendant interview material is segregated and target defendant in…
    - Reasons: tier classification
    - Source: MG6C/INT/02 — Morgan Reid interview summary — outstanding — not on bundle.
-73. **WARNING** — chase_request — chase
+72. **WARNING** — chase_request — chase
    - Output: Target defendant interview summary
    - Reasons: tier classification
    - Source: MG6C/INT/02 — Morgan Reid interview summary — outstanding — not on bundle.
-74. **WARNING** — chase_request — chase / CPS
+73. **WARNING** — chase_request — chase / CPS
    - Output: Please provide Target defendant interview summary (see MG6C/INT/02) or confirm in writing why it is not available.
    - Reasons: tier classification
    - Source: MG6C/INT/01 — Co-defendant Tara Vale interview summary — served on bundle (other defendant).
-75. **WARNING** — chase_request — chase
+74. **WARNING** — chase_request — chase
    - Output: Target defendant interview audio
    - Reasons: tier classification
    - Source: MG6C/INT/03 — Morgan Reid interview audio — outstanding.
-76. **WARNING** — chase_request — chase / CPS
+75. **WARNING** — chase_request — chase / CPS
    - Output: Please provide Target defendant interview audio (see MG6C/INT/03) or confirm in writing why it is not available.
    - Reasons: tier classification
    - Source: MG6C/INT/01 — Co-defendant Tara Vale interview summary — served on bundle (other defendant).
-77. **WARNING** — chase_request — chase
+76. **WARNING** — chase_request — chase
    - Output: Target defendant interview transcript
    - Reasons: tier classification
    - Source: MG6C/INT/04 — Morgan Reid interview transcript — outstanding.
-78. **WARNING** — chase_request — chase / CPS
+77. **WARNING** — chase_request — chase / CPS
    - Output: Please provide Target defendant interview transcript (see MG6C/INT/04) or confirm in writing why it is not available.
    - Reasons: tier classification
    - Source: MG6C/INT/01 — Co-defendant Tara Vale interview summary — served on bundle (other defendant).
-79. **WARNING** — chase_request — chase
+78. **WARNING** — chase_request — chase
    - Output: Co-defendant attribution / continuity
    - Reasons: tier classification
    - Source: MG6C/CO/01 — Co-defendant attribution/continuity pack — outstanding.
-80. **WARNING** — chase_request — chase / CPS
+79. **WARNING** — chase_request — chase / CPS
    - Output: Please provide Co-defendant attribution / continuity (see MG6C/CO/01) or confirm in writing why it is not available.
    - Reasons: tier classification
    - Source: MG6C/CO/01 — Co-defendant attribution/continuity pack — outstanding.
-81. **WARNING** — court_note — court_note
+80. **WARNING** — court_note — court_note
    - Output: The defence asks the court to record per MG6C that co-defendant interview material is segregated and target defendant in…
    - Reasons: tier classification
    - Source: MG6C/INT/01 — Co-defendant Tara Vale interview summary — served on bundle (other defendant).
-82. **WARNING** — court_note — five_answers / court_note
+81. **WARNING** — court_note — five_answers / court_note
    - Output: The defence asks the court to record per MG6C that co-defendant interview material is segregated and target defendant in…
+   - Reasons: tier classification
+   - Source: MG6C/INT/01 — Co-defendant Tara Vale interview summary — served on bundle (other defendant).
+82. **WARNING** — chase_request — five_answers / chase
+   - Output: Please provide Target defendant interview summary (see MG6C/INT/02) or confirm in writing why it is not available.
    - Reasons: tier classification
    - Source: MG6C/INT/01 — Co-defendant Tara Vale interview summary — served on bundle (other defendant).
 83. **WARNING** — chase_request — five_answers / chase
-   - Output: Please provide Target defendant interview summary (see MG6C/INT/02) or confirm in writing why it is not available.
-   - Reasons: tier classification
-   - Source: MG6C/INT/01 — Co-defendant Tara Vale interview summary — served on bundle (other defendant).
-84. **WARNING** — chase_request — five_answers / chase
    - Output: Please provide Target defendant interview audio (see MG6C/INT/03) or confirm in writing why it is not available.
    - Reasons: tier classification
    - Source: MG6C/INT/01 — Co-defendant Tara Vale interview summary — served on bundle (other defendant).
-85. **WARNING** — chase_request — five_answers / chase
+84. **WARNING** — chase_request — five_answers / chase
    - Output: Please provide Target defendant interview transcript (see MG6C/INT/04) or confirm in writing why it is not available.
    - Reasons: tier classification
    - Source: MG6C/INT/01 — Co-defendant Tara Vale interview summary — served on bundle (other defendant).
-86. **WARNING** — chase_request — five_answers / chase
+85. **WARNING** — chase_request — five_answers / chase
    - Output: Please provide Co-defendant attribution / continuity (see MG6C/CO/01) or confirm in writing why it is not available.
    - Reasons: tier classification
    - Source: MG6C/CO/01 — Co-defendant attribution/continuity pack — outstanding.
-87. **WARNING** — evidence_state — hearing_mode / court_prep
+86. **WARNING** — evidence_state — hearing_mode / court_prep
    - Output: Co-defendant attribution / continuity: Missing / Needs review — Continuity to master recording not confirmed on current …
    - Reasons: tier classification
    - Source: MG6C/CO/01 — Co-defendant attribution/continuity pack — outstanding.
-88. **WARNING** — chase_request — hearing_mode / court_prep
+87. **WARNING** — chase_request — hearing_mode / court_prep
    - Output: Target defendant interview summary: Missing — Please provide Target defendant interview summary (see MG6C/INT/02) or con…
    - Reasons: tier classification
    - Source: MG6C/INT/01 — Co-defendant Tara Vale interview summary — served on bundle (other defendant).
-89. **WARNING** — chase_request — hearing_mode / court_prep
+88. **WARNING** — chase_request — hearing_mode / court_prep
    - Output: Target defendant interview audio: Missing — Please provide Target defendant interview audio (see MG6C/INT/03) or confirm…
    - Reasons: tier classification
    - Source: MG6C/INT/01 — Co-defendant Tara Vale interview summary — served on bundle (other defendant).
-90. **WARNING** — chase_request — hearing_mode / court_prep
+89. **WARNING** — chase_request — hearing_mode / court_prep
    - Output: Target defendant interview transcript: Missing — Please provide Target defendant interview transcript (see MG6C/INT/04) …
    - Reasons: tier classification
    - Source: MG6C/INT/01 — Co-defendant Tara Vale interview summary — served on bundle (other defendant).
-91. **WARNING** — strategic_review — today / summary
+90. **WARNING** — strategic_review — today / summary
    - Output: The defence asks the court to record per MG6C that co-defendant interview material is segregated and target defendant in…
    - Reasons: tier classification
    - Source: MG6C/INT/01 — Co-defendant Tara Vale interview summary — served on bundle (other defendant).
-92. **WARNING** — strategic_review — summary / theory
+91. **WARNING** — strategic_review — summary / theory
    - Output: The matter remains source-led and provisional because the case profile or evidence state is unclear. Main issue: Source …
    - Reasons: tier classification
    - Source: MG6C/INT/01 — Co-defendant Tara Vale interview summary — served on bundle (other defendant).
-93. **WARNING** — strategic_review — summary / opportunities
+92. **WARNING** — strategic_review — summary / opportunities
    - Output: Attribution / continuity leverage: Continuity to master recording not confirmed on current papers.
    - Reasons: tier classification
    - Source: MG6C/CO/01 — Co-defendant attribution/continuity pack — outstanding.
-94. **WARNING** — strategic_review — summary / chase
+93. **WARNING** — strategic_review — summary / chase
    - Output: The defence asks the court to record per MG6C that co-defendant interview material is segregated and target defendant in…
    - Reasons: tier classification
    - Source: MG6C/INT/01 — Co-defendant Tara Vale interview summary — served on bundle (other defendant).
-95. **WARNING** — strategic_review — summary / ptph
+94. **WARNING** — strategic_review — summary / ptph
    - Output: The defence asks the court to record per MG6C that co-defendant interview material is segregated and target defendant in…
    - Reasons: tier classification
    - Source: MG6C/INT/01 — Co-defendant Tara Vale interview summary — served on bundle (other defendant).
-96. **WARNING** — strategic_review — decision_board
+95. **WARNING** — strategic_review — decision_board
    - Output: Please provide Target defendant interview summary (see MG6C/INT/02) or confirm in writing why it is not available.
    - Reasons: tier classification
    - Source: MG6C/INT/01 — Co-defendant Tara Vale interview summary — served on bundle (other defendant).
-97. **WARNING** — strategic_review — decision_board
+96. **WARNING** — strategic_review — decision_board
    - Output: Attribution issue: Continuity to master recording not confirmed on current papers.
    - Reasons: tier classification
    - Source: MG6C/CO/01 — Co-defendant attribution/continuity pack — outstanding.
-98. **WARNING** — strategic_review — decision_board
+97. **WARNING** — strategic_review — decision_board
    - Output: Please provide Co-defendant attribution / continuity (see MG6C/CO/01) or confirm in writing why it is not available.
    - Reasons: tier classification
    - Source: MG6C/CO/01 — Co-defendant attribution/continuity pack — outstanding.
-99. **WARNING** — strategic_review — decision_board
+98. **WARNING** — strategic_review — decision_board
    - Output: Check MG6/unused schedules and keep chase limited to this defendant's papers.
    - Reasons: tier classification
    - Source: MG6C/INT/01 — Co-defendant Tara Vale interview summary — served on bundle (other defendant).
-100. **WARNING** — export_line — export_pack / cps_chase
+99. **WARNING** — export_line — export_pack / cps_chase
    - Output: — Target defendant interview summary [missing]
 Please provide Target defendant interview summary (see MG6C/INT/02) or co…
    - Reasons: tier classification
    - Source: MG6C/INT/01 — Co-defendant Tara Vale interview summary — served on bundle (other defendant).
-101. **WARNING** — export_line — export_pack / cps_chase
+100. **WARNING** — export_line — export_pack / cps_chase
    - Output: — Target defendant interview audio [missing]
 Please provide Target defendant interview audio (see MG6C/INT/03) or confir…
    - Reasons: tier classification
    - Source: MG6C/INT/01 — Co-defendant Tara Vale interview summary — served on bundle (other defendant).
-102. **WARNING** — export_line — export_pack / cps_chase
+101. **WARNING** — export_line — export_pack / cps_chase
    - Output: — Target defendant interview transcript [missing]
 Please provide Target defendant interview transcript (see MG6C/INT/04)…
    - Reasons: tier classification
    - Source: MG6C/INT/01 — Co-defendant Tara Vale interview summary — served on bundle (other defendant).
-103. **WARNING** — export_line — export_pack / court_note
+102. **WARNING** — export_line — export_pack / court_note
    - Output: The defence asks the court to record per MG6C that co-defendant interview material is segregated and target defendant in…
    - Reasons: tier classification
    - Source: MG6C/INT/01 — Co-defendant Tara Vale interview summary — served on bundle (other defendant).
@@ -1376,9 +1372,9 @@ Please provide Target defendant interview transcript (see MG6C/INT/04)…
 
 ### Proof chain roll-up
 
-- Lines judged from extracted text only (PDF unchecked): **77**
-- Lines where source text and output disagree / unsupported: **17**
-- Lines text-supported but PDF unchecked: **19**
+- Lines judged from extracted text only (PDF unchecked): **75**
+- Lines where source text and output disagree / unsupported: **18**
+- Lines text-supported but PDF unchecked: **18**
 
 ---
 
@@ -7039,7 +7035,7 @@ No usable source anchor — solicitor must verify.
 ### 128. export line
 
 **OUTPUT:**
-We are reviewing the papers in your case (Burglary in a dwelling, contrary to section 9(1)(b) of the Theft Act 1968). This is early-stage — nothing is final until we have full disclosure and your instructions. Some evidence is still outstanding on the papers, and we will update you when it is served. We are not saying the case is won or lost — we need the full material before giving firm advice.
+We are reviewing the papers in your case (Morgan Reid). This is early-stage — nothing is final until we have full disclosure and your instructions. A co-defendant interview summary is on the papers for segregation only. Your interview summary, audio, and transcript are still outstanding and must not be confused with the co-defendant material.
 
 **SURFACE:** export_pack / client_summary
 
@@ -7048,7 +7044,7 @@ We are reviewing the papers in your case (Burglary in a dwelling, contrary to se
 **REVIEW TIER:** SOURCE REVIEW
 
 **SOURCE:**
-Bundle: Statement of Offence: | Burglary in a dwelling, contrary to section 9(1)(b) of the Theft Act 1968.
+Section COVER_INDEX (p.6): Co-defendant interview summary (Tara Vale) | 6 | | Co-defendant Tara Vale interview summary is served. Target defendant Morgan Reid interview summary, transcript, and audio are outstanding. Co-defendant material must not be imported into Morgan Reid's account without segregation.
 
 **SOURCE STRENGTH:** weak
 
@@ -7056,16 +7052,16 @@ Bundle: Statement of Offence: | Burglary in a dwelling, contrary to section 9(1)
 
 **PROOF CHAIN:**
 - Document: bundle.pdf (pdf)
-- Page: — | Section: —
-- Extracted snippet: Statement of Offence: | Burglary in a dwelling, contrary to section 9(1)(b) of the Theft Act 1968.
-- PDF page available: no
-- PDF page evidence path: not generated
+- Page: 6 | Section: COVER_INDEX
+- Extracted snippet: Co-defendant interview summary (Tara Vale) | 6 | | Co-defendant Tara Vale interview summary is served. Target defendant Morgan Reid interview summary, transcript, and audio are outstanding. Co-defenda…
+- PDF page available: yes
+- PDF page evidence path: `artifacts/casebrain-qa/line-source-proof/demo-audit-04-co-def-interview/proof-chain-pages/p6.md`
 - Extraction confidence: fuzzy
-- Extraction issue: none
-- **Proof chain status: Text supports — PDF not checked**
+- Extraction issue: section_mismatch
+- **Proof chain status: PDF available but text mismatch**
 
 **WHY THIS SUPPORTS THE LINE:**
-Only generic schedule/index wording found — needs line-level snippet review: "Statement of Offence: | Burglary in a dwelling, contrary to section 9(1)(b) of the Theft Act 1968.".
+Only generic schedule/index wording found — needs line-level snippet review: "Co-defendant interview summary (Tara Vale) | 6 | | Co-defendant Tara Vale interview summary is served. Target defendant Morgan Reid intervie".
 
 **WHY THIS IS LIMITED:**
 Generic MG6/schedule label without line-level served/referred snippet.
@@ -7127,50 +7123,6 @@ No usable source anchor — solicitor must verify.
 ### 130. export line
 
 **OUTPUT:**
-Solicitor review required before sending to CPS, court, or client.
-
-**SURFACE:** export_pack / client_summary
-
-**CATEGORY:** export_line
-
-**REVIEW TIER:** SOURCE REVIEW
-
-**SOURCE:**
-no source found
-
-**SOURCE STRENGTH:** no_anchor
-
-**SUPPORT:** Source not available on papers
-
-**PROOF CHAIN:**
-- Document: bundle.pdf (pdf)
-- Page: — | Section: —
-- Extracted snippet: none
-- PDF page available: no
-- PDF page evidence path: not generated
-- Extraction confidence: unavailable
-- Extraction issue: none
-- **Proof chain status: No source on papers**
-
-**WHY THIS SUPPORTS THE LINE:**
-No direct bundle snippet located for this line.
-
-**WHY THIS IS LIMITED:**
-No usable source anchor — solicitor must verify.
-
-**GED REVIEW REASONS:** source_unavailable, meaningful_line_without_anchor, solicitor_review_required
-
-**SOLICITOR REVIEW REQUIRED:** yes
-
-**USEFULNESS:** solicitor_review_required
-
-**VERDICT:** WARNING
-
----
-
-### 131. export line
-
-**OUTPUT:**
 • Target defendant interview summary [Missing / Needs review] — Target defendant interview material outstanding.
 • Target defendant interview audio [Missing / Needs review] — Target defendant interview material outstanding.
 • Target defendant interview transcript [Missing / Needs review] — Target defendant interview materi
@@ -7218,7 +7170,7 @@ Generic MG6/schedule label without line-level served/referred snippet.
 
 ---
 
-### 132. export line
+### 131. export line
 
 **OUTPUT:**
 Solicitor review required before sending to CPS, court, or client.
@@ -7262,7 +7214,7 @@ No usable source anchor — solicitor must verify.
 
 ---
 
-### 133. export line
+### 132. export line
 
 **OUTPUT:**
 DO NOT OVERSTATE
@@ -7305,7 +7257,7 @@ No usable source anchor — solicitor must verify.
 
 ---
 
-### 134. export line
+### 133. export line
 
 **OUTPUT:**
 • Do not say: Do not import co-defendant interview into the target defendant account.
@@ -7348,7 +7300,7 @@ Generic MG6/schedule label without line-level served/referred snippet.
 
 ---
 
-### 135. export line
+### 134. export line
 
 **OUTPUT:**
 • Do not say: Morgan Reid admitted
@@ -7391,7 +7343,7 @@ No usable source anchor — solicitor must verify.
 
 ---
 
-### 136. export line
+### 135. export line
 
 **OUTPUT:**
 • Do not say: defendant's interview shows

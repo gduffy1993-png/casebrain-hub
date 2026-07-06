@@ -1,0 +1,193 @@
+
+=== demo-audit-01-phone-harassment ÔÇö DA-01 Riley Moss ÔÇö phone harassment / screenshots served ===
+  PDF: C:\Users\gduff\casebrain-hub\artifacts\evidence-state-audit-local\cases\demo-audit-01-phone-harassment\bundle.pdf (11 pages)
+  Extraction similarity: 100%
+  lines: 144  FAIL: 0  pdf+text: 65
+  ready: yes
+
+=== demo-audit-02-cctv-stills ÔÇö DA-02 Devon Walsh ÔÇö CCTV stills served / master footage missing ===
+  PDF: C:\Users\gduff\casebrain-hub\artifacts\evidence-state-audit-local\cases\demo-audit-02-cctv-stills\bundle.pdf (9 pages)
+  Extraction similarity: 99%
+  lines: 133  FAIL: 0  pdf+text: 55
+  ready: yes
+
+=== demo-audit-03-bwv-custody ÔÇö DA-03 Casey Fry ÔÇö BWV referred / custody extract only ===
+  PDF: C:\Users\gduff\casebrain-hub\artifacts\evidence-state-audit-local\cases\demo-audit-03-bwv-custody\bundle.pdf (7 pages)
+  Extraction similarity: 100%
+  lines: 141  FAIL: 0  pdf+text: 74
+  ready: yes
+
+=== demo-audit-04-co-def-interview ÔÇö DA-04 Morgan Reid ÔÇö co-defendant interview served / target interview missing ===
+  PDF: C:\Users\gduff\casebrain-hub\artifacts\evidence-state-audit-local\cases\demo-audit-04-co-def-interview\bundle.pdf (8 pages)
+  Extraction similarity: 100%
+  lines: 136  FAIL: 0  pdf+text: 42
+  ready: yes
+
+=== demo-audit-05-encro-attribution ÔÇö DA-05 Liam Craft ÔÇö Encro / county-lines attribution gap ===
+  PDF: C:\Users\gduff\casebrain-hub\artifacts\evidence-state-audit-local\cases\demo-audit-05-encro-attribution\bundle.pdf (9 pages)
+  Extraction similarity: 100%
+  lines: 132  FAIL: 0  pdf+text: 59
+  ready: yes
+
+=== demo-audit-06-domestic-stalking ÔÇö DA-06 Ava Quinn ÔÇö domestic stalking / screenshots served ===
+  PDF: C:\Users\gduff\casebrain-hub\artifacts\evidence-state-audit-local\cases\demo-audit-06-domestic-stalking\bundle.pdf (11 pages)
+  Extraction similarity: 100%
+  lines: 141  FAIL: 0  pdf+text: 61
+  ready: yes
+
+=== demo-audit-07-phone-ocr-trap ÔÇö DA-07 Noah Pierce ÔÇö phone OCR / attribution gap ===
+  PDF: C:\Users\gduff\casebrain-hub\artifacts\evidence-state-audit-local\cases\demo-audit-07-phone-ocr-trap\bundle.pdf (11 pages)
+  Extraction similarity: 100%
+  lines: 144  FAIL: 0  pdf+text: 60
+  ready: yes
+
+=== demo-audit-08-cctv-night-stills ÔÇö DA-08 Elena Brooks ÔÇö CCTV night stills / master missing ===
+  PDF: C:\Users\gduff\casebrain-hub\artifacts\evidence-state-audit-local\cases\demo-audit-08-cctv-night-stills\bundle.pdf (9 pages)
+  Extraction similarity: 100%
+  lines: 124  FAIL: 1  pdf+text: 50
+  ready: no (Proof FAIL lines: 1)
+
+=== demo-audit-09-cctv-index-only ÔÇö DA-09 Marcus Vale ÔÇö CCTV index-only master trap ===
+  PDF: C:\Users\gduff\casebrain-hub\artifacts\evidence-state-audit-local\cases\demo-audit-09-cctv-index-only\bundle.pdf (9 pages)
+  Extraction similarity: 100%
+  lines: 124  FAIL: 1  pdf+text: 50
+  ready: no (Proof FAIL lines: 1)
+
+=== demo-audit-10-bwv-public-order ÔÇö DA-10 Tessa Lane ÔÇö BWV referred / custody extract ===
+  PDF: C:\Users\gduff\casebrain-hub\artifacts\evidence-state-audit-local\cases\demo-audit-10-bwv-public-order\bundle.pdf (7 pages)
+  Extraction similarity: 100%
+  lines: 126  FAIL: 0  pdf+text: 60
+  ready: yes
+
+=== demo-audit-11-custody-pace-ocr ÔÇö DA-11 Owen Price ÔÇö custody PACE OCR trap ===
+  PDF: C:\Users\gduff\casebrain-hub\artifacts\evidence-state-audit-local\cases\demo-audit-11-custody-pace-ocr\bundle.pdf (7 pages)
+  Extraction similarity: 100%
+  lines: 126  FAIL: 0  pdf+text: 60
+  ready: yes
+
+=== demo-audit-12-multi-def-burglary ÔÇö DA-12 Harper Knox ÔÇö multi co-def / target interview missing ===
+  PDF: C:\Users\gduff\casebrain-hub\artifacts\evidence-state-audit-local\cases\demo-audit-12-multi-def-burglary\bundle.pdf (8 pages)
+  Extraction similarity: 100%
+  lines: 132  FAIL: 0  pdf+text: 61
+  ready: yes
+
+=== demo-audit-13-co-def-index-trap ÔÇö DA-13 Finn Doyle ÔÇö co-def index trap ===
+  PDF: C:\Users\gduff\casebrain-hub\artifacts\evidence-state-audit-local\cases\demo-audit-13-co-def-index-trap\bundle.pdf (8 pages)
+  Extraction similarity: 100%
+  lines: 132  FAIL: 0  pdf+text: 42
+  ready: yes
+
+=== demo-audit-14-encro-retail ÔÇö DA-14 Zara Holt ÔÇö Encro supply / attribution gap ===
+  PDF: C:\Users\gduff\casebrain-hub\artifacts\evidence-state-audit-local\cases\demo-audit-14-encro-retail\bundle.pdf (9 pages)
+  Extraction similarity: 100%
+  lines: 122  FAIL: 5  pdf+text: 49
+  ready: no (Proof FAIL lines: 5)
+
+=== demo-audit-15-county-lines-runners ÔÇö DA-15 Jayden Cole ÔÇö county lines Encro attribution ===
+  PDF: C:\Users\gduff\casebrain-hub\artifacts\evidence-state-audit-local\cases\demo-audit-15-county-lines-runners\bundle.pdf (9 pages)
+  Extraction similarity: 100%
+  lines: 122  FAIL: 5  pdf+text: 49
+  ready: no (Proof FAIL lines: 5)
+
+=== demo-audit-16-fraud-bank-statements ÔÇö DA-16 Isla Grant ÔÇö fraud / bank summaries served ===
+  PDF: C:\Users\gduff\casebrain-hub\artifacts\evidence-state-audit-local\cases\demo-audit-16-fraud-bank-statements\bundle.pdf (9 pages)
+  Extraction similarity: 100%
+  lines: 109  FAIL: 0  pdf+text: 39
+  ready: yes
+
+=== demo-audit-17-fraud-transaction-export ÔÇö DA-17 Caleb Moss ÔÇö fraud / tracing export referred ===
+  PDF: C:\Users\gduff\casebrain-hub\artifacts\evidence-state-audit-local\cases\demo-audit-17-fraud-transaction-export\bundle.pdf (9 pages)
+  Extraction similarity: 100%
+  lines: 109  FAIL: 0  pdf+text: 39
+  ready: yes
+
+=== demo-audit-18-motoring-sjp-thin ÔÇö DA-18 Ella Shaw ÔÇö motoring SJP thin file ===
+  PDF: C:\Users\gduff\casebrain-hub\artifacts\evidence-state-audit-local\cases\demo-audit-18-motoring-sjp-thin\bundle.pdf (7 pages)
+  Extraction similarity: 100%
+  lines: 123  FAIL: 1  pdf+text: 40
+  ready: no (Proof FAIL lines: 1)
+
+=== demo-audit-19-motoring-breath-specimen ÔÇö DA-19 Ryan Marsh ÔÇö breath specimen / calibration missing ===
+  PDF: C:\Users\gduff\casebrain-hub\artifacts\evidence-state-audit-local\cases\demo-audit-19-motoring-breath-specimen\bundle.pdf (7 pages)
+  Extraction similarity: 100%
+  lines: 123  FAIL: 1  pdf+text: 40
+  ready: no (Proof FAIL lines: 1)
+
+=== demo-audit-20-domestic-harassment ÔÇö DA-20 Sophie Reid ÔÇö domestic harassment digital ===
+  PDF: C:\Users\gduff\casebrain-hub\artifacts\evidence-state-audit-local\cases\demo-audit-20-domestic-harassment\bundle.pdf (11 pages)
+  Extraction similarity: 100%
+  lines: 141  FAIL: 0  pdf+text: 61
+  ready: yes
+
+=== demo-audit-21-historic-sexual-abe ÔÇö DA-21 Daniel Pike ÔÇö historic sexual / ABE missing ===
+  PDF: C:\Users\gduff\casebrain-hub\artifacts\evidence-state-audit-local\cases\demo-audit-21-historic-sexual-abe\bundle.pdf (9 pages)
+  Extraction similarity: 100%
+  lines: 118  FAIL: 0  pdf+text: 34
+  ready: yes
+
+=== demo-audit-22-youth-interview ÔÇö DA-22 Kian Doyle ÔÇö youth court / interview outstanding ===
+  PDF: C:\Users\gduff\casebrain-hub\artifacts\evidence-state-audit-local\cases\demo-audit-22-youth-interview\bundle.pdf (8 pages)
+  Extraction similarity: 100%
+  lines: 121  FAIL: 0  pdf+text: 33
+  ready: yes
+
+=== demo-audit-23-duplicate-pages ÔÇö DA-23 Leon Marsh ÔÇö duplicate index / phone pack ===
+  PDF: C:\Users\gduff\casebrain-hub\artifacts\evidence-state-audit-local\cases\demo-audit-23-duplicate-pages\bundle.pdf (11 pages)
+  Extraction similarity: 100%
+  lines: 141  FAIL: 0  pdf+text: 61
+  ready: yes
+
+=== demo-audit-24-missing-pages-index ÔÇö DA-24 Ashleigh Merritt ÔÇö missing pages index trap ===
+  PDF: C:\Users\gduff\casebrain-hub\artifacts\evidence-state-audit-local\cases\demo-audit-24-missing-pages-index\bundle.pdf (9 pages)
+  Extraction similarity: 100%
+  lines: 124  FAIL: 1  pdf+text: 50
+  ready: no (Proof FAIL lines: 1)
+
+=== demo-audit-25-charge-bundle-mismatch ÔÇö DA-25 Jordan Clarke ÔÇö Encro charge / bundle alignment ===
+  PDF: C:\Users\gduff\casebrain-hub\artifacts\evidence-state-audit-local\cases\demo-audit-25-charge-bundle-mismatch\bundle.pdf (9 pages)
+  Extraction similarity: 100%
+  lines: 122  FAIL: 5  pdf+text: 49
+  ready: no (Proof FAIL lines: 5)
+
+=== demo-audit-26-phone-referred-metadata ÔÇö DA-26 Taylor Brookes ÔÇö phone metadata referred only ===
+  PDF: C:\Users\gduff\casebrain-hub\artifacts\evidence-state-audit-local\cases\demo-audit-26-phone-referred-metadata\bundle.pdf (11 pages)
+  Extraction similarity: 100%
+  lines: 141  FAIL: 0  pdf+text: 61
+  ready: yes
+
+=== demo-audit-27-custody-pace-missing ÔÇö DA-27 Sam Okonkwo ÔÇö custody PACE material missing ===
+  PDF: C:\Users\gduff\casebrain-hub\artifacts\evidence-state-audit-local\cases\demo-audit-27-custody-pace-missing\bundle.pdf (7 pages)
+  Extraction similarity: 100%
+  lines: 126  FAIL: 0  pdf+text: 60
+  ready: yes
+
+=== demo-audit-28-fraud-subscriber-trap ÔÇö DA-28 Patterson Grant ÔÇö fraud with subscriber cross-trap ===
+  PDF: C:\Users\gduff\casebrain-hub\artifacts\evidence-state-audit-local\cases\demo-audit-28-fraud-subscriber-trap\bundle.pdf (9 pages)
+  Extraction similarity: 100%
+  lines: 120  FAIL: 0  pdf+text: 47
+  ready: yes
+
+=== demo-audit-29-youth-yjs-material ÔÇö DA-29 Marcus Reid ÔÇö youth YJS vulnerability referred ===
+  PDF: C:\Users\gduff\casebrain-hub\artifacts\evidence-state-audit-local\cases\demo-audit-29-youth-yjs-material\bundle.pdf (8 pages)
+  Extraction similarity: 100%
+  lines: 121  FAIL: 0  pdf+text: 33
+  ready: yes
+
+=== demo-audit-30-layout-hearing-date ÔÇö DA-30 Devon Walsh ÔÇö layout/OCR hearing date trap ===
+  PDF: C:\Users\gduff\casebrain-hub\artifacts\evidence-state-audit-local\cases\demo-audit-30-layout-hearing-date\bundle.pdf (9 pages)
+  Extraction similarity: 100%
+  lines: 124  FAIL: 1  pdf+text: 50
+  ready: no (Proof FAIL lines: 1)
+
+Master summary: C:\Users\gduff\casebrain-hub\artifacts\casebrain-qa\demo-audit-thirty\DEMO-AUDIT-THIRTY-SUMMARY.md
+
+9 case(s) flagged for Codex review (see scorecard blockers):
+  - demo-audit-08-cctv-night-stills: Proof FAIL lines: 1
+  - demo-audit-09-cctv-index-only: Proof FAIL lines: 1
+  - demo-audit-14-encro-retail: Proof FAIL lines: 5
+  - demo-audit-15-county-lines-runners: Proof FAIL lines: 5
+  - demo-audit-18-motoring-sjp-thin: Proof FAIL lines: 1
+  - demo-audit-19-motoring-breath-specimen: Proof FAIL lines: 1
+  - demo-audit-24-missing-pages-index: Proof FAIL lines: 1
+  - demo-audit-25-charge-bundle-mismatch: Proof FAIL lines: 5
+  - demo-audit-30-layout-hearing-date: Proof FAIL lines: 1

@@ -1,0 +1,548 @@
+{
+  "truthMap": [
+    {
+      "label": "Screenshot / message pack",
+      "existence": "served",
+      "note": "Served on papers — not full phone download or attribution proof."
+    },
+    {
+      "label": "Phone extraction summary",
+      "existence": "served"
+    },
+    {
+      "label": "Device metadata export",
+      "existence": "referred_only"
+    },
+    {
+      "label": "Complainant MG11 (draft)",
+      "existence": "served"
+    },
+    {
+      "label": "Attribution / subscriber material",
+      "existence": "not_safely_confirmed",
+      "note": "Handle mapping to defendant not served on current papers."
+    },
+    {
+      "label": "Full phone download",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    },
+    {
+      "label": "Subscriber / account data",
+      "existence": "missing",
+      "note": "Outstanding — cannot safely fix sender identity without this material."
+    }
+  ],
+  "mustNotOverstate": [
+    "Do not state the defendant sent messages unless attribution is served and safe.",
+    "defendant sent the messages",
+    "Sophie Reid sent",
+    "attribution is proved",
+    "Do not state \"witness statement is final\" — Witness statement is draft or unsigned on papers",
+    "Do not state \"MG11 is consistent and served\" — Witness statement is draft or unsigned on papers",
+    "Do not state \"MG11 served\" — Witness statement is draft or unsigned on papers"
+  ],
+  "evidenceTrace": {
+    "rows": [
+      {
+        "id": "allegation-0",
+        "section": "allegation",
+        "claim": "Harassment, contrary to section 2 of the Protection from Harassment Act 1997",
+        "existence": "served",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/004 — Full phone download / source export — outstanding — not on bundle.",
+        "sourceLabel": "Charge sheet / papers",
+        "inference": false
+      },
+      {
+        "id": "allegation-1",
+        "section": "allegation",
+        "claim": "Disclosure completeness and outstanding source material.",
+        "existence": "not_safely_confirmed",
+        "reliability": "needs_review",
+        "sourceLabel": "Matter confidence",
+        "inference": false,
+        "traceWarning": null
+      },
+      {
+        "id": "missing_referred-0",
+        "section": "missing_referred",
+        "claim": "Full phone download",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/004 — Full phone download / source export — outstanding — not on bundle.",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "missing_referred-1",
+        "section": "missing_referred",
+        "claim": "Subscriber / account data",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/003 — Subscriber/account data — outstanding — not on bundle.",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "missing_referred-2",
+        "section": "missing_referred",
+        "claim": "Full message export",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "missing_referred-3",
+        "section": "missing_referred",
+        "claim": "Call logs",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/005 — Call logs — outstanding — not on bundle.",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "missing_referred-4",
+        "section": "missing_referred",
+        "claim": "Device metadata export",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "missing_referred-5",
+        "section": "missing_referred",
+        "claim": "Final signed MG11",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "do_not_overstate-0",
+        "section": "do_not_overstate",
+        "claim": "Do not state the defendant sent messages unless attribution is served and safe.",
+        "existence": "not_safely_confirmed",
+        "reliability": "unsafe",
+        "sourceLabel": "Guardian / bundle guard",
+        "inference": true,
+        "traceWarning": null
+      },
+      {
+        "id": "do_not_overstate-1",
+        "section": "do_not_overstate",
+        "claim": "defendant sent the messages",
+        "existence": "not_safely_confirmed",
+        "reliability": "unsafe",
+        "sourceLabel": "Guardian / bundle guard",
+        "inference": false,
+        "traceWarning": null
+      },
+      {
+        "id": "do_not_overstate-2",
+        "section": "do_not_overstate",
+        "claim": "Sophie Reid sent",
+        "existence": "not_safely_confirmed",
+        "reliability": "unsafe",
+        "sourceLabel": "Guardian / bundle guard",
+        "inference": false,
+        "traceWarning": null
+      },
+      {
+        "id": "do_not_overstate-3",
+        "section": "do_not_overstate",
+        "claim": "attribution is proved",
+        "existence": "not_safely_confirmed",
+        "reliability": "unsafe",
+        "sourceLabel": "Guardian / bundle guard",
+        "inference": false,
+        "traceWarning": null
+      },
+      {
+        "id": "do_not_overstate-4",
+        "section": "do_not_overstate",
+        "claim": "Do not state \"witness statement is final\" — Witness statement is draft or unsigned on papers",
+        "existence": "not_safely_confirmed",
+        "reliability": "unsafe",
+        "sourceLabel": "Guardian / bundle guard",
+        "inference": true,
+        "traceWarning": null
+      },
+      {
+        "id": "do_not_overstate-5",
+        "section": "do_not_overstate",
+        "claim": "Do not state \"MG11 is consistent and served\" — Witness statement is draft or unsigned on papers",
+        "existence": "not_safely_confirmed",
+        "reliability": "unsafe",
+        "sourceLabel": "Guardian / bundle guard",
+        "inference": true,
+        "traceWarning": null
+      },
+      {
+        "id": "do_not_overstate-6",
+        "section": "do_not_overstate",
+        "claim": "Do not state \"MG11 served\" — Witness statement is draft or unsigned on papers",
+        "existence": "not_safely_confirmed",
+        "reliability": "unsafe",
+        "sourceLabel": "Guardian / bundle guard",
+        "inference": true,
+        "traceWarning": null
+      },
+      {
+        "id": "chase-0",
+        "section": "chase",
+        "claim": "Please provide Full phone download (see MG6C/004) or confirm in writing why it is not available.",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/004 — Full phone download / source export — outstanding — not on bundle.",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "chase-1",
+        "section": "chase",
+        "claim": "Please provide Subscriber / account data (see MG6C/003) or confirm in writing why it is not available.",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/003 — Subscriber/account data — outstanding — not on bundle.",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "chase-2",
+        "section": "chase",
+        "claim": "Please provide Full message export (see MG6C/001) or confirm in writing why it is not available.",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "chase-3",
+        "section": "chase",
+        "claim": "Please provide Call logs (see MG6C/005) or confirm in writing why it is not available.",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/005 — Call logs — outstanding — not on bundle.",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "chase-4",
+        "section": "chase",
+        "claim": "Please provide Device metadata export (see MG6C/001) or confirm in writing why it is not available.",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "court_note-0",
+        "section": "court_note",
+        "claim": "The defence asks the court to record per MG6C that screenshot/message material is served but full phone download, subscriber/account data, and final MG11 remain outstanding.",
+        "existence": "not_safely_confirmed",
+        "reliability": "needs_review",
+        "sourceLabel": "Disclosure chase brief",
+        "sourceAnchor": "MG6C/004 — Full phone download / source export — outstanding — not on bundle.",
+        "inference": false
+      }
+    ],
+    "bySection": {
+      "allegation": [
+        {
+          "id": "allegation-0",
+          "section": "allegation",
+          "claim": "Harassment, contrary to section 2 of the Protection from Harassment Act 1997",
+          "existence": "served",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/004 — Full phone download / source export — outstanding — not on bundle.",
+          "sourceLabel": "Charge sheet / papers",
+          "inference": false
+        },
+        {
+          "id": "allegation-1",
+          "section": "allegation",
+          "claim": "Disclosure completeness and outstanding source material.",
+          "existence": "not_safely_confirmed",
+          "reliability": "needs_review",
+          "sourceLabel": "Matter confidence",
+          "inference": false,
+          "traceWarning": null
+        }
+      ],
+      "key_evidence": [],
+      "missing_referred": [
+        {
+          "id": "missing_referred-0",
+          "section": "missing_referred",
+          "claim": "Full phone download",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/004 — Full phone download / source export — outstanding — not on bundle.",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        },
+        {
+          "id": "missing_referred-1",
+          "section": "missing_referred",
+          "claim": "Subscriber / account data",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/003 — Subscriber/account data — outstanding — not on bundle.",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        },
+        {
+          "id": "missing_referred-2",
+          "section": "missing_referred",
+          "claim": "Full message export",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        },
+        {
+          "id": "missing_referred-3",
+          "section": "missing_referred",
+          "claim": "Call logs",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/005 — Call logs — outstanding — not on bundle.",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        },
+        {
+          "id": "missing_referred-4",
+          "section": "missing_referred",
+          "claim": "Device metadata export",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        },
+        {
+          "id": "missing_referred-5",
+          "section": "missing_referred",
+          "claim": "Final signed MG11",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        }
+      ],
+      "do_not_overstate": [
+        {
+          "id": "do_not_overstate-0",
+          "section": "do_not_overstate",
+          "claim": "Do not state the defendant sent messages unless attribution is served and safe.",
+          "existence": "not_safely_confirmed",
+          "reliability": "unsafe",
+          "sourceLabel": "Guardian / bundle guard",
+          "inference": true,
+          "traceWarning": null
+        },
+        {
+          "id": "do_not_overstate-1",
+          "section": "do_not_overstate",
+          "claim": "defendant sent the messages",
+          "existence": "not_safely_confirmed",
+          "reliability": "unsafe",
+          "sourceLabel": "Guardian / bundle guard",
+          "inference": false,
+          "traceWarning": null
+        },
+        {
+          "id": "do_not_overstate-2",
+          "section": "do_not_overstate",
+          "claim": "Sophie Reid sent",
+          "existence": "not_safely_confirmed",
+          "reliability": "unsafe",
+          "sourceLabel": "Guardian / bundle guard",
+          "inference": false,
+          "traceWarning": null
+        },
+        {
+          "id": "do_not_overstate-3",
+          "section": "do_not_overstate",
+          "claim": "attribution is proved",
+          "existence": "not_safely_confirmed",
+          "reliability": "unsafe",
+          "sourceLabel": "Guardian / bundle guard",
+          "inference": false,
+          "traceWarning": null
+        },
+        {
+          "id": "do_not_overstate-4",
+          "section": "do_not_overstate",
+          "claim": "Do not state \"witness statement is final\" — Witness statement is draft or unsigned on papers",
+          "existence": "not_safely_confirmed",
+          "reliability": "unsafe",
+          "sourceLabel": "Guardian / bundle guard",
+          "inference": true,
+          "traceWarning": null
+        },
+        {
+          "id": "do_not_overstate-5",
+          "section": "do_not_overstate",
+          "claim": "Do not state \"MG11 is consistent and served\" — Witness statement is draft or unsigned on papers",
+          "existence": "not_safely_confirmed",
+          "reliability": "unsafe",
+          "sourceLabel": "Guardian / bundle guard",
+          "inference": true,
+          "traceWarning": null
+        },
+        {
+          "id": "do_not_overstate-6",
+          "section": "do_not_overstate",
+          "claim": "Do not state \"MG11 served\" — Witness statement is draft or unsigned on papers",
+          "existence": "not_safely_confirmed",
+          "reliability": "unsafe",
+          "sourceLabel": "Guardian / bundle guard",
+          "inference": true,
+          "traceWarning": null
+        }
+      ],
+      "chase": [
+        {
+          "id": "chase-0",
+          "section": "chase",
+          "claim": "Please provide Full phone download (see MG6C/004) or confirm in writing why it is not available.",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/004 — Full phone download / source export — outstanding — not on bundle.",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        },
+        {
+          "id": "chase-1",
+          "section": "chase",
+          "claim": "Please provide Subscriber / account data (see MG6C/003) or confirm in writing why it is not available.",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/003 — Subscriber/account data — outstanding — not on bundle.",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        },
+        {
+          "id": "chase-2",
+          "section": "chase",
+          "claim": "Please provide Full message export (see MG6C/001) or confirm in writing why it is not available.",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        },
+        {
+          "id": "chase-3",
+          "section": "chase",
+          "claim": "Please provide Call logs (see MG6C/005) or confirm in writing why it is not available.",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/005 — Call logs — outstanding — not on bundle.",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        },
+        {
+          "id": "chase-4",
+          "section": "chase",
+          "claim": "Please provide Device metadata export (see MG6C/001) or confirm in writing why it is not available.",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        }
+      ],
+      "court_note": [
+        {
+          "id": "court_note-0",
+          "section": "court_note",
+          "claim": "The defence asks the court to record per MG6C that screenshot/message material is served but full phone download, subscriber/account data, and final MG11 remain outstanding.",
+          "existence": "not_safely_confirmed",
+          "reliability": "needs_review",
+          "sourceLabel": "Disclosure chase brief",
+          "sourceAnchor": "MG6C/004 — Full phone download / source export — outstanding — not on bundle.",
+          "inference": false
+        }
+      ]
+    }
+  }
+}

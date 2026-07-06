@@ -99,8 +99,8 @@ Controlled/anonymised audit only unless solicitor-reviewed real bundles are used
 
 ### Proof ledger counts
 
-- Meaningful emitted lines: **132**
-- Warnings on case: **69**
+- Meaningful emitted lines: **131**
+- Warnings on case: **68**
 - Suppressed before display: **29**
 - Softened rewrites: **34**
 - Missing expected (source-led): **2**
@@ -411,7 +411,7 @@ _When verdict is PASS, unsupported material is usually correctly suppressed befo
 **Source:** MG6C/ENC/01 — Encro message extracts LC/MSG/01 — served on bundle.
 **Why safe / limited:** Safe and source-backed — Bundle mentions the material but does not serve it: "MG6C/ENC/01 — Encro message extracts LC/MSG/01 — served on bundle."
 
-_…and 92 more emitted lines (see JSON)._
+_…and 91 more emitted lines (see JSON)._
 
 ## 2. Suppressed candidate ledger
 
@@ -761,7 +761,9 @@ _…and 92 more emitted lines (see JSON)._
 
 ## 7. Surface safety ledger
 
-- none
+1. **client_summary** — Client-facing line may overstate proof strength.
+   - Line: We are reviewing the papers in your case (Liam Craft). This is early-stage — nothing is final until we have full…
+   - Safer: Mark provisional — explain what is served vs outstanding.
 
 ## 8. PDF / text proof chain
 
@@ -871,7 +873,7 @@ _…and 92 more emitted lines (see JSON)._
 **Note:** PDF page and extracted text both support this line.
 
 
-_…and 117 more proof-chain rows (see JSON)._
+_…and 116 more proof-chain rows (see JSON)._
 
 ---
 
@@ -883,16 +885,16 @@ Bundle source: `artifacts/evidence-state-audit-local/cases/demo-audit-05-encro-a
 
 ## Summary
 
-- Meaningful lines audited: **132**
+- Meaningful lines audited: **131**
 - Blocking failures: **0**
-- Unsupported output lines: **2**
-- Source review warnings: **47**
+- Unsupported output lines: **3**
+- Source review warnings: **46**
 - Solicitor caution lines: **22**
 - Clean source-backed lines: **37**
 - Generic safety guards: **26**
 - Positive correct findings: **63**
-- PASS: **63** | WARNING: **69** | FAIL: **0**
-- Lines requiring Ged review (tiered): **69**
+- PASS: **63** | WARNING: **68** | FAIL: **0**
+- Lines requiring Ged review (tiered): **68**
 
 ## Proof chain coverage
 
@@ -901,7 +903,7 @@ Bundle source: `artifacts/evidence-state-audit-local/cases/demo-audit-05-encro-a
 - pdf_and_text_support_output: **59**
 - text_supports_but_pdf_unchecked: **3**
 - pdf_available_but_text_mismatch: **0**
-- No source on papers: **70**
+- No source on papers: **69**
 - Output not supported (emitted): **0**
 - Emitted unsupported (ledger): **0**
 - Suppressed unsupported (ledger): **29**
@@ -910,7 +912,7 @@ PDF-backed proof chain: original PDF in case directory; bundle-text.md extracted
 
 ### Review tiers
 - BLOCKING REVIEW: 0
-- SOURCE REVIEW: 47
+- SOURCE REVIEW: 46
 - SOLICITOR CAUTION: 22
 - CLEAN SOURCE-BACKED: 37
 - GENERIC SAFETY GUARD: 26
@@ -925,15 +927,15 @@ PDF-backed proof chain: original PDF in case directory; bundle-text.md extracted
 - court_note: 3
 - client_summary: 1
 - contradiction_or_risk: 3
-- export_line: 18
+- export_line: 17
 
 ### By support status
-- Source not available on papers: 52
+- Source not available on papers: 50
 - Supported by bundle text: 20
 - Referred only — not safely served: 11
 - Missing on bundle: 28
 - partially supported: 19
-- Not supported by bundle: 1
+- Not supported by bundle: 2
 - Blocked — unsafe to emit: 1
 
 ## Lines requiring Ged review
@@ -944,7 +946,7 @@ Tiered review queue — blocking issues first, then source gaps, then solicitor 
 
 - none
 
-### SOURCE REVIEW (47)
+### SOURCE REVIEW (46)
 
 1. **WARNING** — evidence_claim — overview / five_answers
    - Output: Being concerned in the supply of a controlled drug of Class A, namely cocaine
@@ -1122,109 +1124,105 @@ Tiered review queue — blocking issues first, then source gaps, then solicitor 
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
 44. **WARNING** — export_line — export_pack / client_summary
-   - Output: We are reviewing the papers in your case (Being concerned in the supply of a controlled drug of Class A, namely cocaine)…
-   - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
+   - Output: We are reviewing the papers in your case (Liam Craft). This is early-stage — nothing is final until we have full disclos…
+   - Reasons: source_unavailable, adjacent_source_mismatch, solicitor_review_required, meaningful_line_without_anchor
    - Source: no source found
 45. **WARNING** — export_line — export_pack / client_summary
    - Output: [CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
-46. **WARNING** — export_line — export_pack / client_summary
-   - Output: Solicitor review required before sending to CPS, court, or client.
-   - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
-   - Source: no source found
-47. **WARNING** — export_line — export_pack / evidence_gaps
+46. **WARNING** — export_line — export_pack / evidence_gaps
    - Output: Solicitor review required before sending to CPS, court, or client.
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
 
 ### SOLICITOR CAUTION (22)
 
-48. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
+47. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
    - Output: Platform / source extraction — referred_only
    - Reasons: tier classification
    - Source: MG6C/ENC/02 — Platform/source extraction — referred on MG6 — export not attached.
-49. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
+48. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
    - Output: Platform / source extraction: referred_only / weak
    - Reasons: tier classification
    - Source: MG6C/ENC/02 — Platform/source extraction — referred on MG6 — export not attached.
-50. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
+49. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
    - Output: Handle attribution report
    - Reasons: tier classification
    - Source: MG6C/ENC/03 — Handle attribution report (NIGHTLINE-77) — outstanding — not on bundle.
-51. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
+50. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
    - Output: Subscriber / account data
    - Reasons: tier classification
    - Source: MG6C/ENC/04 — Subscriber/account data — outstanding.
-52. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
+51. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
    - Output: Device continuity
    - Reasons: tier classification
    - Source: MG6C/ENC/05 — Device continuity — outstanding.
-53. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
+52. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
    - Output: Full download / export
    - Reasons: tier classification
    - Source: MG6C/ENC/07 — Full download/export — outstanding.
-54. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
+53. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
    - Output: Please provide Full download / export (see MG6C/ENC/07) or confirm in writing why it is not available.
    - Reasons: tier classification
    - Source: MG6C/ENC/01 — Encro message extracts LC/MSG/01 — served on bundle.
-55. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
+54. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
    - Output: The defence asks the court to record per MG6C that message extracts are served and handle attribution report and platfor…
    - Reasons: tier classification
    - Source: MG6C/ENC/02 — Platform/source extraction — referred on MG6 — export not attached.
-56. **WARNING** — chase_request — chase
+55. **WARNING** — chase_request — chase
    - Output: Platform / source extraction
    - Reasons: tier classification
    - Source: MG6C/ENC/02 — Platform/source extraction — referred on MG6 — export not attached.
-57. **WARNING** — chase_request — chase
+56. **WARNING** — chase_request — chase
    - Output: Handle attribution report
    - Reasons: tier classification
    - Source: MG6C/ENC/03 — Handle attribution report (NIGHTLINE-77) — outstanding — not on bundle.
-58. **WARNING** — chase_request — chase
+57. **WARNING** — chase_request — chase
    - Output: Subscriber / account data
    - Reasons: tier classification
    - Source: MG6C/ENC/04 — Subscriber/account data — outstanding.
-59. **WARNING** — chase_request — chase
+58. **WARNING** — chase_request — chase
    - Output: Device continuity
    - Reasons: tier classification
    - Source: MG6C/ENC/05 — Device continuity — outstanding.
-60. **WARNING** — chase_request — chase
+59. **WARNING** — chase_request — chase
    - Output: Full download / export
    - Reasons: tier classification
    - Source: MG6C/ENC/07 — Full download/export — outstanding.
-61. **WARNING** — evidence_state — hearing_mode / court_prep
+60. **WARNING** — evidence_state — hearing_mode / court_prep
    - Output: Full download / export: Missing / Needs review — Full source download needed before attribution can be safely assessed.
    - Reasons: tier classification
    - Source: Encro-style message extracts are served. Handle NIGHTLINE-77 appears in thread. Mapping of handle/ph…
-62. **WARNING** — strategic_review — summary / risks
+61. **WARNING** — strategic_review — summary / risks
    - Output: phone proves role
    - Reasons: tier classification
    - Source: MG6C/ENC/02 — Platform/source extraction — referred on MG6 — export not attached.
-63. **WARNING** — strategic_review — summary / opportunities
+62. **WARNING** — strategic_review — summary / opportunities
    - Output: Attribution / continuity leverage: Handle-to-defendant mapping not served on MG6C.
    - Reasons: tier classification
    - Source: MG6C/ENC/01 — Encro message extracts LC/MSG/01 — served on bundle.
-64. **WARNING** — strategic_review — summary / opportunities
+63. **WARNING** — strategic_review — summary / opportunities
    - Output: Disclosure leverage: Subscriber/account data needed per MG6C.
    - Reasons: tier classification
    - Source: MG6C/ENC/01 — Encro message extracts LC/MSG/01 — served on bundle.
-65. **WARNING** — strategic_review — summary / chase
+64. **WARNING** — strategic_review — summary / chase
    - Output: Handle attribution report — Handle-to-defendant mapping not served on MG6C.
    - Reasons: tier classification
    - Source: MG6C/ENC/01 — Encro message extracts LC/MSG/01 — served on bundle.
-66. **WARNING** — strategic_review — summary / chase
+65. **WARNING** — strategic_review — summary / chase
    - Output: Subscriber / account data — Subscriber/account data needed per MG6C.
    - Reasons: tier classification
    - Source: MG6C/ENC/01 — Encro message extracts LC/MSG/01 — served on bundle.
-67. **WARNING** — strategic_review — decision_board
+66. **WARNING** — strategic_review — decision_board
    - Output: Served phone/search material may strengthen possession or intent once reviewed.
    - Reasons: tier classification
    - Source: MG6C/ENC/02 — Platform/source extraction — referred on MG6 — export not attached.
-68. **WARNING** — strategic_review — decision_board
+67. **WARNING** — strategic_review — decision_board
    - Output: Disclosure pressure: Subscriber/account data needed per MG6C.
    - Reasons: tier classification
    - Source: MG6C/ENC/01 — Encro message extracts LC/MSG/01 — served on bundle.
-69. **WARNING** — contradiction_or_risk — advice_change_radar
+68. **WARNING** — contradiction_or_risk — advice_change_radar
    - Output: Platform / source extraction — Referred only — Review: Review needed because platform / source extraction is referred on…
    - Reasons: tier classification
    - Source: MG6C/ENC/02 — Platform/source extraction — referred on MG6 — export not attached.
@@ -1272,7 +1270,7 @@ Tiered review queue — blocking issues first, then source gaps, then solicitor 
 
 ### Proof chain roll-up
 
-- Lines judged from extracted text only (PDF unchecked): **73**
+- Lines judged from extracted text only (PDF unchecked): **72**
 - Lines where source text and output disagree / unsupported: **0**
 - Lines text-supported but PDF unchecked: **3**
 
@@ -6872,7 +6870,7 @@ No usable source anchor — solicitor must verify.
 ### 124. export line
 
 **OUTPUT:**
-We are reviewing the papers in your case (Being concerned in the supply of a controlled drug of Class A, namely cocaine). This is early-stage — nothing is final until we have full disclosure and your instructions. Some evidence is still outstanding on the papers, and we will update you when it is served. We are not saying the case is won or lost — we need the full material before giving firm advic
+We are reviewing the papers in your case (Liam Craft). This is early-stage — nothing is final until we have full disclosure and your instructions. Message extracts are on the papers, but the handle attribution report, platform/source extraction, and subscriber continuity material are still outstanding. The extracts alone do not prove your role or identity on the account.
 
 **SURFACE:** export_pack / client_summary
 
@@ -6885,7 +6883,7 @@ no source found
 
 **SOURCE STRENGTH:** no_anchor
 
-**SUPPORT:** Source not available on papers
+**SUPPORT:** Not supported by bundle
 
 **PROOF CHAIN:**
 - Document: bundle.pdf (pdf)
@@ -6894,16 +6892,16 @@ no source found
 - PDF page available: no
 - PDF page evidence path: not generated
 - Extraction confidence: unavailable
-- Extraction issue: none
+- Extraction issue: section_mismatch
 - **Proof chain status: No source on papers**
 
 **WHY THIS SUPPORTS THE LINE:**
 No direct bundle snippet located for this line.
 
 **WHY THIS IS LIMITED:**
-No usable source anchor — solicitor must verify.
+Source snippet is for a different evidence topic.
 
-**GED REVIEW REASONS:** source_unavailable, meaningful_line_without_anchor, solicitor_review_required
+**GED REVIEW REASONS:** source_unavailable, adjacent_source_mismatch, solicitor_review_required, meaningful_line_without_anchor
 
 **SOLICITOR REVIEW REQUIRED:** yes
 
@@ -6960,50 +6958,6 @@ No usable source anchor — solicitor must verify.
 ### 126. export line
 
 **OUTPUT:**
-Solicitor review required before sending to CPS, court, or client.
-
-**SURFACE:** export_pack / client_summary
-
-**CATEGORY:** export_line
-
-**REVIEW TIER:** SOURCE REVIEW
-
-**SOURCE:**
-no source found
-
-**SOURCE STRENGTH:** no_anchor
-
-**SUPPORT:** Source not available on papers
-
-**PROOF CHAIN:**
-- Document: bundle.pdf (pdf)
-- Page: — | Section: —
-- Extracted snippet: none
-- PDF page available: no
-- PDF page evidence path: not generated
-- Extraction confidence: unavailable
-- Extraction issue: none
-- **Proof chain status: No source on papers**
-
-**WHY THIS SUPPORTS THE LINE:**
-No direct bundle snippet located for this line.
-
-**WHY THIS IS LIMITED:**
-No usable source anchor — solicitor must verify.
-
-**GED REVIEW REASONS:** source_unavailable, meaningful_line_without_anchor, solicitor_review_required
-
-**SOLICITOR REVIEW REQUIRED:** yes
-
-**USEFULNESS:** solicitor_review_required
-
-**VERDICT:** WARNING
-
----
-
-### 127. export line
-
-**OUTPUT:**
 • Platform / source extraction [Referred only / Weak] — Platform/source extraction outstanding or referred on MG6C. — referred only, not usable as proof.
 • Handle attribution report [Missing / Needs review] — Handle-to-defendant mapping not served on MG6C.
 • Subscriber / account data [Missing / Needs review] — Subscriber/account data needed per MG6C. — still c
@@ -7051,7 +7005,7 @@ Referred on schedule or in narrative — not safely served as proof.
 
 ---
 
-### 128. export line
+### 127. export line
 
 **OUTPUT:**
 Solicitor review required before sending to CPS, court, or client.
@@ -7095,7 +7049,7 @@ No usable source anchor — solicitor must verify.
 
 ---
 
-### 129. export line
+### 128. export line
 
 **OUTPUT:**
 DO NOT OVERSTATE
@@ -7138,7 +7092,7 @@ No usable source anchor — solicitor must verify.
 
 ---
 
-### 130. export line
+### 129. export line
 
 **OUTPUT:**
 • Do not say: Do not treat handle or phone reference as proof of the defendant role without served attribution.
@@ -7181,7 +7135,7 @@ Source snippet is for a different evidence topic.
 
 ---
 
-### 131. export line
+### 130. export line
 
 **OUTPUT:**
 • Do not say: handle proves defendant
@@ -7227,7 +7181,7 @@ bom.handle_attribution_as_fact
 
 ---
 
-### 132. export line
+### 131. export line
 
 **OUTPUT:**
 • Do not say: NIGHTLINE-77 is Liam Craft

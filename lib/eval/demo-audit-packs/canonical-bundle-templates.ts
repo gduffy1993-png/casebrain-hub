@@ -88,7 +88,7 @@ Evidence on file (served)
 Charge sheet; MG5; MG6C schedule; draft complainant MG11; screenshot/message pack (${ep}/01); exhibit list; police attribution note.
 
 Evidence referred or outstanding
-Full phone download/source export; subscriber/account data; full message export; call logs; device-level extraction metadata; final signed MG11; MG6C clarification on unused material.
+Full phone download/source export; subscriber/account data; full message export; call logs; device-level extraction metadata; final signed MG11.
 
 === SECTION: MG6 ===
 
@@ -101,7 +101,7 @@ MG6C/004 — Full phone download / source export — outstanding — not on bund
 MG6C/005 — Call logs — outstanding — not on bundle.
 MG6C/006 — Device metadata export — referred on MG6C — not attached.
 MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.
-MG6C/008 — Additional unused material — clarification sought.
+MG6C/008 — Full message export (native format) — referred on MG6C — not attached.
 
 === SECTION: MG11 ===
 
@@ -180,7 +180,7 @@ export function phoneHarassmentTruthKey(
       { evidence_item: "complainant MG11", evidence_type: "mg11", correct_evidence_state: "incomplete", chase_needed: true, safe_to_rely_on: false },
       { evidence_item: "attribution material", evidence_type: "phone_digital", correct_evidence_state: "not_safely_confirmed", chase_needed: true, safe_to_rely_on: false, must_not_say: [`${defendant} sent`, "defendant sent"] },
     ],
-    expectedChaseItems: ["full phone download", "subscriber/account data", "full message export", "final signed MG11", "MG6C clarification"],
+    expectedChaseItems: ["full phone download", "subscriber/account data", "full message export", "call logs", "device metadata export", "final signed MG11"],
     expectedSendability: "provisional_check_source",
     mustNotSayGlobal: ["defendant sent the messages", `${defendant} sent`, "attribution is proved", "BWV shows", "CCTV proves"],
     blockingFailPatterns: ["defendant sent each message", "guaranteed"],
@@ -243,7 +243,7 @@ URN: ${p.urn}
 Officer in case: ${p.officer}
 
 Headline Summary
-CCTV still images are served. Master CCTV footage, full export, continuity, and audit trail are outstanding. Identification from stills alone is not safely confirmed on current papers.
+CCTV still images are served. Master CCTV footage, full export, continuity, audit trail, and recognition/ID basis are outstanding. Identification from stills alone is not safely confirmed on current papers.
 
 === SECTION: MG6 ===
 
@@ -254,6 +254,7 @@ MG6C/CCTV/02 — Master CCTV footage camera 4 — outstanding — not on bundle.
 MG6C/CCTV/03 — Full CCTV export (native format) — referred on MG6C — export not attached.
 MG6C/CCTV/04 — Continuity and provenance statement — outstanding.
 MG6C/CCTV/05 — Audit trail / source file hash record — outstanding.
+MG6C/CCTV/06 — Recognition / ID basis — outstanding — not on bundle.
 
 === SECTION: MG11 ===
 
@@ -261,7 +262,7 @@ MG11 — OFFICER STATEMENT (${p.officer})
 
 1. I attended following a report of shop theft.
 2. CCTV still images ${ep}/CCTV/01 are served on this bundle. Master footage and full export are NOT served.
-3. Stills show a person in relevant aisle. Image quality is limited. I cannot rely on stills alone for positive identification.
+3. Stills show a person in relevant aisle. Image quality is limited. I cannot rely on stills alone for positive identification. Recognition statement and ID basis are NOT on bundle.
 
 === SECTION: CCTV_STILLS ===
 
@@ -313,7 +314,7 @@ export function cctvTheftTruthKey(caseId: string, title: string): EvidenceStateT
         must_not_say: ["CCTV proves identity", "CCTV proves offence"],
       },
     ],
-    expectedChaseItems: ["master cctv footage", "full cctv export", "continuity/provenance", "audit trail"],
+    expectedChaseItems: ["master cctv footage", "full cctv export", "continuity/provenance", "CCTV audit trail / source hash record", "recognition/ID basis"],
     expectedSendability: "provisional_check_source",
     mustNotSayGlobal: [
       "CCTV proves identity",
@@ -1169,8 +1170,9 @@ export function youthTruthKey(caseId: string, title: string, yjsVariant?: boolea
       { evidence_item: "full YJS pre-sentence report", evidence_type: "yjs", correct_evidence_state: "missing", chase_needed: true, safe_to_rely_on: false },
       { evidence_item: "vulnerability assessment", evidence_type: "yjs", correct_evidence_state: yjsVariant ? "referred_only" : "missing", chase_needed: true, safe_to_rely_on: false },
       { evidence_item: "youth interview audio", evidence_type: "interview", correct_evidence_state: "missing", chase_needed: true, safe_to_rely_on: false },
+      { evidence_item: "appropriate adult continuity", evidence_type: "yjs", correct_evidence_state: "missing", chase_needed: true, safe_to_rely_on: false },
     ],
-    expectedChaseItems: ["full YJS pre-sentence report", "vulnerability assessment", "youth interview audio"],
+    expectedChaseItems: ["full YJS pre-sentence report", "vulnerability assessment", "youth interview audio", "appropriate adult continuity"],
     expectedSendability: "provisional_check_source",
     mustNotSayGlobal: ["youth guilt proved", "BWV shows", "full interview shows"],
     blockingFailPatterns: ["guaranteed conviction"],

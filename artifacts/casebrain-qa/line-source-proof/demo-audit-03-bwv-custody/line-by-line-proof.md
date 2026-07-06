@@ -94,14 +94,14 @@ Controlled/anonymised audit only unless solicitor-reviewed real bundles are used
 
 ### Proof ledger counts
 
-- Meaningful emitted lines: **141**
-- Warnings on case: **72**
+- Meaningful emitted lines: **140**
+- Warnings on case: **66**
 - Suppressed before display: **25**
 - Softened rewrites: **36**
 - Missing expected (source-led): **0**
-- Clean source-backed: **35**
+- Clean source-backed: **40**
 - Possible false suppressions: **0**
-- PDF + text supported: **74** | Text-only supported: **34**
+- PDF + text supported: **76** | Text-only supported: **33**
 
 ### Unsupported output (clarified)
 
@@ -409,7 +409,7 @@ _When verdict is PASS, unsupported material is usually correctly suppressed befo
 **Source:** MG6C/015 — PACE safeguards detail — outstanding.
 **Why safe / limited:** Use with caution — MG6/schedule reference only — export not served.
 
-_…and 101 more emitted lines (see JSON)._
+_…and 100 more emitted lines (see JSON)._
 
 ## 2. Suppressed candidate ledger
 
@@ -861,7 +861,7 @@ _…and 101 more emitted lines (see JSON)._
 **Note:** PDF page and extracted text both support this line.
 
 
-_…and 126 more proof-chain rows (see JSON)._
+_…and 125 more proof-chain rows (see JSON)._
 
 ---
 
@@ -873,25 +873,25 @@ Bundle source: `artifacts/evidence-state-audit-local/cases/demo-audit-03-bwv-cus
 
 ## Summary
 
-- Meaningful lines audited: **141**
+- Meaningful lines audited: **140**
 - Blocking failures: **0**
 - Unsupported output lines: **0**
-- Source review warnings: **33**
-- Solicitor caution lines: **39**
-- Clean source-backed lines: **35**
+- Source review warnings: **30**
+- Solicitor caution lines: **36**
+- Clean source-backed lines: **40**
 - Generic safety guards: **34**
-- Positive correct findings: **70**
-- PASS: **69** | WARNING: **72** | FAIL: **0**
-- Lines requiring Ged review (tiered): **72**
+- Positive correct findings: **75**
+- PASS: **74** | WARNING: **66** | FAIL: **0**
+- Lines requiring Ged review (tiered): **66**
 
 ## Proof chain coverage
 
 - Case proof mode: **pdf_and_text**
 - Original PDF available: **yes**
-- pdf_and_text_support_output: **74**
-- text_supports_but_pdf_unchecked: **26**
+- pdf_and_text_support_output: **76**
+- text_supports_but_pdf_unchecked: **25**
 - pdf_available_but_text_mismatch: **0**
-- No source on papers: **41**
+- No source on papers: **39**
 - Output not supported (emitted): **0**
 - Emitted unsupported (ledger): **0**
 - Suppressed unsupported (ledger): **25**
@@ -900,9 +900,9 @@ PDF-backed proof chain: original PDF in case directory; bundle-text.md extracted
 
 ### Review tiers
 - BLOCKING REVIEW: 0
-- SOURCE REVIEW: 33
-- SOLICITOR CAUTION: 39
-- CLEAN SOURCE-BACKED: 35
+- SOURCE REVIEW: 30
+- SOLICITOR CAUTION: 36
+- CLEAN SOURCE-BACKED: 40
 - GENERIC SAFETY GUARD: 34
 
 ### By category
@@ -915,14 +915,14 @@ PDF-backed proof chain: original PDF in case directory; bundle-text.md extracted
 - court_note: 3
 - client_summary: 1
 - contradiction_or_risk: 3
-- export_line: 18
+- export_line: 17
 
 ### By support status
-- partially supported: 31
-- Source not available on papers: 33
+- partially supported: 30
+- Source not available on papers: 31
 - Referred only — not safely served: 19
 - Supported by bundle text: 30
-- Missing on bundle: 28
+- Missing on bundle: 30
 
 ## Lines requiring Ged review
 
@@ -932,7 +932,7 @@ Tiered review queue — blocking issues first, then source gaps, then solicitor 
 
 - none
 
-### SOURCE REVIEW (33)
+### SOURCE REVIEW (30)
 
 1. **WARNING** — evidence_claim — overview / five_answers
    - Output: Assault an emergency worker, contrary to section 1 of the Assaults on Emergency Workers (Offences) Act 2018
@@ -978,253 +978,229 @@ Tiered review queue — blocking issues first, then source gaps, then solicitor 
    - Output: Missing expert/source report comes back against defence.
    - Reasons: source_unavailable
    - Source: no source found
-12. **WARNING** — strategic_review — summary / opportunities
-   - Output: Disclosure leverage: Outstanding on current disclosure — chase before fixing hearing position.
-   - Reasons: source_unavailable
-   - Source: no source found
-13. **WARNING** — strategic_review — summary / ptph
+12. **WARNING** — strategic_review — summary / ptph
    - Output: Provisional — for solicitor review before court.
    - Reasons: source_unavailable, solicitor_review_required
    - Source: no source found
-14. **WARNING** — strategic_review — summary / ptph
+13. **WARNING** — strategic_review — summary / ptph
    - Output: Invite the court to order disclosure by a fixed date with a review hearing.
    - Reasons: source_unavailable
    - Source: no source found
-15. **WARNING** — strategic_review — summary / ptph
+14. **WARNING** — strategic_review — summary / ptph
    - Output: The defence cannot confirm final issues until disclosure is complete.
    - Reasons: source_unavailable
    - Source: no source found
-16. **WARNING** — client_summary — summary / client
+15. **WARNING** — client_summary — summary / client
    - Output: We are reviewing the papers in your case (Assault an emergency worker, contrary to section 1 of the Assaults on Emergenc…
    - Reasons: generic_source_only, solicitor_review_required
    - Source: Statement of Offence: | Assault an emergency worker, contrary to section 1 of the Assaults on Emerge…
-17. **WARNING** — court_note — summary / court_day
+16. **WARNING** — court_note — summary / court_day
    - Output: Court-day position line is on the Today tab (Before court). This brief mirrors chase and theory only.
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
-18. **WARNING** — confidence_status — confidence_dashboard
+17. **WARNING** — confidence_status — confidence_dashboard
    - Output: Confidence: Needs review before relying — Human review or material gaps flagged on current papers.
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
-19. **WARNING** — confidence_status — confidence_dashboard
+18. **WARNING** — confidence_status — confidence_dashboard
    - Output: Chase sendability: needs_solicitor_review; Summary sendability: needs_solicitor_review
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
-20. **WARNING** — strategic_review — decision_board
+19. **WARNING** — strategic_review — decision_board
    - Output: Chase outstanding disclosure and record provisional hearing position.
    - Reasons: source_unavailable
    - Source: no source found
-21. **WARNING** — strategic_review — decision_board
+20. **WARNING** — strategic_review — decision_board
    - Output: Referred only — not usable as proof until served.
    - Reasons: source_unavailable
    - Source: no source found
-22. **WARNING** — strategic_review — decision_board
+21. **WARNING** — strategic_review — decision_board
    - Output: Disclosure pressure: Disclosure completeness and outstanding source material.
    - Reasons: source_unavailable
    - Source: no source found
-23. **WARNING** — strategic_review — decision_board
+22. **WARNING** — strategic_review — decision_board
    - Output: Possible issue — needs evidence before reliance.
    - Reasons: source_unavailable
    - Source: no source found
-24. **WARNING** — strategic_review — decision_board
+23. **WARNING** — strategic_review — decision_board
    - Output: Chase outstanding disclosure and record provisional hearing position.
    - Reasons: source_unavailable
    - Source: no source found
-25. **WARNING** — export_line — export_pack / cps_chase
+24. **WARNING** — export_line — export_pack / cps_chase
    - Output: CPS DISCLOSURE CHASE DRAFT
 (not for court — requests material only)
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
-26. **WARNING** — export_line — export_pack / court_note
+25. **WARNING** — export_line — export_pack / court_note
    - Output: COURT NOTE
 (not for CPS chase)
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
-27. **WARNING** — export_line — export_pack / court_note
+26. **WARNING** — export_line — export_pack / court_note
    - Output: [CaseBrain — court line copy. Evidence state: needs review. Confirm before addressing the court.]
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
-28. **WARNING** — export_line — export_pack / court_note
+27. **WARNING** — export_line — export_pack / court_note
    - Output: Solicitor review required before sending to CPS, court, or client.
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
-29. **WARNING** — export_line — export_pack / client_summary
+28. **WARNING** — export_line — export_pack / client_summary
    - Output: CLIENT-SAFE SUMMARY
 (not for court or CPS)
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
-30. **WARNING** — export_line — export_pack / client_summary
-   - Output: We are reviewing the papers in your case (Assault an emergency worker, contrary to section 1 of the Assaults on Emergenc…
-   - Reasons: generic_source_only, solicitor_review_required
-   - Source: Statement of Offence: | Assault an emergency worker, contrary to section 1 of the Assaults on Emerge…
-31. **WARNING** — export_line — export_pack / client_summary
+29. **WARNING** — export_line — export_pack / client_summary
    - Output: [CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
-32. **WARNING** — export_line — export_pack / client_summary
-   - Output: Solicitor review required before sending to CPS, court, or client.
-   - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
-   - Source: no source found
-33. **WARNING** — export_line — export_pack / evidence_gaps
+30. **WARNING** — export_line — export_pack / evidence_gaps
    - Output: Solicitor review required before sending to CPS, court, or client.
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
 
-### SOLICITOR CAUTION (39)
+### SOLICITOR CAUTION (36)
 
-34. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
+31. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
    - Output: Interview audio — missing — Outstanding on current disclosure.
    - Reasons: tier classification
    - Source: Officer account and short custody extract are served. Body-worn video is referred on MG6C but not at…
-35. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
+32. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
    - Output: Interview transcript — missing — Outstanding on current disclosure.
    - Reasons: tier classification
    - Source: Officer account and short custody extract are served. Body-worn video is referred on MG6C but not at…
-36. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
+33. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
    - Output: Assault an emergency worker, contrary to section 1 of the Assaults on Emergency Workers (Offences) Act 2018
    - Reasons: tier classification
    - Source: MG6C/010 — Body-worn video PC Daniels — referred on schedule — full export not attached.
-37. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
+34. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
    - Output: Interview audio
+   - Reasons: tier classification
+   - Source: MG6C/013 — Interview audio — outstanding — not on bundle.
+35. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
+   - Output: Interview transcript
+   - Reasons: tier classification
+   - Source: MG6C/014 — Interview transcript — outstanding.
+36. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
+   - Output: PACE safeguards detail
+   - Reasons: tier classification
+   - Source: MG6C/015 — PACE safeguards detail — outstanding.
+37. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
+   - Output: Please provide Interview audio (see MG6C/013) or confirm in writing why it is not available.
    - Reasons: tier classification
    - Source: MG6C/013 — Interview audio — outstanding — not on bundle.
 38. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
-   - Output: Interview transcript
+   - Output: Please provide Interview transcript (see MG6C/014) or confirm in writing why it is not available.
    - Reasons: tier classification
    - Source: MG6C/014 — Interview transcript — outstanding.
 39. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
-   - Output: PACE safeguards detail
-   - Reasons: tier classification
-   - Source: MG6C/015 — PACE safeguards detail — outstanding.
-40. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
-   - Output: Please provide Interview audio (see MG6C/013) or confirm in writing why it is not available.
-   - Reasons: tier classification
-   - Source: MG6C/013 — Interview audio — outstanding — not on bundle.
-41. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
-   - Output: Please provide Interview transcript (see MG6C/014) or confirm in writing why it is not available.
-   - Reasons: tier classification
-   - Source: MG6C/014 — Interview transcript — outstanding.
-42. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
    - Output: Please provide PACE safeguards detail (see MG6C/015) or confirm in writing why it is not available.
    - Reasons: tier classification
    - Source: MG6C/015 — PACE safeguards detail — outstanding.
-43. **WARNING** — chase_request — chase
+40. **WARNING** — chase_request — chase
    - Output: Full BWV export
    - Reasons: tier classification
    - Source: MG6C/010 — Body-worn video PC Daniels — referred on schedule — full export not attached.
-44. **WARNING** — chase_request — chase
+41. **WARNING** — chase_request — chase
    - Output: Full custody record
    - Reasons: tier classification
    - Source: MG6C/011 — Custody record — extract only served — full record outstanding.
-45. **WARNING** — chase_request — chase
+42. **WARNING** — chase_request — chase
    - Output: Interview audio
    - Reasons: tier classification
    - Source: MG6C/013 — Interview audio — outstanding — not on bundle.
-46. **WARNING** — chase_request — chase / CPS
+43. **WARNING** — chase_request — chase / CPS
    - Output: Please provide Interview audio (see MG6C/013) or confirm in writing why it is not available.
    - Reasons: tier classification
    - Source: MG6C/013 — Interview audio — outstanding — not on bundle.
-47. **WARNING** — chase_request — chase
+44. **WARNING** — chase_request — chase
    - Output: Interview transcript
    - Reasons: tier classification
    - Source: MG6C/014 — Interview transcript — outstanding.
-48. **WARNING** — chase_request — chase / CPS
+45. **WARNING** — chase_request — chase / CPS
    - Output: Please provide Interview transcript (see MG6C/014) or confirm in writing why it is not available.
    - Reasons: tier classification
    - Source: MG6C/014 — Interview transcript — outstanding.
-49. **WARNING** — chase_request — chase
+46. **WARNING** — chase_request — chase
    - Output: PACE safeguards detail
    - Reasons: tier classification
    - Source: MG6C/015 — PACE safeguards detail — outstanding.
-50. **WARNING** — chase_request — chase / CPS
+47. **WARNING** — chase_request — chase / CPS
    - Output: Please provide PACE safeguards detail (see MG6C/015) or confirm in writing why it is not available.
    - Reasons: tier classification
    - Source: MG6C/015 — PACE safeguards detail — outstanding.
-51. **WARNING** — chase_request — five_answers / chase
+48. **WARNING** — chase_request — five_answers / chase
    - Output: Please provide Interview audio (see MG6C/013) or confirm in writing why it is not available.
    - Reasons: tier classification
    - Source: MG6C/013 — Interview audio — outstanding — not on bundle.
-52. **WARNING** — chase_request — five_answers / chase
+49. **WARNING** — chase_request — five_answers / chase
    - Output: Please provide Interview transcript (see MG6C/014) or confirm in writing why it is not available.
    - Reasons: tier classification
    - Source: MG6C/014 — Interview transcript — outstanding.
-53. **WARNING** — chase_request — five_answers / chase
+50. **WARNING** — chase_request — five_answers / chase
    - Output: Please provide PACE safeguards detail (see MG6C/015) or confirm in writing why it is not available.
    - Reasons: tier classification
    - Source: MG6C/015 — PACE safeguards detail — outstanding.
-54. **WARNING** — strategic_review — hearing_mode / court_prep
+51. **WARNING** — strategic_review — hearing_mode / court_prep
    - Output: custody pace
    - Reasons: tier classification
    - Source: MG6C/011 — Custody record — extract only served — full record outstanding.
-55. **WARNING** — evidence_state — hearing_mode / court_prep
-   - Output: Interview audio: Missing / Needs review — Outstanding on current disclosure — chase before fixing hearing position.
-   - Reasons: tier classification
-   - Source: Officer account and short custody extract are served. Body-worn video is referred on MG6C but not at…
-56. **WARNING** — evidence_state — hearing_mode / court_prep
-   - Output: Interview transcript: Missing / Needs review — Outstanding on current disclosure — chase before fixing hearing position.
-   - Reasons: tier classification
-   - Source: Officer account and short custody extract are served. Body-worn video is referred on MG6C but not at…
-57. **WARNING** — chase_request — hearing_mode / court_prep
+52. **WARNING** — chase_request — hearing_mode / court_prep
    - Output: Interview audio: Missing — Please provide Interview audio (see MG6C/013) or confirm in writing why it is not available.
    - Reasons: tier classification
    - Source: MG6C/013 — Interview audio — outstanding — not on bundle.
-58. **WARNING** — strategic_review — today
+53. **WARNING** — strategic_review — today
    - Output: Custody/PACE safeguards cannot be finally assessed until the full custody and interview material is served.
    - Reasons: tier classification
    - Source: MG6C/011 — Custody record — extract only served — full record outstanding.
-59. **WARNING** — strategic_review — summary / risks
+54. **WARNING** — strategic_review — summary / risks
    - Output: Prosecution pressure / gaps: CAD/999 timing may affect Crown sequence if proved on served material.
    - Reasons: tier classification
    - Source: 12/03/2026 19:40 — Officers attend Central Park following 999 call. | 1. On 12 March 2026 I attended…
-60. **WARNING** — strategic_review — summary / risks
+55. **WARNING** — strategic_review — summary / risks
    - Output: Defence risks: Do not rely on full BWV sequence unless export is served.
    - Reasons: tier classification
    - Source: MG6C/010 — Body-worn video PC Daniels — referred on schedule — full export not attached.
-61. **WARNING** — strategic_review — summary / risks
+56. **WARNING** — strategic_review — summary / risks
    - Output: Assumed position may conflict with interview or served evidence.
    - Reasons: tier classification
    - Source: Officer account and short custody extract are served. Body-worn video is referred on MG6C but not at…
-62. **WARNING** — strategic_review — summary / risks
+57. **WARNING** — strategic_review — summary / risks
    - Output: full custody record served
    - Reasons: tier classification
    - Source: MG6C/011 — Custody record — extract only served — full record outstanding.
-63. **WARNING** — strategic_review — summary / opportunities
+58. **WARNING** — strategic_review — summary / opportunities
    - Output: The case requires caution on custody safeguards and interview fairness until source records are reviewed.
    - Reasons: tier classification
    - Source: MG6C/011 — Custody record — extract only served — full record outstanding.
-64. **WARNING** — strategic_review — summary / opportunities
+59. **WARNING** — strategic_review — summary / opportunities
    - Output: Preserve PACE/safeguard points until the full record is served.
    - Reasons: tier classification
    - Source: MG6C/011 — Custody record — extract only served — full record outstanding.
-65. **WARNING** — strategic_review — summary / opportunities
+60. **WARNING** — strategic_review — summary / opportunities
    - Output: Disclosure leverage: Full custody/PACE material needed beyond the served extract.
    - Reasons: tier classification
    - Source: MG6C/011 — Custody record — extract only served — full record outstanding.
-66. **WARNING** — strategic_review — summary / chase
+61. **WARNING** — strategic_review — summary / chase
    - Output: Full custody record — Full custody/PACE material needed beyond the served extract.
    - Reasons: tier classification
    - Source: MG6C/011 — Custody record — extract only served — full record outstanding.
-67. **WARNING** — strategic_review — summary / chase
-   - Output: Interview audio — Outstanding on current disclosure — chase before fixing hearing position.
-   - Reasons: tier classification
-   - Source: Officer account and short custody extract are served. Body-worn video is referred on MG6C but not at…
-68. **WARNING** — strategic_review — decision_board
+62. **WARNING** — strategic_review — decision_board
    - Output: Custody / PACE issue: Custody/PACE safeguards and interview fairness.
    - Reasons: tier classification
    - Source: MG6C/011 — Custody record — extract only served — full record outstanding.
-69. **WARNING** — strategic_review — decision_board
+63. **WARNING** — strategic_review — decision_board
    - Output: Extract-only custody records may hide timing or safeguard issues.
    - Reasons: tier classification
    - Source: MG6C/011 — Custody record — extract only served — full record outstanding.
-70. **WARNING** — contradiction_or_risk — advice_change_radar
+64. **WARNING** — contradiction_or_risk — advice_change_radar
    - Output: Full custody record — Missing — Review: Review needed because full custody record is missing — position may shift when s…
    - Reasons: tier classification
    - Source: MG6C/011 — Custody record — extract only served — full record outstanding.
-71. **WARNING** — contradiction_or_risk — advice_change_radar
+65. **WARNING** — contradiction_or_risk — advice_change_radar
    - Output: Interview audio — Missing — Review: Review needed because interview audio is missing — position may shift when served ma…
    - Reasons: tier classification
    - Source: Officer account and short custody extract are served. Body-worn video is referred on MG6C but not at…
-72. **WARNING** — export_line — export_pack / cps_chase
+66. **WARNING** — export_line — export_pack / cps_chase
    - Output: — Interview audio [missing]
 Please provide Interview audio (see MG6C/013) or confirm in writing why it is not available.
    - Reasons: tier classification
@@ -1273,9 +1249,9 @@ Please provide Interview audio (see MG6C/013) or confirm in writing why it is no
 
 ### Proof chain roll-up
 
-- Lines judged from extracted text only (PDF unchecked): **67**
+- Lines judged from extracted text only (PDF unchecked): **64**
 - Lines where source text and output disagree / unsupported: **0**
-- Lines text-supported but PDF unchecked: **26**
+- Lines text-supported but PDF unchecked: **25**
 
 ---
 
@@ -4322,20 +4298,20 @@ Outstanding on current bundle — chase if disclosure-relevant.
 ### 67. evidence state
 
 **OUTPUT:**
-Interview audio: Missing / Needs review — Outstanding on current disclosure — chase before fixing hearing position.
+Interview audio: Missing / Needs review — Full BWV/custody/interview material still outstanding.
 
-**RAW OUTPUT (product):** Interview audio: Missing / Needs review — Outstanding on current disclosure — chase before fixing hearing position. — still chase if disclosure-relevant.
+**RAW OUTPUT (product):** Interview audio: Missing / Needs review — Full BWV/custody/interview material still outstanding. — still chase if disclosure-relevant.
 
 **SURFACE:** hearing_mode / court_prep
 
 **CATEGORY:** evidence_state
 
-**REVIEW TIER:** SOLICITOR CAUTION
+**REVIEW TIER:** CLEAN SOURCE-BACKED
 
 **EVIDENCE ITEM:** Interview audio
 
 **SOURCE:**
-Section MG5: Officer account and short custody extract are served. Body-worn video is referred on MG6C but not attached. Full custody record, interview audio/transcript, and PACE safeguards detail are outstanding. | Full BWV export; full custody record; interview audio/transcript; PACE safegu
+Section MG6: MG6C/010 — Body-worn video PC Daniels — referred on schedule — full export not attached.
 
 **SOURCE STRENGTH:** schedule_only
 
@@ -4343,16 +4319,16 @@ Section MG5: Officer account and short custody extract are served. Body-worn vid
 
 **PROOF CHAIN:**
 - Document: bundle.pdf (pdf)
-- Page: 2 | Section: MG5
-- Extracted snippet: Officer account and short custody extract are served. Body-worn video is referred on MG6C but not attached. Full custody record, interview audio/transcript, and PACE safeguards detail are outstanding.…
+- Page: 4 | Section: MG6
+- Extracted snippet: MG6C/010 — Body-worn video PC Daniels — referred on schedule — full export not attached.
 - PDF page available: yes
-- PDF page evidence path: `artifacts/casebrain-qa/line-source-proof/demo-audit-03-bwv-custody/proof-chain-pages/p2.md`
-- Extraction confidence: fuzzy
+- PDF page evidence path: `artifacts/casebrain-qa/line-source-proof/demo-audit-03-bwv-custody/proof-chain-pages/p4.md`
+- Extraction confidence: exact
 - Extraction issue: page_missing
 - **Proof chain status: PDF page and text both support**
 
 **WHY THIS SUPPORTS THE LINE:**
-Bundle shows material outstanding or not attached: "Officer account and short custody extract are served. Body-worn video is referred on MG6C but not attached. Full custody record, interview a".
+Bundle shows material outstanding or not attached: "MG6C/010 — Body-worn video PC Daniels — referred on schedule — full export not attached.".
 
 **WHY THIS IS LIMITED:**
 Material expected or mentioned but not on bundle.
@@ -4360,31 +4336,31 @@ Material expected or mentioned but not on bundle.
 **SAFE WORDING:**
 Outstanding on current bundle — chase if disclosure-relevant.
 
-**SOLICITOR REVIEW REQUIRED:** yes
+**SOLICITOR REVIEW REQUIRED:** no
 
-**USEFULNESS:** safe_but_not_actionable
+**USEFULNESS:** correct_and_useful
 
-**VERDICT:** WARNING
+**VERDICT:** PASS
 
 ---
 
 ### 68. evidence state
 
 **OUTPUT:**
-Interview transcript: Missing / Needs review — Outstanding on current disclosure — chase before fixing hearing position.
+Interview transcript: Missing / Needs review — Full BWV/custody/interview material still outstanding.
 
-**RAW OUTPUT (product):** Interview transcript: Missing / Needs review — Outstanding on current disclosure — chase before fixing hearing position. — still chase if disclosure-relevant.
+**RAW OUTPUT (product):** Interview transcript: Missing / Needs review — Full BWV/custody/interview material still outstanding. — still chase if disclosure-relevant.
 
 **SURFACE:** hearing_mode / court_prep
 
 **CATEGORY:** evidence_state
 
-**REVIEW TIER:** SOLICITOR CAUTION
+**REVIEW TIER:** CLEAN SOURCE-BACKED
 
 **EVIDENCE ITEM:** Interview transcript
 
 **SOURCE:**
-Section MG5: Officer account and short custody extract are served. Body-worn video is referred on MG6C but not attached. Full custody record, interview audio/transcript, and PACE safeguards detail are outstanding. | Full BWV export; full custody record; interview audio/transcript; PACE safegu
+Section MG6: MG6C/010 — Body-worn video PC Daniels — referred on schedule — full export not attached.
 
 **SOURCE STRENGTH:** schedule_only
 
@@ -4392,16 +4368,16 @@ Section MG5: Officer account and short custody extract are served. Body-worn vid
 
 **PROOF CHAIN:**
 - Document: bundle.pdf (pdf)
-- Page: 2 | Section: MG5
-- Extracted snippet: Officer account and short custody extract are served. Body-worn video is referred on MG6C but not attached. Full custody record, interview audio/transcript, and PACE safeguards detail are outstanding.…
+- Page: 4 | Section: MG6
+- Extracted snippet: MG6C/010 — Body-worn video PC Daniels — referred on schedule — full export not attached.
 - PDF page available: yes
-- PDF page evidence path: `artifacts/casebrain-qa/line-source-proof/demo-audit-03-bwv-custody/proof-chain-pages/p2.md`
-- Extraction confidence: fuzzy
+- PDF page evidence path: `artifacts/casebrain-qa/line-source-proof/demo-audit-03-bwv-custody/proof-chain-pages/p4.md`
+- Extraction confidence: exact
 - Extraction issue: page_missing
 - **Proof chain status: PDF page and text both support**
 
 **WHY THIS SUPPORTS THE LINE:**
-Bundle shows material outstanding or not attached: "Officer account and short custody extract are served. Body-worn video is referred on MG6C but not attached. Full custody record, interview a".
+Bundle shows material outstanding or not attached: "MG6C/010 — Body-worn video PC Daniels — referred on schedule — full export not attached.".
 
 **WHY THIS IS LIMITED:**
 Material expected or mentioned but not on bundle.
@@ -4409,11 +4385,11 @@ Material expected or mentioned but not on bundle.
 **SAFE WORDING:**
 Outstanding on current bundle — chase if disclosure-relevant.
 
-**SOLICITOR REVIEW REQUIRED:** yes
+**SOLICITOR REVIEW REQUIRED:** no
 
-**USEFULNESS:** safe_but_not_actionable
+**USEFULNESS:** correct_and_useful
 
-**VERDICT:** WARNING
+**VERDICT:** PASS
 
 ---
 
@@ -5692,44 +5668,42 @@ MG6/schedule reference only — export not served.
 ### 98. strategic review
 
 **OUTPUT:**
-Disclosure leverage: Outstanding on current disclosure — chase before fixing hearing position.
+Sequence / coverage leverage: Full BWV/custody/interview material still outstanding.
 
 **SURFACE:** summary / opportunities
 
 **CATEGORY:** strategic_review
 
-**REVIEW TIER:** SOURCE REVIEW
+**REVIEW TIER:** CLEAN SOURCE-BACKED
 
 **SOURCE:**
-no source found
+Section MG6: MG6C/010 — Body-worn video PC Daniels — referred on schedule — full export not attached.
 
-**SOURCE STRENGTH:** no_anchor
+**SOURCE STRENGTH:** schedule_only
 
-**SUPPORT:** Source not available on papers
+**SUPPORT:** Missing on bundle
 
 **PROOF CHAIN:**
 - Document: bundle.pdf (pdf)
-- Page: — | Section: —
-- Extracted snippet: none
-- PDF page available: no
-- PDF page evidence path: not generated
-- Extraction confidence: unavailable
-- Extraction issue: none
-- **Proof chain status: No source on papers**
+- Page: 4 | Section: MG6
+- Extracted snippet: MG6C/010 — Body-worn video PC Daniels — referred on schedule — full export not attached.
+- PDF page available: yes
+- PDF page evidence path: `artifacts/casebrain-qa/line-source-proof/demo-audit-03-bwv-custody/proof-chain-pages/p4.md`
+- Extraction confidence: exact
+- Extraction issue: page_missing
+- **Proof chain status: PDF page and text both support**
 
 **WHY THIS SUPPORTS THE LINE:**
-No direct bundle snippet located for this line.
+Bundle shows material outstanding or not attached: "MG6C/010 — Body-worn video PC Daniels — referred on schedule — full export not attached.".
 
 **WHY THIS IS LIMITED:**
-No usable source anchor — solicitor must verify.
+Material expected or mentioned but not on bundle.
 
-**GED REVIEW REASONS:** source_unavailable
+**SOLICITOR REVIEW REQUIRED:** no
 
-**SOLICITOR REVIEW REQUIRED:** yes
+**USEFULNESS:** correct_and_useful
 
-**USEFULNESS:** safe_but_not_actionable
-
-**VERDICT:** WARNING
+**VERDICT:** PASS
 
 ---
 
@@ -5864,16 +5838,16 @@ MG6/schedule reference only — export not served.
 ### 102. strategic review
 
 **OUTPUT:**
-Interview audio — Outstanding on current disclosure — chase before fixing hearing position.
+Interview audio — Full BWV/custody/interview material still outstanding.
 
 **SURFACE:** summary / chase
 
 **CATEGORY:** strategic_review
 
-**REVIEW TIER:** SOLICITOR CAUTION
+**REVIEW TIER:** CLEAN SOURCE-BACKED
 
 **SOURCE:**
-Section MG5: Officer account and short custody extract are served. Body-worn video is referred on MG6C but not attached. Full custody record, interview audio/transcript, and PACE safeguards detail are outstanding. | Full BWV export; full custody record; interview audio/transcript; PACE safegu
+Section MG6: MG6C/010 — Body-worn video PC Daniels — referred on schedule — full export not attached.
 
 **SOURCE STRENGTH:** schedule_only
 
@@ -5881,25 +5855,25 @@ Section MG5: Officer account and short custody extract are served. Body-worn vid
 
 **PROOF CHAIN:**
 - Document: bundle.pdf (pdf)
-- Page: 2 | Section: MG5
-- Extracted snippet: Officer account and short custody extract are served. Body-worn video is referred on MG6C but not attached. Full custody record, interview audio/transcript, and PACE safeguards detail are outstanding.…
+- Page: 4 | Section: MG6
+- Extracted snippet: MG6C/010 — Body-worn video PC Daniels — referred on schedule — full export not attached.
 - PDF page available: yes
-- PDF page evidence path: `artifacts/casebrain-qa/line-source-proof/demo-audit-03-bwv-custody/proof-chain-pages/p2.md`
-- Extraction confidence: fuzzy
+- PDF page evidence path: `artifacts/casebrain-qa/line-source-proof/demo-audit-03-bwv-custody/proof-chain-pages/p4.md`
+- Extraction confidence: exact
 - Extraction issue: page_missing
 - **Proof chain status: PDF page and text both support**
 
 **WHY THIS SUPPORTS THE LINE:**
-Bundle shows material outstanding or not attached: "Officer account and short custody extract are served. Body-worn video is referred on MG6C but not attached. Full custody record, interview a".
+Bundle shows material outstanding or not attached: "MG6C/010 — Body-worn video PC Daniels — referred on schedule — full export not attached.".
 
 **WHY THIS IS LIMITED:**
 Material expected or mentioned but not on bundle.
 
-**SOLICITOR REVIEW REQUIRED:** yes
+**SOLICITOR REVIEW REQUIRED:** no
 
-**USEFULNESS:** safe_but_not_actionable
+**USEFULNESS:** correct_and_useful
 
-**VERDICT:** WARNING
+**VERDICT:** PASS
 
 ---
 
@@ -7214,44 +7188,42 @@ No usable source anchor — solicitor must verify.
 ### 133. export line
 
 **OUTPUT:**
-We are reviewing the papers in your case (Assault an emergency worker, contrary to section 1 of the Assaults on Emergency Workers (Offences) Act 2018). This is early-stage — nothing is final until we have full disclosure and your instructions. Some evidence is still outstanding on the papers, and we will update you when it is served. We are not saying the case is won or lost — we need the full mat
+We are reviewing the papers in your case (Casey Fry). This is early-stage — nothing is final until we have full disclosure and your instructions. A custody record extract is on the papers, but the full body-worn video export, complete custody record, and interview/PACE material are still outstanding.
 
 **SURFACE:** export_pack / client_summary
 
 **CATEGORY:** export_line
 
-**REVIEW TIER:** SOURCE REVIEW
+**REVIEW TIER:** CLEAN SOURCE-BACKED
 
 **SOURCE:**
-Bundle: Statement of Offence: | Assault an emergency worker, contrary to section 1 of the Assaults on Emergency Workers (Offences) Act 2018.
+Section MG6: MG6C/010 — Body-worn video PC Daniels — referred on schedule — full export not attached.
 
-**SOURCE STRENGTH:** weak
+**SOURCE STRENGTH:** schedule_only
 
-**SUPPORT:** partially supported
+**SUPPORT:** Missing on bundle
 
 **PROOF CHAIN:**
 - Document: bundle.pdf (pdf)
-- Page: — | Section: —
-- Extracted snippet: Statement of Offence: | Assault an emergency worker, contrary to section 1 of the Assaults on Emergency Workers (Offences) Act 2018.
-- PDF page available: no
-- PDF page evidence path: not generated
-- Extraction confidence: fuzzy
-- Extraction issue: none
-- **Proof chain status: Text supports — PDF not checked**
+- Page: 4 | Section: MG6
+- Extracted snippet: MG6C/010 — Body-worn video PC Daniels — referred on schedule — full export not attached.
+- PDF page available: yes
+- PDF page evidence path: `artifacts/casebrain-qa/line-source-proof/demo-audit-03-bwv-custody/proof-chain-pages/p4.md`
+- Extraction confidence: exact
+- Extraction issue: page_missing
+- **Proof chain status: PDF page and text both support**
 
 **WHY THIS SUPPORTS THE LINE:**
-Only generic schedule/index wording found — needs line-level snippet review: "Statement of Offence: | Assault an emergency worker, contrary to section 1 of the Assaults on Emergency Workers (Offences) Act 2018.".
+Bundle shows material outstanding or not attached: "MG6C/010 — Body-worn video PC Daniels — referred on schedule — full export not attached.".
 
 **WHY THIS IS LIMITED:**
-Generic MG6/schedule label without line-level served/referred snippet.
+Material expected or mentioned but not on bundle.
 
-**GED REVIEW REASONS:** generic_source_only, solicitor_review_required
+**SOLICITOR REVIEW REQUIRED:** no
 
-**SOLICITOR REVIEW REQUIRED:** yes
+**USEFULNESS:** correct_and_useful
 
-**USEFULNESS:** solicitor_review_required
-
-**VERDICT:** WARNING
+**VERDICT:** PASS
 
 ---
 
@@ -7302,57 +7274,13 @@ No usable source anchor — solicitor must verify.
 ### 135. export line
 
 **OUTPUT:**
-Solicitor review required before sending to CPS, court, or client.
-
-**SURFACE:** export_pack / client_summary
-
-**CATEGORY:** export_line
-
-**REVIEW TIER:** SOURCE REVIEW
-
-**SOURCE:**
-no source found
-
-**SOURCE STRENGTH:** no_anchor
-
-**SUPPORT:** Source not available on papers
-
-**PROOF CHAIN:**
-- Document: bundle.pdf (pdf)
-- Page: — | Section: —
-- Extracted snippet: none
-- PDF page available: no
-- PDF page evidence path: not generated
-- Extraction confidence: unavailable
-- Extraction issue: none
-- **Proof chain status: No source on papers**
-
-**WHY THIS SUPPORTS THE LINE:**
-No direct bundle snippet located for this line.
-
-**WHY THIS IS LIMITED:**
-No usable source anchor — solicitor must verify.
-
-**GED REVIEW REASONS:** source_unavailable, meaningful_line_without_anchor, solicitor_review_required
-
-**SOLICITOR REVIEW REQUIRED:** yes
-
-**USEFULNESS:** solicitor_review_required
-
-**VERDICT:** WARNING
-
----
-
-### 136. export line
-
-**OUTPUT:**
 • Full BWV export [Referred only / Weak] — Full BWV export referred on schedule but not attached. — referred only, not usable as proof.
 • Full custody record [Missing / Needs review] — Full custody/PACE material needed beyond the served extract.
-• Interview audio [Missing / Needs review] — Outstanding on current disclosure — chase before fixing hearing positio
+• Interview audio [Missing / Needs review] — Full BWV/custody/interview material still outstanding. — still chase if
 
 **RAW OUTPUT (product):** • Full BWV export [Referred only / Weak] — Full BWV export referred on schedule but not attached. — referred only, not usable as proof.
 • Full custody record [Missing / Needs review] — Full custody/PACE material needed beyond the served extract. — still chase if disclosure-relevant.
-• Interview audio [Missing / Needs review] — Outstanding on current disclosure — chase before fixing hearing positio
+• Interview audio [Missing / Needs review] — Full BWV/custody/interview material still outstanding. — still chase if
 
 **SURFACE:** export_pack / evidence_gaps
 
@@ -7391,7 +7319,7 @@ Referred on schedule or in narrative — not safely served as proof.
 
 ---
 
-### 137. export line
+### 136. export line
 
 **OUTPUT:**
 Solicitor review required before sending to CPS, court, or client.
@@ -7435,7 +7363,7 @@ No usable source anchor — solicitor must verify.
 
 ---
 
-### 138. export line
+### 137. export line
 
 **OUTPUT:**
 DO NOT OVERSTATE
@@ -7478,7 +7406,7 @@ No usable source anchor — solicitor must verify.
 
 ---
 
-### 139. export line
+### 138. export line
 
 **OUTPUT:**
 • Do not say: Do not rely on full BWV sequence unless export is served.
@@ -7521,7 +7449,7 @@ MG6/schedule reference only — export not served.
 
 ---
 
-### 140. export line
+### 139. export line
 
 **OUTPUT:**
 • Do not say: BWV shows
@@ -7567,7 +7495,7 @@ BWV shows
 
 ---
 
-### 141. export line
+### 140. export line
 
 **OUTPUT:**
 • Do not say: BWV confirms

@@ -1,0 +1,382 @@
+{
+  "truthMap": [
+    {
+      "label": "Bank statement summaries",
+      "existence": "served",
+      "note": "Summaries served — not full transaction export or source banking records."
+    },
+    {
+      "label": "Officer statement",
+      "existence": "served"
+    },
+    {
+      "label": "Beneficiary tracing report",
+      "existence": "referred_only"
+    },
+    {
+      "label": "Full transaction export",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    },
+    {
+      "label": "Source banking records",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    },
+    {
+      "label": "Subscriber / account data",
+      "existence": "missing",
+      "note": "Outstanding — cannot safely fix sender identity without this material."
+    }
+  ],
+  "mustNotOverstate": [
+    "Do not treat bank summaries alone as proof of fraud or account attribution.",
+    "fraud proved from summaries alone",
+    "Do not state account control is disproved without bank/device source material."
+  ],
+  "evidenceTrace": {
+    "rows": [
+      {
+        "id": "allegation-0",
+        "section": "allegation",
+        "claim": "Fraud by false representation, contrary to section 1 of the Fraud Act 2006",
+        "existence": "served",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/FRD/02 — Full transaction export — outstanding — not on bundle.",
+        "sourceLabel": "Charge sheet / papers",
+        "inference": false
+      },
+      {
+        "id": "allegation-1",
+        "section": "allegation",
+        "claim": "Disclosure completeness and outstanding source material.",
+        "existence": "not_safely_confirmed",
+        "reliability": "needs_review",
+        "sourceLabel": "Matter confidence",
+        "inference": false,
+        "traceWarning": null
+      },
+      {
+        "id": "missing_referred-0",
+        "section": "missing_referred",
+        "claim": "Full transaction export",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/FRD/02 — Full transaction export — outstanding — not on bundle.",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "missing_referred-1",
+        "section": "missing_referred",
+        "claim": "Source banking records",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/FRD/03 — Source banking records — outstanding.",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "missing_referred-2",
+        "section": "missing_referred",
+        "claim": "Beneficiary tracing report",
+        "existence": "referred_only",
+        "reliability": "weak",
+        "sourceAnchor": "MG6C/FRD/04 — Beneficiary tracing report — referred — not attached.",
+        "sourceLabel": "MG6C schedule",
+        "critical": false,
+        "inference": false,
+        "notUsable": true,
+        "traceWarning": null
+      },
+      {
+        "id": "missing_referred-3",
+        "section": "missing_referred",
+        "claim": "Subscriber / account data",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/FRD/05 — Subscriber/account data for linked handset — outstanding — not on bundle.",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "do_not_overstate-0",
+        "section": "do_not_overstate",
+        "claim": "Do not treat bank summaries alone as proof of fraud or account attribution.",
+        "existence": "not_safely_confirmed",
+        "reliability": "unsafe",
+        "sourceLabel": "Guardian / bundle guard",
+        "inference": false,
+        "traceWarning": null
+      },
+      {
+        "id": "do_not_overstate-1",
+        "section": "do_not_overstate",
+        "claim": "fraud proved from summaries alone",
+        "existence": "not_safely_confirmed",
+        "reliability": "unsafe",
+        "sourceLabel": "Guardian / bundle guard",
+        "inference": false,
+        "traceWarning": null
+      },
+      {
+        "id": "do_not_overstate-2",
+        "section": "do_not_overstate",
+        "claim": "Do not state account control is disproved without bank/device source material.",
+        "existence": "not_safely_confirmed",
+        "reliability": "unsafe",
+        "sourceLabel": "Guardian / bundle guard",
+        "inference": true,
+        "traceWarning": null
+      },
+      {
+        "id": "chase-0",
+        "section": "chase",
+        "claim": "Please provide Full transaction export (see MG6C/FRD/02) or confirm in writing why it is not available.",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/FRD/02 — Full transaction export — outstanding — not on bundle.",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "chase-1",
+        "section": "chase",
+        "claim": "Please provide Source banking records (see MG6C/FRD/03) or confirm in writing why it is not available.",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/FRD/03 — Source banking records — outstanding.",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "chase-2",
+        "section": "chase",
+        "claim": "Please provide Beneficiary tracing report (see MG6C/FRD/04) or confirm in writing why it is not available.",
+        "existence": "referred_only",
+        "reliability": "weak",
+        "sourceAnchor": "MG6C/FRD/04 — Beneficiary tracing report — referred — not attached.",
+        "sourceLabel": "MG6C schedule",
+        "critical": false,
+        "inference": false,
+        "notUsable": true,
+        "traceWarning": null
+      },
+      {
+        "id": "chase-3",
+        "section": "chase",
+        "claim": "Please provide Subscriber / account data (see MG6C/FRD/05) or confirm in writing why it is not available.",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/FRD/05 — Subscriber/account data for linked handset — outstanding — not on bundle.",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "court_note-0",
+        "section": "court_note",
+        "claim": "The defence asks the court to record per MG6C that bank statement summaries are served but full transaction export, source banking records, and tracing material remain outstanding.",
+        "existence": "not_safely_confirmed",
+        "reliability": "needs_review",
+        "sourceLabel": "Disclosure chase brief",
+        "sourceAnchor": "MG6C/FRD/02 — Full transaction export — outstanding — not on bundle.",
+        "inference": false
+      }
+    ],
+    "bySection": {
+      "allegation": [
+        {
+          "id": "allegation-0",
+          "section": "allegation",
+          "claim": "Fraud by false representation, contrary to section 1 of the Fraud Act 2006",
+          "existence": "served",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/FRD/02 — Full transaction export — outstanding — not on bundle.",
+          "sourceLabel": "Charge sheet / papers",
+          "inference": false
+        },
+        {
+          "id": "allegation-1",
+          "section": "allegation",
+          "claim": "Disclosure completeness and outstanding source material.",
+          "existence": "not_safely_confirmed",
+          "reliability": "needs_review",
+          "sourceLabel": "Matter confidence",
+          "inference": false,
+          "traceWarning": null
+        }
+      ],
+      "key_evidence": [],
+      "missing_referred": [
+        {
+          "id": "missing_referred-0",
+          "section": "missing_referred",
+          "claim": "Full transaction export",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/FRD/02 — Full transaction export — outstanding — not on bundle.",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        },
+        {
+          "id": "missing_referred-1",
+          "section": "missing_referred",
+          "claim": "Source banking records",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/FRD/03 — Source banking records — outstanding.",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        },
+        {
+          "id": "missing_referred-2",
+          "section": "missing_referred",
+          "claim": "Beneficiary tracing report",
+          "existence": "referred_only",
+          "reliability": "weak",
+          "sourceAnchor": "MG6C/FRD/04 — Beneficiary tracing report — referred — not attached.",
+          "sourceLabel": "MG6C schedule",
+          "critical": false,
+          "inference": false,
+          "notUsable": true,
+          "traceWarning": null
+        },
+        {
+          "id": "missing_referred-3",
+          "section": "missing_referred",
+          "claim": "Subscriber / account data",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/FRD/05 — Subscriber/account data for linked handset — outstanding — not on bundle.",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        }
+      ],
+      "do_not_overstate": [
+        {
+          "id": "do_not_overstate-0",
+          "section": "do_not_overstate",
+          "claim": "Do not treat bank summaries alone as proof of fraud or account attribution.",
+          "existence": "not_safely_confirmed",
+          "reliability": "unsafe",
+          "sourceLabel": "Guardian / bundle guard",
+          "inference": false,
+          "traceWarning": null
+        },
+        {
+          "id": "do_not_overstate-1",
+          "section": "do_not_overstate",
+          "claim": "fraud proved from summaries alone",
+          "existence": "not_safely_confirmed",
+          "reliability": "unsafe",
+          "sourceLabel": "Guardian / bundle guard",
+          "inference": false,
+          "traceWarning": null
+        },
+        {
+          "id": "do_not_overstate-2",
+          "section": "do_not_overstate",
+          "claim": "Do not state account control is disproved without bank/device source material.",
+          "existence": "not_safely_confirmed",
+          "reliability": "unsafe",
+          "sourceLabel": "Guardian / bundle guard",
+          "inference": true,
+          "traceWarning": null
+        }
+      ],
+      "chase": [
+        {
+          "id": "chase-0",
+          "section": "chase",
+          "claim": "Please provide Full transaction export (see MG6C/FRD/02) or confirm in writing why it is not available.",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/FRD/02 — Full transaction export — outstanding — not on bundle.",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        },
+        {
+          "id": "chase-1",
+          "section": "chase",
+          "claim": "Please provide Source banking records (see MG6C/FRD/03) or confirm in writing why it is not available.",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/FRD/03 — Source banking records — outstanding.",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        },
+        {
+          "id": "chase-2",
+          "section": "chase",
+          "claim": "Please provide Beneficiary tracing report (see MG6C/FRD/04) or confirm in writing why it is not available.",
+          "existence": "referred_only",
+          "reliability": "weak",
+          "sourceAnchor": "MG6C/FRD/04 — Beneficiary tracing report — referred — not attached.",
+          "sourceLabel": "MG6C schedule",
+          "critical": false,
+          "inference": false,
+          "notUsable": true,
+          "traceWarning": null
+        },
+        {
+          "id": "chase-3",
+          "section": "chase",
+          "claim": "Please provide Subscriber / account data (see MG6C/FRD/05) or confirm in writing why it is not available.",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/FRD/05 — Subscriber/account data for linked handset — outstanding — not on bundle.",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        }
+      ],
+      "court_note": [
+        {
+          "id": "court_note-0",
+          "section": "court_note",
+          "claim": "The defence asks the court to record per MG6C that bank statement summaries are served but full transaction export, source banking records, and tracing material remain outstanding.",
+          "existence": "not_safely_confirmed",
+          "reliability": "needs_review",
+          "sourceLabel": "Disclosure chase brief",
+          "sourceAnchor": "MG6C/FRD/02 — Full transaction export — outstanding — not on bundle.",
+          "inference": false
+        }
+      ]
+    }
+  }
+}

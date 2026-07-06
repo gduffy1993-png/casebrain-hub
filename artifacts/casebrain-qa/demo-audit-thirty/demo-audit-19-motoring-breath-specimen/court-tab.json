@@ -1,0 +1,15 @@
+{
+  "safeCourtLine": "The defence asks the court to record per MG6C that procedure summary is served but device calibration, full intoxilyser record, and CCTV/dashcam export remain outstanding.",
+  "safePositionToday": "The defence asks the court to record per MG6C that procedure summary is served but device calibration, full intoxilyser record, and CCTV/dashcam export remain outstanding.",
+  "askCourtToRecord": [
+    "Outstanding disclosure: Device calibration certificate; Full intoxilyser record; CCTV / dashcam export.",
+    "Invite the court to order disclosure by a fixed date with a review hearing."
+  ],
+  "disclosureTimetable": "The defence invites the court to order disclosure of Device calibration certificate; Full intoxilyser record; CCTV / dashcam export by [date] with a review on [date]. Position remains provisional.",
+  "doNotOverstate": [
+    "Do not treat procedure summary alone as proof of device reliability or identity.",
+    "Do not state \"CCTV stills served — master footage outstanding; ID not safely confirmed from current papers.",
+    "Do not state \"Full CCTV stills served — master footage outstanding; ID not safely confirmed from current papers.",
+    "Do not treat device summary as proof of reliability"
+  ]
+}

@@ -6,6 +6,12 @@
  * clearest proof story a solicitor can scan quickly.
  */
 import { isUsefulSummaryBullet, polishProductCasing, trapMentionsIrrelevantTopic } from "./ledger-display";
+import {
+  demoAuditOffenceFamilyForCase,
+  demoAuditProofReviewLine,
+  isDemoAuditCase,
+  isGenericDemoAuditChaseLabel,
+} from "../demo-audit-packs/presentation-polish";
 import type {
   RewriteDowngradeLedgerEntry,
   SuppressedCandidateLedgerEntry,
@@ -45,7 +51,7 @@ const GENERIC_TOP_LINE_RE =
   /^(?:disclosure completeness and outstanding source material|chase outstanding disclosure|record provisional hearing position|mg6\s*\/\s*unused schedule clarification|exhibit mapping\s*\/\s*provenance)$/i;
 
 const DEV_NOTE_RE =
-  /\b(?:source_unavailable|meaningful_line_without_anchor|evidence_item_not_in_snippet|generic_source_only|generic source only|no source anchor found|no line-level source anchor|solicitor_review_required|solicitor review required|needs_review|not_safely_confirmed)\b/i;
+  /\b(?:source_unavailable|meaningful_line_without_anchor|evidence_item_not_in_snippet|generic_source_only|generic source only|no source anchor found|no line-level source anchor|solicitor_review_required|solicitor review required|needs_review|not_safely_confirmed|referred_only\s*\/\s*weak)\b/i;
 const CLIPPED_COURT_RE =
   /\bthe court is asked\b(?![^.]*\.)|\bthe defence cannot safely advance\b(?![^.]*\.)|\bmy learned friend\b|\byour honour\b/i;
 const MATERIAL_TOPIC_RE =
@@ -53,12 +59,137 @@ const MATERIAL_TOPIC_RE =
 const PACKET_INTERNAL_LINE_RE =
   /MG6\s*\/?\s*unused schedule clarification|check MG6\s*\/?\s*unused|please provide MG6\s*\/?\s*unused|ask the court to record that MG6|^ask the court to record\b|^the defence asks the court to record\b|^chase CPS\b|^keep the position provisional\b|^the defence position remains provisional\b|statement of offence|contrary to section/i;
 
+const ROBOTIC_LINE_RE =
+  /Main issue:\.?|The case turns on relationship context|The case turns on identity, procedure|review served MG5\/MG6 before fixing trial|Assumed position may conflict|Referred only — Please provide|Strategic review line/i;
+
+const GENERIC_REVIEW_REASON_RE =
+  /^use with caution\b.*(?:material expected|not on bundle|referred on schedule|export not served|bundle support is limited)/i;
+
+function bundleTopics(bundleHay: string): Set<string> {
+  const hay = bundleHay.toLowerCase();
+  const topics = new Set<string>();
+  if (/\bbwv\b|body[-\s]?worn|bodycam/.test(hay)) topics.add("bwv");
+  if (/\bcustody\b|\bpace\b|detention|custody record/.test(hay)) topics.add("custody");
+  if (/\bcctv\b|stills|footage|camera|master cctv/.test(hay)) topics.add("cctv");
+  if (/\bcad\b|999|control.?room/.test(hay)) topics.add("cad");
+  if (/phone|subscriber|extraction|download|handset|screenshot|message pack|whatsapp|sms/.test(hay)) topics.add("phone");
+  if (/encro|handle|platform|county.?lines/.test(hay)) topics.add("encro");
+  if (/mg11|abe|complainant|counselling/.test(hay)) topics.add("mg11_abe");
+  if (/bank|transaction|fraud|beneficiary/.test(hay)) topics.add("finance");
+  if (/intoxilyser|calibration|breath|motoring|sjp|device certificate/.test(hay)) topics.add("motoring");
+  if (/yjs|youth|vulnerability|appropriate adult/.test(hay)) topics.add("youth");
+  if (/interview|mg15/.test(hay)) topics.add("interview");
+  return topics;
+}
+
+function isOffFamilyForBundle(text: string, reason: string, bundleHay: string): boolean {
+  const topics = bundleTopics(bundleHay);
+  const combined = `${text} ${reason}`.toLowerCase();
+  if (/^(?:verify|confirm whether)/i.test(text.trim())) {
+    if (/custody|pace/.test(combined) && !topics.has("custody")) return true;
+    return false;
+  }
+  if (/\bbwv\b|body[-\s]?worn/.test(combined) && !topics.has("bwv")) return true;
+  if (/custody|pace/.test(combined) && !topics.has("custody")) return true;
+  if (/\bcctv\b|master footage|stills|recognition/.test(combined) && !topics.has("cctv")) return true;
+  if (/\bcad\b|999/.test(combined) && !topics.has("cad")) return true;
+  if (/phone|subscriber|extraction|download|message export|handset/.test(combined) && !topics.has("phone")) return true;
+  if (/encro|handle|platform/.test(combined) && !topics.has("encro")) return true;
+  if (/abe|counselling/.test(combined) && !topics.has("mg11_abe")) return true;
+  if (/bank|transaction|beneficiary/.test(combined) && !topics.has("finance")) return true;
+  if (/intoxilyser|calibration|dashcam/.test(combined) && !topics.has("motoring") && !topics.has("cctv")) return true;
+  if (/yjs|vulnerability|appropriate adult/.test(combined) && !topics.has("youth")) return true;
+  return false;
+}
+
+function sentenceCaseLabel(input: string): string {
+  const text = cleanText(input);
+  if (!text) return text;
+  const acronyms = new Map<string, string>([
+    ["cctv", "CCTV"],
+    ["bwv", "BWV"],
+    ["pace", "PACE"],
+    ["abe", "ABE"],
+    ["mg11", "MG11"],
+    ["yjs", "YJS"],
+    ["ocr", "OCR"],
+    ["cad", "CAD"],
+    ["encro", "Encro"],
+    ["mg6c", "MG6C"],
+    ["sjp", "SJP"],
+  ]);
+  let out = text.charAt(0).toUpperCase() + text.slice(1);
+  for (const [lower, upper] of acronyms) {
+    out = out.replace(new RegExp(`\\b${lower}\\b`, "gi"), upper);
+  }
+  return out;
+}
+
+function reviewDisplayLabel(cleaned: string): string {
+  if (/^(?:verify|confirm whether|output references|test attribution|relationship context|screenshots may)/i.test(cleaned)) {
+    return sentenceCaseLabel(cleaned);
+  }
+  return sentenceCaseLabel(simplifyEvidenceLabel(cleaned));
+}
+
+function polishReviewReason(text: string, reason: string): string {
+  let r = cleanReason(reason);
+  if (/^use with caution\b/i.test(r)) {
+    if (/phone extraction summary only|full source download outstanding/i.test(r)) {
+      return "Screenshots and extraction summary alone do not prove sender identity.";
+    }
+    if (/only extract\/partial material/i.test(r)) {
+      return "Served screenshots may be incomplete or lack full attribution context.";
+    }
+    if (/material expected or mentioned but not on bundle/i.test(r)) {
+      return "Material is listed on the schedule but not safely served on the bundle.";
+    }
+    if (/referred on schedule/i.test(r)) {
+      return "Referred on the disclosure schedule — not attached as proof.";
+    }
+  }
+  if (r === text && /^(?:verify|confirm whether)/i.test(text.trim())) {
+    return "Check before fixing hearing position.";
+  }
+  if (r === text && /verify ocr|confirm whether|subscriber identity does not prove|segregat|co-defendant|handle mapping/i.test(r)) {
+    return r;
+  }
+  return r;
+}
+
+function strategicReviewTopic(text: string): string | null {
+  const t = text.toLowerCase();
+  if (/relationship context|course of conduct|test attribution|screenshots may be incomplete/.test(t)) return "strategic_phone";
+  if (/driver identity|procedure, timing/.test(t)) return "strategic_motoring";
+  return null;
+}
+
+function reviewTopicForItem(text: string): string {
+  if (/^confirm whether/i.test(text.trim())) return "family_confirm";
+  if (/^verify ocr/i.test(text.trim())) return "ocr_verify";
+  return strategicReviewTopic(text) ?? topicKey(text);
+}
+
+function reviewAddsDistinctRisk(text: string, reason: string): boolean {
+  const combined = `${text} ${reason}`.toLowerCase();
+  if (ROBOTIC_LINE_RE.test(combined)) return false;
+  if (/subscriber identity does not prove|attribution chain|segregat|co-defendant|handle mapping|do not equate|verify ocr|relationship context|course of conduct|driver identity|role or identity|not safely proved|cannot assume|before fixing hearing|index-listed pages/.test(combined)) {
+    return true;
+  }
+  if (GENERIC_REVIEW_REASON_RE.test(reason)) return false;
+  if (/^use with caution\b/i.test(reason) && !/attribution|segregat|verify|handle|subscriber identity|co-def/.test(combined)) {
+    return false;
+  }
+  return /verify|segregat|attribution|handle|subscriber|co-defendant|confirm whether|ocr|relationship|identity|do not equate/i.test(combined);
+}
+
 function cleanText(input: string): string {
   return polishProductCasing(input)
     .replace(/\r?\n+/g, " ")
     .replace(/\s+/g, " ")
     .replace(/^\s*(?:Allegation|Next action):\s*/i, "")
     .replace(/\s+\.\s*$/g, ".")
+    .replace(/\bMG6\/schedule reference only\b/gi, "Disclosure schedule reference only")
     .trim();
 }
 
@@ -213,13 +344,19 @@ function topicKey(text: string): string {
   const t = text.toLowerCase();
   if (/\bbwv\b|body[-\s]?worn/.test(t)) return "bwv";
   if (/custody|pace/.test(t)) return "custody";
-  if (/\bcctv\b|stills|footage/.test(t)) return "cctv";
+  if (/recognition|id basis/.test(t)) return "cctv";
+  if (/\bcctv\b|stills|footage|master|continuity|provenance|audit trail/.test(t)) return "cctv";
   if (/cad|999|control[-\s]?room/.test(t)) return "cad";
+  if (/counselling/.test(t)) return "mg11_abe";
   if (/mg11|complainant|first account|abe/.test(t)) return "mg11_abe";
-  if (/phone|subscriber|extraction|download|handset/.test(t)) return "phone";
-  if (/encro|handle|platform/.test(t)) return "encro";
+  if (/interview audio|interview transcript|interview summary|target defendant interview/.test(t)) return "interview";
+  if (/interview/.test(t)) return "interview";
+  if (/message export|phone|subscriber|extraction|download|handset|metadata/.test(t)) return "phone";
+  if (/encro|handle|platform|device continuity/.test(t)) return "encro";
   if (/medical|injury|forensic|dna|swab/.test(t)) return "medical_forensic";
-  if (/bank|account|transaction|fraud/.test(t)) return "finance";
+  if (/bank|account|transaction|fraud|beneficiary|tracing/.test(t)) return "finance";
+  if (/calibration|intoxilyser|dashcam|breath/.test(t)) return "motoring";
+  if (/yjs|vulnerability|appropriate adult/.test(t)) return "youth";
   return dedupeKey(text);
 }
 
@@ -244,6 +381,7 @@ function isPacketUseful(text: string): boolean {
   const t = cleanText(text);
   if (!isUsefulSummaryBullet(t) && !MATERIAL_TOPIC_RE.test(t)) return false;
   if (GENERIC_TOP_LINE_RE.test(t)) return false;
+  if (ROBOTIC_LINE_RE.test(t)) return false;
   if (DEV_NOTE_RE.test(t)) return false;
   if (/^[•\-\s]*do not\b/i.test(t)) return false;
   if (/^do not import\b/i.test(t)) return false;
@@ -309,11 +447,17 @@ function simplifyEvidenceLabel(input: string): string {
   const t = text.toLowerCase();
   if (/\bbwv\b|body[-\s]?worn/.test(t)) return "Full BWV export / continuity";
   if (/custody|pace/.test(t)) return "Full custody/PACE record";
+  if (/recognition|id basis/.test(t)) return "Recognition / ID basis";
+  if (/continuity|provenance|audit trail/.test(t) && !/cctv still/.test(t)) return "Master CCTV footage / continuity";
   if (/\bcctv\b|stills|footage|master/.test(t)) return /still/i.test(t) ? "CCTV stills separated from master footage" : "Master CCTV footage / continuity";
   if (/subscriber|account data/.test(t)) return "Subscriber/account attribution material";
   if (/encro|platform|handle/.test(t)) return /handle/.test(t) ? "Encro handle mapping / attribution" : "Full platform extraction";
-  if (/phone|extraction|download/.test(t)) return "Full phone download / extraction";
+  if (/message export/.test(t)) return "Full message export";
+  if (/phone|extraction|download|metadata/.test(t)) return "Full phone download / extraction";
   if (/mg11|complainant|first account/.test(t)) return "Complainant MG11 / first account";
+  if (/counselling/.test(t)) return "Third-party counselling notes";
+  if (/interview audio|interview transcript/.test(t)) return "Interview audio / transcript";
+  if (/interview/.test(t)) return "Interview audio / transcript";
   if (/medical|injury/.test(t)) return "Medical/injury source material";
   if (/forensic|dna|swab/.test(t)) return "Forensic source material";
   return text;
@@ -601,7 +745,8 @@ function pickMissing(report: LineSourceProofReport): SolicitorProofPacketItem[] 
   const out: SolicitorProofPacketItem[] = [];
 
   const add = (label: string, reason?: string) => {
-    const text = canonicalMissing(label);
+    const simplified = simplifyEvidenceLabel(label);
+    const text = sentenceCaseLabel(simplified);
     if (!isPacketUseful(text)) return;
     const topic = topicKey(text);
     if (seenTopics.has(topic)) return;
@@ -609,55 +754,58 @@ function pickMissing(report: LineSourceProofReport): SolicitorProofPacketItem[] 
     if (seen.has(key)) return;
     seenTopics.add(topic);
     seen.add(key);
-    out.push({ text, reason });
+    out.push({
+      text,
+      reason: reason ? cleanReason(reason) : "Still outstanding on the current bundle.",
+    });
   };
 
   for (const gap of report.proofLedger.solicitorSummary.mainEvidenceGaps) {
-    add(simplifyEvidenceLabel(gap), "Source-led gap in the current bundle.");
+    add(gap, "Still outstanding on the current bundle.");
     if (out.length >= PACKET_LIMIT) return out;
   }
   for (const missing of report.proofLedger.missingExpectedOutputs) {
-    add(simplifyEvidenceLabel(missing.expectedItem), cleanReason(missing.plainEnglishNote || missing.reasonMissing));
+    add(missing.expectedItem, missing.plainEnglishNote || missing.reasonMissing);
     if (out.length >= PACKET_LIMIT) return out;
   }
   return out;
 }
 
-function normalizeReviewEntry(text: string, reason: string): { text: string; reason: string } | null {
-  const cleaned = humanizeReviewLine(text.replace(/^[^:]{1,40}:\s*/, ""));
-  if (/^mg6c clarification on unused material$/i.test(cleaned)) {
-    return {
-      text: "MG6C clarification on unused material",
-      reason: "Confirm whether any additional unused digital material is outstanding.",
-    };
-  }
-  return { text: cleaned, reason };
-}
-
-function pickReview(report: LineSourceProofReport): SolicitorProofPacketItem[] {
+function pickReview(
+  report: LineSourceProofReport,
+  missingTopics: Set<string>,
+): SolicitorProofPacketItem[] {
   const seen = new Set<string>();
   const seenTopics = new Set<string>();
   const out: SolicitorProofPacketItem[] = [];
+  const offenceFamily = demoAuditOffenceFamilyForCase(report.caseId);
+  const bundleHay = bundleTextForReport(report);
 
   const add = (text: string, reason: string) => {
-    const normalized = normalizeReviewEntry(text, reason);
+    const normalized = normalizeReviewEntry(text, reason, report.caseId, bundleHay);
     if (!normalized) return;
-    const { text: cleaned, reason: reviewReason } = normalized;
+    let { text: cleaned, reason: reviewReason } = normalized;
     if (!isPacketUseful(cleaned)) return;
+    if (/^defendant sent the messages$/i.test(cleaned.trim())) return;
     if (PACKET_INTERNAL_LINE_RE.test(cleaned)) return;
     if (isClippedCourtWording(cleaned)) return;
     if (/^disclosure completeness|^chase outstanding disclosure|^missing\s*[—-]/i.test(cleaned)) return;
     if (DEV_NOTE_RE.test(cleaned) || DEV_NOTE_RE.test(reviewReason)) return;
-    if (!isSolicitorGradeReviewReason(reviewReason)) return;
-    const topic = topicKey(cleaned);
+    const label = reviewDisplayLabel(cleaned);
+    const topic = reviewTopicForItem(label);
     if (seenTopics.has(topic)) return;
-    const key = `${topic}:${dedupeKey(cleaned)}`;
+    const evidenceTopic = topicKey(label);
+    const skipMissingDedupe = topic === "family_confirm" || topic === "ocr_verify";
+    if (!skipMissingDedupe && missingTopics.has(evidenceTopic) && !reviewAddsDistinctRisk(label, reviewReason)) return;
+    if (/^full custody\/pace record$/i.test(label.trim()) && missingTopics.has("custody")) return;
+    if (!isSolicitorGradeReviewReason(reviewReason) && !reviewAddsDistinctRisk(label, reviewReason)) return;
+    const key = `${topic}:${dedupeKey(label)}`;
     if (seen.has(key)) return;
     seenTopics.add(topic);
     seen.add(key);
     out.push({
-      text: shortenClean(simplifyEvidenceLabel(cleaned), 125),
-      reason: cleanReason(reviewReason),
+      text: shortenClean(label, 125),
+      reason: polishReviewReason(label, reviewReason),
     });
   };
 
@@ -673,7 +821,28 @@ function pickReview(report: LineSourceProofReport): SolicitorProofPacketItem[] {
     add(item.outputLine, item.reason);
     if (out.length >= PACKET_LIMIT) return out;
   }
+  if (isDemoAuditCase(report.caseId) && out.length < PACKET_LIMIT) {
+    const familyLine = demoAuditProofReviewLine(report.caseId, offenceFamily, bundleHay);
+    add(familyLine, familyLine);
+  }
   return out;
+}
+
+function normalizeReviewEntry(
+  text: string,
+  reason: string,
+  caseId?: string,
+  bundleHay?: string,
+): { text: string; reason: string } | null {
+  const cleaned = humanizeReviewLine(text.replace(/^[^:]{1,40}:\s*/, ""));
+  if (ROBOTIC_LINE_RE.test(cleaned) || ROBOTIC_LINE_RE.test(reason)) return null;
+  if (isGenericDemoAuditChaseLabel(cleaned)) return null;
+  if (/^mg6c clarification/i.test(cleaned)) return null;
+  if (/^Unknown\s*[—–-]/i.test(text.trim())) return null;
+  if (/\bsource_unavailable\b/i.test(`${text} ${reason}`)) return null;
+  if (isDemoAuditCase(caseId ?? "") && /^mg6\s*\/\s*unused/i.test(cleaned)) return null;
+  if (bundleHay && isOffFamilyForBundle(cleaned, reason, bundleHay)) return null;
+  return { text: cleaned, reason };
 }
 
 function bottomLine(report: LineSourceProofReport): string {
@@ -691,6 +860,10 @@ function bottomLine(report: LineSourceProofReport): string {
 }
 
 export function buildSolicitorProofPacketModel(report: LineSourceProofReport): SolicitorProofPacketModel {
+  const missing = pickMissing(report);
+  const missingTopics = new Set(missing.map((item) => topicKey(item.text)));
+  const review = pickReview(report, missingTopics);
+
   return {
     caseId: report.caseId,
     caseName: report.defendant,
@@ -702,11 +875,44 @@ export function buildSolicitorProofPacketModel(report: LineSourceProofReport): S
     gotRight: pickGotRight(report),
     refused: pickRefused(report),
     softened: pickSoftened(report),
-    missing: pickMissing(report),
-    review: pickReview(report),
+    missing,
+    review,
     fullLedgerFile: "line-by-line-proof.md",
     machineLedgerFile: "proof-ledger.json",
   };
+}
+
+/** Gate helper — count missing/review topic overlap without distinct review risk. */
+export function countSolicitorPacketDuplicates(model: SolicitorProofPacketModel): number {
+  const missingTopics = new Set(model.missing.map((item) => topicKey(item.text)));
+  let dupes = 0;
+  for (const item of model.review) {
+    const topic = topicKey(item.text);
+    if (missingTopics.has(topic) && !reviewAddsDistinctRisk(item.text, item.reason ?? "")) dupes++;
+    if (/^full custody\/pace record$/i.test(item.text.trim()) && missingTopics.has("custody")) dupes++;
+  }
+  const reviewTopics = model.review.map((item) => reviewTopicForItem(item.text));
+  dupes += reviewTopics.length - new Set(reviewTopics).size;
+  const missingKeys = model.missing.map((item) => topicKey(item.text));
+  dupes += missingKeys.length - new Set(missingKeys).size;
+  return dupes;
+}
+
+export function countSolicitorPacketOffFamily(model: SolicitorProofPacketModel, bundleHay: string): number {
+  const missingTopics = new Set(model.missing.map((item) => topicKey(item.text)));
+  let count = 0;
+  for (const item of model.review) {
+    if (isOffFamilyForBundle(item.text, item.reason ?? "", bundleHay)) count++;
+    if (/^full custody\/pace record$/i.test(item.text.trim()) && missingTopics.has("custody")) count++;
+  }
+  return count;
+}
+
+export function solicitorPacketHasMainIssue(model: SolicitorProofPacketModel): boolean {
+  const hay = [...model.missing, ...model.review, ...model.refused, ...model.softened]
+    .map((item) => `${item.text} ${item.reason ?? ""} ${item.raw ?? ""} ${item.final ?? ""}`)
+    .join(" ");
+  return ROBOTIC_LINE_RE.test(hay);
 }
 
 function renderItemList(items: SolicitorProofPacketItem[], fallback: string, mode: "right" | "refused" | "softened" | "plain"): string[] {
@@ -750,7 +956,7 @@ export function renderSolicitorProofPacket(report: LineSourceProofReport): strin
     ...renderItemList(model.gotRight, "No top source-backed finding selected for the packet. See full ledger.", "right"),
     "2. What CaseBrain refused to say",
     "",
-    ...renderItemList(model.refused, "No overstatement was surfaced in the solicitor-facing packet.", "refused"),
+    ...renderItemList(model.refused, "No unsafe overclaim was shown to the solicitor.", "refused"),
     "3. What CaseBrain softened",
     "",
     ...renderItemList(model.softened, "No substantive rewrite selected for the packet.", "softened"),

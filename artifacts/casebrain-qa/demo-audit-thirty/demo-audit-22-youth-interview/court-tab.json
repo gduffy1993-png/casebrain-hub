@@ -1,0 +1,15 @@
+{
+  "safeCourtLine": "The defence asks the court to record per MG6C that YJS extract is served but full pre-sentence report, vulnerability assessment, and youth interview audio remain outstanding.",
+  "safePositionToday": "The defence asks the court to record per MG6C that YJS extract is served but full pre-sentence report, vulnerability assessment, and youth interview audio remain outstanding.",
+  "askCourtToRecord": [
+    "Outstanding disclosure: Full YJS pre-sentence report; Vulnerability assessment; Youth interview audio; Appropriate adult continuity.",
+    "Invite the court to order disclosure by a fixed date with a review hearing."
+  ],
+  "disclosureTimetable": "The defence invites the court to order disclosure of Full YJS pre-sentence report; Vulnerability assessment; Youth interview audio; Appropriate adult continuity by [date] with a review on [date]. Position remains provisional.",
+  "doNotOverstate": [
+    "Do not import adult-court assumptions — youth interview and YJS material remain provisional.",
+    "Do not state \"interview confirms\" — Interview material is not fully served",
+    "youth guilt proved",
+    "full interview shows"
+  ]
+}

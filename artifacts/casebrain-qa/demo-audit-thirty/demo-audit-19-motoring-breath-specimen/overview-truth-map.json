@@ -1,0 +1,347 @@
+{
+  "truthMap": [
+    {
+      "label": "Officer statement",
+      "existence": "served"
+    },
+    {
+      "label": "Breath / device procedure summary",
+      "existence": "served",
+      "note": "Summary served — calibration and full device record outstanding."
+    },
+    {
+      "label": "CCTV / dashcam export",
+      "existence": "referred_only"
+    },
+    {
+      "label": "Device calibration certificate",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    },
+    {
+      "label": "Full intoxilyser record",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    }
+  ],
+  "mustNotOverstate": [
+    "Do not treat procedure summary alone as proof of device reliability or identity.",
+    "Do not treat device summary as proof of reliability",
+    "Do not state \"CCTV stills served — master footage outstanding; ID not safely confirmed from current papers.",
+    "Do not state \"Full CCTV stills served — master footage outstanding; ID not safely confirmed from current papers."
+  ],
+  "evidenceTrace": {
+    "rows": [
+      {
+        "id": "allegation-0",
+        "section": "allegation",
+        "claim": "Drive with excess alcohol, contrary to section 5(1)(a) of the Road Traffic Act 1988",
+        "existence": "served",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/MOT/02 — Breath/device procedure summary — served (summary only).",
+        "sourceLabel": "Charge sheet / papers",
+        "inference": false
+      },
+      {
+        "id": "allegation-1",
+        "section": "allegation",
+        "claim": "Disclosure completeness and outstanding source material.",
+        "existence": "not_safely_confirmed",
+        "reliability": "needs_review",
+        "sourceLabel": "Matter confidence",
+        "inference": false,
+        "traceWarning": null
+      },
+      {
+        "id": "key_evidence-0",
+        "section": "key_evidence",
+        "claim": "Device calibration certificate",
+        "existence": "unknown",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/MOT/02 — Breath/device procedure summary — served (summary only).",
+        "sourceLabel": "MG6C schedule",
+        "critical": false,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "missing_referred-1",
+        "section": "missing_referred",
+        "claim": "Full intoxilyser record",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/MOT/04 — Full intoxilyser record — outstanding.",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "missing_referred-2",
+        "section": "missing_referred",
+        "claim": "CCTV / dashcam export",
+        "existence": "referred_only",
+        "reliability": "weak",
+        "sourceAnchor": "MG6C/MOT/05 — CCTV/dashcam export — referred — not attached.",
+        "sourceLabel": "MG6C schedule",
+        "critical": false,
+        "inference": false,
+        "notUsable": true,
+        "traceWarning": null
+      },
+      {
+        "id": "do_not_overstate-0",
+        "section": "do_not_overstate",
+        "claim": "Do not treat procedure summary alone as proof of device reliability or identity.",
+        "existence": "not_safely_confirmed",
+        "reliability": "unsafe",
+        "sourceLabel": "Guardian / bundle guard",
+        "inference": false,
+        "traceWarning": null
+      },
+      {
+        "id": "do_not_overstate-1",
+        "section": "do_not_overstate",
+        "claim": "Do not treat device summary as proof of reliability",
+        "existence": "not_safely_confirmed",
+        "reliability": "unsafe",
+        "sourceLabel": "Guardian / bundle guard",
+        "inference": false,
+        "traceWarning": null
+      },
+      {
+        "id": "do_not_overstate-2",
+        "section": "do_not_overstate",
+        "claim": "Do not state \"CCTV stills served — master footage outstanding; ID not safely confirmed from current papers.",
+        "existence": "not_safely_confirmed",
+        "reliability": "unsafe",
+        "sourceLabel": "Guardian / bundle guard",
+        "inference": true,
+        "traceWarning": null
+      },
+      {
+        "id": "do_not_overstate-3",
+        "section": "do_not_overstate",
+        "claim": "Do not state \"Full CCTV stills served — master footage outstanding; ID not safely confirmed from current papers.",
+        "existence": "not_safely_confirmed",
+        "reliability": "unsafe",
+        "sourceLabel": "Guardian / bundle guard",
+        "inference": true,
+        "traceWarning": null
+      },
+      {
+        "id": "chase-0",
+        "section": "chase",
+        "claim": "Please provide Device calibration certificate (see MG6C/MOT/02) or confirm in writing why it is not available.",
+        "existence": "unknown",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/MOT/02 — Breath/device procedure summary — served (summary only).",
+        "sourceLabel": "MG6C schedule",
+        "critical": false,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "chase-1",
+        "section": "chase",
+        "claim": "Please provide Full intoxilyser record (see MG6C/MOT/04) or confirm in writing why it is not available.",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/MOT/04 — Full intoxilyser record — outstanding.",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "chase-2",
+        "section": "chase",
+        "claim": "Please provide CCTV / dashcam export (see MG6C/MOT/05) or confirm in writing why it is not available.",
+        "existence": "referred_only",
+        "reliability": "weak",
+        "sourceAnchor": "MG6C/MOT/05 — CCTV/dashcam export — referred — not attached.",
+        "sourceLabel": "MG6C schedule",
+        "critical": false,
+        "inference": false,
+        "notUsable": true,
+        "traceWarning": null
+      },
+      {
+        "id": "court_note-0",
+        "section": "court_note",
+        "claim": "The defence asks the court to record per MG6C that procedure summary is served but device calibration, full intoxilyser record, and CCTV/dashcam export remain outstanding.",
+        "existence": "not_safely_confirmed",
+        "reliability": "needs_review",
+        "sourceLabel": "Disclosure chase brief",
+        "sourceAnchor": "MG6C/MOT/02 — Breath/device procedure summary — served (summary only).",
+        "inference": false
+      }
+    ],
+    "bySection": {
+      "allegation": [
+        {
+          "id": "allegation-0",
+          "section": "allegation",
+          "claim": "Drive with excess alcohol, contrary to section 5(1)(a) of the Road Traffic Act 1988",
+          "existence": "served",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/MOT/02 — Breath/device procedure summary — served (summary only).",
+          "sourceLabel": "Charge sheet / papers",
+          "inference": false
+        },
+        {
+          "id": "allegation-1",
+          "section": "allegation",
+          "claim": "Disclosure completeness and outstanding source material.",
+          "existence": "not_safely_confirmed",
+          "reliability": "needs_review",
+          "sourceLabel": "Matter confidence",
+          "inference": false,
+          "traceWarning": null
+        }
+      ],
+      "key_evidence": [
+        {
+          "id": "key_evidence-0",
+          "section": "key_evidence",
+          "claim": "Device calibration certificate",
+          "existence": "unknown",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/MOT/02 — Breath/device procedure summary — served (summary only).",
+          "sourceLabel": "MG6C schedule",
+          "critical": false,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        }
+      ],
+      "missing_referred": [
+        {
+          "id": "missing_referred-1",
+          "section": "missing_referred",
+          "claim": "Full intoxilyser record",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/MOT/04 — Full intoxilyser record — outstanding.",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        },
+        {
+          "id": "missing_referred-2",
+          "section": "missing_referred",
+          "claim": "CCTV / dashcam export",
+          "existence": "referred_only",
+          "reliability": "weak",
+          "sourceAnchor": "MG6C/MOT/05 — CCTV/dashcam export — referred — not attached.",
+          "sourceLabel": "MG6C schedule",
+          "critical": false,
+          "inference": false,
+          "notUsable": true,
+          "traceWarning": null
+        }
+      ],
+      "do_not_overstate": [
+        {
+          "id": "do_not_overstate-0",
+          "section": "do_not_overstate",
+          "claim": "Do not treat procedure summary alone as proof of device reliability or identity.",
+          "existence": "not_safely_confirmed",
+          "reliability": "unsafe",
+          "sourceLabel": "Guardian / bundle guard",
+          "inference": false,
+          "traceWarning": null
+        },
+        {
+          "id": "do_not_overstate-1",
+          "section": "do_not_overstate",
+          "claim": "Do not treat device summary as proof of reliability",
+          "existence": "not_safely_confirmed",
+          "reliability": "unsafe",
+          "sourceLabel": "Guardian / bundle guard",
+          "inference": false,
+          "traceWarning": null
+        },
+        {
+          "id": "do_not_overstate-2",
+          "section": "do_not_overstate",
+          "claim": "Do not state \"CCTV stills served — master footage outstanding; ID not safely confirmed from current papers.",
+          "existence": "not_safely_confirmed",
+          "reliability": "unsafe",
+          "sourceLabel": "Guardian / bundle guard",
+          "inference": true,
+          "traceWarning": null
+        },
+        {
+          "id": "do_not_overstate-3",
+          "section": "do_not_overstate",
+          "claim": "Do not state \"Full CCTV stills served — master footage outstanding; ID not safely confirmed from current papers.",
+          "existence": "not_safely_confirmed",
+          "reliability": "unsafe",
+          "sourceLabel": "Guardian / bundle guard",
+          "inference": true,
+          "traceWarning": null
+        }
+      ],
+      "chase": [
+        {
+          "id": "chase-0",
+          "section": "chase",
+          "claim": "Please provide Device calibration certificate (see MG6C/MOT/02) or confirm in writing why it is not available.",
+          "existence": "unknown",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/MOT/02 — Breath/device procedure summary — served (summary only).",
+          "sourceLabel": "MG6C schedule",
+          "critical": false,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        },
+        {
+          "id": "chase-1",
+          "section": "chase",
+          "claim": "Please provide Full intoxilyser record (see MG6C/MOT/04) or confirm in writing why it is not available.",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/MOT/04 — Full intoxilyser record — outstanding.",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        },
+        {
+          "id": "chase-2",
+          "section": "chase",
+          "claim": "Please provide CCTV / dashcam export (see MG6C/MOT/05) or confirm in writing why it is not available.",
+          "existence": "referred_only",
+          "reliability": "weak",
+          "sourceAnchor": "MG6C/MOT/05 — CCTV/dashcam export — referred — not attached.",
+          "sourceLabel": "MG6C schedule",
+          "critical": false,
+          "inference": false,
+          "notUsable": true,
+          "traceWarning": null
+        }
+      ],
+      "court_note": [
+        {
+          "id": "court_note-0",
+          "section": "court_note",
+          "claim": "The defence asks the court to record per MG6C that procedure summary is served but device calibration, full intoxilyser record, and CCTV/dashcam export remain outstanding.",
+          "existence": "not_safely_confirmed",
+          "reliability": "needs_review",
+          "sourceLabel": "Disclosure chase brief",
+          "sourceAnchor": "MG6C/MOT/02 — Breath/device procedure summary — served (summary only).",
+          "inference": false
+        }
+      ]
+    }
+  }
+}

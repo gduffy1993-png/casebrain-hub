@@ -2,10 +2,10 @@
   "caseId": "demo-audit-01-phone-harassment",
   "caseTitle": "DA-01 Riley Moss — phone harassment / screenshots served",
   "defendant": "Riley Moss",
-  "generatedAt": "2026-07-01T10:42:44.557Z",
+  "generatedAt": "2026-07-06T23:05:55.575Z",
   "disclaimer": "Controlled/anonymised audit only unless solicitor-reviewed real bundles are used. Do not claim real-world false-served rate or solicitor-reviewed accuracy from controlled data.",
   "bundleSourcePath": "artifacts/evidence-state-audit-local/cases/demo-audit-01-phone-harassment/bundle-text.md",
-  "bundleText": "RESTRICTED — PROSECUTION DISCLOSURE BUNDLE\r\n\r\nURN: 26/DA/001\r\nDefendant: Riley Moss\r\nCourt: Northgate Magistrates' Court\n\n=== SECTION: COVER_INDEX ===\n\nINDEX\r\n\r\nDocument | Pages | Note\r\nCharge sheet | 1 |\r\nMG5 case summary | 2-3 |\r\nMG6C disclosure schedule | 4 |\r\nMG11 complainant statement (draft unsigned) | 5-6 |\r\nScreenshot and message pack | 7-8 |\r\nExhibit list | 9 |\r\nPolice note — attribution | 10 |\r\nCourt listing | 11 |\n\n=== SECTION: CHARGE ===\n\nR v Riley Moss\r\n\r\nStatement of Offence:\r\nHarassment, contrary to section 2 of the Protection from Harassment Act 1997.\r\n\r\nParticulars of Offence:\r\nBetween 3 January 2026 and 14 March 2026 at Northgate sent messages to Emma Holt by electronic communication, namely WhatsApp and SMS, which amounted to a course of conduct which amounted to harassment of Emma Holt and which the defendant knew or ought to have known amounted to harassment.\n\n=== SECTION: MG5 ===\n\nMG05 — OFFENCE REPORT\n\nURN: 26/DA/001\nAnticipated Plea: Not Guilty\nOfficer in case: DC Patel 4521\n\nHeadline Summary\nThe prosecution relies on a served screenshot and message pack, a phone extraction summary, and complainant account. Full phone download, subscriber data, and final signed MG11 are outstanding. Attribution is asserted in police papers but not fully proved on current disclosure.\n\nChronological summary\n03/01/2026 — Complainant reports repeated messages from an unknown number.\n15/01/2026 — Complainant provides screenshots to police; pack copied to exhibit RM/01.\n22/01/2026 — Handset seized from defendant; extraction summary prepared by Digital Forensics Unit.\n04/02/2026 — MG6C updated. Full source download and subscriber/account data marked outstanding.\n\n=== SECTION: MG5 ===\n\n14/03/2026 — Last message screenshot in served pack dated 12/03/2026.\n\nWhat the key witnesses say\nEmma Holt (complainant, draft MG11) — messages caused alarm and distress; cannot confirm who operated the handset without full download and subscriber data.\n\nEvidence on file (served)\nCharge sheet; MG5; MG6C schedule; draft complainant MG11; screenshot/message pack (RM/01); exhibit list; police attribution note.\n\nEvidence referred or outstanding\nFull phone download/source export; subscriber/account data; full message export; call logs; device-level extraction metadata; final signed MG11; MG6C clarification on unused material; additional unused material schedule lines.\n\nProsecution position on current papers\nScreenshots show message content and dates. Attribution to Riley Moss is asserted by investigating officer but requires subscriber data and full download before the defence can safely accept sender identity.\n\n=== SECTION: MG6 ===\n\nMG6C — UNUSED MATERIAL SCHEDULE\r\n\r\nMG6C/001 — Phone extraction summary — served (summary only; source download outstanding).\r\nMG6C/002 — Screenshot and message pack RM/01 — served on bundle.\r\nMG6C/003 — Subscriber/account data — outstanding — not on bundle.\r\nMG6C/004 — Full phone download / source export — outstanding — not on bundle.\r\nMG6C/005 — Call logs — outstanding — not on bundle.\r\nMG6C/006 — Device metadata export — referred on MG6 — not attached.\r\nMG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.\r\nMG6C/008 — Additional unused material — clarification sought.\n\n=== SECTION: MG11 ===\n\nMG11 — COMPLAINANT STATEMENT (draft unsigned)\n\nI am Emma Holt, date of birth 14/07/1991, of 22 Alder Lane, Northgate.\n\n1. Between January and March 2026 I received many messages on WhatsApp and SMS from a number I did not recognise. The messages were persistent and caused me alarm and distress.\n\n2. I saved screenshots of representative messages. These are exhibited as RM/01 and are on the prosecution bundle. I can describe the content: repeated contact, late-night messages, and threats to attend my address.\n\n=== SECTION: MG11 ===\n\n3. Police told me a phone was seized from Riley Moss. I have not seen the full phone download. I cannot say who typed each message without that material and subscriber/account records.\n\n4. I am willing to sign a final statement when I have reviewed the full digital disclosure.\n\nStatement not yet signed — final MG11 outstanding.\n\n=== SECTION: SCREENSHOTS ===\n\nEXHIBIT RM/01 — SCREENSHOT AND MESSAGE PACK (served)\n\nPack reference: DFU/RM/2026/014\nDevice: Samsung handset seized 22/01/2026\nNote: Screenshots served. Full extraction source file not attached.\n\n--- Screenshot 1 (WhatsApp, 08/01/2026 23:14) ---\nFrom: +44 7700 900142\n\"I know where you work\"\n\n--- Screenshot 2 (WhatsApp, 15/01/2026 00:02) ---\nFrom: +44 7700 900142\n\n=== SECTION: SCREENSHOTS ===\n\n\"Answer me\"\n\n--- Screenshot 3 (SMS, 12/03/2026 21:47) ---\nFrom: +44 7700 900142\n\"See you soon\"\n\n--- Extraction summary (served summary only) ---\nDFU summary: partial extraction completed. Message threads partially exported. Full download .ufd file referred on MG6C/004 — not attached to this bundle.\nSubscriber identity: not on bundle (MG6C/003 outstanding).\nCall log export: outstanding (MG6C/005).\n\nAttribution note in pack: number +44 7700 900142 appears in seized handset summary; subscriber/account proof not served.\n\n=== SECTION: EXHIBIT_LIST ===\n\nEXHIBIT LIST — R v Riley Moss (26/DA/001)\r\n\r\nRM/01 — Screenshot and message pack — SERVED — pages 7-8\r\nRM/02 — Phone extraction summary — SERVED (summary only) — referred MG6C/001\r\nRM/03 — Draft complainant MG11 — SERVED (unsigned) — pages 5-6\r\nRM/04 — Subscriber/account data — NOT SERVED — outstanding MG6C/003\r\nRM/05 — Full phone download — NOT SERVED — outstanding MG6C/004\r\nRM/06 — Call logs — NOT SERVED — outstanding MG6C/005\n\n=== SECTION: POLICE_NOTE ===\n\nPOLICE NOTE — DIGITAL ATTRIBUTION (DC Patel 4521)\r\n\r\nThe investigating officer records that the seized handset is linked to Riley Moss by arrest and property continuity. The screenshot pack RM/01 is served. A DFU extraction summary is on file.\r\n\r\nAttribution of sender identity for +44 7700 900142 is asserted in this note but is NOT fully proved on current papers: subscriber/account data and full phone download are outstanding. The defence should not treat screenshots alone as proof that Riley Moss sent each message without served attribution material.\r\n\r\nFinal signed MG11 and MG6C clarification on unused material remain outstanding.\n\n=== SECTION: LISTING ===\n\nPTPH listed — 18 August 2026, 10:00, Northgate Magistrates' Court, Court 3.",
+  "bundleText": "RESTRICTED — PROSECUTION DISCLOSURE BUNDLE\r\n\r\nURN: 26/DA/001\r\nDefendant: Riley Moss\r\nCourt: Northgate Magistrates' Court\n\n=== SECTION: COVER_INDEX ===\n\nINDEX\r\n\r\nDocument | Pages | Note\r\nCharge sheet | 1 |\r\nMG5 case summary | 2-3 |\r\nMG6C disclosure schedule | 4 |\r\nMG11 complainant statement (draft unsigned) | 5-6 |\r\nScreenshot and message pack | 7-8 |\r\nExhibit list | 9 |\r\nPolice note — attribution | 10 |\r\nCourt listing | 11 |\n\n=== SECTION: CHARGE ===\n\nR v Riley Moss\r\n\r\nStatement of Offence:\r\nHarassment, contrary to section 2 of the Protection from Harassment Act 1997.\r\n\r\nParticulars of Offence:\r\nBetween 3 January 2026 and 14 March 2026 at Northgate sent messages to Emma Holt by electronic communication, namely WhatsApp and SMS, which amounted to a course of conduct which amounted to harassment of Emma Holt and which the defendant knew or ought to have known amounted to harassment.\n\n=== SECTION: MG5 ===\n\nMG05 — OFFENCE REPORT\n\nURN: 26/DA/001\nAnticipated Plea: Not Guilty\nOfficer in case: DC Patel 4521\n\nHeadline Summary\nThe prosecution relies on a served screenshot and message pack, a phone extraction summary, and complainant account. Full phone download, subscriber data, and final signed MG11 are outstanding. Attribution is asserted in police papers but not fully proved on current disclosure.\n\nChronological summary\n03/01/2026 — Complainant reports repeated messages from an unknown number.\n15/01/2026 — Complainant provides screenshots to police; pack copied to exhibit RM/01.\n22/01/2026 — Handset seized from defendant; extraction summary prepared by Digital Forensics Unit.\n04/02/2026 — MG6C updated. Full source download and subscriber/account data marked outstanding.\n\n=== SECTION: MG5 ===\n\n14/03/2026 — Last message screenshot in served pack dated 12/03/2026.\n\nWhat the key witnesses say\nEmma Holt (complainant, draft MG11) — messages caused alarm and distress; cannot confirm who operated the handset without full download and subscriber data.\n\nEvidence on file (served)\nCharge sheet; MG5; MG6C schedule; draft complainant MG11; screenshot/message pack (RM/01); exhibit list; police attribution note.\n\nEvidence referred or outstanding\nFull phone download/source export; subscriber/account data; full message export; call logs; device-level extraction metadata; final signed MG11.\n\nProsecution position on current papers\nScreenshots show message content and dates. Attribution to Riley Moss is asserted by investigating officer but requires subscriber data and full download before the defence can safely accept sender identity.\n\n=== SECTION: MG6 ===\n\nMG6C — UNUSED MATERIAL SCHEDULE\r\n\r\nMG6C/001 — Phone extraction summary — served (summary only; source download outstanding).\r\nMG6C/002 — Screenshot and message pack RM/01 — served on bundle.\r\nMG6C/003 — Subscriber/account data — outstanding — not on bundle.\r\nMG6C/004 — Full phone download / source export — outstanding — not on bundle.\r\nMG6C/005 — Call logs — outstanding — not on bundle.\r\nMG6C/006 — Device metadata export — referred on MG6C — not attached.\r\nMG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.\r\nMG6C/008 — Full message export (native format) — referred on MG6C — not attached.\n\n=== SECTION: MG11 ===\n\nMG11 — COMPLAINANT STATEMENT (draft unsigned)\n\nI am Emma Holt, date of birth 14/07/1991, of 22 Alder Lane, Northgate.\n\n1. Between January and March 2026 I received many messages on WhatsApp and SMS from a number I did not recognise. The messages were persistent and caused me alarm and distress.\n\n2. I saved screenshots of representative messages. These are exhibited as RM/01 and are on the prosecution bundle. I can describe the content: repeated contact, late-night messages, and threats to attend my address.\n\n=== SECTION: MG11 ===\n\n3. Police told me a phone was seized from Riley Moss. I have not seen the full phone download. I cannot say who typed each message without that material and subscriber/account records.\n\n4. I am willing to sign a final statement when I have reviewed the full digital disclosure.\n\nStatement not yet signed — final MG11 outstanding.\n\n=== SECTION: SCREENSHOTS ===\n\nEXHIBIT RM/01 — SCREENSHOT AND MESSAGE PACK (served)\n\nPack reference: DFU/RM/2026/014\nDevice: Samsung handset seized 22/01/2026\nNote: Screenshots served. Full extraction source file not attached.\n\n--- Screenshot 1 (WhatsApp, 08/01/2026 23:14) ---\nFrom: +44 7700 900142\n\"I know where you work\"\n\n--- Screenshot 2 (WhatsApp, 15/01/2026 00:02) ---\nFrom: +44 7700 900142\n\n=== SECTION: SCREENSHOTS ===\n\n\"Answer me\"\n\n--- Screenshot 3 (SMS, 12/03/2026 21:47) ---\nFrom: +44 7700 900142\n\"See you soon\"\n\n--- Extraction summary (served summary only) ---\nDFU summary: partial extraction completed. Message threads partially exported. Full download .ufd file referred on MG6C/004 — not attached to this bundle.\nSubscriber identity: not on bundle (MG6C/003 outstanding).\nCall log export: outstanding (MG6C/005).\n\nAttribution note in pack: number +44 7700 900142 appears in seized handset summary; subscriber/account proof not served.\n\n=== SECTION: EXHIBIT_LIST ===\n\nEXHIBIT LIST — R v Riley Moss (26/DA/001)\r\n\r\nRM/01 — Screenshot and message pack — SERVED — pages 7-8\r\nRM/02 — Phone extraction summary — SERVED (summary only) — referred MG6C/001\r\nRM/03 — Draft complainant MG11 — SERVED (unsigned) — pages 5-6\r\nRM/04 — Subscriber/account data — NOT SERVED — outstanding MG6C/003\r\nRM/05 — Full phone download — NOT SERVED — outstanding MG6C/004\r\nRM/06 — Call logs — NOT SERVED — outstanding MG6C/005\n\n=== SECTION: POLICE_NOTE ===\n\nPOLICE NOTE — DIGITAL ATTRIBUTION (DC Patel 4521)\r\n\r\nThe investigating officer records that the seized handset is linked to Riley Moss by arrest and property continuity. The screenshot pack RM/01 is served. A DFU extraction summary is on file.\r\n\r\nAttribution of sender identity for +44 7700 900142 is asserted in this note but is NOT fully proved on current papers: subscriber/account data and full phone download are outstanding. The defence should not treat screenshots alone as proof that Riley Moss sent each message without served attribution material.\r\n\r\nFinal signed MG11, call logs, and device metadata export remain outstanding.\n\n=== SECTION: LISTING ===\n\nPTPH listed — 18 August 2026, 10:00, Northgate Magistrates' Court, Court 3.",
   "method": "Runs live H5 builders on bundle text, maps each meaningful output line to extracted bundle snippets, records proof-chain status (PDF/page vs text only), and builds solicitor-readable proof ledgers. No Brain 1 mutation.",
   "lines": [
     {
@@ -200,11 +200,11 @@
     {
       "id": "line-6",
       "outputSurface": "evidence_truth_map / evidence_trace",
-      "outputLine": "device metadata — referred_only",
+      "outputLine": "Device metadata export — referred_only",
       "humanEvidenceLabel": null,
-      "humanOutputLine": "device metadata — referred_only",
+      "humanOutputLine": "Device metadata export — referred_only",
       "lineCategory": "evidence_state",
-      "evidenceItem": "device metadata",
+      "evidenceItem": "Device metadata export",
       "claimType": "fact",
       "evidenceState": "referred_only",
       "reliabilityState": "weak",
@@ -642,6 +642,47 @@
     {
       "id": "line-18",
       "outputSurface": "evidence_truth_map / evidence_trace",
+      "outputLine": "Device metadata export: missing / needs_review",
+      "humanEvidenceLabel": null,
+      "humanOutputLine": "Device metadata export",
+      "lineCategory": "evidence_state",
+      "evidenceItem": "Device metadata export",
+      "claimType": null,
+      "evidenceState": "missing",
+      "reliabilityState": "needs_review",
+      "sourceAnchor": null,
+      "sourcePage": null,
+      "sourceSection": null,
+      "sourceSnippet": null,
+      "sourceStrength": "no_anchor",
+      "supportStatus": "source_unavailable",
+      "whyThisSupportsTheLine": "No direct bundle snippet located for this line.",
+      "whyThisIsLimited": "No usable source anchor — solicitor must verify.",
+      "safeWording": "Not safely confirmed on current papers — solicitor review required.",
+      "blockedWording": null,
+      "solicitorReviewRequired": true,
+      "usefulnessVerdict": "solicitor_review_required",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "gedReviewReasons": [
+        "source_unavailable",
+        "evidence_item_not_in_snippet",
+        "meaningful_line_without_anchor",
+        "solicitor_review_required"
+      ],
+      "sourceDocumentName": "bundle.pdf",
+      "sourceDocumentType": "pdf",
+      "sourcePageNumber": null,
+      "extractedSnippet": null,
+      "pdfPageAvailable": false,
+      "pdfPageEvidencePath": null,
+      "extractionConfidence": "unavailable",
+      "extractionIssue": "label_mismatch",
+      "proofChainStatus": "source_unavailable"
+    },
+    {
+      "id": "line-19",
+      "outputSurface": "evidence_truth_map / evidence_trace",
       "outputLine": "Final signed MG11: missing / needs_review",
       "humanEvidenceLabel": null,
       "humanOutputLine": "Final signed MG11",
@@ -669,42 +710,6 @@
       "sourceDocumentType": "pdf",
       "sourcePageNumber": "4",
       "extractedSnippet": "MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.",
-      "pdfPageAvailable": true,
-      "pdfPageEvidencePath": "artifacts/casebrain-qa/line-source-proof/demo-audit-01-phone-harassment/proof-chain-pages/p4.md",
-      "extractionConfidence": "exact",
-      "extractionIssue": "page_missing",
-      "proofChainStatus": "pdf_and_text_support_output"
-    },
-    {
-      "id": "line-19",
-      "outputSurface": "evidence_truth_map / evidence_trace",
-      "outputLine": "MG6C clarification on unused material: unknown / needs_review",
-      "humanEvidenceLabel": null,
-      "humanOutputLine": "MG6C clarification on unused material",
-      "lineCategory": "evidence_state",
-      "evidenceItem": "MG6C clarification on unused material",
-      "claimType": null,
-      "evidenceState": "unknown",
-      "reliabilityState": "needs_review",
-      "sourceAnchor": "MG6C — UNUSED MATERIAL SCHEDULE",
-      "sourcePage": null,
-      "sourceSection": "MG6",
-      "sourceSnippet": "MG6C — UNUSED MATERIAL SCHEDULE",
-      "sourceStrength": "medium",
-      "supportStatus": "partially_supported",
-      "whyThisSupportsTheLine": "Partial bundle support: \"MG6C — UNUSED MATERIAL SCHEDULE\".",
-      "whyThisIsLimited": "none",
-      "safeWording": null,
-      "blockedWording": null,
-      "solicitorReviewRequired": true,
-      "usefulnessVerdict": "safe_but_not_actionable",
-      "verdict": "WARNING",
-      "reviewTier": "solicitor_caution",
-      "gedReviewReasons": [],
-      "sourceDocumentName": "bundle.pdf",
-      "sourceDocumentType": "pdf",
-      "sourcePageNumber": "4",
-      "extractedSnippet": "MG6C — UNUSED MATERIAL SCHEDULE",
       "pdfPageAvailable": true,
       "pdfPageEvidencePath": "artifacts/casebrain-qa/line-source-proof/demo-audit-01-phone-harassment/proof-chain-pages/p4.md",
       "extractionConfidence": "exact",
@@ -1110,33 +1115,33 @@
     {
       "id": "line-31",
       "outputSurface": "evidence_truth_map / evidence_trace",
-      "outputLine": "Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available.: missing / needs_review",
-      "humanEvidenceLabel": null,
-      "humanOutputLine": "Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available.",
+      "outputLine": "Please provide Device metadata export (see MG6C/001) or confirm in writing why it is not available.: missing / needs_review",
+      "humanEvidenceLabel": "Phone extraction summary only — full source download outstanding",
+      "humanOutputLine": "Please provide Device metadata export (see MG6C/001) or confirm in writing why it is not available.",
       "lineCategory": "evidence_state",
-      "evidenceItem": "Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available.",
+      "evidenceItem": "Please provide Device metadata export (see MG6C/001) or confirm in writing why it is not available.",
       "claimType": null,
       "evidenceState": "missing",
       "reliabilityState": "needs_review",
-      "sourceAnchor": "MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.",
+      "sourceAnchor": "MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).",
       "sourcePage": null,
       "sourceSection": "MG6",
-      "sourceSnippet": "MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.",
+      "sourceSnippet": "MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).",
       "sourceStrength": "schedule_only",
       "supportStatus": "missing",
-      "whyThisSupportsTheLine": "Bundle shows material outstanding or not attached: \"MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.\".",
+      "whyThisSupportsTheLine": "Bundle shows material outstanding or not attached: \"MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).\".",
       "whyThisIsLimited": "Material expected or mentioned but not on bundle.",
       "safeWording": "Outstanding on current bundle — chase if disclosure-relevant.",
       "blockedWording": null,
-      "solicitorReviewRequired": true,
-      "usefulnessVerdict": "safe_but_not_actionable",
-      "verdict": "WARNING",
-      "reviewTier": "solicitor_caution",
+      "solicitorReviewRequired": false,
+      "usefulnessVerdict": "correct_and_useful",
+      "verdict": "PASS",
+      "reviewTier": "clean_source_backed",
       "gedReviewReasons": [],
       "sourceDocumentName": "bundle.pdf",
       "sourceDocumentType": "pdf",
       "sourcePageNumber": "4",
-      "extractedSnippet": "MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.",
+      "extractedSnippet": "MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).",
       "pdfPageAvailable": true,
       "pdfPageEvidencePath": "artifacts/casebrain-qa/line-source-proof/demo-audit-01-phone-harassment/proof-chain-pages/p4.md",
       "extractionConfidence": "exact",
@@ -1470,6 +1475,83 @@
     {
       "id": "line-41",
       "outputSurface": "chase",
+      "outputLine": "Device metadata export",
+      "humanEvidenceLabel": null,
+      "humanOutputLine": "Device metadata export",
+      "lineCategory": "chase_request",
+      "evidenceItem": "Device metadata export",
+      "claimType": null,
+      "evidenceState": "Outstanding",
+      "reliabilityState": null,
+      "sourceAnchor": null,
+      "sourcePage": null,
+      "sourceSection": null,
+      "sourceSnippet": null,
+      "sourceStrength": "no_anchor",
+      "supportStatus": "source_unavailable",
+      "whyThisSupportsTheLine": "No direct bundle snippet located for this line.",
+      "whyThisIsLimited": "No usable source anchor — solicitor must verify.",
+      "safeWording": null,
+      "blockedWording": null,
+      "solicitorReviewRequired": true,
+      "usefulnessVerdict": "solicitor_review_required",
+      "verdict": "WARNING",
+      "reviewTier": "source_review",
+      "gedReviewReasons": [
+        "source_unavailable",
+        "evidence_item_not_in_snippet",
+        "meaningful_line_without_anchor",
+        "solicitor_review_required"
+      ],
+      "sourceDocumentName": "bundle.pdf",
+      "sourceDocumentType": "pdf",
+      "sourcePageNumber": null,
+      "extractedSnippet": null,
+      "pdfPageAvailable": false,
+      "pdfPageEvidencePath": null,
+      "extractionConfidence": "unavailable",
+      "extractionIssue": "label_mismatch",
+      "proofChainStatus": "source_unavailable"
+    },
+    {
+      "id": "line-42",
+      "outputSurface": "chase / CPS",
+      "outputLine": "Please provide Device metadata export (see MG6C/001) or confirm in writing why it is not available.",
+      "humanEvidenceLabel": "Phone extraction summary only — full source download outstanding",
+      "humanOutputLine": "Please provide Device metadata export (see MG6C/001) or confirm in writing why it is not available.",
+      "lineCategory": "chase_request",
+      "evidenceItem": "Device metadata export",
+      "claimType": null,
+      "evidenceState": null,
+      "reliabilityState": null,
+      "sourceAnchor": "MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).",
+      "sourcePage": null,
+      "sourceSection": "MG6",
+      "sourceSnippet": "MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).",
+      "sourceStrength": "schedule_only",
+      "supportStatus": "partially_supported",
+      "whyThisSupportsTheLine": "Partial bundle support: \"MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).\".",
+      "whyThisIsLimited": "MG6/schedule reference only — export not served.",
+      "safeWording": null,
+      "blockedWording": null,
+      "solicitorReviewRequired": false,
+      "usefulnessVerdict": "correct_and_useful",
+      "verdict": "PASS",
+      "reviewTier": "clean_source_backed",
+      "gedReviewReasons": [],
+      "sourceDocumentName": "bundle.pdf",
+      "sourceDocumentType": "pdf",
+      "sourcePageNumber": "4",
+      "extractedSnippet": "MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).",
+      "pdfPageAvailable": true,
+      "pdfPageEvidencePath": "artifacts/casebrain-qa/line-source-proof/demo-audit-01-phone-harassment/proof-chain-pages/p4.md",
+      "extractionConfidence": "exact",
+      "extractionIssue": "page_missing",
+      "proofChainStatus": "pdf_and_text_support_output"
+    },
+    {
+      "id": "line-43",
+      "outputSurface": "chase",
       "outputLine": "Final signed MG11",
       "humanEvidenceLabel": null,
       "humanOutputLine": "Final signed MG11",
@@ -1504,7 +1586,7 @@
       "proofChainStatus": "pdf_and_text_support_output"
     },
     {
-      "id": "line-42",
+      "id": "line-44",
       "outputSurface": "chase / CPS",
       "outputLine": "Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available.",
       "humanEvidenceLabel": null,
@@ -1533,78 +1615,6 @@
       "sourceDocumentType": "pdf",
       "sourcePageNumber": "4",
       "extractedSnippet": "MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.",
-      "pdfPageAvailable": true,
-      "pdfPageEvidencePath": "artifacts/casebrain-qa/line-source-proof/demo-audit-01-phone-harassment/proof-chain-pages/p4.md",
-      "extractionConfidence": "exact",
-      "extractionIssue": "page_missing",
-      "proofChainStatus": "pdf_and_text_support_output"
-    },
-    {
-      "id": "line-43",
-      "outputSurface": "chase",
-      "outputLine": "MG6C clarification on unused material",
-      "humanEvidenceLabel": null,
-      "humanOutputLine": "MG6C clarification on unused material",
-      "lineCategory": "chase_request",
-      "evidenceItem": "MG6C clarification on unused material",
-      "claimType": null,
-      "evidenceState": "Outstanding",
-      "reliabilityState": null,
-      "sourceAnchor": "MG6C — UNUSED MATERIAL SCHEDULE",
-      "sourcePage": null,
-      "sourceSection": "MG6",
-      "sourceSnippet": "MG6C — UNUSED MATERIAL SCHEDULE",
-      "sourceStrength": "medium",
-      "supportStatus": "partially_supported",
-      "whyThisSupportsTheLine": "Partial bundle support: \"MG6C — UNUSED MATERIAL SCHEDULE\".",
-      "whyThisIsLimited": "none",
-      "safeWording": null,
-      "blockedWording": null,
-      "solicitorReviewRequired": true,
-      "usefulnessVerdict": "safe_but_not_actionable",
-      "verdict": "WARNING",
-      "reviewTier": "solicitor_caution",
-      "gedReviewReasons": [],
-      "sourceDocumentName": "bundle.pdf",
-      "sourceDocumentType": "pdf",
-      "sourcePageNumber": "4",
-      "extractedSnippet": "MG6C — UNUSED MATERIAL SCHEDULE",
-      "pdfPageAvailable": true,
-      "pdfPageEvidencePath": "artifacts/casebrain-qa/line-source-proof/demo-audit-01-phone-harassment/proof-chain-pages/p4.md",
-      "extractionConfidence": "exact",
-      "extractionIssue": "page_missing",
-      "proofChainStatus": "pdf_and_text_support_output"
-    },
-    {
-      "id": "line-44",
-      "outputSurface": "chase / CPS",
-      "outputLine": "Please provide MG6C clarification on unused material (see MG6C) or confirm in writing why it is not available.",
-      "humanEvidenceLabel": null,
-      "humanOutputLine": "Please provide MG6C clarification on unused material (see MG6C) or confirm in writing why it is not available.",
-      "lineCategory": "chase_request",
-      "evidenceItem": "MG6C clarification on unused material",
-      "claimType": null,
-      "evidenceState": null,
-      "reliabilityState": null,
-      "sourceAnchor": "MG6C — UNUSED MATERIAL SCHEDULE",
-      "sourcePage": null,
-      "sourceSection": "MG6",
-      "sourceSnippet": "MG6C — UNUSED MATERIAL SCHEDULE",
-      "sourceStrength": "medium",
-      "supportStatus": "partially_supported",
-      "whyThisSupportsTheLine": "Partial bundle support: \"MG6C — UNUSED MATERIAL SCHEDULE\".",
-      "whyThisIsLimited": "none",
-      "safeWording": null,
-      "blockedWording": null,
-      "solicitorReviewRequired": true,
-      "usefulnessVerdict": "safe_but_not_actionable",
-      "verdict": "WARNING",
-      "reviewTier": "solicitor_caution",
-      "gedReviewReasons": [],
-      "sourceDocumentName": "bundle.pdf",
-      "sourceDocumentType": "pdf",
-      "sourcePageNumber": "4",
-      "extractedSnippet": "MG6C — UNUSED MATERIAL SCHEDULE",
       "pdfPageAvailable": true,
       "pdfPageEvidencePath": "artifacts/casebrain-qa/line-source-proof/demo-audit-01-phone-harassment/proof-chain-pages/p4.md",
       "extractionConfidence": "exact",
@@ -1830,33 +1840,33 @@
     {
       "id": "line-51",
       "outputSurface": "five_answers / chase",
-      "outputLine": "Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: missing. Source: MG6C schedule. Solicitor review required before sending.]",
-      "humanEvidenceLabel": null,
-      "humanOutputLine": "Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available.",
+      "outputLine": "Please provide Device metadata export (see MG6C/001) or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: missing. Source: MG6C schedule. Solicitor review required before sending.]",
+      "humanEvidenceLabel": "Phone extraction summary only — full source download outstanding",
+      "humanOutputLine": "Please provide Device metadata export (see MG6C/001) or confirm in writing why it is not available.",
       "lineCategory": "chase_request",
-      "evidenceItem": "Final signed MG11",
+      "evidenceItem": "Device metadata export",
       "claimType": null,
       "evidenceState": "missing",
       "reliabilityState": null,
-      "sourceAnchor": "MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.",
+      "sourceAnchor": "MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).",
       "sourcePage": null,
       "sourceSection": "MG6",
-      "sourceSnippet": "MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.",
+      "sourceSnippet": "MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).",
       "sourceStrength": "schedule_only",
       "supportStatus": "missing",
-      "whyThisSupportsTheLine": "Bundle shows material outstanding or not attached: \"MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.\".",
+      "whyThisSupportsTheLine": "Bundle shows material outstanding or not attached: \"MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).\".",
       "whyThisIsLimited": "Material expected or mentioned but not on bundle.",
       "safeWording": null,
       "blockedWording": null,
-      "solicitorReviewRequired": true,
-      "usefulnessVerdict": "safe_but_not_actionable",
-      "verdict": "WARNING",
-      "reviewTier": "solicitor_caution",
+      "solicitorReviewRequired": false,
+      "usefulnessVerdict": "correct_and_useful",
+      "verdict": "PASS",
+      "reviewTier": "clean_source_backed",
       "gedReviewReasons": [],
       "sourceDocumentName": "bundle.pdf",
       "sourceDocumentType": "pdf",
       "sourcePageNumber": "4",
-      "extractedSnippet": "MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.",
+      "extractedSnippet": "MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).",
       "pdfPageAvailable": true,
       "pdfPageEvidencePath": "artifacts/casebrain-qa/line-source-proof/demo-audit-01-phone-harassment/proof-chain-pages/p4.md",
       "extractionConfidence": "exact",
@@ -4018,9 +4028,9 @@
     {
       "id": "line-111",
       "outputSurface": "summary / ptph",
-      "outputLine": "Outstanding disclosure: Full phone download; Subscriber / account data; Full message export; Call logs; Final signed MG11; MG6C clarification on unused material.",
+      "outputLine": "Outstanding disclosure: Full phone download; Subscriber / account data; Full message export; Call logs; Device metadata export; Final signed MG11.",
       "humanEvidenceLabel": null,
-      "humanOutputLine": "Outstanding disclosure: Full phone download; Subscriber / account data; Full message export; Call logs; Final signed MG11; MG6C clarification on unused material.",
+      "humanOutputLine": "Outstanding disclosure: Full phone download; Subscriber / account data; Full message export; Call logs; Device metadata export; Final signed MG11.",
       "lineCategory": "strategic_review",
       "evidenceItem": null,
       "claimType": null,
@@ -4961,41 +4971,38 @@
     {
       "id": "line-136",
       "outputSurface": "export_pack / client_summary",
-      "outputLine": "We are reviewing the papers in your case (Harassment, contrary to section 2 of the Protection from Harassment Act 1997). This is early-stage — nothing is final until we have full disclosure and your instructions. Some evidence is still outstanding on the papers, and we will update you when it is served. We are not saying the case is won or lost — we need the full material before giving firm advice",
-      "humanEvidenceLabel": null,
-      "humanOutputLine": "We are reviewing the papers in your case (Harassment, contrary to section 2 of the Protection from Harassment Act 1997). This is early-stage — nothing is final until we have full disclosure and your instructions. Some evidence is still outstanding on the papers, and we will update you when it is served. We are not saying the case is won or lost — we need the full material before giving firm advice",
+      "outputLine": "We are reviewing the papers in your case (Riley Moss). This is early-stage — nothing is final until we have full disclosure and your instructions. Screenshots of messages are on the papers, but the full phone download, subscriber/account data, call logs, and final signed statement are still outstanding. We cannot yet confirm who sent each message from the served material alone.",
+      "humanEvidenceLabel": "Subscriber data outstanding",
+      "humanOutputLine": "We are reviewing the papers in your case (Riley Moss). This is early-stage — nothing is final until we have full disclosure and your instructions. Screenshots of messages are on the papers, but the full phone download, subscriber/account data, call logs, and final signed statement are still outstanding. We cannot yet confirm who sent each message from the served material alone.",
       "lineCategory": "export_line",
       "evidenceItem": null,
       "claimType": "client_summary",
       "evidenceState": null,
       "reliabilityState": null,
-      "sourceAnchor": "Statement of Offence:",
+      "sourceAnchor": "MG6C/003 — Subscriber/account data — outstanding — not on bundle.",
       "sourcePage": null,
-      "sourceSection": null,
-      "sourceSnippet": "Statement of Offence: | Harassment, contrary to section 2 of the Protection from Harassment Act 1997.",
-      "sourceStrength": "weak",
-      "supportStatus": "partially_supported",
-      "whyThisSupportsTheLine": "Only generic schedule/index wording found — needs line-level snippet review: \"Statement of Offence: | Harassment, contrary to section 2 of the Protection from Harassment Act 1997.\".",
-      "whyThisIsLimited": "Generic MG6/schedule label without line-level served/referred snippet.",
+      "sourceSection": "MG6",
+      "sourceSnippet": "MG6C/003 — Subscriber/account data — outstanding — not on bundle.",
+      "sourceStrength": "schedule_only",
+      "supportStatus": "missing",
+      "whyThisSupportsTheLine": "Bundle shows material outstanding or not attached: \"MG6C/003 — Subscriber/account data — outstanding — not on bundle.\".",
+      "whyThisIsLimited": "Material expected or mentioned but not on bundle.",
       "safeWording": null,
       "blockedWording": null,
-      "solicitorReviewRequired": true,
-      "usefulnessVerdict": "solicitor_review_required",
-      "verdict": "WARNING",
-      "reviewTier": "source_review",
-      "gedReviewReasons": [
-        "generic_source_only",
-        "solicitor_review_required"
-      ],
+      "solicitorReviewRequired": false,
+      "usefulnessVerdict": "correct_and_useful",
+      "verdict": "PASS",
+      "reviewTier": "clean_source_backed",
+      "gedReviewReasons": [],
       "sourceDocumentName": "bundle.pdf",
       "sourceDocumentType": "pdf",
-      "sourcePageNumber": null,
-      "extractedSnippet": "Statement of Offence: | Harassment, contrary to section 2 of the Protection from Harassment Act 1997.",
-      "pdfPageAvailable": false,
-      "pdfPageEvidencePath": null,
-      "extractionConfidence": "fuzzy",
-      "extractionIssue": "none",
-      "proofChainStatus": "text_supports_but_pdf_unchecked"
+      "sourcePageNumber": "4",
+      "extractedSnippet": "MG6C/003 — Subscriber/account data — outstanding — not on bundle.",
+      "pdfPageAvailable": true,
+      "pdfPageEvidencePath": "artifacts/casebrain-qa/line-source-proof/demo-audit-01-phone-harassment/proof-chain-pages/p4.md",
+      "extractionConfidence": "exact",
+      "extractionIssue": "page_missing",
+      "proofChainStatus": "pdf_and_text_support_output"
     },
     {
       "id": "line-137",
@@ -5039,46 +5046,6 @@
     },
     {
       "id": "line-138",
-      "outputSurface": "export_pack / client_summary",
-      "outputLine": "Solicitor review required before sending to CPS, court, or client.",
-      "humanEvidenceLabel": null,
-      "humanOutputLine": "Solicitor review required before sending to CPS, court, or client.",
-      "lineCategory": "export_line",
-      "evidenceItem": null,
-      "claimType": "client_summary",
-      "evidenceState": null,
-      "reliabilityState": null,
-      "sourceAnchor": null,
-      "sourcePage": null,
-      "sourceSection": null,
-      "sourceSnippet": null,
-      "sourceStrength": "no_anchor",
-      "supportStatus": "source_unavailable",
-      "whyThisSupportsTheLine": "No direct bundle snippet located for this line.",
-      "whyThisIsLimited": "No usable source anchor — solicitor must verify.",
-      "safeWording": null,
-      "blockedWording": null,
-      "solicitorReviewRequired": true,
-      "usefulnessVerdict": "solicitor_review_required",
-      "verdict": "WARNING",
-      "reviewTier": "source_review",
-      "gedReviewReasons": [
-        "source_unavailable",
-        "meaningful_line_without_anchor",
-        "solicitor_review_required"
-      ],
-      "sourceDocumentName": "bundle.pdf",
-      "sourceDocumentType": "pdf",
-      "sourcePageNumber": null,
-      "extractedSnippet": null,
-      "pdfPageAvailable": false,
-      "pdfPageEvidencePath": null,
-      "extractionConfidence": "unavailable",
-      "extractionIssue": "none",
-      "proofChainStatus": "source_unavailable"
-    },
-    {
-      "id": "line-139",
       "outputSurface": "export_pack / evidence_gaps",
       "outputLine": "• Screenshot / message pack [Served / Needs review] — Served on papers — not full phone download or attribution proof.\n• Phone extraction summary only [Referred only / Weak] — Summary on file — full source download outstanding.\n• Full phone download [Missing / Needs review] — Chase full extraction source before fixing attribution.\n• Subscriber / attribution data [Missing / Needs review] — Outstand",
       "humanEvidenceLabel": "Subscriber data outstanding",
@@ -5114,7 +5081,7 @@
       "proofChainStatus": "pdf_and_text_support_output"
     },
     {
-      "id": "line-140",
+      "id": "line-139",
       "outputSurface": "export_pack / evidence_gaps",
       "outputLine": "Solicitor review required before sending to CPS, court, or client.",
       "humanEvidenceLabel": null,
@@ -5154,7 +5121,7 @@
       "proofChainStatus": "source_unavailable"
     },
     {
-      "id": "line-141",
+      "id": "line-140",
       "outputSurface": "export_pack / do_not_overstate",
       "outputLine": "DO NOT OVERSTATE\n(warnings — not allegations)",
       "humanEvidenceLabel": null,
@@ -5190,7 +5157,7 @@
       "proofChainStatus": "source_unavailable"
     },
     {
-      "id": "line-142",
+      "id": "line-141",
       "outputSurface": "export_pack / do_not_overstate",
       "outputLine": "• Do not say: Do not state the defendant sent messages unless attribution is served and safe.\n  Why unsafe: Source not confirmed on current papers — solicitor review required.",
       "humanEvidenceLabel": "Phone extraction summary only — full source download outstanding",
@@ -5226,7 +5193,7 @@
       "proofChainStatus": "text_supports_but_pdf_unchecked"
     },
     {
-      "id": "line-143",
+      "id": "line-142",
       "outputSurface": "export_pack / do_not_overstate",
       "outputLine": "• Do not say: defendant sent the messages\n  Why unsafe: Source not confirmed on current papers — solicitor review required.",
       "humanEvidenceLabel": "Phone extraction summary only — full source download outstanding",
@@ -5262,7 +5229,7 @@
       "proofChainStatus": "text_supports_but_pdf_unchecked"
     },
     {
-      "id": "line-144",
+      "id": "line-143",
       "outputSurface": "export_pack / do_not_overstate",
       "outputLine": "• Do not say: Riley Moss sent\n  Why unsafe: Source not confirmed on current papers — solicitor review required.",
       "humanEvidenceLabel": null,
@@ -5337,13 +5304,13 @@
     "ocrWarnings": [],
     "linesJudgedFromExtractedTextOnly": 70,
     "linesSourceOutputDisagree": 9,
-    "linesPdfUnchecked": 20,
+    "linesPdfUnchecked": 19,
     "proofChainNote": "PDF-backed proof chain: original PDF in case directory; bundle-text.md extracted from PDF. Page verification uses pdf-extraction-meta.json per-page text."
   },
   "summary": {
-    "totalMeaningfulLines": 144,
-    "pass": 67,
-    "warning": 77,
+    "totalMeaningfulLines": 143,
+    "pass": 71,
+    "warning": 72,
     "fail": 0,
     "excluded": 0,
     "byCategory": {
@@ -5356,36 +5323,36 @@
       "court_note": 3,
       "client_summary": 1,
       "contradiction_or_risk": 3,
-      "export_line": 18
+      "export_line": 17
     },
     "bySupport": {
-      "partially_supported": 37,
-      "source_unavailable": 33,
+      "partially_supported": 34,
+      "source_unavailable": 34,
       "supported": 31,
-      "missing": 40,
+      "missing": 41,
       "referred_only": 2,
       "incomplete": 1
     },
-    "positiveCorrect": 68,
-    "gedReviewCount": 77,
+    "positiveCorrect": 72,
+    "gedReviewCount": 72,
     "blockingReview": 0,
     "unsupportedOutput": 0,
     "sourceReviewWarnings": 34,
-    "solicitorCaution": 43,
-    "cleanSourceBacked": 31,
+    "solicitorCaution": 38,
+    "cleanSourceBacked": 35,
     "genericSafetyGuards": 36,
     "byTier": {
       "blocking_review": 0,
       "source_review": 34,
-      "solicitor_caution": 43,
-      "clean_source_backed": 31,
+      "solicitor_caution": 38,
+      "clean_source_backed": 35,
       "generic_safety_guard": 36
     },
     "proofChainCoverage": {
-      "pdfAndTextSupportOutput": 65,
-      "textSupportsButPdfUnchecked": 20,
+      "pdfAndTextSupportOutput": 64,
+      "textSupportsButPdfUnchecked": 19,
       "pdfAvailableButTextMismatch": 9,
-      "sourceUnavailable": 50,
+      "sourceUnavailable": 51,
       "outputUnsupported": 0,
       "originalPdfAvailable": true,
       "caseProofMode": "pdf_and_text"
@@ -5434,7 +5401,7 @@
         "overview / five_answers: Harassment, contrary to section 2 of the Protection from Harassment Act 1997",
         "overview / five_answers: Disclosure completeness and outstanding source material.",
         "overview / five_answers: Chase outstanding disclosure and record provisional hearing position.",
-        "evidence_truth_map / evidence_trace: device metadata — referred_only",
+        "evidence_truth_map / evidence_trace: Device metadata export — referred_only",
         "evidence_truth_map / evidence_trace: Attribution / subscriber material — not_safely_confirmed — Handle mapping to defendant not served on current papers.",
         "evidence_truth_map / evidence_trace: Full phone download — missing — Outstanding on current disclosure."
       ],
@@ -5451,7 +5418,7 @@
           "Harassment, contrary to section 2 of the Protection from Harassment Act 1997",
           "Disclosure completeness and outstanding source material.",
           "Chase outstanding disclosure and record provisional hearing position.",
-          "device metadata — referred_only",
+          "Device metadata export — referred_only",
           "Disclosure completeness and outstanding source material."
         ],
         "SOLICITOR CAUTION": [
@@ -5486,7 +5453,7 @@
       {
         "tier": "source_review",
         "surface": "evidence_truth_map / evidence_trace",
-        "outputLine": "device metadata — referred_only",
+        "outputLine": "Device metadata export — referred_only",
         "reason": "source_unavailable, evidence_item_not_in_snippet, meaningful_line_without_anchor, solicitor_review_required"
       },
       {
@@ -5526,16 +5493,16 @@
         "reason": "Use with caution — Material expected or mentioned but not on bundle."
       },
       {
-        "tier": "solicitor_caution",
+        "tier": "source_review",
         "surface": "evidence_truth_map / evidence_trace",
-        "outputLine": "Final signed MG11",
-        "reason": "Use with caution — Material expected or mentioned but not on bundle."
+        "outputLine": "Device metadata export",
+        "reason": "source_unavailable, evidence_item_not_in_snippet, meaningful_line_without_anchor, solicitor_review_required"
       },
       {
         "tier": "solicitor_caution",
         "surface": "evidence_truth_map / evidence_trace",
-        "outputLine": "MG6C clarification on unused material",
-        "reason": "Use with caution — none"
+        "outputLine": "Final signed MG11",
+        "reason": "Use with caution — Material expected or mentioned but not on bundle."
       },
       {
         "tier": "solicitor_caution",
@@ -5547,12 +5514,6 @@
         "tier": "solicitor_caution",
         "surface": "evidence_truth_map / evidence_trace",
         "outputLine": "Please provide Call logs (see MG6C/005) or confirm in writing why it is not available.",
-        "reason": "Use with caution — Material expected or mentioned but not on bundle."
-      },
-      {
-        "tier": "solicitor_caution",
-        "surface": "evidence_truth_map / evidence_trace",
-        "outputLine": "Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available.",
         "reason": "Use with caution — Material expected or mentioned but not on bundle."
       },
       {
@@ -5598,6 +5559,12 @@
         "reason": "Use with caution — MG6/schedule reference only — export not served."
       },
       {
+        "tier": "source_review",
+        "surface": "chase",
+        "outputLine": "Device metadata export",
+        "reason": "source_unavailable, evidence_item_not_in_snippet, meaningful_line_without_anchor, solicitor_review_required"
+      },
+      {
         "tier": "solicitor_caution",
         "surface": "chase",
         "outputLine": "Final signed MG11",
@@ -5611,18 +5578,6 @@
       },
       {
         "tier": "solicitor_caution",
-        "surface": "chase",
-        "outputLine": "MG6C clarification on unused material",
-        "reason": "Use with caution — none"
-      },
-      {
-        "tier": "solicitor_caution",
-        "surface": "chase / CPS",
-        "outputLine": "Please provide MG6C clarification on unused material (see MG6C) or confirm in writing why it is not available.",
-        "reason": "Use with caution — none"
-      },
-      {
-        "tier": "solicitor_caution",
         "surface": "five_answers / chase",
         "outputLine": "Please provide Full phone download (see MG6C/004) or confirm in writing why it is not available.",
         "reason": "Use with caution — Material expected or mentioned but not on bundle."
@@ -5631,12 +5586,6 @@
         "tier": "solicitor_caution",
         "surface": "five_answers / chase",
         "outputLine": "Please provide Call logs (see MG6C/005) or confirm in writing why it is not available.",
-        "reason": "Use with caution — Material expected or mentioned but not on bundle."
-      },
-      {
-        "tier": "solicitor_caution",
-        "surface": "five_answers / chase",
-        "outputLine": "Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available.",
         "reason": "Use with caution — Material expected or mentioned but not on bundle."
       },
       {
@@ -5906,19 +5855,7 @@
       {
         "tier": "source_review",
         "surface": "export_pack / client_summary",
-        "outputLine": "We are reviewing the papers in your case (Harassment, contrary to section 2 of the Protection from Harassment Act 1997). This is early-stage — nothing",
-        "reason": "generic_source_only, solicitor_review_required"
-      },
-      {
-        "tier": "source_review",
-        "surface": "export_pack / client_summary",
         "outputLine": "[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
-        "reason": "source_unavailable, meaningful_line_without_anchor, solicitor_review_required"
-      },
-      {
-        "tier": "source_review",
-        "surface": "export_pack / client_summary",
-        "outputLine": "Solicitor review required before sending to CPS, court, or client.",
         "reason": "source_unavailable, meaningful_line_without_anchor, solicitor_review_required"
       },
       {
@@ -5985,7 +5922,7 @@
         "plainEnglishExplanation": "Safe and source-backed — Source text supports the line: \"The investigating officer records that the seized handset is linked to Riley Moss by arr"
       },
       {
-        "outputLine": "device metadata — referred_only",
+        "outputLine": "Device metadata export — referred_only",
         "surface": "evidence_truth_map / evidence_trace",
         "category": "evidence_state",
         "sourceSnippet": null,
@@ -6117,6 +6054,17 @@
         "plainEnglishExplanation": "Use with caution — Material expected or mentioned but not on bundle."
       },
       {
+        "outputLine": "Device metadata export",
+        "surface": "evidence_truth_map / evidence_trace",
+        "category": "evidence_state",
+        "sourceSnippet": null,
+        "evidenceState": "missing",
+        "proofChainStatus": "source_unavailable",
+        "verdict": "WARNING",
+        "reviewTier": "source_review",
+        "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+      },
+      {
         "outputLine": "Final signed MG11",
         "surface": "evidence_truth_map / evidence_trace",
         "category": "evidence_state",
@@ -6126,17 +6074,6 @@
         "verdict": "WARNING",
         "reviewTier": "solicitor_caution",
         "plainEnglishExplanation": "Use with caution — Material expected or mentioned but not on bundle."
-      },
-      {
-        "outputLine": "MG6C clarification on unused material",
-        "surface": "evidence_truth_map / evidence_trace",
-        "category": "evidence_state",
-        "sourceSnippet": "MG6C — UNUSED MATERIAL SCHEDULE",
-        "evidenceState": "unknown",
-        "proofChainStatus": "pdf_and_text_support_output",
-        "verdict": "WARNING",
-        "reviewTier": "solicitor_caution",
-        "plainEnglishExplanation": "Use with caution — none"
       },
       {
         "outputLine": "Do not state the defendant sent messages unless attribution is served and safe.",
@@ -6260,15 +6197,15 @@
         "plainEnglishExplanation": "Use with caution — Material expected or mentioned but not on bundle."
       },
       {
-        "outputLine": "Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available.",
+        "outputLine": "Please provide Device metadata export (see MG6C/001) or confirm in writing why it is not available.",
         "surface": "evidence_truth_map / evidence_trace",
         "category": "evidence_state",
-        "sourceSnippet": "MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.",
+        "sourceSnippet": "MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).",
         "evidenceState": "missing",
         "proofChainStatus": "pdf_and_text_support_output",
-        "verdict": "WARNING",
-        "reviewTier": "solicitor_caution",
-        "plainEnglishExplanation": "Use with caution — Material expected or mentioned but not on bundle."
+        "verdict": "PASS",
+        "reviewTier": "clean_source_backed",
+        "plainEnglishExplanation": "Safe and source-backed — Bundle shows material outstanding or not attached: \"MG6C/001 — Phone extraction summary — served (summary only; source d"
       },
       {
         "outputLine": "The defence asks the court to record per MG6C that screenshot/message material is served but full phone download, subscriber/account data, and final MG11 remain outstanding.",
@@ -6370,6 +6307,28 @@
         "plainEnglishExplanation": "Use with caution — MG6/schedule reference only — export not served."
       },
       {
+        "outputLine": "Device metadata export",
+        "surface": "chase",
+        "category": "chase_request",
+        "sourceSnippet": null,
+        "evidenceState": "Outstanding",
+        "proofChainStatus": "source_unavailable",
+        "verdict": "WARNING",
+        "reviewTier": "source_review",
+        "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
+      },
+      {
+        "outputLine": "Please provide Device metadata export (see MG6C/001) or confirm in writing why it is not available.",
+        "surface": "chase / CPS",
+        "category": "chase_request",
+        "sourceSnippet": "MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).",
+        "evidenceState": null,
+        "proofChainStatus": "pdf_and_text_support_output",
+        "verdict": "PASS",
+        "reviewTier": "clean_source_backed",
+        "plainEnglishExplanation": "Use with caution — Phone extraction summary only — full source download outstanding — not fully served on current papers."
+      },
+      {
         "outputLine": "Final signed MG11",
         "surface": "chase",
         "category": "chase_request",
@@ -6390,28 +6349,6 @@
         "verdict": "WARNING",
         "reviewTier": "solicitor_caution",
         "plainEnglishExplanation": "Use with caution — MG6/schedule reference only — export not served."
-      },
-      {
-        "outputLine": "MG6C clarification on unused material",
-        "surface": "chase",
-        "category": "chase_request",
-        "sourceSnippet": "MG6C — UNUSED MATERIAL SCHEDULE",
-        "evidenceState": "Outstanding",
-        "proofChainStatus": "pdf_and_text_support_output",
-        "verdict": "WARNING",
-        "reviewTier": "solicitor_caution",
-        "plainEnglishExplanation": "Use with caution — none"
-      },
-      {
-        "outputLine": "Please provide MG6C clarification on unused material (see MG6C) or confirm in writing why it is not available.",
-        "surface": "chase / CPS",
-        "category": "chase_request",
-        "sourceSnippet": "MG6C — UNUSED MATERIAL SCHEDULE",
-        "evidenceState": null,
-        "proofChainStatus": "pdf_and_text_support_output",
-        "verdict": "WARNING",
-        "reviewTier": "solicitor_caution",
-        "plainEnglishExplanation": "Use with caution — none"
       },
       {
         "outputLine": "The defence asks the court to record per MG6C that screenshot/message material is served but full phone download, subscriber/account data, and final MG11 remain outstanding.",
@@ -6480,15 +6417,15 @@
         "plainEnglishExplanation": "Use with caution — Material expected or mentioned but not on bundle."
       },
       {
-        "outputLine": "Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available.",
+        "outputLine": "Please provide Device metadata export (see MG6C/001) or confirm in writing why it is not available.",
         "surface": "five_answers / chase",
         "category": "chase_request",
-        "sourceSnippet": "MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.",
+        "sourceSnippet": "MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).",
         "evidenceState": "missing",
         "proofChainStatus": "pdf_and_text_support_output",
-        "verdict": "WARNING",
-        "reviewTier": "solicitor_caution",
-        "plainEnglishExplanation": "Use with caution — Material expected or mentioned but not on bundle."
+        "verdict": "PASS",
+        "reviewTier": "clean_source_backed",
+        "plainEnglishExplanation": "Safe and source-backed — Bundle shows material outstanding or not attached: \"MG6C/001 — Phone extraction summary — served (summary only; source d"
       },
       {
         "outputLine": "Do not state the defendant sent messages unless attribution is served and safe.",
@@ -7140,7 +7077,7 @@
         "plainEnglishExplanation": "Safe and source-backed — Bundle shows material outstanding or not attached: \"Emma Holt (complainant, draft MG11) — messages caused alarm and dist"
       },
       {
-        "outputLine": "Outstanding disclosure: Full phone download; Subscriber / account data; Full message export; Call logs; Final signed MG11; MG6C clarification on unused material.",
+        "outputLine": "Outstanding disclosure: Full phone download; Subscriber / account data; Full message export; Call logs; Device metadata export; Final signed MG11.",
         "surface": "summary / ptph",
         "category": "strategic_review",
         "sourceSnippet": "Emma Holt (complainant, draft MG11) — messages caused alarm and distress; cannot confirm who operated the handset without full download and subscriber data. | MG11 — COMPLAINANT STATEMENT (draft unsigned)",
@@ -7415,29 +7352,18 @@
         "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
       },
       {
-        "outputLine": "We are reviewing the papers in your case (Harassment, contrary to section 2 of the Protection from Harassment Act 1997). This is early-stage — nothing is final until we have full disclosure and your instructions. Some evidence is still outstanding on the papers, and we will update you when it is served. We are not saying the case is won or lost — we need the full material before giving firm advice",
+        "outputLine": "We are reviewing the papers in your case (Riley Moss). This is early-stage — nothing is final until we have full disclosure and your instructions. Screenshots of messages are on the papers, but the full phone download, subscriber/account data, call logs, and final signed statement are still outstanding. We cannot yet confirm who sent each message from the served material alone.",
         "surface": "export_pack / client_summary",
         "category": "export_line",
-        "sourceSnippet": "Statement of Offence: | Harassment, contrary to section 2 of the Protection from Harassment Act 1997.",
+        "sourceSnippet": "MG6C/003 — Subscriber/account data — outstanding — not on bundle.",
         "evidenceState": null,
-        "proofChainStatus": "text_supports_but_pdf_unchecked",
-        "verdict": "WARNING",
-        "reviewTier": "source_review",
-        "plainEnglishExplanation": "Source gap or weak anchor — Generic MG6/schedule label without line-level served/referred snippet."
+        "proofChainStatus": "pdf_and_text_support_output",
+        "verdict": "PASS",
+        "reviewTier": "clean_source_backed",
+        "plainEnglishExplanation": "Safe and source-backed — Bundle shows material outstanding or not attached: \"MG6C/003 — Subscriber/account data — outstanding — not on bundle.\"."
       },
       {
         "outputLine": "[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
-        "surface": "export_pack / client_summary",
-        "category": "export_line",
-        "sourceSnippet": null,
-        "evidenceState": null,
-        "proofChainStatus": "source_unavailable",
-        "verdict": "WARNING",
-        "reviewTier": "source_review",
-        "plainEnglishExplanation": "Source gap or weak anchor — No usable source anchor — solicitor must verify."
-      },
-      {
-        "outputLine": "Solicitor review required before sending to CPS, court, or client.",
         "surface": "export_pack / client_summary",
         "category": "export_line",
         "sourceSnippet": null,
@@ -7922,22 +7848,22 @@
         "surface": "evidence_truth_map / evidence_trace"
       },
       {
+        "originalCandidate": "Device metadata export: missing / needs_review",
+        "finalOutput": "Device metadata export",
+        "changeType": "human_label",
+        "reason": "Human-readable label applied for solicitor review.",
+        "sourceSupport": "audit layer",
+        "beforeAfterWording": "Before: Device metadata export: missing / needs_review | After: Device metadata export",
+        "solicitorFriendlyExplanation": "Output humanised for clarity.",
+        "surface": "evidence_truth_map / evidence_trace"
+      },
+      {
         "originalCandidate": "Final signed MG11: missing / needs_review",
         "finalOutput": "Final signed MG11",
         "changeType": "human_label",
         "reason": "Human-readable label applied for solicitor review.",
         "sourceSupport": "MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.",
         "beforeAfterWording": "Before: Final signed MG11: missing / needs_review | After: Final signed MG11",
-        "solicitorFriendlyExplanation": "Output humanised for clarity.",
-        "surface": "evidence_truth_map / evidence_trace"
-      },
-      {
-        "originalCandidate": "MG6C clarification on unused material: unknown / needs_review",
-        "finalOutput": "MG6C clarification on unused material",
-        "changeType": "human_label",
-        "reason": "Human-readable label applied for solicitor review.",
-        "sourceSupport": "MG6C — UNUSED MATERIAL SCHEDULE",
-        "beforeAfterWording": "Before: MG6C clarification on unused material: unknown / needs_review | After: MG6C clarification on unused material",
         "solicitorFriendlyExplanation": "Output humanised for clarity.",
         "surface": "evidence_truth_map / evidence_trace"
       },
@@ -8052,13 +7978,13 @@
         "surface": "evidence_truth_map / evidence_trace"
       },
       {
-        "originalCandidate": "Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available.: missing / needs_review",
-        "finalOutput": "Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available.",
+        "originalCandidate": "Please provide Device metadata export (see MG6C/001) or confirm in writing why it is not available.: missing / needs_review",
+        "finalOutput": "Please provide Device metadata export (see MG6C/001) or confirm in writing why it is not available.",
         "changeType": "human_label",
         "reason": "Human-readable label applied for solicitor review.",
-        "sourceSupport": "MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.",
-        "beforeAfterWording": "Before: Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available.: miss | After: Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available.",
-        "solicitorFriendlyExplanation": "Output humanised for clarity.",
+        "sourceSupport": "MG6C/001 — Phone extraction summary — served (summary only; source download outs",
+        "beforeAfterWording": "Before: Please provide Device metadata export (see MG6C/001) or confirm in writing why it is not available.: | After: Please provide Device metadata export (see MG6C/001) or confirm in writing why it is not available.",
+        "solicitorFriendlyExplanation": "Evidence label: Phone extraction summary only — full source download outstanding",
         "surface": "evidence_truth_map / evidence_trace"
       },
       {
@@ -8122,13 +8048,13 @@
         "surface": "five_answers / chase"
       },
       {
-        "originalCandidate": "Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: missing. Source: MG6C schedule. Solicitor review required before sending.]",
-        "finalOutput": "Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available.",
+        "originalCandidate": "Please provide Device metadata export (see MG6C/001) or confirm in writing why it is not available.\n\n[CaseBrain — CPS chase copy. Evidence state: missing. Source: MG6C schedule. Solicitor review required before sending.]",
+        "finalOutput": "Please provide Device metadata export (see MG6C/001) or confirm in writing why it is not available.",
         "changeType": "human_label",
         "reason": "Human-readable label applied for solicitor review.",
-        "sourceSupport": "MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.",
-        "beforeAfterWording": "Before: Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available.\n\n[Cas | After: Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available.",
-        "solicitorFriendlyExplanation": "Output humanised for clarity.",
+        "sourceSupport": "MG6C/001 — Phone extraction summary — served (summary only; source download outs",
+        "beforeAfterWording": "Before: Please provide Device metadata export (see MG6C/001) or confirm in writing why it is not available.\n | After: Please provide Device metadata export (see MG6C/001) or confirm in writing why it is not available.",
+        "solicitorFriendlyExplanation": "Evidence label: Phone extraction summary only — full source download outstanding",
         "surface": "five_answers / chase"
       },
       {
@@ -8215,7 +8141,15 @@
         "solicitorReviewRequired": true
       }
     ],
-    "surfaceSafety": [],
+    "surfaceSafety": [
+      {
+        "surface": "client_summary",
+        "outputLine": "We are reviewing the papers in your case (Riley Moss). This is early-stage — nothing is final until we have full disclosure and your instructions. Scr",
+        "issue": "Client-facing line may overstate proof strength.",
+        "safeAlternative": "Mark provisional — explain what is served vs outstanding.",
+        "severity": "warning"
+      }
+    ],
     "pdfTextProofChain": [
       {
         "outputLine": "Harassment, contrary to section 2 of the Protection from Harassment Act 1997",
@@ -8268,7 +8202,7 @@
         "plainEnglishNote": "PDF page and extracted text both support this line."
       },
       {
-        "outputLine": "device metadata — referred_only",
+        "outputLine": "Device metadata export — referred_only",
         "surface": "evidence_truth_map / evidence_trace",
         "pdfPageAvailable": false,
         "extractedSnippet": null,
@@ -8388,20 +8322,20 @@
         "plainEnglishNote": "PDF page and extracted text both support this line."
       },
       {
+        "outputLine": "Device metadata export",
+        "surface": "evidence_truth_map / evidence_trace",
+        "pdfPageAvailable": false,
+        "extractedSnippet": null,
+        "pageNumber": null,
+        "proofChainStatus": "source_unavailable",
+        "extractionIssue": "label_mismatch",
+        "plainEnglishNote": "No usable source anchor — solicitor must verify."
+      },
+      {
         "outputLine": "Final signed MG11",
         "surface": "evidence_truth_map / evidence_trace",
         "pdfPageAvailable": true,
         "extractedSnippet": "MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.",
-        "pageNumber": "4",
-        "proofChainStatus": "pdf_and_text_support_output",
-        "extractionIssue": "page_missing",
-        "plainEnglishNote": "PDF page and extracted text both support this line."
-      },
-      {
-        "outputLine": "MG6C clarification on unused material",
-        "surface": "evidence_truth_map / evidence_trace",
-        "pdfPageAvailable": true,
-        "extractedSnippet": "MG6C — UNUSED MATERIAL SCHEDULE",
         "pageNumber": "4",
         "proofChainStatus": "pdf_and_text_support_output",
         "extractionIssue": "page_missing",
@@ -8518,10 +8452,10 @@
         "plainEnglishNote": "PDF page and extracted text both support this line."
       },
       {
-        "outputLine": "Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available.",
+        "outputLine": "Please provide Device metadata export (see MG6C/001) or confirm in writing why it is not available.",
         "surface": "evidence_truth_map / evidence_trace",
         "pdfPageAvailable": true,
-        "extractedSnippet": "MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.",
+        "extractedSnippet": "MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).",
         "pageNumber": "4",
         "proofChainStatus": "pdf_and_text_support_output",
         "extractionIssue": "page_missing",
@@ -8618,6 +8552,26 @@
         "plainEnglishNote": "PDF page and extracted text both support this line."
       },
       {
+        "outputLine": "Device metadata export",
+        "surface": "chase",
+        "pdfPageAvailable": false,
+        "extractedSnippet": null,
+        "pageNumber": null,
+        "proofChainStatus": "source_unavailable",
+        "extractionIssue": "label_mismatch",
+        "plainEnglishNote": "No usable source anchor — solicitor must verify."
+      },
+      {
+        "outputLine": "Please provide Device metadata export (see MG6C/001) or confirm in writing why it is not available.",
+        "surface": "chase / CPS",
+        "pdfPageAvailable": true,
+        "extractedSnippet": "MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).",
+        "pageNumber": "4",
+        "proofChainStatus": "pdf_and_text_support_output",
+        "extractionIssue": "page_missing",
+        "plainEnglishNote": "PDF page and extracted text both support this line."
+      },
+      {
         "outputLine": "Final signed MG11",
         "surface": "chase",
         "pdfPageAvailable": true,
@@ -8632,26 +8586,6 @@
         "surface": "chase / CPS",
         "pdfPageAvailable": true,
         "extractedSnippet": "MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.",
-        "pageNumber": "4",
-        "proofChainStatus": "pdf_and_text_support_output",
-        "extractionIssue": "page_missing",
-        "plainEnglishNote": "PDF page and extracted text both support this line."
-      },
-      {
-        "outputLine": "MG6C clarification on unused material",
-        "surface": "chase",
-        "pdfPageAvailable": true,
-        "extractedSnippet": "MG6C — UNUSED MATERIAL SCHEDULE",
-        "pageNumber": "4",
-        "proofChainStatus": "pdf_and_text_support_output",
-        "extractionIssue": "page_missing",
-        "plainEnglishNote": "PDF page and extracted text both support this line."
-      },
-      {
-        "outputLine": "Please provide MG6C clarification on unused material (see MG6C) or confirm in writing why it is not available.",
-        "surface": "chase / CPS",
-        "pdfPageAvailable": true,
-        "extractedSnippet": "MG6C — UNUSED MATERIAL SCHEDULE",
         "pageNumber": "4",
         "proofChainStatus": "pdf_and_text_support_output",
         "extractionIssue": "page_missing",
@@ -8718,10 +8652,10 @@
         "plainEnglishNote": "PDF page and extracted text both support this line."
       },
       {
-        "outputLine": "Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available.",
+        "outputLine": "Please provide Device metadata export (see MG6C/001) or confirm in writing why it is not available.",
         "surface": "five_answers / chase",
         "pdfPageAvailable": true,
-        "extractedSnippet": "MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.",
+        "extractedSnippet": "MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).",
         "pageNumber": "4",
         "proofChainStatus": "pdf_and_text_support_output",
         "extractionIssue": "page_missing",
@@ -9318,7 +9252,7 @@
         "plainEnglishNote": "Material expected or mentioned but not on bundle."
       },
       {
-        "outputLine": "Outstanding disclosure: Full phone download; Subscriber / account data; Full message export; Call logs; Final signed MG11; MG6C clarification on unused material.",
+        "outputLine": "Outstanding disclosure: Full phone download; Subscriber / account data; Full message export; Call logs; Device metadata export; Final signed MG11.",
         "surface": "summary / ptph",
         "pdfPageAvailable": true,
         "extractedSnippet": "Emma Holt (complainant, draft MG11) — messages caused alarm and distress; cannot confirm who operated the handset without full download and subscriber data. | MG11 — COMPLAINANT STATEMENT (draft unsigned)",
@@ -9568,27 +9502,17 @@
         "plainEnglishNote": "No usable source anchor — solicitor must verify."
       },
       {
-        "outputLine": "We are reviewing the papers in your case (Harassment, contrary to section 2 of the Protection from Harassment Act 1997). This is early-stage — nothing is final until we have full disclosure and your instructions. Some evidence is still outstanding on the papers, and we will update you when it is served. We are not saying the case is won or lost — we need the full material before giving firm advice",
+        "outputLine": "We are reviewing the papers in your case (Riley Moss). This is early-stage — nothing is final until we have full disclosure and your instructions. Screenshots of messages are on the papers, but the full phone download, subscriber/account data, call logs, and final signed statement are still outstanding. We cannot yet confirm who sent each message from the served material alone.",
         "surface": "export_pack / client_summary",
-        "pdfPageAvailable": false,
-        "extractedSnippet": "Statement of Offence: | Harassment, contrary to section 2 of the Protection from Harassment Act 1997.",
-        "pageNumber": null,
-        "proofChainStatus": "text_supports_but_pdf_unchecked",
-        "extractionIssue": "none",
-        "plainEnglishNote": "Text supports line; PDF page not verified in this pass."
+        "pdfPageAvailable": true,
+        "extractedSnippet": "MG6C/003 — Subscriber/account data — outstanding — not on bundle.",
+        "pageNumber": "4",
+        "proofChainStatus": "pdf_and_text_support_output",
+        "extractionIssue": "page_missing",
+        "plainEnglishNote": "PDF page and extracted text both support this line."
       },
       {
         "outputLine": "[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
-        "surface": "export_pack / client_summary",
-        "pdfPageAvailable": false,
-        "extractedSnippet": null,
-        "pageNumber": null,
-        "proofChainStatus": "source_unavailable",
-        "extractionIssue": "none",
-        "plainEnglishNote": "No usable source anchor — solicitor must verify."
-      },
-      {
-        "outputLine": "Solicitor review required before sending to CPS, court, or client.",
         "surface": "export_pack / client_summary",
         "pdfPageAvailable": false,
         "extractedSnippet": null,
@@ -9659,18 +9583,18 @@
       }
     ],
     "counts": {
-      "emittedLines": 144,
+      "emittedLines": 143,
       "suppressedCandidates": 28,
       "rewritesDowngrades": 36,
       "missingExpectedOutputs": 0,
       "sourceConflicts": 0,
       "entityRisks": 1,
-      "surfaceSafetyIssues": 0,
-      "positiveCorrect": 68,
-      "cleanSourceBacked": 31,
+      "surfaceSafetyIssues": 1,
+      "positiveCorrect": 72,
+      "cleanSourceBacked": 35,
       "possibleFalseSuppressions": 0,
-      "pdfAndTextSupported": 65,
-      "textOnlySupported": 38,
+      "pdfAndTextSupported": 64,
+      "textOnlySupported": 37,
       "emittedUnsupported": 0,
       "suppressedUnsupported": 28,
       "outputUnsupportedAfterGate": 0

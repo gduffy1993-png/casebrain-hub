@@ -1,0 +1,67 @@
+{
+  "caseId": "demo-audit-29-youth-yjs-material",
+  "clientLabel": "Marcus Reid (youth — 17 years)",
+  "allegation": "Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968",
+  "bundleTextLength": 1855,
+  "chaseItemCount": 4,
+  "truthMapRowCount": 6,
+  "proofSummary": {
+    "totalMeaningfulLines": 128,
+    "pass": 27,
+    "warning": 101,
+    "fail": 0,
+    "excluded": 0,
+    "byCategory": {
+      "evidence_claim": 1,
+      "strategic_review": 44,
+      "confidence_status": 4,
+      "evidence_state": 21,
+      "safety_warning": 19,
+      "chase_request": 15,
+      "court_note": 3,
+      "client_summary": 1,
+      "contradiction_or_risk": 3,
+      "export_line": 17
+    },
+    "bySupport": {
+      "partially_supported": 24,
+      "source_unavailable": 55,
+      "missing": 23,
+      "supported": 20,
+      "referred_only": 6
+    },
+    "positiveCorrect": 28,
+    "gedReviewCount": 101,
+    "blockingReview": 0,
+    "unsupportedOutput": 0,
+    "sourceReviewWarnings": 54,
+    "solicitorCaution": 47,
+    "cleanSourceBacked": 0,
+    "genericSafetyGuards": 27,
+    "byTier": {
+      "blocking_review": 0,
+      "source_review": 54,
+      "solicitor_caution": 47,
+      "clean_source_backed": 0,
+      "generic_safety_guard": 27
+    },
+    "proofChainCoverage": {
+      "pdfAndTextSupportOutput": 38,
+      "textSupportsButPdfUnchecked": 25,
+      "pdfAvailableButTextMismatch": 0,
+      "sourceUnavailable": 65,
+      "outputUnsupported": 0,
+      "originalPdfAvailable": true,
+      "caseProofMode": "pdf_and_text"
+    }
+  },
+  "proofChainCoverage": {
+    "pdfAndTextSupportOutput": 38,
+    "textSupportsButPdfUnchecked": 25,
+    "pdfAvailableButTextMismatch": 0,
+    "sourceUnavailable": 65,
+    "outputUnsupported": 0,
+    "originalPdfAvailable": true,
+    "caseProofMode": "pdf_and_text"
+  }
+}

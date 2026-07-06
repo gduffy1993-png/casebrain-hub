@@ -1,0 +1,15 @@
+{
+  "safeCourtLine": "The defence asks the court to record per MG6C that draft complainant material is served but ABE interview video, transcript, and final signed MG11 remain outstanding.",
+  "safePositionToday": "The defence asks the court to record per MG6C that draft complainant material is served but ABE interview video, transcript, and final signed MG11 remain outstanding.",
+  "askCourtToRecord": [
+    "Outstanding disclosure: ABE interview video; ABE interview transcript; Final signed MG11; Third-party counselling notes.",
+    "Invite the court to order disclosure by a fixed date with a review hearing."
+  ],
+  "disclosureTimetable": "The defence invites the court to order disclosure of ABE interview video; ABE interview transcript; Final signed MG11; Third-party counselling notes by [date] with a review on [date]. Position remains provisional.",
+  "doNotOverstate": [
+    "Do not rely on ABE or complainant account as final proof without served interview material.",
+    "Do not summarise ABE as fact unless the served record is reviewed.",
+    "ABE proves guilt",
+    "complainant proved"
+  ]
+}

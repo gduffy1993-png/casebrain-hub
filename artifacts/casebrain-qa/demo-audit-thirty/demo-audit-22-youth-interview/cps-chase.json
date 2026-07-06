@@ -1,0 +1,29 @@
+{
+  "primaryItems": [
+    {
+      "label": "Full YJS pre-sentence report",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide Full YJS pre-sentence report (see MG6C/YTH/03) or confirm in writing why it is not available.",
+      "whyItMatters": "Full YJS or vulnerability material outstanding on youth papers."
+    },
+    {
+      "label": "Vulnerability assessment",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide Vulnerability assessment (see MG6C/YTH/04) or confirm in writing why it is not available.",
+      "whyItMatters": "Full YJS or vulnerability material outstanding on youth papers."
+    },
+    {
+      "label": "Youth interview audio",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide Youth interview audio (see MG6C/YTH/05) or confirm in writing why it is not available.",
+      "whyItMatters": "Youth/YJS material still outstanding on current papers."
+    },
+    {
+      "label": "Appropriate adult continuity",
+      "baseStatus": "Outstanding",
+      "draftChaseWording": "Please provide Appropriate adult continuity (see MG6C/YTH/06) or confirm in writing why it is not available.",
+      "whyItMatters": "Continuity to master recording not confirmed on current papers."
+    }
+  ],
+  "safeCourtLine": "The defence asks the court to record per MG6C that YJS extract is served but full pre-sentence report, vulnerability assessment, and youth interview audio remain outstanding."
+}

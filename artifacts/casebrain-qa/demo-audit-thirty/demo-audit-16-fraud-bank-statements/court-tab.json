@@ -1,0 +1,13 @@
+{
+  "safeCourtLine": "The defence asks the court to record per MG6C that bank statement summaries are served but full transaction export, source banking records, and tracing material remain outstanding.",
+  "safePositionToday": "The defence asks the court to record per MG6C that bank statement summaries are served but full transaction export, source banking records, and tracing material remain outstanding.",
+  "askCourtToRecord": [
+    "Outstanding disclosure: Full transaction export; Source banking records; Beneficiary tracing report.",
+    "Invite the court to order disclosure by a fixed date with a review hearing."
+  ],
+  "disclosureTimetable": "The defence invites the court to order disclosure of Full transaction export; Source banking records; Beneficiary tracing report by [date] with a review on [date]. Position remains provisional.",
+  "doNotOverstate": [
+    "Do not treat bank summaries alone as proof of fraud or account attribution.",
+    "fraud proved from summaries alone"
+  ]
+}

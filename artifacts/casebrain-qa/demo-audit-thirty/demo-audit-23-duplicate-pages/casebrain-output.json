@@ -1,0 +1,68 @@
+{
+  "caseId": "demo-audit-23-duplicate-pages",
+  "clientLabel": "Leon Marsh",
+  "allegation": "Harassment, contrary to section 2 of the Protection from Harassment Act 1997",
+  "bundleTextLength": 3877,
+  "chaseItemCount": 6,
+  "truthMapRowCount": 7,
+  "proofSummary": {
+    "totalMeaningfulLines": 142,
+    "pass": 62,
+    "warning": 80,
+    "fail": 0,
+    "excluded": 0,
+    "byCategory": {
+      "evidence_claim": 1,
+      "strategic_review": 40,
+      "confidence_status": 4,
+      "evidence_state": 27,
+      "safety_warning": 26,
+      "chase_request": 20,
+      "court_note": 3,
+      "client_summary": 1,
+      "contradiction_or_risk": 3,
+      "export_line": 17
+    },
+    "bySupport": {
+      "partially_supported": 34,
+      "source_unavailable": 34,
+      "supported": 31,
+      "missing": 40,
+      "referred_only": 2,
+      "incomplete": 1
+    },
+    "positiveCorrect": 63,
+    "gedReviewCount": 80,
+    "blockingReview": 0,
+    "unsupportedOutput": 0,
+    "sourceReviewWarnings": 34,
+    "solicitorCaution": 46,
+    "cleanSourceBacked": 26,
+    "genericSafetyGuards": 36,
+    "byTier": {
+      "blocking_review": 0,
+      "source_review": 34,
+      "solicitor_caution": 46,
+      "clean_source_backed": 26,
+      "generic_safety_guard": 36
+    },
+    "proofChainCoverage": {
+      "pdfAndTextSupportOutput": 63,
+      "textSupportsButPdfUnchecked": 28,
+      "pdfAvailableButTextMismatch": 0,
+      "sourceUnavailable": 51,
+      "outputUnsupported": 0,
+      "originalPdfAvailable": true,
+      "caseProofMode": "pdf_and_text"
+    }
+  },
+  "proofChainCoverage": {
+    "pdfAndTextSupportOutput": 63,
+    "textSupportsButPdfUnchecked": 28,
+    "pdfAvailableButTextMismatch": 0,
+    "sourceUnavailable": 51,
+    "outputUnsupported": 0,
+    "originalPdfAvailable": true,
+    "caseProofMode": "pdf_and_text"
+  }
+}

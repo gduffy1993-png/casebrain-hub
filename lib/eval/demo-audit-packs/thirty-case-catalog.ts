@@ -512,3 +512,22 @@ export const DEMO_AUDIT_THIRTY_CASES: DemoAuditCaseSpec[] = [
 export function generatedPackForId(caseId: string): GeneratedCasePack | undefined {
   return DEMO_AUDIT_GENERATED_CASES.find((p) => p.spec.id === caseId);
 }
+
+const DEMO_AUDIT_FIVE_OFFENCE_FAMILIES: Record<string, string> = {
+  "demo-audit-01-phone-harassment": "harassment_digital",
+  "demo-audit-02-cctv-stills": "theft_retail",
+  "demo-audit-03-bwv-custody": "assault_emergency_worker",
+  "demo-audit-04-co-def-interview": "burglary_dwelling",
+  "demo-audit-05-encro-attribution": "drugs_supply",
+};
+
+export const DEMO_AUDIT_OFFENCE_FAMILY_BY_CASE: Record<string, string> = {
+  ...DEMO_AUDIT_FIVE_OFFENCE_FAMILIES,
+  ...Object.fromEntries(
+    DEMO_AUDIT_GENERATED_CASES.map((p) => [p.spec.id, p.truthKey.offenceFamily] as const),
+  ),
+};
+
+export function demoAuditOffenceFamilyForCase(caseId: string): string | undefined {
+  return DEMO_AUDIT_OFFENCE_FAMILY_BY_CASE[caseId];
+}

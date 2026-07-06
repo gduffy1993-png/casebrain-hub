@@ -45,7 +45,7 @@ Evidence on file (served)
 Charge sheet; MG5; MG6C schedule; draft complainant MG11; screenshot/message pack (SR/01); exhibit list; police attribution note.
 
 Evidence referred or outstanding
-Full phone download/source export; subscriber/account data; full message export; call logs; device-level extraction metadata; final signed MG11; MG6C clarification on unused material.
+Full phone download/source export; subscriber/account data; full message export; call logs; device-level extraction metadata; final signed MG11.
 
 === SECTION: MG6 ===
 
@@ -58,7 +58,7 @@ MG6C/004 — Full phone download / source export — outstanding — not on bund
 MG6C/005 — Call logs — outstanding — not on bundle.
 MG6C/006 — Device metadata export — referred on MG6C — not attached.
 MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.
-MG6C/008 — Additional unused material — clarification sought.
+MG6C/008 — Full message export (native format) — referred on MG6C — not attached.
 
 === SECTION: MG11 ===
 

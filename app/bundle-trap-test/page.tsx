@@ -87,7 +87,7 @@ export default function BundleTrapTestPage() {
             {FEATURED_TRAP.hook}
           </h1>
           <p className="mx-auto max-w-2xl text-base text-slate-400 sm:text-lg">
-            A solicitor challenge — not a sales page. This anonymised bundle excerpt shows how easy it is to
+            A solicitor challenge — not a sales page. This fictional bundle excerpt shows how easy it is to
             overstate served material before a hearing.
           </p>
         </section>

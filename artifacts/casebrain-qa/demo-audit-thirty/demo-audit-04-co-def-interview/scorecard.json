@@ -1,0 +1,71 @@
+{
+  "caseId": "demo-audit-04-co-def-interview",
+  "caseName": "DA-04 Morgan Reid — co-defendant interview served / target interview missing",
+  "shape": "Co-def interview other_defendant_only / target defendant interview outstanding",
+  "pdfPages": 8,
+  "keyServedItems": [
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "officer statement"
+  ],
+  "keyMissingReferred": [
+    "co-defendant Tara Vale interview summary (other_defendant_only)",
+    "Morgan Reid interview summary (missing)",
+    "Morgan Reid interview audio (missing)",
+    "Morgan Reid interview transcript (missing)",
+    "co-defendant attribution/continuity (missing)"
+  ],
+  "truthMapResult": [
+    {
+      "label": "Officer statement",
+      "existence": "served"
+    },
+    {
+      "label": "Co-defendant interview summary",
+      "existence": "referred_only",
+      "note": "Other defendant only — segregate from target defendant account."
+    },
+    {
+      "label": "Target defendant interview summary",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    },
+    {
+      "label": "Co-defendant attribution / continuity",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    }
+  ],
+  "proofPacketVerdict": "PASS WITH WARNINGS",
+  "failLineCount": 0,
+  "unsupportedLinesCount": 0,
+  "wrongFamilyWarningsCount": 0,
+  "proofLedgerWrongFamilyInternal": 0,
+  "blockedFalseServedGuardsCount": 0,
+  "pageBackedOutputLinesCount": 42,
+  "vagueChaseLabelsCount": 0,
+  "genericLabelCount": 0,
+  "solicitorFacingBannedCount": 0,
+  "packetDuplicateCount": 0,
+  "packetOffFamilyCount": 0,
+  "packetMainIssueCount": 0,
+  "caseFacingWrongFamilyCount": 0,
+  "readyForDemoReview": true,
+  "readyBlockers": [],
+  "filesCreated": [
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-04-co-def-interview\\bundle.pdf",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-04-co-def-interview\\bundle-text.md",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-04-co-def-interview\\pdf-extraction-meta.json",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-04-co-def-interview\\truth-key.json",
+    "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-04-co-def-interview\\line-by-line-proof.md",
+    "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-04-co-def-interview\\SOLICITOR-PROOF-PACKET.md",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-04-co-def-interview\\overview-truth-map.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-04-co-def-interview\\court-tab.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-04-co-def-interview\\cps-chase.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-04-co-def-interview\\client-summary.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-04-co-def-interview\\file-source-view.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-04-co-def-interview\\casebrain-output.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-04-co-def-interview\\scorecard.json"
+  ]
+}

@@ -22,8 +22,8 @@ Controlled/anonymised audit only unless solicitor-reviewed real bundles are used
 - Full CCTV export — referred_only
 - Master CCTV footage — missing — Outstanding — stills alone do not replace master footage.
 - CCTV continuity / provenance — missing — Outstanding on current disclosure.
-- Please provide Master CCTV footage (see MG6C/CCTV/02) or confirm in writing why it is not available.
-- Please provide Full CCTV export (see MG6C/CCTV/03) or confirm in writing why it is not available.: referred_only / weak
+- CCTV audit trail / source hash record — missing — Outstanding on current disclosure.
+- CCTV audit trail / source hash record
 
 ### What CaseBrain refused to say
 
@@ -46,7 +46,7 @@ Controlled/anonymised audit only unless solicitor-reviewed real bundles are used
 
 ### What may still be missing (source-led)
 
-- No source-led gaps flagged on current papers.
+- recognition/ID basis
 
 ### Main evidence gaps
 
@@ -60,9 +60,9 @@ Controlled/anonymised audit only unless solicitor-reviewed real bundles are used
 - overview / five_answers: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968
 - overview / five_answers: Disclosure completeness and outstanding source material.
 - overview / five_answers: Chase outstanding disclosure and record provisional hearing position.
-- evidence_truth_map / evidence_trace: audit trail — missing — Outstanding on current disclosure.
-- evidence_truth_map / evidence_trace: recognition/ID basis — missing — Outstanding on current disclosure.
+- evidence_truth_map / evidence_trace: Recognition / ID basis — missing — Outstanding on current disclosure.
 - evidence_truth_map / evidence_trace: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968
+- evidence_truth_map / evidence_trace: Disclosure completeness and outstanding source material.
 
 ### Key source anchors
 
@@ -79,26 +79,29 @@ Controlled/anonymised audit only unless solicitor-reviewed real bundles are used
 - Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968
 - Disclosure completeness and outstanding source material.
 - Chase outstanding disclosure and record provisional hearing position.
-- audit trail — missing — Outstanding on current disclosure.
-- recognition/ID basis — missing — Outstanding on current disclosure.
+- Recognition / ID basis — missing — Outstanding on current disclosure.
+- Disclosure completeness and outstanding source material.
 
 **SOLICITOR CAUTION**
 - Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968
 - Master CCTV footage
 - Full CCTV export: referred_only / weak
 - CCTV Continuity / provenance
-- audit trail
+- The defence asks the court to record per MG6C that CCTV still images are served but master CCTV…
+
+**Missing expected (source-led)**
+- recognition/ID basis
 
 ### Proof ledger counts
 
-- Meaningful emitted lines: **133**
-- Warnings on case: **64**
+- Meaningful emitted lines: **132**
+- Warnings on case: **60**
 - Suppressed before display: **31**
 - Softened rewrites: **32**
-- Missing expected (source-led): **0**
-- Clean source-backed: **38**
+- Missing expected (source-led): **1**
+- Clean source-backed: **41**
 - Possible false suppressions: **0**
-- PDF + text supported: **55** | Text-only supported: **32**
+- PDF + text supported: **57** | Text-only supported: **31**
 
 ### Unsupported output (clarified)
 
@@ -119,56 +122,56 @@ _When verdict is PASS, unsupported material is usually correctly suppressed befo
    - Chase outstanding disclosure and record provisional hearing position.
    - source_unavailable, meaningful_line_without_anchor, solicitor_review_required
 4. **SOURCE REVIEW** — evidence_truth_map / evidence_trace
-   - audit trail — missing — Outstanding on current disclosure.
+   - Recognition / ID basis — missing — Outstanding on current disclosure.
    - source_unavailable, evidence_item_not_in_snippet, meaningful_line_without_anchor, solicitor_review_required
-5. **SOURCE REVIEW** — evidence_truth_map / evidence_trace
-   - recognition/ID basis — missing — Outstanding on current disclosure.
-   - source_unavailable, evidence_item_not_in_snippet, meaningful_line_without_anchor, solicitor_review_required
-6. **SOLICITOR CAUTION** — evidence_truth_map / evidence_trace
+5. **SOLICITOR CAUTION** — evidence_truth_map / evidence_trace
    - Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968
    - Use with caution — MG6/schedule reference only — export not served.
-7. **SOURCE REVIEW** — evidence_truth_map / evidence_trace
+6. **SOURCE REVIEW** — evidence_truth_map / evidence_trace
    - Disclosure completeness and outstanding source material.
    - source_unavailable, evidence_item_not_in_snippet, meaningful_line_without_anchor, solicitor_review_required
-8. **SOLICITOR CAUTION** — evidence_truth_map / evidence_trace
+7. **SOLICITOR CAUTION** — evidence_truth_map / evidence_trace
    - Master CCTV footage
    - Use with caution — Material expected or mentioned but not on bundle.
-9. **SOLICITOR CAUTION** — evidence_truth_map / evidence_trace
+8. **SOLICITOR CAUTION** — evidence_truth_map / evidence_trace
    - Full CCTV export: referred_only / weak
    - Use with caution — Referred on schedule or in narrative — not safely served as proof.
-10. **SOLICITOR CAUTION** — evidence_truth_map / evidence_trace
+9. **SOLICITOR CAUTION** — evidence_truth_map / evidence_trace
    - CCTV Continuity / provenance
    - Use with caution — Material expected or mentioned but not on bundle.
-11. **SOLICITOR CAUTION** — evidence_truth_map / evidence_trace
-   - audit trail
-   - Use with caution — Material expected or mentioned but not on bundle.
-12. **SOLICITOR CAUTION** — evidence_truth_map / evidence_trace
+10. **SOLICITOR CAUTION** — evidence_truth_map / evidence_trace
    - The defence asks the court to record per MG6C that CCTV still images are served but master CCTV footage and continuity/provenance remain outstanding.
    - Use with caution — MG6/schedule reference only — export not served.
-13. **SOLICITOR CAUTION** — chase
+11. **SOLICITOR CAUTION** — chase
    - Master CCTV footage
    - Use with caution — MG6/schedule reference only — export not served.
-14. **SOLICITOR CAUTION** — chase
+12. **SOLICITOR CAUTION** — chase
    - Full CCTV export
    - Use with caution — MG6/schedule reference only — export not served.
-15. **SOLICITOR CAUTION** — chase
+13. **SOLICITOR CAUTION** — chase
    - CCTV Continuity / provenance
    - Use with caution — MG6/schedule reference only — export not served.
-16. **SOLICITOR CAUTION** — chase
-   - audit trail
-   - Use with caution — MG6/schedule reference only — export not served.
-17. **SOURCE REVIEW** — hearing_mode / court_prep
+14. **SOLICITOR CAUTION** — chase
+   - CCTV audit trail / source hash record
+   - Use with caution — none
+15. **SOURCE REVIEW** — hearing_mode / court_prep
    - mixed unclear
    - source_unavailable
-18. **SOURCE REVIEW** — hearing_mode / court_prep
+16. **SOURCE REVIEW** — hearing_mode / court_prep
    - Main issue: Disclosure completeness and outstanding source material.
    - source_unavailable
-19. **SOURCE REVIEW** — hearing_mode / court_prep
+17. **SOURCE REVIEW** — hearing_mode / court_prep
    - Chase CPS — Chase outstanding disclosure and record provisional hearing position.
    - source_unavailable, meaningful_line_without_anchor, solicitor_review_required
-20. **SOURCE REVIEW** — hearing_mode / court_prep
-   - audit trail: Missing / Needs review — Outstanding on current disclosure — chase before fixing hearing position.
-   - source_unavailable, evidence_item_not_in_snippet, meaningful_line_without_anchor, solicitor_review_required
+18. **SOURCE REVIEW** — today
+   - The defence cannot safely fix a final position until the served source material is clarified.
+   - source_unavailable
+19. **SOURCE REVIEW** — today
+   - Keep the position provisional and source-linked.
+   - source_unavailable
+20. **SOURCE REVIEW** — today
+   - The defence asks the court to record outstanding disclosure and set a timetable; position remains provisional until source material is served.
+   - source_unavailable
 
 ## 1. Emitted line ledger
 
@@ -212,13 +215,13 @@ _When verdict is PASS, unsupported material is usually correctly suppressed befo
 **Source:** MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.
 **Why safe / limited:** Safe and source-backed — Bundle shows material outstanding or not attached: "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.".
 ### 8. evidence_state — evidence_truth_map / evidence_trace
-**Output:** audit trail — missing — Outstanding on current disclosure.
-**Verdict:** WARNING | **Tier:** SOURCE REVIEW | **Proof chain:** source_unavailable
+**Output:** CCTV audit trail / source hash record — missing — Outstanding on current disclosure.
+**Verdict:** PASS | **Tier:** CLEAN SOURCE-BACKED | **Proof chain:** pdf_and_text_support_output
 **Evidence state:** missing
-**Source:** none
-**Why safe / limited:** Source gap or weak anchor — No usable source anchor — solicitor must verify.
+**Source:** MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.
+**Why safe / limited:** Safe and source-backed — Bundle shows material outstanding or not attached: "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.".
 ### 9. evidence_state — evidence_truth_map / evidence_trace
-**Output:** recognition/ID basis — missing — Outstanding on current disclosure.
+**Output:** Recognition / ID basis — missing — Outstanding on current disclosure.
 **Verdict:** WARNING | **Tier:** SOURCE REVIEW | **Proof chain:** source_unavailable
 **Evidence state:** missing
 **Source:** none
@@ -254,11 +257,11 @@ _When verdict is PASS, unsupported material is usually correctly suppressed befo
 **Source:** MG6C/CCTV/04 — Continuity and provenance statement — outstanding.
 **Why safe / limited:** Use with caution — Material expected or mentioned but not on bundle.
 ### 15. evidence_state — evidence_truth_map / evidence_trace
-**Output:** audit trail
-**Verdict:** WARNING | **Tier:** SOLICITOR CAUTION | **Proof chain:** pdf_and_text_support_output
-**Evidence state:** missing
-**Source:** MG6C/CCTV/05 — Audit trail / source file hash record — outstanding.
-**Why safe / limited:** Use with caution — Material expected or mentioned but not on bundle.
+**Output:** CCTV audit trail / source hash record
+**Verdict:** PASS | **Tier:** CLEAN SOURCE-BACKED | **Proof chain:** pdf_and_text_support_output
+**Evidence state:** unknown
+**Source:** MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.
+**Why safe / limited:** Safe and source-backed — Partial bundle support: "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.".
 ### 16. safety_warning — five_answers / do_not_overstate
 **Output:** Do not treat stills alone as proof of identity or offence.
 **Verdict:** PASS | **Tier:** GENERIC SAFETY GUARD | **Proof chain:** text_supports_but_pdf_unchecked
@@ -314,11 +317,11 @@ _When verdict is PASS, unsupported material is usually correctly suppressed befo
 **Source:** MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.
 **Why safe / limited:** Safe and source-backed — Bundle shows material outstanding or not attached: "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.".
 ### 25. evidence_state — evidence_truth_map / evidence_trace
-**Output:** Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.
+**Output:** Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it is not available.
 **Verdict:** PASS | **Tier:** CLEAN SOURCE-BACKED | **Proof chain:** pdf_and_text_support_output
-**Evidence state:** missing
+**Evidence state:** unknown
 **Source:** MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.
-**Why safe / limited:** Safe and source-backed — Bundle shows material outstanding or not attached: "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.".
+**Why safe / limited:** Safe and source-backed — Partial bundle support: "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.".
 ### 26. evidence_state — evidence_truth_map / evidence_trace
 **Output:** The defence asks the court to record per MG6C that CCTV still images are served but master CCTV footage and continuity/provenance remain outstanding.
 **Verdict:** WARNING | **Tier:** SOLICITOR CAUTION | **Proof chain:** pdf_and_text_support_output
@@ -359,13 +362,13 @@ _When verdict is PASS, unsupported material is usually correctly suppressed befo
 **Source:** MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.
 **Why safe / limited:** Safe and source-backed — Partial bundle support: "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.".
 ### 33. chase_request — chase
-**Output:** audit trail
+**Output:** CCTV audit trail / source hash record
 **Verdict:** WARNING | **Tier:** SOLICITOR CAUTION | **Proof chain:** pdf_and_text_support_output
 **Evidence state:** Outstanding
-**Source:** MG6C/CCTV/05 — Audit trail / source file hash record — outstanding.
-**Why safe / limited:** Use with caution — MG6/schedule reference only — export not served.
+**Source:** MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.
+**Why safe / limited:** Use with caution — none
 ### 34. chase_request — chase / CPS
-**Output:** Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.
+**Output:** Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it is not available.
 **Verdict:** PASS | **Tier:** CLEAN SOURCE-BACKED | **Proof chain:** pdf_and_text_support_output
 **Source:** MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.
 **Why safe / limited:** Safe and source-backed — Partial bundle support: "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.".
@@ -398,13 +401,13 @@ _When verdict is PASS, unsupported material is usually correctly suppressed befo
 **Source:** MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.
 **Why safe / limited:** Safe and source-backed — Bundle shows material outstanding or not attached: "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.".
 ### 40. chase_request — five_answers / chase
-**Output:** Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.
+**Output:** Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it is not available.
 **Verdict:** PASS | **Tier:** CLEAN SOURCE-BACKED | **Proof chain:** pdf_and_text_support_output
-**Evidence state:** missing
+**Evidence state:** unknown
 **Source:** MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.
-**Why safe / limited:** Safe and source-backed — Bundle shows material outstanding or not attached: "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.".
+**Why safe / limited:** Safe and source-backed — Partial bundle support: "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.".
 
-_…and 93 more emitted lines (see JSON)._
+_…and 92 more emitted lines (see JSON)._
 
 ## 2. Suppressed candidate ledger
 
@@ -649,9 +652,9 @@ _…and 93 more emitted lines (see JSON)._
 
 ### 7. human_label — evidence_truth_map / evidence_trace
 
-**Before:** audit trail: missing / needs_review
-**After:** audit trail
-**Solicitor note:** Output humanised for clarity.
+**Before:** CCTV audit trail / source hash record: unknown / needs_review
+**After:** CCTV audit trail / source hash record
+**Solicitor note:** Evidence label: CCTV still images served — master footage not on bundle
 
 ### 8. human_label — five_answers / do_not_overstate
 
@@ -703,8 +706,8 @@ _…and 93 more emitted lines (see JSON)._
 
 ### 16. human_label — evidence_truth_map / evidence_trace
 
-**Before:** Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.: missing / needs_review
-**After:** Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.
+**Before:** Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it is not available.: unknown / needs_review
+**After:** Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it is not available.
 **Solicitor note:** Evidence label: CCTV still images served — master footage not on bundle
 
 ### 17. human_label — evidence_truth_map / evidence_trace
@@ -738,7 +741,9 @@ _…and 93 more emitted lines (see JSON)._
 
 ## 4. Missing expected output ledger (source-led)
 
-- none
+1. **WARNING** — recognition/ID basis
+   - Basis: truth-key chase_needed
+   - Bundle/truth key expects chase on recognition/ID basis — verify whether CaseBrain surfaced it.
 
 ## 5. Source conflict ledger
 
@@ -805,14 +810,14 @@ _…and 93 more emitted lines (see JSON)._
 
 ### 8. evidence_truth_map / evidence_trace
 
-**Output:** audit trail — missing — Outstanding on current disclosure.
-**PDF page:** no
-**Status:** source_unavailable
-**Note:** No usable source anchor — solicitor must verify.
+**Output:** CCTV audit trail / source hash record — missing — Outstanding on current disclosure.
+**PDF page:** yes (p.4)
+**Status:** pdf_and_text_support_output
+**Note:** PDF page and extracted text both support this line.
 
 ### 9. evidence_truth_map / evidence_trace
 
-**Output:** recognition/ID basis — missing — Outstanding on current disclosure.
+**Output:** Recognition / ID basis — missing — Outstanding on current disclosure.
 **PDF page:** no
 **Status:** source_unavailable
 **Note:** No usable source anchor — solicitor must verify.
@@ -854,13 +859,13 @@ _…and 93 more emitted lines (see JSON)._
 
 ### 15. evidence_truth_map / evidence_trace
 
-**Output:** audit trail
+**Output:** CCTV audit trail / source hash record
 **PDF page:** yes (p.4)
 **Status:** pdf_and_text_support_output
 **Note:** PDF page and extracted text both support this line.
 
 
-_…and 118 more proof-chain rows (see JSON)._
+_…and 117 more proof-chain rows (see JSON)._
 
 ---
 
@@ -872,25 +877,25 @@ Bundle source: `artifacts/evidence-state-audit-local/cases/demo-audit-02-cctv-st
 
 ## Summary
 
-- Meaningful lines audited: **133**
+- Meaningful lines audited: **132**
 - Blocking failures: **0**
 - Unsupported output lines: **2**
-- Source review warnings: **47**
-- Solicitor caution lines: **17**
-- Clean source-backed lines: **38**
+- Source review warnings: **44**
+- Solicitor caution lines: **16**
+- Clean source-backed lines: **41**
 - Generic safety guards: **31**
-- Positive correct findings: **70**
-- PASS: **69** | WARNING: **64** | FAIL: **0**
-- Lines requiring Ged review (tiered): **64**
+- Positive correct findings: **73**
+- PASS: **72** | WARNING: **60** | FAIL: **0**
+- Lines requiring Ged review (tiered): **60**
 
 ## Proof chain coverage
 
 - Case proof mode: **pdf_and_text**
 - Original PDF available: **yes**
-- pdf_and_text_support_output: **55**
-- text_supports_but_pdf_unchecked: **19**
+- pdf_and_text_support_output: **57**
+- text_supports_but_pdf_unchecked: **18**
 - pdf_available_but_text_mismatch: **0**
-- No source on papers: **59**
+- No source on papers: **57**
 - Output not supported (emitted): **0**
 - Emitted unsupported (ledger): **0**
 - Suppressed unsupported (ledger): **31**
@@ -899,9 +904,9 @@ PDF-backed proof chain: original PDF in case directory; bundle-text.md extracted
 
 ### Review tiers
 - BLOCKING REVIEW: 0
-- SOURCE REVIEW: 47
-- SOLICITOR CAUTION: 17
-- CLEAN SOURCE-BACKED: 38
+- SOURCE REVIEW: 44
+- SOLICITOR CAUTION: 16
+- CLEAN SOURCE-BACKED: 41
 - GENERIC SAFETY GUARD: 31
 
 ### By category
@@ -914,14 +919,14 @@ PDF-backed proof chain: original PDF in case directory; bundle-text.md extracted
 - court_note: 3
 - client_summary: 1
 - contradiction_or_risk: 3
-- export_line: 18
+- export_line: 17
 
 ### By support status
-- partially supported: 23
-- Source not available on papers: 46
+- partially supported: 25
+- Source not available on papers: 44
 - Supported by bundle text: 25
 - Referred only — not safely served: 9
-- Missing on bundle: 28
+- Missing on bundle: 27
 - Not supported by bundle: 2
 
 ## Lines requiring Ged review
@@ -932,7 +937,7 @@ Tiered review queue — blocking issues first, then source gaps, then solicitor 
 
 - none
 
-### SOURCE REVIEW (47)
+### SOURCE REVIEW (44)
 
 1. **WARNING** — evidence_claim — overview / five_answers
    - Output: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968
@@ -947,252 +952,236 @@ Tiered review queue — blocking issues first, then source gaps, then solicitor 
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
 4. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
-   - Output: audit trail — missing — Outstanding on current disclosure.
+   - Output: Recognition / ID basis — missing — Outstanding on current disclosure.
    - Reasons: source_unavailable, evidence_item_not_in_snippet, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
 5. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
-   - Output: recognition/ID basis — missing — Outstanding on current disclosure.
-   - Reasons: source_unavailable, evidence_item_not_in_snippet, meaningful_line_without_anchor, solicitor_review_required
-   - Source: no source found
-6. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
    - Output: Disclosure completeness and outstanding source material.
    - Reasons: source_unavailable, evidence_item_not_in_snippet, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
-7. **WARNING** — strategic_review — hearing_mode / court_prep
+6. **WARNING** — strategic_review — hearing_mode / court_prep
    - Output: mixed unclear
    - Reasons: source_unavailable
    - Source: no source found
-8. **WARNING** — strategic_review — hearing_mode / court_prep
+7. **WARNING** — strategic_review — hearing_mode / court_prep
    - Output: Main issue: Disclosure completeness and outstanding source material.
    - Reasons: source_unavailable
    - Source: no source found
-9. **WARNING** — confidence_status — hearing_mode / court_prep
+8. **WARNING** — confidence_status — hearing_mode / court_prep
    - Output: Chase CPS — Chase outstanding disclosure and record provisional hearing position.
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
-10. **WARNING** — evidence_state — hearing_mode / court_prep
-   - Output: audit trail: Missing / Needs review — Outstanding on current disclosure — chase before fixing hearing position.
-   - Reasons: source_unavailable, evidence_item_not_in_snippet, meaningful_line_without_anchor, solicitor_review_required
-   - Source: no source found
-11. **WARNING** — strategic_review — today
+9. **WARNING** — strategic_review — today
    - Output: The defence cannot safely fix a final position until the served source material is clarified.
    - Reasons: source_unavailable
    - Source: no source found
-12. **WARNING** — strategic_review — today
+10. **WARNING** — strategic_review — today
    - Output: Keep the position provisional and source-linked.
    - Reasons: source_unavailable
    - Source: no source found
-13. **WARNING** — strategic_review — today
+11. **WARNING** — strategic_review — today
    - Output: The defence asks the court to record outstanding disclosure and set a timetable; position remains provisional until sour…
    - Reasons: source_unavailable
    - Source: no source found
-14. **WARNING** — strategic_review — today
+12. **WARNING** — strategic_review — today
    - Output: The defence position remains provisional pending served source material and solicitor instructions.
    - Reasons: source_unavailable
    - Source: no source found
-15. **WARNING** — strategic_review — today
+13. **WARNING** — strategic_review — today
    - Output: The court is asked to record outstanding source material and set a disclosure timetable.
    - Reasons: source_unavailable
    - Source: no source found
-16. **WARNING** — strategic_review — today
+14. **WARNING** — strategic_review — today
    - Output: Timing and sequence remain conditional until served source material and continuity records are reviewed.
    - Reasons: source_unavailable
    - Source: no source found
-17. **WARNING** — strategic_review — summary / risks
+15. **WARNING** — strategic_review — summary / risks
    - Output: Prosecution pressure / gaps: Outstanding disclosure is served and supports the Crown route.
    - Reasons: source_unavailable
    - Source: no source found
-18. **WARNING** — strategic_review — summary / risks
+16. **WARNING** — strategic_review — summary / risks
    - Output: Defence risks: Do not treat stills alone as proof of identity or offence.
    - Reasons: generic_source_only
    - Source: Statement of Offence: | Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968.
-19. **WARNING** — strategic_review — summary / risks
+17. **WARNING** — strategic_review — summary / risks
    - Output: positive identification from stills
    - Reasons: source_unavailable
    - Source: no source found
-20. **WARNING** — strategic_review — summary / risks
+18. **WARNING** — strategic_review — summary / risks
    - Output: phone download
    - Reasons: source_unavailable
    - Source: no source found
-21. **WARNING** — strategic_review — summary / risks
+19. **WARNING** — strategic_review — summary / risks
    - Output: Outstanding disclosure is served and supports the Crown route.
    - Reasons: source_unavailable
    - Source: no source found
-22. **WARNING** — strategic_review — summary / opportunities
+20. **WARNING** — strategic_review — summary / opportunities
    - Output: The matter remains source-led and provisional because the case profile or evidence state is unclear.
    - Reasons: source_unavailable
    - Source: no source found
-23. **WARNING** — strategic_review — summary / opportunities
+21. **WARNING** — strategic_review — summary / opportunities
    - Output: Use missing/source-status gaps to keep the defence position reserved.
    - Reasons: source_unavailable
    - Source: no source found
-24. **WARNING** — strategic_review — summary / opportunities
+22. **WARNING** — strategic_review — summary / opportunities
    - Output: Sequence / coverage leverage: Continuity to master recording not confirmed on current papers.
    - Reasons: source_unavailable
    - Source: no source found
-25. **WARNING** — strategic_review — summary / opportunities
-   - Output: Disclosure leverage: Outstanding on current disclosure — chase before fixing hearing position.
+23. **WARNING** — strategic_review — summary / opportunities
+   - Output: Sequence / coverage leverage: Audit trail needed to link stills to master recording.
    - Reasons: source_unavailable
    - Source: no source found
-26. **WARNING** — strategic_review — summary / ptph
+24. **WARNING** — strategic_review — summary / ptph
    - Output: Provisional — for solicitor review before court.
    - Reasons: source_unavailable, solicitor_review_required
    - Source: no source found
-27. **WARNING** — strategic_review — summary / ptph
+25. **WARNING** — strategic_review — summary / ptph
    - Output: Invite the court to order disclosure by a fixed date with a review hearing.
    - Reasons: source_unavailable
    - Source: no source found
-28. **WARNING** — strategic_review — summary / ptph
+26. **WARNING** — strategic_review — summary / ptph
    - Output: The defence cannot confirm final issues until disclosure is complete.
    - Reasons: source_unavailable
    - Source: no source found
-29. **WARNING** — client_summary — summary / client
+27. **WARNING** — client_summary — summary / client
    - Output: We are reviewing the papers in your case (Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968). T…
    - Reasons: generic_source_only, solicitor_review_required
    - Source: Statement of Offence: | Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968.
-30. **WARNING** — court_note — summary / court_day
+28. **WARNING** — court_note — summary / court_day
    - Output: Court-day position line is on the Today tab (Before court). This brief mirrors chase and theory only.
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
-31. **WARNING** — confidence_status — confidence_dashboard
+29. **WARNING** — confidence_status — confidence_dashboard
    - Output: Confidence: Needs review before relying — Human review or material gaps flagged on current papers.
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
-32. **WARNING** — confidence_status — confidence_dashboard
+30. **WARNING** — confidence_status — confidence_dashboard
    - Output: Chase sendability: needs_solicitor_review; Summary sendability: needs_solicitor_review
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
-33. **WARNING** — strategic_review — decision_board
+31. **WARNING** — strategic_review — decision_board
    - Output: Charge-fit issue: Source truth and safe provisional positioning.
    - Reasons: generic_source_only
    - Source: Statement of Offence: | Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968.
-34. **WARNING** — strategic_review — decision_board
+32. **WARNING** — strategic_review — decision_board
    - Output: Thin or mixed papers can make a confident theory unsafe.
    - Reasons: source_unavailable
    - Source: no source found
-35. **WARNING** — strategic_review — decision_board
+33. **WARNING** — strategic_review — decision_board
    - Output: Chase outstanding disclosure and record provisional hearing position.
    - Reasons: source_unavailable
    - Source: no source found
-36. **WARNING** — strategic_review — decision_board
+34. **WARNING** — strategic_review — decision_board
    - Output: Missing material
+   - Reasons: source_unavailable
+   - Source: no source found
+35. **WARNING** — strategic_review — decision_board
+   - Output: Disclosure pressure: Disclosure completeness and outstanding source material.
+   - Reasons: source_unavailable
+   - Source: no source found
+36. **WARNING** — strategic_review — decision_board
+   - Output: Possible issue — needs evidence before reliance.
    - Reasons: source_unavailable
    - Source: no source found
 37. **WARNING** — strategic_review — decision_board
-   - Output: Disclosure pressure: Outstanding on current disclosure — chase before fixing hearing position.
+   - Output: Chase outstanding disclosure and record provisional hearing position.
    - Reasons: source_unavailable
    - Source: no source found
-38. **WARNING** — strategic_review — decision_board
-   - Output: Missing material
-   - Reasons: source_unavailable
-   - Source: no source found
-39. **WARNING** — export_line — export_pack / cps_chase
+38. **WARNING** — export_line — export_pack / cps_chase
    - Output: CPS DISCLOSURE CHASE DRAFT
 (not for court — requests material only)
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
-40. **WARNING** — export_line — export_pack / court_note
+39. **WARNING** — export_line — export_pack / court_note
    - Output: COURT NOTE
 (not for CPS chase)
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
-41. **WARNING** — export_line — export_pack / court_note
+40. **WARNING** — export_line — export_pack / court_note
    - Output: [CaseBrain — court line copy. Evidence state: needs review. Confirm before addressing the court.]
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
-42. **WARNING** — export_line — export_pack / court_note
+41. **WARNING** — export_line — export_pack / court_note
    - Output: Solicitor review required before sending to CPS, court, or client.
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
-43. **WARNING** — export_line — export_pack / client_summary
+42. **WARNING** — export_line — export_pack / client_summary
    - Output: CLIENT-SAFE SUMMARY
 (not for court or CPS)
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
-44. **WARNING** — export_line — export_pack / client_summary
-   - Output: We are reviewing the papers in your case (Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968). T…
-   - Reasons: generic_source_only, solicitor_review_required
-   - Source: Statement of Offence: | Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968.
-45. **WARNING** — export_line — export_pack / client_summary
+43. **WARNING** — export_line — export_pack / client_summary
    - Output: [CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
-46. **WARNING** — export_line — export_pack / client_summary
-   - Output: Solicitor review required before sending to CPS, court, or client.
-   - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
-   - Source: no source found
-47. **WARNING** — export_line — export_pack / evidence_gaps
+44. **WARNING** — export_line — export_pack / evidence_gaps
    - Output: Solicitor review required before sending to CPS, court, or client.
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
 
-### SOLICITOR CAUTION (17)
+### SOLICITOR CAUTION (16)
 
-48. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
+45. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
    - Output: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968
    - Reasons: tier classification
    - Source: MG6C/CCTV/02 — Master CCTV footage camera 4 — outstanding — not on bundle.
-49. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
+46. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
    - Output: Master CCTV footage
    - Reasons: tier classification
    - Source: MG6C/CCTV/02 — Master CCTV footage camera 4 — outstanding — not on bundle.
-50. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
+47. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
    - Output: Full CCTV export: referred_only / weak
    - Reasons: tier classification
    - Source: MG6C/CCTV/03 — Full CCTV export (native format) — referred on MG6 — export not attached.
-51. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
+48. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
    - Output: CCTV Continuity / provenance
    - Reasons: tier classification
    - Source: MG6C/CCTV/04 — Continuity and provenance statement — outstanding.
-52. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
-   - Output: audit trail
-   - Reasons: tier classification
-   - Source: MG6C/CCTV/05 — Audit trail / source file hash record — outstanding.
-53. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
+49. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
    - Output: The defence asks the court to record per MG6C that CCTV still images are served but master CCTV footage and continuity/p…
    - Reasons: tier classification
    - Source: MG6C/CCTV/02 — Master CCTV footage camera 4 — outstanding — not on bundle.
-54. **WARNING** — chase_request — chase
+50. **WARNING** — chase_request — chase
    - Output: Master CCTV footage
    - Reasons: tier classification
    - Source: MG6C/CCTV/02 — Master CCTV footage camera 4 — outstanding — not on bundle.
-55. **WARNING** — chase_request — chase
+51. **WARNING** — chase_request — chase
    - Output: Full CCTV export
    - Reasons: tier classification
    - Source: MG6C/CCTV/03 — Full CCTV export (native format) — referred on MG6 — export not attached.
-56. **WARNING** — chase_request — chase
+52. **WARNING** — chase_request — chase
    - Output: CCTV Continuity / provenance
    - Reasons: tier classification
    - Source: MG6C/CCTV/04 — Continuity and provenance statement — outstanding.
-57. **WARNING** — chase_request — chase
-   - Output: audit trail
+53. **WARNING** — chase_request — chase
+   - Output: CCTV audit trail / source hash record
    - Reasons: tier classification
-   - Source: MG6C/CCTV/05 — Audit trail / source file hash record — outstanding.
-58. **WARNING** — strategic_review — summary / opportunities
+   - Source: MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.
+54. **WARNING** — strategic_review — summary / opportunities
    - Output: Sequence / coverage leverage: Master footage/export needed — stills alone are not the full recording.
    - Reasons: tier classification
    - Source: MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.
-59. **WARNING** — strategic_review — summary / chase
+55. **WARNING** — strategic_review — summary / chase
    - Output: Master CCTV footage — Master footage/export needed — stills alone are not the full recording.
    - Reasons: tier classification
    - Source: MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.
-60. **WARNING** — strategic_review — summary / chase
+56. **WARNING** — strategic_review — summary / chase
    - Output: Full CCTV export — Master footage/export needed — stills alone are not the full recording.
    - Reasons: tier classification
    - Source: MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.
-61. **WARNING** — strategic_review — summary / chase
+57. **WARNING** — strategic_review — summary / chase
    - Output: CCTV Continuity / provenance — Continuity to master recording not confirmed on current papers.
    - Reasons: tier classification
    - Source: MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.
-62. **WARNING** — strategic_review — decision_board
+58. **WARNING** — strategic_review — decision_board
    - Output: Missing BWV / CCTV issue: Master footage/export needed — stills alone are not the full recording.
    - Reasons: tier classification
    - Source: MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.
-63. **WARNING** — contradiction_or_risk — advice_change_radar
+59. **WARNING** — contradiction_or_risk — advice_change_radar
    - Output: Master CCTV footage — Missing — Review: Review needed because master CCTV footage is missing — position may shift when s…
    - Reasons: tier classification
    - Source: MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.
-64. **WARNING** — contradiction_or_risk — advice_change_radar
+60. **WARNING** — contradiction_or_risk — advice_change_radar
    - Output: CCTV Continuity / provenance — Missing — Review: Review needed because CCTV Continuity / provenance is missing — positio…
    - Reasons: tier classification
    - Source: MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.
@@ -1203,12 +1192,12 @@ Tiered review queue — blocking issues first, then source gaps, then solicitor 
 - **evidence_state** (evidence_truth_map / evidence_trace): "Full CCTV export — referred_only" — MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle. [CCTV still images served — master footage not on bundle]
 - **evidence_state** (evidence_truth_map / evidence_trace): "Master CCTV footage — missing — Outstanding — stills alone do not replace master footage." — MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle. [CCTV still images served — master footage not on bundle]
 - **evidence_state** (evidence_truth_map / evidence_trace): "CCTV continuity / provenance — missing — Outstanding on current disclosure." — MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle. [CCTV still images served — master footage not on bundle]
+- **evidence_state** (evidence_truth_map / evidence_trace): "CCTV audit trail / source hash record — missing — Outstanding on current disclosure." — MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle. [CCTV still images served — master footage not on bundle]
+- **evidence_state** (evidence_truth_map / evidence_trace): "CCTV audit trail / source hash record" — MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle. [CCTV still images served — master footage not on bundle]
 - **evidence_state** (evidence_truth_map / evidence_trace): "Please provide Master CCTV footage (see MG6C/CCTV/02) or confirm in writing why it is not available." — MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle. [CCTV still images served — master footage not on bundle]
 - **evidence_state** (evidence_truth_map / evidence_trace): "Please provide Full CCTV export (see MG6C/CCTV/03) or confirm in writing why it is not available.: r…" — MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle. [CCTV still images served — master footage not on bundle]
 - **evidence_state** (evidence_truth_map / evidence_trace): "Please provide CCTV Continuity / provenance (see MG6C/CCTV/04) or confirm in writing why it is not a…" — MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle. [CCTV still images served — master footage not on bundle]
-- **evidence_state** (evidence_truth_map / evidence_trace): "Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available." — MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle. [CCTV still images served — master footage not on bundle]
-- **chase_request** (chase / CPS): "Please provide Master CCTV footage (see MG6C/CCTV/02) or confirm in writing why it is not available." — MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle. [CCTV still images served — master footage not on bundle]
-- **chase_request** (chase / CPS): "Please provide Full CCTV export (see MG6C/CCTV/03) or confirm in writing why it is not available." — MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle. [CCTV still images served — master footage not on bundle]
+- **evidence_state** (evidence_truth_map / evidence_trace): "Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it…" — MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle. [CCTV still images served — master footage not on bundle]
 
 ## Generic safety guards
 
@@ -1240,9 +1229,9 @@ Tiered review queue — blocking issues first, then source gaps, then solicitor 
 
 ### Proof chain roll-up
 
-- Lines judged from extracted text only (PDF unchecked): **78**
+- Lines judged from extracted text only (PDF unchecked): **75**
 - Lines where source text and output disagree / unsupported: **0**
-- Lines text-supported but PDF unchecked: **19**
+- Lines text-supported but PDF unchecked: **18**
 
 ---
 
@@ -1580,56 +1569,56 @@ Outstanding on current bundle — chase if disclosure-relevant.
 ### 8. evidence state
 
 **OUTPUT:**
-audit trail — missing — Outstanding on current disclosure.
+CCTV audit trail / source hash record — missing — Outstanding on current disclosure.
+
+**HUMAN EVIDENCE LABEL:** CCTV still images served — master footage not on bundle
 
 **SURFACE:** evidence_truth_map / evidence_trace
 
 **CATEGORY:** evidence_state
 
-**REVIEW TIER:** SOURCE REVIEW
+**REVIEW TIER:** CLEAN SOURCE-BACKED
 
-**EVIDENCE ITEM:** audit trail
+**EVIDENCE ITEM:** CCTV audit trail / source hash record
 
 **SOURCE:**
-no source found
+Section MG6: MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.
 
-**SOURCE STRENGTH:** no_anchor
+**SOURCE STRENGTH:** strong
 
-**SUPPORT:** Source not available on papers
+**SUPPORT:** Missing on bundle
 
 **PROOF CHAIN:**
 - Document: bundle.pdf (pdf)
-- Page: — | Section: —
-- Extracted snippet: none
-- PDF page available: no
-- PDF page evidence path: not generated
-- Extraction confidence: unavailable
-- Extraction issue: label_mismatch
-- **Proof chain status: No source on papers**
+- Page: 4 | Section: MG6
+- Extracted snippet: MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.
+- PDF page available: yes
+- PDF page evidence path: `artifacts/casebrain-qa/line-source-proof/demo-audit-02-cctv-stills/proof-chain-pages/p4.md`
+- Extraction confidence: exact
+- Extraction issue: page_missing
+- **Proof chain status: PDF page and text both support**
 
 **WHY THIS SUPPORTS THE LINE:**
-No direct bundle snippet located for this line.
+Bundle shows material outstanding or not attached: "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.".
 
 **WHY THIS IS LIMITED:**
-No usable source anchor — solicitor must verify.
+Material expected or mentioned but not on bundle.
 
 **SAFE WORDING:**
-Not safely confirmed on current papers — solicitor review required.
+Outstanding on current bundle — chase if disclosure-relevant.
 
-**GED REVIEW REASONS:** source_unavailable, evidence_item_not_in_snippet, meaningful_line_without_anchor, solicitor_review_required
+**SOLICITOR REVIEW REQUIRED:** no
 
-**SOLICITOR REVIEW REQUIRED:** yes
+**USEFULNESS:** correct_and_useful
 
-**USEFULNESS:** solicitor_review_required
-
-**VERDICT:** WARNING
+**VERDICT:** PASS
 
 ---
 
 ### 9. evidence state
 
 **OUTPUT:**
-recognition/ID basis — missing — Outstanding on current disclosure.
+Recognition / ID basis — missing — Outstanding on current disclosure.
 
 **SURFACE:** evidence_truth_map / evidence_trace
 
@@ -1637,7 +1626,7 @@ recognition/ID basis — missing — Outstanding on current disclosure.
 
 **REVIEW TIER:** SOURCE REVIEW
 
-**EVIDENCE ITEM:** recognition/ID basis
+**EVIDENCE ITEM:** Recognition / ID basis
 
 **SOURCE:**
 no source found
@@ -1920,29 +1909,31 @@ Outstanding on current bundle — chase if disclosure-relevant.
 ### 15. evidence state
 
 **OUTPUT:**
-audit trail
+CCTV audit trail / source hash record
 
-**RAW OUTPUT (product):** audit trail: missing / needs_review
+**RAW OUTPUT (product):** CCTV audit trail / source hash record: unknown / needs_review
+
+**HUMAN EVIDENCE LABEL:** CCTV still images served — master footage not on bundle
 
 **SURFACE:** evidence_truth_map / evidence_trace
 
 **CATEGORY:** evidence_state
 
-**REVIEW TIER:** SOLICITOR CAUTION
+**REVIEW TIER:** CLEAN SOURCE-BACKED
 
-**EVIDENCE ITEM:** audit trail
+**EVIDENCE ITEM:** CCTV audit trail / source hash record
 
 **SOURCE:**
-Section MG6: MG6C/CCTV/05 — Audit trail / source file hash record — outstanding.
+Section MG6: MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.
 
-**SOURCE STRENGTH:** schedule_only
+**SOURCE STRENGTH:** strong
 
-**SUPPORT:** Missing on bundle
+**SUPPORT:** partially supported
 
 **PROOF CHAIN:**
 - Document: bundle.pdf (pdf)
 - Page: 4 | Section: MG6
-- Extracted snippet: MG6C/CCTV/05 — Audit trail / source file hash record — outstanding.
+- Extracted snippet: MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.
 - PDF page available: yes
 - PDF page evidence path: `artifacts/casebrain-qa/line-source-proof/demo-audit-02-cctv-stills/proof-chain-pages/p4.md`
 - Extraction confidence: exact
@@ -1950,19 +1941,16 @@ Section MG6: MG6C/CCTV/05 — Audit trail / source file hash record — outstand
 - **Proof chain status: PDF page and text both support**
 
 **WHY THIS SUPPORTS THE LINE:**
-Bundle shows material outstanding or not attached: "MG6C/CCTV/05 — Audit trail / source file hash record — outstanding.".
+Partial bundle support: "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.".
 
 **WHY THIS IS LIMITED:**
-Material expected or mentioned but not on bundle.
+none
 
-**SAFE WORDING:**
-Outstanding on current bundle — chase if disclosure-relevant.
+**SOLICITOR REVIEW REQUIRED:** no
 
-**SOLICITOR REVIEW REQUIRED:** yes
+**USEFULNESS:** correct_and_useful
 
-**USEFULNESS:** safe_but_not_actionable
-
-**VERDICT:** WARNING
+**VERDICT:** PASS
 
 ---
 
@@ -2408,9 +2396,9 @@ Outstanding on current bundle — chase if disclosure-relevant.
 ### 25. evidence state
 
 **OUTPUT:**
-Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.
+Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it is not available.
 
-**RAW OUTPUT (product):** Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.: missing / needs_review
+**RAW OUTPUT (product):** Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it is not available.: unknown / needs_review
 
 **HUMAN EVIDENCE LABEL:** CCTV still images served — master footage not on bundle
 
@@ -2420,14 +2408,14 @@ Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is no
 
 **REVIEW TIER:** CLEAN SOURCE-BACKED
 
-**EVIDENCE ITEM:** Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.
+**EVIDENCE ITEM:** Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it is not available.
 
 **SOURCE:**
 Section MG6: MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.
 
 **SOURCE STRENGTH:** strong
 
-**SUPPORT:** Missing on bundle
+**SUPPORT:** partially supported
 
 **PROOF CHAIN:**
 - Document: bundle.pdf (pdf)
@@ -2440,13 +2428,10 @@ Section MG6: MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.
 - **Proof chain status: PDF page and text both support**
 
 **WHY THIS SUPPORTS THE LINE:**
-Bundle shows material outstanding or not attached: "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.".
+Partial bundle support: "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.".
 
 **WHY THIS IS LIMITED:**
-Material expected or mentioned but not on bundle.
-
-**SAFE WORDING:**
-Outstanding on current bundle — chase if disclosure-relevant.
+none
 
 **SOLICITOR REVIEW REQUIRED:** no
 
@@ -2775,7 +2760,9 @@ none
 ### 33. chase request
 
 **OUTPUT:**
-audit trail
+CCTV audit trail / source hash record
+
+**HUMAN EVIDENCE LABEL:** CCTV still images served — master footage not on bundle
 
 **SURFACE:** chase
 
@@ -2783,19 +2770,19 @@ audit trail
 
 **REVIEW TIER:** SOLICITOR CAUTION
 
-**EVIDENCE ITEM:** audit trail
+**EVIDENCE ITEM:** CCTV audit trail / source hash record
 
 **SOURCE:**
-Section MG6: MG6C/CCTV/05 — Audit trail / source file hash record — outstanding.
+Section MG6: MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.
 
-**SOURCE STRENGTH:** schedule_only
+**SOURCE STRENGTH:** strong
 
 **SUPPORT:** partially supported
 
 **PROOF CHAIN:**
 - Document: bundle.pdf (pdf)
 - Page: 4 | Section: MG6
-- Extracted snippet: MG6C/CCTV/05 — Audit trail / source file hash record — outstanding.
+- Extracted snippet: MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.
 - PDF page available: yes
 - PDF page evidence path: `artifacts/casebrain-qa/line-source-proof/demo-audit-02-cctv-stills/proof-chain-pages/p4.md`
 - Extraction confidence: exact
@@ -2803,14 +2790,14 @@ Section MG6: MG6C/CCTV/05 — Audit trail / source file hash record — outstand
 - **Proof chain status: PDF page and text both support**
 
 **WHY THIS SUPPORTS THE LINE:**
-Partial bundle support: "MG6C/CCTV/05 — Audit trail / source file hash record — outstanding.".
+Partial bundle support: "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.".
 
 **WHY THIS IS LIMITED:**
-MG6/schedule reference only — export not served.
+none
 
 **SOLICITOR REVIEW REQUIRED:** yes
 
-**USEFULNESS:** correct_but_too_vague
+**USEFULNESS:** safe_but_not_actionable
 
 **VERDICT:** WARNING
 
@@ -2819,7 +2806,7 @@ MG6/schedule reference only — export not served.
 ### 34. chase request
 
 **OUTPUT:**
-Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.
+Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it is not available.
 
 **HUMAN EVIDENCE LABEL:** CCTV still images served — master footage not on bundle
 
@@ -2829,7 +2816,7 @@ Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is no
 
 **REVIEW TIER:** CLEAN SOURCE-BACKED
 
-**EVIDENCE ITEM:** audit trail
+**EVIDENCE ITEM:** CCTV audit trail / source hash record
 
 **SOURCE:**
 Section MG6: MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.
@@ -3107,11 +3094,11 @@ Material expected or mentioned but not on bundle.
 ### 40. chase request
 
 **OUTPUT:**
-Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.
+Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it is not available.
 
-**RAW OUTPUT (product):** Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.
+**RAW OUTPUT (product):** Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it is not available.
 
-[CaseBrain — CPS chase copy. Evidence state: missing. Source: MG6C schedule. Solicitor review required before sending.]
+[CaseBrain — CPS chase copy. Evidence state: provisional. Source: MG6C schedule. Solicitor review required before sending.]
 
 **HUMAN EVIDENCE LABEL:** CCTV still images served — master footage not on bundle
 
@@ -3121,14 +3108,14 @@ Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is no
 
 **REVIEW TIER:** CLEAN SOURCE-BACKED
 
-**EVIDENCE ITEM:** audit trail
+**EVIDENCE ITEM:** CCTV audit trail / source hash record
 
 **SOURCE:**
 Section MG6: MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.
 
 **SOURCE STRENGTH:** strong
 
-**SUPPORT:** Missing on bundle
+**SUPPORT:** partially supported
 
 **PROOF CHAIN:**
 - Document: bundle.pdf (pdf)
@@ -3141,10 +3128,10 @@ Section MG6: MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.
 - **Proof chain status: PDF page and text both support**
 
 **WHY THIS SUPPORTS THE LINE:**
-Bundle shows material outstanding or not attached: "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.".
+Partial bundle support: "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.".
 
 **WHY THIS IS LIMITED:**
-Material expected or mentioned but not on bundle.
+Provisional or solicitor-review sendability.
 
 **SOLICITOR REVIEW REQUIRED:** no
 
@@ -3916,51 +3903,48 @@ Outstanding on current bundle — chase if disclosure-relevant.
 ### 58. evidence state
 
 **OUTPUT:**
-audit trail: Missing / Needs review — Outstanding on current disclosure — chase before fixing hearing position.
+CCTV audit trail / source hash record — Audit trail needed to link stills to master recording.
 
-**RAW OUTPUT (product):** audit trail: Missing / Needs review — Outstanding on current disclosure — chase before fixing hearing position. — still chase if disclosure-relevant.
+**RAW OUTPUT (product):** CCTV audit trail / source hash record: Unknown / Needs review — Audit trail needed to link stills to master recording.
+
+**HUMAN EVIDENCE LABEL:** CCTV still images served — master footage not on bundle
 
 **SURFACE:** hearing_mode / court_prep
 
 **CATEGORY:** evidence_state
 
-**REVIEW TIER:** SOURCE REVIEW
+**REVIEW TIER:** CLEAN SOURCE-BACKED
 
-**EVIDENCE ITEM:** audit trail
+**EVIDENCE ITEM:** CCTV audit trail / source hash record
 
 **SOURCE:**
-no source found
+Section MG6: MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.
 
-**SOURCE STRENGTH:** no_anchor
+**SOURCE STRENGTH:** strong
 
-**SUPPORT:** Source not available on papers
+**SUPPORT:** partially supported
 
 **PROOF CHAIN:**
 - Document: bundle.pdf (pdf)
-- Page: — | Section: —
-- Extracted snippet: none
-- PDF page available: no
-- PDF page evidence path: not generated
-- Extraction confidence: unavailable
-- Extraction issue: label_mismatch
-- **Proof chain status: No source on papers**
+- Page: 4 | Section: MG6
+- Extracted snippet: MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.
+- PDF page available: yes
+- PDF page evidence path: `artifacts/casebrain-qa/line-source-proof/demo-audit-02-cctv-stills/proof-chain-pages/p4.md`
+- Extraction confidence: exact
+- Extraction issue: page_missing
+- **Proof chain status: PDF page and text both support**
 
 **WHY THIS SUPPORTS THE LINE:**
-No direct bundle snippet located for this line.
+Partial bundle support: "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.".
 
 **WHY THIS IS LIMITED:**
-No usable source anchor — solicitor must verify.
+none
 
-**SAFE WORDING:**
-Not safely confirmed on current papers — solicitor review required.
+**SOLICITOR REVIEW REQUIRED:** no
 
-**GED REVIEW REASONS:** source_unavailable, evidence_item_not_in_snippet, meaningful_line_without_anchor, solicitor_review_required
+**USEFULNESS:** correct_and_useful
 
-**SOLICITOR REVIEW REQUIRED:** yes
-
-**USEFULNESS:** solicitor_review_required
-
-**VERDICT:** WARNING
+**VERDICT:** PASS
 
 ---
 
@@ -5205,7 +5189,7 @@ No usable source anchor — solicitor must verify.
 ### 87. strategic review
 
 **OUTPUT:**
-Disclosure leverage: Outstanding on current disclosure — chase before fixing hearing position.
+Sequence / coverage leverage: Audit trail needed to link stills to master recording.
 
 **SURFACE:** summary / opportunities
 
@@ -5513,7 +5497,7 @@ Material expected or mentioned but not on bundle.
 ### 94. strategic review
 
 **OUTPUT:**
-Outstanding disclosure: Master CCTV footage; Full CCTV export; CCTV Continuity / provenance; audit trail.
+Outstanding disclosure: Master CCTV footage; Full CCTV export; CCTV Continuity / provenance; CCTV audit trail / source hash record.
 
 **HUMAN EVIDENCE LABEL:** CCTV still images served — master footage not on bundle
 
@@ -6084,141 +6068,7 @@ Strategic review line — not a source-backed fact.
 
 ---
 
-### 107. strategic review
-
-**OUTPUT:**
-Disclosure pressure: Outstanding on current disclosure — chase before fixing hearing position.
-
-**SURFACE:** decision_board
-
-**CATEGORY:** strategic_review
-
-**REVIEW TIER:** SOURCE REVIEW
-
-**SOURCE:**
-no source found
-
-**SOURCE STRENGTH:** no_anchor
-
-**SUPPORT:** Source not available on papers
-
-**PROOF CHAIN:**
-- Document: bundle.pdf (pdf)
-- Page: — | Section: —
-- Extracted snippet: none
-- PDF page available: no
-- PDF page evidence path: not generated
-- Extraction confidence: unavailable
-- Extraction issue: none
-- **Proof chain status: No source on papers**
-
-**WHY THIS SUPPORTS THE LINE:**
-No direct bundle snippet located for this line.
-
-**WHY THIS IS LIMITED:**
-No usable source anchor — solicitor must verify.
-
-**GED REVIEW REASONS:** source_unavailable
-
-**SOLICITOR REVIEW REQUIRED:** yes
-
-**USEFULNESS:** safe_but_not_actionable
-
-**VERDICT:** WARNING
-
----
-
-### 108. strategic review
-
-**OUTPUT:**
-Missing material
-
-**RAW OUTPUT (product):** Missing material — still chase if disclosure-relevant.
-
-**SURFACE:** decision_board
-
-**CATEGORY:** strategic_review
-
-**REVIEW TIER:** SOURCE REVIEW
-
-**SOURCE:**
-no source found
-
-**SOURCE STRENGTH:** no_anchor
-
-**SUPPORT:** Source not available on papers
-
-**PROOF CHAIN:**
-- Document: bundle.pdf (pdf)
-- Page: — | Section: —
-- Extracted snippet: none
-- PDF page available: no
-- PDF page evidence path: not generated
-- Extraction confidence: unavailable
-- Extraction issue: none
-- **Proof chain status: No source on papers**
-
-**WHY THIS SUPPORTS THE LINE:**
-No direct bundle snippet located for this line.
-
-**WHY THIS IS LIMITED:**
-No usable source anchor — solicitor must verify.
-
-**GED REVIEW REASONS:** source_unavailable
-
-**SOLICITOR REVIEW REQUIRED:** yes
-
-**USEFULNESS:** safe_but_not_actionable
-
-**VERDICT:** WARNING
-
----
-
-### 109. strategic review
-
-**OUTPUT:**
-Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.
-
-**HUMAN EVIDENCE LABEL:** CCTV still images served — master footage not on bundle
-
-**SURFACE:** decision_board
-
-**CATEGORY:** strategic_review
-
-**REVIEW TIER:** CLEAN SOURCE-BACKED
-
-**SOURCE:**
-Section MG6: MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.
-
-**SOURCE STRENGTH:** strong
-
-**SUPPORT:** partially supported
-
-**PROOF CHAIN:**
-- Document: bundle.pdf (pdf)
-- Page: 4 | Section: MG6
-- Extracted snippet: MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.
-- PDF page available: yes
-- PDF page evidence path: `artifacts/casebrain-qa/line-source-proof/demo-audit-02-cctv-stills/proof-chain-pages/p4.md`
-- Extraction confidence: exact
-- Extraction issue: page_missing
-- **Proof chain status: PDF page and text both support**
-
-**WHY THIS SUPPORTS THE LINE:**
-Partial bundle support: "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.".
-
-**WHY THIS IS LIMITED:**
-Strategic review line — not a source-backed fact.
-
-**SOLICITOR REVIEW REQUIRED:** no
-
-**USEFULNESS:** correct_and_useful
-
-**VERDICT:** PASS
-
----
-
-### 110. safety warning
+### 107. safety warning
 
 **OUTPUT:**
 Co-defendant bleed risk: Papers may reference another defendant or account — keep this client's position separate.
@@ -6260,7 +6110,7 @@ none
 
 ---
 
-### 111. safety warning
+### 108. safety warning
 
 **OUTPUT:**
 Source-backed concern — do not import another defendant's material without review.
@@ -6302,7 +6152,7 @@ none
 
 ---
 
-### 112. strategic review
+### 109. strategic review
 
 **OUTPUT:**
 Check MG6/unused schedules and keep chase limited to this defendant's papers.
@@ -6343,6 +6193,138 @@ Strategic review line — not a source-backed fact.
 **USEFULNESS:** correct_and_useful
 
 **VERDICT:** PASS
+
+---
+
+### 110. strategic review
+
+**OUTPUT:**
+Disclosure pressure: Disclosure completeness and outstanding source material.
+
+**SURFACE:** decision_board
+
+**CATEGORY:** strategic_review
+
+**REVIEW TIER:** SOURCE REVIEW
+
+**SOURCE:**
+no source found
+
+**SOURCE STRENGTH:** no_anchor
+
+**SUPPORT:** Source not available on papers
+
+**PROOF CHAIN:**
+- Document: bundle.pdf (pdf)
+- Page: — | Section: —
+- Extracted snippet: none
+- PDF page available: no
+- PDF page evidence path: not generated
+- Extraction confidence: unavailable
+- Extraction issue: none
+- **Proof chain status: No source on papers**
+
+**WHY THIS SUPPORTS THE LINE:**
+No direct bundle snippet located for this line.
+
+**WHY THIS IS LIMITED:**
+No usable source anchor — solicitor must verify.
+
+**GED REVIEW REASONS:** source_unavailable
+
+**SOLICITOR REVIEW REQUIRED:** yes
+
+**USEFULNESS:** safe_but_not_actionable
+
+**VERDICT:** WARNING
+
+---
+
+### 111. strategic review
+
+**OUTPUT:**
+Possible issue — needs evidence before reliance.
+
+**SURFACE:** decision_board
+
+**CATEGORY:** strategic_review
+
+**REVIEW TIER:** SOURCE REVIEW
+
+**SOURCE:**
+no source found
+
+**SOURCE STRENGTH:** no_anchor
+
+**SUPPORT:** Source not available on papers
+
+**PROOF CHAIN:**
+- Document: bundle.pdf (pdf)
+- Page: — | Section: —
+- Extracted snippet: none
+- PDF page available: no
+- PDF page evidence path: not generated
+- Extraction confidence: unavailable
+- Extraction issue: none
+- **Proof chain status: No source on papers**
+
+**WHY THIS SUPPORTS THE LINE:**
+No direct bundle snippet located for this line.
+
+**WHY THIS IS LIMITED:**
+No usable source anchor — solicitor must verify.
+
+**GED REVIEW REASONS:** source_unavailable
+
+**SOLICITOR REVIEW REQUIRED:** yes
+
+**USEFULNESS:** safe_but_not_actionable
+
+**VERDICT:** WARNING
+
+---
+
+### 112. strategic review
+
+**OUTPUT:**
+Chase outstanding disclosure and record provisional hearing position.
+
+**SURFACE:** decision_board
+
+**CATEGORY:** strategic_review
+
+**REVIEW TIER:** SOURCE REVIEW
+
+**SOURCE:**
+no source found
+
+**SOURCE STRENGTH:** no_anchor
+
+**SUPPORT:** Source not available on papers
+
+**PROOF CHAIN:**
+- Document: bundle.pdf (pdf)
+- Page: — | Section: —
+- Extracted snippet: none
+- PDF page available: no
+- PDF page evidence path: not generated
+- Extraction confidence: unavailable
+- Extraction issue: none
+- **Proof chain status: No source on papers**
+
+**WHY THIS SUPPORTS THE LINE:**
+No direct bundle snippet located for this line.
+
+**WHY THIS IS LIMITED:**
+No usable source anchor — solicitor must verify.
+
+**GED REVIEW REASONS:** source_unavailable
+
+**SOLICITOR REVIEW REQUIRED:** yes
+
+**USEFULNESS:** safe_but_not_actionable
+
+**VERDICT:** WARNING
 
 ---
 
@@ -6885,44 +6867,44 @@ No usable source anchor — solicitor must verify.
 ### 125. export line
 
 **OUTPUT:**
-We are reviewing the papers in your case (Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968). This is early-stage — nothing is final until we have full disclosure and your instructions. Some evidence is still outstanding on the papers, and we will update you when it is served. We are not saying the case is won or lost — we need the full material before giving firm advice.
+We are reviewing the papers in your case (Devon Walsh). This is early-stage — nothing is final until we have full disclosure and your instructions. CCTV still images are on the papers, but the master CCTV footage, full export, continuity/provenance, and audit trail material are still outstanding. Stills alone do not show the full recording.
+
+**HUMAN EVIDENCE LABEL:** CCTV still images served — master footage not on bundle
 
 **SURFACE:** export_pack / client_summary
 
 **CATEGORY:** export_line
 
-**REVIEW TIER:** SOURCE REVIEW
+**REVIEW TIER:** CLEAN SOURCE-BACKED
 
 **SOURCE:**
-Bundle: Statement of Offence: | Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968.
+Section MG6: MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.
 
-**SOURCE STRENGTH:** weak
+**SOURCE STRENGTH:** strong
 
-**SUPPORT:** partially supported
+**SUPPORT:** Missing on bundle
 
 **PROOF CHAIN:**
 - Document: bundle.pdf (pdf)
-- Page: — | Section: —
-- Extracted snippet: Statement of Offence: | Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968.
-- PDF page available: no
-- PDF page evidence path: not generated
-- Extraction confidence: fuzzy
-- Extraction issue: none
-- **Proof chain status: Text supports — PDF not checked**
+- Page: 4 | Section: MG6
+- Extracted snippet: MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.
+- PDF page available: yes
+- PDF page evidence path: `artifacts/casebrain-qa/line-source-proof/demo-audit-02-cctv-stills/proof-chain-pages/p4.md`
+- Extraction confidence: exact
+- Extraction issue: page_missing
+- **Proof chain status: PDF page and text both support**
 
 **WHY THIS SUPPORTS THE LINE:**
-Only generic schedule/index wording found — needs line-level snippet review: "Statement of Offence: | Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968.".
+Bundle shows material outstanding or not attached: "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.".
 
 **WHY THIS IS LIMITED:**
-Generic MG6/schedule label without line-level served/referred snippet.
+Material expected or mentioned but not on bundle.
 
-**GED REVIEW REASONS:** generic_source_only, solicitor_review_required
+**SOLICITOR REVIEW REQUIRED:** no
 
-**SOLICITOR REVIEW REQUIRED:** yes
+**USEFULNESS:** correct_and_useful
 
-**USEFULNESS:** solicitor_review_required
-
-**VERDICT:** WARNING
+**VERDICT:** PASS
 
 ---
 
@@ -6973,50 +6955,6 @@ No usable source anchor — solicitor must verify.
 ### 127. export line
 
 **OUTPUT:**
-Solicitor review required before sending to CPS, court, or client.
-
-**SURFACE:** export_pack / client_summary
-
-**CATEGORY:** export_line
-
-**REVIEW TIER:** SOURCE REVIEW
-
-**SOURCE:**
-no source found
-
-**SOURCE STRENGTH:** no_anchor
-
-**SUPPORT:** Source not available on papers
-
-**PROOF CHAIN:**
-- Document: bundle.pdf (pdf)
-- Page: — | Section: —
-- Extracted snippet: none
-- PDF page available: no
-- PDF page evidence path: not generated
-- Extraction confidence: unavailable
-- Extraction issue: none
-- **Proof chain status: No source on papers**
-
-**WHY THIS SUPPORTS THE LINE:**
-No direct bundle snippet located for this line.
-
-**WHY THIS IS LIMITED:**
-No usable source anchor — solicitor must verify.
-
-**GED REVIEW REASONS:** source_unavailable, meaningful_line_without_anchor, solicitor_review_required
-
-**SOLICITOR REVIEW REQUIRED:** yes
-
-**USEFULNESS:** solicitor_review_required
-
-**VERDICT:** WARNING
-
----
-
-### 128. export line
-
-**OUTPUT:**
 • Master CCTV footage [Missing / Needs review] — Master footage/export needed — stills alone are not the full recording.
 • Full CCTV export [Referred only / Weak] — Master footage/export needed — stills alone are not the full recording. — referred only, not usable as proof.
 • CCTV Continuity / provenance [Missing / Needs review] — Continuity to master recordin
@@ -7064,7 +7002,7 @@ Referred on schedule or in narrative — not safely served as proof.
 
 ---
 
-### 129. export line
+### 128. export line
 
 **OUTPUT:**
 Solicitor review required before sending to CPS, court, or client.
@@ -7108,7 +7046,7 @@ No usable source anchor — solicitor must verify.
 
 ---
 
-### 130. export line
+### 129. export line
 
 **OUTPUT:**
 DO NOT OVERSTATE
@@ -7151,7 +7089,7 @@ No usable source anchor — solicitor must verify.
 
 ---
 
-### 131. export line
+### 130. export line
 
 **OUTPUT:**
 • Do not say: Do not treat stills alone as proof of identity or offence.
@@ -7194,7 +7132,7 @@ Generic MG6/schedule label without line-level served/referred snippet.
 
 ---
 
-### 132. export line
+### 131. export line
 
 **OUTPUT:**
 • Do not say: CCTV proves identity
@@ -7242,7 +7180,7 @@ CCTV proves
 
 ---
 
-### 133. export line
+### 132. export line
 
 **OUTPUT:**
 • Do not say: CCTV proves offence
@@ -7298,10 +7236,10 @@ CCTV proves
 - **evidence_state:** "Full CCTV export — referred_only" — Bundle mentions the material but does not serve it: "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.".
 - **evidence_state:** "Master CCTV footage — missing — Outstanding — stills alone do not replace master footage." — Bundle shows material outstanding or not attached: "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.".
 - **evidence_state:** "CCTV continuity / provenance — missing — Outstanding on current disclosure." — Bundle shows material outstanding or not attached: "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.".
+- **evidence_state:** "CCTV audit trail / source hash record — missing — Outstanding on current disclosure." — Bundle shows material outstanding or not attached: "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.".
+- **evidence_state:** "CCTV audit trail / source hash record: unknown / needs_review" — Partial bundle support: "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.".
 - **evidence_state:** "Please provide Master CCTV footage (see MG6C/CCTV/02) or confirm in writing why it is not available.…" — Bundle shows material outstanding or not attached: "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.".
 - **evidence_state:** "Please provide Full CCTV export (see MG6C/CCTV/03) or confirm in writing why it is not available.: r…" — Bundle mentions the material but does not serve it: "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.".
-- **evidence_state:** "Please provide CCTV Continuity / provenance (see MG6C/CCTV/04) or confirm in writing why it is not a…" — Bundle shows material outstanding or not attached: "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.".
-- **evidence_state:** "Please provide audit trail (see MG6C/CCTV/05) or confirm in writing why it is not available.: missin…" — Bundle shows material outstanding or not attached: "MG6C/CCTV/01 — CCTV still images DW/CCTV/01 — served on bundle.".
 
 ### Failures (honest)
 

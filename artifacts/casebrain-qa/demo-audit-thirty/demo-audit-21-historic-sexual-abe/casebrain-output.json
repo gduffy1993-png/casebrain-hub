@@ -1,0 +1,68 @@
+{
+  "caseId": "demo-audit-21-historic-sexual-abe",
+  "clientLabel": "Daniel Pike",
+  "allegation": "Sexual assault, contrary to section 3 of the Sexual Offences Act 2003",
+  "bundleTextLength": 2024,
+  "chaseItemCount": 4,
+  "truthMapRowCount": 5,
+  "proofSummary": {
+    "totalMeaningfulLines": 117,
+    "pass": 25,
+    "warning": 92,
+    "fail": 0,
+    "excluded": 0,
+    "byCategory": {
+      "evidence_claim": 1,
+      "strategic_review": 36,
+      "confidence_status": 4,
+      "evidence_state": 20,
+      "safety_warning": 17,
+      "chase_request": 15,
+      "court_note": 3,
+      "client_summary": 1,
+      "contradiction_or_risk": 3,
+      "export_line": 17
+    },
+    "bySupport": {
+      "partially_supported": 24,
+      "source_unavailable": 34,
+      "referred_only": 11,
+      "supported": 19,
+      "missing": 28,
+      "unsupported": 1
+    },
+    "positiveCorrect": 26,
+    "gedReviewCount": 92,
+    "blockingReview": 0,
+    "unsupportedOutput": 1,
+    "sourceReviewWarnings": 42,
+    "solicitorCaution": 50,
+    "cleanSourceBacked": 1,
+    "genericSafetyGuards": 24,
+    "byTier": {
+      "blocking_review": 0,
+      "source_review": 42,
+      "solicitor_caution": 50,
+      "clean_source_backed": 1,
+      "generic_safety_guard": 24
+    },
+    "proofChainCoverage": {
+      "pdfAndTextSupportOutput": 34,
+      "textSupportsButPdfUnchecked": 40,
+      "pdfAvailableButTextMismatch": 0,
+      "sourceUnavailable": 43,
+      "outputUnsupported": 0,
+      "originalPdfAvailable": true,
+      "caseProofMode": "pdf_and_text"
+    }
+  },
+  "proofChainCoverage": {
+    "pdfAndTextSupportOutput": 34,
+    "textSupportsButPdfUnchecked": 40,
+    "pdfAvailableButTextMismatch": 0,
+    "sourceUnavailable": 43,
+    "outputUnsupported": 0,
+    "originalPdfAvailable": true,
+    "caseProofMode": "pdf_and_text"
+  }
+}

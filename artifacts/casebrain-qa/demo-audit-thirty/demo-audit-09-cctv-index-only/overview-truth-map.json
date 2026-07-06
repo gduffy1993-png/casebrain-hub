@@ -1,0 +1,499 @@
+{
+  "truthMap": [
+    {
+      "label": "CCTV still images",
+      "existence": "served",
+      "note": "Stills served — not equivalent to master footage or continuity proof."
+    },
+    {
+      "label": "Full CCTV export",
+      "existence": "referred_only"
+    },
+    {
+      "label": "Master CCTV footage",
+      "existence": "missing",
+      "note": "Outstanding — stills alone do not replace master footage."
+    },
+    {
+      "label": "CCTV continuity / provenance",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    },
+    {
+      "label": "CCTV audit trail / source hash record",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    },
+    {
+      "label": "Recognition / ID basis",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    }
+  ],
+  "mustNotOverstate": [
+    "Do not treat stills alone as proof of identity or offence.",
+    "CCTV proves identity",
+    "CCTV proves offence",
+    "positive identification from stills",
+    "Do not state \"Full CCTV confirms\" — CCTV is not fully served on papers",
+    "phone download"
+  ],
+  "evidenceTrace": {
+    "rows": [
+      {
+        "id": "allegation-0",
+        "section": "allegation",
+        "claim": "Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968",
+        "existence": "served",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/CCTV/02 — Master CCTV footage camera 4 — outstanding — not on bundle.",
+        "sourceLabel": "Charge sheet / papers",
+        "inference": false
+      },
+      {
+        "id": "allegation-1",
+        "section": "allegation",
+        "claim": "Disclosure completeness and outstanding source material.",
+        "existence": "not_safely_confirmed",
+        "reliability": "needs_review",
+        "sourceLabel": "Matter confidence",
+        "inference": false,
+        "traceWarning": null
+      },
+      {
+        "id": "missing_referred-0",
+        "section": "missing_referred",
+        "claim": "Master CCTV footage",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/CCTV/02 — Master CCTV footage camera 4 — outstanding — not on bundle.",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "missing_referred-1",
+        "section": "missing_referred",
+        "claim": "Full CCTV export",
+        "existence": "referred_only",
+        "reliability": "weak",
+        "sourceAnchor": "MG6C/CCTV/03 — Full CCTV export (native format) — referred on MG6C — export not attached.",
+        "sourceLabel": "MG6C schedule",
+        "critical": false,
+        "inference": false,
+        "notUsable": true,
+        "traceWarning": null
+      },
+      {
+        "id": "missing_referred-2",
+        "section": "missing_referred",
+        "claim": "CCTV Continuity / provenance",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/CCTV/04 — Continuity and provenance statement — outstanding.",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "key_evidence-3",
+        "section": "key_evidence",
+        "claim": "CCTV audit trail / source hash record",
+        "existence": "unknown",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/CCTV/01 — CCTV still images MV/CCTV/01 — served on bundle.",
+        "sourceLabel": "MG6C schedule",
+        "critical": false,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "missing_referred-4",
+        "section": "missing_referred",
+        "claim": "Recognition / ID basis",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/CCTV/06 — Recognition / ID basis — outstanding — not on bundle.",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "do_not_overstate-0",
+        "section": "do_not_overstate",
+        "claim": "Do not treat stills alone as proof of identity or offence.",
+        "existence": "not_safely_confirmed",
+        "reliability": "unsafe",
+        "sourceLabel": "Guardian / bundle guard",
+        "inference": false,
+        "traceWarning": null
+      },
+      {
+        "id": "do_not_overstate-1",
+        "section": "do_not_overstate",
+        "claim": "CCTV proves identity",
+        "existence": "not_safely_confirmed",
+        "reliability": "unsafe",
+        "sourceLabel": "Guardian / bundle guard",
+        "inference": false,
+        "traceWarning": null
+      },
+      {
+        "id": "do_not_overstate-2",
+        "section": "do_not_overstate",
+        "claim": "CCTV proves offence",
+        "existence": "not_safely_confirmed",
+        "reliability": "unsafe",
+        "sourceLabel": "Guardian / bundle guard",
+        "inference": false,
+        "traceWarning": null
+      },
+      {
+        "id": "do_not_overstate-3",
+        "section": "do_not_overstate",
+        "claim": "positive identification from stills",
+        "existence": "not_safely_confirmed",
+        "reliability": "unsafe",
+        "sourceLabel": "Guardian / bundle guard",
+        "inference": false,
+        "traceWarning": null
+      },
+      {
+        "id": "do_not_overstate-4",
+        "section": "do_not_overstate",
+        "claim": "Do not state \"Full CCTV confirms\" — CCTV is not fully served on papers",
+        "existence": "not_safely_confirmed",
+        "reliability": "unsafe",
+        "sourceLabel": "Guardian / bundle guard",
+        "inference": true,
+        "traceWarning": null
+      },
+      {
+        "id": "do_not_overstate-5",
+        "section": "do_not_overstate",
+        "claim": "phone download",
+        "existence": "not_safely_confirmed",
+        "reliability": "unsafe",
+        "sourceLabel": "Guardian / bundle guard",
+        "inference": false,
+        "traceWarning": null
+      },
+      {
+        "id": "chase-0",
+        "section": "chase",
+        "claim": "Please provide Master CCTV footage (see MG6C/CCTV/02) or confirm in writing why it is not available.",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/CCTV/02 — Master CCTV footage camera 4 — outstanding — not on bundle.",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "chase-1",
+        "section": "chase",
+        "claim": "Please provide Full CCTV export (see MG6C/CCTV/03) or confirm in writing why it is not available.",
+        "existence": "referred_only",
+        "reliability": "weak",
+        "sourceAnchor": "MG6C/CCTV/03 — Full CCTV export (native format) — referred on MG6C — export not attached.",
+        "sourceLabel": "MG6C schedule",
+        "critical": false,
+        "inference": false,
+        "notUsable": true,
+        "traceWarning": null
+      },
+      {
+        "id": "chase-2",
+        "section": "chase",
+        "claim": "Please provide CCTV Continuity / provenance (see MG6C/CCTV/04) or confirm in writing why it is not available.",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/CCTV/04 — Continuity and provenance statement — outstanding.",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "chase-3",
+        "section": "chase",
+        "claim": "Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it is not available.",
+        "existence": "unknown",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/CCTV/01 — CCTV still images MV/CCTV/01 — served on bundle.",
+        "sourceLabel": "MG6C schedule",
+        "critical": false,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "chase-4",
+        "section": "chase",
+        "claim": "Please provide Recognition / ID basis (see MG6C/CCTV/06) or confirm in writing why it is not available.",
+        "existence": "missing",
+        "reliability": "needs_review",
+        "sourceAnchor": "MG6C/CCTV/06 — Recognition / ID basis — outstanding — not on bundle.",
+        "sourceLabel": "MG6C schedule",
+        "critical": true,
+        "inference": false,
+        "notUsable": false,
+        "traceWarning": null
+      },
+      {
+        "id": "court_note-0",
+        "section": "court_note",
+        "claim": "The defence asks the court to record per MG6C that CCTV still images are served but master CCTV footage and continuity/provenance remain outstanding.",
+        "existence": "not_safely_confirmed",
+        "reliability": "needs_review",
+        "sourceLabel": "Disclosure chase brief",
+        "sourceAnchor": "MG6C/CCTV/02 — Master CCTV footage camera 4 — outstanding — not on bundle.",
+        "inference": false
+      }
+    ],
+    "bySection": {
+      "allegation": [
+        {
+          "id": "allegation-0",
+          "section": "allegation",
+          "claim": "Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968",
+          "existence": "served",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/CCTV/02 — Master CCTV footage camera 4 — outstanding — not on bundle.",
+          "sourceLabel": "Charge sheet / papers",
+          "inference": false
+        },
+        {
+          "id": "allegation-1",
+          "section": "allegation",
+          "claim": "Disclosure completeness and outstanding source material.",
+          "existence": "not_safely_confirmed",
+          "reliability": "needs_review",
+          "sourceLabel": "Matter confidence",
+          "inference": false,
+          "traceWarning": null
+        }
+      ],
+      "key_evidence": [
+        {
+          "id": "key_evidence-3",
+          "section": "key_evidence",
+          "claim": "CCTV audit trail / source hash record",
+          "existence": "unknown",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/CCTV/01 — CCTV still images MV/CCTV/01 — served on bundle.",
+          "sourceLabel": "MG6C schedule",
+          "critical": false,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        }
+      ],
+      "missing_referred": [
+        {
+          "id": "missing_referred-0",
+          "section": "missing_referred",
+          "claim": "Master CCTV footage",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/CCTV/02 — Master CCTV footage camera 4 — outstanding — not on bundle.",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        },
+        {
+          "id": "missing_referred-1",
+          "section": "missing_referred",
+          "claim": "Full CCTV export",
+          "existence": "referred_only",
+          "reliability": "weak",
+          "sourceAnchor": "MG6C/CCTV/03 — Full CCTV export (native format) — referred on MG6C — export not attached.",
+          "sourceLabel": "MG6C schedule",
+          "critical": false,
+          "inference": false,
+          "notUsable": true,
+          "traceWarning": null
+        },
+        {
+          "id": "missing_referred-2",
+          "section": "missing_referred",
+          "claim": "CCTV Continuity / provenance",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/CCTV/04 — Continuity and provenance statement — outstanding.",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        },
+        {
+          "id": "missing_referred-4",
+          "section": "missing_referred",
+          "claim": "Recognition / ID basis",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/CCTV/06 — Recognition / ID basis — outstanding — not on bundle.",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        }
+      ],
+      "do_not_overstate": [
+        {
+          "id": "do_not_overstate-0",
+          "section": "do_not_overstate",
+          "claim": "Do not treat stills alone as proof of identity or offence.",
+          "existence": "not_safely_confirmed",
+          "reliability": "unsafe",
+          "sourceLabel": "Guardian / bundle guard",
+          "inference": false,
+          "traceWarning": null
+        },
+        {
+          "id": "do_not_overstate-1",
+          "section": "do_not_overstate",
+          "claim": "CCTV proves identity",
+          "existence": "not_safely_confirmed",
+          "reliability": "unsafe",
+          "sourceLabel": "Guardian / bundle guard",
+          "inference": false,
+          "traceWarning": null
+        },
+        {
+          "id": "do_not_overstate-2",
+          "section": "do_not_overstate",
+          "claim": "CCTV proves offence",
+          "existence": "not_safely_confirmed",
+          "reliability": "unsafe",
+          "sourceLabel": "Guardian / bundle guard",
+          "inference": false,
+          "traceWarning": null
+        },
+        {
+          "id": "do_not_overstate-3",
+          "section": "do_not_overstate",
+          "claim": "positive identification from stills",
+          "existence": "not_safely_confirmed",
+          "reliability": "unsafe",
+          "sourceLabel": "Guardian / bundle guard",
+          "inference": false,
+          "traceWarning": null
+        },
+        {
+          "id": "do_not_overstate-4",
+          "section": "do_not_overstate",
+          "claim": "Do not state \"Full CCTV confirms\" — CCTV is not fully served on papers",
+          "existence": "not_safely_confirmed",
+          "reliability": "unsafe",
+          "sourceLabel": "Guardian / bundle guard",
+          "inference": true,
+          "traceWarning": null
+        },
+        {
+          "id": "do_not_overstate-5",
+          "section": "do_not_overstate",
+          "claim": "phone download",
+          "existence": "not_safely_confirmed",
+          "reliability": "unsafe",
+          "sourceLabel": "Guardian / bundle guard",
+          "inference": false,
+          "traceWarning": null
+        }
+      ],
+      "chase": [
+        {
+          "id": "chase-0",
+          "section": "chase",
+          "claim": "Please provide Master CCTV footage (see MG6C/CCTV/02) or confirm in writing why it is not available.",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/CCTV/02 — Master CCTV footage camera 4 — outstanding — not on bundle.",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        },
+        {
+          "id": "chase-1",
+          "section": "chase",
+          "claim": "Please provide Full CCTV export (see MG6C/CCTV/03) or confirm in writing why it is not available.",
+          "existence": "referred_only",
+          "reliability": "weak",
+          "sourceAnchor": "MG6C/CCTV/03 — Full CCTV export (native format) — referred on MG6C — export not attached.",
+          "sourceLabel": "MG6C schedule",
+          "critical": false,
+          "inference": false,
+          "notUsable": true,
+          "traceWarning": null
+        },
+        {
+          "id": "chase-2",
+          "section": "chase",
+          "claim": "Please provide CCTV Continuity / provenance (see MG6C/CCTV/04) or confirm in writing why it is not available.",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/CCTV/04 — Continuity and provenance statement — outstanding.",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        },
+        {
+          "id": "chase-3",
+          "section": "chase",
+          "claim": "Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it is not available.",
+          "existence": "unknown",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/CCTV/01 — CCTV still images MV/CCTV/01 — served on bundle.",
+          "sourceLabel": "MG6C schedule",
+          "critical": false,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        },
+        {
+          "id": "chase-4",
+          "section": "chase",
+          "claim": "Please provide Recognition / ID basis (see MG6C/CCTV/06) or confirm in writing why it is not available.",
+          "existence": "missing",
+          "reliability": "needs_review",
+          "sourceAnchor": "MG6C/CCTV/06 — Recognition / ID basis — outstanding — not on bundle.",
+          "sourceLabel": "MG6C schedule",
+          "critical": true,
+          "inference": false,
+          "notUsable": false,
+          "traceWarning": null
+        }
+      ],
+      "court_note": [
+        {
+          "id": "court_note-0",
+          "section": "court_note",
+          "claim": "The defence asks the court to record per MG6C that CCTV still images are served but master CCTV footage and continuity/provenance remain outstanding.",
+          "existence": "not_safely_confirmed",
+          "reliability": "needs_review",
+          "sourceLabel": "Disclosure chase brief",
+          "sourceAnchor": "MG6C/CCTV/02 — Master CCTV footage camera 4 — outstanding — not on bundle.",
+          "inference": false
+        }
+      ]
+    }
+  }
+}

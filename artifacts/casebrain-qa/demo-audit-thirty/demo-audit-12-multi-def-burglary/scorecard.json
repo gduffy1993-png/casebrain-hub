@@ -1,0 +1,81 @@
+{
+  "caseId": "demo-audit-12-multi-def-burglary",
+  "caseName": "DA-12 Harper Knox — multi co-def / target interview missing",
+  "shape": "Co-def interview served / target defendant interview outstanding",
+  "pdfPages": 8,
+  "keyServedItems": [
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "officer statement"
+  ],
+  "keyMissingReferred": [
+    "co-defendant Tara Vale interview summary (other_defendant_only)",
+    "Harper Knox interview summary (missing)",
+    "Harper Knox interview audio (missing)",
+    "Harper Knox interview transcript (missing)",
+    "co-defendant attribution/continuity (missing)"
+  ],
+  "truthMapResult": [
+    {
+      "label": "Officer statement",
+      "existence": "served"
+    },
+    {
+      "label": "Co-defendant interview summary",
+      "existence": "referred_only",
+      "note": "Other defendant only — segregate from target defendant account."
+    },
+    {
+      "label": "Harper Knox interview summary",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    },
+    {
+      "label": "Harper Knox interview audio",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    },
+    {
+      "label": "Harper Knox interview transcript",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    },
+    {
+      "label": "Co-defendant attribution / continuity",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    }
+  ],
+  "proofPacketVerdict": "PASS WITH WARNINGS",
+  "failLineCount": 0,
+  "unsupportedLinesCount": 0,
+  "wrongFamilyWarningsCount": 0,
+  "proofLedgerWrongFamilyInternal": 0,
+  "blockedFalseServedGuardsCount": 0,
+  "pageBackedOutputLinesCount": 62,
+  "vagueChaseLabelsCount": 0,
+  "genericLabelCount": 0,
+  "solicitorFacingBannedCount": 0,
+  "packetDuplicateCount": 0,
+  "packetOffFamilyCount": 0,
+  "packetMainIssueCount": 0,
+  "caseFacingWrongFamilyCount": 0,
+  "readyForDemoReview": true,
+  "readyBlockers": [],
+  "filesCreated": [
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-12-multi-def-burglary\\bundle.pdf",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-12-multi-def-burglary\\bundle-text.md",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-12-multi-def-burglary\\pdf-extraction-meta.json",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-12-multi-def-burglary\\truth-key.json",
+    "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-12-multi-def-burglary\\line-by-line-proof.md",
+    "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-12-multi-def-burglary\\SOLICITOR-PROOF-PACKET.md",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-12-multi-def-burglary\\overview-truth-map.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-12-multi-def-burglary\\court-tab.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-12-multi-def-burglary\\cps-chase.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-12-multi-def-burglary\\client-summary.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-12-multi-def-burglary\\file-source-view.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-12-multi-def-burglary\\casebrain-output.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-12-multi-def-burglary\\scorecard.json"
+  ]
+}

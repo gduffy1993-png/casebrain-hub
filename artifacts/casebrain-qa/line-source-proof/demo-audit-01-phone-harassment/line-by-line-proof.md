@@ -62,7 +62,7 @@ Controlled/anonymised audit only unless solicitor-reviewed real bundles are used
 - overview / five_answers: Harassment, contrary to section 2 of the Protection from Harassment Act 1997
 - overview / five_answers: Disclosure completeness and outstanding source material.
 - overview / five_answers: Chase outstanding disclosure and record provisional hearing position.
-- evidence_truth_map / evidence_trace: device metadata — referred_only
+- evidence_truth_map / evidence_trace: Device metadata export — referred_only
 - evidence_truth_map / evidence_trace: Attribution / subscriber material — not_safely_confirmed — Handle mapping to defendant not served on current papers.
 - evidence_truth_map / evidence_trace: Full phone download — missing — Outstanding on current disclosure.
 
@@ -81,7 +81,7 @@ Controlled/anonymised audit only unless solicitor-reviewed real bundles are used
 - Harassment, contrary to section 2 of the Protection from Harassment Act 1997
 - Disclosure completeness and outstanding source material.
 - Chase outstanding disclosure and record provisional hearing position.
-- device metadata — referred_only
+- Device metadata export — referred_only
 - Disclosure completeness and outstanding source material.
 
 **SOLICITOR CAUTION**
@@ -93,14 +93,14 @@ Controlled/anonymised audit only unless solicitor-reviewed real bundles are used
 
 ### Proof ledger counts
 
-- Meaningful emitted lines: **144**
-- Warnings on case: **77**
+- Meaningful emitted lines: **143**
+- Warnings on case: **72**
 - Suppressed before display: **28**
 - Softened rewrites: **36**
 - Missing expected (source-led): **0**
-- Clean source-backed: **31**
+- Clean source-backed: **35**
 - Possible false suppressions: **0**
-- PDF + text supported: **65** | Text-only supported: **38**
+- PDF + text supported: **64** | Text-only supported: **37**
 
 ### Unsupported output (clarified)
 
@@ -121,7 +121,7 @@ _When verdict is PASS, unsupported material is usually correctly suppressed befo
    - Chase outstanding disclosure and record provisional hearing position.
    - source_unavailable, meaningful_line_without_anchor, solicitor_review_required
 4. **SOURCE REVIEW** — evidence_truth_map / evidence_trace
-   - device metadata — referred_only
+   - Device metadata export — referred_only
    - source_unavailable, evidence_item_not_in_snippet, meaningful_line_without_anchor, solicitor_review_required
 5. **SOLICITOR CAUTION** — evidence_truth_map / evidence_trace
    - Attribution / subscriber material — not_safely_confirmed — Handle mapping to defendant not served on current papers.
@@ -141,12 +141,12 @@ _When verdict is PASS, unsupported material is usually correctly suppressed befo
 10. **SOLICITOR CAUTION** — evidence_truth_map / evidence_trace
    - Call logs
    - Use with caution — Material expected or mentioned but not on bundle.
-11. **SOLICITOR CAUTION** — evidence_truth_map / evidence_trace
+11. **SOURCE REVIEW** — evidence_truth_map / evidence_trace
+   - Device metadata export
+   - source_unavailable, evidence_item_not_in_snippet, meaningful_line_without_anchor, solicitor_review_required
+12. **SOLICITOR CAUTION** — evidence_truth_map / evidence_trace
    - Final signed MG11
    - Use with caution — Material expected or mentioned but not on bundle.
-12. **SOLICITOR CAUTION** — evidence_truth_map / evidence_trace
-   - MG6C clarification on unused material
-   - Use with caution — none
 13. **SOLICITOR CAUTION** — evidence_truth_map / evidence_trace
    - Please provide Full phone download (see MG6C/004) or confirm in writing why it is not available.
    - Use with caution — Material expected or mentioned but not on bundle.
@@ -154,23 +154,23 @@ _When verdict is PASS, unsupported material is usually correctly suppressed befo
    - Please provide Call logs (see MG6C/005) or confirm in writing why it is not available.
    - Use with caution — Material expected or mentioned but not on bundle.
 15. **SOLICITOR CAUTION** — evidence_truth_map / evidence_trace
-   - Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available.
-   - Use with caution — Material expected or mentioned but not on bundle.
-16. **SOLICITOR CAUTION** — evidence_truth_map / evidence_trace
    - The defence asks the court to record per MG6C that screenshot/message material is served but full phone download, subscriber/account data, and final M
    - Use with caution — MG6/schedule reference only — export not served.
-17. **SOLICITOR CAUTION** — chase
+16. **SOLICITOR CAUTION** — chase
    - Full phone download
    - Use with caution — MG6/schedule reference only — export not served.
-18. **SOLICITOR CAUTION** — chase / CPS
+17. **SOLICITOR CAUTION** — chase / CPS
    - Please provide Full phone download (see MG6C/004) or confirm in writing why it is not available.
    - Use with caution — MG6/schedule reference only — export not served.
-19. **SOLICITOR CAUTION** — chase
+18. **SOLICITOR CAUTION** — chase
    - Subscriber / account data
    - Use with caution — Subscriber data outstanding — not fully served on current papers.
-20. **SOLICITOR CAUTION** — chase
+19. **SOLICITOR CAUTION** — chase
    - Full message export
    - Use with caution — Phone extraction summary only — full source download outstanding — not fully served on current papers.
+20. **SOLICITOR CAUTION** — chase
+   - Call logs
+   - Use with caution — MG6/schedule reference only — export not served.
 
 ## 1. Emitted line ledger
 
@@ -202,7 +202,7 @@ _When verdict is PASS, unsupported material is usually correctly suppressed befo
 **Source:** The investigating officer records that the seized handset is linked to Riley Moss by arrest and property continuity.…
 **Why safe / limited:** Safe and source-backed — Source text supports the line: "The investigating officer records that the seized handset is linked to Riley Moss by arr
 ### 6. evidence_state — evidence_truth_map / evidence_trace
-**Output:** device metadata — referred_only
+**Output:** Device metadata export — referred_only
 **Verdict:** WARNING | **Tier:** SOURCE REVIEW | **Proof chain:** source_unavailable
 **Evidence state:** referred_only
 **Source:** none
@@ -274,17 +274,17 @@ _When verdict is PASS, unsupported material is usually correctly suppressed befo
 **Source:** MG6C/005 — Call logs — outstanding — not on bundle.
 **Why safe / limited:** Use with caution — Material expected or mentioned but not on bundle.
 ### 18. evidence_state — evidence_truth_map / evidence_trace
+**Output:** Device metadata export
+**Verdict:** WARNING | **Tier:** SOURCE REVIEW | **Proof chain:** source_unavailable
+**Evidence state:** missing
+**Source:** none
+**Why safe / limited:** Source gap or weak anchor — No usable source anchor — solicitor must verify.
+### 19. evidence_state — evidence_truth_map / evidence_trace
 **Output:** Final signed MG11
 **Verdict:** WARNING | **Tier:** SOLICITOR CAUTION | **Proof chain:** pdf_and_text_support_output
 **Evidence state:** missing
 **Source:** MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.
 **Why safe / limited:** Use with caution — Material expected or mentioned but not on bundle.
-### 19. evidence_state — evidence_truth_map / evidence_trace
-**Output:** MG6C clarification on unused material
-**Verdict:** WARNING | **Tier:** SOLICITOR CAUTION | **Proof chain:** pdf_and_text_support_output
-**Evidence state:** unknown
-**Source:** MG6C — UNUSED MATERIAL SCHEDULE
-**Why safe / limited:** Use with caution — none
 ### 20. safety_warning — five_answers / do_not_overstate
 **Output:** Do not state the defendant sent messages unless attribution is served and safe.
 **Verdict:** PASS | **Tier:** GENERIC SAFETY GUARD | **Proof chain:** source_unavailable
@@ -352,11 +352,11 @@ _When verdict is PASS, unsupported material is usually correctly suppressed befo
 **Source:** MG6C/005 — Call logs — outstanding — not on bundle.
 **Why safe / limited:** Use with caution — Material expected or mentioned but not on bundle.
 ### 31. evidence_state — evidence_truth_map / evidence_trace
-**Output:** Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available.
-**Verdict:** WARNING | **Tier:** SOLICITOR CAUTION | **Proof chain:** pdf_and_text_support_output
+**Output:** Please provide Device metadata export (see MG6C/001) or confirm in writing why it is not available.
+**Verdict:** PASS | **Tier:** CLEAN SOURCE-BACKED | **Proof chain:** pdf_and_text_support_output
 **Evidence state:** missing
-**Source:** MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.
-**Why safe / limited:** Use with caution — Material expected or mentioned but not on bundle.
+**Source:** MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).
+**Why safe / limited:** Safe and source-backed — Bundle shows material outstanding or not attached: "MG6C/001 — Phone extraction summary — served (summary only; source d
 ### 32. evidence_state — evidence_truth_map / evidence_trace
 **Output:** The defence asks the court to record per MG6C that screenshot/message material is served but full phone download, subscriber/account data, and final MG11 remain outstanding.
 **Verdict:** WARNING | **Tier:** SOLICITOR CAUTION | **Proof chain:** pdf_and_text_support_output
@@ -408,7 +408,7 @@ _When verdict is PASS, unsupported material is usually correctly suppressed befo
 **Source:** MG6C/005 — Call logs — outstanding — not on bundle.
 **Why safe / limited:** Use with caution — MG6/schedule reference only — export not served.
 
-_…and 104 more emitted lines (see JSON)._
+_…and 103 more emitted lines (see JSON)._
 
 ## 2. Suppressed candidate ledger
 
@@ -665,14 +665,14 @@ _…and 104 more emitted lines (see JSON)._
 
 ### 9. human_label — evidence_truth_map / evidence_trace
 
-**Before:** Final signed MG11: missing / needs_review
-**After:** Final signed MG11
+**Before:** Device metadata export: missing / needs_review
+**After:** Device metadata export
 **Solicitor note:** Output humanised for clarity.
 
 ### 10. human_label — evidence_truth_map / evidence_trace
 
-**Before:** MG6C clarification on unused material: unknown / needs_review
-**After:** MG6C clarification on unused material
+**Before:** Final signed MG11: missing / needs_review
+**After:** Final signed MG11
 **Solicitor note:** Output humanised for clarity.
 
 ### 11. human_label — five_answers / do_not_overstate
@@ -751,7 +751,9 @@ _…and 104 more emitted lines (see JSON)._
 
 ## 7. Surface safety ledger
 
-- none
+1. **client_summary** — Client-facing line may overstate proof strength.
+   - Line: We are reviewing the papers in your case (Riley Moss). This is early-stage — nothing is final until we have full…
+   - Safer: Mark provisional — explain what is served vs outstanding.
 
 ## 8. PDF / text proof chain
 
@@ -792,7 +794,7 @@ _…and 104 more emitted lines (see JSON)._
 
 ### 6. evidence_truth_map / evidence_trace
 
-**Output:** device metadata — referred_only
+**Output:** Device metadata export — referred_only
 **PDF page:** no
 **Status:** source_unavailable
 **Note:** No usable source anchor — solicitor must verify.
@@ -861,7 +863,7 @@ _…and 104 more emitted lines (see JSON)._
 **Note:** PDF page and extracted text both support this line.
 
 
-_…and 129 more proof-chain rows (see JSON)._
+_…and 128 more proof-chain rows (see JSON)._
 
 ---
 
@@ -873,25 +875,25 @@ Bundle source: `artifacts/evidence-state-audit-local/cases/demo-audit-01-phone-h
 
 ## Summary
 
-- Meaningful lines audited: **144**
+- Meaningful lines audited: **143**
 - Blocking failures: **0**
 - Unsupported output lines: **0**
 - Source review warnings: **34**
-- Solicitor caution lines: **43**
-- Clean source-backed lines: **31**
+- Solicitor caution lines: **38**
+- Clean source-backed lines: **35**
 - Generic safety guards: **36**
-- Positive correct findings: **68**
-- PASS: **67** | WARNING: **77** | FAIL: **0**
-- Lines requiring Ged review (tiered): **77**
+- Positive correct findings: **72**
+- PASS: **71** | WARNING: **72** | FAIL: **0**
+- Lines requiring Ged review (tiered): **72**
 
 ## Proof chain coverage
 
 - Case proof mode: **pdf_and_text**
 - Original PDF available: **yes**
-- pdf_and_text_support_output: **65**
-- text_supports_but_pdf_unchecked: **20**
+- pdf_and_text_support_output: **64**
+- text_supports_but_pdf_unchecked: **19**
 - pdf_available_but_text_mismatch: **9**
-- No source on papers: **50**
+- No source on papers: **51**
 - Output not supported (emitted): **0**
 - Emitted unsupported (ledger): **0**
 - Suppressed unsupported (ledger): **28**
@@ -901,8 +903,8 @@ PDF-backed proof chain: original PDF in case directory; bundle-text.md extracted
 ### Review tiers
 - BLOCKING REVIEW: 0
 - SOURCE REVIEW: 34
-- SOLICITOR CAUTION: 43
-- CLEAN SOURCE-BACKED: 31
+- SOLICITOR CAUTION: 38
+- CLEAN SOURCE-BACKED: 35
 - GENERIC SAFETY GUARD: 36
 
 ### By category
@@ -915,13 +917,13 @@ PDF-backed proof chain: original PDF in case directory; bundle-text.md extracted
 - court_note: 3
 - client_summary: 1
 - contradiction_or_risk: 3
-- export_line: 18
+- export_line: 17
 
 ### By support status
-- partially supported: 37
-- Source not available on papers: 33
+- partially supported: 34
+- Source not available on papers: 34
 - Supported by bundle text: 31
-- Missing on bundle: 40
+- Missing on bundle: 41
 - Referred only — not safely served: 2
 - Incomplete / partial only: 1
 
@@ -948,126 +950,126 @@ Tiered review queue — blocking issues first, then source gaps, then solicitor 
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
 4. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
-   - Output: device metadata — referred_only
+   - Output: Device metadata export — referred_only
    - Reasons: source_unavailable, evidence_item_not_in_snippet, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
 5. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
    - Output: Disclosure completeness and outstanding source material.
    - Reasons: source_unavailable, evidence_item_not_in_snippet, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
-6. **WARNING** — strategic_review — hearing_mode / court_prep
+6. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
+   - Output: Device metadata export
+   - Reasons: source_unavailable, evidence_item_not_in_snippet, meaningful_line_without_anchor, solicitor_review_required
+   - Source: no source found
+7. **WARNING** — chase_request — chase
+   - Output: Device metadata export
+   - Reasons: source_unavailable, evidence_item_not_in_snippet, meaningful_line_without_anchor, solicitor_review_required
+   - Source: no source found
+8. **WARNING** — strategic_review — hearing_mode / court_prep
    - Output: domestic harassment
    - Reasons: generic_source_only
    - Source: Statement of Offence: | Harassment, contrary to section 2 of the Protection from Harassment Act 1997…
-7. **WARNING** — strategic_review — hearing_mode / court_prep
+9. **WARNING** — strategic_review — hearing_mode / court_prep
    - Output: Main issue: Disclosure completeness and outstanding source material.
    - Reasons: source_unavailable
    - Source: no source found
-8. **WARNING** — confidence_status — hearing_mode / court_prep
+10. **WARNING** — confidence_status — hearing_mode / court_prep
    - Output: Chase CPS — Chase outstanding disclosure and record provisional hearing position.
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
-9. **WARNING** — evidence_state — hearing_mode / court_prep
+11. **WARNING** — evidence_state — hearing_mode / court_prep
    - Output: Full message export: Missing / Needs review — Outstanding digital disclosure for harassment case.
    - Reasons: generic_source_only, solicitor_review_required
    - Source: Statement of Offence: | Harassment, contrary to section 2 of the Protection from Harassment Act 1997…
-10. **WARNING** — strategic_review — today
+12. **WARNING** — strategic_review — today
    - Output: Keep the position provisional and source-linked.
    - Reasons: source_unavailable
    - Source: no source found
-11. **WARNING** — strategic_review — today
+13. **WARNING** — strategic_review — today
    - Output: The defence position remains provisional pending served source material and solicitor instructions.
    - Reasons: source_unavailable
    - Source: no source found
-12. **WARNING** — strategic_review — today
+14. **WARNING** — strategic_review — today
    - Output: The court is asked to record outstanding source material and set a disclosure timetable.
    - Reasons: source_unavailable
    - Source: no source found
-13. **WARNING** — strategic_review — today
+15. **WARNING** — strategic_review — today
    - Output: Timing and sequence remain conditional until served source material and continuity records are reviewed.
    - Reasons: source_unavailable
    - Source: no source found
-14. **WARNING** — strategic_review — summary / risks
+16. **WARNING** — strategic_review — summary / risks
    - Output: Prosecution pressure / gaps: Crown may link the missing/source material to Riley Moss if served.
    - Reasons: source_unavailable
    - Source: no source found
-15. **WARNING** — strategic_review — summary / opportunities
+17. **WARNING** — strategic_review — summary / opportunities
    - Output: Disclosure leverage: Outstanding digital disclosure for harassment case.
    - Reasons: generic_source_only
    - Source: Statement of Offence: | Harassment, contrary to section 2 of the Protection from Harassment Act 1997…
-16. **WARNING** — strategic_review — summary / chase
+18. **WARNING** — strategic_review — summary / chase
    - Output: Full message export — Outstanding digital disclosure for harassment case.
    - Reasons: generic_source_only
    - Source: Statement of Offence: | Harassment, contrary to section 2 of the Protection from Harassment Act 1997…
-17. **WARNING** — strategic_review — summary / ptph
+19. **WARNING** — strategic_review — summary / ptph
    - Output: Provisional — for solicitor review before court.
    - Reasons: source_unavailable, solicitor_review_required
    - Source: no source found
-18. **WARNING** — strategic_review — summary / ptph
+20. **WARNING** — strategic_review — summary / ptph
    - Output: Invite the court to order disclosure by a fixed date with a review hearing.
    - Reasons: source_unavailable
    - Source: no source found
-19. **WARNING** — strategic_review — summary / ptph
+21. **WARNING** — strategic_review — summary / ptph
    - Output: The defence cannot confirm final issues until disclosure is complete.
    - Reasons: source_unavailable
    - Source: no source found
-20. **WARNING** — client_summary — summary / client
+22. **WARNING** — client_summary — summary / client
    - Output: We are reviewing the papers in your case (Harassment, contrary to section 2 of the Protection from Harassment Act 1997).…
    - Reasons: generic_source_only, solicitor_review_required
    - Source: Statement of Offence: | Harassment, contrary to section 2 of the Protection from Harassment Act 1997…
-21. **WARNING** — court_note — summary / court_day
+23. **WARNING** — court_note — summary / court_day
    - Output: Court-day position line is on the Today tab (Before court). This brief mirrors chase and theory only.
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
-22. **WARNING** — confidence_status — confidence_dashboard
+24. **WARNING** — confidence_status — confidence_dashboard
    - Output: Confidence: Needs review before relying — Human review or material gaps flagged on current papers.
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
-23. **WARNING** — confidence_status — confidence_dashboard
+25. **WARNING** — confidence_status — confidence_dashboard
    - Output: Chase sendability: needs_solicitor_review; Summary sendability: needs_solicitor_review
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
-24. **WARNING** — strategic_review — decision_board
+26. **WARNING** — strategic_review — decision_board
    - Output: Chase outstanding disclosure and record provisional hearing position.
    - Reasons: source_unavailable
    - Source: no source found
-25. **WARNING** — strategic_review — decision_board
+27. **WARNING** — strategic_review — decision_board
    - Output: Missing material
    - Reasons: source_unavailable
    - Source: no source found
-26. **WARNING** — export_line — export_pack / cps_chase
+28. **WARNING** — export_line — export_pack / cps_chase
    - Output: CPS DISCLOSURE CHASE DRAFT
 (not for court — requests material only)
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
-27. **WARNING** — export_line — export_pack / court_note
+29. **WARNING** — export_line — export_pack / court_note
    - Output: COURT NOTE
 (not for CPS chase)
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
-28. **WARNING** — export_line — export_pack / court_note
+30. **WARNING** — export_line — export_pack / court_note
    - Output: [CaseBrain — court line copy. Evidence state: needs review. Confirm before addressing the court.]
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
-29. **WARNING** — export_line — export_pack / court_note
+31. **WARNING** — export_line — export_pack / court_note
    - Output: Solicitor review required before sending to CPS, court, or client.
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
-30. **WARNING** — export_line — export_pack / client_summary
+32. **WARNING** — export_line — export_pack / client_summary
    - Output: CLIENT-SAFE SUMMARY
 (not for court or CPS)
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
-31. **WARNING** — export_line — export_pack / client_summary
-   - Output: We are reviewing the papers in your case (Harassment, contrary to section 2 of the Protection from Harassment Act 1997).…
-   - Reasons: generic_source_only, solicitor_review_required
-   - Source: Statement of Offence: | Harassment, contrary to section 2 of the Protection from Harassment Act 1997…
-32. **WARNING** — export_line — export_pack / client_summary
-   - Output: [CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]
-   - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
-   - Source: no source found
 33. **WARNING** — export_line — export_pack / client_summary
-   - Output: Solicitor review required before sending to CPS, court, or client.
+   - Output: [CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
 34. **WARNING** — export_line — export_pack / evidence_gaps
@@ -1075,7 +1077,7 @@ Tiered review queue — blocking issues first, then source gaps, then solicitor 
    - Reasons: source_unavailable, meaningful_line_without_anchor, solicitor_review_required
    - Source: no source found
 
-### SOLICITOR CAUTION (43)
+### SOLICITOR CAUTION (38)
 
 35. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
    - Output: Attribution / subscriber material — not_safely_confirmed — Handle mapping to defendant not served on current papers.
@@ -1102,150 +1104,130 @@ Tiered review queue — blocking issues first, then source gaps, then solicitor 
    - Reasons: tier classification
    - Source: MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.
 41. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
-   - Output: MG6C clarification on unused material
-   - Reasons: tier classification
-   - Source: MG6C — UNUSED MATERIAL SCHEDULE
-42. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
    - Output: Please provide Full phone download (see MG6C/004) or confirm in writing why it is not available.
    - Reasons: tier classification
    - Source: MG6C/004 — Full phone download / source export — outstanding — not on bundle.
-43. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
+42. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
    - Output: Please provide Call logs (see MG6C/005) or confirm in writing why it is not available.
    - Reasons: tier classification
    - Source: MG6C/005 — Call logs — outstanding — not on bundle.
-44. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
-   - Output: Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available.
-   - Reasons: tier classification
-   - Source: MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.
-45. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
+43. **WARNING** — evidence_state — evidence_truth_map / evidence_trace
    - Output: The defence asks the court to record per MG6C that screenshot/message material is served but full phone download, subscr…
    - Reasons: tier classification
    - Source: MG6C/004 — Full phone download / source export — outstanding — not on bundle.
-46. **WARNING** — chase_request — chase
+44. **WARNING** — chase_request — chase
    - Output: Full phone download
    - Reasons: tier classification
    - Source: MG6C/004 — Full phone download / source export — outstanding — not on bundle.
-47. **WARNING** — chase_request — chase / CPS
+45. **WARNING** — chase_request — chase / CPS
    - Output: Please provide Full phone download (see MG6C/004) or confirm in writing why it is not available.
    - Reasons: tier classification
    - Source: MG6C/004 — Full phone download / source export — outstanding — not on bundle.
-48. **WARNING** — chase_request — chase
+46. **WARNING** — chase_request — chase
    - Output: Subscriber / account data
    - Reasons: tier classification
    - Source: MG6C/003 — Subscriber/account data — outstanding — not on bundle.
-49. **WARNING** — chase_request — chase
+47. **WARNING** — chase_request — chase
    - Output: Full message export
    - Reasons: tier classification
    - Source: MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).
-50. **WARNING** — chase_request — chase
+48. **WARNING** — chase_request — chase
    - Output: Call logs
    - Reasons: tier classification
    - Source: MG6C/005 — Call logs — outstanding — not on bundle.
-51. **WARNING** — chase_request — chase / CPS
+49. **WARNING** — chase_request — chase / CPS
    - Output: Please provide Call logs (see MG6C/005) or confirm in writing why it is not available.
    - Reasons: tier classification
    - Source: MG6C/005 — Call logs — outstanding — not on bundle.
-52. **WARNING** — chase_request — chase
+50. **WARNING** — chase_request — chase
    - Output: Final signed MG11
    - Reasons: tier classification
    - Source: MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.
-53. **WARNING** — chase_request — chase / CPS
+51. **WARNING** — chase_request — chase / CPS
    - Output: Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available.
    - Reasons: tier classification
    - Source: MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.
-54. **WARNING** — chase_request — chase
-   - Output: MG6C clarification on unused material
-   - Reasons: tier classification
-   - Source: MG6C — UNUSED MATERIAL SCHEDULE
-55. **WARNING** — chase_request — chase / CPS
-   - Output: Please provide MG6C clarification on unused material (see MG6C) or confirm in writing why it is not available.
-   - Reasons: tier classification
-   - Source: MG6C — UNUSED MATERIAL SCHEDULE
-56. **WARNING** — chase_request — five_answers / chase
+52. **WARNING** — chase_request — five_answers / chase
    - Output: Please provide Full phone download (see MG6C/004) or confirm in writing why it is not available.
    - Reasons: tier classification
    - Source: MG6C/004 — Full phone download / source export — outstanding — not on bundle.
-57. **WARNING** — chase_request — five_answers / chase
+53. **WARNING** — chase_request — five_answers / chase
    - Output: Please provide Call logs (see MG6C/005) or confirm in writing why it is not available.
    - Reasons: tier classification
    - Source: MG6C/005 — Call logs — outstanding — not on bundle.
-58. **WARNING** — chase_request — five_answers / chase
-   - Output: Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available.
-   - Reasons: tier classification
-   - Source: MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.
-59. **WARNING** — evidence_state — hearing_mode / court_prep
+54. **WARNING** — evidence_state — hearing_mode / court_prep
    - Output: Phone extraction summary only: Referred only / Weak — Summary on file — full source download outstanding.
    - Reasons: tier classification
    - Source: The investigating officer records that the seized handset is linked to Riley Moss by arrest and prop…
-60. **WARNING** — evidence_state — hearing_mode / court_prep
+55. **WARNING** — evidence_state — hearing_mode / court_prep
    - Output: Full phone download: Missing / Needs review — Chase full extraction source before fixing attribution.
    - Reasons: tier classification
    - Source: The investigating officer records that the seized handset is linked to Riley Moss by arrest and prop…
-61. **WARNING** — chase_request — hearing_mode / court_prep
+56. **WARNING** — chase_request — hearing_mode / court_prep
    - Output: Full phone download: Missing — Please provide Full phone download (see MG6C/004) or confirm in writing why it is not ava…
    - Reasons: tier classification
    - Source: MG6C/004 — Full phone download / source export — outstanding — not on bundle.
-62. **WARNING** — strategic_review — today
+57. **WARNING** — strategic_review — today
    - Output: Ask the court to record that attribution, second-male involvement, and source-material issues remain conditional on serv…
    - Reasons: tier classification
    - Source: MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).
-63. **WARNING** — strategic_review — summary / risks
+58. **WARNING** — strategic_review — summary / risks
    - Output: Defence risks: Do not state the defendant sent messages unless attribution is served and safe.
    - Reasons: tier classification
    - Source: MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).
-64. **WARNING** — strategic_review — summary / risks
+59. **WARNING** — strategic_review — summary / risks
    - Output: defendant sent the messages
    - Reasons: tier classification
    - Source: MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).
-65. **WARNING** — strategic_review — summary / opportunities
+60. **WARNING** — strategic_review — summary / opportunities
    - Output: The case turns on relationship context, attribution, and whether the papers prove the alleged course of conduct.
    - Reasons: tier classification
    - Source: MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).
-66. **WARNING** — strategic_review — summary / opportunities
+61. **WARNING** — strategic_review — summary / opportunities
    - Output: Test attribution, context, and completeness of the alleged course of conduct.
    - Reasons: tier classification
    - Source: MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).
-67. **WARNING** — strategic_review — summary / opportunities
+62. **WARNING** — strategic_review — summary / opportunities
    - Output: Attribution / continuity leverage: Full source download needed before attribution can be safely assessed.
    - Reasons: tier classification
    - Source: The investigating officer records that the seized handset is linked to Riley Moss by arrest and prop…
-68. **WARNING** — strategic_review — summary / opportunities
+63. **WARNING** — strategic_review — summary / opportunities
    - Output: Disclosure leverage: Subscriber/account data needed per MG6C.
    - Reasons: tier classification
    - Source: MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).
-69. **WARNING** — strategic_review — summary / chase
+64. **WARNING** — strategic_review — summary / chase
    - Output: Full phone download — Full source download needed before attribution can be safely assessed.
    - Reasons: tier classification
    - Source: The investigating officer records that the seized handset is linked to Riley Moss by arrest and prop…
-70. **WARNING** — strategic_review — summary / chase
+65. **WARNING** — strategic_review — summary / chase
    - Output: Subscriber / account data — Subscriber/account data needed per MG6C.
    - Reasons: tier classification
    - Source: MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).
-71. **WARNING** — strategic_review — decision_board
+66. **WARNING** — strategic_review — decision_board
    - Output: Attribution issue: Relationship context, attribution and course of conduct.
    - Reasons: tier classification
    - Source: MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).
-72. **WARNING** — strategic_review — decision_board
+67. **WARNING** — strategic_review — decision_board
    - Output: Screenshots may be incomplete or lack attribution/source context.
    - Reasons: tier classification
    - Source: MG6C/002 — Screenshot and message pack RM/01 — served on bundle.
-73. **WARNING** — strategic_review — decision_board
+68. **WARNING** — strategic_review — decision_board
    - Output: Disclosure pressure: Subscriber/account data needed per MG6C.
    - Reasons: tier classification
    - Source: MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).
-74. **WARNING** — contradiction_or_risk — advice_change_radar
+69. **WARNING** — contradiction_or_risk — advice_change_radar
    - Output: Full phone download — Missing — Review: Review needed because full phone download is missing — position may shift when s…
    - Reasons: tier classification
    - Source: The investigating officer records that the seized handset is linked to Riley Moss by arrest and prop…
-75. **WARNING** — contradiction_or_risk — advice_change_radar
+70. **WARNING** — contradiction_or_risk — advice_change_radar
    - Output: Subscriber / account data — Missing — Review: Review needed because subscriber / account data is missing — position may …
    - Reasons: tier classification
    - Source: MG6C/003 — Subscriber/account data — outstanding — not on bundle.
-76. **WARNING** — contradiction_or_risk — advice_change_radar
+71. **WARNING** — contradiction_or_risk — advice_change_radar
    - Output: Full message export — Missing — Review: Review needed because full message export is missing — position may shift when s…
    - Reasons: tier classification
    - Source: MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).
-77. **WARNING** — export_line — export_pack / cps_chase
+72. **WARNING** — export_line — export_pack / cps_chase
    - Output: — Full phone download [missing]
 Please provide Full phone download (see MG6C/004) or confirm in writing why it is not av…
    - Reasons: tier classification
@@ -1262,7 +1244,7 @@ Please provide Full phone download (see MG6C/004) or confirm in writing why it i
 - **evidence_state** (evidence_truth_map / evidence_trace): "Full message export" — MG6C/001 — Phone extraction summary — served (summary only; source download outstanding). [Phone extraction summary only — full source download outstanding]
 - **evidence_state** (evidence_truth_map / evidence_trace): "Please provide Subscriber / account data (see MG6C/003) or confirm in writing why it is not availabl…" — MG6C/003 — Subscriber/account data — outstanding — not on bundle. [Subscriber data outstanding]
 - **evidence_state** (evidence_truth_map / evidence_trace): "Please provide Full message export (see MG6C/001) or confirm in writing why it is not available." — MG6C/001 — Phone extraction summary — served (summary only; source download outstanding). [Phone extraction summary only — full source download outstanding]
-- **chase_request** (chase / CPS): "Please provide Subscriber / account data (see MG6C/003) or confirm in writing why it is not availabl…" — MG6C/003 — Subscriber/account data — outstanding — not on bundle. [Subscriber data outstanding]
+- **evidence_state** (evidence_truth_map / evidence_trace): "Please provide Device metadata export (see MG6C/001) or confirm in writing why it is not available." — MG6C/001 — Phone extraction summary — served (summary only; source download outstanding). [Phone extraction summary only — full source download outstanding]
 
 ## Generic safety guards
 
@@ -1296,7 +1278,7 @@ Please provide Full phone download (see MG6C/004) or confirm in writing why it i
 
 - Lines judged from extracted text only (PDF unchecked): **70**
 - Lines where source text and output disagree / unsupported: **9**
-- Lines text-supported but PDF unchecked: **20**
+- Lines text-supported but PDF unchecked: **19**
 
 ---
 
@@ -1531,7 +1513,7 @@ none
 ### 6. evidence state
 
 **OUTPUT:**
-device metadata — referred_only
+Device metadata export — referred_only
 
 **SURFACE:** evidence_truth_map / evidence_trace
 
@@ -1539,7 +1521,7 @@ device metadata — referred_only
 
 **REVIEW TIER:** SOURCE REVIEW
 
-**EVIDENCE ITEM:** device metadata
+**EVIDENCE ITEM:** Device metadata export
 
 **SOURCE:**
 no source found
@@ -2112,6 +2094,57 @@ Outstanding on current bundle — chase if disclosure-relevant.
 ### 18. evidence state
 
 **OUTPUT:**
+Device metadata export
+
+**RAW OUTPUT (product):** Device metadata export: missing / needs_review
+
+**SURFACE:** evidence_truth_map / evidence_trace
+
+**CATEGORY:** evidence_state
+
+**REVIEW TIER:** SOURCE REVIEW
+
+**EVIDENCE ITEM:** Device metadata export
+
+**SOURCE:**
+no source found
+
+**SOURCE STRENGTH:** no_anchor
+
+**SUPPORT:** Source not available on papers
+
+**PROOF CHAIN:**
+- Document: bundle.pdf (pdf)
+- Page: — | Section: —
+- Extracted snippet: none
+- PDF page available: no
+- PDF page evidence path: not generated
+- Extraction confidence: unavailable
+- Extraction issue: label_mismatch
+- **Proof chain status: No source on papers**
+
+**WHY THIS SUPPORTS THE LINE:**
+No direct bundle snippet located for this line.
+
+**WHY THIS IS LIMITED:**
+No usable source anchor — solicitor must verify.
+
+**SAFE WORDING:**
+Not safely confirmed on current papers — solicitor review required.
+
+**GED REVIEW REASONS:** source_unavailable, evidence_item_not_in_snippet, meaningful_line_without_anchor, solicitor_review_required
+
+**SOLICITOR REVIEW REQUIRED:** yes
+
+**USEFULNESS:** solicitor_review_required
+
+**VERDICT:** WARNING
+
+---
+
+### 19. evidence state
+
+**OUTPUT:**
 Final signed MG11
 
 **RAW OUTPUT (product):** Final signed MG11: missing / needs_review
@@ -2149,52 +2182,6 @@ Material expected or mentioned but not on bundle.
 
 **SAFE WORDING:**
 Outstanding on current bundle — chase if disclosure-relevant.
-
-**SOLICITOR REVIEW REQUIRED:** yes
-
-**USEFULNESS:** safe_but_not_actionable
-
-**VERDICT:** WARNING
-
----
-
-### 19. evidence state
-
-**OUTPUT:**
-MG6C clarification on unused material
-
-**RAW OUTPUT (product):** MG6C clarification on unused material: unknown / needs_review
-
-**SURFACE:** evidence_truth_map / evidence_trace
-
-**CATEGORY:** evidence_state
-
-**REVIEW TIER:** SOLICITOR CAUTION
-
-**EVIDENCE ITEM:** MG6C clarification on unused material
-
-**SOURCE:**
-Section MG6: MG6C — UNUSED MATERIAL SCHEDULE
-
-**SOURCE STRENGTH:** medium
-
-**SUPPORT:** partially supported
-
-**PROOF CHAIN:**
-- Document: bundle.pdf (pdf)
-- Page: 4 | Section: MG6
-- Extracted snippet: MG6C — UNUSED MATERIAL SCHEDULE
-- PDF page available: yes
-- PDF page evidence path: `artifacts/casebrain-qa/line-source-proof/demo-audit-01-phone-harassment/proof-chain-pages/p4.md`
-- Extraction confidence: exact
-- Extraction issue: page_missing
-- **Proof chain status: PDF page and text both support**
-
-**WHY THIS SUPPORTS THE LINE:**
-Partial bundle support: "MG6C — UNUSED MATERIAL SCHEDULE".
-
-**WHY THIS IS LIMITED:**
-none
 
 **SOLICITOR REVIEW REQUIRED:** yes
 
@@ -2731,20 +2718,22 @@ Outstanding on current bundle — chase if disclosure-relevant.
 ### 31. evidence state
 
 **OUTPUT:**
-Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available.
+Please provide Device metadata export (see MG6C/001) or confirm in writing why it is not available.
 
-**RAW OUTPUT (product):** Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available.: missing / needs_review
+**RAW OUTPUT (product):** Please provide Device metadata export (see MG6C/001) or confirm in writing why it is not available.: missing / needs_review
+
+**HUMAN EVIDENCE LABEL:** Phone extraction summary only — full source download outstanding
 
 **SURFACE:** evidence_truth_map / evidence_trace
 
 **CATEGORY:** evidence_state
 
-**REVIEW TIER:** SOLICITOR CAUTION
+**REVIEW TIER:** CLEAN SOURCE-BACKED
 
-**EVIDENCE ITEM:** Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available.
+**EVIDENCE ITEM:** Please provide Device metadata export (see MG6C/001) or confirm in writing why it is not available.
 
 **SOURCE:**
-Section MG6: MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.
+Section MG6: MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).
 
 **SOURCE STRENGTH:** schedule_only
 
@@ -2753,7 +2742,7 @@ Section MG6: MG6C/007 — Final signed complainant MG11 — outstanding — draf
 **PROOF CHAIN:**
 - Document: bundle.pdf (pdf)
 - Page: 4 | Section: MG6
-- Extracted snippet: MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.
+- Extracted snippet: MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).
 - PDF page available: yes
 - PDF page evidence path: `artifacts/casebrain-qa/line-source-proof/demo-audit-01-phone-harassment/proof-chain-pages/p4.md`
 - Extraction confidence: exact
@@ -2761,7 +2750,7 @@ Section MG6: MG6C/007 — Final signed complainant MG11 — outstanding — draf
 - **Proof chain status: PDF page and text both support**
 
 **WHY THIS SUPPORTS THE LINE:**
-Bundle shows material outstanding or not attached: "MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.".
+Bundle shows material outstanding or not attached: "MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).".
 
 **WHY THIS IS LIMITED:**
 Material expected or mentioned but not on bundle.
@@ -2769,11 +2758,11 @@ Material expected or mentioned but not on bundle.
 **SAFE WORDING:**
 Outstanding on current bundle — chase if disclosure-relevant.
 
-**SOLICITOR REVIEW REQUIRED:** yes
+**SOLICITOR REVIEW REQUIRED:** no
 
-**USEFULNESS:** safe_but_not_actionable
+**USEFULNESS:** correct_and_useful
 
-**VERDICT:** WARNING
+**VERDICT:** PASS
 
 ---
 
@@ -3186,6 +3175,98 @@ MG6/schedule reference only — export not served.
 ### 41. chase request
 
 **OUTPUT:**
+Device metadata export
+
+**SURFACE:** chase
+
+**CATEGORY:** chase_request
+
+**REVIEW TIER:** SOURCE REVIEW
+
+**EVIDENCE ITEM:** Device metadata export
+
+**SOURCE:**
+no source found
+
+**SOURCE STRENGTH:** no_anchor
+
+**SUPPORT:** Source not available on papers
+
+**PROOF CHAIN:**
+- Document: bundle.pdf (pdf)
+- Page: — | Section: —
+- Extracted snippet: none
+- PDF page available: no
+- PDF page evidence path: not generated
+- Extraction confidence: unavailable
+- Extraction issue: label_mismatch
+- **Proof chain status: No source on papers**
+
+**WHY THIS SUPPORTS THE LINE:**
+No direct bundle snippet located for this line.
+
+**WHY THIS IS LIMITED:**
+No usable source anchor — solicitor must verify.
+
+**GED REVIEW REASONS:** source_unavailable, evidence_item_not_in_snippet, meaningful_line_without_anchor, solicitor_review_required
+
+**SOLICITOR REVIEW REQUIRED:** yes
+
+**USEFULNESS:** solicitor_review_required
+
+**VERDICT:** WARNING
+
+---
+
+### 42. chase request
+
+**OUTPUT:**
+Please provide Device metadata export (see MG6C/001) or confirm in writing why it is not available.
+
+**HUMAN EVIDENCE LABEL:** Phone extraction summary only — full source download outstanding
+
+**SURFACE:** chase / CPS
+
+**CATEGORY:** chase_request
+
+**REVIEW TIER:** CLEAN SOURCE-BACKED
+
+**EVIDENCE ITEM:** Device metadata export
+
+**SOURCE:**
+Section MG6: MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).
+
+**SOURCE STRENGTH:** schedule_only
+
+**SUPPORT:** partially supported
+
+**PROOF CHAIN:**
+- Document: bundle.pdf (pdf)
+- Page: 4 | Section: MG6
+- Extracted snippet: MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).
+- PDF page available: yes
+- PDF page evidence path: `artifacts/casebrain-qa/line-source-proof/demo-audit-01-phone-harassment/proof-chain-pages/p4.md`
+- Extraction confidence: exact
+- Extraction issue: page_missing
+- **Proof chain status: PDF page and text both support**
+
+**WHY THIS SUPPORTS THE LINE:**
+Partial bundle support: "MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).".
+
+**WHY THIS IS LIMITED:**
+MG6/schedule reference only — export not served.
+
+**SOLICITOR REVIEW REQUIRED:** no
+
+**USEFULNESS:** correct_and_useful
+
+**VERDICT:** PASS
+
+---
+
+### 43. chase request
+
+**OUTPUT:**
 Final signed MG11
 
 **SURFACE:** chase
@@ -3227,7 +3308,7 @@ MG6/schedule reference only — export not served.
 
 ---
 
-### 42. chase request
+### 44. chase request
 
 **OUTPUT:**
 Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available.
@@ -3262,94 +3343,6 @@ Partial bundle support: "MG6C/007 — Final signed complainant MG11 — outstand
 
 **WHY THIS IS LIMITED:**
 MG6/schedule reference only — export not served.
-
-**SOLICITOR REVIEW REQUIRED:** yes
-
-**USEFULNESS:** safe_but_not_actionable
-
-**VERDICT:** WARNING
-
----
-
-### 43. chase request
-
-**OUTPUT:**
-MG6C clarification on unused material
-
-**SURFACE:** chase
-
-**CATEGORY:** chase_request
-
-**REVIEW TIER:** SOLICITOR CAUTION
-
-**EVIDENCE ITEM:** MG6C clarification on unused material
-
-**SOURCE:**
-Section MG6: MG6C — UNUSED MATERIAL SCHEDULE
-
-**SOURCE STRENGTH:** medium
-
-**SUPPORT:** partially supported
-
-**PROOF CHAIN:**
-- Document: bundle.pdf (pdf)
-- Page: 4 | Section: MG6
-- Extracted snippet: MG6C — UNUSED MATERIAL SCHEDULE
-- PDF page available: yes
-- PDF page evidence path: `artifacts/casebrain-qa/line-source-proof/demo-audit-01-phone-harassment/proof-chain-pages/p4.md`
-- Extraction confidence: exact
-- Extraction issue: page_missing
-- **Proof chain status: PDF page and text both support**
-
-**WHY THIS SUPPORTS THE LINE:**
-Partial bundle support: "MG6C — UNUSED MATERIAL SCHEDULE".
-
-**WHY THIS IS LIMITED:**
-none
-
-**SOLICITOR REVIEW REQUIRED:** yes
-
-**USEFULNESS:** safe_but_not_actionable
-
-**VERDICT:** WARNING
-
----
-
-### 44. chase request
-
-**OUTPUT:**
-Please provide MG6C clarification on unused material (see MG6C) or confirm in writing why it is not available.
-
-**SURFACE:** chase / CPS
-
-**CATEGORY:** chase_request
-
-**REVIEW TIER:** SOLICITOR CAUTION
-
-**EVIDENCE ITEM:** MG6C clarification on unused material
-
-**SOURCE:**
-Section MG6: MG6C — UNUSED MATERIAL SCHEDULE
-
-**SOURCE STRENGTH:** medium
-
-**SUPPORT:** partially supported
-
-**PROOF CHAIN:**
-- Document: bundle.pdf (pdf)
-- Page: 4 | Section: MG6
-- Extracted snippet: MG6C — UNUSED MATERIAL SCHEDULE
-- PDF page available: yes
-- PDF page evidence path: `artifacts/casebrain-qa/line-source-proof/demo-audit-01-phone-harassment/proof-chain-pages/p4.md`
-- Extraction confidence: exact
-- Extraction issue: page_missing
-- **Proof chain status: PDF page and text both support**
-
-**WHY THIS SUPPORTS THE LINE:**
-Partial bundle support: "MG6C — UNUSED MATERIAL SCHEDULE".
-
-**WHY THIS IS LIMITED:**
-none
 
 **SOLICITOR REVIEW REQUIRED:** yes
 
@@ -3646,22 +3639,24 @@ Material expected or mentioned but not on bundle.
 ### 51. chase request
 
 **OUTPUT:**
-Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available.
+Please provide Device metadata export (see MG6C/001) or confirm in writing why it is not available.
 
-**RAW OUTPUT (product):** Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available.
+**RAW OUTPUT (product):** Please provide Device metadata export (see MG6C/001) or confirm in writing why it is not available.
 
 [CaseBrain — CPS chase copy. Evidence state: missing. Source: MG6C schedule. Solicitor review required before sending.]
+
+**HUMAN EVIDENCE LABEL:** Phone extraction summary only — full source download outstanding
 
 **SURFACE:** five_answers / chase
 
 **CATEGORY:** chase_request
 
-**REVIEW TIER:** SOLICITOR CAUTION
+**REVIEW TIER:** CLEAN SOURCE-BACKED
 
-**EVIDENCE ITEM:** Final signed MG11
+**EVIDENCE ITEM:** Device metadata export
 
 **SOURCE:**
-Section MG6: MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.
+Section MG6: MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).
 
 **SOURCE STRENGTH:** schedule_only
 
@@ -3670,7 +3665,7 @@ Section MG6: MG6C/007 — Final signed complainant MG11 — outstanding — draf
 **PROOF CHAIN:**
 - Document: bundle.pdf (pdf)
 - Page: 4 | Section: MG6
-- Extracted snippet: MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.
+- Extracted snippet: MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).
 - PDF page available: yes
 - PDF page evidence path: `artifacts/casebrain-qa/line-source-proof/demo-audit-01-phone-harassment/proof-chain-pages/p4.md`
 - Extraction confidence: exact
@@ -3678,16 +3673,16 @@ Section MG6: MG6C/007 — Final signed complainant MG11 — outstanding — draf
 - **Proof chain status: PDF page and text both support**
 
 **WHY THIS SUPPORTS THE LINE:**
-Bundle shows material outstanding or not attached: "MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.".
+Bundle shows material outstanding or not attached: "MG6C/001 — Phone extraction summary — served (summary only; source download outstanding).".
 
 **WHY THIS IS LIMITED:**
 Material expected or mentioned but not on bundle.
 
-**SOLICITOR REVIEW REQUIRED:** yes
+**SOLICITOR REVIEW REQUIRED:** no
 
-**USEFULNESS:** safe_but_not_actionable
+**USEFULNESS:** correct_and_useful
 
-**VERDICT:** WARNING
+**VERDICT:** PASS
 
 ---
 
@@ -6274,7 +6269,7 @@ Material expected or mentioned but not on bundle.
 ### 111. strategic review
 
 **OUTPUT:**
-Outstanding disclosure: Full phone download; Subscriber / account data; Full message export; Call logs; Final signed MG11; MG6C clarification on unused material.
+Outstanding disclosure: Full phone download; Subscriber / account data; Full message export; Call logs; Device metadata export; Final signed MG11.
 
 **SURFACE:** summary / ptph
 
@@ -7374,44 +7369,44 @@ No usable source anchor — solicitor must verify.
 ### 136. export line
 
 **OUTPUT:**
-We are reviewing the papers in your case (Harassment, contrary to section 2 of the Protection from Harassment Act 1997). This is early-stage — nothing is final until we have full disclosure and your instructions. Some evidence is still outstanding on the papers, and we will update you when it is served. We are not saying the case is won or lost — we need the full material before giving firm advice
+We are reviewing the papers in your case (Riley Moss). This is early-stage — nothing is final until we have full disclosure and your instructions. Screenshots of messages are on the papers, but the full phone download, subscriber/account data, call logs, and final signed statement are still outstanding. We cannot yet confirm who sent each message from the served material alone.
+
+**HUMAN EVIDENCE LABEL:** Subscriber data outstanding
 
 **SURFACE:** export_pack / client_summary
 
 **CATEGORY:** export_line
 
-**REVIEW TIER:** SOURCE REVIEW
+**REVIEW TIER:** CLEAN SOURCE-BACKED
 
 **SOURCE:**
-Bundle: Statement of Offence: | Harassment, contrary to section 2 of the Protection from Harassment Act 1997.
+Section MG6: MG6C/003 — Subscriber/account data — outstanding — not on bundle.
 
-**SOURCE STRENGTH:** weak
+**SOURCE STRENGTH:** schedule_only
 
-**SUPPORT:** partially supported
+**SUPPORT:** Missing on bundle
 
 **PROOF CHAIN:**
 - Document: bundle.pdf (pdf)
-- Page: — | Section: —
-- Extracted snippet: Statement of Offence: | Harassment, contrary to section 2 of the Protection from Harassment Act 1997.
-- PDF page available: no
-- PDF page evidence path: not generated
-- Extraction confidence: fuzzy
-- Extraction issue: none
-- **Proof chain status: Text supports — PDF not checked**
+- Page: 4 | Section: MG6
+- Extracted snippet: MG6C/003 — Subscriber/account data — outstanding — not on bundle.
+- PDF page available: yes
+- PDF page evidence path: `artifacts/casebrain-qa/line-source-proof/demo-audit-01-phone-harassment/proof-chain-pages/p4.md`
+- Extraction confidence: exact
+- Extraction issue: page_missing
+- **Proof chain status: PDF page and text both support**
 
 **WHY THIS SUPPORTS THE LINE:**
-Only generic schedule/index wording found — needs line-level snippet review: "Statement of Offence: | Harassment, contrary to section 2 of the Protection from Harassment Act 1997.".
+Bundle shows material outstanding or not attached: "MG6C/003 — Subscriber/account data — outstanding — not on bundle.".
 
 **WHY THIS IS LIMITED:**
-Generic MG6/schedule label without line-level served/referred snippet.
+Material expected or mentioned but not on bundle.
 
-**GED REVIEW REASONS:** generic_source_only, solicitor_review_required
+**SOLICITOR REVIEW REQUIRED:** no
 
-**SOLICITOR REVIEW REQUIRED:** yes
+**USEFULNESS:** correct_and_useful
 
-**USEFULNESS:** solicitor_review_required
-
-**VERDICT:** WARNING
+**VERDICT:** PASS
 
 ---
 
@@ -7462,50 +7457,6 @@ No usable source anchor — solicitor must verify.
 ### 138. export line
 
 **OUTPUT:**
-Solicitor review required before sending to CPS, court, or client.
-
-**SURFACE:** export_pack / client_summary
-
-**CATEGORY:** export_line
-
-**REVIEW TIER:** SOURCE REVIEW
-
-**SOURCE:**
-no source found
-
-**SOURCE STRENGTH:** no_anchor
-
-**SUPPORT:** Source not available on papers
-
-**PROOF CHAIN:**
-- Document: bundle.pdf (pdf)
-- Page: — | Section: —
-- Extracted snippet: none
-- PDF page available: no
-- PDF page evidence path: not generated
-- Extraction confidence: unavailable
-- Extraction issue: none
-- **Proof chain status: No source on papers**
-
-**WHY THIS SUPPORTS THE LINE:**
-No direct bundle snippet located for this line.
-
-**WHY THIS IS LIMITED:**
-No usable source anchor — solicitor must verify.
-
-**GED REVIEW REASONS:** source_unavailable, meaningful_line_without_anchor, solicitor_review_required
-
-**SOLICITOR REVIEW REQUIRED:** yes
-
-**USEFULNESS:** solicitor_review_required
-
-**VERDICT:** WARNING
-
----
-
-### 139. export line
-
-**OUTPUT:**
 • Screenshot / message pack [Served / Needs review] — Served on papers — not full phone download or attribution proof.
 • Phone extraction summary only [Referred only / Weak] — Summary on file — full source download outstanding.
 • Full phone download [Missing / Needs review] — Chase full extraction source before fixing attribution.
@@ -7550,7 +7501,7 @@ Referred on schedule or in narrative — not safely served as proof.
 
 ---
 
-### 140. export line
+### 139. export line
 
 **OUTPUT:**
 Solicitor review required before sending to CPS, court, or client.
@@ -7594,7 +7545,7 @@ No usable source anchor — solicitor must verify.
 
 ---
 
-### 141. export line
+### 140. export line
 
 **OUTPUT:**
 DO NOT OVERSTATE
@@ -7637,7 +7588,7 @@ No usable source anchor — solicitor must verify.
 
 ---
 
-### 142. export line
+### 141. export line
 
 **OUTPUT:**
 • Do not say: Do not state the defendant sent messages unless attribution is served and safe.
@@ -7682,7 +7633,7 @@ MG6/schedule reference only — export not served.
 
 ---
 
-### 143. export line
+### 142. export line
 
 **OUTPUT:**
 • Do not say: defendant sent the messages
@@ -7727,7 +7678,7 @@ MG6/schedule reference only — export not served.
 
 ---
 
-### 144. export line
+### 143. export line
 
 **OUTPUT:**
 • Do not say: Riley Moss sent

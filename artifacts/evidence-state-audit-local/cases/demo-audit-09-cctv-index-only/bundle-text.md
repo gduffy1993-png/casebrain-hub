@@ -38,7 +38,7 @@ Officer in case: PC Reid 6610
 === SECTION: MG5 ===
 
 Headline Summary
-CCTV still images are served. Master CCTV footage, full export, continuity, and audit trail are outstanding. Identification from stills alone is not safely confirmed on current papers.
+CCTV still images are served. Master CCTV footage, full export, continuity, audit trail, and recognition/ID basis are outstanding. Identification from stills alone is not safely confirmed on current papers.
 
 === SECTION: MG6 ===
 
@@ -49,6 +49,7 @@ MG6C/CCTV/02 — Master CCTV footage camera 4 — outstanding — not on bundle.
 MG6C/CCTV/03 — Full CCTV export (native format) — referred on MG6C — export not attached.
 MG6C/CCTV/04 — Continuity and provenance statement — outstanding.
 MG6C/CCTV/05 — Audit trail / source file hash record — outstanding.
+MG6C/CCTV/06 — Recognition / ID basis — outstanding — not on bundle.
 
 === SECTION: MG11 ===
 
@@ -56,7 +57,7 @@ MG11 — OFFICER STATEMENT (PC Reid 6610)
 
 1. I attended following a report of shop theft.
 2. CCTV still images MV/CCTV/01 are served on this bundle. Master footage and full export are NOT served.
-3. Stills show a person in relevant aisle. Image quality is limited. I cannot rely on stills alone for positive identification.
+3. Stills show a person in relevant aisle. Image quality is limited. I cannot rely on stills alone for positive identification. Recognition statement and ID basis are NOT on bundle.
 
 === SECTION: CCTV_STILLS ===
 

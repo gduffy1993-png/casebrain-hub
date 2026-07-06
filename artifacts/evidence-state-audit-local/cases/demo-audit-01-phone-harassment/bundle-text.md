@@ -56,7 +56,7 @@ Evidence on file (served)
 Charge sheet; MG5; MG6C schedule; draft complainant MG11; screenshot/message pack (RM/01); exhibit list; police attribution note.
 
 Evidence referred or outstanding
-Full phone download/source export; subscriber/account data; full message export; call logs; device-level extraction metadata; final signed MG11; MG6C clarification on unused material; additional unused material schedule lines.
+Full phone download/source export; subscriber/account data; full message export; call logs; device-level extraction metadata; final signed MG11.
 
 Prosecution position on current papers
 Screenshots show message content and dates. Attribution to Riley Moss is asserted by investigating officer but requires subscriber data and full download before the defence can safely accept sender identity.
@@ -70,9 +70,9 @@ MG6C/002 — Screenshot and message pack RM/01 — served on bundle.
 MG6C/003 — Subscriber/account data — outstanding — not on bundle.
 MG6C/004 — Full phone download / source export — outstanding — not on bundle.
 MG6C/005 — Call logs — outstanding — not on bundle.
-MG6C/006 — Device metadata export — referred on MG6 — not attached.
+MG6C/006 — Device metadata export — referred on MG6C — not attached.
 MG6C/007 — Final signed complainant MG11 — outstanding — draft only on bundle.
-MG6C/008 — Additional unused material — clarification sought.
+MG6C/008 — Full message export (native format) — referred on MG6C — not attached.
 
 === SECTION: MG11 ===
 
@@ -141,7 +141,7 @@ The investigating officer records that the seized handset is linked to Riley Mos
 
 Attribution of sender identity for +44 7700 900142 is asserted in this note but is NOT fully proved on current papers: subscriber/account data and full phone download are outstanding. The defence should not treat screenshots alone as proof that Riley Moss sent each message without served attribution material.
 
-Final signed MG11 and MG6C clarification on unused material remain outstanding.
+Final signed MG11, call logs, and device metadata export remain outstanding.
 
 === SECTION: LISTING ===
 

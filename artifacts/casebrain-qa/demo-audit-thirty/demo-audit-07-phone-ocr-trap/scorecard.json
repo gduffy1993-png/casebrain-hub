@@ -1,0 +1,85 @@
+{
+  "caseId": "demo-audit-07-phone-ocr-trap",
+  "caseName": "DA-07 Noah Pierce — phone OCR / attribution gap",
+  "shape": "Phone screenshots served / OCR date trap / full download missing",
+  "pdfPages": 11,
+  "keyServedItems": [
+    "charge sheet",
+    "mg5",
+    "mg6",
+    "screenshot and message pack",
+    "phone extraction summary"
+  ],
+  "keyMissingReferred": [
+    "full phone download (missing)",
+    "subscriber/account data (missing)",
+    "device metadata (referred_only)",
+    "complainant MG11 (incomplete)",
+    "attribution material (not_safely_confirmed)"
+  ],
+  "truthMapResult": [
+    {
+      "label": "Screenshot / message pack",
+      "existence": "served",
+      "note": "Served on papers — not full phone download or attribution proof."
+    },
+    {
+      "label": "Phone extraction summary",
+      "existence": "served"
+    },
+    {
+      "label": "Device metadata export",
+      "existence": "referred_only"
+    },
+    {
+      "label": "Complainant MG11 (draft)",
+      "existence": "served"
+    },
+    {
+      "label": "Attribution / subscriber material",
+      "existence": "not_safely_confirmed",
+      "note": "Handle mapping to defendant not served on current papers."
+    },
+    {
+      "label": "Full phone download",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    },
+    {
+      "label": "Subscriber / account data",
+      "existence": "missing",
+      "note": "Outstanding — cannot safely fix sender identity without this material."
+    }
+  ],
+  "proofPacketVerdict": "PASS WITH WARNINGS",
+  "failLineCount": 0,
+  "unsupportedLinesCount": 0,
+  "wrongFamilyWarningsCount": 0,
+  "proofLedgerWrongFamilyInternal": 0,
+  "blockedFalseServedGuardsCount": 6,
+  "pageBackedOutputLinesCount": 62,
+  "vagueChaseLabelsCount": 0,
+  "genericLabelCount": 0,
+  "solicitorFacingBannedCount": 0,
+  "packetDuplicateCount": 0,
+  "packetOffFamilyCount": 0,
+  "packetMainIssueCount": 0,
+  "caseFacingWrongFamilyCount": 0,
+  "readyForDemoReview": true,
+  "readyBlockers": [],
+  "filesCreated": [
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-07-phone-ocr-trap\\bundle.pdf",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-07-phone-ocr-trap\\bundle-text.md",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-07-phone-ocr-trap\\pdf-extraction-meta.json",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-07-phone-ocr-trap\\truth-key.json",
+    "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-07-phone-ocr-trap\\line-by-line-proof.md",
+    "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-07-phone-ocr-trap\\SOLICITOR-PROOF-PACKET.md",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-07-phone-ocr-trap\\overview-truth-map.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-07-phone-ocr-trap\\court-tab.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-07-phone-ocr-trap\\cps-chase.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-07-phone-ocr-trap\\client-summary.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-07-phone-ocr-trap\\file-source-view.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-07-phone-ocr-trap\\casebrain-output.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-07-phone-ocr-trap\\scorecard.json"
+  ]
+}

@@ -21,36 +21,36 @@ Thirty fictional prosecution bundles (DA-01..30) with served and outstanding mat
 
 | Case | Pages | PDF+text | FAIL | Wrong-family | Generic | Ready |
 |------|------:|---------:|-----:|-------------:|--------:|:-----:|
-| 01-phone-harassment | 11 | 65 | 0 | 0 | 0 | yes |
-| 02-cctv-stills | 9 | 55 | 0 | 0 | 0 | yes |
-| 03-bwv-custody | 7 | 74 | 0 | 0 | 0 | yes |
+| 01-phone-harassment | 11 | 64 | 0 | 0 | 0 | yes |
+| 02-cctv-stills | 9 | 57 | 0 | 0 | 0 | yes |
+| 03-bwv-custody | 7 | 76 | 0 | 0 | 0 | yes |
 | 04-co-def-interview | 8 | 42 | 0 | 0 | 0 | yes |
 | 05-encro-attribution | 9 | 59 | 0 | 0 | 0 | yes |
-| 06-domestic-stalking | 11 | 61 | 0 | 0 | 0 | yes |
-| 07-phone-ocr-trap | 11 | 60 | 0 | 0 | 0 | yes |
-| 08-cctv-night-stills | 9 | 55 | 0 | 0 | 0 | yes |
-| 09-cctv-index-only | 9 | 55 | 0 | 0 | 0 | yes |
-| 10-bwv-public-order | 7 | 60 | 0 | 0 | 0 | yes |
-| 11-custody-pace-ocr | 7 | 60 | 0 | 0 | 0 | yes |
-| 12-multi-def-burglary | 8 | 61 | 0 | 0 | 0 | yes |
+| 06-domestic-stalking | 11 | 63 | 0 | 0 | 0 | yes |
+| 07-phone-ocr-trap | 11 | 62 | 0 | 0 | 0 | yes |
+| 08-cctv-night-stills | 9 | 63 | 0 | 0 | 0 | yes |
+| 09-cctv-index-only | 9 | 63 | 0 | 0 | 0 | yes |
+| 10-bwv-public-order | 7 | 64 | 0 | 0 | 0 | yes |
+| 11-custody-pace-ocr | 7 | 64 | 0 | 0 | 0 | yes |
+| 12-multi-def-burglary | 8 | 62 | 0 | 0 | 0 | yes |
 | 13-co-def-index-trap | 8 | 42 | 0 | 0 | 0 | yes |
 | 14-encro-retail | 9 | 54 | 0 | 0 | 0 | yes |
 | 15-county-lines-runners | 9 | 54 | 0 | 0 | 0 | yes |
 | 16-fraud-bank-statements | 9 | 39 | 0 | 0 | 0 | yes |
 | 17-fraud-transaction-export | 9 | 39 | 0 | 0 | 0 | yes |
-| 18-motoring-sjp-thin | 7 | 41 | 0 | 0 | 0 | yes |
-| 19-motoring-breath-specimen | 7 | 41 | 0 | 0 | 0 | yes |
-| 20-domestic-harassment | 11 | 61 | 0 | 0 | 0 | yes |
+| 18-motoring-sjp-thin | 7 | 43 | 0 | 0 | 0 | yes |
+| 19-motoring-breath-specimen | 7 | 43 | 0 | 0 | 0 | yes |
+| 20-domestic-harassment | 11 | 63 | 0 | 0 | 0 | yes |
 | 21-historic-sexual-abe | 9 | 34 | 0 | 0 | 0 | yes |
-| 22-youth-interview | 8 | 33 | 0 | 0 | 0 | yes |
-| 23-duplicate-pages | 11 | 61 | 0 | 0 | 0 | yes |
-| 24-missing-pages-index | 9 | 55 | 0 | 0 | 0 | yes |
+| 22-youth-interview | 8 | 38 | 0 | 0 | 0 | yes |
+| 23-duplicate-pages | 11 | 63 | 0 | 0 | 0 | yes |
+| 24-missing-pages-index | 9 | 63 | 0 | 0 | 0 | yes |
 | 25-charge-bundle-mismatch | 9 | 54 | 0 | 0 | 0 | yes |
-| 26-phone-referred-metadata | 11 | 61 | 0 | 0 | 0 | yes |
-| 27-custody-pace-missing | 7 | 60 | 0 | 0 | 0 | yes |
+| 26-phone-referred-metadata | 11 | 63 | 0 | 0 | 0 | yes |
+| 27-custody-pace-missing | 7 | 64 | 0 | 0 | 0 | yes |
 | 28-fraud-subscriber-trap | 9 | 47 | 0 | 0 | 0 | yes |
-| 29-youth-yjs-material | 8 | 33 | 0 | 0 | 0 | yes |
-| 30-layout-hearing-date | 9 | 55 | 0 | 0 | 0 | yes |
+| 29-youth-yjs-material | 8 | 38 | 0 | 0 | 0 | yes |
+| 30-layout-hearing-date | 9 | 63 | 0 | 0 | 0 | yes |
 
 ## Coverage table
 
@@ -120,4 +120,4 @@ Thirty fictional prosecution bundles (DA-01..30) with served and outstanding mat
 - [DA-29 Marcus Reid — youth YJS vulnerability referred](./demo-audit-29-youth-yjs-material/SCORECARD.md)
 - [DA-30 Devon Walsh — layout/OCR hearing date trap](./demo-audit-30-layout-hearing-date/SCORECARD.md)
 
-Generated: 2026-07-06T09:27:34.236Z
+Generated: 2026-07-06T23:06:20.408Z

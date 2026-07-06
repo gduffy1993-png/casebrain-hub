@@ -1,0 +1,18 @@
+{
+  "safeCourtLine": "The defence asks the court to record per MG6C that screenshot/message material is served but full phone download, subscriber/account data, and final MG11 remain outstanding.",
+  "safePositionToday": "The defence asks the court to record per MG6C that screenshot/message material is served but full phone download, subscriber/account data, and final MG11 remain outstanding.",
+  "askCourtToRecord": [
+    "Outstanding disclosure: Full phone download; Subscriber / account data; Full message export; Call logs; Device metadata export; Final signed MG11.",
+    "Invite the court to order disclosure by a fixed date with a review hearing."
+  ],
+  "disclosureTimetable": "The defence invites the court to order disclosure of Full phone download; Subscriber / account data; Full message export; Call logs; Device metadata export; Final signed MG11 by [date] with a review on [date]. Position remains provisional.",
+  "doNotOverstate": [
+    "Do not state the defendant sent messages unless attribution is served and safe.",
+    "Do not state \"witness statement is final\" — Witness statement is draft or unsigned on papers",
+    "Do not state \"MG11 is consistent and served\" — Witness statement is draft or unsigned on papers",
+    "Do not state \"MG11 served\" — Witness statement is draft or unsigned on papers",
+    "defendant sent the messages",
+    "Riley Moss sent",
+    "attribution is proved"
+  ]
+}

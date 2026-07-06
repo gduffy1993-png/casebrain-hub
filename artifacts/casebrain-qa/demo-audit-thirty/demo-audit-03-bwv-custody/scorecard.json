@@ -1,0 +1,87 @@
+{
+  "caseId": "demo-audit-03-bwv-custody",
+  "caseName": "DA-03 Casey Fry — BWV referred / custody extract only",
+  "shape": "BWV referred / custody extract incomplete / interview outstanding",
+  "pdfPages": 7,
+  "keyServedItems": [
+    "charge sheet",
+    "mg5",
+    "mg6"
+  ],
+  "keyMissingReferred": [
+    "officer MG11 (incomplete)",
+    "custody record extract (incomplete)",
+    "body-worn video (referred_only)",
+    "full custody record (missing)",
+    "interview audio (missing)",
+    "interview transcript (missing)",
+    "PACE safeguards detail (missing)"
+  ],
+  "truthMapResult": [
+    {
+      "label": "Body-worn video (BWV)",
+      "existence": "referred_only",
+      "note": "Referred on MG6C — full export not attached."
+    },
+    {
+      "label": "Officer statement",
+      "existence": "served"
+    },
+    {
+      "label": "Custody record extract",
+      "existence": "served",
+      "note": "Extract only — full custody record outstanding."
+    },
+    {
+      "label": "Full custody record",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    },
+    {
+      "label": "Interview audio",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    },
+    {
+      "label": "Interview transcript",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    },
+    {
+      "label": "PACE safeguards detail",
+      "existence": "missing",
+      "note": "Outstanding on current disclosure."
+    }
+  ],
+  "proofPacketVerdict": "PASS WITH WARNINGS",
+  "failLineCount": 0,
+  "unsupportedLinesCount": 0,
+  "wrongFamilyWarningsCount": 0,
+  "proofLedgerWrongFamilyInternal": 0,
+  "blockedFalseServedGuardsCount": 14,
+  "pageBackedOutputLinesCount": 76,
+  "vagueChaseLabelsCount": 0,
+  "genericLabelCount": 0,
+  "solicitorFacingBannedCount": 0,
+  "packetDuplicateCount": 0,
+  "packetOffFamilyCount": 0,
+  "packetMainIssueCount": 0,
+  "caseFacingWrongFamilyCount": 0,
+  "readyForDemoReview": true,
+  "readyBlockers": [],
+  "filesCreated": [
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-03-bwv-custody\\bundle.pdf",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-03-bwv-custody\\bundle-text.md",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-03-bwv-custody\\pdf-extraction-meta.json",
+    "artifacts\\evidence-state-audit-local\\cases\\demo-audit-03-bwv-custody\\truth-key.json",
+    "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-03-bwv-custody\\line-by-line-proof.md",
+    "artifacts\\casebrain-qa\\line-source-proof\\demo-audit-03-bwv-custody\\SOLICITOR-PROOF-PACKET.md",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-03-bwv-custody\\overview-truth-map.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-03-bwv-custody\\court-tab.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-03-bwv-custody\\cps-chase.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-03-bwv-custody\\client-summary.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-03-bwv-custody\\file-source-view.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-03-bwv-custody\\casebrain-output.json",
+    "artifacts\\casebrain-qa\\demo-audit-thirty\\demo-audit-03-bwv-custody\\scorecard.json"
+  ]
+}

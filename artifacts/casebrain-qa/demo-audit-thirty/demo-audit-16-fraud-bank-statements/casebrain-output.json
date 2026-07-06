@@ -1,0 +1,67 @@
+{
+  "caseId": "demo-audit-16-fraud-bank-statements",
+  "clientLabel": "Isla Grant",
+  "allegation": "Fraud by false representation, contrary to section 1 of the Fraud Act 2006",
+  "bundleTextLength": 1996,
+  "chaseItemCount": 3,
+  "truthMapRowCount": 5,
+  "proofSummary": {
+    "totalMeaningfulLines": 108,
+    "pass": 18,
+    "warning": 90,
+    "fail": 0,
+    "excluded": 0,
+    "byCategory": {
+      "evidence_claim": 1,
+      "strategic_review": 39,
+      "confidence_status": 4,
+      "evidence_state": 17,
+      "safety_warning": 11,
+      "chase_request": 12,
+      "court_note": 3,
+      "client_summary": 1,
+      "contradiction_or_risk": 3,
+      "export_line": 17
+    },
+    "bySupport": {
+      "partially_supported": 18,
+      "source_unavailable": 49,
+      "supported": 12,
+      "missing": 23,
+      "referred_only": 6
+    },
+    "positiveCorrect": 19,
+    "gedReviewCount": 90,
+    "blockingReview": 0,
+    "unsupportedOutput": 0,
+    "sourceReviewWarnings": 46,
+    "solicitorCaution": 44,
+    "cleanSourceBacked": 0,
+    "genericSafetyGuards": 18,
+    "byTier": {
+      "blocking_review": 0,
+      "source_review": 46,
+      "solicitor_caution": 44,
+      "clean_source_backed": 0,
+      "generic_safety_guard": 18
+    },
+    "proofChainCoverage": {
+      "pdfAndTextSupportOutput": 39,
+      "textSupportsButPdfUnchecked": 12,
+      "pdfAvailableButTextMismatch": 0,
+      "sourceUnavailable": 57,
+      "outputUnsupported": 0,
+      "originalPdfAvailable": true,
+      "caseProofMode": "pdf_and_text"
+    }
+  },
+  "proofChainCoverage": {
+    "pdfAndTextSupportOutput": 39,
+    "textSupportsButPdfUnchecked": 12,
+    "pdfAvailableButTextMismatch": 0,
+    "sourceUnavailable": 57,
+    "outputUnsupported": 0,
+    "originalPdfAvailable": true,
+    "caseProofMode": "pdf_and_text"
+  }
+}
