@@ -1,0 +1,96 @@
+{
+  "caseId": "demo-audit-13-co-def-index-trap",
+  "title": "DA-13 Finn Doyle — co-def index trap",
+  "offenceFamily": "burglary_dwelling",
+  "offenceWording": "Burglary in a dwelling, contrary to section 9(1)(b) of the Theft Act 1968",
+  "profile": "needs_review",
+  "bundleStatus": "pdf_backed_demo",
+  "proofChainMode": "pdf_backed_controlled",
+  "evidenceItems": [
+    {
+      "evidence_item": "charge sheet",
+      "evidence_type": "charge",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "mg5",
+      "evidence_type": "mg5",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "mg6",
+      "evidence_type": "mg6",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "officer statement",
+      "evidence_type": "mg11",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "co-defendant Lexi Marsh interview summary",
+      "evidence_type": "interview",
+      "correct_evidence_state": "other_defendant_only",
+      "source_page_anchor": "6",
+      "defendant_relevance": "co_defendant",
+      "chase_needed": false,
+      "safe_to_rely_on": false,
+      "must_not_say": [
+        "Finn Doyle said",
+        "defendant admitted"
+      ]
+    },
+    {
+      "evidence_item": "Finn Doyle interview summary",
+      "evidence_type": "interview",
+      "correct_evidence_state": "missing",
+      "defendant_relevance": "primary_defendant",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "Finn Doyle interview audio",
+      "evidence_type": "interview",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "Finn Doyle interview transcript",
+      "evidence_type": "interview",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "co-defendant attribution/continuity",
+      "evidence_type": "interview",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    }
+  ],
+  "expectedChaseItems": [
+    "target defendant interview summary",
+    "target defendant interview audio",
+    "target defendant interview transcript",
+    "co-defendant attribution/continuity"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "Finn Doyle admitted",
+    "import co-defendant interview",
+    "BWV shows"
+  ],
+  "blockingFailPatterns": [
+    "Finn Doyle said in interview"
+  ]
+}

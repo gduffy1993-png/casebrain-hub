@@ -42,6 +42,18 @@ const CHASE_LABEL_OVERRIDES: Record<string, string> = {
   "handle attribution report": "Handle attribution report",
   "device continuity": "Device continuity",
   "full download/export": "Full download / export",
+  "full transaction export": "Full transaction export",
+  "source banking records": "Source banking records",
+  "beneficiary tracing report": "Beneficiary tracing report",
+  "device calibration certificate": "Device calibration certificate",
+  "full intoxilyser record": "Full intoxilyser record",
+  "cctv/dashcam export": "CCTV / dashcam export",
+  "abe interview video": "ABE interview video",
+  "abe interview transcript": "ABE interview transcript",
+  "third-party counselling notes": "Third-party counselling notes",
+  "full yjs pre-sentence report": "Full YJS pre-sentence report",
+  "vulnerability assessment": "Vulnerability assessment",
+  "youth interview audio": "Youth interview audio",
 };
 
 function titleCaseChaseLabel(raw: string): string {
@@ -69,6 +81,10 @@ function displayLabelForItem(item: TruthKeyEvidenceItem, offenceFamily?: string)
   if (key.includes("attribution material")) return "Attribution / subscriber material";
   if (key.includes("officer mg11") || key === "officer statement") return "Officer statement";
   if (key.includes("complainant mg11")) return "Complainant MG11 (draft)";
+  if (key.includes("bank statement")) return "Bank statement summaries";
+  if (key.includes("breath/device")) return "Breath / device procedure summary";
+  if (key.includes("abe interview video")) return "ABE interview video";
+  if (key.includes("yjs report")) return "YJS report extract";
   return titleCaseChaseLabel(item.evidence_item);
 }
 
@@ -174,6 +190,18 @@ function noteForTruthItem(item: TruthKeyEvidenceItem, offenceFamily?: string): s
   if (item.correct_evidence_state === "missing" && /handle attribution/i.test(item.evidence_item)) {
     return "Outstanding per MG6C — handle attribution report not on bundle.";
   }
+  if (item.correct_evidence_state === "served" && /bank statement/i.test(item.evidence_item)) {
+    return "Summaries served — not full transaction export or source banking records.";
+  }
+  if (item.correct_evidence_state === "served" && /breath|device procedure/i.test(item.evidence_item)) {
+    return "Summary served — calibration and full device record outstanding.";
+  }
+  if (item.correct_evidence_state === "referred_only" && /abe/i.test(item.evidence_item)) {
+    return "Referred on MG6C — ABE video not attached to bundle.";
+  }
+  if (item.correct_evidence_state === "served" && /yjs report/i.test(item.evidence_item)) {
+    return "Extract served — full YJS PSR outstanding.";
+  }
   if (item.correct_evidence_state === "not_safely_confirmed" && /handle|attribution/i.test(item.evidence_item)) {
     return "Handle mapping to defendant not served on current papers.";
   }
@@ -241,6 +269,10 @@ function chaseLabelAllowed(label: string, bundleHay: string, offenceFamily?: str
   if (offenceFamily === "assault_emergency_worker" && /phone|encro|cctv/i.test(l) && !hay.includes(l.split(" ")[0] ?? "")) {
     if (/phone|encro|cctv/i.test(l)) return false;
   }
+  if (offenceFamily === "fraud_financial" && /bwv|custody|encro|abe/i.test(l) && !/bank|transaction|tracing|subscriber/.test(l)) return false;
+  if (offenceFamily === "motoring_road_traffic" && /encro|abe|drug|phone|subscriber/i.test(l) && !/cctv|dashcam|device|calibration|intox/.test(l)) return false;
+  if (offenceFamily === "sexual_offences" && /encro|cctv|phone|drug/i.test(l) && !/abe|mg11|counselling/i.test(l)) return false;
+  if (offenceFamily === "youth_court" && /encro|fraud|cctv master/i.test(l) && !/yjs|youth|vulnerability|interview/i.test(l)) return false;
   return true;
 }
 
@@ -261,6 +293,10 @@ function whyForChaseLabel(label: string, offenceFamily?: string): string {
   if (/custody|pace/.test(l)) return "Full custody/PACE material needed beyond the served extract.";
   if (/interview/.test(l) && /target|defendant/.test(l)) return "Target defendant interview material outstanding.";
   if (/co-def/.test(l)) return "Co-defendant segregation material needed on MG6C.";
+  if (/transaction|banking/.test(l)) return "Full transaction export or source banking records outstanding per MG6C.";
+  if (/calibration|intoxilyser/.test(l)) return "Device calibration and full intoxilyser record needed.";
+  if (/abe/.test(l)) return "ABE interview video/transcript outstanding or referred only.";
+  if (/yjs|vulnerability/.test(l)) return "Full YJS or vulnerability material outstanding on youth papers.";
   if (offenceFamily === "harassment_digital") return "Outstanding digital disclosure for harassment case.";
   return "Outstanding on current disclosure — chase before fixing hearing position.";
 }
@@ -269,14 +305,21 @@ function buildChaseItem(label: string, truthKey: EvidenceStateTruthKey, bundleTe
   const human = displayChaseCardLabel({ label, whyItMatters: whyForChaseLabel(label, truthKey.offenceFamily) });
   const anchor = mg6AnchorForChaseLabel(bundleText, human);
   const anchorSuffix = anchor ? ` (see ${anchor.split("—")[0]?.trim() ?? "MG6C"})` : "";
+  const slug = human.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   return {
+    id: `demo-audit-chase-${slug}`,
+    familyId: "other",
     label: human,
     source: anchor ? "MG6C schedule" : "MG6C",
     baseStatus: "Outstanding",
+    urgency: "high",
+    deadlineLabel: "",
+    evidenceAnchor: anchor,
+    linkedRoute: null,
     draftChaseWording: `Please provide ${human}${anchorSuffix} or confirm in writing why it is not available.`,
     courtLine: "",
     whyItMatters: whyForChaseLabel(human, truthKey.offenceFamily),
-    evidenceAnchor: anchor,
+    mergedFrom: [],
   };
 }
 
@@ -319,6 +362,14 @@ export function demoAuditSafeCourtLine(truthKey: EvidenceStateTruthKey, bundleTe
       return "The defence asks the court to record per MG6C that co-defendant interview material is segregated and target defendant interview summary/audio remain outstanding.";
     case "drugs_supply":
       return "The defence asks the court to record per MG6C that message extracts are served and handle attribution report and platform extraction remain outstanding.";
+    case "fraud_financial":
+      return "The defence asks the court to record per MG6C that bank statement summaries are served but full transaction export, source banking records, and tracing material remain outstanding.";
+    case "motoring_road_traffic":
+      return "The defence asks the court to record per MG6C that procedure summary is served but device calibration, full intoxilyser record, and CCTV/dashcam export remain outstanding.";
+    case "sexual_offences":
+      return "The defence asks the court to record per MG6C that draft complainant material is served but ABE interview video, transcript, and final signed MG11 remain outstanding.";
+    case "youth_court":
+      return "The defence asks the court to record per MG6C that YJS extract is served but full pre-sentence report, vulnerability assessment, and youth interview audio remain outstanding.";
     default:
       return "The defence asks the court to record outstanding source material on MG6C and invite a disclosure timetable.";
   }
@@ -360,6 +411,18 @@ export function polishDemoAuditDoNotOverstate(
   if (truthKey.offenceFamily === "drugs_supply") {
     familyGuards.push("Do not treat handle or phone reference as proof of the defendant role without served attribution.");
   }
+  if (truthKey.offenceFamily === "fraud_financial") {
+    familyGuards.push("Do not treat bank summaries alone as proof of fraud or account attribution.");
+  }
+  if (truthKey.offenceFamily === "motoring_road_traffic") {
+    familyGuards.push("Do not treat procedure summary alone as proof of device reliability or identity.");
+  }
+  if (truthKey.offenceFamily === "sexual_offences") {
+    familyGuards.push("Do not rely on ABE or complainant account as final proof without served interview material.");
+  }
+  if (truthKey.offenceFamily === "youth_court") {
+    familyGuards.push("Do not import adult-court assumptions — youth interview and YJS material remain provisional.");
+  }
 
   const blocking = new Set((truthKey.blockingFailPatterns ?? []).map((p) => p.toLowerCase()));
 
@@ -371,6 +434,9 @@ export function polishDemoAuditDoNotOverstate(
         const l = line.toLowerCase();
         const hay = bundleText.toLowerCase();
         if (!/^do not/i.test(line) && [...blocking].some((b) => l.includes(b))) return false;
+        if (!/^do not/i.test(line) && /^(cctv confirms|cctv proves|encro proves|device reliability proved)/i.test(line)) {
+          return false;
+        }
         if (/\bbwv\b/.test(l) && !/\bbwv\b|body.?worn/.test(hay)) return false;
         if (/cctv/.test(l) && !/cctv|stills|camera/.test(hay)) return false;
         if (/encro|handle/.test(l) && !/encro|handle|platform/.test(hay)) return false;
@@ -401,7 +467,10 @@ export function polishDemoAuditWarRoom(
       "Invite the court to order disclosure by a fixed date with a review hearing.",
     ],
     collapseRisks: filterBundleFamilyWarnings(warRoom.collapseRisks, bundleText).filter(
-      (line) => !/cctv proves|guaranteed identification/i.test(line),
+      (line) =>
+        !/cctv proves|guaranteed identification|cctv confirms identity|^cctv confirms$|^encro proves|^device reliability proved$/i.test(
+          line,
+        ),
     ),
     draftWording: {
       ...warRoom.draftWording,
@@ -449,6 +518,14 @@ export function demoAuditClientSummaryParagraph(truthKey: EvidenceStateTruthKey,
       return `${intro} A co-defendant interview summary is on the papers for segregation only. Your interview summary, audio, and transcript are still outstanding and must not be confused with the co-defendant material.`;
     case "drugs_supply":
       return `${intro} Message extracts are on the papers, but the handle attribution report, platform/source extraction, and subscriber continuity material are still outstanding. The extracts alone do not prove your role or identity on the account.`;
+    case "fraud_financial":
+      return `${intro} Bank statement summaries are on the papers, but the full transaction export, source banking records, and beneficiary tracing material are still outstanding. Summaries alone do not show the full account picture.`;
+    case "motoring_road_traffic":
+      return `${intro} A breath/device procedure summary is on the papers, but calibration certificates, the full intoxilyser record, and any CCTV/dashcam export are still outstanding. Device reliability remains provisional.`;
+    case "sexual_offences":
+      return `${intro} A draft complainant statement is on the papers, but the ABE interview video, transcript, and final signed MG11 are still outstanding. We cannot rely on the served draft alone for hearing position.`;
+    case "youth_court":
+      return `${intro} A YJS report extract is on the papers, but the full pre-sentence report, vulnerability assessment, and youth interview audio are still outstanding. Your case is in the youth court and needs age-appropriate disclosure before we fix strategy.`;
     default:
       return `${intro} Some material is served and some remains outstanding on MG6C — we will update you when further disclosure arrives.`;
   }

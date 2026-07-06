@@ -1,0 +1,82 @@
+{
+  "caseId": "demo-audit-19-motoring-breath-specimen",
+  "title": "DA-19 Ryan Marsh — breath specimen / calibration missing",
+  "offenceFamily": "motoring_road_traffic",
+  "offenceWording": "Drive with excess alcohol, contrary to section 5(1)(a) of the Road Traffic Act 1988",
+  "profile": "needs_review",
+  "bundleStatus": "pdf_backed_demo",
+  "proofChainMode": "pdf_backed_controlled",
+  "evidenceItems": [
+    {
+      "evidence_item": "charge sheet",
+      "evidence_type": "charge",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "mg5",
+      "evidence_type": "mg5",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "mg6",
+      "evidence_type": "mg6",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "officer MG11",
+      "evidence_type": "mg11",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "breath/device procedure summary",
+      "evidence_type": "device",
+      "correct_evidence_state": "served",
+      "source_page_anchor": "6",
+      "chase_needed": false,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "device calibration certificate",
+      "evidence_type": "device",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "full intoxilyser record",
+      "evidence_type": "device",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "cctv/dashcam export",
+      "evidence_type": "cctv",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    }
+  ],
+  "expectedChaseItems": [
+    "device calibration certificate",
+    "full intoxilyser record",
+    "cctv/dashcam export"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "Do not treat device summary as proof of reliability",
+    "BWV shows"
+  ],
+  "blockingFailPatterns": [
+    "guaranteed conviction",
+    "device reliability proved"
+  ]
+}

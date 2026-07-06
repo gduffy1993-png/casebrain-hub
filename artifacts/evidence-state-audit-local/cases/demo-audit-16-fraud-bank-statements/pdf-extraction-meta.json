@@ -1,0 +1,61 @@
+{
+  "caseId": "demo-audit-16-fraud-bank-statements",
+  "pdfFileName": "bundle.pdf",
+  "pdfPath": "artifacts/evidence-state-audit-local/cases/demo-audit-16-fraud-bank-statements/bundle.pdf",
+  "extractedAt": "2026-07-06T09:27:21.818Z",
+  "pageCount": 9,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "label": "Cover and charge",
+      "text": "RESTRICTED — PROSECUTION DISCLOSURE BUNDLE URN: 26/DA/016 Defendant: Isla Grant Court: Financial Crime Court === SECTION: COVER_INDEX === INDEX Document | Pages | Note Charge sheet | 1 | MG5 case summary | 2-3 | MG6C disclosure schedule | 4 | Officer statement | 5 | Bank statement summaries | 6-7 | Exhibit list | 8 | Court listing | 9 | === SECTION: CHARGE === R v Isla Grant Statement of Offence: Fraud by false representation, contrary to section 1 of the Fraud Act 2006. Particulars of Offence: Between 1 May 2025 and 30 September 2025 dishonestly made false representations to obtain money from  victims."
+    },
+    {
+      "pageNumber": 2,
+      "label": "MG5 (1/2)",
+      "text": "=== SECTION: MG5 === MG05 — OFFENCE REPORT URN: 26/DA/016 Officer in case: DC Fraser 9021"
+    },
+    {
+      "pageNumber": 3,
+      "label": "MG5 (2/2)",
+      "text": "=== SECTION: MG5 === Headline Summary Bank statement summaries are served showing account movements. Full transaction export, source banking  records, and beneficiary tracing are outstanding."
+    },
+    {
+      "pageNumber": 4,
+      "label": "MG6C schedule",
+      "text": "=== SECTION: MG6 === MG6C — UNUSED MATERIAL SCHEDULE MG6C/FRD/01 — Bank statement summaries IG/BNK/01 — served on bundle. MG6C/FRD/02 — Full transaction export — outstanding — not on bundle. MG6C/FRD/03 — Source banking records — outstanding. MG6C/FRD/04 — Beneficiary tracing report — referred — not attached."
+    },
+    {
+      "pageNumber": 5,
+      "label": "Officer statement",
+      "text": "=== SECTION: OFFICER_STMT === OFFICER STATEMENT — DC Fraser 9021 Bank summaries IG/BNK/01 are served. Full transaction export and source records are NOT on bundle.  Account attribution to Isla Grant requires outstanding tracing material."
+    },
+    {
+      "pageNumber": 6,
+      "label": "Bank statement summaries (1/2)",
+      "text": "=== SECTION: BANK_RECORDS === EXHIBIT IG/BNK/01 — BANK STATEMENT SUMMARIES (served) Account reference: ****4821 (summary pages only)"
+    },
+    {
+      "pageNumber": 7,
+      "label": "Bank statement summaries (2/2)",
+      "text": "=== SECTION: BANK_RECORDS === Period: May–September 2025 Note: Summaries served. Full export and native banking records outstanding per MG6C/FRD/02–03."
+    },
+    {
+      "pageNumber": 8,
+      "label": "Exhibit list",
+      "text": "=== SECTION: EXHIBIT_LIST === EXHIBIT LIST — R v Isla Grant IG/BNK/01 — Bank statement summaries — SERVED — pages 6-7 FRD/02 — Full transaction export — NOT SERVED"
+    },
+    {
+      "pageNumber": 9,
+      "label": "Listing",
+      "text": "=== SECTION: LISTING === Case management — 8 March 2027, Financial Crime Court."
+    }
+  ],
+  "fullText": "\n\nRESTRICTED — PROSECUTION DISCLOSURE BUNDLE URN: 26/DA/016 Defendant: Isla Grant Court: Financial Crime Court === SECTION: COVER_INDEX === INDEX Document | Pages | Note Charge sheet | 1 | MG5 case summary | 2-3 | MG6C disclosure schedule | 4 | Officer statement | 5 | Bank statement summaries | 6-7 | Exhibit list | 8 | Court listing | 9 | === SECTION: CHARGE === R v Isla Grant Statement of Offence: Fraud by false representation, contrary to section 1 of the Fraud Act 2006. Particulars of Offence: Between 1 May 2025 and 30 September 2025 dishonestly made false representations to obtain money from  victims.\n\n=== SECTION: MG5 === MG05 — OFFENCE REPORT URN: 26/DA/016 Officer in case: DC Fraser 9021\n\n=== SECTION: MG5 === Headline Summary Bank statement summaries are served showing account movements. Full transaction export, source banking  records, and beneficiary tracing are outstanding.\n\n=== SECTION: MG6 === MG6C — UNUSED MATERIAL SCHEDULE MG6C/FRD/01 — Bank statement summaries IG/BNK/01 — served on bundle. MG6C/FRD/02 — Full transaction export — outstanding — not on bundle. MG6C/FRD/03 — Source banking records — outstanding. MG6C/FRD/04 — Beneficiary tracing report — referred — not attached.\n\n=== SECTION: OFFICER_STMT === OFFICER STATEMENT — DC Fraser 9021 Bank summaries IG/BNK/01 are served. Full transaction export and source records are NOT on bundle.  Account attribution to Isla Grant requires outstanding tracing material.\n\n=== SECTION: BANK_RECORDS === EXHIBIT IG/BNK/01 — BANK STATEMENT SUMMARIES (served) Account reference: ****4821 (summary pages only)\n\n=== SECTION: BANK_RECORDS === Period: May–September 2025 Note: Summaries served. Full export and native banking records outstanding per MG6C/FRD/02–03.\n\n=== SECTION: EXHIBIT_LIST === EXHIBIT LIST — R v Isla Grant IG/BNK/01 — Bank statement summaries — SERVED — pages 6-7 FRD/02 — Full transaction export — NOT SERVED\n\n=== SECTION: LISTING === Case management — 8 March 2027, Financial Crime Court.",
+  "extractionWarnings": [],
+  "canonicalComparison": {
+    "similarityRatio": 1,
+    "differsFromCanonical": false,
+    "note": "PDF extraction closely matches canonical bundle-text."
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "caseId": "demo-audit-23-duplicate-pages",
+  "title": "DA-23 Leon Marsh — duplicate index / phone pack",
+  "offenceFamily": "harassment_digital",
+  "offenceWording": "Harassment, contrary to section 2 of the Protection from Harassment Act 1997",
+  "profile": "needs_review",
+  "bundleStatus": "pdf_backed_demo",
+  "proofChainMode": "pdf_backed_controlled",
+  "evidenceItems": [
+    {
+      "evidence_item": "charge sheet",
+      "evidence_type": "charge",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "mg5",
+      "evidence_type": "mg5",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "mg6",
+      "evidence_type": "mg6",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "screenshot and message pack",
+      "evidence_type": "phone_digital",
+      "correct_evidence_state": "served",
+      "source_page_anchor": "7",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "phone extraction summary",
+      "evidence_type": "phone_digital",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "full phone download",
+      "evidence_type": "phone_digital",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "subscriber/account data",
+      "evidence_type": "phone_digital",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "device metadata",
+      "evidence_type": "phone_digital",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "complainant MG11",
+      "evidence_type": "mg11",
+      "correct_evidence_state": "incomplete",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "attribution material",
+      "evidence_type": "phone_digital",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "must_not_say": [
+        "Leon Marsh sent",
+        "defendant sent"
+      ]
+    }
+  ],
+  "expectedChaseItems": [
+    "full phone download",
+    "subscriber/account data",
+    "full message export",
+    "final signed MG11",
+    "MG6C clarification"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "defendant sent the messages",
+    "Leon Marsh sent",
+    "attribution is proved",
+    "BWV shows",
+    "CCTV proves"
+  ],
+  "blockingFailPatterns": [
+    "defendant sent each message",
+    "guaranteed"
+  ]
+}

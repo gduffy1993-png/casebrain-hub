@@ -1,0 +1,82 @@
+{
+  "caseId": "demo-audit-21-historic-sexual-abe",
+  "title": "DA-21 Daniel Pike — historic sexual / ABE missing",
+  "offenceFamily": "sexual_offences",
+  "offenceWording": "Sexual assault, contrary to section 3 of the Sexual Offences Act 2003",
+  "profile": "needs_review",
+  "bundleStatus": "pdf_backed_demo",
+  "proofChainMode": "pdf_backed_controlled",
+  "evidenceItems": [
+    {
+      "evidence_item": "charge sheet",
+      "evidence_type": "charge",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "mg5",
+      "evidence_type": "mg5",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "mg6",
+      "evidence_type": "mg6",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "complainant MG11",
+      "evidence_type": "mg11",
+      "correct_evidence_state": "incomplete",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "ABE interview video",
+      "evidence_type": "abe",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "ABE interview transcript",
+      "evidence_type": "abe",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "third-party counselling notes",
+      "evidence_type": "mg11",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "final signed MG11",
+      "evidence_type": "mg11",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    }
+  ],
+  "expectedChaseItems": [
+    "ABE interview video",
+    "ABE interview transcript",
+    "final signed MG11",
+    "third-party counselling notes"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "ABE proves guilt",
+    "complainant proved",
+    "BWV shows"
+  ],
+  "blockingFailPatterns": [
+    "guaranteed conviction"
+  ]
+}

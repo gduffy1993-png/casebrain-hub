@@ -1,0 +1,82 @@
+{
+  "caseId": "demo-audit-17-fraud-transaction-export",
+  "title": "DA-17 Caleb Moss — fraud / tracing export referred",
+  "offenceFamily": "fraud_financial",
+  "offenceWording": "Fraud by false representation, contrary to section 1 of the Fraud Act 2006",
+  "profile": "needs_review",
+  "bundleStatus": "pdf_backed_demo",
+  "proofChainMode": "pdf_backed_controlled",
+  "evidenceItems": [
+    {
+      "evidence_item": "charge sheet",
+      "evidence_type": "charge",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "mg5",
+      "evidence_type": "mg5",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "mg6",
+      "evidence_type": "mg6",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "bank statement summaries",
+      "evidence_type": "financial",
+      "correct_evidence_state": "served",
+      "source_page_anchor": "6",
+      "chase_needed": false,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "officer statement",
+      "evidence_type": "mg11",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "full transaction export",
+      "evidence_type": "financial",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "source banking records",
+      "evidence_type": "financial",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "beneficiary tracing report",
+      "evidence_type": "financial",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    }
+  ],
+  "expectedChaseItems": [
+    "full transaction export",
+    "source banking records",
+    "beneficiary tracing report"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "fraud proved from summaries alone",
+    "BWV shows",
+    "CCTV proves"
+  ],
+  "blockingFailPatterns": [
+    "guaranteed fraud"
+  ]
+}

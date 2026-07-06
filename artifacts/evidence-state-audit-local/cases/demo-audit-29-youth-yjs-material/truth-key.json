@@ -1,0 +1,82 @@
+{
+  "caseId": "demo-audit-29-youth-yjs-material",
+  "title": "DA-29 Marcus Reid — youth YJS vulnerability referred",
+  "offenceFamily": "youth_court",
+  "offenceWording": "Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968",
+  "profile": "needs_review",
+  "bundleStatus": "pdf_backed_demo",
+  "proofChainMode": "pdf_backed_controlled",
+  "evidenceItems": [
+    {
+      "evidence_item": "charge sheet",
+      "evidence_type": "charge",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "mg5",
+      "evidence_type": "mg5",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "mg6",
+      "evidence_type": "mg6",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "officer statement",
+      "evidence_type": "mg11",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true
+    },
+    {
+      "evidence_item": "YJS report extract",
+      "evidence_type": "yjs",
+      "correct_evidence_state": "served",
+      "source_page_anchor": "6",
+      "chase_needed": false,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "full YJS pre-sentence report",
+      "evidence_type": "yjs",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "vulnerability assessment",
+      "evidence_type": "yjs",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    },
+    {
+      "evidence_item": "youth interview audio",
+      "evidence_type": "interview",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false
+    }
+  ],
+  "expectedChaseItems": [
+    "full YJS pre-sentence report",
+    "vulnerability assessment",
+    "youth interview audio"
+  ],
+  "expectedSendability": "provisional_check_source",
+  "mustNotSayGlobal": [
+    "youth guilt proved",
+    "BWV shows",
+    "full interview shows"
+  ],
+  "blockingFailPatterns": [
+    "guaranteed conviction"
+  ]
+}
