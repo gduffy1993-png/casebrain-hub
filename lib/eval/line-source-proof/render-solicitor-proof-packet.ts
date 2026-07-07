@@ -490,7 +490,7 @@ function isDemoAuditPositiveLine(line: LineSourceProofRecord, report: LineSource
   if (line.verdict === "FAIL") return false;
   if (line.proofChainStatus === "pdf_and_text_support_output") return true;
   if (!report.caseId.startsWith("demo-audit-")) return false;
-  return Boolean(line.pdfPageAvailable && line.extractedSnippet && line.verdict !== "FAIL");
+  return Boolean(line.pdfPageAvailable && line.extractedSnippet);
 }
 
 function positiveSummaryFromText(raw: string, bundleHay: string): string | null {
@@ -719,6 +719,7 @@ function pickSoftened(report: LineSourceProofReport): SolicitorProofPacketItem[]
     if (seen.has(key)) continue;
     seen.add(key);
     out.push({
+      text: final,
       raw,
       final,
       reason: cleanReason(r.solicitorFriendlyExplanation || r.reason || "Wording softened to match source support."),

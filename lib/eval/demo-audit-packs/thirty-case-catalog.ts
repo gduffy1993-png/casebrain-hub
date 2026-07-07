@@ -524,7 +524,9 @@ const DEMO_AUDIT_FIVE_OFFENCE_FAMILIES: Record<string, string> = {
 export const DEMO_AUDIT_OFFENCE_FAMILY_BY_CASE: Record<string, string> = {
   ...DEMO_AUDIT_FIVE_OFFENCE_FAMILIES,
   ...Object.fromEntries(
-    DEMO_AUDIT_GENERATED_CASES.map((p) => [p.spec.id, p.truthKey.offenceFamily] as const),
+    DEMO_AUDIT_GENERATED_CASES.filter((p) => Boolean(p.truthKey.offenceFamily)).map(
+      (p) => [p.spec.id, p.truthKey.offenceFamily as string] as const,
+    ),
   ),
 };
 
