@@ -52,7 +52,17 @@ export function polishPresentationLine(line: string, bundleHay = ""): string {
   let t = line.trim();
   if (!t) return t;
 
-  if (isDigitalHarassmentBundleHay(bundleHay)) {
+  const digitalContext = isDigitalHarassmentBundleHay(bundleHay || t);
+  if (digitalContext) {
+    t = t.replace(
+      /attribution\s*\/\s*second[-\s]?male\s*\/\s*source-material pressure/gi,
+      "Digital attribution / phone harassment pressure",
+    );
+    t = t.replace(
+      /attribution\s*\/\s*sender attribution\s*\/\s*source-material pressure/gi,
+      "Digital attribution / phone harassment pressure",
+    );
+    t = t.replace(/\bsecond[-\s]?male involvement\b/gi, "sender attribution");
     t = t.replace(
       /attribution material,\s*phone ownership,\s*vehicle ownership,\s*and role evidence/gi,
       "full phone download, subscriber attribution data, and complainant statement status",
@@ -67,6 +77,10 @@ export function polishPresentationLine(line: string, bundleHay = ""): string {
       /mg6\s*\/\s*unused schedule clarification/gi,
       "full phone download / source export",
     );
+    t = t.replace(
+      /\bunused schedule clarification\b/gi,
+      "digital disclosure schedule item",
+    );
   }
 
   t = t
@@ -79,6 +93,32 @@ export function polishPresentationLine(line: string, bundleHay = ""): string {
     );
 
   return t.replace(/\s{2,}/g, " ").trim();
+}
+
+/**
+ * UI-only text block cleanup for demo-facing previews/copy surfaces.
+ * Keeps the underlying builders intact; removes off-family/template lines from what a solicitor sees.
+ */
+export function polishPresentationBlock(text: string, bundleHay = ""): string {
+  const context = `${bundleHay} ${text}`;
+  const digitalContext = isDigitalHarassmentBundleHay(context);
+  const offFamilyForDigital: BundleFamily[] = ["bwv", "custody", "drugs", "cctv", "cad", "encro", "abe"];
+  const lines = text
+    .split(/\r?\n/)
+    .map((line) => line.trimEnd())
+    .filter((line) => {
+      if (!digitalContext) return true;
+      if (lineMentionsWrongFamilyTemplate(line, context)) return false;
+      return !offFamilyForDigital.some((family) => lineMentionsFamily(line, family));
+    });
+  const filtered = filterBundleFamilyWarnings(lines, bundleHay || context)
+    .map((line) => polishPresentationLine(line, context))
+    .filter((line) => line && !/No key gaps listed/i.test(line));
+
+  return filtered
+    .join("\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
 }
 
 type ChaseDisplayItem = {
@@ -139,7 +179,18 @@ export function displayChaseBulletLine(line: string): string {
   const fakeItem = { label: line.split(" — ")[0] ?? line, whyItMatters: line };
   const core = displayChaseCardLabel(fakeItem);
   const why = line.includes(" — ") ? line.split(" — ").slice(1).join(" — ").trim() : "";
-  return why ? `${core} — ${why}` : core;
+  return polishPresentationLine(why ? `${core} — ${why}` : core, line);
+}
+
+export function displayChaseItemText(text: string | null | undefined, item: ChaseDisplayItem): string {
+  const context = digitalHay(item);
+  const raw = text ?? "";
+  const [filtered] = filterBundleFamilyWarnings([raw], context);
+  if (raw.trim() && !filtered) {
+    const fallback = digitalChaseLabel(context);
+    return fallback ? `${fallback} — solicitor review.` : "";
+  }
+  return polishPresentationLine(filtered ?? raw, context);
 }
 
 type BundleFamily = "bwv" | "custody" | "drugs" | "cctv" | "cad" | "encro" | "abe";

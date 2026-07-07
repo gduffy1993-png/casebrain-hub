@@ -10,6 +10,7 @@ import { displayCopyBody } from "@/lib/criminal/five-answers/display-labels";
 import type { ExportPackModel, ExportPackSectionId } from "@/lib/criminal/export-pack/types";
 import { workflowPilotCard, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
 import { softenPilotReviewCopy } from "@/components/criminal/workflow/pilotReviewCopy";
+import { polishPresentationBlock } from "@/lib/criminal/demo-presentation-polish";
 
 const COPY_SECTIONS: ExportPackSectionId[] = [
   "cps_chase",
@@ -53,12 +54,13 @@ export function ExportPackPanel({
   hideDoNotOverstatePreview?: boolean;
 }) {
   const [copiedId, setCopiedId] = useState<ExportPackSectionId | "full_pack" | null>(null);
+  const packContext = model.sections.map((s) => s.textForClipboard).join("\n");
 
   const copySection = async (id: ExportPackSectionId | "full_pack") => {
     const section = model.sections.find((s) => s.id === id);
     if (!section?.canCopy) return;
     try {
-      await navigator.clipboard.writeText(section.textForClipboard);
+      await navigator.clipboard.writeText(polishPresentationBlock(section.textForClipboard, packContext));
       setCopiedId(id);
       setTimeout(() => setCopiedId(null), 2000);
     } catch {
@@ -120,7 +122,8 @@ export function ExportPackPanel({
         {COPY_SECTIONS.map((id) => {
           const section = model.sections.find((s) => s.id === id);
           if (!section) return null;
-          const preview = displayCopyBody(section.textForClipboard).slice(0, 200);
+          const displayText = polishPresentationBlock(section.textForClipboard, packContext);
+          const preview = displayCopyBody(displayText).slice(0, 200);
           return (
             <div
               key={id}
@@ -141,7 +144,7 @@ export function ExportPackPanel({
               </div>
               <p className="text-[11px] text-slate-400 leading-relaxed flex-1 whitespace-pre-wrap">
                 {preview}
-                {section.textForClipboard.length > 200 ? "…" : ""}
+                {displayText.length > 200 ? "…" : ""}
               </p>
               <Button
                 type="button"
@@ -163,7 +166,8 @@ export function ExportPackPanel({
         if (hideDoNotOverstatePreview) return null;
         const dno = model.sections.find((s) => s.id === "do_not_overstate");
         if (!dno) return null;
-        const preview = displayCopyBody(dno.textForClipboard).slice(0, 280);
+        const displayText = polishPresentationBlock(dno.textForClipboard, packContext);
+        const preview = displayCopyBody(displayText).slice(0, 280);
         return (
           <div
             className="rounded-md border border-amber-500/25 bg-amber-950/15 px-3 py-2.5 space-y-2"
@@ -180,7 +184,7 @@ export function ExportPackPanel({
             </div>
             <p className="text-[11px] text-slate-400 leading-relaxed whitespace-pre-wrap line-clamp-4">
               {preview}
-              {dno.textForClipboard.length > 280 ? "…" : ""}
+              {displayText.length > 280 ? "…" : ""}
             </p>
             <Button
               type="button"

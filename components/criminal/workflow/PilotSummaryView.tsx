@@ -13,7 +13,12 @@ import { buildCopySafeResult } from "@/lib/criminal/trust/copy-safe";
 import { usePilotMatterTabHref } from "./pilotDeskNavContext";
 import { useMatterBrief } from "./useMatterBrief";
 import { workflowPilotCard, workflowSectionTitle } from "./workflowUi";
-import { displayChaseBulletLine, filterBundleFamilyWarnings, polishPresentationLine } from "@/lib/criminal/demo-presentation-polish";
+import {
+  displayChaseBulletLine,
+  filterBundleFamilyWarnings,
+  polishPresentationBlock,
+  polishPresentationLine,
+} from "@/lib/criminal/demo-presentation-polish";
 import { displayPilotStripCharge, displayPilotStripClient } from "./workflowPilotDisplay";
 
 export type PilotSummaryViewProps = {
@@ -29,21 +34,23 @@ function MatterBriefSectionBlock({
   bullets,
   sourceState = "provisional",
   polishChaseBullets = false,
+  bundleHay = "",
 }: {
   title: string;
   paragraph?: string;
   bullets?: string[];
   sourceState?: "provisional" | "needs_review" | "not_safely_confirmed";
   polishChaseBullets?: boolean;
+  bundleHay?: string;
 }) {
   const displayBullets = polishChaseBullets
-    ? (bullets ?? []).map((b) => polishPresentationLine(displayChaseBulletLine(b)))
-    : bullets?.map((b) => polishPresentationLine(b));
+    ? (bullets ?? []).map((b) => polishPresentationLine(displayChaseBulletLine(b), bundleHay))
+    : bullets?.map((b) => polishPresentationLine(b, bundleHay));
   return (
     <section className={`${workflowPilotCard} px-4 py-3 space-y-2`}>
       <TrustSectionChrome title={title} sourceState={sourceState} />
       {paragraph ? (
-        <p className="text-sm text-slate-300 leading-relaxed">{polishPresentationLine(paragraph)}</p>
+        <p className="text-sm text-slate-300 leading-relaxed">{polishPresentationLine(paragraph, bundleHay)}</p>
       ) : null}
       {displayBullets?.length ? (
         <ul className="list-disc pl-4 space-y-1.5 text-xs text-slate-400">
@@ -91,9 +98,9 @@ export function PilotSummaryView({
       clientSection?.paragraph,
       ...(clientSection?.bullets ?? []),
     ].filter(Boolean);
-    if (parts.length) return parts.join("\n\n");
-    return matterBrief.plainText.slice(0, 4000);
-  }, [matterBrief]);
+    if (parts.length) return polishPresentationBlock(parts.join("\n\n"), bundleHay);
+    return polishPresentationBlock(matterBrief.plainText.slice(0, 4000), bundleHay);
+  }, [matterBrief, bundleHay]);
 
   const clientCopy = useMemo(
     () =>
@@ -176,6 +183,7 @@ export function PilotSummaryView({
               bullets={section.bullets}
               sourceState={section.id === "client" ? "provisional" : "needs_review"}
               polishChaseBullets={section.id === "chase"}
+              bundleHay={bundleHay}
             />
           ))}
 

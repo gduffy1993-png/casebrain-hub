@@ -70,6 +70,7 @@ import { loadClientStressSelection } from "@/lib/criminal/client-stress-test/cli
 import {
   displayChaseBulletLine,
   filterBundleFamilyWarnings,
+  polishPresentationLine,
 } from "@/lib/criminal/demo-presentation-polish";
 
 const ABOVE_FOLD_LIST_CAP = 5;
@@ -245,7 +246,16 @@ function DraftBlock({ title, text }: { title: string; text: string }) {
   );
 }
 
-function PilotWarRoomMoreDetail({ brief }: { brief: HearingWarRoomBrief }) {
+function PilotWarRoomMoreDetail({ brief, bundleHay = "" }: { brief: HearingWarRoomBrief; bundleHay?: string }) {
+  const sayThis = filterBundleFamilyWarnings(brief.sayThis, bundleHay).map((line) =>
+    polishPresentationLine(line, bundleHay),
+  );
+  const doNotOverstate = filterBundleFamilyWarnings(brief.doNotOverstate, bundleHay).map((line) =>
+    polishPresentationLine(line, bundleHay),
+  );
+  const collapseRisks = filterBundleFamilyWarnings(brief.collapseRisks, bundleHay).map((line) =>
+    polishPresentationLine(line, bundleHay),
+  );
   return (
     <section className={workflowCard}>
       <header className="px-4 py-2.5 border-b border-slate-100 flex items-center gap-2 bg-slate-50/80">
@@ -254,17 +264,17 @@ function PilotWarRoomMoreDetail({ brief }: { brief: HearingWarRoomBrief }) {
       </header>
       <div className="p-4 space-y-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <BriefListCard title="Say this" icon={<Mic className="h-4 w-4 text-blue-700" />} items={brief.sayThis} tone="court" />
-          <BriefListCard title="Do not overstate" icon={<Ban className="h-4 w-4 text-amber-700" />} items={brief.doNotOverstate} tone="warn" />
+          <BriefListCard title="Say this" icon={<Mic className="h-4 w-4 text-blue-700" />} items={sayThis} tone="court" />
+          <BriefListCard title="Do not overstate" icon={<Ban className="h-4 w-4 text-amber-700" />} items={doNotOverstate} tone="warn" />
         </div>
-        {brief.collapseRisks.length > 0 ? (
+        {collapseRisks.length > 0 ? (
           <div>
             <p className={`${workflowSectionTitle} flex items-center gap-1 text-amber-800/90`}>
               <AlertTriangle className="h-3.5 w-3.5" />
               Collapse risks (review — do not state as outcomes)
             </p>
             <ul className="mt-2 text-sm text-slate-800 list-disc pl-4 space-y-1">
-              {brief.collapseRisks.map((r, i) => (
+              {collapseRisks.map((r, i) => (
                 <li key={i}>{r}</li>
               ))}
             </ul>
@@ -620,6 +630,15 @@ export function HearingWarRoom({
     const filteredDno = filterBundleFamilyWarnings(brief.doNotOverstate, bundleContextHay);
     const filteredRisks = filterBundleFamilyWarnings(brief.collapseRisks, bundleContextHay);
     const filteredChase = filterBundleFamilyWarnings(chaseItemsAll, bundleContextHay).map(displayChaseBulletLine);
+    const filteredSayThis = filterBundleFamilyWarnings(brief.sayThis, bundleContextHay).map((line) =>
+      polishPresentationLine(line, bundleContextHay),
+    );
+    const filteredAskCourt = filterBundleFamilyWarnings(brief.askCourtToRecord, bundleContextHay).map((line) =>
+      polishPresentationLine(line, bundleContextHay),
+    );
+    const filteredNextMoves = filterBundleFamilyWarnings(brief.nextHearingMoves, bundleContextHay).map((line) =>
+      polishPresentationLine(line, bundleContextHay),
+    );
     return {
       caseSummary: {
         clientLabel,
@@ -631,12 +650,12 @@ export function HearingWarRoom({
       },
       readiness: brief.readiness,
       positionStatus: brief.positionStatus,
-      safeCourtLine: brief.safePositionToday,
-      sayThis: brief.sayThis,
+      safeCourtLine: polishPresentationLine(brief.safePositionToday, bundleContextHay),
+      sayThis: filteredSayThis,
       doNotOverstate: filteredDno,
-      askCourtToRecord: brief.askCourtToRecord,
+      askCourtToRecord: filteredAskCourt,
       collapseRisks: filteredRisks,
-      nextHearingMoves: brief.nextHearingMoves,
+      nextHearingMoves: filteredNextMoves,
       chaseItems: filteredChase,
       documentCount: Math.max(bundleSource?.documentCount ?? 0, snapshot?.analysis.docCount ?? 0),
     };
@@ -674,11 +693,11 @@ export function HearingWarRoom({
                 <BriefListCard
                   title="Ask court to record"
                   icon={<Scale className="h-4 w-4 text-blue-700" />}
-                  items={brief.askCourtToRecord}
+                  items={pilotTodayView.askCourtToRecord}
                   tone="court"
                   previewCount={3}
                 />
-                <PilotWarRoomMoreDetail brief={brief} />
+                <PilotWarRoomMoreDetail brief={brief} bundleHay={bundleContextHay} />
               </>
             }
           />
@@ -787,7 +806,7 @@ export function HearingWarRoom({
                     tone="court"
                     previewCount={3}
                   />
-                  <PilotWarRoomMoreDetail brief={brief} />
+                  <PilotWarRoomMoreDetail brief={brief} bundleHay={bundleContextHay} />
                 </>
               }
             />

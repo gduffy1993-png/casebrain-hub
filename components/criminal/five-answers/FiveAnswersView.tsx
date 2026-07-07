@@ -127,21 +127,28 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
     bundleMeta,
   } = useMatterBrief(caseId);
   const buildTabHref = usePilotMatterTabHref();
+  const bundleHay = useMemo(
+    () =>
+      [
+        bundleMeta?.frontMatterScan ?? "",
+        allegation ?? "",
+        ...(chase?.primaryItems ?? []).map((i) => `${i.label} ${i.whyItMatters ?? ""}`),
+      ].join(" "),
+    [bundleMeta?.frontMatterScan, allegation, chase?.primaryItems],
+  );
+  const filteredDoNotOverstate = useMemo(
+    () => filterBundleFamilyWarnings(doNotOverstate, bundleHay),
+    [doNotOverstate, bundleHay],
+  );
 
   const view = useMemo(() => {
     if (!warRoom || !chase) return null;
-    const bundleHay = [
-      bundleMeta?.frontMatterScan ?? "",
-      allegation ?? "",
-      ...(chase.primaryItems ?? []).map((i) => `${i.label} ${i.whyItMatters ?? ""}`),
-    ].join(" ");
-
     const built = buildFiveAnswersView({
       allegation: allegation ?? "",
       warRoom,
       chase,
       matterConfidence,
-      doNotOverstate: filterBundleFamilyWarnings(doNotOverstate, bundleHay),
+      doNotOverstate: filteredDoNotOverstate,
       bundleText: bundleMeta?.frontMatterScan ?? undefined,
     });
 
@@ -156,7 +163,7 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
       evidenceState: { ...built.evidenceState, rows: gapRows },
       mustNotOverstate: built.mustNotOverstate.map((line) => polishPresentationLine(line, bundleHay)),
     };
-  }, [warRoom, chase, allegation, matterConfidence, doNotOverstate, bundleMeta?.frontMatterScan]);
+  }, [warRoom, chase, allegation, matterConfidence, filteredDoNotOverstate, bundleMeta?.frontMatterScan, bundleHay]);
 
   const decisionBoard = useMemo(() => {
     if (!briefPlan || !warRoom || !chase) return null;
@@ -165,9 +172,9 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
       warRoom,
       chase,
       matterConfidence,
-      doNotOverstate,
+      doNotOverstate: filteredDoNotOverstate,
     });
-  }, [briefPlan, warRoom, chase, matterConfidence, doNotOverstate]);
+  }, [briefPlan, warRoom, chase, matterConfidence, filteredDoNotOverstate]);
 
   const hearingMode = useMemo(() => {
     if (!briefPlan || !warRoom || !chase) return null;
@@ -177,8 +184,8 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
       warRoom,
       chase,
       matterConfidence,
-      doNotOverstate,
-      primaryRouteTitle,
+      doNotOverstate: filteredDoNotOverstate,
+      primaryRouteTitle: primaryRouteTitle ? polishPresentationLine(primaryRouteTitle, bundleHay) : primaryRouteTitle,
       documentCount: bundleMeta?.documentCount ?? 0,
     });
   }, [
@@ -187,9 +194,10 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
     chase,
     allegation,
     matterConfidence,
-    doNotOverstate,
+    filteredDoNotOverstate,
     primaryRouteTitle,
     bundleMeta?.documentCount,
+    bundleHay,
   ]);
 
   const exportPack = useMemo(() => {
@@ -205,8 +213,8 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
       chase,
       briefPlan,
       matterConfidence,
-      doNotOverstate,
-      primaryRouteTitle,
+      doNotOverstate: filteredDoNotOverstate,
+      primaryRouteTitle: primaryRouteTitle ? polishPresentationLine(primaryRouteTitle, bundleHay) : primaryRouteTitle,
       appVersion,
     });
   }, [
@@ -216,8 +224,9 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
     allegation,
     briefPlan,
     matterConfidence,
-    doNotOverstate,
+    filteredDoNotOverstate,
     primaryRouteTitle,
+    bundleHay,
   ]);
 
   const bundleThin = (bundleMeta?.documentCount ?? 0) <= 1;
@@ -241,7 +250,7 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
 
   const served = servedRows(view.evidenceState.rows);
   const gaps = gapRows(view.evidenceState.rows);
-  const topChase = view.chase.slice(0, 5).map((c) => c.label);
+  const topChase = view.chase.slice(0, 5).map((c) => polishPresentationLine(c.label, bundleHay));
   const hasWarningsAbove = view.mustNotOverstate.length > 0;
 
   const answerSummaries = [
@@ -270,7 +279,7 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
             .slice(0, 2)
             .map((r) => `${humanizeEvidenceLabel(r.label, r.existence)} (${displayExistenceLabel(r.existence)})`)
             .join("; ")
-        : "No key gaps listed.",
+        : "No additional gaps shown in this preview.",
       testId: "five-answers-evidence-gaps",
     },
     {
@@ -363,7 +372,7 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
                 ))}
               </ul>
             ) : (
-              <p className="text-sm text-slate-400">No key gaps listed — still check papers before reliance.</p>
+              <p className="text-sm text-slate-400">No additional gaps shown here — still check papers before reliance.</p>
             )}
           </AnswerCard>
 

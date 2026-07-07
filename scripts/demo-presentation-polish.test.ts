@@ -3,7 +3,10 @@ import assert from "node:assert/strict";
 import {
   displayChaseBulletLine,
   displayChaseCardLabel,
+  displayChaseItemText,
   filterBundleFamilyWarnings,
+  polishPresentationBlock,
+  polishPresentationLine,
 } from "../lib/criminal/demo-presentation-polish";
 
 const taylorHay =
@@ -42,5 +45,35 @@ assert.ok(!filtered.some((l) => /drug continuity/i.test(l)));
 assert.ok(filtered.some((l) => /attribution|messages/i.test(l)));
 
 assert.match(displayChaseBulletLine("MG6 / unused schedule clarification — Attribution"), /phone|subscriber|message|digital/i);
+
+const courtLine = polishPresentationLine(
+  "Attribution / second male / source-material pressure: second-male involvement remains conditional on served bank/device material.",
+  taylorHay,
+);
+assert.equal(courtLine, "Digital attribution / phone harassment pressure: sender attribution remains conditional on served message export material.");
+
+const detailText = displayChaseItemText(
+  "MG6 / unused schedule clarification may affect CAD/999 timing.",
+  {
+    label: "MG6 / unused schedule clarification",
+    mergedFrom: ["MG6C/001 — Phone extraction — summary only"],
+    whyItMatters: "Phone harassment attribution",
+  },
+);
+assert.ok(!/MG6 \/ unused|mG6|CAD\/999/i.test(detailText));
+assert.match(detailText, /phone|digital|source/i);
+
+const exportPreview = polishPresentationBlock(
+  [
+    "MG6 / unused schedule clarification",
+    "Do not import BWV unless the papers support it.",
+    "Do not import custody safeguards unless the papers support it.",
+    "Do not import drugs continuity unless the papers support it.",
+    "Do not state the defendant sent messages unless attribution is served and safe.",
+  ].join("\n"),
+  taylorHay,
+);
+assert.ok(!/MG6 \/ unused|BWV|custody safeguards|drugs continuity/i.test(exportPreview));
+assert.match(exportPreview, /phone|digital|attribution|messages/i);
 
 console.log("demo-presentation-polish.test.ts: PASS");

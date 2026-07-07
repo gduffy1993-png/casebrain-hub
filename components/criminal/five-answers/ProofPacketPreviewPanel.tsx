@@ -101,7 +101,7 @@ export function ProofPacketPreviewPanel({
               ))}
             </ul>
           ) : (
-            <p className="mt-2 text-xs text-slate-400">No key gaps listed on this preview.</p>
+            <p className="mt-2 text-xs text-slate-400">No additional gaps shown on this preview.</p>
           )}
         </div>
       </div>

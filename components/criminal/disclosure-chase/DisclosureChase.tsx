@@ -56,7 +56,7 @@ import {
   pilotDisclosureChaseStorageKey,
   shouldShowInternalDevTools,
 } from "@/lib/pilot-mode";
-import { displayChaseCardLabel } from "@/lib/criminal/demo-presentation-polish";
+import { displayChaseCardLabel, displayChaseItemText } from "@/lib/criminal/demo-presentation-polish";
 import { createClient } from "@/lib/supabase/browser";
 
 const LOCAL_STORAGE_PREFIX = "casebrain:disclosure-chase:";
@@ -210,6 +210,9 @@ function ChaseItemCard({
   const valueClass = pilotEmbed ? "text-slate-200 font-medium" : "text-slate-800 font-medium";
 
   const displayLabel = displayChaseCardLabel(item);
+  const displayWhy = displayChaseItemText(item.whyItMatters, item);
+  const displayDraft = displayChaseItemText(item.draftChaseWording, item);
+  const displayCourt = displayChaseItemText(item.courtLine, item);
 
   const itemSourceState = inferChaseItemSourceState({
     label: item.label,
@@ -218,13 +221,13 @@ function ChaseItemCard({
     evidenceAnchor: item.evidenceAnchor,
   });
   const cpsCopy = buildCopySafeResult({
-    text: item.draftChaseWording,
+    text: displayDraft || item.draftChaseWording,
     kind: "cps_chase",
     sourceState: itemSourceState,
     sourceLabel: item.source,
   });
   const courtCopy = buildCopySafeResult({
-    text: item.courtLine,
+    text: displayCourt || item.courtLine,
     kind: "court_line",
     sourceState: itemSourceState,
     sourceLabel: item.source,
@@ -253,7 +256,7 @@ function ChaseItemCard({
       <div className={`px-4 py-3 border-b ${pilotEmbed ? "border-slate-700/60" : "border-slate-100"} flex flex-wrap items-start justify-between gap-2`}>
         <div className="min-w-0">
           <h3 className={titleClass}>{displayLabel}</h3>
-          <p className={`${bodyClass} mt-1 line-clamp-2`}>{item.whyItMatters}</p>
+          <p className={`${bodyClass} mt-1 line-clamp-2`}>{displayWhy || item.whyItMatters}</p>
         </div>
         <Badge variant={statusBadgeVariant(status)} size="sm">
           {status}
@@ -335,6 +338,13 @@ function DetailPanel({
   const bodyClass = pilotEmbed ? "text-sm text-slate-300" : "text-sm text-slate-800";
   const labelClass = pilotEmbed ? "text-slate-500" : "text-slate-500";
   const displayLabel = displayChaseCardLabel(item);
+  const displayWhy = displayChaseItemText(item.whyItMatters, item);
+  const displaySource = displayChaseItemText(item.source, item);
+  const displayRoute = displayChaseItemText(item.linkedRoute, item);
+  const displayAnchor = displayChaseItemText(item.evidenceAnchor, item);
+  const displayDraft = displayChaseItemText(item.draftChaseWording, item);
+  const displayCourt = displayChaseItemText(item.courtLine, item);
+  const displaySafeCourtLine = displayChaseItemText(brief.safeCourtLine, item);
   return (
     <aside className={`${shell} sticky top-4`}>
       <header
@@ -348,12 +358,12 @@ function DetailPanel({
       <div className={`p-4 space-y-4 ${bodyClass}`}>
         <div>
           <p className={workflowSectionTitle}>Why it matters</p>
-          <p className="mt-1 leading-relaxed">{item.whyItMatters}</p>
+          <p className="mt-1 leading-relaxed">{displayWhy || item.whyItMatters}</p>
         </div>
         <div className="grid grid-cols-1 gap-2 text-xs">
           <p>
             <span className="text-slate-500">Source: </span>
-            {item.source}
+            {displaySource || item.source}
           </p>
           <p>
             <span className="text-slate-500">Deadline: </span>
@@ -364,7 +374,7 @@ function DetailPanel({
               <span className="text-slate-500">
                 {isCriminalPilotMode() ? "Linked route: " : "Battleboard route: "}
               </span>
-              {item.linkedRoute}
+              {displayRoute || item.linkedRoute}
             </p>
           )}
         </div>
@@ -373,7 +383,7 @@ function DetailPanel({
             <p className={workflowSectionTitle}>Merged from file</p>
             <ul className="mt-1 text-xs text-slate-600 list-disc pl-4 space-y-0.5">
               {item.mergedFrom.map((m, i) => (
-                <li key={i}>{m}</li>
+                <li key={i}>{displayChaseItemText(m, item) || m}</li>
               ))}
             </ul>
           </div>
@@ -381,7 +391,7 @@ function DetailPanel({
         {item.evidenceAnchor && (
           <div>
             <p className={workflowSectionTitle}>Evidence anchor</p>
-            <p className="mt-1 text-xs leading-relaxed">{item.evidenceAnchor}</p>
+            <p className="mt-1 text-xs leading-relaxed">{displayAnchor || item.evidenceAnchor}</p>
           </div>
         )}
         <div>
@@ -391,7 +401,7 @@ function DetailPanel({
               pilotEmbed ? "border-slate-600 text-slate-400" : "border-slate-200"
             }`}
           >
-            {item.draftChaseWording}
+            {displayDraft || item.draftChaseWording}
           </p>
         </div>
         <div>
@@ -401,7 +411,7 @@ function DetailPanel({
               pilotEmbed ? "border-blue-700/60 text-slate-400" : "border-blue-200"
             }`}
           >
-            {item.courtLine}
+            {displayCourt || item.courtLine}
           </p>
         </div>
         {!hideChaseStateActions ? (
@@ -416,7 +426,7 @@ function DetailPanel({
           </div>
         ) : null}
         <p className={`text-[10px] border-t pt-3 ${pilotEmbed ? "text-slate-500 border-slate-700/60" : "text-slate-500 border-slate-100"}`}>
-          Case-wide court line (provisional): {brief.safeCourtLine}
+          Case-wide court line (provisional): {displaySafeCourtLine || brief.safeCourtLine}
         </p>
       </div>
     </aside>
