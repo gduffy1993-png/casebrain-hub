@@ -16,6 +16,8 @@ export type BuildFiveAnswersViewInput = {
   chase: DisclosureChaseBrief;
   matterConfidence: MatterConfidenceResult | null;
   doNotOverstate: string[];
+  truthKey?: import("@/lib/eval/evidence-state-audit/types").EvidenceStateTruthKey;
+  bundleText?: string;
 };
 
 function nextActionFromConfidence(confidence: MatterConfidenceResult | null): string {
@@ -48,6 +50,8 @@ export function buildFiveAnswersView(input: BuildFiveAnswersViewInput): FiveAnsw
     chase,
     allegation,
     doNotOverstate,
+    truthKey: input.truthKey,
+    bundleText: input.bundleText,
   });
 
   const chaseRows: FiveAnswersChaseRow[] = chase.primaryItems.slice(0, 5).map((item) => {
