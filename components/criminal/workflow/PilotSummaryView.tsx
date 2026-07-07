@@ -44,13 +44,16 @@ function MatterBriefSectionBlock({
   bundleHay?: string;
 }) {
   const displayBullets = polishChaseBullets
-    ? (bullets ?? []).map((b) => polishPresentationLine(displayChaseBulletLine(b), bundleHay))
-    : bullets?.map((b) => polishPresentationLine(b, bundleHay));
+    ? filterBundleFamilyWarnings(bullets ?? [], bundleHay).map((b) =>
+        polishPresentationLine(displayChaseBulletLine(b), bundleHay),
+      )
+    : filterBundleFamilyWarnings(bullets ?? [], bundleHay).map((b) => polishPresentationLine(b, bundleHay));
+  const displayParagraph = paragraph ? polishPresentationBlock(paragraph, bundleHay) : "";
   return (
     <section className={`${workflowPilotCard} px-4 py-3 space-y-2`}>
       <TrustSectionChrome title={title} sourceState={sourceState} />
-      {paragraph ? (
-        <p className="text-sm text-slate-300 leading-relaxed">{polishPresentationLine(paragraph, bundleHay)}</p>
+      {displayParagraph ? (
+        <p className="text-sm text-slate-300 leading-relaxed">{displayParagraph}</p>
       ) : null}
       {displayBullets?.length ? (
         <ul className="list-disc pl-4 space-y-1.5 text-xs text-slate-400">

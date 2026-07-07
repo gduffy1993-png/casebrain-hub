@@ -26,6 +26,15 @@ export function isDigitalHarassmentBundleHay(bundleHay: string, allegation = "")
   );
 }
 
+function isDigitalDisclosureHay(bundleHay: string, allegation = ""): boolean {
+  const hay = `${allegation} ${bundleHay}`.toLowerCase();
+  return (
+    isDigitalHarassmentBundleHay(bundleHay, allegation) ||
+    /phone|message|whatsapp|sms|subscriber|attribution|mg11|extraction|handset|source export|digital disclosure|device metadata/i.test(hay) ||
+    /mg6\s*\/\s*unused|unused schedule clarification/i.test(hay)
+  );
+}
+
 /** Replace adversarial QA bundle banners in file preview — keeps fictional disclaimer. */
 export function sanitizeDemoBundleBanner(text: string): string {
   return text
@@ -52,7 +61,7 @@ export function polishPresentationLine(line: string, bundleHay = ""): string {
   let t = line.trim();
   if (!t) return t;
 
-  const digitalContext = isDigitalHarassmentBundleHay(bundleHay || t);
+  const digitalContext = isDigitalDisclosureHay(bundleHay || t);
   if (digitalContext) {
     t = t.replace(
       /attribution\s*\/\s*second[-\s]?male\s*\/\s*source-material pressure/gi,
@@ -101,7 +110,7 @@ export function polishPresentationLine(line: string, bundleHay = ""): string {
  */
 export function polishPresentationBlock(text: string, bundleHay = ""): string {
   const context = `${bundleHay} ${text}`;
-  const digitalContext = isDigitalHarassmentBundleHay(context);
+  const digitalContext = isDigitalDisclosureHay(context);
   const offFamilyForDigital: BundleFamily[] = ["bwv", "custody", "drugs", "cctv", "cad", "encro", "abe"];
   const lines = text
     .split(/\r?\n/)

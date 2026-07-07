@@ -56,7 +56,11 @@ import {
   pilotDisclosureChaseStorageKey,
   shouldShowInternalDevTools,
 } from "@/lib/pilot-mode";
-import { displayChaseCardLabel, displayChaseItemText } from "@/lib/criminal/demo-presentation-polish";
+import {
+  displayChaseCardLabel,
+  displayChaseItemText,
+  polishPresentationLine,
+} from "@/lib/criminal/demo-presentation-polish";
 import { createClient } from "@/lib/supabase/browser";
 
 const LOCAL_STORAGE_PREFIX = "casebrain:disclosure-chase:";
@@ -723,6 +727,12 @@ export function DisclosureChase({
   );
 
   const selectedItem = brief.items.find((i) => i.id === selectedId) ?? filteredItems[0] ?? null;
+  const bundleHay = [
+    bundleSource?.frontMatterScan ?? "",
+    allegation,
+    ...(brief.items ?? []).map((i) => `${i.label} ${i.whyItMatters ?? ""} ${i.draftChaseWording ?? ""}`),
+  ].join(" ");
+  const displaySafeCourtLine = polishPresentationLine(brief.safeCourtLine, bundleHay);
 
   const chaseFeedbackContext = useMemo(() => {
     if (!selectedItem) {
@@ -837,7 +847,7 @@ export function DisclosureChase({
                 <MessageSquareQuote className="h-3.5 w-3.5" />
                 Case-wide court line (provisional)
               </p>
-              <p className="mt-2 text-sm text-slate-800 leading-relaxed">{brief.safeCourtLine}</p>
+              <p className="mt-2 text-sm text-slate-800 leading-relaxed">{displaySafeCourtLine}</p>
             </section>
             ) : null}
 

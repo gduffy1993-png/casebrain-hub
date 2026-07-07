@@ -641,8 +641,14 @@ export function CaseControlRoom({
   );
 
   const immediateActions = useMemo(() => {
+    const bundleHay = bundleSource?.frontMatterScan ?? "";
+    const cleanActions = (actions: string[]) =>
+      filterBundleFamilyWarnings(
+        actions.map((line) => polishPresentationLine(line, bundleHay)),
+        bundleHay,
+      ).slice(0, 8);
     const profileActions = workflowTopNextActions(workflowContext);
-    if (profileActions?.length) return profileActions;
+    if (profileActions?.length) return cleanActions(profileActions);
     const items: string[] = [];
     if (!hasSavedPosition && !positionNoticeOnce) {
       items.push("Record defence position / take instructions before committing strategy.");
@@ -670,8 +676,8 @@ export function CaseControlRoom({
       if (items.length >= 8) break;
       if (!items.some((i) => i.toLowerCase().includes(d.slice(0, 20).toLowerCase()))) items.push(d);
     }
-    return stripRepeatedPositionNotice(items, positionNoticeOnce).slice(0, 8);
-  }, [hasSavedPosition, chaseItems, battleboard, defencePlan, positionNoticeOnce, workflowContext]);
+    return cleanActions(stripRepeatedPositionNotice(items, positionNoticeOnce));
+  }, [hasSavedPosition, chaseItems, battleboard, defencePlan, positionNoticeOnce, workflowContext, bundleSource?.frontMatterScan]);
 
   const { evidentialRisks, proceduralRisks, strategicRisks } = useMemo(() => {
     const cols = deriveRiskColumns(
@@ -817,11 +823,11 @@ export function CaseControlRoom({
     }
     if (pilotMode) {
       return pilotCleanupVisibleText(
-        sanitizePilotVisibleLine(line, workflowContext) ?? line,
+        polishPresentationLine(sanitizePilotVisibleLine(line, workflowContext) ?? line, bundleSource?.frontMatterScan ?? ""),
       );
     }
     return line;
-  }, [battleboard, workflowContext, pilotMode]);
+  }, [battleboard, workflowContext, pilotMode, bundleSource?.frontMatterScan]);
 
   const exitClassic = () => {
     clearControlRoomPreference();

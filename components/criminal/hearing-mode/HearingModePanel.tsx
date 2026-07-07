@@ -9,6 +9,7 @@ import { displayCopyBody } from "@/lib/criminal/five-answers/display-labels";
 import type { HearingModeModel } from "@/lib/criminal/hearing-mode/types";
 import { workflowPilotCard, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
 import { softenPilotReviewCopy } from "@/components/criminal/workflow/pilotReviewCopy";
+import { polishPresentationLine } from "@/lib/criminal/demo-presentation-polish";
 
 export function HearingModePanel({
   model,
@@ -72,7 +73,7 @@ export function HearingModePanel({
           </p>
           <ol className="list-decimal pl-4 space-y-1 text-sm text-slate-300">
             {model.topChaseItems.map((item, i) => (
-              <li key={i}>{item.label}</li>
+              <li key={i}>{polishPresentationLine(item.label)}</li>
             ))}
           </ol>
           <Link
