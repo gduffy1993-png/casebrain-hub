@@ -31,6 +31,7 @@ import { buildCriminalBriefPlan } from "@/lib/criminal/brief-plan";
 import { buildMatterConfidence } from "@/lib/criminal/matter-confidence/build-matter-confidence";
 import type { MatterConfidenceResult } from "@/lib/criminal/matter-confidence/matter-confidence-types";
 import type { CriminalBriefPlan } from "@/lib/criminal/brief-plan/types";
+import { resolveDemoPresentationHearingLabel } from "@/lib/criminal/demo-presentation-polish";
 
 function bundleHealthTier(label: string, docCount: number): "ready" | "thin" | "unknown" {
   if (docCount === 0) return "unknown";
@@ -231,7 +232,17 @@ export function useMatterBrief(caseId: string) {
     const stage = headerMeta.stage;
     const hearingDateIso =
       bundleSource?.caseMetadata?.nextHearingIso ?? snapshot?.caseMeta?.hearingNextAt ?? null;
-    const hearingStatus = headerMeta.nextHearing?.trim() || "Hearing not on file";
+    const hearingStatus = resolveDemoPresentationHearingLabel({
+      caseId,
+      currentLabel: headerMeta.nextHearing?.trim() || "Hearing not on file",
+      bundleHay: [
+        bundleSource?.caseMetadata?.nextHearingRaw,
+        bundleSource?.frontMatterScan,
+        bundleSource?.header?.shortTitle,
+      ]
+        .filter(Boolean)
+        .join("\n"),
+    });
     const bundleHealth = deriveBundleHealth(snapshot, bundleSource, battleboard);
 
     const bundleTextForBrief = assembleBundleTextForContradictions({
@@ -355,7 +366,7 @@ export function useMatterBrief(caseId: string) {
       allegation,
       clientLabel,
       courtLabel: headerMeta.court?.trim() || null,
-      hearingLabel: headerMeta.nextHearing?.trim() || hearingStatus,
+      hearingLabel: hearingStatus,
       briefPlan,
       primaryRouteTitle,
       bundleMeta: bundleSource

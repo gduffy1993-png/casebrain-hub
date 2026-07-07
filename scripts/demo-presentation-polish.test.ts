@@ -7,6 +7,7 @@ import {
   filterBundleFamilyWarnings,
   polishPresentationBlock,
   polishPresentationLine,
+  resolveDemoPresentationHearingLabel,
 } from "../lib/criminal/demo-presentation-polish";
 
 const taylorHay =
@@ -75,5 +76,14 @@ const exportPreview = polishPresentationBlock(
 );
 assert.ok(!/MG6 \/ unused|BWV|custody safeguards|drugs continuity/i.test(exportPreview));
 assert.match(exportPreview, /phone|digital|attribution|messages/i);
+
+assert.equal(
+  resolveDemoPresentationHearingLabel({
+    caseId: "4e22fb0f-8631-4cda-9aef-fea6a24f6163",
+    currentLabel: "Hearing · 1 Jan 2026",
+    bundleHay: "PTPH listed — 15 July 2026, 10:00, Northgate Magistrates' Court.",
+  }),
+  "PTPH · 15 Jul 2026 at 10:00",
+);
 
 console.log("demo-presentation-polish.test.ts: PASS");

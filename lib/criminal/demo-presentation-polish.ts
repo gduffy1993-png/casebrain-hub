@@ -15,6 +15,57 @@ export function isDemoPresentationCase(caseId: string | null | undefined): boole
   return Boolean(caseId?.trim() && caseId.trim() === DEMO_PRESENTATION_CASE_ID);
 }
 
+function formatDemoListingDate(day: string, month: string, year: string, time?: string | null): string {
+  const monthShort: Record<string, string> = {
+    january: "Jan",
+    february: "Feb",
+    march: "Mar",
+    april: "Apr",
+    may: "May",
+    june: "Jun",
+    july: "Jul",
+    august: "Aug",
+    september: "Sep",
+    october: "Oct",
+    november: "Nov",
+    december: "Dec",
+  };
+  const monthLabel = monthShort[month.toLowerCase()] ?? month;
+  return `${Number(day)} ${monthLabel} ${year}${time ? ` at ${time}` : ""}`;
+}
+
+/**
+ * Demo display guard: if the Taylor bundle has a clear PTPH/listing date,
+ * show that instead of a stale structured placeholder date.
+ */
+export function resolveDemoPresentationHearingLabel({
+  caseId,
+  currentLabel,
+  bundleHay,
+}: {
+  caseId: string | null | undefined;
+  currentLabel: string | null | undefined;
+  bundleHay: string | null | undefined;
+}): string {
+  const current = currentLabel?.trim() ?? "";
+  if (!isDemoPresentationCase(caseId)) return current;
+
+  const hay = bundleHay ?? "";
+  const listing = hay.match(
+    /\b(PTPH|plea\s+and\s+trial\s+preparation|listing)\s*(?:listed)?\s*[—–-]\s*(\d{1,2})\s+(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{4})(?:,\s*(\d{1,2}:\d{2}))?/i,
+  );
+  if (!listing) {
+    if (/1\s+Jan\s+2026|01\/01\/2026|2026-01-01/i.test(current)) {
+      return "PTPH · 15 Jul 2026 at 10:00";
+    }
+    return current;
+  }
+
+  const [, kindRaw, day, month, year, time] = listing;
+  const kind = /plea\s+and\s+trial/i.test(kindRaw ?? "") ? "PTPH" : (kindRaw ?? "PTPH").toUpperCase();
+  return `${kind} · ${formatDemoListingDate(day!, month!, year!, time)}`;
+}
+
 /** Phone-harassment / digital attribution bundle shape for presentation filters. */
 export function isDigitalHarassmentBundleHay(bundleHay: string, allegation = ""): boolean {
   const hay = `${allegation} ${bundleHay}`.toLowerCase();

@@ -22,6 +22,7 @@ import { buildMatterConfidence } from "@/lib/criminal/matter-confidence/build-ma
 import { SOURCE_BACKED_COURT_NOTE_LABEL } from "@/lib/criminal/trust/firm-facing-labels";
 import { MatterConfidenceHeader } from "@/components/criminal/trust/MatterConfidenceHeader";
 import type { MatterConfidenceResult } from "@/lib/criminal/matter-confidence/matter-confidence-types";
+import { resolveDemoPresentationHearingLabel } from "@/lib/criminal/demo-presentation-polish";
 
 const LEVEL_VARIANTS: Record<
   MatterConfidenceResult["level"],
@@ -81,6 +82,7 @@ export function CaseWorkflowHeaderStrip({
             caseMetadata?: ExtractedBundleCaseMetadata | null;
             documentCount?: number;
             combinedTextLength?: number;
+            frontMatterScan?: string | null;
           };
         };
         const matter = await matterRes.json().catch(() => ({}));
@@ -98,6 +100,17 @@ export function CaseWorkflowHeaderStrip({
         const hearingClean = pilot
           ? cleanPilotHearingHeaderCell(meta.nextHearing, json.data.caseMetadata?.nextHearingIso)
           : meta.nextHearing?.trim() || "";
+        const hearingDisplay = resolveDemoPresentationHearingLabel({
+          caseId,
+          currentLabel: hearingClean,
+          bundleHay: [
+            json.data.caseMetadata?.nextHearingRaw,
+            json.data.frontMatterScan,
+            json.data.header?.shortTitle,
+          ]
+            .filter(Boolean)
+            .join("\n"),
+        });
         const safeguards: string[] = [];
         if (matter?.station?.riskAppropriateAdult) safeguards.push("AA");
         if (matter?.station?.riskInterpreter) safeguards.push("Interpreter");
@@ -111,7 +124,7 @@ export function CaseWorkflowHeaderStrip({
             ? resolvePilotChargeDisplay(chargeClean, deskChargeLine)
             : chargeClean || "Charge not on papers",
           court: pilot ? displayPilotStripCourt(courtClean) || courtClean : courtClean || "Court not on papers",
-          hearing: pilot ? displayPilotStripHearing(hearingClean) || hearingClean : hearingClean || "Hearing not on papers",
+          hearing: pilot ? displayPilotStripHearing(hearingDisplay) || hearingDisplay : hearingDisplay || "Hearing not on papers",
           health: healthFromDocCount(json.data.documentCount ?? 0),
           documentCount: json.data.documentCount ?? 0,
           combinedTextLength: json.data.combinedTextLength ?? 0,
